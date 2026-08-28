@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_id": "MEAS-TEMPLATE-0001",
+  "subject": {
+    "part_id": null,
+    "part_reference": "",
+    "variant": "unknown_pending_verification",
+    "description": "Replace with the measured feature and the state of the part"
+  },
+  "session": {
+    "performed_on": "2026-08-28",
+    "operator_role": "contributor",
+    "ambient_temperature_c": null
+  },
+  "datum": {
+    "origin": "Describe the origin used for every reading",
+    "axes": "Describe the axis convention and the reference planes",
+    "reference_image": null
+  },
+  "instruments": [
+    {
+      "instrument_id": "CAL-01",
+      "type": "caliper",
+      "model": "Replace with make and model",
+      "resolution_mm": 0.01,
+      "interface": "manual",
+      "calibration": {
+        "status": "unknown",
+        "reference": "",
+        "checked_on": null
+      }
+    }
+  ],
+  "readings": [
+    {
+      "dimension_id": "D01",
+      "description": "Replace with what is measured, between which faces",
+      "instrument_id": "CAL-01",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [10.02, 10.01, 10.02],
+      "value": 10.02,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "repeatability",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    }
+  ],
+  "evidence": {
+    "level": "unrated",
+    "files": [],
+    "contradictions": []
+  },
+  "notes": "Template only. Replace every field; a value kept from the template is not a measurement."
+}

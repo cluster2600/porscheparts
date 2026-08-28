@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cluster2600/3dprinting993/schemas/measurement.schema.json",
+  "title": "3dprinting993 measurement record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "measurement_id",
+    "subject",
+    "session",
+    "datum",
+    "instruments",
+    "readings",
+    "evidence",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "measurement_id": { "type": "string", "pattern": "^MEAS-[A-Z0-9][A-Z0-9._-]{2,63}$" },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["part_id", "part_reference", "variant", "description"],
+      "properties": {
+        "part_id": { "type": ["string", "null"], "pattern": "^[A-Z0-9][A-Z0-9._-]{2,63}$" },
+        "part_reference": { "type": "string" },
+        "variant": { "type": "string", "minLength": 2 },
+        "description": { "type": "string", "minLength": 3 }
+      }
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["performed_on", "operator_role", "ambient_temperature_c"],
+      "properties": {
+        "performed_on": { "type": "string", "format": "date" },
+        "operator_role": { "type": "string", "minLength": 2 },
+        "ambient_temperature_c": { "type": ["number", "null"] }
+      }
+    },
+    "datum": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "axes", "reference_image"],
+      "properties": {
+        "origin": { "type": "string", "minLength": 3 },
+        "axes": { "type": "string", "minLength": 3 },
+        "reference_image": { "type": ["string", "null"] }
+      }
+    },
+    "instruments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["instrument_id", "type", "model", "resolution_mm", "interface", "calibration"],
+        "properties": {
+          "instrument_id": { "type": "string", "minLength": 2 },
+          "type": {
+            "enum": ["caliper", "micrometer", "height_gauge", "dial_indicator", "gauge_pin", "thread_gauge", "scale_bar", "camera", "scanner", "other"]
+          },
+          "model": { "type": "string", "minLength": 2 },
+          "resolution_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
+          "interface": { "enum": ["manual", "serial", "usb", "network"] },
+          "calibration": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "reference", "checked_on"],
+            "properties": {
+              "status": { "enum": ["calibrated", "checked_against_reference", "unknown"] },
+              "reference": { "type": "string" },
+              "checked_on": { "type": ["string", "null"], "format": "date" }
+            }
+          }
+        }
+      }
+    },
+    "readings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "dimension_id",
+          "description",
+          "instrument_id",
+          "method",
+          "unit",
+          "samples",
+          "value",
+          "uncertainty",
+          "uncertainty_basis",
+          "capture_mode",
+          "captured_at"
+        ],
+        "properties": {
+          "dimension_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,15}$" },
+          "description": { "type": "string", "minLength": 3 },
+          "instrument_id": { "type": "string", "minLength": 2 },
+          "method": {
+            "enum": ["direct", "indirect", "gauge", "photogrammetry", "scan", "derived"]
+          },
+          "unit": { "enum": ["mm", "deg", "kg", "N", "Nm"] },
+          "samples": { "type": "array", "minItems": 1, "items": { "type": "number" } },
+          "value": { "type": "number" },
+          "uncertainty": { "type": "number", "minimum": 0 },
+          "uncertainty_basis": { "enum": ["repeatability", "instrument_resolution", "combined", "estimated"] },
+          "capture_mode": { "enum": ["manual_entry", "instrument_stream"] },
+          "captured_at": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "files", "contradictions"],
+      "properties": {
+        "level": { "enum": ["A", "C", "E", "unrated"] },
+        "files": { "type": "array", "items": { "type": "string" } },
+        "contradictions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

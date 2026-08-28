@@ -18,9 +18,23 @@ Sortie : aucune donnée d’origine inconnue dans le modèle publiable.
 
 Choisir le moyen minimal donnant la précision nécessaire : pied à coulisse,
 micromètre, jauge, gabarit, photogrammétrie ou scan structuré. Utiliser le modèle
-de `templates/measurement-plan.md`.
+de `templates/measurement-plan.md` pour préparer la séance.
 
-Sortie : repères, unités, incertitudes et mesures critiques documentés.
+Enregistrer ensuite le résultat sous forme vérifiable, dans
+`catalog/measurements/`. Quand l’instrument a une sortie données, capturer
+directement plutôt que recopier :
+
+```bash
+python3 scripts/capture_caliper.py --record catalog/measurements/meas-<pièce>.json \
+    --dimension D01 --description "Alésage de l'œil" --port /dev/ttyUSB0 --repeats 3
+```
+
+Pour un jeu photogrammétrique, `scripts/capture_photoset.py` écrit un manifeste
+et exige la référence d’échelle : sans elle, la reconstruction reste une forme,
+pas une mesure.
+
+Sortie : repères, unités, incertitudes et mesures critiques documentés, et une
+fiche de mesure qui passe `make check`.
 
 ## 4. Reconstruction
 
