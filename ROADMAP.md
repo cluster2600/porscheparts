@@ -2,6 +2,8 @@
 
 ## Phase 0 — Fondation
 
+Statut : **terminée le 28 août 2026** (`v0.1.0`).
+
 Objectif : rendre le projet contributif avant d’ajouter une pièce.
 
 - [x] Charte et limites de sécurité

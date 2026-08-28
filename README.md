@@ -48,7 +48,8 @@ tests/               tests du catalogue et de ses garde-fous
 
 ## État
 
-Le projet est en **Phase 0 — Fondation**. Aucune pièce n’est encore déclarée
+La **Phase 0 — Fondation** est terminée. Le projet est prêt à lancer la
+**Phase 1 — Inventaire des sources**. Aucune pièce n’est encore déclarée
 imprimable ou validée. Voir [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
