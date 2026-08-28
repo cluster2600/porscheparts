@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-SEAT-RAIL-COVER-0001",
+  "name": "Cache de glissiere de siege, cote exterieur",
+  "description": "Cache d'habillage de glissiere de siege, existant en version gauche et droite symetriques. Retenu comme pilote de la categorie symetrique de la phase 2 : un exemplaire manquant doit etre reconstruit depuis son homologue et son environnement.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["a_confirmer_sur_vehicule"],
+    "model_years": { "from": 1994, "to": 1998 },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "interior_trim",
+    "safety_class": "non_critical",
+    "intended_use": "Habillage de la glissiere, sans role de retenue du siege ni de l'occupant"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, geometry not yet produced",
+    "sources": [
+      {
+        "title": "9xxteile - Porsche parts diagrams (PET exploded views)",
+        "url": "https://www.9xxteile.com/en/pet/",
+        "source_type": "community",
+        "license": "third-party-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Confirme l'existence d'une reference gauche et d'une reference droite distinctes. Aucune cote."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["FFF", "SLS", "MJF"],
+    "preferred_process": "FFF",
+    "material": {
+      "family": "polymere",
+      "grade": "a_determiner_apres_essai_de_montage",
+      "standard": "aucune"
+    },
+    "post_processing": ["ebavurage", "verification du jeu avec la glissiere"],
+    "supplier_requirements": []
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "sans objet, piece polymere d'habillage interieur"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "La symetrie gauche-droite est supposee et devra etre verifiee par mesure avant tout miroir.",
+      "Le siege et la glissiere different selon l'equipement : variante a confirmer.",
+      "Aucune mesure realisee.",
+      "Une piece obtenue par miroir ne remplace pas la verification des interfaces reelles."
+    ]
+  }
+}

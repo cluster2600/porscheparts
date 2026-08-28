@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-DOOR-PULL-0001",
+  "name": "Poignee de tirage de porte interieure",
+  "description": "Poignee saisie a la main pour fermer la porte depuis l'interieur. Forme ergonomique non descriptible au pied a coulisse seul, retenue comme pilote de la categorie organique de la phase 2, a acquerir par photogrammetrie.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["a_confirmer_sur_vehicule"],
+    "model_years": { "from": 1994, "to": 1998 },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "interior_trim",
+    "safety_class": "functional",
+    "intended_use": "Fermeture de la porte depuis l'interieur, sollicitation manuelle repetee"
+  },
+  "geometry": {
+    "source_type": "scan",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, geometry not yet produced",
+    "sources": [
+      {
+        "title": "9xxteile - Porsche parts diagrams (PET exploded views)",
+        "url": "https://www.9xxteile.com/en/pet/",
+        "source_type": "community",
+        "license": "third-party-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Situe la poignee dans le sous-ensemble de porte. Aucune cote exploitable."
+      },
+      {
+        "title": "911uk - 993 interior plastics repair",
+        "url": "https://911uk.com/porsche/993-interior-plastics-repair.134380/",
+        "source_type": "community",
+        "license": "forum-user-content-rights-unclear",
+        "accessed_on": "2026-08-28",
+        "notes": "Contexte sur la fragilite des plastiques interieurs du 993. Aucune piece nommee precisement dans ce fil."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["SLS", "MJF", "FFF"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "polymere",
+      "grade": "a_determiner_apres_essai_de_charge",
+      "standard": "aucune"
+    },
+    "post_processing": ["lissage de surface", "essai de prehension"],
+    "supplier_requirements": []
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "sans objet, piece polymere d'habillage interieur"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Classee functional et non non_critical : la piece prend une charge manuelle repetee et sa rupture en main peut blesser.",
+      "Aucune acquisition realisee ; la photogrammetrie devra porter une reference d'echelle.",
+      "Interfaces de fixation et couple de serrage inconnus.",
+      "Comportement en fatigue d'un polymere imprime non evalue."
+    ]
+  }
+}

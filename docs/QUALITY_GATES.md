@@ -17,7 +17,11 @@ Le validateur bloque notamment :
 - une génération autre que 993 ;
 - un identifiant ou un statut inconnu ;
 - une pièce titane sans exigences de traitement, contrôle et isolation ;
-- une pièce critique libérée sans reviewer, preuve et inspection.
+- une pièce critique libérée sans reviewer, preuve et inspection ;
+- une mesure dont la valeur ne correspond pas à ses propres échantillons ;
+- une incertitude plus fine que la moitié de la résolution de l’instrument ;
+- une lecture déclarée issue d’un instrument alors qu’elle a été saisie à la main ;
+- un niveau de preuve `A` sans répétitions ni état d’étalonnage connu.
 
 Ces contrôles assurent la cohérence documentaire. Ils ne réalisent aucune analyse
 mécanique.

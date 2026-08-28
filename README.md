@@ -38,8 +38,10 @@ Compléter ensuite la fiche, ajouter les fichiers CAO autorisés dans
 ```text
 catalog/parts/       fiches structurées des pièces
 catalog/sources/     registre des sources, droits et niveaux de preuve
+catalog/measurements/ séances de mesure, instruments et incertitudes
 parts/               géométries et livrables par pièce
 schemas/             contrat de données du catalogue
+containers/          images de calcul reproductibles, GPU et CPU
 templates/           modèles de fiche, mesure et demande de fabrication
 docs/                plan, outils, workflows et critères qualité
 scripts/             contrôles automatiques sans dépendance externe
@@ -48,10 +50,12 @@ tests/               tests du catalogue et de ses garde-fous
 
 ## État
 
-La **Phase 0 — Fondation** est terminée. Le projet est prêt à lancer la
-**Phase 1 — Inventaire des sources**. Aucune pièce n’est encore déclarée
-imprimable ou validée. Voir [ROADMAP.md](ROADMAP.md) et
-[docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
+La **Phase 0 — Fondation** est terminée. La **Phase 1 — Inventaire des
+sources** est engagée : catalogues officiels, manuels accessibles et sources de
+mesure sont recensés dans `catalog/sources/`
+(voir [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENTORY.md)).
+Aucune pièce n’est encore déclarée imprimable ou validée. Voir
+[ROADMAP.md](ROADMAP.md) et [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
 ## Avertissement
 
