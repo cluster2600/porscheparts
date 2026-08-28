@@ -1,5 +1,27 @@
 # Workflow d’une pièce
 
+## 0. Sélection du candidat
+
+Reproduire une pièce coûte du temps et de l'argent ; les acheter toutes pour
+savoir lesquelles valent l'effort ne passe pas à l'échelle. Lire le catalogue,
+si.
+
+`scripts/select_candidates.py` réduit une génération entière à une liste courte
+en écartant deux populations : les domaines que `SAFETY.md` présume critiques,
+et la visserie standard, qui s'achète et ne se reproduit pas.
+
+```bash
+python3 scripts/select_candidates.py --listing <atlas>/oem-listed.json \
+    --generation 993 --limit 40
+```
+
+Sur les 12 864 lignes du catalogue 993 : 22 % relèvent de domaines écartés,
+39 % sont de la quincaillerie, 11 % ressortent comme candidats — soit environ
+219 formes distinctes à examiner au lieu de douze mille.
+
+La sortie est une liste à trier, pas une décision. Une description de catalogue
+ne dit pas si une pièce est chargée, étanche, chauffée ou seulement décorative.
+
 ## 1. Qualification du besoin
 
 Créer une issue et préciser : référence, fonction, variantes, disponibilité,
