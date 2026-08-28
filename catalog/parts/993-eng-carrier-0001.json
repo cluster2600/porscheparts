@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-CARRIER-0001",
+  "name": "Berceau moteur Turbo (Motortraeger)",
+  "description": "Traverse portant le groupe motopropulseur du 993 Turbo, reference 993 115 021 53. Le catalogue PET la place dans le groupe illustre 109-00 « Engine suspension Turbo », position 17 : la destination Turbo est etablie, pas deduite. Piece structurale reprenant la masse du moteur et ses efforts dynamiques vers la caisse.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "993 115 021 53"
+    ]
+  },
+  "classification": {
+    "category": "powertrain_mounting",
+    "safety_class": "safety_critical",
+    "intended_use": "Support du groupe motopropulseur et transmission de ses efforts a la caisse"
+  },
+  "geometry": {
+    "source_type": "measured",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, geometry not yet produced",
+    "sources": [
+      {
+        "title": "Porsche Classic Genuine Parts Catalogue - 911 (993)",
+        "url": "https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/",
+        "source_type": "official",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Reference officielle a consulter pour confirmer le suffixe 53 et sa variante. Non encore releve piece en main."
+      },
+      {
+        "title": "teile.com - Motortraeger 911 993, groupe 109-00 Motoraufhaengung",
+        "url": "https://teile.com/de/porsche-ersatzteile-onlineshop/modell-911-993/2/Motor-Kuehlung/109-Motoraufhaengung/5/109-00-Motoraufhaengung/Motortraeger/1503",
+        "source_type": "community",
+        "license": "retailer-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Seule source situant 99311502153 dans le groupe Motortraeger du 993. La page refuse l'acces automatise (HTTP 403) : information tiree du titre indexe, non lue directement."
+      },
+      {
+        "title": "Rennline - tubular engine carrier for 964/993 non turbo",
+        "url": "https://www.rennline.com/tubular-engine-carrier-sku-m19/",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Precedent d'un berceau de remplacement tubulaire du marche specialise. Page inaccessible en automatise (HTTP 403) : matiere, masse et justification technique non verifiees."
+      },
+      {
+        "title": "Elferspot - Porsche 993 portrait, facts and specifications",
+        "url": "https://www.elferspot.com/en/magazine/porsche-993-portrait/",
+        "source_type": "community",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Couple moteur 330 Nm a 5000 tr/min et masses a vide par variante. Page lue directement, mais sans source citee pour ses chiffres."
+      },
+      {
+        "title": "Porsche Fanatics - fiche OEM 993 115 021 53",
+        "url": "https://porschefanatics.com/oem/993-115-021-53/",
+        "source_type": "community",
+        "license": "site-du-proprietaire-du-projet-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Lecture du PET consignee avec methode et evidence : groupe 109-00, position 17, page 115, revision KAT 17. Donne le decoupage des trois berceaux du 993 et l'absence d'alternative pour le Turbo."
+      },
+      {
+        "title": "Porsche PET - 911 1994-1998 Type 993, revision KAT 17",
+        "url": "https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Catalogue de pieces Porsche heberge par un tiers. Source du releve ci-dessus. Contenu protege : consultation seulement, aucune illustration ni extrait importe dans ce depot."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "CNC",
+      "sheet_metal",
+      "LPBF",
+      "casting"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "a_determiner",
+      "grade": "matiere d'origine non identifiee, a confirmer sur piece",
+      "standard": "aucune"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "Tracabilite matiere et lot",
+      "Procede et parametres qualifies par le fabricant",
+      "Controle dimensionnel des interfaces de fixation",
+      "Controle non destructif adapte a une piece structurale",
+      "Rapport de fabrication conserve et relie a la revision du STEP"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "a definir : contact avec caisse acier et supports moteur, couple galvanique a maitriser si titane retenu"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Piece presumee critique par SAFETY.md : fixation principale du groupe motopropulseur.",
+      "Ni la piece ni les instruments ne sont disponibles : la fiche ne peut pas depasser le statut concept, faute de mesure possible.",
+      "Le PET distingue trois berceaux 993 : -90 standard (Carrera, C4, S, 4S), -41 RS, -53 Turbo. Ils ne sont pas interchangeables sans preuve, et aucune cote ne permet aujourd'hui de les comparer.",
+      "Aucune alternative de rechange connue pour le berceau Turbo : le berceau tubulaire du marche specialise est explicitement non Turbo.",
+      "Matiere, masse et prix d'origine restent inconnus, y compris dans le releve PET : le catalogue ne les publie pas.",
+      "Construction soudee, fissuration en extremite et pratique de renfort sont rapportees par des resumes de recherche, mais aucune page ouverte ne les confirme : traitees comme pistes, pas comme faits.",
+      "Corrosion documentee sur le 993 aux supports arriere de groupe motopropulseur et aux longerons arriere (forum 911uk, page lue) : l'environnement de la piece est corrosif.",
+      "Aucun cas de charge complet : la masse moteur supportee n'est etablie par aucune source lue directement.",
+      "Couple moteur Carrera 330 Nm a 5000 tr/min retenu faute de mieux ; la valeur Turbo, plus elevee, n'a pas ete relevee.",
+      "Un tirage polymere de cette piece ne peut servir qu'a verifier des interfaces, jamais a porter le moteur.",
+      "Etude materiau realisee : a geometrie identique le Ti-6Al-4V serait 1,84 fois plus souple ; a raideur egale il reste 23 pour cent plus leger mais exige une section 17 pour cent plus grande.",
+      "Aucune publication possible avant revue d'ingenierie formelle et plan de validation approuve."
+    ]
+  }
+}

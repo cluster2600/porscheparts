@@ -163,8 +163,8 @@ def validate_record(record: Any) -> list[str]:
     geometry = _section(record, "geometry", errors)
     if geometry.get("source_type") not in GEOMETRY_SOURCE_TYPES:
         errors.append(f"geometry.source_type: expected one of {sorted(GEOMETRY_SOURCE_TYPES)}")
-    if geometry.get("master_format") not in {"FCStd", "OpenSCAD", "STEP", "none"}:
-        errors.append("geometry.master_format: expected FCStd, OpenSCAD, STEP, or none")
+    if geometry.get("master_format") not in {"FCStd", "OpenSCAD", "build123d", "STEP", "none"}:
+        errors.append("geometry.master_format: expected FCStd, OpenSCAD, build123d, STEP, or none")
     if geometry.get("units") != "mm":
         errors.append("geometry.units: expected mm")
     accuracy = geometry.get("accuracy_mm")

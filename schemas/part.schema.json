@@ -59,7 +59,7 @@
       "required": ["source_type", "master_format", "master_file", "units", "accuracy_mm", "derived_files"],
       "properties": {
         "source_type": { "enum": ["measured", "scan", "reverse_engineered", "public_model", "estimated", "mixed"] },
-        "master_format": { "enum": ["FCStd", "OpenSCAD", "STEP", "none"] },
+        "master_format": { "enum": ["FCStd", "OpenSCAD", "build123d", "STEP", "none"] },
         "master_file": { "type": "string" },
         "units": { "const": "mm" },
         "accuracy_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },

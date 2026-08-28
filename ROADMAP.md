@@ -17,26 +17,47 @@ Critère de sortie : `make check` réussit sur un dépôt propre.
 
 ## Phase 1 — Inventaire des sources
 
-- [ ] Recenser catalogues officiels, manuels légalement accessibles et mesures
+Journal détaillé : [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENTORY.md).
+
+- [x] Recenser catalogues officiels, manuels légalement accessibles et mesures
 - [ ] Recenser les modèles 3D avec licence vérifiable
 - [ ] Classer les références par variante, année et disponibilité
 - [ ] Identifier les pièces manquantes ou difficiles à obtenir
 - [ ] Évaluer chaque source : provenance, licence, précision, réutilisation
 
 Critère de sortie : vingt candidats documentés, sans importer de contenu non
-autorisé.
+autorisé. Avancement : dix-huit fiches valides dans `catalog/sources/`.
 
 ## Phase 2 — Pilotes polymères
 
-Sélectionner trois pièces non critiques :
+Trois pièces non critiques sélectionnées, fiches créées au statut `concept` :
 
-1. une pièce géométrique simple mesurable au pied à coulisse ;
-2. une pièce organique nécessitant scan ou photogrammétrie ;
-3. une pièce symétrique ou absente reconstruite depuis son environnement.
+| Catégorie | Pièce | Fiche |
+|---|---|---|
+| Géométrique simple, pied à coulisse | Cache d'emplacement d'interrupteur | `993-INT-SWITCH-BLANK-0001` |
+| Organique, photogrammétrie | Poignée de tirage de porte | `993-INT-DOOR-PULL-0001` |
+| Symétrique ou absente | Cache de glissière de siège | `993-INT-SEAT-RAIL-COVER-0001` |
+
+- [x] Sélectionner trois pièces non critiques
+- [x] Écrire un plan de mesure par pièce
+- [x] Écrire la géométrie maîtresse pilotée par les mesures (pièce 1)
+- [ ] Mesurer les trois pièces sur véhicule
+- [ ] Imprimer et monter les prototypes
+- [ ] Photographier et consigner les écarts
 
 Critère de sortie : trois prototypes montés, photographiés et mesurés.
 
+Les trois dernières puces demandent l'accès physique au véhicule et aux pièces.
+Aucune cote n'est estimée en attendant : `parts/993-int-switch-blank-0001/source/switch_blank.py`
+refuse de se construire tant que les sept cotes qu'il exige ne sont pas mesurées.
+
 ## Phase 3 — Pilote titane
+
+Candidat à l'étude : **berceau moteur `993-ENG-CARRIER-0001`** (993 115 021 53).
+Pièce présumée critique au sens de `SAFETY.md`. Le bénéfice du titane n'est pas
+acquis : à géométrie identique, la pièce serait environ deux fois plus souple
+qu'en acier. Cas de charge et comparaison de procédés à remplir dans
+`parts/993-eng-carrier-0001/evidence/load-cases.md` avant toute géométrie.
 
 - [ ] Choisir une pièce où Ti-6Al-4V apporte un bénéfice réel
 - [ ] Comparer LPBF, CNC, tôle et fonderie

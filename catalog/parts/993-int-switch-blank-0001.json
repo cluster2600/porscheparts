@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-SWITCH-BLANK-0001",
+  "name": "Cache d'emplacement d'interrupteur, tableau de bord",
+  "description": "Obturateur d'un emplacement d'interrupteur non équipé du tableau de bord. Pièce d'habillage à faces planes et clips, mesurable au pied à coulisse, retenue comme pilote de la catégorie geometrique simple de la phase 2.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["a_confirmer_sur_vehicule"],
+    "model_years": { "from": 1994, "to": 1998 },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "interior_trim",
+    "safety_class": "non_critical",
+    "intended_use": "Obturer un emplacement vide du tableau de bord, sans fonction electrique ni structurelle"
+  },
+  "geometry": {
+    "source_type": "measured",
+    "master_format": "build123d",
+    "master_file": "parts/993-int-switch-blank-0001/source/switch_blank.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, geometry not yet produced",
+    "sources": [
+      {
+        "title": "Porsche Classic Genuine Parts Catalogue - 911 (993)",
+        "url": "https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/",
+        "source_type": "official",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Reference officielle a consulter pour le numero de piece exact. Non encore releve."
+      },
+      {
+        "title": "9xxteile - Porsche parts diagrams (PET exploded views)",
+        "url": "https://www.9xxteile.com/en/pet/",
+        "source_type": "community",
+        "license": "third-party-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Vue eclatee libre d'acces pour situer la piece dans son sous-ensemble. Aucune cote."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["FFF", "SLA", "MJF"],
+    "preferred_process": "FFF",
+    "material": {
+      "family": "polymere",
+      "grade": "a_determiner_apres_essai_de_montage",
+      "standard": "aucune"
+    },
+    "post_processing": ["ebavurage", "essai de clipsage a sec"],
+    "supplier_requirements": []
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "sans objet, piece polymere d'habillage interieur"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Aucune mesure realisee : toutes les cotes sont absentes, pas estimees.",
+      "Numero de piece Porsche non releve.",
+      "Variante et millesime a confirmer sur le vehicule mesure.",
+      "Tenue a la temperature d'habitacle et aux UV non evaluee."
+    ]
+  }
+}
