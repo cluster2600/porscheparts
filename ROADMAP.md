@@ -20,7 +20,7 @@ Critère de sortie : `make check` réussit sur un dépôt propre.
 Journal détaillé : [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENTORY.md).
 
 - [x] Recenser catalogues officiels, manuels légalement accessibles et mesures
-- [ ] Recenser les modèles 3D avec licence vérifiable
+- [x] Recenser les modèles 3D avec licence vérifiable
 - [ ] Classer les références par variante, année et disponibilité
 - [ ] Identifier les pièces manquantes ou difficiles à obtenir
 - [ ] Évaluer chaque source : provenance, licence, précision, réutilisation

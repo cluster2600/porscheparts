@@ -66,9 +66,51 @@ Elle ne devient jamais une référence du catalogue.
 - Le corpus communautaire recopie fréquemment la même origine non citée ; la
   règle « deux copies ne font pas deux confirmations » s’applique directement.
 
+## Lot 2 — Modèles 3D et jumeaux numériques
+
+Recherché en anglais et en allemand le 28 août 2026, sur les places de marché
+3D, les boutiques de scans, les services de numérisation et la presse
+technique.
+
+### Le constat
+
+**Aucun jumeau numérique public du 993 n'existe.** Ce qui existe se range en
+trois catégories, et aucune ne donne une cote :
+
+| Catégorie | Exemple | Niveau | Ce que ça vaut |
+|---|---|---|---|
+| Maillage visuel de synthèse | modèles de jeu, banques 3D, RWB Sketchfab | D | Silhouette, jamais une interface |
+| Scan brut sans échelle | `SRC-SKETCHFAB-993-GT2-RAW-SCAN` | E | Forme, pas mesure |
+| Scan commercial de composant | `SRC-BREMAR-3D-SCAN-STORE` | D | Aucun composant 993 |
+
+Le seul modèle 993 sous **licence libre vérifiable** rencontré est le scan brut
+du GT2, en CC BY 4.0. Il a été obtenu par vidéogrammétrie sur 115 images tirées
+d'une vidéo YouTube : ni échelle, ni précision annoncée, et une chaîne de droits
+qui n'est pas étanche puisqu'il dérive d'images appartenant à un tiers.
+
+### Ce qui existe, mais hors de portée
+
+Porsche Classic fait déjà exactement ce travail, en interne
+(`SRC-PORSCHE-CLASSIC-3D-PRINTING`) : SLM pour l'acier, SLS pour les polymères,
+et « un scan 3D du composant suffit comme base pour lancer la production ». Huit
+pièces produites, une vingtaine à l'étude, contrôlées par essai de pression,
+tomographie et vérification de montage sur véhicule.
+
+C'est à la fois une validation de la démarche et la barre à franchir. Le
+constructeur ne publie pas ces données.
+
+### La piste qui passerait à l'échelle
+
+`SRC-CAR-CLOUDS-POINT-CLOUDS` vend des nuages de points laser de véhicules
+entiers, autour de 195 USD, avec cinq modèles Porsche annoncés sans détail. Un
+scan de véhicule complet donnerait l'environnement de montage de nombreuses
+pièces d'un coup, là où une mesure de pièce n'en sert qu'une. Reste à savoir si
+un 993 en fait partie : à demander avant tout achat.
+
 ## Reste à faire en Phase 1
 
-- [ ] Modèles 3D sous licence vérifiable
+- [x] Modèles 3D sous licence vérifiable — recensés, et le constat est net :
+      **aucun jumeau numérique public du 993 n'existe**. Voir le lot 2 ci-dessous.
 - [ ] Classement par variante, année et disponibilité
 - [x] Pièces manquantes ou difficiles à obtenir — premier cas documenté par une
       source : le berceau moteur Turbo `993 115 021 53` n'a aucune alternative de
