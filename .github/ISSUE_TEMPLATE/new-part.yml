@@ -1,0 +1,87 @@
+name: Nouvelle pièce
+description: Proposer une pièce à mesurer, reconstruire ou fabriquer
+title: "[PART] "
+labels: ["part-candidate"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ne téléversez aucun manuel, modèle ou scan sans licence de redistribution explicite.
+
+  - type: input
+    id: name
+    attributes:
+      label: Nom de la pièce
+    validations:
+      required: true
+
+  - type: input
+    id: part-number
+    attributes:
+      label: Référence Porsche supposée
+      description: Écrire « inconnue » si elle n’est pas vérifiée.
+    validations:
+      required: true
+
+  - type: textarea
+    id: need
+    attributes:
+      label: Besoin
+      description: Pourquoi la pièce doit-elle être reproduite ?
+    validations:
+      required: true
+
+  - type: textarea
+    id: fitment
+    attributes:
+      label: Variantes et années
+      description: Indiquer uniquement ce qui est confirmé et distinguer les inconnues.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: safety
+    attributes:
+      label: Classe de sécurité proposée
+      options:
+        - prohibited_pending_engineering
+        - non_critical
+        - functional
+        - safety_critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources et licences
+      description: URL, auteur, licence et date d’accès pour chaque source.
+    validations:
+      required: true
+
+  - type: textarea
+    id: available-part
+    attributes:
+      label: Pièce ou véhicule disponible pour mesure
+      description: Ne pas publier de VIN, adresse ou donnée personnelle.
+
+  - type: dropdown
+    id: titanium
+    attributes:
+      label: Candidat titane ?
+      options:
+        - À étudier
+        - Non
+        - Oui, avec justification dans le besoin
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Confirmation
+      options:
+        - label: Je n’affirme pas qu’une pièce est sûre ou compatible sans preuve documentée.
+          required: true
+        - label: Je dispose des droits nécessaires sur les fichiers que je proposerai.
+          required: true

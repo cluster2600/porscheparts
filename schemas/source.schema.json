@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cluster2600/3dprinting993/schemas/source.schema.json",
+  "title": "3dprinting993 source record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_id",
+    "title",
+    "url",
+    "publisher",
+    "source_type",
+    "content_types",
+    "coverage",
+    "access",
+    "rights",
+    "quality",
+    "notes"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "source_id": { "type": "string", "pattern": "^SRC-[A-Z0-9][A-Z0-9._-]{2,63}$" },
+    "title": { "type": "string", "minLength": 3 },
+    "url": { "type": "string", "format": "uri" },
+    "publisher": { "type": "string", "minLength": 2 },
+    "source_type": {
+      "enum": ["official", "manufacturer", "measured", "community", "marketplace", "dataset", "academic", "estimated"]
+    },
+    "content_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "enum": ["technical_data", "parts_catalogue", "manual", "drawing", "photograph", "scan", "cad", "mesh", "measurement", "simulation", "material_data"] }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generation", "variants", "parts"],
+      "properties": {
+        "generation": { "enum": ["993", "generic_automotive", "other_porsche"] },
+        "variants": { "type": "array", "items": { "type": "string" } },
+        "parts": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "method", "accessed_on"],
+      "properties": {
+        "status": { "enum": ["available", "access_blocked", "robots_excluded", "paywalled", "purchase_required", "unavailable", "not_checked"] },
+        "method": { "enum": ["direct_download", "browser_page_read", "manual_reference", "not_accessed"] },
+        "accessed_on": { "type": ["string", "null"], "format": "date" }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["license", "redistribution", "attribution"],
+      "properties": {
+        "license": { "type": "string", "minLength": 3 },
+        "redistribution": { "enum": ["allowed", "attribution_required", "noncommercial_only", "prohibited", "unknown"] },
+        "attribution": { "type": "string" }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_level", "dimensional_accuracy", "verified_against"],
+      "properties": {
+        "evidence_level": { "enum": ["A", "B", "C", "D", "E", "unrated"] },
+        "dimensional_accuracy": { "enum": ["measured", "declared", "visual_only", "unknown"] },
+        "verified_against": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

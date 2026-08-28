@@ -1,0 +1,37 @@
+name: Problème de sécurité
+description: Signaler un risque ou une preuve contredisant le statut d’une pièce
+title: "[SAFETY] "
+labels: ["safety", "needs-review"]
+body:
+  - type: input
+    id: part-id
+    attributes:
+      label: Pièce concernée
+    validations:
+      required: true
+
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risque observé
+      description: Ne pas publier de donnée personnelle ou de document propriétaire.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Preuve ou méthode de reproduction
+    validations:
+      required: true
+
+  - type: dropdown
+    id: immediate-action
+    attributes:
+      label: Action prudente proposée
+      options:
+        - Rétrograder la pièce à prohibited_pending_engineering
+        - Suspendre seulement une variante ou un procédé
+        - Revue nécessaire avant décision
+    validations:
+      required: true
