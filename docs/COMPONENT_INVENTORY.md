@@ -23,10 +23,20 @@ que si ses interfaces et leur précision sont connues.
 |---|---|---:|---|---|---|
 | `COMP-FUCHS-37024.013` | 7J x 17 ET55 | 7,50 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
 | `COMP-FUCHS-37026.013` | 9J x 17 ET55 | 7,95 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
+| `COMP-FUCHS-37027.011` | 8J x 18 ET52, 5x130, alésage 71,5 mm | 8,20 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
+| `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, alésage 71,5 mm | 8,80 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
 
 Source primaire : documentation publique du fabricant Otto Fuchs. Il s'agit de
 roues compatibles, pas de fichiers CAO Porsche ni d'une affirmation qu'elles
 étaient montées d'origine sur toutes les variantes.
+
+Assemblages admis : jeu 17 pouces de 30,90 kg et jeu 18 pouces Carrera de
+34,00 kg. Les montages Turbo avec entretoises restent séparés et incomplets.
+
+Les Michelin Pilot Sport PS2 N3 17 pouces sont des candidats bien identifiés par
+Porsche et Michelin. Ils ne sont pas encore admis : les masses disponibles
+proviennent de vendeurs et varient, et la construction matière exacte de ces
+références n'est pas fournie dans les documents fabricant retenus.
 
 ## File d'acquisition
 
@@ -34,4 +44,3 @@ Les prochains lots sont recherchés par sous-ensemble : roues et pneumatiques,
 freinage, roulements et joints standardisés, transmission, moteur, carrosserie,
 habitacle. Une fiche incomplète reste dans le registre de sources ou dans une
 issue de recherche ; elle ne reçoit pas de faux poids ou matériau par défaut.
-

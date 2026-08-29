@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "assembly_id": "ASM-993-FUCHS-18-WHEEL-SET",
+  "name": "Ensemble logique de quatre roues Fuchs 18 pouces pour Porsche 993 Carrera",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993 Carrera et Carrera Turbo-Look selon homologation, hors configuration Turbo à entretoise"]
+  },
+  "status": "logical",
+  "instances": [
+    {
+      "instance_id": "FRONT_WHEELS",
+      "component_id": "COMP-FUCHS-37027.011",
+      "quantity": 2,
+      "frame": "front_axle_unpositioned",
+      "transform": null,
+      "relationship_source_id": "FUCHS-993-18-APPLICATION"
+    },
+    {
+      "instance_id": "REAR_WHEELS",
+      "component_id": "COMP-FUCHS-37028.011",
+      "quantity": 2,
+      "frame": "rear_axle_unpositioned",
+      "transform": null,
+      "relationship_source_id": "FUCHS-993-18-APPLICATION"
+    }
+  ],
+  "physical_summary": {
+    "mass_g": 34000,
+    "basis": "sum_of_component_records"
+  },
+  "relationship_sources": [
+    {
+      "source_id": "FUCHS-993-18-APPLICATION",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37028.pdf",
+      "accessed_on": "2026-08-29",
+      "claim": "L'homologation associe la roue 8J x 18 ET52 à l'avant et la roue 10J x 18 ET65 à l'arrière du type 993, avec variantes de pneumatiques selon Carrera ou Turbo."
+    }
+  ],
+  "known_limits": [
+    "Assemblage logique uniquement : les transformations vers les quatre moyeux sont absentes.",
+    "Les sièges de fixation, boulons, couples et tolérances ne sont pas modélisés.",
+    "La variante Turbo nécessitant une entretoise arrière de 25 mm doit être un assemblage distinct quand cette entretoise aura une fiche complète."
+  ]
+}
+

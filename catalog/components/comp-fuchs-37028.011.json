@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "component_id": "COMP-FUCHS-37028.011",
+  "name": "Roue Fuchs forgée aluminium 10J x 18 ET65",
+  "kind": "aftermarket",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993 Carrera", "993 Carrera Turbo-Look", "993 Turbo hors GT2"],
+    "model_years": { "from": 1993, "to": 1998 },
+    "positions": ["rear_left", "rear_right"]
+  },
+  "identifiers": [
+    { "system": "Otto Fuchs", "value": "37028.011" },
+    { "system": "ECE R124 type approval", "value": "000088 / wheel set 37027+37028" }
+  ],
+  "physical": {
+    "size_parameters": [
+      { "parameter_id": "RIM_WIDTH", "name": "largeur nominale de jante", "value": 10, "unit": "in", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "RIM_DIAMETER", "name": "diamètre nominal de jante", "value": 18, "unit": "in", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "OFFSET", "name": "déport ET", "value": 65, "unit": "mm", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "BOLT_COUNT", "name": "nombre de fixations", "value": 5, "unit": "count", "source_id": "FUCHS-APPROVAL" },
+      { "parameter_id": "PCD", "name": "diamètre d'entraxe", "value": 130, "unit": "mm", "source_id": "FUCHS-APPROVAL" },
+      { "parameter_id": "CENTER_BORE", "name": "alésage central", "value": 71.5, "unit": "mm", "source_id": "FUCHS-APPROVAL" }
+    ],
+    "mass": {
+      "value_g": 8800,
+      "tolerance_g": null,
+      "basis": "manufacturer",
+      "source_id": "FUCHS-993-PDF"
+    },
+    "material": {
+      "family": "aluminium",
+      "grade": null,
+      "process": "forged",
+      "source_id": "FUCHS-PRODUCT"
+    }
+  },
+  "geometry": {
+    "representation": "interface_proxy",
+    "master_format": "build123d",
+    "master_file": "components/wheels/fuchs/source/wheel_interface_proxy.py",
+    "derived_files": [],
+    "interface_accuracy_mm": null,
+    "limitations": [
+      "Le proxy représente le cylindre nominal de portée et l'alésage central ; l'entraxe reste une métadonnée faute de diamètre et de siège des fixations.",
+      "Profil de jante, branches, sièges de fixation et enveloppe extérieure réelle non disponibles.",
+      "Sur 993 Turbo/Turbo Look, la documentation fabricant impose une entretoise de 25 mm avec le pneumatique 285/30ZR18.",
+      "Les tolérances dimensionnelles et de masse ne sont pas publiées dans les sources retenues."
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "FUCHS-PRODUCT",
+      "title": "Fuchsfelge für Porsche - Schmiederad Aluminium",
+      "url": "https://www.fuchsfelge.com/de/vielfalt/raederuebersicht/detail/fuchsfelge-fuer-porsche-schmiederad-aluminium-161.html",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["manufacturer identifier 37028.011", "rim size", "offset", "mass", "forged aluminium material", "993 application"]
+    },
+    {
+      "source_id": "FUCHS-993-PDF",
+      "title": "Verwendungsbereich Porsche 993",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Fuchsfelgen_Porsche_993_DINLang_6S_bis12-2020.pdf",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["rear position", "10J x 18 ET65", "8.80 kg mass", "993 application", "Turbo spacer requirement"]
+    },
+    {
+      "source_id": "FUCHS-APPROVAL",
+      "title": "ECE R124 Typengenehmigung 37027/37028",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37028.pdf",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["5x130 bolt pattern", "71.5 mm centre bore", "993 Carrera and Turbo applications", "front and rear pairing"]
+    }
+  ],
+  "eligibility": {
+    "complete_physical_record": true,
+    "logical_assembly": true,
+    "spatial_check": false,
+    "reason": "Taille, matière, procédé, masse, application et interfaces principales de moyeu sont sourcés ; forme et tolérances restent inconnues."
+  }
+}

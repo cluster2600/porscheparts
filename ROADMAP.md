@@ -44,6 +44,8 @@ relations de montage sont enregistrées séparément des transformations spatial
 - [x] Créer les registres de composants physiques et d'assemblages
 - [x] Admettre le premier lot taille + matière + masse : roues Fuchs 17 pouces
 - [x] Assembler logiquement les paires avant et arrière documentées
+- [x] Ajouter les roues Fuchs 18 pouces et leur interface 5x130 / 71,5 mm
+- [x] Documenter le blocage des pneus Michelin PS2 N3 faute de matière et masse fabricant cohérentes
 - [ ] Étendre l'inventaire par familles de sous-ensembles
 - [ ] Compléter les interfaces nécessaires au positionnement spatial
 - [ ] Générer les assemblages STEP/FreeCAD lorsque les transformations sont connues
