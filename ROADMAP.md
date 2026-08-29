@@ -28,7 +28,7 @@ Recherche complémentaire : [lot germanophone de vingt candidats](docs/research/
 - [ ] Évaluer chaque source : provenance, licence, précision, réutilisation
 
 Critère de sortie : vingt candidats documentés, sans importer de contenu non
-autorisé. Avancement : cinquante fiches valides dans `catalog/sources/` ;
+autorisé. Avancement : cinquante-neuf fiches valides dans `catalog/sources/` ;
 le seuil quantitatif est atteint, mais la qualification croisée reste ouverte.
 
 ## Phase 2 — Inventaire physique et assemblage du jumeau
