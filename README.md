@@ -74,6 +74,13 @@ dans [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Voir
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
+![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
+
+Ce schéma représente les relations logiques actuellement sourcées, pas la
+position réelle des composants dans la voiture. La recherche des modèles CAO,
+scans et fichiers communautaires est suivie dans
+[docs/research/phase-2-cao-forums-993.md](docs/research/phase-2-cao-forums-993.md).
+
 ## Avertissement
 
 Ce dépôt fournit des données de recherche et de fabrication sans garantie.

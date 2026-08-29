@@ -1,0 +1,31 @@
+graph TD
+    T["Jumeau numérique Porsche 993<br/>état sourcé"]
+
+    T -->|assemblage logique| W17["Jeu de roues 17 pouces<br/>30,90 kg"]
+    W17 --> F17["Avant ×2<br/>Fuchs 37024.013<br/>7J × 17 ET55 · 7,50 kg"]
+    W17 --> R17["Arrière ×2<br/>Fuchs 37026.013<br/>9J × 17 ET55 · 7,95 kg"]
+    F17 --> I17["Interface connue<br/>5 × 130 · alésage 71,58 mm"]
+    R17 --> I17R["Interface connue<br/>5 × 130 · alésage 71,5 mm"]
+
+    T -->|assemblage logique| W18["Jeu de roues 18 pouces<br/>34,00 kg"]
+    W18 --> F18["Avant ×2<br/>Fuchs 37027.011<br/>8J × 18 ET52 · 8,20 kg"]
+    W18 --> R18["Arrière ×2<br/>Fuchs 37028.011<br/>10J × 18 ET65 · 8,80 kg"]
+    F18 --> I18["Interface connue<br/>5 × 130 · alésage 71,5 mm"]
+    R18 --> I18
+
+    T -.->|candidats qualifiés| B["Freinage Carrera<br/>Brembo + ATE"]
+    B --> X["Non admis<br/>masse nette et nuance matière manquantes"]
+
+    T -.-> S["Positionnement 3D global<br/>transformations encore inconnues"]
+
+    classDef root fill:#1f2937,color:#ffffff,stroke:#111827,stroke-width:3px
+    classDef active fill:#dbeafe,color:#172554,stroke:#2563eb,stroke-width:2px
+    classDef interface fill:#dcfce7,color:#14532d,stroke:#16a34a,stroke-width:2px
+    classDef blocked fill:#fee2e2,color:#7f1d1d,stroke:#dc2626,stroke-width:2px
+    classDef pending fill:#fef3c7,color:#78350f,stroke:#d97706,stroke-width:2px
+
+    class T root
+    class W17,F17,R17,W18,F18,R18 active
+    class I17,I17R,I18 interface
+    class B,X blocked
+    class S pending
