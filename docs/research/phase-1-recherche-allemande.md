@@ -41,6 +41,33 @@ accompagné d’une précision métrologique démontrée. Les modèles commercia
 carrosserie trouvés sont principalement des maillages de visualisation ; ils ne
 remplacent pas une mesure de pièce.
 
+## Vague ciblée : marbre et manuel d’atelier
+
+Une seconde vague a repris les requêtes `frame data`, `body dimensions`,
+`Celette`, `Group 5`, `Running Gear`, `KATALOG_993` et leurs équivalents
+allemands `Karosseriemaße`, `Richtbankdaten`, `Richtsatz` et
+`Reparaturleitfaden`.
+
+- Le volume V du [manuel d’atelier officiel](../../catalog/sources/src-porsche-workshop-manual-993.json)
+  contient les dimensions de construction, les dimensions de réparation de
+  caisse et les dimensions du plancher. Le volume IV couvre le train roulant.
+- Les copies intégrales repérées sur Cannell, PDFCoffee, Scribd et par échanges
+  privés de forums n’ont pas de droit de diffusion démontré. Elles ne sont ni
+  téléchargées ni référencées comme sources exploitables.
+- Un [jeu de marbre Celette MZx 964/993](../../catalog/sources/src-celette-mzx-964-993-jigs.json)
+  est confirmé par le fabricant. Il est destiné au maintien et à la mesure,
+  sans opération de tirage, mais sa fiche publique ne révèle aucune coordonnée.
+- [Car-O-Data](../../catalog/sources/src-car-o-liner-car-o-data.json) contient des
+  fiches professionnelles de mesure supérieure et inférieure de caisse. La
+  présence d’une fiche 993 n’est pas confirmée publiquement.
+- La requête `site:porsche.com "KATALOG_993" filetype:pdf` n’a pas retrouvé un
+  meilleur PET que le Kat 017 officiel déjà enregistré.
+
+Conclusion : le chemin le plus crédible vers la géométrie de caisse est le
+volume V officiel ou l’accès encadré à une base de marbre professionnelle. Une
+copie PDF trouvée par Google n’est pas, à elle seule, une source légalement
+réutilisable.
+
 ## Matrice des vingt candidats
 
 `D` signifie ici référence communautaire ou visuelle sans précision démontrée.

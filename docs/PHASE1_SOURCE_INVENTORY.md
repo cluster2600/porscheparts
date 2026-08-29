@@ -123,7 +123,7 @@ un 993 en fait partie : à demander avant tout achat.
       critères d'ingénierie et non sur une rareté documentée.
 - [ ] Évaluation croisée provenance, licence, précision, réutilisation
 
-État : quarante-deux fiches sources et au moins vingt candidats documentés ; le
+État : quarante-quatre fiches sources et au moins vingt candidats documentés ; le
 seuil de sortie de phase est atteint en nombre. Deux ajouts
 (`SRC-TEILE-COM-993-ENGINE-CARRIER`,
 `SRC-RENNLINE-TUBULAR-ENGINE-CARRIER`) refusent l'accès automatisé : ils comptent
