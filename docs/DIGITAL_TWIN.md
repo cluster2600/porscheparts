@@ -38,6 +38,29 @@ python3 twins/993-cabin-dashboard-switch-0001/source/check_fit.py \
   --out twins/993-cabin-dashboard-switch-0001/derived/fit-report.json
 ```
 
+## Première intégration géométrique — roues et moyeux
+
+Le registre contient maintenant une seconde zone active :
+`TWIN-993-WHEEL-HUB-INTERFACES-0001`. Elle référence quatre solides STEP
+reproductibles à partir du même maître build123d :
+
+- Fuchs 7J × 17 ET55, avant ;
+- Fuchs 9J × 17 ET55, arrière ;
+- Fuchs 8J × 18 ET52, avant ;
+- Fuchs 10J × 18 ET65, arrière.
+
+Ces objets sont des proxys d'interface `F1_envelope` : cylindre nominal,
+largeur nominale et alésage central. Ils rendent les composants visibles et
+assemblables dans FreeCAD, mais ne reproduisent ni les branches, ni le profil
+réel de jante, ni les sièges de boulons. Les deux moyeux restent des repères
+logiques sans géométrie. Le twin est donc au statut `concept`, et non
+`digitally_checked`.
+
+Pour passer à `F2_interface`, il faut mesurer ou sourcer la face d'appui, le
+centrage du moyeu, le type de siège des fixations, l'enveloppe du frein, les
+tolérances et les transformations dans le repère véhicule. Alors seulement un
+calcul de collision ou de marge pourra devenir une preuve numérique.
+
 ## Ordre de construction
 
 | Tranche | Zone | Premier test |

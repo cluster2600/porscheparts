@@ -71,6 +71,7 @@ premier inventaire physique est décrit dans
 [docs/COMPONENT_INVENTORY.md](docs/COMPONENT_INVENTORY.md) et la première zone
 du tableau de bord est amorcée
 dans [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Voir
+[la suite libre LLM/CAO et son déploiement Vast.ai](docs/AI_DIGITAL_TWIN_STACK.md),
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 

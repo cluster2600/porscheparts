@@ -36,7 +36,14 @@ class TwinValidationTests(unittest.TestCase):
         path = ROOT / "catalog" / "twins" / "twin-993-cabin-dashboard-switch-0001.json"
         self.assertEqual(load_and_validate(path), [])
 
+    def test_wheel_hub_twin_loads_and_references_four_step_proxies(self) -> None:
+        path = ROOT / "catalog" / "twins" / "twin-993-wheel-hub-interfaces-0001.json"
+        self.assertEqual(load_and_validate(path), [])
+        record = json.loads(path.read_text(encoding="utf-8"))
+        step_files = record["geometry"]["derived_files"]
+        self.assertEqual(len(step_files), 4)
+        self.assertTrue(all((ROOT / item).is_file() for item in step_files))
+
 
 if __name__ == "__main__":
     unittest.main()
-

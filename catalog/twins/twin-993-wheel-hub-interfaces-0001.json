@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-WHEEL-HUB-INTERFACES-0001",
+  "name": "Interfaces nominales roues Fuchs et moyeux de Porsche 993",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993", "993 Carrera", "993 Turbo hors GT2", "993 Turbo Look"],
+    "model_years": { "from": 1993, "to": 1998 }
+  },
+  "scope": {
+    "zone": "wheel_hub_interfaces",
+    "purposes": ["fit", "clearance"]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "centre theorique de la face d'appui de chaque moyeu",
+    "axes": "X axe de roue vers l'exterieur, Y vers l'avant du vehicule, Z vers le haut",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "FRONT_HUB_DATUM",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "REAR_HUB_DATUM",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "FUCHS_17_FRONT",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "components/wheels/fuchs/derived/37024.013-interface-proxy.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "FUCHS_17_REAR",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "components/wheels/fuchs/derived/37026.013-interface-proxy.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "FUCHS_18_FRONT",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "components/wheels/fuchs/derived/37027.011-interface-proxy.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "FUCHS_18_REAR",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "components/wheels/fuchs/derived/37028.011-interface-proxy.step",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_FRONT_17_HUB",
+      "kind": "fastener",
+      "components": ["FRONT_HUB_DATUM", "FUCHS_17_FRONT"],
+      "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
+      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_REAR_17_HUB",
+      "kind": "fastener",
+      "components": ["REAR_HUB_DATUM", "FUCHS_17_REAR"],
+      "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
+      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_FRONT_18_HUB",
+      "kind": "fastener",
+      "components": ["FRONT_HUB_DATUM", "FUCHS_18_FRONT"],
+      "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
+      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_REAR_18_HUB",
+      "kind": "fastener",
+      "components": ["REAR_HUB_DATUM", "FUCHS_18_REAR"],
+      "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
+      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "components/wheels/fuchs/source/wheel_interface_proxy.py",
+    "derived_files": [
+      "components/wheels/fuchs/derived/37024.013-interface-proxy.step",
+      "components/wheels/fuchs/derived/37026.013-interface-proxy.step",
+      "components/wheels/fuchs/derived/37027.011-interface-proxy.step",
+      "components/wheels/fuchs/derived/37028.011-interface-proxy.step"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "catalog/components/COMP-FUCHS-37024.013.json",
+      "catalog/components/COMP-FUCHS-37026.013.json",
+      "catalog/components/COMP-FUCHS-37027.011.json",
+      "catalog/components/COMP-FUCHS-37028.011.json",
+      "catalog/assemblies/asm-993-fuchs-17-wheel-set.json",
+      "catalog/assemblies/asm-993-fuchs-18-wheel-set.json"
+    ],
+    "known_limits": [
+      "Les solides STEP sont des cylindres nominaux avec alesage central, pas la geometrie complete des roues.",
+      "Les moyeux, freins, sieges de fixation et transformations dans le repere vehicule ne sont pas encore modelises.",
+      "Les tolerances et l'exactitude des geometries sont inconnues ; aucun controle spatial ne peut encore etre declare.",
+      "Les entretoises requises pour certaines variantes Turbo et Turbo Look ne sont pas encore des composants geometrises."
+    ]
+  }
+}

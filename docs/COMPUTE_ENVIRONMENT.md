@@ -22,7 +22,12 @@ OpenFOAM est du gaspillage.
 
 Les choix logiciels sont justifiés dans
 [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md) :
-tout outil retenu s’exécute sans interface graphique.
+tout outil retenu s'exécute sans interface graphique.
+
+Le LLM n'est volontairement pas ajouté à ces images : on lance l'image vLLM
+sur une instance GPU séparée, puis les images de reconstruction et de calcul au
+besoin. Le modèle retenu, le dimensionnement GPU et la frontière d'autorité du
+LLM sont décrits dans [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md).
 
 ## Construire et vérifier
 
