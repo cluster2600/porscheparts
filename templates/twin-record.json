@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-TEMPLATE-0001",
+  "name": "Replace with a functional vehicle zone",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["unknown_pending_verification"],
+    "model_years": { "from": 1993, "to": 1998 }
+  },
+  "scope": { "zone": "unknown", "purposes": ["fit"] },
+  "fidelity": "F0_reference",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "Replace with a physical datum",
+    "axes": "Replace with the local axis convention",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    { "component_id": "HOST", "role": "host", "part_id": null, "geometry_file": "", "accuracy_mm": null },
+    { "component_id": "CANDIDATE", "role": "candidate", "part_id": null, "geometry_file": "", "accuracy_mm": null }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF01",
+      "kind": "clearance",
+      "components": ["HOST", "CANDIDATE"],
+      "required_measurements": ["D01", "H01"],
+      "acceptance_rule": "Replace with a computable rule",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": { "master_format": "none", "master_file": "", "derived_files": [] },
+  "validation": {
+    "status": "concept",
+    "evidence": [],
+    "known_limits": ["Template values are not measurement evidence."]
+  }
+}
+

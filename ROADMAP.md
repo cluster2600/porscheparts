@@ -31,7 +31,27 @@ Critère de sortie : vingt candidats documentés, sans importer de contenu non
 autorisé. Avancement : quarante-quatre fiches valides dans `catalog/sources/` ;
 le seuil quantitatif est atteint, mais la qualification croisée reste ouverte.
 
-## Phase 2 — Pilotes polymères
+## Phase 2 — Jumeau numérique fonctionnel et pilotes polymères
+
+Architecture : [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md).
+
+Le jumeau est construit par zones de montage. La première tranche relie le cache
+d'interrupteur à son logement réel et calcule les jeux au pire cas, incertitudes
+comprises.
+
+- [x] Définir les niveaux de fidélité `F0` à `F4`
+- [x] Créer le registre, le schéma et les validations des sous-jumeaux
+- [x] Écrire le premier contrôle numérique du logement d'interrupteur
+- [ ] Mesurer ensemble le cache et son logement
+- [ ] Générer la géométrie hôte et l'assemblage CAO au niveau `F2_interface`
+- [ ] Exécuter et versionner le rapport de montage numérique
+- [ ] Corréler les marges calculées avec le prototype physique
+
+Critère de sortie jumeau MVP : une zone `F2_interface` au statut
+`physically_correlated`, avec géométries, incertitudes, rapport numérique et
+preuve de montage reliés à la même version.
+
+### Pièces pilotes
 
 Trois pièces non critiques sélectionnées, fiches créées au statut `concept` :
 
@@ -48,13 +68,14 @@ Trois pièces non critiques sélectionnées, fiches créées au statut `concept`
 - [ ] Imprimer et monter les prototypes
 - [ ] Photographier et consigner les écarts
 
-Critère de sortie : trois prototypes montés, photographiés et mesurés.
+Critère de sortie pièces : trois prototypes montés, photographiés et mesurés
+dans leur sous-jumeau respectif.
 
 Les trois dernières puces demandent l'accès physique au véhicule et aux pièces.
 Aucune cote n'est estimée en attendant : `parts/993-int-switch-blank-0001/source/switch_blank.py`
 refuse de se construire tant que les sept cotes qu'il exige ne sont pas mesurées.
 
-## Phase 3 — Pilote titane
+## Phase 3 — Jumeau d'ingénierie et pilote titane
 
 Candidat à l'étude : **berceau moteur `993-ENG-CARRIER-0001`** (993 115 021 53).
 Pièce présumée critique au sens de `SAFETY.md`. Le bénéfice du titane n'est pas
@@ -66,6 +87,8 @@ qu'en acier. Cas de charge et comparaison de procédés à remplir dans
 - [ ] Comparer LPBF, CNC, tôle et fonderie
 - [ ] Définir charges, interfaces, environnement et durée de vie
 - [ ] Réaliser FEA et revue de fabricabilité avec un prestataire
+- [ ] Intégrer géométrie, charges et résultats au niveau `F3_engineering`
+- [ ] Corréler au moins un cas de calcul à un essai physique
 - [ ] Prototyper en polymère puis, si utile, en aluminium économique
 - [ ] Fabriquer un premier exemplaire Ti-6Al-4V traçable
 

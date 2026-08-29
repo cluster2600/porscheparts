@@ -3,8 +3,9 @@
 ## Vision
 
 Rendre reproductibles des pièces de Porsche 993 devenues rares, fragiles ou
-inadaptées, en publiant des sources CAO modifiables, leur provenance et leur
-niveau réel de validation.
+inadaptées, en les développant dans un jumeau numérique fonctionnel construit
+par zones. Les sources CAO, interfaces, mesures, incertitudes et niveaux réels
+de validation restent publiés et modifiables.
 
 L’accent titane signifie que le projet maîtrise le chemin allant d’une mesure ou
 d’un scan jusqu’à une demande de fabrication Ti-6Al-4V contrôlable. Il ne signifie
@@ -31,11 +32,16 @@ Pour chaque pièce publiée :
 7. une licence explicite ;
 8. une version et un historique des changements.
 
+Pour chaque zone du jumeau : géométrie hôte, repère, composants, interfaces,
+règles d'acceptation, précision, rapport numérique et corrélation physique.
+
 ## Mesures de réussite
 
 - Pourcentage de pièces avec licence et provenance complètes
 - Pourcentage de pièces disposant d’un fichier source modifiable
 - Nombre de prototypes dont le montage est documenté
+- Nombre de sous-jumeaux au niveau `F2_interface` ou supérieur
+- Écart entre les marges numériques prévues et les contrôles physiques
 - Nombre de pièces testées sur plusieurs véhicules ou variantes
 - Taux de défauts ou de corrections après publication
 - Nombre de pièces titane avec traçabilité matière et rapport de contrôle

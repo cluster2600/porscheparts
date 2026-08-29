@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cluster2600/3dprinting993/schemas/twin.schema.json",
+  "title": "3dprinting993 digital twin zone record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "twin_id", "name", "vehicle", "scope", "fidelity", "coordinate_system", "components", "interfaces", "geometry", "validation"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "twin_id": { "type": "string", "pattern": "^TWIN-[A-Z0-9][A-Z0-9._-]{2,63}$" },
+    "name": { "type": "string", "minLength": 3 },
+    "vehicle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generation", "variants", "model_years"],
+      "properties": {
+        "generation": { "const": "993" },
+        "variants": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "model_years": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "to"],
+          "properties": {
+            "from": { "type": "integer", "minimum": 1993, "maximum": 1998 },
+            "to": { "type": "integer", "minimum": 1993, "maximum": 1998 }
+          }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zone", "purposes"],
+      "properties": {
+        "zone": { "type": "string", "minLength": 3 },
+        "purposes": { "type": "array", "minItems": 1, "items": { "enum": ["fit", "clearance", "motion", "structural", "thermal", "fluid"] } }
+      }
+    },
+    "fidelity": { "enum": ["F0_reference", "F1_envelope", "F2_interface", "F3_engineering", "F4_correlated"] },
+    "coordinate_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame", "origin", "axes", "units", "vehicle_transform"],
+      "properties": {
+        "frame": { "enum": ["local", "vehicle"] },
+        "origin": { "type": "string", "minLength": 3 },
+        "axes": { "type": "string", "minLength": 3 },
+        "units": { "const": "mm" },
+        "vehicle_transform": { "type": ["array", "null"], "minItems": 16, "maxItems": 16, "items": { "type": "number" } }
+      }
+    },
+    "components": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["component_id", "role", "part_id", "geometry_file", "accuracy_mm"],
+        "properties": {
+          "component_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9._-]{1,63}$" },
+          "role": { "enum": ["host", "candidate", "context"] },
+          "part_id": { "type": ["string", "null"] },
+          "geometry_file": { "type": "string" },
+          "accuracy_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 }
+        }
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["interface_id", "kind", "components", "required_measurements", "acceptance_rule", "status"],
+        "properties": {
+          "interface_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9._-]{1,63}$" },
+          "kind": { "enum": ["contact", "clearance", "fastener", "clip", "motion"] },
+          "components": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "string" } },
+          "required_measurements": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "acceptance_rule": { "type": "string", "minLength": 3 },
+          "status": { "enum": ["missing_data", "ready", "passed", "failed"] }
+        }
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["master_format", "master_file", "derived_files"],
+      "properties": {
+        "master_format": { "enum": ["build123d", "FCStd", "STEP", "none"] },
+        "master_file": { "type": "string" },
+        "derived_files": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence", "known_limits"],
+      "properties": {
+        "status": { "enum": ["concept", "geometry_ready", "digitally_checked", "physically_correlated"] },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "known_limits": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
+

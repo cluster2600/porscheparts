@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-CABIN-DASH-SWITCH-0001",
+  "name": "Zone fonctionnelle du cache d'interrupteur de tableau de bord",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["unknown_pending_measurement"],
+    "model_years": { "from": 1993, "to": 1998 }
+  },
+  "scope": {
+    "zone": "cabin_dashboard_switch_opening",
+    "purposes": ["fit", "clearance"]
+  },
+  "fidelity": "F0_reference",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "centre de la face visible du cache",
+    "axes": "X largeur vers la gauche du vehicule, Y hauteur vers le haut, Z vers l'habitacle",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "DASH_PANEL",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "SWITCH_BLANK",
+      "role": "candidate",
+      "part_id": "993-INT-SWITCH-BLANK-0001",
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_INSERTION",
+      "kind": "clearance",
+      "components": ["DASH_PANEL", "SWITCH_BLANK"],
+      "required_measurements": ["D08", "D09", "H01", "H02"],
+      "acceptance_rule": "worst_case_horizontal_clearance > 0 and worst_case_vertical_clearance > 0",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_FACE_OVERLAP",
+      "kind": "contact",
+      "components": ["DASH_PANEL", "SWITCH_BLANK"],
+      "required_measurements": ["D01", "D02", "H01", "H02"],
+      "acceptance_rule": "worst_case_horizontal_overlap > 0 and worst_case_vertical_overlap > 0",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CLIP_DEPTH",
+      "kind": "clip",
+      "components": ["DASH_PANEL", "SWITCH_BLANK"],
+      "required_measurements": ["D05", "H03", "H05"],
+      "acceptance_rule": "worst_case_clip_reach > 0 and worst_case_rear_clearance > 0",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "twins/993-cabin-dashboard-switch-0001/source/check_fit.py",
+    "derived_files": []
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"
+    ],
+    "known_limits": [
+      "Aucune cote du logement reel n'est encore presente.",
+      "La variante et le millesime du vehicule doivent etre confirmes.",
+      "Le test de clipsage ne modelise pas encore la deformation elastique des pattes."
+    ]
+  }
+}
+

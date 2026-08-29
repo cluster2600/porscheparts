@@ -40,10 +40,16 @@ utilisé ; sinon elle porte explicitement la mention `manual_entry`.
 | Géométrie générative simple | OpenSCAD | Modèles reproductibles sous forme de code |
 | Surfaces organiques | Blender puis reconstruction solide | Référence maillée puis solide paramétrique |
 | Revue humaine et FEM interactif | FreeCAD | Inspection STEP, vérification visuelle |
+| Assemblages fonctionnels | FreeCAD Assembly | Contraintes, mouvements et revue des interfaces |
 
 Une pièce peut donc avoir pour source maîtresse un script Python versionné qui
 régénère son STEP. Le fichier `.FCStd` reste accepté ; il est simplement moins
 facile à relire en revue.
+
+Pour le jumeau global, STEP/FreeCAD restent la vérité dimensionnelle. OpenUSD
+peut servir de scène fédérée pour charger les zones, variantes et habillages
+visuels sans fusionner tous les fichiers dans un modèle monolithique. Une scène
+USD ne porte jamais seule une cote de fabrication.
 
 Ordre des formats maîtres : script `build123d`, `.FCStd` ou `.scad`, puis
 `.step`. Les formats `.3mf` et `.stl` sont des dérivés de fabrication.

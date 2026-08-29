@@ -4,9 +4,11 @@ Projet ouvert de rétroconception et de fabrication de pièces pour la Porsche
 911 type 993, avec un accent particulier sur les pièces en titane fabriquées par
 fusion laser sur lit de poudre (LPBF/DMLS).
 
-Le dépôt ne cherche pas à produire immédiatement une voiture numérique complète.
-Il construit une bibliothèque traçable de composants : sources, mesures, CAO
-paramétrique, prototypes, fichiers de fabrication et preuves de validation.
+Le dépôt construit un **jumeau numérique fonctionnel** de la 993 par zones
+d'interface. Il ne cherche pas d'abord une carrosserie visuellement complète :
+il assemble des géométries hôtes, des pièces candidates, leurs mesures,
+tolérances et règles de contrôle afin de tester le montage avant impression.
+Chaque zone validée rejoint progressivement le jumeau global.
 
 ## Principes
 
@@ -15,6 +17,8 @@ paramétrique, prototypes, fichiers de fabrication et preuves de validation.
   précision doit être reliée à une mesure ou une source.
 - **Prototype avant métal** : tout montage est validé en polymère avant une
   fabrication titane coûteuse.
+- **Interface avant apparence** : une zone mesurée permettant un contrôle de jeu
+  vaut plus qu'un scan complet sans précision connue.
 - **Sécurité explicite** : une pièce critique reste bloquée tant que son analyse,
   son procédé et ses essais ne sont pas approuvés.
 - **Outils accessibles** : la chaîne locale utilise en priorité des logiciels
@@ -39,7 +43,9 @@ Compléter ensuite la fiche, ajouter les fichiers CAO autorisés dans
 catalog/parts/       fiches structurées des pièces
 catalog/sources/     registre des sources, droits et niveaux de preuve
 catalog/measurements/ séances de mesure, instruments et incertitudes
+catalog/twins/       fiches des zones du jumeau et règles d'acceptation
 parts/               géométries et livrables par pièce
+twins/               assemblages fonctionnels, scripts et rapports numériques
 schemas/             contrat de données du catalogue
 containers/          images de calcul reproductibles, GPU et CPU
 templates/           modèles de fiche, mesure et demande de fabrication
@@ -56,7 +62,9 @@ mesure sont recensés dans `catalog/sources/`
 (voir [l’inventaire général](docs/PHASE1_SOURCE_INVENTORY.md) et le
 [lot de recherche allemande](docs/research/phase-1-recherche-allemande.md)).
 Ce lot germanophone documente vingt candidats supplémentaires ou recoupés.
-Aucune pièce n’est encore déclarée imprimable ou validée. Voir
+Aucun jumeau n'est encore au niveau `F2_interface` et aucune pièce n'est encore
+déclarée imprimable ou validée. La première zone du tableau de bord est amorcée
+dans [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Voir
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
