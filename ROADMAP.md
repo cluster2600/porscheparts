@@ -28,7 +28,7 @@ Recherche complémentaire : [lot germanophone de vingt candidats](docs/research/
 - [ ] Évaluer chaque source : provenance, licence, précision, réutilisation
 
 Critère de sortie : vingt candidats documentés, sans importer de contenu non
-autorisé. Avancement : quarante-quatre fiches valides dans `catalog/sources/` ;
+autorisé. Avancement : quarante-six fiches valides dans `catalog/sources/` ;
 le seuil quantitatif est atteint, mais la qualification croisée reste ouverte.
 
 ## Phase 2 — Inventaire physique et assemblage du jumeau
@@ -47,6 +47,7 @@ relations de montage sont enregistrées séparément des transformations spatial
 - [x] Ajouter les roues Fuchs 18 pouces et leur interface 5x130 / 71,5 mm
 - [x] Compléter l'interface des roues Fuchs 17 pouces depuis les homologations KBA
 - [x] Documenter le blocage des pneus Michelin PS2 N3 faute de matière et masse fabricant cohérentes
+- [x] Qualifier les disques Carrera Brembo/ATE et documenter leur blocage faute de masse nette et nuance complète
 - [ ] Étendre l'inventaire par familles de sous-ensembles
 - [ ] Compléter les interfaces nécessaires au positionnement spatial
 - [ ] Générer les assemblages STEP/FreeCAD lorsque les transformations sont connues

@@ -38,6 +38,14 @@ Porsche et Michelin. Ils ne sont pas encore admis : les masses disponibles
 proviennent de vendeurs et varient, et la construction matière exacte de ces
 références n'est pas fournie dans les documents fabricant retenus.
 
+Le premier lot freinage est également qualifié mais non admis. Brembo et ATE
+recoupent les dimensions des disques avant Carrera ; ATE donne les références
+Porsche associées et Brembo documente aussi le disque arrière. Aucun des
+documents constructeur retenus ne publie toutefois la masse nette unitaire ni
+une nuance matière complète. Les
+détails et la porte de sortie sont consignés dans
+[la recherche germanophone sur le freinage](research/phase-2-freinage-allemand.md).
+
 ## File d'acquisition
 
 Les prochains lots sont recherchés par sous-ensemble : roues et pneumatiques,
