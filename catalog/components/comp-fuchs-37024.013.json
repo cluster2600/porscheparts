@@ -16,7 +16,11 @@
     "size_parameters": [
       { "parameter_id": "RIM_WIDTH", "name": "largeur nominale de jante", "value": 7, "unit": "in", "source_id": "FUCHS-PRODUCT" },
       { "parameter_id": "RIM_DIAMETER", "name": "diamètre nominal de jante", "value": 17, "unit": "in", "source_id": "FUCHS-PRODUCT" },
-      { "parameter_id": "OFFSET", "name": "déport ET", "value": 55, "unit": "mm", "source_id": "FUCHS-PRODUCT" }
+      { "parameter_id": "OFFSET", "name": "déport ET", "value": 55, "unit": "mm", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "BOLT_COUNT", "name": "nombre de fixations", "value": 5, "unit": "count", "source_id": "FUCHS-37024-APPROVAL" },
+      { "parameter_id": "PCD", "name": "diamètre d'entraxe", "value": 130, "unit": "mm", "source_id": "FUCHS-37024-APPROVAL" },
+      { "parameter_id": "CENTER_BORE", "name": "alésage central", "value": 71.58, "unit": "mm", "source_id": "FUCHS-37024-APPROVAL" },
+      { "parameter_id": "BOLT_HOLE_DIAMETER", "name": "diamètre du trou de fixation", "value": 15, "unit": "mm", "source_id": "FUCHS-37024-APPROVAL" }
     ],
     "mass": {
       "value_g": 7500,
@@ -38,8 +42,8 @@
     "derived_files": [],
     "interface_accuracy_mm": null,
     "limitations": [
-      "Le proxy représente le cylindre nominal de portée du pneu, pas l'enveloppe extérieure réelle.",
-      "Profil de jante, branches, alésage central et perçages non documentés dans les sources retenues.",
+      "Le proxy représente le cylindre nominal de portée et l'alésage central ; les cinq perçages restent des métadonnées faute de géométrie complète du siège sphérique.",
+      "Profil de jante, branches et enveloppe extérieure réelle non documentés.",
       "La tolérance de masse n'est pas publiée par le fabricant."
     ]
   },
@@ -59,12 +63,20 @@
       "accessed_on": "2026-08-29",
       "license": "all-rights-reserved-reference-only",
       "supports": ["front position", "7J x 17 ET55", "7.50 kg mass", "993 application"]
+    },
+    {
+      "source_id": "FUCHS-37024-APPROVAL",
+      "title": "ECE R124 Typengenehmigung 37024",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37024.pdf",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["5x130 bolt pattern", "71.58 mm centre bore", "15 mm bolt hole", "55 mm offset"]
     }
   ],
   "eligibility": {
     "complete_physical_record": true,
     "logical_assembly": true,
     "spatial_check": false,
-    "reason": "Taille nominale, matière, procédé, masse et application sont sourcés ; les interfaces de moyeu restent inconnues."
+    "reason": "Taille nominale, matière, procédé, masse, application, entraxe et alésage sont sourcés ; forme complète et tolérances restent inconnues."
   }
 }

@@ -22,16 +22,15 @@ class WheelProxyTests(unittest.TestCase):
         self.assertAlmostEqual(width, 203.2)
         self.assertAlmostEqual(bore, 71.5)
 
-    def test_17_inch_record_keeps_unknown_bore_explicit(self) -> None:
+    def test_17_inch_record_exposes_approved_bore(self) -> None:
         record = json.loads(
             (ROOT / "catalog" / "components" / "comp-fuchs-37024.013.json").read_text(encoding="utf-8")
         )
         diameter, width, bore = wheel_proxy.parameters(record)
         self.assertAlmostEqual(diameter, 431.8)
         self.assertAlmostEqual(width, 177.8)
-        self.assertIsNone(bore)
+        self.assertAlmostEqual(bore, 71.58)
 
 
 if __name__ == "__main__":
     unittest.main()
-

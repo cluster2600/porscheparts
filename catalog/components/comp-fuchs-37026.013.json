@@ -16,7 +16,10 @@
     "size_parameters": [
       { "parameter_id": "RIM_WIDTH", "name": "largeur nominale de jante", "value": 9, "unit": "in", "source_id": "FUCHS-PRODUCT" },
       { "parameter_id": "RIM_DIAMETER", "name": "diamètre nominal de jante", "value": 17, "unit": "in", "source_id": "FUCHS-PRODUCT" },
-      { "parameter_id": "OFFSET", "name": "déport ET", "value": 55, "unit": "mm", "source_id": "FUCHS-PRODUCT" }
+      { "parameter_id": "OFFSET", "name": "déport ET", "value": 55, "unit": "mm", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "BOLT_COUNT", "name": "nombre de fixations", "value": 5, "unit": "count", "source_id": "FUCHS-37026-APPROVAL" },
+      { "parameter_id": "PCD", "name": "diamètre d'entraxe", "value": 130, "unit": "mm", "source_id": "FUCHS-37026-APPROVAL" },
+      { "parameter_id": "CENTER_BORE", "name": "alésage central", "value": 71.5, "unit": "mm", "source_id": "FUCHS-37026-APPROVAL" }
     ],
     "mass": {
       "value_g": 7950,
@@ -38,8 +41,8 @@
     "derived_files": [],
     "interface_accuracy_mm": null,
     "limitations": [
-      "Le proxy représente le cylindre nominal de portée du pneu, pas l'enveloppe extérieure réelle.",
-      "Profil de jante, branches, alésage central et perçages non documentés dans les sources retenues.",
+      "Le proxy représente le cylindre nominal de portée et l'alésage central ; l'entraxe reste une métadonnée faute de diamètre et de siège des fixations.",
+      "Profil de jante, branches et enveloppe extérieure réelle non documentés.",
       "Pour Turbo/Turbo Look, le fabricant recommande une entretoise de 32 mm pour raisons esthétiques et signale une réception individuelle.",
       "La tolérance de masse n'est pas publiée par le fabricant."
     ]
@@ -60,12 +63,20 @@
       "accessed_on": "2026-08-29",
       "license": "all-rights-reserved-reference-only",
       "supports": ["rear position", "9J x 17 ET55", "7.95 kg mass", "993 application", "Turbo spacer note"]
+    },
+    {
+      "source_id": "FUCHS-37026-APPROVAL",
+      "title": "ECE R124 Typengenehmigung 37026",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37026.pdf",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["5x130 bolt pattern", "71.5 mm centre bore", "rear axle only", "mandatory pairing with type 37024 at front"]
     }
   ],
   "eligibility": {
     "complete_physical_record": true,
     "logical_assembly": true,
     "spatial_check": false,
-    "reason": "Taille nominale, matière, procédé, masse et application sont sourcés ; les interfaces de moyeu restent inconnues."
+    "reason": "Taille nominale, matière, procédé, masse, application, entraxe et alésage sont sourcés ; forme complète et tolérances restent inconnues."
   }
 }

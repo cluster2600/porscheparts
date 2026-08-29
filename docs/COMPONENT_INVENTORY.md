@@ -21,8 +21,8 @@ que si ses interfaces et leur précision sont connues.
 
 | Composant | Taille | Masse | Matière | Géométrie | Assemblage |
 |---|---|---:|---|---|---|
-| `COMP-FUCHS-37024.013` | 7J x 17 ET55 | 7,50 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
-| `COMP-FUCHS-37026.013` | 9J x 17 ET55 | 7,95 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
+| `COMP-FUCHS-37024.013` | 7J x 17 ET55, 5x130, alésage 71,58 mm | 7,50 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
+| `COMP-FUCHS-37026.013` | 9J x 17 ET55, 5x130, alésage 71,5 mm | 7,95 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
 | `COMP-FUCHS-37027.011` | 8J x 18 ET52, 5x130, alésage 71,5 mm | 8,20 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
 | `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, alésage 71,5 mm | 8,80 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
 
