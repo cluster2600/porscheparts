@@ -74,8 +74,9 @@ technique.
 
 ### Le constat
 
-**Aucun jumeau numérique public du 993 n'existe.** Ce qui existe se range en
-trois catégories, et aucune ne donne une cote :
+**Aucun jumeau numérique public, complet et métrologique du 993 n’a été trouvé
+dans les sources auditées.** Les résultats se rangent en trois catégories, et
+aucune ne donne à elle seule une cote de fabrication :
 
 | Catégorie | Exemple | Niveau | Ce que ça vaut |
 |---|---|---|---|
@@ -83,10 +84,13 @@ trois catégories, et aucune ne donne une cote :
 | Scan brut sans échelle | `SRC-SKETCHFAB-993-GT2-RAW-SCAN` | E | Forme, pas mesure |
 | Scan commercial de composant | `SRC-BREMAR-3D-SCAN-STORE` | D | Aucun composant 993 |
 
-Le seul modèle 993 sous **licence libre vérifiable** rencontré est le scan brut
-du GT2, en CC BY 4.0. Il a été obtenu par vidéogrammétrie sur 115 images tirées
-d'une vidéo YouTube : ni échelle, ni précision annoncée, et une chaîne de droits
-qui n'est pas étanche puisqu'il dérive d'images appartenant à un tiers.
+Le lot initial avait trouvé un scan brut GT2 annoncé en CC BY 4.0, obtenu par
+vidéogrammétrie sur 115 images tirées d’une vidéo YouTube : ni échelle, ni
+précision annoncée, et une chaîne de droits incomplète. La
+[recherche germanophone complémentaire](research/phase-1-recherche-allemande.md)
+a recensé neuf autres assets communautaires avec une licence déclarée. Ces
+licences doivent encore être confirmées sur leurs publications originales et
+aucun de ces assets n’est dimensionnellement qualifié.
 
 ### Ce qui existe, mais hors de portée
 
@@ -109,8 +113,8 @@ un 993 en fait partie : à demander avant tout achat.
 
 ## Reste à faire en Phase 1
 
-- [x] Modèles 3D sous licence vérifiable — recensés, et le constat est net :
-      **aucun jumeau numérique public du 993 n'existe**. Voir le lot 2 ci-dessous.
+- [x] Modèles 3D avec licence déclarée — recensés. Aucun jumeau public complet
+      et métrologique n’a été trouvé ; voir le lot 2 et la recherche allemande.
 - [ ] Classement par variante, année et disponibilité
 - [x] Pièces manquantes ou difficiles à obtenir — premier cas documenté par une
       source : le berceau moteur Turbo `993 115 021 53` n'a aucune alternative de
@@ -119,7 +123,8 @@ un 993 en fait partie : à demander avant tout achat.
       critères d'ingénierie et non sur une rareté documentée.
 - [ ] Évaluation croisée provenance, licence, précision, réutilisation
 
-État : vingt candidats documentés, le seuil de sortie de phase est atteint en
-nombre. Deux des derniers ajouts (`SRC-TEILE-COM-993-ENGINE-CARRIER`,
+État : quarante-deux fiches sources et au moins vingt candidats documentés ; le
+seuil de sortie de phase est atteint en nombre. Deux ajouts
+(`SRC-TEILE-COM-993-ENGINE-CARRIER`,
 `SRC-RENNLINE-TUBULAR-ENGINE-CARRIER`) refusent l'accès automatisé : ils comptent
 comme candidats recensés, pas comme sources exploitées.

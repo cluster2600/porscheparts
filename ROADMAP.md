@@ -19,6 +19,8 @@ Critère de sortie : `make check` réussit sur un dépôt propre.
 
 Journal détaillé : [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENTORY.md).
 
+Recherche complémentaire : [lot germanophone de vingt candidats](docs/research/phase-1-recherche-allemande.md).
+
 - [x] Recenser catalogues officiels, manuels légalement accessibles et mesures
 - [x] Recenser les modèles 3D avec licence vérifiable
 - [ ] Classer les références par variante, année et disponibilité
@@ -26,7 +28,8 @@ Journal détaillé : [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENT
 - [ ] Évaluer chaque source : provenance, licence, précision, réutilisation
 
 Critère de sortie : vingt candidats documentés, sans importer de contenu non
-autorisé. Avancement : dix-huit fiches valides dans `catalog/sources/`.
+autorisé. Avancement : quarante-deux fiches valides dans `catalog/sources/` ;
+le seuil quantitatif est atteint, mais la qualification croisée reste ouverte.
 
 ## Phase 2 — Pilotes polymères
 

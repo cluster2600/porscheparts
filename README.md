@@ -53,9 +53,12 @@ tests/               tests du catalogue et de ses garde-fous
 La **Phase 0 — Fondation** est terminée. La **Phase 1 — Inventaire des
 sources** est engagée : catalogues officiels, manuels accessibles et sources de
 mesure sont recensés dans `catalog/sources/`
-(voir [docs/PHASE1_SOURCE_INVENTORY.md](docs/PHASE1_SOURCE_INVENTORY.md)).
+(voir [l’inventaire général](docs/PHASE1_SOURCE_INVENTORY.md) et le
+[lot de recherche allemande](docs/research/phase-1-recherche-allemande.md)).
+Ce lot germanophone documente vingt candidats supplémentaires ou recoupés.
 Aucune pièce n’est encore déclarée imprimable ou validée. Voir
-[ROADMAP.md](ROADMAP.md) et [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
+[ROADMAP.md](ROADMAP.md) et
+[docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
 ## Avertissement
 
