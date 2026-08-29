@@ -31,27 +31,29 @@ Critère de sortie : vingt candidats documentés, sans importer de contenu non
 autorisé. Avancement : quarante-quatre fiches valides dans `catalog/sources/` ;
 le seuil quantitatif est atteint, mais la qualification croisée reste ouverte.
 
-## Phase 2 — Jumeau numérique fonctionnel et pilotes polymères
+## Phase 2 — Inventaire physique et assemblage du jumeau
 
 Architecture : [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md).
 
-Le jumeau est construit par zones de montage. La première tranche relie le cache
-d'interrupteur à son logement réel et calcule les jeux au pire cas, incertitudes
-comprises.
+Mode actif : **aucune impression**. Le jumeau est alimenté par les composants
+dont la taille, la matière, la masse et l'application sont toutes sourcées. Les
+relations de montage sont enregistrées séparément des transformations spatiales.
 
 - [x] Définir les niveaux de fidélité `F0` à `F4`
 - [x] Créer le registre, le schéma et les validations des sous-jumeaux
-- [x] Écrire le premier contrôle numérique du logement d'interrupteur
-- [ ] Mesurer ensemble le cache et son logement
-- [ ] Générer la géométrie hôte et l'assemblage CAO au niveau `F2_interface`
-- [ ] Exécuter et versionner le rapport de montage numérique
-- [ ] Corréler les marges calculées avec le prototype physique
+- [x] Créer les registres de composants physiques et d'assemblages
+- [x] Admettre le premier lot taille + matière + masse : roues Fuchs 17 pouces
+- [x] Assembler logiquement les paires avant et arrière documentées
+- [ ] Étendre l'inventaire par familles de sous-ensembles
+- [ ] Compléter les interfaces nécessaires au positionnement spatial
+- [ ] Générer les assemblages STEP/FreeCAD lorsque les transformations sont connues
+- [ ] Calculer masse et centre de gravité des assemblages positionnés
 
-Critère de sortie jumeau MVP : une zone `F2_interface` au statut
-`physically_correlated`, avec géométries, incertitudes, rapport numérique et
-preuve de montage reliés à la même version.
+Critère de sortie : un premier sous-ensemble multi-composants positionné dans le
+repère véhicule, avec masse, matière, interfaces, incertitudes et relations
+sourcées pour chaque composant.
 
-### Pièces pilotes
+### Prototypes physiques — suspendus
 
 Trois pièces non critiques sélectionnées, fiches créées au statut `concept` :
 
@@ -64,18 +66,16 @@ Trois pièces non critiques sélectionnées, fiches créées au statut `concept`
 - [x] Sélectionner trois pièces non critiques
 - [x] Écrire un plan de mesure par pièce
 - [x] Écrire la géométrie maîtresse pilotée par les mesures (pièce 1)
-- [ ] Mesurer les trois pièces sur véhicule
-- [ ] Imprimer et monter les prototypes
-- [ ] Photographier et consigner les écarts
+- [ ] Reprendre uniquement après décision explicite de sortir du mode numérique
 
-Critère de sortie pièces : trois prototypes montés, photographiés et mesurés
-dans leur sous-jumeau respectif.
+Les plans existants sont conservés comme backlog ; ils ne pilotent plus la phase
+active et aucun fichier de fabrication n'est généré.
 
-Les trois dernières puces demandent l'accès physique au véhicule et aux pièces.
+Les plans historiques demandent l'accès physique au véhicule et aux pièces.
 Aucune cote n'est estimée en attendant : `parts/993-int-switch-blank-0001/source/switch_blank.py`
 refuse de se construire tant que les sept cotes qu'il exige ne sont pas mesurées.
 
-## Phase 3 — Jumeau d'ingénierie et pilote titane
+## Phase 3 — Jumeau d'ingénierie titane, sans fabrication
 
 Candidat à l'étude : **berceau moteur `993-ENG-CARRIER-0001`** (993 115 021 53).
 Pièce présumée critique au sens de `SAFETY.md`. Le bénéfice du titane n'est pas
@@ -89,10 +89,11 @@ qu'en acier. Cas de charge et comparaison de procédés à remplir dans
 - [ ] Réaliser FEA et revue de fabricabilité avec un prestataire
 - [ ] Intégrer géométrie, charges et résultats au niveau `F3_engineering`
 - [ ] Corréler au moins un cas de calcul à un essai physique
-- [ ] Prototyper en polymère puis, si utile, en aluminium économique
-- [ ] Fabriquer un premier exemplaire Ti-6Al-4V traçable
+- [ ] Construire le composant titane virtuel avec matière et procédé documentés
+- [ ] Comparer numériquement les variantes acier, aluminium et Ti-6Al-4V
 
-Critère de sortie : rapport matière, fabrication, contrôle et essai disponible.
+Critère de sortie : rapport matière, masse, rigidité, fatigue et fabricabilité
+numérique disponible. Toute fabrication reste hors de la phase active.
 
 ## Phase 4 — Catalogue public
 

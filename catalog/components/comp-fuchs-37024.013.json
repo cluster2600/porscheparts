@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "component_id": "COMP-FUCHS-37024.013",
+  "name": "Roue Fuchs forgée aluminium 7J x 17 ET55",
+  "kind": "aftermarket",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993", "993 Turbo", "993 Turbo Look"],
+    "model_years": { "from": 1993, "to": 1998 },
+    "positions": ["front_left", "front_right"]
+  },
+  "identifiers": [
+    { "system": "Otto Fuchs", "value": "37024.013" }
+  ],
+  "physical": {
+    "size_parameters": [
+      { "parameter_id": "RIM_WIDTH", "name": "largeur nominale de jante", "value": 7, "unit": "in", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "RIM_DIAMETER", "name": "diamètre nominal de jante", "value": 17, "unit": "in", "source_id": "FUCHS-PRODUCT" },
+      { "parameter_id": "OFFSET", "name": "déport ET", "value": 55, "unit": "mm", "source_id": "FUCHS-PRODUCT" }
+    ],
+    "mass": {
+      "value_g": 7500,
+      "tolerance_g": null,
+      "basis": "manufacturer",
+      "source_id": "FUCHS-993-PDF"
+    },
+    "material": {
+      "family": "aluminium",
+      "grade": null,
+      "process": "forged",
+      "source_id": "FUCHS-PRODUCT"
+    }
+  },
+  "geometry": {
+    "representation": "interface_proxy",
+    "master_format": "build123d",
+    "master_file": "components/wheels/fuchs-17/source/wheel_interface_proxy.py",
+    "derived_files": [],
+    "interface_accuracy_mm": null,
+    "limitations": [
+      "Le proxy représente le cylindre nominal de portée du pneu, pas l'enveloppe extérieure réelle.",
+      "Profil de jante, branches, alésage central et perçages non documentés dans les sources retenues.",
+      "La tolérance de masse n'est pas publiée par le fabricant."
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "FUCHS-PRODUCT",
+      "title": "Fuchsfelge für Porsche - Schmiederad Aluminium",
+      "url": "https://www.fuchsfelge.com/de/vielfalt/raederuebersicht/detail/fuchsfelge-fuer-porsche-schmiederad-aluminium-161.html",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["manufacturer identifier", "993 application", "rim size", "offset", "forged aluminium material"]
+    },
+    {
+      "source_id": "FUCHS-993-PDF",
+      "title": "Verwendungsbereich Porsche 993",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Fuchsfelgen_Porsche_993_DINLang_6S_bis12-2020.pdf",
+      "accessed_on": "2026-08-29",
+      "license": "all-rights-reserved-reference-only",
+      "supports": ["front position", "7J x 17 ET55", "7.50 kg mass", "993 application"]
+    }
+  ],
+  "eligibility": {
+    "complete_physical_record": true,
+    "logical_assembly": true,
+    "spatial_check": false,
+    "reason": "Taille nominale, matière, procédé, masse et application sont sourcés ; les interfaces de moyeu restent inconnues."
+  }
+}
+

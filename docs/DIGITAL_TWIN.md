@@ -2,16 +2,23 @@
 
 ## Objectif
 
-Le jumeau sert à éliminer tôt les erreurs de montage et, lorsque les preuves le
-permettent, à étudier le comportement mécanique ou thermique. Il ne prétend pas
-être une copie certifiée de toutes les 993.
+Le jumeau sert d'abord à inventorier, représenter et assembler ce qui est connu.
+La phase active ne prévoit aucune impression. Lorsque les preuves le permettent,
+il pourra ensuite éliminer des erreurs de montage et étudier le comportement
+mécanique ou thermique. Il ne prétend pas être une copie certifiée de toutes les
+993.
+
+Un composant n'entre dans le graphe actif que si taille, masse, matière et
+application sont sourcées. Un assemblage logique affirme que des pièces vont
+ensemble ; un assemblage positionné exige en plus leurs repères et
+transformations 3D.
 
 Le modèle est construit par zones : tableau de bord, porte, siège, baie moteur,
 train roulant et carrosserie. La précision est déclarée par composant et par
 interface, car une même zone peut combiner un habillage visuel `F0` et des
 fixations mesurées `F2`.
 
-## Première tranche — tableau de bord
+## Première tranche géométrique — tableau de bord, en attente
 
 Le MVP assemble :
 
@@ -52,6 +59,6 @@ de reconstruction de la voiture entière.
   rapport est versionné ;
 - `physically_correlated` : un montage réel a été comparé aux prédictions.
 
-Un succès numérique ne remplace pas l'essai physique. Pour une pièce critique,
-il ne remplace ni la revue d'ingénierie ni les essais matière et fatigue.
-
+La corrélation physique reste un niveau futur. Pour une pièce critique, un
+succès numérique ne remplacera ni la revue d'ingénierie ni les essais matière et
+fatigue si une fabrication est un jour décidée.

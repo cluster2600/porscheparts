@@ -10,6 +10,7 @@ validate:
 	python3 scripts/validate_sources.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_twins.py
+	python3 scripts/validate_components.py
 
 test:
 	python3 -m unittest discover -s tests -v

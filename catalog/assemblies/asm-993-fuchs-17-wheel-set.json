@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "assembly_id": "ASM-993-FUCHS-17-WHEEL-SET",
+  "name": "Ensemble logique de quatre roues Fuchs 17 pouces pour Porsche 993",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993 hors configuration Turbo à confirmer séparément"]
+  },
+  "status": "logical",
+  "instances": [
+    {
+      "instance_id": "FRONT_WHEELS",
+      "component_id": "COMP-FUCHS-37024.013",
+      "quantity": 2,
+      "frame": "front_axle_unpositioned",
+      "transform": null,
+      "relationship_source_id": "FUCHS-993-APPLICATION"
+    },
+    {
+      "instance_id": "REAR_WHEELS",
+      "component_id": "COMP-FUCHS-37026.013",
+      "quantity": 2,
+      "frame": "rear_axle_unpositioned",
+      "transform": null,
+      "relationship_source_id": "FUCHS-993-APPLICATION"
+    }
+  ],
+  "physical_summary": {
+    "mass_g": 30900,
+    "basis": "sum_of_component_records"
+  },
+  "relationship_sources": [
+    {
+      "source_id": "FUCHS-993-APPLICATION",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Fuchsfelgen_Porsche_993_DINLang_6S_bis12-2020.pdf",
+      "accessed_on": "2026-08-29",
+      "claim": "Le fabricant associe deux roues 7J x 17 ET55 à l'essieu avant et deux roues 9J x 17 ET55 à l'essieu arrière du 993."
+    }
+  ],
+  "known_limits": [
+    "Assemblage logique uniquement : aucune transformation 3D vers les moyeux n'est encore connue.",
+    "Alésage, entraxe et boulonnerie doivent être sourcés avant positionnement spatial.",
+    "Les configurations Turbo et Turbo Look nécessitent une fiche séparée pour les entretoises recommandées."
+  ]
+}

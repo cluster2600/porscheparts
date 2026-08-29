@@ -15,8 +15,9 @@ Chaque zone validée rejoint progressivement le jumeau global.
 - **Source avant STL** : FreeCAD, OpenSCAD ou STEP restent les formats maîtres.
 - **Preuve avant publication** : chaque affirmation de compatibilité ou de
   précision doit être reliée à une mesure ou une source.
-- **Prototype avant métal** : tout montage est validé en polymère avant une
-  fabrication titane coûteuse.
+- **Numérique avant prototype** : la phase active ne fabrique rien ; composants
+  et assemblages sont d'abord construits à partir de dimensions, matière, masse
+  et relations sourcées.
 - **Interface avant apparence** : une zone mesurée permettant un contrôle de jeu
   vaut plus qu'un scan complet sans précision connue.
 - **Sécurité explicite** : une pièce critique reste bloquée tant que son analyse,
@@ -44,6 +45,8 @@ catalog/parts/       fiches structurées des pièces
 catalog/sources/     registre des sources, droits et niveaux de preuve
 catalog/measurements/ séances de mesure, instruments et incertitudes
 catalog/twins/       fiches des zones du jumeau et règles d'acceptation
+catalog/components/  composants dont taille, matière et masse sont sourcées
+catalog/assemblies/  relations de montage sourcées entre composants
 parts/               géométries et livrables par pièce
 twins/               assemblages fonctionnels, scripts et rapports numériques
 schemas/             contrat de données du catalogue
@@ -63,7 +66,10 @@ mesure sont recensés dans `catalog/sources/`
 [lot de recherche allemande](docs/research/phase-1-recherche-allemande.md)).
 Ce lot germanophone documente vingt candidats supplémentaires ou recoupés.
 Aucun jumeau n'est encore au niveau `F2_interface` et aucune pièce n'est encore
-déclarée imprimable ou validée. La première zone du tableau de bord est amorcée
+déclarée imprimable ou validée. L'impression est volontairement suspendue. Le
+premier inventaire physique est décrit dans
+[docs/COMPONENT_INVENTORY.md](docs/COMPONENT_INVENTORY.md) et la première zone
+du tableau de bord est amorcée
 dans [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Voir
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
