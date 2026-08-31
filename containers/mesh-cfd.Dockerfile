@@ -60,6 +60,7 @@ RUN python3 -m venv --system-site-packages /opt/venv \
       pillow==12.3.0 \
       pymeshlab==2025.7.post1 \
       rich==15.0.0 \
+      rtree==1.4.1 \
       scipy==1.18.1 \
       scikit-image==0.26.0 \
       shapely==2.1.2 \

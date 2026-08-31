@@ -67,6 +67,7 @@ if [ "${MODE}" = "recon" ]; then
     check_python open3d 'import open3d; print("open3d", open3d.__version__)'
     check_python pymeshlab 'import pymeshlab; pymeshlab.MeshSet(); print("pymeshlab", pymeshlab.pmeshlab.__version__)'
     check_python trimesh 'import trimesh; print("trimesh", trimesh.__version__)'
+    check_python rtree 'import rtree; print("rtree", rtree.__version__)'
     check_python opencv 'import cv2; print("opencv", cv2.__version__)'
     # CUDA is reported, not required: the image must still start on a CPU host.
     if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then
