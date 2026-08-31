@@ -48,6 +48,20 @@ Il ne doit pas servir directement à fabriquer une pièce de 993. Les interfaces
 matériaux et charges d'un moteur 917 diffèrent et aucune équivalence n'est
 actuellement démontrée.
 
+## Résultats dérivés
+
+La chaîne F0/F1 sous `twins/reference-917-engine/` a maintenant produit :
+
+- un maillage de travail à 600 000 triangles, écart p95 0,107 unité OBJ ;
+- deux rangées de six ouvertures visibles, diamètre moyen 86,63 unités ;
+- un pas régulier voisin de 118 et une coupure centrale voisine de 173 ;
+- un STEP paramétrique d'encombrement à douze cylindres ;
+- deux STL d'exposition étanches aux échelles candidates 1:4 et 1:8 ;
+- une peau CFD externe et un cas OpenFOAM dont le solveur reste bloqué par
+  deux contrôles de qualité de maillage en échec.
+
+Tous ces résultats conservent l'identité et l'échelle au statut non confirmé.
+
 ## Données à retrouver
 
 1. URL ou vendeur d'origine ;
