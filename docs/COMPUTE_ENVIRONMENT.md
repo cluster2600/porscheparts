@@ -8,12 +8,13 @@ louée à l’heure.
 Aucun conteneur n’est nécessaire pour contribuer au catalogue. `make check`
 reste une commande Python sans dépendance.
 
-## Deux images, deux besoins
+## Trois images, trois besoins
 
 | Image | Besoin | Contenu | Ordre de grandeur |
 |---|---|---|---|
 | `3dprinting993-recon` | CUDA | COLMAP, GLOMAP, Blender, Open3D, pymeshlab, OpenCV | photos → maillage à l’échelle |
 | `3dprinting993-cadsim` | cœurs et mémoire | build123d, CadQuery, Gmsh, CalculiX, OpenFOAM, PrusaSlicer | code → STEP → calcul → G-code |
+| `3dprinting993-mesh-cfd` | cœurs et mémoire | Blender, pymeshlab, trimesh, build123d, Gmsh, OpenFOAM | scan OBJ → segmentation → proxy STEP → domaine CFD |
 
 La séparation est volontaire. La reconstruction a besoin d’un GPU et d’une image
 CUDA lourde ; le calcul a besoin de processeurs et tourne aussi bien sur une
@@ -34,7 +35,8 @@ LLM sont décrits dans [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md).
 ```bash
 make container-recon      # image GPU
 make container-cadsim     # image CPU
-make container-smoke      # exécute smoke-test.sh dans les deux images
+make container-mesh-cfd   # image CPU dédiée aux gros scans et à la CFD
+make container-smoke      # exécute smoke-test.sh dans les trois images
 ```
 
 `containers/smoke-test.sh` échoue si un outil annoncé ne répond pas. Une image

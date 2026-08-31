@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verify that every tool the image promises actually runs.
-# Usage: smoke-test.sh [recon|cadsim]   (auto-detected when omitted)
+# Usage: smoke-test.sh [recon|cadsim|mesh-cfd]   (auto-detected when omitted)
 #
 # Version probes are matched on their output, not on their exit status: several
 # of these tools report a version and then exit non-zero (CalculiX exits 201).
@@ -74,7 +74,7 @@ if [ "${MODE}" = "recon" ]; then
     else
         report WARN gpu "no CUDA device visible; dense reconstruction unavailable"
     fi
-else
+elif [ "${MODE}" = "cadsim" ]; then
     check ccx 'Version' ccx -v
     check openscad 'OpenSCAD' openscad --version
     check prusa-slicer 'PrusaSlicer|Slic3r' prusa-slicer --help
@@ -86,6 +86,19 @@ else
     check_python foamlib 'import foamlib; print("foamlib ok")'
     check openfoam 'blockMesh|Usage|OpenFOAM' \
         bash -lc "source /opt/openfoam${FOAM_VERSION:-13}/etc/bashrc && blockMesh -help"
+elif [ "${MODE}" = "mesh-cfd" ]; then
+    check blender 'Blender' blender --version
+    check admesh 'ADMesh' admesh --version
+    check_python pymeshlab 'import pymeshlab; pymeshlab.MeshSet(); print("pymeshlab", pymeshlab.pmeshlab.__version__)'
+    check_python trimesh 'import trimesh; print("trimesh", trimesh.__version__)'
+    check_python manifold3d 'import manifold3d; print("manifold3d ok")'
+    check_python build123d 'import build123d; print("build123d", build123d.__version__)'
+    check_python gmsh 'import gmsh; gmsh.initialize(); print("gmsh", gmsh.GMSH_API_VERSION); gmsh.finalize()'
+    check_python meshio 'import meshio; print("meshio", meshio.__version__)'
+    check openfoam 'blockMesh|Usage|OpenFOAM' \
+        bash -lc "source /opt/openfoam${FOAM_VERSION:-13}/etc/bashrc && blockMesh -help"
+else
+    report FAIL mode "unknown smoke-test mode: ${MODE}"
 fi
 
 if [ "${failures}" -gt 0 ]; then
