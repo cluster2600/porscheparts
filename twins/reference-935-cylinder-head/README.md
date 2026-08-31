@@ -42,6 +42,18 @@ PYTHON=/chemin/vers/python \
 L'image `3dprinting993-mesh-cfd` ajoute Blender, Gmsh et OpenFOAM 13 pour les
 calculs distants. Aucun scan n'est inclus dans l'image.
 
+Une fois les volumes Gmsh générés, leur conversion et leur contrôle OpenFOAM
+s'exécutent séparément :
+
+```bash
+twins/reference-935-cylinder-head/source/check_openfoam_mesh.sh \
+  work/wolfe-classics-935-cylinder-head/pipeline/cfd/high_B/fluid-domain.msh \
+  work/wolfe-classics-935-cylinder-head/pipeline/openfoam/high_B
+```
+
+Ce contrôle vérifie la topologie et la géométrie du maillage. Il ne constitue
+pas encore une solution CFD et n'invente aucune condition aux limites.
+
 ## Interfaces provisoires
 
 Les valeurs suivantes sont exprimées en unités OBJ ; les millimètres ne sont
@@ -76,4 +88,3 @@ ne correspond pas au même élément que le registre de 113,53 ou l'épaulement 
   orientation, un usinage, un plan de contrôle et une traçabilité matière.
 - Conserver la redistribution du maillage brut bloquée tant que la licence
   écrite ne l'autorise pas explicitement.
-
