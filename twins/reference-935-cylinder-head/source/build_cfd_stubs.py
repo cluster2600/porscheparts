@@ -13,11 +13,49 @@ from pathlib import Path
 
 import numpy as np
 import trimesh
+from scipy.spatial import Delaunay
 
 
-def loft(rings: list[dict[str, object]], segments: int = 96) -> tuple[trimesh.Trimesh, dict[str, np.ndarray]]:
+def disk_cap(
+    boundary: np.ndarray,
+    plane_b: float,
+    expected_normal_b: float,
+    first_global_index: int,
+    vertices: list[list[float]],
+    spacing: float = 3.0,
+) -> list[tuple[int, int, int]]:
+    """Triangulate a circular cap without the poor-quality central fan."""
+
+    centre = boundary.mean(axis=0)
+    radius = float(np.mean(np.linalg.norm(boundary - centre, axis=1)))
+    axis = np.arange(-radius + spacing, radius, spacing)
+    grid_a, grid_c = np.meshgrid(axis, axis)
+    interior = np.column_stack((grid_a.ravel(), grid_c.ravel())) + centre
+    interior = interior[np.linalg.norm(interior - centre, axis=1) < radius - spacing * 0.75]
+    points = np.vstack((boundary, interior))
+    interior_start = len(vertices)
+    vertices.extend([[float(a), float(plane_b), float(c)] for a, c in interior])
+    local_to_global = np.concatenate(
+        (
+            np.arange(first_global_index, first_global_index + len(boundary)),
+            np.arange(interior_start, interior_start + len(interior)),
+        )
+    )
+    faces = []
+    all_vertices = np.asarray(vertices)
+    for local_face in Delaunay(points).simplices:
+        face = local_to_global[local_face]
+        p0, p1, p2 = all_vertices[face]
+        normal_b = np.cross(p1 - p0, p2 - p0)[1]
+        if normal_b * expected_normal_b < 0:
+            face = face[[0, 2, 1]]
+        faces.append(tuple(int(value) for value in face))
+    return faces
+
+
+def loft(rings: list[dict[str, object]], segments: int = 64) -> tuple[trimesh.Trimesh, dict[str, np.ndarray]]:
     theta = np.linspace(0.0, 2.0 * np.pi, segments, endpoint=False)
-    vertices = []
+    vertices: list[list[float]] = []
     for ring in rings:
         centre_a, centre_c = ring["center"]
         radius = ring["diameter_obj_units"] / 2.0
@@ -28,9 +66,8 @@ def loft(rings: list[dict[str, object]], segments: int = 96) -> tuple[trimesh.Tr
                     np.full(segments, ring["plane_B"]),
                     centre_c + radius * np.sin(theta),
                 )
-            )
+            ).tolist()
         )
-    vertices = np.asarray(vertices)
     wall_faces = []
     for row in range(len(rings) - 1):
         first = row * segments
@@ -40,24 +77,17 @@ def loft(rings: list[dict[str, object]], segments: int = 96) -> tuple[trimesh.Tr
             wall_faces.extend(
                 ((first + index, second + index, second + nxt), (first + index, second + nxt, first + nxt))
             )
-    first_centre = len(vertices)
-    last_centre = first_centre + 1
-    vertices = np.vstack(
-        (
-            vertices,
-            [rings[0]["center"][0], rings[0]["plane_B"], rings[0]["center"][1]],
-            [rings[-1]["center"][0], rings[-1]["plane_B"], rings[-1]["center"][1]],
-        )
-    )
-    inlet_faces = []
-    outlet_faces = []
     last_start = (len(rings) - 1) * segments
-    for index in range(segments):
-        nxt = (index + 1) % segments
-        inlet_faces.append((first_centre, nxt, index))
-        outlet_faces.append((last_centre, last_start + index, last_start + nxt))
+    first_boundary = np.asarray(vertices[:segments])[:, [0, 2]]
+    last_boundary = np.asarray(vertices[last_start : last_start + segments])[:, [0, 2]]
+    inlet_faces = disk_cap(
+        first_boundary, float(rings[0]["plane_B"]), -1.0, 0, vertices
+    )
+    outlet_faces = disk_cap(
+        last_boundary, float(rings[-1]["plane_B"]), 1.0, last_start, vertices
+    )
     all_faces = np.asarray(wall_faces + inlet_faces + outlet_faces)
-    mesh = trimesh.Trimesh(vertices=vertices, faces=all_faces, process=True)
+    mesh = trimesh.Trimesh(vertices=np.asarray(vertices), faces=all_faces, process=False)
     groups = {
         "wall": np.asarray(wall_faces),
         "inlet": np.asarray(inlet_faces),
@@ -70,23 +100,44 @@ def export_patch(vertices: np.ndarray, faces: np.ndarray, path: Path) -> None:
     trimesh.Trimesh(vertices=vertices, faces=faces, process=False).export(path)
 
 
-def mesh_with_gmsh(stl: Path, output: Path) -> dict[str, object]:
+def mesh_with_gmsh(rings: list[dict[str, object]], output: Path) -> dict[str, object]:
     import gmsh
 
     gmsh.initialize()
     try:
         gmsh.option.setNumber("General.Terminal", 0)
-        gmsh.model.add(stl.stem)
-        gmsh.merge(str(stl))
-        gmsh.model.mesh.classifySurfaces(np.deg2rad(40.0), True, True, np.pi)
-        gmsh.model.mesh.createGeometry()
-        surfaces = [tag for dim, tag in gmsh.model.getEntities(2)]
-        loop = gmsh.model.geo.addSurfaceLoop(surfaces)
-        gmsh.model.geo.addVolume([loop])
-        gmsh.model.geo.synchronize()
+        gmsh.model.add(output.stem)
+        wires = []
+        for ring in rings:
+            centre_a, centre_c = ring["center"]
+            circle = gmsh.model.occ.addCircle(
+                float(centre_a),
+                float(ring["plane_B"]),
+                float(centre_c),
+                float(ring["diameter_obj_units"]) / 2.0,
+                zAxis=[0.0, 1.0, 0.0],
+                xAxis=[1.0, 0.0, 0.0],
+            )
+            wires.append(gmsh.model.occ.addWire([circle], checkClosed=True))
+        entities = gmsh.model.occ.addThruSections(
+            wires, makeSolid=True, makeRuled=False, continuity="C2", smoothing=True
+        )
+        gmsh.model.occ.synchronize()
+        volumes = [tag for dim, tag in entities if dim == 3]
+        if len(volumes) != 1:
+            raise RuntimeError(f"expected one lofted volume, found {len(volumes)}")
+        boundary = gmsh.model.getBoundary([(3, volumes[0])], oriented=False, recursive=False)
+        surfaces = [tag for dim, tag in boundary if dim == 2]
+        gmsh.model.addPhysicalGroup(3, volumes, 1, "fluid")
+        gmsh.model.addPhysicalGroup(2, surfaces, 2, "boundary")
         gmsh.option.setNumber("Mesh.MeshSizeMin", 1.2)
         gmsh.option.setNumber("Mesh.MeshSizeMax", 3.0)
+        # OpenFOAM 13's gmshToFoam converter reliably reads the legacy 2.2
+        # ASCII layout; Gmsh otherwise defaults to MSH 4.1.
+        gmsh.option.setNumber("Mesh.MshFileVersion", 2.2)
+        gmsh.option.setNumber("Mesh.Binary", 0)
         gmsh.model.mesh.generate(3)
+        gmsh.model.mesh.optimize("Relocate3D")
         node_count = len(gmsh.model.mesh.getNodes()[0])
         element_types, element_tags, _ = gmsh.model.mesh.getElements(3)
         element_count = sum(len(tags) for tags in element_tags)
@@ -135,7 +186,7 @@ def main() -> int:
         mesh.export(stl)
         for patch_name, faces in patches.items():
             export_patch(mesh.vertices, faces, domain_dir / f"{patch_name}.stl")
-        gmsh_report = mesh_with_gmsh(stl, domain_dir / "fluid-domain.msh")
+        gmsh_report = mesh_with_gmsh(rings, domain_dir / "fluid-domain.msh")
         report["domains"][name] = {
             "status": "provisional_cfd_stub",
             "ring_count": len(rings),
@@ -156,4 +207,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

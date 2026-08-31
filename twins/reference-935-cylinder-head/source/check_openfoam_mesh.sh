@@ -28,7 +28,9 @@ writeInterval   1;
 EOF
 
 # shellcheck disable=SC1091
+set +u
 source "/opt/openfoam${FOAM_VERSION:-13}/etc/bashrc"
+set -u
 gmshToFoam "${INPUT_MSH}" -case "${CASE_DIRECTORY}"
 checkMesh -allGeometry -allTopology -case "${CASE_DIRECTORY}" \
     | tee "${CASE_DIRECTORY}/checkMesh.log"
