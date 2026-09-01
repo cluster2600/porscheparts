@@ -8,7 +8,16 @@ Elle vérifie les imports publics de `DoMINO`, `GeoTransolver` et
 L'extra amont `gnns` n'est pas demandé directement : ses métadonnées 2.2.1
 référencent un paquet PyPI inexistant nommé `stl`. Les dépendances PyTorch
 Geometric réellement nécessaires au smoke test sont donc installées et
-épinglées explicitement avant PhysicsNeMo. Le smoke test d'image reste la
+épinglées explicitement avant PhysicsNeMo. Le méta-extra `cu12` n'est pas non
+plus nécessaire aux trois modèles : il ajouterait notamment RAPIDS, cuML et
+DALI à cette image. CUDA 12.8 est fourni par la base et les wheels PyTorch ; les
+outils de préparation de données accélérés resteront dans une image séparée si
+un cas d'usage les exige.
+
+`hydra-core`, dépendance de base, exige `antlr4-python3-runtime` 4.9.x, dont
+PyPI ne publie qu'une archive source. Cette archive est la seule exception à
+`--only-binary` : son SHA-256 est épinglé et vérifié, puis elle est convertie en
+wheel sans isolation réseau avant installation. Le smoke test d'image reste la
 preuve que les imports publics attendus sont effectivement résolus.
 
 Elle n'embarque volontairement aucun scan, dataset, poids de modèle, fichier
@@ -96,11 +105,13 @@ flowchart LR
 
 ## Pourquoi CUDA 12 et pas NGC/CUDA 13
 
-La voie retenue est l'extra officiel `cu12` de PhysicsNeMo 2.2.1, avec PyTorch
-CUDA 12.8. L'image de base CUDA est épinglée par digest. La voie CUDA 13 et
-l'image NGC ne sont pas utilisées tant qu'un prévol du pilote de la machine
-cible n'a pas été archivé. Ce choix évite de confondre compatibilité supposée
-et preuve d'exécution.
+La voie retenue est PhysicsNeMo core avec les extras de maillage nécessaires,
+PyTorch CUDA 12.8 et une image de base CUDA épinglée par digest. Le méta-extra
+`cu12` de PhysicsNeMo est réservé à une éventuelle image data-pipeline parce
+qu'il installe des bibliothèques sans rapport avec les trois imports testés ici.
+La voie CUDA 13 et l'image NGC ne sont pas utilisées tant qu'un prévol du pilote
+de la machine cible n'a pas été archivé. Ce choix évite de confondre
+compatibilité supposée et preuve d'exécution.
 
 ## Licences et provenance logicielle
 
@@ -109,9 +120,7 @@ et preuve d'exécution.
 | PhysicsNeMo | Apache-2.0 |
 | PyTorch / torchvision | BSD-3-Clause |
 | PyTorch Geometric et extensions | MIT |
-| RAPIDS cuML / pylibraft | Apache-2.0 |
-| CuPy | MIT |
-| NVIDIA DALI | Apache-2.0 |
+| ANTLR4 Python runtime | BSD-3-Clause |
 | Image de base NVIDIA CUDA/cuDNN | NVIDIA Deep Learning Container License et NVIDIA CUDA Toolkit EULA |
 | Scripts de ce dépôt | licence du dépôt |
 

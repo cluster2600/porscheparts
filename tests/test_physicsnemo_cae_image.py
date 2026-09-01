@@ -81,12 +81,19 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
         self.assertIn("PHYSICSNEMO_VERSION=2.2.1", dockerfile)
         self.assertIn("TORCH_VERSION=2.10.0", dockerfile)
         self.assertIn("TORCHVISION_VERSION=0.25.0", dockerfile)
+        self.assertIn("ANTLR4_RUNTIME_VERSION=4.9.3", dockerfile)
+        self.assertIn(
+            "f224469b4168294902bb1efa80a8bf7855f24c99aef99cbefc1bcd3cce77881b",
+            dockerfile,
+        )
+        self.assertIn("pip wheel --no-build-isolation --no-deps", dockerfile)
         self.assertIn("https://download.pytorch.org/whl/cu128", dockerfile)
         self.assertIn(
-            '"nvidia-physicsnemo[cu12,mesh-extras]==${PHYSICSNEMO_VERSION}"',
+            '"nvidia-physicsnemo[mesh-extras]==${PHYSICSNEMO_VERSION}"',
             dockerfile,
         )
         self.assertNotIn("mesh-extras,gnns", dockerfile)
+        self.assertNotIn("nvidia-physicsnemo[cu12", dockerfile)
         self.assertNotIn("cu13", dockerfile.lower())
         self.assertNotIn("nvcr.io", dockerfile.lower())
         self.assertNotIn("ngc", dockerfile.lower())
@@ -111,6 +118,7 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
             "setuptools==84.0.0",
             "wheel==0.48.0",
             "nvidia-physicsnemo==2.2.1",
+            "antlr4-python3-runtime==4.9.3",
             "torch==2.10.0",
             "torchvision==0.25.0",
             "torch-geometric==2.8.0.post1",

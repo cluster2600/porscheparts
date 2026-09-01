@@ -12,6 +12,8 @@ ARG PHYSICSNEMO_VERSION=2.2.1
 ARG TORCH_VERSION=2.10.0
 ARG TORCHVISION_VERSION=0.25.0
 ARG TORCH_GEOMETRIC_VERSION=2.8.0.post1
+ARG ANTLR4_RUNTIME_VERSION=4.9.3
+ARG ANTLR4_RUNTIME_SDIST_SHA256=f224469b4168294902bb1efa80a8bf7855f24c99aef99cbefc1bcd3cce77881b
 ARG PIP_VERSION=26.2.1
 ARG SETUPTOOLS_VERSION=84.0.0
 ARG WHEEL_VERSION=0.48.0
@@ -52,6 +54,21 @@ RUN python3 -c 'import sys; assert sys.version_info[:2] == (3, 12), sys.version'
         "pip==${PIP_VERSION}" \
         "setuptools==${SETUPTOOLS_VERSION}" \
         "wheel==${WHEEL_VERSION}" \
+    && /opt/physicsnemo/bin/python -m pip download --no-deps --no-binary=:all: \
+        --dest /opt/build \
+        "antlr4-python3-runtime==${ANTLR4_RUNTIME_VERSION}" \
+    && printf '%s  %s\n' \
+        "${ANTLR4_RUNTIME_SDIST_SHA256}" \
+        "/opt/build/antlr4-python3-runtime-${ANTLR4_RUNTIME_VERSION}.tar.gz" \
+        | sha256sum -c - \
+    && /opt/physicsnemo/bin/python -m pip wheel --no-build-isolation --no-deps \
+        --no-index \
+        --wheel-dir /opt/build/wheels \
+        "/opt/build/antlr4-python3-runtime-${ANTLR4_RUNTIME_VERSION}.tar.gz" \
+    && /opt/physicsnemo/bin/python -m pip install --only-binary=:all: \
+        --no-index \
+        --find-links /opt/build/wheels \
+        "antlr4-python3-runtime==${ANTLR4_RUNTIME_VERSION}" \
     && /opt/physicsnemo/bin/python -m pip install --only-binary=:all: \
         --index-url https://download.pytorch.org/whl/cu128 \
         --constraint /opt/build/constraints.txt \
@@ -67,7 +84,7 @@ RUN python3 -c 'import sys; assert sys.version_info[:2] == (3, 12), sys.version'
     && /opt/physicsnemo/bin/python -m pip install --only-binary=:all: \
         --extra-index-url https://pypi.nvidia.com \
         --constraint /opt/build/constraints.txt \
-        "nvidia-physicsnemo[cu12,mesh-extras]==${PHYSICSNEMO_VERSION}" \
+        "nvidia-physicsnemo[mesh-extras]==${PHYSICSNEMO_VERSION}" \
     && /opt/physicsnemo/bin/python -m pip check \
     && /opt/physicsnemo/bin/python -m pip freeze --all \
         > /opt/physicsnemo/environment.freeze.txt
