@@ -20,6 +20,16 @@ def main() -> int:
     support = json.loads(args.support.read_text(encoding="utf-8")) if args.support else None
 
     blockers = list(bench["critical_blockers"])
+    if support:
+        refined_blockers = {
+            "engine_mount_coordinates_and_load_limits",
+            "crankshaft_output_flange_interface_and_dyno_alignment_tolerance",
+            "starter_ring_gear_and_starter_interface",
+            "battery_voltage_capacity_cables_grounding_and_fusing",
+            "oil_grade_reservoir_capacity_hose_routing_pump_curves_and_relief_settings",
+            "sensor_ranges_calibration_sample_rates_and_trip_thresholds",
+        }
+        blockers = support["remaining_release_inputs"] + [item for item in blockers if item not in refined_blockers]
     if systems["acceptance"]["simulation_ready"]:
         blockers = [item for item in blockers if "fluid" not in item and "electrical" not in item]
 
@@ -54,6 +64,7 @@ def main() -> int:
         "electrical_node_types": [item["id"] for item in systems["electrical_system"]["nodes"]],
         "oil_prime_status": "topology_complete_parameters_blocked" if support else "topology_incomplete",
         "authored_support_component_count": support["acceptance"]["support_component_instance_count"] if support else 0,
+        "authored_support_component_types": [item["id"] for item in support["support_components"]] if support else [],
         "remaining_release_inputs": support["remaining_release_inputs"] if support else blockers,
         "next_release_gate": "measure_mounts_output_flange_starter_drive_and_oil_network_then_run_0D_oil_prime",
         "prohibited_use": bench["prohibited_use"],

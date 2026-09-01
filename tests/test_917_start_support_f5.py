@@ -52,6 +52,8 @@ class Engine917StartSupportF5Test(unittest.TestCase):
         self.assertEqual(report["oil_prime_status"], "topology_complete_parameters_blocked")
         self.assertEqual(report["authored_support_component_count"], 14)
         self.assertEqual(report["remaining_release_inputs"], self.support["remaining_release_inputs"])
+        self.assertNotIn("starter_ring_gear_and_starter_interface", report["missing_parts_and_data"])
+        self.assertIn("starter_pinion", report["authored_support_component_types"])
 
 
 if __name__ == "__main__":
