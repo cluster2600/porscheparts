@@ -9,6 +9,9 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
     def test_image_pins_model_runtime_and_physicsnemo(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
         self.assertIn("VLLM_VERSION=0.19.0", dockerfile)
+        self.assertIn("VLLM_TORCH_VERSION=2.10.0", dockerfile)
+        self.assertIn("VLLM_TORCHVISION_VERSION=0.25.0", dockerfile)
+        self.assertIn("VLLM_TORCHAUDIO_VERSION=2.10.0", dockerfile)
         self.assertIn("https://download.pytorch.org/whl/cu129", dockerfile)
         self.assertIn("assert cuda >= (12, 8)", dockerfile)
         self.assertNotIn("TRANSFORMERS_VERSION", dockerfile)
@@ -26,10 +29,14 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertEqual(dockerfile.count("ADD --checksum=sha256:"), 5)
         self.assertIn("ffmpeg", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
+        self.assertIn('"torch==${VLLM_TORCH_VERSION}"', dockerfile)
+        self.assertIn('"torchvision==${VLLM_TORCHVISION_VERSION}"', dockerfile)
+        self.assertIn('"torchaudio==${VLLM_TORCHAUDIO_VERSION}"', dockerfile)
 
     def test_vast_ready_gate_checks_the_full_local_ai_image(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
         onstart = (ROOT / "containers/simready-vast-onstart.sh").read_text()
+        workflow = (ROOT / ".github/workflows/containers.yml").read_text()
         self.assertIn(
             "COPY containers/simready-vast-onstart.sh /usr/local/bin/simready-vast-onstart",
             dockerfile,
@@ -39,6 +46,10 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("simready-services start", onstart)
         self.assertIn("simready-services status", onstart)
         self.assertLess(onstart.index("simready-services status"), onstart.index('touch "${WORKSPACE}/READY"'))
+        self.assertIn("Verify published local AI manifest limits", workflow)
+        self.assertIn(".Image.OS}}/{{.Image.Architecture", workflow)
+        self.assertIn("max) < 5000000000", workflow)
+        self.assertIn("add) < 45000000000", workflow)
 
     def test_both_agents_use_the_local_endpoint(self):
         config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()

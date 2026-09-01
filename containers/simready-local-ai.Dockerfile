@@ -4,6 +4,9 @@ ARG TARGETPLATFORM=linux/amd64
 FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
 
 ARG VLLM_VERSION=0.19.0
+ARG VLLM_TORCH_VERSION=2.10.0
+ARG VLLM_TORCHVISION_VERSION=0.25.0
+ARG VLLM_TORCHAUDIO_VERSION=2.10.0
 ARG PHYSICSNEMO_VERSION=2.2.0
 ARG TORCH_VERSION=2.8.0
 ARG DEEPXDE_VERSION=1.15.0
@@ -58,10 +61,22 @@ RUN /opt/venv/bin/pip install --no-cache-dir \
        "nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}" \
        "deepxde==${DEEPXDE_VERSION}"
 
-# vLLM supplies the local OpenAI-compatible multimodal endpoint.
+# vLLM supplies the local OpenAI-compatible multimodal endpoint. Its pinned
+# PyTorch stack is installed first so the full CUDA runtime and vLLM wheel do
+# not end up in one registry layer larger than Vast can reliably fetch.
 RUN python3.12 -m venv /opt/local-ai \
-    && /opt/local-ai/bin/pip install --no-cache-dir --upgrade "pip>=26.1" \
-    && /opt/local-ai/bin/pip install --no-cache-dir \
+    && /opt/local-ai/bin/pip install --no-cache-dir --upgrade "pip>=26.1"
+
+RUN /opt/local-ai/bin/pip install --no-cache-dir \
+       --index-url https://download.pytorch.org/whl/cu129 \
+       "torch==${VLLM_TORCH_VERSION}"
+
+RUN /opt/local-ai/bin/pip install --no-cache-dir \
+       --index-url https://download.pytorch.org/whl/cu129 \
+       "torchvision==${VLLM_TORCHVISION_VERSION}" \
+       "torchaudio==${VLLM_TORCHAUDIO_VERSION}"
+
+RUN /opt/local-ai/bin/pip install --no-cache-dir \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
        "vllm==${VLLM_VERSION}" \
     && /opt/local-ai/bin/python -c \

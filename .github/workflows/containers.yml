@@ -147,6 +147,19 @@ jobs:
             --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:latest \
             .
 
+      - name: Verify published local AI manifest limits
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai' && inputs.push
+        run: |
+          image_ref=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:${{ github.sha }}
+          platform="$(docker buildx imagetools inspect --format '{{.Image.OS}}/{{.Image.Architecture}}' "$image_ref")"
+          test "$platform" = linux/amd64
+          docker buildx imagetools inspect --raw "$image_ref" \
+            | jq -e '
+                (.mediaType == "application/vnd.docker.distribution.manifest.v2+json") and
+                (([.layers[].size] | max) < 5000000000) and
+                (([.layers[].size] | add) < 45000000000)
+              ' >/dev/null
+
       - name: Smoke test the image
         if: steps.gate.outputs.run == 'true' && !inputs.push
         run: |
