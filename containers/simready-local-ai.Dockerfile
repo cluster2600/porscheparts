@@ -102,11 +102,13 @@ RUN apt-get update \
 
 COPY containers/simready-local-ai-supervisord.conf /etc/simready-supervisord.conf
 COPY containers/simready-local-ai-smoke.sh /usr/local/bin/simready-local-ai-smoke
+COPY containers/simready-vast-onstart.sh /usr/local/bin/simready-vast-onstart
 COPY containers/simready-services.sh /usr/local/bin/simready-services
 COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
 
 RUN chmod 0555 /usr/local/bin/simready-local-ai-smoke \
+        /usr/local/bin/simready-vast-onstart \
         /usr/local/bin/simready-services /usr/local/bin/simready-smoke \
         /usr/local/bin/smoke-test.sh \
     && test "$(/opt/venv/bin/python -c 'import physicsnemo; print(physicsnemo.__version__)')" = "${PHYSICSNEMO_VERSION}" \

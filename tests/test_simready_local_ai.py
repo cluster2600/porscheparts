@@ -28,7 +28,12 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
 
     def test_vast_ready_gate_checks_the_full_local_ai_image(self):
+        dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
         onstart = (ROOT / "containers/simready-vast-onstart.sh").read_text()
+        self.assertIn(
+            "COPY containers/simready-vast-onstart.sh /usr/local/bin/simready-vast-onstart",
+            dockerfile,
+        )
         self.assertIn("smoke-test.sh simready-local-ai", onstart)
         self.assertNotIn("smoke-test.sh simready >", onstart)
         self.assertIn("simready-services start", onstart)
