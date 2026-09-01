@@ -24,6 +24,7 @@ check physics-agent-import env PYTHONPATH=/opt/content-agents:/opt/content-agent
     WU_OVPHYSX_VENV_DIR=/opt/ovphysx-runtime \
     /opt/physics-agent/bin/python -c 'from service.main import app; assert app'
 check openusd /opt/simready-validation/bin/python -c 'from pxr import Usd, UsdGeom, UsdPhysics; assert Usd.GetVersion()'
+check png-pixel-inspection /opt/simready-validation/bin/python -c 'from PIL import Image, ImageStat; assert Image and ImageStat'
 check asset-validator /opt/simready-validation/bin/python -c 'import omni.asset_validator'
 check simready-validate /opt/simready-validation/bin/simready-validate --help
 check usd-convert-cad /opt/usd-convert-cad/bin/usd-convert-cad --help

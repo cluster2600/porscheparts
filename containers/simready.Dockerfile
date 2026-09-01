@@ -146,7 +146,7 @@ RUN python3.12 -m venv /opt/physics-agent \
 RUN python3.12 -m venv /opt/simready-validation \
     && /opt/simready-validation/bin/pip install --no-cache-dir --upgrade "pip>=26.1" uv \
     && /opt/simready-validation/bin/uv pip install --python /opt/simready-validation/bin/python \
-       -r /opt/simready-foundation/requirements.txt "numpy>=1.24,<3" \
+       -r /opt/simready-foundation/requirements.txt "numpy>=1.24,<3" "pillow>=11,<13" \
     && python3.12 -m venv /opt/usd-convert-cad \
     && /opt/usd-convert-cad/bin/pip install --no-cache-dir --upgrade "pip>=26.1" \
     && /opt/usd-convert-cad/bin/pip install --no-cache-dir \

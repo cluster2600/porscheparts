@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F0_research_assembly",
+  "units": "mm",
+  "up_axis": "Z",
+  "assets": {
+    "engine_917": {
+      "source": "work/simready-results/917/raw-conversion/917-engine-case-sim.usdc",
+      "load_policy": "payload",
+      "classification": "reference_scan_unverified_scale",
+      "fitment": "no_993_or_935_fitment_claim"
+    },
+    "head_935": {
+      "source": "work/simready-results/935/raw-conversion/935-cylinder-head-sim.usdc",
+      "load_policy": "payload",
+      "classification": "reference_scan_not_917_or_993",
+      "fitment": "comparison_rig_only"
+    }
+  },
+  "valves": [
+    {
+      "id": "Intake49",
+      "source": "work/omniverse-engine-assembly/assets/valves/993-intake-49-f1.usdc",
+      "base_translation_mm": [-80.0, -170.0, 140.0],
+      "default_material": "Ti64Study",
+      "allowed_materials": ["SteelPlaceholder", "Ti64Study"]
+    },
+    {
+      "id": "CarreraExhaust42_5",
+      "source": "work/omniverse-engine-assembly/assets/valves/993-carrera-exhaust-42_5-f1.usdc",
+      "base_translation_mm": [0.0, -170.0, 140.0],
+      "default_material": "Inconel751Study",
+      "allowed_materials": ["SteelPlaceholder", "Inconel751Study", "Ti64Challenge"]
+    },
+    {
+      "id": "TurboExhaust43_5",
+      "source": "work/omniverse-engine-assembly/assets/valves/993-turbo-exhaust-43_5-f1.usdc",
+      "base_translation_mm": [80.0, -170.0, 140.0],
+      "default_material": "Inconel751Study",
+      "allowed_materials": ["SteelPlaceholder", "Inconel751Study", "Ti64Challenge"]
+    }
+  ],
+  "lift_variants_mm": [0.0, 2.0, 5.0, 10.0],
+  "overview_offsets_mm": {
+    "engine_917": [0.0, 0.0, 0.0],
+    "valvetrain_rig": [1300.0, 0.0, 0.0]
+  },
+  "limitations": [
+    "The 917 scan is currently one renderable mesh, not a component-level mechanical assembly.",
+    "The 935 head is not a verified 917 or 993 head and is kept in a separate comparison rig.",
+    "Valve positions are an exploded-layout presentation, not measured seat axes.",
+    "Material variants are display and study metadata only; no constitutive law is assigned.",
+    "No collision, joint, rigid-body, thermal or CFD boundary condition is asserted at F0."
+  ]
+}

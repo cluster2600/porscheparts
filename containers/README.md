@@ -29,6 +29,11 @@ Python séparés et lancés directement par Supervisor. Aucun secret n'est inclu
 dans l'image : `simready-services start` refuse de démarrer avant l'installation
 de `/workspace/secrets/nvidia.env` par le wrapper OpenBao.
 
+L'environnement de validation inclut Pillow : les rendus OVRTX peuvent ainsi
+échouer automatiquement lorsqu'un PNG est vide ou uniforme, au lieu de valider
+seulement la présence d'un fichier. Le smoke test bloque la publication si cette
+inspection de pixels n'est pas disponible.
+
 Cette image combine des composants sous licences distinctes. Le convertisseur
 CAD NVIDIA reste soumis à sa propre licence Omniverse et ne doit pas être
 présenté comme un composant libre, même si l'orchestration du dépôt l'est.
