@@ -159,7 +159,8 @@ jobs:
           test "$platform" = linux/amd64
           docker buildx imagetools inspect --raw "$pinned_ref" \
             | jq -e '
-                (.mediaType == "application/vnd.docker.distribution.manifest.v2+json") and
+                ((.mediaType == "application/vnd.docker.distribution.manifest.v2+json") or
+                 (.mediaType == "application/vnd.oci.image.manifest.v1+json")) and
                 (([.layers[].size] | max) < 5000000000) and
                 (([.layers[].size] | add) < 45000000000)
               ' >/dev/null

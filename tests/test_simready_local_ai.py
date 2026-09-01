@@ -66,6 +66,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn(".Image.OS}}/{{.Image.Architecture", workflow)
         self.assertIn("max) < 5000000000", workflow)
         self.assertIn("add) < 45000000000", workflow)
+        self.assertIn("application/vnd.oci.image.manifest.v1+json", workflow)
         local_build = workflow[
             workflow.index("- name: Build large local AI image from Docker store") :
             workflow.index("- name: Verify published local AI manifest limits")

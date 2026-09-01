@@ -240,9 +240,9 @@ verts :
 1. Les images de base, paquets, modèles et révisions de sources sont épinglés.
    Aucun `latest` ne participe à la résolution du build.
 2. Le build produit la plateforme exacte `linux/amd64`. Le manifeste brut doit
-   être un manifeste d'image Docker v2 et correspondre à l'image amd64 attendue ;
-   le contrôleur refuse un tag ou un index ambigu à la place du digest de
-   l'image.
+   être un manifeste d'image simple Docker v2 ou OCI v1 et correspondre à
+   l'image amd64 attendue ; le contrôleur refuse un tag ou un index ambigu à la
+   place du digest de l'image.
 3. Le digest publié respecte la forme `sha256:` suivie de 64 caractères
    hexadécimaux. Le smoke test tire et exécute l'image par ce digest exact.
 4. Aucune couche compressée n'atteint 5 Go et la somme des couches reste

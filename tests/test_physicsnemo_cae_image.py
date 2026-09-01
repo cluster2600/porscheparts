@@ -182,11 +182,13 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
             "docker pull \"${pinned_ref}\"",
             "--network none",
             "docker buildx imagetools inspect --raw",
+            "application/vnd.oci.image.manifest.v1+json",
             "DOCKER_CONFIG=\"${anonymous_config}\"",
             "physicsnemo-cae-smoke.json",
         ):
             self.assertIn(fragment, workflow)
         self.assertNotIn(":latest", workflow)
+        self.assertNotIn("cache-to: type=gha,mode=max", workflow)
 
 
 if __name__ == "__main__":
