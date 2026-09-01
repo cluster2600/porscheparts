@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "EVID-917-F11-SOURCE-SCAN-428C4143",
+  "evidence_kind": "source_scan_integrity",
+  "claim_id": "source_scan.integrity",
+  "asset_id": "porsche-917-engine-reengineering-f11",
+  "variant_ids": [
+    "917_unspecified"
+  ],
+  "revision": "1",
+  "issued_at": "2026-09-01T00:00:00+02:00",
+  "producer": {
+    "name": "3dprinting993 local asset custody",
+    "role": "integrity recorder",
+    "organization": "3dprinting993"
+  },
+  "method": {
+    "name": "SHA-256 byte integrity",
+    "description": "Recalcul local du condensat sur les octets du scan OBJ, sans inférence d'identité, d'unité ou de précision."
+  },
+  "artifacts": [
+    {
+      "path": "../../raw-scans/917-engine/original/917-engine-case-with-cylinders.obj",
+      "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+      "role": "raw_source_scan"
+    }
+  ],
+  "result": {
+    "status": "passed",
+    "measured_or_simulated": "documented",
+    "acceptance_criteria": [
+      "Le SHA-256 recalcule doit correspondre au condensat fige dans le contrat F11."
+    ],
+    "limitations": [
+      "L'identite Porsche 917 n'est pas verifiee par cette preuve.",
+      "L'echelle, les tolerances, les interfaces et la fabricabilite ne sont pas verifiees par cette preuve.",
+      "Le scan et ses derives geometriques restent locaux et hors Git."
+    ]
+  }
+}

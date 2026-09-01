@@ -396,3 +396,67 @@ branche atmosphérique contenant des organes turbo ou tout gate physique,
 fabrication, combustion ou puissance passé prématurément à vrai. F10 est une
 séparation de visualisation et de cinématique ; il ne prouve ni jeux, ni masses,
 ni inerties, ni contacts, ni fonctionnement, ni 1 600 HP.
+
+## Réingénierie physique et comparaison 2V/4V F11
+
+Le programme complet, sa boucle de corrélation et la frontière entre solveurs
+de référence, PhysicsNeMo et Omniverse sont décrits dans
+[`docs/917_REENGINEERING_PROGRAM.md`](../../docs/917_REENGINEERING_PROGRAM.md).
+
+F11 recentre le travail sur les douze culasses individuelles du moteur 917. Le
+scan disponible couvre le carter et les cylindres vus de l'extérieur ; il ne
+contient pas une géométrie mesurée des chambres, conduits, sièges, guides ou
+culasses. La culasse scannée de 935 et les proxies de soupapes 993 sont donc
+explicitement exclus comme géométrie 917. Ils peuvent seulement servir à
+éprouver une méthode hors du modèle 917.
+
+Le contrat `reengineering-contract-f11.json` maintient deux variantes moteur :
+
+- le Type 912 4,5 L atmosphérique ;
+- le 917/30 5,374 L biturbo, dont les 1 600 hp restent une exigence documentaire
+  à démontrer, et non un résultat de simulation.
+
+Pour chacune, la branche `917_2v_baseline` décrit 2 soupapes par cylindre,
+soit 24 soupapes moteur. La branche `917_4v_concept` décrit 2 admissions et
+2 échappements par cylindre, soit 48 soupapes, mais n'invente ni diamètre, ni
+angle, ni levée, ni commande. Elle exige une CAO paramétrique indépendante et
+sera comparée à la 2V avec les mêmes conditions aux limites.
+
+La présélection matière retient seulement deux candidats de culasse LPBF à
+caractériser, AlSi10Mg et AlF357. Aucun gagnant n'est déclaré avant calculs
+thermiques et thermomécaniques corrélés et coupons produits avec la machine,
+l'orientation et le traitement finaux. Les soupapes et ressorts ne sont pas des
+pièces à imprimer : admission titane et échappement INCONEL 751 restent des
+candidats fournisseur, tandis que le ressort reste une famille acier
+chrome-silicium spécialisée à dimensionner depuis les profils de came, masses,
+pressions gaz, températures et régimes mesurés.
+
+L'audit est lancé par :
+
+```bash
+make 917-reengineering-f11
+```
+
+Il écrit `work/917-reengineering-f11/readiness.json`. Avec le manifeste local
+d'intégrité livré dans le dépôt et sans autre preuve d'ingénierie, le résultat
+attendu est `F0_source_integrity` : le hash du scan brut local est recalculé et
+les scènes F10 sont reconnues comme hypothèses
+visuelles séparées, mais le maillage CFD externe reste bloqué, aucune physique
+de culasse n'est calculée, aucun matériau n'est sélectionné et aucune impression
+métal, mise en route ou revendication de puissance n'est autorisée.
+
+Le passage aux niveaux suivants demande successivement l'identité et l'échelle,
+un scan ou CT des vraies culasses 917, les géométries 2V et 4V, les profils de
+came et courbes de ressorts, les chargements NA et turbo, des solveurs classiques
+convergés, une corrélation physique, puis la qualification LPBF et les essais
+instrumentés. PhysicsNeMo peut ensuite accélérer les calculs comme surrogate ;
+il ne remplace ni la CFD/FEA de référence, ni le banc de flux, ni le banc moteur.
+
+Chaque preuve F11 pointe vers un manifeste JSON typé qui lie un claim, un actif,
+une variante, des artefacts re-hashés, une méthode et des critères d'acceptation.
+La réutilisation d'un même manifeste ou artefact entre claims incompatibles est
+refusée. Ce contrôle empêche les passages accidentels mais ne constitue pas une
+chaîne de confiance : même un dossier F6 auto-déclaré garde fabrication,
+impression métal, démarrage, 1 600 hp et entraînement PhysicsNeMo à `false` tant
+que les signatures, parseurs solveur/banc et autorités externes ne sont pas
+qualifiés.

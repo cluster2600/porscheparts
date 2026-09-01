@@ -1,0 +1,488 @@
+{
+  "$comment": "F11 definit la reingenierie physique du moteur 917 sans transformer les scans, les proxies F1-F10 ou une cible de puissance documentaire en preuve de calcul ou de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F11",
+  "status": "engineering_contract_ready_inputs_and_physical_correlation_blocked",
+  "release_authority": {
+    "mode": "external_cryptographic_review_required",
+    "verifier_implemented": false,
+    "trusted_key_ids": [],
+    "solver_result_parsers_qualified": false,
+    "bench_result_parsers_qualified": false,
+    "manufacturing_release_enabled": false,
+    "engine_start_release_enabled": false,
+    "reason": "Les manifestes F11 sont des contrôles de complétude et de cohérence, pas une chaîne de confiance ni une autorité de libération."
+  },
+  "asset": {
+    "id": "porsche-917-engine-reengineering-f11",
+    "target": "moteur Porsche 917 flat-12 sur banc",
+    "source_scan_sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "source_scan_scope": "geometrie exterieure du carter et des cylindres avec elements non classes",
+    "source_scan_identity": "Porsche 917 suggere par le nom de fichier mais non verifie independamment",
+    "head_geometry_in_source_scan": false,
+    "current_verified_level": "F0_source_integrity",
+    "target_level": "F6_instrumented_engine_bench",
+    "intended_result": "culasses individuelles reingenieriees pour fabrication additive, usinage, inspection et essais instrumentes"
+  },
+  "upstream_contracts": {
+    "exterior_scan_provenance": "catalog/sources/src-local-917-engine-case-cylinders-scan.json",
+    "exterior_scan_validation": "twins/reference-917-engine/validation-plan.md",
+    "functional_topology": "twins/reference-917-engine/complete-engine-f1.json",
+    "systems": "twins/reference-917-engine/systems-f4.json",
+    "test_bench": "twins/reference-917-engine/test-bench-f4.json",
+    "performance_requirement": "twins/reference-917-engine/performance-target-f9.json",
+    "variant_geometry": "twins/reference-917-engine/variant-configurations-f10.json"
+  },
+  "observed_artifacts": {
+    "mesh_preparation": "work/917-engine/vast-output/reports/mesh-preparation.json",
+    "output_verification": "work/917-engine/vast-output/reports/output-verification.json",
+    "external_cfd_validation": "work/917-engine/vast-output/cfd/external-cooling/cfd-validation.json",
+    "variant_generation": "work/917-variant-geometry-f10/variant-config-generation-report.json",
+    "variant_run": "work/917-variant-geometry-f10/run-complete.json",
+    "test_bench_preflight": "work/917-test-bench/virtual-start-report.json"
+  },
+  "scope_boundaries": {
+    "accepted_as_current_evidence": [
+      "integrite SHA-256 du scan exterieur",
+      "topologie visuelle de douze cylindres et douze culasses individuelles",
+      "deux branches visuelles distinctes Type 912 4,5 L et 917/30 5,374 L",
+      "topologies provisoires des fluides, de la distribution et du banc"
+    ],
+    "not_accepted_as_917_head_geometry": [
+      "scan de culasse 935",
+      "proxies de soupapes 993",
+      "culasses, chambres, conduits et profils de came generes par hypothese F1-F10",
+      "diametre apparent des ouvertures du scan comme alesage usine"
+    ],
+    "prohibited_inference": [
+      "identification ou echelle physique depuis le seul nom du fichier",
+      "fabricabilite depuis une scene USD qui s'ouvre",
+      "validation CFD depuis une surface ou un maillage sans solution convergee",
+      "preuve de 1600 hp ou 1600 PS depuis un calcul algebrique documentaire"
+    ]
+  },
+  "engine_variants": [
+    {
+      "id": "type_912_4_5_na",
+      "architecture": "flat_12_naturally_aspirated",
+      "documented_dimensions": {
+        "bore_mm": 85.0,
+        "stroke_mm": 66.0,
+        "displacement_cm3": 4494.0
+      },
+      "source_ids": [
+        "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+        "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+        "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+      ],
+      "evidence_status": "secondary_sources_not_factory_manufacturing_drawings",
+      "physical_model_status": "blocked_pending_measured_geometry_and_operating_data"
+    },
+    {
+      "id": "917_30_turbo_5374",
+      "architecture": "flat_12_twin_turbo",
+      "documented_dimensions": {
+        "bore_mm": 90.0,
+        "stroke_mm": 70.4,
+        "displacement_cm3": 5374.0,
+        "turbocharger_count": 2
+      },
+      "performance_requirement": {
+        "value": 1600.0,
+        "unit": "hp",
+        "status": "documentary_requirement_not_simulation_or_dyno_proof"
+      },
+      "source_ids": [
+        "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+        "SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING",
+        "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+      ],
+      "evidence_status": "displacement_primary_bore_and_stroke_secondary_not_factory_manufacturing_drawings",
+      "physical_model_status": "blocked_pending_measured_geometry_turbo_maps_and_operating_data"
+    }
+  ],
+  "fidelity_levels": [
+    {
+      "id": "F0_source_integrity",
+      "requires": [
+        "scan_source_integrity"
+      ]
+    },
+    {
+      "id": "F1_identified_scaled_envelope",
+      "requires": [
+        "F0_source_integrity",
+        "source_identity_and_scale",
+        "variant_selection"
+      ]
+    },
+    {
+      "id": "F2_measured_head_and_valvetrain",
+      "requires": [
+        "F1_identified_scaled_envelope",
+        "measured_head_geometry",
+        "baseline_2v_geometry",
+        "valvetrain_inputs"
+      ]
+    },
+    {
+      "id": "F3_coupled_reference_physics",
+      "requires": [
+        "F2_measured_head_and_valvetrain",
+        "material_characterization",
+        "operating_loads",
+        "reference_solver_evidence"
+      ]
+    },
+    {
+      "id": "F4_correlated_architecture_comparison",
+      "requires": [
+        "F3_coupled_reference_physics",
+        "concept_4v_geometry",
+        "experimental_correlation"
+      ]
+    },
+    {
+      "id": "F5_qualified_metal_prototype",
+      "requires": [
+        "F4_correlated_architecture_comparison",
+        "manufacturing_qualification",
+        "prototype_validation"
+      ]
+    },
+    {
+      "id": "F6_instrumented_engine_bench",
+      "requires": [
+        "F5_qualified_metal_prototype",
+        "engine_bench_validation",
+        "professional_review"
+      ]
+    }
+  ],
+  "architecture_variants": [
+    {
+      "id": "917_2v_baseline",
+      "valves_per_cylinder": 2,
+      "engine_valve_count": 24,
+      "configuration": {
+        "intake_valves_per_cylinder": 1,
+        "exhaust_valves_per_cylinder": 1
+      },
+      "role": "architecture de reference a mesurer et reconstruire",
+      "current_geometry_status": "topology_only_head_chamber_ports_seats_angles_and_lifts_unmeasured",
+      "selection_status": "baseline_not_yet_physically_correlated"
+    },
+    {
+      "id": "917_4v_concept",
+      "valves_per_cylinder": 4,
+      "engine_valve_count": 48,
+      "configuration": {
+        "intake_valves_per_cylinder": 2,
+        "exhaust_valves_per_cylinder": 2,
+        "diameters_angles_lifts_and_actuation": "to_be_optimized_not_assumed"
+      },
+      "role": "branche parametrique independante de comparaison de rendement",
+      "current_geometry_status": "not_created_pending_measured_917_packaging_and_2v_reference",
+      "selection_status": "no_winner_pending_correlated_multiphysics_and_bench_data"
+    }
+  ],
+  "architecture_comparison": {
+    "common_boundary_conditions_required": true,
+    "metrics": [
+      "effective_curtain_area_vs_lift",
+      "discharge_coefficient_vs_lift",
+      "trapped_volumetric_efficiency_vs_speed_and_load",
+      "pumping_work",
+      "combustion_chamber_surface_to_volume_ratio",
+      "moving_mass_and_minimum_no_float_spring_force",
+      "valvetrain_friction",
+      "seat_bridge_peak_temperature",
+      "thermomechanical_fatigue_margin",
+      "spark_plug_and_cam_packaging",
+      "additive_buildability_machining_and_powder_removal",
+      "measured_flow_bench_and_engine_efficiency_delta"
+    ],
+    "decision_rule": "Pareto comparison across the declared NA and turbo duty cycles; no flow-only winner",
+    "winner": null
+  },
+  "head_material_candidates": [
+    {
+      "id": "alsi10mg_lpbf_heat_treated",
+      "role": "industrial_additive_baseline",
+      "reason": "route LPBF largement disponible, faible masse et conductivite a caracteriser sur coupons",
+      "manufacturing_route": "LPBF, detensionnement ou traitement thermique qualifie, HIP seulement si justifie, usinage des interfaces",
+      "sources": [
+        "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg"
+      ],
+      "selection_status": "candidate_not_selected",
+      "limitations": "aucune fiche fournisseur ne remplace les proprietes dependantes de la machine, de l'orientation, du traitement et de la temperature"
+    },
+    {
+      "id": "alf357_lpbf_heat_treated",
+      "role": "fatigue_and_ductility_challenger",
+      "reason": "candidat aluminium a comparer lorsque la ductilite et la fatigue thermomecanique gouvernent",
+      "manufacturing_route": "LPBF, traitement thermique qualifie, HIP seulement si justifie, usinage des interfaces",
+      "sources": [
+        "https://www.eos.info/metal-solutions/metal-materials/aluminium"
+      ],
+      "selection_status": "candidate_not_selected",
+      "limitations": "conductivite, tenue a chaud, porosite et fatigue a mesurer avec la route de production cible"
+    }
+  ],
+  "material_downselection": {
+    "selected_head_material_id": null,
+    "criteria": [
+      "temperature_dependent_thermal_conductivity",
+      "temperature_dependent_elastic_plastic_properties",
+      "low_and_high_cycle_fatigue_after_final_heat_treatment",
+      "creep_or_stress_relaxation_when_applicable",
+      "defect_and_notch_sensitivity",
+      "machinability_and_insert_compatibility",
+      "build_repeatability_and_inspectability",
+      "mass_and_total_manufacturing_cost"
+    ],
+    "decision_status": "blocked_pending_coupled_physics_and_route_specific_coupon_data"
+  },
+  "component_strategy": {
+    "individual_head": {
+      "manufacturing": "LPBF_candidate_then_finish_machined_with_replaceable_inserts",
+      "selection_status": "shortlist_only"
+    },
+    "intake_valve": {
+      "provisional_candidate": "supplier_qualified_Ti_6Al_4V_or_temperature_appropriate_titanium_valve",
+      "manufacturing": "qualified_conventional_supplier_route_not_additive",
+      "reason": "masse mobile reduite a evaluer contre temperature, usure, guide, siege et revetement",
+      "source_ids": [
+        "SRC-TIMET-TI64-PHYSICAL-PROPERTIES",
+        "SRC-MAHLE-VALVETRAIN-TECHNICAL-2025"
+      ],
+      "selection_status": "blocked_pending_temperature_wear_geometry_and_dynamics"
+    },
+    "exhaust_valve": {
+      "provisional_candidate": "supplier_qualified_INCONEL_751_bar_or_forging",
+      "manufacturing": "qualified_conventional_supplier_route_not_additive",
+      "reason": "candidat haute temperature a confirmer par temperature gaz-metal, fatigue et corrosion",
+      "source_ids": [
+        "SRC-SPECIAL-METALS-INCONEL-751",
+        "SRC-MAHLE-VALVETRAIN-TECHNICAL-2025"
+      ],
+      "selection_status": "blocked_pending_exhaust_temperature_and_fatigue"
+    },
+    "valve_spring": {
+      "provisional_family": "ultra_clean_oil_tempered_chromium_silicon_steel_nitrided_and_shot_peened",
+      "manufacturing": "specialist_spring_supplier_not_additive",
+      "reason": "famille conventionnelle a dimensionner depuis la came, la masse, la pression gaz et le regime",
+      "sources": [
+        "https://saemobilus.sae.org/papers/influence-surface-finishing-chemical-composition-fatigue-strength-steel-wire-valve-springs-970711",
+        "https://saemobilus.sae.org/papers/development-high-fatigue-strength-valve-spring-using-control-white-layer-by-nitriding-2009-32-0082"
+      ],
+      "selection_status": "rate_load_wire_diameter_and_count_blocked_pending_hot_dynamic_test"
+    },
+    "seats_guides_threads_and_sealing_faces": {
+      "manufacturing": "replaceable_qualified_inserts_and_finish_machining",
+      "selection_status": "blocked_pending_temperature_wear_galvanic_and_leak_testing"
+    }
+  },
+  "physics_models": [
+    {
+      "id": "engine_cycle_0d_1d",
+      "governing_laws": [
+        "mass_conservation",
+        "first_law_of_thermodynamics",
+        "equation_of_state",
+        "gas_exchange_wave_dynamics"
+      ],
+      "required_gates": [
+        "source_identity_and_scale",
+        "variant_selection",
+        "operating_loads",
+        "valvetrain_inputs"
+      ],
+      "required_outputs": [
+        "mass_and_energy_balance",
+        "volumetric_efficiency",
+        "pumping_work",
+        "pressure_temperature_vs_crank_angle",
+        "cycle_convergence"
+      ]
+    },
+    {
+      "id": "head_ports_cold_flow_cfd",
+      "governing_laws": [
+        "mass_conservation",
+        "momentum_conservation",
+        "turbulent_transport"
+      ],
+      "required_gates": [
+        "measured_head_geometry",
+        "baseline_2v_geometry",
+        "valvetrain_inputs",
+        "reference_solver_evidence"
+      ],
+      "required_outputs": [
+        "mass_imbalance",
+        "pressure_drop",
+        "discharge_coefficient_vs_lift",
+        "swirl_or_tumble",
+        "mesh_independence",
+        "flow_bench_correlation"
+      ]
+    },
+    {
+      "id": "external_air_cooling_and_conjugate_heat_transfer",
+      "governing_laws": [
+        "mass_conservation",
+        "momentum_conservation",
+        "fluid_total_energy",
+        "fourier_heat_conduction",
+        "interface_heat_flux_continuity"
+      ],
+      "required_gates": [
+        "measured_head_geometry",
+        "material_characterization",
+        "operating_loads",
+        "reference_solver_evidence"
+      ],
+      "required_outputs": [
+        "mesh_quality_and_independence",
+        "mass_and_energy_imbalance",
+        "fin_heat_rejection",
+        "peak_metal_temperature",
+        "seat_guide_and_spark_plug_temperature",
+        "thermocouple_correlation"
+      ]
+    },
+    {
+      "id": "thermo_structural_and_fatigue",
+      "governing_laws": [
+        "linear_momentum_balance",
+        "temperature_dependent_constitutive_law",
+        "contact_and_preload",
+        "cyclic_plasticity",
+        "defect_sensitive_fatigue"
+      ],
+      "required_gates": [
+        "measured_head_geometry",
+        "material_characterization",
+        "operating_loads",
+        "reference_solver_evidence"
+      ],
+      "required_outputs": [
+        "seat_and_deck_distortion",
+        "fastener_load_distribution",
+        "plastic_strain",
+        "fatigue_and_defect_sensitivity",
+        "thermal_cycle_correlation"
+      ]
+    },
+    {
+      "id": "valvetrain_multibody_dynamics",
+      "governing_laws": [
+        "newton_second_law",
+        "contact_dynamics",
+        "spring_force_displacement",
+        "damping_and_resonance"
+      ],
+      "required_gates": [
+        "valvetrain_inputs",
+        "operating_loads",
+        "material_characterization"
+      ],
+      "required_outputs": [
+        "seat_and_open_force_margin",
+        "valve_float_margin",
+        "coil_bind_clearance",
+        "contact_force",
+        "spring_stress_temperature_and_fatigue",
+        "spintron_or_hot_rig_correlation"
+      ]
+    },
+    {
+      "id": "turbo_matching_and_rotordynamics_917_30",
+      "governing_laws": [
+        "compressible_mass_momentum_and_energy_conservation",
+        "shaft_power_balance",
+        "rotor_dynamics"
+      ],
+      "required_gates": [
+        "variant_selection",
+        "operating_loads",
+        "turbo_inputs",
+        "reference_solver_evidence"
+      ],
+      "required_outputs": [
+        "compressor_and_turbine_operating_points",
+        "surge_and_choke_margin",
+        "shaft_speed_and_temperature_margin",
+        "wastegate_schedule",
+        "documented_1600_hp_requirement_gap",
+        "dyno_correlation"
+      ]
+    },
+    {
+      "id": "architecture_2v_vs_4v",
+      "governing_laws": [
+        "all_reference_models_above_under_common_boundary_conditions"
+      ],
+      "required_gates": [
+        "baseline_2v_geometry",
+        "concept_4v_geometry",
+        "material_characterization",
+        "operating_loads",
+        "valvetrain_inputs",
+        "reference_solver_evidence",
+        "experimental_correlation"
+      ],
+      "required_outputs": [
+        "architecture_comparison_metrics",
+        "uncertainty_intervals",
+        "NA_and_turbo_pareto_fronts",
+        "no_winner_or_selected_winner_with_evidence"
+      ]
+    }
+  ],
+  "physicsnemo_surrogate_policy": {
+    "role": "surrogate_only_after_validated_classical_reference_solver_and_held_out_physical_correlation",
+    "pinned_stable_version": "2.2.1",
+    "live_repository_version_observed": "2.3.0a0",
+    "candidate_families": [
+      {
+        "id": "DoMINO",
+        "fit": "surface_and_volume_point_cloud_fields_for_geometry_conditioned_CFD"
+      },
+      {
+        "id": "FIGConvNet",
+        "fit": "large_surface_point_cloud_field_prediction"
+      },
+      {
+        "id": "Transolver_or_GeoTransolver",
+        "fit": "surface_or_volume_fields_on_irregular_discretizations"
+      },
+      {
+        "id": "MeshGraphNet",
+        "fit": "transient_or_steady_unstructured_mesh_graph_problems"
+      }
+    ],
+    "required_before_training": [
+      "versioned_reference_solver_dataset",
+      "mesh_and_solver_convergence",
+      "training_validation_and_held_out_test_split",
+      "out_of_distribution_detection",
+      "uncertainty_and_error_thresholds",
+      "physical_test_correlation"
+    ],
+    "current_training_authorized": false,
+    "dataset_parser_qualified": false,
+    "holdout_validator_qualified": false,
+    "ood_guard_qualified": false,
+    "reason": "Aucun entraînement moteur n'est autorisé avant dataset solveur/essais corrélé, parseurs qualifiés, holdout indépendant et garde OOD."
+  },
+  "release_policy": {
+    "manufacturing_release_default": false,
+    "metal_print_release_default": false,
+    "engine_start_default": false,
+    "performance_claim_default": false,
+    "required_final_authority": "professional_engineering_review_and_instrumented_test_program",
+    "printing_boundary": "seules les culasses qualifiees sont candidates LPBF; soupapes ressorts sieges guides filetages et faces fonctionnelles suivent des routes conventionnelles qualifiees"
+  }
+}
