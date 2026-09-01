@@ -31,6 +31,13 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         remote_branch = services.index("else", local_branch)
         self.assertGreater(credential_load, remote_branch)
 
+    def test_live_smoke_covers_multimodal_input(self):
+        smoke = (ROOT / "containers/simready-local-ai-smoke.sh").read_text()
+        config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()
+        self.assertIn("data:image/gif;base64", smoke)
+        self.assertIn("image_url", smoke)
+        self.assertIn("--limit-mm-per-prompt image=20", config)
+
 
 if __name__ == "__main__":
     unittest.main()
