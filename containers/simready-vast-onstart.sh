@@ -21,6 +21,7 @@ fi
 mkdir -p "${WORKSPACE}/logs" "${WORKSPACE}/simready"
 nvidia-smi >"${WORKSPACE}/logs/nvidia-smi.log" 2>&1
 smoke-test.sh simready-local-ai >"${WORKSPACE}/logs/simready-smoke.log" 2>&1
+/usr/local/bin/physicsnemo-gpu-smoke >"${WORKSPACE}/logs/physicsnemo-gpu-smoke.json" 2>&1
 simready-services start >"${WORKSPACE}/logs/simready-services-start.log" 2>&1
 simready-services status >"${WORKSPACE}/logs/simready-services-status.log" 2>&1
 touch "${WORKSPACE}/READY"

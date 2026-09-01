@@ -3,10 +3,10 @@
 ARG TARGETPLATFORM=linux/amd64
 FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
 
-ARG VLLM_VERSION=0.19.0
-ARG VLLM_TORCH_VERSION=2.10.0
-ARG VLLM_TORCHVISION_VERSION=0.25.0
-ARG VLLM_TORCHAUDIO_VERSION=2.10.0
+ARG VLLM_VERSION=0.26.0
+ARG VLLM_TORCH_VERSION=2.11.0
+ARG VLLM_TORCHVISION_VERSION=0.26.0
+ARG VLLM_TORCHAUDIO_VERSION=2.11.0
 ARG PHYSICSNEMO_VERSION=2.2.0
 ARG TORCH_VERSION=2.10.0
 ARG TORCHVISION_VERSION=0.25.0
@@ -69,6 +69,7 @@ RUN /opt/venv/bin/pip install --no-cache-dir \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
        "nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}" \
        "deepxde==${DEEPXDE_VERSION}" \
+    && /opt/venv/bin/pip check \
     && /opt/venv/bin/python -c \
        'import physicsnemo, torch, torchvision; assert physicsnemo.__version__ == "2.2.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
 
@@ -90,8 +91,9 @@ RUN /opt/local-ai/bin/pip install --no-cache-dir \
 RUN /opt/local-ai/bin/pip install --no-cache-dir \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
        "vllm==${VLLM_VERSION}" \
+    && /opt/local-ai/bin/pip check \
     && /opt/local-ai/bin/python -c \
-       'import torch, torchvision, vllm; assert vllm.__version__ == "0.19.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
+       'import torch, torchaudio, torchvision, vllm; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can
@@ -128,12 +130,14 @@ RUN apt-get update \
 
 COPY containers/simready-local-ai-supervisord.conf /etc/simready-supervisord.conf
 COPY containers/simready-local-ai-smoke.sh /usr/local/bin/simready-local-ai-smoke
+COPY containers/physicsnemo-gpu-smoke.py /usr/local/bin/physicsnemo-gpu-smoke
 COPY containers/simready-vast-onstart.sh /usr/local/bin/simready-vast-onstart
 COPY containers/simready-services.sh /usr/local/bin/simready-services
 COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
 
 RUN chmod 0555 /usr/local/bin/simready-local-ai-smoke \
+        /usr/local/bin/physicsnemo-gpu-smoke \
         /usr/local/bin/simready-vast-onstart \
         /usr/local/bin/simready-services /usr/local/bin/simready-smoke \
         /usr/local/bin/smoke-test.sh \

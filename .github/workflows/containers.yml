@@ -144,21 +144,26 @@ jobs:
             --provenance=false \
             --file containers/simready-local-ai.Dockerfile \
             --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:${{ github.sha }} \
-            --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:latest \
             .
 
       - name: Verify published local AI manifest limits
+        id: local_ai_manifest
         if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai' && inputs.push
         run: |
-          image_ref=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:${{ github.sha }}
-          platform="$(docker buildx imagetools inspect --format '{{.Image.OS}}/{{.Image.Architecture}}' "$image_ref")"
+          repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai
+          image_ref="${repository}:${{ github.sha }}"
+          digest="$(docker buildx imagetools inspect "$image_ref" | awk '$1 == "Digest:" { print $2; exit }')"
+          [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+          pinned_ref="${repository}@${digest}"
+          platform="$(docker buildx imagetools inspect --format '{{.Image.OS}}/{{.Image.Architecture}}' "$pinned_ref")"
           test "$platform" = linux/amd64
-          docker buildx imagetools inspect --raw "$image_ref" \
+          docker buildx imagetools inspect --raw "$pinned_ref" \
             | jq -e '
                 (.mediaType == "application/vnd.docker.distribution.manifest.v2+json") and
                 (([.layers[].size] | max) < 5000000000) and
                 (([.layers[].size] | add) < 45000000000)
               ' >/dev/null
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
 
       - name: Smoke test the image
         if: steps.gate.outputs.run == 'true' && !inputs.push
@@ -170,7 +175,23 @@ jobs:
       - name: Pull and smoke test the published image
         if: steps.gate.outputs.run == 'true' && inputs.push
         run: |
-          docker pull ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}:${{ github.sha }}
+          image_ref=ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}:${{ github.sha }}
+          if [ "${{ matrix.image }}" = simready-local-ai ]; then
+            image_ref="ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai@${{ steps.local_ai_manifest.outputs.digest }}"
+          fi
+          docker pull "$image_ref"
           docker run --rm \
-            ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}:${{ github.sha }} \
+            "$image_ref" \
             smoke-test.sh ${{ matrix.image }}
+
+      - name: Promote verified local AI image
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai' && inputs.push
+        run: |
+          expected_digest=${{ steps.local_ai_manifest.outputs.digest }}
+          docker buildx imagetools create \
+            --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:latest \
+            ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai@${expected_digest}
+          latest_digest="$(docker buildx imagetools inspect \
+            ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:latest \
+            | awk '$1 == "Digest:" { print $2; exit }')"
+          test "$latest_digest" = "$expected_digest"
