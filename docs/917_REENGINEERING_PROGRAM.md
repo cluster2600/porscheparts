@@ -21,6 +21,25 @@ pas la nomenclature réelle : visserie, joints, circlips, passages internes,
 roulements, conduites, capteurs, traitements, calages et éléments de sécurité
 restent notamment à identifier et dénombrer depuis une dépose documentée.
 
+## Itération F13 implémentée le 2 septembre 2026
+
+F13 transforme les inconnues principales en contrats reproductibles sans
+promouvoir le niveau vérifié au-delà de F0 :
+
+| Lot | Résultat vérifié | Limite conservée |
+| --- | --- | --- |
+| [Métrologie conditionnelle](917_SCAN_METROLOGY_F13.md) | 12 ouvertures, 2 rangées de 6, résidus et trois hypothèses d'échelle | identité, unité, variante et sémantique d'alésage non confirmées |
+| [Master paramétrique d'interface](917_PARAMETRIC_INTERFACE_F13.md) | OpenSCAD et STEP quarantainé de 25 marqueurs/repères, entrée liée par SHA-256 | aucune surface moteur, aucun goujon inventé, aucune fabrication |
+| [Cas solveurs classiques](917_CLASSICAL_SOLVER_CASES_F13.md) | 12 cas, 44 faits, 5 enveloppes dérivées, 14 contradictions et 4 scénarios | zéro calcul, zéro résultat, zéro entraînement PhysicsNeMo |
+| [Fabrication et qualification](917_MANUFACTURING_VALIDATION_F13.md) | 9 familles critiques, 30 mesures à acquérir et trois niveaux de maturité séparés | aucune matière, route, cote, tolérance ou libération sélectionnée |
+
+Le signal le plus intéressant est la cohérence numérique avec le 5,0 l
+atmosphérique : supposer que l'ouverture visible moyenne est l'alésage publié
+de 86,8 mm donne environ 1,001996 mm/unité OBJ et un entraxe implicite de
+118,199 mm. Cette proximité reste une hypothèse de triage ; elle ne remplace
+pas trois contrôles physiques étalonnés, une identification indépendante ni la
+mesure des interfaces internes.
+
 `100 % fonctionnel et imprimable` est traité comme un critère final
 d'acceptation, pas comme une propriété déduite du scan. Un moteur fonctionnel
 restera un assemblage multi-procédés : certaines pièces pourront être produites

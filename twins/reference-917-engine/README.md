@@ -77,6 +77,37 @@ deux rangées de six ouvertures :
 Ces valeurs décrivent les ouvertures visibles du scan. Elles ne prouvent ni le
 diamètre d'alésage, ni la variante du moteur, ni une unité millimétrique.
 
+## Réingénierie mesurée F11–F13
+
+Le programme de réingénierie sépare maintenant explicitement la référence
+visuelle, la CAO, la physique et la fabrication :
+
+```mermaid
+flowchart LR
+    F0[Scan F0<br/>hash vérifié] --> M[F13 métrologie<br/>hypothèses seulement]
+    M --> C[F13 master CAO<br/>repères quarantainés]
+    C --> P[Métrologie physique + CT<br/>CAO fonctionnelle future]
+    P --> S[12 solveurs classiques<br/>convergence + corrélation]
+    S --> N[PhysicsNeMo<br/>surrogate + UQ/OOD]
+    P --> Q[Qualification fabrication<br/>coupons + CT/NDT + essais]
+    N --> O[USD / Omniverse]
+    Q --> B[Banc moteur]
+```
+
+Les livrables versionnés sont :
+
+- [programme et niveaux de preuve](../../docs/917_REENGINEERING_PROGRAM.md) ;
+- [métrologie conditionnelle du scan](../../docs/917_SCAN_METROLOGY_F13.md) ;
+- [master paramétrique carter–cylindre–culasse](../../docs/917_PARAMETRIC_INTERFACE_F13.md) ;
+- [registre des douze cas solveurs classiques](../../docs/917_CLASSICAL_SOLVER_CASES_F13.md) ;
+- [stratégie de fabrication et qualification](../../docs/917_MANUFACTURING_VALIDATION_F13.md).
+
+Le STEP F13 contient 25 solides de repérage et reste sous `work/`, hors Git. Il
+sert uniquement à superposer et contrôler l'implantation des douze ouvertures.
+Il n'est ni une pièce, ni une CAO de définition. Le niveau vérifié du moteur
+reste F0 tant que l'identité, l'échelle et les datums n'ont pas été confirmés
+sur du matériel physique identifié.
+
 ## Assemblage fonctionnel complet F1
 
 Une nomenclature paramétrique distincte du scan reconstruit les familles
