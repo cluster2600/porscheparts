@@ -39,6 +39,31 @@ jobs:
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Stop Docker before enlarging its storage
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        run: sudo systemctl stop docker.socket docker
+
+      - name: Maximize local AI build storage
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        uses: easimon/maximize-build-space@c28619d8999a147d5e09c1199f84ff6af6ad5794
+        with:
+          root-reserve-mb: 4096
+          temp-reserve-mb: 1024
+          swap-size-mb: 2048
+          build-mount-path: /var/lib/docker
+          build-mount-path-ownership: root:root
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+
+      - name: Restart Docker on enlarged storage
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        run: |
+          sudo systemctl start docker
+          docker info >/dev/null
+          df -h / /var/lib/docker
+
       - name: Check out repository
         if: steps.gate.outputs.run == 'true'
         uses: actions/checkout@v4
@@ -46,7 +71,7 @@ jobs:
       # A CUDA build fills the default runner disk; drop the preinstalled
       # toolchains the job does not use.
       - name: Reclaim runner disk
-        if: steps.gate.outputs.run == 'true' && (matrix.image == 'recon' || matrix.image == 'mesh-cfd' || matrix.image == 'physicsml' || matrix.image == 'simready' || matrix.image == 'simready-workflow' || matrix.image == 'simready-local-ai')
+        if: steps.gate.outputs.run == 'true' && (matrix.image == 'recon' || matrix.image == 'mesh-cfd' || matrix.image == 'physicsml' || matrix.image == 'simready' || matrix.image == 'simready-workflow')
         run: |
           sudo swapoff -a || true
           sudo rm -f /mnt/swapfile /swapfile
