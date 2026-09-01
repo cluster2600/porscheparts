@@ -79,7 +79,17 @@ jobs:
           [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
           tag_ref="${IMAGE_REPOSITORY}:${GITHUB_SHA}"
           pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
-          tag_digest="$(docker buildx imagetools inspect "${tag_ref}" | awk '$1 == "Digest:" { print $2; exit }')"
+          tag_digest=""
+          for attempt in 1 2 3 4 5; do
+            tag_digest="$(
+              docker buildx imagetools inspect "${tag_ref}" 2>/dev/null \
+                | awk '$1 == "Digest:" { print $2; exit }'
+            )"
+            if test "${tag_digest}" = "${IMAGE_DIGEST}"; then
+              break
+            fi
+            sleep 3
+          done
           test "${tag_digest}" = "${IMAGE_DIGEST}"
 
           docker buildx imagetools inspect --format '{{json .Manifest}}' "${pinned_ref}" \
@@ -93,9 +103,12 @@ jobs:
           docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" \
             > obj-metrology-f15-provenance.json
           jq -e '
-            .["linux/amd64"].SLSA.buildType == "https://mobyproject.org/buildkit@v1" and
-            (.["linux/amd64"].SLSA.builder.id | type == "string" and length > 0) and
-            (.["linux/amd64"].SLSA.materials | type == "array" and length > 0)
+            (.SLSA.buildDefinition.buildType
+              | startswith("https://github.com/moby/buildkit/")) and
+            (.SLSA.runDetails.builder.id
+              | type == "string" and length > 0) and
+            (.SLSA.buildDefinition.resolvedDependencies
+              | type == "array" and length > 0)
           ' obj-metrology-f15-provenance.json >/dev/null
 
           docker pull --platform linux/amd64 "${pinned_ref}"
