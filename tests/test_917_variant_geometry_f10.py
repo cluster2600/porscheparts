@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "twins/reference-917-engine/variant-configurations-f10.json"
 PREPARE = ROOT / "twins/reference-917-engine/source/prepare_variant_configs_f10.py"
+DETAIL_BUILDER = ROOT / "twins/reference-917-engine/source/build_detail_expansion_f3.py"
 KINEMATICS_MATH = ROOT / "twins/reference-917-engine/source/kinematics_f2_math.py"
 RUNNER = ROOT / "twins/reference-917-engine/run_variant_geometry_f10.sh"
 F1 = ROOT / "twins/reference-917-engine/complete-engine-f1.json"
@@ -22,6 +23,11 @@ SPEC = importlib.util.spec_from_file_location("engine_917_variant_f10", PREPARE)
 assert SPEC is not None and SPEC.loader is not None
 F10 = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(F10)
+
+DETAIL_SPEC = importlib.util.spec_from_file_location("engine_917_detail_builder", DETAIL_BUILDER)
+assert DETAIL_SPEC is not None and DETAIL_SPEC.loader is not None
+DETAIL = importlib.util.module_from_spec(DETAIL_SPEC)
+DETAIL_SPEC.loader.exec_module(DETAIL)
 
 MATH_SPEC = importlib.util.spec_from_file_location("engine_917_kinematics_math", KINEMATICS_MATH)
 assert MATH_SPEC is not None and MATH_SPEC.loader is not None
@@ -206,6 +212,37 @@ class Engine917VariantGeometryF10Test(unittest.TestCase):
         self.assertEqual((turbo_f2["f10_variant"]["bore_mm"], turbo_f2["crank_slider"]["stroke_mm"]), (90.0, 70.4))
         self.assertEqual((na_f3["acceptance"]["added_family_count"], na_f3["acceptance"]["added_instance_count"]), (8, 20))
         self.assertEqual((turbo_f3["acceptance"]["added_family_count"], turbo_f3["acceptance"]["added_instance_count"]), (13, 30))
+
+    def test_detail_generator_respects_each_variant_family_filter(self):
+        turbo_only = {
+            "turbo_turbine_wheel",
+            "turbo_compressor_wheel",
+            "turbo_shaft",
+            "wastegate",
+            "wastegate_bypass_pipe",
+        }
+        available_placements = DETAIL.placements()
+        available_shapes = {
+            family: object()
+            for family in {item["family"] for item in available_placements}
+        }
+        selected = {}
+        for variant_id in ("type_912_4_5_na", "917_30_turbo_5374"):
+            _, _, detail_config = F10.generated_configs(
+                self.manifest, ROOT, self.variants[variant_id]
+            )
+            shapes, layout = DETAIL.select_configured_geometry(
+                detail_config, available_shapes, available_placements
+            )
+            requested = {item["id"] for item in detail_config["families"]}
+            self.assertEqual(set(shapes), requested)
+            self.assertEqual({item["family"] for item in layout}, requested)
+            self.assertEqual(len(shapes), detail_config["acceptance"]["added_family_count"])
+            self.assertEqual(len(layout), detail_config["acceptance"]["added_instance_count"])
+            selected[variant_id] = set(shapes)
+
+        self.assertTrue(turbo_only.isdisjoint(selected["type_912_4_5_na"]))
+        self.assertTrue(turbo_only <= selected["917_30_turbo_5374"])
 
     def test_contract_rejects_shared_stage_or_physical_release(self):
         shared = copy.deepcopy(self.manifest)

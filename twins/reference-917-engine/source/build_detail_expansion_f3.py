@@ -103,6 +103,28 @@ def placements():
     return result
 
 
+def select_configured_geometry(config, available_shapes, available_placements):
+    """Return only the prototype families and placements requested by one config."""
+
+    requested = {item["id"] for item in config["families"]}
+    unknown = requested - set(available_shapes)
+    if unknown:
+        raise RuntimeError(f"config requests unknown families: {sorted(unknown)}")
+    shapes = {
+        family: shape
+        for family, shape in available_shapes.items()
+        if family in requested
+    }
+    layout = [item for item in available_placements if item["family"] in requested]
+    placement_families = {item["family"] for item in layout}
+    if placement_families != requested:
+        raise RuntimeError(
+            f"placement/config family mismatch: placements={sorted(placement_families)} "
+            f"config={sorted(requested)}"
+        )
+    return shapes, layout
+
+
 def main():
     from build123d import export_step, export_stl
 
@@ -111,10 +133,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     config = json.loads(args.config.read_text(encoding="utf-8"))
-    requested = {item["id"] for item in config["families"]}
-    shapes = build_shapes()
-    if requested != set(shapes):
-        raise RuntimeError(f"family mismatch: config={sorted(requested)} shapes={sorted(shapes)}")
+    shapes, layout = select_configured_geometry(config, build_shapes(), placements())
 
     prototypes = []
     for family, shape in shapes.items():
@@ -126,7 +145,6 @@ def main():
         export_stl(shape, stl, tolerance=0.12, angular_tolerance=0.16)
         prototypes.append({"family": family, "step": str(step.resolve()), "stl": str(stl.resolve())})
 
-    layout = placements()
     expected = config["acceptance"]
     if len(prototypes) != expected["added_family_count"] or len(layout) != expected["added_instance_count"]:
         raise RuntimeError("generated F3 counts do not match the acceptance contract")
