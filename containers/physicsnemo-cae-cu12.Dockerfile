@@ -93,12 +93,16 @@ COPY containers/physicsnemo-cae-cu12-smoke.py /usr/local/bin/physicsnemo-cae-smo
 RUN chmod 0555 /usr/local/bin/physicsnemo-cae-smoke \
     && /opt/physicsnemo/bin/python /usr/local/bin/physicsnemo-cae-smoke
 
-RUN groupadd --gid 1000 physicsnemo \
-    && useradd --uid 1000 --gid 1000 --create-home --shell /bin/bash physicsnemo \
+ARG PHYSICSNEMO_UID=9170
+ARG PHYSICSNEMO_GID=9170
+
+RUN groupadd --gid "${PHYSICSNEMO_GID}" physicsnemo \
+    && useradd --uid "${PHYSICSNEMO_UID}" --gid "${PHYSICSNEMO_GID}" \
+        --create-home --shell /bin/bash physicsnemo \
     && mkdir -p /workspace/input /workspace/output /workspace/jobs \
     && chown -R physicsnemo:physicsnemo /workspace
 
-USER 1000:1000
+USER ${PHYSICSNEMO_UID}:${PHYSICSNEMO_GID}
 WORKDIR /workspace
 
 LABEL org.opencontainers.image.title="3dprinting993-physicsnemo-cae-cu12" \

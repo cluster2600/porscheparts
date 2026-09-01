@@ -81,6 +81,10 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
         self.assertIn("PHYSICSNEMO_VERSION=2.2.1", dockerfile)
         self.assertIn("TORCH_VERSION=2.10.0", dockerfile)
         self.assertIn("TORCHVISION_VERSION=0.25.0", dockerfile)
+        self.assertIn("PHYSICSNEMO_UID=9170", dockerfile)
+        self.assertIn("PHYSICSNEMO_GID=9170", dockerfile)
+        self.assertIn("USER ${PHYSICSNEMO_UID}:${PHYSICSNEMO_GID}", dockerfile)
+        self.assertNotIn("--gid 1000 physicsnemo", dockerfile)
         self.assertIn("ANTLR4_RUNTIME_VERSION=4.9.3", dockerfile)
         self.assertIn(
             "f224469b4168294902bb1efa80a8bf7855f24c99aef99cbefc1bcd3cce77881b",
