@@ -28,7 +28,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     CONTENT_AGENTS_MATERIAL_AGENT_BASE_URL=http://127.0.0.1:8100 \
     CONTENT_AGENTS_PHYSICS_AGENT_BASE_URL=http://127.0.0.1:8200 \
     RENDER_ENDPOINT=http://127.0.0.1:8001 \
-    PATH=/opt/usd-convert-cad/bin:/opt/simready-validation/bin:/usr/local/bin:/usr/bin:/bin
+    PATH=/opt/usd-convert-cad/bin:/opt/simready-validation/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
