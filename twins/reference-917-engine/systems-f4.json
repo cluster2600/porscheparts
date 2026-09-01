@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F4_simulation_contract_scaffold_blocked_pending_measurements",
+  "units": "mm",
+  "base_stage_requirement": "validated_F3_detail_USD",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+    "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+  ],
+  "fluid_domains": [
+    {
+      "id": "external_cooling_air",
+      "medium": "air",
+      "variant": "all",
+      "geometry_status": "closed_external_skin_available_mesh_quality_failed",
+      "solver_baseline": "OpenFOAM",
+      "physicsnemo_role": "surrogate_only_after_validated_OpenFOAM_and_test_correlation",
+      "required_inputs": ["fan_curve", "vehicle_speed", "ambient_pressure", "ambient_temperature", "surface_heat_flux", "confirmed_scale"]
+    },
+    {
+      "id": "intake_air",
+      "medium": "compressible_air_fuel_mixture_not_modelled",
+      "variant": "all",
+      "geometry_status": "routing_proxies_only_internal_passages_missing",
+      "solver_baseline": "OpenFOAM_compressible_flow_after_geometry_reconstruction",
+      "physicsnemo_role": "surrogate_only_after_baseline_validation",
+      "required_inputs": ["internal_surfaces", "mass_flow_or_pressure_ratio", "inlet_temperature", "throttle_state", "engine_speed", "volumetric_efficiency"]
+    },
+    {
+      "id": "exhaust_gas",
+      "medium": "compressible_exhaust_gas",
+      "variant": "all",
+      "geometry_status": "routing_proxies_only_wall_thickness_and_internal_surfaces_missing",
+      "solver_baseline": "OpenFOAM_compressible_conjugate_heat_transfer_after_geometry_reconstruction",
+      "physicsnemo_role": "surrogate_only_after_baseline_validation",
+      "required_inputs": ["internal_surfaces", "cylinder_resolved_mass_flow", "gas_temperature", "back_pressure", "wall_materials", "heat_transfer_coefficients"]
+    },
+    {
+      "id": "dry_sump_oil",
+      "medium": "engine_oil_grade_unknown",
+      "variant": "all",
+      "geometry_status": "topology_only_internal_galleries_and_hoses_missing",
+      "solver_baseline": "zero_dimensional_network_then_CFD_for_selected_passages",
+      "physicsnemo_role": "not_before_measured_pressure_flow_temperature_map",
+      "required_inputs": ["oil_grade", "temperature_range", "pump_curves", "gallery_geometry", "bearing_clearances", "reservoir_level", "cooler_pressure_drop"]
+    }
+  ],
+  "fluid_routes": [
+    {"id": "intake_head", "domain": "intake_air", "from_family": "intake_trumpet", "to_family": "individual_head", "count": 12, "variant": "all", "confidence": "topology_only"},
+    {"id": "head_exhaust", "domain": "exhaust_gas", "from_family": "individual_head", "to_family": "exhaust_primary", "count": 12, "variant": "all", "confidence": "topology_only"},
+    {"id": "exhaust_collector", "domain": "exhaust_gas", "from_family": "exhaust_primary", "to_family": "exhaust_collector", "count": 12, "target_group_size": 6, "variant": "all", "confidence": "layout_proxy"},
+    {"id": "turbo_hot_side", "domain": "exhaust_gas", "from_family": "exhaust_collector", "to_family": "turbocharger", "count": 2, "variant": "917_30_only", "confidence": "function_sourced_route_hypothesis"},
+    {"id": "turbo_cold_side", "domain": "intake_air", "from_family": "turbocharger", "to_family": "charge_plenum", "count": 2, "variant": "917_30_only", "confidence": "function_sourced_route_hypothesis"},
+    {"id": "pressure_oil_feed", "domain": "dry_sump_oil", "from_family": "pressure_oil_pump", "to_family": "main_bearing", "count": 8, "variant": "all", "confidence": "topology_proxy_no_gallery_geometry"},
+    {"id": "scavenge_oil_return", "domain": "dry_sump_oil", "from_family": "scavenge_oil_pump", "to_family": "oil_cooler", "count": 6, "variant": "all", "confidence": "topology_proxy_no_hose_routing"}
+  ],
+  "electrical_system": {
+    "nominal_label": "12V_DC_unconfirmed_for_this_vehicle",
+    "simulation_kind": "lumped_network_only",
+    "nodes": [
+      {"id": "external_battery_bus", "family": null, "count": 1, "status": "external_interface_position_hypothesis"},
+      {"id": "alternator", "family": "alternator", "count": 1, "status": "assembly_proxy"},
+      {"id": "starter_motor", "family": null, "count": 1, "status": "missing_geometry_and_position"},
+      {"id": "distributor", "family": "distributor", "count": 2, "status": "assembly_proxy"},
+      {"id": "spark_plug", "family": "spark_plug", "count": 24, "status": "assembly_proxy"}
+    ],
+    "routes": [
+      {"id": "alternator_bus", "from": "alternator", "to": "external_battery_bus", "count": 1, "signal": "charging_power", "confidence": "topology_only"},
+      {"id": "battery_starter", "from": "external_battery_bus", "to": "starter_motor", "count": 1, "signal": "starter_power", "confidence": "topology_only"},
+      {"id": "bus_distributor", "from": "external_battery_bus", "to": "distributor", "count": 2, "signal": "ignition_primary", "confidence": "topology_only"},
+      {"id": "distributor_spark_plug", "from": "distributor", "to": "spark_plug", "count": 24, "target_group_size": 12, "signal": "ignition_high_voltage", "confidence": "double_ignition_topology_sourced_routing_hypothesis"}
+    ],
+    "required_inputs": ["system_voltage", "alternator_curve", "starter_current", "coil_and_distributor_characteristics", "wire_gauges", "wire_lengths", "connector_resistance", "ground_paths", "fusing"]
+  },
+  "acceptance": {
+    "fluid_domain_count": 4,
+    "fluid_route_instance_count": 54,
+    "electrical_node_instance_count": 29,
+    "electrical_route_instance_count": 28,
+    "simulation_ready": false
+  },
+  "prohibited_use": [
+    "claim_of_physical_flow_or_temperature_prediction",
+    "combustion_or_turbo_performance_calibration",
+    "oil_pressure_or_bearing_validation",
+    "electrical_load_or_wire_sizing_release",
+    "manufacturing_release",
+    "physicsnemo_training_before_validated_baseline_data"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "status": "virtual_test_bench_dry_crank_only",
+  "units": "mm",
+  "base_stage_requirement": "validated_F3_detail_USD",
+  "bench_components": [
+    {"id": "bedplate", "count": 1, "status": "layout_proxy"},
+    {"id": "engine_mount", "count": 4, "status": "interface_positions_unmeasured"},
+    {"id": "dynamometer", "count": 1, "status": "functional_proxy"},
+    {"id": "dyno_coupling", "count": 1, "status": "shaft_interface_unmeasured"},
+    {"id": "starter_motor", "count": 1, "status": "missing_engine_interface"},
+    {"id": "battery", "count": 1, "status": "electrical_proxy"},
+    {"id": "fuel_supply", "count": 1, "status": "flow_proxy_no_fuel_specification"},
+    {"id": "oil_reservoir", "count": 1, "status": "flow_proxy_no_capacity_or_level"},
+    {"id": "cooling_air_supply", "count": 1, "status": "flow_proxy_no_fan_curve"},
+    {"id": "exhaust_extraction", "count": 2, "status": "flow_proxy_no_back_pressure"},
+    {"id": "emergency_stop", "count": 1, "status": "logical_interlock_only"},
+    {"id": "fire_suppression", "count": 1, "status": "logical_interlock_only"}
+  ],
+  "instrumentation": [
+    {"id": "crank_speed", "count": 1, "required_for": ["dry_crank", "fired_run"]},
+    {"id": "crank_torque", "count": 1, "required_for": ["dry_crank", "fired_run"]},
+    {"id": "oil_pressure", "count": 2, "required_for": ["oil_prime", "dry_crank", "fired_run"]},
+    {"id": "oil_temperature", "count": 2, "required_for": ["oil_prime", "fired_run"]},
+    {"id": "fuel_pressure", "count": 1, "required_for": ["fired_run"]},
+    {"id": "intake_pressure_temperature", "count": 4, "required_for": ["fired_run"]},
+    {"id": "exhaust_pressure_temperature", "count": 12, "required_for": ["fired_run"]},
+    {"id": "cylinder_pressure", "count": 12, "required_for": ["combustion_calibration"]},
+    {"id": "bearing_temperature", "count": 8, "required_for": ["loaded_run"]},
+    {"id": "vibration", "count": 6, "required_for": ["dry_crank", "fired_run", "loaded_run"]}
+  ],
+  "run_sequence": [
+    {"id": "structural_preflight", "action": "validate_hierarchy_mounts_and_shaft_alignment", "release_gate": true},
+    {"id": "oil_prime", "action": "circulate_oil_without_crank_rotation", "release_gate": true},
+    {"id": "dry_crank", "action": "externally_drive_kinematics_at_120_rpm_without_fuel_or_ignition", "release_gate": true},
+    {"id": "ignition_check", "action": "validate_timing_events_without_fuel", "release_gate": true},
+    {"id": "fuel_enable", "action": "enable_fuel_only_after_all_previous_gates", "release_gate": true},
+    {"id": "fired_idle", "action": "combustion_run_at_measured_idle_setpoint", "release_gate": true},
+    {"id": "loaded_sweep", "action": "dynamometer_sweep_with_measured_limits", "release_gate": true}
+  ],
+  "known_capabilities": {
+    "usd_hierarchy": true,
+    "kinematic_timeline": true,
+    "external_crank_animation": true,
+    "component_family_count": 44,
+    "combustion_model": false,
+    "validated_mount_interfaces": false,
+    "validated_fluid_domains": false,
+    "validated_electrical_network": false
+  },
+  "critical_blockers": [
+    "engine_mount_coordinates_and_load_limits",
+    "crankshaft_output_flange_interface_and_dyno_alignment_tolerance",
+    "starter_ring_gear_and_starter_interface",
+    "battery_voltage_capacity_cables_grounding_and_fusing",
+    "ignition_coils_wiring_firing_order_and_advance_map",
+    "fuel_type_tank_lift_pump_filter_pressure_and_shutoff",
+    "injection_pump_calibration_and_injector_flow_data",
+    "oil_grade_reservoir_capacity_hose_routing_pump_curves_and_relief_settings",
+    "cam_profiles_valve_timing_and_measured_clearances",
+    "component_masses_inertias_friction_and_bearing_clearances",
+    "combustion_pressure_heat_release_and_knock_limits",
+    "cooling_fan_curve_airflow_and_surface_heat_rejection",
+    "exhaust_back_pressure_and_temperature_limits",
+    "sensor_ranges_calibration_sample_rates_and_trip_thresholds",
+    "fire_suppression_ventilation_guarding_and_remote_emergency_stop"
+  ],
+  "acceptance": {
+    "bench_component_instance_count": 16,
+    "instrument_channel_count": 49,
+    "maximum_authorized_stage": "kinematic_dry_crank",
+    "fired_run_authorized": false
+  },
+  "prohibited_use": [
+    "physical_engine_start_authorization",
+    "combustion_or_power_claim",
+    "dyno_load_release",
+    "safety_certification",
+    "manufacturing_release"
+  ]
+}

@@ -151,6 +151,37 @@ sont explicitement des hypothèses d'encombrement. Cette couche ne permet ni
 fabrication, ni calcul de lubrification ou d'injection, ni validation de
 jeux, de débit ou de rotordynamique turbo.
 
+## Fluides, électricité et banc virtuel F4
+
+Le contrat `systems-f4.json` décrit quatre domaines séparés : refroidissement
+externe, admission, échappement et huile à carter sec. Il décrit aussi un réseau
+électrique fonctionnel allant du bus batterie à l'alternateur, au démarreur, aux
+deux distributeurs et aux 24 bougies. Les routes sont des topologies et des
+proxies de visualisation ; les conduits internes, sections, longueurs, pertes de
+charge, caractéristiques électriques et conditions aux limites ne sont pas
+connus. `PhysicsNeMo` est donc réservé à un futur surrogate entraîné après une
+référence OpenFOAM contrôlée et des mesures physiques.
+
+Le banc virtuel ajoute une plaque, quatre supports hypothétiques, un
+dynamomètre désactivé, un accouplement cinématique, une batterie, une alimentation
+carburant, un réservoir d'huile et un arrêt d'urgence. Le prévol autorise
+uniquement la visualisation d'un entraînement externe à 120 tr/min, sans
+carburant ni allumage :
+
+```bash
+make 917-virtual-test-bench
+
+make 917-test-bench-usd \
+  F3_INPUT=/chemin/vers/917-engine-detail-f3.usda
+```
+
+Le rapport s'arrête volontairement avant tout démarrage avec combustion. Il
+énumère les interfaces et données manquantes : supports et accouplement,
+démarreur et couronne, batterie et protections, bobines et ordre d'allumage,
+alimentation carburant, circuit d'huile, profils de came, inerties et
+frottements, combustion, refroidissement, échappement et instrumentation. Ce
+fail-closed est le résultat attendu tant que ces éléments ne sont pas mesurés.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
