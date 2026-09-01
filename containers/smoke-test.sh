@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verify that every tool the image promises actually runs.
-# Usage: smoke-test.sh [recon|cadsim|mesh-cfd|physicsml|simready] (auto-detected when omitted)
+# Usage: smoke-test.sh [recon|cadsim|mesh-cfd|physicsml|simready|simready-workflow] (auto-detected when omitted)
 #
 # Version probes are matched on their output, not on their exit status: several
 # of these tools report a version and then exit non-zero (CalculiX exits 201).
@@ -130,7 +130,7 @@ elif [ "${MODE}" = "mesh-cfd" ]; then
     check_python meshio 'import meshio; print("meshio", meshio.__version__)'
     check openfoam 'blockMesh|Usage|OpenFOAM' \
         bash -lc "source /opt/openfoam${FOAM_VERSION:-13}/etc/bashrc && blockMesh -help"
-elif [ "${MODE}" = "simready" ]; then
+elif [ "${MODE}" = "simready" ] || [ "${MODE}" = "simready-workflow" ]; then
     /usr/local/bin/simready-smoke || failures=$((failures + 1))
 else
     report FAIL mode "unknown smoke-test mode: ${MODE}"

@@ -115,6 +115,24 @@ la synthèse secondaire [kfz-tech](https://www.kfz-tech.de/Buchprojekte/Porsche/
 et la fiche officielle du
 [Porsche 917/30 Spyder](https://newsroom.porsche.com/de/pressemappen/Porsche-Museum/Porsche-917-30-Spyder.html).
 
+## Cinématique Omniverse F2
+
+La couche F2 ajoute une timeline de 240 images à 24 images/s au-dessus d'un USD
+existant. Elle anime le vilebrequin, les quatre arbres à cames, les douze
+pistons et bielles ainsi que la distribution. Le calcul bielle-manivelle utilise
+la course sourcée de 66 mm ; la longueur de bielle, la numérotation des bancs et
+les levées de soupapes restent des hypothèses de visualisation déclarées dans
+`kinematics-f2.json`.
+
+```bash
+make 917-kinematics-f2 F2_INPUT=/chemin/vers/moteur-enrichi.usd
+```
+
+La scène d'essai utilise une gravité nulle et des corps mobiles cinématiques.
+Elle sert à contrôler la hiérarchie, la timeline et les déplacements dans
+Omniverse. Elle ne simule ni combustion, ni puissance, ni contacts chargés et
+ne valide aucune pièce pour la fabrication.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)

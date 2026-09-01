@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F2_kinematic_visualization_not_combustion_or_manufacturing_validation",
+  "timeline": {
+    "start_time_code": 0,
+    "end_time_code": 240,
+    "time_codes_per_second": 24,
+    "crank_revolutions": 2
+  },
+  "crank_slider": {
+    "stroke_mm": 66.0,
+    "connecting_rod_center_distance_mm": 132.0,
+    "source_status": "stroke_sourced_rod_length_layout_hypothesis"
+  },
+  "cylinder_numbering_hypothesis": {
+    "bank_negative_y": [1, 2, 3, 4, 5, 6],
+    "bank_positive_y": [7, 8, 9, 10, 11, 12],
+    "status": "layout_hypothesis_not_factory_numbering_evidence"
+  },
+  "firing_order": {
+    "sequence": [1, 9, 5, 12, 3, 8, 6, 10, 2, 7, 4, 11],
+    "source_id": "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "cycle_degrees": 720
+  },
+  "valve_motion_hypothesis": {
+    "maximum_lift_mm": 12.0,
+    "intake_center_cycle_deg": 465.0,
+    "intake_duration_deg": 240.0,
+    "exhaust_center_cycle_deg": 250.0,
+    "exhaust_duration_deg": 240.0,
+    "status": "schematic_motion_not_measured_cam_profile"
+  },
+  "physics_policy": {
+    "gravity_m_s2": 0.0,
+    "moving_components": "kinematic",
+    "combustion": "disabled",
+    "contact_loads": "not_claimed",
+    "mass_and_inertia": "use_only_agent_authored_provisional_values_when_present"
+  },
+  "acceptance": {
+    "minimum_animated_prim_count": 100,
+    "piston_travel_tolerance_mm": 0.05,
+    "required_variants": ["type_912_4_5_na", "917_30_turbo"],
+    "required_property_assignment_intent": "run"
+  },
+  "prohibited_use": [
+    "combustion_prediction",
+    "power_or_torque_prediction",
+    "camshaft_manufacturing",
+    "clearance_or_interference_release",
+    "engine_part_manufacturing",
+    "durability_or_fatigue_claim"
+  ]
+}

@@ -8,7 +8,8 @@ ordinaire. Elles ne sont pas nécessaires pour contribuer au catalogue.
 | `recon.Dockerfile` | `3dprinting993-recon` | GPU CUDA : photos vers maillage |
 | `cadsim.Dockerfile` | `3dprinting993-cadsim` | Processeurs : CAO, maillage, EF, CFD, découpe |
 | `physicsml.Dockerfile` | `3dprinting993-physicsml` | GPU CUDA : CAO, EF différentiables et Physics ML |
-| `simready.Dockerfile` | `3dprinting993-simready` | GPU RTX 48 Go : OVRTX, Material/Physics Agents et validation USD |
+| `simready.Dockerfile` | `3dprinting993-simready` | GPU RTX : OVRTX, Material/Physics Agents et validation USD |
+| `simready-workflow.Dockerfile` | `3dprinting993-simready-workflow` | GPU RTX : image SimReady, prévol CAD et démarrage Vast.ai vérifié |
 
 Tous les outils embarqués s’exécutent sans interface graphique, afin qu’un script
 puisse rejouer une chaîne complète à l’identique.
@@ -19,7 +20,9 @@ make container-smoke
 make container-physicsml
 make container-smoke-physicsml
 make container-simready
+make container-simready-workflow
 make container-smoke-simready
+make container-smoke-simready-workflow
 ```
 
 `simready` est volontairement mono-conteneur. Vast.ai exécute déjà l'image
@@ -28,6 +31,11 @@ Material Agent et Physics Agent sont donc installés dans des environnements
 Python séparés et lancés directement par Supervisor. Aucun secret n'est inclus
 dans l'image : `simready-services start` refuse de démarrer avant l'installation
 de `/workspace/secrets/nvidia.env` par le wrapper OpenBao.
+
+L'image `simready-workflow` embarque `simready-vast-onstart`. Ce script corrige
+les droits du fichier `authorized_keys` injecté par Vast.ai, vérifie le GPU et
+le runtime SimReady, puis crée `/workspace/READY`. Le wrapper OpenBao peut donc
+appeler ce script sans recopier une séquence shell susceptible de diverger.
 
 L'environnement de validation inclut Pillow : les rendus OVRTX peuvent ainsi
 échouer automatiquement lorsqu'un PNG est vide ou uniforme, au lieu de valider

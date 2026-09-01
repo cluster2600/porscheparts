@@ -8,8 +8,10 @@ ENV USD_CONVERT_CAD_ROOT=/opt/usd-convert-cad-preflight \
 
 COPY containers/simready-preflight/convert.py /opt/usd-convert-cad-preflight/convert.py
 COPY containers/simready-preflight/validate.py /opt/usd-convert-cad-preflight/validate.py
+COPY containers/simready-vast-onstart.sh /usr/local/bin/simready-vast-onstart
 
 RUN chmod 0555 /opt/usd-convert-cad-preflight/convert.py /opt/usd-convert-cad-preflight/validate.py \
+        /usr/local/bin/simready-vast-onstart \
     && /opt/usd-convert-cad-preflight/validate.py \
     && /opt/simready-validation/bin/python -c \
        "from pxr import Usd, UsdGeom, UsdPhysics; import omni.asset_validator; assert Usd.GetVersion()"
