@@ -44,9 +44,12 @@ def main() -> int:
     engine_path = args.stages / "917-engine-assembly-f0.usda"
     rig_path = args.stages / "993-935-valvetrain-test-rig-f0.usda"
     overview_path = args.stages / "engine-research-overview-f0.usda"
+    components_path = args.stages / "993-engine-components-exploded-f1.usda"
     engine, checks = check_stage(engine_path, 1)
     rig, rig_checks = check_stage(rig_path, 4)
-    overview, overview_checks = check_stage(overview_path, 5)
+    components, component_checks = check_stage(components_path, 5)
+    overview, overview_checks = check_stage(overview_path, 10)
+    checks.extend(component_checks)
     checks.extend(rig_checks)
     checks.extend(overview_checks)
 

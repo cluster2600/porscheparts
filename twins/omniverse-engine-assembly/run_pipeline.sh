@@ -5,7 +5,7 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 OUTPUT="${ROOT}/work/omniverse-engine-assembly"
 IMAGE="${SIMREADY_IMAGE:-ghcr.io/cluster2600/3dprinting993-simready@sha256:0562c69276c0d3065990cb9b1b8641dcd29355d0dccb9082dcf266fa2d22e90a}"
 
-mkdir -p "${OUTPUT}/assets/valves" "${OUTPUT}/stages" "${OUTPUT}/reports"
+mkdir -p "${OUTPUT}/assets/valves" "${OUTPUT}/assets/internals" "${OUTPUT}/assets/turbos" "${OUTPUT}/stages" "${OUTPUT}/reports"
 
 docker run --rm --platform linux/amd64 --entrypoint /bin/bash \
   -v "${ROOT}:/workspace" -w /workspace "${IMAGE}" -lc '
@@ -19,6 +19,16 @@ usd-convert-cad -i work/valve-variants-f1/993-carrera-exhaust-42_5-f1.step \
 usd-convert-cad -i work/valve-variants-f1/993-turbo-exhaust-43_5-f1.step \
   -o work/omniverse-engine-assembly/assets/valves/993-turbo-exhaust-43_5-f1.usdc \
   --up-axis z --instancing-style none --composition-style none --creator 3dprinting993
+for name in 993-piston-envelope-f1 993-pauter-connecting-rod-f1 993-camshaft-layout-f1; do
+  usd-convert-cad -i "work/engine-components-f1/${name}.step" \
+    -o "work/omniverse-engine-assembly/assets/internals/${name}.usdc" \
+    --up-axis z --instancing-style none --composition-style none --creator 3dprinting993
+done
+for name in 993-k16-left-envelope-f1 993-k16-right-envelope-f1; do
+  usd-convert-cad -i "work/engine-components-f1/${name}.step" \
+    -o "work/omniverse-engine-assembly/assets/turbos/${name}.usdc" \
+    --up-axis z --instancing-style none --composition-style none --creator 3dprinting993
+done
 /opt/simready-validation/bin/python \
   twins/omniverse-engine-assembly/source/build_usd_assemblies.py \
   --project-root /workspace \

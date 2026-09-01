@@ -41,9 +41,17 @@
     }
   ],
   "lift_variants_mm": [0.0, 2.0, 5.0, 10.0],
+  "research_components": [
+    {"id": "Piston", "source": "work/omniverse-engine-assembly/assets/internals/993-piston-envelope-f1.usdc", "count": 6, "origin_mm": [0.0, 0.0, 0.0], "step_mm": [125.0, 0.0, 0.0], "classification": "nominal_bore_envelope_not_piston_geometry"},
+    {"id": "ConnectingRod", "source": "work/omniverse-engine-assembly/assets/internals/993-pauter-connecting-rod-f1.usdc", "count": 6, "origin_mm": [0.0, 180.0, 0.0], "step_mm": [125.0, 0.0, 0.0], "classification": "measured_interfaces_hypothesis_outer_contour"},
+    {"id": "Camshaft", "source": "work/omniverse-engine-assembly/assets/internals/993-camshaft-layout-f1.usdc", "count": 2, "origin_mm": [0.0, 360.0, 0.0], "step_mm": [180.0, 0.0, 0.0], "classification": "layout_hypothesis"},
+    {"id": "K16Left", "source": "work/omniverse-engine-assembly/assets/turbos/993-k16-left-envelope-f1.usdc", "count": 1, "origin_mm": [0.0, 620.0, 0.0], "step_mm": [0.0, 0.0, 0.0], "classification": "supplier_envelope_hypothesis_housings"},
+    {"id": "K16Right", "source": "work/omniverse-engine-assembly/assets/turbos/993-k16-right-envelope-f1.usdc", "count": 1, "origin_mm": [380.0, 620.0, 0.0], "step_mm": [0.0, 0.0, 0.0], "classification": "supplier_envelope_hypothesis_housings"}
+  ],
   "overview_offsets_mm": {
     "engine_917": [0.0, 0.0, 0.0],
-    "valvetrain_rig": [1300.0, 0.0, 0.0]
+    "valvetrain_rig": [1300.0, 0.0, 0.0],
+    "engine_components": [2200.0, 0.0, 0.0]
   },
   "limitations": [
     "The 917 scan is currently one renderable mesh, not a component-level mechanical assembly.",
@@ -51,5 +59,6 @@
     "Valve positions are an exploded-layout presentation, not measured seat axes.",
     "Material variants are display and study metadata only; no constitutive law is assigned.",
     "No collision, joint, rigid-body, thermal or CFD boundary condition is asserted at F0."
+    ,"Pistons, rods, camshafts and turbos are exploded research proxies, not measured in-engine positions."
   ]
 }

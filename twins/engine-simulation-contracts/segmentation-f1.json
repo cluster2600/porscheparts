@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F1_geometric_regions_not_manufacturing_parts",
+  "engine_917": {
+    "mesh": "work/917-engine/vast-output/derived/917-engine-light-600k.ply",
+    "interfaces": "work/917-engine/vast-output/reports/interfaces.json",
+    "opening_neighborhood_radius_obj_units": 58.0,
+    "bank_depth_threshold_obj_units": 115.0,
+    "expected_openings_per_bank": 6
+  },
+  "head_935": {
+    "head_envelope": "work/wolfe-classics-935-cylinder-head/vast-output/segmented/head-envelope-uncapped.ply",
+    "removed_geometry": "work/wolfe-classics-935-cylinder-head/vast-output/segmented/external-hardware-and-protrusions.ply",
+    "minimum_component_triangles": 250
+  },
+  "limitations": [
+    "Every 917 opening neighborhood is a unique spatial face selection, not a cylinder manufacturing body.",
+    "The 935 external components are separated by connectivity; their semantic labels remain candidates.",
+    "All cut regions stay open and no scan hole is filled.",
+    "OBJ units remain unconfirmed and no output is released for engine manufacture."
+  ]
+}

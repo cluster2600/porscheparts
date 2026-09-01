@@ -118,8 +118,9 @@ ne correspond pas au même élément que le registre de 113,53 ou l'épaulement 
 - Exiger une revue d'ingénierie professionnelle avant toute culasse chargée.
 - Associer toute version métal à une matière, un procédé, un traitement, une
   orientation, un usinage, un plan de contrôle et une traçabilité matière.
-- Conserver la redistribution du maillage brut bloquée tant que la licence
-  écrite ne l'autorise pas explicitement.
+- Conserver le maillage brut et tous ses dérivés hors Git conformément à
+  l'instruction du propriétaire, même si celui-ci confirme une licence ouverte
+  et réutilisable dont l'identifiant standardisé reste à archiver.
 - Ne pas libérer une soupape métal depuis les proxies F1 ; exiger une définition
   complète, une qualification matière/procédé et des essais de distribution à
   chaud sous revue d'ingénierie professionnelle.

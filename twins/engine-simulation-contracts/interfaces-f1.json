@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F1_measured_scan_features_not_fitment_release",
+  "interfaces": [
+    {
+      "interface_id": "IF-917-VISIBLE-OPENING-PATTERN",
+      "asset": "engine_917_reference",
+      "kind": "twelve_visible_opening_axes",
+      "units": "OBJ_unit",
+      "unit_status": "unconfirmed",
+      "source_report": "work/917-engine/vast-output/reports/interfaces.json",
+      "values": {
+        "opening_count": 12,
+        "mean_visible_diameter": 86.62707579605369,
+        "visible_diameter_range": [85.19741093949125, 87.75849905643739],
+        "positive_bank_regular_pitch": 118.02770244924804,
+        "negative_bank_regular_pitch": 117.86519715221455,
+        "bank_longitudinal_stagger": 36.942917679764804
+      },
+      "confidence": "F1_geometric_detection",
+      "prohibited_inference": "Do not interpret visible diameter as certified bore or OBJ unit as millimetres."
+    },
+    {
+      "interface_id": "IF-935-COMBUSTION-REGISTER",
+      "asset": "head_935_reference",
+      "kind": "visible_register_and_chamber_step",
+      "units": "OBJ_unit",
+      "unit_status": "unconfirmed",
+      "source_report": "work/wolfe-classics-935-cylinder-head/vast-output/reports/interfaces.json",
+      "values": {
+        "outer_register_diameter": 113.52636742684192,
+        "outer_register_fit_p95": 0.5585316621420823,
+        "chamber_step_diameter": 90.81248542471897,
+        "chamber_step_fit_p95": 0.318140448286659
+      },
+      "confidence": "F1_visible_section_fit",
+      "prohibited_inference": "No 993 or 917 compatibility follows from these visible sections."
+    },
+    {
+      "interface_id": "IF-935-STUD-PATTERN",
+      "asset": "head_935_reference",
+      "kind": "four_visible_stud_passages",
+      "units": "OBJ_unit",
+      "unit_status": "unconfirmed",
+      "source_report": "work/wolfe-classics-935-cylinder-head/vast-output/reports/interfaces.json",
+      "values": {
+        "span_A": 86.74276999873194,
+        "span_B": 85.91583774915038,
+        "mean_visible_hole_diameter": 10.740243181981537
+      },
+      "confidence": "F1_visible_section_fit",
+      "prohibited_inference": "Pattern is not a manufacturing tolerance or a Porsche 993 datum."
+    },
+    {
+      "interface_id": "IF-993-VALVE-PROXIES",
+      "asset": "993_valve_proxy_family",
+      "kind": "declared_envelope_only",
+      "units": "mm",
+      "unit_status": "declared_supplier_dimensions",
+      "source_report": "twins/reference-935-cylinder-head/source/valve_variants_f1.json",
+      "values": {
+        "stem_diameter": 8.0,
+        "intake_head_diameter": 49.0,
+        "carrera_exhaust_head_diameter": 42.5,
+        "turbo_exhaust_head_diameter": 43.5
+      },
+      "confidence": "F1_proxy",
+      "prohibited_inference": "Seat, guide, keeper, margin and neck geometry are unresolved."
+    }
+  ]
+}

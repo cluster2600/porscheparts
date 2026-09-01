@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F1_inputs_registry_no_physics_claim",
+  "load_cases": [
+    {
+      "load_case_id": "LC-993-VALVE-THERMAL-STEADY",
+      "kind": "thermomechanical",
+      "targets": ["CMP-993-INTAKE-VALVE-PROXY", "CMP-993-EXHAUST-VALVE-PROXY"],
+      "baseline_solver": "CalculiX_or_JAX_FEM_after_geometry_completion",
+      "status": "blocked_missing_geometry_material_and_boundary_inputs",
+      "required_inputs": {
+        "seat_and_guide_geometry": null,
+        "gas_side_temperature_c": null,
+        "seat_temperature_c": null,
+        "guide_temperature_c": null,
+        "gas_side_convection_w_m2_k": null,
+        "contact_conductance_w_m2_k": null,
+        "emissivity": null,
+        "qualified_material_property_set": null
+      }
+    },
+    {
+      "load_case_id": "LC-993-VALVE-DYNAMIC-CYCLE",
+      "kind": "transient_contact_dynamics",
+      "targets": ["CMP-993-INTAKE-VALVE-PROXY", "CMP-993-EXHAUST-VALVE-PROXY"],
+      "baseline_solver": "CalculiX_or_MBD_solver_after_complete_valvetrain_definition",
+      "status": "blocked_missing_kinematics_contact_and_hot_properties",
+      "required_inputs": {
+        "cam_lift_profile": null,
+        "engine_speed_rpm_cases": null,
+        "spring_force_curve": null,
+        "moving_masses_kg": null,
+        "hot_clearances_mm": null,
+        "seat_contact_and_friction_model": null,
+        "damping_model": null,
+        "measured_component_temperatures_c": null
+      }
+    },
+    {
+      "load_case_id": "LC-935-PORT-COLD-FLOW",
+      "kind": "internal_cfd",
+      "targets": ["CMP-935-HEAD-ENVELOPE"],
+      "geometry_candidates": [
+        "work/wolfe-classics-935-cylinder-head/pipeline/cfd/low_B",
+        "work/wolfe-classics-935-cylinder-head/pipeline/cfd/high_B"
+      ],
+      "baseline_solver": "OpenFOAM",
+      "status": "blocked_missing_port_identity_valve_geometry_and_boundary_inputs",
+      "required_inputs": {
+        "port_identity": null,
+        "valve_and_seat_geometry": null,
+        "valve_lift_mm_cases": null,
+        "inlet_total_pressure_pa": null,
+        "outlet_static_pressure_pa": null,
+        "air_temperature_c": null,
+        "air_property_model": null,
+        "wall_roughness_m": null,
+        "mesh_independence_plan": null
+      }
+    },
+    {
+      "load_case_id": "LC-917-EXTERNAL-COOLING",
+      "kind": "external_cfd_conjugate_candidate",
+      "targets": ["CMP-917-REFERENCE-MESH"],
+      "geometry_candidate": "work/917-engine/pipeline/cfd/external-cooling",
+      "baseline_solver": "OpenFOAM",
+      "status": "blocked_geometry_checkmesh_and_missing_boundary_inputs",
+      "required_inputs": {
+        "checkmesh_clean_result": null,
+        "confirmed_scale_m_per_obj_unit": null,
+        "air_velocity_or_mass_flow": null,
+        "air_temperature_c": null,
+        "ambient_pressure_pa": null,
+        "surface_heat_flux_or_internal_temperature_map": null,
+        "component_material_assignments": null,
+        "mesh_independence_plan": null
+      }
+    },
+    {
+      "load_case_id": "LC-993-CRANKTRAIN-CYCLE",
+      "kind": "multibody_and_fatigue",
+      "targets": ["CMP-993-PISTON-PROXY", "CMP-993-CONNECTING-ROD-PROXY"],
+      "baseline_solver": "MBD_then_CalculiX_after_complete_geometry",
+      "status": "blocked_missing_crank_geometry_combustion_loads_and_materials",
+      "required_inputs": {
+        "measured_piston_and_rod_geometry": null,
+        "crankshaft_geometry_and_throw_mm": null,
+        "cylinder_pressure_crank_angle_traces": null,
+        "engine_speed_rpm_cases": null,
+        "reciprocating_and_rotating_masses_kg": null,
+        "bearing_clearances_and_oil_model": null,
+        "qualified_material_and_surface_property_sets": null,
+        "fatigue_duty_cycle": null
+      }
+    },
+    {
+      "load_case_id": "LC-993-CAMSHAFT-VALVETRAIN",
+      "kind": "contact_dynamics_and_fatigue",
+      "targets": ["CMP-993-CAMSHAFT-PROXY", "CMP-993-INTAKE-VALVE-PROXY", "CMP-993-EXHAUST-VALVE-PROXY"],
+      "baseline_solver": "MBD_then_FEA_after_measured_lobes_and_supports",
+      "status": "blocked_layout_proxy_and_missing_profiles_supports_and_loads",
+      "required_inputs": {
+        "measured_cam_lobe_profiles_and_phasing": null,
+        "journal_and_support_geometry": null,
+        "follower_geometry_and_contact_model": null,
+        "spring_force_curves": null,
+        "lubrication_and_friction_model": null,
+        "engine_speed_rpm_cases": null,
+        "qualified_material_and_surface_property_sets": null
+      }
+    },
+    {
+      "load_case_id": "LC-993-K16-COMPRESSOR-TURBINE",
+      "kind": "compressible_cfd_rotordynamics_and_thermal",
+      "targets": ["CMP-993-K16-LEFT-PROXY", "CMP-993-K16-RIGHT-PROXY"],
+      "baseline_solver": "OpenFOAM_and_rotordynamics_solver_after_scan_or_cad",
+      "status": "blocked_envelope_only_missing_aero_geometry_maps_and_operating_data",
+      "required_inputs": {
+        "measured_internal_housings_and_blade_surfaces": null,
+        "shaft_bearing_and_clearance_geometry": null,
+        "compressor_and_turbine_maps": null,
+        "mass_flow_pressure_temperature_cases": null,
+        "rotor_speed_rpm_cases": null,
+        "oil_flow_pressure_and_temperature": null,
+        "qualified_material_property_sets": null,
+        "high_speed_balance_and_failure_containment_plan": null
+      }
+    }
+  ],
+  "physicsnemo_policy": {
+    "execution_enabled": false,
+    "role": "surrogate_only_after_validated_baseline",
+    "required_before_enablement": [
+      "validated_baseline_solver_case",
+      "mesh_independence_evidence",
+      "parameterized_training_domain",
+      "held_out_validation_set",
+      "documented_error_acceptance_threshold"
+    ]
+  }
+}

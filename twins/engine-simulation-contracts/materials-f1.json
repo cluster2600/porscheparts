@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F1_candidate_models_not_engine_release",
+  "materials": {
+    "ti64_grade5_eos_lpbf_candidate": {
+      "assignment_status": "candidate_intake_valve_only",
+      "process_scope": "EOS Ti64 Grade 5 DMLS; exact machine, parameter set, orientation and heat treatment must be selected",
+      "source_ids": ["SRC-EOS-TI64-GRADE5", "SRC-TIMET-TI64-PHYSICAL-PROPERTIES"],
+      "density_kg_m3": 4430.0,
+      "room_temperature_mechanical_eos_typical": {
+        "yield_strength_mpa": 980.0,
+        "tensile_strength_mpa": 1080.0,
+        "elongation_percent": 14.0
+      },
+      "thermal_reference_wrought_not_lpbf_equivalent": {
+        "conductivity_w_m_k": [
+          {"temperature_c": 20.0, "value": 6.6},
+          {"temperature_c": 315.0, "value": 10.6},
+          {"temperature_c": 650.0, "value": 17.5}
+        ],
+        "specific_heat_j_kg_k": [
+          {"temperature_c": 20.0, "value": 580.0},
+          {"temperature_c": 425.0, "value": 670.0},
+          {"temperature_c": 870.0, "value": 930.0}
+        ],
+        "mean_expansion_1_k": [
+          {"range_c": [0.0, 100.0], "value": 0.000009},
+          {"range_c": [20.0, 425.0], "value": 0.0000094},
+          {"range_c": [20.0, 650.0], "value": 0.0000097}
+        ],
+        "youngs_modulus_gpa_range": [
+          {"temperature_c": 20.0, "min": 107.0, "max": 122.0},
+          {"temperature_c": 230.0, "min": 95.0, "max": 111.0}
+        ],
+        "poisson_ratio_at_20c": 0.31
+      },
+      "model_gates": [
+        "Replace wrought thermal reference with coupons from the selected LPBF route.",
+        "Provide orientation-specific fatigue data after heat treatment, HIP decision and final machining.",
+        "Do not use for exhaust duty without measured temperatures, oxidation, wear and hot-fatigue qualification."
+      ]
+    },
+    "inconel_751_direct_aged_bar_candidate": {
+      "assignment_status": "candidate_exhaust_valve_reference",
+      "process_scope": "UNS N07751 round bar, properties after direct aging for two hours at 732 C",
+      "source_ids": ["SRC-SPECIAL-METALS-INCONEL-751"],
+      "density_kg_m3": 8220.0,
+      "thermal_reference": {
+        "specific_heat_j_kg_k": 431.0,
+        "conductivity_w_m_k": 12.0,
+        "mean_expansion_21_93c_1_k": 0.0000126,
+        "youngs_modulus_at_room_gpa": 214.0,
+        "poisson_ratio": null
+      },
+      "temperature_strength": [
+        {"temperature_c": 20.0, "yield_strength_mpa": 976.0, "tensile_strength_mpa": 1310.0},
+        {"temperature_c": 649.0, "yield_strength_mpa": 889.0, "tensile_strength_mpa": 1100.0},
+        {"temperature_c": 732.0, "yield_strength_mpa": 783.0, "tensile_strength_mpa": 860.0},
+        {"temperature_c": 816.0, "yield_strength_mpa": 526.0, "tensile_strength_mpa": 554.0}
+      ],
+      "fatigue_strength_mpa": [
+        {"temperature_c": 27.0, "cycles_1e6": 686.0, "cycles_1e7": 638.0, "cycles_1e8": 621.0},
+        {"temperature_c": 732.0, "cycles_1e6": 507.0, "cycles_1e7": 427.0, "cycles_1e8": 276.0},
+        {"temperature_c": 816.0, "cycles_1e6": 324.0, "cycles_1e7": 272.0, "cycles_1e8": 138.0}
+      ],
+      "model_gates": [
+        "Obtain the actual heat and lot certificate and final heat-treatment route.",
+        "Measure or source temperature-dependent conductivity, heat capacity and Poisson ratio for the delivered condition.",
+        "The bulletin validates bar stock reference data, not an LPBF route or a Porsche 993 valve."
+      ]
+    },
+    "head_935_unknown": {
+      "assignment_status": "unassigned",
+      "source_ids": ["SRC-WOLFE-CLASSICS-935-BILLET-CYLINDER-HEAD-SCAN"],
+      "property_sets": {},
+      "required_identification": ["alloy", "temper", "coating", "density check", "conductivity versus temperature"]
+    },
+    "engine_917_unknown": {
+      "assignment_status": "unassigned",
+      "source_ids": ["SRC-LOCAL-917-ENGINE-CASE-CYLINDERS-SCAN"],
+      "property_sets": {},
+      "required_identification": ["component identity", "alloy per component", "heat treatment", "coating", "density check"]
+    },
+    "engine_993_internal_unknown": {
+      "assignment_status": "unassigned",
+      "source_ids": ["SRC-PORSCHEFANATICS-993-MANUAL-DATA"],
+      "property_sets": {},
+      "required_identification": ["alloy per component", "heat treatment", "surface treatment", "hardness profile", "temperature-dependent fatigue data"]
+    },
+    "k16_subassemblies_unknown": {
+      "assignment_status": "unassigned",
+      "source_ids": ["SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG"],
+      "property_sets": {},
+      "required_identification": ["alloy per housing and rotor component", "casting or forging condition", "coating", "bearing materials", "temperature-dependent properties"]
+    }
+  },
+  "limitations": [
+    "Candidate property tables are not assigned to scan geometry.",
+    "Interpolation is allowed only inside a source table range; extrapolation is prohibited.",
+    "Every final model must retain process, orientation, treatment and source identifiers."
+  ]
+}

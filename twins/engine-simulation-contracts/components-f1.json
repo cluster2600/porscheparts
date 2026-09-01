@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F1_research_only_semantic_review_required",
+  "components": [
+    {
+      "component_id": "CMP-917-REFERENCE-MESH",
+      "asset": "engine_917_reference",
+      "role": "reference_scan",
+      "segmentation_report": "work/engine-segmentation-f1/refined-segmentation.json",
+      "semantic_source_ids": ["SRC-STUTTCARS-917-TECHNICAL-DETAILS"],
+      "children": {
+        "visible_opening_neighborhoods": 12,
+        "unclassified_remainder": 1
+      },
+      "material_id": "engine_917_unknown",
+      "unit_status": "unconfirmed",
+      "release_status": "research_only"
+    },
+    {
+      "component_id": "CMP-935-HEAD-ENVELOPE",
+      "asset": "head_935_reference",
+      "role": "cylinder_head_envelope_candidate",
+      "segmentation_report": "work/engine-segmentation-f1/refined-segmentation.json",
+      "material_id": "head_935_unknown",
+      "unit_status": "unconfirmed",
+      "release_status": "research_only"
+    },
+    {
+      "component_id": "CMP-935-EXTERNAL-CANDIDATES",
+      "asset": "head_935_reference",
+      "role": "external_connected_components",
+      "segmentation_report": "work/engine-segmentation-f1/refined-segmentation.json",
+      "expected_kept_components": 9,
+      "semantic_status": "low_confidence_visual_confirmation_required",
+      "material_id": "head_935_unknown",
+      "unit_status": "unconfirmed",
+      "release_status": "research_only"
+    },
+    {
+      "component_id": "CMP-993-INTAKE-VALVE-PROXY",
+      "asset": "993_valve_proxy_family",
+      "role": "intake_valve_envelope_proxy",
+      "interface_id": "IF-993-VALVE-PROXIES",
+      "material_id": "ti64_grade5_eos_lpbf_candidate",
+      "material_assignment_status": "candidate_not_qualified",
+      "unit_status": "declared_mm",
+      "release_status": "fit_check_only"
+    },
+    {
+      "component_id": "CMP-993-EXHAUST-VALVE-PROXY",
+      "asset": "993_valve_proxy_family",
+      "role": "exhaust_valve_envelope_proxy",
+      "interface_id": "IF-993-VALVE-PROXIES",
+      "material_id": "inconel_751_direct_aged_bar_candidate",
+      "material_assignment_status": "candidate_not_qualified",
+      "unit_status": "declared_mm",
+      "release_status": "fit_check_only"
+    },
+    {
+      "component_id": "CMP-993-PISTON-PROXY",
+      "asset": "993_engine_components_f1",
+      "role": "piston_nominal_bore_envelope_proxy",
+      "source_contract": "twins/engine-simulation-contracts/engine-components-f1.json",
+      "material_id": "engine_993_internal_unknown",
+      "material_assignment_status": "unassigned_placeholder",
+      "unit_status": "declared_and_hypothesis_mm_mixed",
+      "release_status": "fit_check_only"
+    },
+    {
+      "component_id": "CMP-993-CONNECTING-ROD-PROXY",
+      "asset": "993_engine_components_f1",
+      "role": "connecting_rod_interface_proxy",
+      "source_contract": "twins/engine-simulation-contracts/engine-components-f1.json",
+      "material_id": "engine_993_internal_unknown",
+      "material_assignment_status": "unassigned_placeholder",
+      "unit_status": "declared_and_hypothesis_mm_mixed",
+      "release_status": "fit_check_only"
+    },
+    {
+      "component_id": "CMP-993-CAMSHAFT-PROXY",
+      "asset": "993_engine_components_f1",
+      "role": "camshaft_topology_layout_proxy",
+      "source_contract": "twins/engine-simulation-contracts/engine-components-f1.json",
+      "material_id": "engine_993_internal_unknown",
+      "material_assignment_status": "unassigned_placeholder",
+      "unit_status": "layout_hypothesis_mm",
+      "release_status": "fit_check_only"
+    },
+    {
+      "component_id": "CMP-993-K16-LEFT-PROXY",
+      "asset": "993_engine_components_f1",
+      "role": "left_turbocharger_envelope_proxy",
+      "source_contract": "twins/engine-simulation-contracts/engine-components-f1.json",
+      "material_id": "k16_subassemblies_unknown",
+      "material_assignment_status": "unassigned_by_subassembly",
+      "unit_status": "declared_envelope_and_hypothesis_geometry",
+      "release_status": "fit_check_only"
+    },
+    {
+      "component_id": "CMP-993-K16-RIGHT-PROXY",
+      "asset": "993_engine_components_f1",
+      "role": "right_turbocharger_envelope_proxy",
+      "source_contract": "twins/engine-simulation-contracts/engine-components-f1.json",
+      "material_id": "k16_subassemblies_unknown",
+      "material_assignment_status": "unassigned_by_subassembly",
+      "unit_status": "declared_envelope_and_hypothesis_geometry",
+      "release_status": "fit_check_only"
+    }
+  ],
+  "local_asset_policy": {
+    "raw_scans_in_git": false,
+    "derived_meshes_in_git": false,
+    "usd_in_git": false,
+    "reports_and_scripts_in_git": true
+  }
+}

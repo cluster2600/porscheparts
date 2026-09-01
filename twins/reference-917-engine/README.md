@@ -14,8 +14,11 @@ Deux familles de sortie sont prévues :
 - un modèle `display_print` fermé et simplifié pour fabriquer une maquette
   non fonctionnelle.
 
-Ni l'identification exacte, ni l'échelle en millimètres, ni la licence du
-fichier ne sont encore confirmées. Aucun artefact ne doit être présenté comme
+Le porteur du projet confirme que le fichier est sous licence ouverte et
+réutilisable, mais l'identifiant standardisé de cette licence n'est pas encore
+archivé. Indépendamment de ce droit, son instruction est de conserver le scan
+et tous ses dérivés géométriques hors Git. Ni l'identification exacte ni
+l'échelle en millimètres ne sont confirmées. Aucun artefact ne doit être présenté comme
 une pièce moteur fonctionnelle, compatible 993 ou prête pour un essai.
 
 ## Exécution
@@ -48,7 +51,7 @@ les USD et les images restent hors Git en attendant la clarification des droits.
 
 | Livrable | Usage | Limite |
 |---|---|---|
-| copie OBJ vérifiée | traçabilité | redistribution bloquée |
+| copie OBJ vérifiée | traçabilité | stockage local uniquement sur instruction du propriétaire |
 | maillages allégés | inspection et mesures | unité OBJ non confirmée |
 | composants séparés | revue carter/cylindres/éléments isolés | classification à valider visuellement |
 | rapport d'interfaces | axes, diamètre et pas des cylindres | dépend de la qualité des ouvertures visibles |
@@ -73,6 +76,18 @@ deux rangées de six ouvertures :
 
 Ces valeurs décrivent les ouvertures visibles du scan. Elles ne prouvent ni le
 diamètre d'alésage, ni la variante du moteur, ni une unité millimétrique.
+
+## Recoupement documentaire Stuttcars
+
+La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
+transmise par le porteur du projet confirme comme piste secondaire un flat-12
+refroidi par air, deux arbres à cames par banc, une prise de puissance centrale,
+un vilebrequin annoncé à 757 mm et des bielles forgées en titane. Elle distingue
+notamment 85 × 66 mm pour la première définition et 86 × 70,2 mm pour la version
+4 907 cm³. Ces données aident à nommer et paramétrer les futurs organes 917,
+mais elles ne donnent ni contour de piston, ni entraxe de bielle, ni profil de
+came, ni géométrie des deux turbos du 917/30. Elles ne calibrent donc pas à elles
+seules le scan.
 
 ## Modèles d'impression
 

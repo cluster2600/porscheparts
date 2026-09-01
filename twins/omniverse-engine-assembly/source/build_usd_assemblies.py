@@ -62,6 +62,12 @@ def load_and_validate_config(path: Path, project_root: Path) -> dict[str, Any]:
             errors.append(f"unknown materials for {valve.get('id')}: {sorted(unknown)}")
         if valve.get("default_material") not in valve.get("allowed_materials", []):
             errors.append(f"default material is not allowed for {valve.get('id')}")
+    for component in data.get("research_components", []):
+        source = project_root / component.get("source", "")
+        if not source.is_file():
+            errors.append(f"missing research component {component.get('id')}: {source}")
+        if component.get("count", 0) < 1:
+            errors.append(f"invalid count for {component.get('id')}")
     if not data.get("limitations"):
         errors.append("limitations must be explicit")
     if errors:
@@ -188,15 +194,41 @@ def build_overview_stage(config: dict[str, Any], output: Path, engine: Path, rig
 
     path = output / "engine-research-overview-f0.usda"
     stage, world = _stage(path)
+    component_stage = output / "993-engine-components-exploded-f1.usda"
     for name, source, key in (
         ("Engine917", engine, "engine_917"),
         ("ValvetrainResearchRig", rig, "valvetrain_rig"),
+        ("EngineComponents", component_stage, "engine_components"),
     ):
         xform = UsdGeom.Xform.Define(stage, f"/World/{name}")
         xform.GetPrim().GetReferences().AddReference(relative_asset_path(path, source))
         xform.AddTranslateOp().Set(Gf.Vec3d(*config["overview_offsets_mm"][key]))
         xform.GetPrim().SetMetadata("kind", "component")
     world.SetCustomDataByKey("3dprinting993:assemblyPurpose", "side-by-side research overview; not one engine")
+    world.SetCustomDataByKey("3dprinting993:limitationsJson", json.dumps(config["limitations"]))
+    stage.GetRootLayer().Save()
+    return path
+
+
+def build_component_stage(config: dict[str, Any], project_root: Path, output: Path) -> Path:
+    from pxr import Gf, UsdGeom
+
+    path = output / "993-engine-components-exploded-f1.usda"
+    stage, world = _stage(path)
+    group = UsdGeom.Scope.Define(stage, "/World/Components").GetPrim()
+    group.SetMetadata("kind", "group")
+    for component in config["research_components"]:
+        origin = component["origin_mm"]
+        step = component["step_mm"]
+        for index in range(component["count"]):
+            xform = UsdGeom.Xform.Define(stage, f"/World/Components/{component['id']}_{index + 1:02d}")
+            prim = xform.GetPrim()
+            prim.GetReferences().AddReference(relative_asset_path(path, project_root / component["source"]))
+            prim.SetInstanceable(True)
+            prim.SetMetadata("kind", "component")
+            _set_contract(prim, component["classification"], "exploded_layout_not_measured_engine_position")
+            xform.AddTranslateOp().Set(Gf.Vec3d(*(origin[axis] + index * step[axis] for axis in range(3))))
+    world.SetCustomDataByKey("3dprinting993:assemblyPurpose", "993 internals and twin K16 exploded research proxies")
     world.SetCustomDataByKey("3dprinting993:limitationsJson", json.dumps(config["limitations"]))
     stage.GetRootLayer().Save()
     return path
@@ -228,12 +260,13 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=True)
     engine = build_engine_stage(config, project_root, output)
     rig = build_valvetrain_stage(config, project_root, output)
+    components = build_component_stage(config, project_root, output)
     overview = build_overview_stage(config, output, engine, rig)
     report = {
         "status": "passed",
         "property_assignment_intent": "skip",
         "profile": "F0_research_assembly",
-        "stages": [summarize(path) for path in (engine, rig, overview)],
+        "stages": [summarize(path) for path in (engine, rig, components, overview)],
         "limitations": config["limitations"],
         "next_step": "validate loaded composition, render, then measure component datums",
     }
