@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+  "name": "Paire de turbocompresseurs K16 de 993 Turbo",
+  "description": "Cible de recherche du jumeau numerique : deux turbocompresseurs K16 montes en parallele sur la 993 Turbo. Cette fiche etablit l'identite fonctionnelle et les donnees publiques disponibles ; elle ne constitue ni une geometrie de remplacement ni une autorisation de fabrication.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": [
+      "993 123 013 51",
+      "993 123 013 52",
+      "993 123 014 51",
+      "993 123 014 52"
+    ]
+  },
+  "classification": {
+    "category": "turbocharger",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Recherche, identification, simulation et reconstruction dimensionnelle sous controle d'ingenierie ; aucune utilisation moteur ou routiere a ce stade"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, no third-party geometry redistributed",
+    "sources": [
+      {
+        "title": "Porsche Christophorus - Donnees techniques du 911 Turbo (993)",
+        "url": "https://newsroom.porsche.com/christophorus/fr/2020/394/turbo-engines.html",
+        "source_type": "official",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Architecture biturbo parallele, 3 600 cm3, 0,8 bar, 408 ch, 540 Nm et wastegate integree."
+      },
+      {
+        "title": "BorgWarner - Performance Turbocharger Catalog",
+        "url": "https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Association commerciale de la 993 Turbo aux K16-6735 et K16-6736 ; aucune geometrie complete."
+      },
+      {
+        "title": "FVD Brombacher - encombrement et masse des K16 993",
+        "url": "https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Declarations produit : 280 x 190 x 210 mm et 5,6 kg pour le K16 droit 99312301452 ; la fiche gauche 99312301352 annonce 5,76 kg avec le meme encombrement. Voir SRC-FVD-993-K16-OEM-DIMENSIONS."
+      },
+      {
+        "title": "Invasion Auto Products - donnees catalogue internes du K16 droit",
+        "url": "https://www.invasionautoproducts.com/94pocark16tu.html",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Declarations de references, diametres d'inducer/exducer, angles de carter, A/R et reglage wastegate pour 53169886735 ; aucune surface aero, tolerance ou CAO. Voir SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA."
+      },
+      {
+        "title": "Design911 - Cross-reference des turbocompresseurs K16 de 993 Turbo",
+        "url": "https://www.design911.co.uk/b/borgwarner/2/",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Cross-reference gauche/droite Porsche et BorgWarner, a confirmer sur une plaque de turbo ou une source primaire."
+      },
+      {
+        "title": "TurboMaster - Eclate de pieces du BorgWarner K16 5316-988-6735",
+        "url": "https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6735/",
+        "source_type": "community",
+        "license": "commercial-catalogue-copyright-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "References de sous-ensembles et A/R declare ; pas de plan metrologique."
+      },
+      {
+        "title": "Porsche Fanatics - releve PET des groupes turbo 993",
+        "url": "https://porschefanatics.com/oem/993/202-16/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Le depot local du site expose les groupes PET 202-16, 107-20 et 107-45 : nomenclature des turbocompresseurs, conduites, commande, suralimentation et echangeur. Les lignes sont des transcriptions PET, sans cotes, tolerances ou CAO ; voir SRC-PORSCHEFANATICS-993-TURBO-PET."
+      },
+      {
+        "title": "Porsche Austria - PET 993, groupe 107-45 echangeur d'air",
+        "url": "https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Planche PET officielle utilisee pour recouper les references, raccords, joints et colliers du circuit de suralimentation ; elle ne fournit pas de cotes de passage ni de CAO. Voir SRC-PORSCHE-AUSTRIA-993-107-45-PET."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "CNC", "casting"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "inconnue par sous-ensemble ; a identifier sur pieces et documentation fabricant",
+      "grade": "non determine",
+      "standard": "aucun"
+    },
+    "post_processing": [
+      "a definir apres geometrie et materiau",
+      "usinage des interfaces et portees",
+      "equilibrage de l'ensemble tournant si un rotor est etudie",
+      "controle dimensionnel et non destructif"
+    ],
+    "supplier_requirements": [
+      "Qualification du procede et traçabilite de lot",
+      "Dossier thermique, fatigue, rotordynamique et pression",
+      "Rapport de metrologie et de controle non destructif",
+      "Equilibrage haute vitesse par operateur qualifie",
+      "Revue d'ingenierie formelle avant tout essai moteur"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "a definir uniquement si un sous-ensemble en titane est retenu"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Aucun exemplaire K16, plaque signaletique K16, mesure physique K16, scan K16 ou CAO K16 licenciée n'est disponible dans le projet ; des masses et encombrements K16 sont maintenant disponibles comme declarations de fournisseurs, sans tolerances ni interfaces.",
+      "Les references gauche/droite sont issues de cross-references publiques et doivent etre confirmees sur une piece ou dans une source Porsche autorisee.",
+      "FVD declare 5,76 kg pour le K16 gauche et 5,6 kg pour le K16 droit, avec un encombrement produit de 280 x 190 x 210 mm ; ces valeurs servent au controle d'encombrement et de masse, pas a la reconstruction du turbo nu.",
+      "Invasion Auto Products declare pour le K16 droit des diametres de roue (turbine 54,96/48,97 mm ; compresseur 40,6/60,5 mm), des references et un A/R 8 ; ces valeurs doivent etre confirmees avant toute geometrie de roue ou calcul rotordynamique.",
+      "Aucune carte compresseur/turbine, courbe de rendement, debit massique, vitesse maximale, jeu de pointe, jeu axial/radial, pression d'huile ou temperature d'entree turbine n'a ete recueillie.",
+      "Les references de roue, carters, CHRA, actionneur et A/R sont des declarations de catalogue fournisseur ; elles ne definissent pas les surfaces aero ni les tolerances.",
+      "Le manuel Porsche 993 local est une source de procedures et specifications de service ; il ne fournit pas ici une definition CAO complete du K16.",
+      "Le releve Porsche Fanatics ajoute une nomenclature PET des groupes 202-16, 107-20 et 107-45, mais aucune mesure dimensionnelle nouvelle ; les lignes listed restent a lire en contexte avant toute conclusion de fitment.",
+      "Une roue de turbine, une roue de compresseur, un arbre, un palier ou un carter chaud sont des pieces chargees, thermiques et/ou tournantes : aucune impression, montage, essai moteur ou mise sur route n'est autorise par cette fiche.",
+      "Le premier demonstrateur du jumeau doit cibler un conduit ou adaptateur non rotatif cote froid, avec prototype d'encombrement avant toute version metal."
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$comment": "Jumeau 3D initial : enveloppe et reperes, pas carrosserie reconstruite.",
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-REFERENCE-ENVELOPE-001",
+  "status": "reference_envelope",
+  "variant": "USA",
+  "units": "mm",
+  "coordinate_system": {
+    "origin": "projection du point avant de l'enveloppe au sol, sur l'axe median",
+    "x": "avant vers arriere",
+    "y": "gauche/droite autour de l'axe median",
+    "z": "vertical depuis le sol"
+  },
+  "source": {
+    "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+    "measurement_record": "catalog/measurements/MEAS-MANUAL-993-ALL.json",
+    "geometry_source": "documented_specification"
+  },
+  "parameters": {
+    "length_mm": {
+      "value_mm": 4260.0,
+      "source_measurement_id": "MNL-TECH-0022",
+      "pdf_page": 19,
+      "value_text": "4260 (167,7)",
+      "extraction_status": "structured_derived"
+    },
+    "width_mm": {
+      "value_mm": 1735.0,
+      "source_measurement_id": "MNL-TECH-0023",
+      "pdf_page": 19,
+      "value_text": "1735 (68.3)",
+      "extraction_status": "structured_derived"
+    },
+    "height_mm": {
+      "value_mm": 1315.0,
+      "source_measurement_id": "MNL-TECH-0024",
+      "pdf_page": 19,
+      "value_text": "1315 (51,8)",
+      "extraction_status": "structured_derived"
+    },
+    "wheelbase_mm": {
+      "value_mm": 2272.0,
+      "source_measurement_id": "MNL-TECH-0026",
+      "pdf_page": 19,
+      "value_text": "2272 (89.4)",
+      "extraction_status": "structured_derived"
+    },
+    "front_track_mm": {
+      "value_mm": 1405.0,
+      "source_measurement_id": "MNL-TECH-0027",
+      "pdf_page": 19,
+      "value_text": "1405 (55.3)",
+      "extraction_status": "structured_derived"
+    },
+    "rear_track_mm": {
+      "value_mm": 1444.0,
+      "source_measurement_id": "MNL-TECH-0028",
+      "pdf_page": 19,
+      "value_text": "1444 (56.9)",
+      "extraction_status": "structured_derived"
+    },
+    "ground_clearance_mm": {
+      "value_mm": 120.0,
+      "source_measurement_id": "MNL-TECH-0029",
+      "pdf_page": 19,
+      "value_text": "120 (4,7)",
+      "extraction_status": "structured_derived"
+    }
+  },
+  "geometry": {
+    "master_format": "OpenSCAD",
+    "master_file": "twin/993/source/reference_envelope.scad",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "assumptions": [
+    "La cage est une enveloppe de reference et ne represente pas les surfaces de carrosserie.",
+    "Les positions des essieux sont centrees dans la longueur uniquement pour visualiser l'empattement.",
+    "Aucun rayon, pneu, porte-a-faux, interface ou volume interieur n'est deduit."
+  ],
+  "validation": {
+    "status": "reference_only",
+    "vehicle_tested": false,
+    "fitment_claim": false,
+    "engineering_use": false
+  }
+}

@@ -109,6 +109,14 @@ class MeasurementValidationTests(unittest.TestCase):
     def test_template_file_loads_from_disk(self) -> None:
         self.assertEqual(load_and_validate(self.path), [])
 
+    def test_manual_specification_record_is_valid(self) -> None:
+        path = ROOT / "catalog" / "measurements" / "MEAS-MANUAL-993-ALL.json"
+        record = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(record["record_kind"], "documented_specification")
+        self.assertEqual(len(record["declared_values"]), 2496)
+        self.assertEqual(load_and_validate(path), [])
+
 
 if __name__ == "__main__":
     unittest.main()

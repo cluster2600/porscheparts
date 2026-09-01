@@ -60,3 +60,28 @@ règles d'acceptation, précision, rapport numérique et corrélation physique.
 Une pièce n’est terminée que lorsque le statut de sa fiche correspond aux preuves
 présentes dans le dépôt. `released` signifie prête à être reproduite dans les
 limites documentées, pas homologuée pour la route ni garantie universellement.
+
+## Contrainte d'exploitation : aucun accès physique
+
+Le mainteneur de ce dépôt n'a accès ni à une 993, ni à une pièce détachée, ni à
+un instrument de mesure. Rien n'y sera pesé, mesuré, imprimé, monté ni essayé en
+interne.
+
+Ce n'est pas une lacune à combler, c'est le cadre de travail. Il en découle trois
+conséquences, qui valent règles :
+
+1. **Une fiche produite ici plafonne au statut `concept`.**
+   `dimensionally_reviewed` exige des mesures et `prototype_fitted` un montage :
+   ni l'un ni l'autre n'est atteignable sans contributeur extérieur.
+2. **Les critères de sortie des phases 2 et 3 dépendent d'un tiers.** Ils ne
+   sont pas abandonnés, ils sont conditionnés. Le dépôt prépare tout ce qui peut
+   l'être — plans de mesure, formats d'enregistrement, outils de capture et de
+   validation — pour qu'une contribution soit exploitable dès qu'elle arrive.
+3. **Les outils de capture servent à valider ce que d'autres transmettent.**
+   `scripts/capture_caliper.py` et `scripts/capture_photoset.py` existent pour
+   qu'un chiffre venu de l'extérieur porte son instrument, son incertitude et sa
+   méthode, au lieu d'être un nombre sur un forum.
+
+Ce que le dépôt peut livrer seul reste substantiel : registre de sources
+vérifiées, sélection de candidats dans un catalogue d'usine, arbitrages matière
+et procédé chiffrés, calculs, et environnement de calcul reproductible.

@@ -56,8 +56,29 @@ mentionnent pas le berceau moteur. Les fils Rennlist qui le mentionnent
 refusent l'accès automatisé (HTTP 403).
 
 C'est exactement le piège que décrit `docs/SOURCE_POLICY.md` : deux sources qui
-se recopient ne font pas deux confirmations. Ces éléments restent des **pistes à
-vérifier sur pièce**, pas des faits.
+se recopient ne font pas deux confirmations.
+
+**Second passage, hors Rennlist.** En cherchant sur les forums germanophones et
+britanniques plutôt que sur celui qui bloque, deux pages se sont ouvertes et ont
+confirmé une partie de ces affirmations — sur le **964**, pas sur le 993 :
+
+- `SRC-PCGB-CRACKED-ENGINE-MOUNT-BRACKET` : la pièce fissure, se répare par
+  soudure, et le renfort rapporté est courant. Un contributeur signale l'effet
+  secondaire : *« the welding of the strengthening gusset caused it to warp. So
+  back to the shop and 5 mins under a press sorted it. »* Photographie jointe.
+- `SRC-PFF-RENNLINE-MOTORTRAEGER` : berceau — appelé *Schwert* — fissuré,
+  *« das Schwert angebrochen ist »*, moteur *« schief hängt »*, deux
+  photographies. Une révision usine *« leicht verstärkt »* vers 1991 est évoquée,
+  sans référence à l'appui. Le renfort du marché est cité autour de 614 €, ce qui
+  pousse plusieurs contributeurs à souder eux-mêmes.
+
+Ce que cela établit : **un mode de défaillance de famille**, la fissuration, et
+une pratique de réparation par soudure dont l'effet secondaire est le voilage.
+
+Ce que cela n'établit pas : la construction, la matière et le comportement de la
+référence Turbo `993 115 021 53`, qui est une pièce distincte. Et une pièce qui
+se voile au soudage d'un simple gousset dit quelque chose de sa raideur : c'est
+une information de conception, pas une anecdote.
 
 Ce qui est vérifié, en revanche, par lecture directe
 (`SRC-911UK-993-RUST-LOCATIONS`) : la corrosion du 993 touche notamment les
@@ -128,14 +149,78 @@ Recoupement EF contre théorie des poutres : +2,3 % (acier), +2,2 % (titane).
 L'écart est du bon signe et du bon ordre — cisaillement et effet d'encastrement
 assouplissent le modèle volumique.
 
-### Conclusion technique
+### Ce que la fiche produit du vendeur a établi
 
-Le titane est défendable sur ce type de pièce, **à une condition** : pouvoir
-grossir la section. Une copie au même encombrement serait presque deux fois plus
-souple, ce que `docs/TITANIUM.md` exclut déjà explicitement.
+Quatre photographies et une fiche technique changent trois choses.
 
-Or le dégagement disponible dans la baie moteur est précisément ce que les
-données publiques ne donnent pas. La décision reste donc suspendue à une mesure.
+**La pièce est monobloc.** Une lame incurvée à section variable, percée de deux
+grands trous d'allègement et de plusieurs trous de fixation, terminée à chaque
+extrémité par un bossage cylindrique, avec une finition dorée évoquant une
+zingaison passivée jaune. Rien n'indique une construction soudée.
+
+Cela ne contredit pas les forums, cela les explique : les renforts soudés dont
+ils parlent sont des **goussets rapportés sur une pièce monobloc**. Souder sur
+une pièce forgée et traitée, c'est exactement ce qui la voile.
+
+**La matière est presque certainement de l'acier.** Recoupement de densité, à
+1,96 kg pour 600 mm de long :
+
+| Matière | Volume | Section moyenne équivalente |
+|---|---:|---|
+| Acier | 250 cm³ | 416 mm², soit ~10 mm sur 40 mm de haut |
+| Aluminium | 726 cm³ | 1210 mm², soit ~30 mm sur 40 mm de haut |
+| Ti-6Al-4V | 442 cm³ | 737 mm², soit ~18 mm sur 40 mm de haut |
+
+La lame visible sur les photographies est élancée. L'hypothèse aluminium
+demanderait une pièce trois fois plus épaisse : elle est écartée.
+
+**Le prix était faux d'un ordre de grandeur.** Le berceau Turbo neuf est affiché
+à **1 788 USD** hors port, disponibilité « available soon ». Le chiffre de 225 à
+270 € rapporté plus tôt par un résumé de recherche ne tenait pas.
+
+Et l'encombrement de 600 × 50 × 50 mm concorde avec les proportions visibles :
+il décrit vraisemblablement la pièce arrondie au centimètre, pas un colis.
+
+### Conclusion technique, révisée par la masse annoncée
+
+Le raisonnement matériau reste valable : le titane est défendable sur une pièce
+en flexion **si la section peut grossir de 17 %**.
+
+Mais une masse annoncée de 1,96 kg change la réponse. Le gain à raideur égale
+serait d'environ **0,45 kg**, soit **0,03 % de la masse du véhicule**.
+
+C'est le prix total du concours. Pour l'empocher il faudrait redessiner les
+sections, établir des cas de charge complets, passer une revue d'ingénierie
+formelle, qualifier un procédé LPBF, contrôler la pièce, et maîtriser grippage
+et couple galvanique dans un environnement dont la corrosion est documentée.
+
+**Sur ces chiffres, le titane n'est pas justifié sur cette pièce**, et
+`docs/TITANIUM.md` le disait déjà dans sa liste « quand il ne l'est pas ».
+
+Le défaut constaté sur la famille n'est d'ailleurs pas la masse : c'est la
+**fissuration**. La pièce utile n'est donc pas une pièce plus légère, c'est une
+pièce plus endurante. C'est exactement ce que le marché traite déjà, par un
+renfort vendu autour de 614 € et par de la soudure d'atelier.
+
+### Ce que le prix change, en revanche
+
+À 1 788 USD la pièce neuve, sans alternative de rechange connue, sur une
+référence donnée « available soon » donc pas en stock, l'argument de reproduction
+cesse d'être la masse et devient **la disponibilité et le coût**.
+
+C'est un motif légitime, et c'est même le cœur du projet. Il ne déplace en rien
+la barre de sécurité : la pièce reste présumée critique, donc revue d'ingénierie
+formelle, cas de charge, contrôle. Mais reproduire une lame en acier à géométrie
+équivalente est un problème d'ingénierie ordinaire, là où gagner 450 g en titane
+n'en valait pas la peine.
+
+Le procédé plausible n'est d'ailleurs plus la fabrication additive : une lame
+monobloc en acier relève de l'usinage dans la masse, du forgeage ou de la
+découpe-pliage, selon ce que la géométrie réelle révélera.
+
+Cette conclusion tient sur des chiffres communiqués sans source, et tombe si la
+masse réelle est différente. Elle est de toute façon plus solide que le silence :
+elle dit ce qu'il faudrait mesurer pour la renverser.
 
 ## Chemins réellement ouverts, sans pièce ni outillage
 

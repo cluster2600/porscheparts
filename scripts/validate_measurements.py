@@ -23,6 +23,7 @@ REGISTRY = ROOT / "catalog" / "measurements"
 MEASUREMENT_ID_PATTERN = re.compile(r"^MEAS-[A-Z0-9][A-Z0-9._-]{2,63}$")
 PART_ID_PATTERN = re.compile(r"^[A-Z0-9][A-Z0-9._-]{2,63}$")
 DIMENSION_ID_PATTERN = re.compile(r"^[A-Z][A-Z0-9_]{1,15}$")
+DECLARED_VALUE_ID_PATTERN = re.compile(r"^MNL-[A-Z0-9][A-Z0-9._-]{2,63}$")
 
 INSTRUMENT_TYPES = {"caliper", "micrometer", "height_gauge", "dial_indicator", "gauge_pin", "thread_gauge", "scale_bar", "camera", "scanner", "other"}
 INTERFACES = {"manual", "serial", "usb", "network"}
@@ -32,8 +33,17 @@ UNITS = {"mm", "deg", "kg", "N", "Nm"}
 UNCERTAINTY_BASES = {"repeatability", "instrument_resolution", "combined", "estimated"}
 CAPTURE_MODES = {"manual_entry", "instrument_stream"}
 EVIDENCE_LEVELS = {"A", "C", "E", "unrated"}
+RECORD_KINDS = {"physical_measurement", "documented_specification"}
+DECLARED_RECORD_TYPES = {
+    "technical_data",
+    "torque_spec",
+    "ocr_measurement_occurrence",
+    "ocr_thread_size_occurrence",
+}
+EXTRACTION_STATUSES = {"structured_derived", "ocr_unreviewed", "manually_checked"}
 
 REQUIRED_KEYS = {"schema_version", "measurement_id", "subject", "session", "datum", "instruments", "readings", "evidence", "notes"}
+OPTIONAL_KEYS = {"$comment", "record_kind", "source_id", "declared_values"}
 
 # Fallback tolerance when an instrument declares no resolution, in record units.
 DEFAULT_VALUE_TOLERANCE = 0.005
@@ -59,11 +69,12 @@ def _date(value: Any) -> bool:
     return True
 
 
-def _validate_instruments(record: dict, errors: list[str]) -> dict[str, dict]:
+def _validate_instruments(record: dict, errors: list[str], allow_empty: bool = False) -> dict[str, dict]:
     instruments = record.get("instruments")
     known: dict[str, dict] = {}
     if not isinstance(instruments, list) or not instruments:
-        errors.append("instruments: expected at least one instrument")
+        if not allow_empty:
+            errors.append("instruments: expected at least one instrument")
         return known
 
     for index, instrument in enumerate(instruments):
@@ -103,6 +114,72 @@ def _validate_instruments(record: dict, errors: list[str]) -> dict[str, dict]:
             errors.append(f"{label}.calibration.checked_on: required when the instrument is declared calibrated")
 
     return known
+
+
+def _known_source_ids() -> set[str]:
+    source_ids: set[str] = set()
+    for path in sorted(ROOT.joinpath("catalog", "sources").glob("*.json")):
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        source_id = payload.get("source_id") if isinstance(payload, dict) else None
+        if isinstance(source_id, str):
+            source_ids.add(source_id)
+    return source_ids
+
+
+def _validate_declared_values(
+    values: Any,
+    source_id: Any,
+    errors: list[str],
+) -> None:
+    if not isinstance(values, list) or not values:
+        errors.append("declared_values: expected a non-empty array for a documented specification")
+        return
+
+    seen: set[str] = set()
+    for index, value in enumerate(values):
+        label = f"declared_values[{index}]"
+        if not isinstance(value, dict):
+            errors.append(f"{label}: expected an object")
+            continue
+
+        value_id = value.get("value_id")
+        if not isinstance(value_id, str) or not DECLARED_VALUE_ID_PATTERN.fullmatch(value_id):
+            errors.append(f"{label}.value_id: expected an MNL- identifier")
+        elif value_id in seen:
+            errors.append(f"{label}.value_id: duplicate identifier {value_id}")
+        else:
+            seen.add(value_id)
+
+        if value.get("record_type") not in DECLARED_RECORD_TYPES:
+            errors.append(f"{label}.record_type: unexpected value")
+        if not _text(value.get("source_collection")):
+            errors.append(f"{label}.source_collection: expected a non-empty string")
+        if not _text(value.get("description")):
+            errors.append(f"{label}.description: expected a non-empty string")
+        page = value.get("pdf_page")
+        if not isinstance(page, int) or isinstance(page, bool) or page < 1:
+            errors.append(f"{label}.pdf_page: expected a positive integer")
+        line = value.get("line")
+        if line is not None and (not isinstance(line, int) or isinstance(line, bool) or line < 1):
+            errors.append(f"{label}.line: expected null or a positive integer")
+        if not _text(value.get("value_text")):
+            errors.append(f"{label}.value_text: expected a non-empty string")
+        if not isinstance(value.get("unit"), str):
+            errors.append(f"{label}.unit: expected a string")
+
+        numeric_values = value.get("numeric_values")
+        if not isinstance(numeric_values, list) or not all(_number(item) for item in numeric_values):
+            errors.append(f"{label}.numeric_values: expected an array of numbers")
+        if value.get("source_id") != source_id:
+            errors.append(f"{label}.source_id: must match the record source_id")
+        if value.get("extraction_status") not in EXTRACTION_STATUSES:
+            errors.append(f"{label}.extraction_status: unexpected value")
+        details = value.get("details")
+        if not isinstance(details, dict):
+            errors.append(f"{label}.details: expected an object")
 
 
 def _validate_reading(reading: Any, label: str, instruments: dict[str, dict], errors: list[str]) -> None:
@@ -190,7 +267,7 @@ def validate_measurement(record: Any) -> list[str]:
     errors: list[str] = []
 
     missing = REQUIRED_KEYS - record.keys()
-    extra = record.keys() - REQUIRED_KEYS
+    extra = record.keys() - REQUIRED_KEYS - OPTIONAL_KEYS
     if missing:
         errors.append(f"root: missing fields: {', '.join(sorted(missing))}")
     if extra:
@@ -198,6 +275,17 @@ def validate_measurement(record: Any) -> list[str]:
 
     if record.get("schema_version") != "1.0.0":
         errors.append("schema_version: expected 1.0.0")
+    record_kind = record.get("record_kind", "physical_measurement")
+    if record_kind not in RECORD_KINDS:
+        errors.append(f"record_kind: expected one of {sorted(RECORD_KINDS)}")
+    source_id = record.get("source_id")
+    if source_id is not None and (not isinstance(source_id, str) or not source_id.startswith("SRC-")):
+        errors.append("source_id: expected a registered SRC- identifier")
+    if record_kind == "documented_specification":
+        if not isinstance(source_id, str) or source_id not in _known_source_ids():
+            errors.append("source_id: documented specification must reference a registered source")
+    elif "declared_values" in record:
+        errors.append("declared_values: only valid for a documented specification")
     identifier = record.get("measurement_id")
     if not isinstance(identifier, str) or not MEASUREMENT_ID_PATTERN.fullmatch(identifier):
         errors.append("measurement_id: expected MEAS- followed by an uppercase stable identifier")
@@ -241,13 +329,17 @@ def validate_measurement(record: Any) -> list[str]:
         if reference_image is not None and not isinstance(reference_image, str):
             errors.append("datum.reference_image: expected null or a path")
 
-    instruments = _validate_instruments(record, errors)
+    instruments = _validate_instruments(record, errors, allow_empty=record_kind == "documented_specification")
 
     readings = record.get("readings")
-    if not isinstance(readings, list) or not readings:
-        errors.append("readings: expected at least one reading")
+    if not isinstance(readings, list):
+        errors.append("readings: expected an array")
         readings = []
-    else:
+    elif record_kind == "documented_specification" and readings:
+        errors.append("readings: documented specifications must use declared_values")
+    elif record_kind == "physical_measurement" and not readings:
+        errors.append("readings: expected at least one reading")
+    elif readings:
         seen: set[str] = set()
         for index, reading in enumerate(readings):
             _validate_reading(reading, f"readings[{index}]", instruments, errors)
@@ -257,6 +349,9 @@ def validate_measurement(record: Any) -> list[str]:
                     if identifier in seen:
                         errors.append(f"readings[{index}].dimension_id: duplicate identifier {identifier}")
                     seen.add(identifier)
+
+    if record_kind == "documented_specification":
+        _validate_declared_values(record.get("declared_values"), source_id, errors)
 
     evidence = record.get("evidence")
     if not isinstance(evidence, dict):

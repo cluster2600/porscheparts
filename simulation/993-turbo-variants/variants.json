@@ -1,0 +1,196 @@
+{
+  "$comment": "Trois configurations de sensibilite pour le diffuseur froid. Les geometries sont des hypotheses parametriques et non des reconstructions de turbocompresseurs.",
+  "schema_version": "1.0.0",
+  "manifest_id": "993-TURBO-COLD-SIDE-VARIANTS-0001",
+  "status": "exploratory_reference",
+  "geometry_source": "parts/993-turbocharger-k16-cold-side-prototype/source/cold_side_concept.scad",
+  "case_root": "simulation/993-turbo-variants/cases",
+  "comparison": {
+    "purpose": "Comparer l'effet d'enveloppes froides synthetiques a debit impose, sans attribuer une performance au turbo seul.",
+    "mass_flow_per_case_kg_s": 0.156,
+    "air_density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 0.000015,
+    "basis": "Milieu de la plage de debit par turbo estimee a 5750 tr/min dans docs/TURBO_AIRFLOW_SIMULATION_DATA.md ; valeur derivee, pas mesuree."
+  },
+  "solver": {
+    "application": "simpleFoam",
+    "openfoam_version": "13",
+    "turbulence_model": "kOmegaSST",
+    "iterations": 500
+  },
+  "variants": [
+    {
+      "variant_id": "K16-OEM",
+      "case_id": "993-K16-OEM-COLD-SIDE-0001",
+      "name": "K16 OEM - controle de reference",
+      "configuration": "K16 de serie, enveloppe froide synthetique",
+      "source_ids": [
+        "SRC-FVD-993-K16-OEM-DIMENSIONS",
+        "SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA",
+        "SRC-RENNLIST-993-RUF-TURBO-R-ENGINE-DYNO",
+        "SRC-RENNLIST-993-K16-CHASSIS-DYNO"
+      ],
+      "reference_data": [
+        {
+          "label": "Encombrement K16 complet declare",
+          "value_mm": [280.0, 190.0, 210.0],
+          "source_id": "SRC-FVD-993-K16-OEM-DIMENSIONS",
+          "used_as": "packaging_context_only"
+        },
+        {
+          "label": "Diametre compresseur inducer declare",
+          "value_mm": 40.6,
+          "source_id": "SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA",
+          "used_as": "reference_only_not_geometry"
+        }
+      ],
+      "geometry": {
+        "concept": "stationary_axisymmetric_cold_side_diffuser",
+        "evidence_level": "hypothesis",
+        "design_basis": "Dimensions conservees du harnais synthetique initial ; elles ne sont pas deduites du diametre d'inducer et ne decrivent pas le K16 reel.",
+        "inlet_diameter_mm": 50.0,
+        "outlet_diameter_mm": 68.0,
+        "diffuser_length_mm": 90.0,
+        "wall_thickness_mm": 4.0,
+        "mesh_cells_streamwise": 80,
+        "mesh_cells_across_inlet": 24
+      },
+      "flow": {
+        "fluid": "air",
+        "air_density_kg_m3": 1.2,
+        "kinematic_viscosity_m2_s": 0.000015,
+        "inlet_velocity_m_s": 66.2084563262,
+        "pressure_reference_pa": 0.0,
+        "mass_flow_per_case_kg_s": 0.156,
+        "basis": "Vitesse derivee de m_dot = rho * section circulaire * vitesse ; cas commun pour comparer les variantes."
+      },
+      "assumptions": [
+        "Le diffuseur est stationnaire et ne contient ni roue, ni CHRA, ni wastegate, ni carter chaud.",
+        "Le bloc OpenFOAM est une section rectangulaire equivalente et non une CAO du K16.",
+        "Les donnees fournisseur servent au contexte de packaging, pas a fabriquer une surface aero.",
+        "Le debit commun est une hypothese derivee et ne constitue pas une carte compresseur."
+      ],
+      "validation": {
+        "status": "exploratory_reference",
+        "physical_fitment": false,
+        "engine_tested": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "variant_id": "K16-24-HYBRID",
+      "case_id": "993-K16-24-HYBRID-COLD-SIDE-0001",
+      "name": "Hybride K16/24 - sensibilite",
+      "configuration": "Hybride aftermarket FVD K16/24, enveloppe froide synthetique",
+      "source_ids": [
+        "SRC-FVD-993-K16-24-SPORT-TURBO-DATA",
+        "SRC-CARGRAPHIC-993-K16-24-POWERKIT-DATA",
+        "SRC-TTP-993-TURBO-TUNING-STAGES",
+        "SRC-RENNLIST-993-K16-K24-COMPARATIVE-ENGINE-DYNO"
+      ],
+      "reference_data": [
+        {
+          "label": "Inducer compresseur FVD declare",
+          "value_mm": 47.5,
+          "source_id": "SRC-FVD-993-K16-24-SPORT-TURBO-DATA",
+          "used_as": "reference_only_not_outlet_diameter"
+        },
+        {
+          "label": "Cible Cargraphic declaree",
+          "value": "475 PS / 632 Nm",
+          "source_id": "SRC-CARGRAPHIC-993-K16-24-POWERKIT-DATA",
+          "used_as": "tuner_claim_not_solver_input"
+        }
+      ],
+      "geometry": {
+        "concept": "stationary_axisymmetric_cold_side_diffuser",
+        "evidence_level": "hypothesis",
+        "design_basis": "Sensibilite de +4 pour cent sur l'entree et +6 pour cent sur la sortie autour du controle K16 ; aucun profil FVD ni interface de sortie n'est publie.",
+        "inlet_diameter_mm": 52.0,
+        "outlet_diameter_mm": 72.0,
+        "diffuser_length_mm": 90.0,
+        "wall_thickness_mm": 4.0,
+        "mesh_cells_streamwise": 80,
+        "mesh_cells_across_inlet": 24
+      },
+      "flow": {
+        "fluid": "air",
+        "air_density_kg_m3": 1.2,
+        "kinematic_viscosity_m2_s": 0.000015,
+        "inlet_velocity_m_s": 61.2134396507,
+        "pressure_reference_pa": 0.0,
+        "mass_flow_per_case_kg_s": 0.156,
+        "basis": "Meme debit de comparaison que K16-OEM ; la vitesse varie avec la section synthetique."
+      },
+      "assumptions": [
+        "L'inducer FVD n'est pas assimile au diametre de sortie du diffuseur.",
+        "Les chiffres de puissance des preparateurs ne sont pas convertis en debit sans conditions de banc.",
+        "Le diffuseur ne represente ni la roue, ni la volute, ni les jeux, ni l'equilibrage du turbo.",
+        "La comparaison isole une enveloppe synthetique et ne predit pas le gain d'un hybride."
+      ],
+      "validation": {
+        "status": "exploratory_reference",
+        "physical_fitment": false,
+        "engine_tested": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "variant_id": "K24-REFERENCE",
+      "case_id": "993-K24-REFERENCE-COLD-SIDE-0001",
+      "name": "K24 - sensibilite haut debit",
+      "configuration": "K24 prepare, enveloppe froide synthetique de sensibilite",
+      "source_ids": [
+        "SRC-TTH-993-K24-750-TURBO-PROCESSING",
+        "SRC-9FF-993-F64-K24-550-DATA",
+        "SRC-RENNLIST-993-POWERHAUS-K24-DYNO"
+      ],
+      "reference_data": [
+        {
+          "label": "Cible TTH publiee",
+          "value": "jusqu'a 750 PS",
+          "source_id": "SRC-TTH-993-K24-750-TURBO-PROCESSING",
+          "used_as": "tuner_claim_not_solver_input"
+        },
+        {
+          "label": "Configuration 9ff publiee",
+          "value": "2 x K24-24.80, 550 hp / 700 Nm",
+          "source_id": "SRC-9FF-993-F64-K24-550-DATA",
+          "used_as": "conversion_claim_not_solver_input"
+        }
+      ],
+      "geometry": {
+        "concept": "stationary_axisymmetric_cold_side_diffuser",
+        "evidence_level": "hypothesis",
+        "design_basis": "Sensibilite de +10 pour cent sur l'entree, +12 pour cent sur la sortie et +11 pour cent sur la longueur ; aucune geometrie K24 exploitable n'est publiee.",
+        "inlet_diameter_mm": 55.0,
+        "outlet_diameter_mm": 76.0,
+        "diffuser_length_mm": 100.0,
+        "wall_thickness_mm": 4.5,
+        "mesh_cells_streamwise": 88,
+        "mesh_cells_across_inlet": 24
+      },
+      "flow": {
+        "fluid": "air",
+        "air_density_kg_m3": 1.2,
+        "kinematic_viscosity_m2_s": 0.000015,
+        "inlet_velocity_m_s": 54.7177325010,
+        "pressure_reference_pa": 0.0,
+        "mass_flow_per_case_kg_s": 0.156,
+        "basis": "Meme debit de comparaison que K16-OEM ; la vitesse varie avec la section synthetique."
+      },
+      "assumptions": [
+        "Les offres K24 couvrent souvent une preparation complete et ne definissent pas la geometrie d'un K24 nu.",
+        "Le carter chaud, la roue, la wastegate et le bas moteur sont hors perimetre.",
+        "La cible haut debit est une sensibilite de maillage et non une capacite certifiee.",
+        "Aucune conclusion de rendement, surge, choke ou tenue mecanique n'est permise."
+      ],
+      "validation": {
+        "status": "exploratory_reference",
+        "physical_fitment": false,
+        "engine_tested": false,
+        "release_allowed": false
+      }
+    }
+  ]
+}

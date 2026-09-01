@@ -1,0 +1,182 @@
+{
+  "$comment": "Points publics de banc et cibles de preparateurs. Les courbes originales ne sont pas redistribuees ; les valeurs sont conservees dans les unites publiees et converties par le script 0D.",
+  "schema_version": "1.0.0",
+  "dataset_id": "993-TURBO-DYNO-REFERENCE-0001",
+  "status": "reference_only",
+  "engine_context": {
+    "displacement_m3": 0.0036,
+    "strokes": 4,
+    "turbo_count": 2,
+    "airflow_envelope": {
+      "manifold_pressure_abs_pa": 181300.0,
+      "manifold_temperature_k": 323.15,
+      "volumetric_efficiency_min": 0.85,
+      "volumetric_efficiency_max": 1.0,
+      "bank_split": 0.5,
+      "basis": "Meme enveloppe 0D que docs/TURBO_AIRFLOW_SIMULATION_DATA.md ; hypothese de sensibilite, pas une mesure de banc."
+    }
+  },
+  "fit_policy": {
+    "status": "not_calibrated",
+    "rule": "Les points sont des ancres de comparaison. Aucun run ne devient une calibration valide sans type de banc, correction, carburant, pression, temperature, debit et configuration complete.",
+    "allowed_uses": ["unit_conversion", "power_torque_consistency", "bmep_context", "relative_target_envelope"],
+    "blocked_uses": ["compressor_map_fit", "turbine_map_fit", "rotor_speed_inference", "hardware_release"]
+  },
+  "runs": [
+    {
+      "run_id": "RUF-TURBO-R-K16-ENGINE-DYNO-1998",
+      "twin_variant": "K16-OEM",
+      "configuration_class": "RUF_Turbo_R_K16_based",
+      "source_id": "SRC-RENNLIST-993-RUF-TURBO-R-ENGINE-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "curve_anchor_incomplete",
+      "test_context": {
+        "test_type": "engine_dyno",
+        "power_basis": "engine",
+        "torque_basis": "engine",
+        "standard": "not_stated_in_forum_excerpt",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_points": [
+        {"rpm": 2000, "torque_value": 267.0, "torque_unit": "lb_ft"},
+        {"rpm": 2500, "torque_value": 375.0, "torque_unit": "lb_ft"},
+        {"rpm": 3000, "torque_value": 404.0, "torque_unit": "lb_ft"},
+        {"rpm": 3500, "torque_value": 411.0, "torque_unit": "lb_ft"},
+        {"rpm": 4000, "torque_value": 449.0, "torque_unit": "lb_ft"},
+        {"rpm": 4500, "torque_value": 535.0, "torque_unit": "lb_ft"},
+        {"rpm": 5000, "torque_value": 523.0, "torque_unit": "lb_ft"},
+        {"rpm": 5500, "torque_value": 468.0, "torque_unit": "lb_ft"},
+        {"rpm": 6000, "torque_value": 395.0, "torque_unit": "lb_ft"}
+      ],
+      "reported_targets": [
+        {"label": "peak_power", "value": 506.0, "unit": "hp", "rpm": 5500, "basis": "engine"},
+        {"label": "power_at_6000", "value": 460.0, "unit": "hp", "rpm": 6000, "basis": "engine"}
+      ],
+      "notes": "Le message attribue les points a un Turbo R de client RUF et cite 911 & Porsche World septembre 1998. La configuration exacte et les conditions de banc ne sont pas disponibles ; les points couple et les pics de puissance publies ne ferment pas exactement le bilan couple-puissance."
+    },
+    {
+      "run_id": "RS-TUNING-K16-STAGE3-VS-K24RS-ENGINE-DYNO",
+      "twin_variant": null,
+      "configuration_class": "same_engine_K16_stage3_vs_K24RS",
+      "source_id": "SRC-RENNLIST-993-K16-K24-COMPARATIVE-ENGINE-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "comparison_only",
+      "test_context": {
+        "test_type": "engine_dyno",
+        "power_basis": "engine",
+        "torque_basis": "engine",
+        "standard": "DIN_reported",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "DIN_claimed"
+      },
+      "reported_targets": [
+        {"label": "K24RS_peak_power", "configuration": "K24RS_K24_26_hybrid", "value": 522.0, "unit": "PS", "rpm": null, "basis": "engine"},
+        {"label": "UMW_K16_stage3_peak_power", "configuration": "K16_hybrid_stage3", "value": 471.0, "unit": "hp", "rpm": null, "basis": "engine"}
+      ],
+      "reported_bands": [
+        {"label": "K16_stage3_power_band", "configuration": "K16_hybrid_stage3", "value": 470.0, "unit": "hp", "rpm_min": 5000, "rpm_max": 6800, "basis": "engine"}
+      ],
+      "notes": "Le meme moteur prepare aurait ete teste avec K24RS puis avec UMW Stage 3 K16 hybrides. Arbres a cames, culasses, echappement et moteur sont communs a la comparaison rapportee, mais les feuilles de banc ne sont pas accessibles dans le message."
+    },
+    {
+      "run_id": "POWERHAUS-K24-CHASSIS-DYNO-2003",
+      "twin_variant": "K24-REFERENCE",
+      "configuration_class": "Powerhaus_modified_K24",
+      "source_id": "SRC-RENNLIST-993-POWERHAUS-K24-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "point_anchor_incomplete",
+      "test_context": {
+        "test_type": "chassis_dyno",
+        "power_basis": "wheel",
+        "torque_basis": "wheel",
+        "standard": "not_stated",
+        "boost_bar_gauge": 1.0,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_points": [
+        {"rpm": 5000, "torque_value": 525.0, "torque_unit": "lb_ft", "power_value": 500.0, "power_unit": "whp"}
+      ],
+      "reported_targets": [
+        {"label": "before_upgrade", "value": 380.0, "unit": "hp", "rpm": null, "basis": "wheel"},
+        {"label": "after_upgrade", "value": 500.0, "unit": "hp", "rpm": 5000, "basis": "wheel"}
+      ],
+      "notes": "Le propriétaire rapporte des K24 modifies, ECU, echappement, filtre, environ 1 bar de boost et 500 whp / 525 lb-ft a 5000 tr/min. Le régulateur 5 bar puis 3,8 bar a change le resultat ; ce cas montre qu'une calibration dépend aussi du carburant et de la gestion moteur."
+    },
+    {
+      "run_id": "DM993TT-K16-CHASSIS-DYNO-2006",
+      "twin_variant": "K16-OEM",
+      "configuration_class": "rebuilt_K16_Turbo_S_DME",
+      "source_id": "SRC-RENNLIST-993-K16-CHASSIS-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "point_anchor_incomplete",
+      "test_context": {
+        "test_type": "chassis_dyno",
+        "power_basis": "wheel",
+        "torque_basis": "wheel",
+        "standard": "not_stated",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_points": [
+        {"rpm": 6000, "power_value": 324.0, "power_unit": "whp"},
+        {"rpm": 4600, "torque_value": 329.0, "torque_unit": "lb_ft"}
+      ],
+      "notes": "Trois tirets sont rapportés sur un banc châssis avec coupleur 4WD déconnecté, K16 reconstruits, filtre K&N, bypass Fabspeed et DME Turbo S. Le véhicule est modifié ; la conversion annoncée vers la puissance vilebrequin n'est pas retenue."
+    },
+    {
+      "run_id": "CARGRAPHIC-POWERKIT2-DYNO-TARGET",
+      "twin_variant": "K16-24-HYBRID",
+      "configuration_class": "Cargraphic_K16_24_powerkit",
+      "source_id": "SRC-CARGRAPHIC-993-K16-24-POWERKIT-DATA",
+      "evidence_level": "C",
+      "calibration_role": "declared_target_only",
+      "test_context": {
+        "test_type": "dyno_claim",
+        "power_basis": "engine",
+        "torque_basis": "engine",
+        "standard": "not_stated",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_points": [
+        {"rpm": 6090, "power_value": 475.0, "power_unit": "PS"},
+        {"rpm": 4550, "torque_value": 632.0, "torque_unit": "Nm"}
+      ],
+      "notes": "La page fabricant affirme des essais et reglages sur banc RS-Tuning, puis publie 475 PS a 6090 tr/min et 632 Nm a 4550 tr/min. La feuille, la correction atmospherique et les mesures d'admission ne sont pas publiques ; ces points restent une cible déclarée."
+    },
+    {
+      "run_id": "AP-CAR-DESIGN-993-K26-MAGAZINE-REPORT",
+      "twin_variant": null,
+      "configuration_class": "full_GT2_K26_conversion",
+      "source_id": "SRC-AP-CAR-DESIGN-993-K26-DYNO-REPORT",
+      "evidence_level": "C",
+      "calibration_role": "context_only",
+      "test_context": {
+        "test_type": "magazine_vehicle_report",
+        "power_basis": "reported_vehicle_output",
+        "torque_basis": "reported_vehicle_output",
+        "standard": "not_stated",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_points": [
+        {"rpm": 4200, "power_value": 610.0, "power_unit": "PS"},
+        {"rpm": 4200, "torque_value": 920.0, "torque_unit": "Nm"}
+      ],
+      "notes": "Cas de borne haute avec deux K26 et moteur entièrement renforce. L'article parle de force transmise a l'essieu arriere ; la valeur ne doit pas etre melangee avec une mesure vilebrequin K16/K24."
+    }
+  ]
+}

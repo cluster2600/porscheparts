@@ -16,8 +16,11 @@
     "notes"
   ],
   "properties": {
+    "$comment": { "type": "string" },
     "schema_version": { "const": "1.0.0" },
     "measurement_id": { "type": "string", "pattern": "^MEAS-[A-Z0-9][A-Z0-9._-]{2,63}$" },
+    "record_kind": { "enum": ["physical_measurement", "documented_specification"] },
+    "source_id": { "type": "string", "pattern": "^SRC-[A-Z0-9][A-Z0-9._-]{2,63}$" },
     "subject": {
       "type": "object",
       "additionalProperties": false,
@@ -51,7 +54,6 @@
     },
     "instruments": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -79,7 +81,6 @@
     },
     "readings": {
       "type": "array",
-      "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -113,6 +114,43 @@
         }
       }
     },
+    "declared_values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "value_id",
+          "record_type",
+          "source_collection",
+          "description",
+          "pdf_page",
+          "line",
+          "value_text",
+          "unit",
+          "numeric_values",
+          "source_id",
+          "extraction_status",
+          "details"
+        ],
+        "properties": {
+          "value_id": { "type": "string", "pattern": "^MNL-[A-Z0-9][A-Z0-9._-]{2,63}$" },
+          "record_type": {
+            "enum": ["technical_data", "torque_spec", "ocr_measurement_occurrence", "ocr_thread_size_occurrence"]
+          },
+          "source_collection": { "type": "string", "minLength": 2 },
+          "description": { "type": "string", "minLength": 3 },
+          "pdf_page": { "type": "integer", "minimum": 1 },
+          "line": { "type": ["integer", "null"], "minimum": 1 },
+          "value_text": { "type": "string", "minLength": 1 },
+          "unit": { "type": "string" },
+          "numeric_values": { "type": "array", "items": { "type": "number" } },
+          "source_id": { "type": "string", "pattern": "^SRC-[A-Z0-9][A-Z0-9._-]{2,63}$" },
+          "extraction_status": { "enum": ["structured_derived", "ocr_unreviewed", "manually_checked"] },
+          "details": { "type": "object" }
+        }
+      }
+    },
     "evidence": {
       "type": "object",
       "additionalProperties": false,
@@ -124,5 +162,27 @@
       }
     },
     "notes": { "type": "string" }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "record_kind": { "const": "documented_specification" } },
+        "required": ["record_kind"]
+      },
+      "then": {
+        "required": ["source_id", "declared_values"],
+        "properties": {
+          "instruments": { "maxItems": 0 },
+          "readings": { "maxItems": 0 },
+          "declared_values": { "minItems": 1 }
+        }
+      },
+      "else": {
+        "properties": {
+          "instruments": { "minItems": 1 },
+          "readings": { "minItems": 1 }
+        }
+      }
+    }
+  ]
 }

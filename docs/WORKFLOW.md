@@ -58,6 +58,27 @@ pas une mesure.
 Sortie : repères, unités, incertitudes et mesures critiques documentés, et une
 fiche de mesure qui passe `make check`.
 
+### Choisir la méthode d'acquisition
+
+Toutes les méthodes ne servent pas la même pièce. Le critère est la présence de
+géométrie **interne**.
+
+| Méthode | Ce qu'elle capture | Quand la choisir | Ordre de coût |
+|---|---|---|---|
+| Pied à coulisse, micromètre | cotes d'interface | pièce descriptible par quelques cotes | négligeable |
+| Photogrammétrie | forme externe, à l'échelle si référence présente | forme organique sans cote critique | faible |
+| Scan lumière structurée ou laser | forme externe dense, quelques dizaines de µm | pièce complexe sans intérieur | moyen |
+| **Tomographie** | **forme externe et interne**, matière comprise | pièce creuse, fonderie, passage interne, porosité | élevé |
+
+La tomographie est la méthode de référence de la rétroconception parce qu'elle
+voit l'intérieur. C'est aussi ce qui la rend **inutilement chère sur une pièce
+pleine** : un bras massif sans canal interne se relève aussi bien au scan de
+surface.
+
+Elle reste en revanche le seul moyen de contrôler une pièce métallique imprimée,
+où l'enjeu est la porosité interne — c'est l'usage qu'en fait Porsche à Weissach,
+et celui que la phase 3 devra prévoir.
+
 ## 4. Reconstruction
 
 - Importer le scan comme référence, jamais comme vérité absolue.

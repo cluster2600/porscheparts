@@ -10,6 +10,30 @@ il assemble des géométries hôtes, des pièces candidates, leurs mesures,
 tolérances et règles de contrôle afin de tester le montage avant impression.
 Chaque zone validée rejoint progressivement le jumeau global.
 
+Deux vues complémentaires structurent ce travail :
+
+- le **jumeau structurel** décrit chaque pièce par sa référence, sa place dans
+  l'assemblage, sa variante, sa masse, sa matière et son encombrement, tous
+  reliés à des sources vérifiables ;
+- le **jumeau géométrique** porte les interfaces et la CAO nécessaires au
+  contrôle d'ajustement. Il exige des mesures physiques ou une donnée acquise et
+  progresse donc pièce par pièce.
+
+La couverture documentaire se mesure avec :
+
+```bash
+python3 scripts/twin_coverage.py
+```
+
+La couverture massique dit quelle part de la masse à vide est décrite par des
+pièces dont la masse est documentée et sourcée. Elle ne vaut ni validation
+géométrique, ni preuve de montage.
+
+Pour le circuit de suralimentation, voir aussi
+[docs/TURBO_AIRFLOW_SIMULATION_DATA.md](docs/TURBO_AIRFLOW_SIMULATION_DATA.md) :
+il rassemble l'identification K16, les interfaces PET, les dimensions
+fournisseurs et la première enveloppe de débit calculée avec ses hypothèses.
+
 ## Principes
 
 - **Source avant STL** : FreeCAD, OpenSCAD ou STEP restent les formats maîtres.
@@ -43,14 +67,18 @@ Compléter ensuite la fiche, ajouter les fichiers CAO autorisés dans
 ```text
 catalog/parts/       fiches structurées des pièces
 catalog/sources/     registre des sources, droits et niveaux de preuve
-catalog/measurements/ séances de mesure, instruments et incertitudes
+catalog/manual/      registre quantitatif dérivé du manuel 993, avec pages
+catalog/specifications/ spécifications documentaires et provenance d'extraction
+catalog/measurements/ mesures physiques et valeurs documentaires qualifiées
+catalog/reference/   ossature documentaire et données de référence déclarées
 catalog/twins/       fiches des zones du jumeau et règles d'acceptation
 catalog/components/  composants dont taille, matière et masse sont sourcées
 catalog/assemblies/  relations de montage sourcées entre composants
 parts/               géométries et livrables par pièce
-twins/               assemblages fonctionnels, scripts et rapports numériques
+twin/                enveloppes et repères paramétriques globaux
+twins/               zones fonctionnelles, scripts et rapports numériques
 schemas/             contrat de données du catalogue
-containers/          images de calcul reproductibles, GPU et CPU
+containers/          images de calcul reproductibles, GPU, CPU et Physics ML
 templates/           modèles de fiche, mesure et demande de fabrication
 docs/                plan, outils, workflows et critères qualité
 scripts/             contrôles automatiques sans dépendance externe
@@ -60,17 +88,24 @@ tests/               tests du catalogue et de ses garde-fous
 ## État
 
 La **Phase 0 — Fondation** est terminée. La **Phase 1 — Inventaire des
-sources** est engagée : catalogues officiels, manuels accessibles et sources de
-mesure sont recensés dans `catalog/sources/`
+sources** a dépassé son seuil quantitatif avec 294 fiches valides, mais la
+qualification croisée et l'acquisition de mesures directes restent ouvertes
 (voir [l’inventaire général](docs/PHASE1_SOURCE_INVENTORY.md) et le
-[lot de recherche allemande](docs/research/phase-1-recherche-allemande.md)).
-Ce lot germanophone documente vingt candidats supplémentaires ou recoupés.
+[lot de recherche allemande](docs/research/phase-1-recherche-allemande.md)). La
+[cartographie du manuel 993](docs/993_MANUAL_DATA_MAP.md) relie désormais les
+données publiques de Porsche Fanatics aux pages techniques du manuel. Les
+spécifications sont importées dans le registre de mesures avec leur statut
+documentaire, sans importer le PDF ni les présenter comme des relevés physiques.
+
+La **Phase 2 — Inventaire physique et assemblage du jumeau** est menée en mode
+numérique. Une première enveloppe paramétrique de référence est disponible dans
+[`twin/993/`](twin/993/) et les premières zones fonctionnelles sont suivies dans
+[docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Ces géométries ne prétendent pas
+reconstruire la carrosserie ni prouver un montage.
 Aucun jumeau n'est encore au niveau `F2_interface` et aucune pièce n'est encore
 déclarée imprimable ou validée. L'impression est volontairement suspendue. Le
 premier inventaire physique est décrit dans
-[docs/COMPONENT_INVENTORY.md](docs/COMPONENT_INVENTORY.md) et la première zone
-du tableau de bord est amorcée
-dans [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Voir
+[docs/COMPONENT_INVENTORY.md](docs/COMPONENT_INVENTORY.md). Voir
 [la suite libre LLM/CAO et son déploiement Vast.ai](docs/AI_DIGITAL_TWIN_STACK.md),
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).

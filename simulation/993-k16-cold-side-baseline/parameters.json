@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "case_id": "993-K16-COLD-SIDE-BASELINE-0001",
+  "status": "exploratory_reference",
+  "units": "SI_for_solver_mm_for_geometry",
+  "geometry_source": "parts/993-turbocharger-k16-cold-side-prototype/source/cold_side_concept.scad",
+  "geometry": {
+    "concept": "stationary_axisymmetric_cold_side_diffuser",
+    "inlet_diameter_mm": 50.0,
+    "outlet_diameter_mm": 68.0,
+    "diffuser_length_mm": 90.0,
+    "wall_thickness_mm": 4.0,
+    "mesh_cells_streamwise": 80,
+    "mesh_cells_across_inlet": 24
+  },
+  "flow": {
+    "fluid": "air",
+    "air_density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 0.000015,
+    "inlet_velocity_m_s": 40.0,
+    "pressure_reference_pa": 0.0,
+    "mass_flow_per_case_kg_s": 0.0942477796
+  },
+  "solver": {
+    "application": "simpleFoam",
+    "openfoam_version": "13",
+    "turbulence_model": "kOmegaSST",
+    "iterations": 500
+  },
+  "declared_k16_reference": {
+    "source_ids": [
+      "SRC-FVD-993-K16-OEM-DIMENSIONS",
+      "SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA"
+    ],
+    "complete_unit_envelope_mm": [280.0, 190.0, 210.0],
+    "left_mass_kg": 5.76,
+    "right_mass_kg": 5.6,
+    "right_turbine_inducer_mm": 54.96,
+    "right_turbine_exducer_mm": 48.97,
+    "right_compressor_inducer_mm": 40.6,
+    "right_compressor_exducer_mm": 60.5,
+    "note": "Reference fournisseur uniquement ; ces valeurs ne definissent pas la geometrie du diffuseur et ne sont pas injectees comme surfaces de calcul."
+  },
+  "assumptions": [
+    "Le diffuseur est un concept axisymetrique stationnaire cote froid, sans roue ni CHRA.",
+    "Le calcul OpenFOAM utilise un conduit rectangulaire a section equivalente comme harnais de verification de solveur.",
+    "La vitesse d'entree, la densite et la viscosite sont des conditions synthetiques de regression, pas une carte compresseur 993.",
+    "La masse de debit est derivee de la section circulaire d'entree et de la vitesse imposee.",
+    "Les resultats servent a comparer des variantes relatives ; aucune performance K16, tenue mecanique ou aptitude moteur n'est conclue."
+  ],
+  "validation": {
+    "status": "toolchain_smoke_passed",
+    "vehicle_tested": false,
+    "fitment_claim": false,
+    "required_before_any_hardware": [
+      "CAO ou scan licencie du K16 reel",
+      "carte compresseur et points de fonctionnement",
+      "materiaux et temperatures par sous-ensemble",
+      "revue d'ingenierie et banc d'essai"
+    ]
+  }
+}

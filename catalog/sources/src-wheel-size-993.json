@@ -5,11 +5,22 @@
   "url": "https://www.wheel-size.com/size/porsche/911/993-1993-1998/",
   "publisher": "Wheel-Size.com",
   "source_type": "dataset",
-  "content_types": ["technical_data", "measurement"],
+  "content_types": [
+    "technical_data",
+    "measurement"
+  ],
   "coverage": {
     "generation": "993",
-    "variants": ["MY1993_1998_market_variants"],
-    "parts": ["wheels", "tyres", "bolt_pattern", "offset", "centre_bore"]
+    "variants": [
+      "MY1993_1998_market_variants"
+    ],
+    "parts": [
+      "wheels",
+      "tyres",
+      "bolt_pattern",
+      "offset",
+      "centre_bore"
+    ]
   },
   "access": {
     "status": "available",
@@ -22,9 +33,9 @@
     "attribution": "Wheel-Size.com"
   },
   "quality": {
-    "evidence_level": "C",
+    "evidence_level": "D",
     "dimensional_accuracy": "declared",
     "verified_against": []
   },
-  "notes": "Free to read. Rim widths from 7Jx16 to 8Jx18 and offsets such as ET55 and ET70 were visible; the PCD, centre bore, thread and torque fields exist but their values did not render in the fetched text on 2026-08-28. Data is served as is with no accuracy warranty, so any hub, spacer or bolt-pattern figure must be confirmed on a real wheel before use."
+  "notes": "Free to read. Rim widths from 7Jx16 to 8Jx18 and offsets such as ET55 and ET70 were visible; the PCD, centre bore, thread and torque fields exist but their values did not render in the fetched text on 2026-08-28. Data is served as is with no accuracy warranty, so any hub, spacer or bolt-pattern figure must be confirmed on a real wheel before use. Verification du 2026-08-29 : le robots.txt de wheel-size.com autorise /size/ et n'interdit que /admin/, /api/, /data/ et les combinaisons de filtres. Les valeurs manquantes relevees le 2026-08-28 etaient donc un probleme de rendu JavaScript, pas un refus. Meme conclusion : un rendu de page permettrait de les lire. Test du 2026-08-29 : la page a ete rendue par un navigateur serveur, Cloudflare Browser Run avec moteur Kitesurf, 115 293 caracteres extraits. Les champs apparaissent alors litteralement comme « Bolt Pattern (PCD): - », « Thread Size: - », « Wheel Tightening Torque: - ». Ces valeurs ne sont donc pas masquees par le JavaScript, elles ne sont pas publiees sur cette page. L'hypothese d'un probleme de rendu, formulee la veille, est infirmee. Seuls largeurs de jante et deports restent exploitables ici."
 }

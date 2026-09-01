@@ -1,25 +1,27 @@
 # Environnement de calcul
 
 Le travail lourd du projet — reconstruction photogrammétrique, maillage, calcul
-EF et CFD — ne tient pas sur un poste ordinaire. Il est décrit ici comme deux
+EF et CFD — ne tient pas sur un poste ordinaire. Il est décrit ici comme quatre
 images conteneurs reproductibles, exécutables localement ou sur une machine GPU
 louée à l’heure.
 
 Aucun conteneur n’est nécessaire pour contribuer au catalogue. `make check`
 reste une commande Python sans dépendance.
 
-## Trois images, trois besoins
+## Quatre images, quatre besoins
 
 | Image | Besoin | Contenu | Ordre de grandeur |
 |---|---|---|---|
 | `3dprinting993-recon` | CUDA | COLMAP, GLOMAP, Blender, Open3D, pymeshlab, OpenCV | photos → maillage à l’échelle |
 | `3dprinting993-cadsim` | cœurs et mémoire | build123d, CadQuery, Gmsh, CalculiX, OpenFOAM, PrusaSlicer | code → STEP → calcul → G-code |
 | `3dprinting993-mesh-cfd` | cœurs et mémoire | Blender, pymeshlab, trimesh, build123d, Gmsh, OpenFOAM | scan OBJ → segmentation → proxy STEP → domaine CFD |
+| `3dprinting993-physicsml` | CUDA + mémoire GPU | contenu de `cadsim`, JAX-FEM, PhysicsNeMo, DeepXDE | maillage → solveur différentiable → modèle physique |
 
 La séparation est volontaire. La reconstruction a besoin d’un GPU et d’une image
-CUDA lourde ; le calcul a besoin de processeurs et tourne aussi bien sur une
-machine sans GPU, souvent bien moins chère. Louer un GPU pour faire tourner
-OpenFOAM est du gaspillage.
+CUDA lourde ; le calcul classique tourne aussi bien sur une machine sans GPU,
+souvent bien moins chère. `physicsml` est réservé aux étapes qui bénéficient
+réellement du GPU : solveurs différentiables et apprentissage guidé par la
+physique.
 
 Les choix logiciels sont justifiés dans
 [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md) :
@@ -36,11 +38,27 @@ LLM sont décrits dans [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md).
 make container-recon      # image GPU
 make container-cadsim     # image CPU
 make container-mesh-cfd   # image CPU dédiée aux gros scans et à la CFD
-make container-smoke      # exécute smoke-test.sh dans les trois images
+make container-physicsml  # image GPU pour JAX-FEM / PhysicsNeMo
+make container-smoke-all  # exécute smoke-test.sh dans les quatre images
 ```
 
 `containers/smoke-test.sh` échoue si un outil annoncé ne répond pas. Une image
 qui ne passe pas ce test ne part pas sur une machine payante.
+
+Le workflow GitHub utilise Docker Buildx. Si le poste local affiche
+« legacy builder is deprecated », installer/activer Buildx ou lancer le build
+depuis l’action manuelle `Build compute images` ; le builder legacy peut rester
+bloqué pendant la sauvegarde d’une couche CUDA très volumineuse.
+
+L’image `physicsml` épingle JAX `0.11.1`, JAX-FEM `0.0.12`, PhysicsNeMo `2.2.0`
+et DeepXDE `1.15.0`. L’extra `gnns` de PhysicsNeMo reste optionnel car il ajoute
+des extensions PyTorch dépendantes de l’architecture ; il peut être activé au
+build avec `PHYSICSNEMO_EXTRAS`.
+
+Cette image GPU est volumineuse : prévoir au moins 30 Go de disque pour l’image
+et davantage pour les jeux de données, checkpoints et résultats. Le smoke test
+vérifie les imports sur un runner CPU et vérifie aussi JAX/PyTorch sur une
+instance qui expose réellement une carte NVIDIA.
 
 Un test de version ne prouve cependant pas qu’une chaîne fonctionne.
 `containers/examples/cad_to_fea.py` enchaîne solide paramétrique, export STEP,
@@ -62,18 +80,47 @@ image Docker.
    make container-push REGISTRY=ghcr.io/<compte> IMAGE_TAG=2026.08.28
    ```
 
+   Pour publier seulement l’image GPU dédiée, construire et pousser ses tags
+   explicitement après authentification au registre :
+
+   ```bash
+   make container-physicsml IMAGE_TAG=2026.08.30
+   docker tag 3dprinting993-physicsml:2026.08.30 \
+     ghcr.io/<compte>/3dprinting993-physicsml:2026.08.30
+   docker push ghcr.io/<compte>/3dprinting993-physicsml:2026.08.30
+   ```
+
 2. **Choisir la machine.** Pour la reconstruction, viser une génération Ampere ou
    Ada (RTX 3090, 4090, A100, L40S) : les binaires CUDA 12 y sont sûrs. Vérifier
    aussi le débit réseau du nœud, car l’image se télécharge à chaque location, et
    l’espace disque, qui est fixé à la création et non modifiable ensuite.
 
-3. **Renseigner le modèle d’instance** : image `…/3dprinting993-recon:<tag>`, mode
-   de lancement `Entrypoint`, et éventuellement `PROVISIONING_SCRIPT` pointant sur
-   l’URL brute de `containers/provision-vastai.sh`.
+3. **Renseigner le modèle d’instance** : pour la chaîne complète CAO/EF/Physics ML,
+   choisir l’image `…/3dprinting993-physicsml:<tag>` avec une carte CUDA visible.
+   Pour une reconstruction photo seule, utiliser `…/3dprinting993-recon:<tag>`.
+   Mode de lancement `Entrypoint`, et éventuellement `PROVISIONING_SCRIPT`
+   pointant sur l’URL brute de `containers/provision-vastai.sh`.
 
    Les modes `SSH` et `Jupyter` remplacent l’entrypoint de l’image : les variables
    d’environnement et le `PATH` du conteneur ne sont alors pas visibles dans la
    session. Le script de provisionnement les réécrit dans `/etc/environment`.
+
+   Commande de lancement recommandée dans un terminal Vast.ai :
+
+   ```bash
+   nvidia-smi
+   smoke-test.sh physicsml
+   mkdir -p /workspace/project
+   cd /workspace/project
+   ```
+
+   Pour un lancement Docker équivalent avec les répertoires de travail séparés :
+
+   ```bash
+   docker run --rm --gpus all --ipc=host --shm-size=16g \
+       -v "$PWD:/workspace/project" -v "$PWD/work:/workspace/work" \
+       ghcr.io/<compte>/3dprinting993-physicsml:<tag> bash
+   ```
 
 4. **Envoyer les données**, jamais par Git :
 
@@ -93,6 +140,17 @@ image Docker.
   deux cohabitent, `colmap` restant la version courante.
 - Meshroom 2025.1 est compilé avec CUDA 12 et exige une capacité de calcul ≥ 5.0.
   Pour une carte Blackwell récente, vérifier la compatibilité avant de louer.
+- Code_Aster n’est pas copié dans `physicsml` : sa distribution reproductible
+  officielle s’appuie sur l’environnement Salome-Meca/Singularity. CalculiX est
+  inclus pour le chemin EF conteneurisé immédiatement disponible ; Code_Aster
+  sera consommé dans son conteneur dédié lorsque nous aurons figé une image et
+  un smoke test compatibles Vast.ai.
+
+Références amont utilisées pour le choix des versions :
+[PhysicsNeMo](https://github.com/NVIDIA/physicsnemo),
+[JAX](https://docs.jax.dev/en/latest/installation.html),
+[JAX-FEM](https://github.com/deepmodeling/jax-fem) et
+[code_aster](https://code-aster.org/en).
 
 ## Chaîne de reconstruction type
 
@@ -110,6 +168,35 @@ La mise à l’échelle n’est pas automatique : une reconstruction photogramm�
 est juste à un facteur près. Placer une référence de longueur connue dans la
 scène et recaler ensuite (`colmap model_aligner`), sinon le maillage n’est pas
 une mesure. Voir [SOURCE_POLICY.md](SOURCE_POLICY.md).
+
+## Lire une page rendue en JavaScript
+
+Plusieurs sources du registre répondent mais ne livrent rien : leur contenu
+n'existe qu'après exécution du script de page. C'est un problème de rendu, pas
+un refus, et il se résout par un navigateur exécuté côté serveur.
+
+**Cloudflare Browser Run** le fournit, avec deux moteurs : Chromium par défaut,
+et **Kitesurf**, moteur sans état conçu pour les agents, sorti le 6 août 2026,
+gratuit en bêta, annoncé à 3 à 7 fois moins de CPU et de mémoire que Chromium
+pour la capture et l'extraction HTML.
+
+Deux voies d'accès, et elles ne se valent pas :
+
+| Voie | Kitesurf | Ce qu'il faut |
+|---|---|---|
+| Binding Worker, `env.BROWSER.quickAction()` | **non documenté** | un Worker déployé, aucun jeton |
+| API REST, `?browser=kitesurf` | **oui** | un jeton `Browser Rendering - Edit` |
+
+Le moteur Kitesurf ne se sélectionne donc, à ce jour, que par l'API REST.
+
+Piège à connaître : `quickAction()` renvoie un objet `Response`, pas un objet
+nu. Le sérialiser directement produit `{}` et laisse croire à une page vide. Le
+corps utile est `{ success, result }`.
+
+Ce que Browser Run ne résout pas : un hôte qui renvoie 403, et un site qui
+refuse les agents nommés. La documentation précise d'ailleurs que Kitesurf ne
+sait pas négocier un défi anti-bot à empreintes TLS. Changer d'infrastructure ne
+change pas une permission.
 
 ## Hygiène des données
 

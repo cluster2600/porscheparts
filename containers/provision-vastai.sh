@@ -15,13 +15,17 @@ WITH_MESHROOM="${WITH_MESHROOM:-0}"
 WITH_MASKING="${WITH_MASKING:-0}"
 MESHROOM_URL="${MESHROOM_URL:-https://zenodo.org/records/16887472/files/Meshroom-2025.1.0-Linux.tar.gz}"
 
-mkdir -p "${WORKSPACE}"/{images,masks,sfm,dense,mesh,cad,sim,out,logs}
+mkdir -p "${WORKSPACE}"/{images,masks,sfm,dense,mesh,cad,sim,out,logs,datasets,checkpoints,cache}
 echo "provision: workspace layout ready under ${WORKSPACE}"
 
 # Make the image environment visible inside injected SSH and tmux sessions.
 {
     printf 'PATH=%s\n' "${PATH}"
     [ -n "${VIRTUAL_ENV:-}" ] && printf 'VIRTUAL_ENV=%s\n' "${VIRTUAL_ENV}"
+    [ -n "${FOAM_VERSION:-}" ] && printf 'FOAM_VERSION=%s\n' "${FOAM_VERSION}"
+    [ -n "${DDE_BACKEND:-}" ] && printf 'DDE_BACKEND=%s\n' "${DDE_BACKEND}"
+    [ -n "${XLA_PYTHON_CLIENT_PREALLOCATE:-}" ] && printf 'XLA_PYTHON_CLIENT_PREALLOCATE=%s\n' "${XLA_PYTHON_CLIENT_PREALLOCATE}"
+    [ -n "${PYTORCH_CUDA_ALLOC_CONF:-}" ] && printf 'PYTORCH_CUDA_ALLOC_CONF=%s\n' "${PYTORCH_CUDA_ALLOC_CONF}"
 } > /etc/environment || true
 
 if [ "${WITH_MESHROOM}" = "1" ]; then

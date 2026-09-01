@@ -1,0 +1,521 @@
+{
+  "$comment": "Sortie dérivée : conversions et enveloppe 0D, sans donnée brute de banc ni carte de turbo.",
+  "schema_version": "1.0.0",
+  "dataset_id": "993-TURBO-DYNO-REFERENCE-0001",
+  "generated_from": "simulation/993-turbo-dyno/dyno-reference.json",
+  "model": {
+    "name": "transparent_0d_dyno_normalizer",
+    "status": "reference_only",
+    "constants": {
+      "air_gas_constant_j_kg_k": 287.05,
+      "lb_ft_to_nm": 1.3558179483314003
+    },
+    "engine_context": {
+      "displacement_m3": 0.0036,
+      "strokes": 4,
+      "turbo_count": 2,
+      "airflow_envelope": {
+        "manifold_pressure_abs_pa": 181300.0,
+        "manifold_temperature_k": 323.15,
+        "volumetric_efficiency_min": 0.85,
+        "volumetric_efficiency_max": 1.0,
+        "bank_split": 0.5,
+        "basis": "Meme enveloppe 0D que docs/TURBO_AIRFLOW_SIMULATION_DATA.md ; hypothese de sensibilite, pas une mesure de banc."
+      }
+    },
+    "limitations": [
+      "Les points de banc restent issus de publications publiques et de rapports de forum.",
+      "Le débit est une enveloppe issue d'hypothèses moteur ; il ne calibre pas un compresseur.",
+      "Aucune interpolation ne doit être extrapolée hors de la plage de points."
+    ]
+  },
+  "runs": [
+    {
+      "run_id": "RUF-TURBO-R-K16-ENGINE-DYNO-1998",
+      "twin_variant": "K16-OEM",
+      "configuration_class": "RUF_Turbo_R_K16_based",
+      "source_id": "SRC-RENNLIST-993-RUF-TURBO-R-ENGINE-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "curve_anchor_incomplete",
+      "test_context": {
+        "test_type": "engine_dyno",
+        "power_basis": "engine",
+        "torque_basis": "engine",
+        "standard": "not_stated_in_forum_excerpt",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_targets": [
+        {
+          "label": "peak_power",
+          "value": 506.0,
+          "unit": "hp",
+          "rpm": 5500,
+          "basis": "engine"
+        },
+        {
+          "label": "power_at_6000",
+          "value": 460.0,
+          "unit": "hp",
+          "rpm": 6000,
+          "basis": "engine"
+        }
+      ],
+      "reported_bands": [],
+      "derived_points": [
+        {
+          "rpm": 2000,
+          "torque_nm": 362.0033922044839,
+          "power_from_torque_kw": 75.8178131682794,
+          "power_from_torque_hp": 101.67336224345146,
+          "bmep_bar": 12.636302194713233,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.09967959590862278,
+            "mass_flow_total_max_kg_s": 0.11727011283367386,
+            "mass_flow_per_turbo_min_kg_s": 0.04983979795431139,
+            "mass_flow_per_turbo_max_kg_s": 0.05863505641683693,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 2500,
+          "torque_nm": 508.43173062427513,
+          "power_from_torque_kw": 133.1071158150973,
+          "power_from_torque_hp": 178.49958259032917,
+          "bmep_bar": 17.74761544201297,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.12459949488577847,
+            "mass_flow_total_max_kg_s": 0.14658764104209232,
+            "mass_flow_per_turbo_min_kg_s": 0.062299747442889235,
+            "mass_flow_per_turbo_max_kg_s": 0.07329382052104616,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 3000,
+          "torque_nm": 547.7504511258858,
+          "power_from_torque_kw": 172.08087932575776,
+          "power_from_torque_hp": 230.7642603727775,
+          "bmep_bar": 19.120097702861976,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.14951939386293417,
+            "mass_flow_total_max_kg_s": 0.17590516925051078,
+            "mass_flow_per_turbo_min_kg_s": 0.07475969693146708,
+            "mass_flow_per_turbo_max_kg_s": 0.08795258462525539,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 3500,
+          "torque_nm": 557.2411767642055,
+          "power_from_torque_kw": 204.23955850668528,
+          "power_from_torque_hp": 273.88975952660104,
+          "bmep_bar": 19.451386524446217,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.17443929284008985,
+            "mass_flow_total_max_kg_s": 0.20522269745892924,
+            "mass_flow_per_turbo_min_kg_s": 0.08721964642004493,
+            "mass_flow_per_turbo_max_kg_s": 0.10261134872946462,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 4000,
+          "torque_nm": 608.7622588007988,
+          "power_from_torque_kw": 254.99773867084238,
+          "power_from_torque_hp": 341.9576003543799,
+          "bmep_bar": 21.24981155590353,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.19935919181724557,
+            "mass_flow_total_max_kg_s": 0.23454022566734772,
+            "mass_flow_per_turbo_min_kg_s": 0.09967959590862278,
+            "mass_flow_per_turbo_max_kg_s": 0.11727011283367386,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 4500,
+          "torque_nm": 725.3626023572992,
+          "power_from_torque_kw": 341.8190734131698,
+          "power_from_torque_hp": 458.3869280919652,
+          "bmep_bar": 25.319931363938508,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.22427909079440123,
+            "mass_flow_total_max_kg_s": 0.26385775387576615,
+            "mass_flow_per_turbo_min_kg_s": 0.11213954539720061,
+            "mass_flow_per_turbo_max_kg_s": 0.13192887693788308,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 5000,
+          "torque_nm": 709.0927869773224,
+          "power_from_torque_kw": 371.2801150469113,
+          "power_from_torque_hp": 497.89483570529137,
+          "bmep_bar": 24.75200766979409,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.24919898977155694,
+            "mass_flow_total_max_kg_s": 0.29317528208418464,
+            "mass_flow_per_turbo_min_kg_s": 0.12459949488577847,
+            "mass_flow_per_turbo_max_kg_s": 0.14658764104209232,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 5500,
+          "torque_nm": 634.5227998190953,
+          "power_from_torque_kw": 365.4588971819311,
+          "power_from_torque_hp": 490.08845396000766,
+          "bmep_bar": 22.149024071632187,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.27411888874871265,
+            "mass_flow_total_max_kg_s": 0.3224928102926031,
+            "mass_flow_per_turbo_min_kg_s": 0.13705944437435633,
+            "mass_flow_per_turbo_max_kg_s": 0.16124640514630156,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 6000,
+          "torque_nm": 535.5480895909031,
+          "power_from_torque_kw": 336.49478878056595,
+          "power_from_torque_hp": 451.2469447883521,
+          "bmep_bar": 18.694154932253664,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.29903878772586834,
+            "mass_flow_total_max_kg_s": 0.35181033850102156,
+            "mass_flow_per_turbo_min_kg_s": 0.14951939386293417,
+            "mass_flow_per_turbo_max_kg_s": 0.17590516925051078,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        }
+      ],
+      "consistency_checks": [
+        {
+          "rpm": 5500,
+          "target": "peak_power",
+          "status": "within_5_percent",
+          "reported_power_kw": 377.3241350206287,
+          "power_from_torque_kw": 365.4588971819311,
+          "relative_error": 0.03144574316204008,
+          "note": "Target-versus-torque comparison is a plausibility check, not a correction of the source."
+        },
+        {
+          "rpm": 6000,
+          "target": "power_at_6000",
+          "status": "within_5_percent",
+          "reported_power_kw": 343.0219409278443,
+          "power_from_torque_kw": 336.49478878056595,
+          "relative_error": 0.01902838089488669,
+          "note": "Target-versus-torque comparison is a plausibility check, not a correction of the source."
+        }
+      ],
+      "notes": "Le message attribue les points a un Turbo R de client RUF et cite 911 & Porsche World septembre 1998. La configuration exacte et les conditions de banc ne sont pas disponibles ; les points couple et les pics de puissance publies ne ferment pas exactement le bilan couple-puissance."
+    },
+    {
+      "run_id": "RS-TUNING-K16-STAGE3-VS-K24RS-ENGINE-DYNO",
+      "twin_variant": null,
+      "configuration_class": "same_engine_K16_stage3_vs_K24RS",
+      "source_id": "SRC-RENNLIST-993-K16-K24-COMPARATIVE-ENGINE-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "comparison_only",
+      "test_context": {
+        "test_type": "engine_dyno",
+        "power_basis": "engine",
+        "torque_basis": "engine",
+        "standard": "DIN_reported",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "DIN_claimed"
+      },
+      "reported_targets": [
+        {
+          "label": "K24RS_peak_power",
+          "configuration": "K24RS_K24_26_hybrid",
+          "value": 522.0,
+          "unit": "PS",
+          "rpm": null,
+          "basis": "engine"
+        },
+        {
+          "label": "UMW_K16_stage3_peak_power",
+          "configuration": "K16_hybrid_stage3",
+          "value": 471.0,
+          "unit": "hp",
+          "rpm": null,
+          "basis": "engine"
+        }
+      ],
+      "reported_bands": [
+        {
+          "label": "K16_stage3_power_band",
+          "configuration": "K16_hybrid_stage3",
+          "value": 470.0,
+          "unit": "hp",
+          "rpm_min": 5000,
+          "rpm_max": 6800,
+          "basis": "engine"
+        }
+      ],
+      "derived_points": [],
+      "consistency_checks": [],
+      "notes": "Le meme moteur prepare aurait ete teste avec K24RS puis avec UMW Stage 3 K16 hybrides. Arbres a cames, culasses, echappement et moteur sont communs a la comparaison rapportee, mais les feuilles de banc ne sont pas accessibles dans le message."
+    },
+    {
+      "run_id": "POWERHAUS-K24-CHASSIS-DYNO-2003",
+      "twin_variant": "K24-REFERENCE",
+      "configuration_class": "Powerhaus_modified_K24",
+      "source_id": "SRC-RENNLIST-993-POWERHAUS-K24-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "point_anchor_incomplete",
+      "test_context": {
+        "test_type": "chassis_dyno",
+        "power_basis": "wheel",
+        "torque_basis": "wheel",
+        "standard": "not_stated",
+        "boost_bar_gauge": 1.0,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_targets": [
+        {
+          "label": "before_upgrade",
+          "value": 380.0,
+          "unit": "hp",
+          "rpm": null,
+          "basis": "wheel"
+        },
+        {
+          "label": "after_upgrade",
+          "value": 500.0,
+          "unit": "hp",
+          "rpm": 5000,
+          "basis": "wheel"
+        }
+      ],
+      "reported_bands": [],
+      "derived_points": [
+        {
+          "rpm": 5000,
+          "torque_nm": 711.8044228739852,
+          "power_from_torque_kw": 372.6999242822725,
+          "power_from_torque_hp": 499.79883125292173,
+          "bmep_bar": 24.846661618818167,
+          "reported_power_kw": 372.8499357911351,
+          "reported_power_unit": "whp",
+          "reported_power_value": 500.0,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.24919898977155694,
+            "mass_flow_total_max_kg_s": 0.29317528208418464,
+            "mass_flow_per_turbo_min_kg_s": 0.12459949488577847,
+            "mass_flow_per_turbo_max_kg_s": 0.14658764104209232,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        }
+      ],
+      "consistency_checks": [
+        {
+          "rpm": 5000,
+          "status": "within_5_percent",
+          "reported_power_kw": 372.8499357911351,
+          "power_from_torque_kw": 372.6999242822725,
+          "relative_error": 0.0004023374941565424,
+          "note": "A mismatch can indicate different power/torque bases, rounding or an incomplete forum transcription."
+        },
+        {
+          "rpm": 5000,
+          "target": "after_upgrade",
+          "status": "within_5_percent",
+          "reported_power_kw": 372.8499357911351,
+          "power_from_torque_kw": 372.6999242822725,
+          "relative_error": 0.0004023374941565424,
+          "note": "Target-versus-torque comparison is a plausibility check, not a correction of the source."
+        }
+      ],
+      "notes": "Le propriétaire rapporte des K24 modifies, ECU, echappement, filtre, environ 1 bar de boost et 500 whp / 525 lb-ft a 5000 tr/min. Le régulateur 5 bar puis 3,8 bar a change le resultat ; ce cas montre qu'une calibration dépend aussi du carburant et de la gestion moteur."
+    },
+    {
+      "run_id": "DM993TT-K16-CHASSIS-DYNO-2006",
+      "twin_variant": "K16-OEM",
+      "configuration_class": "rebuilt_K16_Turbo_S_DME",
+      "source_id": "SRC-RENNLIST-993-K16-CHASSIS-DYNO",
+      "evidence_level": "C",
+      "calibration_role": "point_anchor_incomplete",
+      "test_context": {
+        "test_type": "chassis_dyno",
+        "power_basis": "wheel",
+        "torque_basis": "wheel",
+        "standard": "not_stated",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_targets": [],
+      "reported_bands": [],
+      "derived_points": [
+        {
+          "rpm": 6000,
+          "reported_power_kw": 241.60675839265556,
+          "reported_power_unit": "whp",
+          "reported_power_value": 324.0,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.29903878772586834,
+            "mass_flow_total_max_kg_s": 0.35181033850102156,
+            "mass_flow_per_turbo_min_kg_s": 0.14951939386293417,
+            "mass_flow_per_turbo_max_kg_s": 0.17590516925051078,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 4600,
+          "torque_nm": 446.0641050010307,
+          "power_from_torque_kw": 214.87392967953946,
+          "power_from_torque_hp": 288.15068617835107,
+          "bmep_bar": 15.570574614459382,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.22926307058983236,
+            "mass_flow_total_max_kg_s": 0.26972125951744985,
+            "mass_flow_per_turbo_min_kg_s": 0.11463153529491618,
+            "mass_flow_per_turbo_max_kg_s": 0.13486062975872493,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        }
+      ],
+      "consistency_checks": [],
+      "notes": "Trois tirets sont rapportés sur un banc châssis avec coupleur 4WD déconnecté, K16 reconstruits, filtre K&N, bypass Fabspeed et DME Turbo S. Le véhicule est modifié ; la conversion annoncée vers la puissance vilebrequin n'est pas retenue."
+    },
+    {
+      "run_id": "CARGRAPHIC-POWERKIT2-DYNO-TARGET",
+      "twin_variant": "K16-24-HYBRID",
+      "configuration_class": "Cargraphic_K16_24_powerkit",
+      "source_id": "SRC-CARGRAPHIC-993-K16-24-POWERKIT-DATA",
+      "evidence_level": "C",
+      "calibration_role": "declared_target_only",
+      "test_context": {
+        "test_type": "dyno_claim",
+        "power_basis": "engine",
+        "torque_basis": "engine",
+        "standard": "not_stated",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_targets": [],
+      "reported_bands": [],
+      "derived_points": [
+        {
+          "rpm": 6090,
+          "reported_power_kw": 349.36190625,
+          "reported_power_unit": "PS",
+          "reported_power_value": 475.0,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.3035243695417563,
+            "mass_flow_total_max_kg_s": 0.35708749357853686,
+            "mass_flow_per_turbo_min_kg_s": 0.15176218477087816,
+            "mass_flow_per_turbo_max_kg_s": 0.17854374678926843,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 4550,
+          "torque_nm": 632.0,
+          "power_from_torque_kw": 301.13212782209365,
+          "power_from_torque_hp": 403.82483529618105,
+          "bmep_bar": 22.060961745208324,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.2267710806921168,
+            "mass_flow_total_max_kg_s": 0.266789506696608,
+            "mass_flow_per_turbo_min_kg_s": 0.1133855403460584,
+            "mass_flow_per_turbo_max_kg_s": 0.133394753348304,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        }
+      ],
+      "consistency_checks": [],
+      "notes": "La page fabricant affirme des essais et reglages sur banc RS-Tuning, puis publie 475 PS a 6090 tr/min et 632 Nm a 4550 tr/min. La feuille, la correction atmospherique et les mesures d'admission ne sont pas publiques ; ces points restent une cible déclarée."
+    },
+    {
+      "run_id": "AP-CAR-DESIGN-993-K26-MAGAZINE-REPORT",
+      "twin_variant": null,
+      "configuration_class": "full_GT2_K26_conversion",
+      "source_id": "SRC-AP-CAR-DESIGN-993-K26-DYNO-REPORT",
+      "evidence_level": "C",
+      "calibration_role": "context_only",
+      "test_context": {
+        "test_type": "magazine_vehicle_report",
+        "power_basis": "reported_vehicle_output",
+        "torque_basis": "reported_vehicle_output",
+        "standard": "not_stated",
+        "boost_bar_gauge": null,
+        "intake_temperature_k": null,
+        "ambient_temperature_k": null,
+        "correction": "unknown"
+      },
+      "reported_targets": [],
+      "reported_bands": [],
+      "derived_points": [
+        {
+          "rpm": 4200,
+          "reported_power_kw": 448.65423749999997,
+          "reported_power_unit": "PS",
+          "reported_power_value": 610.0,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.20932715140810781,
+            "mass_flow_total_max_kg_s": 0.2462672369507151,
+            "mass_flow_per_turbo_min_kg_s": 0.10466357570405391,
+            "mass_flow_per_turbo_max_kg_s": 0.12313361847535755,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        },
+        {
+          "rpm": 4200,
+          "torque_nm": 920.0,
+          "power_from_torque_kw": 404.63713378236537,
+          "power_from_torque_hp": 542.6273346725704,
+          "bmep_bar": 32.11405823669567,
+          "airflow_context": {
+            "assumed_manifold_density_kg_m3": 1.9545018805612309,
+            "mass_flow_total_min_kg_s": 0.20932715140810781,
+            "mass_flow_total_max_kg_s": 0.2462672369507151,
+            "mass_flow_per_turbo_min_kg_s": 0.10466357570405391,
+            "mass_flow_per_turbo_max_kg_s": 0.12313361847535755,
+            "basis": "0D envelope from assumed manifold pressure, temperature, VE and equal bank split; not measured dyno airflow."
+          }
+        }
+      ],
+      "consistency_checks": [
+        {
+          "rpm": 4200,
+          "status": "inconsistent_over_5_percent",
+          "reported_power_kw": 448.65423749999997,
+          "power_from_torque_kw": 404.63713378236537,
+          "relative_error": 0.0981091897468919,
+          "power_unit": "PS",
+          "note": "Power and torque were published as separate same-RPM rows; differing bases or transcription are possible."
+        }
+      ],
+      "notes": "Cas de borne haute avec deux K26 et moteur entièrement renforce. L'article parle de force transmise a l'essieu arriere ; la valeur ne doit pas etre melangee avec une mesure vilebrequin K16/K24."
+    }
+  ]
+}

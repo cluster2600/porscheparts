@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Verify that every tool the image promises actually runs.
-# Usage: smoke-test.sh [recon|cadsim|mesh-cfd]   (auto-detected when omitted)
+# Usage: smoke-test.sh [recon|cadsim|mesh-cfd|physicsml]   (auto-detected when omitted)
 #
 # Version probes are matched on their output, not on their exit status: several
 # of these tools report a version and then exit non-zero (CalculiX exits 201).
@@ -8,7 +8,13 @@ set -uo pipefail
 
 MODE="${1:-auto}"
 if [ "${MODE}" = "auto" ]; then
-    if command -v colmap >/dev/null 2>&1; then MODE=recon; else MODE=cadsim; fi
+    if command -v colmap >/dev/null 2>&1; then
+        MODE=recon
+    elif python -c 'import physicsnemo' >/dev/null 2>&1; then
+        MODE=physicsml
+    else
+        MODE=cadsim
+    fi
 fi
 
 failures=0
@@ -74,6 +80,32 @@ if [ "${MODE}" = "recon" ]; then
         report OK gpu "$(nvidia-smi -L | head -1)"
     else
         report WARN gpu "no CUDA device visible; dense reconstruction unavailable"
+    fi
+elif [ "${MODE}" = "physicsml" ]; then
+    check ccx 'Version' ccx -v
+    check openscad 'OpenSCAD' openscad --version
+    check admesh 'ADMesh' admesh --version
+    check_python build123d 'import build123d; print("build123d", build123d.__version__)'
+    check_python cadquery 'import cadquery; print("cadquery", cadquery.__version__)'
+    check_python gmsh 'import gmsh; gmsh.initialize(); print("gmsh", gmsh.GMSH_API_VERSION); gmsh.finalize()'
+    check_python meshio 'import meshio; print("meshio", meshio.__version__)'
+    check_python jax 'import jax; print("jax", jax.__version__, jax.devices())'
+    check_python jax_fem 'import jax_fem; print("jax-fem", getattr(jax_fem, "__version__", "imported"))'
+    check_python torch 'import torch; print("torch", torch.__version__, "cuda", torch.cuda.is_available())'
+    check_python physicsnemo 'import physicsnemo; print("physicsnemo", getattr(physicsnemo, "__version__", "imported"))'
+    check_python physicsnemo_sym 'import physicsnemo.sym; print("physicsnemo.sym imported")'
+    check_python deepxde 'import deepxde; print("deepxde", deepxde.__version__)'
+    check_python foamlib 'import foamlib; print("foamlib ok")'
+    check openfoam 'blockMesh|Usage|OpenFOAM' \
+        bash -lc "source /opt/openfoam${FOAM_VERSION:-13}/etc/bashrc && blockMesh -help"
+    # GPU visibility is reported separately: the image is still inspectable
+    # on a CPU-only CI runner, while a Vast.ai run should expose a device.
+    if command -v nvidia-smi >/dev/null 2>&1 && nvidia-smi -L >/dev/null 2>&1; then
+        report OK gpu "$(nvidia-smi -L | head -1)"
+        check_python jax_gpu 'import jax; assert any(d.platform == "gpu" for d in jax.devices()); print("jax gpu", jax.devices())'
+        check_python torch_gpu 'import torch; assert torch.cuda.is_available(); print("torch gpu", torch.cuda.get_device_name(0))'
+    else
+        report WARN gpu "no CUDA device visible; GPU acceleration not exercised"
     fi
 elif [ "${MODE}" = "cadsim" ]; then
     check ccx 'Version' ccx -v

@@ -10,7 +10,7 @@ on:
         required: true
         default: cadsim
         type: choice
-        options: [cadsim, recon, mesh-cfd, both]
+        options: [cadsim, recon, mesh-cfd, physicsml, both]
       push:
         description: "Push to ghcr.io"
         required: true
@@ -24,11 +24,11 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240
     strategy:
       fail-fast: false
       matrix:
-        image: [cadsim, recon, mesh-cfd]
+        image: [cadsim, recon, mesh-cfd, physicsml]
     steps:
       - name: Skip images not requested
         id: gate
@@ -46,7 +46,7 @@ jobs:
       # A CUDA build fills the default runner disk; drop the preinstalled
       # toolchains the job does not use.
       - name: Reclaim runner disk
-        if: steps.gate.outputs.run == 'true' && (matrix.image == 'recon' || matrix.image == 'mesh-cfd')
+        if: steps.gate.outputs.run == 'true' && (matrix.image == 'recon' || matrix.image == 'mesh-cfd' || matrix.image == 'physicsml')
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/share/boost
           df -h /

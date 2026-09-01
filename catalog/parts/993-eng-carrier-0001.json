@@ -22,7 +22,7 @@
     "intended_use": "Support du groupe motopropulseur et transmission de ses efforts a la caisse"
   },
   "geometry": {
-    "source_type": "measured",
+    "source_type": "estimated",
     "master_format": "none",
     "master_file": "",
     "units": "mm",
@@ -79,23 +79,59 @@
         "license": "porsche-ag-copyright-reference-only",
         "accessed_on": "2026-08-28",
         "notes": "Catalogue de pieces Porsche heberge par un tiers. Source du releve ci-dessus. Contenu protege : consultation seulement, aucune illustration ni extrait importe dans ce depot."
+      },
+      {
+        "title": "Porsche Club GB - Cracked engine mount bracket",
+        "url": "https://www.porscheclubgb.com/forum/threads/cracked-engine-mount-bracket.124901/",
+        "source_type": "community",
+        "license": "forum-user-content-rights-unclear",
+        "accessed_on": "2026-08-28",
+        "notes": "964 : fissuration, reparation par soudure, renfort rapporte, et voilage provoque par le soudage du gousset."
+      },
+      {
+        "title": "PFF - Rennline Motortraeger / Schwert",
+        "url": "https://www.pff.de/thread/2823902-rennline-motortraeger-schwert/",
+        "source_type": "community",
+        "license": "forum-user-content-rights-unclear",
+        "accessed_on": "2026-08-28",
+        "notes": "964 : berceau fissure avec photographies, revision usine renforcee evoquee vers 1991, renfort du marche autour de 614 EUR."
+      },
+      {
+        "title": "Porsche - manuel d'atelier 911 (993), groupe 10, table des couples de serrage",
+        "url": "https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM",
+        "source_type": "official",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Berceau moteur vers support moteur : M12, 85 Nm. Exemplaire numerise consulte localement, non verse au depot."
+      },
+      {
+        "title": "FVD - Engine suspension bracket / carrier 993 Turbo, 99311502153",
+        "url": "https://www.fvd.net/en-us/shop/",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Fiche produit : 1788 USD, 1,96 kg, 600 x 50 x 50 mm, quatre photographies de la piece monobloc."
       }
     ]
   },
   "manufacturing": {
     "candidate_processes": [
       "CNC",
-      "sheet_metal",
-      "LPBF",
-      "casting"
+      "casting",
+      "sheet_metal"
     ],
-    "preferred_process": "undecided",
+    "preferred_process": "CNC",
     "material": {
-      "family": "a_determiner",
-      "grade": "matiere d'origine non identifiee, a confirmer sur piece",
+      "family": "acier ; 42CrMo4 trempe revenu ou 17-4PH envisages pour une piece usinee",
+      "grade": "nuance inconnue ; finition doree evoquant une zingaison passivee jaune",
       "standard": "aucune"
     },
-    "post_processing": [],
+    "post_processing": [
+      "rayons de raccordement soignes",
+      "etat de surface fin dans les zones tendues",
+      "grenaillage de precontrainte",
+      "protection anticorrosion si nuance non inoxydable"
+    ],
     "supplier_requirements": [
       "Tracabilite matiere et lot",
       "Procede et parametres qualifies par le fabricant",
@@ -124,15 +160,23 @@
       "Ni la piece ni les instruments ne sont disponibles : la fiche ne peut pas depasser le statut concept, faute de mesure possible.",
       "Le PET distingue trois berceaux 993 : -90 standard (Carrera, C4, S, 4S), -41 RS, -53 Turbo. Ils ne sont pas interchangeables sans preuve, et aucune cote ne permet aujourd'hui de les comparer.",
       "Aucune alternative de rechange connue pour le berceau Turbo : le berceau tubulaire du marche specialise est explicitement non Turbo.",
-      "Piste non verifiee : la reference Turbo apparait annoncee neuve autour de 225 a 270 EUR chez un revendeur allemand, et un berceau standard -90 d'occasion a environ 175 USD. Prix vus dans des resumes de recherche, aucune page marchande ouverte.",
+      "Prix releve sur fiche produit vendeur : 1788 USD hors port, disponibilite « available soon ». Le chiffre de 225 a 270 EUR rapporte precedemment par un resume de recherche etait faux.",
       "Matiere, masse et prix d'origine restent inconnus, y compris dans le releve PET : le catalogue ne les publie pas.",
-      "Construction soudee, fissuration en extremite et pratique de renfort sont rapportees par des resumes de recherche, mais aucune page ouverte ne les confirme : traitees comme pistes, pas comme faits.",
+      "Mode de defaillance etabli au niveau de la famille 964 et non sur cette reference : la piece fissure, se repare par soudure et recoit couramment un renfort rapporte (SRC-PCGB-CRACKED-ENGINE-MOUNT-BRACKET, SRC-PFF-RENNLINE-MOTORTRAEGER, pages lues). Le soudage d'un gousset de renfort peut voiler la piece. Une revision usine « legerement renforcee » a partir de 1991 environ est evoquee sans reference a l'appui.",
       "Corrosion documentee sur le 993 aux supports arriere de groupe motopropulseur et aux longerons arriere (forum 911uk, page lue) : l'environnement de la piece est corrosif.",
-      "Aucun cas de charge complet : la masse moteur supportee n'est etablie par aucune source lue directement.",
+      "Cas de charge partiellement alimente : masse moteur pesee disponible, environ 195 kg pour un groupe 993 biturbo complet hors boite, mais la fraction reprise par ce berceau plutot que par le support de boite reste inconnue, tout comme la position du centre de gravite et le bras de levier du couple moteur.",
       "Couple moteur Carrera 330 Nm a 5000 tr/min retenu faute de mieux ; la valeur Turbo, plus elevee, n'a pas ete relevee.",
       "Un tirage polymere de cette piece ne peut servir qu'a verifier des interfaces, jamais a porter le moteur.",
-      "Etude materiau realisee : a geometrie identique le Ti-6Al-4V serait 1,84 fois plus souple ; a raideur egale il reste 23 pour cent plus leger mais exige une section 17 pour cent plus grande.",
-      "Aucune publication possible avant revue d'ingenierie formelle et plan de validation approuve."
+      "Arbitrage titane tranche par la masse annoncee : a 1,96 kg annonces, le gain a raideur egale serait d'environ 0,45 kg, soit 0,03 pour cent de la masse du vehicule, contre une revue d'ingenierie complete, une qualification de procede et un controle non destructif. Le titane n'est pas justifie sur cette piece en l'etat. Le defaut constate sur la famille est la fissuration, pas la masse.",
+      "Aucune publication possible avant revue d'ingenierie formelle et plan de validation approuve.",
+      "Couples : 85 Nm sur M12 pour berceau vers support moteur, confirme par la table d'usine du groupe 10. Le second chiffre communique, 45 a 50 Nm, ne figure pas dans cette table ; la valeur voisine de 46 Nm concerne le support de boite vers caisse. Aucun couple berceau vers caisse n'a ete trouve.",
+      "Masse 1,96 kg et encombrement 600 x 50 x 50 mm proviennent de la fiche produit du vendeur. La longueur concorde avec les proportions visibles sur les photographies : ces valeurs decrivent vraisemblablement la piece, arrondie au centimetre, et non un colis. Elles restent declarees, non mesurees.",
+      "Contradiction ouverte sur la masse du moteur Turbo : 268 kg annonces sans perimetre contre 195 kg peses au marbre sur un GT2 Race complet hors boite. Ecart de 73 kg, du meme ordre qu'une boite de vitesses. Non tranchee.",
+      "Construction observee sur photographies vendeur : piece monobloc en forme de lame incurvee a section variable, deux grands trous d'allegement, bossage cylindrique a chaque extremite. Rien n'indique une construction soudee. Les renforts soudes evoques sur les forums sont donc des ajouts rapportes sur une piece monobloc, ce qui reste coherent avec le voilage constate.",
+      "Fabrication additive metal ecartee sur cette piece : 600 mm ne tiennent pas dans un volume de fabrication LPBF courant de 250 x 250 x 325 mm, la geometrie n'appelle aucun avantage de l'additif, et le mode de defaillance constate est la fissuration alors que le brut de fusion perd de l'ordre de 25 pour cent de limite d'endurance face a l'etat usine ou corroye. L'additif reste pertinent pour un renfort rapporte et pour le prototype polymere.",
+      "Choix matiere cadre mais non arrete, voir evidence/material-options.md : tous les aciers ayant le meme module, une nuance plus resistante ne change pas la raideur, et une nuance plus resistante est plus sensible aux entailles. L'allegement par substitution est ecarte, l'aluminium n'ayant pas de limite d'endurance et etant trois fois moins raide. Le seul allegement defendable passe par la forme, donc par les cas de charge.",
+      "Le manuel d'atelier ne publie aucun couple de serrage du berceau sur la caisse, verifie dans les tables du groupe 10 des volumes Carrera et Carrera 4. La procedure de remontage impose en revanche de remplacer tous les ecrous de fixation.",
+      "Recoupement marche : un berceau tubulaire de remplacement annonce 0,635 kg de gain sur un berceau d'origine deja goussete, et se vend sur l'argument de la resistance, pas de la masse. Confirme que le levier utile est la durabilite. Toutes ces offres sont non Turbo."
     ]
   }
 }

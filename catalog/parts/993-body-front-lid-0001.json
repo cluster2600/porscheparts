@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-BODY-FRONT-LID-0001",
+  "name": "Capot avant, panneau composite",
+  "description": "Capot avant du 993 reproduit en composite a partir du panneau d'origine en acier. Piece de peau boulonnee, sans fonction structurale ni barre anti-intrusion, retenue comme premier pilote de carrosserie allegee.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "a_confirmer_sur_vehicule"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "body_panel",
+    "safety_class": "functional",
+    "intended_use": "Fermeture du compartiment avant ; la piece ne porte aucune charge, mais sa retention engage la securite a vitesse elevee"
+  },
+  "geometry": {
+    "source_type": "scan",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, geometry not yet produced",
+    "sources": [
+      {
+        "title": "Paul Stephens Autoart - 993R, allegement de carrosserie",
+        "url": "https://psautoart.com/993r/",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Confirme que le capot d'origine est en acier et qu'une version aluminium Porsche Motorsport pese 8 kg."
+      },
+      {
+        "title": "Presse specialisee - Gunther Werks, 993 a carrosserie carbone",
+        "url": "https://www.carscoops.com/2022/08/gunther-werks-project-tornado-is-a-carbon-bodied-porsche-993-turbo-restomod-with-up-to-700-hp/",
+        "source_type": "community",
+        "license": "publisher-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Precedent d'une carrosserie 993 integralement en carbone preimpregne, caisse acier conservee et renforcee."
+      },
+      {
+        "title": "Federleichte Elfer - table des masses, pieces exterieures 993",
+        "url": "http://www.federleichte-elfer.de/dp93/aussen.html",
+        "source_type": "community",
+        "license": "site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Capot avant 14,0 kg d'origine ; versions allegees annoncees a 5,0 kg en GFK polyester, 4,9 kg en GFK epoxy et 4,1 kg en carbone epoxy."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "casting"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "composite a matrice organique",
+      "grade": "fibre et resine a determiner ; verre, carbone ou hybride",
+      "standard": "aucune"
+    },
+    "post_processing": [
+      "detourage",
+      "pose des interfaces de charniere et de serrure",
+      "controle de jeu et d'affleurement"
+    ],
+    "supplier_requirements": []
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "sans objet, piece composite ; prevoir l'isolation des inserts metalliques"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Classe functional et non non_critical : le panneau ne porte rien, mais un capot qui se detache a vitesse elevee est un evenement de securite. Les interfaces de charniere et de serrure sont donc les cotes critiques, pas la peau.",
+      "Masse d'origine annoncee a 14,0 kg par un preparateur allemand, coherente avec le capot aluminium Porsche Motorsport a 8 kg. Cible annoncee en carbone epoxy : 4,1 kg, soit environ 9,9 kg de gain. Ces masses sont declarees, pas pesees par ce projet : peser le panneau donneur reste l'etape zero.",
+      "Reference Porsche du capat non relevee ; variante et millesime a confirmer.",
+      "Le moule doit etre pris sur un panneau d'origine sain et non deforme : un capot accidente donnerait une piece fausse.",
+      "Fibre, resine, drapage et ame non definis. Un stratifie verre mal concu peut etre plus lourd que l'acier d'origine.",
+      "Tenue au feu, resistance a la temperature sous capot et vieillissement UV non evalues.",
+      "Conformite reglementaire non etudiee : un changement de materiau de carrosserie peut relever d'une expertise selon le pays d'immatriculation."
+    ]
+  }
+}
