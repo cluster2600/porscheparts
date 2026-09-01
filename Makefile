@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-virtual-test-bench 917-test-bench-usd valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -56,6 +56,16 @@ engine-components:
 		--bench twins/reference-917-engine/test-bench-f4.json \
 		--systems twins/reference-917-engine/systems-f4.json \
 		--output work/917-test-bench/virtual-start-report.json
+
+917-systems-f4:
+	@test -n "$(F3_INPUT)" || { echo "F3_INPUT=/chemin/vers/scene-f3.usd est requis" >&2; exit 2; }
+	/opt/material-agent/bin/python twins/reference-917-engine/source/build_systems_usd_f4.py "$(F3_INPUT)" \
+		--config twins/reference-917-engine/systems-f4.json \
+		--output work/917-systems-f4/917-engine-systems-f4.usda
+	/opt/material-agent/bin/python twins/reference-917-engine/source/validate_systems_usd_f4.py \
+		work/917-systems-f4/917-engine-systems-f4.usda \
+		--config twins/reference-917-engine/systems-f4.json \
+		--report work/917-systems-f4/validation.json
 
 917-test-bench-usd:
 	@test -n "$(F3_INPUT)" || { echo "F3_INPUT=/chemin/vers/scene-f3.usd est requis" >&2; exit 2; }
