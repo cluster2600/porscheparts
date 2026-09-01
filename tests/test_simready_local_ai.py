@@ -13,12 +13,15 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("VLLM_TORCHVISION_VERSION=0.25.0", dockerfile)
         self.assertIn("VLLM_TORCHAUDIO_VERSION=2.10.0", dockerfile)
         self.assertIn("https://download.pytorch.org/whl/cu129", dockerfile)
-        self.assertIn("assert cuda >= (12, 8)", dockerfile)
+        self.assertGreaterEqual(dockerfile.count('torch.version.cuda == "12.9"'), 3)
         self.assertNotIn("TRANSFORMERS_VERSION", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
-        self.assertIn("TORCH_VERSION=2.8.0", dockerfile)
-        self.assertIn("https://download.pytorch.org/whl/cu128", dockerfile)
-        self.assertIn("import torch; cuda = tuple", dockerfile)
+        self.assertIn("TORCH_VERSION=2.10.0", dockerfile)
+        self.assertIn("TORCHVISION_VERSION=0.25.0", dockerfile)
+        self.assertNotIn("cu128", dockerfile)
+        self.assertIn("torch.version.cuda == \"12.9\"", dockerfile)
+        self.assertIn("COPY containers/simready-physicsnemo-constraints.txt", dockerfile)
+        self.assertIn("--constraint /opt/build/physicsnemo-constraints.txt", dockerfile)
         self.assertIn("BUILD123D_VERSION=0.11.1", dockerfile)
         self.assertIn("CADQUERY_VERSION=2.8.0", dockerfile)
         self.assertIn('"nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}"', dockerfile)
@@ -32,6 +35,10 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn('"torch==${VLLM_TORCH_VERSION}"', dockerfile)
         self.assertIn('"torchvision==${VLLM_TORCHVISION_VERSION}"', dockerfile)
         self.assertIn('"torchaudio==${VLLM_TORCHAUDIO_VERSION}"', dockerfile)
+
+        constraints = (ROOT / "containers/simready-physicsnemo-constraints.txt").read_text()
+        self.assertIn("torch==2.10.0", constraints)
+        self.assertIn("torchvision==0.25.0", constraints)
 
     def test_vast_ready_gate_checks_the_full_local_ai_image(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
@@ -73,6 +80,9 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("image_url", smoke)
         self.assertIn("--limit-mm-per-prompt image=20", config)
         self.assertIn("--max-model-len 32768", config)
+        self.assertEqual(smoke.count('torch.version.cuda == "12.9"'), 2)
+        self.assertIn('torch.__version__.split("+", 1)[0] == "2.10.0"', smoke)
+        self.assertIn('torchvision.__version__.split("+", 1)[0] == "0.25.0"', smoke)
 
 
 if __name__ == "__main__":

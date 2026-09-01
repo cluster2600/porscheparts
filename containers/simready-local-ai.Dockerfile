@@ -8,7 +8,8 @@ ARG VLLM_TORCH_VERSION=2.10.0
 ARG VLLM_TORCHVISION_VERSION=0.25.0
 ARG VLLM_TORCHAUDIO_VERSION=2.10.0
 ARG PHYSICSNEMO_VERSION=2.2.0
-ARG TORCH_VERSION=2.8.0
+ARG TORCH_VERSION=2.10.0
+ARG TORCHVISION_VERSION=0.25.0
 ARG DEEPXDE_VERSION=1.15.0
 ARG BUILD123D_VERSION=0.11.1
 ARG CADQUERY_VERSION=2.8.0
@@ -43,10 +44,14 @@ RUN python3.12 -m venv /opt/venv \
     && /opt/venv/bin/pip install --no-cache-dir --upgrade "pip>=26.1"
 
 RUN /opt/venv/bin/pip install --no-cache-dir \
-       --index-url https://download.pytorch.org/whl/cu128 \
+       --index-url https://download.pytorch.org/whl/cu129 \
        "torch==${TORCH_VERSION}" \
     && /opt/venv/bin/python -c \
-       'import torch; cuda = tuple(map(int, torch.version.cuda.split(".")[:2])); assert cuda >= (12, 8), cuda'
+       'import torch; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda'
+
+RUN /opt/venv/bin/pip install --no-cache-dir \
+       --index-url https://download.pytorch.org/whl/cu129 \
+       "torchvision==${TORCHVISION_VERSION}"
 
 RUN /opt/venv/bin/pip install --no-cache-dir \
        "build123d==${BUILD123D_VERSION}" "cadquery==${CADQUERY_VERSION}" \
@@ -57,9 +62,15 @@ RUN /opt/venv/bin/pip install --no-cache-dir \
        "tqdm==${TQDM_VERSION}" "rich==${RICH_VERSION}" \
        "typer==${TYPER_VERSION}" "matplotlib==${MATPLOTLIB_VERSION}"
 
+COPY containers/simready-physicsnemo-constraints.txt /opt/build/physicsnemo-constraints.txt
+
 RUN /opt/venv/bin/pip install --no-cache-dir \
+       --constraint /opt/build/physicsnemo-constraints.txt \
+       --extra-index-url https://download.pytorch.org/whl/cu129 \
        "nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}" \
-       "deepxde==${DEEPXDE_VERSION}"
+       "deepxde==${DEEPXDE_VERSION}" \
+    && /opt/venv/bin/python -c \
+       'import physicsnemo, torch, torchvision; assert physicsnemo.__version__ == "2.2.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
 
 # vLLM supplies the local OpenAI-compatible multimodal endpoint. Its pinned
 # PyTorch stack is installed first so the full CUDA runtime and vLLM wheel do
@@ -80,7 +91,7 @@ RUN /opt/local-ai/bin/pip install --no-cache-dir \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
        "vllm==${VLLM_VERSION}" \
     && /opt/local-ai/bin/python -c \
-       'import torch, vllm; assert vllm.__version__ == "0.19.0"; cuda = tuple(map(int, torch.version.cuda.split(".")[:2])); assert cuda >= (12, 8), cuda'
+       'import torch, torchvision, vllm; assert vllm.__version__ == "0.19.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can
