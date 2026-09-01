@@ -1,6 +1,6 @@
 # Images de calcul
 
-Trois images reproductibles pour le travail qui ne tient pas sur un poste
+Cinq images reproductibles pour le travail qui ne tient pas sur un poste
 ordinaire. Elles ne sont pas nécessaires pour contribuer au catalogue.
 
 | Fichier | Image | Besoin |
@@ -8,6 +8,7 @@ ordinaire. Elles ne sont pas nécessaires pour contribuer au catalogue.
 | `recon.Dockerfile` | `3dprinting993-recon` | GPU CUDA : photos vers maillage |
 | `cadsim.Dockerfile` | `3dprinting993-cadsim` | Processeurs : CAO, maillage, EF, CFD, découpe |
 | `physicsml.Dockerfile` | `3dprinting993-physicsml` | GPU CUDA : CAO, EF différentiables et Physics ML |
+| `simready.Dockerfile` | `3dprinting993-simready` | GPU RTX 48 Go : OVRTX, Material/Physics Agents et validation USD |
 
 Tous les outils embarqués s’exécutent sans interface graphique, afin qu’un script
 puisse rejouer une chaîne complète à l’identique.
@@ -17,7 +18,20 @@ make container-cadsim
 make container-smoke
 make container-physicsml
 make container-smoke-physicsml
+make container-simready
+make container-smoke-simready
 ```
+
+`simready` est volontairement mono-conteneur. Vast.ai exécute déjà l'image
+dans un conteneur non privilégié et n'autorise pas Docker-in-Docker. OVRTX,
+Material Agent et Physics Agent sont donc installés dans des environnements
+Python séparés et lancés directement par Supervisor. Aucun secret n'est inclus
+dans l'image : `simready-services start` refuse de démarrer avant l'installation
+de `/workspace/secrets/nvidia.env` par le wrapper OpenBao.
+
+Cette image combine des composants sous licences distinctes. Le convertisseur
+CAD NVIDIA reste soumis à sa propre licence Omniverse et ne doit pas être
+présenté comme un composant libre, même si l'orchestration du dépôt l'est.
 
 `physicsml` regroupe JAX-FEM, PhysicsNeMo et DeepXDE avec les outils de
 géométrie/maillage/EF de `cadsim`. L’extra GNN de PhysicsNeMo est désactivé par

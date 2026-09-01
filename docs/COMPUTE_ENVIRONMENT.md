@@ -1,14 +1,14 @@
 # Environnement de calcul
 
 Le travail lourd du projet — reconstruction photogrammétrique, maillage, calcul
-EF et CFD — ne tient pas sur un poste ordinaire. Il est décrit ici comme quatre
-images conteneurs reproductibles, exécutables localement ou sur une machine GPU
-louée à l’heure.
+EF, CFD et préparation SimReady — ne tient pas sur un poste ordinaire. Il est
+décrit ici comme cinq images conteneurs reproductibles, exécutables localement
+ou sur une machine GPU louée à l’heure.
 
 Aucun conteneur n’est nécessaire pour contribuer au catalogue. `make check`
 reste une commande Python sans dépendance.
 
-## Quatre images, quatre besoins
+## Cinq images, cinq besoins
 
 | Image | Besoin | Contenu | Ordre de grandeur |
 |---|---|---|---|
@@ -16,12 +16,20 @@ reste une commande Python sans dépendance.
 | `3dprinting993-cadsim` | cœurs et mémoire | build123d, CadQuery, Gmsh, CalculiX, OpenFOAM, PrusaSlicer | code → STEP → calcul → G-code |
 | `3dprinting993-mesh-cfd` | cœurs et mémoire | Blender, pymeshlab, trimesh, build123d, Gmsh, OpenFOAM | scan OBJ → segmentation → proxy STEP → domaine CFD |
 | `3dprinting993-physicsml` | CUDA + mémoire GPU | contenu de `cadsim`, JAX-FEM, PhysicsNeMo, DeepXDE | maillage → solveur différentiable → modèle physique |
+| `3dprinting993-simready` | RTX, 48 Go recommandés | OVRTX, Material Agent, Physics Agent, OpenUSD, SimReady Validator | source 3D → USD enrichi → validation → rendu Omniverse |
 
 La séparation est volontaire. La reconstruction a besoin d’un GPU et d’une image
 CUDA lourde ; le calcul classique tourne aussi bien sur une machine sans GPU,
 souvent bien moins chère. `physicsml` est réservé aux étapes qui bénéficient
 réellement du GPU : solveurs différentiables et apprentissage guidé par la
 physique.
+
+`simready` regroupe les trois services NVIDIA dans un seul conteneur, car une
+instance Vast.ai standard ne peut pas lancer Docker Compose dans Docker.
+L'image doit être construite et testée dans GitHub Actions avant toute
+location. Les secrets NVIDIA ne sont jamais placés dans une couche : ils sont
+injectés après connexion SSH par le wrapper OpenBao, puis
+`simready-services start` lance les services natifs.
 
 Les choix logiciels sont justifiés dans
 [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md) :
@@ -39,7 +47,8 @@ make container-recon      # image GPU
 make container-cadsim     # image CPU
 make container-mesh-cfd   # image CPU dédiée aux gros scans et à la CFD
 make container-physicsml  # image GPU pour JAX-FEM / PhysicsNeMo
-make container-smoke-all  # exécute smoke-test.sh dans les quatre images
+make container-simready   # image GPU NVIDIA CAD-to-SimReady, linux/amd64
+make container-smoke-all  # exécute smoke-test.sh dans les cinq images
 ```
 
 `containers/smoke-test.sh` échoue si un outil annoncé ne répond pas. Une image
