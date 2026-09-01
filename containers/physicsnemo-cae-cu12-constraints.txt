@@ -1,0 +1,21 @@
+# Dépendances de premier niveau de l'image PhysicsNeMo CAE CUDA 12.
+#
+# Les dépendances transitives sont figées dans
+# /opt/physicsnemo/environment.freeze.txt au moment de la construction. Une
+# image destinée à Vast.ai doit ensuite être référencée par son digest GHCR.
+
+pip==26.2.1
+setuptools==84.0.0
+wheel==0.48.0
+
+nvidia-physicsnemo==2.2.1
+torch==2.10.0
+torchvision==0.25.0
+
+# PhysicsNeMo 2.2.1 utilise PyTorch Geometric pour MeshGraphNet. Les trois
+# extensions ci-dessous correspondent exactement à torch 2.10 / CUDA 12.8 et
+# à Python 3.12 sur linux/amd64.
+torch-geometric==2.8.0.post1
+torch-scatter==2.1.2+pt210cu128
+torch-sparse==0.6.18+pt210cu128
+torch-cluster==1.6.3+pt210cu128
