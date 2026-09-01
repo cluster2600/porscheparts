@@ -18,23 +18,29 @@ Il accepte un token stocké sous l'un des champs `GITHUB_TOKEN`, `GH_TOKEN`,
 l'accès au manifeste épinglé localement, puis lance l'image publique sans
 transmettre le token à Vast.ai.
 
-## Installation
+## Installation courante
 
-Le secret GitHub doit déjà exister. Le script de provisionnement contrôle
-uniquement ses métadonnées, crée une politique de lecture exacte et installe le
-wrapper dans `~/.local/bin` :
+Le secret GitHub et les deux AppRoles dédiées doivent déjà exister. La voie
+courante installe uniquement les sources versionnées, sans opération
+administrative OpenBao :
 
 ```zsh
 cd /Users/maxime/projects/3dprinting993
 install -m 0755 deploy/openbao/openbao-vastai /Users/maxime/.local/bin/openbao-vastai
-bash deploy/openbao/provision-openbao-ghcr.sh
+install -m 0755 deploy/openbao/openbao-ghcr /Users/maxime/.local/bin/openbao-ghcr
 rehash
+openbao-vastai --check
+openbao-vastai --auth-check
 openbao-ghcr --check
 openbao-ghcr --auth-check
 ```
 
 `--check` ne lit pas le secret. `--auth-check` lit temporairement le token via
 l'AppRole, vérifie le manifeste GHCR, puis révoque le jeton de session OpenBao.
+
+Le script `provision-openbao-ghcr.sh` est réservé à l'initialisation
+administrative ponctuelle d'une AppRole absente. Il est hors de la procédure
+courante et ne doit pas être relancé lorsque l'identité dédiée existe déjà.
 
 Le lancement reste séparé de l'installation :
 

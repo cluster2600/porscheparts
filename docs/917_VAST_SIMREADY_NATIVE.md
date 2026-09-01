@@ -40,6 +40,8 @@ JOB_ID="917-simready-$(date -u +%Y%m%dT%H%M%SZ)"
 CONTROL_ROOT="work/vast-simready/controller/${JOB_ID}"
 mkdir -p "${CONTROL_ROOT}"
 
+cmp -s deploy/openbao/openbao-ghcr "${OPENBAO_GHCR_BIN}"
+cmp -s deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"
 "${OPENBAO_GHCR_BIN}" --check
 "${OPENBAO_VASTAI_BIN}" --check
 "${OPENBAO_GHCR_BIN}" --auth-check
@@ -80,25 +82,6 @@ if not (
     raise SystemExit("offre hors contrat matériel ou coût")
 PY
 
-"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}" | tee "${CONTROL_ROOT}/launch.json"
-INSTANCE_ID="$(python3 - "${CONTROL_ROOT}/launch.json" "${EXPECTED_IMAGE}" <<'PY'
-import json
-from pathlib import Path
-import sys
-payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
-if (
-    payload.get("singleton_verified") is not True
-    or payload.get("contract_verified") is not True
-    or payload.get("image") != sys.argv[2]
-    or payload.get("label") != "3dprinting993-simready-local-ai"
-    or not isinstance(payload.get("instance_id"), int)
-    or payload["instance_id"] <= 0
-):
-    raise SystemExit("postconditions de lancement absentes")
-print(payload["instance_id"])
-PY
-)"
-
 cleanup_failed_check() {
   rc=$?
   trap - ERR
@@ -114,7 +97,35 @@ cleanup_failed_check() {
   || { "${OPENBAO_VASTAI_BIN}" show "${INSTANCE_ID}" >&2; "${OPENBAO_VASTAI_BIN}" destroy "${INSTANCE_ID}" --confirm; }
   return "${rc}"
 }
+
+"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}" | tee "${CONTROL_ROOT}/launch.json"
+INSTANCE_ID="$(python3 - "${CONTROL_ROOT}/launch.json" <<'PY'
+import json
+from pathlib import Path
+import sys
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+instance_id = payload.get("instance_id")
+if not isinstance(instance_id, int) or instance_id <= 0:
+    raise SystemExit("identifiant de lancement absent")
+print(instance_id)
+PY
+)"
 trap cleanup_failed_check ERR
+
+python3 - "${CONTROL_ROOT}/launch.json" "${EXPECTED_IMAGE}" <<'PY'
+import json
+from pathlib import Path
+import sys
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+if (
+    payload.get("singleton_verified") is not True
+    or payload.get("contract_verified") is not True
+    or payload.get("image") != sys.argv[2]
+    or payload.get("label") != "3dprinting993-simready-local-ai"
+    or payload.get("instance_id") <= 0
+):
+    raise SystemExit("postconditions de lancement absentes")
+PY
 
 deploy/vast/simready/check-instance.sh \
   --instance-id "${INSTANCE_ID}" \

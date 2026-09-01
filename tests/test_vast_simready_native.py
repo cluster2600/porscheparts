@@ -187,6 +187,11 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertIn('"${OPENBAO_VASTAI_BIN}" heavy-offers | tee', runbook)
         self.assertIn('offer.get("gpu") == "RTX PRO 6000 WS"', runbook)
         self.assertIn(".artifact_archive_verified == true and .retrieval_complete == true", runbook)
+        self.assertIn('cmp -s deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"', runbook)
+        self.assertLess(
+            runbook.index("trap cleanup_failed_check ERR"),
+            runbook.index('payload.get("singleton_verified") is not True'),
+        )
 
     def test_prompts_obligatoires_et_attestes_avant_finalisation(self):
         transfer = (CONTROLLER / "transfer-job.sh").read_text(encoding="utf-8")
