@@ -107,7 +107,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()
         self.assertIn("data:image/png;base64", smoke)
         self.assertIn("image_url", smoke)
-        self.assertIn("--limit-mm-per-prompt image=20", config)
+        self.assertIn("--limit-mm-per-prompt '{\"image\":20}'", config)
         self.assertIn("--max-model-len 32768", config)
         self.assertEqual(smoke.count('torch.version.cuda == "12.9"'), 2)
         self.assertIn('vllm.__version__ == "0.26.0"', smoke)
