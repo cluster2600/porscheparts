@@ -1,0 +1,418 @@
+{
+  "$comment": "F14 ne contient que des guides dimensionnels et des occurrences non placees. Il ne definit aucune piece moteur, interface fonctionnelle ou cote de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F14",
+  "status": "dimension_guides_only_source_bounded",
+  "asset_id": "porsche-917-dimensional-skeleton-f14",
+  "verified_engine_level_after_generation": "F0_source_integrity",
+  "source_registry": [
+    {
+      "source_id": "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+      "path": "catalog/sources/src-ams-917-engine-technical-analysis.json",
+      "evidence_grade": "C",
+      "claim_tokens": [
+        "85 x 66 mm",
+        "86,8 x 70,4 mm",
+        "90 x 70,4 mm"
+      ]
+    },
+    {
+      "source_id": "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+      "path": "catalog/sources/src-kfz-tech-917-type912-engine.json",
+      "evidence_grade": "D",
+      "claim_tokens": [
+        "118 mm",
+        "47,5 mm",
+        "40,5 mm"
+      ]
+    },
+    {
+      "source_id": "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+      "path": "catalog/sources/src-porsche-newsroom-91730-turbo.json",
+      "evidence_grade": "B",
+      "claim_tokens": [
+        "5 374 cm3",
+        "deux turbocompresseurs"
+      ]
+    },
+    {
+      "source_id": "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS",
+      "path": "catalog/sources/src-porsche-christophorus-917-dilavar-studs.json",
+      "evidence_grade": "A",
+      "claim_tokens": [
+        "48 goujons",
+        "149,5 mm",
+        "9 mm",
+        "65 g"
+      ]
+    }
+  ],
+  "authoring_policy": {
+    "geometry_kind": "dimension_curves_and_unplaced_placeholders_only",
+    "source_values_only": true,
+    "metric_guides_are_not_scan_scale": true,
+    "scan_geometry_consumed": false,
+    "scan_units_converted_to_mm": false,
+    "engine_component_solids_allowed": false,
+    "maximum_solid_count": 0,
+    "component_placement_allowed": false,
+    "physics_schemas_allowed": false,
+    "material_assignment_allowed": false,
+    "manufacturing_tolerances_allowed": false,
+    "step_scope_if_requested": "wire_guides_only"
+  },
+  "variants": [
+    {
+      "variant_id": "type_912_4_5_na",
+      "display_name": "Type 912 4,5 L atmospherique",
+      "branch_role": "requested_naturally_aspirated_baseline",
+      "identity_status": "published_variant_not_identified_as_the_scan",
+      "facts": [
+        {
+          "fact_id": "cylinder_count",
+          "value": 12,
+          "unit": "count",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "bore_diameter_mm",
+          "value": 85.0,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "stroke_mm",
+          "value": 66.0,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "documented_displacement_cm3",
+          "value": 4494.0,
+          "unit": "cm3",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "regular_cylinder_pitch_mm",
+          "value": 118.0,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+          ],
+          "scope": "candidate_regular_pitch_only_central_gap_and_bank_frames_unknown",
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "intake_valve_head_diameter_mm",
+          "value": 47.5,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+          ],
+          "scope": "candidate_head_diameter_only_stem_seat_and_location_unknown",
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "exhaust_valve_head_diameter_mm",
+          "value": 40.5,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+          ],
+          "scope": "candidate_head_diameter_only_stem_seat_and_location_unknown",
+          "manufacturing_dimension": false
+        }
+      ],
+      "guides": [
+        {
+          "guide_id": "published_bore_circle",
+          "primitive": "diameter_circle",
+          "fact_id": "bore_diameter_mm"
+        },
+        {
+          "guide_id": "published_stroke_segment",
+          "primitive": "length_segment",
+          "fact_id": "stroke_mm"
+        },
+        {
+          "guide_id": "candidate_regular_pitch_segment",
+          "primitive": "length_segment",
+          "fact_id": "regular_cylinder_pitch_mm"
+        },
+        {
+          "guide_id": "candidate_intake_valve_head_circle",
+          "primitive": "diameter_circle",
+          "fact_id": "intake_valve_head_diameter_mm"
+        },
+        {
+          "guide_id": "candidate_exhaust_valve_head_circle",
+          "primitive": "diameter_circle",
+          "fact_id": "exhaust_valve_head_diameter_mm"
+        }
+      ],
+      "unplaced_families": [
+        {
+          "family": "cylinder_axis_placeholder",
+          "count_fact_id": "cylinder_count",
+          "placement_status": "unknown_unplaced"
+        }
+      ]
+    },
+    {
+      "variant_id": "917_5_0_na_4999",
+      "display_name": "917 5,0 L atmospherique candidat",
+      "branch_role": "scan_comparison_candidate_not_selected",
+      "identity_status": "numerically_closest_scan_candidate_not_identified",
+      "facts": [
+        {
+          "fact_id": "cylinder_count",
+          "value": 12,
+          "unit": "count",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "bore_diameter_mm",
+          "value": 86.8,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "stroke_mm",
+          "value": 70.4,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "documented_displacement_cm3",
+          "value": 4999.0,
+          "unit": "cm3",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        }
+      ],
+      "guides": [
+        {
+          "guide_id": "published_bore_circle",
+          "primitive": "diameter_circle",
+          "fact_id": "bore_diameter_mm"
+        },
+        {
+          "guide_id": "published_stroke_segment",
+          "primitive": "length_segment",
+          "fact_id": "stroke_mm"
+        }
+      ],
+      "unplaced_families": [
+        {
+          "family": "cylinder_axis_placeholder",
+          "count_fact_id": "cylinder_count",
+          "placement_status": "unknown_unplaced"
+        }
+      ]
+    },
+    {
+      "variant_id": "917_30_turbo_5374",
+      "display_name": "917/30 5,374 L biturbo",
+      "branch_role": "requested_turbo_baseline",
+      "identity_status": "published_variant_not_identified_as_the_scan",
+      "facts": [
+        {
+          "fact_id": "cylinder_count",
+          "value": 12,
+          "unit": "count",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-PORSCHE-NEWSROOM-91730-TURBO"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "bore_diameter_mm",
+          "value": 90.0,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "stroke_mm",
+          "value": 70.4,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "documented_displacement_cm3",
+          "value": 5374.0,
+          "unit": "cm3",
+          "source_ids": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-PORSCHE-NEWSROOM-91730-TURBO"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "turbocharger_count",
+          "value": 2,
+          "unit": "count",
+          "source_ids": [
+            "SRC-PORSCHE-NEWSROOM-91730-TURBO"
+          ],
+          "scope": "topology_only_no_model_map_dimensions_or_placement",
+          "manufacturing_dimension": false
+        }
+      ],
+      "guides": [
+        {
+          "guide_id": "published_bore_circle",
+          "primitive": "diameter_circle",
+          "fact_id": "bore_diameter_mm"
+        },
+        {
+          "guide_id": "published_stroke_segment",
+          "primitive": "length_segment",
+          "fact_id": "stroke_mm"
+        }
+      ],
+      "unplaced_families": [
+        {
+          "family": "cylinder_axis_placeholder",
+          "count_fact_id": "cylinder_count",
+          "placement_status": "unknown_unplaced"
+        },
+        {
+          "family": "turbocharger_topology_placeholder",
+          "count_fact_id": "turbocharger_count",
+          "placement_status": "unknown_unplaced"
+        }
+      ]
+    }
+  ],
+  "shared_references": {
+    "head_stud_reference": {
+      "classification": "published_reference_not_a_manufacturing_part",
+      "candidate_scope": "917_engine_presented_for_1970",
+      "assigned_variant_ids": [],
+      "automatic_turbo_application_allowed": false,
+      "placement_status": "unknown_unplaced",
+      "placement_coordinates_mm": null,
+      "thread_geometry": null,
+      "end_geometry": null,
+      "sleeve_geometry": null,
+      "facts": [
+        {
+          "fact_id": "stud_count",
+          "value": 48,
+          "unit": "count",
+          "source_ids": [
+            "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "shaft_diameter_mm",
+          "value": 9.0,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "free_length_mm",
+          "value": 149.5,
+          "unit": "mm",
+          "source_ids": [
+            "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"
+          ],
+          "manufacturing_dimension": false
+        },
+        {
+          "fact_id": "mass_each_g",
+          "value": 65.0,
+          "unit": "g",
+          "source_ids": [
+            "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"
+          ],
+          "manufacturing_dimension": false
+        }
+      ],
+      "guides": [
+        {
+          "guide_id": "published_shaft_diameter_circle",
+          "primitive": "diameter_circle",
+          "fact_id": "shaft_diameter_mm"
+        },
+        {
+          "guide_id": "published_free_length_segment",
+          "primitive": "length_segment",
+          "fact_id": "free_length_mm"
+        }
+      ],
+      "unplaced_family": {
+        "family": "head_stud_reference_placeholder",
+        "count_fact_id": "stud_count",
+        "placement_status": "unknown_unplaced"
+      },
+      "missing_before_assignment": [
+        "variant_specific_part_identity",
+        "stud_center_pattern",
+        "thread_specification_and_engagement",
+        "end_geometry",
+        "sleeve_dimensions",
+        "clamp_path_and_preload",
+        "material_grade_and_heat_treatment"
+      ]
+    }
+  },
+  "release_gates": {
+    "scan_identity_confirmed": false,
+    "scan_metric_scale_confirmed": false,
+    "component_placements_confirmed": false,
+    "interfaces_confirmed": false,
+    "tolerances_confirmed": false,
+    "engine_solids_released": false,
+    "physics_released": false,
+    "functional_release": false,
+    "polymer_print_release": false,
+    "metal_print_release": false,
+    "manufacturing_release": false
+  },
+  "prohibited_uses": [
+    "treating_a_guide_curve_as_an_engine_component",
+    "scaling_or_identifying_the_scan_from_published_dimensions",
+    "placing_cylinders_studs_valves_or_turbos_without_measured_frames",
+    "creating_pistons_rods_crankshafts_heads_ducts_or_turbos_from_incomplete_dimensions",
+    "authoring_physics_joints_contacts_or_flow_boundaries",
+    "functional_polymer_or_metal_manufacture",
+    "claiming_engine_function_power_durability_or_1600_hp_proof"
+  ]
+}

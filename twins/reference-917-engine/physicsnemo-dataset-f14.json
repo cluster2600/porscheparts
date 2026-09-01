@@ -1,0 +1,266 @@
+{
+  "$comment": "F14 definit le passage des solveurs classiques vers un dataset PhysicsNeMo. Il ne contient aucun echantillon, aucun resultat moteur, aucun poids et aucune preuve de 1600 hp.",
+  "schema_version": "1.0.0",
+  "phase": "F14",
+  "status": "dataset_contract_ready_zero_samples_training_blocked",
+  "asset": {
+    "id": "porsche-917-physicsnemo-dataset-f14",
+    "parent_id": "porsche-917-classical-solver-cases-f13",
+    "engine_maturity": "F0_source_integrity_only"
+  },
+  "authority_boundary": {
+    "contract_only": true,
+    "accepted_sample_count": 0,
+    "classical_cases_passed": 0,
+    "dataset_ready": false,
+    "training_authorized": false,
+    "inference_authorized": false,
+    "engine_simulation_proven": false,
+    "reported_1600_hp_proven": false,
+    "fabrication_authorized": false,
+    "print_release": false,
+    "engine_start_authorized": false
+  },
+  "runtime": {
+    "image_lock_path": "containers/physicsnemo-cae-cu12.lock.json",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a",
+    "physicsnemo_version": "2.2.1",
+    "gpu_runtime_required_for_training": true,
+    "gpu_runtime_verified": false,
+    "vast_long_job_allowed": false
+  },
+  "live_discovery": {
+    "repository": "https://github.com/NVIDIA/physicsnemo",
+    "commit": "4f027d906f2d7300ee230d7f6bc85865ab0fae8c",
+    "inspected_on": "2026-09-02",
+    "runtime_pin_compatibility_verified": false,
+    "compatibility_note": "Les chemins ont ete relus sur ce commit amont courant. Leur compatibilite complete avec l'image 2.2.1 reste un gate distinct; seuls trois imports publics ont ete verifies dans l'image.",
+    "problem_shapes": [
+      "surface_and_volume_point_cloud",
+      "static_unstructured_mesh",
+      "transient_unstructured_mesh_graph"
+    ],
+    "candidate_models": [
+      {
+        "name": "DoMINO",
+        "repo_path": "physicsnemo/models/domino/__init__.py",
+        "data_shapes": ["surface_and_volume_point_cloud"],
+        "case_refs": [
+          "CASE-917-F13-003",
+          "CASE-917-F13-004",
+          "CASE-917-F13-005",
+          "CASE-917-F13-011"
+        ],
+        "runtime_import_verified": true,
+        "selection_status": "candidate_not_selected"
+      },
+      {
+        "name": "GeoTransolver",
+        "repo_path": "physicsnemo/models/geotransolver/__init__.py",
+        "data_shapes": [
+          "surface_and_volume_point_cloud",
+          "static_unstructured_mesh"
+        ],
+        "case_refs": [
+          "CASE-917-F13-004",
+          "CASE-917-F13-005",
+          "CASE-917-F13-006",
+          "CASE-917-F13-007",
+          "CASE-917-F13-008",
+          "CASE-917-F13-011"
+        ],
+        "runtime_import_verified": true,
+        "selection_status": "candidate_not_selected"
+      },
+      {
+        "name": "Transolver",
+        "repo_path": "physicsnemo/models/transolver/__init__.py",
+        "data_shapes": [
+          "surface_and_volume_point_cloud",
+          "static_unstructured_mesh"
+        ],
+        "case_refs": [
+          "CASE-917-F13-003",
+          "CASE-917-F13-004",
+          "CASE-917-F13-005",
+          "CASE-917-F13-006",
+          "CASE-917-F13-007",
+          "CASE-917-F13-008",
+          "CASE-917-F13-011"
+        ],
+        "runtime_import_verified": false,
+        "selection_status": "candidate_not_selected"
+      },
+      {
+        "name": "MeshGraphNet",
+        "repo_path": "physicsnemo/models/meshgraphnet/__init__.py",
+        "data_shapes": [
+          "static_unstructured_mesh",
+          "transient_unstructured_mesh_graph"
+        ],
+        "case_refs": [
+          "CASE-917-F13-005",
+          "CASE-917-F13-006",
+          "CASE-917-F13-007",
+          "CASE-917-F13-008",
+          "CASE-917-F13-009",
+          "CASE-917-F13-010",
+          "CASE-917-F13-011"
+        ],
+        "runtime_import_verified": true,
+        "selection_status": "candidate_not_selected"
+      }
+    ],
+    "candidate_datapipes": [
+      {
+        "name": "DoMINODataPipe",
+        "repo_path": "physicsnemo/datapipes/cae/domino_datapipe.py",
+        "format_role": "surface_and_volume_fields_with_geometry",
+        "selection_status": "candidate_not_selected"
+      },
+      {
+        "name": "TransolverDataPipe",
+        "repo_path": "physicsnemo/datapipes/cae/transolver_datapipe.py",
+        "format_role": "surface_or_volume_points_with_geometry_and_global_features",
+        "selection_status": "candidate_not_selected"
+      },
+      {
+        "name": "MeshDataset",
+        "repo_path": "physicsnemo/datapipes/mesh_dataset.py",
+        "reader_base_path": "physicsnemo/datapipes/readers/base.py",
+        "format_role": "mesh_reader_plus_mesh_transforms_or_custom_reader",
+        "selection_status": "candidate_not_selected"
+      }
+    ],
+    "reference_examples": [
+      {
+        "repo_path": "examples/cfd/external_aerodynamics/domino/README.md",
+        "model_axis": "DoMINO",
+        "datapipe_axis": "DoMINODataPipe",
+        "strategy_axis": "single_or_distributed_gpu",
+        "role": "reference_instantiation_not_engine_recipe"
+      },
+      {
+        "repo_path": "examples/cfd/external_aerodynamics/transformer_models/README.md",
+        "model_axis": "Transolver_or_GeoTransolver",
+        "datapipe_axis": "TransolverDataPipe",
+        "strategy_axis": "single_gpu_or_DDP",
+        "role": "reference_instantiation_not_engine_recipe"
+      }
+    ]
+  },
+  "reference_cases": {
+    "registry_path": "twins/reference-917-engine/classical-solver-cases-f13.json",
+    "required_case_ids": [
+      "CASE-917-F13-001",
+      "CASE-917-F13-002",
+      "CASE-917-F13-003",
+      "CASE-917-F13-004",
+      "CASE-917-F13-005",
+      "CASE-917-F13-006",
+      "CASE-917-F13-007",
+      "CASE-917-F13-008",
+      "CASE-917-F13-009",
+      "CASE-917-F13-010",
+      "CASE-917-F13-011",
+      "CASE-917-F13-012"
+    ],
+    "all_required_before_whole_engine_training": true,
+    "passed_case_ids": []
+  },
+  "sample_contract": {
+    "manifest_filename": "sample.json",
+    "required_artifact_roles": [
+      "geometry",
+      "mesh",
+      "solver_config",
+      "boundary_conditions",
+      "fields",
+      "convergence_report",
+      "mesh_independence_report",
+      "correlation_report"
+    ],
+    "allowed_mesh_formats": ["vtu", "vtp", "cgns", "hdf5", "zarr"],
+    "required_geometry_state": {
+      "source_kind": "dimensioned_cad",
+      "identity_verified": true,
+      "scale_verified": true,
+      "interface_fidelity_verified": true,
+      "raw_scan_used_as_solver_geometry": false
+    },
+    "required_verification_flags": [
+      "acceptance_thresholds_predeclared",
+      "converged",
+      "conservation_passed",
+      "mesh_independence_passed",
+      "correlated_to_physical_data",
+      "uncertainty_quantified"
+    ],
+    "self_release_forbidden": true
+  },
+  "split_policy": {
+    "group_keys": [
+      "geometry_family_id",
+      "physical_test_campaign_id",
+      "operating_point_family_id"
+    ],
+    "train_fraction": null,
+    "validation_fraction": null,
+    "test_fraction": null,
+    "fractions_status": "must_be_defined_before_dataset_release",
+    "cross_split_group_leakage_allowed": false,
+    "held_out_geometry_required": true,
+    "held_out_operating_region_required": true,
+    "out_of_distribution_suite_required": true
+  },
+  "proof_chain": {
+    "reported_target": "1600 mechanical hp in reported qualifying trim",
+    "documentary_source_id": "SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING",
+    "simulation_claim_status": "not_proven",
+    "required_order": [
+      "measured_geometry_and_boundaries",
+      "validated_classical_solver_cases",
+      "mesh_and_time_step_independence",
+      "mass_and_energy_balance",
+      "instrumented_bench_correlation_with_uncertainty",
+      "versioned_dataset_and_leak_free_splits",
+      "physicsnemo_training_holdout_UQ_and_OOD_abstention",
+      "independent_dyno_confirmation"
+    ],
+    "physicsnemo_is_proof_by_itself": false,
+    "omniverse_render_is_proof": false
+  },
+  "current_state": {
+    "sample_root": "work/917-physicsnemo-f14/cases",
+    "sample_files_seen": 0,
+    "accepted_samples": 0,
+    "rejected_samples": 0,
+    "dataset_manifest_present": false,
+    "split_manifest_present": false,
+    "model_selection_present": false,
+    "training_results_present": false
+  },
+  "release_gates": {
+    "contract_valid": true,
+    "runtime_compatibility_verified": false,
+    "gpu_runtime_verified": false,
+    "all_reference_cases_passed": false,
+    "sample_lineage_complete": false,
+    "split_leakage_check_passed": false,
+    "model_selected": false,
+    "training_authorized": false,
+    "holdout_passed": false,
+    "ood_abstention_passed": false,
+    "engine_simulation_validated": false,
+    "reported_1600_hp_proven": false,
+    "fabrication_authorized": false
+  },
+  "prohibited_use": [
+    "train_on_raw_scan_or_visual_proxy",
+    "train_on_unconverged_or_uncorrelated_solver_output",
+    "split_the_same_geometry_or_test_campaign_across_train_and_test",
+    "select_a_model_from_import_success_only",
+    "claim_1600_hp_from_a_surrogate_or_render",
+    "fabricate_or_start_an_engine_from_F14"
+  ]
+}

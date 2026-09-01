@@ -1,0 +1,99 @@
+{
+  "$comment": "F14-001A execute uniquement des identites mecaniques algebriques sur deux couples puissance-regime publies. Il ne simule ni combustion, ni remplissage, ni turbo et ne prouve aucune puissance.",
+  "schema_version": "1.0.0",
+  "phase": "F14-001A",
+  "status": "sourced_algebraic_mechanical_benchmark_only",
+  "asset_id": "porsche-917-mechanical-benchmark-f14",
+  "parent_asset_id": "porsche-917-classical-solver-cases-f13",
+  "units": "SI_with_declared_source_units",
+  "fact_registry_path": "twins/reference-917-engine/classical-solver-cases-f13.json",
+  "authority_boundary": {
+    "algebraic_benchmark_execution_authorized": true,
+    "thermodynamic_solver_execution_authorized": false,
+    "combustion_simulation_authorized": false,
+    "turbo_simulation_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "performance_claim_authorized": false,
+    "fabrication_authorized": false,
+    "engine_start_authorized": false
+  },
+  "power_unit_conversions": {
+    "PS_to_W": 735.49875,
+    "hp_to_W": 745.6998715822702,
+    "role": "unit_definition_not_engine_input"
+  },
+  "cases": [
+    {
+      "id": "CASE-917-F14-001A-5L-NA",
+      "variant": "type_912_5_0_na",
+      "label": "917 Type 912 5.0 L atmospherique - point de puissance publie",
+      "fact_refs": {
+        "cylinder_count": "FACT-CYLINDER-COUNT",
+        "bore": "FACT-50-BORE",
+        "stroke": "FACT-50-STROKE",
+        "published_displacement": "FACT-50-DISPLACEMENT",
+        "reported_power": "FACT-NA-POWER",
+        "reported_power_speed": "FACT-50-RATED-SPEED"
+      },
+      "power_speed_pair_source_refs": [
+        "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+      ],
+      "role": "documentary_mechanical_consistency_anchor",
+      "claim_status": "not_a_dyno_measurement_not_a_prediction"
+    },
+    {
+      "id": "CASE-917-F14-001A-5374-TURBO-1973",
+      "variant": "917_30_1973_turbo_5374",
+      "label": "917/30 5.374 L turbo 1973 - point de puissance publie",
+      "fact_refs": {
+        "cylinder_count": "FACT-CYLINDER-COUNT",
+        "bore": "FACT-5374-BORE",
+        "stroke": "FACT-5374-STROKE",
+        "published_displacement": "FACT-5374-DISPLACEMENT",
+        "reported_power": "FACT-TURBO-POWER-1100",
+        "reported_power_speed": "FACT-5374-RATED-SPEED"
+      },
+      "power_speed_pair_source_refs": [
+        "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+        "SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"
+      ],
+      "role": "documentary_mechanical_consistency_anchor",
+      "claim_status": "not_a_dyno_measurement_not_a_prediction"
+    }
+  ],
+  "documentary_uncomputed_claims": [
+    {
+      "id": "CLAIM-917-F14-1600-HP-REPORTED",
+      "variant": "917_30_1600_hp_reported_qualifying_target",
+      "reported_power_fact_ref": "FACT-TURBO-POWER-1600-REPORTED",
+      "reported_power_speed_fact_ref": null,
+      "reported_power_speed_rpm": null,
+      "status": "blocked_missing_reported_speed_test_conditions_and_measurement_uncertainty",
+      "derived_mechanical_quantities": null,
+      "proof_status": "not_proven"
+    }
+  ],
+  "equations": {
+    "calculated_displacement_m3": "pi/4 * bore_m^2 * stroke_m * cylinder_count",
+    "displacement_relative_difference": "(calculated_displacement_m3 - published_displacement_m3) / published_displacement_m3",
+    "angular_speed_rad_s": "2*pi*reported_power_speed_rpm/60",
+    "torque_nm": "reported_power_w / angular_speed_rad_s",
+    "four_stroke_bmep_pa": "4*pi*torque_nm/displacement_m3",
+    "mean_piston_speed_m_s": "2*stroke_m*reported_power_speed_rpm/60"
+  },
+  "output": {
+    "default_path": "work/917-mechanical-benchmark-f14/mechanical-benchmark-results.json",
+    "tracked": false,
+    "dataset_role": "two_documentary_anchors_only_not_training_data"
+  },
+  "prohibited_use": [
+    "claim_that_a_thermodynamic_or_combustion_solver_ran",
+    "claim_that_turbo_airflow_boost_or_efficiency_was_computed",
+    "claim_that_630_PS_or_1100_PS_was_reproduced_or_proven",
+    "claim_that_1600_hp_was_computed_simulated_or_proven",
+    "interpolate_or_extrapolate_a_power_or_torque_curve",
+    "use_as_physicsnemo_training_data",
+    "engine_hardware_or_manufacturing_release",
+    "physical_engine_start_or_dyno_release"
+  ]
+}

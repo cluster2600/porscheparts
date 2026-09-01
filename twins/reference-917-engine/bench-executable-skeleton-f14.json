@@ -1,0 +1,247 @@
+{
+  "$comment": "F14 compose deux stages F10 distincts sur un squelette de banc executable et verifiable. Les equipements, capteurs, liaisons et conduits sont des endpoints et graphes semantiques; ils ne constituent ni des interfaces mesurees, ni des joints PhysX, ni des volumes CFD.",
+  "schema_version": "1.0.0",
+  "phase": "F14",
+  "status": "bench_executable_skeleton_contract_ready_engine_physics_blocked",
+  "units": "mm",
+  "source_contracts": {
+    "variants": "twins/reference-917-engine/variant-configurations-f10.json",
+    "bench": "twins/reference-917-engine/test-bench-f4.json",
+    "instrumentation": "twins/reference-917-engine/test-bench-f4.json",
+    "mechanical_connections": "twins/reference-917-engine/mechanical-connections-f8.json",
+    "ducts": "twins/reference-917-engine/ducts-f8.json",
+    "support_components": "twins/reference-917-engine/start-support-f5.json",
+    "external_interfaces": "twins/reference-917-engine/external-interfaces-f8.json",
+    "base_engine_families": "twins/reference-917-engine/complete-engine-f1.json",
+    "detail_engine_families": "twins/reference-917-engine/detail-expansion-f3.json"
+  },
+  "variants": [
+    {
+      "variant_id": "type_912_4_5_na",
+      "display_name": "Type 912 4,5 L atmospherique",
+      "input_stage": "work/917-variant-geometry-f10/type-912-4-5-na/stages/type-912-4-5-na-detail-f10.usda",
+      "output_slug": "type-912-4-5-na",
+      "expected_mechanical_connection_instances": 117,
+      "expected_duct_instances": 82
+    },
+    {
+      "variant_id": "917_30_turbo_5374",
+      "display_name": "917/30 5,374 L biturbo",
+      "input_stage": "work/917-variant-geometry-f10/917-30-turbo-5374/stages/917-30-turbo-5374-detail-f10.usda",
+      "output_slug": "917-30-turbo-5374",
+      "expected_mechanical_connection_instances": 119,
+      "expected_duct_instances": 92
+    }
+  ],
+  "bench_equipment": [
+    {
+      "id": "bedplate",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_only"
+    },
+    {
+      "id": "engine_mount",
+      "count": 4,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_positions_and_loads_unmeasured"
+    },
+    {
+      "id": "dynamometer",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_load_disabled"
+    },
+    {
+      "id": "dyno_coupling",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_alignment_unmeasured"
+    },
+    {
+      "id": "starter_motor",
+      "count": 1,
+      "f4_authoring_status": "missing",
+      "f14_status": "materialized_semantic_proxy_interface_unmeasured"
+    },
+    {
+      "id": "battery",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_electrical_parameters_unmeasured"
+    },
+    {
+      "id": "fuel_supply",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_flow_parameters_unmeasured"
+    },
+    {
+      "id": "oil_reservoir",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_proxy_capacity_and_level_unmeasured"
+    },
+    {
+      "id": "cooling_air_supply",
+      "count": 1,
+      "f4_authoring_status": "missing",
+      "f14_status": "materialized_semantic_proxy_fan_curve_unmeasured"
+    },
+    {
+      "id": "exhaust_extraction",
+      "count": 2,
+      "f4_authoring_status": "missing",
+      "f14_status": "materialized_semantic_proxy_back_pressure_unmeasured"
+    },
+    {
+      "id": "emergency_stop",
+      "count": 1,
+      "f4_authoring_status": "present",
+      "f14_status": "semantic_endpoint_logic_not_safety_certified"
+    },
+    {
+      "id": "fire_suppression",
+      "count": 1,
+      "f4_authoring_status": "missing",
+      "f14_status": "materialized_semantic_proxy_not_safety_certified"
+    }
+  ],
+  "instrumentation": [
+    {
+      "id": "crank_speed",
+      "count": 1,
+      "required_for": ["dry_crank", "fired_run"]
+    },
+    {
+      "id": "crank_torque",
+      "count": 1,
+      "required_for": ["dry_crank", "fired_run"]
+    },
+    {
+      "id": "oil_pressure",
+      "count": 2,
+      "required_for": ["oil_prime", "dry_crank", "fired_run"]
+    },
+    {
+      "id": "oil_temperature",
+      "count": 2,
+      "required_for": ["oil_prime", "fired_run"]
+    },
+    {
+      "id": "fuel_pressure",
+      "count": 1,
+      "required_for": ["fired_run"]
+    },
+    {
+      "id": "intake_pressure_temperature",
+      "count": 4,
+      "required_for": ["fired_run"]
+    },
+    {
+      "id": "exhaust_pressure_temperature",
+      "count": 12,
+      "required_for": ["fired_run"]
+    },
+    {
+      "id": "cylinder_pressure",
+      "count": 12,
+      "required_for": ["combustion_calibration"]
+    },
+    {
+      "id": "bearing_temperature",
+      "count": 8,
+      "required_for": ["loaded_run"]
+    },
+    {
+      "id": "vibration",
+      "count": 6,
+      "required_for": ["dry_crank", "fired_run", "loaded_run"]
+    }
+  ],
+  "semantic_graph": {
+    "mechanical_connections": {
+      "group_count": 18,
+      "union_instance_count": 119,
+      "na_instance_count": 117,
+      "turbo_instance_count": 119,
+      "instance_pairing_status": "family_level_only_exact_mating_frames_unmeasured",
+      "usd_physics_joint_authoring": false
+    },
+    "ducts": {
+      "group_count": 21,
+      "union_instance_count": 106,
+      "common_instance_count": 68,
+      "na_only_instance_count": 14,
+      "turbo_only_instance_count": 24,
+      "na_instance_count": 82,
+      "turbo_instance_count": 92,
+      "endpoint_pairing_status": "family_level_only_internal_surfaces_unmeasured",
+      "cfd_volume_authoring": false
+    }
+  },
+  "state_machine": [
+    {
+      "id": "source_stage_integrity",
+      "required_for": "software_runtime"
+    },
+    {
+      "id": "contract_count_consistency",
+      "required_for": "software_runtime"
+    },
+    {
+      "id": "semantic_endpoint_resolution",
+      "required_for": "software_runtime"
+    },
+    {
+      "id": "usd_overlay_validation",
+      "required_for": "software_runtime"
+    },
+    {
+      "id": "measured_interface_frames",
+      "required_for": "engine_articulation"
+    },
+    {
+      "id": "closed_internal_fluid_volumes",
+      "required_for": "fluid_simulation"
+    },
+    {
+      "id": "reference_solver_and_test_correlation",
+      "required_for": "engine_physics_validation"
+    },
+    {
+      "id": "instrumented_start_authorization",
+      "required_for": "fired_run"
+    }
+  ],
+  "authoring_policy": {
+    "output_format": "USDA_ASCII_overlay",
+    "new_usd_physics_schemas": 0,
+    "new_physics_joint_count": 0,
+    "new_rigid_body_count": 0,
+    "new_collision_shape_count": 0,
+    "new_cfd_volume_count": 0,
+    "inherited_f10_kinematics": "visual_playback_only",
+    "software_runtime_pass_does_not_imply_engine_physics": true
+  },
+  "acceptance": {
+    "variant_stage_count": 2,
+    "bench_equipment_group_count": 12,
+    "bench_equipment_instance_count": 16,
+    "f4_missing_equipment_instance_count_materialized": 5,
+    "sensor_family_count": 10,
+    "sensor_endpoint_count": 49,
+    "orphan_semantic_endpoint_count": 0,
+    "engine_physics_validated": false,
+    "fluid_simulation_ready": false,
+    "fired_run_authorized": false
+  },
+  "prohibited_use": [
+    "claim_that_semantic_connections_are_measured_or_enabled_physics_joints",
+    "claim_that_duct_edges_are_closed_internal_fluid_volumes",
+    "claim_that_usdchecker_or_stage_opening_validates_engine_physics",
+    "combustion_power_torque_pressure_temperature_or_1600_hp_proof",
+    "physical_engine_start_or_dyno_load_authorization",
+    "manufacturing_or_metal_print_release"
+  ]
+}
