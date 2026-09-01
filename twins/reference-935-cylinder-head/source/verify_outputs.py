@@ -34,6 +34,20 @@ def main() -> int:
         }
     )
 
+    valve_report = json.loads((root / "cad/valves/valve-variants-f1.json").read_text())
+    for variant in valve_report["variants"]:
+        valve_step = import_step(Path(variant["step"]))
+        valve_mesh = trimesh.load_mesh(Path(variant["stl"]), process=True)
+        checks.append(
+            {
+                "name": f"valve_{variant['id']}",
+                "passed": bool(valve_step.is_valid and valve_mesh.is_watertight and valve_mesh.volume > 0),
+                "watertight": bool(valve_mesh.is_watertight),
+                "triangles": int(len(valve_mesh.faces)),
+                "classification": "F1_hypothesis_only_fit_check",
+            }
+        )
+
     for name in ("low_B", "high_B"):
         surface = trimesh.load_mesh(root / f"cfd/{name}/fluid-domain.stl", process=True)
         volume_mesh = meshio.read(root / f"cfd/{name}/fluid-domain.msh")

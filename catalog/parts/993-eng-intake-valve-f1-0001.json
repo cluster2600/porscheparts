@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTAKE-VALVE-F1-0001",
+  "name": "Soupape d'admission 993 - proxy F1 et variante titane",
+  "description": "Proxy parametrique non fonctionnel pour comparer l'encombrement et la masse d'une soupape d'admission 993 de tete 49 mm et queue 8 mm, avec variante Ti-6Al-4V explicitement limitee a la simulation.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_C2", "993_C4", "993_Turbo"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": ["99310540902"]
+  },
+  "classification": {
+    "category": "engine_valvetrain",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Simulation de masse, preparation de collision et controle d'encombrement uniquement"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "twins/reference-935-cylinder-head/source/build_valve_variants.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for code and record; no third-party geometry redistributed",
+    "sources": [
+      {
+        "title": "FVD - Dimensions declarees de soupape d'admission 993",
+        "url": "https://www.fvd.net/de/shop/einlassventil-49mm-993-94-95-turbo-95-98-m64-05-06-07-08-60-nicht-natrium-gekuehlt-99310540902eq1-99310540902~p306501",
+        "source_type": "community",
+        "license": "commercial-product-page-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Tete 49 mm, queue 8 mm et masse declaree 120 g ; la longueur fonctionnelle exacte reste inconnue."
+      },
+      {
+        "title": "EOS Titanium Ti64 Grade 5",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-titanium-ti64-grade-5",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-01",
+        "notes": "Donnees liees aux machines, jeux de parametres, orientations et traitements EOS ; aucune validation de soupape 993."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["CNC", "LPBF", "DMLS"],
+    "preferred_process": "DMLS",
+    "material": {"family": "titanium comparison", "grade": "Ti-6Al-4V Grade 5", "standard": "ASTM F2924 chemistry reference"},
+    "post_processing": ["heat treatment qualified for the exact process", "HIP decision by fatigue qualification", "finish machining of stem, tip, groove and seat", "surface treatment and polishing to be engineered"],
+    "supplier_requirements": ["lot traceability", "process qualification", "CT and metallography", "dimensional report", "fatigue and hot-valvetrain validation", "professional engineering release"]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V Grade 5 candidate for intake study only",
+    "heat_treatment": "to be tied to machine and parameter set; EOS reference recommends stress relief/ductility treatment",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": ["stem", "seat face", "tip", "keeper groove"],
+    "inspection": ["CT", "density", "metallography", "surface roughness", "dimensional inspection", "high-cycle fatigue"],
+    "galvanic_isolation": "compatibility with guide, seat, retainer and coatings must be reviewed"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": ["SRC-FVD-993-INLET-VALVE-DIMENSIONS", "SRC-EOS-TI64-GRADE5"],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": ["Overall length is a 109 mm hypothesis derived from a 110 mm product envelope.", "Keeper groove, seat, margin, neck radius, coating, tolerances and cam/spring dynamics are not defined.", "The generated STL is fit-check-only and must never be installed in an engine."]
+  }
+}

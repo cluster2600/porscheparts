@@ -37,6 +37,12 @@ recalé par une mesure physique avant de servir à une décision de fabrication.
 8. **Fabrication additive** — orientation, supports, surépaisseurs d'usinage,
    retrait, distorsion, contraintes résiduelles, porosité et accessibilité des
    poudres prisonnières.
+9. **Dynamique de soupape** — loi de levée mesurée, vitesse et accélération,
+   contact came/linguet, marge avant flottement, rebond au siège, contraintes de
+   gorge et de tête, sensibilité aux masses Ti-6Al-4V, acier et alliage nickel.
+10. **Tribologie et gaz chauds** — jeu guide/queue, lubrification, frottement,
+    usure de siège, oxydation et fatigue thermomécanique. Le Ti-6Al-4V ne passe
+    côté échappement qu'après mesure des températures et essais dédiés.
 
 ## Boucle d'amélioration
 
@@ -78,5 +84,7 @@ stratégie de refroidissement.
 - géométrie interne CT, sièges, guides, filetages et galeries ;
 - matière originale, masse, état métallurgique et températures mesurées ;
 - profils de cames, levées, régimes, débits, pressions et températures ;
+- géométrie complète des soupapes, masses des coupelles/clavettes/ressorts,
+  courbes force-course, jeux de guides et températures tête/queue ;
 - pression cylindre résolue en angle vilebrequin et précharge des goujons ;
 - capabilité réelle de la machine métal, traitements et usinages disponibles.

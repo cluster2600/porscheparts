@@ -18,6 +18,7 @@ LIGHT="${OUTPUT}/derived/head-with-studs-light-300k.ply"
 "${PYTHON}" "${SCRIPTS}/extract_interfaces.py" "${LIGHT}" "${OUTPUT}/reports/interfaces.json"
 "${PYTHON}" "${SCRIPTS}/build_cfd_stubs.py" "${OUTPUT}/reports/interfaces.json" "${OUTPUT}/cfd"
 "${PYTHON}" "${SCRIPTS}/build_interface_proxy.py" "${OUTPUT}/reports/interfaces.json" "${OUTPUT}/cad"
+"${PYTHON}" "${SCRIPTS}/build_valve_variants.py" "${OUTPUT}/cad/valves"
 "${PYTHON}" "${SCRIPTS}/verify_outputs.py" "${OUTPUT}"
 
 echo "pipeline complete: ${OUTPUT}"

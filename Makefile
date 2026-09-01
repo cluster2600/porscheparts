@@ -1,8 +1,9 @@
-.PHONY: check validate test twin twin-validate turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-smoke container-smoke-physicsml container-smoke-simready container-smoke-all container-push container-push-mesh-cfd container-push-simready
+.PHONY: check validate test twin twin-validate valve-variants turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-smoke container-smoke-physicsml container-smoke-simready container-smoke-all container-push container-push-mesh-cfd container-push-simready
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
 PHYSICSNEMO_EXTRAS ?= cu12,sym,mesh-extras,model-extras
+VALVE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
 
 check: validate test turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
@@ -25,6 +26,9 @@ twin:
 
 twin-validate:
 	python3 scripts/validate_twin.py
+
+valve-variants:
+	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1
 
 turbo-cold-side:
 	python3 scripts/generate_cold_side_case.py --write

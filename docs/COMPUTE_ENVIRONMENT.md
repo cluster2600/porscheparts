@@ -31,6 +31,14 @@ location. Les secrets NVIDIA ne sont jamais placés dans une couche : ils sont
 injectés après connexion SSH par le wrapper OpenBao, puis
 `simready-services start` lance les services natifs.
 
+Le 1er septembre 2026, l'image publiée et testée pour cette chaîne est
+`ghcr.io/cluster2600/3dprinting993-simready@sha256:3947ea34d5101065c97103cc2176f395cb9753cb1d7807acb3cfd095796a4e1a`.
+Sur Vast.ai, les scans 917 et 935 ont été convertis en USD direct et rendus par
+OVRTX. Le Material Agent a préparé ses vues mais l'appel au modèle public a été
+refusé avec HTTP 403 : conversion et rendu sont prouvés, assignation IA et
+Physics Agent ne le sont pas. Cette séparation évite de confondre un service
+prêt avec une autorisation d'API valide.
+
 Les choix logiciels sont justifiés dans
 [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md) :
 tout outil retenu s'exécute sans interface graphique.

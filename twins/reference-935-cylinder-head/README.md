@@ -22,6 +22,38 @@ fonctionnelle ou prête à fabriquer.
 | STEP paramétrique F1 | datum CAO et contrôle d'encombrement | enveloppe simplifiée |
 | STL `fit-check-only` | maquette polymère non fonctionnelle | interdit dans un moteur |
 | deux domaines CFD étanches | validation Gmsh et études locales | seulement les tronçons proches des brides |
+| trois proxies de soupapes STEP/STL | masse, collision et préparation de la dynamique | profils sous tête et gorges non mesurés ; STL `fit-check-only` |
+
+## Soupapes et variante titane
+
+Le pipeline génère maintenant trois géométries paramétriques F1 : admission
+993 de 49 mm, échappement Carrera de 42,5 mm et échappement Turbo de 43,5 mm,
+toutes avec une queue déclarée de 8 mm. Les valeurs publiques sont conservées
+avec leur niveau de preuve ; la longueur de l'admission reste une hypothèse de
+109 mm dérivée d'un encombrement produit de 110 mm.
+
+Le modèle compare la masse du même volume avec une densité d'acier générique,
+du Ti-6Al-4V et, pour l'échappement, de l'INCONEL 751. La documentation Special
+Metals décrit précisément le 751 comme un alliage destiné aux soupapes
+d'échappement, fourni en barre et traité par précipitation. Elle ne valide pas
+une route LPBF. La variante titane est donc prioritaire pour l'étude de
+l'admission ; côté échappement elle reste un cas comparatif à challenger par les
+températures, l'oxydation, l'usure et la fatigue à chaud.
+
+```bash
+docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python \
+  -v "$PWD:/workspace" -w /workspace \
+  ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f \
+  twins/reference-935-cylinder-head/source/build_valve_variants.py \
+  work/valve-variants-f1
+```
+
+Les STEP sont des masters de simulation éditables. Les STL portent la mention
+`fit-check-only` et ne doivent jamais être montés dans un moteur. Une soupape
+fonctionnelle exige au minimum la gorge de clavette, le rayon sous tête, la
+marge, l'angle et la largeur de siège, les jeux de guide, le profil de came, les
+courbes de ressort, les masses mobiles, le traitement, la finition et une
+validation dynamique et thermomécanique.
 
 La version à 100 000 triangles est rejetée pour la métrologie : son écart p95
 mesuré atteint environ 6,15 unités OBJ. Elle ne peut servir qu'à un aperçu très
@@ -88,3 +120,6 @@ ne correspond pas au même élément que le registre de 113,53 ou l'épaulement 
   orientation, un usinage, un plan de contrôle et une traçabilité matière.
 - Conserver la redistribution du maillage brut bloquée tant que la licence
   écrite ne l'autorise pas explicitement.
+- Ne pas libérer une soupape métal depuis les proxies F1 ; exiger une définition
+  complète, une qualification matière/procédé et des essais de distribution à
+  chaud sous revue d'ingénierie professionnelle.

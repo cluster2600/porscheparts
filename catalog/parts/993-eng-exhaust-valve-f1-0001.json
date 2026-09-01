@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-EXHAUST-VALVE-F1-0001",
+  "name": "Soupapes d'echappement 993 - proxies F1",
+  "description": "Proxies parametriques non fonctionnels des soupapes d'echappement Carrera et Turbo pour comparer encombrement et masse entre acier generique, Inconel 751 et Ti-6Al-4V sans conclure a une aptitude moteur.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Carrera", "993_Turbo"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": ["99310541901", "99310541984", "99310541952", "99310541953"]
+  },
+  "classification": {
+    "category": "engine_valvetrain",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Simulation thermique et dynamique preliminaire, masse comparative et controle d'encombrement uniquement"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "twins/reference-935-cylinder-head/source/build_valve_variants.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for code and record; no third-party geometry redistributed",
+    "sources": [
+      {
+        "title": "partworks - Dimensions declarees de soupapes d'echappement 993",
+        "url": "https://partworks.de/Porsche/993-Ersatzteile_s2",
+        "source_type": "community",
+        "license": "commercial-catalogue-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Carrera 109 x 42,5 x 8 mm ; Turbo 108,9 x 43,5 x 8 mm, sans profil complet ni tolerances."
+      },
+      {
+        "title": "Special Metals - INCONEL alloy 751",
+        "url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-01",
+        "notes": "Alliage UNS N07751 developpe pour soupapes d'echappement ; barre et fabrication conventionnelle, pas LPBF."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["CNC", "LPBF", "DMLS"],
+    "preferred_process": "CNC",
+    "material": {"family": "nickel alloy reference", "grade": "INCONEL 751 / UNS N07751 candidate", "standard": "manufacturer bulletin; application-specific qualification required"},
+    "post_processing": ["precipitation treatment per qualified route", "finish machining", "stem, seat, groove and tip finishing", "coating or hard-facing decision after tribology review"],
+    "supplier_requirements": ["material heat and lot certificates", "process route", "dimensional and NDT reports", "hot fatigue and oxidation validation", "professional engineering release"]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V retained only as a deliberately challenged comparison for exhaust service",
+    "heat_treatment": "not selected",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": ["stem", "seat face", "tip", "keeper groove"],
+    "inspection": ["CT", "metallography", "surface roughness", "dimensional inspection", "hot fatigue", "oxidation and wear testing"],
+    "galvanic_isolation": "seat, guide, retainer and coating compatibility must be reviewed"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": ["SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS", "SRC-SPECIAL-METALS-INCONEL-751"],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": ["The public dimensions do not define keeper grooves, seat angles and widths, margins, neck radii, coatings or tolerances.", "Titanium is not selected for exhaust duty; it remains a comparison requiring measured temperatures and full thermal-fatigue validation.", "The generated STLs are fit-check-only and must never be installed in an engine."]
+  }
+}

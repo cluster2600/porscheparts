@@ -30,6 +30,20 @@ PYTHON=/chemin/vers/python \
 La sortie lourde reste sous `work/`. Le pipeline refuse un fichier source dont
 l'empreinte ne correspond pas au scan inspecté.
 
+Le brut est rangé sans modification sous
+`raw-scans/917-engine/original/917-engine-case-with-cylinders.obj`. Une copie
+USD sans instanciation, adaptée au rendu et aux étapes de simulation, est
+produite hors Git sous `work/simready-results/917/`. La conversion contrôlée
+contient un maillage de 7 397 573 points et 2 465 877 faces, en axe Z avec
+`metersPerUnit = 0.001`; son enveloppe est de 1002,175 × 768,275 × 739,765
+unités de scène. Ces métadonnées ne suffisent toujours pas à confirmer l'échelle
+physique du scan.
+
+Un rendu OVRTX 768 × 768 a été obtenu dans le conteneur SimReady. L'assignation
+automatique de matière par le Material Agent reste bloquée par un refus 403 de
+l'endpoint NVIDIA et ne doit pas être présentée comme validée. Le maillage brut,
+les USD et les images restent hors Git en attendant la clarification des droits.
+
 ## Livrables visés
 
 | Livrable | Usage | Limite |
