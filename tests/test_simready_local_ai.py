@@ -38,6 +38,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("data:image/png;base64", smoke)
         self.assertIn("image_url", smoke)
         self.assertIn("--limit-mm-per-prompt image=20", config)
+        self.assertIn("--max-model-len 32768", config)
 
 
 if __name__ == "__main__":
