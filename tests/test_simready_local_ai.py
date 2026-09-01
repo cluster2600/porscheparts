@@ -10,6 +10,8 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
         self.assertIn("VLLM_VERSION=0.8.5.post1", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
+        self.assertIn("3dprinting993-physicsml@sha256:80db460bb3a061d05f73c319f02f91f74e7c8506512ffd7edb5a3645c12afbc4", dockerfile)
+        self.assertIn("COPY --from=physicsml /opt/venv /opt/venv", dockerfile)
         self.assertIn("Qwen/Qwen2.5-VL-7B-Instruct", dockerfile)
         self.assertIn("LOCAL_VLM_REVISION=cc594898137f460bfe9f0759e9844b3ce807cfb5", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)

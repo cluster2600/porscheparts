@@ -8,7 +8,8 @@ test -x /opt/local-ai/bin/vllm
 test -f "${MODEL_PATH}/config.json"
 test -f "${MODEL_PATH}/model.safetensors.index.json"
 test -f "${MODEL_PATH}/LICENSE.apache-2.0"
-/opt/local-ai/bin/python -c 'import physicsnemo, vllm; assert physicsnemo.__version__; assert vllm.__version__'
+/opt/local-ai/bin/python -c 'import vllm; assert vllm.__version__'
+"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -c 'import physicsnemo; assert physicsnemo.__version__ == "2.2.0"'
 
 if [ "${1:-}" = "--offline" ]; then
     echo "simready local AI: offline image checks passed"
