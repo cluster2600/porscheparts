@@ -1,0 +1,247 @@
+#!/usr/bin/env python3
+"""Use one read-only GHCR credential without printing it."""
+
+from __future__ import annotations
+
+import base64
+import json
+import os
+import shlex
+import socket
+import ssl
+import stat
+import subprocess
+import sys
+import urllib.error
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+
+BAO_ADDR = "http://127.0.0.1:8200"
+BAO_AUTH_PATH = "auth/codex-deploy/login"
+CONFIG_DIR = Path.home() / ".config" / "openbao-ghcr-reader"
+ROLE_ID_FILE = CONFIG_DIR / "role_id"
+SECRET_ID_FILE = CONFIG_DIR / "secret_id"
+SECRET_PATH_FILE = CONFIG_DIR / "secret_path"
+ALLOWED_SECRET_PATH = "secrets/data/github"
+GHCR_USERNAME = "cluster2600"
+GHCR_REPOSITORY = f"{GHCR_USERNAME}/3dprinting993-simready-local-ai"
+GHCR_DIGEST = "sha256:d889cc2ec7a0583588acb10050650f983d3afa2d40cdefbeda06bf92634c1c0d"
+GHCR_TOKEN_URL = (
+    "https://ghcr.io/token?service=ghcr.io&scope="
+    + urllib.parse.quote(f"repository:{GHCR_REPOSITORY}:pull", safe="")
+)
+GHCR_MANIFEST_URL = f"https://ghcr.io/v2/{GHCR_REPOSITORY}/manifests/{GHCR_DIGEST}"
+TLS_CA_FILE = Path("/etc/ssl/cert.pem")
+MAX_RESPONSE_BYTES = 4 * 1024 * 1024
+TIMEOUT_SECONDS = 30
+VAST_WRAPPER = Path.home() / ".local" / "bin" / "openbao-vastai"
+
+
+class SafeError(Exception):
+    """An error safe to print without secret material."""
+
+
+def validate_private_file(path: Path) -> None:
+    try:
+        info = path.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing bootstrap file: {path}") from exc
+    if info.st_uid != os.getuid() or not stat.S_ISREG(info.st_mode):
+        raise SafeError(f"bootstrap file has unsafe ownership or type: {path}")
+    if stat.S_IMODE(info.st_mode) != 0o600 or not 0 < info.st_size <= 4096:
+        raise SafeError(f"bootstrap file has unsafe permissions or size: {path}")
+
+
+def validate_bootstrap_metadata() -> None:
+    try:
+        info = CONFIG_DIR.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing bootstrap directory: {CONFIG_DIR}") from exc
+    if info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700:
+        raise SafeError(f"bootstrap directory must be owned by this user with mode 0700: {CONFIG_DIR}")
+    for path in (ROLE_ID_FILE, SECRET_ID_FILE, SECRET_PATH_FILE):
+        validate_private_file(path)
+
+
+def read_bootstrap_value(path: Path) -> str:
+    value = path.read_text(encoding="utf-8").strip()
+    if not value or len(value) > 4096:
+        raise SafeError(f"bootstrap value is invalid: {path}")
+    return value
+
+
+def decode_json(body: bytes, source: str) -> dict:
+    if len(body) > MAX_RESPONSE_BYTES:
+        raise SafeError(f"{source} returned an unexpectedly large response")
+    try:
+        value = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise SafeError(f"{source} returned invalid JSON") from exc
+    if not isinstance(value, dict):
+        raise SafeError(f"{source} returned invalid JSON")
+    return value
+
+
+def request(
+    url: str,
+    *,
+    method: str = "GET",
+    payload: dict | None = None,
+    headers: dict[str, str] | None = None,
+    source: str,
+) -> tuple[dict, dict[str, str]]:
+    data = None if payload is None else json.dumps(payload, separators=(",", ":")).encode("utf-8")
+    request_headers = {"Accept": "application/json", "Content-Type": "application/json"}
+    request_headers.update(headers or {})
+    web_request = urllib.request.Request(url, data=data, headers=request_headers, method=method)
+    if not TLS_CA_FILE.is_file():
+        raise SafeError(f"missing system CA bundle: {TLS_CA_FILE}")
+    context = ssl.create_default_context(cafile=str(TLS_CA_FILE))
+    try:
+        with urllib.request.urlopen(web_request, timeout=TIMEOUT_SECONDS, context=context) as response:
+            body = response.read(MAX_RESPONSE_BYTES + 1)
+            response_headers = {key.lower(): value for key, value in response.headers.items()}
+    except urllib.error.HTTPError as exc:
+        raise SafeError(f"{source} rejected the request with HTTP {exc.code}") from None
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        raise SafeError(f"{source} is unavailable") from exc
+    return (decode_json(body, source) if body else {}, response_headers)
+
+
+def check_local_service() -> None:
+    try:
+        with socket.create_connection(("127.0.0.1", 8200), timeout=2):
+            pass
+    except OSError as exc:
+        raise SafeError("OpenBao is not listening on 127.0.0.1:8200") from exc
+
+
+def login() -> str:
+    validate_bootstrap_metadata()
+    check_local_service()
+    result, _ = request(
+        f"{BAO_ADDR}/v1/{BAO_AUTH_PATH}",
+        method="POST",
+        payload={
+            "role_id": read_bootstrap_value(ROLE_ID_FILE),
+            "secret_id": read_bootstrap_value(SECRET_ID_FILE),
+        },
+        source="OpenBao",
+    )
+    token = result.get("auth", {}).get("client_token")
+    if not isinstance(token, str) or not token:
+        raise SafeError("OpenBao AppRole login did not return a session token")
+    return token
+
+
+def revoke_token(token: str) -> None:
+    try:
+        request(
+            f"{BAO_ADDR}/v1/auth/token/revoke-self",
+            method="POST",
+            payload={},
+            headers={"X-Vault-Token": token},
+            source="OpenBao",
+        )
+    except SafeError:
+        pass
+
+
+def read_credential(session_token: str) -> tuple[str, str]:
+    if read_bootstrap_value(SECRET_PATH_FILE) != ALLOWED_SECRET_PATH:
+        raise SafeError("OpenBao GHCR path is outside the fixed allowlist")
+    result, _ = request(
+        f"{BAO_ADDR}/v1/{ALLOWED_SECRET_PATH}",
+        headers={"X-Vault-Token": session_token},
+        source="OpenBao",
+    )
+    payload = result.get("data", {}).get("data")
+    if not isinstance(payload, dict):
+        raise SafeError("OpenBao GHCR path is missing or empty")
+    token = next(
+        (
+            payload.get(field)
+            for field in ("GITHUB_TOKEN", "GH_TOKEN", "github_token", "token")
+            if payload.get(field)
+        ),
+        None,
+    )
+    if not isinstance(token, str) or not 20 <= len(token) <= 4096 or any(c.isspace() for c in token):
+        raise SafeError("OpenBao GitHub payload is missing a supported token field")
+    return GHCR_USERNAME, token
+
+
+def registry_auth_check(username: str, password: str) -> None:
+    basic = base64.b64encode(f"{username}:{password}".encode("utf-8")).decode("ascii")
+    token_result, _ = request(
+        GHCR_TOKEN_URL,
+        headers={"Authorization": f"Basic {basic}"},
+        source="GHCR token service",
+    )
+    registry_token = token_result.get("token", token_result.get("access_token"))
+    if not isinstance(registry_token, str) or not registry_token:
+        raise SafeError("GHCR token service did not grant repository pull access")
+    _, headers = request(
+        GHCR_MANIFEST_URL,
+        headers={
+            "Authorization": f"Bearer {registry_token}",
+            "Accept": "application/vnd.oci.image.manifest.v1+json,application/vnd.docker.distribution.manifest.v2+json",
+        },
+        source="GHCR manifest",
+    )
+    if headers.get("docker-content-digest") != GHCR_DIGEST:
+        raise SafeError("GHCR returned an unexpected image digest")
+
+
+def run_vast(username: str, password: str, operation: list[str]) -> int:
+    if operation == ["launch-vast-simready-heavy-best"]:
+        vast_operation = ["launch-simready-heavy-best"]
+    elif len(operation) == 2 and operation[0] == "launch-vast-simready-heavy" and operation[1].isdigit():
+        vast_operation = ["launch-simready-heavy", operation[1]]
+    else:
+        raise SafeError(
+            "usage: openbao-ghcr --check|--auth-check|"
+            "launch-vast-simready-heavy <offer_id>|launch-vast-simready-heavy-best"
+        )
+    if not VAST_WRAPPER.is_file() or not os.access(VAST_WRAPPER, os.X_OK):
+        raise SafeError(f"missing approved Vast.ai wrapper: {VAST_WRAPPER}")
+    environment = os.environ.copy()
+    environment["OPENBAO_GHCR_IMAGE_LOGIN"] = shlex.join(
+        ["-u", username, "-p", password, "ghcr.io"]
+    )
+    result = subprocess.run(
+        [str(VAST_WRAPPER), *vast_operation],
+        env=environment,
+        check=False,
+    )
+    return result.returncode
+
+
+def main() -> int:
+    operation = sys.argv[1:]
+    try:
+        validate_bootstrap_metadata()
+        if operation == ["--check"]:
+            if read_bootstrap_value(SECRET_PATH_FILE) != ALLOWED_SECRET_PATH:
+                raise SafeError("OpenBao GHCR path is outside the fixed allowlist")
+            print("OpenBao GHCR reader check OK")
+            return 0
+        session_token = login()
+        try:
+            username, password = read_credential(session_token)
+            registry_auth_check(username, password)
+            if operation == ["--auth-check"]:
+                print(f"GHCR read access OK for {username} and pinned SimReady image")
+                return 0
+            return run_vast(username, password, operation)
+        finally:
+            revoke_token(session_token)
+    except SafeError as exc:
+        print(f"OpenBao GHCR error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
