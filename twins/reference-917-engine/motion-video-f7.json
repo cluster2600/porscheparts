@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F7_video_pipeline_ready_pending_RTX_render",
+  "source_stage_requirement": "validated_F5_start_support_USD",
+  "timeline": {
+    "start_time_code": 0,
+    "end_time_code": 240,
+    "frames_per_second": 24,
+    "duration_seconds": 10.0
+  },
+  "render": {
+    "width": 1280,
+    "height": 720,
+    "camera_path": "/World/Cameras/EngineInspection",
+    "render_mode": "rt2",
+    "num_sensor_updates": 64,
+    "chunk_size": 8,
+    "material_target": "auto"
+  },
+  "shots": [
+    {"id": "exterior", "start": 0, "end": 119, "stage": "917-engine-motion-exterior-f7.usda"},
+    {"id": "cutaway", "start": 120, "end": 240, "stage": "917-engine-motion-cutaway-f7.usda"}
+  ],
+  "cutaway_hidden_families": [
+    "crankcase_half",
+    "individual_cylinder",
+    "individual_head",
+    "cam_carrier",
+    "blower_shroud"
+  ],
+  "encode": {
+    "container": "mp4",
+    "video_codec": "libx264",
+    "pixel_format": "yuv420p",
+    "constant_rate_factor": 18,
+    "faststart": true,
+    "audio": "none"
+  },
+  "disclosure": "Entrainement cinematique a sec - aucune combustion, charge ou pression simulee",
+  "acceptance": {
+    "expected_frame_count": 241,
+    "render_requires_RTX": true,
+    "video_rendered": false,
+    "physical_simulation_claim_authorized": false
+  },
+  "prohibited_use": [
+    "claim_that_animation_is_a_combustion_simulation",
+    "claim_of_predicted_power_torque_temperature_or_pressure",
+    "physical_engine_start_authorization"
+  ]
+}

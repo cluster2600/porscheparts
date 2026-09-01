@@ -222,6 +222,24 @@ paliers et les seuils d'arrêt. OpenFOAM restera réservé aux passages internes
 reconstruits ; PhysicsNeMo ne pourra apprendre qu'après corrélation du réseau
 0D, de la CFD et d'essais instrumentés.
 
+## Vidéo d'inspection cinématique F7
+
+La sortie F7 prépare deux couches caméra sur les 241 images de la timeline :
+une vue extérieure, puis une vue ouverte masquant les enveloppes qui cachent le
+vilebrequin, les pistons, les bielles et la distribution. Le service OVRTX rend
+les images sur une RTX et `ffmpeg` les assemble en MP4 720p à 24 i/s :
+
+```bash
+make 917-motion-video-stages-f7 \
+  F5_INPUT=/chemin/vers/917-engine-start-support-f5.usda
+
+make 917-motion-video-render-f7
+```
+
+La vidéo porte une mention incrustée indiquant qu'il s'agit d'un entraînement
+cinématique à sec, sans combustion, charge ni pression calculée. Elle reste sans
+audio afin de ne pas suggérer un régime moteur physiquement simulé.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
