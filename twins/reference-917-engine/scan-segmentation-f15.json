@@ -1,0 +1,112 @@
+{
+  "$comment": "F15 inventorie le conteneur OBJ et sa topologie sans copier la geometrie, sans attribuer de semantique mecanique et sans convertir les unites OBJ en millimetres.",
+  "schema_version": "1.0.0",
+  "phase": "F15",
+  "asset_id": "porsche-917-engine-scan-segmentation-f15",
+  "status": "pipeline_contract_ready_canonical_scan_execution_pending",
+  "source_custody": {
+    "default_path": "raw-scans/917-engine/original/917-engine-case-with-cylinders.obj",
+    "expected_sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "maximum_source_bytes": 2147483648,
+    "raw_geometry_must_remain_outside_git": true,
+    "source_copy_allowed": false,
+    "geometry_payload_allowed_in_reports": false,
+    "synthetic_fixture_mode_allowed": true
+  },
+  "parser_policy": {
+    "implementation": "python_standard_library_only",
+    "text_encoding": "utf-8",
+    "maximum_line_bytes": 16777216,
+    "maximum_distinct_declarations_per_kind": 10000,
+    "maximum_face_arity": 1024,
+    "zero_area_threshold_obj_units_squared": 2.220446049250313e-16,
+    "edge_sort_chunk_records": 250000,
+    "edge_definition": "unordered_consecutive_polygon_vertex_pair",
+    "surface_component_definition": "faces_connected_by_shared_vertex_index",
+    "boundary_edge_definition": "unique_undirected_edge_with_face_incidence_one",
+    "non_manifold_edge_definition": "unique_undirected_edge_with_face_incidence_greater_than_two",
+    "boundary_component_definition": "boundary_edges_connected_by_shared_vertex_index",
+    "positive_indices_must_reference_already_declared_vertices": true,
+    "negative_vertex_indices_supported": true,
+    "maximum_reported_surface_components": 250,
+    "maximum_reported_boundary_components": 500
+  },
+  "inventory_policy": {
+    "obj_declarations": [
+      "o",
+      "g",
+      "usemtl",
+      "mtllib"
+    ],
+    "reported_geometry": [
+      "counts",
+      "bounding_boxes_in_obj_units",
+      "component_connectivity",
+      "edge_incidence",
+      "boundary_degrees"
+    ],
+    "semantic_classification": "unclassified_topological_component",
+    "mesh_component_export_allowed": false,
+    "face_or_vertex_export_allowed": false
+  },
+  "metrology_policy": {
+    "reported_units": "OBJ coordinate units",
+    "metric_conversion_allowed": false,
+    "scale_inference_allowed": false,
+    "axis_semantics_inference_allowed": false,
+    "identity_inference_allowed": false,
+    "variant_selection_allowed": false,
+    "dimensional_tolerance_claim_allowed": false,
+    "coordinate_transform_applied": false
+  },
+  "canonical_reconciliation": {
+    "reference_kind": "prior_local_pipeline_observation_not_independent_metrology",
+    "required_only_when_expected_sha256_matches": true,
+    "vertices": 1282880,
+    "polygon_faces": 2465879,
+    "triangles": 2465879,
+    "surface_components": 3,
+    "boundary_edges": 101809,
+    "non_manifold_edges": 0,
+    "zero_area_faces": 2,
+    "bounds_min_obj_units": [
+      -416.154602,
+      -515.711365,
+      250.128326
+    ],
+    "bounds_max_obj_units": [
+      586.020447,
+      252.563721,
+      989.893677
+    ],
+    "bounds_absolute_tolerance_obj_units": 1e-06,
+    "limitations": [
+      "Ces valeurs servent uniquement a detecter une regression du parseur sur le meme fichier binaire.",
+      "Elles ne prouvent ni l'identite, ni l'echelle, ni la precision du scan."
+    ]
+  },
+  "outputs": {
+    "default_directory": "work/917-engine/scan-segmentation-f15",
+    "report": "scan-segmentation-f15-report.json",
+    "surface_components": "surface-components-f15.csv",
+    "boundary_components": "boundary-components-f15.csv",
+    "declarations": "obj-declarations-f15.json",
+    "temporary_sort_files_must_be_removed": true,
+    "outputs_must_remain_outside_git": true
+  },
+  "release_authority": {
+    "identity_confirmed": false,
+    "scale_confirmed": false,
+    "units_confirmed": false,
+    "variant_confirmed": false,
+    "semantic_segmentation_confirmed": false,
+    "geometry_repaired": false,
+    "watertight_manufacturing_geometry": false,
+    "cad_reconstruction_complete": false,
+    "cfd_geometry_released": false,
+    "physics_simulation_released": false,
+    "functional_release_authorized": false,
+    "fabrication_release_authorized": false,
+    "three_dimensional_print_release_authorized": false
+  }
+}

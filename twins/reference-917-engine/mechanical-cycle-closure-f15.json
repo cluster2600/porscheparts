@@ -1,0 +1,85 @@
+{
+  "$comment": "F15-001 execute une fermeture mecanique par cycle sur les deux ancres F14. Ce n'est ni un cycle thermodynamique, ni un modele de combustion, ni une preuve de performance.",
+  "schema_version": "1.0.0",
+  "phase": "F15-001",
+  "status": "sourced_mechanical_cycle_closure_ready_thermodynamic_blocked",
+  "asset_id": "porsche-917-mechanical-cycle-closure-f15",
+  "parent_asset_ids": [
+    "porsche-917-classical-solver-cases-f13",
+    "porsche-917-mechanical-benchmark-f14"
+  ],
+  "fact_registry_path": "twins/reference-917-engine/classical-solver-cases-f13.json",
+  "parent_benchmark_path": "twins/reference-917-engine/mechanical-benchmark-f14.json",
+  "parent_runner_path": "twins/reference-917-engine/source/run_mechanical_benchmark_f14.py",
+  "thermodynamic_case_ref": "CASE-917-F13-001",
+  "authority_boundary": {
+    "mechanical_cycle_closure_execution_authorized": true,
+    "thermodynamic_solver_execution_authorized": false,
+    "cantera_execution_authorized": false,
+    "combustion_simulation_authorized": false,
+    "gas_exchange_simulation_authorized": false,
+    "turbo_simulation_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "performance_claim_authorized": false,
+    "fabrication_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "model_definition": {
+    "kind": "deterministic_four_stroke_mechanical_cycle_energy_closure",
+    "revolutions_per_engine_cycle": 2,
+    "firing_events_per_cylinder_per_engine_cycle": 1,
+    "definition_role": "four_stroke_cycle_accounting_not_porsche_calibration",
+    "generic_engine_defaults_used": false,
+    "thermodynamic_state_variables_present": false,
+    "pressure_trace_present": false,
+    "heat_release_law_present": false,
+    "friction_model_present": false,
+    "volumetric_efficiency_present": false,
+    "turbo_maps_present": false
+  },
+  "approved_parent_case_ids": [
+    "CASE-917-F14-001A-5L-NA",
+    "CASE-917-F14-001A-5374-TURBO-1973"
+  ],
+  "equations": {
+    "crankshaft_revolutions_per_second": "reported_power_speed_rpm / 60",
+    "engine_cycles_per_second": "crankshaft_revolutions_per_second / revolutions_per_engine_cycle",
+    "firing_events_per_second": "engine_cycles_per_second * cylinder_count * firing_events_per_cylinder_per_engine_cycle",
+    "brake_work_per_crank_revolution_j": "reported_power_w / crankshaft_revolutions_per_second",
+    "brake_work_per_engine_cycle_j": "reported_power_w / engine_cycles_per_second",
+    "brake_work_per_cylinder_firing_j": "reported_power_w / firing_events_per_second",
+    "torque_reconstructed_nm": "brake_work_per_engine_cycle_j / (2*pi*revolutions_per_engine_cycle)",
+    "bmep_reconstructed_pa": "brake_work_per_engine_cycle_j / published_displacement_m3",
+    "power_reconstructed_w": "brake_work_per_engine_cycle_j * engine_cycles_per_second"
+  },
+  "numerical_acceptance": {
+    "relative_closure_tolerance": 1e-12,
+    "role": "floating_point_identity_check_only_not_physical_acceptance"
+  },
+  "thermodynamic_blockers_required": [
+    "fuel_definition",
+    "combustion_calibration",
+    "gas_exchange_boundaries",
+    "friction_model",
+    "cylinder_numbering",
+    "valve_lift_profiles",
+    "injection_law"
+  ],
+  "output": {
+    "default_path": "work/917-mechanical-cycle-closure-f15/mechanical-cycle-closure-results.json",
+    "tracked": false,
+    "dataset_role": "documentary_regression_oracle_only_not_physicsnemo_training_data"
+  },
+  "prohibited_use": [
+    "claim_that_a_thermodynamic_or_cantera_solver_ran",
+    "claim_that_combustion_gas_exchange_or_turbo_was_simulated",
+    "claim_that_reported_power_was_predicted_reproduced_or_proven",
+    "claim_that_1600_hp_was_computed_simulated_or_proven",
+    "derive_instantaneous_cylinder_bearing_or_rod_loads",
+    "interpolate_or_extrapolate_a_power_or_torque_curve",
+    "use_as_physicsnemo_training_data",
+    "engine_hardware_or_manufacturing_release",
+    "physical_engine_start_or_dyno_release"
+  ]
+}

@@ -1,0 +1,133 @@
+name: Build OBJ metrology F15 image
+
+# Déclenchement manuel: la petite image ne doit pas être reconstruite à chaque
+# modification du catalogue. Aucun hébergeur de calcul n'est provisionné ici.
+on:
+  workflow_dispatch:
+    inputs:
+      push:
+        description: Publier l'image candidate sur GHCR
+        required: true
+        default: true
+        type: boolean
+      verify_anonymous:
+        description: Exiger une lecture anonyme du digest GHCR
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-obj-metrology-f15
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: inputs.push
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: containers/obj-metrology-f15.Dockerfile
+          platforms: linux/amd64
+          load: ${{ !inputs.push }}
+          push: ${{ inputs.push }}
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.sha }}
+          cache-from: type=gha,scope=obj-metrology-f15
+
+      - name: Smoke local candidate without network
+        if: ${{ !inputs.push }}
+        run: |
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${IMAGE_REPOSITORY}:${GITHUB_SHA}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${IMAGE_REPOSITORY}:${GITHUB_SHA}")" = 9175:9175
+          docker run --rm --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+            --cap-drop ALL --security-opt no-new-privileges \
+            "${IMAGE_REPOSITORY}:${GITHUB_SHA}" \
+            | tee obj-metrology-f15-smoke.json
+          jq -e '.status == "passed" and .offline_smoke == true and .non_root == true and .gpu_required == false' \
+            obj-metrology-f15-smoke.json >/dev/null
+          printf '%s\n' "${IMAGE_REPOSITORY}:${GITHUB_SHA}" \
+            > obj-metrology-f15-image-ref.txt
+
+      - name: Gate published image by exact digest and provenance
+        if: inputs.push
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          tag_ref="${IMAGE_REPOSITORY}:${GITHUB_SHA}"
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          tag_digest="$(docker buildx imagetools inspect "${tag_ref}" | awk '$1 == "Digest:" { print $2; exit }')"
+          test "${tag_digest}" = "${IMAGE_DIGEST}"
+
+          docker buildx imagetools inspect --format '{{json .Manifest}}' "${pinned_ref}" \
+            > obj-metrology-f15-manifest.json
+          jq -e '
+            .digest == env.IMAGE_DIGEST and
+            any(.manifests[];
+              .platform.os == "linux" and .platform.architecture == "amd64")
+          ' obj-metrology-f15-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" \
+            > obj-metrology-f15-provenance.json
+          jq -e '
+            .["linux/amd64"].SLSA.buildType == "https://mobyproject.org/buildkit@v1" and
+            (.["linux/amd64"].SLSA.builder.id | type == "string" and length > 0) and
+            (.["linux/amd64"].SLSA.materials | type == "array" and length > 0)
+          ' obj-metrology-f15-provenance.json >/dev/null
+
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${pinned_ref}")" = 9175:9175
+          docker run --rm --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+            --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" \
+            | tee obj-metrology-f15-smoke.json
+          jq -e '.status == "passed" and .offline_smoke == true and .non_root == true and .gpu_required == false' \
+            obj-metrology-f15-smoke.json >/dev/null
+          printf '%s\n' "${pinned_ref}" > obj-metrology-f15-image-ref.txt
+
+      - name: Verify anonymous access to exact digest
+        if: inputs.push && inputs.verify_anonymous
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          anonymous_config="$(mktemp -d)"
+          trap 'rm -rf "${anonymous_config}"' EXIT
+          DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw \
+            "${IMAGE_REPOSITORY}@${IMAGE_DIGEST}" >/dev/null
+
+      - name: Upload immutable image evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: obj-metrology-f15-${{ github.sha }}
+          path: |
+            obj-metrology-f15-image-ref.txt
+            obj-metrology-f15-manifest.json
+            obj-metrology-f15-provenance.json
+            obj-metrology-f15-smoke.json
+          if-no-files-found: error
+          retention-days: 30
