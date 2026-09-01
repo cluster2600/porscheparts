@@ -1,0 +1,493 @@
+{
+  "$comment": "F13 definit une strategie de fabrication et de validation sans geometrie, scan, cote inventee ni autorisation de production. Toutes les nuances, routes et exigences restent candidates jusqu'a preuve mesuree et revue professionnelle.",
+  "schema_version": "1.0.0",
+  "phase": "F13",
+  "status": "manufacturing_strategy_ready_all_part_and_engine_releases_blocked",
+  "asset": {
+    "id": "porsche-917-engine-manufacturing-validation-f13",
+    "scope": "familles critiques du moteur Porsche 917, variantes atmospherique et turbo",
+    "identity_and_variant_confirmed": false,
+    "scale_confirmed": false,
+    "raw_scan_in_git": false,
+    "geometry_embedded": false,
+    "proprietary_payload_embedded": false,
+    "upstream_contract_reference": "twins/reference-917-engine/whole-engine-reengineering-f12.json",
+    "upstream_reference_is_not_release_evidence": true
+  },
+  "claims_policy": {
+    "hundred_percent_functional_claim": "prohibited",
+    "print_ready_claim": "prohibited",
+    "scan_to_part_direct_route": "prohibited",
+    "physicsnemo_as_manufacturing_qualification": "prohibited",
+    "candidate_does_not_mean_selected": true,
+    "visual_similarity_does_not_mean_dimensional_conformity": true
+  },
+  "maturity_levels": [
+    {
+      "id": "polymer_prototype",
+      "purpose": "encombrement, sequence d'assemblage, accessibilite et revue visuelle uniquement",
+      "candidate_processes": ["fff", "sla", "sls"],
+      "prohibited_uses": ["mise_en_rotation", "pression", "temperature_moteur", "charge_structurale", "essai_combustion"],
+      "required_before_build": ["identite_de_variante", "echelle_confirmee", "orientation_et_reperes", "controle_des_interfaces_representees"],
+      "release": {"printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "metal_mockup",
+      "purpose": "developpement du procede, metrologie, assemblage statique et instrumentation hors moteur",
+      "candidate_processes": ["lpbf", "binder_jet", "usinage", "fonderie", "fabrication_soudee"],
+      "prohibited_uses": ["combustion", "survitesse", "pression_moteur", "charge_fatigue", "service_vehicule"],
+      "required_before_build": ["matiere_lot_tracee", "plan_procede", "coupons_temoins", "plan_ct_ndt", "plan_d'usinage", "plan_metrologique"],
+      "release": {"printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "functional_engine_part",
+      "purpose": "piece candidate pour banc moteur seulement apres qualification complete et liberation signee",
+      "candidate_processes": ["route_a_selectionner_apres_preuves"],
+      "prohibited_uses": ["fabrication_avant_qualification", "montage_avant_liberation", "service_vehicule_sans_validation_specifique"],
+      "required_before_build": ["definition_CAO_gelee", "materiau_et_route_qualifies", "calculs_classiques_correles", "qualification_coupons_et_eprouvettes", "ct_ndt_metrologie_acceptes", "essais_composant_acceptes", "revue_professionnelle_signee"],
+      "release": {"printable": false, "functional": false, "engine_use": false}
+    }
+  ],
+  "runtime_authorities": {
+    "material_selection_authority": "not_implemented",
+    "process_qualification_authority": "not_implemented",
+    "metrology_acceptance_authority": "not_implemented",
+    "engine_safety_release_authority": "not_implemented",
+    "professional_signoff_verifier": "not_implemented",
+    "configuration_is_authority": false
+  },
+  "global_qualification_rules": {
+    "dfam": {
+      "required": [
+        "justifier_l'usage_de_l'additif_face_aux_routes_conventionnelles",
+        "definir_orientation_supports_surépaisseurs_et_zones_interdites_aux_supports",
+        "evaluer_anisotropie_porosite_distorsion_retrait_et_rugosite_interne",
+        "prevoir_evacuations_de_poudre_et_interdire_les_volumes_pieges_non_inspectables",
+        "conserver_des_surépaisseurs_d'usinage_sur_toutes_les_interfaces_fonctionnelles",
+        "lier_la_piece_aux_coupons_de_meme_lot_orientation_et_historique_thermique"
+      ]
+    },
+    "machining": {
+      "required": [
+        "definir_datums_et_mise_en_position_avant_la_gamme",
+        "reserver_les_ajustements_alesages_filetages_portees_et_plans_de_joint_a_l'usinage",
+        "documenter_outils_efforts_arrosage_et_sequence_pour_limiter_la_distorsion",
+        "mesurer_apres_traitement_thermique_et_apres_usinage_final",
+        "ebavurer_nettoyer_et_verifier_chaque_passage_fluide"
+      ]
+    },
+    "heat_treatment": {
+      "required": [
+        "selectionner_un_cycle_par_nuance_route_epaisseur_et_etat_initial",
+        "enregistrer_temps_temperature_atmosphere_rampes_et_charge_four",
+        "interdire_toute_extrapolation_d'un_cycle_d'une_autre_nuance",
+        "controler_durete_microstructure_distorsion_et_proprietes_apres_cycle"
+      ]
+    },
+    "hip": {
+      "required": [
+        "justifier_applicabilite_et_cycle_par_nuance_et_route",
+        "qualifier_l'effet_sur_porosite_microstructure_fatigue_et_dimensions",
+        "interdire_de_considerer_le_HIP_comme_substitut_au_CT_ou_aux_essais",
+        "conserver_la_tracabilite_du_lot_avant_et_apres_HIP"
+      ]
+    },
+    "ct": {
+      "required": [
+        "definir_resolution_zone_d'interet_orientation_et_artefacts_attendus",
+        "qualifier_la_detectabilite_sur_defauts_de_reference",
+        "inspecter_volumes_internes_canaux_et_zones_non_accessibles",
+        "lier_les_indications_aux_criteres_d'acceptation_signes"
+      ]
+    },
+    "ndt": {
+      "required": [
+        "selectionner_PT_MT_UT_RT_eddy_current_ou_combinaison_selon_matiere_et_defaut",
+        "realiser_les_controles_aux_etapes_ou_les_defauts_sont_detectables",
+        "qualifier_operateur_procedure_et_materiel",
+        "documenter_indications_reparation_eventuelle_et_recontrole"
+      ]
+    },
+    "coupons": {
+      "required": [
+        "coupons_chimiques_micrographiques_densite_durete_et_traction_par_lot",
+        "eprouvettes_fatigue_dans_les_orientations_critiques",
+        "coupons_representatifs_des_epaisseurs_et_masses_thermiques",
+        "coupons_de_surface_et_d'usinage_pour_rugosite_et_integrite",
+        "archives_matiere_poudre_parametres_machine_et_recyclage"
+      ]
+    },
+    "tolerances": {
+      "required": [
+        "aucun_nominal_ou_tolerance_ne_peut_etre_invente_depuis_le_maillage",
+        "mesurer_sur_piece_physique_etalonnée_et_dessins_autorises",
+        "propager_incertitudes_et_chainages_de_cotes",
+        "valider_ajustements_a_froid_a_chaud_sous_pression_et_en_rotation",
+        "geler_les_criteres_avant_la_fabrication_de_qualification"
+      ]
+    }
+  },
+  "titanium_policy": {
+    "candidate_family_ids": ["connecting_rod_titanium", "valve_titanium_candidate", "gas_ducts_and_manifolds"],
+    "mandatory_topics": ["alloy", "build_process", "orientation", "heat_treatment", "hip", "machining", "inspection", "fatigue", "galvanic_isolation"],
+    "rules": [
+      "selectionner_une_nuance_et_un_etat_matiere_par_temperature_fatigue_fluage_oxydation_et_tribologie",
+      "qualifier_orientation_et_parametres_sur_coupons_cofabriques",
+      "documenter_traitement_thermique_HIP_et_usinage_sans_reutiliser_un_cycle_d'une_autre_nuance",
+      "inspecter_CT_NDT_microstructure_alpha_case_contamination_et_integrite_de_surface",
+      "corréler_fatigue_HCF_LCF_a_l'etat_de_surface_reel_et_aux_concentrations_de_contraintes",
+      "isoler_galvaniquement_du_magnesium_de_l'aluminium_et_des_aciers_avec_solution_validee_en_temperature_et_fluide",
+      "interdire_le_contact_avec_outillage_ou_poudre_contamines_et_maitriser_le_risque_incendie"
+    ]
+  },
+  "family_registry": [
+    {
+      "id": "crankcase_magnesium_historical",
+      "function": "carter porteur, paliers principaux et reseaux internes",
+      "historical_material_statement": "famille magnesium documentee; nuance, etat, chimie et traitement exacts non etablis",
+      "candidate_materials": [
+        {"id": "magnesium_alloy_tbd", "material_family": "magnesium", "scope": "etude_fonctionnelle", "standard_or_grade": null, "status": "candidate_unqualified"},
+        {"id": "alsi10mg_mockup", "material_family": "aluminium", "scope": "maquette_metal_hors_moteur", "standard_or_grade": "AlSi10Mg", "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "sand_cast_then_machine", "scope": "route_historique_a_requalifier", "status": "candidate_unqualified"},
+        {"id": "machined_billet_mockup", "scope": "maquette_metal", "status": "candidate_unqualified"},
+        {"id": "lpbf_aluminium_mockup", "scope": "maquette_metal_R&D", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "magnesium_lpbf_blocked_powder_fire_corrosion_and_material_evidence_missing",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["segmenter_uniquement_si_les_plans_de_joint_et_reseaux_restent_inspectables", "eviter_poudre_piegee_dans_les_galeries"],
+        "machining": ["alesages_de_paliers_en_ligne", "plans_de_joint", "logements_de_cylindres", "filetages_et_portees_de_pompes_depuis_datums_communs"],
+        "heat_treatment": ["identifier_la_nuance_avant_tout_cycle", "mesurer_distorsion_des_lignes_de_paliers"],
+        "hip": ["applicabilite_a_qualifier_par_route_sans_masquer_porosite_ou_inclusions"],
+        "ct": ["galeries_d'huile", "parois_de_paliers", "jonctions_et_variations_d'epaisseur"],
+        "ndt": ["PT_surfaces_usinees", "RT_ou_UT_selon_epaisseur_et_nuance", "controle_corrosion_et_inclusions"],
+        "coupons": ["chimie_et_microstructure_du_lot", "traction_et_fatigue_a_temperature", "corrosion_galvanique_et_huile" ]
+      },
+      "critical_measurements": [
+        {"id": "main_bearing_line_position_and_diameter", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM_and_bore_gauge", "condition": "assembled_and_preloaded"},
+        {"id": "cylinder_register_pattern_and_squareness", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM", "condition": "reference_temperature"},
+        {"id": "oil_gallery_wall_thickness_and_continuity", "nominal": null, "tolerance": null, "unit": "mm", "method": "calibrated_CT_and_pressure_test", "condition": "after_final_machining"},
+        {"id": "case_joint_flatness_and_surface_finish", "nominal": null, "tolerance": null, "unit": "mm_and_Ra", "method": "CMM_and_profilometer", "condition": "after_heat_treatment"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "cylinder_nikasil_system",
+      "function": "guidage piston, chambre thermique et transfert vers le refroidissement",
+      "historical_material_statement": "revetement nickel-carbure-de-silicium documente; substrat, epaisseur, durete et finition exacts non etablis",
+      "candidate_materials": [
+        {"id": "aluminium_substrate_tbd", "material_family": "aluminium", "scope": "substrat_fonctionnel_a_caracteriser", "standard_or_grade": null, "status": "candidate_unqualified"},
+        {"id": "nikasil_family_coating", "material_family": "nickel_silicon_carbide_coating", "scope": "surface_fonctionnelle", "standard_or_grade": null, "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "cast_or_wrought_blank_machine_plate_hone", "scope": "etude_fonctionnelle", "status": "candidate_unqualified"},
+        {"id": "lpbf_blank_machine_plate_hone", "scope": "R&D_uniquement", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "blank_only_coating_bore_geometry_and_finish_are_secondary_qualified_operations",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["surépaisseur_de_l'alesage_et_des_portees", "strategie_thermique_pour_circularite_et_ailettes"],
+        "machining": ["portees_carter_et_culasse", "alesage_avant_revetement", "honage_final_et_texture_croisee"],
+        "heat_treatment": ["stabilisation_du_substrat_avant_alesage_final", "compatibilite_avec_le_cycle_de_depot"],
+        "hip": ["justifier_sur_le_brut_additif_avant_revetement", "verifier_absence_de_distorsion_du_fut"],
+        "ct": ["porosite_du_substrat", "ailettes_et_transitions", "epaisseur_de_paroi"],
+        "ndt": ["PT_du_substrat", "controle_adhesion_et_porosite_du_revetement", "inspection_endoscopique"],
+        "coupons": ["adhesion_du_revetement", "usure_et_scuffing_avec_segments", "cyclage_thermique", "traction_du_substrat" ]
+      },
+      "critical_measurements": [
+        {"id": "finished_bore_diameter_roundness_and_taper", "nominal": null, "tolerance": null, "unit": "mm", "method": "air_gauge_and_roundness_machine", "condition": "coated_honed_reference_temperature"},
+        {"id": "coating_thickness_hardness_and_porosity", "nominal": null, "tolerance": null, "unit": "um_HV_percent", "method": "metallography_and_microhardness", "condition": "witness_coupon_and_part"},
+        {"id": "register_diameter_height_and_squareness", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM", "condition": "after_final_machining"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "piston_system",
+      "function": "transmission de la pression cylindre, etancheite, guidage et gestion thermique",
+      "historical_material_statement": "geometrie, alliage, axe, segments, jeux et traitements de surface exacts non etablis",
+      "candidate_materials": [
+        {"id": "forged_2618a_candidate", "material_family": "aluminium", "scope": "reference_conventionnelle_a_qualifier", "standard_or_grade": "EN_AW_2618A", "status": "candidate_unqualified"},
+        {"id": "lpbf_alsi10mg_candidate", "material_family": "aluminium", "scope": "R&D_additive_avec_canal_de_refroidissement", "standard_or_grade": "AlSi10Mg", "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "forged_then_machine", "scope": "reference_fonctionnelle_a_qualifier", "status": "candidate_unqualified"},
+        {"id": "lpbf_hip_heat_treat_machine", "scope": "R&D_additive", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "research_candidate_only_no_917_fit_or_endurance_evidence",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["evacuation_et_inspection_du_canal_de_refroidissement", "orientation_limitant_defauts_dans_bossages_d'axe_et_couronne", "surépaisseurs_jupe_gorges_et_alesage_d'axe"],
+        "machining": ["gorges_de_segments", "profil_de_jupe", "alesage_d'axe", "calotte_et_equilibrage_massique"],
+        "heat_treatment": ["cycle_specifique_a_l'alliage_et_aux_epaisseurs", "stabilisation_dimensionnelle_avant_finition"],
+        "hip": ["cycle_et_effet_sur_Si_microstructure_fatigue_et_canal_a_qualifier"],
+        "ct": ["canal_de_refroidissement", "bossages_d'axe", "couronne_et_raccordements"],
+        "ndt": ["PT_apres_usinage", "controle_gorges_et_alesage_d'axe", "etancheite_du_canal"],
+        "coupons": ["traction_fatigue_thermomecanique", "dilatation_et_conductivite", "usure_jupe_segments", "coupon_canal_representatif" ]
+      },
+      "critical_measurements": [
+        {"id": "crown_bowl_and_compression_height", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM_and_optical_metrology", "condition": "final_state"},
+        {"id": "pin_bore_diameter_position_and_alignment", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM_and_air_gauge", "condition": "final_state"},
+        {"id": "ring_groove_geometry_and_surface_finish", "nominal": null, "tolerance": null, "unit": "mm_and_Ra", "method": "profilometer_and_optical_metrology", "condition": "final_state"},
+        {"id": "piston_mass_and_balance_set_spread", "nominal": null, "tolerance": null, "unit": "g", "method": "calibrated_balance", "condition": "with_defined_components"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "connecting_rod_titanium",
+      "function": "liaison piston-vilebrequin sous charges alternees et inertie",
+      "historical_material_statement": "famille titane documentee; nuance, forge, traitement, grenaillage et limites exacts non etablis",
+      "candidate_materials": [
+        {"id": "wrought_ti6al4v_candidate", "material_family": "titanium", "scope": "reference_forgee_a_qualifier", "standard_or_grade": "Ti-6Al-4V_Grade_5", "status": "candidate_unqualified"},
+        {"id": "lpbf_ti6al4v_candidate", "material_family": "titanium", "scope": "R&D_additive", "standard_or_grade": "Ti-6Al-4V_Grade_5", "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "closed_die_forge_machine", "scope": "reference_fonctionnelle_a_qualifier", "status": "candidate_unqualified"},
+        {"id": "lpbf_hip_heat_treat_machine", "scope": "R&D_additive", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "blocked_until_HCF_LCF_bearing_interface_and_process_qualification",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["orientation_limitant_defauts_transverses_a_l'axe_de_charge", "rayons_et_transitions_inspectables", "surépaisseur_sur_alésages_et_faces_de_chapeau"],
+        "machining": ["alesages_pied_et_tete", "faces_de_chapeau", "filetages_ou_visserie_qualifiee", "equilibrage_bout_a_bout"],
+        "heat_treatment": ["cycle_sous_vide_specifique_nuance_et_route", "controle_alpha_case_et_contamination"],
+        "hip": ["cycle_qualifie_sur_porosite_microstructure_dimensions_et_fatigue"],
+        "ct": ["ame", "raccordements_pied_tete", "zones_de_chapeau_et_visserie"],
+        "ndt": ["PT_apres_HIP_et_apres_usinage", "UT_si_detectabilite_qualifiee", "controle_frettage_et_portees"],
+        "coupons": ["traction_longitudinale_transverse", "HCF_LCF_aux_temperatures_service", "tenacite", "surface_usinee_et_grenaillée" ]
+      },
+      "titanium_controls": {
+        "selected_alloy": null,
+        "selected_build_process": null,
+        "selected_orientation": null,
+        "selected_heat_treatment": null,
+        "selected_hip_cycle": null,
+        "machining": ["surépaisseur_et_datums", "integrite_sous_surface", "absence_de_brulure_et_contamination"],
+        "inspection": ["CT", "PT", "metallographie_coupons", "CMM", "controle_masse_et_equilibrage"],
+        "fatigue": ["HCF", "LCF", "effet_etat_de_surface", "fretting", "spectre_charge_moteur_correle"],
+        "galvanic_isolation": ["isoler_des_aciers_et_du_magnesium", "valider_revêtement_bagues_lubrifiant_et_temperature", "inspecter_apres_endurance"],
+        "additive_build_authorized": false
+      },
+      "critical_measurements": [
+        {"id": "center_to_center_length_and_twist", "nominal": null, "tolerance": null, "unit": "mm_and_angle", "method": "CMM", "condition": "assembled_cap_preload"},
+        {"id": "big_end_and_small_end_bore_geometry", "nominal": null, "tolerance": null, "unit": "mm", "method": "roundness_machine_and_air_gauge", "condition": "specified_fastener_preload"},
+        {"id": "mass_total_and_end_to_end_balance", "nominal": null, "tolerance": null, "unit": "g", "method": "calibrated_balance_fixture", "condition": "final_state"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "valve_titanium_candidate",
+      "function": "controle des gaz et etancheite de chambre sous impact, temperature et fatigue",
+      "historical_material_statement": "usage du titane non etabli pour les soupapes du moteur cible; distinction admission-echappement indispensable",
+      "candidate_materials": [
+        {"id": "ti6242_intake_research_candidate", "material_family": "titanium", "scope": "admission_R&D_uniquement", "standard_or_grade": "Ti-6Al-2Sn-4Zr-2Mo", "status": "candidate_unqualified"},
+        {"id": "nickel_superalloy_exhaust_tbd", "material_family": "nickel_superalloy", "scope": "echappement_a_caracteriser", "standard_or_grade": null, "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "wrought_forged_machine_finish", "scope": "reference_a_qualifier", "status": "candidate_unqualified"},
+        {"id": "lpbf_near_net_machine_coat", "scope": "R&D_additive_non_liberee", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "titanium_exhaust_use_prohibited_until_temperature_oxidation_creep_and_fire_evidence",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["orientation_de_tige_et_tete_justifiee_par_fatigue", "surépaisseur_sur_tige_face_et_gorge", "aucun_volume_interne_non_inspectable"],
+        "machining": ["rectification_tige", "face_et_angle_de_siege", "gorge_de_clavette", "rayon_sous_tete"],
+        "heat_treatment": ["cycle_specifique_a_la_nuance", "controle_alpha_case_oxydation_et_durete"],
+        "hip": ["qualification_porosite_microstructure_fatigue_et_distorsion_de_tige"],
+        "ct": ["jonction_tige_tete", "centre_de_tete", "gorge_de_clavette"],
+        "ndt": ["PT", "eddy_current_sur_tige_si_qualifie", "controle_revêtement_et_face_de_siege"],
+        "coupons": ["HCF_impact", "fluage_oxydation_temperature", "usure_guide_et_siege", "compatibilite_revêtement" ]
+      },
+      "titanium_controls": {
+        "selected_alloy": null,
+        "selected_build_process": null,
+        "selected_orientation": null,
+        "selected_heat_treatment": null,
+        "selected_hip_cycle": null,
+        "machining": ["rectification_tige", "finition_face", "gorge_sans_entaille", "nettoyage_sans_contamination"],
+        "inspection": ["CT", "PT", "rectitude", "rugosite", "metallographie_et_alpha_case"],
+        "fatigue": ["HCF_impact_siege", "fatigue_thermique", "fretting_clavette", "endurance_guide_siege"],
+        "galvanic_isolation": ["compatibilite_guide_siege_ressort_et_clavettes", "revêtements_et_lubrification_qualifies", "inspection_apres_endurance"],
+        "additive_build_authorized": false
+      },
+      "critical_measurements": [
+        {"id": "stem_diameter_straightness_and_finish", "nominal": null, "tolerance": null, "unit": "mm_and_Ra", "method": "air_gauge_roundness_machine_profilometer", "condition": "final_state"},
+        {"id": "head_diameter_face_angle_and_runout", "nominal": null, "tolerance": null, "unit": "mm_and_angle", "method": "optical_metrology_and_runout_fixture", "condition": "final_state"},
+        {"id": "keeper_groove_geometry_and_root_radius", "nominal": null, "tolerance": null, "unit": "mm", "method": "optical_metrology", "condition": "final_state"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "camshaft_system",
+      "function": "loi de levee, synchronisation et transmission des efforts de distribution",
+      "historical_material_statement": "profils, calage, nuance, traitements et construction exacts non etablis",
+      "candidate_materials": [
+        {"id": "nitriding_steel_candidate", "material_family": "steel", "scope": "arbre_usine_a_qualifier", "standard_or_grade": "31CrMoV9_candidate", "status": "candidate_unqualified"},
+        {"id": "case_hardening_steel_candidate", "material_family": "steel", "scope": "arbre_usine_a_qualifier", "standard_or_grade": "18CrNiMo7-6_candidate", "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "forged_or_billet_machine_heat_treat_grind", "scope": "reference_fonctionnelle_a_qualifier", "status": "candidate_unqualified"},
+        {"id": "additive_preform_then_grind", "scope": "R&D_non_liberee", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "blocked_until_contact_fatigue_distortion_and_oil_compatibility_qualification",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["orientation_et_supports_hors_cames_et_portees", "surépaisseur_de_rectification", "passages_d'huile_accessibles_et_nettoyables"],
+        "machining": ["rectification_profils_de_cames", "portees", "references_de_calage", "perçages_et_nettoyage_galeries"],
+        "heat_treatment": ["nitruration_ou_cementation_a_selectionner", "profondeur_de_couche_durete_coeur_distorsion_et_rectification"],
+        "hip": ["applicabilite_additive_a_qualifier_avant_traitement_de_surface"],
+        "ct": ["galeries", "raccordements_de_cames", "defauts_sous_portees"],
+        "ndt": ["MT_ou_PT_selon_route", "eddy_current_sur_cames", "controle_brulure_de_rectification"],
+        "coupons": ["fatigue_contact", "pitting_scuffing", "durete_et_profondeur_de_couche", "torsion_fatigue" ]
+      },
+      "critical_measurements": [
+        {"id": "lobe_profile_lift_velocity_and_acceleration", "nominal": null, "tolerance": null, "unit": "mm_and_angle", "method": "camshaft_metrology_machine", "condition": "final_ground_state"},
+        {"id": "journal_diameter_roundness_and_runout", "nominal": null, "tolerance": null, "unit": "mm", "method": "roundness_machine_and_runout_fixture", "condition": "final_state"},
+        {"id": "phase_reference_between_lobes_and_drive", "nominal": null, "tolerance": null, "unit": "angle", "method": "indexed_CMM", "condition": "final_state"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "dilavar_stud_system",
+      "function": "precharge et maintien carter-cylindre-culasse sur cycle thermique",
+      "historical_material_statement": "48 goujons Dilavar, longueur 149,5 mm, fut 9 mm et masse 65 g documentes; nuance, filets, precharge et etat exacts non etablis",
+      "candidate_materials": [
+        {"id": "dilavar_exact_grade_tbd", "material_family": "iron_nickel_chromium_alloy", "scope": "reproduction_fonctionnelle_interdite_sans_specification", "standard_or_grade": null, "status": "candidate_unqualified"},
+        {"id": "certified_supplier_stud", "material_family": "supplier_certified_alloy", "scope": "reference_achetee_a_qualifier", "standard_or_grade": null, "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "qualified_supplier_purchase", "scope": "route_de_reference", "status": "candidate_unqualified"},
+        {"id": "wrought_bar_roll_threads_heat_treat", "scope": "reproduction_exigeant_specification_complete", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "not_additive_candidate_rolled_threads_and_material_condition_are_function_critical",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["impression_additive_fonctionnelle_exclue", "proxy_uniquement_pour_assemblage_visuel"],
+        "machining": ["filets_roules_preferes_a_etudier", "rayons_de_transition", "rectitude_et_etat_de_surface_du_fut"],
+        "heat_treatment": ["etat_matiere_et_cycle_fournisseur_a_tracer", "aucune_substitution_par_durete_seule"],
+        "hip": ["non_applicable_presume_a_confirmer_par_revue_de_route"],
+        "ct": ["non_methode_primaire_sauf_defaut_interne_reference_qualifie"],
+        "ndt": ["eddy_current_ou_MT_selon_nuance", "inspection_filets_et_corrosion", "controle_apres_endurance"],
+        "coupons": ["traction_fluage_relaxation", "fatigue_thermomecanique", "corrosion_huile_et_galvanique", "coefficient_de_dilatation" ]
+      },
+      "critical_measurements": [
+        {"id": "free_length_shank_diameter_and_thread_geometry", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM_micrometer_thread_metrology", "condition": "unloaded_reference_temperature"},
+        {"id": "preload_torque_tension_and_relaxation", "nominal": null, "tolerance": null, "unit": "N_Nm_percent", "method": "instrumented_joint_test", "condition": "cold_hot_cycles"},
+        {"id": "thermal_expansion_and_creep", "nominal": null, "tolerance": null, "unit": "1_per_K_and_percent", "method": "dilatometry_and_creep_test", "condition": "service_temperature_spectrum"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "gas_ducts_and_manifolds",
+      "function": "admission et echappement avec pertes, repartition, pulsations et dilatation maitrisees",
+      "historical_material_statement": "geometrie interne, epaisseurs, alliages, soudures, supports et conditions thermiques exacts non etablis",
+      "candidate_materials": [
+        {"id": "ti6al4v_cold_intake_candidate", "material_family": "titanium", "scope": "admission_froide_R&D", "standard_or_grade": "Ti-6Al-4V_Grade_5", "status": "candidate_unqualified"},
+        {"id": "alloy625_hot_duct_candidate", "material_family": "nickel_superalloy", "scope": "echappement_chaud_R&D", "standard_or_grade": "UNS_N06625", "status": "candidate_unqualified"},
+        {"id": "stainless_fabricated_reference", "material_family": "stainless_steel", "scope": "maquette_et_reference_fabriquee", "standard_or_grade": null, "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "formed_tube_sheet_welded", "scope": "route_conventionnelle_a_qualifier", "status": "candidate_unqualified"},
+        {"id": "lpbf_segmented_and_welded", "scope": "R&D_additive", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "flow_benefit_must_be_proven_against_roughness_distortion_welds_and_inspectability",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["rayons_continus_et_sections_sans_decrochement", "evacuation_de_poudre", "segments_compatibles_CT_nettoyage_et_usinage_des_brides", "rugosite_interne_incluse_dans_CFD"],
+        "machining": ["brides_et_plans_de_joint", "portees_capteurs", "alignement_des_segments", "ebavurage_interne"],
+        "heat_treatment": ["detensionnement_et_cycle_specifique_a_l'alliage", "traitement_des_soudures_et_controle_distorsion"],
+        "hip": ["qualifier_sur_LPBF_sans_fermer_les_canaux_ni_masquer_les_defauts_de_surface"],
+        "ct": ["parois_minces", "jonctions_de_branches", "soudures_et_canaux_inaccessibles"],
+        "ndt": ["PT", "RT_soudures_si_qualifie", "test_etancheite_helium_ou_pression", "endoscopie"],
+        "coupons": ["fatigue_thermique", "oxydation", "fluage_alliage_chaud", "rugosite_perte_de_charge", "soudures_representatives" ]
+      },
+      "titanium_controls": {
+        "selected_alloy": null,
+        "selected_build_process": null,
+        "selected_orientation": null,
+        "selected_heat_treatment": null,
+        "selected_hip_cycle": null,
+        "machining": ["brides", "bossages_capteurs", "interfaces_de_soudure", "nettoyage_interne"],
+        "inspection": ["CT", "PT", "etancheite", "endoscopie", "mesure_rugosite_interne"],
+        "fatigue": ["vibration_HCF", "cyclage_thermique", "effet_soudures_et_supports", "pression_pulsee"],
+        "galvanic_isolation": ["brides_et_fixations_face_magnesium_aluminium_acier", "isolants_compatibles_temperature_et_fluide", "drainage_et_inspection_corrosion"],
+        "additive_build_authorized": false
+      },
+      "critical_measurements": [
+        {"id": "internal_area_centerline_and_branch_geometry", "nominal": null, "tolerance": null, "unit": "mm", "method": "calibrated_CT_and_CMM", "condition": "final_state"},
+        {"id": "wall_thickness_and_internal_roughness", "nominal": null, "tolerance": null, "unit": "mm_and_Ra", "method": "CT_ultrasound_and_replica_profilometry", "condition": "representative_locations"},
+        {"id": "flange_position_flatness_and_leak_rate", "nominal": null, "tolerance": null, "unit": "mm_and_leak_rate", "method": "CMM_and_leak_test", "condition": "cold_and_hot_fixture"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    },
+    {
+      "id": "turbocharger_system",
+      "function": "compression, recuperation d'energie echappement, paliers, etancheite et regulation",
+      "historical_material_statement": "architecture turbo documentee mais cartes, dimensions, alliages, jeux, rotors, paliers et regulation exacts non etablis",
+      "candidate_materials": [
+        {"id": "alsi10mg_compressor_housing_mockup", "material_family": "aluminium", "scope": "carter_froid_maquette_R&D", "standard_or_grade": "AlSi10Mg", "status": "candidate_unqualified"},
+        {"id": "alloy625_turbine_housing_candidate", "material_family": "nickel_superalloy", "scope": "carter_chaud_R&D", "standard_or_grade": "UNS_N06625", "status": "candidate_unqualified"},
+        {"id": "qualified_purchased_chra", "material_family": "supplier_qualified_mixed_materials", "scope": "rotor_paliers_et_etancheites_de_reference", "standard_or_grade": null, "status": "candidate_unqualified"}
+      ],
+      "selected_material_id": null,
+      "candidate_routes": [
+        {"id": "qualified_purchased_chra_custom_housings", "scope": "reference_de_banc_a_qualifier", "status": "candidate_unqualified"},
+        {"id": "lpbf_housings_machine_heat_treat", "scope": "carters_R&D_uniquement", "status": "candidate_unqualified"}
+      ],
+      "selected_route_id": null,
+      "additive_disposition": "housings_only_candidate_CHRA_rotor_shaft_bearings_and_seals_are_not_released_for_printing",
+      "maturity_disposition": {"polymer_prototype": "candidate_only", "metal_mockup": "candidate_only", "functional_engine_part": "blocked"},
+      "manufacturing_controls": {
+        "dfam": ["volutes_sans_poudre_piegee", "surépaisseur_sur_portees_et_brides", "rugosite_incluse_dans_cartographie", "carter_et_CHRA_separes"],
+        "machining": ["concentricite_carter_CHRA", "interfaces_brides", "portees_wastegate_et_capteurs", "degagements_rotor_mesures"],
+        "heat_treatment": ["cycle_par_alliage_et_gradient_d'epaisseur", "stabilisation_avant_usinage_final"],
+        "hip": ["qualifier_carters_LPBF_sur_porosite_fluage_fatigue_et_distorsion"],
+        "ct": ["volutes", "languette", "parois_CHRA", "canaux_huile_et_refroidissement"],
+        "ndt": ["PT", "etancheite_huile_air_gaz", "endoscopie", "inspection_apres_cycles_thermiques"],
+        "coupons": ["fluage_oxydation_fatigue_thermique", "rugosite_perte_de_charge", "eprouvettes_representatives_de_volute", "joints_et_interfaces" ]
+      },
+      "critical_measurements": [
+        {"id": "compressor_and_turbine_map_operating_envelope", "nominal": null, "tolerance": null, "unit": "corrected_flow_pressure_ratio_efficiency", "method": "calibrated_turbo_bench", "condition": "speed_temperature_and_pressure_sweep"},
+        {"id": "rotor_clearance_concentricity_and_axial_radial_play", "nominal": null, "tolerance": null, "unit": "mm", "method": "CMM_and_instrumented_CHRA_fixture", "condition": "cold_and_hot"},
+        {"id": "rotor_balance_overspeed_and_burst_margin", "nominal": null, "tolerance": null, "unit": "speed_vibration_margin", "method": "contained_high_speed_balance_and_overspeed_cell", "condition": "approved_safety_plan"},
+        {"id": "housing_leakage_and_thermal_distortion", "nominal": null, "tolerance": null, "unit": "leak_rate_and_mm", "method": "leak_test_CMM_and_hot_rig", "condition": "defined_thermal_cycles"}
+      ],
+      "release": {"status": "blocked", "printable": false, "functional": false, "engine_use": false}
+    }
+  ],
+  "whole_engine_release": {
+    "polymer_prototype_authorized": false,
+    "metal_mockup_authorized": false,
+    "functional_engine_part_authorized": false,
+    "printable": false,
+    "functional": false,
+    "engine_assembly": false,
+    "engine_start": false,
+    "vehicle_use": false,
+    "blocking_reasons": [
+      "identity_variant_and_scale_not_confirmed",
+      "critical_dimensions_and_tolerances_not_measured",
+      "materials_and_routes_not_selected_or_qualified",
+      "reference_physics_not_correlated",
+      "coupons_CT_NDT_and_component_tests_not_passed",
+      "runtime_authorities_and_professional_signoff_absent"
+    ]
+  }
+}
