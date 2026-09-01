@@ -14,6 +14,8 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertNotIn("TRANSFORMERS_VERSION", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
         self.assertIn("TORCH_VERSION=2.8.0", dockerfile)
+        self.assertIn("https://download.pytorch.org/whl/cu128", dockerfile)
+        self.assertIn("import torch; cuda = tuple", dockerfile)
         self.assertIn("BUILD123D_VERSION=0.11.1", dockerfile)
         self.assertIn("CADQUERY_VERSION=2.8.0", dockerfile)
         self.assertIn('"nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}"', dockerfile)

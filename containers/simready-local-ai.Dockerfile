@@ -39,7 +39,11 @@ ENV SIMREADY_LOCAL_AI=1 \
 RUN python3.12 -m venv /opt/venv \
     && /opt/venv/bin/pip install --no-cache-dir --upgrade "pip>=26.1"
 
-RUN /opt/venv/bin/pip install --no-cache-dir "torch==${TORCH_VERSION}"
+RUN /opt/venv/bin/pip install --no-cache-dir \
+       --index-url https://download.pytorch.org/whl/cu128 \
+       "torch==${TORCH_VERSION}" \
+    && /opt/venv/bin/python -c \
+       'import torch; cuda = tuple(map(int, torch.version.cuda.split(".")[:2])); assert cuda >= (12, 8), cuda'
 
 RUN /opt/venv/bin/pip install --no-cache-dir \
        "build123d==${BUILD123D_VERSION}" "cadquery==${CADQUERY_VERSION}" \
