@@ -5,6 +5,12 @@ Elle installe PhysicsNeMo 2.2.1 sur Python 3.12, PyTorch 2.10 et CUDA 12.8.
 Elle vérifie les imports publics de `DoMINO`, `GeoTransolver` et
 `MeshGraphNet` observés dans le tag NVIDIA `v2.2.1`.
 
+L'extra amont `gnns` n'est pas demandé directement : ses métadonnées 2.2.1
+référencent un paquet PyPI inexistant nommé `stl`. Les dépendances PyTorch
+Geometric réellement nécessaires au smoke test sont donc installées et
+épinglées explicitement avant PhysicsNeMo. Le smoke test d'image reste la
+preuve que les imports publics attendus sont effectivement résolus.
+
 Elle n'embarque volontairement aucun scan, dataset, poids de modèle, fichier
 Porsche, solveur CFD/EF, outil CAO, Omniverse, serveur SSH ou client d'API.
 Les entrées et sorties sont montées à l'exécution.

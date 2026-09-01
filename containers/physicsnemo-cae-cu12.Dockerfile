@@ -67,7 +67,7 @@ RUN python3 -c 'import sys; assert sys.version_info[:2] == (3, 12), sys.version'
     && /opt/physicsnemo/bin/python -m pip install --only-binary=:all: \
         --extra-index-url https://pypi.nvidia.com \
         --constraint /opt/build/constraints.txt \
-        "nvidia-physicsnemo[cu12,mesh-extras,gnns]==${PHYSICSNEMO_VERSION}" \
+        "nvidia-physicsnemo[cu12,mesh-extras]==${PHYSICSNEMO_VERSION}" \
     && /opt/physicsnemo/bin/python -m pip check \
     && /opt/physicsnemo/bin/python -m pip freeze --all \
         > /opt/physicsnemo/environment.freeze.txt

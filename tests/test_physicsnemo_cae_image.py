@@ -83,9 +83,10 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
         self.assertIn("TORCHVISION_VERSION=0.25.0", dockerfile)
         self.assertIn("https://download.pytorch.org/whl/cu128", dockerfile)
         self.assertIn(
-            '"nvidia-physicsnemo[cu12,mesh-extras,gnns]==${PHYSICSNEMO_VERSION}"',
+            '"nvidia-physicsnemo[cu12,mesh-extras]==${PHYSICSNEMO_VERSION}"',
             dockerfile,
         )
+        self.assertNotIn("mesh-extras,gnns", dockerfile)
         self.assertNotIn("cu13", dockerfile.lower())
         self.assertNotIn("nvcr.io", dockerfile.lower())
         self.assertNotIn("ngc", dockerfile.lower())
