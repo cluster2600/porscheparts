@@ -10,17 +10,20 @@ shift 8
 ASSET=""
 MINIMUM_REPORT=""
 PROMPT_FILE=""
+ASSET_CONTEXT_REPORT=""
 while [ "$#" -gt 0 ]; do
     case "$1" in
         --asset) ASSET="$2"; shift 2 ;;
         --minimum-report) MINIMUM_REPORT="$2"; shift 2 ;;
         --prompt-file) PROMPT_FILE="$2"; shift 2 ;;
+        --asset-context-report) ASSET_CONTEXT_REPORT="$2"; shift 2 ;;
         *) echo "argument inconnu: $1" >&2; exit 2 ;;
     esac
 done
 [ -n "${ASSET}" ] || { echo "--asset requis" >&2; exit 2; }
 [ -n "${MINIMUM_REPORT}" ] || { echo "--minimum-report requis" >&2; exit 2; }
 [ -n "${PROMPT_FILE}" ] || { echo "--prompt-file requis" >&2; exit 2; }
+[ -n "${ASSET_CONTEXT_REPORT}" ] || { echo "--asset-context-report requis" >&2; exit 2; }
 
 PHASE_ROOT="${OUTPUT_ROOT}/material/${RUN_ID}"
 [ ! -e "${PHASE_ROOT}" ] || { echo "sortie existante: ${PHASE_ROOT}" >&2; exit 2; }
@@ -34,11 +37,13 @@ phase_init "material" "${PHASE_REPORT_PATH}" "${PHASE_LOG_PATH}" "${CONTROL_REPO
 phase_add_input "${ASSET}"
 phase_add_input "${MINIMUM_REPORT}"
 phase_add_input "${PROMPT_FILE}"
+phase_add_input "${ASSET_CONTEXT_REPORT}"
 phase_add_child_report "${REFERENCE_REPORT}"
 phase_add_child_report "${INTENT_REPORT}"
 require_job_control
 require_file "${ASSET}"
 require_attested_prompt material "${PROMPT_FILE}"
+require_asset_context "${ASSET_CONTEXT_REPORT}" "${ASSET}"
 require_report_output "${MINIMUM_REPORT}" "${ASSET}"
 [ -s "${PROMPT_FILE}" ] || { phase_block "prompt matériel vide"; exit 2; }
 [ "$(wc -c <"${PROMPT_FILE}")" -le 20000 ] || { phase_block "prompt matériel trop volumineux"; exit 2; }
@@ -72,7 +77,7 @@ then
     exit 2
 fi
 REFERENCE="$(require_skill_reference "references/content-agents/references/material-agent-client/scripts/run.py")"
-PROMPT="$(<"${PROMPT_FILE}")"
+PROMPT="$(compose_assignment_prompt "${PROMPT_FILE}" "${ASSET_CONTEXT_REPORT}")"
 run_logged "${USD_PYTHON}" "${REFERENCE}" "${ASSET}" "${PHASE_ROOT}/output" \
     --base-url http://127.0.0.1:8100 \
     --prompt "${PROMPT}" \

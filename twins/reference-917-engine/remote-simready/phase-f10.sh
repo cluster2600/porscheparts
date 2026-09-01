@@ -43,6 +43,10 @@ DETAIL="${STAGES}/${SLUG}-detail-f10.usda"
 CONFIG_REPORT="${GENERATED}/variant-config-generation-report.json"
 AUTHOR_REPORT="${REPORTS}/author-kinematics-f10.json"
 VALIDATION_REPORT="${REPORTS}/validate-variant-stages-f10.json"
+LOCAL_CONTEXT_REPORT="${REPORTS}/identify-asset-context-local.json"
+LOCAL_CONTEXT_MARKDOWN="${REPORTS}/identify-asset-context-local.md"
+ASSET_CONTEXT_REPORT="${REPORTS}/asset-context.json"
+ASSET_CONTEXT_MARKDOWN="${REPORTS}/asset-context.md"
 PHASE_REPORT_PATH="${PHASE_ROOT}/phase-f10.json"
 PHASE_LOG_PATH="${PHASE_ROOT}/phase-f10.log"
 phase_init "f10-${SLUG}" "${PHASE_REPORT_PATH}" "${PHASE_LOG_PATH}" "${CONTROL_REPORT}"
@@ -51,6 +55,10 @@ phase_add_output "${DETAIL}"
 phase_add_child_report "${CONFIG_REPORT}"
 phase_add_child_report "${AUTHOR_REPORT}"
 phase_add_child_report "${VALIDATION_REPORT}"
+phase_add_child_report "${LOCAL_CONTEXT_REPORT}"
+phase_add_child_report "${LOCAL_CONTEXT_MARKDOWN}"
+phase_add_child_report "${ASSET_CONTEXT_REPORT}"
+phase_add_child_report "${ASSET_CONTEXT_MARKDOWN}"
 require_job_control
 require_passed_report "${PREFLIGHT_REPORT}"
 
@@ -105,4 +113,16 @@ run_logged "${USD_PYTHON}" "${VALIDATE}" \
     --geometry-stage "${GEOMETRY}" --kinematic-stage "${KINEMATIC}" \
     --detail-stage "${DETAIL}" --report "${VALIDATION_REPORT}"
 require_passed_report "${VALIDATION_REPORT}"
-phase_pass "F10 ${VARIANT} construit dans un stage distinct; géométrie visuelle non libérée pour fabrication"
+CONTEXT_REFERENCE="$(require_skill_reference "references/identify-asset-context/scripts/run.py")"
+run_logged "${USD_PYTHON}" "${CONTEXT_REFERENCE}" "${DETAIL}" \
+    --report "${LOCAL_CONTEXT_REPORT}" --markdown-report "${LOCAL_CONTEXT_MARKDOWN}"
+require_passed_report "${LOCAL_CONTEXT_REPORT}"
+CONTEXT_HELPER="${SCRIPT_DIR}/_asset_context.py"
+require_file "${CONTEXT_HELPER}"
+run_logged "${SYSTEM_PYTHON}" "${CONTEXT_HELPER}" \
+    --asset "${DETAIL}" --local-report "${LOCAL_CONTEXT_REPORT}" \
+    --variant-manifest "${MANIFEST}" --variant "${VARIANT}" \
+    --project-root "${PROJECT_ROOT}" --report "${ASSET_CONTEXT_REPORT}" \
+    --markdown-report "${ASSET_CONTEXT_MARKDOWN}"
+require_passed_report "${ASSET_CONTEXT_REPORT}"
+phase_pass "F10 ${VARIANT} construit dans un stage distinct avec contexte sourcé; géométrie visuelle non libérée pour fabrication"

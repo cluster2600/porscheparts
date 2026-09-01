@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Exécute uniquement le prévol NVIDIA en mode lecture et sans déploiement Docker.
+# Premier contact workflow avec les endpoints déjà sains : prévol NVIDIA sans déploiement Docker.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -34,13 +34,11 @@ PREFLIGHT_SCRIPT="$(require_skill_reference "references/preflight/scripts/prefli
 
 export CONTENT_AGENTS_UPSTREAM_ROOT="${CONTENT_AGENTS_UPSTREAM_ROOT:-${CONTENT_AGENTS_ROOT:-/opt/content-agents}}"
 export SIMREADY_FOUNDATION_ROOT="${SIMREADY_FOUNDATION_ROOT:-/opt/simready-foundation}"
-export USD_CONVERT_CAD_ROOT="${USD_CONVERT_CAD_ROOT:-/opt/usd-convert-cad-preflight}"
 run_logged "${USD_PYTHON}" "${PREFLIGHT_SCRIPT}" \
     --check-only \
     --skip-deploy \
     --no-update \
-    --targets conversion,validation,content-agents \
-    --conversion-tools usd-convert-cad \
+    --targets validation,content-agents \
     --project-root "${PROJECT_ROOT}" \
     --output-root "${OUTPUT_ROOT}" \
     --state-root "${PHASE_ROOT}/state" \
@@ -50,4 +48,4 @@ run_logged "${USD_PYTHON}" "${PREFLIGHT_SCRIPT}" \
 require_passed_report "${MANIFEST}"
 phase_add_output "${ENV_FILE}"
 phase_add_output "${MARKDOWN}"
-phase_pass "prévol NVIDIA prêt; services réutilisés sans Docker-in-Docker"
+phase_pass "prévol NVIDIA prêt; USD F10 natif et endpoints existants réutilisés sans Docker-in-Docker"

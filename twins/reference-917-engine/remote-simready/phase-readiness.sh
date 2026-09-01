@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Vérifie l'image, les services natifs et le runtime GPU. Ne lance aucune simulation moteur.
+# Vérifie uniquement l'image et le runtime GPU. Ne contacte aucun Content Agent.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -22,23 +22,12 @@ phase_add_output "${GPU_REPORT}"
 phase_add_child_report "${GPU_REPORT}"
 require_job_control
 require_command timeout
-require_command "${CURL_BIN}"
-require_command "${SIMREADY_SERVICES_BIN}"
 require_command "${NVIDIA_SMI_BIN}"
 require_executable "${CAD_PYTHON}"
-require_executable "${USD_PYTHON}"
-require_executable "${USD_CONVERT_CAD_BIN}"
-require_skill_reference "references/preflight/scripts/preflight.py" >/dev/null
-require_skill_reference "references/content-agents/references/material-agent-client/scripts/run.py" >/dev/null
-require_skill_reference "references/content-agents/references/physics-agent-client/scripts/run.py" >/dev/null
+# L'on-start de l'image n'écrit READY qu'après le démarrage sain des endpoints.
+# Leur première inspection par le workflow reste la phase preflight suivante.
 [ -f /workspace/READY ] || { phase_block "marqueur /workspace/READY absent"; exit 2; }
 
-run_logged "${SIMREADY_SERVICES_BIN}" start
-run_logged "${SIMREADY_SERVICES_BIN}" status
-run_logged "${CURL_BIN}" --fail --silent --show-error --max-time 10 http://127.0.0.1:8000/v1/models
-run_logged "${CURL_BIN}" --fail --silent --show-error --max-time 10 http://127.0.0.1:8100/health
-run_logged "${CURL_BIN}" --fail --silent --show-error --max-time 10 http://127.0.0.1:8200/health
-run_logged "${CURL_BIN}" --fail --silent --show-error --max-time 10 http://127.0.0.1:8001/health
 run_logged "${NVIDIA_SMI_BIN}" --query-gpu=name,memory.total,driver_version --format=csv,noheader,nounits
 
 refresh_budget
@@ -86,4 +75,4 @@ if not payload["passed"]:
 PY
 
 require_passed_report "${GPU_REPORT}"
-phase_pass "services natifs et runtime GPU prêts; ceci ne valide aucune simulation moteur"
+phase_pass "image et runtime GPU prêts; aucun Content Agent contacté et aucune simulation moteur exécutée"

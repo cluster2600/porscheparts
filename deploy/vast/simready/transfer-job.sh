@@ -147,7 +147,9 @@ SOURCE_FILES=(
     twins/reference-917-engine/source/build_variant_detail_usd_f10.py
     twins/reference-917-engine/source/validate_variant_stages_f10.py
     twins/reference-917-engine/remote-simready/_common.sh
+    twins/reference-917-engine/remote-simready/_asset_context.py
     twins/reference-917-engine/remote-simready/_bundle_manifest.py
+    twins/reference-917-engine/remote-simready/_final_workflow_report.py
     twins/reference-917-engine/remote-simready/_report.py
     twins/reference-917-engine/remote-simready/_validate-one.sh
     twins/reference-917-engine/remote-simready/phase-readiness.sh

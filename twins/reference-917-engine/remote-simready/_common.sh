@@ -23,6 +23,7 @@ PHASE_OUTPUTS=()
 PHASE_CHILD_REPORTS=()
 PHASE_REMAINING_SECONDS=0
 PHASE_BUNDLE_VERIFIED=0
+PHASE_PREFLIGHT_ACTIVATED=0
 
 die() {
     printf 'simready-phase: %s\n' "$*" >&2
@@ -55,6 +56,263 @@ print(Path(sys.argv[1]).resolve())
 PY
 )"
     [[ "${resolved}" == /workspace/* ]] || die "le chemin doit rester sous /workspace: ${resolved}"
+}
+
+activate_preflight_environment() {
+    [ "${PHASE_PREFLIGHT_ACTIVATED}" -eq 0 ] || return 0
+    [ -n "${OUTPUT_ROOT:-}" ] || die "OUTPUT_ROOT absent avant l'activation du prévol"
+    [ -n "${CONTROL_REPORT:-}" ] || die "CONTROL_REPORT absent avant l'activation du prévol"
+
+    local activation_complete=0
+    local activation_file name value index parse_error=""
+    local -a names=()
+    local -a values=()
+    activation_file="$(mktemp "${OUTPUT_ROOT}/.preflight-activation.XXXXXX")" || {
+        die "impossible de créer le flux temporaire d'environnement preflight"
+        return 1
+    }
+    if ! chmod 0600 "${activation_file}"; then
+        command rm -f -- "${activation_file}"
+        die "impossible de protéger le flux temporaire d'environnement preflight"
+        return 1
+    fi
+    if ! "${SYSTEM_PYTHON}" - "${OUTPUT_ROOT}" "${CONTROL_REPORT}" >"${activation_file}" <<'PY'
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+import re
+import shlex
+import stat
+import sys
+from urllib.parse import urlparse
+
+
+output_root_arg, control_arg = sys.argv[1:]
+
+
+def regular_file(path: Path, label: str) -> Path:
+    try:
+        info = path.lstat()
+    except FileNotFoundError as exc:
+        raise SystemExit(f"{label} absent: {path}") from exc
+    if stat.S_ISLNK(info.st_mode) or not stat.S_ISREG(info.st_mode):
+        raise SystemExit(f"{label} doit être un fichier régulier non symlink: {path}")
+    return path.resolve(strict=True)
+
+
+control_path = regular_file(Path(control_arg), "contrat de contrôle")
+try:
+    control = json.loads(control_path.read_text(encoding="utf-8"))
+except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+    raise SystemExit("contrat de contrôle illisible ou invalide") from exc
+
+job_id = str(control.get("job_id", ""))
+if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", job_id):
+    raise SystemExit("job_id du contrat invalide")
+
+output_root = Path(output_root_arg)
+try:
+    output_root_resolved = output_root.resolve(strict=True)
+except FileNotFoundError as exc:
+    raise SystemExit("OUTPUT_ROOT absent avant l'activation du prévol") from exc
+expected_output_root = Path("/workspace/results") / job_id
+if output_root_resolved != expected_output_root:
+    raise SystemExit(
+        f"OUTPUT_ROOT différent du répertoire attesté: {output_root_resolved}"
+    )
+
+preflight_root = expected_output_root / "preflight" / job_id
+phase_report_path = regular_file(
+    preflight_root / "phase-preflight.json", "rapport de phase preflight"
+)
+manifest_path = regular_file(
+    preflight_root / "cad-to-simready-preflight.json", "manifeste preflight"
+)
+env_path = regular_file(
+    preflight_root / "cad-to-simready-preflight.env", "environnement preflight"
+)
+markdown_path = regular_file(
+    preflight_root / "cad-to-simready-preflight.md", "rapport Markdown preflight"
+)
+
+try:
+    phase = json.loads(phase_report_path.read_text(encoding="utf-8"))
+except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+    raise SystemExit("rapport de phase preflight illisible ou invalide") from exc
+if phase.get("schema_version") != "1.0.0":
+    raise SystemExit("schéma du rapport de phase preflight inattendu")
+if (
+    phase.get("phase") != "preflight"
+    or phase.get("status") != "passed"
+    or phase.get("passed") is not True
+    or phase.get("exit_code") != 0
+):
+    raise SystemExit("phase preflight non validée")
+
+expected_control = {
+    key: control.get(key)
+    for key in (
+        "job_id",
+        "instance_id",
+        "expected_image",
+        "max_dph",
+        "deadline_epoch",
+    )
+}
+if any(value in (None, "") for value in expected_control.values()):
+    raise SystemExit("contrat de contrôle incomplet pour le prévol")
+if phase.get("control") != expected_control:
+    raise SystemExit("contrat résumé par la phase preflight incohérent")
+
+expected_outputs = [str(manifest_path), str(env_path), str(markdown_path)]
+if phase.get("output_paths") != expected_outputs:
+    raise SystemExit("sorties de phase preflight absentes, dupliquées ou inattendues")
+if phase.get("child_reports") != [str(manifest_path)]:
+    raise SystemExit("manifeste enfant de la phase preflight incohérent")
+
+try:
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+    raise SystemExit("manifeste preflight illisible ou invalide") from exc
+if manifest.get("schema_version") != "1.0":
+    raise SystemExit("schéma du manifeste preflight inattendu")
+if manifest.get("skill") != "cad-to-simready-preflight":
+    raise SystemExit("skill du manifeste preflight inattendu")
+if manifest.get("status") != "ready":
+    raise SystemExit("manifeste preflight non prêt")
+if manifest.get("targets") != ["validation", "content-agents"]:
+    raise SystemExit("cibles du manifeste preflight différentes du contrat")
+if manifest.get("manifest_path") != str(manifest_path):
+    raise SystemExit("manifest_path du prévol incohérent")
+
+try:
+    raw_env = env_path.read_bytes()
+    env_text = raw_env.decode("utf-8")
+except (OSError, UnicodeError) as exc:
+    raise SystemExit("fichier d'environnement preflight illisible") from exc
+if b"\x00" in raw_env or b"\r" in raw_env:
+    raise SystemExit("caractère NUL ou retour chariot interdit dans l'environnement")
+if len(raw_env) > 131_072:
+    raise SystemExit("fichier d'environnement preflight trop volumineux")
+
+safe_name = re.compile(
+    r"(?:PHYSICAL_AI_[A-Z0-9_]+|CONTENT_AGENTS_[A-Z0-9_]+|"
+    r"SIMREADY_[A-Z0-9_]+|OVRTX_[A-Z0-9_]+|RENDER_ENDPOINT|PATH)"
+)
+dangerous_name = re.compile(
+    r"(?:^|_)(?:API_?KEY|ACCESS_?KEY|PRIVATE_?KEY|TOKEN|SECRET|PASSWORD|"
+    r"PASSWD|CREDENTIALS?|AUTHORIZATION|COOKIE)(?:_|$)"
+)
+parsed: list[tuple[str, str]] = []
+seen: set[str] = set()
+for line_number, raw_line in enumerate(env_text.split("\n"), start=1):
+    stripped = raw_line.strip()
+    if not stripped or stripped.startswith("#"):
+        continue
+    try:
+        tokens = shlex.split(stripped, comments=False, posix=True)
+    except ValueError as exc:
+        raise SystemExit(
+            f"syntaxe invalide dans l'environnement preflight ligne {line_number}"
+        ) from exc
+    if len(tokens) != 2 or tokens[0] != "export" or "=" not in tokens[1]:
+        raise SystemExit(
+            f"seule la forme export NOM=VALEUR est admise ligne {line_number}"
+        )
+    name, value = tokens[1].split("=", 1)
+    if safe_name.fullmatch(name) is None or dangerous_name.search(name):
+        raise SystemExit(f"variable d'environnement refusée: {name}")
+    if name in seen:
+        raise SystemExit(f"variable d'environnement dupliquée: {name}")
+    if any(character in value for character in ("\x00", "\n", "\r")):
+        raise SystemExit(f"retour de ligne interdit dans la variable: {name}")
+    if any(ord(character) < 32 or ord(character) == 127 for character in value):
+        raise SystemExit(f"caractère de contrôle interdit dans la variable: {name}")
+    if "$" in value or chr(96) in value:
+        raise SystemExit(f"expansion shell interdite dans la variable: {name}")
+    if len(value.encode("utf-8")) > 32_768:
+        raise SystemExit(f"valeur d'environnement trop volumineuse: {name}")
+    if name == "PATH":
+        entries = value.split(os.pathsep)
+        if not entries or any(not entry or not Path(entry).is_absolute() for entry in entries):
+            raise SystemExit("PATH preflight contient une entrée vide ou relative")
+    if name in {
+        "RENDER_ENDPOINT",
+        "OVRTX_RENDER_ENDPOINT",
+        "CONTENT_AGENTS_MATERIAL_AGENT_BASE_URL",
+        "CONTENT_AGENTS_PHYSICS_AGENT_BASE_URL",
+        "CONTENT_AGENTS_TEXTURE_AGENT_BASE_URL",
+    }:
+        endpoint = urlparse(value)
+        if endpoint.scheme not in {"http", "https"} or not endpoint.hostname:
+            raise SystemExit(f"endpoint preflight invalide: {name}")
+        if endpoint.username is not None or endpoint.password is not None:
+            raise SystemExit(f"identifiants interdits dans l'endpoint: {name}")
+    seen.add(name)
+    parsed.append((name, value))
+
+values_by_name = dict(parsed)
+if values_by_name.get("PHYSICAL_AI_PREFLIGHT_MANIFEST") != str(manifest_path):
+    raise SystemExit("PHYSICAL_AI_PREFLIGHT_MANIFEST absent ou différent")
+if values_by_name.get("PHYSICAL_AI_REQUIRE_PREFLIGHT") != "1":
+    raise SystemExit("PHYSICAL_AI_REQUIRE_PREFLIGHT doit valoir 1")
+
+stream = sys.stdout.buffer
+for name, value in parsed:
+    stream.write(name.encode("utf-8") + b"\x00")
+    stream.write(value.encode("utf-8") + b"\x00")
+stream.write(b"__SIMREADY_PREFLIGHT_ACTIVATION_COMPLETE__\x001\x00")
+PY
+    then
+        command rm -f -- "${activation_file}"
+        die "validation de l'environnement de prévol refusée"
+        return 1
+    fi
+
+    while IFS= read -r -d '' name; do
+        if ! IFS= read -r -d '' value; then
+            parse_error="flux d'environnement de prévol tronqué"
+            break
+        fi
+        if [ "${name}" = "__SIMREADY_PREFLIGHT_ACTIVATION_COMPLETE__" ]; then
+            if [ "${value}" != "1" ]; then
+                parse_error="sentinelle d'environnement de prévol invalide"
+                break
+            fi
+            activation_complete=1
+            continue
+        fi
+        if [ "${activation_complete}" -ne 0 ]; then
+            parse_error="données présentes après la sentinelle de prévol"
+            break
+        fi
+        names+=("${name}")
+        values+=("${value}")
+    done <"${activation_file}"
+    command rm -f -- "${activation_file}"
+
+    if [ -n "${parse_error}" ]; then
+        die "${parse_error}"
+        return 1
+    fi
+
+    [ "${activation_complete}" -eq 1 ] || {
+        die "activation de l'environnement de prévol refusée"
+        return 1
+    }
+    [ "${#names[@]}" -gt 0 ] || {
+        die "environnement de prévol vide"
+        return 1
+    }
+    for ((index = 0; index < ${#names[@]}; index++)); do
+        export "${names[$index]}=${values[$index]}" || {
+            die "export de l'environnement de prévol refusé"
+            return 1
+        }
+    done
+    PHASE_PREFLIGHT_ACTIVATED=1
 }
 
 phase_init() {
@@ -228,6 +486,10 @@ refresh_budget() {
 }
 
 run_logged() {
+    case "${PHASE_NAME}" in
+        ""|readiness|preflight) ;;
+        *) activate_preflight_environment || return 1 ;;
+    esac
     refresh_budget
     timeout --foreground "${PHASE_REMAINING_SECONDS}s" "$@" >>"${PHASE_LOG}" 2>&1
 }
@@ -242,8 +504,17 @@ path = Path(sys.argv[1]).resolve()
 if not path.is_file():
     raise SystemExit(f"rapport absent: {path}")
 report = json.loads(path.read_text(encoding="utf-8"))
+if not isinstance(report, dict):
+    raise SystemExit(f"rapport objet attendu: {path}")
 status = str(report.get("status", "")).lower()
-if report.get("passed") is True or status in {"pass", "passed", "ready"}:
+allowed = {"pass", "passed", "ready"}
+if "passed" in report:
+    if report.get("passed") is not True:
+        raise SystemExit(f"rapport non validé: {path}")
+    if status and status not in allowed:
+        raise SystemExit(f"statut et booléen passed incohérents: {path}")
+    raise SystemExit(0)
+if status in allowed:
     raise SystemExit(0)
 raise SystemExit(f"rapport non validé: {path}")
 PY
@@ -284,6 +555,24 @@ PY
     [ "${actual}" = "${expected}" ] || die "la sortie du rapport ne correspond pas à l'actif demandé"
 }
 
+require_report_input() {
+    "${SYSTEM_PYTHON}" - "$1" "$2" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+report_path = Path(sys.argv[1]).resolve(strict=True)
+expected = Path(sys.argv[2]).resolve(strict=True)
+report = json.loads(report_path.read_text(encoding="utf-8"))
+inputs = report.get("input_paths")
+if not isinstance(inputs, list):
+    raise SystemExit("input_paths absent du rapport")
+resolved = [Path(str(value)).resolve(strict=True) for value in inputs]
+if resolved.count(expected) != 1:
+    raise SystemExit("entrée attestée absente ou dupliquée dans le rapport")
+PY
+}
+
 require_attested_prompt() {
     local prompt_kind="$1"
     local prompt_path="$2"
@@ -320,6 +609,51 @@ if metadata.get("size") != len(data) or metadata.get("sha256") != hashlib.sha256
 PY
 }
 
+require_asset_context() {
+    local context_path="$1"
+    local expected_source_asset="${2:-}"
+    "${SYSTEM_PYTHON}" - "${context_path}" "${expected_source_asset}" <<'PY'
+import json
+from pathlib import Path
+import re
+import sys
+
+path = Path(sys.argv[1]).resolve(strict=True)
+payload = json.loads(path.read_text(encoding="utf-8"))
+if payload.get("schema_version") != "1.0.0" or payload.get("status") != "passed" or payload.get("passed") is not True:
+    raise SystemExit("rapport de contexte d'actif non validé")
+prompt = payload.get("material_physics_prompt")
+if not isinstance(prompt, str) or not prompt.strip() or len(prompt.encode("utf-8")) > 8000:
+    raise SystemExit("prompt du contexte d'actif absent ou trop volumineux")
+if re.search(r"(?im)(api[_-]?key|access[_-]?token|password|secret)\s*[:=]", prompt):
+    raise SystemExit("champ ressemblant à un secret interdit dans le contexte")
+if not isinstance(payload.get("evidence"), list) or not payload["evidence"]:
+    raise SystemExit("preuves du contexte d'actif absentes")
+if sys.argv[2]:
+    expected = Path(sys.argv[2]).resolve(strict=True)
+    actual = Path(str(payload.get("source_asset_path", ""))).resolve(strict=True)
+    if actual != expected:
+        raise SystemExit("contexte produit pour un autre actif source")
+PY
+}
+
+compose_assignment_prompt() {
+    local prompt_path="$1"
+    local context_path="$2"
+    "${SYSTEM_PYTHON}" - "${prompt_path}" "${context_path}" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+operator = Path(sys.argv[1]).read_text(encoding="utf-8").strip()
+context = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))["material_physics_prompt"].strip()
+combined = f"Contexte d'actif attesté:\n{context}\n\nInstructions opérateur attestées:\n{operator}"
+if len(combined.encode("utf-8")) > 20_000:
+    raise SystemExit("prompt combiné supérieur à 20000 octets")
+print(combined)
+PY
+}
+
 require_skill_reference() {
     [ -n "${SIMREADY_SKILL_ROOT:-}" ] || die "SIMREADY_SKILL_ROOT doit être défini explicitement"
     [[ "${SIMREADY_SKILL_ROOT}" = /* ]] || die "SIMREADY_SKILL_ROOT doit être absolu"
@@ -329,6 +663,12 @@ require_skill_reference() {
     actual_root="$(cd "${SIMREADY_SKILL_ROOT}" && pwd -P)"
     [ "${actual_root}" = "${expected_root}" ] \
         || die "SIMREADY_SKILL_ROOT différent du skill transféré et attesté"
+    if [ "$1" != "references/preflight/scripts/preflight.py" ]; then
+        case "${PHASE_NAME}" in
+            ""|readiness|preflight) ;;
+            *) activate_preflight_environment || return 1 ;;
+        esac
+    fi
     local reference="${SIMREADY_SKILL_ROOT}/$1"
     [ -f "${reference}" ] || die "script de référence NVIDIA absent: ${reference}"
     printf '%s\n' "${reference}"

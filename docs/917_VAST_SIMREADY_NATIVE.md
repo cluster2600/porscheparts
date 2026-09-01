@@ -4,7 +4,13 @@ Ce runbook exécute **une phase à la fois** dans le conteneur Vast. Il n'utilis
 ni Docker-in-Docker, ni runner monolithique. Chaque phase écrit un rapport JSON
 atomique et consomme la sortie concrète validée de la phase précédente.
 
-La chaîne reste exploratoire. La preuve CUDA du prévol signifie seulement que
+L'ordre NVIDIA strict est : readiness hôte/GPU, prévol du workflow,
+identification du contexte de l'asset F10, USD minimal, Material, Physics,
+conformance, validations Asset/Geometry/Physics/SimReady, boucle de réparation
+bornée, puis rendu de l'USD final et rapport consolidé. Les attestations
+NVIDIA restent des rapports enfants des 25 rapports de phase top-level.
+
+La chaîne reste exploratoire. La preuve CUDA de la readiness signifie seulement que
 le runtime GPU fonctionne ; elle ne constitue ni une simulation moteur, ni une
 validation de fabrication, de puissance ou de sécurité.
 
@@ -18,6 +24,8 @@ validation de fabrication, de puissance ou de sécurité.
   n'est pas accepté, car ses `subLayers` F1 seraient manquantes ;
 - prompts courts, sourcés et relus pour Material et Physics, sans secret ni
   propriété présentée comme mesurée sans preuve ; les deux sont obligatoires ;
+- marqueur `/workspace/READY` créé par le script `onstart` seulement après
+  démarrage et contrôle de santé des services natifs SimReady ;
 - clé SSH Vast approuvée chargée et wrapper OpenBao utilisé ;
 - `MAX_ACTUAL_DPH=2.50`, ou un plafond explicite plus restrictif.
 
@@ -82,21 +90,67 @@ if not (
     raise SystemExit("offre hors contrat matériel ou coût")
 PY
 
-cleanup_failed_check() {
+INSTANCE_ID=""
+CLEANUP_ARMED=1
+cleanup_instance_on_exit() {
   rc=$?
-  trap - ERR
-  deploy/vast/simready/destroy-instance.sh \
-    --instance-id "${INSTANCE_ID}" \
-    --expected-image "${EXPECTED_IMAGE}" \
-    --job-id "${JOB_ID}" \
-    --confirm-job-id "${JOB_ID}" \
-    --confirm-instance-id "${INSTANCE_ID}" \
-    --confirm-digest "${EXPECTED_IMAGE}" \
-    --confirm-no-retrieval "NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}" \
-    --control-root "${CONTROL_ROOT}" \
-  || { "${OPENBAO_VASTAI_BIN}" show "${INSTANCE_ID}" >&2; "${OPENBAO_VASTAI_BIN}" destroy "${INSTANCE_ID}" --confirm; }
+  trap - EXIT INT TERM
+  set +e
+  if [ "${CLEANUP_ARMED}" -ne 1 ]; then
+    return "${rc}"
+  fi
+  if [ -z "${INSTANCE_ID}" ] && [ -f "${CONTROL_ROOT}/launch.json" ]; then
+    INSTANCE_ID="$(python3 - "${CONTROL_ROOT}/launch.json" <<'PY' 2>/dev/null || true
+import json
+from pathlib import Path
+import sys
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+instance_id = payload.get("instance_id")
+if isinstance(instance_id, int) and instance_id > 0:
+    print(instance_id)
+PY
+)"
+  fi
+  if [ -z "${INSTANCE_ID}" ]; then
+    return "${rc}"
+  fi
+
+  # Si le job a été transféré, tenter d'abord une récupération. Toute erreur
+  # conserve le code initial et bascule vers la dérogation explicite ci-dessous.
+  if [ -f "${CONTROL_ROOT}/transfer-report.json" ]; then
+    deploy/vast/simready/collect-artifacts.sh \
+      --instance-id "${INSTANCE_ID}" \
+      --expected-image "${EXPECTED_IMAGE}" \
+      --job-id "${JOB_ID}" \
+      --max-actual-dph "${MAX_ACTUAL_DPH}" \
+      --control-root "${CONTROL_ROOT}" || true
+  fi
+
+  retrieval="${CONTROL_ROOT}/retrieval-report.json"
+  destroy_common=(
+    --instance-id "${INSTANCE_ID}"
+    --expected-image "${EXPECTED_IMAGE}"
+    --job-id "${JOB_ID}"
+    --confirm-job-id "${JOB_ID}"
+    --confirm-instance-id "${INSTANCE_ID}"
+    --confirm-digest "${EXPECTED_IMAGE}"
+    --control-root "${CONTROL_ROOT}"
+  )
+  if [ -f "${retrieval}" ] && jq -e \
+    '.artifact_archive_verified == true and .retrieval_complete == true' \
+    "${retrieval}" >/dev/null 2>&1; then
+    deploy/vast/simready/destroy-instance.sh \
+      "${destroy_common[@]}" --retrieval-report "${retrieval}" || true
+  else
+    deploy/vast/simready/destroy-instance.sh \
+      "${destroy_common[@]}" \
+      --confirm-no-retrieval "NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}" || true
+  fi
   return "${rc}"
 }
+trap cleanup_instance_on_exit EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
 
 "${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}" | tee "${CONTROL_ROOT}/launch.json"
 INSTANCE_ID="$(python3 - "${CONTROL_ROOT}/launch.json" <<'PY'
@@ -110,7 +164,6 @@ if not isinstance(instance_id, int) or instance_id <= 0:
 print(instance_id)
 PY
 )"
-trap cleanup_failed_check ERR
 
 python3 - "${CONTROL_ROOT}/launch.json" "${EXPECTED_IMAGE}" <<'PY'
 import json
@@ -134,7 +187,6 @@ deploy/vast/simready/check-instance.sh \
   --ready-timeout-seconds 1200 \
   --known-hosts "${CONTROL_ROOT}/known_hosts" \
   --report "${CONTROL_ROOT}/instance-ready.json"
-trap - ERR
 ```
 
 Le wrapper GHCR vérifie d'abord l'accès en lecture au manifeste et son digest,
@@ -143,10 +195,15 @@ puis délègue la location au wrapper Vast approuvé. Ne pas appeler directement
 phase. La garde compare l'identifiant, le label, l'unique GPU, l'état, le digest
 complet et le coût contractuel réel. Le contrôle ouvre ensuite une session SSH
 en mode batch et attend le marqueur `/workspace/READY`; des métadonnées SSH
-valides ne suffisent donc pas à franchir cette étape.
-Si ce contrôle échoue, le trap détruit immédiatement le contrat et le wrapper
-ne confirme le cleanup qu'après absence de l'identifiant dans toutes les pages
-de la liste d'instances. Le plafond
+valides ne suffisent donc pas à franchir cette étape. Ce marqueur atteste que
+le `onstart` a démarré les services et vérifié leur santé ; la phase readiness
+ne les démarre pas elle-même.
+Le trap `EXIT` reste armé pendant le transfert, toutes les phases, le rendu et
+la récupération. Sur erreur ou interruption, il tente la collecte si le bundle
+a été transféré, puis détruit avec le rapport complet ou, à défaut, avec la
+dérogation `NO-RETRIEVAL` exacte. Il n'est désarmé qu'après la destruction
+finale vérifiée. Le wrapper ne confirme le cleanup qu'après absence de
+l'identifiant dans toutes les pages de la liste d'instances. Le plafond
 `2.50` est un débit maximal en dollars par heure, pas un budget global : une
 fenêtre de 180 minutes peut donc atteindre 7,50 USD, hors trafic réseau éventuel.
 Après une erreur de création ou un timeout, ne jamais relancer aveuglément :
@@ -215,11 +272,18 @@ SSH ci-dessus et les commandes lourdes par la deadline du contrat et
 `PHASE_TIMEOUT_SECONDS` dans la phase ; relancer avec le même `run-id` est
 refusé si son répertoire de sortie existe déjà.
 
-## 4. Readiness, prévol, F1, F2 et F3
+## 4. Readiness, prévol, F1, F2, F3 et contexte F10
 
-La readiness démarre les services natifs et vérifie `nvidia-smi`, PhysicsNeMo
-2.2.0, CUDA, le nom et la mémoire GPU, puis un petit tenseur CUDA. Le prévol
-NVIDIA réutilise ensuite les endpoints avec `--skip-deploy`.
+La readiness est strictement un contrôle hôte/GPU : marqueur READY,
+`nvidia-smi`, PhysicsNeMo 2.2.0, CUDA, nom et mémoire GPU, puis petit tenseur
+CUDA. Elle ne démarre aucun service et ne contacte aucun endpoint du workflow.
+Le prévol NVIDIA est le **premier contact workflow**. Il contrôle les cibles
+`validation,content-agents` avec `--skip-deploy` et ne convertit aucun asset.
+Chaque phase NVIDIA aval relit le rapport, le manifeste et le fichier `.env`
+exacts de ce prévol. Le fichier d'environnement est analysé par liste blanche,
+jamais exécuté avec `source` ou `eval`, puis
+`PHYSICAL_AI_REQUIRE_PREFLIGHT=1` et le chemin exact du manifeste sont imposés
+avant chaque appel de référence NVIDIA.
 
 ```bash
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-readiness.sh' ${COMMON}"
@@ -253,6 +317,20 @@ COMMON_TURBO="--project-root ${PROJECT_ROOT} --output-root ${OUTPUT_ROOT} --run-
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-f10.sh' ${COMMON_TURBO} --preflight-report '${PREFLIGHT_REPORT}' --variant 917_30_turbo_5374"
 ```
 
+Chaque phase F10 exécute ensuite `identify-asset-context` sur son stage USD et
+produit une synthèse sourcée propre à la variante :
+
+```bash
+ASSET_CONTEXT_NA="${OUTPUT_ROOT}/f10/${RUN_ID_NA}/generated/type-912-4-5-na/reports/asset-context.json"
+ASSET_CONTEXT_NA_MD="${OUTPUT_ROOT}/f10/${RUN_ID_NA}/generated/type-912-4-5-na/reports/asset-context.md"
+ASSET_CONTEXT_TURBO="${OUTPUT_ROOT}/f10/${RUN_ID_TURBO}/generated/917-30-turbo-5374/reports/asset-context.json"
+ASSET_CONTEXT_TURBO_MD="${OUTPUT_ROOT}/f10/${RUN_ID_TURBO}/generated/917-30-turbo-5374/reports/asset-context.md"
+```
+
+Ces rapports documentent provenance, droits, dimensions documentées,
+incertitudes et limites de revendication. Ils sont obligatoires pour Material
+et Physics ; une variante ne peut jamais consommer le contexte de l'autre.
+
 Le JSON F9 transféré est uniquement un contrat dimensionnel amont lu par F10 ;
 aucune phase F8 ou F9 n'est exécutée ni modifiée ici.
 
@@ -260,17 +338,22 @@ aucune phase F8 ou F9 n'est exécutée ni modifiée ici.
 
 L'ordre est obligatoire pour **chaque** variante : USD minimal, Material,
 Physics sur l'exact `output_usd_path` de Material, conformance, puis Asset,
-Geometry, Physics, SimReady validation et rendu. Les deux chaînes utilisent des
-`run-id` distincts et ne partagent aucun rapport de producteur.
+Geometry, Physics, SimReady validation, boucle de réparation bornée et rendu.
+L'entrée de ce workflow est déjà le stage USD F10 : la conformance atteste
+`material-agent-client` puis `physics-agent-client`, mais ne liste pas
+`usd-convert-cad`. Les conversions STEP vers USD sont internes à la
+construction F10 en amont, pas une étape de conformance SimReady. Les deux
+chaînes utilisent des `run-id` distincts et ne partagent aucun rapport de
+producteur.
 
 ```bash
 F10_NA_STAGE="${OUTPUT_ROOT}/f10/${RUN_ID_NA}/generated/type-912-4-5-na/stages/type-912-4-5-na-detail-f10.usda"
 F10_NA_REPORT="${OUTPUT_ROOT}/f10/${RUN_ID_NA}/phase-f10.json"
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-minimum-usd.sh' ${COMMON_NA} --asset '${F10_NA_STAGE}' --producer-report '${F10_NA_REPORT}'"
 MINIMUM_NA="${OUTPUT_ROOT}/minimum-usd/${RUN_ID_NA}/phase-minimum-usd.json"
-"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-material.sh' ${COMMON_NA} --asset '${F10_NA_STAGE}' --minimum-report '${MINIMUM_NA}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/material-prompt.txt'"
+"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-material.sh' ${COMMON_NA} --asset '${F10_NA_STAGE}' --minimum-report '${MINIMUM_NA}' --asset-context-report '${ASSET_CONTEXT_NA}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/material-prompt.txt'"
 MATERIAL_NA="${OUTPUT_ROOT}/material/${RUN_ID_NA}/phase-material.json"
-"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-physics.sh' ${COMMON_NA} --material-report '${MATERIAL_NA}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/physics-prompt.txt'"
+"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-physics.sh' ${COMMON_NA} --material-report '${MATERIAL_NA}' --asset-context-report '${ASSET_CONTEXT_NA}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/physics-prompt.txt'"
 PHYSICS_NA="${OUTPUT_ROOT}/physics/${RUN_ID_NA}/phase-physics.json"
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-conform.sh' ${COMMON_NA} --physics-report '${PHYSICS_NA}'"
 CONFORM_NA="${OUTPUT_ROOT}/conform/${RUN_ID_NA}/phase-conform.json"
@@ -288,9 +371,9 @@ F10_TURBO_STAGE="${OUTPUT_ROOT}/f10/${RUN_ID_TURBO}/generated/917-30-turbo-5374/
 F10_TURBO_REPORT="${OUTPUT_ROOT}/f10/${RUN_ID_TURBO}/phase-f10.json"
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-minimum-usd.sh' ${COMMON_TURBO} --asset '${F10_TURBO_STAGE}' --producer-report '${F10_TURBO_REPORT}'"
 MINIMUM_TURBO="${OUTPUT_ROOT}/minimum-usd/${RUN_ID_TURBO}/phase-minimum-usd.json"
-"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-material.sh' ${COMMON_TURBO} --asset '${F10_TURBO_STAGE}' --minimum-report '${MINIMUM_TURBO}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/material-prompt.txt'"
+"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-material.sh' ${COMMON_TURBO} --asset '${F10_TURBO_STAGE}' --minimum-report '${MINIMUM_TURBO}' --asset-context-report '${ASSET_CONTEXT_TURBO}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/material-prompt.txt'"
 MATERIAL_TURBO="${OUTPUT_ROOT}/material/${RUN_ID_TURBO}/phase-material.json"
-"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-physics.sh' ${COMMON_TURBO} --material-report '${MATERIAL_TURBO}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/physics-prompt.txt'"
+"${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-physics.sh' ${COMMON_TURBO} --material-report '${MATERIAL_TURBO}' --asset-context-report '${ASSET_CONTEXT_TURBO}' --prompt-file '/workspace/jobs/${JOB_ID}/inputs/physics-prompt.txt'"
 PHYSICS_TURBO="${OUTPUT_ROOT}/physics/${RUN_ID_TURBO}/phase-physics.json"
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-conform.sh' ${COMMON_TURBO} --physics-report '${PHYSICS_TURBO}'"
 CONFORM_TURBO="${OUTPUT_ROOT}/conform/${RUN_ID_TURBO}/phase-conform.json"
@@ -305,23 +388,60 @@ SIMREADY_TURBO="${OUTPUT_ROOT}/validate-simready/${RUN_ID_TURBO}/phase-validate-
 "${SSH[@]}" "export SIMREADY_SKILL_ROOT='${SKILL_REMOTE}'; '${PHASES}/phase-render-preview.sh' ${COMMON_TURBO} --conform-report '${CONFORM_TURBO}' --previous-validation-report '${SIMREADY_TURBO}'"
 ```
 
+`phase-validate-simready.sh` agrège les quatre validations de la première
+tentative. Si les identifiants d'exigence sont réparables, elle relance une
+seule conformance ciblée avec le rapport de validation, puis les quatre
+validateurs sur le nouvel USD. La limite est donc de **deux tentatives au
+total**. Une exigence `GSP.001` sans points de préhension ni preuve visuelle
+reste `needs_rerun` : aucune géométrie n'est inventée. La phase produit :
+
+```text
+${OUTPUT_ROOT}/validate-simready/<run-id>/repair-loop.json
+${OUTPUT_ROOT}/validate-simready/<run-id>/repair-loop.md
+${OUTPUT_ROOT}/validate-simready/<run-id>/phase-validate-simready.json
+```
+
+Le rapport de phase expose exactement un USD final, identique au
+`final_usd_path` de `repair-loop.json`. `phase-render-preview.sh` résout cet USD
+depuis le rapport `validate-simready` ; le rapport de conformance fourni à la
+commande ne sert qu'à vérifier la lignée. Après le rendu, elle produit aussi le
+rapport consolidé du workflow pour la variante :
+
+```text
+${OUTPUT_ROOT}/render-preview/<run-id>/omniverse-cad-to-simready-report.json
+${OUTPUT_ROOT}/render-preview/<run-id>/omniverse-cad-to-simready-report.md
+${OUTPUT_ROOT}/render-preview/<run-id>/917-engine-simready-preview.png
+${OUTPUT_ROOT}/render-preview/<run-id>/photos/917-engine-{front,right,rear,left}.png
+${OUTPUT_ROOT}/render-preview/<run-id>/917-engine-simready-turntable.mp4
+${OUTPUT_ROOT}/render-preview/<run-id>/render-media.sha256
+```
+
 Le code `3` indique un rapport diagnostique `needs_rerun`. Il conserve l'USD,
 mais n'autorise aucune revendication de validation. Le rendu reste un aperçu
-OVRTX diagnostique à paramètres fixes ; son rapport et son fichier `.sha256`
-n'en font pas une preuve de simulation. Une vidéo temporelle F7 est enregistrée
-comme étape distincte `blocked`, pas simulée par une image fixe.
+OVRTX diagnostique ; son rapport, ses quatre vues, ses 24 frames et leurs
+checksums n'en font pas une preuve de simulation. `ffmpeg` assemble ces frames
+en MP4 H.264 720p avec une mention incrustée indiquant qu'aucune combustion,
+charge, pression ou puissance n'est simulée. Il s'agit d'une rotation de caméra
+autour de l'USD final. La vidéo cinématique F7 montrant les organes mobiles reste
+une étape distincte, explicitement `blocked_not_part_of_this_simready_run`.
 
 La collecte attend exactement les cinq rapports baseline et les dix rapports
-de chacune des deux branches, soit 25 rapports. Elle indexe par couple
+de chacune des deux branches, soit 25 rapports top-level. Les attestations
+enfants sont obligatoires mais ne changent pas ce total. Elle indexe par couple
 `run-id/phase`, refuse tout doublon et vérifie sur chacun le job, l'instance,
 le digest, le schéma, la cohérence statut/code de sortie, l'emplacement du
 rapport et l'existence de chaque sortie dans l'archive. Elle vérifie aussi la
-continuité exacte F10, USD minimal, Material, Physics, conformance et quatre
-validateurs pour chaque branche, avec les prompts attestés correspondants. Un
+continuité exacte F10 et son contexte, USD minimal, Material, Physics,
+conformance, quatre validateurs, boucle de réparation, USD final, rendu OVRTX,
+photos, film, checksums et rapport consolidé à quinze étapes pour chaque branche,
+avec les prompts attestés
+correspondants. Un
 rapport inattendu rend aussi la récupération partielle. Un `needs_rerun`
-conserve une récupération complète, mais interdit `simulation_validated: true` ;
-seuls les huit validateurs `passed` des deux chaînes permettent cette
-revendication.
+conserve une récupération complète, sans validation SimReady de la branche.
+Même si les deux branches sont `simready_validated: true`, cela atteste seulement
+la conformance et les validations USD/SimReady. Cela ne constitue jamais une
+simulation physique, une mesure de banc, une validation de fabrication, ni une
+preuve des 1 600 ch documentaires du 917/30.
 Les générateurs F10 et leurs preuves de provenance requises sont dans l'allowlist
 suivie. Comme le reste du bundle, ils doivent être propres et identiques au
 commit attesté avant tout transfert.
@@ -330,9 +450,9 @@ commit attesté avant tout transfert.
 
 La récupération accepte uniquement `/workspace/results/${JOB_ID}`, refuse les
 liens et traversées de chemin et calcule le SHA-256 de l'archive. Son rapport
-distingue `retrieval_complete` de `simulation_validated` : un `needs_rerun`
-peut autoriser la destruction après récupération complète, sans valider le
-jumeau.
+distingue `retrieval_complete`, `simready_validated` et toute future preuve de
+simulation physique : un `needs_rerun` peut autoriser la destruction après
+récupération complète, sans valider le jumeau.
 
 ```bash
 deploy/vast/simready/collect-artifacts.sh \
@@ -342,7 +462,7 @@ deploy/vast/simready/collect-artifacts.sh \
   --max-actual-dph "${MAX_ACTUAL_DPH}"
 
 RETRIEVAL_REPORT="work/vast-simready/controller/${JOB_ID}/retrieval-report.json"
-jq '{retrieval_complete, simulation_validated, needs_rerun_phases}' "${RETRIEVAL_REPORT}"
+jq '{retrieval_complete, simready_validated, simulation_validated, needs_rerun_phases}' "${RETRIEVAL_REPORT}"
 jq -e '.artifact_archive_verified == true and .retrieval_complete == true' \
   "${RETRIEVAL_REPORT}" >/dev/null
 
@@ -355,17 +475,23 @@ deploy/vast/simready/destroy-instance.sh \
   --confirm-digest "${EXPECTED_IMAGE}" \
   --retrieval-report "${RETRIEVAL_REPORT}" \
   --max-actual-dph "${MAX_ACTUAL_DPH}"
+CLEANUP_ARMED=0
+trap - EXIT INT TERM
 ```
 
-La destruction normale est refusée si la récupération n'est pas complète ou si
-le checksum de l'archive locale, le job, l'instance ou le digest ne
-correspondent pas exactement. Le cleanup ignore le plafond de coût et les
-seuils matériels qui peuvent s'être dégradés ; l'identifiant, le label, le
+La destruction normale ouvre l'archive locale sans suivre de lien, en vérifie
+le SHA-256, refuse les membres dangereux, puis la réextrait dans un répertoire
+temporaire. Elle recalcule le rapport uniquement depuis cette extraction exacte
+et exige `retrieval_complete: true`. Elle est refusée si la récupération n'est pas
+complète ou si le checksum de l'archive locale, le job, l'instance ou le digest
+ne correspondent pas exactement. Un booléen modifié manuellement dans le
+rapport ne franchit donc pas la garde. Le cleanup ignore le plafond de coût et
+les seuils matériels qui peuvent s'être dégradés ; l'identifiant, le label, le
 digest et l'unique contrat GPU restent contrôlés.
 
 Si la récupération est partielle ou techniquement impossible, ne pas laisser
-une instance chère louée. Après cette tentative explicite, utiliser la
-dérogation exacte, visible et spécifique au job :
+une instance chère louée. Après cette tentative explicite, la destruction n'est
+possible qu'avec la dérogation exacte, visible et spécifique au job :
 
 ```bash
 NO_RETRIEVAL="NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}"

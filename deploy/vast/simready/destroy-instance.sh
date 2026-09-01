@@ -46,42 +46,183 @@ python3 - "${RETRIEVAL_REPORT}" "${JOB_ID}" "${INSTANCE_ID}" "${EXPECTED_IMAGE}"
 import hashlib
 import importlib.util
 import json
-from pathlib import Path
+import os
+from pathlib import Path, PurePosixPath
+import re
+import stat
 import sys
+import tarfile
+import tempfile
+
+MAX_ARCHIVE_MEMBERS = 100_000
+MAX_ARCHIVE_CONTENT_BYTES = 128 * 1024**3
+MAX_ARCHIVE_FILE_BYTES = 64 * 1024**3
+MAX_ARCHIVE_PATH_BYTES = 1024
+
+
+def checked_member_path(member: tarfile.TarInfo, job_id: str) -> tuple[PurePosixPath, str]:
+    raw_name = member.name
+    if not isinstance(raw_name, str) or not raw_name:
+        raise SystemExit("nom de membre d'archive vide ou invalide")
+    if member.isdir() and raw_name.endswith("/"):
+        raw_name = raw_name[:-1]
+    if (
+        not raw_name
+        or not raw_name.isascii()
+        or "\\" in raw_name
+        or any(ord(character) < 32 or ord(character) == 127 for character in raw_name)
+    ):
+        raise SystemExit(f"nom de membre d'archive ambigu: {member.name!r}")
+    raw_parts = raw_name.split("/")
+    if any(part in ("", ".", "..") for part in raw_parts):
+        raise SystemExit(f"nom de membre d'archive ambigu: {member.name!r}")
+    path = PurePosixPath(raw_name)
+    if (
+        path.is_absolute()
+        or path.as_posix() != raw_name
+        or not path.parts
+        or path.parts[0] != job_id
+        or len(raw_name.encode("ascii")) > MAX_ARCHIVE_PATH_BYTES
+        or any(len(part.encode("ascii")) > 255 for part in path.parts)
+    ):
+        raise SystemExit(f"membre d'archive interdit: {member.name!r}")
+    return path, raw_name
+
+
+def extract_verified_archive(archive_handle, destination: Path, job_id: str) -> Path:
+    members: list[tuple[tarfile.TarInfo, PurePosixPath]] = []
+    exact_names: set[str] = set()
+    collision_names: dict[str, str] = {}
+    top_levels: set[str] = set()
+    total_content_bytes = 0
+    try:
+        with tarfile.open(fileobj=archive_handle, mode="r:gz") as handle:
+            for index, member in enumerate(handle):
+                if index >= MAX_ARCHIVE_MEMBERS:
+                    raise SystemExit(
+                        f"archive trop volumineuse: plus de {MAX_ARCHIVE_MEMBERS} membres"
+                    )
+                path, exact_name = checked_member_path(member, job_id)
+                if member.issym() or member.islnk() or not (member.isfile() or member.isdir()):
+                    raise SystemExit(f"type de membre d'archive interdit: {member.name!r}")
+                if member.size < 0 or (member.isdir() and member.size != 0):
+                    raise SystemExit(f"taille de membre d'archive invalide: {member.name!r}")
+                if member.isfile() and member.size > MAX_ARCHIVE_FILE_BYTES:
+                    raise SystemExit(f"fichier d'archive trop volumineux: {member.name!r}")
+                total_content_bytes += member.size if member.isfile() else 0
+                if total_content_bytes > MAX_ARCHIVE_CONTENT_BYTES:
+                    raise SystemExit(
+                        "contenu décompressé de l'archive supérieur à la limite de sécurité"
+                    )
+                collision_name = exact_name.casefold()
+                previous = collision_names.get(collision_name)
+                if exact_name in exact_names or (previous is not None and previous != exact_name):
+                    raise SystemExit(f"nom de membre d'archive dupliqué ou ambigu: {member.name!r}")
+                exact_names.add(exact_name)
+                collision_names[collision_name] = exact_name
+                top_levels.add(path.parts[0])
+                members.append((member, path))
+            if not members:
+                raise SystemExit("archive de récupération vide")
+            if top_levels != {job_id}:
+                raise SystemExit("l'archive ne contient pas exactement le répertoire racine du job")
+
+            for member, path in sorted(members, key=lambda item: (len(item[1].parts), item[1].as_posix())):
+                target = destination.joinpath(*path.parts)
+                if member.isdir():
+                    if target.exists() and not target.is_dir():
+                        raise SystemExit(f"collision fichier/répertoire dans l'archive: {member.name!r}")
+                    target.mkdir(parents=True, exist_ok=True)
+                    continue
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if target.exists():
+                    raise SystemExit(f"cible d'extraction déjà présente: {member.name!r}")
+                source = handle.extractfile(member)
+                if source is None:
+                    raise SystemExit(f"contenu de fichier d'archive inaccessible: {member.name!r}")
+                copied = 0
+                with source, target.open("xb") as output:
+                    while True:
+                        chunk = source.read(1024 * 1024)
+                        if not chunk:
+                            break
+                        copied += len(chunk)
+                        if copied > member.size:
+                            raise SystemExit(f"taille extraite incohérente: {member.name!r}")
+                        output.write(chunk)
+                if copied != member.size:
+                    raise SystemExit(f"taille extraite incohérente: {member.name!r}")
+    except (tarfile.TarError, EOFError, OSError) as error:
+        raise SystemExit(f"archive de récupération invalide: {error}") from error
+
+    exact_root = destination / job_id
+    extracted_entries = list(destination.iterdir())
+    if (
+        len(extracted_entries) != 1
+        or extracted_entries[0] != exact_root
+        or not exact_root.is_dir()
+        or exact_root.is_symlink()
+    ):
+        raise SystemExit("réextraction sans répertoire racine unique et exact du job")
+    return exact_root
+
+
 report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
 if report.get("job_id") != sys.argv[2] or report.get("instance_id") != int(sys.argv[3]) or report.get("expected_image") != sys.argv[4]:
     raise SystemExit("rapport de récupération différent du job/instance/digest")
 if report.get("retrieval_attempted") is not True or report.get("artifact_archive_verified") is not True:
     raise SystemExit("archive de récupération non vérifiée")
+if report.get("retrieval_complete") is not True:
+    raise SystemExit(
+        "récupération partielle: utiliser la confirmation NO-RETRIEVAL explicite pour le cleanup"
+    )
 archive = Path(report.get("archive_path", ""))
-if not archive.is_file():
-    raise SystemExit("archive récupérée absente")
-digest = hashlib.sha256()
-with archive.open("rb") as handle:
-    for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+expected_archive_digest = report.get("archive_sha256")
+if not isinstance(expected_archive_digest, str) or re.fullmatch(r"[0-9a-f]{64}", expected_archive_digest) is None:
+    raise SystemExit("checksum attendu de l'archive récupérée invalide")
+open_flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+try:
+    archive_descriptor = os.open(archive, open_flags)
+except OSError as error:
+    raise SystemExit(f"archive récupérée absente ou non sûre: {error}") from error
+spec = importlib.util.spec_from_file_location("vast_retrieval", sys.argv[6])
+if spec is None or spec.loader is None:
+    raise SystemExit("résumeur de récupération indisponible")
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+with os.fdopen(archive_descriptor, "rb") as archive_handle:
+    archive_stat = os.fstat(archive_handle.fileno())
+    if not stat.S_ISREG(archive_stat.st_mode) or archive_stat.st_size <= 0:
+        raise SystemExit("archive récupérée absente ou non régulière")
+    digest = hashlib.sha256()
+    for chunk in iter(lambda: archive_handle.read(1024 * 1024), b""):
         digest.update(chunk)
-if digest.hexdigest() != report.get("archive_sha256"):
-    raise SystemExit("checksum de l'archive récupérée différent")
-derived_simulation_validated = False
-if report.get("simulation_validated") is True:
-    try:
-        spec = importlib.util.spec_from_file_location("vast_retrieval", sys.argv[6])
-        if spec is None or spec.loader is None:
-            raise RuntimeError("résumeur indisponible")
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        recomputed = module.summarize(
-            Path(report["extracted_root"]), archive, sys.argv[2], int(sys.argv[3]), sys.argv[4]
-        )
-        derived_simulation_validated = recomputed.get("simulation_validated") is True
-    except Exception:
-        # Le cleanup reste autorisé, mais la revendication est rabattue à faux.
-        derived_simulation_validated = False
+    verified_archive_digest = digest.hexdigest()
+    if verified_archive_digest != expected_archive_digest:
+        raise SystemExit("checksum de l'archive récupérée différent")
+    archive_handle.seek(0)
+    with tempfile.TemporaryDirectory(prefix="3dprinting993-destroy-") as temporary:
+        exact_root = extract_verified_archive(archive_handle, Path(temporary), sys.argv[2])
+        try:
+            recomputed = module.summarize(
+                exact_root, archive, sys.argv[2], int(sys.argv[3]), sys.argv[4]
+            )
+        except Exception as error:
+            raise SystemExit(f"résumé de récupération impossible: {error}") from error
+        if recomputed.get("archive_sha256") != verified_archive_digest:
+            raise SystemExit("l'archive a changé pendant le recalcul de récupération")
+if recomputed.get("retrieval_complete") is not True:
+    raise SystemExit(
+        "récupération recalculée partielle: utiliser la confirmation NO-RETRIEVAL explicite pour le cleanup"
+    )
+derived_simulation_validated = recomputed.get("simulation_validated") is True
+derived_simready_validated = recomputed.get("simready_validated") is True
 proof = {
     "retrieval_waived": False,
     "retrieval_report": str(Path(sys.argv[1]).resolve()),
     "artifact_archive_verified": True,
-    "retrieval_complete": bool(report.get("retrieval_complete")),
+    "retrieval_complete": True,
+    "simready_validated": bool(derived_simready_validated),
     "simulation_validated": bool(derived_simulation_validated),
 }
 Path(sys.argv[5]).write_text(json.dumps(proof, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -99,6 +240,7 @@ proof = {
     "retrieval_report": None,
     "artifact_archive_verified": False,
     "retrieval_complete": False,
+    "simready_validated": False,
     "simulation_validated": False,
     "reason": "récupération impossible ou aucun artefact distant disponible; cleanup explicitement confirmé",
 }
@@ -141,6 +283,7 @@ payload = {
     "retrieval_waived": retrieval["retrieval_waived"],
     "artifact_archive_verified": retrieval["artifact_archive_verified"],
     "retrieval_complete": retrieval["retrieval_complete"],
+    "simready_validated": retrieval["simready_validated"],
     "simulation_validated": retrieval["simulation_validated"],
     "verified_absent": True,
     "destroyed_at": datetime.now(timezone.utc).isoformat(),

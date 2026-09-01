@@ -5,11 +5,13 @@ from __future__ import annotations
 import json
 import hashlib
 import importlib.util
+import io
 import os
 from pathlib import Path
 import stat
 import subprocess
 import sys
+import tarfile
 import tempfile
 import unittest
 
@@ -66,12 +68,16 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         conform = (REMOTE / "phase-conform.sh").read_text(encoding="utf-8")
         validation = (REMOTE / "_validate-one.sh").read_text(encoding="utf-8")
         self.assertIn("--minimum-report", material)
+        self.assertIn("--asset-context-report", material)
         self.assertIn("material-agent-client", material)
         self.assertIn("propertyAssignmentIntent", material)
         self.assertIn("--material-report", physics)
+        self.assertIn("--asset-context-report", physics)
+        self.assertIn("require_report_input", physics)
         self.assertIn("physics-agent-client", physics)
         self.assertIn("--physics-report", conform)
         self.assertIn("simready-conform-profile", conform)
+        self.assertNotIn("--pipeline-step usd-convert-cad", conform)
         self.assertIn("--previous-validation-report", validation)
         self.assertNotIn("--token", material + physics)
         self.assertIn("--preflight-report", (REMOTE / "phase-f3.sh").read_text(encoding="utf-8"))
@@ -83,13 +89,28 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertIn("type_912_4_5_na", f10)
         self.assertIn("917_30_turbo_5374", f10)
         self.assertIn('phase_init "f10-${SLUG}"', f10)
+        self.assertIn("identify-asset-context", f10)
+        self.assertIn("_asset_context.py", f10)
+        repair = (REMOTE / "phase-validate-simready.sh").read_text(encoding="utf-8")
+        self.assertIn("repair-loop.json", repair)
+        self.assertIn("--validation-report", repair)
+        self.assertIn('"max_attempts": 2', repair)
+        self.assertNotIn("--pipeline-step usd-convert-cad", repair)
+        self.assertIn("GSP.001 exige des points de préhension", repair)
         render = (REMOTE / "phase-render-preview.sh").read_text(encoding="utf-8")
         self.assertIn('report.get("phase") != "validate-simready"', render)
         self.assertIn("--fail-on-uniform", render)
-        self.assertIn("output_image_sha256", render)
-        self.assertIn("diagnostic_preview_only", render)
+        self.assertIn("render-media.sha256", render)
+        self.assertIn("omniverse_visual_diagnostic_only", render)
         self.assertIn('"simulation_validated": False', render)
         self.assertIn("video-f7-status.json", render)
+        self.assertIn("turntable.py", render)
+        self.assertIn("917-engine-simready-turntable.mp4", render)
+        self.assertIn("ffmpeg", render)
+        self.assertNotIn("run_logged ffprobe", render)
+        self.assertIn('>"${FFPROBE_REPORT}" 2>>"${PHASE_LOG}"', render)
+        self.assertIn("_final_workflow_report.py", render)
+        self.assertIn("omniverse-cad-to-simready-report.json", render)
 
     def test_readiness_prouve_cuda_sans_revendiquer_une_simulation(self):
         readiness = (REMOTE / "phase-readiness.sh").read_text(encoding="utf-8")
@@ -103,6 +124,11 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
             "aucune simulation moteur",
         ):
             self.assertIn(fragment, readiness)
+        self.assertNotIn("SIMREADY_SERVICES_BIN", readiness)
+        self.assertNotIn("CURL_BIN", readiness)
+        preflight = (REMOTE / "phase-preflight.sh").read_text(encoding="utf-8")
+        self.assertIn("--targets validation,content-agents", preflight)
+        self.assertIn("--skip-deploy", preflight)
 
     def test_skill_root_est_explicite_et_fail_closed(self):
         common = (REMOTE / "_common.sh").read_text(encoding="utf-8")
@@ -136,13 +162,17 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertIn("_bundle_manifest.py", transfer)
         self.assertIn("src-local-917-engine-case-cylinders-scan.json", transfer)
         self.assertIn("src-porsche-newsroom-91730-1600-qualifying.json", transfer)
+        self.assertIn("_asset_context.py", transfer)
+        self.assertIn("_final_workflow_report.py", transfer)
 
     def test_collecte_separe_recuperation_et_validation(self):
         collecte = (CONTROLLER / "collect-artifacts.sh").read_text(encoding="utf-8")
         self.assertIn("_summarize_retrieval.py", collecte)
         summarize = (CONTROLLER / "_summarize_retrieval.py").read_text(encoding="utf-8")
         self.assertIn('"retrieval_complete": retrieval_complete', summarize)
+        self.assertIn('"simready_validated": simready_validated', summarize)
         self.assertIn('"simulation_validated": simulation_validated', summarize)
+        self.assertIn("simulation_validated = False", summarize)
         self.assertIn('"duplicate_reports":', summarize)
         self.assertIn('run_ids = {name: f"{job_id}-{name}"', summarize)
 
@@ -188,8 +218,15 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertIn('offer.get("gpu") == "RTX PRO 6000 WS"', runbook)
         self.assertIn(".artifact_archive_verified == true and .retrieval_complete == true", runbook)
         self.assertIn('cmp -s deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"', runbook)
+        self.assertIn("asset-context.json", runbook)
+        self.assertIn("repair-loop.json", runbook)
+        self.assertIn("omniverse-cad-to-simready-report.json", runbook)
+        self.assertIn("trap cleanup_instance_on_exit EXIT", runbook)
+        self.assertIn("collect-artifacts.sh", runbook)
+        self.assertIn("NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}", runbook)
+        self.assertIn("CLEANUP_ARMED=0\ntrap - EXIT INT TERM", runbook)
         self.assertLess(
-            runbook.index("trap cleanup_failed_check ERR"),
+            runbook.index("trap cleanup_instance_on_exit EXIT"),
             runbook.index('payload.get("singleton_verified") is not True'),
         )
 
@@ -337,6 +374,7 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
         status: str = "passed",
         inputs: list[str] | None = None,
         outputs: list[str] | None = None,
+        child_reports: list[str] | None = None,
         filename: str | None = None,
         schema_version: str = "1.0.0",
         passed: bool | None = None,
@@ -356,6 +394,20 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
             local.parent.mkdir(parents=True, exist_ok=True)
             if not local.exists():
                 local.write_bytes(f"artefact:{output}".encode("utf-8"))
+        for child in child_reports or []:
+            remote = Path(child)
+            prefix = Path("/workspace/results") / job_id
+            relative = remote.relative_to(prefix)
+            local = root / relative
+            local.parent.mkdir(parents=True, exist_ok=True)
+            if not local.exists():
+                if local.suffix == ".json":
+                    local.write_text(
+                        json.dumps({"schema_version": "1.0.0", "status": "passed", "passed": True}),
+                        encoding="utf-8",
+                    )
+                else:
+                    local.write_text("attestation\n", encoding="utf-8")
         expected_passed = status == "passed" if passed is None else passed
         expected_exit_code = (0 if status == "passed" else 3) if exit_code is None else exit_code
         path.write_text(
@@ -368,6 +420,7 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
                     "exit_code": expected_exit_code,
                     "input_paths": inputs or [],
                     "output_paths": outputs or [],
+                    "child_reports": child_reports or [],
                     "control": control or {
                         "job_id": job_id,
                         "instance_id": 12345,
@@ -381,6 +434,17 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
 
     def _complete_tree(self, root: Path, job_id: str) -> None:
         remote_root = f"/workspace/results/{job_id}"
+
+        def write_remote(remote_path: str, payload: dict | str | bytes) -> None:
+            local = root / Path(remote_path).relative_to(Path("/workspace/results") / job_id)
+            local.parent.mkdir(parents=True, exist_ok=True)
+            if isinstance(payload, dict):
+                local.write_text(json.dumps(payload), encoding="utf-8")
+            elif isinstance(payload, bytes):
+                local.write_bytes(payload)
+            else:
+                local.write_text(payload, encoding="utf-8")
+
         readiness_report = SUMMARY.remote_report_path(job_id, job_id, "readiness")
         preflight_report = SUMMARY.remote_report_path(job_id, job_id, "preflight")
         f1_report = SUMMARY.remote_report_path(job_id, job_id, "f1")
@@ -394,25 +458,48 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
         f1_output = f"{remote_root}/f1/{job_id}/stages/917-complete-engine-f1.usda"
         f2_output = f"{remote_root}/f2/{job_id}/stages/917-engine-kinematic-f2.usda"
         f3_output = f"{remote_root}/f3/{job_id}/stages/917-engine-detail-f3.usda"
-        self._write_phase(root, "readiness", job_id, "readiness", outputs=[readiness_output])
+        self._write_phase(
+            root, "readiness", job_id, "readiness", outputs=[readiness_output],
+            child_reports=[readiness_output],
+        )
         self._write_phase(
             root, "preflight", job_id, "preflight",
             inputs=[readiness_report], outputs=preflight_outputs,
+            child_reports=[preflight_outputs[0]],
         )
-        self._write_phase(root, "f1", job_id, "f1", inputs=[preflight_report], outputs=[f1_output])
-        self._write_phase(root, "f2", job_id, "f2", inputs=[f1_output, f1_report], outputs=[f2_output])
+        f1_child = f"{remote_root}/f1/{job_id}/validate-complete-engine-f1.json"
+        f2_child = f"{remote_root}/f2/{job_id}/validate-kinematics-f2.json"
+        f3_child = f"{remote_root}/f3/{job_id}/validate-detail-expansion-f3.json"
+        self._write_phase(
+            root, "f1", job_id, "f1", inputs=[preflight_report], outputs=[f1_output],
+            child_reports=[f1_child],
+        )
+        self._write_phase(
+            root, "f2", job_id, "f2", inputs=[f1_output, f1_report], outputs=[f2_output],
+            child_reports=[f2_child],
+        )
         self._write_phase(
             root, "f3", job_id, "f3",
             inputs=[f2_output, f2_report, preflight_report], outputs=[f3_output],
+            child_reports=[f3_child],
         )
         definitions = {
-            "na": ("f10-type-912-4-5-na", "/type-912-4-5-na/stages/type-912-4-5-na-detail-f10.usda"),
-            "turbo": ("f10-917-30-turbo-5374", "/917-30-turbo-5374/stages/917-30-turbo-5374-detail-f10.usda"),
+            "na": (
+                "f10-type-912-4-5-na", "type_912_4_5_na", "type-912-4-5-na",
+                "/type-912-4-5-na/stages/type-912-4-5-na-detail-f10.usda",
+            ),
+            "turbo": (
+                "f10-917-30-turbo-5374", "917_30_turbo_5374", "917-30-turbo-5374",
+                "/917-30-turbo-5374/stages/917-30-turbo-5374-detail-f10.usda",
+            ),
         }
-        for suffix, (f10_phase, stage_suffix) in definitions.items():
+        for suffix, (f10_phase, variant_id, slug, stage_suffix) in definitions.items():
             run_id = f"{job_id}-{suffix}"
             f10_report = SUMMARY.remote_report_path(job_id, run_id, f10_phase)
             stage = f"{remote_root}/f10/{run_id}/generated{stage_suffix}"
+            context_root = f"{remote_root}/f10/{run_id}/generated/{slug}/reports"
+            context_report = f"{context_root}/asset-context.json"
+            context_markdown = f"{context_root}/asset-context.md"
             self._write_phase(
                 root,
                 "f10",
@@ -420,7 +507,26 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
                 f10_phase,
                 inputs=[preflight_report],
                 outputs=[stage],
+                child_reports=[context_report, context_markdown],
             )
+            write_remote(
+                context_report,
+                {
+                    "schema_version": "1.0.0", "status": "passed", "passed": True,
+                    "source_asset_path": stage, "variant_id": variant_id,
+                    "documented_geometry": {
+                        field: {"value": 1, "source_ids": ["src-test"]}
+                        for field in (
+                            "cylinder_count", "bore_mm", "stroke_mm",
+                            "documented_displacement_cm3",
+                        )
+                    },
+                    "evidence": [{"source_id": "src-test"}],
+                    "release_gates": {key: False for key in SUMMARY.RELEASE_GATES},
+                    "material_physics_prompt": "Contexte sourcé, aucune revendication physique.",
+                },
+            )
+            write_remote(context_markdown, "# Contexte\n")
             minimum_report = SUMMARY.remote_report_path(job_id, run_id, "minimum-usd")
             material_report = SUMMARY.remote_report_path(job_id, run_id, "material")
             physics_report = SUMMARY.remote_report_path(job_id, run_id, "physics")
@@ -433,34 +539,287 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
             self._write_phase(
                 root, "minimum-usd", run_id, "minimum-usd",
                 inputs=[stage, f10_report], outputs=[stage],
+                child_reports=[f"{remote_root}/minimum-usd/{run_id}/minimum-usd.json"],
             )
             self._write_phase(
                 root, "material", run_id, "material",
-                inputs=[stage, minimum_report, material_prompt], outputs=[material_output],
+                inputs=[stage, minimum_report, material_prompt, context_report],
+                outputs=[material_output],
+                child_reports=[f"{remote_root}/material/{run_id}/material-agent.json"],
             )
             self._write_phase(
                 root, "physics", run_id, "physics",
-                inputs=[material_report, physics_prompt, material_output], outputs=[physics_output],
+                inputs=[material_report, physics_prompt, context_report, material_output],
+                outputs=[physics_output],
+                child_reports=[f"{remote_root}/physics/{run_id}/physics-agent.json"],
             )
             self._write_phase(
                 root, "conform", run_id, "conform",
                 inputs=[physics_report, physics_output], outputs=[conform_output],
+                child_reports=[f"{remote_root}/conform/{run_id}/simready-conform-profile.json"],
             )
             previous = None
-            for phase in SUMMARY.VALIDATION_PHASES:
+            validation_reports = {}
+            for phase in SUMMARY.VALIDATION_PHASES[:-1]:
                 inputs = [conform_report, conform_output]
                 if previous:
                     inputs.append(previous)
+                child = f"{remote_root}/{phase}/{run_id}/{phase}.json"
                 self._write_phase(
-                    root, phase, run_id, phase, inputs=inputs, outputs=[conform_output]
+                    root, phase, run_id, phase, inputs=inputs, outputs=[conform_output],
+                    child_reports=[child],
                 )
                 previous = SUMMARY.remote_report_path(job_id, run_id, phase)
-            render_png = f"{remote_root}/render-preview/{run_id}/917-engine-simready-preview.png"
+                validation_reports[phase.removeprefix("validate-")] = previous
+            simready_report = SUMMARY.remote_report_path(job_id, run_id, "validate-simready")
+            simready_root = f"{remote_root}/validate-simready/{run_id}"
+            initial_simready = f"{simready_root}/attempt-1/simready-validate.json"
+            initial_simready_markdown = f"{simready_root}/attempt-1/simready-validate.md"
+            repair_report = f"{simready_root}/repair-loop.json"
+            repair_markdown = f"{simready_root}/repair-loop.md"
+            validation_reports["simready"] = initial_simready
+            self._write_phase(
+                root, "validate-simready", run_id, "validate-simready",
+                inputs=[conform_report, conform_output, previous], outputs=[conform_output],
+                child_reports=[
+                    initial_simready, initial_simready_markdown, repair_report, repair_markdown,
+                ],
+            )
+            write_remote(
+                initial_simready,
+                {"schema_version": "1.0.0", "status": "passed", "passed": True,
+                 "asset_path": conform_output},
+            )
+            write_remote(initial_simready_markdown, "# SimReady\n")
+            write_remote(
+                repair_report,
+                {
+                    "schema_version": "1.0.0", "status": "passed", "passed": True,
+                    "profile": "Prop-Robotics-Neutral", "profile_version": "1.0.0",
+                    "source_conform_report": conform_report,
+                    "initial_usd_path": conform_output, "final_usd_path": conform_output,
+                    "repair_attempted": False, "max_attempts": 2, "attempt_count": 1,
+                    "failed_requirement_ids": [], "repaired_requirement_ids": [],
+                    "blocked_requirement_ids": [], "unresolved_requirement_ids": [],
+                    "attempts": [{"attempt": 1}],
+                    "final_validation_reports": validation_reports,
+                },
+            )
+            write_remote(repair_markdown, "# Boucle de réparation\n")
+            render_root = f"{remote_root}/render-preview/{run_id}"
+            render_png = f"{render_root}/917-engine-simready-preview.png"
+            photos = [
+                f"{render_root}/photos/{name}"
+                for name in (
+                    "917-engine-front.png",
+                    "917-engine-right.png",
+                    "917-engine-rear.png",
+                    "917-engine-left.png",
+                )
+            ]
+            movie = f"{render_root}/917-engine-simready-turntable.mp4"
+            checksum = f"{render_root}/render-media.sha256"
+            render_reference = f"{render_root}/ovrtx-render-service.json"
+            render_reference_markdown = f"{render_root}/ovrtx-render-service.md"
+            turntable_report = f"{render_root}/ovrtx-turntable.json"
+            turntable_markdown = f"{render_root}/ovrtx-turntable.md"
+            ffprobe_report = f"{render_root}/turntable-video-ffprobe.json"
+            render_attestation = f"{render_root}/render-media-attestation.json"
+            video_status = f"{render_root}/video-f7-status.json"
+            final_report = f"{render_root}/omniverse-cad-to-simready-report.json"
+            final_markdown = f"{render_root}/omniverse-cad-to-simready-report.md"
+            frame_paths = [
+                f"{render_root}/turntable-frames/frame_{index:03d}.png"
+                for index in range(24)
+            ]
             self._write_phase(
                 root, "render-preview", run_id, "render-preview",
-                inputs=[conform_report, previous, conform_output],
-                outputs=[render_png, f"{render_png}.sha256"],
+                inputs=[conform_report, simready_report, conform_output],
+                outputs=[render_png, *photos, movie, checksum],
+                child_reports=[
+                    render_reference, render_reference_markdown,
+                    turntable_report, turntable_markdown, ffprobe_report,
+                    render_attestation, video_status, final_report, final_markdown,
+                ],
             )
+            write_remote(render_png, b"preview-ovrtx")
+            for index, frame_path in enumerate(frame_paths):
+                write_remote(frame_path, f"frame-ovrtx-{index:03d}".encode("ascii"))
+            for photo, source_index in zip(photos, (0, 6, 12, 18), strict=True):
+                write_remote(photo, f"frame-ovrtx-{source_index:03d}".encode("ascii"))
+            write_remote(movie, b"mp4-h264-yuv420p")
+            write_remote(
+                render_reference,
+                {
+                    "asset_path": conform_output,
+                    "output_image_path": render_png,
+                    "generated_files": [render_png],
+                    "passed": True,
+                },
+            )
+            write_remote(render_reference_markdown, "# Rendu OVRTX\n")
+            write_remote(
+                turntable_report,
+                {
+                    "asset_path": conform_output,
+                    "frames_requested": 24,
+                    "frames_rendered": 24,
+                    "generated_files": frame_paths,
+                    "frame_reports": [
+                        {
+                            "frame": index,
+                            "passed": True,
+                            "output_image_path": frame_path,
+                            "pixel_inspection": {"uniform": False},
+                        }
+                        for index, frame_path in enumerate(frame_paths)
+                    ],
+                    "passed": True,
+                },
+            )
+            write_remote(turntable_markdown, "# Turntable OVRTX\n")
+            write_remote(
+                ffprobe_report,
+                {
+                    "streams": [{
+                        "codec_name": "h264", "pix_fmt": "yuv420p",
+                        "width": 1280, "height": 720, "nb_frames": "24",
+                    }],
+                    "format": {"duration": "3.000000"},
+                },
+            )
+            media_paths = [render_png, *photos, movie]
+            media_sha = {
+                path: hashlib.sha256(
+                    (root / Path(path).relative_to(Path("/workspace/results") / job_id)).read_bytes()
+                ).hexdigest()
+                for path in media_paths
+            }
+            write_remote(
+                checksum,
+                "".join(f"{media_sha[path]}  {Path(path).name}\n" for path in media_paths),
+            )
+            write_remote(
+                render_attestation,
+                {
+                    "schema_version": "1.0.0", "status": "passed", "passed": True,
+                    "claim_scope": "omniverse_visual_diagnostic_only",
+                    "source_asset_path": conform_output,
+                    "preview_path": render_png,
+                    "photo_paths": photos,
+                    "diagnostic_video_path": movie,
+                    "turntable_frame_paths": frame_paths,
+                    "media_sha256": media_sha,
+                    "checksum_manifest_path": checksum,
+                    "ovrtx_render_report": render_reference,
+                    "ovrtx_turntable_report": turntable_report,
+                    "ffprobe_report": ffprobe_report,
+                    "upstream_simready_validation_status": "passed",
+                    "simulation_validated": False,
+                    "physical_simulation_validated": False,
+                    "dyno_validated": False,
+                    "performance_1600hp_validated": False,
+                },
+            )
+            write_remote(
+                video_status,
+                {
+                    "schema_version": "1.0.0", "status": "passed", "passed": True,
+                    "phase": "turntable-diagnostic-film",
+                    "output_video_path": movie,
+                    "source_asset_path": conform_output,
+                    "disclosure_embedded": True,
+                    "kinematic_f7_engine_motion_status":
+                        "blocked_not_part_of_this_simready_run",
+                    "physical_simulation_claim_authorized": False,
+                },
+            )
+            stage_names = [
+                "readiness", "preflight", "f1", "f2", "f3", "f10",
+                "minimum-usd", "material", "physics", "conform",
+                "validate-asset", "validate-geometry", "validate-physics",
+                "validate-simready", "render-ovrtx",
+            ]
+            ordered_stages = [{"stage": name, "status": "passed"} for name in stage_names]
+            ordered_stages[-1].update({
+                "report_path": render_reference,
+                "input_artifacts": [conform_output],
+                "output_artifacts": media_paths,
+            })
+            write_remote(
+                final_report,
+                {
+                    "schema_version": "1.0.0", "overall_status": "passed", "passed": True,
+                    "request_summary": {
+                        "job_id": job_id, "run_id": run_id, "variant_id": variant_id,
+                        "simready_profile": "Prop-Robotics-Neutral", "profile_version": "1.0.0",
+                    },
+                    "ordered_stage_results": ordered_stages,
+                    "content_agents": {
+                        "credentials": "redacted",
+                        "render_report": render_reference,
+                        "turntable_report": turntable_report,
+                    },
+                    "conformance_and_validation": {"repair_loop_report": repair_report},
+                    "validation_scope": {
+                        "simready_validated": True,
+                        "physical_simulation_validated": False,
+                        "dyno_validated": False,
+                        "performance_1600hp_validated": False,
+                    },
+                    "final_artifacts": {
+                        "final_usd_path": conform_output, "render_preview_path": render_png,
+                        "render_photo_paths": photos,
+                        "diagnostic_video_path": movie,
+                        "render_checksum_manifest_path": checksum,
+                        "render_reference_report": render_reference,
+                        "render_turntable_report": turntable_report,
+                        "render_attestation_report": render_attestation,
+                        "json_report_path": final_report, "markdown_report_path": final_markdown,
+                    },
+                    "claim_boundaries": ["SimReady seulement", "pas de dyno", "pas de 1600 ch"],
+                },
+            )
+            write_remote(final_markdown, "# Rapport consolidé\n")
+
+    def _set_branch_needs_rerun(self, root: Path, job_id: str, suffix: str) -> None:
+        run_id = f"{job_id}-{suffix}"
+        phase_path = root / f"validate-simready/{run_id}/phase-validate-simready.json"
+        phase = json.loads(phase_path.read_text(encoding="utf-8"))
+        phase.update({"status": "needs_rerun", "passed": False, "exit_code": 3})
+        phase_path.write_text(json.dumps(phase), encoding="utf-8")
+
+        initial_path = root / f"validate-simready/{run_id}/attempt-1/simready-validate.json"
+        initial = json.loads(initial_path.read_text(encoding="utf-8"))
+        initial.update({
+            "status": "needs_rerun", "passed": False,
+            "issues": [{"requirement_id": "GSP.001"}],
+        })
+        initial_path.write_text(json.dumps(initial), encoding="utf-8")
+
+        repair_path = root / f"validate-simready/{run_id}/repair-loop.json"
+        repair = json.loads(repair_path.read_text(encoding="utf-8"))
+        repair.update({
+            "status": "needs_rerun", "passed": False,
+            "failed_requirement_ids": ["GSP.001"],
+            "blocked_requirement_ids": ["GSP.001"],
+            "unresolved_requirement_ids": ["GSP.001"],
+        })
+        repair_path.write_text(json.dumps(repair), encoding="utf-8")
+
+        final_path = root / f"render-preview/{run_id}/omniverse-cad-to-simready-report.json"
+        final = json.loads(final_path.read_text(encoding="utf-8"))
+        final.update({"overall_status": "needs_rerun", "passed": False})
+        final["validation_scope"]["simready_validated"] = False
+        for stage in final["ordered_stage_results"]:
+            if stage.get("stage") == "validate-simready":
+                stage["status"] = "needs_rerun"
+        final_path.write_text(json.dumps(final), encoding="utf-8")
+
+        attestation_path = root / f"render-preview/{run_id}/render-media-attestation.json"
+        attestation = json.loads(attestation_path.read_text(encoding="utf-8"))
+        attestation["upstream_simready_validation_status"] = "needs_rerun"
+        attestation_path.write_text(json.dumps(attestation), encoding="utf-8")
 
     def _summarize(self, directory: Path, job_id: str = "job-test") -> dict:
         archive = directory / "results.tar.gz"
@@ -474,7 +833,11 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
             self._complete_tree(root, "job-test")
             payload = self._summarize(directory)
             self.assertTrue(payload["retrieval_complete"])
-            self.assertTrue(payload["simulation_validated"])
+            self.assertTrue(payload["simready_validated"])
+            self.assertFalse(payload["simulation_validated"])
+            self.assertFalse(payload["physical_simulation_validated"])
+            self.assertFalse(payload["dyno_validated"])
+            self.assertFalse(payload["performance_1600hp_validated"])
             self.assertEqual(payload["expected_pipelines"]["required_report_count"], 25)
             self.assertEqual(len(payload["f10_detail_stages"]), 2)
 
@@ -489,12 +852,10 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
             self.assertFalse(missing["simulation_validated"])
 
             self._complete_tree(root, "job-test")
-            geometry = root / "validate-geometry/job-test-na/phase-validate-geometry.json"
-            report = json.loads(geometry.read_text(encoding="utf-8"))
-            report.update({"status": "needs_rerun", "passed": False, "exit_code": 3})
-            geometry.write_text(json.dumps(report), encoding="utf-8")
+            self._set_branch_needs_rerun(root, "job-test", "na")
             rerun = self._summarize(directory)
             self.assertTrue(rerun["retrieval_complete"])
+            self.assertFalse(rerun["simready_validated"])
             self.assertFalse(rerun["simulation_validated"])
 
     def test_doublon_ou_stage_f10_incorrect_est_refuse(self):
@@ -631,6 +992,91 @@ class ResumeRecuperationVariantAwareTests(unittest.TestCase):
             self.assertFalse(payload["retrieval_complete"])
             self.assertFalse(payload["simulation_validated"])
             self.assertEqual(payload["unexpected_reports"], ["job-test/surprise"])
+
+    def test_contexte_reparation_et_rapport_final_sont_attestes(self):
+        mutations = (
+            (
+                "context",
+                "f10/job-test-na/generated/type-912-4-5-na/reports/asset-context.json",
+                lambda payload: payload.update({"source_asset_path": "/workspace/results/job-test/autre.usda"}),
+            ),
+            (
+                "repair",
+                "validate-simready/job-test-na/repair-loop.json",
+                lambda payload: payload.update({"final_usd_path": "/workspace/results/job-test/autre.usda"}),
+            ),
+            (
+                "final",
+                "render-preview/job-test-na/omniverse-cad-to-simready-report.json",
+                lambda payload: payload["validation_scope"].update(
+                    {"physical_simulation_validated": True}
+                ),
+            ),
+        )
+        for label, relative, mutate in mutations:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                root = directory / "job-test"
+                self._complete_tree(root, "job-test")
+                path = root / relative
+                payload = json.loads(path.read_text(encoding="utf-8"))
+                mutate(payload)
+                path.write_text(json.dumps(payload), encoding="utf-8")
+                summary = self._summarize(directory)
+                self.assertFalse(summary["retrieval_complete"])
+                self.assertFalse(summary["simready_validated"])
+                self.assertTrue(summary["provenance_errors"])
+
+    def test_rendu_ovrtx_photos_film_et_checksums_sont_attestes(self):
+        mutations = (
+            (
+                "ovrtx_asset",
+                "render-preview/job-test-na/ovrtx-render-service.json",
+                lambda payload: payload.update({
+                    "asset_path": "/workspace/results/job-test/autre.usda"
+                }),
+            ),
+            (
+                "turntable_status",
+                "render-preview/job-test-na/ovrtx-turntable.json",
+                lambda payload: payload.update({"status": "failed", "passed": True}),
+            ),
+            (
+                "attestation_digest",
+                "render-preview/job-test-na/render-media-attestation.json",
+                lambda payload: payload["media_sha256"].update({
+                    next(iter(payload["media_sha256"])): "0" * 64
+                }),
+            ),
+            (
+                "ordered_render",
+                "render-preview/job-test-na/omniverse-cad-to-simready-report.json",
+                lambda payload: payload["ordered_stage_results"].pop(),
+            ),
+        )
+        for label, relative, mutate in mutations:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                root = directory / "job-test"
+                self._complete_tree(root, "job-test")
+                path = root / relative
+                payload = json.loads(path.read_text(encoding="utf-8"))
+                mutate(payload)
+                path.write_text(json.dumps(payload), encoding="utf-8")
+                summary = self._summarize(directory)
+                self.assertFalse(summary["retrieval_complete"])
+                self.assertFalse(summary["simready_validated"])
+                self.assertTrue(summary["provenance_errors"])
+
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            root = directory / "job-test"
+            self._complete_tree(root, "job-test")
+            checksum = root / "render-preview/job-test-na/render-media.sha256"
+            checksum.write_text("0" * 64 + "  falsifie.png\n", encoding="utf-8")
+            summary = self._summarize(directory)
+            self.assertFalse(summary["retrieval_complete"])
+            self.assertTrue(summary["provenance_errors"])
 
 
 class GardeInstanceTests(unittest.TestCase):
@@ -783,7 +1229,7 @@ class GardeInstanceTests(unittest.TestCase):
             rejected = self._run(self._wrapper(directory, dph=99.0), directory / "wrong.json", wrong_image, "--skip-cost-cap")
             self.assertNotEqual(rejected.returncode, 0)
 
-    def test_destruction_accepte_recuperation_partielle_cout_et_capacite_degrades(self):
+    def test_destruction_partielle_exige_derogation_meme_si_cout_et_capacite_degrades(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
             marker = directory / "destroyed.marker"
@@ -832,10 +1278,34 @@ class GardeInstanceTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
-            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("récupération partielle", result.stderr)
+            self.assertFalse(marker.exists())
+
+            waiver = f"NO-RETRIEVAL:job-test:12345:{IMAGE}"
+            waived = subprocess.run(
+                [
+                    "bash", str(CONTROLLER / "destroy-instance.sh"),
+                    "--instance-id", "12345",
+                    "--expected-image", IMAGE,
+                    "--job-id", "job-test",
+                    "--confirm-job-id", "job-test",
+                    "--confirm-instance-id", "12345",
+                    "--confirm-digest", IMAGE,
+                    "--confirm-no-retrieval", waiver,
+                    "--control-root", str(control),
+                ],
+                env=env,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(waived.returncode, 0, waived.stderr)
             self.assertTrue(marker.is_file())
             destroyed = json.loads((control / "destroy-report.json").read_text(encoding="utf-8"))
+            self.assertTrue(destroyed["retrieval_waived"])
             self.assertFalse(destroyed["retrieval_complete"])
+            self.assertFalse(destroyed["simready_validated"])
             self.assertFalse(destroyed["simulation_validated"])
             guard = json.loads((control / "instance-guard-destroy.json").read_text(encoding="utf-8"))
             self.assertFalse(guard["criteria"]["cost_cap_enforced"])
@@ -868,32 +1338,82 @@ class GardeInstanceTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertFalse(marker.exists())
 
+    def test_destruction_refuse_archives_traversee_et_lien_symbolique(self):
+        cases = (
+            ("traversal", "job-test/../escape.txt", False),
+            ("symlink", "job-test/link", True),
+        )
+        for label, member_name, is_symlink in cases:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                marker = directory / "destroyed.marker"
+                wrapper = self._wrapper(directory, destroy_marker=marker)
+                archive = directory / f"{label}.tar.gz"
+                with tarfile.open(archive, "w:gz") as handle:
+                    member = tarfile.TarInfo(member_name)
+                    if is_symlink:
+                        member.type = tarfile.SYMTYPE
+                        member.linkname = "/tmp/escape"
+                        handle.addfile(member)
+                    else:
+                        payload = b"interdit"
+                        member.size = len(payload)
+                        handle.addfile(member, io.BytesIO(payload))
+                retrieval = directory / "retrieval.json"
+                retrieval.write_text(
+                    json.dumps(
+                        {
+                            "job_id": "job-test",
+                            "instance_id": 12345,
+                            "expected_image": IMAGE,
+                            "retrieval_attempted": True,
+                            "artifact_archive_verified": True,
+                            "retrieval_complete": True,
+                            "simulation_validated": False,
+                            "archive_path": str(archive),
+                            "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
+                        }
+                    ),
+                    encoding="utf-8",
+                )
+                env = os.environ.copy()
+                env["OPENBAO_VASTAI_BIN"] = str(wrapper)
+                result = subprocess.run(
+                    [
+                        "bash", str(CONTROLLER / "destroy-instance.sh"),
+                        "--instance-id", "12345", "--expected-image", IMAGE,
+                        "--job-id", "job-test", "--confirm-job-id", "job-test",
+                        "--confirm-instance-id", "12345", "--confirm-digest", IMAGE,
+                        "--retrieval-report", str(retrieval),
+                        "--control-root", str(directory / "control"),
+                    ],
+                    env=env,
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                )
+                self.assertNotEqual(result.returncode, 0)
+                self.assertFalse(marker.exists())
+                self.assertFalse((directory / "escape.txt").exists())
+
     def test_cleanup_rabat_une_fausse_validation_sans_bloquer_destruction(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
             marker = directory / "destroyed.marker"
             wrapper = self._wrapper(directory, destroy_marker=marker)
+            root = directory / "job-test"
+            fixture = ResumeRecuperationVariantAwareTests()
+            fixture._complete_tree(root, "job-test")
+            fixture._set_branch_needs_rerun(root, "job-test", "na")
             archive = directory / "results.tar.gz"
-            archive.write_bytes(b"diagnostic")
+            with tarfile.open(archive, "w:gz") as handle:
+                handle.add(root, arcname="job-test", recursive=True)
+            retrieval_payload = SUMMARY.summarize(root, archive, "job-test", 12345, IMAGE)
+            self.assertTrue(retrieval_payload["retrieval_complete"])
+            self.assertFalse(retrieval_payload["simulation_validated"])
+            retrieval_payload["simulation_validated"] = True
             retrieval = directory / "retrieval.json"
-            retrieval.write_text(
-                json.dumps(
-                    {
-                        "job_id": "job-test",
-                        "instance_id": 12345,
-                        "expected_image": IMAGE,
-                        "retrieval_attempted": True,
-                        "artifact_archive_verified": True,
-                        "retrieval_complete": True,
-                        "simulation_validated": True,
-                        "needs_rerun_phases": ["validate-geometry"],
-                        "phases": {},
-                        "archive_path": str(archive),
-                        "archive_sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
-                    }
-                ),
-                encoding="utf-8",
-            )
+            retrieval.write_text(json.dumps(retrieval_payload), encoding="utf-8")
             env = os.environ.copy()
             env["OPENBAO_VASTAI_BIN"] = str(wrapper)
             result = subprocess.run(
@@ -916,6 +1436,7 @@ class GardeInstanceTests(unittest.TestCase):
                 (directory / "control/destroy-report.json").read_text(encoding="utf-8")
             )
             self.assertFalse(destroyed["simulation_validated"])
+            self.assertFalse(destroyed["simready_validated"])
 
 
 if __name__ == "__main__":

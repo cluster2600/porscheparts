@@ -26,7 +26,7 @@ SECRET_PATH_FILE = CONFIG_DIR / "secret_path"
 ALLOWED_SECRET_PATH = "secrets/data/github"
 GHCR_USERNAME = "cluster2600"
 GHCR_REPOSITORY = f"{GHCR_USERNAME}/3dprinting993-simready-local-ai"
-GHCR_DIGEST = "sha256:d889cc2ec7a0583588acb10050650f983d3afa2d40cdefbeda06bf92634c1c0d"
+GHCR_DIGEST = "sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
 GHCR_TOKEN_URL = (
     "https://ghcr.io/token?service=ghcr.io&scope="
     + urllib.parse.quote(f"repository:{GHCR_REPOSITORY}:pull", safe="")

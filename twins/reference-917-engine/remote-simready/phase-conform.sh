@@ -39,7 +39,6 @@ run_logged "${USD_PYTHON}" "${REFERENCE}" "${PHYSICS_USD}" \
     --output-dir "${PHASE_ROOT}/output" \
     --profile "${PROFILE}" \
     --profile-version "${PROFILE_VERSION}" \
-    --pipeline-step usd-convert-cad \
     --pipeline-step material-agent-client \
     --pipeline-step physics-agent-client \
     --report "${REFERENCE_REPORT}" \
