@@ -10,9 +10,15 @@ COPY containers/simready-preflight/convert.py /opt/usd-convert-cad-preflight/con
 COPY containers/simready-preflight/validate.py /opt/usd-convert-cad-preflight/validate.py
 COPY containers/simready-vast-onstart.sh /usr/local/bin/simready-vast-onstart
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
+COPY containers/simready-services.sh /usr/local/bin/simready-services
+COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
+COPY containers/simready-nvidia-auth-check.sh /usr/local/bin/simready-nvidia-auth-check
+COPY containers/simready-profile-validate.sh /usr/local/bin/simready-profile-validate
 
 RUN chmod 0555 /opt/usd-convert-cad-preflight/convert.py /opt/usd-convert-cad-preflight/validate.py \
         /usr/local/bin/simready-vast-onstart /usr/local/bin/smoke-test.sh \
+        /usr/local/bin/simready-services /usr/local/bin/simready-smoke \
+        /usr/local/bin/simready-nvidia-auth-check /usr/local/bin/simready-profile-validate \
     && /opt/usd-convert-cad-preflight/validate.py \
     && /opt/simready-validation/bin/python -c \
        "from pxr import Usd, UsdGeom, UsdPhysics; import omni.asset_validator; assert Usd.GetVersion()"

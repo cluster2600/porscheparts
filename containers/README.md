@@ -30,7 +30,10 @@ dans un conteneur non privilégié et n'autorise pas Docker-in-Docker. OVRTX,
 Material Agent et Physics Agent sont donc installés dans des environnements
 Python séparés et lancés directement par Supervisor. Aucun secret n'est inclus
 dans l'image : `simready-services start` refuse de démarrer avant l'installation
-de `/workspace/secrets/nvidia.env` par le wrapper OpenBao.
+de `/workspace/secrets/nvidia.env` par le wrapper OpenBao. Il exécute ensuite
+`simready-nvidia-auth-check` : un appel minimal au modèle configuré doit réussir
+avant de lancer OVRTX et les agents, afin de ne pas payer un rendu voué à finir
+sur une erreur d'autorisation.
 
 L'image `simready-workflow` embarque `simready-vast-onstart`. Ce script corrige
 les droits du fichier `authorized_keys` injecté par Vast.ai, vérifie le GPU et
@@ -41,6 +44,11 @@ L'environnement de validation inclut Pillow : les rendus OVRTX peuvent ainsi
 échouer automatiquement lorsqu'un PNG est vide ou uniforme, au lieu de valider
 seulement la présence d'un fichier. Le smoke test bloque la publication si cette
 inspection de pixels n'est pas disponible.
+
+`simready-profile-validate <asset.usd> --profile <nom> --version <version>`
+ajoute les chemins des règles, fonctions et profils SimReady installés dans
+l'image. Cette enveloppe évite qu'un profil présent soit signalé à tort comme
+non enregistré.
 
 Cette image combine des composants sous licences distinctes. Le convertisseur
 CAD NVIDIA reste soumis à sa propre licence Omniverse et ne doit pas être

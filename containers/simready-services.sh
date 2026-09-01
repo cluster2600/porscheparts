@@ -58,6 +58,7 @@ wait_for_ovrtx() {
 case "${1:-}" in
     start)
         load_credentials
+        simready-nvidia-auth-check
         mkdir -p /workspace/logs
         if [ -s /tmp/simready-supervisord.pid ] \
             && kill -0 "$(cat /tmp/simready-supervisord.pid)" 2>/dev/null; then
@@ -79,6 +80,7 @@ case "${1:-}" in
         ;;
     foreground)
         load_credentials
+        simready-nvidia-auth-check
         exec supervisord -n -c "${CONFIG}"
         ;;
     *)

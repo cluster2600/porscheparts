@@ -27,6 +27,8 @@ check openusd /opt/simready-validation/bin/python -c 'from pxr import Usd, UsdGe
 check png-pixel-inspection /opt/simready-validation/bin/python -c 'from PIL import Image, ImageStat; assert Image and ImageStat'
 check asset-validator /opt/simready-validation/bin/python -c 'import omni.asset_validator'
 check simready-validate /opt/simready-validation/bin/simready-validate --help
+check simready-profile-validate test -x /usr/local/bin/simready-profile-validate
+check nvidia-auth-check test -x /usr/local/bin/simready-nvidia-auth-check
 check usd-convert-cad /opt/usd-convert-cad/bin/usd-convert-cad --help
 check scene-optimizer test -d /opt/content-agents/.build-resources/scene_optimizer_core/usdpy
 

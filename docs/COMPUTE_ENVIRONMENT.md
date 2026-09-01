@@ -29,7 +29,10 @@ instance Vast.ai standard ne peut pas lancer Docker Compose dans Docker.
 L'image doit être construite et testée dans GitHub Actions avant toute
 location. Les secrets NVIDIA ne sont jamais placés dans une couche : ils sont
 injectés après connexion SSH par le wrapper OpenBao, puis
-`simready-services start` lance les services natifs.
+`simready-services start` valide l'autorisation d'inférence avec une requête
+minimale qui n'affiche ni secret ni réponse, puis lance les services natifs.
+Une erreur HTTP 401/403 bloque donc la chaîne avant la préparation et le rendu
+des lots.
 
 Le 1er septembre 2026, l'image publiée et testée pour cette chaîne est
 `ghcr.io/cluster2600/3dprinting993-simready@sha256:3947ea34d5101065c97103cc2176f395cb9753cb1d7807acb3cfd095796a4e1a`.
@@ -38,6 +41,14 @@ OVRTX. Le Material Agent a préparé ses vues mais l'appel au modèle public a �
 refusé avec HTTP 403 : conversion et rendu sont prouvés, assignation IA et
 Physics Agent ne le sont pas. Cette séparation évite de confondre un service
 prêt avec une autorisation d'API valide.
+
+Le validateur de profil doit recevoir les trois répertoires de spécification.
+Utiliser le lanceur embarqué plutôt que la commande brute :
+
+```bash
+simready-profile-validate scene.usd \
+  --profile Prop-Robotics-Physx --version 2.1.0
+```
 
 Les choix logiciels sont justifiés dans
 [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md) :
