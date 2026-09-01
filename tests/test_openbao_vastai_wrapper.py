@@ -117,6 +117,21 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertTrue(payload["singleton_verified"])
         self.assertTrue(payload["contract_verified"])
 
+    def test_uncertain_launch_rolls_back_the_only_project_instance(self):
+        with (
+            mock.patch.object(
+                self.wrapper,
+                "list_instances",
+                return_value=[{"id": 12345, "label": self.wrapper.SIMREADY_LABEL}],
+            ),
+            mock.patch.object(self.wrapper, "destroy_instance_verified") as destroy,
+        ):
+            with self.assertRaisesRegex(
+                self.wrapper.SafeError, "automatically destroyed and verified absent"
+            ):
+                self.wrapper.reconcile_uncertain_simready_launch("unused")
+        destroy.assert_called_once_with("unused", 12345)
+
     def test_github_credential_is_never_forwarded_to_vast(self):
         source = WRAPPER_PATH.read_text(encoding="utf-8")
         self.assertNotIn("OPENBAO_GHCR_IMAGE_LOGIN", source)

@@ -408,8 +408,8 @@ def verify_simready_contract(api_key: str, instance_id: int) -> None:
     raise SafeError("Vast.ai did not expose complete post-launch contract metadata in time")
 
 
-def detect_uncertain_simready_launch(api_key: str) -> None:
-    """Prevent a blind retry when a create response may have been lost."""
+def reconcile_uncertain_simready_launch(api_key: str) -> None:
+    """Rollback the sole project instance when a create response is uncertain."""
     for _ in range(30):
         try:
             existing = list_instances(api_key, label=SIMREADY_LABEL)
@@ -417,8 +417,20 @@ def detect_uncertain_simready_launch(api_key: str) -> None:
             time.sleep(1)
             continue
         if existing:
+            ids = sorted(
+                instance.get("id")
+                for instance in existing
+                if isinstance(instance.get("id"), int)
+            )
+            if len(ids) == 1:
+                destroy_instance_verified(api_key, ids[0])
+                raise SafeError(
+                    "launch outcome was uncertain; the sole SimReady instance "
+                    f"{ids[0]} was automatically destroyed and verified absent"
+                )
             raise SafeError(
-                "launch outcome is uncertain and a SimReady instance now exists; inspect instances before retrying"
+                "launch outcome is uncertain and multiple SimReady instances exist; "
+                "inspect instances before retrying"
             )
         time.sleep(1)
 
@@ -849,13 +861,15 @@ def launch_simready_offer(
         except SafeHttpError as exc:
             if 400 <= exc.status_code < 500:
                 raise
-            detect_uncertain_simready_launch(api_key)
+            reconcile_uncertain_simready_launch(api_key)
             raise
         except SafeError:
-            detect_uncertain_simready_launch(api_key)
+            reconcile_uncertain_simready_launch(api_key)
             raise
         instance_id = result.get("new_contract")
         if not isinstance(instance_id, int):
+            if enforce_singleton:
+                reconcile_uncertain_simready_launch(api_key)
             raise SafeError("Vast.ai did not return a new SimReady instance id")
         if enforce_singleton:
             try:
