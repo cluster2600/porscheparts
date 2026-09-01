@@ -75,9 +75,16 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("docker buildx imagetools create", workflow)
         self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
+        self.assertIn("Verify anonymous local AI manifest access", workflow)
+        self.assertIn('PINNED_IMAGE: ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai@${{ steps.local_ai_manifest.outputs.digest }}', workflow)
+        self.assertIn('DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw "${PINNED_IMAGE}"', workflow)
+        self.assertLess(
+            workflow.index("- name: Verify anonymous local AI manifest access"),
+            workflow.index("- name: Promote verified local AI image"),
+        )
         self.assertLess(
             workflow.index("- name: Pull and smoke test the published image"),
-            workflow.index("- name: Promote verified local AI image"),
+            workflow.index("- name: Verify anonymous local AI manifest access"),
         )
 
     def test_both_agents_use_the_local_endpoint(self):
@@ -109,6 +116,8 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn('torchvision.__version__.split("+", 1)[0] == "0.26.0"', smoke)
         self.assertIn("/opt/local-ai/bin/pip check", smoke)
         self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -m pip check', smoke)
+        self.assertIn('VLLM_USE_FLASHINFER_SAMPLER="0"', config)
+        self.assertIn('PATH="/opt/local-ai/bin:', config)
 
 
 if __name__ == "__main__":

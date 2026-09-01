@@ -184,6 +184,16 @@ jobs:
             "$image_ref" \
             smoke-test.sh ${{ matrix.image }}
 
+      - name: Verify anonymous local AI manifest access
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai' && inputs.push
+        env:
+          PINNED_IMAGE: ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai@${{ steps.local_ai_manifest.outputs.digest }}
+        run: |
+          set -euo pipefail
+          anonymous_config="$(mktemp -d)"
+          trap 'rm -rf "${anonymous_config}"' EXIT
+          DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw "${PINNED_IMAGE}" >/dev/null
+
       - name: Promote verified local AI image
         if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai' && inputs.push
         run: |

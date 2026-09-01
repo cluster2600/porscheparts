@@ -30,28 +30,119 @@ codé ici.
 ## 1. Créer puis contrôler exactement une instance
 
 ```bash
+set -euo pipefail
 export OPENBAO_GHCR_BIN=/Users/maxime/.local/bin/openbao-ghcr
 export OPENBAO_VASTAI_BIN=/Users/maxime/.local/bin/openbao-vastai
 export MAX_ACTUAL_DPH=2.50
 EXPECTED_IMAGE='ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:REMPLACER_PAR_DIGEST_VERT_64_HEX'
 OFFER_ID='REMPLACER_PAR_OFFRE_VERIFIEE'
+JOB_ID="917-simready-$(date -u +%Y%m%dT%H%M%SZ)"
+CONTROL_ROOT="work/vast-simready/controller/${JOB_ID}"
+mkdir -p "${CONTROL_ROOT}"
 
+"${OPENBAO_GHCR_BIN}" --check
+"${OPENBAO_VASTAI_BIN}" --check
 "${OPENBAO_GHCR_BIN}" --auth-check
-"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}"
-INSTANCE_ID='REMPLACER_PAR_INSTANCE_ID'
+"${OPENBAO_VASTAI_BIN}" --auth-check
+"${OPENBAO_VASTAI_BIN}" ensure-local-ssh
+"${OPENBAO_VASTAI_BIN}" instances | tee "${CONTROL_ROOT}/instances-before-launch.json"
+"${OPENBAO_VASTAI_BIN}" heavy-offers | tee "${CONTROL_ROOT}/eligible-offers.json"
+python3 - \
+  "${CONTROL_ROOT}/instances-before-launch.json" \
+  "${CONTROL_ROOT}/eligible-offers.json" \
+  "${OFFER_ID}" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+instances = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+offers = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
+offer_id = int(sys.argv[3])
+if any(item.get("label") == "3dprinting993-simready-local-ai" for item in instances):
+    raise SystemExit("une instance SimReady existe déjà")
+matching = [item for item in offers if item.get("id") == offer_id]
+if len(matching) != 1:
+    raise SystemExit("offre absente de la liste éligible relue")
+offer = matching[0]
+if not (
+    offer.get("gpu") == "RTX PRO 6000 WS"
+    and offer.get("num_gpus") == 1
+    and offer.get("gpu_fraction") == 1
+    and offer.get("gpu_ram_mb", 0) >= 80000
+    and offer.get("cpu_cores_effective", 0) >= 24
+    and offer.get("cpu_ram_mb", 0) >= 128000
+    and offer.get("disk_space_gb", 0) >= 500
+    and offer.get("verified") in (True, 1, "verified")
+    and offer.get("rentable") in (True, 1)
+    and offer.get("rented") in (False, 0)
+    and 0 <= offer.get("dph_total", 999) <= 2.50
+):
+    raise SystemExit("offre hors contrat matériel ou coût")
+PY
+
+"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}" | tee "${CONTROL_ROOT}/launch.json"
+INSTANCE_ID="$(python3 - "${CONTROL_ROOT}/launch.json" "${EXPECTED_IMAGE}" <<'PY'
+import json
+from pathlib import Path
+import sys
+payload = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+if (
+    payload.get("singleton_verified") is not True
+    or payload.get("contract_verified") is not True
+    or payload.get("image") != sys.argv[2]
+    or payload.get("label") != "3dprinting993-simready-local-ai"
+    or not isinstance(payload.get("instance_id"), int)
+    or payload["instance_id"] <= 0
+):
+    raise SystemExit("postconditions de lancement absentes")
+print(payload["instance_id"])
+PY
+)"
+
+cleanup_failed_check() {
+  rc=$?
+  trap - ERR
+  deploy/vast/simready/destroy-instance.sh \
+    --instance-id "${INSTANCE_ID}" \
+    --expected-image "${EXPECTED_IMAGE}" \
+    --job-id "${JOB_ID}" \
+    --confirm-job-id "${JOB_ID}" \
+    --confirm-instance-id "${INSTANCE_ID}" \
+    --confirm-digest "${EXPECTED_IMAGE}" \
+    --confirm-no-retrieval "NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}" \
+    --control-root "${CONTROL_ROOT}" \
+  || { "${OPENBAO_VASTAI_BIN}" show "${INSTANCE_ID}" >&2; "${OPENBAO_VASTAI_BIN}" destroy "${INSTANCE_ID}" --confirm; }
+  return "${rc}"
+}
+trap cleanup_failed_check ERR
 
 deploy/vast/simready/check-instance.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --max-actual-dph "${MAX_ACTUAL_DPH}" \
-  --report "work/vast-simready/pre-launch-instance-${INSTANCE_ID}.json"
+  --ready-timeout-seconds 1200 \
+  --known-hosts "${CONTROL_ROOT}/known_hosts" \
+  --report "${CONTROL_ROOT}/instance-ready.json"
+trap - ERR
 ```
 
 Le wrapper GHCR vérifie d'abord l'accès en lecture au manifeste et son digest,
 puis délègue la location au wrapper Vast approuvé. Ne pas appeler directement
 `launch-simready-heavy`. Si le contrôle post-création échoue, ne lancer aucune
 phase. La garde compare l'identifiant, le label, l'unique GPU, l'état, le digest
-complet et le coût contractuel réel.
+complet et le coût contractuel réel. Le contrôle ouvre ensuite une session SSH
+en mode batch et attend le marqueur `/workspace/READY`; des métadonnées SSH
+valides ne suffisent donc pas à franchir cette étape.
+Si ce contrôle échoue, le trap détruit immédiatement le contrat et le wrapper
+ne confirme le cleanup qu'après absence de l'identifiant dans toutes les pages
+de la liste d'instances. Le plafond
+`2.50` est un débit maximal en dollars par heure, pas un budget global : une
+fenêtre de 180 minutes peut donc atteindre 7,50 USD, hors trafic réseau éventuel.
+Après une erreur de création ou un timeout, ne jamais relancer aveuglément :
+exécuter d'abord `openbao-vastai instances`, puis contrôler l'unique entrée au
+label exact avec `show` ou la détruire. Le wrapper effectue cette relecture sur
+les résultats incertains et un second lancement est bloqué dès que le contrat
+devient visible.
 
 ## 2. Transférer uniquement le bundle autorisé
 
@@ -68,7 +159,6 @@ fichier spécial ; son manifeste déterministe atteste chaque chemin, taille et
 SHA-256, puis l'arbre distant est revérifié avant le renommage atomique du job.
 
 ```bash
-JOB_ID="917-simready-$(date -u +%Y%m%dT%H%M%SZ)"
 SKILL_ROOT=/chemin/explicite/vers/omniverse-cad-to-simready
 MATERIAL_PROMPT=/chemin/vers/material-prompt.txt
 PHYSICS_PROMPT=/chemin/vers/physics-prompt.txt
@@ -93,7 +183,8 @@ deadline. Ce garde-fou n'arrête et ne détruit pas automatiquement l'instance.
 CONTROL_ROOT="work/vast-simready/controller/${JOB_ID}"
 SSH_HOST="$(jq -r '.instance.ssh_host' "${CONTROL_ROOT}/instance-guard.json")"
 SSH_PORT="$(jq -r '.instance.ssh_port' "${CONTROL_ROOT}/instance-guard.json")"
-SSH=(ssh -p "${SSH_PORT}" -o BatchMode=yes -o ConnectTimeout=20 \
+SSH=(ssh -p "${SSH_PORT}" -i "${HOME}/.ssh/id_vastai" \
+  -o BatchMode=yes -o IdentitiesOnly=yes -o ConnectTimeout=20 \
   -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
   -o StrictHostKeyChecking=accept-new \
   -o "UserKnownHostsFile=${CONTROL_ROOT}/known_hosts" "root@${SSH_HOST}")
@@ -241,6 +332,8 @@ deploy/vast/simready/collect-artifacts.sh \
 
 RETRIEVAL_REPORT="work/vast-simready/controller/${JOB_ID}/retrieval-report.json"
 jq '{retrieval_complete, simulation_validated, needs_rerun_phases}' "${RETRIEVAL_REPORT}"
+jq -e '.artifact_archive_verified == true and .retrieval_complete == true' \
+  "${RETRIEVAL_REPORT}" >/dev/null
 
 deploy/vast/simready/destroy-instance.sh \
   --instance-id "${INSTANCE_ID}" \
@@ -253,14 +346,15 @@ deploy/vast/simready/destroy-instance.sh \
   --max-actual-dph "${MAX_ACTUAL_DPH}"
 ```
 
-La destruction est refusée si le checksum de l'archive locale, le job,
-l'instance ou le digest ne correspondent pas exactement. Le cleanup ignore
-uniquement le plafond de coût déjà dépassé ; toutes les gardes d'identité
-restent actives.
+La destruction normale est refusée si la récupération n'est pas complète ou si
+le checksum de l'archive locale, le job, l'instance ou le digest ne
+correspondent pas exactement. Le cleanup ignore le plafond de coût et les
+seuils matériels qui peuvent s'être dégradés ; l'identifiant, le label, le
+digest et l'unique contrat GPU restent contrôlés.
 
-Si aucune récupération n'est techniquement possible, ne pas laisser une
-instance chère louée. Après une tentative de récupération partielle, utiliser
-la dérogation exacte, visible et spécifique au job :
+Si la récupération est partielle ou techniquement impossible, ne pas laisser
+une instance chère louée. Après cette tentative explicite, utiliser la
+dérogation exacte, visible et spécifique au job :
 
 ```bash
 NO_RETRIEVAL="NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}"

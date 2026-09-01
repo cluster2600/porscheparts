@@ -113,6 +113,7 @@ python3 "${INSTANCE_GUARD}" \
     --expected-label "${EXPECTED_LABEL}" \
     --max-actual-dph "${MAX_DPH}" \
     --skip-cost-cap \
+    --skip-capability-floor \
     --allowed-status running \
     --allowed-status stopped \
     --allowed-status loading \
@@ -127,7 +128,11 @@ import json
 from pathlib import Path
 import sys
 wrapper = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
-if wrapper.get("instance_id") != int(sys.argv[4]) or wrapper.get("destroyed") is not True:
+if (
+    wrapper.get("instance_id") != int(sys.argv[4])
+    or wrapper.get("destroyed") is not True
+    or wrapper.get("verified_absent") is not True
+):
     raise SystemExit("le wrapper n'a pas confirmé la destruction")
 retrieval = json.loads(Path(sys.argv[6]).read_text(encoding="utf-8"))
 payload = {
@@ -137,6 +142,7 @@ payload = {
     "artifact_archive_verified": retrieval["artifact_archive_verified"],
     "retrieval_complete": retrieval["retrieval_complete"],
     "simulation_validated": retrieval["simulation_validated"],
+    "verified_absent": True,
     "destroyed_at": datetime.now(timezone.utc).isoformat(),
 }
 Path(sys.argv[2]).write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")

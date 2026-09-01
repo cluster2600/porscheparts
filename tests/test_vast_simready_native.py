@@ -166,11 +166,27 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         common = (CONTROLLER / "_controller_common.sh").read_text(encoding="utf-8")
         for option in ("ConnectTimeout=20", "ServerAliveInterval=15", "ServerAliveCountMax=4"):
             self.assertIn(option, common)
+        self.assertIn('-i "${VAST_SSH_IDENTITY_FILE}"', common)
+        self.assertIn("IdentitiesOnly=yes", common)
+        self.assertIn("stat.S_IMODE(info.st_mode) == 0o600", common)
+        check = (CONTROLLER / "check-instance.sh").read_text(encoding="utf-8")
+        self.assertIn('controller_ssh "test -f /workspace/READY"', check)
+        self.assertIn('"ssh_authenticated"] = passed', check)
+        self.assertIn('"remote_ready"] = passed', check)
+        self.assertIn("--allowed-status loading", check)
+        self.assertIn('READY_TIMEOUT_SECONDS}" -le 3600', check)
+        self.assertIn('[ -n "${KNOWN_HOSTS}" ]', check)
+        self.assertTrue((CONTROLLER / "check-instance.sh").stat().st_mode & stat.S_IXUSR)
 
     def test_runbook_lance_via_le_wrapper_ghcr(self):
         runbook = (ROOT / "docs/917_VAST_SIMREADY_NATIVE.md").read_text(encoding="utf-8")
         self.assertIn('"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}"', runbook)
         self.assertNotIn('"${OPENBAO_VASTAI_BIN}" launch-simready-heavy', runbook)
+        self.assertIn('--known-hosts "${CONTROL_ROOT}/known_hosts"', runbook)
+        self.assertIn('"${OPENBAO_VASTAI_BIN}" instances | tee', runbook)
+        self.assertIn('"${OPENBAO_VASTAI_BIN}" heavy-offers | tee', runbook)
+        self.assertIn('offer.get("gpu") == "RTX PRO 6000 WS"', runbook)
+        self.assertIn(".artifact_archive_verified == true and .retrieval_complete == true", runbook)
 
     def test_prompts_obligatoires_et_attestes_avant_finalisation(self):
         transfer = (CONTROLLER / "transfer-job.sh").read_text(encoding="utf-8")
@@ -620,6 +636,7 @@ class GardeInstanceTests(unittest.TestCase):
         dph: float = 2.4,
         image: str = IMAGE,
         destroy_marker: Path | None = None,
+        overrides: dict | None = None,
     ) -> Path:
         wrapper = directory / "openbao-vastai-factice"
         payload = {
@@ -627,12 +644,19 @@ class GardeInstanceTests(unittest.TestCase):
             "label": "3dprinting993-simready-local-ai",
             "status": "running",
             "gpu": "RTX PRO 6000 WS",
+            "gpu_ram_mb": 98304,
             "num_gpus": 1,
+            "gpu_fraction": 1,
+            "machine_verification": "verified",
+            "cpu_cores_effective": 32,
+            "cpu_ram_mb": 196608,
+            "disk_space_gb": 500,
             "dph_total": dph,
-            "ssh_host": "ssh.example.test",
+            "ssh_host": "ssh1.vast.ai",
             "ssh_port": 22022,
             "image": image,
         }
+        payload.update(overrides or {})
         marker_command = f"printf destroyed >'{destroy_marker}'\n" if destroy_marker else ""
         wrapper.write_text(
             "#!/bin/sh\n"
@@ -642,7 +666,7 @@ class GardeInstanceTests(unittest.TestCase):
             "fi\n"
             "if test \"$1\" = destroy && test \"$2\" = 12345 && test \"$3\" = --confirm; then\n"
             f"  {marker_command}"
-            "  printf '%s\\n' '{\"instance_id\": 12345, \"destroyed\": true}'\n"
+            "  printf '%s\\n' '{\"instance_id\": 12345, \"destroyed\": true, \"verified_absent\": true}'\n"
             "  exit 0\n"
             "fi\n"
             "exit 2\n",
@@ -701,6 +725,36 @@ class GardeInstanceTests(unittest.TestCase):
             self.assertEqual(payload["status"], "blocked")
             self.assertTrue(any("dph_total" in error for error in payload["errors"]))
 
+    def test_garde_refuse_une_machine_sous_dimensionnee(self):
+        mutations = (
+            ("gpu", "RTX PRO 6000 S", "exactement RTX PRO 6000 WS"),
+            ("gpu_fraction", 0.5, "GPU complet"),
+            ("machine_verification", "unverified", "n'est pas vérifiée"),
+            ("gpu_ram_mb", 48000, "VRAM"),
+            ("cpu_cores_effective", 12, "CPU"),
+            ("cpu_ram_mb", 64000, "RAM CPU"),
+            ("disk_space_gb", 400, "disque"),
+        )
+        for field, value, expected_error in mutations:
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                report = directory / "guard.json"
+                wrapper = self._wrapper(directory, overrides={field: value})
+                result = self._run(wrapper, report)
+                self.assertNotEqual(result.returncode, 0)
+                payload = json.loads(report.read_text(encoding="utf-8"))
+                self.assertTrue(any(expected_error in error for error in payload["errors"]), payload)
+
+    def test_garde_refuse_une_cible_ssh_non_vast_ou_privee(self):
+        for host in ("ssh.example.test", "127.0.0.1", "10.0.0.7", "169.254.1.2"):
+            with self.subTest(host=host), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                report = directory / "guard.json"
+                result = self._run(self._wrapper(directory, overrides={"ssh_host": host}), report)
+                self.assertNotEqual(result.returncode, 0)
+                payload = json.loads(report.read_text(encoding="utf-8"))
+                self.assertIn("hôte SSH invalide", payload["errors"])
+
     def test_garde_refuse_tag_ou_digest_different(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
@@ -724,11 +778,16 @@ class GardeInstanceTests(unittest.TestCase):
             rejected = self._run(self._wrapper(directory, dph=99.0), directory / "wrong.json", wrong_image, "--skip-cost-cap")
             self.assertNotEqual(rejected.returncode, 0)
 
-    def test_destruction_accepte_recuperation_partielle_et_cout_depasse(self):
+    def test_destruction_accepte_recuperation_partielle_cout_et_capacite_degrades(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
             marker = directory / "destroyed.marker"
-            wrapper = self._wrapper(directory, dph=99.0, destroy_marker=marker)
+            wrapper = self._wrapper(
+                directory,
+                dph=99.0,
+                destroy_marker=marker,
+                overrides={"gpu_ram_mb": 1, "cpu_cores_effective": 1, "cpu_ram_mb": 1, "disk_space_gb": 1},
+            )
             archive = directory / "partial.tar.gz"
             archive.write_bytes(b"artefacts-partiels")
             retrieval = directory / "retrieval.json"
@@ -773,6 +832,9 @@ class GardeInstanceTests(unittest.TestCase):
             destroyed = json.loads((control / "destroy-report.json").read_text(encoding="utf-8"))
             self.assertFalse(destroyed["retrieval_complete"])
             self.assertFalse(destroyed["simulation_validated"])
+            guard = json.loads((control / "instance-guard-destroy.json").read_text(encoding="utf-8"))
+            self.assertFalse(guard["criteria"]["cost_cap_enforced"])
+            self.assertFalse(guard["criteria"]["capability_floor_enforced"])
 
     def test_destruction_refuse_confirmation_digest_differente(self):
         with tempfile.TemporaryDirectory() as temporary:

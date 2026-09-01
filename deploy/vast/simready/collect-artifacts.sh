@@ -37,6 +37,7 @@ GUARD_REPORT="${CONTROL_ROOT}/instance-guard-collect.json"
 # obligatoires.
 # shellcheck disable=SC2034 -- lu par guard_and_prepare_ssh dans la bibliothèque sourcée
 GUARD_SKIP_COST_CAP=1
+GUARD_SKIP_CAPABILITY_FLOOR=1
 guard_and_prepare_ssh "${INSTANCE_ID}" "${EXPECTED_IMAGE}" "${MAX_DPH}" "${GUARD_REPORT}" "${KNOWN_HOSTS}" running
 
 ARCHIVE="${DESTINATION_ROOT}/${JOB_ID}.tar.gz"

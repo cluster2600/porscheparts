@@ -9,6 +9,7 @@ INSTANCE_GUARD="${CONTROLLER_DIR}/_instance_guard.py"
 OPENBAO_VASTAI_BIN="${OPENBAO_VASTAI_BIN:-}"
 MAX_ACTUAL_DPH="${MAX_ACTUAL_DPH:-2.50}"
 EXPECTED_LABEL="${EXPECTED_LABEL:-3dprinting993-simready-local-ai}"
+VAST_SSH_IDENTITY_FILE="${VAST_SSH_IDENTITY_FILE:-${HOME}/.ssh/id_vastai}"
 SSH_HOST=""
 SSH_PORT=""
 SSH_TARGET=""
@@ -41,9 +42,26 @@ guard_and_prepare_ssh() {
     local guard_mode_args=()
     local status
     require_vast_wrapper
+    [[ "${VAST_SSH_IDENTITY_FILE}" = /* ]] \
+        && [ -f "${VAST_SSH_IDENTITY_FILE}" ] \
+        || controller_die "clé privée Vast explicite absente"
+    python3 - "${VAST_SSH_IDENTITY_FILE}" <<'PY' \
+        || controller_die "clé privée Vast avec propriétaire, type ou mode non sûr"
+import os
+from pathlib import Path
+import stat
+import sys
+info = Path(sys.argv[1]).stat()
+raise SystemExit(
+    0 if info.st_uid == os.getuid() and stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode) == 0o600 else 1
+)
+PY
     for status in "$@"; do status_args+=(--allowed-status "${status}"); done
     if [ "${GUARD_SKIP_COST_CAP:-0}" = "1" ]; then
         guard_mode_args+=(--skip-cost-cap)
+    fi
+    if [ "${GUARD_SKIP_CAPABILITY_FLOOR:-0}" = "1" ]; then
+        guard_mode_args+=(--skip-capability-floor)
     fi
     python3 "${INSTANCE_GUARD}" \
         --wrapper "${OPENBAO_VASTAI_BIN}" \
@@ -70,7 +88,9 @@ PY
     SSH_TARGET="root@${SSH_HOST}"
     SSH_OPTIONS=(
         -p "${SSH_PORT}"
+        -i "${VAST_SSH_IDENTITY_FILE}"
         -o BatchMode=yes
+        -o IdentitiesOnly=yes
         -o ConnectTimeout=20
         -o ServerAliveInterval=15
         -o ServerAliveCountMax=4

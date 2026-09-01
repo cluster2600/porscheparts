@@ -195,14 +195,12 @@ def registry_auth_check(username: str, password: str) -> None:
 
 
 def run_vast(operation: list[str]) -> int:
-    if operation == ["launch-vast-simready-heavy-best"]:
-        vast_operation = ["launch-simready-heavy-best"]
-    elif len(operation) == 2 and operation[0] == "launch-vast-simready-heavy" and operation[1].isdigit():
+    if len(operation) == 2 and operation[0] == "launch-vast-simready-heavy" and operation[1].isdigit():
         vast_operation = ["launch-simready-heavy", operation[1]]
     else:
         raise SafeError(
             "usage: openbao-ghcr --check|--auth-check|"
-            "launch-vast-simready-heavy <offer_id>|launch-vast-simready-heavy-best"
+            "launch-vast-simready-heavy <offer_id>"
         )
     if not VAST_WRAPPER.is_file() or not os.access(VAST_WRAPPER, os.X_OK):
         raise SafeError(f"missing approved Vast.ai wrapper: {VAST_WRAPPER}")

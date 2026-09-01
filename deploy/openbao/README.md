@@ -1,8 +1,9 @@
 # Wrapper OpenBao pour GHCR
 
-Ce dossier versionne le wrapper utilisé pour autoriser Vast.ai à télécharger
-l'image SimReady locale depuis GitHub Container Registry. Il ne contient aucun
-secret.
+Ce dossier versionne les wrappers Vast.ai et GHCR utilisés pour l'image
+SimReady locale. Il ne contient aucun secret. `openbao-vastai` garde la
+location, l'unicité et la destruction ; `openbao-ghcr` vérifie l'accès au
+digest puis délègue uniquement l'offre explicitement relue.
 
 Le wrapper est volontairement borné à :
 
@@ -10,7 +11,7 @@ Le wrapper est volontairement borné à :
 - l'identité GHCR `cluster2600` ;
 - l'image `cluster2600/3dprinting993-simready-local-ai` ;
 - le digest OCI déclaré dans `openbao-ghcr` ;
-- deux opérations de lancement SimReady du wrapper `openbao-vastai`.
+- une opération de lancement SimReady explicite du wrapper `openbao-vastai`.
 
 Il accepte un token stocké sous l'un des champs `GITHUB_TOKEN`, `GH_TOKEN`,
 `github_token` ou `token`. Sa valeur n'est jamais imprimée. Le wrapper vérifie
@@ -25,6 +26,7 @@ wrapper dans `~/.local/bin` :
 
 ```zsh
 cd /Users/maxime/projects/3dprinting993
+install -m 0755 deploy/openbao/openbao-vastai /Users/maxime/.local/bin/openbao-vastai
 bash deploy/openbao/provision-openbao-ghcr.sh
 rehash
 openbao-ghcr --check
@@ -41,6 +43,6 @@ openbao-vastai heavy-offers
 openbao-ghcr launch-vast-simready-heavy OFFER_ID
 ```
 
-Ne pas utiliser `launch-vast-simready-heavy-best` sans avoir contrôlé l'offre :
-une seule instance GPU doit être active et son coût doit être validé avant le
-lancement.
+L'identifiant reste obligatoire : l'offre doit être relue avant location. Le
+wrapper Vast refuse un second contrat portant le label du projet et contrôle
+l'unicité après création.

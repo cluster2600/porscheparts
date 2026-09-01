@@ -1,0 +1,1107 @@
+#!/usr/bin/env python3
+"""Operate the bounded 3dprinting993 Vast.ai workload with OpenBao access."""
+
+from __future__ import annotations
+
+from contextlib import contextmanager, nullcontext
+import fcntl
+import json
+import math
+import os
+import socket
+import ssl
+import stat
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+
+BAO_ADDR = "http://127.0.0.1:8200"
+BAO_AUTH_PATH = "auth/codex-deploy/login"
+CONFIG_DIR = Path.home() / ".config" / "openbao-vastai-reader"
+ROLE_ID_FILE = CONFIG_DIR / "role_id"
+SECRET_ID_FILE = CONFIG_DIR / "secret_id"
+SECRET_PATH_FILE = CONFIG_DIR / "secret_path"
+VAST_BASE = "https://console.vast.ai"
+MAX_RESPONSE_BYTES = 2 * 1024 * 1024
+TIMEOUT_SECONDS = 20
+TLS_CA_FILE = Path("/etc/ssl/cert.pem")
+MAX_DPH = 0.85
+HEAVY_MAX_DPH = 2.50
+HEAVY_GPU_NAME = "RTX PRO 6000 WS"
+HEAVY_MIN_GPU_RAM_MB = 80000
+HEAVY_MIN_CPU_CORES = 24
+HEAVY_MIN_CPU_RAM_MB = 128000
+HEAVY_MIN_DISK_GB = 500
+IMAGE = "vllm/vllm-openai:v0.19.0"
+MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
+LABEL = "3dprinting993-qwen-cad"
+MESH_MAX_DPH = 0.35
+MESH_IMAGE = "ghcr.io/cluster2600/3dprinting993-mesh-cfd:f5affdfe7c93a9c402c1544b3f48d32f8d2d9e7d"
+MESH_LABEL = "3dprinting993-mesh-cfd"
+SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:d889cc2ec7a0583588acb10050650f983d3afa2d40cdefbeda06bf92634c1c0d"
+SIMREADY_LABEL = "3dprinting993-simready-local-ai"
+SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
+LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
+
+
+class SafeError(Exception):
+    """An error that is safe to print without secret material."""
+
+
+class SafeHttpError(SafeError):
+    """An HTTP status that callers may handle without exposing response data."""
+
+    def __init__(self, source: str, status_code: int, detail: str = "") -> None:
+        super().__init__(f"{source} rejected the request with HTTP {status_code}{detail}")
+        self.status_code = status_code
+
+
+def validate_private_file(path: Path) -> None:
+    try:
+        info = path.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing bootstrap file: {path}") from exc
+    if info.st_uid != os.getuid() or not stat.S_ISREG(info.st_mode):
+        raise SafeError(f"bootstrap file has unsafe ownership or type: {path}")
+    if stat.S_IMODE(info.st_mode) != 0o600:
+        raise SafeError(f"bootstrap file must have mode 0600: {path}")
+    if info.st_size <= 0 or info.st_size > 4096:
+        raise SafeError(f"bootstrap file has an invalid size: {path}")
+
+
+def validate_bootstrap_metadata() -> None:
+    try:
+        info = CONFIG_DIR.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing bootstrap directory: {CONFIG_DIR}") from exc
+    if info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700:
+        raise SafeError(f"bootstrap directory must be owned by this user with mode 0700: {CONFIG_DIR}")
+    validate_private_file(ROLE_ID_FILE)
+    validate_private_file(SECRET_ID_FILE)
+    validate_private_file(SECRET_PATH_FILE)
+
+
+def read_bootstrap_value(path: Path) -> str:
+    value = path.read_text(encoding="utf-8").strip()
+    if not value or len(value) > 4096:
+        raise SafeError(f"bootstrap value is invalid: {path}")
+    return value
+
+
+def decode_json(body: bytes, source: str) -> dict:
+    if len(body) > MAX_RESPONSE_BYTES:
+        raise SafeError(f"{source} returned an unexpectedly large response")
+    try:
+        value = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise SafeError(f"{source} returned invalid JSON") from exc
+    if not isinstance(value, dict):
+        raise SafeError(f"{source} returned invalid JSON")
+    return value
+
+
+def http_json(
+    url: str,
+    *,
+    method: str = "GET",
+    payload: dict | None = None,
+    headers: dict[str, str] | None = None,
+    source: str,
+) -> dict:
+    data = None if payload is None else json.dumps(payload, separators=(",", ":")).encode("utf-8")
+    request_headers = {"Content-Type": "application/json"}
+    request_headers.update(headers or {})
+    request = urllib.request.Request(url, data=data, headers=request_headers, method=method)
+    if not TLS_CA_FILE.is_file():
+        raise SafeError(f"missing system CA bundle: {TLS_CA_FILE}")
+    tls_context = ssl.create_default_context(cafile=str(TLS_CA_FILE))
+    try:
+        with urllib.request.urlopen(
+            request,
+            timeout=TIMEOUT_SECONDS,
+            context=tls_context,
+        ) as response:
+            body = response.read(MAX_RESPONSE_BYTES + 1)
+    except urllib.error.HTTPError as exc:
+        detail = ""
+        if source == "Vast.ai":
+            try:
+                error_body = exc.read(MAX_RESPONSE_BYTES + 1)
+                error_value = decode_json(error_body, source)
+                candidate = error_value.get("msg", error_value.get("detail", error_value.get("error")))
+                if isinstance(candidate, str) and 0 < len(candidate) <= 300:
+                    detail = f": {candidate}"
+            except SafeError:
+                pass
+        raise SafeHttpError(source, exc.code, detail) from None
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        raise SafeError(f"{source} is unavailable") from exc
+    return decode_json(body, source) if body else {}
+
+
+def check_local_service() -> None:
+    try:
+        with socket.create_connection(("127.0.0.1", 8200), timeout=2):
+            pass
+    except OSError as exc:
+        raise SafeError("OpenBao is not listening on 127.0.0.1:8200") from exc
+
+
+def login() -> str:
+    validate_bootstrap_metadata()
+    check_local_service()
+    result = http_json(
+        f"{BAO_ADDR}/v1/{BAO_AUTH_PATH}",
+        method="POST",
+        payload={
+            "role_id": read_bootstrap_value(ROLE_ID_FILE),
+            "secret_id": read_bootstrap_value(SECRET_ID_FILE),
+        },
+        source="OpenBao",
+    )
+    token = result.get("auth", {}).get("client_token")
+    if not isinstance(token, str) or not token:
+        raise SafeError("OpenBao AppRole login did not return a session token")
+    return token
+
+
+def revoke_token(token: str) -> None:
+    try:
+        http_json(
+            f"{BAO_ADDR}/v1/auth/token/revoke-self",
+            method="POST",
+            payload={},
+            headers={"X-Vault-Token": token},
+            source="OpenBao",
+        )
+    except SafeError:
+        pass
+
+
+def read_vast_key(token: str) -> str:
+    secret_path = read_bootstrap_value(SECRET_PATH_FILE)
+    if not secret_path.startswith("secrets/data/") or any(
+        character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-/"
+        for character in secret_path
+    ):
+        raise SafeError("OpenBao Vast.ai API path is invalid")
+    result = http_json(
+        f"{BAO_ADDR}/v1/{secret_path}",
+        headers={"X-Vault-Token": token},
+        source="OpenBao",
+    )
+    payload = result.get("data", {}).get("data")
+    if not isinstance(payload, dict):
+        raise SafeError("OpenBao Vast.ai path is missing or empty")
+    for field in ("VAST_API_KEY", "api_key"):
+        value = payload.get(field)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    raise SafeError("OpenBao Vast.ai payload is missing the API key field")
+
+
+def vast_request(
+    api_key: str,
+    path: str,
+    *,
+    method: str = "GET",
+    payload: dict | None = None,
+) -> dict:
+    return http_json(
+        f"{VAST_BASE}{path}",
+        method=method,
+        payload=payload,
+        headers={"Authorization": f"Bearer {api_key}"},
+        source="Vast.ai",
+    )
+
+
+def fetch_execution_result(url: str) -> str:
+    parsed = urllib.parse.urlparse(url)
+    allowed_paths = ("/vast.ai/instance_logs/", "/public.vast.ai/instance_logs/")
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname != "s3.amazonaws.com"
+        or not parsed.path.startswith(allowed_paths)
+    ):
+        safe_prefix = "/".join(parsed.path.split("/")[:4])
+        raise SafeError(
+            "Vast.ai returned an unexpected execution result location: "
+            f"{parsed.hostname or 'missing'}{safe_prefix}"
+        )
+    tls_context = ssl.create_default_context(cafile=str(TLS_CA_FILE))
+    request = urllib.request.Request(url, method="GET")
+    for _ in range(8):
+        try:
+            with urllib.request.urlopen(
+                request,
+                timeout=TIMEOUT_SECONDS,
+                context=tls_context,
+            ) as response:
+                body = response.read(MAX_RESPONSE_BYTES + 1)
+            if len(body) > MAX_RESPONSE_BYTES:
+                raise SafeError("Vast.ai execution result is unexpectedly large")
+            return body.decode("utf-8", errors="replace")
+        except urllib.error.HTTPError as exc:
+            if exc.code not in {403, 404}:
+                raise SafeError(f"Vast.ai execution result returned HTTP {exc.code}") from None
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            raise SafeError("Vast.ai execution result is unavailable") from exc
+        time.sleep(2)
+    raise SafeError("Vast.ai execution result was not ready in time")
+
+
+def list_instances(api_key: str, *, label: str | None = None) -> list[dict]:
+    """Read every v1 page and locally enforce an optional exact label."""
+    instances: list[dict] = []
+    after_token: str | None = None
+    seen_tokens: set[str] = set()
+    for _ in range(100):
+        parameters: dict[str, str | int] = {"limit": 25}
+        if label is not None:
+            parameters["select_filters"] = json.dumps(
+                {"label": {"eq": label}}, separators=(",", ":")
+            )
+        if after_token is not None:
+            parameters["after_token"] = after_token
+        result = vast_request(
+            api_key,
+            "/api/v1/instances/?" + urllib.parse.urlencode(parameters),
+        )
+        page = result.get("instances")
+        if result.get("success") is False or not isinstance(page, list):
+            raise SafeError("Vast.ai instance list returned an invalid result")
+        for instance in page:
+            if not isinstance(instance, dict):
+                raise SafeError("Vast.ai instance list contained invalid metadata")
+            if label is None or instance.get("label") == label:
+                instances.append(instance)
+        candidate = result.get("next_token")
+        if candidate is None:
+            return instances
+        if (
+            not isinstance(candidate, str)
+            or not candidate
+            or len(candidate) > 4096
+            or candidate in seen_tokens
+        ):
+            raise SafeError("Vast.ai instance pagination returned an invalid cursor")
+        seen_tokens.add(candidate)
+        after_token = candidate
+    raise SafeError("Vast.ai instance pagination exceeded the safety limit")
+
+
+@contextmanager
+def simready_launch_lock():
+    """Serialize project launches so two local callers cannot create duplicates."""
+    directory = LAUNCH_LOCK_FILE.parent
+    directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+    info = directory.stat()
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISDIR(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o700
+    ):
+        raise SafeError(f"launch lock directory has unsafe ownership or type: {directory}")
+    flags = os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0)
+    descriptor = os.open(LAUNCH_LOCK_FILE, flags, 0o600)
+    try:
+        lock_info = os.fstat(descriptor)
+        if (
+            lock_info.st_uid != os.getuid()
+            or not stat.S_ISREG(lock_info.st_mode)
+            or stat.S_IMODE(lock_info.st_mode) != 0o600
+        ):
+            raise SafeError("SimReady launch lock has unsafe ownership, type, or permissions")
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            raise SafeError("another SimReady launch is already in progress") from exc
+        yield
+    finally:
+        fcntl.flock(descriptor, fcntl.LOCK_UN)
+        os.close(descriptor)
+
+
+def require_no_simready_instance(api_key: str) -> None:
+    existing = list_instances(api_key, label=SIMREADY_LABEL)
+    if existing:
+        raise SafeError("a SimReady instance already exists; destroy it before launching another")
+
+
+def verify_single_simready_instance(api_key: str, instance_id: int) -> None:
+    for _ in range(30):
+        ids = sorted(
+            instance.get("id")
+            for instance in list_instances(api_key, label=SIMREADY_LABEL)
+            if isinstance(instance.get("id"), int)
+        )
+        if ids == [instance_id]:
+            return
+        if ids:
+            raise SafeError("SimReady post-launch uniqueness verification failed")
+        time.sleep(1)
+    raise SafeError("the new SimReady instance did not appear in the paginated instance list")
+
+
+def verify_simready_contract(api_key: str, instance_id: int) -> None:
+    """Fail closed on immutable/cost fields as soon as Vast exposes the contract."""
+    required_fields = (
+        "id", "label", "status", "gpu", "gpu_ram_mb", "num_gpus",
+        "gpu_fraction", "machine_verification", "cpu_cores_effective",
+        "cpu_ram_mb", "disk_space_gb", "dph_total", "image",
+    )
+    for _ in range(30):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeHttpError as exc:
+            if exc.status_code == 404:
+                time.sleep(1)
+                continue
+            raise
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid post-launch instance metadata")
+        instance = safe_instance(raw_instance)
+        if any(instance.get(field) is None for field in required_fields):
+            time.sleep(1)
+            continue
+        errors = []
+        if instance["id"] != instance_id:
+            errors.append("instance id")
+        if instance["label"] != SIMREADY_LABEL:
+            errors.append("label")
+        if instance["image"] != SIMREADY_IMAGE:
+            errors.append("image digest")
+        if instance["status"] not in {"created", "loading", "running"}:
+            errors.append("status")
+        if instance["gpu"] != HEAVY_GPU_NAME:
+            errors.append("GPU name")
+        numeric_contract = (
+            (instance["num_gpus"], 1, "GPU count", True),
+            (instance["gpu_fraction"], 1, "GPU fraction", True),
+            (instance["gpu_ram_mb"], HEAVY_MIN_GPU_RAM_MB, "GPU RAM", False),
+            (instance["cpu_cores_effective"], HEAVY_MIN_CPU_CORES, "CPU cores", False),
+            (instance["cpu_ram_mb"], HEAVY_MIN_CPU_RAM_MB, "CPU RAM", False),
+            (instance["disk_space_gb"], HEAVY_MIN_DISK_GB, "disk", False),
+        )
+        for value, limit, label, exact in numeric_contract:
+            number = finite_number(value)
+            if number is None or (number != limit if exact else number < limit):
+                errors.append(label)
+        price = finite_number(instance["dph_total"])
+        if price is None or not 0 <= price <= HEAVY_MAX_DPH:
+            errors.append("dph_total")
+        if instance["machine_verification"] != "verified":
+            errors.append("machine verification")
+        if errors:
+            raise SafeError(
+                "post-launch contract is outside the fixed SimReady limits: "
+                + ", ".join(errors)
+            )
+        return
+    raise SafeError("Vast.ai did not expose complete post-launch contract metadata in time")
+
+
+def detect_uncertain_simready_launch(api_key: str) -> None:
+    """Prevent a blind retry when a create response may have been lost."""
+    for _ in range(30):
+        try:
+            existing = list_instances(api_key, label=SIMREADY_LABEL)
+        except SafeError:
+            time.sleep(1)
+            continue
+        if existing:
+            raise SafeError(
+                "launch outcome is uncertain and a SimReady instance now exists; inspect instances before retrying"
+            )
+        time.sleep(1)
+
+
+def destroy_instance_verified(api_key: str, instance_id: int) -> None:
+    result = vast_request(
+        api_key,
+        f"/api/v0/instances/{instance_id}/",
+        method="DELETE",
+    )
+    if result.get("success") is not True:
+        raise SafeError("Vast.ai did not confirm the destroy request")
+    for _ in range(30):
+        try:
+            ids = {
+                instance.get("id")
+                for instance in list_instances(api_key)
+                if isinstance(instance.get("id"), int)
+            }
+        except SafeError:
+            time.sleep(1)
+            continue
+        if instance_id not in ids:
+            return
+        time.sleep(1)
+    raise SafeError("Vast.ai paginated instance list did not verify destruction")
+
+
+def offer_query(offer_id: int | None = None) -> dict:
+    query = {
+        "num_gpus": {"eq": 1},
+        "gpu_ram": {"gte": 45000},
+        "cpu_cores_effective": {"gte": 12},
+        "cpu_ram": {"gte": 64000},
+        "disk_space": {"gte": 250},
+        "reliability": {"gte": 0.99},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 50,
+    }
+    if offer_id is not None:
+        # The search endpoint does not reliably honor an id predicate. Fetch a
+        # wider bounded set and match the selected offer locally instead.
+        query["limit"] = 1000
+    return query
+
+
+def get_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=offer_query(offer_id),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai offer search returned an invalid result")
+    eligible = []
+    for offer in offers:
+        if not isinstance(offer, dict):
+            continue
+        price = offer.get("dph_total", offer.get("dph"))
+        if isinstance(price, (int, float)) and price <= MAX_DPH:
+            eligible.append(offer)
+    return sorted(eligible, key=lambda item: float(item.get("dph_total", item.get("dph", 999))))
+
+
+def heavy_offer_query() -> dict:
+    return {
+        "allocated_storage": HEAVY_MIN_DISK_GB,
+        "num_gpus": {"eq": 1},
+        "gpu_frac": {"eq": 1},
+        "gpu_ram": {"gte": HEAVY_MIN_GPU_RAM_MB},
+        "cpu_cores_effective": {"gte": HEAVY_MIN_CPU_CORES},
+        "cpu_ram": {"gte": HEAVY_MIN_CPU_RAM_MB},
+        "disk_space": {"gte": HEAVY_MIN_DISK_GB},
+        "reliability": {"gte": 0.99},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 100,
+    }
+
+
+def finite_number(value: object) -> float | None:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    candidate = float(value)
+    return candidate if math.isfinite(candidate) else None
+
+
+def heavy_offer_eligible(offer: dict) -> bool:
+    price = finite_number(offer.get("dph_total", offer.get("dph")))
+    reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
+    floors = (
+        (offer.get("gpu_ram"), HEAVY_MIN_GPU_RAM_MB),
+        (offer.get("cpu_cores_effective"), HEAVY_MIN_CPU_CORES),
+        (offer.get("cpu_ram"), HEAVY_MIN_CPU_RAM_MB),
+        (offer.get("disk_space"), HEAVY_MIN_DISK_GB),
+    )
+    verified_value = offer.get("verified")
+    rentable_value = offer.get("rentable")
+    rented_value = offer.get("rented")
+    verified = (
+        verified_value is True
+        or verified_value == 1
+        or offer.get("verification") == "verified"
+    )
+    rentable = rentable_value is True or rentable_value == 1
+    rented = rented_value is False or rented_value == 0
+    return (
+        offer.get("gpu_name") == HEAVY_GPU_NAME
+        and finite_number(offer.get("num_gpus")) == 1.0
+        and finite_number(offer.get("gpu_frac")) == 1.0
+        and all((actual := finite_number(value)) is not None and actual >= minimum for value, minimum in floors)
+        and reliability is not None
+        and reliability >= 0.99
+        and verified
+        and rentable
+        and rented
+        and price is not None
+        and 0 <= price <= HEAVY_MAX_DPH
+    )
+
+
+def get_heavy_offers(api_key: str) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=heavy_offer_query(),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai heavy offer search returned an invalid result")
+    eligible = []
+    for offer in offers:
+        if not isinstance(offer, dict):
+            continue
+        if heavy_offer_eligible(offer):
+            eligible.append(offer)
+    return sorted(
+        eligible,
+        key=lambda item: (
+            -float(item.get("gpu_ram", 0)),
+            -float(item.get("cpu_cores_effective", 0)),
+            float(item.get("dph_total", item.get("dph", 999))),
+        ),
+    )
+
+
+def mesh_offer_query(offer_id: int | None = None) -> dict:
+    query = {
+        "num_gpus": {"eq": 1},
+        "cpu_cores_effective": {"gte": 12},
+        "cpu_ram": {"gte": 60000},
+        "disk_space": {"gte": 150},
+        "reliability": {"gte": 0.99},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 50,
+    }
+    if offer_id is not None:
+        query["limit"] = 1000
+    return query
+
+
+def get_mesh_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=mesh_offer_query(offer_id),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai mesh offer search returned an invalid result")
+    eligible = []
+    for offer in offers:
+        if not isinstance(offer, dict):
+            continue
+        price = offer.get("dph_total", offer.get("dph"))
+        if isinstance(price, (int, float)) and price <= MESH_MAX_DPH:
+            eligible.append(offer)
+    return sorted(
+        eligible,
+        key=lambda item: (
+            -float(item.get("cpu_cores_effective", 0)),
+            float(item.get("dph_total", item.get("dph", 999))),
+        ),
+    )
+
+
+def safe_offer(offer: dict) -> dict:
+    return {
+        "id": offer.get("id"),
+        "gpu": offer.get("gpu_name"),
+        "gpu_ram_mb": offer.get("gpu_ram"),
+        "num_gpus": offer.get("num_gpus"),
+        "gpu_fraction": offer.get("gpu_frac"),
+        "cpu_cores_effective": offer.get("cpu_cores_effective"),
+        "cpu_ram_mb": offer.get("cpu_ram"),
+        "disk_space_gb": offer.get("disk_space"),
+        "dph_base": offer.get("dph_base"),
+        "dph_total": offer.get("dph_total", offer.get("dph")),
+        "storage_cost_usd_per_gb_month": offer.get("storage_cost"),
+        "storage_total_cost_usd_per_hour": offer.get("storage_total_cost"),
+        "reliability": offer.get("reliability", offer.get("reliability2")),
+        "verified": offer.get("verified", offer.get("verification")),
+        "rentable": offer.get("rentable"),
+        "rented": offer.get("rented"),
+        "geolocation": offer.get("geolocation"),
+        "inet_down_mbps": offer.get("inet_down"),
+        "inet_up_mbps": offer.get("inet_up"),
+    }
+
+
+def safe_instance(instance: dict) -> dict:
+    ports = instance.get("ports")
+    ssh_port = None
+    api_port = None
+    if isinstance(ports, dict):
+        mappings = ports.get("22/tcp")
+        if isinstance(mappings, list) and mappings and isinstance(mappings[0], dict):
+            ssh_port = mappings[0].get("HostPort")
+        api_mappings = ports.get("8000/tcp")
+        if (
+            isinstance(api_mappings, list)
+            and api_mappings
+            and isinstance(api_mappings[0], dict)
+        ):
+            api_port = api_mappings[0].get("HostPort")
+    return {
+        "id": instance.get("id"),
+        "label": instance.get("label"),
+        "status": instance.get("actual_status", instance.get("cur_state")),
+        "gpu": instance.get("gpu_name"),
+        "gpu_ram_mb": instance.get(
+            "gpu_ram", instance.get("gpu_totalram", instance.get("gpu_total_ram"))
+        ),
+        "num_gpus": instance.get("num_gpus"),
+        "gpu_fraction": instance.get("gpu_frac"),
+        "machine_verification": instance.get("verification"),
+        "cpu_cores_effective": instance.get("cpu_cores_effective"),
+        "cpu_ram_mb": instance.get("cpu_ram"),
+        "disk_space_gb": instance.get("disk_space"),
+        "dph_total": instance.get("dph_total"),
+        "ssh_host": instance.get("ssh_host"),
+        "ssh_port": instance.get("ssh_port", ssh_port),
+        "api_host": instance.get("public_ipaddr"),
+        "api_port": api_port,
+        "status_msg": instance.get("status_msg"),
+        "image": instance.get("image_uuid"),
+    }
+
+
+def print_json(value: object) -> None:
+    print(json.dumps(value, indent=2, sort_keys=True))
+
+
+def positive_id(raw: str, label: str) -> int:
+    try:
+        value = int(raw)
+    except ValueError as exc:
+        raise SafeError(f"{label} must be a positive integer") from exc
+    if value <= 0:
+        raise SafeError(f"{label} must be a positive integer")
+    return value
+
+
+def read_local_ssh_public_key() -> str:
+    try:
+        info = SSH_PUBLIC_KEY_FILE.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing approved SSH public key: {SSH_PUBLIC_KEY_FILE}") from exc
+    if not stat.S_ISREG(info.st_mode) or info.st_size <= 0 or info.st_size > 16384:
+        raise SafeError(f"approved SSH public key is invalid: {SSH_PUBLIC_KEY_FILE}")
+    value = SSH_PUBLIC_KEY_FILE.read_text(encoding="utf-8").strip()
+    if not value.startswith(("ssh-ed25519 ", "ssh-rsa ", "ecdsa-sha2-")):
+        raise SafeError("approved SSH public key is not in OpenSSH format")
+    return value
+
+
+def require_local_ssh_key_loaded() -> str:
+    local_key = read_local_ssh_public_key()
+    local_identity = " ".join(local_key.split()[:2])
+    try:
+        result = subprocess.run(
+            ["ssh-add", "-L"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except (FileNotFoundError, subprocess.SubprocessError) as exc:
+        raise SafeError("ssh-agent is unavailable for the approved Vast.ai key") from exc
+    loaded_identities = {
+        " ".join(line.split()[:2])
+        for line in result.stdout.splitlines()
+        if len(line.split()) >= 2
+    }
+    if result.returncode != 0 or local_identity not in loaded_identities:
+        raise SafeError(
+            f"approved SSH key is not loaded; run: ssh-add {SSH_PUBLIC_KEY_FILE.with_suffix('')}"
+        )
+    return local_key
+
+
+def ensure_local_ssh_registered(api_key: str) -> None:
+    try:
+        result = vast_request(
+            api_key,
+            "/api/v0/ssh/",
+            method="POST",
+            payload={"ssh_key": require_local_ssh_key_loaded()},
+        )
+    except SafeError as exc:
+        if "SSH key already exists on this account" in str(exc):
+            return
+        raise
+    if result.get("success") is False:
+        raise SafeError("Vast.ai did not accept the approved SSH key")
+
+
+def launch_offer(api_key: str, offer: dict) -> int:
+    offer_id = positive_id(str(offer.get("id")), "offer id")
+    result = vast_request(
+        api_key,
+        f"/api/v0/asks/{offer_id}/",
+        method="PUT",
+        payload={
+            "image": IMAGE,
+            "label": LABEL,
+            "disk": 200,
+            "runtype": "ssh_direct",
+            "env": {"MODEL_ID": MODEL, "-p 8000:8000": "1"},
+            "onstart": (
+                "mkdir -p /workspace/logs; "
+                "nohup vllm serve $MODEL_ID --host 0.0.0.0 --port 8000 "
+                "--max-model-len 32768 --gpu-memory-utilization 0.90 "
+                "--enable-auto-tool-choice --tool-call-parser hermes "
+                ">/workspace/logs/vllm.log 2>&1 &"
+            ),
+            "cancel_unavail": True,
+        },
+    )
+    instance_id = result.get("new_contract")
+    if not isinstance(instance_id, int):
+        raise SafeError("Vast.ai did not return a new instance id")
+    print_json(
+        {
+            "instance_id": instance_id,
+            "label": LABEL,
+            "model": MODEL,
+            "selected_offer": safe_offer(offer),
+        }
+    )
+    return 0
+
+
+def launch_mesh_offer(api_key: str, offer: dict) -> int:
+    offer_id = positive_id(str(offer.get("id")), "offer id")
+    result = vast_request(
+        api_key,
+        f"/api/v0/asks/{offer_id}/",
+        method="PUT",
+        payload={
+            "image": MESH_IMAGE,
+            "label": MESH_LABEL,
+            "disk": 120,
+            "runtype": "ssh_direct",
+            "env": {},
+            "onstart": (
+                "mkdir -p /workspace/935-head /workspace/logs; "
+                "smoke-test.sh mesh-cfd >/workspace/logs/mesh-cfd-smoke.log 2>&1 "
+                "&& touch /workspace/READY"
+            ),
+            "cancel_unavail": True,
+        },
+    )
+    instance_id = result.get("new_contract")
+    if not isinstance(instance_id, int):
+        raise SafeError("Vast.ai did not return a new mesh instance id")
+    print_json(
+        {
+            "instance_id": instance_id,
+            "image": MESH_IMAGE,
+            "label": MESH_LABEL,
+            "selected_offer": safe_offer(offer),
+        }
+    )
+    return 0
+
+
+def launch_simready_offer(
+    api_key: str,
+    offer: dict,
+    disk_gb: int = 300,
+    *,
+    enforce_singleton: bool = False,
+) -> int:
+    launch_context = simready_launch_lock() if enforce_singleton else nullcontext()
+    with launch_context:
+        if enforce_singleton:
+            require_no_simready_instance(api_key)
+        ensure_local_ssh_registered(api_key)
+        offer_id = positive_id(str(offer.get("id")), "offer id")
+        try:
+            result = vast_request(
+                api_key,
+                f"/api/v0/asks/{offer_id}/",
+                method="PUT",
+                payload={
+                    "image": SIMREADY_IMAGE,
+                    "label": SIMREADY_LABEL,
+                    "disk": disk_gb,
+                    "runtype": "ssh_direct",
+                    "env": {},
+                    "onstart": "simready-vast-onstart",
+                    "cancel_unavail": True,
+                },
+            )
+        except SafeHttpError as exc:
+            if 400 <= exc.status_code < 500:
+                raise
+            detect_uncertain_simready_launch(api_key)
+            raise
+        except SafeError:
+            detect_uncertain_simready_launch(api_key)
+            raise
+        instance_id = result.get("new_contract")
+        if not isinstance(instance_id, int):
+            raise SafeError("Vast.ai did not return a new SimReady instance id")
+        if enforce_singleton:
+            try:
+                verify_single_simready_instance(api_key, instance_id)
+                verify_simready_contract(api_key, instance_id)
+            except SafeError:
+                try:
+                    destroy_instance_verified(api_key, instance_id)
+                except SafeError as cleanup_error:
+                    raise SafeError(
+                        f"post-launch uniqueness failed and rollback was not verified for instance {instance_id}"
+                    ) from cleanup_error
+                raise
+        print_json(
+            {
+                "instance_id": instance_id,
+                "image": SIMREADY_IMAGE,
+                "label": SIMREADY_LABEL,
+                "selected_offer": safe_offer(offer),
+                "singleton_verified": enforce_singleton,
+                "contract_verified": enforce_singleton,
+            }
+        )
+        return 0
+
+
+def run(operation: list[str]) -> int:
+    token = login()
+    try:
+        api_key = read_vast_key(token)
+        if operation == ["--auth-check"]:
+            list_instances(api_key)
+            print("OpenBao Vast.ai reader auth check OK")
+            return 0
+        if operation == ["offers"]:
+            print_json([safe_offer(item) for item in get_offers(api_key)[:20]])
+            return 0
+        if operation == ["heavy-offers"]:
+            print_json([safe_offer(item) for item in get_heavy_offers(api_key)[:20]])
+            return 0
+        if operation == ["mesh-offers"]:
+            print_json([safe_offer(item) for item in get_mesh_offers(api_key)[:20]])
+            return 0
+        if operation == ["instances"]:
+            items = list_instances(api_key)
+            print_json([safe_instance(item) for item in items if isinstance(item, dict)])
+            return 0
+        if len(operation) == 2 and operation[0] == "show":
+            instance_id = positive_id(operation[1], "instance id")
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+            instance = result.get("instances")
+            if not isinstance(instance, dict):
+                raise SafeError("Vast.ai instance lookup returned an invalid result")
+            print_json(safe_instance(instance))
+            return 0
+        if len(operation) == 2 and operation[0] == "ssh-keys":
+            instance_id = positive_id(operation[1], "instance id")
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/ssh")
+            raw_keys = result.get("ssh_keys", "[]")
+            try:
+                keys = json.loads(raw_keys) if isinstance(raw_keys, str) else raw_keys
+            except json.JSONDecodeError as exc:
+                raise SafeError("Vast.ai returned invalid SSH key metadata") from exc
+            if not isinstance(keys, list):
+                raise SafeError("Vast.ai returned invalid SSH key metadata")
+            safe_keys = []
+            for item in keys:
+                if not isinstance(item, dict):
+                    continue
+                public_key = item.get("public_key", "")
+                key_type = public_key.split(" ", 1)[0] if isinstance(public_key, str) else None
+                safe_keys.append({"id": item.get("id"), "name": item.get("name"), "type": key_type})
+            print_json(safe_keys)
+            return 0
+        if len(operation) == 2 and operation[0] == "attach-local-ssh":
+            instance_id = positive_id(operation[1], "instance id")
+            result = vast_request(
+                api_key,
+                f"/api/v0/instances/{instance_id}/ssh/",
+                method="POST",
+                payload={"ssh_key": read_local_ssh_public_key()},
+            )
+            print_json({"instance_id": instance_id, "attached": bool(result.get("success", True))})
+            return 0
+        if operation == ["ensure-local-ssh"]:
+            ensure_local_ssh_registered(api_key)
+            print_json({"registered": True, "loaded_in_agent": True})
+            return 0
+        if len(operation) == 2 and operation[0] == "probe":
+            instance_id = positive_id(operation[1], "instance id")
+            result = vast_request(
+                api_key,
+                f"/api/v0/instances/command/{instance_id}",
+                method="PUT",
+                payload={"command": "ls -l"},
+            )
+            result_url = result.get("result_url")
+            if not isinstance(result_url, str):
+                raise SafeError("Vast.ai did not return an execution result URL")
+            print(fetch_execution_result(result_url), end="")
+            return 0
+        if len(operation) == 2 and operation[0] in {"logs", "daemon-logs"}:
+            instance_id = positive_id(operation[1], "instance id")
+            result = vast_request(
+                api_key,
+                f"/api/v0/instances/request_logs/{instance_id}",
+                method="PUT",
+                payload={
+                    "tail": "200",
+                    "daemon_logs": "true" if operation[0] == "daemon-logs" else "false",
+                },
+            )
+            result_url = result.get("result_url")
+            if not isinstance(result_url, str):
+                raise SafeError("Vast.ai did not return a log result URL")
+            print(fetch_execution_result(result_url), end="")
+            return 0
+        if len(operation) == 2 and operation[0] == "launch":
+            offer_id = positive_id(operation[1], "offer id")
+            matching = [
+                item
+                for item in get_offers(api_key, offer_id)
+                if str(item.get("id")) == str(offer_id)
+            ]
+            if len(matching) != 1:
+                raise SafeError("offer is unavailable or outside the fixed safety and price limits")
+            return launch_offer(api_key, matching[0])
+        if len(operation) == 2 and operation[0] == "launch-mesh":
+            offer_id = positive_id(operation[1], "offer id")
+            matching = [
+                item
+                for item in get_mesh_offers(api_key, offer_id)
+                if str(item.get("id")) == str(offer_id)
+            ]
+            if len(matching) != 1:
+                raise SafeError("mesh offer is unavailable or outside the fixed safety and price limits")
+            return launch_mesh_offer(api_key, matching[0])
+        if len(operation) == 2 and operation[0] == "launch-simready":
+            offer_id = positive_id(operation[1], "offer id")
+            matching = [
+                item
+                for item in get_offers(api_key)
+                if str(item.get("id")) == str(offer_id)
+            ]
+            if len(matching) != 1:
+                raise SafeError("SimReady offer is unavailable or outside the fixed safety and price limits")
+            return launch_simready_offer(api_key, matching[0])
+        if len(operation) == 2 and operation[0] == "launch-simready-heavy":
+            offer_id = positive_id(operation[1], "offer id")
+            matching = [
+                item
+                for item in get_heavy_offers(api_key)
+                if str(item.get("id")) == str(offer_id)
+            ]
+            if len(matching) != 1:
+                raise SafeError("heavy SimReady offer is unavailable or outside the fixed safety and price limits")
+            return launch_simready_offer(
+                api_key,
+                matching[0],
+                disk_gb=500,
+                enforce_singleton=True,
+            )
+        if operation == ["launch-simready-best"]:
+            candidates = [item for item in get_offers(api_key) if item.get("gpu_name") != "CMP 170HX"]
+            if not candidates:
+                raise SafeError("no eligible SimReady offer is currently available")
+            return launch_simready_offer(api_key, candidates[0])
+        if operation == ["launch-simready-best-eu"]:
+            eu_countries = {
+                "AT", "BE", "BG", "HR", "CY", "CZ", "DE", "DK", "EE", "ES",
+                "FI", "FR", "GR", "HU", "IE", "IS", "IT", "LT", "LU", "LV",
+                "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SI", "SK", "CH",
+            }
+            candidates = [
+                item for item in get_offers(api_key)
+                if str(item.get("geolocation", "")).rsplit(", ", 1)[-1] in eu_countries
+                and item.get("gpu_name") != "CMP 170HX"
+            ]
+            if not candidates:
+                raise SafeError("no eligible European SimReady offer is currently available")
+            return launch_simready_offer(api_key, candidates[0])
+        if operation == ["launch-best-eu"]:
+            eu_countries = {
+                "AT", "BE", "BG", "HR", "CY", "CZ", "DE", "DK", "EE", "ES",
+                "FI", "FR", "GR", "HU", "IE", "IS", "IT", "LT", "LU", "LV",
+                "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SI", "SK", "CH",
+            }
+            gpu_order = {"RTX 6000Ada": 0, "RTX 5880Ada": 1, "RTX PRO 5000": 2}
+            candidates = [
+                item
+                for item in get_offers(api_key)
+                if str(item.get("geolocation", "")).rsplit(", ", 1)[-1] in eu_countries
+                and item.get("gpu_name") in gpu_order
+                and float(item.get("reliability", 0)) >= 0.995
+            ]
+            candidates.sort(
+                key=lambda item: (
+                    gpu_order[str(item.get("gpu_name"))],
+                    float(item.get("dph_total", item.get("dph", 999))),
+                )
+            )
+            if not candidates:
+                raise SafeError("no eligible European 48 GB offer is currently available")
+            return launch_offer(api_key, candidates[0])
+        if len(operation) == 2 and operation[0] in {"start", "stop"}:
+            instance_id = positive_id(operation[1], "instance id")
+            state = "running" if operation[0] == "start" else "stopped"
+            result = vast_request(
+                api_key,
+                f"/api/v0/instances/{instance_id}/",
+                method="PUT",
+                payload={"state": state},
+            )
+            print_json({"instance_id": instance_id, "requested_state": state, "success": result.get("success")})
+            return 0
+        if len(operation) == 3 and operation[0] == "destroy" and operation[2] == "--confirm":
+            instance_id = positive_id(operation[1], "instance id")
+            destroy_instance_verified(api_key, instance_id)
+            print_json({"instance_id": instance_id, "destroyed": True, "verified_absent": True})
+            return 0
+        raise SafeError(
+            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|mesh-offers|instances|"
+            "show <id>|ssh-keys <id>|attach-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
+            "launch <offer_id>|launch-mesh <offer_id>|launch-simready <offer_id>|launch-simready-heavy <offer_id>|launch-simready-best|launch-simready-best-eu|launch-best-eu|"
+            "start <id>|stop <id>|"
+            "destroy <id> --confirm"
+        )
+    finally:
+        revoke_token(token)
+
+
+def main() -> int:
+    if sys.argv[1:] == ["--check"]:
+        validate_bootstrap_metadata()
+        check_local_service()
+        print("OpenBao Vast.ai reader check OK")
+        return 0
+    return run(sys.argv[1:])
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except KeyboardInterrupt:
+        print("OpenBao Vast.ai: cancelled", file=sys.stderr)
+        raise SystemExit(130) from None
+    except SafeError as exc:
+        print(f"OpenBao Vast.ai error: {exc}", file=sys.stderr)
+        raise SystemExit(1) from None
