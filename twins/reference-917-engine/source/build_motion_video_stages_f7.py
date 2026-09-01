@@ -8,11 +8,36 @@ import json
 import os
 from pathlib import Path
 
-from pxr import Gf, Sdf, Usd, UsdGeom
+from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
 
 def relative(layer: Path, asset: Path) -> str:
     return os.path.relpath(asset.resolve(), layer.parent.resolve()).replace(os.sep, "/")
+
+
+def author_visual_materials(stage: Usd.Stage, config: dict) -> int:
+    visual = config["visual_materials"]
+    UsdGeom.Scope.Define(stage, "/World/Looks")
+    materials = {}
+    for material_id, values in visual["palette"].items():
+        material = UsdShade.Material.Define(stage, f"/World/Looks/{material_id}")
+        shader = UsdShade.Shader.Define(stage, f"/World/Looks/{material_id}/PreviewSurface")
+        shader.CreateIdAttr("UsdPreviewSurface")
+        shader.CreateInput("diffuseColor", Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(*values["color"]))
+        shader.CreateInput("metallic", Sdf.ValueTypeNames.Float).Set(values["metallic"])
+        shader.CreateInput("roughness", Sdf.ValueTypeNames.Float).Set(values["roughness"])
+        material.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), "surface")
+        materials[material_id] = material
+
+    bound = 0
+    for family, material_id in visual["family_assignments"].items():
+        prim = stage.GetPrimAtPath(f"/World/Components/{family}")
+        if not prim:
+            raise RuntimeError(f"missing visual-material family: {family}")
+        UsdShade.MaterialBindingAPI.Apply(prim).Bind(materials[material_id])
+        prim.SetCustomDataByKey("3dprinting993:visualMaterialClaim", visual["claim_status"])
+        bound += 1
+    return bound
 
 
 def author_stage(source_path: Path, output: Path, config: dict, cutaway: bool) -> None:
@@ -31,6 +56,7 @@ def author_stage(source_path: Path, output: Path, config: dict, cutaway: bool) -
     stage.SetEndTimeCode(source.GetEndTimeCode())
     stage.SetTimeCodesPerSecond(source.GetTimeCodesPerSecond())
     stage.SetFramesPerSecond(source.GetFramesPerSecond())
+    bound_material_families = author_visual_materials(stage, config)
 
     components = stage.GetPrimAtPath("/World/Components")
     bounds = UsdGeom.BBoxCache(Usd.TimeCode.Default(), [UsdGeom.Tokens.default_]).ComputeWorldBound(components).ComputeAlignedRange()
@@ -56,6 +82,7 @@ def author_stage(source_path: Path, output: Path, config: dict, cutaway: bool) -
             for prim in scope.GetChildren():
                 UsdGeom.Imageable(prim).MakeInvisible()
     stage.GetPrimAtPath("/World").SetCustomDataByKey("3dprinting993:videoSimulationClaimAuthorized", False)
+    stage.GetPrimAtPath("/World").SetCustomDataByKey("3dprinting993:visualMaterialFamilyBindings", bound_material_families)
     stage.GetRootLayer().Save()
 
 
@@ -77,6 +104,8 @@ def main() -> int:
         "outputs": outputs,
         "expected_frame_count": config["acceptance"]["expected_frame_count"],
         "video_rendered": False,
+        "visual_material_family_bindings": len(config["visual_materials"]["family_assignments"]),
+        "visual_material_claim_status": config["visual_materials"]["claim_status"],
         "disclosure": config["disclosure"],
     }
     (args.output_dir / "motion-video-f7-stage-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

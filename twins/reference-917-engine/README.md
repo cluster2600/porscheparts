@@ -238,7 +238,10 @@ make 917-motion-video-render-f7
 
 La vidéo porte une mention incrustée indiquant qu'il s'agit d'un entraînement
 cinématique à sec, sans combustion, charge ni pression calculée. Elle reste sans
-audio afin de ne pas suggérer un régime moteur physiquement simulé.
+audio afin de ne pas suggérer un régime moteur physiquement simulé. Les 31
+familles reçoivent aussi un matériau `UsdPreviewSurface` déterministe pour le
+rendu. Ces couleurs sont des hypothèses visuelles ; elles ne constituent ni une
+identification historique d'alliage, ni des propriétés physiques de calcul.
 
 ## Recoupement documentaire Stuttcars
 

@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "twins/reference-917-engine/motion-video-f7.json"
+ENGINE = ROOT / "twins/reference-917-engine/complete-engine-f1.json"
 
 
 class Engine917MotionVideoF7Test(unittest.TestCase):
@@ -28,6 +29,14 @@ class Engine917MotionVideoF7Test(unittest.TestCase):
         self.assertFalse(self.config["acceptance"]["physical_simulation_claim_authorized"])
         self.assertIn("aucune combustion", self.config["disclosure"])
         self.assertEqual(self.config["encode"]["audio"], "none")
+
+    def test_every_component_family_has_a_visual_material_hypothesis(self):
+        engine = json.loads(ENGINE.read_text(encoding="utf-8"))
+        expected = {item["id"] for item in engine["component_families"]}
+        visual = self.config["visual_materials"]
+        self.assertEqual(set(visual["family_assignments"]), expected)
+        self.assertLessEqual(set(visual["family_assignments"].values()), set(visual["palette"]))
+        self.assertIn("not_historical", visual["claim_status"])
 
 
 if __name__ == "__main__":
