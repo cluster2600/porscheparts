@@ -3,8 +3,7 @@
 ARG TARGETPLATFORM=linux/amd64
 FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
 
-ARG VLLM_VERSION=0.8.5.post1
-ARG TRANSFORMERS_VERSION=4.51.3
+ARG VLLM_VERSION=0.19.0
 ARG PHYSICSNEMO_VERSION=2.2.0
 ARG TORCH_VERSION=2.8.0
 ARG DEEPXDE_VERSION=1.15.0
@@ -34,7 +33,7 @@ ENV SIMREADY_LOCAL_AI=1 \
     TRANSFORMERS_OFFLINE=1 \
     HF_HUB_DISABLE_XET=1
 
-# Keep PhysicsNeMo isolated because vLLM 0.8.5 requires an older PyTorch stack.
+# Keep PhysicsNeMo isolated from the independently pinned vLLM CUDA stack.
 # Install the heavy runtime separately so no OCI layer combines the whole
 # PhysicsNeMo environment with the embedded vision model.
 RUN python3.12 -m venv /opt/venv \
@@ -59,7 +58,10 @@ RUN /opt/venv/bin/pip install --no-cache-dir \
 RUN python3.12 -m venv /opt/local-ai \
     && /opt/local-ai/bin/pip install --no-cache-dir --upgrade "pip>=26.1" \
     && /opt/local-ai/bin/pip install --no-cache-dir \
-       "vllm==${VLLM_VERSION}" "transformers==${TRANSFORMERS_VERSION}"
+       --extra-index-url https://download.pytorch.org/whl/cu129 \
+       "vllm==${VLLM_VERSION}" \
+    && /opt/local-ai/bin/python -c \
+       'import torch, vllm; assert vllm.__version__ == "0.19.0"; cuda = tuple(map(int, torch.version.cuda.split(".")[:2])); assert cuda >= (12, 8), cuda'
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can

@@ -8,8 +8,10 @@ ROOT = Path(__file__).resolve().parents[1]
 class SimReadyLocalAiImageTests(unittest.TestCase):
     def test_image_pins_model_runtime_and_physicsnemo(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
-        self.assertIn("VLLM_VERSION=0.8.5.post1", dockerfile)
-        self.assertIn("TRANSFORMERS_VERSION=4.51.3", dockerfile)
+        self.assertIn("VLLM_VERSION=0.19.0", dockerfile)
+        self.assertIn("https://download.pytorch.org/whl/cu129", dockerfile)
+        self.assertIn("assert cuda >= (12, 8)", dockerfile)
+        self.assertNotIn("TRANSFORMERS_VERSION", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
         self.assertIn("TORCH_VERSION=2.8.0", dockerfile)
         self.assertIn("BUILD123D_VERSION=0.11.1", dockerfile)
