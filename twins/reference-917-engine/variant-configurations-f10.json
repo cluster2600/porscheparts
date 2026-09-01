@@ -1,0 +1,182 @@
+{
+  "$comment": "F10 remplace le masquage visuel des turbos sur une geometrie unique par deux branches de geometrie et de cinematique distinctes. Les seules differences dimensionnelles affirmees sont celles reliees a une source.",
+  "schema_version": "1.0.0",
+  "phase": "F10",
+  "status": "separate_sourced_variant_geometry_and_visual_kinematics_not_manufacturing_geometry",
+  "units": "mm",
+  "upstream_contracts": {
+    "base_geometry": "twins/reference-917-engine/complete-engine-f1.json",
+    "base_kinematics": "twins/reference-917-engine/kinematics-f2.json",
+    "detail_families": "twins/reference-917-engine/detail-expansion-f3.json",
+    "turbo_performance_envelope": "twins/reference-917-engine/performance-target-f9.json"
+  },
+  "stage_policy": {
+    "mode": "one_geometry_and_kinematic_stage_per_variant",
+    "engine_variant_set_allowed": false,
+    "shared_85x66_core_between_variants_allowed": false,
+    "generated_outputs_root": "work/917-variant-geometry-f10",
+    "source_geometry_committed": false,
+    "derived_step_stl_usd_committed": false
+  },
+  "variants": [
+    {
+      "variant_id": "type_912_4_5_na",
+      "display_name": "Type 912 4,5 L atmospherique",
+      "architecture": "naturally_aspirated_flat_12",
+      "output_slug": "type-912-4-5-na",
+      "geometry": {
+        "cylinder_count": 12,
+        "bore_mm": 85.0,
+        "stroke_mm": 66.0,
+        "documented_displacement_cm3": 4494.0,
+        "field_evidence": {
+          "cylinder_count": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+          ],
+          "bore_mm": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+            "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+          ],
+          "stroke_mm": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+            "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+            "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+          ],
+          "documented_displacement_cm3": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ]
+        },
+        "evidence_status": "secondary_sources_not_factory_manufacturing_drawing"
+      },
+      "assembly_filter": {
+        "f1_variant_tags": ["base"],
+        "f3_variant_tags": ["all"],
+        "turbocharger_expected_count": 0,
+        "charge_plenum_expected_count": 0
+      },
+      "kinematics": {
+        "stroke_mm": 66.0,
+        "connecting_rod_center_distance_mm": 132.0,
+        "connecting_rod_status": "inherited_F1_visual_layout_hypothesis_not_sourced_for_manufacture",
+        "physical_kinematics_ready": false
+      },
+      "outputs": {
+        "geometry_stage": "type-912-4-5-na/stages/type-912-4-5-na-geometry-f10.usda",
+        "kinematic_stage": "type-912-4-5-na/stages/type-912-4-5-na-kinematic-f10.usda",
+        "detail_stage": "type-912-4-5-na/stages/type-912-4-5-na-detail-f10.usda"
+      }
+    },
+    {
+      "variant_id": "917_30_turbo_5374",
+      "legacy_variant_id": "917_30_turbo",
+      "display_name": "917/30 5,374 L biturbo",
+      "architecture": "twin_turbo_flat_12",
+      "output_slug": "917-30-turbo-5374",
+      "geometry": {
+        "cylinder_count": 12,
+        "bore_mm": 90.0,
+        "stroke_mm": 70.4,
+        "documented_displacement_cm3": 5374.0,
+        "field_evidence": {
+          "cylinder_count": [
+            "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "bore_mm": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "stroke_mm": [
+            "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"
+          ],
+          "documented_displacement_cm3": [
+            "SRC-PORSCHE-NEWSROOM-91730-TURBO"
+          ]
+        },
+        "evidence_status": "displacement_primary_bore_and_stroke_secondary_not_factory_manufacturing_drawing"
+      },
+      "assembly_filter": {
+        "f1_variant_tags": ["base", "917_30_only"],
+        "f3_variant_tags": ["all", "917_30_only"],
+        "turbocharger_expected_count": 2,
+        "charge_plenum_expected_count": 2
+      },
+      "kinematics": {
+        "stroke_mm": 70.4,
+        "connecting_rod_center_distance_mm": 132.0,
+        "connecting_rod_status": "inherited_F1_visual_layout_hypothesis_not_sourced_for_917_30_manufacture",
+        "physical_kinematics_ready": false
+      },
+      "outputs": {
+        "geometry_stage": "917-30-turbo-5374/stages/917-30-turbo-5374-geometry-f10.usda",
+        "kinematic_stage": "917-30-turbo-5374/stages/917-30-turbo-5374-kinematic-f10.usda",
+        "detail_stage": "917-30-turbo-5374/stages/917-30-turbo-5374-detail-f10.usda"
+      }
+    }
+  ],
+  "shared_visual_hypotheses": {
+    "inherited_from_f1_without_new_dimensional_claim": [
+      "cylinder_regular_pitch_mm",
+      "central_pair_pitch_mm",
+      "crankshaft_length_mm",
+      "bank_axis_offset_mm",
+      "cylinder_length_mm",
+      "piston_height_mm",
+      "connecting_rod_center_distance_mm",
+      "camshaft_length_mm",
+      "turbo_envelope_mm"
+    ],
+    "note": "Ces valeurs permettent uniquement une scene d'encombrement. F10 ne les transforme pas en cotes 917/30 mesurees."
+  },
+  "variant_change_scope": {
+    "actually_regenerated_from_sourced_variant_values": [
+      "piston_visual_proxy_diameter_from_bore_mm",
+      "individual_cylinder_visual_proxy_inner_diameter_from_bore_mm",
+      "piston_and_rod_visual_motion_from_stroke_mm"
+    ],
+    "intentionally_unchanged_visual_hypotheses": [
+      "crankshaft_body_throw_and_counterweight_proxy_geometry",
+      "connecting_rod_proxy_geometry_and_center_distance",
+      "piston_compression_height_and_crown_proxy_geometry",
+      "cylinder_head_combustion_chamber_and_port_proxy_geometry",
+      "cam_profiles_and_valve_motion_proxy"
+    ],
+    "explicit_limit": "La course 70,4 mm modifie la cinematique du 917/30, mais F10 ne reconstruit pas un vilebrequin 917/30 dimensionnellement exact."
+  },
+  "missing_variant_inputs": {
+    "type_912_4_5_na": [
+      "piston_profile_and_compression_height",
+      "connecting_rod_center_distance_and_bearing_centres",
+      "crank_throw_and_counterweight_geometry",
+      "combustion_chamber_and_valve_train_geometry",
+      "all_running_clearances_and_tolerances"
+    ],
+    "917_30_turbo_5374": [
+      "piston_profile_and_compression_height",
+      "connecting_rod_center_distance_and_bearing_centres",
+      "crank_throw_and_counterweight_geometry",
+      "combustion_chamber_and_valve_train_geometry",
+      "turbo_wheel_housing_wastegate_and_plenum_dimensions",
+      "all_running_clearances_and_tolerances"
+    ]
+  },
+  "release_gates": {
+    "separate_visual_geometry_config_ready": true,
+    "separate_visual_kinematics_config_ready": true,
+    "measured_variant_geometry_ready": false,
+    "physical_kinematics_ready": false,
+    "manufacturing_geometry_ready": false,
+    "clearance_validation_ready": false,
+    "combustion_simulation_ready": false,
+    "performance_claim_authorized": false
+  },
+  "prohibited_use": [
+    "manufacturing_release",
+    "claim_that_visual_hypotheses_are_factory_dimensions",
+    "clearance_or_interference_release",
+    "combustion_power_torque_or_durability_claim",
+    "claim_that_F10_proves_1600_hp",
+    "metal_print_or_engine_test_release"
+  ]
+}

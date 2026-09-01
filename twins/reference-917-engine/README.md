@@ -245,16 +245,25 @@ identification historique d'alliage, ni des propriétés physiques de calcul.
 
 ## Liaisons, étanchéités et conduits F8
 
-La couche F8 transforme les connexions encore implicites en trois contrats
+La couche F8 transforme les connexions encore implicites en quatre contrats
 mesurables et contrôlés localement :
 
-- `mechanical-connections-f8.json` inventorie 17 groupes et 119 instances de
+- `mechanical-connections-f8.json` inventorie 18 groupes et 119 instances de
   liaisons fixes, guidées, tournantes, engrenées ou montées sur le banc ;
-- `sealing-interfaces-f8.json` inventorie 23 groupes et 163 interfaces
+- `sealing-interfaces-f8.json` inventorie 29 groupes et 194 interfaces
   d'étanchéité, y compris les joints feu, huile, admission, échappement et turbo ;
-- `ducts-f8.json` inventorie 19 groupes et 102 conduits, en signalant notamment
+- `ducts-f8.json` inventorie 21 groupes et 106 conduits, en signalant notamment
   l'absence actuelle du domaine carburant F4, de la distribution du plénum, des
-  conduites d'huile turbo et du reniflard.
+  conduites d'huile turbo et du reniflard ;
+- `external-interfaces-f8.json` ferme le registre à 6 interfaces externes
+  nommées, toutes sans géométrie ni condition aux limites libérée.
+
+La correction topologique F8.1 sépare les guides des 12 soupapes d'admission et
+des 12 soupapes d'échappement, distingue l'admission atmosphérique de l'entrée
+des deux compresseurs, relie les deux sorties de turbine à l'extraction du banc
+et explicite les raccords de la chaîne carburant banc-pompe-conduites-injecteurs.
+Ces liaisons décrivent uniquement une connectivité requise ; leurs dimensions,
+technologies de joint et conditions de fonctionnement restent à mesurer.
 
 Les nombres décrivent la topologie attendue, pas une nomenclature déclarée
 exhaustive. Aucun repère de liaison, jeu, précharge, technologie de joint,
@@ -267,8 +276,9 @@ make 917-interfaces-f8-check
 make 917-interfaces-f8-preflight
 ```
 
-Le premier contrôle vérifie les références vers les familles F1/F3 et les
-éléments du banc F4/F5, les comptes, les variantes et les sources. Le second
+Le premier contrôle vérifie les références vers les familles F1/F3, les
+éléments du banc F4/F5, le registre fermé des interfaces externes, les comptes,
+les variantes et les sources. Le second
 écrit `work/917-interfaces-f8/input-audit.json` avec la liste déterministe des
 mesures manquantes. Même si toutes les entrées sont renseignées, le prévol ne
 crée ni joint physique, ni calcul de contact, ni solveur de débit : une revue
@@ -339,3 +349,50 @@ cylindres, de refroidissement externe et d'impression de maquette. Il ne fournit
 aucune interface de montage 993. La comparaison dimensionnelle reste bloquée
 jusqu'à disposer d'un moteur 993 nommé, de ses entraxes et registres mesurés,
 ainsi que d'une échelle confirmée pour les deux jeux de données.
+
+## Branches de géométrie et de cinématique F10
+
+F10 corrige une ambiguïté des scènes F1 à F3 : masquer les turbos ne transforme
+pas un moteur 85 × 66 mm en 917/30. Le contrat
+`variant-configurations-f10.json` crée donc deux branches sans `engineVariant`
+partagé :
+
+- `type_912_4_5_na`, avec alésage/course 85 × 66 mm et cylindrée calculée de
+  4 494,205 cm³, recoupés par les sources secondaires AMS, kfz-tech et
+  Stuttcars ;
+- `917_30_turbo_5374`, avec 90 × 70,4 mm et 5 374,385 cm³ calculés. Les
+  5 374 cm³ sont documentés par Porsche ; les 90 × 70,4 mm viennent de la
+  source secondaire AMS.
+
+Chaque branche reconstruit ses propres proxies de piston et de cylindre à
+partir de l'alésage, possède sa propre course cinématique et produit ses propres
+stages géométrie, cinématique puis détail F3 sous
+`work/917-variant-geometry-f10/`. La branche atmosphérique exclut réellement les
+familles turbo et plénum ; la branche 917/30 les compose avec les organes F3 de
+suralimentation. Il ne s'agit plus d'un simple commutateur de visibilité.
+
+```bash
+make 917-variant-geometry-f10-check
+make 917-variant-geometry-f10
+```
+
+La deuxième commande exige un prévol de conversion SimReady vert, puis utilise
+les images Docker immuables existantes pour Build123d, STEP, USDC et OpenUSD.
+Les STEP, STL, USD et rapports générés restent hors Git sous `work/`.
+
+La portée dimensionnelle reste volontairement étroite. F10 ne change réellement
+que le diamètre visuel des pistons/cylindres dérivé de l'alésage et la course de
+l'animation. Le corps, les manetons et les contrepoids du vilebrequin restent le
+même proxy visuel ; une course de 70,4 mm dans la timeline ne constitue pas la
+reconstruction dimensionnelle d'un vilebrequin de 917/30. La longueur de bielle
+de 132 mm, le profil de piston, les chambres, les cames, les routages et les
+jeux restent des hypothèses explicitement non sourcées. Les source IDs F1 sont
+conservés avec les sources propres à l'alésage/course afin de ne pas perdre la
+provenance de la topologie, des familles et du scan.
+
+Les validateurs refusent les chemins de stage partagés, une cote sans source,
+un retour au variant-set de visibilité, une course différente du contrat, une
+branche atmosphérique contenant des organes turbo ou tout gate physique,
+fabrication, combustion ou puissance passé prématurément à vrai. F10 est une
+séparation de visualisation et de cinématique ; il ne prouve ni jeux, ni masses,
+ni inerties, ni contacts, ni fonctionnement, ni 1 600 HP.

@@ -5,39 +5,21 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 import os
 from pathlib import Path
 
 from pxr import Gf, Sdf, Usd, UsdGeom, UsdPhysics
+from kinematics_f2_math import (
+    cylinder_cycle_deg,
+    cylinder_phase_deg,
+    periodic_lift_mm,
+    rod_tilt_deg,
+    slider_delta_mm,
+)
 
 
 def relative(layer: Path, asset: Path) -> str:
     return os.path.relpath(asset.resolve(), layer.parent.resolve()).replace(os.sep, "/")
-
-
-def cylinder_phase_deg(cylinder: int, firing_order: list[int]) -> float:
-    return float(firing_order.index(cylinder) * 60)
-
-
-def slider_delta_mm(angle_deg: float, crank_radius: float, rod_length: float) -> float:
-    angle = math.radians(angle_deg)
-    current = crank_radius * math.cos(angle) + math.sqrt(
-        rod_length**2 - (crank_radius * math.sin(angle)) ** 2
-    )
-    return current - (crank_radius + rod_length)
-
-
-def rod_tilt_deg(angle_deg: float, crank_radius: float, rod_length: float) -> float:
-    return math.degrees(math.asin(crank_radius * math.sin(math.radians(angle_deg)) / rod_length))
-
-
-def periodic_lift_mm(angle_deg: float, center_deg: float, duration_deg: float, maximum_lift: float) -> float:
-    delta = (angle_deg - center_deg + 360.0) % 720.0 - 360.0
-    half = duration_deg / 2.0
-    if abs(delta) >= half:
-        return 0.0
-    return maximum_lift * 0.5 * (1.0 + math.cos(math.pi * delta / half))
 
 
 def family_prims(stage: Usd.Stage, family: str) -> list[Usd.Prim]:
@@ -188,7 +170,7 @@ def main() -> None:
             _, rod_op, rod_base = rod_data[index]
             rod_op.Set(Gf.Vec3f(rod_base[0], rod_base[1], rod_base[2] + bank * tilt), time)
 
-            cylinder_cycle = (cycle_angle + cylinder_phase_deg(cylinder, order) * 2.0) % 720.0
+            cylinder_cycle = cylinder_cycle_deg(cycle_angle, cylinder, order)
             intake_lift = periodic_lift_mm(
                 cylinder_cycle,
                 valve_cfg["intake_center_cycle_deg"],
