@@ -40,9 +40,11 @@ mkdir -p "${PARTS}" "${ASSETS}" "${STAGES}" "${REPORTS}" \
 GEOMETRY="${STAGES}/${SLUG}-geometry-f10.usda"
 KINEMATIC="${STAGES}/${SLUG}-kinematic-f10.usda"
 DETAIL="${STAGES}/${SLUG}-detail-f10.usda"
+MATERIAL_PROXY="${STAGES}/${SLUG}-material-proxy-f10.usda"
 CONFIG_REPORT="${GENERATED}/variant-config-generation-report.json"
 AUTHOR_REPORT="${REPORTS}/author-kinematics-f10.json"
 VALIDATION_REPORT="${REPORTS}/validate-variant-stages-f10.json"
+MATERIAL_PROXY_REPORT="${REPORTS}/material-proxy-f10.json"
 LOCAL_CONTEXT_REPORT="${REPORTS}/identify-asset-context-local.json"
 LOCAL_CONTEXT_MARKDOWN="${REPORTS}/identify-asset-context-local.md"
 ASSET_CONTEXT_REPORT="${REPORTS}/asset-context.json"
@@ -55,6 +57,7 @@ phase_add_output "${DETAIL}"
 phase_add_child_report "${CONFIG_REPORT}"
 phase_add_child_report "${AUTHOR_REPORT}"
 phase_add_child_report "${VALIDATION_REPORT}"
+phase_add_child_report "${MATERIAL_PROXY_REPORT}"
 phase_add_child_report "${LOCAL_CONTEXT_REPORT}"
 phase_add_child_report "${LOCAL_CONTEXT_MARKDOWN}"
 phase_add_child_report "${ASSET_CONTEXT_REPORT}"
@@ -70,8 +73,10 @@ AUTHOR_KINEMATICS="${PROJECT_ROOT}/twins/reference-917-engine/source/author_kine
 BUILD_DETAIL_PARTS="${PROJECT_ROOT}/twins/reference-917-engine/source/build_detail_expansion_f3.py"
 BUILD_DETAIL="${PROJECT_ROOT}/twins/reference-917-engine/source/build_variant_detail_usd_f10.py"
 VALIDATE="${PROJECT_ROOT}/twins/reference-917-engine/source/validate_variant_stages_f10.py"
+BUILD_MATERIAL_PROXY="${PROJECT_ROOT}/twins/reference-917-engine/source/build_material_proxy_f10.py"
 for required in "${MANIFEST}" "${PREPARE}" "${BUILD_PARTS}" "${BUILD_GEOMETRY}" \
-    "${AUTHOR_KINEMATICS}" "${BUILD_DETAIL_PARTS}" "${BUILD_DETAIL}" "${VALIDATE}"; do
+    "${AUTHOR_KINEMATICS}" "${BUILD_DETAIL_PARTS}" "${BUILD_DETAIL}" "${VALIDATE}" \
+    "${BUILD_MATERIAL_PROXY}"; do
     require_file "${required}"
 done
 
@@ -113,6 +118,13 @@ run_logged "${USD_PYTHON}" "${VALIDATE}" \
     --geometry-stage "${GEOMETRY}" --kinematic-stage "${KINEMATIC}" \
     --detail-stage "${DETAIL}" --report "${VALIDATION_REPORT}"
 require_passed_report "${VALIDATION_REPORT}"
+run_logged "${USD_PYTHON}" "${BUILD_MATERIAL_PROXY}" \
+    --source-asset "${DETAIL}" \
+    --geometry-config "${CONFIGS}/complete-engine-f10.json" \
+    --detail-config "${CONFIGS}/detail-expansion-f10.json" \
+    --variant-assets "${ASSETS}" --detail-assets "${COMMON_F3_ASSETS}" \
+    --output "${MATERIAL_PROXY}" --report "${MATERIAL_PROXY_REPORT}"
+require_passed_report "${MATERIAL_PROXY_REPORT}"
 CONTEXT_REFERENCE="$(require_skill_reference "references/identify-asset-context/scripts/run.py")"
 run_logged "${USD_PYTHON}" "${CONTEXT_REFERENCE}" "${DETAIL}" \
     --report "${LOCAL_CONTEXT_REPORT}" --markdown-report "${LOCAL_CONTEXT_MARKDOWN}"

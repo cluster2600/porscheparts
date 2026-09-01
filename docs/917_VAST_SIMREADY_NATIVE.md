@@ -334,10 +334,60 @@ et Physics ; une variante ne peut jamais consommer le contexte de l'autre.
 Le JSON F9 transféré est uniquement un contrat dimensionnel amont lu par F10 ;
 aucune phase F8 ou F9 n'est exécutée ni modifiée ici.
 
+### Proxy statique pour le Material Agent
+
+Le stage F10 complet reste l'actif de référence, l'entrée du contexte sourcé et
+la base de la chaîne Physics. Il contient cependant 291 instances pour la
+branche atmosphérique et 305 pour la branche turbo. Afin de borner le travail
+visuel du Material Agent, `phase-f10.sh` construit aussi un proxy interne avec
+un représentant non instancié par famille : 37 pour l'atmosphérique et 44 pour
+le turbo. Ce proxy référence les mêmes fichiers `.usdc`, n'a aucun échantillon
+temporel et porte explicitement `materialProxyMustNotEnterPhysics=true`.
+
+La commande de l'opérateur ne change pas. `phase-minimum-usd.sh` découvre le
+rapport enfant `material-proxy-f10.json` et valide séparément le stage complet
+et le proxy. `phase-material.sh` appelle ensuite le Material Agent uniquement
+sur le proxy, puis crée une couche de bindings sur le stage complet. Chaque
+famille doit produire exactement un matériau effectif ; une famille absente,
+ambiguë, un checksum différent ou un mapping incomplet bloque la phase.
+
+```mermaid
+flowchart LR
+    FULL["Stage F10 complet<br/>291 ou 305 instances<br/>timeline 0 à 240"]
+    MAP["Rapport proxy<br/>hashes + famille vers instances"]
+    PROXY["Proxy Material statique<br/>37 ou 44 représentants<br/>timeline 0"]
+    MIN["USD minimum<br/>deux validations distinctes"]
+    AGENT["Material Agent<br/>sur le proxy uniquement"]
+    BIND["Raccordement fail-closed<br/>un matériau par famille"]
+    MAT["Stage complet matérialisé<br/>timeline et instances conservées"]
+    PHYS["Physics Agent"]
+
+    FULL --> MAP
+    FULL --> PROXY
+    MAP --> PROXY
+    FULL --> MIN
+    PROXY --> MIN
+    MIN --> AGENT
+    PROXY --> AGENT
+    AGENT --> BIND
+    MAP --> BIND
+    FULL --> BIND
+    BIND --> MAT
+    MAT --> PHYS
+```
+
+Les rapports `material-agent.json` et
+`family-material-propagation.json` sont tous deux conservés. Le premier atteste
+la sortie du service NVIDIA sur le proxy ; le second atteste les matériaux
+sources, les bindings par famille, les instances complètes couvertes, les
+checksums et la timeline de l'assemblage recomposé. Aucun de ces rapports ne
+vaut preuve de matériau historique, de comportement physique ou de fabrication.
+
 ## 5. Deux chaînes aval complètes et séparées
 
-L'ordre est obligatoire pour **chaque** variante : USD minimal, Material,
-Physics sur l'exact `output_usd_path` de Material, conformance, puis Asset,
+L'ordre est obligatoire pour **chaque** variante : USD minimal du stage complet
+et de son proxy, Material sur le proxy puis propagation vers le stage complet,
+Physics sur l'exact `output_usd_path` complet de Material, conformance, puis Asset,
 Geometry, Physics, SimReady validation, boucle de réparation bornée et rendu.
 L'entrée de ce workflow est déjà le stage USD F10 : la conformance atteste
 `material-agent-client` puis `physics-agent-client`, mais ne liste pas

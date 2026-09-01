@@ -145,6 +145,8 @@ SOURCE_FILES=(
     twins/reference-917-engine/source/build_variant_engine_parts_f10.py
     twins/reference-917-engine/source/build_variant_engine_usd_f10.py
     twins/reference-917-engine/source/build_variant_detail_usd_f10.py
+    twins/reference-917-engine/source/build_material_proxy_f10.py
+    twins/reference-917-engine/source/apply_family_material_bindings_f10.py
     twins/reference-917-engine/source/validate_variant_stages_f10.py
     twins/reference-917-engine/remote-simready/_common.sh
     twins/reference-917-engine/remote-simready/_asset_context.py

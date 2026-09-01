@@ -542,6 +542,42 @@ print(path)
 PY
 }
 
+report_input_named() {
+    "${SYSTEM_PYTHON}" - "$1" "$2" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+filename = sys.argv[2]
+inputs = report.get("input_paths")
+if not isinstance(inputs, list):
+    raise SystemExit("input_paths absent du rapport")
+matches = [Path(str(value)).resolve() for value in inputs if Path(str(value)).name == filename]
+if len(matches) != 1 or not matches[0].is_file():
+    raise SystemExit(f"entrée nommée absente ou ambiguë: {filename}")
+print(matches[0])
+PY
+}
+
+report_child_named() {
+    "${SYSTEM_PYTHON}" - "$1" "$2" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+filename = sys.argv[2]
+children = report.get("child_reports")
+if not isinstance(children, list):
+    raise SystemExit("child_reports absent du rapport")
+matches = [Path(str(value)).resolve() for value in children if Path(str(value)).name == filename]
+if len(matches) != 1 or not matches[0].is_file():
+    raise SystemExit(f"rapport enfant nommé absent ou ambigu: {filename}")
+print(matches[0])
+PY
+}
+
 require_report_output() {
     local actual expected
     require_passed_report "$1"
@@ -570,6 +606,40 @@ if not isinstance(inputs, list):
 resolved = [Path(str(value)).resolve(strict=True) for value in inputs]
 if resolved.count(expected) != 1:
     raise SystemExit("entrée attestée absente ou dupliquée dans le rapport")
+PY
+}
+
+require_material_proxy_source() {
+    "${SYSTEM_PYTHON}" - "$1" "$2" <<'PY'
+import hashlib
+import json
+from pathlib import Path
+import sys
+
+report_path = Path(sys.argv[1]).resolve(strict=True)
+source = Path(sys.argv[2]).resolve(strict=True)
+report = json.loads(report_path.read_text(encoding="utf-8"))
+if (
+    report.get("schema_version") != "1.0.0"
+    or report.get("status") != "passed"
+    or report.get("passed") is not True
+    or report.get("claim_scope") != "visual_material_assignment_proxy_only"
+    or report.get("material_proxy_must_not_enter_physics") is not True
+):
+    raise SystemExit("rapport de proxy matériel non validé")
+if Path(str(report.get("source_asset_path", ""))).resolve(strict=True) != source:
+    raise SystemExit("proxy matériel produit depuis un autre stage F10")
+digest = hashlib.sha256(source.read_bytes()).hexdigest()
+if report.get("source_asset_sha256") != digest:
+    raise SystemExit("stage F10 différent du checksum du proxy matériel")
+outputs = report.get("output_paths")
+if not isinstance(outputs, list) or len(outputs) != 1:
+    raise SystemExit("sortie de proxy matériel absente ou ambiguë")
+proxy = Path(str(outputs[0])).resolve(strict=True)
+if report.get("output_usd_path") != str(proxy):
+    raise SystemExit("chemin de proxy matériel incohérent")
+if report.get("output_sha256") != hashlib.sha256(proxy.read_bytes()).hexdigest():
+    raise SystemExit("proxy matériel différent de son checksum")
 PY
 }
 
