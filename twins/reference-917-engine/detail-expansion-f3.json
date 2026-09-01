@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F3_sourced_system_detail_proxies_not_manufacturing_geometry",
+  "units": "mm",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE"
+  ],
+  "base_stage_requirement": "validated_F2_kinematic_USD",
+  "families": [
+    {"id": "cooling_blower_drive_shaft", "count": 1, "variant": "all", "confidence": "drive_topology_sourced_shape_and_placement_hypothesis"},
+    {"id": "cooling_blower_bevel_gear", "count": 2, "variant": "all", "confidence": "bevel_pair_topology_sourced_shape_hypothesis"},
+    {"id": "twelve_plunger_injection_pump", "count": 1, "variant": "all", "confidence": "twelve_plunger_topology_sourced_envelope_hypothesis"},
+    {"id": "injection_line", "count": 12, "variant": "all", "confidence": "nylon_line_topology_sourced_routing_hypothesis"},
+    {"id": "oil_filter", "count": 1, "variant": "all", "confidence": "full_flow_filter_topology_sourced_envelope_hypothesis"},
+    {"id": "oil_thermostat", "count": 1, "variant": "all", "confidence": "thermostatic_oil_circuit_sourced_envelope_hypothesis"},
+    {"id": "oil_cooler", "count": 1, "variant": "all", "confidence": "oil_cooler_topology_sourced_envelope_hypothesis"},
+    {"id": "cam_drive_intermediate_shaft", "count": 1, "variant": "all", "confidence": "central_drive_topology_sourced_shape_hypothesis"},
+    {"id": "turbo_turbine_wheel", "count": 2, "variant": "917_30_only", "confidence": "turbo_rotor_topology_sourced_dimensions_unknown"},
+    {"id": "turbo_compressor_wheel", "count": 2, "variant": "917_30_only", "confidence": "turbo_rotor_topology_sourced_dimensions_unknown"},
+    {"id": "turbo_shaft", "count": 2, "variant": "917_30_only", "confidence": "turbo_rotor_topology_sourced_dimensions_unknown"},
+    {"id": "wastegate", "count": 2, "variant": "917_30_only", "confidence": "wastegate_function_sourced_one_per_bank_layout_hypothesis"},
+    {"id": "wastegate_bypass_pipe", "count": 2, "variant": "917_30_only", "confidence": "bypass_function_sourced_routing_hypothesis"}
+  ],
+  "acceptance": {
+    "added_family_count": 13,
+    "added_instance_count": 30,
+    "required_variants": ["type_912_4_5_na", "917_30_turbo"],
+    "editable_prototype_format": "STEP",
+    "simulation_exchange_format": "USD"
+  },
+  "prohibited_use": [
+    "manufacturing_release",
+    "fluid_routing_or_clearance_validation",
+    "turbo_rotordynamics",
+    "oil_pressure_or_temperature_prediction",
+    "fuel_injection_calibration",
+    "claim_that_proxy_dimensions_are_factory_dimensions"
+  ]
+}

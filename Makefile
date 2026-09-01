@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -46,6 +46,10 @@ engine-components:
 917-kinematics-f2:
 	@test -n "$(F2_INPUT)" || { echo "F2_INPUT=/chemin/vers/scene.usd est requis" >&2; exit 2; }
 	twins/reference-917-engine/run_kinematics_f2.sh "$(F2_INPUT)"
+
+917-detail-f3:
+	@test -n "$(F2_INPUT)" || { echo "F2_INPUT=/chemin/vers/scene-f2.usd est requis" >&2; exit 2; }
+	twins/reference-917-engine/run_detail_expansion_f3.sh "$(F2_INPUT)"
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

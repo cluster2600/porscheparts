@@ -133,6 +133,24 @@ Elle sert à contrôler la hiérarchie, la timeline et les déplacements dans
 Omniverse. Elle ne simule ni combustion, ni puissance, ni contacts chargés et
 ne valide aucune pièce pour la fabrication.
 
+## Détail systèmes F3
+
+La couche F3 complète l'assemblage F2 avec 13 familles et 30 instances
+supplémentaires : entraînement du ventilateur, paire conique, pompe d'injection
+à douze pistons, douze conduites, filtre, thermostat et refroidisseur d'huile,
+arbre intermédiaire de distribution, puis roues, arbres, wastegates et dérivations
+des deux turbocompresseurs de la variante `917_30_turbo`.
+
+```bash
+make 917-detail-f3 F2_INPUT=/chemin/vers/moteur-f2.usd
+```
+
+Les prototypes STEP sont éditables et les actifs USDC restent instanciés dans
+une couche non destructive. Les formes, dimensions et routages non documentés
+sont explicitement des hypothèses d'encombrement. Cette couche ne permet ni
+fabrication, ni calcul de lubrification ou d'injection, ni validation de
+jeux, de débit ou de rotordynamique turbo.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
