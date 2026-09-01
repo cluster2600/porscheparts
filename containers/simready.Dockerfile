@@ -48,6 +48,7 @@ RUN apt-get update && apt-get upgrade -y \
       libx11-6 \
       libxt6 \
       openssh-server \
+      passwd \
       python3.12 \
       python3.12-dev \
       python3.12-venv \
