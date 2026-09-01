@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F6_zero_dimensional_oil_prime_blocked_pending_measured_inputs",
+  "units": "SI",
+  "model_kind": "steady_lumped_hydraulic_network_precheck",
+  "topology_source": "F4_and_F5_USD_routes",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+  ],
+  "known_topology": {
+    "pressure_pump_count": 1,
+    "scavenge_pump_count": 6,
+    "main_bearing_count": 8,
+    "oil_filter_count": 1,
+    "oil_thermostat_count": 1,
+    "oil_cooler_count": 1,
+    "external_reservoir_count": 1
+  },
+  "required_inputs": {
+    "oil_grade": null,
+    "oil_density_kg_m3": null,
+    "oil_dynamic_viscosity_pa_s_by_temperature": [],
+    "initial_oil_temperature_k": null,
+    "reservoir_capacity_m3": null,
+    "reservoir_initial_level_m3": null,
+    "pressure_pump_speed_rpm": null,
+    "pressure_pump_curve_pa_m3_s": [],
+    "pressure_relief_setting_pa": null,
+    "scavenge_pump_speed_rpm": null,
+    "scavenge_pump_curves_pa_m3_s": [],
+    "hose_inside_diameters_m": [],
+    "hose_lengths_m": [],
+    "oil_filter_pressure_drop_pa_m3_s": [],
+    "thermostat_state_and_flow_split": null,
+    "oil_cooler_pressure_drop_pa_m3_s": [],
+    "main_gallery_geometry": null,
+    "bearing_clearances_m": [],
+    "bearing_leakage_coefficients": [],
+    "minimum_oil_pressure_pa": null,
+    "maximum_prime_time_s": null,
+    "sensor_accuracy_pa": null,
+    "sensor_trip_delay_s": null
+  },
+  "planned_outputs": [
+    "prime_time_s",
+    "pressure_pump_operating_point",
+    "pressure_at_each_main_bearing_pa",
+    "total_bearing_leakage_m3_s",
+    "scavenge_return_flow_m3_s",
+    "relief_valve_state",
+    "minimum_pressure_margin_pa"
+  ],
+  "solver_policy": {
+    "reference_solver": "deterministic_0D_hydraulic_network",
+    "openfoam_role": "selected_internal_passages_only_after_reconstruction",
+    "physicsnemo_role": "surrogate_only_after_0D_CFD_and_test_correlation",
+    "allow_default_engine_values": false,
+    "allow_calculation_with_missing_inputs": false
+  },
+  "acceptance": {
+    "input_audit_ready": true,
+    "solver_ready": false,
+    "pressure_prediction_authorized": false
+  },
+  "prohibited_use": [
+    "oil_pressure_prediction_with_placeholder_inputs",
+    "bearing_validation",
+    "physical_prime_or_engine_start_authorization",
+    "manufacturing_release",
+    "physicsnemo_training_before_validated_reference_results"
+  ]
+}

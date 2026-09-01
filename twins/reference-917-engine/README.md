@@ -205,6 +205,23 @@ les seuils des capteurs ne sont pas mesurés. Le démarreur et le dynamomètre
 restent également désactivés tant que les interfaces et limites de couple ne
 sont pas validées.
 
+## Préparation du modèle d'amorçage d'huile F6
+
+Le cas F6 transforme les inconnues de lubrification en entrées explicites d'un
+futur réseau hydraulique 0D. Il refuse les valeurs moteur génériques et ne
+produit donc actuellement aucune pression fictive :
+
+```bash
+make 917-oil-prime-f6
+```
+
+Le rapport d'audit énumère les mesures encore nécessaires, notamment la
+viscosité en fonction de la température, les courbes des sept pompes, les
+sections et longueurs, les pertes du filtre et du refroidisseur, les jeux de
+paliers et les seuils d'arrêt. OpenFOAM restera réservé aux passages internes
+reconstruits ; PhysicsNeMo ne pourra apprendre qu'après corrélation du réseau
+0D, de la CFD et d'essais instrumentés.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
