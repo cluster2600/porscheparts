@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F5_start_and_oil_prime_support_authored_measurements_pending",
+  "units": "mm",
+  "base_stage_requirement": "validated_F4_test_bench_with_system_routes_USD",
+  "support_components": [
+    {"id": "starter_motor", "count": 1, "status": "layout_proxy_interface_unmeasured"},
+    {"id": "starter_pinion", "count": 1, "status": "tooth_geometry_unmeasured"},
+    {"id": "ring_gear", "count": 1, "status": "diameter_module_tooth_count_and_backlash_unmeasured"},
+    {"id": "crank_output_flange", "count": 1, "status": "bolt_pattern_and_register_unmeasured"},
+    {"id": "dyno_adapter", "count": 1, "status": "layout_proxy_torque_rating_unmeasured"},
+    {"id": "coupling_guard", "count": 1, "status": "layout_proxy_not_safety_certified"},
+    {"id": "battery_positive_cable", "count": 1, "status": "route_proxy_gauge_unmeasured"},
+    {"id": "engine_ground_strap", "count": 1, "status": "route_proxy_resistance_unmeasured"},
+    {"id": "oil_reservoir_supply", "count": 1, "status": "route_proxy_diameter_unmeasured"},
+    {"id": "oil_cooler_return", "count": 1, "status": "route_proxy_diameter_unmeasured"},
+    {"id": "oil_pressure_sensor", "count": 2, "status": "position_proxy_range_and_calibration_unmeasured"},
+    {"id": "oil_temperature_sensor", "count": 2, "status": "position_proxy_range_and_calibration_unmeasured"}
+  ],
+  "topology_coverage": {
+    "starter_drive": true,
+    "battery_to_starter": true,
+    "engine_ground_return": true,
+    "crank_to_dynamometer": true,
+    "oil_reservoir_to_pressure_pump": true,
+    "oil_cooler_to_reservoir": true,
+    "oil_pressure_instrumentation": true,
+    "oil_temperature_instrumentation": true
+  },
+  "remaining_release_inputs": [
+    "engine_mount_coordinates_stiffness_and_load_limits",
+    "output_flange_register_bolt_pattern_runout_and_alignment_tolerance",
+    "starter_mount_pinion_ring_gear_module_tooth_count_backlash_and_required_torque",
+    "battery_voltage_capacity_peak_current_cable_gauge_ground_resistance_and_fusing",
+    "oil_grade_temperature_range_reservoir_capacity_and_operating_level",
+    "pressure_and_scavenge_pump_curves_relief_settings_and_drive_ratio",
+    "oil_hose_inside_diameters_lengths_bend_radii_and_cooler_pressure_drop",
+    "bearing_clearances_gallery_geometry_and_minimum_pressure_limits",
+    "sensor_ranges_calibration_dates_sample_rates_and_trip_thresholds",
+    "coupling_torsional_rating_guarding_and_overspeed_limits"
+  ],
+  "acceptance": {
+    "support_component_instance_count": 14,
+    "oil_prime_topology_complete": true,
+    "oil_prime_solver_ready": false,
+    "starter_torque_simulation_ready": false,
+    "maximum_authorized_stage": "kinematic_dry_crank",
+    "fired_run_authorized": false
+  },
+  "prohibited_use": [
+    "manufacturing_dimensions",
+    "starter_or_battery_sizing",
+    "oil_pressure_or_bearing_validation",
+    "dyno_load_release",
+    "physical_engine_start_authorization"
+  ]
+}

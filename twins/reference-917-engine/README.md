@@ -182,6 +182,29 @@ alimentation carburant, circuit d'huile, profils de came, inerties et
 frottements, combustion, refroidissement, échappement et instrumentation. Ce
 fail-closed est le résultat attendu tant que ces éléments ne sont pas mesurés.
 
+## Démarreur, liaison dynamométrique et amorçage d'huile F5
+
+La couche F5 ajoute les enveloppes fonctionnelles encore absentes du banc :
+démarreur, pignon, couronne, flasque de sortie, adaptateur dynamométrique,
+protection d'accouplement, câbles batterie et masse, alimentation et retour du
+réservoir d'huile, puis quatre capteurs d'huile. Elle complète la topologie sans
+inventer la denture, les fixations, les sections, les capacités ou les courbes
+de pompe.
+
+```bash
+make 917-start-support-f5 \
+  F4_INPUT=/chemin/vers/917-engine-test-bench-systems.usda
+
+make 917-virtual-test-bench
+```
+
+Un passage F5 signifie uniquement que chaque fonction possède un objet ou une
+route nommée dans USD. L'amorçage reste bloqué tant que la qualité d'huile, les
+débits, les pertes de charge, les soupapes de décharge, les jeux de paliers et
+les seuils des capteurs ne sont pas mesurés. Le démarreur et le dynamomètre
+restent également désactivés tant que les interfaces et limites de couple ne
+sont pas validées.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)

@@ -12,10 +12,12 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--bench", type=Path, required=True)
     parser.add_argument("--systems", type=Path, required=True)
+    parser.add_argument("--support", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     bench = json.loads(args.bench.read_text(encoding="utf-8"))
     systems = json.loads(args.systems.read_text(encoding="utf-8"))
+    support = json.loads(args.support.read_text(encoding="utf-8")) if args.support else None
 
     blockers = list(bench["critical_blockers"])
     if systems["acceptance"]["simulation_ready"]:
@@ -50,7 +52,10 @@ def main() -> int:
         "missing_parts_and_data": blockers,
         "fluid_domains": [item["id"] for item in systems["fluid_domains"]],
         "electrical_node_types": [item["id"] for item in systems["electrical_system"]["nodes"]],
-        "next_release_gate": "measure_mounts_output_flange_and_starter_interface_then_validate_oil_prime_network",
+        "oil_prime_status": "topology_complete_parameters_blocked" if support else "topology_incomplete",
+        "authored_support_component_count": support["acceptance"]["support_component_instance_count"] if support else 0,
+        "remaining_release_inputs": support["remaining_release_inputs"] if support else blockers,
+        "next_release_gate": "measure_mounts_output_flange_starter_drive_and_oil_network_then_run_0D_oil_prime",
         "prohibited_use": bench["prohibited_use"],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

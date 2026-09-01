@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -55,6 +55,7 @@ engine-components:
 	python3 twins/reference-917-engine/source/run_virtual_test_bench.py \
 		--bench twins/reference-917-engine/test-bench-f4.json \
 		--systems twins/reference-917-engine/systems-f4.json \
+		--support twins/reference-917-engine/start-support-f5.json \
 		--output work/917-test-bench/virtual-start-report.json
 
 917-systems-f4:
@@ -77,6 +78,16 @@ engine-components:
 		work/917-test-bench/917-engine-test-bench.usda \
 		--bench twins/reference-917-engine/test-bench-f4.json \
 		--report work/917-test-bench/validation.json
+
+917-start-support-f5:
+	@test -n "$(F4_INPUT)" || { echo "F4_INPUT=/chemin/vers/scene-banc-systemes.usd est requis" >&2; exit 2; }
+	/opt/material-agent/bin/python twins/reference-917-engine/source/build_start_support_usd_f5.py "$(F4_INPUT)" \
+		--config twins/reference-917-engine/start-support-f5.json \
+		--output work/917-start-support-f5/917-engine-start-support-f5.usda
+	/opt/material-agent/bin/python twins/reference-917-engine/source/validate_start_support_usd_f5.py \
+		work/917-start-support-f5/917-engine-start-support-f5.usda \
+		--config twins/reference-917-engine/start-support-f5.json \
+		--report work/917-start-support-f5/validation.json
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1
