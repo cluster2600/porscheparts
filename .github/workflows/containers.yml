@@ -82,11 +82,11 @@ jobs:
           df -h /
 
       - name: Set up Buildx
-        if: steps.gate.outputs.run == 'true'
+        if: steps.gate.outputs.run == 'true' && matrix.image != 'simready-local-ai'
         uses: docker/setup-buildx-action@v3
 
       - name: Log in to ghcr.io
-        if: steps.gate.outputs.run == 'true' && inputs.push
+        if: steps.gate.outputs.run == 'true' && (inputs.push || matrix.image == 'simready-local-ai')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -107,21 +107,45 @@ jobs:
           cache-from: type=gha,scope=${{ matrix.image }}
           cache-to: type=gha,mode=min,scope=${{ matrix.image }}
 
-      # The embedded VLM makes this image larger than the free runner's cache
-      # headroom. Push layers directly and avoid retaining a second GHA cache.
-      - name: Build large local AI image without cache export
+      # BuildKit's container driver downloads both large GHCR bases in parallel,
+      # which can trigger registry throttling. Pull them sequentially into the
+      # enlarged Docker store, with bounded backoff, then build from that store.
+      - name: Preload local AI base images
         if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: containers/${{ matrix.image }}.Dockerfile
-          load: ${{ !inputs.push }}
-          push: ${{ inputs.push }}
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}:latest
-          cache-from: type=gha,scope=${{ matrix.image }}
-          provenance: false
+        run: |
+          mapfile -t base_images < <(
+            sed -nE 's/^FROM ([^ ]+).*/\1/p' containers/simready-local-ai.Dockerfile
+          )
+          for image_ref in "${base_images[@]}"; do
+            pulled=false
+            for attempt in 1 2 3 4 5; do
+              if docker pull "$image_ref"; then
+                pulled=true
+                break
+              fi
+              sleep "$((attempt * 30))"
+            done
+            if [ "$pulled" != true ]; then
+              echo "Failed to pull $image_ref after 5 attempts" >&2
+              exit 1
+            fi
+          done
+
+      - name: Build large local AI image from Docker store
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        run: |
+          output_flag=--load
+          if [ "${{ inputs.push }}" = "true" ]; then
+            output_flag=--push
+          fi
+          docker buildx build \
+            --builder default \
+            "$output_flag" \
+            --provenance=false \
+            --file containers/simready-local-ai.Dockerfile \
+            --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:${{ github.sha }} \
+            --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:latest \
+            .
 
       - name: Smoke test the image
         if: steps.gate.outputs.run == 'true' && !inputs.push
