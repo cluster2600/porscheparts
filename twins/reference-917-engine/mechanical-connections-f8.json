@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F8_mechanical_connection_contract_measurements_pending",
+  "units": "mm_N_Nm",
+  "base_stage_requirement": "validated_F5_start_support_USD",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+    "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+  ],
+  "upstream_contracts": [
+    "complete-engine-f1.json",
+    "detail-expansion-f3.json",
+    "test-bench-f4.json",
+    "start-support-f5.json"
+  ],
+  "input_profiles": {
+    "fixed_fastened": ["interface_frames_xyz_mm", "register_geometry_mm", "fastener_pattern", "clamp_load_n", "joint_stiffness_n_m", "joint_damping_n_s_m", "material_pair", "load_limits"],
+    "revolute_bearing": ["interface_frames_xyz_mm", "axis_direction_unit", "journal_and_bore_geometry_mm", "radial_clearance_mm", "axial_clearance_mm", "friction_model", "mass_and_inertia", "load_and_speed_limits"],
+    "prismatic_guided": ["interface_frames_xyz_mm", "axis_direction_unit", "guide_geometry_mm", "running_clearance_mm", "friction_model", "travel_limits_mm", "mass_and_inertia", "load_and_speed_limits"],
+    "gear_mesh": ["shaft_axes_xyz_mm", "tooth_counts", "module_mm", "pressure_and_helix_angles_deg", "backlash_mm", "ratio_and_phase", "efficiency_model", "torque_and_speed_limits"],
+    "compliant_mount": ["mount_coordinates_xyz_mm", "fastener_pattern", "stiffness_matrix_n_m", "damping_matrix_n_s_m", "preload_n", "load_limits", "failure_criteria"],
+    "torsional_coupling": ["interface_frames_xyz_mm", "register_and_bolt_pattern_mm", "alignment_tolerance_mm", "torsional_stiffness_nm_rad", "torsional_damping_nms_rad", "torque_limit_nm", "speed_limit_rpm", "guard_clearance_mm"]
+  },
+  "mechanical_connections": [
+    {"id": "crankcase_split_fastened", "count": 1, "variant": "all", "body_a": {"scope": "engine_family", "id": "crankcase_half"}, "body_b": {"scope": "engine_family", "id": "crankcase_half"}, "planned_constraint": "fixed", "input_profile": "fixed_fastened", "confidence": "scan_envelope_topology_only", "measurements": {}, "physics_enabled": false},
+    {"id": "cylinder_to_crankcase", "count": 12, "variant": "all", "body_a": {"scope": "engine_family", "id": "individual_cylinder"}, "body_b": {"scope": "engine_family", "id": "crankcase_half"}, "planned_constraint": "fixed", "input_profile": "fixed_fastened", "confidence": "topology_sourced_interfaces_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "head_to_cylinder", "count": 12, "variant": "all", "body_a": {"scope": "engine_family", "id": "individual_head"}, "body_b": {"scope": "engine_family", "id": "individual_cylinder"}, "planned_constraint": "fixed", "input_profile": "fixed_fastened", "confidence": "topology_sourced_interfaces_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "cam_carrier_to_head", "count": 2, "variant": "all", "body_a": {"scope": "engine_family", "id": "cam_carrier"}, "body_b": {"scope": "engine_family", "id": "individual_head"}, "planned_constraint": "fixed", "input_profile": "fixed_fastened", "confidence": "topology_sourced_pairing_hypothesis", "measurements": {}, "physics_enabled": false},
+    {"id": "crankshaft_main_bearing", "count": 8, "variant": "all", "body_a": {"scope": "engine_family", "id": "crankshaft"}, "body_b": {"scope": "engine_family", "id": "main_bearing"}, "planned_constraint": "revolute", "input_profile": "revolute_bearing", "confidence": "bearing_count_sourced_geometry_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "connecting_rod_to_crankshaft", "count": 12, "variant": "all", "body_a": {"scope": "engine_family", "id": "connecting_rod"}, "body_b": {"scope": "engine_family", "id": "crankshaft"}, "planned_constraint": "revolute", "input_profile": "revolute_bearing", "confidence": "topology_only_crankpin_pairing_hypothesis", "measurements": {}, "physics_enabled": false},
+    {"id": "connecting_rod_to_piston_pin", "count": 12, "variant": "all", "body_a": {"scope": "engine_family", "id": "connecting_rod"}, "body_b": {"scope": "engine_family", "id": "piston_pin"}, "planned_constraint": "revolute", "input_profile": "revolute_bearing", "confidence": "topology_only", "measurements": {}, "physics_enabled": false},
+    {"id": "piston_to_cylinder", "count": 12, "variant": "all", "body_a": {"scope": "engine_family", "id": "piston"}, "body_b": {"scope": "engine_family", "id": "individual_cylinder"}, "planned_constraint": "prismatic", "input_profile": "prismatic_guided", "confidence": "bore_and_stroke_sourced_running_geometry_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "camshaft_to_cam_carrier", "count": 4, "variant": "all", "body_a": {"scope": "engine_family", "id": "camshaft"}, "body_b": {"scope": "engine_family", "id": "cam_carrier"}, "planned_constraint": "revolute", "input_profile": "revolute_bearing", "confidence": "topology_sourced_journals_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "valve_to_head_guide", "count": 24, "variant": "all", "body_a": {"scope": "engine_family", "id": "individual_head"}, "body_b": {"scope": "external_interface", "id": "valve_stems_intake_and_exhaust"}, "planned_constraint": "prismatic", "input_profile": "prismatic_guided", "confidence": "topology_sourced_guides_not_modelled", "measurements": {}, "physics_enabled": false},
+    {"id": "cam_drive_gear_train", "count": 10, "variant": "all", "body_a": {"scope": "engine_family", "id": "cam_drive_gear"}, "body_b": {"scope": "engine_family", "id": "cam_drive_intermediate_shaft"}, "planned_constraint": "gear_mesh", "input_profile": "gear_mesh", "confidence": "gear_count_sourced_pairing_and_teeth_unknown", "measurements": {}, "physics_enabled": false},
+    {"id": "cooling_blower_bevel_pair", "count": 1, "variant": "all", "body_a": {"scope": "engine_family", "id": "cooling_blower_bevel_gear"}, "body_b": {"scope": "engine_family", "id": "cooling_blower_bevel_gear"}, "planned_constraint": "gear_mesh", "input_profile": "gear_mesh", "confidence": "bevel_pair_topology_sourced_geometry_unknown", "measurements": {}, "physics_enabled": false},
+    {"id": "cooling_blower_shaft_to_blower", "count": 1, "variant": "all", "body_a": {"scope": "engine_family", "id": "cooling_blower_drive_shaft"}, "body_b": {"scope": "engine_family", "id": "cooling_blower"}, "planned_constraint": "fixed", "input_profile": "fixed_fastened", "confidence": "drive_topology_sourced_interface_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "turbo_rotor_support", "count": 2, "variant": "917_30_only", "body_a": {"scope": "engine_family", "id": "turbo_shaft"}, "body_b": {"scope": "engine_family", "id": "turbocharger"}, "planned_constraint": "revolute", "input_profile": "revolute_bearing", "confidence": "turbo_topology_only_bearing_system_unknown", "measurements": {}, "physics_enabled": false},
+    {"id": "starter_pinion_to_ring_gear", "count": 1, "variant": "all", "body_a": {"scope": "support_component", "id": "starter_pinion"}, "body_b": {"scope": "support_component", "id": "ring_gear"}, "planned_constraint": "gear_mesh", "input_profile": "gear_mesh", "confidence": "bench_function_only_tooth_geometry_unknown", "measurements": {}, "physics_enabled": false},
+    {"id": "crank_output_to_dyno_adapter", "count": 1, "variant": "all", "body_a": {"scope": "support_component", "id": "crank_output_flange"}, "body_b": {"scope": "support_component", "id": "dyno_adapter"}, "planned_constraint": "torsional_coupling", "input_profile": "torsional_coupling", "confidence": "bench_layout_proxy_interface_unmeasured", "measurements": {}, "physics_enabled": false},
+    {"id": "engine_mount_to_bedplate", "count": 4, "variant": "all", "body_a": {"scope": "bench_component", "id": "engine_mount"}, "body_b": {"scope": "bench_component", "id": "bedplate"}, "planned_constraint": "compliant_fixed", "input_profile": "compliant_mount", "confidence": "bench_layout_proxy_coordinates_and_loads_unmeasured", "measurements": {}, "physics_enabled": false}
+  ],
+  "acceptance": {
+    "connection_group_count": 17,
+    "connection_instance_count": 119,
+    "physics_joint_count": 0,
+    "inventory_complete": false,
+    "physics_ready": false
+  },
+  "prohibited_use": [
+    "authoring_or_enabling_physics_joints_with_unmeasured_frames",
+    "contact_load_or_friction_prediction",
+    "bearing_or_gear_durability_claim",
+    "dyno_torque_release",
+    "manufacturing_release"
+  ]
+}

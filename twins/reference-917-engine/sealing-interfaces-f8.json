@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F8_sealing_interface_contract_measurements_pending",
+  "units": "mm_Pa_K_N",
+  "base_stage_requirement": "validated_F5_start_support_USD",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+    "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+  ],
+  "input_profiles": {
+    "static_fluid_flange": ["mating_face_geometry_mm", "surface_finish_ra_um", "flatness_mm", "fastener_pattern_and_clamp_load", "seal_technology", "seal_material", "installed_compression", "pressure_temperature_envelope", "leakage_limit"],
+    "combustion_fire_joint": ["mating_face_geometry_mm", "bore_register_geometry_mm", "surface_finish_ra_um", "flatness_mm", "fastener_pattern_and_clamp_load", "seal_technology", "seal_material", "peak_cylinder_pressure_pa", "temperature_and_heat_flux_envelope", "leakage_limit"],
+    "reciprocating_stem": ["stem_and_guide_diameters_mm", "running_clearance_mm", "surface_finish_ra_um", "seal_technology", "seal_material", "lubrication_state", "temperature_and_speed_envelope", "leakage_limit"],
+    "threaded_pressure_boundary": ["thread_and_seat_geometry_mm", "surface_finish_ra_um", "tightening_torque_nm", "seal_technology", "seal_material", "pressure_temperature_envelope", "leakage_limit"],
+    "rotating_shaft": ["shaft_and_housing_geometry_mm", "runout_mm", "surface_finish_ra_um", "seal_technology", "seal_material", "lubrication_state", "pressure_temperature_speed_envelope", "leakage_limit"],
+    "hose_or_tube_fitting": ["end_fitting_standard", "tube_or_hose_geometry_mm", "surface_finish_ra_um", "assembly_preload_or_torque", "seal_technology", "seal_material", "pressure_temperature_vibration_envelope", "leakage_limit"]
+  },
+  "sealing_interfaces": [
+    {"id": "crankcase_split_seal", "count": 1, "variant": "all", "interface_a": {"scope": "engine_family", "id": "crankcase_half"}, "interface_b": {"scope": "engine_family", "id": "crankcase_half"}, "input_profile": "static_fluid_flange", "confidence": "scan_envelope_only_joint_face_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "cylinder_to_crankcase_base_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "individual_cylinder"}, "interface_b": {"scope": "engine_family", "id": "crankcase_half"}, "input_profile": "static_fluid_flange", "confidence": "topology_only_seal_technology_unknown", "seal_specification": {}, "seal_released": false},
+    {"id": "head_to_cylinder_fire_joint", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "individual_head"}, "interface_b": {"scope": "engine_family", "id": "individual_cylinder"}, "input_profile": "combustion_fire_joint", "confidence": "topology_only_fire_joint_unknown", "seal_specification": {}, "seal_released": false},
+    {"id": "intake_valve_stem_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "intake_valve"}, "interface_b": {"scope": "engine_family", "id": "individual_head"}, "input_profile": "reciprocating_stem", "confidence": "topology_only_historical_seal_use_unconfirmed", "seal_specification": {}, "seal_released": false},
+    {"id": "exhaust_valve_stem_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "exhaust_valve"}, "interface_b": {"scope": "engine_family", "id": "individual_head"}, "input_profile": "reciprocating_stem", "confidence": "topology_only_historical_seal_use_unconfirmed", "seal_specification": {}, "seal_released": false},
+    {"id": "spark_plug_pressure_seat", "count": 24, "variant": "all", "interface_a": {"scope": "engine_family", "id": "spark_plug"}, "interface_b": {"scope": "engine_family", "id": "individual_head"}, "input_profile": "threaded_pressure_boundary", "confidence": "double_ignition_topology_sourced_threads_and_seats_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "injector_to_head_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "injector"}, "interface_b": {"scope": "engine_family", "id": "individual_head"}, "input_profile": "threaded_pressure_boundary", "confidence": "topology_only_injector_seat_unknown", "seal_specification": {}, "seal_released": false},
+    {"id": "intake_trumpet_to_head_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "intake_trumpet"}, "interface_b": {"scope": "engine_family", "id": "individual_head"}, "input_profile": "static_fluid_flange", "confidence": "layout_proxy_interface_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "head_to_exhaust_primary_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "individual_head"}, "interface_b": {"scope": "engine_family", "id": "exhaust_primary"}, "input_profile": "static_fluid_flange", "confidence": "layout_proxy_hot_joint_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "exhaust_primary_to_collector_seal", "count": 12, "variant": "all", "interface_a": {"scope": "engine_family", "id": "exhaust_primary"}, "interface_b": {"scope": "engine_family", "id": "exhaust_collector"}, "input_profile": "static_fluid_flange", "confidence": "layout_proxy_hot_joint_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "collector_to_turbo_hot_side_seal", "count": 2, "variant": "917_30_only", "interface_a": {"scope": "engine_family", "id": "exhaust_collector"}, "interface_b": {"scope": "engine_family", "id": "turbocharger"}, "input_profile": "static_fluid_flange", "confidence": "function_sourced_interface_geometry_unknown", "seal_specification": {}, "seal_released": false},
+    {"id": "turbo_to_charge_plenum_seal", "count": 2, "variant": "917_30_only", "interface_a": {"scope": "engine_family", "id": "turbocharger"}, "interface_b": {"scope": "engine_family", "id": "charge_plenum"}, "input_profile": "hose_or_tube_fitting", "confidence": "function_sourced_interface_geometry_unknown", "seal_specification": {}, "seal_released": false},
+    {"id": "charge_plenum_to_intake_distribution_seal", "count": 12, "variant": "917_30_only", "interface_a": {"scope": "engine_family", "id": "charge_plenum"}, "interface_b": {"scope": "engine_family", "id": "intake_trumpet"}, "input_profile": "hose_or_tube_fitting", "confidence": "required_function_route_and_interface_not_modelled", "seal_specification": {}, "seal_released": false},
+    {"id": "pressure_oil_gallery_connection", "count": 8, "variant": "all", "interface_a": {"scope": "engine_family", "id": "pressure_oil_pump"}, "interface_b": {"scope": "engine_family", "id": "main_bearing"}, "input_profile": "hose_or_tube_fitting", "confidence": "topology_proxy_internal_gallery_missing", "seal_specification": {}, "seal_released": false},
+    {"id": "scavenge_return_connection", "count": 6, "variant": "all", "interface_a": {"scope": "engine_family", "id": "scavenge_oil_pump"}, "interface_b": {"scope": "engine_family", "id": "oil_cooler"}, "input_profile": "hose_or_tube_fitting", "confidence": "topology_proxy_hose_routing_missing", "seal_specification": {}, "seal_released": false},
+    {"id": "oil_filter_connections", "count": 2, "variant": "all", "interface_a": {"scope": "engine_family", "id": "oil_filter"}, "interface_b": {"scope": "external_interface", "id": "dry_sump_oil_network"}, "input_profile": "hose_or_tube_fitting", "confidence": "filter_topology_sourced_ports_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "oil_thermostat_connections", "count": 1, "variant": "all", "interface_a": {"scope": "engine_family", "id": "oil_thermostat"}, "interface_b": {"scope": "external_interface", "id": "dry_sump_oil_network"}, "input_profile": "hose_or_tube_fitting", "confidence": "logical_component_only_port_count_and_geometry_unknown", "seal_specification": {}, "seal_released": false},
+    {"id": "oil_cooler_connections", "count": 2, "variant": "all", "interface_a": {"scope": "engine_family", "id": "oil_cooler"}, "interface_b": {"scope": "external_interface", "id": "dry_sump_oil_network"}, "input_profile": "hose_or_tube_fitting", "confidence": "logical_component_only_ports_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "turbo_oil_feed_connections", "count": 2, "variant": "917_30_only", "interface_a": {"scope": "engine_family", "id": "turbocharger"}, "interface_b": {"scope": "external_interface", "id": "pressure_oil_network"}, "input_profile": "hose_or_tube_fitting", "confidence": "required_function_not_present_in_F4_routes", "seal_specification": {}, "seal_released": false},
+    {"id": "turbo_oil_drain_connections", "count": 2, "variant": "917_30_only", "interface_a": {"scope": "engine_family", "id": "turbocharger"}, "interface_b": {"scope": "external_interface", "id": "scavenge_oil_network"}, "input_profile": "hose_or_tube_fitting", "confidence": "required_function_not_present_in_F4_routes", "seal_specification": {}, "seal_released": false},
+    {"id": "bench_oil_reservoir_supply_connection", "count": 1, "variant": "all", "interface_a": {"scope": "bench_component", "id": "oil_reservoir"}, "interface_b": {"scope": "engine_family", "id": "pressure_oil_pump"}, "input_profile": "hose_or_tube_fitting", "confidence": "F5_route_proxy_diameter_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "bench_oil_cooler_return_connection", "count": 1, "variant": "all", "interface_a": {"scope": "engine_family", "id": "oil_cooler"}, "interface_b": {"scope": "bench_component", "id": "oil_reservoir"}, "input_profile": "hose_or_tube_fitting", "confidence": "F5_route_proxy_diameter_unmeasured", "seal_specification": {}, "seal_released": false},
+    {"id": "output_shaft_case_seal", "count": 1, "variant": "all", "interface_a": {"scope": "engine_family", "id": "output_shaft"}, "interface_b": {"scope": "engine_family", "id": "crankcase_half"}, "input_profile": "rotating_shaft", "confidence": "functional_interface_hypothesis_geometry_unmeasured", "seal_specification": {}, "seal_released": false}
+  ],
+  "acceptance": {
+    "seal_group_count": 23,
+    "seal_instance_count": 163,
+    "released_seal_count": 0,
+    "inventory_complete": false,
+    "pressure_boundary_ready": false
+  },
+  "prohibited_use": [
+    "inventing_historical_seal_technology",
+    "pressure_boundary_or_leakage_claim",
+    "combustion_fire_joint_release",
+    "oil_or_fuel_system_release",
+    "manufacturing_release"
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "$comment": "F9 sépare les déclarations documentaires, la cible d'analyse demandée et les hypothèses de calcul. Aucune entrée ne constitue une preuve de puissance moteur.",
+  "schema_version": "1.0.0",
+  "phase": "F9",
+  "status": "documentary_target_and_algebraic_envelope_only",
+  "units": "SI",
+  "variant_id": "917_30_turbo_5374",
+  "scope": {
+    "model_kind": "deterministic_zero_dimensional_algebraic_requirement_envelope",
+    "purpose": "derive_torque_bmep_and_mean_piston_speed_required_for_a_power_target",
+    "not_a_thermodynamic_solver": true,
+    "not_a_dyno_result": true
+  },
+  "geometry": {
+    "cylinder_count": 12,
+    "strokes": 4,
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "documented_displacement_cm3": 5374.0,
+    "field_evidence": {
+      "cylinder_count": [
+        "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+        "SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING"
+      ],
+      "bore_mm": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "stroke_mm": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "documented_displacement_cm3": ["SRC-PORSCHE-NEWSROOM-91730-TURBO"]
+    },
+    "evidence_note": "Les 90 x 70,4 mm proviennent d'une source secondaire ; les 5 374 cm3 et les douze cylindres sont recoupés par Porsche. Le calcul de cylindrée contrôle seulement leur cohérence arithmétique."
+  },
+  "source_evidence": [
+    {
+      "claim_id": "PORSCHE_MUSEUM_882_KW",
+      "source_id": "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+      "source_role": "manufacturer_documentary_statement",
+      "power_value": 882.0,
+      "power_unit": "kW",
+      "qualifier": "published_power_output",
+      "rpm": null,
+      "test_conditions": null,
+      "calibration_role": "documentary_only",
+      "used_for_calibration": false
+    },
+    {
+      "claim_id": "PORSCHE_US_1600_HP_QUALIFYING",
+      "source_id": "SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING",
+      "source_role": "manufacturer_reported_documentary_statement",
+      "power_value": 1600.0,
+      "power_unit": "hp",
+      "qualifier": "reported_qualifying_trim",
+      "rpm": null,
+      "test_conditions": null,
+      "calibration_role": "documentary_only",
+      "used_for_calibration": false
+    }
+  ],
+  "analysis_scenarios": {
+    "primary": {
+      "scenario_id": "PORSCHE_REPORTED_1600_HP_REQUIREMENT",
+      "label": "1600 HP qualifying",
+      "power_value": 1600.0,
+      "power_unit": "hp",
+      "origin": "documentary_claim_transcribed_as_calculation_requirement",
+      "related_claim_id": "PORSCHE_US_1600_HP_QUALIFYING",
+      "status": "requirement_only_not_measured",
+      "proof_status": "not_proven"
+    },
+    "alternative_unit_sensitivity": {
+      "scenario_id": "FRENCH_1600_CH_AS_1600_PS_SENSITIVITY",
+      "label": "1600 PS unit sensitivity",
+      "power_value": 1600.0,
+      "power_unit": "PS",
+      "origin": "unit_sensitivity_only",
+      "related_claim_id": null,
+      "status": "alternative_requirement_only_not_measured",
+      "proof_status": "not_proven"
+    },
+    "separation_note": "Le scénario Porsche USA utilise le horsepower mécanique. Le scénario métrique PS est une sensibilité d'unité séparée ; aucun couple ou BMEP n'est partagé entre les deux."
+  },
+  "analysis_assumptions": {
+    "rpm_grid": [6000, 6500, 7000, 7500, 8000],
+    "rpm_grid_role": "independent_algebraic_evaluation_points_only",
+    "operating_range_claimed": false,
+    "constant_power_curve_claimed": false,
+    "points_are_independent_candidate_requirements": true
+  },
+  "required_solver_and_calibration_evidence": {
+    "thermodynamic_solver_definition": null,
+    "solver_name_and_version": null,
+    "solver_input_dataset_id": null,
+    "mass_and_energy_balance_report": null,
+    "calibration_dataset_id": null,
+    "held_out_validation_dataset_id": null,
+    "validation_acceptance_thresholds": {},
+    "dyno_speed_torque_trace_id": null,
+    "dyno_calibration_record_id": null,
+    "power_measurement_basis": null,
+    "power_correction_standard": null,
+    "qualifying_duration_s": null,
+    "ambient_conditions": {},
+    "measurement_uncertainty_budget": null
+  },
+  "proof_gate": {
+    "thermodynamic_solver_ready": false,
+    "calibration_ready": false,
+    "held_out_validation_ready": false,
+    "physical_dyno_proof_ready": false,
+    "performance_claim_authorized": false
+  },
+  "model_policy": {
+    "allow_default_engine_operating_values": false,
+    "allow_airflow_prediction": false,
+    "allow_pressure_prediction": false,
+    "allow_temperature_prediction": false,
+    "allow_turbo_matching": false,
+    "allow_performance_extrapolation": false,
+    "physicsnemo_role": "surrogate_only_after_validated_reference_solver_and_held_out_test_correlation"
+  },
+  "prohibited_use": [
+    "claim_that_1600_ch_has_been_simulated_or_proven",
+    "claim_that_1600_hp_has_been_simulated_or_proven",
+    "claim_that_1600_ps_has_been_simulated_or_proven",
+    "claim_that_documentary_power_is_a_calibrated_dyno_point",
+    "infer_air_or_fuel_flow_from_power_without_measured_inputs",
+    "infer_boost_pressure_or_temperature_without_turbo_maps_and_boundary_conditions",
+    "turbocharger_sizing_or_rotordynamic_release",
+    "engine_hardware_or_manufacturing_release",
+    "physicsnemo_training_before_validated_reference_results"
+  ]
+}

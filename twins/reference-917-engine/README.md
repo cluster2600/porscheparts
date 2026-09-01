@@ -243,6 +243,38 @@ familles reçoivent aussi un matériau `UsdPreviewSurface` déterministe pour le
 rendu. Ces couleurs sont des hypothèses visuelles ; elles ne constituent ni une
 identification historique d'alliage, ni des propriétés physiques de calcul.
 
+## Liaisons, étanchéités et conduits F8
+
+La couche F8 transforme les connexions encore implicites en trois contrats
+mesurables et contrôlés localement :
+
+- `mechanical-connections-f8.json` inventorie 17 groupes et 119 instances de
+  liaisons fixes, guidées, tournantes, engrenées ou montées sur le banc ;
+- `sealing-interfaces-f8.json` inventorie 23 groupes et 163 interfaces
+  d'étanchéité, y compris les joints feu, huile, admission, échappement et turbo ;
+- `ducts-f8.json` inventorie 19 groupes et 102 conduits, en signalant notamment
+  l'absence actuelle du domaine carburant F4, de la distribution du plénum, des
+  conduites d'huile turbo et du reniflard.
+
+Les nombres décrivent la topologie attendue, pas une nomenclature déclarée
+exhaustive. Aucun repère de liaison, jeu, précharge, technologie de joint,
+section interne, perte de charge ou condition aux limites n'est inventé. Les
+champs de mesure sont donc vides, aucune articulation Physics n'est activée et
+aucune frontière de pression n'est libérée.
+
+```bash
+make 917-interfaces-f8-check
+make 917-interfaces-f8-preflight
+```
+
+Le premier contrôle vérifie les références vers les familles F1/F3 et les
+éléments du banc F4/F5, les comptes, les variantes et les sources. Le second
+écrit `work/917-interfaces-f8/input-audit.json` avec la liste déterministe des
+mesures manquantes. Même si toutes les entrées sont renseignées, le prévol ne
+crée ni joint physique, ni calcul de contact, ni solveur de débit : une revue
+d'ingénierie et une étape d'authoring distincte restent obligatoires. F8 ne
+contient volontairement aucun objectif de puissance ou modèle de combustion.
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)

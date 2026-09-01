@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -18,6 +18,7 @@ validate:
 	python3 scripts/validate_twins.py
 	python3 scripts/validate_components.py
 	python3 scripts/validate_engine_sim_contracts.py
+	python3 twins/reference-917-engine/source/validate_interfaces_f8.py --project-root .
 
 test:
 	python3 -m unittest discover -s tests -v
@@ -105,6 +106,19 @@ engine-components:
 		--config twins/reference-917-engine/motion-video-f7.json \
 		--stages-dir work/917-motion-video-f7/stages \
 		--output-dir work/917-motion-video-f7/render
+
+917-interfaces-f8-check:
+	python3 twins/reference-917-engine/source/validate_interfaces_f8.py --project-root .
+
+917-interfaces-f8-preflight: 917-interfaces-f8-check
+	python3 twins/reference-917-engine/source/run_interfaces_preflight_f8.py \
+		--project-root . \
+		--output work/917-interfaces-f8/input-audit.json
+
+917-performance-envelope-f9:
+	python3 twins/reference-917-engine/source/model_performance_envelope_0d_f9.py \
+		--config twins/reference-917-engine/performance-target-f9.json \
+		--output work/917-performance-f9/power-requirement-envelopes.json
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

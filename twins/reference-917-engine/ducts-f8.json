@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F8_duct_contract_geometry_and_boundary_conditions_pending",
+  "units": "SI_with_geometry_in_mm",
+  "base_stage_requirement": "validated_F5_start_support_USD",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+    "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+  ],
+  "input_profiles": {
+    "compressible_intake": ["centerline_and_internal_surface_geometry_mm", "area_profile_mm2", "lengths_and_bend_radii_mm", "wall_thickness_and_material", "roughness_m", "junction_and_interface_geometry_mm", "inlet_and_outlet_boundary_conditions", "heat_transfer_model", "leakage_limit"],
+    "compressible_exhaust": ["centerline_and_internal_surface_geometry_mm", "area_profile_mm2", "lengths_and_bend_radii_mm", "wall_thickness_and_material", "roughness_m", "junction_and_interface_geometry_mm", "cylinder_resolved_mass_flow_and_temperature", "back_pressure_boundary", "conjugate_heat_transfer_inputs", "leakage_limit"],
+    "oil_line": ["centerline_and_internal_surface_geometry_mm", "inside_diameter_and_length_mm", "bend_radii_and_fittings", "wall_material_and_roughness", "oil_grade_density_and_viscosity", "pump_or_pressure_boundary", "component_pressure_drop_curves", "temperature_boundary", "leakage_limit"],
+    "fuel_line": ["centerline_and_internal_surface_geometry_mm", "inside_diameter_and_length_mm", "bend_radii_and_fittings", "material_and_fuel_compatibility", "fuel_specification", "pump_and_injector_flow_maps", "pressure_temperature_boundary", "pulsation_model", "leakage_limit"],
+    "cooling_air": ["duct_and_shroud_internal_geometry_mm", "area_profile_mm2", "leakage_paths", "fan_curve", "fan_drive_ratio", "ambient_pressure_and_temperature", "engine_surface_heat_flux", "outlet_boundary"],
+    "crankcase_ventilation": ["internal_and_external_geometry_mm", "inside_diameter_and_length_mm", "oil_separator_geometry", "blowby_mass_flow", "crankcase_pressure_limit", "outlet_boundary", "oil_carryover_limit"]
+  },
+  "ducts": [
+    {"id": "ambient_to_intake_trumpets", "domain": "intake_air", "count": 12, "variant": "all", "source": {"scope": "external_interface", "id": "bench_intake_ambient"}, "target": {"scope": "engine_family", "id": "intake_trumpet"}, "input_profile": "compressible_intake", "upstream_route_ref": null, "coverage_status": "missing_from_F4", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "intake_trumpet_to_head", "domain": "intake_air", "count": 12, "variant": "all", "source": {"scope": "engine_family", "id": "intake_trumpet"}, "target": {"scope": "engine_family", "id": "individual_head"}, "input_profile": "compressible_intake", "upstream_route_ref": "F4:intake_head", "coverage_status": "F4_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "head_to_exhaust_primary", "domain": "exhaust_gas", "count": 12, "variant": "all", "source": {"scope": "engine_family", "id": "individual_head"}, "target": {"scope": "engine_family", "id": "exhaust_primary"}, "input_profile": "compressible_exhaust", "upstream_route_ref": "F4:head_exhaust", "coverage_status": "F4_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "exhaust_primary_to_collector", "domain": "exhaust_gas", "count": 12, "variant": "all", "source": {"scope": "engine_family", "id": "exhaust_primary"}, "target": {"scope": "engine_family", "id": "exhaust_collector"}, "input_profile": "compressible_exhaust", "upstream_route_ref": "F4:exhaust_collector", "coverage_status": "F4_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "collector_to_turbo_hot_side", "domain": "exhaust_gas", "count": 2, "variant": "917_30_only", "source": {"scope": "engine_family", "id": "exhaust_collector"}, "target": {"scope": "engine_family", "id": "turbocharger"}, "input_profile": "compressible_exhaust", "upstream_route_ref": "F4:turbo_hot_side", "coverage_status": "F4_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "turbo_to_charge_plenum", "domain": "intake_air", "count": 2, "variant": "917_30_only", "source": {"scope": "engine_family", "id": "turbocharger"}, "target": {"scope": "engine_family", "id": "charge_plenum"}, "input_profile": "compressible_intake", "upstream_route_ref": "F4:turbo_cold_side", "coverage_status": "F4_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "charge_plenum_to_intake_trumpets", "domain": "intake_air", "count": 12, "variant": "917_30_only", "source": {"scope": "engine_family", "id": "charge_plenum"}, "target": {"scope": "engine_family", "id": "intake_trumpet"}, "input_profile": "compressible_intake", "upstream_route_ref": null, "coverage_status": "missing_from_F4", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "pressure_pump_to_main_bearings", "domain": "dry_sump_oil", "count": 8, "variant": "all", "source": {"scope": "engine_family", "id": "pressure_oil_pump"}, "target": {"scope": "engine_family", "id": "main_bearing"}, "input_profile": "oil_line", "upstream_route_ref": "F4:pressure_oil_feed", "coverage_status": "F4_visual_route_only_internal_gallery_missing", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "scavenge_pumps_to_oil_cooler", "domain": "dry_sump_oil", "count": 6, "variant": "all", "source": {"scope": "engine_family", "id": "scavenge_oil_pump"}, "target": {"scope": "engine_family", "id": "oil_cooler"}, "input_profile": "oil_line", "upstream_route_ref": "F4:scavenge_oil_return", "coverage_status": "F4_visual_route_only_hose_routing_missing", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "bench_oil_reservoir_to_pressure_pump", "domain": "dry_sump_oil", "count": 1, "variant": "all", "source": {"scope": "bench_component", "id": "oil_reservoir"}, "target": {"scope": "engine_family", "id": "pressure_oil_pump"}, "input_profile": "oil_line", "upstream_route_ref": "F5:oil_reservoir_supply", "coverage_status": "F5_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "oil_cooler_to_bench_reservoir", "domain": "dry_sump_oil", "count": 1, "variant": "all", "source": {"scope": "engine_family", "id": "oil_cooler"}, "target": {"scope": "bench_component", "id": "oil_reservoir"}, "input_profile": "oil_line", "upstream_route_ref": "F5:oil_cooler_return", "coverage_status": "F5_visual_route_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "turbo_pressure_oil_feed", "domain": "dry_sump_oil", "count": 2, "variant": "917_30_only", "source": {"scope": "external_interface", "id": "pressure_oil_network"}, "target": {"scope": "engine_family", "id": "turbocharger"}, "input_profile": "oil_line", "upstream_route_ref": null, "coverage_status": "missing_from_F4", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "turbo_scavenge_oil_drain", "domain": "dry_sump_oil", "count": 2, "variant": "917_30_only", "source": {"scope": "engine_family", "id": "turbocharger"}, "target": {"scope": "external_interface", "id": "scavenge_oil_network"}, "input_profile": "oil_line", "upstream_route_ref": null, "coverage_status": "missing_from_F4", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "injection_pump_to_injectors", "domain": "fuel", "count": 12, "variant": "all", "source": {"scope": "engine_family", "id": "twelve_plunger_injection_pump"}, "target": {"scope": "engine_family", "id": "injector"}, "input_profile": "fuel_line", "upstream_route_ref": "F3:injection_line", "coverage_status": "F3_geometry_proxy_no_F4_fuel_domain", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "bench_fuel_supply_to_injection_pump", "domain": "fuel", "count": 1, "variant": "all", "source": {"scope": "bench_component", "id": "fuel_supply"}, "target": {"scope": "engine_family", "id": "twelve_plunger_injection_pump"}, "input_profile": "fuel_line", "upstream_route_ref": null, "coverage_status": "missing_from_F4", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "bench_cooling_air_to_blower", "domain": "external_cooling_air", "count": 1, "variant": "all", "source": {"scope": "bench_component", "id": "cooling_air_supply"}, "target": {"scope": "engine_family", "id": "cooling_blower"}, "input_profile": "cooling_air", "upstream_route_ref": null, "coverage_status": "bench_proxy_only", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "blower_to_engine_cooling_field", "domain": "external_cooling_air", "count": 1, "variant": "all", "source": {"scope": "engine_family", "id": "cooling_blower"}, "target": {"scope": "external_interface", "id": "cylinder_and_head_fin_field"}, "input_profile": "cooling_air", "upstream_route_ref": null, "coverage_status": "missing_internal_shroud_and_distribution_geometry", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "engine_exhaust_to_bench_extraction", "domain": "exhaust_gas", "count": 2, "variant": "all", "source": {"scope": "external_interface", "id": "variant_specific_engine_exhaust_outlet"}, "target": {"scope": "bench_component", "id": "exhaust_extraction"}, "input_profile": "compressible_exhaust", "upstream_route_ref": null, "coverage_status": "bench_proxy_only_variant_pairing_unknown", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false},
+    {"id": "crankcase_breather", "domain": "crankcase_ventilation", "count": 1, "variant": "all", "source": {"scope": "engine_family", "id": "crankcase_half"}, "target": {"scope": "external_interface", "id": "oil_separator_or_breather_outlet"}, "input_profile": "crankcase_ventilation", "upstream_route_ref": null, "coverage_status": "missing_from_F4", "measurements": {}, "geometry_released": false, "flow_simulation_ready": false}
+  ],
+  "acceptance": {
+    "duct_group_count": 19,
+    "duct_instance_count": 102,
+    "released_geometry_count": 0,
+    "flow_ready_count": 0,
+    "inventory_complete": false,
+    "fluid_simulation_ready": false
+  },
+  "prohibited_use": [
+    "treating_visual_routes_as_internal_fluid_geometry",
+    "flow_pressure_temperature_or_leakage_prediction",
+    "fuel_or_oil_system_release",
+    "turbocharger_performance_claim",
+    "manufacturing_release"
+  ]
+}
