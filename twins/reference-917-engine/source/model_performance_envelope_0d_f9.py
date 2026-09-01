@@ -158,6 +158,22 @@ def validate_contract(payload: Any) -> list[str]:
                 for source_id in source_ids:
                     if source_id not in known_sources:
                         errors.append(f"geometry.field_evidence.{field}: unregistered source {source_id}")
+        if all(
+            _positive_number(geometry.get(field))
+            for field in ("cylinder_count", "bore_mm", "stroke_mm", "documented_displacement_cm3")
+        ):
+            calculated_displacement_cm3 = displacement_m3(
+                geometry["bore_mm"],
+                geometry["stroke_mm"],
+                geometry["cylinder_count"],
+            ) * 1_000_000.0
+            documented_displacement_cm3 = float(geometry["documented_displacement_cm3"])
+            relative_difference = abs(calculated_displacement_cm3 - documented_displacement_cm3) / documented_displacement_cm3
+            if relative_difference > 0.001:
+                errors.append(
+                    "geometry.documented_displacement_cm3: differs by more than 0.1% "
+                    "from bore, stroke and cylinder count"
+                )
 
     claims = payload.get("source_evidence")
     claim_ids: set[str] = set()
@@ -189,6 +205,11 @@ def validate_contract(payload: Any) -> list[str]:
     if not isinstance(scenarios, dict):
         errors.append("analysis_scenarios: expected an object")
     else:
+        claims_by_id = {
+            claim.get("claim_id"): claim
+            for claim in claims
+            if isinstance(claim, dict) and isinstance(claim.get("claim_id"), str)
+        }
         for scenario_role in ("primary", "alternative_unit_sensitivity"):
             scenario = scenarios.get(scenario_role)
             label = f"analysis_scenarios.{scenario_role}"
@@ -202,6 +223,13 @@ def validate_contract(payload: Any) -> list[str]:
             related_claim_id = scenario.get("related_claim_id")
             if related_claim_id is not None and related_claim_id not in claim_ids:
                 errors.append(f"{label}.related_claim_id: unknown claim")
+            elif related_claim_id is not None:
+                related_claim = claims_by_id[related_claim_id]
+                if (
+                    scenario.get("power_value") != related_claim.get("power_value")
+                    or scenario.get("power_unit") != related_claim.get("power_unit")
+                ):
+                    errors.append(f"{label}: power value and unit must match the related documentary claim")
         primary = scenarios.get("primary", {})
         if isinstance(primary, dict) and primary.get("power_unit") != "hp":
             errors.append("analysis_scenarios.primary.power_unit: expected mechanical hp")

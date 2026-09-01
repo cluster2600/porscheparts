@@ -102,6 +102,24 @@ class Engine917PerformanceF9Test(unittest.TestCase):
         errors = F9.validate_contract(mutated)
         self.assertIn("source_evidence[1].used_for_calibration: must remain false", errors)
 
+    def test_contract_rejects_scenario_different_from_related_claim(self):
+        mutated = copy.deepcopy(self.config)
+        mutated["analysis_scenarios"]["primary"]["power_value"] = 1500.0
+        errors = F9.validate_contract(mutated)
+        self.assertIn(
+            "analysis_scenarios.primary: power value and unit must match the related documentary claim",
+            errors,
+        )
+
+    def test_contract_rejects_inconsistent_documented_displacement(self):
+        mutated = copy.deepcopy(self.config)
+        mutated["geometry"]["documented_displacement_cm3"] = 5000.0
+        errors = F9.validate_contract(mutated)
+        self.assertIn(
+            "geometry.documented_displacement_cm3: differs by more than 0.1% from bore, stroke and cylinder count",
+            errors,
+        )
+
     def test_cli_writes_the_same_fail_closed_report(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             output = Path(temp_dir) / "report.json"
