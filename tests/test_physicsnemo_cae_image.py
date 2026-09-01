@@ -181,6 +181,8 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
             "steps.build.outputs.digest",
             "docker pull \"${pinned_ref}\"",
             "--network none",
+            "--entrypoint /opt/physicsnemo/bin/python",
+            "/usr/local/bin/physicsnemo-cae-smoke",
             "docker buildx imagetools inspect --raw",
             "application/vnd.oci.image.manifest.v1+json",
             "DOCKER_CONFIG=\"${anonymous_config}\"",
