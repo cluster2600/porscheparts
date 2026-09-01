@@ -28,7 +28,7 @@ curl --fail --silent --show-error --max-time 60 \
 
 curl --fail --silent --show-error --max-time 90 \
     --header 'Content-Type: application/json' \
-    --data "{\"model\":\"${MODEL_NAME}\",\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Reply with the dominant colour only.\"},{\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/gif;base64,R0lGODlhAQABAPAAAP8AAAAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==\"}}]}],\"max_tokens\":16,\"temperature\":0}" \
+    --data "{\"model\":\"${MODEL_NAME}\",\"messages\":[{\"role\":\"user\",\"content\":[{\"type\":\"text\",\"text\":\"Reply with the dominant colour only.\"},{\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAIAAAAn5KxJAAAASElEQVR4nO3OQQkAMBADsPo3vTm4bykEIiB5yYT+QFRUVFRUVFRUVHRAfyAqKioqKioqKio6oD8QFRUVFRUVFRUVHdAfiIrePiJyNHVX9iCVAAAAAElFTkSuQmCC\"}}]}],\"max_tokens\":16,\"temperature\":0}" \
     http://127.0.0.1:8000/v1/chat/completions \
     | jq -e '.choices[0].message.content | strings | length > 0' >/dev/null
 

@@ -5,6 +5,7 @@ FROM ghcr.io/cluster2600/3dprinting993-physicsml@sha256:80db460bb3a061d05f73c319
 FROM ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:86d31952f169c8daf78a474ec9d95663f4a7f211ab68f9cfad2371a67b9507bf
 
 ARG VLLM_VERSION=0.8.5.post1
+ARG TRANSFORMERS_VERSION=4.51.3
 ARG PHYSICSNEMO_VERSION=2.2.0
 ARG LOCAL_VLM_REPOSITORY=Qwen/Qwen2.5-VL-7B-Instruct
 ARG LOCAL_VLM_REVISION=cc594898137f460bfe9f0759e9844b3ce807cfb5
@@ -24,7 +25,8 @@ COPY --from=physicsml /opt/venv /opt/venv
 # vLLM supplies the local OpenAI-compatible multimodal endpoint.
 RUN python3.12 -m venv /opt/local-ai \
     && /opt/local-ai/bin/pip install --no-cache-dir --upgrade "pip>=26.1" \
-    && /opt/local-ai/bin/pip install --no-cache-dir "vllm==${VLLM_VERSION}" \
+    && /opt/local-ai/bin/pip install --no-cache-dir \
+       "vllm==${VLLM_VERSION}" "transformers==${TRANSFORMERS_VERSION}" \
     && mkdir -p "${LOCAL_VLM_PATH}" \
     && HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 \
        /opt/local-ai/bin/python -c \

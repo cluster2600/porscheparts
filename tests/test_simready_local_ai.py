@@ -9,6 +9,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
     def test_image_pins_model_runtime_and_physicsnemo(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
         self.assertIn("VLLM_VERSION=0.8.5.post1", dockerfile)
+        self.assertIn("TRANSFORMERS_VERSION=4.51.3", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
         self.assertIn("3dprinting993-physicsml@sha256:80db460bb3a061d05f73c319f02f91f74e7c8506512ffd7edb5a3645c12afbc4", dockerfile)
         self.assertIn("COPY --from=physicsml /opt/venv /opt/venv", dockerfile)
@@ -34,7 +35,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
     def test_live_smoke_covers_multimodal_input(self):
         smoke = (ROOT / "containers/simready-local-ai-smoke.sh").read_text()
         config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()
-        self.assertIn("data:image/gif;base64", smoke)
+        self.assertIn("data:image/png;base64", smoke)
         self.assertIn("image_url", smoke)
         self.assertIn("--limit-mm-per-prompt image=20", config)
 
