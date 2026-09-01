@@ -10,7 +10,7 @@ test -f "${MODEL_PATH}/model.safetensors.index.json"
 test -f "${MODEL_PATH}/LICENSE.apache-2.0"
 /opt/local-ai/bin/pip check
 "${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -m pip check
-/opt/local-ai/bin/python -c 'import torch, torchaudio, torchvision, vllm; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
+/opt/local-ai/bin/python -c 'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0+cu129"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
 "${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -c 'import physicsnemo, torch, torchvision; assert physicsnemo.__version__ == "2.2.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
 
 if [ "${1:-}" = "--offline" ]; then

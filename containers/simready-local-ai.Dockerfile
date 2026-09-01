@@ -4,6 +4,7 @@ ARG TARGETPLATFORM=linux/amd64
 FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
 
 ARG VLLM_VERSION=0.26.0
+ARG VLLM_CU129_WHEEL_URL=https://github.com/vllm-project/vllm/releases/download/v0.26.0/vllm-0.26.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl#sha256=6ce4ca30616f0a35810391015622b197a7b8b267ed27f8716f0789db79ff578b
 ARG VLLM_TORCH_VERSION=2.11.0
 ARG VLLM_TORCHVISION_VERSION=0.26.0
 ARG VLLM_TORCHAUDIO_VERSION=2.11.0
@@ -90,10 +91,10 @@ RUN /opt/local-ai/bin/pip install --no-cache-dir \
 
 RUN /opt/local-ai/bin/pip install --no-cache-dir \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
-       "vllm==${VLLM_VERSION}" \
+       "${VLLM_CU129_WHEEL_URL}" \
     && /opt/local-ai/bin/pip check \
     && /opt/local-ai/bin/python -c \
-       'import torch, torchaudio, torchvision, vllm; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
+       'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0+cu129"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can
