@@ -1,0 +1,118 @@
+{
+  "$comment": "F13 transforme uniquement les detections exterieures locales en registre metrologique conditionnel. Il ne confirme ni l'identite, ni l'echelle, ni la variante, ni la fabricabilite du moteur.",
+  "schema_version": "1.0.0",
+  "phase": "F13",
+  "asset_id": "porsche-917-engine-scan-metrology-f13",
+  "status": "hypothesis_only_physical_calibration_missing",
+  "local_input": {
+    "default_interfaces_report": "work/917-engine/vast-output/reports/interfaces.json",
+    "geometry_must_remain_outside_git": true,
+    "expected_detection_status": "F1_detected_exterior_interfaces",
+    "expected_banks": [
+      "positive",
+      "negative"
+    ],
+    "expected_openings_per_bank": 6
+  },
+  "public_facts": {
+    "candidate_bores": [
+      {
+        "variant_id": "type_912_4_5_na",
+        "bore_mm": 85.0,
+        "source_id": "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+        "evidence_grade": "C",
+        "scope": "published_engine_dimension_not_manufacturing_tolerance"
+      },
+      {
+        "variant_id": "917_5_0_na",
+        "bore_mm": 86.8,
+        "source_id": "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+        "evidence_grade": "C",
+        "scope": "published_engine_dimension_not_manufacturing_tolerance"
+      },
+      {
+        "variant_id": "917_30_turbo_5374",
+        "bore_mm": 90.0,
+        "source_id": "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+        "evidence_grade": "C",
+        "scope": "published_engine_dimension_not_manufacturing_tolerance"
+      }
+    ],
+    "candidate_regular_pitch": {
+      "value_mm": 118.0,
+      "variant_scope": "type_912_candidate_only",
+      "source_id": "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+      "evidence_grade": "D",
+      "scope": "secondary_candidate_not_factory_drawing"
+    },
+    "head_studs": {
+      "count": 48,
+      "free_length_mm": 149.5,
+      "shaft_diameter_mm": 9.0,
+      "mass_each_g": 65.0,
+      "material_family": "Dilavar steel alloy with insulating sleeve",
+      "source_id": "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS",
+      "evidence_grade": "A",
+      "variant_scope": "917_engine_presented_for_1970_not_universalized_to_917_30",
+      "scan_observation_status": "not_observed_in_interfaces_report"
+    }
+  },
+  "derivation_policy": {
+    "scale_method": "conditional_median_of_candidate_pitch_over_each_regular_gap",
+    "regular_gaps_per_bank": 4,
+    "central_split_rule": "largest_successive_gap_per_bank_excluded_from_regular_pitch",
+    "visible_diameter_semantics": "projected_visible_opening_not_certified_bore_or_spigot",
+    "screening_envelope": "two_times_circle_fit_p95_plus_scale_sensitivity_not_traceable_uncertainty",
+    "variant_comparison": "absolute_numerical_residual_between_conditionally_scaled_visible_diameter_and_published_bore",
+    "selection_allowed": false
+  },
+  "required_physical_controls": [
+    {
+      "id": "PC-01",
+      "quantity": "regular_cylinder_center_pitch",
+      "minimum_measurements": 3,
+      "required_evidence": [
+        "traceable_CMM_or_calibrated_scan_report",
+        "instrument_certificate",
+        "named_datums_and_temperature"
+      ],
+      "status": "missing"
+    },
+    {
+      "id": "PC-02",
+      "quantity": "head_stud_free_length",
+      "minimum_measurements": 3,
+      "required_evidence": [
+        "traceable_length_measurement_report",
+        "instrument_certificate",
+        "part_identity_and_temperature"
+      ],
+      "status": "missing"
+    },
+    {
+      "id": "PC-03",
+      "quantity": "head_stud_shaft_diameter",
+      "minimum_measurements": 3,
+      "required_evidence": [
+        "traceable_diameter_measurement_report",
+        "instrument_certificate",
+        "part_identity_and_temperature"
+      ],
+      "status": "missing"
+    }
+  ],
+  "release_authority": {
+    "verifier_implemented": false,
+    "minimum_independent_calibrated_physical_controls": 3,
+    "physical_control_verifier_implemented": false,
+    "identity_and_variant_verifier_implemented": false,
+    "interface_semantics_verifier_implemented": false,
+    "professional_review_verifier_implemented": false,
+    "identity_release_enabled": false,
+    "scale_release_enabled": false,
+    "variant_release_enabled": false,
+    "functional_release_enabled": false,
+    "fabrication_release_enabled": false,
+    "reason": "Les trois controles physiques calibres sont obligatoires mais non suffisants : identite, variante, semantique des interfaces et revue professionnelle restent independamment requises."
+  }
+}
