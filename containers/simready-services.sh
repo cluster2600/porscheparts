@@ -57,14 +57,22 @@ wait_for_ovrtx() {
 
 case "${1:-}" in
     start)
-        load_credentials
-        simready-nvidia-auth-check
+        if [ "${SIMREADY_LOCAL_AI:-0}" = "1" ]; then
+            echo "simready: using embedded local inference; no NVIDIA API credential required"
+        else
+            load_credentials
+            simready-nvidia-auth-check
+        fi
         mkdir -p /workspace/logs
         if [ -s /tmp/simready-supervisord.pid ] \
             && kill -0 "$(cat /tmp/simready-supervisord.pid)" 2>/dev/null; then
             echo "simready: services already running"
         else
             supervisord -c "${CONFIG}"
+        fi
+        if [ "${SIMREADY_LOCAL_AI:-0}" = "1" ]; then
+            wait_for_health local-vlm http://127.0.0.1:8000/v1/models 180
+            simready-local-ai-smoke
         fi
         wait_for_health material-agent http://127.0.0.1:8100/health 60
         wait_for_health physics-agent http://127.0.0.1:8200/health 60
@@ -79,8 +87,10 @@ case "${1:-}" in
         supervisorctl -c "${CONFIG}" status
         ;;
     foreground)
-        load_credentials
-        simready-nvidia-auth-check
+        if [ "${SIMREADY_LOCAL_AI:-0}" != "1" ]; then
+            load_credentials
+            simready-nvidia-auth-check
+        fi
         exec supervisord -n -c "${CONFIG}"
         ;;
     *)

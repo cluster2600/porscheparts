@@ -2,13 +2,13 @@
 
 Le travail lourd du projet — reconstruction photogrammétrique, maillage, calcul
 EF, CFD et préparation SimReady — ne tient pas sur un poste ordinaire. Il est
-décrit ici comme cinq images conteneurs reproductibles, exécutables localement
+décrit ici comme sept images conteneurs reproductibles, exécutables localement
 ou sur une machine GPU louée à l’heure.
 
 Aucun conteneur n’est nécessaire pour contribuer au catalogue. `make check`
 reste une commande Python sans dépendance.
 
-## Cinq images, cinq besoins
+## Sept images, sept besoins
 
 | Image | Besoin | Contenu | Ordre de grandeur |
 |---|---|---|---|
@@ -17,6 +17,8 @@ reste une commande Python sans dépendance.
 | `3dprinting993-mesh-cfd` | cœurs et mémoire | Blender, pymeshlab, trimesh, build123d, Gmsh, OpenFOAM | scan OBJ → segmentation → proxy STEP → domaine CFD |
 | `3dprinting993-physicsml` | CUDA + mémoire GPU | contenu de `cadsim`, JAX-FEM, PhysicsNeMo, DeepXDE | maillage → solveur différentiable → modèle physique |
 | `3dprinting993-simready` | RTX, 48 Go recommandés | OVRTX, Material Agent, Physics Agent, OpenUSD, SimReady Validator | source 3D → USD enrichi → validation → rendu Omniverse |
+| `3dprinting993-simready-workflow` | RTX, 48 Go recommandés | image SimReady épinglée, prévol CAD et démarrage Vast.ai | validation reproductible avant location |
+| `3dprinting993-simready-local-ai` | GPU 48–80 Go, 500 Go disque | contenu SimReady, Qwen2.5-VL 7B local, vLLM, PhysicsNeMo | chaîne hors API : vues → matériaux/physique → USD → modèles physiques |
 
 La séparation est volontaire. La reconstruction a besoin d’un GPU et d’une image
 CUDA lourde ; le calcul classique tourne aussi bien sur une machine sans GPU,
@@ -33,6 +35,14 @@ injectés après connexion SSH par le wrapper OpenBao, puis
 minimale qui n'affiche ni secret ni réponse, puis lance les services natifs.
 Une erreur HTTP 401/403 bloque donc la chaîne avant la préparation et le rendu
 des lots.
+
+La variante `simready-local-ai` supprime cette dépendance. Elle épingle dans
+l'image le snapshot Apache-2.0 de `Qwen/Qwen2.5-VL-7B-Instruct`, expose son API
+OpenAI-compatible uniquement sur `127.0.0.1:8000`, et route Material Agent et
+Physics Agent vers ce service. PhysicsNeMo 2.2.0 est installé dans le même
+environnement isolé ; il reste un moteur de modèles physiques distinct du
+Physics Agent qui enrichit l'USD. Cette image n'a besoin d'aucun secret
+d'inférence au démarrage.
 
 Le 1er septembre 2026, l'image publiée et testée pour cette chaîne est
 `ghcr.io/cluster2600/3dprinting993-simready@sha256:3947ea34d5101065c97103cc2176f395cb9753cb1d7807acb3cfd095796a4e1a`.
@@ -67,6 +77,7 @@ make container-cadsim     # image CPU
 make container-mesh-cfd   # image CPU dédiée aux gros scans et à la CFD
 make container-physicsml  # image GPU pour JAX-FEM / PhysicsNeMo
 make container-simready   # image GPU NVIDIA CAD-to-SimReady, linux/amd64
+make container-simready-local-ai # SimReady + VLM local + PhysicsNeMo
 make container-smoke-all  # exécute smoke-test.sh dans les cinq images
 ```
 

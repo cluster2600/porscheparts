@@ -132,6 +132,9 @@ elif [ "${MODE}" = "mesh-cfd" ]; then
         bash -lc "source /opt/openfoam${FOAM_VERSION:-13}/etc/bashrc && blockMesh -help"
 elif [ "${MODE}" = "simready" ] || [ "${MODE}" = "simready-workflow" ]; then
     /usr/local/bin/simready-smoke || failures=$((failures + 1))
+elif [ "${MODE}" = "simready-local-ai" ]; then
+    /usr/local/bin/simready-smoke || failures=$((failures + 1))
+    /usr/local/bin/simready-local-ai-smoke --offline || failures=$((failures + 1))
 else
     report FAIL mode "unknown smoke-test mode: ${MODE}"
 fi

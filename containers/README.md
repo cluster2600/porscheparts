@@ -1,15 +1,17 @@
 # Images de calcul
 
-Cinq images reproductibles pour le travail qui ne tient pas sur un poste
+Sept images reproductibles pour le travail qui ne tient pas sur un poste
 ordinaire. Elles ne sont pas nécessaires pour contribuer au catalogue.
 
 | Fichier | Image | Besoin |
 |---|---|---|
 | `recon.Dockerfile` | `3dprinting993-recon` | GPU CUDA : photos vers maillage |
 | `cadsim.Dockerfile` | `3dprinting993-cadsim` | Processeurs : CAO, maillage, EF, CFD, découpe |
+| `mesh-cfd.Dockerfile` | `3dprinting993-mesh-cfd` | Processeurs et mémoire : scans, segmentation et CFD |
 | `physicsml.Dockerfile` | `3dprinting993-physicsml` | GPU CUDA : CAO, EF différentiables et Physics ML |
 | `simready.Dockerfile` | `3dprinting993-simready` | GPU RTX : OVRTX, Material/Physics Agents et validation USD |
 | `simready-workflow.Dockerfile` | `3dprinting993-simready-workflow` | GPU RTX : image SimReady, prévol CAD et démarrage Vast.ai vérifié |
+| `simready-local-ai.Dockerfile` | `3dprinting993-simready-local-ai` | GPU 48–80 Go : SimReady, Qwen VLM local et PhysicsNeMo sans API d'inférence |
 
 Tous les outils embarqués s’exécutent sans interface graphique, afin qu’un script
 puisse rejouer une chaîne complète à l’identique.
@@ -21,8 +23,10 @@ make container-physicsml
 make container-smoke-physicsml
 make container-simready
 make container-simready-workflow
+make container-simready-local-ai
 make container-smoke-simready
 make container-smoke-simready-workflow
+make container-smoke-simready-local-ai
 ```
 
 `simready` est volontairement mono-conteneur. Vast.ai exécute déjà l'image
@@ -49,6 +53,14 @@ inspection de pixels n'est pas disponible.
 ajoute les chemins des règles, fonctions et profils SimReady installés dans
 l'image. Cette enveloppe évite qu'un profil présent soit signalé à tort comme
 non enregistré.
+
+`simready-local-ai` embarque le runtime vLLM, PhysicsNeMo 2.2.0 et un snapshot
+immuable de `Qwen/Qwen2.5-VL-7B-Instruct`. Material Agent et Physics Agent
+utilisent tous deux `http://127.0.0.1:8000/v1` : aucune clé NVIDIA ni API
+d'inférence distante n'est nécessaire. Les poids ajoutent environ 16,6 Go à
+l'image ; cette variante est donc réservée aux locations avec 500 Go de disque
+et au moins 48 Go de VRAM, 80 Go étant préférables pour laisser OVRTX et les
+solveurs cohabiter.
 
 Cette image combine des composants sous licences distinctes. Le convertisseur
 CAD NVIDIA reste soumis à sa propre licence Omniverse et ne doit pas être
