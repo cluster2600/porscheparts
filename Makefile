@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-smoke container-smoke-physicsml container-smoke-simready container-smoke-all container-push container-push-mesh-cfd container-push-simready
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-smoke container-smoke-physicsml container-smoke-simready container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -76,6 +76,9 @@ container-physicsml:
 container-simready:
 	docker build --platform linux/amd64 -f containers/simready.Dockerfile -t 3dprinting993-simready:$(IMAGE_TAG) .
 
+container-simready-workflow:
+	docker build --platform linux/amd64 -f containers/simready-workflow.Dockerfile -t 3dprinting993-simready-workflow:$(IMAGE_TAG) .
+
 container-smoke:
 	docker run --rm 3dprinting993-recon:$(IMAGE_TAG) smoke-test.sh recon
 	docker run --rm 3dprinting993-cadsim:$(IMAGE_TAG) smoke-test.sh cadsim
@@ -96,6 +99,10 @@ container-smoke-all: container-smoke container-smoke-physicsml container-smoke-s
 container-push-simready:
 	docker tag 3dprinting993-simready:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready:$(IMAGE_TAG)
+
+container-push-simready-workflow:
+	docker tag 3dprinting993-simready-workflow:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready-workflow:$(IMAGE_TAG)
+	docker push $(REGISTRY)/3dprinting993-simready-workflow:$(IMAGE_TAG)
 
 container-push:
 	docker tag 3dprinting993-recon:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-recon:$(IMAGE_TAG)
