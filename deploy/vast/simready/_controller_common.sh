@@ -38,8 +38,14 @@ require_vast_wrapper() {
 guard_and_prepare_ssh() {
     local instance_id="$1" expected_image="$2" max_dph="$3" guard_report="$4" known_hosts="$5"
     shift 5
-    local status_args=()
-    local guard_mode_args=()
+    local guard_args=(
+        --wrapper "${OPENBAO_VASTAI_BIN}"
+        --instance-id "${instance_id}"
+        --expected-image "${expected_image}"
+        --expected-label "${EXPECTED_LABEL}"
+        --max-actual-dph "${max_dph}"
+        --require-ssh
+    )
     local status
     require_vast_wrapper
     [[ "${VAST_SSH_IDENTITY_FILE}" = /* ]] \
@@ -56,23 +62,15 @@ raise SystemExit(
     0 if info.st_uid == os.getuid() and stat.S_ISREG(info.st_mode) and stat.S_IMODE(info.st_mode) == 0o600 else 1
 )
 PY
-    for status in "$@"; do status_args+=(--allowed-status "${status}"); done
+    for status in "$@"; do guard_args+=(--allowed-status "${status}"); done
     if [ "${GUARD_SKIP_COST_CAP:-0}" = "1" ]; then
-        guard_mode_args+=(--skip-cost-cap)
+        guard_args+=(--skip-cost-cap)
     fi
     if [ "${GUARD_SKIP_CAPABILITY_FLOOR:-0}" = "1" ]; then
-        guard_mode_args+=(--skip-capability-floor)
+        guard_args+=(--skip-capability-floor)
     fi
-    python3 "${INSTANCE_GUARD}" \
-        --wrapper "${OPENBAO_VASTAI_BIN}" \
-        --instance-id "${instance_id}" \
-        --expected-image "${expected_image}" \
-        --expected-label "${EXPECTED_LABEL}" \
-        --max-actual-dph "${max_dph}" \
-        --require-ssh \
-        "${guard_mode_args[@]}" \
-        --report "${guard_report}" \
-        "${status_args[@]}" >/dev/null
+    guard_args+=(--report "${guard_report}")
+    python3 "${INSTANCE_GUARD}" "${guard_args[@]}" >/dev/null
     read -r SSH_HOST SSH_PORT < <(python3 - "${guard_report}" <<'PY'
 import json
 from pathlib import Path
