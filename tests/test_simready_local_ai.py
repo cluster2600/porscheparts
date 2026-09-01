@@ -55,6 +55,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             dockerfile,
         )
         self.assertIn("smoke-test.sh simready-local-ai", onstart)
+        self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}"', onstart)
         self.assertIn("/usr/local/bin/physicsnemo-gpu-smoke", onstart)
         self.assertLess(onstart.index("physicsnemo-gpu-smoke"), onstart.index('touch "${WORKSPACE}/READY"'))
         self.assertNotIn("smoke-test.sh simready >", onstart)
@@ -72,6 +73,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertNotIn("simready-local-ai:latest", local_build)
         self.assertIn("- name: Promote verified local AI image", workflow)
         self.assertIn("docker buildx imagetools create", workflow)
+        self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
         self.assertLess(
             workflow.index("- name: Pull and smoke test the published image"),
