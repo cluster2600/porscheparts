@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_kind": "oci_image_lock",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12",
+    "digest": "sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a",
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64"
+    },
+    "created_at": "2026-09-01T22:25:06.777142873Z",
+    "manifest": {
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 3719,
+      "config_digest": "sha256:bcc51a094bf17a465fb213d4bde012cac25d646b226cbdaf7c4fba45cb105acc",
+      "config_size_bytes": 25897,
+      "layer_count": 18,
+      "compressed_size_bytes": 7710342549,
+      "largest_layer_digest": "sha256:9e1050899073503d16d65f1d67bee945d9b98280bed0b00562d571bdb3773204",
+      "largest_layer_bytes": 4753404299,
+      "limits": {
+        "max_layer_bytes_exclusive": 5000000000,
+        "max_total_bytes_exclusive": 45000000000
+      },
+      "limits_passed": true
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "acb6f74f3057e3261223e5b49f7f9a648935dda8",
+    "image_revision_label_present": false,
+    "provenance_attestation_present": false,
+    "sbom_present": false,
+    "inputs": [
+      {
+        "path": "containers/physicsnemo-cae-cu12.Dockerfile",
+        "sha256": "384ba2753f980cdf7b3a9dfdb8b6dddf2c13e77a0b448a0d24b38202ffa3cdb5"
+      },
+      {
+        "path": "containers/physicsnemo-cae-cu12-constraints.txt",
+        "sha256": "ab01db2e7628c81ceb0f29006b795cc2bbeac567b73a3c2ebae0e767f784e5cf"
+      },
+      {
+        "path": "containers/physicsnemo-cae-cu12-smoke.py",
+        "sha256": "e02e7c00d21f845aece38d1c4bd0f772925a4172f2fab0f43b889244971e73b5"
+      },
+      {
+        "path": ".github/workflows/physicsnemo-cae-image.yml",
+        "sha256": "1afae551968b98b5095a447ace7cab291d01fc65dc1e996810f929ca52d342be"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "verified_at": "2026-09-01T22:48:02Z",
+    "workflow": {
+      "run_id": 33567830241,
+      "run_number": 6,
+      "job_id": 100054953537,
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33567830241"
+    },
+    "evidence_artifact": {
+      "id": 9823872789,
+      "name": "physicsnemo-cae-cu12-acb6f74f3057e3261223e5b49f7f9a648935dda8",
+      "digest": "sha256:131780e045b5e7a7d200a8d6eddd96a0171c6d4cef051fc20d5d5e8159e26e38",
+      "size_bytes": 825
+    },
+    "registry_manifest_digest_recomputed": true,
+    "published_digest_pulled": true,
+    "anonymous_exact_digest_access": true,
+    "offline_smoke": {
+      "status": "passed",
+      "offline": true,
+      "python_version": "3.12.3",
+      "physicsnemo_version": "2.2.1",
+      "torch_version": "2.10.0+cu128",
+      "torchvision_version": "0.25.0+cu128",
+      "torch_compiled_cuda": "12.8",
+      "public_model_imports": {
+        "DoMINO": "physicsnemo.models.domino.model.DoMINO",
+        "GeoTransolver": "physicsnemo.models.geotransolver.geotransolver.GeoTransolver",
+        "MeshGraphNet": "physicsnemo.models.meshgraphnet.meshgraphnet.MeshGraphNet"
+      },
+      "gpu_runtime": {
+        "checked": false,
+        "required": false
+      }
+    }
+  },
+  "bundled_assets": {
+    "raw_scans": false,
+    "datasets": false,
+    "model_weights": false
+  },
+  "release_gates": {
+    "image_build_and_public_pull": true,
+    "gpu_runtime_verified": false,
+    "ssh_transport_verified_for_current_rental": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_long_job_allowed": false
+  },
+  "claim_scope": "Le lock prouve uniquement l'artefact OCI public, ses versions, ses imports et son smoke hors GPU. Il ne prouve ni calcul moteur, entraînement PhysicsNeMo, exécution GPU, corrélation physique, aptitude à la fabrication ou autorisation de location Vast.ai."
+}

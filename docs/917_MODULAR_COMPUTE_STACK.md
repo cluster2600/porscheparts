@@ -10,9 +10,13 @@ preuves complète entre le modèle USD, les calculs, les photos et le film.
 
 Les noms `simready-core`, `cae-reference`, `physicsnemo-cae-cu12`,
 `ovrtx-vlm-cu129` et `media-cpu` sont les noms de travail des futures images.
-Ils ne doivent pas être
-utilisés par le contrôleur tant que leur build, leur publication et leurs smoke
-tests ne sont pas verts.
+Au 2 septembre 2026, seul `physicsnemo-cae-cu12` dispose d'un
+[lock OCI vérifié](../containers/physicsnemo-cae-cu12.lock.json) : build
+`linux/amd64`, pull anonyme par digest et smoke hors GPU sont verts. Son smoke
+GPU et son transport SSH sur une location courante restent faux ; il n'est donc
+pas encore autorisé pour un job Vast long. Les quatre autres noms ne doivent pas
+être utilisés par le contrôleur tant que leur build, leur publication et leurs
+smoke tests ne sont pas verts.
 
 La règle de revendication reste stricte : un rendu OVRTX, une photo ou un film
 ne démontre ni comportement physique, ni puissance, ni tenue thermique, ni

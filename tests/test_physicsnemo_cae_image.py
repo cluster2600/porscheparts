@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import sys
 from types import ModuleType, SimpleNamespace
@@ -16,6 +18,7 @@ CONSTRAINTS = ROOT / "containers/physicsnemo-cae-cu12-constraints.txt"
 SMOKE = ROOT / "containers/physicsnemo-cae-cu12-smoke.py"
 README = ROOT / "containers/README.physicsnemo-cae-cu12.md"
 WORKFLOW = ROOT / ".github/workflows/physicsnemo-cae-image.yml"
+LOCK = ROOT / "containers/physicsnemo-cae-cu12.lock.json"
 
 
 def _load_smoke_module():
@@ -191,6 +194,75 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
             self.assertIn(fragment, workflow)
         self.assertNotIn(":latest", workflow)
         self.assertNotIn("cache-to: type=gha,mode=max", workflow)
+
+    def test_lock_oci_est_immuable_public_et_borne(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        image = lock["image"]
+        digest = image["digest"]
+        manifest = image["manifest"]
+
+        self.assertEqual(lock["schema_version"], "1.0.0")
+        self.assertRegex(digest, r"^sha256:[0-9a-f]{64}$")
+        self.assertEqual(
+            image["immutable_reference"], f"{image['repository']}@{digest}"
+        )
+        self.assertEqual(image["platform"], {"os": "linux", "architecture": "amd64"})
+        self.assertEqual(
+            manifest["media_type"], "application/vnd.oci.image.manifest.v1+json"
+        )
+        self.assertGreater(manifest["layer_count"], 0)
+        self.assertLess(
+            manifest["largest_layer_bytes"],
+            manifest["limits"]["max_layer_bytes_exclusive"],
+        )
+        self.assertLess(
+            manifest["compressed_size_bytes"],
+            manifest["limits"]["max_total_bytes_exclusive"],
+        )
+        self.assertTrue(manifest["limits_passed"])
+        self.assertFalse(lock["recipe"]["image_revision_label_present"])
+        self.assertFalse(lock["recipe"]["provenance_attestation_present"])
+        self.assertFalse(lock["recipe"]["sbom_present"])
+
+        verification = lock["verification"]
+        self.assertEqual(verification["status"], "passed")
+        self.assertEqual(verification["workflow"]["conclusion"], "success")
+        self.assertTrue(verification["registry_manifest_digest_recomputed"])
+        self.assertTrue(verification["published_digest_pulled"])
+        self.assertTrue(verification["anonymous_exact_digest_access"])
+
+    def test_lock_relit_les_hashes_des_entrees(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        for source in lock["recipe"]["inputs"]:
+            path = ROOT / source["path"]
+            self.assertTrue(path.is_file(), source["path"])
+            self.assertEqual(
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+                source["sha256"],
+                source["path"],
+            )
+
+    def test_lock_reste_fail_closed_hors_preuve_runtime(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        smoke = lock["verification"]["offline_smoke"]
+        self.assertEqual(smoke["status"], "passed")
+        self.assertEqual(smoke["physicsnemo_version"], "2.2.1")
+        self.assertEqual(smoke["torch_compiled_cuda"], "12.8")
+        self.assertEqual(
+            set(smoke["public_model_imports"]),
+            {"DoMINO", "GeoTransolver", "MeshGraphNet"},
+        )
+        self.assertEqual(
+            lock["bundled_assets"],
+            {"raw_scans": False, "datasets": False, "model_weights": False},
+        )
+        self.assertFalse(smoke["gpu_runtime"]["checked"])
+
+        gates = lock["release_gates"]
+        self.assertTrue(gates.pop("image_build_and_public_pull"))
+        self.assertTrue(gates)
+        self.assertTrue(all(value is False for value in gates.values()))
+        self.assertIn("ne prouve ni calcul moteur", lock["claim_scope"])
 
 
 if __name__ == "__main__":

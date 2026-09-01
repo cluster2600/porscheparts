@@ -76,6 +76,26 @@ et la location doit utiliser son **digest immuable**, pas le tag. La liste
 exacte des dépendances résolues est conservée dans
 `/opt/physicsnemo/environment.freeze.txt`.
 
+## Artefact CI verrouillé
+
+Le workflow GitHub Actions no 6 est vert et a publié un manifeste OCI simple
+`linux/amd64`. Le digest, les tailles, les versions, les hashes des recettes et
+les gates fail-closed sont enregistrés dans
+[`physicsnemo-cae-cu12.lock.json`](physicsnemo-cae-cu12.lock.json).
+
+```text
+ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a
+```
+
+La [preuve CI](https://github.com/cluster2600/3dprinting993/actions/runs/33567830241)
+confirme le pull public anonyme du digest et le smoke hors GPU. Elle ne contient
+aucun scan, dataset ou poids. Le runtime GPU, le transport SSH d'une future
+location, les solveurs moteur, l'entraînement et la corrélation au banc restent
+explicitement non vérifiés ; le lock interdit donc encore un job Vast long.
+L'image ne porte pas encore de label de révision OCI, de provenance attestée ni
+de SBOM : l'association au commit repose donc sur l'artefact du workflow, et une
+diffusion externe qualifiée exige encore ces trois éléments.
+
 ## Frontière solveur / surrogate
 
 PhysicsNeMo n'est pas le solveur physique de référence. Le flux admissible est :
