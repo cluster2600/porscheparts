@@ -27,6 +27,7 @@ def main() -> int:
     parser.add_argument("--mechanical", type=Path)
     parser.add_argument("--seals", type=Path)
     parser.add_argument("--ducts", type=Path)
+    parser.add_argument("--external-interfaces", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     project_root = args.project_root.resolve()
@@ -34,8 +35,17 @@ def main() -> int:
     mechanical_path = (args.mechanical or twin_root / "mechanical-connections-f8.json").resolve()
     seals_path = (args.seals or twin_root / "sealing-interfaces-f8.json").resolve()
     ducts_path = (args.ducts or twin_root / "ducts-f8.json").resolve()
+    external_interfaces_path = (
+        args.external_interfaces or twin_root / "external-interfaces-f8.json"
+    ).resolve()
 
-    validation = validate_contracts(project_root, mechanical_path, seals_path, ducts_path)
+    validation = validate_contracts(
+        project_root,
+        mechanical_path,
+        seals_path,
+        ducts_path,
+        external_interfaces_path,
+    )
     if validation["status"] != "passed":
         report = {
             "schema_version": "1.0.0",
@@ -44,6 +54,8 @@ def main() -> int:
             "physics_joints_authored": False,
             "pressure_boundaries_released": False,
             "flow_simulation_executed": False,
+            "external_interface_geometry_released": False,
+            "external_boundary_conditions_released": False,
         }
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -53,16 +65,19 @@ def main() -> int:
     mechanical = load_json(mechanical_path)
     seals = load_json(seals_path)
     ducts = load_json(ducts_path)
+    external = load_json(external_interfaces_path)
     missing = (
         missing_inputs(mechanical, "mechanical_connections", "measurements")
         + missing_inputs(seals, "sealing_interfaces", "seal_specification")
         + missing_inputs(ducts, "ducts", "measurements")
+        + missing_inputs(external, "external_interfaces", "measurements")
     )
     inputs_complete = not missing
     prohibited_use = sorted(
         set(mechanical["prohibited_use"])
         | set(seals["prohibited_use"])
         | set(ducts["prohibited_use"])
+        | set(external["prohibited_use"])
     )
     report = {
         "schema_version": "1.0.0",
@@ -83,8 +98,11 @@ def main() -> int:
         "pressure_boundaries_released": False,
         "released_duct_instances": 0,
         "flow_simulation_executed": False,
+        "registered_external_interface_instances": validation["counts"]["external_interface_instances"],
+        "external_interface_geometry_released": False,
+        "external_boundary_conditions_released": False,
         "maximum_authorized_use": "semantic_connectivity_and_measurement_planning_only",
-        "next_action": "measure_interface_frames_sealing_surfaces_and_internal_duct_geometry_then_review_each_release_gate",
+        "next_action": "measure_interface_frames_sealing_surfaces_internal_duct_geometry_and_external_boundaries_then_review_each_release_gate",
         "prohibited_use": prohibited_use,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

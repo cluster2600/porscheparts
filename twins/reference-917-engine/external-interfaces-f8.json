@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F8_1_external_interface_registry_measurements_pending",
+  "units": "SI_with_geometry_in_mm",
+  "base_stage_requirement": "validated_F5_start_support_USD",
+  "source_ids": [
+    "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+    "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+    "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+    "SRC-STUTTCARS-917-TECHNICAL-DETAILS"
+  ],
+  "input_profiles": {
+    "external_boundary_definition": [
+      "reference_frame_and_interface_geometry_mm",
+      "boundary_type",
+      "connected_system_definition",
+      "pressure_temperature_or_flow_boundary",
+      "operating_envelope_and_transients",
+      "evidence_and_review_record"
+    ]
+  },
+  "external_interfaces": [
+    {"id": "bench_intake_ambient", "count": 1, "variant": "all", "domain": "intake_air", "input_profile": "external_boundary_definition", "traceability": "F8_1_required_open_boundary_no_F4_interface_record", "measurements": {}, "geometry_released": false, "boundary_conditions_released": false},
+    {"id": "dry_sump_oil_network", "count": 1, "variant": "all", "domain": "dry_sump_oil", "input_profile": "external_boundary_definition", "traceability": "F4_and_F5_topology_aggregate_not_a_modelled_component", "measurements": {}, "geometry_released": false, "boundary_conditions_released": false},
+    {"id": "pressure_oil_network", "count": 1, "variant": "917_30_only", "domain": "dry_sump_oil", "input_profile": "external_boundary_definition", "traceability": "F4_pressure_oil_feed_topology_aggregate", "measurements": {}, "geometry_released": false, "boundary_conditions_released": false},
+    {"id": "scavenge_oil_network", "count": 1, "variant": "917_30_only", "domain": "dry_sump_oil", "input_profile": "external_boundary_definition", "traceability": "F4_scavenge_oil_return_topology_aggregate", "measurements": {}, "geometry_released": false, "boundary_conditions_released": false},
+    {"id": "cylinder_and_head_fin_field", "count": 1, "variant": "all", "domain": "external_cooling_air", "input_profile": "external_boundary_definition", "traceability": "F8_1_required_cooling_field_no_internal_shroud_geometry", "measurements": {}, "geometry_released": false, "boundary_conditions_released": false},
+    {"id": "oil_separator_or_breather_outlet", "count": 1, "variant": "all", "domain": "crankcase_ventilation", "input_profile": "external_boundary_definition", "traceability": "F8_1_required_boundary_no_F4_route", "measurements": {}, "geometry_released": false, "boundary_conditions_released": false}
+  ],
+  "acceptance": {
+    "external_interface_group_count": 6,
+    "external_interface_instance_count": 6,
+    "released_geometry_count": 0,
+    "released_boundary_condition_count": 0,
+    "inventory_complete": false,
+    "geometry_ready": false,
+    "boundary_conditions_ready": false
+  },
+  "prohibited_use": [
+    "using_unregistered_external_interface_ids",
+    "treating_topology_boundaries_as_measured_geometry",
+    "releasing_boundary_conditions_without_measurement_and_review",
+    "solver_or_manufacturing_release"
+  ]
+}
