@@ -1,0 +1,161 @@
+{
+  "$comment": "Verrou de publication de l'image F15 seulement. Il ne libere ni le scan, ni une geometrie CAO, ni une simulation, ni une fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F15",
+  "status": "immutable_public_cpu_image_verified_physical_release_blocked",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-obj-metrology-f15",
+    "digest": "sha256:827e639cd126441dfa98fc097d4c8b09a01a28e25545de62ca3a01da963b959a",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-obj-metrology-f15@sha256:827e639cd126441dfa98fc097d4c8b09a01a28e25545de62ca3a01da963b959a",
+    "created_at": "2026-09-01T23:35:49.044067446Z",
+    "index": {
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "size_bytes": 857,
+      "digest_recomputed": true,
+      "platform_manifest_count": 1,
+      "attestation_manifest_count": 1
+    },
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "user": "9175:9175",
+      "python_version": "3.12.14"
+    },
+    "manifest": {
+      "digest": "sha256:38b88c59b7b78bd17704a909175b0f46aa4d19fd64c90a76a42be200e10397bb",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 2373,
+      "config_digest": "sha256:b3348d3ccbadfe19cf244a0fae6d1016606641e668882936704617185f8867eb",
+      "config_size_bytes": 9682,
+      "layer_count": 11,
+      "compressed_size_bytes": 45462453,
+      "largest_layer_digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+      "largest_layer_bytes": 28232655,
+      "limits": {
+        "max_layer_bytes_exclusive": 100000000,
+        "max_total_bytes_exclusive": 100000000
+      },
+      "limits_passed": true
+    },
+    "attestation_manifest": {
+      "digest": "sha256:5b3acd474cc127c764ce1b5ca73fdbc0a4e2d4b54092e465751220028837351e",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 1112,
+      "subject_manifest_digest": "sha256:38b88c59b7b78bd17704a909175b0f46aa4d19fd64c90a76a42be200e10397bb"
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "6c3856b97b8fa87556c4443172e26683d6423d7d",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "dependency_policy": "python_standard_library_only",
+    "provenance_attestation_present": true,
+    "sbom_present": true,
+    "inputs": [
+      {
+        "path": "containers/obj-metrology-f15.Dockerfile",
+        "role": "image_recipe",
+        "sha256": "d6c1ed6b25feec8266a4bf6a49249ea9bce9e19a8bfe0bb4cec008cfed4c6ed3"
+      },
+      {
+        "path": "containers/obj-metrology-f15-requirements.txt",
+        "role": "zero_dependency_declaration_not_copied_into_image",
+        "sha256": "cdc602552e3ed43ec8d45384fd4d7e0b23be6320d15c436bed8f6a77db9af456"
+      },
+      {
+        "path": "containers/obj-metrology-f15-smoke.py",
+        "role": "offline_runtime_smoke",
+        "sha256": "b26819f63d5bce54c081f774f3890e9b599b12860597ee5cb5f833a9955e101d"
+      },
+      {
+        "path": ".github/workflows/obj-metrology-f15-image.yml",
+        "role": "build_publish_and_digest_gate",
+        "sha256": "bb6796767757bac7321f2c671fc000d89c4b8383bfd6bd816b83878c141c6d35"
+      },
+      {
+        "path": "twins/reference-917-engine/source/build_scan_segmentation_f15.py",
+        "role": "embedded_standard_library_pipeline",
+        "sha256": "dd88d940d890573664bf85c9289c21a5ada8264ddc32e6cc19830b9699df5bf1"
+      },
+      {
+        "path": "twins/reference-917-engine/scan-segmentation-f15.json",
+        "role": "embedded_fail_closed_contract",
+        "sha256": "d677a86a3d26e2ee15b91578861011b98f217d80c0156586d6ae50be5286a78d"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "verified_at": "2026-09-01T23:39:35Z",
+    "workflow": {
+      "run_id": 33571699112,
+      "run_number": 2,
+      "job_id": 100066850435,
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33571699112"
+    },
+    "evidence_artifact": {
+      "id": 9825162915,
+      "name": "obj-metrology-f15-6c3856b97b8fa87556c4443172e26683d6423d7d",
+      "digest": "sha256:f7e102be8733cab85ce3d53d956cd507194c7f317b72454d9ca827bcbf9c23dd",
+      "size_bytes": 7976
+    },
+    "registry_index_digest_recomputed": true,
+    "platform_manifest_digest_recomputed": true,
+    "attestation_manifest_digest_recomputed": true,
+    "published_digest_pulled": true,
+    "anonymous_exact_digest_access": true,
+    "provenance": {
+      "predicate_type": "https://slsa.dev/provenance/v1",
+      "layer_digest": "sha256:098820be9ea970d64e2b4bf69e81f2a37dc6c09bb94e47046d82fc73b4bf174d",
+      "layer_size_bytes": 19136,
+      "build_type": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "builder_id": "https://github.com/cluster2600/3dprinting993/actions/runs/33571699112/attempts/1",
+      "resolved_dependency_count": 3
+    },
+    "sbom": {
+      "predicate_type": "https://spdx.dev/Document",
+      "layer_digest": "sha256:9a631888c736b33430a3a46d683a1e867331b32d6097bd9e06ce84c87d00cc03",
+      "layer_size_bytes": 2415570
+    },
+    "offline_smoke": {
+      "status": "passed",
+      "offline": true,
+      "platform_contract": "linux/amd64-cpu",
+      "python_version": "3.12.14",
+      "non_root": true,
+      "gpu_required": false,
+      "implementation": "python_standard_library_only",
+      "synthetic_fixture_only": true,
+      "surface_components": 2,
+      "output_file_count": 4
+    }
+  },
+  "bundled_assets": {
+    "raw_scans": false,
+    "datasets": false,
+    "model_weights": false,
+    "secrets": false
+  },
+  "release_gates": {
+    "immutable_public_image_verified": true,
+    "linux_amd64_offline_smoke_verified": true,
+    "canonical_scan_execution_verified_in_image": false,
+    "scan_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "semantic_segmentation_confirmed": false,
+    "geometry_repaired": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_rental_verified_for_current_job": false,
+    "vast_job_allowed": false
+  }
+}

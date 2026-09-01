@@ -45,6 +45,36 @@ flowchart LR
 CPython est distribué sous licence Python-2.0. Le contrat, le pipeline et le
 smoke suivent la licence MIT du dépôt.
 
+## Publication immuable vérifiée
+
+Le verrou [`containers/obj-metrology-f15.lock.json`](../containers/obj-metrology-f15.lock.json)
+fige les six entrées locales de recette par SHA-256 et la publication GHCR par
+digest OCI :
+
+```text
+ghcr.io/cluster2600/3dprinting993-obj-metrology-f15@sha256:827e639cd126441dfa98fc097d4c8b09a01a28e25545de62ca3a01da963b959a
+```
+
+L'index OCI de 857 octets référence exactement un manifeste exécutable
+`linux/amd64` et un manifeste d'attestations. Le manifeste exécutable contient
+11 couches gzip, soit 45 462 453 octets compressés ; sa plus grande couche fait
+28 232 655 octets. La configuration fixe Python 3.12.14 et l'utilisateur non
+root `9175:9175`.
+
+Le [workflow GitHub Actions vérifié](https://github.com/cluster2600/3dprinting993/actions/runs/33571699112)
+a terminé avec succès au commit
+`6c3856b97b8fa87556c4443172e26683d6423d7d`. L'index, son manifeste de
+plateforme et son manifeste d'attestations ont été relus et leurs digests
+recalculés. La lecture anonyme du digest exact et le smoke hors ligne ont
+réussi. L'attestation contient un SBOM SPDX et une provenance SLSA BuildKit ;
+elle ne constitue pas une preuve physique du moteur.
+
+Seuls les gates « image publique immuable » et « smoke CPU linux/amd64 » sont
+ouverts. L'exécution du scan canonique dans cette image, l'identité, l'échelle,
+la segmentation sémantique, la CAO dimensionnée, les solveurs classiques,
+PhysicsNeMo, la corrélation physique, la simulation moteur, la fabrication,
+l'impression et toute location Vast.ai restent explicitement bloqués.
+
 ## Construction locale
 
 ```bash
@@ -81,6 +111,6 @@ docker run --rm --network none --read-only \
 Un smoke vert, une segmentation ou une image GHCR publiée ne prouve pas
 l'identité 917, l'échelle, la fidélité des interfaces, l'étanchéité, la CAO
 reconstruite, la tenue thermomécanique, le fonctionnement du moteur ni
-l'imprimabilité. Il ne déclenche aucune location Vast.ai. La publication et le
-futur fichier de verrouillage du digest sont des étapes distinctes, réalisées
-seulement après validation du workflow.
+l'imprimabilité. Il ne déclenche aucune location Vast.ai. Le verrou prouve la
+recette et l'exécution synthétique de l'image identifiée ; il ne transforme pas
+ces résultats informatiques en validation d'ingénierie.
