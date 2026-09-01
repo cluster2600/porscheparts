@@ -1,0 +1,1312 @@
+{
+  "$comment": "F13 definit les calculs physiques classiques requis avant tout surrogate PhysicsNeMo. Il ne contient aucun resultat de simulation, aucune cote de fabrication liberee et aucune autorisation d'essai ou d'impression.",
+  "schema_version": "1.0.0",
+  "phase": "F13",
+  "status": "reference_solver_case_definitions_ready_all_execution_and_release_gates_blocked",
+  "asset_id": "porsche-917-classical-solver-cases-f13",
+  "parent_asset_id": "porsche-917-whole-engine-reengineering-f12",
+  "variants": [
+    "type_912_4_5_na",
+    "type_912_5_0_na",
+    "917_30_1973_turbo_5374",
+    "917_30_1975_record_turbo_5374",
+    "917_30_1600_hp_reported_qualifying_target"
+  ],
+  "authority_boundary": {
+    "specification_only": true,
+    "solver_execution_authorized": false,
+    "results_present": false,
+    "correlation_complete": false,
+    "engine_start_authorized": false,
+    "fabrication_authorized": false,
+    "metal_print_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "policy": "Un scan, une valeur publique, un maillage, une convergence numerique ou un surrogate ne prouvent ni la justesse physique, ni la securite, ni la fabricabilite."
+  },
+  "units_policy": {
+    "system": "SI_with_declared_source_units",
+    "rule": "Chaque quantite porte une unite explicite; une conversion ou une enveloppe multi-variante doit etre marquee derived et conserver ses sources.",
+    "unknown_rule": "Une entree inconnue n'a ni valeur, ni plage implicite, ni valeur par defaut."
+  },
+  "source_registry": [
+    {
+      "source_id": "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+      "catalog_path": "catalog/sources/src-ams-917-engine-technical-analysis.json",
+      "language": "de",
+      "rights": "reference_only",
+      "research_matrix_evidence_level": "B",
+      "catalog_declared_evidence_level": "C",
+      "effective_evidence_level": "C_until_reconciled",
+      "contradiction_ref": "CONTRADICTION-AMS-EVIDENCE-LEVEL"
+    },
+    {
+      "source_id": "SRC-KFZ-TECH-917-TYPE912-ENGINE",
+      "catalog_path": "catalog/sources/src-kfz-tech-917-type912-engine.json",
+      "language": "de",
+      "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS",
+      "catalog_path": "catalog/sources/src-porsche-christophorus-917-dilavar-studs.json",
+      "language": "de",
+      "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-PORSCHE-CHRISTOPHORUS-MISSION-917-TURBO",
+      "catalog_path": "catalog/sources/src-porsche-christophorus-mission-917-turbo.json",
+      "language": "de",
+      "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+      "catalog_path": "catalog/sources/src-porsche-newsroom-91730-turbo.json",
+      "language": "de",
+      "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT",
+      "catalog_path": "catalog/sources/src-porsche-newsroom-91730-am-limit.json",
+      "language": "de",
+      "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-HERRMANN-917-ENGINE-TEST-BENCH",
+      "catalog_path": "catalog/sources/src-herrmann-917-engine-test-bench.json",
+      "language": "de",
+      "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING",
+      "catalog_path": "catalog/sources/src-porsche-newsroom-91730-1600-qualifying.json",
+      "language": "en",
+      "rights": "reference_only",
+      "usage_note": "Source Porsche officielle non germanophone conservee uniquement pour la reserve 'reported 1600 HP'."
+    }
+  ],
+  "fact_registry": [
+    {
+      "id": "FACT-CYLINDER-COUNT",
+      "quantity": "cylinder_count",
+      "variant": "all_documented_917_engines",
+      "candidate": {"kind": "published_point", "value": 12, "unit": "count"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-PORSCHE-NEWSROOM-91730-TURBO"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-ARCHITECTURE"]
+    },
+    {
+      "id": "FACT-BANK-ANGLE",
+      "quantity": "bank_angle",
+      "variant": "917_30",
+      "candidate": {"kind": "published_point", "value": 180.0, "unit": "deg"},
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-TURBO"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-ARCHITECTURE"]
+    },
+    {
+      "id": "FACT-45-BORE",
+      "quantity": "cylinder_bore",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": 85.0, "unit": "mm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-50-BORE",
+      "quantity": "cylinder_bore",
+      "variant": "type_912_5_0_na",
+      "candidate": {"kind": "published_point", "value": 86.8, "unit": "mm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-5374-BORE",
+      "quantity": "cylinder_bore",
+      "variant": "917_30_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 90.0, "unit": "mm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-45-STROKE",
+      "quantity": "piston_stroke",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": 66.0, "unit": "mm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-50-STROKE",
+      "quantity": "piston_stroke",
+      "variant": "type_912_5_0_na",
+      "candidate": {"kind": "published_point", "value": 70.4, "unit": "mm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-5374-STROKE",
+      "quantity": "piston_stroke",
+      "variant": "917_30_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 70.4, "unit": "mm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-45-DISPLACEMENT",
+      "quantity": "engine_displacement",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": 4494.0, "unit": "cm3"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-50-DISPLACEMENT",
+      "quantity": "engine_displacement",
+      "variant": "type_912_5_0_na",
+      "candidate": {"kind": "published_point", "value": 4999.0, "unit": "cm3"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-5374-DISPLACEMENT",
+      "quantity": "engine_displacement",
+      "variant": "917_30_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 5374.0, "unit": "cm3"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-PORSCHE-NEWSROOM-91730-TURBO"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-50-COMPRESSION",
+      "quantity": "compression_ratio",
+      "variant": "type_912_5_0_na",
+      "candidate": {"kind": "published_point", "value": 10.5, "unit": "ratio"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-5374-COMPRESSION",
+      "quantity": "compression_ratio",
+      "variant": "917_30_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 6.5, "unit": "ratio"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-50-RATED-SPEED",
+      "quantity": "reported_power_speed",
+      "variant": "type_912_5_0_na",
+      "candidate": {"kind": "published_point", "value": 8300.0, "unit": "rpm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-5374-RATED-SPEED",
+      "quantity": "reported_power_speed",
+      "variant": "917_30_1973_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 7800.0, "unit": "rpm"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-NA-POWER",
+      "quantity": "reported_engine_power",
+      "variant": "type_912_5_0_na",
+      "candidate": {"kind": "published_point", "value": 630.0, "unit": "PS"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "correlation_target_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-TURBO-POWER-1100",
+      "quantity": "reported_engine_power",
+      "variant": "917_30_1973_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 1100.0, "unit": "PS"},
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT", "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "correlation_target_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-TURBO-POWER-1200",
+      "quantity": "reported_engine_power",
+      "variant": "917_30_1973_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 1200.0, "unit": "PS"},
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-TURBO"],
+      "usage": "documentary_claim_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-TURBO-POWER-1230",
+      "quantity": "reported_engine_power",
+      "variant": "917_30_1975_record_turbo_5374",
+      "candidate": {"kind": "published_point", "value": 1230.0, "unit": "PS"},
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"],
+      "usage": "documentary_claim_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-TURBO-POWER-1600-REPORTED",
+      "quantity": "reported_engine_power",
+      "variant": "917_30_1600_hp_reported_qualifying_target",
+      "candidate": {"kind": "reported_claim", "value": 1600.0, "unit": "hp"},
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING"],
+      "usage": "documentary_claim_not_calibration_target",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-POWER-RATINGS"]
+    },
+    {
+      "id": "FACT-FIRING-ORDER",
+      "quantity": "firing_order",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_sequence", "value": [1, 9, 5, 12, 3, 8, 6, 10, 2, 7, 4, 11], "unit": "cylinder_id"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-CYLINDER-NUMBERING"]
+    },
+    {
+      "id": "FACT-MAIN-BEARING-COUNT",
+      "quantity": "main_bearing_count",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": 8, "unit": "count"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": []
+    },
+    {
+      "id": "FACT-CRANKCASE-MATERIAL-FAMILY",
+      "quantity": "crankcase_material_family",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": "sand_cast_magnesium_unspecified_alloy", "unit": "material_family"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_material_family_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-MATERIAL-SPECIFICATIONS"]
+    },
+    {
+      "id": "FACT-CYLINDER-COATING-FAMILY",
+      "quantity": "cylinder_coating_family",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": "Nikasil_unspecified_specification", "unit": "material_family"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_material_family_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-MATERIAL-SPECIFICATIONS"]
+    },
+    {
+      "id": "FACT-ROD-MATERIAL-FAMILY",
+      "quantity": "connecting_rod_material_family",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": "titanium_unspecified_alloy", "unit": "material_family"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_material_family_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-MATERIAL-SPECIFICATIONS"]
+    },
+    {
+      "id": "FACT-STUD-MATERIAL-FAMILY",
+      "quantity": "head_stud_material_family",
+      "variant": "917_1970_presented_engine",
+      "candidate": {"kind": "published_point", "value": "Dilavar_unspecified_grade", "unit": "material_family"},
+      "source_refs": ["SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"],
+      "usage": "candidate_material_family_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-STUD-VARIANT-TRANSFER", "CONTRADICTION-MATERIAL-SPECIFICATIONS"]
+    },
+    {
+      "id": "FACT-CAMS-PER-BANK",
+      "quantity": "camshafts_per_bank",
+      "variant": "type_912_917_unspecified",
+      "candidate": {"kind": "published_point", "value": 2, "unit": "count/bank"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_topology_only",
+      "design_lock": false,
+      "contradiction_refs": []
+    },
+    {
+      "id": "FACT-VALVES-PER-CYLINDER",
+      "quantity": "valves_per_cylinder",
+      "variant": "type_912_917_unspecified",
+      "candidate": {"kind": "published_point", "value": 2, "unit": "count/cylinder"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_topology_only",
+      "design_lock": false,
+      "contradiction_refs": []
+    },
+    {
+      "id": "FACT-HEAD-STUD-COUNT",
+      "quantity": "head_stud_count",
+      "variant": "917_1970_presented_engine",
+      "candidate": {"kind": "published_point", "value": 48, "unit": "count"},
+      "source_refs": ["SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"],
+      "usage": "candidate_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-STUD-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-HEAD-STUD-LENGTH",
+      "quantity": "head_stud_length",
+      "variant": "917_1970_presented_engine",
+      "candidate": {"kind": "published_point", "value": 149.5, "unit": "mm"},
+      "source_refs": ["SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"],
+      "usage": "candidate_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-STUD-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-HEAD-STUD-SHAFT-DIAMETER",
+      "quantity": "head_stud_shaft_diameter",
+      "variant": "917_1970_presented_engine",
+      "candidate": {"kind": "published_point", "value": 9.0, "unit": "mm"},
+      "source_refs": ["SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"],
+      "usage": "candidate_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-STUD-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-HEAD-STUD-MASS",
+      "quantity": "head_stud_mass",
+      "variant": "917_1970_presented_engine",
+      "candidate": {"kind": "published_point", "value": 65.0, "unit": "g"},
+      "source_refs": ["SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS"],
+      "usage": "candidate_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-STUD-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-OIL-PRESSURE-PUMP-COUNT",
+      "quantity": "oil_pressure_pump_count",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": 1, "unit": "count"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_topology_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-OIL-CAPACITY"]
+    },
+    {
+      "id": "FACT-OIL-SCAVENGE-PUMP-COUNT",
+      "quantity": "oil_scavenge_pump_count",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": 6, "unit": "count"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_topology_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-OIL-CAPACITY"]
+    },
+    {
+      "id": "FACT-OIL-CHARGE",
+      "quantity": "reported_engine_oil_charge",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": 24.0, "unit": "L"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-OIL-CAPACITY"]
+    },
+    {
+      "id": "FACT-COOLING-AIR-FLOW",
+      "quantity": "reported_cooling_fan_volumetric_flow",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": 3100.0, "unit": "L/s"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "sensitivity_point_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FAN-OPERATING-POINT"]
+    },
+    {
+      "id": "FACT-CYLINDER-PITCH-CANDIDATE",
+      "quantity": "cylinder_pitch",
+      "variant": "type_912_unspecified",
+      "candidate": {"kind": "published_point", "value": 118.0, "unit": "mm"},
+      "source_refs": ["SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "low_confidence_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-LOW-CONFIDENCE-DIMENSIONS"]
+    },
+    {
+      "id": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+      "quantity": "intake_valve_diameter",
+      "variant": "type_912_unspecified",
+      "candidate": {"kind": "published_point", "value": 47.5, "unit": "mm"},
+      "source_refs": ["SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "low_confidence_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-LOW-CONFIDENCE-DIMENSIONS"]
+    },
+    {
+      "id": "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE",
+      "quantity": "exhaust_valve_diameter",
+      "variant": "type_912_unspecified",
+      "candidate": {"kind": "published_point", "value": 40.5, "unit": "mm"},
+      "source_refs": ["SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "low_confidence_scale_check_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-LOW-CONFIDENCE-DIMENSIONS"]
+    },
+    {
+      "id": "FACT-INJECTION-PRESSURE-CANDIDATE",
+      "quantity": "mechanical_injection_pressure",
+      "variant": "type_912_unspecified",
+      "candidate": {"kind": "published_point", "value": 17.5, "unit": "bar"},
+      "source_refs": ["SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+      "usage": "low_confidence_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-INJECTION-CONDITIONS"]
+    },
+    {
+      "id": "FACT-TURBO-COUNT",
+      "quantity": "turbocharger_count",
+      "variant": "917_30",
+      "candidate": {"kind": "published_point", "value": 2, "unit": "count"},
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-TURBO", "SRC-PORSCHE-CHRISTOPHORUS-MISSION-917-TURBO"],
+      "usage": "candidate_topology_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-TURBO-IDENTITY"]
+    },
+    {
+      "id": "FACT-TURBO-BOOST-CANDIDATE",
+      "quantity": "reported_boost_pressure",
+      "variant": "917_30_unspecified_setting",
+      "candidate": {"kind": "published_point_ambiguous_reference", "value": 1.3, "unit": "bar"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "documentary_claim_not_boundary_condition",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-BOOST-REFERENCE"]
+    },
+    {
+      "id": "FACT-TURBO-SPOOL-QUALITATIVE",
+      "quantity": "reported_turbo_response_delay",
+      "variant": "917_turbo_prototype_1971_1972",
+      "candidate": {"kind": "published_approximation", "value": 1.0, "unit": "s"},
+      "source_refs": ["SRC-PORSCHE-CHRISTOPHORUS-MISSION-917-TURBO"],
+      "usage": "qualitative_transient_target_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-TURBO-TRANSIENT"]
+    },
+    {
+      "id": "FACT-SPARK-PLUGS-PER-CYLINDER",
+      "quantity": "spark_plugs_per_cylinder",
+      "variant": "917_unspecified",
+      "candidate": {"kind": "published_point", "value": 2, "unit": "count/cylinder"},
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "usage": "candidate_topology_only",
+      "design_lock": false,
+      "contradiction_refs": []
+    }
+  ],
+  "candidate_ranges": [
+    {
+      "id": "RANGE-DOCUMENTED-BORE",
+      "quantity": "cylinder_bore",
+      "minimum": 85.0,
+      "maximum": 90.0,
+      "unit": "mm",
+      "component_fact_refs": ["FACT-45-BORE", "FACT-50-BORE", "FACT-5374-BORE"],
+      "derivation": "min_max_of_published_variant_points",
+      "semantics": "documented_variant_envelope_not_continuous_design_range",
+      "design_lock": false
+    },
+    {
+      "id": "RANGE-DOCUMENTED-STROKE",
+      "quantity": "piston_stroke",
+      "minimum": 66.0,
+      "maximum": 70.4,
+      "unit": "mm",
+      "component_fact_refs": ["FACT-45-STROKE", "FACT-50-STROKE", "FACT-5374-STROKE"],
+      "derivation": "min_max_of_published_variant_points",
+      "semantics": "documented_variant_envelope_not_continuous_design_range",
+      "design_lock": false
+    },
+    {
+      "id": "RANGE-DOCUMENTED-DISPLACEMENT",
+      "quantity": "engine_displacement",
+      "minimum": 4494.0,
+      "maximum": 5374.0,
+      "unit": "cm3",
+      "component_fact_refs": ["FACT-45-DISPLACEMENT", "FACT-50-DISPLACEMENT", "FACT-5374-DISPLACEMENT"],
+      "derivation": "min_max_of_published_variant_points",
+      "semantics": "documented_variant_envelope_not_continuous_design_range",
+      "design_lock": false
+    },
+    {
+      "id": "RANGE-DOCUMENTED-COMPRESSION",
+      "quantity": "compression_ratio",
+      "minimum": 6.5,
+      "maximum": 10.5,
+      "unit": "ratio",
+      "component_fact_refs": ["FACT-50-COMPRESSION", "FACT-5374-COMPRESSION"],
+      "derivation": "min_max_of_published_variant_points",
+      "semantics": "documented_variant_envelope_not_continuous_design_range",
+      "design_lock": false
+    },
+    {
+      "id": "RANGE-DOCUMENTED-RATED-SPEED",
+      "quantity": "reported_power_speed",
+      "minimum": 7800.0,
+      "maximum": 8300.0,
+      "unit": "rpm",
+      "component_fact_refs": ["FACT-5374-RATED-SPEED", "FACT-50-RATED-SPEED"],
+      "derivation": "min_max_of_published_variant_points",
+      "semantics": "documented_variant_envelope_not_continuous_operating_limit",
+      "design_lock": false
+    }
+  ],
+  "solver_scenarios": [
+    {
+      "id": "SCENARIO-917-5L-NA",
+      "variant": "type_912_5_0_na",
+      "priority": "first_classical_baseline_candidate",
+      "fact_refs": [
+        "FACT-CYLINDER-COUNT",
+        "FACT-50-BORE",
+        "FACT-50-STROKE",
+        "FACT-50-DISPLACEMENT",
+        "FACT-50-COMPRESSION",
+        "FACT-NA-POWER",
+        "FACT-50-RATED-SPEED"
+      ],
+      "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+      "scan_relationship": {
+        "assessment": "provisionally_more_coherent_with_scan_envelope",
+        "identity_verified": false,
+        "scale_verified": false,
+        "dimensional_fit_verified": false,
+        "rule": "La coherence visuelle ne constitue ni une identification, ni une echelle, ni une geometrie interne."
+      },
+      "case_refs": [
+        "CASE-917-F13-001",
+        "CASE-917-F13-002",
+        "CASE-917-F13-003",
+        "CASE-917-F13-004",
+        "CASE-917-F13-005",
+        "CASE-917-F13-006",
+        "CASE-917-F13-007",
+        "CASE-917-F13-008",
+        "CASE-917-F13-009",
+        "CASE-917-F13-010",
+        "CASE-917-F13-012"
+      ],
+      "execution_authorized": false,
+      "status": "blocked_identity_scale_geometry_and_boundaries_unverified"
+    },
+    {
+      "id": "SCENARIO-91730-1973-TURBO",
+      "variant": "917_30_1973_turbo_5374",
+      "priority": "separate_turbo_reference_candidate",
+      "fact_refs": [
+        "FACT-CYLINDER-COUNT",
+        "FACT-5374-BORE",
+        "FACT-5374-STROKE",
+        "FACT-5374-DISPLACEMENT",
+        "FACT-5374-COMPRESSION",
+        "FACT-TURBO-POWER-1100",
+        "FACT-TURBO-POWER-1200",
+        "FACT-5374-RATED-SPEED",
+        "FACT-TURBO-COUNT",
+        "FACT-TURBO-BOOST-CANDIDATE"
+      ],
+      "source_refs": [
+        "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
+        "SRC-PORSCHE-NEWSROOM-91730-TURBO",
+        "SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"
+      ],
+      "scan_relationship": {
+        "assessment": "not_established",
+        "identity_verified": false,
+        "scale_verified": false,
+        "dimensional_fit_verified": false,
+        "rule": "Ne pas deformer le scan ni melanger les donnees 5,0 L et 5,374 L pour fabriquer un 917/30."
+      },
+      "case_refs": [
+        "CASE-917-F13-001",
+        "CASE-917-F13-002",
+        "CASE-917-F13-003",
+        "CASE-917-F13-004",
+        "CASE-917-F13-005",
+        "CASE-917-F13-006",
+        "CASE-917-F13-007",
+        "CASE-917-F13-009",
+        "CASE-917-F13-010",
+        "CASE-917-F13-011",
+        "CASE-917-F13-012"
+      ],
+      "execution_authorized": false,
+      "status": "blocked_identity_geometry_turbo_maps_and_boundaries_unverified"
+    },
+    {
+      "id": "SCENARIO-91730-1975-RECORD",
+      "variant": "917_30_1975_record_turbo_5374",
+      "priority": "documentary_target_only",
+      "fact_refs": ["FACT-TURBO-POWER-1230"],
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"],
+      "scan_relationship": {
+        "assessment": "not_established",
+        "identity_verified": false,
+        "scale_verified": false,
+        "dimensional_fit_verified": false,
+        "rule": "Le claim de puissance et la presence d'echangeurs ne definissent pas le moteur."
+      },
+      "case_refs": ["CASE-917-F13-001", "CASE-917-F13-011"],
+      "execution_authorized": false,
+      "status": "blocked_documentary_claim_without_configuration_or_bench_data"
+    },
+    {
+      "id": "SCENARIO-91730-1600-HP-REPORTED",
+      "variant": "917_30_1600_hp_reported_qualifying_target",
+      "priority": "documentary_target_only",
+      "fact_refs": ["FACT-TURBO-POWER-1600-REPORTED"],
+      "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING"],
+      "scan_relationship": {
+        "assessment": "not_established",
+        "identity_verified": false,
+        "scale_verified": false,
+        "dimensional_fit_verified": false,
+        "rule": "Reported 1600 hp n'est ni une mesure de calibration, ni une autorisation de reproduction."
+      },
+      "case_refs": ["CASE-917-F13-001", "CASE-917-F13-011"],
+      "execution_authorized": false,
+      "status": "blocked_reported_claim_without_conditions_or_measurement_uncertainty"
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "CONTRADICTION-AMS-EVIDENCE-LEVEL",
+      "statement": "La matrice de recherche classe l'entretien technique AMS au niveau B, tandis que sa fiche catalog/sources actuelle declare C.",
+      "resolution_status": "open",
+      "solver_rule": "Appliquer conservativement le niveau C jusqu'a harmonisation de la taxonomie; cette divergence ne change pas le caractere candidat des valeurs."
+    },
+    {
+      "id": "CONTRADICTION-ARCHITECTURE",
+      "statement": "Porsche publie un V a 180 deg tandis que d'autres textes emploient flat-12; aucun dessin de vilebrequin public ne permet de conclure a une cinematique boxer.",
+      "resolution_status": "open",
+      "solver_rule": "Ne pas construire la cinematique des manetons depuis le seul vocabulaire."
+    },
+    {
+      "id": "CONTRADICTION-VARIANT-MIXING",
+      "statement": "Les valeurs 4,5 L, 5,0 L et 5,374 L appartiennent a des variantes distinctes.",
+      "resolution_status": "open",
+      "solver_rule": "Un cas doit selectionner une variante complete; aucune interpolation multi-variante n'est une configuration historique."
+    },
+    {
+      "id": "CONTRADICTION-POWER-RATINGS",
+      "statement": "Les claims 1100 PS, 1200 PS, 1230 PS et 1600 hp correspondent a des pages, reglages et niveaux de preuve differents.",
+      "resolution_status": "open",
+      "solver_rule": "Conserver des points documentaires separes; aucune valeur n'est une preuve de banc ni une condition limite."
+    },
+    {
+      "id": "CONTRADICTION-CYLINDER-NUMBERING",
+      "statement": "L'ordre d'allumage publie n'est exploitable qu'apres confirmation de la convention de numerotation des cylindres.",
+      "resolution_status": "open",
+      "solver_rule": "Bloquer les excitations cylindre et la distribution tant que la numerotation n'est pas confirmee."
+    },
+    {
+      "id": "CONTRADICTION-STUD-VARIANT-TRANSFER",
+      "statement": "Les 48 goujons et leurs dimensions concernent le moteur presente par Porsche pour 1970; leur transfert au 917/30 n'est pas etabli.",
+      "resolution_status": "open",
+      "solver_rule": "Utiliser uniquement comme controle d'echelle candidat et mesurer l'interface reelle."
+    },
+    {
+      "id": "CONTRADICTION-MATERIAL-SPECIFICATIONS",
+      "statement": "Les familles magnesium moule, Nikasil, titane et Dilavar sont publiees sans nuance complete, etat, traitement ni allowables dependants de la temperature.",
+      "resolution_status": "open",
+      "solver_rule": "Une famille de materiau ne peut fournir aucune propriete solveur ou autorisation de fabrication."
+    },
+    {
+      "id": "CONTRADICTION-OIL-CAPACITY",
+      "statement": "Les 24 L annonces pour le moteur et un reservoir vehicule de 55 L cite ailleurs ne sont pas interchangeables.",
+      "resolution_status": "open",
+      "solver_rule": "Exiger le schema de variante, les niveaux et volumes mesures avant initialisation du reseau."
+    },
+    {
+      "id": "CONTRADICTION-FAN-OPERATING-POINT",
+      "statement": "Le debit de 3100 L/s ne comporte ni regime, ni pression, ni rendement, ni repartition par cylindre.",
+      "resolution_status": "open",
+      "solver_rule": "Ce point sert uniquement a la sensibilite; il ne definit pas une courbe de ventilateur."
+    },
+    {
+      "id": "CONTRADICTION-LOW-CONFIDENCE-DIMENSIONS",
+      "statement": "L'entraxe et les diametres de soupapes proviennent d'une source secondaire non corroboree.",
+      "resolution_status": "open",
+      "solver_rule": "Ne pas verrouiller la CAO, les maillages ou les contacts sur ces valeurs."
+    },
+    {
+      "id": "CONTRADICTION-INJECTION-CONDITIONS",
+      "statement": "La pression d'injection candidate n'est accompagnee ni d'un point de fonctionnement, ni d'un debit, ni d'une loi de came.",
+      "resolution_status": "open",
+      "solver_rule": "Ne pas l'utiliser comme debit ou loi d'injection."
+    },
+    {
+      "id": "CONTRADICTION-TURBO-IDENTITY",
+      "statement": "Les sources retenues attribuent historiquement le turbo a Eberspacher sans reference ni carte; les claims KKK ne sont pas confirmes.",
+      "resolution_status": "open",
+      "solver_rule": "Aucun champ compresseur ou turbine ne peut etre invente ou substitue."
+    },
+    {
+      "id": "CONTRADICTION-BOOST-REFERENCE",
+      "statement": "La valeur publiee de 1,3 bar ne precise pas si elle est absolue ou relative.",
+      "resolution_status": "open",
+      "solver_rule": "Bloquer son emploi comme condition limite jusqu'a identification de la reference et du reglage."
+    },
+    {
+      "id": "CONTRADICTION-TURBO-TRANSIENT",
+      "statement": "Le delai proche d'une seconde est un recit historique, pas une serie temporelle instrumentee.",
+      "resolution_status": "open",
+      "solver_rule": "Cible qualitative de spool et FMEA seulement."
+    }
+  ],
+  "gate_profiles": {
+    "GP-NETWORK-0D1D": {
+      "discretization": {
+        "kind": "network_and_time_step",
+        "status": "blocked",
+        "requirements": ["topologie tracee", "volumes et longueurs mesures", "etude de pas spatial si 1D", "etude de pas de temps"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["bilans masse et energie fermes", "solution independante du pas", "residus ou erreurs normalises archives"],
+        "numeric_threshold": null,
+        "threshold_status": "project_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["mesures de banc synchronisees", "incertitudes instrumentales", "cas calibration separe des cas validation"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["criteres signes avant calcul", "toutes grandeurs critiques dans leur bande approuvee"],
+        "numeric_threshold": null,
+        "threshold_status": "engineering_review_required"
+      }
+    },
+    "GP-CFD": {
+      "discretization": {
+        "kind": "finite_volume_fluid_mesh",
+        "status": "blocked",
+        "requirements": ["domaine fluide etanche", "couches limites", "raffinement soupapes et restrictions", "metriques qualite", "trois niveaux de maillage minimum"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["residus stabilises", "bilans massiques fermes", "grandeurs integrees stables", "independance maillage documentee"],
+        "numeric_threshold": null,
+        "threshold_status": "solver_and_quantity_specific_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["banc de debit ou pression instrumente", "conditions ambiantes", "incertitude et repetabilite"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["bande de debit et pertes approuvee", "absence de non-conservation", "revue modele turbulence et parois"],
+        "numeric_threshold": null,
+        "threshold_status": "engineering_review_required"
+      }
+    },
+    "GP-CHT": {
+      "discretization": {
+        "kind": "coupled_fluid_solid_mesh",
+        "status": "blocked",
+        "requirements": ["domaines fluide et solide valides", "interfaces thermiques tracees", "raffinement parois et ailettes", "trois niveaux de maillage minimum"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["bilans energie fluide-solide fermes", "temperatures et flux stables", "independance maillage et pas de temps"],
+        "numeric_threshold": null,
+        "threshold_status": "solver_and_quantity_specific_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["temperatures culasse par cylindre", "EGT par cylindre", "debit et conditions d'air", "proprietes matiere mesurees"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["limites thermiques matiere approuvees", "gradients et temperatures dans leur bande", "corrélation avec incertitude"],
+        "numeric_threshold": null,
+        "threshold_status": "material_and_test_definition_required"
+      }
+    },
+    "GP-FEA": {
+      "discretization": {
+        "kind": "solid_contact_mesh",
+        "status": "blocked",
+        "requirements": ["geometrie parametrique validee", "contacts et precharges tracees", "raffinement conges filetages et appuis", "trois niveaux de maillage minimum"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["equilibre forces et moments", "energie de contact stable", "grandeurs locales et globales independantes du maillage"],
+        "numeric_threshold": null,
+        "threshold_status": "solver_and_quantity_specific_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["essai coupon matiere et eprouvette procede", "mesure deformation ou charge composant", "precharge et temperature instrumentees"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["allowables approuves", "fatigue et fluage si applicables", "marges avec incertitudes", "revue ingenieur habilite"]
+        ,"numeric_threshold": null,
+        "threshold_status": "material_process_and_duty_cycle_required"
+      }
+    },
+    "GP-MBD": {
+      "discretization": {
+        "kind": "multibody_time_step_and_contact",
+        "status": "blocked",
+        "requirements": ["liaisons et reperes mesures", "lois de raideur et amortissement", "etude de pas de temps", "contacts soupape-piston et came-poussoir"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["contraintes de liaison fermees", "energie et impulsion auditees", "evenements de contact independants du pas"],
+        "numeric_threshold": null,
+        "threshold_status": "model_specific_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["levees soupapes mesurees", "calage mesure", "vibrations ou efforts de distribution au banc"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["aucune interference", "vitesses accelerations et efforts sous limites approuvees", "correlation aux mesures"]
+        ,"numeric_threshold": null,
+        "threshold_status": "geometry_spring_and_test_definition_required"
+      }
+    },
+    "GP-ROTORDYNAMICS": {
+      "discretization": {
+        "kind": "beam_solid_bearing_speed_sweep",
+        "status": "blocked",
+        "requirements": ["arbres et inerties mesures", "paliers et engrenages modelises", "raffinement modal", "balayage regime et ordres"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["frequences et modes stables avec raffinement", "equilibre harmonique ou temporel ferme", "sensibilite paliers et amortissement"]
+        ,"numeric_threshold": null,
+        "threshold_status": "model_specific_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["analyse modale experimentale", "vibrations et phases au banc", "pressions et temperatures paliers"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["vitesses critiques separees de l'enveloppe approuvee", "charges paliers et engrenages acceptees", "vibrations sous limites signees"]
+        ,"numeric_threshold": null,
+        "threshold_status": "bearing_gear_and_duty_cycle_required"
+      }
+    },
+    "GP-ELECTRICAL": {
+      "discretization": {
+        "kind": "circuit_network_and_time_step",
+        "status": "blocked",
+        "requirements": ["schema electrique trace", "modeles bobine bougie alternateur", "charges parasites", "etude de pas de temps"]
+      },
+      "convergence": {
+        "status": "blocked",
+        "requirements": ["bilans puissance fermes", "formes d'onde independantes du pas", "evenements d'allumage resolus"]
+        ,"numeric_threshold": null,
+        "threshold_status": "model_specific_definition_required"
+      },
+      "correlation": {
+        "status": "blocked",
+        "requirements": ["tension courant et energie d'etincelle mesures", "avance mesuree", "temperatures composants", "EMI si applicable"]
+      },
+      "acceptance": {
+        "status": "blocked",
+        "requirements": ["energie et calage dans bandes approuvees", "aucune surtension ou surchauffe", "strategie d'arret testee"]
+        ,"numeric_threshold": null,
+        "threshold_status": "component_and_safety_definition_required"
+      }
+    }
+  },
+  "solver_cases": [
+    {
+      "id": "CASE-917-F13-001",
+      "name": "cycle_moteur_0d_1d",
+      "domain": "engine_cycle_0d_1d",
+      "variants": ["type_912_4_5_na", "type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Etablir bilans masse-energie, echanges gazeux, pression cylindre candidate et charges transferees aux autres cas.",
+      "inputs": [
+        {"id": "cylinder_count", "quantity": "cylinder_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-CYLINDER-COUNT", "required": true},
+        {"id": "bank_angle", "quantity": "bank_angle", "unit": "deg", "status": "candidate", "candidate_ref": "FACT-BANK-ANGLE", "required": true},
+        {"id": "bore", "quantity": "cylinder_bore", "unit": "mm", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-BORE", "required": true},
+        {"id": "stroke", "quantity": "piston_stroke", "unit": "mm", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-STROKE", "required": true},
+        {"id": "displacement", "quantity": "engine_displacement", "unit": "cm3", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-DISPLACEMENT", "required": true},
+        {"id": "compression_ratio", "quantity": "compression_ratio", "unit": "ratio", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-COMPRESSION", "required": true},
+        {"id": "firing_order", "quantity": "firing_order", "unit": "cylinder_id", "status": "candidate", "candidate_ref": "FACT-FIRING-ORDER", "required": true},
+        {"id": "speed_domain", "quantity": "engine_speed", "unit": "rpm", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED", "required": true},
+        {"id": "fuel_definition", "quantity": "fuel_composition_and_properties", "unit": "declared_property_set", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "combustion_calibration", "quantity": "cylinder_pressure_or_heat_release", "unit": "Pa_or_J/degCA", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "gas_exchange_boundaries", "quantity": "intake_exhaust_pressure_temperature_traces", "unit": "Pa,K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "friction_model", "quantity": "engine_friction_map", "unit": "N.m", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["fuel_definition", "combustion_calibration", "gas_exchange_boundaries", "friction_model", "cylinder_numbering", "valve_lift_profiles", "injection_law"],
+      "expected_outputs": [
+        {"quantity": "cylinder_pressure_trace", "unit": "Pa", "status": "not_computed"},
+        {"quantity": "torque_curve", "unit": "N.m", "status": "not_computed"},
+        {"quantity": "mass_flow_and_temperature_boundaries", "unit": "kg/s,K", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "case_acceptance_requirements": ["puissance/couple de validation issus d'un banc trace", "pression cylindre correlee si disponible", "bilans par cylindre et par cycle"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_missing_inputs_and_correlation"}
+    },
+    {
+      "id": "CASE-917-F13-002",
+      "name": "reseau_lubrification_et_tribologie",
+      "domain": "lubrication_0d_1d_and_local_3d",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Dimensionner le reseau carter sec, les recuperations, les paliers et les films sans confondre volume d'huile et courbes de pompe.",
+      "inputs": [
+        {"id": "pressure_pump_count", "quantity": "oil_pressure_pump_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-OIL-PRESSURE-PUMP-COUNT", "required": true},
+        {"id": "scavenge_pump_count", "quantity": "oil_scavenge_pump_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-OIL-SCAVENGE-PUMP-COUNT", "required": true},
+        {"id": "oil_charge", "quantity": "reported_engine_oil_charge", "unit": "L", "status": "candidate", "candidate_ref": "FACT-OIL-CHARGE", "required": true},
+        {"id": "gallery_geometry", "quantity": "oil_gallery_diameters_lengths_roughness", "unit": "mm,mm,um", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "pump_maps", "quantity": "pump_flow_pressure_speed_maps", "unit": "kg/s,Pa,rpm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "oil_properties", "quantity": "temperature_dependent_oil_properties", "unit": "Pa.s,kg/m3,J/kg/K,W/m/K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "bearing_clearances", "quantity": "bearing_clearance_and_surface_finish", "unit": "um", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "bearing_loads", "quantity": "bearing_load_time_histories", "unit": "N", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["gallery_geometry", "pump_maps", "oil_properties", "bearing_clearances", "bearing_loads", "tank_and_deaeration_geometry", "oil_temperature_boundaries"],
+      "expected_outputs": [
+        {"quantity": "gallery_pressure", "unit": "Pa", "status": "not_computed"},
+        {"quantity": "bearing_oil_flow", "unit": "kg/s", "status": "not_computed"},
+        {"quantity": "minimum_film_thickness", "unit": "m", "status": "not_computed"},
+        {"quantity": "oil_temperature", "unit": "K", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "case_acceptance_requirements": ["pression et debit correles sur chaque branche critique", "marges de film et temperature approuvees", "scenario amorcage et perte de pression teste"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_missing_geometry_maps_materials_and_bench_data"}
+    },
+    {
+      "id": "CASE-917-F13-003",
+      "name": "refroidissement_air_ventilateur_et_repartition",
+      "domain": "air_cooling_1d_and_3d_cfd",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Resoudre la courbe ventilateur, les pertes du capotage et la repartition d'air entre cylindres avant la CHT.",
+      "inputs": [
+        {"id": "reported_flow_point", "quantity": "reported_cooling_fan_volumetric_flow", "unit": "L/s", "status": "candidate", "candidate_ref": "FACT-COOLING-AIR-FLOW", "required": true},
+        {"id": "fan_map", "quantity": "fan_pressure_flow_efficiency_speed_map", "unit": "Pa,m3/s,ratio,rpm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "duct_geometry", "quantity": "fan_shroud_baffle_and_fin_geometry", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "leakage", "quantity": "cooling_air_leakage_distribution", "unit": "kg/s", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "ambient", "quantity": "ambient_pressure_temperature_humidity", "unit": "Pa,K,ratio", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "heat_rejection", "quantity": "cylinder_head_heat_rejection", "unit": "W", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["fan_map", "duct_geometry", "leakage", "ambient", "heat_rejection", "fan_speed_ratio"],
+      "expected_outputs": [
+        {"quantity": "cylinder_air_mass_flow_distribution", "unit": "kg/s", "status": "not_computed"},
+        {"quantity": "pressure_loss", "unit": "Pa", "status": "not_computed"},
+        {"quantity": "fan_power", "unit": "W", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-CFD",
+      "case_acceptance_requirements": ["courbe ventilateur mesuree", "debit par cylindre correle", "sensibilite aux fuites et conditions ambiantes"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_single_unqualified_flow_point"}
+    },
+    {
+      "id": "CASE-917-F13-004",
+      "name": "cfd_conduits_admission_et_echappement",
+      "domain": "internal_duct_cfd",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Caracteriser debit, pertes, repartition, swirl/tumble et conditions aux limites turbo depuis des conduits internes reconstruits etanches.",
+      "inputs": [
+        {"id": "intake_valve_diameter", "quantity": "intake_valve_diameter", "unit": "mm", "status": "candidate", "candidate_ref": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE", "required": true},
+        {"id": "exhaust_valve_diameter", "quantity": "exhaust_valve_diameter", "unit": "mm", "status": "candidate", "candidate_ref": "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE", "required": true},
+        {"id": "port_geometry", "quantity": "watertight_intake_exhaust_port_geometry", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "valve_lift_sweep", "quantity": "valve_lift_positions", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "surface_roughness", "quantity": "wall_roughness", "unit": "um", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "fluid_boundaries", "quantity": "pressure_temperature_composition_boundaries", "unit": "Pa,K,mass_fraction", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["port_geometry", "valve_lift_sweep", "surface_roughness", "fluid_boundaries", "valve_seat_geometry", "bench_flow_coefficients"],
+      "expected_outputs": [
+        {"quantity": "mass_flow", "unit": "kg/s", "status": "not_computed"},
+        {"quantity": "pressure_loss", "unit": "Pa", "status": "not_computed"},
+        {"quantity": "flow_coefficients", "unit": "ratio", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-CFD",
+      "case_acceptance_requirements": ["geometrie etanche issue d'une CAO mesuree", "banc de debit par levee", "comparaison entre cylindres et sens de flux"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_scan_has_no_valid_internal_fluid_domains"}
+    },
+    {
+      "id": "CASE-917-F13-005",
+      "name": "cht_culasse_cylindre",
+      "domain": "conjugate_heat_transfer_head_cylinder",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Coupler gaz, air de refroidissement, huile et solides pour les temperatures de culasse, cylindre, sieges et goujons.",
+      "inputs": [
+        {"id": "cylinder_pitch", "quantity": "cylinder_pitch", "unit": "mm", "status": "candidate", "candidate_ref": "FACT-CYLINDER-PITCH-CANDIDATE", "required": true},
+        {"id": "cylinder_coating_family", "quantity": "cylinder_coating_family", "unit": "material_family", "status": "candidate", "candidate_ref": "FACT-CYLINDER-COATING-FAMILY", "required": true},
+        {"id": "solid_geometry", "quantity": "head_cylinder_fin_wall_and_contact_geometry", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "materials", "quantity": "temperature_dependent_material_properties", "unit": "W/m/K,J/kg/K,kg/m3,1/K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "combustion_boundary", "quantity": "gas_side_heat_flux_or_pressure_temperature", "unit": "W/m2_or_Pa,K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "cooling_air_boundary", "quantity": "air_flow_pressure_temperature_distribution", "unit": "kg/s,Pa,K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "thermal_contacts", "quantity": "contact_conductance_and_seal_definition", "unit": "W/m2/K", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["solid_geometry", "materials", "combustion_boundary", "cooling_air_boundary", "thermal_contacts", "oil_side_boundaries", "coatings_and_emissivity"],
+      "expected_outputs": [
+        {"quantity": "metal_temperature_field", "unit": "K", "status": "not_computed"},
+        {"quantity": "heat_flux_field", "unit": "W/m2", "status": "not_computed"},
+        {"quantity": "thermal_expansion_field", "unit": "m", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-CHT",
+      "case_acceptance_requirements": ["EGT et temperature culasse par cylindre", "bilans energie complets", "limites materiaux et jeux a chaud approuves"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_missing_internal_geometry_properties_and_boundaries"}
+    },
+    {
+      "id": "CASE-917-F13-006",
+      "name": "fea_carter",
+      "domain": "structural_thermomechanical_fea_crankcase",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Verifier rigidite, paliers, plans de joint, precharges et fatigue thermo-mecanique du carter.",
+      "inputs": [
+        {"id": "main_bearing_count", "quantity": "main_bearing_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-MAIN-BEARING-COUNT", "required": true},
+        {"id": "crankcase_material_family", "quantity": "crankcase_material_family", "unit": "material_family", "status": "candidate", "candidate_ref": "FACT-CRANKCASE-MATERIAL-FAMILY", "required": true},
+        {"id": "crankcase_geometry", "quantity": "parametric_crankcase_and_bearing_geometry", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "material_allowables", "quantity": "cast_magnesium_properties_and_allowables", "unit": "Pa,1/K,cycles", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "bearing_and_stud_loads", "quantity": "time_and_temperature_dependent_loads", "unit": "N,N.m,K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "contacts_preloads", "quantity": "contact_friction_and_fastener_preloads", "unit": "ratio,N", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["crankcase_geometry", "material_allowables", "bearing_and_stud_loads", "contacts_preloads", "casting_defects", "duty_cycle"],
+      "expected_outputs": [
+        {"quantity": "stress_strain_field", "unit": "Pa,ratio", "status": "not_computed"},
+        {"quantity": "bearing_bore_distortion", "unit": "m", "status": "not_computed"},
+        {"quantity": "fatigue_damage", "unit": "ratio", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-FEA",
+      "case_acceptance_requirements": ["correlation de deformation", "allowables du vrai alliage/procede", "marges approuvees pour tous les cas de charge"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_scan_envelope_is_not_structural_cad"}
+    },
+    {
+      "id": "CASE-917-F13-007",
+      "name": "fea_bielles",
+      "domain": "structural_fatigue_fea_connecting_rods",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Verifier traction-compression, flambement, pied/tete, boulonnerie et fatigue des bielles sans supposer une nuance de titane.",
+      "inputs": [
+        {"id": "rod_material_family", "quantity": "connecting_rod_material_family", "unit": "material_family", "status": "candidate", "candidate_ref": "FACT-ROD-MATERIAL-FAMILY", "required": true},
+        {"id": "rod_geometry", "quantity": "rod_center_length_sections_fillets_and_bolts", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "titanium_spec", "quantity": "titanium_alloy_process_heat_treatment_and_allowables", "unit": "declared_material_state", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "pin_crank_geometry", "quantity": "pin_and_journal_geometry_clearances", "unit": "mm,um", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "cycle_loads", "quantity": "gas_and_inertia_load_history", "unit": "N", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "duty_cycle", "quantity": "speed_load_temperature_histogram", "unit": "rpm,N.m,K,h", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["rod_geometry", "titanium_spec", "pin_crank_geometry", "cycle_loads", "duty_cycle", "surface_treatment_and_residual_stress"],
+      "expected_outputs": [
+        {"quantity": "stress_strain_field", "unit": "Pa,ratio", "status": "not_computed"},
+        {"quantity": "buckling_margin", "unit": "ratio", "status": "not_computed"},
+        {"quantity": "fatigue_life", "unit": "cycles", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-FEA",
+      "case_acceptance_requirements": ["essais matiere et bielle representatifs du procede", "fatigue multiaxiale et boulonnerie", "revue professionnelle avant toute fabrication"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_no_dimensioned_rod_or_material_state"}
+    },
+    {
+      "id": "CASE-917-F13-008",
+      "name": "fea_goujons_culasse",
+      "domain": "structural_thermomechanical_fea_head_studs",
+      "variants": ["type_912_5_0_na"],
+      "purpose": "Etudier precharge, dilatation differentielle, relaxation et fatigue du systeme carter-cylindre-culasse-goujons.",
+      "inputs": [
+        {"id": "stud_count", "quantity": "head_stud_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-HEAD-STUD-COUNT", "required": true},
+        {"id": "stud_length", "quantity": "head_stud_length", "unit": "mm", "status": "candidate", "candidate_ref": "FACT-HEAD-STUD-LENGTH", "required": true},
+        {"id": "stud_shaft_diameter", "quantity": "head_stud_shaft_diameter", "unit": "mm", "status": "candidate", "candidate_ref": "FACT-HEAD-STUD-SHAFT-DIAMETER", "required": true},
+        {"id": "stud_mass", "quantity": "head_stud_mass", "unit": "g", "status": "candidate", "candidate_ref": "FACT-HEAD-STUD-MASS", "required": true},
+        {"id": "stud_material_family", "quantity": "head_stud_material_family", "unit": "material_family", "status": "candidate", "candidate_ref": "FACT-STUD-MATERIAL-FAMILY", "required": true},
+        {"id": "thread_and_seat_geometry", "quantity": "threads_nuts_washers_seats_and_engagement", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "dilavar_properties", "quantity": "dilavar_grade_temperature_properties_relaxation", "unit": "Pa,1/K,K,h", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "assembly_preload", "quantity": "torque_tension_or_elongation_procedure", "unit": "N_or_mm", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["thread_and_seat_geometry", "dilavar_properties", "assembly_preload", "variant_applicability", "thermal_fields", "joint_contact_properties"],
+      "expected_outputs": [
+        {"quantity": "stud_force_over_cycle", "unit": "N", "status": "not_computed"},
+        {"quantity": "joint_separation_margin", "unit": "N", "status": "not_computed"},
+        {"quantity": "relaxation_and_fatigue", "unit": "ratio,cycles", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-FEA",
+      "case_acceptance_requirements": ["geometrie et nuance confirmees", "precharge mesuree", "cycles thermiques instrumentes", "aucun transfert non prouve au 917/30"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_candidate_dimensions_do_not_define_joint"}
+    },
+    {
+      "id": "CASE-917-F13-009",
+      "name": "mbd_distribution",
+      "domain": "multibody_valvetrain_dynamics",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Verifier calage, levee, contacts, efforts, flottement et interference soupape-piston avec la vraie cinematique.",
+      "inputs": [
+        {"id": "speed_domain", "quantity": "engine_speed", "unit": "rpm", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED", "required": true},
+        {"id": "camshafts_per_bank", "quantity": "camshafts_per_bank", "unit": "count/bank", "status": "candidate", "candidate_ref": "FACT-CAMS-PER-BANK", "required": true},
+        {"id": "valves_per_cylinder", "quantity": "valves_per_cylinder", "unit": "count/cylinder", "status": "candidate", "candidate_ref": "FACT-VALVES-PER-CYLINDER", "required": true},
+        {"id": "cam_profiles", "quantity": "measured_cam_lobe_profiles", "unit": "mm/deg", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "valvetrain_geometry", "quantity": "rocker_valve_spring_and_piston_geometry", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "mass_inertia", "quantity": "component_mass_and_inertia", "unit": "kg,kg.m2", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "spring_damper", "quantity": "spring_and_damping_curves", "unit": "N/m,N.s/m", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "lash_and_contacts", "quantity": "lash_contact_stiffness_friction", "unit": "m,N/m,ratio", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["cam_profiles", "valvetrain_geometry", "mass_inertia", "spring_damper", "lash_and_contacts", "cylinder_numbering", "gear_train_phase"],
+      "expected_outputs": [
+        {"quantity": "valve_lift_velocity_acceleration", "unit": "m,m/s,m/s2", "status": "not_computed"},
+        {"quantity": "contact_force", "unit": "N", "status": "not_computed"},
+        {"quantity": "minimum_piston_valve_clearance", "unit": "m", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-MBD",
+      "case_acceptance_requirements": ["aucun contact non voulu", "levees et phases correlees", "efforts sous limites materiaux et ressorts"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_visual_cam_and_valve_proxies_are_not_kinematic_data"}
+    },
+    {
+      "id": "CASE-917-F13-010",
+      "name": "rotordynamique_vilebrequin_sortie_engrenages",
+      "domain": "crankshaft_gear_rotordynamics",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Identifier modes, ordres, torsion, vitesses critiques et charges paliers de l'ensemble a sortie centrale.",
+      "inputs": [
+        {"id": "main_bearing_count", "quantity": "main_bearing_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-MAIN-BEARING-COUNT", "required": true},
+        {"id": "speed_domain", "quantity": "engine_speed", "unit": "rpm", "status": "candidate_range", "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED", "required": true},
+        {"id": "shaft_geometry", "quantity": "crank_output_and_cam_drive_geometry", "unit": "mm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "material_properties", "quantity": "shaft_and_gear_properties", "unit": "Pa,kg/m3,ratio", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "bearing_coefficients", "quantity": "bearing_stiffness_damping_speed_temperature", "unit": "N/m,N.s/m,rpm,K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "cylinder_excitation", "quantity": "cylinder_torque_time_history", "unit": "N.m", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "gear_mesh", "quantity": "gear_mesh_stiffness_error_and_backlash", "unit": "N/m,m", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["shaft_geometry", "material_properties", "bearing_coefficients", "cylinder_excitation", "gear_mesh", "inertias", "supports_and_boundary_conditions"],
+      "expected_outputs": [
+        {"quantity": "critical_speeds", "unit": "rpm", "status": "not_computed"},
+        {"quantity": "torsional_and_bending_response", "unit": "rad,m", "status": "not_computed"},
+        {"quantity": "bearing_and_gear_dynamic_loads", "unit": "N", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "case_acceptance_requirements": ["modes correles par essai", "aucune resonance critique dans l'enveloppe approuvee", "charges transferees a la FEA et lubrification"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_no_dimensioned_shaft_bearings_or_gears"}
+    },
+    {
+      "id": "CASE-917-F13-011",
+      "name": "turbomachines_et_suralimentation",
+      "domain": "turbocharger_1d_cfd_and_rotordynamics",
+      "variants": ["917_30_1973_turbo_5374", "917_30_1975_record_turbo_5374", "917_30_1600_hp_reported_qualifying_target"],
+      "purpose": "Coupler compresseurs, turbines, collecteurs, bypass, echangeurs et inerties sans inventer de carte Eberspacher.",
+      "inputs": [
+        {"id": "turbo_count", "quantity": "turbocharger_count", "unit": "count", "status": "candidate", "candidate_ref": "FACT-TURBO-COUNT", "required": true},
+        {"id": "boost_claim", "quantity": "reported_boost_pressure", "unit": "bar", "status": "candidate_not_boundary_condition", "candidate_ref": "FACT-TURBO-BOOST-CANDIDATE", "required": true},
+        {"id": "spool_claim", "quantity": "reported_turbo_response_delay", "unit": "s", "status": "candidate_qualitative", "candidate_ref": "FACT-TURBO-SPOOL-QUALITATIVE", "required": true},
+        {"id": "compressor_map", "quantity": "compressor_corrected_flow_pressure_ratio_efficiency_speed_map", "unit": "kg/s,ratio,ratio,rpm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "turbine_map", "quantity": "turbine_corrected_flow_expansion_efficiency_speed_map", "unit": "kg/s,ratio,ratio,rpm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "rotor_geometry_inertia", "quantity": "wheel_shaft_bearing_geometry_and_inertia", "unit": "mm,kg.m2", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "bypass_control", "quantity": "wastegate_geometry_and_control_law", "unit": "mm,command", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "gas_boundaries", "quantity": "exhaust_intake_pressure_temperature_composition_transients", "unit": "Pa,K,mass_fraction", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["compressor_map", "turbine_map", "rotor_geometry_inertia", "bypass_control", "gas_boundaries", "bearing_lubrication", "intercooler_maps", "boost_pressure_reference"],
+      "expected_outputs": [
+        {"quantity": "shaft_speed", "unit": "rpm", "status": "not_computed"},
+        {"quantity": "pressure_ratio_and_efficiency", "unit": "ratio", "status": "not_computed"},
+        {"quantity": "surge_choke_and_overspeed_margins", "unit": "ratio", "status": "not_computed"},
+        {"quantity": "spool_response", "unit": "s", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "secondary_gate_profile_refs": ["GP-NETWORK-0D1D", "GP-CFD", "GP-CHT"],
+      "case_acceptance_requirements": ["identite et cartes turbo confirmees", "reference pression boost levee", "surge/choke/overspeed et temperatures dans bandes fabricant", "correlation transitoire au banc"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_no_historical_turbo_identity_maps_or_boundaries"}
+    },
+    {
+      "id": "CASE-917-F13-012",
+      "name": "electrique_allumage_instrumentation_et_arret",
+      "domain": "electrical_ignition_and_safety_network",
+      "variants": ["type_912_5_0_na", "917_30_1973_turbo_5374"],
+      "purpose": "Modeliser production electrique, double allumage, instrumentation banc, alimentation et chaine d'arret avant mise en rotation.",
+      "inputs": [
+        {"id": "spark_plugs_per_cylinder", "quantity": "spark_plugs_per_cylinder", "unit": "count/cylinder", "status": "candidate", "candidate_ref": "FACT-SPARK-PLUGS-PER-CYLINDER", "required": true},
+        {"id": "wiring_topology", "quantity": "wiring_grounding_and_distribution_topology", "unit": "netlist", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "ignition_components", "quantity": "coil_distributor_plug_and_lead_models", "unit": "V,A,H,F,ohm", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "timing_map", "quantity": "ignition_advance_map", "unit": "degCA", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "alternator_map", "quantity": "alternator_voltage_current_speed_temperature_map", "unit": "V,A,rpm,K", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "instrumentation", "quantity": "sensor_ranges_accuracy_sampling_and_calibration", "unit": "declared_measurement_chain", "status": "unknown", "candidate_ref": null, "required": true},
+        {"id": "safety_logic", "quantity": "interlocks_trip_thresholds_and_safe_state", "unit": "logic_and_units", "status": "unknown", "candidate_ref": null, "required": true}
+      ],
+      "blocking_unknowns": ["wiring_topology", "ignition_components", "timing_map", "alternator_map", "instrumentation", "safety_logic", "starter_and_bench_drive_interface"],
+      "expected_outputs": [
+        {"quantity": "spark_voltage_current_energy", "unit": "V,A,J", "status": "not_computed"},
+        {"quantity": "electrical_load_and_temperature", "unit": "W,K", "status": "not_computed"},
+        {"quantity": "fault_detection_and_trip_response", "unit": "s", "status": "not_computed"}
+      ],
+      "gate_profile_ref": "GP-ELECTRICAL",
+      "case_acceptance_requirements": ["EGT et temperature culasse par cylindre", "arret automatique teste par injection de defaut", "calibration et incertitude de chaque voie", "double allumage correle"],
+      "execution": {"authorized": false, "results_present": false, "status": "blocked_no_netlist_component_models_or_safety_requirements"}
+    }
+  ],
+  "coupling_contract": [
+    {"from": "CASE-917-F13-001", "to": ["CASE-917-F13-004", "CASE-917-F13-005", "CASE-917-F13-006", "CASE-917-F13-007", "CASE-917-F13-010", "CASE-917-F13-011"], "data": "pressions_temperatures_debits_et_charges_temporelles", "status": "blocked"},
+    {"from": "CASE-917-F13-002", "to": ["CASE-917-F13-005", "CASE-917-F13-006", "CASE-917-F13-010", "CASE-917-F13-011"], "data": "pressions_debits_temperatures_et_coefficients_paliers", "status": "blocked"},
+    {"from": "CASE-917-F13-003", "to": ["CASE-917-F13-005"], "data": "debit_air_par_cylindre_et_coefficients_convectifs", "status": "blocked"},
+    {"from": "CASE-917-F13-004", "to": ["CASE-917-F13-001", "CASE-917-F13-011"], "data": "coefficients_debit_et_pertes", "status": "blocked"},
+    {"from": "CASE-917-F13-005", "to": ["CASE-917-F13-006", "CASE-917-F13-007", "CASE-917-F13-008", "CASE-917-F13-009", "CASE-917-F13-010"], "data": "champs_temperature_et_dilatation", "status": "blocked"},
+    {"from": "CASE-917-F13-009", "to": ["CASE-917-F13-001", "CASE-917-F13-006"], "data": "lois_levee_et_efforts_distribution", "status": "blocked"},
+    {"from": "CASE-917-F13-010", "to": ["CASE-917-F13-002", "CASE-917-F13-006"], "data": "charges_dynamiques_paliers_engrenages", "status": "blocked"},
+    {"from": "CASE-917-F13-011", "to": ["CASE-917-F13-001", "CASE-917-F13-004", "CASE-917-F13-005"], "data": "conditions_suralimentation_et_thermiques", "status": "blocked"},
+    {"from": "CASE-917-F13-012", "to": ["CASE-917-F13-001", "CASE-917-F13-011"], "data": "calage_allumage_et_arrets_de_securite", "status": "blocked"}
+  ],
+  "physicsnemo_transition": {
+    "role": "optional_surrogate_after_classical_solver_and_physical_correlation",
+    "training_authorized": false,
+    "dataset_ready": false,
+    "classical_cases_passed": 0,
+    "required_case_count": 12,
+    "requirements": [
+      "solveurs classiques verifies et converges",
+      "correlation physique avec incertitudes",
+      "provenance et version de chaque echantillon",
+      "splits train_validation_test sans fuite",
+      "couverture du domaine et cas hors distribution",
+      "quantification d'incertitude et guardrails",
+      "criteres d'abstention du surrogate"
+    ],
+    "candidate_model_families": [
+      {
+        "name": "DoMINO",
+        "data_shape": "geometrie et champs CFD",
+        "candidate_cases": ["CASE-917-F13-003", "CASE-917-F13-004", "CASE-917-F13-005", "CASE-917-F13-011"],
+      "official_repo_path": "https://github.com/NVIDIA/physicsnemo/tree/v2.2.1/physicsnemo/models/domino",
+        "status": "discovery_candidate_not_selected"
+      },
+      {
+        "name": "GeoTransolver",
+        "data_shape": "points ou maillages non structures",
+        "candidate_cases": ["CASE-917-F13-004", "CASE-917-F13-005", "CASE-917-F13-006", "CASE-917-F13-007", "CASE-917-F13-008"],
+      "official_repo_path": "https://github.com/NVIDIA/physicsnemo/tree/v2.2.1/physicsnemo/models/geotransolver",
+        "status": "discovery_candidate_not_selected"
+      },
+      {
+        "name": "MeshGraphNet",
+        "data_shape": "graphe de maillage statique ou transitoire",
+        "candidate_cases": ["CASE-917-F13-005", "CASE-917-F13-006", "CASE-917-F13-007", "CASE-917-F13-008", "CASE-917-F13-009"],
+      "official_repo_path": "https://github.com/NVIDIA/physicsnemo/tree/v2.2.1/physicsnemo/models/meshgraphnet",
+        "status": "discovery_candidate_not_selected"
+      }
+    ],
+    "prohibited_claim": "PhysicsNeMo ne remplace ni la reconstruction CAO, ni le solveur de reference, ni le banc, ni la qualification de fabrication."
+  }
+}
