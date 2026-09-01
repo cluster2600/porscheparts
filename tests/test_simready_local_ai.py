@@ -15,6 +15,8 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("COPY --from=physicsml /opt/venv /opt/venv", dockerfile)
         self.assertIn("Qwen/Qwen2.5-VL-7B-Instruct", dockerfile)
         self.assertIn("LOCAL_VLM_REVISION=cc594898137f460bfe9f0759e9844b3ce807cfb5", dockerfile)
+        self.assertIn("HF_HUB_DISABLE_XET=1", dockerfile)
+        self.assertIn("max_workers=2", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
 
     def test_both_agents_use_the_local_endpoint(self):

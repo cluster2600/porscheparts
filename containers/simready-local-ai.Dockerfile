@@ -16,7 +16,8 @@ ENV SIMREADY_LOCAL_AI=1 \
     LOCAL_VLM_PATH=/opt/models/qwen2.5-vl-7b-instruct \
     PHYSICSNEMO_PYTHON=/opt/venv/bin/python \
     HF_HUB_OFFLINE=1 \
-    TRANSFORMERS_OFFLINE=1
+    TRANSFORMERS_OFFLINE=1 \
+    HF_HUB_DISABLE_XET=1
 
 # PhysicsNeMo retains its already-tested isolated environment because vLLM
 # 0.8.5 requires PyTorch 2.6 while PhysicsNeMo 2.2 requires a newer stack.
@@ -30,7 +31,7 @@ RUN python3.12 -m venv /opt/local-ai \
     && mkdir -p "${LOCAL_VLM_PATH}" \
     && HF_HUB_OFFLINE=0 TRANSFORMERS_OFFLINE=0 \
        /opt/local-ai/bin/python -c \
-       "from huggingface_hub import snapshot_download; snapshot_download(repo_id='${LOCAL_VLM_REPOSITORY}', revision='${LOCAL_VLM_REVISION}', local_dir='${LOCAL_VLM_PATH}')" \
+       "from huggingface_hub import snapshot_download; snapshot_download(repo_id='${LOCAL_VLM_REPOSITORY}', revision='${LOCAL_VLM_REVISION}', local_dir='${LOCAL_VLM_PATH}', max_workers=2)" \
     && cp /usr/share/common-licenses/Apache-2.0 "${LOCAL_VLM_PATH}/LICENSE.apache-2.0" \
     && test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0" \
     && test -f "${LOCAL_VLM_PATH}/model.safetensors.index.json" \
