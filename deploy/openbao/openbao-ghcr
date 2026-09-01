@@ -6,7 +6,6 @@ from __future__ import annotations
 import base64
 import json
 import os
-import shlex
 import socket
 import ssl
 import stat
@@ -195,7 +194,7 @@ def registry_auth_check(username: str, password: str) -> None:
         raise SafeError("GHCR returned an unexpected image digest")
 
 
-def run_vast(username: str, password: str, operation: list[str]) -> int:
+def run_vast(operation: list[str]) -> int:
     if operation == ["launch-vast-simready-heavy-best"]:
         vast_operation = ["launch-simready-heavy-best"]
     elif len(operation) == 2 and operation[0] == "launch-vast-simready-heavy" and operation[1].isdigit():
@@ -207,13 +206,8 @@ def run_vast(username: str, password: str, operation: list[str]) -> int:
         )
     if not VAST_WRAPPER.is_file() or not os.access(VAST_WRAPPER, os.X_OK):
         raise SafeError(f"missing approved Vast.ai wrapper: {VAST_WRAPPER}")
-    environment = os.environ.copy()
-    environment["OPENBAO_GHCR_IMAGE_LOGIN"] = shlex.join(
-        ["-u", username, "-p", password, "ghcr.io"]
-    )
     result = subprocess.run(
         [str(VAST_WRAPPER), *vast_operation],
-        env=environment,
         check=False,
     )
     return result.returncode
@@ -235,7 +229,7 @@ def main() -> int:
             if operation == ["--auth-check"]:
                 print(f"GHCR read access OK for {username} and pinned SimReady image")
                 return 0
-            return run_vast(username, password, operation)
+            return run_vast(operation)
         finally:
             revoke_token(session_token)
     except SafeError as exc:

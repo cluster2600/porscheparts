@@ -107,14 +107,14 @@ jobs:
           cache-from: type=gha,scope=${{ matrix.image }}
           cache-to: type=gha,mode=min,scope=${{ matrix.image }}
 
-      # BuildKit's container driver downloads both large GHCR bases in parallel,
-      # which can trigger registry throttling. Pull them sequentially into the
-      # enlarged Docker store, with bounded backoff, then build from that store.
+      # Pull the pinned amd64 base into the enlarged Docker store with bounded
+      # backoff before assembling the large local-AI image.
       - name: Preload local AI base images
         if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
         run: |
           mapfile -t base_images < <(
-            sed -nE 's/^FROM ([^ ]+).*/\1/p' containers/simready-local-ai.Dockerfile
+            awk '$1 == "FROM" { for (i = 2; i <= NF; i++) if ($i !~ /^--platform=/) { print $i; break } }' \
+              containers/simready-local-ai.Dockerfile
           )
           for image_ref in "${base_images[@]}"; do
             pulled=false

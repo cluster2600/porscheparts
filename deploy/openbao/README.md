@@ -14,8 +14,8 @@ Le wrapper est volontairement borné à :
 
 Il accepte un token stocké sous l'un des champs `GITHUB_TOKEN`, `GH_TOKEN`,
 `github_token` ou `token`. Sa valeur n'est jamais imprimée. Le wrapper vérifie
-d'abord l'accès au manifeste épinglé, puis transmet l'identifiant Docker au
-wrapper Vast.ai par une variable d'environnement réservée.
+l'accès au manifeste épinglé localement, puis lance l'image publique sans
+transmettre le token à Vast.ai.
 
 ## Installation
 

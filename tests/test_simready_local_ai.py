@@ -11,13 +11,25 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("VLLM_VERSION=0.8.5.post1", dockerfile)
         self.assertIn("TRANSFORMERS_VERSION=4.51.3", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
-        self.assertIn("3dprinting993-physicsml@sha256:80db460bb3a061d05f73c319f02f91f74e7c8506512ffd7edb5a3645c12afbc4", dockerfile)
-        self.assertIn("COPY --from=physicsml /opt/venv /opt/venv", dockerfile)
+        self.assertIn("TORCH_VERSION=2.8.0", dockerfile)
+        self.assertIn("BUILD123D_VERSION=0.11.1", dockerfile)
+        self.assertIn("CADQUERY_VERSION=2.8.0", dockerfile)
+        self.assertIn('"nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}"', dockerfile)
         self.assertIn("Qwen/Qwen2.5-VL-7B-Instruct", dockerfile)
         self.assertIn("LOCAL_VLM_REVISION=cc594898137f460bfe9f0759e9844b3ce807cfb5", dockerfile)
         self.assertIn("HF_HUB_DISABLE_XET=1", dockerfile)
         self.assertIn("max_workers=2", dockerfile)
+        self.assertEqual(dockerfile.count("ADD --checksum=sha256:"), 5)
+        self.assertIn("ffmpeg", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
+
+    def test_vast_ready_gate_checks_the_full_local_ai_image(self):
+        onstart = (ROOT / "containers/simready-vast-onstart.sh").read_text()
+        self.assertIn("smoke-test.sh simready-local-ai", onstart)
+        self.assertNotIn("smoke-test.sh simready >", onstart)
+        self.assertIn("simready-services start", onstart)
+        self.assertIn("simready-services status", onstart)
+        self.assertLess(onstart.index("simready-services status"), onstart.index('touch "${WORKSPACE}/READY"'))
 
     def test_both_agents_use_the_local_endpoint(self):
         config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()

@@ -52,13 +52,11 @@ class OpenBaoGhcrWrapperTest(unittest.TestCase):
             with self.assertRaises(self.wrapper.SafeError):
                 self.wrapper.read_credential("session-token")
 
-    def test_vast_command_receives_login_only_in_child_environment(self):
-        fake_token = "secret-test-token-with-safe-length"
+    def test_vast_command_never_receives_github_credential(self):
         captured = {}
 
-        def fake_run(argv, *, env, check):
+        def fake_run(argv, *, check):
             captured["argv"] = argv
-            captured["env"] = env
             captured["check"] = check
             return mock.Mock(returncode=0)
 
@@ -71,16 +69,10 @@ class OpenBaoGhcrWrapperTest(unittest.TestCase):
                 "run",
                 side_effect=fake_run,
             ):
-                result = self.wrapper.run_vast(
-                    "cluster2600",
-                    fake_token,
-                    ["launch-vast-simready-heavy", "12345"],
-                )
+                result = self.wrapper.run_vast(["launch-vast-simready-heavy", "12345"])
 
         self.assertEqual(result, 0)
         self.assertEqual(captured["argv"], [str(executable), "launch-simready-heavy", "12345"])
-        self.assertNotIn(fake_token, " ".join(captured["argv"]))
-        self.assertIn(fake_token, captured["env"]["OPENBAO_GHCR_IMAGE_LOGIN"])
         self.assertFalse(captured["check"])
 
 
