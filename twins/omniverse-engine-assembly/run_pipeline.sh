@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 OUTPUT="${ROOT}/work/omniverse-engine-assembly"
-IMAGE="${SIMREADY_IMAGE:-ghcr.io/cluster2600/3dprinting993-simready@sha256:3947ea34d5101065c97103cc2176f395cb9753cb1d7807acb3cfd095796a4e1a}"
+IMAGE="${SIMREADY_IMAGE:-ghcr.io/cluster2600/3dprinting993-simready@sha256:0562c69276c0d3065990cb9b1b8641dcd29355d0dccb9082dcf266fa2d22e90a}"
 
 mkdir -p "${OUTPUT}/assets/valves" "${OUTPUT}/stages" "${OUTPUT}/reports"
 

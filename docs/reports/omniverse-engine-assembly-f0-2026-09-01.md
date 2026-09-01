@@ -61,4 +61,7 @@ travail sans redistribuer les actifs tiers.
 L'instance Vast.ai `49498499` a été détruite après récupération et contrôle des
 preuves ; la liste des instances était vide. La correction du conteneur ajoute
 Pillow à l'environnement de validation et rend son import obligatoire dans le
-smoke test, afin qu'un futur rendu uniforme bloque la chaîne.
+smoke test, afin qu'un futur rendu uniforme bloque la chaîne. L'image corrigée
+a été construite sur un runner GitHub x86_64, publiée, téléchargée de nouveau et
+validée par le smoke test sous le digest immuable
+`sha256:0562c69276c0d3065990cb9b1b8641dcd29355d0dccb9082dcf266fa2d22e90a`.
