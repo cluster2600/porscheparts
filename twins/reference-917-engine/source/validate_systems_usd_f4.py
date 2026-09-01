@@ -21,8 +21,14 @@ def main() -> int:
     world = stage.GetPrimAtPath("/World") if stage else None
     fluid = stage.GetPrimAtPath("/World/Simulation/Fluids") if stage else None
     electrical = stage.GetPrimAtPath("/World/Simulation/Electrical") if stage else None
+    variants = world.GetVariantSets().GetVariantSet("engineVariant") if world else None
+    previous_variant = variants.GetVariantSelection() if variants else ""
+    if variants:
+        variants.SetVariantSelection("917_30_turbo")
     fluid_curves = [prim for prim in Usd.PrimRange(fluid) if prim.IsA(UsdGeom.BasisCurves)] if fluid else []
     electrical_curves = [prim for prim in Usd.PrimRange(electrical) if prim.IsA(UsdGeom.BasisCurves)] if electrical else []
+    if variants:
+        variants.SetVariantSelection(previous_variant or "type_912_4_5_na")
     checks = {
         "stage_opens": bool(stage),
         "simulation_is_fail_closed": bool(world) and world.GetCustomDataByKey("3dprinting993:systemsSimulationReady") is False,
