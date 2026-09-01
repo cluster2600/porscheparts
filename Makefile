@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-smoke container-smoke-physicsml container-smoke-simready container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-smoke container-smoke-physicsml container-smoke-simready container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -36,6 +36,12 @@ engine-contracts-check:
 
 engine-components:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/engine-simulation-contracts/source/build_engine_components.py /workspace/work/engine-components-f1
+
+917-complete-parts:
+	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-917-engine/source/build_complete_engine_parts.py --config twins/reference-917-engine/complete-engine-f1.json --output work/917-complete-engine/parts
+
+917-complete-assembly: 917-complete-parts
+	twins/reference-917-engine/run_complete_engine_pipeline.sh
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

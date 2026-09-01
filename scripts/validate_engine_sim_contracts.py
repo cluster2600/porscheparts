@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "twins" / "engine-simulation-contracts"
+COMPLETE_917 = ROOT / "twins" / "reference-917-engine" / "complete-engine-f1.json"
 
 
 def load(name):
@@ -21,6 +22,7 @@ def main():
     load_cases = load("load-cases-f1.json")
     segmentation = load("segmentation-f1.json")
     engine_components = load("engine-components-f1.json")
+    complete_917 = json.loads(COMPLETE_917.read_text(encoding="utf-8"))
 
     assert all(doc["schema_version"] == "1.0.0" for doc in (
         materials, interfaces, components, load_cases, segmentation, engine_components
@@ -74,6 +76,13 @@ def main():
         assert set(family["source_ids"]) <= source_ids, family_id
     assert engine_components["families"]["piston_993_turbo"]["evidence"]["diameter"] == "nominal_engine_bore_not_piston_measurement"
     assert engine_components["families"]["camshaft_993_layout"]["evidence"]["all_dimensions"] == "layout_hypothesis"
+    assert complete_917["schema_version"] == "1.0.0"
+    assert set(complete_917["source_ids"]) <= source_ids
+    family_ids = [item["id"] for item in complete_917["component_families"]]
+    assert len(family_ids) == len(set(family_ids)) == 31
+    assert sum(item["count"] for item in complete_917["component_families"]) == 275
+    assert complete_917["status"] == "F1_complete_functional_family_assembly_not_manufacturing_geometry"
+    assert complete_917["prohibited_use"]
     print("Engine simulation contracts OK")
 
 

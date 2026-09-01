@@ -77,6 +77,44 @@ deux rangées de six ouvertures :
 Ces valeurs décrivent les ouvertures visibles du scan. Elles ne prouvent ni le
 diamètre d'alésage, ni la variante du moteur, ni une unité millimétrique.
 
+## Assemblage fonctionnel complet F1
+
+Une nomenclature paramétrique distincte du scan reconstruit les familles
+fonctionnelles identifiables du moteur Type 912. Elle comprend 31 prototypes
+STEP et STL d'inspection, instanciés 275 fois dans un stage OpenUSD : carters,
+vilebrequin et huit paliers, pistons, axes, segments, bielles, cylindres,
+culasses individuelles, soupapes et ressorts, quatre arbres à cames et leur
+entraînement central, admission, double allumage, lubrification à carter sec,
+refroidissement, échappement et accessoires. La variante `917_30_turbo` active
+en plus deux turbocompresseurs et deux plénums ; la variante par défaut
+`type_912_4_5_na` les masque.
+
+```bash
+make 917-complete-assembly
+```
+
+La chaîne utilise l'image immuable
+`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41965aa48548481473a63f4d0277599b93cf4870d2e1f833099dd4e8e146d2f3`.
+Elle exige d'abord un prévol SimReady vert, génère les géométries avec
+Build123d, convertit chaque prototype STEP en USDC, compose le stage instancié,
+puis contrôle les deux variantes. Les sorties restent localement sous
+`work/917-complete-engine/`; aucun scan, STEP, STL ou USD n'est versionné.
+
+Le résultat est un assemblage d'encombrement et de topologie, pas une CAO
+constructeur. Les dimensions sourcées sont séparées des hypothèses de placement
+(longueur de bielle, longueur des arbres, enveloppe des turbos, notamment).
+L'affectation de matériaux, les joints physiques et PhysicsNeMo sont
+intentionnellement absents tant que les interfaces, masses, alliages, profils de
+came, jeux et cas de charge ne sont pas mesurés. Il est interdit d'utiliser ces
+proxies pour fabriquer ou faire tourner un moteur.
+
+Les principales sources de recoupement sont l'analyse moteur
+[auto motor und sport](https://www.auto-motor-und-sport.de/oldtimer/porsche-917-motor-kraftwerk-ohne-gleichen/),
+les [détails techniques Stuttcars](https://www.stuttcars.com/porsche-917-technical-details/),
+la synthèse secondaire [kfz-tech](https://www.kfz-tech.de/Buchprojekte/Porsche/917Teil2.htm)
+et la fiche officielle du
+[Porsche 917/30 Spyder](https://newsroom.porsche.com/de/pressemappen/Porsche-Museum/Porsche-917-30-Spyder.html).
+
 ## Recoupement documentaire Stuttcars
 
 La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
