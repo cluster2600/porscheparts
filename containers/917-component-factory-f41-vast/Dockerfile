@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
 # Image F41 Vast : transport SSH minimal au-dessus de l'auteur CAO F28 immuable.
-# Vast remplace cet ENTRYPOINT en ssh_direct ; le onstart reste le prevol.
+# Vast remplace cet ENTRYPOINT en ssh_direct ; /usr/sbin/sshd cree alors ses
+# clefs hote ephemeres juste avant le vrai demon, puis onstart reste le prevol.
 
 ARG F28_BASE_IMAGE=ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
 FROM ${F28_BASE_IMAGE} AS component-factory-f41-vast
@@ -48,6 +49,8 @@ RUN --mount=type=bind,source=containers/917-component-factory-f41-vast/system-pa
     && test "$(dpkg-query -W -f='${Version}' openssh-server)" = "1:9.2p1-2+deb12u10" \
     && test "$(dpkg-query -W -f='${Version}' openssh-sftp-server)" = "1:9.2p1-2+deb12u10" \
     && test -x /usr/sbin/sshd \
+    && mv /usr/sbin/sshd /usr/lib/openssh/sshd.real \
+    && test -x /usr/lib/openssh/sshd.real \
     && test -x /usr/bin/setpriv \
     && rm -f /etc/ssh/ssh_host_*_key /etc/ssh/ssh_host_*_key.pub \
     && rm -rf /tmp/debs /var/lib/apt/lists/*
@@ -60,6 +63,7 @@ COPY containers/917-component-factory-f41-vast/prepare_layout.sh /opt/917-compon
 COPY containers/917-component-factory-f41-vast/image_smoke.py /opt/917-component-factory-f41-vast/image_smoke.py
 COPY containers/917-component-factory-f41-vast/vast_onstart.sh /opt/917-component-factory-f41-vast/vast_onstart.sh
 COPY containers/917-component-factory-f41-vast/entrypoint.sh /opt/917-component-factory-f41-vast/entrypoint.sh
+COPY containers/917-component-factory-f41-vast/sshd_runtime_wrapper.sh /opt/917-component-factory-f41-vast/sshd_runtime_wrapper.sh
 
 RUN find /opt/917-component-factory-f41-vast -type d -exec chmod 0555 {} + \
     && find /opt/917-component-factory-f41-vast -type f -exec chmod 0444 {} + \
@@ -70,13 +74,17 @@ RUN find /opt/917-component-factory-f41-vast -type d -exec chmod 0555 {} + \
       /opt/917-component-factory-f41-vast/image_smoke.py \
       /opt/917-component-factory-f41-vast/vast_onstart.sh \
       /opt/917-component-factory-f41-vast/entrypoint.sh \
+      /opt/917-component-factory-f41-vast/sshd_runtime_wrapper.sh \
     && ln -s /opt/917-component-factory-f41-vast/stage_job.py /usr/local/bin/917-cad-stage-job \
     && ln -s /opt/917-component-factory-f41-vast/run_job.sh /usr/local/bin/917-cad-run-job \
     && ln -s /opt/917-component-factory-f41-vast/vast_onstart.sh /usr/local/bin/917-cad-vast-onstart \
+    && ln -s /opt/917-component-factory-f41-vast/sshd_runtime_wrapper.sh /usr/sbin/sshd \
     && install -d -o root -g root -m 0755 /run/sshd /workspace \
     && install -d -o root -g root -m 0700 /root/.ssh \
     && /opt/917-component-factory-f41-vast/prepare_layout.sh \
     && test ! -e /root/.ssh/authorized_keys \
+    && test -x /usr/sbin/sshd \
+    && test -x /usr/lib/openssh/sshd.real \
     && test -z "$(find /etc/ssh -maxdepth 1 -type f -name 'ssh_host_*_key*' -print -quit)"
 
 WORKDIR /workspace

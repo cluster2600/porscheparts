@@ -54,6 +54,7 @@ jobs:
             containers/917-component-factory-f41-vast/image_smoke.py \
             containers/917-component-factory-f41-vast/vast_onstart.sh \
             containers/917-component-factory-f41-vast/entrypoint.sh \
+            containers/917-component-factory-f41-vast/sshd_runtime_wrapper.sh \
             docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md \
             tests/test_917_component_factory_f41_vast_image.py \
             > 917-component-factory-f41-vast-source-inputs.sha256
@@ -157,7 +158,12 @@ jobs:
             .runtime.cad_uid == 9178 and
             .ssh_transport.sshd_packaged == true and
             .ssh_transport.sshd_started == false and
+            .ssh_transport.sshd_runtime_wrapper_installed == true and
+            .ssh_transport.real_sshd_binary_separated == true and
             .ssh_transport.baked_host_private_key_count == 0 and
+            .ssh_transport.runtime_host_private_key_count == 0 and
+            .ssh_transport.runtime_host_keys_expected == false and
+            .ssh_transport.runtime_host_keys_generated_by_wrapper == false and
             .cad_isolation.cad_effective_uid == 9178 and
             .cad_isolation.cad_no_new_privileges == true and
             .cad_isolation.cad_capability_bounding_set_empty == true and
@@ -195,8 +201,11 @@ jobs:
             ([.release_gates[] | select(. != false)] | length) == 0
           ' 917-component-factory-f41-vast-base-cad-smoke.json >/dev/null
 
+          # Simule l'ordre observe sur Vast : son entrypoint appelle sshd avant
+          # onstart. Le conteneur ephemere reste hors reseau et ses clefs hote
+          # runtime disparaissent avec lui ; aucune clef ne rejoint une couche.
           docker run --rm --platform linux/amd64 --user 0:0 \
-            --network none --read-only \
+            --network none \
             --tmpfs /root/.ssh:rw,nosuid,nodev,noexec,size=1m,mode=0700 \
             --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
             --tmpfs /workspace:rw,exec,nosuid,nodev,size=512m \
@@ -206,13 +215,14 @@ jobs:
             --cap-add SETUID --cap-add SETGID --cap-add SETPCAP \
             --security-opt no-new-privileges \
             --entrypoint /bin/sh "${PINNED_REF}" -c \
-            'umask 077; printf "%s\n" runtime-authorized-key-placeholder > /root/.ssh/authorized_keys; /usr/local/bin/917-cad-vast-onstart; cat /workspace/READY' \
+            'umask 077; /usr/sbin/sshd -T >/dev/null; printf "%s\n" runtime-authorized-key-placeholder > /root/.ssh/authorized_keys; /usr/local/bin/917-cad-vast-onstart; cat /workspace/READY' \
             > 917-component-factory-f41-vast-ready.json \
             2> 917-component-factory-f41-vast-ready.stderr
           test ! -s 917-component-factory-f41-vast-ready.stderr
           jq -e '
             .status == "vast_onstart_ready_for_public_archive_transfer_cad_not_started" and
             .authorized_key_file_present == true and
+            .runtime_host_keys_generated_before_onstart == true and
             .sshd_managed_by_vast_entrypoint == true and
             .synthetic_build123d_step_smoke_passed == true and
             .f41_component_factory_executed == false and

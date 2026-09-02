@@ -26,6 +26,7 @@ PREPARE = IMAGE_ROOT / "prepare_layout.sh"
 SMOKE = IMAGE_ROOT / "image_smoke.py"
 ONSTART = IMAGE_ROOT / "vast_onstart.sh"
 ENTRYPOINT = IMAGE_ROOT / "entrypoint.sh"
+SSHD_RUNTIME_WRAPPER = IMAGE_ROOT / "sshd_runtime_wrapper.sh"
 WORKFLOW = ROOT / ".github/workflows/917-component-factory-f41-vast-image.yml"
 DOC = ROOT / "docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md"
 
@@ -134,10 +135,12 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "apt-get download",
             "sha256sum --check /tmp/system-packages.sha256",
             "DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/debs/*.deb",
+            "mv /usr/sbin/sshd /usr/lib/openssh/sshd.real",
             "rm -f /etc/ssh/ssh_host_*_key",
             "test ! -e /root/.ssh/authorized_keys",
             "USER 0:0",
             'ENTRYPOINT ["/opt/917-component-factory-f41-vast/entrypoint.sh"]',
+            "sshd_runtime_wrapper.sh /usr/sbin/sshd",
             "917-cad-run-job",
             "9178:9178",
         ):
@@ -217,6 +220,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
                 "!containers/917-component-factory-f41-vast/image_smoke.py",
                 "!containers/917-component-factory-f41-vast/vast_onstart.sh",
                 "!containers/917-component-factory-f41-vast/entrypoint.sh",
+                "!containers/917-component-factory-f41-vast/sshd_runtime_wrapper.sh",
             ],
         )
 
@@ -260,6 +264,12 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         ):
             self.assertIs(gates[gate], False, gate)
         security = lock["security_contract"]
+        self.assertTrue(security["vast_invokes_sshd_before_onstart"])
+        self.assertEqual(security["sshd_runtime_wrapper"], "/usr/sbin/sshd")
+        self.assertEqual(security["sshd_real_binary"], "/usr/lib/openssh/sshd.real")
+        self.assertEqual(security["runtime_host_key_command"], "/usr/bin/ssh-keygen -A")
+        self.assertTrue(security["runtime_host_keys_generated_before_real_sshd"])
+        self.assertFalse(security["runtime_host_keys_persist_beyond_instance"])
         self.assertFalse(security["embedded_secrets"])
         self.assertFalse(security["embedded_private_assets"])
         self.assertFalse(security["baked_authorized_keys"])
@@ -364,7 +374,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
     def test_scripts_parse_and_cad_launcher_is_fail_closed(self):
         ast.parse(STAGE.read_text(encoding="utf-8"))
         ast.parse(SMOKE.read_text(encoding="utf-8"))
-        for script in (RUN_JOB, PREPARE, ONSTART, ENTRYPOINT):
+        for script in (RUN_JOB, PREPARE, ONSTART, ENTRYPOINT, SSHD_RUNTIME_WRAPPER):
             completed = subprocess.run(
                 ["sh", "-n", str(script)], capture_output=True, text=True, check=False
             )
@@ -390,8 +400,22 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         onstart = ONSTART.read_text(encoding="utf-8")
         self.assertIn('test -s "${authorized_keys}"', onstart)
         self.assertIn('chmod 0600 "${authorized_keys}"', onstart)
+        self.assertIn("f41-runtime-host-keys.ready", onstart)
         self.assertIn("--expect-runtime-authorized-keys", onstart)
         self.assertIn('"f41_component_factory_executed": False', onstart)
+        sshd_wrapper = SSHD_RUNTIME_WRAPPER.read_text(encoding="utf-8")
+        for fragment in (
+            "real_sshd=/usr/lib/openssh/sshd.real",
+            "runtime_dir=/run/sshd",
+            'install -d -o root -g root -m 0755 "${runtime_dir}"',
+            "host_key_marker=${runtime_dir}/f41-runtime-host-keys.ready",
+            "/usr/bin/ssh-keygen -A",
+            "stat -c '%u:%g:%a'",
+            '"0:0:600"',
+            'exec "${real_sshd}" "$@"',
+        ):
+            self.assertIn(fragment, sshd_wrapper)
+        self.assertNotIn("PRIVATE KEY", sshd_wrapper)
 
     def test_smoke_executes_build123d_step_after_privilege_drop_and_closes_claims(self):
         source = SMOKE.read_text(encoding="utf-8")
@@ -406,6 +430,8 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             '"lib3mf": version("lib3mf")',
             '"synthetic_step_roundtrip_executed": True',
             '"sshd_started": False',
+            '"sshd_runtime_wrapper_installed": True',
+            '"runtime_host_keys_generated_by_wrapper": (',
             '"vast_authorized_key_injection_verified": False',
             '"vast_ssh_direct_handshake_verified": False',
             '"f41_component_factory_executed": False',
@@ -428,6 +454,8 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "${{ github.sha }}-vast-f41-cad",
             "steps.build.outputs.digest",
             "Gate anonymous pull of the exact digest",
+            "/usr/sbin/sshd -T >/dev/null",
+            "runtime_host_keys_generated_before_onstart",
             'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
             "--user 0:0",
             "--cap-add DAC_OVERRIDE",
@@ -478,6 +506,9 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "jamais depuis le worktree de développement",
             "git show HEAD:<path>",
             "Vast remplace ENTRYPOINT",
+            "ssh-keygen -A",
+            "sshd.real",
+            "révoqué pour toute nouvelle",
             "component-factory-f41-offers",
             "launch-component-factory-f41 <offer_id>",
             "1,25 USD/h",

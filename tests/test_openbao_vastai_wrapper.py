@@ -33,6 +33,16 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def setUpClass(cls):
         cls.wrapper = load_wrapper()
 
+    def setUp(self):
+        # Most unit tests exercise the launch state machine as if a corrected
+        # digest had already passed the live Vast qualification. Production
+        # keeps the known-bad digest denylisted; that gate has its own test.
+        patcher = mock.patch.object(
+            self.wrapper, "COMPONENT_FACTORY_F41_REVOKED_IMAGES", frozenset()
+        )
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def eligible_offer(self, **overrides):
         offer = {
             "id": 7,
@@ -771,6 +781,10 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
             "dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
         )
+        self.assertEqual(
+            self.wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
+            self.wrapper.COMPONENT_FACTORY_F41_IMAGE,
+        )
         self.assertRegex(
             self.wrapper.COMPONENT_FACTORY_F41_IMAGE,
             r"^ghcr\.io/cluster2600/3dprinting993-cad-author-f28@sha256:[0-9a-f]{64}$",
@@ -786,6 +800,26 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 )
             )
         )
+
+    def test_component_factory_f41_revoked_digest_blocks_before_paid_side_effects(self):
+        production_wrapper = load_wrapper()
+        self.assertIn(
+            production_wrapper.COMPONENT_FACTORY_F41_IMAGE,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
+        )
+        with (
+            mock.patch.object(production_wrapper, "simready_launch_lock") as launch_lock,
+            mock.patch.object(production_wrapper, "vast_request") as request,
+            self.assertRaisesRegex(
+                production_wrapper.SafeError,
+                "runtime image is revoked",
+            ),
+        ):
+            production_wrapper.launch_component_factory_f41_offer(
+                "unused", self.eligible_component_factory_f41_offer()
+            )
+        launch_lock.assert_not_called()
+        request.assert_not_called()
 
     def test_component_factory_f41_offer_fails_closed_on_every_paid_gate(self):
         rejected = (
@@ -1254,6 +1288,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             "synthetic_build123d_step_smoke_passed",
             "synthetic_step_roundtrip_executed",
             "synthetic_closed_solid_after_roundtrip",
+            "runtime_host_keys_generated_before_onstart",
+            "sshd_runtime_wrapper_installed",
+            "runtime_host_keys_generated_by_wrapper",
             "f41_component_factory_executed",
             "physical_claims_validated",
             "manufacturing_authorized",

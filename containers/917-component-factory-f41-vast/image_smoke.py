@@ -20,6 +20,10 @@ import tarfile
 
 
 ROOT = Path("/opt/917-component-factory-f41-vast")
+SSHD_WRAPPER = Path("/usr/sbin/sshd")
+SSHD_REAL = Path("/usr/lib/openssh/sshd.real")
+SSHD_WRAPPER_TARGET = ROOT / "sshd_runtime_wrapper.sh"
+RUNTIME_HOST_KEY_MARKER = Path("/run/sshd/f41-runtime-host-keys.ready")
 INBOX = Path("/workspace/inbox")
 JOBS = Path("/workspace/jobs")
 RESULTS = Path("/workspace/results")
@@ -142,11 +146,47 @@ def package_audit(expect_runtime_authorized_keys: bool) -> dict[str, object]:
         for package in EXPECTED_PACKAGES
     }
     require(installed == EXPECTED_PACKAGES, "OpenSSH package lock mismatch")
-    require(Path("/usr/sbin/sshd").is_file(), "sshd binary missing")
-    require(os.access("/usr/sbin/sshd", os.X_OK), "sshd binary is not executable")
+    require(SSHD_WRAPPER.is_symlink(), "sshd runtime wrapper symlink missing")
+    require(
+        SSHD_WRAPPER.resolve() == SSHD_WRAPPER_TARGET,
+        "sshd runtime wrapper target mismatch",
+    )
+    require(os.access(SSHD_WRAPPER, os.X_OK), "sshd runtime wrapper is not executable")
+    require(SSHD_REAL.is_file(), "real sshd binary missing")
+    require(not SSHD_REAL.is_symlink(), "real sshd binary must not be a symlink")
+    require(os.access(SSHD_REAL, os.X_OK), "real sshd binary is not executable")
     require(Path("/usr/lib/openssh/sftp-server").is_file(), "sftp-server missing")
     private_host_keys = sorted(Path("/etc/ssh").glob("ssh_host_*_key"))
-    require(not private_host_keys, "baked SSH host private key detected")
+    if expect_runtime_authorized_keys:
+        require(private_host_keys, "runtime SSH host private keys missing")
+        require(
+            RUNTIME_HOST_KEY_MARKER.is_file()
+            and not RUNTIME_HOST_KEY_MARKER.is_symlink(),
+            "runtime SSH host-key marker missing",
+        )
+        require(
+            RUNTIME_HOST_KEY_MARKER.stat().st_uid == 0
+            and RUNTIME_HOST_KEY_MARKER.stat().st_gid == 0
+            and RUNTIME_HOST_KEY_MARKER.stat().st_mode & 0o777 == 0o600,
+            "runtime SSH host-key marker metadata mismatch",
+        )
+        for private_host_key in private_host_keys:
+            require(
+                private_host_key.is_file() and not private_host_key.is_symlink(),
+                "runtime SSH host private key must be a regular file",
+            )
+            require(
+                private_host_key.stat().st_uid == 0
+                and private_host_key.stat().st_gid == 0
+                and private_host_key.stat().st_mode & 0o777 == 0o600,
+                "runtime SSH host private key metadata mismatch",
+            )
+    else:
+        require(not private_host_keys, "baked SSH host private key detected")
+        require(
+            not RUNTIME_HOST_KEY_MARKER.exists(),
+            "runtime SSH host-key marker present in image",
+        )
     authorized_keys = Path("/root/.ssh/authorized_keys")
     if expect_runtime_authorized_keys:
         require(
@@ -165,7 +205,14 @@ def package_audit(expect_runtime_authorized_keys: bool) -> dict[str, object]:
         "packages": installed,
         "sshd_packaged": True,
         "sshd_started": False,
+        "sshd_runtime_wrapper_installed": True,
+        "real_sshd_binary_separated": True,
         "baked_host_private_key_count": 0,
+        "runtime_host_private_key_count": len(private_host_keys),
+        "runtime_host_keys_expected": expect_runtime_authorized_keys,
+        "runtime_host_keys_generated_by_wrapper": (
+            expect_runtime_authorized_keys and RUNTIME_HOST_KEY_MARKER.exists()
+        ),
         "baked_authorized_keys": False,
         "runtime_authorized_keys_expected": expect_runtime_authorized_keys,
         "runtime_authorized_keys_present": authorized_keys.exists(),

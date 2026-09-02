@@ -18,7 +18,9 @@ n'est donc ni un USD SimReady ni une preuve de fabricabilité.
 flowchart LR
     BASE[F28 immuable<br/>build123d + OCCT] --> OCI[OCI linux/amd64<br/>OpenSSH fixe seulement]
     OCI --> VE[Vast remplace ENTRYPOINT<br/>runtype ssh_direct]
-    VE --> OS[917-cad-vast-onstart<br/>clé publique injectée + smoke]
+    VE --> HK[/usr/sbin/sshd wrapper<br/>ssh-keygen -A éphémère]
+    HK --> SD[sshd.real]
+    SD --> OS[917-cad-vast-onstart<br/>clé publique injectée + smoke]
     OS --> READY[/workspace/READY]
     READY --> SCP[root SSH/SCP<br/>bundle F41 public]
     SCP --> STAGE[917-cad-stage-job<br/>allowlist + manifeste + SHA-256]
@@ -35,15 +37,26 @@ shell `nologin`, `NoNewPrivs=1` et une capability bounding set vide.
 
 ## Contrat exact pour le wrapper
 
-Le wrapper ne doit être promu qu'après publication réussie et pull anonyme du
-digest exact. Les valeurs invariantes sont :
+Le wrapper ne doit être promu qu'après publication réussie, pull anonyme du
+digest exact **et connexion `ssh_direct` réelle**. Le premier digest publié
+ci-dessous est conservé comme trace historique mais révoqué pour toute nouvelle
+location : Vast a invoqué `sshd` avant `onstart`, alors que l'image avait retiré
+les clés hôte générées pendant le build. Le résultat réel était
+`sshd: no hostkeys available -- exiting`. Le prochain digest n'est autorisé
+qu'après le smoke distant complet décrit plus bas.
+
+Les valeurs invariantes de la recette corrigée sont :
 
 ```text
 image repository: ghcr.io/cluster2600/3dprinting993-cad-author-f28
-image: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
+revoked image: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
+image: <digest corrigé à publier puis qualifier sur Vast>
 runtype: ssh_direct
 remote user: root
 onstart: /usr/local/bin/917-cad-vast-onstart
+sshd wrapper: /usr/sbin/sshd
+real sshd: /usr/lib/openssh/sshd.real
+runtime host keys: ssh-keygen -A, aucune clé privée hôte dans l'image
 ready probe: /workspace/READY
 smoke report: /workspace/image-smoke.json
 staging: 917-cad-stage-job /workspace/inbox/917-component-factory-f41-public.tar.gz <job-id>
@@ -63,8 +76,16 @@ Cette valeur lie honnêtement le runner à la base CAO dont cette image dérive 
 elle n'affirme pas que le digest F41 externe est identique au digest F28.
 
 Vast documente que `ssh_direct` remplace l'ENTRYPOINT de l'image, prépare SSH
-et exécute ensuite `onstart`. L'image finit donc en `USER 0:0`, mais aucune
-commande CAO documentée ne s'exécute directement comme root.
+et exécute ensuite `onstart`. L'observation réelle montre que son entrypoint
+appelle `/usr/sbin/sshd` avant `onstart`. La recette corrigée conserve donc
+`ssh_direct`, déplace le binaire OpenSSH immuable vers
+`/usr/lib/openssh/sshd.real` et place à son chemin habituel un wrapper minimal.
+Celui-ci exécute `ssh-keygen -A`, vérifie que les clés privées nouvellement
+créées appartiennent à `root:root` avec le mode `0600`, écrit un marqueur dans
+`/run/sshd`, puis remplace son processus par `sshd.real`. Les clés naissent dans
+la couche écrivable de l'instance et ne sont jamais intégrées à une couche OCI.
+`onstart` refuse de créer `READY` sans le marqueur. L'image finit en `USER 0:0`,
+mais aucune commande CAO documentée ne s'exécute directement comme root.
 
 Références officielles :
 [création d'instances et remplacement de l'ENTRYPOINT](https://docs.vast.ai/api-reference/creating-instances-with-api),
@@ -171,12 +192,17 @@ docker run --rm --platform linux/amd64 --user 0:0 \
 Le smoke réalise réellement : validation du manifeste public, extraction du
 tar, changement de propriétaire, chute de privilèges, création build123d,
 export STEP, réouverture OCCT et contrôle d'un solide fermé. Il ne démarre pas
-`sshd` et laisse toutes les gates Vast et moteur fermées.
+`sshd` et laisse toutes les gates Vast et moteur fermées. Le workflow ajoute un
+second conteneur éphémère, sans réseau : il appelle `/usr/sbin/sshd -T` pour
+reproduire l'ordre Vast, exige la création des clés hôte runtime et du marqueur,
+puis seulement exécute `917-cad-vast-onstart`. Le conteneur est détruit à la fin
+du smoke et ses clés avec lui.
 
 Le workflow refuse aussi une couche ajoutée supérieure à 16 000 000 octets
-selon la métrique Docker Linux native. La publication qualifiée ajoute
-11 392 378 octets à F28. Docker Desktop avait rapporté environ 3,8 Mo ; cette
-métrique locale n'est pas utilisée comme preuve de publication.
+selon la métrique Docker Linux native. Le digest historique désormais révoqué
+ajoutait 11 392 378 octets à F28. La taille de la recette corrigée doit être
+remesurée par le nouveau workflow ; Docker Desktop n'est pas utilisé comme
+preuve de publication.
 
 ## Sélection et lancement bornés
 
@@ -188,6 +214,11 @@ contrat CPU/CAO, puis impose une sélection explicite :
 ./deploy/openbao/openbao-vastai component-factory-f41-offers
 ./deploy/openbao/openbao-vastai launch-component-factory-f41 <offer_id>
 ```
+
+Tant que `COMPONENT_FACTORY_F41_IMAGE` désigne le digest révoqué, la seconde
+commande échoue avant le verrou de location, l'enregistrement SSH et l'appel de
+création payant. La denylist ne doit être levée qu'en remplaçant cette référence
+par le nouveau digest après publication et poignée de main Vast vérifiée.
 
 Le lancement refuse un prix total supérieur à 1,25 USD/h, un
 `inet_up_cost` ou `inet_down_cost` absent, non fini, négatif ou supérieur à

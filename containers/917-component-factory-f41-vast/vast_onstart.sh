@@ -8,6 +8,14 @@ fi
 
 /opt/917-component-factory-f41-vast/prepare_layout.sh
 
+host_key_marker=/run/sshd/f41-runtime-host-keys.ready
+test -f "${host_key_marker}" || { echo "vast_runtime_host_key_marker_missing" >&2; exit 83; }
+test ! -L "${host_key_marker}" || { echo "vast_runtime_host_key_marker_symlink_rejected" >&2; exit 84; }
+test "$(stat -c '%u:%g:%a' "${host_key_marker}")" = "0:0:600" || {
+    echo "vast_runtime_host_key_marker_metadata_rejected" >&2
+    exit 85
+}
+
 authorized_keys=/root/.ssh/authorized_keys
 test -s "${authorized_keys}" || { echo "vast_authorized_keys_missing" >&2; exit 78; }
 test ! -L "${authorized_keys}" || { echo "vast_authorized_keys_symlink_rejected" >&2; exit 79; }
@@ -35,6 +43,7 @@ ready = {
     "schema_version": "1.0.0",
     "status": "vast_onstart_ready_for_public_archive_transfer_cad_not_started",
     "authorized_key_file_present": True,
+    "runtime_host_keys_generated_before_onstart": True,
     "sshd_managed_by_vast_entrypoint": True,
     "synthetic_build123d_step_smoke_passed": True,
     "f41_component_factory_executed": False,

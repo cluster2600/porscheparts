@@ -61,9 +61,17 @@ COMPONENT_FACTORY_F41_DISK_GB = 300
 COMPONENT_FACTORY_F41_MIN_RELIABILITY = 0.985
 COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB = 0.05
 COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB = 0.05
-# Published digest confirmed by workflow 33688171549. Keep this reference
-# immutable; the workflow and anonymous-pull evidence remain authoritative.
-COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16"
+# Workflow 33688171549 proved publication and anonymous pull, but a subsequent
+# real Vast launch proved that this image cannot start sshd: its host keys were
+# removed at build time and Vast invokes sshd before onstart. Keep the exact
+# digest denylisted until the runtime-key fix is republished and qualified.
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16"
+COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
+    {COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0}
+)
+# Replace only this reference after the corrected image passes the real Vast
+# handshake. Until then the paid launcher rejects it via the denylist above.
+COMPONENT_FACTORY_F41_IMAGE = COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
@@ -1479,6 +1487,7 @@ require(ready == {
     'schema_version': '1.0.0',
     'status': 'vast_onstart_ready_for_public_archive_transfer_cad_not_started',
     'authorized_key_file_present': True,
+    'runtime_host_keys_generated_before_onstart': True,
     'sshd_managed_by_vast_entrypoint': True,
     'synthetic_build123d_step_smoke_passed': True,
     'f41_component_factory_executed': False,
@@ -1497,6 +1506,11 @@ require(runtime.get('external_api_required') is False)
 ssh_transport = report.get('ssh_transport', {})
 require(ssh_transport.get('runtime_authorized_keys_expected') is True)
 require(ssh_transport.get('runtime_authorized_keys_present') is True)
+require(ssh_transport.get('sshd_runtime_wrapper_installed') is True)
+require(ssh_transport.get('real_sshd_binary_separated') is True)
+require(ssh_transport.get('runtime_host_private_key_count', 0) > 0)
+require(ssh_transport.get('runtime_host_keys_expected') is True)
+require(ssh_transport.get('runtime_host_keys_generated_by_wrapper') is True)
 require(ssh_transport.get('baked_authorized_keys') is False)
 cad = report.get('cad_isolation', {})
 require(cad.get('synthetic_step_roundtrip_executed') is True)
@@ -1781,6 +1795,12 @@ def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
     if not component_factory_f41_offer_eligible(offer):
         raise SafeError(
             "component-factory F41 offer is outside the fixed safety and price limits"
+        )
+    if COMPONENT_FACTORY_F41_IMAGE in COMPONENT_FACTORY_F41_REVOKED_IMAGES:
+        raise SafeError(
+            "component-factory F41 runtime image is revoked after a failed real "
+            "Vast SSH bootstrap; publish and qualify a corrected digest before "
+            "any paid launch"
         )
     with simready_launch_lock():
         require_no_component_factory_f41_instance(api_key)
