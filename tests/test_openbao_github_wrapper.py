@@ -32,7 +32,7 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.wrapper = load_wrapper()
 
-    def test_scope_is_fixed_to_one_repository_and_two_workflows(self) -> None:
+    def test_scope_is_fixed_to_one_repository_and_two_direct_workflows(self) -> None:
         self.assertEqual(self.wrapper.REPOSITORY, "cluster2600/3dprinting993")
         self.assertEqual(
             self.wrapper.ALLOWED_WORKFLOWS,
@@ -40,6 +40,10 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
                 "917-engine-wave-f40-vast-image.yml",
                 "917-component-factory-f41-vast-image.yml",
             },
+        )
+        self.assertEqual(
+            self.wrapper.ALLOWED_RUN_WORKFLOWS,
+            self.wrapper.ALLOWED_WORKFLOWS | {"containers.yml"},
         )
         self.assertEqual(self.wrapper.ALLOWED_SECRET_PATH, "secrets/data/github")
 
@@ -111,6 +115,26 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
         ):
             with self.assertRaisesRegex(self.wrapper.SafeError, "push permission"):
                 self.wrapper.repository_auth_check("secret")
+
+    def test_simready_publication_is_fixed_to_one_image_and_push(self) -> None:
+        with patch.object(
+            self.wrapper,
+            "github_request",
+            return_value=(204, {}),
+        ) as request:
+            self.wrapper.dispatch_simready_local_ai("secret", "codex/simready-fix")
+        self.assertEqual(request.call_args.kwargs["method"], "POST")
+        self.assertEqual(
+            request.call_args.kwargs["payload"],
+            {
+                "ref": "codex/simready-fix",
+                "inputs": {"image": "simready-local-ai", "push": True},
+            },
+        )
+        self.assertIn("containers.yml/dispatches", request.call_args.args[1])
+
+        with self.assertRaisesRegex(self.wrapper.SafeError, "codex"):
+            self.wrapper.dispatch_simready_local_ai("secret", "main")
 
     def test_source_never_uses_keychain_raw_bao_or_credential_url(self) -> None:
         source = WRAPPER.read_text(encoding="utf-8")

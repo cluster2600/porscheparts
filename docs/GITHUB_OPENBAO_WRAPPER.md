@@ -41,6 +41,11 @@ openbao-github dispatch 917-engine-wave-f40-vast-image.yml \
 
 openbao-github runs 917-engine-wave-f40-vast-image.yml \
   codex/917-f40-vast-runtime-hardening
+
+# Reconstruire et publier uniquement la grande image SimReady locale.
+# Le wrapper fixe les inputs image=simready-local-ai et push=true.
+openbao-github publish-simready-local-ai \
+  codex/917-f40-vast-runtime-hardening
 ```
 
 Le second workflow autorisé est
