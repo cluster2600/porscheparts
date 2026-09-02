@@ -1,5 +1,6 @@
 .PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 .PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke 917-unsteady-network-f39-test 917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate 917-unsteady-network-f39 917-wave-action-f39-image-test 917-wave-action-f39-image 917-wave-action-f39-image-smoke
+.PHONY: 917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest 917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -22,6 +23,9 @@ F38_OVERLAY_OUTPUT ?= work/917-gas-path-network-f38/omniverse
 F39_WAVE_IMAGE ?= 3dprinting993-wave-action-f39:dev
 F39_WAVE_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3
 F39_OUTPUT ?= work/917-unsteady-network-f39
+F40_WAVE_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3
+F40_OUTPUT ?= work/917-unsteady-convergence-f40
+F40_WORKERS ?= 1
 
 .PHONY: 917-scan-conforming-4v-f36-check
 
@@ -447,6 +451,37 @@ engine-components:
 		--project-root /workspace \
 		--contract /workspace/twins/reference-917-engine/unsteady-network-f39.json \
 		--output-dir /output --execute
+
+917-unsteady-convergence-f40-test:
+	python3 tests/test_917_unsteady_convergence_f40.py -v
+
+917-unsteady-convergence-f40-manifest: 917-unsteady-convergence-f40-test
+	python3 twins/reference-917-engine/source/run_unsteady_convergence_f40.py \
+		--project-root . \
+		--contract twins/reference-917-engine/unsteady-convergence-campaign-f40.json \
+		--output-dir $(F40_OUTPUT) --manifest
+
+917-unsteady-convergence-f40-image-smoke:
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -w /workspace \
+		--entrypoint python $(F40_WAVE_RELEASE_IMAGE) \
+		tests/test_917_unsteady_convergence_f40.py -v
+
+917-unsteady-convergence-f40: 917-unsteady-convergence-f40-test
+	mkdir -p $(F40_OUTPUT)
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=1024m \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -v "$(CURDIR)/$(F40_OUTPUT):/output:rw" \
+		--entrypoint python $(F40_WAVE_RELEASE_IMAGE) \
+		/workspace/twins/reference-917-engine/source/run_unsteady_convergence_f40.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/unsteady-convergence-campaign-f40.json \
+		--output-dir /output --execute --workers $(F40_WORKERS)
 
 917-wave-action-f39-image-test:
 	python3 tests/test_917_engine_wave_f39_image.py -v

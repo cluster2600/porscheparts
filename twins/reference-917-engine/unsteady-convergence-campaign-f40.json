@@ -1,0 +1,145 @@
+{
+  "$comment": "F40 est une campagne de convergence numerique du reseau motored F39. Elle compare maillage, CFL et condition initiale sur quatre cycles consecutifs de 720 degres. Elle ne valide ni geometrie, ni combustion, ni puissance, ni demarrage, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F40",
+  "status": "numerical_convergence_campaign_contract_fail_closed",
+  "asset_id": "porsche-917-unsteady-convergence-f40",
+  "source_bindings": {
+    "f39_contract": {
+      "path": "twins/reference-917-engine/unsteady-network-f39.json",
+      "expected_sha256": "c62d1dffcd57a13dce569eb1af05e61c84b893b27613f77c01b0878831743432"
+    },
+    "f39_runner": {
+      "path": "twins/reference-917-engine/source/run_unsteady_network_f39.py",
+      "expected_sha256": "4a2f7b905cd512a77b5c9719f79423c5c3eff1b606bd9390b7de47539188d174"
+    }
+  },
+  "repository_snapshot": {
+    "commit": "ddc7703d4ad949b2712bdf178a28dbaaf0ae3cda",
+    "classification": "documentary_snapshot_not_runtime_head_requirement",
+    "enforce_current_head": false
+  },
+  "runtime_image": {
+    "reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "digest": "sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "runtime_digest_verified_by_runner": false
+  },
+  "authority_boundary": {
+    "purpose": "quantifier la convergence cyclique et les sensibilites numeriques du cas F39",
+    "motored_only": true,
+    "combustion_enabled": false,
+    "fuel_injection_enabled": false,
+    "turbochargers_enabled": false,
+    "power_or_torque_evaluated": false,
+    "physical_correlation_complete": false,
+    "manufacturing_authorized": false
+  },
+  "campaign": {
+    "cycles_per_case": 4,
+    "cycle_degrees": 720.0,
+    "one_runtime_network_per_case": true,
+    "state_preserved_between_cycles": true,
+    "cumulative_t_start_required": true,
+    "parallelism": {
+      "explicit_workers_required_for_execute": true,
+      "minimum_workers": 1,
+      "maximum_workers": 6,
+      "unit_of_parallelism": "case",
+      "deterministic_sorted_report": true,
+      "wall_clock_fields_prohibited": true
+    },
+    "mesh_scaling": {
+      "target": "all_27_f39_pipe_n_cells",
+      "rounding": "nearest_integer_half_up",
+      "minimum_cells_per_pipe": 4
+    },
+    "initial_state_scaling": {
+      "target": "initial_absolute_pressure_only",
+      "scaled_specs": ["27_pipe_uniform_init", "3_junction_uniform_init", "12_cylinder_uniform_init"],
+      "boundary_pressures_scaled": false,
+      "temperature_scaled": false
+    },
+    "cases": [
+      {"case_id": "mesh_0p5_cfl_0p2_init_1p00", "mesh_scale": 0.5, "cfl": 0.2, "initial_pressure_factor": 1.0},
+      {"case_id": "mesh_1p0_cfl_0p2_init_1p00", "mesh_scale": 1.0, "cfl": 0.2, "initial_pressure_factor": 1.0},
+      {"case_id": "mesh_2p0_cfl_0p2_init_0p95", "mesh_scale": 2.0, "cfl": 0.2, "initial_pressure_factor": 0.95},
+      {"case_id": "mesh_2p0_cfl_0p2_init_1p00", "mesh_scale": 2.0, "cfl": 0.2, "initial_pressure_factor": 1.0},
+      {"case_id": "mesh_2p0_cfl_0p2_init_1p05", "mesh_scale": 2.0, "cfl": 0.2, "initial_pressure_factor": 1.05},
+      {"case_id": "mesh_2p0_cfl_0p4_init_1p00", "mesh_scale": 2.0, "cfl": 0.4, "initial_pressure_factor": 1.0}
+    ],
+    "comparisons": {
+      "mesh": {
+        "reference_case_id": "mesh_2p0_cfl_0p2_init_1p00",
+        "candidate_case_ids": ["mesh_0p5_cfl_0p2_init_1p00", "mesh_1p0_cfl_0p2_init_1p00"]
+      },
+      "temporal": {
+        "reference_case_id": "mesh_2p0_cfl_0p2_init_1p00",
+        "candidate_case_ids": ["mesh_2p0_cfl_0p4_init_1p00"]
+      },
+      "initial_state": {
+        "reference_case_id": "mesh_2p0_cfl_0p2_init_1p00",
+        "candidate_case_ids": ["mesh_2p0_cfl_0p2_init_0p95", "mesh_2p0_cfl_0p2_init_1p05"]
+      }
+    }
+  },
+  "convergence_policy": {
+    "policy_version": "f40-v1",
+    "relative_floor": 1e-12,
+    "required_cycle_boundaries": 4,
+    "required_consecutive_deltas": 3,
+    "cycle_metrics": [
+      "total_pipe_mass_kg",
+      "total_component_mass_kg",
+      "total_gas_mass_kg",
+      "pipe_pressure_volume_mean_pa_abs",
+      "pipe_temperature_mass_mean_k",
+      "component_pressure_volume_mean_pa_abs",
+      "component_temperature_mass_mean_k"
+    ],
+    "cyclic_max_relative_delta": 0.001,
+    "sensitivity_tolerances": {
+      "mesh_max_relative_delta": 0.02,
+      "temporal_max_relative_delta": 0.01,
+      "initial_state_max_relative_delta": 0.01
+    },
+    "comparison_boundary": "cycle_4_end",
+    "all_metrics_must_pass": true,
+    "failure_does_not_suppress_report": true
+  },
+  "numerical_gates": {
+    "source_hashes_verified": false,
+    "matrix_validated": false,
+    "all_cases_executed_four_cycles": false,
+    "all_runtime_fields_finite": false,
+    "all_runtime_states_positive": false,
+    "all_cases_have_three_consecutive_deltas": false,
+    "cyclic_convergence_all_cases_demonstrated": false,
+    "mesh_sensitivity_evaluated": false,
+    "mesh_sensitivity_within_tolerance": false,
+    "temporal_sensitivity_evaluated": false,
+    "temporal_sensitivity_within_tolerance": false,
+    "initial_state_sensitivity_evaluated": false,
+    "initial_state_sensitivity_within_tolerance": false
+  },
+  "physical_release_gates": {
+    "measured_network_geometry_available": false,
+    "measured_valve_cda_available": false,
+    "absolute_crank_phase_validated": false,
+    "physical_cycle_correlation_complete": false,
+    "mass_balance_validated": false,
+    "energy_balance_validated": false,
+    "physical_engine_dyno_correlated": false,
+    "power_or_torque_prediction_authorized": false,
+    "target_power_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "prohibited_claims": [
+    "numerical_convergence_is_physical_validation",
+    "finite_positive_state_is_mass_or_energy_conservation",
+    "motored_cycles_predict_fired_power_or_torque",
+    "f40_models_combustion_or_turbochargers",
+    "f40_proves_1600_hp",
+    "f40_authorizes_engine_start_or_manufacturing"
+  ]
+}
