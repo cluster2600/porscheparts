@@ -1,0 +1,396 @@
+name: Build air-oil cycle F34b image
+
+# Publication manuelle uniquement. Le contexte Docker limite les COPY a sept
+# fichiers publics : aucun scan, maillage, manuel, secret ou poids IA.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: air-oil-cycle-f34b-${{ github.sha }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-air-oil-cycle-f34b
+  EXPECTED_PHYSICAL_RELEASE_GATE_KEYS: >-
+    ["air_cooling_validated","combustion_and_knock_validated","controls_and_overspeed_protection_validated","doe_execution_complete","manufacturing_authorized","mass_and_energy_balance_validated","metal_print_authorized","oil_system_validated","physical_correlation_complete","porsche_993_packaging_validated","porsche_993_vehicle_installation_authorized","structural_and_fatigue_validated","target_definition_complete","target_power_proven","test_bench_start_authorized","thermodynamic_cycle_validated","turbo_match_validated"]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Verify main release source
+        run: |
+          test "${GITHUB_REF}" = "refs/heads/main"
+          test "${GITHUB_SHA}" = "$(git rev-parse HEAD)"
+
+      - name: Verify bundle, solver and static image guard
+        run: |
+          set -o pipefail
+          {
+            python3 scripts/export_917_air_oil_seeds_f34b.py \
+              --check twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json
+            python3 tests/test_917_air_oil_seeds_f34b.py -v
+            python3 tests/test_917_air_oil_cycle_f34b.py -v
+            python3 tests/test_air_oil_cycle_f34b_image.py -v
+          } 2>&1 | tee air-oil-cycle-f34b-static-tests.txt
+
+      - name: Record exact public image inputs
+        run: |
+          sha256sum \
+            .github/workflows/air-oil-cycle-f34b-image.yml \
+            containers/air-oil-cycle-f34b.Dockerfile \
+            containers/air-oil-cycle-f34b.Dockerfile.dockerignore \
+            containers/air-oil-cycle-f34b.requirements.txt \
+            containers/air-oil-cycle-f34b-smoke.py \
+            scripts/export_917_air_oil_seeds_f34b.py \
+            scripts/run_917_air_oil_cycle_f34b.py \
+            scripts/run_917_doe_f34.py \
+            tests/test_917_air_oil_seeds_f34b.py \
+            tests/test_917_air_oil_cycle_f34b.py \
+            tests/test_air_oil_cycle_f34b_image.py \
+            twins/reference-917-engine/air-oil-core-controls-f34a.json \
+            twins/reference-917-engine/doe-surrogate-f34.json \
+            twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json \
+            twins/reference-917-engine/evidence/f34/doe-case-manifest.json \
+            > air-oil-cycle-f34b-source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Verify pinned Buildx and BuildKit
+        run: |
+          docker buildx version 2>&1 | tee air-oil-cycle-f34b-builder.txt
+          docker buildx inspect --bootstrap 2>&1 | tee -a air-oil-cycle-f34b-builder.txt
+          grep -F 'v0.36.1' air-oil-cycle-f34b-builder.txt >/dev/null
+          grep -F 'v0.32.2' air-oil-cycle-f34b-builder.txt >/dev/null
+          buildx_path="$(docker info --format '{{range .ClientInfo.Plugins}}{{if eq .Name "buildx"}}{{.Path}}{{end}}{{end}}')"
+          test -x "${buildx_path}"
+          test "$(sha256sum "${buildx_path}" | cut -d' ' -f1)" = "48af8a397ebd60178778bf63611dbcebe5f5e7a9be90eb9147b24b9587455778"
+          sha256sum "${buildx_path}" | tee -a air-oil-cycle-f34b-builder.txt
+          buildkit_container_ids="$(docker ps --filter name=buildx_buildkit --format '{{.ID}}')"
+          test "$(printf '%s\n' "${buildkit_container_ids}" | grep -c .)" -eq 1
+          buildkit_image="$(docker container inspect --format '{{.Config.Image}}' "${buildkit_container_ids}")"
+          test "${buildkit_image}" = "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+          printf 'BuildKit image: %s\n' "${buildkit_image}" | tee -a air-oil-cycle-f34b-builder.txt
+
+      - name: Log in to GHCR for publication
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/air-oil-cycle-f34b.Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:candidate-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          build-args: |
+            OCI_SOURCE=https://github.com/${{ github.repository }}
+          cache-from: type=gha,scope=air-oil-cycle-f34b
+          cache-to: type=gha,mode=max,scope=air-oil-cycle-f34b
+
+      - name: Gate exact digest, attestations, SBOM and hardened smoke
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          tag_ref="${IMAGE_REPOSITORY}:candidate-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          tag_digest=""
+          for attempt in 1 2 3 4 5; do
+            tag_digest="$(docker buildx imagetools inspect "${tag_ref}" 2>/dev/null | awk '$1 == "Digest:" { print $2; exit }')"
+            if test "${tag_digest}" = "${IMAGE_DIGEST}"; then break; fi
+            sleep 3
+          done
+          test "${tag_digest}" = "${IMAGE_DIGEST}"
+
+          docker buildx imagetools inspect --raw "${pinned_ref}" > air-oil-cycle-f34b-index.json
+          test "$(sha256sum air-oil-cycle-f34b-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            (.manifests | length) == 2 and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.platform.os == "unknown" and .platform.architecture == "unknown" and .annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' air-oil-cycle-f34b-index.json >/dev/null
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' air-oil-cycle-f34b-index.json)"
+          attestation_digest="$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .digest' air-oil-cycle-f34b-index.json)"
+          test "$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .annotations["vnd.docker.reference.digest"]' air-oil-cycle-f34b-index.json)" = "${platform_digest}"
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${platform_digest}" > air-oil-cycle-f34b-platform-manifest.json
+          test "$(sha256sum air-oil-cycle-f34b-platform-manifest.json | cut -d' ' -f1)" = "${platform_digest#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.manifest.v1+json" and
+            all(.layers[]; .mediaType == "application/vnd.oci.image.layer.v1.tar+gzip") and
+            ([.layers[].size] | add) < 175000000
+          ' air-oil-cycle-f34b-platform-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${attestation_digest}" > air-oil-cycle-f34b-attestation-manifest.json
+          test "$(sha256sum air-oil-cycle-f34b-attestation-manifest.json | cut -d' ' -f1)" = "${attestation_digest#sha256:}"
+          jq -e --arg subject "${platform_digest}" '
+            .artifactType == "application/vnd.docker.attestation.manifest.v1+json" and
+            .subject.mediaType == "application/vnd.oci.image.manifest.v1+json" and
+            .subject.digest == $subject and
+            ([.layers[] | select(.mediaType == "application/vnd.in-toto+json" and .annotations["in-toto.io/predicate-type"] == "https://slsa.dev/provenance/v1")] | length) == 1 and
+            ([.layers[] | select(.mediaType == "application/vnd.in-toto+json" and .annotations["in-toto.io/predicate-type"] == "https://spdx.dev/Document")] | length) == 1
+          ' air-oil-cycle-f34b-attestation-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" > air-oil-cycle-f34b-provenance.json
+          jq -e \
+            --arg source "https://github.com/${GITHUB_REPOSITORY}" \
+            --arg revision "${GITHUB_SHA}" \
+            --arg builder_prefix "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/" '
+            (.SLSA.buildDefinition.buildType | startswith("https://github.com/moby/buildkit/")) and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:source"] == $source and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:revision"] == $revision and
+            .SLSA.buildDefinition.internalParameters.github_repository == env.GITHUB_REPOSITORY and
+            .SLSA.buildDefinition.internalParameters.github_workflow_sha == $revision and
+            (.SLSA.runDetails.builder.id | startswith($builder_prefix)) and
+            any(.SLSA.buildDefinition.resolvedDependencies[]; .digest.sha256 == "a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e") and
+            any(.SLSA.buildDefinition.resolvedDependencies[]; .digest.sha256 == "9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef")
+          ' air-oil-cycle-f34b-provenance.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${pinned_ref}" > air-oil-cycle-f34b-sbom.json
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $spdx |
+            $spdx.spdxVersion == "SPDX-2.3" and
+            $spdx.SPDXID == "SPDXRef-DOCUMENT" and
+            $spdx.dataLicense == "CC0-1.0" and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "cantera" and .versionInfo == "3.2.0") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "numpy" and .versionInfo == "2.5.2")
+          ' air-oil-cycle-f34b-sbom.json >/dev/null
+
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${pinned_ref}")" = 9133:9133
+          if ! docker run --rm --platform linux/amd64 --user 9133:9133 \
+            --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+            --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" \
+            > air-oil-cycle-f34b-smoke.json \
+            2> air-oil-cycle-f34b-smoke.stderr; then
+            cat air-oil-cycle-f34b-smoke.json
+            cat air-oil-cycle-f34b-smoke.stderr >&2
+            exit 1
+          fi
+          test ! -s air-oil-cycle-f34b-smoke.stderr
+          jq -e --argjson expected_physical_release_gate_keys "${EXPECTED_PHYSICAL_RELEASE_GATE_KEYS}" '
+            .status == "passed_embedded_f34b_preflight_and_generic_cantera_fixture_only" and
+            .platform == "linux/amd64-cpu" and .offline == true and
+            .non_root == true and .gpu_required == false and
+            .cantera == "3.2.0" and
+            .dependency_audit.pin_count == 4 and
+            .runtime_identity_and_filesystem_audit.uid == 9133 and
+            .runtime_identity_and_filesystem_audit.gid == 9133 and
+            .runtime_identity_and_filesystem_audit.application_payload_write_blocked == true and
+            .network_isolation_evidence.verified == true and
+            (.network_isolation_evidence.external_routed_interfaces | length) == 0 and
+            .bundled_content_audit.file_count == 7 and
+            .bundled_content_audit.contains_scan_or_print_geometry == false and
+            .bundled_content_audit.contains_model_weights == false and
+            (.bundled_content_audit.forbidden_asset_files | length) == 0 and
+            (.bundled_content_audit.secret_named_files | length) == 0 and
+            .embedded_authority_audit.engine_core_liquid_coolant_present == false and
+            .embedded_authority_audit.canonical_doe_planned_cases == 2570 and
+            .embedded_authority_audit.canonical_doe_executed_cases == 0 and
+            .proof_boundary.preflight_executed == true and
+            .proof_boundary.generic_thermochemistry_fixture_executed == true and
+            .proof_boundary.engine_forward_solver_executed == false and
+            .proof_boundary.solver_synthetic_smoke_executed == false and
+            .proof_boundary.canonical_doe_cases_executed == 0 and
+            .proof_boundary.canonical_doe_solver_campaign_executed == false and
+            .proof_boundary.predicted_engine_power == false and
+            .proof_boundary.validated_1600_hp == false and
+            .proof_boundary.remote_compute_used == false and
+            (.physical_release_gates | keys | length) == 17 and
+            (.physical_release_gates | keys | sort) == $expected_physical_release_gate_keys and
+            all(.physical_release_gates[]; . == false)
+          ' air-oil-cycle-f34b-smoke.json >/dev/null
+
+          if ! docker run --rm --platform linux/amd64 --user 9133:9133 \
+            --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+            --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" python \
+            /opt/air-oil-cycle-f34b/scripts/run_917_air_oil_cycle_f34b.py \
+            synthetic-smoke \
+            > air-oil-cycle-f34b-derived-fixtures.json \
+            2> air-oil-cycle-f34b-derived-fixtures.stderr; then
+            cat air-oil-cycle-f34b-derived-fixtures.json
+            cat air-oil-cycle-f34b-derived-fixtures.stderr >&2
+            exit 1
+          fi
+          test ! -s air-oil-cycle-f34b-derived-fixtures.stderr
+          jq -e '
+            .status == "two_noncanonical_fixture_smokes_complete_all_physical_gates_blocked" and
+            .canonical_doe_cases_executed == 0 and
+            .synthetic_numerical_power_screen_executed == true and
+            .authoritative_engine_power_prediction_available == false and
+            .validated_1600_hp == false and
+            .physical_correlation == false and
+            .doe_manifest_exclusion_check.canonical_case_hash_count == 2570 and
+            .doe_manifest_exclusion_check.canonical_forward_solver_inputs_reconstructed_or_executed == false and
+            .execution_boundary.synthetic_noncanonical_fixture_cases_executed == 2 and
+            .execution_boundary.source_seed_cases_executed == 0 and
+            .execution_boundary.all_fixture_hashes_absent_from_canonical_manifest == true and
+            (.synthetic_predictions | length) == 2 and
+            (.claims | keys | sort) == [
+              "1600_mechanical_hp_proven",
+              "air_cooling_validated",
+              "authoritative_engine_power_prediction_available",
+              "energy_balance_physically_validated",
+              "engine_start_authorized",
+              "manufacturing_authorized",
+              "mass_balance_physically_validated",
+              "oil_system_validated",
+              "physicsnemo_model_trained_or_evaluated",
+              "target_power_proven",
+              "turbo_match_validated"
+            ] and
+            ([.synthetic_predictions[] | select(
+              .configuration == "naturally_aspirated" and
+              .source_seed_is_canonical_doe_case == true and
+              .source_seed_speed_rpm == 9000 and
+              .synthetic_fixture_speed_rpm == 8123
+            )] | length) == 1 and
+            ([.synthetic_predictions[] | select(
+              .configuration == "twin_turbo" and
+              .source_seed_is_canonical_doe_case == false and
+              .source_seed_speed_rpm == 9000 and
+              .synthetic_fixture_speed_rpm == 8377
+            )] | length) == 1 and
+            all(.synthetic_predictions[];
+              .synthetic_fixture_absent_from_all_canonical_cases == true and
+              ((.synthetic_fixture_speed_delta_rpm | if . < 0 then -. else . end) >= 100) and
+              .synthetic_prediction.numerical_scope.canonical_doe_case == false and
+              .synthetic_prediction.work_and_power.physical_power_validated == false and
+              (.synthetic_prediction.claims | keys | sort) == [
+                "1600_mechanical_hp_proven",
+                "cooling_system_validated",
+                "engine_operation_authorized",
+                "manufacturing_authorized",
+                "target_power_proven"
+              ] and
+              all(.synthetic_prediction.claims[]; . == false)
+            ) and
+            all(.claims[]; . == false)
+          ' air-oil-cycle-f34b-derived-fixtures.json >/dev/null
+          printf '%s\n' "${pinned_ref}" > air-oil-cycle-f34b-image-ref.txt
+
+          docker logout ghcr.io
+          docker image rm -f "${pinned_ref}" >/dev/null
+          docker image rm -f "${tag_ref}" >/dev/null 2>&1 || true
+          anonymous_config="$(mktemp -d)"
+          trap 'rm -rf -- "${anonymous_config}"' EXIT
+          printf '{"auths":{}}\n' > "${anonymous_config}/config.json"
+          test "$(jq -r '.auths | length' "${anonymous_config}/config.json")" -eq 0
+          DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64 "${pinned_ref}" \
+            2>&1 | tee air-oil-cycle-f34b-anonymous-pull.txt
+          jq -e '.auths == {}' "${anonymous_config}/config.json" >/dev/null
+          test "$(docker image inspect --format '{{.RepoDigests}}' "${pinned_ref}" | grep -o "${IMAGE_DIGEST}" | head -1)" = "${IMAGE_DIGEST}"
+          if ! docker run --rm --platform linux/amd64 --user 9133:9133 \
+            --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+            --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" \
+            > air-oil-cycle-f34b-anonymous-smoke.json \
+            2> air-oil-cycle-f34b-anonymous-smoke.stderr; then
+            cat air-oil-cycle-f34b-anonymous-smoke.json
+            cat air-oil-cycle-f34b-anonymous-smoke.stderr >&2
+            exit 1
+          fi
+          test ! -s air-oil-cycle-f34b-anonymous-smoke.stderr
+          jq -e --argjson expected_physical_release_gate_keys "${EXPECTED_PHYSICAL_RELEASE_GATE_KEYS}" '
+            .status == "passed_embedded_f34b_preflight_and_generic_cantera_fixture_only" and
+            .offline == true and .non_root == true and
+            .embedded_authority_audit.canonical_doe_executed_cases == 0 and
+            .proof_boundary.engine_forward_solver_executed == false and
+            .proof_boundary.solver_synthetic_smoke_executed == false and
+            .proof_boundary.canonical_doe_cases_executed == 0 and
+            .proof_boundary.predicted_engine_power == false and
+            .proof_boundary.validated_1600_hp == false and
+            (.physical_release_gates | keys | length) == 17 and
+            (.physical_release_gates | keys | sort) == $expected_physical_release_gate_keys and
+            all(.physical_release_gates[]; . == false)
+          ' air-oil-cycle-f34b-anonymous-smoke.json >/dev/null
+          jq -S '{status,dependency_audit,bundled_content_audit,embedded_authority_audit,proof_boundary,physical_release_gates}' \
+            air-oil-cycle-f34b-smoke.json > /tmp/air-oil-cycle-f34b-smoke-stable.json
+          jq -S '{status,dependency_audit,bundled_content_audit,embedded_authority_audit,proof_boundary,physical_release_gates}' \
+            air-oil-cycle-f34b-anonymous-smoke.json > /tmp/air-oil-cycle-f34b-anonymous-smoke-stable.json
+          cmp /tmp/air-oil-cycle-f34b-smoke-stable.json /tmp/air-oil-cycle-f34b-anonymous-smoke-stable.json
+          jq -n \
+            --arg image_ref "${pinned_ref}" \
+            --arg docker_config_sha256 "$(sha256sum "${anonymous_config}/config.json" | cut -d' ' -f1)" \
+            '{anonymous_pull_verified:true,image_ref:$image_ref,docker_config_auths:0,docker_config_sha256:$docker_config_sha256}' \
+            > air-oil-cycle-f34b-anonymous-audit.json
+
+      - name: Log in to GHCR for verified tag promotion
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Promote verified digest to unique verified tag
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          candidate_ref="${IMAGE_REPOSITORY}:candidate-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          release_ref="${IMAGE_REPOSITORY}:verified-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          test "$(docker buildx imagetools inspect "${candidate_ref}" | awk '$1 == "Digest:" { print $2; exit }')" = "${IMAGE_DIGEST}"
+          docker buildx imagetools create --tag "${release_ref}" "${pinned_ref}"
+          release_digest=""
+          for attempt in 1 2 3 4 5; do
+            release_digest="$(docker buildx imagetools inspect "${release_ref}" 2>/dev/null | awk '$1 == "Digest:" { print $2; exit }')"
+            if test "${release_digest}" = "${IMAGE_DIGEST}"; then break; fi
+            sleep 3
+          done
+          test "${release_digest}" = "${IMAGE_DIGEST}"
+          printf '%s\n' "${candidate_ref}" > air-oil-cycle-f34b-candidate-tag.txt
+          printf '%s\n' "${release_ref}" > air-oil-cycle-f34b-release-tag.txt
+          docker logout ghcr.io
+
+      - name: Upload immutable image evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: air-oil-cycle-f34b-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            air-oil-cycle-f34b-image-ref.txt
+            air-oil-cycle-f34b-candidate-tag.txt
+            air-oil-cycle-f34b-release-tag.txt
+            air-oil-cycle-f34b-source-inputs.sha256
+            air-oil-cycle-f34b-static-tests.txt
+            air-oil-cycle-f34b-builder.txt
+            air-oil-cycle-f34b-index.json
+            air-oil-cycle-f34b-platform-manifest.json
+            air-oil-cycle-f34b-attestation-manifest.json
+            air-oil-cycle-f34b-provenance.json
+            air-oil-cycle-f34b-sbom.json
+            air-oil-cycle-f34b-smoke.json
+            air-oil-cycle-f34b-smoke.stderr
+            air-oil-cycle-f34b-derived-fixtures.json
+            air-oil-cycle-f34b-derived-fixtures.stderr
+            air-oil-cycle-f34b-anonymous-pull.txt
+            air-oil-cycle-f34b-anonymous-smoke.json
+            air-oil-cycle-f34b-anonymous-smoke.stderr
+            air-oil-cycle-f34b-anonymous-audit.json
+          if-no-files-found: error
+          retention-days: 30
