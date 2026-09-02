@@ -491,3 +491,40 @@ chaîne de confiance : même un dossier F6 auto-déclaré garde fabrication,
 impression métal, démarrage, 1 600 hp et entraînement PhysicsNeMo à `false` tant
 que les signatures, parseurs solveur/banc et autorités externes ne sont pas
 qualifiés.
+
+## Inventaire canonique et train mobile F14–F16
+
+Les itérations F14 à F16 remplacent progressivement les hypothèses visuelles par
+des contrats reproductibles, sans promouvoir le moteur au-delà de l'intégrité
+de sa source :
+
+- [F14](../../docs/917_DIMENSIONAL_SKELETON_F14.md) limite la géométrie aux
+  guides dimensionnels sourcés et aux occurrences non placées ;
+- [F15 scan](../../docs/917_SCAN_SEGMENTATION_F15.md) exécute l'inventaire du
+  binaire canonique dans une [image CPU immuable](../../docs/917_OBJ_METROLOGY_CONTAINER_F15.md) ;
+- [F15 mécanique](../../docs/917_MECHANICAL_CYCLE_CLOSURE_F15.md) ferme seulement
+  les identités algébriques puissance–travail–couple–BMEP ;
+- [F16-001](../../docs/917_KINEMATIC_INTERFACE_READINESS_F16.md) construit le
+  registre du carter, du vilebrequin, des huit paliers, des douze cylindres,
+  bielles, axes et pistons, sans inventer leurs coordonnées.
+
+```mermaid
+flowchart LR
+    IMG[Image F15 immuable<br/>CPU linux/amd64] --> SCAN[Scan canonique<br/>3 composantes, 944 frontières]
+    SCAN --> REVIEW[Revue sémantique<br/>identité, échelle, datums]
+    FACTS[Faits F13–F15<br/>candidats et dérivations] --> F16[F16-001<br/>58 instances, 68 relations]
+    REVIEW --> METRO[14 exigences<br/>CMM, CT, démontage]
+    F16 --> METRO
+    METRO --> CAD[Future CAO paramétrique<br/>interfaces et tolérances]
+    CAD --> REF[Future physique classique<br/>MBD, CFD, thermique, FEA]
+    REF --> NEMO[Future PhysicsNeMo<br/>surrogate validé + UQ/OOD]
+    NEMO --> OMNI[USD / Omniverse<br/>champs dans le domaine validé]
+```
+
+L'exécution F15 confirme 1 282 880 sommets, 2 465 879 triangles, trois
+composantes de surface et 101 809 arêtes ouvertes. L'OBJ ne contient aucun
+objet, groupe ou matériau nommé ; sa segmentation mécanique ne peut donc pas
+être déduite de métadonnées. F16 génère 58 instances sémantiques et 68 relations
+inactives, mais zéro coordonnée, solide, joint, animation ou échantillon
+PhysicsNeMo. Cette frontière empêche de transformer silencieusement un scan
+extérieur incomplet en moteur prétendument fonctionnel ou imprimable.

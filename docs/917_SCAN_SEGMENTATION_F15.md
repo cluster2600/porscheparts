@@ -70,8 +70,10 @@ Un rapport local antérieur, produit par `prepare_scan.py`, avait observé :
 
 Ces valeurs sont seulement une référence de régression pour le même fichier
 binaire. Elles ne sont ni une nouvelle exécution F15, ni une preuve métrologique
-indépendante. Le vérificateur F15 exige leur concordance lors du futur passage
-canonique ; une différence rend le rapport `failed`.
+indépendante. Le vérificateur F15 exige la concordance du SHA-256, des comptes
+globaux, du nombre de composantes, de la topologie et des bornes. Les trois
+tailles de composantes ci-dessus sont documentées dans la preuve d'exécution,
+mais ne constituent pas chacune un gate de réconciliation du contrat actuel.
 
 ## Algorithme et limites de ressources
 
@@ -137,9 +139,37 @@ Le code de sortie vaut `0` uniquement pour `passed_synthetic_fixture_only` ou
 réconciliation canonique renvoie `1`. Le mode synthétique accepte un autre
 SHA-256 pour tester le parseur, mais ne peut ouvrir aucune libération.
 
-L'exécution complète sur le scan réel est volontairement différée jusqu'à ce
-que le conteneur prévu pour ce lot ait passé son smoke test. Après cette
-exécution, il faudra faire une revue visuelle des frontières, relier les régions
-à des interfaces physiques mesurées, puis reconstruire des maîtres CAO
-paramétriques. Un inventaire topologique, même parfaitement reproductible, ne
-rend pas le moteur fonctionnel ou imprimable.
+## Exécution canonique observée localement dans l'image immuable
+
+Le 2 septembre 2026, le binaire canonique a été exécuté dans l'image publique
+exacte verrouillée par digest, avec réseau coupé, racine en lecture seule,
+capacités supprimées et source montée en lecture seule. Le passage a duré
+565,65 secondes sous émulation `linux/amd64` sur l'hôte `arm64` et a produit le
+statut `passed_inventory_only` sans erreur de contrat, de garde, de parsing ou
+de réconciliation.
+
+Le fichier fait 107 128 223 octets. Le parseur a confirmé 1 282 880 sommets,
+2 465 879 triangles, trois composantes de surface, 7 397 637 occurrences
+d'arêtes, 3 749 723 arêtes uniques, 101 809 arêtes ouvertes, 944 composantes de
+frontière, aucune arête non-manifold et deux faces d'aire nulle. Le maillage
+reste donc non étanche.
+
+L'OBJ ne contient que les directives `v` et `f`. Il ne porte aucun objet,
+groupe, matériau ou fichier de matériaux nommé. Les trois composantes et les
+944 frontières restent sans sémantique mécanique ; le fait que chaque frontière
+soit une candidate de boucle topologique ne signifie pas qu'il s'agit d'un
+alésage, d'un conduit ou d'une interface de pièce.
+
+Le rapport complet et ses CSV restent sous `work/`, hors Git. La preuve suivie
+[`scan-execution-evidence-f15.json`](../twins/reference-917-engine/scan-execution-evidence-f15.json)
+ne contient que les agrégats, les empreintes des quatre sorties et les limites
+de revendication. Son manifeste d'exécution assaini enregistre l'image runtime,
+l'argv interne sans chemin hôte, la politique de confinement et le code de
+sortie `0` comme observation locale. Il n'enregistre pas d'identifiant runtime
+signé : la preuve n'est donc ni une attestation indépendante, ni une mesure
+physique.
+
+Après cette exécution, il faut faire une revue visuelle des frontières, relier
+les régions à des interfaces physiques mesurées, puis reconstruire des maîtres
+CAO paramétriques. Un inventaire topologique, même parfaitement reproductible,
+ne rend pas le moteur fonctionnel ou imprimable.

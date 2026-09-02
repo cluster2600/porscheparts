@@ -1,0 +1,206 @@
+{
+  "$comment": "Observation locale reproductible de l'inventaire F15 du binaire canonique dans l'image immuable. Cette preuve porte uniquement sur l'execution informatique et les agregats du maillage; elle ne prouve ni identite, ni echelle, ni semantique mecanique, ni fonction, ni fabricabilite.",
+  "schema_version": "1.0.0",
+  "phase": "F15",
+  "status": "canonical_scan_inventory_passed_local_execution_only",
+  "claim_scope": "exact_binary_inventory_in_exact_container_image",
+  "evidence_authority": {
+    "kind": "local_operator_observation",
+    "independent_reproduction_verified": false,
+    "cryptographic_operator_signature_present": false,
+    "physical_metrology": false,
+    "release_authority": false
+  },
+  "execution": {
+    "image_reference": "ghcr.io/cluster2600/3dprinting993-obj-metrology-f15@sha256:827e639cd126441dfa98fc097d4c8b09a01a28e25545de62ca3a01da963b959a",
+    "image_lock": "containers/obj-metrology-f15.lock.json",
+    "started_at_utc": "2026-09-01T23:39:37Z",
+    "completed_at_utc": "2026-09-01T23:49:03Z",
+    "elapsed_seconds": 565.65,
+    "host_architecture": "arm64",
+    "container_platform": "linux/amd64",
+    "platform_emulation_used": true,
+    "network_mode": "none",
+    "root_filesystem_read_only": true,
+    "capabilities_dropped": [
+      "ALL"
+    ],
+    "no_new_privileges": true,
+    "source_mount_read_only": true,
+    "persistent_output_mount_only_writable_location": true,
+    "ephemeral_tmpfs_writable": true,
+    "temporary_files_removed": true,
+    "execution_manifest": {
+      "kind": "sanitized_local_operator_observation",
+      "runtime_image_reference": "ghcr.io/cluster2600/3dprinting993-obj-metrology-f15@sha256:827e639cd126441dfa98fc097d4c8b09a01a28e25545de62ca3a01da963b959a",
+      "process_exit_code": 0,
+      "argv": [
+        "python3",
+        "/opt/3dprinting993/twins/reference-917-engine/source/build_scan_segmentation_f15.py",
+        "--contract",
+        "/opt/3dprinting993/twins/reference-917-engine/scan-segmentation-f15.json",
+        "--source",
+        "/workspace/input/917-engine-case-with-cylinders.obj",
+        "--output",
+        "/workspace/output"
+      ],
+      "argv_sanitized": true,
+      "host_paths_included": false,
+      "runtime_container_id_recorded": false,
+      "policy": {
+        "platform": "linux/amd64",
+        "network": "none",
+        "root_filesystem": "read_only",
+        "tmpfs": "/tmp:rw,noexec,nosuid,size=16m",
+        "capabilities_dropped": [
+          "ALL"
+        ],
+        "no_new_privileges": true,
+        "source_mount": "read_only",
+        "persistent_output_mount": "only_persistent_writable_location"
+      }
+    }
+  },
+  "source_custody": {
+    "filename": "917-engine-case-with-cylinders.obj",
+    "bytes": 107128223,
+    "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "expected_sha256_matches": true,
+    "source_modified": false,
+    "source_copy_created": false,
+    "raw_scan_committed": false,
+    "geometry_payload_in_evidence": false
+  },
+  "report": {
+    "status": "passed_inventory_only",
+    "execution_scope": "canonical_scan",
+    "sha256": "e598eae716da3a2f57ccb52b4aebc421a7eae4d24752fc09556ea1569649dc57",
+    "bytes": 318915,
+    "contract_integrity_error_count": 0,
+    "source_custody_error_count": 0,
+    "canonical_reconciliation_error_count": 0,
+    "parse_error_count": 0,
+    "parse_warning_count": 0
+  },
+  "format_inventory": {
+    "lines": 3748759,
+    "vertices": 1282880,
+    "polygon_faces": 2465879,
+    "triangle_faces": 2465879,
+    "zero_area_faces": 2,
+    "unreferenced_vertices": 0,
+    "named_object_declarations": 0,
+    "named_group_declarations": 0,
+    "named_material_declarations": 0,
+    "material_library_declarations": 0,
+    "usable_semantic_declarations": false
+  },
+  "raw_coordinate_metrology": {
+    "units": "OBJ coordinate units",
+    "units_confirmed": false,
+    "metric_conversion_applied": false,
+    "coordinate_transform_applied": false,
+    "bounds_min_obj_units": [
+      -416.154602,
+      -515.711365,
+      250.128326
+    ],
+    "bounds_max_obj_units": [
+      586.020447,
+      252.563721,
+      989.893677
+    ],
+    "dimensions_obj_units": [
+      1002.175049,
+      768.275086,
+      739.765351
+    ]
+  },
+  "topology": {
+    "surface_component_count": 3,
+    "surface_components": [
+      {
+        "component_id": "surface_0001",
+        "vertex_count": 1206735,
+        "face_count": 2320591,
+        "semantic_status": "unclassified_topological_component"
+      },
+      {
+        "component_id": "surface_0002",
+        "vertex_count": 74044,
+        "face_count": 141541,
+        "semantic_status": "unclassified_topological_component"
+      },
+      {
+        "component_id": "surface_0003",
+        "vertex_count": 2101,
+        "face_count": 3747,
+        "semantic_status": "unclassified_topological_component"
+      }
+    ],
+    "edge_occurrences": 7397637,
+    "unique_edges": 3749723,
+    "boundary_edges": 101809,
+    "boundary_component_count": 944,
+    "reported_boundary_component_count": 500,
+    "closed_boundary_loop_candidate_count": 944,
+    "non_manifold_edges": 0,
+    "maximum_edge_incidence": 2,
+    "watertight": false,
+    "boundary_loop_semantics_confirmed": false
+  },
+  "local_outputs": [
+    {
+      "name": "scan-segmentation-f15-report.json",
+      "sha256": "e598eae716da3a2f57ccb52b4aebc421a7eae4d24752fc09556ea1569649dc57",
+      "bytes": 318915,
+      "contains_geometry_payload": false
+    },
+    {
+      "name": "surface-components-f15.csv",
+      "sha256": "8825228826765788d7ea3c8c06383fd95e6248d1c812cce461c974cf14be2643",
+      "bytes": 705,
+      "contains_geometry_payload": false
+    },
+    {
+      "name": "boundary-components-f15.csv",
+      "sha256": "0e2d2ae68c3300f80a0c54603f9409398f981be24149beecf781b23a807df9bc",
+      "bytes": 97803,
+      "contains_geometry_payload": false
+    },
+    {
+      "name": "obj-declarations-f15.json",
+      "sha256": "b6ed1982154c6754b6392b65f4bc6dd2bb44d8c8314465bdc5fbc3cf7ca8e8ce",
+      "bytes": 431,
+      "contains_geometry_payload": false
+    }
+  ],
+  "release_gates": {
+    "canonical_scan_execution_observed_locally_in_immutable_image": true,
+    "independent_execution_attestation_verified": false,
+    "scan_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "semantic_segmentation_confirmed": false,
+    "geometry_repaired": false,
+    "watertight_manufacturing_geometry": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_job_used": false
+  },
+  "next_required_gates": [
+    "visual_review_and_semantic_assignment_of_three_surface_components_and_944_boundaries",
+    "three_independent_traceable_physical_scale_controls",
+    "named_engine_datums_and_variant_identity",
+    "parametric_cad_reconstruction_from_measured_interfaces",
+    "watertight_solver_domains_and_classical_solver_convergence",
+    "physical_test_correlation_before_physicsnemo_training"
+  ]
+}

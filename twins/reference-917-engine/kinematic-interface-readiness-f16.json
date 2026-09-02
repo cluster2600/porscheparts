@@ -1,0 +1,471 @@
+{
+  "$comment": "F16-001 definit uniquement un registre de readiness cinematique pour la branche 5,0 L NA. Le scan reste non lie; aucune coordonnee, piece CAO, joint, animation ou cote de fabrication n'est autorise.",
+  "schema_version": "1.0.0",
+  "phase": "F16-001",
+  "status": "kinematic_interface_contract_ready_all_geometry_and_motion_blocked",
+  "asset_id": "porsche-917-kinematic-interface-readiness-f16",
+  "source_contracts": {
+    "fact_registry": "twins/reference-917-engine/classical-solver-cases-f13.json",
+    "dimensional_skeleton": "twins/reference-917-engine/dimensional-skeleton-f14.json",
+    "scan_metrology": "twins/reference-917-engine/scan-metrology-f13.json",
+    "mechanical_connections": "twins/reference-917-engine/mechanical-connections-f8.json",
+    "mechanical_cycle_closure": "twins/reference-917-engine/mechanical-cycle-closure-f15.json"
+  },
+  "work_branch": {
+    "variant_id": "type_912_5_0_na",
+    "dimensional_skeleton_variant_id": "917_5_0_na_4999",
+    "role": "engineering_reference_branch_not_scan_identification",
+    "scan_binding": false,
+    "scan_asset_id": null,
+    "scan_identity_status": "unbound",
+    "scan_scale_mm_per_unit": null,
+    "variant_identity_proven": false,
+    "manufacturing_identity_proven": false
+  },
+  "source_fact_requirements": [
+    {
+      "fact_ref": "FACT-CYLINDER-COUNT",
+      "role": "candidate_instance_count_only"
+    },
+    {
+      "fact_ref": "FACT-50-BORE",
+      "role": "published_candidate_not_interface_tolerance"
+    },
+    {
+      "fact_ref": "FACT-50-STROKE",
+      "role": "published_candidate_for_transparent_kinematic_derivation"
+    },
+    {
+      "fact_ref": "FACT-50-DISPLACEMENT",
+      "role": "published_consistency_candidate_only"
+    },
+    {
+      "fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "role": "candidate_station_count_only"
+    },
+    {
+      "fact_ref": "FACT-FIRING-ORDER",
+      "role": "candidate_sequence_with_unresolved_cylinder_numbering"
+    }
+  ],
+  "transparent_derivations": [
+    {
+      "id": "candidate_crank_radius",
+      "source_fact_ref": "FACT-50-STROKE",
+      "formula": "stroke_mm / 2",
+      "result_unit": "mm",
+      "value_in_contract": null,
+      "status": "derived_candidate_not_measured",
+      "manufacturing_dimension": false,
+      "geometry_authority": false,
+      "load_model_authority": false
+    }
+  ],
+  "datum_registry_contract": {
+    "fixed_datums": [
+      {
+        "id": "engine_reference_frame",
+        "kind": "coordinate_frame",
+        "origin_mm": null,
+        "orientation": null,
+        "status": "unknown_unverified"
+      },
+      {
+        "id": "crankshaft_axis",
+        "kind": "axis",
+        "origin_mm": null,
+        "direction": null,
+        "status": "unknown_unverified"
+      },
+      {
+        "id": "crankcase_split_plane",
+        "kind": "plane",
+        "origin_mm": null,
+        "normal": null,
+        "status": "unknown_unverified"
+      },
+      {
+        "id": "bank_positive_deck_plane",
+        "kind": "plane",
+        "origin_mm": null,
+        "normal": null,
+        "status": "unknown_unverified"
+      },
+      {
+        "id": "bank_negative_deck_plane",
+        "kind": "plane",
+        "origin_mm": null,
+        "normal": null,
+        "status": "unknown_unverified"
+      }
+    ],
+    "repeated_datums": [
+      {
+        "family": "cylinder_axis",
+        "id_prefix": "cylinder_axis_geometric_",
+        "count_fact_ref": "FACT-CYLINDER-COUNT",
+        "expected_count": 12,
+        "origin_mm": null,
+        "direction": null,
+        "historical_cylinder_number": null,
+        "status": "unknown_unplaced_unverified"
+      }
+    ]
+  },
+  "main_bearing_station_contract": {
+    "id_prefix": "main_bearing_station_",
+    "count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+    "expected_count": 8,
+    "axis_ref": "crankshaft_axis",
+    "axial_coordinate_mm": null,
+    "seat_center_mm": null,
+    "seat_axis": null,
+    "seat_diameter_mm": null,
+    "seat_width_mm": null,
+    "bearing_clearance_mm": null,
+    "status": "unknown_unmeasured",
+    "manufacturing_dimension": false
+  },
+  "component_instance_contract": [
+    {
+      "family": "crankcase",
+      "id_prefix": "crankcase_",
+      "count": 1,
+      "count_fact_ref": null
+    },
+    {
+      "family": "crankshaft",
+      "id_prefix": "crankshaft_",
+      "count": 1,
+      "count_fact_ref": null
+    },
+    {
+      "family": "main_bearing",
+      "id_prefix": "main_bearing_",
+      "count": 8,
+      "count_fact_ref": "FACT-MAIN-BEARING-COUNT"
+    },
+    {
+      "family": "individual_cylinder",
+      "id_prefix": "cylinder_geometric_",
+      "count": 12,
+      "count_fact_ref": "FACT-CYLINDER-COUNT"
+    },
+    {
+      "family": "connecting_rod",
+      "id_prefix": "connecting_rod_geometric_",
+      "count": 12,
+      "count_fact_ref": "FACT-CYLINDER-COUNT"
+    },
+    {
+      "family": "piston_pin",
+      "id_prefix": "piston_pin_geometric_",
+      "count": 12,
+      "count_fact_ref": "FACT-CYLINDER-COUNT"
+    },
+    {
+      "family": "piston",
+      "id_prefix": "piston_geometric_",
+      "count": 12,
+      "count_fact_ref": "FACT-CYLINDER-COUNT"
+    }
+  ],
+  "instance_null_template": {
+    "transform_mm": null,
+    "orientation": null,
+    "geometry_ref": null,
+    "material_specification": null,
+    "mass_kg": null,
+    "inertia_kg_m2": null,
+    "interface_dimensions": null,
+    "physics_body_enabled": false,
+    "manufacturing_released": false,
+    "status": "semantic_instance_only_unplaced"
+  },
+  "minimal_graph_contract": {
+    "node_families": [
+      "crankcase",
+      "crankshaft",
+      "main_bearing",
+      "connecting_rod",
+      "piston_pin",
+      "piston",
+      "individual_cylinder"
+    ],
+    "relation_groups": [
+      {
+        "id": "crankcase_supports_crankshaft",
+        "source_connection_ref": "crankshaft_main_bearing",
+        "count": 8,
+        "from_family": "crankcase",
+        "via_family": "main_bearing",
+        "to_family": "crankshaft",
+        "planned_relation": "revolute_bearing_candidate",
+        "coordinates": null,
+        "active": false,
+        "physics_joint_enabled": false
+      },
+      {
+        "id": "crankshaft_to_connecting_rod",
+        "source_connection_ref": "connecting_rod_to_crankshaft",
+        "count": 12,
+        "from_family": "crankshaft",
+        "via_family": null,
+        "to_family": "connecting_rod",
+        "planned_relation": "revolute_candidate",
+        "coordinates": null,
+        "active": false,
+        "physics_joint_enabled": false
+      },
+      {
+        "id": "connecting_rod_to_piston_pin",
+        "source_connection_ref": "connecting_rod_to_piston_pin",
+        "count": 12,
+        "from_family": "connecting_rod",
+        "via_family": null,
+        "to_family": "piston_pin",
+        "planned_relation": "revolute_candidate",
+        "coordinates": null,
+        "active": false,
+        "physics_joint_enabled": false
+      },
+      {
+        "id": "piston_pin_to_piston",
+        "source_connection_ref": null,
+        "requirement_role": "required_topology_not_evidence",
+        "count": 12,
+        "from_family": "piston_pin",
+        "via_family": null,
+        "to_family": "piston",
+        "planned_relation": "fit_definition_unknown",
+        "coordinates": null,
+        "active": false,
+        "physics_joint_enabled": false
+      },
+      {
+        "id": "piston_to_cylinder",
+        "source_connection_ref": "piston_to_cylinder",
+        "count": 12,
+        "from_family": "piston",
+        "via_family": null,
+        "to_family": "individual_cylinder",
+        "planned_relation": "prismatic_candidate",
+        "coordinates": null,
+        "active": false,
+        "physics_joint_enabled": false
+      },
+      {
+        "id": "cylinder_to_crankcase",
+        "source_connection_ref": "cylinder_to_crankcase",
+        "count": 12,
+        "from_family": "individual_cylinder",
+        "via_family": null,
+        "to_family": "crankcase",
+        "planned_relation": "fixed_interface_candidate",
+        "coordinates": null,
+        "active": false,
+        "physics_joint_enabled": false
+      }
+    ]
+  },
+  "measurement_campaign_template": [
+    {
+      "id": "MC-IDENTITY-01",
+      "target": "physical_engine_or_part_set",
+      "quantity": "identity_variant_and_part_numbers",
+      "unit": "documented_identity",
+      "preferred_method": "documentary_trace_and_teardown",
+      "minimum_occurrences": 1,
+      "value": null
+    },
+    {
+      "id": "MC-SCALE-01",
+      "target": "regular_cylinder_centres",
+      "quantity": "regular_cylinder_center_pitch",
+      "unit": "mm",
+      "preferred_method": "traceable_CMM_or_calibrated_scan",
+      "minimum_occurrences": 3,
+      "value": null
+    },
+    {
+      "id": "MC-SCALE-02",
+      "target": "identified_head_studs",
+      "quantity": "head_stud_free_length",
+      "unit": "mm",
+      "preferred_method": "traceable_length_metrology",
+      "minimum_occurrences": 3,
+      "value": null
+    },
+    {
+      "id": "MC-SCALE-03",
+      "target": "identified_head_studs",
+      "quantity": "head_stud_shaft_diameter",
+      "unit": "mm",
+      "preferred_method": "traceable_diameter_metrology",
+      "minimum_occurrences": 3,
+      "value": null
+    },
+    {
+      "id": "MC-CASE-01",
+      "target": "crankcase_main_bearing_line",
+      "quantity": "crankshaft_axis_origin_and_direction",
+      "unit": "mm_and_unit_vector",
+      "preferred_method": "CMM_or_CT_with_named_datums",
+      "minimum_occurrences": 1,
+      "value": null
+    },
+    {
+      "id": "MC-BEARING-01",
+      "target": "all_main_bearing_stations",
+      "quantity": "station_centres_and_axial_coordinates",
+      "unit": "mm",
+      "preferred_method": "CMM_or_CT",
+      "minimum_occurrences": 8,
+      "value": null
+    },
+    {
+      "id": "MC-BEARING-02",
+      "target": "all_main_bearing_stations",
+      "quantity": "seat_diameter_width_and_clearance",
+      "unit": "mm",
+      "preferred_method": "CMM_bore_gauge_and_teardown",
+      "minimum_occurrences": 8,
+      "value": null
+    },
+    {
+      "id": "MC-CRANK-01",
+      "target": "crankshaft",
+      "quantity": "crankpin_topology_centres_phase_diameter_and_width",
+      "unit": "mm_and_deg",
+      "preferred_method": "CMM_and_teardown",
+      "minimum_occurrences": null,
+      "value": null
+    },
+    {
+      "id": "MC-ROD-01",
+      "target": "all_connecting_rods",
+      "quantity": "centre_distance_big_end_small_end_bores_and_widths",
+      "unit": "mm",
+      "preferred_method": "CMM_and_teardown",
+      "minimum_occurrences": 12,
+      "value": null
+    },
+    {
+      "id": "MC-PIN-01",
+      "target": "all_piston_pins",
+      "quantity": "diameter_length_and_fit",
+      "unit": "mm_and_fit_class",
+      "preferred_method": "CMM_micrometer_and_teardown",
+      "minimum_occurrences": 12,
+      "value": null
+    },
+    {
+      "id": "MC-PISTON-01",
+      "target": "all_pistons",
+      "quantity": "compression_height_skirt_diameter_and_pin_axis",
+      "unit": "mm",
+      "preferred_method": "CMM_and_teardown",
+      "minimum_occurrences": 12,
+      "value": null
+    },
+    {
+      "id": "MC-CYLINDER-01",
+      "target": "all_cylinders_and_crankcase_registers",
+      "quantity": "axis_spigot_deck_and_register_geometry",
+      "unit": "mm_and_unit_vector",
+      "preferred_method": "CMM_or_CT_with_named_datums",
+      "minimum_occurrences": 12,
+      "value": null
+    },
+    {
+      "id": "MC-ASSEMBLY-01",
+      "target": "assembled_cranktrain",
+      "quantity": "deck_clearance_end_floats_and_kinematic_loop_closure",
+      "unit": "mm",
+      "preferred_method": "instrumented_teardown_and_CMM",
+      "minimum_occurrences": 12,
+      "value": null
+    },
+    {
+      "id": "MC-PHASE-01",
+      "target": "crankshaft_and_cylinder_numbering",
+      "quantity": "crankpin_phase_cylinder_mapping_and_firing_order",
+      "unit": "deg_and_cylinder_id",
+      "preferred_method": "degree_wheel_teardown_and_documentary_cross_check",
+      "minimum_occurrences": 1,
+      "value": null
+    }
+  ],
+  "measurement_evidence_template": {
+    "instrument_id": null,
+    "calibration_certificate": null,
+    "measurement_temperature_c": null,
+    "operator_or_lab": null,
+    "datum_scheme": null,
+    "uncertainty": null,
+    "evidence_path": null,
+    "review_status": "missing"
+  },
+  "authoring_policy": {
+    "allowed_output_formats": [
+      "json",
+      "csv",
+      "usda"
+    ],
+    "allowed_usd_prims": [
+      "Xform",
+      "Scope"
+    ],
+    "xform_operations_allowed": false,
+    "coordinates_allowed": false,
+    "solids_allowed": false,
+    "meshes_allowed": false,
+    "curves_allowed": false,
+    "materials_allowed": false,
+    "physics_schemas_allowed": false,
+    "joints_allowed": false,
+    "animation_allowed": false,
+    "fabrication_exports_allowed": false,
+    "unknown_values_must_be_null": true
+  },
+  "release_gates": {
+    "scan_identity_verified": false,
+    "scan_scale_verified": false,
+    "variant_identity_verified": false,
+    "interface_semantics_verified": false,
+    "datums_verified": false,
+    "coordinates_verified": false,
+    "crankshaft_geometry_verified": false,
+    "connecting_rod_geometry_verified": false,
+    "piston_and_pin_geometry_verified": false,
+    "kinematic_loop_closed": false,
+    "collision_clearance_verified": false,
+    "cad_solids_authorized": false,
+    "kinematic_joints_authorized": false,
+    "physx_authorized": false,
+    "animation_authorized": false,
+    "solver_execution_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "fabrication_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "output": {
+    "directory": "work/917-kinematic-interface-readiness-f16",
+    "readiness_json": "kinematic-interface-readiness.json",
+    "registry_csv": "kinematic-interface-registry.csv",
+    "semantic_usda": "kinematic-interface-axes.usda",
+    "tracked": false
+  },
+  "prohibited_use": [
+    "bind_the_scan_to_the_5L_NA_branch",
+    "treat_scan_native_units_as_mm",
+    "invent_datum_coordinates_or_component_transforms",
+    "treat_candidate_crank_radius_as_a_manufacturing_dimension",
+    "author_solids_meshes_materials_or_fabrication_geometry",
+    "author_or_activate_physx_joints_rigid_bodies_or_animation",
+    "claim_kinematic_loop_collision_or_clearance_validation",
+    "use_as_classical_solver_or_physicsnemo_training_data",
+    "authorize_engine_hardware_fabrication_printing_or_start"
+  ]
+}
