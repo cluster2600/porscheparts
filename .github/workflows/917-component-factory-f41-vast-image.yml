@@ -98,6 +98,7 @@ jobs:
           IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
           PINNED_REF: ${{ env.IMAGE_REPOSITORY }}@${{ steps.build.outputs.digest }}
         run: |
+          set -euxo pipefail
           [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
           docker buildx imagetools inspect --raw "${PINNED_REF}" > 917-component-factory-f41-vast-index.json
           test "$(sha256sum 917-component-factory-f41-vast-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
