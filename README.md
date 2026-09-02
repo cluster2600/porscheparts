@@ -25,6 +25,13 @@ La couverture documentaire se mesure avec :
 python3 scripts/twin_coverage.py
 ```
 
+L'étude F34 de culasse quatre soupapes refroidie par air, amorcée par les deux
+scans locaux disponibles, est publiée dans
+[docs/917_AIRCOOLED_4V_F34.md](docs/917_AIRCOOLED_4V_F34.md). Elle réunit la CAO
+paramétrique, les calculs OpenFOAM/FluidX3D, CalculiX, Cantera/Wiebe et le prévol
+Omniverse. Ses résultats restent explicitement impropres à autoriser une
+impression métallique ou un démarrage moteur.
+
 La couverture massique dit quelle part de la masse à vide est décrite par des
 pièces dont la masse est documentée et sourcée. Elle ne vaut ni validation
 géométrique, ni preuve de montage.

@@ -1,0 +1,311 @@
+{
+  "$comment": "F34 est une conception virtuelle 4 soupapes refroidie par air, bornee par deux scans ouverts et non calibres. Les valeurs internes non visibles restent des hypotheses d'ingenierie. Aucun gate de fabrication metal ou de demarrage moteur ne peut etre ouvert sans revue professionnelle et essais physiques.",
+  "schema_version": "1.0.0",
+  "phase": "F34",
+  "status": "scan_bounded_aircooled_4v_cross_verification_contract",
+  "program": {
+    "id": "917_30_5374_aircooled_4v_clean_sheet",
+    "cylinder_count": 12,
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "continuous_point": {
+      "power_ps": 1100.0,
+      "speed_rpm": 7800.0,
+      "source": "https://newsroom.porsche.com/de/motorsport/porsche-919-hybrid-evo-917-30-canam-spyder-timo-bernhard-mark-donohue-rennwagen-16319.html",
+      "classification": "published_historical_point_not_a_reproduced_dyno_result"
+    },
+    "qualifying_burst": {
+      "target_mechanical_hp": 1600.0,
+      "speed_rpm": 9000.0,
+      "maximum_duration_s": 60.0,
+      "classification": "design_requirement_not_a_validated_capability"
+    }
+  },
+  "source_geometry": {
+    "raw_scan_policy": "local_only_never_committed_or_redistributed",
+    "engine_case_scan": {
+      "filename": "917-engine-case-with-cylinders.obj",
+      "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+      "vertices": 1282880,
+      "triangles": 2465879,
+      "open_edges": 101809,
+      "contains_heads": false,
+      "absolute_scale_confirmed": false,
+      "use": "engine_axes_cylinder_rows_and_external_context_only"
+    },
+    "head_morphology_scan": {
+      "filename": "935-xtreme-cylinder-head.obj",
+      "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+      "vertices": 1281608,
+      "triangles": 2466040,
+      "open_edges": 99876,
+      "units": "OBJ_units_mm_plausible_not_confirmed",
+      "outer_combustion_register_diameter_obj": 113.52637,
+      "chamber_step_diameter_obj": 90.81249,
+      "stud_span_x_obj": 86.74277,
+      "stud_span_y_obj": 85.91584,
+      "mean_stud_hole_diameter_obj": 10.74024,
+      "use": "finned_external_morphology_and_measured_interface_seed_only",
+      "prohibited_claim": "Porsche_917_dimensional_identity_or_fit"
+    },
+    "scale_sensitivity": [0.985, 1.0, 1.015]
+  },
+  "cad": {
+    "classification": "editable_scan_registered_print_process_prototype_not_engine_release_cad",
+    "register_diameter_mm": 113.52637,
+    "chamber_step_diameter_mm": 90.81249,
+    "stud_span_x_mm": 86.74277,
+    "stud_span_y_mm": 85.91584,
+    "stud_hole_diameter_mm": 10.74024,
+    "body_width_mm": 154.0,
+    "body_depth_mm": 148.0,
+    "body_height_mm": 102.0,
+    "deck_thickness_mm": 16.0,
+    "fin": {
+      "count": 18,
+      "pitch_mm": 5.2,
+      "thickness_mm": 2.2,
+      "maximum_width_mm": 200.0,
+      "maximum_depth_mm": 194.0,
+      "root_radius_mm": 2.0,
+      "minimum_clear_channel_mm": 3.0
+    },
+    "combustion_chamber": {
+      "type": "compact_pent_roof_solver_geometry",
+      "depth_mm": 11.5,
+      "spark_plug_thread_nominal": "M10x1_candidate_insert_not_modelled_as_thread",
+      "spark_plug_axis": [0.0, 0.0, 1.0]
+    },
+    "valves": {
+      "included_angle_deg": 36.0,
+      "intake": {
+        "count": 2,
+        "head_diameter_mm": 32.0,
+        "stem_diameter_mm": 6.0,
+        "maximum_lift_mm": 10.5,
+        "positions_xy_mm": [[-19.0, 19.0], [19.0, 19.0]],
+        "axis_tilt_y_deg": -18.0
+      },
+      "exhaust": {
+        "count": 2,
+        "head_diameter_mm": 27.0,
+        "stem_diameter_mm": 7.0,
+        "maximum_lift_mm": 9.5,
+        "positions_xy_mm": [[-18.0, -19.0], [18.0, -19.0]],
+        "axis_tilt_y_deg": 18.0
+      }
+    },
+    "minimum_wall_targets_mm": {
+      "deck": 8.0,
+      "between_valve_seats": 4.0,
+      "seat_to_spark_insert": 4.5,
+      "port_to_exterior": 5.0,
+      "guide_boss": 4.0,
+      "machining_allowance_on_datums": 1.5
+    },
+    "powder_strategy": {
+      "fully_open_ports": true,
+      "oil_returns_open_to_top_and_bottom": true,
+      "sealed_internal_cavities_allowed": false,
+      "minimum_escape_diameter_mm": 8.0
+    },
+    "excluded_from_release_cad": [
+      "qualified_valve_seat_interference",
+      "qualified_guide_interference",
+      "threads",
+      "surface_finish",
+      "complete_cam_carrier",
+      "complete_oil_feed_network",
+      "drawing_tolerances",
+      "machine_specific_supports_and_build_compensation"
+    ]
+  },
+  "materials": {
+    "head_candidates": [
+      {
+        "id": "Constellium_Aheadd_HT1_high_temperature_heat_treatment",
+        "supplier_url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/aheadd_ht1_fact_sheet_230620.ccac52e244fb.pdf",
+        "service_temperature_scope_c": 260.0,
+        "yield_mpa_at_25c": 285.0,
+        "yield_mpa_at_200c": 270.0,
+        "yield_mpa_at_250c": 216.0,
+        "uts_mpa_at_250c": 265.0,
+        "elongation_percent_at_250c": 5.0,
+        "screening_conductivity_w_mk": 120.0,
+        "conductivity_is_supplier_qualified_hot_card": false
+      },
+      {
+        "id": "EOS_Al2139_AM_heat_treated",
+        "supplier_url": "https://store.eos.info/fr/products/eos-aluminium-al2139-am",
+        "room_temperature_yield_mpa": 460.0,
+        "room_temperature_uts_mpa": 520.0,
+        "room_temperature_elongation_percent": 4.0,
+        "supplier_elevated_temperature_scope_c": 200.0,
+        "screening_conductivity_w_mk": 135.0,
+        "conductivity_is_supplier_qualified_hot_card": false
+      },
+      {
+        "id": "EOS_AlF357_T6",
+        "supplier_url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alf357",
+        "room_temperature_yield_mpa": 250.0,
+        "room_temperature_conductivity_w_mk": 150.0,
+        "hot_card_qualified": false
+      },
+      {
+        "id": "Constellium_Aheadd_CP1",
+        "supplier_url": "https://www.constellium.com/news/aheadd-r-cp1-constelliums-high-performance-aluminium-additive-manufacturing-powder-approved-for-use-on-formula1-racing-cars",
+        "room_temperature_yield_mpa": 300.0,
+        "room_temperature_uts_mpa": 340.0,
+        "room_temperature_elongation_percent": 11.0,
+        "hot_conductivity_numeric_card_available": false
+      }
+    ],
+    "selected_virtual_candidate": "Constellium_Aheadd_HT1_high_temperature_heat_treatment",
+    "selection_scope": "high_temperature_virtual_candidate_pending_machine_process_hot_coupon_fatigue_and_conductivity_card",
+    "intake_valve": {
+      "material": "forged_Ti_6Al_4V_candidate",
+      "additive_manufacturing_allowed": false
+    },
+    "exhaust_valve": {
+      "material": "forged_or_bar_INCONEL_alloy_751_candidate",
+      "supplier_url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf",
+      "additive_manufacturing_allowed": false
+    },
+    "spring": {
+      "material": "purchased_ultra_clean_CrSi_oil_tempered_wire",
+      "configuration": "dual_spring_shot_peened_and_nitrided_candidate",
+      "combined_rate_n_mm": 105.0,
+      "seat_force_n": 400.0,
+      "maximum_installed_force_n": 1502.5,
+      "minimum_surge_frequency_hz": 350.0,
+      "additive_manufacturing_allowed": false
+    }
+  },
+  "load_cases": {
+    "continuous_1100_ps": {
+      "total_fin_air_heat_w": 429396.0,
+      "head_fraction_of_fin_air": 0.695,
+      "head_heat_per_cylinder_w": 24869.0,
+      "oil_heat_total_w": 357284.0,
+      "ambient_air_c": 35.0,
+      "oil_c": 115.0
+    },
+    "burst_1600_hp": {
+      "total_fin_air_heat_w": 624576.533829111,
+      "head_fraction_of_fin_air": 0.695,
+      "head_heat_per_cylinder_w": 36174.0,
+      "oil_heat_total_w": 519685.818224222,
+      "ambient_air_c": 35.0,
+      "oil_c": 125.0,
+      "duration_s": 60.0
+    }
+  },
+  "cooling_design": {
+    "fin_area_target_m2_per_head": 0.68,
+    "air_mass_flow_points_kg_s_per_head": [0.40, 0.52, 0.66, 0.85],
+    "blower_total_pressure_pa": 6700.0,
+    "blower_efficiency": 0.68,
+    "air_heat_capacity_j_kgk": 1007.0,
+    "head_lumped_mass_kg": 5.2,
+    "head_heat_capacity_j_kgk": 900.0,
+    "maximum_continuous_chamber_bridge_c": 240.0,
+    "maximum_burst_chamber_bridge_c": 260.0,
+    "maximum_outlet_air_c": 190.0
+  },
+  "cross_verification": {
+    "cycle": {
+      "method_a": "Cantera_3_2_0_reactor_network",
+      "method_b": "independent_Wiebe_Annand_zero_dimensional_model",
+      "maximum_power_difference_fraction": 0.10,
+      "maximum_peak_pressure_difference_fraction": 0.12
+    },
+    "external_cooling": {
+      "method_a": "OpenFOAM_14_finite_volume_RANS_kOmegaSST",
+      "method_b": "FluidX3D_lattice_Boltzmann_temperature_extension",
+      "maximum_pressure_drop_difference_fraction": 0.15,
+      "maximum_total_heat_rejection_difference_fraction": 0.12,
+      "minimum_mesh_levels": 3
+    },
+    "solid_thermal_stress": {
+      "method_a": "CalculiX_finite_element",
+      "method_b": "Elmer_finite_element",
+      "maximum_hotspot_temperature_difference_fraction": 0.05,
+      "maximum_p95_von_mises_difference_fraction": 0.10,
+      "minimum_mesh_levels": 3
+    },
+    "rule": "an_accelerator_or_linear_solver_change_does_not_count_as_an_independent_method"
+  },
+  "toolchain": {
+    "openfoam_aate": {
+      "repository": "https://github.com/OpenFOAM/ICengines",
+      "commit": "c0f75f953d67cd325d28d1300672d14288f22934",
+      "openfoam_version": "14",
+      "use": "moving_piston_valve_remeshing_reference_and_917_4v_case_authoring"
+    },
+    "open_hfdib_assessment": {
+      "repository": "https://github.com/fmuni/openHFDIB",
+      "commit": "66f7c95a3bebe77ea070da13efcea85015e9b5b2",
+      "last_commit_date": "2020-07-11",
+      "license": "LGPL-3.0",
+      "evaluated": true,
+      "selected_for_f34": false,
+      "reason": "no_versioned_release_or_OpenFOAM_14_qualification_evidence; do_not_replace_executed_FVM_reference_mid_campaign"
+    },
+    "fluidx3d": {
+      "repository": "https://github.com/ProjectPhysX/FluidX3D",
+      "commit": "aba941305a2cc67b0953ba1d2ba177b590dcccc3",
+      "license_scope": "free_for_non_commercial_use",
+      "use": "independent_LBM_external_air_cooling_cross_check"
+    },
+    "physicsnemo": {
+      "repository": "https://github.com/NVIDIA/physicsnemo",
+      "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+      "observed_version": "2.3.0a0",
+      "candidate_models_verified_in_tree": ["DoMINO", "MeshGraphNet", "Transolver", "FIGConvUNet"],
+      "minimum_converged_classical_cases_before_training": 200,
+      "training_authorized": false
+    }
+  },
+  "acceptance": {
+    "geometry_is_single_watertight_solid": true,
+    "minimum_external_surface_area_m2": 0.42,
+    "minimum_powder_escape_diameter_mm": 8.0,
+    "minimum_hot_yield_margin": 1.35,
+    "maximum_mesh_change_fraction": 0.05,
+    "continuous_thermal_screen_must_pass": true,
+    "burst_thermal_screen_must_pass": true,
+    "all_cross_method_differences_must_pass": true
+  },
+  "upstream": [
+    {
+      "path": "twins/reference-917-engine/evidence/f33/report.json",
+      "sha256": "0fa6da90e91a367a70f717a5d2ac877fc9aae3d06e6330b3a68502de6b731f7e"
+    },
+    {
+      "path": "twins/reference-917-engine/evidence/f33/cycle-thermal-report.json",
+      "sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed"
+    },
+    {
+      "path": "twins/reference-917-engine/evidence/f32/screening-report.json",
+      "sha256": "5ca239d0f38b39fd962037f121eb936e23cb7d5d871f453091305408ac9a497c"
+    }
+  ],
+  "release_gates": {
+    "scan_absolute_scale_confirmed": false,
+    "porsche_917_head_identity_confirmed": false,
+    "functional_manufacturing_cad_complete": false,
+    "hot_material_card_qualified": false,
+    "full_3d_intake_exhaust_cfd_cross_validated": false,
+    "full_3d_external_cooling_cfd_cross_validated": false,
+    "full_3d_cht_cross_validated": false,
+    "fatigue_tmf_validated": false,
+    "physical_ct_ndt_complete": false,
+    "physical_flow_bench_correlated": false,
+    "physical_engine_dyno_correlated": false,
+    "physicsnemo_training_authorized": false,
+    "omniverse_simready_authorized": false,
+    "professional_engineering_review_approved": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

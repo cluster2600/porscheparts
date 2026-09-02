@@ -4,6 +4,18 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Culasse 917-inspired F34 quatre soupapes refroidie par air, 2 septembre 2026 :
+
+- CAO paramétrique et STEP de procédé générés localement à partir des seules
+  interfaces observables dans les deux scans, sans republier les scans bruts ;
+- refroidissement externe calculé séparément par OpenFOAM 14 (volumes finis)
+  et FluidX3D (LBM), cycle recoupé par Cantera et Wiebe, puis séquence de trois
+  maillages CalculiX ;
+- images `linux/amd64` de la chaîne CAE et de FluidX3D construites et testées ;
+- toutes les portes d'impression métallique et de démarrage moteur restent
+  fermées, notamment pour l'échelle, la matière à chaud, la convergence,
+  la fatigue/TMF et l'absence de corrélation physique.
+
 Phase 1, lot 1 — catalogues officiels, manuels accessibles et mesures :
 
 - treize nouvelles fiches de sources vérifiées une à une le 28 août 2026 ;

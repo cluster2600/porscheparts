@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -9,8 +9,10 @@ F31_CAE_IMAGE ?= 3dprinting993-cae-reference-f31:dev
 F33_ENGINE_CYCLE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-engine-cycle-f33@sha256:287bd6ea04ff97205cbea9f63b2cc5a7c63ff754b27a183eb482e7896d1e9251
 F33_CAE_IMAGE ?= 3dprinting993-cae-integrated-f33:dev
 F34B_AIR_OIL_IMAGE ?= 3dprinting993-air-oil-cycle-f34b:dev
+F34_CAE_IMAGE ?= 3dprinting993-cae-aircooled-f34:dev
+F34_FLUIDX3D_IMAGE ?= 3dprinting993-fluidx3d-aircooled-f34:dev
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -305,6 +307,30 @@ engine-components:
 		--preflight-json work/917-integrated-virtual-f33/omniverse/preflight.json \
 		--preflight-markdown work/917-integrated-virtual-f33/omniverse/preflight.md \
 		--output twins/reference-917-engine/evidence/f33
+
+917-aircooled-4v-f34-cae-image:
+	docker build -f containers/cae-aircooled-f34.Dockerfile -t $(F34_CAE_IMAGE) .
+
+917-aircooled-4v-f34-fluidx3d-image:
+	docker build -f containers/fluidx3d-aircooled-f34.Dockerfile -t $(F34_FLUIDX3D_IMAGE) .
+
+917-aircooled-4v-f34-check:
+	python3 tests/test_917_aircooled_4v_f34.py -v
+
+917-aircooled-4v-f34-publish:
+	python3 twins/reference-917-engine/source/publish_aircooled_4v_f34.py \
+		--contract twins/reference-917-engine/aircooled-4v-scan-f34.json \
+		--geometry work/917-aircooled-4v-f34/cad-domain-separated/geometry-report.json \
+		--preliminary work/917-aircooled-4v-f34/report-preliminary-v2.json \
+		--f33-reference twins/reference-917-engine/evidence/f33/report.json \
+		--openfoam-case work/917-aircooled-4v-f34/openfoam-external-skew4/medium \
+		--calculix work/917-aircooled-4v-f34/calculix-coarse-v5/report.json work/917-aircooled-4v-f34/calculix-fine-v2/report.json work/917-aircooled-4v-f34/calculix-finer-v2/report.json \
+		--fluidx3d work/917-aircooled-4v-f34/fluidx3d-grid96-approved.json work/917-aircooled-4v-f34/fluidx3d-grid192-approved.json work/917-aircooled-4v-f34/fluidx3d-grid384-approved.json \
+		--omniverse work/917-aircooled-4v-f34/omniverse/preflight.json \
+		--toolchain-audit work/917-aircooled-4v-f34/toolchain-audit.json \
+		--step work/917-aircooled-4v-f34/cad-domain-separated/917-head-aircooled-4v-f34.step \
+		--image work/917-aircooled-4v-f34/product-aircooled-4v-f34-v2.png \
+		--output twins/reference-917-engine/evidence/f34
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

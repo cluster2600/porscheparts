@@ -1,0 +1,39 @@
+{
+  "classification": "local_container_build_and_runtime_evidence",
+  "images": {
+    "cae_linux_amd64": {
+      "architecture": "amd64",
+      "local_image_id": "sha256:f03fb27ccb93b5f4bae0b60db389bc9523bd337ff0cf9718710d534e4be633f2",
+      "observed_tools": [
+        "OpenFOAM-14",
+        "AATE_ICengines_engineMeshConfig",
+        "Gmsh-4.12.1",
+        "CalculiX-2.21"
+      ],
+      "operating_system": "linux",
+      "runtime_smoke_passed": true
+    },
+    "cae_linux_arm64": {
+      "architecture": "arm64",
+      "local_image_id": "sha256:d3e0364f73efc28e225d7b8f72631c2eba055c1fe27ffe648d483b0edbe12cdf",
+      "operating_system": "linux",
+      "runtime_smoke_passed": true
+    },
+    "fluidx3d_linux_amd64": {
+      "architecture": "amd64",
+      "local_image_id": "sha256:8ea169e2477b82af617c81d3de82ae5e98bbcd745d4e339f292e9b29b7d24c7b",
+      "operating_system": "linux",
+      "runtime_smoke_passed": true,
+      "smoke_classification": "runtime_only_not_numerical_convergence"
+    }
+  },
+  "phase": "F34",
+  "release_claim": false,
+  "remote_compute": {
+    "ghcr_digest_verified": false,
+    "kali_x86_execution_used": false,
+    "reason": "local arm64 and emulated linux/amd64 capacity completed the bounded F34 calculations",
+    "vast_rental_used": false
+  },
+  "schema_version": "1.0.0"
+}

@@ -1,0 +1,617 @@
+{
+  "blocking_findings": [
+    "l'\u00e9chelle absolue et l'identit\u00e9 dimensionnelle 917 des scans ne sont pas confirm\u00e9es",
+    "la pression de pointe Cantera et le mod\u00e8le Wiebe diff\u00e8rent au-del\u00e0 du seuil F34",
+    "la carte \u00e9lastique, fatigue, fluage et conductivit\u00e9 \u00e0 chaud du proc\u00e9d\u00e9 imprim\u00e9 n'est pas qualifi\u00e9e",
+    "le maximum de contrainte CalculiX du maillage le plus fin d\u00e9passe la limite \u00e0 chaud et reste d\u00e9pendant du maillage",
+    "l'ind\u00e9pendance de maillage CFD et FEA doit \u00eatre satisfaite avant CHT/TMF",
+    "le second solveur EF Elmer pr\u00e9vu au contrat n'a pas \u00e9t\u00e9 ex\u00e9cut\u00e9",
+    "le cas AATE ICengines \u00e0 piston et soupapes mobiles n'a pas \u00e9t\u00e9 ex\u00e9cut\u00e9 faute de volumes internes \u00e9tanches mesur\u00e9s",
+    "Omniverse SimReady est bloqu\u00e9 au pr\u00e9vol officiel et aucune conversion USD n'est revendiqu\u00e9e",
+    "aucun CT/CND, banc de flux, spintron ou banc moteur physique corr\u00e9l\u00e9 n'existe",
+    "la s\u00e9quence \u00e0 trois mailles FluidX3D ne satisfait pas le seuil d'ind\u00e9pendance de maillage",
+    "la comparaison 3D OpenFOAM/FluidX3D ne ferme pas la barri\u00e8re de validation crois\u00e9e",
+    "le domaine externe \u00e0 77 m/s traite environ dix fois le d\u00e9bit massique de calcul par culasse et reste une sensibilit\u00e9 num\u00e9rique"
+  ],
+  "claims": {
+    "editable_step_process_prototype_generated": true,
+    "engine_start_authorized": false,
+    "metal_print_authorized": false,
+    "physical_validation_complete": false,
+    "product_image_generated": true
+  },
+  "cycle_cross_verification": {
+    "classification": "two_executed_non_correlated_0d_models_not_dyno_or_combustion_validation",
+    "conservative_pressure_load_mpa": 24.686079671224434,
+    "method_a": {
+      "id": "Cantera_3_2_0_reactor_network",
+      "peak_pressure_mpa": 24.686079671224434,
+      "power_mechanical_hp": 1601.195944552682,
+      "source_report_sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed"
+    },
+    "method_b": {
+      "id": "independent_Wiebe_Annand_zero_dimensional_model",
+      "peak_pressure_mpa": 18.797579594482308,
+      "power_mechanical_hp": 1644.8902189268,
+      "source_report_sha256": "0fa6da90e91a367a70f717a5d2ac877fc9aae3d06e6330b3a68502de6b731f7e"
+    },
+    "peak_pressure_cross_check_passed": false,
+    "power_cross_check_passed": true,
+    "relative_peak_pressure_difference": 0.23853524557834568,
+    "relative_power_difference": 0.026563641677330885,
+    "target_power_proven": false
+  },
+  "external_cooling_3d_cross_verification": {
+    "boundary_mass_flow_matches_design": false,
+    "classification": "same_77_m_s_external_domain_numerical_cross_check_not_design_mass_flow_validation",
+    "cross_method_limit_fraction": 0.12,
+    "cross_method_passed": false,
+    "design_burst_mass_flow_kg_s_per_head": 0.85,
+    "fluidx3d_mass_flow_to_design_ratio": 9.73741428352941,
+    "method_a": {
+      "classification": "actual_full_external_head_steady_compressible_RANS_FVM_fixed_wall_temperature",
+      "converged_for_cross_method_screen": true,
+      "mesh": {
+        "cells": 734985,
+        "standard_check_mesh_passed": true,
+        "strict_advisories": {
+          "concave_cells": 25611,
+          "small_interpolation_weight_faces": 6
+        },
+        "strict_check_mesh_passed": false
+      },
+      "mesh_independence_demonstrated": false,
+      "release_claim": false,
+      "results": {
+        "effective_h_w_m2k": 120.3823147279227,
+        "inlet_pressure_pa": 101859.42648,
+        "inlet_velocity_squared_m2_s2": 5929.0,
+        "latest_initial_residual_row": [
+          "800",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A",
+          "N/A"
+        ],
+        "latest_iteration": 800.0,
+        "outlet_enthalpy_gain_w": 9729.794720007756,
+        "outlet_kinetic_energy_gain_w": 8242.367152089433,
+        "outlet_mass_flow_kg_s": 8.2903359153,
+        "outlet_pressure_pa": 100000.0,
+        "outlet_temperature_averaging": "mass_flux_weighted",
+        "outlet_temperature_k": 309.31547263,
+        "outlet_total_energy_gain_w": 17972.16187209719,
+        "outlet_velocity_squared_m2_s2": 7917.4277878,
+        "pressure_drop_pa": 1859.4264799999946,
+        "relative_energy_imbalance": 0.010253435223164692,
+        "relative_heat_rejection_change_last_sample": 0.0017394227014479687,
+        "wall_heat_rejection_w": 18158.34731
+      },
+      "solver": "OpenFOAM_14_fluid_kOmegaSST",
+      "solver_completed": true
+    },
+    "method_b": {
+      "all_runs_statistically_converged": true,
+      "classification": "independent_LBM_external_cooling_constant_eddy_diffusivity_sensitivity",
+      "finest_pair_relative_differences": {
+        "effective_h": 0.23805380180015565,
+        "heat_rejection": 0.23805380213478208,
+        "pressure_drop": 0.012372812922891286
+      },
+      "mesh_independence_limit_fraction": 0.1,
+      "mesh_independence_passed": false,
+      "reacting_or_compressible_combustion_model": false,
+      "release_claim": false,
+      "rows": [
+        {
+          "actual_steps": 12500,
+          "cell_size_mm": 6.250000248,
+          "converged": true,
+          "effective_h_w_m2k": 285.3210708,
+          "grid": [
+            96,
+            60,
+            44
+          ],
+          "heat_rejection_w": 43037.54927,
+          "mass_flow_kg_s": 7.775725682,
+          "pressure_drop_from_drag_pa": 1080.31061,
+          "thermal_closure": "constant_effective_diffusivity_sensitivity"
+        },
+        {
+          "actual_steps": 14500,
+          "cell_size_mm": 3.125000124,
+          "converged": true,
+          "effective_h_w_m2k": 180.571393,
+          "grid": [
+            192,
+            120,
+            88
+          ],
+          "heat_rejection_w": 27237.21105,
+          "mass_flow_kg_s": 8.106502543,
+          "pressure_drop_from_drag_pa": 943.7799046,
+          "thermal_closure": "constant_effective_diffusivity_sensitivity"
+        },
+        {
+          "actual_steps": 29000,
+          "cell_size_mm": 1.562500062,
+          "converged": true,
+          "effective_h_w_m2k": 137.5856864,
+          "grid": [
+            384,
+            240,
+            176
+          ],
+          "heat_rejection_w": 20753.2894,
+          "mass_flow_kg_s": 8.276802141,
+          "pressure_drop_from_drag_pa": 932.1026924,
+          "thermal_closure": "constant_effective_diffusivity_sensitivity"
+        }
+      ],
+      "solver": "FluidX3D_D3Q19_TRT_FP32"
+    },
+    "openfoam_mass_flow_to_design_ratio": 9.753336370941177,
+    "pressure_drop_cross_method_limit_fraction": 0.15,
+    "relative_effective_h_difference": 0.12503751023970822,
+    "relative_pressure_drop_difference": 0.4987149519350705
+  },
+  "geometry": {
+    "classification": "nominal_2d_clearance_screen_not_tolerance_stack_or_hot_distortion",
+    "clearance_targets_passed": true,
+    "exhaust_seat_gap_mm": 9.0,
+    "intake_seat_gap_mm": 6.0,
+    "minimum_intake_to_exhaust_seat_gap_mm": 8.513155617496423,
+    "minimum_seat_gap_mm": 6.0,
+    "minimum_seat_to_spark_insert_gap_mm": 4.870057685088806,
+    "single_watertight_brep_solid": true,
+    "surface_area_m2": 0.7272417257145638,
+    "surface_area_target_passed": true,
+    "target_between_valve_seats_mm": 4.0,
+    "target_seat_to_spark_insert_mm": 4.5
+  },
+  "material_selection": {
+    "head_candidates": [
+      {
+        "conductivity_is_supplier_qualified_hot_card": false,
+        "elongation_percent_at_250c": 5.0,
+        "id": "Constellium_Aheadd_HT1_high_temperature_heat_treatment",
+        "screening_conductivity_w_mk": 120.0,
+        "service_temperature_scope_c": 260.0,
+        "supplier_url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/aheadd_ht1_fact_sheet_230620.ccac52e244fb.pdf",
+        "uts_mpa_at_250c": 265.0,
+        "yield_mpa_at_200c": 270.0,
+        "yield_mpa_at_250c": 216.0,
+        "yield_mpa_at_25c": 285.0
+      },
+      {
+        "conductivity_is_supplier_qualified_hot_card": false,
+        "id": "EOS_Al2139_AM_heat_treated",
+        "room_temperature_elongation_percent": 4.0,
+        "room_temperature_uts_mpa": 520.0,
+        "room_temperature_yield_mpa": 460.0,
+        "screening_conductivity_w_mk": 135.0,
+        "supplier_elevated_temperature_scope_c": 200.0,
+        "supplier_url": "https://store.eos.info/fr/products/eos-aluminium-al2139-am"
+      },
+      {
+        "hot_card_qualified": false,
+        "id": "EOS_AlF357_T6",
+        "room_temperature_conductivity_w_mk": 150.0,
+        "room_temperature_yield_mpa": 250.0,
+        "supplier_url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alf357"
+      },
+      {
+        "hot_conductivity_numeric_card_available": false,
+        "id": "Constellium_Aheadd_CP1",
+        "room_temperature_elongation_percent": 11.0,
+        "room_temperature_uts_mpa": 340.0,
+        "room_temperature_yield_mpa": 300.0,
+        "supplier_url": "https://www.constellium.com/news/aheadd-r-cp1-constelliums-high-performance-aluminium-additive-manufacturing-powder-approved-for-use-on-formula1-racing-cars"
+      }
+    ],
+    "hot_material_card_qualified": false,
+    "selected_virtual_candidate": "Constellium_Aheadd_HT1_high_temperature_heat_treatment",
+    "selection_scope": "high_temperature_virtual_candidate_pending_machine_process_hot_coupon_fatigue_and_conductivity_card"
+  },
+  "omniverse": {
+    "authorized": false,
+    "simready_conversion_executed": false,
+    "simready_validation_executed": false,
+    "status": "blocked"
+  },
+  "phase": "F34",
+  "physicsnemo": {
+    "converged_classical_cases": 0,
+    "dataset_plan_case_count": 216,
+    "surrogate_available": false,
+    "training_authorized": false,
+    "training_executed": false
+  },
+  "reduced_cooling": {
+    "air_properties": {
+      "conductivity_w_mk": 0.0305,
+      "density_kg_m3": 1.06,
+      "dynamic_viscosity_pa_s": 2.05e-05,
+      "heat_capacity_j_kgk": 1007.0,
+      "prandtl": 0.7
+    },
+    "blower_screen": {
+      "burst_air_mass_flow_kg_s": 10.2,
+      "burst_pressure_screen_passed": true,
+      "burst_shaft_power_kw": 94.81132075471697,
+      "continuous_air_mass_flow_kg_s": 7.92,
+      "continuous_pressure_screen_passed": true,
+      "continuous_shaft_power_kw": 73.61820199778023,
+      "pressure_available_pa": 6700.0
+    },
+    "classification": "two_independent_forced_convection_correlations_before_3d_FVM_LBM_cross_check",
+    "effective_cooling_area_m2_per_head": 0.68,
+    "fluidx3d_3d_executed": false,
+    "free_flow_area_m2_per_head": 0.0102,
+    "full_3d_cross_validation_complete": false,
+    "hydraulic_diameter_m": 0.006,
+    "openfoam_3d_executed": false,
+    "reduced_method_cross_check_passed": true,
+    "rows": [
+      {
+        "air_mass_flow_kg_s_per_head": 0.4,
+        "mean_channel_velocity_m_s": 36.99593044765075,
+        "method_a": {
+          "correlation": "Gnielinski_plus_Darcy_Weisbach",
+          "fin_efficiency": 0.8220927783279833,
+          "h_w_m2k": 169.1837959286547,
+          "pressure_drop_pa": 1581.1271279184612,
+          "ua_w_k": 96.98556978012977
+        },
+        "method_b": {
+          "correlation": "Colburn_j_plus_Blasius",
+          "fin_efficiency": 0.815169437049701,
+          "h_w_m2k": 177.62891281073667,
+          "pressure_drop_pa": 1442.3893923374355,
+          "ua_w_k": 101.08890954066614
+        },
+        "relative_pressure_drop_difference": 0.08774609778764123,
+        "relative_ua_difference": 0.04059139404294075,
+        "reynolds_number": 11477.761836441892
+      },
+      {
+        "air_mass_flow_kg_s_per_head": 0.52,
+        "mean_channel_velocity_m_s": 48.09470958194598,
+        "method_a": {
+          "correlation": "Gnielinski_plus_Darcy_Weisbach",
+          "fin_efficiency": 0.7914472339463116,
+          "h_w_m2k": 207.96593892838948,
+          "pressure_drop_pa": 2589.922097612557,
+          "ua_w_k": 115.39371538622402
+        },
+        "method_b": {
+          "correlation": "Colburn_j_plus_Blasius",
+          "fin_efficiency": 0.783155026403661,
+          "h_w_m2k": 219.11309811025677,
+          "pressure_drop_pa": 2360.712143328962,
+          "ua_w_k": 120.48876233037622
+        },
+        "relative_pressure_drop_difference": 0.08850071378397263,
+        "relative_ua_difference": 0.04228649083623044,
+        "reynolds_number": 14921.090387374461
+      },
+      {
+        "air_mass_flow_kg_s_per_head": 0.66,
+        "mean_channel_velocity_m_s": 61.04328523862374,
+        "method_a": {
+          "correlation": "Gnielinski_plus_Darcy_Weisbach",
+          "fin_efficiency": 0.7610428260935876,
+          "h_w_m2k": 250.3335530522697,
+          "pressure_drop_pa": 4063.3621753799016,
+          "ua_w_k": 134.3354170527506
+        },
+        "method_b": {
+          "correlation": "Colburn_j_plus_Blasius",
+          "fin_efficiency": 0.7510816460754124,
+          "h_w_m2k": 265.1556057048127,
+          "pressure_drop_pa": 3697.208128587347,
+          "ua_w_k": 140.70455373572125
+        },
+        "relative_pressure_drop_difference": 0.09011110282295261,
+        "relative_ua_difference": 0.04526603094121235,
+        "reynolds_number": 18938.30703012912
+      },
+      {
+        "air_mass_flow_kg_s_per_head": 0.85,
+        "mean_channel_velocity_m_s": 78.61635220125784,
+        "method_a": {
+          "correlation": "Gnielinski_plus_Darcy_Weisbach",
+          "fin_efficiency": 0.7262183901528251,
+          "h_w_m2k": 304.40563322799557,
+          "pressure_drop_pa": 6565.33342605182,
+          "ua_w_k": 156.9914320080114
+        },
+        "method_b": {
+          "correlation": "Colburn_j_plus_Blasius",
+          "fin_efficiency": 0.7141926955482919,
+          "h_w_m2k": 324.6390846753591,
+          "pressure_drop_pa": 5957.223106978027,
+          "ua_w_k": 165.08404455280368
+        },
+        "relative_pressure_drop_difference": 0.09262443803093959,
+        "relative_ua_difference": 0.049021167167998335,
+        "reynolds_number": 24390.24390243902
+      }
+    ],
+    "selected_setpoints": {
+      "burst_air_mass_flow_kg_s_per_head": 0.85,
+      "continuous_air_mass_flow_kg_s_per_head": 0.66
+    },
+    "thermal_screen": {
+      "method_a": {
+        "burst": {
+          "duration_s": 60.0,
+          "steady_metal_temperature_c": 265.42021808014346,
+          "temperature_after_duration_c": 259.3677558207155,
+          "ua_w_k": 156.9914320080114
+        },
+        "burst_screen_passed": true,
+        "continuous": {
+          "steady_metal_temperature_c": 220.12616066271252,
+          "ua_w_k": 134.3354170527506
+        },
+        "continuous_screen_passed": true
+      },
+      "method_b": {
+        "burst": {
+          "duration_s": 60.0,
+          "steady_metal_temperature_c": 254.1247500507501,
+          "temperature_after_duration_c": 249.019959493417,
+          "ua_w_k": 165.08404455280368
+        },
+        "burst_screen_passed": true,
+        "continuous": {
+          "steady_metal_temperature_c": 211.7462341461263,
+          "ua_w_k": 140.70455373572125
+        },
+        "continuous_screen_passed": true
+      }
+    }
+  },
+  "release_gates": {
+    "engine_start_authorized": false,
+    "fatigue_tmf_validated": false,
+    "full_3d_cht_cross_validated": false,
+    "full_3d_external_cooling_cfd_cross_validated": false,
+    "full_3d_intake_exhaust_cfd_cross_validated": false,
+    "functional_manufacturing_cad_complete": false,
+    "hot_material_card_qualified": false,
+    "metal_print_authorized": false,
+    "omniverse_simready_authorized": false,
+    "physical_ct_ndt_complete": false,
+    "physical_engine_dyno_correlated": false,
+    "physical_flow_bench_correlated": false,
+    "physicsnemo_training_authorized": false,
+    "porsche_917_head_identity_confirmed": false,
+    "professional_engineering_review_approved": false,
+    "scan_absolute_scale_confirmed": false
+  },
+  "schema_version": "1.0.0",
+  "source_geometry": {
+    "engine_case_scan": {
+      "absolute_scale_confirmed": false,
+      "contains_heads": false,
+      "filename": "917-engine-case-with-cylinders.obj",
+      "open_edges": 101809,
+      "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+      "triangles": 2465879,
+      "use": "engine_axes_cylinder_rows_and_external_context_only",
+      "vertices": 1282880
+    },
+    "head_morphology_scan": {
+      "chamber_step_diameter_obj": 90.81249,
+      "filename": "935-xtreme-cylinder-head.obj",
+      "mean_stud_hole_diameter_obj": 10.74024,
+      "open_edges": 99876,
+      "outer_combustion_register_diameter_obj": 113.52637,
+      "prohibited_claim": "Porsche_917_dimensional_identity_or_fit",
+      "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+      "stud_span_x_obj": 86.74277,
+      "stud_span_y_obj": 85.91584,
+      "triangles": 2466040,
+      "units": "OBJ_units_mm_plausible_not_confirmed",
+      "use": "finned_external_morphology_and_measured_interface_seed_only",
+      "vertices": 1281608
+    },
+    "raw_scan_policy": "local_only_never_committed_or_redistributed",
+    "scale_sensitivity": [
+      0.985,
+      1.0,
+      1.015
+    ]
+  },
+  "status": "virtual_campaign_executed_release_blocked",
+  "thermomechanical_fea": {
+    "classification": "actual_F34_CAD_linear_elastic_combined_pressure_thermal_mesh_sequence",
+    "displacement_mesh_independence_passed": true,
+    "finest_mesh_maximum_below_hot_yield": false,
+    "finest_mesh_maximum_hot_yield_margin": 0.8243165729583485,
+    "finest_pair_relative_differences": {
+      "maximum_displacement": 0.0005039930780563204,
+      "maximum_stress": 0.3623849120564534,
+      "p95_stress": 0.031114862494688773
+    },
+    "hot_material_card_qualified": false,
+    "nonlinear_contact_creep_fatigue_tmf_included": false,
+    "release_claim": false,
+    "rows": [
+      {
+        "linear_tetrahedra": 105906,
+        "maximum_displacement_mm": 1.0508361549199665,
+        "maximum_size_mm": 7.0,
+        "p95_hot_yield_margin": 11.050801367020757,
+        "stress_samples": 105906,
+        "von_mises_max_mpa": 217.5962331803099,
+        "von_mises_p95_mpa": 19.546093792312238
+      },
+      {
+        "linear_tetrahedra": 204661,
+        "maximum_displacement_mm": 1.0527487854457636,
+        "maximum_size_mm": 5.0,
+        "p95_hot_yield_margin": 12.415255944701173,
+        "stress_samples": 204661,
+        "von_mises_max_mpa": 167.07762953440596,
+        "von_mises_p95_mpa": 17.3979498257697
+      },
+      {
+        "linear_tetrahedra": 342461,
+        "maximum_displacement_mm": 1.0532796310890902,
+        "maximum_size_mm": 4.0,
+        "p95_hot_yield_margin": 12.813960565715783,
+        "stress_samples": 342461,
+        "von_mises_max_mpa": 262.035250880385,
+        "von_mises_p95_mpa": 16.85661500925138
+      }
+    ],
+    "solver": "CalculiX_2.21",
+    "stress_mesh_independence_limit_fraction": 0.1,
+    "stress_mesh_independence_passed": false
+  },
+  "toolchain": {
+    "aate_icengines_execution": {
+      "compiled_in_cae_container": true,
+      "moving_piston_valve_case_executed": false,
+      "reason": "le scan ne fournit pas les volumes internes \u00e9tanches ni la culasse 917 n\u00e9cessaires"
+    },
+    "cantera_execution": {
+      "executed_in_upstream_F33_cycle_report": true,
+      "reused_with_digest_verification": true,
+      "version": "3.2.0"
+    },
+    "execution_audit": {
+      "classification": "local_container_build_and_runtime_evidence",
+      "images": {
+        "cae_linux_amd64": {
+          "architecture": "amd64",
+          "local_image_id": "sha256:f03fb27ccb93b5f4bae0b60db389bc9523bd337ff0cf9718710d534e4be633f2",
+          "observed_tools": [
+            "OpenFOAM-14",
+            "AATE_ICengines_engineMeshConfig",
+            "Gmsh-4.12.1",
+            "CalculiX-2.21"
+          ],
+          "operating_system": "linux",
+          "runtime_smoke_passed": true
+        },
+        "cae_linux_arm64": {
+          "architecture": "arm64",
+          "local_image_id": "sha256:d3e0364f73efc28e225d7b8f72631c2eba055c1fe27ffe648d483b0edbe12cdf",
+          "operating_system": "linux",
+          "runtime_smoke_passed": true
+        },
+        "fluidx3d_linux_amd64": {
+          "architecture": "amd64",
+          "local_image_id": "sha256:8ea169e2477b82af617c81d3de82ae5e98bbcd745d4e339f292e9b29b7d24c7b",
+          "operating_system": "linux",
+          "runtime_smoke_passed": true,
+          "smoke_classification": "runtime_only_not_numerical_convergence"
+        }
+      },
+      "phase": "F34",
+      "release_claim": false,
+      "remote_compute": {
+        "ghcr_digest_verified": false,
+        "kali_x86_execution_used": false,
+        "reason": "local arm64 and emulated linux/amd64 capacity completed the bounded F34 calculations",
+        "vast_rental_used": false
+      },
+      "schema_version": "1.0.0"
+    },
+    "fluidx3d": {
+      "commit": "aba941305a2cc67b0953ba1d2ba177b590dcccc3",
+      "license_scope": "free_for_non_commercial_use",
+      "repository": "https://github.com/ProjectPhysX/FluidX3D",
+      "use": "independent_LBM_external_air_cooling_cross_check"
+    },
+    "open_hfdib_assessment": {
+      "commit": "66f7c95a3bebe77ea070da13efcea85015e9b5b2",
+      "evaluated": true,
+      "last_commit_date": "2020-07-11",
+      "license": "LGPL-3.0",
+      "reason": "no_versioned_release_or_OpenFOAM_14_qualification_evidence; do_not_replace_executed_FVM_reference_mid_campaign",
+      "repository": "https://github.com/fmuni/openHFDIB",
+      "selected_for_f34": false
+    },
+    "openfoam_aate": {
+      "commit": "c0f75f953d67cd325d28d1300672d14288f22934",
+      "openfoam_version": "14",
+      "repository": "https://github.com/OpenFOAM/ICengines",
+      "use": "moving_piston_valve_remeshing_reference_and_917_4v_case_authoring"
+    },
+    "physicsnemo": {
+      "candidate_models_verified_in_tree": [
+        "DoMINO",
+        "MeshGraphNet",
+        "Transolver",
+        "FIGConvUNet"
+      ],
+      "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+      "minimum_converged_classical_cases_before_training": 200,
+      "observed_version": "2.3.0a0",
+      "repository": "https://github.com/NVIDIA/physicsnemo",
+      "training_authorized": false
+    }
+  },
+  "two_vs_four_valve_reference": {
+    "equivalent_port_2v_4v_comparison_available": true,
+    "equivalent_port_cfd_classification": "steady_compressible_perfect_gas_equivalent_port_cfd_not_full_runner_or_moving_valve_cfd",
+    "fine_mesh_mass_flow_kg_s": {
+      "four_valve": 0.1365193338662,
+      "two_valve": 0.1133412263986
+    },
+    "four_valve_fine_mass_flow_gain_percent": 20.44984707160915,
+    "full_scan_seeded_2v_4v_cross_validation_complete": false,
+    "new_F34_full_external_head_is_four_valve_only": true,
+    "quasi_steady_virtual_flowbench_gain_percent": 15.279000126910036,
+    "report_sha256": "0fa6da90e91a367a70f717a5d2ac877fc9aae3d06e6330b3a68502de6b731f7e",
+    "source": "F33 integrated virtual report"
+  },
+  "valvetrain": {
+    "all_force_screens_passed": true,
+    "classification": "cosine_lift_dynamic_screen_not_spintron_or_cam_contact_validation",
+    "speed_rpm": 9000.0,
+    "spring": {
+      "additive_manufacturing_allowed": false,
+      "combined_rate_n_mm": 105.0,
+      "configuration": "dual_spring_shot_peened_and_nitrided_candidate",
+      "material": "purchased_ultra_clean_CrSi_oil_tempered_wire",
+      "maximum_installed_force_n": 1502.5,
+      "minimum_surge_frequency_hz": 350.0,
+      "seat_force_n": 400.0
+    },
+    "spring_surge_spintron_and_fatigue_validated": false,
+    "valves": [
+      {
+        "effective_mass_kg": 0.09,
+        "inertia_force_n": 804.6413988085756,
+        "kind": "intake",
+        "maximum_cosine_acceleration_m_s2": 8940.45998676195,
+        "maximum_lift_mm": 10.5,
+        "positive_force_margin_n": 496.69825148928055,
+        "required_force_with_dynamic_factor_n": 1005.8017485107194,
+        "screen_passed": true,
+        "spring_nose_force_n": 1502.5
+      },
+      {
+        "effective_mass_kg": 0.095,
+        "inertia_force_n": 831.1596546016912,
+        "kind": "exhaust",
+        "maximum_cosine_acceleration_m_s2": 8749.048995807276,
+        "maximum_lift_mm": 9.5,
+        "positive_force_margin_n": 358.550431747886,
+        "required_force_with_dynamic_factor_n": 1038.949568252114,
+        "screen_passed": true,
+        "spring_nose_force_n": 1397.5
+      }
+    ]
+  }
+}
