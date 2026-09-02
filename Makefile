@@ -1,4 +1,5 @@
 .PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -12,6 +13,10 @@ F34B_AIR_OIL_IMAGE ?= 3dprinting993-air-oil-cycle-f34b:dev
 F34B_AIR_OIL_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664
 F34_CAE_IMAGE ?= 3dprinting993-cae-aircooled-f34:dev
 F34_FLUIDX3D_IMAGE ?= 3dprinting993-fluidx3d-aircooled-f34:dev
+F35_CAD_AUTHOR_IMAGE ?= $(CAD_AUTHOR_F29_IMAGE)
+F35_SIMREADY_WORKFLOW_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
+F35_GMSH_IMAGE ?= 3dprinting993-gmsh-mesh-f35:dev
+F35_OPENFOAM_IMAGE ?= 3dprinting993-openfoam-engine-f35:dev
 
 check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
@@ -293,6 +298,76 @@ engine-components:
 		--network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
 		--pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
 		$(F34B_AIR_OIL_IMAGE)
+
+917-rotating-assembly-f35-test:
+	python3 tests/test_917_rotating_assembly_cad_f35.py -v
+	python3 tests/test_917_rotating_assembly_usd_f35.py -v
+	python3 tests/test_917_rotating_assembly_usd_f35_runner.py -v
+
+917-rotating-assembly-f35: 917-rotating-assembly-f35-test
+	mkdir -p work/917-rotating-assembly-f35
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-e HOME=/tmp -e XDG_CACHE_HOME=/tmp/cad-author-cache \
+		-e F35_CAD_RUNTIME_IMAGE_REF="$(F35_CAD_AUTHOR_IMAGE)" \
+		--mount type=bind,src="$(CURDIR)/twins",dst=/workspace/twins,readonly \
+		--mount type=bind,src="$(CURDIR)/work",dst=/workspace/work \
+		--workdir /workspace --entrypoint python $(F35_CAD_AUTHOR_IMAGE) \
+		/workspace/twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py \
+		--contract /workspace/twins/reference-917-engine/rotating-assembly-cad-f35.json \
+		--output /workspace/work/917-rotating-assembly-f35
+
+917-rotating-assembly-usd-f35-test:
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=1g \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		-e HOME=/tmp -e XDG_CACHE_HOME=/tmp/simready-cache \
+		--mount type=bind,src="$(CURDIR)",dst=/workspace,readonly \
+		--workdir /workspace --entrypoint /opt/simready-validation/bin/python \
+		$(F35_SIMREADY_WORKFLOW_IMAGE) tests/test_917_rotating_assembly_usd_f35.py -v
+
+917-rotating-assembly-usd-f35: 917-rotating-assembly-f35
+	F35_SIMREADY_WORKFLOW_IMAGE_REF=$(F35_SIMREADY_WORKFLOW_IMAGE) \
+		twins/reference-917-engine/source/run_rotating_assembly_usd_f35.sh
+
+917-intel-cpu-f35-test:
+	python3 tests/test_intel_cpu_node_f35.py -v
+	python3 tests/test_intel_cpu_smokes_f35.py -v
+
+917-gmsh-mesh-f35-test:
+	python3 tests/test_gmsh_mesh_f35_image.py -v
+	python3 tests/test_gmsh_mesh_f35_lock.py -v
+
+917-gmsh-mesh-f35-image: 917-gmsh-mesh-f35-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/gmsh-mesh-f35.Dockerfile \
+		-t $(F35_GMSH_IMAGE) --load .
+
+917-gmsh-mesh-f35-smoke:
+	docker run --rm --platform linux/amd64 --user 9135:9135 \
+		--network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+		--pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+		$(F35_GMSH_IMAGE)
+
+917-openfoam-engine-f35-test:
+	python3 tests/test_openfoam_engine_f35_image.py -v
+	python3 tests/test_openfoam_engine_f35_lock.py -v
+
+917-openfoam-engine-f35-image: 917-openfoam-engine-f35-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/openfoam-engine-f35.Dockerfile \
+		-t $(F35_OPENFOAM_IMAGE) --load .
+
+917-openfoam-engine-f35-smoke:
+	docker run --rm --platform linux/amd64 --user 9135:9135 \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=2g \
+		--tmpfs /dev/shm:rw,noexec,nosuid,nodev,size=512m \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		$(F35_OPENFOAM_IMAGE)
 
 917-integrated-virtual-f33-image:
 	docker build -f containers/cae-integrated-f33.Dockerfile -t $(F33_CAE_IMAGE) .
