@@ -1,0 +1,99 @@
+{
+  "$comment": "F31 execute une FEA 3D lineaire reproductible sur les quatre concepts F29. Les charges, appuis et proprietes restent des hypotheses de criblage non correlees; aucun gate physique, fabrication ou demarrage n'est ouvert.",
+  "schema_version": "1.0.0",
+  "phase": "F31",
+  "status": "reference_solver_screening_contract_ready_release_gates_closed",
+  "input": {
+    "design_study": "twins/reference-917-engine/evidence/f29/design-study.json",
+    "geometry_report": "twins/reference-917-engine/evidence/f29/cad/geometry-report.json",
+    "geometry_root": "twins/reference-917-engine/evidence/f29/cad",
+    "meshing_source": "solver-specific defeatured deck volume rebuilt deterministically from the F29 parameter set after verifying the tracked STEP and STL digests",
+    "source_classification": "f29_clean_sheet_concept_geometry_not_measured_917_fitment"
+  },
+  "solver": {
+    "mesher": "Gmsh OpenCASCADE CSG and tetrahedralization",
+    "element_family": "C3D4_linear_tetrahedron",
+    "reference_solver": "CalculiX ccx",
+    "analysis": "linear_static_elastic_with_prescribed_screening_temperature_field",
+    "load_cases": ["pressure_only", "thermal_only", "combined"],
+    "mesh_sizes_mm": [8.0, 6.5, 5.5],
+    "convergence_metric": "maximum_loaded_surface_displacement_mm",
+    "maximum_relative_change_last_two_meshes": 0.1,
+    "minimum_elements_finest_mesh": 5000
+  },
+  "known_geometry_limit": {
+    "finding": "Gmsh rejected direct tetrahedralization of the F29 full STEP/STL concepts with segment-facet intersections, including the 4V coarse mesh",
+    "effect": "F31 uses a 22 mm deck-only solver volume; fins, horizontal ports, guides, seats, inserts, cam carrier, oil paths and contacts are excluded",
+    "required_repair": "rebuild the complete functional head B-rep with measured interfaces before refined full-head CFD/FEA"
+  },
+  "solver_geometry": {
+    "kind": "defeatured_deck_volume",
+    "height_mm": 22.0,
+    "included_features": [
+      "outer cylindrical deck envelope",
+      "spherical combustion chamber",
+      "valve throat bores at the F29 positions",
+      "central spark-plug bore",
+      "four F29 fastener bores"
+    ],
+    "excluded_features": [
+      "cooling fins",
+      "horizontal intake and exhaust ports",
+      "seat and guide inserts",
+      "cam carrier and valvetrain contacts",
+      "oil passages",
+      "thread and clamp contact detail"
+    ]
+  },
+  "material": {
+    "id": "AlF357_LPBF_screening_elastic_isotropic",
+    "youngs_modulus_mpa": 70000.0,
+    "poisson_ratio": 0.33,
+    "thermal_expansion_per_k": 0.000021,
+    "density_kg_m3": 2670.0,
+    "screening_yield_mpa": 250.0,
+    "classification": "room_temperature_design_screen_not_build_specific_hot_material_card"
+  },
+  "boundary_conditions": {
+    "deck_support": "all deck-plane nodes restrained in Z; one node restrained in X/Y and one distinct node in Y to suppress rigid modes",
+    "combustion_load": "axial nodal resultant equal to p_peak times projected bore area, distributed over nodes identified on the spherical chamber surface",
+    "temperature_field": "prescribed nodal sensitivity field from chamber-side peak to fin-side ambient; no heat-transfer solve and no cooling-air correlation",
+    "ambient_temperature_c": 20.0,
+    "na_chamber_screening_temperature_c": 180.0,
+    "turbo_chamber_screening_temperature_c": 260.0,
+    "load_case_validated": false,
+    "boundary_conditions_validated": false
+  },
+  "acceptance": {
+    "all_four_variants_solved": true,
+    "all_three_meshes_per_variant_solved": true,
+    "finite_displacements_required": true,
+    "pressure_only_reaction_balance_relative_error_maximum": 0.02,
+    "mesh_convergence_required": true,
+    "architecture_comparison_requires_same_scenario_and_boundary_conditions": true
+  },
+  "forbidden_claims": [
+    "validated_digital_twin",
+    "dimensionally_accurate_917_head",
+    "hot_strength_or_fatigue_pass",
+    "manufacturing_release",
+    "safe_for_engine_operation",
+    "1600_hp_capable"
+  ],
+  "release_gates": {
+    "physical_917_head_identity_verified": false,
+    "physical_scale_and_datums_verified": false,
+    "fitment_dimensions_verified": false,
+    "cooling_and_oil_passages_dimensioned": false,
+    "valve_seat_and_guide_interfaces_dimensioned": false,
+    "combustion_boundary_conditions_validated": false,
+    "thermal_boundary_conditions_validated": false,
+    "material_at_temperature_qualified": false,
+    "fatigue_and_thermomechanical_fatigue_validated": false,
+    "instrumented_bench_correlated": false,
+    "omniverse_simready_authorized": false,
+    "professional_engineering_review_approved": false,
+    "metal_additive_manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}

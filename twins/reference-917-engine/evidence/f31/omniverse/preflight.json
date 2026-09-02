@@ -1,0 +1,203 @@
+{
+  "blockers": [
+    "asset_validator: omni_asset_validate CLI and omni.asset_validator module are unavailable",
+    "content_agents: Content Agents services are not healthy and deployment was not requested",
+    "openusd_python: OpenUSD Python APIs are not importable",
+    "simready_validate: SimReady Foundation checkout is missing",
+    "usd_convert_cad: usd-convert-cad checkout is missing",
+    "material: material health endpoint did not respond",
+    "ovrtx: ovrtx health endpoint did not respond",
+    "physics: physics health endpoint did not respond"
+  ],
+  "conversion_tools": [
+    "usd-convert-cad"
+  ],
+  "dependency_policy": "selected-target-dependencies",
+  "env": {},
+  "generated_at": "2026-09-02T08:12:37.983128+00:00",
+  "legacy_options_ignored": [],
+  "manifest_path": "${PROJECT_ROOT}/work/917-head-reference-cae-f31/omniverse-preflight/preflight.json",
+  "paths": {
+    "home": "${PHYSICAL_AI_SKILL_HOME}",
+    "output_root": "${PROJECT_ROOT}/work/917-head-reference-cae-f31/omniverse",
+    "project_root": "",
+    "state_root": "${PHYSICAL_AI_SKILL_HOME}/state",
+    "upstream_root": "${PHYSICAL_AI_SKILL_HOME}/upstreams",
+    "venv_root": "${PHYSICAL_AI_SKILL_HOME}/venvs"
+  },
+  "platform": {
+    "machine": "arm64",
+    "python": "3.10.11",
+    "system": "darwin"
+  },
+  "preflight_mode": "route-aware-dependency-bootstrap",
+  "route_selection": {
+    "conversion_tools_reason": "source-format",
+    "source_asset": "${PROJECT_ROOT}/work/917-head-reference-cae-f31/917_30_1973_turbo_5374_4v/mesh-5.5mm/solver-geometry.step",
+    "source_format": "cad"
+  },
+  "runtimes": {
+    "asset_validator": {
+      "executable": "/usr/local/bin/python3",
+      "message": "omni_asset_validate CLI and omni.asset_validator module are unavailable",
+      "status": "blocked"
+    },
+    "content_agents": {
+      "deployment_host": {
+        "checks": [
+          {
+            "message": "nvidia-smi was not found on PATH",
+            "name": "nvidia_smi",
+            "status": "blocked"
+          },
+          {
+            "executable": "/usr/local/bin/docker",
+            "message": "Docker daemon is reachable",
+            "name": "docker_daemon",
+            "status": "ready"
+          },
+          {
+            "executable": "/usr/local/bin/docker",
+            "message": "Docker Compose v2 is available",
+            "name": "docker_compose_v2",
+            "status": "ready"
+          }
+        ],
+        "message": "nvidia-smi was not found on PATH",
+        "status": "blocked"
+      },
+      "message": "Content Agents services are not healthy and deployment was not requested",
+      "root": "${PHYSICAL_AI_SKILL_HOME}/upstreams/content-agents",
+      "status": "blocked"
+    },
+    "git_lfs": {
+      "executable": "/opt/homebrew/bin/git-lfs",
+      "message": "Git LFS is available",
+      "status": "ready"
+    },
+    "openusd_python": {
+      "executable": "/usr/local/bin/python3",
+      "message": "OpenUSD Python APIs are not importable",
+      "status": "blocked"
+    },
+    "repo_python": {
+      "executable": "/usr/local/bin/python3",
+      "message": "no pyproject.toml found near cwd or preflight script",
+      "status": "skipped"
+    },
+    "request": {
+      "checks": [
+        {
+          "message": "source asset exists and is readable",
+          "name": "source_asset",
+          "status": "ready"
+        },
+        {
+          "message": "output root can be created under ${PROJECT_ROOT}/work/917-head-reference-cae-f31",
+          "name": "output_root",
+          "status": "ready"
+        }
+      ],
+      "message": "request inputs are ready",
+      "output_root": "${PROJECT_ROOT}/work/917-head-reference-cae-f31/omniverse",
+      "source_asset": "${PROJECT_ROOT}/work/917-head-reference-cae-f31/917_30_1973_turbo_5374_4v/mesh-5.5mm/solver-geometry.step",
+      "status": "ready"
+    },
+    "simready_validate": {
+      "message": "SimReady Foundation checkout is missing",
+      "root": "${PHYSICAL_AI_SKILL_HOME}/upstreams/simready-foundation",
+      "status": "blocked"
+    },
+    "usd_convert_cad": {
+      "message": "usd-convert-cad checkout is missing",
+      "root": "${PHYSICAL_AI_SKILL_HOME}/upstreams/usd-convert-cad",
+      "status": "blocked"
+    }
+  },
+  "schema_version": "1.0",
+  "services": {
+    "material": {
+      "base_url": "http://localhost:8100",
+      "errors": [
+        "http://localhost:8100/health: [Errno 61] Connection refused",
+        "http://localhost:8100/v2/health/ready: [Errno 61] Connection refused"
+      ],
+      "message": "material health endpoint did not respond",
+      "status": "blocked"
+    },
+    "ovrtx": {
+      "base_url": "http://localhost:8001",
+      "errors": [
+        "http://localhost:8001/health: [Errno 61] Connection refused",
+        "http://localhost:8001/v2/health/ready: [Errno 61] Connection refused"
+      ],
+      "message": "ovrtx health endpoint did not respond",
+      "status": "blocked"
+    },
+    "physics": {
+      "base_url": "http://localhost:8200",
+      "errors": [
+        "http://localhost:8200/health: HTTP 404",
+        "http://localhost:8200/v2/health/ready: HTTP 404"
+      ],
+      "message": "physics health endpoint did not respond",
+      "status": "blocked"
+    }
+  },
+  "skill": "cad-to-simready-preflight",
+  "status": "blocked",
+  "steps": [
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "-c",
+        "from pxr import Usd, UsdGeom, UsdPhysics; print(Usd.GetVersion())"
+      ],
+      "message": "command failed with exit 1",
+      "name": "python3",
+      "returncode": 1,
+      "status": "blocked",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'pxr'\n"
+    },
+    {
+      "command": [
+        "/usr/local/bin/python3",
+        "-c",
+        "import omni.asset_validator"
+      ],
+      "message": "command failed with exit 1",
+      "name": "python3",
+      "returncode": 1,
+      "status": "blocked",
+      "stderr_tail": "Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nModuleNotFoundError: No module named 'omni'\n"
+    }
+  ],
+  "targets": [
+    "conversion",
+    "validation",
+    "content-agents"
+  ],
+  "upstreams": {
+    "content_agents": {
+      "branch": "main",
+      "message": "checkout is missing: ${PHYSICAL_AI_SKILL_HOME}/upstreams/content-agents",
+      "path": "${PHYSICAL_AI_SKILL_HOME}/upstreams/content-agents",
+      "status": "blocked",
+      "url": "https://github.com/nvidia-omniverse/content-agents"
+    },
+    "simready_foundation": {
+      "branch": "main",
+      "message": "checkout is missing: ${PHYSICAL_AI_SKILL_HOME}/upstreams/simready-foundation",
+      "path": "${PHYSICAL_AI_SKILL_HOME}/upstreams/simready-foundation",
+      "status": "blocked",
+      "url": "https://github.com/NVIDIA/simready-foundation"
+    },
+    "usd_convert_cad": {
+      "branch": null,
+      "message": "checkout is missing: ${PHYSICAL_AI_SKILL_HOME}/upstreams/usd-convert-cad",
+      "path": "${PHYSICAL_AI_SKILL_HOME}/upstreams/usd-convert-cad",
+      "status": "blocked",
+      "url": "https://github.com/NVIDIA-Omniverse/usd-convert-cad"
+    }
+  }
+}

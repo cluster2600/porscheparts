@@ -1,10 +1,11 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
 PHYSICSNEMO_EXTRAS ?= cu12,sym,mesh-extras,model-extras
 VALVE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
 CAD_AUTHOR_F29_IMAGE ?= ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+F31_CAE_IMAGE ?= 3dprinting993-cae-reference-f31:dev
 
 check: validate test turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
@@ -168,6 +169,25 @@ engine-components:
 	python3 twins/reference-917-engine/source/render_clean_sheet_head_results_f29.py \
 		--evidence-root twins/reference-917-engine/evidence/f29 \
 		--output-dir twins/reference-917-engine/evidence/f29/figures
+
+917-head-reference-cae-f31-image:
+	docker build -f containers/cae-reference-f31.Dockerfile -t $(F31_CAE_IMAGE) .
+
+917-head-reference-cae-f31:
+	@test ! -e work/917-head-reference-cae-f31 || { echo "work/917-head-reference-cae-f31 existe déjà; conserver ou déplacer le run avant de relancer" >&2; exit 2; }
+	docker run --rm --network none --read-only --cap-drop ALL \
+		--security-opt no-new-privileges --user "$$(id -u):$$(id -g)" \
+		--tmpfs /tmp:rw,noexec,nosuid,size=256m \
+		-v "$(CURDIR):/workspace:rw" $(F31_CAE_IMAGE) \
+		/workspace/twins/reference-917-engine/source/run_head_reference_fea_f31.py \
+		--root /workspace \
+		--contract /workspace/twins/reference-917-engine/head-reference-cae-f31.json \
+		--output /workspace/work/917-head-reference-cae-f31
+
+917-head-reference-cae-f31-publish:
+	python3 twins/reference-917-engine/source/render_head_reference_fea_f31.py \
+		--report work/917-head-reference-cae-f31/report.json \
+		--output twins/reference-917-engine/evidence/f31
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

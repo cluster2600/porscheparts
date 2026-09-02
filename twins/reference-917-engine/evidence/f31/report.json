@@ -1,0 +1,1464 @@
+{
+  "checks": {
+    "all_calculix_runs_returned_zero": true,
+    "all_finest_meshes_meet_minimum_elements": true,
+    "all_mesh_convergence_checks_passed": true,
+    "all_pressure_reaction_balances_passed": true,
+    "calculix_run_count": 36,
+    "case_count": 12,
+    "variant_count": 4
+  },
+  "claims": {
+    "fatigue_or_tmf_solved": false,
+    "hot_material_card_used": false,
+    "manufacturing_or_engine_start_authorized": false,
+    "measured_917_geometry_used": false,
+    "physical_correlation_completed": false,
+    "three_dimensional_linear_fea_executed": true,
+    "validated_boundary_conditions_used": false
+  },
+  "comparisons": [
+    {
+      "decision_scope": "same_boundary_condition_linear_FEA_screen_only",
+      "four_valve_change_percent": {
+        "maximum_displacement": -2.426795587729258,
+        "p95_von_mises": 14.549396091021682,
+        "tetrahedron_count": 13.510066502687446
+      },
+      "scenario_id": "917_30_1973_turbo_5374"
+    },
+    {
+      "decision_scope": "same_boundary_condition_linear_FEA_screen_only",
+      "four_valve_change_percent": {
+        "maximum_displacement": -2.54114292554265,
+        "p95_von_mises": 8.998955370187446,
+        "tetrahedron_count": 15.095905569900413
+      },
+      "scenario_id": "type_912_5_0_na"
+    }
+  ],
+  "input_sha256": {
+    "contract": "bd02c16b4ad8170bd8761ae6626f218f264307ef58bd2de0acd5f06321494b97",
+    "design_study": "135f9a9c692a2e4253fa33ce8c433c79423eb72154d88db999c3942ac2bb970e",
+    "geometry_report": "986081b66ff973b24fa965992dfbe7e3bd44afce7da5c885f03b90c90ec274ba"
+  },
+  "phase": "F31",
+  "release_gates": {
+    "combustion_boundary_conditions_validated": false,
+    "cooling_and_oil_passages_dimensioned": false,
+    "engine_start_authorized": false,
+    "fatigue_and_thermomechanical_fatigue_validated": false,
+    "fitment_dimensions_verified": false,
+    "instrumented_bench_correlated": false,
+    "material_at_temperature_qualified": false,
+    "metal_additive_manufacturing_authorized": false,
+    "omniverse_simready_authorized": false,
+    "physical_917_head_identity_verified": false,
+    "physical_scale_and_datums_verified": false,
+    "professional_engineering_review_approved": false,
+    "thermal_boundary_conditions_validated": false,
+    "valve_seat_and_guide_interfaces_dimensioned": false
+  },
+  "schema_version": "1.0.0",
+  "status": "passed_reference_solver_screening_not_physical_validation",
+  "toolchain": {
+    "calculix": "2.21",
+    "container_policy": "containers/cae-reference-f31.Dockerfile",
+    "gmsh_api": "4.12.1",
+    "platform": "linux/aarch64"
+  },
+  "variants": [
+    {
+      "architecture": "2v",
+      "cases": [
+        {
+          "chamber_node_count": 60,
+          "deck_node_count": 386,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "4a17824519fa44947b66bb3733dfc66d747bf70dbd28e4752328bcb2d66d65fb",
+              "deck_sha256": "66d4e8992b0f3def81c679e799e8d86c829d5d3575da15269881779587ab57e1",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 887.6067387893386,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.30770321065194034,
+              "maximum_von_mises_mpa": 651.102913187289,
+              "p95_von_mises_mpa": 100.79251843068538,
+              "p99_von_mises_mpa": 161.42396606732066,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 5752,
+              "summed_deck_reaction_z_n": -53256.4063496
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "39b44e2aeb5eae325ffdfc74cacbe9032baa1dad236d0e75bf64344e3d65c882",
+              "deck_sha256": "9e5b152750986a801576cfbfb9159571f6961000fe83a8cb97a736a416f1f05a",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 887.6067387893386,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.08091302358735455,
+              "maximum_von_mises_mpa": 379.07379604303514,
+              "p95_von_mises_mpa": 69.19425380654191,
+              "p99_von_mises_mpa": 117.6234767510183,
+              "pressure_reaction_balance_relative_error": 3.134571960966624e-08,
+              "stress_integration_point_count": 5752,
+              "summed_deck_reaction_z_n": -53256.402658
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "61264ba157a2e1efde9259637481fad494b020ba1173ffdf03df7fc1a1403ebe",
+              "deck_sha256": "8fe9bfd3aa355658f74b474dfdf602ac4286a10e7947abe3084ac21e0ec1b3a7",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 887.6067387893386,
+                "pressure_applied": false,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3106197,
+              "maximum_von_mises_mpa": 335.52982762984516,
+              "p95_von_mises_mpa": 78.69698534591683,
+              "p99_von_mises_mpa": 100.38623582631705,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 5752,
+              "summed_deck_reaction_z_n": -0.0007989999996338981
+            }
+          },
+          "mesh_sha256": "99636bab5d33494169aa655e3ef2da9c7a14c537310c51eb32406a668d16a7a2",
+          "mesh_size_mm": 8.0,
+          "node_count": 1650,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "8f0be60fe0aed25cbbac9de80b14d523dcca4d183d74a53ae455550383dde6ec",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 212498.21394421803
+          },
+          "tetrahedron_count": 5752
+        },
+        {
+          "chamber_node_count": 75,
+          "deck_node_count": 472,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "cca89529e27b955ae469b596a750c3d47656f7b087f02da57d57fcc48a515700",
+              "deck_sha256": "7aa5318f772c934b299969faeebb258f7d1a4fad7fbf9c72b0c2ba3576cea8fd",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 710.0853910314709,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3090259,
+              "maximum_von_mises_mpa": 664.72952506073,
+              "p95_von_mises_mpa": 96.56948725382503,
+              "p99_von_mises_mpa": 162.86983499279194,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 7894,
+              "summed_deck_reaction_z_n": -53256.4107443
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "837f009b8b4d98b84f1473ed602dcb9d7dfd7d22b3d5bcd11f22a33b805bedf8",
+              "deck_sha256": "fdcce114d157952d7e5dec4c5e559f041a57b9098ff4127418abca6ca314cd4b",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 710.0853910314709,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.08705508055705784,
+              "maximum_von_mises_mpa": 364.38748352344146,
+              "p95_von_mises_mpa": 67.91989796893141,
+              "p99_von_mises_mpa": 114.0344319815208,
+              "pressure_reaction_balance_relative_error": 2.857571215010696e-08,
+              "stress_integration_point_count": 7894,
+              "summed_deck_reaction_z_n": -53256.4058492
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "b32d60708c258bea89d51701b46578f5b5bce08652c61495fb99ed348b7e8315",
+              "deck_sha256": "3c111aae8f5035a00ee072861388788f932994c9f80611a82cd175e0564a9ab3",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 710.0853910314709,
+                "pressure_applied": false,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3115322,
+              "maximum_von_mises_mpa": 339.41289308079564,
+              "p95_von_mises_mpa": 77.76926401766885,
+              "p99_von_mises_mpa": 96.84925483703773,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 7894,
+              "summed_deck_reaction_z_n": -0.0007029999997372194
+            }
+          },
+          "mesh_sha256": "172419dd9dda64b9c35d09e505f6fb12289670f36eaa7a0e845c9a5df2ffdb2b",
+          "mesh_size_mm": 6.5,
+          "node_count": 2130,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "caac28f11389880b3740137f574651de5c48b3c662985f6715ec364b98b7d1ca",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 212498.21394421803
+          },
+          "tetrahedron_count": 7894
+        },
+        {
+          "chamber_node_count": 86,
+          "deck_node_count": 575,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "17a75e1bb346c25765c730916c3aec0bcf293e8c2683c4319d7ce18df18f878e",
+              "deck_sha256": "0d34e436af1493a0754f4f01f50821a410fa0ef9ff5fa9ca99854b992ca928bd",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 619.2605154344222,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3096257248168401,
+              "maximum_von_mises_mpa": 859.9375301493106,
+              "p95_von_mises_mpa": 96.57643027435131,
+              "p99_von_mises_mpa": 161.4464633148131,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 10844,
+              "summed_deck_reaction_z_n": -53256.410599
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "b1b939d5f1138add956bd793bc5af285ab5ccbd36bb264abbc6e147008e7827b",
+              "deck_sha256": "ba55af08524c9a2fce688de2de1fe2a8d2c04ee85abd4362651a6caa91951d58",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 619.2605154344222,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.09316885715826277,
+              "maximum_von_mises_mpa": 435.04124720393787,
+              "p95_von_mises_mpa": 64.89256817757,
+              "p99_von_mises_mpa": 122.43862447105683,
+              "pressure_reaction_balance_relative_error": 3.205305232824971e-08,
+              "stress_integration_point_count": 10844,
+              "summed_deck_reaction_z_n": -53256.40262033
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "45d062ae8d2fc8dba4cc2090c1e977d797fc90d5b4324b9ec4a29b9eee427195",
+              "deck_sha256": "007ea21bbe3999dc9ca1469a38bbc1dcb230ce9a570187516f29ccc4e33b9646",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 619.2605154344222,
+                "pressure_applied": false,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3124351362911182,
+              "maximum_von_mises_mpa": 425.79211276385956,
+              "p95_von_mises_mpa": 73.792515327862,
+              "p99_von_mises_mpa": 97.99162531108782,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 10844,
+              "summed_deck_reaction_z_n": 0.002890600000289789
+            }
+          },
+          "mesh_sha256": "de5edaa9c37fb331131a08c410204cbbed8a48a57467bea4d2663a9511db0bde",
+          "mesh_size_mm": 5.5,
+          "node_count": 2805,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "74fa5900ff7c3273331bc69c7975646bae6f9eb452104c4335ed7c5636f44fa8",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 212498.21394421803
+          },
+          "tetrahedron_count": 10844
+        }
+      ],
+      "convergence": {
+        "acceptance_limit": 0.1,
+        "last_two_mesh_relative_change": 0.0019372576913462038,
+        "metric": "maximum_displacement_mm",
+        "passed": true
+      },
+      "finest_mesh_summary": {
+        "chamber_node_count": 86,
+        "deck_node_count": 575,
+        "load_cases": {
+          "combined": {
+            "calculix_returncode": 0,
+            "dat_sha256": "17a75e1bb346c25765c730916c3aec0bcf293e8c2683c4319d7ce18df18f878e",
+            "deck_sha256": "0d34e436af1493a0754f4f01f50821a410fa0ef9ff5fa9ca99854b992ca928bd",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 53256.40432736032,
+              "chamber_screening_temperature_c": 180.0,
+              "force_per_chamber_node_n": 619.2605154344222,
+              "pressure_applied": true,
+              "pressure_mpa": 9.0,
+              "projected_bore_area_mm2": 5917.3782585955905,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.3096257248168401,
+            "maximum_von_mises_mpa": 859.9375301493106,
+            "p95_von_mises_mpa": 96.57643027435131,
+            "p99_von_mises_mpa": 161.4464633148131,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 10844,
+            "summed_deck_reaction_z_n": -53256.410599
+          },
+          "pressure_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "b1b939d5f1138add956bd793bc5af285ab5ccbd36bb264abbc6e147008e7827b",
+            "deck_sha256": "ba55af08524c9a2fce688de2de1fe2a8d2c04ee85abd4362651a6caa91951d58",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 53256.40432736032,
+              "chamber_screening_temperature_c": 180.0,
+              "force_per_chamber_node_n": 619.2605154344222,
+              "pressure_applied": true,
+              "pressure_mpa": 9.0,
+              "projected_bore_area_mm2": 5917.3782585955905,
+              "thermal_field_applied": false
+            },
+            "maximum_displacement_mm": 0.09316885715826277,
+            "maximum_von_mises_mpa": 435.04124720393787,
+            "p95_von_mises_mpa": 64.89256817757,
+            "p99_von_mises_mpa": 122.43862447105683,
+            "pressure_reaction_balance_relative_error": 3.205305232824971e-08,
+            "stress_integration_point_count": 10844,
+            "summed_deck_reaction_z_n": -53256.40262033
+          },
+          "thermal_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "45d062ae8d2fc8dba4cc2090c1e977d797fc90d5b4324b9ec4a29b9eee427195",
+            "deck_sha256": "007ea21bbe3999dc9ca1469a38bbc1dcb230ce9a570187516f29ccc4e33b9646",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 53256.40432736032,
+              "chamber_screening_temperature_c": 180.0,
+              "force_per_chamber_node_n": 619.2605154344222,
+              "pressure_applied": false,
+              "pressure_mpa": 9.0,
+              "projected_bore_area_mm2": 5917.3782585955905,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.3124351362911182,
+            "maximum_von_mises_mpa": 425.79211276385956,
+            "p95_von_mises_mpa": 73.792515327862,
+            "p99_von_mises_mpa": 97.99162531108782,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 10844,
+            "summed_deck_reaction_z_n": 0.002890600000289789
+          }
+        },
+        "mesh_sha256": "de5edaa9c37fb331131a08c410204cbbed8a48a57467bea4d2663a9511db0bde",
+        "mesh_size_mm": 5.5,
+        "node_count": 2805,
+        "solver_geometry": {
+          "direct_f29_step_or_stl_meshed": false,
+          "geometry_sha256": "74fa5900ff7c3273331bc69c7975646bae6f9eb452104c4335ed7c5636f44fa8",
+          "height_mm": 22.0,
+          "kind": "defeatured_deck_volume",
+          "volume_mm3": 212498.21394421803
+        },
+        "tetrahedron_count": 10844
+      },
+      "id": "type_912_5_0_na_2v",
+      "scenario_id": "type_912_5_0_na",
+      "screening_yield_margin_p95": 2.588623324446843,
+      "step_sha256": "ad4d1c6d86565a6772e511a2920fe2a4ede686546bdd5d77b9602cc1627f04c1",
+      "stl_sha256": "7909feb1e2ac16aa627227f44b67d06c51ba8da7400602a471101cc1c4bf6f18"
+    },
+    {
+      "architecture": "4v",
+      "cases": [
+        {
+          "chamber_node_count": 93,
+          "deck_node_count": 417,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "624a579d4c764dea17b23b4c8ca793f19d84eb63ff536825fe92cac6eac4482a",
+              "deck_sha256": "e2796bd055e0046ca25006010b5d760c302a7e67b9eb6539c6438c71cdb7adfc",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 572.6495088963475,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3020725,
+              "maximum_von_mises_mpa": 340.1822082657482,
+              "p95_von_mises_mpa": 106.91896573695713,
+              "p99_von_mises_mpa": 157.71340078768986,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 6510,
+              "summed_deck_reaction_z_n": -53256.405142
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "ff41dff460150f0b6705aa56221116d188d85d27db4117a2758650ba533536be",
+              "deck_sha256": "ec66d603afac17f1b470af217466a26dad106ec724050fe461fbc083d21504fb",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 572.6495088963475,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.06398202820376328,
+              "maximum_von_mises_mpa": 249.58136396721454,
+              "p95_von_mises_mpa": 73.22961177333401,
+              "p99_von_mises_mpa": 110.21164392746482,
+              "pressure_reaction_balance_relative_error": 3.069227701455629e-08,
+              "stress_integration_point_count": 6510,
+              "summed_deck_reaction_z_n": -53256.4026928
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "9fbf0f9a375136c429d1238b44584a9ab8206ece73b82102752e48d0ddb50897",
+              "deck_sha256": "7b8b757e6d42d064990cb4fba09173aa5eaa097121cbd8d15341fc85e06cd560",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 572.6495088963475,
+                "pressure_applied": false,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.307638,
+              "maximum_von_mises_mpa": 129.70887373455037,
+              "p95_von_mises_mpa": 80.23458244850866,
+              "p99_von_mises_mpa": 96.4574308971724,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 6510,
+              "summed_deck_reaction_z_n": -0.0006295000008232909
+            }
+          },
+          "mesh_sha256": "426ff6c6d9996e0d55b94d981ef06bc5467227bc7f45df1d76a28ffce1444275",
+          "mesh_size_mm": 8.0,
+          "node_count": 1899,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "a4831309957ac74a8865caaa7bc0b4db8f1c8ba5df91f02473becc768975ca46",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 205245.477593632
+          },
+          "tetrahedron_count": 6510
+        },
+        {
+          "chamber_node_count": 127,
+          "deck_node_count": 534,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "79eb724632eaaf0fc8ab47d636f3fd6cf18f5bbe854e950199186622f67b779d",
+              "deck_sha256": "d6cb4798f7b1e14c0216c3ea87d6ad5ff3064fcd981f4224e566b7b846f1f3b3",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 419.34176635716784,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3018059,
+              "maximum_von_mises_mpa": 331.02386551779625,
+              "p95_von_mises_mpa": 105.37293226919124,
+              "p99_von_mises_mpa": 162.5316696254469,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 9562,
+              "summed_deck_reaction_z_n": -53256.4066727
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "2d2d60979b4d5f7b23c3dfadd80f5ca20af6483b971aa47806e3f5a4bb32de2c",
+              "deck_sha256": "7415b2ae3958b1b81d51e08abf3dc1a6bb10d02f2cd3b05ad4f23226db68b784",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 419.34176635716784,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.06758451010482729,
+              "maximum_von_mises_mpa": 240.08295794186475,
+              "p95_von_mises_mpa": 75.04748622308487,
+              "p99_von_mises_mpa": 116.08355580715993,
+              "pressure_reaction_balance_relative_error": 2.0859522730203055e-09,
+              "stress_integration_point_count": 9562,
+              "summed_deck_reaction_z_n": -53256.40421627
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "7353ceca7617aa019a67632db91a058f345db9aa026cc50ebe9bd437887bed67",
+              "deck_sha256": "da0d09f166e11c88a030a46d656414cb0f09b959d312e6c6bac2d6bc555b4f20",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 419.34176635716784,
+                "pressure_applied": false,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3077065,
+              "maximum_von_mises_mpa": 134.457571763725,
+              "p95_von_mises_mpa": 80.51910438602778,
+              "p99_von_mises_mpa": 96.49415886945155,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 9562,
+              "summed_deck_reaction_z_n": 0.004077699999277595
+            }
+          },
+          "mesh_sha256": "a4911904a09a57eb6e90991a214ba8585d602782f992f9d506e9fd9a5e7ff71a",
+          "mesh_size_mm": 6.5,
+          "node_count": 2623,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "702a8af89ddc513c19afc045b6cf4f0402b92f1748c4dace37e4d65ef5cc2cee",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 205245.477593632
+          },
+          "tetrahedron_count": 9562
+        },
+        {
+          "chamber_node_count": 142,
+          "deck_node_count": 619,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "678413cded8eb4c05ea60be2798022fb9b8533a7f784366e170f00fd54d52f67",
+              "deck_sha256": "c28956fbefa92c667f9df315756ea1bfe0ca8cab53e4325e10d3093e7da8de75",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 375.04510089690365,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3017576926149968,
+              "maximum_von_mises_mpa": 345.42053402861893,
+              "p95_von_mises_mpa": 105.26730013286038,
+              "p99_von_mises_mpa": 167.10582497363885,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 12481,
+              "summed_deck_reaction_z_n": -53256.4045866
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "95a6e00ac14dba4cdc7b7c7d18c61af5815ab1ff1d20f25b02adcb4dd0c75e94",
+              "deck_sha256": "f7e108012ec5061b33c745a9d9474252b80ddf2c146c6b925dae640e29fdecda",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 375.04510089690365,
+                "pressure_applied": true,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.06962356720862078,
+              "maximum_von_mises_mpa": 237.5905526306993,
+              "p95_von_mises_mpa": 75.14636907510959,
+              "p99_von_mises_mpa": 115.18501453679724,
+              "pressure_reaction_balance_relative_error": 4.131653925121047e-08,
+              "stress_integration_point_count": 12481,
+              "summed_deck_reaction_z_n": -53256.40212699
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "d3757022041379a24c94613a425ec7e4290b6b035b1c0def34e27c29075feada",
+              "deck_sha256": "27455515b31a7aae58c8b9873db387a5233c2e4a2a1848c1597ab36a75e1d7e5",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 53256.40432736032,
+                "chamber_screening_temperature_c": 180.0,
+                "force_per_chamber_node_n": 375.04510089690365,
+                "pressure_applied": false,
+                "pressure_mpa": 9.0,
+                "projected_bore_area_mm2": 5917.3782585955905,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.3077557622022171,
+              "maximum_von_mises_mpa": 131.31545392329994,
+              "p95_von_mises_mpa": 79.90110094483931,
+              "p99_von_mises_mpa": 97.66202507673323,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 12481,
+              "summed_deck_reaction_z_n": 0.002660800001529573
+            }
+          },
+          "mesh_sha256": "405fa666865fc9a387e9f0b4ff3676e3b4dc0f74eb4e44fd1bce46bbb6fb3827",
+          "mesh_size_mm": 5.5,
+          "node_count": 3280,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "97855a415fa8e8973982f00316b4b94a514a7c120cbaa55cd55fab32de25ee52",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 205245.477593632
+          },
+          "tetrahedron_count": 12481
+        }
+      ],
+      "convergence": {
+        "acceptance_limit": 0.1,
+        "last_two_mesh_relative_change": 0.00015975528108482922,
+        "metric": "maximum_displacement_mm",
+        "passed": true
+      },
+      "finest_mesh_summary": {
+        "chamber_node_count": 142,
+        "deck_node_count": 619,
+        "load_cases": {
+          "combined": {
+            "calculix_returncode": 0,
+            "dat_sha256": "678413cded8eb4c05ea60be2798022fb9b8533a7f784366e170f00fd54d52f67",
+            "deck_sha256": "c28956fbefa92c667f9df315756ea1bfe0ca8cab53e4325e10d3093e7da8de75",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 53256.40432736032,
+              "chamber_screening_temperature_c": 180.0,
+              "force_per_chamber_node_n": 375.04510089690365,
+              "pressure_applied": true,
+              "pressure_mpa": 9.0,
+              "projected_bore_area_mm2": 5917.3782585955905,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.3017576926149968,
+            "maximum_von_mises_mpa": 345.42053402861893,
+            "p95_von_mises_mpa": 105.26730013286038,
+            "p99_von_mises_mpa": 167.10582497363885,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 12481,
+            "summed_deck_reaction_z_n": -53256.4045866
+          },
+          "pressure_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "95a6e00ac14dba4cdc7b7c7d18c61af5815ab1ff1d20f25b02adcb4dd0c75e94",
+            "deck_sha256": "f7e108012ec5061b33c745a9d9474252b80ddf2c146c6b925dae640e29fdecda",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 53256.40432736032,
+              "chamber_screening_temperature_c": 180.0,
+              "force_per_chamber_node_n": 375.04510089690365,
+              "pressure_applied": true,
+              "pressure_mpa": 9.0,
+              "projected_bore_area_mm2": 5917.3782585955905,
+              "thermal_field_applied": false
+            },
+            "maximum_displacement_mm": 0.06962356720862078,
+            "maximum_von_mises_mpa": 237.5905526306993,
+            "p95_von_mises_mpa": 75.14636907510959,
+            "p99_von_mises_mpa": 115.18501453679724,
+            "pressure_reaction_balance_relative_error": 4.131653925121047e-08,
+            "stress_integration_point_count": 12481,
+            "summed_deck_reaction_z_n": -53256.40212699
+          },
+          "thermal_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "d3757022041379a24c94613a425ec7e4290b6b035b1c0def34e27c29075feada",
+            "deck_sha256": "27455515b31a7aae58c8b9873db387a5233c2e4a2a1848c1597ab36a75e1d7e5",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 53256.40432736032,
+              "chamber_screening_temperature_c": 180.0,
+              "force_per_chamber_node_n": 375.04510089690365,
+              "pressure_applied": false,
+              "pressure_mpa": 9.0,
+              "projected_bore_area_mm2": 5917.3782585955905,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.3077557622022171,
+            "maximum_von_mises_mpa": 131.31545392329994,
+            "p95_von_mises_mpa": 79.90110094483931,
+            "p99_von_mises_mpa": 97.66202507673323,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 12481,
+            "summed_deck_reaction_z_n": 0.002660800001529573
+          }
+        },
+        "mesh_sha256": "405fa666865fc9a387e9f0b4ff3676e3b4dc0f74eb4e44fd1bce46bbb6fb3827",
+        "mesh_size_mm": 5.5,
+        "node_count": 3280,
+        "solver_geometry": {
+          "direct_f29_step_or_stl_meshed": false,
+          "geometry_sha256": "97855a415fa8e8973982f00316b4b94a514a7c120cbaa55cd55fab32de25ee52",
+          "height_mm": 22.0,
+          "kind": "defeatured_deck_volume",
+          "volume_mm3": 205245.477593632
+        },
+        "tetrahedron_count": 12481
+      },
+      "id": "type_912_5_0_na_4v",
+      "scenario_id": "type_912_5_0_na",
+      "screening_yield_margin_p95": 2.3749065444299324,
+      "step_sha256": "fc843d1720d0ef97cd71fd2adcdbbe69fa24cf0c73ec0f5fa55bdb32d8e17b5f",
+      "stl_sha256": "73e767918031d8d07141bf5562e8063b1d5a85e1c652f2e23e29791f57ca78e3"
+    },
+    {
+      "architecture": "2v",
+      "cases": [
+        {
+          "chamber_node_count": 59,
+          "deck_node_count": 414,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "55449bc0bd6f4c455224fd994aa428eac60d991b167fe365a3fe7f1339ef9735",
+              "deck_sha256": "2deefb6b0db67e24327892b54ae2f4431d18c10957c39da74aa07b9676ab73fb",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1940.8652919211518,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4694828,
+              "maximum_von_mises_mpa": 1324.8898968883777,
+              "p95_von_mises_mpa": 184.9587775767942,
+              "p99_von_mises_mpa": 329.441377858444,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 5936,
+              "summed_deck_reaction_z_n": -114511.0600446
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "51cb9b32d739457853ddb16e00e9da83b556e97a4af37bb7d935aa1f77292afc",
+              "deck_sha256": "7c130c4d5826080f00c10254ce52b1fdcec9110a4541638570b4294742a92559",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1940.8652919211518,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.18282904653345658,
+              "maximum_von_mises_mpa": 1210.3945953485188,
+              "p95_von_mises_mpa": 146.65217551257808,
+              "p99_von_mises_mpa": 256.76795826909404,
+              "pressure_reaction_balance_relative_error": 5.187139437152754e-08,
+              "stress_integration_point_count": 5936,
+              "summed_deck_reaction_z_n": -114511.0462835
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "78e962f879e17f2fd179a4eff7b2c62863d83c49f1159d274b29ee81fec4ea34",
+              "deck_sha256": "a9e85463c8ce75000129de8a6bad00596c534554bc5052791a6d987c894c093b",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1940.8652919211518,
+                "pressure_applied": false,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4761369,
+              "maximum_von_mises_mpa": 518.3147129092059,
+              "p95_von_mises_mpa": 119.93246980294661,
+              "p99_von_mises_mpa": 152.42647150316873,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 5936,
+              "summed_deck_reaction_z_n": -0.002622000000387148
+            }
+          },
+          "mesh_sha256": "14fa88fd40c2bf136e9944394a9041e2ce744ce596acf8dba9aa01777742c01d",
+          "mesh_size_mm": 8.0,
+          "node_count": 1705,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "ebae96d31d12785943b4cc8761c06b7221ddda63da947defaf1931a05f8957d6",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 223180.54277084733
+          },
+          "tetrahedron_count": 5936
+        },
+        {
+          "chamber_node_count": 75,
+          "deck_node_count": 509,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "621b333b3c08e0d70e06e4b08cfd18a91f2bda521e2274e0db376044055ae43e",
+              "deck_sha256": "b632e6cbd57e0a333d9d6401d9dd61421ee0f4027f0262320c042ad4c90dab05",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1526.8140296446395,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.47203077174384683,
+              "maximum_von_mises_mpa": 1169.1371869595355,
+              "p95_von_mises_mpa": 180.29507870473773,
+              "p99_von_mises_mpa": 308.32380196027475,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 8050,
+              "summed_deck_reaction_z_n": -114511.0541
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "203d9c63c53519f94b4615bf0396061fccb7d606661318de49607480d58b7ea8",
+              "deck_sha256": "beb1a597cd532afb38492dfd8f65a47cd479ddf7844b63fafdd0753aba556b44",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1526.8140296446395,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.1928513293386295,
+              "maximum_von_mises_mpa": 1050.982842870597,
+              "p95_von_mises_mpa": 143.94752647030387,
+              "p99_von_mises_mpa": 252.98936778977549,
+              "pressure_reaction_balance_relative_error": 1.4274062840752925e-08,
+              "stress_integration_point_count": 8050,
+              "summed_deck_reaction_z_n": -114511.05058881
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "f99c246eebf4df940421637b4bcfeda7fcb32ae508a654b043f2d374cd5516bb",
+              "deck_sha256": "02e7e085e170fb3b49859f894ade1a0b9bdf07ed5b475fea0dbff682e67d5fef",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1526.8140296446395,
+                "pressure_applied": false,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4777991543337803,
+              "maximum_von_mises_mpa": 474.04746340327796,
+              "p95_von_mises_mpa": 117.40269282831247,
+              "p99_von_mises_mpa": 148.24470317317875,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 8050,
+              "summed_deck_reaction_z_n": -0.00273200000008611
+            }
+          },
+          "mesh_sha256": "d55adb552db0a8c66497470e70dd56b3b7ff118e0f4840b60d5371f00ae45db2",
+          "mesh_size_mm": 6.5,
+          "node_count": 2183,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "40072e56958b178b933467926f4f9011b05cb974c943c5a9a4021eadf151ed80",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 223180.54277084733
+          },
+          "tetrahedron_count": 8050
+        },
+        {
+          "chamber_node_count": 85,
+          "deck_node_count": 600,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "59e827bfb4952f96beab516791fcc275ec358e6385a6467e2d2aec4ca837b83c",
+              "deck_sha256": "ac3771607e1f9f17421e88f963656c4ee88e19eb6d34cec72a08d8c9b62fbaf7",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1347.1888496864465,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4713582,
+              "maximum_von_mises_mpa": 1474.3244079144483,
+              "p95_von_mises_mpa": 170.6558393860155,
+              "p99_von_mises_mpa": 302.5662455564194,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 10977,
+              "summed_deck_reaction_z_n": -114511.0469458
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "aa0c4405e4a3d1ddf8883124ed48252633bfde052fc961b50268f213d48edaa9",
+              "deck_sha256": "c2901c170c3d22091a5f9f76e15399076833136db82302df69a665e6523004de",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1347.1888496864465,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.1961111850786343,
+              "maximum_von_mises_mpa": 1062.5563448822052,
+              "p95_von_mises_mpa": 130.95918684462643,
+              "p99_von_mises_mpa": 244.62615977309505,
+              "pressure_reaction_balance_relative_error": 2.25450032989305e-08,
+              "stress_integration_point_count": 10977,
+              "summed_deck_reaction_z_n": -114511.054805
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "ade325e7b69b151d1b5f0c32673564fb69ef012d5a8b81276d6bcaa3f39c5a97",
+              "deck_sha256": "7aec5881d39c0c60e9c2d8759be850348071872f34b260b93903606eb068223e",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1347.1888496864465,
+                "pressure_applied": false,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4768397,
+              "maximum_von_mises_mpa": 605.7747323249976,
+              "p95_von_mises_mpa": 112.65805732534379,
+              "p99_von_mises_mpa": 148.29092962095262,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 10977,
+              "summed_deck_reaction_z_n": -0.0031129999996677427
+            }
+          },
+          "mesh_sha256": "47c1ceb6b2cf70ec6d1ff8bf07f55a8b7c76ff920f8e228fcd1edf0621a9edf0",
+          "mesh_size_mm": 5.5,
+          "node_count": 2846,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "bd6c050e11ee868415b23810dcb82c3e1c880c6f5ca387847e310b2edde9d256",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 223180.54277084733
+          },
+          "tetrahedron_count": 10977
+        }
+      ],
+      "convergence": {
+        "acceptance_limit": 0.1,
+        "last_two_mesh_relative_change": 0.0014268803297509795,
+        "metric": "maximum_displacement_mm",
+        "passed": true
+      },
+      "finest_mesh_summary": {
+        "chamber_node_count": 85,
+        "deck_node_count": 600,
+        "load_cases": {
+          "combined": {
+            "calculix_returncode": 0,
+            "dat_sha256": "59e827bfb4952f96beab516791fcc275ec358e6385a6467e2d2aec4ca837b83c",
+            "deck_sha256": "ac3771607e1f9f17421e88f963656c4ee88e19eb6d34cec72a08d8c9b62fbaf7",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 114511.05222334796,
+              "chamber_screening_temperature_c": 260.0,
+              "force_per_chamber_node_n": 1347.1888496864465,
+              "pressure_applied": true,
+              "pressure_mpa": 18.0,
+              "projected_bore_area_mm2": 6361.725123519331,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.4713582,
+            "maximum_von_mises_mpa": 1474.3244079144483,
+            "p95_von_mises_mpa": 170.6558393860155,
+            "p99_von_mises_mpa": 302.5662455564194,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 10977,
+            "summed_deck_reaction_z_n": -114511.0469458
+          },
+          "pressure_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "aa0c4405e4a3d1ddf8883124ed48252633bfde052fc961b50268f213d48edaa9",
+            "deck_sha256": "c2901c170c3d22091a5f9f76e15399076833136db82302df69a665e6523004de",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 114511.05222334796,
+              "chamber_screening_temperature_c": 260.0,
+              "force_per_chamber_node_n": 1347.1888496864465,
+              "pressure_applied": true,
+              "pressure_mpa": 18.0,
+              "projected_bore_area_mm2": 6361.725123519331,
+              "thermal_field_applied": false
+            },
+            "maximum_displacement_mm": 0.1961111850786343,
+            "maximum_von_mises_mpa": 1062.5563448822052,
+            "p95_von_mises_mpa": 130.95918684462643,
+            "p99_von_mises_mpa": 244.62615977309505,
+            "pressure_reaction_balance_relative_error": 2.25450032989305e-08,
+            "stress_integration_point_count": 10977,
+            "summed_deck_reaction_z_n": -114511.054805
+          },
+          "thermal_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "ade325e7b69b151d1b5f0c32673564fb69ef012d5a8b81276d6bcaa3f39c5a97",
+            "deck_sha256": "7aec5881d39c0c60e9c2d8759be850348071872f34b260b93903606eb068223e",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 114511.05222334796,
+              "chamber_screening_temperature_c": 260.0,
+              "force_per_chamber_node_n": 1347.1888496864465,
+              "pressure_applied": false,
+              "pressure_mpa": 18.0,
+              "projected_bore_area_mm2": 6361.725123519331,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.4768397,
+            "maximum_von_mises_mpa": 605.7747323249976,
+            "p95_von_mises_mpa": 112.65805732534379,
+            "p99_von_mises_mpa": 148.29092962095262,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 10977,
+            "summed_deck_reaction_z_n": -0.0031129999996677427
+          }
+        },
+        "mesh_sha256": "47c1ceb6b2cf70ec6d1ff8bf07f55a8b7c76ff920f8e228fcd1edf0621a9edf0",
+        "mesh_size_mm": 5.5,
+        "node_count": 2846,
+        "solver_geometry": {
+          "direct_f29_step_or_stl_meshed": false,
+          "geometry_sha256": "bd6c050e11ee868415b23810dcb82c3e1c880c6f5ca387847e310b2edde9d256",
+          "height_mm": 22.0,
+          "kind": "defeatured_deck_volume",
+          "volume_mm3": 223180.54277084733
+        },
+        "tetrahedron_count": 10977
+      },
+      "id": "917_30_1973_turbo_5374_2v",
+      "scenario_id": "917_30_1973_turbo_5374",
+      "screening_yield_margin_p95": 1.4649366871912994,
+      "step_sha256": "a5257e4877a9e818679a163bf4aa2bb151cdc9d8484e91453d9fdf8624049982",
+      "stl_sha256": "a240a8e0db3ecef987ce944a5ef437d17c67962f2b595c4d2260a6fdeab1fea5"
+    },
+    {
+      "architecture": "4v",
+      "cases": [
+        {
+          "chamber_node_count": 97,
+          "deck_node_count": 426,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "a74c480d70dd769416f8da9bc18a48e494c8820a09cfc642ea962d49a71f2371",
+              "deck_sha256": "360f3be79bb9873078f69be91b498bf2b20bc7019f8d7ad17477c3c748e8bbaa",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1180.5263115809068,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4585181,
+              "maximum_von_mises_mpa": 621.9147970509616,
+              "p95_von_mises_mpa": 195.04395973488556,
+              "p99_von_mises_mpa": 294.2405673421418,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 6728,
+              "summed_deck_reaction_z_n": -114511.052458
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "ea02dcb46305d8dc7a6be3f90868b8be0f65936845afe965d460c37b9ede819a",
+              "deck_sha256": "2c8b6920b873a85077c3be7407e4f766f5f0ac79f7cd442103895b58cb135dce",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1180.5263115809068,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.14020809251716843,
+              "maximum_von_mises_mpa": 480.88818573037383,
+              "p95_von_mises_mpa": 155.36853749923935,
+              "p99_von_mises_mpa": 236.18533181917027,
+              "pressure_reaction_balance_relative_error": 3.948354282892281e-08,
+              "stress_integration_point_count": 6728,
+              "summed_deck_reaction_z_n": -114511.05674464999
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "2c54bdcad0779689aaa054185c0d8135c9478a40f24a3c040a74fc2cb846b18c",
+              "deck_sha256": "69c3ad4b99270fb5203dbe5d9ec39bef090d2e432fb34f2dd323d1d6995b1c4e",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 1180.5263115809068,
+                "pressure_applied": false,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4703873,
+              "maximum_von_mises_mpa": 202.04965449946482,
+              "p95_von_mises_mpa": 120.98440922644355,
+              "p99_von_mises_mpa": 145.18462199719178,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 6728,
+              "summed_deck_reaction_z_n": 0.007525200002838073
+            }
+          },
+          "mesh_sha256": "d1daebd35773f6061c73d144c8d4b2de8b955f6fc10e555d6c047bce1abe6637",
+          "mesh_size_mm": 8.0,
+          "node_count": 1967,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "228a2a36f1b27e017bfa97b68a47b127b911e40cfea04e2b435c185cbdd99f6f",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 215371.9362058762
+          },
+          "tetrahedron_count": 6728
+        },
+        {
+          "chamber_node_count": 128,
+          "deck_node_count": 547,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "1f522f8c3a75e7f741e11c270490f7f6763268d90a70e8b9b389b2ee56add89b",
+              "deck_sha256": "f4ed1041367b19f31d7235bf722b97c2343e0e6809088ce352984d9472945c76",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 894.6175954949059,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.45919639004085777,
+              "maximum_von_mises_mpa": 696.2040870785812,
+              "p95_von_mises_mpa": 194.99062203652352,
+              "p99_von_mises_mpa": 296.29686932772756,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 9682,
+              "summed_deck_reaction_z_n": -114511.049491
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "0a909324080969b92df185eaab35bcc9a40aaafc17068735900775af2f86305a",
+              "deck_sha256": "3c0fa602ba6a85def32d1f7c99042984c1bbce41cb1d41a68063a80b9843f2cb",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 894.6175954949059,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.1436427950565173,
+              "maximum_von_mises_mpa": 553.5126267030412,
+              "p95_von_mises_mpa": 158.93806572521586,
+              "p99_von_mises_mpa": 243.8735342384477,
+              "pressure_reaction_balance_relative_error": 1.3700442186450288e-08,
+              "stress_integration_point_count": 9682,
+              "summed_deck_reaction_z_n": -114511.05379220001
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "8db427a302aefb1d36860755d030a6709d90d78ee56ee28e677dd7e25e34ee52",
+              "deck_sha256": "7ce8915b587d4a38d764536e015efe9c15766c524f3eaa2106730caae6c7cc47",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 894.6175954949059,
+                "pressure_applied": false,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.47168002039472917,
+              "maximum_von_mises_mpa": 197.56287268778917,
+              "p95_von_mises_mpa": 120.5147423306339,
+              "p99_von_mises_mpa": 144.97886515443534,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 9682,
+              "summed_deck_reaction_z_n": 0.00037879999935669373
+            }
+          },
+          "mesh_sha256": "e365e187e667ef1a8c6db5b79d69b50c73a65f34d14c04f70fc0e0b11722c2da",
+          "mesh_size_mm": 6.5,
+          "node_count": 2665,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "c778198a2020691f0ca01152e5506208ded659a532ea9643de84b2ec20a143a0",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 215371.9362058762
+          },
+          "tetrahedron_count": 9682
+        },
+        {
+          "chamber_node_count": 143,
+          "deck_node_count": 615,
+          "load_cases": {
+            "combined": {
+              "calculix_returncode": 0,
+              "dat_sha256": "e8cdb68cd7f26ef95f29ca90476111f42040b71b05c65fc92c2ed7f4e5f7ea76",
+              "deck_sha256": "574375c94d893f544dbefec8f12d90a0dd184fb26731124723cdbb02e727d593",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 800.7765889744612,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4599193,
+              "maximum_von_mises_mpa": 659.8324242469199,
+              "p95_von_mises_mpa": 195.48523341074466,
+              "p99_von_mises_mpa": 301.5511590275268,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 12460,
+              "summed_deck_reaction_z_n": -114511.0474202
+            },
+            "pressure_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "2a8108f4f3515375658a09face1a984fe3d85ea519a293f3fcafd68266a643eb",
+              "deck_sha256": "6c24a151d798161389d19035fd75971a84cc2ae4215ef270fb0707702d589cb8",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 800.7765889744612,
+                "pressure_applied": true,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": false
+              },
+              "maximum_displacement_mm": 0.15305339824211242,
+              "maximum_von_mises_mpa": 529.3908901681303,
+              "p95_von_mises_mpa": 162.3850255558317,
+              "p99_von_mises_mpa": 238.14541645874115,
+              "pressure_reaction_balance_relative_error": 1.0145815065828942e-08,
+              "stress_integration_point_count": 12460,
+              "summed_deck_reaction_z_n": -114511.05106154
+            },
+            "thermal_only": {
+              "calculix_returncode": 0,
+              "dat_sha256": "23edbea89c8ad23cdb63925ca89e6b7f9871e81eac0b0615af702343dfbfa3cc",
+              "deck_sha256": "754fea2b3afc3848c0e42b78d755fa0befdba8912c413bec116ba10dba8dcea1",
+              "loads": {
+                "ambient_temperature_c": 20.0,
+                "applied_axial_resultant_n": 114511.05222334796,
+                "chamber_screening_temperature_c": 260.0,
+                "force_per_chamber_node_n": 800.7765889744612,
+                "pressure_applied": false,
+                "pressure_mpa": 18.0,
+                "projected_bore_area_mm2": 6361.725123519331,
+                "thermal_field_applied": true
+              },
+              "maximum_displacement_mm": 0.4730053,
+              "maximum_von_mises_mpa": 193.54865652854832,
+              "p95_von_mises_mpa": 118.12648863622272,
+              "p99_von_mises_mpa": 146.96185316634458,
+              "pressure_reaction_balance_relative_error": null,
+              "stress_integration_point_count": 12460,
+              "summed_deck_reaction_z_n": -0.00028299999940339937
+            }
+          },
+          "mesh_sha256": "8053757140518036716a828630a47440694cb825c18a1e8d2f7c659bf31d242f",
+          "mesh_size_mm": 5.5,
+          "node_count": 3279,
+          "solver_geometry": {
+            "direct_f29_step_or_stl_meshed": false,
+            "geometry_sha256": "f93a9f12b47022eb58fe8ebf8985a71409deee73bc223ed3c6cfcf03bc0a8a4d",
+            "height_mm": 22.0,
+            "kind": "defeatured_deck_volume",
+            "volume_mm3": 215371.9362058762
+          },
+          "tetrahedron_count": 12460
+        }
+      ],
+      "convergence": {
+        "acceptance_limit": 0.1,
+        "last_two_mesh_relative_change": 0.0015718191411889086,
+        "metric": "maximum_displacement_mm",
+        "passed": true
+      },
+      "finest_mesh_summary": {
+        "chamber_node_count": 143,
+        "deck_node_count": 615,
+        "load_cases": {
+          "combined": {
+            "calculix_returncode": 0,
+            "dat_sha256": "e8cdb68cd7f26ef95f29ca90476111f42040b71b05c65fc92c2ed7f4e5f7ea76",
+            "deck_sha256": "574375c94d893f544dbefec8f12d90a0dd184fb26731124723cdbb02e727d593",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 114511.05222334796,
+              "chamber_screening_temperature_c": 260.0,
+              "force_per_chamber_node_n": 800.7765889744612,
+              "pressure_applied": true,
+              "pressure_mpa": 18.0,
+              "projected_bore_area_mm2": 6361.725123519331,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.4599193,
+            "maximum_von_mises_mpa": 659.8324242469199,
+            "p95_von_mises_mpa": 195.48523341074466,
+            "p99_von_mises_mpa": 301.5511590275268,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 12460,
+            "summed_deck_reaction_z_n": -114511.0474202
+          },
+          "pressure_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "2a8108f4f3515375658a09face1a984fe3d85ea519a293f3fcafd68266a643eb",
+            "deck_sha256": "6c24a151d798161389d19035fd75971a84cc2ae4215ef270fb0707702d589cb8",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 114511.05222334796,
+              "chamber_screening_temperature_c": 260.0,
+              "force_per_chamber_node_n": 800.7765889744612,
+              "pressure_applied": true,
+              "pressure_mpa": 18.0,
+              "projected_bore_area_mm2": 6361.725123519331,
+              "thermal_field_applied": false
+            },
+            "maximum_displacement_mm": 0.15305339824211242,
+            "maximum_von_mises_mpa": 529.3908901681303,
+            "p95_von_mises_mpa": 162.3850255558317,
+            "p99_von_mises_mpa": 238.14541645874115,
+            "pressure_reaction_balance_relative_error": 1.0145815065828942e-08,
+            "stress_integration_point_count": 12460,
+            "summed_deck_reaction_z_n": -114511.05106154
+          },
+          "thermal_only": {
+            "calculix_returncode": 0,
+            "dat_sha256": "23edbea89c8ad23cdb63925ca89e6b7f9871e81eac0b0615af702343dfbfa3cc",
+            "deck_sha256": "754fea2b3afc3848c0e42b78d755fa0befdba8912c413bec116ba10dba8dcea1",
+            "loads": {
+              "ambient_temperature_c": 20.0,
+              "applied_axial_resultant_n": 114511.05222334796,
+              "chamber_screening_temperature_c": 260.0,
+              "force_per_chamber_node_n": 800.7765889744612,
+              "pressure_applied": false,
+              "pressure_mpa": 18.0,
+              "projected_bore_area_mm2": 6361.725123519331,
+              "thermal_field_applied": true
+            },
+            "maximum_displacement_mm": 0.4730053,
+            "maximum_von_mises_mpa": 193.54865652854832,
+            "p95_von_mises_mpa": 118.12648863622272,
+            "p99_von_mises_mpa": 146.96185316634458,
+            "pressure_reaction_balance_relative_error": null,
+            "stress_integration_point_count": 12460,
+            "summed_deck_reaction_z_n": -0.00028299999940339937
+          }
+        },
+        "mesh_sha256": "8053757140518036716a828630a47440694cb825c18a1e8d2f7c659bf31d242f",
+        "mesh_size_mm": 5.5,
+        "node_count": 3279,
+        "solver_geometry": {
+          "direct_f29_step_or_stl_meshed": false,
+          "geometry_sha256": "f93a9f12b47022eb58fe8ebf8985a71409deee73bc223ed3c6cfcf03bc0a8a4d",
+          "height_mm": 22.0,
+          "kind": "defeatured_deck_volume",
+          "volume_mm3": 215371.9362058762
+        },
+        "tetrahedron_count": 12460
+      },
+      "id": "917_30_1973_turbo_5374_4v",
+      "scenario_id": "917_30_1973_turbo_5374",
+      "screening_yield_margin_p95": 1.2788689745926303,
+      "step_sha256": "1237277111091ef4fd8a8dd4e65f55402c50657024f703fe187cdb29744a643d",
+      "stl_sha256": "f4fc030cfeaaee3406bdf0a73fadf1799fc48fbfaa70bdd599219a1ee151127a"
+    }
+  ]
+}

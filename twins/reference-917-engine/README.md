@@ -134,6 +134,26 @@ rendement moteur, ni une CFD, ni une FEA, ni une corrélation banc. Le
 `false` la validation du jumeau, la fabrication et le démarrage moteur. Les
 deux images publiées sont des aperçus CAD, pas des rendus Omniverse.
 
+## Calcul EF de référence du deck F31
+
+F31 fait franchir à la comparaison 2V/4V un niveau supplémentaire : douze
+maillages Gmsh et trente-six résolutions CalculiX séparent pression, dilatation
+thermique et cas combiné. Les résultats, convergence et bilans sont publiés
+dans le [paquet de preuves F31](evidence/f31/README.md), avec la
+[méthode complète](../../docs/917_HEAD_REFERENCE_CAE_F31.md).
+
+La version 4V garde le gain d'aire effective de F29 et réduit légèrement le
+déplacement du deck dans ce modèle, mais augmente la contrainte P95 de 9,0 % en
+atmosphérique et de 14,5 % en turbo. Elle reste donc la branche de performance
+à développer, sous condition de renforcer les chemins de charge et de refaire
+le calcul sur une culasse fonctionnelle mesurée.
+
+Le modèle EF est volontairement défeaturé parce que les STEP/STL complets F29
+ne produisent pas encore un volume Gmsh raffiné robuste. Il ne contient ni les
+ailettes, ni les vrais conduits, sièges, guides, précharges ou contacts. Une
+FEA convergée de ce coupon est une preuve de chaîne solveur et de comparaison,
+pas une validation de fabrication ou de démarrage moteur.
+
 ## Assemblage fonctionnel complet F1
 
 Une nomenclature paramétrique distincte du scan reconstruit les familles
