@@ -1,0 +1,237 @@
+name: Build scan mesh F17 image
+
+# Déclenchement manuel uniquement. Ce workflow construit et vérifie une image
+# CPU; il ne provisionne ni GPU, ni hébergeur de calcul distant.
+on:
+  workflow_dispatch:
+    inputs:
+      push:
+        description: Publier l'image candidate sur GHCR
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-scan-mesh-f17
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+
+      - name: Log in to GHCR
+        if: inputs.push
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/scan-mesh-f17.Dockerfile
+          platforms: linux/amd64
+          load: ${{ !inputs.push }}
+          push: ${{ inputs.push }}
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.sha }}
+          cache-from: type=gha,scope=scan-mesh-f17
+
+      - name: Smoke local candidate in an isolated runtime
+        if: ${{ !inputs.push }}
+        run: |
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${IMAGE_REPOSITORY}:${GITHUB_SHA}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${IMAGE_REPOSITORY}:${GITHUB_SHA}")" = 9177:9177
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,size=256m \
+            --pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+            "${IMAGE_REPOSITORY}:${GITHUB_SHA}" \
+            | tee scan-mesh-f17-smoke.json
+          jq -e '
+            .status == "passed_synthetic_fixture_only" and
+            .offline == true and .non_root == true and .gpu == false and
+            .network_isolation_evidence.verified == true and
+            (.network_isolation_evidence.external_routed_interfaces | length) == 0 and
+            .network_isolation_evidence.default_ipv4_external_route == false and
+            .network_isolation_evidence.default_ipv6_external_route == false and
+            .bundled_content_audit.scope == "/opt/3dprinting993" and
+            (.bundled_content_audit.expected_files | length) == 3 and
+            (.bundled_content_audit.unexpected_files | length) == 0 and
+            (.bundled_content_audit.missing_files | length) == 0 and
+            (.bundled_content_audit.forbidden_geometry_files | length) == 0 and
+            (.bundled_content_audit.dataset_files | length) == 0 and
+            (.bundled_content_audit.model_weight_files | length) == 0 and
+            (.bundled_content_audit.secret_named_files | length) == 0 and
+            all(.release_gates[]; . == false)
+          ' scan-mesh-f17-smoke.json >/dev/null
+          printf '%s\n' "${IMAGE_REPOSITORY}:${GITHUB_SHA}" \
+            > scan-mesh-f17-image-ref.txt
+          test -s scan-mesh-f17-smoke.json
+          test -s scan-mesh-f17-image-ref.txt
+
+      - name: Upload local candidate evidence
+        if: ${{ !inputs.push }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: scan-mesh-f17-local-${{ github.sha }}
+          path: |
+            scan-mesh-f17-image-ref.txt
+            scan-mesh-f17-smoke.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Gate published image by exact digest, subject, provenance and SBOM
+        if: inputs.push
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          tag_ref="${IMAGE_REPOSITORY}:${GITHUB_SHA}"
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          tag_digest=""
+          for attempt in 1 2 3 4 5; do
+            tag_digest="$(
+              docker buildx imagetools inspect "${tag_ref}" 2>/dev/null \
+                | awk '$1 == "Digest:" { print $2; exit }'
+            )"
+            if test "${tag_digest}" = "${IMAGE_DIGEST}"; then
+              break
+            fi
+            sleep 3
+          done
+          test "${tag_digest}" = "${IMAGE_DIGEST}"
+
+          docker buildx imagetools inspect --raw "${pinned_ref}" \
+            > scan-mesh-f17-index.json
+          test "$(sha256sum scan-mesh-f17-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' scan-mesh-f17-index.json >/dev/null
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' scan-mesh-f17-index.json)"
+          attestation_digest="$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .digest' scan-mesh-f17-index.json)"
+          test "$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .annotations["vnd.docker.reference.digest"]' scan-mesh-f17-index.json)" = "${platform_digest}"
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${platform_digest}" \
+            > scan-mesh-f17-platform-manifest.json
+          test "$(sha256sum scan-mesh-f17-platform-manifest.json | cut -d' ' -f1)" = "${platform_digest#sha256:}"
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${attestation_digest}" \
+            > scan-mesh-f17-attestation-manifest.json
+          test "$(sha256sum scan-mesh-f17-attestation-manifest.json | cut -d' ' -f1)" = "${attestation_digest#sha256:}"
+          jq -e --arg subject "${platform_digest}" '
+            .artifactType == "application/vnd.docker.attestation.manifest.v1+json" and
+            .subject.mediaType == "application/vnd.oci.image.manifest.v1+json" and
+            .subject.digest == $subject and
+            ([.layers[] | select(.mediaType == "application/vnd.in-toto+json" and .annotations["in-toto.io/predicate-type"] == "https://slsa.dev/provenance/v1")] | length) == 1 and
+            ([.layers[] | select(.mediaType == "application/vnd.in-toto+json" and .annotations["in-toto.io/predicate-type"] == "https://spdx.dev/Document")] | length) == 1
+          ' scan-mesh-f17-attestation-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" \
+            > scan-mesh-f17-provenance.json
+          jq -e \
+            --arg source "https://github.com/${GITHUB_REPOSITORY}" \
+            --arg revision "${GITHUB_SHA}" \
+            --arg builder_prefix "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/" '
+            (.SLSA.buildDefinition.buildType | startswith("https://github.com/moby/buildkit/")) and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:source"] == $source and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:revision"] == $revision and
+            .SLSA.buildDefinition.internalParameters.github_repository == env.GITHUB_REPOSITORY and
+            .SLSA.buildDefinition.internalParameters.github_workflow_sha == $revision and
+            (.SLSA.runDetails.builder.id | startswith($builder_prefix)) and
+            (.SLSA.buildDefinition.resolvedDependencies | type == "array" and length > 0) and
+            any(.SLSA.buildDefinition.resolvedDependencies[];
+              .digest.sha256 == "a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e") and
+            any(.SLSA.buildDefinition.resolvedDependencies[];
+              .digest.sha256 == "9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef")
+          ' scan-mesh-f17-provenance.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${pinned_ref}" \
+            > scan-mesh-f17-sbom.json
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $spdx |
+            $spdx.spdxVersion == "SPDX-2.3" and
+            $spdx.SPDXID == "SPDXRef-DOCUMENT" and
+            $spdx.dataLicense == "CC0-1.0" and
+            ($spdx.creationInfo.creators | type == "array" and length > 0) and
+            ($spdx.packages | type == "array" and length > 0)
+          ' scan-mesh-f17-sbom.json >/dev/null
+
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${pinned_ref}")" = 9177:9177
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,size=256m \
+            --pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" \
+            | tee scan-mesh-f17-smoke.json
+          jq -e '
+            .status == "passed_synthetic_fixture_only" and
+            .offline == true and .non_root == true and .gpu == false and
+            .network_isolation_evidence.verified == true and
+            (.network_isolation_evidence.external_routed_interfaces | length) == 0 and
+            .network_isolation_evidence.default_ipv4_external_route == false and
+            .network_isolation_evidence.default_ipv6_external_route == false and
+            .bundled_content_audit.scope == "/opt/3dprinting993" and
+            (.bundled_content_audit.expected_files | length) == 3 and
+            (.bundled_content_audit.unexpected_files | length) == 0 and
+            (.bundled_content_audit.missing_files | length) == 0 and
+            (.bundled_content_audit.forbidden_geometry_files | length) == 0 and
+            (.bundled_content_audit.dataset_files | length) == 0 and
+            (.bundled_content_audit.model_weight_files | length) == 0 and
+            (.bundled_content_audit.secret_named_files | length) == 0 and
+            all(.release_gates[]; . == false)
+          ' scan-mesh-f17-smoke.json >/dev/null
+          printf '%s\n' "${pinned_ref}" > scan-mesh-f17-image-ref.txt
+
+      - name: Require anonymous access to the published exact digest
+        if: inputs.push
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          anonymous_config="$(mktemp -d)"
+          trap 'rm -rf "${anonymous_config}"' EXIT
+          DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw \
+            "${IMAGE_REPOSITORY}@${IMAGE_DIGEST}" >/dev/null
+
+      - name: Validate published evidence files
+        if: inputs.push
+        run: |
+          test -s scan-mesh-f17-image-ref.txt
+          test -s scan-mesh-f17-index.json
+          test -s scan-mesh-f17-platform-manifest.json
+          test -s scan-mesh-f17-attestation-manifest.json
+          test -s scan-mesh-f17-provenance.json
+          test -s scan-mesh-f17-sbom.json
+          test -s scan-mesh-f17-smoke.json
+
+      - name: Upload published digest evidence
+        if: inputs.push
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: scan-mesh-f17-published-${{ github.sha }}
+          path: |
+            scan-mesh-f17-image-ref.txt
+            scan-mesh-f17-index.json
+            scan-mesh-f17-platform-manifest.json
+            scan-mesh-f17-attestation-manifest.json
+            scan-mesh-f17-provenance.json
+            scan-mesh-f17-sbom.json
+            scan-mesh-f17-smoke.json
+          if-no-files-found: error
+          retention-days: 30
