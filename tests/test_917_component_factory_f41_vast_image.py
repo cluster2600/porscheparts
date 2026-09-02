@@ -138,6 +138,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "mv /usr/sbin/sshd /usr/lib/openssh/sshd.real",
             "rm -f /etc/ssh/ssh_host_*_key",
             "test ! -e /root/.ssh/authorized_keys",
+            "install -o root -g root -m 0600 /dev/null /root/.no_auto_tmux",
             "USER 0:0",
             'ENTRYPOINT ["/opt/917-component-factory-f41-vast/entrypoint.sh"]',
             "sshd_runtime_wrapper.sh /usr/sbin/sshd",
@@ -270,6 +271,9 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertEqual(security["runtime_host_key_command"], "/usr/bin/ssh-keygen -A")
         self.assertTrue(security["runtime_host_keys_generated_before_real_sshd"])
         self.assertFalse(security["runtime_host_keys_persist_beyond_instance"])
+        self.assertEqual(security["no_auto_tmux_marker"], "/root/.no_auto_tmux")
+        self.assertEqual(security["no_auto_tmux_marker_owner_mode"], "0:0:0600")
+        self.assertTrue(security["noninteractive_ssh_auto_tmux_disabled"])
         self.assertFalse(security["embedded_secrets"])
         self.assertFalse(security["embedded_private_assets"])
         self.assertFalse(security["baked_authorized_keys"])
@@ -400,6 +404,10 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         onstart = ONSTART.read_text(encoding="utf-8")
         self.assertIn('test -s "${authorized_keys}"', onstart)
         self.assertIn('chmod 0600 "${authorized_keys}"', onstart)
+        self.assertIn("no_auto_tmux=/root/.no_auto_tmux", onstart)
+        self.assertIn('[ -e "${no_auto_tmux}" ] || [ -L "${no_auto_tmux}" ]', onstart)
+        self.assertIn('rm -f -- "${no_auto_tmux}"', onstart)
+        self.assertIn('install -o root -g root -m 0600 /dev/null "${no_auto_tmux}"', onstart)
         self.assertIn("f41-runtime-host-keys.ready", onstart)
         self.assertIn("--expect-runtime-authorized-keys", onstart)
         self.assertIn('"f41_component_factory_executed": False', onstart)
@@ -431,6 +439,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             '"synthetic_step_roundtrip_executed": True',
             '"sshd_started": False',
             '"sshd_runtime_wrapper_installed": True',
+            '"noninteractive_ssh_auto_tmux_disabled": True',
             '"runtime_host_keys_generated_by_wrapper": (',
             '"vast_authorized_key_injection_verified": False',
             '"vast_ssh_direct_handshake_verified": False',
@@ -456,6 +465,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "Gate anonymous pull of the exact digest",
             "/usr/sbin/sshd -T >/dev/null",
             "runtime_host_keys_generated_before_onstart",
+            "noninteractive_ssh_auto_tmux_disabled",
             'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
             "--user 0:0",
             "--cap-add DAC_OVERRIDE",
@@ -508,7 +518,9 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "Vast remplace ENTRYPOINT",
             "ssh-keygen -A",
             "sshd.real",
-            "révoqué pour toute nouvelle",
+            "/root/.no_auto_tmux",
+            "révoqués pour toute nouvelle",
+            "66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
             "component-factory-f41-offers",
             "launch-component-factory-f41 <offer_id>",
             "1,25 USD/h",

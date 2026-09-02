@@ -8,6 +8,22 @@ fi
 
 /opt/917-component-factory-f41-vast/prepare_layout.sh
 
+no_auto_tmux=/root/.no_auto_tmux
+if [ -e "${no_auto_tmux}" ] || [ -L "${no_auto_tmux}" ]; then
+    test -f "${no_auto_tmux}" && test ! -L "${no_auto_tmux}" || {
+        echo "vast_no_auto_tmux_file_rejected" >&2
+        exit 86
+    }
+    # Unlink first so an unexpected hard link can never make install truncate
+    # another root-owned file while recreating the empty marker.
+    rm -f -- "${no_auto_tmux}"
+fi
+install -o root -g root -m 0600 /dev/null "${no_auto_tmux}"
+test "$(stat -c '%u:%g:%a' "${no_auto_tmux}")" = "0:0:600" || {
+    echo "vast_no_auto_tmux_metadata_rejected" >&2
+    exit 87
+}
+
 host_key_marker=/run/sshd/f41-runtime-host-keys.ready
 test -f "${host_key_marker}" || { echo "vast_runtime_host_key_marker_missing" >&2; exit 83; }
 test ! -L "${host_key_marker}" || { echo "vast_runtime_host_key_marker_symlink_rejected" >&2; exit 84; }
@@ -43,6 +59,7 @@ ready = {
     "schema_version": "1.0.0",
     "status": "vast_onstart_ready_for_public_archive_transfer_cad_not_started",
     "authorized_key_file_present": True,
+    "noninteractive_ssh_auto_tmux_disabled": True,
     "runtime_host_keys_generated_before_onstart": True,
     "sshd_managed_by_vast_entrypoint": True,
     "synthetic_build123d_step_smoke_passed": True,

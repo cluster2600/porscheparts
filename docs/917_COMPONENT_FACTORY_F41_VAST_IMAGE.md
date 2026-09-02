@@ -21,7 +21,8 @@ flowchart LR
     VE --> HK[/usr/sbin/sshd wrapper<br/>ssh-keygen -A éphémère]
     HK --> SD[sshd.real]
     SD --> OS[917-cad-vast-onstart<br/>clé publique injectée + smoke]
-    OS --> READY[/workspace/READY]
+    OS --> NT[/root/.no_auto_tmux<br/>root:root 0600]
+    NT --> READY[/workspace/READY]
     READY --> SCP[root SSH/SCP<br/>bundle F41 public]
     SCP --> STAGE[917-cad-stage-job<br/>allowlist + manifeste + SHA-256]
     STAGE --> JOB[/workspace/jobs/id<br/>UID 9178]
@@ -38,18 +39,21 @@ shell `nologin`, `NoNewPrivs=1` et une capability bounding set vide.
 ## Contrat exact pour le wrapper
 
 Le wrapper ne doit être promu qu'après publication réussie, pull anonyme du
-digest exact **et connexion `ssh_direct` réelle**. Le premier digest publié
-ci-dessous est conservé comme trace historique mais révoqué pour toute nouvelle
-location : Vast a invoqué `sshd` avant `onstart`, alors que l'image avait retiré
-les clés hôte générées pendant le build. Le résultat réel était
-`sshd: no hostkeys available -- exiting`. Le prochain digest n'est autorisé
+digest exact **et commande BatchMode `ssh_direct` réelle**. Deux digests sont
+révoqués pour toute nouvelle location. Le premier avait retiré les clés hôte :
+Vast invoquait `sshd` avant `onstart`, avec le résultat
+`sshd: no hostkeys available -- exiting`. Le second a bien établi SSH et créé
+des sessions, mais le bloc auto-tmux injecté par Vast dans `/root/.bashrc`
+interceptait aussi les commandes non interactives (`no sessions` puis
+`open terminal failed: not a terminal`). Le prochain digest n'est autorisé
 qu'après le smoke distant complet décrit plus bas.
 
 Les valeurs invariantes de la recette corrigée sont :
 
 ```text
 image repository: ghcr.io/cluster2600/3dprinting993-cad-author-f28
-revoked image: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
+revoked image 1: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
+revoked image 2: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a
 image: <digest corrigé à publier puis qualifier sur Vast>
 runtype: ssh_direct
 remote user: root
@@ -57,6 +61,7 @@ onstart: /usr/local/bin/917-cad-vast-onstart
 sshd wrapper: /usr/sbin/sshd
 real sshd: /usr/lib/openssh/sshd.real
 runtime host keys: ssh-keygen -A, aucune clé privée hôte dans l'image
+noninteractive shell marker: /root/.no_auto_tmux, root:root, mode 0600
 ready probe: /workspace/READY
 smoke report: /workspace/image-smoke.json
 staging: 917-cad-stage-job /workspace/inbox/917-component-factory-f41-public.tar.gz <job-id>
@@ -84,8 +89,12 @@ Celui-ci exécute `ssh-keygen -A`, vérifie que les clés privées nouvellement
 créées appartiennent à `root:root` avec le mode `0600`, écrit un marqueur dans
 `/run/sshd`, puis remplace son processus par `sshd.real`. Les clés naissent dans
 la couche écrivable de l'instance et ne sont jamais intégrées à une couche OCI.
-`onstart` refuse de créer `READY` sans le marqueur. L'image finit en `USER 0:0`,
-mais aucune commande CAO documentée ne s'exécute directement comme root.
+L'image crée aussi `/root/.no_auto_tmux` comme fichier vide `root:root` de mode
+`0600`. `onstart` rejette un lien ou un type spécial, recrée ce marqueur avec les
+mêmes métadonnées et refuse de créer `READY` sans lui ni le marqueur des clés
+hôte. Ce fichier est le mécanisme prévu par le shell Vast pour ne pas attacher
+auto-tmux aux commandes SSH non interactives. L'image finit en `USER 0:0`, mais
+aucune commande CAO documentée ne s'exécute directement comme root.
 
 Références officielles :
 [création d'instances et remplacement de l'ENTRYPOINT](https://docs.vast.ai/api-reference/creating-instances-with-api),
@@ -195,8 +204,9 @@ export STEP, réouverture OCCT et contrôle d'un solide fermé. Il ne démarre p
 `sshd` et laisse toutes les gates Vast et moteur fermées. Le workflow ajoute un
 second conteneur éphémère, sans réseau : il appelle `/usr/sbin/sshd -T` pour
 reproduire l'ordre Vast, exige la création des clés hôte runtime et du marqueur,
-puis seulement exécute `917-cad-vast-onstart`. Le conteneur est détruit à la fin
-du smoke et ses clés avec lui.
+puis seulement exécute `917-cad-vast-onstart`. Les deux smokes exigent aussi le
+fichier `/root/.no_auto_tmux` régulier, `root:root`, mode `0600`. Le conteneur
+est détruit à la fin du smoke et ses clés avec lui.
 
 Le workflow refuse aussi une couche ajoutée supérieure à 16 000 000 octets
 selon la métrique Docker Linux native. Le digest historique désormais révoqué
@@ -215,10 +225,11 @@ contrat CPU/CAO, puis impose une sélection explicite :
 ./deploy/openbao/openbao-vastai launch-component-factory-f41 <offer_id>
 ```
 
-Tant que `COMPONENT_FACTORY_F41_IMAGE` désigne le digest révoqué, la seconde
+Tant que `COMPONENT_FACTORY_F41_IMAGE` désigne l'un des digests révoqués, la seconde
 commande échoue avant le verrou de location, l'enregistrement SSH et l'appel de
 création payant. La denylist ne doit être levée qu'en remplaçant cette référence
-par le nouveau digest après publication et poignée de main Vast vérifiée.
+par le nouveau digest après publication et réussite de la commande BatchMode
+Vast vérifiée, sans auto-tmux.
 
 Le lancement refuse un prix total supérieur à 1,25 USD/h, un
 `inet_up_cost` ou `inet_down_cost` absent, non fini, négatif ou supérieur à

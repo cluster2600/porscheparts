@@ -24,6 +24,7 @@ SSHD_WRAPPER = Path("/usr/sbin/sshd")
 SSHD_REAL = Path("/usr/lib/openssh/sshd.real")
 SSHD_WRAPPER_TARGET = ROOT / "sshd_runtime_wrapper.sh"
 RUNTIME_HOST_KEY_MARKER = Path("/run/sshd/f41-runtime-host-keys.ready")
+NO_AUTO_TMUX_MARKER = Path("/root/.no_auto_tmux")
 INBOX = Path("/workspace/inbox")
 JOBS = Path("/workspace/jobs")
 RESULTS = Path("/workspace/results")
@@ -156,6 +157,16 @@ def package_audit(expect_runtime_authorized_keys: bool) -> dict[str, object]:
     require(not SSHD_REAL.is_symlink(), "real sshd binary must not be a symlink")
     require(os.access(SSHD_REAL, os.X_OK), "real sshd binary is not executable")
     require(Path("/usr/lib/openssh/sftp-server").is_file(), "sftp-server missing")
+    require(
+        NO_AUTO_TMUX_MARKER.is_file() and not NO_AUTO_TMUX_MARKER.is_symlink(),
+        "Vast no-auto-tmux marker missing",
+    )
+    require(
+        NO_AUTO_TMUX_MARKER.stat().st_uid == 0
+        and NO_AUTO_TMUX_MARKER.stat().st_gid == 0
+        and NO_AUTO_TMUX_MARKER.stat().st_mode & 0o777 == 0o600,
+        "Vast no-auto-tmux marker metadata mismatch",
+    )
     private_host_keys = sorted(Path("/etc/ssh").glob("ssh_host_*_key"))
     if expect_runtime_authorized_keys:
         require(private_host_keys, "runtime SSH host private keys missing")
@@ -207,6 +218,7 @@ def package_audit(expect_runtime_authorized_keys: bool) -> dict[str, object]:
         "sshd_started": False,
         "sshd_runtime_wrapper_installed": True,
         "real_sshd_binary_separated": True,
+        "noninteractive_ssh_auto_tmux_disabled": True,
         "baked_host_private_key_count": 0,
         "runtime_host_private_key_count": len(private_host_keys),
         "runtime_host_keys_expected": expect_runtime_authorized_keys,

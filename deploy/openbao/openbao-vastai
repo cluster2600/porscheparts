@@ -61,25 +61,28 @@ COMPONENT_FACTORY_F41_DISK_GB = 300
 COMPONENT_FACTORY_F41_MIN_RELIABILITY = 0.985
 COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB = 0.05
 COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB = 0.05
-# Workflow 33688171549 proved publication and anonymous pull, but a subsequent
-# real Vast launch proved that this image cannot start sshd: its host keys were
-# removed at build time and Vast invokes sshd before onstart. Keep the exact
-# digest denylisted until the runtime-key fix is republished and qualified.
+# Two published images passed their offline gates but failed distinct real Vast
+# SSH paths: DD0 lacked runtime host keys; 66C fixed sshd but Vast's injected
+# root shell forced auto-tmux even for BatchMode commands. Keep both denylisted
+# until the no-auto-tmux fix is republished and qualified end to end.
 COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16"
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
 COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
-    {COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0}
+    {
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
+    }
 )
-# Corrected candidate published by workflow 33693806053. Its linux/amd64 build,
-# attestations, offline smokes and anonymous pull passed. This reference is
-# intentionally allowed only so the bounded launcher can perform the remaining
-# real Vast ssh_direct qualification; that handshake is not yet a physics or
-# manufacturing claim.
-COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
+# Candidate 66C was published by workflow 33693806053 but is now revoked after
+# its real Vast BatchMode commands were intercepted by auto-tmux. Replace only
+# this active reference after a new digest passes the complete SSH command.
+COMPONENT_FACTORY_F41_IMAGE = COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
+COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR = LAUNCH_LOCK_FILE.parent / "known-hosts"
 WAVE_CONTRACT_ATTEMPTS = 180
 WAVE_SSH_READY_ATTEMPTS = 30
 COMPONENT_FACTORY_F41_CONTRACT_ATTEMPTS = 180
@@ -1351,6 +1354,94 @@ def validate_approved_ssh_private_key() -> None:
         )
 
 
+def prepare_component_factory_f41_known_hosts(instance_id: int) -> Path:
+    """Create one persistent, private TOFU file for this exact Vast instance."""
+    if not isinstance(instance_id, int) or isinstance(instance_id, bool) or instance_id <= 0:
+        raise SafeError("F41 instance id is invalid for scoped known_hosts")
+    parent = COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR.parent
+    parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    for directory in (parent, COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR):
+        directory.mkdir(mode=0o700, exist_ok=True)
+        info = directory.lstat()
+        if (
+            info.st_uid != os.getuid()
+            or not stat.S_ISDIR(info.st_mode)
+            or stat.S_IMODE(info.st_mode) != 0o700
+        ):
+            raise SafeError(f"F41 known_hosts directory is unsafe: {directory}")
+    path = COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR / f"f41-{instance_id}"
+    flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags, 0o600)
+    except FileExistsError as exc:
+        raise SafeError(f"F41 scoped known_hosts already exists: {path}") from exc
+    try:
+        info = os.fstat(descriptor)
+        if (
+            info.st_uid != os.getuid()
+            or not stat.S_ISREG(info.st_mode)
+            or stat.S_IMODE(info.st_mode) != 0o600
+        ):
+            raise SafeError("F41 scoped known_hosts metadata is unsafe")
+    finally:
+        os.close(descriptor)
+    return path
+
+
+def component_factory_f41_host_key_alias(instance_id: int) -> str:
+    if not isinstance(instance_id, int) or isinstance(instance_id, bool) or instance_id <= 0:
+        raise SafeError("F41 instance id is invalid for SSH host-key alias")
+    return f"f41-{instance_id}"
+
+
+def validate_component_factory_f41_known_hosts(path: Path, instance_id: int) -> None:
+    try:
+        info = path.lstat()
+    except FileNotFoundError as exc:
+        raise SafeError("F41 scoped known_hosts was not written by OpenSSH") from exc
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o600
+        or info.st_size <= 0
+        or info.st_size > 64 * 1024
+    ):
+        raise SafeError("F41 scoped known_hosts has unsafe metadata or size")
+    alias = component_factory_f41_host_key_alias(instance_id)
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeError) as exc:
+        raise SafeError("F41 scoped known_hosts cannot be read safely") from exc
+    matches = []
+    for line in lines:
+        fields = line.split()
+        if len(fields) < 3 or fields[0].startswith(("#", "@")):
+            continue
+        if alias in fields[0].split(","):
+            matches.append(fields)
+    if len(matches) != 1:
+        raise SafeError("F41 scoped known_hosts does not contain exactly one expected alias")
+
+
+def remove_component_factory_f41_known_hosts_after_destroy(instance_id: int) -> None:
+    """Remove only this instance trust file after remote destruction is verified."""
+    path = COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR / component_factory_f41_host_key_alias(
+        instance_id
+    )
+    try:
+        info = path.lstat()
+    except FileNotFoundError:
+        return
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o600
+        or info.st_size > 64 * 1024
+    ):
+        raise SafeError("refusing to remove unsafe F41 scoped known_hosts")
+    path.unlink()
+
+
 def ensure_local_ssh_registered(api_key: str) -> None:
     try:
         result = vast_request(
@@ -1490,6 +1581,7 @@ require(ready == {
     'schema_version': '1.0.0',
     'status': 'vast_onstart_ready_for_public_archive_transfer_cad_not_started',
     'authorized_key_file_present': True,
+    'noninteractive_ssh_auto_tmux_disabled': True,
     'runtime_host_keys_generated_before_onstart': True,
     'sshd_managed_by_vast_entrypoint': True,
     'synthetic_build123d_step_smoke_passed': True,
@@ -1511,6 +1603,7 @@ require(ssh_transport.get('runtime_authorized_keys_expected') is True)
 require(ssh_transport.get('runtime_authorized_keys_present') is True)
 require(ssh_transport.get('sshd_runtime_wrapper_installed') is True)
 require(ssh_transport.get('real_sshd_binary_separated') is True)
+require(ssh_transport.get('noninteractive_ssh_auto_tmux_disabled') is True)
 require(ssh_transport.get('runtime_host_private_key_count', 0) > 0)
 require(ssh_transport.get('runtime_host_keys_expected') is True)
 require(ssh_transport.get('runtime_host_keys_generated_by_wrapper') is True)
@@ -1539,9 +1632,11 @@ print('F41_REMOTE_READY')
     return f"python -c {shlex.quote(script)}"
 
 
-def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> None:
+def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Path:
     """Prove BatchMode SSH and the exact F41 image READY contract."""
     validate_approved_ssh_private_key()
+    known_hosts_path = prepare_component_factory_f41_known_hosts(instance_id)
+    host_key_alias = component_factory_f41_host_key_alias(instance_id)
     last_state = "unknown"
     for _ in range(COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS):
         try:
@@ -1595,6 +1690,16 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> No
             "-o",
             "StrictHostKeyChecking=accept-new",
             "-o",
+            "UpdateHostKeys=no",
+            "-o",
+            "GlobalKnownHostsFile=/dev/null",
+            "-o",
+            "HashKnownHosts=no",
+            "-o",
+            f"HostKeyAlias={host_key_alias}",
+            "-o",
+            f"UserKnownHostsFile={known_hosts_path}",
+            "-o",
             "LogLevel=ERROR",
             "-p",
             str(int(port)),
@@ -1615,7 +1720,8 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> No
             time.sleep(POLL_INTERVAL_SECONDS)
             continue
         if completed.returncode == 0 and completed.stdout.strip() == "F41_REMOTE_READY":
-            return
+            validate_component_factory_f41_known_hosts(known_hosts_path, instance_id)
+            return known_hosts_path
         time.sleep(POLL_INTERVAL_SECONDS)
     raise SafeError(
         "F41 SSH /workspace/READY and image smoke verification did not pass in time "
@@ -1802,7 +1908,7 @@ def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
     if COMPONENT_FACTORY_F41_IMAGE in COMPONENT_FACTORY_F41_REVOKED_IMAGES:
         raise SafeError(
             "component-factory F41 runtime image is revoked after a failed real "
-            "Vast SSH bootstrap; publish and qualify a corrected digest before "
+            "Vast SSH command path; publish and qualify a corrected digest before "
             "any paid launch"
         )
     with simready_launch_lock():
@@ -1872,7 +1978,9 @@ def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
                 api_key, instance_id, attempt_label
             )
             verify_component_factory_f41_contract(api_key, instance_id, attempt_label)
-            verify_component_factory_f41_ssh_ready(api_key, instance_id)
+            known_hosts_path = verify_component_factory_f41_ssh_ready(
+                api_key, instance_id
+            )
             print_json(
                 {
                     "instance_id": instance_id,
@@ -1886,6 +1994,10 @@ def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
                     "running_state_verified": True,
                     "ssh_batch_mode_verified": True,
                     "image_transport_smoke_verified": True,
+                    "host_key_alias": component_factory_f41_host_key_alias(
+                        instance_id
+                    ),
+                    "known_hosts_path": str(known_hosts_path),
                     "f41_component_factory_executed": False,
                     "physical_claims_validated": False,
                     "manufacturing_authorized": False,
@@ -1906,6 +2018,15 @@ def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
                     )
                     raise post_create_error from cleanup_error
                 raise
+            try:
+                remove_component_factory_f41_known_hosts_after_destroy(reconciled_id)
+            except Exception as local_cleanup_error:
+                add_exception_note(
+                    post_create_error,
+                    "F41 remote destruction was verified but its local scoped "
+                    "known_hosts file could not be removed",
+                )
+                raise post_create_error from local_cleanup_error
             add_exception_note(
                 post_create_error,
                 f"F41 instance {reconciled_id} was automatically destroyed and "

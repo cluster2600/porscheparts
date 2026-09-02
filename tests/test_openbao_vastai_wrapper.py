@@ -8,6 +8,7 @@ from importlib.machinery import SourceFileLoader
 import io
 import json
 from pathlib import Path
+import tempfile
 import unittest
 from unittest import mock
 
@@ -801,30 +802,40 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             )
         )
 
-    def test_component_factory_f41_revoked_digest_blocks_before_paid_side_effects(self):
+    def test_component_factory_f41_revoked_digests_block_before_paid_side_effects(self):
         production_wrapper = load_wrapper()
         self.assertIn(
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )
-        with (
-            mock.patch.object(
-                production_wrapper,
-                "COMPONENT_FACTORY_F41_IMAGE",
-                production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
-            ),
-            mock.patch.object(production_wrapper, "simready_launch_lock") as launch_lock,
-            mock.patch.object(production_wrapper, "vast_request") as request,
-            self.assertRaisesRegex(
-                production_wrapper.SafeError,
-                "runtime image is revoked",
-            ),
-        ):
-            production_wrapper.launch_component_factory_f41_offer(
-                "unused", self.eligible_component_factory_f41_offer()
-            )
-        launch_lock.assert_not_called()
-        request.assert_not_called()
+        self.assertIn(
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
+        )
+        self.assertEqual(
+            production_wrapper.COMPONENT_FACTORY_F41_IMAGE,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
+        )
+        for revoked_image in production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES:
+            with (
+                self.subTest(revoked_image=revoked_image),
+                mock.patch.object(
+                    production_wrapper,
+                    "COMPONENT_FACTORY_F41_IMAGE",
+                    revoked_image,
+                ),
+                mock.patch.object(production_wrapper, "simready_launch_lock") as launch_lock,
+                mock.patch.object(production_wrapper, "vast_request") as request,
+                self.assertRaisesRegex(
+                    production_wrapper.SafeError,
+                    "runtime image is revoked",
+                ),
+            ):
+                production_wrapper.launch_component_factory_f41_offer(
+                    "unused", self.eligible_component_factory_f41_offer()
+                )
+            launch_lock.assert_not_called()
+            request.assert_not_called()
 
     def test_component_factory_f41_offer_fails_closed_on_every_paid_gate(self):
         rejected = (
@@ -995,7 +1006,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 self.wrapper, "verify_component_factory_f41_contract"
             ) as contract,
             mock.patch.object(
-                self.wrapper, "verify_component_factory_f41_ssh_ready"
+                self.wrapper,
+                "verify_component_factory_f41_ssh_ready",
+                return_value=Path("/tmp/f41-41341-known-hosts"),
             ) as ready,
             mock.patch("sys.stdout", output),
         ):
@@ -1045,6 +1058,10 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertTrue(report["running_state_verified"])
         self.assertTrue(report["ssh_batch_mode_verified"])
         self.assertTrue(report["image_transport_smoke_verified"])
+        self.assertEqual(report["host_key_alias"], "f41-41341")
+        self.assertEqual(
+            report["known_hosts_path"], "/tmp/f41-41341-known-hosts"
+        )
         self.assertFalse(report["f41_component_factory_executed"])
         self.assertFalse(report["physical_claims_validated"])
         self.assertFalse(report["manufacturing_authorized"])
@@ -1324,13 +1341,34 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             mock.patch.object(
                 self.wrapper.subprocess, "run", return_value=completed
             ) as run,
+            mock.patch.object(
+                self.wrapper,
+                "prepare_component_factory_f41_known_hosts",
+                return_value=Path("/tmp/f41-test-known-hosts"),
+            ) as prepare_known_hosts,
+            mock.patch.object(
+                self.wrapper, "validate_component_factory_f41_known_hosts"
+            ) as validate_known_hosts,
         ):
-            self.wrapper.verify_component_factory_f41_ssh_ready("unused", 41341)
+            known_hosts_path = self.wrapper.verify_component_factory_f41_ssh_ready(
+                "unused", 41341
+            )
         validate_key.assert_called_once_with()
+        prepare_known_hosts.assert_called_once_with(41341)
+        self.assertEqual(known_hosts_path, Path("/tmp/f41-test-known-hosts"))
+        validate_known_hosts.assert_called_once_with(
+            Path("/tmp/f41-test-known-hosts"), 41341
+        )
         command = run.call_args.args[0]
         self.assertIn(str(self.wrapper.SSH_PRIVATE_KEY_FILE), command)
         self.assertIn("BatchMode=yes", command)
         self.assertIn("IdentitiesOnly=yes", command)
+        self.assertIn("StrictHostKeyChecking=accept-new", command)
+        self.assertIn("UpdateHostKeys=no", command)
+        self.assertIn("GlobalKnownHostsFile=/dev/null", command)
+        self.assertIn("HashKnownHosts=no", command)
+        self.assertIn("HostKeyAlias=f41-41341", command)
+        self.assertIn("UserKnownHostsFile=/tmp/f41-test-known-hosts", command)
         self.assertIn("root@203.0.113.41", command)
         self.assertIn("32141", command)
         self.assertNotIn("ssh-add", command)
@@ -1359,6 +1397,11 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             mock.patch.object(
                 self.wrapper.subprocess, "run", return_value=failed
             ) as run,
+            mock.patch.object(
+                self.wrapper,
+                "prepare_component_factory_f41_known_hosts",
+                return_value=Path("/tmp/f41-test-known-hosts-failed"),
+            ),
             mock.patch.object(self.wrapper.time, "sleep") as sleep,
             self.assertRaisesRegex(
                 self.wrapper.SafeError, "do not treat the instance as ready"
@@ -1367,6 +1410,33 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             self.wrapper.verify_component_factory_f41_ssh_ready("unused", 41341)
         self.assertEqual(run.call_count, 2)
         self.assertEqual(sleep.call_count, 2)
+
+    def test_component_factory_f41_known_hosts_is_scoped_private_and_exclusive(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            known_hosts_dir = Path(temporary) / "cache" / "known-hosts"
+            with mock.patch.object(
+                self.wrapper,
+                "COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR",
+                known_hosts_dir,
+            ):
+                path = self.wrapper.prepare_component_factory_f41_known_hosts(41341)
+                self.assertEqual(path, known_hosts_dir / "f41-41341")
+                self.assertEqual(path.stat().st_mode & 0o777, 0o600)
+                self.assertEqual(known_hosts_dir.stat().st_mode & 0o777, 0o700)
+                with self.assertRaisesRegex(
+                    self.wrapper.SafeError, "already exists"
+                ):
+                    self.wrapper.prepare_component_factory_f41_known_hosts(41341)
+                path.write_text("f41-41341 ssh-ed25519 AAAATEST\n", encoding="utf-8")
+                self.wrapper.validate_component_factory_f41_known_hosts(path, 41341)
+                with self.assertRaisesRegex(
+                    self.wrapper.SafeError, "exactly one expected alias"
+                ):
+                    self.wrapper.validate_component_factory_f41_known_hosts(path, 41342)
+                self.wrapper.remove_component_factory_f41_known_hosts_after_destroy(
+                    41341
+                )
+                self.assertFalse(path.exists())
 
     def test_component_factory_f41_post_create_failures_reconcile_exact_attempt(self):
         failing_verifiers = (
@@ -1679,6 +1749,53 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertIn("CRITICAL: F41 rollback was not verified", stderr.getvalue())
         self.assertIn("may still be running and billed", stderr.getvalue())
         self.assertIn(attempt_label, stderr.getvalue())
+
+    def test_component_factory_f41_local_trust_cleanup_does_not_swallow_interrupt(self):
+        attempt_label = self.component_factory_f41_attempt_label()
+        with (
+            mock.patch.object(
+                self.wrapper, "simready_launch_lock", return_value=nullcontext()
+            ),
+            mock.patch.object(
+                self.wrapper, "require_no_component_factory_f41_instance"
+            ),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(
+                self.wrapper,
+                "component_factory_f41_attempt_label",
+                return_value=attempt_label,
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={"new_contract": 41341},
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "verify_single_component_factory_f41_instance",
+                side_effect=KeyboardInterrupt(),
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "reconcile_uncertain_component_factory_f41_launch",
+                return_value=41341,
+            ) as reconcile,
+            mock.patch.object(
+                self.wrapper,
+                "remove_component_factory_f41_known_hosts_after_destroy",
+                side_effect=self.wrapper.SafeError("local trust cleanup failed"),
+            ) as remove_known_hosts,
+            self.assertRaises(KeyboardInterrupt) as interrupted,
+        ):
+            self.wrapper.launch_component_factory_f41_offer(
+                "unused", self.eligible_component_factory_f41_offer()
+            )
+        reconcile.assert_called_once_with("unused", attempt_label)
+        remove_known_hosts.assert_called_once_with(41341)
+        self.assertIsInstance(interrupted.exception.__cause__, self.wrapper.SafeError)
+        notes = getattr(interrupted.exception, "__notes__", None)
+        if notes is not None:
+            self.assertIn("remote destruction was verified", "\n".join(notes))
 
     def test_component_factory_f41_cli_surfaces_billing_risk_on_cancel(self):
         attempt_label = self.component_factory_f41_attempt_label()

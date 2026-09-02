@@ -160,6 +160,7 @@ jobs:
             .ssh_transport.sshd_started == false and
             .ssh_transport.sshd_runtime_wrapper_installed == true and
             .ssh_transport.real_sshd_binary_separated == true and
+            .ssh_transport.noninteractive_ssh_auto_tmux_disabled == true and
             .ssh_transport.baked_host_private_key_count == 0 and
             .ssh_transport.runtime_host_private_key_count == 0 and
             .ssh_transport.runtime_host_keys_expected == false and
@@ -222,6 +223,7 @@ jobs:
           jq -e '
             .status == "vast_onstart_ready_for_public_archive_transfer_cad_not_started" and
             .authorized_key_file_present == true and
+            .noninteractive_ssh_auto_tmux_disabled == true and
             .runtime_host_keys_generated_before_onstart == true and
             .sshd_managed_by_vast_entrypoint == true and
             .synthetic_build123d_step_smoke_passed == true and

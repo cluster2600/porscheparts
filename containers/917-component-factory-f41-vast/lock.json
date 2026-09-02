@@ -1,8 +1,8 @@
 {
-  "$comment": "Verrou de recette apres correction du demarrage SSH et avant republication. Cette image ajoute seulement le transport Vast ssh_direct au digest public F28. Le smoke utilise une fixture synthetique et ne valide ni geometrie moteur, ni assemblage, ni simulation, ni fabrication.",
-  "schema_version": "1.1.0",
+  "$comment": "Verrou de recette apres correction des clefs hote et de l'auto-tmux Vast, avant republication. Cette image ajoute seulement le transport Vast ssh_direct au digest public F28. Le smoke utilise une fixture synthetique et ne valide ni geometrie moteur, ni assemblage, ni simulation, ni fabrication.",
+  "schema_version": "1.2.0",
   "phase": "F41-vast-cad-image",
-  "status": "runtime_host_key_fix_locked_republication_vast_and_f41_execution_unverified",
+  "status": "noninteractive_ssh_fix_locked_republication_vast_and_f41_execution_unverified",
   "image": {
     "repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
     "tag_pattern": "<git-sha>-vast-f41-cad",
@@ -69,6 +69,9 @@
     "runtime_host_key_marker": "/run/sshd/f41-runtime-host-keys.ready",
     "runtime_host_keys_generated_before_real_sshd": true,
     "runtime_host_keys_persist_beyond_instance": false,
+    "no_auto_tmux_marker": "/root/.no_auto_tmux",
+    "no_auto_tmux_marker_owner_mode": "0:0:0600",
+    "noninteractive_ssh_auto_tmux_disabled": true,
     "remote_transport_user": "root",
     "root_scope": [
       "ephemeral_host_key_generation_before_vast_injected_sshd",
@@ -89,6 +92,11 @@
     "image_reference_after_publication": null,
     "revoked_runtime_image_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
     "revocation_reason": "Vast ssh_direct invoked sshd before onstart while the image contained no host keys",
+    "revoked_runtime_image_references": [
+      "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
+      "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
+    ],
+    "latest_revocation_reason": "Vast auto-tmux intercepted noninteractive BatchMode commands despite successful SSH authentication",
     "runtype": "ssh_direct",
     "onstart": "/usr/local/bin/917-cad-vast-onstart",
     "ready_path": "/workspace/READY",
@@ -106,6 +114,7 @@
     "cad_uid_drop_contract_present": true,
     "synthetic_build123d_step_smoke_recipe_present": true,
     "ephemeral_runtime_host_key_smoke_recipe_present": true,
+    "no_auto_tmux_marker_smoke_recipe_present": true,
     "corrected_runtime_image_republished": false,
     "linux_amd64_build_verified": false,
     "ghcr_digest_published": false,

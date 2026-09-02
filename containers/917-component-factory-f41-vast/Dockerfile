@@ -81,8 +81,10 @@ RUN find /opt/917-component-factory-f41-vast -type d -exec chmod 0555 {} + \
     && ln -s /opt/917-component-factory-f41-vast/sshd_runtime_wrapper.sh /usr/sbin/sshd \
     && install -d -o root -g root -m 0755 /run/sshd /workspace \
     && install -d -o root -g root -m 0700 /root/.ssh \
+    && install -o root -g root -m 0600 /dev/null /root/.no_auto_tmux \
     && /opt/917-component-factory-f41-vast/prepare_layout.sh \
     && test ! -e /root/.ssh/authorized_keys \
+    && test "$(stat -c '%u:%g:%a' /root/.no_auto_tmux)" = "0:0:600" \
     && test -x /usr/sbin/sshd \
     && test -x /usr/lib/openssh/sshd.real \
     && test -z "$(find /etc/ssh -maxdepth 1 -type f -name 'ssh_host_*_key*' -print -quit)"
