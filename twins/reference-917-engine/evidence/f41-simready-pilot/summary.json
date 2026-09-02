@@ -1,0 +1,107 @@
+{
+  "$comment": "Preuve assainie du pilote SimReady F41. Seuls le résumé et le rendu OVRTX sont publiés; les USD enrichis et toutes les propriétés physiques inférées sont exclus.",
+  "schema_version": "1.0.0",
+  "phase": "F41-simready-pilot",
+  "status": "pilot_executed_visualization_only_all_release_gates_closed",
+  "verified_at": "2026-09-02T21:48:46Z",
+  "source": {
+    "kind": "local_research_piston_usd_for_f41_path_qualification",
+    "remote_f41_factory_execution_proven": false,
+    "sha256": "9eafe2739ff0854d60210b4835a8168c3e25fa23a897c8a9a5009f562c83f8e8",
+    "byte_count": 65685,
+    "committed": false,
+    "raw_scan": false,
+    "private_input": false
+  },
+  "runtime": {
+    "vast_instance_id": 49683839,
+    "vast_instance_destroyed": true,
+    "destruction_verification": {
+      "method": "approved_openbao_wrapper_instances_absence",
+      "verified_absent_at": "2026-09-02T21:48:46Z"
+    },
+    "legacy_image_reference": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+    "immutable_image_ready_file_observed": false,
+    "reversible_runtime_workaround_used": true,
+    "immutable_image_qualified": false
+  },
+  "pilot_report": {
+    "committed": false,
+    "sha256": "4dcf967b9ba4237e5bd88af3c5242b90ad84391b35a8ee8cd020cf8d390cf9a6",
+    "byte_count": 7203
+  },
+  "minimum_usd_validation": {
+    "status": "passed",
+    "prim_count": 10,
+    "mesh_count": 2,
+    "point_count": 3581,
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "unresolved_dependency_count": 0,
+    "claim_scope": "structural_readability_only"
+  },
+  "material_agent": {
+    "execution_completed": true,
+    "qualification_status": "failed_closed",
+    "failed_step": "coverage_validation",
+    "readiness_grade": "partial",
+    "target_mesh_count": 2,
+    "usable_prediction_count": 1,
+    "bound_mesh_count": 1,
+    "prediction_coverage_ratio": 0.5,
+    "binding_coverage_ratio": 0.5,
+    "visible_material_is_visual_proxy_only": true
+  },
+  "physics_agent": {
+    "pipeline_status": "completed",
+    "qualification_status": "rejected_unverified_inference",
+    "prediction_count": 2,
+    "invented_physics_values_detected": true,
+    "invented_physics_values_committed": false,
+    "output_usd_committed": false
+  },
+  "conformance": {
+    "profile_inference_passed": false,
+    "profile_inference_blocker": "missing_simready_profile_metadata",
+    "explicit_profile": "Prop-Robotics-Physx",
+    "explicit_profile_version": "2.1.0",
+    "explicit_profile_passed": false,
+    "failed_requirements": [
+      "com.nvidia.simready.UN.007",
+      "com.nvidia.simready.GSP.001",
+      "com.nvidia.simready.NP.006",
+      "com.nvidia.simready.NP.005"
+    ],
+    "automotive_profile_required": true
+  },
+  "render": {
+    "path": "twins/reference-917-engine/evidence/f41-simready-pilot/piston-f41-ovrtx-final.png",
+    "renderer": "ovrtx",
+    "render_mode": "pt",
+    "width_px": 512,
+    "height_px": 512,
+    "num_sensor_updates": 128,
+    "byte_count": 66714,
+    "sha256": "e32abccfff8f7564f3c52ee2cdd57f176f86348873ab2f17c638afb73ae1697c",
+    "png_verified": true,
+    "claim_scope": "visualization_only"
+  },
+  "excluded_from_repository": [
+    "source_usd",
+    "material_agent_output_usd",
+    "physics_agent_output_usd",
+    "material_predictions",
+    "physics_predictions",
+    "invented_mass_density_friction_and_restitution_values",
+    "session_identifiers",
+    "runtime_logs"
+  ],
+  "gates": {
+    "dimensionally_correlated": false,
+    "material_validated": false,
+    "physics_validated": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false,
+    "target_1600_ch_validated": false
+  }
+}
