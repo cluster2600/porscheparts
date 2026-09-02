@@ -1,0 +1,125 @@
+{
+  "$comment": "Observation locale du criblage des bords du scan canonique dans l'image F17 immuable. Les deux sorties du filtre restent des composantes geometriques non classees; cette preuve ne confirme ni interface moteur, ni echelle, ni CAO, ni simulation, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F17",
+  "status": "canonical_scan_boundary_screening_passed_local_execution_only",
+  "claim_scope": "exact_scan_binary_boundary_screening_in_exact_container_image",
+  "evidence_authority": {
+    "kind": "local_operator_observation",
+    "independent_reproduction_verified": false,
+    "cryptographic_operator_signature_present": false,
+    "physical_metrology": false,
+    "release_authority": false
+  },
+  "execution": {
+    "image_reference": "ghcr.io/cluster2600/3dprinting993-scan-mesh-f17@sha256:b48f23d64ceab9c2e6b7b7474cdd81011d27b8a584f7af6b50b6cc05823c5189",
+    "image_lock": "containers/scan-mesh-f17.lock.json",
+    "observed_at_utc": "2026-09-02T00:41:50Z",
+    "host_architecture": "arm64",
+    "container_platform": "linux/amd64",
+    "platform_emulation_used": true,
+    "network_mode": "none",
+    "root_filesystem_read_only": true,
+    "capabilities_dropped": ["ALL"],
+    "no_new_privileges": true,
+    "source_mount_read_only": true,
+    "persistent_output_mount_only_writable_location": true,
+    "ephemeral_tmpfs_writable": true,
+    "execution_manifest": {
+      "kind": "sanitized_local_operator_observation",
+      "process_exit_code": 0,
+      "argv": [
+        "python",
+        "/opt/3dprinting993/twins/reference-917-engine/source/analyze_boundaries.py",
+        "/workspace/input/917-engine-case-with-cylinders.obj",
+        "/workspace/output/boundary-screening.json"
+      ],
+      "argv_sanitized": true,
+      "host_paths_included": false,
+      "runtime_container_id_recorded": false
+    }
+  },
+  "source_custody": {
+    "filename": "917-engine-case-with-cylinders.obj",
+    "bytes": 107128223,
+    "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "expected_sha256_matches_f15": true,
+    "source_modified": false,
+    "raw_scan_committed": false,
+    "geometry_payload_in_evidence": false
+  },
+  "report": {
+    "local_relative_path": "work/917-engine/scan-mesh-f17-published/boundary-screening.json",
+    "sha256": "b4cdb3b1234365609909a10f3fbc05091d544a3a7662756ebda56ce26ca9deac",
+    "bytes": 1748,
+    "stdout_copy_identical": true,
+    "contains_geometry_payload": false,
+    "contains_candidate_centres_or_normals_in_tracked_evidence": false
+  },
+  "boundary_screening": {
+    "method": "planar boundary-component least-squares circle screening",
+    "units": "unconfirmed OBJ coordinate units",
+    "boundary_edges": 101809,
+    "boundary_components": 944,
+    "prefilter_candidate_components": 528,
+    "current_numeric_filter_output_count": 2,
+    "filter_semantics": "unclassified_geometry_candidates_only",
+    "filter_scale_dependency": "diameter threshold is expressed in unconfirmed OBJ units and cannot validate an interface",
+    "filter_outputs": [
+      {
+        "component_id": 39,
+        "vertex_count": 367,
+        "closed_loop": true,
+        "diameter_obj_units": 60.664257049814054,
+        "relative_circle_fit_p95": 0.0416600621093519,
+        "planarity_ratio": 0.030410757696568636,
+        "angular_coverage": 0.987608209756578,
+        "semantic_class": "unclassified"
+      },
+      {
+        "component_id": 28,
+        "vertex_count": 308,
+        "closed_loop": true,
+        "diameter_obj_units": 59.086693262057366,
+        "relative_circle_fit_p95": 0.06201857140639711,
+        "planarity_ratio": 0.017300831587748332,
+        "angular_coverage": 0.9898083842366042,
+        "semantic_class": "unclassified"
+      }
+    ],
+    "limitations": [
+      "A circular scan gap can be mistaken for a functional interface.",
+      "Interrupted rims connected to other open boundaries may not be detected.",
+      "The current diameter filter depends on unconfirmed OBJ units.",
+      "All 944 boundary components require visual review before semantic naming."
+    ]
+  },
+  "release_gates": {
+    "canonical_scan_boundary_screening_observed_locally_in_immutable_image": true,
+    "independent_execution_attestation_verified": false,
+    "all_boundaries_visually_reviewed": false,
+    "scan_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "geometry_repaired": false,
+    "watertight_manufacturing_geometry": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_job_used": false
+  },
+  "next_required_gates": [
+    "render_all_944_boundary_components_for_human_review",
+    "confirm_three_independent_traceable_scale_controls",
+    "define_engine_datums_and_variant_identity",
+    "measure_and_author_semantic_interfaces",
+    "reconstruct_parametric_cad_before_any_solver_or_manufacturing_claim"
+  ]
+}

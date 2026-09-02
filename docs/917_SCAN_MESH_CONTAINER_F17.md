@@ -169,6 +169,26 @@ Le verrou fixe le run GitHub, l'artefact de preuve, l'index, les manifestes, la
 provenance, la SBOM, les entrées de recette et le smoke synthétique. Il conserve
 les gates physiques fermés et ne remplace pas une signature cryptographique.
 
+## Exécution du criblage sur le scan canonique
+
+Le binaire canonique a ensuite été lu localement par cette référence immuable,
+avec réseau coupé, racine en lecture seule, capacités supprimées et source
+montée en lecture seule. L'exécution a retrouvé 101 809 arêtes de bord et 944
+composantes, identiques à l'inventaire indépendant F15. Parmi 528 composantes
+préfiltrées, seulement deux passent le filtre numérique actuel de circularité,
+planéité et diamètre.
+
+Ces deux résultats restent `unclassified`. Le seuil de diamètre est exprimé en
+unités OBJ non confirmées et les grands contours interrompus peuvent être liés à
+d'autres ouvertures ; deux résultats ne signifient donc ni deux cylindres, ni
+deux conduits, ni deux interfaces valides. F18 doit visualiser et faire relire
+les 944 composantes, pas seulement les deux sorties du filtre.
+
+Le rapport détaillé reste local sous `work/`, hors Git. La preuve suivie
+[`scan-mesh-execution-evidence-f17.json`](../twins/reference-917-engine/scan-mesh-execution-evidence-f17.json)
+ne contient que les agrégats, métriques sans coordonnées, empreintes et limites
+de revendication. Elle ne contient ni sommets, ni faces, ni centres de candidats.
+
 ## Gates avant Vast.ai et avant simulation
 
 Une location Vast.ai reste bloquée tant que tous les points suivants ne sont

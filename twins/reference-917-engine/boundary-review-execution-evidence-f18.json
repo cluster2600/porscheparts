@@ -1,0 +1,126 @@
+{
+  "$comment": "Observation locale F18 executee dans l'image F17 immuable. Les artefacts detailles restent hors Git car ils contiennent des coordonnees derivees du scan. Ce resume ne confirme aucune interface, echelle, geometrie CAO ou liberation physique.",
+  "schema_version": "1.0.0",
+  "phase": "F18",
+  "status": "canonical_boundary_inventory_generated_pending_944_human_reviews",
+  "claim_scope": "exhaustive_geometric_boundary_inventory_without_semantic_assignment",
+  "evidence_authority": {
+    "kind": "local_operator_observation",
+    "independent_reproduction_verified": false,
+    "cryptographic_operator_signature_present": false,
+    "physical_metrology": false,
+    "release_authority": false
+  },
+  "execution": {
+    "image_reference": "ghcr.io/cluster2600/3dprinting993-scan-mesh-f17@sha256:b48f23d64ceab9c2e6b7b7474cdd81011d27b8a584f7af6b50b6cc05823c5189",
+    "image_lock": "containers/scan-mesh-f17.lock.json",
+    "completed_at_utc": "2026-09-02T00:45:50.892031Z",
+    "host_architecture": "arm64",
+    "container_platform": "linux/amd64",
+    "platform_emulation_used": true,
+    "network_mode": "none",
+    "root_filesystem_read_only": true,
+    "capabilities_dropped": ["ALL"],
+    "no_new_privileges": true,
+    "source_mount_read_only": true,
+    "code_mount_read_only": true,
+    "persistent_output_mount_only_writable_location": true,
+    "ephemeral_tmpfs_writable": true,
+    "script": {
+      "path": "twins/reference-917-engine/source/review_boundary_components_f18.py",
+      "sha256": "e3ba5abf667dc67246f1fd8723b10b2a2e4b6ed949b48c66e7c5d49669de4f80"
+    },
+    "execution_manifest": {
+      "kind": "sanitized_local_operator_observation",
+      "process_exit_code": 0,
+      "argv": [
+        "python",
+        "/workspace/code/review_boundary_components_f18.py",
+        "--input",
+        "/workspace/input/917-engine-case-with-cylinders.obj",
+        "--input-sha256",
+        "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+        "--expected-boundary-components",
+        "944",
+        "--output",
+        "/workspace/output"
+      ],
+      "argv_sanitized": true,
+      "host_paths_included": false,
+      "runtime_container_id_recorded": false
+    }
+  },
+  "source_custody": {
+    "filename": "917-engine-case-with-cylinders.obj",
+    "bytes": 107128223,
+    "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "expected_sha256_matched": true,
+    "source_modified": false,
+    "raw_scan_committed": false
+  },
+  "outputs_local_only": [
+    {
+      "name": "boundary-review-f18.json",
+      "sha256": "8208c2fec6561261904c48bb449a1bd50d679e370ee7b4a19a86d78ba265450e",
+      "bytes": 2023872,
+      "contains_derived_coordinates": true,
+      "committed": false
+    },
+    {
+      "name": "boundary-components-f18.ply",
+      "sha256": "822e7d8ea54fa69f44658bd0b7b29dfb1fb4e4e15b3f1c73d4f45cedc03e2451",
+      "bytes": 3360031,
+      "contains_derived_coordinates": true,
+      "committed": false
+    }
+  ],
+  "replay_check": {
+    "second_local_execution_compared": true,
+    "report_equal_after_removing_generated_at_utc": true,
+    "colored_ply_byte_identical": true
+  },
+  "inventory": {
+    "units": "unconfirmed OBJ coordinate units",
+    "edge_occurrences": 7397637,
+    "unique_edges": 3749723,
+    "manifold_edges": 3647914,
+    "non_manifold_edges": 0,
+    "boundary_edges": 101809,
+    "boundary_vertices": 101809,
+    "boundary_components": 944,
+    "reported_boundary_components": 944,
+    "boundary_components_truncated": false,
+    "candidate_count": 19,
+    "unclassified_count": 925,
+    "confirmed_interface_count": 0,
+    "human_review_pending_count": 944,
+    "diameter_filter_applied": false,
+    "semantic_identification_applied": false
+  },
+  "tracked_summary_content": {
+    "raw_vertices": false,
+    "raw_faces": false,
+    "component_centroids": false,
+    "component_normals": false,
+    "component_bounding_boxes": false,
+    "derived_ply": false
+  },
+  "release_gates": {
+    "canonical_f18_execution_observed_locally_in_immutable_runtime": true,
+    "independent_execution_attestation_verified": false,
+    "all_944_human_reviews_completed": false,
+    "engine_identity_confirmed": false,
+    "scale_confirmed": false,
+    "units_confirmed": false,
+    "axis_semantics_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "cad_reconstruction_released": false,
+    "classical_solver_released": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_training_released": false,
+    "omniverse_simready_released": false,
+    "fabrication_released": false,
+    "engine_start_released": false,
+    "vast_job_used": false
+  }
+}
