@@ -37,7 +37,13 @@ class PhysicsNeMoDataset917F14Tests(unittest.TestCase):
             contract_path.write_text(json.dumps(contract), encoding="utf-8")
             return self.module.evaluate(ROOT, contract_path, samples_root)
 
-    def write_sample(self, root: Path) -> tuple[Path, dict]:
+    def write_sample(
+        self,
+        root: Path,
+        *,
+        variant_id: str = "type_912_5_0_na",
+        case_id: str = "CASE-917-F13-004",
+    ) -> tuple[Path, dict]:
         sample_root = root / "sample-001"
         sample_root.mkdir(parents=True)
         filenames = {
@@ -66,8 +72,8 @@ class PhysicsNeMoDataset917F14Tests(unittest.TestCase):
         sample = {
             "schema_version": "1.0.0",
             "sample_id": "SAMPLE-917-F14-001",
-            "case_id": "CASE-917-F13-004",
-            "variant_id": "type_912_5_0_na",
+            "case_id": case_id,
+            "variant_id": variant_id,
             "geometry_family_id": "geometry-measured-a",
             "operating_point_family_id": "operating-point-a",
             "physical_test_campaign_id": "campaign-a",
@@ -185,6 +191,46 @@ class PhysicsNeMoDataset917F14Tests(unittest.TestCase):
         self.assertEqual(report["rejected_samples"], 0)
         self.assertFalse(report["dataset_ready"])
         self.assertFalse(report["training_authorized"])
+
+    def test_na_sample_cannot_use_turbo_only_case_011(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            samples_root = Path(temp_dir) / "cases"
+            self.write_sample(
+                samples_root,
+                variant_id="type_912_5_0_na",
+                case_id="CASE-917-F13-011",
+            )
+
+            report = self.module.evaluate(ROOT, CONTRACT, samples_root)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertEqual(report["rejected_samples"], 1)
+        self.assertTrue(
+            any(
+                error.startswith("sample_variant_case_pair_invalid:")
+                for error in report["errors"]
+            )
+        )
+
+    def test_turbo_sample_cannot_use_na_only_case_008(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            samples_root = Path(temp_dir) / "cases"
+            self.write_sample(
+                samples_root,
+                variant_id="917_30_1973_turbo_5374",
+                case_id="CASE-917-F13-008",
+            )
+
+            report = self.module.evaluate(ROOT, CONTRACT, samples_root)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertEqual(report["rejected_samples"], 1)
+        self.assertTrue(
+            any(
+                error.startswith("sample_variant_case_pair_invalid:")
+                for error in report["errors"]
+            )
+        )
 
     def test_bad_hash_is_rejected(self):
         with tempfile.TemporaryDirectory() as temp_dir:

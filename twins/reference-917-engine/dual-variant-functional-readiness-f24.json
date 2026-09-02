@@ -1,0 +1,4092 @@
+{
+  "$comment": "F24 materialise uniquement un crosswalk et 22 templates d'entrees nuls. Il ne lie pas le scan, ne transfere aucune cote F10/F22, ne lance aucun solveur et ne constitue aucune preuve fonctionnelle.",
+  "schema_version": "1.0.0",
+  "phase": "F24",
+  "status": "dual_variant_crosswalk_and_null_input_templates_ready_all_execution_and_release_gates_blocked",
+  "asset": {
+    "id": "porsche-917-dual-variant-functional-readiness-f24",
+    "target_roles": [
+      "naturally_aspirated",
+      "917_30_turbo"
+    ],
+    "functional_claim": false,
+    "geometry_generated": false,
+    "solver_decks_generated": false,
+    "solver_results_present": false
+  },
+  "upstream_contracts": [
+    {
+      "id": "variant_geometry_f10",
+      "path": "twins/reference-917-engine/variant-configurations-f10.json",
+      "sha256": "dfb6ee25f367c934b11ff020e34d9d77296d2b5a535030a73221696af7c7a640",
+      "reuse_scope": "display_only_variant_name_crosswalk_no_geometry_transfer",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "scan_metrology_f13",
+      "path": "twins/reference-917-engine/scan-metrology-f13.json",
+      "sha256": "578b4ffcf49be04c701b3a86ba0b04d9cd11fd9f39f11b757c2220a698731a5d",
+      "reuse_scope": "candidate_names_and_closed_scan_selection_policy_only",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "classical_solver_f13",
+      "path": "twins/reference-917-engine/classical-solver-cases-f13.json",
+      "sha256": "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b",
+      "reuse_scope": "case_pair_registry_and_null_input_schema_only",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "bench_skeleton_f14",
+      "path": "twins/reference-917-engine/bench-executable-skeleton-f14.json",
+      "sha256": "718151c342b31ab918b7a02f4f2ae954b3ff5ff323757dd9158397f48e4dde59",
+      "reuse_scope": "semantic_runtime_boundary_only_no_engine_physics",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "physicsnemo_dataset_f14",
+      "path": "twins/reference-917-engine/physicsnemo-dataset-f14.json",
+      "sha256": "da0ad83ebc05aa7e5aafaf653ed3f16caebcdf1fb1bc0122e6079d1ca3784d5e",
+      "reuse_scope": "dataset_schema_and_zero_sample_boundary_only",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "kinematic_readiness_f16",
+      "path": "twins/reference-917-engine/kinematic-interface-readiness-f16.json",
+      "sha256": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",
+      "reuse_scope": "na_engineering_branch_name_and_null_policy_only",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "scan_scale_orientation_f21",
+      "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
+      "sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+      "reuse_scope": "closed_scan_identity_scale_orientation_gates_only",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    },
+    {
+      "id": "parametric_cad_f22",
+      "path": "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json",
+      "sha256": "5086429d0514d7206083bda450bd271b74406f249b58f60aa365c16f1f6b2144",
+      "reuse_scope": "schema_and_null_policy_only_no_4494_values_or_geometry_transferred",
+      "geometry_authority": false,
+      "solver_execution_authority": false,
+      "manufacturing_authority": false
+    }
+  ],
+  "scan_evidence_boundary": {
+    "tracked_contract_ref": "scan_metrology_f13",
+    "local_report_path": "work/917-engine/scan-metrology-f13-report.json",
+    "local_report_required_for_contract_validation": false,
+    "selected_variant_id": null,
+    "scan_binding_authorized": false,
+    "visible_opening_semantics_verified": false,
+    "closest_numerical_candidate_id": "917_5_0_na",
+    "canonical_crosswalk_target": "type_912_5_0_na",
+    "crosswalk_scope": "name_alignment_only_not_identity",
+    "identity_verified": false,
+    "scale_verified": false,
+    "dimensional_fit_verified": false
+  },
+  "variant_crosswalk": [
+    {
+      "role": "naturally_aspirated",
+      "canonical_variant_id": "type_912_5_0_na",
+      "solver_scenario_ref": "SCENARIO-917-5L-NA",
+      "case_refs": [
+        "CASE-917-F13-001",
+        "CASE-917-F13-002",
+        "CASE-917-F13-003",
+        "CASE-917-F13-004",
+        "CASE-917-F13-005",
+        "CASE-917-F13-006",
+        "CASE-917-F13-007",
+        "CASE-917-F13-008",
+        "CASE-917-F13-009",
+        "CASE-917-F13-010",
+        "CASE-917-F13-012"
+      ],
+      "case_count": 11,
+      "selection_status": "engineering_reference_only_not_scan_identification",
+      "selection_basis": [
+        "f13_first_classical_baseline_candidate",
+        "f16_engineering_reference_branch"
+      ],
+      "selection_basis_excludes": [
+        "scan_numerical_proximity"
+      ],
+      "scan_candidate_id": "917_5_0_na",
+      "scan_candidate_mapping_scope": "name_crosswalk_only_not_identity",
+      "f10_visual_variant_id": null,
+      "f22_cad_variant_id": null,
+      "nontransferable_contract_refs": [
+        {
+          "contract_id": "parametric_cad_f22",
+          "variant_id": "type_912_4_5_na",
+          "reuse_scope": "schema_and_null_policy_only"
+        }
+      ],
+      "geometry_ready": false,
+      "solver_ready": false
+    },
+    {
+      "role": "917_30_turbo",
+      "canonical_variant_id": "917_30_1973_turbo_5374",
+      "solver_scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_refs": [
+        "CASE-917-F13-001",
+        "CASE-917-F13-002",
+        "CASE-917-F13-003",
+        "CASE-917-F13-004",
+        "CASE-917-F13-005",
+        "CASE-917-F13-006",
+        "CASE-917-F13-007",
+        "CASE-917-F13-009",
+        "CASE-917-F13-010",
+        "CASE-917-F13-011",
+        "CASE-917-F13-012"
+      ],
+      "case_count": 11,
+      "selection_status": "engineering_reference_only_unbound",
+      "f10_visual_variant_id": "917_30_turbo_5374",
+      "f10_mapping_scope": "display_only_visual_lineage",
+      "f10_identity_equivalent": false,
+      "f22_cad_variant_id": null,
+      "reported_1600_hp_fact_ref": "FACT-TURBO-POWER-1600-REPORTED",
+      "reported_1600_hp_role": "documentary_only_not_boundary_condition",
+      "geometry_ready": false,
+      "solver_ready": false
+    }
+  ],
+  "case_matrix": [
+    {
+      "case_id": "CASE-917-F13-001",
+      "domain": "engine_cycle_0d_1d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-002",
+      "domain": "lubrication_0d_1d_and_local_3d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-003",
+      "domain": "air_cooling_1d_and_3d_cfd",
+      "gate_profile_ref": "GP-CFD",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-004",
+      "domain": "internal_duct_cfd",
+      "gate_profile_ref": "GP-CFD",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-005",
+      "domain": "conjugate_heat_transfer_head_cylinder",
+      "gate_profile_ref": "GP-CHT",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-006",
+      "domain": "structural_thermomechanical_fea_crankcase",
+      "gate_profile_ref": "GP-FEA",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-007",
+      "domain": "structural_fatigue_fea_connecting_rods",
+      "gate_profile_ref": "GP-FEA",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-008",
+      "domain": "structural_thermomechanical_fea_head_studs",
+      "gate_profile_ref": "GP-FEA",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "blocked_variant_scope_missing"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-009",
+      "domain": "multibody_valvetrain_dynamics",
+      "gate_profile_ref": "GP-MBD",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-010",
+      "domain": "crankshaft_gear_rotordynamics",
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-011",
+      "domain": "turbocharger_1d_cfd_and_rotordynamics",
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "applicability": {
+        "type_912_5_0_na": "not_applicable_turbo_only",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    },
+    {
+      "case_id": "CASE-917-F13-012",
+      "domain": "electrical_ignition_and_safety_network",
+      "gate_profile_ref": "GP-ELECTRICAL",
+      "applicability": {
+        "type_912_5_0_na": "required",
+        "917_30_1973_turbo_5374": "required"
+      },
+      "input_template_status": "generated_null_only",
+      "execution_authorized": false,
+      "results_present": false,
+      "physicsnemo_sample_authorized": false
+    }
+  ],
+  "solver_input_templates": [
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-001",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-001",
+      "domain": "engine_cycle_0d_1d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "cylinder_count",
+          "quantity": "cylinder_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bank_angle",
+          "quantity": "bank_angle",
+          "unit": "deg",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-BANK-ANGLE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bore",
+          "quantity": "cylinder_bore",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-BORE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stroke",
+          "quantity": "piston_stroke",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-STROKE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "displacement",
+          "quantity": "engine_displacement",
+          "unit": "cm3",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-DISPLACEMENT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "compression_ratio",
+          "quantity": "compression_ratio",
+          "unit": "ratio",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-COMPRESSION",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "firing_order",
+          "quantity": "firing_order",
+          "unit": "cylinder_id",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-FIRING-ORDER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fuel_definition",
+          "quantity": "fuel_composition_and_properties",
+          "unit": "declared_property_set",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "combustion_calibration",
+          "quantity": "cylinder_pressure_or_heat_release",
+          "unit": "Pa_or_J/degCA",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gas_exchange_boundaries",
+          "quantity": "intake_exhaust_pressure_temperature_traces",
+          "unit": "Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "friction_model",
+          "quantity": "engine_friction_map",
+          "unit": "N.m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "fuel_definition",
+        "combustion_calibration",
+        "gas_exchange_boundaries",
+        "friction_model",
+        "cylinder_numbering",
+        "valve_lift_profiles",
+        "injection_law"
+      ],
+      "acceptance_requirements": [
+        "puissance/couple de validation issus d'un banc trace",
+        "pression cylindre correlee si disponible",
+        "bilans par cylindre et par cycle"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "cylinder_pressure_trace",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "torque_curve",
+          "unit": "N.m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "mass_flow_and_temperature_boundaries",
+          "unit": "kg/s,K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-002",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-002",
+      "domain": "lubrication_0d_1d_and_local_3d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "pressure_pump_count",
+          "quantity": "oil_pressure_pump_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-OIL-PRESSURE-PUMP-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "scavenge_pump_count",
+          "quantity": "oil_scavenge_pump_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-OIL-SCAVENGE-PUMP-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "oil_charge",
+          "quantity": "reported_engine_oil_charge",
+          "unit": "L",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-OIL-CHARGE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gallery_geometry",
+          "quantity": "oil_gallery_diameters_lengths_roughness",
+          "unit": "mm,mm,um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "pump_maps",
+          "quantity": "pump_flow_pressure_speed_maps",
+          "unit": "kg/s,Pa,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "oil_properties",
+          "quantity": "temperature_dependent_oil_properties",
+          "unit": "Pa.s,kg/m3,J/kg/K,W/m/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_clearances",
+          "quantity": "bearing_clearance_and_surface_finish",
+          "unit": "um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_loads",
+          "quantity": "bearing_load_time_histories",
+          "unit": "N",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "gallery_geometry",
+        "pump_maps",
+        "oil_properties",
+        "bearing_clearances",
+        "bearing_loads",
+        "tank_and_deaeration_geometry",
+        "oil_temperature_boundaries"
+      ],
+      "acceptance_requirements": [
+        "pression et debit correles sur chaque branche critique",
+        "marges de film et temperature approuvees",
+        "scenario amorcage et perte de pression teste"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "gallery_pressure",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "bearing_oil_flow",
+          "unit": "kg/s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "minimum_film_thickness",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "oil_temperature",
+          "unit": "K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-003",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-003",
+      "domain": "air_cooling_1d_and_3d_cfd",
+      "gate_profile_ref": "GP-CFD",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "reported_flow_point",
+          "quantity": "reported_cooling_fan_volumetric_flow",
+          "unit": "L/s",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-COOLING-AIR-FLOW",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fan_map",
+          "quantity": "fan_pressure_flow_efficiency_speed_map",
+          "unit": "Pa,m3/s,ratio,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "duct_geometry",
+          "quantity": "fan_shroud_baffle_and_fin_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "leakage",
+          "quantity": "cooling_air_leakage_distribution",
+          "unit": "kg/s",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "ambient",
+          "quantity": "ambient_pressure_temperature_humidity",
+          "unit": "Pa,K,ratio",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "heat_rejection",
+          "quantity": "cylinder_head_heat_rejection",
+          "unit": "W",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "fan_map",
+        "duct_geometry",
+        "leakage",
+        "ambient",
+        "heat_rejection",
+        "fan_speed_ratio"
+      ],
+      "acceptance_requirements": [
+        "courbe ventilateur mesuree",
+        "debit par cylindre correle",
+        "sensibilite aux fuites et conditions ambiantes"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "cylinder_air_mass_flow_distribution",
+          "unit": "kg/s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "pressure_loss",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fan_power",
+          "unit": "W",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-004",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-004",
+      "domain": "internal_duct_cfd",
+      "gate_profile_ref": "GP-CFD",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "intake_valve_diameter",
+          "quantity": "intake_valve_diameter",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "exhaust_valve_diameter",
+          "quantity": "exhaust_valve_diameter",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "port_geometry",
+          "quantity": "watertight_intake_exhaust_port_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "valve_lift_sweep",
+          "quantity": "valve_lift_positions",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "surface_roughness",
+          "quantity": "wall_roughness",
+          "unit": "um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fluid_boundaries",
+          "quantity": "pressure_temperature_composition_boundaries",
+          "unit": "Pa,K,mass_fraction",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "port_geometry",
+        "valve_lift_sweep",
+        "surface_roughness",
+        "fluid_boundaries",
+        "valve_seat_geometry",
+        "bench_flow_coefficients"
+      ],
+      "acceptance_requirements": [
+        "geometrie etanche issue d'une CAO mesuree",
+        "banc de debit par levee",
+        "comparaison entre cylindres et sens de flux"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "mass_flow",
+          "unit": "kg/s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "pressure_loss",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "flow_coefficients",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-005",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-005",
+      "domain": "conjugate_heat_transfer_head_cylinder",
+      "gate_profile_ref": "GP-CHT",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "cylinder_pitch",
+          "quantity": "cylinder_pitch",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-PITCH-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cylinder_coating_family",
+          "quantity": "cylinder_coating_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-COATING-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "solid_geometry",
+          "quantity": "head_cylinder_fin_wall_and_contact_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "materials",
+          "quantity": "temperature_dependent_material_properties",
+          "unit": "W/m/K,J/kg/K,kg/m3,1/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "combustion_boundary",
+          "quantity": "gas_side_heat_flux_or_pressure_temperature",
+          "unit": "W/m2_or_Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cooling_air_boundary",
+          "quantity": "air_flow_pressure_temperature_distribution",
+          "unit": "kg/s,Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "thermal_contacts",
+          "quantity": "contact_conductance_and_seal_definition",
+          "unit": "W/m2/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "solid_geometry",
+        "materials",
+        "combustion_boundary",
+        "cooling_air_boundary",
+        "thermal_contacts",
+        "oil_side_boundaries",
+        "coatings_and_emissivity"
+      ],
+      "acceptance_requirements": [
+        "EGT et temperature culasse par cylindre",
+        "bilans energie complets",
+        "limites materiaux et jeux a chaud approuves"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "metal_temperature_field",
+          "unit": "K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "heat_flux_field",
+          "unit": "W/m2",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "thermal_expansion_field",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-006",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-006",
+      "domain": "structural_thermomechanical_fea_crankcase",
+      "gate_profile_ref": "GP-FEA",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "main_bearing_count",
+          "quantity": "main_bearing_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "crankcase_material_family",
+          "quantity": "crankcase_material_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CRANKCASE-MATERIAL-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "crankcase_geometry",
+          "quantity": "parametric_crankcase_and_bearing_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "material_allowables",
+          "quantity": "cast_magnesium_properties_and_allowables",
+          "unit": "Pa,1/K,cycles",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_and_stud_loads",
+          "quantity": "time_and_temperature_dependent_loads",
+          "unit": "N,N.m,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "contacts_preloads",
+          "quantity": "contact_friction_and_fastener_preloads",
+          "unit": "ratio,N",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "crankcase_geometry",
+        "material_allowables",
+        "bearing_and_stud_loads",
+        "contacts_preloads",
+        "casting_defects",
+        "duty_cycle"
+      ],
+      "acceptance_requirements": [
+        "correlation de deformation",
+        "allowables du vrai alliage/procede",
+        "marges approuvees pour tous les cas de charge"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "stress_strain_field",
+          "unit": "Pa,ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "bearing_bore_distortion",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fatigue_damage",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-007",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-007",
+      "domain": "structural_fatigue_fea_connecting_rods",
+      "gate_profile_ref": "GP-FEA",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "rod_material_family",
+          "quantity": "connecting_rod_material_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-ROD-MATERIAL-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "rod_geometry",
+          "quantity": "rod_center_length_sections_fillets_and_bolts",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "titanium_spec",
+          "quantity": "titanium_alloy_process_heat_treatment_and_allowables",
+          "unit": "declared_material_state",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "pin_crank_geometry",
+          "quantity": "pin_and_journal_geometry_clearances",
+          "unit": "mm,um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cycle_loads",
+          "quantity": "gas_and_inertia_load_history",
+          "unit": "N",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "duty_cycle",
+          "quantity": "speed_load_temperature_histogram",
+          "unit": "rpm,N.m,K,h",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "rod_geometry",
+        "titanium_spec",
+        "pin_crank_geometry",
+        "cycle_loads",
+        "duty_cycle",
+        "surface_treatment_and_residual_stress"
+      ],
+      "acceptance_requirements": [
+        "essais matiere et bielle representatifs du procede",
+        "fatigue multiaxiale et boulonnerie",
+        "revue professionnelle avant toute fabrication"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "stress_strain_field",
+          "unit": "Pa,ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "buckling_margin",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fatigue_life",
+          "unit": "cycles",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-008",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-008",
+      "domain": "structural_thermomechanical_fea_head_studs",
+      "gate_profile_ref": "GP-FEA",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "stud_count",
+          "quantity": "head_stud_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-HEAD-STUD-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stud_length",
+          "quantity": "head_stud_length",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-HEAD-STUD-LENGTH",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stud_shaft_diameter",
+          "quantity": "head_stud_shaft_diameter",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-HEAD-STUD-SHAFT-DIAMETER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stud_mass",
+          "quantity": "head_stud_mass",
+          "unit": "g",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-HEAD-STUD-MASS",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stud_material_family",
+          "quantity": "head_stud_material_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-STUD-MATERIAL-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "thread_and_seat_geometry",
+          "quantity": "threads_nuts_washers_seats_and_engagement",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "dilavar_properties",
+          "quantity": "dilavar_grade_temperature_properties_relaxation",
+          "unit": "Pa,1/K,K,h",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "assembly_preload",
+          "quantity": "torque_tension_or_elongation_procedure",
+          "unit": "N_or_mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "thread_and_seat_geometry",
+        "dilavar_properties",
+        "assembly_preload",
+        "variant_applicability",
+        "thermal_fields",
+        "joint_contact_properties"
+      ],
+      "acceptance_requirements": [
+        "geometrie et nuance confirmees",
+        "precharge mesuree",
+        "cycles thermiques instrumentes",
+        "aucun transfert non prouve au 917/30"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "stud_force_over_cycle",
+          "unit": "N",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "joint_separation_margin",
+          "unit": "N",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "relaxation_and_fatigue",
+          "unit": "ratio,cycles",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-009",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-009",
+      "domain": "multibody_valvetrain_dynamics",
+      "gate_profile_ref": "GP-MBD",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "camshafts_per_bank",
+          "quantity": "camshafts_per_bank",
+          "unit": "count/bank",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CAMS-PER-BANK",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "valves_per_cylinder",
+          "quantity": "valves_per_cylinder",
+          "unit": "count/cylinder",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-VALVES-PER-CYLINDER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cam_profiles",
+          "quantity": "measured_cam_lobe_profiles",
+          "unit": "mm/deg",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "valvetrain_geometry",
+          "quantity": "rocker_valve_spring_and_piston_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "mass_inertia",
+          "quantity": "component_mass_and_inertia",
+          "unit": "kg,kg.m2",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "spring_damper",
+          "quantity": "spring_and_damping_curves",
+          "unit": "N/m,N.s/m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "lash_and_contacts",
+          "quantity": "lash_contact_stiffness_friction",
+          "unit": "m,N/m,ratio",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "cam_profiles",
+        "valvetrain_geometry",
+        "mass_inertia",
+        "spring_damper",
+        "lash_and_contacts",
+        "cylinder_numbering",
+        "gear_train_phase"
+      ],
+      "acceptance_requirements": [
+        "aucun contact non voulu",
+        "levees et phases correlees",
+        "efforts sous limites materiaux et ressorts"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "valve_lift_velocity_acceleration",
+          "unit": "m,m/s,m/s2",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "contact_force",
+          "unit": "N",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "minimum_piston_valve_clearance",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-010",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-010",
+      "domain": "crankshaft_gear_rotordynamics",
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "main_bearing_count",
+          "quantity": "main_bearing_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "shaft_geometry",
+          "quantity": "crank_output_and_cam_drive_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "material_properties",
+          "quantity": "shaft_and_gear_properties",
+          "unit": "Pa,kg/m3,ratio",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_coefficients",
+          "quantity": "bearing_stiffness_damping_speed_temperature",
+          "unit": "N/m,N.s/m,rpm,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cylinder_excitation",
+          "quantity": "cylinder_torque_time_history",
+          "unit": "N.m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gear_mesh",
+          "quantity": "gear_mesh_stiffness_error_and_backlash",
+          "unit": "N/m,m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "shaft_geometry",
+        "material_properties",
+        "bearing_coefficients",
+        "cylinder_excitation",
+        "gear_mesh",
+        "inertias",
+        "supports_and_boundary_conditions"
+      ],
+      "acceptance_requirements": [
+        "modes correles par essai",
+        "aucune resonance critique dans l'enveloppe approuvee",
+        "charges transferees a la FEA et lubrification"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "critical_speeds",
+          "unit": "rpm",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "torsional_and_bending_response",
+          "unit": "rad,m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "bearing_and_gear_dynamic_loads",
+          "unit": "N",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-type_912_5_0_na-CASE-917-F13-012",
+      "variant_id": "type_912_5_0_na",
+      "scenario_ref": "SCENARIO-917-5L-NA",
+      "case_id": "CASE-917-F13-012",
+      "domain": "electrical_ignition_and_safety_network",
+      "gate_profile_ref": "GP-ELECTRICAL",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "spark_plugs_per_cylinder",
+          "quantity": "spark_plugs_per_cylinder",
+          "unit": "count/cylinder",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-SPARK-PLUGS-PER-CYLINDER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "wiring_topology",
+          "quantity": "wiring_grounding_and_distribution_topology",
+          "unit": "netlist",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "ignition_components",
+          "quantity": "coil_distributor_plug_and_lead_models",
+          "unit": "V,A,H,F,ohm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "timing_map",
+          "quantity": "ignition_advance_map",
+          "unit": "degCA",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "alternator_map",
+          "quantity": "alternator_voltage_current_speed_temperature_map",
+          "unit": "V,A,rpm,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "instrumentation",
+          "quantity": "sensor_ranges_accuracy_sampling_and_calibration",
+          "unit": "declared_measurement_chain",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "safety_logic",
+          "quantity": "interlocks_trip_thresholds_and_safe_state",
+          "unit": "logic_and_units",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "wiring_topology",
+        "ignition_components",
+        "timing_map",
+        "alternator_map",
+        "instrumentation",
+        "safety_logic",
+        "starter_and_bench_drive_interface"
+      ],
+      "acceptance_requirements": [
+        "EGT et temperature culasse par cylindre",
+        "arret automatique teste par injection de defaut",
+        "calibration et incertitude de chaque voie",
+        "double allumage correle"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "spark_voltage_current_energy",
+          "unit": "V,A,J",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "electrical_load_and_temperature",
+          "unit": "W,K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fault_detection_and_trip_response",
+          "unit": "s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-001",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-001",
+      "domain": "engine_cycle_0d_1d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "cylinder_count",
+          "quantity": "cylinder_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bank_angle",
+          "quantity": "bank_angle",
+          "unit": "deg",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-BANK-ANGLE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bore",
+          "quantity": "cylinder_bore",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-BORE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stroke",
+          "quantity": "piston_stroke",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-STROKE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "displacement",
+          "quantity": "engine_displacement",
+          "unit": "cm3",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-DISPLACEMENT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "compression_ratio",
+          "quantity": "compression_ratio",
+          "unit": "ratio",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-COMPRESSION",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "firing_order",
+          "quantity": "firing_order",
+          "unit": "cylinder_id",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-FIRING-ORDER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fuel_definition",
+          "quantity": "fuel_composition_and_properties",
+          "unit": "declared_property_set",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "combustion_calibration",
+          "quantity": "cylinder_pressure_or_heat_release",
+          "unit": "Pa_or_J/degCA",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gas_exchange_boundaries",
+          "quantity": "intake_exhaust_pressure_temperature_traces",
+          "unit": "Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "friction_model",
+          "quantity": "engine_friction_map",
+          "unit": "N.m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "fuel_definition",
+        "combustion_calibration",
+        "gas_exchange_boundaries",
+        "friction_model",
+        "cylinder_numbering",
+        "valve_lift_profiles",
+        "injection_law"
+      ],
+      "acceptance_requirements": [
+        "puissance/couple de validation issus d'un banc trace",
+        "pression cylindre correlee si disponible",
+        "bilans par cylindre et par cycle"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "cylinder_pressure_trace",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "torque_curve",
+          "unit": "N.m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "mass_flow_and_temperature_boundaries",
+          "unit": "kg/s,K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-002",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-002",
+      "domain": "lubrication_0d_1d_and_local_3d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "pressure_pump_count",
+          "quantity": "oil_pressure_pump_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-OIL-PRESSURE-PUMP-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "scavenge_pump_count",
+          "quantity": "oil_scavenge_pump_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-OIL-SCAVENGE-PUMP-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "oil_charge",
+          "quantity": "reported_engine_oil_charge",
+          "unit": "L",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-OIL-CHARGE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gallery_geometry",
+          "quantity": "oil_gallery_diameters_lengths_roughness",
+          "unit": "mm,mm,um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "pump_maps",
+          "quantity": "pump_flow_pressure_speed_maps",
+          "unit": "kg/s,Pa,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "oil_properties",
+          "quantity": "temperature_dependent_oil_properties",
+          "unit": "Pa.s,kg/m3,J/kg/K,W/m/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_clearances",
+          "quantity": "bearing_clearance_and_surface_finish",
+          "unit": "um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_loads",
+          "quantity": "bearing_load_time_histories",
+          "unit": "N",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "gallery_geometry",
+        "pump_maps",
+        "oil_properties",
+        "bearing_clearances",
+        "bearing_loads",
+        "tank_and_deaeration_geometry",
+        "oil_temperature_boundaries"
+      ],
+      "acceptance_requirements": [
+        "pression et debit correles sur chaque branche critique",
+        "marges de film et temperature approuvees",
+        "scenario amorcage et perte de pression teste"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "gallery_pressure",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "bearing_oil_flow",
+          "unit": "kg/s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "minimum_film_thickness",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "oil_temperature",
+          "unit": "K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-003",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-003",
+      "domain": "air_cooling_1d_and_3d_cfd",
+      "gate_profile_ref": "GP-CFD",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "reported_flow_point",
+          "quantity": "reported_cooling_fan_volumetric_flow",
+          "unit": "L/s",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-COOLING-AIR-FLOW",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fan_map",
+          "quantity": "fan_pressure_flow_efficiency_speed_map",
+          "unit": "Pa,m3/s,ratio,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "duct_geometry",
+          "quantity": "fan_shroud_baffle_and_fin_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "leakage",
+          "quantity": "cooling_air_leakage_distribution",
+          "unit": "kg/s",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "ambient",
+          "quantity": "ambient_pressure_temperature_humidity",
+          "unit": "Pa,K,ratio",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "heat_rejection",
+          "quantity": "cylinder_head_heat_rejection",
+          "unit": "W",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "fan_map",
+        "duct_geometry",
+        "leakage",
+        "ambient",
+        "heat_rejection",
+        "fan_speed_ratio"
+      ],
+      "acceptance_requirements": [
+        "courbe ventilateur mesuree",
+        "debit par cylindre correle",
+        "sensibilite aux fuites et conditions ambiantes"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "cylinder_air_mass_flow_distribution",
+          "unit": "kg/s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "pressure_loss",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fan_power",
+          "unit": "W",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-004",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-004",
+      "domain": "internal_duct_cfd",
+      "gate_profile_ref": "GP-CFD",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "intake_valve_diameter",
+          "quantity": "intake_valve_diameter",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "exhaust_valve_diameter",
+          "quantity": "exhaust_valve_diameter",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "port_geometry",
+          "quantity": "watertight_intake_exhaust_port_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "valve_lift_sweep",
+          "quantity": "valve_lift_positions",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "surface_roughness",
+          "quantity": "wall_roughness",
+          "unit": "um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fluid_boundaries",
+          "quantity": "pressure_temperature_composition_boundaries",
+          "unit": "Pa,K,mass_fraction",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "port_geometry",
+        "valve_lift_sweep",
+        "surface_roughness",
+        "fluid_boundaries",
+        "valve_seat_geometry",
+        "bench_flow_coefficients"
+      ],
+      "acceptance_requirements": [
+        "geometrie etanche issue d'une CAO mesuree",
+        "banc de debit par levee",
+        "comparaison entre cylindres et sens de flux"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "mass_flow",
+          "unit": "kg/s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "pressure_loss",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "flow_coefficients",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-005",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-005",
+      "domain": "conjugate_heat_transfer_head_cylinder",
+      "gate_profile_ref": "GP-CHT",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "cylinder_pitch",
+          "quantity": "cylinder_pitch",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-PITCH-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cylinder_coating_family",
+          "quantity": "cylinder_coating_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-COATING-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "solid_geometry",
+          "quantity": "head_cylinder_fin_wall_and_contact_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "materials",
+          "quantity": "temperature_dependent_material_properties",
+          "unit": "W/m/K,J/kg/K,kg/m3,1/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "combustion_boundary",
+          "quantity": "gas_side_heat_flux_or_pressure_temperature",
+          "unit": "W/m2_or_Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cooling_air_boundary",
+          "quantity": "air_flow_pressure_temperature_distribution",
+          "unit": "kg/s,Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "thermal_contacts",
+          "quantity": "contact_conductance_and_seal_definition",
+          "unit": "W/m2/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "solid_geometry",
+        "materials",
+        "combustion_boundary",
+        "cooling_air_boundary",
+        "thermal_contacts",
+        "oil_side_boundaries",
+        "coatings_and_emissivity"
+      ],
+      "acceptance_requirements": [
+        "EGT et temperature culasse par cylindre",
+        "bilans energie complets",
+        "limites materiaux et jeux a chaud approuves"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "metal_temperature_field",
+          "unit": "K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "heat_flux_field",
+          "unit": "W/m2",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "thermal_expansion_field",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-006",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-006",
+      "domain": "structural_thermomechanical_fea_crankcase",
+      "gate_profile_ref": "GP-FEA",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "main_bearing_count",
+          "quantity": "main_bearing_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "crankcase_material_family",
+          "quantity": "crankcase_material_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CRANKCASE-MATERIAL-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "crankcase_geometry",
+          "quantity": "parametric_crankcase_and_bearing_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "material_allowables",
+          "quantity": "cast_magnesium_properties_and_allowables",
+          "unit": "Pa,1/K,cycles",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_and_stud_loads",
+          "quantity": "time_and_temperature_dependent_loads",
+          "unit": "N,N.m,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "contacts_preloads",
+          "quantity": "contact_friction_and_fastener_preloads",
+          "unit": "ratio,N",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "crankcase_geometry",
+        "material_allowables",
+        "bearing_and_stud_loads",
+        "contacts_preloads",
+        "casting_defects",
+        "duty_cycle"
+      ],
+      "acceptance_requirements": [
+        "correlation de deformation",
+        "allowables du vrai alliage/procede",
+        "marges approuvees pour tous les cas de charge"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "stress_strain_field",
+          "unit": "Pa,ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "bearing_bore_distortion",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fatigue_damage",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-007",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-007",
+      "domain": "structural_fatigue_fea_connecting_rods",
+      "gate_profile_ref": "GP-FEA",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "rod_material_family",
+          "quantity": "connecting_rod_material_family",
+          "unit": "material_family",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-ROD-MATERIAL-FAMILY",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "rod_geometry",
+          "quantity": "rod_center_length_sections_fillets_and_bolts",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "titanium_spec",
+          "quantity": "titanium_alloy_process_heat_treatment_and_allowables",
+          "unit": "declared_material_state",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "pin_crank_geometry",
+          "quantity": "pin_and_journal_geometry_clearances",
+          "unit": "mm,um",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cycle_loads",
+          "quantity": "gas_and_inertia_load_history",
+          "unit": "N",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "duty_cycle",
+          "quantity": "speed_load_temperature_histogram",
+          "unit": "rpm,N.m,K,h",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "rod_geometry",
+        "titanium_spec",
+        "pin_crank_geometry",
+        "cycle_loads",
+        "duty_cycle",
+        "surface_treatment_and_residual_stress"
+      ],
+      "acceptance_requirements": [
+        "essais matiere et bielle representatifs du procede",
+        "fatigue multiaxiale et boulonnerie",
+        "revue professionnelle avant toute fabrication"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "stress_strain_field",
+          "unit": "Pa,ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "buckling_margin",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fatigue_life",
+          "unit": "cycles",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-009",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-009",
+      "domain": "multibody_valvetrain_dynamics",
+      "gate_profile_ref": "GP-MBD",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "camshafts_per_bank",
+          "quantity": "camshafts_per_bank",
+          "unit": "count/bank",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CAMS-PER-BANK",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "valves_per_cylinder",
+          "quantity": "valves_per_cylinder",
+          "unit": "count/cylinder",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-VALVES-PER-CYLINDER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cam_profiles",
+          "quantity": "measured_cam_lobe_profiles",
+          "unit": "mm/deg",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "valvetrain_geometry",
+          "quantity": "rocker_valve_spring_and_piston_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "mass_inertia",
+          "quantity": "component_mass_and_inertia",
+          "unit": "kg,kg.m2",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "spring_damper",
+          "quantity": "spring_and_damping_curves",
+          "unit": "N/m,N.s/m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "lash_and_contacts",
+          "quantity": "lash_contact_stiffness_friction",
+          "unit": "m,N/m,ratio",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "cam_profiles",
+        "valvetrain_geometry",
+        "mass_inertia",
+        "spring_damper",
+        "lash_and_contacts",
+        "cylinder_numbering",
+        "gear_train_phase"
+      ],
+      "acceptance_requirements": [
+        "aucun contact non voulu",
+        "levees et phases correlees",
+        "efforts sous limites materiaux et ressorts"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "valve_lift_velocity_acceleration",
+          "unit": "m,m/s,m/s2",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "contact_force",
+          "unit": "N",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "minimum_piston_valve_clearance",
+          "unit": "m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-010",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-010",
+      "domain": "crankshaft_gear_rotordynamics",
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "main_bearing_count",
+          "quantity": "main_bearing_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "shaft_geometry",
+          "quantity": "crank_output_and_cam_drive_geometry",
+          "unit": "mm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "material_properties",
+          "quantity": "shaft_and_gear_properties",
+          "unit": "Pa,kg/m3,ratio",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bearing_coefficients",
+          "quantity": "bearing_stiffness_damping_speed_temperature",
+          "unit": "N/m,N.s/m,rpm,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "cylinder_excitation",
+          "quantity": "cylinder_torque_time_history",
+          "unit": "N.m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gear_mesh",
+          "quantity": "gear_mesh_stiffness_error_and_backlash",
+          "unit": "N/m,m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "shaft_geometry",
+        "material_properties",
+        "bearing_coefficients",
+        "cylinder_excitation",
+        "gear_mesh",
+        "inertias",
+        "supports_and_boundary_conditions"
+      ],
+      "acceptance_requirements": [
+        "modes correles par essai",
+        "aucune resonance critique dans l'enveloppe approuvee",
+        "charges transferees a la FEA et lubrification"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "critical_speeds",
+          "unit": "rpm",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "torsional_and_bending_response",
+          "unit": "rad,m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "bearing_and_gear_dynamic_loads",
+          "unit": "N",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-011",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-011",
+      "domain": "turbocharger_1d_cfd_and_rotordynamics",
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "turbo_count",
+          "quantity": "turbocharger_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-TURBO-COUNT",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "boost_claim",
+          "quantity": "reported_boost_pressure",
+          "unit": "bar",
+          "required": true,
+          "source_status": "candidate_not_boundary_condition",
+          "candidate_ref": "FACT-TURBO-BOOST-CANDIDATE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "spool_claim",
+          "quantity": "reported_turbo_response_delay",
+          "unit": "s",
+          "required": true,
+          "source_status": "candidate_qualitative",
+          "candidate_ref": "FACT-TURBO-SPOOL-QUALITATIVE",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "compressor_map",
+          "quantity": "compressor_corrected_flow_pressure_ratio_efficiency_speed_map",
+          "unit": "kg/s,ratio,ratio,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "turbine_map",
+          "quantity": "turbine_corrected_flow_expansion_efficiency_speed_map",
+          "unit": "kg/s,ratio,ratio,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "rotor_geometry_inertia",
+          "quantity": "wheel_shaft_bearing_geometry_and_inertia",
+          "unit": "mm,kg.m2",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bypass_control",
+          "quantity": "wastegate_geometry_and_control_law",
+          "unit": "mm,command",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gas_boundaries",
+          "quantity": "exhaust_intake_pressure_temperature_composition_transients",
+          "unit": "Pa,K,mass_fraction",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "compressor_map",
+        "turbine_map",
+        "rotor_geometry_inertia",
+        "bypass_control",
+        "gas_boundaries",
+        "bearing_lubrication",
+        "intercooler_maps",
+        "boost_pressure_reference"
+      ],
+      "acceptance_requirements": [
+        "identite et cartes turbo confirmees",
+        "reference pression boost levee",
+        "surge/choke/overspeed et temperatures dans bandes fabricant",
+        "correlation transitoire au banc"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "shaft_speed",
+          "unit": "rpm",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "pressure_ratio_and_efficiency",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "surge_choke_and_overspeed_margins",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "spool_response",
+          "unit": "s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1973_turbo_5374-CASE-917-F13-012",
+      "variant_id": "917_30_1973_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1973-TURBO",
+      "case_id": "CASE-917-F13-012",
+      "domain": "electrical_ignition_and_safety_network",
+      "gate_profile_ref": "GP-ELECTRICAL",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "spark_plugs_per_cylinder",
+          "quantity": "spark_plugs_per_cylinder",
+          "unit": "count/cylinder",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-SPARK-PLUGS-PER-CYLINDER",
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "wiring_topology",
+          "quantity": "wiring_grounding_and_distribution_topology",
+          "unit": "netlist",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "ignition_components",
+          "quantity": "coil_distributor_plug_and_lead_models",
+          "unit": "V,A,H,F,ohm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "timing_map",
+          "quantity": "ignition_advance_map",
+          "unit": "degCA",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "alternator_map",
+          "quantity": "alternator_voltage_current_speed_temperature_map",
+          "unit": "V,A,rpm,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "instrumentation",
+          "quantity": "sensor_ranges_accuracy_sampling_and_calibration",
+          "unit": "declared_measurement_chain",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "safety_logic",
+          "quantity": "interlocks_trip_thresholds_and_safe_state",
+          "unit": "logic_and_units",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "wiring_topology",
+        "ignition_components",
+        "timing_map",
+        "alternator_map",
+        "instrumentation",
+        "safety_logic",
+        "starter_and_bench_drive_interface"
+      ],
+      "acceptance_requirements": [
+        "EGT et temperature culasse par cylindre",
+        "arret automatique teste par injection de defaut",
+        "calibration et incertitude de chaque voie",
+        "double allumage correle"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "spark_voltage_current_energy",
+          "unit": "V,A,J",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "electrical_load_and_temperature",
+          "unit": "W,K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "fault_detection_and_trip_response",
+          "unit": "s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    }
+  ],
+  "physicsnemo_boundary": {
+    "source_contract_ref": "physicsnemo_dataset_f14",
+    "accepted_samples": 0,
+    "classical_cases_passed": 0,
+    "dataset_ready": false,
+    "model_selected": false,
+    "training_authorized": false,
+    "inference_authorized": false,
+    "variant_case_pair_validation_required": true,
+    "allowed_variant_case_pairs_source": "solver_input_templates",
+    "raw_scan_or_f10_proxy_allowed": false
+  },
+  "generated_outputs": {
+    "tracked_contract_path": "twins/reference-917-engine/dual-variant-functional-readiness-f24.json",
+    "generated_now": [
+      "case_applicability_matrix",
+      "22_null_solver_input_templates",
+      "variant_crosswalk"
+    ],
+    "geometry_artifacts": [],
+    "solver_decks": [],
+    "solver_results": [],
+    "physicsnemo_samples": [],
+    "local_f14_outputs_modified": false
+  },
+  "release_gates": {
+    "scan_identity_verified": false,
+    "na_variant_identity_verified": false,
+    "turbo_variant_identity_verified": false,
+    "na_dimensioned_cad_ready": false,
+    "turbo_dimensioned_cad_ready": false,
+    "na_solver_execution_authorized": false,
+    "turbo_solver_execution_authorized": false,
+    "na_reference_cases_correlated": false,
+    "turbo_reference_cases_correlated": false,
+    "physicsnemo_dataset_ready": false,
+    "physicsnemo_training_authorized": false,
+    "instrumented_bench_validated": false,
+    "functional_variants_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "prohibited_claims": [
+    "scan_numerical_proximity_proves_variant_identity",
+    "f10_visual_stage_is_solver_or_manufacturing_geometry",
+    "f22_4494_values_or_geometry_transfer_to_5l_or_turbo",
+    "f10_generic_turbo_id_equals_f13_1973_identity",
+    "reported_1600_hp_is_a_boundary_condition_or_result",
+    "physicsnemo_import_or_sample_structure_proves_simulation",
+    "f24_opens_any_execution_release_or_manufacturing_gate"
+  ]
+}

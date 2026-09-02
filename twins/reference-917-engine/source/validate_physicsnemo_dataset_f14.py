@@ -183,11 +183,11 @@ def _validate_runtime(
 
 def _validate_reference_cases(
     root: Path, contract: dict[str, Any], errors: list[str]
-) -> set[str]:
+) -> dict[str, set[str]]:
     section = contract.get("reference_cases")
     if not isinstance(section, dict):
         errors.append("reference_cases_missing")
-        return set()
+        return {}
     required = section.get("required_case_ids")
     required_set = set(required) if isinstance(required, list) else set()
     if required_set != EXPECTED_CASE_IDS or len(required or []) != len(EXPECTED_CASE_IDS):
@@ -199,16 +199,32 @@ def _validate_reference_cases(
     registry_path = _safe_file(root, section.get("registry_path"))
     if registry_path is None:
         errors.append("reference_registry_missing_or_unsafe")
-        return required_set
+        return {case_id: set() for case_id in required_set}
     try:
         registry = load_json(registry_path)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         errors.append(f"reference_registry_invalid:{exc}")
-        return required_set
-    actual = [item.get("id") for item in registry.get("solver_cases", []) if isinstance(item, dict)]
+        return {case_id: set() for case_id in required_set}
+    solver_cases = registry.get("solver_cases", [])
+    actual = [item.get("id") for item in solver_cases if isinstance(item, dict)]
     if set(actual) != EXPECTED_CASE_IDS or len(actual) != len(EXPECTED_CASE_IDS):
         errors.append("reference_registry_case_ids_mismatch")
-    return required_set
+    case_variants: dict[str, set[str]] = {}
+    for item in solver_cases:
+        if not isinstance(item, dict) or not isinstance(item.get("id"), str):
+            continue
+        variants = item.get("variants")
+        if (
+            not isinstance(variants, list)
+            or not variants
+            or any(not isinstance(value, str) or not value for value in variants)
+            or len(set(variants)) != len(variants)
+        ):
+            errors.append(f"reference_registry_variants_invalid:{item['id']}")
+            case_variants[item["id"]] = set()
+        else:
+            case_variants[item["id"]] = set(variants)
+    return case_variants
 
 
 def _validate_live_discovery(
@@ -367,7 +383,7 @@ def _validate_contract_sections(contract: dict[str, Any], errors: list[str]) -> 
 def _validate_sample(
     sample_path: Path,
     contract: dict[str, Any],
-    known_cases: set[str],
+    known_case_variants: dict[str, set[str]],
 ) -> list[str]:
     errors: list[str] = []
     try:
@@ -378,8 +394,14 @@ def _validate_sample(
     for key in REQUIRED_SAMPLE_IDS:
         if not isinstance(sample.get(key), str) or not sample[key]:
             errors.append(f"sample_identifier_missing:{label}:{key}")
-    if sample.get("case_id") not in known_cases:
+    case_id = sample.get("case_id")
+    variant_id = sample.get("variant_id")
+    if case_id not in known_case_variants:
         errors.append(f"sample_case_unknown:{label}")
+    elif variant_id not in known_case_variants[case_id]:
+        errors.append(
+            f"sample_variant_case_pair_invalid:{label}:{variant_id}:{case_id}"
+        )
 
     producer = sample.get("producer")
     if not isinstance(producer, dict):
@@ -492,8 +514,8 @@ def evaluate(
         errors.append("status_invalid")
     _validate_authority(contract, errors)
     _validate_runtime(root, contract, errors)
-    known_cases = _validate_reference_cases(root, contract, errors)
-    _validate_live_discovery(contract, known_cases, errors)
+    known_case_variants = _validate_reference_cases(root, contract, errors)
+    _validate_live_discovery(contract, set(known_case_variants), errors)
     _validate_contract_sections(contract, errors)
 
     if samples_root is None:
@@ -503,7 +525,9 @@ def evaluate(
     accepted = 0
     rejected = 0
     for sample_file in sample_files:
-        sample_errors = _validate_sample(sample_file, contract, known_cases)
+        sample_errors = _validate_sample(
+            sample_file, contract, known_case_variants
+        )
         if sample_errors:
             rejected += 1
             errors.extend(sample_errors)
@@ -518,7 +542,7 @@ def evaluate(
         "sample_files_seen": len(sample_files),
         "accepted_samples": accepted,
         "rejected_samples": rejected,
-        "reference_case_count": len(known_cases),
+        "reference_case_count": len(known_case_variants),
         "model_candidate_count": len(
             contract.get("live_discovery", {}).get("candidate_models", [])
         ),
