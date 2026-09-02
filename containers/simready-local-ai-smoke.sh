@@ -3,6 +3,10 @@ set -euo pipefail
 
 MODEL_PATH="${LOCAL_VLM_PATH:-/opt/models/qwen2.5-vl-7b-instruct}"
 MODEL_NAME="${LOCAL_VLM_MODEL:-Qwen/Qwen2.5-VL-7B-Instruct}"
+VLLM_LIBRARY_PATH="${VLLM_LIBRARY_PATH:-/opt/local-ai/lib/python3.12/site-packages/torch/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib}"
+if [ -n "${LD_LIBRARY_PATH:-}" ]; then
+    VLLM_LIBRARY_PATH="${VLLM_LIBRARY_PATH}:${LD_LIBRARY_PATH}"
+fi
 
 test -x /opt/local-ai/bin/vllm
 test -f "${MODEL_PATH}/config.json"
@@ -10,7 +14,7 @@ test -f "${MODEL_PATH}/model.safetensors.index.json"
 test -f "${MODEL_PATH}/LICENSE.apache-2.0"
 /opt/local-ai/bin/pip check
 "${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -m pip check
-/opt/local-ai/bin/python -c 'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0+cu129"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
+env LD_LIBRARY_PATH="${VLLM_LIBRARY_PATH}" /opt/local-ai/bin/python -c 'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
 "${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -c 'import physicsnemo, torch, torchvision; assert physicsnemo.__version__ == "2.2.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
 
 if [ "${1:-}" = "--offline" ]; then

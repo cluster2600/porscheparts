@@ -33,6 +33,7 @@ ENV SIMREADY_LOCAL_AI=1 \
     SIMREADY_VLM_BASE_URL=http://127.0.0.1:8000/v1 \
     LOCAL_VLM_MODEL=Qwen/Qwen2.5-VL-7B-Instruct \
     LOCAL_VLM_PATH=/opt/models/qwen2.5-vl-7b-instruct \
+    VLLM_LIBRARY_PATH=/opt/local-ai/lib/python3.12/site-packages/torch/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib \
     PHYSICSNEMO_PYTHON=/opt/venv/bin/python \
     HF_HUB_OFFLINE=1 \
     TRANSFORMERS_OFFLINE=1 \
@@ -94,7 +95,7 @@ RUN /opt/local-ai/bin/pip install --no-cache-dir \
        "${VLLM_CU129_WHEEL_URL}" \
     && /opt/local-ai/bin/pip check \
     && /opt/local-ai/bin/python -c \
-       'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0+cu129"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
+       'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can

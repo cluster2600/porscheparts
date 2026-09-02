@@ -119,6 +119,11 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -m pip check', smoke)
         self.assertIn('VLLM_USE_FLASHINFER_SAMPLER="0"', config)
         self.assertIn('PATH="/opt/local-ai/bin:', config)
+        self.assertIn('LD_LIBRARY_PATH="/opt/local-ai/lib/python3.12/site-packages/torch/lib:', config)
+        self.assertIn("VLLM_LIBRARY_PATH=", smoke)
+        self.assertIn('env LD_LIBRARY_PATH="${VLLM_LIBRARY_PATH}" /opt/local-ai/bin/python', smoke)
+        self.assertIn('version("vllm") == "0.26.0"', smoke)
+        self.assertNotIn('version("vllm") == "0.26.0+cu129"', smoke)
 
 
 if __name__ == "__main__":

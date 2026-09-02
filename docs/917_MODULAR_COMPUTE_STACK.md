@@ -41,9 +41,10 @@ build :
    sha256:6ce4ca30616f0a35810391015622b197a7b8b267ed27f8716f0789db79ff578b
    ```
 
-   Le smoke test doit contrôler à la fois
-   `importlib.metadata.version("vllm") == "0.26.0+cu129"`,
-   `vllm.__version__ == "0.26.0"` et `torch.version.cuda == "12.9"`.
+   Le nom de l'artefact contient `+cu129`, mais son metadata Python publie
+   `0.26.0`. Le smoke doit donc verifier le SHA-256 et l'URL immuable de la
+   roue au build, puis `importlib.metadata.version("vllm") == "0.26.0"`,
+   `vllm.__version__ == "0.26.0"` et `torch.version.cuda == "12.9"` au runtime.
 3. L'ancien argument vLLM :
 
    ```text
@@ -68,6 +69,30 @@ build :
    donc un proxy statique d'un représentant par famille, suivi d'une
    réapplication fail-closed des matériaux au stage complet. Ce constat
    concerne l'enrichissement visuel, pas l'ingénierie physique.
+
+## Defaut runtime observe le 2 septembre 2026
+
+La premiere qualification de l'image monolithique par digest sur une RTX PRO
+6000 96 Go a trouve un defaut que le smoke CI sans GPU ne pouvait pas activer.
+Les extensions CUDA de vLLM cherchaient `libcudart.so.13`, `libnvrtc.so.13` et
+les bibliotheques PyTorch sans chemin de chargement explicite. Les fichiers
+etaient bien presents dans les wheels sous `/opt/local-ai`, mais `vllm` echouait
+avant d'ouvrir le modele.
+
+Le correctif borne le `LD_LIBRARY_PATH` au seul processus vLLM et a son smoke :
+
+```text
+/opt/local-ai/lib/python3.12/site-packages/torch/lib
+/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib
+/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib
+/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib
+```
+
+Il n'est pas applique globalement a l'environnement PhysicsNeMo, dont la pile
+PyTorch/CUDA reste isolee. L'ancien digest demeure utile pour diagnostiquer le
+defaut, mais il ne doit pas etre reloue ni qualifie SimReady. Une nouvelle image
+et un nouveau digest doivent repasser le build, le pull anonyme, le smoke GPU et
+les controles d'endpoints avant de remplacer le digest du wrapper Vast.
 
 ## Architecture cible
 
