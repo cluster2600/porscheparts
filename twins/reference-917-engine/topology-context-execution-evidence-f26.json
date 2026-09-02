@@ -1,0 +1,174 @@
+{
+  "$comment": "Preuve agregee de l'execution canonique F26 dans l'image publique immuable. Aucun scan, chemin local, identifiant de volume, coordonnee, rendu vectoriel, table d'inventaire ou artefact derive n'est suivi. Cette preuve ne confirme aucune identite, echelle, interface, CAO, CAE, simulation, fabrication ou fonction moteur.",
+  "schema_version": "1.0.0",
+  "phase": "F26",
+  "status": "canonical_topology_context_generated_private_outputs_only_physical_release_blocked",
+  "claim_scope": "exact_canonical_inputs_executed_in_exact_public_cpu_image_with_aggregate_output_integrity_only",
+  "evidence_authority": {
+    "kind": "local_operator_observation_with_full_aggregate_rehash",
+    "independent_reproduction_verified": false,
+    "cryptographic_operator_signature_present": false,
+    "physical_metrology": false,
+    "semantic_review": false,
+    "release_authority": false
+  },
+  "execution": {
+    "image_reference": "ghcr.io/cluster2600/3dprinting993-topology-context-f26@sha256:41764d6d6ed935a763a6b1e07524c68961555b2724e67bbf48a2f261c35a3b10",
+    "image_lock": "containers/topology-context-f26.lock.json",
+    "image_lock_commit": "01e7237efed88e48ce1d86c0581b6944ee6fd897",
+    "image_lock_sha256": "9064bda99ff363e232a3fca478ca9df188932a0a2bba67468ac8a2beaaa830ad",
+    "container_platform": "linux/amd64",
+    "runtime_uid_gid": "9174:9174",
+    "process_exit_code": 0,
+    "network_mode": "none",
+    "root_filesystem_read_only": true,
+    "capabilities_dropped": [
+      "ALL"
+    ],
+    "no_new_privileges": true,
+    "input_mounts_read_only": true,
+    "ephemeral_tmpfs_writable": true,
+    "output_backend": {
+      "kind": "docker_volume",
+      "copy_on_create_disabled": true,
+      "private_parent_mode": "0700",
+      "owned_by_runtime_uid_gid": true,
+      "only_persistent_writable_mount": true,
+      "identifier_recorded": false
+    },
+    "execution_manifest": {
+      "kind": "sanitized_local_operator_observation",
+      "arguments_recorded": false,
+      "host_paths_included": false,
+      "container_paths_included": false,
+      "runtime_container_id_recorded": false,
+      "local_volume_identifier_recorded": false
+    }
+  },
+  "input_custody": {
+    "mesh": {
+      "bytes": 107128223,
+      "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+      "expected_sha256_matched": true,
+      "mounted_read_only": true,
+      "modified": false,
+      "payload_committed": false
+    },
+    "f18_report": {
+      "sha256": "8208c2fec6561261904c48bb449a1bd50d679e370ee7b4a19a86d78ba265450e",
+      "expected_sha256_matched": true,
+      "mounted_read_only": true,
+      "modified": false,
+      "payload_committed": false
+    },
+    "f26_contract": {
+      "sha256": "863a50e1ec577ed79740877292fbbf7e2ae0af73d4996afe8d067fb261445575",
+      "expected_sha256_matched": true,
+      "embedded_in_locked_image": true
+    }
+  },
+  "aggregate_result": {
+    "boundary_component_count": 944,
+    "batch_count": 20,
+    "manifest_covered_payload_count": 1889,
+    "total_regular_file_count": 1890,
+    "file_type_counts": {
+      "json": 945,
+      "svg": 944,
+      "csv": 1
+    },
+    "total_bytes": 213063080,
+    "completion_manifest": {
+      "sha256": "acfdf9384440986cb00d08ac9f51f3111cc83d38838e22b75173f5411843af39",
+      "bytes": 545596,
+      "payload_committed": false
+    },
+    "tabular_index": {
+      "sha256": "4f308350ee20f85d46b041777a2822e537ce73701a45ce98695b74a4c387bb45",
+      "bytes": 256573,
+      "line_count": 945,
+      "observation_count": 944,
+      "payload_committed": false
+    },
+    "strict_tree_sha256": "927b10d5266f4727061d5399b5291e5316e7fcb6ed1afa6d69e01c84f3bdde3c",
+    "artifact_hashes_reread": 1889,
+    "all_manifest_payload_hashes_verified": true,
+    "manifest_published_last_as_completion_marker": true,
+    "confirmed_interface_count": 0,
+    "human_review_completed_count": 0,
+    "output_payloads_committed": false
+  },
+  "deterministic_replay": {
+    "first_computation_payloads_available_for_private_comparison": true,
+    "strict_tree_byte_identical_to_first_computation": true,
+    "first_computation_release_accepted": false,
+    "first_computation_rejection": "guarded cleanup refused a replaced directory",
+    "final_execution_exit_code": 0
+  },
+  "runtime_incidents": [
+    {
+      "sequence": 1,
+      "environment": "macos_docker_desktop_bind_output",
+      "status": "rejected_fail_closed",
+      "observation": "guarded cleanup refused a replaced directory",
+      "cause_class": "bind_mount_directory_identity_replacement",
+      "guard_weakened": false,
+      "output_accepted": false
+    },
+    {
+      "sequence": 2,
+      "environment": "docker_volume_default_copy_on_create",
+      "status": "rejected_fail_closed",
+      "observation": "copy_on_create_restored_output_parent_mode_0755",
+      "required_private_mode": "0700",
+      "guard_weakened": false,
+      "output_accepted": false
+    },
+    {
+      "sequence": 3,
+      "environment": "docker_volume_with_volume_nocopy",
+      "status": "passed",
+      "observation": "private_parent_mode_and_identity_preserved",
+      "private_parent_mode": "0700",
+      "runtime_uid_gid": "9174:9174",
+      "output_accepted": true
+    }
+  ],
+  "tracked_summary_content": {
+    "raw_scan_payload": false,
+    "f18_report_payload": false,
+    "component_coordinates": false,
+    "component_faces_or_edges": false,
+    "component_json_payloads": false,
+    "vector_render_payloads": false,
+    "tabular_inventory_payload": false,
+    "completion_manifest_payload": false,
+    "local_paths": false,
+    "local_volume_identifiers": false
+  },
+  "release_gates": {
+    "canonical_scan_execution_verified_in_published_image": true,
+    "canonical_topology_context_generated": true,
+    "independent_execution_attestation_verified": false,
+    "human_boundary_review_completed": false,
+    "engine_identity_confirmed": false,
+    "scan_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "axis_semantics_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "geometry_repaired": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "cae_geometry_released": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "omniverse_simready_released": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_job_used": false
+  }
+}

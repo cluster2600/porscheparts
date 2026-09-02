@@ -191,7 +191,7 @@ docker run --rm --platform linux/amd64 \
   --tmpfs /tmp:rw,noexec,nosuid,size=256m \
   --pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
   --mount type=bind,src="$F26_INPUT_DIR",dst=/workspace/input,readonly \
-  --mount type=bind,src="$F26_OUTPUT_DIR",dst=/workspace/output \
+  --mount type=volume,src="$F26_OUTPUT_VOLUME",dst=/workspace/output,volume-nocopy \
   "$F26_IMAGE_BY_DIGEST" \
   python /opt/3dprinting993/twins/reference-917-engine/source/build_topology_context_f26.py \
     --contract /opt/3dprinting993/twins/reference-917-engine/topology-context-contract-f26.json \
@@ -206,9 +206,66 @@ docker run --rm --platform linux/amd64 \
 ```
 
 Les variables doivent être définies explicitement. Aucun secret n'est requis.
-Le scan et le rapport sont montés en lecture seule ; seul le répertoire de
-sortie est inscriptible. Avant cette commande, `F26_OUTPUT_DIR` doit être créé
-en mode `0700` et appartenir à l'UID/GID `9174:9174` visible dans le conteneur.
+Le scan et le rapport sont montés en lecture seule. Le volume de sortie doit
+être initialisé séparément en mode `0700`, appartenir à l'UID/GID `9174:9174`
+visible dans le conteneur et être monté avec `volume-nocopy`. Son identifiant
+local n'est ni une preuve ni une donnée à versionner.
+
+## Preuve d’exécution canonique agrégée
+
+La preuve suivie
+[`topology-context-execution-evidence-f26.json`](../twins/reference-917-engine/topology-context-execution-evidence-f26.json)
+lie le scan, le rapport F18 et le contrat par leurs seules empreintes au digest
+public F26 et au commit du lock `01e7237`. L'exécution finale s'est terminée
+avec le code 0 dans `linux/amd64`, sous l'utilisateur non-root `9174:9174`, sans
+réseau, avec un système de fichiers racine en lecture seule, les entrées en
+lecture seule et un unique volume persistant privé en écriture.
+
+Le résultat local compte **944 composantes**, **20 lots**, **1 889 charges
+utiles** et **1 890 fichiers** : 944 rendus SVG, 945 JSON et un index CSV. Les
+1 889 empreintes déclarées ont été relues ; l'index comporte 945 lignes dont
+944 observations. Le total est de 213 063 080 octets. Les contrôles agrégés
+suivis sont :
+
+- manifeste de fin :
+  `acfdf9384440986cb00d08ac9f51f3111cc83d38838e22b75173f5411843af39`,
+  545 596 octets ;
+- index tabulaire :
+  `4f308350ee20f85d46b041777a2822e537ce73701a45ce98695b74a4c387bb45`,
+  256 573 octets ;
+- arbre strict :
+  `927b10d5266f4727061d5399b5291e5316e7fcb6ed1afa6d69e01c84f3bdde3c`.
+
+Le résultat final est byte-identique au premier calcul privé. Ce premier essai
+n'est toutefois pas accepté : sur le bind de sortie Docker Desktop macOS, la
+garde a correctement arrêté la publication avec
+`guarded cleanup refused a replaced directory`. La garde n'a pas été affaiblie.
+Un volume Docker monté sans `volume-nocopy` n'est pas acceptable non plus : le
+copy-on-create réintroduit le mode `0755`, alors que F26 exige `0700` et la
+propriété de l'UID du runtime. Le chemin sûr initialise le volume privé, vérifie
+son propriétaire et son mode, puis le monte avec `volume-nocopy` avant
+l'exécution non-root.
+
+```mermaid
+flowchart TD
+    A[Bind de sortie Docker Desktop macOS] -->|identité remplacée| R1[Rejet fail-closed\nguarded cleanup]
+    B[Volume Docker avec copy-on-create] -->|mode 0755 restauré| R2[Rejet fail-closed]
+    C[Volume privé\nUID 9174 et mode 0700] --> N[Montage volume-nocopy]
+    N --> E[Exécution canonique\nexit 0]
+    E --> H[Relecture de 1 889 empreintes\net arbre strict]
+    H --> P[Résumé de hashes et compteurs\nhors géométrie]
+    P --> L[Artefacts locaux hors Git]
+```
+
+Cette preuve ouvre uniquement
+`canonical_scan_execution_verified_in_published_image` et
+`canonical_topology_context_generated`. Elle ne versionne aucun chemin local,
+identifiant de volume, coordonnée, SVG, JSON de composante, CSV d'inventaire ou
+manifeste produit. L'identité, l'échelle, les interfaces, la revue humaine, la
+CAO, la géométrie CAE, PhysicsNeMo, Omniverse, la fabrication, l'impression et
+le fonctionnement moteur restent faux. Le lock d'image conserve ses propres
+gates d'exécution canonique à faux : la preuve d'exécution est un document
+séparé et n'élargit pas l'autorité de la chaîne de publication.
 
 ## Ce que F26 ne prouve pas
 
