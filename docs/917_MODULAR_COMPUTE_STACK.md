@@ -41,10 +41,11 @@ build :
    sha256:6ce4ca30616f0a35810391015622b197a7b8b267ed27f8716f0789db79ff578b
    ```
 
-   Le nom de l'artefact contient `+cu129`, mais son metadata Python publie
-   `0.26.0`. Le smoke doit donc verifier le SHA-256 et l'URL immuable de la
-   roue au build, puis `importlib.metadata.version("vllm") == "0.26.0"`,
-   `vllm.__version__ == "0.26.0"` et `torch.version.cuda == "12.9"` au runtime.
+   Le nom de l'artefact contient `+cu129`. Selon la vue packaging utilisee,
+   l'identifiant expose peut etre `0.26.0` ou `0.26.0+cu129`; le controle
+   exige donc une version de base strictement egale a `0.26.0`. Torch,
+   TorchAudio, TorchVision et CUDA restent verrouilles separement, notamment
+   `torch.version.cuda == "12.9"` au runtime.
 3. L'ancien argument vLLM :
 
    ```text

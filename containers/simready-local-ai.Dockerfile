@@ -95,7 +95,7 @@ RUN /opt/local-ai/bin/pip install --no-cache-dir \
        "${VLLM_CU129_WHEEL_URL}" \
     && /opt/local-ai/bin/pip check \
     && /opt/local-ai/bin/python -c \
-       'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; assert version("vllm") == "0.26.0"; assert vllm.__version__ == "0.26.0"; assert torch.__version__.split("+", 1)[0] == "2.11.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchaudio.__version__.split("+", 1)[0] == "2.11.0"; assert torchvision.__version__.split("+", 1)[0] == "0.26.0"'
+       'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; actual={"distribution":version("vllm"),"runtime":vllm.__version__,"torch":torch.__version__,"cuda":torch.version.cuda,"torchaudio":torchaudio.__version__,"torchvision":torchvision.__version__}; print(actual); assert actual["distribution"].split("+", 1)[0] == "0.26.0", actual; assert actual["runtime"].split("+", 1)[0] == "0.26.0", actual; assert actual["torch"].split("+", 1)[0] == "2.11.0", actual; assert actual["cuda"] == "12.9", actual; assert actual["torchaudio"].split("+", 1)[0] == "2.11.0", actual; assert actual["torchvision"].split("+", 1)[0] == "0.26.0", actual'
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can
