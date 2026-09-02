@@ -108,6 +108,32 @@ Il n'est ni une pièce, ni une CAO de définition. Le niveau vérifié du moteur
 reste F0 tant que l'identité, l'échelle et les datums n'ont pas été confirmés
 sur du matériel physique identifié.
 
+## Criblage de culasse 2V/4V F29
+
+F29 publie une étude de concept indépendante du scan : quatre solides de
+culasse issus d'une feuille blanche couvrent les scénarios 5,0 l atmosphérique
+et 5,374 l turbo, chacun en architecture 2V et 4V. Les STEP canonisés, les STL,
+les figures et les rapports SHA-256 sont consultables dans le
+[paquet de preuves F29](evidence/f29/README.md). La méthode, les équations de
+criblage, les choix provisoires de matière et de distribution ainsi que les
+limites sont détaillés dans la
+[documentation F29](../../docs/917_CLEAN_SHEET_HEAD_F29.md).
+
+```bash
+make 917-clean-sheet-head-f29
+make 917-clean-sheet-head-f29-check
+make 917-clean-sheet-head-f29-figures
+```
+
+La branche 4V obtient le meilleur score de criblage dans les deux scénarios,
+avec une aire effective moyenne estimée supérieure, mais aussi des pénalités de
+masse de soupapes, de contrainte de plaque et de température. Ces résultats
+sont des indicateurs analytiques simplifiés : ils ne constituent ni un
+rendement moteur, ni une CFD, ni une FEA, ni une corrélation banc. Le
+[rapport consolidé](evidence/f29/validation-report.json) maintient donc à
+`false` la validation du jumeau, la fabrication et le démarrage moteur. Les
+deux images publiées sont des aperçus CAD, pas des rendus Omniverse.
+
 ## Assemblage fonctionnel complet F1
 
 Une nomenclature paramétrique distincte du scan reconstruit les familles
