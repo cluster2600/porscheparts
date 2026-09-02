@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "milestone": "F25",
+  "benchmark_id": "openfoam-planar-poiseuille-tool-verification-f25",
+  "title": "Vérification analytique OpenFOAM par écoulement de Poiseuille plan",
+  "scope": {
+    "kind": "synthetic_tool_solver_verification",
+    "geometry": "parallel_plate_channel",
+    "source_data": "synthetic_only",
+    "porsche_asset": null,
+    "engine_variant": null,
+    "excluded_workflows": [
+      "porsche-917-classical-solver-cases-f13",
+      "porsche-917-physicsnemo-dataset-f14"
+    ]
+  },
+  "container": {
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "platform": "linux/amd64",
+    "network": "none",
+    "requested_command": "simpleFoam",
+    "resolved_solver": "foamRun -solver incompressibleFluid",
+    "openfoam_major": 13,
+    "confinement": {
+      "read_only_root_filesystem": true,
+      "case_mount_scope": "single_case_read_write",
+      "run_as_host_uid_gid": true,
+      "home": "/tmp",
+      "tmpfs": "/tmp:rw,noexec,nosuid,nodev,size=64m",
+      "pids_limit": 128,
+      "capabilities_dropped": "ALL",
+      "no_new_privileges": true
+    }
+  },
+  "physics": {
+    "channel_length_m": 0.1,
+    "channel_height_m": 0.02,
+    "channel_depth_m": 0.01,
+    "kinematic_viscosity_m2_s": 0.00001,
+    "body_force_x_m_s2": 0.01,
+    "density_reference_kg_m3": 1.2,
+    "density_semantics": "reporting_conversion_only_not_used_by_incompressible_solver",
+    "analytic_velocity": "u(y)=a_x/(2*nu)*(H^2/4-y^2)",
+    "analytic_volumetric_flow": "Q=a_x*depth*H^3/(12*nu)",
+    "expected_mean_velocity_m_s": 0.03333333333333333,
+    "expected_reynolds_height": 66.66666666666666
+  },
+  "meshes": [
+    {
+      "id": "coarse",
+      "cells_x": 1,
+      "cells_y": 8,
+      "cells_z": 1
+    },
+    {
+      "id": "medium",
+      "cells_x": 1,
+      "cells_y": 16,
+      "cells_z": 1
+    },
+    {
+      "id": "fine",
+      "cells_x": 1,
+      "cells_y": 32,
+      "cells_z": 1
+    }
+  ],
+  "repetitions": 2,
+  "decks": {
+    "root": "decks",
+    "files": [
+      "0/U",
+      "0/p",
+      "constant/fvModels",
+      "constant/momentumTransport",
+      "constant/physicalProperties",
+      "system/blockMeshDict",
+      "system/controlDict",
+      "system/fvSchemes",
+      "system/fvSolution"
+    ]
+  },
+  "acceptance": {
+    "mesh_check_required": true,
+    "solver_completion_required": true,
+    "ux_linear_solver_final_residual_max": 1e-8,
+    "p_linear_solver_final_residual_max": 1e-12,
+    "cyclic_pair_antisymmetry_relative_max": 1e-10,
+    "continuity_local_sum_max": 1e-12,
+    "fine_mass_flow_relative_error_max": 0.002,
+    "fine_l2_relative_max": 0.002,
+    "fine_linf_relative_max": 0.002,
+    "transverse_velocity_abs_max_m_s": 1e-12,
+    "observed_order_min": 1.8,
+    "observed_order_max": 2.2,
+    "repeatability_canonical_metrics_identical_required": true
+  },
+  "evidence_policy": {
+    "tracked_content": "contract_generator_input_decks_runner_documentation_tests_only",
+    "generated_output_root": "work/openfoam-poiseuille-f25",
+    "field_outputs_tracked": false,
+    "detailed_solver_outputs_local_only": true,
+    "sanitized_contract_omits": [
+      "host_name",
+      "user_name",
+      "absolute_local_paths",
+      "credentials",
+      "tokens",
+      "vehicle_identifiers"
+    ]
+  },
+  "gates": {
+    "f13_case_promotion_authorized": false,
+    "physicsnemo_sample_authorized": false,
+    "engine_simulation_claim_authorized": false,
+    "engine_design_lock_authorized": false,
+    "fabrication_authorized": false,
+    "vehicle_use_authorized": false
+  }
+}

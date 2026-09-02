@@ -1,0 +1,23 @@
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      fvModels;
+}
+
+momentumSource
+{
+    type            semiImplicitSource;
+    cellZone        all;
+    volumeMode      specific;
+
+    sources
+    {
+        U
+        {
+            explicit    (@@BODY_FORCE_X@@ 0 0);
+            implicit    0;
+        }
+    }
+}
