@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+"""Push the current 3dprinting993 branch and dispatch approved workflows.
+
+The GitHub credential is read through the existing, narrowly scoped OpenBao
+AppRole.  It is never printed, written to disk, embedded in a URL, or passed as
+a command-line argument.
+"""
+
+from __future__ import annotations
+
+import base64
+import json
+import os
+import socket
+import ssl
+import stat
+import subprocess
+import sys
+import urllib.error
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+
+BAO_ADDR = "http://127.0.0.1:8200"
+BAO_AUTH_PATH = "auth/codex-deploy/login"
+CONFIG_DIR = Path.home() / ".config" / "openbao-ghcr-reader"
+ROLE_ID_FILE = CONFIG_DIR / "role_id"
+SECRET_ID_FILE = CONFIG_DIR / "secret_id"
+SECRET_PATH_FILE = CONFIG_DIR / "secret_path"
+ALLOWED_SECRET_PATH = "secrets/data/github"
+GITHUB_API = "https://api.github.com"
+REPOSITORY = "cluster2600/3dprinting993"
+REMOTE_URL = f"https://github.com/{REPOSITORY}.git"
+ALLOWED_WORKFLOWS = {
+    "917-engine-wave-f40-vast-image.yml",
+    "917-component-factory-f41-vast-image.yml",
+}
+TLS_CA_FILE = Path("/etc/ssl/cert.pem")
+MAX_RESPONSE_BYTES = 4 * 1024 * 1024
+TIMEOUT_SECONDS = 30
+
+
+class SafeError(Exception):
+    """An error safe to show without credential material."""
+
+
+def validate_private_file(path: Path) -> None:
+    try:
+        info = path.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing bootstrap file: {path}") from exc
+    if info.st_uid != os.getuid() or not stat.S_ISREG(info.st_mode):
+        raise SafeError(f"bootstrap file has unsafe ownership or type: {path}")
+    if stat.S_IMODE(info.st_mode) != 0o600 or not 0 < info.st_size <= 4096:
+        raise SafeError(f"bootstrap file has unsafe permissions or size: {path}")
+
+
+def validate_bootstrap_metadata() -> None:
+    try:
+        info = CONFIG_DIR.stat()
+    except FileNotFoundError as exc:
+        raise SafeError(f"missing bootstrap directory: {CONFIG_DIR}") from exc
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISDIR(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o700
+    ):
+        raise SafeError(
+            f"bootstrap directory must be owned by this user with mode 0700: {CONFIG_DIR}"
+        )
+    for path in (ROLE_ID_FILE, SECRET_ID_FILE, SECRET_PATH_FILE):
+        validate_private_file(path)
+
+
+def read_bootstrap_value(path: Path) -> str:
+    value = path.read_text(encoding="utf-8").strip()
+    if not value or len(value) > 4096:
+        raise SafeError(f"bootstrap value is invalid: {path}")
+    return value
+
+
+def decode_json(body: bytes, source: str) -> dict:
+    if len(body) > MAX_RESPONSE_BYTES:
+        raise SafeError(f"{source} returned an unexpectedly large response")
+    try:
+        value = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise SafeError(f"{source} returned invalid JSON") from exc
+    if not isinstance(value, dict):
+        raise SafeError(f"{source} returned invalid JSON")
+    return value
+
+
+def request(
+    url: str,
+    *,
+    method: str = "GET",
+    payload: dict | None = None,
+    headers: dict[str, str] | None = None,
+    source: str,
+) -> tuple[int, dict]:
+    data = None if payload is None else json.dumps(payload, separators=(",", ":")).encode("utf-8")
+    request_headers = {"Accept": "application/vnd.github+json", "Content-Type": "application/json"}
+    request_headers.update(headers or {})
+    web_request = urllib.request.Request(url, data=data, headers=request_headers, method=method)
+    if not TLS_CA_FILE.is_file():
+        raise SafeError(f"missing system CA bundle: {TLS_CA_FILE}")
+    context = ssl.create_default_context(cafile=str(TLS_CA_FILE))
+    try:
+        with urllib.request.urlopen(web_request, timeout=TIMEOUT_SECONDS, context=context) as response:
+            body = response.read(MAX_RESPONSE_BYTES + 1)
+            status = response.status
+    except urllib.error.HTTPError as exc:
+        raise SafeError(f"{source} rejected the request with HTTP {exc.code}") from None
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        raise SafeError(f"{source} is unavailable") from exc
+    return status, decode_json(body, source) if body else {}
+
+
+def check_local_service() -> None:
+    try:
+        with socket.create_connection(("127.0.0.1", 8200), timeout=2):
+            pass
+    except OSError as exc:
+        raise SafeError("OpenBao is not listening on 127.0.0.1:8200") from exc
+
+
+def login() -> str:
+    validate_bootstrap_metadata()
+    check_local_service()
+    _, result = request(
+        f"{BAO_ADDR}/v1/{BAO_AUTH_PATH}",
+        method="POST",
+        payload={
+            "role_id": read_bootstrap_value(ROLE_ID_FILE),
+            "secret_id": read_bootstrap_value(SECRET_ID_FILE),
+        },
+        source="OpenBao",
+    )
+    token = result.get("auth", {}).get("client_token")
+    if not isinstance(token, str) or not token:
+        raise SafeError("OpenBao AppRole login did not return a session token")
+    return token
+
+
+def revoke_token(token: str) -> None:
+    try:
+        request(
+            f"{BAO_ADDR}/v1/auth/token/revoke-self",
+            method="POST",
+            payload={},
+            headers={"X-Vault-Token": token},
+            source="OpenBao",
+        )
+    except SafeError:
+        pass
+
+
+def read_github_token(session_token: str) -> str:
+    if read_bootstrap_value(SECRET_PATH_FILE) != ALLOWED_SECRET_PATH:
+        raise SafeError("OpenBao GitHub path is outside the fixed allowlist")
+    _, result = request(
+        f"{BAO_ADDR}/v1/{ALLOWED_SECRET_PATH}",
+        headers={"X-Vault-Token": session_token},
+        source="OpenBao",
+    )
+    payload = result.get("data", {}).get("data")
+    if not isinstance(payload, dict):
+        raise SafeError("OpenBao GitHub path is missing or empty")
+    token = next(
+        (
+            payload.get(field)
+            for field in ("GITHUB_TOKEN", "GH_TOKEN", "github_token", "token")
+            if payload.get(field)
+        ),
+        None,
+    )
+    if (
+        not isinstance(token, str)
+        or not 20 <= len(token) <= 4096
+        or any(character.isspace() for character in token)
+    ):
+        raise SafeError("OpenBao GitHub payload is missing a supported token field")
+    return token
+
+
+def github_request(
+    token: str,
+    path: str,
+    *,
+    method: str = "GET",
+    payload: dict | None = None,
+) -> tuple[int, dict]:
+    if not path.startswith("/") or ".." in path:
+        raise SafeError("GitHub API path is invalid")
+    return request(
+        f"{GITHUB_API}{path}",
+        method=method,
+        payload=payload,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "X-GitHub-Api-Version": "2022-11-28",
+            "User-Agent": "3dprinting993-openbao-github",
+        },
+        source="GitHub",
+    )
+
+
+def repository_auth_check(token: str) -> None:
+    _, repository = github_request(token, f"/repos/{REPOSITORY}")
+    if repository.get("full_name") != REPOSITORY:
+        raise SafeError("GitHub returned an unexpected repository")
+    permissions = repository.get("permissions")
+    if not isinstance(permissions, dict) or permissions.get("push") is not True:
+        raise SafeError("GitHub credential does not have push permission for the fixed repository")
+
+
+def git_stdout(arguments: list[str]) -> str:
+    completed = subprocess.run(
+        ["git", *arguments],
+        check=False,
+        capture_output=True,
+        text=True,
+        env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
+    )
+    if completed.returncode != 0:
+        raise SafeError(f"local git metadata check failed: {arguments[0]}")
+    return completed.stdout.strip()
+
+
+def current_branch_contract() -> str:
+    remote = git_stdout(["remote", "get-url", "origin"])
+    if remote != REMOTE_URL:
+        raise SafeError("origin is not the fixed 3dprinting993 HTTPS repository")
+    branch = git_stdout(["branch", "--show-current"])
+    if not branch.startswith("codex/") or len(branch) > 120:
+        raise SafeError("only a named codex/* branch may be pushed")
+    if any(character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._/-" for character in branch):
+        raise SafeError("current branch contains unsupported characters")
+    status = git_stdout(["status", "--porcelain"])
+    if status:
+        raise SafeError("worktree must be clean before an authenticated push")
+    return branch
+
+
+def push_current(token: str) -> None:
+    branch = current_branch_contract()
+    basic = base64.b64encode(f"x-access-token:{token}".encode("utf-8")).decode("ascii")
+    environment = {
+        **os.environ,
+        "GIT_TERMINAL_PROMPT": "0",
+        "GIT_CONFIG_COUNT": "2",
+        "GIT_CONFIG_KEY_0": "credential.helper",
+        "GIT_CONFIG_VALUE_0": "",
+        "GIT_CONFIG_KEY_1": "http.https://github.com/.extraheader",
+        "GIT_CONFIG_VALUE_1": f"Authorization: Basic {basic}",
+    }
+    completed = subprocess.run(
+        ["git", "push", "--porcelain", "origin", f"HEAD:refs/heads/{branch}"],
+        check=False,
+        capture_output=True,
+        text=True,
+        env=environment,
+    )
+    # Defensive redaction even though Git never receives a credential-bearing URL.
+    combined = f"{completed.stdout}\n{completed.stderr}".replace(token, "[REDACTED]").replace(basic, "[REDACTED]")
+    if completed.returncode != 0:
+        raise SafeError("GitHub push failed; diagnostics withheld")
+    if "[rejected]" in combined or "error:" in combined.lower():
+        raise SafeError("GitHub did not accept the fixed branch update")
+    print(f"GitHub push OK: {REPOSITORY} {branch}")
+
+
+def validate_workflow(value: str) -> str:
+    if value not in ALLOWED_WORKFLOWS:
+        raise SafeError("workflow is outside the fixed allowlist")
+    return value
+
+
+def validate_ref(value: str) -> str:
+    if not value.startswith("codex/") or not 1 <= len(value) <= 120:
+        raise SafeError("workflow ref must be a codex/* branch")
+    if any(character not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._/-" for character in value):
+        raise SafeError("workflow ref contains unsupported characters")
+    return value
+
+
+def dispatch_workflow(token: str, workflow: str, ref: str) -> None:
+    workflow = validate_workflow(workflow)
+    ref = validate_ref(ref)
+    status, body = github_request(
+        token,
+        f"/repos/{REPOSITORY}/actions/workflows/{workflow}/dispatches",
+        method="POST",
+        payload={"ref": ref},
+    )
+    if status != 204 or body:
+        raise SafeError("GitHub workflow dispatch did not return the expected acknowledgement")
+    print(f"GitHub workflow dispatch accepted: {workflow} on {ref}")
+
+
+def list_workflow_runs(token: str, workflow: str, ref: str) -> None:
+    workflow = validate_workflow(workflow)
+    ref = validate_ref(ref)
+    query = urllib.parse.urlencode(
+        {"branch": ref, "event": "workflow_dispatch", "per_page": 10}
+    )
+    _, result = github_request(
+        token,
+        f"/repos/{REPOSITORY}/actions/workflows/{workflow}/runs?{query}",
+    )
+    raw_runs = result.get("workflow_runs")
+    if not isinstance(raw_runs, list):
+        raise SafeError("GitHub workflow run list is invalid")
+    safe_runs = []
+    for run in raw_runs:
+        if not isinstance(run, dict):
+            raise SafeError("GitHub workflow run metadata is invalid")
+        safe_runs.append(
+            {
+                "id": run.get("id"),
+                "status": run.get("status"),
+                "conclusion": run.get("conclusion"),
+                "head_branch": run.get("head_branch"),
+                "head_sha": run.get("head_sha"),
+                "html_url": run.get("html_url"),
+                "created_at": run.get("created_at"),
+                "updated_at": run.get("updated_at"),
+            }
+        )
+    print(json.dumps(safe_runs, indent=2, sort_keys=True))
+
+
+def usage() -> str:
+    workflows = "|".join(sorted(ALLOWED_WORKFLOWS))
+    return (
+        "usage: openbao-github --check|--auth-check|push-current|"
+        f"dispatch <{workflows}> <codex/ref>|runs <workflow> <codex/ref>"
+    )
+
+
+def main() -> int:
+    operation = sys.argv[1:]
+    try:
+        validate_bootstrap_metadata()
+        if operation == ["--check"]:
+            if read_bootstrap_value(SECRET_PATH_FILE) != ALLOWED_SECRET_PATH:
+                raise SafeError("OpenBao GitHub path is outside the fixed allowlist")
+            print("OpenBao GitHub wrapper check OK")
+            return 0
+        session_token = login()
+        try:
+            token = read_github_token(session_token)
+            if operation == ["--auth-check"]:
+                repository_auth_check(token)
+                print(f"GitHub push access OK for {REPOSITORY}")
+                return 0
+            if operation == ["push-current"]:
+                repository_auth_check(token)
+                push_current(token)
+                return 0
+            if len(operation) == 3 and operation[0] == "dispatch":
+                repository_auth_check(token)
+                dispatch_workflow(token, operation[1], operation[2])
+                return 0
+            if len(operation) == 3 and operation[0] == "runs":
+                repository_auth_check(token)
+                list_workflow_runs(token, operation[1], operation[2])
+                return 0
+            raise SafeError(usage())
+        finally:
+            revoke_token(session_token)
+    except SafeError as exc:
+        print(f"OpenBao GitHub error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
