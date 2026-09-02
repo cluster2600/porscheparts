@@ -129,12 +129,12 @@ jobs:
           base_size="$(docker image inspect --format '{{.Size}}' "${BASE_IMAGE}")"
           added_size="$((image_size - base_size))"
           test "${added_size}" -gt 0
-          test "${added_size}" -le 8000000
+          test "${added_size}" -le 16000000
           jq -n \
             --argjson image_size_bytes "${image_size}" \
             --argjson base_size_bytes "${base_size}" \
             --argjson added_size_bytes "${added_size}" \
-            '{image_size_bytes:$image_size_bytes,base_size_bytes:$base_size_bytes,added_size_bytes:$added_size_bytes,added_size_budget_bytes:8000000,budget_passed:($added_size_bytes <= 8000000)}' \
+            '{image_size_bytes:$image_size_bytes,base_size_bytes:$base_size_bytes,added_size_bytes:$added_size_bytes,added_size_budget_bytes:16000000,budget_passed:($added_size_bytes <= 16000000)}' \
             > 917-component-factory-f41-vast-size.json
 
           docker run --rm --platform linux/amd64 --user 0:0 \

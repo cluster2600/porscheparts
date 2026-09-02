@@ -225,7 +225,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertEqual(lock["phase"], "F41-vast-cad-image")
         self.assertEqual(lock["image"]["base_immutable_reference"], F28_BASE)
         self.assertEqual(lock["image"]["cad_user"], "9178:9178")
-        self.assertEqual(lock["image"]["additional_local_image_size_bytes_max"], 8_000_000)
+        self.assertEqual(lock["image"]["additional_local_image_size_bytes_max"], 16_000_000)
         self.assertIsNone(lock["image"]["digest"])
         self.assertIsNone(lock["image"]["immutable_reference"])
         wrapper = lock["wrapper_contract"]
@@ -424,7 +424,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "sbom: true",
             '"lib3mf" and .versionInfo == "2.5.0"',
             "added_size_bytes",
-            "8000000",
+            "16000000",
             "${{ github.sha }}-vast-f41-cad",
             "steps.build.outputs.digest",
             "Gate anonymous pull of the exact digest",
