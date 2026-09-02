@@ -1,0 +1,94 @@
+{
+  "$comment": "Contrat fail-closed F26. Il decrit le generateur de contexte topologique local sans incorporer le scan, ses coordonnees ou une decision semantique.",
+  "schema_version": "1.0.0",
+  "phase": "F26",
+  "status": "implementation_ready_public_image_not_yet_verified",
+  "claim_scope": "deterministic_local_human_review_context_generation_only",
+  "canonical_input_expectations": {
+    "f18_boundary_component_count": 944,
+    "source_mesh_sha256_required": true,
+    "f18_report_sha256_required": true,
+    "f18_component_identity_recomputed_from_mesh": true,
+    "raw_or_derived_geometry_tracked": false
+  },
+  "fixture_policy": {
+    "explicit_cli_flag_required": true,
+    "maximum_boundary_component_count": 128,
+    "synthetic_source_mode_prefix": "synthetic_",
+    "canonical_count_override_allowed": false
+  },
+  "topology_context": {
+    "incident_faces_definition": "faces incident to at least one incidence-one edge of the selected F18 boundary component",
+    "ring_1_definition": "edge-adjacent faces to incident faces, excluding incident faces",
+    "ring_2_definition": "edge-adjacent faces to ring 1, excluding incident faces and ring 1",
+    "topological_ring_count": 2,
+    "rings_must_be_disjoint": true,
+    "non_manifold_edges_accepted": false,
+    "maximum_context_faces_per_component": 2000000
+  },
+  "mesh_parser_limits": {
+    "maximum_obj_line_bytes": 4096,
+    "maximum_absolute_coordinate": 1000000000000.0,
+    "maximum_vertices": 10000000,
+    "maximum_triangles": 20000000,
+    "maximum_polygon_vertices": 64
+  },
+  "visualization": {
+    "format": "svg",
+    "canonical_orthographic_views": [
+      "scan_xy_plus_z",
+      "scan_xy_minus_z",
+      "scan_xz_plus_y",
+      "scan_yz_plus_x"
+    ],
+    "axis_semantics_confirmed": false,
+    "global_locator_required_in_every_view": true,
+    "maximum_components_per_batch": 48,
+    "maximum_svg_bytes_per_component": 268435456
+  },
+  "local_outputs": {
+    "formats": ["json", "csv", "svg"],
+    "sha256_for_every_payload_file": true,
+    "absolute_source_paths_recorded": false,
+    "contains_derived_scan_coordinates": true,
+    "git_tracking_allowed": false,
+    "overwrite_allowed": false,
+    "maximum_total_output_bytes": 8589934592,
+    "publication": "private_parent_0700_owned_by_runtime_uid_exclusive_new_directory_with_manifest_linked_last"
+  },
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-topology-context-f26",
+    "platform": "linux/amd64",
+    "gpu_required": false,
+    "root_user_allowed": false,
+    "network_required_at_runtime": false,
+    "dependencies": {
+      "python": "3.12.14",
+      "numpy": "2.2.6",
+      "trimesh": null,
+      "matplotlib": null
+    },
+    "immutable_digest": null,
+    "verification_status": "no_public_immutable_digest_not_authorized_for_canonical_scan"
+  },
+  "review_policy": {
+    "automatic_semantic_classification": false,
+    "automatic_interface_confirmation": false,
+    "initial_review_state": "undetermined",
+    "release_authority": false
+  },
+  "release_gates": {
+    "engine_identity_confirmed": false,
+    "scale_confirmed": false,
+    "units_confirmed": false,
+    "axis_semantics_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "cad_reconstruction_released": false,
+    "classical_solver_released": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_training_released": false,
+    "omniverse_simready_released": false,
+    "fabrication_released": false,
+    "engine_start_released": false
+  }
+}
