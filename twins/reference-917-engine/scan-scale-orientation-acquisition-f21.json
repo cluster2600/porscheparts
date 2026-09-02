@@ -1,0 +1,353 @@
+{
+  "$comment": "Feuille canonique F21 sans mesure ni coordonnee. Copier hors Git pour l'acquisition; le fichier suivi ne libere ni echelle, ni orientation, ni CAO.",
+  "schema_version": "1.0.0",
+  "phase": "F21",
+  "status": "acquisition_sheet_ready_scale_and_orientation_unverified",
+  "asset": {
+    "id": "porsche-917-engine-scan-scale-orientation-f21",
+    "source_scan_sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "source_scope": "external_crankcase_and_cylinder_scan_reference_only",
+    "identity_status": "unverified",
+    "native_units": "unconfirmed_OBJ_units",
+    "tracked_raw_scan": false,
+    "tracked_scan_coordinates": false,
+    "tracked_measurements": false
+  },
+  "upstream_contracts": [
+    {
+      "id": "f11_engineering_input_template",
+      "path": "twins/reference-917-engine/engineering-inputs-f11.template.json",
+      "sha256": "9d93c1443d9e81102ed722131edec44adb8fe303f2a905ec6a2794ba24bc2c8f",
+      "role": "generic_scale_input_schema"
+    },
+    {
+      "id": "f11_reengineering_contract",
+      "path": "twins/reference-917-engine/reengineering-contract-f11.json",
+      "sha256": "5760114ed81d041f4656d0d68e9eaa9818f19f9d0278ce310ddda37f63df3989",
+      "role": "canonical_scan_identity_and_generic_gate_policy"
+    },
+    {
+      "id": "f16_kinematic_interface_readiness",
+      "path": "twins/reference-917-engine/kinematic-interface-readiness-f16.json",
+      "sha256": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",
+      "role": "measurement_campaign_and_named_datum_contract"
+    },
+    {
+      "id": "f18_boundary_review",
+      "path": "twins/reference-917-engine/boundary-review-execution-evidence-f18.json",
+      "sha256": "ddeca3b21c79ebc75f9b171a93386185ac43bc4996a3fed3d1448f112a994d17",
+      "role": "current_scan_boundary_and_semantic_state"
+    },
+    {
+      "id": "f20_fia_valvetrain_flow",
+      "path": "twins/reference-917-engine/valvetrain-flow-inputs-f20.json",
+      "sha256": "4f5e1eee41711d9012f703211fa44de053dd0f266fc7f41ee001b2273c12136c",
+      "role": "documentary_facts_without_scan_calibration_authority"
+    }
+  ],
+  "f11_compatibility": {
+    "adapter_target": "source_identity_and_scale",
+    "identity_report": null,
+    "mm_per_obj_unit": null,
+    "maximum_relative_spread": 0.005,
+    "required_control_count": 3,
+    "control_id_mapping": [
+      {
+        "f21_slot_id": "SC-01",
+        "f11_feature_id": "control_A"
+      },
+      {
+        "f21_slot_id": "SC-02",
+        "f11_feature_id": "control_B"
+      },
+      {
+        "f21_slot_id": "SC-03",
+        "f11_feature_id": "control_C"
+      }
+    ],
+    "evidence_claim_pattern": "source_identity_and_scale.scale_controls.{f11_feature_id}",
+    "ready": false
+  },
+  "identity_evidence_slot": {
+    "id": "ID-01",
+    "f11_claim_id": "source_identity_and_scale.identity_report",
+    "f11_evidence_kind": "identity_metrology_report",
+    "required": true,
+    "status": "missing",
+    "physical_asset_or_part_set_id": null,
+    "variant_id": null,
+    "documentary_trace_ref": null,
+    "provenance": {
+      "evidence_manifest_ref": null,
+      "evidence_artifact_sha256": null,
+      "instrument_id": null,
+      "calibration_certificate_ref": null,
+      "measurement_method": null,
+      "measurement_temperature_c": null,
+      "operator_or_lab": null,
+      "review_status": "missing"
+    }
+  },
+  "acquisition_record_policy": {
+    "working_record_location": "work/917-engine/metrology/f21/",
+    "working_record_must_remain_outside_git": true,
+    "exact_scan_hash_required": true,
+    "exact_physical_asset_identity_required": true,
+    "three_distinct_physical_features_required": true,
+    "three_distinct_scan_regions_required": true,
+    "same_feature_scan_to_physical_correspondence_required": true,
+    "traceable_instrument_and_calibration_required": true,
+    "uncertainty_required_per_control": true,
+    "tracked_contract_may_contain_coordinates": false,
+    "tracked_contract_may_contain_measurements": false
+  },
+  "scale_control_slots": [
+    {
+      "id": "SC-01",
+      "f11_feature_id": "control_A",
+      "f11_evidence_kind": "scale_control_metrology_report",
+      "required": true,
+      "status": "missing",
+      "independence_requirement": "distinct_physical_feature_and_distinct_scan_region",
+      "calibration_basis_required": "physical_measurement_of_the_same_feature_observable_on_the_exact_scan",
+      "physical_feature_id": null,
+      "scan_region_token": null,
+      "observable_on_exact_scan": null,
+      "same_feature_measured_physically": null,
+      "scan_distance_obj_units": null,
+      "physical_distance_mm": null,
+      "combined_standard_uncertainty_mm": null,
+      "documentary_source_refs": [],
+      "provenance": {
+        "evidence_manifest_ref": null,
+        "evidence_artifact_sha256": null,
+        "instrument_id": null,
+        "calibration_certificate_ref": null,
+        "measurement_method": null,
+        "measurement_temperature_c": null,
+        "operator_or_lab": null,
+        "review_status": "missing"
+      }
+    },
+    {
+      "id": "SC-02",
+      "f11_feature_id": "control_B",
+      "f11_evidence_kind": "scale_control_metrology_report",
+      "required": true,
+      "status": "missing",
+      "independence_requirement": "distinct_physical_feature_and_distinct_scan_region",
+      "calibration_basis_required": "physical_measurement_of_the_same_feature_observable_on_the_exact_scan",
+      "physical_feature_id": null,
+      "scan_region_token": null,
+      "observable_on_exact_scan": null,
+      "same_feature_measured_physically": null,
+      "scan_distance_obj_units": null,
+      "physical_distance_mm": null,
+      "combined_standard_uncertainty_mm": null,
+      "documentary_source_refs": [],
+      "provenance": {
+        "evidence_manifest_ref": null,
+        "evidence_artifact_sha256": null,
+        "instrument_id": null,
+        "calibration_certificate_ref": null,
+        "measurement_method": null,
+        "measurement_temperature_c": null,
+        "operator_or_lab": null,
+        "review_status": "missing"
+      }
+    },
+    {
+      "id": "SC-03",
+      "f11_feature_id": "control_C",
+      "f11_evidence_kind": "scale_control_metrology_report",
+      "required": true,
+      "status": "missing",
+      "independence_requirement": "distinct_physical_feature_and_distinct_scan_region",
+      "calibration_basis_required": "physical_measurement_of_the_same_feature_observable_on_the_exact_scan",
+      "physical_feature_id": null,
+      "scan_region_token": null,
+      "observable_on_exact_scan": null,
+      "same_feature_measured_physically": null,
+      "scan_distance_obj_units": null,
+      "physical_distance_mm": null,
+      "combined_standard_uncertainty_mm": null,
+      "documentary_source_refs": [],
+      "provenance": {
+        "evidence_manifest_ref": null,
+        "evidence_artifact_sha256": null,
+        "instrument_id": null,
+        "calibration_certificate_ref": null,
+        "measurement_method": null,
+        "measurement_temperature_c": null,
+        "operator_or_lab": null,
+        "review_status": "missing"
+      }
+    }
+  ],
+  "orientation_datum_slots": [
+    {
+      "id": "OR-PRIMARY-AXIS",
+      "f16_datum_ref": "crankshaft_axis",
+      "role": "primary_axis",
+      "required_observation": "axe_physique identifie sur la piece ou cible enregistree de facon tracable",
+      "required": true,
+      "status": "missing",
+      "observed_on_exact_scan": null,
+      "physical_registration_verified": null,
+      "scan_region_token": null,
+      "semantic_direction_rule": null,
+      "angular_uncertainty_deg": null,
+      "documentary_source_refs": [],
+      "provenance": {
+        "evidence_manifest_ref": null,
+        "evidence_artifact_sha256": null,
+        "instrument_id": null,
+        "calibration_certificate_ref": null,
+        "measurement_method": null,
+        "measurement_temperature_c": null,
+        "operator_or_lab": null,
+        "review_status": "missing"
+      }
+    },
+    {
+      "id": "OR-SECONDARY-PLANE",
+      "f16_datum_ref": "crankcase_split_plane",
+      "role": "secondary_plane",
+      "required_observation": "plan de joint du carter identifie physiquement et dans le scan",
+      "required": true,
+      "status": "missing",
+      "observed_on_exact_scan": null,
+      "physical_registration_verified": null,
+      "scan_region_token": null,
+      "semantic_direction_rule": null,
+      "angular_uncertainty_deg": null,
+      "documentary_source_refs": [],
+      "provenance": {
+        "evidence_manifest_ref": null,
+        "evidence_artifact_sha256": null,
+        "instrument_id": null,
+        "calibration_certificate_ref": null,
+        "measurement_method": null,
+        "measurement_temperature_c": null,
+        "operator_or_lab": null,
+        "review_status": "missing"
+      }
+    },
+    {
+      "id": "OR-HANDEDNESS",
+      "f16_datum_ref": "bank_positive_deck_plane",
+      "role": "handedness_reference",
+      "required_observation": "repere asymetrique mesurable distinguant sans ambiguite la banque positive",
+      "required": true,
+      "status": "missing",
+      "observed_on_exact_scan": null,
+      "physical_registration_verified": null,
+      "scan_region_token": null,
+      "semantic_direction_rule": null,
+      "angular_uncertainty_deg": null,
+      "documentary_source_refs": [],
+      "provenance": {
+        "evidence_manifest_ref": null,
+        "evidence_artifact_sha256": null,
+        "instrument_id": null,
+        "calibration_certificate_ref": null,
+        "measurement_method": null,
+        "measurement_temperature_c": null,
+        "operator_or_lab": null,
+        "review_status": "missing"
+      }
+    }
+  ],
+  "orientation_policy": {
+    "required_datum_count": 3,
+    "primary_axis_plus_secondary_plane_plus_handedness_required": true,
+    "render_view_or_filename_cannot_define_orientation": true,
+    "documentary_engine_layout_cannot_define_scan_orientation": true,
+    "numeric_frame_is_local_evidence_only_until_reviewed": true,
+    "orientation_ready": false
+  },
+  "documentary_dimension_exclusion": {
+    "source_id": "SRC-FIA-917-HOMOLOGATION-250",
+    "source_role": "documentary_engine_facts_only",
+    "documentary_source_has_scan_scale_authority": false,
+    "documentary_source_has_scan_orientation_authority": false,
+    "dimension_refs_without_same_feature_metrology_prohibited_for_scan_calibration": [
+      "FACT-4907-BORE",
+      "FACT-4907-STROKE",
+      "FACT-45-PISTON-COMPRESSION-HEIGHT",
+      "FACT-45-CRANKPIN-BEARING-DIAMETER",
+      "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
+      "F20-INTAKE-VALVE-OUTER-DIAMETER",
+      "F20-EXHAUST-VALVE-OUTER-DIAMETER",
+      "F20-INTAKE-PORT-DIAMETER",
+      "F20-INTAKE-VALVE-MAX-LIFT",
+      "F20-EXHAUST-VALVE-MAX-LIFT",
+      "F20-INTAKE-COLD-CLEARANCE",
+      "F20-EXHAUST-COLD-CLEARANCE"
+    ],
+    "other_documentary_refs_without_scan_calibration_authority": [
+      "FACT-4907-DISPLACEMENT",
+      "FACT-45-CRANKSHAFT-MASS",
+      "FACT-45-CONNECTING-ROD-MASS",
+      "FACT-45-PISTON-GROUP-MASS",
+      "FACT-45-CRANKSHAFT-CONSTRUCTION",
+      "FACT-4907-CRANKSHAFT-CONSTRUCTION",
+      "F20-CAMSHAFT-COUNT",
+      "F20-CAMSHAFT-ARRANGEMENT",
+      "F20-CAMSHAFT-DRIVE",
+      "F20-VALVE-ACTUATION",
+      "F20-INTAKE-OPENS-BTDC",
+      "F20-INTAKE-CLOSES-ABDC",
+      "F20-EXHAUST-OPENS-BBDC",
+      "F20-EXHAUST-CLOSES-ATDC"
+    ],
+    "rule": "A documentary dimension cannot calibrate the scan. F21 accepts only a physical measurement of the same feature directly observable on the exact scan, with traceable provenance and uncertainty.",
+    "exception_without_physical_metrology": false
+  },
+  "current_readiness": {
+    "required_scale_control_count": 3,
+    "completed_scale_control_count": 0,
+    "required_orientation_datum_count": 3,
+    "completed_orientation_datum_count": 0,
+    "f18_confirmed_interface_count": 0,
+    "identity_ready": false,
+    "f11_adapter_ready": false,
+    "scale_ready": false,
+    "orientation_ready": false,
+    "cad_input_ready": false
+  },
+  "release_gates": {
+    "scan_identity_verified": false,
+    "three_independent_scale_controls_verified": false,
+    "same_feature_physical_correspondence_verified": false,
+    "traceable_provenance_verified": false,
+    "uncertainty_budget_accepted": false,
+    "scan_scale_verified": false,
+    "orientation_primary_axis_verified": false,
+    "orientation_secondary_plane_verified": false,
+    "orientation_handedness_verified": false,
+    "scan_orientation_verified": false,
+    "f11_source_identity_and_scale_adapter_ready": false,
+    "scan_variant_binding_authorized": false,
+    "cad_reconstruction_authorized": false,
+    "classical_solver_authorized": false,
+    "physicsnemo_dataset_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "omniverse_simready_authorized": false,
+    "fabrication_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "prohibited_use": [
+    "treat_OBJ_native_units_as_mm",
+    "calibrate_scan_from_FIA_or_other_documentary_dimensions",
+    "calibrate_from_a_feature_not_observable_on_the_exact_scan",
+    "reuse_one_feature_or_one_scan_region_as_three_independent_controls",
+    "define_orientation_from_render_view_filename_or_vehicle_layout",
+    "bind_scan_to_an_engine_variant_before_identity_metrology",
+    "commit_raw_scan_coordinates_or_measurement_evidence",
+    "author_fit_critical_CAD_from_this_empty_sheet",
+    "release_classical_solver_or_PhysicsNeMo_data",
+    "release_Omniverse_SimReady_fabrication_printing_or_engine_start"
+  ]
+}
