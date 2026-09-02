@@ -779,9 +779,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertEqual(
             self.wrapper.COMPONENT_FACTORY_F41_IMAGE,
             "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
-            "dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
+            "66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
         )
-        self.assertEqual(
+        self.assertNotEqual(
             self.wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
             self.wrapper.COMPONENT_FACTORY_F41_IMAGE,
         )
@@ -804,10 +804,15 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def test_component_factory_f41_revoked_digest_blocks_before_paid_side_effects(self):
         production_wrapper = load_wrapper()
         self.assertIn(
-            production_wrapper.COMPONENT_FACTORY_F41_IMAGE,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )
         with (
+            mock.patch.object(
+                production_wrapper,
+                "COMPONENT_FACTORY_F41_IMAGE",
+                production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
+            ),
             mock.patch.object(production_wrapper, "simready_launch_lock") as launch_lock,
             mock.patch.object(production_wrapper, "vast_request") as request,
             self.assertRaisesRegex(

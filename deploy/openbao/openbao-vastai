@@ -69,9 +69,12 @@ COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0 = "ghcr.io/cluster2600/3dprinting993-cad
 COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
     {COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0}
 )
-# Replace only this reference after the corrected image passes the real Vast
-# handshake. Until then the paid launcher rejects it via the denylist above.
-COMPONENT_FACTORY_F41_IMAGE = COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0
+# Corrected candidate published by workflow 33693806053. Its linux/amd64 build,
+# attestations, offline smokes and anonymous pull passed. This reference is
+# intentionally allowed only so the bounded launcher can perform the remaining
+# real Vast ssh_direct qualification; that handshake is not yet a physics or
+# manufacturing claim.
+COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
