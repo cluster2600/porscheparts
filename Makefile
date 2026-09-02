@@ -471,12 +471,12 @@ engine-components:
 		tests/test_917_unsteady_convergence_f40.py -v
 
 917-unsteady-convergence-f40: 917-unsteady-convergence-f40-test
-	mkdir -p $(F40_OUTPUT)
+	mkdir -p "$(abspath $(F40_OUTPUT))"
 	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
 		--network none --read-only \
 		--tmpfs /tmp:rw,exec,nosuid,nodev,size=1024m \
 		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
-		-v "$(CURDIR):/workspace:ro" -v "$(CURDIR)/$(F40_OUTPUT):/output:rw" \
+		-v "$(CURDIR):/workspace:ro" -v "$(abspath $(F40_OUTPUT)):/output:rw" \
 		--entrypoint python $(F40_WAVE_RELEASE_IMAGE) \
 		/workspace/twins/reference-917-engine/source/run_unsteady_convergence_f40.py \
 		--project-root /workspace \

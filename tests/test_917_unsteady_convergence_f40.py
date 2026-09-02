@@ -152,6 +152,15 @@ class UnsteadyConvergenceF40Tests(unittest.TestCase):
         with self.assertRaisesRegex(self.runner.F40InputError, "explicit --workers"):
             self.runner.build_report(self.contract, ROOT, execute=True, workers=None)
 
+    def test_make_target_accepts_absolute_output_directory(self) -> None:
+        makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
+        target = makefile.split("917-unsteady-convergence-f40:", 1)[1].split(
+            "917-wave-action-f39-image-test:", 1
+        )[0]
+        self.assertIn('mkdir -p "$(abspath $(F40_OUTPUT))"', target)
+        self.assertIn('-v "$(abspath $(F40_OUTPUT)):/output:rw"', target)
+        self.assertNotIn('"$(CURDIR)/$(F40_OUTPUT):/output:rw"', target)
+
     def test_mesh_rounding_is_deterministic_half_up(self) -> None:
         self.assertEqual(self.runner.half_up_scaled_cells(9, 0.5, 4), 5)
         self.assertEqual(self.runner.half_up_scaled_cells(4, 0.5, 4), 4)
