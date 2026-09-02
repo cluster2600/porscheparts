@@ -144,15 +144,46 @@ les hashes d'entrée n'ont pas changé et que la sortie est possédée par l'UID
 runtime. Enfin, un `DOCKER_CONFIG` propre effectue un pull anonyme du digest et
 relance le smoke hors ligne ; une simple inspection de manifeste ne suffit pas.
 
-**Le scan canonique ne doit pas être monté tant qu'un run vert n'a pas produit
-un digest public immuable et qu'un lock F26 n'a pas été ajouté.** À ce stade du
-jalon, `immutable_digest` reste `null` dans le contrat ; ce n'est pas une
-autorisation de calcul réel.
+## Publication immuable vérifiée
 
-## Commande canonique future, bloquée jusqu'au lock
+Le workflow de publication est vert :
+[run 33585072387](https://github.com/cluster2600/3dprinting993/actions/runs/33585072387),
+sur la révision `88d5033187d27ba47a51fb2f5f3a3230878ed6fa`. La seule
+référence exécutable autorisée est désormais le digest public immuable :
 
-Le modèle de commande suivant est documentaire. Il ne doit être utilisé
-qu'après vérification du digest et création du lock :
+```text
+ghcr.io/cluster2600/3dprinting993-topology-context-f26@sha256:41764d6d6ed935a763a6b1e07524c68961555b2724e67bbf48a2f261c35a3b10
+```
+
+Le lock F26 suivi
+[`topology-context-f26.lock.json`](../containers/topology-context-f26.lock.json)
+relit les empreintes des neuf entrées exactes de construction et de contrôle.
+Il fixe l'index OCI, son unique manifeste `linux/amd64`, le manifeste
+d'attestation lié à ce sujet, la provenance SLSA, le SBOM SPDX, le smoke hors
+ligne, le smoke des montages et le pull suivi du smoke par accès anonyme au
+digest exact. Le runtime est CPU, non-root (`9174:9174`) et ne contient aucun
+scan ni aucune sortie dérivée du scan. La provenance et le SBOM ne constituent
+pas une signature cryptographique ; ce gate reste fermé.
+
+Deux gates seulement sont vrais : `immutable_public_image_verified` et
+`linux_amd64_offline_smoke_verified`. Les fixtures synthétiques prouvent que le
+logiciel déterministe s'exécute, que les entrées restent en lecture seule et que
+la sortie privée appartient à l'UID du runtime. Elles ne prouvent pas
+l'identité du moteur, l'échelle, les interfaces, une CAO, une géométrie CAE,
+PhysicsNeMo, Omniverse, la fabrication, l'impression ou le fonctionnement du
+moteur. Tous ces gates restent explicitement faux.
+
+Le champ `image.immutable_digest` du contrat générique reste volontairement
+`null` : le contrat ne doit pas devenir une autorité de publication implicite.
+Le verrou séparé est l'unique source d'autorité pour cette image exacte.
+Le scan canonique ne doit pas être monté avec une autre référence, un tag
+mutable ou une image locale non liée à ce verrou.
+
+## Commande canonique autorisée uniquement par le verrou exact
+
+Le modèle suivant ne peut utiliser que la référence immuable du verrou. Il
+génère des preuves visuelles locales pour revue humaine ; il n'ouvre aucun gate
+physique :
 
 ```bash
 docker run --rm --platform linux/amd64 \

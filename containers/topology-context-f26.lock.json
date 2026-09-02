@@ -1,0 +1,386 @@
+{
+  "$comment": "Verrou de publication de l'image CPU F26 seulement. Il ne libere ni scan canonique, ni interface, ni CAO, ni simulation, ni fabrication, ni fonctionnement moteur.",
+  "schema_version": "1.0.0",
+  "phase": "F26",
+  "status": "immutable_public_cpu_image_verified_physical_release_blocked",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-topology-context-f26",
+    "digest": "sha256:41764d6d6ed935a763a6b1e07524c68961555b2724e67bbf48a2f261c35a3b10",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-topology-context-f26@sha256:41764d6d6ed935a763a6b1e07524c68961555b2724e67bbf48a2f261c35a3b10",
+    "created_at": "2026-09-02T02:56:31.802029564Z",
+    "index": {
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "size_bytes": 857,
+      "digest_recomputed": true,
+      "platform_manifest_count": 1,
+      "attestation_manifest_count": 1
+    },
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "user": "9174:9174",
+      "python_version": "3.12.14",
+      "numpy_version": "2.2.6",
+      "gpu_required": false,
+      "working_directory": "/workspace",
+      "default_command": [
+        "/usr/local/bin/topology-context-f26-smoke"
+      ]
+    },
+    "manifest": {
+      "digest": "sha256:71a0cff8402602473657b96fdbdd49240569afc01ff341a654f233eb974ef5b6",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 2945,
+      "config_digest": "sha256:d644bb90857470f5650e7cb9832902d70d764cb760839e09c06ef0db1ba2cb78",
+      "config_size_bytes": 11347,
+      "layer_count": 14,
+      "compressed_size_bytes": 65755004,
+      "docker_image_size_bytes": 65770153,
+      "largest_layer_digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+      "largest_layer_bytes": 28232655,
+      "layers": [
+        {
+          "digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+          "size_bytes": 28232655
+        },
+        {
+          "digest": "sha256:268fd66f673d556a271a784d33c4541102f05dde43657861a8e793eb30ef38dd",
+          "size_bytes": 3533349
+        },
+        {
+          "digest": "sha256:ec613f6df89286159c101a9b15264bc627366aaf788a9ea9c3a456ad9b9b2b3e",
+          "size_bytes": 13672032
+        },
+        {
+          "digest": "sha256:35ef2f664a5c3b1e1408a24bd668ef33b82a89a534709e1c03aac6d50012d51a",
+          "size_bytes": 249
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        },
+        {
+          "digest": "sha256:5b0ca1a5c662f9496be7e4b4b392c3deb19cdfaff4f90ad345d0b0567618e4cd",
+          "size_bytes": 232
+        },
+        {
+          "digest": "sha256:074038a2524ec9ced152c614081eb7b80a9048e9a5287c694d1b332e1ce8a83b",
+          "size_bytes": 20258568
+        },
+        {
+          "digest": "sha256:91415a89c25c0e16f2fda1baab897adc0a38428fe9f2bdcd4e444dad6a87802c",
+          "size_bytes": 1572
+        },
+        {
+          "digest": "sha256:870d26181df8f9a1fd8724bd0f0ecb3ec84857f95839464dd542fc673e92c24f",
+          "size_bytes": 8139
+        },
+        {
+          "digest": "sha256:88f792f22bfc50c9565c7a1badcaab3b2c45b9ac257d6c52bd5d93f710aa04e8",
+          "size_bytes": 14744
+        },
+        {
+          "digest": "sha256:a263539d305b5e911965bd8ff5d30bb0ce7cb4ea85202f694217f2f34df5a9ee",
+          "size_bytes": 5586
+        },
+        {
+          "digest": "sha256:8119a3c552c0392cecee38f8393638343f6e015a079e0b60c55721e0c7c43692",
+          "size_bytes": 27782
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        }
+      ]
+    },
+    "attestation_manifest": {
+      "digest": "sha256:0c5ce6d8759a2d56137c9436d9060e47d32ede3c27724fa428b68cb2b25b022d",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "artifact_type": "application/vnd.docker.attestation.manifest.v1+json",
+      "size_bytes": 1112,
+      "subject_manifest_digest": "sha256:71a0cff8402602473657b96fdbdd49240569afc01ff341a654f233eb974ef5b6",
+      "predicate_layers": [
+        {
+          "predicate_type": "https://spdx.dev/Document",
+          "digest": "sha256:9fb2fe961ba7e5938a458859e690c78d69c67e904867218ef4567cd385e9dbbe",
+          "size_bytes": 2420904
+        },
+        {
+          "predicate_type": "https://slsa.dev/provenance/v1",
+          "digest": "sha256:0a621897c494f3a9068ce1919895569ae441b62c55b9c1692254e7ed7320dca7",
+          "size_bytes": 24730
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "88d5033187d27ba47a51fb2f5f3a3230878ed6fa",
+    "runner": "ubuntu-24.04",
+    "dockerfile_frontend_digest": "sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "dependency_policy": "python_3.12.14_plus_exact_numpy_2.2.6_amd64_wheel_by_sha256",
+    "packages": {
+      "numpy": "2.2.6"
+    },
+    "inputs": [
+      {
+        "path": ".github/workflows/topology-context-f26-image.yml",
+        "role": "build_publish_digest_provenance_sbom_bind_smoke_and_anonymous_gate",
+        "sha256": "6d33e7f1613debd0f5f407323dc5a7c06c62d547ed29577615c56c7ebbda091e"
+      },
+      {
+        "path": "containers/topology-context-f26.Dockerfile",
+        "role": "image_recipe",
+        "sha256": "777742a908519aa8c467253541a1b5343603f29c8ba3702e3df329805e0bc11a"
+      },
+      {
+        "path": "containers/topology-context-f26.Dockerfile.dockerignore",
+        "role": "allow_listed_build_context",
+        "sha256": "548c0d6424a623b9ba24c48271c789edcce94a6c9a52829559cb2b5742bf99f2"
+      },
+      {
+        "path": "containers/topology-context-f26-requirements.txt",
+        "role": "hashed_numpy_amd64_wheel",
+        "sha256": "d8e5c6ecbcb9a94a7c1179c6246a8dc04e352cd1daa1a88cd283f14ac1f3957c"
+      },
+      {
+        "path": "containers/topology-context-f26-smoke.py",
+        "role": "offline_runtime_smoke",
+        "sha256": "9ce8577a96e50bfc8268d9e11372e7531cd1f46b8c3f5e46ff969534240d732f"
+      },
+      {
+        "path": "containers/topology-context-f26-bind-smoke.sh",
+        "role": "read_only_input_and_uid_owned_output_bind_smoke",
+        "sha256": "34860fbdf685d0c1d2af4dc870e832d13848a49f8daadef1d7af9804aa60c643"
+      },
+      {
+        "path": "twins/reference-917-engine/topology-context-contract-f26.json",
+        "role": "embedded_fail_closed_contract",
+        "sha256": "863a50e1ec577ed79740877292fbbf7e2ae0af73d4996afe8d067fb261445575"
+      },
+      {
+        "path": "twins/reference-917-engine/source/review_boundary_components_f18.py",
+        "role": "embedded_f18_boundary_recomputation_pipeline",
+        "sha256": "e3ba5abf667dc67246f1fd8723b10b2a2e4b6ed949b48c66e7c5d49669de4f80"
+      },
+      {
+        "path": "twins/reference-917-engine/source/build_topology_context_f26.py",
+        "role": "embedded_topology_context_pipeline",
+        "sha256": "0adb718b46a53622ce234af8547d9793f3e48fa8e98b9e78e7033b432a934b2b"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "verified_at": "2026-09-02T02:57:06Z",
+    "workflow": {
+      "id": 348051675,
+      "run_id": 33585072387,
+      "run_number": 1,
+      "job_id": 100107425482,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "88d5033187d27ba47a51fb2f5f3a3230878ed6fa",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33585072387",
+      "job_url": "https://github.com/cluster2600/3dprinting993/actions/runs/33585072387/job/100107425482",
+      "api_updated_at": "2026-09-02T02:57:06Z"
+    },
+    "evidence_artifact": {
+      "id": 9829792683,
+      "name": "topology-context-f26-published-88d5033187d27ba47a51fb2f5f3a3230878ed6fa",
+      "digest": "sha256:4e2b11175b63bf96097728ebcd082629f32347b8a6e4cb7bc8fe681b38f649d1",
+      "size_bytes": 308056,
+      "expired": false,
+      "created_at": "2026-09-02T02:56:59Z",
+      "expires_at": "2026-10-02T02:56:58Z"
+    },
+    "evidence_files": [
+      {
+        "name": "topology-context-f26-index.json",
+        "sha256": "41764d6d6ed935a763a6b1e07524c68961555b2724e67bbf48a2f261c35a3b10",
+        "size_bytes": 857
+      },
+      {
+        "name": "topology-context-f26-platform-manifest.json",
+        "sha256": "71a0cff8402602473657b96fdbdd49240569afc01ff341a654f233eb974ef5b6",
+        "size_bytes": 2945
+      },
+      {
+        "name": "topology-context-f26-attestation-manifest.json",
+        "sha256": "0c5ce6d8759a2d56137c9436d9060e47d32ede3c27724fa428b68cb2b25b022d",
+        "size_bytes": 1112
+      },
+      {
+        "name": "topology-context-f26-provenance.json",
+        "sha256": "6ff3a9b83490db61a52270595d88460f01d98a4f7bea04e0784741f6186d353d",
+        "size_bytes": 45352
+      },
+      {
+        "name": "topology-context-f26-sbom.json",
+        "sha256": "e6d7cefa49a904167b79f2c5c59cd9df3ccc7441cd2ad8cec3b5a3ea517012bf",
+        "size_bytes": 3278930
+      },
+      {
+        "name": "topology-context-f26-smoke.json",
+        "sha256": "a5d04c4e4f9cbbe6181bd35161dcde34ca92655529d3bb81ee3c16ac51e2fabc",
+        "size_bytes": 2277
+      },
+      {
+        "name": "topology-context-f26-bind-smoke.json",
+        "sha256": "6123d6894d37b6a47a03695808451b90753d42a846c4cb3f6c071650235ff673",
+        "size_bytes": 897
+      },
+      {
+        "name": "topology-context-f26-anonymous-smoke.json",
+        "sha256": "a5d04c4e4f9cbbe6181bd35161dcde34ca92655529d3bb81ee3c16ac51e2fabc",
+        "size_bytes": 2277
+      },
+      {
+        "name": "topology-context-f26-image-ref.txt",
+        "sha256": "306f3850b53103dfc939258086f83ee0902faa9aae37596f5b6931b188d2ba36",
+        "size_bytes": 127
+      }
+    ],
+    "registry_index_digest_recomputed": true,
+    "platform_manifest_digest_recomputed": true,
+    "attestation_manifest_digest_recomputed": true,
+    "published_digest_pulled": true,
+    "anonymous_exact_digest_access": true,
+    "anonymous_access_workflow_step_conclusion": "success",
+    "cryptographic_signature_verified": false,
+    "provenance": {
+      "predicate_type": "https://slsa.dev/provenance/v1",
+      "layer_digest": "sha256:0a621897c494f3a9068ce1919895569ae441b62c55b9c1692254e7ed7320dca7",
+      "layer_size_bytes": 24730,
+      "build_type": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "builder_id": "https://github.com/cluster2600/3dprinting993/actions/runs/33585072387/attempts/1",
+      "source_repository": "https://github.com/cluster2600/3dprinting993",
+      "source_revision": "88d5033187d27ba47a51fb2f5f3a3230878ed6fa",
+      "builder_platform": "linux/amd64",
+      "runner_architecture": "X64",
+      "resolved_dependency_count": 4,
+      "frontend_digest_present": true,
+      "base_image_digest_present": true,
+      "started_at": "2026-09-02T02:56:19.79634092Z",
+      "finished_at": "2026-09-02T02:56:37.364518074Z"
+    },
+    "sbom": {
+      "predicate_type": "https://spdx.dev/Document",
+      "layer_digest": "sha256:9fb2fe961ba7e5938a458859e690c78d69c67e904867218ef4567cd385e9dbbe",
+      "layer_size_bytes": 2420904,
+      "spdx_version": "SPDX-2.3",
+      "document_id": "SPDXRef-DOCUMENT",
+      "data_license": "CC0-1.0",
+      "created_at": "2026-09-02T02:56:34Z",
+      "package_count": 115,
+      "file_count": 3237,
+      "relationship_count": 3810,
+      "numpy_version": "2.2.6",
+      "tools": [
+        "syft-v1.51.0",
+        "buildkit-v0.32.2"
+      ]
+    },
+    "offline_smoke": {
+      "status": "passed_synthetic_fixture_only",
+      "claim_scope": "synthetic fixtures verify the deterministic local topology-context software path only",
+      "offline": true,
+      "platform_contract": "linux/amd64-cpu",
+      "python_version": "3.12.14",
+      "numpy_version": "2.2.6",
+      "non_root": true,
+      "gpu_required": false,
+      "kernel_interfaces": [
+        "lo"
+      ],
+      "default_external_route": false,
+      "synthetic_component_count": 2,
+      "topological_ring_count": 2,
+      "orthographic_views_per_component": 4,
+      "global_locators_per_component": 4,
+      "confirmed_interface_count": 0,
+      "payload_hashes_verified": true,
+      "deterministic_tree_byte_identical": true,
+      "rejected_existing_output": true,
+      "rejected_wrong_report_hash": true
+    },
+    "bind_mount_smoke": {
+      "status": "passed_synthetic_bind_mount_fixture_only",
+      "runtime_uid_gid": "9174:9174",
+      "input_mount_read_only": true,
+      "output_mount_read_write": true,
+      "output_parent_mode": "0700",
+      "root_filesystem_read_only": true,
+      "network_none": true,
+      "capabilities_dropped": "ALL",
+      "no_new_privileges": true,
+      "input_hashes_unchanged": true,
+      "output_owned_by_runtime_uid": true,
+      "manifest_validated": true,
+      "canonical_scan_used": false,
+      "confirmed_interface_count": 0
+    },
+    "anonymous_smoke": {
+      "status": "passed_synthetic_fixture_only",
+      "exact_digest_pulled_without_credentials": true,
+      "offline_runtime": true,
+      "non_root": true,
+      "deterministic_tree_byte_identical": true,
+      "confirmed_interface_count": 0,
+      "byte_identical_to_authenticated_smoke": true
+    }
+  },
+  "bundled_assets": {
+    "raw_scans": false,
+    "derived_scan_geometry": false,
+    "f18_reports": false,
+    "ply_files": false,
+    "real_topology_context_outputs": false,
+    "svg_files": false,
+    "datasets": false,
+    "model_weights": false,
+    "secrets": false,
+    "synthetic_fixtures_persisted_in_image": false,
+    "project_application_files": [
+      "twins/reference-917-engine/topology-context-contract-f26.json",
+      "twins/reference-917-engine/source/review_boundary_components_f18.py",
+      "twins/reference-917-engine/source/build_topology_context_f26.py"
+    ],
+    "runtime_support_files": [
+      "containers/topology-context-f26-smoke.py"
+    ]
+  },
+  "release_gates": {
+    "immutable_public_image_verified": true,
+    "linux_amd64_offline_smoke_verified": true,
+    "cryptographic_signature_verified": false,
+    "canonical_scan_execution_verified_in_published_image": false,
+    "canonical_topology_context_generated": false,
+    "human_boundary_review_completed": false,
+    "engine_identity_confirmed": false,
+    "scan_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "axis_semantics_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "geometry_repaired": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "cae_geometry_released": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "omniverse_simready_released": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_rental_verified_for_current_job": false,
+    "vast_job_allowed": false
+  }
+}
