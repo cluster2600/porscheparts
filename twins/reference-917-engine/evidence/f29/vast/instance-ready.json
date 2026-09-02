@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-09-02T05:39:26.707724+00:00",
+  "criteria": {
+    "allowed_statuses": [
+      "created",
+      "loading",
+      "running"
+    ],
+    "capability_floor_enforced": true,
+    "cost_basis": "instance show dph_total apr\u00e8s cr\u00e9ation, disque contractuel inclus",
+    "cost_cap_enforced": true,
+    "expected_gpu_name": "RTX PRO 6000 WS",
+    "expected_image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+    "expected_label": "3dprinting993-simready-local-ai",
+    "max_actual_dph": "2.50",
+    "min_cpu_cores": "24",
+    "min_cpu_ram_mb": "128000",
+    "min_disk_space_gb": "500",
+    "min_gpu_ram_mb": "80000",
+    "required_gpu_count": 1,
+    "ssh_required": true
+  },
+  "errors": [
+    "authentification SSH ou marqueur /workspace/READY indisponible avant expiration"
+  ],
+  "instance": {
+    "cpu_cores_effective": 48.0,
+    "cpu_ram_mb": 257066,
+    "disk_space_gb": 500.0,
+    "dph_total": 1.3655555555555556,
+    "gpu": "RTX PRO 6000 WS",
+    "gpu_fraction": 1.0,
+    "gpu_ram_mb": 97887,
+    "id": 49616116,
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+    "label": "3dprinting993-simready-local-ai",
+    "machine_verification": "verified",
+    "num_gpus": 1,
+    "ssh_host": "ssh5.vast.ai",
+    "ssh_port": 16116,
+    "status": "loading"
+  },
+  "passed": false,
+  "ready_checked_at": "2026-09-02T05:59:23.323536+00:00",
+  "remote_ready": false,
+  "remote_ready_marker": "/workspace/READY",
+  "schema_version": "1.0.0",
+  "ssh_authenticated": false,
+  "status": "blocked"
+}

@@ -1,0 +1,486 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F29",
+  "status": "completed_analytical_concept_screen_not_validated_digital_twin",
+  "contract": {
+    "path": "twins/reference-917-engine/clean-sheet-cylinder-head-f29.json",
+    "sha256": "5240581507befd5d627d6b830cbd943ce87d9c250b6d4653005b9a6f951bfee3"
+  },
+  "variant_count": 4,
+  "variants": [
+    {
+      "id": "type_912_5_0_na_2v",
+      "scenario_id": "type_912_5_0_na",
+      "architecture": "2v",
+      "bore_mm": 86.8,
+      "stroke_mm": 70.4,
+      "intake_count": 1,
+      "exhaust_count": 1,
+      "total_valve_count": 2,
+      "intake_diameter_mm": 41.664,
+      "exhaust_diameter_mm": 34.72,
+      "intake_maximum_lift_mm": 10.83264,
+      "exhaust_maximum_lift_mm": 9.0272,
+      "seat_ring_radius_mm": 20.832,
+      "valve_positions_xy_mm": {
+        "intake": [
+          [
+            0.0,
+            20.832
+          ]
+        ],
+        "exhaust": [
+          [
+            0.0,
+            -20.832
+          ]
+        ]
+      },
+      "minimum_seat_bridge_mm": 3.472,
+      "chamber_edge_margin_mm": 1.736,
+      "estimated_total_valve_mass_g": 61.1996,
+      "flow_screen": {
+        "intake_mean_effective_area_mm2": 553.303084,
+        "exhaust_mean_effective_area_mm2": 362.891683,
+        "intake_peak_effective_area_mm2": 726.007664,
+        "exhaust_peak_effective_area_mm2": 476.162434,
+        "intake_reference_mass_flow_kg_s": 0.111531,
+        "flow_model": "quasi_steady_fixed_pressure_drop_not_engine_volumetric_efficiency"
+      },
+      "valve_dynamics_screen": {
+        "intake": {
+          "valve_count": 1,
+          "estimated_mass_per_valve_g": 26.972253,
+          "event_time_ms": 5.62249,
+          "maximum_acceleration_m_s2": 6764.0479,
+          "gas_force_per_valve_n": 204.504593,
+          "target_open_force_per_spring_n": 432.55661,
+          "target_seat_force_per_spring_n": 194.650475,
+          "implied_spring_rate_n_mm": 21.961972,
+          "single_mass_natural_frequency_hz": 143.614133,
+          "natural_to_cam_frequency_ratio": 2.076349
+        },
+        "exhaust": {
+          "valve_count": 1,
+          "estimated_mass_per_valve_g": 34.227347,
+          "event_time_ms": 5.62249,
+          "maximum_acceleration_m_s2": 5636.706583,
+          "gas_force_per_valve_n": 568.068313,
+          "target_open_force_per_spring_n": 809.230203,
+          "target_seat_force_per_spring_n": 364.153592,
+          "implied_spring_rate_n_mm": 49.303949,
+          "single_mass_natural_frequency_hz": 191.018032,
+          "natural_to_cam_frequency_ratio": 2.761706
+        }
+      },
+      "material_screens": {
+        "AlF357_LPBF_screening": {
+          "opening_area_fraction": 0.403673,
+          "ligament_penalty_factor": 2.009536,
+          "bridge_penalty_factor": 1.046083,
+          "pressure_stress_proxy_mpa": 75.680148,
+          "pressure_deflection_proxy_mm": 0.055814,
+          "room_temperature_yield_margin_proxy": 3.303376,
+          "one_dimensional_deck_temperature_rise_k": 134.146133
+        },
+        "AlSi10Mg_LPBF_screening": {
+          "opening_area_fraction": 0.403673,
+          "ligament_penalty_factor": 2.009536,
+          "bridge_penalty_factor": 1.046083,
+          "pressure_stress_proxy_mpa": 75.680148,
+          "pressure_deflection_proxy_mm": 0.055814,
+          "room_temperature_yield_margin_proxy": 3.039106,
+          "one_dimensional_deck_temperature_rise_k": 134.146133
+        }
+      },
+      "selected_material_for_screening": "AlF357_LPBF_screening",
+      "cad_parameters": {
+        "head_height_mm": 55.0,
+        "outer_radius_mm": 61.4,
+        "deck_thickness_mm": 14.0,
+        "chamber_depth_mm": 10.0,
+        "fin_count": 5,
+        "fin_thickness_mm": 2.2,
+        "fin_overhang_mm": 4.0,
+        "fastener_hole_diameter_mm": 7.0,
+        "spark_plug_bore_diameter_mm": 10.0,
+        "port_to_valve_diameter_ratio": 0.72
+      }
+    },
+    {
+      "id": "type_912_5_0_na_4v",
+      "scenario_id": "type_912_5_0_na",
+      "architecture": "4v",
+      "bore_mm": 86.8,
+      "stroke_mm": 70.4,
+      "intake_count": 2,
+      "exhaust_count": 2,
+      "total_valve_count": 4,
+      "intake_diameter_mm": 31.248,
+      "exhaust_diameter_mm": 26.04,
+      "intake_maximum_lift_mm": 9.99936,
+      "exhaust_maximum_lift_mm": 8.3328,
+      "seat_ring_radius_mm": 26.04,
+      "valve_positions_xy_mm": {
+        "intake": [
+          [
+            -18.413061,
+            18.413061
+          ],
+          [
+            18.413061,
+            18.413061
+          ]
+        ],
+        "exhaust": [
+          [
+            -18.413061,
+            -18.413061
+          ],
+          [
+            18.413061,
+            -18.413061
+          ]
+        ]
+      },
+      "minimum_seat_bridge_mm": 5.578121,
+      "chamber_edge_margin_mm": 1.736,
+      "estimated_total_valve_mass_g": 74.189093,
+      "flow_screen": {
+        "intake_mean_effective_area_mm2": 661.762774,
+        "exhaust_mean_effective_area_mm2": 434.026511,
+        "intake_peak_effective_area_mm2": 816.758622,
+        "exhaust_peak_effective_area_mm2": 535.682738,
+        "intake_reference_mass_flow_kg_s": 0.125473,
+        "flow_model": "quasi_steady_fixed_pressure_drop_not_engine_volumetric_efficiency"
+      },
+      "valve_dynamics_screen": {
+        "intake": {
+          "valve_count": 2,
+          "estimated_mass_per_valve_g": 15.333989,
+          "event_time_ms": 5.62249,
+          "maximum_acceleration_m_s2": 6243.736523,
+          "gas_force_per_valve_n": 115.033833,
+          "target_open_force_per_spring_n": 234.710565,
+          "target_seat_force_per_spring_n": 105.619754,
+          "implied_spring_rate_n_mm": 12.909907,
+          "single_mass_natural_frequency_hz": 146.034048,
+          "natural_to_cam_frequency_ratio": 2.111336
+        },
+        "exhaust": {
+          "valve_count": 2,
+          "estimated_mass_per_valve_g": 21.760558,
+          "event_time_ms": 5.62249,
+          "maximum_acceleration_m_s2": 5203.113769,
+          "gas_force_per_valve_n": 319.538426,
+          "target_open_force_per_spring_n": 461.066748,
+          "target_seat_force_per_spring_n": 207.480037,
+          "implied_spring_rate_n_mm": 30.432353,
+          "single_mass_natural_frequency_hz": 188.214417,
+          "natural_to_cam_frequency_ratio": 2.721172
+        }
+      },
+      "material_screens": {
+        "AlF357_LPBF_screening": {
+          "opening_area_fraction": 0.452473,
+          "ligament_penalty_factor": 2.25503,
+          "bridge_penalty_factor": 1.028683,
+          "pressure_stress_proxy_mpa": 83.513014,
+          "pressure_deflection_proxy_mm": 0.062632,
+          "room_temperature_yield_margin_proxy": 2.993545,
+          "one_dimensional_deck_temperature_rise_k": 140.552533
+        },
+        "AlSi10Mg_LPBF_screening": {
+          "opening_area_fraction": 0.452473,
+          "ligament_penalty_factor": 2.25503,
+          "bridge_penalty_factor": 1.028683,
+          "pressure_stress_proxy_mpa": 83.513014,
+          "pressure_deflection_proxy_mm": 0.062632,
+          "room_temperature_yield_margin_proxy": 2.754062,
+          "one_dimensional_deck_temperature_rise_k": 140.552533
+        }
+      },
+      "selected_material_for_screening": "AlF357_LPBF_screening",
+      "cad_parameters": {
+        "head_height_mm": 55.0,
+        "outer_radius_mm": 61.4,
+        "deck_thickness_mm": 14.0,
+        "chamber_depth_mm": 10.0,
+        "fin_count": 5,
+        "fin_thickness_mm": 2.2,
+        "fin_overhang_mm": 4.0,
+        "fastener_hole_diameter_mm": 7.0,
+        "spark_plug_bore_diameter_mm": 10.0,
+        "port_to_valve_diameter_ratio": 0.72
+      }
+    },
+    {
+      "id": "917_30_1973_turbo_5374_2v",
+      "scenario_id": "917_30_1973_turbo_5374",
+      "architecture": "2v",
+      "bore_mm": 90.0,
+      "stroke_mm": 70.4,
+      "intake_count": 1,
+      "exhaust_count": 1,
+      "total_valve_count": 2,
+      "intake_diameter_mm": 43.2,
+      "exhaust_diameter_mm": 36.0,
+      "intake_maximum_lift_mm": 11.232,
+      "exhaust_maximum_lift_mm": 9.36,
+      "seat_ring_radius_mm": 21.6,
+      "valve_positions_xy_mm": {
+        "intake": [
+          [
+            0.0,
+            21.6
+          ]
+        ],
+        "exhaust": [
+          [
+            0.0,
+            -21.6
+          ]
+        ]
+      },
+      "minimum_seat_bridge_mm": 3.6,
+      "chamber_edge_margin_mm": 1.8,
+      "estimated_total_valve_mass_g": 65.983151,
+      "flow_screen": {
+        "intake_mean_effective_area_mm2": 594.851635,
+        "exhaust_mean_effective_area_mm2": 390.14189,
+        "intake_peak_effective_area_mm2": 780.524921,
+        "exhaust_peak_effective_area_mm2": 511.918351,
+        "intake_reference_mass_flow_kg_s": 0.163724,
+        "flow_model": "quasi_steady_fixed_pressure_drop_not_engine_volumetric_efficiency"
+      },
+      "valve_dynamics_screen": {
+        "intake": {
+          "valve_count": 1,
+          "estimated_mass_per_valve_g": 29.28182,
+          "event_time_ms": 5.982906,
+          "maximum_acceleration_m_s2": 6193.87561,
+          "gas_force_per_valve_n": 219.86122,
+          "target_open_force_per_spring_n": 446.571159,
+          "target_seat_force_per_spring_n": 200.957021,
+          "implied_spring_rate_n_mm": 21.867356,
+          "single_mass_natural_frequency_hz": 137.5369,
+          "natural_to_cam_frequency_ratio": 2.115952
+        },
+        "exhaust": {
+          "valve_count": 1,
+          "estimated_mass_per_valve_g": 36.701331,
+          "event_time_ms": 5.982906,
+          "maximum_acceleration_m_s2": 5161.563009,
+          "gas_force_per_valve_n": 610.725612,
+          "target_open_force_per_spring_n": 847.520903,
+          "target_seat_force_per_spring_n": 381.384406,
+          "implied_spring_rate_n_mm": 49.800908,
+          "single_mass_natural_frequency_hz": 185.39493,
+          "natural_to_cam_frequency_ratio": 2.85223
+        }
+      },
+      "material_screens": {
+        "AlF357_LPBF_screening": {
+          "opening_area_fraction": 0.402746,
+          "ligament_penalty_factor": 2.005326,
+          "bridge_penalty_factor": 1.044444,
+          "pressure_stress_proxy_mpa": 162.130976,
+          "pressure_deflection_proxy_mm": 0.128752,
+          "room_temperature_yield_margin_proxy": 1.541963,
+          "one_dimensional_deck_temperature_rise_k": 227.016533
+        },
+        "AlSi10Mg_LPBF_screening": {
+          "opening_area_fraction": 0.402746,
+          "ligament_penalty_factor": 2.005326,
+          "bridge_penalty_factor": 1.044444,
+          "pressure_stress_proxy_mpa": 162.130976,
+          "pressure_deflection_proxy_mm": 0.128752,
+          "room_temperature_yield_margin_proxy": 1.418606,
+          "one_dimensional_deck_temperature_rise_k": 227.016533
+        }
+      },
+      "selected_material_for_screening": "AlF357_LPBF_screening",
+      "cad_parameters": {
+        "head_height_mm": 55.0,
+        "outer_radius_mm": 63.0,
+        "deck_thickness_mm": 14.0,
+        "chamber_depth_mm": 10.0,
+        "fin_count": 5,
+        "fin_thickness_mm": 2.2,
+        "fin_overhang_mm": 4.0,
+        "fastener_hole_diameter_mm": 7.0,
+        "spark_plug_bore_diameter_mm": 10.0,
+        "port_to_valve_diameter_ratio": 0.72
+      }
+    },
+    {
+      "id": "917_30_1973_turbo_5374_4v",
+      "scenario_id": "917_30_1973_turbo_5374",
+      "architecture": "4v",
+      "bore_mm": 90.0,
+      "stroke_mm": 70.4,
+      "intake_count": 2,
+      "exhaust_count": 2,
+      "total_valve_count": 4,
+      "intake_diameter_mm": 32.4,
+      "exhaust_diameter_mm": 27.0,
+      "intake_maximum_lift_mm": 10.368,
+      "exhaust_maximum_lift_mm": 8.64,
+      "seat_ring_radius_mm": 27.0,
+      "valve_positions_xy_mm": {
+        "intake": [
+          [
+            -19.091883,
+            19.091883
+          ],
+          [
+            19.091883,
+            19.091883
+          ]
+        ],
+        "exhaust": [
+          [
+            -19.091883,
+            -19.091883
+          ],
+          [
+            19.091883,
+            -19.091883
+          ]
+        ]
+      },
+      "minimum_seat_bridge_mm": 5.783766,
+      "chamber_edge_margin_mm": 1.8,
+      "estimated_total_valve_mass_g": 78.225214,
+      "flow_screen": {
+        "intake_mean_effective_area_mm2": 711.455763,
+        "exhaust_mean_effective_area_mm2": 466.618363,
+        "intake_peak_effective_area_mm2": 878.090536,
+        "exhaust_peak_effective_area_mm2": 575.908145,
+        "intake_reference_mass_flow_kg_s": 0.18419,
+        "flow_model": "quasi_steady_fixed_pressure_drop_not_engine_volumetric_efficiency"
+      },
+      "valve_dynamics_screen": {
+        "intake": {
+          "valve_count": 2,
+          "estimated_mass_per_valve_g": 16.308337,
+          "event_time_ms": 5.982906,
+          "maximum_acceleration_m_s2": 5717.42364,
+          "gas_force_per_valve_n": 123.671936,
+          "target_open_force_per_spring_n": 240.224026,
+          "target_seat_force_per_spring_n": 108.100812,
+          "implied_spring_rate_n_mm": 12.743366,
+          "single_mass_natural_frequency_hz": 140.6881,
+          "natural_to_cam_frequency_ratio": 2.164432
+        },
+        "exhaust": {
+          "valve_count": 2,
+          "estimated_mass_per_valve_g": 22.80427,
+          "event_time_ms": 5.982906,
+          "maximum_acceleration_m_s2": 4764.5197,
+          "gas_force_per_valve_n": 343.533157,
+          "target_open_force_per_spring_n": 479.347397,
+          "target_seat_force_per_spring_n": 215.706329,
+          "implied_spring_rate_n_mm": 30.514013,
+          "single_mass_natural_frequency_hz": 184.103357,
+          "natural_to_cam_frequency_ratio": 2.832359
+        }
+      },
+      "material_screens": {
+        "AlF357_LPBF_screening": {
+          "opening_area_fraction": 0.451546,
+          "ligament_penalty_factor": 2.249885,
+          "bridge_penalty_factor": 1.027664,
+          "pressure_stress_proxy_mpa": 178.981059,
+          "pressure_deflection_proxy_mm": 0.144454,
+          "room_temperature_yield_margin_proxy": 1.396796,
+          "one_dimensional_deck_temperature_rise_k": 237.858133
+        },
+        "AlSi10Mg_LPBF_screening": {
+          "opening_area_fraction": 0.451546,
+          "ligament_penalty_factor": 2.249885,
+          "bridge_penalty_factor": 1.027664,
+          "pressure_stress_proxy_mpa": 178.981059,
+          "pressure_deflection_proxy_mm": 0.144454,
+          "room_temperature_yield_margin_proxy": 1.285052,
+          "one_dimensional_deck_temperature_rise_k": 237.858133
+        }
+      },
+      "selected_material_for_screening": "AlF357_LPBF_screening",
+      "cad_parameters": {
+        "head_height_mm": 55.0,
+        "outer_radius_mm": 63.0,
+        "deck_thickness_mm": 14.0,
+        "chamber_depth_mm": 10.0,
+        "fin_count": 5,
+        "fin_thickness_mm": 2.2,
+        "fin_overhang_mm": 4.0,
+        "fastener_hole_diameter_mm": 7.0,
+        "spark_plug_bore_diameter_mm": 10.0,
+        "port_to_valve_diameter_ratio": 0.72
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "scenario_id": "type_912_5_0_na",
+      "screening_scores": {
+        "2v": 0.840199,
+        "4v": 0.944405
+      },
+      "screening_lead": "4v",
+      "four_valve_change_percent": {
+        "combined_mean_effective_area": 19.60222,
+        "estimated_total_valve_mass": 21.224799,
+        "pressure_stress_proxy": 10.349961,
+        "deck_temperature_rise_proxy": 4.775687
+      },
+      "decision_scope": "weighted_concept_screen_only_not_architecture_release"
+    },
+    {
+      "scenario_id": "917_30_1973_turbo_5374",
+      "screening_scores": {
+        "2v": 0.839365,
+        "4v": 0.944334
+      },
+      "screening_lead": "4v",
+      "four_valve_change_percent": {
+        "combined_mean_effective_area": 19.60222,
+        "estimated_total_valve_mass": 18.553316,
+        "pressure_stress_proxy": 10.392883,
+        "deck_temperature_rise_proxy": 4.775687
+      },
+      "decision_scope": "weighted_concept_screen_only_not_architecture_release"
+    }
+  ],
+  "material_screening_selection": "AlF357_LPBF_screening",
+  "model_limits": [
+    "quasi_steady_flow_only_no_ports_or_combustion_cfd",
+    "closed_form_plate_proxy_only_no_3d_nonlinear_thermomechanical_fea",
+    "room_temperature_yield_only_no_hot_fatigue_or_creep",
+    "one_dimensional_conduction_only_no_cooling_air_or_conjugate_heat_transfer",
+    "sinusoidal_valve_motion_only_no_cam_profile_contact_or_surge_analysis",
+    "no_measured_917_head_fitment_interfaces",
+    "no_engine_efficiency_power_or_1600_hp_validation"
+  ],
+  "release_gates": {
+    "physical_917_head_identity_verified": false,
+    "physical_scale_and_datums_verified": false,
+    "fitment_dimensions_verified": false,
+    "cooling_and_oil_passages_dimensioned": false,
+    "valve_seat_and_guide_interfaces_dimensioned": false,
+    "classical_cfd_mesh_authorized": false,
+    "classical_fea_mesh_authorized": false,
+    "combustion_boundary_conditions_validated": false,
+    "thermal_boundary_conditions_validated": false,
+    "material_at_temperature_qualified": false,
+    "valvetrain_dynamics_validated": false,
+    "physicsnemo_dataset_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "omniverse_simready_authorized": false,
+    "instrumented_bench_correlated": false,
+    "professional_engineering_review_approved": false,
+    "metal_additive_manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}

@@ -1,9 +1,10 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
 PHYSICSNEMO_EXTRAS ?= cu12,sym,mesh-extras,model-extras
 VALVE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
+CAD_AUTHOR_F29_IMAGE ?= ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
 
 check: validate test turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
@@ -135,6 +136,38 @@ engine-components:
 		--contract twins/reference-917-engine/reengineering-contract-f11.json \
 		--inputs twins/reference-917-engine/engineering-inputs-f11.template.json \
 		--output work/917-reengineering-f11/readiness.json
+
+917-clean-sheet-head-f29:
+	python3 twins/reference-917-engine/source/run_clean_sheet_head_trade_study_f29.py \
+		--contract twins/reference-917-engine/clean-sheet-cylinder-head-f29.json \
+		--output work/917-clean-sheet-head-f29/design-study.json
+	mkdir -p work/917-clean-sheet-head-f29/cad
+	chmod 0777 work/917-clean-sheet-head-f29/cad
+	docker run --rm --platform linux/amd64 \
+		--network none --read-only --tmpfs /tmp:rw,nosuid,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		--mount type=bind,src="$(CURDIR)",dst=/workspace,readonly \
+		--mount type=bind,src="$(CURDIR)/work/917-clean-sheet-head-f29/cad",dst=/output \
+		--entrypoint python $(CAD_AUTHOR_F29_IMAGE) \
+		/workspace/twins/reference-917-engine/source/build_clean_sheet_head_cad_f29.py \
+		--contract /workspace/twins/reference-917-engine/clean-sheet-cylinder-head-f29.json \
+		--study /workspace/work/917-clean-sheet-head-f29/design-study.json \
+		--toolchain-lock /workspace/containers/cad-author-f28.lock.json \
+		--output-dir /output
+
+917-clean-sheet-head-f29-check:
+	python3 twins/reference-917-engine/source/validate_clean_sheet_head_f29.py \
+		--contract twins/reference-917-engine/clean-sheet-cylinder-head-f29.json \
+		--study work/917-clean-sheet-head-f29/design-study.json \
+		--geometry-report work/917-clean-sheet-head-f29/cad/geometry-report.json \
+		--preflight work/917-clean-sheet-head-f29/omniverse/preflight.json \
+		--handoff twins/reference-917-engine/omniverse-handoff-f29.json \
+		--output work/917-clean-sheet-head-f29/report.json
+
+917-clean-sheet-head-f29-figures:
+	python3 twins/reference-917-engine/source/render_clean_sheet_head_results_f29.py \
+		--evidence-root twins/reference-917-engine/evidence/f29 \
+		--output-dir twins/reference-917-engine/evidence/f29/figures
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

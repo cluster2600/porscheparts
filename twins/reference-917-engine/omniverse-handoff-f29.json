@@ -1,0 +1,139 @@
+{
+  "$comment": "Handoff reproductible des concepts F29 vers un poste NVIDIA. Ce manifeste ne pretend pas qu'Omniverse, PhysX, CFD ou FEA ont ete executes.",
+  "schema_version": "1.0.0",
+  "phase": "F29",
+  "status": "handoff_prepared_preflight_blocked_no_usd_or_simready_result",
+  "inputs": {
+    "contract": "twins/reference-917-engine/clean-sheet-cylinder-head-f29.json",
+    "design_study": "twins/reference-917-engine/evidence/f29/design-study.json",
+    "geometry_report": "twins/reference-917-engine/evidence/f29/cad/geometry-report.json",
+    "step_assets": [
+      "twins/reference-917-engine/evidence/f29/cad/type_912_5_0_na_2v.step",
+      "twins/reference-917-engine/evidence/f29/cad/type_912_5_0_na_4v.step",
+      "twins/reference-917-engine/evidence/f29/cad/917_30_1973_turbo_5374_2v.step",
+      "twins/reference-917-engine/evidence/f29/cad/917_30_1973_turbo_5374_4v.step"
+    ],
+    "source_units": "mm",
+    "source_up_axis": "Z"
+  },
+  "current_preflight": {
+    "report": "twins/reference-917-engine/evidence/f29/omniverse/preflight.json",
+    "markdown_report": "twins/reference-917-engine/evidence/f29/omniverse/preflight.md",
+    "status": "blocked",
+    "usd_convert_cad_ready": false,
+    "openusd_python_ready": false,
+    "asset_validator_ready": false,
+    "simready_foundation_ready": false,
+    "content_agents_ready": false,
+    "material_service_ready": false,
+    "physics_service_ready": false,
+    "ovrtx_service_ready": false
+  },
+  "remote_execution_attempt": {
+    "provider": "vast.ai",
+    "job_id": "917-head-f29-20260902T053600Z",
+    "instance_id": 49616116,
+    "offer_id": 37441316,
+    "machine_verification": "verified",
+    "gpu": "RTX PRO 6000 WS",
+    "gpu_ram_mb": 97887,
+    "listed_hourly_rate_usd": 1.3655555555555556,
+    "container_image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+    "readiness_timeout_seconds": 1200,
+    "status": "blocked_instance_never_ready_no_remote_job_executed",
+    "ssh_authenticated": false,
+    "remote_ready": false,
+    "cad_transferred": false,
+    "remote_preflight_executed": false,
+    "usd_output_count": 0,
+    "rendered_image_count": 0,
+    "simready_validated": false,
+    "simulation_validated": false,
+    "instance_destroyed": true,
+    "readiness_evidence": {
+      "path": "twins/reference-917-engine/evidence/f29/vast/instance-ready.json",
+      "sha256": "8ce930691c18989f4d0d02bfd78cf6f9cceb5c60c3ba133b295220d968345f74"
+    },
+    "destruction_evidence": {
+      "path": "twins/reference-917-engine/evidence/f29/vast/destroy-report.json",
+      "sha256": "3ad044722a49c2bf94d492cca2bb0f0d0095ac4314d20fd64a59f0e498049a70"
+    }
+  },
+  "published_evidence_bundle": {
+    "root": "twins/reference-917-engine/evidence/f29",
+    "contains_four_step_masters": true,
+    "contains_four_derived_stl_meshes": true,
+    "contains_analytical_trade_study": true,
+    "contains_geometry_roundtrip_report": true,
+    "contains_local_and_remote_preflight_evidence": true,
+    "contains_cad_preview_figures": true,
+    "contains_omniverse_render": false,
+    "contains_cfd_or_fea_result": false,
+    "preflight_local_paths_portabilized": true,
+    "raw_preflight_report_committed": false
+  },
+  "required_execution_host": {
+    "os": "linux",
+    "architecture": "amd64",
+    "nvidia_gpu": true,
+    "nvidia_driver_and_container_toolkit_verified": true,
+    "openusd_python": true,
+    "usd_convert_cad": true,
+    "asset_validator": true,
+    "simready_foundation": true,
+    "content_agents_endpoints_healthy": true
+  },
+  "planned_simready_pipeline": [
+    "rerun_cad_to_simready_preflight_and_require_status_ready",
+    "convert_each_step_to_usd_without_changing_source_units",
+    "run_minimum_usd_and_asset_validator_checks",
+    "assign_engineering_metadata_and_visual_material_placeholders",
+    "run_simready_conformance_and_package_validation",
+    "create_four_variant_comparison_stage",
+    "attach_external_solver_fields_only_after_provenance_and_correlation_checks",
+    "render_review_views_with_ovrtx"
+  ],
+  "omniverse_test_scope": {
+    "allowed_after_green_preflight": [
+      "unit_and_axis_validation",
+      "topology_and_asset_conformance",
+      "scene_composition",
+      "metadata_and_material_binding_review",
+      "clearance_and_kinematic_visualization_after_measured_interfaces_exist",
+      "visualization_of_proven_external_cfd_and_fea_fields"
+    ],
+    "not_a_structural_solver": true,
+    "not_a_combustion_or_port_flow_solver": true,
+    "physx_does_not_validate_head_stress_or_thermomechanical_fatigue": true
+  },
+  "required_external_reference_solvers": {
+    "cfd": [
+      "steady_flow_bench_rans_with_mesh_convergence",
+      "transient_port_and_valve_motion_cfd",
+      "conjugate_heat_transfer_with_air_cooling_boundary_conditions"
+    ],
+    "fea": [
+      "nonlinear_bolt_preload_and_combustion_pressure",
+      "thermomechanical_cycle_with_temperature_dependent_material_data",
+      "high_cycle_and_low_cycle_fatigue",
+      "valve_seat_contact_and_bridge_hot_spot",
+      "lpbf_build_orientation_residual_stress_and_distortion"
+    ],
+    "valvetrain": [
+      "measured_cam_profile_multibody_contact_dynamics",
+      "spring_surge_and_resonance",
+      "valve_bounce_and_seat_impact"
+    ]
+  },
+  "release_gates": {
+    "preflight_ready": false,
+    "usd_conversion_completed": false,
+    "asset_validation_passed": false,
+    "simready_conformance_passed": false,
+    "external_cfd_correlated": false,
+    "external_fea_correlated": false,
+    "omniverse_comparison_run": false,
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false
+  }
+}

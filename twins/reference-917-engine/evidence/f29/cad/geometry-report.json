@@ -1,0 +1,346 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F29",
+  "status": "four_closed_concept_solids_exported_and_step_roundtrip_verified_not_fitment_or_manufacturing_validated",
+  "toolchain": {
+    "python": "3.12.14",
+    "build123d": "0.11.1",
+    "cadquery_ocp_novtk": "7.9.3.1.1",
+    "platform_requirement": "linux/amd64_cpu",
+    "lock": {
+      "path": "containers/cad-author-f28.lock.json",
+      "sha256": "d221f6b6a2bd88361051809f2e06fa22dbe53948636fd18387f78c8111d50d8d",
+      "immutable_image_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57"
+    }
+  },
+  "inputs": {
+    "study": {
+      "path": "work/917-clean-sheet-head-f29/design-study.json",
+      "sha256": "135f9a9c692a2e4253fa33ce8c433c79423eb72154d88db999c3942ac2bb970e"
+    },
+    "contract": {
+      "path": "twins/reference-917-engine/clean-sheet-cylinder-head-f29.json",
+      "sha256": "5240581507befd5d627d6b830cbd943ce87d9c250b6d4653005b9a6f951bfee3"
+    }
+  },
+  "variant_count": 4,
+  "variants": [
+    {
+      "id": "type_912_5_0_na_2v",
+      "architecture": "2v",
+      "scenario_id": "type_912_5_0_na",
+      "source_classification": "f29_clean_sheet_design_hypotheses_not_scan_or_917_fitment_geometry",
+      "created_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 44,
+        "edge_count": 117,
+        "volume_mm3": 555006.517308,
+        "bounds_min_mm": [
+          -65.4,
+          -65.4,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          65.4,
+          65.4,
+          55.0
+        ],
+        "bounds_size_mm": [
+          130.8,
+          130.8,
+          55.0
+        ]
+      },
+      "reopened_step_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 44,
+        "edge_count": 117,
+        "volume_mm3": 555006.516809,
+        "bounds_min_mm": [
+          -65.4,
+          -65.4,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          65.4,
+          65.4,
+          55.0
+        ],
+        "bounds_size_mm": [
+          130.8,
+          130.8,
+          55.0
+        ]
+      },
+      "step_roundtrip_relative_volume_difference": 8.990884653876093e-10,
+      "step": {
+        "path": "type_912_5_0_na_2v.step",
+        "bytes": 495777,
+        "sha256": "ad4d1c6d86565a6772e511a2920fe2a4ede686546bdd5d77b9602cc1627f04c1"
+      },
+      "stl": {
+        "path": "type_912_5_0_na_2v.stl",
+        "bytes": 742484,
+        "sha256": "7909feb1e2ac16aa627227f44b67d06c51ba8da7400602a471101cc1c4bf6f18",
+        "role": "derived_visual_and_meshing_input_not_manufacturing_release"
+      }
+    },
+    {
+      "id": "type_912_5_0_na_4v",
+      "architecture": "4v",
+      "scenario_id": "type_912_5_0_na",
+      "source_classification": "f29_clean_sheet_design_hypotheses_not_scan_or_917_fitment_geometry",
+      "created_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 64,
+        "edge_count": 201,
+        "volume_mm3": 534403.807178,
+        "bounds_min_mm": [
+          -65.4,
+          -65.4,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          65.4,
+          65.4,
+          55.0
+        ],
+        "bounds_size_mm": [
+          130.8,
+          130.8,
+          55.0
+        ]
+      },
+      "reopened_step_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 64,
+        "edge_count": 201,
+        "volume_mm3": 534404.631904,
+        "bounds_min_mm": [
+          -65.4,
+          -65.4,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          65.4,
+          65.4,
+          55.0
+        ],
+        "bounds_size_mm": [
+          130.8,
+          130.8,
+          55.0
+        ]
+      },
+      "step_roundtrip_relative_volume_difference": 1.5432637059934672e-06,
+      "step": {
+        "path": "type_912_5_0_na_4v.step",
+        "bytes": 748099,
+        "sha256": "fc843d1720d0ef97cd71fd2adcdbbe69fa24cf0c73ec0f5fa55bdb32d8e17b5f"
+      },
+      "stl": {
+        "path": "type_912_5_0_na_4v.stl",
+        "bytes": 1026384,
+        "sha256": "73e767918031d8d07141bf5562e8063b1d5a85e1c652f2e23e29791f57ca78e3",
+        "role": "derived_visual_and_meshing_input_not_manufacturing_release"
+      }
+    },
+    {
+      "id": "917_30_1973_turbo_5374_2v",
+      "architecture": "2v",
+      "scenario_id": "917_30_1973_turbo_5374",
+      "source_classification": "f29_clean_sheet_design_hypotheses_not_scan_or_917_fitment_geometry",
+      "created_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 44,
+        "edge_count": 117,
+        "volume_mm3": 580976.184002,
+        "bounds_min_mm": [
+          -67.0,
+          -67.0,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          67.0,
+          67.0,
+          55.0
+        ],
+        "bounds_size_mm": [
+          134.0,
+          134.0,
+          55.0
+        ]
+      },
+      "reopened_step_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 44,
+        "edge_count": 117,
+        "volume_mm3": 580976.183493,
+        "bounds_min_mm": [
+          -67.0,
+          -67.0,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          67.0,
+          67.0,
+          55.0
+        ],
+        "bounds_size_mm": [
+          134.0,
+          134.0,
+          55.0
+        ]
+      },
+      "step_roundtrip_relative_volume_difference": 8.761117031774108e-10,
+      "step": {
+        "path": "917_30_1973_turbo_5374_2v.step",
+        "bytes": 468690,
+        "sha256": "a5257e4877a9e818679a163bf4aa2bb151cdc9d8484e91453d9fdf8624049982"
+      },
+      "stl": {
+        "path": "917_30_1973_turbo_5374_2v.stl",
+        "bytes": 740284,
+        "sha256": "a240a8e0db3ecef987ce944a5ef437d17c67962f2b595c4d2260a6fdeab1fea5",
+        "role": "derived_visual_and_meshing_input_not_manufacturing_release"
+      }
+    },
+    {
+      "id": "917_30_1973_turbo_5374_4v",
+      "architecture": "4v",
+      "scenario_id": "917_30_1973_turbo_5374",
+      "source_classification": "f29_clean_sheet_design_hypotheses_not_scan_or_917_fitment_geometry",
+      "created_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 64,
+        "edge_count": 201,
+        "volume_mm3": 558635.205233,
+        "bounds_min_mm": [
+          -67.0,
+          -67.0,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          67.0,
+          67.0,
+          55.0
+        ],
+        "bounds_size_mm": [
+          134.0,
+          134.0,
+          55.0
+        ]
+      },
+      "reopened_step_shape": {
+        "valid": true,
+        "manifold": true,
+        "solid_count": 1,
+        "all_solids_closed": true,
+        "shell_counts": [
+          1
+        ],
+        "face_count": 64,
+        "edge_count": 201,
+        "volume_mm3": 558635.205599,
+        "bounds_min_mm": [
+          -67.0,
+          -67.0,
+          -0.0
+        ],
+        "bounds_max_mm": [
+          67.0,
+          67.0,
+          55.0
+        ],
+        "bounds_size_mm": [
+          134.0,
+          134.0,
+          55.0
+        ]
+      },
+      "step_roundtrip_relative_volume_difference": 6.551681482089827e-10,
+      "step": {
+        "path": "917_30_1973_turbo_5374_4v.step",
+        "bytes": 758715,
+        "sha256": "1237277111091ef4fd8a8dd4e65f55402c50657024f703fe187cdb29744a643d"
+      },
+      "stl": {
+        "path": "917_30_1973_turbo_5374_4v.stl",
+        "bytes": 1026884,
+        "sha256": "f4fc030cfeaaee3406bdf0a73fadf1799fc48fbfaa70bdd599219a1ee151127a",
+        "role": "derived_visual_and_meshing_input_not_manufacturing_release"
+      }
+    }
+  ],
+  "checks": {
+    "all_created_shapes_valid": true,
+    "all_created_shapes_one_closed_solid": true,
+    "all_step_roundtrips_one_closed_solid": true,
+    "scan_used": false,
+    "measured_917_dimensions_used": false,
+    "fitment_verified": false,
+    "manufacturing_verified": false
+  },
+  "release_gates": {
+    "physical_917_head_identity_verified": false,
+    "physical_scale_and_datums_verified": false,
+    "fitment_dimensions_verified": false,
+    "cooling_and_oil_passages_dimensioned": false,
+    "valve_seat_and_guide_interfaces_dimensioned": false,
+    "classical_cfd_mesh_authorized": false,
+    "classical_fea_mesh_authorized": false,
+    "combustion_boundary_conditions_validated": false,
+    "thermal_boundary_conditions_validated": false,
+    "material_at_temperature_qualified": false,
+    "valvetrain_dynamics_validated": false,
+    "physicsnemo_dataset_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "omniverse_simready_authorized": false,
+    "instrumented_bench_correlated": false,
+    "professional_engineering_review_approved": false,
+    "metal_additive_manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}
