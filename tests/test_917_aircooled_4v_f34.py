@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import unittest
@@ -11,6 +12,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT = ROOT / "twins/reference-917-engine/aircooled-4v-scan-f34.json"
 EVIDENCE = ROOT / "twins/reference-917-engine/evidence/f34"
+PUBLISHER = ROOT / "twins/reference-917-engine/source/publish_aircooled_4v_f34.py"
 
 
 def load(path: Path):
@@ -21,12 +23,22 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def load_module(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError(f"cannot load {name}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 class AirCooledFourValveF34Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.contract = load(CONTRACT)
         cls.report = load(EVIDENCE / "report.json")
         cls.publication = load(EVIDENCE / "publication.json")
+        cls.publisher = load_module("publish_aircooled_4v_f34", PUBLISHER)
 
     def test_scan_boundary_and_four_valve_scope_are_explicit(self):
         self.assertEqual(self.contract["phase"], "F34")
@@ -37,19 +49,38 @@ class AirCooledFourValveF34Tests(unittest.TestCase):
         self.assertEqual(self.contract["cad"]["valves"]["intake"]["count"], 2)
         self.assertEqual(self.contract["cad"]["valves"]["exhaust"]["count"], 2)
 
-    def test_actual_cad_geometry_and_product_image_are_published(self):
+    def test_geometry_and_render_are_local_only_not_published(self):
         geometry = load(EVIDENCE / "geometry-report.json")
         self.assertEqual(geometry["geometry"]["solid_count"], 1)
         self.assertEqual(geometry["geometry"]["fin_count"], 18)
         self.assertEqual(geometry["geometry"]["valve_count"], 4)
         self.assertGreater(geometry["geometry"]["external_cooling_envelope"]["surface_area_m2"], 0.60)
-        image = EVIDENCE / "product-aircooled-4v-f34.png"
-        self.assertGreater(image.stat().st_size, 20_000)
-        self.assertEqual(image.read_bytes()[:8], b"\x89PNG\r\n\x1a\n")
-        step = EVIDENCE / "917-head-aircooled-4v-f34-process-prototype.step"
-        self.assertGreater(step.stat().st_size, 1_000_000)
-        self.assertIn(b"ISO-10303-21", step.read_bytes()[:128])
-        self.assertEqual(sha256(step), geometry["files"]["step"]["sha256"])
+        binary_names = {
+            "917-head-aircooled-4v-f34-process-prototype.step",
+            "product-aircooled-4v-f34.png",
+        }
+        self.assertTrue(all(not (EVIDENCE / name).exists() for name in binary_names))
+        self.assertTrue(binary_names.isdisjoint(self.publication["files"]))
+        self.assertEqual(self.publication["schema_version"], "1.1.0")
+        self.assertEqual(
+            self.publication["status"],
+            "tracked_textual_metadata_only_geometry_and_render_local_unpublished",
+        )
+        self.assertTrue(self.publication["output_policy"]["git_ignored_work_root_required"])
+        self.assertTrue(self.publication["output_policy"]["geometry_and_render_local_only"])
+        self.assertFalse(self.publication["output_policy"]["publication_authorized"])
+        self.assertFalse(self.publication["output_policy"]["tracked_output_authorized"])
+
+    def test_publisher_refuses_tracked_or_external_output_roots(self):
+        local = ROOT / "work/917-aircooled-4v-f34-publication"
+        self.assertEqual(self.publisher.require_local_unpublished_output(local), local.resolve())
+        with self.assertRaisesRegex(ValueError, "doit rester sous work"):
+            self.publisher.require_local_unpublished_output(EVIDENCE)
+        with self.assertRaisesRegex(ValueError, "doit rester sous work"):
+            self.publisher.require_local_unpublished_output(Path("/tmp/f34-published"))
+        makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
+        self.assertIn("--output work/917-aircooled-4v-f34-publication", makefile)
+        self.assertIn("work/", (ROOT / ".gitignore").read_text(encoding="utf-8").splitlines())
 
     def test_two_external_cooling_methods_really_executed(self):
         cooling = self.report["external_cooling_3d_cross_verification"]
@@ -122,6 +153,7 @@ class AirCooledFourValveF34Tests(unittest.TestCase):
         for relative, expected in self.publication["files"].items():
             path = EVIDENCE / relative
             self.assertTrue(path.is_file())
+            self.assertIn(path.suffix.lower(), {".json", ".md"})
             self.assertEqual(sha256(path), expected)
 
 

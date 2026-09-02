@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publie les preuves F34 calculées sans publier les géométries lourdes."""
+"""Prépare localement les preuves F34 sans publier les géométries ni rendus."""
 
 from __future__ import annotations
 
@@ -10,6 +10,10 @@ import math
 import re
 import shutil
 from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+LOCAL_OUTPUT_ROOT = REPO_ROOT / "work"
 
 
 def load(path: Path) -> dict:
@@ -23,6 +27,18 @@ def dump(path: Path, payload: dict) -> None:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def require_local_unpublished_output(output: Path) -> Path:
+    resolved = output.resolve()
+    ignored_root = LOCAL_OUTPUT_ROOT.resolve()
+    try:
+        relative = resolved.relative_to(ignored_root)
+    except ValueError as exc:
+        raise ValueError("la sortie F34 doit rester sous work/ et ne peut pas être publiée") from exc
+    if not relative.parts:
+        raise ValueError("la sortie F34 doit être un sous-dossier dédié de work/")
+    return resolved
 
 
 def relative_difference(a: float, b: float) -> float:
@@ -229,8 +245,9 @@ def main() -> int:
     parser.add_argument("--toolchain-audit", type=Path, required=True)
     parser.add_argument("--step", type=Path, required=True)
     parser.add_argument("--image", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True, help="sous-dossier local ignoré de work/")
     args = parser.parse_args()
+    output = require_local_unpublished_output(args.output)
 
     contract = load(args.contract)
     geometry = load(args.geometry)
@@ -280,7 +297,7 @@ def main() -> int:
         ),
     }
     report = {
-        "schema_version": "1.0.0",
+        "schema_version": "1.1.0",
         "phase": "F34",
         "status": "virtual_campaign_executed_release_blocked",
         "source_geometry": preliminary["source_geometry"],
@@ -361,41 +378,47 @@ def main() -> int:
     if any(value is not False for value in report["release_gates"].values()):
         raise ValueError("une barrière F34 n'est pas fermée")
 
-    args.output.mkdir(parents=True, exist_ok=False)
-    dump(args.output / "report.json", report)
-    dump(args.output / "geometry-report.json", geometry)
-    dump(args.output / "calculix-mesh-study.json", calculix)
-    dump(args.output / "fluidx3d-mesh-study.json", fluidx)
-    dump(args.output / "openfoam-external-cooling.json", openfoam)
-    dump(args.output / "omniverse-preflight.json", sanitize(load(args.omniverse)))
-    dump(args.output / "toolchain-audit.json", sanitize(load(args.toolchain_audit)))
-    shutil.copyfile(args.step, args.output / "917-head-aircooled-4v-f34-process-prototype.step")
-    shutil.copyfile(args.image, args.output / "product-aircooled-4v-f34.png")
-    (args.output / "README.md").write_text(
-        "# Preuves F34 — culasse 4V refroidie par air\n\n"
-        "Ce dossier contient le rapport consolidé, les études de maillage, "
-        "l'audit des conteneurs x86, le prévol Omniverse, l'image du produit "
-        "et le STEP du prototype de procédé. Le script paramétrique maître "
-        "reste dans `../../source/build_aircooled_4v_head_f34.py`.\n\n"
+    output.mkdir(parents=True, exist_ok=False)
+    dump(output / "report.json", report)
+    dump(output / "geometry-report.json", geometry)
+    dump(output / "calculix-mesh-study.json", calculix)
+    dump(output / "fluidx3d-mesh-study.json", fluidx)
+    dump(output / "openfoam-external-cooling.json", openfoam)
+    dump(output / "omniverse-preflight.json", sanitize(load(args.omniverse)))
+    dump(output / "toolchain-audit.json", sanitize(load(args.toolchain_audit)))
+    shutil.copyfile(args.step, output / "917-head-aircooled-4v-f34-process-prototype.step")
+    shutil.copyfile(args.image, output / "product-aircooled-4v-f34.png")
+    (output / "README.md").write_text(
+        "# Sorties locales F34 — culasse 4V refroidie par air\n\n"
+        "Ce dossier sous `work/` est ignoré par Git. Il contient le rapport "
+        "consolidé, les études de maillage, le prévol Omniverse, le rendu et "
+        "le STEP du prototype de procédé. Ne copiez aucun de ces deux dérivés "
+        "géométriques dans `twins/reference-917-engine/evidence/f34/`.\n\n"
         "Le STEP n'est ni une CAO de fabrication libérée, ni une preuve "
-        "d'ajustement Porsche 917. Aucune impression métallique et aucun "
-        "démarrage moteur ne sont autorisés par ces fichiers.\n",
+        "d'ajustement Porsche 917. Aucune publication, impression métallique "
+        "ou démarrage moteur n'est autorisé par ces fichiers.\n",
         encoding="utf-8",
     )
 
     files = {
-        str(path.relative_to(args.output)): sha256(path)
-        for path in sorted(args.output.rglob("*"))
+        str(path.relative_to(output)): sha256(path)
+        for path in sorted(output.rglob("*"))
         if path.is_file() and path.name != "publication.json"
     }
     publication = {
         "schema_version": "1.0.0",
         "phase": "F34",
-        "status": "published_virtual_evidence_not_manufacturing_or_engine_release",
+        "status": "local_unpublished_virtual_evidence_not_manufacturing_or_engine_release",
         "files": files,
+        "output_policy": {
+            "git_ignored_work_root_required": True,
+            "geometry_and_render_local_only": True,
+            "publication_authorized": False,
+            "tracked_output_authorized": False,
+        },
         "release_gates": contract["release_gates"],
     }
-    dump(args.output / "publication.json", publication)
+    dump(output / "publication.json", publication)
     print(json.dumps({"status": publication["status"], "file_count": len(files)}))
     return 0
 

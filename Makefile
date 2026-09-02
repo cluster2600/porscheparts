@@ -2,6 +2,7 @@
 .PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke 917-unsteady-network-f39-test 917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate 917-unsteady-network-f39 917-wave-action-f39-image-test 917-wave-action-f39-image 917-wave-action-f39-image-smoke
 .PHONY: 917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest 917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
 .PHONY: 917-extended-periodic-state-f40b-test 917-extended-periodic-state-f40b-manifest 917-extended-periodic-state-f40b-image-smoke 917-extended-periodic-state-f40b
+.PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -29,6 +30,11 @@ F40_OUTPUT ?= work/917-unsteady-convergence-f40
 F40_WORKERS ?= 1
 F40B_WAVE_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3
 F40B_OUTPUT ?= work/917-extended-periodic-state-f40b
+F41_CAD_IMAGE ?= ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+F41_USD_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
+F41_OUTPUT ?= work/917-component-factory-f41-execution
+F41_PLAN_OUTPUT ?= work/917-component-factory-f41-plan
+F41_BUNDLE_OUTPUT ?= work/917-component-factory-f41-bundle
 
 .PHONY: 917-scan-conforming-4v-f36-check
 
@@ -517,6 +523,32 @@ engine-components:
 		--contract /workspace/twins/reference-917-engine/extended-periodic-state-f40b.json \
 		--output-dir /output --execute
 
+917-component-factory-f41-test:
+	python3 tests/test_917_component_factory_f41.py -v
+
+917-component-factory-f41-plan: 917-component-factory-f41-test
+	test ! -e "$(F41_PLAN_OUTPUT)"
+	python3 twins/reference-917-engine/source/build_component_factory_f41.py \
+		--project-root . \
+		--contract twins/reference-917-engine/component-factory-f41.json \
+		--output "$(F41_PLAN_OUTPUT)"
+
+917-component-factory-f41-preflight: 917-component-factory-f41-test
+	F41_CAD_IMAGE_REF="$(F41_CAD_IMAGE)" \
+	F41_USD_IMAGE_REF="$(F41_USD_IMAGE)" \
+		twins/reference-917-engine/source/run_component_factory_f41.sh --preflight-only
+
+917-component-factory-f41: 917-component-factory-f41-test
+	F41_CAD_IMAGE_REF="$(F41_CAD_IMAGE)" \
+	F41_USD_IMAGE_REF="$(F41_USD_IMAGE)" \
+	F41_OUTPUT="$(abspath $(F41_OUTPUT))" \
+		twins/reference-917-engine/source/run_component_factory_f41.sh
+
+917-component-factory-f41-bundle: 917-component-factory-f41-test
+	test ! -e "$(F41_BUNDLE_OUTPUT)"
+	python3 twins/reference-917-engine/source/build_component_factory_bundle_f41.py \
+		--project-root . --output "$(F41_BUNDLE_OUTPUT)"
+
 917-wave-action-f39-image-test:
 	python3 tests/test_917_engine_wave_f39_image.py -v
 
@@ -575,7 +607,7 @@ engine-components:
 		--toolchain-audit work/917-aircooled-4v-f34/toolchain-audit.json \
 		--step work/917-aircooled-4v-f34/cad-domain-separated/917-head-aircooled-4v-f34.step \
 		--image work/917-aircooled-4v-f34/product-aircooled-4v-f34-v2.png \
-		--output twins/reference-917-engine/evidence/f34
+		--output work/917-aircooled-4v-f34-publication
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1
