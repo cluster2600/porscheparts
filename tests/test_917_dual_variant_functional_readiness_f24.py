@@ -51,8 +51,8 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
         report = self.module.evaluate(ROOT, self.contract)
 
         self.assertEqual(report["report_status"], "passed", report["contract_errors"])
-        self.assertEqual(report["variant_count"], 2)
-        self.assertEqual(report["solver_input_template_count"], 22)
+        self.assertEqual(report["variant_count"], 3)
+        self.assertEqual(report["solver_input_template_count"], 24)
         self.assertTrue(all_false(report["release"]))
         self.assertTrue(all_false(self.contract["release_gates"]))
 
@@ -79,6 +79,7 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
             {
                 "type_912_5_0_na": "required",
                 "917_30_1973_turbo_5374": "blocked_variant_scope_missing",
+                "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope",
             },
         )
         self.assertEqual(
@@ -86,10 +87,11 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
             {
                 "type_912_5_0_na": "not_applicable_turbo_only",
                 "917_30_1973_turbo_5374": "required",
+                "917_30_1975_record_turbo_5374": "required",
             },
         )
 
-    def test_exactly_eleven_null_templates_exist_per_branch(self):
+    def test_null_templates_cover_two_engineering_branches_and_1975_record(self):
         templates = self.contract["solver_input_templates"]
         by_variant = {
             variant_id: [
@@ -98,9 +100,10 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
             for variant_id in self.module.TARGET_VARIANTS
         }
 
-        self.assertEqual(len(templates), 22)
+        self.assertEqual(len(templates), 24)
         self.assertEqual(len(by_variant["type_912_5_0_na"]), 11)
         self.assertEqual(len(by_variant["917_30_1973_turbo_5374"]), 11)
+        self.assertEqual(len(by_variant["917_30_1975_record_turbo_5374"]), 2)
         self.assertEqual(
             tuple(item["case_id"] for item in by_variant["type_912_5_0_na"]),
             self.module.EXPECTED_CASE_REFS["type_912_5_0_na"],
@@ -111,6 +114,13 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
                 for item in by_variant["917_30_1973_turbo_5374"]
             ),
             self.module.EXPECTED_CASE_REFS["917_30_1973_turbo_5374"],
+        )
+        self.assertEqual(
+            tuple(
+                item["case_id"]
+                for item in by_variant["917_30_1975_record_turbo_5374"]
+            ),
+            self.module.EXPECTED_CASE_REFS["917_30_1975_record_turbo_5374"],
         )
         for template in templates:
             for item in template["inputs"]:
@@ -126,6 +136,109 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
             self.assertTrue(all_false(template["execution"]))
             self.assertFalse(template["physicsnemo_export"]["authorized"])
             self.assertIsNone(template["physicsnemo_export"]["sample_manifest"])
+
+    def test_variant_templates_do_not_transfer_cylinder_or_intercooler_facts(self):
+        templates = {
+            (item["variant_id"], item["case_id"]): item
+            for item in self.contract["solver_input_templates"]
+        }
+        for variant_id, (input_id, fact_id) in (
+            self.module.CYLINDER_COUNT_INPUT_BY_VARIANT.items()
+        ):
+            inputs = templates[(variant_id, "CASE-917-F13-001")]["inputs"]
+            counts = [item for item in inputs if item["quantity"] == "cylinder_count"]
+            self.assertEqual(len(counts), 1)
+            self.assertEqual((counts[0]["id"], counts[0]["candidate_ref"]), (input_id, fact_id))
+
+        turbo_inputs = {
+            item["id"]
+            for item in templates[
+                ("917_30_1973_turbo_5374", "CASE-917-F13-011")
+            ]["inputs"]
+        }
+        record_inputs = {
+            item["id"]
+            for item in templates[
+                ("917_30_1975_record_turbo_5374", "CASE-917-F13-011")
+            ]["inputs"]
+        }
+        self.assertIn("turbo_count", turbo_inputs)
+        self.assertIn("intercooler_1973_status", turbo_inputs)
+        self.assertNotIn("intercooler_1975_status", turbo_inputs)
+        self.assertNotIn("turbocharger_count_1975_record", turbo_inputs)
+        self.assertIn("turbocharger_count_1975_record", record_inputs)
+        self.assertIn("intercooler_1975_status", record_inputs)
+        self.assertIn("intercooler_maps_1975_record", record_inputs)
+        self.assertNotIn("turbo_count", record_inputs)
+        self.assertNotIn("intercooler_1973_status", record_inputs)
+        self.assertNotIn("boost_claim", record_inputs)
+        self.assertNotIn("spool_claim", record_inputs)
+        self.assertFalse(
+            any(
+                "intercooler" in item
+                for item in templates[
+                    ("917_30_1973_turbo_5374", "CASE-917-F13-011")
+                ]["blocking_unknowns"]
+            )
+        )
+        self.assertIn(
+            "intercooler_maps_1975_record",
+            templates[
+                ("917_30_1975_record_turbo_5374", "CASE-917-F13-011")
+            ]["blocking_unknowns"],
+        )
+
+    def test_input_applicability_never_relabels_evidence_variant_scope(self):
+        templates = {
+            (item["variant_id"], item["case_id"]): item
+            for item in self.contract["solver_input_templates"]
+        }
+        duct = templates[("type_912_5_0_na", "CASE-917-F13-004")]
+        intake = next(
+            item for item in duct["inputs"] if item["id"] == "intake_valve_diameter"
+        )
+        self.assertEqual(intake["input_variant_scope"], ["type_912_5_0_na"])
+        self.assertEqual(intake["source_variant_scope"], [])
+        self.assertIsNone(intake["candidate_ref"])
+
+        structural = templates[("type_912_5_0_na", "CASE-917-F13-006")]
+        bearing_count = next(
+            item for item in structural["inputs"] if item["id"] == "main_bearing_count"
+        )
+        self.assertEqual(bearing_count["input_variant_scope"], ["type_912_5_0_na"])
+        self.assertEqual(bearing_count["source_variant_scope"], ["917_unspecified"])
+
+        for template in self.contract["solver_input_templates"]:
+            for item in template["inputs"]:
+                if item["candidate_ref"] is None:
+                    self.assertEqual(
+                        item["source_variant_scope"],
+                        [],
+                        f"{template['template_id']}:{item['id']}",
+                    )
+
+    def test_relabelled_evidence_variant_scope_is_rejected(self):
+        contract = copy.deepcopy(self.contract)
+        template = next(
+            item
+            for item in contract["solver_input_templates"]
+            if item["variant_id"] == "917_30_1975_record_turbo_5374"
+            and item["case_id"] == "CASE-917-F13-011"
+        )
+        intercooler = next(
+            item for item in template["inputs"] if item["id"] == "intercooler_1975_status"
+        )
+        intercooler["source_variant_scope"] = ["917_30_1973_turbo_5374"]
+
+        report = self.module.evaluate(ROOT, contract)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertTrue(
+            any(
+                error.startswith("template_source_variant_scope_mismatch:")
+                for error in report["contract_errors"]
+            )
+        )
 
     def test_scan_remains_unbound_and_numerical_proximity_is_not_selection(self):
         scan = self.contract["scan_evidence_boundary"]
@@ -164,6 +277,43 @@ class DualVariantFunctionalReadinessF24Tests(unittest.TestCase):
                 }
             ],
         )
+
+    def test_1975_record_crosswalk_stays_documentary_and_unknown(self):
+        crosswalk = {
+            item["canonical_variant_id"]: item
+            for item in self.contract["variant_crosswalk"]
+        }
+        record = crosswalk["917_30_1975_record_turbo_5374"]
+        self.assertEqual(record["parent_1973_variant_ref"], "917_30_1973_turbo_5374")
+        self.assertFalse(record["hardware_identity_equivalent_to_1973"])
+        self.assertEqual(
+            record["intercooler_status_fact_ref"],
+            "FACT-INTERCOOLER-1975-STATUS",
+        )
+        for key in (
+            "intercooler_count",
+            "intercooler_geometry",
+            "intercooler_maps",
+            "turbocharger_count",
+        ):
+            self.assertIsNone(record[key])
+        self.assertFalse(record["geometry_ready"])
+        self.assertFalse(record["solver_ready"])
+
+    def test_1975_record_hardware_inference_is_rejected(self):
+        contract = copy.deepcopy(self.contract)
+        record = next(
+            item
+            for item in contract["variant_crosswalk"]
+            if item["canonical_variant_id"] == "917_30_1975_record_turbo_5374"
+        )
+        record["hardware_identity_equivalent_to_1973"] = True
+        record["turbocharger_count"] = 2
+
+        report = self.module.evaluate(ROOT, contract)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertIn("record_1975_scope_mismatch", report["contract_errors"])
 
     def test_reported_1600_hp_and_physicsnemo_remain_non_authoritative(self):
         turbo = self.contract["variant_crosswalk"][1]

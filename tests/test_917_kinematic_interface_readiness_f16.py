@@ -95,6 +95,9 @@ class KinematicInterfaceReadiness917F16Tests(unittest.TestCase):
 
         self.assertEqual(set(facts), set(self.module.EXPECTED_FACTS))
         self.assertEqual(facts["FACT-CYLINDER-COUNT"]["value"], 12)
+        self.assertEqual(
+            facts["FACT-CYLINDER-COUNT"]["variant"], "type_912_5_0_na"
+        )
         self.assertEqual(facts["FACT-50-BORE"]["value"], 86.8)
         self.assertEqual(facts["FACT-50-STROKE"]["value"], 70.4)
         self.assertEqual(facts["FACT-MAIN-BEARING-COUNT"]["value"], 8)

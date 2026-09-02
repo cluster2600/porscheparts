@@ -87,10 +87,12 @@ attachées à leur branche :
 
 | Quantité déclarée | 4 494,2 cm³ initial | Extension 1/1E, 4 907,28 cm³ |
 | --- | ---: | ---: |
+| Nombre de cylindres | 12, champ 131 | 12, héritage explicite de la fiche |
 | Alésage × course | 85 × 66 mm | 86 × 70,4 mm |
 | Axe de piston → calotte | 43 mm | non publié |
 | Ø palier de maneton | 52 mm | non publié |
-| Ø tête de bielle | 56 mm | non publié |
+| Champ FIA art. 159 | 56 mm, libellé ambigu, hors entrée géométrique | non publié |
+| Ø soupapes admission / échappement | 47,5 / 40,5 mm | non transféré |
 | Vilebrequin | forgé assemblé | forgé monobloc, `912.102.031.00` |
 | Masse vilebrequin | 23,75 ± 0,2 kg | non publiée |
 | Masse d'une bielle | 0,42 ± 0,02 kg | non publiée |
@@ -101,14 +103,24 @@ l'URL officielle, les pages, les droits et le SHA-256 du PDF sans redistribuer
 le document. Ces valeurs enrichissent les contrôles de cohérence et les futures
 campagnes F16, mais ne fournissent ni largeurs, jeux, coordonnées axiales,
 tolérances de fabrication, ni autorité de transfert vers le 4 999 cm³ ou le
-5 374 cm³ turbo.
+5 374 cm³ turbo. En particulier, le champ 159 à 56 mm n'est pas interprété
+comme un diamètre de tête de bielle sans plan ou libellé primaire non ambigu.
 
 ### 917/30 turbo
 
 Le 917/30 1973, le record 1975 et le claim de qualification à 1 600 hp sont
 trois scénarios différents. Les puissances publiées de 1 100 PS, 1 200 PS,
 1 230 PS et 1 600 hp ne sont pas fusionnées. Le dernier reste marqué
-« reported » et n'est pas une cible de calibration.
+« reported » et n'est pas une cible de calibration. Les comptes de 12
+cylindres sont enregistrés par variante, jamais comme un fait global. Le
+compte de deux turbocompresseurs est relié directement à la page Porsche USA.
+La configuration 1973 est sans échangeur d'air de suralimentation dans cette
+chronologie ; la première utilisation documentée en 1975 forme une branche
+séparée dont le nombre d'échangeurs, la géométrie, les cartes et même le compte
+de turbocompresseurs restent inconnus. Les mentions historiques de pression de
+suralimentation et de délai de réponse ne sont pas propres au record 1975 :
+elles restent des faits documentaires et ne sont entrées dans aucun cas
+solveur ni scénario 1973/1975/1 600 hp.
 
 ## Les douze cas de référence
 
@@ -196,9 +208,12 @@ fabrication :
 - 1,3 bar publié sans savoir s'il s'agit d'une pression absolue ou relative ;
 - délai proche d'une seconde décrit historiquement, sans trace instrumentée.
 
-Les diamètres de soupapes et l'entraxe de cylindres issus de kfz-tech restent
-des contrôles de faible confiance. Ils ne verrouillent ni la CAO ni un
-maillage.
+Les diamètres de soupapes FIA 47,5/40,5 mm restent propres au 4,4942 L. Comme
+les cas CFD F13 portent sur le 5,0 L et le 917/30 1973, leurs deux diamètres de
+soupapes sont des inconnues bloquantes sans `candidate_ref`; la portée FIA ne
+peut pas être réétiquetée par celle d'un cas. L'entraxe issu de kfz-tech reste
+un contrôle de faible confiance. Aucun de ces éléments ne verrouille la CAO ou
+un maillage.
 
 ## Les quatre portes de chaque cas
 

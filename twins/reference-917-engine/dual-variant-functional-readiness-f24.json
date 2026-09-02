@@ -1,5 +1,5 @@
 {
-  "$comment": "F24 materialise uniquement un crosswalk et 22 templates d'entrees nuls. Il ne lie pas le scan, ne transfere aucune cote F10/F22, ne lance aucun solveur et ne constitue aucune preuve fonctionnelle.",
+  "$comment": "F24 materialise uniquement un crosswalk et 24 templates d'entrees nuls. Il ne lie pas le scan, ne transfere aucune cote F10/F22, ne lance aucun solveur et ne constitue aucune preuve fonctionnelle.",
   "schema_version": "1.0.0",
   "phase": "F24",
   "status": "dual_variant_crosswalk_and_null_input_templates_ready_all_execution_and_release_gates_blocked",
@@ -7,7 +7,8 @@
     "id": "porsche-917-dual-variant-functional-readiness-f24",
     "target_roles": [
       "naturally_aspirated",
-      "917_30_turbo"
+      "917_30_turbo_1973",
+      "917_30_record_1975_intercooled"
     ],
     "functional_claim": false,
     "geometry_generated": false,
@@ -36,7 +37,7 @@
     {
       "id": "classical_solver_f13",
       "path": "twins/reference-917-engine/classical-solver-cases-f13.json",
-      "sha256": "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b",
+      "sha256": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
       "reuse_scope": "case_pair_registry_and_null_input_schema_only",
       "geometry_authority": false,
       "solver_execution_authority": false,
@@ -72,7 +73,7 @@
     {
       "id": "scan_scale_orientation_f21",
       "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
-      "sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+      "sha256": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b",
       "reuse_scope": "closed_scan_identity_scale_orientation_gates_only",
       "geometry_authority": false,
       "solver_execution_authority": false,
@@ -81,7 +82,7 @@
     {
       "id": "parametric_cad_f22",
       "path": "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json",
-      "sha256": "5086429d0514d7206083bda450bd271b74406f249b58f60aa365c16f1f6b2144",
+      "sha256": "87529899d643dd437f357c79fa4dd4fa5ac5ed95929c4fdf82c4985222fd6baa",
       "reuse_scope": "schema_and_null_policy_only_no_4494_values_or_geometry_transferred",
       "geometry_authority": false,
       "solver_execution_authority": false,
@@ -170,6 +171,27 @@
       "reported_1600_hp_role": "documentary_only_not_boundary_condition",
       "geometry_ready": false,
       "solver_ready": false
+    },
+    {
+      "role": "917_30_record_1975_intercooled",
+      "canonical_variant_id": "917_30_1975_record_turbo_5374",
+      "solver_scenario_ref": "SCENARIO-91730-1975-RECORD",
+      "case_refs": [
+        "CASE-917-F13-001",
+        "CASE-917-F13-011"
+      ],
+      "case_count": 2,
+      "selection_status": "separate_documentary_record_configuration_only",
+      "parent_1973_variant_ref": "917_30_1973_turbo_5374",
+      "hardware_identity_equivalent_to_1973": false,
+      "intercooler_status_fact_ref": "FACT-INTERCOOLER-1975-STATUS",
+      "intercooler_presence_role": "documentary_variant_separator_only",
+      "intercooler_count": null,
+      "intercooler_geometry": null,
+      "intercooler_maps": null,
+      "turbocharger_count": null,
+      "geometry_ready": false,
+      "solver_ready": false
     }
   ],
   "case_matrix": [
@@ -179,7 +201,8 @@
       "gate_profile_ref": "GP-NETWORK-0D1D",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "required"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -192,7 +215,8 @@
       "gate_profile_ref": "GP-NETWORK-0D1D",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -205,7 +229,8 @@
       "gate_profile_ref": "GP-CFD",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -218,7 +243,8 @@
       "gate_profile_ref": "GP-CFD",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -231,7 +257,8 @@
       "gate_profile_ref": "GP-CHT",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -244,7 +271,8 @@
       "gate_profile_ref": "GP-FEA",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -257,7 +285,8 @@
       "gate_profile_ref": "GP-FEA",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -270,7 +299,8 @@
       "gate_profile_ref": "GP-FEA",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "blocked_variant_scope_missing"
+        "917_30_1973_turbo_5374": "blocked_variant_scope_missing",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -283,7 +313,8 @@
       "gate_profile_ref": "GP-MBD",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -296,7 +327,8 @@
       "gate_profile_ref": "GP-ROTORDYNAMICS",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -309,7 +341,8 @@
       "gate_profile_ref": "GP-ROTORDYNAMICS",
       "applicability": {
         "type_912_5_0_na": "not_applicable_turbo_only",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "required"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -322,7 +355,8 @@
       "gate_profile_ref": "GP-ELECTRICAL",
       "applicability": {
         "type_912_5_0_na": "required",
-        "917_30_1973_turbo_5374": "required"
+        "917_30_1973_turbo_5374": "required",
+        "917_30_1975_record_turbo_5374": "not_in_record_documentary_scope"
       },
       "input_template_status": "generated_null_only",
       "execution_authorized": false,
@@ -347,6 +381,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CYLINDER-COUNT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -360,6 +400,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-BANK-ANGLE",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_30"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -373,6 +419,15 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-BORE",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -386,6 +441,15 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-STROKE",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -399,6 +463,15 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-DISPLACEMENT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -412,6 +485,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-COMPRESSION",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -425,6 +505,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-FIRING-ORDER",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -438,6 +524,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -451,6 +544,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -464,6 +561,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -477,6 +578,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -490,6 +595,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -575,6 +684,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-OIL-PRESSURE-PUMP-COUNT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -588,6 +703,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-OIL-SCAVENGE-PUMP-COUNT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -601,6 +722,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-OIL-CHARGE",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -614,6 +741,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -627,6 +758,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -640,6 +775,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -653,6 +792,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -666,6 +809,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -758,6 +905,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-COOLING-AIR-FLOW",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -771,6 +924,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -784,6 +941,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -797,6 +958,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -810,6 +975,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -823,6 +992,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -902,11 +1075,15 @@
       "inputs": [
         {
           "id": "intake_valve_diameter",
-          "quantity": "intake_valve_diameter",
+          "quantity": "intake_valve_outer_diameter",
           "unit": "mm",
           "required": true,
-          "source_status": "candidate",
-          "candidate_ref": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -915,11 +1092,15 @@
         },
         {
           "id": "exhaust_valve_diameter",
-          "quantity": "exhaust_valve_diameter",
+          "quantity": "exhaust_valve_outer_diameter",
           "unit": "mm",
           "required": true,
-          "source_status": "candidate",
-          "candidate_ref": "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE",
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -933,6 +1114,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -946,6 +1131,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -959,6 +1148,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -972,6 +1165,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -980,6 +1177,8 @@
         }
       ],
       "blocking_unknowns": [
+        "intake_valve_diameter",
+        "exhaust_valve_diameter",
         "port_geometry",
         "valve_lift_sweep",
         "surface_roughness",
@@ -1056,6 +1255,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CYLINDER-PITCH-CANDIDATE",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1069,6 +1274,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CYLINDER-COATING-FAMILY",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1082,6 +1293,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1095,6 +1310,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1108,6 +1327,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1121,6 +1344,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1134,6 +1361,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1219,6 +1450,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1232,6 +1469,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CRANKCASE-MATERIAL-FAMILY",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1245,6 +1488,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1258,6 +1505,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1271,6 +1522,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1284,6 +1539,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1368,6 +1627,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-ROD-MATERIAL-FAMILY",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1381,6 +1646,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1394,6 +1663,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1407,6 +1680,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1420,6 +1697,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1433,6 +1714,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1517,6 +1802,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-HEAD-STUD-COUNT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_1970_presented_engine"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1530,6 +1821,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-HEAD-STUD-LENGTH",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_1970_presented_engine"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1543,6 +1840,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-HEAD-STUD-SHAFT-DIAMETER",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_1970_presented_engine"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1556,6 +1859,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-HEAD-STUD-MASS",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_1970_presented_engine"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1569,6 +1878,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-STUD-MATERIAL-FAMILY",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_1970_presented_engine"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1582,6 +1897,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1595,6 +1914,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1608,6 +1931,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1693,6 +2020,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1706,6 +2040,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CAMS-PER-BANK",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1719,6 +2059,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-VALVES-PER-CYLINDER",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "type_912_917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1732,6 +2078,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1745,6 +2095,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1758,6 +2112,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1771,6 +2129,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1784,6 +2146,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1869,6 +2235,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1882,6 +2254,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1895,6 +2274,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1908,6 +2291,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1921,6 +2308,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1934,6 +2325,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -1947,6 +2342,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2032,6 +2431,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-SPARK-PLUGS-PER-CYLINDER",
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2045,6 +2450,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2058,6 +2467,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2071,6 +2484,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2084,6 +2501,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2097,6 +2518,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2110,6 +2535,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "type_912_5_0_na"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2190,12 +2619,18 @@
       "status": "template_only_execution_blocked",
       "inputs": [
         {
-          "id": "cylinder_count",
+          "id": "cylinder_count_91730_1973",
           "quantity": "cylinder_count",
           "unit": "count",
           "required": true,
           "source_status": "candidate",
-          "candidate_ref": "FACT-CYLINDER-COUNT",
+          "candidate_ref": "FACT-CYLINDER-COUNT-91730-1973",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2209,6 +2644,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-BANK-ANGLE",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2222,6 +2663,15 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-BORE",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2235,6 +2685,15 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-STROKE",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2248,6 +2707,15 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-DISPLACEMENT",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2261,6 +2729,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-COMPRESSION",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2274,6 +2749,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-FIRING-ORDER",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2287,6 +2768,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2300,6 +2788,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2313,6 +2805,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2326,6 +2822,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2339,6 +2839,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2424,6 +2928,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-OIL-PRESSURE-PUMP-COUNT",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2437,6 +2947,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-OIL-SCAVENGE-PUMP-COUNT",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2450,6 +2966,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-OIL-CHARGE",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2463,6 +2985,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2476,6 +3002,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2489,6 +3019,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2502,6 +3036,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2515,6 +3053,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2607,6 +3149,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-COOLING-AIR-FLOW",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2620,6 +3168,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2633,6 +3185,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2646,6 +3202,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2659,6 +3219,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2672,6 +3236,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2751,11 +3319,15 @@
       "inputs": [
         {
           "id": "intake_valve_diameter",
-          "quantity": "intake_valve_diameter",
+          "quantity": "intake_valve_outer_diameter",
           "unit": "mm",
           "required": true,
-          "source_status": "candidate",
-          "candidate_ref": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2764,11 +3336,15 @@
         },
         {
           "id": "exhaust_valve_diameter",
-          "quantity": "exhaust_valve_diameter",
+          "quantity": "exhaust_valve_outer_diameter",
           "unit": "mm",
           "required": true,
-          "source_status": "candidate",
-          "candidate_ref": "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE",
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2782,6 +3358,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2795,6 +3375,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2808,6 +3392,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2821,6 +3409,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2829,6 +3421,8 @@
         }
       ],
       "blocking_unknowns": [
+        "intake_valve_diameter",
+        "exhaust_valve_diameter",
         "port_geometry",
         "valve_lift_sweep",
         "surface_roughness",
@@ -2905,6 +3499,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CYLINDER-PITCH-CANDIDATE",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2918,6 +3518,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CYLINDER-COATING-FAMILY",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2931,6 +3537,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2944,6 +3554,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2957,6 +3571,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2970,6 +3588,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -2983,6 +3605,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3068,6 +3694,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3081,6 +3713,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CRANKCASE-MATERIAL-FAMILY",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3094,6 +3732,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3107,6 +3749,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3120,6 +3766,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3133,6 +3783,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3217,6 +3871,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-ROD-MATERIAL-FAMILY",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3230,6 +3890,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3243,6 +3907,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3256,6 +3924,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3269,6 +3941,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3282,6 +3958,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3366,6 +4046,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3379,6 +4066,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-CAMS-PER-BANK",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3392,6 +4085,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-VALVES-PER-CYLINDER",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3405,6 +4104,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3418,6 +4121,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3431,6 +4138,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3444,6 +4155,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3457,6 +4172,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3542,6 +4261,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-MAIN-BEARING-COUNT",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3555,6 +4280,13 @@
           "required": true,
           "source_status": "candidate_range",
           "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3568,6 +4300,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3581,6 +4317,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3594,6 +4334,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3607,6 +4351,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3620,6 +4368,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3705,6 +4457,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-TURBO-COUNT",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3712,25 +4470,18 @@
           "review_status": null
         },
         {
-          "id": "boost_claim",
-          "quantity": "reported_boost_pressure",
-          "unit": "bar",
-          "required": true,
-          "source_status": "candidate_not_boundary_condition",
-          "candidate_ref": "FACT-TURBO-BOOST-CANDIDATE",
-          "candidate_adopted": false,
-          "value": null,
-          "uncertainty": null,
-          "evidence_manifest_ref": null,
-          "review_status": null
-        },
-        {
-          "id": "spool_claim",
-          "quantity": "reported_turbo_response_delay",
-          "unit": "s",
-          "required": true,
-          "source_status": "candidate_qualitative",
-          "candidate_ref": "FACT-TURBO-SPOOL-QUALITATIVE",
+          "id": "intercooler_1973_status",
+          "quantity": "charge_air_cooler_presence",
+          "unit": "categorical",
+          "required": false,
+          "source_status": "not_applicable_documented_first_use_1975",
+          "candidate_ref": "FACT-INTERCOOLER-1973-STATUS",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3744,6 +4495,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3757,6 +4512,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3770,6 +4529,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3783,6 +4546,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3796,6 +4563,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3810,7 +4581,6 @@
         "bypass_control",
         "gas_boundaries",
         "bearing_lubrication",
-        "intercooler_maps",
         "boost_pressure_reference"
       ],
       "acceptance_requirements": [
@@ -3890,6 +4660,12 @@
           "required": true,
           "source_status": "candidate",
           "candidate_ref": "FACT-SPARK-PLUGS-PER-CYLINDER",
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3903,6 +4679,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3916,6 +4696,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3929,6 +4713,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3942,6 +4730,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3955,6 +4747,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -3968,6 +4764,10 @@
           "required": true,
           "source_status": "unknown",
           "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1973_turbo_5374"
+          ],
+          "source_variant_scope": [],
           "candidate_adopted": false,
           "value": null,
           "uncertainty": null,
@@ -4037,6 +4837,529 @@
         "authorized": false,
         "sample_manifest": null
       }
+    },
+    {
+      "template_id": "F24-917_30_1975_record_turbo_5374-CASE-917-F13-001",
+      "variant_id": "917_30_1975_record_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1975-RECORD",
+      "case_id": "CASE-917-F13-001",
+      "domain": "engine_cycle_0d_1d",
+      "gate_profile_ref": "GP-NETWORK-0D1D",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "cylinder_count_91730_1975",
+          "quantity": "cylinder_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-CYLINDER-COUNT-91730-1975",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bank_angle",
+          "quantity": "bank_angle",
+          "unit": "deg",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-BANK-ANGLE",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bore",
+          "quantity": "cylinder_bore",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-BORE",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "stroke",
+          "quantity": "piston_stroke",
+          "unit": "mm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-STROKE",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "displacement",
+          "quantity": "engine_displacement",
+          "unit": "cm3",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-DISPLACEMENT",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_4_5_na",
+            "type_912_4_907_na_homologation_extension_1_1E",
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "compression_ratio",
+          "quantity": "compression_ratio",
+          "unit": "ratio",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-COMPRESSION",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "type_912_5_0_na",
+            "917_30_turbo_5374"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "firing_order",
+          "quantity": "firing_order",
+          "unit": "cylinder_id",
+          "required": true,
+          "source_status": "candidate",
+          "candidate_ref": "FACT-FIRING-ORDER",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_unspecified"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "speed_domain",
+          "quantity": "engine_speed",
+          "unit": "rpm",
+          "required": true,
+          "source_status": "candidate_range",
+          "candidate_ref": "RANGE-DOCUMENTED-RATED-SPEED",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1973_turbo_5374",
+            "type_912_5_0_na"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "fuel_definition",
+          "quantity": "fuel_composition_and_properties",
+          "unit": "declared_property_set",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "combustion_calibration",
+          "quantity": "cylinder_pressure_or_heat_release",
+          "unit": "Pa_or_J/degCA",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gas_exchange_boundaries",
+          "quantity": "intake_exhaust_pressure_temperature_traces",
+          "unit": "Pa,K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "friction_model",
+          "quantity": "engine_friction_map",
+          "unit": "N.m",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "fuel_definition",
+        "combustion_calibration",
+        "gas_exchange_boundaries",
+        "friction_model",
+        "cylinder_numbering",
+        "valve_lift_profiles",
+        "injection_law"
+      ],
+      "acceptance_requirements": [
+        "puissance/couple de validation issus d'un banc trace",
+        "pression cylindre correlee si disponible",
+        "bilans par cylindre et par cycle"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "cylinder_pressure_trace",
+          "unit": "Pa",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "torque_curve",
+          "unit": "N.m",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "mass_flow_and_temperature_boundaries",
+          "unit": "kg/s,K",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
+    },
+    {
+      "template_id": "F24-917_30_1975_record_turbo_5374-CASE-917-F13-011",
+      "variant_id": "917_30_1975_record_turbo_5374",
+      "scenario_ref": "SCENARIO-91730-1975-RECORD",
+      "case_id": "CASE-917-F13-011",
+      "domain": "turbocharger_1d_cfd_and_rotordynamics",
+      "gate_profile_ref": "GP-ROTORDYNAMICS",
+      "status": "template_only_execution_blocked",
+      "inputs": [
+        {
+          "id": "turbocharger_count_1975_record",
+          "quantity": "turbocharger_count",
+          "unit": "count",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "intercooler_1975_status",
+          "quantity": "charge_air_cooler_presence",
+          "unit": "categorical",
+          "required": true,
+          "source_status": "candidate_presence_only",
+          "candidate_ref": "FACT-INTERCOOLER-1975-STATUS",
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "intercooler_maps_1975_record",
+          "quantity": "charge_air_cooler_geometry_flow_pressure_loss_heat_transfer_maps",
+          "unit": "m,kg/s,Pa,W/K",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "compressor_map",
+          "quantity": "compressor_corrected_flow_pressure_ratio_efficiency_speed_map",
+          "unit": "kg/s,ratio,ratio,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "turbine_map",
+          "quantity": "turbine_corrected_flow_expansion_efficiency_speed_map",
+          "unit": "kg/s,ratio,ratio,rpm",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "rotor_geometry_inertia",
+          "quantity": "wheel_shaft_bearing_geometry_and_inertia",
+          "unit": "mm,kg.m2",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "bypass_control",
+          "quantity": "wastegate_geometry_and_control_law",
+          "unit": "mm,command",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        },
+        {
+          "id": "gas_boundaries",
+          "quantity": "exhaust_intake_pressure_temperature_composition_transients",
+          "unit": "Pa,K,mass_fraction",
+          "required": true,
+          "source_status": "unknown",
+          "candidate_ref": null,
+          "input_variant_scope": [
+            "917_30_1975_record_turbo_5374"
+          ],
+          "source_variant_scope": [],
+          "candidate_adopted": false,
+          "value": null,
+          "uncertainty": null,
+          "evidence_manifest_ref": null,
+          "review_status": null
+        }
+      ],
+      "blocking_unknowns": [
+        "turbocharger_count_1975_record",
+        "compressor_map",
+        "turbine_map",
+        "rotor_geometry_inertia",
+        "bypass_control",
+        "gas_boundaries",
+        "bearing_lubrication",
+        "boost_pressure_reference",
+        "intercooler_maps_1975_record"
+      ],
+      "acceptance_requirements": [
+        "identite et cartes turbo confirmees",
+        "reference pression boost levee",
+        "surge/choke/overspeed et temperatures dans bandes fabricant",
+        "correlation transitoire au banc"
+      ],
+      "expected_outputs": [
+        {
+          "quantity": "shaft_speed",
+          "unit": "rpm",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "pressure_ratio_and_efficiency",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "surge_choke_and_overspeed_margins",
+          "unit": "ratio",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        },
+        {
+          "quantity": "spool_response",
+          "unit": "s",
+          "status": "not_computed",
+          "value": null,
+          "artifact_ref": null
+        }
+      ],
+      "geometry_state": {
+        "cad_path": null,
+        "cad_sha256": null,
+        "variant_identity_verified": false,
+        "scale_verified": false,
+        "interface_fidelity_verified": false
+      },
+      "solver_runtime": {
+        "solver_name": null,
+        "solver_version": null,
+        "container_digest": null,
+        "source_commit": null
+      },
+      "boundary_conditions_manifest": null,
+      "acceptance_criteria_manifest": null,
+      "execution": {
+        "authorized": false,
+        "attempted": false,
+        "results_present": false
+      },
+      "physicsnemo_export": {
+        "authorized": false,
+        "sample_manifest": null
+      }
     }
   ],
   "physicsnemo_boundary": {
@@ -4055,7 +5378,7 @@
     "tracked_contract_path": "twins/reference-917-engine/dual-variant-functional-readiness-f24.json",
     "generated_now": [
       "case_applicability_matrix",
-      "22_null_solver_input_templates",
+      "24_null_solver_input_templates",
       "variant_crosswalk"
     ],
     "geometry_artifacts": [],
@@ -4068,12 +5391,16 @@
     "scan_identity_verified": false,
     "na_variant_identity_verified": false,
     "turbo_variant_identity_verified": false,
+    "record_1975_variant_identity_verified": false,
     "na_dimensioned_cad_ready": false,
     "turbo_dimensioned_cad_ready": false,
+    "record_1975_dimensioned_cad_ready": false,
     "na_solver_execution_authorized": false,
     "turbo_solver_execution_authorized": false,
+    "record_1975_solver_execution_authorized": false,
     "na_reference_cases_correlated": false,
     "turbo_reference_cases_correlated": false,
+    "record_1975_reference_cases_correlated": false,
     "physicsnemo_dataset_ready": false,
     "physicsnemo_training_authorized": false,
     "instrumented_bench_validated": false,
@@ -4085,6 +5412,8 @@
     "f10_visual_stage_is_solver_or_manufacturing_geometry",
     "f22_4494_values_or_geometry_transfer_to_5l_or_turbo",
     "f10_generic_turbo_id_equals_f13_1973_identity",
+    "1973_turbo_inherits_1975_intercoolers_or_maps",
+    "1975_record_inherits_1973_hardware_identity_or_turbo_count",
     "reported_1600_hp_is_a_boundary_condition_or_result",
     "physicsnemo_import_or_sample_structure_proves_simulation",
     "f24_opens_any_execution_release_or_manufacturing_gate"

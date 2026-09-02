@@ -17,14 +17,14 @@ CONTRACT = ROOT / "twins/reference-917-engine/dual-variant-parametric-cad-contra
 # Litteraux de test independants des constantes du generateur. Ils rendent une
 # rebasis silencieuse visible dans la revue de code.
 EXPECTED_UPSTREAM_SHA256 = {
-    "classical_solver_facts_f13": "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b",
+    "classical_solver_facts_f13": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
     "kinematic_interfaces_f16": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",
     "manufacturing_routing_f19": "f9fc00c4f51840bb5781ffc21078f7e30febecd6bef202e32e882f0da3130d6f",
-    "dual_variant_functional_readiness_f24": "27fd052a45e051f75836e4116255a655f760b1d36c600a14778eb69fed0a7d5b",
-    "physical_metrology_campaign_f27": "9d2157383f50a0e3b4db76c49b9ef8ad9ab2aec56ff60e95efe388ea4d90a822",
+    "dual_variant_functional_readiness_f24": "87a2a22a79146d590d99ab1d3277a2c2c92d069c8275e580b675a5b5dcf23630",
+    "physical_metrology_campaign_f27": "73aa225c2b8baa3f74aa288f5ee570bafda8a6099c44fc2a4b8dde528eb12ee4",
     "variant_visualization_f10": "dfb6ee25f367c934b11ff020e34d9d77296d2b5a535030a73221696af7c7a640",
-    "valvetrain_flow_f20": "4f5e1eee41711d9012f703211fa44de053dd0f266fc7f41ee001b2273c12136c",
-    "parametric_cad_f22": "5086429d0514d7206083bda450bd271b74406f249b58f60aa365c16f1f6b2144",
+    "valvetrain_flow_f20": "29a3fbe2d57b4e9961dfd7c7e1698dce01a31df0956db499fd3e1e9c87fcf288",
+    "parametric_cad_f22": "87529899d643dd437f357c79fa4dd4fa5ac5ed95929c4fdf82c4985222fd6baa",
 }
 EXPECTED_F19_ROUTES = {
     "crankcase_half": "conventional_candidate",
@@ -93,7 +93,7 @@ EXPECTED_TURBO_RELATIONS = {
     "turbo_pressure_oil_feed": ("lubrication_duct_assembly", None, None, "turbo_chra", 2, "oil_line", "f8_interface_route_registry/ducts/turbo_pressure_oil_feed"),
     "turbo_scavenge_oil_drain": ("turbo_chra", None, None, "lubrication_duct_assembly", 2, "oil_line", "f8_interface_route_registry/ducts/turbo_scavenge_oil_drain"),
 }
-EXPECTED_CONTRACT_SHA256 = "0949753839ff018d95b9daa220ee906525978f429b9adcd4da15b6960bb99556"
+EXPECTED_CONTRACT_SHA256 = "920b8c022676a9941c8764fb1f0f178da47220798dd6fa7e96ba6d410aee5abb"
 
 
 def load_module():
@@ -159,6 +159,30 @@ class DualVariantParametricCadF28Tests(unittest.TestCase):
             self.assertFalse(records[source_id]["manufacturing_authority"])
         with self.assertRaises(TypeError):
             self.module.UPSTREAMS["manufacturing_routing_f19"]["sha256"] = "0" * 64
+
+    def test_f24_record_branch_is_documentary_and_not_an_f28_design_variant(self):
+        f24 = self._loaded_upstreams()["dual_variant_functional_readiness_f24"]
+        variants = tuple(
+            item["canonical_variant_id"] for item in f24["variant_crosswalk"]
+        )
+        self.assertEqual(variants, self.module.F24_CROSSWALK_VARIANTS)
+        self.assertEqual(
+            tuple(item["variant_id"] for item in self.contract["variant_contracts"]),
+            self.module.TARGET_VARIANTS,
+        )
+        record = next(
+            item
+            for item in f24["variant_crosswalk"]
+            if item["canonical_variant_id"] == self.module.RECORD_VARIANT
+        )
+        self.assertFalse(record["hardware_identity_equivalent_to_1973"])
+        for key in (
+            "intercooler_count",
+            "intercooler_geometry",
+            "intercooler_maps",
+            "turbocharger_count",
+        ):
+            self.assertIsNone(record[key])
 
     def test_f19_all_31_families_routes_and_extensions_are_traceable(self):
         coverage = self.contract["f19_coverage"]
@@ -306,6 +330,7 @@ class DualVariantParametricCadF28Tests(unittest.TestCase):
             ("kinematic_interfaces_f16", "scan_identity_verified", "f16_release_gates_must_remain_false"),
             ("manufacturing_routing_f19", "vehicle_use_authorized", "f19_release_gates_must_remain_false"),
             ("dual_variant_functional_readiness_f24", "manufacturing_authorized", "f24_release_gates_must_remain_false"),
+            ("dual_variant_functional_readiness_f24", "record_1975_variant_identity_verified", "f24_release_gates_must_remain_false"),
             ("physical_metrology_campaign_f27", "engine_start_authorized", "f27_release_gates_must_remain_false"),
             ("variant_visualization_f10", "performance_claim_authorized", "f10_excluded_source_mismatch"),
             ("valvetrain_flow_f20", "physicsnemo_ready", "f20_excluded_source_mismatch"),
@@ -327,8 +352,21 @@ class DualVariantParametricCadF28Tests(unittest.TestCase):
         loaded["kinematic_interfaces_f16"]["component_instance_contract"] = []
         mutations.append((loaded, "f16_component_instance_contract_mismatch"))
         loaded = self._loaded_upstreams()
-        loaded["dual_variant_functional_readiness_f24"]["variant_crosswalk"][1]["reported_1600_hp_fact_ref"] = "FACT-INVENTED"
+        next(
+            item
+            for item in loaded["dual_variant_functional_readiness_f24"]["variant_crosswalk"]
+            if item["canonical_variant_id"] == self.module.TURBO_VARIANT
+        )["reported_1600_hp_fact_ref"] = "FACT-INVENTED"
         mutations.append((loaded, "f24_reported_power_scope_mismatch"))
+        loaded = self._loaded_upstreams()
+        record = next(
+            item
+            for item in loaded["dual_variant_functional_readiness_f24"]["variant_crosswalk"]
+            if item["canonical_variant_id"] == self.module.RECORD_VARIANT
+        )
+        record["hardware_identity_equivalent_to_1973"] = True
+        record["turbocharger_count"] = 2
+        mutations.append((loaded, "f24_record_1975_scope_mismatch"))
         loaded = self._loaded_upstreams()
         fact = next(item for item in loaded["classical_solver_facts_f13"]["fact_registry"] if item["id"] == "FACT-TURBO-POWER-1600-REPORTED")
         fact["variant"] = "917_30_1973_turbo_5374"

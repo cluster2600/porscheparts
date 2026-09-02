@@ -107,6 +107,9 @@ class MechanicalBenchmark917F14Tests(unittest.TestCase):
             self.assertTrue(
                 pair_sources <= set(inputs["reported_power_speed"]["source_refs"])
             )
+            self.assertEqual(
+                inputs["cylinder_count"]["fact_variant"], result["variant"]
+            )
 
     def test_1600_hp_without_speed_remains_uncomputed_and_unproven(self):
         claim = self.report["documentary_uncomputed_claims"][0]

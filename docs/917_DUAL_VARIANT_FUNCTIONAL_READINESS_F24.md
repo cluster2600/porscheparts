@@ -3,13 +3,17 @@
 ## Portée
 
 F24 crée la plus petite couche commune utile entre deux branches d'ingénierie
-encore non liées à une géométrie qualifiée :
+et une configuration record strictement documentaire, encore non liées à une
+géométrie qualifiée :
 
 - `type_912_5_0_na`, référence atmosphérique 5,0 L ;
-- `917_30_1973_turbo_5374`, référence 917/30 turbo 1973.
+- `917_30_1973_turbo_5374`, référence 917/30 turbo 1973 ;
+- `917_30_1975_record_turbo_5374`, configuration record 1975 avec échangeurs,
+  sans équivalence matérielle déduite avec 1973.
 
 Le résultat est un crosswalk d'identifiants, une matrice d'applicabilité des
-12 cas F13 et 22 templates d'entrées nuls, soit 11 par branche. Ce résultat ne
+12 cas F13 et 24 templates d'entrées nuls : 11 pour chaque branche
+d'ingénierie et 2 pour la configuration record. Ce résultat ne
 rend aucune variante fonctionnelle. Il ne crée ni CAO, ni deck solveur, ni
 résultat, ni échantillon PhysicsNeMo.
 
@@ -20,7 +24,8 @@ flowchart LR
     F22["F22 4,494 L<br/>schéma et valeurs nulles"] -. "aucune cote transférée" .-> NA
     F10T["F10 917/30 générique<br/>display-only"] -. "lignée visuelle" .-> TURBO["917/30 1973 turbo<br/>référence non liée"]
     CLAIM["1600 hp rapportés"] -. "cible documentaire" .-> TURBO
-    F13N["F13<br/>11 cas NA"] --> F24["F24<br/>22 templates nuls"]
+    RECORD["917/30 record 1975<br/>échangeurs documentés<br/>matériel inconnu"] -. "2 cas documentaires" .-> F24
+    F13N["F13<br/>11 cas NA"] --> F24["F24<br/>24 templates nuls"]
     F13T["F13<br/>11 cas turbo"] --> F24
     NA --> F24
     TURBO --> F24
@@ -57,6 +62,10 @@ Les dix cas communs sont `001` à `007`, `009`, `010` et `012`.
   preuve des goujons de culasse à cette variante.
 - `CASE-917-F13-011` est requis pour le 917/30. Il est
   `not_applicable_turbo_only` pour le 5,0 L NA.
+- La branche record 1975 ne reçoit que `CASE-917-F13-001` et `011`. Son compte
+  de turbocompresseurs, le nombre et la géométrie des échangeurs ainsi que leurs
+  cartes restent `null`; aucune entrée propre à 1975 n'est injectée dans 1973,
+  et aucun claim non spécifique de boost ou de spool n'est injecté dans 1975.
 
 Le validateur F14 contrôle également le couple `variant_id` / `case_id` à
 partir du registre F13. Un `case_id` connu associé à une variante non admise
@@ -69,7 +78,9 @@ Chaque élément de `solver_input_templates` contient :
 - `template_id`, `variant_id`, `scenario_ref`, `case_id`, `domain` et
   `gate_profile_ref` ;
 - les entrées F13 avec `id`, `quantity`, `unit`, `required`, `source_status` et
-  `candidate_ref` ;
+  `candidate_ref` ; `input_variant_scope` décrit l'applicabilité du template,
+  tandis que `source_variant_scope` conserve strictement la portée de la preuve
+  F13 (ou reste vide en l'absence de candidat) ;
 - `candidate_adopted: false`, puis `value`, `uncertainty`,
   `evidence_manifest_ref` et `review_status` à `null` ;
 - les inconnues bloquantes et exigences d'acceptation F13 ;
@@ -88,9 +99,9 @@ ouvert.
 Seuls les éléments suivants peuvent être générés :
 
 - `twins/reference-917-engine/dual-variant-functional-readiness-f24.json` ;
-- le crosswalk des deux variantes ;
+- le crosswalk des deux variantes d'ingénierie et de la configuration record ;
 - la matrice d'applicabilité des 12 cas ;
-- les 22 templates d'entrées nuls.
+- les 24 templates d'entrées nuls.
 
 Les listes `geometry_artifacts`, `solver_decks`, `solver_results` et
 `physicsnemo_samples` doivent rester vides. F24 ne modifie pas les sorties
@@ -104,7 +115,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 twins/reference-917-engine/source/build_dual_v
 ```
 
 Le mode `--check` est en lecture seule. Il recalcule la source déterministe,
-vérifie les SHA-256, les 22 couples, toutes les valeurs nulles et tous les gates
+vérifie les SHA-256, les 24 couples, toutes les valeurs nulles et tous les gates
 fermés. Un rapport `passed` valide uniquement ce contrat fail-closed.
 
 ## Conditions avant calcul

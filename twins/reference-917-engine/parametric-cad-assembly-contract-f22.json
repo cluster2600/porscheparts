@@ -25,7 +25,7 @@
     {
       "id": "classical_solver_f13",
       "path": "twins/reference-917-engine/classical-solver-cases-f13.json",
-      "sha256": "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b",
+      "sha256": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
       "reuse_scope": "traceable_candidates_or_registry_only",
       "geometry_authority": false,
       "manufacturing_authority": false
@@ -49,7 +49,7 @@
     {
       "id": "valvetrain_flow_f20",
       "path": "twins/reference-917-engine/valvetrain-flow-inputs-f20.json",
-      "sha256": "4f5e1eee41711d9012f703211fa44de053dd0f266fc7f41ee001b2273c12136c",
+      "sha256": "29a3fbe2d57b4e9961dfd7c7e1698dce01a31df0956db499fd3e1e9c87fcf288",
       "reuse_scope": "traceable_candidates_or_registry_only",
       "geometry_authority": false,
       "manufacturing_authority": false
@@ -57,7 +57,7 @@
     {
       "id": "scan_scale_orientation_f21",
       "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
-      "sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+      "sha256": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b",
       "reuse_scope": "fail_closed_identity_scale_orientation_gates_only",
       "geometry_authority": false,
       "manufacturing_authority": false
@@ -66,7 +66,7 @@
   "f21_dependency": {
     "source_contract": "scan_scale_orientation_f21",
     "source_phase": "F21",
-    "source_sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+    "source_sha256": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b",
     "required_gate_results": {
       "scan_identity_verified": false,
       "scan_scale_verified": false,
@@ -175,27 +175,6 @@
         "manufacturing_tolerance": null
       },
       {
-        "parameter_id": "P-ROD-BIG-END-DIAMETER",
-        "source_contract": "classical_solver_f13",
-        "source_fact_ref": "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
-        "quantity": "connecting_rod_big_end_diameter",
-        "candidate": {
-          "kind": "published_point",
-          "value": 56.0,
-          "unit": "mm"
-        },
-        "classification": "published_source_candidate_not_verified_design_dimension",
-        "variant_scope": "type_912_4_5_na",
-        "usage": "interface_candidate_only_not_tolerance",
-        "source_refs": [
-          "SRC-FIA-917-HOMOLOGATION-250"
-        ],
-        "design_lock": false,
-        "cad_parameter_applied": false,
-        "manufacturing_dimension": false,
-        "manufacturing_tolerance": null
-      },
-      {
         "parameter_id": "P-INTAKE-VALVE-OUTER-DIAMETER",
         "source_contract": "valvetrain_flow_f20",
         "source_fact_ref": "F20-INTAKE-VALVE-OUTER-DIAMETER",
@@ -274,7 +253,7 @@
       {
         "parameter_id": "not_a_cad_parameter",
         "source_contract": "classical_solver_f13",
-        "source_fact_ref": "FACT-CYLINDER-COUNT",
+        "source_fact_ref": "FACT-CYLINDER-COUNT-45-NA",
         "quantity": "cylinder_count",
         "candidate": {
           "kind": "published_point",
@@ -282,11 +261,10 @@
           "unit": "count"
         },
         "classification": "published_source_candidate_not_verified_design_dimension",
-        "variant_scope": "all_documented_917_engines",
-        "usage": "candidate_only",
+        "variant_scope": "type_912_4_5_na",
+        "usage": "homologation_candidate_topology_only",
         "source_refs": [
-          "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",
-          "SRC-PORSCHE-NEWSROOM-91730-TURBO"
+          "SRC-FIA-917-HOMOLOGATION-250"
         ],
         "design_lock": false,
         "cad_parameter_applied": false,
@@ -331,6 +309,27 @@
         "classification": "published_source_candidate_not_verified_design_dimension",
         "variant_scope": "type_912_4_5_na",
         "usage": "mass_correlation_candidate_only",
+        "source_refs": [
+          "SRC-FIA-917-HOMOLOGATION-250"
+        ],
+        "design_lock": false,
+        "cad_parameter_applied": false,
+        "manufacturing_dimension": false,
+        "manufacturing_tolerance": null
+      },
+      {
+        "parameter_id": "not_a_cad_parameter",
+        "source_contract": "classical_solver_f13",
+        "source_fact_ref": "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
+        "quantity": "fia_article_159_dimension_ambiguous",
+        "candidate": {
+          "kind": "published_point_ambiguous_reference",
+          "value": 56.0,
+          "unit": "mm"
+        },
+        "classification": "published_source_candidate_not_verified_design_dimension",
+        "variant_scope": "type_912_4_5_na",
+        "usage": "ambiguous_label_not_geometry_input",
         "source_refs": [
           "SRC-FIA-917-HOMOLOGATION-250"
         ],
@@ -636,7 +635,7 @@
       "id": "CHECK-CANDIDATE-GEOMETRIC-DISPLACEMENT",
       "formula": "12 * pi * bore^2 * stroke / 4 / 1000",
       "source_fact_refs": [
-        "FACT-CYLINDER-COUNT",
+        "FACT-CYLINDER-COUNT-45-NA",
         "FACT-45-BORE",
         "FACT-45-STROKE",
         "FACT-45-DISPLACEMENT"

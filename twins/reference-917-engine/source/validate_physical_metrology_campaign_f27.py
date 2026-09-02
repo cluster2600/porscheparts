@@ -53,7 +53,7 @@ UPSTREAM_ROLES = {
 APPROVED_UPSTREAM_SHA256 = {
     "f13_scan_metrology": "578b4ffcf49be04c701b3a86ba0b04d9cd11fd9f39f11b757c2220a698731a5d",
     "f16_kinematic_interfaces": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",
-    "f21_scale_orientation": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+    "f21_scale_orientation": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b",
 }
 SCAN_SHA256 = "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae"
 SCALE_CONTROL_IDS = ("SC-01", "SC-02", "SC-03")

@@ -30,7 +30,7 @@ EXPECTED_CASES = {
     "CASE-917-F14-001A-5374-TURBO-1973": {
         "variant": "917_30_1973_turbo_5374",
         "fact_refs": {
-            "cylinder_count": "FACT-CYLINDER-COUNT",
+            "cylinder_count": "FACT-CYLINDER-COUNT-91730-1973",
             "bore": "FACT-5374-BORE",
             "stroke": "FACT-5374-STROKE",
             "published_displacement": "FACT-5374-DISPLACEMENT",

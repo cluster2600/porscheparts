@@ -27,7 +27,8 @@ millimètres.
 flowchart LR
     AMS["AMS<br/>85×66, 86,8×70,4, 90×70,4"]
     KFZ["Kfz-tech<br/>118, Ø47,5, Ø40,5"]
-    POR["Porsche<br/>5 374 cm³, deux turbos"]
+    POR["Porsche Museum<br/>5 374 cm³"]
+    PORUSA["Porsche USA<br/>deux turbos publiés"]
     STUD["Porsche Christophorus<br/>48 × Ø9 × 149,5 mm, 65 g"]
     CONTRACT["Contrat F14<br/>faits et portée par variante"]
     CHECK{"Validation stricte<br/>sources + valeurs + gates"}
@@ -38,6 +39,7 @@ flowchart LR
     AMS --> CONTRACT
     KFZ --> CONTRACT
     POR --> CONTRACT
+    PORUSA --> CONTRACT
     STUD --> CONTRACT
     CONTRACT --> CHECK
     CHECK --> USD
@@ -46,11 +48,19 @@ flowchart LR
     STEP -. "aucune implication" .-> BLOCK
 ```
 
-Le générateur relit les quatre fiches de source du catalogue, vérifie leur
-`source_id`, recherche les marqueurs factuels attendus dans leurs notes et
-enregistre leur SHA-256. Une cote modifiée, une source absente, une affectation
-de variante prématurée ou une coordonnée de placement provoque un refus avant
-la création des sorties.
+Le générateur relit les cinq fiches de source du catalogue. Pour chacune, le
+contrat épingle le `source_id`, l'URL attendue et le SHA-256 attendu. Le
+générateur compare ensuite le fichier courant à ces deux pins, vérifie le
+niveau de preuve et recherche les marqueurs factuels attendus dans les notes.
+Il ne se contente donc pas de recalculer puis d'afficher l'empreinte courante.
+Une URL remplacée, une mutation de contenu conservant les marqueurs, une cote
+modifiée, une source absente, une affectation de variante prématurée ou une
+coordonnée de placement provoque un refus avant la création des sorties.
+
+La cylindrée exacte de 5 374 cm³ et le compte de deux turbocompresseurs restent
+deux affirmations séparées : la première vient de Porsche Museum, la seconde de
+Porsche USA. Cette séparation interdit qu'une page soit utilisée pour prouver
+un fait qu'elle ne publie pas.
 
 ## Faits géométriques autorisés
 

@@ -17,21 +17,23 @@ OUTPUT_RELATIVE_PATH = Path(
 )
 NA_VARIANT = "type_912_5_0_na"
 TURBO_VARIANT = "917_30_1973_turbo_5374"
+RECORD_VARIANT = "917_30_1975_record_turbo_5374"
 REPORTED_POWER_FACT_VARIANT = "917_30_1600_hp_reported_qualifying_target"
 TARGET_VARIANTS = (NA_VARIANT, TURBO_VARIANT)
+F24_CROSSWALK_VARIANTS = TARGET_VARIANTS + (RECORD_VARIANT,)
 
 # La validation consomme directement ce tuple canonique. UPSTREAMS est une vue
 # en lecture seule : modifier une table de travail ne peut pas rebinder un
 # fichier amont modifie.
 _CANONICAL_UPSTREAM_BINDINGS = (
-    ("classical_solver_facts_f13", "twins/reference-917-engine/classical-solver-cases-f13.json", "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b", "documentary_fact_records_only_not_design_dimensions", True),
+    ("classical_solver_facts_f13", "twins/reference-917-engine/classical-solver-cases-f13.json", "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97", "documentary_fact_records_only_not_design_dimensions", True),
     ("kinematic_interfaces_f16", "twins/reference-917-engine/kinematic-interface-readiness-f16.json", "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2", "family_cardinality_and_null_datum_policy_only", True),
     ("manufacturing_routing_f19", "twins/reference-917-engine/manufacturing-routing-f19.json", "f9fc00c4f51840bb5781ffc21078f7e30febecd6bef202e32e882f0da3130d6f", "all_family_route_classes_and_requirement_taxonomy_not_selection", True),
-    ("dual_variant_functional_readiness_f24", "twins/reference-917-engine/dual-variant-functional-readiness-f24.json", "27fd052a45e051f75836e4116255a655f760b1d36c600a14778eb69fed0a7d5b", "canonical_variant_ids_and_documentary_fact_crosswalk_only", True),
-    ("physical_metrology_campaign_f27", "twins/reference-917-engine/physical-metrology-campaign-f27.template.json", "9d2157383f50a0e3b4db76c49b9ef8ad9ab2aec56ff60e95efe388ea4d90a822", "blank_measurement_and_review_slots_only", True),
+    ("dual_variant_functional_readiness_f24", "twins/reference-917-engine/dual-variant-functional-readiness-f24.json", "87a2a22a79146d590d99ab1d3277a2c2c92d069c8275e580b675a5b5dcf23630", "canonical_variant_ids_and_documentary_fact_crosswalk_only", True),
+    ("physical_metrology_campaign_f27", "twins/reference-917-engine/physical-metrology-campaign-f27.template.json", "73aa225c2b8baa3f74aa288f5ee570bafda8a6099c44fc2a4b8dde528eb12ee4", "blank_measurement_and_review_slots_only", True),
     ("variant_visualization_f10", "twins/reference-917-engine/variant-configurations-f10.json", "dfb6ee25f367c934b11ff020e34d9d77296d2b5a535030a73221696af7c7a640", "excluded_lineage_check_no_dimensions_solids_or_transforms", False),
-    ("valvetrain_flow_f20", "twins/reference-917-engine/valvetrain-flow-inputs-f20.json", "4f5e1eee41711d9012f703211fa44de053dd0f266fc7f41ee001b2273c12136c", "excluded_lineage_check_no_dimensions_solids_or_transforms", False),
-    ("parametric_cad_f22", "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json", "5086429d0514d7206083bda450bd271b74406f249b58f60aa365c16f1f6b2144", "excluded_lineage_check_no_dimensions_solids_or_transforms", False),
+    ("valvetrain_flow_f20", "twins/reference-917-engine/valvetrain-flow-inputs-f20.json", "29a3fbe2d57b4e9961dfd7c7e1698dce01a31df0956db499fd3e1e9c87fcf288", "excluded_lineage_check_no_dimensions_solids_or_transforms", False),
+    ("parametric_cad_f22", "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json", "87529899d643dd437f357c79fa4dd4fa5ac5ed95929c4fdf82c4985222fd6baa", "excluded_lineage_check_no_dimensions_solids_or_transforms", False),
 )
 UPSTREAMS = MappingProxyType(
     {
@@ -190,9 +192,9 @@ F16_RELEASE_GATE_IDS = (
     "metal_print_authorized", "engine_start_authorized",
 )
 F24_RELEASE_GATE_IDS = (
-    "scan_identity_verified", "na_variant_identity_verified", "turbo_variant_identity_verified",
-    "na_dimensioned_cad_ready", "turbo_dimensioned_cad_ready", "na_solver_execution_authorized",
-    "turbo_solver_execution_authorized", "na_reference_cases_correlated", "turbo_reference_cases_correlated",
+    "scan_identity_verified", "na_variant_identity_verified", "turbo_variant_identity_verified", "record_1975_variant_identity_verified",
+    "na_dimensioned_cad_ready", "turbo_dimensioned_cad_ready", "record_1975_dimensioned_cad_ready", "na_solver_execution_authorized",
+    "turbo_solver_execution_authorized", "record_1975_solver_execution_authorized", "na_reference_cases_correlated", "turbo_reference_cases_correlated", "record_1975_reference_cases_correlated",
     "physicsnemo_dataset_ready", "physicsnemo_training_authorized", "instrumented_bench_validated",
     "functional_variants_authorized", "manufacturing_authorized",
 )
@@ -400,14 +402,40 @@ def validate_upstream_invariants(loaded: dict[str, dict[str, Any]]) -> None:
     f24 = loaded["dual_variant_functional_readiness_f24"]
     crosswalk = f24.get("variant_crosswalk", [])
     variants = tuple(item.get("canonical_variant_id") for item in crosswalk if isinstance(item, dict))
-    if f24.get("phase") != "F24" or variants != TARGET_VARIANTS:
+    if f24.get("phase") != "F24" or variants != F24_CROSSWALK_VARIANTS:
         raise ContractError("f24_variant_contract_mismatch")
     scan = f24.get("scan_evidence_boundary", {})
     if scan.get("selected_variant_id") is not None or scan.get("scan_binding_authorized") is not False:
         raise ContractError("f24_scan_must_remain_unbound")
-    turbo = crosswalk[1]
+    by_variant = {
+        item.get("canonical_variant_id"): item
+        for item in crosswalk
+        if isinstance(item, dict)
+    }
+    turbo = by_variant[TURBO_VARIANT]
     if turbo.get("reported_1600_hp_fact_ref") != "FACT-TURBO-POWER-1600-REPORTED" or turbo.get("reported_1600_hp_role") != "documentary_only_not_boundary_condition":
         raise ContractError("f24_reported_power_scope_mismatch")
+    record = by_variant[RECORD_VARIANT]
+    if (
+        record.get("parent_1973_variant_ref") != TURBO_VARIANT
+        or record.get("hardware_identity_equivalent_to_1973") is not False
+        or record.get("intercooler_status_fact_ref")
+        != "FACT-INTERCOOLER-1975-STATUS"
+        or record.get("intercooler_presence_role")
+        != "documentary_variant_separator_only"
+        or any(
+            record.get(key) is not None
+            for key in (
+                "intercooler_count",
+                "intercooler_geometry",
+                "intercooler_maps",
+                "turbocharger_count",
+            )
+        )
+        or record.get("geometry_ready") is not False
+        or record.get("solver_ready") is not False
+    ):
+        raise ContractError("f24_record_1975_scope_mismatch")
     if not _strict_false_map(f24.get("release_gates"), F24_RELEASE_GATE_IDS):
         raise ContractError("f24_release_gates_must_remain_false")
 

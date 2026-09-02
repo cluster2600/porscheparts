@@ -32,7 +32,7 @@ UPSTREAMS: dict[str, dict[str, str]] = {
     },
     "classical_solver_f13": {
         "path": "twins/reference-917-engine/classical-solver-cases-f13.json",
-        "sha256": "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b",
+        "sha256": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
     },
     "kinematic_readiness_f16": {
         "path": "twins/reference-917-engine/kinematic-interface-readiness-f16.json",
@@ -44,11 +44,11 @@ UPSTREAMS: dict[str, dict[str, str]] = {
     },
     "valvetrain_flow_f20": {
         "path": "twins/reference-917-engine/valvetrain-flow-inputs-f20.json",
-        "sha256": "4f5e1eee41711d9012f703211fa44de053dd0f266fc7f41ee001b2273c12136c",
+        "sha256": "29a3fbe2d57b4e9961dfd7c7e1698dce01a31df0956db499fd3e1e9c87fcf288",
     },
     "scan_scale_orientation_f21": {
         "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
-        "sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+        "sha256": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b",
     },
 }
 
@@ -57,13 +57,13 @@ F13_GEOMETRY_FACT_BINDINGS = (
     ("P-PISTON-STROKE", "FACT-45-STROKE"),
     ("P-PISTON-PIN-AXIS-TO-CROWN", "FACT-45-PISTON-COMPRESSION-HEIGHT"),
     ("P-CRANKPIN-BEARING-DIAMETER", "FACT-45-CRANKPIN-BEARING-DIAMETER"),
-    ("P-ROD-BIG-END-DIAMETER", "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER"),
 )
 
 F13_REFERENCE_FACTS = (
-    "FACT-CYLINDER-COUNT",
+    "FACT-CYLINDER-COUNT-45-NA",
     "FACT-45-DISPLACEMENT",
     "FACT-45-CRANKSHAFT-MASS",
+    "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
     "FACT-45-CONNECTING-ROD-MASS",
     "FACT-45-PISTON-GROUP-MASS",
     "FACT-45-CRANKSHAFT-CONSTRUCTION",
@@ -83,11 +83,11 @@ F20_TOPOLOGY_FACTS = (
 )
 
 EXPECTED_F13_FACTS: dict[str, tuple[str, Any, str, str]] = {
-    "FACT-CYLINDER-COUNT": (
+    "FACT-CYLINDER-COUNT-45-NA": (
         "cylinder_count",
         12,
         "count",
-        "all_documented_917_engines",
+        BASE_VARIANT,
     ),
     "FACT-45-BORE": ("cylinder_bore", 85.0, "mm", BASE_VARIANT),
     "FACT-45-STROKE": ("piston_stroke", 66.0, "mm", BASE_VARIANT),
@@ -110,7 +110,7 @@ EXPECTED_F13_FACTS: dict[str, tuple[str, Any, str, str]] = {
         BASE_VARIANT,
     ),
     "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER": (
-        "connecting_rod_big_end_diameter",
+        "fia_article_159_dimension_ambiguous",
         56.0,
         "mm",
         BASE_VARIANT,
@@ -284,6 +284,15 @@ def load_and_validate_upstreams(root: Path) -> dict[str, dict[str, Any]]:
             raise ContractError(f"f13_fact_unit_mismatch:{fact_id}")
         if fact.get("design_lock") is not False:
             raise ContractError(f"f13_design_lock_forbidden:{fact_id}")
+    ambiguous_fia_159 = f13_facts["FACT-45-CONNECTING-ROD-BIG-END-DIAMETER"]
+    if (
+        ambiguous_fia_159.get("candidate", {}).get("kind")
+        != "published_point_ambiguous_reference"
+        or ambiguous_fia_159.get("usage") != "ambiguous_label_not_geometry_input"
+        or "CONTRADICTION-FIA-ARTICLE-159-LABEL"
+        not in ambiguous_fia_159.get("contradiction_refs", [])
+    ):
+        raise ContractError("f13_fia_article_159_ambiguity_contract_mismatch")
 
     f20_facts = _f20_fact_index(f20)
     for fact_id, (quantity, value, unit) in EXPECTED_F20_FACTS.items():
@@ -671,7 +680,7 @@ def build_contract(root: Path) -> dict[str, Any]:
 
     bore = EXPECTED_F13_FACTS["FACT-45-BORE"][1]
     stroke = EXPECTED_F13_FACTS["FACT-45-STROKE"][1]
-    cylinder_count = EXPECTED_F13_FACTS["FACT-CYLINDER-COUNT"][1]
+    cylinder_count = EXPECTED_F13_FACTS["FACT-CYLINDER-COUNT-45-NA"][1]
     derived_displacement = cylinder_count * math.pi * bore**2 * stroke / 4.0 / 1000.0
 
     return {
@@ -769,7 +778,7 @@ def build_contract(root: Path) -> dict[str, Any]:
                 "id": "CHECK-CANDIDATE-GEOMETRIC-DISPLACEMENT",
                 "formula": "12 * pi * bore^2 * stroke / 4 / 1000",
                 "source_fact_refs": [
-                    "FACT-CYLINDER-COUNT",
+                    "FACT-CYLINDER-COUNT-45-NA",
                     "FACT-45-BORE",
                     "FACT-45-STROKE",
                     "FACT-45-DISPLACEMENT",

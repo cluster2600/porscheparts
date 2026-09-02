@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -133,6 +134,8 @@ def validate_sources(
         prefix = f"source_registry[{index}]"
         source_id = record.get("source_id")
         relative = record.get("path")
+        expected_url = record.get("expected_url")
+        expected_sha256 = record.get("expected_sha256")
         tokens = record.get("claim_tokens")
         if not isinstance(source_id, str) or not source_id:
             errors.append(f"{prefix}.source_id: required")
@@ -143,6 +146,12 @@ def validate_sources(
         if not isinstance(relative, str) or not relative:
             errors.append(f"{prefix}.path: required")
             continue
+        if not isinstance(expected_url, str) or not expected_url:
+            errors.append(f"{prefix}.expected_url: required")
+        if not isinstance(expected_sha256, str) or not re.fullmatch(
+            r"[0-9a-f]{64}", expected_sha256
+        ):
+            errors.append(f"{prefix}.expected_sha256: lowercase SHA-256 required")
         candidate = (root / relative).resolve()
         try:
             candidate.relative_to(root_resolved)
@@ -159,6 +168,12 @@ def validate_sources(
             continue
         if payload.get("source_id") != source_id:
             errors.append(f"{prefix}: source_id does not match source record")
+        actual_url = payload.get("url")
+        if actual_url != expected_url:
+            errors.append(f"{prefix}: url does not match expected_url pin")
+        actual_sha256 = sha256(candidate)
+        if actual_sha256 != expected_sha256:
+            errors.append(f"{prefix}: sha256 does not match expected_sha256 pin")
         if payload.get("quality", {}).get("evidence_level") != record.get(
             "evidence_grade"
         ):
@@ -176,7 +191,8 @@ def validate_sources(
             {
                 "source_id": source_id,
                 "path": relative,
-                "sha256": sha256(candidate),
+                "url": actual_url,
+                "sha256": actual_sha256,
                 "evidence_grade": record.get("evidence_grade"),
                 "claim_tokens_verified": list(tokens),
             }

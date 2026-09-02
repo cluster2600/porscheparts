@@ -115,6 +115,113 @@ class ClassicalSolverCases917F13Tests(unittest.TestCase):
             facts["FACT-TURBO-POWER-1100"]["candidate"]["unit"],
         )
 
+    def test_cylinder_counts_are_variant_scoped_and_never_global(self):
+        facts = {item["id"]: item for item in self.registry["fact_registry"]}
+
+        expected = {
+            "FACT-CYLINDER-COUNT": "type_912_5_0_na",
+            "FACT-CYLINDER-COUNT-45-NA": "type_912_4_5_na",
+            "FACT-CYLINDER-COUNT-4907-NA": "type_912_4_907_na_homologation_extension_1_1E",
+            "FACT-CYLINDER-COUNT-91730-1973": "917_30_1973_turbo_5374",
+            "FACT-CYLINDER-COUNT-91730-1975": "917_30_1975_record_turbo_5374",
+            "FACT-CYLINDER-COUNT-91730-1600-REPORTED": "917_30_1600_hp_reported_qualifying_target",
+        }
+        for fact_id, variant in expected.items():
+            fact = facts[fact_id]
+            self.assertEqual(fact["variant"], variant)
+            self.assertEqual(fact["candidate"]["value"], 12)
+            self.assertEqual(fact["candidate"]["unit"], "count")
+            self.assertFalse(fact["design_lock"])
+        self.assertFalse(
+            any(
+                item["quantity"] == "cylinder_count"
+                and item["variant"] == "all_documented_917_engines"
+                for item in facts.values()
+            )
+        )
+        cycle = self.case(self.registry, "CASE-917-F13-001")
+        scoped_inputs = {
+            item["candidate_ref"]: tuple(item.get("variants", []))
+            for item in cycle["inputs"]
+            if item["quantity"] == "cylinder_count"
+        }
+        self.assertEqual(
+            scoped_inputs,
+            {
+                "FACT-CYLINDER-COUNT-45-NA": ("type_912_4_5_na",),
+                "FACT-CYLINDER-COUNT": ("type_912_5_0_na",),
+                "FACT-CYLINDER-COUNT-91730-1973": (
+                    "917_30_1973_turbo_5374",
+                ),
+                "FACT-CYLINDER-COUNT-91730-1975": (
+                    "917_30_1975_record_turbo_5374",
+                ),
+                "FACT-CYLINDER-COUNT-91730-1600-REPORTED": (
+                    "917_30_1600_hp_reported_qualifying_target",
+                ),
+            },
+        )
+
+    def test_turbo_count_is_bound_directly_to_porsche_usa(self):
+        fact = self.fact(self.registry, "FACT-TURBO-COUNT")
+
+        self.assertEqual(fact["variant"], "917_30_1973_turbo_5374")
+        self.assertEqual(fact["candidate"], {"kind": "published_point", "value": 2, "unit": "count"})
+        self.assertEqual(
+            fact["source_refs"],
+            ["SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING"],
+        )
+        self.assertFalse(fact["design_lock"])
+
+    def test_1973_and_1975_intercooler_branches_are_separate(self):
+        facts = {item["id"]: item for item in self.registry["fact_registry"]}
+        scenarios = {
+            item["id"]: item for item in self.registry["solver_scenarios"]
+        }
+        turbo_case = self.case(self.registry, "CASE-917-F13-011")
+
+        self.assertEqual(
+            facts["FACT-INTERCOOLER-1973-STATUS"]["candidate"]["value"],
+            "not_fitted_before_first_documented_1975_use",
+        )
+        self.assertEqual(
+            facts["FACT-INTERCOOLER-1975-STATUS"]["candidate"]["value"],
+            "fitted_first_documented_use",
+        )
+        record = scenarios["SCENARIO-91730-1975-RECORD"]
+        self.assertIsNone(record["variant_configuration"]["charge_air_cooler_maps"])
+        self.assertIsNone(record["variant_configuration"]["turbocharger_count"])
+        blocks = turbo_case["variant_blocking_unknowns"]
+        self.assertFalse(
+            any(
+                "intercooler" in item
+                for item in blocks["917_30_1973_turbo_5374"]
+            )
+        )
+        self.assertIn(
+            "intercooler_maps_1975_record",
+            blocks["917_30_1975_record_turbo_5374"],
+        )
+
+    def test_variant_source_boundary_mutation_is_rejected(self):
+        registry = copy.deepcopy(self.registry)
+        self.fact(registry, "FACT-TURBO-COUNT")["source_refs"] = [
+            "SRC-PORSCHE-NEWSROOM-91730-TURBO"
+        ]
+        self.case(registry, "CASE-917-F13-011")["variant_blocking_unknowns"][
+            "917_30_1973_turbo_5374"
+        ].append("intercooler_maps_1975_record")
+
+        report = self.evaluate(registry)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertIn(
+            "turbo_count_must_bind_directly_to_porsche_usa", report["errors"]
+        )
+        self.assertIn(
+            "intercooler_must_be_not_applicable_to_1973", report["errors"]
+        )
+
     def test_ams_evidence_level_divergence_is_explicit_and_conservative(self):
         source = next(
             item
@@ -161,6 +268,17 @@ class ClassicalSolverCases917F13Tests(unittest.TestCase):
             facts["FACT-45-CONNECTING-ROD-BIG-END-DIAMETER"]["candidate"]["value"],
             56.0,
         )
+        ambiguous = facts["FACT-45-CONNECTING-ROD-BIG-END-DIAMETER"]
+        self.assertEqual(ambiguous["quantity"], "fia_article_159_dimension_ambiguous")
+        self.assertEqual(
+            ambiguous["candidate"]["kind"],
+            "published_point_ambiguous_reference",
+        )
+        self.assertEqual(ambiguous["usage"], "ambiguous_label_not_geometry_input")
+        self.assertIn(
+            "CONTRADICTION-FIA-ARTICLE-159-LABEL",
+            ambiguous["contradiction_refs"],
+        )
         self.assertEqual(
             facts["FACT-4907-CRANKSHAFT-CONSTRUCTION"]["candidate"]["part_number"],
             "912.102.031.00",
@@ -188,6 +306,113 @@ class ClassicalSolverCases917F13Tests(unittest.TestCase):
                 fact["contradiction_refs"],
                 fact_id,
             )
+
+    def test_fia_valve_diameters_are_scoped_to_the_4494_variant(self):
+        facts = {item["id"]: item for item in self.registry["fact_registry"]}
+        expected = {
+            "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE": (
+                "intake_valve_outer_diameter",
+                47.5,
+            ),
+            "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE": (
+                "exhaust_valve_outer_diameter",
+                40.5,
+            ),
+        }
+        for fact_id, (quantity, value) in expected.items():
+            fact = facts[fact_id]
+            self.assertEqual(fact["quantity"], quantity)
+            self.assertEqual(fact["variant"], "type_912_4_5_na")
+            self.assertEqual(
+                fact["candidate"],
+                {"kind": "published_point", "value": value, "unit": "mm"},
+            )
+            self.assertEqual(fact["source_refs"], ["SRC-FIA-917-HOMOLOGATION-250"])
+            self.assertFalse(fact["design_lock"])
+
+        duct_case = self.case(self.registry, "CASE-917-F13-004")
+        inputs = {item["id"]: item for item in duct_case["inputs"]}
+        for input_id in ("intake_valve_diameter", "exhaust_valve_diameter"):
+            self.assertEqual(inputs[input_id]["status"], "unknown")
+            self.assertIsNone(inputs[input_id]["candidate_ref"])
+            self.assertTrue(inputs[input_id]["required"])
+            self.assertIn(input_id, duct_case["blocking_unknowns"])
+
+    def test_fia_valve_diameter_transfer_into_5l_case_is_rejected(self):
+        registry = copy.deepcopy(self.registry)
+        duct_case = self.case(registry, "CASE-917-F13-004")
+        intake = next(
+            item for item in duct_case["inputs"] if item["id"] == "intake_valve_diameter"
+        )
+        intake.update(
+            {
+                "status": "candidate",
+                "candidate_ref": "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+            }
+        )
+
+        report = self.evaluate(registry)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertIn(
+            "solver_candidate_variant_scope_mismatch:CASE-917-F13-004:intake_valve_diameter",
+            report["errors"],
+        )
+        self.assertIn(
+            "fia_valve_diameter_solver_input_transfer_forbidden", report["errors"]
+        )
+
+    def test_nonspecific_boost_and_spool_claims_are_not_solver_inputs(self):
+        turbo_case = self.case(self.registry, "CASE-917-F13-011")
+        candidate_refs = {
+            item.get("candidate_ref") for item in turbo_case["inputs"]
+        }
+        scenarios = {
+            item["id"]: item for item in self.registry["solver_scenarios"]
+        }
+        forbidden = {
+            "FACT-TURBO-BOOST-CANDIDATE",
+            "FACT-TURBO-SPOOL-QUALITATIVE",
+        }
+
+        self.assertTrue(forbidden.isdisjoint(candidate_refs))
+        for scenario_id in (
+            "SCENARIO-91730-1973-TURBO",
+            "SCENARIO-91730-1975-RECORD",
+            "SCENARIO-91730-1600-HP-REPORTED",
+        ):
+            self.assertTrue(forbidden.isdisjoint(scenarios[scenario_id]["fact_refs"]))
+
+    def test_nonspecific_boost_claim_transfer_into_1975_is_rejected(self):
+        registry = copy.deepcopy(self.registry)
+        turbo_case = self.case(registry, "CASE-917-F13-011")
+        turbo_case["inputs"].append(
+            {
+                "id": "boost_claim",
+                "quantity": "reported_boost_pressure",
+                "unit": "bar",
+                "status": "candidate_not_boundary_condition",
+                "candidate_ref": "FACT-TURBO-BOOST-CANDIDATE",
+                "required": False,
+            }
+        )
+        record = next(
+            item
+            for item in registry["solver_scenarios"]
+            if item["id"] == "SCENARIO-91730-1975-RECORD"
+        )
+        record["fact_refs"].append("FACT-TURBO-BOOST-CANDIDATE")
+
+        report = self.evaluate(registry)
+
+        self.assertEqual(report["report_status"], "failed")
+        self.assertIn(
+            "nonspecific_boost_spool_solver_input_forbidden", report["errors"]
+        )
+        self.assertIn(
+            "scenario_nonspecific_boost_spool_claim_forbidden:SCENARIO-91730-1975-RECORD",
+            report["errors"],
+        )
 
     def test_fia_catalogue_record_tracks_pdf_without_redistributing_it(self):
         source_path = ROOT / "catalog/sources/src-fia-917-homologation-250.json"

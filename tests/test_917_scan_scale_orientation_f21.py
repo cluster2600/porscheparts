@@ -170,6 +170,11 @@ class ScanScaleOrientation917F21Tests(unittest.TestCase):
                 "F20-INTAKE-PORT-DIAMETER",
             }.issubset(prohibited)
         )
+        self.assertNotIn("FACT-45-CONNECTING-ROD-BIG-END-DIAMETER", prohibited)
+        self.assertIn(
+            "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
+            exclusion["other_documentary_refs_without_scan_calibration_authority"],
+        )
         self.assertIn("physical measurement", exclusion["rule"])
         self.assertIn("exact scan", exclusion["rule"])
         self.assertFalse(

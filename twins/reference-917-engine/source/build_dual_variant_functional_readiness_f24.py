@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Construit et valide le contrat fail-closed F24 des deux variantes 917.
+"""Construit et valide le contrat fail-closed F24 des variantes 917 retenues.
 
 F24 reconcilie les identifiants et les cas solveurs des branches 5,0 L
-atmospherique et 917/30 1973 turbo. Il ne transfere aucune cote, ne lie pas le
-scan a une variante, ne genere aucune geometrie ou deck solveur et n'ouvre
-aucune autorite d'execution, PhysicsNeMo, fabrication ou demarrage.
+atmospherique, 917/30 1973 turbo et record 1975 avec echangeurs. Il ne
+transfere aucune cote, ne lie pas le scan a une variante, ne genere aucune
+geometrie ou deck solveur et n'ouvre aucune autorite d'execution, PhysicsNeMo,
+fabrication ou demarrage.
 """
 
 from __future__ import annotations
@@ -23,20 +24,36 @@ OUTPUT_RELATIVE_PATH = Path(
 ASSET_ID = "porsche-917-dual-variant-functional-readiness-f24"
 NA_VARIANT = "type_912_5_0_na"
 TURBO_VARIANT = "917_30_1973_turbo_5374"
-TARGET_VARIANTS = (NA_VARIANT, TURBO_VARIANT)
+RECORD_VARIANT = "917_30_1975_record_turbo_5374"
+TARGET_VARIANTS = (NA_VARIANT, TURBO_VARIANT, RECORD_VARIANT)
 NA_SCENARIO = "SCENARIO-917-5L-NA"
 TURBO_SCENARIO = "SCENARIO-91730-1973-TURBO"
+RECORD_SCENARIO = "SCENARIO-91730-1975-RECORD"
 CASE_008 = "CASE-917-F13-008"
 CASE_011 = "CASE-917-F13-011"
 EXPECTED_CASE_IDS = tuple(f"CASE-917-F13-{index:03d}" for index in range(1, 13))
 EXPECTED_CASE_REFS = {
     NA_VARIANT: tuple(case_id for case_id in EXPECTED_CASE_IDS if case_id != CASE_011),
     TURBO_VARIANT: tuple(case_id for case_id in EXPECTED_CASE_IDS if case_id != CASE_008),
+    RECORD_VARIANT: ("CASE-917-F13-001", CASE_011),
 }
 SCENARIO_BY_VARIANT = {
     NA_VARIANT: NA_SCENARIO,
     TURBO_VARIANT: TURBO_SCENARIO,
+    RECORD_VARIANT: RECORD_SCENARIO,
 }
+CYLINDER_COUNT_INPUT_BY_VARIANT = {
+    NA_VARIANT: ("cylinder_count", "FACT-CYLINDER-COUNT"),
+    TURBO_VARIANT: (
+        "cylinder_count_91730_1973",
+        "FACT-CYLINDER-COUNT-91730-1973",
+    ),
+    RECORD_VARIANT: (
+        "cylinder_count_91730_1975",
+        "FACT-CYLINDER-COUNT-91730-1975",
+    ),
+}
+EXPECTED_TEMPLATE_COUNT = sum(len(items) for items in EXPECTED_CASE_REFS.values())
 
 UPSTREAMS: dict[str, dict[str, str]] = {
     "variant_geometry_f10": {
@@ -51,7 +68,7 @@ UPSTREAMS: dict[str, dict[str, str]] = {
     },
     "classical_solver_f13": {
         "path": "twins/reference-917-engine/classical-solver-cases-f13.json",
-        "sha256": "add18d3c64ad481d20052fd6b6a3b0db773bb67ad534831b23dd11c996d0a08b",
+        "sha256": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
         "reuse_scope": "case_pair_registry_and_null_input_schema_only",
     },
     "bench_skeleton_f14": {
@@ -71,12 +88,12 @@ UPSTREAMS: dict[str, dict[str, str]] = {
     },
     "scan_scale_orientation_f21": {
         "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
-        "sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+        "sha256": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b",
         "reuse_scope": "closed_scan_identity_scale_orientation_gates_only",
     },
     "parametric_cad_f22": {
         "path": "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json",
-        "sha256": "5086429d0514d7206083bda450bd271b74406f249b58f60aa365c16f1f6b2144",
+        "sha256": "87529899d643dd437f357c79fa4dd4fa5ac5ed95929c4fdf82c4985222fd6baa",
         "reuse_scope": "schema_and_null_policy_only_no_4494_values_or_geometry_transferred",
     },
 }
@@ -178,6 +195,64 @@ def _validate_f13_solver_registry(f13: dict[str, Any]) -> None:
         or reported.get("design_lock") is not False
     ):
         raise ContractError("f13_reported_1600_scope_mismatch")
+    record_intercooler = facts.get("FACT-INTERCOOLER-1975-STATUS", {})
+    if (
+        record_intercooler.get("variant") != RECORD_VARIANT
+        or record_intercooler.get("candidate")
+        != {
+            "kind": "published_sequence",
+            "value": "fitted_first_documented_use",
+            "unit": "categorical",
+        }
+        or record_intercooler.get("source_refs")
+        != ["SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"]
+        or record_intercooler.get("usage")
+        != "variant_separation_only_maps_geometry_and_count_unknown"
+        or record_intercooler.get("design_lock") is not False
+    ):
+        raise ContractError("f13_record_1975_intercooler_scope_mismatch")
+
+    valve_fact_refs = {
+        "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE",
+        "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE",
+    }
+    duct_case = cases["CASE-917-F13-004"]
+    duct_inputs = {
+        item.get("id"): item
+        for item in duct_case.get("inputs", [])
+        if isinstance(item, dict)
+    }
+    for input_id in ("intake_valve_diameter", "exhaust_valve_diameter"):
+        item = duct_inputs.get(input_id, {})
+        if (
+            item.get("status") != "unknown"
+            or item.get("candidate_ref") is not None
+            or item.get("required") is not True
+            or input_id not in duct_case.get("blocking_unknowns", [])
+        ):
+            raise ContractError(f"f13_fia_valve_transfer_forbidden:{input_id}")
+    if any(
+        item.get("candidate_ref") in valve_fact_refs
+        for case in cases.values()
+        for item in case.get("inputs", [])
+        if isinstance(item, dict)
+    ):
+        raise ContractError("f13_fia_valve_solver_transfer_forbidden")
+
+    nonspecific_turbo_claim_refs = {
+        "FACT-TURBO-BOOST-CANDIDATE",
+        "FACT-TURBO-SPOOL-QUALITATIVE",
+    }
+    turbo_case = cases[CASE_011]
+    if any(
+        item.get("candidate_ref") in nonspecific_turbo_claim_refs
+        for item in turbo_case.get("inputs", [])
+        if isinstance(item, dict)
+    ):
+        raise ContractError("f13_nonspecific_boost_spool_solver_input_forbidden")
+    record_scenario = scenarios[RECORD_SCENARIO]
+    if nonspecific_turbo_claim_refs.intersection(record_scenario.get("fact_refs", [])):
+        raise ContractError("f13_record_nonspecific_boost_spool_claim_forbidden")
 
 
 def load_and_validate_upstreams(root: Path) -> dict[str, dict[str, Any]]:
@@ -326,9 +401,30 @@ def _template(
     variant_id: str,
     scenario_id: str,
     case: dict[str, Any],
+    facts: dict[str, dict[str, Any]],
+    ranges: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     inputs = []
     for source in case["inputs"]:
+        source_variants = source.get("variants")
+        if isinstance(source_variants, list) and variant_id not in source_variants:
+            continue
+        candidate_ref = source.get("candidate_ref")
+        if candidate_ref is None:
+            evidence_variants = []
+        elif isinstance(source_variants, list):
+            evidence_variants = list(source_variants)
+        elif candidate_ref in facts:
+            fact_variant = facts[candidate_ref].get("variant")
+            evidence_variants = [fact_variant] if isinstance(fact_variant, str) else []
+        elif candidate_ref in ranges:
+            evidence_variants = []
+            for fact_ref in ranges[candidate_ref].get("component_fact_refs", []):
+                fact_variant = facts.get(fact_ref, {}).get("variant")
+                if isinstance(fact_variant, str) and fact_variant not in evidence_variants:
+                    evidence_variants.append(fact_variant)
+        else:
+            evidence_variants = []
         inputs.append(
             {
                 "id": source["id"],
@@ -336,7 +432,9 @@ def _template(
                 "unit": source["unit"],
                 "required": source["required"],
                 "source_status": source["status"],
-                "candidate_ref": source.get("candidate_ref"),
+                "candidate_ref": candidate_ref,
+                "input_variant_scope": [variant_id],
+                "source_variant_scope": evidence_variants,
                 "candidate_adopted": False,
                 "value": None,
                 "uncertainty": None,
@@ -363,7 +461,11 @@ def _template(
         "gate_profile_ref": case["gate_profile_ref"],
         "status": "template_only_execution_blocked",
         "inputs": inputs,
-        "blocking_unknowns": list(case["blocking_unknowns"]),
+        "blocking_unknowns": list(
+            case.get("variant_blocking_unknowns", {}).get(
+                variant_id, case["blocking_unknowns"]
+            )
+        ),
         "acceptance_requirements": list(case["case_acceptance_requirements"]),
         "expected_outputs": outputs,
         "geometry_state": {
@@ -397,9 +499,17 @@ def build_contract(root: Path) -> dict[str, Any]:
     upstreams = load_and_validate_upstreams(root)
     f13 = upstreams["classical_solver_f13"]
     cases = _by_id(f13["solver_cases"], "f13_solver_cases")
+    facts = _by_id(f13["fact_registry"], "f13_fact_registry")
+    ranges = _by_id(f13["candidate_ranges"], "f13_candidate_ranges")
 
     templates = [
-        _template(variant_id, SCENARIO_BY_VARIANT[variant_id], cases[case_id])
+        _template(
+            variant_id,
+            SCENARIO_BY_VARIANT[variant_id],
+            cases[case_id],
+            facts,
+            ranges,
+        )
         for variant_id in TARGET_VARIANTS
         for case_id in EXPECTED_CASE_REFS[variant_id]
     ]
@@ -418,6 +528,11 @@ def build_contract(root: Path) -> dict[str, Any]:
                     TURBO_VARIANT: (
                         "blocked_variant_scope_missing" if case_id == CASE_008 else "required"
                     ),
+                    RECORD_VARIANT: (
+                        "required"
+                        if case_id in EXPECTED_CASE_REFS[RECORD_VARIANT]
+                        else "not_in_record_documentary_scope"
+                    ),
                 },
                 "input_template_status": "generated_null_only",
                 "execution_authorized": False,
@@ -428,7 +543,7 @@ def build_contract(root: Path) -> dict[str, Any]:
 
     return {
         "$comment": (
-            "F24 materialise uniquement un crosswalk et 22 templates d'entrees nuls. "
+            "F24 materialise uniquement un crosswalk et 24 templates d'entrees nuls. "
             "Il ne lie pas le scan, ne transfere aucune cote F10/F22, ne lance aucun "
             "solveur et ne constitue aucune preuve fonctionnelle."
         ),
@@ -437,7 +552,11 @@ def build_contract(root: Path) -> dict[str, Any]:
         "status": "dual_variant_crosswalk_and_null_input_templates_ready_all_execution_and_release_gates_blocked",
         "asset": {
             "id": ASSET_ID,
-            "target_roles": ["naturally_aspirated", "917_30_turbo"],
+            "target_roles": [
+                "naturally_aspirated",
+                "917_30_turbo_1973",
+                "917_30_record_1975_intercooled",
+            ],
             "functional_claim": False,
             "geometry_generated": False,
             "solver_decks_generated": False,
@@ -501,6 +620,24 @@ def build_contract(root: Path) -> dict[str, Any]:
                 "geometry_ready": False,
                 "solver_ready": False,
             },
+            {
+                "role": "917_30_record_1975_intercooled",
+                "canonical_variant_id": RECORD_VARIANT,
+                "solver_scenario_ref": RECORD_SCENARIO,
+                "case_refs": list(EXPECTED_CASE_REFS[RECORD_VARIANT]),
+                "case_count": len(EXPECTED_CASE_REFS[RECORD_VARIANT]),
+                "selection_status": "separate_documentary_record_configuration_only",
+                "parent_1973_variant_ref": TURBO_VARIANT,
+                "hardware_identity_equivalent_to_1973": False,
+                "intercooler_status_fact_ref": "FACT-INTERCOOLER-1975-STATUS",
+                "intercooler_presence_role": "documentary_variant_separator_only",
+                "intercooler_count": None,
+                "intercooler_geometry": None,
+                "intercooler_maps": None,
+                "turbocharger_count": None,
+                "geometry_ready": False,
+                "solver_ready": False,
+            },
         ],
         "case_matrix": case_matrix,
         "solver_input_templates": templates,
@@ -520,7 +657,7 @@ def build_contract(root: Path) -> dict[str, Any]:
             "tracked_contract_path": str(OUTPUT_RELATIVE_PATH),
             "generated_now": [
                 "case_applicability_matrix",
-                "22_null_solver_input_templates",
+                "24_null_solver_input_templates",
                 "variant_crosswalk",
             ],
             "geometry_artifacts": [],
@@ -533,12 +670,16 @@ def build_contract(root: Path) -> dict[str, Any]:
             "scan_identity_verified": False,
             "na_variant_identity_verified": False,
             "turbo_variant_identity_verified": False,
+            "record_1975_variant_identity_verified": False,
             "na_dimensioned_cad_ready": False,
             "turbo_dimensioned_cad_ready": False,
+            "record_1975_dimensioned_cad_ready": False,
             "na_solver_execution_authorized": False,
             "turbo_solver_execution_authorized": False,
+            "record_1975_solver_execution_authorized": False,
             "na_reference_cases_correlated": False,
             "turbo_reference_cases_correlated": False,
+            "record_1975_reference_cases_correlated": False,
             "physicsnemo_dataset_ready": False,
             "physicsnemo_training_authorized": False,
             "instrumented_bench_validated": False,
@@ -550,6 +691,8 @@ def build_contract(root: Path) -> dict[str, Any]:
             "f10_visual_stage_is_solver_or_manufacturing_geometry",
             "f22_4494_values_or_geometry_transfer_to_5l_or_turbo",
             "f10_generic_turbo_id_equals_f13_1973_identity",
+            "1973_turbo_inherits_1975_intercoolers_or_maps",
+            "1975_record_inherits_1973_hardware_identity_or_turbo_count",
             "reported_1600_hp_is_a_boundary_condition_or_result",
             "physicsnemo_import_or_sample_structure_proves_simulation",
             "f24_opens_any_execution_release_or_manufacturing_gate",
@@ -593,6 +736,29 @@ def _validate_template_nulls(template: dict[str, Any], errors: list[str]) -> Non
         errors.append(f"template_execution_gate_open:{label}")
     if template.get("physicsnemo_export", {}).get("authorized") is not False:
         errors.append(f"template_physicsnemo_gate_open:{label}")
+
+
+def _validate_template_scopes(
+    template: dict[str, Any],
+    expected_template: dict[str, Any],
+    errors: list[str],
+) -> None:
+    label = template.get("template_id")
+    variant_id = template.get("variant_id")
+    expected_inputs = {
+        item.get("id"): item
+        for item in expected_template.get("inputs", [])
+        if isinstance(item, dict)
+    }
+    for item in template.get("inputs", []):
+        input_id = item.get("id")
+        if item.get("input_variant_scope") != [variant_id]:
+            errors.append(f"template_input_variant_scope_mismatch:{label}:{input_id}")
+        expected_input = expected_inputs.get(input_id, {})
+        if item.get("source_variant_scope") != expected_input.get(
+            "source_variant_scope"
+        ):
+            errors.append(f"template_source_variant_scope_mismatch:{label}:{input_id}")
 
 
 def validate_contract(root: Path, contract: dict[str, Any]) -> list[str]:
@@ -643,6 +809,7 @@ def validate_contract(root: Path, contract: dict[str, Any]) -> list[str]:
     else:
         na = crosswalk[NA_VARIANT]
         turbo = crosswalk[TURBO_VARIANT]
+        record = crosswalk[RECORD_VARIANT]
         if na.get("f10_visual_variant_id") is not None or na.get("f22_cad_variant_id") is not None:
             errors.append("na_geometry_lineage_forbidden")
         if turbo.get("f10_mapping_scope") != "display_only_visual_lineage":
@@ -653,6 +820,24 @@ def validate_contract(root: Path, contract: dict[str, Any]) -> list[str]:
             errors.append("turbo_f22_geometry_lineage_forbidden")
         if turbo.get("reported_1600_hp_role") != "documentary_only_not_boundary_condition":
             errors.append("reported_1600_hp_boundary_or_result_forbidden")
+        if (
+            record.get("parent_1973_variant_ref") != TURBO_VARIANT
+            or record.get("hardware_identity_equivalent_to_1973") is not False
+            or record.get("intercooler_status_fact_ref")
+            != "FACT-INTERCOOLER-1975-STATUS"
+            or record.get("intercooler_presence_role")
+            != "documentary_variant_separator_only"
+            or any(
+                record.get(key) is not None
+                for key in (
+                    "intercooler_count",
+                    "intercooler_geometry",
+                    "intercooler_maps",
+                    "turbocharger_count",
+                )
+            )
+        ):
+            errors.append("record_1975_scope_mismatch")
         for variant_id, record in crosswalk.items():
             if record.get("geometry_ready") is not False or record.get("solver_ready") is not False:
                 errors.append(f"variant_readiness_gate_open:{variant_id}")
@@ -669,11 +854,13 @@ def validate_contract(root: Path, contract: dict[str, Any]) -> list[str]:
         != {
             NA_VARIANT: "required",
             TURBO_VARIANT: "blocked_variant_scope_missing",
+            RECORD_VARIANT: "not_in_record_documentary_scope",
         }
         or matrix[CASE_011].get("applicability")
         != {
             NA_VARIANT: "not_applicable_turbo_only",
             TURBO_VARIANT: "required",
+            RECORD_VARIANT: "required",
         }
     ):
         errors.append("special_case_applicability_mismatch")
@@ -687,7 +874,7 @@ def validate_contract(root: Path, contract: dict[str, Any]) -> list[str]:
                 errors.append(f"case_matrix_gate_open:{case_id}:{key}")
 
     templates = contract.get("solver_input_templates", [])
-    if not isinstance(templates, list) or len(templates) != 22:
+    if not isinstance(templates, list) or len(templates) != EXPECTED_TEMPLATE_COUNT:
         errors.append("solver_input_template_count_mismatch")
         templates = []
     actual_pairs = [
@@ -700,10 +887,40 @@ def validate_contract(root: Path, contract: dict[str, Any]) -> list[str]:
         for variant_id in TARGET_VARIANTS
         for case_id in EXPECTED_CASE_REFS[variant_id]
     ]
-    if actual_pairs != expected_pairs or len(set(actual_pairs)) != 22:
+    if actual_pairs != expected_pairs or len(set(actual_pairs)) != EXPECTED_TEMPLATE_COUNT:
         errors.append("solver_input_template_pairs_mismatch")
+    expected_templates = {
+        (item["variant_id"], item["case_id"]): item
+        for item in expected["solver_input_templates"]
+    }
     for template in templates:
         _validate_template_nulls(template, errors)
+        variant_id = template.get("variant_id")
+        expected_template = expected_templates.get(
+            (variant_id, template.get("case_id")), {}
+        )
+        _validate_template_scopes(template, expected_template, errors)
+        if template.get("case_id") == "CASE-917-F13-001" and variant_id in (
+            CYLINDER_COUNT_INPUT_BY_VARIANT
+        ):
+            count_inputs = [
+                item
+                for item in template.get("inputs", [])
+                if item.get("quantity") == "cylinder_count"
+            ]
+            input_id, fact_id = CYLINDER_COUNT_INPUT_BY_VARIANT[variant_id]
+            if len(count_inputs) != 1 or (
+                count_inputs[0].get("id"), count_inputs[0].get("candidate_ref")
+            ) != (input_id, fact_id):
+                errors.append(f"variant_cylinder_count_template_mismatch:{variant_id}")
+        if variant_id == RECORD_VARIANT and template.get("case_id") == CASE_011:
+            record_input_ids = {
+                item.get("id")
+                for item in template.get("inputs", [])
+                if isinstance(item, dict)
+            }
+            if {"boost_claim", "spool_claim"}.intersection(record_input_ids):
+                errors.append("record_1975_nonspecific_boost_spool_input_forbidden")
 
     physicsnemo = contract.get("physicsnemo_boundary", {})
     if physicsnemo.get("accepted_samples") != 0 or physicsnemo.get(
@@ -740,8 +957,8 @@ def evaluate(root: Path, contract: dict[str, Any]) -> dict[str, Any]:
         "asset_id": ASSET_ID,
         "report_status": "passed" if not errors else "failed",
         "contract_errors": errors,
-        "variant_count": 2,
-        "solver_input_template_count": 22,
+        "variant_count": len(TARGET_VARIANTS),
+        "solver_input_template_count": EXPECTED_TEMPLATE_COUNT,
         "release": {
             "scan_binding": False,
             "geometry": False,

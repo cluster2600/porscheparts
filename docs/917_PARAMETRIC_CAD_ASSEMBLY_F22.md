@@ -65,7 +65,7 @@ Le contrat distingue quatre espaces qui ne doivent jamais être fusionnés :
 4. `transparent_layout_guides` contient deux calculs reproductibles qui ne
    deviennent pas des cotes.
 
-Les huit candidats géométriques directement reliés à la branche sont :
+Les sept candidats géométriques directement reliés à la branche sont :
 
 | Paramètre futur | Candidat publié | Source du registre | Autorité CAO |
 |---|---:|---|---|
@@ -73,10 +73,15 @@ Les huit candidats géométriques directement reliés à la branche sont :
 | course | 66,0 mm | `FACT-45-STROKE` | aucune |
 | distance axe de piston–calotte | 43,0 mm | `FACT-45-PISTON-COMPRESSION-HEIGHT` | aucune |
 | diamètre de palier de maneton | 52,0 mm | `FACT-45-CRANKPIN-BEARING-DIAMETER` | aucune |
-| diamètre de tête de bielle | 56,0 mm | `FACT-45-CONNECTING-ROD-BIG-END-DIAMETER` | aucune |
 | diamètre extérieur soupape admission | 47,5 mm | `F20-INTAKE-VALVE-OUTER-DIAMETER` | aucune |
 | diamètre extérieur soupape échappement | 40,5 mm | `F20-EXHAUST-VALVE-OUTER-DIAMETER` | aucune |
 | diamètre déclaré du conduit admission | 41,0 mm | `F20-INTAKE-PORT-DIAMETER` | aucune |
+
+La valeur FIA de 56,0 mm au champ 159 reste dans
+`published_reference_candidates_not_geometry` avec le statut
+`ambiguous_label_not_geometry_input`. Elle n'est plus associée au paramètre
+`P-ROD-BIG-END-DIAMETER`, qui demeure `null` jusqu'à une mesure traçable ou un
+plan primaire levant l'ambiguïté du libellé.
 
 La tolérance ±0,8 mm associée au dernier point dans F20 reste une tolérance
 d’homologation déclarée. Elle n’est pas une tolérance de fabrication. Le

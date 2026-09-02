@@ -39,9 +39,52 @@ REQUIRED_GATE_SECTIONS = (
 ALLOWED_CANDIDATE_KINDS = {
     "published_point",
     "published_point_ambiguous_reference",
+    "published_configuration_inheritance",
     "published_sequence",
     "published_approximation",
+    "published_extension_inheritance",
     "reported_claim",
+}
+
+EXPECTED_CYLINDER_COUNT_FACTS = {
+    "FACT-CYLINDER-COUNT": (
+        "type_912_5_0_na",
+        "published_point",
+        ("SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS",),
+    ),
+    "FACT-CYLINDER-COUNT-45-NA": (
+        "type_912_4_5_na",
+        "published_point",
+        ("SRC-FIA-917-HOMOLOGATION-250",),
+    ),
+    "FACT-CYLINDER-COUNT-4907-NA": (
+        "type_912_4_907_na_homologation_extension_1_1E",
+        "published_extension_inheritance",
+        ("SRC-FIA-917-HOMOLOGATION-250",),
+    ),
+    "FACT-CYLINDER-COUNT-91730-1973": (
+        "917_30_1973_turbo_5374",
+        "published_point",
+        ("SRC-PORSCHE-NEWSROOM-91730-TURBO", "SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"),
+    ),
+    "FACT-CYLINDER-COUNT-91730-1975": (
+        "917_30_1975_record_turbo_5374",
+        "published_configuration_inheritance",
+        ("SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT",),
+    ),
+    "FACT-CYLINDER-COUNT-91730-1600-REPORTED": (
+        "917_30_1600_hp_reported_qualifying_target",
+        "published_point",
+        ("SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING",),
+    ),
+}
+
+EXACT_SOLVER_VARIANTS = {
+    "type_912_4_5_na",
+    "type_912_5_0_na",
+    "917_30_1973_turbo_5374",
+    "917_30_1975_record_turbo_5374",
+    "917_30_1600_hp_reported_qualifying_target",
 }
 
 
@@ -290,6 +333,16 @@ def _validate_cases(
             unit = input_spec.get("unit")
             if not isinstance(unit, str) or not unit:
                 errors.append(f"solver_input_unit_missing:{case_id}:{input_id}")
+            input_variants = input_spec.get("variants")
+            if input_variants is not None:
+                if (
+                    not isinstance(input_variants, list)
+                    or not input_variants
+                    or not set(input_variants).issubset(set(case.get("variants", [])))
+                ):
+                    errors.append(
+                        f"solver_input_variants_invalid:{case_id}:{input_id}"
+                    )
             status = input_spec.get("status")
             candidate_ref = input_spec.get("candidate_ref")
             if status == "unknown":
@@ -301,7 +354,10 @@ def _validate_cases(
                     errors.append(
                         f"solver_required_unknown_not_blocking:{case_id}:{input_id}"
                     )
-            elif isinstance(status, str) and status.startswith("candidate"):
+            elif isinstance(status, str) and (
+                status.startswith("candidate")
+                or status.startswith("not_applicable_documented")
+            ):
                 candidate = candidates.get(candidate_ref)
                 if candidate is None:
                     errors.append(
@@ -313,6 +369,20 @@ def _validate_cases(
                     else candidate.get("unit")
                 ):
                     errors.append(f"solver_candidate_unit_mismatch:{case_id}:{input_id}")
+                if (
+                    candidate is not None
+                    and candidate.get("variant") in EXACT_SOLVER_VARIANTS
+                    and input_variants != [candidate["variant"]]
+                ):
+                    errors.append(
+                        f"solver_candidate_variant_scope_mismatch:{case_id}:{input_id}"
+                    )
+                if status.startswith("not_applicable_documented") and input_spec.get(
+                    "required"
+                ) is not False:
+                    errors.append(
+                        f"solver_not_applicable_input_must_not_be_required:{case_id}:{input_id}"
+                    )
             else:
                 errors.append(f"solver_input_status_invalid:{case_id}:{input_id}")
         outputs = case.get("expected_outputs")
@@ -358,6 +428,7 @@ def _validate_scenarios(
         errors.append("five_litre_na_scenario_missing")
     else:
         required_facts = {
+            "FACT-CYLINDER-COUNT",
             "FACT-50-BORE",
             "FACT-50-STROKE",
             "FACT-50-DISPLACEMENT",
@@ -395,6 +466,296 @@ def _validate_scenarios(
         if not str(scenario.get("status", "")).startswith("blocked"):
             errors.append(f"scenario_status_must_be_blocked:{scenario_id}")
     return scenarios
+
+
+def _validate_variant_source_boundaries(
+    facts: dict[str, dict[str, Any]],
+    cases: dict[str, dict[str, Any]],
+    scenarios: dict[str, dict[str, Any]],
+    errors: list[str],
+) -> None:
+    """Refuse les transferts implicites entre variantes 917 documentees."""
+
+    for fact_id, (variant, kind, source_refs) in EXPECTED_CYLINDER_COUNT_FACTS.items():
+        fact = facts.get(fact_id)
+        if fact is None:
+            errors.append(f"variant_cylinder_count_fact_missing:{fact_id}")
+            continue
+        candidate = fact.get("candidate", {})
+        if (
+            fact.get("quantity") != "cylinder_count"
+            or fact.get("variant") != variant
+            or candidate.get("kind") != kind
+            or candidate.get("value") != 12
+            or candidate.get("unit") != "count"
+            or tuple(fact.get("source_refs", [])) != source_refs
+            or fact.get("design_lock") is not False
+        ):
+            errors.append(f"variant_cylinder_count_fact_invalid:{fact_id}")
+    if any(
+        fact.get("quantity") == "cylinder_count"
+        and fact.get("variant") == "all_documented_917_engines"
+        for fact in facts.values()
+    ):
+        errors.append("broad_cylinder_count_variant_forbidden")
+
+    cycle_case = cases.get("CASE-917-F13-001", {})
+    cycle_count_inputs = {
+        item.get("id"): item
+        for item in cycle_case.get("inputs", [])
+        if isinstance(item, dict) and item.get("quantity") == "cylinder_count"
+    }
+    expected_cycle_count_inputs = {
+        "cylinder_count_4494": (
+            "FACT-CYLINDER-COUNT-45-NA",
+            ("type_912_4_5_na",),
+        ),
+        "cylinder_count": (
+            "FACT-CYLINDER-COUNT",
+            ("type_912_5_0_na",),
+        ),
+        "cylinder_count_91730_1973": (
+            "FACT-CYLINDER-COUNT-91730-1973",
+            ("917_30_1973_turbo_5374",),
+        ),
+        "cylinder_count_91730_1975": (
+            "FACT-CYLINDER-COUNT-91730-1975",
+            ("917_30_1975_record_turbo_5374",),
+        ),
+        "cylinder_count_91730_1600_reported": (
+            "FACT-CYLINDER-COUNT-91730-1600-REPORTED",
+            ("917_30_1600_hp_reported_qualifying_target",),
+        ),
+    }
+    if set(cycle_count_inputs) != set(expected_cycle_count_inputs):
+        errors.append("cycle_cylinder_count_variant_inputs_incomplete")
+    else:
+        for input_id, (fact_id, variants) in expected_cycle_count_inputs.items():
+            item = cycle_count_inputs[input_id]
+            if item.get("candidate_ref") != fact_id or tuple(
+                item.get("variants", [])
+            ) != variants:
+                errors.append(f"cycle_cylinder_count_variant_input_invalid:{input_id}")
+
+    ambiguous_fia_159 = facts.get("FACT-45-CONNECTING-ROD-BIG-END-DIAMETER", {})
+    if (
+        ambiguous_fia_159.get("quantity")
+        != "fia_article_159_dimension_ambiguous"
+        or ambiguous_fia_159.get("variant") != "type_912_4_5_na"
+        or ambiguous_fia_159.get("candidate")
+        != {
+            "kind": "published_point_ambiguous_reference",
+            "value": 56.0,
+            "unit": "mm",
+        }
+        or ambiguous_fia_159.get("source_refs")
+        != ["SRC-FIA-917-HOMOLOGATION-250"]
+        or ambiguous_fia_159.get("usage")
+        != "ambiguous_label_not_geometry_input"
+        or ambiguous_fia_159.get("design_lock") is not False
+        or "CONTRADICTION-FIA-ARTICLE-159-LABEL"
+        not in ambiguous_fia_159.get("contradiction_refs", [])
+    ):
+        errors.append("fia_article_159_must_remain_ambiguous_non_geometry")
+
+    expected_valve_diameters = {
+        "FACT-INTAKE-VALVE-DIAMETER-CANDIDATE": (
+            "intake_valve_outer_diameter",
+            47.5,
+        ),
+        "FACT-EXHAUST-VALVE-DIAMETER-CANDIDATE": (
+            "exhaust_valve_outer_diameter",
+            40.5,
+        ),
+    }
+    for fact_id, (quantity, value) in expected_valve_diameters.items():
+        fact = facts.get(fact_id, {})
+        if (
+            fact.get("quantity") != quantity
+            or fact.get("variant") != "type_912_4_5_na"
+            or fact.get("candidate")
+            != {"kind": "published_point", "value": value, "unit": "mm"}
+            or fact.get("source_refs") != ["SRC-FIA-917-HOMOLOGATION-250"]
+            or fact.get("design_lock") is not False
+        ):
+            errors.append(f"fia_valve_diameter_scope_invalid:{fact_id}")
+
+    duct_case = cases.get("CASE-917-F13-004", {})
+    duct_inputs = {
+        item.get("id"): item
+        for item in duct_case.get("inputs", [])
+        if isinstance(item, dict)
+    }
+    for input_id in ("intake_valve_diameter", "exhaust_valve_diameter"):
+        item = duct_inputs.get(input_id, {})
+        if (
+            item.get("status") != "unknown"
+            or item.get("candidate_ref") is not None
+            or item.get("required") is not True
+            or input_id not in duct_case.get("blocking_unknowns", [])
+        ):
+            errors.append(f"fia_valve_diameter_transfer_forbidden:{input_id}")
+    forbidden_valve_refs = set(expected_valve_diameters)
+    if any(
+        item.get("candidate_ref") in forbidden_valve_refs
+        for case in cases.values()
+        for item in case.get("inputs", [])
+        if isinstance(item, dict)
+    ):
+        errors.append("fia_valve_diameter_solver_input_transfer_forbidden")
+
+    turbo_count = facts.get("FACT-TURBO-COUNT", {})
+    if (
+        turbo_count.get("variant") != "917_30_1973_turbo_5374"
+        or turbo_count.get("candidate")
+        != {"kind": "published_point", "value": 2, "unit": "count"}
+        or turbo_count.get("source_refs")
+        != ["SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING"]
+        or turbo_count.get("design_lock") is not False
+    ):
+        errors.append("turbo_count_must_bind_directly_to_porsche_usa")
+
+    expected_intercooler_facts = {
+        "FACT-INTERCOOLER-1973-STATUS": (
+            "917_30_1973_turbo_5374",
+            "not_fitted_before_first_documented_1975_use",
+        ),
+        "FACT-INTERCOOLER-1975-STATUS": (
+            "917_30_1975_record_turbo_5374",
+            "fitted_first_documented_use",
+        ),
+    }
+    for fact_id, (variant, value) in expected_intercooler_facts.items():
+        fact = facts.get(fact_id, {})
+        candidate = fact.get("candidate", {})
+        if (
+            fact.get("variant") != variant
+            or candidate.get("kind") != "published_sequence"
+            or candidate.get("value") != value
+            or candidate.get("unit") != "categorical"
+            or fact.get("source_refs")
+            != ["SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"]
+            or fact.get("design_lock") is not False
+        ):
+            errors.append(f"intercooler_variant_fact_invalid:{fact_id}")
+
+    scenario_1973 = scenarios.get("SCENARIO-91730-1973-TURBO", {})
+    if not {
+        "FACT-CYLINDER-COUNT-91730-1973",
+        "FACT-TURBO-COUNT",
+        "FACT-INTERCOOLER-1973-STATUS",
+    }.issubset(set(scenario_1973.get("fact_refs", []))):
+        errors.append("scenario_1973_variant_facts_incomplete")
+    scenario_1975 = scenarios.get("SCENARIO-91730-1975-RECORD", {})
+    if not {
+        "FACT-CYLINDER-COUNT-91730-1975",
+        "FACT-TURBO-POWER-1230",
+        "FACT-INTERCOOLER-1975-STATUS",
+    }.issubset(set(scenario_1975.get("fact_refs", []))):
+        errors.append("scenario_1975_variant_facts_incomplete")
+    forbidden_turbo_claim_refs = {
+        "FACT-TURBO-BOOST-CANDIDATE",
+        "FACT-TURBO-SPOOL-QUALITATIVE",
+    }
+    for scenario_id in (
+        "SCENARIO-91730-1973-TURBO",
+        "SCENARIO-91730-1975-RECORD",
+        "SCENARIO-91730-1600-HP-REPORTED",
+    ):
+        scenario = scenarios.get(scenario_id, {})
+        if forbidden_turbo_claim_refs.intersection(scenario.get("fact_refs", [])):
+            errors.append(
+                f"scenario_nonspecific_boost_spool_claim_forbidden:{scenario_id}"
+            )
+    record_configuration = scenario_1975.get("variant_configuration", {})
+    if (
+        record_configuration.get("charge_air_cooler")
+        != "present_first_documented_use_1975"
+        or record_configuration.get("charge_air_cooler_count") is not None
+        or record_configuration.get("charge_air_cooler_geometry") is not None
+        or record_configuration.get("charge_air_cooler_maps") is not None
+        or record_configuration.get("turbocharger_count") is not None
+        or not str(record_configuration.get("status", "")).startswith(
+            "separate_record_configuration_"
+        )
+    ):
+        errors.append("scenario_1975_configuration_must_remain_separate_and_null")
+
+    turbo_case = cases.get("CASE-917-F13-011", {})
+    inputs = {
+        item.get("id"): item
+        for item in turbo_case.get("inputs", [])
+        if isinstance(item, dict)
+    }
+    if any(
+        item.get("candidate_ref") in forbidden_turbo_claim_refs
+        for item in turbo_case.get("inputs", [])
+        if isinstance(item, dict)
+    ):
+        errors.append("nonspecific_boost_spool_solver_input_forbidden")
+    expected_variant_inputs = {
+        "turbo_count": (
+            "FACT-TURBO-COUNT",
+            ("917_30_1973_turbo_5374",),
+        ),
+        "turbocharger_count_1975_record": (
+            None,
+            ("917_30_1975_record_turbo_5374",),
+        ),
+        "turbo_count_1600_reported": (
+            "FACT-TURBO-COUNT-1600-REPORTED",
+            ("917_30_1600_hp_reported_qualifying_target",),
+        ),
+        "intercooler_1973_status": (
+            "FACT-INTERCOOLER-1973-STATUS",
+            ("917_30_1973_turbo_5374",),
+        ),
+        "intercooler_1975_status": (
+            "FACT-INTERCOOLER-1975-STATUS",
+            ("917_30_1975_record_turbo_5374",),
+        ),
+        "intercooler_maps_1975_record": (
+            None,
+            ("917_30_1975_record_turbo_5374",),
+        ),
+        "intercooler_configuration_1600_reported": (
+            None,
+            ("917_30_1600_hp_reported_qualifying_target",),
+        ),
+    }
+    for input_id, (candidate_ref, variants) in expected_variant_inputs.items():
+        item = inputs.get(input_id, {})
+        if item.get("candidate_ref") != candidate_ref or tuple(
+            item.get("variants", [])
+        ) != variants:
+            errors.append(f"turbo_variant_input_invalid:{input_id}")
+
+    variant_blocks = turbo_case.get("variant_blocking_unknowns", {})
+    expected_variants = {
+        "917_30_1973_turbo_5374",
+        "917_30_1975_record_turbo_5374",
+        "917_30_1600_hp_reported_qualifying_target",
+    }
+    if not isinstance(variant_blocks, dict) or set(variant_blocks) != expected_variants:
+        errors.append("turbo_variant_blocking_unknowns_missing")
+        return
+    block_1973 = set(variant_blocks["917_30_1973_turbo_5374"])
+    block_1975 = set(variant_blocks["917_30_1975_record_turbo_5374"])
+    block_1600 = set(
+        variant_blocks["917_30_1600_hp_reported_qualifying_target"]
+    )
+    if any("intercooler" in item for item in block_1973):
+        errors.append("intercooler_must_be_not_applicable_to_1973")
+    if "intercooler_maps_1975_record" not in block_1975:
+        errors.append("intercooler_maps_must_block_1975_record")
+    if "turbocharger_count_1975_record" not in block_1975:
+        errors.append("turbocharger_count_must_remain_unknown_for_1975_record")
+    if "intercooler_configuration_1600_reported" not in block_1600:
+        errors.append("intercooler_configuration_must_remain_unknown_for_1600_claim")
+    if set(turbo_case.get("blocking_unknowns", [])) != set().union(
+        block_1973, block_1975, block_1600
+    ):
+        errors.append("turbo_blocking_unknown_union_mismatch")
 
 
 def _validate_coupling(
@@ -493,6 +854,7 @@ def evaluate(project_root: Path, registry_path: Path) -> dict[str, Any]:
     profiles = _validate_gate_profiles(contract, errors)
     cases = _validate_cases(contract, facts, ranges, profiles, errors)
     scenarios = _validate_scenarios(contract, facts, sources, cases, errors)
+    _validate_variant_source_boundaries(facts, cases, scenarios, errors)
     _validate_coupling(contract, cases, errors)
     _validate_physicsnemo(contract, cases, errors)
 

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 import subprocess
@@ -35,6 +36,51 @@ class DimensionalSkeletonF14Tests(unittest.TestCase):
             check=False,
         )
         return temporary, output, result
+
+    def run_generator_with_mutated_source(
+        self, source_index, mutate_payload, *, repin_digest=False
+    ):
+        mutated_contract = json.loads(json.dumps(self.contract))
+        source = mutated_contract["source_registry"][source_index]
+        source_payload = json.loads(
+            (ROOT / source["path"]).read_text(encoding="utf-8")
+        )
+        mutate_payload(source_payload)
+        work_root = ROOT / "work"
+        work_root.mkdir(exist_ok=True)
+        temporary = tempfile.TemporaryDirectory(dir=work_root)
+        temporary_path = Path(temporary.name)
+        mutated_source = temporary_path / "mutated-source.json"
+        serialized_source = json.dumps(
+            source_payload, indent=2, ensure_ascii=False
+        ) + "\n"
+        mutated_source.write_text(serialized_source, encoding="utf-8")
+        source["path"] = str(mutated_source.relative_to(ROOT))
+        if repin_digest:
+            source["expected_sha256"] = hashlib.sha256(
+                serialized_source.encode("utf-8")
+            ).hexdigest()
+        contract_path = temporary_path / "mutated-contract.json"
+        contract_path.write_text(
+            json.dumps(mutated_contract, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        generated = temporary_path / "generated"
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(GENERATOR),
+                "--contract",
+                str(contract_path),
+                "--output-dir",
+                str(generated),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        return temporary, generated, result
 
     def test_three_variants_are_separate_and_exact(self):
         variants = {item["variant_id"]: item for item in self.contract["variants"]}
@@ -171,19 +217,55 @@ class DimensionalSkeletonF14Tests(unittest.TestCase):
                 encoding="utf-8"
             )
         )
-        self.assertEqual(len(report["sources"]), 4)
+        self.assertEqual(len(report["sources"]), 5)
         self.assertEqual(
             {source["source_id"]: source["evidence_grade"] for source in report["sources"]},
             {
                 "SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS": "C",
                 "SRC-KFZ-TECH-917-TYPE912-ENGINE": "D",
-                "SRC-PORSCHE-NEWSROOM-91730-TURBO": "B",
+                "SRC-PORSCHE-NEWSROOM-91730-TURBO": "A",
+                "SRC-PORSCHE-NEWSROOM-91730-1600-QUALIFYING": "B",
                 "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS": "A",
             },
         )
         for source in report["sources"]:
             self.assertRegex(source["sha256"], r"^[0-9a-f]{64}$")
             self.assertTrue(source["claim_tokens_verified"])
+            pin = next(
+                item
+                for item in self.contract["source_registry"]
+                if item["source_id"] == source["source_id"]
+            )
+            self.assertEqual(source["url"], pin["expected_url"])
+            self.assertEqual(source["sha256"], pin["expected_sha256"])
+
+    def test_source_url_mutation_is_rejected_even_with_matching_digest_pin(self):
+        temporary, output, result = self.run_generator_with_mutated_source(
+            0,
+            lambda payload: payload.__setitem__(
+                "url", "https://example.invalid/token-compatible-source"
+            ),
+            repin_digest=True,
+        )
+        self.addCleanup(temporary.cleanup)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("url does not match expected_url pin", result.stderr)
+        self.assertNotIn("sha256 does not match expected_sha256 pin", result.stderr)
+        self.assertFalse(output.exists())
+
+    def test_token_compatible_source_content_mutation_is_rejected_by_digest(self):
+        temporary, output, result = self.run_generator_with_mutated_source(
+            0,
+            lambda payload: payload.__setitem__(
+                "tamper_probe", "claim tokens and URL deliberately unchanged"
+            ),
+        )
+        self.addCleanup(temporary.cleanup)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("sha256 does not match expected_sha256 pin", result.stderr)
+        self.assertNotIn("claim token absent", result.stderr)
+        self.assertNotIn("url does not match expected_url pin", result.stderr)
+        self.assertFalse(output.exists())
 
     def test_tampered_dimension_is_rejected_before_outputs(self):
         mutated = json.loads(json.dumps(self.contract))

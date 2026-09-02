@@ -121,11 +121,6 @@ class ParametricCadAssemblyContractF22Tests(unittest.TestCase):
                 "mm",
                 "P-CRANKPIN-BEARING-DIAMETER",
             ),
-            "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER": (
-                56.0,
-                "mm",
-                "P-ROD-BIG-END-DIAMETER",
-            ),
             "F20-INTAKE-VALVE-OUTER-DIAMETER": (
                 47.5,
                 "mm",
@@ -158,6 +153,27 @@ class ParametricCadAssemblyContractF22Tests(unittest.TestCase):
             self.assertIn(parameter_id, parameters)
             self.assertIsNone(parameters[parameter_id]["value"])
             self.assertFalse(parameters[parameter_id]["design_lock"])
+        ambiguous = {
+            item["source_fact_ref"]: item
+            for item in self.contract["dimension_authority"][
+                "published_reference_candidates_not_geometry"
+            ]
+        }["FACT-45-CONNECTING-ROD-BIG-END-DIAMETER"]
+        self.assertEqual(
+            ambiguous["candidate"],
+            {
+                "kind": "published_point_ambiguous_reference",
+                "value": 56.0,
+                "unit": "mm",
+            },
+        )
+        self.assertEqual(ambiguous["parameter_id"], "not_a_cad_parameter")
+        self.assertEqual(ambiguous["usage"], "ambiguous_label_not_geometry_input")
+        self.assertNotIn(
+            "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER", candidates
+        )
+        self.assertIsNone(parameters["P-ROD-BIG-END-DIAMETER"]["value"])
+        self.assertFalse(parameters["P-ROD-BIG-END-DIAMETER"]["design_lock"])
         port = candidates["F20-INTAKE-PORT-DIAMETER"]
         self.assertEqual(
             port["homologation_declared_tolerance_ref"],
