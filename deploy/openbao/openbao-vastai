@@ -45,6 +45,13 @@ MESH_IMAGE = "ghcr.io/cluster2600/3dprinting993-mesh-cfd:f5affdfe7c93a9c402c1544
 MESH_LABEL = "3dprinting993-mesh-cfd"
 SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
+WAVE_MAX_DPH = 1.25
+WAVE_MIN_CPU_THREADS = 64
+WAVE_MIN_CPU_RAM_MB = 256000
+WAVE_DISK_GB = 300
+WAVE_MIN_RELIABILITY = 0.985
+WAVE_IMAGE = "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3"
+WAVE_LABEL = "3dprinting993-wave-action-f39"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
 
@@ -334,6 +341,14 @@ def require_no_simready_instance(api_key: str) -> None:
         raise SafeError("a SimReady instance already exists; destroy it before launching another")
 
 
+def require_no_wave_instance(api_key: str) -> None:
+    existing = list_instances(api_key, label=WAVE_LABEL)
+    if existing:
+        raise SafeError(
+            "a wave-action F39 instance already exists; destroy it before launching another"
+        )
+
+
 def verify_single_simready_instance(api_key: str, instance_id: int) -> None:
     for _ in range(30):
         ids = sorted(
@@ -347,6 +362,26 @@ def verify_single_simready_instance(api_key: str, instance_id: int) -> None:
             raise SafeError("SimReady post-launch uniqueness verification failed")
         time.sleep(1)
     raise SafeError("the new SimReady instance did not appear in the paginated instance list")
+
+
+def verify_single_wave_instance(api_key: str, instance_id: int) -> None:
+    """Require the exact newly created id to be the sole F39-labelled instance."""
+    for _ in range(30):
+        existing = list_instances(api_key, label=WAVE_LABEL)
+        ids = sorted(
+            instance.get("id")
+            for instance in existing
+            if isinstance(instance.get("id"), int)
+            and not isinstance(instance.get("id"), bool)
+        )
+        if len(existing) == 1 and ids == [instance_id]:
+            return
+        if existing:
+            raise SafeError("wave-action F39 post-launch uniqueness verification failed")
+        time.sleep(1)
+    raise SafeError(
+        "the new wave-action F39 instance did not appear in the paginated instance list"
+    )
 
 
 def verify_simready_contract(api_key: str, instance_id: int) -> None:
@@ -408,6 +443,72 @@ def verify_simready_contract(api_key: str, instance_id: int) -> None:
     raise SafeError("Vast.ai did not expose complete post-launch contract metadata in time")
 
 
+def verify_wave_contract(api_key: str, instance_id: int) -> None:
+    """Fail closed until Vast exposes the complete immutable F39 CPU contract."""
+    required_fields = (
+        "id",
+        "label",
+        "status",
+        "machine_verification",
+        "cpu_cores_effective",
+        "cpu_ram_mb",
+        "disk_space_gb",
+        "dph_total",
+        "image",
+    )
+    for _ in range(30):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeHttpError as exc:
+            if exc.status_code == 404:
+                time.sleep(1)
+                continue
+            raise
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid post-launch F39 instance metadata")
+        instance = safe_instance(raw_instance)
+        if any(instance.get(field) is None for field in required_fields):
+            time.sleep(1)
+            continue
+        errors = []
+        if instance["id"] != instance_id:
+            errors.append("instance id")
+        if instance["label"] != WAVE_LABEL:
+            errors.append("label")
+        if instance["image"] != WAVE_IMAGE:
+            errors.append("image digest")
+        if instance["status"] not in {"created", "loading", "running"}:
+            errors.append("status")
+        numeric_contract = (
+            (
+                instance["cpu_cores_effective"],
+                WAVE_MIN_CPU_THREADS,
+                "effective CPU threads",
+            ),
+            (instance["cpu_ram_mb"], WAVE_MIN_CPU_RAM_MB, "CPU RAM"),
+            (instance["disk_space_gb"], WAVE_DISK_GB, "disk"),
+        )
+        for value, minimum, label in numeric_contract:
+            number = finite_number(value)
+            if number is None or number < minimum:
+                errors.append(label)
+        price = finite_number(instance["dph_total"])
+        if price is None or not 0 <= price <= WAVE_MAX_DPH:
+            errors.append("dph_total")
+        if instance["machine_verification"] != "verified":
+            errors.append("machine verification")
+        if errors:
+            raise SafeError(
+                "post-launch contract is outside the fixed wave-action F39 limits: "
+                + ", ".join(errors)
+            )
+        return
+    raise SafeError(
+        "Vast.ai did not expose complete post-launch F39 contract metadata in time"
+    )
+
+
 def reconcile_uncertain_simready_launch(api_key: str) -> None:
     """Rollback the sole project instance when a create response is uncertain."""
     for _ in range(30):
@@ -431,6 +532,34 @@ def reconcile_uncertain_simready_launch(api_key: str) -> None:
             raise SafeError(
                 "launch outcome is uncertain and multiple SimReady instances exist; "
                 "inspect instances before retrying"
+            )
+        time.sleep(1)
+
+
+def reconcile_uncertain_wave_launch(api_key: str) -> None:
+    """Rollback the sole F39-labelled instance after an uncertain create call."""
+    for _ in range(30):
+        try:
+            existing = list_instances(api_key, label=WAVE_LABEL)
+        except SafeError:
+            time.sleep(1)
+            continue
+        if existing:
+            ids = sorted(
+                instance.get("id")
+                for instance in existing
+                if isinstance(instance.get("id"), int)
+                and not isinstance(instance.get("id"), bool)
+            )
+            if len(existing) == 1 and len(ids) == 1:
+                destroy_instance_verified(api_key, ids[0])
+                raise SafeError(
+                    "launch outcome was uncertain; the sole wave-action F39 instance "
+                    f"{ids[0]} was automatically destroyed and verified absent"
+                )
+            raise SafeError(
+                "launch outcome is uncertain and the F39 label is not uniquely mapped "
+                "to one valid instance id; inspect instances before retrying"
             )
         time.sleep(1)
 
@@ -581,6 +710,89 @@ def get_heavy_offers(api_key: str) -> list[dict]:
             -float(item.get("gpu_ram", 0)),
             -float(item.get("cpu_cores_effective", 0)),
             float(item.get("dph_total", item.get("dph", 999))),
+        ),
+    )
+
+
+def wave_offer_query(offer_id: int | None = None) -> dict:
+    query = {
+        "allocated_storage": WAVE_DISK_GB,
+        "cpu_cores_effective": {"gte": WAVE_MIN_CPU_THREADS},
+        "cpu_ram": {"gte": WAVE_MIN_CPU_RAM_MB},
+        "disk_space": {"gte": WAVE_DISK_GB},
+        "reliability": {"gte": WAVE_MIN_RELIABILITY},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 100,
+    }
+    if offer_id is not None:
+        # Vast does not consistently honor an id predicate on bundle search.
+        # Fetch a bounded wider result, then match the requested id locally.
+        query["limit"] = 1000
+    return query
+
+
+def wave_offer_eligible(offer: dict) -> bool:
+    offer_id = offer.get("id")
+    price = finite_number(offer.get("dph_total"))
+    cpu_threads = finite_number(offer.get("cpu_cores_effective"))
+    cpu_ram_mb = finite_number(offer.get("cpu_ram"))
+    disk_gb = finite_number(offer.get("disk_space"))
+    reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
+    verified_value = offer.get("verified")
+    rentable_value = offer.get("rentable")
+    rented_value = offer.get("rented")
+    verified = (
+        verified_value is True
+        or verified_value == 1
+        or offer.get("verification") == "verified"
+    )
+    rentable = rentable_value is True or rentable_value == 1
+    not_rented = rented_value is False or rented_value == 0
+    return (
+        isinstance(offer_id, int)
+        and not isinstance(offer_id, bool)
+        and offer_id > 0
+        and price is not None
+        and 0 <= price <= WAVE_MAX_DPH
+        and cpu_threads is not None
+        and cpu_threads >= WAVE_MIN_CPU_THREADS
+        and cpu_ram_mb is not None
+        and cpu_ram_mb >= WAVE_MIN_CPU_RAM_MB
+        and disk_gb is not None
+        and disk_gb >= WAVE_DISK_GB
+        and reliability is not None
+        and reliability >= WAVE_MIN_RELIABILITY
+        and verified
+        and rentable
+        and not_rented
+    )
+
+
+def get_wave_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=wave_offer_query(offer_id),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai wave-action offer search returned an invalid result")
+    eligible = [
+        offer
+        for offer in offers
+        if isinstance(offer, dict) and wave_offer_eligible(offer)
+    ]
+    return sorted(
+        eligible,
+        key=lambda item: (
+            -float(item["cpu_cores_effective"]),
+            -float(item["cpu_ram"]),
+            float(item["dph_total"]),
+            int(item["id"]),
         ),
     )
 
@@ -830,6 +1042,76 @@ def launch_mesh_offer(api_key: str, offer: dict) -> int:
     return 0
 
 
+def launch_wave_f39_offer(api_key: str, offer: dict) -> int:
+    # Revalidate the complete selected object immediately before the paid call.
+    if not wave_offer_eligible(offer):
+        raise SafeError("wave-action offer is outside the fixed safety and price limits")
+    # Reuse the paid-launch lock so a local SimReady or F39 launch cannot race.
+    with simready_launch_lock():
+        require_no_wave_instance(api_key)
+        ensure_local_ssh_registered(api_key)
+        offer_id = positive_id(str(offer.get("id")), "offer id")
+        try:
+            result = vast_request(
+                api_key,
+                f"/api/v0/asks/{offer_id}/",
+                method="PUT",
+                payload={
+                    "image": WAVE_IMAGE,
+                    "label": WAVE_LABEL,
+                    "disk": WAVE_DISK_GB,
+                    "runtype": "ssh_direct",
+                    "env": {},
+                    "onstart": (
+                        "mkdir -p /workspace/logs; "
+                        "python /opt/917-engine-wave-f39/smoke.py "
+                        ">/workspace/logs/wave-action-f39-smoke.json "
+                        "2>/workspace/logs/wave-action-f39-smoke.stderr "
+                        "&& test ! -s /workspace/logs/wave-action-f39-smoke.stderr "
+                        "&& printf '%s\\n' 'F39 smoke passed' >/workspace/READY"
+                    ),
+                    "cancel_unavail": True,
+                },
+            )
+        except SafeHttpError as exc:
+            if 400 <= exc.status_code < 500:
+                raise
+            reconcile_uncertain_wave_launch(api_key)
+            raise
+        except SafeError:
+            reconcile_uncertain_wave_launch(api_key)
+            raise
+        instance_id = result.get("new_contract")
+        if not isinstance(instance_id, int):
+            reconcile_uncertain_wave_launch(api_key)
+            raise SafeError("Vast.ai did not return a new wave-action instance id")
+        try:
+            verify_single_wave_instance(api_key, instance_id)
+            verify_wave_contract(api_key, instance_id)
+        except SafeError:
+            try:
+                destroy_instance_verified(api_key, instance_id)
+            except SafeError as cleanup_error:
+                raise SafeError(
+                    "post-launch F39 verification failed and rollback was not "
+                    f"verified for instance {instance_id}"
+                ) from cleanup_error
+            raise
+        print_json(
+            {
+                "instance_id": instance_id,
+                "image": WAVE_IMAGE,
+                "label": WAVE_LABEL,
+                "selected_offer": safe_offer(offer),
+                "offer_contract_verified": True,
+                "singleton_preflight_verified": True,
+                "singleton_verified": True,
+                "contract_verified": True,
+            }
+        )
+        return 0
+
+
 def launch_simready_offer(
     api_key: str,
     offer: dict,
@@ -909,6 +1191,9 @@ def run(operation: list[str]) -> int:
             return 0
         if operation == ["heavy-offers"]:
             print_json([safe_offer(item) for item in get_heavy_offers(api_key)[:20]])
+            return 0
+        if operation == ["wave-offers"]:
+            print_json([safe_offer(item) for item in get_wave_offers(api_key)[:20]])
             return 0
         if operation == ["mesh-offers"]:
             print_json([safe_offer(item) for item in get_mesh_offers(api_key)[:20]])
@@ -1007,6 +1292,18 @@ def run(operation: list[str]) -> int:
             if len(matching) != 1:
                 raise SafeError("mesh offer is unavailable or outside the fixed safety and price limits")
             return launch_mesh_offer(api_key, matching[0])
+        if len(operation) == 2 and operation[0] == "launch-wave-f39":
+            offer_id = positive_id(operation[1], "offer id")
+            matching = [
+                item
+                for item in get_wave_offers(api_key, offer_id)
+                if item.get("id") == offer_id
+            ]
+            if len(matching) != 1:
+                raise SafeError(
+                    "wave-action offer is unavailable or outside the fixed safety and price limits"
+                )
+            return launch_wave_f39_offer(api_key, matching[0])
         if len(operation) == 2 and operation[0] == "launch-simready":
             offer_id = positive_id(operation[1], "offer id")
             matching = [
@@ -1091,9 +1388,9 @@ def run(operation: list[str]) -> int:
             print_json({"instance_id": instance_id, "destroyed": True, "verified_absent": True})
             return 0
         raise SafeError(
-            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|mesh-offers|instances|"
+            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|wave-offers|mesh-offers|instances|"
             "show <id>|ssh-keys <id>|attach-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
-            "launch <offer_id>|launch-mesh <offer_id>|launch-simready <offer_id>|launch-simready-heavy <offer_id>|launch-simready-best|launch-simready-best-eu|launch-best-eu|"
+            "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|launch-simready <offer_id>|launch-simready-heavy <offer_id>|launch-simready-best|launch-simready-best-eu|launch-best-eu|"
             "start <id>|stop <id>|"
             "destroy <id> --confirm"
         )
