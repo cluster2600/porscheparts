@@ -1,0 +1,455 @@
+{
+  "$comment": "Verrou de publication de l'image CPU d'auteur CAO F28 seulement. Il confirme la chaine d'outils build123d/OCCT et sa fixture synthetique ; il ne libere ni scan, ni geometrie moteur, ni CAE, ni PhysicsNeMo, ni Omniverse, ni fabrication, ni fonctionnement moteur.",
+  "schema_version": "1.0.0",
+  "phase": "F28",
+  "status": "immutable_public_cpu_cad_toolchain_verified_engine_release_blocked",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
+    "digest": "sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+    "index": {
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "size_bytes": 857,
+      "digest_recomputed": true,
+      "platform_manifest_count": 1,
+      "attestation_manifest_count": 1
+    },
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "user": "9178:9178",
+      "working_directory": "/workspace",
+      "default_command": [
+        "python",
+        "/opt/cad-author-f28/cad-author-f28-smoke.py"
+      ],
+      "python_version": "3.12.14",
+      "build123d_version": "0.11.1",
+      "cadquery_ocp_novtk_version": "7.9.3.1.1",
+      "ocp_version": "7.9.3.1",
+      "gpu_required": false
+    },
+    "manifest": {
+      "digest": "sha256:dbbebc784706f17a1d4f1d3c04df90baa551e0a72236bd29995f983735a6661b",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 3710,
+      "config_digest": "sha256:9e99c8e269f96012b61b750ded2c11f099bea6feae83302b4f50c4b9e22190d9",
+      "config_size_bytes": 12444,
+      "layer_count": 18,
+      "compressed_size_bytes": 250798017,
+      "largest_layer_digest": "sha256:c01526e33f6d3bb5cc76978270f2b189ab4b01be7d899d99c6feb6d0de09ac84",
+      "largest_layer_bytes": 202973458,
+      "layers": [
+        {
+          "digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+          "size_bytes": 28232655
+        },
+        {
+          "digest": "sha256:268fd66f673d556a271a784d33c4541102f05dde43657861a8e793eb30ef38dd",
+          "size_bytes": 3533349
+        },
+        {
+          "digest": "sha256:ec613f6df89286159c101a9b15264bc627366aaf788a9ea9c3a456ad9b9b2b3e",
+          "size_bytes": 13672032
+        },
+        {
+          "digest": "sha256:35ef2f664a5c3b1e1408a24bd668ef33b82a89a534709e1c03aac6d50012d51a",
+          "size_bytes": 249
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        },
+        {
+          "digest": "sha256:068e93b9221d91ec21007c9dc3674d21e47ee68875c664ded4ba38e62fd47d25",
+          "size_bytes": 72809
+        },
+        {
+          "digest": "sha256:ed75060d7febf79552670ace9c3acd5073460464e4ecd3d63c4e0dedaa9c9087",
+          "size_bytes": 1228454
+        },
+        {
+          "digest": "sha256:147cd630955da4088cd79bb14310ffa09d8b619dbb66b6b9d8b48aecde74f2b3",
+          "size_bytes": 152026
+        },
+        {
+          "digest": "sha256:2753b1e0e5515a4d4f6dca141e7702e7104c9e4fd4a7b0c54c4f77a534012116",
+          "size_bytes": 2141
+        },
+        {
+          "digest": "sha256:8236089a838cbb61669a5d79b3206c028c225a8074259c5b736689e9023d304b",
+          "size_bytes": 15118
+        },
+        {
+          "digest": "sha256:ddf7dec10ad47cf5596fe5e00e8ee41ec5a71f6e2d11e50a409eade3d30f58ac",
+          "size_bytes": 893908
+        },
+        {
+          "digest": "sha256:c01526e33f6d3bb5cc76978270f2b189ab4b01be7d899d99c6feb6d0de09ac84",
+          "size_bytes": 202973458
+        },
+        {
+          "digest": "sha256:3072beecba71aca2dce5d33d9f13fd601632d7f58079e423e92ae9511caf4fc4",
+          "size_bytes": 2596
+        },
+        {
+          "digest": "sha256:5513ade192b8308d8fa7c422feeae3778ebcd958389a1caa7c2d74d849aecde0",
+          "size_bytes": 7137
+        },
+        {
+          "digest": "sha256:0243b965b766b311506ce9424dd544398b89fe54536f81c7c6daa68b5486f734",
+          "size_bytes": 734
+        },
+        {
+          "digest": "sha256:a6c67311a142d82248929bd5f822bc4df37348d2b80c8264dfb3c257ea9582fd",
+          "size_bytes": 11255
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        }
+      ]
+    },
+    "attestation_manifest": {
+      "digest": "sha256:56cbcf8288cf306b362f45f806f1b6982dbcb4149ad78322d818cfbdd38dd7fa",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "artifact_type": "application/vnd.docker.attestation.manifest.v1+json",
+      "size_bytes": 1112,
+      "subject_manifest_digest": "sha256:dbbebc784706f17a1d4f1d3c04df90baa551e0a72236bd29995f983735a6661b",
+      "subject_manifest_size_bytes": 3710,
+      "predicate_layers": [
+        {
+          "predicate_type": "https://spdx.dev/Document",
+          "digest": "sha256:f96403b29dffdf0e6416e7053701c903d65854a0ec38bda9b92601d8efdbec82",
+          "size_bytes": 2831547
+        },
+        {
+          "predicate_type": "https://slsa.dev/provenance/v1",
+          "digest": "sha256:4f7bb0900ff6757feb07d54b119b84bf010c1cc746dab6f0262a28b147080494",
+          "size_bytes": 34520
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "4ce40599840c42dd99294d6290de789ec067a217",
+    "runner": "ubuntu-24.04",
+    "dockerfile_frontend_digest": "sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "dependency_policy": "46_exact_hashed_linux_amd64_wheels_plus_11_exact_hashed_debian_packages_plus_pinned_base_pip",
+    "builder": {
+      "buildx_version": "0.36.1",
+      "buildx_git_revision": "1d8dde89b8aba914e05e45366770736fea1fd690",
+      "buildx_linux_amd64_binary_sha256": "48af8a397ebd60178778bf63611dbcebe5f5e7a9be90eb9147b24b9587455778",
+      "buildkit_version": "0.32.2",
+      "buildkit_image": "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+    },
+    "inputs": [
+      {
+        "path": ".github/workflows/cad-author-f28-image.yml",
+        "role": "build_publish_digest_provenance_sbom_size_smoke_and_anonymous_gate",
+        "sha256": "c7b762116e36c33bcc7de9d0cb980e618b6dba698734e9c7d7fee7b2b5173da3"
+      },
+      {
+        "path": "containers/cad-author-f28.Dockerfile",
+        "role": "image_recipe",
+        "sha256": "acf4e2b961d7f78d670e626056b1d6ec73ab112e8d8f73558b6c37a276c85789"
+      },
+      {
+        "path": "containers/cad-author-f28.Dockerfile.dockerignore",
+        "role": "allow_listed_build_context",
+        "sha256": "ecb1db346102c8dc326cddcaf5aa9bbdfbcfd1e4655e88d1a7237f942b92ab85"
+      },
+      {
+        "path": "containers/cad-author-f28-requirements.txt",
+        "role": "hashed_linux_amd64_python_wheel_closure",
+        "sha256": "4786434a2aa60bfce5c887b0413732a6ec6a2e5a5e427319f0db41184e257a1e"
+      },
+      {
+        "path": "containers/cad-author-f28-smoke.py",
+        "role": "offline_synthetic_step_roundtrip_and_audits",
+        "sha256": "6f3f5213d0f7d397e91fc57d87efb14cb8f45cf56518d01fa17baaf3a2cfa1fa"
+      },
+      {
+        "path": "containers/cad-author-f28-system-packages.sha256",
+        "role": "hashed_debian_runtime_library_payload",
+        "sha256": "9102b6670eeaf64177f3f55758e4dbd1040a4de5f8173fb637c4f4aec6e6c2f4"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "verified_at": "2026-09-02T04:57:37Z",
+    "workflow": {
+      "id": 348110447,
+      "run_id": 33592654832,
+      "run_number": 1,
+      "job_id": 100129628308,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "4ce40599840c42dd99294d6290de789ec067a217",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33592654832",
+      "job_url": "https://github.com/cluster2600/3dprinting993/actions/runs/33592654832/job/100129628308",
+      "started_at": "2026-09-02T04:55:28Z",
+      "completed_at": "2026-09-02T04:57:35Z",
+      "api_updated_at": "2026-09-02T04:57:37Z"
+    },
+    "evidence_artifact": {
+      "id": 9832322052,
+      "name": "cad-author-f28-published-4ce40599840c42dd99294d6290de789ec067a217",
+      "digest": "sha256:74d475fba171164e7735e108b5feeb45215de0b38300f4e601b736cac395f799",
+      "size_bytes": 347872,
+      "expired": false,
+      "created_at": "2026-09-02T04:57:29Z",
+      "expires_at": "2026-10-02T04:57:29Z"
+    },
+    "evidence_files": [
+      {
+        "name": "cad-author-f28-anonymous-smoke.json",
+        "sha256": "9e5c7ee5aa4ffb64ef489bb20c263e14b54095656f9b0c3daaa9bb93088642c4",
+        "size_bytes": 5055
+      },
+      {
+        "name": "cad-author-f28-anonymous-smoke.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      {
+        "name": "cad-author-f28-attestation-manifest.json",
+        "sha256": "56cbcf8288cf306b362f45f806f1b6982dbcb4149ad78322d818cfbdd38dd7fa",
+        "size_bytes": 1112
+      },
+      {
+        "name": "cad-author-f28-builder.txt",
+        "sha256": "b82b2d27bdb30d421b2bc2a7ebb2a516b05276d03aadd2e5c6116c599de3f2e1",
+        "size_bytes": 1842
+      },
+      {
+        "name": "cad-author-f28-image-ref.txt",
+        "sha256": "dc65551b93458266f30e433176e14a6d494bb609cf6b0186f7e2dd8c59f2f52f",
+        "size_bytes": 121
+      },
+      {
+        "name": "cad-author-f28-index.json",
+        "sha256": "18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+        "size_bytes": 857
+      },
+      {
+        "name": "cad-author-f28-license-audit.json",
+        "sha256": "435d64326ca4c0cf86dea89bbfb0a2c6c81724a168f312c59d33c217e482c008",
+        "size_bytes": 1894
+      },
+      {
+        "name": "cad-author-f28-platform-manifest.json",
+        "sha256": "dbbebc784706f17a1d4f1d3c04df90baa551e0a72236bd29995f983735a6661b",
+        "size_bytes": 3710
+      },
+      {
+        "name": "cad-author-f28-provenance.json",
+        "sha256": "91814defc5a3881ee27128a0367e5c598688711fce5e615a99fa1133dae2dc82",
+        "size_bytes": 70062
+      },
+      {
+        "name": "cad-author-f28-sbom.json",
+        "sha256": "9ba2cf98acd42e44d06318d8d30c77864a607060ff28ea29b28c3754283ebaca",
+        "size_bytes": 3838341
+      },
+      {
+        "name": "cad-author-f28-size.json",
+        "sha256": "7cbc72254ad18d06eb834c98ab15a416179d4b05d7b1818ab6b034ce14412105",
+        "size_bytes": 740
+      },
+      {
+        "name": "cad-author-f28-smoke.json",
+        "sha256": "1a7851fe5ead0f7037044fdcf08cdcd46356b18964201b56d74e98c843dff4a7",
+        "size_bytes": 5055
+      },
+      {
+        "name": "cad-author-f28-smoke.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      }
+    ],
+    "registry_index_digest_recomputed": true,
+    "platform_manifest_digest_recomputed": true,
+    "attestation_manifest_digest_recomputed": true,
+    "published_digest_pulled": true,
+    "anonymous_exact_digest_access": true,
+    "anonymous_access_workflow_step_conclusion": "success",
+    "cryptographic_signature_verified": false,
+    "provenance": {
+      "predicate_type": "https://slsa.dev/provenance/v1",
+      "layer_digest": "sha256:4f7bb0900ff6757feb07d54b119b84bf010c1cc746dab6f0262a28b147080494",
+      "layer_size_bytes": 34520,
+      "build_type": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "builder_id": "https://github.com/cluster2600/3dprinting993/actions/runs/33592654832/attempts/1",
+      "source_repository": "https://github.com/cluster2600/3dprinting993",
+      "source_revision": "4ce40599840c42dd99294d6290de789ec067a217",
+      "builder_platform": "linux/amd64",
+      "resolved_dependency_count": 4,
+      "frontend_digest_present": true,
+      "base_image_digest_present": true,
+      "started_at": "2026-09-02T04:55:37.653375169Z",
+      "finished_at": "2026-09-02T04:56:49.818421873Z"
+    },
+    "sbom": {
+      "predicate_type": "https://spdx.dev/Document",
+      "layer_digest": "sha256:f96403b29dffdf0e6416e7053701c903d65854a0ec38bda9b92601d8efdbec82",
+      "layer_size_bytes": 2831547,
+      "spdx_version": "SPDX-2.3",
+      "document_id": "SPDXRef-DOCUMENT",
+      "data_license": "CC0-1.0",
+      "created_at": "2026-09-02T04:56:25Z",
+      "package_count": 184,
+      "file_count": 3358,
+      "relationship_count": 4126,
+      "packages": {
+        "build123d": "0.11.1",
+        "cadquery-ocp-novtk": "7.9.3.1.1",
+        "python": "3.12.14"
+      },
+      "tools": [
+        "syft-v1.51.0",
+        "buildkit-v0.32.2"
+      ]
+    },
+    "size_metrics": {
+      "registry_compressed": {
+        "metric_scope": "compressed_oci_registry_blobs",
+        "layer_media_type": "application/vnd.oci.image.layer.v1.tar+gzip",
+        "compressed_layer_max_bytes": 202973458,
+        "compressed_layers_total_bytes": 250798017,
+        "budgets": {
+          "compressed_layer_max_bytes": 275000000,
+          "compressed_layers_total_bytes": 325000000
+        }
+      },
+      "local_and_uncompressed": {
+        "metric_scope": "docker_local_store_plus_sum_of_uncompressed_layer_tar_streams",
+        "local_store_metric_note": "diagnostic_only_engine_backend_dependent_not_gated",
+        "local_store_reported_bytes": 843284017,
+        "uncompressed_layer_tar_bytes": 865096192,
+        "budgets": {
+          "uncompressed_layer_tar_bytes": 1100000000
+        }
+      }
+    },
+    "dependency_audit": {
+      "wheel_pin_count": 46,
+      "wheel_hash_count": 46,
+      "system_package_pin_count": 11,
+      "system_package_hash_count": 11,
+      "requirements_sha256": "4786434a2aa60bfce5c887b0413732a6ec6a2e5a5e427319f0db41184e257a1e",
+      "system_packages_sha256": "9102b6670eeaf64177f3f55758e4dbd1040a4de5f8173fb637c4f4aec6e6c2f4",
+      "unexpected_distributions": []
+    },
+    "license_audit": {
+      "policy": "NOASSERTION_label_with_package_notices_and_sbom_as_authority",
+      "package_notice_count": 11,
+      "common_license_file_count": 17,
+      "missing_package_notices": []
+    },
+    "offline_smoke": {
+      "status": "passed_synthetic_cad_fixture_only",
+      "claim_scope": "synthetic fixture verifies only the offline build123d to STEP to OCCT software path",
+      "offline": true,
+      "platform_contract": "linux/amd64-cpu",
+      "runtime_uid_gid": "9178:9178",
+      "non_root": true,
+      "gpu_required": false,
+      "kernel_interfaces": [
+        "lo"
+      ],
+      "default_ipv4_external_route": false,
+      "default_ipv6_external_route": false,
+      "fixture_kind": "synthetic_box_with_through_bore",
+      "fixture_dimensions_mm": {
+        "width": 20.0,
+        "depth": 12.0,
+        "height": 8.0,
+        "bore_radius": 2.0
+      },
+      "expected_volume_mm3": 1819.469035085,
+      "step_export_bytes": 18945,
+      "closed_solid_after_step_roundtrip": true,
+      "created_geometry_signature_repeatable": true,
+      "reopened_geometry_signature_repeatable": true,
+      "canonical_scan_used": false,
+      "vehicle_geometry_used": false,
+      "authenticated_step_sha256_diagnostic_not_reproducibility_claim": "5014c28a2ed8812acb73f35faeae553f0e5099c6fc0a5aaff560a4172d968565",
+      "anonymous_step_sha256_diagnostic_not_reproducibility_claim": "a065865c3914e4d5da31831ad02c4b08f332e9022d49ed56c433e8d3fff7dcdf",
+      "semantic_payloads_equal_after_removing_step_hash_diagnostic": true,
+      "authenticated_stderr_empty": true,
+      "anonymous_stderr_empty": true
+    },
+    "anonymous_smoke": {
+      "status": "passed_synthetic_cad_fixture_only",
+      "exact_digest_pulled_without_credentials": true,
+      "offline_runtime": true,
+      "non_root": true,
+      "root_filesystem_read_only": true,
+      "network_none": true,
+      "capabilities_dropped": "ALL",
+      "no_new_privileges": true,
+      "semantic_payload_equal_except_non_reproducible_step_hash_diagnostic": true,
+      "stderr_empty": true
+    }
+  },
+  "bundled_assets": {
+    "raw_scans": false,
+    "derived_scan_geometry": false,
+    "engine_geometry": false,
+    "engine_cad_sources": false,
+    "engine_step_files": false,
+    "real_solver_outputs": false,
+    "datasets": false,
+    "model_weights": false,
+    "secrets": false,
+    "synthetic_step_outputs_persisted_in_image": false,
+    "runtime_support_files": [
+      "containers/cad-author-f28-requirements.txt",
+      "containers/cad-author-f28-smoke.py",
+      "containers/cad-author-f28-system-packages.sha256"
+    ]
+  },
+  "release_gates": {
+    "immutable_public_image_verified": true,
+    "linux_amd64_offline_synthetic_cad_smoke_verified": true,
+    "cryptographic_signature_verified": false,
+    "f27_physical_metrology_completed": false,
+    "engine_identity_confirmed": false,
+    "scan_identity_confirmed": false,
+    "physical_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "engine_geometry_authored": false,
+    "engine_assembly_released": false,
+    "material_definitions_validated": false,
+    "cae_geometry_released": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "omniverse_simready_released": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "fabrication_release": false,
+    "print_release": false,
+    "engine_start_released": false,
+    "functional_engine_release": false,
+    "vast_rental_verified_for_current_job": false,
+    "vast_job_allowed": false
+  },
+  "known_limits": {
+    "apt_repository_timestamped_snapshot_pinned": false,
+    "workflow_packages_write_permission_scoped_only_to_publish_execution": false,
+    "step_export_byte_reproducibility_claimed": false,
+    "attestations_are_cryptographic_signature": false,
+    "engine_geometry_or_function_claimed": false
+  }
+}

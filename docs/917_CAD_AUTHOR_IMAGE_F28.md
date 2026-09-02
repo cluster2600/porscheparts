@@ -175,11 +175,46 @@ flowchart TD
     S -->|succès| P[Publication optionnelle par digest]
     P --> A[SLSA + SBOM + sujet OCI]
     A --> N[Pull anonyme du digest exact]
-    N --> K[Lock séparé à créer après preuve]
+    N --> K[Lock F28 immuable vérifié]
 ```
 
-À ce stade, aucun digest public F28 et aucun lock d'autorité ne sont déclarés.
-Les attestations et le SBOM ne sont pas une signature cryptographique. Même
-après un workflow vert, seuls l'image immuable et son smoke synthétique seront
-vérifiés : tous les gates de scan, CAO moteur, CAE, PhysicsNeMo, Omniverse,
-fabrication et démarrage resteront fermés.
+## Publication immuable F28 vérifiée
+
+Le statut provisoire « aucun digest public F28 et aucun lock d'autorité » n'est
+plus applicable. Le workflow public
+[`33592654832`](https://github.com/cluster2600/3dprinting993/actions/runs/33592654832)
+a publié et validé l'index exact :
+
+```text
+ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+```
+
+Le verrou suivi
+[`cad-author-f28.lock.json`](../containers/cad-author-f28.lock.json) fixe le
+commit source `4ce40599840c42dd99294d6290de789ec067a217`, le run et son job, l'index OCI,
+son unique manifeste `linux/amd64`, le manifeste d'attestation lié à ce sujet,
+la provenance SLSA, le SBOM SPDX, les six entrées exactes de recette et les
+empreintes de chaque fichier de preuve. Le pull par accès anonyme du digest
+exact et le smoke sous l'utilisateur non-root `9178:9178` ont réussi. Les deux
+fichiers `stderr` sont vides.
+
+La mesure du registre totalise **250 798 017 octets** de couches compressées,
+dont **202 973 458 octets** pour la plus grande. La somme portable des flux
+`layer.tar` non compressés est **865 096 192 octets**. Ces trois valeurs restent
+sous leurs budgets respectifs ; la taille du magasin Docker local demeure un
+diagnostic non gaté.
+
+Les smokes authentifié et anonyme ont produit les mêmes contrôles géométriques
+et topologiques. Leurs empreintes STEP diagnostiques diffèrent, ce qui est
+normal pour un en-tête STEP pouvant varier et ne constitue pas un échec : le
+workflow n'a jamais promis une identité byte-à-byte de cet export synthétique.
+
+Seuls les gates d'image publique immuable et de smoke CAO synthétique hors
+ligne sont ouverts ; tous les gates physiques restent fermés. Ce lock ne prouve
+pas l'identité ou l'échelle du scan, une
+géométrie du moteur, un assemblage, un calcul CAE, une corrélation classique,
+PhysicsNeMo, Omniverse, une fabrication, une impression ou un démarrage moteur.
+Les attestations et le SBOM ne sont pas une signature cryptographique. Le dépôt
+APT n'est toujours pas un snapshot horodaté et l'autorisation `packages: write`
+du workflow reste au niveau du job même lorsque la publication est désactivée ;
+ces deux limites sont conservées explicitement dans le lock.
