@@ -40,7 +40,7 @@ digest exact. Les valeurs invariantes sont :
 
 ```text
 image repository: ghcr.io/cluster2600/3dprinting993-cad-author-f28
-image: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:<digest-F41-publié>
+image: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
 runtype: ssh_direct
 remote user: root
 onstart: /usr/local/bin/917-cad-vast-onstart
@@ -82,6 +82,8 @@ Chaque payload doit appartenir à l'allowlist F41, figurer exactement dans
 `files` et respecter taille, mode et SHA-256 déclarés. Tous les payloads doivent
 être du texte UTF-8. `STEP`, `STL`, `3MF`, `OBJ`, `USD`, `FCStd` et tout autre
 binaire sont refusés.
+Le staging refuse une archive compressée supérieure à 512 Mio, plus de 10 000
+membres, un fichier supérieur à 64 Mio ou plus de 2 Gio après extraction.
 Les chemins `raw-scans`, liens, devices, doublons, chemins absolus, traversées
 `..`, marqueurs de clés privées et marqueurs de variables de secrets sont aussi
 refusés. Une géométrie dérivée, même visible ailleurs, n'est pas transférable
@@ -171,22 +173,58 @@ tar, changement de propriétaire, chute de privilèges, création build123d,
 export STEP, réouverture OCCT et contrôle d'un solide fermé. Il ne démarre pas
 `sshd` et laisse toutes les gates Vast et moteur fermées.
 
-Le workflow refuse aussi une couche ajoutée supérieure à 8 000 000 octets
-selon la métrique locale Docker. Le build de développement observé ajoute
-environ 3,8 Mo à F28 ; la preuve publiée restera celle du workflow GHCR.
+Le workflow refuse aussi une couche ajoutée supérieure à 16 000 000 octets
+selon la métrique Docker Linux native. La publication qualifiée ajoute
+11 392 378 octets à F28. Docker Desktop avait rapporté environ 3,8 Mo ; cette
+métrique locale n'est pas utilisée comme preuve de publication.
 
-## Usage de la machine proposée
+## Sélection et lancement bornés
 
-L'offre Vast `#49655039` est intéressante ici pour ses nombreux CPU et sa RAM,
-pas pour sa RTX 3060 Ti : build123d/OCCT n'utilisent pas ce GPU. Le parallélisme
-doit venir de plusieurs jobs CAO indépendants, chacun lancé par
-`917-cad-run-job`; un job individuel reste limité à un thread natif afin
-d'éviter la surallocation.
+Une offre donnée peut disparaître à tout moment ; aucun identifiant de machine
+n'est donc inscrit dans le code. Le wrapper liste les offres qui respectent le
+contrat CPU/CAO, puis impose une sélection explicite :
 
-Après récupération et vérification des hashes de `/workspace/results`, le
-wrapper doit arrêter la location. La conversion/validation SimReady et les
-calculs PhysicsNeMo nécessitant un GPU restent dans des images et locations
-séparées.
+```bash
+./deploy/openbao/openbao-vastai component-factory-f41-offers
+./deploy/openbao/openbao-vastai launch-component-factory-f41 <offer_id>
+```
+
+Le lancement refuse un prix total supérieur à 1,25 USD/h, un
+`inet_up_cost` ou `inet_down_cost` absent, non fini, négatif ou supérieur à
+0,05 USD/Go, moins de 64 CPU effectifs, moins de 256 000 Mo de RAM, moins de
+300 Go de disque, une fiabilité inférieure à 0,985, une machine non vérifiée ou
+une seconde instance appartenant à la famille F41. Le tarif réseau est revérifié
+sur le contrat post-lancement lorsqu'il y est exposé.
+
+Chaque appel payant reçoit un label de tentative aléatoire de 80 bits, long de
+60 caractères, sous le préfixe F41. Ce label corrèle exclusivement l'appel et
+son éventuel rollback : l'identifiant `new_contract` n'est jamais détruit sans
+preuve de cette appartenance. Le garde préalable reconnaît aussi les autres
+labels de tentative F41 afin de refuser deux lanceurs concurrents. Après la
+création, le singleton est revérifié sur toute la famille de labels, pas seulement
+sur la tentative courante. Il exige trois snapshots globaux complets, identiques
+et espacés avant de déclarer la stabilité ; disparition, changement ou second
+membre pendant cette fenêtre échoue fermé. En cas de course, seul le membre
+portant le label de cette tentative est réconcilié et détruit ;
+`singleton_verified` ne peut donc pas être annoncé tant qu'un autre membre F41
+existe. Toute réponse de création non confirmée, y compris HTTP 4xx, déclenche
+cette réconciliation exacte. Si cette réconciliation ou destruction échoue, la
+CLI écrit immédiatement sur stderr qu'une instance peut encore tourner et être
+facturée, avec le label exact à inspecter, y compris avant de propager une
+annulation clavier. Le wrapper transmet uniquement l'image immuable, ce label,
+le disque, `ssh_direct`, un environnement vide et l'onstart fixe. La clé privée
+reste locale ; seule la clé publique approuvée peut être enregistrée chez Vast.
+
+build123d/OCCT n'utilise pas le GPU. Le parallélisme doit venir de plusieurs
+jobs CAO indépendants, chacun lancé par `917-cad-run-job`; un job individuel
+reste limité à un thread natif afin d'éviter la surallocation.
+
+La récupération des résultats n'est jamais automatique. Avant SCP, l'opérateur
+doit produire côté instance une archive de résultats d'au plus 2 Gio, enregistrer
+sa taille et son SHA-256, puis refuser localement tout écart de taille ou de hash.
+Après cette récupération vérifiée de `/workspace/results`, le wrapper doit
+arrêter la location. La conversion/validation SimReady et les calculs
+PhysicsNeMo nécessitant un GPU restent dans des images et locations séparées.
 
 ## Limites fermées
 
@@ -201,6 +239,9 @@ spécifiques n'existent pas :
 - puissance mécanique de 1 600 ch, démarrage moteur et sécurité véhicule ;
 - autorisation de fabriquer, notamment pistons, bielles et pièces en titane.
 
-Le fichier `lock.json` ne doit recevoir le digest et les preuves GHCR qu'après
-la fin verte du workflow. Les preuves Vast et F41 restent une promotion
-ultérieure et séparée.
+`lock.json` reste volontairement le verrou de construction prépublication : y
+inscrire le digest de l'image qui l'embarque créerait une référence circulaire
+et un nouveau digest. Le digest qualifié est donc enregistré hors de l'image
+dans le wrapper et dans
+`twins/reference-917-engine/evidence/f41-vast-image-publication/`. Les preuves
+d'exécution Vast et F41 restent une promotion ultérieure et séparée.
