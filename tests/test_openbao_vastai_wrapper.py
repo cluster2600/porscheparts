@@ -157,6 +157,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             mock.patch.object(
                 self.wrapper, "verify_wave_contract"
             ) as verify_contract,
+            mock.patch.object(
+                self.wrapper, "verify_wave_ssh_ready"
+            ) as verify_runtime,
             mock.patch("sys.stdout", output),
         ):
             result = self.wrapper.launch_wave_f39_offer("unused", offer)
@@ -165,6 +168,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         ensure_ssh.assert_called_once_with("unused")
         verify_singleton.assert_called_once_with("unused", 12345)
         verify_contract.assert_called_once_with("unused", 12345)
+        verify_runtime.assert_called_once_with("unused", 12345)
         self.assertEqual(
             request.call_args.args[1],
             f"/api/v0/asks/{USER_PROVIDED_WAVE_CANDIDATE_ID}/",
@@ -178,9 +182,10 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertEqual(payload["env"], {})
         self.assertIn("/opt/917-engine-wave-f39/smoke.py", payload["onstart"])
         self.assertIn("/workspace/READY", payload["onstart"])
+        self.assertTrue(payload["onstart"].startswith("rm -f /workspace/READY;"))
         self.assertLess(
             payload["onstart"].index("/opt/917-engine-wave-f39/smoke.py"),
-            payload["onstart"].index("/workspace/READY"),
+            payload["onstart"].rindex("/workspace/READY"),
         )
         serialized = json.dumps(payload).lower()
         self.assertNotIn("token", serialized)
@@ -190,6 +195,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertTrue(report["singleton_preflight_verified"])
         self.assertTrue(report["singleton_verified"])
         self.assertTrue(report["contract_verified"])
+        self.assertTrue(report["running_state_verified"])
+        self.assertTrue(report["ssh_batch_mode_verified"])
+        self.assertTrue(report["runtime_smoke_verified"])
 
     def test_wave_launch_revalidates_before_ssh_or_paid_request(self):
         with (
@@ -275,6 +283,23 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             ):
                 self.wrapper.verify_wave_contract("unused", 12345)
 
+    def test_wave_contract_waits_for_running_before_returning(self):
+        with (
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                side_effect=[
+                    {"instances": self.wave_instance(actual_status="loading")},
+                    {"instances": self.wave_instance(actual_status="running")},
+                ],
+            ) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+        ):
+            instance = self.wrapper.verify_wave_contract("unused", 12345)
+        self.assertEqual(instance["status"], "running")
+        self.assertEqual(request.call_count, 2)
+        sleep.assert_called_once_with(self.wrapper.POLL_INTERVAL_SECONDS)
+
     def test_wave_post_create_contract_failure_rolls_back_exact_instance(self):
         with (
             mock.patch.object(
@@ -295,6 +320,33 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             ),
             mock.patch.object(self.wrapper, "destroy_instance_verified") as destroy,
             self.assertRaisesRegex(self.wrapper.SafeError, "bad F39 contract"),
+        ):
+            self.wrapper.launch_wave_f39_offer(
+                "unused", self.eligible_wave_offer()
+            )
+        destroy.assert_called_once_with("unused", 12345)
+
+    def test_wave_post_create_ssh_smoke_failure_rolls_back_exact_instance(self):
+        with (
+            mock.patch.object(
+                self.wrapper, "simready_launch_lock", return_value=nullcontext()
+            ),
+            mock.patch.object(self.wrapper, "require_no_wave_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={"new_contract": 12345},
+            ),
+            mock.patch.object(self.wrapper, "verify_single_wave_instance"),
+            mock.patch.object(self.wrapper, "verify_wave_contract"),
+            mock.patch.object(
+                self.wrapper,
+                "verify_wave_ssh_ready",
+                side_effect=self.wrapper.SafeError("F39 smoke failed"),
+            ),
+            mock.patch.object(self.wrapper, "destroy_instance_verified") as destroy,
+            self.assertRaisesRegex(self.wrapper.SafeError, "F39 smoke failed"),
         ):
             self.wrapper.launch_wave_f39_offer(
                 "unused", self.eligible_wave_offer()
@@ -415,6 +467,137 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         ):
             self.wrapper.reconcile_uncertain_wave_launch("unused")
         destroy.assert_not_called()
+
+    def test_uncertain_wave_reconciliation_expiry_explicitly_forbids_retry(self):
+        with (
+            mock.patch.object(self.wrapper, "list_instances", return_value=[]),
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            self.assertRaisesRegex(
+                self.wrapper.SafeError,
+                "do not retry automatically",
+            ),
+        ):
+            self.wrapper.reconcile_uncertain_wave_launch("unused")
+        self.assertEqual(sleep.call_count, 30)
+
+    def test_wave_ssh_ready_uses_approved_key_batch_mode_and_smoke_marker(self):
+        completed = self.wrapper.subprocess.CompletedProcess(
+            args=[], returncode=0, stdout="F39_REMOTE_READY\n", stderr=""
+        )
+        with (
+            mock.patch.object(
+                self.wrapper, "validate_approved_ssh_private_key"
+            ) as validate_key,
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={
+                    "instances": self.wave_instance(
+                        ssh_host="203.0.113.8",
+                        ssh_port=32122,
+                    )
+                },
+            ),
+            mock.patch.object(
+                self.wrapper.subprocess, "run", return_value=completed
+            ) as run,
+        ):
+            self.wrapper.verify_wave_ssh_ready("unused", 12345)
+        validate_key.assert_called_once_with()
+        command = run.call_args.args[0]
+        self.assertIn(str(self.wrapper.SSH_PRIVATE_KEY_FILE), command)
+        self.assertIn("BatchMode=yes", command)
+        self.assertIn("IdentitiesOnly=yes", command)
+        self.assertIn("root@203.0.113.8", command)
+        self.assertIn("32122", command)
+        self.assertNotIn("ssh-add", command)
+        self.assertIn("/workspace/READY", command[-1])
+        self.assertIn("wave-action-f39-smoke.json", command[-1])
+
+    def test_wave_ssh_ready_never_accepts_failed_smoke(self):
+        failed = self.wrapper.subprocess.CompletedProcess(
+            args=[], returncode=1, stdout="", stderr="not ready"
+        )
+        with (
+            mock.patch.object(
+                self.wrapper, "validate_approved_ssh_private_key"
+            ),
+            mock.patch.object(self.wrapper, "WAVE_SSH_READY_ATTEMPTS", 2),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={
+                    "instances": self.wave_instance(
+                        ssh_host="203.0.113.8",
+                        ssh_port=32122,
+                    )
+                },
+            ),
+            mock.patch.object(
+                self.wrapper.subprocess, "run", return_value=failed
+            ) as run,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            self.assertRaisesRegex(
+                self.wrapper.SafeError, "do not treat the instance as ready"
+            ),
+        ):
+            self.wrapper.verify_wave_ssh_ready("unused", 12345)
+        self.assertEqual(run.call_count, 2)
+        self.assertEqual(sleep.call_count, 2)
+
+    def test_ssh_registration_reads_public_key_without_ssh_agent(self):
+        with (
+            mock.patch.object(
+                self.wrapper,
+                "read_local_ssh_public_key",
+                return_value="ssh-ed25519 public-material",
+            ) as read_key,
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={"success": True},
+            ) as request,
+            mock.patch.object(self.wrapper.subprocess, "run") as run,
+        ):
+            self.wrapper.ensure_local_ssh_registered("unused")
+        read_key.assert_called_once_with()
+        run.assert_not_called()
+        self.assertEqual(
+            request.call_args.kwargs["payload"],
+            {"ssh_key": "ssh-ed25519 public-material"},
+        )
+
+    def test_stop_requires_acknowledgement_and_final_stopped_state(self):
+        with (
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                side_effect=[
+                    {"success": True},
+                    {"instances": self.wave_instance(actual_status="stopping")},
+                    {"instances": self.wave_instance(actual_status="stopped")},
+                ],
+            ) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+        ):
+            self.wrapper.set_instance_state_verified("unused", 12345, "stopped")
+        self.assertEqual(request.call_count, 3)
+        self.assertEqual(
+            request.call_args_list[0].kwargs["payload"], {"state": "stopped"}
+        )
+        sleep.assert_called_once_with(self.wrapper.POLL_INTERVAL_SECONDS)
+
+        with (
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={"success": False},
+            ),
+            self.assertRaisesRegex(
+                self.wrapper.SafeError, "did not confirm the stopped request"
+            ),
+        ):
+            self.wrapper.set_instance_state_verified("unused", 12345, "stopped")
 
     def test_wave_offers_is_read_only_and_no_best_launch_route_exists(self):
         source = WRAPPER_PATH.read_text(encoding="utf-8")

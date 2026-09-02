@@ -8,6 +8,7 @@ import fcntl
 import json
 import math
 import os
+import shlex
 import socket
 import ssl
 import stat
@@ -52,8 +53,13 @@ WAVE_DISK_GB = 300
 WAVE_MIN_RELIABILITY = 0.985
 WAVE_IMAGE = "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3"
 WAVE_LABEL = "3dprinting993-wave-action-f39"
+SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
+WAVE_CONTRACT_ATTEMPTS = 180
+WAVE_SSH_READY_ATTEMPTS = 30
+STATE_TRANSITION_ATTEMPTS = 60
+POLL_INTERVAL_SECONDS = 2
 
 
 class SafeError(Exception):
@@ -443,8 +449,8 @@ def verify_simready_contract(api_key: str, instance_id: int) -> None:
     raise SafeError("Vast.ai did not expose complete post-launch contract metadata in time")
 
 
-def verify_wave_contract(api_key: str, instance_id: int) -> None:
-    """Fail closed until Vast exposes the complete immutable F39 CPU contract."""
+def verify_wave_contract(api_key: str, instance_id: int) -> dict:
+    """Fail closed until the complete immutable F39 contract is running."""
     required_fields = (
         "id",
         "label",
@@ -456,12 +462,12 @@ def verify_wave_contract(api_key: str, instance_id: int) -> None:
         "dph_total",
         "image",
     )
-    for _ in range(30):
+    for _ in range(WAVE_CONTRACT_ATTEMPTS):
         try:
             result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
         except SafeHttpError as exc:
             if exc.status_code == 404:
-                time.sleep(1)
+                time.sleep(POLL_INTERVAL_SECONDS)
                 continue
             raise
         raw_instance = result.get("instances")
@@ -469,7 +475,7 @@ def verify_wave_contract(api_key: str, instance_id: int) -> None:
             raise SafeError("Vast.ai returned invalid post-launch F39 instance metadata")
         instance = safe_instance(raw_instance)
         if any(instance.get(field) is None for field in required_fields):
-            time.sleep(1)
+            time.sleep(POLL_INTERVAL_SECONDS)
             continue
         errors = []
         if instance["id"] != instance_id:
@@ -503,9 +509,12 @@ def verify_wave_contract(api_key: str, instance_id: int) -> None:
                 "post-launch contract is outside the fixed wave-action F39 limits: "
                 + ", ".join(errors)
             )
-        return
+        if instance["status"] != "running":
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        return instance
     raise SafeError(
-        "Vast.ai did not expose complete post-launch F39 contract metadata in time"
+        "Vast.ai did not expose a complete running post-launch F39 contract in time"
     )
 
 
@@ -534,6 +543,10 @@ def reconcile_uncertain_simready_launch(api_key: str) -> None:
                 "inspect instances before retrying"
             )
         time.sleep(1)
+    raise SafeError(
+        "launch outcome remains uncertain after the reconciliation window; "
+        "do not retry automatically and inspect SimReady instances first"
+    )
 
 
 def reconcile_uncertain_wave_launch(api_key: str) -> None:
@@ -562,6 +575,10 @@ def reconcile_uncertain_wave_launch(api_key: str) -> None:
                 "to one valid instance id; inspect instances before retrying"
             )
         time.sleep(1)
+    raise SafeError(
+        "launch outcome remains uncertain after the reconciliation window; "
+        "do not retry automatically and inspect F39-labelled instances first"
+    )
 
 
 def destroy_instance_verified(api_key: str, instance_id: int) -> None:
@@ -919,11 +936,17 @@ def positive_id(raw: str, label: str) -> int:
 
 
 def read_local_ssh_public_key() -> str:
+    validate_approved_ssh_private_key()
     try:
-        info = SSH_PUBLIC_KEY_FILE.stat()
+        info = SSH_PUBLIC_KEY_FILE.lstat()
     except FileNotFoundError as exc:
         raise SafeError(f"missing approved SSH public key: {SSH_PUBLIC_KEY_FILE}") from exc
-    if not stat.S_ISREG(info.st_mode) or info.st_size <= 0 or info.st_size > 16384:
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or info.st_size <= 0
+        or info.st_size > 16384
+    ):
         raise SafeError(f"approved SSH public key is invalid: {SSH_PUBLIC_KEY_FILE}")
     value = SSH_PUBLIC_KEY_FILE.read_text(encoding="utf-8").strip()
     if not value.startswith(("ssh-ed25519 ", "ssh-rsa ", "ecdsa-sha2-")):
@@ -931,29 +954,25 @@ def read_local_ssh_public_key() -> str:
     return value
 
 
-def require_local_ssh_key_loaded() -> str:
-    local_key = read_local_ssh_public_key()
-    local_identity = " ".join(local_key.split()[:2])
+def validate_approved_ssh_private_key() -> None:
+    """Validate metadata only; never read or print the private key."""
     try:
-        result = subprocess.run(
-            ["ssh-add", "-L"],
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=5,
-        )
-    except (FileNotFoundError, subprocess.SubprocessError) as exc:
-        raise SafeError("ssh-agent is unavailable for the approved Vast.ai key") from exc
-    loaded_identities = {
-        " ".join(line.split()[:2])
-        for line in result.stdout.splitlines()
-        if len(line.split()) >= 2
-    }
-    if result.returncode != 0 or local_identity not in loaded_identities:
+        info = SSH_PRIVATE_KEY_FILE.lstat()
+    except FileNotFoundError as exc:
         raise SafeError(
-            f"approved SSH key is not loaded; run: ssh-add {SSH_PUBLIC_KEY_FILE.with_suffix('')}"
+            f"missing approved SSH private key: {SSH_PRIVATE_KEY_FILE}"
+        ) from exc
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) & 0o077
+        or info.st_size <= 0
+        or info.st_size > 1024 * 1024
+    ):
+        raise SafeError(
+            "approved SSH private key has unsafe ownership, type, permissions, or size: "
+            f"{SSH_PRIVATE_KEY_FILE}"
         )
-    return local_key
 
 
 def ensure_local_ssh_registered(api_key: str) -> None:
@@ -962,14 +981,144 @@ def ensure_local_ssh_registered(api_key: str) -> None:
             api_key,
             "/api/v0/ssh/",
             method="POST",
-            payload={"ssh_key": require_local_ssh_key_loaded()},
+            payload={"ssh_key": read_local_ssh_public_key()},
         )
     except SafeError as exc:
         if "SSH key already exists on this account" in str(exc):
             return
         raise
-    if result.get("success") is False:
+    if result.get("success") is not True:
         raise SafeError("Vast.ai did not accept the approved SSH key")
+
+
+def wave_remote_smoke_command() -> str:
+    script = """\
+import json
+from pathlib import Path
+
+ready = Path('/workspace/READY').read_text(encoding='utf-8').strip()
+assert ready == 'F39 smoke passed'
+stderr_path = Path('/workspace/logs/wave-action-f39-smoke.stderr')
+assert stderr_path.is_file() and stderr_path.stat().st_size == 0
+report = json.loads(
+    Path('/workspace/logs/wave-action-f39-smoke.json').read_text(encoding='utf-8')
+)
+assert report.get('status') == 'runtime_smoke_passed_engine_validation_blocked'
+assert report.get('runtime', {}).get('system') == 'Linux'
+assert report.get('runtime', {}).get('machine') == 'x86_64'
+assert report.get('claim_scope', {}).get('generic_sod_benchmark_executed') is True
+assert report.get('claim_scope', {}).get('flat_12_model_executed') is False
+print('F39_REMOTE_READY')
+"""
+    return f"python -c {shlex.quote(script)}"
+
+
+def verify_wave_ssh_ready(api_key: str, instance_id: int) -> None:
+    """Prove BatchMode SSH and the exact F39 smoke marker before success."""
+    validate_approved_ssh_private_key()
+    last_state = "unknown"
+    for _ in range(WAVE_SSH_READY_ATTEMPTS):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeError:
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid F39 SSH endpoint metadata")
+        instance = safe_instance(raw_instance)
+        last_state = str(instance.get("status") or "unknown")
+        if last_state != "running":
+            if last_state not in {"created", "loading"}:
+                raise SafeError(
+                    f"F39 instance left running state before SSH smoke verification: {last_state}"
+                )
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        host = instance.get("ssh_host")
+        port = finite_number(instance.get("ssh_port"))
+        if (
+            not isinstance(host, str)
+            or not host
+            or len(host) > 253
+            or any(
+                character
+                not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:-"
+                for character in host
+            )
+            or port is None
+            or not port.is_integer()
+            or not 1 <= port <= 65535
+        ):
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        command = [
+            "ssh",
+            "-T",
+            "-i",
+            str(SSH_PRIVATE_KEY_FILE),
+            "-o",
+            "BatchMode=yes",
+            "-o",
+            "IdentitiesOnly=yes",
+            "-o",
+            "ConnectionAttempts=1",
+            "-o",
+            "ConnectTimeout=5",
+            "-o",
+            "StrictHostKeyChecking=accept-new",
+            "-o",
+            "LogLevel=ERROR",
+            "-p",
+            str(int(port)),
+            f"root@{host}",
+            wave_remote_smoke_command(),
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=20,
+            )
+        except FileNotFoundError as exc:
+            raise SafeError("OpenSSH client is unavailable for F39 verification") from exc
+        except subprocess.SubprocessError:
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        if completed.returncode == 0 and completed.stdout.strip() == "F39_REMOTE_READY":
+            return
+        time.sleep(POLL_INTERVAL_SECONDS)
+    raise SafeError(
+        "F39 SSH /workspace/READY and smoke verification did not pass in time "
+        f"(last state: {last_state}); do not treat the instance as ready"
+    )
+
+
+def set_instance_state_verified(api_key: str, instance_id: int, state: str) -> None:
+    if state not in {"running", "stopped"}:
+        raise SafeError("unsupported instance target state")
+    result = vast_request(
+        api_key,
+        f"/api/v0/instances/{instance_id}/",
+        method="PUT",
+        payload={"state": state},
+    )
+    if result.get("success") is not True:
+        raise SafeError(f"Vast.ai did not confirm the {state} request")
+    for _ in range(STATE_TRANSITION_ATTEMPTS):
+        metadata = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        raw_instance = metadata.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid state-transition metadata")
+        actual_state = safe_instance(raw_instance).get("status")
+        if actual_state == state:
+            return
+        time.sleep(POLL_INTERVAL_SECONDS)
+    raise SafeError(
+        f"Vast.ai did not verify final instance state {state} in time"
+    )
 
 
 def launch_offer(api_key: str, offer: dict) -> int:
@@ -1063,6 +1212,7 @@ def launch_wave_f39_offer(api_key: str, offer: dict) -> int:
                     "runtype": "ssh_direct",
                     "env": {},
                     "onstart": (
+                        "rm -f /workspace/READY; "
                         "mkdir -p /workspace/logs; "
                         "python /opt/917-engine-wave-f39/smoke.py "
                         ">/workspace/logs/wave-action-f39-smoke.json "
@@ -1082,12 +1232,13 @@ def launch_wave_f39_offer(api_key: str, offer: dict) -> int:
             reconcile_uncertain_wave_launch(api_key)
             raise
         instance_id = result.get("new_contract")
-        if not isinstance(instance_id, int):
+        if not isinstance(instance_id, int) or isinstance(instance_id, bool):
             reconcile_uncertain_wave_launch(api_key)
             raise SafeError("Vast.ai did not return a new wave-action instance id")
         try:
             verify_single_wave_instance(api_key, instance_id)
             verify_wave_contract(api_key, instance_id)
+            verify_wave_ssh_ready(api_key, instance_id)
         except SafeError:
             try:
                 destroy_instance_verified(api_key, instance_id)
@@ -1107,6 +1258,9 @@ def launch_wave_f39_offer(api_key: str, offer: dict) -> int:
                 "singleton_preflight_verified": True,
                 "singleton_verified": True,
                 "contract_verified": True,
+                "running_state_verified": True,
+                "ssh_batch_mode_verified": True,
+                "runtime_smoke_verified": True,
             }
         )
         return 0
@@ -1241,7 +1395,13 @@ def run(operation: list[str]) -> int:
             return 0
         if operation == ["ensure-local-ssh"]:
             ensure_local_ssh_registered(api_key)
-            print_json({"registered": True, "loaded_in_agent": True})
+            print_json(
+                {
+                    "registered": True,
+                    "approved_private_key_file_verified": True,
+                    "ssh_agent_required": False,
+                }
+            )
             return 0
         if len(operation) == 2 and operation[0] == "probe":
             instance_id = positive_id(operation[1], "instance id")
@@ -1374,13 +1534,15 @@ def run(operation: list[str]) -> int:
         if len(operation) == 2 and operation[0] in {"start", "stop"}:
             instance_id = positive_id(operation[1], "instance id")
             state = "running" if operation[0] == "start" else "stopped"
-            result = vast_request(
-                api_key,
-                f"/api/v0/instances/{instance_id}/",
-                method="PUT",
-                payload={"state": state},
+            set_instance_state_verified(api_key, instance_id, state)
+            print_json(
+                {
+                    "instance_id": instance_id,
+                    "requested_state": state,
+                    "success": True,
+                    "final_state_verified": True,
+                }
             )
-            print_json({"instance_id": instance_id, "requested_state": state, "success": result.get("success")})
             return 0
         if len(operation) == 3 and operation[0] == "destroy" and operation[2] == "--confirm":
             instance_id = positive_id(operation[1], "instance id")

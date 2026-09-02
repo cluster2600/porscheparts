@@ -67,8 +67,9 @@ Pour F39, `wave-offers` demande le prix total avec 300 GB de stockage puis
 réapplique localement chaque seuil. `launch-wave-f39` refait la correspondance
 exacte sur l'identifiant et revalide l'offre immédiatement avant l'appel payant.
 Le conteneur utilise `ssh_direct`; son `onstart` exécute
-`/opt/917-engine-wave-f39/smoke.py` et ne crée `/workspace/READY` que si le
-smoke termine sans sortie d'erreur.
+`/opt/917-engine-wave-f39/smoke.py`. Il supprime d'abord tout ancien
+`/workspace/READY`, puis ne recrée ce marqueur que si le smoke termine sans
+sortie d'erreur.
 
 Ce `onstart` est obligatoire : la documentation officielle Vast.ai précise
 que les modes SSH/Jupyter remplacent l'`ENTRYPOINT` de l'image par celui de
@@ -78,9 +79,13 @@ Le wrapper effectue aussi un prévol d'unicité sous verrou local et refuse de
 louer si une instance portant déjà le label F39 existe. Après création, il
 relit la liste complète et exige que l'identifiant retourné soit l'unique
 instance portant ce label. Il relit ensuite le contrat Vast et exige le digest
-immuable, le label, un état `created`, `loading` ou `running`, au moins 64
-threads CPU effectifs, 256 000 MB de RAM, 300 GB de disque, un prix total au
-plus égal à 1,25 USD/h et une machine vérifiée.
+immuable, le label, un état final `running`, au moins 64 threads CPU effectifs,
+256 000 MB de RAM, 300 GB de disque, un prix total au plus égal à 1,25 USD/h et
+une machine vérifiée. Le succès n'est annoncé qu'après une connexion OpenSSH
+en `BatchMode`, avec la clé privée approuvée `~/.ssh/id_vastai` explicitement
+sélectionnée, puis lecture et validation de `/workspace/READY`, du JSON smoke
+et de l'absence de sortie d'erreur. La clé n'a donc pas besoin d'être chargée
+dans `ssh-agent`; son contenu privé n'est jamais lu ni affiché par le wrapper.
 
 Toute erreur de cette vérification post-création détruit exactement
 l'identifiant retourné et exige que sa disparition soit confirmée dans la liste
@@ -91,6 +96,12 @@ plusieurs identifiants portent ce label, et une réponse HTTP 4xx certaine ne
 déclenche aucun nettoyage destructif. L'appel de création payant n'est jamais
 retenté automatiquement : aucune branche ne peut créer implicitement une
 seconde instance.
+
+Si aucune instance n'est observable avant l'expiration de la fenêtre de
+réconciliation d'un lancement incertain, le wrapper échoue explicitement et
+interdit toute relance automatique : il faut d'abord inspecter la liste des
+instances. De même, `stop ID` exige à la fois l'accusé de réception de Vast.ai
+et la relecture de l'état final `stopped` avant d'annoncer le succès.
 
 L'offre `#49655039` est uniquement un candidat communiqué par l'utilisateur le
 2 septembre 2026. Sa présence dans les tests est une fixture : elle ne garantit
