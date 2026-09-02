@@ -1,0 +1,190 @@
+{
+  "$comment": "F39 définit un premier cas 1D transitoire flat-12 complet, strictement motored, sur 720 degrés. Les dimensions de conduits, volumes, lois de levée, Cd et phases restent des hypothèses de calcul; l'exécution ne constitue ni corrélation physique, ni preuve de puissance, ni autorisation de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F39",
+  "status": "motored_unsteady_720_contract_fail_closed",
+  "asset_id": "porsche-917-unsteady-network-f39",
+  "source_evidence": {
+    "cycle_thermal_contract_f33": {
+      "path": "twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json",
+      "expected_sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b"
+    },
+    "rotating_assembly_contract_f35": {
+      "path": "twins/reference-917-engine/rotating-assembly-cad-f35.json",
+      "expected_sha256": "b749e68c52829caae5b21d613ca1f0f1f2b6ad205d1ee69728595a1ccd518954"
+    },
+    "gas_path_contract_f38": {
+      "path": "twins/reference-917-engine/gas-path-network-f38.json",
+      "expected_sha256": "e52c7e7910f0263578e4197276a2abbafc36e83460f9bd55346af4a497c51c1d"
+    },
+    "kinematics_contract_f2": {
+      "path": "twins/reference-917-engine/kinematics-f2.json",
+      "expected_sha256": "380760fb7747ec818dd5637ae571c2ec545cc39a03bfd92e449b2959c58296a8"
+    },
+    "clean_sheet_head_contract_f29": {
+      "path": "twins/reference-917-engine/clean-sheet-cylinder-head-f29.json",
+      "expected_sha256": "5240581507befd5d627d6b830cbd943ce87d9c250b6d4653005b9a6f951bfee3"
+    },
+    "clean_sheet_head_design_study_f29": {
+      "path": "twins/reference-917-engine/evidence/f29/design-study.json",
+      "expected_sha256": "135f9a9c692a2e4253fa33ce8c433c79423eb72154d88db999c3942ac2bb970e"
+    }
+  },
+  "authority_boundary": {
+    "purpose": "premier jalon de respiration 1D transitoire du flat-12 complet",
+    "motored_only": true,
+    "combustion_enabled": false,
+    "fuel_injection_enabled": false,
+    "requested_power_target_used_as_solver_input": false,
+    "absolute_crank_phase_validated": false,
+    "duct_geometry_measured": false,
+    "valve_cda_measured": false,
+    "physical_correlation_complete": false,
+    "not_authorized": [
+      "power_or_torque_prediction",
+      "combustion_or_knock_prediction",
+      "turbo_matching",
+      "engine_start",
+      "manufacturing_release",
+      "1600_hp_proof"
+    ]
+  },
+  "variant": {
+    "variant_id": "917_2026_flat12_na_candidate",
+    "configuration": "naturally_aspirated",
+    "cylinder_count": 12,
+    "cycle_degrees": 720.0,
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "compression_ratio": 11.5,
+    "connecting_rod_center_distance_mm": 138.0,
+    "speed_rpm": 9000.0,
+    "intake_boundary_pressure_pa_abs": 100000.0,
+    "exhaust_boundary_pressure_pa_abs": 108000.0,
+    "initial_temperature_k": 303.0,
+    "geometry_classification": {
+      "bore_stroke_compression_speed": "f33_design_candidate_not_manufacturing_dimension",
+      "connecting_rod_center_distance": "f35_design_hypothesis_not_measured",
+      "all_network_geometry": "f39_design_hypothesis_not_measured"
+    }
+  },
+  "phase_policy": {
+    "source": "F2_candidate_firing_order_plus_F29_clean_sheet_4v_head",
+    "firing_order_candidate": [1, 9, 5, 12, 3, 8, 6, 10, 2, 7, 4, 11],
+    "phase_interval_deg": 60.0,
+    "first_cylinder_phase_deg": 0.0,
+    "absolute_zero_validated": false,
+    "bank_negative_y": [1, 2, 3, 4, 5, 6],
+    "bank_positive_y": [7, 8, 9, 10, 11, 12],
+    "intake_valve_group": {
+      "physical_valve_count_per_cylinder": 2,
+      "open_deg": 690.0,
+      "center_deg": 110.0,
+      "close_deg": 250.0,
+      "duration_deg": 280.0,
+      "lift_law": "sin_squared_hypothesis",
+      "maximum_lift_mm_each": 10.368,
+      "valve_diameter_mm_each": 32.4,
+      "total_geometric_port_area_m2": 0.00121957,
+      "discharge_coefficient": 0.72,
+      "classification": "f29_clean_sheet_candidate_plus_unmeasured_cda_and_timing_hypothesis"
+    },
+    "exhaust_valve_group": {
+      "physical_valve_count_per_cylinder": 2,
+      "open_deg": 470.0,
+      "center_deg": 610.0,
+      "close_deg": 30.0,
+      "duration_deg": 280.0,
+      "lift_law": "sin_squared_hypothesis",
+      "maximum_lift_mm_each": 8.64,
+      "valve_diameter_mm_each": 27.0,
+      "total_geometric_port_area_m2": 0.00084692,
+      "discharge_coefficient": 0.68,
+      "classification": "f29_clean_sheet_candidate_plus_unmeasured_cda_and_timing_hypothesis"
+    }
+  },
+  "topology_contract": {
+    "pipe_count": 27,
+    "topological_junction_count": 15,
+    "aeolus_junction_spec_count": 3,
+    "aeolus_cylinder_spec_count": 12,
+    "physical_valve_count": 48,
+    "aeolus_equivalent_valve_port_count": 24,
+    "pipe_families": {
+      "intake_trunk": 1,
+      "intake_runner": 12,
+      "exhaust_primary": 12,
+      "exhaust_outlet": 2
+    },
+    "junction_families": {
+      "intake_plenum": 1,
+      "cylinder_control_volume": 12,
+      "exhaust_collector": 2
+    },
+    "boundary_count": 3,
+    "connected_graph_required": true
+  },
+  "network_geometry_hypotheses": {
+    "intake_trunk": {"length_m": 0.35, "area_m2": 0.0064, "n_cells": 20},
+    "intake_runner": {"length_m": 0.3, "area_m2": 0.0016, "n_cells": 18},
+    "exhaust_primary": {"length_m": 0.45, "area_m2": 0.001257, "n_cells": 24},
+    "exhaust_outlet": {"length_m": 0.6, "area_m2": 0.0032, "n_cells": 24},
+    "intake_plenum_volume_m3": 0.006,
+    "exhaust_collector_volume_m3_each": 0.0015,
+    "classification": "design_hypotheses_for_numerical_case_not_measured_geometry"
+  },
+  "aeolus1d_runtime": {
+    "package": "aeolus1d",
+    "required_version": "0.3.3",
+    "license": "MIT",
+    "required_for_execute_mode": true,
+    "network_model": "PipeSpec_1D_plus_JunctionSpec_plena_plus_CylinderSpec_0D",
+    "solver_scope": "compressible_unsteady_pipe_network_with_slider_crank_cylinders"
+  },
+  "numerical_policy": {
+    "scheme": "muscl",
+    "limiter": "minmod",
+    "time_integrator": "ssp_rk2",
+    "cfl": 0.4,
+    "cfl_hard_limit": 0.8,
+    "requested_cycles": 1,
+    "requested_crank_degrees": 720.0,
+    "expected_duration_s": 0.013333333333333334,
+    "time_completion_relative_tolerance": 1e-9,
+    "maximum_steps": 1000000,
+    "finite_fields_required": true,
+    "cycle_convergence": {
+      "evaluated_in_f39": false,
+      "minimum_cycles_for_evaluation": 3,
+      "consecutive_cycles_required": 3,
+      "mass_relative_tolerance": 0.001,
+      "pressure_relative_tolerance": 0.001,
+      "temperature_relative_tolerance": 0.001
+    }
+  },
+  "release_gates": {
+    "source_integrity_complete": false,
+    "measured_network_geometry_available": false,
+    "measured_valve_cda_available": false,
+    "absolute_crank_phase_validated": false,
+    "full_720_time_march_executed": false,
+    "cycle_convergence_demonstrated": false,
+    "mass_balance_validated": false,
+    "energy_balance_validated": false,
+    "physical_engine_dyno_correlated": false,
+    "power_or_torque_prediction_authorized": false,
+    "target_power_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "prohibited_claims": [
+    "case_construction_is_a_physical_simulation_result",
+    "one_motored_cycle_is_cycle_convergence",
+    "finite_fields_are_mass_or_energy_validation",
+    "schematic_valve_motion_is_measured_cda",
+    "hypothetical_pipe_geometry_is_scan_derived_geometry",
+    "motored_breathing_predicts_fired_power_or_torque",
+    "f39_proves_1600_hp",
+    "f39_authorizes_engine_start_or_part_manufacture"
+  ]
+}
