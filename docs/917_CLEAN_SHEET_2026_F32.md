@@ -1,5 +1,12 @@
 # Flat-12 917-inspired 2026 — cible 1 600 hp et intégration 993 (F32)
 
+> **Statut d'architecture : décision historique remplacée.** Le candidat
+> hybride ci-dessous documente la décision F32, mais il n'est plus la référence
+> active. F34a sélectionne un cœur moteur strictement air/huile ; les liquides
+> auxiliaires restent isolés du cœur et limités au refroidissement de charge et,
+> si nécessaire, des CHRA. Voir
+> [F34a](917_AIR_OIL_CORE_CONTROLS_F34A.md).
+
 ## Décision
 
 La 993 d'origine n'est pas refroidie par liquide : son flat-six est refroidi par

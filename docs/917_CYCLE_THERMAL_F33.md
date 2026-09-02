@@ -1,5 +1,12 @@
 # F33 — cycle moteur, réseaux thermiques et preuve du flat-12 917-inspired 2026
 
+> **Statut d'architecture : étude historique remplacée.** F33 conserve le
+> calcul 0D à culasses liquides et ses preuves d'exécution telles qu'elles ont
+> été produites. Depuis F34a, l'architecture sélectionnée est un cœur moteur
+> strictement air/huile avec gestion électronique moderne ; aucun résultat
+> thermique liquide F33 n'est transférable à cette architecture. Voir
+> [F34a](917_AIR_OIL_CORE_CONTROLS_F34A.md).
+
 ## Résultat et statut
 
 F33 définit le prochain modèle physique du flat-12 clean-sheet 2026 décrit par

@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -9,7 +9,7 @@ F31_CAE_IMAGE ?= 3dprinting993-cae-reference-f31:dev
 F33_ENGINE_CYCLE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-engine-cycle-f33@sha256:287bd6ea04ff97205cbea9f63b2cc5a7c63ff754b27a183eb482e7896d1e9251
 F33_CAE_IMAGE ?= 3dprinting993-cae-integrated-f33:dev
 
-check: validate test 917-clean-sheet-2026-f32-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -231,6 +231,27 @@ engine-components:
 		--mount type=bind,src="$(CURDIR)",dst=/workspace,readonly \
 		-w /workspace $(F33_ENGINE_CYCLE_IMAGE) \
 		python tests/test_917_cycle_thermal_f33.py -v
+
+917-air-oil-controls-f34a-check:
+	python3 scripts/validate_917_air_oil_core_controls_f34a.py \
+		--contract twins/reference-917-engine/air-oil-core-controls-f34a.json
+
+917-air-oil-controls-f34a-test:
+	python3 tests/test_917_air_oil_core_controls_f34a.py -v
+
+917-doe-f34:
+	mkdir -p work/917-doe-f34
+	python3 scripts/run_917_doe_f34.py \
+		--contract twins/reference-917-engine/doe-surrogate-f34.json \
+		--output work/917-doe-f34/doe-case-manifest.json
+
+917-doe-f34-check:
+	python3 scripts/run_917_doe_f34.py \
+		--contract twins/reference-917-engine/doe-surrogate-f34.json \
+		--check twins/reference-917-engine/evidence/f34/doe-case-manifest.json
+
+917-doe-f34-test:
+	python3 tests/test_917_doe_f34.py -v
 
 917-integrated-virtual-f33-image:
 	docker build -f containers/cae-integrated-f33.Dockerfile -t $(F33_CAE_IMAGE) .

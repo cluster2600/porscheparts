@@ -1,0 +1,611 @@
+{
+  "$comment": "F34 definit un plan DOE numerique reproductible pour le coeur moteur air/huile et la gestion electronique moderne choisis en 2026. Les 2570 cas sont planifies mais aucun solveur, surrogate, calcul 1D, CFD, CHT ou essai physique n'est execute par ce contrat.",
+  "schema_version": "1.0.0",
+  "phase": "F34",
+  "status": "doe_contract_and_case_plan_only_no_solver_cases_executed",
+  "parents": [
+    {
+      "id": "f34a_air_oil_core_controls_decision",
+      "path": "twins/reference-917-engine/air-oil-core-controls-f34a.json",
+      "sha256": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa",
+      "role": "selected_air_oil_core_and_modern_controls_authority"
+    },
+    {
+      "id": "f33_cycle_contract",
+      "path": "twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json",
+      "sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b",
+      "role": "parameter_centers_topology_and_fail_closed_authority"
+    },
+    {
+      "id": "f33_cycle_report",
+      "path": "twins/reference-917-engine/evidence/f33/cycle-thermal-report.json",
+      "sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed",
+      "role": "single_point_0d_reference_output_not_physical_truth"
+    },
+    {
+      "id": "f33_image_publication",
+      "path": "twins/reference-917-engine/evidence/f33/engine-cycle-image-publication.json",
+      "sha256": "fa267c15d8a14214f45d27bde21de02cd4f94e71d2f98ed74388ec3af0866229",
+      "role": "immutable_linux_amd64_runtime_evidence"
+    },
+    {
+      "id": "f33_forward_runner",
+      "path": "scripts/run_917_cycle_thermal_f33.py",
+      "sha256": "82300e61084414cda920fe6c90d05014b192b749b0f2ce96f092fc4cb1018f15",
+      "role": "target_independent_reference_solver_source"
+    }
+  ],
+  "authority_boundary": {
+    "requested_power_target_scalar_is_direct_doe_input": false,
+    "requested_power_target_is_feature": false,
+    "requested_power_target_is_label": false,
+    "requested_power_target_is_filter_or_weight": false,
+    "requested_power_target_has_indirect_sampling_ancestry": true,
+    "inverse_sizing_seed_ancestry_present": true,
+    "full_target_independence_proven": false,
+    "na_and_twin_turbo_models_are_separate": true,
+    "parameter_bounds_are_measured_limits": false,
+    "parameter_bounds_classification": "f34_design_hypotheses_for_numerical_screening_only",
+    "numerical_holdout_is_physical_evidence": false,
+    "geometry_holdout_available": false,
+    "doe_executed": false,
+    "surrogate_trained": false,
+    "physicsnemo_training_authorized": false,
+    "physical_calibration_available": false,
+    "physical_correlation_complete": false,
+    "selected_engine_core_cooling": "forced_air_and_dry_sump_oil",
+    "engine_core_liquid_coolant_present": false,
+    "legacy_f33_liquid_head_result_transfer_authorized": false,
+    "modern_controls_contract_required": true,
+    "electronic_controls_response_modeled_in_l0": false,
+    "f33_runtime_compatible_with_selected_architecture": false
+  },
+  "runtime": {
+    "plan_generation": {
+      "classification": "unattested_host_python_stdlib_only",
+      "solver_executed": false,
+      "container_used": false,
+      "python_version_pinned": false,
+      "host_platform_attested": false,
+      "network_isolation_attested": false,
+      "root_filesystem_read_only_attested": false
+    },
+    "future_solver": {
+      "reuse_existing_minimal_image": false,
+      "immutable_ref": null,
+      "blocked_reason": "f33_image_models_liquid_cooled_heads_and_is_incompatible_with_selected_air_oil_core",
+      "platform": "linux/amd64",
+      "user": "9133:9133",
+      "network": "none",
+      "root_filesystem_read_only": true,
+      "cantera_version": "3.2.0",
+      "numpy_version": "2.5.2",
+      "dependency_versions_pinned": false,
+      "execution_authorized": false,
+      "execution_verified_for_f34": false,
+      "gpu_required": false,
+      "vast_rental_authorized": false
+    }
+  },
+  "variant_registry": [
+    {
+      "id": "917_2026_flat12_na_candidate",
+      "configuration": "naturally_aspirated",
+      "short_id": "NA",
+      "active_axis_count": 17,
+      "legacy_f33_forward_input_ref": "engine_variants[configuration=naturally_aspirated].forward_solver_input",
+      "f34_seed_transform": "strip_engine_core_coolant_add_air_oil_thermal_and_modern_controls_lock",
+      "selected_architecture_id": "F34A-AIR-OIL-CORE-2026-CONTROLS",
+      "separate_model_required": true,
+      "solver_cases_executed": 0
+    },
+    {
+      "id": "917_2026_flat12_twin_turbo_1600hp_target",
+      "configuration": "twin_turbo",
+      "short_id": "TT",
+      "active_axis_count": 26,
+      "legacy_f33_forward_input_ref": "engine_variants[configuration=twin_turbo].forward_solver_input",
+      "f34_seed_transform": "strip_engine_core_coolant_add_air_oil_thermal_and_modern_controls_lock",
+      "selected_architecture_id": "F34A-AIR-OIL-CORE-2026-CONTROLS",
+      "separate_model_required": true,
+      "solver_cases_executed": 0
+    }
+  ],
+  "frozen_inputs": {
+    "classification": "design_hypotheses_frozen_only_to_reduce_f34_dimensionality",
+    "legacy_center_source": "pinned_f33_forward_input_with_declared_inverse_sizing_ancestry",
+    "selected_architecture_id": "F34A-AIR-OIL-CORE-2026-CONTROLS",
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "cylinder_count": 12,
+    "fuel_surrogate": "n_dodecane_cantera_builtin",
+    "fuel_lhv_j_kg": 43000000.0,
+    "cooling_air_cp_j_kg_k": 1005.0,
+    "oil_cp_j_kg_k": 2080.0,
+    "charge_coolant_cp_j_kg_k": 3600.0,
+    "engine_core_liquid_coolant_present": false,
+    "electronic_controls_response_model_present": false,
+    "physical_authority": false,
+    "future_geometry_optimization_authorized": false
+  },
+  "axis_registry": [
+    {
+      "id": "compression_ratio",
+      "target_path": "compression_ratio",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [10.5, 12.5], "twin_turbo": [8.5, 10.5]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "speed_rpm",
+      "target_path": "speed_rpm",
+      "unit": "rpm",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [3000.0, 9500.0], "twin_turbo": [3000.0, 9500.0]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "manifold_pressure_pa_abs",
+      "target_path": "manifold_pressure_pa_abs",
+      "unit": "Pa_abs",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [90000.0, 105000.0], "twin_turbo": [150000.0, 310000.0]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "manifold_temperature_k",
+      "target_path": "manifold_temperature_k",
+      "unit": "K",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [288.0, 333.0], "twin_turbo": [305.0, 350.0]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "volumetric_efficiency",
+      "target_path": "volumetric_efficiency",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.85, 1.2], "twin_turbo": [0.85, 1.1]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "equivalence_ratio",
+      "target_path": "equivalence_ratio",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.85, 1.1], "twin_turbo": [0.95, 1.35]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "exhaust_to_manifold_pressure_ratio",
+      "target_path": "exhaust_pressure_pa_abs",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.95, 1.4], "twin_turbo": [1.0, 1.35]},
+      "transform": "multiply_by_axis:manifold_pressure_pa_abs",
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "indicated_work_retention",
+      "target_path": "indicated_work_retention",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.75, 0.93], "twin_turbo": [0.72, 0.9]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "fmep_coefficient_scale",
+      "target_path": "fmep_model",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.75, 1.3], "twin_turbo": [0.75, 1.3]},
+      "transform": "multiply_f33_center_coefficients",
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "accessory_power_w",
+      "target_path": "accessory_power_w",
+      "unit": "W",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [10000.0, 40000.0], "twin_turbo": [20000.0, 60000.0]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "head_heat_fraction_of_fuel_power",
+      "target_path": "thermal_hypotheses.head_heat_fraction_of_fuel_power",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.1, 0.18], "twin_turbo": [0.1, 0.18]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "cylinder_heat_fraction_of_fuel_power",
+      "target_path": "thermal_hypotheses.cylinder_heat_fraction_of_fuel_power",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.02, 0.08], "twin_turbo": [0.02, 0.08]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "base_oil_heat_fraction_of_fuel_power",
+      "target_path": "thermal_hypotheses.base_oil_heat_fraction_of_fuel_power",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.025, 0.08], "twin_turbo": [0.025, 0.08]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "friction_to_oil_fraction",
+      "target_path": "thermal_hypotheses.friction_to_oil_fraction",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.5, 0.9], "twin_turbo": [0.5, 0.9]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "head_heat_to_oil_fraction",
+      "target_path": "thermal_hypotheses.head_heat_to_oil_fraction",
+      "unit": "ratio",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [0.2, 0.65], "twin_turbo": [0.2, 0.65]},
+      "classification": "numerical_design_hypothesis_without_air_oil_cht"
+    },
+    {
+      "id": "cooling_air_delta_t_k",
+      "target_path": "thermal_hypotheses.cooling_air_delta_t_k",
+      "unit": "K",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [40.0, 140.0], "twin_turbo": [40.0, 140.0]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "oil_delta_t_k",
+      "target_path": "thermal_hypotheses.oil_delta_t_k",
+      "unit": "K",
+      "applies_to": ["naturally_aspirated", "twin_turbo"],
+      "bounds": {"naturally_aspirated": [15.0, 40.0], "twin_turbo": [15.0, 40.0]},
+      "classification": "numerical_design_hypothesis"
+    },
+    {
+      "id": "compressor_inlet_pressure_pa_abs",
+      "target_path": "turbo_screening_input.compressor_inlet_pressure_pa_abs",
+      "unit": "Pa_abs",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [90000.0, 105000.0]},
+      "classification": "numerical_design_hypothesis_without_digitized_map"
+    },
+    {
+      "id": "compressor_inlet_temperature_k",
+      "target_path": "turbo_screening_input.compressor_inlet_temperature_k",
+      "unit": "K",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [278.0, 323.0]},
+      "classification": "numerical_design_hypothesis_without_digitized_map"
+    },
+    {
+      "id": "charge_path_loss_pa",
+      "target_path": "turbo_screening_input.charge_path_loss_pa",
+      "unit": "Pa",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [10000.0, 45000.0]},
+      "classification": "numerical_design_hypothesis_without_measured_duct"
+    },
+    {
+      "id": "compressor_isentropic_efficiency",
+      "target_path": "turbo_screening_input.compressor_isentropic_efficiency",
+      "unit": "ratio",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [0.65, 0.82]},
+      "classification": "numerical_design_hypothesis_without_digitized_map"
+    },
+    {
+      "id": "turbine_inlet_temperature_k",
+      "target_path": "turbo_screening_input.turbine_inlet_temperature_k",
+      "unit": "K",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [900.0, 1250.0]},
+      "classification": "numerical_design_hypothesis_without_digitized_map"
+    },
+    {
+      "id": "turbine_outlet_pressure_pa_abs",
+      "target_path": "turbo_screening_input.turbine_outlet_pressure_pa_abs",
+      "unit": "Pa_abs",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [95000.0, 130000.0]},
+      "classification": "numerical_design_hypothesis_without_measured_exhaust"
+    },
+    {
+      "id": "turbine_isentropic_efficiency",
+      "target_path": "turbo_screening_input.turbine_isentropic_efficiency",
+      "unit": "ratio",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [0.6, 0.78]},
+      "classification": "numerical_design_hypothesis_without_digitized_map"
+    },
+    {
+      "id": "turbo_mechanical_efficiency",
+      "target_path": "turbo_screening_input.turbo_mechanical_efficiency",
+      "unit": "ratio",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [0.92, 0.99]},
+      "classification": "numerical_design_hypothesis_without_digitized_map"
+    },
+    {
+      "id": "charge_coolant_delta_t_k",
+      "target_path": "thermal_hypotheses.charge_coolant_delta_t_k",
+      "unit": "K",
+      "applies_to": ["twin_turbo"],
+      "bounds": {"twin_turbo": [8.0, 20.0]},
+      "classification": "numerical_design_hypothesis_without_hydraulic_solution"
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C-TARGET-INDEPENDENCE",
+      "rule": "requested_power_target_absent_from_generated_solver_input_features_labels_filters_weights_and_hashes",
+      "failure_action": "reject_plan"
+    },
+    {
+      "id": "C-VARIANT-SEPARATION",
+      "rule": "no_case_mixes_na_and_twin_turbo_fields",
+      "failure_action": "reject_case"
+    },
+    {
+      "id": "C-THERMAL-FRACTIONS",
+      "rule": "head_fraction_plus_cylinder_fraction_plus_base_oil_fraction_lt_0_8",
+      "failure_action": "reject_case"
+    },
+    {
+      "id": "C-MEAN-PISTON-SPEED",
+      "rule": "two_times_stroke_m_times_speed_rpm_div_60_lte_24_m_s",
+      "classification": "numerical_design_screen_not_validated_safety_limit",
+      "failure_action": "reject_case"
+    },
+    {
+      "id": "C-MASS-IDENTITY",
+      "rule": "abs_exhaust_minus_air_minus_fuel_lte_1e_minus_9_kg_s",
+      "failure_action": "fail_execution"
+    },
+    {
+      "id": "C-TURBO-PRESSURE-RATIO",
+      "rule": "1_2_lte_pressure_ratio_lte_4_0",
+      "classification": "algebraic_screen_only_without_compressor_map",
+      "failure_action": "mark_numerically_outside_screening_envelope"
+    },
+    {
+      "id": "C-TURBINE-EXPANSION",
+      "rule": "turbine_outlet_pressure_pa_abs_lt_exhaust_pressure_pa_abs",
+      "failure_action": "reject_case"
+    },
+    {
+      "id": "C-POSITIVE-FORWARD-POWER",
+      "rule": "forward_predicted_brake_power_w_gt_0",
+      "failure_action": "mark_numerically_infeasible"
+    }
+  ],
+  "sampling_plan": {
+    "generator": "f34_air_oil_deterministic_plan_v2",
+    "case_ordering": "variant_then_anchor_morris_lhs_ood_then_design_index",
+    "deduplication": "canonical_forward_solver_input_sha256",
+    "seed_derivation": "sha256_utf8_first_8_bytes_unsigned_big_endian",
+    "seed_namespace": "917-F34|air-oil-manifest-v2",
+    "permutation_rng": "sha256_counter_fisher_yates_v1",
+    "seeds": {"morris": 9173401, "lhs": 9173402, "partition": 9173403, "ood": 9173404},
+    "anchors": {
+      "method": "transformed_f33_centers_with_air_oil_architecture_lock",
+      "naturally_aspirated_cases": 1,
+      "twin_turbo_cases": 1,
+      "executed": false
+    },
+    "morris_screening": {
+      "method": "deterministic_balanced_morris_trajectories_v2",
+      "grid_levels": 6,
+      "step_normalized": 0.2,
+      "naturally_aspirated": {"axis_count": 17, "trajectories": 12, "planned_cases": 216},
+      "twin_turbo": {"axis_count": 26, "trajectories": 16, "planned_cases": 432},
+      "used_for_surrogate_training": false,
+      "executed": false
+    },
+    "space_filling": {
+      "method": "centered_latin_hypercube_v1",
+      "jitter": false,
+      "naturally_aspirated_cases": 512,
+      "twin_turbo_cases": 1024,
+      "executed": false
+    },
+    "ood_challenge": {
+      "method": "deterministic_single_axis_shell_v1",
+      "shell_fraction_outside_training_bounds": 0.05,
+      "naturally_aspirated_cases": 128,
+      "twin_turbo_cases": 256,
+      "used_for_training": false,
+      "executed": false
+    },
+    "planned_solver_calls_before_deduplication": 2570,
+    "executed_case_count": 0
+  },
+  "dataset_partition": {
+    "assignment_must_precede_solver_execution": true,
+    "applies_only_to_space_filling_cases": true,
+    "design_block_size": 16,
+    "group_keys_available_now": ["variant_id", "design_block_id", "solver_campaign_id"],
+    "group_keys_missing_now": ["released_geometry_family_id", "physical_test_campaign_id"],
+    "naturally_aspirated": {"train": 320, "validation": 64, "conformal_calibration": 64, "locked_digital_holdout": 64},
+    "twin_turbo": {"train": 640, "validation": 128, "conformal_calibration": 128, "locked_digital_holdout": 128},
+    "morris_in_training": false,
+    "ood_in_training": false,
+    "digital_holdout_is_physical_holdout": false,
+    "geometry_holdout_present": false,
+    "normalization_fit_scope": "train_only_after_execution_and_acceptance",
+    "normalization_executed": false,
+    "split_manifest_generated": false
+  },
+  "feature_schema": {
+    "source": "axis_registry_in_declared_order",
+    "variant_id_is_metadata_not_feature": true,
+    "requested_target_fields_forbidden": true,
+    "units_source": "axis_registry.unit",
+    "normalization": null,
+    "schema_frozen": true
+  },
+  "label_schema": [
+    {"id": "forward_predicted_brake_power_w", "path": "work_and_power.forward_predicted_brake_power_w", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "forward_predicted_mechanical_hp", "path": "work_and_power.forward_predicted_mechanical_hp", "unit": "mechanical_hp", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "forward_predicted_torque_nm", "path": "work_and_power.forward_predicted_torque_nm", "unit": "N*m", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "forward_predicted_bmep_bar", "path": "work_and_power.forward_predicted_bmep_bar", "unit": "bar", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "brake_thermal_efficiency", "path": "work_and_power.brake_thermal_efficiency", "unit": "ratio", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "bsfc_g_kwh", "path": "work_and_power.bsfc_g_kwh", "unit": "g/kWh", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "air_mass_flow_kg_s", "path": "trapped_charge.air_mass_flow_kg_s", "unit": "kg/s", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "fuel_mass_flow_kg_s", "path": "trapped_charge.fuel_mass_flow_kg_s", "unit": "kg/s", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "head_total_heat_load_w", "path": "thermal_network_screen.loads_w.head_total", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "head_to_air_load_w", "path": "thermal_network_screen.loads_w.head_to_air", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "head_to_oil_load_w", "path": "thermal_network_screen.loads_w.head_to_oil", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "cylinder_fin_air_load_w", "path": "thermal_network_screen.loads_w.cylinder_fin_air", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "engine_core_air_load_w", "path": "thermal_network_screen.loads_w.engine_core_air", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "oil_loop_load_w", "path": "thermal_network_screen.loads_w.oil_loop", "unit": "W", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "cooling_air_flow_kg_s", "path": "thermal_network_screen.required_mass_flows_kg_s.cooling_air", "unit": "kg/s", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "oil_flow_kg_s", "path": "thermal_network_screen.required_mass_flows_kg_s.oil", "unit": "kg/s", "applies_to": ["naturally_aspirated", "twin_turbo"]},
+    {"id": "charge_lt_load_w", "path": "thermal_network_screen.loads_w.charge_lt_coolant", "unit": "W", "applies_to": ["twin_turbo"]},
+    {"id": "charge_coolant_flow_kg_s", "path": "thermal_network_screen.required_mass_flows_kg_s.charge_coolant", "unit": "kg/s", "applies_to": ["twin_turbo"]},
+    {"id": "compressor_pressure_ratio", "path": "turbo_screen.compressor_pressure_ratio", "unit": "ratio", "applies_to": ["twin_turbo"]},
+    {"id": "compressor_power_total_w", "path": "turbo_screen.compressor_power_total_w", "unit": "W", "applies_to": ["twin_turbo"]},
+    {"id": "required_turbine_flow_fraction_inverse_screen", "path": "turbo_screen.required_turbine_flow_fraction_inverse_screen", "unit": "ratio", "applies_to": ["twin_turbo"]}
+  ],
+  "ood_policy": {
+    "hard_ood_conditions": [
+      "outside_declared_axis_bounds",
+      "constraint_violation",
+      "unknown_variant_or_topology",
+      "different_turbocharger_count",
+      "different_turbo_candidate_identity",
+      "different_fuel_surrogate",
+      "different_cooling_architecture",
+      "different_fidelity_level"
+    ],
+    "soft_ood_scores": ["normalized_nearest_training_point_distance", "ensemble_disagreement", "conformal_interval_width"],
+    "nearest_distance_threshold": null,
+    "ensemble_disagreement_threshold": null,
+    "interval_width_threshold": null,
+    "default_ood_action": "reject_prediction_and_request_new_solver_case",
+    "ood_criteria_calibrated": false
+  },
+  "physicsnemo_discovery": {
+    "repository": "https://github.com/NVIDIA/physicsnemo",
+    "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "inspected_on": "2026-09-02",
+    "runtime_compatibility_verified": false,
+    "candidate_models": [
+      {"name": "FullyConnected", "repo_path": "physicsnemo/models/mlp/fully_connected.py", "role": "future_tabular_0d_baseline", "selected": false},
+      {"name": "DoMINO", "repo_path": "physicsnemo/models/domino/model.py", "role": "future_surface_and_volume_cfd_cht_primary_candidate", "selected": false},
+      {"name": "GeoTransolver", "repo_path": "physicsnemo/models/geotransolver/geotransolver.py", "role": "future_irregular_mesh_benchmark", "selected": false},
+      {"name": "FIGConvUNet", "repo_path": "physicsnemo/models/figconvnet/figconvunet.py", "role": "future_large_point_cloud_benchmark", "selected": false}
+    ],
+    "candidate_datapipes": [
+      {"name": "NumpyReader", "repo_path": "physicsnemo/datapipes/readers/numpy.py", "role": "future_tabular_npz"},
+      {"name": "DoMINODataPipe", "repo_path": "physicsnemo/datapipes/cae/domino_datapipe.py", "role": "future_surface_and_volume_fields"},
+      {"name": "DomainMeshReader_and_MeshDataset", "repo_paths": ["physicsnemo/datapipes/readers/mesh.py", "physicsnemo/datapipes/mesh_dataset.py"], "role": "future_native_mesh"}
+    ],
+    "reference_examples": [
+      {"repo_path": "examples/cfd/darcy_physics_informed/README.md", "role": "reference_instantiation_not_engine_recipe"},
+      {"repo_path": "examples/cfd/transient_conjugate_heat_transfer_tank_fill/README.md", "role": "reference_instantiation_not_engine_recipe"}
+    ],
+    "training_executed": false,
+    "training_authorized": false
+  },
+  "fidelity_ladder": [
+    {"id": "L0_F34_AIR_OIL_0D", "planned_cases": 2570, "executed_cases": 0, "physical_correlation": false},
+    {"id": "L1_OPEN_CYLINDER_1D_GAS_DYNAMICS", "planned_case_budget": {"naturally_aspirated": 64, "twin_turbo": 128}, "solver_ready": false, "executed": false},
+    {"id": "L1_THERMAL_HYDRAULIC_NETWORK", "planned_case_budget": {"naturally_aspirated": 32, "twin_turbo": 64}, "solver_ready": false, "executed": false},
+    {"id": "L2_RANS_CFD", "planned_case_budget": {"naturally_aspirated": 12, "twin_turbo": 24}, "solver_ready": false, "executed": false},
+    {"id": "L3_CHT", "planned_case_budget": {"naturally_aspirated": 8, "twin_turbo": 16, "turbo_hot_soak_additional": 8}, "solver_ready": false, "executed": false}
+  ],
+  "physical_evidence_boundary": {
+    "bench_dataset_ref": null,
+    "measurement_uncertainty_model_ref": null,
+    "sensor_calibration_manifest_ref": null,
+    "physical_calibration_record_count": 0,
+    "physical_validation_record_count": 0,
+    "locked_physical_holdout_record_count": 0,
+    "physical_split_preregistered": false,
+    "physical_test_execution_authorized": false,
+    "held_out_physical_correlation_complete": false,
+    "synthetic_data_may_open_physical_gate": false
+  },
+  "unknown_registry": [
+    {"id": "U-F34-PHYSICAL-DOE-BOUNDS", "value": null, "blocking_for": ["physical_design_envelope", "engine_operation"]},
+    {"id": "U-F34-TURBO-MAPS", "value": null, "blocking_for": ["turbo_match", "L1_1D"]},
+    {"id": "U-F34-VALVE-AND-DUCT-GEOMETRY", "value": null, "blocking_for": ["L1_1D", "CFD"]},
+    {"id": "U-F34-PUMP-AND-HX-MAPS", "value": null, "blocking_for": ["hydraulic_network", "cooling_validation"]},
+    {"id": "U-F34-COOLING-FAN-AND-PLENUM-MAPS", "value": null, "blocking_for": ["air_oil_thermal_network", "cooling_validation"]},
+    {"id": "U-F34-CHRA-HEAT-LOAD", "value": null, "blocking_for": ["turbo_hot_soak", "CHT"]},
+    {"id": "U-F34-MATERIAL-PROPERTIES", "value": null, "blocking_for": ["CHT", "durability", "manufacturing"]},
+    {"id": "U-F34-OOD-THRESHOLDS", "value": null, "blocking_for": ["surrogate_release"]},
+    {"id": "U-F34-PHYSICAL-DATASET", "value": null, "blocking_for": ["physical_correlation", "target_power_proof"]},
+    {"id": "U-F34-ECU-HARDWARE-AND-IO", "value": null, "blocking_for": ["controls_model", "bench_start"]},
+    {"id": "U-F34-CRANK-CAM-TRIGGER", "value": null, "blocking_for": ["sequential_injection", "electronic_ignition"]},
+    {"id": "U-F34-INJECTOR-FLOW-DEADTIME-SPRAY", "value": null, "blocking_for": ["fuel_model", "calibration"]},
+    {"id": "U-F34-IGNITION-ENERGY-DWELL", "value": null, "blocking_for": ["combustion_model", "calibration"]},
+    {"id": "U-F34-DBW-AND-BOOST-CONTROL", "value": null, "blocking_for": ["torque_control", "fault_cases"]},
+    {"id": "U-F34-VVT-VVL-HARDWARE-AND-MAPS", "value": null, "blocking_for": ["valvetrain_control", "calibration"]},
+    {"id": "U-F34-LAMBDA-KNOCK-HARDWARE-MAPS-THRESHOLDS", "value": null, "blocking_for": ["closed_loop_combustion_control", "calibration"]},
+    {"id": "U-F34-WASTEGATE-FAILSAFE-THRESHOLDS", "value": null, "blocking_for": ["boost_failsafe", "fault_cases"]},
+    {"id": "U-F34-CAN-FD-TOPOLOGY-AND-SCHEMA", "value": null, "blocking_for": ["controls_network", "synchronized_logging"]},
+    {"id": "U-F34-SIL-HIL-EVIDENCE", "value": null, "blocking_for": ["controls_validation", "bench_start"]}
+  ],
+  "technical_gates": {
+    "contract_valid": false,
+    "doe_plan_valid": false,
+    "case_manifest_generated": false,
+    "selected_air_oil_architecture_locked": false,
+    "modern_controls_contract_valid": false,
+    "future_solver_image_available": false,
+    "requested_target_scalar_excluded_from_fields": false,
+    "full_target_independence_proven": false,
+    "split_plan_generated": false
+  },
+  "release_gates": {
+    "doe_execution_complete": false,
+    "dataset_ready": false,
+    "training_authorized": false,
+    "surrogate_trained": false,
+    "surrogate_validated_against_0d_solver": false,
+    "ood_policy_calibrated": false,
+    "one_dimensional_model_validated": false,
+    "hydraulic_network_validated": false,
+    "cfd_validated": false,
+    "cht_validated": false,
+    "physical_correlation_complete": false,
+    "target_power_proven": false,
+    "cooling_system_validated": false,
+    "test_bench_start_authorized": false,
+    "porsche_993_vehicle_installation_authorized": false,
+    "metal_print_authorized": false,
+    "manufacturing_authorized": false,
+    "ecu_hardware_selected": false,
+    "ecu_io_complete": false,
+    "crank_cam_sync_validated": false,
+    "injector_characterization_validated": false,
+    "ignition_validated": false,
+    "closed_loop_controls_validated": false,
+    "vvt_vvl_validated": false,
+    "lambda_control_validated": false,
+    "knock_control_validated": false,
+    "boost_failsafe_validated": false,
+    "can_fd_architecture_validated": false,
+    "sil_complete": false,
+    "hil_complete": false
+  },
+  "prohibited_claims": [
+    "executed_2570_solver_cases",
+    "physicsnemo_model_trained",
+    "validated_digital_twin",
+    "validated_target_power",
+    "validated_turbo_match",
+    "validated_air_oil_engine_cooling",
+    "validated_porsche_993_fitment",
+    "safe_for_engine_operation",
+    "ready_for_metal_print",
+    "ready_for_manufacturing"
+  ]
+}
