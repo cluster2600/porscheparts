@@ -1,0 +1,71 @@
+{
+  "$comment": "Métadonnées de deux exécutions natives x86_64 byte-identiques de la campagne F40 motored. Les six cas ont achevé quatre cycles mais n'ont pas atteint la convergence agrégée; toutes les gates physiques restent fermées.",
+  "schema_version": "1.0.0",
+  "phase": "F40",
+  "status": "two_native_runs_byte_identical_aggregate_cycle_convergence_failed_physical_release_closed",
+  "source_commit": "40d1ae6",
+  "contract": {
+    "path": "twins/reference-917-engine/unsteady-convergence-campaign-f40.json",
+    "sha256": "6fff578fe167b8563b48271b9234f36c05b9bb1b2003a5ddee594acd6de9178c"
+  },
+  "runner": {
+    "path": "twins/reference-917-engine/source/run_unsteady_convergence_f40.py",
+    "sha256": "fa2e529389c6a493789fb4528e973e7c987100f941f83ab744ea45822ff925d3"
+  },
+  "container": {
+    "reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "os": "linux",
+    "architecture": "amd64"
+  },
+  "execution_host": {
+    "role": "user_authorized_intel_cpu_validation_node",
+    "kernel": "Linux 6.19.14+kali-amd64 x86_64 GNU/Linux",
+    "cpu_model": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "logical_cpu_count": 12,
+    "memory_bytes": 16455098368,
+    "docker_server_version": "28.5.2+dfsg4"
+  },
+  "campaign": {
+    "engine_cylinder_count": 12,
+    "case_count": 6,
+    "cycles_per_case": 4,
+    "total_simulated_cycle_windows": 24,
+    "workers": 6
+  },
+  "runs": [
+    {
+      "id": "intel-40d1ae6-final1",
+      "report_sha256": "e58b4dbbcaad291eb967d550eec866319fb2672e655710e6236c45ce99713975"
+    },
+    {
+      "id": "intel-40d1ae6-final2",
+      "report_sha256": "e58b4dbbcaad291eb967d550eec866319fb2672e655710e6236c45ce99713975"
+    }
+  ],
+  "canonical_report": {
+    "path": "twins/reference-917-engine/evidence/f40/intel-native-run-40d1ae6.json",
+    "sha256": "e58b4dbbcaad291eb967d550eec866319fb2672e655710e6236c45ce99713975",
+    "byte_count": 684795
+  },
+  "observations": {
+    "two_runs_byte_identical": true,
+    "all_six_cases_completed_four_cycles": true,
+    "runtime_fields_finite": true,
+    "runtime_states_positive": true,
+    "aggregate_cycle_boundary_convergence_demonstrated": false,
+    "sensitivity_qualification_withheld": true,
+    "physical_release_gates_all_false": true
+  },
+  "not_proven": [
+    "phase_resolved_local_convergence",
+    "cycle_convergence",
+    "mesh_cfl_or_initial_state_independence",
+    "mass_or_energy_balance",
+    "combustion",
+    "power_or_torque",
+    "turbo_matching",
+    "engine_start",
+    "manufacturing",
+    "1600_hp_or_ch"
+  ]
+}
