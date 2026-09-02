@@ -1,0 +1,88 @@
+{
+  "schema": "porsche-917-boundary-review-workpack-contract/f23-v1",
+  "phase": "F23",
+  "status": "method_ready_pending_human_decisions",
+  "purpose": "Prioriser une revue humaine locale sans identifier automatiquement une interface moteur.",
+  "canonical_inputs": {
+    "f18_report": {
+      "name": "boundary-review-f18.json",
+      "sha256": "8208c2fec6561261904c48bb449a1bd50d679e370ee7b4a19a86d78ba265450e"
+    },
+    "f18_boundary_ply": {
+      "name": "boundary-components-f18.ply",
+      "sha256": "822e7d8ea54fa69f44658bd0b7b29dfb1fb4e4e15b3f1c73d4f45cedc03e2451"
+    },
+    "expected_boundary_components": 944,
+    "expected_primary_candidates": 19
+  },
+  "selection_contract": {
+    "primary": {
+      "count": 19,
+      "rule": "include every F18 review_class candidate"
+    },
+    "secondary": {
+      "count": 19,
+      "source_class": "unclassified",
+      "rule": "descending dimensionless composite size rank",
+      "score_weights": {
+        "projected_area": 0.35,
+        "bbox_diagonal": 0.3,
+        "perimeter": 0.25,
+        "boundary_vertex_count": 0.1
+      },
+      "circularity_used": false,
+      "purpose": "control cohort against circular-candidate false negatives"
+    },
+    "semantic_inference_applied": false,
+    "physical_units_assumed": false,
+    "engine_axes_assumed": false
+  },
+  "review_contract": {
+    "allowed_states": [
+      "artifact",
+      "physical_boundary",
+      "undetermined"
+    ],
+    "initial_state": "undetermined",
+    "required_fields_for_decided_state": [
+      "reviewer.name",
+      "reviewer.reviewed_at_utc",
+      "evidence.kind",
+      "evidence.reference"
+    ],
+    "physical_boundary_means_confirmed_interface": false,
+    "review_decision_opens_release_gate": false
+  },
+  "local_outputs": {
+    "directory": "work/917-engine/boundary-review-workpack-f23/",
+    "files": [
+      "boundary-review-workpack-f23.json",
+      "boundary-review-queue-f23.csv",
+      "boundary-review-atlas-f23.svg"
+    ],
+    "tracked_in_git": false,
+    "may_contain_derived_scan_geometry": true
+  },
+  "tracked_content_policy": {
+    "component_ids_or_ranks": false,
+    "vertices_or_faces": false,
+    "centroids_normals_or_bounds": false,
+    "raw_or_derived_coordinates": false,
+    "human_reviewer_personal_data": false,
+    "aggregate_counts_hashes_and_method_only": true
+  },
+  "release_gates": {
+    "engine_identity_confirmed": false,
+    "scale_confirmed": false,
+    "units_confirmed": false,
+    "axis_semantics_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "cad_reconstruction_released": false,
+    "classical_solver_released": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_training_released": false,
+    "omniverse_simready_released": false,
+    "fabrication_released": false,
+    "engine_start_released": false
+  }
+}
