@@ -201,9 +201,30 @@ def validate_contract(contract: dict[str, Any]) -> None:
     require(cfl <= hard_cfl < 0.8 + 1.0e-15, "CFL policy exceeds hard limit")
     require(numerical.get("requested_cycles") == 1, "F39 must request exactly one cycle")
     require(numerical.get("cycle_convergence", {}).get("evaluated_in_f39") is False, "cycle convergence must remain unevaluated")
-    release = contract.get("release_gates")
-    require(isinstance(release, dict) and release, "release_gates required")
-    require(all(value is False for value in release.values()), "all contract release gates must be false")
+    numerical_gates = contract.get("numerical_gates")
+    require(
+        isinstance(numerical_gates, dict)
+        and set(numerical_gates)
+        == {
+            "source_hashes_verified",
+            "topology_contract_valid",
+            "aeolus_case_constructed",
+            "full_720_time_march_executed",
+            "runtime_fields_finite",
+            "runtime_state_positive",
+        },
+        "exact numerical_gates contract required",
+    )
+    require(
+        all(value is False for value in numerical_gates.values()),
+        "all contract numerical gates must start false",
+    )
+    physical_release = contract.get("physical_release_gates")
+    require(isinstance(physical_release, dict) and physical_release, "physical_release_gates required")
+    require(
+        all(value is False for value in physical_release.values()),
+        "all physical release gates must remain false",
+    )
 
 
 def build_topology(contract: dict[str, Any]) -> dict[str, Any]:
@@ -554,43 +575,181 @@ def validate_effective_crank(case: Any) -> dict[str, Any]:
     }
 
 
+def expected_runtime_component_ids() -> set[str]:
+    return {
+        "intake_plenum",
+        "exhaust_collector_negative_y",
+        "exhaust_collector_positive_y",
+        *(f"c{number:02d}" for number in range(1, 13)),
+    }
+
+
+def collect_runtime_diagnostics(
+    pipes: dict[str, Any], components: list[Any]
+) -> dict[str, Any]:
+    """Publie et qualifie chaque état 1D et chaque volume 0D final.
+
+    La vitesse peut être signée. En revanche densité, pression, température,
+    masse, volume et énergie interne doivent rester strictement positifs.
+    L'absence d'un conduit ou volume attendu ferme aussi la gate de positivité.
+    """
+    pipe_diagnostics: dict[str, Any] = {}
+    component_diagnostics: dict[str, Any] = {}
+    finite_fields = True
+    positive_state = True
+    pipe_density_minima: list[float] = []
+    pipe_pressure_minima: list[float] = []
+    pipe_temperature_minima: list[float] = []
+    component_pressure_minima: list[float] = []
+    component_temperature_minima: list[float] = []
+    component_volume_minima: list[float] = []
+    component_mass_minima: list[float] = []
+    component_energy_minima: list[float] = []
+
+    def finite_or_none(value: float) -> float | None:
+        return value if math.isfinite(value) else None
+
+    for pipe_id, pipe in sorted(pipes.items()):
+        rho_raw, velocity_raw, pressure_raw = pipe.primitives()
+        rho = [float(value) for value in rho_raw]
+        velocity = [float(value) for value in velocity_raw]
+        pressure = [float(value) for value in pressure_raw]
+        require(rho and len(rho) == len(velocity) == len(pressure), f"pipe {pipe_id} primitive shape mismatch")
+        gas_constant = float(getattr(pipe, "R_gas", 287.05))
+        temperature = [
+            p / (r * gas_constant) if r != 0.0 and gas_constant != 0.0 else math.inf
+            for r, p in zip(rho, pressure)
+        ]
+        values = rho + velocity + pressure + temperature
+        pipe_finite = all(math.isfinite(value) for value in values)
+        rho_min = min(rho) if all(math.isfinite(value) for value in rho) else math.nan
+        rho_max = max(rho) if all(math.isfinite(value) for value in rho) else math.nan
+        velocity_min = min(velocity) if all(math.isfinite(value) for value in velocity) else math.nan
+        velocity_max = max(velocity) if all(math.isfinite(value) for value in velocity) else math.nan
+        pressure_min = min(pressure) if all(math.isfinite(value) for value in pressure) else math.nan
+        pressure_max = max(pressure) if all(math.isfinite(value) for value in pressure) else math.nan
+        temperature_min = min(temperature) if all(math.isfinite(value) for value in temperature) else math.nan
+        temperature_max = max(temperature) if all(math.isfinite(value) for value in temperature) else math.nan
+        pipe_positive = (
+            pipe_finite
+            and rho_min > 0.0
+            and pressure_min > 0.0
+            and temperature_min > 0.0
+        )
+        finite_fields = finite_fields and pipe_finite
+        positive_state = positive_state and pipe_positive
+        pipe_density_minima.append(rho_min)
+        pipe_pressure_minima.append(pressure_min)
+        pipe_temperature_minima.append(temperature_min)
+        pipe_diagnostics[pipe_id] = {
+            "cell_count": int(getattr(pipe, "N", len(rho))),
+            "fields_finite": pipe_finite,
+            "state_positive": pipe_positive,
+            "density_kg_m3_min": finite_or_none(rho_min),
+            "density_kg_m3_max": finite_or_none(rho_max),
+            "velocity_m_s_min": finite_or_none(velocity_min),
+            "velocity_m_s_max": finite_or_none(velocity_max),
+            "pressure_pa_abs_min": finite_or_none(pressure_min),
+            "pressure_pa_abs_max": finite_or_none(pressure_max),
+            "temperature_k_min": finite_or_none(temperature_min),
+            "temperature_k_max": finite_or_none(temperature_max),
+        }
+
+    for component in components:
+        component_id = getattr(component, "id", "")
+        if not isinstance(component_id, str) or not component_id or not hasattr(component, "volume"):
+            finite_fields = False
+            positive_state = False
+            continue
+        volume = component.volume
+        pressure = float(volume.p)
+        temperature = float(volume.T)
+        volume_m3 = float(volume.V)
+        mass = float(volume.m)
+        internal_energy = float(volume.E_internal)
+        values = [pressure, temperature, volume_m3, mass, internal_energy]
+        component_finite = all(math.isfinite(value) for value in values)
+        component_positive = component_finite and all(value > 0.0 for value in values)
+        finite_fields = finite_fields and component_finite
+        positive_state = positive_state and component_positive
+        component_pressure_minima.append(pressure)
+        component_temperature_minima.append(temperature)
+        component_volume_minima.append(volume_m3)
+        component_mass_minima.append(mass)
+        component_energy_minima.append(internal_energy)
+        diagnostic: dict[str, Any] = {
+            "kind": "cylinder" if hasattr(component, "last_theta_deg") else "plenum",
+            "fields_finite": component_finite,
+            "state_positive": component_positive,
+            "pressure_pa_abs": finite_or_none(pressure),
+            "temperature_k": finite_or_none(temperature),
+            "volume_m3": finite_or_none(volume_m3),
+            "mass_kg": finite_or_none(mass),
+            "internal_energy_j": finite_or_none(internal_energy),
+        }
+        if hasattr(component, "last_theta_deg"):
+            theta_final = float(component.last_theta_deg)
+            burned_fraction = float(getattr(component, "last_xb", 0.0))
+            fuel_mass = float(getattr(component, "m_fuel_per_cycle", 0.0))
+            cylinder_fields_finite = all(
+                math.isfinite(value)
+                for value in (theta_final, burned_fraction, fuel_mass)
+            )
+            finite_fields = finite_fields and cylinder_fields_finite
+            diagnostic["fields_finite"] = bool(
+                diagnostic["fields_finite"] and cylinder_fields_finite
+            )
+            diagnostic.update(
+                {
+                    "theta_final_deg": finite_or_none(theta_final),
+                    "burned_mass_fraction": finite_or_none(burned_fraction),
+                    "combustion_model_present": getattr(component, "combustion", None) is not None,
+                    "fuel_mass_per_cycle_kg": finite_or_none(fuel_mass),
+                }
+            )
+        component_diagnostics[component_id] = diagnostic
+
+    expected_pipes = 27
+    expected_components = expected_runtime_component_ids()
+    exact_coverage = (
+        len(pipe_diagnostics) == expected_pipes
+        and set(component_diagnostics) == expected_components
+        and len(component_diagnostics) == 15
+    )
+    finite_fields = finite_fields and exact_coverage
+    positive_state = positive_state and finite_fields and exact_coverage
+
+    def minimum(values: list[float]) -> float | None:
+        if not values or not all(math.isfinite(value) for value in values):
+            return None
+        return min(values)
+
+    return {
+        "finite_fields": finite_fields,
+        "positive_state": positive_state,
+        "exact_runtime_coverage": exact_coverage,
+        "pipe_diagnostic_count": len(pipe_diagnostics),
+        "component_diagnostic_count": len(component_diagnostics),
+        "pipe_diagnostics": pipe_diagnostics,
+        "component_diagnostics": component_diagnostics,
+        "state_minima": {
+            "pipe_density_kg_m3": minimum(pipe_density_minima),
+            "pipe_pressure_pa_abs": minimum(pipe_pressure_minima),
+            "pipe_temperature_k": minimum(pipe_temperature_minima),
+            "component_pressure_pa_abs": minimum(component_pressure_minima),
+            "component_temperature_k": minimum(component_temperature_minima),
+            "component_volume_m3": minimum(component_volume_minima),
+            "component_mass_kg": minimum(component_mass_minima),
+            "component_internal_energy_j": minimum(component_energy_minima),
+        },
+    }
+
+
 def execute_case(case: Any, contract: dict[str, Any]) -> dict[str, Any]:
     from aeolus1d.io.case import run_case
 
     pipes, components, t_final = run_case(case, max_steps=contract["numerical_policy"]["maximum_steps"])
-    pipe_diagnostics: dict[str, Any] = {}
-    finite_fields = True
-    for pipe_id, pipe in sorted(pipes.items()):
-        rho, velocity, pressure = pipe.primitives()
-        values = [float(value) for array in (rho, velocity, pressure) for value in array]
-        finite_fields = finite_fields and all(math.isfinite(value) for value in values)
-        pipe_diagnostics[pipe_id] = {
-            "cell_count": int(pipe.N),
-            "density_kg_m3_min": float(rho.min()),
-            "density_kg_m3_max": float(rho.max()),
-            "velocity_m_s_min": float(velocity.min()),
-            "velocity_m_s_max": float(velocity.max()),
-            "pressure_pa_abs_min": float(pressure.min()),
-            "pressure_pa_abs_max": float(pressure.max()),
-        }
-    cylinder_diagnostics: dict[str, Any] = {}
-    for component in components:
-        component_id = getattr(component, "id", "")
-        if not isinstance(component_id, str) or not component_id.startswith("c") or not hasattr(component, "volume"):
-            continue
-        volume = component.volume
-        values = [float(volume.p), float(volume.T), float(volume.V), float(volume.m), float(component.last_theta_deg)]
-        finite_fields = finite_fields and all(math.isfinite(value) for value in values)
-        cylinder_diagnostics[component_id] = {
-            "theta_final_deg": values[4],
-            "pressure_pa_abs": values[0],
-            "temperature_k": values[1],
-            "volume_m3": values[2],
-            "mass_kg": values[3],
-            "burned_mass_fraction": float(getattr(component, "last_xb", 0.0)),
-            "combustion_model_present": getattr(component, "combustion", None) is not None,
-            "fuel_mass_per_cycle_kg": float(getattr(component, "m_fuel_per_cycle", 0.0)),
-        }
+    diagnostics = collect_runtime_diagnostics(pipes, components)
     expected = float(contract["numerical_policy"]["expected_duration_s"])
     tolerance = float(contract["numerical_policy"]["time_completion_relative_tolerance"])
     completed = abs(float(t_final) - expected) <= tolerance * max(expected, 1.0e-30)
@@ -602,11 +761,36 @@ def execute_case(case: Any, contract: dict[str, Any]) -> dict[str, Any]:
         "t_final_s": float(t_final),
         "crank_degrees_advanced": float(t_final) * float(contract["variant"]["speed_rpm"]) * 6.0,
         "requested_720_window_completed": completed,
-        "finite_fields": finite_fields,
+        "finite_fields": diagnostics["finite_fields"],
+        "positive_state": diagnostics["positive_state"],
+        "exact_runtime_coverage": diagnostics["exact_runtime_coverage"],
         "runtime_component_count": len(components),
-        "cylinder_diagnostic_count": len(cylinder_diagnostics),
-        "pipe_diagnostics": pipe_diagnostics,
-        "cylinder_diagnostics": cylinder_diagnostics,
+        "pipe_diagnostic_count": diagnostics["pipe_diagnostic_count"],
+        "component_diagnostic_count": diagnostics["component_diagnostic_count"],
+        "pipe_diagnostics": diagnostics["pipe_diagnostics"],
+        "component_diagnostics": diagnostics["component_diagnostics"],
+        "state_minima": diagnostics["state_minima"],
+    }
+
+
+def derive_numerical_gates(
+    *,
+    source_hashes_verified: bool,
+    topology_contract_valid: bool,
+    aeolus_case_constructed: bool,
+    execution: dict[str, Any],
+) -> dict[str, bool]:
+    """Dérive seulement les preuves numériques explicitement observées."""
+    return {
+        "source_hashes_verified": bool(source_hashes_verified),
+        "topology_contract_valid": bool(topology_contract_valid),
+        "aeolus_case_constructed": bool(aeolus_case_constructed),
+        "full_720_time_march_executed": bool(
+            execution.get("executed")
+            and execution.get("requested_720_window_completed")
+        ),
+        "runtime_fields_finite": bool(execution.get("finite_fields")),
+        "runtime_state_positive": bool(execution.get("positive_state")),
     }
 
 
@@ -630,6 +814,22 @@ def build_report(
         "reason": "manifest_only_no_time_march",
         "requested_720_window_completed": False,
         "finite_fields": False,
+        "positive_state": False,
+        "exact_runtime_coverage": False,
+        "pipe_diagnostic_count": 0,
+        "component_diagnostic_count": 0,
+        "pipe_diagnostics": {},
+        "component_diagnostics": {},
+        "state_minima": {
+            "pipe_density_kg_m3": None,
+            "pipe_pressure_pa_abs": None,
+            "pipe_temperature_k": None,
+            "component_pressure_pa_abs": None,
+            "component_temperature_k": None,
+            "component_volume_m3": None,
+            "component_mass_kg": None,
+            "component_internal_energy_j": None,
+        },
     }
     if validate_aeolus or execute:
         case = build_aeolus_case(contract, topology)
@@ -646,19 +846,12 @@ def build_report(
     if execute:
         require(case is not None, "Aeolus case construction required before execution")
         execution = execute_case(case, contract)
-    technical_checks = {
-        "contract_schema_valid": True,
-        "source_hashes_verified": True,
-        "topology_27_pipes_15_junctions_valid": True,
-        "candidate_phases_valid": True,
-        "motored_boundary_valid": True,
-        "aeolus_case_constructed": aeolus_validation,
-        "time_march_completed": bool(execution["requested_720_window_completed"]),
-        "runtime_fields_finite": bool(execution["finite_fields"]),
-        "cycle_convergence_evaluated": False,
-        "mass_balance_validated": False,
-        "energy_balance_validated": False,
-    }
+    numerical_gates = derive_numerical_gates(
+        source_hashes_verified=True,
+        topology_contract_valid=True,
+        aeolus_case_constructed=aeolus_validation,
+        execution=execution,
+    )
     return {
         "schema_version": "1.0.0",
         "phase": "F39",
@@ -672,8 +865,8 @@ def build_report(
         "topology": topology,
         "aeolus_case_summary": summary,
         "execution": execution,
-        "technical_checks": technical_checks,
-        "release_gates": dict(contract["release_gates"]),
+        "numerical_gates": numerical_gates,
+        "physical_release_gates": dict(contract["physical_release_gates"]),
         "prohibited_claims": list(contract["prohibited_claims"]),
     }
 
