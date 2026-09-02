@@ -112,9 +112,15 @@ est impossible si une frontière ou une métrique manque.
 | CFL 0,4 contre CFL 0,2 | 0,01 |
 | Pression initiale 0,95/1,05 contre 1,00 | 0,01 |
 
-Ces seuils sont versionnés pour rendre la décision reproductible. Ils ne sont
+Ces seuils sont verrouillés par le validateur `f40-v1` pour rendre la décision
+reproductible. Ils ne sont
 pas calibrés sur un banc réel. Un dépassement produit quand même le rapport et
 laisse simplement la gate concernée à `false`.
+
+Une sensibilité à la frontière du quatrième cycle n'est déclarée évaluée que si
+le cas de référence et chaque cas comparé ont eux-mêmes satisfait la convergence
+cyclique. Cela empêche une dérive transitoire commune de produire une fausse gate
+de sensibilité verte.
 
 Le runner retourne néanmoins une erreur si un cas n'achève pas ses quatre
 cycles, si un état devient non fini/non positif ou si les trois deltas ne sont
@@ -125,9 +131,13 @@ succès artificiel.
 ## Gates
 
 Les `numerical_gates` couvrent séparément provenance, matrice, exécution de 24
-cycles, finitude, positivité, disponibilité des trois deltas, convergence
-cyclique et trois sensibilités. Seules les observations effectivement produites
-peuvent devenir vraies dans le rapport.
+cycles, finitude, positivité, disponibilité des trois deltas, convergence des
+sept métriques agrégées aux frontières de cycle et trois sensibilités. Seules
+les observations effectivement produites peuvent devenir vraies dans le
+rapport. Cette gate n'est pas une convergence complète du réseau : elle ne voit
+ni les formes d'onde locales, ni les débits instantanés aux soupapes, ni les
+écarts cylindre par cylindre. Une phase suivante devra ajouter des normes
+phase-résolues L2/L∞ par conduit, banque et cylindre.
 
 Toutes les `physical_release_gates` restent fausses, notamment mesures de
 géométrie/CdA/calage, corrélation physique, bilans masse/énergie validés au sens

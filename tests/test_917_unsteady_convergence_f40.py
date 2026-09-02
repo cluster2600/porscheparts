@@ -119,13 +119,37 @@ class UnsteadyConvergenceF40Tests(unittest.TestCase):
 
     def test_contract_gates_cannot_predeclare_results(self) -> None:
         for gate_family, gate_name in (
-            ("numerical_gates", "cyclic_convergence_all_cases_demonstrated"),
+            ("numerical_gates", "aggregate_cycle_boundary_convergence_all_cases_demonstrated"),
             ("physical_release_gates", "power_or_torque_prediction_authorized"),
         ):
             bad = copy.deepcopy(self.contract)
             bad[gate_family][gate_name] = True
             with self.assertRaises(self.runner.F40InputError):
                 self.runner.validate_contract(bad)
+
+    def test_f40_v1_tolerances_are_immutable(self) -> None:
+        for path, value in (
+            (("relative_floor",), 1.0e-9),
+            (("cyclic_max_relative_delta",), 1.0),
+            (("sensitivity_tolerances", "mesh_max_relative_delta"), 1.0),
+        ):
+            bad = copy.deepcopy(self.contract)
+            target = bad["convergence_policy"]
+            for key in path[:-1]:
+                target = target[key]
+            target[path[-1]] = value
+            with self.assertRaisesRegex(self.runner.F40InputError, "f40-v1"):
+                self.runner.validate_contract(bad)
+
+    def test_physical_gates_and_prohibited_claims_are_exact(self) -> None:
+        bad_gate = copy.deepcopy(self.contract)
+        bad_gate["physical_release_gates"].pop("target_power_proven")
+        with self.assertRaisesRegex(self.runner.F40InputError, "exact physical"):
+            self.runner.validate_contract(bad_gate)
+        bad_claims = copy.deepcopy(self.contract)
+        bad_claims["prohibited_claims"] = []
+        with self.assertRaisesRegex(self.runner.F40InputError, "exact prohibited"):
+            self.runner.validate_contract(bad_claims)
 
     def test_manifest_executes_nothing_and_only_promotes_documentary_gates(self) -> None:
         report = self.runner.build_report(
@@ -270,6 +294,19 @@ class UnsteadyConvergenceF40Tests(unittest.TestCase):
         self.assertIs(sensitivity["temporal"]["within_tolerance"], True)
         self.assertIs(sensitivity["initial_state"]["within_tolerance"], True)
 
+    def test_sensitivity_requires_cyclic_convergence(self) -> None:
+        reports = []
+        for case_id in sorted(self.runner.EXPECTED_CASES):
+            report = completed_case(case_id, 1.0, self.runner, self.contract)
+            report["cycle_boundaries"] = fake_boundaries([1.0, 1.1, 1.2, 1.3])
+            report["cycle_convergence"] = self.runner.evaluate_cycle_convergence(
+                report["cycle_boundaries"], self.contract["convergence_policy"]
+            )
+            reports.append(report)
+        sensitivity = self.runner.evaluate_sensitivity(reports, self.contract)
+        self.assertTrue(all(not item["evaluated"] for item in sensitivity.values()))
+        self.assertTrue(all(not item["within_tolerance"] for item in sensitivity.values()))
+
     def test_missing_case_falsifies_sensitivity_and_campaign_gates(self) -> None:
         reports = [
             completed_case(case_id, 1.0, self.runner, self.contract)
@@ -283,7 +320,10 @@ class UnsteadyConvergenceF40Tests(unittest.TestCase):
             sensitivity=sensitivity,
         )
         self.assertIs(gates["all_cases_executed_four_cycles"], False)
-        self.assertIs(gates["cyclic_convergence_all_cases_demonstrated"], False)
+        self.assertIs(
+            gates["aggregate_cycle_boundary_convergence_all_cases_demonstrated"],
+            False,
+        )
         self.assertIs(sensitivity["temporal"]["evaluated"], False)
         self.assertIs(gates["temporal_sensitivity_within_tolerance"], False)
 

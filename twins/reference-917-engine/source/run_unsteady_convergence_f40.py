@@ -73,13 +73,46 @@ NUMERICAL_GATE_NAMES = {
     "all_runtime_fields_finite",
     "all_runtime_states_positive",
     "all_cases_have_three_consecutive_deltas",
-    "cyclic_convergence_all_cases_demonstrated",
+    "aggregate_cycle_boundary_convergence_all_cases_demonstrated",
     "mesh_sensitivity_evaluated",
     "mesh_sensitivity_within_tolerance",
     "temporal_sensitivity_evaluated",
     "temporal_sensitivity_within_tolerance",
     "initial_state_sensitivity_evaluated",
     "initial_state_sensitivity_within_tolerance",
+}
+
+PHYSICAL_GATE_NAMES = {
+    "measured_network_geometry_available",
+    "measured_valve_cda_available",
+    "absolute_crank_phase_validated",
+    "physical_cycle_correlation_complete",
+    "mass_balance_validated",
+    "energy_balance_validated",
+    "physical_engine_dyno_correlated",
+    "power_or_torque_prediction_authorized",
+    "target_power_proven",
+    "engine_start_authorized",
+    "manufacturing_authorized",
+}
+
+PROHIBITED_CLAIMS = [
+    "numerical_convergence_is_physical_validation",
+    "finite_positive_state_is_mass_or_energy_conservation",
+    "motored_cycles_predict_fired_power_or_torque",
+    "f40_models_combustion_or_turbochargers",
+    "f40_proves_1600_hp",
+    "f40_authorizes_engine_start_or_manufacturing",
+]
+
+F40_TOLERANCES = {
+    "relative_floor": 1.0e-12,
+    "cyclic_max_relative_delta": 0.001,
+    "sensitivity_tolerances": {
+        "mesh_max_relative_delta": 0.02,
+        "temporal_max_relative_delta": 0.01,
+        "initial_state_max_relative_delta": 0.01,
+    },
 }
 
 
@@ -224,7 +257,11 @@ def validate_contract(contract: dict[str, Any]) -> None:
     policy = contract.get("convergence_policy")
     require(isinstance(policy, dict), "convergence_policy required")
     require(policy.get("policy_version") == "f40-v1", "convergence policy version mismatch")
-    finite_number(policy.get("relative_floor"), "convergence_policy.relative_floor", positive=True)
+    require(
+        finite_number(policy.get("relative_floor"), "convergence_policy.relative_floor", positive=True)
+        == F40_TOLERANCES["relative_floor"],
+        "f40-v1 relative floor mismatch",
+    )
     require(policy.get("required_cycle_boundaries") == 4, "four cycle boundaries required")
     require(policy.get("required_consecutive_deltas") == 3, "three consecutive deltas required")
     expected_metrics = {
@@ -238,7 +275,11 @@ def validate_contract(contract: dict[str, Any]) -> None:
     }
     metrics = policy.get("cycle_metrics")
     require(isinstance(metrics, list) and set(metrics) == expected_metrics and len(metrics) == 7, "exact seven cycle metrics required")
-    finite_number(policy.get("cyclic_max_relative_delta"), "cyclic tolerance", positive=True)
+    require(
+        finite_number(policy.get("cyclic_max_relative_delta"), "cyclic tolerance", positive=True)
+        == F40_TOLERANCES["cyclic_max_relative_delta"],
+        "f40-v1 cyclic tolerance mismatch",
+    )
     tolerances = policy.get("sensitivity_tolerances")
     require(isinstance(tolerances, dict), "sensitivity_tolerances required")
     require(
@@ -252,6 +293,10 @@ def validate_contract(contract: dict[str, Any]) -> None:
     )
     for key, value in tolerances.items():
         finite_number(value, f"sensitivity_tolerances.{key}", positive=True)
+    require(
+        tolerances == F40_TOLERANCES["sensitivity_tolerances"],
+        "f40-v1 sensitivity tolerances mismatch",
+    )
     require(policy.get("comparison_boundary") == "cycle_4_end", "cycle-four comparison required")
     require(policy.get("all_metrics_must_pass") is True, "all metrics must pass")
     require(policy.get("failure_does_not_suppress_report") is True, "failed convergence must still report")
@@ -263,8 +308,12 @@ def validate_contract(contract: dict[str, Any]) -> None:
     )
     require(all(value is False for value in numerical_gates.values()), "contract numerical gates must start false")
     physical_gates = contract.get("physical_release_gates")
-    require(isinstance(physical_gates, dict) and physical_gates, "physical_release_gates required")
+    require(
+        isinstance(physical_gates, dict) and set(physical_gates) == PHYSICAL_GATE_NAMES,
+        "exact physical_release_gates contract required",
+    )
     require(all(value is False for value in physical_gates.values()), "physical release gates must remain false")
+    require(contract.get("prohibited_claims") == PROHIBITED_CLAIMS, "exact prohibited claims required")
 
 
 def validate_matrix(contract: dict[str, Any]) -> list[dict[str, Any]]:
@@ -647,6 +696,7 @@ def _final_metrics(case_report: dict[str, Any], policy: dict[str, Any]) -> dict[
         or case_report.get("four_cycles_completed") is not True
         or case_report.get("all_runtime_fields_finite") is not True
         or case_report.get("all_runtime_states_positive") is not True
+        or case_report.get("cycle_convergence", {}).get("passed") is not True
     ):
         return None
     boundaries = case_report.get("cycle_boundaries")
@@ -826,7 +876,7 @@ def derive_numerical_gates(
         "all_runtime_fields_finite": bool(finite),
         "all_runtime_states_positive": bool(positive),
         "all_cases_have_three_consecutive_deltas": bool(deltas),
-        "cyclic_convergence_all_cases_demonstrated": bool(cyclic),
+        "aggregate_cycle_boundary_convergence_all_cases_demonstrated": bool(cyclic),
         "mesh_sensitivity_evaluated": bool(sensitivity.get("mesh", {}).get("evaluated")),
         "mesh_sensitivity_within_tolerance": bool(sensitivity.get("mesh", {}).get("within_tolerance")),
         "temporal_sensitivity_evaluated": bool(sensitivity.get("temporal", {}).get("evaluated")),
