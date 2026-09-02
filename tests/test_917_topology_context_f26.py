@@ -15,15 +15,23 @@ from typing import Any
 import unittest
 import xml.etree.ElementTree as ElementTree
 
-import numpy as np
-
-
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 PIPELINE = ROOT / "twins/reference-917-engine/source/build_topology_context_f26.py"
 F18_PIPELINE = ROOT / "twins/reference-917-engine/source/review_boundary_components_f18.py"
 CONTRACT = ROOT / "twins/reference-917-engine/topology-context-contract-f26.json"
 DOC = ROOT / "docs/917_TOPOLOGY_CONTEXT_F26.md"
+
+NUMPY_AVAILABLE = importlib.util.find_spec("numpy") is not None
+if NUMPY_AVAILABLE:
+    import numpy as np
+else:
+    np = None
+
+requires_numpy = unittest.skipUnless(
+    NUMPY_AVAILABLE,
+    "les tests géométriques F26 s'exécutent dans l'image NumPy épinglée",
+)
 
 
 def load_module(path: Path, name: str) -> Any:
@@ -148,6 +156,7 @@ class TopologyContextF26Tests(unittest.TestCase):
             F26._validate_contract(self.contract, expected_components=2, fixture_mode=False)
         F26._validate_contract(self.contract, expected_components=944, fixture_mode=False)
 
+    @requires_numpy
     def test_synthetic_pipeline_outputs_hashed_deterministic_bounded_workpacks(self):
         with tempfile.TemporaryDirectory(prefix="f26-test-") as temporary:
             root = Path(temporary)
@@ -204,6 +213,7 @@ class TopologyContextF26Tests(unittest.TestCase):
                 self.assertGreater(int(row["ring_1_face_count"]), 0)
                 self.assertGreater(int(row["ring_2_face_count"]), 0)
 
+    @requires_numpy
     def test_each_svg_has_four_canonical_orthographic_views_and_global_locators(self):
         with tempfile.TemporaryDirectory(prefix="f26-svg-") as temporary:
             output, _ = self.build(Path(temporary))
@@ -240,18 +250,21 @@ class TopologyContextF26Tests(unittest.TestCase):
                     self.assertLessEqual(ix + iw, ox + ow + 1e-6)
                     self.assertLessEqual(iy + ih, oy + oh + 1e-6)
 
-    def test_wrong_hash_duplicate_json_and_existing_output_fail_closed(self):
+    def test_duplicate_json_and_resource_bounds_fail_closed_without_numpy(self):
+        with self.assertRaisesRegex(F26.ContextError, "duplicate JSON key"):
+            F26._load_json(b'{"phase":"F26","phase":"unsafe"}', label="contract")
+        with self.assertRaisesRegex(F26.ContextError, "non-finite JSON constant"):
+            F26._load_json(b'{"unsafe":NaN}', label="contract")
+        with self.assertRaisesRegex(F26.ContextError, "context face count"):
+            F26._require_bounded_context_face_count(F26.MAX_CONTEXT_FACES_PER_COMPONENT + 1)
+        with self.assertRaisesRegex(F26.ContextError, "total output byte bound"):
+            F26._reserve_output_bytes(F26.MAX_TOTAL_OUTPUT_BYTES, 1, label="test")
+
+    @requires_numpy
+    def test_wrong_hash_and_existing_output_fail_closed(self):
         with tempfile.TemporaryDirectory(prefix="f26-fail-") as temporary:
             root = Path(temporary)
             mesh, report, mesh_hash, report_hash = write_fixture(root)
-            with self.assertRaisesRegex(F26.ContextError, "duplicate JSON key"):
-                F26._load_json(b'{"phase":"F26","phase":"unsafe"}', label="contract")
-            with self.assertRaisesRegex(F26.ContextError, "non-finite JSON constant"):
-                F26._load_json(b'{"unsafe":NaN}', label="contract")
-            with self.assertRaisesRegex(F26.ContextError, "context face count"):
-                F26._require_bounded_context_face_count(F26.MAX_CONTEXT_FACES_PER_COMPONENT + 1)
-            with self.assertRaisesRegex(F26.ContextError, "total output byte bound"):
-                F26._reserve_output_bytes(F26.MAX_TOTAL_OUTPUT_BYTES, 1, label="test")
             with self.assertRaisesRegex(F26.ContextError, "SHA-256 mismatch"):
                 F26._read_small_bound_file(report, "0" * 64, maximum_bytes=F26.MAX_REPORT_BYTES, label="F18 report")
             output = root / "existing"
@@ -298,6 +311,7 @@ class TopologyContextF26Tests(unittest.TestCase):
                 os.close(parent_descriptor)
             self.assertEqual(marker.read_text(encoding="utf-8"), "preserve\n")
 
+    @requires_numpy
     def test_f18_source_binding_requires_both_hashes_and_explicit_custody_flags(self):
         with tempfile.TemporaryDirectory(prefix="f26-source-") as temporary:
             root = Path(temporary)
@@ -350,6 +364,7 @@ class TopologyContextF26Tests(unittest.TestCase):
             finally:
                 os.close(descriptor)
 
+    @requires_numpy
     def test_obj_line_and_svg_estimate_are_bounded_before_construction(self):
         with tempfile.TemporaryDirectory(prefix="f26-bounds-") as temporary:
             root = Path(temporary)
@@ -362,6 +377,7 @@ class TopologyContextF26Tests(unittest.TestCase):
             with self.assertRaisesRegex(F26.ContextError, "context face count"):
                 F26._estimate_svg_bytes(F26.MAX_CONTEXT_FACES_PER_COMPONENT + 1, 1)
 
+    @requires_numpy
     def test_synthetic_face_layer_ids_and_non_manifold_rejection(self):
         with tempfile.TemporaryDirectory(prefix="f26-layers-") as temporary:
             root = Path(temporary)
