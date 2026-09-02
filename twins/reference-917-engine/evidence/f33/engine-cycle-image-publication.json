@@ -1,0 +1,54 @@
+{
+  "$comment": "Preuve de publication de l'image CPU minimale F33. Le smoke est une fixture thermochimique synthetique et ne prouve aucune puissance moteur.",
+  "schema_version": "1.0.0",
+  "phase": "F33",
+  "status": "published_image_verified_no_engine_solver_in_image",
+  "source_commit": "4b7cd71ffcb46afa840979cf64253ca2c5627812",
+  "workflow": {
+    "run_id": 33613535941,
+    "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33613535941",
+    "conclusion": "success"
+  },
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-engine-cycle-f33",
+    "index_digest": "sha256:287bd6ea04ff97205cbea9f63b2cc5a7c63ff754b27a183eb482e7896d1e9251",
+    "immutable_ref": "ghcr.io/cluster2600/3dprinting993-engine-cycle-f33@sha256:287bd6ea04ff97205cbea9f63b2cc5a7c63ff754b27a183eb482e7896d1e9251",
+    "platform": "linux/amd64",
+    "platform_manifest_digest": "sha256:070bbf85e181ee66dcb2b8c732fae69eae9ac45a7eabb41093be5fb804a34c23",
+    "attestation_manifest_digest": "sha256:35dcca8006d23e0a0268cdeb84d45d4c2c51f183c713e797a01c992316f6801d",
+    "config_digest": "sha256:c907992bc91e6113d6980f7f08f3b7e00749964fbe6c44d9bd651e86515ae3d0",
+    "compressed_layer_bytes": 88086002,
+    "layer_count": 11,
+    "anonymous_exact_digest_access_verified": true,
+    "anonymous_verification_date": "2026-09-02"
+  },
+  "supply_chain": {
+    "slsa_provenance_verified": true,
+    "spdx_sbom_verified": true,
+    "attestation_subject_matches_platform_manifest": true,
+    "base_image_digest_verified": true,
+    "dockerfile_frontend_digest_verified": true
+  },
+  "runtime_smoke": {
+    "status": "passed_synthetic_thermochemistry_fixture_only",
+    "python": "3.12.14",
+    "cantera": "3.2.0",
+    "non_root_uid_gid": "9133:9133",
+    "network": "none",
+    "read_only_root_filesystem": true,
+    "dependency_pin_count": 4,
+    "dependency_hash_count": 4,
+    "requirements_sha256": "1da2fe643628655b2468ad1f16d562b274c2bea0653542ed7eebddd99145ab15"
+  },
+  "proof_boundary": {
+    "synthetic_fixture_executed": true,
+    "engine_cycle_solver_executed": false,
+    "one_dimensional_gas_dynamics_executed": false,
+    "predicted_engine_power_available": false,
+    "target_1600_hp_proven": false,
+    "physical_correlation_available": false,
+    "physicsnemo_executed": false,
+    "omniverse_executed": false,
+    "vast_instance_rented": false
+  }
+}

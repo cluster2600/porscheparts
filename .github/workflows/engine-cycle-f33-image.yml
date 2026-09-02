@@ -1,0 +1,192 @@
+name: Build engine-cycle F33 image
+
+# Entrees de l'image et de sa garde statique :
+# - containers/engine-cycle-f33.Dockerfile
+# - containers/engine-cycle-f33.Dockerfile.dockerignore
+# - containers/engine-cycle-f33.requirements.txt
+# - scripts/smoke_engine_cycle_f33.py
+# - tests/test_engine_cycle_f33_image.py
+# Le workflow ne recoit aucun scan, modele moteur, dataset, poids IA ou secret.
+on:
+  push:
+    branches:
+      - main
+      - codex/917-f33-cycle-thermal
+    paths:
+      - .github/workflows/engine-cycle-f33-image.yml
+      - containers/engine-cycle-f33.Dockerfile
+      - containers/engine-cycle-f33.Dockerfile.dockerignore
+      - containers/engine-cycle-f33.requirements.txt
+      - scripts/smoke_engine_cycle_f33.py
+      - tests/test_engine_cycle_f33_image.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/cluster2600/3dprinting993-engine-cycle-f33
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Run static image guard
+        run: python3 tests/test_engine_cycle_f33_image.py
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Verify pinned Buildx and BuildKit
+        run: |
+          docker buildx version 2>&1 | tee engine-cycle-f33-builder.txt
+          docker buildx inspect --bootstrap 2>&1 | tee -a engine-cycle-f33-builder.txt
+          grep -F 'v0.36.1' engine-cycle-f33-builder.txt >/dev/null
+          grep -F 'v0.32.2' engine-cycle-f33-builder.txt >/dev/null
+          buildkit_container_id="$(docker ps --filter name=buildx_buildkit --format '{{.ID}}')"
+          test -n "${buildkit_container_id}"
+          test "$(docker container inspect --format '{{.Config.Image}}' "${buildkit_container_id}")" = \
+            "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/engine-cycle-f33.Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.sha }}
+          cache-from: type=gha,scope=engine-cycle-f33
+          cache-to: type=gha,mode=max,scope=engine-cycle-f33
+
+      - name: Gate exact digest, attestations, SBOM and offline runtime
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+          PINNED_REF: ghcr.io/cluster2600/3dprinting993-engine-cycle-f33@${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          tag_ref="${IMAGE_REPOSITORY}:${GITHUB_SHA}"
+          pinned_ref="${PINNED_REF}"
+          tag_digest=""
+          for attempt in 1 2 3 4 5; do
+            tag_digest="$(docker buildx imagetools inspect "${tag_ref}" 2>/dev/null | awk '$1 == "Digest:" { print $2; exit }')"
+            if test "${tag_digest}" = "${IMAGE_DIGEST}"; then break; fi
+            sleep 3
+          done
+          test "${tag_digest}" = "${IMAGE_DIGEST}"
+
+          docker buildx imagetools inspect --raw "${pinned_ref}" > engine-cycle-f33-index.json
+          test "$(sha256sum engine-cycle-f33-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            (.manifests | length) == 2 and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.platform.os == "unknown" and .platform.architecture == "unknown" and .annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' engine-cycle-f33-index.json >/dev/null
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' engine-cycle-f33-index.json)"
+          attestation_digest="$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .digest' engine-cycle-f33-index.json)"
+          test "$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .annotations["vnd.docker.reference.digest"]' engine-cycle-f33-index.json)" = "${platform_digest}"
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${platform_digest}" > engine-cycle-f33-platform-manifest.json
+          test "$(sha256sum engine-cycle-f33-platform-manifest.json | cut -d' ' -f1)" = "${platform_digest#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.manifest.v1+json" and
+            all(.layers[]; .mediaType == "application/vnd.oci.image.layer.v1.tar+gzip") and
+            ([.layers[].size] | add) < 150000000
+          ' engine-cycle-f33-platform-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${attestation_digest}" > engine-cycle-f33-attestation-manifest.json
+          test "$(sha256sum engine-cycle-f33-attestation-manifest.json | cut -d' ' -f1)" = "${attestation_digest#sha256:}"
+          jq -e --arg subject "${platform_digest}" '
+            .artifactType == "application/vnd.docker.attestation.manifest.v1+json" and
+            .subject.mediaType == "application/vnd.oci.image.manifest.v1+json" and
+            .subject.digest == $subject and
+            ([.layers[] | select(.mediaType == "application/vnd.in-toto+json" and .annotations["in-toto.io/predicate-type"] == "https://slsa.dev/provenance/v1")] | length) == 1 and
+            ([.layers[] | select(.mediaType == "application/vnd.in-toto+json" and .annotations["in-toto.io/predicate-type"] == "https://spdx.dev/Document")] | length) == 1
+          ' engine-cycle-f33-attestation-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" > engine-cycle-f33-provenance.json
+          jq -e \
+            --arg source "https://github.com/${GITHUB_REPOSITORY}" \
+            --arg revision "${GITHUB_SHA}" '
+            (.SLSA.buildDefinition.buildType | startswith("https://github.com/moby/buildkit/")) and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:source"] == $source and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:revision"] == $revision and
+            any(.SLSA.buildDefinition.resolvedDependencies[]; .digest.sha256 == "a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e") and
+            any(.SLSA.buildDefinition.resolvedDependencies[]; .digest.sha256 == "9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef")
+          ' engine-cycle-f33-provenance.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${pinned_ref}" > engine-cycle-f33-sbom.json
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $spdx |
+            $spdx.spdxVersion == "SPDX-2.3" and
+            $spdx.SPDXID == "SPDXRef-DOCUMENT" and
+            $spdx.dataLicense == "CC0-1.0" and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "cantera" and .versionInfo == "3.2.0") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "numpy" and .versionInfo == "2.5.2")
+          ' engine-cycle-f33-sbom.json >/dev/null
+
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${pinned_ref}")" = 9133:9133
+          if ! docker run --rm --platform linux/amd64 --user 9133:9133 \
+            --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=32m \
+            --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" python /opt/engine-cycle-f33/smoke.py \
+            > engine-cycle-f33-smoke.json 2> engine-cycle-f33-smoke.stderr; then
+            cat engine-cycle-f33-smoke.json
+            cat engine-cycle-f33-smoke.stderr >&2
+            exit 1
+          fi
+          test ! -s engine-cycle-f33-smoke.stderr
+          jq -e '
+            .status == "passed_synthetic_thermochemistry_fixture_only" and
+            .platform == "linux/amd64-cpu" and .offline == true and
+            .non_root == true and .gpu_required == false and
+            .cantera == "3.2.0" and
+            .dependency_audit.pin_count == 4 and
+            .runtime_identity.uid == 9133 and .runtime_identity.gid == 9133 and
+            .network_isolation_evidence.verified == true and
+            (.network_isolation_evidence.external_routed_interfaces | length) == 0 and
+            .proof_boundary.synthetic_fixture == true and
+            .proof_boundary.engine_cycle_solver_executed == false and
+            .proof_boundary.predicted_engine_power == false and
+            all(.physical_release_gates[]; . == false)
+          ' engine-cycle-f33-smoke.json >/dev/null
+          printf '%s\n' "${pinned_ref}" > engine-cycle-f33-image-ref.txt
+
+      - name: Upload immutable image evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: engine-cycle-f33-${{ github.sha }}
+          path: |
+            engine-cycle-f33-image-ref.txt
+            engine-cycle-f33-index.json
+            engine-cycle-f33-platform-manifest.json
+            engine-cycle-f33-attestation-manifest.json
+            engine-cycle-f33-provenance.json
+            engine-cycle-f33-sbom.json
+            engine-cycle-f33-smoke.json
+            engine-cycle-f33-smoke.stderr
+            engine-cycle-f33-builder.txt
+          if-no-files-found: error
+          retention-days: 30
