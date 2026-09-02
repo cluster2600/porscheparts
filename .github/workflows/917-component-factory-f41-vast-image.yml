@@ -1,0 +1,276 @@
+name: Build 917 component factory F41 Vast CAD image
+
+on:
+  push:
+    branches:
+      - main
+      - codex/917-f40-vast-runtime-hardening
+    paths:
+      - .github/workflows/917-component-factory-f41-vast-image.yml
+      - containers/917-component-factory-f41-vast/**
+      - docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md
+      - tests/test_917_component_factory_f41_vast_image.py
+      - twins/reference-917-engine/component-factory-f41.json
+      - twins/reference-917-engine/source/build_component_factory_bundle_f41.py
+      - twins/reference-917-engine/source/run_component_factory_f41_cad_job.sh
+  workflow_dispatch:
+
+concurrency:
+  group: 917-component-factory-f41-vast-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  # Le package F28 est deja public. Le tag et le digest F41 restent distincts.
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-cad-author-f28
+  IMAGE_TAG: ${{ github.sha }}-vast-f41-cad
+  BASE_IMAGE: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Run static fail-closed guard
+        run: python3 tests/test_917_component_factory_f41_vast_image.py -v
+
+      - name: Hash exact public inputs
+        run: |
+          sha256sum \
+            .github/workflows/917-component-factory-f41-vast-image.yml \
+            containers/917-component-factory-f41-vast/Dockerfile \
+            containers/917-component-factory-f41-vast/Dockerfile.dockerignore \
+            containers/917-component-factory-f41-vast/lock.json \
+            containers/917-component-factory-f41-vast/system-packages.sha256 \
+            containers/917-component-factory-f41-vast/stage_job.py \
+            containers/917-component-factory-f41-vast/run_job.sh \
+            containers/917-component-factory-f41-vast/prepare_layout.sh \
+            containers/917-component-factory-f41-vast/image_smoke.py \
+            containers/917-component-factory-f41-vast/vast_onstart.sh \
+            containers/917-component-factory-f41-vast/entrypoint.sh \
+            docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md \
+            tests/test_917_component_factory_f41_vast_image.py \
+            > 917-component-factory-f41-vast-source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Verify pinned Buildx and BuildKit
+        run: |
+          docker buildx version 2>&1 | tee 917-component-factory-f41-vast-builder.txt
+          docker buildx inspect --bootstrap 2>&1 | tee -a 917-component-factory-f41-vast-builder.txt
+          grep -F 'v0.36.1' 917-component-factory-f41-vast-builder.txt >/dev/null
+          grep -F 'v0.32.2' 917-component-factory-f41-vast-builder.txt >/dev/null
+
+      - name: Log in to GHCR
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/917-component-factory-f41-vast/Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ env.IMAGE_TAG }}
+          cache-from: type=gha,scope=917-component-factory-f41-vast
+          cache-to: type=gha,mode=max,scope=917-component-factory-f41-vast
+
+      - name: Gate digest attestations and offline CAD privilege separation
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+          PINNED_REF: ${{ env.IMAGE_REPOSITORY }}@${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          docker buildx imagetools inspect --raw "${PINNED_REF}" > 917-component-factory-f41-vast-index.json
+          test "$(sha256sum 917-component-factory-f41-vast-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.platform.os == "unknown" and .platform.architecture == "unknown" and .annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' 917-component-factory-f41-vast-index.json >/dev/null
+
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' 917-component-factory-f41-vast-index.json)"
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${PINNED_REF}" > 917-component-factory-f41-vast-provenance.json
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${PINNED_REF}" > 917-component-factory-f41-vast-sbom.json
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $spdx |
+            $spdx.spdxVersion == "SPDX-2.3" and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "build123d" and .versionInfo == "0.11.1") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "cadquery-ocp-novtk" and .versionInfo == "7.9.3.1.1") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "lib3mf" and .versionInfo == "2.5.0") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "openssh-server")
+          ' 917-component-factory-f41-vast-sbom.json >/dev/null
+
+          docker pull --platform linux/amd64 "${PINNED_REF}"
+          docker pull --platform linux/amd64 "${BASE_IMAGE}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${PINNED_REF}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${PINNED_REF}")" = 0:0
+          test "$(docker image inspect --format '{{json .Config.Entrypoint}}' "${PINNED_REF}")" = '["/opt/917-component-factory-f41-vast/entrypoint.sh"]'
+          image_size="$(docker image inspect --format '{{.Size}}' "${PINNED_REF}")"
+          base_size="$(docker image inspect --format '{{.Size}}' "${BASE_IMAGE}")"
+          added_size="$((image_size - base_size))"
+          test "${added_size}" -gt 0
+          test "${added_size}" -le 8000000
+          jq -n \
+            --argjson image_size_bytes "${image_size}" \
+            --argjson base_size_bytes "${base_size}" \
+            --argjson added_size_bytes "${added_size}" \
+            '{image_size_bytes:$image_size_bytes,base_size_bytes:$base_size_bytes,added_size_bytes:$added_size_bytes,added_size_budget_bytes:8000000,budget_passed:($added_size_bytes <= 8000000)}' \
+            > 917-component-factory-f41-vast-size.json
+
+          docker run --rm --platform linux/amd64 --user 0:0 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /workspace:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /run:rw,nosuid,nodev,size=32m \
+            --pids-limit 128 --cap-drop ALL \
+            --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add FOWNER \
+            --cap-add SETUID --cap-add SETGID --cap-add SETPCAP \
+            --security-opt no-new-privileges \
+            "${PINNED_REF}" \
+            > 917-component-factory-f41-vast-smoke.json \
+            2> 917-component-factory-f41-vast-smoke.stderr
+          test ! -s 917-component-factory-f41-vast-smoke.stderr
+          jq -e '
+            .status == "offline_transport_and_cad_step_smoke_passed_vast_f41_and_manufacturing_validation_blocked" and
+            .runtime.machine == "x86_64" and
+            .runtime.transport_uid == 0 and
+            .runtime.cad_uid == 9178 and
+            .ssh_transport.sshd_packaged == true and
+            .ssh_transport.sshd_started == false and
+            .ssh_transport.baked_host_private_key_count == 0 and
+            .cad_isolation.cad_effective_uid == 9178 and
+            .cad_isolation.cad_no_new_privileges == true and
+            .cad_isolation.cad_capability_bounding_set_empty == true and
+            .cad_isolation.build123d == "0.11.1" and
+            .cad_isolation.cadquery_ocp_novtk == "7.9.3.1.1" and
+            .cad_isolation.lib3mf == "2.5.0" and
+            .cad_isolation.transferred_payloads_utf8_text_only == true and
+            .cad_isolation.synthetic_step_roundtrip_executed == true and
+            .cad_isolation.synthetic_closed_solid_after_roundtrip == true and
+            .claim_scope.vast_authorized_key_injection_verified == false and
+            .claim_scope.vast_ssh_direct_handshake_verified == false and
+            .claim_scope.f41_component_factory_executed == false and
+            .claim_scope.f41_geometry_dimensionally_validated == false and
+            .claim_scope.omniverse_simready_validated == false and
+            .claim_scope.target_1600_mechanical_hp_proven == false and
+            .claim_scope.engine_start_authorized == false and
+            .claim_scope.manufacturing_authorized == false
+          ' 917-component-factory-f41-vast-smoke.json >/dev/null
+
+          docker run --rm --platform linux/amd64 --user 9178:9178 \
+            --network none --read-only \
+            --env HOME=/tmp --env XDG_CACHE_HOME=/tmp/cad-author-f28-cache \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+            --pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+            --entrypoint python "${PINNED_REF}" /opt/cad-author-f28/cad-author-f28-smoke.py \
+            > 917-component-factory-f41-vast-base-cad-smoke.json \
+            2> 917-component-factory-f41-vast-base-cad-smoke.stderr
+          test ! -s 917-component-factory-f41-vast-base-cad-smoke.stderr
+          jq -e '
+            .status == "passed_synthetic_cad_fixture_only" and
+            .runtime_uid_gid == "9178:9178" and
+            .build123d == "0.11.1" and
+            .ocp == "7.9.3.1" and
+            .checks.closed_solid_after_step_roundtrip == true and
+            ([.release_gates[] | select(. != false)] | length) == 0
+          ' 917-component-factory-f41-vast-base-cad-smoke.json >/dev/null
+
+          docker run --rm --platform linux/amd64 --user 0:0 \
+            --network none --read-only \
+            --tmpfs /root/.ssh:rw,nosuid,nodev,noexec,size=1m,mode=0700 \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /workspace:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /run:rw,nosuid,nodev,size=32m \
+            --pids-limit 128 --cap-drop ALL \
+            --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add FOWNER \
+            --cap-add SETUID --cap-add SETGID --cap-add SETPCAP \
+            --security-opt no-new-privileges \
+            --entrypoint /bin/sh "${PINNED_REF}" -c \
+            'umask 077; printf "%s\n" runtime-authorized-key-placeholder > /root/.ssh/authorized_keys; /usr/local/bin/917-cad-vast-onstart; cat /workspace/READY' \
+            > 917-component-factory-f41-vast-ready.json \
+            2> 917-component-factory-f41-vast-ready.stderr
+          test ! -s 917-component-factory-f41-vast-ready.stderr
+          jq -e '
+            .status == "vast_onstart_ready_for_public_archive_transfer_cad_not_started" and
+            .authorized_key_file_present == true and
+            .sshd_managed_by_vast_entrypoint == true and
+            .synthetic_build123d_step_smoke_passed == true and
+            .f41_component_factory_executed == false and
+            .physical_claims_validated == false and
+            .manufacturing_authorized == false
+          ' 917-component-factory-f41-vast-ready.json >/dev/null
+          printf '%s\n' "${PINNED_REF}" > 917-component-factory-f41-vast-image-ref.txt
+          printf '%s\n' "${platform_digest}" > 917-component-factory-f41-vast-platform-digest.txt
+
+      - name: Gate anonymous pull of the exact digest
+        env:
+          PINNED_REF: ${{ env.IMAGE_REPOSITORY }}@${{ steps.build.outputs.digest }}
+        run: |
+          docker image rm -f "${PINNED_REF}" >/dev/null
+          anonymous_config="$(mktemp -d)"
+          printf '{}\n' > "${anonymous_config}/config.json"
+          DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64 "${PINNED_REF}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${PINNED_REF}")" = linux/amd64
+          DOCKER_CONFIG="${anonymous_config}" docker run --rm --platform linux/amd64 --user 0:0 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /workspace:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /run:rw,nosuid,nodev,size=32m \
+            --pids-limit 128 --cap-drop ALL \
+            --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add FOWNER \
+            --cap-add SETUID --cap-add SETGID --cap-add SETPCAP \
+            --security-opt no-new-privileges \
+            "${PINNED_REF}" \
+            > 917-component-factory-f41-vast-anonymous-smoke.json \
+            2> 917-component-factory-f41-vast-anonymous-smoke.stderr
+          test ! -s 917-component-factory-f41-vast-anonymous-smoke.stderr
+          jq -e '
+            .runtime.cad_uid == 9178 and
+            .cad_isolation.synthetic_step_roundtrip_executed == true and
+            .cad_isolation.synthetic_closed_solid_after_roundtrip == true and
+            .claim_scope.manufacturing_authorized == false
+          ' 917-component-factory-f41-vast-anonymous-smoke.json >/dev/null
+          rm -rf -- "${anonymous_config}"
+
+      - name: Upload immutable image evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: 917-component-factory-f41-vast-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            917-component-factory-f41-vast-source-inputs.sha256
+            917-component-factory-f41-vast-builder.txt
+            917-component-factory-f41-vast-index.json
+            917-component-factory-f41-vast-provenance.json
+            917-component-factory-f41-vast-sbom.json
+            917-component-factory-f41-vast-size.json
+            917-component-factory-f41-vast-smoke.json
+            917-component-factory-f41-vast-smoke.stderr
+            917-component-factory-f41-vast-base-cad-smoke.json
+            917-component-factory-f41-vast-base-cad-smoke.stderr
+            917-component-factory-f41-vast-ready.json
+            917-component-factory-f41-vast-ready.stderr
+            917-component-factory-f41-vast-anonymous-smoke.json
+            917-component-factory-f41-vast-anonymous-smoke.stderr
+            917-component-factory-f41-vast-image-ref.txt
+            917-component-factory-f41-vast-platform-digest.txt
+          if-no-files-found: error
+          retention-days: 30

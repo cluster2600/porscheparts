@@ -1,0 +1,111 @@
+{
+  "$comment": "Verrou de recette avant publication. Cette image ajoute seulement le transport Vast ssh_direct au digest public F28. Le smoke utilise une fixture synthetique et ne valide ni geometrie moteur, ni assemblage, ni simulation, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F41-vast-cad-image",
+  "status": "recipe_locked_publication_vast_and_f41_execution_unverified",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
+    "tag_pattern": "<git-sha>-vast-f41-cad",
+    "digest": null,
+    "immutable_reference": null,
+    "platform": "linux/amd64",
+    "runtime_user": "0:0",
+    "cad_user": "9178:9178",
+    "base_immutable_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+    "base_contains": {
+      "python": "3.12.14",
+      "build123d": "0.11.1",
+      "cadquery-ocp-novtk": "7.9.3.1.1",
+      "ocp": "7.9.3.1",
+      "lib3mf": "2.5.0"
+    },
+    "additional_local_image_size_bytes_max": 8000000
+  },
+  "system_packages": {
+    "libbsd0": "0.11.7-2",
+    "libcbor0.8": "0.8.0-2+b1",
+    "libedit2": "3.1-20221030-2",
+    "libfido2-1": "1.12.0-2+b1",
+    "libproc2-0": "2:4.0.2-3",
+    "libwrap0": "7.6.q-32",
+    "openssh-client": "1:9.2p1-2+deb12u10",
+    "openssh-server": "1:9.2p1-2+deb12u10",
+    "openssh-sftp-server": "1:9.2p1-2+deb12u10",
+    "procps": "2:4.0.2-3",
+    "runit-helper": "2.15.2",
+    "sensible-utils": "0.0.17+nmu1",
+    "ucf": "3.0043+nmu1+deb12u1"
+  },
+  "system_package_artifact_lock": {
+    "path": "containers/917-component-factory-f41-vast/system-packages.sha256",
+    "sha256": "d2db2dc5d01dbb39f28974bbb66fc7045ea7e2eb9b3f4a4a981638ab44490227",
+    "artifact_count": 13,
+    "verification_before_install": true
+  },
+  "public_bundle_contract": {
+    "archive_name": "917-component-factory-f41-public.tar.gz",
+    "bundle_root": "917-component-factory-f41",
+    "manifest_name": "917-component-factory-f41/BUNDLE-MANIFEST.json",
+    "manifest_schema_version": "1.1.0",
+    "builder": "twins/reference-917-engine/source/build_component_factory_bundle_f41.py",
+    "source_repository_state_required": "clean_commit_visible_at_exact_remote_ref",
+    "public_remote_refs_required": true,
+    "payloads_read_from_git_head_not_worktree": true,
+    "development_worktree_as_bundle_source_allowed": false,
+    "regular_payload_must_be_utf8_text": true,
+    "payload_hashes_required": true,
+    "geometry_payloads_allowed": false,
+    "raw_scan_paths_allowed": false,
+    "secret_key_material_allowed": false
+  },
+  "security_contract": {
+    "vast_runtype": "ssh_direct",
+    "vast_replaces_image_entrypoint": true,
+    "onstart_command": "/usr/local/bin/917-cad-vast-onstart",
+    "remote_transport_user": "root",
+    "root_scope": [
+      "vast_injected_sshd_initialization",
+      "ssh_scp_transport",
+      "public_archive_validation_and_ownership_transfer"
+    ],
+    "cad_launcher": "/usr/local/bin/917-cad-run-job",
+    "cad_no_new_privileges": true,
+    "cad_capability_bounding_set": "empty",
+    "baked_authorized_keys": false,
+    "baked_ssh_host_keys": false,
+    "embedded_secrets": false,
+    "embedded_private_assets": false
+  },
+  "wrapper_contract": {
+    "image_repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
+    "image_reference_after_publication": null,
+    "runtype": "ssh_direct",
+    "onstart": "/usr/local/bin/917-cad-vast-onstart",
+    "ready_path": "/workspace/READY",
+    "smoke_path": "/workspace/image-smoke.json",
+    "stage_command": "917-cad-stage-job /workspace/inbox/917-component-factory-f41-public.tar.gz <job-id>",
+    "run_command": "917-cad-run-job <job-id> 917-component-factory-f41/twins/reference-917-engine/source/run_component_factory_f41_cad_job.sh /workspace/results/<job-id>",
+    "runtime_image_ref_injected_by_launcher": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+    "project_root": "/workspace/jobs/<job-id>/917-component-factory-f41",
+    "results_path": "/workspace/results/<job-id>"
+  },
+  "gates": {
+    "base_digest_pinned": true,
+    "dependency_versions_pinned": true,
+    "secure_public_archive_contract_present": true,
+    "cad_uid_drop_contract_present": true,
+    "synthetic_build123d_step_smoke_recipe_present": true,
+    "linux_amd64_build_verified": false,
+    "ghcr_digest_published": false,
+    "ghcr_anonymous_pull_verified": false,
+    "vast_authorized_key_injection_verified": false,
+    "vast_ssh_direct_handshake_verified": false,
+    "f41_component_factory_executed_in_this_image": false,
+    "f41_geometry_dimensionally_validated": false,
+    "engine_model_physically_correlated": false,
+    "omniverse_simready_validated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  }
+}
