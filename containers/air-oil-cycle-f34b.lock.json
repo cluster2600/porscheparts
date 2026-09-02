@@ -1,0 +1,269 @@
+{
+  "$comment": "Verrou de publication de l'image CPU F34b air/huile seulement. Il atteste une image linux/amd64 publique et reproductible, son preflight sans execution canonique et deux fixtures moteur synthetiques non canoniques. Il ne valide ni 1 600 ch, ni thermique, ni mecanique, ni banc, ni PhysicsNeMo, ni Omniverse, ni Vast.ai, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F34b",
+  "status": "immutable_public_cpu_air_oil_runtime_verified_all_engine_physical_release_blocked",
+  "claim_scope": {
+    "immutable_public_image_verified": true,
+    "offline_linux_amd64_runtime_verified": true,
+    "anonymous_exact_digest_access_verified": true,
+    "noncanonical_regression_fixtures_verified": true,
+    "canonical_doe_executed": false,
+    "engine_model_physically_correlated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b",
+    "digest": "sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664",
+    "candidate_reference": "ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b:candidate-6a02829cdf6cd968086af63145259091d7f34937-33634398619-1",
+    "verified_tag_reference": "ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b:verified-6a02829cdf6cd968086af63145259091d7f34937-33634398619-1",
+    "tags_are_release_authority": false,
+    "index": {
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "size_bytes": 857,
+      "digest_recomputed": true,
+      "platform_manifest_count": 1,
+      "attestation_manifest_count": 1
+    },
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "user": "9133:9133",
+      "working_directory": "/workspace",
+      "default_command": [
+        "python",
+        "/opt/air-oil-cycle-f34b/smoke.py"
+      ],
+      "python_version": "3.12.14",
+      "cantera_version": "3.2.0",
+      "numpy_version": "2.5.2",
+      "gpu_required": false
+    },
+    "manifest": {
+      "digest": "sha256:a998902efd809102035ae1b9ea07d6c6b207e9688557438efc5e543c1c181e9f",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 3326,
+      "config_digest": "sha256:1d4d76bf43e489480d287f9d41844ba8616269996574079b4d6b835a7e1248be",
+      "config_size_bytes": 12785,
+      "layer_count": 16,
+      "compressed_size_bytes": 88877530,
+      "largest_layer_digest": "sha256:e9137c83849af6541f0654f4073959d0e281d64db4106b2a07fd24ec4e87d359",
+      "largest_layer_bytes": 42639413,
+      "layers": [
+        {"digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71", "size_bytes": 28232655},
+        {"digest": "sha256:268fd66f673d556a271a784d33c4541102f05dde43657861a8e793eb30ef38dd", "size_bytes": 3533349},
+        {"digest": "sha256:ec613f6df89286159c101a9b15264bc627366aaf788a9ea9c3a456ad9b9b2b3e", "size_bytes": 13672032},
+        {"digest": "sha256:35ef2f664a5c3b1e1408a24bd668ef33b82a89a534709e1c03aac6d50012d51a", "size_bytes": 249},
+        {"digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1", "size_bytes": 32},
+        {"digest": "sha256:e9137c83849af6541f0654f4073959d0e281d64db4106b2a07fd24ec4e87d359", "size_bytes": 42639413},
+        {"digest": "sha256:0b51a02beed51c379dbc226bc3103bc856459f4ee46f591a975f7e959bb1a78a", "size_bytes": 517},
+        {"digest": "sha256:c4764a8347907d5f0422701059fed6d2334cd2d56eec98ee4ab5b7c131f1a359", "size_bytes": 6763},
+        {"digest": "sha256:43852aaa70af2b7b26b29840be71bde2587e2abcc7cbb26728b2bf62d3eeb1e8", "size_bytes": 14835},
+        {"digest": "sha256:7228885cb0fc20a014de47af19dbaa05254b03a17d74efd5927cbdea2b0025b1", "size_bytes": 4828},
+        {"digest": "sha256:6de6dec3d4b92a03a04a0e1bf5a8f9f68c49c828948f5b0b4fa3de4f556728d9", "size_bytes": 6905},
+        {"digest": "sha256:fee19a812ba84aa52c77bf691644ed6115a7fbd96afe184e3dfe9c25b81f9d17", "size_bytes": 3379},
+        {"digest": "sha256:e3febbad5ce79b0902cf94a37b9ae68c744d964d2c3ff0ad74de1bd6629b77c2", "size_bytes": 363790},
+        {"digest": "sha256:06b9581148b070a891c1fa049c7f02a5ca083927b7dbba6bd24c850ea5fc1766", "size_bytes": 398719},
+        {"digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1", "size_bytes": 32},
+        {"digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1", "size_bytes": 32}
+      ]
+    },
+    "attestation_manifest": {
+      "digest": "sha256:f32a53bbb42a443c498124630898ddc6a9ae8923384e89a5696206ffd0494f70",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "artifact_type": "application/vnd.docker.attestation.manifest.v1+json",
+      "size_bytes": 1112,
+      "subject_manifest_digest": "sha256:a998902efd809102035ae1b9ea07d6c6b207e9688557438efc5e543c1c181e9f",
+      "subject_manifest_size_bytes": 3326,
+      "predicate_layers": [
+        {
+          "predicate_type": "https://spdx.dev/Document",
+          "digest": "sha256:1ed9b54fb4fc87052a11865dd172b6575770affccf1a160c7c65debd8818dc65",
+          "size_bytes": 2446934
+        },
+        {
+          "predicate_type": "https://slsa.dev/provenance/v1",
+          "digest": "sha256:08dfdb3f83aa104d5fa66a80ffa7b48757f8977af41d9cc25fb8ece2c19d2614",
+          "size_bytes": 31928
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "6a02829cdf6cd968086af63145259091d7f34937",
+    "runner": "ubuntu-24.04",
+    "dockerfile_frontend_digest": "sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "dependency_policy": "four_exact_hashed_linux_amd64_wheels_plus_pinned_base_pip",
+    "builder": {
+      "buildx_version": "0.36.1",
+      "buildx_git_revision": "1d8dde89b8aba914e05e45366770736fea1fd690",
+      "buildx_linux_amd64_binary_sha256": "48af8a397ebd60178778bf63611dbcebe5f5e7a9be90eb9147b24b9587455778",
+      "buildkit_version": "0.32.2",
+      "buildkit_image": "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+    },
+    "inputs": [
+      {"path": ".github/workflows/air-oil-cycle-f34b-image.yml", "sha256": "6d9a226c99b58cead3b2ac709dd94d36bed4bfe96b5243a1ab8790ed19af6f46"},
+      {"path": "containers/air-oil-cycle-f34b.Dockerfile", "sha256": "b2e8f95347e9bc089926b3c7cf1c4fe973d0332d39bc540073af71843cbc6f5a"},
+      {"path": "containers/air-oil-cycle-f34b.Dockerfile.dockerignore", "sha256": "5addbb9cb8c088a504a5a81e904b5f5652c95d280ea5c5f246713c39e5ca88f8"},
+      {"path": "containers/air-oil-cycle-f34b.requirements.txt", "sha256": "1da2fe643628655b2468ad1f16d562b274c2bea0653542ed7eebddd99145ab15"},
+      {"path": "containers/air-oil-cycle-f34b-smoke.py", "sha256": "b8e63c3267292b7fd526565465f783329b1f2b0f8e12e33728051ef3912bd9c5"},
+      {"path": "scripts/export_917_air_oil_seeds_f34b.py", "sha256": "267156346170c5b90a8c2b5975a3f6736f3d63f0a428a4db1f98e6b087bde83a"},
+      {"path": "scripts/run_917_air_oil_cycle_f34b.py", "sha256": "a42ccf2ebba58c698bc36facfc1233c6c6e437bd3a7e84069dd95a4e3d449548"},
+      {"path": "scripts/run_917_doe_f34.py", "sha256": "763de9e7ab71b7d5365c404320d266760b7fa4b1fc2e7cc241ff24ed551adea4"},
+      {"path": "tests/test_917_air_oil_seeds_f34b.py", "sha256": "a5e810c63801c0430873d4fe002ca0172da6899c163addc6a495e98527cf933a"},
+      {"path": "tests/test_917_air_oil_cycle_f34b.py", "sha256": "25e9be4fe42912ffbfce4247ab801f37f67cae6aa3ab3f08865c743bd77e94ef"},
+      {"path": "tests/test_air_oil_cycle_f34b_image.py", "sha256": "9084444ea16cc761f4a6ef7edf71b3c855237a4e3f510af529f3cdf70ac53cf9"},
+      {"path": "twins/reference-917-engine/air-oil-core-controls-f34a.json", "sha256": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa"},
+      {"path": "twins/reference-917-engine/doe-surrogate-f34.json", "sha256": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e"},
+      {"path": "twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json", "sha256": "74745e4ac18915c224e40fae1dbae739a9b6eea2aa9b374d4d7cbc234cd21149"},
+      {"path": "twins/reference-917-engine/evidence/f34/doe-case-manifest.json", "sha256": "665cbc390a38bf29b824a1d8b9743fd21c381bb46f5c91a8c85b2aab7330a5be"}
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "workflow": {
+      "id": 348433912,
+      "run_id": 33634398619,
+      "run_attempt": 1,
+      "job_id": 100261510400,
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "head_sha": "6a02829cdf6cd968086af63145259091d7f34937",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33634398619"
+    },
+    "evidence_artifact": {
+      "id": 9848193764,
+      "name": "air-oil-cycle-f34b-6a02829cdf6cd968086af63145259091d7f34937-33634398619-1",
+      "digest": "sha256:7cb73a86d2eb7a9c6beafea41bd10dc588207615964460b4de3d57380b27aca4",
+      "size_bytes": 324511,
+      "expired": false,
+      "expires_on": "2026-10-02"
+    },
+    "ignored_automatic_dockerbuild_artifact_id": 9848195246,
+    "evidence_files": [
+      {"name": "air-oil-cycle-f34b-anonymous-audit.json", "sha256": "5e3904759a67fda1e8eb00ed045d9f10b41e58467d078e1f2633c4a7c9caf897", "size_bytes": 303},
+      {"name": "air-oil-cycle-f34b-anonymous-pull.txt", "sha256": "253c2a83b9f6935be8ea93d44671fe2a09983ab28dcaaa5f62d115855ddc8b93", "size_bytes": 2461},
+      {"name": "air-oil-cycle-f34b-anonymous-smoke.json", "sha256": "6ac1e47137b7ac59aca615c18b18f2cce7675e8098ba34effc764ecd51f4e4ca", "size_bytes": 8469},
+      {"name": "air-oil-cycle-f34b-anonymous-smoke.stderr", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "size_bytes": 0},
+      {"name": "air-oil-cycle-f34b-attestation-manifest.json", "sha256": "f32a53bbb42a443c498124630898ddc6a9ae8923384e89a5696206ffd0494f70", "size_bytes": 1112},
+      {"name": "air-oil-cycle-f34b-builder.txt", "sha256": "845f0203debc5de6168bbb1ecced10aea0ace32d8f2e39f6ea1ab9fbb59fe25c", "size_bytes": 1842},
+      {"name": "air-oil-cycle-f34b-candidate-tag.txt", "sha256": "991a7282de7a77b62f736286a0f88071e7b33e920c9b9d4ff59bdba43633c502", "size_bytes": 118},
+      {"name": "air-oil-cycle-f34b-derived-fixtures.json", "sha256": "976e8cb69f781f845ea0f69921569e2fe331415673b01ad65ce985288a14f3a0", "size_bytes": 14112},
+      {"name": "air-oil-cycle-f34b-derived-fixtures.stderr", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "size_bytes": 0},
+      {"name": "air-oil-cycle-f34b-image-ref.txt", "sha256": "2344968f9e14d8737136e5d14504526d939dbd85c99078846bd584b3ebd31dfa", "size_bytes": 125},
+      {"name": "air-oil-cycle-f34b-index.json", "sha256": "369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664", "size_bytes": 857},
+      {"name": "air-oil-cycle-f34b-platform-manifest.json", "sha256": "a998902efd809102035ae1b9ea07d6c6b207e9688557438efc5e543c1c181e9f", "size_bytes": 3326},
+      {"name": "air-oil-cycle-f34b-provenance.json", "sha256": "005e63e3d5d9d9d64d2cc7fcc2fcf7101583876c2d4ec6b91170c76d6eeb345d", "size_bytes": 60303},
+      {"name": "air-oil-cycle-f34b-release-tag.txt", "sha256": "b1058941dc009f2a99a4a23f095d49ef0af3853d47c512b86edb36646cf82dc0", "size_bytes": 117},
+      {"name": "air-oil-cycle-f34b-sbom.json", "sha256": "a3f7eae0e0a3dbb9f6be55746856eba79216edf8e80f312ede0e04c6316110c8", "size_bytes": 3314976},
+      {"name": "air-oil-cycle-f34b-smoke.json", "sha256": "6ac1e47137b7ac59aca615c18b18f2cce7675e8098ba34effc764ecd51f4e4ca", "size_bytes": 8469},
+      {"name": "air-oil-cycle-f34b-smoke.stderr", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "size_bytes": 0},
+      {"name": "air-oil-cycle-f34b-source-inputs.sha256", "sha256": "49da03a2575a6f0a0e61d96d15abd09e3b2bb08989a1025df3f19191777b1d1e", "size_bytes": 1681},
+      {"name": "air-oil-cycle-f34b-static-tests.txt", "sha256": "dbed088784f2acdc6799c4518d37165585dd5d17eb9693e4a6a906cc1f961ca7", "size_bytes": 7685}
+    ],
+    "provenance": {
+      "layer_digest": "sha256:08dfdb3f83aa104d5fa66a80ffa7b48757f8977af41d9cc25fb8ece2c19d2614",
+      "source_repository": "https://github.com/cluster2600/3dprinting993",
+      "source_revision": "6a02829cdf6cd968086af63145259091d7f34937",
+      "builder_id": "https://github.com/cluster2600/3dprinting993/actions/runs/33634398619/attempts/1",
+      "resolved_dependency_count": 4
+    },
+    "sbom": {
+      "layer_digest": "sha256:1ed9b54fb4fc87052a11865dd172b6575770affccf1a160c7c65debd8818dc65",
+      "spdx_version": "SPDX-2.3",
+      "data_license": "CC0-1.0",
+      "package_count": 118,
+      "file_count": 3244,
+      "relationship_count": 3823,
+      "packages": {
+        "cantera": "3.2.0",
+        "numpy": "2.5.2",
+        "typing-extensions": "4.16.0"
+      }
+    },
+    "registry": {
+      "package_public": true,
+      "package_id": 14809188,
+      "index_version_id": 1200441449,
+      "published_digest_pulled": true,
+      "anonymous_exact_digest_access": true,
+      "verified_tag_promoted_after_anonymous_gate": true,
+      "cryptographic_signature_verified": false
+    },
+    "runtime_smoke": {
+      "authenticated_and_anonymous_outputs_byte_identical": true,
+      "offline": true,
+      "non_root": true,
+      "network_isolation_verified": true,
+      "generic_cantera_fixture_only_in_default_command": true,
+      "canonical_doe_cases_planned": 2570,
+      "canonical_doe_cases_executed": 0,
+      "source_seed_cases_executed": 0,
+      "synthetic_noncanonical_fixture_cases_executed": 2,
+      "authoritative_engine_power_prediction_available": false,
+      "validated_1600_hp": false,
+      "physicsnemo_executed": false,
+      "omniverse_executed": false,
+      "vast_used": false
+    }
+  },
+  "bundled_assets": {
+    "file_count": 7,
+    "exact_files_sha256": {
+      "requirements.txt": "1da2fe643628655b2468ad1f16d562b274c2bea0653542ed7eebddd99145ab15",
+      "scripts/run_917_air_oil_cycle_f34b.py": "a42ccf2ebba58c698bc36facfc1233c6c6e437bd3a7e84069dd95a4e3d449548",
+      "smoke.py": "b8e63c3267292b7fd526565465f783329b1f2b0f8e12e33728051ef3912bd9c5",
+      "twins/reference-917-engine/air-oil-core-controls-f34a.json": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa",
+      "twins/reference-917-engine/doe-surrogate-f34.json": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e",
+      "twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json": "74745e4ac18915c224e40fae1dbae739a9b6eea2aa9b374d4d7cbc234cd21149",
+      "twins/reference-917-engine/evidence/f34/doe-case-manifest.json": "665cbc390a38bf29b824a1d8b9743fd21c381bb46f5c91a8c85b2aab7330a5be"
+    },
+    "contains_scan_or_print_geometry": false,
+    "contains_model_weights": false,
+    "contains_proprietary_manual": false,
+    "contains_secret_named_files": false,
+    "contains_network_or_process_solver_api": false,
+    "semantic_content_license_audit_performed": false
+  },
+  "release_gates": {
+    "software": {
+      "immutable_public_image_verified": true,
+      "offline_linux_amd64_smoke_verified": true,
+      "anonymous_exact_digest_access_verified": true,
+      "supply_chain_metadata_bound": true,
+      "two_noncanonical_regression_fixtures_verified": true
+    },
+    "physical": {
+      "air_cooling_validated": false,
+      "combustion_and_knock_validated": false,
+      "controls_and_overspeed_protection_validated": false,
+      "doe_execution_complete": false,
+      "manufacturing_authorized": false,
+      "mass_and_energy_balance_validated": false,
+      "metal_print_authorized": false,
+      "oil_system_validated": false,
+      "physical_correlation_complete": false,
+      "porsche_993_packaging_validated": false,
+      "porsche_993_vehicle_installation_authorized": false,
+      "structural_and_fatigue_validated": false,
+      "target_definition_complete": false,
+      "target_power_proven": false,
+      "test_bench_start_authorized": false,
+      "thermodynamic_cycle_validated": false,
+      "turbo_match_validated": false
+    }
+  },
+  "known_limits": [
+    "Le preflight planifie 2 570 cas mais n'en execute aucun.",
+    "Les deux fixtures moteur sont synthetiques, non canoniques et non correlees.",
+    "Les diagnostics numeriques des fixtures ne prouvent aucune puissance moteur.",
+    "Aucune simulation PhysicsNeMo ou Omniverse et aucun calcul Vast.ai n'ont ete executes par cette image.",
+    "Aucune validation thermique, mecanique, de lubrification, de combustion, de banc ou de fabrication n'est acquise.",
+    "SBOM et provenance ne constituent pas une signature cryptographique.",
+    "L'audit du contenu embarque porte sur une liste exacte, les noms, extensions et API ; aucun audit semantique exhaustif des licences n'est revendique."
+  ]
+}

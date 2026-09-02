@@ -13,9 +13,9 @@ Le liquide reste un auxiliaire séparé de la variante biturbo :
 - refroidissement CHRA éventuel, encore non défini et non validé.
 
 La recette vise
-`ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b`. Sa publication est
-manuelle. Tant qu'un digest GHCR, ses attestations et un pull anonyme n'ont pas
-été vérifiés, aucune référence immuable n'est inscrite dans le projet.
+`ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b`. Sa publication reste
+manuelle. Le digest GHCR vérifié est fixé séparément dans le verrou de
+publication afin qu'aucun tag mutable ne devienne une autorité implicite.
 
 ## Ce qui est embarqué
 
@@ -138,13 +138,52 @@ Le workflow manuel
 9. conserver les preuves en artefact GitHub Actions, y compris en cas d'échec.
 
 Le package GHCR doit être public pour que l'étape anonyme passe. L'échec de
-cette étape bloque volontairement la promotion et le verrou immuable. Un tag
+cette étape bloque volontairement la promotion et la création d'un nouveau
+verrou immuable. Un tag
 `candidate-<commit>-<run>-<tentative>` non validé peut subsister dans GHCR
 après un run échoué ; il n'a aucune autorité de release et ne doit jamais être
 utilisé par Vast.ai. Les tags incluent l'identité du run et de sa tentative :
 un rerun ne déplace donc pas le tag vérifié précédent. Seule la référence
-`@sha256:...` fait autorité. Le verrou JSON de publication ne sera créé qu'après
+`@sha256:...` fait autorité. Un verrou JSON de publication n'est créé qu'après
 lecture des preuves du run et recomputation des digests.
+
+## Publication immuable F34b vérifiée
+
+Le workflow public
+[run 33634398619](https://github.com/cluster2600/3dprinting993/actions/runs/33634398619)
+a construit la révision source
+`6a02829cdf6cd968086af63145259091d7f34937`. La seule référence exécutable
+autorisée par F34b est l'index public immuable :
+
+```text
+ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664
+```
+
+Le verrou suivi
+[`air-oil-cycle-f34b.lock.json`](../containers/air-oil-cycle-f34b.lock.json)
+fixe le run, son job, l'artefact de preuves, l'index OCI, son manifeste
+`linux/amd64`, le manifeste d'attestation et les empreintes des quinze entrées
+exactes de construction et de contrôle. Il lie aussi la provenance SLSA, le
+SBOM SPDX et les dix-neuf fichiers de preuve. Le runtime est CPU et non-root,
+sous l'identité `9133:9133`. Le pull sans authentification du digest exact puis
+le smoke renforcé, hors réseau, ont réussi ; les smokes authentifié et anonyme
+sont identiques octet par octet.
+
+Le manifeste DOE contient **2 570 cas planifiés et aucun cas canonique
+exécuté**. Aucun des deux seeds source n'a été exécuté. Les deux seuls passages
+du chemin Cantera moteur sont des fixtures synthétiques, déplacées hors de la
+grille canonique et explicitement non canoniques. Elles vérifient le runtime et
+ne constituent ni un dataset, ni une calibration, ni une preuve moteur.
+
+Ce verrou ouvre seulement les gates logiciels de publication immuable, de
+smoke `linux/amd64` hors ligne, d'accès anonyme exact, de métadonnées de chaîne
+d'approvisionnement et des deux fixtures de régression non canoniques. Il ne
+prouve pas 1 600 ch, un bilan thermique ou mécanique, une corrélation banc, une
+aptitude à la fabrication ou à l'impression, un entraînement PhysicsNeMo, une
+exécution Omniverse, ni un déploiement Vast.ai. Tous les gates physiques,
+moteur et fabrication restent fermés. La provenance et le SBOM ne sont pas une
+signature cryptographique, et aucun audit sémantique exhaustif des licences de
+contenu n'est revendiqué.
 
 ## Suite F35
 
