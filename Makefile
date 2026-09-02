@@ -1,4 +1,4 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -6,6 +6,7 @@ PHYSICSNEMO_EXTRAS ?= cu12,sym,mesh-extras,model-extras
 VALVE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
 CAD_AUTHOR_F29_IMAGE ?= ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
 F31_CAE_IMAGE ?= 3dprinting993-cae-reference-f31:dev
+F33_CAE_IMAGE ?= 3dprinting993-cae-integrated-f33:dev
 
 check: validate test 917-clean-sheet-2026-f32-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
@@ -198,6 +199,24 @@ engine-components:
 	python3 twins/reference-917-engine/source/run_clean_sheet_2026_f32.py \
 		--contract twins/reference-917-engine/clean-sheet-2026-f32.json \
 		--check twins/reference-917-engine/evidence/f32/screening-report.json
+
+917-integrated-virtual-f33-image:
+	docker build -f containers/cae-integrated-f33.Dockerfile -t $(F33_CAE_IMAGE) .
+
+917-integrated-virtual-f33:
+	F33_CAE_IMAGE=$(F33_CAE_IMAGE) twins/reference-917-engine/source/run_integrated_virtual_validation_f33.sh \
+		work/917-integrated-virtual-f33
+
+917-integrated-virtual-f33-publish:
+	python3 twins/reference-917-engine/source/render_integrated_virtual_validation_f33.py \
+		--report work/917-integrated-virtual-f33/report.json \
+		--geometry-report work/917-integrated-virtual-f33/functional-cad/geometry-report.json \
+		--product-stl work/917-integrated-virtual-f33/functional-cad/917-head-functional-solver-4v.stl \
+		--container-image work/917-integrated-virtual-f33/openfoam/container-image.json \
+		--x86-cross-check work/917-integrated-virtual-f33/toolchain/x86-cross-check.json \
+		--preflight-json work/917-integrated-virtual-f33/omniverse/preflight.json \
+		--preflight-markdown work/917-integrated-virtual-f33/omniverse/preflight.md \
+		--output twins/reference-917-engine/evidence/f33
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

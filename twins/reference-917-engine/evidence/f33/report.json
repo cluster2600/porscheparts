@@ -1,0 +1,928 @@
+{
+  "checks": {
+    "all_release_gates_closed": true,
+    "functional_solver_cad_generated": true,
+    "manufacturing_cad_remains_false": true,
+    "openfoam_all_convergence_passed": true,
+    "openfoam_all_runs_returned_zero": true,
+    "physical_correlation_remains_false": true,
+    "synthetic_metrology_passed": true
+  },
+  "cht_reduced_order": {
+    "2v": {
+      "classification": "steady_lumped_conjugate_thermal_resistance_network_not_3d_cht",
+      "combustion_side_wall_temperature_c": 234.41670866096663,
+      "conduction_length_m": 0.0075,
+      "coolant_heat_load_w": 43386.61418202222,
+      "coolant_side_wall_temperature_c": 197.8055918332026,
+      "cooled_area_m2": 0.055,
+      "energy_balance_error_w": 0.0,
+      "full_3d_cht_executed": false,
+      "gas_temperature_margin_k": 171.55051162715608,
+      "head_heat_input_per_cylinder_w": 55623.86433592592,
+      "load_within_network_capability": true,
+      "metal_temperature_drop_k": 36.61111682776402,
+      "network_capability_w": 54438.66186963624,
+      "oil_and_unmodelled_head_heat_w": 12237.250153903704,
+      "required_gas_bulk_temperature_c": 778.4494883728439,
+      "screening_conductivity_w_mk": 161.6
+    },
+    "4v": {
+      "classification": "steady_lumped_conjugate_thermal_resistance_network_not_3d_cht",
+      "combustion_side_wall_temperature_c": 213.30962405238327,
+      "conduction_length_m": 0.006,
+      "coolant_heat_load_w": 43386.61418202222,
+      "coolant_side_wall_temperature_c": 187.32754114235718,
+      "cooled_area_m2": 0.062,
+      "energy_balance_error_w": 0.0,
+      "full_3d_cht_executed": false,
+      "gas_temperature_margin_k": 254.08065200966098,
+      "head_heat_input_per_cylinder_w": 55623.86433592592,
+      "load_within_network_capability": true,
+      "metal_temperature_drop_k": 25.982082910026083,
+      "network_capability_w": 62041.781350520556,
+      "oil_and_unmodelled_head_heat_w": 12237.250153903704,
+      "required_gas_bulk_temperature_c": 695.919347990339,
+      "screening_conductivity_w_mk": 161.6
+    }
+  },
+  "claims": {
+    "classical_openfoam_cfd_executed": true,
+    "manufacturing_or_engine_start_authorized": false,
+    "physical_validation_or_correlation_completed": false,
+    "reduced_order_cht_executed": true,
+    "synthetic_metrology_and_ndt_executed": true,
+    "zero_dimensional_engine_cycle_executed": true
+  },
+  "contract_sha256": "79e9aeed144b9fdbad5054856353ef854eb95a26a5e1e8c570e9fad6b1d9cb08",
+  "cross_architecture_check": {
+    "arm64_mass_flow_kg_s": 0.1420326827536,
+    "classification": "cross_architecture_reproducibility_check_not_physical_validation",
+    "container_image_tag": "3dprinting993-cae-integrated-f33:x86-verify",
+    "local_architecture": "arm64",
+    "observed_at": "2026-09-02T09:46:59Z",
+    "openfoam_version": "13",
+    "phase": "F33",
+    "relative_difference": 0.0,
+    "remote_architecture": "x86_64",
+    "remote_host": "testmachineit",
+    "remote_temporary_case_removed": true,
+    "representative_case": "2v/coarse",
+    "schema_version": "1.0.0",
+    "status": "representative_case_matched_across_native_architectures",
+    "x86_64_mass_flow_kg_s": 0.1420326827536
+  },
+  "equivalent_port_cfd": {
+    "all_convergence_passed": true,
+    "all_runs_returned_zero": true,
+    "architectures": {
+      "2v": [
+        {
+          "cells": 3456,
+          "hydraulic_diameter_m": 0.02168170733781739,
+          "log_sha256": "b55e7b296d02218d400a939cc7201f75f844aa61bc6a66a11d517ed02a126acb",
+          "mass_flow_kg_s": 0.1420326827536,
+          "mean_mach_number": 0.5807971911944414,
+          "mean_velocity_m_s": 201.66379152586424,
+          "mesh_id": "coarse",
+          "reynolds_number": 279834.57974389807,
+          "solver_returncode": 0,
+          "volume_flow_m3_s": 0.11996003610945948
+        },
+        {
+          "cells": 11664,
+          "hydraulic_diameter_m": 0.02168170733781739,
+          "log_sha256": "8a9f5e7ac1b9727252f199bad210a8866ecf3c152c2516cd7ce6a69c1be1a796",
+          "mass_flow_kg_s": 0.122574400939,
+          "mean_mach_number": 0.501228776345901,
+          "mean_velocity_m_s": 174.03612998180634,
+          "mesh_id": "medium",
+          "reynolds_number": 241497.62793419976,
+          "solver_returncode": 0,
+          "volume_flow_m3_s": 0.10352567646875001
+        },
+        {
+          "cells": 27648,
+          "hydraulic_diameter_m": 0.02168170733781739,
+          "log_sha256": "2162cc55c6d3df0b351ee4ab6d50ee5d98ac59c6fa9efe3c1bc945097f92568f",
+          "mass_flow_kg_s": 0.1133412263986,
+          "mean_mach_number": 0.4634726646193103,
+          "mean_velocity_m_s": 160.92649247064733,
+          "mesh_id": "fine",
+          "reynolds_number": 223306.31120960313,
+          "solver_returncode": 0,
+          "volume_flow_m3_s": 0.09572738716097974
+        }
+      ],
+      "4v": [
+        {
+          "cells": 3456,
+          "hydraulic_diameter_m": 0.024623642793028873,
+          "log_sha256": "23d7a22dab2d07df9e00397f2337ee7c4ac24a20832fa289fffcfc9df0ef0c3b",
+          "mass_flow_kg_s": 0.1723653183457,
+          "mean_mach_number": 0.5893141390674252,
+          "mean_velocity_m_s": 204.6210372328585,
+          "mesh_id": "coarse",
+          "reynolds_number": 322464.98104070197,
+          "solver_returncode": 0,
+          "volume_flow_m3_s": 0.14557881617035476
+        },
+        {
+          "cells": 11664,
+          "hydraulic_diameter_m": 0.024623642793028873,
+          "log_sha256": "80b3ddb853347f748e2040152d0813415d71fe2ebdbb0ebabc880afab8c06130",
+          "mass_flow_kg_s": 0.1480190825087,
+          "mean_mach_number": 0.5060747661499668,
+          "mean_velocity_m_s": 175.71874947859453,
+          "mesh_id": "medium",
+          "reynolds_number": 276917.48602871294,
+          "solver_returncode": 0,
+          "volume_flow_m3_s": 0.12501611698369933
+        },
+        {
+          "cells": 27648,
+          "hydraulic_diameter_m": 0.024623642793028873,
+          "log_sha256": "3c6987db736f8a6450d17ed2d5b6381da80849041d7e674d0112a9a00b4220fc",
+          "mass_flow_kg_s": 0.1365193338662,
+          "mean_mach_number": 0.4667573179777386,
+          "mean_velocity_m_s": 162.0669863644738,
+          "mesh_id": "fine",
+          "reynolds_number": 255403.49317001493,
+          "solver_returncode": 0,
+          "volume_flow_m3_s": 0.1153034914410473
+        }
+      ]
+    },
+    "classification": "steady_compressible_perfect_gas_equivalent_port_cfd_not_full_runner_or_moving_valve_cfd",
+    "container_image": "3dprinting993-cae-integrated-f33:dev",
+    "convergence": {
+      "2v": {
+        "last_two_mesh_relative_mass_flow_change": 0.07532710312812341,
+        "passed": true
+      },
+      "4v": {
+        "last_two_mesh_relative_mass_flow_change": 0.07769098718622369,
+        "passed": true
+      }
+    },
+    "four_valve_fine_mass_flow_change_percent": 20.44984707160915,
+    "full_runner_and_moving_valve_geometry_used": false,
+    "solver": "OpenFOAM 13 fluid perfectGas compressible RANS kOmegaSST"
+  },
+  "fatigue_tmf_screen": {
+    "architectures": {
+      "2v": {
+        "assumed_hot_yield_mpa": 125.90830393732335,
+        "assumed_pressure_cycles_to_failure": 67954164.90755028,
+        "assumed_thermal_cycles_to_failure": 524906206710.2814,
+        "design_pressure_cycles": 500000000.0,
+        "design_thermal_cycles": 50000.0,
+        "f31_combined_p95_mpa": 170.6558393860155,
+        "f31_finest_mesh_mm": 5.5,
+        "f31_pressure_only_p95_mpa": 130.95918684462643,
+        "hot_yield_margin_on_combined_p95": 0.7377907746392709,
+        "miner_pressure_damage": 7.357900736183513,
+        "miner_thermal_damage": 9.525511293410401e-08,
+        "miner_total_damage": 7.357900831438626,
+        "pressure_stress_amplitude_mpa": 65.47959342231322,
+        "screening_metal_temperature_c": 234.41670866096663,
+        "screening_passed": false,
+        "thermal_stress_amplitude_mpa": 19.84832627069453
+      },
+      "4v": {
+        "assumed_hot_yield_mpa": 140.6832631633317,
+        "assumed_pressure_cycles_to_failure": 14365189.781603463,
+        "assumed_thermal_cycles_to_failure": 2176084700976.3223,
+        "design_pressure_cycles": 500000000.0,
+        "design_thermal_cycles": 50000.0,
+        "f31_combined_p95_mpa": 195.48523341074466,
+        "f31_finest_mesh_mm": 5.5,
+        "f31_pressure_only_p95_mpa": 162.3850255558317,
+        "hot_yield_margin_on_combined_p95": 0.7196618420161407,
+        "miner_pressure_damage": 34.806362296745746,
+        "miner_thermal_damage": 2.2977046793062327e-08,
+        "miner_total_damage": 34.806362319722794,
+        "pressure_stress_amplitude_mpa": 81.19251277791585,
+        "screening_metal_temperature_c": 213.30962405238327,
+        "screening_passed": false,
+        "thermal_stress_amplitude_mpa": 16.550103927456476
+      }
+    },
+    "classification": "Basquin_Miner_and_F31_elastic_P95_sensitivity_not_qualified_fatigue_or_TMF",
+    "nonlinear_plasticity_creep_mean_stress_and_surface_defects_included": false,
+    "physical_coupon_or_engine_fatigue_data_used": false
+  },
+  "functional_solver_cad": {
+    "classification": "watertight_solver_surrogate_not_manufacturing_cad",
+    "excluded_features": [
+      "cam_carrier",
+      "threads",
+      "surface_finishes",
+      "manufacturing_tolerances",
+      "valve_seat_insert_contact",
+      "complete_water_manifold",
+      "complete_oil_return"
+    ],
+    "geometry_report_sha256": "ee9403307094271b80119762a3d16b7b93d3746dc55b2b10f313eafe2285f2ee",
+    "included_features": [
+      "combustion_chamber",
+      "valve_throats",
+      "seat_counterbores",
+      "guide_bores",
+      "intake_and_exhaust_runner_voids",
+      "spark_plug_bore",
+      "fastener_bores",
+      "annular_head_cooling_jacket",
+      "oil_gallery"
+    ],
+    "manufacturing_cad_complete": false,
+    "status": "functional_solver_cad_generated_not_manufacturing_cad",
+    "step_or_mesh_generated": true,
+    "variants": [
+      {
+        "architecture": "2v",
+        "classification": "watertight_solver_surrogate_not_manufacturing_cad",
+        "excluded_features": [
+          "cam_carrier",
+          "threads",
+          "surface_finishes",
+          "manufacturing_tolerances",
+          "valve_seat_insert_contact",
+          "complete_water_manifold",
+          "complete_oil_return"
+        ],
+        "included_features": [
+          "combustion_chamber",
+          "valve_throats",
+          "seat_counterbores",
+          "guide_bores",
+          "intake_and_exhaust_runner_voids",
+          "spark_plug_bore",
+          "fastener_bores",
+          "annular_head_cooling_jacket",
+          "oil_gallery"
+        ],
+        "manufacturing_cad_complete": false,
+        "step": {
+          "bytes": 479413,
+          "path": "917-head-functional-solver-2v.step",
+          "sha256": "70234ad3dc083b289cb8557adbeef817545b80c15024af782af929103a0aeaad"
+        },
+        "stl": {
+          "bytes": 2671755,
+          "path": "917-head-functional-solver-2v.stl",
+          "sha256": "00595073c82f43d21a21eff3f4f5fd910634853d9976114b9a3f6a98f065b925"
+        },
+        "surface_element_count": 11022,
+        "surface_node_count": 5487,
+        "volume_count": 1,
+        "volume_mm3": 802922.8852044949
+      },
+      {
+        "architecture": "4v",
+        "classification": "watertight_solver_surrogate_not_manufacturing_cad",
+        "excluded_features": [
+          "cam_carrier",
+          "threads",
+          "surface_finishes",
+          "manufacturing_tolerances",
+          "valve_seat_insert_contact",
+          "complete_water_manifold",
+          "complete_oil_return"
+        ],
+        "included_features": [
+          "combustion_chamber",
+          "valve_throats",
+          "seat_counterbores",
+          "guide_bores",
+          "intake_and_exhaust_runner_voids",
+          "spark_plug_bore",
+          "fastener_bores",
+          "annular_head_cooling_jacket",
+          "oil_gallery"
+        ],
+        "manufacturing_cad_complete": false,
+        "step": {
+          "bytes": 731450,
+          "path": "917-head-functional-solver-4v.step",
+          "sha256": "9340e183e4ea1eb18c83794f2006b1772ff28ed16dad555162e2abfe9e63d274"
+        },
+        "stl": {
+          "bytes": 3117966,
+          "path": "917-head-functional-solver-4v.stl",
+          "sha256": "0559fbf308403d1aac65c969d9fe9e8702f3b995db207f16bad4c36b2e714ede"
+        },
+        "surface_element_count": 12758,
+        "surface_node_count": 6343,
+        "volume_count": 1,
+        "volume_mm3": 779627.9235729157
+      }
+    ]
+  },
+  "material_screen": {
+    "hot_curve_qualified": false,
+    "id": "AlF357_LPBF_assumed_hot_sensitivity_curve",
+    "supplier_data_scope": "room_temperature_reference_only",
+    "temperature_points": [
+      {
+        "conductivity_w_mk": 150.0,
+        "temperature_c": 20.0,
+        "yield_mpa": 250.0,
+        "youngs_modulus_gpa": 70.0
+      },
+      {
+        "conductivity_w_mk": 155.0,
+        "temperature_c": 100.0,
+        "yield_mpa": 215.0,
+        "youngs_modulus_gpa": 67.0
+      },
+      {
+        "conductivity_w_mk": 160.0,
+        "temperature_c": 200.0,
+        "yield_mpa": 150.0,
+        "youngs_modulus_gpa": 61.0
+      },
+      {
+        "conductivity_w_mk": 164.0,
+        "temperature_c": 250.0,
+        "yield_mpa": 115.0,
+        "youngs_modulus_gpa": 56.0
+      },
+      {
+        "conductivity_w_mk": 168.0,
+        "temperature_c": 300.0,
+        "yield_mpa": 80.0,
+        "youngs_modulus_gpa": 49.0
+      }
+    ]
+  },
+  "measurement_policy": {
+    "future_physical_measurements_expected": false,
+    "head_geometry_strategy": "clean_sheet_solver_design_bounded_by_scan_context_and_documentary_bore_seed",
+    "maximum_claim": "scan_bounded_virtual_design_not_dimensionally_certified_replica",
+    "scan_absolute_scale_confirmed": false,
+    "scan_contains_cylinder_heads": false,
+    "sole_geometry_measurement_source": "existing_3d_scan"
+  },
+  "omniverse": {
+    "blockers": [
+      "asset_validator: omni_asset_validate CLI and omni.asset_validator module are unavailable",
+      "content_agents: Content Agents services are not healthy and deployment was not requested",
+      "openusd_python: OpenUSD Python APIs are not importable",
+      "simready_validate: SimReady Foundation checkout is missing",
+      "usd_convert_cad: usd-convert-cad checkout is missing",
+      "material: material health endpoint did not respond",
+      "ovrtx: ovrtx health endpoint did not respond",
+      "physics: physics health endpoint did not respond"
+    ],
+    "preflight_sha256": "7877a89e087f1959f526896d91566930b7e1a30a75cf466028842fe4452dba00",
+    "simready_validated": false,
+    "status": "blocked",
+    "usd_created": false
+  },
+  "phase": "F33",
+  "physicsnemo": {
+    "candidate_datapipes": [
+      "DoMINODataPipe",
+      "TransolverDataPipe",
+      "MeshReader",
+      "VTKReader"
+    ],
+    "candidate_models": [
+      "DoMINO",
+      "Transolver",
+      "FIGConvUNet",
+      "MeshGraphNet"
+    ],
+    "data_shape": "unstructured_surface_and_volume_mesh_fields",
+    "dataset_cases_available_after_f33": 6,
+    "minimum_classical_solver_cases_before_training": 200,
+    "reason": "F33 creates only a small reference campaign and no held-out physical correlation set",
+    "surrogate_result_available": false,
+    "training_authorized": false,
+    "training_executed": false
+  },
+  "release_gates": {
+    "engine_start_authorized": false,
+    "fatigue_tmf_validated": false,
+    "full_3d_cht_validated": false,
+    "full_3d_intake_exhaust_cfd_validated": false,
+    "functional_manufacturing_cad_complete": false,
+    "hot_material_card_qualified": false,
+    "metal_print_authorized": false,
+    "omniverse_simready_authorized": false,
+    "physical_ct_ndt_complete": false,
+    "physical_engine_dyno_correlated": false,
+    "physical_flow_bench_correlated": false,
+    "physical_metrology_complete": false,
+    "physicsnemo_training_authorized": false,
+    "professional_engineering_review_approved": false
+  },
+  "schema_version": "1.0.0",
+  "status": "integrated_virtual_campaign_complete_not_physical_validation",
+  "synthetic_correlation": {
+    "correlation_complete": false,
+    "physical_held_out_dataset_used": false,
+    "status": "pipeline_exercise_only"
+  },
+  "synthetic_metrology": {
+    "classification": "permanent_virtual_uncertainty_study_for_scan_only_program_not_f27_or_f30_physical_evidence",
+    "estimated_scale_factor": 1.000706144294404,
+    "f27_or_f30_gate_opened": false,
+    "features": {
+      "bore_mm": {
+        "combined_standard_uncertainty_mm": 0.008166278306832869,
+        "corrected_mean_mm": 89.99742542866292,
+        "error_mm": -0.0025745713370781687,
+        "nominal_mm": 90.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.008980147077830793,
+        "z_score": -0.31526862547948914
+      },
+      "cooling_jacket_ligament_mm": {
+        "combined_standard_uncertainty_mm": 0.025491762077273005,
+        "corrected_mean_mm": 5.005260205561835,
+        "error_mm": 0.00526020556183493,
+        "nominal_mm": 5.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.027292819827361602,
+        "z_score": 0.20634923336761515
+      },
+      "deck_thickness_mm": {
+        "combined_standard_uncertainty_mm": 0.00815836543639222,
+        "corrected_mean_mm": 16.00029432946175,
+        "error_mm": 0.00029432946174878793,
+        "nominal_mm": 16.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.008761723449845722,
+        "z_score": 0.03607701371599087
+      },
+      "exhaust_port_axis_height_mm": {
+        "combined_standard_uncertainty_mm": 0.00805292156845528,
+        "corrected_mean_mm": 29.999201622013516,
+        "error_mm": -0.0007983779864844109,
+        "nominal_mm": 30.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.005048403077287661,
+        "z_score": -0.09914140845625503
+      },
+      "guide_bore_diameter_mm": {
+        "combined_standard_uncertainty_mm": 0.02550598195378001,
+        "corrected_mean_mm": 6.997181092133658,
+        "error_mm": -0.0028189078663416467,
+        "nominal_mm": 7.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.027688507774824914,
+        "z_score": -0.11051948015370888
+      },
+      "head_height_mm": {
+        "combined_standard_uncertainty_mm": 0.008208333115421362,
+        "corrected_mean_mm": 71.99911146791585,
+        "error_mm": -0.0008885320841471867,
+        "nominal_mm": 72.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.010064888276165253,
+        "z_score": -0.10824756642464495
+      },
+      "intake_port_axis_height_mm": {
+        "combined_standard_uncertainty_mm": 0.008137349185847076,
+        "corrected_mean_mm": 35.00143314750534,
+        "error_mm": 0.0014331475053381837,
+        "nominal_mm": 35.0,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.008154357925194498,
+        "z_score": 0.1761197009747096
+      },
+      "seat_insert_interference_mm": {
+        "combined_standard_uncertainty_mm": 0.008129864839875421,
+        "corrected_mean_mm": 0.07796337958058606,
+        "error_mm": 0.0029633795805860674,
+        "nominal_mm": 0.075,
+        "repetition_count": 30,
+        "sample_standard_deviation_mm": 0.007927235926808168,
+        "z_score": 0.3645053932571254
+      }
+    },
+    "injected_scale_bias_fraction": 0.0007,
+    "maximum_absolute_z_score": 0.3645053932571254,
+    "physical_measurements_used": false,
+    "scale_estimation_error_fraction": 6.1442944041534275e-06,
+    "synthetic_acceptance_passed": true
+  },
+  "upstream_sha256": {
+    "twins/reference-917-engine/clean-sheet-2026-f32.json": "485a381b26f4d02da82d66b277e9e4ab16dbeaf7f72b5eb341b02304355ddfb4",
+    "twins/reference-917-engine/clean-sheet-cylinder-head-f29.json": "5240581507befd5d627d6b830cbd943ce87d9c250b6d4653005b9a6f951bfee3",
+    "twins/reference-917-engine/evidence/f29/design-study.json": "135f9a9c692a2e4253fa33ce8c433c79423eb72154d88db999c3942ac2bb970e",
+    "twins/reference-917-engine/evidence/f31/report.json": "c78a4e645bcb218d4c68fa7e20d1fe9263d8ad073b026ff3525198c26338cf68",
+    "twins/reference-917-engine/evidence/f32/screening-report.json": "5ca239d0f38b39fd962037f121eb936e23cb7d5d871f453091305408ac9a497c",
+    "twins/reference-917-engine/head-reference-cae-f31.json": "bd02c16b4ad8170bd8761ae6626f218f264307ef58bd2de0acd5f06321494b97",
+    "twins/reference-917-engine/parametric-layout-authoring-f30.template.json": "92c2fb2d5eeec222c541fb9fae57900b36ef60352c3313a3d7a4ba3e1cd3f28a",
+    "twins/reference-917-engine/physical-metrology-campaign-f27.template.json": "73aa225c2b8baa3f74aa288f5ee570bafda8a6099c44fc2a4b8dde528eb12ee4"
+  },
+  "valvetrain_selection": {
+    "exhaust_valve": {
+      "additive_manufacturing_allowed": false,
+      "candidate": "INCONEL_alloy_751_purchased",
+      "coating_seat_stem_and_supplier_specification": null,
+      "density_kg_m3": 8200.0,
+      "source": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf"
+    },
+    "intake_valve": {
+      "additive_manufacturing_allowed": false,
+      "candidate": "forged_or_machined_Ti_6Al_4V_purchased",
+      "coating_seat_stem_and_supplier_specification": null,
+      "density_kg_m3": 4430.0
+    },
+    "selection_scope": "screening_choice_carried_from_F29_not_procurement_release_or_valvetrain_validation",
+    "spring": {
+      "additive_manufacturing_allowed": false,
+      "candidate": "oil_tempered_silicon_chromium_steel_nitrided_and_multistage_shot_peened_purchased",
+      "source": "https://saemobilus.sae.org/papers/development-high-fatigue-strength-valve-spring-using-control-white-layer-nitriding-2009-32-0082",
+      "wire_diameter_coil_geometry_installed_height_and_supplier_specification": null
+    }
+  },
+  "virtual_ct_ndt": {
+    "classification": "synthetic_probability_of_detection_study_not_ct_or_ndt_inspection",
+    "critical_defect_count": 2553,
+    "ct_cases": [
+      {
+        "critical_pod_screen_passed": true,
+        "critical_pod_target": 0.9,
+        "mean_detection_probability_all_defects": 0.43410337290118944,
+        "mean_detection_probability_critical_defects": 0.9997503817028497,
+        "voxel_size_mm": 0.06
+      },
+      {
+        "critical_pod_screen_passed": false,
+        "critical_pod_target": 0.9,
+        "mean_detection_probability_all_defects": 0.14978685327546723,
+        "mean_detection_probability_critical_defects": 0.8492403834266788,
+        "voxel_size_mm": 0.1
+      },
+      {
+        "critical_pod_screen_passed": false,
+        "critical_pod_target": 0.9,
+        "mean_detection_probability_all_defects": 0.014892110038079692,
+        "mean_detection_probability_critical_defects": 0.10739468580224128,
+        "voxel_size_mm": 0.2
+      }
+    ],
+    "defect_diameter_percentiles_mm": {
+      "p50": 0.16136125334247892,
+      "p95": 0.39954054561666663,
+      "p99": 0.5781348820402895
+    },
+    "physical_part_scanned": false,
+    "real_probability_of_detection_demonstrated": false,
+    "synthetic_defect_count": 20000
+  },
+  "virtual_flowbench": {
+    "architectures": {
+      "2v": {
+        "f29_mean_effective_area_mm2": 594.851635,
+        "f29_peak_effective_area_mm2": 780.524921,
+        "peak_virtual_flow_cfm": 174.7974935033436,
+        "points": [
+          {
+            "curtain_area_mm2": 135.71680263507906,
+            "discharge_coefficient": 0.5405719064236899,
+            "effective_area_mm2": 73.36469073417234,
+            "lift_mm": 1.0,
+            "mass_flow_kg_s": 0.009411749127919845,
+            "volume_flow_cfm": 16.843215388853086
+          },
+          {
+            "curtain_area_mm2": 271.4336052701581,
+            "discharge_coefficient": 0.5742851478854938,
+            "effective_area_mm2": 155.8802881436655,
+            "lift_mm": 2.0,
+            "mass_flow_kg_s": 0.019997442247959733,
+            "volume_flow_cfm": 35.78731460333552
+          },
+          {
+            "curtain_area_mm2": 407.1504079052372,
+            "discharge_coefficient": 0.6022991790230161,
+            "effective_area_mm2": 245.2263564202105,
+            "lift_mm": 3.0,
+            "mass_flow_kg_s": 0.031459397198901236,
+            "volume_flow_cfm": 56.2995672560693
+          },
+          {
+            "curtain_area_mm2": 542.8672105403163,
+            "discharge_coefficient": 0.6255774491194472,
+            "effective_area_mm2": 339.6054847804009,
+            "lift_mm": 4.0,
+            "mass_flow_kg_s": 0.04356702922390903,
+            "volume_flow_cfm": 77.96732011204179
+          },
+          {
+            "curtain_area_mm2": 678.5840131753953,
+            "discharge_coefficient": 0.6449205367323043,
+            "effective_area_mm2": 437.632765995037,
+            "lift_mm": 5.0,
+            "mass_flow_kg_s": 0.05614267248296887,
+            "volume_flow_cfm": 100.47262334386919
+          },
+          {
+            "curtain_area_mm2": 814.3008158104744,
+            "discharge_coefficient": 0.6609936829261026,
+            "effective_area_mm2": 538.2476952522954,
+            "lift_mm": 6.0,
+            "mass_flow_kg_s": 0.06905027780667858,
+            "volume_flow_cfm": 123.57200409304558
+          },
+          {
+            "curtain_area_mm2": 1085.7344210806325,
+            "discharge_coefficient": 0.6854478327082805,
+            "effective_area_mm2": 743.0682157955265,
+            "lift_mm": 8.0,
+            "mass_flow_kg_s": 0.09532612435236483,
+            "volume_flow_cfm": 170.59511710618006
+          },
+          {
+            "curtain_area_mm2": 1357.1680263507906,
+            "discharge_coefficient": 0.7023328986030287,
+            "effective_area_mm2": 761.3726806859133,
+            "lift_mm": 10.0,
+            "mass_flow_kg_s": 0.09767435249515578,
+            "volume_flow_cfm": 174.7974935033436
+          }
+        ],
+        "valve_count": 1,
+        "valve_diameter_mm": 43.2
+      },
+      "4v": {
+        "f29_mean_effective_area_mm2": 711.455763,
+        "f29_peak_effective_area_mm2": 878.090536,
+        "peak_virtual_flow_cfm": 201.504802757555,
+        "points": [
+          {
+            "curtain_area_mm2": 203.57520395261858,
+            "discharge_coefficient": 0.5525100314157808,
+            "effective_area_mm2": 112.47734233133528,
+            "lift_mm": 1.0,
+            "mass_flow_kg_s": 0.014429400819440791,
+            "volume_flow_cfm": 25.82277774627104
+          },
+          {
+            "curtain_area_mm2": 407.15040790523716,
+            "discharge_coefficient": 0.5935312986678688,
+            "effective_area_mm2": 241.65651035714794,
+            "lift_mm": 2.0,
+            "mass_flow_kg_s": 0.031001431722121994,
+            "volume_flow_cfm": 55.47999471315384
+          },
+          {
+            "curtain_area_mm2": 610.7256118578557,
+            "discharge_coefficient": 0.6255774491194472,
+            "effective_area_mm2": 382.05617037795105,
+            "lift_mm": 3.0,
+            "mass_flow_kg_s": 0.04901290787689766,
+            "volume_flow_cfm": 87.71323512604701
+          },
+          {
+            "curtain_area_mm2": 814.3008158104743,
+            "discharge_coefficient": 0.6506121647086622,
+            "effective_area_mm2": 529.7940164984824,
+            "lift_mm": 4.0,
+            "mass_flow_kg_s": 0.06796577921692504,
+            "volume_flow_cfm": 121.63119127622929
+          },
+          {
+            "curtain_area_mm2": 1017.8760197630929,
+            "discharge_coefficient": 0.6701694898725655,
+            "effective_area_mm2": 682.1494529181493,
+            "lift_mm": 5.0,
+            "mass_flow_kg_s": 0.08751102818488314,
+            "volume_flow_cfm": 156.60926322881613
+          },
+          {
+            "curtain_area_mm2": 1221.4512237157114,
+            "discharge_coefficient": 0.6854478327082805,
+            "effective_area_mm2": 835.9517427699669,
+            "lift_mm": 6.0,
+            "mass_flow_kg_s": 0.10724188989641038,
+            "volume_flow_cfm": 191.9195067444525
+          },
+          {
+            "curtain_area_mm2": 1628.6016316209486,
+            "discharge_coefficient": 0.7067075620913694,
+            "effective_area_mm2": 861.8794749482007,
+            "lift_mm": 8.0,
+            "mass_flow_kg_s": 0.11056808548553414,
+            "volume_flow_cfm": 197.87204839974058
+          },
+          {
+            "curtain_area_mm2": 2035.7520395261859,
+            "discharge_coefficient": 0.7196820827305928,
+            "effective_area_mm2": 877.7028135341725,
+            "lift_mm": 10.0,
+            "mass_flow_kg_s": 0.1125980169368492,
+            "volume_flow_cfm": 201.504802757555
+          }
+        ],
+        "valve_count": 2,
+        "valve_diameter_mm": 32.4
+      }
+    },
+    "classification": "quasi_steady_virtual_flowbench_not_correlated_measurement",
+    "four_valve_peak_flow_gain_percent": 15.279000126910036,
+    "physical_flowbench_used": false,
+    "pressure_drop_pa": 6950.0
+  },
+  "zero_dimensional_engine_dyno": {
+    "classification": "zero_dimensional_wiebe_cycle_sensitivity_not_correlated_dyno",
+    "curves": {
+      "2v": [
+        {
+          "brake_power_kw": 157.2453027902799,
+          "brake_power_mechanical_hp": 210.86942452682402,
+          "brake_torque_nm": 500.527344341097,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 47.57637068640047,
+          "gross_imep_bar": 14.282516978122743,
+          "manifold_absolute_pressure_bar": 1.2,
+          "peak_cylinder_pressure_mpa": 7.082490077063655,
+          "released_heat_per_cycle_j": 1248.7243189142366,
+          "rpm": 3000,
+          "volumetric_efficiency_hypothesis": 0.9084396915776258
+        },
+        {
+          "brake_power_kw": 286.14519461646773,
+          "brake_power_mechanical_hp": 383.7270268121515,
+          "brake_torque_nm": 683.1213324780487,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 64.5056969633306,
+          "gross_imep_bar": 19.365144068497163,
+          "manifold_absolute_pressure_bar": 1.6,
+          "peak_cylinder_pressure_mpa": 9.562011485132551,
+          "released_heat_per_cycle_j": 1693.0638328334699,
+          "rpm": 4000,
+          "volumetric_efficiency_hypothesis": 0.923770580998494
+        },
+        {
+          "brake_power_kw": 485.0048608635682,
+          "brake_power_mechanical_hp": 650.402231979008,
+          "brake_torque_nm": 926.2910523604057,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 87.04968710199745,
+          "gross_imep_bar": 26.133937600219728,
+          "manifold_absolute_pressure_bar": 2.1,
+          "peak_cylinder_pressure_mpa": 12.814673783239614,
+          "released_heat_per_cycle_j": 2284.769932423848,
+          "rpm": 5000,
+          "volumetric_efficiency_hypothesis": 0.9498039199106872
+        },
+        {
+          "brake_power_kw": 714.9640190021406,
+          "brake_power_mechanical_hp": 958.7825427475099,
+          "brake_torque_nm": 1137.9005775703847,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 106.66598887415373,
+          "gross_imep_bar": 32.02423177905556,
+          "manifold_absolute_pressure_bar": 2.5,
+          "peak_cylinder_pressure_mpa": 15.59210280171487,
+          "released_heat_per_cycle_j": 2799.6337758959144,
+          "rpm": 6000,
+          "volumetric_efficiency_hypothesis": 0.9776243119345669
+        },
+        {
+          "brake_power_kw": 930.2162183138249,
+          "brake_power_mechanical_hp": 1247.4404968583901,
+          "brake_torque_nm": 1268.987222476242,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 118.8178940170711,
+          "gross_imep_bar": 35.67311715246162,
+          "manifold_absolute_pressure_bar": 2.75,
+          "peak_cylinder_pressure_mpa": 17.31599044425321,
+          "released_heat_per_cycle_j": 3118.5815908337486,
+          "rpm": 7000,
+          "volumetric_efficiency_hypothesis": 0.99
+        },
+        {
+          "brake_power_kw": 1076.6542103844456,
+          "brake_power_mechanical_hp": 1443.8170789810338,
+          "brake_torque_nm": 1285.1612968753946,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 120.31923545004541,
+          "gross_imep_bar": 36.123333446774694,
+          "manifold_absolute_pressure_bar": 2.82,
+          "peak_cylinder_pressure_mpa": 17.587891960334375,
+          "released_heat_per_cycle_j": 3157.9868992105926,
+          "rpm": 8000,
+          "volumetric_efficiency_hypothesis": 0.9776243119345669
+        },
+        {
+          "brake_power_kw": 1176.3890704665075,
+          "brake_power_mechanical_hp": 1577.5637294537482,
+          "brake_torque_nm": 1248.187570426831,
+          "combustion_duration_deg": 48.0,
+          "fuel_mass_per_cylinder_cycle_mg": 116.8952941083966,
+          "gross_imep_bar": 35.09414477743794,
+          "manifold_absolute_pressure_bar": 2.82,
+          "peak_cylinder_pressure_mpa": 17.208276223207477,
+          "released_heat_per_cycle_j": 3068.119623540594,
+          "rpm": 9000,
+          "volumetric_efficiency_hypothesis": 0.9498039199106872
+        }
+      ],
+      "4v": [
+        {
+          "brake_power_kw": 164.05649388492188,
+          "brake_power_mechanical_hp": 220.00338224119187,
+          "brake_torque_nm": 522.2080389622124,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 49.24154366042449,
+          "gross_imep_bar": 14.88601376870035,
+          "manifold_absolute_pressure_bar": 1.2,
+          "peak_cylinder_pressure_mpa": 7.732699664685226,
+          "released_heat_per_cycle_j": 1292.4296700762334,
+          "rpm": 3000,
+          "volumetric_efficiency_hypothesis": 0.9402350807828427
+        },
+        {
+          "brake_power_kw": 298.4583274419017,
+          "brake_power_mechanical_hp": 400.2392099231761,
+          "brake_torque_nm": 712.5167717897721,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 66.76339635704717,
+          "gross_imep_bar": 20.18338599258045,
+          "manifold_absolute_pressure_bar": 1.6,
+          "peak_cylinder_pressure_mpa": 10.441687582640338,
+          "released_heat_per_cycle_j": 1752.32106698264,
+          "rpm": 4000,
+          "volumetric_efficiency_hypothesis": 0.9561025513334411
+        },
+        {
+          "brake_power_kw": 505.7753976176444,
+          "brake_power_mechanical_hp": 678.2559805789696,
+          "brake_torque_nm": 965.9598555014032,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 90.09642615056737,
+          "gross_imep_bar": 27.238145551118638,
+          "manifold_absolute_pressure_bar": 2.1,
+          "peak_cylinder_pressure_mpa": 13.99819757035916,
+          "released_heat_per_cycle_j": 2364.7368800586814,
+          "rpm": 5000,
+          "volumetric_efficiency_hypothesis": 0.9830470571075612
+        },
+        {
+          "brake_power_kw": 745.5053328114545,
+          "brake_power_mechanical_hp": 999.7391192110534,
+          "brake_torque_nm": 1186.5085881831153,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 110.39929848474911,
+          "gross_imep_bar": 33.37726861268982,
+          "manifold_absolute_pressure_bar": 2.5,
+          "peak_cylinder_pressure_mpa": 17.038443808161162,
+          "released_heat_per_cycle_j": 2897.6209580522727,
+          "rpm": 6000,
+          "volumetric_efficiency_hypothesis": 1.0118411628522768
+        },
+        {
+          "brake_power_kw": 969.9070675705814,
+          "brake_power_mechanical_hp": 1300.6668024664868,
+          "brake_torque_nm": 1323.1328926596254,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 122.97652030766857,
+          "gross_imep_bar": 37.180298483613285,
+          "manifold_absolute_pressure_bar": 2.75,
+          "peak_cylinder_pressure_mpa": 18.925258592918265,
+          "released_heat_per_cycle_j": 3227.7319465129303,
+          "rpm": 7000,
+          "volumetric_efficiency_hypothesis": 1.0246499999999998
+        },
+        {
+          "brake_power_kw": 1122.5883463536522,
+          "brake_power_mechanical_hp": 1505.4157699822015,
+          "brake_torque_nm": 1339.9911328465532,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 124.530408690797,
+          "gross_imep_bar": 37.64955899511408,
+          "manifold_absolute_pressure_bar": 2.82,
+          "peak_cylinder_pressure_mpa": 19.219364615605794,
+          "released_heat_per_cycle_j": 3268.516440682963,
+          "rpm": 8000,
+          "volumetric_efficiency_hypothesis": 1.0118411628522768
+        },
+        {
+          "brake_power_kw": 1226.594425020647,
+          "brake_power_mechanical_hp": 1644.8902189268,
+          "brake_torque_nm": 1301.4571060733142,
+          "combustion_duration_deg": 43.68,
+          "fuel_mass_per_cylinder_cycle_mg": 120.98662940219047,
+          "gross_imep_bar": 36.57693831150221,
+          "manifold_absolute_pressure_bar": 2.82,
+          "peak_cylinder_pressure_mpa": 18.797579594482308,
+          "released_heat_per_cycle_j": 3175.5038103645174,
+          "rpm": 9000,
+          "volumetric_efficiency_hypothesis": 0.9830470571075612
+        }
+      ]
+    },
+    "four_valve_power_change_at_9000rpm_percent": 4.267750849999841,
+    "measured_dyno_data_used": false,
+    "target_power_mechanical_hp": 1600.0,
+    "target_power_proven": false
+  }
+}
