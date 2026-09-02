@@ -42,7 +42,8 @@ solveur :
 
 ## Données bloquantes
 
-- URL ou vendeur d'origine et texte exact de la licence ;
+- texte exact de la licence Wolfe Classics, droit de redistribution et rapport
+  indépendant sur la précision déclarée de 0,5 mm ;
 - variante exacte du 917 représentée et signification de `0.5mm` ;
 - unité du scan et au moins trois dimensions de contrôle ;
 - nomenclature des deux composants détachés ;

@@ -3,14 +3,23 @@
 ## Statut
 
 - Niveau : `F0_reference`.
-- Identification : suggérée par le nom du fichier, non vérifiée par une source.
-- Licence et redistribution : inconnues ; publication du brut bloquée.
+- Provenance : produit commercial « Porsche 917 Engine Case Scan » de Wolfe
+  Classics, recoupé avec le nom du fichier et son empreinte locale.
+- Identification : le vendeur déclare un carter de moteur 917 avec cylindres,
+  mais la variante exacte reste inconnue.
+- Licence : réutilisation ouverte confirmée par le porteur du projet, texte
+  exact non archivé ; droit de redistribution non affiché et publication du
+  brut bloquée.
 - Compatibilité 993 ou 935 : non démontrée.
 
-Le fichier trouvé dans iCloud Drive représente visuellement un long carter de
-moteur à plat avec deux rangées de six cylindres. Cela correspond à
-l'architecture attendue d'un flat-12 et en fait une référence géométrique utile,
-mais le nom du fichier ne constitue pas une preuve d'identification ou de cote.
+Le fichier trouvé dans iCloud Drive correspond à la
+[fiche Wolfe Classics](https://www.wolfeclassics.com/shop/p/porsche-917-engine-case-scan),
+qui le décrit comme un scan précis à 0,5 mm d'un carter de moteur 917 avec les
+cylindres montés, acquis pendant une réfection d'étanchéité. Le nom local est
+`917+engine+case+w+cyl+0.5mm.obj` et son empreinte est celle enregistrée
+ci-dessous. Cette correspondance établit la provenance commerciale, pas la
+variante exacte, l'unité OBJ, la précision métrologique indépendante ni les
+géométries internes.
 
 ## Empreinte et inspection
 
@@ -64,11 +73,11 @@ Tous ces résultats conservent l'identité et l'échelle au statut non confirmé
 
 ## Données à retrouver
 
-1. URL ou vendeur d'origine ;
-2. texte exact de la licence ;
-3. définition du « 0.5 mm » dans le nom ;
+1. texte exact de la licence et droit de redistribution ;
+2. rapport de métrologie qui démontre la précision déclarée de 0,5 mm ;
+3. unité native de l'OBJ ;
 4. variante du moteur 917 et configuration du scan ;
-5. au moins une cote physique ou documentaire de contrôle.
+5. trois cotes physiques indépendantes sur les mêmes surfaces du scan.
 
 La fiche structurée associée est
 `catalog/sources/src-local-917-engine-case-cylinders-scan.json`.
