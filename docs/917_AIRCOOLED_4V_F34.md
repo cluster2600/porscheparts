@@ -1,9 +1,16 @@
 # F34 — culasse 917-inspired quatre soupapes refroidie par air
 
+> **RETIRÉ COMME GÉOMÉTRIE PRODUIT.** Le volume rectangulaire F34 ne reproduit
+> ni la silhouette, ni les bossages, ni le réseau réel d'ailettes du scan 935.
+> Depuis F36, il ne peut servir que de régression de méthodes numériques. Ses
+> CFD et EF ne constituent aucune preuve de performance pour la géométrie
+> scan-conforme. Voir [la reconstruction F36](917_SCAN_CONFORMING_4V_F36.md).
+
 ## Résultat
 
-F34 livre une CAO paramétrique, un STEP de prototype de procédé, une image du
-produit et une campagne virtuelle traçable. Il ne livre pas une culasse prête à
+F34 archive une CAO paramétrique défeaturée, un STEP de prototype de procédé,
+une image de cette enveloppe et une campagne virtuelle traçable. Il ne livre
+pas une géométrie de culasse crédible ni une culasse prête à
 imprimer ou à démarrer. Les deux scans disponibles suffisent à amorcer une
 géométrie et à identifier des interfaces, mais pas à prouver l'échelle absolue,
 l'identité dimensionnelle Porsche 917, les volumes internes ni le comportement

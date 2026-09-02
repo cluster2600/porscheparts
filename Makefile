@@ -18,6 +18,8 @@ F35_SIMREADY_WORKFLOW_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workfl
 F35_GMSH_IMAGE ?= 3dprinting993-gmsh-mesh-f35:dev
 F35_OPENFOAM_IMAGE ?= 3dprinting993-openfoam-engine-f35:dev
 
+.PHONY: 917-scan-conforming-4v-f36-check
+
 check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
@@ -395,6 +397,9 @@ engine-components:
 
 917-aircooled-4v-f34-check:
 	python3 tests/test_917_aircooled_4v_f34.py -v
+
+917-scan-conforming-4v-f36-check:
+	python3 tests/test_917_scan_conforming_4v_f36.py -v
 
 917-aircooled-4v-f34-publish:
 	python3 twins/reference-917-engine/source/publish_aircooled_4v_f34.py \

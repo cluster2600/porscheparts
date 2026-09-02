@@ -1,0 +1,109 @@
+{
+  "$comment": "F36 remplace la geometrie-produit F34 par un prototype 4V contraint par la peau du scan 935. Le scan ouvert, son echelle non confirmee et l'absence de CT ferment toute autorisation de fabrication ou de demarrage.",
+  "schema_version": "1.0.0",
+  "phase": "F36",
+  "status": "scan_conforming_four_valve_architecture_prototype_not_engine_release",
+  "supersedes": {
+    "phase": "F34",
+    "scope": "product_geometry_only",
+    "reason": "F34 used a defeatured rectangular calculation envelope which did not preserve the scanned fin, boss and port morphology",
+    "retained_use": "numerical_method_regression_only"
+  },
+  "source": {
+    "filename": "935-xtreme-cylinder-head.obj",
+    "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "vertices": 1281608,
+    "triangles": 2466040,
+    "open_edges": 99876,
+    "units": "OBJ_units_mm_plausible_not_confirmed",
+    "raw_and_derived_geometry_policy": "local_only_not_committed",
+    "porsche_917_dimensional_identity": false
+  },
+  "reconstruction": {
+    "method": "screened_poisson_then_voxel_core_replacement",
+    "surface_sample_count": 50000,
+    "scan_to_reconstruction_p95_obj_units": 0.4389930680724832,
+    "scan_to_reconstruction_p99_obj_units": 0.7095561414508904,
+    "scan_to_reconstruction_max_obj_units": 2.93825598531902,
+    "watertight": true,
+    "winding_consistent": true,
+    "body_count": 1,
+    "derived_mesh_committed": false,
+    "product_image_committed": false
+  },
+  "measured_interface_seeds": {
+    "outer_register_diameter_obj_units": 113.52636742684192,
+    "chamber_step_diameter_obj_units": 90.81248542471897,
+    "stud_pattern_obj_units": [86.74276999873194, 85.91583774915038],
+    "mean_stud_hole_diameter_obj_units": 10.740243181981537
+  },
+  "four_valve_architecture": {
+    "included_valve_angle_deg": 36.0,
+    "intake": {
+      "count": 2,
+      "head_diameter_obj_units": 31.5,
+      "stem_diameter_obj_units": 7.0,
+      "candidate_material": "wrought_or_forged_Ti_6Al_4V_not_printed"
+    },
+    "exhaust": {
+      "count": 2,
+      "head_diameter_obj_units": 26.0,
+      "stem_diameter_obj_units": 7.0,
+      "candidate_material": "wrought_INCONEL_alloy_751_not_printed"
+    },
+    "ignition": {
+      "count": 2,
+      "architecture": "lateral_canted_twin_ignition",
+      "nominal_thread_candidate": "M10x1.0"
+    },
+    "spring_package": {
+      "candidate": "purchased_dual_CrSi_wire",
+      "rate_and_installed_load_released": false,
+      "missing_inputs": [
+        "cam_lift_law",
+        "cam_acceleration_law",
+        "installed_height",
+        "moving_mass",
+        "maximum_engine_speed",
+        "spintron_correlation"
+      ]
+    }
+  },
+  "packaging_screen_obj_units": {
+    "intake_head_pair_gap": 4.5,
+    "exhaust_head_pair_gap": 10.0,
+    "same_column_intake_exhaust_head_gap": 5.25,
+    "minimum_head_to_chamber_edge_gap": 4.897405906079591,
+    "minimum_seat_pocket_to_chamber_edge_gap": 3.2974059060795895,
+    "minimum_plug_pilot_to_seat_pocket_gap": 3.895097567963923
+  },
+  "internal_wall_screen": {
+    "method": "sampled_nearest_distance_to_filled_scan_skin_not_CT_thickness",
+    "sample_count": 4390,
+    "minimum_obj_units": 6.379215811347025,
+    "p01_obj_units": 6.917616136917681,
+    "p05_obj_units": 8.188927763022154,
+    "ct_or_metrology_validation": false
+  },
+  "cooling_model_next_gate": {
+    "direction_in_local_frame": "positive_y_to_negative_y_through_scan_fins",
+    "requires_scan_conforming_shroud": true,
+    "method_a": "OpenFOAM_finite_volume_RANS_CHT",
+    "method_b": "FluidX3D_lattice_Boltzmann_external_air_cross_check",
+    "f34_results_reusable_as_f36_performance_evidence": false
+  },
+  "engineering_gates": {
+    "automated_surface_conformance": true,
+    "human_morphology_review": false,
+    "absolute_scale": false,
+    "porsche_917_interfaces": false,
+    "oil_galleries": false,
+    "valvetrain_kinematics": false,
+    "minimum_wall_ct_verified": false,
+    "openfoam_cht_converged": false,
+    "fluidx3d_cross_check_converged": false,
+    "thermomechanical_fatigue": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
