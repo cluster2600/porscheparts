@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import ast
+import hashlib
+import json
 import re
 from pathlib import Path
 import unittest
@@ -15,6 +17,7 @@ SMOKE = ROOT / "containers/scan-mesh-f17-smoke.py"
 SEGMENT = ROOT / "twins/reference-917-engine/source/segment_engine.py"
 WORKFLOW = ROOT / ".github/workflows/scan-mesh-f17-image.yml"
 DOC = ROOT / "docs/917_SCAN_MESH_CONTAINER_F17.md"
+LOCK = ROOT / "containers/scan-mesh-f17.lock.json"
 
 
 class ScanMeshF17ImageTests(unittest.TestCase):
@@ -205,6 +208,63 @@ class ScanMeshF17ImageTests(unittest.TestCase):
         ):
             self.assertIn(fragment, document)
         self.assertNotIn("image `linux/amd64` reproductible", document)
+
+    def test_lock_fixe_image_preuves_et_gates_physiques(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        image = lock["image"]
+        self.assertEqual(lock["phase"], "F17")
+        self.assertEqual(
+            image["digest"],
+            "sha256:b48f23d64ceab9c2e6b7b7474cdd81011d27b8a584f7af6b50b6cc05823c5189",
+        )
+        self.assertEqual(
+            image["immutable_reference"],
+            f"{image['repository']}@{image['digest']}",
+        )
+        self.assertEqual(image["platform"]["architecture"], "amd64")
+        self.assertEqual(image["platform"]["user"], "9177:9177")
+        self.assertFalse(image["platform"]["gpu_required"])
+        self.assertEqual(
+            image["attestation_manifest"]["subject_manifest_digest"],
+            image["manifest"]["digest"],
+        )
+
+        verification = lock["verification"]
+        self.assertEqual(verification["workflow"]["run_id"], 33575867966)
+        self.assertEqual(verification["workflow"]["conclusion"], "success")
+        self.assertTrue(verification["anonymous_exact_digest_access"])
+        self.assertFalse(verification["cryptographic_signature_verified"])
+        self.assertEqual(verification["sbom"]["spdx_version"], "SPDX-2.3")
+        self.assertEqual(
+            verification["provenance"]["source_revision"],
+            lock["recipe"]["workflow_head_sha"],
+        )
+        smoke = verification["offline_smoke"]
+        self.assertEqual(smoke["status"], "passed_synthetic_fixture_only")
+        self.assertEqual(smoke["kernel_interfaces"], ["lo"])
+        self.assertEqual(smoke["rejected_invalid_interface_contracts"], 4)
+
+        self.assertEqual(
+            {name for name, value in lock["release_gates"].items() if value},
+            {
+                "immutable_public_image_verified",
+                "linux_amd64_offline_smoke_verified",
+            },
+        )
+
+    def test_lock_relit_les_entrees_exactes_de_l_image(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        inputs = lock["recipe"]["inputs"]
+        self.assertEqual(len(inputs), 7)
+        self.assertEqual(len({item["path"] for item in inputs}), len(inputs))
+        for item in inputs:
+            path = ROOT / item["path"]
+            self.assertTrue(path.is_file(), item["path"])
+            self.assertEqual(
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+                item["sha256"],
+                item["path"],
+            )
 
 
 if __name__ == "__main__":

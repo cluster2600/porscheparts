@@ -158,10 +158,16 @@ SBOM et provenance ne constituent pas une signature cryptographique. Aucun flux
 Cosign ou signature GitHub n'est configuré dans F17 : le gate
 `cryptographic_signature_verified` reste explicitement à `false`.
 
-Le dépôt cible est
-`ghcr.io/cluster2600/3dprinting993-scan-mesh-f17`. Aucun digest publié n'est
-revendiqué dans ce document avant une exécution réussie et une vérification du
-registre.
+La publication vérifiée est verrouillée dans
+[`containers/scan-mesh-f17.lock.json`](../containers/scan-mesh-f17.lock.json) :
+
+```text
+ghcr.io/cluster2600/3dprinting993-scan-mesh-f17@sha256:b48f23d64ceab9c2e6b7b7474cdd81011d27b8a584f7af6b50b6cc05823c5189
+```
+
+Le verrou fixe le run GitHub, l'artefact de preuve, l'index, les manifestes, la
+provenance, la SBOM, les entrées de recette et le smoke synthétique. Il conserve
+les gates physiques fermés et ne remplace pas une signature cryptographique.
 
 ## Gates avant Vast.ai et avant simulation
 

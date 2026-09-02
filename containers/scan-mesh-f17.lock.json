@@ -1,0 +1,190 @@
+{
+  "$comment": "Verrou de publication de l'image CPU F17 seulement. Il ne libere ni le scan, ni une geometrie CAO, ni une simulation, ni une fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F17",
+  "status": "immutable_public_cpu_image_verified_physical_release_blocked",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-scan-mesh-f17",
+    "digest": "sha256:b48f23d64ceab9c2e6b7b7474cdd81011d27b8a584f7af6b50b6cc05823c5189",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-scan-mesh-f17@sha256:b48f23d64ceab9c2e6b7b7474cdd81011d27b8a584f7af6b50b6cc05823c5189",
+    "index": {
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "size_bytes": 857,
+      "digest_recomputed": true,
+      "platform_manifest_count": 1,
+      "attestation_manifest_count": 1
+    },
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "user": "9177:9177",
+      "python_version": "3.12.14",
+      "gpu_required": false
+    },
+    "manifest": {
+      "digest": "sha256:931a05c9f1038f377f8a7f52db8acf5c41c62b5b1737214947cfc4dce9d640cd",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 2950,
+      "config_digest": "sha256:de7f3e58aa3b9b1582d3ded32af2d25f400d72542b7dafaa928a0052cffb345c",
+      "config_size_bytes": 11033,
+      "layer_count": 14,
+      "compressed_size_bytes": 297002369,
+      "largest_layer_digest": "sha256:77dba1692a9e33ca7f7946bff76f1194de4c30941924edb863375940ba4c63ba",
+      "largest_layer_bytes": 176813870
+    },
+    "attestation_manifest": {
+      "digest": "sha256:d65e54112134bc447525c71957a44fc34c92b56b8318a96a33cbac9be45df153",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "artifact_type": "application/vnd.docker.attestation.manifest.v1+json",
+      "size_bytes": 1112,
+      "subject_manifest_digest": "sha256:931a05c9f1038f377f8a7f52db8acf5c41c62b5b1737214947cfc4dce9d640cd"
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "e137512238adbca6f61acc89e0c593f271135fee",
+    "runner": "ubuntu-24.04",
+    "dockerfile_frontend_digest": "sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "dependency_policy": "top_level_versions_and_wheels_pinned_by_sha256_debian_indexes_not_snapshotted",
+    "packages": {
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "trimesh": "5.1.0",
+      "pymeshlab": "2025.7.post1",
+      "rtree": "1.4.1"
+    },
+    "inputs": [
+      {
+        "path": ".github/workflows/scan-mesh-f17-image.yml",
+        "role": "build_publish_digest_provenance_sbom_and_anonymous_gate",
+        "sha256": "63daad635ff00a97dc550d107573911ea00d2ebc95e8edd27670d55a768b0f41"
+      },
+      {
+        "path": "containers/scan-mesh-f17.Dockerfile",
+        "role": "image_recipe",
+        "sha256": "553240fd296e6a76df367085db3780d6f3ff75e3d4d6fe81cc7e1f8f10dd8aed"
+      },
+      {
+        "path": "containers/scan-mesh-f17-requirements.txt",
+        "role": "hashed_python_wheels",
+        "sha256": "269f45b885d0796f3b87a6826295c638ee8879b4240538e2d8e55cc4f0330eb0"
+      },
+      {
+        "path": "containers/scan-mesh-f17-smoke.py",
+        "role": "offline_runtime_smoke",
+        "sha256": "bd4bf6559b63665a52bdf4ac31050034a93755a951969beb6f7c8ca4afcaf619"
+      },
+      {
+        "path": "twins/reference-917-engine/source/prepare_scan.py",
+        "role": "embedded_scan_preparation_pipeline",
+        "sha256": "c094b914b11725a70daae34155973b68fd12a92e80560afe4e064140db5b30ea"
+      },
+      {
+        "path": "twins/reference-917-engine/source/analyze_boundaries.py",
+        "role": "embedded_boundary_screening_pipeline",
+        "sha256": "078fafc279c2bd74c87b40ce79cb9b723105b92732f5263ba35477d493b47f8e"
+      },
+      {
+        "path": "twins/reference-917-engine/source/segment_engine.py",
+        "role": "embedded_fail_closed_segmentation_pipeline",
+        "sha256": "dc712bc4e5aa9a75a7fee1c355aab59e4ed8f96511d5ea75c6518b8f97c42cdc"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "verified_at": "2026-09-02T00:36:20Z",
+    "workflow": {
+      "run_id": 33575867966,
+      "run_number": 1,
+      "job_id": 100079590433,
+      "event": "workflow_dispatch",
+      "conclusion": "success",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33575867966"
+    },
+    "evidence_artifact": {
+      "id": 9826628370,
+      "name": "scan-mesh-f17-published-e137512238adbca6f61acc89e0c593f271135fee",
+      "digest": "sha256:920d78824e83e592e0d6a7d5b982b6916a2debca6ff7619c8bc0914aa3c83225",
+      "size_bytes": 346696,
+      "retention_expires_at": "2026-10-02T00:36:11Z"
+    },
+    "registry_index_digest_recomputed": true,
+    "platform_manifest_digest_recomputed": true,
+    "attestation_manifest_digest_recomputed": true,
+    "published_digest_pulled": true,
+    "anonymous_exact_digest_access": true,
+    "cryptographic_signature_verified": false,
+    "provenance": {
+      "predicate_type": "https://slsa.dev/provenance/v1",
+      "layer_digest": "sha256:a080842ea441c222a3aa7bc2cf955560eb4c00f21901b788dee8aee1c6556485",
+      "layer_size_bytes": 24304,
+      "build_type": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "builder_id": "https://github.com/cluster2600/3dprinting993/actions/runs/33575867966/attempts/1",
+      "source_repository": "https://github.com/cluster2600/3dprinting993",
+      "source_revision": "e137512238adbca6f61acc89e0c593f271135fee",
+      "resolved_dependency_count": 4
+    },
+    "sbom": {
+      "predicate_type": "https://spdx.dev/Document",
+      "layer_digest": "sha256:213f1baa010509a1a844001ec8977a300192674ea3587a4e46acedeb7b79d41d",
+      "layer_size_bytes": 2804349,
+      "spdx_version": "SPDX-2.3",
+      "data_license": "CC0-1.0",
+      "package_count": 166,
+      "file_count": 3600
+    },
+    "offline_smoke": {
+      "status": "passed_synthetic_fixture_only",
+      "claim_scope": "synthetic fixtures validate software paths only",
+      "offline": true,
+      "platform_contract": "linux/amd64-cpu",
+      "python_version": "3.12.14",
+      "non_root": true,
+      "gpu_required": false,
+      "kernel_interfaces": ["lo"],
+      "default_external_route": false,
+      "decimation_source_faces": 384,
+      "decimation_output_faces": 160,
+      "deviation_samples": 50000,
+      "boundary_loops": 2,
+      "segmentation_input_faces": 4,
+      "segmentation_output_faces": 4,
+      "segmentation_overlap_faces": 0,
+      "rejected_invalid_interface_contracts": 4
+    }
+  },
+  "bundled_assets": {
+    "raw_scans": false,
+    "datasets": false,
+    "model_weights": false,
+    "interfaces": false,
+    "project_application_files": [
+      "twins/reference-917-engine/source/prepare_scan.py",
+      "twins/reference-917-engine/source/analyze_boundaries.py",
+      "twins/reference-917-engine/source/segment_engine.py"
+    ]
+  },
+  "release_gates": {
+    "immutable_public_image_verified": true,
+    "linux_amd64_offline_smoke_verified": true,
+    "cryptographic_signature_verified": false,
+    "canonical_scan_execution_verified_in_published_image": false,
+    "scan_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "semantic_segmentation_confirmed": false,
+    "geometry_repaired": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_rental_verified_for_current_job": false,
+    "vast_job_allowed": false
+  }
+}
