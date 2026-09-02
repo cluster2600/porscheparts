@@ -1,0 +1,481 @@
+{
+  "$comment": "F27 est un formulaire vierge a copier sous work/. Il ne contient aucune mesure et ne libere ni variante, ni CAO, ni simulation, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F27",
+  "record_status": "blank_template_not_executed",
+  "upstream_manifest": [
+    {
+      "id": "f13_scan_metrology",
+      "path": "twins/reference-917-engine/scan-metrology-f13.json",
+      "sha256": "578b4ffcf49be04c701b3a86ba0b04d9cd11fd9f39f11b757c2220a698731a5d",
+      "role": "candidate_variants_and_minimum_physical_controls_only"
+    },
+    {
+      "id": "f16_kinematic_interfaces",
+      "path": "twins/reference-917-engine/kinematic-interface-readiness-f16.json",
+      "sha256": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",
+      "role": "named_datums_and_measurement_targets_only"
+    },
+    {
+      "id": "f21_scale_orientation",
+      "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
+      "sha256": "fca7306a0afda5e4b4a0af9210dd00189e27f54f32b547e90d02aa9ab18e1808",
+      "role": "exact_scan_binding_and_empty_acquisition_slots_only"
+    }
+  ],
+  "authority_boundary": {
+    "documentary_dimensions_may_calibrate_scan": false,
+    "numerical_closest_candidate_may_select_variant": false,
+    "scan_render_or_filename_may_define_orientation": false,
+    "validator_may_open_engineering_release_gates": false,
+    "local_measurements_and_evidence_must_remain_outside_git": true
+  },
+  "campaign": {
+    "campaign_id": null,
+    "record_revision": null,
+    "campaign_owner": null,
+    "metrology_lab": null,
+    "planned_start_utc": null,
+    "protocol_frozen_at_utc": null,
+    "preacquisition_approval_evidence_ref": null
+  },
+  "source_binding": {
+    "expected_scan_sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "working_scan_sha256": null,
+    "physical_asset_or_part_set_id": null,
+    "physical_asset_serial_or_marking_evidence_ref": null,
+    "identity_status": "missing"
+  },
+  "chain_of_custody": {
+    "custody_id": null,
+    "events": [
+      {
+        "sequence": 1,
+        "event_type": "physical_asset_intake",
+        "timestamp_utc": null,
+        "actor_id": null,
+        "location_or_system_id": null,
+        "input_identifier_or_sha256": null,
+        "output_identifier_or_sha256": null,
+        "evidence_ref": null,
+        "witness_or_review_status": "missing"
+      },
+      {
+        "sequence": 2,
+        "event_type": "scan_working_copy_creation",
+        "timestamp_utc": null,
+        "actor_id": null,
+        "location_or_system_id": null,
+        "input_identifier_or_sha256": null,
+        "output_identifier_or_sha256": null,
+        "evidence_ref": null,
+        "witness_or_review_status": "missing"
+      },
+      {
+        "sequence": 3,
+        "event_type": "instrument_calibration_verification",
+        "timestamp_utc": null,
+        "actor_id": null,
+        "location_or_system_id": null,
+        "input_identifier_or_sha256": null,
+        "output_identifier_or_sha256": null,
+        "evidence_ref": null,
+        "witness_or_review_status": "missing"
+      },
+      {
+        "sequence": 4,
+        "event_type": "acquisition_open",
+        "timestamp_utc": null,
+        "actor_id": null,
+        "location_or_system_id": null,
+        "input_identifier_or_sha256": null,
+        "output_identifier_or_sha256": null,
+        "evidence_ref": null,
+        "witness_or_review_status": "missing"
+      },
+      {
+        "sequence": 5,
+        "event_type": "acquisition_close",
+        "timestamp_utc": null,
+        "actor_id": null,
+        "location_or_system_id": null,
+        "input_identifier_or_sha256": null,
+        "output_identifier_or_sha256": null,
+        "evidence_ref": null,
+        "witness_or_review_status": "missing"
+      },
+      {
+        "sequence": 6,
+        "event_type": "evidence_manifest_seal",
+        "timestamp_utc": null,
+        "actor_id": null,
+        "location_or_system_id": null,
+        "input_identifier_or_sha256": null,
+        "output_identifier_or_sha256": null,
+        "evidence_ref": null,
+        "witness_or_review_status": "missing"
+      }
+    ]
+  },
+  "environment": {
+    "stabilization_procedure_evidence_ref": null,
+    "temperature_instrument_id": null,
+    "temperature_calibration_evidence_ref": null,
+    "temperature_c": null,
+    "relative_humidity_percent": null,
+    "environment_log_evidence_ref": null
+  },
+  "methods": [
+    {
+      "method_id": "CMM",
+      "selected": null,
+      "selection_justification": null,
+      "instrument_or_software_id": null,
+      "software_name_version": null,
+      "procedure_evidence_ref": null,
+      "calibration_or_validation_evidence_ref": null,
+      "operator_or_lab": null,
+      "measurement_start_utc": null,
+      "measurement_end_utc": null,
+      "method_specific": {
+        "probe_qualification_evidence_ref": null,
+        "datum_alignment_procedure_evidence_ref": null
+      }
+    },
+    {
+      "method_id": "CT",
+      "selected": null,
+      "selection_justification": null,
+      "instrument_or_software_id": null,
+      "software_name_version": null,
+      "procedure_evidence_ref": null,
+      "calibration_or_validation_evidence_ref": null,
+      "operator_or_lab": null,
+      "measurement_start_utc": null,
+      "measurement_end_utc": null,
+      "method_specific": {
+        "scale_artifact_evidence_ref": null,
+        "voxel_size_report_evidence_ref": null,
+        "reconstruction_recipe_evidence_ref": null,
+        "segmentation_recipe_evidence_ref": null
+      }
+    },
+    {
+      "method_id": "PHOTOGRAMMETRY",
+      "selected": null,
+      "selection_justification": null,
+      "instrument_or_software_id": null,
+      "software_name_version": null,
+      "procedure_evidence_ref": null,
+      "calibration_or_validation_evidence_ref": null,
+      "operator_or_lab": null,
+      "measurement_start_utc": null,
+      "measurement_end_utc": null,
+      "method_specific": {
+        "camera_calibration_evidence_ref": null,
+        "scale_bar_certificate_evidence_ref": null,
+        "bundle_adjustment_report_evidence_ref": null,
+        "target_layout_evidence_ref": null
+      }
+    },
+    {
+      "method_id": "MESH_INSPECTION",
+      "selected": null,
+      "selection_justification": null,
+      "instrument_or_software_id": null,
+      "software_name_version": null,
+      "procedure_evidence_ref": null,
+      "calibration_or_validation_evidence_ref": null,
+      "operator_or_lab": null,
+      "measurement_start_utc": null,
+      "measurement_end_utc": null,
+      "method_specific": {
+        "software_validation_evidence_ref": null,
+        "measurement_script_evidence_ref": null
+      }
+    }
+  ],
+  "scale_protocol": {
+    "required_control_count": 3,
+    "maximum_relative_scale_spread": 0.005,
+    "same_feature_scan_to_physical_required": true,
+    "distinct_feature_and_scan_region_per_control_required": true,
+    "reposition_or_independent_refit_between_repetition_groups_required": true,
+    "controls": [
+      {
+        "control_id": "SC-01",
+        "f21_slot_ref": "SC-01",
+        "physical_feature_id": null,
+        "scan_region_token": null,
+        "feature_endpoint_definition": null,
+        "physical_method_id": null,
+        "scan_method_id": null,
+        "same_feature_correspondence_evidence_ref": null,
+        "uncertainty_budget_id": "UB-SC-01",
+        "minimum_physical_repetitions": 3,
+        "minimum_scan_repetitions": 3,
+        "independent_from_other_controls": null,
+        "status": "missing"
+      },
+      {
+        "control_id": "SC-02",
+        "f21_slot_ref": "SC-02",
+        "physical_feature_id": null,
+        "scan_region_token": null,
+        "feature_endpoint_definition": null,
+        "physical_method_id": null,
+        "scan_method_id": null,
+        "same_feature_correspondence_evidence_ref": null,
+        "uncertainty_budget_id": "UB-SC-02",
+        "minimum_physical_repetitions": 3,
+        "minimum_scan_repetitions": 3,
+        "independent_from_other_controls": null,
+        "status": "missing"
+      },
+      {
+        "control_id": "SC-03",
+        "f21_slot_ref": "SC-03",
+        "physical_feature_id": null,
+        "scan_region_token": null,
+        "feature_endpoint_definition": null,
+        "physical_method_id": null,
+        "scan_method_id": null,
+        "same_feature_correspondence_evidence_ref": null,
+        "uncertainty_budget_id": "UB-SC-03",
+        "minimum_physical_repetitions": 3,
+        "minimum_scan_repetitions": 3,
+        "independent_from_other_controls": null,
+        "status": "missing"
+      }
+    ]
+  },
+  "uncertainty_budgets": [
+    {
+      "budget_id": "UB-SC-01",
+      "control_id": "SC-01",
+      "measurement_model": null,
+      "contributors_evidence_ref": null,
+      "correlation_assumptions": null,
+      "maximum_relative_standard_uncertainty": null,
+      "maximum_relative_repeatability_range": null,
+      "predeclared_before_acquisition": null,
+      "approved_protocol_evidence_ref": null,
+      "status": "missing"
+    },
+    {
+      "budget_id": "UB-SC-02",
+      "control_id": "SC-02",
+      "measurement_model": null,
+      "contributors_evidence_ref": null,
+      "correlation_assumptions": null,
+      "maximum_relative_standard_uncertainty": null,
+      "maximum_relative_repeatability_range": null,
+      "predeclared_before_acquisition": null,
+      "approved_protocol_evidence_ref": null,
+      "status": "missing"
+    },
+    {
+      "budget_id": "UB-SC-03",
+      "control_id": "SC-03",
+      "measurement_model": null,
+      "contributors_evidence_ref": null,
+      "correlation_assumptions": null,
+      "maximum_relative_standard_uncertainty": null,
+      "maximum_relative_repeatability_range": null,
+      "predeclared_before_acquisition": null,
+      "approved_protocol_evidence_ref": null,
+      "status": "missing"
+    }
+  ],
+  "orientation_protocol": {
+    "datum_count": 3,
+    "relation_contract": {
+      "contract_role": "candidate_coordinate_consistency_only_not_release_authority",
+      "primary_axis_must_lie_in_secondary_plane": true,
+      "transform_row_0_must_equal_primary_axis_direction": true,
+      "transform_row_2_must_equal_secondary_plane_normal": true,
+      "transform_row_1_must_equal_row_2_cross_row_0": true,
+      "translation_must_map_primary_axis_origin_to_engine_origin": true,
+      "handedness_witness_must_transform_to_positive_engine_y": true,
+      "required_handedness_token": "bank_positive_on_positive_engine_y",
+      "numeric_consistency_absolute_tolerance": 1e-06
+    },
+    "datums": [
+      {
+        "datum_id": "OR-PRIMARY-AXIS",
+        "f21_slot_ref": "OR-PRIMARY-AXIS",
+        "f16_datum_ref": "crankshaft_axis",
+        "kind": "axis",
+        "physical_feature_id": null,
+        "scan_region_token": null,
+        "physical_method_id": null,
+        "scan_method_id": null,
+        "semantic_direction_rule": null,
+        "physical_fit_evidence_ref": null,
+        "scan_fit_evidence_ref": null,
+        "registration_evidence_ref": null,
+        "fit_result": {
+          "origin_obj_units": null,
+          "direction_or_normal": null,
+          "handedness_token": null,
+          "fit_residual_obj_units": null,
+          "registration_residual_mm": null,
+          "angular_standard_uncertainty_deg": null
+        },
+        "status": "missing"
+      },
+      {
+        "datum_id": "OR-SECONDARY-PLANE",
+        "f21_slot_ref": "OR-SECONDARY-PLANE",
+        "f16_datum_ref": "crankcase_split_plane",
+        "kind": "plane",
+        "physical_feature_id": null,
+        "scan_region_token": null,
+        "physical_method_id": null,
+        "scan_method_id": null,
+        "semantic_direction_rule": null,
+        "physical_fit_evidence_ref": null,
+        "scan_fit_evidence_ref": null,
+        "registration_evidence_ref": null,
+        "fit_result": {
+          "origin_obj_units": null,
+          "direction_or_normal": null,
+          "handedness_token": null,
+          "fit_residual_obj_units": null,
+          "registration_residual_mm": null,
+          "angular_standard_uncertainty_deg": null
+        },
+        "status": "missing"
+      },
+      {
+        "datum_id": "OR-HANDEDNESS",
+        "f21_slot_ref": "OR-HANDEDNESS",
+        "f16_datum_ref": "bank_positive_deck_plane",
+        "kind": "handedness_witness",
+        "physical_feature_id": null,
+        "scan_region_token": null,
+        "physical_method_id": null,
+        "scan_method_id": null,
+        "semantic_direction_rule": null,
+        "physical_fit_evidence_ref": null,
+        "scan_fit_evidence_ref": null,
+        "registration_evidence_ref": null,
+        "fit_result": {
+          "origin_obj_units": null,
+          "direction_or_normal": null,
+          "handedness_token": null,
+          "fit_residual_obj_units": null,
+          "registration_residual_mm": null,
+          "angular_standard_uncertainty_deg": null
+        },
+        "status": "missing"
+      }
+    ],
+    "scan_to_engine_transform": {
+      "scale_mm_per_obj_unit": null,
+      "rotation_matrix_3x3": null,
+      "translation_mm": null,
+      "transform_uncertainty_evidence_ref": null,
+      "status": "missing"
+    }
+  },
+  "variant_identification": {
+    "candidate_registry_source": "twins/reference-917-engine/scan-metrology-f13.json",
+    "allowed_candidate_variant_ids": [
+      "type_912_4_5_na",
+      "917_5_0_na",
+      "917_30_turbo_5374"
+    ],
+    "selected_candidate_variant_id": null,
+    "f16_branch_crosswalk_evidence_ref": null,
+    "identity_evidence": [
+      {
+        "kind": "direct_marking_or_part_identity",
+        "independent_source_id": null,
+        "evidence_ref": null,
+        "review_status": "missing"
+      },
+      {
+        "kind": "part_number_or_configuration_crosswalk",
+        "independent_source_id": null,
+        "evidence_ref": null,
+        "review_status": "missing"
+      },
+      {
+        "kind": "teardown_or_architecture_discriminant",
+        "independent_source_id": null,
+        "evidence_ref": null,
+        "review_status": "missing"
+      },
+      {
+        "kind": "calibrated_metrology_comparison",
+        "independent_source_id": null,
+        "evidence_ref": null,
+        "review_status": "missing"
+      }
+    ],
+    "conflicting_evidence_log_evidence_ref": null,
+    "adjudication_status": "missing"
+  },
+  "evidence_index": [],
+  "independent_reviews": {
+    "metrology": {
+      "role": "qualified_metrology_reviewer",
+      "reviewer_id": null,
+      "decision": null,
+      "reviewed_acquisition_packet_sha256": null,
+      "signed_report_evidence_ref": null,
+      "signed_at_utc": null
+    },
+    "variant_engineering": {
+      "role": "independent_engineering_reviewer",
+      "reviewer_id": null,
+      "decision": null,
+      "reviewed_acquisition_packet_sha256": null,
+      "signed_report_evidence_ref": null,
+      "signed_at_utc": null
+    },
+    "final_envelope": {
+      "sha256": null,
+      "generated_at_utc": null
+    }
+  },
+  "current_readiness": {
+    "campaign_executed": false,
+    "evidence_packet_complete": false,
+    "scale_candidate_ready_for_review": false,
+    "orientation_candidate_ready_for_review": false,
+    "variant_candidate_ready_for_review": false,
+    "binding_adapter_implemented": false
+  },
+  "release_gates": {
+    "scan_identity_verified": false,
+    "three_independent_scale_controls_verified": false,
+    "same_feature_physical_correspondence_verified": false,
+    "traceable_provenance_verified": false,
+    "uncertainty_budget_accepted": false,
+    "scan_scale_verified": false,
+    "orientation_primary_axis_verified": false,
+    "orientation_secondary_plane_verified": false,
+    "orientation_handedness_verified": false,
+    "scan_orientation_verified": false,
+    "f11_source_identity_and_scale_adapter_ready": false,
+    "scan_variant_binding_authorized": false,
+    "cad_reconstruction_authorized": false,
+    "classical_solver_authorized": false,
+    "physicsnemo_dataset_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "omniverse_simready_authorized": false,
+    "fabrication_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "repository_content_boundary": {
+    "tracked_template_contains_raw_scan": false,
+    "tracked_template_contains_proprietary_geometry": false,
+    "tracked_template_contains_physical_measurements": false,
+    "tracked_template_contains_physical_asset_identifier": false,
+    "tracked_template_contains_operator_personal_data": false,
+    "filled_record_and_evidence_must_remain_outside_git": true
+  }
+}
