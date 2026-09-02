@@ -1,0 +1,199 @@
+name: Build gas-path F38 image
+
+# Publication manuelle depuis main uniquement. Le contexte Docker contient
+# onze fichiers publics : aucun scan, maillage, poids, secret ou client API.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: gas-path-f38-${{ github.sha }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-gas-path-f38
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Verify main release source
+        run: |
+          test "${GITHUB_REF}" = "refs/heads/main"
+          test "${GITHUB_SHA}" = "$(git rev-parse HEAD)"
+
+      - name: Verify F38 solver and static image guard
+        run: |
+          set -o pipefail
+          {
+            python3 tests/test_917_gas_path_network_f38.py -v
+            python3 tests/test_gas_path_f38_image.py -v
+          } 2>&1 | tee gas-path-f38-static-tests.txt
+
+      - name: Record exact public image inputs
+        run: |
+          sha256sum \
+            .github/workflows/gas-path-f38-image.yml \
+            containers/gas-path-f38.Dockerfile \
+            containers/gas-path-f38.Dockerfile.dockerignore \
+            containers/gas-path-f38-smoke.py \
+            tests/test_917_gas_path_network_f38.py \
+            tests/test_gas_path_f38_image.py \
+            twins/reference-917-engine/source/run_gas_path_network_f38.py \
+            twins/reference-917-engine/gas-path-network-f38.json \
+            twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json \
+            twins/reference-917-engine/doe-surrogate-f34.json \
+            twins/reference-917-engine/air-oil-core-controls-f34a.json \
+            twins/reference-917-engine/integrated-bench-assembly-f37.json \
+            twins/reference-917-engine/evidence/f33/cycle-thermal-report.json \
+            twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json \
+            twins/reference-917-engine/evidence/f34/report.json \
+            twins/reference-917-engine/evidence/f38/gas-path-network-f38-report.json \
+            > gas-path-f38-source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Log in to GHCR
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/gas-path-f38.Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:candidate-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          build-args: |
+            OCI_SOURCE=https://github.com/${{ github.repository }}
+          cache-from: type=gha,scope=gas-path-f38
+          cache-to: type=gha,mode=max,scope=gas-path-f38
+
+      - name: Verify exact digest and hardened offline smoke
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          docker buildx imagetools inspect "${pinned_ref}" | tee gas-path-f38-image.txt
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" > gas-path-f38-provenance.json
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${pinned_ref}" > gas-path-f38-sbom.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          provenance = json.loads(Path("gas-path-f38-provenance.json").read_text())
+          sbom = json.loads(Path("gas-path-f38-sbom.json").read_text())
+          slsa = provenance["SLSA"]
+          definition = slsa["buildDefinition"]
+          assert definition["buildType"].startswith("https://github.com/moby/buildkit/")
+          args = definition["externalParameters"]["request"]["root"]["request"]["args"]
+          assert args["vcs:source"] == f"https://github.com/{os.environ['GITHUB_REPOSITORY']}"
+          assert args["vcs:revision"] == os.environ["GITHUB_SHA"]
+          internal = definition["internalParameters"]
+          assert internal["github_repository"] == os.environ["GITHUB_REPOSITORY"]
+          assert internal["github_workflow_sha"] == os.environ["GITHUB_SHA"]
+          dependency_digests = {
+              item.get("digest", {}).get("sha256")
+              for item in definition["resolvedDependencies"]
+          }
+          assert "a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e" in dependency_digests
+          assert "9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef" in dependency_digests
+          spdx = sbom.get("SPDX") if isinstance(sbom, dict) else None
+          if spdx is None and isinstance(sbom, list) and sbom:
+              spdx = sbom[0].get("SPDX")
+          assert spdx["spdxVersion"] == "SPDX-2.3"
+          assert spdx["SPDXID"] == "SPDXRef-DOCUMENT"
+          PY
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${pinned_ref}")" = 9138:9138
+          docker run --rm --platform linux/amd64 --user 9138:9138 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m \
+            --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" \
+            > gas-path-f38-smoke.json \
+            2> gas-path-f38-smoke.stderr
+          test ! -s gas-path-f38-smoke.stderr
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          value = json.loads(Path("gas-path-f38-smoke.json").read_text())
+          assert value["status"] == "passed_embedded_f38_stationary_network_only"
+          assert value["platform"] == "linux/amd64-cpu"
+          assert value["offline"] is True
+          assert value["reproducibility"]["byte_identical"] is True
+          assert value["proof_boundary"]["target_power_proven"] is False
+          assert value["proof_boundary"]["unsteady_1d_executed"] is False
+          assert value["proof_boundary"]["physical_correlation_complete"] is False
+          PY
+          printf '%s\n' "${pinned_ref}" > gas-path-f38-image-digest.txt
+
+      - name: Verify anonymous digest access for Vast workers
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          docker logout ghcr.io
+          docker image rm "${pinned_ref}" || true
+          anonymous_config="$(mktemp -d)"
+          printf '{"auths":{}}\n' > "${anonymous_config}/config.json"
+          DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64 "${pinned_ref}" \
+            2>&1 | tee gas-path-f38-anonymous-pull.txt
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          PINNED_REF="${pinned_ref}" python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          Path("gas-path-f38-anonymous-access.json").write_text(
+              json.dumps(
+                  {
+                      "anonymous_pull_verified": True,
+                      "image": os.environ["PINNED_REF"],
+                      "platform": "linux/amd64",
+                      "intended_consumer": "uncredentialed_vast_worker",
+                  },
+                  sort_keys=True,
+              )
+              + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: gas-path-f38-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            gas-path-f38-static-tests.txt
+            gas-path-f38-source-inputs.sha256
+            gas-path-f38-image.txt
+            gas-path-f38-image-digest.txt
+            gas-path-f38-smoke.json
+            gas-path-f38-smoke.stderr
+            gas-path-f38-provenance.json
+            gas-path-f38-sbom.json
+            gas-path-f38-anonymous-pull.txt
+            gas-path-f38-anonymous-access.json
+          if-no-files-found: warn

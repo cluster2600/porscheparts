@@ -1,5 +1,5 @@
 .PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
-.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke
+.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -17,6 +17,8 @@ F35_CAD_AUTHOR_IMAGE ?= $(CAD_AUTHOR_F29_IMAGE)
 F35_SIMREADY_WORKFLOW_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
 F35_GMSH_IMAGE ?= 3dprinting993-gmsh-mesh-f35:dev
 F35_OPENFOAM_IMAGE ?= 3dprinting993-openfoam-engine-f35:dev
+F38_GAS_PATH_IMAGE ?= 3dprinting993-gas-path-f38:dev
+F38_OVERLAY_OUTPUT ?= work/917-gas-path-network-f38/omniverse
 
 .PHONY: 917-scan-conforming-4v-f36-check
 
@@ -370,6 +372,42 @@ engine-components:
 		--tmpfs /dev/shm:rw,noexec,nosuid,nodev,size=512m \
 		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
 		$(F35_OPENFOAM_IMAGE)
+
+917-gas-path-network-f38-test:
+	python3 tests/test_917_gas_path_network_f38.py -v
+
+917-gas-path-network-f38: 917-gas-path-network-f38-test
+	python3 twins/reference-917-engine/source/run_gas_path_network_f38.py \
+		--project-root . \
+		--contract twins/reference-917-engine/gas-path-network-f38.json \
+		--output work/917-gas-path-network-f38
+
+917-gas-path-overlay-f38-test:
+	python3 tests/test_917_gas_path_overlay_f38.py -v
+
+917-gas-path-overlay-f38: 917-gas-path-network-f38 917-gas-path-overlay-f38-test
+	@test -f work/917-integrated-bench-f37/integrated-bench-f37-report.json || { echo "Exécuter F37 avant l'overlay F38" >&2; exit 2; }
+	python3 twins/reference-917-engine/source/author_bench_overlay_f38.py \
+		--contract twins/reference-917-engine/gas-path-network-f38.json \
+		--f37-work-root work/917-integrated-bench-f37 \
+		--f38-report work/917-gas-path-network-f38/gas-path-network-f38-report.json \
+		--canonical-f38-report twins/reference-917-engine/evidence/f38/gas-path-network-f38-report.json \
+		--output $(F38_OVERLAY_OUTPUT)
+
+917-gas-path-f38-image-test:
+	python3 tests/test_gas_path_f38_image.py -v
+
+917-gas-path-f38-image: 917-gas-path-network-f38-test 917-gas-path-f38-image-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/gas-path-f38.Dockerfile \
+		-t $(F38_GAS_PATH_IMAGE) --load .
+
+917-gas-path-f38-image-smoke:
+	docker run --rm --platform linux/amd64 --user 9138:9138 \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m \
+		--pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+		$(F38_GAS_PATH_IMAGE)
 
 917-integrated-virtual-f33-image:
 	docker build -f containers/cae-integrated-f33.Dockerfile -t $(F33_CAE_IMAGE) .

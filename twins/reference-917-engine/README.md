@@ -574,3 +574,24 @@ objet, groupe ou matériau nommé ; sa segmentation mécanique ne peut donc pas
 inactives, mais zéro coordonnée, solide, joint, animation ou échantillon
 PhysicsNeMo. Cette frontière empêche de transformer silencieusement un scan
 extérieur incomplet en moteur prétendument fonctionnel ou imprimable.
+
+## Réseau de stations F38
+
+Le premier bilan admission–moteur–échappement bi-variante est documenté dans
+[`docs/917_GAS_PATH_NETWORK_F38.md`](../../docs/917_GAS_PATH_NETWORK_F38.md).
+F38 relit hors réseau l'identité de masse F33, calcule le devoir thermique requis
+à partir d'états prescrits et ferme l'identité d'arbre turbo par bissection. Il
+publie séparément la perte mécanique turbo sans lui inventer de destination
+thermique. L'absence d'entrée directe de la cible dans F38 est vérifiée, mais
+F34 conserve une ascendance indirecte et un seed de dimensionnement inverse :
+l'indépendance complète reste fausse. La cible est exprimée en hp mécaniques,
+distincts des PS/ch métriques. F38 lie aussi la décision F34a de conserver un
+cœur strictement air/huile et refuse toute équivalence géométrique entre le
+4,5 L F35 et le candidat NA 5,374 L F33. Les maps turbo, la dynamique 1D, la
+corrélation banc, le démarrage, la fabrication et toute preuve de puissance
+restent explicitement bloqués.
+
+Une image CPU F38 minimale, standard-library et sans clé API accompagne ce
+réseau. Son smoke est reproductible sur Docker Desktop et sur un nœud Intel
+Linux natif ; la recette GHCR vérifie en plus provenance, SBOM et accès anonyme
+par digest avant de considérer l'image exploitable sur Vast.
