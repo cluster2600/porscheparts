@@ -1,0 +1,4336 @@
+{
+  "$comment": "F19 classe les routes candidates des inventaires F12, F16 et F8. Aucune classification n'est une selection de nuance, procede, tolerance ou autorisation de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F19",
+  "status": "manufacturing_routing_contract_ready_all_release_gates_blocked",
+  "asset": {
+    "id": "porsche-917-whole-engine-manufacturing-routing-f19",
+    "target": "moteur Porsche 917 complet sur banc, branches atmospherique et biturbo",
+    "current_verified_level": "visual_and_semantic_inventories_only",
+    "real_bom_complete": false,
+    "functional_100_percent_means_100_percent_printed": false,
+    "raw_scan_in_git": false
+  },
+  "upstream_contracts": [
+    {
+      "id": "whole_engine_f12",
+      "path": "twins/reference-917-engine/whole-engine-reengineering-f12.json",
+      "sha256": "8a2bf024badd0964b272d4b90a5432c912873d59b0821a6f31138fdf5b8c33fd",
+      "inventory_complete": false
+    },
+    {
+      "id": "kinematic_interfaces_f16",
+      "path": "twins/reference-917-engine/kinematic-interface-readiness-f16.json",
+      "sha256": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",
+      "inventory_complete": false
+    },
+    {
+      "id": "mechanical_connections_f8",
+      "path": "twins/reference-917-engine/mechanical-connections-f8.json",
+      "sha256": "d2daa00ab84948a70e9d1ff265d701c6f74a25f32710f8f6f1cfbaebc81f89d9",
+      "inventory_complete": false
+    },
+    {
+      "id": "sealing_interfaces_f8",
+      "path": "twins/reference-917-engine/sealing-interfaces-f8.json",
+      "sha256": "9de5a4a0e1ecbd964aabe2f99ce944ab1ddde962b4994867fbfe423c1cd02a28",
+      "inventory_complete": false
+    },
+    {
+      "id": "ducts_f8",
+      "path": "twins/reference-917-engine/ducts-f8.json",
+      "sha256": "71fdd5143212e10173e69697644a76f2ac91c56dd4c30e7edc0c483e1a16aa41",
+      "inventory_complete": false
+    },
+    {
+      "id": "external_interfaces_f8",
+      "path": "twins/reference-917-engine/external-interfaces-f8.json",
+      "sha256": "7945a22f55608e3f4824efd0ebdde2bfe284a1bd9565108ea903a9113752383a",
+      "inventory_complete": false
+    }
+  ],
+  "routing_taxonomy": {
+    "printable_prototype": "maquette geometrique inerte; aucune charge, pression, temperature ou rotation moteur",
+    "metal_additive_candidate": "route additive metallique a etudier puis finir, inspecter et qualifier; non selectionnee",
+    "conventional_candidate": "usinage, forge, fonderie ou fabrication assemblee a qualifier; non selectionne",
+    "purchased_non_printable": "fonction a acheter ou a specifier; representation permise dans le jumeau, impression fonctionnelle interdite",
+    "hybrid_candidate": "assemblage multiroute potentiel combinant corps fabriques, finitions et elements achetes; non selectionne",
+    "unresolved": "aucune famille de route ne peut encore etre choisie",
+    "not_a_part": "feature, passage ou condition aux limites, pas une piece imprimable autonome"
+  },
+  "routing_rules": {
+    "f12_disposition_to_route_class": {
+      "lpbf": "metal_additive_candidate",
+      "machined": "conventional_candidate",
+      "forged": "conventional_candidate",
+      "cast": "conventional_candidate",
+      "fabricated": "conventional_candidate",
+      "purchased": "purchased_non_printable",
+      "not_printable": "purchased_non_printable",
+      "route_not_selected": "unresolved"
+    },
+    "f16_to_f12_family_crosswalk": {
+      "crankcase": "crankcase_half",
+      "crankshaft": "crankshaft",
+      "main_bearing": "main_bearing",
+      "individual_cylinder": "individual_cylinder",
+      "connecting_rod": "connecting_rod",
+      "piston_pin": "piston_pin",
+      "piston": "piston"
+    },
+    "backlog_route_classes": {
+      "fasteners_and_threaded_hardware": "purchased_non_printable",
+      "gaskets_and_dynamic_seals": "purchased_non_printable",
+      "retaining_hardware": "purchased_non_printable",
+      "fluid_lines_and_fittings": "hybrid_candidate",
+      "internal_fluid_passages": "not_a_part",
+      "cooling_air_passages_and_baffles": "hybrid_candidate",
+      "additional_bearings_bushings_and_thrust_elements": "purchased_non_printable",
+      "valvetrain_small_parts": "hybrid_candidate",
+      "piston_and_rod_small_parts": "hybrid_candidate",
+      "sensors_and_instrumentation": "purchased_non_printable",
+      "wiring_ignition_and_connectors": "purchased_non_printable",
+      "controls_linkages_and_actuators": "hybrid_candidate",
+      "filters_screens_and_flow_conditioners": "purchased_non_printable"
+    },
+    "classification_is_selection": false,
+    "prototype_is_functional_part": false,
+    "functional_engine_can_be_claimed_fully_printed": false
+  },
+  "family_route_registry": [
+    {
+      "id": "crankcase_half",
+      "source_visual_count": 2,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "cast",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing",
+      "source_visual_count": 8,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "crankshaft",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "forged",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "central_output_gear",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "machined",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "output_shaft",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "route_not_selected",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "unresolved",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "forged",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "route_not_selected",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "unresolved",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_ring",
+      "source_visual_count": 36,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "individual_cylinder",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "machined",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "individual_head",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "lpbf",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "metal_additive_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "intake_valve",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "exhaust_valve",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "valve_spring",
+      "source_visual_count": 24,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "bucket_tappet",
+      "source_visual_count": 24,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "camshaft",
+      "source_visual_count": 4,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "route_not_selected",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "unresolved",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cam_carrier",
+      "source_visual_count": 2,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "machined",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cam_drive_gear",
+      "source_visual_count": 10,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "machined",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cooling_blower",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "machined",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "blower_shroud",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "lpbf",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "metal_additive_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "intake_trumpet",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "lpbf",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "metal_additive_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "injector",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "spark_plug",
+      "source_visual_count": 24,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "distributor",
+      "source_visual_count": 2,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "pressure_oil_pump",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "scavenge_oil_pump",
+      "source_visual_count": 6,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "exhaust_primary",
+      "source_visual_count": 12,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "fabricated",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "exhaust_collector",
+      "source_visual_count": 2,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "fabricated",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "conventional_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "alternator",
+      "source_visual_count": 1,
+      "source_visual_variant": "base_and_turbo",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "turbocharger",
+      "source_visual_count": 2,
+      "source_visual_variant": "917_30_only",
+      "source_manufacturing_disposition": "purchased",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "purchased_non_printable",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": false,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "charge_plenum",
+      "source_visual_count": 2,
+      "source_visual_variant": "917_30_only",
+      "source_manufacturing_disposition": "lpbf",
+      "source_disposition_status": "candidate_only",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "allowed_purpose": "forme_encombrement_accessibilite_assemblage_statique",
+        "functional_use": false
+      },
+      "functional_disposition": {
+        "route_class": "metal_additive_candidate",
+        "status": "classification_only_route_not_selected_or_qualified",
+        "hybrid_completion_may_be_required": true,
+        "functional_3d_print_claim": false
+      },
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    }
+  ],
+  "instance_route_registry": [
+    {
+      "id": "crankcase_01",
+      "ordinal": 1,
+      "source_family": "crankcase",
+      "source_id_prefix": "crankcase_",
+      "source_count_fact_ref": null,
+      "f12_family_ref": "crankcase_half",
+      "crosswalk_status": "semantic_assembly_to_visual_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "crankshaft_01",
+      "ordinal": 1,
+      "source_family": "crankshaft",
+      "source_id_prefix": "crankshaft_",
+      "source_count_fact_ref": null,
+      "f12_family_ref": "crankshaft",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_01",
+      "ordinal": 1,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_02",
+      "ordinal": 2,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_03",
+      "ordinal": 3,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_04",
+      "ordinal": 4,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_05",
+      "ordinal": 5,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_06",
+      "ordinal": 6,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_07",
+      "ordinal": 7,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "main_bearing_08",
+      "ordinal": 8,
+      "source_family": "main_bearing",
+      "source_id_prefix": "main_bearing_",
+      "source_count_fact_ref": "FACT-MAIN-BEARING-COUNT",
+      "f12_family_ref": "main_bearing",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_01",
+      "ordinal": 1,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_02",
+      "ordinal": 2,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_03",
+      "ordinal": 3,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_04",
+      "ordinal": 4,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_05",
+      "ordinal": 5,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_06",
+      "ordinal": 6,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_07",
+      "ordinal": 7,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_08",
+      "ordinal": 8,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_09",
+      "ordinal": 9,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_10",
+      "ordinal": 10,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_11",
+      "ordinal": 11,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cylinder_geometric_12",
+      "ordinal": 12,
+      "source_family": "individual_cylinder",
+      "source_id_prefix": "cylinder_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "individual_cylinder",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_01",
+      "ordinal": 1,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_02",
+      "ordinal": 2,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_03",
+      "ordinal": 3,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_04",
+      "ordinal": 4,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_05",
+      "ordinal": 5,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_06",
+      "ordinal": 6,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_07",
+      "ordinal": 7,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_08",
+      "ordinal": 8,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_09",
+      "ordinal": 9,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_10",
+      "ordinal": 10,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_11",
+      "ordinal": 11,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "connecting_rod_geometric_12",
+      "ordinal": 12,
+      "source_family": "connecting_rod",
+      "source_id_prefix": "connecting_rod_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "connecting_rod",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "conventional_candidate",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": true,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_01",
+      "ordinal": 1,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_02",
+      "ordinal": 2,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_03",
+      "ordinal": 3,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_04",
+      "ordinal": 4,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_05",
+      "ordinal": 5,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_06",
+      "ordinal": 6,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_07",
+      "ordinal": 7,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_08",
+      "ordinal": 8,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_09",
+      "ordinal": 9,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_10",
+      "ordinal": 10,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_11",
+      "ordinal": 11,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_pin_geometric_12",
+      "ordinal": 12,
+      "source_family": "piston_pin",
+      "source_id_prefix": "piston_pin_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston_pin",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "purchased_non_printable",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_01",
+      "ordinal": 1,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_02",
+      "ordinal": 2,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_03",
+      "ordinal": 3,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_04",
+      "ordinal": 4,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_05",
+      "ordinal": 5,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_06",
+      "ordinal": 6,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_07",
+      "ordinal": 7,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_08",
+      "ordinal": 8,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_09",
+      "ordinal": 9,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_10",
+      "ordinal": 10,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_11",
+      "ordinal": 11,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_geometric_12",
+      "ordinal": 12,
+      "source_family": "piston",
+      "source_id_prefix": "piston_geometric_",
+      "source_count_fact_ref": "FACT-CYLINDER-COUNT",
+      "f12_family_ref": "piston",
+      "crosswalk_status": "same_named_family_candidate",
+      "variant_scope": "type_912_5_0_na",
+      "prototype_disposition": {
+        "route_class": "printable_prototype",
+        "status": "geometry_only_candidate_not_released",
+        "functional_use": false
+      },
+      "route_class": "unresolved",
+      "route_status": "inherited_classification_only_not_selected",
+      "hybrid_completion_may_be_required": false,
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    }
+  ],
+  "f8_interface_route_registry": {
+    "mechanical_connections": [
+      {
+        "id": "crankcase_split_fastened",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "fixed_fastened",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cylinder_to_crankcase",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "fixed_fastened",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "head_to_cylinder",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "fixed_fastened",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cam_carrier_to_head",
+        "count": 2,
+        "variant": "all",
+        "input_profile": "fixed_fastened",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "crankshaft_main_bearing",
+        "count": 8,
+        "variant": "all",
+        "input_profile": "revolute_bearing",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "connecting_rod_to_crankshaft",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "revolute_bearing",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "connecting_rod_to_piston_pin",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "revolute_bearing",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "piston_to_cylinder",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "prismatic_guided",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "camshaft_to_cam_carrier",
+        "count": 4,
+        "variant": "all",
+        "input_profile": "revolute_bearing",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "intake_valve_to_head_guide",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "prismatic_guided",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "exhaust_valve_to_head_guide",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "prismatic_guided",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cam_drive_gear_train",
+        "count": 10,
+        "variant": "all",
+        "input_profile": "gear_mesh",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cooling_blower_bevel_pair",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "gear_mesh",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cooling_blower_shaft_to_blower",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "fixed_fastened",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_rotor_support",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "revolute_bearing",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "starter_pinion_to_ring_gear",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "gear_mesh",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "crank_output_to_dyno_adapter",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "torsional_coupling",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "engine_mount_to_bedplate",
+        "count": 4,
+        "variant": "all",
+        "input_profile": "compliant_mount",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      }
+    ],
+    "sealing_interfaces": [
+      {
+        "id": "crankcase_split_seal",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "static_fluid_flange",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cylinder_to_crankcase_base_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "static_fluid_flange",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "head_to_cylinder_fire_joint",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "combustion_fire_joint",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "intake_valve_stem_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "reciprocating_stem",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "exhaust_valve_stem_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "reciprocating_stem",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "spark_plug_pressure_seat",
+        "count": 24,
+        "variant": "all",
+        "input_profile": "threaded_pressure_boundary",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "injector_to_head_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "threaded_pressure_boundary",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "intake_trumpet_to_head_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "static_fluid_flange",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "head_to_exhaust_primary_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "static_fluid_flange",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "exhaust_primary_to_collector_seal",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "static_fluid_flange",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "collector_to_turbo_hot_side_seal",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "static_fluid_flange",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "ambient_intake_to_turbo_compressor_inlet_connection",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_to_charge_plenum_seal",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "charge_plenum_to_intake_distribution_seal",
+        "count": 12,
+        "variant": "917_30_only",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "na_exhaust_collector_to_bench_extraction_connection",
+        "count": 2,
+        "variant": "type_912_4_5_na",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_turbine_outlet_to_bench_extraction_connection",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "pressure_oil_gallery_connection",
+        "count": 8,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "scavenge_return_connection",
+        "count": 6,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "oil_filter_connections",
+        "count": 2,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "oil_thermostat_connections",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "oil_cooler_connections",
+        "count": 2,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_oil_feed_connections",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_oil_drain_connections",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "bench_fuel_supply_to_injection_pump_fitting",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "injection_pump_to_injection_line_fittings",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "injection_line_to_injector_fittings",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "bench_oil_reservoir_supply_connection",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "bench_oil_cooler_return_connection",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "hose_or_tube_fitting",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "output_shaft_case_seal",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "rotating_shaft",
+        "route_class": "purchased_non_printable",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      }
+    ],
+    "ducts": [
+      {
+        "id": "ambient_to_intake_trumpets",
+        "count": 12,
+        "variant": "type_912_4_5_na",
+        "input_profile": "compressible_intake",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "ambient_to_turbo_compressor_inlet",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "compressible_intake",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "intake_trumpet_to_head",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "compressible_intake",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "head_to_exhaust_primary",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "compressible_exhaust",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "exhaust_primary_to_collector",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "compressible_exhaust",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "collector_to_turbo_hot_side",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "compressible_exhaust",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_turbine_outlet_to_bench_extraction",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "compressible_exhaust",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_to_charge_plenum",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "compressible_intake",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "charge_plenum_to_intake_trumpets",
+        "count": 12,
+        "variant": "917_30_only",
+        "input_profile": "compressible_intake",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "pressure_pump_to_main_bearings",
+        "count": 8,
+        "variant": "all",
+        "input_profile": "oil_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "scavenge_pumps_to_oil_cooler",
+        "count": 6,
+        "variant": "all",
+        "input_profile": "oil_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "bench_oil_reservoir_to_pressure_pump",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "oil_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "oil_cooler_to_bench_reservoir",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "oil_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_pressure_oil_feed",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "oil_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "turbo_scavenge_oil_drain",
+        "count": 2,
+        "variant": "917_30_only",
+        "input_profile": "oil_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "injection_pump_to_injectors",
+        "count": 12,
+        "variant": "all",
+        "input_profile": "fuel_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "bench_fuel_supply_to_injection_pump",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "fuel_line",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "bench_cooling_air_to_blower",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "cooling_air",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "blower_to_engine_cooling_field",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "cooling_air",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "na_exhaust_collector_to_bench_extraction",
+        "count": 2,
+        "variant": "type_912_4_5_na",
+        "input_profile": "compressible_exhaust",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "crankcase_breather",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "crankcase_ventilation",
+        "route_class": "hybrid_candidate",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      }
+    ],
+    "external_interfaces": [
+      {
+        "id": "bench_intake_ambient",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "external_boundary_definition",
+        "route_class": "not_a_part",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "dry_sump_oil_network",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "external_boundary_definition",
+        "route_class": "not_a_part",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "pressure_oil_network",
+        "count": 1,
+        "variant": "917_30_only",
+        "input_profile": "external_boundary_definition",
+        "route_class": "not_a_part",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "scavenge_oil_network",
+        "count": 1,
+        "variant": "917_30_only",
+        "input_profile": "external_boundary_definition",
+        "route_class": "not_a_part",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "cylinder_and_head_fin_field",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "external_boundary_definition",
+        "route_class": "not_a_part",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      },
+      {
+        "id": "oil_separator_or_breather_outlet",
+        "count": 1,
+        "variant": "all",
+        "input_profile": "external_boundary_definition",
+        "route_class": "not_a_part",
+        "route_status": "functional_requirement_only_not_selected",
+        "selected_material_grade": null,
+        "selected_process": null,
+        "selected_tolerance_set": null,
+        "release": {
+          "prototype_print": false,
+          "metal_additive": false,
+          "functional": false,
+          "engine_use": false,
+          "assembly": false
+        }
+      }
+    ]
+  },
+  "unbounded_bom_route_registry": [
+    {
+      "id": "fasteners_and_threaded_hardware",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "gaskets_and_dynamic_seals",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "retaining_hardware",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "fluid_lines_and_fittings",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "hybrid_candidate",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "internal_fluid_passages",
+      "source_status": "topology_not_reconstructed",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "not_a_part",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "cooling_air_passages_and_baffles",
+      "source_status": "topology_not_reconstructed",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "hybrid_candidate",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "additional_bearings_bushings_and_thrust_elements",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "valvetrain_small_parts",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "hybrid_candidate",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "piston_and_rod_small_parts",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "hybrid_candidate",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "sensors_and_instrumentation",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "wiring_ignition_and_connectors",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "controls_linkages_and_actuators",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "hybrid_candidate",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    },
+    {
+      "id": "filters_screens_and_flow_conditioners",
+      "source_status": "not_enumerated",
+      "quantity": null,
+      "dimensions": null,
+      "route_class": "purchased_non_printable",
+      "route_status": "unbounded_requirement_not_selected",
+      "selected_material_grade": null,
+      "selected_process": null,
+      "selected_tolerance_set": null,
+      "release": {
+        "prototype_print": false,
+        "metal_additive": false,
+        "functional": false,
+        "engine_use": false,
+        "assembly": false
+      }
+    }
+  ],
+  "conditional_material_policies": {
+    "titanium": {
+      "id": "titanium",
+      "status": "conditional_controls_only_no_material_or_route_selected",
+      "candidate_scopes": [
+        {
+          "family_id": "connecting_rod",
+          "basis": "F12_source_confidence_mentions_titanium_but_no_grade_or_route_is_selected"
+        },
+        {
+          "family_id": "intake_valve",
+          "basis": "design_hypothesis_only_requires_new_source_and_qualification"
+        },
+        {
+          "family_id": "exhaust_valve",
+          "basis": "design_hypothesis_only_requires_temperature_and_fatigue_evidence"
+        }
+      ],
+      "selected_grade": null,
+      "selected_feedstock_or_product_form": null,
+      "selected_process": null,
+      "selected_build_orientation": null,
+      "selected_heat_treatment": null,
+      "selected_hip_decision_and_cycle": null,
+      "selected_machining_allowance_mm": null,
+      "selected_ndt_method_and_acceptance": null,
+      "selected_ct_method_and_acceptance": null,
+      "selected_fatigue_basis": null,
+      "selected_galvanic_isolation_system": null,
+      "required_evidence_topics": [
+        "grade_and_product_form_traceability",
+        "process_and_parameter_qualification",
+        "build_orientation_and_anisotropy",
+        "heat_treatment_by_exact_grade_and_route",
+        "hip_applicability_and_cycle_if_relevant",
+        "machining_allowances_from_measured_distortion",
+        "ndt_and_ct_detectability_with_acceptance_criteria",
+        "hcf_lcf_thermal_fatigue_and_surface_condition",
+        "galvanic_isolation_in_real_temperature_and_fluid"
+      ],
+      "additive_build_authorized": false,
+      "functional_use_authorized": false
+    },
+    "inconel_nickel_superalloy": {
+      "id": "inconel_nickel_superalloy",
+      "status": "conditional_controls_only_no_material_or_route_selected",
+      "candidate_scopes": [
+        {
+          "family_id": "exhaust_primary",
+          "basis": "hot_side_design_hypothesis_only_no_grade_or_process_selected"
+        },
+        {
+          "family_id": "exhaust_collector",
+          "basis": "hot_side_design_hypothesis_only_no_grade_or_process_selected"
+        },
+        {
+          "family_id": "turbocharger",
+          "basis": "purchased_assembly_hot_side_material_change_requires_supplier_and_test_evidence"
+        }
+      ],
+      "selected_grade": null,
+      "selected_feedstock_or_product_form": null,
+      "selected_process": null,
+      "selected_build_orientation": null,
+      "selected_heat_treatment": null,
+      "selected_hip_decision_and_cycle": null,
+      "selected_machining_allowance_mm": null,
+      "selected_ndt_method_and_acceptance": null,
+      "selected_ct_method_and_acceptance": null,
+      "selected_fatigue_basis": null,
+      "selected_galvanic_isolation_system": null,
+      "required_evidence_topics": [
+        "grade_and_product_form_traceability",
+        "process_and_parameter_qualification",
+        "build_orientation_and_anisotropy",
+        "heat_treatment_by_exact_grade_and_route",
+        "hip_applicability_and_cycle_if_relevant",
+        "machining_allowances_from_measured_distortion",
+        "ndt_and_ct_detectability_with_acceptance_criteria",
+        "hcf_lcf_thermal_fatigue_and_surface_condition",
+        "galvanic_isolation_in_real_temperature_and_fluid"
+      ],
+      "additive_build_authorized": false,
+      "functional_use_authorized": false
+    }
+  },
+  "functional_engine_policy": {
+    "definition": "100 percent fonctionnel signifie que chaque fonction est specifiee, integree, calculee, inspectee et validee au banc; cela ne signifie jamais 100 percent imprime.",
+    "fully_additively_manufactured": false,
+    "purchased_functions_remain_mandatory": [
+      "bearings_and_bushings",
+      "gaskets_and_dynamic_seals",
+      "springs",
+      "piston_rings",
+      "injectors",
+      "spark_plugs",
+      "sensors_and_instrumentation",
+      "retaining_and_threaded_hardware"
+    ],
+    "mixed_route_required_before_functional_claim": true,
+    "mixed_route_qualified": false
+  },
+  "counts": {
+    "f12_family_count": 31,
+    "f16_semantic_instance_count": 58,
+    "f8_mechanical_group_count": 18,
+    "f8_seal_group_count": 29,
+    "f8_duct_group_count": 21,
+    "f8_external_interface_group_count": 6,
+    "unbounded_bom_category_count": 13
+  },
+  "release_gates": {
+    "prototype_print_authorized": false,
+    "metal_additive_build_authorized": false,
+    "conventional_manufacturing_authorized": false,
+    "purchased_component_specification_released": false,
+    "hybrid_assembly_authorized": false,
+    "all_materials_and_routes_sourced": false,
+    "all_tolerances_sourced_and_validated": false,
+    "real_bom_complete": false,
+    "functional_engine_authorized": false,
+    "vehicle_use_authorized": false
+  },
+  "prohibited_claims": [
+    "scan_or_proxy_is_manufacturing_geometry",
+    "candidate_route_is_selected_or_qualified",
+    "prototype_is_engine_functional",
+    "purchased_function_is_functionally_3d_printable",
+    "100_percent_functional_means_100_percent_printed",
+    "physicsnemo_or_omniverse_is_manufacturing_release"
+  ]
+}
