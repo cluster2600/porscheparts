@@ -79,6 +79,30 @@ que sa fiche `catalog/sources` actuelle porte C. F13 enregistre la divergence et
 applique provisoirement le niveau le plus prudent, C. La classification devra
 être harmonisée avant toute revue de preuve.
 
+### Branches d'homologation FIA 4,494 et 4,907 L
+
+La fiche d'homologation FIA officielle n° 250 apporte des valeurs primaires que
+les sources secondaires précédentes ne donnaient pas. Elles restent strictement
+attachées à leur branche :
+
+| Quantité déclarée | 4 494,2 cm³ initial | Extension 1/1E, 4 907,28 cm³ |
+| --- | ---: | ---: |
+| Alésage × course | 85 × 66 mm | 86 × 70,4 mm |
+| Axe de piston → calotte | 43 mm | non publié |
+| Ø palier de maneton | 52 mm | non publié |
+| Ø tête de bielle | 56 mm | non publié |
+| Vilebrequin | forgé assemblé | forgé monobloc, `912.102.031.00` |
+| Masse vilebrequin | 23,75 ± 0,2 kg | non publiée |
+| Masse d'une bielle | 0,42 ± 0,02 kg | non publiée |
+| Masse piston + axe + segments | 0,46 ± 0,02 kg | non publiée |
+
+La [fiche source](../catalog/sources/src-fia-917-homologation-250.json) enregistre
+l'URL officielle, les pages, les droits et le SHA-256 du PDF sans redistribuer
+le document. Ces valeurs enrichissent les contrôles de cohérence et les futures
+campagnes F16, mais ne fournissent ni largeurs, jeux, coordonnées axiales,
+tolérances de fabrication, ni autorité de transfert vers le 4 999 cm³ ou le
+5 374 cm³ turbo.
+
 ### 917/30 turbo
 
 Le 917/30 1973, le record 1975 et le claim de qualification à 1 600 hp sont
@@ -155,7 +179,7 @@ fabrication :
 
 - 12 cylindres et angle publié de 180°, avec contradiction « V à 180° » versus
   « flat-12 » ; la cinématique boxer n'est pas prouvée ;
-- alésages/courses des variantes 4,5 L, 5,0 L et 5,374 L ; les enveloppes
+- alésages/courses des variantes 4,494 L, 4,907 L, 4,999 L et 5,374 L ; les enveloppes
   min/max servent à auditer la couverture, jamais à interpoler un moteur ;
 - huit paliers principaux et sortie centrale, sans diamètres ni déports ;
 - carter en famille magnésium moulé au sable, cylindres revêtus Nikasil, bielles

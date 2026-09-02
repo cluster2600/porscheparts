@@ -7,6 +7,7 @@
   "parent_asset_id": "porsche-917-whole-engine-reengineering-f12",
   "variants": [
     "type_912_4_5_na",
+    "type_912_4_907_na_homologation_extension_1_1E",
     "type_912_5_0_na",
     "917_30_1973_turbo_5374",
     "917_30_1975_record_turbo_5374",
@@ -44,6 +45,14 @@
       "catalog_path": "catalog/sources/src-kfz-tech-917-type912-engine.json",
       "language": "de",
       "rights": "reference_only"
+    },
+    {
+      "source_id": "SRC-FIA-917-HOMOLOGATION-250",
+      "catalog_path": "catalog/sources/src-fia-917-homologation-250.json",
+      "language": "fr_de_en",
+      "rights": "reference_only",
+      "catalog_declared_evidence_level": "A",
+      "usage_note": "Valeurs declarees propres aux variantes 4 494,2 cm3 et extension 1/1E 4 907,28 cm3; aucune tolerance ni autorite de fabrication."
     },
     {
       "source_id": "SRC-PORSCHE-CHRISTOPHORUS-917-DILAVAR-STUDS",
@@ -115,6 +124,16 @@
       "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
     },
     {
+      "id": "FACT-4907-BORE",
+      "quantity": "cylinder_bore",
+      "variant": "type_912_4_907_na_homologation_extension_1_1E",
+      "candidate": {"kind": "published_point", "value": 86.0, "unit": "mm"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "variant_identity_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING", "CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
       "id": "FACT-50-BORE",
       "quantity": "cylinder_bore",
       "variant": "type_912_5_0_na",
@@ -143,6 +162,16 @@
       "usage": "candidate_only",
       "design_lock": false,
       "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-4907-STROKE",
+      "quantity": "piston_stroke",
+      "variant": "type_912_4_907_na_homologation_extension_1_1E",
+      "candidate": {"kind": "published_point", "value": 70.4, "unit": "mm"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "variant_identity_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING", "CONTRADICTION-FIA-VARIANT-TRANSFER"]
     },
     {
       "id": "FACT-50-STROKE",
@@ -175,6 +204,16 @@
       "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
     },
     {
+      "id": "FACT-4907-DISPLACEMENT",
+      "quantity": "engine_displacement",
+      "variant": "type_912_4_907_na_homologation_extension_1_1E",
+      "candidate": {"kind": "published_point", "value": 4907.28, "unit": "cm3"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "variant_identity_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING", "CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
       "id": "FACT-50-DISPLACEMENT",
       "quantity": "engine_displacement",
       "variant": "type_912_5_0_na",
@@ -193,6 +232,106 @@
       "usage": "candidate_only",
       "design_lock": false,
       "contradiction_refs": ["CONTRADICTION-VARIANT-MIXING"]
+    },
+    {
+      "id": "FACT-45-PISTON-COMPRESSION-HEIGHT",
+      "quantity": "piston_pin_axis_to_crown_height",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": 43.0, "unit": "mm"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "interface_candidate_only_not_tolerance",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-45-CRANKPIN-BEARING-DIAMETER",
+      "quantity": "crankpin_bearing_diameter",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": 52.0, "unit": "mm"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "interface_candidate_only_not_tolerance",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
+      "quantity": "connecting_rod_big_end_diameter",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": 56.0, "unit": "mm"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "interface_candidate_only_not_tolerance",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-45-CRANKSHAFT-MASS",
+      "quantity": "crankshaft_mass",
+      "variant": "type_912_4_5_na",
+      "candidate": {
+        "kind": "published_point",
+        "value": 23.75,
+        "unit": "kg",
+        "declared_tolerance": {"plus_minus": 0.2, "unit": "kg"}
+      },
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "mass_correlation_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-45-CONNECTING-ROD-MASS",
+      "quantity": "connecting_rod_mass",
+      "variant": "type_912_4_5_na",
+      "candidate": {
+        "kind": "published_point",
+        "value": 0.42,
+        "unit": "kg",
+        "declared_tolerance": {"plus_minus": 0.02, "unit": "kg"}
+      },
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "mass_correlation_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-45-PISTON-GROUP-MASS",
+      "quantity": "piston_pin_ring_group_mass",
+      "variant": "type_912_4_5_na",
+      "candidate": {
+        "kind": "published_point",
+        "value": 0.46,
+        "unit": "kg",
+        "declared_tolerance": {"plus_minus": 0.02, "unit": "kg"}
+      },
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "mass_correlation_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-45-CRANKSHAFT-CONSTRUCTION",
+      "quantity": "crankshaft_construction",
+      "variant": "type_912_4_5_na",
+      "candidate": {"kind": "published_point", "value": "forged_assembled", "unit": "categorical"},
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "variant_identity_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
+    },
+    {
+      "id": "FACT-4907-CRANKSHAFT-CONSTRUCTION",
+      "quantity": "crankshaft_construction",
+      "variant": "type_912_4_907_na_homologation_extension_1_1E",
+      "candidate": {
+        "kind": "published_point",
+        "value": "forged_one_piece",
+        "unit": "categorical",
+        "part_number": "912.102.031.00"
+      },
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "usage": "variant_identity_candidate_only",
+      "design_lock": false,
+      "contradiction_refs": ["CONTRADICTION-FIA-VARIANT-TRANSFER"]
     },
     {
       "id": "FACT-50-COMPRESSION",
@@ -532,7 +671,7 @@
       "minimum": 85.0,
       "maximum": 90.0,
       "unit": "mm",
-      "component_fact_refs": ["FACT-45-BORE", "FACT-50-BORE", "FACT-5374-BORE"],
+      "component_fact_refs": ["FACT-45-BORE", "FACT-4907-BORE", "FACT-50-BORE", "FACT-5374-BORE"],
       "derivation": "min_max_of_published_variant_points",
       "semantics": "documented_variant_envelope_not_continuous_design_range",
       "design_lock": false
@@ -543,7 +682,7 @@
       "minimum": 66.0,
       "maximum": 70.4,
       "unit": "mm",
-      "component_fact_refs": ["FACT-45-STROKE", "FACT-50-STROKE", "FACT-5374-STROKE"],
+      "component_fact_refs": ["FACT-45-STROKE", "FACT-4907-STROKE", "FACT-50-STROKE", "FACT-5374-STROKE"],
       "derivation": "min_max_of_published_variant_points",
       "semantics": "documented_variant_envelope_not_continuous_design_range",
       "design_lock": false
@@ -554,7 +693,7 @@
       "minimum": 4494.0,
       "maximum": 5374.0,
       "unit": "cm3",
-      "component_fact_refs": ["FACT-45-DISPLACEMENT", "FACT-50-DISPLACEMENT", "FACT-5374-DISPLACEMENT"],
+      "component_fact_refs": ["FACT-45-DISPLACEMENT", "FACT-4907-DISPLACEMENT", "FACT-50-DISPLACEMENT", "FACT-5374-DISPLACEMENT"],
       "derivation": "min_max_of_published_variant_points",
       "semantics": "documented_variant_envelope_not_continuous_design_range",
       "design_lock": false
@@ -714,9 +853,15 @@
     },
     {
       "id": "CONTRADICTION-VARIANT-MIXING",
-      "statement": "Les valeurs 4,5 L, 5,0 L et 5,374 L appartiennent a des variantes distinctes.",
+      "statement": "Les valeurs 4,494 L, 4,907 L, 4,999 L et 5,374 L appartiennent a des variantes distinctes.",
       "resolution_status": "open",
       "solver_rule": "Un cas doit selectionner une variante complete; aucune interpolation multi-variante n'est une configuration historique."
+    },
+    {
+      "id": "CONTRADICTION-FIA-VARIANT-TRANSFER",
+      "statement": "La fiche FIA n° 250 decrit le moteur initial de 4 494,2 cm3 et son extension 1/1E de 4 907,28 cm3; elle ne prouve pas que les interfaces, masses ou constructions de vilebrequin sont conservees sur les versions 4 999 cm3 ou 5 374 cm3 turbo.",
+      "resolution_status": "open",
+      "solver_rule": "Conserver chaque valeur dans sa branche d'homologation, la traiter comme cote ou masse declaree sans tolerance de fabrication et exiger metrologie ou reference de piece avant tout transfert."
     },
     {
       "id": "CONTRADICTION-POWER-RATINGS",

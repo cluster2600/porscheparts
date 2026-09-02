@@ -130,6 +130,80 @@ class ClassicalSolverCases917F13Tests(unittest.TestCase):
             "CONTRADICTION-AMS-EVIDENCE-LEVEL",
         )
 
+    def test_fia_homologation_facts_are_primary_but_variant_scoped(self):
+        source = next(
+            item
+            for item in self.registry["source_registry"]
+            if item["source_id"] == "SRC-FIA-917-HOMOLOGATION-250"
+        )
+        facts = {item["id"]: item for item in self.registry["fact_registry"]}
+
+        self.assertEqual(source["rights"], "reference_only")
+        self.assertEqual(source["catalog_declared_evidence_level"], "A")
+        self.assertEqual(
+            source["catalog_path"],
+            "catalog/sources/src-fia-917-homologation-250.json",
+        )
+        self.assertEqual(facts["FACT-4907-BORE"]["candidate"]["value"], 86.0)
+        self.assertEqual(facts["FACT-4907-STROKE"]["candidate"]["value"], 70.4)
+        self.assertEqual(
+            facts["FACT-4907-DISPLACEMENT"]["candidate"]["value"], 4907.28
+        )
+        self.assertEqual(
+            facts["FACT-45-PISTON-COMPRESSION-HEIGHT"]["candidate"]["value"],
+            43.0,
+        )
+        self.assertEqual(
+            facts["FACT-45-CRANKPIN-BEARING-DIAMETER"]["candidate"]["value"],
+            52.0,
+        )
+        self.assertEqual(
+            facts["FACT-45-CONNECTING-ROD-BIG-END-DIAMETER"]["candidate"]["value"],
+            56.0,
+        )
+        self.assertEqual(
+            facts["FACT-4907-CRANKSHAFT-CONSTRUCTION"]["candidate"]["part_number"],
+            "912.102.031.00",
+        )
+        for fact_id in (
+            "FACT-4907-BORE",
+            "FACT-4907-STROKE",
+            "FACT-4907-DISPLACEMENT",
+            "FACT-45-PISTON-COMPRESSION-HEIGHT",
+            "FACT-45-CRANKPIN-BEARING-DIAMETER",
+            "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
+            "FACT-45-CRANKSHAFT-MASS",
+            "FACT-45-CONNECTING-ROD-MASS",
+            "FACT-45-PISTON-GROUP-MASS",
+            "FACT-45-CRANKSHAFT-CONSTRUCTION",
+            "FACT-4907-CRANKSHAFT-CONSTRUCTION",
+        ):
+            fact = facts[fact_id]
+            self.assertFalse(fact["design_lock"], fact_id)
+            self.assertEqual(
+                fact["source_refs"], ["SRC-FIA-917-HOMOLOGATION-250"], fact_id
+            )
+            self.assertIn(
+                "CONTRADICTION-FIA-VARIANT-TRANSFER",
+                fact["contradiction_refs"],
+                fact_id,
+            )
+
+    def test_fia_catalogue_record_tracks_pdf_without_redistributing_it(self):
+        source_path = ROOT / "catalog/sources/src-fia-917-homologation-250.json"
+        source = json.loads(source_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(source["source_type"], "official")
+        self.assertEqual(source["quality"]["evidence_level"], "A")
+        self.assertEqual(source["rights"]["redistribution"], "prohibited")
+        self.assertIn(
+            "92a03ecef96a68cd227d0ef9f5f7413a7519a04ef24796330fbee4874b2226cd",
+            source["notes"],
+        )
+        self.assertFalse(
+            (ROOT / "catalog/sources/homologation_form_number_250_group_4.pdf").exists()
+        )
+
     def test_candidate_ranges_are_only_derived_variant_envelopes(self):
         report = self.module.evaluate(ROOT, REGISTRY)
 
