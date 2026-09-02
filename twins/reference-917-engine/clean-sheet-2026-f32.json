@@ -1,0 +1,200 @@
+{
+  "$comment": "F32 définit une architecture 917-inspired de 2026 et calcule uniquement un point de dimensionnement algébrique. Il ne s'agit ni d'une réplique historique, ni d'un résultat CFD/FEA, ni d'une preuve de 1 600 hp.",
+  "schema_version": "1.0.0",
+  "phase": "F32",
+  "status": "clean_sheet_2026_algebraic_screening_only_all_release_gates_blocked",
+  "program": {
+    "id": "917_2026_turbo_1600hp_clean_sheet",
+    "design_intent": "modern_2026_flat12_twin_turbo_test_bench_then_porsche_911_993_integration",
+    "historical_replica": false,
+    "historical_geometry_authority": false,
+    "scan_role": "external_reference_and_packaging_context_only",
+    "target_vehicle": "porsche_911_type_993_shell",
+    "target_power": {
+      "value": 1600.0,
+      "unit": "mechanical_hp",
+      "origin": "user_design_requirement",
+      "measured": false,
+      "simulated": false,
+      "proven": false
+    }
+  },
+  "authority_boundary": {
+    "upstream_layout_contract": "twins/reference-917-engine/parametric-layout-authoring-f30.template.json",
+    "upstream_head_study": "twins/reference-917-engine/clean-sheet-cylinder-head-f29.json",
+    "upstream_head_reference_cae": "twins/reference-917-engine/head-reference-cae-f31.json",
+    "upstream_head_reference_cae_role": "non_correlated_reference_solver_screening_only",
+    "f31_head_reference_cae_released_for_engine_operation": false,
+    "f29_or_f30_geometry_released_for_engine_operation": false,
+    "f32_dimensions_classification": "clean_sheet_design_hypotheses_for_screening_only",
+    "allowed_claims": [
+      "algebraic_power_torque_bmep_identity",
+      "declared_air_plus_fuel_mass_identity_and_residual_energy_partition",
+      "comparison_against_declared_thermal_load_limits"
+    ],
+    "forbidden_claims": [
+      "historically_accurate_porsche_917_replica",
+      "validated_1600_hp_engine",
+      "validated_turbo_match",
+      "validated_liquid_or_air_oil_cooling_system",
+      "porsche_993_fitment",
+      "safe_for_engine_operation",
+      "ready_for_metal_print"
+    ]
+  },
+  "architecture_seed": {
+    "classification": "design_seed_not_measured_engine_geometry",
+    "arrangement": "horizontally_opposed_flat12",
+    "cycle": "four_stroke_spark_ignition",
+    "cylinder_count": 12,
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "design_speed_rpm": 9000.0,
+    "valves_per_cylinder": 4,
+    "camshaft_count": 4,
+    "turbocharger_count": 2,
+    "turbo_arrangement": "one_per_bank_parallel",
+    "lubrication": "dry_sump_multistage_hypothesis",
+    "induction": "electronic_fuel_injection_and_closed_loop_boost_hypothesis"
+  },
+  "air_and_fuel_screening": {
+    "fuel": "high_octane_gasoline_equivalent_composition_unqualified",
+    "brake_specific_fuel_consumption_lb_hp_h": 0.55,
+    "air_fuel_ratio_mass": 11.0,
+    "volumetric_efficiency": 1.0,
+    "manifold_temperature_k": 325.0,
+    "compressor_inlet_pressure_pa": 96000.0,
+    "compressor_inlet_temperature_k": 298.15,
+    "charge_path_pressure_loss_pa": 25000.0,
+    "compressor_isentropic_efficiency": 0.75,
+    "gas_gamma": 1.4,
+    "gas_cp_j_kg_k": 1005.0,
+    "gas_constant_j_kg_k": 287.05,
+    "fuel_lower_heating_value_j_kg": 43000000.0,
+    "classification": "sizing_hypotheses_not_calibration_data",
+    "turbo_candidate_shortlist": {
+      "model": "Garrett_G35_1050_pair",
+      "role": "capacity_shortlist_only",
+      "compressor_map_digitized": false,
+      "turbine_map_available": false,
+      "surge_choke_speed_and_efficiency_margins_verified": false
+    }
+  },
+  "thermal_screening": {
+    "load_allocation_classification": "declared_energy_partition_hypotheses_not_cht_or_test_data",
+    "head_heat_fraction_of_fuel_power": 0.14,
+    "base_oil_heat_fraction_of_fuel_power": 0.06,
+    "base_cylinder_fin_air_heat_fraction_of_fuel_power": 0.04,
+    "radiation_and_unmodelled_heat_fraction_of_fuel_power": 0.03,
+    "air_oil_head_heat_split_to_oil": 0.35,
+    "coolant_cp_j_kg_k": 3600.0,
+    "head_coolant_delta_t_k": 15.0,
+    "charge_coolant_cp_j_kg_k": 3800.0,
+    "charge_coolant_delta_t_k": 12.0,
+    "oil_cp_j_kg_k": 2100.0,
+    "oil_delta_t_k": 25.0,
+    "variants": [
+      {
+        "id": "917_2026_hybrid_head_liquid_air_oil_cylinders",
+        "engine_cooling": "air_oil_cylinders_plus_liquid_cooled_heads_and_turbo_bearing_housings",
+        "charge_cooling": "water_to_air_intercoolers",
+        "turbo_bearing_cooling": "liquid_after_run_candidate_load_not_yet_available",
+        "stock_993_liquid_cooling_claim": false,
+        "dedicated_conversion_coolant_circuit_required": true,
+        "turbo_bearing_housing_heat_load_w": null,
+        "screening_limits_w": {
+          "head_high_temperature_liquid_loop": 800000.0,
+          "turbo_bearing_housings": 150000.0,
+          "charge_low_temperature_liquid_loop": 250000.0,
+          "oil_loop": 350000.0,
+          "cylinder_fin_air": 300000.0
+        }
+      },
+      {
+        "id": "917_2026_air_oil_engine_air_air_charge",
+        "engine_cooling": "air_and_oil_only_no_engine_coolant_jacket",
+        "charge_cooling": "air_to_air_intercoolers",
+        "turbo_bearing_cooling": "unresolved_no_liquid_candidate_required",
+        "stock_993_liquid_cooling_claim": false,
+        "dedicated_conversion_coolant_circuit_required": false,
+        "turbo_bearing_housing_heat_load_w": null,
+        "screening_limits_w": {
+          "air_to_air_charge_cooler": 250000.0,
+          "oil_loop": 400000.0,
+          "cylinder_and_head_fin_air": 450000.0
+        }
+      }
+    ]
+  },
+  "material_hypotheses": {
+    "crankcase_and_heads": "aluminium_alloy_candidate_unselected",
+    "pistons": "forged_2618_aluminium_candidate",
+    "connecting_rods": "forged_ti_6al_4v_candidate_not_additively_manufactured",
+    "crankshaft": "forged_nitrided_steel_candidate",
+    "intake_valves": "forged_or_machined_ti_6al_4v_candidate",
+    "exhaust_valves": "nickel_superalloy_candidate",
+    "exhaust_manifolds": "nickel_superalloy_candidate",
+    "manufacturing_released": false,
+    "fatigue_thermal_corrosion_and_process_qualification_complete": false
+  },
+  "porsche_993_integration": {
+    "historical_993_engine_cooling": "air_and_oil_cooled",
+    "historical_fact_source_ids": [
+      "SRC-PORSCHE-NEWSROOM-993",
+      "SRC-PORSCHE-PET-993"
+    ],
+    "conversion_baseline": "new_dedicated_hybrid_multiloop_system_not_a_stock_993_system",
+    "measured_vehicle_package_available": false,
+    "required_evidence": {
+      "engine_bay_envelope_and_uncertainty": null,
+      "powertrain_mass_and_center_of_gravity": null,
+      "rear_axle_load_budget": null,
+      "mount_and_body_load_paths": null,
+      "transaxle_torque_capacity_and_durability": null,
+      "radiator_core_and_duct_packaging": null,
+      "coolant_pipe_routes_and_bleed_strategy": null,
+      "oil_tank_pump_and_cooler_package": null,
+      "charge_cooler_and_plenum_package": null,
+      "exhaust_turbo_and_firewall_clearances": null,
+      "fuel_electrical_ecu_and_safety_architecture": null,
+      "braking_suspension_tyre_and_chassis_validation": null,
+      "road_approval_and_insurance_basis": null
+    },
+    "vehicle_installation_authorized": false
+  },
+  "required_next_solver_evidence": {
+    "mechanical_hp_and_accessory_boundary": null,
+    "duty_cycle_and_1600hp_duration": null,
+    "ambient_altitude_and_vehicle_speed_envelope": null,
+    "fuel_specification_and_batch_certificate": null,
+    "one_dimensional_engine_cycle_model": null,
+    "measured_combustion_or_calibration_dataset": null,
+    "digitized_compressor_and_turbine_maps": null,
+    "turbo_bearing_housing_thermal_load_and_hot_soak": null,
+    "three_dimensional_intake_and_exhaust_cfd": null,
+    "conjugate_heat_transfer_model": null,
+    "head_case_crank_rod_piston_and_mount_fea": null,
+    "oil_and_coolant_network_model": null,
+    "vehicle_underhood_and_radiator_airflow_cfd": null,
+    "instrumented_test_bench_plan": null,
+    "held_out_physical_correlation_dataset": null
+  },
+  "release_gates": {
+    "target_definition_complete": false,
+    "target_power_proven": false,
+    "mass_and_energy_balance_validated": false,
+    "thermodynamic_cycle_validated": false,
+    "turbo_match_validated": false,
+    "combustion_and_knock_validated": false,
+    "cooling_system_validated": false,
+    "oil_system_validated": false,
+    "structural_and_fatigue_validated": false,
+    "controls_and_overspeed_protection_validated": false,
+    "test_bench_start_authorized": false,
+    "porsche_993_packaging_validated": false,
+    "porsche_993_vehicle_installation_authorized": false,
+    "held_out_physical_correlation_complete": false,
+    "metal_print_authorized": false,
+    "manufacturing_authorized": false
+  }
+}

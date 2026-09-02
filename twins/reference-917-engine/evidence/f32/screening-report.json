@@ -1,0 +1,238 @@
+{
+  "contract_sha256": "5445eb1db6371bd968260e47276e547d102252508550aabac75085f80f70337f",
+  "cooling_variants": [
+    {
+      "architecture": "air_oil_cylinders_plus_liquid_cooled_heads_and_turbo_bearing_housings",
+      "charge_cooling": "water_to_air_intercoolers",
+      "evaluated_loads_within_declared_screening_limits": true,
+      "id": "917_2026_hybrid_head_liquid_air_oil_cylinders",
+      "loads": {
+        "charge_low_temperature_liquid_loop": {
+          "load_w": 159233.842579224,
+          "margin_w": 90766.157420776,
+          "screening_limit_w": 250000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": true
+        },
+        "cylinder_fin_air": {
+          "load_w": 190710.392008889,
+          "margin_w": 109289.607991111,
+          "screening_limit_w": 300000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": true
+        },
+        "head_high_temperature_liquid_loop": {
+          "load_w": 667486.372031111,
+          "margin_w": 132513.627968889,
+          "screening_limit_w": 800000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": true
+        },
+        "oil_loop": {
+          "load_w": 286065.588013333,
+          "margin_w": 63934.411986667,
+          "screening_limit_w": 350000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": true
+        },
+        "turbo_bearing_housings": {
+          "load_w": null,
+          "margin_w": null,
+          "missing_input": true,
+          "screening_limit_w": 150000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": false
+        }
+      },
+      "missing_load_inputs": [
+        "turbo_bearing_housing_heat_load_and_hot_soak"
+      ],
+      "required_mass_flows_kg_s": {
+        "charge_coolant": 3.491970232,
+        "head_coolant": 12.360858741,
+        "oil": 5.448868343,
+        "turbo_bearing_coolant": null
+      },
+      "screening_complete": false,
+      "thermal_system_validated": false,
+      "vehicle_packaging_validated": false,
+      "within_all_declared_screening_limits": false
+    },
+    {
+      "architecture": "air_and_oil_only_no_engine_coolant_jacket",
+      "charge_cooling": "air_to_air_intercoolers",
+      "evaluated_loads_within_declared_screening_limits": false,
+      "head_heat_redistribution_w": {
+        "to_fin_air": 433866.141820222,
+        "to_oil": 233620.230210889
+      },
+      "id": "917_2026_air_oil_engine_air_air_charge",
+      "loads": {
+        "air_to_air_charge_cooler": {
+          "load_w": 159233.842579224,
+          "margin_w": 90766.157420776,
+          "screening_limit_w": 250000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": true
+        },
+        "cylinder_and_head_fin_air": {
+          "load_w": 624576.533829111,
+          "margin_w": -174576.533829111,
+          "screening_limit_w": 450000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": false
+        },
+        "oil_loop": {
+          "load_w": 519685.818224222,
+          "margin_w": -119685.818224222,
+          "screening_limit_w": 400000.0,
+          "validated_capacity": false,
+          "within_declared_screening_limit": false
+        }
+      },
+      "missing_load_inputs": [
+        "turbo_bearing_housing_heat_load_and_cooling_method"
+      ],
+      "required_mass_flows_kg_s": {
+        "oil": 9.89877749
+      },
+      "screening_complete": false,
+      "thermal_system_validated": false,
+      "vehicle_packaging_validated": false,
+      "within_all_declared_screening_limits": false
+    }
+  ],
+  "declared_residual_energy_partition": {
+    "closure_error_w": 0.0,
+    "closure_kind": "residual_arithmetic_closure_not_turbine_or_exhaust_enthalpy_balance",
+    "declared_outputs_w": {
+      "base_cylinder_fin_air_heat": 190710.392008889,
+      "base_oil_heat": 286065.588013333,
+      "brake_power": 1193119.794531632,
+      "head_heat": 667486.372031111,
+      "intercooler_heat": 159233.842579224,
+      "radiation_and_unmodelled_heat": 143032.794006667,
+      "tailpipe_exhaust_heat": 2128111.017051366
+    },
+    "input_fuel_power_w": 4767759.800222223,
+    "partition_is_hypothesis_not_measurement": true,
+    "relative_closure_error": 0.0,
+    "turbo_shaft_power_balance_closed": false
+  },
+  "design_point": {
+    "air_and_fuel": {
+      "air_mass_flow_kg_s": 1.219659484,
+      "air_mass_flow_per_turbo_kg_s": 0.609829742,
+      "air_plus_fuel_mass_balance_closed": true,
+      "compressor_outlet_temperature_k": 454.906450542,
+      "compressor_power_per_turbo_w": 96072.719502177,
+      "compressor_power_total_w": 192145.439004355,
+      "compressor_pressure_ratio": 3.200896515,
+      "exhaust_mass_flow_kg_s": 1.330537619,
+      "fuel_mass_flow_kg_h": 399.1612856,
+      "fuel_mass_flow_kg_s": 0.110878135,
+      "intake_volume_flow_m3_s": 0.403078904,
+      "intercooler_heat_rejection_w": 159233.842579224,
+      "manifold_density_kg_m3": 3.025857896,
+      "required_manifold_absolute_pressure_pa": 282286.065422688,
+      "required_manifold_gauge_pressure_bar_at_declared_inlet": 1.862860654,
+      "turbo_map_match_verified": false
+    },
+    "energy": {
+      "fuel_power_w": 4767759.800222223,
+      "screening_brake_thermal_efficiency": 0.250247463
+    },
+    "geometry_and_mechanics": {
+      "design_speed_rpm": 9000.0,
+      "displacement_l": 5.374385384,
+      "mean_piston_speed_m_s": 21.12,
+      "required_bmep_bar": 29.600154789,
+      "required_torque_nm": 1265.939420003,
+      "specific_power_kw_per_l": 222.001160915
+    },
+    "target_power": {
+      "kw": 1193.119794532,
+      "mechanical_hp": 1600.0,
+      "power_requirement_identity_closed": true,
+      "target_power_proven": false,
+      "w": 1193119.794531632
+    }
+  },
+  "model_scope": {
+    "cfd_cht_fea_or_dyno_result": false,
+    "clean_sheet_2026": true,
+    "engine_cycle_solver": false,
+    "historical_replica": false,
+    "zero_dimensional_algebraic_screen_only": true
+  },
+  "phase": "F32",
+  "porsche_993_integration": {
+    "conversion_baseline": "new_dedicated_hybrid_multiloop_system_not_a_stock_993_system",
+    "historical_993_engine_cooling": "air_and_oil_cooled",
+    "missing_evidence": [
+      "braking_suspension_tyre_and_chassis_validation",
+      "charge_cooler_and_plenum_package",
+      "coolant_pipe_routes_and_bleed_strategy",
+      "engine_bay_envelope_and_uncertainty",
+      "exhaust_turbo_and_firewall_clearances",
+      "fuel_electrical_ecu_and_safety_architecture",
+      "mount_and_body_load_paths",
+      "oil_tank_pump_and_cooler_package",
+      "powertrain_mass_and_center_of_gravity",
+      "radiator_core_and_duct_packaging",
+      "rear_axle_load_budget",
+      "road_approval_and_insurance_basis",
+      "transaxle_torque_capacity_and_durability"
+    ],
+    "target_vehicle": "porsche_911_type_993_shell",
+    "vehicle_installation_authorized": false
+  },
+  "release_gates": {
+    "combustion_and_knock_validated": false,
+    "controls_and_overspeed_protection_validated": false,
+    "cooling_system_validated": false,
+    "held_out_physical_correlation_complete": false,
+    "manufacturing_authorized": false,
+    "mass_and_energy_balance_validated": false,
+    "metal_print_authorized": false,
+    "oil_system_validated": false,
+    "porsche_993_packaging_validated": false,
+    "porsche_993_vehicle_installation_authorized": false,
+    "structural_and_fatigue_validated": false,
+    "target_definition_complete": false,
+    "target_power_proven": false,
+    "test_bench_start_authorized": false,
+    "thermodynamic_cycle_validated": false,
+    "turbo_match_validated": false
+  },
+  "required_next_solver_evidence": [
+    "ambient_altitude_and_vehicle_speed_envelope",
+    "conjugate_heat_transfer_model",
+    "digitized_compressor_and_turbine_maps",
+    "duty_cycle_and_1600hp_duration",
+    "fuel_specification_and_batch_certificate",
+    "head_case_crank_rod_piston_and_mount_fea",
+    "held_out_physical_correlation_dataset",
+    "instrumented_test_bench_plan",
+    "measured_combustion_or_calibration_dataset",
+    "mechanical_hp_and_accessory_boundary",
+    "oil_and_coolant_network_model",
+    "one_dimensional_engine_cycle_model",
+    "three_dimensional_intake_and_exhaust_cfd",
+    "turbo_bearing_housing_thermal_load_and_hot_soak",
+    "vehicle_underhood_and_radiator_airflow_cfd"
+  ],
+  "schema_version": "1.0.0",
+  "screening_decision": {
+    "air_oil_complete_limit_screen": false,
+    "air_oil_evaluated_loads_within_declared_limits": false,
+    "candidate_for_next_study": "917_2026_hybrid_head_liquid_air_oil_cylinders",
+    "candidate_reason": "evaluated_hybrid_head_charge_oil_and_fin_loads_are_inside_provisional_limits_while_air_oil_exceeds_oil_and_fin_limits_but_turbo_bearing_load_is_missing",
+    "decision_is_design_screen_not_validation": true,
+    "dedicated_conversion_system_required": true,
+    "hybrid_complete_limit_screen": false,
+    "hybrid_evaluated_loads_within_declared_limits": true,
+    "stock_993_liquid_cooling_claim": false
+  },
+  "status": "algebraic_screen_complete_no_engine_or_vehicle_release"
+}
