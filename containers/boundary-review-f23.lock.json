@@ -1,0 +1,317 @@
+{
+  "$comment": "Verrou de publication de l'image CPU F23 seulement. Il ne libere ni scan, ni workpack reel, ni interface, ni CAO, ni simulation, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F23",
+  "status": "immutable_public_cpu_image_verified_physical_release_blocked",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-boundary-review-f23",
+    "digest": "sha256:860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-boundary-review-f23@sha256:860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9",
+    "created_at": "2026-09-02T01:45:57.761627663Z",
+    "index": {
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "size_bytes": 857,
+      "digest_recomputed": true,
+      "platform_manifest_count": 1,
+      "attestation_manifest_count": 1
+    },
+    "platform": {
+      "os": "linux",
+      "architecture": "amd64",
+      "user": "9173:9173",
+      "python_version": "3.12.14",
+      "gpu_required": false,
+      "working_directory": "/workspace",
+      "default_command": [
+        "/usr/local/bin/boundary-review-f23-smoke"
+      ]
+    },
+    "manifest": {
+      "digest": "sha256:293add3960b56029cef05be34d0b3c3d437ce659d77a57c96a7e318e300d498b",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "size_bytes": 2185,
+      "config_digest": "sha256:e00b04dcf8f851d1fb14dcf604ff78d6736619e505a3bedc40b11f0fb4a7afee",
+      "config_size_bytes": 9570,
+      "layer_count": 10,
+      "compressed_size_bytes": 45473813,
+      "docker_image_size_bytes": 45486425,
+      "largest_layer_digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+      "largest_layer_bytes": 28232655,
+      "layers": [
+        {
+          "digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+          "size_bytes": 28232655
+        },
+        {
+          "digest": "sha256:268fd66f673d556a271a784d33c4541102f05dde43657861a8e793eb30ef38dd",
+          "size_bytes": 3533349
+        },
+        {
+          "digest": "sha256:ec613f6df89286159c101a9b15264bc627366aaf788a9ea9c3a456ad9b9b2b3e",
+          "size_bytes": 13672032
+        },
+        {
+          "digest": "sha256:35ef2f664a5c3b1e1408a24bd668ef33b82a89a534709e1c03aac6d50012d51a",
+          "size_bytes": 249
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        },
+        {
+          "digest": "sha256:4bb28c9b6cac43f65ee5802f8994818ebf2688591378c2afb6af51273904221d",
+          "size_bytes": 12413
+        },
+        {
+          "digest": "sha256:8647d91e6db408f8d6ba582cc32b61e76cb2a49a57ad4bac4764ce9d3957cde5",
+          "size_bytes": 5570
+        },
+        {
+          "digest": "sha256:fc45c073d999ea929b95f84a43f045640bbaffb4611600af4d6f5db8d9fd44ee",
+          "size_bytes": 17449
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        },
+        {
+          "digest": "sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1",
+          "size_bytes": 32
+        }
+      ]
+    },
+    "attestation_manifest": {
+      "digest": "sha256:2252a5eca14ae74549d4e519e705d4674c05c3172e846294cc39c39421c543b2",
+      "media_type": "application/vnd.oci.image.manifest.v1+json",
+      "artifact_type": "application/vnd.docker.attestation.manifest.v1+json",
+      "size_bytes": 1112,
+      "subject_manifest_digest": "sha256:293add3960b56029cef05be34d0b3c3d437ce659d77a57c96a7e318e300d498b",
+      "predicate_layers": [
+        {
+          "predicate_type": "https://spdx.dev/Document",
+          "digest": "sha256:b415a6797bdadfb4a14b055072b52a209f7398712f1aec167bd7fe3af96250df",
+          "size_bytes": 2415572
+        },
+        {
+          "predicate_type": "https://slsa.dev/provenance/v1",
+          "digest": "sha256:b9e848dfd82d61c0579b2bbe61a7a93e6aeea552892371b240ed9d22ee1a23fc",
+          "size_bytes": 19340
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "workflow_head_sha": "1ae15656080df2a1042db15fdc2dff2881c474a2",
+    "runner": "ubuntu-24.04",
+    "runner_image_version": "20260823.283.1",
+    "dockerfile_frontend_digest": "sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "dependency_policy": "python_standard_library_only_no_apt_or_pip_install",
+    "build_context_allow_list": [
+      "containers/boundary-review-f23-smoke.py",
+      "twins/reference-917-engine/source/build_boundary_review_workpack_f23.py"
+    ],
+    "actions": {
+      "checkout": "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "setup_buildx": "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f",
+      "login": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+      "build_push": "docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8",
+      "upload_artifact": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02"
+    },
+    "inputs": [
+      {
+        "path": ".github/workflows/boundary-review-f23-image.yml",
+        "role": "build_publish_digest_provenance_sbom_and_anonymous_gate",
+        "sha256": "2a5d491cabbe99fb0ea3ff61271577615c4f8b1229ce93c753fcffd9eb7acd32"
+      },
+      {
+        "path": "containers/boundary-review-f23.Dockerfile",
+        "role": "image_recipe",
+        "sha256": "b58b6ee8d5367f3e496b08d5b76eb5c8abd9ab2ffc6762c188af55dc35bf0e0e"
+      },
+      {
+        "path": "containers/boundary-review-f23.Dockerfile.dockerignore",
+        "role": "allow_listed_build_context",
+        "sha256": "7139860286e81ccc9e9d78ab488248ac65a3b2859c5246fb0d0b2da957c360a9"
+      },
+      {
+        "path": "containers/boundary-review-f23-smoke.py",
+        "role": "offline_runtime_smoke",
+        "sha256": "640df151a7f29aef755567ed8ddd7e461c7da256f13a35b59181dbd5f42d4c35"
+      },
+      {
+        "path": "twins/reference-917-engine/source/build_boundary_review_workpack_f23.py",
+        "role": "embedded_standard_library_pipeline",
+        "sha256": "b9b7739c8e037d364ca7b158bcc7c8c310bee3dea924be0863a507fdbe5b60c3"
+      }
+    ]
+  },
+  "verification": {
+    "status": "passed",
+    "verified_at": "2026-09-02T01:46:27Z",
+    "workflow": {
+      "id": 348019668,
+      "run_id": 33580635075,
+      "run_number": 1,
+      "job_id": 100093974333,
+      "event": "workflow_dispatch",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "1ae15656080df2a1042db15fdc2dff2881c474a2",
+      "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33580635075",
+      "job_url": "https://github.com/cluster2600/3dprinting993/actions/runs/33580635075/job/100093974333",
+      "api_updated_at": "2026-09-02T01:46:27Z"
+    },
+    "evidence_artifact": {
+      "id": 9828265818,
+      "name": "boundary-review-f23-published-1ae15656080df2a1042db15fdc2dff2881c474a2",
+      "digest": "sha256:6fc0cb96de6d44415be0553b3d9e068ee8a61b8ef1fa101552546e4b69d9daa3",
+      "size_bytes": 304319,
+      "expired": false,
+      "created_at": "2026-09-02T01:46:20Z",
+      "expires_at": "2026-10-02T01:46:19Z"
+    },
+    "evidence_files": [
+      {
+        "name": "boundary-review-f23-index.json",
+        "sha256": "860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9",
+        "size_bytes": 857
+      },
+      {
+        "name": "boundary-review-f23-platform-manifest.json",
+        "sha256": "293add3960b56029cef05be34d0b3c3d437ce659d77a57c96a7e318e300d498b",
+        "size_bytes": 2185
+      },
+      {
+        "name": "boundary-review-f23-attestation-manifest.json",
+        "sha256": "2252a5eca14ae74549d4e519e705d4674c05c3172e846294cc39c39421c543b2",
+        "size_bytes": 1112
+      },
+      {
+        "name": "boundary-review-f23-provenance.json",
+        "sha256": "7c7f119a169f928551627268aede70e852412a89a833702f4ada7558e77670ee",
+        "size_bytes": 32877
+      },
+      {
+        "name": "boundary-review-f23-sbom.json",
+        "sha256": "a3ddad59b7f9a31048262fdf84303a17e8ba6cb0ef25948a2452b46066e82622",
+        "size_bytes": 3271510
+      },
+      {
+        "name": "boundary-review-f23-smoke.json",
+        "sha256": "739670b7aeace8db7cb9d126c8653275ad356adf774db061e245cf738be93eb4",
+        "size_bytes": 2508
+      },
+      {
+        "name": "boundary-review-f23-image-ref.txt",
+        "sha256": "4889f74944ac5c69f2f6be1b5a85c9a32ca6c1b575163939f50f5cfe5161c245",
+        "size_bytes": 126
+      }
+    ],
+    "registry_index_digest_recomputed": true,
+    "platform_manifest_digest_recomputed": true,
+    "attestation_manifest_digest_recomputed": true,
+    "published_digest_pulled": true,
+    "anonymous_exact_digest_access": true,
+    "anonymous_access_workflow_step_conclusion": "success",
+    "cryptographic_signature_verified": false,
+    "provenance": {
+      "predicate_type": "https://slsa.dev/provenance/v1",
+      "layer_digest": "sha256:b9e848dfd82d61c0579b2bbe61a7a93e6aeea552892371b240ed9d22ee1a23fc",
+      "layer_size_bytes": 19340,
+      "build_type": "https://github.com/moby/buildkit/blob/master/docs/attestations/slsa-definitions.md",
+      "builder_id": "https://github.com/cluster2600/3dprinting993/actions/runs/33580635075/attempts/1",
+      "source_repository": "https://github.com/cluster2600/3dprinting993",
+      "source_revision": "1ae15656080df2a1042db15fdc2dff2881c474a2",
+      "builder_platform": "linux/amd64",
+      "runner_architecture": "X64",
+      "resolved_dependency_count": 4,
+      "frontend_digest_present": true,
+      "base_image_digest_present": true,
+      "started_at": "2026-09-02T01:45:50.100457937Z",
+      "finished_at": "2026-09-02T01:46:00.478562011Z"
+    },
+    "sbom": {
+      "predicate_type": "https://spdx.dev/Document",
+      "layer_digest": "sha256:b415a6797bdadfb4a14b055072b52a209f7398712f1aec167bd7fe3af96250df",
+      "layer_size_bytes": 2415572,
+      "spdx_version": "SPDX-2.3",
+      "document_id": "SPDXRef-DOCUMENT",
+      "data_license": "CC0-1.0",
+      "created_at": "2026-09-02T01:45:59Z",
+      "package_count": 114,
+      "file_count": 3235,
+      "relationship_count": 3807,
+      "tools": [
+        "syft-v1.51.0",
+        "buildkit-v0.32.2"
+      ]
+    },
+    "offline_smoke": {
+      "status": "passed_synthetic_fixture_only",
+      "claim_scope": "synthetic fixtures validate the local SVG/JSON/CSV review-workpack software path only",
+      "offline": true,
+      "platform_contract": "linux/amd64-cpu",
+      "python_version": "3.12.14",
+      "non_root": true,
+      "gpu_required": false,
+      "network_interfaces": [
+        "lo"
+      ],
+      "default_external_route": false,
+      "application_bundle_file_count": 1,
+      "forbidden_asset_file_count": 0,
+      "secret_named_file_count": 0,
+      "synthetic_component_count": 9,
+      "selected_component_count": 6,
+      "confirmed_interface_count": 0,
+      "json_byte_identical": true,
+      "csv_byte_identical": true,
+      "svg_byte_identical": true,
+      "review_validation_exercised": true,
+      "rejected_existing_output": true,
+      "rejected_wrong_report_hash": true
+    }
+  },
+  "bundled_assets": {
+    "raw_scans": false,
+    "derived_scan_geometry": false,
+    "f18_reports": false,
+    "ply_files": false,
+    "real_workpacks": false,
+    "datasets": false,
+    "model_weights": false,
+    "secrets": false,
+    "synthetic_fixtures_persisted_in_image": false,
+    "project_application_files": [
+      "twins/reference-917-engine/source/build_boundary_review_workpack_f23.py"
+    ],
+    "runtime_support_files": [
+      "containers/boundary-review-f23-smoke.py"
+    ]
+  },
+  "release_gates": {
+    "immutable_public_image_verified": true,
+    "linux_amd64_offline_smoke_verified": true,
+    "cryptographic_signature_verified": false,
+    "canonical_f18_execution_verified_in_published_image": false,
+    "human_boundary_review_completed": false,
+    "engine_identity_confirmed": false,
+    "scan_scale_confirmed": false,
+    "metric_units_confirmed": false,
+    "axis_semantics_confirmed": false,
+    "semantic_interfaces_confirmed": false,
+    "geometry_repaired": false,
+    "dimensioned_cad_reconstruction_complete": false,
+    "classical_solver_reference_cases_executed": false,
+    "physicsnemo_dataset_released": false,
+    "physicsnemo_surrogate_trained": false,
+    "physical_correlation_completed": false,
+    "engine_simulation_validated": false,
+    "manufacturing_release": false,
+    "print_release": false,
+    "functional_engine_release": false,
+    "vast_rental_verified_for_current_job": false,
+    "vast_job_allowed": false
+  }
+}

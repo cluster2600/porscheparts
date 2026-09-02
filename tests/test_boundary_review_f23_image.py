@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import ast
+import hashlib
+import json
 import re
 from pathlib import Path
 import unittest
@@ -15,6 +17,7 @@ SMOKE = ROOT / "containers/boundary-review-f23-smoke.py"
 PIPELINE = ROOT / "twins/reference-917-engine/source/build_boundary_review_workpack_f23.py"
 WORKFLOW = ROOT / ".github/workflows/boundary-review-f23-image.yml"
 DOC = ROOT / "docs/917_BOUNDARY_REVIEW_WORKPACK_F23.md"
+LOCK = ROOT / "containers/boundary-review-f23.lock.json"
 
 
 class BoundaryReviewF23ImageTests(unittest.TestCase):
@@ -226,8 +229,169 @@ class BoundaryReviewF23ImageTests(unittest.TestCase):
             "fixture synthétique",
             "SBOM",
             "ne prouve pas",
+            "boundary-review-f23.lock.json",
+            "sha256:860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9",
+            "33580635075",
         ):
             self.assertIn(fragment.lower(), document.lower())
+
+    def test_lock_pins_exact_public_image_run_and_attestations(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        image = lock["image"]
+        verification = lock["verification"]
+        self.assertEqual(lock["phase"], "F23")
+        self.assertEqual(
+            image["digest"],
+            "sha256:860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9",
+        )
+        self.assertEqual(
+            image["immutable_reference"],
+            f"{image['repository']}@{image['digest']}",
+        )
+        self.assertEqual(image["index"]["size_bytes"], 857)
+        self.assertEqual(image["index"]["platform_manifest_count"], 1)
+        self.assertEqual(image["index"]["attestation_manifest_count"], 1)
+        self.assertEqual(image["platform"]["architecture"], "amd64")
+        self.assertEqual(image["platform"]["user"], "9173:9173")
+        self.assertFalse(image["platform"]["gpu_required"])
+        self.assertEqual(
+            image["attestation_manifest"]["subject_manifest_digest"],
+            image["manifest"]["digest"],
+        )
+        predicates = {
+            item["predicate_type"]: item
+            for item in image["attestation_manifest"]["predicate_layers"]
+        }
+        self.assertEqual(set(predicates), {"https://spdx.dev/Document", "https://slsa.dev/provenance/v1"})
+        self.assertEqual(
+            predicates["https://slsa.dev/provenance/v1"]["digest"],
+            verification["provenance"]["layer_digest"],
+        )
+        self.assertEqual(
+            predicates["https://spdx.dev/Document"]["digest"],
+            verification["sbom"]["layer_digest"],
+        )
+        workflow = verification["workflow"]
+        self.assertEqual(workflow["run_id"], 33580635075)
+        self.assertEqual(workflow["job_id"], 100093974333)
+        self.assertEqual(workflow["head_sha"], "1ae15656080df2a1042db15fdc2dff2881c474a2")
+        self.assertEqual(workflow["conclusion"], "success")
+        self.assertTrue(verification["anonymous_exact_digest_access"])
+        self.assertTrue(verification["published_digest_pulled"])
+        self.assertFalse(verification["cryptographic_signature_verified"])
+
+    def test_lock_recomputes_manifest_counts_sizes_and_evidence_metadata(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        manifest = lock["image"]["manifest"]
+        layers = manifest["layers"]
+        self.assertEqual(manifest["layer_count"], len(layers))
+        self.assertEqual(manifest["compressed_size_bytes"], sum(item["size_bytes"] for item in layers))
+        largest = max(layers, key=lambda item: item["size_bytes"])
+        self.assertEqual(manifest["largest_layer_digest"], largest["digest"])
+        self.assertEqual(manifest["largest_layer_bytes"], largest["size_bytes"])
+        expected_evidence = {
+            "boundary-review-f23-index.json": (
+                "860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9",
+                857,
+            ),
+            "boundary-review-f23-platform-manifest.json": (
+                "293add3960b56029cef05be34d0b3c3d437ce659d77a57c96a7e318e300d498b",
+                2185,
+            ),
+            "boundary-review-f23-attestation-manifest.json": (
+                "2252a5eca14ae74549d4e519e705d4674c05c3172e846294cc39c39421c543b2",
+                1112,
+            ),
+            "boundary-review-f23-provenance.json": (
+                "7c7f119a169f928551627268aede70e852412a89a833702f4ada7558e77670ee",
+                32877,
+            ),
+            "boundary-review-f23-sbom.json": (
+                "a3ddad59b7f9a31048262fdf84303a17e8ba6cb0ef25948a2452b46066e82622",
+                3271510,
+            ),
+            "boundary-review-f23-smoke.json": (
+                "739670b7aeace8db7cb9d126c8653275ad356adf774db061e245cf738be93eb4",
+                2508,
+            ),
+            "boundary-review-f23-image-ref.txt": (
+                "4889f74944ac5c69f2f6be1b5a85c9a32ca6c1b575163939f50f5cfe5161c245",
+                126,
+            ),
+        }
+        actual_evidence = {
+            item["name"]: (item["sha256"], item["size_bytes"])
+            for item in lock["verification"]["evidence_files"]
+        }
+        self.assertEqual(actual_evidence, expected_evidence)
+        self.assertEqual(
+            actual_evidence["boundary-review-f23-index.json"][0],
+            lock["image"]["digest"].removeprefix("sha256:"),
+        )
+        artifact = lock["verification"]["evidence_artifact"]
+        self.assertEqual(artifact["id"], 9828265818)
+        self.assertEqual(artifact["digest"], "sha256:6fc0cb96de6d44415be0553b3d9e068ee8a61b8ef1fa101552546e4b69d9daa3")
+        self.assertEqual(artifact["size_bytes"], 304319)
+        self.assertFalse(artifact["expired"])
+        self.assertEqual(lock["verification"]["sbom"]["package_count"], 114)
+        self.assertEqual(lock["verification"]["sbom"]["file_count"], 3235)
+        self.assertEqual(lock["verification"]["sbom"]["relationship_count"], 3807)
+
+    def test_lock_rereads_exact_recipe_inputs(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        inputs = lock["recipe"]["inputs"]
+        self.assertEqual(len(inputs), 5)
+        self.assertEqual(len({item["path"] for item in inputs}), len(inputs))
+        for item in inputs:
+            path = ROOT / item["path"]
+            self.assertTrue(path.is_file(), item["path"])
+            self.assertEqual(
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+                item["sha256"],
+                item["path"],
+            )
+        self.assertEqual(
+            lock["recipe"]["workflow_head_sha"],
+            lock["verification"]["workflow"]["head_sha"],
+        )
+        self.assertTrue(lock["verification"]["provenance"]["frontend_digest_present"])
+        self.assertTrue(lock["verification"]["provenance"]["base_image_digest_present"])
+
+    def test_lock_opens_only_image_and_smoke_gates_and_contains_no_private_assets(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        self.assertEqual(
+            {name for name, value in lock["release_gates"].items() if value},
+            {"immutable_public_image_verified", "linux_amd64_offline_smoke_verified"},
+        )
+        smoke = lock["verification"]["offline_smoke"]
+        self.assertEqual(smoke["status"], "passed_synthetic_fixture_only")
+        self.assertEqual(smoke["confirmed_interface_count"], 0)
+        self.assertTrue(smoke["json_byte_identical"])
+        self.assertTrue(smoke["csv_byte_identical"])
+        self.assertTrue(smoke["svg_byte_identical"])
+        bundled = lock["bundled_assets"]
+        for field in (
+            "raw_scans",
+            "derived_scan_geometry",
+            "f18_reports",
+            "ply_files",
+            "real_workpacks",
+            "datasets",
+            "model_weights",
+            "secrets",
+            "synthetic_fixtures_persisted_in_image",
+        ):
+            self.assertFalse(bundled[field], field)
+        serialized = LOCK.read_text(encoding="utf-8")
+        for forbidden in (
+            "boundary-review-f18",
+            "boundary-components-f18",
+            "8208c2fec6561261904c48bb449a1bd50d679e370ee7b4a19a86d78ba265450e",
+            "822e7d8ea54fa69f44658bd0b7b29dfb1fb4e4e15b3f1c73d4f45cedc03e2451",
+            "raw-scans/",
+            "work/917-engine/",
+        ):
+            self.assertNotIn(forbidden, serialized)
 
 
 if __name__ == "__main__":

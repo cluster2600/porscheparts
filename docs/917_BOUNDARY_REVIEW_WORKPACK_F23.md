@@ -71,6 +71,7 @@ python3 twins/reference-917-engine/source/build_boundary_review_workpack_f23.py 
   --report-sha256 8208c2fec6561261904c48bb449a1bd50d679e370ee7b4a19a86d78ba265450e \
   --ply work/917-engine/boundary-review-f18-published/boundary-components-f18.ply \
   --ply-sha256 822e7d8ea54fa69f44658bd0b7b29dfb1fb4e4e15b3f1c73d4f45cedc03e2451 \
+  --expected-component-count 944 \
   --expected-candidate-count 19 \
   --secondary-count 19 \
   --output work/917-engine/boundary-review-workpack-f23
@@ -208,10 +209,30 @@ du sujet de l'attestation, de la provenance, du SBOM et de l'accès anonyme au
 digest exact. Les artefacts CI ne contiennent que ces preuves et le résumé du
 smoke synthétique ; jamais les trois sorties locales.
 
-Il n'existe volontairement pas encore de verrou de publication F23. Après un
-premier workflow vert et la lecture anonyme vérifiée, la référence doit être
-figée sous la forme
-`ghcr.io/cluster2600/3dprinting993-boundary-review-f23@sha256:<digest>` dans un
-verrou séparé. Un tag Git ou GHCR n'est pas un digest immuable et une image
-verte ne prouve pas l'identité du scan, une interface physique, une simulation
-ou une pièce fabricable.
+## Publication immuable vérifiée
+
+Le premier workflow de publication est vert :
+[run 33580635075](https://github.com/cluster2600/3dprinting993/actions/runs/33580635075),
+sur la révision `1ae15656080df2a1042db15fdc2dff2881c474a2`. La référence
+exécutable est désormais exclusivement le digest immuable :
+
+```text
+ghcr.io/cluster2600/3dprinting993-boundary-review-f23@sha256:860fb1c481a8a4b72cf14d9f1d15d65b9adf327cf268ebbcc26da127427126c9
+```
+
+Le verrou suivi
+[`boundary-review-f23.lock.json`](../containers/boundary-review-f23.lock.json)
+relit les empreintes et tailles de l'index OCI, du manifeste `linux/amd64`, de
+l'attestation, de la provenance, du SBOM et du smoke. Il enregistre aussi les
+métadonnées du run et de l'artefact retournées par l'API GitHub. L'index ne
+contient qu'un manifeste `linux/amd64` et son manifeste d'attestation ; l'accès
+anonyme au digest exact a réussi.
+
+Deux gates seulement sont vrais : `immutable_public_image_verified` et
+`linux_amd64_offline_smoke_verified`. La signature cryptographique, l'exécution
+du scan canonique, la revue humaine, l'identité, l'échelle, les interfaces, la
+CAO, les solveurs classiques, PhysicsNeMo, Omniverse, la fabrication,
+l'impression et le fonctionnement moteur restent explicitement faux. Le
+verrou ne contient aucune empreinte du rapport F18, du PLY ou d'un workpack
+réel. Une image verte ne prouve pas l'identité du scan, une interface physique,
+une simulation ou une pièce fabricable.
