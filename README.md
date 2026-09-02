@@ -25,12 +25,14 @@ La couverture documentaire se mesure avec :
 python3 scripts/twin_coverage.py
 ```
 
-L'étude F34 de culasse quatre soupapes refroidie par air, amorcée par les deux
-scans locaux disponibles, est publiée dans
+La géométrie rectangulaire F34 de culasse quatre soupapes refroidie par air est
+retirée comme produit et conservée uniquement comme régression numérique dans
 [docs/917_AIRCOOLED_4V_F34.md](docs/917_AIRCOOLED_4V_F34.md). Elle réunit la CAO
 paramétrique, les calculs OpenFOAM/FluidX3D, CalculiX, Cantera/Wiebe et le prévol
-Omniverse. Ses résultats restent explicitement impropres à autoriser une
-impression métallique ou un démarrage moteur.
+Omniverse, sans preuve transférable à une vraie culasse. La correction
+[F36](docs/917_SCAN_CONFORMING_4V_F36.md) conserve la morphologie du scan 935,
+remplace le coeur par une architecture quatre soupapes et ferme toutes les
+portes de calcul physique jusqu'à la revue de forme.
 
 La couverture massique dit quelle part de la masse à vide est décrite par des
 pièces dont la masse est documentée et sourcée. Elle ne vaut ni validation
