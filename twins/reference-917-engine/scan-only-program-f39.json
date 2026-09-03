@@ -1,0 +1,97 @@
+{
+  "$comment": "F39 est un programme de reconstruction autonome fonde uniquement sur le scan. Une unite du fichier est traitee comme un millimetre pour calculer; cette convention n'est ni une mesure ni une preuve d'interchangeabilite Porsche 917.",
+  "schema_version": "1.0.0",
+  "phase": "F39",
+  "status": "scan_only_experimental_system_definition",
+  "source_boundary": {
+    "additional_dimensions_available": false,
+    "authoritative_geometry_source": "F38 local scan-conforming surface master",
+    "authoritative_geometry_sha256": "d51129380f33d5613b6e8cf8cc5e01f05d4fcd9f22f5e98682c8d05b86f0e032",
+    "scan_unit_convention": "1 scan unit = 1 mm",
+    "absolute_scale_measured": false,
+    "original_porsche_interfaces_measured": false,
+    "oem_interchangeability_claim_permitted": false
+  },
+  "parent_evidence": {
+    "f38_checkpoint_sha256": "5de16181ca872a8f465b94321e3abc25b5319f4f1f8facaf16f5efc13b528dff",
+    "f38_brep_lpbf_sha256": "f0dfcc3b9d908f990273d808762efadfcba0f9fa1c9e0a3e444cba6a1b10c8d2",
+    "f38_cooling_sha256": "e7c03b179ac1ef3bd908b3f77acd6487f14626a65caf7367f4eee211ca233c0f",
+    "f38_valvetrain_sha256": "933a483bd9248ad4e8246051c9d1cf9f9fce129c580a2b84ed0c9ff6491b8920"
+  },
+  "design_intent": {
+    "architecture": "complete self-consistent experimental four-valve air-oil-cooled cylinder-head system",
+    "external_morphology": "fit to the scan surface within a reported deviation field",
+    "functional_interfaces": "new analytic interfaces derived inside the scan envelope",
+    "valve_count": 4,
+    "intake_valves": 2,
+    "exhaust_valves": 2,
+    "central_spark_plug": true,
+    "dual_valve_springs": true,
+    "rocker_shafts": 2,
+    "oil_galleries": true,
+    "air_cooling": true,
+    "local_oil_heat_rejection": true
+  },
+  "fixed_acceptance_criteria": {
+    "minimum_wall_mm": 1.5,
+    "hot_bridge_target_wall_mm": 3.0,
+    "trapped_powder_volume_mm3": 0.0,
+    "maximum_inaccessible_support_area_fraction": 0.005,
+    "gmsh_volume_mesh_required": true,
+    "maximum_bridge_temperature_c": 260.0,
+    "maximum_total_cooling_pressure_drop_kpa": 6.7,
+    "maximum_cross_method_relative_difference": 0.2,
+    "maximum_grid_change_relative": 0.1,
+    "full_head_cht_required": true,
+    "thermomechanical_fatigue_required": true,
+    "virtual_lpbf_process_simulation_required": true
+  },
+  "verification_matrix": {
+    "geometry": [
+      "scan deviation map",
+      "B-Rep round-trip",
+      "independent volume mesh",
+      "exhaustive thickness map",
+      "multi-resolution trapped-volume study"
+    ],
+    "cooling": [
+      "three-grid whole-head OpenFOAM CHT",
+      "independent reduced thermal network or second solver",
+      "fan pressure-flow operating point",
+      "oil heat-balance closure"
+    ],
+    "combustion_load": [
+      "Cantera zero-dimensional conservative envelope",
+      "moving-mesh engine CFD reference",
+      "uncertainty interval carried into structure"
+    ],
+    "structure": [
+      "distributed contact and stud preload",
+      "temperature-dependent material",
+      "three-grid convergence",
+      "thermomechanical fatigue"
+    ],
+    "lpbf": [
+      "orientation and support accessibility",
+      "powder removal",
+      "inherent-strain distortion",
+      "machining allowances",
+      "hot coupon qualification plan"
+    ]
+  },
+  "release_gates": {
+    "scan_only_design_basis_locked": true,
+    "production_brep_complete": false,
+    "minimum_wall_complete": false,
+    "trapped_powder_eliminated": false,
+    "support_strategy_passed": false,
+    "whole_head_cht_complete": false,
+    "thermomechanical_fatigue_complete": false,
+    "virtual_lpbf_process_simulation_complete": false,
+    "hot_material_card_qualified": false,
+    "oem_fitment_certified": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "decision": "F39 peut produire et verifier numeriquement un ensemble experimental coherent a l'echelle conventionnelle du scan. Il ne peut pas certifier l'interchangeabilite Porsche 917 ni remplacer les essais physiques de matiere, d'etancheite, de debit et de banc moteur."
+}

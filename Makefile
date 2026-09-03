@@ -498,6 +498,20 @@ engine-components:
 917-f38-engineering-check:
 	python3 tests/test_917_f38_engineering_checkpoint.py -v
 
+917-f39-scan-only-program-check:
+	python3 tests/test_917_f39_scan_only_program.py -v
+
+917-f39-cooling-optimization-check:
+	python3 tests/test_917_f39_cooling_optimization.py -v
+
+917-f39-lpbf-structural-check:
+	python3 tests/test_917_f39_lpbf_structural.py -v
+
+917-f39-brep-scan-only-check:
+	python3 tests/test_917_f39_brep_scan_only.py -v
+
+917-f39-check: 917-f39-scan-only-program-check 917-f39-brep-scan-only-check 917-f39-cooling-optimization-check 917-f39-lpbf-structural-check
+
 917-aircooled-4v-f34-publish:
 	python3 twins/reference-917-engine/source/publish_aircooled_4v_f34.py \
 		--contract twins/reference-917-engine/aircooled-4v-scan-f34.json \

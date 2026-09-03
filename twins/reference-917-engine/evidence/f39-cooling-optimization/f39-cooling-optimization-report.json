@@ -1,0 +1,3899 @@
+{
+  "classification": "scan_only_parametric_cooling_optimization_not_full_head_CHT_not_release",
+  "decision": {
+    "accepted_F39_BRep_and_wetted_area_available": false,
+    "engine_start_authorized": false,
+    "fan_map_and_duct_leakage_measured": false,
+    "full_head_CHT_complete": false,
+    "hot_material_coupon_card_qualified": false,
+    "metal_print_authorized": false,
+    "numerical_candidate_found": true,
+    "oil_gallery_geometry_and_heat_transfer_validated": false,
+    "physical_correlation_complete": false,
+    "selected_for_next_full_head_CHT": true
+  },
+  "id": "917-head-f39-cooling-optimization-report",
+  "inputs": {
+    "contract": {
+      "path": "twins/reference-917-engine/f39-cooling-optimization.json",
+      "sha256": "c009657b8c70bdce8654c63bf401a70b57be52d32e7032a16244028b14a7face"
+    },
+    "f37_surface_report": {
+      "path": "twins/reference-917-engine/evidence/f37-manufacturing-definition/f37-printable-head-mesh-report.json",
+      "sha256": "ffafa6eaf8c357361e8d65721ff613df3b1c981253f20aa447d367cce51ae44b"
+    },
+    "f38_cooling_report": {
+      "path": "twins/reference-917-engine/evidence/f38-cooling-redesign/f38-cooling-cross-check.json",
+      "sha256": "e7c03b179ac1ef3bd908b3f77acd6487f14626a65caf7367f4eee211ca233c0f"
+    }
+  },
+  "methods": {
+    "independent_in_primary_equations": true,
+    "method_a": {
+      "classification": "reduced_order_scaling_anchored_to_real_F38_RANS_not_new_CFD_per_candidate",
+      "heat_hydraulic_diameter_exponent": -0.2,
+      "heat_velocity_exponent": 0.8,
+      "pressure_hydraulic_diameter_exponent": -0.25,
+      "pressure_velocity_exponent": 2.0,
+      "reference_h_w_m2k": 201.8432157948752,
+      "reference_hydraulic_diameter_m": 0.008552486187845305,
+      "reference_length_m": 0.18,
+      "reference_pressure_drop_pa": 1715.572933000003,
+      "reference_velocity_m_s": 61.73577338011556,
+      "source": "F38_OpenFOAM14_fine_channel_138240_hex"
+    },
+    "method_b": {
+      "classification": "closed_form_smooth_channel_correlation_independent_of_OpenFOAM_anchor",
+      "method": "Gnielinski_plus_Darcy_Weisbach_and_1D_fin_efficiency"
+    },
+    "physical_validation": false,
+    "shared_inputs": [
+      "geometry_parameters",
+      "air_properties",
+      "mass_flow",
+      "heat_load"
+    ]
+  },
+  "objectives": {
+    "maximum_air_pressure_drop_pa": 6700.0,
+    "maximum_bridge_temperature_c": 260.0,
+    "maximum_cross_method_h_relative_difference": 0.2,
+    "maximum_local_oil_heat_removal_w": 1200.0,
+    "maximum_supported_air_mass_flow_kg_s_per_head": 0.85
+  },
+  "off_design_sensitivity": [
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.020736491950331552,
+      "maximum_bridge_temperature_c": 187.1584346518145,
+      "maximum_pressure_drop_pa": 3009.385009013477,
+      "method_a": {
+        "effective_h_w_m2k": 171.86626949006876,
+        "fin_efficiency": 0.8937946394728216,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 960.1241312665978,
+        "total_pressure_drop_pa": 3009.385009013477,
+        "velocity_m_s": 44.84914378907312
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.026842176806350808,
+        "effective_h_w_m2k": 168.3747674795893,
+        "fin_efficiency": 0.878354224741708,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 47.49002056417348,
+        "reynolds": 18071.935692072988,
+        "straight_pressure_drop_pa": 813.3122085845436,
+        "total_pressure_drop_pa": 2862.5730863314225,
+        "velocity_m_s": 44.84914378907312
+      },
+      "normalized_constraint_violation": 0.0,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.66,
+        "chamber_heat_load_w": 3500.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.051286698454293,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": true,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 2300.0,
+        "bridge_temperature_c": 185.98576119855704,
+        "fin_root_temperature_c": 88.36090331233063,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 3500.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 2300.0,
+        "bridge_temperature_c": 187.1584346518145,
+        "fin_root_temperature_c": 89.4674212543292,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 3500.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.020736491950331552,
+      "maximum_bridge_temperature_c": 243.56220747053845,
+      "maximum_pressure_drop_pa": 3009.385009013477,
+      "method_a": {
+        "effective_h_w_m2k": 171.86626949006876,
+        "fin_efficiency": 0.8937946394728216,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 960.1241312665978,
+        "total_pressure_drop_pa": 3009.385009013477,
+        "velocity_m_s": 44.84914378907312
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.026842176806350808,
+        "effective_h_w_m2k": 168.3747674795893,
+        "fin_efficiency": 0.878354224741708,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 47.49002056417348,
+        "reynolds": 18071.935692072988,
+        "straight_pressure_drop_pa": 813.3122085845436,
+        "total_pressure_drop_pa": 2862.5730863314225,
+        "velocity_m_s": 44.84914378907312
+      },
+      "normalized_constraint_violation": 0.0,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.66,
+        "chamber_heat_load_w": 4300.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.051286698454293,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": true,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 241.9072271836444,
+        "fin_root_temperature_c": 106.9212175079239,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 243.56220747053845,
+        "fin_root_temperature_c": 108.412611255835,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.020736491950331552,
+      "maximum_bridge_temperature_c": 311.3896553300767,
+      "maximum_pressure_drop_pa": 3009.385009013477,
+      "method_a": {
+        "effective_h_w_m2k": 171.86626949006876,
+        "fin_efficiency": 0.8937946394728216,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 960.1241312665978,
+        "total_pressure_drop_pa": 3009.385009013477,
+        "velocity_m_s": 44.84914378907312
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.026842176806350808,
+        "effective_h_w_m2k": 168.3747674795893,
+        "fin_efficiency": 0.878354224741708,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 47.49002056417348,
+        "reynolds": 18071.935692072988,
+        "straight_pressure_drop_pa": 813.3122085845436,
+        "total_pressure_drop_pa": 2862.5730863314225,
+        "velocity_m_s": 44.84914378907312
+      },
+      "normalized_constraint_violation": 0.19765252050029503,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.66,
+        "chamber_heat_load_w": 5200.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.051286698454293,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": false,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": false,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 4000.0,
+        "bridge_temperature_c": 309.1295306402543,
+        "fin_root_temperature_c": 127.80157097796632,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 5200.0,
+        "within_CP1_interpolation_range": false
+      },
+      "thermal_b": {
+        "air_heat_w": 4000.0,
+        "bridge_temperature_c": 311.3896553300767,
+        "fin_root_temperature_c": 129.72595000752904,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 5200.0,
+        "within_CP1_interpolation_range": false
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.02986138741113342,
+      "maximum_bridge_temperature_c": 178.10685212623122,
+      "maximum_pressure_drop_pa": 4991.461590937183,
+      "method_a": {
+        "effective_h_w_m2k": 205.66042343929385,
+        "fin_efficiency": 0.873570236739814,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 1592.4923894401215,
+        "total_pressure_drop_pa": 4991.461590937183,
+        "velocity_m_s": 57.76026094047295
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.025166984508840248,
+        "effective_h_w_m2k": 199.6971883335516,
+        "fin_efficiency": 0.856561171652599,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 57.75752964079881,
+        "reynolds": 23274.462633730363,
+        "straight_pressure_drop_pa": 1264.7966917643603,
+        "total_pressure_drop_pa": 4663.765893261422,
+        "velocity_m_s": 57.76026094047295
+      },
+      "normalized_constraint_violation": 0.0,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.85,
+        "chamber_heat_load_w": 3500.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": true,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 2300.0,
+        "bridge_temperature_c": 176.69650361195318,
+        "fin_root_temperature_c": 79.5926310738029,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 3500.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 2300.0,
+        "bridge_temperature_c": 178.10685212623122,
+        "fin_root_temperature_c": 80.92422890597948,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 3500.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.02986138741113342,
+      "maximum_bridge_temperature_c": 230.82932418476685,
+      "maximum_pressure_drop_pa": 4991.461590937183,
+      "method_a": {
+        "effective_h_w_m2k": 205.66042343929385,
+        "fin_efficiency": 0.873570236739814,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 1592.4923894401215,
+        "total_pressure_drop_pa": 4991.461590937183,
+        "velocity_m_s": 57.76026094047295
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.025166984508840248,
+        "effective_h_w_m2k": 199.6971883335516,
+        "fin_efficiency": 0.856561171652599,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 57.75752964079881,
+        "reynolds": 23274.462633730363,
+        "straight_pressure_drop_pa": 1264.7966917643603,
+        "total_pressure_drop_pa": 4663.765893261422,
+        "velocity_m_s": 57.76026094047295
+      },
+      "normalized_constraint_violation": 0.0,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.85,
+        "chamber_heat_load_w": 4300.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": true,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 228.85384142446367,
+        "fin_root_temperature_c": 95.10311144729957,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 230.82932418476685,
+        "fin_root_temperature_c": 96.89787374284191,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.02986138741113342,
+      "maximum_bridge_temperature_c": 293.89627029912515,
+      "maximum_pressure_drop_pa": 4991.461590937183,
+      "method_a": {
+        "effective_h_w_m2k": 205.66042343929385,
+        "fin_efficiency": 0.873570236739814,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 1592.4923894401215,
+        "total_pressure_drop_pa": 4991.461590937183,
+        "velocity_m_s": 57.76026094047295
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.025166984508840248,
+        "effective_h_w_m2k": 199.6971883335516,
+        "fin_efficiency": 0.856561171652599,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 57.75752964079881,
+        "reynolds": 23274.462633730363,
+        "straight_pressure_drop_pa": 1264.7966917643603,
+        "total_pressure_drop_pa": 4663.765893261422,
+        "velocity_m_s": 57.76026094047295
+      },
+      "normalized_constraint_violation": 0.1303702703812506,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.85,
+        "chamber_heat_load_w": 5200.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": false,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": false,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 4000.0,
+        "bridge_temperature_c": 291.1775607094222,
+        "fin_root_temperature_c": 112.55240186748333,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 5200.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 4000.0,
+        "bridge_temperature_c": 293.89627029912515,
+        "fin_root_temperature_c": 114.86822418431214,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 5200.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.038068782555926745,
+      "maximum_bridge_temperature_c": 171.80223980546134,
+      "maximum_pressure_drop_pa": 7616.728586862622,
+      "method_a": {
+        "effective_h_w_m2k": 238.17615798112908,
+        "fin_efficiency": 0.8543367531168092,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 2430.066241325583,
+        "total_pressure_drop_pa": 7616.728586862622,
+        "velocity_m_s": 71.35091057352541
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.023885150656602752,
+        "effective_h_w_m2k": 229.44159576275203,
+        "fin_efficiency": 0.8361375117999317,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 67.98130386375041,
+        "reynolds": 28750.806782843392,
+        "straight_pressure_drop_pa": 1831.7165561651939,
+        "total_pressure_drop_pa": 7018.378901702233,
+        "velocity_m_s": 71.35091057352541
+      },
+      "normalized_constraint_violation": 0.13682516221830188,
+      "operating_point": {
+        "air_mass_flow_kg_s": 1.05,
+        "chamber_heat_load_w": 3500.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.08525468538258403,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": false,
+        "numerical_screen_passed": false,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": false,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 2300.0,
+        "bridge_temperature_c": 170.250367832196,
+        "fin_root_temperature_c": 73.50485903646637,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 3500.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 2300.0,
+        "bridge_temperature_c": 171.80223980546134,
+        "fin_root_temperature_c": 74.97069214247222,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 3500.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.038068782555926745,
+      "maximum_bridge_temperature_c": 222.01566953583563,
+      "maximum_pressure_drop_pa": 7616.728586862622,
+      "method_a": {
+        "effective_h_w_m2k": 238.17615798112908,
+        "fin_efficiency": 0.8543367531168092,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 2430.066241325583,
+        "total_pressure_drop_pa": 7616.728586862622,
+        "velocity_m_s": 71.35091057352541
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.023885150656602752,
+        "effective_h_w_m2k": 229.44159576275203,
+        "fin_efficiency": 0.8361375117999317,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 67.98130386375041,
+        "reynolds": 28750.806782843392,
+        "straight_pressure_drop_pa": 1831.7165561651939,
+        "total_pressure_drop_pa": 7018.378901702233,
+        "velocity_m_s": 71.35091057352541
+      },
+      "normalized_constraint_violation": 0.13682516221830188,
+      "operating_point": {
+        "air_mass_flow_kg_s": 1.05,
+        "chamber_heat_load_w": 4300.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.08525468538258403,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": false,
+        "numerical_screen_passed": false,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": false,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 219.8529455566794,
+        "fin_root_temperature_c": 86.89785348393292,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 222.01566953583563,
+        "fin_root_temperature_c": 88.87354158333213,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.038068782555926745,
+      "maximum_bridge_temperature_c": 281.7828335621473,
+      "maximum_pressure_drop_pa": 7616.728586862622,
+      "method_a": {
+        "effective_h_w_m2k": 238.17615798112908,
+        "fin_efficiency": 0.8543367531168092,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 2430.066241325583,
+        "total_pressure_drop_pa": 7616.728586862622,
+        "velocity_m_s": 71.35091057352541
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.023885150656602752,
+        "effective_h_w_m2k": 229.44159576275203,
+        "fin_efficiency": 0.8361375117999317,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 67.98130386375041,
+        "reynolds": 28750.806782843392,
+        "straight_pressure_drop_pa": 1831.7165561651939,
+        "total_pressure_drop_pa": 7018.378901702233,
+        "velocity_m_s": 71.35091057352541
+      },
+      "normalized_constraint_violation": 0.22060529130348372,
+      "operating_point": {
+        "air_mass_flow_kg_s": 1.05,
+        "chamber_heat_load_w": 5200.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.08525468538258403,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": false,
+        "numerical_screen_passed": false,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": false,
+        "temperature_both_methods_at_most_260c": false,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 4000.0,
+        "bridge_temperature_c": 278.816644783985,
+        "fin_root_temperature_c": 101.96497223733282,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 5200.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 4000.0,
+        "bridge_temperature_c": 281.7828335621473,
+        "fin_root_temperature_c": 104.51424720429951,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 5200.0,
+        "within_CP1_interpolation_range": true
+      }
+    }
+  ],
+  "optimization": {
+    "best_by_oil_under_air_constraints": {
+      "0.0": {
+        "h_cross_method_relative_difference": 0.02986138741113342,
+        "maximum_bridge_temperature_c": 315.8344919896201,
+        "maximum_pressure_drop_pa": 4991.461590937183,
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "splitter12",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.4,
+          "local_oil_heat_removal_w": 0.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "temperature_objective_passed": false
+      },
+      "1200.0": {
+        "h_cross_method_relative_difference": 0.02986138741113342,
+        "maximum_bridge_temperature_c": 230.82932418476685,
+        "maximum_pressure_drop_pa": 4991.461590937183,
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "splitter12",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.4,
+          "local_oil_heat_removal_w": 1200.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "temperature_objective_passed": true
+      },
+      "600.0": {
+        "h_cross_method_relative_difference": 0.02986138741113342,
+        "maximum_bridge_temperature_c": 272.36390751041495,
+        "maximum_pressure_drop_pa": 4991.461590937183,
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "splitter12",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.4,
+          "local_oil_heat_removal_w": 600.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "temperature_objective_passed": false
+      }
+    },
+    "combinations_evaluated": 1728,
+    "compact_points": [
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 392.43408601470367
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 338.1912603039847
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 283.88350636915277
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 366.96093598956475
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 316.0547485550103
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 265.72610512312315
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 355.3405222478382
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 305.97064780585913
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 257.5955773612608
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 347.9169294036757
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 299.53320138669073
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 252.44949165690883
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 385.22385751924674
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 331.92107030384375
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 278.6960950836609
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 360.47170917538074
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 310.4223714683119
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 261.1743067551755
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 349.21205497938445
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 300.65591746941254
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 253.34462825510406
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 342.0288960502975
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 294.4488384566074
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 248.3939015472792
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 378.9120734360873
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 326.5560401781985
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 274.38288810548613
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 353.4389234109484
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 304.4195284292241
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": true,
+        "temperature": 256.42995788745327
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 341.81850966922184
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 294.35534153580875
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 248.38817788969305
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 334.39491682505934
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 287.9880247905835
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 243.2973978857296
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 371.7018449406304
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 320.28585017805756
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 269.2547992870759
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 346.9496965967644
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 298.7880693274975
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": true,
+        "temperature": 251.92805262502054
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 335.6900424007681
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 289.09502144197086
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 244.18296185386828
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 328.50688347168114
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 282.9755046112957
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 239.28493030585628
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 366.8388479194655
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 316.16745078017516
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.02818289419572351,
+        "pass": false,
+        "temperature": 265.9916423079933
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 341.36569789432656
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": false,
+        "temperature": 294.0530429674178
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03938594611492453,
+        "pass": true,
+        "temperature": 248.2155547341547
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 329.7452841526001
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 284.10475013717553
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04560056547140929,
+        "pass": false,
+        "temperature": 240.2506058128816
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 322.3216913084376
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 277.81681425588897
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.04996581682174453,
+        "pass": false,
+        "temperature": 235.20772799680856
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 359.62861942400855
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 309.89726078003423
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.022878490535319145,
+        "pass": false,
+        "temperature": 260.914835219549
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 334.87647108014255
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": false,
+        "temperature": 288.4814845680992
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.03352287458514647,
+        "pass": true,
+        "temperature": 243.75683759140594
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 323.6168168841464
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 278.9100979265211
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.03963500046262076,
+        "pass": false,
+        "temperature": 236.084999535083
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 316.4336579550593
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 272.8659303945918
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04399359573742,
+        "pass": false,
+        "temperature": 231.23262236334244
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 427.88802388489637
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 369.07510650063693
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 309.9126621839862
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 395.8607432623422
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 341.17240225007936
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 286.3624534260256
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 381.2265313321343
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 328.44640768905924
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 275.8367351342524
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 371.8723683006733
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 320.3194954440371
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 269.1907080837078
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 419.69964787065703
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 361.9343770561236
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 303.850363371453
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 388.52886458536375
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 334.79474828261687
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 281.06909461831253
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 374.3249671741621
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 322.4497563256358
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 270.9271915754281
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 365.25764161453526
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 314.5760949503689
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 264.5285213593089
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 414.36601130628003
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 357.43988637485074
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 300.16423451103014
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 382.3387306837259
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 329.53718212429317
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 276.8332237804748
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 367.70451875351796
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 316.81118756327305
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 266.427824702085
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 358.350355722057
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 308.6842753182509
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 259.8562243215865
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 406.1776352920407
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 350.2991569303374
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 294.12351884274176
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 375.0068520067474
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 323.1595281568307
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 271.6007532198016
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 360.80295459554577
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 310.8145361998496
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 261.57337473948473
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 351.7356290359189
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 302.9408748245827
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 255.24555289788958
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 402.2927857896582
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 347.0512969768274
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.023854217135085475,
+        "pass": false,
+        "temperature": 291.5053803336526
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 370.26550516710404
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 319.1485927262697
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03465978998986338,
+        "pass": false,
+        "temperature": 268.41725203156966
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 355.6312932368961
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": false,
+        "temperature": 306.4225981652496
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.040708005411159015,
+        "pass": true,
+        "temperature": 258.11586505150365
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 346.2771302054351
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 298.29749749197117
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.044976708100520825,
+        "pass": false,
+        "temperature": 251.60864628506482
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 394.10440977541896
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 339.91056753231396
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.018834015458307114,
+        "pass": false,
+        "temperature": 285.5288659937145
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 362.93362649012556
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 312.77093875880735
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.029030181813460534,
+        "pass": false,
+        "temperature": 263.2374068392637
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 348.7297290789239
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": false,
+        "temperature": 300.4259468018263
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.034945190438374844,
+        "pass": true,
+        "temperature": 253.30906985322173
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 339.6624035192971
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 292.5866341721205
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03918414942175262,
+        "pass": false,
+        "temperature": 247.04255607570184
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 388.714452304263
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 334.95613722995006
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 281.2025865871135
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 363.25101450988154
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 312.83435670813105
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 263.120252342562
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 351.6452539448803
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 302.7657492641489
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 255.0293761857485
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 344.2358328130249
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 296.3505211877689
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 249.91133495960406
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 381.99018968291296
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 329.1101324458897
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 276.38209205150235
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": false,
+        "temperature": 357.24283679177734
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": false,
+        "temperature": 307.620863004326
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": true,
+        "temperature": 258.92024858549667
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 345.99345200913024
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 297.86847857948
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 251.12211696044852
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 338.82065934056936
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 291.6928717046043
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 246.19366800261048
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 375.19243972564664
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 323.32091710416387
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 271.73271917311445
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 349.7290019312652
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 301.199136582345
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": true,
+        "temperature": 253.85273367107862
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 338.123241366264
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 291.1791586645287
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 245.849638889162
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 330.71382023440856
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 284.85042047705826
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 240.7862764673203
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 368.4681771042966
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 317.4749123201036
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 266.9670219191862
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": false,
+        "temperature": 343.720824213161
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": false,
+        "temperature": 295.99566456745004
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": true,
+        "temperature": 249.69850493121425
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 332.4714394305139
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 286.346922910227
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 241.98418161991907
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 325.298646761953
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 280.2581102234635
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 237.10792283416686
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 363.1192142090248
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 312.9323277061404
+      },
+      {
+        "dp": 1539.2734427684447,
+        "h_delta": 0.025144003816261223,
+        "pass": false,
+        "temperature": 263.36805360096196
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 337.65577641464336
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": false,
+        "temperature": 290.862728268506
+      },
+      {
+        "dp": 4308.4292404006665,
+        "h_delta": 0.03607452828625177,
+        "pass": true,
+        "temperature": 245.663110030366
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 326.05001584964214
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 280.9683178194771
+      },
+      {
+        "dp": 9430.232988149428,
+        "h_delta": 0.04216969238175569,
+        "pass": false,
+        "temperature": 237.73602381123743
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 318.6405947177867
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 274.71787852076545
+      },
+      {
+        "dp": 17907.580906959523,
+        "h_delta": 0.046463721894677845,
+        "pass": false,
+        "temperature": 232.72002908289636
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 356.39495158767477
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": false,
+        "temperature": 307.08632292208017
+      },
+      {
+        "dp": 1137.1841994654608,
+        "h_delta": 0.0200086072296061,
+        "pass": true,
+        "temperature": 258.64973535555987
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": false,
+        "temperature": 331.64759869653926
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": false,
+        "temperature": 285.72442353268764
+      },
+      {
+        "dp": 3184.269930545077,
+        "h_delta": 0.030351954726011078,
+        "pass": true,
+        "temperature": 241.5485117006947
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 320.39821391389205
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 276.19597421808294
+      },
+      {
+        "dp": 6971.545527837884,
+        "h_delta": 0.036326090835030626,
+        "pass": false,
+        "temperature": 233.90677762868967
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 313.2254212453312
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 270.1816410254322
+      },
+      {
+        "dp": 13240.653911529876,
+        "h_delta": 0.04059910283289061,
+        "pass": false,
+        "temperature": 229.07574262588935
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 424.18586999592014
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 365.8460235549136
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 307.170761101244
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 392.14152145311834
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 337.93677046946084
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 283.67226603703887
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 377.5081000918108
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 325.215132746378
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 273.18730653634634
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 368.15849191114205
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 317.0944771109621
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 266.5693178537987
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 416.4837652055287
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 359.1312512982689
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 301.4716607608067
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 385.29590331344264
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 331.98370571417263
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 278.7477381443314
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 371.0909802889487
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 319.6408863269505
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 268.63836772791626
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 362.02618887035135
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 311.77134538038354
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 262.2620281580066
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 410.6638574173038
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 354.2108034291275
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 297.42647282959854
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 378.619508874502
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 326.30155034367465
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 274.17407795962686
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 363.98608751319443
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 313.5799126205918
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 263.80820719804274
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 354.6364793325257
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 305.4592569851759
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 257.2638691622317
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 402.96175262691236
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 347.49603117248273
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 291.7656113110264
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 371.7738907348263
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 320.34848558838644
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 269.30585539575316
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 357.56896771033234
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 308.00566620116433
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": true,
+        "temperature": 259.3100167773896
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 348.504176291735
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 300.13612525459735
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 253.0038998066957
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 398.59063190068196
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 343.82221403110407
+      },
+      {
+        "dp": 887.2858772118383,
+        "h_delta": 0.0212748233973468,
+        "pass": false,
+        "temperature": 288.79682461061634
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 366.54628335788016
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 315.9129609456512
+      },
+      {
+        "dp": 2528.3256690710227,
+        "h_delta": 0.03179548389594359,
+        "pass": false,
+        "temperature": 265.78493254981754
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 351.9128619965726
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": false,
+        "temperature": 303.19132322256837
+      },
+      {
+        "dp": 5598.531195280001,
+        "h_delta": 0.03770620945968743,
+        "pass": true,
+        "temperature": 255.52203131376405
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 342.56325381590386
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 295.0857611766605
+      },
+      {
+        "dp": 10701.14740595765,
+        "h_delta": 0.04188602495322306,
+        "pass": false,
+        "temperature": 249.04141612738164
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 390.8885271102906
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 337.1074417744594
+      },
+      {
+        "dp": 655.3216710617555,
+        "h_delta": 0.01642045030174046,
+        "pass": false,
+        "temperature": 283.19576867739056
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 359.70066521820445
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 309.959896190363
+      },
+      {
+        "dp": 1868.3230626687148,
+        "h_delta": 0.02631693879228992,
+        "pass": false,
+        "temperature": 260.96538383278767
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 345.4957421937105
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": false,
+        "temperature": 297.62061522308886
+      },
+      {
+        "dp": 4138.459685733687,
+        "h_delta": 0.032083976518867276,
+        "pass": true,
+        "temperature": 251.06774526001612
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 336.43095077511316
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 289.81240281680346
+      },
+      {
+        "dp": 7911.819663768476,
+        "h_delta": 0.03622553422998464,
+        "pass": false,
+        "temperature": 244.8224050001392
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 386.15446751165996
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 332.730153978742
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 279.3634585870259
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 361.20627422451025
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 311.0598058115378
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 261.68809937331616
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 349.86085266850944
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 301.21845436931096
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 253.7934696216256
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 342.6239598821767
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 294.9611232315691
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 248.80273826778983
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 379.5218208366622
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 326.9649190105022
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 274.6208660937863
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": false,
+        "temperature": 355.23130993044697
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": false,
+        "temperature": 305.87591563318335
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": true,
+        "temperature": 257.5196021395881
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": false,
+        "temperature": 344.22171953571114
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": false,
+        "temperature": 296.3383447300806
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": true,
+        "temperature": 249.90162088490894
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 337.21018374107086
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 290.31320404037933
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 245.09170768587086
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 372.6324549330436
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 321.0949338529558
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 269.91457224031603
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 347.6842616458939
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 299.4247924755616
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": true,
+        "temperature": 252.43624015118922
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 336.3388400898931
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 289.65018343288295
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 244.6269957897103
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 329.10194730356034
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 283.48059097787836
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 239.6894382508475
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 365.99980825804585
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 315.329698884716
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 265.2256598550115
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": false,
+        "temperature": 341.7092973518306
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": false,
+        "temperature": 294.2612785845746
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": true,
+        "temperature": 248.31302401893709
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": false,
+        "temperature": 330.6997069570948
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": false,
+        "temperature": 284.8384158018457
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": true,
+        "temperature": 240.77666555729843
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 323.6881711624545
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 278.89765573796205
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 236.01755078925936
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 360.5592294164219
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 310.7063444549325
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.022230620871709312,
+        "pass": false,
+        "temperature": 261.5680453214718
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 335.61103612927207
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": false,
+        "temperature": 289.110114787689
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.032777441438166764,
+        "pass": true,
+        "temperature": 244.26017256637363
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 324.26561457327136
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 279.45836897376273
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.03886891592424157,
+        "pass": false,
+        "temperature": 236.5248691601962
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 317.0287217869386
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 273.36483963802254
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.043223340845244394,
+        "pass": false,
+        "temperature": 231.63337932401947
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 353.926582741424
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": false,
+        "temperature": 304.94110948669265
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.01753411345456962,
+        "pass": true,
+        "temperature": 256.92555239078615
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": false,
+        "temperature": 329.6360718352089
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": false,
+        "temperature": 284.01186882099694
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.027172527965600424,
+        "pass": true,
+        "temperature": 240.1761632154831
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": false,
+        "temperature": 318.62648144047296
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": false,
+        "temperature": 274.7060212328687
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.03301995964193869,
+        "pass": true,
+        "temperature": 232.7105075593763
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 311.6149456458328
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 268.8376796380554
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0372831189231225,
+        "pass": false,
+        "temperature": 227.99541412256895
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 382.93101734391223
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 329.9278955161682
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 277.0545565081268
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": false,
+        "temperature": 357.98678774711493
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": false,
+        "temperature": 308.26628715537834
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": true,
+        "temperature": 259.43896560974656
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 346.65116799600014
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 298.43730040226797
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 251.5757255699719
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 339.4243001705844
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 292.21064936209837
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 246.60713876381664
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 376.7225688923829
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 324.53263272453273
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 272.6288820217543
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": false,
+        "temperature": 352.43270628074515
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": false,
+        "temperature": 303.44863173649946
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": true,
+        "temperature": 255.5754569265399
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": false,
+        "temperature": 341.4297300848583
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": false,
+        "temperature": 293.93337350233037
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": true,
+        "temperature": 247.98248012537937
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 334.4253916138123
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 287.93342652251033
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 243.19016923852058
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 369.4090047652959
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 318.292675390382
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 267.6318799709077
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": false,
+        "temperature": 344.4647751684986
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": false,
+        "temperature": 296.638130882071
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": true,
+        "temperature": 250.21159291742373
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 333.1291554173837
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 286.90768446156017
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 242.43295672067177
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 325.90228759196805
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 280.76866075249507
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 237.51703791575727
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 363.2005563137666
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 312.89741259874654
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 263.2560420646578
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": false,
+        "temperature": 338.9106937021288
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": false,
+        "temperature": 291.85487601368357
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": true,
+        "temperature": 246.38984704869432
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": false,
+        "temperature": 327.90771750624197
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": false,
+        "temperature": 282.46727371034774
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": true,
+        "temperature": 238.87786089891455
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 320.90337903519594
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 276.5508686259187
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 234.1359400193096
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 357.33577924867416
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": false,
+        "temperature": 307.90408599235855
+      },
+      {
+        "dp": 1102.0833525146852,
+        "h_delta": 0.019374994188303834,
+        "pass": true,
+        "temperature": 259.3080156871689
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": false,
+        "temperature": 332.39154965187674
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": false,
+        "temperature": 286.3587794429968
+      },
+      {
+        "dp": 3084.733361470299,
+        "h_delta": 0.029617068235283622,
+        "pass": true,
+        "temperature": 242.05672561700072
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 321.05592990076195
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 276.74982136382187
+      },
+      {
+        "dp": 6751.8236187342045,
+        "h_delta": 0.0355683980829509,
+        "pass": false,
+        "temperature": 234.3513651798848
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 313.8290620753462
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 270.6859881552115
+      },
+      {
+        "dp": 12821.40408131421,
+        "h_delta": 0.03983566053042714,
+        "pass": false,
+        "temperature": 229.4810828404191
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 351.12733079714474
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": false,
+        "temperature": 302.5088232007231
+      },
+      {
+        "dp": 814.1969712149155,
+        "h_delta": 0.014860587093166332,
+        "pass": true,
+        "temperature": 254.9752806051282
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": false,
+        "temperature": 326.8374681855071
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": false,
+        "temperature": 281.63560411043284
+      },
+      {
+        "dp": 2279.86190293464,
+        "h_delta": 0.024170158195244863,
+        "pass": true,
+        "temperature": 238.27114562141332
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": false,
+        "temperature": 315.8344919896201
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": false,
+        "temperature": 272.36390751041495
+      },
+      {
+        "dp": 4991.461590937183,
+        "h_delta": 0.02986138741113342,
+        "pass": true,
+        "temperature": 230.82932418476685
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 308.8301535185741
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 266.5192173795688
+      },
+      {
+        "dp": 9479.99481239713,
+        "h_delta": 0.0340247462389299,
+        "pass": false,
+        "temperature": 226.13107641172832
+      }
+    ],
+    "geometry_feasible_combinations": 432,
+    "gnielinski_all_geometry_feasible_cases_above_re_3000": true,
+    "method_b_reynolds_range": [
+      14962.154550255234,
+      35444.12071315924
+    ],
+    "numerical_screen_passing_combinations": 35,
+    "passing_combinations_by_local_oil_heat_w": {
+      "0.0": 0,
+      "1200.0": 35,
+      "600.0": 0
+    },
+    "selected_candidate": {
+      "geometry": {
+        "fits_scan_envelope_screen": true,
+        "open_area_m2": 0.0091,
+        "passage_count_equivalent": 26,
+        "stack_height_mm": 79.1,
+        "wetted_area_proxy_m2": 0.25079219286752186
+      },
+      "h_cross_method_relative_difference": 0.02986138741113342,
+      "maximum_bridge_temperature_c": 230.82932418476685,
+      "maximum_pressure_drop_pa": 4991.461590937183,
+      "method_a": {
+        "effective_h_w_m2k": 205.66042343929385,
+        "fin_efficiency": 0.873570236739814,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+        "new_CFD_executed_for_candidate": false,
+        "straight_pressure_drop_pa": 1592.4923894401215,
+        "total_pressure_drop_pa": 4991.461590937183,
+        "velocity_m_s": 57.76026094047295
+      },
+      "method_b": {
+        "darcy_friction_factor": 0.025166984508840248,
+        "effective_h_w_m2k": 199.6971883335516,
+        "fin_efficiency": 0.856561171652599,
+        "hydraulic_diameter_m": 0.00676328502415459,
+        "method": "Gnielinski_Darcy_Weisbach_closed_form",
+        "nusselt": 57.75752964079881,
+        "reynolds": 23274.462633730363,
+        "straight_pressure_drop_pa": 1264.7966917643603,
+        "total_pressure_drop_pa": 4663.765893261422,
+        "velocity_m_s": 57.76026094047295
+      },
+      "normalized_constraint_violation": 0.0,
+      "operating_point": {
+        "air_mass_flow_kg_s": 0.85,
+        "chamber_heat_load_w": 4300.0
+      },
+      "parameters": {
+        "clear_gap_mm": 3.5,
+        "duct": "splitter12",
+        "fin_levels": 14,
+        "fin_thickness_mm": 2.4,
+        "local_oil_heat_removal_w": 1200.0,
+        "mean_flow_length_mm": 180.0,
+        "mean_span_mm": 100.0,
+        "root_radius_mm": 4.0
+      },
+      "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+      "screen": {
+        "geometry_fits": true,
+        "h_cross_method_difference_below_20percent": true,
+        "mass_flow_not_above_supported_0p85": true,
+        "numerical_screen_passed": true,
+        "oil_heat_not_above_1200w": true,
+        "pressure_both_methods_at_most_6p7kpa": true,
+        "temperature_both_methods_at_most_260c": true,
+        "wall_at_least_1p8mm": true
+      },
+      "thermal_a": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 228.85384142446367,
+        "fin_root_temperature_c": 95.10311144729957,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      },
+      "thermal_b": {
+        "air_heat_w": 3100.0,
+        "bridge_temperature_c": 230.82932418476685,
+        "fin_root_temperature_c": 96.89787374284191,
+        "local_oil_heat_removal_w": 1200.0,
+        "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+        "total_heat_w": 4300.0,
+        "within_CP1_interpolation_range": true
+      }
+    },
+    "selection_rule": "if_any_pass_then_minimize_unqualified_oil_heat_then_temperature_pressure_h_delta_else_minimize_normalized_constraint_violation",
+    "top_five": [
+      {
+        "geometry": {
+          "fits_scan_envelope_screen": true,
+          "open_area_m2": 0.0091,
+          "passage_count_equivalent": 26,
+          "stack_height_mm": 79.1,
+          "wetted_area_proxy_m2": 0.25079219286752186
+        },
+        "h_cross_method_relative_difference": 0.02986138741113342,
+        "maximum_bridge_temperature_c": 230.82932418476685,
+        "maximum_pressure_drop_pa": 4991.461590937183,
+        "method_a": {
+          "effective_h_w_m2k": 205.66042343929385,
+          "fin_efficiency": 0.873570236739814,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+          "new_CFD_executed_for_candidate": false,
+          "straight_pressure_drop_pa": 1592.4923894401215,
+          "total_pressure_drop_pa": 4991.461590937183,
+          "velocity_m_s": 57.76026094047295
+        },
+        "method_b": {
+          "darcy_friction_factor": 0.025166984508840248,
+          "effective_h_w_m2k": 199.6971883335516,
+          "fin_efficiency": 0.856561171652599,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "Gnielinski_Darcy_Weisbach_closed_form",
+          "nusselt": 57.75752964079881,
+          "reynolds": 23274.462633730363,
+          "straight_pressure_drop_pa": 1264.7966917643603,
+          "total_pressure_drop_pa": 4663.765893261422,
+          "velocity_m_s": 57.76026094047295
+        },
+        "normalized_constraint_violation": 0.0,
+        "operating_point": {
+          "air_mass_flow_kg_s": 0.85,
+          "chamber_heat_load_w": 4300.0
+        },
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "splitter12",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.4,
+          "local_oil_heat_removal_w": 1200.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+        "screen": {
+          "geometry_fits": true,
+          "h_cross_method_difference_below_20percent": true,
+          "mass_flow_not_above_supported_0p85": true,
+          "numerical_screen_passed": true,
+          "oil_heat_not_above_1200w": true,
+          "pressure_both_methods_at_most_6p7kpa": true,
+          "temperature_both_methods_at_most_260c": true,
+          "wall_at_least_1p8mm": true
+        },
+        "thermal_a": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 228.85384142446367,
+          "fin_root_temperature_c": 95.10311144729957,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        },
+        "thermal_b": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 230.82932418476685,
+          "fin_root_temperature_c": 96.89787374284191,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        }
+      },
+      {
+        "geometry": {
+          "fits_scan_envelope_screen": true,
+          "open_area_m2": 0.0091,
+          "passage_count_equivalent": 26,
+          "stack_height_mm": 73.5,
+          "wetted_area_proxy_m2": 0.25079219286752186
+        },
+        "h_cross_method_relative_difference": 0.03301995964193869,
+        "maximum_bridge_temperature_c": 232.7105075593763,
+        "maximum_pressure_drop_pa": 4991.461590937183,
+        "method_a": {
+          "effective_h_w_m2k": 200.75471528958968,
+          "fin_efficiency": 0.852732583300972,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+          "new_CFD_executed_for_candidate": false,
+          "straight_pressure_drop_pa": 1592.4923894401215,
+          "total_pressure_drop_pa": 4991.461590937183,
+          "velocity_m_s": 57.76026094047295
+        },
+        "method_b": {
+          "darcy_friction_factor": 0.025166984508840248,
+          "effective_h_w_m2k": 194.3376925254905,
+          "fin_efficiency": 0.8335726856997966,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "Gnielinski_Darcy_Weisbach_closed_form",
+          "nusselt": 57.75752964079881,
+          "reynolds": 23274.462633730363,
+          "straight_pressure_drop_pa": 1264.7966917643603,
+          "total_pressure_drop_pa": 4663.765893261422,
+          "velocity_m_s": 57.76026094047295
+        },
+        "normalized_constraint_violation": 0.0,
+        "operating_point": {
+          "air_mass_flow_kg_s": 0.85,
+          "chamber_heat_load_w": 4300.0
+        },
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "splitter12",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.0,
+          "local_oil_heat_removal_w": 1200.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+        "screen": {
+          "geometry_fits": true,
+          "h_cross_method_difference_below_20percent": true,
+          "mass_flow_not_above_supported_0p85": true,
+          "numerical_screen_passed": true,
+          "oil_heat_not_above_1200w": true,
+          "pressure_both_methods_at_most_6p7kpa": true,
+          "temperature_both_methods_at_most_260c": true,
+          "wall_at_least_1p8mm": true
+        },
+        "thermal_a": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 230.47024828352409,
+          "fin_root_temperature_c": 96.57181081619996,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        },
+        "thermal_b": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 232.7105075593763,
+          "fin_root_temperature_c": 98.60490952443195,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        }
+      },
+      {
+        "geometry": {
+          "fits_scan_envelope_screen": true,
+          "open_area_m2": 0.0091,
+          "passage_count_equivalent": 26,
+          "stack_height_mm": 79.1,
+          "wetted_area_proxy_m2": 0.25079219286752186
+        },
+        "h_cross_method_relative_difference": 0.024170158195244863,
+        "maximum_bridge_temperature_c": 238.27114562141332,
+        "maximum_pressure_drop_pa": 2279.86190293464,
+        "method_a": {
+          "effective_h_w_m2k": 184.43731975458985,
+          "fin_efficiency": 0.8862440598971878,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+          "new_CFD_executed_for_candidate": false,
+          "straight_pressure_drop_pa": 1169.9944085682525,
+          "total_pressure_drop_pa": 2279.86190293464,
+          "velocity_m_s": 49.50879509183396
+        },
+        "method_b": {
+          "darcy_friction_factor": 0.026168317268337876,
+          "effective_h_w_m2k": 180.08464538705027,
+          "fin_efficiency": 0.8701733780337162,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "Gnielinski_Darcy_Weisbach_closed_form",
+          "nusselt": 51.27030910519702,
+          "reynolds": 19949.539400340313,
+          "straight_pressure_drop_pa": 966.2105083994566,
+          "total_pressure_drop_pa": 2076.0780027658443,
+          "velocity_m_s": 49.50879509183396
+        },
+        "normalized_constraint_violation": 0.0,
+        "operating_point": {
+          "air_mass_flow_kg_s": 0.85,
+          "chamber_heat_load_w": 4300.0
+        },
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "shroud16",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.4,
+          "local_oil_heat_removal_w": 1200.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "pressure_drop_cross_method_relative_difference": 0.09815811347035405,
+        "screen": {
+          "geometry_fits": true,
+          "h_cross_method_difference_below_20percent": true,
+          "mass_flow_not_above_supported_0p85": true,
+          "numerical_screen_passed": true,
+          "oil_heat_not_above_1200w": true,
+          "pressure_both_methods_at_most_6p7kpa": true,
+          "temperature_both_methods_at_most_260c": true,
+          "wall_at_least_1p8mm": true
+        },
+        "thermal_a": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 236.47972499114064,
+          "fin_root_temperature_c": 102.01914431806902,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        },
+        "thermal_b": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 238.27114562141332,
+          "fin_root_temperature_c": 103.6390076383467,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        }
+      },
+      {
+        "geometry": {
+          "fits_scan_envelope_screen": true,
+          "open_area_m2": 0.0091,
+          "passage_count_equivalent": 26,
+          "stack_height_mm": 79.1,
+          "wetted_area_proxy_m2": 0.25079219286752186
+        },
+        "h_cross_method_relative_difference": 0.02986138741113342,
+        "maximum_bridge_temperature_c": 238.87786089891455,
+        "maximum_pressure_drop_pa": 4991.461590937183,
+        "method_a": {
+          "effective_h_w_m2k": 205.66042343929385,
+          "fin_efficiency": 0.873570236739814,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+          "new_CFD_executed_for_candidate": false,
+          "straight_pressure_drop_pa": 1592.4923894401215,
+          "total_pressure_drop_pa": 4991.461590937183,
+          "velocity_m_s": 57.76026094047295
+        },
+        "method_b": {
+          "darcy_friction_factor": 0.025166984508840248,
+          "effective_h_w_m2k": 199.6971883335516,
+          "fin_efficiency": 0.856561171652599,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "Gnielinski_Darcy_Weisbach_closed_form",
+          "nusselt": 57.75752964079881,
+          "reynolds": 23274.462633730363,
+          "straight_pressure_drop_pa": 1264.7966917643603,
+          "total_pressure_drop_pa": 4663.765893261422,
+          "velocity_m_s": 57.76026094047295
+        },
+        "normalized_constraint_violation": 0.0,
+        "operating_point": {
+          "air_mass_flow_kg_s": 0.85,
+          "chamber_heat_load_w": 4300.0
+        },
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "splitter12",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.4,
+          "local_oil_heat_removal_w": 1200.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 3.0
+        },
+        "pressure_drop_cross_method_relative_difference": 0.07026418246019632,
+        "screen": {
+          "geometry_fits": true,
+          "h_cross_method_difference_below_20percent": true,
+          "mass_flow_not_above_supported_0p85": true,
+          "numerical_screen_passed": true,
+          "oil_heat_not_above_1200w": true,
+          "pressure_both_methods_at_most_6p7kpa": true,
+          "temperature_both_methods_at_most_260c": true,
+          "wall_at_least_1p8mm": true
+        },
+        "thermal_a": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 236.88395661195506,
+          "fin_root_temperature_c": 95.10311144729957,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        },
+        "thermal_b": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 238.87786089891455,
+          "fin_root_temperature_c": 96.89787374284191,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        }
+      },
+      {
+        "geometry": {
+          "fits_scan_envelope_screen": true,
+          "open_area_m2": 0.0091,
+          "passage_count_equivalent": 26,
+          "stack_height_mm": 73.5,
+          "wetted_area_proxy_m2": 0.25079219286752186
+        },
+        "h_cross_method_relative_difference": 0.027172527965600424,
+        "maximum_bridge_temperature_c": 240.1761632154831,
+        "maximum_pressure_drop_pa": 2279.86190293464,
+        "method_a": {
+          "effective_h_w_m2k": 180.45457112090483,
+          "fin_efficiency": 0.8671064616965442,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "OpenFOAM_F38_anchored_reduced_order_scaling",
+          "new_CFD_executed_for_candidate": false,
+          "straight_pressure_drop_pa": 1169.9944085682525,
+          "total_pressure_drop_pa": 2279.86190293464,
+          "velocity_m_s": 49.50879509183396
+        },
+        "method_b": {
+          "darcy_friction_factor": 0.026168317268337876,
+          "effective_h_w_m2k": 175.68087756232143,
+          "fin_efficiency": 0.8488942650039273,
+          "hydraulic_diameter_m": 0.00676328502415459,
+          "method": "Gnielinski_Darcy_Weisbach_closed_form",
+          "nusselt": 51.27030910519702,
+          "reynolds": 19949.539400340313,
+          "straight_pressure_drop_pa": 966.2105083994566,
+          "total_pressure_drop_pa": 2076.0780027658443,
+          "velocity_m_s": 49.50879509183396
+        },
+        "normalized_constraint_violation": 0.0,
+        "operating_point": {
+          "air_mass_flow_kg_s": 0.85,
+          "chamber_heat_load_w": 4300.0
+        },
+        "parameters": {
+          "clear_gap_mm": 3.5,
+          "duct": "shroud16",
+          "fin_levels": 14,
+          "fin_thickness_mm": 2.0,
+          "local_oil_heat_removal_w": 1200.0,
+          "mean_flow_length_mm": 180.0,
+          "mean_span_mm": 100.0,
+          "root_radius_mm": 4.0
+        },
+        "pressure_drop_cross_method_relative_difference": 0.09815811347035405,
+        "screen": {
+          "geometry_fits": true,
+          "h_cross_method_difference_below_20percent": true,
+          "mass_flow_not_above_supported_0p85": true,
+          "numerical_screen_passed": true,
+          "oil_heat_not_above_1200w": true,
+          "pressure_both_methods_at_most_6p7kpa": true,
+          "temperature_both_methods_at_most_260c": true,
+          "wall_at_least_1p8mm": true
+        },
+        "thermal_a": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 238.1154552629763,
+          "fin_root_temperature_c": 103.49830000698029,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        },
+        "thermal_b": {
+          "air_heat_w": 3100.0,
+          "bridge_temperature_c": 240.1761632154831,
+          "fin_root_temperature_c": 105.35957197951605,
+          "local_oil_heat_removal_w": 1200.0,
+          "oil_mass_flow_kg_s_at_25k": 0.02181818181818182,
+          "total_heat_w": 4300.0,
+          "within_CP1_interpolation_range": true
+        }
+      }
+    ]
+  },
+  "schema_version": "1.0"
+}
