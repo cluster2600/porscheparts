@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-head-f42-1-thermal-optimization-screen",
+  "classification": "exact_F41_sequential_CalculiX_sensitivity_plus_independent_conservative_network_not_CHT_not_release",
+  "inheritance": {
+    "f42_report": "twins/reference-917-engine/evidence/f42-cooling-cht/f42-cooling-cht-cross-check.json",
+    "base_input_sha256": "ab906a554fdfffa9c6c1e5d6cc2b9fac7498177e4cc0b3fd4c08bdb37e1b8359",
+    "exact_F41_solid_stl_sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81",
+    "base_external_h_w_m2k": 215.76,
+    "base_conductivity_scale": 1.0
+  },
+  "objectives": {
+    "maximum_temperature_c": 260.0,
+    "maximum_pressure_drop_pa": 6700.0,
+    "maximum_cross_method_h_relative_difference": 0.2
+  },
+  "calculix_sweep": {
+    "external_h_w_m2k": [150.0, 300.0, 450.0, 650.0, 900.0, 1500.0, 3000.0],
+    "conductivity_scale_at_base_h": [0.8, 1.2],
+    "external_film_face_count": 21397,
+    "mesh_nodes": 99391,
+    "mesh_hexahedra": 85334,
+    "solver": "CalculiX DC3D8 steady sequential conduction"
+  },
+  "analytical_sweep": {
+    "mass_flow_kg_s_per_head": [0.45, 0.6, 0.7, 0.85, 1.0, 1.2],
+    "capture_fraction": [0.5, 0.7, 0.85, 1.0],
+    "passage_count_equivalent": 26,
+    "method": "Gnielinski plus Darcy-Weisbach plus two-resistance bridge network"
+  },
+  "options": [
+    {
+      "id": "baseline-capture70",
+      "description": "Ailettes F41 existantes, capture 70 %, carte conductivite provisoire",
+      "capture_fraction": 0.7,
+      "mass_flow_kg_s_per_head": 0.85,
+      "internal_area_multiplier": 1.0,
+      "conductivity_scale": 1.0,
+      "external_envelope_modified": false,
+      "cad_clearance_verified": true
+    },
+    {
+      "id": "shroud-deflectors-capture100",
+      "description": "Carénage et déflecteurs internes portant la capture calculée à 100 %",
+      "capture_fraction": 1.0,
+      "mass_flow_kg_s_per_head": 0.85,
+      "internal_area_multiplier": 1.0,
+      "conductivity_scale": 1.0,
+      "external_envelope_modified": false,
+      "cad_clearance_verified": false
+    },
+    {
+      "id": "internal-fin-area-plus25",
+      "description": "Extension de surface mouillée interne de 25 % sans changer l'enveloppe externe",
+      "capture_fraction": 0.7,
+      "mass_flow_kg_s_per_head": 0.85,
+      "internal_area_multiplier": 1.25,
+      "conductivity_scale": 1.0,
+      "external_envelope_modified": false,
+      "cad_clearance_verified": false
+    },
+    {
+      "id": "conductivity-plus20-coupon",
+      "description": "Carte matériau candidate à conductivité multipliée par 1,20, à qualifier par coupons chauds",
+      "capture_fraction": 0.7,
+      "mass_flow_kg_s_per_head": 0.85,
+      "internal_area_multiplier": 1.0,
+      "conductivity_scale": 1.2,
+      "external_envelope_modified": false,
+      "cad_clearance_verified": true
+    },
+    {
+      "id": "combined-capture100-area125-k120",
+      "description": "Combinaison carénage/déflecteurs, surface interne +25 % et conductivité +20 %",
+      "capture_fraction": 1.0,
+      "mass_flow_kg_s_per_head": 0.85,
+      "internal_area_multiplier": 1.25,
+      "conductivity_scale": 1.2,
+      "external_envelope_modified": false,
+      "cad_clearance_verified": false
+    }
+  ],
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "exact_F41_whole_head_CHT_complete": false,
+    "temperature_dependent_printed_hot_coupon_card_qualified": false,
+    "fan_map_and_duct_leakage_measured": false,
+    "physical_thermocouple_correlation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
