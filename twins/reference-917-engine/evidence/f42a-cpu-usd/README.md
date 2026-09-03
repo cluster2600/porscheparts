@@ -1,4 +1,29 @@
-# F42a — conversion CPU des six STEP F41
+# F42a — conversions CPU des six STEP F41
+
+## Replay corrigé et reproductible
+
+Le 3 septembre 2026, les six familles ont été reconverties deux fois avec
+l'image corrigée publique et immuable :
+
+`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126`
+
+Les deux exécutions ont utilisé la même archive F41 liée, sur un worker privé
+`linux/amd64`, sans GPU et sans réseau dans les conteneurs. Pour chaque famille,
+les deux USDC sont identiques octet pour octet. Les six `defaultPrim` sont
+canoniques (`/connecting_rod`, `/crankshaft`, `/main_bearing_pair`, `/piston`,
+`/piston_pin`, `/piston_ring`) et les liaisons USD internes ont été résolues.
+Les six fichiers totalisent `166766` octets.
+
+Les SHA-256, tailles et deux empreintes de rapports privés figurent dans
+[`repeatability-summary.json`](repeatability-summary.json), dont le SHA-256 est
+`6d7f36ef61a7517c6ab3f70d33be1b58eaedab6df0b4a032f1f0c213a6c50a2a`.
+Aucun USD, STEP, journal, archive ou chemin privé n'est publié.
+
+Cette preuve ferme uniquement le défaut de namespace et la répétabilité de la
+conversion des six graines. Elle ne les rend ni SimReady, ni dimensionnellement
+corrélées, ni assemblées, ni aptes à la simulation ou à la fabrication.
+
+## Première exécution historique non canonique
 
 Le 3 septembre 2026, le lot F42a a été exécuté sur un worker privé
 `linux/amd64`, sans GPU et sans réseau dans le conteneur. Il a utilisé l'image
@@ -30,8 +55,7 @@ Le rapport d'exécution privé porte le SHA-256
 ## Limites fermées
 
 Les USD, STEP, archive source et journaux restent hors du dépôt. Les six
-géométries sont des graines paramétriques de recherche et leur namespace doit
-être normalisé avant le lot RTX : elles ne sont ni
+géométries sont des graines paramétriques de recherche : elles ne sont ni
 dimensionnellement corrélées à un moteur réel, ni SimReady, ni assemblées, ni
 qualifiées pour l'impression 3D. Aucun matériau, PhysX, fluide, combustion,
 fatigue, refroidissement ou validation à 1 600 ch n'a été exécuté.

@@ -99,7 +99,7 @@ octet ; le pull anonyme, les smokes runtime et SSH et la promotion ont réussi.
 Le contrat de production épingle exclusivement l'image publique `linux/amd64`
 `ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126`.
 
-## Exécution CPU attestée
+## Exécutions CPU attestées
 
 Le 3 septembre 2026, le lot complet a été exécuté sur un worker CPU privé
 `linux/amd64`, sans GPU, sans réseau dans le conteneur et sans instance payante.
@@ -109,8 +109,17 @@ totalisent `167044` octets ; leurs SHA-256 et tailles sont consignés dans la
 
 Les sources STEP, les USD, l'archive et les journaux restent hors du dépôt.
 Le `defaultPrim` des USD conserve en outre un nom temporaire non déterministe ;
-le lot RTX devra d'abord normaliser ce namespace. Cette réussite ferme
-uniquement la porte de conversion minimale : 132 familles,
+ce premier lot ne peut donc pas alimenter F42b.
+
+Le replay corrigé a ensuite exécuté deux fois les six conversions avec le
+digest `79e76882…`. Pour chaque famille, les deux USDC sont identiques octet pour
+octet, leur `defaultPrim` est exactement `/{family_id}` et leurs liaisons
+internes sont résolues. Les six USDC canoniques totalisent `166766` octets. La
+[preuve de répétabilité assainie](../twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json)
+ne publie aucun USD, STEP, journal, archive ou chemin privé.
+
+Cette réussite ferme uniquement la conversion canonique et reproductible des
+six graines : 132 familles,
 les propriétés SimReady, les matériaux, la physique, l'assemblage, le rendu et
 toutes les validations physiques restent ouverts.
 
@@ -192,11 +201,11 @@ exactement (`724745` octets) ; une sortie supérieure aux plafonds est bloquée.
 
 ## Gate GPU suivant
 
-Aucun GPU n'a été nécessaire pour F42a. Le premier passage des six conversions
-et validations minimales est attesté, mais son namespace non canonique impose
-un second passage. Le lot RTX séparé ne pourra démarrer qu'après cette
-répétition avec des `defaultPrim` stables. Ce lot
-pourra affecter des matériaux documentés, appliquer la physique sous contrat,
-exécuter les validateurs NVIDIA plus profonds et produire l'aperçu OVRTX. Il ne
-doit pas transformer ces validations logicielles en preuve de fonctionnement
-du moteur ou d'aptitude à la fabrication.
+Aucun GPU n'a été nécessaire pour F42a. Le replay de deux passages a produit
+les six USD canoniques et reproductibles attendus. Le lot RTX séparé peut donc
+être préparé ; il pourra affecter uniquement des matériaux documentés, ajouter
+des colliders statiques de diagnostic sous contrat, exécuter les validateurs
+NVIDIA plus profonds et produire l'aperçu OVRTX. Il ne doit pas inventer de
+joint, masse, force ou donnée matériau, ni transformer ces validations
+logicielles en preuve de fonctionnement du moteur ou d'aptitude à la
+fabrication.

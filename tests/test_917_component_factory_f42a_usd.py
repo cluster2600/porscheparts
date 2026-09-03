@@ -20,6 +20,10 @@ CONTRACT_PATH = ROOT / "twins/reference-917-engine/component-factory-f42a-usd.js
 EXECUTOR_PATH = ROOT / "twins/reference-917-engine/source/execute_component_factory_f42a_usd.py"
 WRAPPER_PATH = ROOT / "twins/reference-917-engine/source/run_component_factory_f42a_usd.sh"
 EVIDENCE_PATH = ROOT / "twins/reference-917-engine/evidence/f42a-cpu-usd/summary.json"
+REPEATABILITY_EVIDENCE_PATH = (
+    ROOT
+    / "twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json"
+)
 IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:" + "2" * 64
 FAMILIES = (
     "connecting_rod",
@@ -373,11 +377,49 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         evidence_root = EVIDENCE_PATH.parent
         self.assertEqual(
             {path.name for path in evidence_root.iterdir()},
-            {"README.md", "summary.json"},
+            {"README.md", "repeatability-summary.json", "summary.json"},
         )
         forbidden_suffixes = {".3mf", ".obj", ".step", ".stl", ".usd", ".usda", ".usdc", ".usdz"}
         self.assertFalse(any(path.suffix.lower() in forbidden_suffixes for path in evidence_root.rglob("*")))
         serialized = EVIDENCE_PATH.read_text(encoding="utf-8")
+        for private_marker in ("/Users/", "/tmp/", "192.168.", "lolman", "maxime"):
+            self.assertNotIn(private_marker, serialized)
+
+    def test_corrected_CPU_replay_is_canonical_reproducible_and_fail_closed(self):
+        raw = REPEATABILITY_EVIDENCE_PATH.read_bytes()
+        evidence = json.loads(raw)
+        self.assertEqual(
+            hashlib.sha256(raw).hexdigest(),
+            "6d7f36ef61a7517c6ab3f70d33be1b58eaedab6df0b4a032f1f0c213a6c50a2a",
+        )
+        self.assertEqual(evidence["phase"], "F42a-cpu-usd-repeatability")
+        self.assertEqual(
+            evidence["status"],
+            "passed_two_runs_six_canonical_USD_bitwise_identical_not_simready",
+        )
+        self.assertEqual(evidence["repeatability"]["run_count"], 2)
+        self.assertTrue(evidence["repeatability"]["canonical_namespace"])
+        self.assertTrue(evidence["repeatability"]["all_six_USD_bitwise_identical"])
+        families = evidence["repeatability"]["families"]
+        self.assertEqual([item["family_id"] for item in families], list(FAMILIES))
+        self.assertEqual(sum(item["USD_size_bytes"] for item in families), 166766)
+        self.assertEqual(
+            [item["default_prim_path"] for item in families],
+            [f"/{family}" for family in FAMILIES],
+        )
+        self.assertEqual(
+            evidence["runtime"]["image_ref"],
+            "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:"
+            "79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+        )
+        self.assertFalse(evidence["runtime"]["gpu_used"])
+        self.assertFalse(evidence["runtime"]["container_network_enabled"])
+        self.assertFalse(evidence["private_artifacts_committed"])
+        self.assertFalse(evidence["simulation_validated"])
+        self.assertFalse(evidence["manufacturing_authorized"])
+        self.assertFalse(evidence["performance_1600_hp_claim_authorized"])
+        self.assertTrue(all(value is False for value in evidence["release_gates"].values()))
+        serialized = raw.decode("utf-8")
         for private_marker in ("/Users/", "/tmp/", "192.168.", "lolman", "maxime"):
             self.assertNotIn(private_marker, serialized)
 
