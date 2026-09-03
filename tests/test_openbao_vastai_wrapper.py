@@ -139,6 +139,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def component_factory_f41_attempt_label(self, token: str = "a" * 20):
         return f"{self.wrapper.COMPONENT_FACTORY_F41_LABEL}-{token}"
 
+    def simready_attempt_label(self, token: str = "a" * 20):
+        return f"{self.wrapper.SIMREADY_LABEL}-{token}"
+
     def test_heavy_contract_is_exact_and_prices_500_gb(self):
         query = self.wrapper.heavy_offer_query()
         self.assertEqual(self.wrapper.HEAVY_GPU_NAME, "RTX PRO 6000 WS")
@@ -718,14 +721,73 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
 
     def test_destroy_is_proven_by_complete_paginated_absence(self):
         responses = [
+            {
+                "success": True,
+                "instances": [{"id": 9, "label": "bounded-test"}],
+                "next_token": None,
+            },
             {"success": True},
-            {"success": True, "instances": [], "next_token": None},
+            *[
+                {"success": True, "instances": [], "next_token": None}
+                for _ in range(self.wrapper.DESTROY_ABSENCE_STABILITY_SNAPSHOTS)
+            ],
         ]
-        with mock.patch.object(self.wrapper, "vast_request", side_effect=responses):
+        with (
+            mock.patch.object(self.wrapper, "vast_request", side_effect=responses),
+            mock.patch.object(self.wrapper.time, "sleep"),
+        ):
             self.wrapper.destroy_instance_verified("unused", 9)
+
+    def test_destroy_does_not_count_malformed_inventory_as_absence(self):
+        responses = [
+            {
+                "success": True,
+                "instances": [{"id": 9, "label": "bounded-test"}],
+                "next_token": None,
+            },
+            {"success": True},
+            *[
+                {"success": True, "instances": [], "next_token": None}
+                for _ in range(4)
+            ],
+            {"success": "error", "instances": [], "next_token": None},
+        ]
+        with (
+            mock.patch.object(self.wrapper, "vast_request", side_effect=responses),
+            mock.patch.object(self.wrapper, "DESTROY_VERIFY_ATTEMPTS", 5),
+            mock.patch.object(self.wrapper.time, "sleep"),
+            self.assertRaisesRegex(
+                self.wrapper.SafeError, "did not verify stable destruction"
+            ),
+        ):
+            self.wrapper.destroy_instance_verified("unused", 9)
+
+    def test_destroy_requires_a_strict_boolean_acknowledgement(self):
+        for acknowledgement in (1, 1.0):
+            responses = [
+                {
+                    "success": True,
+                    "instances": [{"id": 9, "label": "bounded-test"}],
+                    "next_token": None,
+                },
+                {"success": acknowledgement},
+            ]
+            with (
+                self.subTest(acknowledgement=acknowledgement),
+                mock.patch.object(
+                    self.wrapper, "vast_request", side_effect=responses
+                ),
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaisesRegex(
+                    self.wrapper.SafeError, "exact destroy acknowledgement"
+                ),
+            ):
+                self.wrapper.destroy_instance_verified("unused", 9)
+            sleep.assert_not_called()
 
     def test_heavy_launch_enforces_singleton_and_contract(self):
         output = io.StringIO()
+        attempt_label = self.simready_attempt_label()
         with (
             mock.patch.object(
                 self.wrapper,
@@ -736,12 +798,20 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             mock.patch.object(self.wrapper, "require_no_simready_instance") as no_existing,
             mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
             mock.patch.object(
+                self.wrapper, "simready_attempt_label", return_value=attempt_label
+            ),
+            mock.patch.object(
                 self.wrapper,
                 "vast_request",
                 return_value={"new_contract": 12345},
-            ),
+            ) as request,
             mock.patch.object(self.wrapper, "verify_single_simready_instance") as singleton,
             mock.patch.object(self.wrapper, "verify_simready_contract") as contract,
+            mock.patch.object(
+                self.wrapper,
+                "verify_simready_ssh_ready",
+                return_value=Path("/tmp/simready-known-hosts"),
+            ) as ssh_ready,
             mock.patch("sys.stdout", output),
         ):
             result = self.wrapper.launch_simready_offer(
@@ -749,11 +819,252 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             )
         self.assertEqual(result, 0)
         no_existing.assert_called_once_with("unused")
-        singleton.assert_called_once_with("unused", 12345)
-        contract.assert_called_once_with("unused", 12345)
+        singleton.assert_called_once_with("unused", 12345, attempt_label)
+        contract.assert_called_once_with("unused", 12345, attempt_label)
+        ssh_ready.assert_called_once_with("unused", 12345)
+        self.assertEqual(request.call_args.kwargs["payload"]["label"], attempt_label)
         payload = json.loads(output.getvalue())
         self.assertTrue(payload["singleton_verified"])
         self.assertTrue(payload["contract_verified"])
+        self.assertTrue(payload["ssh_batch_mode_verified"])
+        self.assertTrue(payload["runtime_ready_verified"])
+        self.assertTrue(payload["physicsnemo_gpu_runtime_verified"])
+        self.assertFalse(payload["simulation_validated"])
+        self.assertFalse(payload["manufacturing_authorized"])
+        self.assertFalse(payload["target_1600_ch_validated"])
+        self.assertEqual(payload["label"], attempt_label)
+
+    def test_simready_offer_is_revalidated_before_paid_side_effects(self):
+        qualified = (
+            "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:"
+            + "a" * 64
+        )
+        for kwargs in (
+            {"enforce_singleton": False, "disk_gb": 500},
+            {"enforce_singleton": True, "disk_gb": 499},
+            {"enforce_singleton": True, "disk_gb": 500, "offer": self.eligible_offer(gpu_ram=79999)},
+        ):
+            offer = kwargs.pop("offer", self.eligible_offer())
+            with (
+                self.subTest(kwargs=kwargs, offer=offer),
+                mock.patch.object(self.wrapper, "SIMREADY_IMAGE", qualified),
+                mock.patch.object(self.wrapper, "simready_launch_lock") as launch_lock,
+                mock.patch.object(self.wrapper, "vast_request") as request,
+                self.assertRaisesRegex(
+                    self.wrapper.SafeError, "supervised heavy offer contract"
+                ),
+            ):
+                self.wrapper.launch_simready_offer("unused", offer, **kwargs)
+            launch_lock.assert_not_called()
+            request.assert_not_called()
+
+    def test_simready_every_create_error_reconciles_unique_attempt(self):
+        qualified = (
+            "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:"
+            + "a" * 64
+        )
+        attempt_label = self.simready_attempt_label()
+        launch_error = self.wrapper.SafeHttpError("Vast.ai", 408)
+        with (
+            mock.patch.object(self.wrapper, "SIMREADY_IMAGE", qualified),
+            mock.patch.object(
+                self.wrapper, "simready_launch_lock", return_value=nullcontext()
+            ),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(
+                self.wrapper, "simready_attempt_label", return_value=attempt_label
+            ),
+            mock.patch.object(
+                self.wrapper, "vast_request", side_effect=launch_error
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "reconcile_uncertain_simready_launch",
+                return_value=12345,
+            ) as reconcile,
+            self.assertRaises(self.wrapper.SafeHttpError),
+        ):
+            self.wrapper.launch_simready_offer(
+                "unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True
+            )
+        reconcile.assert_called_once_with("unused", attempt_label)
+
+    def test_only_supervised_heavy_simready_launch_route_is_exposed(self):
+        source = WRAPPER_PATH.read_text(encoding="utf-8")
+        self.assertIn("launch-simready-heavy <offer_id> [--attempt-label <label>]", source)
+        self.assertNotIn('operation[0] == "launch-simready"', source)
+        self.assertNotIn('operation == ["launch-simready-best"]', source)
+        self.assertNotIn('operation == ["launch-simready-best-eu"]', source)
+
+    def test_simready_post_create_ssh_failure_destroys_exact_instance(self):
+        qualified = (
+            "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:"
+            + "a" * 64
+        )
+        attempt_label = self.simready_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "SIMREADY_IMAGE", qualified),
+            mock.patch.object(
+                self.wrapper, "simready_launch_lock", return_value=nullcontext()
+            ),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(
+                self.wrapper, "simready_attempt_label", return_value=attempt_label
+            ),
+            mock.patch.object(
+                self.wrapper, "vast_request", return_value={"new_contract": 12345}
+            ),
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "verify_simready_contract"),
+            mock.patch.object(
+                self.wrapper,
+                "verify_simready_ssh_ready",
+                side_effect=self.wrapper.SafeError("remote READY rejected"),
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "reconcile_uncertain_simready_launch",
+                return_value=12345,
+            ) as reconcile,
+            mock.patch.object(
+                self.wrapper, "remove_simready_known_hosts_after_destroy"
+            ) as remove_known_hosts,
+            self.assertRaisesRegex(self.wrapper.SafeError, "remote READY rejected"),
+        ):
+            self.wrapper.launch_simready_offer(
+                "unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True
+            )
+        reconcile.assert_called_once_with("unused", attempt_label)
+        remove_known_hosts.assert_called_once_with(12345)
+
+    def test_simready_ssh_ready_uses_batch_mode_and_exact_scoped_tofu(self):
+        self.assertEqual(self.wrapper.SIMREADY_SSH_READY_TIMEOUT_SECONDS, 30 * 60)
+        instance = {
+            "id": 12345,
+            "actual_status": "running",
+            "ssh_host": "ssh.example.invalid",
+            "ssh_port": 22022,
+        }
+        captured = {}
+        with tempfile.TemporaryDirectory() as temporary:
+            known_hosts_dir = Path(temporary) / "known-hosts"
+
+            def successful_probe(command, environment):
+                captured["command"] = command
+                captured["environment"] = environment
+                option = next(
+                    item for item in command if item.startswith("UserKnownHostsFile=")
+                )
+                path = Path(option.split("=", 1)[1])
+                path.write_text(
+                    "simready-12345 ssh-ed25519 AAAATEST\n", encoding="utf-8"
+                )
+                return self.wrapper.subprocess.CompletedProcess(
+                    command, 0, "SIMREADY_REMOTE_READY\n", ""
+                )
+
+            with (
+                mock.patch.object(
+                    self.wrapper, "SIMREADY_KNOWN_HOSTS_DIR", known_hosts_dir
+                ),
+                mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+                mock.patch.object(
+                    self.wrapper,
+                    "vast_request",
+                    return_value={"instances": instance},
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "run_component_factory_f41_ssh_probe",
+                    side_effect=successful_probe,
+                ),
+                mock.patch.object(self.wrapper, "SIMREADY_SSH_READY_ATTEMPTS", 1),
+            ):
+                result = self.wrapper.verify_simready_ssh_ready("unused", 12345)
+
+            self.assertEqual(result, known_hosts_dir / "simready-12345")
+            command = captured["command"]
+            self.assertEqual(command[1:3], ["-F", "/dev/null"])
+            self.assertIn("BatchMode=yes", command)
+            self.assertIn("IdentitiesOnly=yes", command)
+            self.assertIn("ForwardAgent=no", command)
+            self.assertIn("ClearAllForwardings=yes", command)
+            self.assertIn("PermitLocalCommand=no", command)
+            self.assertIn("PasswordAuthentication=no", command)
+            self.assertIn("KbdInteractiveAuthentication=no", command)
+            self.assertIn("StrictHostKeyChecking=accept-new", command)
+            self.assertIn("UpdateHostKeys=no", command)
+            self.assertIn("GlobalKnownHostsFile=/dev/null", command)
+            self.assertIn("HostKeyAlias=simready-12345", command)
+            self.assertEqual(captured["environment"]["LC_ALL"], "C")
+            self.assertEqual(set(captured["environment"]), {"LC_ALL", "PATH"})
+            self.assertNotIn("SSH_AUTH_SOCK", captured["environment"])
+            remote = command[-1]
+            self.assertIn("SIMREADY_REMOTE_READY", remote)
+            self.assertIn("target_1600_ch_validated", remote)
+            self.assertIn("physicsnemo-gpu-smoke.json", remote)
+
+    def test_simready_remote_ready_rejects_integer_boolean_substitution(self):
+        ready = {
+            "schema_version": "1.0.0",
+            "status": "simready_local_ai_services_ready",
+            "ephemeral_ssh_host_keys": 1,
+            "batch_ssh_auto_tmux_disabled": 1,
+            "physicsnemo_gpu_smoke_passed": 1,
+            "local_vlm_ready": 1,
+            "ovrtx_ready": 1,
+            "material_agent_ready": 1,
+            "physics_agent_ready": 1,
+            "simulation_validated": 0,
+            "manufacturing_authorized": 0,
+            "target_1600_ch_validated": 0,
+        }
+        gpu = {
+            "schema_version": "1.0.0",
+            "status": "passed",
+            "claim_scope": "runtime GPU only; no engine simulation or physical validation",
+            "physicsnemo_version": "2.2.0",
+            "torch_version": "2.10.0+cu129",
+            "torch_cuda_version": "12.9",
+            "gpu_name": "synthetic-98GB",
+            "gpu_memory_bytes": 98304 * 1024 * 1024,
+            "gpu_count": 1,
+            "tensor_result": 14.0,
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            workspace = Path(temporary) / "workspace"
+            logs = workspace / "logs"
+            logs.mkdir(parents=True)
+            (workspace / "READY").write_text(json.dumps(ready), encoding="utf-8")
+            (logs / "physicsnemo-gpu-smoke.json").write_text(
+                json.dumps(gpu), encoding="utf-8"
+            )
+            for name in (
+                "nvidia-smi.log",
+                "simready-smoke.log",
+                "simready-services-start.log",
+                "simready-services-status.log",
+            ):
+                (logs / name).write_text("synthetic\n", encoding="utf-8")
+            remote = shlex.split(self.wrapper.simready_remote_ready_command())
+            script = remote[2].replace("/workspace", str(workspace))
+            completed = self.wrapper.subprocess.run(
+                [sys.executable, "-c", script],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+        self.assertEqual(completed.returncode, 43)
+        self.assertEqual(completed.stdout, "")
+
+    def test_simready_ready_contract_rejection_is_terminal(self):
+        completed = self.wrapper.subprocess.CompletedProcess([], 43, "", "")
+        self.assertEqual(
+            self.wrapper.classify_simready_ssh_probe(completed),
+            "remote_ready_contract_rejected",
+        )
 
     def test_revoked_simready_images_block_before_paid_side_effects(self):
         for revoked_image in self.wrapper.SIMREADY_REVOKED_IMAGES:
@@ -773,19 +1084,116 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             request.assert_not_called()
 
     def test_uncertain_launch_rolls_back_the_only_project_instance(self):
+        attempt_label = self.simready_attempt_label()
         with (
             mock.patch.object(
                 self.wrapper,
                 "list_instances",
-                return_value=[{"id": 12345, "label": self.wrapper.SIMREADY_LABEL}],
+                return_value=[
+                    {
+                        "id": 12345,
+                        "label": attempt_label,
+                        "image_uuid": "wrong-image-still-owned-by-label",
+                    }
+                ],
             ),
             mock.patch.object(self.wrapper, "destroy_instance_verified") as destroy,
         ):
-            with self.assertRaisesRegex(
-                self.wrapper.SafeError, "automatically destroyed and verified absent"
-            ):
-                self.wrapper.reconcile_uncertain_simready_launch("unused")
-        destroy.assert_called_once_with("unused", 12345)
+            result = self.wrapper.reconcile_uncertain_simready_launch(
+                "unused", attempt_label
+            )
+        self.assertEqual(result, 12345)
+        destroy.assert_called_once_with(
+            "unused", 12345, expected_label=attempt_label
+        )
+
+    def test_simready_attempt_labels_are_unique_bounded_and_scoped(self):
+        first = self.wrapper.simready_attempt_label()
+        second = self.wrapper.simready_attempt_label()
+        self.assertNotEqual(first, second)
+        self.assertTrue(self.wrapper.is_simready_attempt_label(first))
+        self.assertTrue(self.wrapper.is_simready_family_label(first))
+        self.assertTrue(self.wrapper.is_simready_family_label(self.wrapper.SIMREADY_LABEL))
+        self.assertFalse(self.wrapper.is_simready_attempt_label(self.wrapper.SIMREADY_LABEL))
+        self.assertFalse(
+            self.wrapper.is_simready_attempt_label(
+                self.wrapper.SIMREADY_LABEL + "-" + "g" * 20
+            )
+        )
+
+    def test_simready_cleanup_attestation_is_exact_json(self):
+        attempt_label = self.simready_attempt_label()
+        stderr = io.StringIO()
+        with mock.patch("sys.stderr", stderr):
+            self.wrapper.emit_simready_cleanup_attestation(12345, attempt_label)
+        line = stderr.getvalue().strip()
+        self.assertTrue(line.startswith(self.wrapper.SIMREADY_CLEANUP_PREFIX))
+        receipt = json.loads(line[len(self.wrapper.SIMREADY_CLEANUP_PREFIX) :])
+        self.assertEqual(
+            set(receipt),
+            {
+                "schema_version",
+                "status",
+                "instance_id",
+                "label",
+                "requested_image",
+                "delete_acknowledged",
+                "paginated_absence_verified",
+                "stable_absence_snapshots",
+            },
+        )
+        self.assertEqual(receipt["status"], "destroyed_verified_stably_absent")
+        self.assertEqual(receipt["instance_id"], 12345)
+        self.assertEqual(receipt["label"], attempt_label)
+        self.assertEqual(receipt["requested_image"], self.wrapper.SIMREADY_IMAGE)
+        self.assertIs(receipt["delete_acknowledged"], True)
+        self.assertIs(receipt["paginated_absence_verified"], True)
+        self.assertEqual(receipt["stable_absence_snapshots"], 5)
+
+    def test_simready_parent_can_reconcile_one_persisted_attempt_label(self):
+        attempt_label = self.simready_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "login", return_value="session"),
+            mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+            mock.patch.object(self.wrapper, "revoke_token") as revoke,
+            mock.patch.object(
+                self.wrapper,
+                "reconcile_uncertain_simready_launch",
+                return_value=12345,
+            ) as reconcile,
+            mock.patch.object(
+                self.wrapper, "emit_simready_cleanup_attestation"
+            ) as receipt,
+        ):
+            result = self.wrapper.run(
+                ["reconcile-simready-attempt", attempt_label]
+            )
+        self.assertEqual(result, 0)
+        reconcile.assert_called_once_with("unused", attempt_label)
+        receipt.assert_called_once_with(12345, attempt_label)
+        revoke.assert_called_once_with("session")
+
+    def test_simready_singleton_requires_five_stable_family_snapshots(self):
+        attempt_label = self.simready_attempt_label()
+        other_label = self.simready_attempt_label("b" * 20)
+        snapshots = [
+            [{"id": 12345, "label": attempt_label}],
+            [{"id": 12345, "label": attempt_label}],
+            [
+                {"id": 12345, "label": attempt_label},
+                {"id": 12346, "label": other_label},
+            ],
+        ]
+        with (
+            mock.patch.object(
+                self.wrapper, "strict_instance_inventory", side_effect=snapshots
+            ),
+            mock.patch.object(self.wrapper.time, "sleep"),
+            self.assertRaisesRegex(self.wrapper.SafeError, "uniqueness verification"),
+        ):
+            self.wrapper.verify_single_simready_instance(
+                "unused", 12345, attempt_label
+            )
 
     def test_component_factory_f41_contract_is_cpu_only_and_digest_pinned(self):
         query = self.wrapper.component_factory_f41_offer_query()

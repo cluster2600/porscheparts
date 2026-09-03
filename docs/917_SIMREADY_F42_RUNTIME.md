@@ -49,6 +49,19 @@ recréé par renommage atomique seulement après :
 Le JSON affirme uniquement la disponibilité du runtime. Ses champs de
 simulation, fabrication et puissance restent explicitement à `false`.
 
+Le lancement payant autorisé est exclusivement
+`openbao-vastai launch-simready-heavy <offer_id>`. Le wrapper relit l'offre
+avant la création, impose une seule instance et utilise précisément
+`~/.ssh/id_vastai` en `BatchMode`, avec un fichier `known_hosts` privé propre à
+l'identifiant Vast. Il attend au maximum 30 minutes le contrat `READY` exact et
+le rapport CUDA PhysicsNeMo lié au runtime. Toute divergence, interruption ou
+expiration après création déclenche la destruction de cette instance et la
+vérification de cinq inventaires paginés consécutifs sans son identifiant avant
+de rendre l'erreur. Le label aléatoire de tentative (80 bits) est imprimé avant
+le `PUT` payant afin que le superviseur parent puisse exécuter, après une sortie
+anormale, `openbao-vastai reconcile-simready-attempt <label>`. Seul un reçu JSON
+`OPENBAO_VASTAI_SIMREADY_CLEANUP` autorise le parent à conclure au nettoyage.
+
 ## Publication bornée
 
 Le wrapper GitHub approuvé limite la cascade aux trois images attendues. Les

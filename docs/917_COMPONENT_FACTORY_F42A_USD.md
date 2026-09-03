@@ -125,7 +125,11 @@ bash twins/reference-917-engine/source/run_component_factory_f42a_usd.sh \
 
 Le wrapper vérifie le digest local et `linux/amd64`, puis lance le conteneur
 sans réseau, sans capability, sans GPU, avec le dépôt, l'archive et le skill en
-lecture seule. Il refuse une sortie existante.
+lecture seule. `NVIDIA_VISIBLE_DEVICES=void` et `CUDA_VISIBLE_DEVICES=-1`
+masquent aussi explicitement tout GPU éventuellement exposé par le runtime de
+l'hôte. Les tolérances d'audit des bornes sont épinglées à 1 % relatif et
+0,1 mm absolu ; le contrat refuse toute valeur élargie ou non finie. Il refuse
+une sortie existante.
 
 ## Artefacts attendus
 
