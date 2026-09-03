@@ -5,11 +5,15 @@ from __future__ import annotations
 import importlib.util
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import stat
+import subprocess
 import tempfile
 import unittest
+from unittest import mock
+from datetime import datetime, timezone
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -66,7 +70,7 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         self.assertTrue(self.summary["repeatability"]["canonical_namespace"])
         self.assertTrue(self.summary["repeatability"]["all_six_USD_bitwise_identical"])
 
-    def test_runtime_reste_bloque_avant_digest_local_ai_qualifie(self):
+    def test_runtime_est_epingle_mais_exige_un_recu_live(self):
         runtime = self.contract["runtime"]
         self.assertEqual(
             runtime["image_repository"],
@@ -74,10 +78,18 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         )
         self.assertEqual(
             runtime["qualification_status"],
-            "pending_public_linux_amd64_digest_qualification",
+            "qualified_public_linux_amd64_digest",
         )
-        self.assertIsNone(runtime["qualified_image_ref"])
-        with self.assertRaises(F42B_CONTRACT.ContractError):
+        self.assertEqual(
+            runtime["qualified_image_ref"],
+            "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:"
+            "5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+        )
+        self.assertTrue(self.contract["release_gates"]["runtime_digest_qualified"])
+        F42B_CONTRACT.validate_contract(CONTRACT_PATH, permit_pending=True)
+        with self.assertRaisesRegex(
+            F42B_CONTRACT.ContractError, "runtime-attestation live requise"
+        ):
             F42B_CONTRACT.validate_contract(CONTRACT_PATH, permit_pending=False)
 
     def test_pin_runtime_ouvre_uniquement_son_gate_dedie(self):
@@ -119,6 +131,10 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
                 "github_run_id": 123456,
                 "github_run_url": "https://github.com/cluster2600/3dprinting993/actions/runs/123456",
                 "source_revision": "b" * 40,
+                "source_branch": "codex/917-f42-simready-runtime",
+                "run_attempt": 1,
+                "workflow_path": ".github/workflows/containers.yml",
+                "workflow_git_blob": "d" * 40,
                 "checks": {
                     "workflow_conclusion_success": True,
                     "public_package_visible": True,
@@ -148,6 +164,82 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
             ):
                 F42B_CONTRACT.validate_contract(contract_path, permit_pending=False)
             F42B_CONTRACT.validate_contract(contract_path, permit_pending=True)
+
+            ghcr_wrapper = root / F42B_CONTRACT.RUNTIME_ATTESTOR_PATH
+            ghcr_bytes = (ROOT / F42B_CONTRACT.RUNTIME_ATTESTOR_PATH).read_bytes()
+            ghcr_wrapper.write_bytes(ghcr_bytes)
+            ghcr_wrapper.chmod(0o700)
+            ghcr_blob = hashlib.sha1(
+                f"blob {len(ghcr_bytes)}\0".encode("ascii") + ghcr_bytes,
+                usedforsecurity=False,
+            ).hexdigest()
+            runtime_job_id = "f42b-test"
+            runtime_nonce = "e" * 32
+            runtime_receipt = root / "runtime-receipt.json"
+            runtime_receipt.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "1.0.0",
+                        "status": "verified_public_runtime",
+                        "image_ref": evidence["image_ref"],
+                        "manifest_digest": evidence["manifest_digest"],
+                        "platform": "linux/amd64",
+                        "source_revision": evidence["source_revision"],
+                        "source_branch": evidence["source_branch"],
+                        "run_attempt": evidence["run_attempt"],
+                        "workflow_path": evidence["workflow_path"],
+                        "workflow_git_blob": evidence["workflow_git_blob"],
+                        "github_run_id": evidence["github_run_id"],
+                        "github_run_url": evidence["github_run_url"],
+                        "github_job_id": 789012,
+                        "github_job_url": (
+                            "https://github.com/cluster2600/3dprinting993/actions/"
+                            "runs/123456/job/789012"
+                        ),
+                        "qualification_evidence_sha256": hashlib.sha256(
+                            evidence_path.read_bytes()
+                        ).hexdigest(),
+                        "verified_steps": {
+                            "Build large local AI image from Docker store": "success",
+                            "Resolve published immutable digest": "success",
+                            "Verify published local AI manifest limits": "success",
+                            "Verify anonymous digest pull": "success",
+                            "Promote verified image": "success",
+                        },
+                        "attestor": {
+                            "path": F42B_CONTRACT.RUNTIME_ATTESTOR_PATH,
+                            "command": F42B_CONTRACT.RUNTIME_ATTESTOR_COMMAND,
+                            "git_blob": ghcr_blob,
+                        },
+                        "invocation": {
+                            "job_id": runtime_job_id,
+                            "nonce": runtime_nonce,
+                            "authenticity_scope": (
+                                "local_live_procedural_receipt_not_cryptographic_signature"
+                            ),
+                        },
+                        "verified_at": datetime.now(timezone.utc).isoformat(),
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            runtime_receipt.chmod(0o600)
+            F42B_CONTRACT.validate_contract(
+                contract_path,
+                permit_pending=False,
+                runtime_attestation_path=runtime_receipt,
+                runtime_job_id=runtime_job_id,
+                runtime_nonce=runtime_nonce,
+            )
+            with self.assertRaisesRegex(F42B_CONTRACT.ContractError, "nonce attendu"):
+                F42B_CONTRACT.validate_contract(
+                    contract_path,
+                    permit_pending=False,
+                    runtime_attestation_path=runtime_receipt,
+                    runtime_job_id=runtime_job_id,
+                    runtime_nonce="wrong",
+                )
 
             pinned["release_gates"]["runtime_digest_qualified"] = False
             contract_path.write_text(json.dumps(pinned) + "\n", encoding="utf-8")
@@ -571,6 +663,20 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         self.assertIn("exact path, size and SHA-256", transfer)
         self.assertIn("qualified_public_linux_amd64_digest", transfer)
         self.assertIn("runtime F42b non qualifié", transfer)
+        self.assertNotIn("--runtime-attestation)", transfer)
+        self.assertIn('python3 "${STAGED_GHCR_WRAPPER}" attest-simready-runtime', transfer)
+        self.assertIn('"${JOB_ID}" "${RUNTIME_ATTESTATION_NONCE}"', transfer)
+        self.assertIn('--runtime-job-id "${JOB_ID}" --runtime-nonce "${RUNTIME_ATTESTATION_NONCE}"', transfer)
+        self.assertIn('"runtime_attestation_nonce": sys.argv[17]', transfer)
+        self.assertIn("_materialize_git_snapshot.py", transfer)
+        self.assertIn('cd "${STAGED_PROJECT_ROOT}"', transfer)
+        self.assertNotIn('cd "${REPOSITORY_ROOT}"\n    COPYFILE_DISABLE=1 tar', transfer)
+        self.assertIn("exact commit blobs", transfer)
+        self.assertEqual(transfer.count("tar --no-same-owner -xf -"), 4)
+        self.assertIn("wrapper GHCR approuvé différent de la source suivie", transfer)
+        self.assertIn("wrapper GHCR de travail différent du blob Git", transfer)
+        self.assertIn("GIT_*) unset", transfer)
+        self.assertIn("compgen -v", transfer)
         self.assertIn("--runtime-attestation", transfer)
         self.assertIn("runtime-attestation.json", transfer)
         self.assertIn("deploy/openbao/openbao-ghcr", transfer)
@@ -629,6 +735,74 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "destination privée exacte"):
                 F42B_SUMMARY.summarize(ROOT, archive, "job", 1, "repo@sha256:" + "a" * 64)
 
+    def test_destination_privee_isole_la_decouverte_git_de_l_environnement(self):
+        clean_environment = {
+            name: value
+            for name, value in os.environ.items()
+            if not name.startswith("GIT_")
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            foreign_repository = root / "foreign-repository"
+            external_parent = root / "external"
+            foreign_repository.mkdir()
+            external_parent.mkdir()
+            subprocess.run(
+                ["git", "init", "--quiet", str(foreign_repository)],
+                check=True,
+                env=clean_environment,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+
+            with mock.patch.dict(
+                os.environ,
+                {
+                    "GIT_DIR": str(foreign_repository / ".git"),
+                    "GIT_WORK_TREE": str(external_parent),
+                },
+            ):
+                prepared = F42B_DESTINATION.prepare_destination(
+                    external_parent / "results", ROOT
+                )
+            self.assertEqual(prepared, (external_parent / "results").resolve())
+
+            with mock.patch.dict(
+                os.environ,
+                {
+                    "GIT_DIR": str(root / "missing.git"),
+                    "GIT_WORK_TREE": str(external_parent),
+                    "GIT_CEILING_DIRECTORIES": str(foreign_repository),
+                },
+            ):
+                with self.assertRaises(F42B_DESTINATION.DestinationError):
+                    F42B_DESTINATION.prepare_destination(
+                        foreign_repository / "results", ROOT
+                    )
+
+    def test_sonde_worktree_supprime_toutes_les_surcharges_git(self):
+        overrides = {
+            "GIT_DIR": "/tmp/untrusted.git",
+            "GIT_WORK_TREE": "/tmp/untrusted-worktree",
+            "GIT_COMMON_DIR": "/tmp/untrusted-common.git",
+            "GIT_CEILING_DIRECTORIES": "/tmp",
+            "GIT_DISCOVERY_ACROSS_FILESYSTEM": "1",
+            "GIT_CONFIG_COUNT": "1",
+            "GIT_CONFIG_KEY_0": "core.bare",
+            "GIT_CONFIG_VALUE_0": "true",
+            "F42B_GIT_PROBE_TEST": "preserved",
+        }
+        completed = mock.Mock(returncode=0, stdout="true\n")
+        with mock.patch.dict(os.environ, overrides):
+            with mock.patch.object(
+                F42B_DESTINATION.subprocess, "run", return_value=completed
+            ) as run:
+                self.assertTrue(F42B_DESTINATION._inside_git_worktree(ROOT))
+
+        environment = run.call_args.kwargs["env"]
+        self.assertFalse(any(name.startswith("GIT_") for name in environment))
+        self.assertEqual(environment["F42B_GIT_PROBE_TEST"], "preserved")
+
     def test_audit_sdf_precede_toute_ouverture_composee(self):
         source = (F42B / "_contract.py").read_text(encoding="utf-8")
         audit_start = source.index("def _stage_audit")
@@ -660,7 +834,14 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
 
     def test_release_et_resultats_ne_survendent_rien(self):
         self.assertTrue(self.contract["release_gates"])
-        self.assertTrue(all(value is False for value in self.contract["release_gates"].values()))
+        self.assertTrue(self.contract["release_gates"]["runtime_digest_qualified"])
+        self.assertTrue(
+            all(
+                value is False
+                for key, value in self.contract["release_gates"].items()
+                if key != "runtime_digest_qualified"
+            )
+        )
         render = self.contract["render"]
         self.assertEqual(render["backend"], "OVRTX")
         self.assertEqual(render["photos_from_frame_indices"], [0, 6, 12, 18])

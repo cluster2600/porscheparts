@@ -54,7 +54,7 @@ SIMREADY_REVOKED_IMAGES = frozenset(
 )
 # Replaced after the corrected image passes publication and anonymous-pull
 # checks. Keeping the revoked value here makes every paid launch fail closed.
-SIMREADY_IMAGE = SIMREADY_REVOKED_IMAGE_E04
+SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
 SIMREADY_ATTEMPT_TOKEN_BYTES = 10
 SIMREADY_CLEANUP_PREFIX = "OPENBAO_VASTAI_SIMREADY_CLEANUP "

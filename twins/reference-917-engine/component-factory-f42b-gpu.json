@@ -58,9 +58,12 @@
   },
   "runtime": {
     "image_repository": "ghcr.io/cluster2600/3dprinting993-simready-local-ai",
-    "qualified_image_ref": null,
-    "qualification_status": "pending_public_linux_amd64_digest_qualification",
-    "qualification_evidence": null,
+    "qualified_image_ref": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "qualification_status": "qualified_public_linux_amd64_digest",
+    "qualification_evidence": {
+      "path": "twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json",
+      "sha256": "5db0d75cd88299973a336f616df47121119813ae8217d12c9d21f2cd2e60f79d"
+    },
     "launcher_pin": {
       "path": "deploy/openbao/openbao-vastai",
       "symbol": "SIMREADY_IMAGE"
@@ -196,7 +199,7 @@
     "source_asset_mutation_allowed": false
   },
   "release_gates": {
-    "runtime_digest_qualified": false,
+    "runtime_digest_qualified": true,
     "private_usd_transferred_and_hash_verified": false,
     "all_six_family_runs_complete": false,
     "simready_property_assignment_complete": false,

@@ -30,6 +30,11 @@ def _require(condition: bool, message: str) -> None:
 
 
 def _inside_git_worktree(path: Path) -> bool:
+    environment = {
+        name: value
+        for name, value in os.environ.items()
+        if not name.startswith("GIT_")
+    }
     result = subprocess.run(
         ["git", "-C", str(path), "rev-parse", "--is-inside-work-tree"],
         stdin=subprocess.DEVNULL,
@@ -37,6 +42,7 @@ def _inside_git_worktree(path: Path) -> bool:
         stderr=subprocess.DEVNULL,
         text=True,
         check=False,
+        env=environment,
     )
     return result.returncode == 0 and result.stdout.strip() == "true"
 

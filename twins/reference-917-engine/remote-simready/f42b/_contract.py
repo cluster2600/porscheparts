@@ -17,7 +17,6 @@ import os
 from pathlib import Path
 import re
 import stat
-import subprocess
 import tempfile
 from typing import Any
 
@@ -31,6 +30,11 @@ IMAGE_RE = re.compile(
 QUALIFIED_STATUS = "qualified_public_linux_amd64_digest"
 PENDING_STATUS = "pending_public_linux_amd64_digest_qualification"
 QUALIFICATION_EVIDENCE_PATH = "twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json"
+QUALIFICATION_BRANCH = "codex/917-f42-simready-runtime"
+QUALIFICATION_WORKFLOW_PATH = ".github/workflows/containers.yml"
+RUNTIME_RECEIPT_AUTHENTICITY_SCOPE = (
+    "local_live_procedural_receipt_not_cryptographic_signature"
+)
 LAUNCHER_PIN_PATH = "deploy/openbao/openbao-vastai"
 RUNTIME_ATTESTOR_PATH = "deploy/openbao/openbao-ghcr"
 RUNTIME_ATTESTOR_COMMAND = "attest-simready-runtime"
@@ -444,7 +448,18 @@ def _verify_live_runtime_attestation(
     evidence: dict[str, Any],
     evidence_path: Path,
     attestation_path: Path,
+    expected_runtime_job_id: str,
+    expected_runtime_nonce: str,
 ) -> None:
+    require(
+        re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", expected_runtime_job_id)
+        is not None,
+        "job id attendu pour le reçu runtime invalide",
+    )
+    require(
+        re.fullmatch(r"[0-9a-f]{32}", expected_runtime_nonce) is not None,
+        "nonce attendu pour le reçu runtime invalide",
+    )
     attestation_file = regular_file(attestation_path, "attestation runtime live")
     info = attestation_file.lstat()
     require(info.st_uid == os.getuid() and stat.S_IMODE(info.st_mode) == 0o600, "attestation runtime live doit être possédée et en mode 0600")
@@ -462,21 +477,13 @@ def _verify_live_runtime_attestation(
 
     producer = contract["runtime"]["runtime_attestation"]
     wrapper = regular_file(root / RUNTIME_ATTESTOR_PATH, "wrapper OpenBao GHCR")
-    wrapper_text = wrapper.read_text(encoding="utf-8")
+    wrapper_bytes = wrapper.read_bytes()
+    wrapper_text = wrapper_bytes.decode("utf-8")
     require(RUNTIME_ATTESTOR_COMMAND in wrapper_text, "wrapper OpenBao GHCR sans commande d'attestation runtime")
-    committed_blob = subprocess.run(
-        ["git", "-C", str(root), "rev-parse", f"HEAD:{RUNTIME_ATTESTOR_PATH}"],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    working_blob = subprocess.run(
-        ["git", "-C", str(root), "hash-object", "--", RUNTIME_ATTESTOR_PATH],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    require(committed_blob == working_blob, "wrapper OpenBao GHCR différent du blob Git")
+    committed_blob = hashlib.sha1(
+        f"blob {len(wrapper_bytes)}\0".encode("ascii") + wrapper_bytes,
+        usedforsecurity=False,
+    ).hexdigest()
     required_steps = {
         "Build large local AI image from Docker store": "success",
         "Resolve published immutable digest": "success",
@@ -491,6 +498,10 @@ def _verify_live_runtime_attestation(
         and payload.get("manifest_digest") == evidence["manifest_digest"]
         and payload.get("platform") == "linux/amd64"
         and payload.get("source_revision") == evidence["source_revision"]
+        and payload.get("source_branch") == evidence["source_branch"]
+        and payload.get("run_attempt") == evidence["run_attempt"]
+        and payload.get("workflow_path") == evidence["workflow_path"]
+        and payload.get("workflow_git_blob") == evidence["workflow_git_blob"]
         and payload.get("github_run_id") == evidence["github_run_id"]
         and payload.get("github_run_url") == evidence["github_run_url"]
         and payload.get("qualification_evidence_sha256") == sha256(evidence_path)
@@ -500,6 +511,12 @@ def _verify_live_runtime_attestation(
             "path": producer["producer_path"],
             "command": producer["producer_command"],
             "git_blob": committed_blob,
+        }
+        and payload.get("invocation")
+        == {
+            "job_id": expected_runtime_job_id,
+            "nonce": expected_runtime_nonce,
+            "authenticity_scope": RUNTIME_RECEIPT_AUTHENTICITY_SCOPE,
         },
         "attestation runtime live différente de la preuve publique qualifiée",
     )
@@ -516,6 +533,8 @@ def validate_contract(
     *,
     permit_pending: bool = True,
     runtime_attestation_path: Path | None = None,
+    runtime_job_id: str | None = None,
+    runtime_nonce: str | None = None,
 ) -> dict[str, Any]:
     contract = read_json(contract_path, "contrat F42b")
     require(contract.get("schema_version") == SCHEMA_VERSION, "schema du contrat F42b inattendu")
@@ -593,6 +612,14 @@ def validate_contract(
             "URL du run GitHub de qualification invalide",
         )
         require(re.fullmatch(r"[0-9a-f]{40}", str(evidence.get("source_revision", ""))) is not None, "commit du run de qualification invalide")
+        require(
+            evidence.get("source_branch") == QUALIFICATION_BRANCH
+            and evidence.get("run_attempt") == 1
+            and evidence.get("workflow_path") == QUALIFICATION_WORKFLOW_PATH
+            and re.fullmatch(r"[0-9a-f]{40}", str(evidence.get("workflow_git_blob", "")))
+            is not None,
+            "provenance du workflow de qualification invalide",
+        )
         expected_checks = {
             "workflow_conclusion_success",
             "public_package_visible",
@@ -606,8 +633,16 @@ def validate_contract(
         runtime_is_qualified = True
         if not permit_pending:
             require(runtime_attestation_path is not None, "--runtime-attestation live requise")
+            require(runtime_job_id is not None, "--runtime-job-id requis")
+            require(runtime_nonce is not None, "--runtime-nonce requis")
             _verify_live_runtime_attestation(
-                contract, root, evidence, evidence_path, runtime_attestation_path
+                contract,
+                root,
+                evidence,
+                evidence_path,
+                runtime_attestation_path,
+                runtime_job_id,
+                runtime_nonce,
             )
 
     materials = contract.get("materials")
@@ -766,24 +801,23 @@ def verify_control(contract_path: Path, control_path: Path, family: str | None =
         sha256(runtime_attestation_path) == control.get("runtime_attestation_sha256"),
         "SHA-256 attestation runtime live transférée différent",
     )
-    runtime_attestation = read_json(
-        runtime_attestation_path, "attestation runtime live transférée"
-    )
     qualified_evidence_path = regular_file(
         job_root / "project" / QUALIFICATION_EVIDENCE_PATH,
         "preuve runtime qualifiée transférée",
     )
     qualified_evidence = read_json(qualified_evidence_path, "preuve runtime qualifiée transférée")
-    require(
-        runtime_attestation.get("schema_version") == SCHEMA_VERSION
-        and runtime_attestation.get("status") == "verified_public_runtime"
-        and runtime_attestation.get("image_ref") == qualified_evidence.get("image_ref")
-        and runtime_attestation.get("manifest_digest") == qualified_evidence.get("manifest_digest")
-        and runtime_attestation.get("platform") == "linux/amd64"
-        and runtime_attestation.get("source_revision") == qualified_evidence.get("source_revision")
-        and runtime_attestation.get("github_run_id") == qualified_evidence.get("github_run_id")
-        and runtime_attestation.get("qualification_evidence_sha256") == sha256(qualified_evidence_path),
-        "attestation runtime transférée différente de la qualification",
+    runtime_job_id = control.get("job_id")
+    runtime_nonce = control.get("runtime_attestation_nonce")
+    require(isinstance(runtime_job_id, str), "job id du reçu runtime absent")
+    require(isinstance(runtime_nonce, str), "nonce du reçu runtime absent")
+    _verify_live_runtime_attestation(
+        contract,
+        repository_root(contract_path),
+        qualified_evidence,
+        qualified_evidence_path,
+        runtime_attestation_path,
+        runtime_job_id,
+        runtime_nonce,
     )
 
     assets = control.get("input_assets")
@@ -1662,6 +1696,8 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--contract", required=True, type=Path)
     validate.add_argument("--require-qualified-runtime", action="store_true")
     validate.add_argument("--runtime-attestation", type=Path)
+    validate.add_argument("--runtime-job-id")
+    validate.add_argument("--runtime-nonce")
 
     inputs = sub.add_parser("verify-input-root")
     inputs.add_argument("--contract", required=True, type=Path)
@@ -1743,6 +1779,8 @@ def main(argv: list[str] | None = None) -> int:
                 args.contract,
                 permit_pending=not args.require_qualified_runtime,
                 runtime_attestation_path=args.runtime_attestation,
+                runtime_job_id=args.runtime_job_id,
+                runtime_nonce=args.runtime_nonce,
             )
             return 0
         if args.command == "verify-input-root":

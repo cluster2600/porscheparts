@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 # Transfère le profil fermé F42b et exactement les six USD privés attestés par F42a.
 set -euo pipefail
+umask 077
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "${SCRIPT_DIR}/_controller_common.sh"
+
+# Les attestations Git doivent être indépendantes de toute redirection de dépôt
+# héritée du shell appelant (GIT_DIR, GIT_WORK_TREE, GIT_CONFIG_*, etc.).
+while IFS= read -r git_variable; do
+    case "${git_variable}" in
+        GIT_*) unset "${git_variable}" ;;
+    esac
+done < <(compgen -v)
+unset git_variable
 
 WORKFLOW_PROFILE="f42b-six-usd-v1"
 INSTANCE_ID=""
@@ -12,7 +22,6 @@ JOB_ID=""
 SKILL_ROOT=""
 MATERIAL_PROMPT=""
 PHYSICS_PROMPT=""
-RUNTIME_ATTESTATION=""
 F42A_OUTPUT_ROOT=""
 MAX_DPH="${MAX_ACTUAL_DPH}"
 MAX_RUNTIME_MINUTES=180
@@ -26,7 +35,6 @@ while [ "$#" -gt 0 ]; do
         --skill-root) SKILL_ROOT="$2"; shift 2 ;;
         --material-prompt) MATERIAL_PROMPT="$2"; shift 2 ;;
         --physics-prompt) PHYSICS_PROMPT="$2"; shift 2 ;;
-        --runtime-attestation) RUNTIME_ATTESTATION="$2"; shift 2 ;;
         --f42a-output-root) F42A_OUTPUT_ROOT="$2"; shift 2 ;;
         --max-actual-dph) MAX_DPH="$2"; shift 2 ;;
         --max-runtime-minutes) MAX_RUNTIME_MINUTES="$2"; shift 2 ;;
@@ -40,8 +48,6 @@ done
     || controller_die "paramètres instance/image/job/skill/f42a-output-root requis"
 [ -n "${MATERIAL_PROMPT}" ] && [ -n "${PHYSICS_PROMPT}" ] \
     || controller_die "les prompts Material et Physics sont obligatoires"
-[ -n "${RUNTIME_ATTESTATION}" ] \
-    || controller_die "--runtime-attestation live produite par openbao-ghcr requise"
 validate_controller_id "${JOB_ID}"
 validate_pinned_image "${EXPECTED_IMAGE}"
 [[ "${MAX_RUNTIME_MINUTES}" =~ ^[1-9][0-9]*$ ]] && [ "${MAX_RUNTIME_MINUTES}" -le 360 ] \
@@ -84,43 +90,210 @@ PY
 }
 
 TEMPORARY="$(mktemp -d)"
+chmod 700 "${TEMPORARY}"
 trap 'rm -r -- "${TEMPORARY}"' EXIT
 STAGED_MATERIAL_PROMPT="${TEMPORARY}/material-prompt.txt"
 STAGED_PHYSICS_PROMPT="${TEMPORARY}/physics-prompt.txt"
 STAGED_RUNTIME_ATTESTATION="${TEMPORARY}/runtime-attestation.json"
+STAGED_GHCR_WRAPPER="${TEMPORARY}/approved-openbao-ghcr"
+RUNTIME_ATTESTATION_NONCE="$(python3 -c 'import secrets; print(secrets.token_hex(16))')"
 validate_prompt "${MATERIAL_PROMPT}" material "${STAGED_MATERIAL_PROMPT}"
 validate_prompt "${PHYSICS_PROMPT}" physics "${STAGED_PHYSICS_PROMPT}"
-python3 - "${RUNTIME_ATTESTATION}" "${STAGED_RUNTIME_ATTESTATION}" <<'PY'
+
+GIT_BIN="/usr/bin/git"
+[ -x "${GIT_BIN}" ] || controller_die "binaire Git système approuvé absent"
+REVISION="$("${GIT_BIN}" -C "${REPOSITORY_ROOT}" rev-parse HEAD)"
+[[ "${REVISION}" =~ ^[0-9a-f]{40}$ ]] || controller_die "révision Git complète invalide"
+SOURCE_FILES=(
+    catalog/sources/src-fia-917-homologation-250.json
+    catalog/sources/src-stuttcars-917-technical-details.json
+    docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md
+    deploy/openbao/openbao-vastai
+    deploy/openbao/openbao-ghcr
+    deploy/vast/simready/_materialize_git_snapshot.py
+    twins/reference-917-engine/component-factory-f42b-gpu.json
+    twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json
+    twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json
+    twins/reference-917-engine/mechanical-connections-f8.json
+    twins/reference-917-engine/motion-video-f7.json
+    twins/reference-917-engine/remote-simready/_common.sh
+    twins/reference-917-engine/remote-simready/_bundle_manifest.py
+    twins/reference-917-engine/remote-simready/_report.py
+    twins/reference-917-engine/remote-simready/_validate-one.sh
+    twins/reference-917-engine/remote-simready/phase-readiness.sh
+    twins/reference-917-engine/remote-simready/phase-preflight.sh
+    twins/reference-917-engine/remote-simready/phase-conform.sh
+    twins/reference-917-engine/remote-simready/phase-validate-asset.sh
+    twins/reference-917-engine/remote-simready/phase-validate-geometry.sh
+    twins/reference-917-engine/remote-simready/phase-validate-physics.sh
+    twins/reference-917-engine/remote-simready/f42b/_contract.py
+    twins/reference-917-engine/remote-simready/f42b/phase-minimum-usd.sh
+    twins/reference-917-engine/remote-simready/f42b/phase-material.sh
+    twins/reference-917-engine/remote-simready/f42b/phase-physics.sh
+    twins/reference-917-engine/remote-simready/f42b/phase-render-preview.sh
+)
+SNAPSHOT_HELPER_RELATIVE="deploy/vast/simready/_materialize_git_snapshot.py"
+SNAPSHOT_HELPER_SOURCE="${REPOSITORY_ROOT}/${SNAPSHOT_HELPER_RELATIVE}"
+STAGED_SNAPSHOT_HELPER="${TEMPORARY}/materialize-git-snapshot.py"
+STAGED_PROJECT_ROOT="${TEMPORARY}/project"
+
+# Bootstrap minimal : l'outil de matérialisation exécuté est une copie privée
+# des octets du blob Git exact, jamais un fichier relu depuis la worktree.
+python3 - \
+    "${REPOSITORY_ROOT}" "${REVISION}" "${SNAPSHOT_HELPER_RELATIVE}" \
+    "${SNAPSHOT_HELPER_SOURCE}" "${STAGED_SNAPSHOT_HELPER}" <<'PY'
+import hashlib
 import os
 from pathlib import Path
 import stat
+import subprocess
 import sys
 
-source, destination = map(Path, sys.argv[1:])
+root = Path(sys.argv[1]).resolve(strict=True)
+revision, relative = sys.argv[2:4]
+source, staged = map(Path, sys.argv[4:6])
+environment = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
 flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
 descriptor = os.open(source, flags)
 with os.fdopen(descriptor, "rb") as handle:
     info = os.fstat(handle.fileno())
-    if not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o600:
-        raise SystemExit("attestation runtime live non régulière, non possédée ou hors mode 0600")
+    if not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid() or info.st_mode & 0o022:
+        raise SystemExit("outil snapshot Git de travail non sûr")
     data = handle.read(1_048_577)
 if not data or len(data) > 1_048_576 or b"\0" in data:
-    raise SystemExit("attestation runtime live vide, binaire ou trop volumineuse")
-with destination.open("xb") as output:
-    output.write(data)
-destination.chmod(0o600)
+    raise SystemExit("outil snapshot Git vide, binaire ou trop volumineux")
+result = subprocess.run(
+    ["/usr/bin/git", "--no-replace-objects", "-C", str(root), "rev-parse", f"{revision}:{relative}"],
+    stdin=subprocess.DEVNULL,
+    capture_output=True,
+    text=True,
+    check=False,
+    env=environment,
+)
+if result.returncode != 0:
+    raise SystemExit("blob Git de l'outil snapshot inaccessible")
+expected_blob = result.stdout.strip()
+actual_blob = hashlib.sha1(
+    f"blob {len(data)}\0".encode("ascii") + data,
+    usedforsecurity=False,
+).hexdigest()
+if expected_blob != actual_blob:
+    raise SystemExit("outil snapshot Git différent du blob du commit exact")
+output_flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+output_descriptor = os.open(staged, output_flags, 0o700)
+with os.fdopen(output_descriptor, "wb") as handle:
+    handle.write(data)
+    handle.flush()
+    os.fchmod(handle.fileno(), 0o700)
+    output_info = os.fstat(handle.fileno())
+    if not stat.S_ISREG(output_info.st_mode) or stat.S_IMODE(output_info.st_mode) != 0o700:
+        raise SystemExit("copie privée de l'outil snapshot invalide")
 PY
+PYTHONDONTWRITEBYTECODE=1 python3 "${STAGED_SNAPSHOT_HELPER}" \
+    --repository "${REPOSITORY_ROOT}" --revision "${REVISION}" \
+    --destination "${STAGED_PROJECT_ROOT}" \
+    --manifest "${TEMPORARY}/source-allowlist.json" -- "${SOURCE_FILES[@]}" \
+    || controller_die "matérialisation des blobs Git F42b refusée"
+
+QUALIFICATION_RELATIVE="twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json"
+QUALIFICATION_EVIDENCE="${STAGED_PROJECT_ROOT}/${QUALIFICATION_RELATIVE}"
+TRACKED_GHCR_WRAPPER="${STAGED_PROJECT_ROOT}/deploy/openbao/openbao-ghcr"
+APPROVED_GHCR_WRAPPER="${HOME}/.local/bin/openbao-ghcr"
+python3 - "${REPOSITORY_ROOT}" "${REVISION}" "${TRACKED_GHCR_WRAPPER}" "${APPROVED_GHCR_WRAPPER}" "${STAGED_GHCR_WRAPPER}" <<'PY'
+import hashlib
+import os
+from pathlib import Path
+import stat
+import subprocess
+import sys
+
+root = Path(sys.argv[1])
+revision = sys.argv[2]
+tracked, installed, staged = map(Path, sys.argv[3:])
+clean_environment = {
+    name: value for name, value in os.environ.items() if not name.startswith("GIT_")
+}
+
+
+def regular_bytes(path: Path, label: str, *, executable: bool) -> bytes:
+    flags = os.O_RDONLY | getattr(os, "O_CLOEXEC", 0) | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags)
+    except OSError as error:
+        raise SystemExit(f"{label} inaccessible: {error}") from error
+    with os.fdopen(descriptor, "rb") as handle:
+        info = os.fstat(handle.fileno())
+        if (
+            not stat.S_ISREG(info.st_mode)
+            or info.st_uid != os.getuid()
+            or info.st_mode & 0o022
+            or (executable and not info.st_mode & stat.S_IXUSR)
+        ):
+            raise SystemExit(f"{label} avec propriétaire, type ou mode non sûr")
+        data = handle.read(1_048_577)
+    if not data or len(data) > 1_048_576 or b"\0" in data:
+        raise SystemExit(f"{label} vide, binaire ou trop volumineux")
+    return data
+
+
+tracked_data = regular_bytes(tracked, "wrapper GHCR suivi", executable=True)
+installed_data = regular_bytes(installed, "wrapper GHCR approuvé", executable=True)
+if tracked_data != installed_data:
+    raise SystemExit("wrapper GHCR approuvé différent de la source suivie")
+
+
+def git(*arguments: str) -> str:
+    result = subprocess.run(
+        ["/usr/bin/git", "-C", str(root), *arguments],
+        stdin=subprocess.DEVNULL,
+        capture_output=True,
+        text=True,
+        check=False,
+        env=clean_environment,
+    )
+    if result.returncode != 0:
+        raise SystemExit("impossible d'attester le wrapper GHCR suivi")
+    return result.stdout.strip()
+
+
+relative = "deploy/openbao/openbao-ghcr"
+committed_blob = git("rev-parse", f"{revision}:{relative}")
+working_blob = hashlib.sha1(
+    f"blob {len(tracked_data)}\0".encode("ascii") + tracked_data,
+    usedforsecurity=False,
+).hexdigest()
+if committed_blob != working_blob:
+    raise SystemExit("wrapper GHCR de travail différent du blob Git")
+flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_CLOEXEC", 0)
+descriptor = os.open(staged, flags, 0o700)
+with os.fdopen(descriptor, "wb") as handle:
+    handle.write(installed_data)
+    handle.flush()
+    os.fchmod(handle.fileno(), 0o700)
+    info = os.fstat(handle.fileno())
+    if not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700:
+        raise SystemExit("copie privée du wrapper GHCR invalide")
+PY
+[ -f "${QUALIFICATION_EVIDENCE}" ] \
+    || controller_die "preuve publique F42b absente"
+python3 "${STAGED_GHCR_WRAPPER}" attest-simready-runtime \
+    "${QUALIFICATION_EVIDENCE}" "${STAGED_RUNTIME_ATTESTATION}" \
+    "${JOB_ID}" "${RUNTIME_ATTESTATION_NONCE}" \
+    || controller_die "attestation runtime live OpenBao/GHCR refusée"
+[ -f "${STAGED_RUNTIME_ATTESTATION}" ] \
+    || controller_die "attestation runtime live non produite"
 
 REPEATABILITY_RELATIVE="twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json"
 CONTRACT_RELATIVE="twins/reference-917-engine/component-factory-f42b-gpu.json"
-REPEATABILITY_SUMMARY="${REPOSITORY_ROOT}/${REPEATABILITY_RELATIVE}"
-F42B_CONTRACT="${REPOSITORY_ROOT}/${CONTRACT_RELATIVE}"
+REPEATABILITY_SUMMARY="${STAGED_PROJECT_ROOT}/${REPEATABILITY_RELATIVE}"
+F42B_CONTRACT="${STAGED_PROJECT_ROOT}/${CONTRACT_RELATIVE}"
 [ -f "${REPEATABILITY_SUMMARY}" ] || controller_die "preuve de répétabilité F42a absente"
 [ -f "${F42B_CONTRACT}" ] || controller_die "contrat F42b absent"
 PYTHONDONTWRITEBYTECODE=1 python3 \
-    "${REPOSITORY_ROOT}/twins/reference-917-engine/remote-simready/f42b/_contract.py" \
+    "${STAGED_PROJECT_ROOT}/twins/reference-917-engine/remote-simready/f42b/_contract.py" \
     validate-contract --contract "${F42B_CONTRACT}" --require-qualified-runtime \
     --runtime-attestation "${STAGED_RUNTIME_ATTESTATION}" \
+    --runtime-job-id "${JOB_ID}" --runtime-nonce "${RUNTIME_ATTESTATION_NONCE}" \
     || controller_die "contrat, preuve publique ou pin wrapper F42b non qualifié"
 RUNTIME_ATTESTATION_SHA256="$(shasum -a 256 "${STAGED_RUNTIME_ATTESTATION}" | awk '{print $1}')"
 mkdir -p "${TEMPORARY}/f42a-usd"
@@ -395,7 +568,7 @@ manifest = {
 output_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 PY
 
-BUNDLE_MANIFEST_TOOL="${REPOSITORY_ROOT}/twins/reference-917-engine/remote-simready/_bundle_manifest.py"
+BUNDLE_MANIFEST_TOOL="${STAGED_PROJECT_ROOT}/twins/reference-917-engine/remote-simready/_bundle_manifest.py"
 [ -f "${BUNDLE_MANIFEST_TOOL}" ] || controller_die "outil de manifeste bundle absent"
 SKILL_TREE_SHA256="$(PYTHONDONTWRITEBYTECODE=1 python3 "${BUNDLE_MANIFEST_TOOL}" create-skill \
     --root "${SKILL_ROOT}" --output "${TEMPORARY}/skill-manifest.json")"
@@ -423,90 +596,6 @@ for name, filename, path in (
 output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 PY
 
-REVISION="$(git -C "${REPOSITORY_ROOT}" rev-parse HEAD)"
-SOURCE_FILES=(
-    catalog/sources/src-fia-917-homologation-250.json
-    catalog/sources/src-stuttcars-917-technical-details.json
-    docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md
-    deploy/openbao/openbao-vastai
-    deploy/openbao/openbao-ghcr
-    twins/reference-917-engine/component-factory-f42b-gpu.json
-    twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json
-    twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json
-    twins/reference-917-engine/mechanical-connections-f8.json
-    twins/reference-917-engine/motion-video-f7.json
-    twins/reference-917-engine/remote-simready/_common.sh
-    twins/reference-917-engine/remote-simready/_bundle_manifest.py
-    twins/reference-917-engine/remote-simready/_report.py
-    twins/reference-917-engine/remote-simready/_validate-one.sh
-    twins/reference-917-engine/remote-simready/phase-readiness.sh
-    twins/reference-917-engine/remote-simready/phase-preflight.sh
-    twins/reference-917-engine/remote-simready/phase-conform.sh
-    twins/reference-917-engine/remote-simready/phase-validate-asset.sh
-    twins/reference-917-engine/remote-simready/phase-validate-geometry.sh
-    twins/reference-917-engine/remote-simready/phase-validate-physics.sh
-    twins/reference-917-engine/remote-simready/f42b/_contract.py
-    twins/reference-917-engine/remote-simready/f42b/phase-minimum-usd.sh
-    twins/reference-917-engine/remote-simready/f42b/phase-material.sh
-    twins/reference-917-engine/remote-simready/f42b/phase-physics.sh
-    twins/reference-917-engine/remote-simready/f42b/phase-render-preview.sh
-)
-for file in "${SOURCE_FILES[@]}"; do
-    [ -f "${REPOSITORY_ROOT}/${file}" ] || controller_die "source F42b autorisée absente: ${file}"
-    [ ! -L "${REPOSITORY_ROOT}/${file}" ] || controller_die "symlink interdit dans l'allowlist F42b: ${file}"
-    git -C "${REPOSITORY_ROOT}" ls-files --error-unmatch -- "${file}" >/dev/null \
-        || controller_die "la source F42b doit être suivie par Git avant transfert: ${file}"
-done
-git -C "${REPOSITORY_ROOT}" diff --quiet -- "${SOURCE_FILES[@]}" \
-    || controller_die "l'allowlist F42b contient des modifications non commitées"
-git -C "${REPOSITORY_ROOT}" diff --cached --quiet -- "${SOURCE_FILES[@]}" \
-    || controller_die "l'allowlist F42b contient des modifications indexées non commitées"
-python3 - "${REPOSITORY_ROOT}" "${REVISION}" "${TEMPORARY}/source-allowlist.json" "${SOURCE_FILES[@]}" <<'PY'
-from datetime import datetime, timezone
-import hashlib
-import json
-from pathlib import Path
-import subprocess
-import sys
-
-root = Path(sys.argv[1]).resolve()
-revision = sys.argv[2]
-output = Path(sys.argv[3])
-files = sys.argv[4:]
-entries = []
-for relative in files:
-    path = root / relative
-    blob = subprocess.run(
-        ["git", "-C", str(root), "rev-parse", f"{revision}:{relative}"],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    working_blob = subprocess.run(
-        ["git", "-C", str(root), "hash-object", "--", relative],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    if blob != working_blob:
-        raise SystemExit(f"blob de travail différent du commit: {relative}")
-    entries.append(
-        {
-            "path": relative,
-            "git_blob": blob,
-            "size_bytes": path.stat().st_size,
-            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
-        }
-    )
-payload = {
-    "schema_version": "1.0.0",
-    "workflow_profile": "f42b-six-usd-v1",
-    "source_revision": revision,
-    "generated_at": datetime.now(timezone.utc).isoformat(),
-    "files": entries,
-}
-output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-PY
 SOURCE_MANIFEST_SHA256="$(shasum -a 256 "${TEMPORARY}/source-allowlist.json" | awk '{print $1}')"
 read -r BUNDLE_TOOL_SHA256 F42B_VERIFY_TOOL_SHA256 <<EOF
 $(python3 - "${TEMPORARY}/source-allowlist.json" <<'PY'
@@ -551,7 +640,8 @@ python3 - \
     "${INPUT_MANIFEST_SHA256}" \
     "${TEMPORARY}/f42b-input-manifest.json" \
     "${F42B_CONTRACT_SHA256}" \
-    "${RUNTIME_ATTESTATION_SHA256}" <<'PY'
+    "${RUNTIME_ATTESTATION_SHA256}" \
+    "${RUNTIME_ATTESTATION_NONCE}" <<'PY'
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -587,8 +677,9 @@ payload = {
     },
     "runtime_attestation_report": "control/runtime-attestation.json",
     "runtime_attestation_sha256": sys.argv[16],
+    "runtime_attestation_nonce": sys.argv[17],
     "source_policy": (
-        "tracked clean closed allowlist at exact commit blobs; six private F42a USD "
+        "private immutable snapshot materialized and transferred from exact commit blobs; six private F42a USD "
         "only by exact path, size and SHA-256; no symlink, extra USD, raw scan or secret"
     ),
 }
@@ -599,21 +690,21 @@ REMOTE_PARTIAL="/workspace/jobs/${JOB_ID}.partial"
 REMOTE_FINAL="/workspace/jobs/${JOB_ID}"
 controller_ssh "test ! -e '${REMOTE_FINAL}' && test ! -e '${REMOTE_PARTIAL}' && mkdir -p '${REMOTE_PARTIAL}/project' '${REMOTE_PARTIAL}/vendor' '${REMOTE_PARTIAL}/control' '${REMOTE_PARTIAL}/inputs'"
 (
-    cd "${REPOSITORY_ROOT}"
-    COPYFILE_DISABLE=1 tar -cf - "${SOURCE_FILES[@]}"
-) | controller_ssh "tar -xf - -C '${REMOTE_PARTIAL}/project'"
+    cd "${STAGED_PROJECT_ROOT}"
+    COPYFILE_DISABLE=1 tar -cf - .
+) | controller_ssh "tar --no-same-owner -xf - -C '${REMOTE_PARTIAL}/project'"
 (
     cd "$(dirname "${SKILL_ROOT}")"
     COPYFILE_DISABLE=1 tar -cf - "$(basename "${SKILL_ROOT}")"
-) | controller_ssh "tar -xf - -C '${REMOTE_PARTIAL}/vendor'"
+) | controller_ssh "tar --no-same-owner -xf - -C '${REMOTE_PARTIAL}/vendor'"
 (
     cd "${TEMPORARY}"
     COPYFILE_DISABLE=1 tar -cf - instance-guard.json job-control.json source-allowlist.json skill-manifest.json f42b-input-manifest.json runtime-attestation.json
-) | controller_ssh "tar -xf - -C '${REMOTE_PARTIAL}/control'"
+) | controller_ssh "tar --no-same-owner -xf - -C '${REMOTE_PARTIAL}/control'"
 (
     cd "${TEMPORARY}"
     COPYFILE_DISABLE=1 tar -cf - f42a-usd
-) | controller_ssh "tar -xf - -C '${REMOTE_PARTIAL}/inputs'"
+) | controller_ssh "tar --no-same-owner -xf - -C '${REMOTE_PARTIAL}/inputs'"
 
 controller_ssh "dd of='${REMOTE_PARTIAL}/inputs/material-prompt.txt' status=none" <"${STAGED_MATERIAL_PROMPT}"
 controller_ssh "dd of='${REMOTE_PARTIAL}/inputs/physics-prompt.txt' status=none" <"${STAGED_PHYSICS_PROMPT}"
@@ -738,7 +829,8 @@ python3 - \
     "${INPUT_MANIFEST_SHA256}" \
     "${TEMPORARY}/f42b-input-manifest.json" \
     "${F42B_CONTRACT_SHA256}" \
-    "${RUNTIME_ATTESTATION_SHA256}" <<'PY'
+    "${RUNTIME_ATTESTATION_SHA256}" \
+    "${RUNTIME_ATTESTATION_NONCE}" <<'PY'
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -765,6 +857,7 @@ payload = {
     "f42a_repeatability": input_manifest["source_repeatability_summary"],
     "f42b_contract_sha256": sys.argv[13],
     "runtime_attestation_sha256": sys.argv[14],
+    "runtime_attestation_nonce": sys.argv[15],
     "remote_project_root": f"/workspace/jobs/{sys.argv[2]}/project",
     "remote_skill_root": f"/workspace/jobs/{sys.argv[2]}/vendor/omniverse-cad-to-simready",
     "remote_input_root": f"/workspace/jobs/{sys.argv[2]}/inputs/f42a-usd",
