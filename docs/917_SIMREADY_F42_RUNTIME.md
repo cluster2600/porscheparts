@@ -94,6 +94,13 @@ statique protège leurs copies ainsi que leurs permissions. Ce digest échoué
 reste un artefact de diagnostic et n'est ni qualifié, ni épinglé, ni utilisable
 sur Vast.
 
+La correction a ensuite été qualifiée par le run
+[`33715503892`](https://github.com/cluster2600/3dprinting993/actions/runs/33715503892)
+sur le commit `e08fcfc9181445f466d078e73c1f9631361b987d`. Le pull anonyme,
+le smoke applicatif, le smoke SSH concurrent et la promotion ont tous réussi.
+La base `linux/amd64` autorisée pour l'étage suivant est exclusivement
+`ghcr.io/cluster2600/3dprinting993-simready@sha256:3dc95bf1fc5f7942c86c5dba33da05b7f852aea34684c1079b24df0915324f46`.
+
 ## Dimensionnement de la première qualification
 
 Le contrat actuel sélectionne une seule `RTX PRO 6000 WS` entière, au moins
@@ -106,8 +113,8 @@ mesure de saturation ou par un calcul CAE ultérieur, pas par le nom du projet.
 
 | Gate | État avant qualification Vast |
 |---|---|
-| Base sans clef hôte publiée | republication requise après échec contrôlé |
-| Concurrence `sshd` testée à froid | bloquée jusqu'au prochain smoke |
+| Base sans clef hôte publiée | vrai — run `33715503892`, digest immuable |
+| Concurrence `sshd` testée à froid | vrai — smoke du même run |
 | Image finale accessible anonymement par digest | bloquée par la cascade |
 | SSH `BatchMode` réel | non exécuté |
 | Services NVIDIA locaux | non exécutés sur le nouveau digest |

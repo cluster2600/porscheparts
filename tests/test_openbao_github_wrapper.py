@@ -230,6 +230,7 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
 
     def test_simready_chain_blocks_children_until_parent_is_qualified(self) -> None:
         with (
+            patch.object(self.wrapper, "SIMREADY_BASE_FOR_WORKFLOW", None),
             patch.object(
                 self.wrapper,
                 "current_branch_contract",
@@ -240,6 +241,15 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
             self.wrapper.dispatch_simready_image(
                 "secret", "simready-workflow", "codex/simready-chain"
             )
+
+    def test_production_workflow_parent_pin_matches_allowlist(self) -> None:
+        source = (ROOT / "containers/simready-workflow.Dockerfile").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(
+            self.wrapper.first_dockerfile_base(source),
+            self.wrapper.SIMREADY_BASE_FOR_WORKFLOW,
+        )
 
     def test_source_never_uses_keychain_raw_bao_or_credential_url(self) -> None:
         source = WRAPPER.read_text(encoding="utf-8")

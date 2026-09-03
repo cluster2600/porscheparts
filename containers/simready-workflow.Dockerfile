@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 
-FROM ghcr.io/cluster2600/3dprinting993-simready@sha256:0562c69276c0d3065990cb9b1b8641dcd29355d0dccb9082dcf266fa2d22e90a
+FROM ghcr.io/cluster2600/3dprinting993-simready@sha256:3dc95bf1fc5f7942c86c5dba33da05b7f852aea34684c1079b24df0915324f46
 
 ENV USD_CONVERT_CAD_ROOT=/opt/usd-convert-cad-preflight \
     PHYSICAL_AI_SIMREADY_VALIDATE_VENV=/opt/simready-validation \
