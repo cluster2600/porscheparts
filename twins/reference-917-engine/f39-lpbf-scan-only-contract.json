@@ -1,0 +1,79 @@
+{
+  "$comment": "F39 audite sans ajouter de cote la peau de scan F37 et les preuves F38. Les seuils numeriques sont herites et restent des criteres de criblage, jamais des cotes de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F39",
+  "classification": "scan_only_lpbf_and_structural_audit_fail_closed",
+  "source_constraints": {
+    "exact_f37_head_mesh_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "absolute_scale_confirmed": false,
+    "additional_part_dimensions_introduced": false,
+    "scan_surface_is_production_cad": false,
+    "f38_offset_master_is_new_dimensional_evidence": false
+  },
+  "parent_evidence": {
+    "f37_exact_lpbf_report_sha256": "b86fea350985d33ea7aa6a03feb4dac5c73f0d1b96847f8bfd744de2ab6ecf89",
+    "f38_brep_lpbf_report_sha256": "f0dfcc3b9d908f990273d808762efadfcba0f9fa1c9e0a3e444cba6a1b10c8d2",
+    "f38_carrier_cad_report_sha256": "6872f3d0947210b814ca69e4ad76a4a648b9ea32bc21e3d74bbe03655223ddd7",
+    "f38_carrier_calculix_report_sha256": "2df30c2d0c12f29cc3651c400839733078880cf76a86738abcd4e46b5d152545"
+  },
+  "audit_definition": {
+    "thickness": {
+      "domain": "every_triangle_of_exact_F37_scan_mesh",
+      "method": "first_opposite_surface_intersection_from_triangle_centroid_along_inward_face_normal_VTK_static_cell_locator",
+      "inherited_screen_requirement_mm_if_scale_is_mm": 1.5,
+      "requirement_source": "F38_BRep_LPBF_screen_not_new_F39_dimension",
+      "continuous_surface_or_CT_proof": false
+    },
+    "closed_voids": {
+      "method": "deterministic_VTK_polydata_to_image_stencil_plus_6_connected_exterior_flood_fill",
+      "voxel_pitches_mm_if_scale_is_mm": [2.0, 1.5, 1.0],
+      "minimum_powder_escape_diameter_mm": null,
+      "minimum_escape_diameter_missing_reason": "powder_distribution_machine_recipe_and_absolute_scale_not_qualified"
+    },
+    "orientation": {
+      "machine_envelope_mm_if_scale_is_mm": [250.0, 250.0, 325.0],
+      "critical_downward_normal_angle_from_vertical_deg": 45.0,
+      "machine_envelope_source": "F37_screen_inherited_not_new_part_dimension",
+      "support_topology_or_machine_slicing": false
+    },
+    "machining_allowances": {
+      "numeric_allowances_defined": false,
+      "reason": "functional_surfaces_datums_tolerance_stack_and_absolute_scale_unmeasured"
+    },
+    "inherent_strain": {
+      "execute_only_with_additive_layer_activation_solver_and_calibrated_machine_material_parameters": true,
+      "substitute_uniform_locked_plate_or_free_shrink_as_process_validation": false
+    }
+  },
+  "carrier_correction_plan": {
+    "geometry_change_dimensions_mm": null,
+    "required_model": "carrier_plus_two_shafts_plus_four_rockers_plus_head_interface",
+    "loads": "four_resultant_preserving_distributed_bearing_contact_tractions",
+    "contacts": "shaft_carrier_rocker_and_carrier_head_surface_contact_with_measured_clearance_and_pretension",
+    "mesh_sequence": "at_least_three_independently_generated_meshes_with_contact_patch_refinement",
+    "convergence_metrics": [
+      "raw_von_mises_maximum",
+      "p99_von_mises",
+      "maximum_displacement",
+      "strain_energy",
+      "contact_pressure_p99"
+    ],
+    "target_relative_change": 0.1,
+    "target_source": "F38_screen_inherited_not_release_criterion"
+  },
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "production_brep_complete": false,
+    "continuous_wall_thickness_proved": false,
+    "powder_escape_physically_demonstrated": false,
+    "supports_sliced_and_reviewed": false,
+    "machining_allowances_dimensioned": false,
+    "calibrated_inherent_strain_simulation_complete": false,
+    "carrier_distributed_contact_model_complete": false,
+    "qualified_hot_material_card": false,
+    "ct_cmm_fpi_pressure_test_complete": false,
+    "professional_engineering_review_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

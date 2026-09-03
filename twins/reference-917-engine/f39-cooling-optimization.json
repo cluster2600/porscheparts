@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "id": "917-head-f39-scan-only-cooling-optimization",
+  "classification": "scan_only_parametric_cooling_optimization_not_full_head_CHT_not_release",
+  "inputs": {
+    "f38_cooling_report": "twins/reference-917-engine/evidence/f38-cooling-redesign/f38-cooling-cross-check.json",
+    "f37_scan_conforming_surface_report": "twins/reference-917-engine/evidence/f37-manufacturing-definition/f37-printable-head-mesh-report.json"
+  },
+  "scan_conditional_envelope_mm": {
+    "x": 125.25,
+    "y": 206.25,
+    "z": 96.75,
+    "scale_confirmed": false
+  },
+  "objectives": {
+    "maximum_bridge_temperature_c": 260.0,
+    "maximum_air_pressure_drop_pa": 6700.0,
+    "maximum_cross_method_h_relative_difference": 0.20,
+    "maximum_supported_air_mass_flow_kg_s_per_head": 0.85,
+    "maximum_local_oil_heat_removal_w": 1200.0
+  },
+  "fixed_boundaries": {
+    "air_inlet_temperature_k": 308.15,
+    "nominal_air_mass_flow_kg_s_per_head": 0.85,
+    "nominal_chamber_heat_load_w_per_head": 4300.0,
+    "air_density_kg_m3": 1.132,
+    "air_dynamic_viscosity_pa_s": 1.9e-05,
+    "air_thermal_conductivity_w_mk": 0.0273,
+    "air_specific_heat_j_kgk": 1007.0,
+    "air_prandtl": 0.70,
+    "oil_specific_heat_j_kgk": 2200.0,
+    "oil_design_temperature_rise_k": 25.0
+  },
+  "scan_surface_anchor": {
+    "area_m2_if_scale_is_mm": 0.18486967359948758,
+    "baseline_fin_levels": 12,
+    "baseline_span_mm": 86.0,
+    "baseline_flow_length_mm": 180.0,
+    "classification": "F37_scan_conforming_parent_total_surface_proxy_not_measured_F39_wetted_area"
+  },
+  "method_a_openfoam_anchored": {
+    "source": "F38_OpenFOAM14_fine_channel_138240_hex",
+    "reference_h_w_m2k": 201.8432157948752,
+    "reference_pressure_drop_pa": 1715.572933000003,
+    "reference_velocity_m_s": 61.73577338011556,
+    "reference_hydraulic_diameter_m": 0.008552486187845305,
+    "reference_length_m": 0.18,
+    "heat_velocity_exponent": 0.8,
+    "heat_hydraulic_diameter_exponent": -0.2,
+    "pressure_velocity_exponent": 2.0,
+    "pressure_hydraulic_diameter_exponent": -0.25,
+    "classification": "reduced_order_scaling_anchored_to_real_F38_RANS_not_new_CFD_per_candidate"
+  },
+  "method_b_correlation": {
+    "method": "Gnielinski_plus_Darcy_Weisbach_and_1D_fin_efficiency",
+    "classification": "closed_form_smooth_channel_correlation_independent_of_OpenFOAM_anchor"
+  },
+  "provisional_material_cp1": {
+    "conductivity_w_mk_by_temperature_c": [[20.0, 150.0], [200.0, 135.0], [300.0, 120.0]],
+    "maximum_interpolation_temperature_c": 300.0,
+    "qualified_by_hot_coupons": false
+  },
+  "bridge_network": {
+    "baseline_effective_cross_section_mm2": 1200.0,
+    "conduction_length_mm": 8.0,
+    "root_area_gain_per_added_radius_mm": 0.06,
+    "classification": "nonlinear_1D_screen_not_measured_bridge_geometry"
+  },
+  "search_space": {
+    "fin_levels": [12, 14, 16, 18],
+    "fin_thickness_mm": [2.0, 2.4],
+    "clear_gap_mm": [3.5, 4.5, 5.5],
+    "root_radius_mm": [2.0, 3.0, 4.0],
+    "mean_span_mm": [86.0, 100.0],
+    "mean_flow_length_mm": [180.0],
+    "local_oil_heat_removal_w": [0.0, 600.0, 1200.0],
+    "maximum_fin_stack_height_mm": 84.0,
+    "minimum_printed_wall_mm": 1.8,
+    "duct_variants": [
+      {"id": "open", "shroud_gap_mm": null, "capture_fraction": 0.45, "minor_loss_k": 0.2},
+      {"id": "shroud16", "shroud_gap_mm": 16.0, "capture_fraction": 0.60, "minor_loss_k": 0.8},
+      {"id": "splitter12", "shroud_gap_mm": 12.0, "capture_fraction": 0.70, "minor_loss_k": 1.8},
+      {"id": "exhaust_jets8", "shroud_gap_mm": 8.0, "capture_fraction": 0.78, "minor_loss_k": 3.2}
+    ]
+  },
+  "off_design_matrix": {
+    "air_mass_flow_kg_s_per_head": [0.66, 0.85, 1.05],
+    "chamber_heat_load_w_per_head": [3500.0, 4300.0, 5200.0]
+  },
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "accepted_F39_BRep_and_wetted_area_available": false,
+    "full_head_CHT_complete": false,
+    "oil_gallery_geometry_and_heat_transfer_validated": false,
+    "fan_map_and_duct_leakage_measured": false,
+    "hot_material_coupon_card_qualified": false,
+    "physical_correlation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
