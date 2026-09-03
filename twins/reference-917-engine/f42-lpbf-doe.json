@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F42",
+  "classification": "additivefoam_screening_doe_not_machine_qualification",
+  "material": "AlSi10Mg",
+  "geometry_provenance": {
+    "source_phase": "F41",
+    "scale_status": "conditional_scan_units_assumed_mm",
+    "geometry_report": {
+      "path": "twins/reference-917-engine/evidence/f41-lpbf-process/917-head-lpbf-candidate-f41-report.json",
+      "sha256": "fb73947051a869d3f0e1d893f9af0fcff137b8229e8089af8d0eaea466572913"
+    },
+    "manufacturing_audit": {
+      "path": "twins/reference-917-engine/evidence/f41-lpbf-process/917-head-lpbf-candidate-f41-audit.json",
+      "sha256": "1b2ae44ae87055b2599a30da987f382f5806fe9d12fe214e585b041e696d3cc7"
+    }
+  },
+  "machine_reference": {
+    "manufacturer": "BLT",
+    "model": "BLT-S310 single laser",
+    "manufacturer_country": "China",
+    "build_volume_mm": [250.0, 250.0, 400.0],
+    "laser_configuration": "1 x 500 W fibre",
+    "published_layer_range_um": [20.0, 100.0],
+    "published_max_scan_speed_m_s": 7.0,
+    "published_preheat_range_c": [20.0, 200.0],
+    "process_gases": ["argon", "nitrogen"],
+    "published_max_oxygen_ppm": 100.0,
+    "source": "https://www.xa-blt.com/en/wp-content/uploads/2023/04/BLT-Engine-Solutions-2023.4.13.pdf"
+  },
+  "orientation_and_support": {
+    "orientation_id": "scan_y_down",
+    "transform": [
+      [1.0, 0.0, 0.0],
+      [0.0, 0.0, -1.0],
+      [0.0, 1.0, 0.0]
+    ],
+    "oriented_envelope_mm_if_scale_is_mm": [119.1115493774414, 82.00000000000006, 206.0888442993164],
+    "conditional_free_machine_margin_mm_before_plate_supports_and_recoater": [130.8884506225586, 167.99999999999994, 193.9111557006836],
+    "downward_face_area_fraction_f41_proxy": 0.07349870067294721,
+    "projected_support_area_mm2_f41_proxy": 11947.167482851433,
+    "overhang_angle_from_horizontal_deg": 45.0,
+    "support_geometry_generated": false,
+    "supplier_slicer_review_complete": false,
+    "fit_is_conditional": true
+  },
+  "published_process_window": {
+    "laser_power_w": [360, 380, 400],
+    "scan_speed_mm_s": [1200, 1300, 1500],
+    "hatch_spacing_mm": [0.13, 0.15, 0.16],
+    "layer_thickness_mm": 0.05,
+    "platform_preheating": "none_reported_in_primary_process_study",
+    "atmosphere": "argon_with_oxygen_below_100_ppm",
+    "stress_relief": "300_degC_for_2_h_then_air_cool_before_support_removal",
+    "window_source": "https://nottingham-repository.worktribe.com/index.php/OutputFile/4698952",
+    "large_block_witness": {
+      "laser_power_w": 380,
+      "scan_speed_mm_s": 1300,
+      "hatch_spacing_mm": 0.15,
+      "layer_thickness_mm": 0.05,
+      "scan_rotation_deg": 67.0,
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10482850/"
+    }
+  },
+  "model_hypotheses": {
+    "beam_spot_diameter_mm": 0.08,
+    "beam_spot_status": "separate_BLT-S310_AlSi10Mg_publication_not_disclosed_for_380W_witness",
+    "beam_spot_source": "https://www.sciencedirect.com/science/article/pii/S0924013624001444",
+    "additivefoam_beam_radius_m": 0.00004,
+    "initial_temperature_k": 293.15,
+    "initial_temperature_status": "ambient_model_hypothesis_not_measured_build_plate_temperature",
+    "absorptivity_status": "AdditiveFOAM_Kelly_tutorial_default_not_BLTS310_calibrated"
+  },
+  "doe": {
+    "design": "3x3x3_full_factorial",
+    "expected_screening_case_count": 27,
+    "reference_case_id": "P380-V1300-H150",
+    "volumetric_energy_density_formula": "P/(v*h*t)",
+    "expected_ved_range_j_mm3": [30.0, 51.28205128205128]
+  },
+  "additivefoam": {
+    "repository": "https://github.com/ORNL/AdditiveFOAM",
+    "required_revision": "9c05c5eb54db03faa342b14b0806efe740de8c44",
+    "openfoam_required_revision": "7b05503f98a85be88af930df48623b4d152bfc35",
+    "template": "tutorials/multiLayerPBF",
+    "simulated_layers": 2,
+    "mpi_ranks_per_case": 16,
+    "temperature_limit_k": 3300.0,
+    "temperature_limit_policy": "preserve_solver_limit_and_fail_closed_on_any_saturation"
+  },
+  "resolution_study": {
+    "case_ids": ["P360-V1500-H160", "P380-V1300-H150", "P400-V1200-H130"],
+    "levels": {
+      "coarse": {
+        "base_mesh_cells": [120, 20, 24],
+        "cells_per_layer": 4
+      },
+      "nominal": {
+        "base_mesh_cells": [150, 25, 30],
+        "cells_per_layer": 5
+      },
+      "fine": {
+        "base_mesh_cells": [180, 30, 36],
+        "cells_per_layer": 6
+      }
+    },
+    "acceptance": {
+      "maximum_relative_difference_melt_pool_dimensions": 0.05,
+      "maximum_relative_difference_molten_volume": 0.05,
+      "maximum_relative_difference_temperature_p99": 0.03,
+      "all_fields_finite": true,
+      "solver_temperature_cap_hit": false,
+      "all_solver_runs_completed": true
+    }
+  },
+  "slicing_contract": {
+    "layer_height_um": 50.0,
+    "expected_layer_count_from_oriented_height": 4122,
+    "calculation": "ceil(206.0888442993164/0.05)",
+    "machine_build_file_generated": false,
+    "support_toolpath_generated": false,
+    "required_future_artifacts": [
+      "supplier_slicer_project",
+      "support_geometry",
+      "recoater_collision_report",
+      "per_layer_exposure_statistics",
+      "machine_build_file_with_supplier_signature"
+    ]
+  },
+  "release_gates": {
+    "doe_solver_executed": false,
+    "temperature_cap_free": false,
+    "resolution_convergence_complete": false,
+    "support_geometry_generated": false,
+    "machine_build_file_generated": false,
+    "supplier_parameter_card_qualified": false,
+    "physical_coupon_qualified": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
