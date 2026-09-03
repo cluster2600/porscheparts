@@ -1,0 +1,228 @@
+{
+  "baseline": {
+    "pcurve_screen": {
+      "fault_count": 238,
+      "status_counts": {
+        "BOPAlgo_InvalidCurveOnSurface": 238
+      }
+    },
+    "properties": {
+      "bbox_scan_units": [
+        -60.23945801824199,
+        -89.47606075069982,
+        -1e-07,
+        58.8750001,
+        116.62349135781906,
+        82.0000001
+      ],
+      "bbox_size_scan_units": [
+        119.114458118242,
+        206.09955210851888,
+        82.00000019999999
+      ],
+      "center_of_mass_scan_units": [
+        0.21289120519344834,
+        11.243163407277386,
+        36.978325798943054
+      ],
+      "surface_area_scan_units_squared": 178755.42261985267,
+      "volume_scan_units_cubed": 1086299.4577106503
+    }
+  },
+  "decision": {
+    "candidate_retained_only_for_private_diagnostics": true,
+    "clean_F42_1_STEP_produced": false,
+    "reason": "SameParameter reduces invalid p-curves but cannot repair self-intersecting 3D faces without forbidden surface reconstruction."
+  },
+  "face_reconstruction_map": {
+    "all_faces_are_BSpline": true,
+    "filename": "917-head-f42-1-face-map.json",
+    "invalid_pcurve_overlap_count": 23,
+    "self_intersection_overlap_count": 8,
+    "sha256": "e80b98ef1f3209418e196c133dde486e3c278d9e038b85a4ae71a8ca9483bd1a",
+    "unique_face_count": 25
+  },
+  "gates": {
+    "manufacturing_authorized": false,
+    "private_candidate_accepted_as_clean_repair": false,
+    "roundtrip_exact_BRepCheck_valid": true,
+    "sampled_skin_distance_at_most_0_02": true,
+    "strict_pre_export_non_deformation_invariants": true,
+    "zero_BOPAlgo_faults": false
+  },
+  "gmsh_replay": {
+    "container_image_digest": "sha256:4a19fa7d1f253beb3106970ae2635cff85d5aeeaf062aaf807d1dab7b940fb33",
+    "cumulative_invalid_elements_across_repeated_refinement_warnings": 3482,
+    "input_mount": "read_only",
+    "run_incomplete_or_terminated_without_3D_completion": true,
+    "software": "Gmsh 4.12.1 using OpenCASCADE STEP importer",
+    "three_dimensional_mesh_completed": false,
+    "unique_invalid_surface_count": 25,
+    "warning_event_count": 85
+  },
+  "image": {
+    "bytes": 926101,
+    "classification": "diagnostic_face_map_not_geometry_not_validation",
+    "filename": "917-head-f42-1-face-map.png",
+    "sha256": "710d3653340e92480f1f05d1fd2bc7cf5a777816deff3562e029eca8d2a4fd2b"
+  },
+  "phase": "F42.1",
+  "private_evidence_binding": {
+    "private_report_sha256": "19b467376c2f95358c6d0ad214c52aba0e54074fd53ff53e274f8cbcefacf27b",
+    "rejected_candidate_STEP_sha256": "2657b477432e01096ad799be082e8d80102e0c45d1f320034767009ec89a834f",
+    "repository_policy": "all_STEP_and_coordinate_bearing_reports_private_local_only",
+    "source_STEP_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a"
+  },
+  "publication": {
+    "aggregate_bbox_and_center_metrics_published": true,
+    "candidate_STEP_published": false,
+    "manufacturing_claim": false,
+    "scan_derived_face_or_sample_coordinates_published": false,
+    "source_STEP_published": false
+  },
+  "repair_scope": {
+    "3D_surface_rebuild_used": false,
+    "maximum_allowed_skin_displacement_scan_units": 0.02,
+    "offset_used": false,
+    "operation": "BRepLib.SameParameter forced on topology-only copy",
+    "sewing_used": false
+  },
+  "roundtrip": {
+    "boolean_argument_analyzer": {
+      "invalid_pcurve_edge_count": 226,
+      "invalid_pcurve_face_count": 105,
+      "private_indices_published": false,
+      "result_count": 248,
+      "self_intersecting_face_count": 9,
+      "status_counts": {
+        "BOPAlgo_InvalidCurveOnSurface": 239,
+        "BOPAlgo_SelfIntersect": 9
+      }
+    },
+    "brepcheck": {
+      "exact_method": true,
+      "nonzero_status_counts": {},
+      "parallel": true,
+      "shape_valid": true,
+      "subshapes_checked": 1875
+    },
+    "property_delta": {
+      "bbox_coordinate_deltas_scan_units": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "surface_area_delta_scan_units_squared": 0.014425275381654501,
+      "surface_area_relative_delta": 8.069839320249198e-08,
+      "volume_delta_scan_units_cubed": 0.04298670566640794,
+      "volume_relative_delta": 3.9571690256571957e-08
+    },
+    "sampled_skin_distance": {
+      "candidate_to_original": {
+        "failures": 0,
+        "maximum_scan_units": 1.6881933178349189e-13,
+        "p95_scan_units": 6.286523445046976e-14,
+        "requested_face_samples": 80,
+        "resolved_samples": 80
+      },
+      "classification": "symmetric_exact_OCCT_point_to_trimmed_BRep_sample_not_continuous_Hausdorff",
+      "maximum_sampled_skin_distance_scan_units": 1.6904347793016425e-13,
+      "original_to_candidate": {
+        "failures": 0,
+        "maximum_scan_units": 1.6904347793016425e-13,
+        "p95_scan_units": 7.301613010966039e-14,
+        "requested_face_samples": 80,
+        "resolved_samples": 80
+      }
+    },
+    "topology": {
+      "edge_classification": {
+        "closed_surface_seams": 31,
+        "degenerated_edges": 3,
+        "free_edges": 0,
+        "nonmanifold_edges": 0,
+        "two_face_manifold_edges": 906
+      },
+      "unique_edge_face_ancestor_histogram": {
+        "1": 34,
+        "2": 906
+      },
+      "unique_subshape_counts": {
+        "edge": 940,
+        "face": 320,
+        "shell": 1,
+        "solid": 1,
+        "vertex": 613
+      }
+    }
+  },
+  "schema": "porsche-917-f42.1-public-topology-repair-summary/v1",
+  "selected_tolerance_scan_units": 0.0001,
+  "tolerance_trials": [
+    {
+      "all_3D_curves_identical_or_both_null": true,
+      "all_3D_surfaces_identical": true,
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "pcurve_fault_count": 148,
+      "same_parameter_tolerance_scan_units": 1e-07,
+      "strict_non_deformation_invariants_pass": false,
+      "surface_area_delta_scan_units_squared": -0.06918097598827444,
+      "volume_delta_scan_units_cubed": 15.136576519813389
+    },
+    {
+      "all_3D_curves_identical_or_both_null": true,
+      "all_3D_surfaces_identical": true,
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "pcurve_fault_count": 138,
+      "same_parameter_tolerance_scan_units": 1e-06,
+      "strict_non_deformation_invariants_pass": false,
+      "surface_area_delta_scan_units_squared": -0.06864674721146002,
+      "volume_delta_scan_units_cubed": 19.790522790513933
+    },
+    {
+      "all_3D_curves_identical_or_both_null": true,
+      "all_3D_surfaces_identical": true,
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "pcurve_fault_count": 131,
+      "same_parameter_tolerance_scan_units": 1e-05,
+      "strict_non_deformation_invariants_pass": false,
+      "surface_area_delta_scan_units_squared": -0.06344352767337114,
+      "volume_delta_scan_units_cubed": 19.788275658385828
+    },
+    {
+      "all_3D_curves_identical_or_both_null": true,
+      "all_3D_surfaces_identical": true,
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "pcurve_fault_count": 131,
+      "same_parameter_tolerance_scan_units": 0.0001,
+      "strict_non_deformation_invariants_pass": true,
+      "surface_area_delta_scan_units_squared": 2.9103830456733704e-11,
+      "volume_delta_scan_units_cubed": 2.3283064365386963e-10
+    },
+    {
+      "all_3D_curves_identical_or_both_null": true,
+      "all_3D_surfaces_identical": true,
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "pcurve_fault_count": 131,
+      "same_parameter_tolerance_scan_units": 0.001,
+      "strict_non_deformation_invariants_pass": true,
+      "surface_area_delta_scan_units_squared": 0.0,
+      "volume_delta_scan_units_cubed": 0.0
+    },
+    {
+      "all_3D_curves_identical_or_both_null": true,
+      "all_3D_surfaces_identical": true,
+      "maximum_bbox_coordinate_delta_scan_units": 0.0,
+      "pcurve_fault_count": 131,
+      "same_parameter_tolerance_scan_units": 0.02,
+      "strict_non_deformation_invariants_pass": true,
+      "surface_area_delta_scan_units_squared": 0.0,
+      "volume_delta_scan_units_cubed": 0.0
+    }
+  ],
+  "verdict": "REPAIR_REJECTED_FAIL_CLOSED"
+}
