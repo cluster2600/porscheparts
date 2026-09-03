@@ -42,7 +42,7 @@ override F44_CAD_IMAGE := ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha25
 override F44_OUTPUT := work/917-connecting-rod-cad-f44
 
 .PHONY: 917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly 917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish 917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad 917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich 917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea 917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan 917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render 917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check 917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check 917-manufacturing-f37-check
-.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check
+.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check
 
 F40_PYTHON ?= python3
 F40_STOCK ?= work/917-scan-conforming-f36/run-013/917-head-scan-stock-f36.local.stl
@@ -642,6 +642,232 @@ engine-components:
 
 917-scan-conforming-4v-f36-check:
 	python3 tests/test_917_scan_conforming_4v_f36.py -v
+
+917-scan-conforming-4v-f36-assembly:
+	docker run --rm --platform linux/amd64 --network none --user 9133:9133 \
+		-e HOME=/tmp -e MPLCONFIGDIR=/tmp/mpl \
+		-v "$(CURDIR):/workspace" -w /workspace --entrypoint /opt/venv/bin/python $(VALVE_IMAGE) \
+		twins/reference-917-engine/source/analyze_f36_valvetrain_assembly.py \
+		--head work/917-scan-conforming-f36/run-013/917-head-scan-conforming-4v-f36.local.stl \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--contract twins/reference-917-engine/f36-valvetrain-assembly.json \
+		--output work/917-scan-conforming-f36/valvetrain-013
+
+917-scan-conforming-4v-f36-printability:
+	docker run --rm --platform linux/amd64 --network none --user 9133:9133 \
+		-e HOME=/tmp -e MPLCONFIGDIR=/tmp/mpl \
+		-v "$(CURDIR):/workspace" -w /workspace --entrypoint /opt/venv/bin/python $(VALVE_IMAGE) \
+		twins/reference-917-engine/source/analyze_f36_lpbf_printability.py \
+		--head work/917-scan-conforming-f36/run-013/917-head-scan-conforming-4v-f36.local.stl \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--output work/917-scan-conforming-f36/lpbf-013
+
+917-scan-conforming-4v-f36-publish:
+	python3 twins/reference-917-engine/source/summarize_scan_conforming_cae_f36.py \
+		--cases work/917-scan-conforming-f36/openfoam-massflow-002/cases.json \
+		--calculix work/917-scan-conforming-f36/calculix-burst-001/hexa-4p0-v5/report.json work/917-scan-conforming-f36/calculix-burst-001/hexa-3p0-v1/report.json work/917-scan-conforming-f36/calculix-burst-001/hexa-2p5-v1/report.json \
+		--fluidx3d work/917-scan-conforming-f36/fluidx3d-burst-001/coarse-domain-v3.json work/917-scan-conforming-f36/fluidx3d-burst-001/medium-domain-v3.json \
+		--fluidx3d-sensitivity work/917-scan-conforming-f36/fluidx3d-burst-001/coarse-domain-alpha1e-3-v3.json work/917-scan-conforming-f36/fluidx3d-burst-001/coarse-domain-alpha3e-3-v3.json work/917-scan-conforming-f36/fluidx3d-burst-001/coarse-domain-alpha6e-3-v3.json \
+		--cycle work/917-cycle-thermal-f33/cycle-thermal-report.json \
+		--two-four-valve-report work/917-integrated-virtual-f33-f36-rerun/report.json \
+		--output twins/reference-917-engine/evidence/f36/recalculation-report.json
+
+917-scan-conforming-4v-f36-render:
+	python3 twins/reference-917-engine/source/render_scan_conforming_cae_f36.py \
+		--stl work/917-scan-conforming-f36/run-007/917-head-scan-stock-f36.local.stl \
+		--product-image work/917-scan-conforming-f36/run-007/917-head-scan-conforming-4v-f36.png \
+		--report twins/reference-917-engine/evidence/f36/recalculation-report.json \
+		--output work/917-scan-conforming-f36/f36-recalculation-board.png
+
+917-manufacturing-f37-cad:
+	docker run --rm --platform linux/amd64 --network none \
+		-e HOME=/tmp -v "$(CURDIR):/workspace" -w /workspace \
+		--entrypoint python3 $(CAD_AUTHOR_F29_IMAGE) \
+		twins/reference-917-engine/source/build_f37_manufacturing_definition.py \
+		--contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--head-stl work/917-scan-conforming-f36/run-013/917-head-scan-conforming-4v-f36.local.stl \
+		--output work/917-scan-conforming-f37/cad
+
+917-manufacturing-f37-head-mesh:
+	docker run --rm --platform linux/amd64 --network none \
+		-e HOME=/tmp -e MPLCONFIGDIR=/tmp/mpl \
+		-v "$(CURDIR):/workspace" -w /workspace \
+		--entrypoint /opt/venv/bin/python $(VALVE_IMAGE) \
+		twins/reference-917-engine/source/build_f37_printable_head_mesh.py \
+		--head work/917-scan-conforming-f36/run-013/917-head-scan-conforming-4v-f36.local.stl \
+		--flow-core work/917-scan-conforming-f36/run-013/917-head-4v-flow-core-f36.local.stl \
+		--oil-core work/917-scan-conforming-f37/cad/oil-gallery-core.stl \
+		--contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--cad-report work/917-scan-conforming-f37/cad/f37-cad-report.json \
+		--output work/917-scan-conforming-f37/head-mesh-proof
+
+917-manufacturing-f37-head-mesh-enrich:
+	python3 twins/reference-917-engine/source/enrich_f37_head_mesh_nvidia.py \
+		--report work/917-scan-conforming-f37/head-mesh-proof/f37-printable-head-mesh-report.json \
+		--head work/917-scan-conforming-f37/head-mesh-proof/917-head-f37-printable-proof.local.stl \
+		--attestation work/917-scan-conforming-f37/nvidia-repair-candidate/f37-nvidia-geometry-validation-attestation.json
+
+917-manufacturing-f37-screens:
+	python3 twins/reference-917-engine/source/screen_f37_rocker_kinematics.py \
+		--contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--cad-report work/917-scan-conforming-f37/cad/f37-cad-report.json \
+		--valve-lift-mm 12 \
+		--output work/917-scan-conforming-f37/kinematics
+	python3 twins/reference-917-engine/source/screen_f37_oil_system.py \
+		--contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--output work/917-scan-conforming-f37/oil
+	python3 twins/reference-917-engine/source/screen_f37_carrier_strength.py \
+		--contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--kinematics work/917-scan-conforming-f37/kinematics/f37-rocker-kinematic-report.json \
+		--output work/917-scan-conforming-f37/strength
+
+917-manufacturing-f37-lpbf-screen:
+	docker run --rm --platform linux/amd64 --network none \
+		-e HOME=/tmp -e MPLCONFIGDIR=/tmp/mpl \
+		-v "$(CURDIR):/workspace" -w /workspace \
+		--entrypoint /opt/venv/bin/python $(VALVE_IMAGE) \
+		twins/reference-917-engine/source/analyze_f36_lpbf_printability.py \
+		--head work/917-scan-conforming-f37/head-mesh-proof/917-head-f37-printable-proof.local.stl \
+		--voxel-pitch-mm 4.0 \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--phase F37 \
+		--output work/917-scan-conforming-f37/lpbf-exact
+
+917-manufacturing-f37-carrier-fea:
+	test "$$(docker image inspect $(F37_CAE_IMAGE) --format '{{.Id}}')" = "$(F37_CAE_IMAGE_ID)"
+	docker run --rm --network none \
+		-e HOME=/tmp -v "$(CURDIR):/workspace" -w /workspace \
+		--entrypoint python3 \
+		$(F37_CAE_IMAGE) \
+		twins/reference-917-engine/source/run_f37_carrier_calculix.py \
+		--step work/917-scan-conforming-f37/cad/rocker-carrier-as-printed.step \
+		--contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--geometry-report work/917-scan-conforming-f36/run-013/geometry-report.json \
+		--mesh-sizes 2.0,1.5,1.25 \
+		--runtime-image-ref $(F37_CAE_IMAGE) \
+		--runtime-image-id $(F37_CAE_IMAGE_ID) \
+		--output work/917-scan-conforming-f37/carrier-calculix
+
+917-manufacturing-f37-lpbf-plan:
+	python3 twins/reference-917-engine/source/compile_f37_lpbf_manufacturing_plan.py \
+		--printability work/917-scan-conforming-f37/lpbf-exact/lpbf-printability-report.json \
+		--f37-head-mesh-report work/917-scan-conforming-f37/head-mesh-proof/f37-printable-head-mesh-report.json \
+		--locked-plate work/917-scan-conforming-f36/lpbf-locked-plate-p3/report.json \
+		--f37-contract twins/reference-917-engine/f37-manufacturing-definition.json \
+		--f37-cad-report work/917-scan-conforming-f37/cad/f37-cad-report.json \
+		--output work/917-scan-conforming-f37/lpbf
+
+917-manufacturing-f37-lpbf-audit-check:
+	docker run --rm --platform linux/amd64 --network none \
+		-e HOME=/tmp -e MPLCONFIGDIR=/tmp/mpl \
+		-v "$(CURDIR):/workspace" -w /workspace \
+		--entrypoint /opt/venv/bin/python $(VALVE_IMAGE) \
+		tests/test_917_f37_lpbf_voxel_audit.py -v
+
+917-manufacturing-f37-render:
+	python3 twins/reference-917-engine/source/render_f37_manufacturing_definition.py \
+		--head work/917-scan-conforming-f36/run-013/917-head-scan-conforming-4v-f36.local.stl \
+		--cad-dir work/917-scan-conforming-f37/cad \
+		--output work/917-scan-conforming-f37/917-head-f37-manufacturing-definition.png
+
+917-manufacturing-f37-publish:
+	python3 twins/reference-917-engine/source/publish_f37_manufacturing_evidence.py \
+		--project-root .
+
+917-manufacturing-f37-evidence-check:
+	python3 tests/test_917_f37_published_evidence.py -v
+
+917-f37-simready-evidence-check:
+	python3 tests/test_917_f37_simready_evidence.py -v
+
+917-f37-ice-engine-evidence-check:
+	python3 tests/test_917_f37_ice_engine_foam.py -v
+
+917-manufacturing-f37-check: 917-manufacturing-f37-evidence-check
+	test -f work/917-scan-conforming-f37/cad/f37-cad-report.json
+	test -f work/917-scan-conforming-f37/kinematics/f37-rocker-kinematic-report.json
+	test -f work/917-scan-conforming-f37/oil/f37-oil-hydraulic-report.json
+	test -f work/917-scan-conforming-f37/strength/f37-carrier-strength-report.json
+	test -f work/917-scan-conforming-f37/carrier-calculix/f37-carrier-calculix-report.json
+	test -f work/917-scan-conforming-f37/lpbf/f37-lpbf-manufacturing-report.json
+	test -f work/917-scan-conforming-f37/head-mesh-proof/f37-printable-head-mesh-report.json
+	F37_EVIDENCE_DIR=work/917-scan-conforming-f37/cad \
+		python3 tests/test_917_f37_manufacturing_definition.py -v
+
+917-f38-brep-lpbf-evidence-check:
+	python3 tests/test_917_f38_brep_lpbf.py -v
+
+917-f38-valvetrain-package-evidence-check:
+	python3 tests/test_917_f38_valvetrain_package.py -v
+
+917-f38-cooling-evidence-check:
+	python3 tests/test_917_f38_cooling_redesign.py -v
+
+917-f38-material-coupon-plan-check:
+	python3 tests/test_917_f38_material_coupon_plan.py -v
+
+917-f38-engineering-check:
+	python3 tests/test_917_f38_engineering_checkpoint.py -v
+
+917-f39-scan-only-program-check:
+	python3 tests/test_917_f39_scan_only_program.py -v
+
+917-f39-cooling-optimization-check:
+	python3 tests/test_917_f39_cooling_optimization.py -v
+
+917-f42-cooling-cht-check:
+	python3 tests/test_917_f42_cooling_cht.py -v
+
+917-f39-lpbf-structural-check:
+	python3 tests/test_917_f39_lpbf_structural.py -v
+
+917-f39-brep-scan-only-check:
+	python3 tests/test_917_f39_brep_scan_only.py -v
+
+917-f39-functional-video-check:
+	python3 tests/test_917_f39_functional_video.py -v
+
+917-f39-check: 917-f39-scan-only-program-check 917-f39-brep-scan-only-check 917-f39-cooling-optimization-check 917-f39-lpbf-structural-check 917-f39-functional-video-check
+
+917-f40-935-head-reference-check:
+	python3 tests/test_917_f40_935_head_reference.py -v
+
+917-f40-935-scale-audit:
+	python3 twins/reference-917-engine/source/audit_935_scan_scale_f40.py \
+		--scan work/wolfe-classics-935-cylinder-head/pipeline/input/935-xtreme-cylinder-head-working-copy.obj \
+		--envelope work/wolfe-classics-935-cylinder-head/pipeline/segmented/head-envelope-uncapped.ply \
+		--interfaces work/wolfe-classics-935-cylinder-head/pipeline/reports/interfaces.json \
+		--contract twins/reference-917-engine/935-head-reference-f40.json \
+		--output work/917-f40-reference/scale-audit
+
+917-f40-scan-locked-outer:
+	$(F40_PYTHON) twins/reference-917-engine/source/build_scan_locked_outer_brep_f40.py \
+		--stock $(F40_STOCK) \
+		--contract twins/reference-917-engine/935-head-reference-f40.json \
+		--output work/917-f40-reference/outer-brep
+
+917-f40-4v-packaging: 917-f40-scan-locked-outer
+	$(F40_PYTHON) twins/reference-917-engine/source/render_scan_locked_4v_packaging_f40.py \
+		--outer work/917-f40-reference/outer-brep/917-head-935-scan-locked-outer-f40.local.stl \
+		--flow-core $(F40_FLOW_CORE) \
+		--cad $(F40_CAD) \
+		--output work/917-f40-reference/packaging
+
+917-f40-functional-trial: 917-f40-scan-locked-outer
+	$(F40_PYTHON) twins/reference-917-engine/source/build_scan_locked_functional_trial_f40.py \
+		--outer work/917-f40-reference/outer-brep/917-head-935-scan-locked-outer-f40.local.stl \
+		--flow-core $(F40_FLOW_CORE) \
+		--interfaces work/wolfe-classics-935-cylinder-head/pipeline/reports/interfaces.json \
+		--output work/917-f40-reference/functional-trial
+
+917-f40-thickness-screen: 917-f40-functional-trial
+	$(F40_PYTHON) twins/reference-917-engine/source/audit_scan_locked_functional_f40.py \
+		--head work/917-f40-reference/functional-trial/917-head-935-scan-locked-functional-trial-f40.local.stl \
+		--functional-report work/917-f40-reference/functional-trial/917-head-935-scan-locked-functional-trial-f40-report.json \
+		--output work/917-f40-reference/thickness-screen
 
 917-aircooled-4v-f34-publish:
 	python3 twins/reference-917-engine/source/publish_aircooled_4v_f34.py \
