@@ -314,8 +314,11 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         self.assertEqual(sum(item["size_bytes"] for item in contract["input_allowlist"]), 724745)
         self.assertEqual(sum(item["role"] == "step" for item in contract["input_allowlist"]), 6)
         self.assertEqual(contract["output_contract"]["maximum_usd_size_bytes_per_family"], 268435456)
-        self.assertEqual(contract["runtime"]["qualification_status"], "pending_new_simready_workflow_digest")
-        self.assertIsNone(contract["runtime"]["image_ref"])
+        self.assertEqual(contract["runtime"]["qualification_status"], "qualified_public_linux_amd64_digest")
+        self.assertEqual(
+            contract["runtime"]["image_ref"],
+            "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84",
+        )
         self.assertEqual(contract["usd_audit"]["bounds_relative_tolerance"], 0.01)
         self.assertEqual(contract["usd_audit"]["bounds_absolute_tolerance_m"], 0.0001)
         self.assertFalse(any("raw-scan" in item["path"] or item["path"].endswith((".stl", ".3mf")) for item in contract["input_allowlist"]))
@@ -344,10 +347,15 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
 
     def test_production_runtime_pending_blocks_execution_before_output(self):
         output = self.root / "must-not-exist"
+        pending = json.loads(json.dumps(self.fixture.contract))
+        pending["runtime"]["image_ref"] = None
+        pending["runtime"]["qualification_status"] = "pending_new_simready_workflow_digest"
+        pending_path = self.root / "pending-contract.json"
+        pending_path.write_bytes(encoded(pending))
         with self.assertRaisesRegex(self.executor.F42aError, "runtime_digest_qualification_pending"):
             self.executor.execute(
                 self.fixture.archive,
-                CONTRACT_PATH,
+                pending_path,
                 self.fixture.skill_root,
                 self.fixture.converter,
                 output,
@@ -557,10 +565,22 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
 
     def test_wrapper_pending_contract_stops_before_docker(self):
         output = self.root / "must-not-exist"
+        source_root = self.root / "pending-repo/twins/reference-917-engine/source"
+        source_root.mkdir(parents=True)
+        staged_wrapper = source_root / WRAPPER_PATH.name
+        staged_wrapper.write_bytes(WRAPPER_PATH.read_bytes())
+        staged_wrapper.chmod(0o755)
+        staged_executor = source_root / EXECUTOR_PATH.name
+        staged_executor.write_bytes(EXECUTOR_PATH.read_bytes())
+        pending = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
+        pending["runtime"]["image_ref"] = None
+        pending["runtime"]["qualification_status"] = "pending_new_simready_workflow_digest"
+        staged_contract = source_root.parent / CONTRACT_PATH.name
+        staged_contract.write_bytes(encoded(pending))
         completed = subprocess.run(
             [
                 "bash",
-                str(WRAPPER_PATH),
+                str(staged_wrapper),
                 "--archive",
                 str(self.fixture.archive),
                 "--skill-root",

@@ -101,6 +101,13 @@ le smoke applicatif, le smoke SSH concurrent et la promotion ont tous réussi.
 La base `linux/amd64` autorisée pour l'étage suivant est exclusivement
 `ghcr.io/cluster2600/3dprinting993-simready@sha256:3dc95bf1fc5f7942c86c5dba33da05b7f852aea34684c1079b24df0915324f46`.
 
+Le second étage a été qualifié par le run
+[`33716740177`](https://github.com/cluster2600/3dprinting993/actions/runs/33716740177)
+sur le commit `4b774d6c463b0a9a68a33b7deb4b5b63c64015db`. La conversion
+STEP→USD synthétique, le pull anonyme et les smokes ont réussi. Le seul parent
+autorisé pour l'image locale finale et le lot CPU F42a est
+`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84`.
+
 ## Dimensionnement de la première qualification
 
 Le contrat actuel sélectionne une seule `RTX PRO 6000 WS` entière, au moins
@@ -115,6 +122,7 @@ mesure de saturation ou par un calcul CAE ultérieur, pas par le nom du projet.
 |---|---|
 | Base sans clef hôte publiée | vrai — run `33715503892`, digest immuable |
 | Concurrence `sshd` testée à froid | vrai — smoke du même run |
+| Workflow STEP→USD minimal | vrai — run `33716740177`, digest immuable |
 | Image finale accessible anonymement par digest | bloquée par la cascade |
 | SSH `BatchMode` réel | non exécuté |
 | Services NVIDIA locaux | non exécutés sur le nouveau digest |

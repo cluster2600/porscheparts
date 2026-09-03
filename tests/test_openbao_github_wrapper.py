@@ -251,6 +251,15 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
             self.wrapper.SIMREADY_BASE_FOR_WORKFLOW,
         )
 
+    def test_production_local_ai_parent_pin_matches_allowlist(self) -> None:
+        source = (ROOT / "containers/simready-local-ai.Dockerfile").read_text(
+            encoding="utf-8"
+        )
+        self.assertEqual(
+            self.wrapper.first_dockerfile_base(source),
+            self.wrapper.SIMREADY_WORKFLOW_FOR_LOCAL_AI,
+        )
+
     def test_source_never_uses_keychain_raw_bao_or_credential_url(self) -> None:
         source = WRAPPER.read_text(encoding="utf-8")
         for forbidden in (

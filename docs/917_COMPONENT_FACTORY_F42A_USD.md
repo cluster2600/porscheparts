@@ -75,13 +75,13 @@ rigid body, collider ou joint. Il limite aussi chaque USD à 256 Mio et les six
 USD à 1 Gio. Ces plafonds protègent l'exécution ; ce ne sont pas des tailles
 prédites.
 
-Le runtime de production est volontairement fermé : le contrat porte
-`qualification_status=pending_new_simready_workflow_digest` et aucune
-`image_ref`. L'ancien digest de la chaîne SimReady n'est pas qualifié pour ce
-lot. Le wrapper s'arrête avant tout lancement Docker tant qu'un nouveau digest
-public `linux/amd64`, issu de la cascade actuelle, n'a pas été contrôlé puis
-inscrit explicitement dans le contrat. L'adaptateur et les cinq fichiers du
-skill consommés sont également liés par SHA-256 et taille.
+Le runtime de production est lié au digest public `linux/amd64`
+`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84`. Le run GitHub Actions
+[`33716740177`](https://github.com/cluster2600/3dprinting993/actions/runs/33716740177)
+a validé la construction, la conversion STEP→USD synthétique, le pull anonyme,
+les smokes et la promotion sur le commit
+`4b774d6c463b0a9a68a33b7deb4b5b63c64015db`. L'adaptateur et les cinq
+fichiers du skill consommés sont également liés par SHA-256 et taille.
 
 ## Commandes
 
@@ -93,9 +93,8 @@ python3 twins/reference-917-engine/source/execute_component_factory_f42a_usd.py 
   --archive /chemin/f41-c59-20260903t025511z.tar.gz
 ```
 
-L'exécution est donc actuellement **pending**. Après qualification séparée du
-nouveau digest OCI et mise à jour explicite du contrat, la référence pourra être
-lue sans la recopier à la main puis chargée :
+L'exécution CPU est maintenant ouverte pour les six familles du lot. La
+référence est lue depuis le contrat sans la recopier à la main puis chargée :
 
 ```bash
 F42A_IMAGE="$(python3 - <<'PY'
