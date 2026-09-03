@@ -93,6 +93,7 @@ docker run --rm --pull never --platform linux/amd64 \
     --tmpfs /tmp:rw,noexec,nosuid,nodev,size=2g \
     --pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
     -e HOME=/tmp -e XDG_CACHE_HOME=/tmp/f42a-cache \
+    -e NVIDIA_VISIBLE_DEVICES=void -e CUDA_VISIBLE_DEVICES=-1 \
     -e F42A_RUNTIME_IMAGE_REF="${expected_image}" \
     -e USD_CONVERT_CAD_ROOT=/opt/usd-convert-cad-preflight \
     -e PHYSICAL_AI_SIMREADY_VALIDATE_VENV=/opt/simready-validation \

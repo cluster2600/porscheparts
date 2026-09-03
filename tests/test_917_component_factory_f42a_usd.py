@@ -316,8 +316,24 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         self.assertEqual(contract["output_contract"]["maximum_usd_size_bytes_per_family"], 268435456)
         self.assertEqual(contract["runtime"]["qualification_status"], "pending_new_simready_workflow_digest")
         self.assertIsNone(contract["runtime"]["image_ref"])
+        self.assertEqual(contract["usd_audit"]["bounds_relative_tolerance"], 0.01)
+        self.assertEqual(contract["usd_audit"]["bounds_absolute_tolerance_m"], 0.0001)
         self.assertFalse(any("raw-scan" in item["path"] or item["path"].endswith((".stl", ".3mf")) for item in contract["input_allowlist"]))
         self.assertTrue(all(value is False for value in contract["release_gates"].values()))
+
+    def test_bounds_tolerances_are_finite_and_exactly_pinned(self):
+        mutations = (
+            ("bounds_relative_tolerance", 1.0, "bounds_relative_tolerance_must_equal_0_01"),
+            ("bounds_relative_tolerance", float("nan"), "bounds_relative_tolerance_must_equal_0_01"),
+            ("bounds_absolute_tolerance_m", 1.0, "bounds_absolute_tolerance_must_equal_0_0001_m"),
+            ("bounds_absolute_tolerance_m", float("inf"), "bounds_absolute_tolerance_must_equal_0_0001_m"),
+        )
+        for field, value, message in mutations:
+            with self.subTest(field=field, value=value):
+                contract = json.loads(json.dumps(self.fixture.contract))
+                contract["usd_audit"][field] = value
+                with self.assertRaisesRegex(self.executor.F42aError, message):
+                    self.executor.validate_contract(contract)
 
     def test_archive_inspection_ignores_non_allowlisted_scan(self):
         report = self.executor.inspect_archive(self.fixture.archive, self.executor.validate_contract(self.fixture.contract))
@@ -356,7 +372,15 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
 
     def test_complete_conversion_only_run_produces_six_minimum_valid_usd(self):
         output = self.root / "output"
-        with mock.patch.dict(os.environ, {"F42A_RUNTIME_IMAGE_REF": IMAGE}, clear=False):
+        with mock.patch.dict(
+            os.environ,
+            {
+                "F42A_RUNTIME_IMAGE_REF": IMAGE,
+                "NVIDIA_VISIBLE_DEVICES": "void",
+                "CUDA_VISIBLE_DEVICES": "-1",
+            },
+            clear=False,
+        ):
             report = self.executor.execute(
                 self.fixture.archive,
                 self.fixture.contract_path,
@@ -379,9 +403,23 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         self.assertFalse(imported_scan.exists())
         imported_step = output / "input" / self.fixture.archive_root / f"artifacts/{FAMILIES[0]}/step/{FAMILIES[0]}.step"
         self.assertEqual(stat.S_IMODE(imported_step.stat().st_mode), 0o444)
+        conversion_report = json.loads(
+            (output / "pipeline/01_conversion" / FAMILIES[0] / "conversion.json").read_text()
+        )
+        self.assertEqual(conversion_report["converter_execution"], "image_packaged_compatibility_adapter")
+        self.assertEqual(conversion_report["converter_adapter_sha256"], self.fixture._file_digest(self.fixture.converter))
+        self.assertNotIn("converter_skill", conversion_report)
 
     def test_runtime_image_identity_is_mandatory(self):
-        with mock.patch.dict(os.environ, {"F42A_RUNTIME_IMAGE_REF": "wrong"}, clear=False):
+        with mock.patch.dict(
+            os.environ,
+            {
+                "F42A_RUNTIME_IMAGE_REF": "wrong",
+                "NVIDIA_VISIBLE_DEVICES": "void",
+                "CUDA_VISIBLE_DEVICES": "-1",
+            },
+            clear=False,
+        ):
             with self.assertRaisesRegex(self.executor.F42aError, "exact_immutable"):
                 self.executor.execute(
                     self.fixture.archive,
@@ -391,11 +429,43 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
                     self.root / "output",
                 )
 
+    def test_CPU_only_device_mask_is_mandatory_before_output(self):
+        masks = (
+            ({"NVIDIA_VISIBLE_DEVICES": "all", "CUDA_VISIBLE_DEVICES": "-1"}),
+            ({"NVIDIA_VISIBLE_DEVICES": "void", "CUDA_VISIBLE_DEVICES": "0"}),
+            ({"NVIDIA_VISIBLE_DEVICES": "", "CUDA_VISIBLE_DEVICES": ""}),
+        )
+        for index, mask in enumerate(masks):
+            with self.subTest(mask=mask):
+                output = self.root / f"masked-output-{index}"
+                environment = {"F42A_RUNTIME_IMAGE_REF": IMAGE, **mask}
+                with mock.patch.dict(os.environ, environment, clear=True):
+                    with self.assertRaisesRegex(
+                        self.executor.F42aError,
+                        "F42a_CPU_only_device_mask_not_enforced",
+                    ):
+                        self.executor.execute(
+                            self.fixture.archive,
+                            self.fixture.contract_path,
+                            self.fixture.skill_root,
+                            self.fixture.converter,
+                            output,
+                        )
+                self.assertFalse(output.exists())
+
     def test_physics_found_by_minimum_validator_blocks_F42a(self):
         validator = self.fixture.skill_root / "references/validate-usd-minimum/scripts/run.py"
         validator.write_text(validator.read_text().replace("physics = 0", "physics = 1"))
         self.fixture.refresh_runtime_bindings()
-        with mock.patch.dict(os.environ, {"F42A_RUNTIME_IMAGE_REF": IMAGE}, clear=False):
+        with mock.patch.dict(
+            os.environ,
+            {
+                "F42A_RUNTIME_IMAGE_REF": IMAGE,
+                "NVIDIA_VISIBLE_DEVICES": "void",
+                "CUDA_VISIBLE_DEVICES": "-1",
+            },
+            clear=False,
+        ):
             with self.assertRaisesRegex(self.executor.F42aError, "no_rigid_bodies"):
                 self.executor.execute(
                     self.fixture.archive,
@@ -408,7 +478,15 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
     def test_unbound_skill_change_fails_closed(self):
         skill_file = self.fixture.skill_root / "shared/script_utils.py"
         skill_file.write_text(skill_file.read_text() + "# changed\n")
-        with mock.patch.dict(os.environ, {"F42A_RUNTIME_IMAGE_REF": IMAGE}, clear=False):
+        with mock.patch.dict(
+            os.environ,
+            {
+                "F42A_RUNTIME_IMAGE_REF": IMAGE,
+                "NVIDIA_VISIBLE_DEVICES": "void",
+                "CUDA_VISIBLE_DEVICES": "-1",
+            },
+            clear=False,
+        ):
             with self.assertRaisesRegex(self.executor.F42aError, "skill_file_(size|sha256)_mismatch"):
                 self.executor.execute(
                     self.fixture.archive,
@@ -421,7 +499,15 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
     def test_nonempty_output_is_never_overwritten(self):
         output = self.root / "output"
         output.mkdir(); (output / "sentinel").write_text("keep")
-        with mock.patch.dict(os.environ, {"F42A_RUNTIME_IMAGE_REF": IMAGE}, clear=False):
+        with mock.patch.dict(
+            os.environ,
+            {
+                "F42A_RUNTIME_IMAGE_REF": IMAGE,
+                "NVIDIA_VISIBLE_DEVICES": "void",
+                "CUDA_VISIBLE_DEVICES": "-1",
+            },
+            clear=False,
+        ):
             with self.assertRaisesRegex(self.executor.F42aError, "output_root_must_be_empty"):
                 self.executor.execute(
                     self.fixture.archive,
@@ -461,6 +547,8 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         self.assertIn("--pull never", source)
         self.assertIn("requested immutable reference absent from RepoDigests", source)
         self.assertIn("F42A_RUNTIME_IMAGE_REF", source)
+        self.assertIn("NVIDIA_VISIBLE_DEVICES=void", source)
+        self.assertIn("CUDA_VISIBLE_DEVICES=-1", source)
         self.assertIn("digest simready-workflow F42a encore en attente de qualification", source)
         self.assertNotIn("--gpus", source)
         self.assertNotIn("raw-scans", source)

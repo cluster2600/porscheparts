@@ -224,6 +224,18 @@ def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
     require(isinstance(audit, dict), "usd_audit_required")
     require(audit.get("expected_up_axis") == "Z", "Z_up_required")
     require(audit.get("expected_meters_per_unit") == 0.001, "millimetre_stage_units_required")
+    require(
+        type(audit.get("bounds_relative_tolerance")) in (int, float)
+        and math.isfinite(float(audit["bounds_relative_tolerance"]))
+        and float(audit["bounds_relative_tolerance"]) == 0.01,
+        "bounds_relative_tolerance_must_equal_0_01",
+    )
+    require(
+        type(audit.get("bounds_absolute_tolerance_m")) in (int, float)
+        and math.isfinite(float(audit["bounds_absolute_tolerance_m"]))
+        and float(audit["bounds_absolute_tolerance_m"]) == 0.0001,
+        "bounds_absolute_tolerance_must_equal_0_0001_m",
+    )
     require(audit.get("physics_schema_count") == 0, "physics_must_be_absent")
     require(isinstance(output, dict), "output_contract_required")
     require(output.get("converted_family_count") == 6, "six_converted_families_required")
@@ -618,7 +630,9 @@ def run_family(
         "schema_version": "1.0.0",
         "source_asset_path": str(source),
         "source_format": "cad",
-        "converter_skill": "convert-to-usd",
+        "converter_execution": "image_packaged_compatibility_adapter",
+        "converter_adapter_path": str(converter_adapter),
+        "converter_adapter_sha256": contract["runtime"]["converter_adapter"]["sha256"],
         "converter_reference": "usd-convert-cad",
         "converter_tool": str(adapter.get("converter", "usd-convert-cad")),
         "converter_command": command,
@@ -716,6 +730,11 @@ def execute(
     require(
         os.environ.get("F42A_RUNTIME_IMAGE_REF") == contract["runtime"]["image_ref"],
         "exact_immutable_F42a_runtime_image_ref_not_reported",
+    )
+    require(
+        os.environ.get("NVIDIA_VISIBLE_DEVICES") == "void"
+        and os.environ.get("CUDA_VISIBLE_DEVICES") in {"", "-1"},
+        "F42a_CPU_only_device_mask_not_enforced",
     )
     adapter_info = regular_file(converter_adapter, "usd_convert_cad_adapter")
     adapter_contract = contract["runtime"]["converter_adapter"]
