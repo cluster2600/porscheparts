@@ -23,6 +23,9 @@ F42B = REMOTE / "f42b"
 CONTRACT_PATH = ENGINE / "component-factory-f42b-gpu.json"
 SUMMARY_PATH = ENGINE / "evidence/f42a-cpu-usd/repeatability-summary.json"
 CONTROLLER = ROOT / "deploy/vast/simready"
+PROFILE_DIRECTORY_PATCH = (
+    CONTROLLER / "patches/nvidia-simready-profiles-directory.patch"
+)
 
 SPEC = importlib.util.spec_from_file_location("f42b_contract", F42B / "_contract.py")
 assert SPEC is not None and SPEC.loader is not None
@@ -624,6 +627,45 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         self.assertFalse(validation["simready_auto_repair"])
         self.assertFalse(validation["fet004_rb_mb_001_auto_repair"])
         self.assertFalse(validation["fet005_gsp_001_auto_repair"])
+
+    def test_patch_nvidia_charge_exactement_le_repertoire_des_profils(self):
+        patch = PROFILE_DIRECTORY_PATCH.read_text(encoding="utf-8")
+        self.assertIn(
+            "--- a/references/simready-validate/scripts/run.py\n"
+            "+++ b/references/simready-validate/scripts/run.py\n",
+            patch,
+        )
+        changed_lines = [
+            line
+            for line in patch.splitlines()
+            if line.startswith(("+", "-"))
+            and not line.startswith(("+++", "---"))
+        ]
+        self.assertEqual(
+            changed_lines,
+            [
+                '-        profiles = foundation_spec_root / "profiles" / "profiles.toml"',
+                '+        profiles = foundation_spec_root / "profiles"',
+            ],
+        )
+        self.assertEqual(
+            sum(line.startswith("@@") for line in patch.splitlines()), 1
+        )
+
+        documentation = (ROOT / "docs/917_COMPONENT_FACTORY_F42B_GPU.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("f42b-917-20260903d", documentation)
+        self.assertIn("Ne jamais modifier le skill installé", documentation)
+        self.assertIn(
+            'PATCHED_SKILL_ROOT="${PATCHED_SKILL_PARENT}/omniverse-cad-to-simready"',
+            documentation,
+        )
+        self.assertIn(
+            '/usr/bin/patch -N -s -p1 -d "${PATCHED_SKILL_ROOT}"',
+            documentation,
+        )
+        self.assertIn('SKILL_ROOT="${PATCHED_SKILL_ROOT}"', documentation)
 
     def test_pilote_chronometre_bloque_les_cinq_autres_si_projection_depassee(self):
         execution = self.contract["execution"]

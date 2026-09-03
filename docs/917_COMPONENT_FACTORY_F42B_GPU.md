@@ -134,6 +134,56 @@ Le point 2 n'est pas satisfait par le contrat initial. Il est donc impossible
 d'utiliser accidentellement ces commandes pour louer avec une image non
 qualifiée.
 
+## Incident Job D : profils SimReady non chargés
+
+Le pilote `f42b-917-20260903d` a atteint la validation SimReady, mais le skill
+NVIDIA transféré n'a pas ajouté `--profiles-path` à la commande
+`simready-validate`. Sa branche compatible avec le CLI `2026.6.5` cherchait le
+fichier unique `profiles/profiles.toml`, absent du commit SimReady Foundation
+épinglé `0ed0dfbc539c9de99289771bd6848effe3ef5779`. Ce commit fournit plusieurs
+fichiers TOML dans le répertoire `profiles/`; le CLI accepte précisément un
+répertoire ou un fichier. Le résultat Job D (`available_profiles=[]` puis
+`Profile 'Prop-Robotics-Physx' (version 1.0.0) is not registered`) est donc un
+blocage d'orchestration, pas un constat sur la géométrie.
+
+Le patch minimal versionné est
+`deploy/vast/simready/patches/nvidia-simready-profiles-directory.patch`. Il ne
+modifie qu'une ligne du script du skill : la cible devient le répertoire
+`profiles`. Un essai diagnostique sur la même bielle et le même runtime a alors
+chargé `Prop-Robotics-Physx@1.0.0` et produit les constats structurés
+`com.nvidia.simready.GSP.001` et `com.nvidia.simready.NP.005`. Ces constats
+restent des `needs_rerun`; ils ne justifient ni grasp point, ni masse, ni
+géométrie inventés.
+
+Ne jamais modifier le skill installé ni le bundle Job D déjà attesté. Préserver
+Job D, créer une copie privée temporaire, lui appliquer le patch, puis utiliser
+un nouvel identifiant de job afin que le manifeste de transfert atteste l'arbre
+réellement exécuté :
+
+```bash
+REPOSITORY_ROOT=/chemin/vers/3dprinting993
+INSTALLED_SKILL_ROOT=/chemin/explicite/vers/omniverse-cad-to-simready
+PROFILE_PATCH="${REPOSITORY_ROOT}/deploy/vast/simready/patches/nvidia-simready-profiles-directory.patch"
+PATCHED_SKILL_PARENT="$(mktemp -d /tmp/917-simready-skill-XXXXXX)"
+chmod 700 "${PATCHED_SKILL_PARENT}"
+PATCHED_SKILL_ROOT="${PATCHED_SKILL_PARENT}/omniverse-cad-to-simready"
+mkdir "${PATCHED_SKILL_ROOT}"
+rsync -a -- "${INSTALLED_SKILL_ROOT}/" "${PATCHED_SKILL_ROOT}/"
+/usr/bin/patch -N -s -p1 -d "${PATCHED_SKILL_ROOT}" < "${PROFILE_PATCH}"
+
+grep -F 'profiles = foundation_spec_root / "profiles"' \
+  "${PATCHED_SKILL_ROOT}/references/simready-validate/scripts/run.py"
+! grep -F 'profiles = foundation_spec_root / "profiles" / "profiles.toml"' \
+  "${PATCHED_SKILL_ROOT}/references/simready-validate/scripts/run.py"
+
+SKILL_ROOT="${PATCHED_SKILL_ROOT}"
+JOB_ID=f42b-917-<nouvel-identifiant>
+```
+
+La copie doit rester disponible jusqu'à la fin de
+`transfer-f42b-job.sh`; ce transfert calcule son propre manifeste du skill et
+refuse ensuite toute mutation distante du bundle.
+
 ## Transfert privé dédié
 
 Après le lancement et les contrôles décrits dans
