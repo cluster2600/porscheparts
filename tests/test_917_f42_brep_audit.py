@@ -9,7 +9,10 @@ import json
 from pathlib import Path
 import unittest
 
-from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+try:
+    from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+except ModuleNotFoundError:  # Optional heavy CAD runtime; static gates still run.
+    BRepPrimAPI_MakeBox = None
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,8 +36,9 @@ def load_module():
 class F42BrepAuditTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.audit = load_module()
+        cls.audit = load_module() if BRepPrimAPI_MakeBox is not None else None
 
+    @unittest.skipIf(BRepPrimAPI_MakeBox is None, "OCP CAD runtime not installed")
     def test_closed_synthetic_box_is_one_valid_manifold_solid(self) -> None:
         shape = BRepPrimAPI_MakeBox(20.0, 30.0, 10.0).Shape()
         topology = self.audit.topology(shape)
@@ -47,6 +51,7 @@ class F42BrepAuditTests(unittest.TestCase):
         self.assertTrue(check["shape_valid"])
         self.assertAlmostEqual(properties["volume_scan_units_cubed"], 6000.0, places=6)
 
+    @unittest.skipIf(BRepPrimAPI_MakeBox is None, "OCP CAD runtime not installed")
     def test_exact_chords_of_box_ignore_sampling_triangulation_seams(self) -> None:
         shape = BRepPrimAPI_MakeBox(20.0, 30.0, 10.0).Shape()
         result = self.audit.exact_normal_chord_thickness(
