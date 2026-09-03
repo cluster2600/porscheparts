@@ -91,6 +91,38 @@ que pour les solides modelises : ce n'est pas une masse de caisse 964.
     pymesh source/control.py       # controle de significativite du recalage
     pycad  source/floor_assembly.py  # modele acier -> STEP
 
+## Recherche du point 17 sur le scan : resultat negatif
+
+Le point 17 a ete cherche comme il doit l'etre : un trou de reprise est une
+boucle de bord dans le maillage. Les 118 411 aretes de bord du scan donnent
+1 521 boucles, dont 248 ressemblent a un trou (8 points ou plus, diametre 10 a
+80 mm, circularite inferieure a 0,25).
+
+Une paire de datums doit satisfaire quatre criteres simultanement : meme station
+longitudinale, meme hauteur, meme diametre, et un ecartement egal a la cote
+publiee. Le filtrage successif donne :
+
+| critere cumule | paires |
+|---|---|
+| meme X a 25 mm, ecartement a 4 mm d'une cote publiee | 14 |
+| + meme hauteur, dZ < 20 mm | 1 |
+| + meme diametre, a 8 mm | 0 |
+| + ecartement a 1 mm, tolerance publiee | **0** |
+
+Les 14 premieres correspondances ne valent rien : le tirage aleatoire en prevoit
+**17,1**. Il y a donc moins de correspondances que le hasard n'en produit.
+
+Aucune paire d'ecartement voisin de 1330 mm ne tient : toutes sont soit a des
+stations longitudinales sans rapport, jusqu'a 3478 mm d'ecart, soit a des
+hauteurs differentes. La moins mauvaise, ecartement 1324,7 mm a dX = -23 mm,
+manque la cote de 5,3 mm sur une tolerance de +/- 1 mm, et se trouve en avant de
+l'essieu avant, ou le cric avant ne peut pas etre.
+
+Les boucles de bord du scan sont des trous d'occlusion, pas des percages. Le
+scan ne resout pas les trous de reprise, et la carrosserie large masque
+probablement les bas de caisse d'origine. **La chaine longitudinale reste non
+calee.**
+
 ## Prochaine donnee utile
 
 Localiser **un seul** point de datum publie sur un vehicule ou un scan de
