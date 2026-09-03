@@ -1,0 +1,95 @@
+{
+  "boundary_and_source_assumptions": {
+    "activation_temperature_k": 1100.0,
+    "ambient_temperature_k": 300.0,
+    "convection_w_m2_k": 12.0,
+    "emissivity": 0.4,
+    "laser_scan_path_resolved": false,
+    "plate_temperature_k": 473.0
+  },
+  "classification": "whole_part_virtual_process_screen_not_calibrated_machine_simulation",
+  "files": {
+    "fields": {
+      "bytes": 2972136,
+      "path": "local-only://917-head-lpbf-macro-f41-fields.npz",
+      "repository_policy": "local_only_large_derived_field",
+      "sha256": "562d7c7fb6814554e77d8e7bea8e5a7ecc2dd63126b18b9fdb6fdcf57655eb43"
+    },
+    "image": {
+      "bytes": 199164,
+      "path": "917-head-lpbf-macro-f41.png",
+      "sha256": "ee0175400a3128145bd45be5da4888e9b8443a7035fdfc2933111a336a78ffde"
+    }
+  },
+  "gates": {
+    "explicit_scheme_stable_by_fourier_limit": true,
+    "lpbf_process_released": false,
+    "machine_scan_strategy_calibrated": false,
+    "mesh_convergence_complete": false,
+    "temperature_dependent_coupon_card_used": false,
+    "whole_part_activated": true
+  },
+  "grid": {
+    "macro_layer_count": 138,
+    "pitch_mm": 1.5,
+    "represented_physical_50_um_layers": 4122,
+    "shape": [
+      80,
+      56,
+      138
+    ],
+    "solid_voxels": 369971
+  },
+  "input": {
+    "path": "local-only://917-head-lpbf-candidate-f41.stl",
+    "repository_policy": "local_only_scan_derived_mesh_rights_unverified",
+    "sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81"
+  },
+  "material_assumptions": {
+    "alloy": "AlSi10Mg",
+    "density_kg_m3": 2670.0,
+    "latent_heat_j_kg": 390000.0,
+    "phase_path_k": [
+      [
+        850.0,
+        1.0
+      ],
+      [
+        870.0,
+        0.0
+      ]
+    ],
+    "solid_conductivity_polynomial_w_m_k": [
+      78.0,
+      0.108,
+      0.0
+    ],
+    "solid_heat_capacity_polynomial_j_kg_k": [
+      780.0,
+      0.4,
+      0.0
+    ],
+    "source": "ORNL_AdditiveFOAM_9c05c5e_etc_materials_AlSi10Mg.cfg",
+    "temperature_dependence_included": true,
+    "thermal_expansion_1_k": 2.15e-05
+  },
+  "method": "A_macro_voxel_layer_activation_explicit_heat_diffusion_convection_radiation",
+  "numerics": {
+    "explicit_stability_limit_s": 0.0062069359756097555,
+    "post_build_cooling_steps": 300,
+    "steps_per_macro_layer": 12,
+    "time_step_s": 0.0040345083841463415
+  },
+  "phase": "F41",
+  "results": {
+    "final_maximum_temperature_k": 1097.476318359375,
+    "maximum_free_thermal_strain_proxy": 0.013478985987603664,
+    "maximum_temperature_gradient_k_m": 646399.8565710069,
+    "maximum_temperature_k": 1099.9295654296875,
+    "maximum_thermal_dose_above_plate_k_s": 4797.66357421875,
+    "p95_thermal_dose_above_plate_k_s": 4492.96044921875,
+    "p99_peak_temperature_k": 1099.9049072265625,
+    "p99_temperature_gradient_k_m": 447781.2880349209
+  },
+  "schema_version": "1.0.0"
+}
