@@ -1,0 +1,241 @@
+{
+  "boolean_argument_analyzer": {
+    "coordinates_published": false,
+    "faulty_shape_type_counts": {
+      "TopAbs_EDGE": 238,
+      "TopAbs_FACE": 247
+    },
+    "has_error": false,
+    "has_faulty": true,
+    "has_warning": false,
+    "modes": [
+      "self_intersection",
+      "small_edge",
+      "face_rebuild",
+      "continuity",
+      "curve_on_surface"
+    ],
+    "result_count": 247,
+    "status_counts": {
+      "BOPAlgo_InvalidCurveOnSurface": 238,
+      "BOPAlgo_SelfIntersect": 9
+    }
+  },
+  "brepcheck": {
+    "exact_method": true,
+    "nonzero_status_counts": {},
+    "parallel": true,
+    "shape_valid": true,
+    "subshapes_checked": 1875
+  },
+  "exact_properties": {
+    "bbox_scan_units": [
+      -60.23945801824199,
+      -89.47606075069982,
+      -1e-07,
+      58.8750001,
+      116.62349135781906,
+      82.0000001
+    ],
+    "bbox_size_scan_units": [
+      119.114458118242,
+      206.09955210851888,
+      82.00000019999999
+    ],
+    "center_of_mass_scan_units": [
+      0.21289120519344834,
+      11.243163407277386,
+      36.978325798943054
+    ],
+    "surface_area_scan_units_squared": 178755.42261985267,
+    "volume_scan_units_cubed": 1086299.4577106503
+  },
+  "exact_sampled_thickness": {
+    "allocated_samples_per_face_max": 22,
+    "allocated_samples_per_face_min": 1,
+    "candidate_sampling_triangle_count": 229209,
+    "classification": "sampled_exact_OCCT_surface_normal_chord_screen_not_global_minimum_not_medial_thickness_not_CT",
+    "gate_all_sampled_exact_normal_chords_at_or_above_threshold": false,
+    "gate_global_wall_thickness_proven": false,
+    "maximum_scan_units": 184.05058285587802,
+    "median_scan_units": 21.492814667623133,
+    "minimum_scan_units": 0.0972508202485446,
+    "p01_scan_units": 0.38238399578087595,
+    "p05_scan_units": 0.8105555755698748,
+    "p95_scan_units": 82.0,
+    "p99_scan_units": 116.97518019621417,
+    "requested_samples": 640,
+    "resolved_area_weighted_fraction_at_or_above_threshold": 0.905701634949,
+    "resolved_area_weighted_fraction_below_threshold": 0.09429836505099995,
+    "resolved_samples": 640,
+    "sampled_face_count": 320,
+    "scan_unit_convention": "millimetre_by_project_convention_only_not_dimensionally_certified",
+    "tessellation_linear_deflection_scan_units": 0.5,
+    "tessellation_role": "sampling_only; UV_centroids_seed_exact_surface_D1_and_exact_BRep_line_face_intersections",
+    "tessellation_seam_neutralization": "thickness_hits_are_computed by IntCurvesFace_ShapeIntersector on exact BRep faces; coincident exact hits within 1e-5 scan units are collapsed",
+    "thin_sample_count": 54,
+    "threshold_scan_units": 1.5,
+    "total_face_count": 320,
+    "unresolved_reasons": {},
+    "unresolved_samples": 0
+  },
+  "external_envelope_lock": {
+    "external_envelope_changed": false,
+    "input_modified": false,
+    "rule": "no_ovalization_no_global_offset_no_scan_envelope_change_without_identified_local_defect_and_proof"
+  },
+  "gates": {
+    "all_sampled_exact_chords_at_least_threshold": false,
+    "exact_brepcheck_valid": true,
+    "global_wall_thickness_proven": false,
+    "one_shell": true,
+    "one_solid": true,
+    "zero_boolean_argument_faults": false,
+    "zero_free_edges": true,
+    "zero_nonmanifold_edges": true
+  },
+  "independent_gmsh_screen": {
+    "container_image_digest": "sha256:4a19fa7d1f253beb3106970ae2635cff85d5aeeaf062aaf807d1dab7b940fb33",
+    "cumulative_count_is_not_unique_elements": true,
+    "cumulative_invalid_elements_across_repeated_refinement_warnings": 3488,
+    "gate_independent_volume_mesh_completed": false,
+    "input_mount": "read_only",
+    "output_mesh_published": false,
+    "software": "Gmsh 4.12.1 using OpenCASCADE STEP importer",
+    "surface_invalid_warning_event_count": 88,
+    "terminated_after_repeated_surface_refinement": true,
+    "three_dimensional_mesh_completed": false,
+    "unique_surfaces_with_invalid_element_warning": [
+      3,
+      10,
+      27,
+      35,
+      65,
+      66,
+      68,
+      91,
+      93,
+      94,
+      117,
+      152,
+      168,
+      193,
+      199,
+      205,
+      211,
+      236,
+      259,
+      261,
+      269,
+      272,
+      274,
+      277,
+      292
+    ]
+  },
+  "phase": "F42",
+  "private_evidence_binding": {
+    "full_local_report_repository_policy": "private_local_only_contains_scan_derived_coordinates",
+    "full_local_report_sha256": "55369fdaef498ab075f34a780ca337a5378d81a5a5d703c7866d261b1d598235",
+    "input_bytes": 16838933,
+    "input_repository_policy": "private_local_only_not_copied_to_git",
+    "input_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a"
+  },
+  "public_image": {
+    "bytes": 771319,
+    "classification": "diagnostic_render_not_geometry_not_validation",
+    "filename": "917-head-f42-brep-audit.png",
+    "sha256": "fe16e8305755614906d3963f364279d33fb9eadd02a0ca1878e0ad1d8eaedb90"
+  },
+  "publication": {
+    "raw_STEP_published": false,
+    "repaired_STEP_published": false,
+    "scan_derived_point_coordinates_published": false
+  },
+  "release_gates": {
+    "CT_CND_plan_executed": false,
+    "bench_correlated": false,
+    "dimensionally_certified": false,
+    "manufacturing_authorized": false,
+    "material_hot_card_qualified": false,
+    "thermomechanical_fatigue_correlated": false
+  },
+  "repair_decision": {
+    "private_F42_STEP_produced": false,
+    "reason": "No automatic heal is defensible before every Boolean-analyzer fault is localized. A broad ShapeFix/sew/offset could move the scan-derived external envelope.",
+    "repair_attempted": false,
+    "required_before_local_repair": [
+      "identify each exact faulty subshape and owning operation",
+      "prove the defect is internal or prove zero external-skin displacement",
+      "repeat exact BRepCheck, Boolean argument analysis, properties and thickness screen"
+    ]
+  },
+  "schema": "porsche-917-f42-public-brep-audit-summary/v1",
+  "tolerances_and_small_features": {
+    "edge_count_below_1e_minus_5_scan_units": 3,
+    "face_count_below_1e_minus_8_scan_units_squared": 0,
+    "tolerance_scan_units": {
+      "edge": {
+        "count": 940,
+        "max": 0.000984895155607642,
+        "median": 1e-07,
+        "min": 1e-07,
+        "p01": 1e-07
+      },
+      "face": {
+        "count": 320,
+        "max": 1e-07,
+        "median": 1e-07,
+        "min": 1e-07,
+        "p01": 1e-07
+      },
+      "vertex": {
+        "count": 613,
+        "max": 0.000984895155607642,
+        "median": 1e-07,
+        "min": 1e-07,
+        "p01": 1e-07
+      }
+    },
+    "unique_edge_length_scan_units": {
+      "count": 940,
+      "max": 606.8061931621372,
+      "median": 6.427517700093382,
+      "min": 3.381221332129951e-11,
+      "p01": 0.07358375144582963
+    },
+    "unique_face_area_scan_units_squared": {
+      "count": 320,
+      "max": 11796.744350640995,
+      "median": 169.58742264202994,
+      "min": 0.0006358612558030898,
+      "p01": 0.062357814676707146
+    }
+  },
+  "topology": {
+    "edge_classification": {
+      "closed_surface_seams": 31,
+      "degenerated_edges": 3,
+      "free_edges": 0,
+      "nonmanifold_edges": 0,
+      "two_face_manifold_edges": 906
+    },
+    "unique_edge_face_ancestor_histogram": {
+      "1": 34,
+      "2": 906
+    },
+    "unique_subshape_counts": {
+      "edge": 940,
+      "face": 320,
+      "shell": 1,
+      "solid": 1,
+      "vertex": 613
+    }
+  },
+  "unit_status": {
+    "OEM_917_fitment_certified": false,
+    "absolute_scale_certified": false,
+    "scan_unit_convention": "millimetre_by_project_convention_only"
+  },
+  "verdict": "FAIL_CLOSED_NOT_PRINTABLE_NOT_FITMENT_CERTIFIED"
+}
