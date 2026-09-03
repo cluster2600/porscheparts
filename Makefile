@@ -4,6 +4,7 @@
 .PHONY: 917-extended-periodic-state-f40b-test 917-extended-periodic-state-f40b-manifest 917-extended-periodic-state-f40b-image-smoke 917-extended-periodic-state-f40b
 .PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
 .PHONY: 917-component-factory-f42a-usd-test
+.PHONY: 917-variant-authority-f43-check
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -39,7 +40,7 @@ F41_BUNDLE_OUTPUT ?= work/917-component-factory-f41-bundle
 
 .PHONY: 917-scan-conforming-4v-f36-check
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-variant-authority-f43-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -552,6 +553,12 @@ engine-components:
 
 917-component-factory-f42a-usd-test:
 	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_component_factory_f42a_usd.py -v
+
+917-variant-authority-f43-check:
+	PYTHONDONTWRITEBYTECODE=1 python3 twins/reference-917-engine/source/validate_variant_authority_f43.py \
+		--project-root . \
+		--contract twins/reference-917-engine/variant-authority-f43.json
+	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_variant_authority_f43.py -v
 
 917-wave-action-f39-image-test:
 	python3 tests/test_917_engine_wave_f39_image.py -v

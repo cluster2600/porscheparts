@@ -641,3 +641,29 @@ Omniverse les stations, séries temporelles et classes de provenance sans créer
 de géométrie, collision ou physique PhysX. Une animation USD ne prouve ni le
 fonctionnement du moteur ni les 1 600 hp ; cette puissance reste une exigence
 de conception jusqu'à corrélation indépendante sur banc instrumenté.
+
+## Autorité des variantes produit 2026 F43
+
+Le contrat `variant-authority-f43.json` supprime l'ambiguïté de cylindrée entre
+les branches historiques et les deux produits 2026 :
+
+- `917_2026_flat12_na_candidate` désigne désormais exclusivement le flat-12
+  atmosphérique 5,0 L, soit 12 cylindres, 86,8 × 70,4 mm et 4 999 cm³ publiés ;
+- `917_2026_flat12_twin_turbo_1600hp_target` désigne le flat-12 biturbo
+  5,374 L, soit 12 cylindres, 90 × 70,4 mm et 5 374 cm³ publiés.
+
+La branche F10 `type_912_4_5_na` à 85 × 66 mm reste un historique visuel et ne
+peut plus fournir silencieusement l'identité, les dimensions, la géométrie ou
+les entrées solveur du produit atmosphérique 2026. F43 enregistre également les
+snapshots F33, F37, F38 et F39 incohérents : leurs résultats ne sont pas des
+preuves produit F43 et doivent être régénérés après liaison au contrat par
+chemin et SHA-256.
+
+Cette autorité reste documentaire. Elle ne libère aucune géométrie, simulation,
+puissance, mise en route ou fabrication. Aucune puissance atmosphérique n'est
+inventée ; les 1 600 hp biturbo restent une exigence utilisateur non mesurée,
+non simulée et non prouvée.
+
+```bash
+make 917-variant-authority-f43-check
+```
