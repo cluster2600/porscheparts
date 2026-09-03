@@ -66,7 +66,8 @@ supervised qualification candidate, not yet qualified: ghcr.io/cluster2600/3dpri
 replacement linux/amd64 manifest: sha256:320be537646fdd41fe3fdb3d66c764ef746fc8561475f6e1ae1d13514bad8ffd
 runtype: ssh_direct
 remote user: root
-onstart: /usr/local/bin/917-cad-vast-onstart
+image onstart: /usr/local/bin/917-cad-vast-onstart
+active wrapper onstart: atomic status wrapper, then /usr/local/bin/917-cad-vast-onstart
 sshd wrapper: /usr/sbin/sshd
 real sshd: /usr/lib/openssh/sshd.real
 runtime host keys: ssh-keygen -A, aucune clé privée hôte dans l'image
@@ -253,6 +254,17 @@ La commande interne `openbao-vastai launch-component-factory-f41` ne doit pas
 label de tentative avant l'appel payant, sépare stdout et stderr, puis assure
 la continuité du fichier `known_hosts` strict pendant toute la session.
 
+L'`onstart` actif envoyé par le wrapper enveloppe le script immuable de l'image
+et publie atomiquement `/workspace/f41-onstart-status.json`. Son schéma fermé
+distingue `running`, `passed` et `failed` avec un code de sortie borné. Le probe
+distant ouvre ce statut, `READY` et le rapport smoke avec `O_NOFOLLOW` et
+`O_NONBLOCK`, exige des fichiers réguliers non vides et limite les lectures à
+16 Kio pour le statut et `READY`, puis 1 Mio pour le rapport. Les codes distants
+41 à 46 sont convertis en catégories fixes ; aucune sortie SSH arbitraire n'est
+réémise. Les échecs d'authentification, de clé hôte, de rapport, de contrat ou
+d'`onstart` échouent immédiatement. Seuls le démarrage, l'attente de `READY`,
+le refus et le timeout de transport restent réessayables dans la fenêtre bornée.
+
 Le wrapper refuse tous les digests révoqués avant le verrou de location,
 l'enregistrement SSH et l'appel de création payant. Le prochain digest ne sera
 admis pour la qualification réelle que via le superviseur borné, après contrôle
@@ -283,8 +295,9 @@ cette réconciliation exacte. Si cette réconciliation ou destruction échoue, l
 CLI écrit immédiatement sur stderr qu'une instance peut encore tourner et être
 facturée, avec le label exact à inspecter, y compris avant de propager une
 annulation clavier. Le wrapper transmet uniquement l'image immuable, ce label,
-le disque, `ssh_direct`, un environnement vide et l'onstart fixe. La clé privée
-reste locale ; seule la clé publique approuvée peut être enregistrée chez Vast.
+le disque, `ssh_direct`, un environnement vide et l'`onstart` déterministe. La
+clé privée reste locale ; seule la clé publique approuvée peut être enregistrée
+chez Vast.
 
 build123d/OCCT n'utilise pas le GPU. Le parallélisme doit venir de plusieurs
 jobs CAO indépendants, chacun lancé par `917-cad-run-job`; un job individuel
@@ -305,6 +318,21 @@ qu'après la preuve transactionnelle d'absence. Toute impossibilité de confirme
 le nettoyage retourne le code critique 97 et indique que la machine peut encore
 être facturée. La conversion/validation SimReady et les calculs PhysicsNeMo
 nécessitant un GPU restent dans des images et locations séparées.
+
+Si le child a déjà effectué le rollback après un échec de création ou de
+qualification, il émet une seule ligne `OPENBAO_VASTAI_F41_CLEANUP` avec un JSON
+à clés exactes, uniquement après acquittement du DELETE et absence paginée. Le
+superviseur exige l'ID, le label et l'image attendus, puis cinq nouveaux
+inventaires complets sans aucune instance F41. Il n'envoie pas un second DELETE
+si cette absence est stable. Un reçu absent, dupliqué ou incohérent n'est jamais
+accepté : si le label exact réapparaît, le superviseur le détruit lui-même ; si
+l'absence ne peut pas être liée à une preuve de DELETE, il conserve le code 97.
+
+Le premier essai supervisé est consigné dans
+`twins/reference-917-engine/evidence/f41-vast-runtime-attempt-1/`. Il n'a produit
+aucune CAO. Trente inventaires complets ont ensuite confirmé l'absence de
+l'instance, mais l'ancien probe ne permettait pas de classifier l'échec SSH ou
+`READY`; ce constat ne qualifie donc ni l'image sur Vast ni le lot F41.
 
 ## Limites fermées
 

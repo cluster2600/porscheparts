@@ -1,0 +1,58 @@
+{
+  "$comment": "Preuve textuelle du premier essai Vast F41. Cet essai a echoue avant le transfert du bundle et avant toute generation CAO.",
+  "schema_version": "1.0.0",
+  "phase": "F41-vast-runtime-qualification",
+  "status": "failed_before_bundle_transfer_and_cad_execution_instance_absence_independently_verified",
+  "attempt": {
+    "date_utc": "2026-09-03",
+    "source_revision": "35aed0b63b3fe642c0b32155deb0f3d995a4ebad",
+    "image": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce",
+    "bundle_sha256": "8c214fe913ea114f885db582a173cc6dd0533a2d025c358d4f26afb113a7df62",
+    "offer_id": 49691948,
+    "instance_id": 49700054,
+    "provider_region": "Texas, US",
+    "parent_exit_code": 97
+  },
+  "observed_failure": {
+    "instance_state_before_failure": "running",
+    "launch_stdout_bytes": 0,
+    "launch_stderr_bytes": 264,
+    "ssh_ready_verified": false,
+    "old_probe_failure_classification_available": false,
+    "bundle_transferred": false,
+    "cad_job_started": false,
+    "artifact_count": 0
+  },
+  "cleanup_evidence": {
+    "child_cleanup_receipt_present": false,
+    "parent_stable_inventory_snapshot_count": 30,
+    "parent_inventory_window_start_utc": "2026-09-03T02:47:31Z",
+    "parent_inventory_window_end_utc": "2026-09-03T02:48:30Z",
+    "baseline_and_snapshot_sha256": "7eb9f93b727c223df66ed78aa8af65b3e936160807de5947bd4c9a7cca65f2d9",
+    "instance_id_absent": true,
+    "exact_attempt_label_absent": true,
+    "f41_family_absent": true,
+    "later_independent_inventory_absence_verified": true,
+    "known_hosts_entry_absent": true,
+    "compute_billing_risk_cleared": true,
+    "run_reclassified_as_success": false
+  },
+  "repository_scope": {
+    "raw_runtime_captures_committed": false,
+    "other_instance_inventory_committed": false,
+    "secret_committed": false,
+    "raw_scan_committed": false,
+    "geometry_committed": false
+  },
+  "gates": {
+    "f41_component_factory_executed": false,
+    "real_engine_cad_generated": false,
+    "geometry_dimensionally_validated": false,
+    "engine_model_physically_correlated": false,
+    "omniverse_simready_validated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false
+  }
+}

@@ -32,6 +32,9 @@ DOC = ROOT / "docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md"
 PUBLICATION_EVIDENCE = (
     ROOT / "twins/reference-917-engine/evidence/f41-vast-image-publication/summary.json"
 )
+RUNTIME_ATTEMPT_EVIDENCE = (
+    ROOT / "twins/reference-917-engine/evidence/f41-vast-runtime-attempt-1/summary.json"
+)
 
 F28_BASE = (
     "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
@@ -324,6 +327,39 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             ]
         )
         self.assertFalse(evidence["qualification"]["vast_runtime_qualified"])
+        self.assertEqual(
+            evidence["qualification"]["first_attempt_evidence"],
+            "../f41-vast-runtime-attempt-1/summary.json",
+        )
+        self.assertTrue(all(value is False for value in evidence["gates"].values()))
+
+    def test_first_runtime_attempt_records_failure_and_verified_absence_only(self):
+        evidence = json.loads(RUNTIME_ATTEMPT_EVIDENCE.read_text(encoding="utf-8"))
+        self.assertEqual(evidence["schema_version"], "1.0.0")
+        self.assertEqual(
+            evidence["status"],
+            "failed_before_bundle_transfer_and_cad_execution_instance_absence_independently_verified",
+        )
+        self.assertEqual(
+            evidence["attempt"]["source_revision"],
+            "35aed0b63b3fe642c0b32155deb0f3d995a4ebad",
+        )
+        self.assertEqual(evidence["attempt"]["instance_id"], 49700054)
+        self.assertEqual(evidence["attempt"]["parent_exit_code"], 97)
+        self.assertFalse(evidence["observed_failure"]["bundle_transferred"])
+        self.assertFalse(evidence["observed_failure"]["cad_job_started"])
+        self.assertEqual(evidence["observed_failure"]["artifact_count"], 0)
+        cleanup = evidence["cleanup_evidence"]
+        self.assertFalse(cleanup["child_cleanup_receipt_present"])
+        self.assertEqual(cleanup["parent_stable_inventory_snapshot_count"], 30)
+        self.assertTrue(cleanup["instance_id_absent"])
+        self.assertTrue(cleanup["exact_attempt_label_absent"])
+        self.assertTrue(cleanup["f41_family_absent"])
+        self.assertTrue(cleanup["compute_billing_risk_cleared"])
+        self.assertFalse(cleanup["run_reclassified_as_success"])
+        self.assertTrue(
+            all(value is False for value in evidence["repository_scope"].values())
+        )
         self.assertTrue(all(value is False for value in evidence["gates"].values()))
 
     def test_public_bundle_requires_exact_manifest_hashes_and_utf8_text(self):

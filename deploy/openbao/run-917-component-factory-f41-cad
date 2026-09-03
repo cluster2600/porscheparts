@@ -39,6 +39,18 @@ STABLE_ABSENCE_CONFIRMATIONS = 5
 RECONCILE_POLL_SECONDS = 1
 F41_LABEL = "3dprinting993-component-factory-f41-cad"
 ATTEMPT_LABEL_RE = re.compile(rf"{re.escape(F41_LABEL)}-[0-9a-f]{{20}}")
+CHILD_CLEANUP_PREFIX = b"OPENBAO_VASTAI_F41_CLEANUP "
+CHILD_CLEANUP_KEYS = frozenset(
+    {
+        "schema_version",
+        "status",
+        "instance_id",
+        "label",
+        "image",
+        "delete_acknowledged",
+        "paginated_absence_verified",
+    }
+)
 IMAGE_RE = re.compile(
     r"ghcr\.io/cluster2600/3dprinting993-cad-author-f28@sha256:[0-9a-f]{64}"
 )
@@ -390,6 +402,8 @@ class Supervisor:
         self.paid_call_attempted = False
         self.destroyed_verified = False
         self.instance_observed = False
+        self.child_cleanup_attestation: dict[str, Any] | None = None
+        self.child_cleanup_attestation_invalid = False
         self.cleanup_failed = False
         self.instance_id: int | None = None
         self.instance_label: str | None = None
@@ -642,10 +656,85 @@ class Supervisor:
                 ):
                     self.instance_id = instance_id
                     self.instance_observed = True
+        self.inspect_child_cleanup_attestation(stderr)
         decoded = (stdout + b"\n" + stderr).decode("utf-8", errors="replace")
         candidates.update(ATTEMPT_LABEL_RE.findall(decoded))
         if self.instance_label is None and len(candidates) == 1:
             self.instance_label = next(iter(candidates))
+
+    def inspect_child_cleanup_attestation(self, stderr: bytes) -> None:
+        """Accept one exact child cleanup receipt; never trust free-form stderr."""
+        lines = [
+            line
+            for line in stderr.splitlines()
+            if line.startswith(CHILD_CLEANUP_PREFIX)
+        ]
+        if not lines:
+            if self.child_cleanup_attestation is not None:
+                self.child_cleanup_attestation = None
+                self.child_cleanup_attestation_invalid = True
+            return
+        if len(lines) != 1:
+            self.child_cleanup_attestation = None
+            self.child_cleanup_attestation_invalid = True
+            return
+        try:
+            value = parse_json_bytes(
+                lines[0][len(CHILD_CLEANUP_PREFIX) :], "child_cleanup_attestation"
+            )
+            require(isinstance(value, dict), "child_cleanup_attestation_not_object")
+            require(
+                set(value) == CHILD_CLEANUP_KEYS,
+                "child_cleanup_attestation_key_set_mismatch",
+            )
+            require(
+                value.get("schema_version") == "1.0.0"
+                and value.get("status") == "destroyed_verified_absent",
+                "child_cleanup_attestation_status_invalid",
+            )
+            receipt_id = value.get("instance_id")
+            require(
+                type(receipt_id) is int and receipt_id > 0,
+                "child_cleanup_attestation_instance_id_invalid",
+            )
+            require(
+                value.get("label") == self.instance_label
+                and isinstance(value.get("label"), str)
+                and ATTEMPT_LABEL_RE.fullmatch(value["label"]) is not None,
+                "child_cleanup_attestation_label_invalid",
+            )
+            require(
+                value.get("image") == self.args.expected_image,
+                "child_cleanup_attestation_image_invalid",
+            )
+            require(
+                value.get("delete_acknowledged") is True
+                and value.get("paginated_absence_verified") is True,
+                "child_cleanup_attestation_proof_invalid",
+            )
+            if self.instance_id is not None:
+                require(
+                    self.instance_id == receipt_id,
+                    "child_cleanup_attestation_instance_id_mismatch",
+                )
+            if self.child_cleanup_attestation is not None:
+                require(
+                    self.child_cleanup_attestation == value,
+                    "child_cleanup_attestation_changed",
+                )
+        except SupervisorError:
+            self.child_cleanup_attestation = None
+            self.child_cleanup_attestation_invalid = True
+            return
+        self.child_cleanup_attestation = value
+        self.child_cleanup_attestation_invalid = False
+        self.instance_id = receipt_id
+        self.instance_observed = True
+        self.known_hosts = (
+            Path.home()
+            / ".cache/openbao-vastai/known-hosts"
+            / f"f41-{receipt_id}"
+        )
 
     def prepare_attempt_identity(self) -> None:
         require(self.instance_label is None, "attempt_label_already_initialized")
@@ -981,7 +1070,11 @@ listing_sha=$(/usr/bin/sha256sum {listing} | /usr/bin/cut -d ' ' -f 1)
         return archive_final, listing_final
 
     def inventory_reconcile(
-        self, stem: str, *, accept_stable_absence: bool
+        self,
+        stem: str,
+        *,
+        accept_stable_absence: bool,
+        allow_attested_id_replacement: bool = False,
     ) -> tuple[int, str] | None:
         require(self.instance_label is not None, "CRITICAL: supervisor attempt label missing")
         consecutive_absent = 0
@@ -1018,10 +1111,19 @@ listing_sha=$(/usr/bin/sha256sum {listing} | /usr/bin/cut -d ' ' -f 1)
                 # unexpected image metadata. Workload execution still requires
                 # the expected immutable image in validate_launch/instance_show.
                 if self.instance_id is not None:
-                    require(
-                        instance_id == self.instance_id,
-                        f"CRITICAL: reconciled instance id mismatch; inventory={inventory_path}",
-                    )
+                    if (
+                        instance_id != self.instance_id
+                        and allow_attested_id_replacement
+                        and self.child_cleanup_attestation is not None
+                    ):
+                        self.child_cleanup_attestation = None
+                        self.child_cleanup_attestation_invalid = True
+                    else:
+                        require(
+                            instance_id == self.instance_id,
+                            "CRITICAL: reconciled instance id mismatch; "
+                            f"inventory={inventory_path}",
+                        )
                 self.instance_id = instance_id
                 self.instance_observed = True
                 self.known_hosts = (
@@ -1072,6 +1174,25 @@ listing_sha=$(/usr/bin/sha256sum {listing} | /usr/bin/cut -d ' ' -f 1)
     def destroy_owned(self, stem: str) -> None:
         if self.destroyed_verified:
             return
+        if (
+            self.child_cleanup_attestation is not None
+            and not self.child_cleanup_attestation_invalid
+        ):
+            receipt_id = self.child_cleanup_attestation["instance_id"]
+            require(
+                self.instance_id == receipt_id
+                and self.instance_label == self.child_cleanup_attestation["label"],
+                "CRITICAL: child cleanup identity changed",
+            )
+            reconciled = self.inventory_reconcile(
+                f"{stem}-inventory-after-child-cleanup",
+                accept_stable_absence=True,
+                allow_attested_id_replacement=True,
+            )
+            if reconciled is None:
+                self.destroyed_verified = True
+                self.remove_known_hosts_after_destroy()
+                return
         if self.instance_id is None:
             reconciled = self.inventory_reconcile(
                 f"{stem}-inventory-before-destroy",

@@ -7,7 +7,10 @@ import importlib.util
 from importlib.machinery import SourceFileLoader
 import io
 import json
+import os
 from pathlib import Path
+import shlex
+import sys
 import tempfile
 import unittest
 from unittest import mock
@@ -1070,10 +1073,25 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 "disk": 300,
                 "runtype": "ssh_direct",
                 "env": {},
-                "onstart": "/usr/local/bin/917-cad-vast-onstart",
+                "onstart": self.wrapper.component_factory_f41_onstart_command(),
                 "cancel_unavail": True,
             },
         )
+        self.assertIn("f41-onstart-status.json", payload["onstart"])
+        self.assertIn("write_status running null", payload["onstart"])
+        self.assertIn("write_status passed 0", payload["onstart"])
+        self.assertIn('write_status failed "${onstart_rc}"', payload["onstart"])
+        self.assertIn("/usr/bin/mktemp", payload["onstart"])
+        self.assertIn('/bin/mv -f -- "${status_tmp}"', payload["onstart"])
+        syntax = self.wrapper.subprocess.run(
+            ["sh", "-n"],
+            input=payload["onstart"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        self.assertEqual(syntax.returncode, 0, syntax.stderr)
         serialized = json.dumps(payload).lower()
         self.assertNotIn("token", serialized)
         self.assertNotIn("api_key", serialized)
@@ -1355,6 +1373,17 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             "f41_component_factory_executed",
             "physical_claims_validated",
             "manufacturing_authorized",
+            "READY_MISSING = 41",
+            "REPORT_MISSING = 42",
+            "CONTRACT_REJECTED = 43",
+            "ONSTART_STATUS_MISSING = 44",
+            "ONSTART_RUNNING = 45",
+            "ONSTART_FAILED = 46",
+            "os.O_NOFOLLOW",
+            "os.O_NONBLOCK",
+            "os.fstat",
+            "REPORT_MAX_BYTES = 1024 * 1024",
+            "stat.S_ISREG",
             "F41_REMOTE_READY",
         )
         for marker in strict_markers:
@@ -1413,10 +1442,16 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertNotIn("ssh-add", command)
         self.assertIn("/workspace/READY", command[-1])
         self.assertIn("/workspace/image-smoke.json", command[-1])
+        self.assertEqual(run.call_args.kwargs["env"]["LC_ALL"], "C")
 
     def test_component_factory_f41_ssh_never_accepts_failed_ready(self):
         failed = self.wrapper.subprocess.CompletedProcess(
-            args=[], returncode=1, stdout="", stderr="not ready"
+            args=[], returncode=41, stdout="", stderr="sensitive remote output"
+        )
+        expected = (
+            "F41 SSH /workspace/READY and image smoke verification did not pass "
+            "in time (last state: running; last probe: ready_marker_missing); do "
+            "not treat the instance as ready"
         )
         with (
             mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
@@ -1442,13 +1477,424 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 return_value=Path("/tmp/f41-test-known-hosts-failed"),
             ),
             mock.patch.object(self.wrapper.time, "sleep") as sleep,
-            self.assertRaisesRegex(
-                self.wrapper.SafeError, "do not treat the instance as ready"
-            ),
+            self.assertRaises(self.wrapper.SafeError) as raised,
         ):
             self.wrapper.verify_component_factory_f41_ssh_ready("unused", 41341)
         self.assertEqual(run.call_count, 2)
         self.assertEqual(sleep.call_count, 2)
+        self.assertEqual(str(raised.exception), expected)
+        self.assertNotIn("sensitive remote output", str(raised.exception))
+
+    def test_component_factory_f41_ssh_probe_classification_is_fixed(self):
+        cases = (
+            (41, "sensitive ignored text", "ready_marker_missing"),
+            (42, "sensitive ignored text", "image_smoke_report_missing"),
+            (43, "sensitive ignored text", "remote_ready_contract_rejected"),
+            (44, "sensitive ignored text", "onstart_status_missing"),
+            (45, "sensitive ignored text", "onstart_running"),
+            (46, "sensitive ignored text", "onstart_failed"),
+            (255, "Permission denied (publickey).", "ssh_authentication_failed"),
+            (255, "Connection refused", "ssh_connection_refused"),
+            (255, "Connection timed out", "ssh_connection_timeout"),
+            (255, "Host key verification failed.", "ssh_host_key_rejected"),
+            (255, "Connection closed by remote host", "ssh_connection_closed"),
+            (255, "No route to host", "ssh_network_unreachable"),
+            (255, "unrecognized sensitive text", "ssh_transport_failed"),
+            (1, "unrecognized sensitive text", "remote_command_rejected"),
+        )
+        for returncode, stderr, expected in cases:
+            with self.subTest(expected=expected):
+                completed = self.wrapper.subprocess.CompletedProcess(
+                    args=[], returncode=returncode, stdout="", stderr=stderr
+                )
+                self.assertEqual(
+                    self.wrapper.classify_component_factory_f41_ssh_probe(completed),
+                    expected,
+                )
+
+    def test_component_factory_f41_ssh_timeout_reports_fixed_category(self):
+        expected = (
+            "F41 SSH /workspace/READY and image smoke verification did not pass "
+            "in time (last state: running; last probe: ssh_probe_timeout); do not "
+            "treat the instance as ready"
+        )
+        with (
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+            mock.patch.object(
+                self.wrapper, "COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS", 1
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={
+                    "instances": self.component_factory_f41_instance(
+                        ssh_host="203.0.113.41", ssh_port=32141
+                    )
+                },
+            ),
+            mock.patch.object(
+                self.wrapper.subprocess,
+                "run",
+                side_effect=self.wrapper.subprocess.TimeoutExpired("ssh", 20),
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "prepare_component_factory_f41_known_hosts",
+                return_value=Path("/tmp/f41-test-known-hosts-timeout"),
+            ),
+            mock.patch.object(self.wrapper.time, "sleep"),
+            self.assertRaises(self.wrapper.SafeError) as raised,
+        ):
+            self.wrapper.verify_component_factory_f41_ssh_ready("unused", 41341)
+        self.assertEqual(str(raised.exception), expected)
+
+    def test_component_factory_f41_fatal_ssh_diagnostics_fail_fast(self):
+        for stderr, category in (
+            ("Permission denied (publickey).", "ssh_authentication_failed"),
+            ("Host key verification failed.", "ssh_host_key_rejected"),
+            (
+                "sensitive report output",
+                "image_smoke_report_missing",
+            ),
+            (
+                "sensitive contract output",
+                "remote_ready_contract_rejected",
+            ),
+            ("sensitive onstart output", "onstart_failed"),
+            ("sensitive shell output", "remote_command_rejected"),
+        ):
+            returncode = {
+                "ssh_authentication_failed": 255,
+                "ssh_host_key_rejected": 255,
+                "image_smoke_report_missing": 42,
+                "remote_ready_contract_rejected": 43,
+                "onstart_failed": 46,
+                "remote_command_rejected": 1,
+            }[category]
+            completed = self.wrapper.subprocess.CompletedProcess(
+                args=[],
+                returncode=returncode,
+                stdout="",
+                stderr=stderr,
+            )
+            with (
+                self.subTest(category=category),
+                mock.patch.object(
+                    self.wrapper, "validate_approved_ssh_private_key"
+                ),
+                mock.patch.object(
+                    self.wrapper, "COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS", 3
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "vast_request",
+                    return_value={
+                        "instances": self.component_factory_f41_instance(
+                            ssh_host="203.0.113.41", ssh_port=32141
+                        )
+                    },
+                ),
+                mock.patch.object(
+                    self.wrapper.subprocess, "run", return_value=completed
+                ) as run,
+                mock.patch.object(
+                    self.wrapper,
+                    "prepare_component_factory_f41_known_hosts",
+                    return_value=Path("/tmp/f41-test-known-hosts-fatal"),
+                ),
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaises(self.wrapper.SafeError) as raised,
+            ):
+                self.wrapper.verify_component_factory_f41_ssh_ready(
+                    "unused", 41341
+                )
+            run.assert_called_once()
+            sleep.assert_not_called()
+            self.assertEqual(
+                str(raised.exception),
+                "F41 SSH /workspace/READY and image smoke verification failed "
+                f"(last state: running; last probe: {category}); do not treat the "
+                "instance as ready",
+            )
+            self.assertNotIn(stderr, str(raised.exception))
+
+    def test_component_factory_f41_transient_ssh_failures_can_reach_ready(self):
+        missing = self.wrapper.subprocess.CompletedProcess(
+            args=[],
+            returncode=41,
+            stdout="",
+            stderr="sensitive remote output",
+        )
+        ready = self.wrapper.subprocess.CompletedProcess(
+            args=[], returncode=0, stdout="F41_REMOTE_READY\n", stderr=""
+        )
+        with (
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+            mock.patch.object(
+                self.wrapper, "COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS", 3
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                return_value={
+                    "instances": self.component_factory_f41_instance(
+                        ssh_host="203.0.113.41", ssh_port=32141
+                    )
+                },
+            ),
+            mock.patch.object(
+                self.wrapper.subprocess,
+                "run",
+                side_effect=[
+                    self.wrapper.subprocess.TimeoutExpired("ssh", 20),
+                    missing,
+                    ready,
+                ],
+            ) as run,
+            mock.patch.object(
+                self.wrapper,
+                "prepare_component_factory_f41_known_hosts",
+                return_value=Path("/tmp/f41-test-known-hosts-transient"),
+            ),
+            mock.patch.object(
+                self.wrapper, "validate_component_factory_f41_known_hosts"
+            ) as validate_known_hosts,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+        ):
+            path = self.wrapper.verify_component_factory_f41_ssh_ready(
+                "unused", 41341
+            )
+        self.assertEqual(path, Path("/tmp/f41-test-known-hosts-transient"))
+        self.assertEqual(run.call_count, 3)
+        self.assertEqual(sleep.call_count, 2)
+        validate_known_hosts.assert_called_once_with(
+            Path("/tmp/f41-test-known-hosts-transient"), 41341
+        )
+
+    def test_component_factory_f41_remote_probe_exit_codes_are_unambiguous(self):
+        command = self.wrapper.component_factory_f41_remote_smoke_command()
+        argv = shlex.split(command)
+        self.assertEqual(argv[:2], ["python", "-c"])
+        original = argv[2]
+        with tempfile.TemporaryDirectory(prefix="f41-remote-probe-") as temporary:
+            root = Path(temporary)
+            status = root / "f41-onstart-status.json"
+            ready = root / "READY"
+            report = root / "image-smoke.json"
+
+            def run_probe():
+                script = original.replace(
+                    "Path('/workspace/f41-onstart-status.json')",
+                    f"Path({str(status)!r})",
+                ).replace(
+                    "Path('/workspace/READY')", f"Path({str(ready)!r})"
+                ).replace(
+                    "Path('/workspace/image-smoke.json')", f"Path({str(report)!r})"
+                )
+                return self.wrapper.subprocess.run(
+                    [sys.executable, "-c", script],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                )
+
+            missing_status = run_probe()
+            self.assertEqual(missing_status.returncode, 44)
+            self.assertEqual((missing_status.stdout, missing_status.stderr), ("", ""))
+
+            status.symlink_to(ready)
+            rejected_status_symlink = run_probe()
+            self.assertEqual(rejected_status_symlink.returncode, 43)
+            status.unlink()
+
+            os.mkfifo(status)
+            rejected_status_fifo = run_probe()
+            self.assertEqual(rejected_status_fifo.returncode, 43)
+            self.assertEqual(
+                (rejected_status_fifo.stdout, rejected_status_fifo.stderr),
+                ("", ""),
+            )
+            status.unlink()
+
+            status.write_text("{\n", encoding="utf-8")
+            malformed_status = run_probe()
+            self.assertEqual(malformed_status.returncode, 43)
+
+            status.write_text("x" * (16 * 1024 + 1), encoding="utf-8")
+            oversized_status = run_probe()
+            self.assertEqual(oversized_status.returncode, 43)
+            self.assertEqual(
+                (oversized_status.stdout, oversized_status.stderr), ("", "")
+            )
+
+            status.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "1.0.0",
+                        "status": "running",
+                        "exit_code": None,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            running = run_probe()
+            self.assertEqual(running.returncode, 45)
+
+            status.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "1.0.0",
+                        "status": "failed",
+                        "exit_code": 78,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            failed = run_probe()
+            self.assertEqual(failed.returncode, 46)
+
+            status.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "1.0.0",
+                        "status": "passed",
+                        "exit_code": 0,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            missing_ready = run_probe()
+            self.assertEqual(missing_ready.returncode, 41)
+            self.assertEqual((missing_ready.stdout, missing_ready.stderr), ("", ""))
+
+            ready.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "1.0.0",
+                        "status": "vast_onstart_ready_for_public_archive_transfer_cad_not_started",
+                        "authorized_key_file_present": True,
+                        "noninteractive_ssh_auto_tmux_disabled": True,
+                        "runtime_host_keys_generated_before_onstart": True,
+                        "sshd_managed_by_vast_entrypoint": True,
+                        "synthetic_build123d_step_smoke_passed": True,
+                        "f41_component_factory_executed": False,
+                        "physical_claims_validated": False,
+                        "manufacturing_authorized": False,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            missing_report = run_probe()
+            self.assertEqual(missing_report.returncode, 42)
+            self.assertEqual((missing_report.stdout, missing_report.stderr), ("", ""))
+
+            report.write_text("x" * (1024 * 1024 + 1), encoding="utf-8")
+            oversized_report = run_probe()
+            self.assertEqual(oversized_report.returncode, 43)
+            self.assertEqual(
+                (oversized_report.stdout, oversized_report.stderr), ("", "")
+            )
+            report.unlink()
+
+            ready.unlink()
+            ready.symlink_to(report)
+            rejected_symlink = run_probe()
+            self.assertEqual(rejected_symlink.returncode, 43)
+            self.assertEqual(
+                (rejected_symlink.stdout, rejected_symlink.stderr), ("", "")
+            )
+
+            ready.unlink()
+            ready.write_text("{\n", encoding="utf-8")
+            report.write_text("{}\n", encoding="utf-8")
+            malformed_json = run_probe()
+            self.assertEqual(malformed_json.returncode, 43)
+            self.assertEqual(
+                (malformed_json.stdout, malformed_json.stderr), ("", "")
+            )
+
+    def test_component_factory_f41_cleanup_attestation_is_exact_json(self):
+        attempt_label = self.component_factory_f41_attempt_label("a" * 20)
+        stderr = io.StringIO()
+        with mock.patch("sys.stderr", stderr):
+            self.wrapper.emit_component_factory_f41_cleanup_attestation(
+                41341, attempt_label
+            )
+        line = stderr.getvalue().strip()
+        self.assertTrue(
+            line.startswith(self.wrapper.COMPONENT_FACTORY_F41_CLEANUP_PREFIX)
+        )
+        receipt = json.loads(
+            line[len(self.wrapper.COMPONENT_FACTORY_F41_CLEANUP_PREFIX) :]
+        )
+        self.assertEqual(
+            set(receipt),
+            {
+                "schema_version",
+                "status",
+                "instance_id",
+                "label",
+                "image",
+                "delete_acknowledged",
+                "paginated_absence_verified",
+            },
+        )
+        self.assertEqual(receipt["instance_id"], 41341)
+        self.assertEqual(receipt["label"], attempt_label)
+        self.assertEqual(receipt["image"], self.wrapper.COMPONENT_FACTORY_F41_IMAGE)
+        self.assertIs(receipt["delete_acknowledged"], True)
+        self.assertIs(receipt["paginated_absence_verified"], True)
+
+    def test_component_factory_f41_onstart_status_is_atomic_and_keeps_exit_code(self):
+        original = self.wrapper.component_factory_f41_onstart_command()
+        with tempfile.TemporaryDirectory(prefix="f41-onstart-test-") as temporary:
+            workspace = Path(temporary) / "workspace"
+            workspace.mkdir()
+            fake_onstart = Path(temporary) / "fake-onstart"
+
+            def run_onstart(exit_code: int):
+                fake_onstart.write_text(
+                    f"#!/bin/sh\nexit {exit_code}\n", encoding="utf-8"
+                )
+                fake_onstart.chmod(0o755)
+                script = original.replace("/workspace", str(workspace)).replace(
+                    "/usr/local/bin/917-cad-vast-onstart", str(fake_onstart)
+                )
+                return self.wrapper.subprocess.run(
+                    ["sh", "-c", script],
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                )
+
+            passed = run_onstart(0)
+            self.assertEqual(passed.returncode, 0, passed.stderr)
+            status_path = workspace / "f41-onstart-status.json"
+            self.assertEqual(
+                json.loads(status_path.read_text(encoding="utf-8")),
+                {
+                    "schema_version": "1.0.0",
+                    "status": "passed",
+                    "exit_code": 0,
+                },
+            )
+            self.assertEqual(status_path.stat().st_mode & 0o777, 0o644)
+            self.assertFalse(status_path.is_symlink())
+            self.assertEqual(list(workspace.glob(".f41-onstart-status.*")), [])
+
+            failed = run_onstart(78)
+            self.assertEqual(failed.returncode, 78, failed.stderr)
+            self.assertEqual(
+                json.loads(status_path.read_text(encoding="utf-8")),
+                {
+                    "schema_version": "1.0.0",
+                    "status": "failed",
+                    "exit_code": 78,
+                },
+            )
+            self.assertEqual(list(workspace.glob(".f41-onstart-status.*")), [])
 
     def test_component_factory_f41_known_hosts_is_scoped_private_and_exclusive(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -1485,6 +1931,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         )
         attempt_label = self.component_factory_f41_attempt_label()
         for failing_verifier in failing_verifiers:
+            stderr = io.StringIO()
             patches = {
                 name: mock.DEFAULT
                 for name in failing_verifiers
@@ -1514,6 +1961,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                     "reconcile_uncertain_component_factory_f41_launch",
                     return_value=41341,
                 ) as reconcile,
+                mock.patch("sys.stderr", stderr),
                 self.assertRaisesRegex(self.wrapper.SafeError, "F41 verification failed"),
             ):
                 verifiers[failing_verifier].side_effect = self.wrapper.SafeError(
@@ -1523,6 +1971,12 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                     "unused", self.eligible_component_factory_f41_offer()
                 )
             reconcile.assert_called_once_with("unused", attempt_label)
+            cleanup_lines = [
+                line
+                for line in stderr.getvalue().splitlines()
+                if line.startswith(self.wrapper.COMPONENT_FACTORY_F41_CLEANUP_PREFIX)
+            ]
+            self.assertEqual(len(cleanup_lines), 1)
 
     def test_component_factory_f41_uncertain_create_reconciles_including_4xx(self):
         attempt_label = self.component_factory_f41_attempt_label()

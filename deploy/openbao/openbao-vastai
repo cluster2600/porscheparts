@@ -79,6 +79,7 @@ COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
 COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
+COMPONENT_FACTORY_F41_CLEANUP_PREFIX = "OPENBAO_VASTAI_F41_CLEANUP "
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -939,6 +940,34 @@ def report_component_factory_f41_billing_risk(attempt_label: str) -> None:
     )
 
 
+def emit_component_factory_f41_cleanup_attestation(
+    instance_id: int, attempt_label: str
+) -> None:
+    """Emit a bounded non-secret receipt only after verified provider cleanup."""
+    if (
+        not isinstance(instance_id, int)
+        or isinstance(instance_id, bool)
+        or instance_id <= 0
+        or not is_component_factory_f41_attempt_label(attempt_label)
+    ):
+        raise SafeError("refusing to emit invalid F41 cleanup attestation")
+    receipt = {
+        "schema_version": "1.0.0",
+        "status": "destroyed_verified_absent",
+        "instance_id": instance_id,
+        "label": attempt_label,
+        "image": COMPONENT_FACTORY_F41_IMAGE,
+        "delete_acknowledged": True,
+        "paginated_absence_verified": True,
+    }
+    print(
+        COMPONENT_FACTORY_F41_CLEANUP_PREFIX
+        + json.dumps(receipt, sort_keys=True, separators=(",", ":"), allow_nan=False),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
 def heavy_offer_eligible(offer: dict) -> bool:
     price = finite_number(offer.get("dph_total", offer.get("dph")))
     reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
@@ -1563,20 +1592,110 @@ def verify_wave_ssh_ready(api_key: str, instance_id: int) -> None:
     )
 
 
+def component_factory_f41_onstart_command() -> str:
+    """Wrap the immutable image onstart with an atomic non-secret status file."""
+    return """set -eu
+umask 077
+status_path=/workspace/f41-onstart-status.json
+test -d /workspace
+rm -f -- "${status_path}"
+write_status() {
+    status_value=$1
+    exit_code_value=$2
+    status_tmp=$(/usr/bin/mktemp /workspace/.f41-onstart-status.XXXXXX)
+    /usr/bin/printf '{"schema_version":"1.0.0","status":"%s","exit_code":%s}\n' \
+        "${status_value}" "${exit_code_value}" >"${status_tmp}"
+    /bin/chmod 0644 "${status_tmp}"
+    /bin/mv -f -- "${status_tmp}" "${status_path}"
+}
+write_status running null
+if /usr/local/bin/917-cad-vast-onstart; then
+    write_status passed 0
+else
+    onstart_rc=$?
+    write_status failed "${onstart_rc}"
+    exit "${onstart_rc}"
+fi
+"""
+
+
 def component_factory_f41_remote_smoke_command() -> str:
     script = """\
 import json
+import os
 from pathlib import Path
+import stat
+
+READY_MISSING = 41
+REPORT_MISSING = 42
+CONTRACT_REJECTED = 43
+ONSTART_STATUS_MISSING = 44
+ONSTART_RUNNING = 45
+ONSTART_FAILED = 46
+STATUS_MAX_BYTES = 16 * 1024
+READY_MAX_BYTES = 16 * 1024
+REPORT_MAX_BYTES = 1024 * 1024
 
 def require(condition):
     if not condition:
-        raise SystemExit(1)
+        raise SystemExit(CONTRACT_REJECTED)
+
+def duplicate_rejecting_object(pairs):
+    value = {}
+    for key, item in pairs:
+        require(key not in value)
+        value[key] = item
+    return value
+
+def read_json(path, missing_code, maximum):
+    try:
+        descriptor = os.open(
+            path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK
+        )
+    except FileNotFoundError:
+        raise SystemExit(missing_code)
+    except OSError:
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        with os.fdopen(descriptor, 'rb') as stream:
+            metadata = os.fstat(stream.fileno())
+            require(stat.S_ISREG(metadata.st_mode))
+            require(0 < metadata.st_size <= maximum)
+            payload = stream.read(maximum + 1)
+            require(len(payload) == metadata.st_size)
+    except SystemExit:
+        raise
+    except (OSError, ValueError):
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        return json.loads(
+            payload.decode('utf-8', errors='strict'),
+            object_pairs_hook=duplicate_rejecting_object,
+            parse_constant=lambda _value: require(False),
+        )
+    except SystemExit:
+        raise
+    except (OSError, UnicodeError, ValueError, TypeError):
+        raise SystemExit(CONTRACT_REJECTED)
+
+status_path = Path('/workspace/f41-onstart-status.json')
+onstart = read_json(status_path, ONSTART_STATUS_MISSING, STATUS_MAX_BYTES)
+require(isinstance(onstart, dict))
+require(set(onstart) == {'schema_version', 'status', 'exit_code'})
+require(onstart.get('schema_version') == '1.0.0')
+if onstart.get('status') == 'running':
+    require(onstart.get('exit_code') is None)
+    raise SystemExit(ONSTART_RUNNING)
+if onstart.get('status') == 'failed':
+    exit_code = onstart.get('exit_code')
+    require(type(exit_code) is int and 1 <= exit_code <= 255)
+    raise SystemExit(ONSTART_FAILED)
+require(onstart.get('status') == 'passed')
+require(type(onstart.get('exit_code')) is int and onstart.get('exit_code') == 0)
 
 ready_path = Path('/workspace/READY')
 report_path = Path('/workspace/image-smoke.json')
-require(ready_path.is_file() and not ready_path.is_symlink())
-require(report_path.is_file() and not report_path.is_symlink())
-ready = json.loads(ready_path.read_text(encoding='utf-8'))
+ready = read_json(ready_path, READY_MISSING, READY_MAX_BYTES)
 require(ready == {
     'schema_version': '1.0.0',
     'status': 'vast_onstart_ready_for_public_archive_transfer_cad_not_started',
@@ -1589,16 +1708,19 @@ require(ready == {
     'physical_claims_validated': False,
     'manufacturing_authorized': False,
 })
-report = json.loads(report_path.read_text(encoding='utf-8'))
+report = read_json(report_path, REPORT_MISSING, REPORT_MAX_BYTES)
+require(isinstance(report, dict))
 require(report.get('schema_version') == '1.0.0')
 require(report.get('phase') == 'F41-vast-cad-image')
 require(report.get('status') == 'offline_transport_and_cad_step_smoke_passed_vast_f41_and_manufacturing_validation_blocked')
 runtime = report.get('runtime', {})
+require(isinstance(runtime, dict))
 require(runtime.get('system') == 'Linux')
 require(runtime.get('machine') == 'x86_64')
 require(runtime.get('gpu_required') is False)
 require(runtime.get('external_api_required') is False)
 ssh_transport = report.get('ssh_transport', {})
+require(isinstance(ssh_transport, dict))
 require(ssh_transport.get('runtime_authorized_keys_expected') is True)
 require(ssh_transport.get('runtime_authorized_keys_present') is True)
 require(ssh_transport.get('sshd_runtime_wrapper_installed') is True)
@@ -1609,6 +1731,7 @@ require(ssh_transport.get('runtime_host_keys_expected') is True)
 require(ssh_transport.get('runtime_host_keys_generated_by_wrapper') is True)
 require(ssh_transport.get('baked_authorized_keys') is False)
 cad = report.get('cad_isolation', {})
+require(isinstance(cad, dict))
 require(cad.get('synthetic_step_roundtrip_executed') is True)
 require(cad.get('synthetic_closed_solid_after_roundtrip') is True)
 require(cad.get('cad_effective_uid') == 9178)
@@ -1632,16 +1755,63 @@ print('F41_REMOTE_READY')
     return f"python -c {shlex.quote(script)}"
 
 
+def classify_component_factory_f41_ssh_probe(
+    completed: subprocess.CompletedProcess[str],
+) -> str:
+    """Map SSH failures to fixed non-secret diagnostic categories."""
+    stderr = completed.stderr if isinstance(completed.stderr, str) else ""
+    if completed.returncode == 41:
+        return "ready_marker_missing"
+    if completed.returncode == 42:
+        return "image_smoke_report_missing"
+    if completed.returncode == 43:
+        return "remote_ready_contract_rejected"
+    if completed.returncode == 44:
+        return "onstart_status_missing"
+    if completed.returncode == 45:
+        return "onstart_running"
+    if completed.returncode == 46:
+        return "onstart_failed"
+    if completed.returncode != 255:
+        return "remote_command_rejected"
+    lowered = stderr.lower()
+    if "permission denied" in lowered or "publickey" in lowered:
+        return "ssh_authentication_failed"
+    if "connection refused" in lowered:
+        return "ssh_connection_refused"
+    if "connection timed out" in lowered or "operation timed out" in lowered:
+        return "ssh_connection_timeout"
+    if (
+        "host key verification failed" in lowered
+        or "remote host identification has changed" in lowered
+    ):
+        return "ssh_host_key_rejected"
+    if "connection closed" in lowered or "closed by" in lowered:
+        return "ssh_connection_closed"
+    if any(
+        marker in lowered
+        for marker in (
+            "no route to host",
+            "network is unreachable",
+            "could not resolve hostname",
+        )
+    ):
+        return "ssh_network_unreachable"
+    return "ssh_transport_failed"
+
+
 def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Path:
     """Prove BatchMode SSH and the exact F41 image READY contract."""
     validate_approved_ssh_private_key()
     known_hosts_path = prepare_component_factory_f41_known_hosts(instance_id)
     host_key_alias = component_factory_f41_host_key_alias(instance_id)
     last_state = "unknown"
+    last_probe = "provider_metadata_not_ready"
     for _ in range(COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS):
         try:
             result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
         except SafeError:
+            last_probe = "provider_metadata_unavailable"
             time.sleep(POLL_INTERVAL_SECONDS)
             continue
         raw_instance = result.get("instances")
@@ -1655,6 +1825,7 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Pa
                     "F41 instance left running state before SSH READY verification: "
                     f"{last_state}"
                 )
+            last_probe = "instance_not_running_yet"
             time.sleep(POLL_INTERVAL_SECONDS)
             continue
         host = instance.get("ssh_host")
@@ -1672,6 +1843,7 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Pa
             or not port.is_integer()
             or not 1 <= port <= 65535
         ):
+            last_probe = "ssh_endpoint_unavailable"
             time.sleep(POLL_INTERVAL_SECONDS)
             continue
         command = [
@@ -1707,25 +1879,48 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Pa
             component_factory_f41_remote_smoke_command(),
         ]
         try:
+            ssh_environment = dict(os.environ)
+            ssh_environment["LC_ALL"] = "C"
             completed = subprocess.run(
                 command,
                 check=False,
                 capture_output=True,
                 text=True,
                 timeout=20,
+                env=ssh_environment,
             )
         except FileNotFoundError as exc:
             raise SafeError("OpenSSH client is unavailable for F41 verification") from exc
+        except subprocess.TimeoutExpired:
+            last_probe = "ssh_probe_timeout"
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
         except subprocess.SubprocessError:
+            last_probe = "ssh_probe_failed"
             time.sleep(POLL_INTERVAL_SECONDS)
             continue
         if completed.returncode == 0 and completed.stdout.strip() == "F41_REMOTE_READY":
             validate_component_factory_f41_known_hosts(known_hosts_path, instance_id)
             return known_hosts_path
+        last_probe = classify_component_factory_f41_ssh_probe(completed)
+        if last_probe in {
+            "ssh_authentication_failed",
+            "ssh_host_key_rejected",
+            "image_smoke_report_missing",
+            "remote_ready_contract_rejected",
+            "onstart_failed",
+            "remote_command_rejected",
+        }:
+            raise SafeError(
+                "F41 SSH /workspace/READY and image smoke verification failed "
+                f"(last state: {last_state}; last probe: {last_probe}); do not "
+                "treat the instance as ready"
+            )
         time.sleep(POLL_INTERVAL_SECONDS)
     raise SafeError(
         "F41 SSH /workspace/READY and image smoke verification did not pass in time "
-        f"(last state: {last_state}); do not treat the instance as ready"
+        f"(last state: {last_state}; last probe: {last_probe}); do not treat the "
+        "instance as ready"
     )
 
 
@@ -1940,7 +2135,7 @@ def launch_component_factory_f41_offer(
                     "disk": COMPONENT_FACTORY_F41_DISK_GB,
                     "runtype": "ssh_direct",
                     "env": {},
-                    "onstart": "/usr/local/bin/917-cad-vast-onstart",
+                    "onstart": component_factory_f41_onstart_command(),
                     "cancel_unavail": True,
                 },
             )
@@ -1963,6 +2158,9 @@ def launch_component_factory_f41_offer(
                 f"F41 instance {reconciled_id} was automatically destroyed and "
                 "verified absent after the interrupted or uncertain create call"
             )
+            emit_component_factory_f41_cleanup_attestation(
+                reconciled_id, attempt_label
+            )
             raise
         instance_id = result.get("new_contract")
         if not isinstance(instance_id, int) or isinstance(instance_id, bool):
@@ -1979,6 +2177,9 @@ def launch_component_factory_f41_offer(
                         "running and billed"
                     ) from cleanup_error
                 raise
+            emit_component_factory_f41_cleanup_attestation(
+                reconciled_id, attempt_label
+            )
             raise SafeError(
                 "Vast.ai did not return a new component-factory F41 instance id; "
                 f"F41 instance {reconciled_id} was automatically destroyed and "
@@ -2029,6 +2230,9 @@ def launch_component_factory_f41_offer(
                     )
                     raise post_create_error from cleanup_error
                 raise
+            emit_component_factory_f41_cleanup_attestation(
+                reconciled_id, attempt_label
+            )
             try:
                 remove_component_factory_f41_known_hosts_after_destroy(reconciled_id)
             except Exception as local_cleanup_error:

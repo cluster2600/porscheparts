@@ -238,6 +238,41 @@ class F41SupervisorTest(unittest.TestCase):
                 known.write_text(f"f41-{instance_id} ssh-ed25519 AAAATEST\n")
                 known.chmod(0o600)
                 mode = os.environ.get("FAKE_LAUNCH_MODE", "success")
+                if mode.startswith("child-cleanup-"):
+                    variant = mode.removeprefix("child-cleanup-")
+                    state["created"] = variant.endswith("-live")
+                    state_path.write_text(json.dumps(state))
+                    receipt = {
+                        "schema_version": "1.0.0",
+                        "status": "destroyed_verified_absent",
+                        "instance_id": instance_id,
+                        "label": label,
+                        "image": image,
+                        "delete_acknowledged": True,
+                        "paginated_absence_verified": True,
+                    }
+                    if variant == "wrong-label-absent":
+                        receipt["label"] = (
+                            "3dprinting993-component-factory-f41-cad-"
+                            "fedcba9876543210fedc"
+                        )
+                    elif variant == "wrong-image-live":
+                        receipt["image"] = (
+                            "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
+                            + "c" * 64
+                        )
+                    elif variant == "wrong-id-live":
+                        receipt["instance_id"] = instance_id + 1
+                    elif variant == "false-proof-live":
+                        receipt["delete_acknowledged"] = False
+                    payload = (
+                        "OPENBAO_VASTAI_F41_CLEANUP "
+                        + json.dumps(receipt, sort_keys=True, separators=(",", ":"))
+                    )
+                    print(payload, file=sys.stderr)
+                    if variant == "duplicate-live":
+                        print(payload, file=sys.stderr)
+                    raise SystemExit(9)
                 if mode == "wrong-image":
                     state["image"] = (
                         "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
@@ -577,6 +612,9 @@ class F41SupervisorTest(unittest.TestCase):
             'self.prepare_attempt_identity()',
             '"--attempt-label"',
             "STABLE_ABSENCE_CONFIRMATIONS = 5",
+            "CHILD_CLEANUP_PREFIX",
+            "child_cleanup_attestation_invalid",
+            "allow_attested_id_replacement=True",
             'self.destroy_owned("normal")',
             "self.validate_local_results(archive)",
         ):
@@ -659,6 +697,51 @@ class F41SupervisorTest(unittest.TestCase):
             attempt_label,
             r"^3dprinting993-component-factory-f41-cad-[0-9a-f]{20}$",
         )
+
+    def test_child_cleanup_receipt_plus_stable_absence_avoids_second_delete(self):
+        completed = self.run_supervisor(launch_mode="child-cleanup-valid")
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertNotEqual(completed.returncode, 97)
+        self.assertIn("paid_launch_command_failed:9", completed.stderr)
+        self.assertEqual(self.events_text().count("wrapper:destroy\n"), 0)
+        self.assertGreaterEqual(self.events_text().count("wrapper:instances\n"), 6)
+        state = json.loads((self.root / "state.json").read_text(encoding="utf-8"))
+        self.assertFalse(state["created"])
+        self.assertFalse(
+            (self.home / ".cache/openbao-vastai/known-hosts/f41-4242").exists()
+        )
+
+    def test_wrong_label_child_cleanup_receipt_cannot_prove_absence(self):
+        completed = self.run_supervisor(
+            launch_mode="child-cleanup-wrong-label-absent"
+        )
+        self.assertEqual(completed.returncode, 97)
+        self.assertIn("CRITICAL: destruction not verified", completed.stderr)
+        self.assertEqual(self.events_text().count("wrapper:destroy\n"), 0)
+
+    def test_wrong_image_child_cleanup_receipt_requires_parent_delete(self):
+        completed = self.run_supervisor(
+            launch_mode="child-cleanup-wrong-image-live"
+        )
+        self.assertNotEqual(completed.returncode, 97)
+        self.assertEqual(self.events_text().count("wrapper:destroy\n"), 1)
+
+    def test_wrong_id_child_cleanup_receipt_requires_parent_delete(self):
+        completed = self.run_supervisor(launch_mode="child-cleanup-wrong-id-live")
+        self.assertNotEqual(completed.returncode, 97)
+        self.assertEqual(self.events_text().count("wrapper:destroy\n"), 1)
+
+    def test_false_child_cleanup_proof_requires_parent_delete(self):
+        completed = self.run_supervisor(
+            launch_mode="child-cleanup-false-proof-live"
+        )
+        self.assertNotEqual(completed.returncode, 97)
+        self.assertEqual(self.events_text().count("wrapper:destroy\n"), 1)
+
+    def test_duplicate_child_cleanup_receipt_requires_parent_delete(self):
+        completed = self.run_supervisor(launch_mode="child-cleanup-duplicate-live")
+        self.assertNotEqual(completed.returncode, 97)
+        self.assertEqual(self.events_text().count("wrapper:destroy\n"), 1)
 
     def test_transport_failure_still_destroys(self):
         completed = self.run_supervisor(fail_ssh="917-cad-stage-job")

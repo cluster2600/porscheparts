@@ -29,6 +29,12 @@ digest exact. Cela qualifie la publication OCI et autorise ce digest uniquement
 comme candidat à sa première qualification Vast supervisée. Cela ne qualifie ni
 le runtime Vast ni une exécution distante de la fabrique de composants.
 
+La première tentative Vast est documentée dans
+[`../f41-vast-runtime-attempt-1/`](../f41-vast-runtime-attempt-1/). Elle a échoué
+avant le transfert du bundle et avant la CAO ; l'instance est absente, mais le
+runtime et le lot F41 restent non qualifiés. Le digest demeure seulement un
+candidat pour un nouvel essai supervisé sur un autre hôte.
+
 ## Limites de la preuve
 
 Le STEP utilisé par les smokes est synthétique. Aucun composant moteur F41 réel
