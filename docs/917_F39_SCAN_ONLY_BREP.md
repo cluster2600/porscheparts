@@ -1,5 +1,11 @@
 # Culasse Porsche 917 F39 — reconstruction B-Rep scan-only
 
+> Limite de forme identifiée : le noyau publié utilise des rayons elliptiques
+> globaux de 55 × 71 mm et des ailettes jusqu'à 62,6 × 98 mm. Cet ovale vient
+> de l'ajustement à la boîte englobante, pas d'une exigence thermique ou d'une
+> cote Porsche. Avec un écart scan → analytique P95 de 16,02 unités, cette peau
+> doit être reconstruite par contours locaux avant toute prétention de fidélité.
+
 ## Verdict
 
 F39 livre un **STEP analytique OpenCASCADE réimportable et maillable**, construit

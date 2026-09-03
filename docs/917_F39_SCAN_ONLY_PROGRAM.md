@@ -55,3 +55,15 @@ qui échoue est modifiée puis recalculée.
 Le contrat vérifiable se trouve dans
 `twins/reference-917-engine/scan-only-program-f39.json`. Toutes les portes de
 fabrication et de démarrage restent fermées jusqu'aux preuves correspondantes.
+
+## Vidéo de fonctionnement
+
+La vidéo F39 se trouve dans
+`twins/reference-917-engine/evidence/f39-functional-video/917-head-f39-how-it-works.mp4`.
+Elle montre la cinématique quatre soupapes, les phases de respiration et les
+deux voies de refroidissement. Le projet source reproductible est sous
+`videos/917-head-f39-function`.
+
+Cette animation n'est pas une simulation CFD transitoire du cycle moteur. Les
+valeurs thermiques affichées viennent de la présélection F39; la vidéo maintient
+explicitement fermées les portes CHT complète, fatigue, LPBF et banc moteur.

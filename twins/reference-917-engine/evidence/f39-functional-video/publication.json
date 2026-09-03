@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F39",
+  "classification": "explanatory_animation_not_solver_or_engine_test_evidence",
+  "video": {
+    "path": "917-head-f39-how-it-works.mp4",
+    "sha256": "060672923dd8b594936ee1f9b7607ca052430f4ff1b5db29d78244973e2692ce",
+    "bytes": 9104810,
+    "duration_s": 26.0,
+    "fps": 30,
+    "frames": 780,
+    "width": 1920,
+    "height": 1080,
+    "codec": "h264",
+    "pixel_format": "yuv420p",
+    "audio": false
+  },
+  "artifacts": {
+    "917-head-f39-how-it-works-contact-sheet.png": {
+      "sha256": "8591b7552abdc5214b1e1ae60d883674bc6052aabface51e6362401667ce99b2"
+    },
+    "917-head-f39-how-it-works-poster.png": {
+      "sha256": "831fbb0e7a4f937ad8e14a34d0b5da09424310119a4aedf46e3abbad184a0d5c"
+    }
+  },
+  "shown_mechanism": {
+    "valves": 4,
+    "intake_valves": 2,
+    "exhaust_valves": 2,
+    "cycle": ["intake", "closed_heat_load", "exhaust"],
+    "cooling_paths": ["forced_air_between_fins", "local_oil_heat_removal"]
+  },
+  "source_results": {
+    "geometry": "../f39-brep-scan-only/f39-brep-validation-report.json",
+    "cooling": "../f39-cooling-optimization/f39-cooling-optimization-report.json",
+    "lpbf_and_structure": "../f39-lpbf-structural/f39-lpbf-scan-only-report.json"
+  },
+  "release_gates": {
+    "full_engine_cycle_cfd_complete": false,
+    "whole_head_cht_complete": false,
+    "cam_profile_measured": false,
+    "thermomechanical_fatigue_complete": false,
+    "virtual_lpbf_process_simulation_complete": false,
+    "physical_correlation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
