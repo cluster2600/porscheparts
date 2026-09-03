@@ -30,7 +30,8 @@ SSHD_RUNTIME_WRAPPER = IMAGE_ROOT / "sshd_runtime_wrapper.sh"
 WORKFLOW = ROOT / ".github/workflows/917-component-factory-f41-vast-image.yml"
 DOC = ROOT / "docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md"
 PUBLICATION_EVIDENCE = (
-    ROOT / "twins/reference-917-engine/evidence/f41-vast-image-publication/summary.json"
+    ROOT
+    / "twins/reference-917-engine/evidence/f41-vast-image-publication-race-fix/summary.json"
 )
 RUNTIME_ATTEMPT_EVIDENCE = (
     ROOT / "twins/reference-917-engine/evidence/f41-vast-runtime-attempt-1/summary.json"
@@ -320,14 +321,14 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         evidence = json.loads(PUBLICATION_EVIDENCE.read_text(encoding="utf-8"))
         image = (
             "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
-            "7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
+            "c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b"
         )
         self.assertIsNone(lock["image"]["digest"])
         self.assertEqual(
             evidence["source"]["head_sha"],
-            "7eec184437fc71f10d6a8f07aa4ba2e518a058bb",
+            "7ae01d2fb67fe13385726124f9dfac249b99e8ea",
         )
-        self.assertEqual(evidence["workflow"]["run_id"], 33699574489)
+        self.assertEqual(evidence["workflow"]["run_id"], 33708557585)
         self.assertEqual(evidence["image"]["immutable_reference"], image)
         self.assertTrue(evidence["verified_scope"]["anonymous_exact_digest_pull_succeeded"])
         self.assertTrue(
@@ -337,9 +338,10 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         )
         self.assertFalse(evidence["qualification"]["vast_runtime_qualified"])
         self.assertEqual(
-            evidence["qualification"]["first_attempt_evidence"],
+            evidence["qualification"]["predecessor_failed_runtime_evidence"],
             "../f41-vast-runtime-attempt-1/summary.json",
         )
+        self.assertIsNone(evidence["qualification"]["runtime_attempt_evidence"])
         self.assertTrue(all(value is False for value in evidence["gates"].values()))
 
     def test_first_runtime_attempt_records_failure_and_verified_absence_only(self):
@@ -650,6 +652,9 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
             "356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f",
             "7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce",
+            "c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b",
+            "33708557585",
+            "f41-vast-image-publication-race-fix",
             "git ls-files -s",
             "component-factory-f41-offers",
             "run-917-component-factory-f41-cad",

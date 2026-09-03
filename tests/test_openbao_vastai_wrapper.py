@@ -783,7 +783,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertEqual(
             self.wrapper.COMPONENT_FACTORY_F41_IMAGE,
             "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
-            "7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce",
+            "c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b",
         )
         self.assertNotEqual(
             self.wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
@@ -823,7 +823,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )
-        self.assertIn(
+        self.assertNotIn(
             production_wrapper.COMPONENT_FACTORY_F41_IMAGE,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )

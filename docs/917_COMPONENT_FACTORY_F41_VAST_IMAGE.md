@@ -65,9 +65,10 @@ revoked image 3: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92d
 revoked image 4: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce
 publication workflow 33696007854: success, image révoquée après test du bundle Git réel
 revocation: before Vast spend; real Git bundle mode mismatch found by supervisor tests
-replacement workflow 33699574489: success, linux/amd64 + attestations + anonymous pull
-supervised qualification candidate: pending corrected immutable publication
-replacement linux/amd64 manifest: pending corrected immutable publication
+replacement workflow 33699574489: success, image révoquée après reproduction de la course sshd/onstart
+corrected publication workflow 33708557585: success, linux/amd64 + attestations + cold/lock-contention smokes + anonymous pull
+supervised qualification candidate: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b
+corrected linux/amd64 manifest: sha256:7a7f83cbe9f37e381ba763f2f7f1126d816c27c16712575cf5104d312045ac44
 runtype: ssh_direct
 remote user: root
 image onstart: /usr/local/bin/917-cad-vast-onstart
@@ -368,5 +369,5 @@ spécifiques n'existent pas :
 inscrire le digest de l'image qui l'embarque créerait une référence circulaire
 et un nouveau digest. Le candidat publié est donc enregistré hors de l'image
 dans le wrapper et dans
-`twins/reference-917-engine/evidence/f41-vast-image-publication/`. Les preuves
+`twins/reference-917-engine/evidence/f41-vast-image-publication-race-fix/`. Les preuves
 d'exécution Vast et F41 restent une promotion ultérieure et séparée.

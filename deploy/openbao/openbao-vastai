@@ -79,10 +79,10 @@ COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155,
     }
 )
-# 7155 remains here only as the blocked placeholder until the corrected image
-# has passed publication and anonymous-pull gates. Membership in the revoked
-# set prevents every paid launch in this intermediate state.
-COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
+# Corrected candidate C59 passed the public linux/amd64 workflow, attestations,
+# cold-start and deterministic lock-contention smokes, then an anonymous exact
+# digest pull. Its first Vast execution remains supervised and fail closed.
+COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b"
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 COMPONENT_FACTORY_F41_CLEANUP_PREFIX = "OPENBAO_VASTAI_F41_CLEANUP "
