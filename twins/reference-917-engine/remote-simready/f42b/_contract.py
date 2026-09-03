@@ -40,6 +40,12 @@ RUNTIME_ATTESTOR_PATH = "deploy/openbao/openbao-ghcr"
 RUNTIME_ATTESTOR_COMMAND = "attest-simready-runtime"
 PROFILE = "Prop-Robotics-Physx"
 PROFILE_VERSION = "1.0.0"
+FET001_SOURCE_METERS_PER_UNIT = 0.001
+FET001_TARGET_METERS_PER_UNIT = 1.0
+FET001_NORMALIZATION_OP = "xformOp:scale:meter_normalization"
+FET001_WORLD_ABSOLUTE_TOLERANCE_M = 1e-9
+FET001_WORLD_RELATIVE_TOLERANCE = 1e-9
+FET000_SIMREADY_METADATA_KEY = "SimReady_Metadata"
 FAMILY_ORDER = (
     "connecting_rod",
     "crankshaft",
@@ -1208,7 +1214,12 @@ def _jsonable(value: Any) -> Any:
         return str(value)
 
 
-def _base_stage_signature(stage: Any, excluded_prefix: str | None = None) -> dict[str, Any]:
+def _base_stage_signature(
+    stage: Any,
+    excluded_prefix: str | None = None,
+    fet001_root: str | None = None,
+    strip_simready_metadata: bool = False,
+) -> dict[str, Any]:
     """Capture tout le stage hors des ajouts matériels/physiques contractuels."""
 
     def excluded(name: str) -> bool:
@@ -1227,7 +1238,10 @@ def _base_stage_signature(stage: Any, excluded_prefix: str | None = None) -> dic
         attributes = {}
         for attribute in prim.GetAttributes():
             name = attribute.GetName()
-            if excluded(name):
+            if excluded(name) or (
+                path == fet001_root
+                and name in {"xformOpOrder", FET001_NORMALIZATION_OP}
+            ):
                 continue
             attributes[name] = {
                 "type": str(attribute.GetTypeName()),
@@ -1251,8 +1265,17 @@ def _base_stage_signature(stage: Any, excluded_prefix: str | None = None) -> dic
             "attributes": attributes,
             "relationships": relationships,
         })
+    pseudo_root_metadata = _jsonable(stage.GetPseudoRoot().GetAllMetadata())
+    if fet001_root:
+        pseudo_root_metadata.pop("metersPerUnit", None)
+    if strip_simready_metadata:
+        custom_layer_data = pseudo_root_metadata.get("customLayerData", {})
+        if isinstance(custom_layer_data, dict):
+            custom_layer_data.pop(FET000_SIMREADY_METADATA_KEY, None)
+            if not custom_layer_data:
+                pseudo_root_metadata.pop("customLayerData", None)
     return {
-        "pseudo_root_metadata": _jsonable(stage.GetPseudoRoot().GetAllMetadata()),
+        "pseudo_root_metadata": pseudo_root_metadata,
         "sub_layers": list(stage.GetRootLayer().subLayerPaths),
         "prims": prims,
     }
@@ -1285,15 +1308,44 @@ def _attribute_signature(attribute: Any) -> dict[str, Any]:
     return {"samples": samples, "sha256": hashlib.sha256(encoded).hexdigest()}
 
 
+def _world_probe_meters(matrix: Any, gf_module: Any, meters_per_unit: float) -> list[list[float]]:
+    return [
+        [float(value) * meters_per_unit for value in matrix.Transform(point)]
+        for point in (
+            gf_module.Vec3d(0.0, 0.0, 0.0),
+            gf_module.Vec3d(1.0, 0.0, 0.0),
+            gf_module.Vec3d(0.0, 1.0, 0.0),
+            gf_module.Vec3d(0.0, 0.0, 1.0),
+        )
+    ]
+
+
+def _world_bounds_meters(cache: Any, prim: Any, meters_per_unit: float) -> list[float]:
+    bounds = cache.ComputeWorldBound(prim).ComputeAlignedRange()
+    require(not bounds.IsEmpty(), f"bounds monde vides: {prim.GetPath()}")
+    return [
+        float(value) * meters_per_unit
+        for corner in (bounds.GetMin(), bounds.GetMax())
+        for value in corner
+    ]
+
+
 def _geometry_signature(stage: Any) -> dict[str, Any]:
-    from pxr import Usd, UsdGeom
+    from pxr import Gf, Usd, UsdGeom
 
     geometric_types = {
         "BasisCurves", "Capsule", "Cone", "Cube", "Cylinder", "Mesh",
         "NurbsCurves", "NurbsPatch", "Plane", "PointInstancer", "Points", "Sphere",
     }
-    geometry = []
+    local_geometry = []
+    world_geometry_meters = []
+    meters_per_unit = float(UsdGeom.GetStageMetersPerUnit(stage))
     xform_cache = UsdGeom.XformCache(Usd.TimeCode.Default())
+    bbox_cache = UsdGeom.BBoxCache(
+        Usd.TimeCode.Default(),
+        [UsdGeom.Tokens.default_],
+        useExtentsHint=False,
+    )
     for prim in stage.TraverseAll():
         if prim.GetTypeName() not in geometric_types:
             continue
@@ -1304,29 +1356,192 @@ def _geometry_signature(stage: Any) -> dict[str, Any]:
                 continue
             if name.startswith("physics:") or name.startswith("physx"):
                 continue
+            if name == "xformOpOrder" or name.startswith("xformOp:"):
+                continue
             attributes[name] = _attribute_signature(attribute)
-        world_matrix = _jsonable(xform_cache.GetLocalToWorldTransform(prim))
-        ancestor_xforms = {}
-        ancestor = prim
-        while ancestor and ancestor.IsValid() and not ancestor.IsPseudoRoot():
-            for attribute in ancestor.GetAttributes():
-                if attribute.GetName().startswith("xformOp:"):
-                    ancestor_xforms[f"{ancestor.GetPath()}:{attribute.GetName()}"] = _attribute_signature(attribute)
-            ancestor = ancestor.GetParent()
-        geometry.append({
+        local_geometry.append({
             "path": str(prim.GetPath()),
             "type": prim.GetTypeName(),
             "attributes": attributes,
-            "world_matrix": world_matrix,
-            "ancestor_xforms": ancestor_xforms,
         })
-    require(any(item["type"] == "Mesh" for item in geometry), "aucun Mesh dans l'USD")
-    encoded = json.dumps(geometry, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
+        world_geometry_meters.append({
+            "path": str(prim.GetPath()),
+            "type": prim.GetTypeName(),
+            "affine_meters": _world_probe_meters(
+                xform_cache.GetLocalToWorldTransform(prim), Gf, meters_per_unit
+            ),
+            "bounds_meters": _world_bounds_meters(
+                bbox_cache, prim, meters_per_unit
+            ),
+        })
+    require(any(item["type"] == "Mesh" for item in local_geometry), "aucun Mesh dans l'USD")
+    default_prim = stage.GetDefaultPrim()
+    require(default_prim and default_prim.IsValid(), "defaultPrim absent pour les bounds monde")
+    encoded = json.dumps(local_geometry, sort_keys=True, separators=(",", ":"), default=str).encode("utf-8")
     return {
-        "prims": geometry,
-        "meters_per_unit": UsdGeom.GetStageMetersPerUnit(stage),
+        "prims": local_geometry,
+        "world_prims_meters": world_geometry_meters,
+        "world_bounds_meters": _world_bounds_meters(
+            bbox_cache, default_prim, meters_per_unit
+        ),
+        "meters_per_unit": meters_per_unit,
         "up_axis": str(UsdGeom.GetStageUpAxis(stage)),
         "sha256": hashlib.sha256(encoded).hexdigest(),
+    }
+
+
+def _validate_fet001_transform_delta(
+    source: Any,
+    target: Any,
+    default_prim_path: str,
+    usd_geom: Any,
+) -> dict[str, Any]:
+    source_mpu = float(usd_geom.GetStageMetersPerUnit(source))
+    target_mpu = float(usd_geom.GetStageMetersPerUnit(target))
+    require(
+        math.isclose(source_mpu, FET001_SOURCE_METERS_PER_UNIT, rel_tol=0.0, abs_tol=1e-12),
+        "FET001: metersPerUnit source doit valoir 0.001",
+    )
+    require(
+        math.isclose(target_mpu, FET001_TARGET_METERS_PER_UNIT, rel_tol=0.0, abs_tol=1e-12),
+        "FET001: metersPerUnit cible doit valoir 1.0",
+    )
+    source_root = usd_geom.Xformable(source.GetPrimAtPath(default_prim_path))
+    target_root = usd_geom.Xformable(target.GetPrimAtPath(default_prim_path))
+    require(
+        source_root.GetResetXformStack() == target_root.GetResetXformStack(),
+        "FET001: resetXformStack du defaultPrim a été modifié",
+    )
+    source_order = source_root.GetXformOpOrderAttr()
+    target_order = target_root.GetXformOpOrderAttr()
+    require(
+        not source_order.GetTimeSamples()
+        and not target_order.GetTimeSamples()
+        and not source_order.GetConnections()
+        and not target_order.GetConnections(),
+        "FET001: xformOpOrder animée ou connectée interdite",
+    )
+    require(
+        source_order.GetAllAuthoredMetadata()
+        == target_order.GetAllAuthoredMetadata(),
+        "FET001: métadonnées de xformOpOrder modifiées",
+    )
+    source_order_value = [str(value) for value in (source_order.Get() or [])]
+    target_order_value = [str(value) for value in (target_order.Get() or [])]
+    require(
+        target_order_value
+        == [*source_order_value, FET001_NORMALIZATION_OP],
+        "FET001: valeur brute de xformOpOrder différente d'un ajout unique",
+    )
+    source_ops = source_root.GetOrderedXformOps()
+    target_ops = target_root.GetOrderedXformOps()
+    require(
+        [op.GetOpName() for op in target_ops]
+        == [op.GetOpName() for op in source_ops] + [FET001_NORMALIZATION_OP],
+        "FET001: xformOpOrder diffère d'un unique ajout final de normalisation",
+    )
+    normalizer = target_ops[-1]
+    require(
+        normalizer.GetOpType() == usd_geom.XformOp.TypeScale
+        and normalizer.GetPrecision() == usd_geom.XformOp.PrecisionDouble
+        and not normalizer.IsInverseOp(),
+        "FET001: op racine autre qu'un Scale double direct",
+    )
+    attribute = normalizer.GetAttr()
+    require(
+        not attribute.GetTimeSamples()
+        and not attribute.GetConnections()
+        and set(attribute.GetAllAuthoredMetadata()) == {"custom", "typeName", "variability"},
+        "FET001: scale racine animée, connectée ou avec métadonnées interdites",
+    )
+    vector = [float(value) for value in normalizer.Get()]
+    require(
+        vector == [FET001_SOURCE_METERS_PER_UNIT] * 3,
+        "FET001: scale racine doit valoir exactement 0.001 sur les trois axes",
+    )
+    return {
+        "source_meters_per_unit": source_mpu,
+        "target_meters_per_unit": target_mpu,
+        "normalization_prim_path": default_prim_path,
+        "normalization_op": FET001_NORMALIZATION_OP,
+        "normalization_scale": vector,
+    }
+
+
+def _geometry_equivalence(
+    source_geometry: dict[str, Any],
+    target_geometry: dict[str, Any],
+) -> dict[str, Any]:
+    require(source_geometry.get("up_axis") == target_geometry.get("up_axis"), "upAxis F42b différent du USD F42a")
+    require(source_geometry.get("prims") == target_geometry.get("prims"), "géométrie locale F42b différente du USD F42a")
+    source_world = source_geometry.get("world_prims_meters")
+    target_world = target_geometry.get("world_prims_meters")
+    require(isinstance(source_world, list) and len(source_world) == len(target_world), "signatures monde en mètres absentes")
+    deltas: list[float] = []
+    for left, right in zip(source_world, target_world, strict=True):
+        require((left["path"], left["type"]) == (right["path"], right["type"]), "ordre des prims monde différent")
+        for field in ("affine_meters", "bounds_meters"):
+            left_values = [value for row in left[field] for value in row] if field == "affine_meters" else left[field]
+            right_values = [value for row in right[field] for value in row] if field == "affine_meters" else right[field]
+            deltas.extend(abs(a - b) for a, b in zip(left_values, right_values, strict=True))
+    deltas.extend(
+        abs(a - b)
+        for a, b in zip(
+            source_geometry["world_bounds_meters"],
+            target_geometry["world_bounds_meters"],
+            strict=True,
+        )
+    )
+    max_delta = max(deltas, default=0.0)
+    max_value = max(
+        [abs(value) for item in source_world for row in item["affine_meters"] for value in row]
+        + [1.0]
+    )
+    tolerance = max(FET001_WORLD_ABSOLUTE_TOLERANCE_M, max_value * FET001_WORLD_RELATIVE_TOLERANCE)
+    require(max_delta <= tolerance, f"géométrie/bounds monde en mètres modifiés: {max_delta} > {tolerance}")
+    return {
+        "comparison_mode": "exact_local_geometry_plus_world_affines_and_bounds_in_meters",
+        "local_geometry_identical": True,
+        "world_affines_meters_identical": True,
+        "world_bounds_meters_identical": True,
+        "max_world_delta_m": max_delta,
+        "absolute_tolerance_m": FET001_WORLD_ABSOLUTE_TOLERANCE_M,
+        "relative_tolerance": FET001_WORLD_RELATIVE_TOLERANCE,
+    }
+
+
+def _expected_fet000_metadata(family: str) -> dict[str, str]:
+    identifier = f"{family}-physics-contract"
+    return {
+        "identifier": identifier,
+        "version": "1.0.0",
+        "description": f"SimReady metadata for {identifier}",
+        "profile": PROFILE,
+        "profile_version": PROFILE_VERSION,
+        "source_asset": f"{identifier}.usd",
+        "generated_by": "physical-ai-skill-hub",
+        "pipeline": json.dumps(["material-agent-client", "physics-agent-client"]),
+    }
+
+
+def _validate_final_layer_metadata(source: Any, target: Any, family: str) -> dict[str, Any]:
+    source_custom = _jsonable(dict(source.GetRootLayer().customLayerData))
+    target_custom = _jsonable(dict(target.GetRootLayer().customLayerData))
+    require(
+        FET000_SIMREADY_METADATA_KEY not in source_custom,
+        "métadonnées SimReady FET000 déjà présentes dans la source F42a",
+    )
+    expected = _expected_fet000_metadata(family)
+    require(
+        target_custom.get(FET000_SIMREADY_METADATA_KEY) == expected,
+        "métadonnées SimReady FET000 absentes ou différentes de l'allowlist",
+    )
+    remaining = dict(target_custom)
+    remaining.pop(FET000_SIMREADY_METADATA_KEY)
+    require(remaining == source_custom, "customLayerData arbitraire ajouté ou modifié")
+    return {
+        "key": FET000_SIMREADY_METADATA_KEY,
+        "exact_allowlist": True,
     }
 
 
@@ -1361,7 +1576,12 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
 
     source_geometry = _geometry_signature(source)
     target_geometry = _geometry_signature(target)
-    require(source_geometry == target_geometry, "geometrie ou transforms F42b differents du USD F42a")
+    geometry_evidence = _geometry_equivalence(source_geometry, target_geometry)
+    fet001_evidence = None
+    if stage_name == "final":
+        fet001_evidence = _validate_fet001_transform_delta(
+            source, target, entry["default_prim_path"], UsdGeom
+        )
 
     look_prefix = f"{entry['default_prim_path']}/F42bContractLooks"
     source_prims = {str(prim.GetPath()): prim.GetTypeName() for prim in source.TraverseAll()}
@@ -1412,9 +1632,19 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
             and set(shader_metadata).issubset({"specifier", "typeName"}),
             "Shader de look avec métadonnées hors contrat",
         )
+    final_layer_metadata: dict[str, Any] | None = None
+    fet001_root = None
+    if stage_name == "final":
+        final_layer_metadata = _validate_final_layer_metadata(source, target, family)
+        fet001_root = entry["default_prim_path"]
     require(
-        _base_stage_signature(source)
-        == _base_stage_signature(target, look_prefix if expected_added_prims else None),
+        _base_stage_signature(source, fet001_root=fet001_root)
+        == _base_stage_signature(
+            target,
+            look_prefix if expected_added_prims else None,
+            fet001_root=fet001_root,
+            strip_simready_metadata=stage_name == "final",
+        ),
         "métadonnées, composition, attributs ou relations hors allowlist F42b modifiés",
     )
     source_schemas = {
@@ -1597,6 +1827,9 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
         "default_prim_path": entry["default_prim_path"],
         "geometry_identical_to_f42a": True,
         "geometry_signature_sha256": source_geometry["sha256"],
+        "geometry_equivalence": geometry_evidence,
+        "fet001_unit_normalization": fet001_evidence,
+        "simready_core_layer_metadata": final_layer_metadata,
         "mesh_paths": mesh_paths,
         "source_material_bindings": source_material_bindings,
         "source_material_binding_signatures": source_material_signatures,

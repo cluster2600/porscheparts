@@ -667,6 +667,98 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         )
         self.assertIn('SKILL_ROOT="${PATCHED_SKILL_ROOT}"', documentation)
 
+    def test_equivalence_fet001_pxr_conserve_affines_et_bounds_monde_en_metres(self):
+        try:
+            from pxr import Gf, Usd, UsdGeom
+        except ImportError:
+            self.skipTest("pxr requis pour le test comportemental FET001")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source_path = root / "source.usda"
+            target_path = root / "target.usda"
+            source_stage = Usd.Stage.CreateNew(str(source_path))
+            UsdGeom.SetStageMetersPerUnit(source_stage, 0.001)
+            UsdGeom.SetStageUpAxis(source_stage, UsdGeom.Tokens.z)
+            default = UsdGeom.Xform.Define(source_stage, "/part")
+            source_stage.SetDefaultPrim(default.GetPrim())
+            mesh = UsdGeom.Mesh.Define(source_stage, "/part/mesh")
+            mesh.CreatePointsAttr(
+                [(-20.0, -10.0, 0.0), (20.0, -10.0, 0.0), (0.0, 30.0, 5.0)]
+            )
+            mesh.CreateFaceVertexCountsAttr([3])
+            mesh.CreateFaceVertexIndicesAttr([0, 1, 2])
+            UsdGeom.Xformable(mesh).AddTranslateOp().Set(Gf.Vec3d(120.0, -30.0, 5.0))
+            self.assertTrue(source_stage.GetRootLayer().Save())
+            shutil.copyfile(source_path, target_path)
+
+            target_stage = Usd.Stage.Open(str(target_path))
+            target_default = UsdGeom.Xformable(target_stage.GetDefaultPrim())
+            target_default.AddScaleOp(
+                UsdGeom.XformOp.PrecisionDouble, "meter_normalization"
+            ).Set(Gf.Vec3d(0.001, 0.001, 0.001))
+            UsdGeom.SetStageMetersPerUnit(target_stage, 1.0)
+            self.assertTrue(target_stage.GetRootLayer().Save())
+
+            source_signature = F42B_CONTRACT._geometry_signature(
+                Usd.Stage.Open(str(source_path))
+            )
+            target_signature = F42B_CONTRACT._geometry_signature(
+                Usd.Stage.Open(str(target_path))
+            )
+            evidence = F42B_CONTRACT._geometry_equivalence(
+                source_signature, target_signature
+            )
+            self.assertLessEqual(evidence["max_world_delta_m"], 1e-12)
+            accepted = F42B_CONTRACT._validate_fet001_transform_delta(
+                Usd.Stage.Open(str(source_path)),
+                Usd.Stage.Open(str(target_path)),
+                "/part",
+                UsdGeom,
+            )
+            self.assertEqual(accepted["normalization_scale"], [0.001] * 3)
+
+            target_stage = Usd.Stage.Open(str(target_path))
+            UsdGeom.Xformable(target_stage.GetDefaultPrim()).SetResetXformStack(True)
+            self.assertTrue(target_stage.GetRootLayer().Save())
+            with self.assertRaisesRegex(
+                F42B_CONTRACT.ContractError, "resetXformStack"
+            ):
+                F42B_CONTRACT._validate_fet001_transform_delta(
+                    Usd.Stage.Open(str(source_path)),
+                    Usd.Stage.Open(str(target_path)),
+                    "/part",
+                    UsdGeom,
+                )
+
+            target_stage = Usd.Stage.Open(str(target_path))
+            UsdGeom.Xformable(target_stage.GetDefaultPrim()).SetResetXformStack(False)
+            target_stage.GetDefaultPrim().GetAttribute("xformOpOrder").Set(
+                [], Usd.TimeCode(1.0)
+            )
+            self.assertTrue(target_stage.GetRootLayer().Save())
+            with self.assertRaisesRegex(
+                F42B_CONTRACT.ContractError, "xformOpOrder animée"
+            ):
+                F42B_CONTRACT._validate_fet001_transform_delta(
+                    Usd.Stage.Open(str(source_path)),
+                    Usd.Stage.Open(str(target_path)),
+                    "/part",
+                    UsdGeom,
+                )
+
+            target_stage = Usd.Stage.Open(str(target_path))
+            target_stage.GetDefaultPrim().GetAttribute("xformOpOrder").ClearAtTime(
+                Usd.TimeCode(1.0)
+            )
+            target_stage.GetPrimAtPath("/part/mesh").GetAttribute("xformOp:translate").Set(
+                Gf.Vec3d(121.0, -30.0, 5.0)
+            )
+            self.assertTrue(target_stage.GetRootLayer().Save())
+            moved = F42B_CONTRACT._geometry_signature(target_stage)
+            with self.assertRaisesRegex(F42B_CONTRACT.ContractError, "monde en mètres modifiés"):
+                F42B_CONTRACT._geometry_equivalence(source_signature, moved)
+
     def test_pilote_chronometre_bloque_les_cinq_autres_si_projection_depassee(self):
         execution = self.contract["execution"]
         self.assertEqual(execution["pilot_family"], "connecting_rod")
