@@ -48,4 +48,4 @@ run_logged "${USD_PYTHON}" "${PREFLIGHT_SCRIPT}" \
 require_passed_report "${MANIFEST}"
 phase_add_output "${ENV_FILE}"
 phase_add_output "${MARKDOWN}"
-phase_pass "prévol NVIDIA prêt; USD F10 natif et endpoints existants réutilisés sans Docker-in-Docker"
+phase_pass "prévol NVIDIA prêt; USD natifs et endpoints existants réutilisés sans Docker-in-Docker"

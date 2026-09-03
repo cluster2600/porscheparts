@@ -31,6 +31,23 @@ phase_init "conform" "${PHASE_REPORT_PATH}" "${PHASE_LOG_PATH}" "${CONTROL_REPOR
 phase_add_input "${PHYSICS_REPORT}"
 phase_add_child_report "${REFERENCE_REPORT}"
 require_job_control
+CONTROL_WORKFLOW_PROFILE="$(${SYSTEM_PYTHON} - "${CONTROL_REPORT}" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+value = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8")).get("workflow_profile")
+print("legacy-f10" if value in (None, "") else value)
+PY
+)"
+case "${CONTROL_WORKFLOW_PROFILE}" in
+    legacy-f10) ;;
+    f42b-six-usd-v1)
+        [ "${PROFILE}" = "Prop-Robotics-Physx" ] && [ "${PROFILE_VERSION}" = "1.0.0" ] \
+            || { phase_block "F42b exige Prop-Robotics-Physx@1.0.0"; exit 2; }
+        ;;
+    *) phase_block "workflow_profile de conformance inconnu"; exit 2 ;;
+esac
 require_passed_report "${PHYSICS_REPORT}"
 PHYSICS_USD="$(report_output_path "${PHYSICS_REPORT}")"
 phase_add_input "${PHYSICS_USD}"
@@ -44,6 +61,17 @@ run_logged "${USD_PYTHON}" "${REFERENCE}" "${PHYSICS_USD}" \
     --report "${REFERENCE_REPORT}" \
     --markdown-report "${REFERENCE_MARKDOWN}"
 require_passed_report "${REFERENCE_REPORT}"
+if [ "${CONTROL_WORKFLOW_PROFILE}" = "f42b-six-usd-v1" ]; then
+    "${SYSTEM_PYTHON}" - "${REFERENCE_REPORT}" <<'PY'
+import json
+from pathlib import Path
+import sys
+
+report = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+if report.get("profile") != "Prop-Robotics-Physx" or report.get("profile_version") != "1.0.0":
+    raise SystemExit("rapport de conformance produit sous un autre profil F42b")
+PY
+fi
 CONFORMED_USD="$(report_output_path "${REFERENCE_REPORT}")"
 phase_add_output "${CONFORMED_USD}"
 phase_pass "conformance appliquée après les deux Content Agents"

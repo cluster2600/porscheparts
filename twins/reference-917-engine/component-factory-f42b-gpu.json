@@ -1,0 +1,209 @@
+{
+  "$comment": "Contrat F42b GPU fail-closed. Les six USD F42a restent prives et hors depot; ce fichier ne contient ni secret ni chemin prive.",
+  "schema_version": "1.0.0",
+  "phase": "F42b-gpu-simready-diagnostics",
+  "status": "specified_pending_qualified_runtime_and_private_inputs",
+  "workflow_profile": "f42b-six-usd-v1",
+  "source_usd": {
+    "directory_name": "f42a-usd",
+    "evidence_path": "twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json",
+    "evidence_sha256": "6d7f36ef61a7517c6ab3f70d33be1b58eaedab6df0b4a032f1f0c213a6c50a2a",
+    "private_artifacts_committed": false,
+    "exact_file_count": 6,
+    "total_size_bytes": 166766,
+    "families": [
+      {
+        "family_id": "connecting_rod",
+        "filename": "connecting_rod.usd",
+        "sha256": "f995b603ec6d6b467e87b2ad26913e402b864bee10736fca16a65612260d1ec8",
+        "size_bytes": 22222,
+        "default_prim_path": "/connecting_rod"
+      },
+      {
+        "family_id": "crankshaft",
+        "filename": "crankshaft.usd",
+        "sha256": "20be6e2ff0afe25bde546148833d51d7546a7e50d9abe75e963808c472292cf1",
+        "size_bytes": 40439,
+        "default_prim_path": "/crankshaft"
+      },
+      {
+        "family_id": "main_bearing_pair",
+        "filename": "main_bearing_pair.usd",
+        "sha256": "aaa12a2eb966a506be21f9f44733dac3edb4c5d399441a2d9a8fbfd44b657a33",
+        "size_bytes": 15091,
+        "default_prim_path": "/main_bearing_pair"
+      },
+      {
+        "family_id": "piston",
+        "filename": "piston.usd",
+        "sha256": "95a4c5ef57c87af25e12a5784ced63c6fd88b3199f86213903ad2e03d05506df",
+        "size_bytes": 65639,
+        "default_prim_path": "/piston"
+      },
+      {
+        "family_id": "piston_pin",
+        "filename": "piston_pin.usd",
+        "sha256": "fefe43fdabd8b7eea63bf7b8e191f02eac2f4be28c538c644f76a63da526934d",
+        "size_bytes": 11219,
+        "default_prim_path": "/piston_pin"
+      },
+      {
+        "family_id": "piston_ring",
+        "filename": "piston_ring.usd",
+        "sha256": "a0f7bba825e4e3f9e3faae2d1318584d99ab836da0d224ab35039b4c0a7a1aa3",
+        "size_bytes": 12156,
+        "default_prim_path": "/piston_ring"
+      }
+    ]
+  },
+  "runtime": {
+    "image_repository": "ghcr.io/cluster2600/3dprinting993-simready-local-ai",
+    "qualified_image_ref": null,
+    "qualification_status": "pending_public_linux_amd64_digest_qualification",
+    "qualification_evidence": null,
+    "launcher_pin": {
+      "path": "deploy/openbao/openbao-vastai",
+      "symbol": "SIMREADY_IMAGE"
+    },
+    "runtime_attestation": {
+      "required": true,
+      "producer_path": "deploy/openbao/openbao-ghcr",
+      "producer_command": "attest-simready-runtime",
+      "max_age_seconds": 900
+    },
+    "platform": "linux/amd64",
+    "gpu_required": true,
+    "simready_profile": "Prop-Robotics-Physx",
+    "simready_profile_version": "1.0.0"
+  },
+  "materials": {
+    "visual_claim_scope": "visual_hypotheses_only_not_historical_material_identification",
+    "visual_palette_source": {
+      "path": "twins/reference-917-engine/motion-video-f7.json",
+      "sha256": "41556bd0bce1bfac59fcafb046d0c168a68ae45e228141b6f9c8608ea01e95f3"
+    },
+    "historical_context_sources": [
+      "docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md",
+      "catalog/sources/src-fia-917-homologation-250.json",
+      "catalog/sources/src-stuttcars-917-technical-details.json"
+    ],
+    "assignments": [
+      {
+        "family_id": "connecting_rod",
+        "visual_material": "titanium",
+        "visual_source_assignment": "motion-video-f7:visual_materials.family_assignments.connecting_rod",
+        "historical_material_family": "forged_titanium",
+        "historical_material_status": "documentary_variant_context_not_grade_or_process_qualification",
+        "historical_evidence": ["917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md:S06"],
+        "physics_properties": {"density": null, "dynamic_friction": null, "restitution": null, "static_friction": null}
+      },
+      {
+        "family_id": "crankshaft",
+        "visual_material": "steel",
+        "visual_source_assignment": "motion-video-f7:visual_materials.family_assignments.crankshaft",
+        "historical_material_family": "unknown",
+        "historical_material_status": "forging_documented_but_alloy_family_not_primary_source_qualified",
+        "historical_evidence": ["917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md:S01", "917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md:S06"],
+        "physics_properties": {"density": null, "dynamic_friction": null, "restitution": null, "static_friction": null}
+      },
+      {
+        "family_id": "main_bearing_pair",
+        "visual_material": "steel",
+        "visual_source_assignment": "motion-video-f7:visual_materials.family_assignments.main_bearing",
+        "historical_material_family": "unknown",
+        "historical_material_status": "unknown",
+        "historical_evidence": [],
+        "physics_properties": {"density": null, "dynamic_friction": null, "restitution": null, "static_friction": null}
+      },
+      {
+        "family_id": "piston",
+        "visual_material": "light_alloy",
+        "visual_source_assignment": "motion-video-f7:visual_materials.family_assignments.piston",
+        "historical_material_family": "light_alloy",
+        "historical_material_status": "documentary_variant_context_not_grade_or_process_qualification",
+        "historical_evidence": ["917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md:S01"],
+        "physics_properties": {"density": null, "dynamic_friction": null, "restitution": null, "static_friction": null}
+      },
+      {
+        "family_id": "piston_pin",
+        "visual_material": "steel",
+        "visual_source_assignment": "motion-video-f7:visual_materials.family_assignments.piston_pin",
+        "historical_material_family": "unknown",
+        "historical_material_status": "unknown",
+        "historical_evidence": [],
+        "physics_properties": {"density": null, "dynamic_friction": null, "restitution": null, "static_friction": null}
+      },
+      {
+        "family_id": "piston_ring",
+        "visual_material": "steel",
+        "visual_source_assignment": "motion-video-f7:visual_materials.family_assignments.piston_ring",
+        "historical_material_family": "unknown",
+        "historical_material_status": "unknown",
+        "historical_evidence": [],
+        "physics_properties": {"density": null, "dynamic_friction": null, "restitution": null, "static_friction": null}
+      }
+    ]
+  },
+  "physics": {
+    "evidence_path": "twins/reference-917-engine/mechanical-connections-f8.json",
+    "evidence_sha256": "d2daa00ab84948a70e9d1ff265d701c6f74a25f32710f8f6f1cfbaebc81f89d9",
+    "mode": "static_collision_diagnostics_only",
+    "required_mesh_api": "UsdPhysics.CollisionAPI",
+    "optional_mesh_api": null,
+    "geometry_must_remain_identical": true,
+    "allowed_operations": ["author_static_collision_api_on_existing_mesh_prims"],
+    "forbidden_operations": [
+      "author_joint_or_drive",
+      "author_rigid_body_or_articulation",
+      "author_mass_density_or_inertia",
+      "author_force_torque_velocity_or_initial_conditions",
+      "author_friction_or_restitution",
+      "run_time_stepping_or_contact_prediction",
+      "run_fea_cfd_thermal_fatigue_or_physicsnemo_simulation",
+      "change_geometry_or_create_proxy_geometry"
+    ],
+    "joint_count": 0,
+    "rigid_body_count": 0,
+    "mass_property_count": 0,
+    "simulation_validated": false,
+    "fea_validated": false
+  },
+  "validation": {
+    "order": ["minimum-usd", "material-agent", "physics-agent", "conform", "validate-asset", "validate-geometry", "validate-physics", "validate-simready", "ovrtx-render"],
+    "top_level_phase_reports_per_family": ["minimum-usd", "material", "physics", "conform", "validate-asset", "validate-geometry", "validate-physics", "render-preview"],
+    "simready_validation_location": "render-preview-child-validation-only",
+    "simready_auto_repair": false,
+    "fet004_rb_mb_001_auto_repair": false,
+    "fet005_gsp_001_auto_repair": false,
+    "validation_findings_may_require_rerun": true
+  },
+  "execution": {
+    "sequential": true,
+    "pilot_family": "connecting_rod",
+    "remaining_family_order": ["crankshaft", "main_bearing_pair", "piston", "piston_pin", "piston_ring"],
+    "pilot_must_include_ovrtx_render": true,
+    "projection_formula": "common_readiness_preflight_seconds + 6 * pilot_family_pipeline_seconds",
+    "max_projected_total_seconds": 10800,
+    "remaining_families_blocked_until_projection_passes": true
+  },
+  "render": {
+    "backend": "OVRTX",
+    "preview": {"width": 1024, "height": 1024, "fail_on_uniform": true},
+    "turntable": {"frames": 24, "width": 1280, "height": 720, "fps": 8},
+    "photos_from_frame_indices": [0, 6, 12, 18],
+    "film": {"codec": "h264", "pixel_format": "yuv420p", "container": "mp4"},
+    "claim_scope": "omniverse_visual_diagnostic_only",
+    "source_asset_mutation_allowed": false
+  },
+  "release_gates": {
+    "runtime_digest_qualified": false,
+    "private_usd_transferred_and_hash_verified": false,
+    "all_six_family_runs_complete": false,
+    "simready_property_assignment_complete": false,
+    "physical_simulation_validated": false,
+    "fea_validated": false,
+    "manufacturing_authorized": false,
+    "engine_installation_authorized": false,
+    "performance_claim_authorized": false
+  }
+}
