@@ -1,0 +1,197 @@
+{
+  "acceptance_logic": {
+    "design_allowable": "measured lower tolerance bound divided by the documented design factor; no supplier typical value is an allowable",
+    "fatigue_card": "LCF and HCF curves must include build orientation, surface state and heat-treatment lot",
+    "out_of_range_action": "redesign cooling or change process; extrapolation above the highest qualified temperature is forbidden",
+    "process_witness": "same powder lot, machine, parameter set, orientation and heat-treatment batch as the head",
+    "statistical_basis": "one-sided 95/90 lower tolerance bound where applicable",
+    "thermal_card": "temperature-dependent k, cp, alpha, E and Poisson ratio must cover the entire calculated metal-temperature range"
+  },
+  "candidate": {
+    "alloy_family": "Al-Fe-Zr",
+    "designation": "AA8A61.50 / SAE AMS 7074",
+    "heat_treatment": "4 h at 400 degC; heating and cooling route recorded per lot",
+    "layer_thickness_um": 60,
+    "machine": "EOS M 290",
+    "name": "EOS Aluminium Constellium CP1",
+    "process": "laser_powder_bed_fusion",
+    "selection_status": "conditional_pending_hot_coupon_qualification",
+    "supplier_process_trl": 3
+  },
+  "coupon_count_total": 168,
+  "inputs": {
+    "contract": "twins/reference-917-engine/f38-material-coupon-qualification.json",
+    "contract_sha256": "6c1b9ccee2bb16d0e9f5db9698bacc2cd2242f0786f28b26c2d6e7909ec33eaa"
+  },
+  "kind": "physical_coupon_qualification_plan",
+  "matrix": [
+    {
+      "coupon_count": 50,
+      "id": "tensile_hot",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "E",
+        "Rp0.2",
+        "Rm",
+        "A"
+      ],
+      "replicates_per_condition": 5,
+      "standard": "ISO 6892-2",
+      "temperatures_degC": [
+        20,
+        150,
+        200,
+        250,
+        300
+      ]
+    },
+    {
+      "coupon_count": 18,
+      "id": "low_cycle_fatigue_hot",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "strain_life_curve",
+        "cyclic_stress_strain_curve"
+      ],
+      "replicates_per_condition": 3,
+      "standard": "ASTM E606/E606M",
+      "temperatures_degC": [
+        150,
+        200,
+        250
+      ]
+    },
+    {
+      "coupon_count": 30,
+      "id": "high_cycle_fatigue_hot",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "stress_life_curve",
+        "runout_definition"
+      ],
+      "replicates_per_condition": 5,
+      "standard": "ASTM E466",
+      "temperatures_degC": [
+        150,
+        200,
+        250
+      ]
+    },
+    {
+      "coupon_count": 18,
+      "id": "creep_hot",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "creep_rate",
+        "time_to_rupture"
+      ],
+      "replicates_per_condition": 3,
+      "standard": "ASTM E139",
+      "temperatures_degC": [
+        200,
+        250,
+        300
+      ]
+    },
+    {
+      "coupon_count": 30,
+      "id": "thermal_diffusivity_conductivity",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "diffusivity",
+        "conductivity_with_density_and_cp"
+      ],
+      "replicates_per_condition": 3,
+      "standard": "ASTM E1461",
+      "temperatures_degC": [
+        20,
+        150,
+        200,
+        250,
+        300
+      ]
+    },
+    {
+      "coupon_count": 12,
+      "id": "thermal_expansion",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "alpha_T"
+      ],
+      "replicates_per_condition": 3,
+      "standard": "ASTM E228",
+      "temperatures_degC": [
+        20,
+        300
+      ]
+    },
+    {
+      "coupon_count": 10,
+      "id": "density_metallography_ct",
+      "orientations": [
+        "XY",
+        "Z"
+      ],
+      "outputs": [
+        "relative_density",
+        "porosity_distribution",
+        "largest_indication",
+        "microstructure"
+      ],
+      "replicates_per_condition": 5,
+      "standard": "ASTM F3122 plus ISO/ASTM 52907 process witness strategy",
+      "temperatures_degC": [
+        20
+      ]
+    }
+  ],
+  "official_sources": [
+    {
+      "scope": "powder composition, M290 process, heat treatment and room-temperature properties",
+      "title": "EOS Aluminium Constellium CP1 material and process data sheet",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-constellium-cp1"
+    },
+    {
+      "scope": "application provenance only; not a Porsche 917 material qualification",
+      "title": "Constellium CP1 Formula 1 application announcement",
+      "url": "https://www.constellium.com/news/aheadd-r-cp1-constelliums-high-performance-aluminium-additive-manufacturing-powder-approved-for-use-on-formula1-racing-cars"
+    }
+  ],
+  "phase": "F38",
+  "release_gates": {
+    "ct_acceptance_criteria_signed": false,
+    "engine_start_authorized": false,
+    "hot_coupon_campaign_complete": false,
+    "machine_parameter_set_frozen": false,
+    "metal_print_authorized": false,
+    "powder_lot_certificate_received": false,
+    "professional_material_review_complete": false,
+    "temperature_dependent_material_card_released": false,
+    "witness_coupons_linked_to_head_serial": false
+  },
+  "result": {
+    "campaign_executed": false,
+    "manufacturing_authorized": false,
+    "material_card_qualified": false,
+    "reason": "plan compiled; no physical specimen result supplied"
+  },
+  "schema_version": "1.0.0"
+}

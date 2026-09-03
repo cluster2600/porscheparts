@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #0b1116; }
+      .clip { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1920" data-height="1080">
+      <div id="scene-scan" class="clip" data-composition-id="f38-brep" data-composition-src="compositions/frames/01-brep.html" data-start="0" data-duration="5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="scene-valvetrain" class="clip" data-composition-id="f38-cutaway" data-composition-src="compositions/frames/02-cutaway.html" data-start="5" data-duration="7" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="scene-cooling" class="clip" data-composition-id="f38-validation" data-composition-src="compositions/frames/03-validation.html" data-start="12" data-duration="7" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="scene-verdict" class="clip" data-composition-id="f38-verdict" data-composition-src="compositions/frames/04-verdict.html" data-start="19" data-duration="5" data-track-index="1" data-width="1920" data-height="1080"></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

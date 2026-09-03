@@ -1,0 +1,71 @@
+{
+  "$comment": "F38 conserve la morphologie du maillage F37. Le STL maitre reste local; le STEP publie est un B-Rep triangule de visualisation et non une CAO de production. Toutes les dimensions sont conditionnelles a 1 unite du scan = 1 mm.",
+  "schema_version": "2.0.0",
+  "phase": "F38",
+  "classification": "scan_conforming_hybrid_fail_closed",
+  "parent": {
+    "phase": "F37",
+    "head_mesh_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "f37_cad_report_sha256": "2a9fac821474d5dd218cc029e7ff3ed6bc1841a38d3189194f44261ab48bb8b4",
+    "f36_geometry_report_sha256": "7bc414009e6b09a7ca190e304eb708e52e37a991b479f0f78a14e4cc53256f36",
+    "flow_core_sha256": "771ddca592483708a4515f0dc9db4eb335913a933d9f8eb95c8010b1386ab1dc",
+    "oil_core_sha256": "791b97e12f6f43ac6a627cd1a69fb0f5b580f2f75224b4159c4b54b80b6228e1"
+  },
+  "coordinate_system": {
+    "x": "across_valve_pairs",
+    "y": "intake_negative_to_exhaust_positive",
+    "z": "combustion_deck_to_valvetrain",
+    "absolute_scale_confirmed": false
+  },
+  "geometry_strategy": {
+    "master": "exact_F37_topology_plus_vertex_normal_offset",
+    "normal_offset_mm_if_scale_is_mm": 0.45,
+    "master_mesh_committed": false,
+    "master_mesh_local_only_reason": "derived_scan_mesh_and_repository_size",
+    "faceted_brep_proxy_faces": 7000,
+    "faceted_brep_proxy_committed": false,
+    "faceted_brep_proxy_local_only_reason": "derived_scan_geometry_without_reusable_publication_licence",
+    "faceted_brep_is_production_cad": false,
+    "analytic_functional_surfaces_completed": false,
+    "external_boxes_or_synthetic_fin_stack": false,
+    "morphology_preserved": true
+  },
+  "functional_architecture_inherited_from_f37": {
+    "valve_count": 4,
+    "combustion_chamber": true,
+    "intake_ports": 2,
+    "exhaust_ports": 2,
+    "central_spark_well": true,
+    "oil_gallery_core": true,
+    "post_offset_accessibility_revalidated": false
+  },
+  "lpbf_screen": {
+    "orientation": "rotate_x_45_deg",
+    "assumed_self_support_angle_from_horizontal_deg": 45.0,
+    "target_coarse_support_area_fraction": 0.005,
+    "screen_only_not_machine_process_simulation": true
+  },
+  "material": {
+    "candidate_only": "EOS Aluminium Constellium CP1",
+    "printed_hot_coupon_card_qualified": false,
+    "production_powder_lot_qualified": false
+  },
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "porsche_917_interfaces_measured": false,
+    "scan_master_watertight_local_topology": true,
+    "faceted_brep_roundtrip_valid": true,
+    "faceted_brep_gmsh_volume_meshable": false,
+    "whole_head_production_brep": false,
+    "functional_surfaces_reconstructed": false,
+    "minimum_wall_at_least_1_5_mm": false,
+    "closed_void_screen_zero_at_all_resolutions": false,
+    "support_fraction_below_0_5_percent": false,
+    "virtual_lpbf_process_simulation_complete": false,
+    "printed_hot_coupon_material_card": false,
+    "ct_cmm_pressure_test_complete": false,
+    "professional_engineering_review_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

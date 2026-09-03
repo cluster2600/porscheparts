@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F38",
+  "status": "hybrid_scan_conforming_checkpoint_release_blocked",
+  "classification": "derived_scan_master_plus_faceted_brep_proxy_not_production_cad",
+  "contract": {
+    "path": "../../f38-brep-lpbf-contract.json",
+    "sha256": "d154f083118f7ddf199eb4d30878de22e4a2966832235e108a613e2982f38274"
+  },
+  "generator": {
+    "path": "../../source/build_f38_brep_lpbf.py",
+    "sha256": "81d73cd80c8b4f4b8d382d691cf7b97331d1fd1e1153927ad0e485c00622d83f"
+  },
+  "source_provenance": {
+    "f37_exact_head_mesh_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "f37_cad_report_sha256": "2a9fac821474d5dd218cc029e7ff3ed6bc1841a38d3189194f44261ab48bb8b4",
+    "f36_geometry_report_sha256": "7bc414009e6b09a7ca190e304eb708e52e37a991b479f0f78a14e4cc53256f36",
+    "flow_core_sha256": "771ddca592483708a4515f0dc9db4eb335913a933d9f8eb95c8010b1386ab1dc",
+    "oil_core_sha256": "791b97e12f6f43ac6a627cd1a69fb0f5b580f2f75224b4159c4b54b80b6228e1",
+    "absolute_scale_confirmed": false
+  },
+  "geometry_hierarchy": {
+    "authoritative_surface_master": {
+      "path": "local-only://917-head-f38-scan-offset-master.stl",
+      "repository_policy": "local_only_derived_scan_mesh",
+      "sha256": "d51129380f33d5613b6e8cf8cc5e01f05d4fcd9f22f5e98682c8d05b86f0e032",
+      "vertices": 427985,
+      "triangles": 857330,
+      "watertight": true,
+      "winding_consistent": true,
+      "euler_number": -680,
+      "volume_mm3_if_scale_is_mm": 1146833.2497045512,
+      "surface_area_mm2_if_scale_is_mm": 198806.7278489375,
+      "bounds_mm_if_scale_is_mm": [
+        [-61.5750007629, -90.0749969482, -9.8249998093],
+        [64.5749969482, 117.0749969482, 87.8249969482]
+      ],
+      "method": "same_F37_connectivity_vertex_normal_offset_0_45_mm",
+      "corresponding_vertex_displacement_mm": 0.45,
+      "surface_deviation_upper_bound_mm": 0.45,
+      "external_boxes_or_synthetic_fin_stack": false
+    },
+    "faceted_brep_proxy": {
+      "role": "lightweight_OCCT_roundtrip_and_visual_exchange_only",
+      "master_surface_replacement": false,
+      "step": {
+        "path": "local-only://917-head-f38-faceted-proxy.step",
+        "repository_policy": "local_only_not_published",
+        "bytes": 17736318,
+        "sha256": "647586ee482758ce62731033c4c4ef9c4af50bb117a9d0f07e035700fee6f544"
+      },
+      "stl": {
+        "path": "local-only://917-head-f38-faceted-proxy.stl",
+        "repository_policy": "local_only_not_published",
+        "bytes": 350084,
+        "sha256": "e99819790e7506850a61954abe33f0c8318f980130377c66c8bf58efae62b83e",
+        "triangles": 7000,
+        "watertight": true,
+        "euler_number": -680,
+        "volume_mm3_if_scale_is_mm": 1150620.6065231678
+      },
+      "occt_build123d_roundtrip": {
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 7000,
+        "valid": true,
+        "manifold": true,
+        "volume_mm3_if_scale_is_mm": 1150620.606523098
+      },
+      "production_brep": false
+    },
+    "functional_components": {
+      "flow_and_combustion_core": "F36 local STL referenced by sha256; visible in section",
+      "oil_core": "F37 local STL referenced by sha256; visible in section",
+      "rocker_carrier_step": {
+        "path": "../f37-manufacturing-definition/rocker-carrier-as-printed.step",
+        "sha256": "b1e2ea048fced92bd4087b4cc467b1c651a570a6770d2b010ad07c716984d827"
+      },
+      "four_rocker_envelopes_step": {
+        "path": "../f37-manufacturing-definition/four-rocker-envelopes.step",
+        "sha256": "0fd62fa4376619cfb367c264d0f9c44d56f54c218683b7a64130b2224d0f014c"
+      },
+      "two_rocker_shafts_step": {
+        "path": "../f37-manufacturing-definition/two-rocker-shafts.step",
+        "sha256": "53f1ff0ccafd5803aa8760ce866bfd8bcf38392cd1bf9101271fb907c36e4540"
+      },
+      "valves_guides_seats_springs_and_cups": "reuse_F37_conditional_component_STL_or_regenerate_F38_valvetrain_bundle",
+      "integrated_dimensional_fit_proved": false
+    }
+  },
+  "independent_screens": {
+    "minimum_wall_sample": {
+      "method": "exact_triangle_inward_ray_uniform_surface_sample",
+      "sample_count": 1000,
+      "resolved_count": 1000,
+      "minimum_mm": 0.00497486149,
+      "p01_mm": 0.11129049623,
+      "p05_mm": 1.64996575443,
+      "median_mm": 19.8778757512,
+      "requirement_mm": 1.5,
+      "passes": false,
+      "limitation": "sampled_not_exhaustive_and_not_CT"
+    },
+    "trapped_void_voxel_resolution_study": {
+      "geometry": "reopened_7000_face_proxy_STL",
+      "results": [
+        {"pitch_mm": 2.0, "trapped_voxels": 0, "trapped_volume_mm3": 0.0},
+        {"pitch_mm": 1.5, "trapped_voxels": 11, "trapped_volume_mm3": 37.125},
+        {"pitch_mm": 1.0, "trapped_voxels": 106, "trapped_volume_mm3": 106.0}
+      ],
+      "resolution_converged": false,
+      "zero_at_all_resolutions": false,
+      "passes": false
+    },
+    "lpbf_overhang_screen": {
+      "geometry": "reopened_authoritative_master_STL",
+      "orientation": "rotate_x_45_deg",
+      "support_area_mm2_if_scale_is_mm": 20617.654173241,
+      "support_area_fraction": 0.1037070243865552,
+      "requirement_fraction": 0.005,
+      "passes": false,
+      "is_virtual_build_process_simulation": false
+    },
+    "gmsh_volume_mesh": {
+      "geometry": "faceted_brep_proxy_STEP",
+      "attempted": true,
+      "success": false,
+      "failure_signature": "PLC segment/facet intersection",
+      "cae_ready": false,
+      "failure_log_published": false
+    }
+  },
+  "images": [
+    {
+      "path": "917-head-f38-exterior.png",
+      "bytes": 469581,
+      "sha256": "db1b5b05d330ba065066e6ee9104e0f9627c859210aaaf2060e2dca78dfa15fd",
+      "role": "shaded_exterior_master_morphology"
+    },
+    {
+      "path": "917-head-f38-scan-overlay.png",
+      "bytes": 540916,
+      "sha256": "c5f5fb15a9f40dce744c230ccf02cc3602341a88713335e338e76b685eb79204",
+      "role": "F37_scan_vs_F38_offset_overlay"
+    },
+    {
+      "path": "917-head-f38-section.png",
+      "bytes": 528761,
+      "sha256": "43bc205ba816646ec594aced6a9dadcc85cf4ae9902adf335d27d5cc62c0cb42",
+      "role": "large_section_with_flow_and_oil_cores"
+    }
+  ],
+  "material_status": {
+    "candidate_only": "EOS Aluminium Constellium CP1",
+    "hot_coupon_card_qualified": false,
+    "production_material_released": false
+  },
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "porsche_917_interfaces_measured": false,
+    "scan_master_watertight_local_topology": true,
+    "faceted_brep_roundtrip_valid": true,
+    "faceted_brep_gmsh_volume_meshable": false,
+    "whole_head_production_brep": false,
+    "functional_surfaces_reconstructed": false,
+    "minimum_wall_at_least_1_5_mm": false,
+    "closed_void_screen_zero_at_all_resolutions": false,
+    "support_fraction_below_0_5_percent": false,
+    "virtual_lpbf_process_simulation_complete": false,
+    "hot_material_card_qualified": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "verdict": "NON IMPRIMABLE / NON CAE-READY. F38 est un checkpoint geometrique scan-conforming; il faut reprendre localement les parois minces, supprimer/ouvrir les volumes pieges, reconstruire les surfaces fonctionnelles et produire un domaine volumique maillable avant toute simulation ou fabrication."
+}

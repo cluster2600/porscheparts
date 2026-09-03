@@ -16,6 +16,7 @@ F37_CAE_IMAGE ?= 3dprinting993-cae-integrated-f33:dev
 F37_CAE_IMAGE_ID ?= sha256:4a19fa7d1f253beb3106970ae2635cff85d5aeeaf062aaf807d1dab7b940fb33
 
 .PHONY: 917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly 917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish 917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad 917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich 917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea 917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan 917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render 917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check 917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check 917-manufacturing-f37-check
+.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check
 
 check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
@@ -481,6 +482,21 @@ engine-components:
 	test -f work/917-scan-conforming-f37/head-mesh-proof/f37-printable-head-mesh-report.json
 	F37_EVIDENCE_DIR=work/917-scan-conforming-f37/cad \
 		python3 tests/test_917_f37_manufacturing_definition.py -v
+
+917-f38-brep-lpbf-evidence-check:
+	python3 tests/test_917_f38_brep_lpbf.py -v
+
+917-f38-valvetrain-package-evidence-check:
+	python3 tests/test_917_f38_valvetrain_package.py -v
+
+917-f38-cooling-evidence-check:
+	python3 tests/test_917_f38_cooling_redesign.py -v
+
+917-f38-material-coupon-plan-check:
+	python3 tests/test_917_f38_material_coupon_plan.py -v
+
+917-f38-engineering-check:
+	python3 tests/test_917_f38_engineering_checkpoint.py -v
 
 917-aircooled-4v-f34-publish:
 	python3 twins/reference-917-engine/source/publish_aircooled_4v_f34.py \
