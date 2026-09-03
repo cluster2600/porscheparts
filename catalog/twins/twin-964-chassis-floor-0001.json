@@ -105,7 +105,8 @@
       "provenance": "valeurs rapportees par le proprietaire du projet, non retrouvees dans le volume V lu ici",
       "note": "Ecart de 0,2 mm non explique. Caisse galvanisee a chaud : zinc, appret, peinture et cire s'ajoutent a la tole, donc une mesure sur panneau en place mesure l'empilement et non l'acier. Le calcul retient 0,8 mm ; retenir 1,0 surestimerait la raideur de 25 %."
     },
-    "note": "Le volume V nomme les six panneaux en acier haute resistance mais ne publie ni nuance ni epaisseur. La densite 7,85e-6 kg/mm3 utilisee pour la masse est une valeur d'acier generique, pas une donnee constructeur."
+    "note": "Le volume V nomme les six panneaux en acier haute resistance mais ne publie ni nuance ni epaisseur. La densite 7,85e-6 kg/mm3 utilisee pour la masse est une valeur d'acier generique, pas une donnee constructeur. Recherche germanophone du 2026-09-03 : le procede de galvanisation a chaud est confirme par une source Porsche primaire, mais AUCUNE source publique, allemande ou autre, ne publie d'epaisseur de tole en mm, de masse de zinc au m2 ni de nuance d'acier pour la 964. L'ecart de 0,2 mm reste donc non explique et le calcul a 0,8 mm reste le choix defendable.",
+    "process": "tole d'acier galvanisee a chaud sur les deux faces (feuerverzinkt), caisse en blanc entiere depuis le millesime 1981, documente par Porsche ; voir SRC-PORSCHE-GALVANISED-BODY-911"
   },
   "interfaces": [
     {
@@ -172,7 +173,8 @@
       "Echelle du scan : empattement mesure 2278.1 mm contre 2272 mm d'usine, soit +0.27 %. Le maillage est en millimetres a l'echelle 1:1.",
       "Repere : apres correction du lacet, l'ecart gauche/droite des centres de roue tombe de 66.7 a 12.7 mm a l'avant et de 51.1 a 5.3 mm a l'arriere, alors que les roues n'entrent pas dans l'ajustement du plan de symetrie.",
       "Schema de cotation : la diagonale croisee M se recalcule a 1787.8 mm depuis E, F et R publies, contre 1788 +/- 3 mm au manuel, soit 0.2 mm d'ecart. Verification purement documentaire, independante du scan.",
-      "Essai de torsion CalculiX : la raideur suit l'epaisseur lineairement (rapport 1,251 pour 1,250), donc caisson en cisaillement de membrane. Les 1 % de noeuds les plus charges sont a 100 % dans le longeron, y compris apres exclusion de 300 mm autour de l'encastrement, ce qui corrobore le choix d'acier HS de la planche 50-013 pour l'inner side member."
+      "Essai de torsion CalculiX : la raideur suit l'epaisseur lineairement (rapport 1,251 pour 1,250), donc caisson en cisaillement de membrane. Les 1 % de noeuds les plus charges sont a 100 % dans le longeron, y compris apres exclusion de 300 mm autour de l'encastrement, ce qui corrobore le choix d'acier HS de la planche 50-013 pour l'inner side member.",
+      "Convergence a noter, sans surinterpretation : le calcul place le chemin d'effort en torsion dans le longeron, la planche 50-013 y met de l'acier haute resistance, et les guides d'achat allemands nomment la prise de cric du bas de caisse comme foyer de corruption recurrent. Il en decoule que, A CORROSION EGALE, une attaque a la prise de cric a plus de consequence structurelle qu'ailleurs sur le plancher. Ce raisonnement porte sur la consequence, pas sur la frequence : aucune source ne documente de defaillance structurelle a cet endroit."
     ],
     "known_limits": [
       "Le calage longitudinal du reseau de datums dans le repere vehicule n'est pas resolu. Le test de recalage sur le scan est non concluant : un controle montre que 68 % de points tires au hasard sous la voiture tombent aussi a moins de 2.8 mm de structure, l'empreinte du plancher couvrant presque tout le plan. Le resultat 16/16 ne prouve donc rien.",
@@ -183,7 +185,10 @@
       "Les sections de longeron et de traverse, ainsi que l'epaisseur de tole, ne sont pas publiees au volume V : ce sont des valeurs de travail declarees ASSUMED dans le script. La masse de 36.8 kg ne concerne que les solides modelises et n'est pas une masse de caisse.",
       "Le residu de symetrie du scan est de 7.54 mm RMS. Une partie est reelle, un dessous de 911 etant asymetrique, mais aucune interface ne peut etre declaree mesuree a mieux que cet ordre de grandeur.",
       "Aucun controle physique : conformement a la charte, rien n'a ete pese ni mesure sur un vehicule.",
-      "La raideur en torsion calculee, 2442 N.m/deg a 0,8 mm, ne vaut que pour les solides modelises. Sans tablier, cloison arriere, tunnel, passages de roue ni pavillon, ce n'est pas la raideur d'une caisse 964 et ne doit pas etre citee comme telle."
+      "La raideur en torsion calculee, 2442 N.m/deg a 0,8 mm, ne vaut que pour les solides modelises. Sans tablier, cloison arriere, tunnel, passages de roue ni pavillon, ce n'est pas la raideur d'une caisse 964 et ne doit pas etre citee comme telle.",
+      "Recherche germanophone : aucune raideur en torsion publiee n'a ete trouvee pour la 964, quelle que soit la variante. Les 2442 N.m/deg calcules n'ont donc aucune valeur d'usine contre laquelle etre confrontes, ni dans un sens ni dans l'autre.",
+      "La nuance des six panneaux en acier haute resistance de la planche 50-013 reste inconnue : aucune source publique ne la donne. Le calcul n'utilise qu'un acier generique E = 210 000 MPa, valable pour la raideur mais pas pour une marge a la limite d'elasticite.",
+      "Le calage longitudinal a une piste identifiee et fermee : Celette vend sous la reference 564.320 un jeu specifique 964 annonce a 42 points de controle, mais toute la documentation est derriere une authentification. Voir SRC-CELETTE-564-320-964-JIG. La voie realiste passe par un carrossier abonne a Car-O-Data ou equipe Celette, pas par une source publique."
     ]
   }
 }
