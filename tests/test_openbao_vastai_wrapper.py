@@ -1407,7 +1407,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 },
             ),
             mock.patch.object(
-                self.wrapper.subprocess, "run", return_value=completed
+                self.wrapper,
+                "run_component_factory_f41_ssh_probe",
+                return_value=completed,
             ) as run,
             mock.patch.object(
                 self.wrapper,
@@ -1442,7 +1444,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertNotIn("ssh-add", command)
         self.assertIn("/workspace/READY", command[-1])
         self.assertIn("/workspace/image-smoke.json", command[-1])
-        self.assertEqual(run.call_args.kwargs["env"]["LC_ALL"], "C")
+        self.assertEqual(run.call_args.args[1]["LC_ALL"], "C")
 
     def test_component_factory_f41_ssh_never_accepts_failed_ready(self):
         failed = self.wrapper.subprocess.CompletedProcess(
@@ -1469,7 +1471,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 },
             ),
             mock.patch.object(
-                self.wrapper.subprocess, "run", return_value=failed
+                self.wrapper,
+                "run_component_factory_f41_ssh_probe",
+                return_value=failed,
             ) as run,
             mock.patch.object(
                 self.wrapper,
@@ -1533,9 +1537,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 },
             ),
             mock.patch.object(
-                self.wrapper.subprocess,
-                "run",
-                side_effect=self.wrapper.subprocess.TimeoutExpired("ssh", 20),
+                self.wrapper,
+                "run_component_factory_f41_ssh_probe",
+                side_effect=self.wrapper.ComponentFactoryF41ProbeTimeout(),
             ),
             mock.patch.object(
                 self.wrapper,
@@ -1547,6 +1551,234 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         ):
             self.wrapper.verify_component_factory_f41_ssh_ready("unused", 41341)
         self.assertEqual(str(raised.exception), expected)
+
+    def test_component_factory_f41_spamming_ssh_is_bounded_and_destroyed(self):
+        attempt_label = self.component_factory_f41_attempt_label()
+        offer = self.eligible_component_factory_f41_offer()
+        stdout = io.StringIO()
+        stderr = io.StringIO()
+        with tempfile.TemporaryDirectory(prefix="f41-spamming-ssh-") as temporary:
+            root = Path(temporary)
+            fake_ssh = root / "ssh"
+            pid_path = root / "fake-ssh.pid"
+            fake_ssh.write_text(
+                f"#!{sys.executable}\n"
+                "import os\n"
+                "import time\n"
+                f"pid_path = {str(pid_path)!r}\n"
+                "with open(pid_path, 'w', encoding='ascii') as handle:\n"
+                "    handle.write(str(os.getpid()))\n"
+                "payload = b'x' * 8192\n"
+                "while True:\n"
+                "    os.write(1, payload)\n"
+                "    os.write(2, payload)\n"
+                "    time.sleep(0.001)\n",
+                encoding="utf-8",
+            )
+            fake_ssh.chmod(0o755)
+
+            def vast_request(_api_key, path, *, method="GET", payload=None):
+                if path == f"/api/v0/asks/{offer['id']}/" and method == "PUT":
+                    return {"new_contract": 41341}
+                if path == "/api/v0/instances/41341/" and method == "GET":
+                    return {
+                        "instances": self.component_factory_f41_instance(
+                            label=attempt_label,
+                            ssh_host="203.0.113.41",
+                            ssh_port=32141,
+                        )
+                    }
+                raise AssertionError((path, method, payload))
+
+            with (
+                mock.patch.object(
+                    self.wrapper, "simready_launch_lock", return_value=nullcontext()
+                ),
+                mock.patch.object(
+                    self.wrapper, "require_no_component_factory_f41_instance"
+                ),
+                mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+                mock.patch.object(
+                    self.wrapper,
+                    "component_factory_f41_attempt_label",
+                    return_value=attempt_label,
+                ),
+                mock.patch.object(
+                    self.wrapper, "vast_request", side_effect=vast_request
+                ),
+                mock.patch.object(
+                    self.wrapper, "verify_single_component_factory_f41_instance"
+                ),
+                mock.patch.object(
+                    self.wrapper, "verify_component_factory_f41_contract"
+                ),
+                mock.patch.object(
+                    self.wrapper, "validate_approved_ssh_private_key"
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "prepare_component_factory_f41_known_hosts",
+                    return_value=root / "known-hosts",
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM",
+                    4096,
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "COMPONENT_FACTORY_F41_SSH_PROBE_TIMEOUT_SECONDS",
+                    5,
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS",
+                    0.2,
+                ),
+                mock.patch.dict(self.wrapper.os.environ, {"PATH": str(root)}),
+                mock.patch.object(
+                    self.wrapper,
+                    "list_instances",
+                    return_value=[{"id": 41341, "label": attempt_label}],
+                ),
+                mock.patch.object(
+                    self.wrapper, "destroy_instance_verified"
+                ) as destroy,
+                mock.patch("sys.stdout", stdout),
+                mock.patch("sys.stderr", stderr),
+                self.assertRaisesRegex(
+                    self.wrapper.SafeError, "ssh_probe_output_limit"
+                ),
+            ):
+                self.wrapper.launch_component_factory_f41_offer(
+                    "unused", offer
+                )
+            destroy.assert_called_once_with("unused", 41341)
+            self.assertLessEqual(len(stdout.getvalue()), 1024)
+            self.assertLessEqual(len(stderr.getvalue()), 1024)
+            fake_pid = int(pid_path.read_text(encoding="ascii"))
+            with self.assertRaises(ProcessLookupError):
+                os.kill(fake_pid, 0)
+
+    def test_component_factory_f41_local_probe_failures_are_fatal(self):
+        failures = (
+            (
+                self.wrapper.ComponentFactoryF41ProbeOutputLimit(),
+                "ssh_probe_output_limit",
+            ),
+            (
+                self.wrapper.ComponentFactoryF41ProbeSpawnError(),
+                "ssh_probe_spawn_failed",
+            ),
+            (
+                self.wrapper.ComponentFactoryF41ProbeLocalIoError(),
+                "ssh_probe_local_io_failed",
+            ),
+            (
+                self.wrapper.ComponentFactoryF41ProbeCleanupError(),
+                "ssh_probe_cleanup_failed",
+            ),
+        )
+        for failure, category in failures:
+            with (
+                self.subTest(category=category),
+                mock.patch.object(
+                    self.wrapper, "validate_approved_ssh_private_key"
+                ),
+                mock.patch.object(
+                    self.wrapper, "COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS", 3
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "vast_request",
+                    return_value={
+                        "instances": self.component_factory_f41_instance(
+                            ssh_host="203.0.113.41", ssh_port=32141
+                        )
+                    },
+                ),
+                mock.patch.object(
+                    self.wrapper,
+                    "run_component_factory_f41_ssh_probe",
+                    side_effect=failure,
+                ) as run,
+                mock.patch.object(
+                    self.wrapper,
+                    "prepare_component_factory_f41_known_hosts",
+                    return_value=Path("/tmp/f41-test-known-hosts-local-failure"),
+                ),
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaisesRegex(self.wrapper.SafeError, category),
+            ):
+                self.wrapper.verify_component_factory_f41_ssh_ready(
+                    "unused", 41341
+                )
+            run.assert_called_once()
+            sleep.assert_not_called()
+
+    def test_component_factory_f41_probe_setup_failure_is_guarded(self):
+        process = mock.Mock()
+        process.stdout = io.BytesIO()
+        process.stderr = io.BytesIO()
+        with (
+            mock.patch.object(
+                self.wrapper.subprocess, "Popen", return_value=process
+            ) as popen,
+            mock.patch.object(
+                self.wrapper.selectors,
+                "DefaultSelector",
+                side_effect=OSError("sensitive local error"),
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "terminate_component_factory_f41_probe",
+                return_value=True,
+            ) as terminate,
+            self.assertRaises(
+                self.wrapper.ComponentFactoryF41ProbeLocalIoError
+            ),
+        ):
+            self.wrapper.run_component_factory_f41_ssh_probe(
+                ["ssh", "example.invalid"], {"LC_ALL": "C"}
+            )
+        terminate.assert_called_once_with(process)
+        self.assertTrue(process.stdout.closed)
+        self.assertTrue(process.stderr.closed)
+        self.assertTrue(popen.call_args.kwargs["start_new_session"])
+        self.assertIs(
+            popen.call_args.kwargs["stdin"], self.wrapper.subprocess.DEVNULL
+        )
+        self.assertIs(
+            popen.call_args.kwargs["stdout"], self.wrapper.subprocess.PIPE
+        )
+        self.assertIs(
+            popen.call_args.kwargs["stderr"], self.wrapper.subprocess.PIPE
+        )
+
+        failed_process = mock.Mock()
+        failed_process.stdout = io.BytesIO()
+        failed_process.stderr = io.BytesIO()
+        with (
+            mock.patch.object(
+                self.wrapper.subprocess, "Popen", return_value=failed_process
+            ),
+            mock.patch.object(
+                self.wrapper.selectors,
+                "DefaultSelector",
+                side_effect=OSError("sensitive local error"),
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "terminate_component_factory_f41_probe",
+                return_value=False,
+            ),
+            self.assertRaises(
+                self.wrapper.ComponentFactoryF41ProbeCleanupError
+            ),
+        ):
+            self.wrapper.run_component_factory_f41_ssh_probe(
+                ["ssh", "example.invalid"], {"LC_ALL": "C"}
+            )
 
     def test_component_factory_f41_fatal_ssh_diagnostics_fail_fast(self):
         for stderr, category in (
@@ -1595,7 +1827,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                     },
                 ),
                 mock.patch.object(
-                    self.wrapper.subprocess, "run", return_value=completed
+                    self.wrapper,
+                    "run_component_factory_f41_ssh_probe",
+                    return_value=completed,
                 ) as run,
                 mock.patch.object(
                     self.wrapper,
@@ -1643,10 +1877,10 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 },
             ),
             mock.patch.object(
-                self.wrapper.subprocess,
-                "run",
+                self.wrapper,
+                "run_component_factory_f41_ssh_probe",
                 side_effect=[
-                    self.wrapper.subprocess.TimeoutExpired("ssh", 20),
+                    self.wrapper.ComponentFactoryF41ProbeTimeout(),
                     missing,
                     ready,
                 ],

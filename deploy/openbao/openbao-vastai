@@ -9,7 +9,9 @@ import json
 import math
 import os
 import secrets
+import selectors
 import shlex
+import signal
 import socket
 import ssl
 import stat
@@ -80,6 +82,9 @@ COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 COMPONENT_FACTORY_F41_CLEANUP_PREFIX = "OPENBAO_VASTAI_F41_CLEANUP "
+COMPONENT_FACTORY_F41_SSH_PROBE_TIMEOUT_SECONDS = 20
+COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM = 64 * 1024
+COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS = 0.5
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -103,6 +108,26 @@ class SafeHttpError(SafeError):
     def __init__(self, source: str, status_code: int, detail: str = "") -> None:
         super().__init__(f"{source} rejected the request with HTTP {status_code}{detail}")
         self.status_code = status_code
+
+
+class ComponentFactoryF41ProbeTimeout(Exception):
+    """The bounded F41 SSH probe exceeded its absolute deadline."""
+
+
+class ComponentFactoryF41ProbeOutputLimit(Exception):
+    """The bounded F41 SSH probe exceeded one fixed stream limit."""
+
+
+class ComponentFactoryF41ProbeSpawnError(Exception):
+    """The local OpenSSH process could not be started safely."""
+
+
+class ComponentFactoryF41ProbeLocalIoError(Exception):
+    """The local bounded drain failed before the SSH probe completed."""
+
+
+class ComponentFactoryF41ProbeCleanupError(Exception):
+    """The isolated SSH process group could not be proven terminated."""
 
 
 def validate_private_file(path: Path) -> None:
@@ -1755,6 +1780,157 @@ print('F41_REMOTE_READY')
     return f"python -c {shlex.quote(script)}"
 
 
+def terminate_component_factory_f41_probe(
+    process: subprocess.Popen[bytes],
+) -> bool:
+    """Terminate and prove absence of the isolated SSH process group."""
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    except OSError:
+        try:
+            process.terminate()
+        except OSError:
+            pass
+    try:
+        process.wait(timeout=COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS)
+    except subprocess.TimeoutExpired:
+        pass
+    except OSError:
+        pass
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    except OSError:
+        if process.poll() is None:
+            try:
+                process.kill()
+            except OSError:
+                pass
+    try:
+        process.wait(timeout=COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS)
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    try:
+        parent_reaped = process.poll() is not None
+    except OSError:
+        parent_reaped = False
+    try:
+        os.killpg(process.pid, 0)
+    except ProcessLookupError:
+        group_gone = True
+    except OSError:
+        group_gone = False
+    else:
+        group_gone = False
+    return parent_reaped and group_gone
+
+
+def run_component_factory_f41_ssh_probe(
+    command: list[str], environment: dict[str, str]
+) -> subprocess.CompletedProcess[str]:
+    """Run SSH with an absolute deadline and bounded progressive pipe drains."""
+    selector: selectors.BaseSelector | None = None
+    stdout = None
+    stderr = None
+    try:
+        process = subprocess.Popen(
+            command,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            env=environment,
+            start_new_session=True,
+        )
+    except FileNotFoundError:
+        raise
+    except OSError as exc:
+        raise ComponentFactoryF41ProbeSpawnError() from exc
+    try:
+        stdout = process.stdout
+        stderr = process.stderr
+        if stdout is None or stderr is None:
+            raise ComponentFactoryF41ProbeLocalIoError()
+        streams = {stdout: "stdout", stderr: "stderr"}
+        buffers = {"stdout": bytearray(), "stderr": bytearray()}
+        selector = selectors.DefaultSelector()
+        deadline = (
+            time.monotonic() + COMPONENT_FACTORY_F41_SSH_PROBE_TIMEOUT_SECONDS
+        )
+        for stream, name in streams.items():
+            os.set_blocking(stream.fileno(), False)
+            selector.register(stream, selectors.EVENT_READ, name)
+        while selector.get_map():
+            remaining_seconds = deadline - time.monotonic()
+            if remaining_seconds <= 0:
+                raise ComponentFactoryF41ProbeTimeout()
+            events = selector.select(min(remaining_seconds, 0.25))
+            for key, _ in events:
+                stream = key.fileobj
+                name = key.data
+                remaining_bytes = (
+                    COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM
+                    + 1
+                    - len(buffers[name])
+                )
+                if remaining_bytes <= 0:
+                    raise ComponentFactoryF41ProbeOutputLimit()
+                try:
+                    chunk = os.read(stream.fileno(), min(16 * 1024, remaining_bytes))
+                except BlockingIOError:
+                    continue
+                if not chunk:
+                    selector.unregister(stream)
+                    continue
+                if (
+                    len(buffers[name]) + len(chunk)
+                    > COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM
+                ):
+                    raise ComponentFactoryF41ProbeOutputLimit()
+                buffers[name].extend(chunk)
+        remaining_seconds = deadline - time.monotonic()
+        if remaining_seconds <= 0:
+            raise ComponentFactoryF41ProbeTimeout()
+        try:
+            returncode = process.wait(timeout=remaining_seconds)
+        except subprocess.TimeoutExpired:
+            raise ComponentFactoryF41ProbeTimeout()
+    except OSError as exc:
+        if not terminate_component_factory_f41_probe(process):
+            raise ComponentFactoryF41ProbeCleanupError() from exc
+        raise ComponentFactoryF41ProbeLocalIoError() from exc
+    except BaseException as exc:
+        if not terminate_component_factory_f41_probe(process) and isinstance(
+            exc, Exception
+        ):
+            raise ComponentFactoryF41ProbeCleanupError() from exc
+        raise
+    finally:
+        if selector is not None:
+            try:
+                selector.close()
+            except Exception:
+                pass
+        if stdout is not None:
+            try:
+                stdout.close()
+            except Exception:
+                pass
+        if stderr is not None:
+            try:
+                stderr.close()
+            except Exception:
+                pass
+    return subprocess.CompletedProcess(
+        args=command,
+        returncode=returncode,
+        stdout=bytes(buffers["stdout"]).decode("utf-8", errors="replace"),
+        stderr=bytes(buffers["stderr"]).decode("utf-8", errors="replace"),
+    )
+
+
 def classify_component_factory_f41_ssh_probe(
     completed: subprocess.CompletedProcess[str],
 ) -> str:
@@ -1881,24 +2057,36 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Pa
         try:
             ssh_environment = dict(os.environ)
             ssh_environment["LC_ALL"] = "C"
-            completed = subprocess.run(
-                command,
-                check=False,
-                capture_output=True,
-                text=True,
-                timeout=20,
-                env=ssh_environment,
+            completed = run_component_factory_f41_ssh_probe(
+                command, ssh_environment
             )
         except FileNotFoundError as exc:
             raise SafeError("OpenSSH client is unavailable for F41 verification") from exc
-        except subprocess.TimeoutExpired:
+        except ComponentFactoryF41ProbeTimeout:
             last_probe = "ssh_probe_timeout"
             time.sleep(POLL_INTERVAL_SECONDS)
             continue
-        except subprocess.SubprocessError:
-            last_probe = "ssh_probe_failed"
-            time.sleep(POLL_INTERVAL_SECONDS)
-            continue
+        except (
+            ComponentFactoryF41ProbeOutputLimit,
+            ComponentFactoryF41ProbeSpawnError,
+            ComponentFactoryF41ProbeLocalIoError,
+            ComponentFactoryF41ProbeCleanupError,
+            OSError,
+            subprocess.SubprocessError,
+        ) as exc:
+            if isinstance(exc, ComponentFactoryF41ProbeOutputLimit):
+                fixed_probe = "ssh_probe_output_limit"
+            elif isinstance(exc, ComponentFactoryF41ProbeSpawnError):
+                fixed_probe = "ssh_probe_spawn_failed"
+            elif isinstance(exc, ComponentFactoryF41ProbeCleanupError):
+                fixed_probe = "ssh_probe_cleanup_failed"
+            else:
+                fixed_probe = "ssh_probe_local_io_failed"
+            raise SafeError(
+                "F41 SSH /workspace/READY and image smoke verification failed "
+                f"(last state: {last_state}; last probe: {fixed_probe}); do not "
+                "treat the instance as ready"
+            ) from exc
         if completed.returncode == 0 and completed.stdout.strip() == "F41_REMOTE_READY":
             validate_component_factory_f41_known_hosts(known_hosts_path, instance_id)
             return known_hosts_path

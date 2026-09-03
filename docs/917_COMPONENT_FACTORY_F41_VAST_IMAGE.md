@@ -265,6 +265,12 @@ réémise. Les échecs d'authentification, de clé hôte, de rapport, de contrat
 d'`onstart` échouent immédiatement. Le démarrage, l'attente de `READY` et les
 échecs transitoires de transport (refus, timeout, connexion fermée, réseau
 injoignable ou erreur générique) restent réessayables dans la fenêtre bornée.
+Le processus OpenSSH est lancé dans son propre groupe avec une échéance absolue
+de 20 secondes et un drain progressif limité à 64 Kio par flux. Tout dépassement
+arrête le groupe par `TERM`, puis `KILL`, échoue immédiatement et déclenche le
+rollback Vast avant qu'une sortie distante puisse saturer la mémoire locale.
+Un défaut de création, d'E/S locale ou de terminaison du probe est également
+fatal, exposé uniquement par une catégorie fixe et jamais par sa sortie brute.
 
 Le wrapper refuse tous les digests révoqués avant le verrou de location,
 l'enregistrement SSH et l'appel de création payant. Le prochain digest ne sera
