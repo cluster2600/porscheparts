@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-964-CHASSIS-FLOOR-0001",
+  "name": "Plancher et repere de caisse de Porsche 911 (964), acier",
+  "vehicle": {
+    "generation": "964",
+    "variants": ["Carrera_2", "Carrera_4"],
+    "model_years": { "from": 1989, "to": 1994 }
+  },
+  "scope": {
+    "zone": "chassis_floor_assembly",
+    "purposes": ["datum_frame", "envelope", "repair_control"]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "vehicle",
+    "origin": "plan de symetrie, a la verticale du centre d'essieu avant, sur le plan de sol nominal",
+    "axes": "X vers l'avant, Y vers la gauche, Z vers le haut",
+    "units": "mm",
+    "vehicle_transform": "etabli par ajustement du plan de symetrie sur le scan : lacet -2.236 deg, roulis -0.451 deg, axe median a X_scan +112.0 mm ; sol pris au contact moyen des quatre pneus"
+  },
+  "components": [
+    { "component_id": "FLOOR_PAN",                "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "SILL_LEFT",                "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "SILL_RIGHT",               "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "FRONT_FLOOR_MEMBER",       "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "SEAT_BASE_MEMBER",         "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "REAR_AXLE_CROSSMEMBER",    "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "ENGINE_MOUNT_CROSSMEMBER", "role": "candidate", "part_id": null, "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step", "accuracy_mm": null },
+    { "component_id": "SCAN_UNDERSIDE_ENVELOPE",  "role": "host",      "part_id": null, "geometry_file": "", "accuracy_mm": null }
+  ],
+  "materials": {
+    "high_strength_steel_members": [
+      "front_wheel_housing", "inner_side_member", "front_floor_section_member",
+      "seat_base", "rear_axle_crossmember", "crossmember_with_engine_mount"
+    ],
+    "source": "planche 50-013, « HS steel body panels »",
+    "grade": null,
+    "sheet_thickness_mm": null,
+    "note": "Le volume V nomme les six panneaux en acier haute resistance mais ne publie ni nuance ni epaisseur. La densite 7,85e-6 kg/mm3 utilisee pour la masse est une valeur d'acier generique, pas une donnee constructeur."
+  },
+  "interfaces": [
+    {
+      "interface_id": "IF_BODY_CONTROL_DIMENSIONS",
+      "kind": "datum",
+      "components": ["FLOOR_PAN", "SILL_LEFT", "SILL_RIGHT"],
+      "required_measurements": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "R", "S"],
+      "acceptance_rule": "chaque cote de controle recalculee sur le modele doit tomber dans la tolerance publiee en 50-03, ecart gauche/droite compris",
+      "status": "partially_satisfied"
+    },
+    {
+      "interface_id": "IF_SCAN_TO_VEHICLE_FRAME",
+      "kind": "registration",
+      "components": ["SCAN_UNDERSIDE_ENVELOPE", "FLOOR_PAN"],
+      "required_measurements": ["LONGITUDINAL_ANCHOR"],
+      "acceptance_rule": "au moins un point de datum publie doit etre localisable sur le scan a mieux que sa tolerance",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "twins/964-chassis/source/floor_assembly.py",
+    "derived_files": [
+      "twins/964-chassis/derived/964-floor-assembly.step",
+      "twins/964-chassis/derived/964-floor-assembly.json"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "catalog/sources/src-porsche-workshop-manual-964-vol5-body.json",
+      "catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json",
+      "twins/964-chassis/evidence/overlay.png",
+      "twins/964-chassis/evidence/plan_aligned.png"
+    ],
+    "checks_passed": [
+      "Echelle du scan : empattement mesure 2278.1 mm contre 2272 mm d'usine, soit +0.27 %. Le maillage est en millimetres a l'echelle 1:1.",
+      "Repere : apres correction du lacet, l'ecart gauche/droite des centres de roue tombe de 66.7 a 12.7 mm a l'avant et de 51.1 a 5.3 mm a l'arriere, alors que les roues n'entrent pas dans l'ajustement du plan de symetrie.",
+      "Schema de cotation : la diagonale croisee M se recalcule a 1787.8 mm depuis E, F et R publies, contre 1788 +/- 3 mm au manuel, soit 0.2 mm d'ecart. Verification purement documentaire, independante du scan."
+    ],
+    "known_limits": [
+      "Le calage longitudinal du reseau de datums dans le repere vehicule n'est pas resolu. Le test de recalage sur le scan est non concluant : un controle montre que 68 % de points tires au hasard sous la voiture tombent aussi a moins de 2.8 mm de structure, l'empreinte du plancher couvrant presque tout le plan. Le resultat 16/16 ne prouve donc rien.",
+      "Consequence directe : place selon la diagonale O, le point P21 (palier moteur) tombe a X = -3112 mm, dans la zone du pare-chocs arriere, alors que le scan montre la structure moteur entre -2300 et -2800 mm. L'hypothese de diagonale croisee, verifiee pour M, n'est corroboree pour aucune autre cote.",
+      "Seuls les X de P17, P18 et P19 viennent d'une cote publiee en vue de cote (R et S). Les X de P20, P3, P5, P12 et P21 sont derives sous hypothese et restent a verifier.",
+      "Le scan est une carrosserie large non conforme a l'origine : voie arriere mesuree environ 1459 mm contre 1374 mm d'usine. Les ailes et bas de caisse elargis ne sont pas de la geometrie 964 de serie ; seuls le plancher et la structure centrale sont exploitables comme reference.",
+      "Le plan de sol est le datum le plus faible : deduit du contact des quatre pneus, il presente une dispersion de 55 mm. Toute cote en Z porte cette incertitude.",
+      "Les sections de longeron et de traverse, ainsi que l'epaisseur de tole, ne sont pas publiees au volume V : ce sont des valeurs de travail declarees ASSUMED dans le script. La masse de 36.8 kg ne concerne que les solides modelises et n'est pas une masse de caisse.",
+      "Le residu de symetrie du scan est de 7.54 mm RMS. Une partie est reelle, un dessous de 911 etant asymetrique, mais aucune interface ne peut etre declaree mesuree a mieux que cet ordre de grandeur.",
+      "Aucun controle physique : conformement a la charte, rien n'a ete pese ni mesure sur un vehicule."
+    ]
+  }
+}
