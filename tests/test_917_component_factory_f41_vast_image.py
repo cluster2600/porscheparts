@@ -29,6 +29,9 @@ ENTRYPOINT = IMAGE_ROOT / "entrypoint.sh"
 SSHD_RUNTIME_WRAPPER = IMAGE_ROOT / "sshd_runtime_wrapper.sh"
 WORKFLOW = ROOT / ".github/workflows/917-component-factory-f41-vast-image.yml"
 DOC = ROOT / "docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md"
+PUBLICATION_EVIDENCE = (
+    ROOT / "twins/reference-917-engine/evidence/f41-vast-image-publication/summary.json"
+)
 
 F28_BASE = (
     "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
@@ -256,6 +259,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertEqual(wrapper["onstart"], "/usr/local/bin/917-cad-vast-onstart")
         self.assertEqual(wrapper["ready_path"], "/workspace/READY")
         self.assertEqual(wrapper["runtime_image_ref_injected_by_launcher"], F28_BASE)
+        self.assertIsNone(wrapper["image_reference_after_publication"])
         bundle = lock["public_bundle_contract"]
         self.assertEqual(bundle["bundle_root"], F41_BUNDLE_ROOT)
         self.assertEqual(bundle["manifest_schema_version"], "1.1.0")
@@ -269,6 +273,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         gates = lock["gates"]
         self.assertTrue(gates["git_backed_bundle_mode_mapping_verified"])
         for gate in (
+            "corrected_runtime_image_republished",
             "linux_amd64_build_verified",
             "ghcr_digest_published",
             "ghcr_anonymous_pull_verified",
@@ -297,6 +302,29 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertFalse(security["embedded_private_assets"])
         self.assertFalse(security["baked_authorized_keys"])
         self.assertFalse(security["baked_ssh_host_keys"])
+
+    def test_publication_evidence_is_external_and_vast_qualification_pending(self):
+        lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        evidence = json.loads(PUBLICATION_EVIDENCE.read_text(encoding="utf-8"))
+        image = (
+            "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
+            "7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
+        )
+        self.assertIsNone(lock["image"]["digest"])
+        self.assertEqual(
+            evidence["source"]["head_sha"],
+            "7eec184437fc71f10d6a8f07aa4ba2e518a058bb",
+        )
+        self.assertEqual(evidence["workflow"]["run_id"], 33699574489)
+        self.assertEqual(evidence["image"]["immutable_reference"], image)
+        self.assertTrue(evidence["verified_scope"]["anonymous_exact_digest_pull_succeeded"])
+        self.assertTrue(
+            evidence["qualification"][
+                "authorized_candidate_for_supervised_vast_qualification"
+            ]
+        )
+        self.assertFalse(evidence["qualification"]["vast_runtime_qualified"])
+        self.assertTrue(all(value is False for value in evidence["gates"].values()))
 
     def test_public_bundle_requires_exact_manifest_hashes_and_utf8_text(self):
         module = load_stage_module()

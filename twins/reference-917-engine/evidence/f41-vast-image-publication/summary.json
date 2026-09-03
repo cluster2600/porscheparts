@@ -2,14 +2,14 @@
   "$comment": "Preuve textuelle de publication OCI de l'image Vast CAD F41. Elle qualifie le workflow, le digest et les smokes synthetiques, pas la CAO moteur reelle ni une validation physique ou de fabrication.",
   "schema_version": "1.0.0",
   "phase": "F41-vast-cad-image-publication",
-  "status": "ghcr_publication_anonymous_pull_and_synthetic_smokes_verified_real_cad_and_release_blocked",
+  "status": "ghcr_publication_anonymous_pull_and_synthetic_smokes_verified_first_supervised_vast_qualification_pending",
   "source": {
     "repository": "https://github.com/cluster2600/3dprinting993",
-    "head_sha": "cfe575586a05a69b91e1332fbffff3fe4400b494"
+    "head_sha": "7eec184437fc71f10d6a8f07aa4ba2e518a058bb"
   },
   "workflow": {
-    "run_id": 33688171549,
-    "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33688171549",
+    "run_id": 33699574489,
+    "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33699574489",
     "status": "completed",
     "conclusion": "success",
     "all_steps_succeeded": true,
@@ -21,22 +21,22 @@
   },
   "image": {
     "repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
-    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
-    "oci_index_digest": "sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce",
+    "oci_index_digest": "sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce",
     "platform": "linux/amd64",
-    "platform_manifest_digest": "sha256:41c76d24a94c9efce2c175ef99aa41d6c2cd70da3d60dfccff0d0ff67881674c",
-    "attestation_manifest_digest": "sha256:4860ee7ced377eefa95f922c20a9e14b79cb47db8295edb4194468b28346258b",
+    "platform_manifest_digest": "sha256:320be537646fdd41fe3fdb3d66c764ef746fc8561475f6e1ae1d13514bad8ffd",
+    "attestation_manifest_digest": "sha256:c1d3a108058e80e8cc5f762855a360ec0695a7301a9987494275d901d3516de6",
     "size": {
-      "image_size_bytes": 854676395,
-      "base_image_size_bytes": 843284017,
-      "added_size_bytes": 11392378,
+      "compressed_config_and_layers_bytes": 254619946,
       "added_size_budget_bytes": 16000000,
-      "budget_passed": true
+      "workflow_size_budget_step_succeeded": true,
+      "exact_uncompressed_added_size_recorded_here": false
     }
   },
   "workflow_artifact": {
-    "id": 9868983980,
-    "digest": "sha256:6917ca5e6fdbde5067c9e6d8ddbae5b7c569ee1af230fca8a0d40696790e911a",
+    "id": 9873059134,
+    "digest": "sha256:867b816661183d588df2f042db96a3880cece5ac90a114f42fde9ae816b36447",
+    "size_bytes": 363235,
     "committed_to_repository": false
   },
   "verified_scope": {
@@ -65,6 +65,12 @@
     "text_files_only": true,
     "binary_asset_count": 0,
     "raw_scan_count": 0
+  },
+  "qualification": {
+    "authorized_candidate_for_supervised_vast_qualification": true,
+    "vast_runtime_qualified": false,
+    "f41_batch_qualified": false,
+    "supervisor_required": "deploy/openbao/run-917-component-factory-f41-cad"
   },
   "gates": {
     "f41_component_factory_executed": false,

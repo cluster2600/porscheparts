@@ -38,17 +38,19 @@ shell `nologin`, `NoNewPrivs=1` et une capability bounding set vide.
 
 ## Contrat exact pour le wrapper
 
-Le wrapper ne doit être promu qu'après publication réussie, pull anonyme du
-digest exact **et commande BatchMode `ssh_direct` réelle**. Trois digests sont
-révoqués pour toute nouvelle location. Le premier avait retiré les clés hôte :
+Un digest ne peut être inscrit dans le wrapper comme candidat à sa première
+qualification supervisée qu'après publication réussie et pull anonyme exact.
+Il ne devient qualifié qu'après une commande BatchMode `ssh_direct` réelle,
+la récupération intègre du lot et la destruction vérifiée de l'instance. Trois
+digests sont révoqués pour toute nouvelle location. Le premier avait retiré les clés hôte :
 Vast invoquait `sshd` avant `onstart`, avec le résultat
 `sshd: no hostkeys available -- exiting`. Le second a bien établi SSH et créé
 des sessions, mais le bloc auto-tmux injecté par Vast dans `/root/.bashrc`
 interceptait aussi les commandes non interactives (`no sessions` puis
 `open terminal failed: not a terminal`). Le troisième a été bloqué avant toute
 location : un test du bundle Git réel a trouvé que le stager exigeait à tort
-`0755` pour toute source Python. Le prochain digest n'est autorisé qu'après le
-smoke distant complet décrit plus bas.
+`0755` pour toute source Python. Le candidat publié ne devient qualifié qu'après
+le smoke distant complet décrit plus bas.
 
 Les valeurs invariantes de la recette corrigée sont :
 
@@ -57,9 +59,11 @@ image repository: ghcr.io/cluster2600/3dprinting993-cad-author-f28
 revoked image 1: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
 revoked image 2: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a
 revoked image 3: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f
-publication workflow 33696007854: success, linux/amd64 + attestations + anonymous pull
+publication workflow 33696007854: success, image révoquée après test du bundle Git réel
 revocation: before Vast spend; real Git bundle mode mismatch found by supervisor tests
-replacement candidate: pending publication
+replacement workflow 33699574489: success, linux/amd64 + attestations + anonymous pull
+supervised qualification candidate, not yet qualified: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce
+replacement linux/amd64 manifest: sha256:320be537646fdd41fe3fdb3d66c764ef746fc8561475f6e1ae1d13514bad8ffd
 runtype: ssh_direct
 remote user: root
 onstart: /usr/local/bin/917-cad-vast-onstart
@@ -317,7 +321,7 @@ spécifiques n'existent pas :
 
 `lock.json` reste volontairement le verrou de construction prépublication : y
 inscrire le digest de l'image qui l'embarque créerait une référence circulaire
-et un nouveau digest. Le digest qualifié est donc enregistré hors de l'image
+et un nouveau digest. Le candidat publié est donc enregistré hors de l'image
 dans le wrapper et dans
 `twins/reference-917-engine/evidence/f41-vast-image-publication/`. Les preuves
 d'exécution Vast et F41 restent une promotion ultérieure et séparée.

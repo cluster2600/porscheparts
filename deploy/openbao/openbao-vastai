@@ -74,9 +74,9 @@ COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
     }
 )
-# Candidate 356A passed publication but is revoked before Vast spend because the
-# real Git-backed bundle exposed a stager mode mismatch hidden by synthetic data.
-COMPONENT_FACTORY_F41_IMAGE = COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A
+# Replacement 7155 passed the public linux/amd64 workflow and an anonymous
+# manifest pull. Its first Vast execution remains supervised and fail closed.
+COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
