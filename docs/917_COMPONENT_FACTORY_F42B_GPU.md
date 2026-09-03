@@ -76,11 +76,17 @@ n'entre dans Git.
 Les looks viennent de la palette F7 et restent des hypothèses visuelles. Ils ne
 deviennent pas une identification métallurgique. Densité, friction statique ou
 dynamique et restitution restent toutes `null`; le pipeline refuse qu'elles
-soient authorées sans preuve. Le Material Agent produit un diagnostic conservé,
-mais sa sortie USD libre n'entre jamais dans la chaîne : le pipeline recopie
-l'USD minimum puis authorise un unique `UsdPreviewSurface` numérique issu de F7,
-un binding all-purpose par `Mesh`, aucun purpose/collection alternatif et aucune
-connexion shader non contractuelle.
+soient authorées sans preuve. Les six USD F42a contiennent déjà les bindings
+all-purpose générés par le convertisseur sur leurs seuls `Mesh`; le gate minimum
+les conserve parce que les fichiers sont liés à leur hash exact, tout en
+refusant les bindings purpose/collection ou placés sur d'autres prims. Le
+Material Agent produit un diagnostic conservé, mais sa sortie USD libre n'entre
+jamais dans la chaîne : le pipeline repart de l'USD minimum et remplace ces
+bindings afin que leur seule cible active soit le `UsdPreviewSurface` canonique
+issu de F7, avec un binding all-purpose par `Mesh`, aucun purpose/collection
+alternatif et aucune connexion shader non contractuelle. Les anciens prims
+`Looks` du convertisseur restent inertes afin de ne supprimer aucun prim du USD
+F42a attesté; aucun `Mesh` ne peut encore pointer vers eux après le gate Material.
 
 ## Sous-ensemble PhysX autorisé
 

@@ -52,6 +52,10 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
     def test_contrat_lie_exactement_les_six_usd_canoniques_f42a(self):
         F42B_CONTRACT.validate_contract(CONTRACT_PATH)
         source = self.contract["source_usd"]
+        self.assertEqual(
+            source["minimum_material_binding_policy"],
+            "preserve_exact_f42a_all_purpose_mesh_bindings_then_rebind_canonical_visual_material",
+        )
         expected = [
             {
                 "family_id": item["family_id"],
@@ -418,6 +422,11 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
     def test_binding_material_rejette_purpose_collection_et_prim_non_mesh(self):
         self.assertTrue(
             F42B_CONTRACT.material_binding_properties_valid(
+                ["material:binding"], "Mesh", "minimum"
+            )
+        )
+        self.assertTrue(
+            F42B_CONTRACT.material_binding_properties_valid(
                 ["material:binding"], "Mesh", "material"
             )
         )
@@ -436,6 +445,38 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
                 ["material:binding"], "Xform", "final"
             )
         )
+        helper_source = (F42B / "_contract.py").read_text(encoding="utf-8")
+        self.assertIn(
+            "direct_all_purpose_material_binding_signatures(\n        source, UsdShade",
+            helper_source,
+        )
+        self.assertIn(
+            "direct_all_purpose_material_binding_signatures(\n        target, UsdShade",
+            helper_source,
+        )
+        self.assertIn(
+            "target_material_signatures == source_material_signatures", helper_source
+        )
+        self.assertIn("replaced_source_material_bindings", helper_source)
+        self.assertEqual(helper_source.count("root_layer_authored_meshes(stage, meshes)"), 2)
+        summary_source = (CONTROLLER / "_summarize_f42b_retrieval.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("bindings != source_bindings", summary_source)
+        self.assertIn("source_material_binding_signatures", summary_source)
+        self.assertIn("material_binding_signatures", summary_source)
+        self.assertIn(
+            "bindings != {path: material_path for path in meshes}", summary_source
+        )
+        self.assertIn(
+            'material_authoring.get("replaced_source_material_binding_signatures")',
+            summary_source,
+        )
+        self.assertEqual(
+            summary_source.count("baseline de bindings différente du gate minimum"), 3
+        )
+        self.assertIn("all(isinstance(path, str) and path for path in meshes)", summary_source)
+        self.assertNotIn('stage == "minimum" and (\n        bindings\n', summary_source)
 
     def test_validation_bloquee_ne_devient_jamais_needs_rerun(self):
         with tempfile.TemporaryDirectory() as temporary:

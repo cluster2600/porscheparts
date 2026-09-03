@@ -264,10 +264,83 @@ def material_binding_properties_valid(
 ) -> bool:
     expected = (
         ["material:binding"]
-        if prim_type == "Mesh" and stage_name in {"material", "physics", "final"}
+        if prim_type == "Mesh" and stage_name in {"minimum", "material", "physics", "final"}
         else []
     )
     return sorted(names) == expected
+
+
+def direct_all_purpose_material_binding_signatures(
+    stage: Any, usd_shade: Any
+) -> dict[str, dict[str, Any]]:
+    """Signe les bindings directs F42a après une validation fermée."""
+
+    default_prim = stage.GetDefaultPrim()
+    require(default_prim and default_prim.IsValid(), "defaultPrim absent du stage matériau")
+    default_prefix = str(default_prim.GetPath()) + "/"
+    signatures: dict[str, dict[str, Any]] = {}
+    mesh_paths: list[str] = []
+    for prim in stage.TraverseAll():
+        path = str(prim.GetPath())
+        type_name = prim.GetTypeName()
+        names = sorted(
+            prop.GetName()
+            for prop in prim.GetProperties()
+            if prop.GetName().startswith("material:binding")
+        )
+        require(
+            material_binding_properties_valid(names, type_name, "minimum"),
+            f"binding purpose/collection ou binding sur prim interdit: {path}",
+        )
+        if type_name != "Mesh":
+            continue
+        mesh_paths.append(path)
+        material, relationship = usd_shade.MaterialBindingAPI(prim).ComputeBoundMaterial()
+        require(
+            material
+            and material.GetPrim().IsValid()
+            and relationship
+            and relationship.IsAuthored()
+            and str(relationship.GetPrim().GetPath()) == path,
+            f"binding direct F42a sans Material local valide: {path}",
+        )
+        targets = list(relationship.GetTargets())
+        require(len(targets) == 1, f"binding F42a multi-cible ou vide: {path}")
+        material_path = str(targets[0])
+        target_prim = stage.GetPrimAtPath(targets[0])
+        require(
+            material_path.startswith(default_prefix)
+            and target_prim
+            and target_prim.IsValid()
+            and target_prim.GetTypeName() == "Material"
+            and str(material.GetPrim().GetPath()) == material_path,
+            f"cible de binding F42a externe ou non-Material: {path}",
+        )
+        signatures[path] = {
+            "target": material_path,
+            "relationship_metadata": _jsonable(relationship.GetAllMetadata()),
+        }
+    require(mesh_paths, "aucun Mesh dans le stage matériau")
+    require(
+        set(signatures) == set(mesh_paths),
+        "chaque Mesh doit porter un binding direct all-purpose vers un Material local",
+    )
+    return signatures
+
+
+def material_binding_targets(
+    signatures: dict[str, dict[str, Any]],
+) -> dict[str, str]:
+    return {path: str(value["target"]) for path, value in signatures.items()}
+
+
+def root_layer_authored_meshes(stage: Any, meshes: list[Any]) -> list[Any]:
+    """Évite de créer des overs redondants sur les occurrences composées."""
+
+    root_layer = stage.GetRootLayer()
+    authored = [mesh for mesh in meshes if root_layer.GetPrimAtPath(mesh.GetPath())]
+    require(authored, "aucun Mesh authored dans la root layer")
+    return authored
 
 
 def classify_nvidia_validation(
@@ -439,6 +512,11 @@ def canonical_entries(contract: dict[str, Any]) -> list[dict[str, Any]]:
     require(source.get("exact_file_count") == 6, "exact_file_count doit valoir 6")
     require(source.get("total_size_bytes") == sum(item[1] for item in CANONICAL.values()), "taille totale F42a differente")
     require(source.get("private_artifacts_committed") is False, "les USD prives ne doivent pas etre declares versionnes")
+    require(
+        source.get("minimum_material_binding_policy")
+        == "preserve_exact_f42a_all_purpose_mesh_bindings_then_rebind_canonical_visual_material",
+        "politique des bindings materiau F42a inattendue",
+    )
     return entries
 
 
@@ -962,11 +1040,11 @@ def author_visual_material(
     require(stage is not None, "USD Material Agent illisible")
     meshes = [prim for prim in stage.TraverseAll() if prim.GetTypeName() == "Mesh"]
     require(meshes, "aucun Mesh pour l'affectation visuelle")
-    for prim in stage.TraverseAll():
-        require(
-            not any(prop.GetName().startswith("material:binding") for prop in prim.GetProperties()),
-            "le stage source du matériau contractuel contient déjà un binding",
-        )
+    authored_meshes = root_layer_authored_meshes(stage, meshes)
+    source_material_signatures = direct_all_purpose_material_binding_signatures(
+        stage, UsdShade
+    )
+    source_material_bindings = material_binding_targets(source_material_signatures)
 
     label = VISUAL[family]
     parameters = VISUAL_PALETTE[label]
@@ -990,9 +1068,18 @@ def author_visual_material(
     shader.CreateInput("roughness", Sdf.ValueTypeNames.Float).Set(parameters["roughness"])
     shader_output = shader.CreateOutput("surface", Sdf.ValueTypeNames.Token)
     material.CreateSurfaceOutput().ConnectToSource(shader_output)
-    for mesh in meshes:
-        UsdShade.MaterialBindingAPI.Apply(mesh).Bind(material)
+    for mesh in authored_meshes:
+        binding_api = UsdShade.MaterialBindingAPI.Apply(mesh)
+        require(binding_api, f"MaterialBindingAPI impossible sur {mesh.GetPath()}")
+        require(binding_api.Bind(material), f"binding canonique impossible sur {mesh.GetPath()}")
     require(stage.GetRootLayer().Save(), "écriture du matériau visuel F42b impossible")
+    rebound_signatures = direct_all_purpose_material_binding_signatures(stage, UsdShade)
+    rebound_targets = material_binding_targets(rebound_signatures)
+    require(
+        set(rebound_targets) == {str(mesh.GetPath()) for mesh in meshes}
+        and set(rebound_targets.values()) == {str(material_path)},
+        "le rebind canonique ne couvre pas tous les Mesh composés",
+    )
     payload = {
         "schema_version": SCHEMA_VERSION,
         "status": "passed",
@@ -1004,9 +1091,12 @@ def author_visual_material(
         "visual_material_assignment": label,
         "visual_material_parameters": parameters,
         "visual_source_sha256": contract["materials"]["visual_palette_source"]["sha256"],
+        "replaced_source_material_bindings": source_material_bindings,
+        "replaced_source_material_binding_signatures": source_material_signatures,
         "material_path": str(material_path),
         "shader_path": str(shader_path),
         "mesh_paths": [str(mesh.GetPath()) for mesh in meshes],
+        "authored_mesh_paths": [str(mesh.GetPath()) for mesh in authored_meshes],
         "physics_material_properties_authored": False,
         "simulation_executed": False,
         "fea_executed": False,
@@ -1059,6 +1149,7 @@ def author_static_collisions(
     require(stage is not None, "USD physique contractuel illisible")
     meshes = [prim for prim in stage.TraverseAll() if prim.GetTypeName() == "Mesh"]
     require(meshes, "aucun Mesh pour les colliders statiques")
+    authored_meshes = root_layer_authored_meshes(stage, meshes)
     for prim in stage.TraverseAll():
         require(
             not any("physics" in str(schema).lower() or "physx" in str(schema).lower() for schema in prim.GetAppliedSchemas()),
@@ -1072,7 +1163,7 @@ def author_static_collisions(
             ),
             "le stage matériel contractuel contient déjà une propriété Physics/Physx",
         )
-    for mesh in meshes:
+    for mesh in authored_meshes:
         collision = UsdPhysics.CollisionAPI.Apply(mesh)
         require(collision, f"CollisionAPI impossible sur {mesh.GetPath()}")
         collision.CreateCollisionEnabledAttr(True).Set(True)
@@ -1086,6 +1177,7 @@ def author_static_collisions(
         "asset_path": str(asset),
         "asset_sha256": sha256(asset),
         "mesh_paths": [str(mesh.GetPath()) for mesh in meshes],
+        "authored_mesh_paths": [str(mesh.GetPath()) for mesh in authored_meshes],
         "authored_schemas": ["PhysicsCollisionAPI"],
         "collision_enabled": True,
         "mesh_collision_api_authored": False,
@@ -1258,6 +1350,15 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
     require(str(source_default.GetPath()) == entry["default_prim_path"], "defaultPrim source different du contrat")
     require(str(target_default.GetPath()) == entry["default_prim_path"], "defaultPrim F42b different du source")
 
+    source_material_signatures = direct_all_purpose_material_binding_signatures(
+        source, UsdShade
+    )
+    target_material_signatures = direct_all_purpose_material_binding_signatures(
+        target, UsdShade
+    )
+    source_material_bindings = material_binding_targets(source_material_signatures)
+    target_material_bindings = material_binding_targets(target_material_signatures)
+
     source_geometry = _geometry_signature(source)
     target_geometry = _geometry_signature(target)
     require(source_geometry == target_geometry, "geometrie ou transforms F42b differents du USD F42a")
@@ -1282,22 +1383,33 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
         scope_prim = target.GetPrimAtPath(look_prefix)
         material_prim = target.GetPrimAtPath(f"{look_prefix}/CanonicalVisualMaterial")
         shader_prim = target.GetPrimAtPath(f"{look_prefix}/CanonicalVisualMaterial/PreviewSurface")
+        scope_metadata = scope_prim.GetAllAuthoredMetadata()
+        material_metadata = material_prim.GetAllAuthoredMetadata()
+        shader_metadata = shader_prim.GetAllAuthoredMetadata()
         require(
-            not scope_prim.GetProperties()
+            not scope_prim.GetAuthoredProperties()
             and not scope_prim.GetAppliedSchemas()
-            and scope_prim.GetCustomData() == {}
-            and set(scope_prim.GetAllMetadata()).issubset({"specifier", "typeName"}),
+            and set(scope_metadata).issubset({"specifier", "typeName"}),
             "Scope de look avec métadonnées ou contenu hors contrat",
         )
         require(
             not material_prim.GetAppliedSchemas()
-            and set(material_prim.GetAllMetadata()).issubset({"specifier", "typeName", "customData"}),
+            and {prop.GetName() for prop in material_prim.GetAuthoredProperties()}
+            == {"outputs:surface"}
+            and set(material_metadata).issubset({"specifier", "typeName", "customData"}),
             "Material de look avec métadonnées hors contrat",
         )
         require(
-            not shader_prim.GetAppliedSchemas()
-            and shader_prim.GetCustomData() == {}
-            and set(shader_prim.GetAllMetadata()).issubset({"specifier", "typeName"}),
+            set(shader_prim.GetAppliedSchemas()) == {"NodeDefAPI"}
+            and {prop.GetName() for prop in shader_prim.GetAuthoredProperties()}
+            == {
+                "info:id",
+                "inputs:diffuseColor",
+                "inputs:metallic",
+                "inputs:roughness",
+                "outputs:surface",
+            }
+            and set(shader_metadata).issubset({"specifier", "typeName"}),
             "Shader de look avec métadonnées hors contrat",
         )
     require(
@@ -1317,7 +1429,7 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
     collision_meshes: list[str] = []
     mesh_collision_api_meshes: list[str] = []
     collision_enabled: dict[str, bool] = {}
-    material_bindings: dict[str, str] = {}
+    material_bindings: dict[str, str] = dict(target_material_bindings)
     material_contracts: dict[str, dict[str, Any]] = {}
     mesh_paths: list[str] = []
     for prim in target.TraverseAll():
@@ -1376,18 +1488,25 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
                 collision_meshes.append(path)
         if has_mesh_collision:
             mesh_collision_api_meshes.append(path)
-        try:
-            material, _ = UsdShade.MaterialBindingAPI(prim).ComputeBoundMaterial()
-        except Exception:
-            material = None
-        if material and material.GetPrim().IsValid():
-            material_bindings[path] = str(material.GetPath())
-
     require(not forbidden_schemas, f"schemas physiques interdits: {forbidden_schemas}")
     require(not forbidden_prim_types, f"types de prim physiques interdits: {forbidden_prim_types}")
     require(not forbidden_properties, f"proprietes physiques ou FEA interdites: {forbidden_properties}")
+    require(
+        {
+            path: signature["relationship_metadata"]
+            for path, signature in target_material_signatures.items()
+        }
+        == {
+            path: signature["relationship_metadata"]
+            for path, signature in source_material_signatures.items()
+        },
+        "les métadonnées des bindings F42a ne doivent pas être altérées",
+    )
     if stage_name == "minimum":
-        require(not material_bindings, "binding materiau inattendu au gate minimum F42a")
+        require(
+            target_material_signatures == source_material_signatures,
+            "les bindings all-purpose F42a et leurs métadonnées doivent rester identiques au gate minimum",
+        )
         require(not collision_enabled and not mesh_collision_api_meshes, "collision inattendue au gate minimum")
     if stage_name in {"material", "physics", "final"}:
         require(set(material_bindings) == set(mesh_paths), "chaque Mesh doit conserver un binding materiau visuel")
@@ -1401,10 +1520,10 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
             material = UsdShade.Material(target.GetPrimAtPath(expected_material_path))
             require(material and material.GetPrim().IsValid(), "Material contractuel absent")
             require(
-                {prop.GetName() for prop in material.GetPrim().GetProperties()} == {"outputs:surface"},
+                {prop.GetName() for prop in material.GetPrim().GetAuthoredProperties()} == {"outputs:surface"},
                 "outputs Material hors contrat ou renderContext alternatif",
             )
-            custom = material.GetPrim().GetCustomData()
+            custom = material.GetPrim().GetAllAuthoredMetadata().get("customData", {})
             require(
                 set(custom)
                 == {
@@ -1430,7 +1549,7 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
             require(str(shader.GetPrim().GetPath()) == expected_shader_path, "chemin shader contractuel différent")
             require(shader.GetIdAttr().Get() == "UsdPreviewSurface", "shader visuel différent de UsdPreviewSurface")
             require(
-                {prop.GetName() for prop in shader.GetPrim().GetProperties()}
+                {prop.GetName() for prop in shader.GetPrim().GetAuthoredProperties()}
                 == {
                     "info:id",
                     "inputs:diffuseColor",
@@ -1479,7 +1598,10 @@ def _stage_audit(contract: dict[str, Any], family: str, source_path: Path, asset
         "geometry_identical_to_f42a": True,
         "geometry_signature_sha256": source_geometry["sha256"],
         "mesh_paths": mesh_paths,
+        "source_material_bindings": source_material_bindings,
+        "source_material_binding_signatures": source_material_signatures,
         "material_bindings": material_bindings,
+        "material_binding_signatures": target_material_signatures,
         "material_contracts": material_contracts,
         "collision_mesh_paths": collision_meshes,
         "mesh_collision_api_paths": mesh_collision_api_meshes,

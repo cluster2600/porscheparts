@@ -799,31 +799,80 @@ def audit_errors(
     ):
         errors.append(f"{label}: audit USD F42b incomplet ou rattaché à un autre actif")
     meshes = payload.get("mesh_paths")
+    source_bindings = payload.get("source_material_bindings")
+    source_binding_signatures = payload.get("source_material_binding_signatures")
     bindings = payload.get("material_bindings")
+    binding_signatures = payload.get("material_binding_signatures")
     material_contracts = payload.get("material_contracts")
     collisions = payload.get("collision_mesh_paths")
     mesh_collision_api = payload.get("mesh_collision_api_paths")
     collision_enabled = payload.get("collision_enabled")
-    if not isinstance(meshes, list) or not meshes or len(meshes) != len(set(meshes)):
+    if (
+        not isinstance(meshes, list)
+        or not meshes
+        or not all(isinstance(path, str) and path for path in meshes)
+        or len(meshes) != len(set(meshes))
+    ):
         errors.append(f"{label}: liste de Mesh invalide")
         meshes = []
+    valid_source_signatures = (
+        isinstance(source_bindings, dict)
+        and isinstance(source_binding_signatures, dict)
+        and set(source_bindings) == set(meshes)
+        and set(source_binding_signatures) == set(meshes)
+        and all(
+            isinstance(path, str)
+            and isinstance(target, str)
+            and target.startswith(f"{metadata['default_prim_path']}/")
+            for path, target in source_bindings.items()
+        )
+        and all(
+            isinstance(signature, dict)
+            and set(signature) == {"target", "relationship_metadata"}
+            and signature.get("target") == source_bindings.get(path)
+            and isinstance(signature.get("relationship_metadata"), dict)
+            for path, signature in source_binding_signatures.items()
+        )
+    )
+    valid_target_signatures = (
+        valid_source_signatures
+        and isinstance(bindings, dict)
+        and isinstance(binding_signatures, dict)
+        and set(bindings) == set(meshes)
+        and set(binding_signatures) == set(meshes)
+        and all(
+            isinstance(signature, dict)
+            and set(signature) == {"target", "relationship_metadata"}
+            and signature.get("target") == bindings.get(path)
+            and signature.get("relationship_metadata")
+            == source_binding_signatures[path].get("relationship_metadata")
+            for path, signature in binding_signatures.items()
+        )
+    )
+    collision_lists_valid = (
+        isinstance(collisions, list)
+        and isinstance(mesh_collision_api, list)
+        and all(isinstance(path, str) and path for path in collisions)
+        and all(isinstance(path, str) and path for path in mesh_collision_api)
+        and len(collisions) == len(set(collisions))
+        and len(mesh_collision_api) == len(set(mesh_collision_api))
+    )
     if (
-        not isinstance(bindings, dict)
+        not valid_target_signatures
         or not isinstance(material_contracts, dict)
-        or not isinstance(collisions, list)
-        or not isinstance(mesh_collision_api, list)
+        or not collision_lists_valid
         or not isinstance(collision_enabled, dict)
-        or not set(mesh_collision_api).issubset(set(meshes))
+        or (collision_lists_valid and not set(mesh_collision_api).issubset(set(meshes)))
     ):
         errors.append(f"{label}: binding matériau/collision invalide")
     elif stage == "minimum" and (
-        bindings
+        bindings != source_bindings
         or material_contracts
         or collisions
         or mesh_collision_api
         or collision_enabled
     ):
-        errors.append(f"{label}: matériau ou collision présent au gate minimum")
+        errors.append(f"{label}: binding source modifié ou collision présente au gate minimum")
     elif stage == "material" and (
         set(bindings) != set(meshes)
         or collisions
@@ -843,6 +892,8 @@ def audit_errors(
             f"{CANONICAL[family]['default_prim_path']}"
             "/F42bContractLooks/CanonicalVisualMaterial"
         )
+        if bindings != {path: material_path for path in meshes}:
+            errors.append(f"{label}: cibles de binding différentes du matériau canonique F42b")
         expected_material = {
             "material_path": material_path,
             "shader_path": f"{material_path}/PreviewSurface",
@@ -991,6 +1042,11 @@ def provenance_errors(
             != VISUAL_PALETTE[VISUAL_ASSIGNMENTS[family]]
             or material_authoring.get("visual_source_sha256")
             != VISUAL_SOURCE_SHA256
+            or input_audit is None
+            or material_authoring.get("replaced_source_material_bindings")
+            != input_audit.get("material_bindings")
+            or material_authoring.get("replaced_source_material_binding_signatures")
+            != input_audit.get("material_binding_signatures")
             or material_authoring.get("physics_material_properties_authored") is not False
         ):
             errors.append(f"{material_authoring_path}: normalisation visuelle F7 non attestée")
@@ -1008,6 +1064,15 @@ def provenance_errors(
                     material_audit_path,
                 )
             )
+            if input_audit is None or (
+                material_audit.get("source_material_bindings")
+                != input_audit.get("material_bindings")
+                or material_audit.get("source_material_binding_signatures")
+                != input_audit.get("material_binding_signatures")
+            ):
+                errors.append(
+                    f"{material_audit_path}: baseline de bindings différente du gate minimum"
+                )
 
         physics_agent_path, physics_agent = exact_child(run_id, "physics", "physics-agent.json")
         physics_authoring_path, physics_authoring = exact_child(
@@ -1048,6 +1113,15 @@ def provenance_errors(
                     physics_audit_path,
                 )
             )
+            if input_audit is None or (
+                physics_audit.get("source_material_bindings")
+                != input_audit.get("material_bindings")
+                or physics_audit.get("source_material_binding_signatures")
+                != input_audit.get("material_binding_signatures")
+            ):
+                errors.append(
+                    f"{physics_audit_path}: baseline de bindings différente du gate minimum"
+                )
 
         conform_reference_path, conform_reference = exact_child(
             run_id, "conform", "simready-conform-profile.json"
@@ -1107,6 +1181,15 @@ def provenance_errors(
                     final_audit_path,
                 )
             )
+            if input_audit is None or (
+                final_audit.get("source_material_bindings")
+                != input_audit.get("material_bindings")
+                or final_audit.get("source_material_binding_signatures")
+                != input_audit.get("material_binding_signatures")
+            ):
+                errors.append(
+                    f"{final_audit_path}: baseline de bindings différente du gate minimum"
+                )
         simready_outcome = (
             nvidia_validation_outcome(
                 simready_report, conform, NVIDIA_VALIDATOR_SKILLS["validate-simready"]
