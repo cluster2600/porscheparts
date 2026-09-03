@@ -727,6 +727,11 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def test_heavy_launch_enforces_singleton_and_contract(self):
         output = io.StringIO()
         with (
+            mock.patch.object(
+                self.wrapper,
+                "SIMREADY_IMAGE",
+                "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:" + "a" * 64,
+            ),
             mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
             mock.patch.object(self.wrapper, "require_no_simready_instance") as no_existing,
             mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
@@ -749,6 +754,23 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         payload = json.loads(output.getvalue())
         self.assertTrue(payload["singleton_verified"])
         self.assertTrue(payload["contract_verified"])
+
+    def test_revoked_simready_images_block_before_paid_side_effects(self):
+        for revoked_image in self.wrapper.SIMREADY_REVOKED_IMAGES:
+            with (
+                self.subTest(revoked_image=revoked_image),
+                mock.patch.object(self.wrapper, "SIMREADY_IMAGE", revoked_image),
+                mock.patch.object(self.wrapper, "simready_launch_lock") as launch_lock,
+                mock.patch.object(self.wrapper, "ensure_local_ssh_registered") as ensure_ssh,
+                mock.patch.object(self.wrapper, "vast_request") as request,
+                self.assertRaisesRegex(self.wrapper.SafeError, "pinned SimReady image is revoked"),
+            ):
+                self.wrapper.launch_simready_offer(
+                    "unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True
+                )
+            launch_lock.assert_not_called()
+            ensure_ssh.assert_not_called()
+            request.assert_not_called()
 
     def test_uncertain_launch_rolls_back_the_only_project_instance(self):
         with (

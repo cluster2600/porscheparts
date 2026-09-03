@@ -47,7 +47,14 @@ LABEL = "3dprinting993-qwen-cad"
 MESH_MAX_DPH = 0.35
 MESH_IMAGE = "ghcr.io/cluster2600/3dprinting993-mesh-cfd:f5affdfe7c93a9c402c1544b3f48d32f8d2d9e7d"
 MESH_LABEL = "3dprinting993-mesh-cfd"
-SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+SIMREADY_REVOKED_IMAGE_E04 = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+SIMREADY_REVOKED_IMAGE_F8A = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:f8a17661a23f3c83d89139cdc0a0b9f29d8553523de166a86e9e453e420d9a00"
+SIMREADY_REVOKED_IMAGES = frozenset(
+    {SIMREADY_REVOKED_IMAGE_E04, SIMREADY_REVOKED_IMAGE_F8A}
+)
+# Replaced after the corrected image passes publication and anonymous-pull
+# checks. Keeping the revoked value here makes every paid launch fail closed.
+SIMREADY_IMAGE = SIMREADY_REVOKED_IMAGE_E04
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
 WAVE_MAX_DPH = 1.25
 WAVE_MIN_CPU_THREADS = 64
@@ -2450,6 +2457,10 @@ def launch_simready_offer(
     *,
     enforce_singleton: bool = False,
 ) -> int:
+    if SIMREADY_IMAGE in SIMREADY_REVOKED_IMAGES:
+        raise SafeError(
+            "the pinned SimReady image is revoked; publish and pin the corrected image first"
+        )
     launch_context = simready_launch_lock() if enforce_singleton else nullcontext()
     with launch_context:
         if enforce_singleton:
