@@ -63,6 +63,10 @@ jobs:
       - name: Restart Docker on enlarged storage
         if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
         run: |
+          # Bound dockerd/embedded BuildKit Go scheduling and its soft heap
+          # target so the Actions listener keeps headroom while exporting the
+          # 30+ GB image on the public 4-vCPU/16-GiB runner.
+          sudo systemctl set-environment GOMAXPROCS=3 GOMEMLIMIT=12GiB
           sudo systemctl start docker
           docker info >/dev/null
           df -h / /var/lib/docker
@@ -140,20 +144,26 @@ jobs:
         if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
         run: |
           set -euo pipefail
+          repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai
           output_flag=--load
+          cache_args=(--cache-from "type=registry,ref=${repository}:latest")
           if [ "${{ inputs.push }}" = "true" ]; then
             output_flag=--push
+            # Inline cache metadata adds no duplicate image layers and lets the
+            # next ephemeral runner reuse linked model-shard layers.
+            cache_args+=(--build-arg BUILDKIT_INLINE_CACHE=1)
           fi
           metadata_file="${RUNNER_TEMP}/simready-local-ai-build-metadata.json"
           rm -f -- "$metadata_file"
           docker buildx build \
             --builder default \
             "$output_flag" \
+            "${cache_args[@]}" \
             --platform linux/amd64 \
             --provenance=false \
             --metadata-file "$metadata_file" \
             --file containers/simready-local-ai.Dockerfile \
-            --tag ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai:${{ github.sha }} \
+            --tag "${repository}:${{ github.sha }}" \
             .
           if [ "${{ inputs.push }}" = "true" ]; then
             digest="$(jq -er '."containerimage.digest"' "$metadata_file")"

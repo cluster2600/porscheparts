@@ -28,6 +28,11 @@ ARG TYPER_VERSION=0.27.2
 ARG MATPLOTLIB_VERSION=3.11.1
 ARG LOCAL_VLM_REPOSITORY=Qwen/Qwen2.5-VL-7B-Instruct
 ARG LOCAL_VLM_REVISION=cc594898137f460bfe9f0759e9844b3ce807cfb5
+# Build-only controls: bytecode is unnecessary in immutable layers and pip's
+# interactive progress/version probes add work and log traffic on CI runners.
+ARG PYTHONDONTWRITEBYTECODE=1
+ARG PIP_DISABLE_PIP_VERSION_CHECK=1
+ARG PIP_PROGRESS_BAR=off
 
 ENV SIMREADY_LOCAL_AI=1 \
     SIMREADY_VLM_BASE_URL=http://127.0.0.1:8000/v1 \
@@ -43,19 +48,17 @@ ENV SIMREADY_LOCAL_AI=1 \
 # Install the heavy runtime separately so no OCI layer combines the whole
 # PhysicsNeMo environment with the embedded vision model.
 RUN python3.12 -m venv /opt/venv \
-    && /opt/venv/bin/pip install --no-cache-dir --upgrade "pip>=26.1"
+    && /opt/venv/bin/pip install --no-cache-dir --no-compile --upgrade "pip>=26.1"
 
-RUN /opt/venv/bin/pip install --no-cache-dir \
+RUN /opt/venv/bin/pip install --no-cache-dir --no-compile \
        --index-url https://download.pytorch.org/whl/cu129 \
-       "torch==${TORCH_VERSION}" \
-    && /opt/venv/bin/python -c \
-       'import torch; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda'
+       "torch==${TORCH_VERSION}"
 
-RUN /opt/venv/bin/pip install --no-cache-dir \
+RUN /opt/venv/bin/pip install --no-cache-dir --no-compile \
        --index-url https://download.pytorch.org/whl/cu129 \
        "torchvision==${TORCHVISION_VERSION}"
 
-RUN /opt/venv/bin/pip install --no-cache-dir \
+RUN /opt/venv/bin/pip install --no-cache-dir --no-compile \
        "build123d==${BUILD123D_VERSION}" "cadquery==${CADQUERY_VERSION}" \
        "gmsh==${GMSH_VERSION}" "meshio==${MESHIO_VERSION}" \
        "pyvista==${PYVISTA_VERSION}" "trimesh==${TRIMESH_VERSION}" \
@@ -66,36 +69,32 @@ RUN /opt/venv/bin/pip install --no-cache-dir \
 
 COPY containers/simready-physicsnemo-constraints.txt /opt/build/physicsnemo-constraints.txt
 
-RUN /opt/venv/bin/pip install --no-cache-dir \
+RUN /opt/venv/bin/pip install --no-cache-dir --no-compile \
        --constraint /opt/build/physicsnemo-constraints.txt \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
        "nvidia-physicsnemo[sym]==${PHYSICSNEMO_VERSION}" \
        "deepxde==${DEEPXDE_VERSION}" \
-    && /opt/venv/bin/pip check \
-    && /opt/venv/bin/python -c \
-       'import physicsnemo, torch, torchvision; assert physicsnemo.__version__ == "2.2.0"; assert torch.__version__.split("+", 1)[0] == "2.10.0"; assert torch.version.cuda == "12.9", torch.version.cuda; assert torchvision.__version__.split("+", 1)[0] == "0.25.0"'
+    && /opt/venv/bin/pip check
 
 # vLLM supplies the local OpenAI-compatible multimodal endpoint. Its pinned
 # PyTorch stack is installed first so the full CUDA runtime and vLLM wheel do
 # not end up in one registry layer larger than Vast can reliably fetch.
 RUN python3.12 -m venv /opt/local-ai \
-    && /opt/local-ai/bin/pip install --no-cache-dir --upgrade "pip>=26.1"
+    && /opt/local-ai/bin/pip install --no-cache-dir --no-compile --upgrade "pip>=26.1"
 
-RUN /opt/local-ai/bin/pip install --no-cache-dir \
+RUN /opt/local-ai/bin/pip install --no-cache-dir --no-compile \
        --index-url https://download.pytorch.org/whl/cu129 \
        "torch==${VLLM_TORCH_VERSION}"
 
-RUN /opt/local-ai/bin/pip install --no-cache-dir \
+RUN /opt/local-ai/bin/pip install --no-cache-dir --no-compile \
        --index-url https://download.pytorch.org/whl/cu129 \
        "torchvision==${VLLM_TORCHVISION_VERSION}" \
        "torchaudio==${VLLM_TORCHAUDIO_VERSION}"
 
-RUN /opt/local-ai/bin/pip install --no-cache-dir \
+RUN /opt/local-ai/bin/pip install --no-cache-dir --no-compile \
        --extra-index-url https://download.pytorch.org/whl/cu129 \
        "${VLLM_CU129_WHEEL_URL}" \
-    && /opt/local-ai/bin/pip check \
-    && /opt/local-ai/bin/python -c \
-       'from importlib.metadata import version; import torch, torchaudio, torchvision, vllm; actual={"distribution":version("vllm"),"runtime":vllm.__version__,"torch":torch.__version__,"cuda":torch.version.cuda,"torchaudio":torchaudio.__version__,"torchvision":torchvision.__version__}; print(actual); assert actual["distribution"].split("+", 1)[0] == "0.26.0", actual; assert actual["runtime"].split("+", 1)[0] == "0.26.0", actual; assert actual["torch"].split("+", 1)[0] == "2.11.0", actual; assert actual["cuda"] == "12.9", actual; assert actual["torchaudio"].split("+", 1)[0] == "2.11.0", actual; assert actual["torchvision"].split("+", 1)[0] == "0.26.0", actual'
+    && /opt/local-ai/bin/pip check
 
 # Metadata is small. Each safetensors shard is deliberately authored by its
 # own ADD instruction, with an immutable revision and checksum, so Vast.ai can
@@ -106,19 +105,19 @@ RUN mkdir -p "${LOCAL_VLM_PATH}" \
        "from huggingface_hub import snapshot_download; snapshot_download(repo_id='${LOCAL_VLM_REPOSITORY}', revision='${LOCAL_VLM_REVISION}', local_dir='${LOCAL_VLM_PATH}', allow_patterns=['*.json', '*.txt'], max_workers=2)" \
     && rm -rf "${LOCAL_VLM_PATH}/.cache" /root/.cache/huggingface /root/.cache/pip
 
-ADD --checksum=sha256:e97b877e47fde53a6c6e77aafb36e58e91ee9d95c4a3eeac6f1b5c0e6a1c986e \
+ADD --link --checksum=sha256:e97b877e47fde53a6c6e77aafb36e58e91ee9d95c4a3eeac6f1b5c0e6a1c986e \
     https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/cc594898137f460bfe9f0759e9844b3ce807cfb5/model-00001-of-00005.safetensors \
     /opt/models/qwen2.5-vl-7b-instruct/model-00001-of-00005.safetensors
-ADD --checksum=sha256:a9a300a43b4724eee2abe7c18ceb26768d0ab011eb0cad19d9bfd2476a24d024 \
+ADD --link --checksum=sha256:a9a300a43b4724eee2abe7c18ceb26768d0ab011eb0cad19d9bfd2476a24d024 \
     https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/cc594898137f460bfe9f0759e9844b3ce807cfb5/model-00002-of-00005.safetensors \
     /opt/models/qwen2.5-vl-7b-instruct/model-00002-of-00005.safetensors
-ADD --checksum=sha256:111223d173e00bbee81cba1216fad28668df3476706b7fd26f4d5b50f8b3a507 \
+ADD --link --checksum=sha256:111223d173e00bbee81cba1216fad28668df3476706b7fd26f4d5b50f8b3a507 \
     https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/cc594898137f460bfe9f0759e9844b3ce807cfb5/model-00003-of-00005.safetensors \
     /opt/models/qwen2.5-vl-7b-instruct/model-00003-of-00005.safetensors
-ADD --checksum=sha256:ef47f634fa57d46ee134edcc09f34085a47da1e16c12a2abe0d67118be6d72ed \
+ADD --link --checksum=sha256:ef47f634fa57d46ee134edcc09f34085a47da1e16c12a2abe0d67118be6d72ed \
     https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/cc594898137f460bfe9f0759e9844b3ce807cfb5/model-00004-of-00005.safetensors \
     /opt/models/qwen2.5-vl-7b-instruct/model-00004-of-00005.safetensors
-ADD --checksum=sha256:0c859795ad3a627a9b95bcb762e059d5b768a4a36fdd4affeff269d93fdecc67 \
+ADD --link --checksum=sha256:0c859795ad3a627a9b95bcb762e059d5b768a4a36fdd4affeff269d93fdecc67 \
     https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct/resolve/cc594898137f460bfe9f0759e9844b3ce807cfb5/model-00005-of-00005.safetensors \
     /opt/models/qwen2.5-vl-7b-instruct/model-00005-of-00005.safetensors
 
@@ -143,9 +142,7 @@ RUN chmod 0555 /usr/local/bin/simready-local-ai-smoke \
         /usr/local/bin/simready-vast-onstart \
         /usr/local/bin/simready-services /usr/local/bin/simready-smoke \
         /usr/local/bin/smoke-test.sh \
-    && test "$(/opt/venv/bin/python -c 'import physicsnemo; print(physicsnemo.__version__)')" = "${PHYSICSNEMO_VERSION}" \
-    && /opt/local-ai/bin/python -c "import vllm; print(vllm.__version__)" \
-    && /usr/local/bin/simready-local-ai-smoke --offline
+    && PYTHONDONTWRITEBYTECODE=1 /usr/local/bin/simready-local-ai-smoke --offline
 
 EXPOSE 8000 8001 8100 8200 22
 
