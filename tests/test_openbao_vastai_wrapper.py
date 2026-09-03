@@ -38,9 +38,9 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         cls.wrapper = load_wrapper()
 
     def setUp(self):
-        # Most unit tests exercise the launch state machine as if a corrected
-        # digest had already passed the live Vast qualification. Production
-        # keeps the known-bad digest denylisted; that gate has its own test.
+        # Most unit tests isolate the launch state machine from the immutable
+        # production denylist. Production keeps every known-bad digest
+        # denylisted; that gate has its own focused tests.
         patcher = mock.patch.object(
             self.wrapper, "COMPONENT_FACTORY_F41_REVOKED_IMAGES", frozenset()
         )

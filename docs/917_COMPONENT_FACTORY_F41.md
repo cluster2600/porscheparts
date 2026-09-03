@@ -212,6 +212,12 @@ Ces commandes ne louent aucune machine et ne récupèrent aucune clé. Le transf
 le lancement Vast et la récupération des résultats restent des opérations
 séparées et explicitement autorisées.
 
+La première qualification réussie du runtime C59 et du lot borné à six graines
+F35 est documentée dans
+[`917_COMPONENT_FACTORY_F41_VAST_RUNTIME.md`](917_COMPONENT_FACTORY_F41_VAST_RUNTIME.md).
+Elle valide le transport et ce lot précis, pas la géométrie moteur, les 132
+familles bloquées, la simulation ou la fabrication.
+
 ## Lots parallèles pour la machine Vast à 384 CPU
 
 ```mermaid
