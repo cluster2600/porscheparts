@@ -3,6 +3,7 @@
 .PHONY: 917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest 917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
 .PHONY: 917-extended-periodic-state-f40b-test 917-extended-periodic-state-f40b-manifest 917-extended-periodic-state-f40b-image-smoke 917-extended-periodic-state-f40b
 .PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
+.PHONY: 917-component-factory-f42a-usd-test
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -548,6 +549,9 @@ engine-components:
 	test ! -e "$(F41_BUNDLE_OUTPUT)"
 	python3 twins/reference-917-engine/source/build_component_factory_bundle_f41.py \
 		--project-root . --output "$(F41_BUNDLE_OUTPUT)"
+
+917-component-factory-f42a-usd-test:
+	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_component_factory_f42a_usd.py -v
 
 917-wave-action-f39-image-test:
 	python3 tests/test_917_engine_wave_f39_image.py -v
