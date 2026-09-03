@@ -317,8 +317,15 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         self.assertEqual(sum(item["size_bytes"] for item in contract["input_allowlist"]), 724745)
         self.assertEqual(sum(item["role"] == "step" for item in contract["input_allowlist"]), 6)
         self.assertEqual(contract["output_contract"]["maximum_usd_size_bytes_per_family"], 268435456)
-        self.assertEqual(contract["runtime"]["qualification_status"], "pending_new_simready_workflow_digest")
-        self.assertIsNone(contract["runtime"]["image_ref"])
+        self.assertEqual(
+            contract["runtime"]["qualification_status"],
+            "qualified_public_linux_amd64_digest",
+        )
+        self.assertEqual(
+            contract["runtime"]["image_ref"],
+            "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:"
+            "79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+        )
         adapter_path = ROOT / "containers/simready-preflight/convert.py"
         adapter = contract["runtime"]["converter_adapter"]
         self.assertEqual(adapter["sha256"], hashlib.sha256(adapter_path.read_bytes()).hexdigest())

@@ -101,12 +101,20 @@ le smoke applicatif, le smoke SSH concurrent et la promotion ont tous réussi.
 La base `linux/amd64` autorisée pour l'étage suivant est exclusivement
 `ghcr.io/cluster2600/3dprinting993-simready@sha256:3dc95bf1fc5f7942c86c5dba33da05b7f852aea34684c1079b24df0915324f46`.
 
-Le second étage a été qualifié par le run
+Une première version du second étage a été qualifiée par le run
 [`33716740177`](https://github.com/cluster2600/3dprinting993/actions/runs/33716740177)
 sur le commit `4b774d6c463b0a9a68a33b7deb4b5b63c64015db`. La conversion
-STEP→USD synthétique, le pull anonyme et les smokes ont réussi. Le seul parent
-autorisé pour l'image locale finale et le lot CPU F42a est
-`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84`.
+STEP→USD synthétique, le pull anonyme et les smokes ont réussi, mais l'exécution
+F42a a ensuite révélé un `defaultPrim` dépendant du nom temporaire. Ce digest
+historique est donc écarté du chemin F42b et de toute nouvelle image fille.
+
+Le second étage corrigé a été qualifié par le run
+[`33721155010`](https://github.com/cluster2600/3dprinting993/actions/runs/33721155010)
+sur le commit `6918f150c57ea6b8791bceb79847fc5e6cac2974`. Le build impose
+deux conversions indépendantes identiques octet pour octet, puis le pull
+anonyme, les smokes runtime et SSH et la promotion ont tous réussi. Le seul
+parent autorisé pour la nouvelle image locale finale et le replay CPU F42a est
+`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126`.
 
 ## Dimensionnement de la première qualification
 
@@ -122,7 +130,7 @@ mesure de saturation ou par un calcul CAE ultérieur, pas par le nom du projet.
 |---|---|
 | Base sans clef hôte publiée | vrai — run `33715503892`, digest immuable |
 | Concurrence `sshd` testée à froid | vrai — smoke du même run |
-| Workflow STEP→USD minimal | vrai — run `33716740177`, digest immuable |
+| Workflow STEP→USD canonique | vrai — run `33721155010`, digest immuable |
 | Image finale accessible anonymement par digest | bloquée par la cascade |
 | SSH `BatchMode` réel | non exécuté |
 | Services NVIDIA locaux | non exécutés sur le nouveau digest |

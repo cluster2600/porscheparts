@@ -86,11 +86,18 @@ fichiers du skill consommés sont également liés par SHA-256 et taille.
 L'exécution a révélé que ce runtime conservait dans le `defaultPrim` le nom du
 fichier temporaire utilisé pour la publication atomique. Il reste une preuve
 utile de conversion minimale, mais il est maintenant écarté du chemin F42b.
-Le contrat de production est revenu à `pending_new_simready_workflow_digest`
-jusqu'à la qualification publique du correctif qui conserve le basename final
-dans un répertoire temporaire isolé. Le convertisseur produit ainsi directement
-la racine canonique et ses liaisons internes, avant le remplacement atomique,
-sans réécrire a posteriori le stage USD.
+Le correctif conserve le basename final dans un répertoire temporaire isolé.
+Le convertisseur produit ainsi directement la racine canonique et ses liaisons
+internes, avant le remplacement atomique, sans réécrire a posteriori le stage
+USD.
+
+Ce correctif est qualifié par le run GitHub Actions
+[`33721155010`](https://github.com/cluster2600/3dprinting993/actions/runs/33721155010)
+sur le commit `6918f150c57ea6b8791bceb79847fc5e6cac2974`. La construction
+effectue deux conversions indépendantes et exige des USDC identiques octet pour
+octet ; le pull anonyme, les smokes runtime et SSH et la promotion ont réussi.
+Le contrat de production épingle exclusivement l'image publique `linux/amd64`
+`ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126`.
 
 ## Exécution CPU attestée
 
@@ -117,8 +124,8 @@ python3 twins/reference-917-engine/source/execute_component_factory_f42a_usd.py 
   --archive /chemin/f41-c59-20260903t025511z.tar.gz
 ```
 
-Après qualification du nouveau digest, la référence sera lue depuis le contrat
-sans la recopier à la main puis chargée :
+La référence qualifiée est lue depuis le contrat sans la recopier à la main,
+puis chargée :
 
 ```bash
 F42A_IMAGE="$(python3 - <<'PY'

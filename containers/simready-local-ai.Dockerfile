@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 
 ARG TARGETPLATFORM=linux/amd64
-FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84
+FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126
 
 ARG VLLM_VERSION=0.26.0
 ARG VLLM_CU129_WHEEL_URL=https://github.com/vllm-project/vllm/releases/download/v0.26.0/vllm-0.26.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl#sha256=6ce4ca30616f0a35810391015622b197a7b8b267ed27f8716f0789db79ff578b
