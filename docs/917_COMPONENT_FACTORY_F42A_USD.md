@@ -75,13 +75,37 @@ rigid body, collider ou joint. Il limite aussi chaque USD à 256 Mio et les six
 USD à 1 Gio. Ces plafonds protègent l'exécution ; ce ne sont pas des tailles
 prédites.
 
-Le runtime de production est lié au digest public `linux/amd64`
+Le premier runtime exécuté était lié au digest public `linux/amd64`
 `ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84`. Le run GitHub Actions
 [`33716740177`](https://github.com/cluster2600/3dprinting993/actions/runs/33716740177)
 a validé la construction, la conversion STEP→USD synthétique, le pull anonyme,
 les smokes et la promotion sur le commit
 `4b774d6c463b0a9a68a33b7deb4b5b63c64015db`. L'adaptateur et les cinq
 fichiers du skill consommés sont également liés par SHA-256 et taille.
+
+L'exécution a révélé que ce runtime conservait dans le `defaultPrim` le nom du
+fichier temporaire utilisé pour la publication atomique. Il reste une preuve
+utile de conversion minimale, mais il est maintenant écarté du chemin F42b.
+Le contrat de production est revenu à `pending_new_simready_workflow_digest`
+jusqu'à la qualification publique du correctif qui conserve le basename final
+dans un répertoire temporaire isolé. Le convertisseur produit ainsi directement
+la racine canonique et ses liaisons internes, avant le remplacement atomique,
+sans réécrire a posteriori le stage USD.
+
+## Exécution CPU attestée
+
+Le 3 septembre 2026, le lot complet a été exécuté sur un worker CPU privé
+`linux/amd64`, sans GPU, sans réseau dans le conteneur et sans instance payante.
+Les six conversions et validations minimales ont réussi. Les USD produits
+totalisent `167044` octets ; leurs SHA-256 et tailles sont consignés dans la
+[preuve assainie F42a](../twins/reference-917-engine/evidence/f42a-cpu-usd/README.md).
+
+Les sources STEP, les USD, l'archive et les journaux restent hors du dépôt.
+Le `defaultPrim` des USD conserve en outre un nom temporaire non déterministe ;
+le lot RTX devra d'abord normaliser ce namespace. Cette réussite ferme
+uniquement la porte de conversion minimale : 132 familles,
+les propriétés SimReady, les matériaux, la physique, l'assemblage, le rendu et
+toutes les validations physiques restent ouverts.
 
 ## Commandes
 
@@ -93,8 +117,8 @@ python3 twins/reference-917-engine/source/execute_component_factory_f42a_usd.py 
   --archive /chemin/f41-c59-20260903t025511z.tar.gz
 ```
 
-L'exécution CPU est maintenant ouverte pour les six familles du lot. La
-référence est lue depuis le contrat sans la recopier à la main puis chargée :
+Après qualification du nouveau digest, la référence sera lue depuis le contrat
+sans la recopier à la main puis chargée :
 
 ```bash
 F42A_IMAGE="$(python3 - <<'PY'
@@ -161,8 +185,10 @@ exactement (`724745` octets) ; une sortie supérieure aux plafonds est bloquée.
 
 ## Gate GPU suivant
 
-Aucun GPU ne doit être loué pour F42a. Un lot RTX séparé ne peut démarrer
-qu'après six conversions et six validations minimales réussies. Ce futur lot
+Aucun GPU n'a été nécessaire pour F42a. Le premier passage des six conversions
+et validations minimales est attesté, mais son namespace non canonique impose
+un second passage. Le lot RTX séparé ne pourra démarrer qu'après cette
+répétition avec des `defaultPrim` stables. Ce lot
 pourra affecter des matériaux documentés, appliquer la physique sous contrat,
 exécuter les validateurs NVIDIA plus profonds et produire l'aperçu OVRTX. Il ne
 doit pas transformer ces validations logicielles en preuve de fonctionnement

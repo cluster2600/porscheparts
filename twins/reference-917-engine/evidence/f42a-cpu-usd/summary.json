@@ -1,0 +1,106 @@
+{
+  "$comment": "Preuve assainie de l'execution CPU F42a. Les STEP sources, USD produits, journaux et archives restent hors du depot; cette preuve n'autorise ni simulation, ni assemblage, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F42a-cpu-usd",
+  "status": "passed_six_hash_bound_F41_STEP_families_converted_to_minimum_USD_not_simready",
+  "execution": {
+    "date_utc": "2026-09-03",
+    "host_scope": "private_cpu_worker_without_GPU",
+    "platform": "linux/amd64",
+    "container_network_enabled": false,
+    "paid_instance_launched": false,
+    "runtime_image": "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84",
+    "runtime_qualification_run": "https://github.com/cluster2600/3dprinting993/actions/runs/33716740177"
+  },
+  "source": {
+    "phase": "F41",
+    "revision": "045f41037f04b3dd69b72591d29713a17db8e1c3",
+    "archive_sha256": "59ef86584e9dfb16481b76ce79bf5739b129ddf2d3a3869f700b2dd614bd86b5",
+    "archive_size_bytes": 772358,
+    "allowlisted_file_count": 15,
+    "allowlisted_size_bytes": 724745,
+    "raw_scan_imported": false
+  },
+  "contract": {
+    "sha256": "45511fbccbe89a020fa545db6cbae65ed3f361cc35bbf4bf7a0b4ebf1a061b45",
+    "bounds_relative_tolerance": 0.01,
+    "bounds_absolute_tolerance_m": 0.0001
+  },
+  "outputs": {
+    "generated_family_count": 6,
+    "blocked_family_count": 132,
+    "total_USD_size_bytes": 167044,
+    "families": [
+      {
+        "family_id": "connecting_rod",
+        "USD_sha256": "f8b45e85c0d3ca79f7dd9d6485a01a07ab6965213f37db3e2d6ba529781816fd",
+        "USD_size_bytes": 22268
+      },
+      {
+        "family_id": "crankshaft",
+        "USD_sha256": "0d960b33c9fc035f4e55799f5edb464e4bda07dc3402a455f8e97ac40e5db94b",
+        "USD_size_bytes": 40492
+      },
+      {
+        "family_id": "main_bearing_pair",
+        "USD_sha256": "c895109f11b0a823bca80e816fd31ad8e4a8cb95b46e7619fd476ac2bf259f20",
+        "USD_size_bytes": 15139
+      },
+      {
+        "family_id": "piston",
+        "USD_sha256": "e1e7db3a117bf449f5219114fe13582da9f67537f0ac0ba8ec4cb9ebc29d7041",
+        "USD_size_bytes": 65685
+      },
+      {
+        "family_id": "piston_pin",
+        "USD_sha256": "62e4ee911c77c882405ed8c4f88e1472989405e83978be301052d50633c17fae",
+        "USD_size_bytes": 11266
+      },
+      {
+        "family_id": "piston_ring",
+        "USD_sha256": "5a797483ef921ad6737eb8f7a2e752e85643e191018e1470d65e10cbf792b52a",
+        "USD_size_bytes": 12194
+      }
+    ],
+    "private_execution_report_sha256": "5d9e2a4d6c7c387f8926896de80a84b18c9927f09c3af01b8eff16f3354dafa7",
+    "private_execution_report_size_bytes": 11737,
+    "private_artifacts_committed": false
+  },
+  "validation": {
+    "six_imported_assets_minimum_valid": true,
+    "expected_up_axis": "Z",
+    "expected_meters_per_unit": 0.001,
+    "minimum_mesh_present": true,
+    "canonical_namespace": false,
+    "default_prim_name_stable": false,
+    "namespace_blocker": "converter_temporary_name_present_in_defaultPrim",
+    "physics_schema_count": 0,
+    "material_assignment_status": "not_run",
+    "physics_assignment_status": "not_run",
+    "assembly_status": "not_run",
+    "preview_status": "not_run_until_separate_RTX_batch"
+  },
+  "repository_scope": {
+    "summary_committed": true,
+    "source_archive_committed": false,
+    "STEP_committed": false,
+    "USD_committed": false,
+    "raw_scan_committed": false,
+    "runtime_logs_committed": false,
+    "secret_committed": false
+  },
+  "release_gates": {
+    "all_138_families_minimum_valid": false,
+    "all_interface_dimensions_measured": false,
+    "all_materials_qualified": false,
+    "simready_property_assignment_complete": false,
+    "assembly_interference_check_passed": false,
+    "simulation_validated": false,
+    "physical_dyno_correlated": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false,
+    "installation_in_993_authorized": false,
+    "performance_1600_hp_claim_authorized": false
+  }
+}

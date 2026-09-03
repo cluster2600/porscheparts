@@ -222,6 +222,10 @@ def validate_contract(contract: dict[str, Any]) -> dict[str, Any]:
         require(re.fullmatch(r"[0-9a-f]{64}", str(item.get("sha256", ""))) is not None, f"skill_file_sha256_invalid:{item.get('path')}")
         require(isinstance(item.get("size_bytes"), int) and item["size_bytes"] > 0, f"skill_file_size_invalid:{item.get('path')}")
     require(isinstance(audit, dict), "usd_audit_required")
+    require(
+        audit.get("expected_default_prim_template") == "/{family_id}",
+        "canonical_default_prim_template_required",
+    )
     require(audit.get("expected_up_axis") == "Z", "Z_up_required")
     require(audit.get("expected_meters_per_unit") == 0.001, "millimetre_stage_units_required")
     require(
@@ -547,8 +551,13 @@ def audit_minimum_report(report: dict[str, Any], family_report: dict[str, Any], 
     metadata = report.get("metadata")
     require(isinstance(metadata, dict), "minimum_USD_metadata_required")
     audit = contract["usd_audit"]
+    expected_default_prim = audit["expected_default_prim_template"].format(
+        family_id=family_report["family_id"]
+    )
     checks: dict[str, bool] = {
         "default_prim_valid": isinstance(metadata.get("default_prim_path"), str) and metadata["default_prim_path"].startswith("/"),
+        "canonical_default_prim": metadata.get("default_prim_path") == expected_default_prim,
+        "single_canonical_root_prim": metadata.get("root_prim_paths") == [expected_default_prim],
         "up_axis_Z": str(metadata.get("up_axis", "")).upper() == audit["expected_up_axis"],
         "meters_per_unit_0_001": isinstance(metadata.get("meters_per_unit"), (int, float)) and math.isclose(float(metadata["meters_per_unit"]), float(audit["expected_meters_per_unit"]), rel_tol=0.0, abs_tol=1e-12),
         "has_prims": isinstance(metadata.get("prim_count"), int) and metadata["prim_count"] > 0,
@@ -574,6 +583,7 @@ def audit_minimum_report(report: dict[str, Any], family_report: dict[str, Any], 
         "checks": checks,
         "expected_bounds_m_sorted": expected_bounds,
         "actual_bounds_m_sorted": actual_bounds,
+        "canonical_default_prim_path": expected_default_prim,
         "material_assignment_status": "not_run",
         "physics_assignment_status": "not_run",
         "simulation_validated": False,
@@ -620,6 +630,11 @@ def run_family(
     require(adapter.get("requested_up_axis") == "Z", f"converter_up_axis_not_Z:{family}")
     require(adapter.get("source_stable_during_conversion") is True, f"converter_source_stability_not_proven:{family}")
     require(adapter.get("atomic_output_commit") is True, f"converter_atomic_commit_not_proven:{family}")
+    require(adapter.get("canonical_namespace") is True, f"converter_namespace_not_canonical:{family}")
+    require(
+        adapter.get("canonical_default_prim_path") == f"/{family}",
+        f"converter_default_prim_not_canonical:{family}",
+    )
     output_usd = normalized_output_path(str(adapter.get("output_usd", "")), conversion_root)
     require(
         0 < output_usd.stat().st_size <= contract["output_contract"]["maximum_usd_size_bytes_per_family"],

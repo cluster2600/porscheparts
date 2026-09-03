@@ -20,6 +20,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -63,18 +64,58 @@ def _write(path: Path | None, content: str) -> None:
             temporary.unlink(missing_ok=True)
 
 
-def _temporary_output_path(output: Path) -> Path:
-    """Réserve un nom unique tout en conservant le suffixe USD attendu."""
+def _temporary_output_path(output: Path) -> tuple[Path, Path]:
+    """Crée un répertoire unique mais conserve le nom final du fichier USD.
 
-    with tempfile.NamedTemporaryFile(
-        dir=output.parent,
-        prefix=f".{output.stem}.",
-        suffix=f".tmp{output.suffix}",
-        delete=False,
-    ) as stream:
-        temporary = Path(stream.name)
-    temporary.unlink()
-    return temporary
+    HOOPS dérive des noms de prim et leurs liaisons internes du basename de la
+    sortie. Le basename doit donc rester identique à celui du fichier publié ;
+    seul le répertoire temporaire peut être aléatoire.
+    """
+
+    directory = Path(
+        tempfile.mkdtemp(
+            dir=output.parent,
+            prefix=f".{output.stem}.",
+            suffix=".tmp",
+        )
+    )
+    return directory / output.name, directory
+
+
+def _validate_canonical_namespace(path: Path, output: Path) -> dict[str, object]:
+    """Vérifie le namespace produit directement depuis le basename stable."""
+
+    from pxr import Sdf, Tf, Usd
+
+    stage = Usd.Stage.Open(str(path))
+    if stage is None:
+        raise RuntimeError("converted USD cannot be opened for namespace validation")
+    default_prim = stage.GetDefaultPrim()
+    if not default_prim or not default_prim.IsValid():
+        raise RuntimeError("converted USD has no valid default prim")
+    actual_path = default_prim.GetPath()
+    canonical_name = Tf.MakeValidIdentifier(output.stem)
+    if not canonical_name:
+        raise RuntimeError("output stem cannot form a canonical USD identifier")
+    canonical_path = Sdf.Path.absoluteRootPath.AppendChild(canonical_name)
+    if actual_path != canonical_path:
+        raise RuntimeError(
+            f"default prim is {actual_path}, expected canonical path {canonical_path}"
+        )
+    root_paths = [prim.GetPath() for prim in stage.GetPseudoRoot().GetChildren()]
+    if root_paths != [canonical_path]:
+        raise RuntimeError(
+            f"root prims are {root_paths}, expected only {canonical_path}"
+        )
+    if path.name != output.name:
+        raise RuntimeError("temporary USD basename differs from final output basename")
+    return {
+        "canonical_namespace": True,
+        "canonical_default_prim_path": str(canonical_path),
+        "pre_normalization_default_prim_path": str(actual_path),
+        "flattened_for_namespace_stability": False,
+        "stable_temporary_output_basename": True,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -103,10 +144,11 @@ def main(argv: list[str] | None = None) -> int:
 
     source_sha256_before = _sha256(source) if source.is_file() else None
     temporary_output: Path | None = None
+    temporary_directory: Path | None = None
     command_output = output
     if not errors:
         output.parent.mkdir(parents=True, exist_ok=True)
-        temporary_output = _temporary_output_path(output)
+        temporary_output, temporary_directory = _temporary_output_path(output)
         command_output = temporary_output
     command = [
         str(CONVERTER),
@@ -131,6 +173,13 @@ def main(argv: list[str] | None = None) -> int:
     source_sha256_after = source_sha256_before
     output_sha256 = None
     atomic_output_commit = False
+    namespace = {
+        "canonical_namespace": False,
+        "canonical_default_prim_path": None,
+        "pre_normalization_default_prim_path": None,
+        "flattened_for_namespace_stability": False,
+        "stable_temporary_output_basename": False,
+    }
     try:
         if not errors:
             completed = subprocess.run(command, capture_output=True, text=True, check=False)
@@ -152,13 +201,21 @@ def main(argv: list[str] | None = None) -> int:
                     errors.append("source asset changed during conversion")
                     returncode = 2
                 else:
-                    os.replace(temporary_output, output)
-                    temporary_output = None
-                    output_sha256 = _sha256(output)
-                    atomic_output_commit = True
+                    try:
+                        namespace = _validate_canonical_namespace(temporary_output, output)
+                    except Exception as exc:
+                        errors.append(f"USD namespace validation failed: {exc}")
+                        returncode = 2
+                    else:
+                        os.replace(temporary_output, output)
+                        temporary_output = None
+                        output_sha256 = _sha256(output)
+                        atomic_output_commit = True
     finally:
         if temporary_output is not None:
             temporary_output.unlink(missing_ok=True)
+        if temporary_directory is not None:
+            shutil.rmtree(temporary_directory)
 
     log = stdout + stderr
     _write(args.log, log if log.endswith("\n") or not log else log + "\n")
@@ -175,6 +232,7 @@ def main(argv: list[str] | None = None) -> int:
         "output_sha256": output_sha256,
         "atomic_output_commit": atomic_output_commit,
         "requested_up_axis": args.up_axis.upper(),
+        **namespace,
         "converter": str(CONVERTER),
         "command": command,
         "returncode": returncode,

@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "twins/reference-917-engine/component-factory-f42a-usd.json"
 EXECUTOR_PATH = ROOT / "twins/reference-917-engine/source/execute_component_factory_f42a_usd.py"
 WRAPPER_PATH = ROOT / "twins/reference-917-engine/source/run_component_factory_f42a_usd.sh"
+EVIDENCE_PATH = ROOT / "twins/reference-917-engine/evidence/f42a-cpu-usd/summary.json"
 IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:" + "2" * 64
 FAMILIES = (
     "connecting_rod",
@@ -182,6 +183,7 @@ class F42aFixture:
             "families": list(FAMILIES),
             "input_allowlist": allowlist,
             "usd_audit": {
+                "expected_default_prim_template": "/{family_id}",
                 "expected_up_axis": "Z",
                 "expected_meters_per_unit": 0.001,
                 "bounds_relative_tolerance": 0.01,
@@ -212,7 +214,7 @@ class F42aFixture:
             source=Path(a.source); output=Path(a.output); output.parent.mkdir(parents=True, exist_ok=True); output.write_bytes(b"PXR-USDC synthetic")
             sha=lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
             Path(a.log).write_text("synthetic conversion\n")
-            Path(a.report).write_text(json.dumps({"status":"passed","errors":[],"requested_up_axis":a.up_axis.upper(),"source_stable_during_conversion":True,"atomic_output_commit":True,"output_usd":str(output),"output_sha256":sha(output),"converter":"usd-convert-cad"}))
+            Path(a.report).write_text(json.dumps({"status":"passed","errors":[],"requested_up_axis":a.up_axis.upper(),"source_stable_during_conversion":True,"atomic_output_commit":True,"canonical_namespace":True,"canonical_default_prim_path":"/"+output.stem,"output_usd":str(output),"output_sha256":sha(output),"converter":"usd-convert-cad"}))
             ''',
         )
         self.refresh_runtime_bindings()
@@ -259,7 +261,8 @@ class F42aFixture:
             from pathlib import Path
             p=argparse.ArgumentParser(); p.add_argument("asset"); p.add_argument("--next-step"); p.add_argument("--report"); p.add_argument("--markdown-report"); a=p.parse_args()
             physics = 0
-            payload={"asset_path":str(Path(a.asset).resolve()),"passed":True,"metadata":{"default_prim_path":"/Asset","up_axis":"Z","meters_per_unit":0.001,"prim_count":2,"mesh_count":1,"used_layers":[str(Path(a.asset).resolve())],"rigid_body_count":physics,"collider_count":0,"joint_count":0,"bounds":{"meters":{"size":[0.01,0.02,0.03]}}}}
+            root="/"+Path(a.asset).stem
+            payload={"asset_path":str(Path(a.asset).resolve()),"passed":True,"metadata":{"default_prim_path":root,"root_prim_paths":[root],"up_axis":"Z","meters_per_unit":0.001,"prim_count":2,"mesh_count":1,"used_layers":[str(Path(a.asset).resolve())],"rigid_body_count":physics,"collider_count":0,"joint_count":0,"bounds":{"meters":{"size":[0.01,0.02,0.03]}}}}
             Path(a.report).write_text(json.dumps(payload)); Path(a.markdown_report).write_text("# minimum\n")
             ''',
         )
@@ -314,15 +317,62 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
         self.assertEqual(sum(item["size_bytes"] for item in contract["input_allowlist"]), 724745)
         self.assertEqual(sum(item["role"] == "step" for item in contract["input_allowlist"]), 6)
         self.assertEqual(contract["output_contract"]["maximum_usd_size_bytes_per_family"], 268435456)
-        self.assertEqual(contract["runtime"]["qualification_status"], "qualified_public_linux_amd64_digest")
-        self.assertEqual(
-            contract["runtime"]["image_ref"],
-            "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:3d841cc578ca2da04f021e92bfbffabe53052aa49ba9c12ae2971526cd692e84",
-        )
+        self.assertEqual(contract["runtime"]["qualification_status"], "pending_new_simready_workflow_digest")
+        self.assertIsNone(contract["runtime"]["image_ref"])
+        adapter_path = ROOT / "containers/simready-preflight/convert.py"
+        adapter = contract["runtime"]["converter_adapter"]
+        self.assertEqual(adapter["sha256"], hashlib.sha256(adapter_path.read_bytes()).hexdigest())
+        self.assertEqual(adapter["size_bytes"], adapter_path.stat().st_size)
         self.assertEqual(contract["usd_audit"]["bounds_relative_tolerance"], 0.01)
         self.assertEqual(contract["usd_audit"]["bounds_absolute_tolerance_m"], 0.0001)
+        self.assertEqual(contract["usd_audit"]["expected_default_prim_template"], "/{family_id}")
         self.assertFalse(any("raw-scan" in item["path"] or item["path"].endswith((".stl", ".3mf")) for item in contract["input_allowlist"]))
         self.assertTrue(all(value is False for value in contract["release_gates"].values()))
+
+    def test_CPU_execution_evidence_is_sanitized_and_fail_closed(self):
+        evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(evidence["phase"], "F42a-cpu-usd")
+        self.assertEqual(evidence["outputs"]["generated_family_count"], 6)
+        self.assertEqual(evidence["outputs"]["blocked_family_count"], 132)
+        self.assertEqual(evidence["outputs"]["total_USD_size_bytes"], 167044)
+        families = evidence["outputs"]["families"]
+        self.assertEqual([item["family_id"] for item in families], list(FAMILIES))
+        self.assertEqual(sum(item["USD_size_bytes"] for item in families), 167044)
+        expected_outputs = {
+            "connecting_rod": ("f8b45e85c0d3ca79f7dd9d6485a01a07ab6965213f37db3e2d6ba529781816fd", 22268),
+            "crankshaft": ("0d960b33c9fc035f4e55799f5edb464e4bda07dc3402a455f8e97ac40e5db94b", 40492),
+            "main_bearing_pair": ("c895109f11b0a823bca80e816fd31ad8e4a8cb95b46e7619fd476ac2bf259f20", 15139),
+            "piston": ("e1e7db3a117bf449f5219114fe13582da9f67537f0ac0ba8ec4cb9ebc29d7041", 65685),
+            "piston_pin": ("62e4ee911c77c882405ed8c4f88e1472989405e83978be301052d50633c17fae", 11266),
+            "piston_ring": ("5a797483ef921ad6737eb8f7a2e752e85643e191018e1470d65e10cbf792b52a", 12194),
+        }
+        self.assertEqual(
+            {
+                item["family_id"]: (item["USD_sha256"], item["USD_size_bytes"])
+                for item in families
+            },
+            expected_outputs,
+        )
+        self.assertEqual(evidence["outputs"]["private_execution_report_size_bytes"], 11737)
+        self.assertTrue(evidence["validation"]["six_imported_assets_minimum_valid"])
+        self.assertFalse(evidence["validation"]["canonical_namespace"])
+        self.assertFalse(evidence["validation"]["default_prim_name_stable"])
+        self.assertEqual(evidence["validation"]["physics_schema_count"], 0)
+        self.assertFalse(evidence["execution"]["paid_instance_launched"])
+        self.assertTrue(all(value is False for value in evidence["release_gates"].values()))
+        scope = evidence["repository_scope"]
+        self.assertTrue(scope["summary_committed"])
+        self.assertTrue(all(value is False for key, value in scope.items() if key != "summary_committed"))
+        evidence_root = EVIDENCE_PATH.parent
+        self.assertEqual(
+            {path.name for path in evidence_root.iterdir()},
+            {"README.md", "summary.json"},
+        )
+        forbidden_suffixes = {".3mf", ".obj", ".step", ".stl", ".usd", ".usda", ".usdc", ".usdz"}
+        self.assertFalse(any(path.suffix.lower() in forbidden_suffixes for path in evidence_root.rglob("*")))
+        serialized = EVIDENCE_PATH.read_text(encoding="utf-8")
+        for private_marker in ("/Users/", "/tmp/", "192.168.", "lolman", "maxime"):
+            self.assertNotIn(private_marker, serialized)
 
     def test_bounds_tolerances_are_finite_and_exactly_pinned(self):
         mutations = (
@@ -396,7 +446,7 @@ class ComponentFactoryF42aUsdTests(unittest.TestCase):
                 self.fixture.converter,
                 output,
             )
-        self.assertEqual(report["generated_family_count"], 6)
+            self.assertEqual(report["generated_family_count"], 6)
         self.assertEqual(report["contract_sha256"], self.fixture._file_digest(self.fixture.contract_path))
         self.assertTrue(report["six_imported_assets_minimum_valid"])
         self.assertFalse(report["all_138_families_minimum_valid"])
