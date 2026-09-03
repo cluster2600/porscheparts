@@ -834,6 +834,60 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertFalse(payload["target_1600_ch_validated"])
         self.assertEqual(payload["label"], attempt_label)
 
+    def test_validation_only_launch_skips_content_agents_and_uses_exact_ready(self):
+        output = io.StringIO()
+        attempt_label = self.simready_attempt_label()
+        with (
+            mock.patch.object(
+                self.wrapper,
+                "SIMREADY_IMAGE",
+                "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:" + "a" * 64,
+            ),
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(
+                self.wrapper, "simready_attempt_label", return_value=attempt_label
+            ),
+            mock.patch.object(
+                self.wrapper, "vast_request", return_value={"new_contract": 12345}
+            ) as request,
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "verify_simready_contract"),
+            mock.patch.object(
+                self.wrapper,
+                "verify_simready_ssh_ready",
+                return_value=Path("/tmp/simready-known-hosts"),
+            ) as ssh_ready,
+            mock.patch("sys.stdout", output),
+        ):
+            result = self.wrapper.launch_simready_offer(
+                "unused",
+                self.eligible_offer(),
+                disk_gb=500,
+                enforce_singleton=True,
+                validation_only=True,
+            )
+        self.assertEqual(result, 0)
+        payload = request.call_args.kwargs["payload"]
+        self.assertIn("simready_validation_only_ready", payload["onstart"])
+        self.assertIn("physicsnemo-gpu-smoke", payload["onstart"])
+        self.assertNotIn("simready-services start", payload["onstart"])
+        ssh_ready.assert_called_once_with("unused", 12345, validation_only=True)
+        report = json.loads(output.getvalue())
+        self.assertTrue(report["validation_only"])
+        self.assertEqual(report["property_assignment_intent"], "skip")
+        self.assertFalse(report["content_agents_started"])
+
+    def test_validation_only_ready_commands_are_distinct_and_fail_closed(self):
+        onstart = self.wrapper.simready_validation_only_onstart_command()
+        remote = self.wrapper.simready_validation_only_remote_ready_command()
+        self.assertIn("simready_validation_only_ready", onstart)
+        self.assertIn("property_assignment_intent", onstart)
+        self.assertNotIn("simready-services start", onstart)
+        self.assertIn("SIMREADY_VALIDATION_ONLY_REMOTE_READY", remote)
+        self.assertIn("physicsnemo-gpu-smoke.json", remote)
+
     def test_simready_offer_is_revalidated_before_paid_side_effects(self):
         qualified = (
             "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:"

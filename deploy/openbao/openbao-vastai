@@ -2141,6 +2141,151 @@ print('SIMREADY_REMOTE_READY')
     return f"python -c {shlex.quote(script)}"
 
 
+def simready_validation_only_onstart_command() -> str:
+    """Start only deterministic CAD/USD validation prerequisites on Vast."""
+    script = r"""\
+set -euo pipefail
+workspace=/workspace
+ready=${workspace}/READY
+umask 077
+test -d "${workspace}" && test ! -L "${workspace}"
+install -d -o root -g root -m 0755 "${workspace}/logs" "${workspace}/simready"
+rm -f -- "${ready}"
+test -f /root/.no_auto_tmux && test ! -L /root/.no_auto_tmux
+test "$(stat -c '%u:%g:%a' /root/.no_auto_tmux)" = "0:0:600"
+test -d /root/.ssh && test ! -L /root/.ssh
+chown root:root /root/.ssh
+chmod 0700 /root/.ssh
+test -f /root/.ssh/authorized_keys && test ! -L /root/.ssh/authorized_keys
+chown root:root /root/.ssh/authorized_keys
+chmod 0600 /root/.ssh/authorized_keys
+test -s /root/.ssh/authorized_keys
+nvidia-smi >"${workspace}/logs/nvidia-smi.log" 2>&1
+smoke-test.sh simready-local-ai >"${workspace}/logs/simready-smoke.log" 2>&1
+"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" \
+    /usr/local/bin/physicsnemo-gpu-smoke \
+    >"${workspace}/logs/physicsnemo-gpu-smoke.json" 2>&1
+ready_tmp="$(/usr/bin/mktemp "${workspace}/.READY.XXXXXX")"
+cat >"${ready_tmp}" <<'EOF'
+{
+  "schema_version": "1.0.0",
+  "status": "simready_validation_only_ready",
+  "ephemeral_ssh_host_keys": true,
+  "batch_ssh_auto_tmux_disabled": true,
+  "physicsnemo_gpu_smoke_passed": true,
+  "validation_runtime_ready": true,
+  "content_agents_started": false,
+  "property_assignment_intent": "skip",
+  "simulation_validated": false,
+  "manufacturing_authorized": false,
+  "target_1600_ch_validated": false
+}
+EOF
+chmod 0644 "${ready_tmp}"
+mv -f -- "${ready_tmp}" "${ready}"
+"""
+    return f"bash -lc {shlex.quote(script)}"
+
+
+def simready_validation_only_remote_ready_command() -> str:
+    """Validate the exact validation-only READY and GPU-smoke contracts."""
+    script = """\
+import json
+import os
+from pathlib import Path
+import stat
+
+READY_MISSING = 41
+GPU_REPORT_MISSING = 42
+CONTRACT_REJECTED = 43
+
+def require(condition):
+    if not condition:
+        raise SystemExit(CONTRACT_REJECTED)
+
+def duplicate_rejecting_object(pairs):
+    value = {}
+    for key, item in pairs:
+        require(key not in value)
+        value[key] = item
+    return value
+
+def read_json(path, missing_code, maximum):
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    except FileNotFoundError:
+        raise SystemExit(missing_code)
+    except OSError:
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        with os.fdopen(descriptor, 'rb') as stream:
+            metadata = os.fstat(stream.fileno())
+            require(stat.S_ISREG(metadata.st_mode))
+            require(0 < metadata.st_size <= maximum)
+            payload = stream.read(maximum + 1)
+            require(len(payload) == metadata.st_size)
+    except SystemExit:
+        raise
+    except (OSError, ValueError):
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        return json.loads(
+            payload.decode('utf-8', errors='strict'),
+            object_pairs_hook=duplicate_rejecting_object,
+            parse_constant=lambda _value: require(False),
+        )
+    except SystemExit:
+        raise
+    except (OSError, UnicodeError, ValueError, TypeError):
+        raise SystemExit(CONTRACT_REJECTED)
+
+ready = read_json(Path('/workspace/READY'), READY_MISSING, 16 * 1024)
+require(ready == {
+    'schema_version': '1.0.0',
+    'status': 'simready_validation_only_ready',
+    'ephemeral_ssh_host_keys': True,
+    'batch_ssh_auto_tmux_disabled': True,
+    'physicsnemo_gpu_smoke_passed': True,
+    'validation_runtime_ready': True,
+    'content_agents_started': False,
+    'property_assignment_intent': 'skip',
+    'simulation_validated': False,
+    'manufacturing_authorized': False,
+    'target_1600_ch_validated': False,
+})
+gpu = read_json(
+    Path('/workspace/logs/physicsnemo-gpu-smoke.json'),
+    GPU_REPORT_MISSING,
+    64 * 1024,
+)
+require(isinstance(gpu, dict))
+require(set(gpu) == {
+    'schema_version', 'status', 'claim_scope', 'physicsnemo_version',
+    'torch_version', 'torch_cuda_version', 'gpu_name', 'gpu_memory_bytes',
+    'gpu_count', 'tensor_result',
+})
+require(gpu.get('schema_version') == '1.0.0')
+require(gpu.get('status') == 'passed')
+require(gpu.get('claim_scope') == 'runtime GPU only; no engine simulation or physical validation')
+require(gpu.get('physicsnemo_version') == '2.2.0')
+require(isinstance(gpu.get('torch_version'), str) and gpu['torch_version'].split('+', 1)[0] == '2.10.0')
+require(gpu.get('torch_cuda_version') == '12.9')
+require(isinstance(gpu.get('gpu_name'), str) and 0 < len(gpu['gpu_name']) <= 256)
+require(type(gpu.get('gpu_memory_bytes')) is int and gpu['gpu_memory_bytes'] >= 80000 * 1024 * 1024)
+require(type(gpu.get('gpu_count')) is int and gpu['gpu_count'] == 1)
+require(type(gpu.get('tensor_result')) in (int, float) and gpu['tensor_result'] == 14.0)
+for path in (
+    Path('/workspace/logs/nvidia-smi.log'),
+    Path('/workspace/logs/simready-smoke.log'),
+):
+    metadata = path.lstat()
+    require(stat.S_ISREG(metadata.st_mode) and not stat.S_ISLNK(metadata.st_mode))
+    require(0 < metadata.st_size <= 16 * 1024 * 1024)
+print('SIMREADY_VALIDATION_ONLY_REMOTE_READY')
+"""
+    return f"python -c {shlex.quote(script)}"
+
+
 def terminate_component_factory_f41_probe(
     process: subprocess.Popen[bytes],
 ) -> bool:
@@ -2499,8 +2644,10 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Pa
     )
 
 
-def verify_simready_ssh_ready(api_key: str, instance_id: int) -> Path:
-    """Prove BatchMode SSH plus the exact local-AI and PhysicsNeMo READY state."""
+def verify_simready_ssh_ready(
+    api_key: str, instance_id: int, *, validation_only: bool = False
+) -> Path:
+    """Prove BatchMode SSH plus the selected exact SimReady READY state."""
     validate_approved_ssh_private_key()
     known_hosts_path = prepare_simready_known_hosts(instance_id)
     host_key_alias = simready_host_key_alias(instance_id)
@@ -2601,7 +2748,11 @@ def verify_simready_ssh_ready(api_key: str, instance_id: int) -> Path:
             "-p",
             str(int(port)),
             f"root@{host}",
-            simready_remote_ready_command(),
+            (
+                simready_validation_only_remote_ready_command()
+                if validation_only
+                else simready_remote_ready_command()
+            ),
         ]
         try:
             ssh_environment = {
@@ -2641,7 +2792,12 @@ def verify_simready_ssh_ready(api_key: str, instance_id: int) -> Path:
             ) from exc
         if (
             completed.returncode == 0
-            and completed.stdout.strip() == "SIMREADY_REMOTE_READY"
+            and completed.stdout.strip()
+            == (
+                "SIMREADY_VALIDATION_ONLY_REMOTE_READY"
+                if validation_only
+                else "SIMREADY_REMOTE_READY"
+            )
         ):
             validate_simready_known_hosts(known_hosts_path, instance_id)
             return known_hosts_path
@@ -3001,6 +3157,7 @@ def launch_simready_offer(
     *,
     enforce_singleton: bool = False,
     attempt_label: str | None = None,
+    validation_only: bool = False,
 ) -> int:
     if SIMREADY_IMAGE in SIMREADY_REVOKED_IMAGES:
         raise SafeError(
@@ -3038,7 +3195,11 @@ def launch_simready_offer(
                     "disk": disk_gb,
                     "runtype": "ssh_direct",
                     "env": {},
-                    "onstart": "simready-vast-onstart",
+                    "onstart": (
+                        simready_validation_only_onstart_command()
+                        if validation_only
+                        else "simready-vast-onstart"
+                    ),
                     "cancel_unavail": True,
                 },
             )
@@ -3091,7 +3252,12 @@ def launch_simready_offer(
         try:
             verify_single_simready_instance(api_key, instance_id, attempt_label)
             verify_simready_contract(api_key, instance_id, attempt_label)
-            known_hosts_path = verify_simready_ssh_ready(api_key, instance_id)
+            if validation_only:
+                known_hosts_path = verify_simready_ssh_ready(
+                    api_key, instance_id, validation_only=True
+                )
+            else:
+                known_hosts_path = verify_simready_ssh_ready(api_key, instance_id)
             print_json(
                 {
                     "instance_id": instance_id,
@@ -3105,6 +3271,11 @@ def launch_simready_offer(
                     "running_state_verified": True,
                     "ssh_batch_mode_verified": True,
                     "runtime_ready_verified": True,
+                    "validation_only": validation_only,
+                    "property_assignment_intent": (
+                        "skip" if validation_only else "run"
+                    ),
+                    "content_agents_started": not validation_only,
                     "physicsnemo_gpu_runtime_verified": True,
                     "host_key_alias": simready_host_key_alias(instance_id),
                     "known_hosts_path": str(known_hosts_path),
@@ -3316,7 +3487,10 @@ def run(operation: list[str]) -> int:
             )
         if (
             len(operation) in {2, 4}
-            and operation[0] == "launch-simready-heavy"
+            and operation[0] in {
+                "launch-simready-heavy",
+                "launch-simready-validation-only",
+            }
         ):
             offer_id = positive_id(operation[1], "offer id")
             supervised_attempt_label = None
@@ -3339,6 +3513,7 @@ def run(operation: list[str]) -> int:
                 disk_gb=500,
                 enforce_singleton=True,
                 attempt_label=supervised_attempt_label,
+                validation_only=operation[0] == "launch-simready-validation-only",
             )
         if len(operation) == 2 and operation[0] == "reconcile-simready-attempt":
             attempt_label = operation[1]
@@ -3397,6 +3572,7 @@ def run(operation: list[str]) -> int:
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
             "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
             "launch-simready-heavy <offer_id> [--attempt-label <label>]|"
+            "launch-simready-validation-only <offer_id> [--attempt-label <label>]|"
             "reconcile-simready-attempt <label>|launch-best-eu|"
             "start <id>|stop <id>|"
             "destroy <id> --confirm"
