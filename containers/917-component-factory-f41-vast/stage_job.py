@@ -48,6 +48,20 @@ ALLOWED_BUNDLE_RELATIVE_FILES = frozenset(
         "twins/reference-917-engine/source/run_component_factory_f41_usd_job.sh",
     }
 )
+EXPECTED_BUNDLE_FILE_MODES = {
+    "REMOTE_JOB.md": "0644",
+    "containers/simready-preflight/convert.py": "0644",
+    "docs/917_COMPONENT_FACTORY_F41.md": "0644",
+    "twins/reference-917-engine/component-factory-f41.json": "0644",
+    "twins/reference-917-engine/rotating-assembly-cad-f35.json": "0644",
+    "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py": "0644",
+    "twins/reference-917-engine/source/execute_component_factory_f41.py": "0755",
+    "twins/reference-917-engine/source/rotating_assembly_f35_math.py": "0644",
+    "twins/reference-917-engine/source/run_component_factory_f41_cad_job.sh": "0755",
+    "twins/reference-917-engine/source/run_component_factory_f41_usd_job.sh": "0755",
+}
+if set(EXPECTED_BUNDLE_FILE_MODES) != set(ALLOWED_BUNDLE_RELATIVE_FILES):
+    raise RuntimeError("F41 bundle mode contract does not match the path allowlist")
 JOB_ID_RE = re.compile(r"[a-z0-9][a-z0-9._-]{0,63}")
 SHA256_RE = re.compile(r"[0-9a-f]{64}")
 REVISION_RE = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64})")
@@ -302,7 +316,7 @@ def validate_public_bundle(
             and 0 <= entry["size_bytes"] <= MAX_SINGLE_FILE_BYTES,
             "bundle_file_size_rejected",
         )
-        expected_mode = "0755" if relative_name.endswith((".py", ".sh")) else "0644"
+        expected_mode = EXPECTED_BUNDLE_FILE_MODES[relative_name]
         require(entry["mode"] == expected_mode, "bundle_file_mode_rejected")
         declared_by_name[relative_name] = entry
 

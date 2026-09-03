@@ -39,14 +39,16 @@ shell `nologin`, `NoNewPrivs=1` et une capability bounding set vide.
 ## Contrat exact pour le wrapper
 
 Le wrapper ne doit être promu qu'après publication réussie, pull anonyme du
-digest exact **et commande BatchMode `ssh_direct` réelle**. Deux digests sont
+digest exact **et commande BatchMode `ssh_direct` réelle**. Trois digests sont
 révoqués pour toute nouvelle location. Le premier avait retiré les clés hôte :
 Vast invoquait `sshd` avant `onstart`, avec le résultat
 `sshd: no hostkeys available -- exiting`. Le second a bien établi SSH et créé
 des sessions, mais le bloc auto-tmux injecté par Vast dans `/root/.bashrc`
 interceptait aussi les commandes non interactives (`no sessions` puis
-`open terminal failed: not a terminal`). Le prochain digest n'est autorisé
-qu'après le smoke distant complet décrit plus bas.
+`open terminal failed: not a terminal`). Le troisième a été bloqué avant toute
+location : un test du bundle Git réel a trouvé que le stager exigeait à tort
+`0755` pour toute source Python. Le prochain digest n'est autorisé qu'après le
+smoke distant complet décrit plus bas.
 
 Les valeurs invariantes de la recette corrigée sont :
 
@@ -54,7 +56,10 @@ Les valeurs invariantes de la recette corrigée sont :
 image repository: ghcr.io/cluster2600/3dprinting993-cad-author-f28
 revoked image 1: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
 revoked image 2: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a
-image: <digest corrigé à publier puis qualifier sur Vast>
+revoked image 3: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f
+publication workflow 33696007854: success, linux/amd64 + attestations + anonymous pull
+revocation: before Vast spend; real Git bundle mode mismatch found by supervisor tests
+replacement candidate: pending publication
 runtype: ssh_direct
 remote user: root
 onstart: /usr/local/bin/917-cad-vast-onstart
@@ -148,6 +153,12 @@ Schéma abrégé du manifeste embarqué :
 }
 ```
 
+Le mode est celui du blob Git, pas une règle fondée sur l'extension : les
+sources Python importées restent `0644`, tandis que le lanceur Python et les
+deux scripts shell réellement exécutés restent `0755`. Le stager compare une
+table exacte couvrant toute l'allowlist et les tests la confrontent aux modes
+de `git ls-files -s`.
+
 Le `file_count` réel est validé, pas déduit de cet exemple abrégé. Cette
 déclaration et ces hashes ne rendent pas magiquement une donnée publique : le
 wrapper doit constituer le bundle depuis un checkout neuf et propre d'un
@@ -218,18 +229,32 @@ preuve de publication.
 
 Une offre donnée peut disparaître à tout moment ; aucun identifiant de machine
 n'est donc inscrit dans le code. Le wrapper liste les offres qui respectent le
-contrat CPU/CAO, puis impose une sélection explicite :
+contrat CPU/CAO, puis le superviseur impose une sélection explicite et possède
+seul le parcours payant :
 
 ```bash
 ./deploy/openbao/openbao-vastai component-factory-f41-offers
-./deploy/openbao/openbao-vastai launch-component-factory-f41 <offer_id>
+./deploy/openbao/run-917-component-factory-f41-cad \
+  --offer-id "${OFFER_ID}" \
+  --bundle "${BUNDLE}" \
+  --expected-sha256 "${BUNDLE_SHA256}" \
+  --source-revision "${PUBLIC_REVISION}" \
+  --expected-image "${F41_IMAGE}" \
+  --job-id "${JOB_ID}" \
+  --output-root "${OUTPUT_ROOT}"
 ```
 
-Tant que `COMPONENT_FACTORY_F41_IMAGE` désigne l'un des digests révoqués, la seconde
-commande échoue avant le verrou de location, l'enregistrement SSH et l'appel de
-création payant. La denylist ne doit être levée qu'en remplaçant cette référence
-par le nouveau digest après publication et réussite de la commande BatchMode
-Vast vérifiée, sans auto-tmux.
+La commande interne `openbao-vastai launch-component-factory-f41` ne doit pas
+être appelée directement par l'opérateur. Le superviseur crée et persiste le
+label de tentative avant l'appel payant, sépare stdout et stderr, puis assure
+la continuité du fichier `known_hosts` strict pendant toute la session.
+
+Le wrapper refuse tous les digests révoqués avant le verrou de location,
+l'enregistrement SSH et l'appel de création payant. Le prochain digest ne sera
+admis pour la qualification réelle que via le superviseur borné, après contrôle
+du bundle Git réel. Il ne sera qualifié qu'après réussite de la commande
+BatchMode sans auto-tmux, récupération intègre du lot, puis destruction vérifiée
+de l'instance.
 
 Le lancement refuse un prix total supérieur à 1,25 USD/h, un
 `inet_up_cost` ou `inet_down_cost` absent, non fini, négatif ou supérieur à
@@ -261,12 +286,21 @@ build123d/OCCT n'utilise pas le GPU. Le parallélisme doit venir de plusieurs
 jobs CAO indépendants, chacun lancé par `917-cad-run-job`; un job individuel
 reste limité à un thread natif afin d'éviter la surallocation.
 
-La récupération des résultats n'est jamais automatique. Avant SCP, l'opérateur
-doit produire côté instance une archive de résultats d'au plus 2 Gio, enregistrer
-sa taille et son SHA-256, puis refuser localement tout écart de taille ou de hash.
-Après cette récupération vérifiée de `/workspace/results`, le wrapper doit
-arrêter la location. La conversion/validation SimReady et les calculs
-PhysicsNeMo nécessitant un GPU restent dans des images et locations séparées.
+La récupération est intégrée au superviseur. Il produit côté instance une
+archive GNU tar d'au plus 512 Mio en excluant exactement `.runtime`, enregistre
+sa taille et son SHA-256, la télécharge d'abord sous un nom `.partial`, puis
+refuse tout écart de taille, de hash ou de liste de membres. Il détruit ensuite
+la location et exige à la fois le succès du DELETE, son JSON exact et cinq
+inventaires complets, valides et consécutifs sans cette instance dans une
+fenêtre bornée. Un identifiant d'instance déjà attribué au label de tentative
+reçoit toujours le DELETE : une absence transitoire de l'inventaire ne peut pas
+le court-circuiter. stdout et stderr de chaque commande sont bornés à 2 Mio
+pendant son exécution ; un dépassement interrompt son groupe de processus et
+déclenche le nettoyage. La validation locale des 18 artefacts ne commence
+qu'après la preuve transactionnelle d'absence. Toute impossibilité de confirmer
+le nettoyage retourne le code critique 97 et indique que la machine peut encore
+être facturée. La conversion/validation SimReady et les calculs PhysicsNeMo
+nécessitant un GPU restent dans des images et locations séparées.
 
 ## Limites fermées
 

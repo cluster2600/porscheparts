@@ -1,0 +1,1351 @@
+#!/bin/sh
+set -eu
+umask 077
+
+# Keep the orchestration in one process so the EXIT-equivalent finally block
+# owns the paid-instance lifecycle.  The here-document also keeps this entry
+# point syntax-checkable with `sh -n` on both macOS and Linux.
+exec "${F41_SUPERVISOR_PYTHON:-python3}" - "$0" "$@" <<'PY'
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path, PurePosixPath
+import re
+import secrets
+import selectors
+import shlex
+import shutil
+import signal
+import stat
+import subprocess
+import sys
+import tarfile
+import time
+from typing import Any
+
+
+MAX_CAPTURE_BYTES = 2 * 1024 * 1024
+MAX_BUNDLE_BYTES = 512 * 1024**2
+MAX_RESULT_ARCHIVE_BYTES = 512 * 1024**2
+MAX_LISTING_BYTES = 1024 * 1024
+MAX_BUNDLE_MEMBER_BYTES = 64 * 1024**2
+MAX_BUNDLE_EXPANDED_BYTES = 2 * 1024**3
+MAX_BUNDLE_MEMBERS = 10_000
+RECONCILE_VISIBILITY_ATTEMPTS = 30
+STABLE_ABSENCE_CONFIRMATIONS = 5
+RECONCILE_POLL_SECONDS = 1
+F41_LABEL = "3dprinting993-component-factory-f41-cad"
+ATTEMPT_LABEL_RE = re.compile(rf"{re.escape(F41_LABEL)}-[0-9a-f]{{20}}")
+IMAGE_RE = re.compile(
+    r"ghcr\.io/cluster2600/3dprinting993-cad-author-f28@sha256:[0-9a-f]{64}"
+)
+SHA256_RE = re.compile(r"[0-9a-f]{64}")
+REVISION_RE = re.compile(r"(?:[0-9a-f]{40}|[0-9a-f]{64})")
+JOB_ID_RE = re.compile(r"[a-z0-9][a-z0-9._-]{0,63}")
+HOST_RE = re.compile(r"[A-Za-z0-9](?:[A-Za-z0-9.-]{0,251}[A-Za-z0-9])?")
+BUNDLE_NAME = "917-component-factory-f41-public.tar.gz"
+BUNDLE_ROOT = "917-component-factory-f41"
+BUNDLE_MANIFEST = f"{BUNDLE_ROOT}/BUNDLE-MANIFEST.json"
+ALLOWED_BUNDLE_FILES = frozenset(
+    {
+        "REMOTE_JOB.md",
+        "containers/simready-preflight/convert.py",
+        "docs/917_COMPONENT_FACTORY_F41.md",
+        "twins/reference-917-engine/component-factory-f41.json",
+        "twins/reference-917-engine/rotating-assembly-cad-f35.json",
+        "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py",
+        "twins/reference-917-engine/source/execute_component_factory_f41.py",
+        "twins/reference-917-engine/source/rotating_assembly_f35_math.py",
+        "twins/reference-917-engine/source/run_component_factory_f41_cad_job.sh",
+        "twins/reference-917-engine/source/run_component_factory_f41_usd_job.sh",
+    }
+)
+EXPECTED_BUNDLE_FILE_MODES = {
+    name: (
+        "0755"
+        if name
+        in {
+            "twins/reference-917-engine/source/execute_component_factory_f41.py",
+            "twins/reference-917-engine/source/run_component_factory_f41_cad_job.sh",
+            "twins/reference-917-engine/source/run_component_factory_f41_usd_job.sh",
+        }
+        else "0644"
+    )
+    for name in ALLOWED_BUNDLE_FILES
+}
+FORBIDDEN_BUNDLE_MARKERS = (
+    b"/Users/",
+    b"-----BEGIN OPENSSH PRIVATE KEY-----",
+    b"-----BEGIN RSA PRIVATE KEY-----",
+    b"-----BEGIN EC PRIVATE KEY-----",
+    b"-----BEGIN PRIVATE KEY-----",
+    b"NVIDIA_API_KEY=",
+    b"OPENBAO_TOKEN=",
+    b"VAST_API_KEY=",
+)
+EXPECTED_RUN_STATUS = "passed_six_hash_bound_F35_seed_families_generated_not_released"
+EXPECTED_FORMAT_COUNTS = {"STEP": 6, "STL": 6, "3MF": 6, "USD": 0}
+EXPECTED_BUNDLE_RUNTIME_IMAGES = [
+    "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
+    "18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+    "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:"
+    "41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe",
+]
+PUBLIC_REMOTE_REF_RE = re.compile(
+    r"refs/remotes/[A-Za-z0-9][A-Za-z0-9._-]*/[A-Za-z0-9][A-Za-z0-9._/-]{0,254}"
+)
+
+
+class SupervisorError(RuntimeError):
+    pass
+
+
+class SupervisorInterrupted(BaseException):
+    def __init__(self, signum: int):
+        self.signum = signum
+        super().__init__(f"signal_{signum}")
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise SupervisorError(message)
+
+
+def exact_int(value: object, expected: int) -> bool:
+    return type(value) is int and value == expected
+
+
+def duplicate_rejecting_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise SupervisorError(f"json_duplicate_key:{key}")
+        result[key] = value
+    return result
+
+
+def parse_json_bytes(payload: bytes, source: str) -> Any:
+    require(0 < len(payload) <= MAX_CAPTURE_BYTES, f"{source}_json_size_invalid")
+    try:
+        return json.loads(
+            payload.decode("utf-8", errors="strict"),
+            object_pairs_hook=duplicate_rejecting_object,
+            parse_constant=lambda value: (_ for _ in ()).throw(
+                SupervisorError(f"{source}_non_finite_json:{value}")
+            ),
+        )
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise SupervisorError(f"{source}_json_invalid:{error}") from error
+
+
+def regular_metadata(path: Path, *, maximum: int, nonempty: bool = True) -> os.stat_result:
+    try:
+        metadata = path.lstat()
+    except OSError as error:
+        raise SupervisorError(f"unsafe_or_missing_file:{path}:{error}") from error
+    require(stat.S_ISREG(metadata.st_mode), f"file_not_regular:{path}")
+    require(metadata.st_uid == os.getuid(), f"file_wrong_owner:{path}")
+    if nonempty:
+        require(metadata.st_size > 0, f"file_empty:{path}")
+    require(metadata.st_size <= maximum, f"file_too_large:{path}")
+    return metadata
+
+
+def file_digest_and_size(path: Path, *, maximum: int) -> tuple[str, int]:
+    before = regular_metadata(path, maximum=maximum)
+    digest = hashlib.sha256()
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_CLOEXEC", 0)
+    descriptor = os.open(path, flags)
+    try:
+        opened = os.fstat(descriptor)
+        require(
+            (opened.st_dev, opened.st_ino, opened.st_size)
+            == (before.st_dev, before.st_ino, before.st_size),
+            f"file_changed_before_read:{path}",
+        )
+        with os.fdopen(descriptor, "rb", closefd=False) as stream:
+            for block in iter(lambda: stream.read(1024 * 1024), b""):
+                digest.update(block)
+        after = os.fstat(descriptor)
+        require(
+            (
+                after.st_dev,
+                after.st_ino,
+                after.st_size,
+                after.st_mtime_ns,
+                after.st_ctime_ns,
+            )
+            == (
+                opened.st_dev,
+                opened.st_ino,
+                opened.st_size,
+                opened.st_mtime_ns,
+                opened.st_ctime_ns,
+            ),
+            f"file_changed_during_read:{path}",
+        )
+    finally:
+        os.close(descriptor)
+    return digest.hexdigest(), before.st_size
+
+
+def validate_tool(path: str, label: str) -> str:
+    candidate = Path(path) if os.path.sep in path else Path(shutil.which(path) or "")
+    require(bool(str(candidate)), f"{label}_not_found")
+    if not candidate.is_absolute():
+        candidate = Path(os.path.abspath(candidate))
+    try:
+        metadata = candidate.lstat()
+    except OSError as error:
+        raise SupervisorError(f"{label}_not_found:{candidate}:{error}") from error
+    require(stat.S_ISREG(metadata.st_mode), f"{label}_not_regular")
+    require(metadata.st_uid in {0, os.getuid()}, f"{label}_untrusted_owner")
+    require(0 < metadata.st_size <= 16 * 1024**2, f"{label}_size_invalid")
+    require(metadata.st_mode & 0o111 != 0, f"{label}_not_executable")
+    require(stat.S_IMODE(metadata.st_mode) & 0o022 == 0, f"{label}_group_or_world_writable")
+    return str(candidate)
+
+
+def validate_bundle(bundle: Path, expected_sha256: str, source_revision: str) -> tuple[str, int]:
+    require(bundle.name == BUNDLE_NAME, "bundle_basename_mismatch")
+    metadata = regular_metadata(bundle, maximum=MAX_BUNDLE_BYTES)
+    require(stat.S_IMODE(metadata.st_mode) & 0o022 == 0, "bundle_group_or_world_writable")
+    digest, size = file_digest_and_size(bundle, maximum=MAX_BUNDLE_BYTES)
+    require(digest == expected_sha256, "bundle_sha256_mismatch")
+
+    observed: dict[str, dict[str, object]] = {}
+    manifest_payload: bytes | None = None
+    exact_names: set[str] = set()
+    casefold_names: set[str] = set()
+    expanded_bytes = 0
+    try:
+        with tarfile.open(bundle, mode="r|gz") as archive:
+            for index, member in enumerate(archive):
+                require(index < MAX_BUNDLE_MEMBERS, "bundle_member_limit_exceeded")
+                raw_name = member.name
+                require(isinstance(raw_name, str) and raw_name, "bundle_member_name_empty")
+                require(raw_name.isascii() and "\\" not in raw_name, "bundle_member_name_unsafe")
+                parts = raw_name.split("/")
+                require(all(part not in ("", ".", "..") for part in parts), "bundle_member_path_unsafe")
+                path = PurePosixPath(raw_name)
+                require(not path.is_absolute() and path.as_posix() == raw_name, "bundle_member_path_unsafe")
+                require(raw_name not in exact_names, "bundle_duplicate_member")
+                folded = raw_name.casefold()
+                require(folded not in casefold_names, "bundle_casefold_collision")
+                exact_names.add(raw_name)
+                casefold_names.add(folded)
+                require(member.isfile(), "bundle_non_regular_member_rejected")
+                require(0 <= member.size <= MAX_BUNDLE_MEMBER_BYTES, "bundle_member_size_invalid")
+                expanded_bytes += member.size
+                require(expanded_bytes <= MAX_BUNDLE_EXPANDED_BYTES, "bundle_expanded_size_limit")
+                relative = PurePosixPath(raw_name).relative_to(PurePosixPath(BUNDLE_ROOT)).as_posix()
+                require(
+                    raw_name == BUNDLE_MANIFEST or relative in ALLOWED_BUNDLE_FILES,
+                    "bundle_member_not_allowlisted",
+                )
+                stream = archive.extractfile(member)
+                require(stream is not None, "bundle_member_unreadable")
+                payload = stream.read(MAX_BUNDLE_MEMBER_BYTES + 1)
+                stream.close()
+                require(len(payload) == member.size, "bundle_member_size_mismatch")
+                require(b"\x00" not in payload, "bundle_binary_payload_rejected")
+                try:
+                    payload.decode("utf-8", errors="strict")
+                except UnicodeDecodeError as error:
+                    raise SupervisorError("bundle_non_utf8_payload_rejected") from error
+                require(
+                    not any(marker in payload for marker in FORBIDDEN_BUNDLE_MARKERS),
+                    "bundle_secret_or_private_marker_rejected",
+                )
+                observed[relative] = {
+                    "sha256": hashlib.sha256(payload).hexdigest(),
+                    "size_bytes": len(payload),
+                    "mode": f"{member.mode & 0o777:04o}",
+                }
+                if raw_name == BUNDLE_MANIFEST:
+                    manifest_payload = payload
+    except (tarfile.TarError, EOFError, OSError, ValueError) as error:
+        raise SupervisorError(f"bundle_archive_invalid:{error}") from error
+
+    require(manifest_payload is not None, "bundle_manifest_missing")
+    require(set(observed) == set(ALLOWED_BUNDLE_FILES) | {"BUNDLE-MANIFEST.json"}, "bundle_file_set_mismatch")
+    manifest = parse_json_bytes(manifest_payload, "bundle_manifest")
+    require(isinstance(manifest, dict), "bundle_manifest_not_object")
+    expected_keys = {
+        "all_payload_files_utf8_text",
+        "archive_member_count",
+        "binary_payload_included",
+        "bundle_root",
+        "file_count",
+        "files",
+        "newly_generated_geometry_included",
+        "phase",
+        "private_absolute_path_included",
+        "public_remote_refs",
+        "raw_scan_included",
+        "required_runtime_images",
+        "schema_version",
+        "secret_included",
+        "source_repository_state",
+        "source_revision",
+        "status",
+    }
+    require(set(manifest) == expected_keys, "bundle_manifest_key_set_mismatch")
+    require(manifest.get("schema_version") == "1.1.0", "bundle_manifest_schema_mismatch")
+    require(manifest.get("phase") == "F41", "bundle_manifest_phase_mismatch")
+    require(manifest.get("status") == "public_transfer_bundle_file_manifest", "bundle_manifest_status_mismatch")
+    require(manifest.get("bundle_root") == BUNDLE_ROOT, "bundle_manifest_root_mismatch")
+    require(manifest.get("source_revision") == source_revision, "bundle_source_revision_mismatch")
+    require(
+        manifest.get("source_repository_state") == "clean_commit_visible_at_exact_remote_ref",
+        "bundle_source_state_mismatch",
+    )
+    for field in (
+        "binary_payload_included",
+        "raw_scan_included",
+        "private_absolute_path_included",
+        "secret_included",
+        "newly_generated_geometry_included",
+    ):
+        require(manifest.get(field) is False, f"bundle_closed_declaration_mismatch:{field}")
+    require(manifest.get("all_payload_files_utf8_text") is True, "bundle_utf8_declaration_mismatch")
+    require(
+        manifest.get("required_runtime_images") == EXPECTED_BUNDLE_RUNTIME_IMAGES,
+        "bundle_runtime_images_mismatch",
+    )
+    public_remote_refs = manifest.get("public_remote_refs")
+    require(
+        isinstance(public_remote_refs, list)
+        and 1 <= len(public_remote_refs) <= 32
+        and len(public_remote_refs) == len(set(public_remote_refs))
+        and all(
+            isinstance(item, str)
+            and PUBLIC_REMOTE_REF_RE.fullmatch(item) is not None
+            and ".." not in item
+            and "//" not in item
+            for item in public_remote_refs
+        ),
+        "bundle_public_remote_refs_invalid",
+    )
+    require(observed["BUNDLE-MANIFEST.json"]["mode"] == "0644", "bundle_manifest_mode_mismatch")
+    declared = manifest.get("files")
+    require(isinstance(declared, list), "bundle_manifest_files_not_list")
+    require(exact_int(manifest.get("file_count"), len(ALLOWED_BUNDLE_FILES)), "bundle_file_count_mismatch")
+    require(exact_int(manifest.get("archive_member_count"), len(observed)), "bundle_member_count_mismatch")
+    declared_names: set[str] = set()
+    for entry in declared:
+        require(isinstance(entry, dict), "bundle_file_entry_not_object")
+        require(set(entry) == {"mode", "path", "sha256", "size_bytes"}, "bundle_file_entry_keys_mismatch")
+        name = entry.get("path")
+        require(isinstance(name, str) and name in ALLOWED_BUNDLE_FILES, "bundle_declared_path_invalid")
+        require(name not in declared_names, "bundle_declared_path_duplicate")
+        declared_names.add(name)
+        actual = observed[name]
+        require(
+            actual["mode"] == EXPECTED_BUNDLE_FILE_MODES[name],
+            f"bundle_archive_mode_not_allowlisted:{name}",
+        )
+        require(entry.get("sha256") == actual["sha256"], f"bundle_declared_hash_mismatch:{name}")
+        require(type(entry.get("size_bytes")) is int, f"bundle_declared_size_type:{name}")
+        require(entry.get("size_bytes") == actual["size_bytes"], f"bundle_declared_size_mismatch:{name}")
+        require(entry.get("mode") == actual["mode"], f"bundle_declared_mode_mismatch:{name}")
+    require(declared_names == ALLOWED_BUNDLE_FILES, "bundle_declared_file_set_mismatch")
+    return digest, size
+
+
+class Supervisor:
+    def __init__(self, args: argparse.Namespace, entrypoint: Path):
+        self.args = args
+        self.entrypoint = entrypoint
+        self.repo_root = entrypoint.resolve().parents[2]
+        self.validator = (
+            self.repo_root
+            / "twins/reference-917-engine/source/validate_component_factory_f41_cad_results.py"
+        )
+        self.wrapper = validate_tool(
+            os.environ.get(
+                "OPENBAO_VASTAI_BIN",
+                str(self.repo_root / "deploy/openbao/openbao-vastai"),
+            ),
+            "openbao_vastai_wrapper",
+        )
+        self.git = validate_tool(os.environ.get("F41_GIT_BIN", "git"), "git")
+        self.ssh = validate_tool(os.environ.get("F41_SSH_BIN", "ssh"), "ssh")
+        self.scp = validate_tool(os.environ.get("F41_SCP_BIN", "scp"), "scp")
+        self.ssh_keygen = validate_tool(
+            os.environ.get("F41_SSH_KEYGEN_BIN", "ssh-keygen"), "ssh_keygen"
+        )
+        self.identity = Path(
+            os.path.abspath(
+                os.environ.get(
+                    "VAST_SSH_IDENTITY_FILE", str(Path.home() / ".ssh/id_vastai")
+                )
+            )
+        )
+        self.run_root = Path(os.path.abspath(args.output_root))
+        self.capture_index = 0
+        self.paid_call_attempted = False
+        self.destroyed_verified = False
+        self.instance_observed = False
+        self.cleanup_failed = False
+        self.instance_id: int | None = None
+        self.instance_label: str | None = None
+        self.known_hosts: Path | None = None
+        self.known_hosts_sha256: str | None = None
+        self.host_key_alias: str | None = None
+        self.ssh_host: str | None = None
+        self.ssh_port: int | None = None
+        self.launch_stdout: Path | None = None
+        self.launch_stderr: Path | None = None
+
+    def check_checkout(self) -> None:
+        head = subprocess.run(
+            [self.git, "-C", str(self.repo_root), "rev-parse", "--verify", "HEAD"],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=30,
+            env=self.command_environment(),
+        )
+        require(head.returncode == 0, "git_head_lookup_failed")
+        require(head.stdout.decode("ascii", errors="strict").strip() == self.args.source_revision, "checkout_revision_mismatch")
+        status_result = subprocess.run(
+            [
+                self.git,
+                "-C",
+                str(self.repo_root),
+                "status",
+                "--porcelain=v1",
+                "--untracked-files=all",
+            ],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=30,
+            env=self.command_environment(),
+        )
+        require(status_result.returncode == 0, "git_status_failed")
+        require(status_result.stdout == b"", "checkout_must_be_clean_including_untracked")
+
+    @staticmethod
+    def command_environment() -> dict[str, str]:
+        environment = dict(os.environ)
+        environment.update(
+            {
+                "GIT_TERMINAL_PROMPT": "0",
+                "LC_ALL": "C",
+                "PYTHONDONTWRITEBYTECODE": "1",
+            }
+        )
+        return environment
+
+    def validate_local_inputs(self) -> None:
+        identity = regular_metadata(self.identity, maximum=1024 * 1024)
+        require(stat.S_IMODE(identity.st_mode) == 0o600, "ssh_identity_mode_must_be_0600")
+        regular_metadata(self.validator, maximum=4 * 1024**2)
+        self.check_checkout()
+        digest, size = validate_bundle(
+            Path(os.path.abspath(self.args.bundle)),
+            self.args.expected_sha256,
+            self.args.source_revision,
+        )
+        require(digest == self.args.expected_sha256 and size > 0, "bundle_preflight_failed")
+        require(not self.run_root.exists() and not self.run_root.is_symlink(), "output_root_must_be_absent")
+        self.run_root.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        parent = self.run_root.parent.lstat()
+        require(stat.S_ISDIR(parent.st_mode) and parent.st_uid == os.getuid(), "output_parent_unsafe")
+        self.run_root.mkdir(mode=0o700)
+
+    def capture(
+        self,
+        stem: str,
+        command: list[str],
+        *,
+        timeout: int,
+    ) -> tuple[int, Path, Path]:
+        self.capture_index += 1
+        prefix = f"{self.capture_index:03d}-{stem}"
+        stdout_path = self.run_root / f"{prefix}.stdout"
+        stderr_path = self.run_root / f"{prefix}.stderr"
+        if stem == "launch":
+            # Preserve the paths before the child starts so signal cleanup can
+            # inspect partial output from an interrupted paid call.
+            self.launch_stdout = stdout_path
+            self.launch_stderr = stderr_path
+        flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+        stdout_descriptor = os.open(stdout_path, flags, 0o600)
+        stderr_descriptor = os.open(stderr_path, flags, 0o600)
+        process: subprocess.Popen[bytes] | None = None
+        selector = selectors.DefaultSelector()
+        forced_return_code: int | None = None
+        termination_started: float | None = None
+
+        def signal_group(signum: int) -> None:
+            if process is None:
+                return
+            try:
+                os.killpg(process.pid, signum)
+            except ProcessLookupError:
+                pass
+
+        try:
+            with os.fdopen(stdout_descriptor, "wb") as stdout, os.fdopen(
+                stderr_descriptor, "wb"
+            ) as stderr:
+                process = subprocess.Popen(
+                    command,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    env=self.command_environment(),
+                    start_new_session=True,
+                )
+                require(
+                    process.stdout is not None and process.stderr is not None,
+                    "capture_pipe_initialization_failed",
+                )
+                selector.register(process.stdout, selectors.EVENT_READ, stdout)
+                selector.register(process.stderr, selectors.EVENT_READ, stderr)
+                captured = {stdout.fileno(): 0, stderr.fileno(): 0}
+                deadline = time.monotonic() + timeout
+
+                while selector.get_map():
+                    now = time.monotonic()
+                    if forced_return_code is None and now >= deadline:
+                        forced_return_code = 124
+                        termination_started = now
+                        signal_group(signal.SIGTERM)
+                    elif (
+                        forced_return_code is not None
+                        and termination_started is not None
+                        and now - termination_started >= 5
+                    ):
+                        signal_group(signal.SIGKILL)
+                        if now - termination_started >= 10:
+                            for key in list(selector.get_map().values()):
+                                selector.unregister(key.fileobj)
+                                key.fileobj.close()
+                            break
+
+                    for key, _events in selector.select(timeout=0.25):
+                        pipe = key.fileobj
+                        sink = key.data
+                        chunk = os.read(pipe.fileno(), 64 * 1024)
+                        if not chunk:
+                            selector.unregister(pipe)
+                            pipe.close()
+                            continue
+                        sink_key = sink.fileno()
+                        remaining = MAX_CAPTURE_BYTES - captured[sink_key]
+                        if remaining > 0:
+                            payload = chunk[:remaining]
+                            sink.write(payload)
+                            sink.flush()
+                            captured[sink_key] += len(payload)
+                        if len(chunk) > remaining and forced_return_code is None:
+                            forced_return_code = 125
+                            termination_started = time.monotonic()
+                            signal_group(signal.SIGTERM)
+
+                try:
+                    child_return_code = process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    signal_group(signal.SIGKILL)
+                    child_return_code = process.wait(timeout=5)
+        except BaseException:
+            signal_group(signal.SIGKILL)
+            if process is not None:
+                try:
+                    process.wait(timeout=5)
+                except (subprocess.SubprocessError, OSError):
+                    pass
+            raise
+        finally:
+            selector.close()
+        return forced_return_code or child_return_code, stdout_path, stderr_path
+
+    @staticmethod
+    def read_capture(path: Path, source: str, *, allow_empty: bool = False) -> bytes:
+        metadata = regular_metadata(path, maximum=MAX_CAPTURE_BYTES, nonempty=not allow_empty)
+        with path.open("rb") as stream:
+            payload = stream.read(MAX_CAPTURE_BYTES + 1)
+        require(len(payload) == metadata.st_size, f"{source}_capture_size_mismatch")
+        return payload
+
+    def wrapper_capture(self, stem: str, *arguments: str, timeout: int = 120) -> tuple[int, Path, Path]:
+        return self.capture(stem, [self.wrapper, *arguments], timeout=timeout)
+
+    def inventory(self, stem: str) -> tuple[list[dict[str, Any]], Path]:
+        rc, stdout, _stderr = self.wrapper_capture(stem, "instances", timeout=60)
+        require(rc == 0, f"{stem}_inventory_command_failed")
+        value = parse_json_bytes(self.read_capture(stdout, stem), stem)
+        require(isinstance(value, list) and len(value) <= 10_000, f"{stem}_inventory_invalid")
+        require(all(isinstance(item, dict) for item in value), f"{stem}_inventory_invalid")
+        seen_ids: set[int] = set()
+        for item in value:
+            instance_id = item.get("id")
+            require(
+                type(instance_id) is int and instance_id > 0,
+                f"{stem}_inventory_instance_id_invalid",
+            )
+            require(instance_id not in seen_ids, f"{stem}_inventory_instance_id_duplicate")
+            seen_ids.add(instance_id)
+            require(
+                item.get("label") is None or isinstance(item.get("label"), str),
+                f"{stem}_inventory_label_invalid",
+            )
+            require(
+                item.get("image") is None or isinstance(item.get("image"), str),
+                f"{stem}_inventory_image_invalid",
+            )
+        return value, stdout
+
+    @staticmethod
+    def is_family_label(value: object) -> bool:
+        return value == F41_LABEL or (
+            isinstance(value, str) and ATTEMPT_LABEL_RE.fullmatch(value) is not None
+        )
+
+    def require_empty_baseline(self) -> None:
+        instances, _ = self.inventory("instances-before-launch")
+        require(
+            not any(self.is_family_label(item.get("label")) for item in instances),
+            "existing_f41_instance_blocks_launch",
+        )
+
+    def discover_launch_identity(self) -> None:
+        if self.launch_stdout is None or self.launch_stderr is None:
+            return
+        candidates: set[str] = set()
+        try:
+            stdout = self.read_capture(self.launch_stdout, "launch_stdout", allow_empty=True)
+            stderr = self.read_capture(self.launch_stderr, "launch_stderr", allow_empty=True)
+        except SupervisorError:
+            return
+        try:
+            value = parse_json_bytes(stdout, "launch")
+        except SupervisorError:
+            value = None
+        if isinstance(value, dict):
+            label = value.get("label")
+            image = value.get("image")
+            instance_id = value.get("instance_id")
+            if isinstance(label, str) and ATTEMPT_LABEL_RE.fullmatch(label):
+                candidates.add(label)
+                if (
+                    label == self.instance_label
+                    and type(instance_id) is int
+                    and instance_id > 0
+                    and image == self.args.expected_image
+                ):
+                    self.instance_id = instance_id
+                    self.instance_observed = True
+        decoded = (stdout + b"\n" + stderr).decode("utf-8", errors="replace")
+        candidates.update(ATTEMPT_LABEL_RE.findall(decoded))
+        if self.instance_label is None and len(candidates) == 1:
+            self.instance_label = next(iter(candidates))
+
+    def prepare_attempt_identity(self) -> None:
+        require(self.instance_label is None, "attempt_label_already_initialized")
+        label = f"{F41_LABEL}-{secrets.token_hex(10)}"
+        require(ATTEMPT_LABEL_RE.fullmatch(label) is not None, "attempt_label_generation_failed")
+        path = self.run_root / "attempt-label.txt"
+        descriptor = os.open(
+            path,
+            os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0),
+            0o600,
+        )
+        try:
+            with os.fdopen(descriptor, "w", encoding="ascii") as stream:
+                stream.write(label + "\n")
+                stream.flush()
+                os.fsync(stream.fileno())
+        except BaseException:
+            raise
+        self.instance_label = label
+
+    def validate_launch(self) -> dict[str, Any]:
+        require(self.launch_stdout is not None, "launch_stdout_missing")
+        value = parse_json_bytes(self.read_capture(self.launch_stdout, "launch"), "launch")
+        require(isinstance(value, dict), "launch_json_not_object")
+        instance_id = value.get("instance_id")
+        label = value.get("label")
+        require(type(instance_id) is int and instance_id > 0, "launch_instance_id_invalid")
+        require(isinstance(label, str) and ATTEMPT_LABEL_RE.fullmatch(label) is not None, "launch_label_invalid")
+        require(label == self.instance_label, "launch_label_not_supervisor_owned")
+        require(value.get("image") == self.args.expected_image, "launch_image_mismatch")
+        for field in (
+            "offer_contract_verified",
+            "singleton_preflight_verified",
+            "singleton_verified",
+            "contract_verified",
+            "running_state_verified",
+            "ssh_batch_mode_verified",
+            "image_transport_smoke_verified",
+        ):
+            require(value.get(field) is True, f"launch_gate_not_verified:{field}")
+        for field in (
+            "f41_component_factory_executed",
+            "physical_claims_validated",
+            "manufacturing_authorized",
+        ):
+            require(value.get(field) is False, f"launch_closed_gate_open:{field}")
+        expected_known_hosts = Path.home() / ".cache/openbao-vastai/known-hosts" / f"f41-{instance_id}"
+        require(value.get("known_hosts_path") == str(expected_known_hosts), "launch_known_hosts_path_mismatch")
+        expected_alias = f"f41-{instance_id}"
+        require(value.get("host_key_alias") == expected_alias, "launch_host_key_alias_mismatch")
+        self.instance_id = instance_id
+        self.instance_observed = True
+        self.known_hosts = expected_known_hosts
+        self.host_key_alias = expected_alias
+        return value
+
+    def instance_show(self, stem: str, *, require_running: bool) -> dict[str, Any]:
+        require(self.instance_id is not None and self.instance_label is not None, "instance_identity_missing")
+        rc, stdout, _stderr = self.wrapper_capture(
+            stem, "show", str(self.instance_id), timeout=60
+        )
+        require(rc == 0, f"{stem}_show_failed")
+        value = parse_json_bytes(self.read_capture(stdout, stem), stem)
+        require(isinstance(value, dict), f"{stem}_show_not_object")
+        require(value.get("id") == self.instance_id, f"{stem}_instance_id_mismatch")
+        require(value.get("label") == self.instance_label, f"{stem}_label_mismatch")
+        require(value.get("image") == self.args.expected_image, f"{stem}_image_mismatch")
+        if require_running:
+            require(value.get("status") == "running", f"{stem}_not_running")
+        return value
+
+    def configure_ssh(self, instance: dict[str, Any]) -> None:
+        host = instance.get("ssh_host")
+        raw_port = instance.get("ssh_port")
+        require(isinstance(host, str) and HOST_RE.fullmatch(host) is not None, "ssh_host_invalid_or_ipv6_unsupported")
+        try:
+            port = int(raw_port)
+        except (TypeError, ValueError) as error:
+            raise SupervisorError("ssh_port_invalid") from error
+        require(str(port) == str(raw_port) and 1 <= port <= 65535, "ssh_port_invalid")
+        require(self.known_hosts is not None, "known_hosts_path_missing")
+        expected = Path.home() / ".cache/openbao-vastai/known-hosts" / f"f41-{self.instance_id}"
+        require(self.known_hosts == expected, "known_hosts_path_not_scoped_to_instance")
+        expected_alias = f"f41-{self.instance_id}"
+        require(self.host_key_alias == expected_alias, "host_key_alias_not_scoped_to_instance")
+        for directory in (expected.parent.parent, expected.parent):
+            metadata = directory.lstat()
+            require(
+                stat.S_ISDIR(metadata.st_mode)
+                and metadata.st_uid == os.getuid()
+                and stat.S_IMODE(metadata.st_mode) == 0o700,
+                f"known_hosts_parent_unsafe:{directory}",
+            )
+        metadata = regular_metadata(expected, maximum=64 * 1024)
+        require(stat.S_IMODE(metadata.st_mode) == 0o600, "known_hosts_mode_must_be_0600")
+        completed = subprocess.run(
+            [self.ssh_keygen, "-F", expected_alias, "-f", str(expected)],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=20,
+            env=self.command_environment(),
+        )
+        require(completed.returncode == 0, "known_hosts_endpoint_entry_missing")
+        key_lines = [
+            line
+            for line in completed.stdout.splitlines()
+            if line.strip() and not line.lstrip().startswith(b"#")
+        ]
+        require(len(key_lines) == 1, "known_hosts_endpoint_entry_not_unique")
+        self.known_hosts_sha256, _ = file_digest_and_size(expected, maximum=64 * 1024)
+        self.ssh_host = host
+        self.ssh_port = port
+
+    def strict_transport_options(self, *, scp: bool) -> list[str]:
+        require(
+            self.known_hosts is not None
+            and self.ssh_host is not None
+            and self.ssh_port is not None,
+            "ssh_transport_not_configured",
+        )
+        return [
+            "-F",
+            "/dev/null",
+            "-i",
+            str(self.identity),
+            "-P" if scp else "-p",
+            str(self.ssh_port),
+            "-o",
+            "BatchMode=yes",
+            "-o",
+            "IdentitiesOnly=yes",
+            "-o",
+            "ConnectionAttempts=1",
+            "-o",
+            "ConnectTimeout=20",
+            "-o",
+            "ServerAliveInterval=15",
+            "-o",
+            "ServerAliveCountMax=4",
+            "-o",
+            "StrictHostKeyChecking=yes",
+            "-o",
+            "UpdateHostKeys=no",
+            "-o",
+            "HashKnownHosts=no",
+            "-o",
+            f"HostKeyAlias={self.host_key_alias}",
+            "-o",
+            "GlobalKnownHostsFile=/dev/null",
+            "-o",
+            f"UserKnownHostsFile={self.known_hosts}",
+            "-o",
+            "LogLevel=ERROR",
+        ]
+
+    def assert_known_hosts_unchanged(self) -> None:
+        require(self.known_hosts is not None and self.known_hosts_sha256 is not None, "known_hosts_not_initialized")
+        metadata = regular_metadata(self.known_hosts, maximum=64 * 1024)
+        require(stat.S_IMODE(metadata.st_mode) == 0o600, "known_hosts_metadata_changed")
+        digest, _ = file_digest_and_size(self.known_hosts, maximum=64 * 1024)
+        require(digest == self.known_hosts_sha256, "known_hosts_changed_after_initial_tofu")
+
+    def ssh_capture(self, stem: str, remote_command: str, *, timeout: int) -> tuple[int, Path, Path]:
+        require(self.ssh_host is not None, "ssh_host_missing")
+        command = [
+            self.ssh,
+            *self.strict_transport_options(scp=False),
+            "-T",
+            f"root@{self.ssh_host}",
+            remote_command,
+        ]
+        result = self.capture(stem, command, timeout=timeout)
+        self.assert_known_hosts_unchanged()
+        return result
+
+    def scp_capture(self, stem: str, source: str, destination: str, *, timeout: int) -> tuple[int, Path, Path]:
+        command = [self.scp, *self.strict_transport_options(scp=True), source, destination]
+        result = self.capture(stem, command, timeout=timeout)
+        self.assert_known_hosts_unchanged()
+        return result
+
+    def validate_stage(self, path: Path, bundle_size: int) -> None:
+        value = parse_json_bytes(self.read_capture(path, "stage"), "stage")
+        require(isinstance(value, dict), "stage_json_not_object")
+        required = {
+            "status": "public_archive_staged_cad_execution_not_started",
+            "job_id": self.args.job_id,
+            "archive_sha256": self.args.expected_sha256,
+            "source_revision": self.args.source_revision,
+            "regular_payloads_utf8_text_only": True,
+            "private_assets_included": False,
+            "secret_material_included": False,
+            "target_uid": 9178,
+            "target_gid": 9178,
+            "cad_started": False,
+            "physical_claims_validated": False,
+            "manufacturing_authorized": False,
+        }
+        for key, expected in required.items():
+            require(value.get(key) == expected and type(value.get(key)) is type(expected), f"stage_contract_mismatch:{key}")
+        require(exact_int(value.get("archive_bytes"), bundle_size), "stage_archive_size_mismatch")
+
+    def validate_run(self, path: Path) -> None:
+        value = parse_json_bytes(self.read_capture(path, "cad_run"), "cad_run")
+        require(isinstance(value, dict), "cad_run_json_not_object")
+        require(
+            set(value)
+            == {
+                "status",
+                "planned_family_count",
+                "generateable_family_count",
+                "generated_family_count",
+                "blocked_family_count",
+                "generated_format_counts",
+                "paid_instance_launched",
+            },
+            "cad_run_key_set_mismatch",
+        )
+        require(value.get("status") == EXPECTED_RUN_STATUS, "cad_run_status_mismatch")
+        for key, expected in (
+            ("planned_family_count", 138),
+            ("generateable_family_count", 6),
+            ("generated_family_count", 6),
+            ("blocked_family_count", 132),
+        ):
+            require(exact_int(value.get(key), expected), f"cad_run_count_mismatch:{key}")
+        counts = value.get("generated_format_counts")
+        require(isinstance(counts, dict) and set(counts) == set(EXPECTED_FORMAT_COUNTS), "cad_run_format_set_mismatch")
+        for key, expected in EXPECTED_FORMAT_COUNTS.items():
+            require(exact_int(counts.get(key), expected), f"cad_run_format_count_mismatch:{key}")
+        require(value.get("paid_instance_launched") is False, "cad_run_paid_claim_open")
+
+    def archive_remote_results(self) -> tuple[str, int, str, int]:
+        job = self.args.job_id
+        archive = f"/workspace/{job}.tar.gz"
+        listing = f"/workspace/{job}.tar.list.txt"
+        remote = f"""set -eu
+test -d /workspace/results/{job}
+test ! -L /workspace/results/{job}
+test ! -e {archive}
+test ! -e {listing}
+/usr/bin/tar --version | /usr/bin/head -n 1 | /bin/grep '^tar (GNU tar)' >/dev/null
+/usr/bin/tar --exclude='{job}/.runtime' -C /workspace/results -czf {archive} '{job}'
+/usr/bin/tar -tzf {archive} > {listing}
+if /bin/grep -E '(^|/)\\.runtime(/|$)' {listing} >/dev/null; then exit 73; fi
+archive_size=$(/usr/bin/stat -c %s {archive})
+listing_size=$(/usr/bin/stat -c %s {listing})
+test "${{archive_size}}" -gt 0
+test "${{archive_size}}" -le {MAX_RESULT_ARCHIVE_BYTES}
+test "${{listing_size}}" -gt 0
+test "${{listing_size}}" -le {MAX_LISTING_BYTES}
+archive_sha=$(/usr/bin/sha256sum {archive} | /usr/bin/cut -d ' ' -f 1)
+listing_sha=$(/usr/bin/sha256sum {listing} | /usr/bin/cut -d ' ' -f 1)
+/usr/bin/printf '{{"archive_sha256":"%s","archive_size_bytes":%s,"gnu_tar":true,"listing_sha256":"%s","listing_size_bytes":%s,"runtime_excluded":true}}\\n' "${{archive_sha}}" "${{archive_size}}" "${{listing_sha}}" "${{listing_size}}"
+"""
+        rc, stdout, _stderr = self.ssh_capture(
+            "archive-results", remote, timeout=15 * 60
+        )
+        require(rc == 0, "remote_result_archive_failed")
+        value = parse_json_bytes(self.read_capture(stdout, "archive_meta"), "archive_meta")
+        require(isinstance(value, dict), "archive_meta_not_object")
+        require(
+            set(value)
+            == {
+                "archive_sha256",
+                "archive_size_bytes",
+                "gnu_tar",
+                "listing_sha256",
+                "listing_size_bytes",
+                "runtime_excluded",
+            },
+            "archive_meta_key_set_mismatch",
+        )
+        archive_sha = value.get("archive_sha256")
+        listing_sha = value.get("listing_sha256")
+        archive_size = value.get("archive_size_bytes")
+        listing_size = value.get("listing_size_bytes")
+        require(isinstance(archive_sha, str) and SHA256_RE.fullmatch(archive_sha), "remote_archive_sha_invalid")
+        require(isinstance(listing_sha, str) and SHA256_RE.fullmatch(listing_sha), "remote_listing_sha_invalid")
+        require(type(archive_size) is int and 0 < archive_size <= MAX_RESULT_ARCHIVE_BYTES, "remote_archive_size_invalid")
+        require(type(listing_size) is int and 0 < listing_size <= MAX_LISTING_BYTES, "remote_listing_size_invalid")
+        require(value.get("gnu_tar") is True, "remote_gnu_tar_not_verified")
+        require(value.get("runtime_excluded") is True, "remote_runtime_exclusion_not_verified")
+        return archive_sha, archive_size, listing_sha, listing_size
+
+    def retrieve_results(
+        self, archive_sha: str, archive_size: int, listing_sha: str, listing_size: int
+    ) -> tuple[Path, Path]:
+        require(self.ssh_host is not None, "ssh_host_missing")
+        job = self.args.job_id
+        archive_final = self.run_root / f"{job}.tar.gz"
+        archive_partial = self.run_root / f".{job}.tar.gz.partial"
+        listing_final = self.run_root / f"{job}.tar.list.txt"
+        listing_partial = self.run_root / f".{job}.tar.list.txt.partial"
+        for path in (archive_final, archive_partial, listing_final, listing_partial):
+            require(not path.exists() and not path.is_symlink(), f"download_target_must_be_absent:{path.name}")
+        rc, _, _ = self.scp_capture(
+            "download-results-archive",
+            f"root@{self.ssh_host}:/workspace/{job}.tar.gz",
+            str(archive_partial),
+            timeout=30 * 60,
+        )
+        require(rc == 0, "result_archive_download_failed")
+        rc, _, _ = self.scp_capture(
+            "download-results-listing",
+            f"root@{self.ssh_host}:/workspace/{job}.tar.list.txt",
+            str(listing_partial),
+            timeout=5 * 60,
+        )
+        require(rc == 0, "result_listing_download_failed")
+        local_archive_sha, local_archive_size = file_digest_and_size(
+            archive_partial, maximum=MAX_RESULT_ARCHIVE_BYTES
+        )
+        local_listing_sha, local_listing_size = file_digest_and_size(
+            listing_partial, maximum=MAX_LISTING_BYTES
+        )
+        require(
+            (local_archive_sha, local_archive_size) == (archive_sha, archive_size),
+            "downloaded_archive_transport_mismatch",
+        )
+        require(
+            (local_listing_sha, local_listing_size) == (listing_sha, listing_size),
+            "downloaded_listing_transport_mismatch",
+        )
+        listing_text = listing_partial.read_text(encoding="utf-8", errors="strict")
+        require(
+            not any(part == ".runtime" for line in listing_text.splitlines() for part in line.rstrip("/").split("/")),
+            "downloaded_listing_contains_runtime",
+        )
+        os.rename(archive_partial, archive_final)
+        os.rename(listing_partial, listing_final)
+        return archive_final, listing_final
+
+    def inventory_reconcile(
+        self, stem: str, *, accept_stable_absence: bool
+    ) -> tuple[int, str] | None:
+        require(self.instance_label is not None, "CRITICAL: supervisor attempt label missing")
+        consecutive_absent = 0
+        last_inventory: Path | None = None
+        for attempt in range(RECONCILE_VISIBILITY_ATTEMPTS):
+            try:
+                instances, inventory_path = self.inventory(f"{stem}-{attempt + 1:02d}")
+            except SupervisorError:
+                consecutive_absent = 0
+                if attempt + 1 < RECONCILE_VISIBILITY_ATTEMPTS:
+                    time.sleep(RECONCILE_POLL_SECONDS)
+                continue
+            last_inventory = inventory_path
+            family = [
+                item for item in instances if self.is_family_label(item.get("label"))
+            ]
+            matching = [
+                item for item in family if item.get("label") == self.instance_label
+            ]
+            if matching:
+                require(
+                    len(matching) == 1,
+                    f"CRITICAL: attempt label not unique; inventory={inventory_path}",
+                )
+                item = matching[0]
+                instance_id = item.get("id")
+                require(
+                    type(instance_id) is int and instance_id > 0,
+                    f"CRITICAL: reconciled instance id invalid; inventory={inventory_path}",
+                )
+                # The supervisor generated and persisted this random 80-bit
+                # label before the paid call. That exact label is sufficient
+                # cleanup ownership even if Vast returns stale, missing, or
+                # unexpected image metadata. Workload execution still requires
+                # the expected immutable image in validate_launch/instance_show.
+                if self.instance_id is not None:
+                    require(
+                        instance_id == self.instance_id,
+                        f"CRITICAL: reconciled instance id mismatch; inventory={inventory_path}",
+                    )
+                self.instance_id = instance_id
+                self.instance_observed = True
+                self.known_hosts = (
+                    Path.home()
+                    / ".cache/openbao-vastai/known-hosts"
+                    / f"f41-{instance_id}"
+                )
+                return instance_id, self.instance_label
+            if self.instance_id is not None and any(
+                item.get("id") == self.instance_id for item in instances
+            ):
+                raise SupervisorError(
+                    f"CRITICAL: instance id exists with unexpected label; inventory={inventory_path}"
+                )
+            if family:
+                raise SupervisorError(
+                    f"CRITICAL: unrelated F41 attempt appeared; inventory={inventory_path}"
+                )
+            consecutive_absent += 1
+            if (
+                accept_stable_absence
+                and self.instance_observed
+                and consecutive_absent >= STABLE_ABSENCE_CONFIRMATIONS
+            ):
+                return None
+            if attempt + 1 < RECONCILE_VISIBILITY_ATTEMPTS:
+                time.sleep(RECONCILE_POLL_SECONDS)
+        raise SupervisorError(
+            "CRITICAL: instance absence not verified across reconciliation window; "
+            f"inventory={last_inventory}"
+        )
+
+    def remove_known_hosts_after_destroy(self) -> None:
+        if self.instance_id is None:
+            return
+        path = Path.home() / ".cache/openbao-vastai/known-hosts" / f"f41-{self.instance_id}"
+        if not path.exists() and not path.is_symlink():
+            return
+        metadata = path.lstat()
+        require(
+            stat.S_ISREG(metadata.st_mode)
+            and metadata.st_uid == os.getuid()
+            and stat.S_IMODE(metadata.st_mode) == 0o600,
+            f"CRITICAL: refusing unsafe known_hosts cleanup:{path}",
+        )
+        path.unlink()
+
+    def destroy_owned(self, stem: str) -> None:
+        if self.destroyed_verified:
+            return
+        if self.instance_id is None:
+            reconciled = self.inventory_reconcile(
+                f"{stem}-inventory-before-destroy",
+                accept_stable_absence=False,
+            )
+            require(
+                reconciled == (self.instance_id, self.instance_label),
+                "CRITICAL: cannot attribute paid instance before destroy",
+            )
+        require(
+            self.instance_observed
+            and self.instance_id is not None
+            and self.instance_label is not None,
+            "CRITICAL: refusing destroy without previously observed exact attempt identity",
+        )
+        rc, stdout, _stderr = self.wrapper_capture(
+            f"{stem}-destroy", "destroy", str(self.instance_id), "--confirm", timeout=180
+        )
+        destroy_json_verified = False
+        try:
+            value = parse_json_bytes(self.read_capture(stdout, "destroy", allow_empty=True), "destroy")
+            destroy_json_verified = (
+                isinstance(value, dict)
+                and value.get("instance_id") == self.instance_id
+                and value.get("destroyed") is True
+                and value.get("verified_absent") is True
+            )
+        except SupervisorError:
+            pass
+        reconciled_after_destroy = self.inventory_reconcile(
+            f"{stem}-inventory-after-destroy",
+            accept_stable_absence=True,
+        )
+        require(
+            rc == 0
+            and destroy_json_verified
+            and reconciled_after_destroy is None,
+            "CRITICAL: destroy absence not stable "
+            f"(rc={rc}, json={destroy_json_verified})",
+        )
+        self.destroyed_verified = True
+        self.remove_known_hosts_after_destroy()
+
+    def cleanup(self) -> bool:
+        if not self.paid_call_attempted or self.destroyed_verified:
+            return True
+        for handled in (signal.SIGHUP, signal.SIGINT, signal.SIGTERM):
+            signal.signal(handled, signal.SIG_IGN)
+        try:
+            self.discover_launch_identity()
+            self.destroy_owned("cleanup")
+            return self.destroyed_verified
+        except BaseException as error:
+            self.cleanup_failed = True
+            print(f"F41 supervisor: CRITICAL: destruction not verified: {error}", file=sys.stderr)
+            print(f"F41 supervisor: evidence retained at {self.run_root}", file=sys.stderr)
+            return False
+
+    def validate_local_results(self, archive: Path) -> dict[str, Any]:
+        self.check_checkout()
+        output = self.run_root / "validated"
+        require(not output.exists() and not output.is_symlink(), "validator_output_must_be_absent")
+        rc, stdout, _stderr = self.capture(
+            "validate-results-locally",
+            [
+                sys.executable,
+                str(self.validator),
+                "--archive",
+                str(archive),
+                "--expected-sha256",
+                self.result_archive_sha256,
+                "--job-id",
+                self.args.job_id,
+                "--output",
+                str(output),
+            ],
+            timeout=30 * 60,
+        )
+        require(rc == 0, "local_result_validator_failed")
+        value = parse_json_bytes(self.read_capture(stdout, "local_validator"), "local_validator")
+        require(isinstance(value, dict), "local_validator_json_not_object")
+        require(value.get("status") == "passed_cad_results_archive_integrity_verified_not_released", "local_validator_status_mismatch")
+        require(exact_int(value.get("verified_artifact_count"), 18), "local_validator_artifact_count_mismatch")
+        require(value.get("source_generation_log_verified") is True, "local_validator_log_not_verified")
+        require(value.get("release_gates_all_false") is True, "local_validator_release_gates_not_closed")
+        for field in (
+            "geometry_semantics_validated",
+            "physical_validation_complete",
+            "simulation_validated",
+            "manufacturing_released",
+            "git_modified",
+        ):
+            require(value.get(field) is False, f"local_validator_closed_claim_open:{field}")
+        return value
+
+    def execute(self) -> dict[str, Any]:
+        self.validate_local_inputs()
+        self.require_empty_baseline()
+        self.prepare_attempt_identity()
+
+        # From this assignment onward every exit path enters cleanup.  Set the
+        # flag immediately before invoking the only paid operation.
+        self.paid_call_attempted = True
+        launch_rc, self.launch_stdout, self.launch_stderr = self.wrapper_capture(
+            "launch",
+            "launch-component-factory-f41",
+            str(self.args.offer_id),
+            "--attempt-label",
+            self.instance_label,
+            timeout=15 * 60,
+        )
+        self.discover_launch_identity()
+        require(launch_rc == 0, f"paid_launch_command_failed:{launch_rc}")
+        self.validate_launch()
+        instance = self.instance_show("show-after-launch", require_running=True)
+        self.configure_ssh(instance)
+
+        rc, _, _ = self.ssh_capture(
+            "remote-inbox-preflight",
+            f"set -eu; test -d /workspace/inbox; test ! -e /workspace/inbox/{BUNDLE_NAME}; test ! -L /workspace/inbox/{BUNDLE_NAME}",
+            timeout=120,
+        )
+        require(rc == 0, "remote_inbox_preflight_failed")
+        rc, _, _ = self.scp_capture(
+            "upload-public-bundle",
+            str(Path(os.path.abspath(self.args.bundle))),
+            f"root@{self.ssh_host}:/workspace/inbox/{BUNDLE_NAME}",
+            timeout=30 * 60,
+        )
+        require(rc == 0, "public_bundle_upload_failed")
+        rc, stage_stdout, _ = self.ssh_capture(
+            "stage-public-bundle",
+            f"917-cad-stage-job /workspace/inbox/{BUNDLE_NAME} {self.args.job_id}",
+            timeout=10 * 60,
+        )
+        require(rc == 0, "remote_bundle_staging_failed")
+        bundle_size = Path(os.path.abspath(self.args.bundle)).stat().st_size
+        self.validate_stage(stage_stdout, bundle_size)
+
+        run_command = (
+            "/usr/bin/timeout --signal=TERM --kill-after=60s 45m "
+            f"917-cad-run-job {self.args.job_id} "
+            "917-component-factory-f41/twins/reference-917-engine/source/"
+            "run_component_factory_f41_cad_job.sh "
+            f"/workspace/results/{self.args.job_id}"
+        )
+        rc, run_stdout, _ = self.ssh_capture(
+            "run-cad-job", run_command, timeout=47 * 60
+        )
+        require(rc == 0, f"remote_cad_job_failed_or_timed_out:{rc}")
+        self.validate_run(run_stdout)
+
+        archive_sha, archive_size, listing_sha, listing_size = self.archive_remote_results()
+        self.result_archive_sha256 = archive_sha
+        archive, listing = self.retrieve_results(
+            archive_sha, archive_size, listing_sha, listing_size
+        )
+
+        # Billing must be conclusively stopped before parsing or extracting an
+        # untrusted result archive locally.
+        self.destroy_owned("normal")
+        require(self.destroyed_verified, "destroy_must_be_verified_before_validation")
+        validation = self.validate_local_results(archive)
+
+        report = {
+            "schema_version": "1.0.0",
+            "phase": "F41",
+            "status": "passed_remote_cad_archive_validated_instance_destroyed_not_released",
+            "job_id": self.args.job_id,
+            "source_revision": self.args.source_revision,
+            "image": self.args.expected_image,
+            "instance_id": self.instance_id,
+            "paid_instance_launched": True,
+            "instance_destroyed_verified": True,
+            "known_hosts_removed_after_destroy": self.known_hosts is None
+            or not self.known_hosts.exists(),
+            "archive_path": str(archive),
+            "archive_sha256": archive_sha,
+            "archive_size_bytes": archive_size,
+            "archive_listing_path": str(listing),
+            "verified_artifact_count": validation["verified_artifact_count"],
+            "source_generation_log_verified": True,
+            "geometry_semantics_validated": False,
+            "physical_validation_complete": False,
+            "simulation_validated": False,
+            "manufacturing_released": False,
+        }
+        report_path = self.run_root / "supervisor-report.json"
+        descriptor = os.open(
+            report_path,
+            os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0),
+            0o600,
+        )
+        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+            json.dump(report, stream, indent=2, sort_keys=True, allow_nan=False)
+            stream.write("\n")
+        return report
+
+
+def parse_arguments(argv: list[str], repo_root: Path) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Supervise one paid F41 CAD run and destroy it before local validation."
+    )
+    parser.add_argument("--offer-id", required=True)
+    parser.add_argument("--bundle", required=True)
+    parser.add_argument("--expected-sha256", required=True)
+    parser.add_argument("--source-revision", required=True)
+    parser.add_argument("--expected-image", required=True)
+    parser.add_argument("--job-id")
+    parser.add_argument("--output-root")
+    args = parser.parse_args(argv)
+    require(re.fullmatch(r"[1-9][0-9]*", args.offer_id) is not None, "offer_id_must_be_positive_integer")
+    args.offer_id = int(args.offer_id)
+    require(SHA256_RE.fullmatch(args.expected_sha256) is not None, "expected_sha256_invalid")
+    require(REVISION_RE.fullmatch(args.source_revision) is not None, "source_revision_invalid")
+    require(IMAGE_RE.fullmatch(args.expected_image) is not None, "expected_image_must_be_immutable_f41_digest")
+    if args.job_id is None:
+        import datetime
+
+        timestamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dt%H%M%Sz").lower()
+        args.job_id = f"f41-cad-{timestamp}-{os.getpid()}"
+    require(
+        JOB_ID_RE.fullmatch(args.job_id) is not None
+        and not args.job_id.startswith(".")
+        and ".." not in args.job_id,
+        "job_id_invalid",
+    )
+    if args.output_root is None:
+        args.output_root = str(
+            repo_root / "work/917-component-factory-f41-vast-runs" / args.job_id
+        )
+    return args
+
+
+def main() -> int:
+    require(len(sys.argv) >= 2, "entrypoint_argument_missing")
+    entrypoint = Path(os.path.abspath(sys.argv[1]))
+    repo_root = entrypoint.resolve().parents[2]
+    args = parse_arguments(sys.argv[2:], repo_root)
+    supervisor = Supervisor(args, entrypoint)
+    previous_handlers: dict[int, Any] = {}
+
+    def interrupted(signum: int, _frame: object) -> None:
+        raise SupervisorInterrupted(signum)
+
+    for handled in (signal.SIGHUP, signal.SIGINT, signal.SIGTERM):
+        previous_handlers[handled] = signal.signal(handled, interrupted)
+
+    return_code = 0
+    report: dict[str, Any] | None = None
+    try:
+        report = supervisor.execute()
+    except SupervisorInterrupted as error:
+        return_code = 128 + error.signum
+        print(f"F41 supervisor: interrupted by signal {error.signum}", file=sys.stderr)
+    except (OSError, UnicodeError, SupervisorError, subprocess.SubprocessError) as error:
+        return_code = 1
+        print(f"F41 supervisor: {error}", file=sys.stderr)
+        if supervisor.run_root.exists():
+            print(f"F41 supervisor: evidence retained at {supervisor.run_root}", file=sys.stderr)
+    finally:
+        if supervisor.paid_call_attempted and not supervisor.destroyed_verified:
+            if not supervisor.cleanup():
+                return_code = 97
+        for handled, previous in previous_handlers.items():
+            signal.signal(handled, previous)
+    if return_code == 0 and report is not None:
+        print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+    return return_code
+
+
+try:
+    raise SystemExit(main())
+except SupervisorError as error:
+    print(f"F41 supervisor: {error}", file=sys.stderr)
+    raise SystemExit(2)
+PY

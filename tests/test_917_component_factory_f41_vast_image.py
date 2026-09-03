@@ -42,6 +42,18 @@ F41_BUNDLE_ROOT = "917-component-factory-f41"
 F41_BUNDLE_BUILDER = (
     ROOT / "twins/reference-917-engine/source/build_component_factory_bundle_f41.py"
 )
+EXPECTED_F41_BUNDLE_MODES = {
+    "REMOTE_JOB.md": "0644",
+    "containers/simready-preflight/convert.py": "0644",
+    "docs/917_COMPONENT_FACTORY_F41.md": "0644",
+    "twins/reference-917-engine/component-factory-f41.json": "0644",
+    "twins/reference-917-engine/rotating-assembly-cad-f35.json": "0644",
+    "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py": "0644",
+    "twins/reference-917-engine/source/execute_component_factory_f41.py": "0755",
+    "twins/reference-917-engine/source/rotating_assembly_f35_math.py": "0644",
+    "twins/reference-917-engine/source/run_component_factory_f41_cad_job.sh": "0755",
+    "twins/reference-917-engine/source/run_component_factory_f41_usd_job.sh": "0755",
+}
 EXPECTED_PACKAGES = {
     "libbsd0": "0.11.7-2",
     "libcbor0.8": "0.8.0-2+b1",
@@ -77,7 +89,7 @@ def public_bundle(
     digest_override = digest_override or {}
     entries = [
         {
-            "mode": "0755" if name.endswith((".py", ".sh")) else "0644",
+            "mode": EXPECTED_F41_BUNDLE_MODES[name],
             "path": name,
             "sha256": digest_override.get(name, hashlib.sha256(payload).hexdigest()),
             "size_bytes": len(payload),
@@ -116,7 +128,12 @@ def public_bundle(
             member = tarfile.TarInfo(name)
             member.size = len(payload)
             relative = name.removeprefix(f"{F41_BUNDLE_ROOT}/")
-            member.mode = 0o755 if relative.endswith((".py", ".sh")) else 0o644
+            member.mode = int(
+                "0644"
+                if relative == "BUNDLE-MANIFEST.json"
+                else EXPECTED_F41_BUNDLE_MODES[relative],
+                8,
+            )
             member.mtime = 0
             archive.addfile(member, io.BytesIO(payload))
     stream.seek(0)
@@ -227,6 +244,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
 
     def test_lock_is_prepublication_and_all_claims_remain_closed(self):
         lock = json.loads(LOCK.read_text(encoding="utf-8"))
+        self.assertEqual(lock["schema_version"], "1.3.0")
         self.assertEqual(lock["phase"], "F41-vast-cad-image")
         self.assertEqual(lock["image"]["base_immutable_reference"], F28_BASE)
         self.assertEqual(lock["image"]["cad_user"], "9178:9178")
@@ -249,6 +267,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertFalse(bundle["development_worktree_as_bundle_source_allowed"])
         self.assertFalse(bundle["geometry_payloads_allowed"])
         gates = lock["gates"]
+        self.assertTrue(gates["git_backed_bundle_mode_mapping_verified"])
         for gate in (
             "linux_amd64_build_verified",
             "ghcr_digest_published",
@@ -368,12 +387,26 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertIsNotNone(allowlist)
         allowed = set(module.ALLOWED_BUNDLE_RELATIVE_FILES)
         self.assertEqual(allowed, {*allowlist, "REMOTE_JOB.md"})
+        self.assertEqual(module.EXPECTED_BUNDLE_FILE_MODES, EXPECTED_F41_BUNDLE_MODES)
         self.assertTrue(allowed)
         for path in allowed:
             self.assertTrue(
                 Path(path).name in module.ALLOWED_BASENAMES
                 or Path(path).suffix.lower() in module.ALLOWED_SUFFIXES
             )
+            if path == "REMOTE_JOB.md":
+                continue
+            tracked = subprocess.run(
+                ["git", "ls-files", "-s", "--", path],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=True,
+            ).stdout.strip()
+            self.assertTrue(tracked, path)
+            git_mode = tracked.split(maxsplit=1)[0]
+            expected_mode = "0755" if git_mode == "100755" else "0644"
+            self.assertEqual(EXPECTED_F41_BUNDLE_MODES[path], expected_mode, path)
 
     def test_scripts_parse_and_cad_launcher_is_fail_closed(self):
         ast.parse(STAGE.read_text(encoding="utf-8"))
@@ -521,8 +554,16 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "/root/.no_auto_tmux",
             "révoqués pour toute nouvelle",
             "66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
+            "356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f",
+            "git ls-files -s",
             "component-factory-f41-offers",
-            "launch-component-factory-f41 <offer_id>",
+            "run-917-component-factory-f41-cad",
+            "--expected-sha256",
+            "être appelée directement",
+            "512 Mio",
+            "succès du DELETE",
+            "bornés à 2 Mio",
+            "code critique 97",
             "1,25 USD/h",
             "256 000 Mo de RAM",
             "16 000 000 octets",

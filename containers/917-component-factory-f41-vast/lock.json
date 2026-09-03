@@ -1,8 +1,8 @@
 {
-  "$comment": "Verrou de recette apres correction des clefs hote et de l'auto-tmux Vast, avant republication. Cette image ajoute seulement le transport Vast ssh_direct au digest public F28. Le smoke utilise une fixture synthetique et ne valide ni geometrie moteur, ni assemblage, ni simulation, ni fabrication.",
-  "schema_version": "1.2.0",
+  "$comment": "Verrou de recette apres correction des clefs hote, de l'auto-tmux Vast et des modes Git du bundle public, avant republication. Cette image ajoute seulement le transport Vast ssh_direct au digest public F28. Le smoke utilise une fixture synthetique et ne valide ni geometrie moteur, ni assemblage, ni simulation, ni fabrication.",
+  "schema_version": "1.3.0",
   "phase": "F41-vast-cad-image",
-  "status": "noninteractive_ssh_fix_locked_republication_vast_and_f41_execution_unverified",
+  "status": "bundle_git_mode_fix_locked_republication_vast_and_f41_execution_unverified",
   "image": {
     "repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
     "tag_pattern": "<git-sha>-vast-f41-cad",
@@ -94,9 +94,10 @@
     "revocation_reason": "Vast ssh_direct invoked sshd before onstart while the image contained no host keys",
     "revoked_runtime_image_references": [
       "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16",
-      "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
+      "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
+      "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f"
     ],
-    "latest_revocation_reason": "Vast auto-tmux intercepted noninteractive BatchMode commands despite successful SSH authentication",
+    "latest_revocation_reason": "the real Git-backed public bundle contains non-executable Python sources while the stager incorrectly required every .py member to be 0755",
     "runtype": "ssh_direct",
     "onstart": "/usr/local/bin/917-cad-vast-onstart",
     "ready_path": "/workspace/READY",
@@ -115,6 +116,7 @@
     "synthetic_build123d_step_smoke_recipe_present": true,
     "ephemeral_runtime_host_key_smoke_recipe_present": true,
     "no_auto_tmux_marker_smoke_recipe_present": true,
+    "git_backed_bundle_mode_mapping_verified": true,
     "corrected_runtime_image_republished": false,
     "linux_amd64_build_verified": false,
     "ghcr_digest_published": false,

@@ -61,22 +61,22 @@ COMPONENT_FACTORY_F41_DISK_GB = 300
 COMPONENT_FACTORY_F41_MIN_RELIABILITY = 0.985
 COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB = 0.05
 COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB = 0.05
-# Two published images passed their offline gates but failed distinct real Vast
-# SSH paths: DD0 lacked runtime host keys; 66C fixed sshd but Vast's injected
-# root shell forced auto-tmux even for BatchMode commands. Keep both denylisted
-# until the no-auto-tmux fix is republished and qualified end to end.
+# Three published images are revoked: DD0 lacked runtime host keys, 66C allowed
+# Vast auto-tmux to intercept BatchMode commands, and 356A exposed an exact Git
+# file-mode mismatch before any paid launch. Keep every failed digest denylisted.
 COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16"
 COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f"
 COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
     {
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
     }
 )
-# Candidate 66C was published by workflow 33693806053 but is now revoked after
-# its real Vast BatchMode commands were intercepted by auto-tmux. Replace only
-# this active reference after a new digest passes the complete SSH command.
-COMPONENT_FACTORY_F41_IMAGE = COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C
+# Candidate 356A passed publication but is revoked before Vast spend because the
+# real Git-backed bundle exposed a stager mode mismatch hidden by synthetic data.
+COMPONENT_FACTORY_F41_IMAGE = COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
@@ -1899,7 +1899,9 @@ def launch_wave_f39_offer(api_key: str, offer: dict) -> int:
         return 0
 
 
-def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
+def launch_component_factory_f41_offer(
+    api_key: str, offer: dict, *, attempt_label: str | None = None
+) -> int:
     # Revalidate every paid resource field immediately before the create call.
     if not component_factory_f41_offer_eligible(offer):
         raise SafeError(
@@ -1915,9 +1917,18 @@ def launch_component_factory_f41_offer(api_key: str, offer: dict) -> int:
         require_no_component_factory_f41_instance(api_key)
         ensure_local_ssh_registered(api_key)
         offer_id = positive_id(str(offer.get("id")), "offer id")
-        attempt_label = component_factory_f41_attempt_label()
+        if attempt_label is None:
+            attempt_label = component_factory_f41_attempt_label()
         if not is_component_factory_f41_attempt_label(attempt_label):
             raise SafeError("component-factory F41 attempt label generation failed")
+        # Emit the non-secret ownership handle before the paid request. A
+        # supervisor can reconcile only this attempt if this child is killed
+        # after Vast accepts the create call.
+        print(
+            f"OpenBao Vast.ai F41 paid launch attempt label: {attempt_label}",
+            file=sys.stderr,
+            flush=True,
+        )
         try:
             result = vast_request(
                 api_key,
@@ -2242,8 +2253,18 @@ def run(operation: list[str]) -> int:
                     "wave-action offer is unavailable or outside the fixed safety and price limits"
                 )
             return launch_wave_f39_offer(api_key, matching[0])
-        if len(operation) == 2 and operation[0] == "launch-component-factory-f41":
+        if (
+            len(operation) in {2, 4}
+            and operation[0] == "launch-component-factory-f41"
+        ):
             offer_id = positive_id(operation[1], "offer id")
+            supervised_attempt_label = None
+            if len(operation) == 4:
+                if operation[2] != "--attempt-label" or not is_component_factory_f41_attempt_label(
+                    operation[3]
+                ):
+                    raise SafeError("supervised F41 attempt label is invalid")
+                supervised_attempt_label = operation[3]
             matching = [
                 item
                 for item in get_component_factory_f41_offers(api_key, offer_id)
@@ -2254,7 +2275,11 @@ def run(operation: list[str]) -> int:
                     "component-factory F41 offer is unavailable or outside the "
                     "fixed safety and price limits"
                 )
-            return launch_component_factory_f41_offer(api_key, matching[0])
+            return launch_component_factory_f41_offer(
+                api_key,
+                matching[0],
+                attempt_label=supervised_attempt_label,
+            )
         if len(operation) == 2 and operation[0] == "launch-simready":
             offer_id = positive_id(operation[1], "offer id")
             matching = [
@@ -2345,7 +2370,7 @@ def run(operation: list[str]) -> int:
             "component-factory-f41-offers|mesh-offers|instances|"
             "show <id>|ssh-keys <id>|attach-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
-            "launch-component-factory-f41 <offer_id>|launch-simready <offer_id>|"
+            "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|launch-simready <offer_id>|"
             "launch-simready-heavy <offer_id>|launch-simready-best|"
             "launch-simready-best-eu|launch-best-eu|"
             "start <id>|stop <id>|"

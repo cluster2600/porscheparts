@@ -780,7 +780,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertEqual(
             self.wrapper.COMPONENT_FACTORY_F41_IMAGE,
             "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:"
-            "66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
+            "356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f",
         )
         self.assertNotEqual(
             self.wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
@@ -812,9 +812,13 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )
+        self.assertIn(
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
+        )
         self.assertEqual(
             production_wrapper.COMPONENT_FACTORY_F41_IMAGE,
-            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
         )
         for revoked_image in production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES:
             with (
@@ -940,8 +944,37 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         offers.assert_called_once_with(
             "unused", USER_PROVIDED_COMPONENT_FACTORY_F41_CANDIDATE_ID
         )
-        launch.assert_called_once_with("unused", selected)
+        launch.assert_called_once_with("unused", selected, attempt_label=None)
         revoke.assert_called_once_with("session")
+
+        supervised_label = self.component_factory_f41_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "login", return_value="session"),
+            mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+            mock.patch.object(self.wrapper, "revoke_token"),
+            mock.patch.object(
+                self.wrapper,
+                "get_component_factory_f41_offers",
+                return_value=[selected],
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "launch_component_factory_f41_offer",
+                return_value=0,
+            ) as supervised_launch,
+        ):
+            result = self.wrapper.run(
+                [
+                    "launch-component-factory-f41",
+                    str(USER_PROVIDED_COMPONENT_FACTORY_F41_CANDIDATE_ID),
+                    "--attempt-label",
+                    supervised_label,
+                ]
+            )
+        self.assertEqual(result, 0)
+        supervised_launch.assert_called_once_with(
+            "unused", selected, attempt_label=supervised_label
+        )
 
         for returned in (
             [],
@@ -977,6 +1010,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
 
     def test_component_factory_f41_launch_uses_exact_ssh_direct_contract(self):
         output = io.StringIO()
+        stderr = io.StringIO()
         offer = self.eligible_component_factory_f41_offer()
         attempt_label = self.component_factory_f41_attempt_label()
         with (
@@ -1011,6 +1045,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                 return_value=Path("/tmp/f41-41341-known-hosts"),
             ) as ready,
             mock.patch("sys.stdout", output),
+            mock.patch("sys.stderr", stderr),
         ):
             result = self.wrapper.launch_component_factory_f41_offer(
                 "unused", offer
@@ -1044,6 +1079,10 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertNotIn("api_key", serialized)
         self.assertNotIn("image_login", serialized)
         report = json.loads(output.getvalue())
+        self.assertEqual(
+            stderr.getvalue(),
+            f"OpenBao Vast.ai F41 paid launch attempt label: {attempt_label}\n",
+        )
         self.assertEqual(report["label"], attempt_label)
         self.assertEqual(
             report["selected_offer"]["inet_up_cost_usd_per_gb"], 0.01
