@@ -80,6 +80,20 @@ Les publications sont séquentielles : le digest parent est relevé, contrôlé 
 preuve de qualification ; le lancement utilise exclusivement un digest
 `sha256` explicite.
 
+### Incident de publication du 3 septembre 2026
+
+Le run GitHub Actions
+[`33712820284`](https://github.com/cluster2600/3dprinting993/actions/runs/33712820284)
+a construit et publié le candidat base
+`sha256:0420c9fde0d8bb261c45a3f98ddd37e8c8fe005316758daa3feb0de1d1bf53da`,
+mais le contrôle anonyme a correctement refusé sa promotion. Le pull anonyme et
+les imports principaux ont réussi ; le smoke a ensuite détecté l'absence des
+deux exécutables `simready-profile-validate` et `simready-nvidia-auth-check`
+dans l'image de base. Le Dockerfile copie désormais ces exécutables et le test
+statique protège leurs copies ainsi que leurs permissions. Ce digest échoué
+reste un artefact de diagnostic et n'est ni qualifié, ni épinglé, ni utilisable
+sur Vast.
+
 ## Dimensionnement de la première qualification
 
 Le contrat actuel sélectionne une seule `RTX PRO 6000 WS` entière, au moins
@@ -92,8 +106,8 @@ mesure de saturation ou par un calcul CAE ultérieur, pas par le nom du projet.
 
 | Gate | État avant qualification Vast |
 |---|---|
-| Base sans clef hôte publiée | en construction |
-| Concurrence `sshd` testée à froid | en construction |
+| Base sans clef hôte publiée | republication requise après échec contrôlé |
+| Concurrence `sshd` testée à froid | bloquée jusqu'au prochain smoke |
 | Image finale accessible anonymement par digest | bloquée par la cascade |
 | SSH `BatchMode` réel | non exécuté |
 | Services NVIDIA locaux | non exécutés sur le nouveau digest |

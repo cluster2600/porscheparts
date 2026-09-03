@@ -158,6 +158,8 @@ RUN python3.12 -m venv /opt/simready-validation \
 COPY containers/simready-supervisord.conf /etc/simready-supervisord.conf
 COPY containers/simready-services.sh /usr/local/bin/simready-services
 COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
+COPY containers/simready-nvidia-auth-check.sh /usr/local/bin/simready-nvidia-auth-check
+COPY containers/simready-profile-validate.sh /usr/local/bin/simready-profile-validate
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
 COPY containers/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY containers/simready-sshd-runtime-wrapper.sh /usr/local/bin/simready-sshd-runtime-wrapper
@@ -169,6 +171,8 @@ RUN chmod 0555 \
       /usr/local/bin/simready-sshd-runtime-smoke \
       /usr/local/bin/simready-services \
       /usr/local/bin/simready-smoke \
+      /usr/local/bin/simready-nvidia-auth-check \
+      /usr/local/bin/simready-profile-validate \
       /usr/local/bin/smoke-test.sh \
       /opt/content-agents/apps/ovrtx_rendering_api/docker-entrypoint.sh \
     && test -x /usr/sbin/sshd \

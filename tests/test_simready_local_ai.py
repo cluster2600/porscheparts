@@ -60,6 +60,16 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             "COPY containers/simready-sshd-runtime-wrapper.sh /usr/local/bin/simready-sshd-runtime-wrapper",
             base_dockerfile,
         )
+        self.assertIn(
+            "COPY containers/simready-nvidia-auth-check.sh /usr/local/bin/simready-nvidia-auth-check",
+            base_dockerfile,
+        )
+        self.assertIn(
+            "COPY containers/simready-profile-validate.sh /usr/local/bin/simready-profile-validate",
+            base_dockerfile,
+        )
+        self.assertIn("/usr/local/bin/simready-nvidia-auth-check \\", base_dockerfile)
+        self.assertIn("/usr/local/bin/simready-profile-validate \\", base_dockerfile)
         self.assertIn("mv /usr/sbin/sshd /usr/lib/openssh/sshd.real", base_dockerfile)
         self.assertIn("rm -f /etc/ssh/ssh_host_*_key", base_dockerfile)
         self.assertIn("/root/.no_auto_tmux", base_dockerfile)
