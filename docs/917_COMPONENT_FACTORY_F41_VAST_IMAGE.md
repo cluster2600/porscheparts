@@ -262,8 +262,9 @@ distant ouvre ce statut, `READY` et le rapport smoke avec `O_NOFOLLOW` et
 16 Kio pour le statut et `READY`, puis 1 Mio pour le rapport. Les codes distants
 41 à 46 sont convertis en catégories fixes ; aucune sortie SSH arbitraire n'est
 réémise. Les échecs d'authentification, de clé hôte, de rapport, de contrat ou
-d'`onstart` échouent immédiatement. Seuls le démarrage, l'attente de `READY`,
-le refus et le timeout de transport restent réessayables dans la fenêtre bornée.
+d'`onstart` échouent immédiatement. Le démarrage, l'attente de `READY` et les
+échecs transitoires de transport (refus, timeout, connexion fermée, réseau
+injoignable ou erreur générique) restent réessayables dans la fenêtre bornée.
 
 Le wrapper refuse tous les digests révoqués avant le verrou de location,
 l'enregistrement SSH et l'appel de création payant. Le prochain digest ne sera
