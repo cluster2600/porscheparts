@@ -1,0 +1,146 @@
+{
+  "blockers": [],
+  "conversion_tools": [
+    "usd-convert-cad"
+  ],
+  "dependency_policy": "selected-target-dependencies",
+  "env": {},
+  "generated_at": "2026-09-02T22:07:01.748918+00:00",
+  "legacy_options_ignored": [],
+  "manifest_path": "/workspace/f37-simready/output/preflight.json",
+  "paths": {
+    "home": "/root/.physical-ai-skill-hub",
+    "output_root": "",
+    "project_root": "",
+    "state_root": "/root/.physical-ai-skill-hub/state",
+    "upstream_root": "/workspace/upstreams",
+    "venv_root": "/root/.physical-ai-skill-hub/venvs"
+  },
+  "platform": {
+    "machine": "x86_64",
+    "python": "3.12.3",
+    "system": "linux"
+  },
+  "preflight_mode": "route-aware-dependency-bootstrap",
+  "route_selection": {
+    "conversion_tools_reason": "explicit",
+    "source_asset": "",
+    "source_format": ""
+  },
+  "runtimes": {
+    "asset_validator": {
+      "executable": "/opt/simready-validation/bin/python",
+      "message": "omni.asset_validator Python module is importable",
+      "status": "ready"
+    },
+    "content_agents": {
+      "message": "Content Agents preflight was explicitly skipped",
+      "status": "skipped"
+    },
+    "git_lfs": {
+      "executable": "/usr/bin/git-lfs",
+      "message": "Git LFS is available",
+      "status": "ready"
+    },
+    "openusd_python": {
+      "executable": "/opt/simready-validation/bin/python",
+      "message": "OpenUSD Python APIs are importable",
+      "status": "ready"
+    },
+    "repo_python": {
+      "executable": "/opt/simready-validation/bin/python",
+      "message": "no pyproject.toml found near cwd or preflight script",
+      "status": "skipped"
+    },
+    "request": {
+      "checks": [
+        {
+          "message": "no source asset was provided",
+          "name": "source_asset",
+          "status": "skipped"
+        },
+        {
+          "message": "no output root was provided",
+          "name": "output_root",
+          "status": "skipped"
+        }
+      ],
+      "message": "request input checks were skipped",
+      "status": "skipped"
+    },
+    "simready_validate": {
+      "executable": "/opt/simready-validation/bin/simready-validate",
+      "message": "simready-validate executable is on PATH",
+      "root": "/opt/simready-foundation",
+      "status": "ready"
+    },
+    "usd_convert_cad": {
+      "executable": "/opt/usd-convert-cad-preflight/convert.py",
+      "message": "usd-convert-cad is installed and validated",
+      "root": "/opt/usd-convert-cad-preflight",
+      "status": "ready"
+    }
+  },
+  "schema_version": "1.0",
+  "services": {},
+  "skill": "cad-to-simready-preflight",
+  "status": "ready",
+  "steps": [
+    {
+      "command": [
+        "/opt/simready-validation/bin/python",
+        "/opt/usd-convert-cad-preflight/validate.py"
+      ],
+      "message": "command completed",
+      "name": "python",
+      "returncode": 0,
+      "status": "ready",
+      "stdout_tail": "usd-convert-cad packaged runtime OK\n"
+    },
+    {
+      "command": [
+        "/opt/simready-validation/bin/python",
+        "-c",
+        "from pxr import Usd, UsdGeom, UsdPhysics; print(Usd.GetVersion())"
+      ],
+      "message": "command completed",
+      "name": "python",
+      "returncode": 0,
+      "status": "ready",
+      "stdout_tail": "(0, 26, 8)\n"
+    },
+    {
+      "command": [
+        "/opt/simready-validation/bin/python",
+        "-c",
+        "import omni.asset_validator"
+      ],
+      "message": "command completed",
+      "name": "python",
+      "returncode": 0,
+      "status": "ready"
+    }
+  ],
+  "targets": [
+    "conversion",
+    "validation"
+  ],
+  "upstreams": {
+    "simready_foundation": {
+      "branch": "main",
+      "commit": "0ed0dfbc539c9de99289771bd6848effe3ef5779",
+      "message": "checkout is present",
+      "path": "/opt/simready-foundation",
+      "status": "present",
+      "url": "https://github.com/NVIDIA/simready-foundation"
+    },
+    "usd_convert_cad": {
+      "branch": null,
+      "commit": null,
+      "message": "checkout is present",
+      "path": "/opt/usd-convert-cad-preflight",
+      "status": "present",
+      "url": "https://github.com/NVIDIA-Omniverse/usd-convert-cad"
+    }
+  }
+}

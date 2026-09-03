@@ -1,0 +1,230 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-18870c24d21c
+Exec   : checkMesh -allTopology -allGeometry
+Date   : Sep 02 2026
+Time   : 21:55:03
+Host   : "7f6d9aa3f856"
+PID    : 83024
+I/O    : uncollated
+Case   : /workspace/iceenginefoam-scope/foamrun/engine2Valve2D
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Selecting userTime engine
+Expanding #calc at line 49 in file "/workspace/iceenginefoam-scope/foamrun/engine2Valve2D/system/functions"
+Expanding #calc at line 52 in file "/workspace/iceenginefoam-scope/foamrun/engine2Valve2D/system/functions"
+Create mesh for time = 0
+
+Enabling all (cell, face, edge, point) topology checks.
+
+Enabling all geometry checks.
+
+Time = 0CAD
+
+Mesh stats
+    points:           5040
+    internal points:  0
+    edges:            11890
+    internal edges:   1862
+    internal edges using one boundary point:   0
+    internal edges using two boundary points:  1862
+    faces:            9041
+    internal faces:   4027
+    cells:            2178
+    faces per cell:   6
+    boundary patches: 35
+    point zones:      0
+    face zones:       2
+    cell zones:       0
+
+Overall number of cells of each type:
+    hexahedra:     2178
+    prisms:        0
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    0
+    polyhedra:     0
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Topological cell zip-up check OK.
+    Face-face connectivity OK.
+   *Number of regions: 13
+    The mesh has multiple regions which are not connected by any face.
+
+Checking patch topology for multiply connected surfaces...
+    Patch               Faces    Points   Surface topology                  
+    piston              94       198      ok (non-closed singly connected)  
+    liner               30       64       ok (non-closed singly connected)  
+    cylinderHead        128      288      ok (non-closed singly connected)  
+    nonCouple_cyl_ev    30       64       ok (non-closed singly connected)  
+    nonCouple_cyl_iv    30       64       ok (non-closed singly connected)  
+    frontAndBack        4356     5040     ok (non-closed singly connected)  
+    nonCouple_ev_cyl    30       64       ok (non-closed singly connected)  
+    outlet              16       36       ok (non-closed singly connected)  
+    evHead              46       98       ok (non-closed singly connected)  
+    evStem              48       104      ok (non-closed singly connected)  
+    nonCouple_iv_cyl    30       64       ok (non-closed singly connected)  
+    inlet               16       36       ok (non-closed singly connected)  
+    ivHead              46       98       ok (non-closed singly connected)  
+    ivStem              48       104      ok (non-closed singly connected)  
+    nonCouple_ep_ev     16       36       ok (non-closed singly connected)  
+    nonCouple_ev_ep     16       36       ok (non-closed singly connected)  
+    nonCouple_ip_iv     16       36       ok (non-closed singly connected)  
+    nonCouple_iv_ip     16       36       ok (non-closed singly connected)  
+    inletFuel           2        6        ok (non-closed singly connected)  
+    NCC_iv_on_nonCouple_iv_cyl0        0        ok (empty)                        
+    NCC_iv_on_nonCouple_cyl_iv0        0        ok (empty)                        
+    NCC_ev_on_nonCouple_ev_cyl0        0        ok (empty)                        
+    NCC_ev_on_nonCouple_cyl_ev0        0        ok (empty)                        
+    NCC_iv_port_on_nonCouple_ip_iv0        0        ok (empty)                        
+    NCC_iv_port_on_nonCouple_iv_ip0        0        ok (empty)                        
+    NCC_ev_port_on_nonCouple_ep_ev0        0        ok (empty)                        
+    NCC_ev_port_on_nonCouple_ev_ep0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_iv_cyl0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_cyl_iv0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ev_cyl0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_cyl_ev0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ip_iv0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_iv_ip0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ep_ev0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ev_ep0        0        ok (empty)                        
+
+Checking geometry...
+    Overall domain bounding box (-1.3 -0.05 -0.4) (1.3 4.898587197e-17 0.8)
+    Patch bounding boxes
+        piston               (-1.3 -0.05 -0.4) (1.3 -2.449293598e-17 -0.4)
+        liner                (-1.3 -0.05 -0.4) (1.3 0 3.061616998e-18)
+        cylinderHead         (-1.3 -0.05 0) (1.3 4.898587197e-17 0.8)
+        nonCouple_cyl_ev     (-1.1 -0.05 -0.4) (-0.1 0 3.061616998e-18)
+        nonCouple_cyl_iv     (0.1 -0.05 -0.4) (1.1 0 3.061616998e-18)
+        frontAndBack         (-1.3 -0.05 -0.4) (1.3 4.898587197e-17 0.8)
+        nonCouple_ev_cyl     (-1.1 -0.05 -0.4) (-0.1 0 3.061616998e-18)
+        outlet               (-0.9 -0.05 0.8) (-0.3 4.898587197e-17 0.8)
+        evHead               (-1 -0.05 0) (-0.2 6.123233996e-18 0.1)
+        evStem               (-0.7 -0.05 0.1) (-0.5 4.898587197e-17 0.8)
+        nonCouple_iv_cyl     (0.1 -0.05 -0.4) (1.1 0 3.061616998e-18)
+        inlet                (0.3 -0.05 0.8) (0.9 4.898587197e-17 0.8)
+        ivHead               (0.2 -0.05 0) (1 6.123233996e-18 0.1)
+        ivStem               (0.5 -0.05 0.1) (0.7 4.898587197e-17 0.8)
+        nonCouple_ep_ev      (-0.9 -0.05 0.5083333333) (-0.3 3.112643948e-17 0.5083333333)
+        nonCouple_ev_ep      (-0.9 -0.05 0.5083333333) (-0.3 3.112643948e-17 0.5083333333)
+        nonCouple_ip_iv      (0.3 -0.05 0.5083333333) (0.9 3.112643948e-17 0.5083333333)
+        nonCouple_iv_ip      (0.3 -0.05 0.5083333333) (0.9 3.112643948e-17 0.5083333333)
+        inletFuel            (-0.03333333333 -0.05 0) (0.03333333333 0 3.061616998e-18)
+        NCC_iv_on_nonCouple_iv_cyl
+        NCC_iv_on_nonCouple_cyl_iv
+        NCC_ev_on_nonCouple_ev_cyl
+        NCC_ev_on_nonCouple_cyl_ev
+        NCC_iv_port_on_nonCouple_ip_iv
+        NCC_iv_port_on_nonCouple_iv_ip
+        NCC_ev_port_on_nonCouple_ep_ev
+        NCC_ev_port_on_nonCouple_ev_ep
+        nonConformalError_on_nonCouple_iv_cyl
+        nonConformalError_on_nonCouple_cyl_iv
+        nonConformalError_on_nonCouple_ev_cyl
+        nonConformalError_on_nonCouple_cyl_ev
+        nonConformalError_on_nonCouple_ip_iv
+        nonConformalError_on_nonCouple_iv_ip
+        nonConformalError_on_nonCouple_ep_ev
+        nonConformalError_on_nonCouple_ev_ep
+    Mesh has 2 geometric (non-empty/wedge) directions (1 0 1)
+    Mesh has 2 solution (non-empty) directions (1 0 1)
+    All edges aligned with or perpendicular to non-empty directions.
+    Max cell openness = 1.95156391e-16 OK.
+    Max aspect ratio = 1.25 OK.
+    Minimum face area = 0.0006666666667. Maximum face area = 0.001666666667.  Face area magnitudes OK.
+    Min volume = 3.333333333e-05. Max volume = 4.444444444e-05.  Total volume = 0.08.  Cell volumes OK.
+    Mesh non-orthogonality Max: 0 average: 0
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 3.934544599e-14 OK.
+    Coupled point location match (average 0) OK.
+    Face tets OK.
+    Min/max edge length = 0.025 0.05 OK.
+    All angles in faces OK.
+    Face flatness (1 = flat, 0 = butterfly) : min = 1  average = 1
+    All face flatness OK.
+    Cell determinant (wellposedness) : minimum: 0.9754610578 average: 3.398825354
+    Cell determinant check OK.
+    Concave cell check OK.
+    Face interpolation weight : minimum: 0.4838709677 average: 0.4997596866
+    Face interpolation weight check OK.
+    Face volume ratio : minimum: 0.9375 average: 0.9990687857
+    Face volume ratio check OK.
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_iv_cyl with 30 faces and ...
+    target patch nonCouple_cyl_iv with 30 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 5.421010862e-17/7.561293245e-16/3.671463252e-16/0
+    Source max openness/error/depth/angle = 1.626303259e-16/4.719148473e-15/2.525140789e-15/0
+    60 couplings calculated in 0.005508s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ev_cyl with 30 faces and ...
+    target patch nonCouple_cyl_ev with 30 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 5.421010862e-17/1.255407455e-15/2.84516052e-16/0
+    Source max openness/error/depth/angle = 1.626303259e-16/4.718898133e-15/2.026980648e-15/0
+    60 couplings calculated in 0.004929s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ip_iv with 16 faces and ...
+    target patch nonCouple_iv_ip with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 1.084202172e-17/3.608550042e-16/9.708664934e-17/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.92653949e-15/1.29190244e-15/0
+    32 couplings calculated in 0.002577s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ep_ev with 16 faces and ...
+    target patch nonCouple_ev_ep with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 2.168404345e-17/2.818186644e-16/2.6708794e-16/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.484929023e-15/2.101508562e-15/0
+    32 couplings calculated in 0.002483s
+
+Mesh OK.
+
+End
+
+	Command being timed: "checkMesh -allTopology -allGeometry"
+	User time (seconds): 0.14
+	System time (seconds): 0.05
+	Percent of CPU this job got: 100%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.20
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 53852
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 3220
+	Voluntary context switches: 1
+	Involuntary context switches: 2
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 88
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

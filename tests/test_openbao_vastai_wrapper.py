@@ -137,6 +137,15 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertNotIn("OPENBAO_GHCR_IMAGE_LOGIN", source)
         self.assertNotIn("image_login", source)
 
+    def test_mesh_image_is_immutable_linux_amd64_candidate(self):
+        image = self.wrapper.MESH_IMAGE
+        self.assertEqual(
+            image,
+            "ghcr.io/cluster2600/3dprinting993-mesh-cfd@"
+            "sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+        )
+        self.assertNotIn(":latest", image)
+
 
 if __name__ == "__main__":
     unittest.main()

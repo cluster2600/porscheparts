@@ -1,0 +1,310 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-18870c24d21c
+Exec   : foamRun -parallel -solver fluid -case /workspace/f36/final-013/openfoam/shroud-gap10-nonslip-coarse
+Date   : Sep 02 2026
+Time   : 21:39:41
+Host   : "7f6d9aa3f856"
+PID    : 74541
+I/O    : uncollated
+Case   : /workspace/f36/final-013/openfoam/shroud-gap10-nonslip-coarse
+nProcs : 8
+Slaves : 
+7
+(
+"7f6d9aa3f856.74542"
+"7f6d9aa3f856.74543"
+"7f6d9aa3f856.74544"
+"7f6d9aa3f856.74545"
+"7f6d9aa3f856.74546"
+"7f6d9aa3f856.74547"
+"7f6d9aa3f856.74548"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Selecting solver fluid
+Selecting thermodynamics package 
+{
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kOmegaSST
+No MRF models present
+
+Selecting patchDistMethod meshWave
+Selecting thermophysical transport type RAS
+Selecting default RAS thermophysical transport model unityLewisEddyDiffusivity
+
+PIMPLE: Convergence criteria found
+        p: tolerance 1e-05
+        U: tolerance 1e-05
+        "(k|omega|h)": tolerance 1e-05
+
+
+PIMPLE: Operating solver in steady-state mode with 1 outer corrector
+PIMPLE: Operating solver in SIMPLE mode
+
+
+
+Starting time loop
+
+surfaceFieldValue outletMassFlow read:
+    number of faces = 320
+    area = 0.0169579375
+    operation = sum
+
+surfaceFieldValue outletTemperature read:
+    number of faces = 320
+    area = 0.0169579375
+    operation = areaAverage
+    weight field = phi
+
+surfaceFieldValue weightedOutletTemperature read:
+    number of faces = 320
+    area = 0.0169579375
+    operation = average
+    weight field = phi
+
+surfaceFieldValue outletTotalEnergyTerms read:
+    number of faces = 320
+    area = 0.0169579375
+    operation = average
+    weight field = phi
+
+surfaceFieldValue inletPressure read:
+    number of faces = 320
+    area = 0.0169579375
+    operation = areaAverage
+
+wallHeatFlux headHeatFlux:
+    processing wall patches: 
+        head
+
+Time = 1s
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.9999999946, Final residual = 0.09657856955, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 1, Final residual = 0.008015631274, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 1, Final residual = 0.007165175069, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 1, Final residual = 0.08553101497, No Iterations 1
+GAMG:  Solving for p, Initial residual = 1, Final residual = 0.004027232275, No Iterations 5
+time step continuity errors : sum local = 2.37296509, global = -0.5171925741, cumulative = -0.5171925741
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.04024092065, Final residual = 0.002432894418, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 1, Final residual = 0.008606095458, No Iterations 1
+ExecutionTime = 2.629226 s  ClockTime = 2 s
+
+Time = 2s
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.3556564944, Final residual = 0.02313159097, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 0.3426398641, Final residual = 0.01924653871, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.3360176525, Final residual = 0.01855453444, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 0.1194677742, Final residual = 0.003862308998, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.1470561475, Final residual = 0.0006575831351, No Iterations 4
+time step continuity errors : sum local = 4.779008159, global = 0.9038351636, cumulative = 0.3866425894
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.04147057817, Final residual = 0.003481260881, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.4901016604, Final residual = 0.004594446439, No Iterations 1
+ExecutionTime = 3.665693 s  ClockTime = 3 s
+
+Time = 3s
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.2558235456, Final residual = 0.01731011242, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 0.2435653544, Final residual = 0.0141232407, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.2431753857, Final residual = 0.01372925771, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 0.131937415, Final residual = 0.005409307364, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.09821372519, Final residual = 0.0008626130712, No Iterations 3
+time step continuity errors : sum local = 10.68010246, global = -0.1691266809, cumulative = 0.2175159085
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.04663542685, Final residual = 0.004229019004, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.3050221539, Final residual = 0.002498602691, No Iterations 1
+ExecutionTime = 4.784561 s  ClockTime = 5 s
+
+Time = 4s
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.1535183691, Final residual = 0.01051877692, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 0.1419777662, Final residual = 0.008384970666, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.1440422688, Final residual = 0.008178580322, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 0.162389633, Final residual = 0.008624180492, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.09182128358, Final residual = 0.0004381917741, No Iterations 4
+time step continuity errors : sum local = 4.858480063, global = -0.4437643547, cumulative = -0.2262484462
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.04274058759, Final residual = 0.004056694431, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.2161855974, Final residual = 0.001848850245, No Iterations 1
+ExecutionTime = 5.807437 s  ClockTime = 6 s
+
+Time = 5s
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.06747637441, Final residual = 0.004536862485, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 0.06401876832, Final residual = 0.003730423492, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.06530332369, Final residual = 0.003706080651, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 0.1573677609, Final residual = 0.009384646461, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.1321787255, Final residual = 0.0009150578023, No Iterations 4
+time step continuity errors : sum local = 5.150621462, global = -0.7983915469, cumulative = -1.024639993
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.03547482593, Final residual = 0.003427112003, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.1695362943, Final residual = 0.00141219922, No Iterations 1
+ExecutionTime = 6.871107 s  ClockTime = 7 s
+
+Time = 6s
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.04777623762, Final residual = 0.002815569819, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 0.0646935892, Final residual = 0.00343201929, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.05810504246, Final residual = 0.003036757502, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 0.1283059504, Final residual = 0.006704370136, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.251868614, Final residual = 0.002504367816, No Iterations 3
+time step continuity errors : sum local = 7.844832107, global = 1.732629697, cumulative = 0.7079897037
+[4] #0  Foam::error::printStack(Foam::Ostream&)[5] #0  Foam::error::printStack(Foam::Ostream&)[6] #0  Foam::error::printStack(Foam::Ostream&)[7] #0  Foam::error::printStack(Foam::Ostream&) at ??:?
+[7] #1  Foam::sigFpe::sigHandler(int) at ??:?
+[4] #1  Foam::sigFpe::sigHandler(int) at ??:?
+[7] #2  ? at ??:?
+[5] #1  Foam::sigFpe::sigHandler(int) in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[7] #3  ? at ??:?
+[6] #1  Foam::sigFpe::sigHandler(int) at ??:?
+[4] #2  ? in "/usr/lib/x86_64-linux-gnu/libm.so.6"
+[7] #4  Foam::omegaWallFunctionFvPatchScalarField::calculate(Foam::momentumTransportModel const&) const at ??:?
+[7] #5  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffsMaster() at ??:?
+[6] #2  ? in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[4] #3  ? in "/usr/lib/ at x86_64-linux-gn??:?
+u/libc.so.6"
+[6] #3  ?[7] #6  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffs() in "/usr/lib/x86_64-linux-gnu/libm.so.6"
+[6] #4  Foam::omegaWallFunctionFvPatchScalarField::calculate(Foam::momentumTransportModel const&) const in "/usr/lib/x86_64-linux-gnu/libm.so.6"
+[4] #4  Foam::omegaWallFunctionFvPatchScalarField::calculate(Foam::momentumTransportModel const&) const at ??:?
+[5] #2  ? at ??:?
+[7] #7  Foam::GeometricBoundaryField<double, Foam::volMesh, Foam::Field>::updateCoeffs() at ??:?
+[4] #5  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffsMaster() at ??:?
+[7] #8  Foam::kOmegaSST<Foam::eddyViscosity<Foam::RASModel<Foam::compressibleMomentumTransportModel> >, Foam::compressibleMomentumTransportModel>::correct() at ??:?
+[4] #6  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffs() at ??:?
+[7] #9   in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+ at ??:?
+[4] #7  Foam::GeometricBoundaryField<double, Foam::volMesh, Foam::Field>::updateCoeffs()[5] #3  ?? at ??:?
+[6] #5  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffsMaster() in "/usr/lib/x86_64-linux-gnu/libm.so.6"
+[5] #4  Foam::omegaWallFunctionFvPatchScalarField::calculate(Foam::momentumTransportModel const&) const in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[7] #10  ? at ??:?
+[5] #5  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffsMaster() in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[7] #11  __libc_start_main at ??:?
+[4] #8  Foam::kOmegaSST<Foam::eddyViscosity<Foam::RASModel<Foam::compressibleMomentumTransportModel> >, Foam::compressibleMomentumTransportModel>::correct() at ??:?
+[5] #6  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffs() in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[7] #12  ? at ??:?
+ at ??:?
+[5] #7  Foam::GeometricBoundaryField<double, Foam::volMesh, Foam::Field>::updateCoeffs()[6] #6  Foam::omegaWallFunctionFvPatchScalarField::updateCoeffs() in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[7f6d9aa3f856:74548] *** Process received signal ***
+[7f6d9aa3f856:74548] Signal: Floating point exception (8)
+[7f6d9aa3f856:74548] Signal code:  (-6)
+[7f6d9aa3f856:74548] Failing at address: 0x12334
+[7f6d9aa3f856:74548] [ 0] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x79a6540b6330]
+[7f6d9aa3f856:74548] [ 1] /usr/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x11c)[0x79a65410fc0c]
+[7f6d9aa3f856:74548] [ 2] /usr/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x1e)[0x79a6540b627e]
+[7f6d9aa3f856:74548] [ 3] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x79a6540b6330]
+[7f6d9aa3f856:74548] [ 4] /usr/lib/x86_64-linux-gnu/libm.so.6(+0x72b20)[0x79a654325b20]
+[7f6d9aa3f856:74548] [ 5] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZNK4Foam35omegaWallFunctionFvPatchScalarField9calculateERKNS_22momentumTransportModelE+0x68b)[0x79a63138f84b]
+[7f6d9aa3f856:74548] [ 6] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField18updateCoeffsMasterEv+0x1c9)[0x79a63138ff99]
+[7f6d9aa3f856:74548] [ 7] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField12updateCoeffsEv+0x53)[0x79a631390873]
+[7f6d9aa3f856:74548] [ 8] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam22GeometricBoundaryFieldIdNS_7volMeshENS_5FieldEE12updateCoeffsEv+0x8a)[0x79a64827523a]
+[7f6d9aa3f856:74548] [ 9] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam9kOmegaSSTINS_13eddyViscosityINS_8RASModelINS_34compressibleMomentumTransportModelEEEEES3_E7correctEv+0x365)[0x79a64837a355]
+[7f6d9aa3f856:74548] [10] foamRun(+0x3ea5)[0x55fe2b996ea5]
+[7f6d9aa3f856:74548] [11] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca)[0x79a65409b1ca]
+[7f6d9aa3f856:74548] [12] /usr/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b)[0x79a65409b28b]
+[7f6d9aa3f856:74548] [13] foamRun(+0x46b5)[0x55fe2b9976b5]
+[7f6d9aa3f856:74548] *** End of error message ***
+ at ??:?
+[4] #9   at ??:?
+[6] #7  Foam::GeometricBoundaryField<double, Foam::volMesh, Foam::Field>::updateCoeffs() at ??:?
+[5] #8  Foam::kOmegaSST<Foam::eddyViscosity<Foam::RASModel<Foam::compressibleMomentumTransportModel> >, Foam::compressibleMomentumTransportModel>::correct()? at ??:?
+[6] #8  Foam::kOmegaSST<Foam::eddyViscosity<Foam::RASModel<Foam::compressibleMomentumTransportModel> >, Foam::compressibleMomentumTransportModel>::correct() at ??:?
+[6] #9  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[4] #10  ? in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+ in [4] #11  "/o__libc_start_mainpt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[6] #10  ? at ??:?
+[5] #9   in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[4] #12  ?? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[7f6d9aa3f856:74545] *** Process received signal ***
+[7f6d9aa3f856:74545] Signal: Floating point exception (8)
+[7f6d9aa3f856:74545] Signal code:  (-6)
+[7f6d9aa3f856:74545] Failing at address: 0x12331
+[7f6d9aa3f856:74545] [ 0] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7ddf4f530330]
+[7f6d9aa3f856:74545] [ 1] /usr/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x11c)[0x7ddf4f589c0c]
+[7f6d9aa3f856:74545] [ 2] /usr/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x1e)[0x7ddf4f53027e]
+[7f6d9aa3f856:74545] [ 3] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7ddf4f530330]
+[7f6d9aa3f856:74545] [ 4] /usr/lib/x86_64-linux-gnu/libm.so.6(+0x72b20)[0x7ddf4f79fb20]
+[7f6d9aa3f856:74545] [ 5] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZNK4Foam35omegaWallFunctionFvPatchScalarField9calculateERKNS_22momentumTransportModelE+0x68b)[0x7ddf2c8e084b]
+[7f6d9aa3f856:74545] [ 6] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField18updateCoeffsMasterEv+0x1c9)[0x7ddf2c8e0f99]
+[7f6d9aa3f856:74545] [ 7] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField12updateCoeffsEv+0x53)[0x7ddf2c8e1873]
+[7f6d9aa3f856:74545] [ 8] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam22GeometricBoundaryFieldIdNS_7volMeshENS_5FieldEE12updateCoeffsEv+0x8a)[0x7ddf2cafb23a]
+[7f6d9aa3f856:74545] [ 9]  in "/usr/lib/x86_64-linux-gn/opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam9kOmegaSSTINS_13eddyViscosityINS_8RASModelINS_34compressibleMomentumTransportModelEEEEES3_E7correctEv+0x365)[0x7ddf2cc00355]
+u/l[7f6d9aa3f856:74545] [10] ifoamRun(+0x3ea5)[0x63e903674ea5]
+[7f6d9aa3f856:74545] [11] bc/usr/lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca)[0x7ddf4f5151ca]
+.so.6"
+[7f6d9aa3f856:74545] [12] /usr/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b)[0x7ddf4f51528b]
+[7f6d9aa3f856:74545] [13] foamRun(+0x46b5)[0x63e9036756b5]
+[7f6d9aa3f856:74545] *** End of error message ***
+[6] #11  __libc_start_main in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[5] #10  ?--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+ in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[5] #11  __libc_start_main in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[5] #12  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[7f6d9aa3f856:74546] *** Process received signal ***
+[7f6d9aa3f856:74546] Signal: Floating point exception (8)
+[7f6d9aa3f856:74546] Signal code:  (-6)
+[7f6d9aa3f856:74546] Failing at address: 0x12332
+[7f6d9aa3f856:74546] [ 0] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7c5af5856330]
+[7f6d9aa3f856:74546] [ 1] /usr/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x11c)[0x7c5af58afc0c]
+[7f6d9aa3f856:74546] [ 2] /usr/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x1e)[0x7c5af585627e]
+[7f6d9aa3f856:74546] [ 3] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7c5af5856330]
+[7f6d9aa3f856:74546] [ 4] /usr/lib/x86_64-linux-gnu/libm.so.6(+0x72b20)[0x7c5af5ac5b20]
+[7f6d9aa3f856:74546] [ 5] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZNK4Foam35omegaWallFunctionFvPatchScalarField9calculateERKNS_22momentumTransportModelE+0x68b)[0x7c5ad2c9784b]
+[7f6d9aa3f856:74546] [ 6] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField18updateCoeffsMasterEv+0x1c9)[0x7c5ad2c97f99]
+[7f6d9aa3f856:74546] [ 7] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField12updateCoeffsEv+0x53)[0x7c5ad2c98873]
+[7f6d9aa3f856:74546] [ 8] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam22GeometricBoundaryFieldIdNS_7volMeshENS_5FieldEE12updateCoeffsEv+0x8a)[0x7c5ad2f8f23a]
+[7f6d9aa3f856:74546] [ 9] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam9kOmegaSSTINS_13eddyViscosityINS_8RASModelINS_34compressibleMomentumTransportModelEEEEES3_E7correctEv+0x365)[0x7c5ad3094355]
+[7f6d9aa3f856:74546] [10] foamRun(+0x3ea5)[0x5c990944dea5]
+[7f6d9aa3f856:74546] [11] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca)[0x7c5af583b1ca]
+[7f6d9aa3f856:74546] [12] /usr/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b)[0x7c5af583b28b]
+[7f6d9aa3f856:74546] [13] foamRun(+0x46b5)[0x5c990944e6b5]
+[7f6d9aa3f856:74546] *** End of error message ***
+ in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+[6] #12  ? in "/opt/openfoam13/platforms/linux64GccDPInt32Opt/bin/foamRun"
+[7f6d9aa3f856:74547] *** Process received signal ***
+[7f6d9aa3f856:74547] Signal: Floating point exception (8)
+[7f6d9aa3f856:74547] Signal code:  (-6)
+[7f6d9aa3f856:74547] Failing at address: 0x12333
+[7f6d9aa3f856:74547] [ 0] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7cf4bfd1e330]
+[7f6d9aa3f856:74547] [ 1] /usr/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x11c)[0x7cf4bfd77c0c]
+[7f6d9aa3f856:74547] [ 2] /usr/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x1e)[0x7cf4bfd1e27e]
+[7f6d9aa3f856:74547] [ 3] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45330)[0x7cf4bfd1e330]
+[7f6d9aa3f856:74547] [ 4] /usr/lib/x86_64-linux-gnu/libm.so.6(+0x72b20)[0x7cf4bff8db20]
+[7f6d9aa3f856:74547] [ 5] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZNK4Foam35omegaWallFunctionFvPatchScalarField9calculateERKNS_22momentumTransportModelE+0x68b)[0x7cf49d0e284b]
+[7f6d9aa3f856:74547] [ 6] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField18updateCoeffsMasterEv+0x1c9)[0x7cf49d0e2f99]
+[7f6d9aa3f856:74547] [ 7] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libmomentumTransportModels.so(_ZN4Foam35omegaWallFunctionFvPatchScalarField12updateCoeffsEv+0x53)[0x7cf49d0e3873]
+[7f6d9aa3f856:74547] [ 8] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam22GeometricBoundaryFieldIdNS_7volMeshENS_5FieldEE12updateCoeffsEv+0x8a)[0x7cf49d2fd23a]
+[7f6d9aa3f856:74547] [ 9] /opt/openfoam13/platforms/linux64GccDPInt32Opt/lib/libcompressibleMomentumTransportModels.so(_ZN4Foam9kOmegaSSTINS_13eddyViscosityINS_8RASModelINS_34compressibleMomentumTransportModelEEEEES3_E7correctEv+0x365)[0x7cf49d402355]
+[7f6d9aa3f856:74547] [10] foamRun(+0x3ea5)[0x63769829dea5]
+[7f6d9aa3f856:74547] [11] /usr/lib/x86_64-linux-gnu/libc.so.6(+0x2a1ca)[0x7cf4bfd031ca]
+[7f6d9aa3f856:74547] [12] /usr/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x8b)[0x7cf4bfd0328b]
+[7f6d9aa3f856:74547] [13] foamRun(+0x46b5)[0x63769829e6b5]
+[7f6d9aa3f856:74547] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 7 with PID 0 on node 7f6d9aa3f856 exited on signal 8 (Floating point exception).
+--------------------------------------------------------------------------

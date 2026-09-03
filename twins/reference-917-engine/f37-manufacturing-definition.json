@@ -1,0 +1,125 @@
+{
+  "$comment": "Definition fonctionnelle F37 ajoutee au solide F36-013. Toutes les cotes sont des hypotheses d'ingenierie conditionnelles a 1 unite OBJ = 1 mm; elles ne remplacent pas les interfaces Porsche 917 mesurees.",
+  "schema_version": "1.0.0",
+  "phase": "F37",
+  "parent": {
+    "phase": "F36",
+    "geometry_id": "F36-013",
+    "head_sha256": "1e946dc72684da2dcded6959e3ef53cd49df634813ff3c3a3690c3b883aeec42"
+  },
+  "coordinate_system": {
+    "origin": "combustion_chamber_centre_on_final_deck_plane",
+    "x": "across_valve_pairs_and_rocker_shafts",
+    "y": "intake_negative_to_exhaust_positive",
+    "z": "from_combustion_deck_to_valvetrain",
+    "absolute_scale_confirmed": false
+  },
+  "machining_allowances_mm_if_scale_is_mm": {
+    "combustion_deck_axial": 1.0,
+    "cylinder_register_radial": 0.5,
+    "valve_seat_pocket_radial": 0.3,
+    "valve_guide_bore_radial": 0.2,
+    "head_stud_bore_radial": 0.3,
+    "carrier_mount_pad_axial": 0.8,
+    "rocker_shaft_bore_radial": 0.3
+  },
+  "rocker_carrier": {
+    "architecture": "two_detachable_rocker_shaft_rails_four_individual_finger_rockers",
+    "shaft_axis_x_mm": [-55.0, 55.0],
+    "intake_axis_yz_mm": [-18.0, 96.0],
+    "exhaust_axis_yz_mm": [18.0, 96.0],
+    "shaft_final_diameter_mm": 14.0,
+    "shaft_as_printed_bore_diameter_mm": 13.4,
+    "shaft_to_carrier_fit_candidate": "ISO_286_14_H7_g6_supplier_confirmation_pending",
+    "shaft_to_carrier_fit_numeric_limits_confirmed": false,
+    "rail_size_xyz_mm": [110.0, 34.0, 40.0],
+    "rail_centre_z_mm": 90.5,
+    "mount_strategy": "detachable_carrier_clamped_on_four_shared_extended_head_studs",
+    "mount_centres_source": "F36_geometry_report_stud_centres_local_mm",
+    "screen_support_span_mm": 86.74277,
+    "mount_interface_z_mm": 60.0,
+    "mount_boss_outer_diameter_mm": 20.0,
+    "head_mount_pad_outer_diameter_mm": 24.0,
+    "head_mount_pad_foundation_z_mm": 48.0,
+    "mount_bridge_width_x_mm": 18.0,
+    "mount_bridge_height_z_mm": 24.0,
+    "rocker_window_size_xy_mm": [15.0, 36.0],
+    "rocker_arm_section_xz_mm": [11.0, 12.0],
+    "shared_head_stud_nominal_diameter_mm": 10.0,
+    "mount_final_clearance_diameter_mm": 10.74,
+    "mount_as_printed_pilot_mm": 10.14,
+    "extended_head_stud_and_clamp_stack_released": false,
+    "target_rocker_ratio": 1.15,
+    "screen_valve_side_lever_mm": 29.056,
+    "screen_cam_side_lever_mm": 24.969,
+    "cam_contact_geometry_released": false,
+    "kinematic_interference_validated": false
+  },
+  "rocker_pivot_reaction_screen": {
+    "model": "ideal_rocker_collinear_upper_envelope",
+    "cam_to_valve_force_ratio": 1.15,
+    "collinear_upper_envelope_factor": 2.15,
+    "actual_resultant_direction_complete": false
+  },
+  "component_material_and_load_screen": {
+    "head": {"candidate": "Constellium_Aheadd_HT1_plus_HT2_LPBF", "yield_mpa_at_250c": 216.0, "released": false},
+    "rocker_carrier": {"candidate": "EN_AW_2618A_T61_billet_machined", "screen_yield_mpa_at_200c": 200.0, "released": false},
+    "rockers": {"candidate": "42CrMo4_QT_nitrided_wrought", "screen_yield_mpa": 900.0, "released": false},
+    "rocker_shafts": {"candidate": "100Cr6_through_hardened_and_ground", "screen_yield_mpa": 1200.0, "released": false},
+    "worst_open_spring_load_per_valve_n": 1460.0,
+    "dynamic_load_factor": 1.3,
+    "minimum_screen_factor_of_safety": 2.0,
+    "material_cards_qualified": false
+  },
+  "oil_system": {
+    "head_feed_lateral": {"x_mm": -50.0, "y_range_mm": [-95.0, 3.0], "z_mm": 44.0, "diameter_mm": 6.0},
+    "head_header": {"x_range_mm": [-65.0, 65.0], "y_mm": 0.0, "z_mm": 44.0, "diameter_mm": 6.0},
+    "four_metering_branches_diameter_mm": 3.0,
+    "return_drains": {"x_mm": [-38.0, 38.0], "y_mm": 0.0, "z_range_mm": [40.0, 98.0], "lateral_outlet_y_range_mm": [-95.0, 0.0], "lateral_outlet_z_mm": 42.0, "diameter_mm": 8.0},
+    "carrier_gallery_diameter_mm": 5.0,
+    "carrier_gallery_z_mm": 82.0,
+    "all_passages_straight_drillable_or_open_ended": true,
+    "powder_removal_physical_test": false,
+    "oil_flow_and_pressure_validated": false
+  },
+  "oil_hydraulic_screen": {
+    "target_total_flow_l_min": 0.6,
+    "target_flow_per_rocker_l_min": 0.15,
+    "oil_density_kg_m3": 850.0,
+    "dynamic_viscosity_pa_s_hot_110c": 0.012,
+    "dynamic_viscosity_pa_s_cold_screen": 0.08,
+    "worst_path_lengths_mm": {"lateral_feed_d6": 98.0, "header_d6": 68.0, "metering_branch_d3": 70.0, "carrier_gallery_d5": 37.0},
+    "minor_loss_coefficient_worst_path": 4.0,
+    "maximum_hot_pressure_drop_kpa": 75.0,
+    "maximum_cold_pressure_drop_kpa": 450.0,
+    "metering_bore_radius_tolerance_mm": 0.025,
+    "metering_bore_finish": "drill_or_ream_to_3.00_mm_plus_or_minus_0.05_mm_diameter_after_LPBF",
+    "maximum_parallel_flow_imbalance_percent": 15.0
+  },
+  "thread_and_finish_map": [
+    {"id": "spark_insert", "quantity": 2, "final": "M10x1.0_insert_candidate", "as_printed_pilot_mm": 8.3, "placement": "F36 twin lateral canted axes", "released": false},
+    {"id": "carrier_mount", "quantity": 4, "final": "shared_extended_head_stud_clearance_candidate", "final_diameter_mm": 10.74, "as_printed_pilot_mm": 10.14, "released": false},
+    {"id": "oil_gallery_plug", "quantity": 2, "final": "M8x1.0_candidate", "as_printed_pilot_mm": 7.0, "axis_end_centres_mm": [[-62.0, 0.0, 44.0], [62.0, 0.0, 44.0]], "released": false},
+    {"id": "temperature_sensor", "quantity": 1, "final": "M10x1.0_candidate", "as_printed_pilot_mm": 8.5, "axis_start_end_mm": [[55.0, 28.0, 52.0], [43.0, 28.0, 52.0]], "released": false},
+    {"id": "head_stud_clearance", "quantity": 4, "final_diameter_mm": 10.74, "as_printed_pilot_mm": 10.14, "released": false}
+  ],
+  "surface_definition": {
+    "organic_cooling_fins": "scan_conforming_mesh_preserved_not_fitted_as_nurbs",
+    "all_functional_interfaces": "analytic_OCCT_faces_and_cylinders",
+    "whole_head_single_brep": false,
+    "reason": "the open scan cannot support a traceable production NURBS reconstruction without confirmed scale and datums"
+  },
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "porsche_917_mating_interfaces_confirmed": false,
+    "whole_head_single_valid_brep": false,
+    "cam_and_rocker_kinematics_correlated": false,
+    "rocker_pivot_resultant_load_complete": false,
+    "oil_flow_pressure_and_drainage_correlated": false,
+    "thread_insert_supplier_data_confirmed": false,
+    "machining_setup_and_tolerance_stack_validated": false,
+    "lpbf_machine_parameter_set_qualified": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

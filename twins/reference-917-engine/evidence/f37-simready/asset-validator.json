@@ -1,0 +1,36 @@
+{
+  "asset_path": "/workspace/f37-simready/output/final/f37-final.usdc",
+  "categories": [],
+  "command": [
+    "/opt/simready-validation/bin/nvidia_usd_validate",
+    "--json-output",
+    "/tmp/tmpbj_2u96f/asset-validator-report.json",
+    "/workspace/f37-simready/output/final/f37-final.usdc"
+  ],
+  "errors": [],
+  "issue_counts": {
+    "ERROR": 0,
+    "FAILURE": 0,
+    "INFO": 0,
+    "WARNING": 1
+  },
+  "issues": [
+    {
+      "location": "/tn__f37final_aC/Default/Mesh",
+      "message": "8047 vertices are non-manifold.",
+      "requirement": "com.nvidia.usd.VG.007@1.0.0",
+      "rule": "ManifoldChecker",
+      "severity": "WARNING",
+      "suggestion": null
+    }
+  ],
+  "next_step": "omni-asset-validate-geometry",
+  "passed": true,
+  "rules": [],
+  "status": "PASS",
+  "validator_skill": "omni-asset-validate",
+  "validator_tool": "nvidia_usd_validate",
+  "warnings": [
+    "ManifoldChecker: 8047 vertices are non-manifold."
+  ]
+}

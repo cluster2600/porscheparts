@@ -1,0 +1,120 @@
+{
+  "$comment": "Campagne bornee d'amelioration F36. Elle compare les choix influents et physiquement evaluables sans pretendre couvrir un espace de conception infini ni remplacer les essais sur pieces.",
+  "schema_version": "1.0.0",
+  "phase": "F36",
+  "status": "virtual_design_of_experiments_not_hardware_release",
+  "objectives": {
+    "bare_head_mass_max_kg": 2.83,
+    "head_service_temperature_max_c": 260.0,
+    "spring_dynamic_force_margin_min": 1.2,
+    "spring_coil_bind_margin_min_mm": 1.5,
+    "spring_installed_height_tolerance_mm": 0.5,
+    "spring_worst_case_coil_bind_margin_min_mm": 2.5,
+    "spring_wahl_shear_max_mpa": 1000.0,
+    "structural_p99_hot_yield_margin_min": 1.0,
+    "lpbf_unsupported_fraction_max": 0.005,
+    "external_air_h_required_w_m2k": 1600.0,
+    "external_air_pressure_drop_max_pa": 10000.0
+  },
+  "head_material_candidates": [
+    {
+      "id": "Aheadd_HT1_HT2",
+      "route": "LPBF_then_HT2_heat_treatment",
+      "density_kg_m3": 2670.0,
+      "service_temperature_screen_c": 260.0,
+      "yield_mpa_at_250c": 216.0,
+      "thermal_conductivity_card_qualified": false,
+      "source": "Constellium Aheadd HT1 official fact sheet"
+    },
+    {
+      "id": "EOS_AlSi10Mg_heat_treated",
+      "route": "LPBF_then_heat_treatment",
+      "density_kg_m3": 2670.0,
+      "service_temperature_screen_c": 200.0,
+      "yield_mpa_at_250c": null,
+      "thermal_conductivity_w_mk_room_screen": [155.0, 165.0],
+      "source": "EOS Aluminium AlSi10Mg official material data sheet"
+    },
+    {
+      "id": "EN_AW_2618A_billet_benchmark",
+      "route": "wrought_billet_CNC_not_LPBF",
+      "density_kg_m3": null,
+      "service_temperature_screen_c": null,
+      "yield_mpa_at_250c": null,
+      "source": "commercial benchmark supplied by user; no qualified hot card"
+    }
+  ],
+  "valve_material_candidates": [
+    {
+      "id": "Ti_6Al_4V_wrought_intake",
+      "family": "intake",
+      "density_kg_m3": 4420.0,
+      "mechanical_properties_temperature_c": 350.0,
+      "temperature_evidence_classification": "TIMET_reasonable_properties_retained_to_about_temperature_not_application_release",
+      "reference_temperature_c": 250.0,
+      "route": "purchased_wrought_or_forged"
+    },
+    {
+      "id": "INCONEL_751_wrought_intake",
+      "family": "intake",
+      "density_kg_m3": 8220.0,
+      "mechanical_properties_temperature_c": 816.0,
+      "temperature_evidence_classification": "Special_Metals_tensile_properties_reported_at_temperature_not_application_release",
+      "lead_oxide_screening_temperature_c_not_service_rating": 913.0,
+      "reference_temperature_c": 250.0,
+      "route": "purchased_wrought_and_machined"
+    },
+    {
+      "id": "Ti_6Al_4V_wrought_exhaust",
+      "family": "exhaust",
+      "density_kg_m3": 4420.0,
+      "mechanical_properties_temperature_c": 350.0,
+      "temperature_evidence_classification": "TIMET_reasonable_properties_retained_to_about_temperature_not_application_release",
+      "reference_temperature_c": 500.0,
+      "route": "purchased_wrought_or_forged"
+    },
+    {
+      "id": "INCONEL_751_wrought_exhaust",
+      "family": "exhaust",
+      "density_kg_m3": 8220.0,
+      "mechanical_properties_temperature_c": 816.0,
+      "temperature_evidence_classification": "Special_Metals_tensile_properties_reported_at_temperature_not_application_release",
+      "lead_oxide_screening_temperature_c_not_service_rating": 913.0,
+      "reference_temperature_c": 500.0,
+      "route": "purchased_wrought_and_machined"
+    }
+  ],
+  "spring_candidates": [
+    {
+      "id": "dual_CrSi_baseline",
+      "seat_load_n": 400.0,
+      "installed_height_mm": 45.0,
+      "outer": {"wire_mm": 4.5, "mean_diameter_mm": 25.0, "active_coils": 5.0},
+      "inner": {"wire_mm": 3.0, "mean_diameter_mm": 17.0, "active_coils": 6.0}
+    },
+    {
+      "id": "dual_CrSi_high_rpm",
+      "seat_load_n": 380.0,
+      "installed_height_mm": 45.0,
+      "outer": {"wire_mm": 4.7, "mean_diameter_mm": 25.0, "active_coils": 5.2},
+      "inner": {"wire_mm": 3.2, "mean_diameter_mm": 17.0, "active_coils": 6.5}
+    },
+    {
+      "id": "dual_CrSi_compact",
+      "seat_load_n": 380.0,
+      "installed_height_mm": 45.0,
+      "outer": {"wire_mm": 4.4, "mean_diameter_mm": 24.0, "active_coils": 5.0},
+      "inner": {"wire_mm": 3.0, "mean_diameter_mm": 16.0, "active_coils": 6.0}
+    },
+    {
+      "id": "dual_CrSi_robust_9000",
+      "seat_load_n": 420.0,
+      "installed_height_mm": 45.0,
+      "outer": {"wire_mm": 4.6, "mean_diameter_mm": 25.0, "active_coils": 4.9},
+      "inner": {"wire_mm": 3.0, "mean_diameter_mm": 17.0, "active_coils": 6.4},
+      "source": "bounded_grid_search_under_installed_height_tolerance_not_supplier_part"
+    }
+  ],
+  "cooling_candidates_are_solver_outputs": true,
+  "manufacturing_or_engine_release": false
+}

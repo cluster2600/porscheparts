@@ -1,0 +1,154 @@
+{
+  "$comment": "Nomenclature quatre soupapes F36 issue de la fonction des pièces visibles sur l'éclaté 964 fourni par l'utilisateur. Aucun numéro de pièce 964 n'est déclaré compatible 917; toutes les dimensions non issues du scan restent des hypothèses de calcul.",
+  "schema_version": "1.0.0",
+  "phase": "F36",
+  "status": "parametric_valvetrain_assembly_screen_not_released_hardware",
+  "source_boundary": {
+    "commercial_exploded_view_used_for_functional_bom_only": true,
+    "commercial_part_numbers_used_as_geometry": false,
+    "porsche_964_fit_transferred_to_917": false,
+    "measured_supplier_drawings_available": false
+  },
+  "operating_assumptions": {
+    "maximum_engine_speed_rpm": 9000.0,
+    "nominal_valve_lift_mm": 12.0,
+    "cam_event_duration_cam_deg": 150.0,
+    "turbo_peak_cylinder_pressure_mpa": 24.686080,
+    "exhaust_opening_pressure_screen_mpa": 0.5,
+    "head_hot_zone_temperature_c": 260.0,
+    "guide_reference_temperature_c": 200.0,
+    "exhaust_stem_reference_temperature_c": 500.0,
+    "scale_confirmed": false
+  },
+  "bom": [
+    {
+      "id": "intake_valve",
+      "quantity": 2,
+      "route": "purchased_forged_or_wrought",
+      "candidate_material": "Ti-6Al-4V",
+      "nominal": {"head_diameter_mm": 31.5, "stem_diameter_mm": 7.0}
+    },
+    {
+      "id": "exhaust_valve",
+      "quantity": 2,
+      "route": "purchased_wrought_and_machined",
+      "candidate_material": "INCONEL_alloy_751",
+      "nominal": {"head_diameter_mm": 26.0, "stem_diameter_mm": 7.0}
+    },
+    {
+      "id": "valve_guide",
+      "quantity": 4,
+      "route": "purchased_press_fit_insert",
+      "candidate_material": "powder_metal_high_temperature_steel",
+      "nominal": {"outer_diameter_mm": 15.0, "head_bore_diameter_mm": 14.94, "length_mm": 56.0},
+      "inner_diameter_mm": {"intake": 7.04, "exhaust": 7.08}
+    },
+    {
+      "id": "intake_valve_seat",
+      "quantity": 2,
+      "route": "purchased_press_fit_insert_finish_machined",
+      "candidate_material": "sintered_high_speed_tool_steel",
+      "nominal": {"outer_diameter_mm": 34.7, "head_bore_diameter_mm": 34.58, "height_mm": 7.0}
+    },
+    {
+      "id": "exhaust_valve_seat",
+      "quantity": 2,
+      "route": "purchased_press_fit_insert_finish_machined",
+      "candidate_material": "copper_infiltrated_powder_metal_seat_alloy",
+      "nominal": {"outer_diameter_mm": 29.2, "head_bore_diameter_mm": 29.1, "height_mm": 7.0}
+    },
+    {
+      "id": "valve_stem_seal",
+      "quantity": 4,
+      "route": "purchased",
+      "candidate_material": "FKM_or_PTFE_high_temperature",
+      "nominal": {"outer_diameter_mm": 12.0, "height_mm": 10.0}
+    },
+    {
+      "id": "valve_adjusting_shim",
+      "quantity": 4,
+      "route": "purchased_ground_grade_set",
+      "candidate_material": "hardened_bearing_steel",
+      "nominal": {"diameter_mm": 12.0, "screen_thickness_mm": 2.5}
+    },
+    {
+      "id": "lower_spring_seat",
+      "quantity": 4,
+      "route": "purchased_stamped_or_machined",
+      "candidate_material": "hardened_steel",
+      "nominal": {"outer_diameter_mm": 31.0, "thickness_mm": 1.5}
+    },
+    {
+      "id": "dual_valve_spring",
+      "quantity": 4,
+      "route": "purchased_shot_peened_and_set",
+      "candidate_material": "CrSi_wire",
+      "nominal": {"installed_height_mm": 45.0, "outer_wire_mm": 4.5, "outer_mean_diameter_mm": 25.0, "outer_active_coils": 5.0, "inner_wire_mm": 3.0, "inner_mean_diameter_mm": 17.0, "inner_active_coils": 6.0, "seat_load_n": 400.0}
+    },
+    {
+      "id": "upper_spring_retainer",
+      "quantity": 4,
+      "route": "purchased_forged_and_machined",
+      "candidate_material": "Ti-6Al-4V_or_hardened_steel",
+      "nominal": {"outer_diameter_mm": 28.0, "height_mm": 6.0}
+    },
+    {
+      "id": "split_valve_keeper",
+      "quantity": 8,
+      "route": "purchased_hardened_and_ground",
+      "candidate_material": "alloy_steel",
+      "nominal": {"stem_diameter_mm": 7.0, "pair_height_mm": 5.0}
+    },
+    {
+      "id": "head_stud",
+      "quantity": 4,
+      "route": "purchased_rolled_thread",
+      "candidate_material": "high_temperature_alloy_steel",
+      "nominal": {"diameter_mm": 10.0, "screen_length_mm": 115.0}
+    },
+    {
+      "id": "head_nut",
+      "quantity": 4,
+      "route": "purchased",
+      "candidate_material": "high_temperature_alloy_steel"
+    },
+    {
+      "id": "location_dowel",
+      "quantity": 2,
+      "route": "purchased_ground_pin",
+      "candidate_material": "hardened_steel"
+    },
+    {
+      "id": "head_temperature_sensor",
+      "quantity": 1,
+      "route": "purchased",
+      "candidate_material": "threaded_thermistor_or_RTD_assembly"
+    },
+    {
+      "id": "assembly_sealant",
+      "quantity": 1,
+      "route": "qualified_consumable",
+      "geometry_in_assembly": false
+    }
+  ],
+  "required_virtual_tests": [
+    "cold_and_hot_guide_interference",
+    "cold_and_hot_stem_clearance",
+    "seat_insert_interference_and_contact_pressure",
+    "valve_head_combustion_force",
+    "spring_rate_open_load_and_coil_bind_margin",
+    "valvetrain_inertial_force_and_surge_screen",
+    "keeper_and_retainer_packaging",
+    "stud_preload_and_hot_joint_separation",
+    "component_to_head_interference",
+    "seat_guide_and_sensor_thermal_paths"
+  ],
+  "release_gates": {
+    "all_bom_geometry_supplier_measured": false,
+    "cam_profile_measured": false,
+    "hot_clearances_correlated": false,
+    "spintron_correlated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

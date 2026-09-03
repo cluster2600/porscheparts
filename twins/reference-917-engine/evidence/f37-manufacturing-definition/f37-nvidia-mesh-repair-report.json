@@ -1,0 +1,282 @@
+{
+  "candidate": {
+    "indexed_edge_audit": {
+      "border_edge_count": 0,
+      "edge_count_above_two_faces": 0,
+      "maximum_border_edge_degree": 0,
+      "method": "explicit_index_edge_incidence",
+      "nvidia_vg007_proxy_pass": true,
+      "unique_edge_count": 1285995,
+      "vertices_with_more_than_two_border_edges": 0
+    },
+    "strict_vertex_manifold_audit": {
+      "maximum_link_fan_count": 1,
+      "method": "closed_vertex_link_must_be_one_connected_cycle",
+      "non_manifold_vertex_count": 0,
+      "sample_non_manifold_vertices": [],
+      "strict_vertex_manifold": true,
+      "vertex_count": 427985
+    },
+    "topology": {
+      "body_count": 1,
+      "bounds_mm_if_scale_is_mm": [
+        [
+          -61.125,
+          -89.625,
+          -9.375
+        ],
+        [
+          64.125,
+          116.625,
+          87.375
+        ]
+      ],
+      "euler_number": -680,
+      "surface_area_mm2_if_scale_is_mm": 196155.77979670206,
+      "triangles": 857330,
+      "vertices": 427985,
+      "volume_mm3_if_scale_is_mm": 1064770.6330189754,
+      "watertight": true,
+      "winding_consistent": true
+    }
+  },
+  "cause_analysis": {
+    "confirmation": "Les coordonn\u00e9es soud\u00e9es d\u00e9crivent une peau ferm\u00e9e, mais usd-convert-cad les a r\u00e9parties sur des indices distincts et cr\u00e9\u00e9 des ar\u00eates de bord pour VG.007.",
+    "cross_conversion_observation": {
+      "direct_indexed_usda_geometry_clear": true,
+      "official_obj_vg007": 9479,
+      "official_stl_vg007": 8047
+    },
+    "hypothesis_confirmed": true,
+    "nvidia_definition": "VG.007 ManifoldChecker compte notamment les sommets portant plus de deux ar\u00eates de bord.",
+    "source_local_strict_vertex_audit_count": 0,
+    "source_nvidia_vg007_count": 8047,
+    "working_hypothesis": "La conversion STL vers USD a conserv\u00e9 ou cr\u00e9\u00e9 des coutures d'indexation invisibles apr\u00e8s le process=True de Trimesh."
+  },
+  "comparison_to_source": {
+    "absolute_volume_delta_mm3": 2.3283064365386963e-10,
+    "limits": {
+      "maximum_bounds_delta_mm": 1e-05,
+      "maximum_relative_volume_delta": 1e-07,
+      "maximum_vertex_set_hausdorff_mm": 1e-05
+    },
+    "maximum_bounds_delta_mm": 0.0,
+    "relative_surface_area_delta": 0.0,
+    "relative_volume_delta": 2.1866741665640988e-16,
+    "vertex_set_hausdorff": {
+      "first_to_second_max_mm": 0.0,
+      "limitation": "Hausdorff des ensembles de sommets; le volume, l'aire et les limites compl\u00e8tent le contr\u00f4le, sans constituer une m\u00e9trologie CMM/CT.",
+      "p99_mm": 0.0,
+      "second_to_first_max_mm": 0.0,
+      "symmetric_max_mm": 0.0
+    }
+  },
+  "gates": {
+    "bounded_geometry_drift": true,
+    "candidate_promotion_authorized": false,
+    "engine_start_authorized": false,
+    "local_watertight_single_body_and_manifold": true,
+    "metal_print_authorized": false,
+    "nvidia_asset_validator_vg007_candidate_clear": false,
+    "nvidia_explicit_index_usda_geometry_clear": true,
+    "official_stl_or_obj_conversion_geometry_clear": false,
+    "oil_gas_and_mount_interfaces_preserved": true
+  },
+  "inputs": {
+    "contract_sha256": "b954612301f68b69c5cd16eebabf21f1e57c54340740898c946ae159d842b4eb",
+    "flow_core": {
+      "path": "917-head-4v-flow-core-f36.local.stl",
+      "sha256": "771ddca592483708a4515f0dc9db4eb335913a933d9f8eb95c8010b1386ab1dc"
+    },
+    "geometry_report_sha256": "7bc414009e6b09a7ca190e304eb708e52e37a991b479f0f78a14e4cc53256f36",
+    "nvidia_evidence": {
+      "direct_indexed_usda": {
+        "bytes": 897,
+        "geometry_clear": true,
+        "issue_counts": {
+          "ERROR": 0,
+          "FAILURE": 0,
+          "INFO": 0,
+          "WARNING": 0
+        },
+        "passed": true,
+        "path": "direct-usda-normals-geometry.json",
+        "sha256": "855f7a70fa658b60ddf2951d5e1a9c4bf6a2cd52c705d5688b7da59693cd1955",
+        "status": "PASS",
+        "vg007_non_manifold_vertex_count": 0
+      },
+      "geometry_validation_attestation": {
+        "bytes": 3978,
+        "path": "f37-nvidia-geometry-validation-attestation.json",
+        "sha256": "1a03735f57635c5807791388e5620f31eceff3533d7c05b0a41528f5266d3471"
+      },
+      "official_obj_conversion": {
+        "bytes": 1245,
+        "geometry_clear": false,
+        "issue_counts": {
+          "ERROR": 0,
+          "FAILURE": 0,
+          "INFO": 0,
+          "WARNING": 1
+        },
+        "passed": true,
+        "path": "from-obj-geometry.json",
+        "sha256": "c089c7831f0da319987ae91f3c998dc38c0997addc6cce827b2cb9097539340e",
+        "status": "PASS",
+        "vg007_non_manifold_vertex_count": 9479
+      },
+      "official_stl_conversion": {
+        "bytes": 1169,
+        "geometry_clear": false,
+        "issue_counts": {
+          "ERROR": 0,
+          "FAILURE": 0,
+          "INFO": 0,
+          "WARNING": 1
+        },
+        "passed": true,
+        "path": "from-stl-geometry.json",
+        "sha256": "4ae9d560b0ab37586d9d30f44b01310ed205f6764c82bfcc9d1fbe85fdbc68f4",
+        "status": "PASS",
+        "vg007_non_manifold_vertex_count": 8047
+      },
+      "usd_topology_analysis": {
+        "bytes": 1936,
+        "path": "f37-nvidia-usd-topology-analysis.json",
+        "sha256": "b9120cab2be5d2b9f500d9d8fb9432a7bb83378e7adf95214230b47f0d79a005"
+      },
+      "validated_usda_sha256": "e9d37090d94a26c40ef6de8972e5290b85ffc5b139c7c773cfe5da5548ee039b"
+    },
+    "oil_core": {
+      "path": "oil-gallery-core.stl",
+      "sha256": "c606ed6cbbbfa5f8e6be199e8127b8b28d11c8e90c671f3d12cfcdf886426137"
+    },
+    "source_head": {
+      "bytes": 42866584,
+      "path": "917-head-f37-printable-proof.local.stl",
+      "sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb"
+    },
+    "source_report": {
+      "bytes": 13068,
+      "path": "f37-printable-head-mesh-report.json",
+      "sha256": "ffafa6eaf8c357361e8d65721ff613df3b1c981253f20aa447d367cce51ae44b"
+    }
+  },
+  "interfaces": {
+    "mount_pad_planes": [
+      {
+        "centre_xy_mm": [
+          -43.34901553501102,
+          42.90334617910004
+        ],
+        "cutter_radius_mm": 12.0,
+        "detected_upward_planar_area_mm2": 351.42091557198,
+        "id": "stud_pad_1",
+        "planar_face_count": 238,
+        "planar_surface_detected": true,
+        "target_plane_z_mm": 60.0
+      },
+      {
+        "centre_xy_mm": [
+          -42.847149261240205,
+          -42.78730191374882
+        ],
+        "cutter_radius_mm": 12.0,
+        "detected_upward_planar_area_mm2": 352.5104321425606,
+        "id": "stud_pad_2",
+        "planar_face_count": 239,
+        "planar_surface_detected": true,
+        "target_plane_z_mm": 60.0
+      },
+      {
+        "centre_xy_mm": [
+          43.100281745848605,
+          43.12853583540159
+        ],
+        "cutter_radius_mm": 12.0,
+        "detected_upward_planar_area_mm2": 354.12155394567526,
+        "id": "stud_pad_3",
+        "planar_face_count": 243,
+        "planar_surface_detected": true,
+        "target_plane_z_mm": 60.0
+      },
+      {
+        "centre_xy_mm": [
+          43.39375446372094,
+          -42.44463944735773
+        ],
+        "cutter_radius_mm": 12.0,
+        "detected_upward_planar_area_mm2": 353.943460886072,
+        "id": "stud_pad_4",
+        "planar_face_count": 241,
+        "planar_surface_detected": true,
+        "target_plane_z_mm": 60.0
+      }
+    ],
+    "oil_to_candidate_solid_collision_mm3": 0.0001275360170135779,
+    "oil_to_candidate_solid_method": "exact_manifold_boolean",
+    "oil_to_gas_collision_mm3": 0.0,
+    "oil_to_gas_method": "exact_manifold_boolean",
+    "source_opening_proof_preserved_by_bounded_geometry_gate": true
+  },
+  "limitations": [
+    "Le STL ne stocke pas une table de sommets index\u00e9e; le USDA/OBJ compagnon est la preuve d'indexation explicite.",
+    "Le USDA index\u00e9 direct passe Geometry, mais les routes officielles STL et OBJ restent en avertissement VG.007; leur conversion doit \u00eatre corrig\u00e9e avant promotion.",
+    "L'attestation lie par SHA-256 le USDA et le rapport NVIDIA normalis\u00e9 du run d\u00e9clar\u00e9; elle ne conserve pas le rapport brut temporaire et ne signe pas la machine Vast.",
+    "Les rapports normalis\u00e9s des routes officielles STL/OBJ ne consignent pas le SHA de leur fichier source; leurs r\u00e9sultats restent un diagnostic de conversion et non une preuve de fabrication.",
+    "La distance de Hausdorff calcul\u00e9e porte sur les ensembles de sommets et ne remplace pas une m\u00e9trologie surfacique CMM/CT.",
+    "Aucune correction topologique ne l\u00e8ve les blocages d'\u00e9chelle, mati\u00e8re, LPBF, fatigue ou essais physiques."
+  ],
+  "local_only_artifacts": {
+    "917-head-f37-nvidia-welded-candidate.local.obj": {
+      "bytes": 35612703,
+      "sha256": "f1edc32f39f9c4343cfda8f1e32b467163afdc0292c99a4a269e946d356eeaab"
+    },
+    "917-head-f37-nvidia-welded-candidate.local.stl": {
+      "bytes": 42866584,
+      "sha256": "150e65b83e72c78e2374fda2d5f11c42d8d7140f5232faee4dedb4fa69a01a2a"
+    },
+    "917-head-f37-nvidia-welded-candidate.local.usda": {
+      "bytes": 70932403,
+      "sha256": "e9d37090d94a26c40ef6de8972e5290b85ffc5b139c7c773cfe5da5548ee039b"
+    },
+    "917-head-f37-nvidia-welded-candidate.png": {
+      "bytes": 789640,
+      "sha256": "d599093858bb9675cdf6110928b73a6c3526f9ab2be56cde2838864d5e842169"
+    }
+  },
+  "method": {
+    "manifold_status": "Error.NoError",
+    "repair": "remove degenerate/duplicate faces, weld, fix normals, Manifold float32 identity roundtrip, weld, export",
+    "smoothing": false,
+    "usd_companion": "explicit unique point array, shared faceVertexIndices and uniform per-face normals; bypasses STL triangle-soup ambiguity",
+    "voxelization": false
+  },
+  "phase": "F37_nvidia_mesh_repair_candidate",
+  "schema_version": "1.0.0",
+  "source": {
+    "topology": {
+      "body_count": 1,
+      "bounds_mm_if_scale_is_mm": [
+        [
+          -61.125,
+          -89.625,
+          -9.375
+        ],
+        [
+          64.125,
+          116.625,
+          87.375
+        ]
+      ],
+      "euler_number": -680,
+      "surface_area_mm2_if_scale_is_mm": 196155.77979670206,
+      "triangles": 857330,
+      "vertices": 427985,
+      "volume_mm3_if_scale_is_mm": 1064770.6330189756,
+      "watertight": true,
+      "winding_consistent": true
+    }
+  },
+  "status": "nvidia_direct_usda_geometry_pass_official_conversion_and_manufacturing_release_blocked"
+}

@@ -1,0 +1,117 @@
+{
+  "cases": [
+    {
+      "cam_side_lever_mm": 24.969195603217212,
+      "closed_valve_tip_yz_mm": [
+        -46.66563145999495,
+        91.30142556433474
+      ],
+      "effective_tangential_lever_mm": 28.71457494369979,
+      "id": "intake-1",
+      "nominal_cam_lift_mm": 10.434782608695652,
+      "open_valve_tip_yz_mm": [
+        -42.95742752749558,
+        79.88874736879289
+      ],
+      "pivot_yz_mm": [
+        -18.0,
+        96.0
+      ],
+      "small_angle_swing_deg": 23.944263688564256,
+      "valve_side_lever_mm": 29.048150177382023,
+      "x_mm": -18.0
+    },
+    {
+      "cam_side_lever_mm": 24.969195603217212,
+      "closed_valve_tip_yz_mm": [
+        -46.66563145999495,
+        91.30142556433474
+      ],
+      "effective_tangential_lever_mm": 28.71457494369979,
+      "id": "intake-2",
+      "nominal_cam_lift_mm": 10.434782608695652,
+      "open_valve_tip_yz_mm": [
+        -42.95742752749558,
+        79.88874736879289
+      ],
+      "pivot_yz_mm": [
+        -18.0,
+        96.0
+      ],
+      "small_angle_swing_deg": 23.944263688564256,
+      "valve_side_lever_mm": 29.048150177382023,
+      "x_mm": 18.0
+    },
+    {
+      "cam_side_lever_mm": 24.969195603217212,
+      "closed_valve_tip_yz_mm": [
+        46.66563145999495,
+        91.30142556433474
+      ],
+      "effective_tangential_lever_mm": 28.71457494369979,
+      "id": "exhaust-1",
+      "nominal_cam_lift_mm": 10.434782608695652,
+      "open_valve_tip_yz_mm": [
+        42.95742752749558,
+        79.88874736879289
+      ],
+      "pivot_yz_mm": [
+        18.0,
+        96.0
+      ],
+      "small_angle_swing_deg": 23.944263688564256,
+      "valve_side_lever_mm": 29.048150177382023,
+      "x_mm": -18.0
+    },
+    {
+      "cam_side_lever_mm": 24.969195603217212,
+      "closed_valve_tip_yz_mm": [
+        46.66563145999495,
+        91.30142556433474
+      ],
+      "effective_tangential_lever_mm": 28.71457494369979,
+      "id": "exhaust-2",
+      "nominal_cam_lift_mm": 10.434782608695652,
+      "open_valve_tip_yz_mm": [
+        42.95742752749558,
+        79.88874736879289
+      ],
+      "pivot_yz_mm": [
+        18.0,
+        96.0
+      ],
+      "small_angle_swing_deg": 23.944263688564256,
+      "valve_side_lever_mm": 29.048150177382023,
+      "x_mm": 18.0
+    }
+  ],
+  "equations": {
+    "cam_lift": "valve_lift/rocker_ratio",
+    "cam_side_lever": "r_cam=r_eff_valve/rocker_ratio",
+    "effective_lever": "r_eff=abs(tangent(r) dot u_valve)*norm(r)",
+    "rocker_swing": "theta_screen=valve_lift/r_eff",
+    "valve_tip": "P_tip=P_seat+96*u_valve"
+  },
+  "gates": {
+    "cam_lift_below_11_mm": true,
+    "dynamic_contact_and_flexure_fea_complete": false,
+    "four_rockers_present": true,
+    "measured_cam_profile_available": false,
+    "minimum_valve_side_lever_at_least_25_mm": true,
+    "rocker_pair_x_clearance_at_least_20_mm": true,
+    "small_angle_swing_below_30_deg": true,
+    "spintron_correlated": false,
+    "static_brep_interference_zero": true
+  },
+  "inputs": {
+    "cad_report_sha256": "2a9fac821474d5dd218cc029e7ff3ed6bc1841a38d3189194f44261ab48bb8b4",
+    "contract_sha256": "b954612301f68b69c5cd16eebabf21f1e57c54340740898c946ae159d842b4eb",
+    "geometry_report_sha256": "7bc414009e6b09a7ca190e304eb708e52e37a991b479f0f78a14e4cc53256f36",
+    "target_rocker_ratio": 1.15,
+    "valve_lift_mm": 12.0
+  },
+  "method": "planar_YZ_rigid_finger_rocker_small_angle_screen",
+  "phase": "F37",
+  "schema_version": "1.0.0",
+  "status": "rocker_kinematic_screen_complete_dynamic_correlation_pending"
+}

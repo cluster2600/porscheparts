@@ -1,0 +1,656 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-18870c24d21c
+Exec   : foamRun
+Date   : Sep 02 2026
+Time   : 21:55:04
+Host   : "7f6d9aa3f856"
+PID    : 83026
+I/O    : uncollated
+Case   : /workspace/iceenginefoam-scope/foamrun/engine2Valve2D
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Selecting userTime engine
+Expanding #calc at line 49 in file "/workspace/iceenginefoam-scope/foamrun/engine2Valve2D/system/functions"
+Expanding #calc at line 52 in file "/workspace/iceenginefoam-scope/foamrun/engine2Valve2D/system/functions"
+Create mesh for time = 0
+
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_iv_cyl with 30 faces and ...
+    target patch nonCouple_cyl_iv with 30 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 5.421010862e-17/7.561293245e-16/3.671463252e-16/0
+    Source max openness/error/depth/angle = 1.626303259e-16/4.719148473e-15/2.525140789e-15/0
+    60 couplings calculated in 0.003609s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ev_cyl with 30 faces and ...
+    target patch nonCouple_cyl_ev with 30 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 5.421010862e-17/1.255407455e-15/2.84516052e-16/0
+    Source max openness/error/depth/angle = 1.626303259e-16/4.718898133e-15/2.026980648e-15/0
+    60 couplings calculated in 0.00268s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ip_iv with 16 faces and ...
+    target patch nonCouple_iv_ip with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 1.084202172e-17/3.608550042e-16/9.708664934e-17/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.92653949e-15/1.29190244e-15/0
+    32 couplings calculated in 0.001364s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ep_ev with 16 faces and ...
+    target patch nonCouple_ev_ep with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 2.168404345e-17/2.818186644e-16/2.6708794e-16/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.484929023e-15/2.101508562e-15/0
+    32 couplings calculated in 0.001345s
+fvMeshStitcher: Connecting
+    Cell min/average/max openness = 0/1.7727405e-16/2.890645457e-15
+    Cell min/average/max projected volume fraction = 0/1.624198174e-15/1.443289932e-14
+Selecting fvMeshTopoChanger meshToMesh
+Selecting fvMeshMover multiValveEngine
+Setting motion for piston
+Setting motion for ev
+Setting motion for iv
+Selecting solver XiFluid
+Selecting thermodynamics package 
+{
+    type            heheuPsiThermo;
+    mixture         inhomogeneousEGRMixture;
+    transport       polynomial;
+    thermo          janaf;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          absoluteEnthalpy;
+}
+
+Using dynamicCode for codedBase heheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy___ at line 17 in "/opt/openfoam13/etc/codeTemplates/dynamicCode/psiuMulticomponentThermo"
+Creating new library in "dynamicCode/heheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy___/platforms/linux64GccDPInt32Opt/lib/libheheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy____7293abbb2ba381001ddeb5bd3e5a027367350270.so"
+"/opt/openfoam13/etc/codeTemplates/dynamicCode/psiuMulticomponentThermoTemplate.C" "/workspace/iceenginefoam-scope/foamrun/engine2Valve2D/dynamicCode/heheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy___/psiuMulticomponentThermoTemplate.C"
+Invoking "wmake -s libso /workspace/iceenginefoam-scope/foamrun/engine2Valve2D/dynamicCode/heheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy___"
+wmake libso /workspace/iceenginefoam-scope/foamrun/engine2Valve2D/dynamicCode/heheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy___
+    ln: ./lnInclude
+    wmkdep: psiuMulticomponentThermoTemplate.C
+    Ctoo: psiuMulticomponentThermoTemplate.C
+    ld: /workspace/iceenginefoam-scope/foamrun/engine2Valve2D/dynamicCode/heheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy___/../platforms/linux64GccDPInt32Opt/lib/libheheuPsiThermo_inhomogeneousEGRMixture_polynomial_janaf_perfectGas_specie___absoluteEnthalpy____7293abbb2ba381001ddeb5bd3e5a027367350270.so
+Selecting turbulence model type RAS
+    Selecting RAS turbulence model kOmegaSST
+No MRF models present
+
+Selecting patchDistMethod meshWave
+Creating fvConstraints from "system/fvConstraints"
+
+Selecting finite volume constraint type limitPressure
+    Name: limitLowPressure(min=1e4)
+    min 10000
+
+Selecting finite volume constraint type limitTemperature
+    Name: limitTemperature(min=200,max=3500)
+Courant Number mean: 0 max: 0
+Selecting flame-wrinkling Su model unstrained
+Selecting laminar flame speed model Gulder
+Selecting flame-wrinkling Xi model equilibrium
+Selecting equilibrium flame-wrinkling XiEq model Gulder
+Selecting equilibrium flame-wrinkling profile model cubic
+Creating fvModels from "constant/fvModels"
+
+Selecting finite volume model type multiCycleConstantbXiIgnition
+    Name: ignition
+Selecting flame-wrinkling correction type cylindrical
+
+PIMPLE: No convergence criteria found
+
+
+PIMPLE: No corrector convergence criteria found
+        Calculations will do 2 corrections
+
+
+PIMPLE: Operating solver in transient mode with 2 outer correctors
+
+
+
+Starting time loop
+
+Piston: 
+    position from TDC: 0 m
+    speed = 0.0002288516043 m/s
+    displacement: 7.628386811e-11 m
+    clearance: 0 m
+Valve ev
+    lift: 0 m (closed)
+    speed: -0 m/s
+    displacement: 2.94117647e-08 m
+Valve iv
+    lift: 0 m (closed)
+    speed: -0 m/s
+    displacement: 1e-07 m
+
+Constructing face momentum rhoUf
+Courant Number mean: 0 max: 0
+Mapping to mesh time 0
+Creating cellsToCells between source mesh  and target mesh region0 using intersection
+    cellsToCells: Calculating couplings between 2178 source cells and 2178 target cells
+        Overlapping volume = 0.08
+        4356 couplings calculated in 0.534674s
+Creating patchToPatch between source patch piston and target patch piston using intersection
+    patchToPatch: Calculating couplings between 94 source faces and 94 target faces
+
+=== PASSAGE DE TOPOLOGIE A 100 CAD ===
+Selecting patchDistMethod meshWave
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.001866550276, Final residual = 8.402876875e-09, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.002102317747, Final residual = 9.080556338e-09, No Iterations 2
+ExecutionTime = 45.017391 s  ClockTime = 46 s
+
+Piston: 
+    position from TDC: 0.5852922703 m
+    speed = -25.80257905 m/s
+    displacement: -0.001654011478 m
+    clearance: 0.9340768975 m
+Valve ev
+    lift: 0 m (closed)
+    speed: -0 m/s
+    displacement: -1.923076923e-05 m
+Valve iv
+    lift: 0 m (closed)
+    speed: -0 m/s
+    displacement: -5.656108597e-06 m
+
+Courant Number mean: 0.007970847376 max: 0.08298962975
+deltaT = 6.41025641e-05
+Time = 100CAD
+
+PIMPLE: Iteration 1
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_iv_cyl with 30 faces and ...
+    target patch nonCouple_cyl_iv with 30 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 3.295178415e-17/4.653273357e-16/2.051639264e-16/0
+    Source max openness/error/depth/angle = 1.796602086e-16/3.668756591e-15/2.115413458e-15/0
+    60 couplings calculated in 0.004411s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ev_cyl with 30 faces and ...
+    target patch nonCouple_cyl_ev with 30 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 1.154278948e-16/9.523352685e-16/4.588044209e-16/0
+    Source max openness/error/depth/angle = 3.88942003e-16/4.964993229e-15/2.545603694e-15/0
+    116 couplings calculated in 0.001381s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ip_iv with 16 faces and ...
+    target patch nonCouple_iv_ip with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 1.084202172e-17/3.608550042e-16/9.708664934e-17/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.92653949e-15/1.29190244e-15/0
+    32 couplings calculated in 0.001539s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ep_ev with 16 faces and ...
+    target patch nonCouple_ev_ep with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 2.168404345e-17/2.818186644e-16/2.6708794e-16/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.484929023e-15/2.101508562e-15/0
+    32 couplings calculated in 0.001392s
+fvMeshStitcher: Connecting
+    Cell min/average/max openness = 0/2.031404127e-16/3.161103866e-15
+    Cell min/average/max volume conservation error = -4.395355607e-16/-3.059126769e-18/4.408366033e-16
+    NCC_iv_on_nonCouple_iv_cyl min/average/max mesh flux error = 0/0/0
+    NCC_ev_on_nonCouple_ev_cyl min/average/max mesh flux error = 0/0/0
+    NCC_iv_port_on_nonCouple_ip_iv min/average/max mesh flux error = 0/0/0
+    NCC_ev_port_on_nonCouple_ep_ev min/average/max mesh flux error = 0/0/0
+    Cell min/average/max projected volume fraction = 0/1.721865177e-15/1.620925616e-14
+DICPCG:  Solving for pcorr, Initial residual = 1, Final residual = 0.008726072107, No Iterations 75
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.01632316319, Final residual = 4.376850564e-05, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.01356986311, Final residual = 2.842536464e-05, No Iterations 1
+DILUPBiCGStab:  Solving for ft, Initial residual = 9.532503289e-20, Final residual = 9.532503289e-20, No Iterations 0
+DILUPBiCGStab:  Solving for egr, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for ha, Initial residual = 0.005729003409, Final residual = 4.49168325e-06, No Iterations 1
+DICPBiCGStab:  Solving for p, Initial residual = 0.01790876164, Final residual = 5.124032215e-05, No Iterations 2
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 7.075313204e-06, global = -6.83320501e-07, cumulative = -0.003160716423
+DICPBiCGStab:  Solving for p, Initial residual = 5.832125805e-05, Final residual = 3.544212889e-09, No Iterations 3
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 4.945587992e-10, global = -2.135010194e-10, cumulative = -0.003160716637
+PIMPLE: Iteration 2
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0008242926515, Final residual = 1.218237143e-09, No Iterations 2
+DILUPBiCGStab:  Solving for Uz, Initial residual = 2.144636062e-05, Final residual = 1.982516981e-09, No Iterations 1
+DILUPBiCGStab:  Solving for ft, Initial residual = 8.228066847e-20, Final residual = 8.228066847e-20, No Iterations 0
+DILUPBiCGStab:  Solving for egr, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for ha, Initial residual = 9.758557097e-05, Final residual = 6.952200135e-09, No Iterations 1
+DICPBiCGStab:  Solving for p, Initial residual = 9.666185826e-05, Final residual = 3.83970059e-07, No Iterations 2
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 5.357881865e-08, global = -2.723331852e-09, cumulative = -0.00316071936
+DICPBiCGStab:  Solving for p, Initial residual = 6.563010379e-07, Final residual = 5.375856508e-09, No Iterations 2
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 7.501460263e-10, global = -2.246873805e-10, cumulative = -0.003160719585
+Selecting patchDistMethod meshWave
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.001873232939, Final residual = 7.375816664e-09, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.002157063156, Final residual = 3.291415566e-10, No Iterations 2
+ExecutionTime = 45.147165 s  ClockTime = 46 s
+
+Piston: 
+    position from TDC: 0.5869453196 m
+    speed = -25.78756968 m/s
+    displacement: -0.001653049338 m
+    clearance: 0.9340759354 m
+Valve ev
+    lift: 0.01 m (open)
+    speed: -0 m/s
+    displacement: -1.923076923e-05 m
+Valve iv
+    lift: 0 m (closed)
+    speed: -0 m/s
+    displacement: -5.656108597e-06 m
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+   *Number of regions: 13
+    The mesh has multiple regions which are not connected by any face.
+
+Checking patch topology for multiply connected surfaces...
+    Patch               Faces    Points   Surface topology                  
+    piston              94       198      ok (non-closed singly connected)  
+    liner               30       64       ok (non-closed singly connected)  
+    cylinderHead        128      288      ok (non-closed singly connected)  
+    nonCouple_cyl_ev    30       64       ok (non-closed singly connected)  
+    nonCouple_cyl_iv    30       64       ok (non-closed singly connected)  
+    frontAndBack        4356     5040     ok (non-closed singly connected)  
+    nonCouple_ev_cyl    30       64       ok (non-closed singly connected)  
+    outlet              16       36       ok (non-closed singly connected)  
+    evHead              46       98       ok (non-closed singly connected)  
+    evStem              48       104      ok (non-closed singly connected)  
+    nonCouple_iv_cyl    30       64       ok (non-closed singly connected)  
+    inlet               16       36       ok (non-closed singly connected)  
+    ivHead              46       98       ok (non-closed singly connected)  
+    ivStem              48       104      ok (non-closed singly connected)  
+    nonCouple_ep_ev     16       36       ok (non-closed singly connected)  
+    nonCouple_ev_ep     16       36       ok (non-closed singly connected)  
+    nonCouple_ip_iv     16       36       ok (non-closed singly connected)  
+    nonCouple_iv_ip     16       36       ok (non-closed singly connected)  
+    inletFuel           2        6        ok (non-closed singly connected)  
+    NCC_iv_on_nonCouple_iv_cyl0        0        ok (empty)                        
+    NCC_iv_on_nonCouple_cyl_iv0        0        ok (empty)                        
+    NCC_ev_on_nonCouple_ev_cyl0        0        ok (empty)                        
+    NCC_ev_on_nonCouple_cyl_ev0        0        ok (empty)                        
+    NCC_iv_port_on_nonCouple_ip_iv0        0        ok (empty)                        
+    NCC_iv_port_on_nonCouple_iv_ip0        0        ok (empty)                        
+    NCC_ev_port_on_nonCouple_ep_ev0        0        ok (empty)                        
+    NCC_ev_port_on_nonCouple_ev_ep0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_iv_cyl0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_cyl_iv0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ev_cyl0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_cyl_ev0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ip_iv0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_iv_ip0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ep_ev0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ev_ep0        0        ok (empty)                        
+
+Checking geometry...
+    Overall domain bounding box (-1.3 -0.05 -0.9869453196) (1.3 4.898587197e-17 0.8)
+    Mesh has 2 geometric (non-empty/wedge) directions (1 0 1)
+    Mesh has 2 solution (non-empty) directions (1 0 1)
+    All edges aligned with or perpendicular to non-empty directions.
+    Max cell openness = 2.165118387e-16 OK.
+    Max aspect ratio = 4.162054178 OK.
+    Minimum face area = 0.0007291666667. Maximum face area = 0.005202567722.  Face area magnitudes OK.
+    Min volume = 3.645833333e-05. Max volume = 0.0001734189241.  Total volume = 0.1563025085.  Cell volumes OK.
+    Mesh non-orthogonality Max: 0.02026165677 average: 0.001342998972
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 0.0008360445567 OK.
+    Coupled point location match (average 0) OK.
+
+    Mesh OK.
+
+Courant Number mean: 0.007787290989 max: 0.08536545162
+Mapping to mesh time 100
+Creating cellsToCells between source mesh  and target mesh region0 using intersection
+    cellsToCells: Calculating couplings between 2178 source cells and 3966 target cells
+        Overlapping volume = 0.1559032106
+        10868 couplings calculated in 0.956196s
+Creating patchToPatch between source patch piston and target patch piston using intersection
+    patchToPatch: Calculating couplings between 94 source faces and 94 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 1.168406435e-16/7.272455776e-06/4.093576378e-06/0
+        Source max openness/error/depth/angle = 3.469446952e-16/1.358426008e-05/5.885646736e-06/0
+        200 couplings calculated in 0.006782s
+Creating patchToPatch between source patch liner and target patch liner using intersection
+    patchToPatch: Calculating couplings between 30 source faces and 66 target faces
+        Source min/average/max coverage = 0.9999893489/0.9999996761/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 7.078837607e-17/3.10753288e-15/1.076950903e-15/0
+        Source max openness/error/depth/angle = 2.89032606e-16/7.706936382e-15/3.574469859e-15/0
+        188 couplings calculated in 0.001657s
+Creating patchToPatch between source patch cylinderHead and target patch cylinderHead using intersection
+    patchToPatch: Calculating couplings between 128 source faces and 136 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 0/0.9295741249/1
+        Source average openness/error/depth/angle = 3.180003693e-17/3.992321527e-16/3.694730444e-33/0
+        Source max openness/error/depth/angle = 2.602085214e-16/5.700409941e-15/7.204669186e-32/0
+        256 couplings calculated in 0.012231s
+Creating patchToPatch between source patch nonCouple_cyl_ev and target patch nonCouple_cyl_ev using intersection
+    patchToPatch: Calculating couplings between 30 source faces and 66 target faces
+        Source min/average/max coverage = 0.9999893489/0.9999996761/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 7.078837607e-17/1.926401608e-15/4.664802753e-16/0
+        Source max openness/error/depth/angle = 2.89032606e-16/6.134814129e-15/3.774447234e-15/0
+        188 couplings calculated in 0.001632s
+Creating patchToPatch between source patch nonCouple_cyl_iv and target patch nonCouple_cyl_iv using intersection
+    patchToPatch: Calculating couplings between 30 source faces and 66 target faces
+        Source min/average/max coverage = 0.9999893489/0.9999996761/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 7.078837607e-17/1.58980665e-15/4.189227094e-16/0
+        Source max openness/error/depth/angle = 2.89032606e-16/6.340339911e-15/2.843067033e-15/0
+        188 couplings calculated in 0.001505s
+Creating patchToPatch between source patch nonCouple_ev_cyl and target patch nonCouple_ev_cyl using intersection
+    patchToPatch: Calculating couplings between 30 source faces and 72 target faces
+        Source min/average/max coverage = 0.9999893489/0.9999996761/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 7.524030963e-17/9.446767434e-16/5.6233605e-16/0
+        Source max openness/error/depth/angle = 1.944710015e-16/3.828068659e-15/2.548074105e-15/0
+        200 couplings calculated in 0.001589s
+Creating patchToPatch between source patch outlet and target patch outlet using intersection
+    patchToPatch: Calculating couplings between 16 source faces and 16 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 0/5.963111949e-17/2.269730206e-32/0
+        Source max openness/error/depth/angle = 0/8.67361738e-17/9.078920825e-32/0
+        32 couplings calculated in 0.001179s
+Creating patchToPatch between source patch evHead and target patch evHead using intersection
+    patchToPatch: Calculating couplings between 46 source faces and 54 target faces
+        Source min/average/max coverage = 0.999729604/0.9999879824/1
+        Target min/average/max coverage = 0/0.809271114/1
+        Source average openness/error/depth/angle = 1.347897098e-16/0.06625091123/0.1062470037/0.004479212165
+        Source max openness/error/depth/angle = 2.466239552e-16/0.3992307692/0.1883949981/0.06171398619
+        104 couplings calculated in 0.003615s
+Creating patchToPatch between source patch evStem and target patch evStem using intersection
+    patchToPatch: Calculating couplings between 48 source faces and 54 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 0/0.9859425785/1
+        Source average openness/error/depth/angle = 9.912362047e-17/9.991931983e-16/2.947065411e-16/0
+        Source max openness/error/depth/angle = 2.973734347e-16/7.21525466e-15/2.942015731e-15/0
+        152 couplings calculated in 0.002512s
+Creating patchToPatch between source patch nonCouple_iv_cyl and target patch nonCouple_iv_cyl using intersection
+    patchToPatch: Calculating couplings between 30 source faces and 66 target faces
+        Source min/average/max coverage = 0.9999893489/0.9999996761/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 8.25588163e-17/1.654018177e-15/4.280078832e-16/0
+        Source max openness/error/depth/angle = 2.89032606e-16/6.823987459e-15/2.100288285e-15/0
+        188 couplings calculated in 0.001656s
+Creating patchToPatch between source patch inlet and target patch inlet using intersection
+    patchToPatch: Calculating couplings between 16 source faces and 16 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 0/5.963111949e-17/2.269730206e-32/0
+        Source max openness/error/depth/angle = 0/8.67361738e-17/9.078920825e-32/0
+        32 couplings calculated in 0.001125s
+Creating patchToPatch between source patch ivHead and target patch ivHead using intersection
+    patchToPatch: Calculating couplings between 46 source faces and 46 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 4.24253024e-17/5.24692291e-16/2.106447165e-33/0
+        Source max openness/error/depth/angle = 3.252606517e-16/5.763606933e-15/1.134865103e-32/0
+        92 couplings calculated in 0.005072s
+Creating patchToPatch between source patch ivStem and target patch ivStem using intersection
+    patchToPatch: Calculating couplings between 48 source faces and 48 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 4.33680869e-17/5.421010862e-17/2.55165367e-32/0
+        Source max openness/error/depth/angle = 1.486905837e-16/1.486905837e-16/1.440933837e-31/0
+        96 couplings calculated in 0.004007s
+Creating patchToPatch between source patch nonCouple_ep_ev and target patch nonCouple_ep_ev using intersection
+    patchToPatch: Calculating couplings between 16 source faces and 16 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 3.252606517e-17/2.818186644e-16/2.006609271e-16/0
+        Source max openness/error/depth/angle = 1.734723476e-16/2.484929023e-15/1.125170172e-15/0
+        32 couplings calculated in 0.001352s
+Creating patchToPatch between source patch nonCouple_ev_ep and target patch nonCouple_ev_ep using intersection
+    patchToPatch: Calculating couplings between 16 source faces and 16 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 2.168404345e-17/3.608550042e-16/2.279276876e-16/0
+        Source max openness/error/depth/angle = 1.734723476e-16/2.92653949e-15/1.308212255e-15/0
+        32 couplings calculated in 0.00141s
+Creating patchToPatch between source patch nonCouple_ip_iv and target patch nonCouple_ip_iv using intersection
+    patchToPatch: Calculating couplings between 16 source faces and 16 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 2.168404345e-17/3.608550042e-16/2.279276876e-16/0
+        Source max openness/error/depth/angle = 1.734723476e-16/2.92653949e-15/1.308212255e-15/0
+        32 couplings calculated in 0.001379s
+Creating patchToPatch between source patch nonCouple_iv_ip and target patch nonCouple_iv_ip using intersection
+    patchToPatch: Calculating couplings between 16 source faces and 16 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 3.252606517e-17/2.818186644e-16/2.006609271e-16/0
+        Source max openness/error/depth/angle = 1.734723476e-16/2.484929023e-15/1.125170172e-15/0
+        32 couplings calculated in 0.001405s
+Creating patchToPatch between source patch inletFuel and target patch inletFuel using intersection
+    patchToPatch: Calculating couplings between 2 source faces and 2 target faces
+        Source min/average/max coverage = 1/1/1
+        Target min/average/max coverage = 1/1/1
+        Source average openness/error/depth/angle = 2.101983304e-33/1.67139372e-16/3.349733689e-33/0
+        Source max openness/error/depth/angle = 3.906226197e-33/3.327608609e-16/6.586036982e-33/0
+        4 couplings calculated in 0.000296s
+Creating patchToPatch between source patch NCC_iv_on_nonCouple_iv_cyl and target patch NCC_iv_on_nonCouple_iv_cyl using intersection
+Creating patchToPatch between source patch NCC_iv_on_nonCouple_cyl_iv and target patch NCC_iv_on_nonCouple_cyl_iv using intersection
+Creating patchToPatch between source patch NCC_ev_on_nonCouple_ev_cyl and target patch NCC_ev_on_nonCouple_ev_cyl using intersection
+Creating patchToPatch between source patch NCC_ev_on_nonCouple_cyl_ev and target patch NCC_ev_on_nonCouple_cyl_ev using intersection
+Creating patchToPatch between source patch NCC_iv_port_on_nonCouple_ip_iv and target patch NCC_iv_port_on_nonCouple_ip_iv using intersection
+Creating patchToPatch between source patch NCC_iv_port_on_nonCouple_iv_ip and target patch NCC_iv_port_on_nonCouple_iv_ip using intersection
+Creating patchToPatch between source patch NCC_ev_port_on_nonCouple_ep_ev and target patch NCC_ev_port_on_nonCouple_ep_ev using intersection
+Creating patchToPatch between source patch NCC_ev_port_on_nonCouple_ev_ep and target patch NCC_ev_port_on_nonCouple_ev_ep using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_iv_cyl and target patch nonConformalError_on_nonCouple_iv_cyl using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_cyl_iv and target patch nonConformalError_on_nonCouple_cyl_iv using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_ev_cyl and target patch nonConformalError_on_nonCouple_ev_cyl using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_cyl_ev and target patch nonConformalError_on_nonCouple_cyl_ev using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_ip_iv and target patch nonConformalError_on_nonCouple_ip_iv using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_iv_ip and target patch nonConformalError_on_nonCouple_iv_ip using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_ep_ev and target patch nonConformalError_on_nonCouple_ep_ev using intersection
+Creating patchToPatch between source patch nonConformalError_on_nonCouple_ev_ep and target patch nonConformalError_on_nonCouple_ev_ep using intersection
+deltaT = 6.666666667e-05
+Time = 100.2CAD
+
+PIMPLE: Iteration 1
+    Updating scale field
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_iv_cyl with 66 faces and ...
+    target patch nonCouple_cyl_iv with 66 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 3.069572611e-17/7.533750327e-16/1.879633727e-16/0
+
+=== FIN A 110 CAD ===
+Time = 110CAD
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 2.013582379e-17/7.23405134e-16/1.595938904e-16/0
+    Source max openness/error/depth/angle = 1.405695701e-16/7.377387367e-15/2.341777383e-15/0
+    132 couplings calculated in 0.008716s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ev_cyl with 72 faces and ...
+    target patch nonCouple_cyl_ev with 66 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 9.558642507e-17/1.296614292e-15/6.708041525e-16/0
+    Source max openness/error/depth/angle = 3.201557252e-16/7.311258954e-15/5.687998435e-15/0
+    272 couplings calculated in 0.00268s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ip_iv with 16 faces and ...
+    target patch nonCouple_iv_ip with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 1.084202172e-17/3.608550042e-16/9.708664934e-17/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.92653949e-15/1.29190244e-15/0
+    32 couplings calculated in 0.001518s
+patchToPatch: Calculating couplings between ...
+    source patch nonCouple_ep_ev with 16 faces and ...
+    target patch nonCouple_ev_ep with 16 faces
+    Source min/average/max coverage = 1/1/1
+    Target min/average/max coverage = 1/1/1
+    Source average openness/error/depth/angle = 2.168404345e-17/2.818186644e-16/2.6708794e-16/0
+    Source max openness/error/depth/angle = 1.734723476e-16/2.484929023e-15/2.101508562e-15/0
+    32 couplings calculated in 0.001399s
+fvMeshStitcher: Connecting
+    Cell min/average/max openness = 0/2.443021851e-16/2.890645457e-15
+    Cell min/average/max volume conservation error = -5.241033302e-16/4.187309083e-18/5.630803983e-16
+    NCC_iv_on_nonCouple_iv_cyl min/average/max mesh flux error = 0/0/0
+    NCC_ev_on_nonCouple_ev_cyl min/average/max mesh flux error = 0/0/0
+    NCC_iv_port_on_nonCouple_ip_iv min/average/max mesh flux error = 0/0/0
+    NCC_ev_port_on_nonCouple_ep_ev min/average/max mesh flux error = 0/0/0
+    Cell min/average/max projected volume fraction = 0/2.070708708e-15/1.709743458e-14
+DICPCG:  Solving for pcorr, Initial residual = 1, Final residual = 0.008756485142, No Iterations 76
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.007738862861, Final residual = 1.663837191e-05, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 0.002995869787, Final residual = 2.876072338e-06, No Iterations 1
+DILUPBiCGStab:  Solving for ft, Initial residual = 1.226200388e-18, Final residual = 1.226200388e-18, No Iterations 0
+DILUPBiCGStab:  Solving for egr, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for ha, Initial residual = 0.001616185271, Final residual = 3.828775884e-06, No Iterations 1
+DICPBiCGStab:  Solving for p, Initial residual = 0.002231587305, Final residual = 9.515304251e-07, No Iterations 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 2.520256054e-07, global = -1.250256732e-08, cumulative = -0.003005557911
+DICPBiCGStab:  Solving for p, Initial residual = 6.989185785e-06, Final residual = 8.106081053e-10, No Iterations 2
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 2.146157541e-10, global = 1.70954072e-10, cumulative = -0.00300555774
+PIMPLE: Iteration 2
+DILUPBiCGStab:  Solving for Ux, Initial residual = 0.0002220795281, Final residual = 2.431402511e-09, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 2.612326854e-05, Final residual = 2.198696886e-10, No Iterations 1
+DILUPBiCGStab:  Solving for ft, Initial residual = 1.242136938e-18, Final residual = 1.242136938e-18, No Iterations 0
+DILUPBiCGStab:  Solving for egr, Initial residual = 0, Final residual = 0, No Iterations 0
+DILUPBiCGStab:  Solving for ha, Initial residual = 5.69472118e-05, Final residual = 1.318742511e-09, No Iterations 1
+DICPBiCGStab:  Solving for p, Initial residual = 2.804795628e-05, Final residual = 2.091622991e-08, No Iterations 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 5.53776231e-09, global = 1.106520713e-09, cumulative = -0.003005556633
+DICPBiCGStab:  Solving for p, Initial residual = 1.30633029e-06, Final residual = 1.568086311e-09, No Iterations 1
+diagonal:  Solving for rho, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 4.15164234e-10, global = -1.77816999e-10, cumulative = -0.003005556811
+Selecting patchDistMethod meshWave
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.001768815878, Final residual = 5.196779749e-09, No Iterations 1
+DILUPBiCGStab:  Solving for k, Initial residual = 0.001268295769, Final residual = 9.32472988e-09, No Iterations 1
+ExecutionTime = 55.898586 s  ClockTime = 56 s
+
+Piston: 
+    position from TDC: 0.6711204494 m
+    speed = -24.60135426 m/s
+    displacement: -0.000468597224 m
+    clearance: 0.9774135972 m
+Valve ev
+    lift: 0.03 m (open)
+    speed: -6 m/s
+    displacement: -0.0001142857143 m
+Valve iv
+    lift: 0 m (closed)
+    speed: -0 m/s
+    displacement: -1.680672269e-06 m
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+   *Number of regions: 11
+    The mesh has multiple regions which are not connected by any face.
+
+Checking patch topology for multiply connected surfaces...
+    Patch               Faces    Points   Surface topology                  
+    piston              94       198      ok (non-closed singly connected)  
+    liner               66       136      ok (non-closed singly connected)  
+    cylinderHead        136      300      ok (non-closed singly connected)  
+    nonCouple_cyl_ev    66       136      ok (non-closed singly connected)  
+    nonCouple_cyl_iv    66       136      ok (non-closed singly connected)  
+    frontAndBack        7932     8820     ok (non-closed singly connected)  
+    nonCouple_ev_cyl    72       148      ok (non-closed singly connected)  
+    outlet              16       36       ok (non-closed singly connected)  
+    evHead              54       110      ok (non-closed singly connected)  
+    evStem              54       116      ok (non-closed singly connected)  
+    nonCouple_iv_cyl    66       136      ok (non-closed singly connected)  
+    inlet               16       36       ok (non-closed singly connected)  
+    ivHead              46       98       ok (non-closed singly connected)  
+    ivStem              48       104      ok (non-closed singly connected)  
+    nonCouple_ep_ev     16       36       ok (non-closed singly connected)  
+    nonCouple_ev_ep     16       36       ok (non-closed singly connected)  
+    nonCouple_ip_iv     16       36       ok (non-closed singly connected)  
+    nonCouple_iv_ip     16       36       ok (non-closed singly connected)  
+    inletFuel           2        6        ok (non-closed singly connected)  
+    NCC_iv_on_nonCouple_iv_cyl0        0        ok (empty)                        
+    NCC_iv_on_nonCouple_cyl_iv0        0        ok (empty)                        
+    NCC_ev_on_nonCouple_ev_cyl0        0        ok (empty)                        
+    NCC_ev_on_nonCouple_cyl_ev0        0        ok (empty)                        
+    NCC_iv_port_on_nonCouple_ip_iv0        0        ok (empty)                        
+    NCC_iv_port_on_nonCouple_iv_ip0        0        ok (empty)                        
+    NCC_ev_port_on_nonCouple_ep_ev0        0        ok (empty)                        
+    NCC_ev_port_on_nonCouple_ev_ep0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_iv_cyl0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_cyl_iv0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ev_cyl0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_cyl_ev0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ip_iv0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_iv_ip0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ep_ev0        0        ok (empty)                        
+    nonConformalError_on_nonCouple_ev_ep0        0        ok (empty)                        
+
+Checking geometry...
+    Overall domain bounding box (-1.3 -0.05 -1.07112013) (1.3 4.898587197e-17 0.8)
+    Mesh has 2 geometric (non-empty/wedge) directions (1 0 1)
+    Mesh has 2 solution (non-empty) directions (1 0 1)
+    All edges aligned with or perpendicular to non-empty directions.
+    Max cell openness = 2.445502391e-16 OK.
+    Max aspect ratio = 7.465682981 OK.
+    Minimum face area = 8.366727142e-05. Maximum face area = 0.001948357848.  Face area magnitudes OK.
+    Min volume = 4.183363571e-06. Max volume = 5.652106364e-05.  Total volume = 0.1669456169.  Cell volumes OK.
+    Mesh non-orthogonality Max: 45.00019624 average: 3.393589977
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 1.936399992 OK.
+    Coupled point location match (average 0) OK.
+
+    Mesh OK.
+
+End
+
+	Command being timed: "foamRun"
+	User time (seconds): 54.66
+	System time (seconds): 1.40
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:56.13
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 152212
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 15823
+	Voluntary context switches: 1
+	Involuntary context switches: 203
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 35744
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

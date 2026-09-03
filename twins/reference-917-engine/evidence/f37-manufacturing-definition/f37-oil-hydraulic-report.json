@@ -1,0 +1,134 @@
+{
+  "cases": [
+    {
+      "all_segments_laminar_re_below_2300": true,
+      "darcy_weisbach_total_kpa": 1.9675726274316883,
+      "dynamic_viscosity_pa_s": 0.012,
+      "hagen_poiseuille_total_kpa": 1.967572627431688,
+      "id": "hot_110c",
+      "minor_loss_pa": 212.64939776786943,
+      "segments": [
+        {
+          "darcy_weisbach_pa": 369.71103817495094,
+          "diameter_mm": 6.0,
+          "flow_l_min": 0.6,
+          "hagen_poiseuille_pa": 369.7110381749509,
+          "length_mm": 98.0,
+          "reynolds": 150.31300180901226,
+          "segment": "lateral_feed_d6",
+          "velocity_m_s": 0.35367765131532297
+        },
+        {
+          "darcy_weisbach_pa": 256.53418975404765,
+          "diameter_mm": 6.0,
+          "flow_l_min": 0.6,
+          "hagen_poiseuille_pa": 256.5341897540476,
+          "length_mm": 68.0,
+          "reynolds": 150.31300180901226,
+          "segment": "header_d6",
+          "velocity_m_s": 0.35367765131532297
+        },
+        {
+          "darcy_weisbach_pa": 1056.3172519284315,
+          "diameter_mm": 3.0,
+          "flow_l_min": 0.15,
+          "hagen_poiseuille_pa": 1056.3172519284312,
+          "length_mm": 70.0,
+          "reynolds": 75.15650090450613,
+          "segment": "metering_branch_d3",
+          "velocity_m_s": 0.35367765131532297
+        },
+        {
+          "darcy_weisbach_pa": 72.36074980638877,
+          "diameter_mm": 5.0,
+          "flow_l_min": 0.15,
+          "hagen_poiseuille_pa": 72.36074980638877,
+          "length_mm": 37.0,
+          "reynolds": 45.09390054270368,
+          "segment": "carrier_gallery_d5",
+          "velocity_m_s": 0.12732395447351627
+        }
+      ],
+      "two_method_relative_difference": 1.1556049940582243e-16
+    },
+    {
+      "all_segments_laminar_re_below_2300": true,
+      "darcy_weisbach_total_kpa": 11.912137595526662,
+      "dynamic_viscosity_pa_s": 0.08,
+      "hagen_poiseuille_total_kpa": 11.912137595526659,
+      "id": "cold_screen",
+      "minor_loss_pa": 212.64939776786943,
+      "segments": [
+        {
+          "darcy_weisbach_pa": 2464.7402544996735,
+          "diameter_mm": 6.0,
+          "flow_l_min": 0.6,
+          "hagen_poiseuille_pa": 2464.7402544996726,
+          "length_mm": 98.0,
+          "reynolds": 22.54695027135184,
+          "segment": "lateral_feed_d6",
+          "velocity_m_s": 0.35367765131532297
+        },
+        {
+          "darcy_weisbach_pa": 1710.2279316936508,
+          "diameter_mm": 6.0,
+          "flow_l_min": 0.6,
+          "hagen_poiseuille_pa": 1710.2279316936504,
+          "length_mm": 68.0,
+          "reynolds": 22.54695027135184,
+          "segment": "header_d6",
+          "velocity_m_s": 0.35367765131532297
+        },
+        {
+          "darcy_weisbach_pa": 7042.11501285621,
+          "diameter_mm": 3.0,
+          "flow_l_min": 0.15,
+          "hagen_poiseuille_pa": 7042.1150128562085,
+          "length_mm": 70.0,
+          "reynolds": 11.27347513567592,
+          "segment": "metering_branch_d3",
+          "velocity_m_s": 0.35367765131532297
+        },
+        {
+          "darcy_weisbach_pa": 482.4049987092584,
+          "diameter_mm": 5.0,
+          "flow_l_min": 0.15,
+          "hagen_poiseuille_pa": 482.4049987092584,
+          "length_mm": 37.0,
+          "reynolds": 6.764085081405552,
+          "segment": "carrier_gallery_d5",
+          "velocity_m_s": 0.12732395447351627
+        }
+      ],
+      "two_method_relative_difference": 3.054010061517318e-16
+    }
+  ],
+  "equations": {
+    "method_1": "Hagen-Poiseuille: delta_p=128*mu*L*Q/(pi*D^4)",
+    "method_2": "Darcy-Weisbach: delta_p=f*(L/D)*rho*v^2/2 with f=64/Re",
+    "minor_losses": "delta_p=K*rho*v^2/2",
+    "parallel_bore_sensitivity": "Q proportional to D^4 at equal pressure drop"
+  },
+  "gates": {
+    "cold_pressure_drop_below_limit": true,
+    "hot_pressure_drop_below_limit": true,
+    "laminar_assumption_valid": true,
+    "parallel_flow_imbalance_below_limit": true,
+    "physical_oil_rig_correlated": false,
+    "two_methods_agree_within_1e_9": true
+  },
+  "inputs": {
+    "contract_sha256": "b954612301f68b69c5cd16eebabf21f1e57c54340740898c946ae159d842b4eb"
+  },
+  "metering_bore_sensitivity": {
+    "diameter_range_mm": [
+      2.95,
+      3.05
+    ],
+    "nominal_diameter_mm": 3.0,
+    "parallel_flow_imbalance_percent": 13.314844601987016
+  },
+  "phase": "F37",
+  "schema_version": "1.0.0",
+  "status": "oil_network_analytical_double_check_complete_physical_correlation_pending"
+}

@@ -1,0 +1,33 @@
+{
+  "asset_path": "/workspace/f37-simready/917-head-f37-nvidia-welded-candidate.local.usda",
+  "categories": [
+    "Geometry"
+  ],
+  "command": [
+    "/opt/simready-validation/bin/python",
+    "-m",
+    "omni.asset_validator",
+    "--category",
+    "Geometry",
+    "--json-output",
+    "/tmp/tmpvdc2baxu/asset-validator-report.json",
+    "/workspace/f37-simready/917-head-f37-nvidia-welded-candidate.local.usda"
+  ],
+  "errors": [],
+  "issue_counts": {
+    "ERROR": 0,
+    "FAILURE": 0,
+    "INFO": 0,
+    "WARNING": 0
+  },
+  "issues": [],
+  "next_step": "omni-asset-validate-physics",
+  "passed": true,
+  "rules": [],
+  "status": "PASS",
+  "validator_skill": "omni-asset-validate-geometry",
+  "validator_tool": "omni_asset_validate",
+  "warnings": [
+    "omni_asset_validate CLI was not found on PATH; using the omni.asset_validator Python module with /opt/simready-validation/bin/python."
+  ]
+}
