@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "measurement_set_id": "MEAS-MANUAL-964-SUSPENSION-ALIGNMENT",
+  "name": "Reglages de trains et hauteurs de caisse, Porsche 911 (964)",
+  "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+  "vehicle": { "generation": "964", "variants": ["Carrera_2", "Carrera_4", "Turbo_Look", "America_Roadster", "Carrera_RS", "Carrera_RS_America", "Speedster"] },
+  "units": "mm et minutes d'angle",
+  "method": "transcription_de_valeurs_publiees",
+  "measured_by": "Porsche AG",
+  "transcribed_on": "2026-09-03",
+  "load_state": "poids a vide DIN 70020 : reservoir plein, roue de secours et outillage a bord",
+  "note_us": "les valeurs entre parentheses sont les reglages des vehicules destines aux Etats-Unis",
+  "front_axle": {
+    "page": "44-02",
+    "height_definition": "de l'aire de contact de la roue au sol jusqu'au boulon six pans de fixation exterieur « Crossmember to body » — c'est-a-dire le point de datum P5 du volume V, « Mount - outer cross member FA », d'ecartement transversal 770 +/- 2 mm",
+    "height_mm": {
+      "Carrera_2_4": { "nominal": 165, "tolerance": 10, "us": 175 },
+      "Turbo_Look_America_Roadster": { "nominal": 165, "tolerance": 10, "us": 175 },
+      "Carrera_RS": { "nominal": 125, "tolerance": 5, "us": null },
+      "Carrera_RS_America": { "nominal": 175, "tolerance": 10, "us": null },
+      "Speedster": { "nominal": 165, "tolerance": 10, "us": 175 }
+    },
+    "height_max_left_right_difference_mm": { "standard": 10, "Carrera_RS": 5 },
+    "toe_unpressed_total": { "Carrera_2_4": "+25' +/- 5'", "Carrera_RS_America": "+15' +/- 5'", "Speedster": "+15' +/- 5'" },
+    "toe_difference_angle_at_20deg_lock": { "Carrera_2_4": "-40' +/- 30'", "Turbo_Look": "-1deg20' +/- 30'", "Carrera_RS": "-1deg50' +/- 30'" },
+    "camber_straight_ahead": { "Carrera_2_4": "0deg +/- 10'", "Carrera_RS": "-1deg +/- 10'", "Carrera_RS_America": "-15' +/- 10'", "Speedster": "-15' +/- 10'", "max_left_right_difference": "10'" },
+    "caster": { "value": "4deg25' +15' / -30'", "max_left_right_difference": "15'",
+      "note": "tolerance modifiee en cours de millesime 1992, de 4deg25' +/- 15' a 4deg25' +15'/-30', applicable retroactivement ; l'ecart gauche-droite maximal de 15' reste valable" }
+  },
+  "rear_axle": {
+    "page": "44-03",
+    "height_definitions": {
+      "at_control_arm": "de l'aire de contact au sol jusqu'au point de mesure sur le bras",
+      "at_outer_control_arm_mount_body_side": "de l'aire de contact au sol jusqu'au point de mesure a la fixation exterieure du bras, cote caisse"
+    },
+    "height_at_control_arm_mm": {
+      "Carrera_2_4": { "nominal": 258, "tolerance": 5, "us": 268 },
+      "Turbo_Look_America_Roadster": { "nominal": 258, "tolerance": 5, "us": 268 },
+      "Carrera_RS": { "nominal": 223, "tolerance": 5, "us": null },
+      "Carrera_RS_America": { "nominal": 268, "tolerance": 5, "us": null },
+      "Speedster": { "nominal": 258, "tolerance": 5, "us": 268 }
+    },
+    "height_at_outer_mount_body_side_mm": {
+      "Carrera_2_4": { "nominal": 270, "tolerance": 5, "us": 280 },
+      "Turbo_Look_America_Roadster": { "nominal": 270, "tolerance": 5, "us": 280 },
+      "Carrera_RS": { "nominal": 235, "tolerance": 5, "us": null },
+      "Carrera_RS_America": { "nominal": 280, "tolerance": 5, "us": null },
+      "Speedster": { "nominal": 270, "tolerance": 5, "us": 280 }
+    },
+    "height_max_left_right_difference_mm": { "standard": 10, "Carrera_RS": 5 },
+    "toe_in_per_wheel": { "value": "+10' +/- 5'", "max_left_right_difference": "10'" },
+    "camber": { "Carrera_2_4": "-40' +/- 10'", "Turbo_Look": "-45' +/- 10' (max -55', min -15')", "Carrera_RS": "-1deg15' +/- 10'", "Speedster": "-45' +/- 10'", "max_left_right_difference": "20'",
+      "note": "reglages arriere modifies pour le service et applicables retroactivement a toutes les Carrera 2/4 depuis le debut de production ; anciennes valeurs, pincement par roue +15' +/- 5' et carrossage -20' +/- 10'" }
+  },
+  "tyre_pressures_bar_cold_20C": {
+    "page": "44-01",
+    "wheels_16in": { "front": 2.5, "rear": 3.0 },
+    "wheels_17in": { "front": 2.5, "rear": 2.5, "rear_with_275_35_ZR17": 3.0 },
+    "collapsible_spare": 2.5,
+    "note": "le volume IV ne donne pas de tableau de dimensions de jantes ni de deport ; il renvoie a l'Information Technique groupe 4. Seule dimension de pneu nommee dans le texte : 275/35 ZR 17."
+  },
+  "notes": [
+    "Interet principal pour le jumeau : la hauteur avant est definie du sol jusqu'a un point de CAISSE, le boulon exterieur « Crossmember to body ». Ce point est le P5 du volume V. Le volume IV fournit donc une cote en Z rattachee au plan de sol pour un point de datum dont le volume V ne donnait que l'ecartement transversal.",
+    "Meme logique a l'arriere : la fixation exterieure de bras cote caisse est cotee a 270 +/- 5 mm du sol.",
+    "Reserve d'emploi : ces hauteurs valent au poids a vide DIN 70020, suspension chargee. Elles ne peuvent servir a verifier un plan de sol sur un vehicule scanne que si l'etat de charge et la hauteur de caisse de ce vehicule sont connus. Sur une carrosserie large probablement modifiee, un ecart mesure indique un rabaissement, pas une erreur de repere.",
+    "La RS est 40 mm plus basse a l'avant, 125 contre 165, et 35 mm plus basse a l'arriere, 235 contre 270 au point caisse.",
+    "Le carrossage arriere de -40' et le pincement de +10' par roue expliquent en partie la dispersion des ajustements de cercle sur les pneus du scan : le plan de roue n'est pas parallele au plan YZ du vehicule."
+  ]
+}

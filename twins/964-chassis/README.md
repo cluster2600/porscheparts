@@ -21,6 +21,12 @@ composants connexes puis ajustes par cercle robuste dans le plan YZ, ce qui donn
 les centres d'essieu. L'empattement mesure vaut **2278.1 mm** contre **2272 mm**
 d'usine, soit **+0.27 %**. Le maillage est donc en millimetres a l'echelle 1:1.
 
+Ce resultat a ete mis a l'epreuve. Les composants de roue sont couverts sur
+360 degres et non sur un arc partiel, et en imposant au rayon des valeurs allant
+de 560 a 680 mm de diametre, l'empattement deduit reste entre **2270,4 et
+2278,9 mm**. La verification d'echelle ne depend donc pas de l'estimation du
+rayon des pneus, qui est elle instable d'un pneu a l'autre.
+
 **Le repere vehicule est etabli.** Le plan de symetrie a ete ajuste sur 250 000
 points du soubassement par miroir et plus proche voisin, avec perte tronquee a
 85 % pour absorber la couverture asymetrique du scan. Il en sort un **lacet de
@@ -68,6 +74,33 @@ serie. Seuls le plancher et la structure centrale servent de reference.
 **Le plan de sol est le datum le plus faible.** Deduit du contact des quatre
 pneus, il presente une dispersion de 55 mm. Toute cote en Z porte cette
 incertitude.
+
+## Ce que le volume IV ajoute
+
+Le volume IV « Chassis » couvre le train roulant, pas la caisse, mais il porte
+deux cotes qui interessent directement le repere du jumeau, parce qu'elles sont
+prises **du sol jusqu'a un point de caisse** :
+
+| cote | Carrera 2/4 | RS | definition |
+|---|---|---|---|
+| hauteur avant | **165 +/- 10 mm** | 125 +/- 5 | du contact roue-sol au boulon exterieur « Crossmember to body » |
+| hauteur arriere | **270 +/- 5 mm** | 235 +/- 5 | du contact roue-sol a la fixation exterieure de bras, cote caisse |
+
+Le point avant est le **P5 du volume V**, « Mount - outer cross member FA »,
+d'ecartement transversal 770 +/- 2 mm. Le volume IV lui donne donc une cote en
+Z rattachee au plan de sol, la ou le volume V ne donnait qu'un ecartement.
+C'est la premiere cote verticale de datum du dossier.
+
+Elle n'est pas encore exploitee. Le faire suppose de localiser cette fixation
+sur le maillage, et de savoir a quelle hauteur de caisse roule le vehicule
+scanne : ces valeurs valent au poids a vide DIN 70020, suspension chargee, et le
+scan est une carrosserie large probablement modifiee. Un ecart mesure
+indiquerait un rabaissement, pas une erreur de repere.
+
+Geometrie utile par ailleurs : carrossage arriere -40' +/- 10' et pincement
++10' par roue. Le plan de roue n'est donc pas parallele au plan YZ du vehicule,
+ce qui explique une part de la dispersion des ajustements de cercle sur les
+pneus.
 
 ## Matiere
 

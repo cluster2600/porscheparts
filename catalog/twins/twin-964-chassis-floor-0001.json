@@ -167,14 +167,17 @@
       "catalog/sources/src-porsche-workshop-manual-964-vol5-body.json",
       "catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json",
       "twins/964-chassis/evidence/overlay.png",
-      "twins/964-chassis/evidence/plan_aligned.png"
+      "twins/964-chassis/evidence/plan_aligned.png",
+      "catalog/sources/src-porsche-workshop-manual-964-vol4-chassis.json",
+      "catalog/measurements/MEAS-MANUAL-964-SUSPENSION-ALIGNMENT.json"
     ],
     "checks_passed": [
       "Echelle du scan : empattement mesure 2278.1 mm contre 2272 mm d'usine, soit +0.27 %. Le maillage est en millimetres a l'echelle 1:1.",
       "Repere : apres correction du lacet, l'ecart gauche/droite des centres de roue tombe de 66.7 a 12.7 mm a l'avant et de 51.1 a 5.3 mm a l'arriere, alors que les roues n'entrent pas dans l'ajustement du plan de symetrie.",
       "Schema de cotation : la diagonale croisee M se recalcule a 1787.8 mm depuis E, F et R publies, contre 1788 +/- 3 mm au manuel, soit 0.2 mm d'ecart. Verification purement documentaire, independante du scan.",
       "Essai de torsion CalculiX : la raideur suit l'epaisseur lineairement (rapport 1,251 pour 1,250), donc caisson en cisaillement de membrane. Les 1 % de noeuds les plus charges sont a 100 % dans le longeron, y compris apres exclusion de 300 mm autour de l'encastrement, ce qui corrobore le choix d'acier HS de la planche 50-013 pour l'inner side member.",
-      "Convergence a noter, sans surinterpretation : le calcul place le chemin d'effort en torsion dans le longeron, la planche 50-013 y met de l'acier haute resistance, et les guides d'achat allemands nomment la prise de cric du bas de caisse comme foyer de corruption recurrent. Il en decoule que, A CORROSION EGALE, une attaque a la prise de cric a plus de consequence structurelle qu'ailleurs sur le plancher. Ce raisonnement porte sur la consequence, pas sur la frequence : aucune source ne documente de defaillance structurelle a cet endroit."
+      "Convergence a noter, sans surinterpretation : le calcul place le chemin d'effort en torsion dans le longeron, la planche 50-013 y met de l'acier haute resistance, et les guides d'achat allemands nomment la prise de cric du bas de caisse comme foyer de corruption recurrent. Il en decoule que, A CORROSION EGALE, une attaque a la prise de cric a plus de consequence structurelle qu'ailleurs sur le plancher. Ce raisonnement porte sur la consequence, pas sur la frequence : aucune source ne documente de defaillance structurelle a cet endroit.",
+      "Robustesse de l'echelle testee. Les composants de roue sont couverts sur 360 degres, pas sur un arc partiel. En imposant au rayon des valeurs de 560 a 680 mm de diametre, l'empattement deduit reste entre 2270,4 et 2278,9 mm, soit 2272 +/- 7. La verification d'echelle ne depend donc pas de l'estimation du rayon des pneus, qui est elle instable."
     ],
     "known_limits": [
       "Le calage longitudinal du reseau de datums dans le repere vehicule n'est pas resolu. Le test de recalage sur le scan est non concluant : un controle montre que 68 % de points tires au hasard sous la voiture tombent aussi a moins de 2.8 mm de structure, l'empreinte du plancher couvrant presque tout le plan. Le resultat 16/16 ne prouve donc rien.",
@@ -188,7 +191,8 @@
       "La raideur en torsion calculee, 2442 N.m/deg a 0,8 mm, ne vaut que pour les solides modelises. Sans tablier, cloison arriere, tunnel, passages de roue ni pavillon, ce n'est pas la raideur d'une caisse 964 et ne doit pas etre citee comme telle.",
       "Recherche germanophone : aucune raideur en torsion publiee n'a ete trouvee pour la 964, quelle que soit la variante. Les 2442 N.m/deg calcules n'ont donc aucune valeur d'usine contre laquelle etre confrontes, ni dans un sens ni dans l'autre.",
       "La nuance des six panneaux en acier haute resistance de la planche 50-013 reste inconnue : aucune source publique ne la donne. Le calcul n'utilise qu'un acier generique E = 210 000 MPa, valable pour la raideur mais pas pour une marge a la limite d'elasticite.",
-      "Le calage longitudinal a une piste identifiee et fermee : Celette vend sous la reference 564.320 un jeu specifique 964 annonce a 42 points de controle, mais toute la documentation est derriere une authentification. Voir SRC-CELETTE-564-320-964-JIG. La voie realiste passe par un carrossier abonne a Car-O-Data ou equipe Celette, pas par une source publique."
+      "Le calage longitudinal a une piste identifiee et fermee : Celette vend sous la reference 564.320 un jeu specifique 964 annonce a 42 points de controle, mais toute la documentation est derriere une authentification. Voir SRC-CELETTE-564-320-964-JIG. La voie realiste passe par un carrossier abonne a Car-O-Data ou equipe Celette, pas par une source publique.",
+      "Le volume IV apporte deux cotes verticales rattachees au sol : point de caisse avant « Crossmember to body », qui est P5, a 165 +/- 10 mm, et fixation exterieure de bras arriere cote caisse a 270 +/- 5 mm, pour une Carrera 2/4 au poids a vide DIN 70020. Elles ne sont pas encore utilisees pour verifier le plan de sol du scan : cela suppose de localiser ces fixations sur le maillage et de connaitre la hauteur de caisse du vehicule scanne, qui est une carrosserie large probablement modifiee. Un ecart mesure indiquerait un rabaissement, pas une erreur de repere."
     ]
   }
 }
