@@ -40,6 +40,11 @@ Les phases sont séquentielles par famille. Une sortie existante refuse une
 relance sous le même `run-id`; un nouveau run doit employer un nouvel identifiant
 de job, pas écraser une preuve précédente.
 
+Chaque phase préfixe le répertoire de `USD_PYTHON` dans son `PATH` et exporte
+`PYTHONDONTWRITEBYTECODE=1`. Ce contrat est nécessaire en SSH batch : il rend le
+CLI `simready-validate` installé visible au prévol et empêche Python d'ajouter des
+`__pycache__` dans le skill transféré après le calcul de son empreinte.
+
 ## Entrées F42a exactes
 
 | Famille | Taille | SHA-256 | `defaultPrim` |
@@ -134,7 +139,6 @@ F42A_OUTPUT_ROOT=/chemin/prive/vers/le/resultat/f42a
 SKILL_ROOT=/chemin/explicite/vers/omniverse-cad-to-simready
 MATERIAL_PROMPT=/chemin/prive/vers/material-prompt.txt
 PHYSICS_PROMPT=/chemin/prive/vers/physics-prompt.txt
-RUNTIME_ATTESTATION=/chemin/prive/vers/runtime-attestation.json
 
 deploy/vast/simready/transfer-f42b-job.sh \
   --instance-id "${INSTANCE_ID}" \
@@ -143,13 +147,16 @@ deploy/vast/simready/transfer-f42b-job.sh \
   --skill-root "${SKILL_ROOT}" \
   --material-prompt "${MATERIAL_PROMPT}" \
   --physics-prompt "${PHYSICS_PROMPT}" \
-  --runtime-attestation "${RUNTIME_ATTESTATION}" \
   --f42a-output-root "${F42A_OUTPUT_ROOT}" \
   --max-actual-dph "${MAX_ACTUAL_DPH}" \
   --max-runtime-minutes 180 \
   --control-root "${CONTROL_ROOT}" \
   --known-hosts "${CONTROL_ROOT}/known_hosts"
 ```
+
+Le transfert génère lui-même le reçu runtime public et privé associé au
+`JOB_ID`, avec un nonce neuf, puis le vérifie avant la garde réseau. Il ne prend
+donc aucun chemin `--runtime-attestation` fourni par l'appelant.
 
 Les prompts ne doivent demander que le look visuel contractuel, puis les
 colliders statiques. Toute instruction de fabriquer une valeur manquante ou

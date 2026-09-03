@@ -156,6 +156,33 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn('kill -0 "${second}"', ssh_smoke)
         self.assertIn("simready_ephemeral_sshd_concurrency_smoke_passed", ssh_smoke)
 
+    def test_simready_validate_is_discoverable_with_the_reduced_ssh_path(self):
+        dockerfile = (ROOT / "containers/simready.Dockerfile").read_text()
+        smoke = (ROOT / "containers/simready-smoke.sh").read_text()
+        executable = "/opt/simready-validation/bin/simready-validate"
+        link = "/usr/local/bin/simready-validate"
+
+        self.assertIn(f"test -x {executable}", dockerfile)
+        self.assertIn(f"test ! -e {link}", dockerfile)
+        self.assertIn(f"test ! -L {link}", dockerfile)
+        self.assertIn(f"ln -s -- {executable} \\", dockerfile)
+        self.assertIn(f'test "$(readlink -- {link})" = \\', dockerfile)
+        self.assertNotIn(f"ln -sf {executable}", dockerfile)
+        self.assertLess(
+            dockerfile.index("-r /opt/simready-foundation/requirements.txt"),
+            dockerfile.index(f"ln -s -- {executable}"),
+        )
+        self.assertIn(
+            "check simready-validate env \\\n"
+            "    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \\\n"
+            "    simready-validate --help",
+            smoke,
+        )
+        self.assertNotIn(
+            "check simready-validate /opt/simready-validation/bin/simready-validate --help",
+            smoke,
+        )
+
     def test_both_agents_use_the_local_endpoint(self):
         config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()
         local_endpoint = 'http://127.0.0.1:8000/v1'

@@ -30,6 +30,23 @@ die() {
     return 1
 }
 
+configure_phase_environment() {
+    [[ "${USD_PYTHON}" = /* ]] || {
+        die "USD_PYTHON doit être absolu"
+        return 1
+    }
+    local usd_python_directory="${USD_PYTHON%/*}"
+    [ -n "${usd_python_directory}" ] || usd_python_directory="/"
+    case "${PATH:-}" in
+        "${usd_python_directory}"|"${usd_python_directory}:"*) ;;
+        *) PATH="${usd_python_directory}${PATH:+:${PATH}}" ;;
+    esac
+    PYTHONDONTWRITEBYTECODE=1
+    export PATH PYTHONDONTWRITEBYTECODE
+}
+
+configure_phase_environment || return 1
+
 require_command() {
     command -v "$1" >/dev/null 2>&1 || die "commande requise absente: $1"
 }
@@ -312,6 +329,7 @@ PY
             return 1
         }
     done
+    configure_phase_environment || return 1
     PHASE_PREFLIGHT_ACTIVATED=1
 }
 
