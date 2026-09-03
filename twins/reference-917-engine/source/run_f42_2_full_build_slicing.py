@@ -27,6 +27,7 @@ MIN_FEATURE_AREA_MM2 = 0.01
 SUPPORT_RASTER_PITCH_MM = 0.25
 BLT_S310_BUILD_MM = (250.0, 250.0, 400.0)
 LOCKED_ORIENTATION = "scan_y_down"
+SUPPORTED_ORIENTATIONS = ("scan_y_down", "scan_y_up")
 
 
 class F422Error(RuntimeError):
@@ -55,6 +56,16 @@ def locked_transform(vertices: np.ndarray) -> np.ndarray:
     transformed = np.column_stack((vertices[:, 0], -vertices[:, 2], vertices[:, 1]))
     transformed[:, 2] -= float(np.min(transformed[:, 2]))
     return transformed
+
+
+def orientation_transform(vertices: np.ndarray, orientation: str) -> np.ndarray:
+    if orientation == "scan_y_down":
+        return locked_transform(vertices)
+    if orientation == "scan_y_up":
+        transformed = np.column_stack((vertices[:, 0], vertices[:, 2], -vertices[:, 1]))
+        transformed[:, 2] -= float(np.min(transformed[:, 2]))
+        return transformed
+    raise F422Error(f"unsupported_orientation:{orientation}")
 
 
 def geometry_components(geometry: Any) -> list[Any]:
@@ -260,7 +271,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     orientations = cardinal_orientation_audit(loaded, args.overhang_limit_deg)
 
     mesh = loaded.copy()
-    mesh.vertices = locked_transform(np.asarray(mesh.vertices, dtype=float))
+    mesh.vertices = orientation_transform(np.asarray(mesh.vertices, dtype=float), args.orientation)
     bounds = np.asarray(mesh.bounds, dtype=float)
     extents = np.asarray(mesh.extents, dtype=float)
     height = float(bounds[1, 2] - bounds[0, 2])
@@ -353,7 +364,10 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     csv_path = output / "917-head-f42-2-layer-metrics.csv"
     write_layer_csv(csv_path, rows)
 
-    locked_orientation = next(item for item in orientations if item["orientation"] == "+Y_locked")
+    cardinal_orientation = "+Y_locked" if args.orientation == "scan_y_down" else "-Y"
+    evaluated_orientation = next(
+        item for item in orientations if item["orientation"] == cardinal_orientation
+    )
     candidate = min(orientations, key=lambda item: item["downward_projected_area_mm2"])
     unsupported_area_integral = sum(float(row["unsupported_area_mm2"]) for row in rows)
     report: dict[str, Any] = {
@@ -370,8 +384,9 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "machine": "BLT-S310",
             "nominal_build_envelope_mm": list(BLT_S310_BUILD_MM),
             "locked_orientation": LOCKED_ORIENTATION,
+            "evaluated_orientation": args.orientation,
             "part_extents_in_locked_build_frame_mm": [float(value) for value in extents],
-            "nominal_envelope_fit": bool(locked_orientation["blt_s310_nominal_envelope_fit"]),
+            "nominal_envelope_fit": bool(evaluated_orientation["blt_s310_nominal_envelope_fit"]),
             "source_of_machine_dimensions": "documented machine specification; no supplier project review",
         },
         "geometric_slicing": {
@@ -417,6 +432,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "orientation_screen": {
             "method": "six cardinal orientations; triangle normal 45 deg downward-face proxy",
             "locked_orientation": "+Y_locked",
+            "evaluated_orientation": cardinal_orientation,
             "lowest_projected_overhang_cardinal_candidate": candidate["orientation"],
             "candidate_requires_independent_full_slice": candidate["orientation"] != "+Y_locked",
             "results": orientations,
@@ -450,7 +466,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "support_proxy_computed": True,
             "private_support_stack_generated": True,
             "blt_s310_nominal_envelope_fit": bool(
-                locked_orientation["blt_s310_nominal_envelope_fit"]
+                evaluated_orientation["blt_s310_nominal_envelope_fit"]
             ),
             "supplier_slicer_project_reviewed": False,
             "recoater_collision_clearance_verified": False,
@@ -478,6 +494,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--overhang-limit-deg", type=float, default=OVERHANG_LIMIT_DEG)
     parser.add_argument("--minimum-area-mm2", type=float, default=MIN_FEATURE_AREA_MM2)
     parser.add_argument("--support-raster-pitch-mm", type=float, default=SUPPORT_RASTER_PITCH_MM)
+    parser.add_argument("--orientation", choices=SUPPORTED_ORIENTATIONS, default=LOCKED_ORIENTATION)
     return parser.parse_args()
 
 
