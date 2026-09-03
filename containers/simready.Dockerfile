@@ -30,6 +30,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     RENDER_ENDPOINT=http://127.0.0.1:8001 \
     PATH=/opt/usd-convert-cad/bin:/opt/simready-validation/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# OpenSSH postinst cree des clefs hote. Elles sont retirees dans ce meme RUN
+# afin qu'aucune couche publiee ne conserve une identite partagee.
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
       build-essential \
@@ -58,6 +60,7 @@ RUN apt-get update && apt-get upgrade -y \
       unzip \
       xvfb \
     && apt-get clean \
+    && rm -f /etc/ssh/ssh_host_*_key /etc/ssh/ssh_host_*_key.pub \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* \
     && ln -sf /usr/bin/python3.12 /usr/bin/python3 \
     && ln -sf /usr/bin/python3.12 /usr/bin/python
@@ -157,15 +160,25 @@ COPY containers/simready-services.sh /usr/local/bin/simready-services
 COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
 COPY containers/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY containers/simready-sshd-runtime-wrapper.sh /usr/local/bin/simready-sshd-runtime-wrapper
+COPY containers/simready-sshd-runtime-smoke.sh /usr/local/bin/simready-sshd-runtime-smoke
 
 RUN chmod 0555 \
       /usr/local/bin/entrypoint.sh \
+      /usr/local/bin/simready-sshd-runtime-wrapper \
+      /usr/local/bin/simready-sshd-runtime-smoke \
       /usr/local/bin/simready-services \
       /usr/local/bin/simready-smoke \
       /usr/local/bin/smoke-test.sh \
       /opt/content-agents/apps/ovrtx_rendering_api/docker-entrypoint.sh \
-    && install -d -m 0755 /workspace /workspace/logs \
+    && test -x /usr/sbin/sshd \
+    && test ! -e /usr/lib/openssh/sshd.real \
+    && mv /usr/sbin/sshd /usr/lib/openssh/sshd.real \
+    && ln -s /usr/local/bin/simready-sshd-runtime-wrapper /usr/sbin/sshd \
+    && install -d -m 0755 /workspace /workspace/logs /run/sshd \
        /var/material-agent/sessions /var/physics-agent/sessions \
+    && install -d -o root -g root -m 0700 /root/.ssh \
+    && install -o root -g root -m 0600 /dev/null /root/.no_auto_tmux \
     && groupadd --gid 10001 renderer \
     && useradd --uid 10001 --gid renderer --create-home --home-dir /home/renderer renderer \
     && useradd --uid 10000 --create-home --home-dir /home/agents agents \
@@ -177,7 +190,13 @@ RUN chmod 0555 \
     && mkdir -p "${OVRTX_BIN}/cache" \
     && rm -rf "${OVRTX_BIN}/cache/nv_shadercache" \
     && chown -R renderer:renderer "${OVRTX_BIN}/cache" \
-    && ln -s /home/renderer/.cache/ovrtx-nv-shadercache "${OVRTX_BIN}/cache/nv_shadercache"
+    && ln -s /home/renderer/.cache/ovrtx-nv-shadercache "${OVRTX_BIN}/cache/nv_shadercache" \
+    && test -x /usr/bin/flock \
+    && test -x /usr/bin/ssh-keygen \
+    && test -x /usr/lib/openssh/sshd.real \
+    && test -L /usr/sbin/sshd \
+    && test "$(stat -c '%u:%g:%a' /root/.no_auto_tmux)" = "0:0:600" \
+    && test -z "$(find /etc/ssh -maxdepth 1 -type f -name 'ssh_host_*_key*' -print -quit)"
 
 WORKDIR /workspace
 EXPOSE 8001 8100 8200 22

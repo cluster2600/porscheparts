@@ -29,6 +29,26 @@ class OpenBaoGhcrWrapperTest(unittest.TestCase):
         self.assertEqual(self.wrapper.GHCR_USERNAME, "cluster2600")
         self.assertRegex(self.wrapper.GHCR_DIGEST, r"^sha256:[0-9a-f]{64}$")
         self.assertIn(self.wrapper.GHCR_DIGEST, self.wrapper.GHCR_MANIFEST_URL)
+        self.assertIn(self.wrapper.GHCR_DIGEST, self.wrapper.GHCR_REVOKED_DIGESTS)
+
+    def test_revoked_digest_is_rejected_before_registry_or_vast_use(self):
+        with self.assertRaisesRegex(self.wrapper.SafeError, "digest is revoked"):
+            self.wrapper.validate_pinned_digest()
+
+        with (
+            mock.patch.object(
+                self.wrapper.sys, "argv", ["openbao-ghcr", "--auth-check"]
+            ),
+            mock.patch.object(self.wrapper, "validate_bootstrap_metadata"),
+            mock.patch.object(self.wrapper, "login") as login,
+            mock.patch("builtins.print"),
+        ):
+            self.assertEqual(self.wrapper.main(), 1)
+            login.assert_not_called()
+
+        qualified = "sha256:" + "a" * 64
+        with mock.patch.object(self.wrapper, "GHCR_DIGEST", qualified):
+            self.wrapper.validate_pinned_digest()
 
     def test_existing_token_alias_is_accepted_without_username_field(self):
         fake_token = "x" * 40

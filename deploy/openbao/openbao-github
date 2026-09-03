@@ -11,6 +11,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import re
 import socket
 import ssl
 import stat
@@ -37,6 +38,17 @@ ALLOWED_WORKFLOWS = {
     "917-component-factory-f41-vast-image.yml",
 }
 ALLOWED_RUN_WORKFLOWS = ALLOWED_WORKFLOWS | {"containers.yml"}
+SIMREADY_PUBLISH_IMAGES = frozenset(
+    {"simready", "simready-workflow", "simready-local-ai"}
+)
+SIMREADY_PARENT_REPOSITORIES = {
+    "simready-workflow": "ghcr.io/cluster2600/3dprinting993-simready",
+    "simready-local-ai": "ghcr.io/cluster2600/3dprinting993-simready-workflow",
+}
+# Ces références sont renseignées seulement après la qualification publique du
+# parent. None interdit volontairement de sauter une étape de la cascade.
+SIMREADY_BASE_FOR_WORKFLOW: str | None = None
+SIMREADY_WORKFLOW_FOR_LOCAL_AI: str | None = None
 TLS_CA_FILE = Path("/etc/ssl/cert.pem")
 MAX_RESPONSE_BYTES = 4 * 1024 * 1024
 TIMEOUT_SECONDS = 30
@@ -293,6 +305,28 @@ def validate_ref(value: str) -> str:
     return value
 
 
+def validate_simready_parent_ref(value: str, repository: str) -> str:
+    pattern = rf"{re.escape(repository)}@sha256:[0-9a-f]{{64}}"
+    if re.fullmatch(pattern, value) is None:
+        raise SafeError("SimReady parent is not an allowlisted immutable digest")
+    return value
+
+
+def first_dockerfile_base(source: str) -> str:
+    for raw_line in source.splitlines():
+        fields = raw_line.strip().split()
+        if not fields or fields[0].startswith("#") or fields[0].upper() != "FROM":
+            continue
+        for field in fields[1:]:
+            if field.startswith("--platform="):
+                continue
+            if field.startswith("--"):
+                raise SafeError("SimReady Dockerfile uses an unsupported FROM option")
+            return field
+        break
+    raise SafeError("SimReady Dockerfile does not contain a valid FROM instruction")
+
+
 def dispatch_workflow(token: str, workflow: str, ref: str) -> None:
     workflow = validate_workflow(workflow)
     ref = validate_ref(ref)
@@ -307,21 +341,56 @@ def dispatch_workflow(token: str, workflow: str, ref: str) -> None:
     print(f"GitHub workflow dispatch accepted: {workflow} on {ref}")
 
 
-def dispatch_simready_local_ai(token: str, ref: str) -> None:
-    """Publish only the fixed large SimReady image from an exact codex branch."""
+def dispatch_simready_image(token: str, image: str, ref: str) -> None:
+    """Publish one fixed SimReady-chain image from an exact codex branch."""
+    if image not in SIMREADY_PUBLISH_IMAGES:
+        raise SafeError("SimReady publication image is outside the fixed allowlist")
     ref = validate_ref(ref)
+    if current_branch_contract() != ref:
+        raise SafeError("SimReady publication ref must equal the clean current branch")
+    parent_contract = {
+        "simready-workflow": (
+            Path("containers/simready-workflow.Dockerfile"),
+            SIMREADY_BASE_FOR_WORKFLOW,
+        ),
+        "simready-local-ai": (
+            Path("containers/simready-local-ai.Dockerfile"),
+            SIMREADY_WORKFLOW_FOR_LOCAL_AI,
+        ),
+    }.get(image)
+    if parent_contract is not None:
+        dockerfile, approved_parent = parent_contract
+        if approved_parent is None:
+            raise SafeError(
+                "SimReady parent digest is not qualified; publish the previous stage first"
+            )
+        try:
+            source = dockerfile.read_text(encoding="utf-8")
+        except OSError as exc:
+            raise SafeError(f"missing SimReady chain Dockerfile: {dockerfile}") from exc
+        expected_repository = SIMREADY_PARENT_REPOSITORIES[image]
+        approved_parent = validate_simready_parent_ref(
+            approved_parent, expected_repository
+        )
+        if first_dockerfile_base(source) != approved_parent:
+            raise SafeError("SimReady Dockerfile does not pin the qualified parent digest")
     status, body = github_request(
         token,
         f"/repos/{REPOSITORY}/actions/workflows/containers.yml/dispatches",
         method="POST",
         payload={
             "ref": ref,
-            "inputs": {"image": "simready-local-ai", "push": True},
+            "inputs": {"image": image, "push": True},
         },
     )
     if status != 204 or body:
         raise SafeError("GitHub SimReady image dispatch did not return the expected acknowledgement")
-    print(f"GitHub SimReady local-AI publication accepted on {ref}")
+    print(f"GitHub SimReady publication accepted for {image} on {ref}")
+
+
+def dispatch_simready_local_ai(token: str, ref: str) -> None:
+    """Backward-compatible bounded publication for the final local-AI image."""
+    dispatch_simready_image(token, "simready-local-ai", ref)
 
 
 def list_workflow_runs(token: str, workflow: str, ref: str) -> None:
@@ -360,7 +429,9 @@ def usage() -> str:
     workflows = "|".join(sorted(ALLOWED_WORKFLOWS))
     return (
         "usage: openbao-github --check|--auth-check|push-current|"
-        f"dispatch <{workflows}> <codex/ref>|publish-simready-local-ai <codex/ref>|"
+        f"dispatch <{workflows}> <codex/ref>|"
+        "publish-simready-image <simready|simready-workflow|simready-local-ai> <codex/ref>|"
+        "publish-simready-local-ai <codex/ref>|"
         "runs <workflow> <codex/ref>"
     )
 
@@ -392,6 +463,10 @@ def main() -> int:
             if len(operation) == 2 and operation[0] == "publish-simready-local-ai":
                 repository_auth_check(token)
                 dispatch_simready_local_ai(token, operation[1])
+                return 0
+            if len(operation) == 3 and operation[0] == "publish-simready-image":
+                repository_auth_check(token)
+                dispatch_simready_image(token, operation[1], operation[2])
                 return 0
             if len(operation) == 3 and operation[0] == "runs":
                 repository_auth_check(token)

@@ -55,14 +55,29 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             "COPY containers/physicsnemo-gpu-smoke.py /usr/local/bin/physicsnemo-gpu-smoke",
             dockerfile,
         )
+        base_dockerfile = (ROOT / "containers/simready.Dockerfile").read_text()
+        self.assertIn(
+            "COPY containers/simready-sshd-runtime-wrapper.sh /usr/local/bin/simready-sshd-runtime-wrapper",
+            base_dockerfile,
+        )
+        self.assertIn("mv /usr/sbin/sshd /usr/lib/openssh/sshd.real", base_dockerfile)
+        self.assertIn("rm -f /etc/ssh/ssh_host_*_key", base_dockerfile)
+        self.assertIn("/root/.no_auto_tmux", base_dockerfile)
+        self.assertIn(
+            "ln -s /usr/local/bin/simready-sshd-runtime-wrapper /usr/sbin/sshd",
+            base_dockerfile,
+        )
         self.assertIn("smoke-test.sh simready-local-ai", onstart)
         self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}"', onstart)
         self.assertIn("/usr/local/bin/physicsnemo-gpu-smoke", onstart)
-        self.assertLess(onstart.index("physicsnemo-gpu-smoke"), onstart.index('touch "${WORKSPACE}/READY"'))
+        self.assertLess(onstart.index("physicsnemo-gpu-smoke"), onstart.index('mv -f -- "${READY_TMP}" "${READY}"'))
         self.assertNotIn("smoke-test.sh simready >", onstart)
         self.assertIn("simready-services start", onstart)
         self.assertIn("simready-services status", onstart)
-        self.assertLess(onstart.index("simready-services status"), onstart.index('touch "${WORKSPACE}/READY"'))
+        self.assertLess(onstart.index("simready-services status"), onstart.index('mv -f -- "${READY_TMP}" "${READY}"'))
+        self.assertIn("/run/sshd/simready-runtime-host-keys.ready", onstart)
+        self.assertIn("/root/.no_auto_tmux", onstart)
+        self.assertIn("target_1600_ch_validated\": false", onstart)
         self.assertIn("Verify published local AI manifest limits", workflow)
         self.assertIn(".Image.OS}}/{{.Image.Architecture", workflow)
         self.assertIn("max) < 5000000000", workflow)
@@ -73,21 +88,56 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             workflow.index("- name: Verify published local AI manifest limits")
         ]
         self.assertNotIn("simready-local-ai:latest", local_build)
-        self.assertIn("- name: Promote verified local AI image", workflow)
+        self.assertIn("- name: Promote verified image", workflow)
         self.assertIn("docker buildx imagetools create", workflow)
         self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
-        self.assertIn("Verify anonymous local AI manifest access", workflow)
-        self.assertIn('PINNED_IMAGE: ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai@${{ steps.local_ai_manifest.outputs.digest }}', workflow)
-        self.assertIn('DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw "${PINNED_IMAGE}"', workflow)
+        self.assertIn("Verify anonymous digest pull", workflow)
+        self.assertIn(
+            'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
+            workflow,
+        )
+        self.assertIn("group: container-publication-${{ matrix.image }}", workflow)
+        self.assertIn("id: standard_build", workflow)
+        self.assertIn("steps.standard_build.outputs.digest", workflow)
+        self.assertIn("id: local_ai_build", workflow)
+        self.assertIn('--metadata-file "$metadata_file"', workflow)
+        self.assertIn("steps.local_ai_build.outputs.digest", workflow)
+        self.assertIn("--platform linux/amd64", workflow)
         self.assertLess(
-            workflow.index("- name: Verify anonymous local AI manifest access"),
-            workflow.index("- name: Promote verified local AI image"),
+            workflow.index("- name: Verify anonymous digest pull"),
+            workflow.index("- name: Promote verified image"),
         )
         self.assertLess(
-            workflow.index("- name: Pull and smoke test the published image"),
-            workflow.index("- name: Verify anonymous local AI manifest access"),
+            workflow.index("- name: Verify published local AI manifest limits"),
+            workflow.index("- name: Verify anonymous digest pull"),
         )
+        self.assertNotIn("Pull and smoke test the published image", workflow)
+        self.assertIn("/usr/local/bin/simready-sshd-runtime-smoke", workflow)
+        anonymous = workflow[
+            workflow.index("- name: Verify anonymous digest pull") :
+            workflow.index("- name: Promote verified image")
+        ]
+        self.assertIn("docker image rm -f", anonymous)
+        self.assertIn("docker buildx prune --all --force", anonymous)
+        self.assertIn("docker system prune --all --force --volumes", anonymous)
+        self.assertIn("printf '{}\\n'", anonymous)
+        self.assertLess(
+            anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker pull'),
+            anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker run'),
+        )
+
+        ssh_wrapper = (ROOT / "containers/simready-sshd-runtime-wrapper.sh").read_text()
+        self.assertIn("/usr/bin/flock -x 9", ssh_wrapper)
+        self.assertIn("/usr/bin/ssh-keygen -A", ssh_wrapper)
+        self.assertIn("simready-runtime-host-keys.ready", ssh_wrapper)
+        self.assertIn('if [ "${argument}" = "-R" ]', ssh_wrapper)
+
+        ssh_smoke = (ROOT / "containers/simready-sshd-runtime-smoke.sh").read_text()
+        self.assertIn("/usr/bin/flock -x 8", ssh_smoke)
+        self.assertIn('kill -0 "${first}"', ssh_smoke)
+        self.assertIn('kill -0 "${second}"', ssh_smoke)
+        self.assertIn("simready_ephemeral_sshd_concurrency_smoke_passed", ssh_smoke)
 
     def test_both_agents_use_the_local_endpoint(self):
         config = (ROOT / "containers/simready-local-ai-supervisord.conf").read_text()

@@ -117,11 +117,31 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
                 self.wrapper.repository_auth_check("secret")
 
     def test_simready_publication_is_fixed_to_one_image_and_push(self) -> None:
-        with patch.object(
-            self.wrapper,
-            "github_request",
-            return_value=(204, {}),
-        ) as request:
+        parent = (
+            "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:"
+            + "a" * 64
+        )
+        with (
+            patch.object(
+                self.wrapper,
+                "github_request",
+                return_value=(204, {}),
+            ) as request,
+            patch.object(
+                self.wrapper,
+                "current_branch_contract",
+                return_value="codex/simready-fix",
+            ),
+            patch.object(
+                self.wrapper,
+                "SIMREADY_WORKFLOW_FOR_LOCAL_AI",
+                parent,
+            ),
+            patch.object(self.wrapper.Path, "read_text", return_value=(
+                "ARG TARGETPLATFORM=linux/amd64\n"
+                f"FROM --platform=${{TARGETPLATFORM}} {parent}\n"
+            )),
+        ):
             self.wrapper.dispatch_simready_local_ai("secret", "codex/simready-fix")
         self.assertEqual(request.call_args.kwargs["method"], "POST")
         self.assertEqual(
@@ -135,6 +155,91 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
 
         with self.assertRaisesRegex(self.wrapper.SafeError, "codex"):
             self.wrapper.dispatch_simready_local_ai("secret", "main")
+
+    def test_simready_chain_publication_is_strictly_allowlisted(self) -> None:
+        base_parent = (
+            "ghcr.io/cluster2600/3dprinting993-simready@sha256:" + "a" * 64
+        )
+        workflow_parent = (
+            "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:"
+            + "b" * 64
+        )
+        for image in ("simready", "simready-workflow", "simready-local-ai"):
+            source = "FROM ubuntu:24.04\n"
+            if image == "simready-workflow":
+                source = f"FROM {base_parent}\n"
+            elif image == "simready-local-ai":
+                source = f"FROM --platform=${{TARGETPLATFORM}} {workflow_parent}\n"
+            with (
+                self.subTest(image=image),
+                patch.object(
+                    self.wrapper,
+                    "github_request",
+                    return_value=(204, {}),
+                ) as request,
+                patch.object(
+                    self.wrapper,
+                    "current_branch_contract",
+                    return_value="codex/simready-chain",
+                ),
+                patch.object(self.wrapper, "SIMREADY_BASE_FOR_WORKFLOW", base_parent),
+                patch.object(
+                    self.wrapper, "SIMREADY_WORKFLOW_FOR_LOCAL_AI", workflow_parent
+                ),
+                patch.object(self.wrapper.Path, "read_text", return_value=source),
+            ):
+                self.wrapper.dispatch_simready_image(
+                    "secret", image, "codex/simready-chain"
+                )
+                self.assertEqual(
+                    request.call_args.kwargs["payload"],
+                    {
+                        "ref": "codex/simready-chain",
+                        "inputs": {"image": image, "push": True},
+                    },
+                )
+        with self.assertRaisesRegex(self.wrapper.SafeError, "allowlist"):
+            self.wrapper.dispatch_simready_image(
+                "secret", "both", "codex/simready-chain"
+            )
+
+    def test_simready_parent_must_be_the_exact_allowlisted_digest(self) -> None:
+        repository = self.wrapper.SIMREADY_PARENT_REPOSITORIES["simready-workflow"]
+        valid = repository + "@sha256:" + "a" * 64
+        self.assertEqual(
+            self.wrapper.validate_simready_parent_ref(valid, repository), valid
+        )
+        for rejected in (
+            repository + ":latest",
+            repository + "@sha256:" + "a" * 63,
+            "ghcr.io/cluster2600/wrong@sha256:" + "a" * 64,
+        ):
+            with self.subTest(rejected=rejected), self.assertRaisesRegex(
+                self.wrapper.SafeError, "allowlisted immutable digest"
+            ):
+                self.wrapper.validate_simready_parent_ref(rejected, repository)
+
+    def test_first_dockerfile_base_ignores_platform_option(self) -> None:
+        parent = "ghcr.io/cluster2600/parent@sha256:" + "a" * 64
+        source = (
+            "# syntax=docker/dockerfile:1.7\n"
+            "ARG TARGETPLATFORM=linux/amd64\n"
+            f"FROM --platform=${{TARGETPLATFORM}} {parent}\n"
+        )
+        self.assertEqual(self.wrapper.first_dockerfile_base(source), parent)
+
+    def test_simready_chain_blocks_children_until_parent_is_qualified(self) -> None:
+        with (
+            patch.object(
+                self.wrapper,
+                "current_branch_contract",
+                return_value="codex/simready-chain",
+            ),
+            self.assertRaisesRegex(self.wrapper.SafeError, "parent digest is not qualified"),
+        ):
+            self.wrapper.dispatch_simready_image(
+                "secret", "simready-workflow", "codex/simready-chain"
+            )
 
     def test_source_never_uses_keychain_raw_bao_or_credential_url(self) -> None:
         source = WRAPPER.read_text(encoding="utf-8")

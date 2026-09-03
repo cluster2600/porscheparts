@@ -6,6 +6,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import re
 import socket
 import ssl
 import stat
@@ -27,6 +28,12 @@ ALLOWED_SECRET_PATH = "secrets/data/github"
 GHCR_USERNAME = "cluster2600"
 GHCR_REPOSITORY = f"{GHCR_USERNAME}/3dprinting993-simready-local-ai"
 GHCR_DIGEST = "sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+GHCR_REVOKED_DIGESTS = frozenset(
+    {
+        "sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+        "sha256:f8a17661a23f3c83d89139cdc0a0b9f29d8553523de166a86e9e453e420d9a00",
+    }
+)
 GHCR_TOKEN_URL = (
     "https://ghcr.io/token?service=ghcr.io&scope="
     + urllib.parse.quote(f"repository:{GHCR_REPOSITORY}:pull", safe="")
@@ -40,6 +47,15 @@ VAST_WRAPPER = Path.home() / ".local" / "bin" / "openbao-vastai"
 
 class SafeError(Exception):
     """An error safe to print without secret material."""
+
+
+def validate_pinned_digest() -> None:
+    if re.fullmatch(r"sha256:[0-9a-f]{64}", GHCR_DIGEST) is None:
+        raise SafeError("GHCR pinned SimReady digest is invalid")
+    if GHCR_DIGEST in GHCR_REVOKED_DIGESTS:
+        raise SafeError(
+            "GHCR pinned SimReady digest is revoked; publish and pin the corrected image first"
+        )
 
 
 def validate_private_file(path: Path) -> None:
@@ -215,6 +231,7 @@ def main() -> int:
     operation = sys.argv[1:]
     try:
         validate_bootstrap_metadata()
+        validate_pinned_digest()
         if operation == ["--check"]:
             if read_bootstrap_value(SECRET_PATH_FILE) != ALLOWED_SECRET_PATH:
                 raise SafeError("OpenBao GHCR path is outside the fixed allowlist")
