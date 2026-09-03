@@ -667,3 +667,29 @@ non simulée et non prouvée.
 ```bash
 make 917-variant-authority-f43-check
 ```
+
+## Bielle détaillée de démonstration F44
+
+F44 ajoute une bielle unique de revue visuelle avec corps et chapeau séparés,
+deux perçages dans des oreilles à vrais lamages paramétrés et deux vis
+identifiables, deux demi-coussinets, une bague de pied et un canal d'huile
+soustractif continu. Les marges d'oreille, le dégagement radial et la profondeur
+des lamages sont des paramètres explicites du contrat. Un audit BRep interdit
+les trous absents, le percement du logement de coussinet et toute interférence
+volumique vis/bielle; il vérifie aussi les quatre lamages et la connexion
+géométrique du canal avec les deux alésages, les deux demi-coussinets et la
+bague, ainsi que sa sortie au-delà du rayon extérieur du demi-coussinet
+inférieur. Toutes ses cotes restent des hypothèses de conception non mesurées. La
+note complète est
+`docs/917_CONNECTING_ROD_CAD_F44.md`.
+
+Le montage côte à côte reste volontairement bloqué : deux bielles de 22 mm et
+le jeu visuel F35 occupent 45,32 mm sur un maneton déclaré à 26 mm. F44 ne
+modifie aucune de ces valeurs et n'exporte qu'une bielle. Il ne constitue ni
+une simulation physique, ni une validation de lubrification ou de fatigue, ni
+une autorisation de fabrication ou une preuve de 1 600 hp.
+
+```bash
+make 917-connecting-rod-cad-f44-check
+make 917-connecting-rod-cad-f44
+```

@@ -1,0 +1,167 @@
+{
+  "$comment": "F44 décrit une bielle unique de démonstration visuelle. Toutes les cotes sont des hypothèses de conception non mesurées; le montage de deux bielles sur le maneton F35 reste bloqué.",
+  "schema_version": "1.0.0",
+  "phase": "F44",
+  "status": "display_only_detailed_connecting_rod_design_study_pair_topology_blocked",
+  "asset_id": "porsche-917-2026-connecting-rod-cad-f44",
+  "source_bindings": [
+    {
+      "id": "rotating_assembly_cad_f35",
+      "path": "twins/reference-917-engine/rotating-assembly-cad-f35.json",
+      "sha256": "b749e68c52829caae5b21d613ca1f0f1f2b6ad205d1ee69728595a1ccd518954",
+      "role": "design_hypothesis_parameter_snapshot_only",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "parametric_cad_assembly_contract_f22",
+      "path": "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json",
+      "sha256": "87529899d643dd437f357c79fa4dd4fa5ac5ed95929c4fdf82c4985222fd6baa",
+      "role": "unknown_interface_register_only",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "component_factory_f41",
+      "path": "twins/reference-917-engine/component-factory-f41.json",
+      "sha256": "58ac9f7c6b3780c48c90bbf6061776480f6160632a1f166f278e139980f2fd5c",
+      "role": "semantic_component_inventory_only",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "variant_authority_f43",
+      "path": "twins/reference-917-engine/variant-authority-f43.json",
+      "sha256": "021be0be4412f8bd16301af2b3c0536d56e6211d2fef56f94e88b7e9a0f1e15d",
+      "role": "2026_turbo_variant_identity_only",
+      "geometry_transfer_authorized": false
+    }
+  ],
+  "scope": {
+    "variant_id": "917_2026_flat12_twin_turbo_1600hp_target",
+    "single_rod_demonstrator": true,
+    "future_occurrence_count": 12,
+    "paired_rod_assembly_allowed": false,
+    "display_only": true,
+    "engineering_study_only": true,
+    "physical_joint_authoring_allowed": false,
+    "physics_or_simulation_evidence": false,
+    "manufacturing_geometry": false,
+    "power_evidence": false
+  },
+  "classification_vocabulary": [
+    "design_hypothesis",
+    "unknown_requires_traceable_measurement"
+  ],
+  "parameter_register": {
+    "rod_center_distance_mm": {"value": 138.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Snapshot turbo F35 non mesuré."},
+    "rod_width_mm": {"value": 22.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Largeur F35 non mesurée."},
+    "crankpin_nominal_diameter_mm": {"value": 54.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Diamètre de maneton F35 non mesuré."},
+    "crankpin_available_width_mm": {"value": 26.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Largeur de maneton F35 non validée."},
+    "paired_rod_axial_clearance_factor": {"value": 0.06, "unit": "ratio", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Facteur visuel F35, sans validation tribologique."},
+    "big_end_outer_diameter_mm": {"value": 80.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Enveloppe F35 non mesurée."},
+    "small_end_nominal_bore_mm": {"value": 26.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": ["rotating_assembly_cad_f35"], "note": "Alésage nominal F35 sans jeu validé."},
+    "small_end_outer_diameter_mm": {"value": 42.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Enveloppe visuelle provisoire."},
+    "beam_height_mm": {"value": 28.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Hauteur de fût visuelle provisoire."},
+    "beam_end_overlap_mm": {"value": 6.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Recouvrement booléen provisoire."},
+    "cap_joint_visual_gap_mm": {"value": 0.4, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Jeu d'affichage, pas une tolérance d'assemblage."},
+    "rod_bolt_axis_offset_z_mm": {"value": 35.5, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Position provisoire hors logement de coussinet; le générateur impose un ligament géométrique positif et ajoute deux oreilles de fixation."},
+    "rod_bolt_shank_diameter_mm": {"value": 8.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Enveloppe visuelle de vis, sans filetage ni précharge."},
+    "rod_bolt_clearance_diameter_mm": {"value": 8.6, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Perçage visuel, pas un ajustement validé."},
+    "rod_bolt_length_mm": {"value": 50.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Distance visuelle entre les deux portées planes opposées; aucune longueur de serrage fonctionnelle n'est revendiquée."},
+    "rod_bolt_head_diameter_mm": {"value": 13.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Tête et écrou simplifiés, sans standard de fixation revendiqué."},
+    "rod_bolt_head_height_mm": {"value": 5.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Hauteur visuelle provisoire."},
+    "rod_bolt_boss_radial_margin_mm": {"value": 2.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Marge radiale explicite entre la tête simplifiée et l'oreille; hypothèse d'affichage non dimensionnée par un calcul de serrage."},
+    "rod_bolt_seat_radial_clearance_mm": {"value": 0.5, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Dégagement radial explicite du lamage autour de la tête simplifiée; pas un ajustement fonctionnel."},
+    "rod_bolt_spotface_depth_mm": {"value": 1.5, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Profondeur explicite du lamage de portée dans chaque extrémité d'oreille; hypothèse visuelle non mesurée."},
+    "big_end_bearing_running_clearance_radial_mm": {"value": 0.08, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Jeu uniquement visuel; valeur tribologique inconnue."},
+    "big_end_bearing_shell_thickness_mm": {"value": 1.8, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Épaisseur de représentation non sourcée."},
+    "big_end_bearing_axial_width_mm": {"value": 20.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Largeur de représentation non mesurée."},
+    "bearing_split_visual_gap_mm": {"value": 0.4, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Séparation graphique alignée exactement sur cap_joint_visual_gap_mm; aucun crush de coussinet n'est implicite."},
+    "bearing_housing_visual_clearance_radial_mm": {"value": 0.05, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Jeu booléen, pas une tolérance fonctionnelle."},
+    "small_end_bushing_inner_clearance_radial_mm": {"value": 0.05, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Jeu de représentation, non validé."},
+    "small_end_bushing_thickness_mm": {"value": 1.5, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Épaisseur de représentation non mesurée."},
+    "small_end_bushing_axial_width_mm": {"value": 18.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Largeur de représentation non mesurée."},
+    "small_end_housing_visual_clearance_radial_mm": {"value": 0.05, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Jeu booléen, pas un ajustement fonctionnel."},
+    "oil_channel_visual_diameter_mm": {"value": 2.5, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Canal droit de démonstration reliant les volumes d'alésage et traversant les deux demi-coussinets; alimentation, débit et tenue inconnus."},
+    "oil_channel_boolean_overlap_mm": {"value": 1.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Surcourse booléenne sans signification physique."},
+    "boolean_overshoot_mm": {"value": 2.0, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Surcourse CAO pour des soustractions robustes."},
+    "stl_linear_tolerance_mm": {"value": 0.08, "unit": "mm", "classification": "design_hypothesis", "source_refs": [], "note": "Résolution du maillage d'affichage, sans incidence sur le STEP."},
+    "stl_angular_tolerance_rad": {"value": 0.12, "unit": "rad", "classification": "design_hypothesis", "source_refs": [], "note": "Résolution angulaire du maillage d'affichage."}
+  },
+  "unknown_required_inputs": [
+    {"id": "shared_crankpin_topology_and_finished_width", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "cap_register_geometry_and_dowel_strategy", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "rod_bolt_thread_grade_torque_and_preload", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "bearing_clearance_crush_material_layers_and_oil_grooves", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "small_end_bushing_interference_material_and_surface_finish", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "oil_channel_path_diameter_supply_pressure_and_required_flow", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "forging_or_additive_stock_surface_finish_and_tolerances", "value": null, "classification": "unknown_requires_traceable_measurement"},
+    {"id": "load_spectrum_temperature_lubrication_and_fatigue_targets", "value": null, "classification": "unknown_requires_traceable_measurement"}
+  ],
+  "required_features": [
+    {"id": "connecting_rod_body", "count": 1, "representation": "positive_solid"},
+    {"id": "connecting_rod_cap", "count": 1, "representation": "positive_solid"},
+    {"id": "cap_joint_plane", "count": 1, "representation": "split_gap_datum"},
+    {"id": "rod_bolt_through_hole", "count": 2, "representation": "subtractive_void"},
+    {"id": "rod_bolt", "count": 2, "representation": "positive_compound"},
+    {"id": "big_end_half_bearing", "count": 2, "representation": "positive_solid"},
+    {"id": "small_end_bushing", "count": 1, "representation": "positive_solid"},
+    {"id": "internal_oil_channel", "count": 1, "representation": "subtractive_void_and_reference_solid"}
+  ],
+  "pair_topology_audit": {
+    "formula": "required_span_mm = 2 * rod_width_mm + rod_width_mm * paired_rod_axial_clearance_factor",
+    "required_span_mm": 45.32,
+    "available_crankpin_width_mm": 26.0,
+    "deficit_mm": 19.32,
+    "maximum_equal_rod_width_if_side_by_side_mm": 12.621359223301,
+    "status": "blocked_incompatible_side_by_side_envelopes",
+    "automatic_resize_allowed": false,
+    "candidate_resolutions_not_selected": [
+      "measure_and_redesign_a_wider_crankpin",
+      "engineer_and_validate_narrower_rods",
+      "engineer_a_fork_and_blade_topology",
+      "engineer_separate_crankpins"
+    ]
+  },
+  "output_policy": {
+    "default_output": "work/917-connecting-rod-cad-f44",
+    "overwrite_existing_output": false,
+    "source_authority": [
+      "twins/reference-917-engine/connecting-rod-cad-f44.json",
+      "twins/reference-917-engine/source/build_connecting_rod_cad_f44.py"
+    ],
+    "neutral_cad": "step/connecting_rod_assembly.step",
+    "derived_display_mesh": "stl/connecting_rod_assembly-display-only.stl",
+    "geometry_report": "geometry-report.json",
+    "expected_shape_ids": [
+      "connecting_rod_body",
+      "connecting_rod_cap",
+      "rod_bolt_01",
+      "rod_bolt_02",
+      "big_end_half_bearing_upper",
+      "big_end_half_bearing_lower",
+      "small_end_bushing",
+      "oil_channel_reference",
+      "connecting_rod_assembly"
+    ],
+    "expected_step_count": 9,
+    "expected_stl_count": 9,
+    "property_assignment_intent": "skip",
+    "paired_assembly_export_allowed": false
+  },
+  "release_gates": {
+    "dimensions_measured": false,
+    "paired_rod_topology_resolved": false,
+    "materials_qualified": false,
+    "fits_and_tolerances_validated": false,
+    "bolt_preload_validated": false,
+    "bearing_and_lubrication_validated": false,
+    "mass_and_inertia_validated": false,
+    "fea_or_fatigue_validated": false,
+    "physics_simulation_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false,
+    "vehicle_installation_authorized": false,
+    "power_claim_authorized": false,
+    "1600_hp_proven": false
+  }
+}

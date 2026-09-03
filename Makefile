@@ -5,6 +5,7 @@
 .PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
 .PHONY: 917-component-factory-f42a-usd-test
 .PHONY: 917-variant-authority-f43-check
+.PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -37,10 +38,12 @@ F41_USD_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41dd
 F41_OUTPUT ?= work/917-component-factory-f41-execution
 F41_PLAN_OUTPUT ?= work/917-component-factory-f41-plan
 F41_BUNDLE_OUTPUT ?= work/917-component-factory-f41-bundle
+override F44_CAD_IMAGE := ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+override F44_OUTPUT := work/917-connecting-rod-cad-f44
 
 .PHONY: 917-scan-conforming-4v-f36-check
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-variant-authority-f43-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -559,6 +562,32 @@ engine-components:
 		--project-root . \
 		--contract twins/reference-917-engine/variant-authority-f43.json
 	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_variant_authority_f43.py -v
+
+917-connecting-rod-cad-f44-check:
+	PYTHONDONTWRITEBYTECODE=1 python3 twins/reference-917-engine/source/validate_connecting_rod_cad_f44.py \
+		--project-root . \
+		--contract twins/reference-917-engine/connecting-rod-cad-f44.json
+	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_connecting_rod_cad_f44.py -v
+
+917-connecting-rod-cad-f44: 917-connecting-rod-cad-f44-check
+	test ! -L work
+	test ! -L "$(F44_OUTPUT)"
+	test ! -e "$(F44_OUTPUT)"
+	mkdir -p work
+	test -d work
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-e HOME=/tmp -e XDG_CACHE_HOME=/tmp/cad-author-cache \
+		-e F44_CAD_RUNTIME_IMAGE_REF="$(F44_CAD_IMAGE)" \
+		--mount type=bind,src="$(CURDIR)/twins",dst=/workspace/twins,readonly \
+		--mount type=bind,src="$(CURDIR)/work",dst=/workspace/work \
+		--workdir /workspace --entrypoint python "$(F44_CAD_IMAGE)" \
+		/workspace/twins/reference-917-engine/source/smoke_connecting_rod_cad_f44.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/connecting-rod-cad-f44.json \
+		--output "/workspace/$(F44_OUTPUT)"
 
 917-wave-action-f39-image-test:
 	python3 tests/test_917_engine_wave_f39_image.py -v
