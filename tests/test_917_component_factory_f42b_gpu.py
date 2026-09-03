@@ -589,6 +589,8 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         self.assertIn("turntable.py", render)
         self.assertIn("--frames 24", render)
         self.assertIn("ffmpeg", render)
+        self.assertIn("drawbox=x=0:y=ih-54:w=iw:h=54", render)
+        self.assertNotIn("drawbox=x=0:y=h-54:w=w:h=54", render)
         self.assertIn("source_asset_mutated_by_render", render)
         self.assertIn("classify-nvidia-validation", validate_one)
         self.assertIn("classify-nvidia-validation", render)

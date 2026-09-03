@@ -150,7 +150,7 @@ cp -- "${FRAMES}/frame_018.png" "${PHOTO_LEFT}"
 DISCLOSURE="Visualisation Omniverse - collider statique seulement - aucune simulation ni FEA"
 run_logged ffmpeg -y -framerate 8 -start_number 0 \
     -i "${FRAMES}/frame_%03d.png" \
-    -vf "drawbox=x=0:y=h-54:w=w:h=54:color=black@0.65:t=fill,drawtext=text='${DISCLOSURE}':fontcolor=white:fontsize=20:x=(w-text_w)/2:y=h-38" \
+    -vf "drawbox=x=0:y=ih-54:w=iw:h=54:color=black@0.65:t=fill,drawtext=text='${DISCLOSURE}':fontcolor=white:fontsize=20:x=(w-text_w)/2:y=h-38" \
     -c:v libx264 -crf 18 -pix_fmt yuv420p -movflags +faststart "${MOVIE}"
 activate_preflight_environment
 refresh_budget
