@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "study_id": "porsche-917-head-f42-omniverse-validation",
+  "status": "needs_rerun",
+  "executed_on": "2026-09-04",
+  "input": {
+    "designation": "private F41 head baseline",
+    "step_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a",
+    "source_geometry_published": false
+  },
+  "runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "openusd_version": "0.26.8",
+    "native_ovrtx_render_executed": false,
+    "native_ovrtx_blocker": "Vulkan ERROR_INCOMPATIBLE_DRIVER on the rented host",
+    "cpu_reference_render_executed": true
+  },
+  "geometry": {
+    "default_prim": "/HeadF41Baseline",
+    "mesh_count": 1,
+    "vertex_count": 34313,
+    "triangle_count": 68678,
+    "watertight_after_exact_seam_weld": true,
+    "coordinate_displacement_from_weld": 0.0,
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "bounds_mm": [119.11445617675781, 206.09364318847656, 82.0],
+    "welded_usd_sha256": "f2fdc4083390a6a684d431281308374a561c6238b7428bd8a426ac220c1ae644",
+    "usd_published": false
+  },
+  "official_nvidia_workflow": {
+    "preflight": {
+      "status": "ready",
+      "report_sha256": "edf331cf2a22d5f572f49d0808c7935d6de1f68dd1c2b925854546f4422e508c"
+    },
+    "cad_to_usd_router": {
+      "status": "fail",
+      "reason": "The converter generated a temporary USD but the adapter rejected the non-canonical generated default-prim namespace before atomic publication."
+    },
+    "minimum_usd": {
+      "status": "pass",
+      "report_sha256": "160cc0039487cd68f653be500d70c493178e0dcff392445c2a118e620cb60bdc",
+      "warning": "Asset uses multiple layers"
+    },
+    "asset_validator": {
+      "status": "pass",
+      "issues": 0,
+      "report_sha256": "ce3656fcbd8da45947e4aaa9ebe6f58d02fa6a958f50a39cdb301bc223b03a04"
+    },
+    "geometry_validator": {
+      "status": "pass",
+      "issues": 0,
+      "report_sha256": "f61315c11046ed3f8dc4099fe24078ed6314a058b1ddaa0c164423b63ae6e258"
+    },
+    "physics_validator": {
+      "status": "pass",
+      "issues": 0,
+      "qualification_scope": "USD schema integrity only; the asset has no collider, rigid body or physical material",
+      "report_sha256": "dd3419ddf9990b7d8690d2d4773aa4471dd8040d945ddf3e82abcadcf991c2eb"
+    },
+    "simready_profile": {
+      "status": "fail",
+      "requested_profile": "Prop-Robotics-Neutral 1.0.0",
+      "available_profile_count": 0,
+      "report_sha256": "f212555c3b1be79ac5636101051142af0a0677f1b3d4c90622d1765125c21e94"
+    }
+  },
+  "publication": {
+    "image": {
+      "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-progress-four-views.png",
+      "sha256": "4db75c5a1203b33b3dc9e4093107a010479e2b6f1da4906d2066d46c17fbbce4",
+      "is_solver_result": false
+    },
+    "raw_reports_published": false,
+    "reason": "Raw reports contain private absolute paths; only hashes and a sanitized result summary are published."
+  },
+  "gates": {
+    "usd_minimum_valid": true,
+    "asset_schema_valid": true,
+    "geometry_schema_valid": true,
+    "physics_schema_valid": true,
+    "official_cad_to_usd_route_complete": false,
+    "simready_profile_valid": false,
+    "physical_properties_authored": false,
+    "material_card_qualified": false,
+    "thermal_validation_complete": false,
+    "structural_validation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
