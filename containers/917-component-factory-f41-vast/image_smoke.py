@@ -239,6 +239,7 @@ def runtime_audit() -> dict[str, object]:
     require(account.pw_uid == 9178 and account.pw_gid == 9178, "CAD identity mismatch")
     require(account.pw_shell == "/usr/sbin/nologin", "CAD login shell must remain disabled")
     require(Path("/usr/bin/setpriv").is_file(), "setpriv missing")
+    require(Path("/usr/bin/flock").is_file(), "flock missing")
     require(Path("/workspace/inbox").stat().st_mode & 0o777 == 0o700, "inbox mode mismatch")
     for directory in (JOBS, RESULTS):
         require(directory.is_dir(), f"missing workspace directory: {directory}")
@@ -254,6 +255,7 @@ def runtime_audit() -> dict[str, object]:
         "cad_login_shell": account.pw_shell,
         "gpu_required": False,
         "external_api_required": False,
+        "flock_available": True,
     }
 
 

@@ -250,7 +250,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
 
     def test_lock_is_prepublication_and_all_claims_remain_closed(self):
         lock = json.loads(LOCK.read_text(encoding="utf-8"))
-        self.assertEqual(lock["schema_version"], "1.3.0")
+        self.assertEqual(lock["schema_version"], "1.4.0")
         self.assertEqual(lock["phase"], "F41-vast-cad-image")
         self.assertEqual(lock["image"]["base_immutable_reference"], F28_BASE)
         self.assertEqual(lock["image"]["cad_user"], "9178:9178")
@@ -296,6 +296,15 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertEqual(security["sshd_runtime_wrapper"], "/usr/sbin/sshd")
         self.assertEqual(security["sshd_real_binary"], "/usr/lib/openssh/sshd.real")
         self.assertEqual(security["runtime_host_key_command"], "/usr/bin/ssh-keygen -A")
+        self.assertEqual(
+            security["runtime_host_key_lock"],
+            "/run/sshd/f41-runtime-host-keys.lock",
+        )
+        self.assertTrue(security["runtime_host_key_initialization_serialized"])
+        self.assertTrue(security["runtime_host_key_marker_published_atomically"])
+        self.assertTrue(
+            security["onstart_self_provisions_missing_runtime_host_key_marker"]
+        )
         self.assertTrue(security["runtime_host_keys_generated_before_real_sshd"])
         self.assertFalse(security["runtime_host_keys_persist_beyond_instance"])
         self.assertEqual(security["no_auto_tmux_marker"], "/root/.no_auto_tmux")
@@ -506,6 +515,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
         self.assertIn('rm -f -- "${no_auto_tmux}"', onstart)
         self.assertIn('install -o root -g root -m 0600 /dev/null "${no_auto_tmux}"', onstart)
         self.assertIn("f41-runtime-host-keys.ready", onstart)
+        self.assertIn('/usr/sbin/sshd -T >/dev/null', onstart)
         self.assertIn("--expect-runtime-authorized-keys", onstart)
         self.assertIn('"f41_component_factory_executed": False', onstart)
         sshd_wrapper = SSHD_RUNTIME_WRAPPER.read_text(encoding="utf-8")
@@ -514,12 +524,20 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "runtime_dir=/run/sshd",
             'install -d -o root -g root -m 0755 "${runtime_dir}"',
             "host_key_marker=${runtime_dir}/f41-runtime-host-keys.ready",
+            "host_key_lock=${runtime_dir}/f41-runtime-host-keys.lock",
+            'exec 9>"${host_key_lock}"',
+            "/usr/bin/flock -x 9",
             "/usr/bin/ssh-keygen -A",
             "stat -c '%u:%g:%a'",
             '"0:0:600"',
+            '/usr/bin/mktemp "${runtime_dir}/.f41-runtime-host-keys.XXXXXX"',
+            'mv -f -- "${host_key_marker_tmp}" "${host_key_marker}"',
+            "/usr/bin/flock -u 9",
+            "exec 9>&-",
             'exec "${real_sshd}" "$@"',
         ):
             self.assertIn(fragment, sshd_wrapper)
+        self.assertNotIn('rm -f -- "${host_key_marker}"', sshd_wrapper)
         self.assertNotIn("PRIVATE KEY", sshd_wrapper)
 
     def test_smoke_executes_build123d_step_after_privilege_drop_and_closes_claims(self):
@@ -538,6 +556,7 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             '"sshd_runtime_wrapper_installed": True',
             '"noninteractive_ssh_auto_tmux_disabled": True',
             '"runtime_host_keys_generated_by_wrapper": (',
+            '"flock_available": True',
             '"vast_authorized_key_injection_verified": False',
             '"vast_ssh_direct_handshake_verified": False',
             '"f41_component_factory_executed": False',
@@ -561,7 +580,17 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "steps.build.outputs.digest",
             "Gate anonymous pull of the exact digest",
             "/usr/sbin/sshd -T >/dev/null",
-            "runtime_host_keys_generated_before_onstart",
+            "/usr/bin/flock -x 8",
+            'test ! -L "${marker}"',
+            'test -n "${waiter_pid}"',
+            'kill -0 "${waiter_pid}"',
+            'marker_before=$(stat -c "%d:%i:%u:%g:%a:%s" -- "${marker}")',
+            'test "$(stat -c "%d:%i:%u:%g:%a:%s" -- "${marker}")" = "${marker_before}"',
+            'wait "${contender_pid}" 2>/dev/null || true',
+            'wait "${contender_pid}"',
+            "917-component-factory-f41-vast-lock-contention-ready.json",
+            "runtime_host_keys_ready_before_cad_smoke",
+            ".runtime.flock_available == true",
             "noninteractive_ssh_auto_tmux_disabled",
             'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
             "--user 0:0",
@@ -615,10 +644,12 @@ class ComponentFactoryF41VastImageTests(unittest.TestCase):
             "Vast remplace ENTRYPOINT",
             "ssh-keygen -A",
             "sshd.real",
+            "flock",
             "/root/.no_auto_tmux",
             "révoqués pour toute nouvelle",
             "66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a",
             "356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f",
+            "7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce",
             "git ls-files -s",
             "component-factory-f41-offers",
             "run-917-component-factory-f41-cad",

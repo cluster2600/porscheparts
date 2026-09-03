@@ -25,6 +25,13 @@ test "$(stat -c '%u:%g:%a' "${no_auto_tmux}")" = "0:0:600" || {
 }
 
 host_key_marker=/run/sshd/f41-runtime-host-keys.ready
+# L'API Vast garantit que SSH est initialise avant onstart, mais ne garantit
+# pas le chemin interne utilise pour lancer sshd. Si son entrypoint n'a pas
+# appele notre wrapper, le prevol le fait lui-meme en mode validation (-T), ce
+# qui genere/verifie les clefs ephemeres et publie le marqueur atomique.
+if [ ! -e "${host_key_marker}" ] && [ ! -L "${host_key_marker}" ]; then
+    /usr/sbin/sshd -T >/dev/null
+fi
 test -f "${host_key_marker}" || { echo "vast_runtime_host_key_marker_missing" >&2; exit 83; }
 test ! -L "${host_key_marker}" || { echo "vast_runtime_host_key_marker_symlink_rejected" >&2; exit 84; }
 test "$(stat -c '%u:%g:%a' "${host_key_marker}")" = "0:0:600" || {
@@ -60,8 +67,7 @@ ready = {
     "status": "vast_onstart_ready_for_public_archive_transfer_cad_not_started",
     "authorized_key_file_present": True,
     "noninteractive_ssh_auto_tmux_disabled": True,
-    "runtime_host_keys_generated_before_onstart": True,
-    "sshd_managed_by_vast_entrypoint": True,
+    "runtime_host_keys_ready_before_cad_smoke": True,
     "synthetic_build123d_step_smoke_passed": True,
     "f41_component_factory_executed": False,
     "physical_claims_validated": False,

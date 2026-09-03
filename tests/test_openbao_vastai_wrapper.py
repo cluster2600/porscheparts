@@ -819,7 +819,11 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )
-        self.assertNotIn(
+        self.assertIn(
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155,
+            production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
+        )
+        self.assertIn(
             production_wrapper.COMPONENT_FACTORY_F41_IMAGE,
             production_wrapper.COMPONENT_FACTORY_F41_REVOKED_IMAGES,
         )
@@ -1367,7 +1371,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             "synthetic_build123d_step_smoke_passed",
             "synthetic_step_roundtrip_executed",
             "synthetic_closed_solid_after_roundtrip",
-            "runtime_host_keys_generated_before_onstart",
+            "runtime_host_keys_ready_before_cad_smoke",
             "sshd_runtime_wrapper_installed",
             "runtime_host_keys_generated_by_wrapper",
             "f41_component_factory_executed",
@@ -2009,8 +2013,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                         "status": "vast_onstart_ready_for_public_archive_transfer_cad_not_started",
                         "authorized_key_file_present": True,
                         "noninteractive_ssh_auto_tmux_disabled": True,
-                        "runtime_host_keys_generated_before_onstart": True,
-                        "sshd_managed_by_vast_entrypoint": True,
+                        "runtime_host_keys_ready_before_cad_smoke": True,
                         "synthetic_build123d_step_smoke_passed": True,
                         "f41_component_factory_executed": False,
                         "physical_claims_validated": False,

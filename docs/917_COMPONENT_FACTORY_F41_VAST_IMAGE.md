@@ -41,7 +41,7 @@ shell `nologin`, `NoNewPrivs=1` et une capability bounding set vide.
 Un digest ne peut être inscrit dans le wrapper comme candidat à sa première
 qualification supervisée qu'après publication réussie et pull anonyme exact.
 Il ne devient qualifié qu'après une commande BatchMode `ssh_direct` réelle,
-la récupération intègre du lot et la destruction vérifiée de l'instance. Trois
+la récupération intègre du lot et la destruction vérifiée de l'instance. Quatre
 digests sont révoqués pour toute nouvelle location. Le premier avait retiré les clés hôte :
 Vast invoquait `sshd` avant `onstart`, avec le résultat
 `sshd: no hostkeys available -- exiting`. Le second a bien établi SSH et créé
@@ -49,8 +49,11 @@ des sessions, mais le bloc auto-tmux injecté par Vast dans `/root/.bashrc`
 interceptait aussi les commandes non interactives (`no sessions` puis
 `open terminal failed: not a terminal`). Le troisième a été bloqué avant toute
 location : un test du bundle Git réel a trouvé que le stager exigeait à tort
-`0755` pour toute source Python. Le candidat publié ne devient qualifié qu'après
-le smoke distant complet décrit plus bas.
+`0755` pour toute source Python. Le quatrième passait le smoke séquentiel, mais
+retirait brièvement le marqueur des clés hôte lors de rappels `sshd` concurrents.
+La course a été reproduite nativement avec les codes `83` et `1`; le verrou et
+la publication atomique du marqueur la corrigent. Aucun nouveau candidat ne
+devient qualifié avant le smoke distant complet décrit plus bas.
 
 Les valeurs invariantes de la recette corrigée sont :
 
@@ -59,11 +62,12 @@ image repository: ghcr.io/cluster2600/3dprinting993-cad-author-f28
 revoked image 1: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16
 revoked image 2: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a
 revoked image 3: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f
+revoked image 4: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce
 publication workflow 33696007854: success, image révoquée après test du bundle Git réel
 revocation: before Vast spend; real Git bundle mode mismatch found by supervisor tests
 replacement workflow 33699574489: success, linux/amd64 + attestations + anonymous pull
-supervised qualification candidate, not yet qualified: ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce
-replacement linux/amd64 manifest: sha256:320be537646fdd41fe3fdb3d66c764ef746fc8561475f6e1ae1d13514bad8ffd
+supervised qualification candidate: pending corrected immutable publication
+replacement linux/amd64 manifest: pending corrected immutable publication
 runtype: ssh_direct
 remote user: root
 image onstart: /usr/local/bin/917-cad-vast-onstart
@@ -95,9 +99,12 @@ et exécute ensuite `onstart`. L'observation réelle montre que son entrypoint
 appelle `/usr/sbin/sshd` avant `onstart`. La recette corrigée conserve donc
 `ssh_direct`, déplace le binaire OpenSSH immuable vers
 `/usr/lib/openssh/sshd.real` et place à son chemin habituel un wrapper minimal.
-Celui-ci exécute `ssh-keygen -A`, vérifie que les clés privées nouvellement
-créées appartiennent à `root:root` avec le mode `0600`, écrit un marqueur dans
-`/run/sshd`, puis remplace son processus par `sshd.real`. Les clés naissent dans
+Celui-ci sérialise avec `flock`, exécute `ssh-keygen -A`, vérifie que les clés
+privées nouvellement créées appartiennent à `root:root` avec le mode `0600`,
+publie atomiquement un marqueur dans `/run/sshd`, libère le verrou, puis remplace
+son processus par `sshd.real`. Si Vast n'a pas emprunté ce chemin interne avant
+`onstart`, le prévol appelle lui-même `/usr/sbin/sshd -T` et obtient le même
+contrat sans lancer un second démon. Les clés naissent dans
 la couche écrivable de l'instance et ne sont jamais intégrées à une couche OCI.
 L'image crée aussi `/root/.no_auto_tmux` comme fichier vide `root:root` de mode
 `0600`. `onstart` rejette un lien ou un type spécial, recrée ce marqueur avec les
@@ -217,12 +224,15 @@ docker run --rm --platform linux/amd64 --user 0:0 \
 Le smoke réalise réellement : validation du manifeste public, extraction du
 tar, changement de propriétaire, chute de privilèges, création build123d,
 export STEP, réouverture OCCT et contrôle d'un solide fermé. Il ne démarre pas
-`sshd` et laisse toutes les gates Vast et moteur fermées. Le workflow ajoute un
-second conteneur éphémère, sans réseau : il appelle `/usr/sbin/sshd -T` pour
-reproduire l'ordre Vast, exige la création des clés hôte runtime et du marqueur,
-puis seulement exécute `917-cad-vast-onstart`. Les deux smokes exigent aussi le
-fichier `/root/.no_auto_tmux` régulier, `root:root`, mode `0600`. Le conteneur
-est détruit à la fin du smoke et ses clés avec lui.
+`sshd` et laisse toutes les gates Vast et moteur fermées. Le workflow exécute
+ensuite deux smokes éphémères supplémentaires, sans réseau. Le premier lance
+directement `917-cad-vast-onstart` sans pré-appel à `sshd` et prouve son
+auto-provisionnement à froid. Le second publie d'abord le marqueur, détient
+explicitement le verrou FD8, puis vérifie qu'un appel concurrent à
+`/usr/sbin/sshd -T` attend réellement dans `flock` pendant qu'`onstart` lit un
+marqueur stable. Les smokes `onstart` exigent aussi le fichier
+`/root/.no_auto_tmux` régulier, `root:root`, mode `0600`. Chaque conteneur est
+détruit à la fin du smoke et ses clés avec lui.
 
 Le workflow refuse aussi une couche ajoutée supérieure à 16 000 000 octets
 selon la métrique Docker Linux native. Le digest historique désormais révoqué

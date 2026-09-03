@@ -52,6 +52,7 @@ RUN --mount=type=bind,source=containers/917-component-factory-f41-vast/system-pa
     && mv /usr/sbin/sshd /usr/lib/openssh/sshd.real \
     && test -x /usr/lib/openssh/sshd.real \
     && test -x /usr/bin/setpriv \
+    && test -x /usr/bin/flock \
     && rm -f /etc/ssh/ssh_host_*_key /etc/ssh/ssh_host_*_key.pub \
     && rm -rf /tmp/debs /var/lib/apt/lists/*
 
@@ -87,6 +88,7 @@ RUN find /opt/917-component-factory-f41-vast -type d -exec chmod 0555 {} + \
     && test "$(stat -c '%u:%g:%a' /root/.no_auto_tmux)" = "0:0:600" \
     && test -x /usr/sbin/sshd \
     && test -x /usr/lib/openssh/sshd.real \
+    && test -x /usr/bin/flock \
     && test -z "$(find /etc/ssh -maxdepth 1 -type f -name 'ssh_host_*_key*' -print -quit)"
 
 WORKDIR /workspace

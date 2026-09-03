@@ -4,6 +4,7 @@ set -eu
 real_sshd=/usr/lib/openssh/sshd.real
 runtime_dir=/run/sshd
 host_key_marker=${runtime_dir}/f41-runtime-host-keys.ready
+host_key_lock=${runtime_dir}/f41-runtime-host-keys.lock
 
 if [ "$(id -u)" -ne 0 ]; then
     echo "sshd_runtime_wrapper_requires_root" >&2
@@ -37,11 +38,13 @@ for argument in "$@"; do
 done
 
 # The image deliberately contains no host private key. Vast's ssh_direct
-# entrypoint invokes /usr/sbin/sshd before onstart, so create the instance
-# identity just in time in the writable container layer. ssh-keygen -A only
-# creates missing default host keys and never replaces an existing identity.
+# entrypoint can invoke /usr/sbin/sshd more than once before or during onstart.
+# Serialize those invocations so concurrent ssh-keygen -A calls cannot race.
+# ssh-keygen -A only creates missing default host keys and never replaces an
+# existing identity.
 umask 077
-rm -f -- "${host_key_marker}"
+exec 9>"${host_key_lock}"
+/usr/bin/flock -x 9
 /usr/bin/ssh-keygen -A
 
 host_key_count=0
@@ -67,5 +70,19 @@ test "${host_key_count}" -gt 0 || {
     exit 88
 }
 
-install -o root -g root -m 0600 /dev/null "${host_key_marker}"
+# Never unlink a valid marker while another Vast sshd invocation or onstart is
+# auditing it. Publish the replacement atomically inside the root-owned runtime
+# directory, then release the lock before the long-lived daemon exec.
+host_key_marker_tmp=$(/usr/bin/mktemp "${runtime_dir}/.f41-runtime-host-keys.XXXXXX")
+cleanup_marker_tmp() {
+    test -z "${host_key_marker_tmp:-}" || rm -f -- "${host_key_marker_tmp}"
+}
+trap cleanup_marker_tmp EXIT HUP INT TERM
+chown root:root "${host_key_marker_tmp}"
+chmod 0600 "${host_key_marker_tmp}"
+mv -f -- "${host_key_marker_tmp}" "${host_key_marker}"
+host_key_marker_tmp=
+trap - EXIT HUP INT TERM
+/usr/bin/flock -u 9
+exec 9>&-
 exec "${real_sshd}" "$@"

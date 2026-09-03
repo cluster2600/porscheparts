@@ -63,21 +63,25 @@ COMPONENT_FACTORY_F41_DISK_GB = 300
 COMPONENT_FACTORY_F41_MIN_RELIABILITY = 0.985
 COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB = 0.05
 COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB = 0.05
-# Three published images are revoked: DD0 lacked runtime host keys, 66C allowed
-# Vast auto-tmux to intercept BatchMode commands, and 356A exposed an exact Git
-# file-mode mismatch before any paid launch. Keep every failed digest denylisted.
+# Four published images are revoked: DD0 lacked runtime host keys, 66C allowed
+# Vast auto-tmux to intercept BatchMode commands, 356A exposed an exact Git
+# file-mode mismatch before any paid launch, and 7155 raced concurrent sshd
+# initialization against onstart. Keep every failed digest denylisted.
 COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16"
 COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
 COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f"
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
 COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
     {
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
         COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155,
     }
 )
-# Replacement 7155 passed the public linux/amd64 workflow and an anonymous
-# manifest pull. Its first Vast execution remains supervised and fail closed.
+# 7155 remains here only as the blocked placeholder until the corrected image
+# has passed publication and anonymous-pull gates. Membership in the revoked
+# set prevents every paid launch in this intermediate state.
 COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
 COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
 COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
@@ -1726,8 +1730,7 @@ require(ready == {
     'status': 'vast_onstart_ready_for_public_archive_transfer_cad_not_started',
     'authorized_key_file_present': True,
     'noninteractive_ssh_auto_tmux_disabled': True,
-    'runtime_host_keys_generated_before_onstart': True,
-    'sshd_managed_by_vast_entrypoint': True,
+    'runtime_host_keys_ready_before_cad_smoke': True,
     'synthetic_build123d_step_smoke_passed': True,
     'f41_component_factory_executed': False,
     'physical_claims_validated': False,
@@ -1744,6 +1747,7 @@ require(runtime.get('system') == 'Linux')
 require(runtime.get('machine') == 'x86_64')
 require(runtime.get('gpu_required') is False)
 require(runtime.get('external_api_required') is False)
+require(runtime.get('flock_available') is True)
 ssh_transport = report.get('ssh_transport', {})
 require(isinstance(ssh_transport, dict))
 require(ssh_transport.get('runtime_authorized_keys_expected') is True)

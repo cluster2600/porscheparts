@@ -156,6 +156,7 @@ jobs:
             .runtime.machine == "x86_64" and
             .runtime.transport_uid == 0 and
             .runtime.cad_uid == 9178 and
+            .runtime.flock_available == true and
             .ssh_transport.sshd_packaged == true and
             .ssh_transport.sshd_started == false and
             .ssh_transport.sshd_runtime_wrapper_installed == true and
@@ -202,9 +203,9 @@ jobs:
             ([.release_gates[] | select(. != false)] | length) == 0
           ' 917-component-factory-f41-vast-base-cad-smoke.json >/dev/null
 
-          # Simule l'ordre observe sur Vast : son entrypoint appelle sshd avant
-          # onstart. Le conteneur ephemere reste hors reseau et ses clefs hote
-          # runtime disparaissent avec lui ; aucune clef ne rejoint une couche.
+          # Prouve d'abord que l'onstart ne depend d'aucun chemin interne Vast :
+          # il doit auto-provisionner le marqueur si l'entrypoint n'a pas appele
+          # notre wrapper. Les clefs ephemeres disparaissent avec le conteneur.
           docker run --rm --platform linux/amd64 --user 0:0 \
             --network none \
             --tmpfs /root/.ssh:rw,nosuid,nodev,noexec,size=1m,mode=0700 \
@@ -216,7 +217,7 @@ jobs:
             --cap-add SETUID --cap-add SETGID --cap-add SETPCAP \
             --security-opt no-new-privileges \
             --entrypoint /bin/sh "${PINNED_REF}" -c \
-            'umask 077; /usr/sbin/sshd -T >/dev/null; printf "%s\n" runtime-authorized-key-placeholder > /root/.ssh/authorized_keys; /usr/local/bin/917-cad-vast-onstart; cat /workspace/READY' \
+            'set -eu; umask 077; printf "%s\n" runtime-authorized-key-placeholder > /root/.ssh/authorized_keys; /usr/local/bin/917-cad-vast-onstart; cat /workspace/READY' \
             > 917-component-factory-f41-vast-ready.json \
             2> 917-component-factory-f41-vast-ready.stderr
           test ! -s 917-component-factory-f41-vast-ready.stderr
@@ -224,13 +225,89 @@ jobs:
             .status == "vast_onstart_ready_for_public_archive_transfer_cad_not_started" and
             .authorized_key_file_present == true and
             .noninteractive_ssh_auto_tmux_disabled == true and
-            .runtime_host_keys_generated_before_onstart == true and
-            .sshd_managed_by_vast_entrypoint == true and
+            .runtime_host_keys_ready_before_cad_smoke == true and
             .synthetic_build123d_step_smoke_passed == true and
             .f41_component_factory_executed == false and
             .physical_claims_validated == false and
             .manufacturing_authorized == false
           ' 917-component-factory-f41-vast-ready.json >/dev/null
+
+          # Force une contention reelle : un sshd doit etre bloque dans flock
+          # pendant que l'onstart lit le marqueur deja publie. Le marqueur doit
+          # rester stable jusqu'a la liberation explicite du verrou.
+          docker run --rm --platform linux/amd64 --user 0:0 \
+            --network none \
+            --tmpfs /root/.ssh:rw,nosuid,nodev,noexec,size=1m,mode=0700 \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /workspace:rw,exec,nosuid,nodev,size=512m \
+            --tmpfs /run:rw,nosuid,nodev,size=32m \
+            --pids-limit 128 --cap-drop ALL \
+            --cap-add CHOWN --cap-add DAC_OVERRIDE --cap-add FOWNER \
+            --cap-add SETUID --cap-add SETGID --cap-add SETPCAP \
+            --security-opt no-new-privileges \
+            --entrypoint /bin/sh "${PINNED_REF}" -c \
+            'set -eu
+             umask 077
+             printf "%s\n" runtime-authorized-key-placeholder > /root/.ssh/authorized_keys
+             /usr/sbin/sshd -T >/dev/null
+             marker=/run/sshd/f41-runtime-host-keys.ready
+             lock=/run/sshd/f41-runtime-host-keys.lock
+             test -f "${marker}"
+             test ! -L "${marker}"
+             marker_before=$(stat -c "%d:%i:%u:%g:%a:%s" -- "${marker}")
+             exec 8>"${lock}"
+             /usr/bin/flock -x 8
+             contender_pid=
+             cleanup() {
+               /usr/bin/flock -u 8 2>/dev/null || true
+               exec 8>&-
+               test -z "${contender_pid}" || kill "${contender_pid}" 2>/dev/null || true
+               test -z "${contender_pid}" || wait "${contender_pid}" 2>/dev/null || true
+               contender_pid=
+             }
+             trap cleanup EXIT HUP INT TERM
+             /usr/sbin/sshd -T >/dev/null 2>/tmp/f41-sshd-contender.stderr &
+             contender_pid=$!
+             waiter_pid=
+             attempts=0
+             while test "${attempts}" -lt 200; do
+               children=$(cat "/proc/${contender_pid}/task/${contender_pid}/children" 2>/dev/null || true)
+               for child_pid in ${children}; do
+                 if test "$(cat "/proc/${child_pid}/comm" 2>/dev/null || true)" = flock; then
+                   waiter_pid=${child_pid}
+                   break
+                 fi
+               done
+               test -z "${waiter_pid}" || break
+               attempts=$((attempts + 1))
+               sleep 0.01
+             done
+             test -n "${waiter_pid}"
+             kill -0 "${contender_pid}"
+             kill -0 "${waiter_pid}"
+             test "$(stat -c "%d:%i:%u:%g:%a:%s" -- "${marker}")" = "${marker_before}"
+             /usr/local/bin/917-cad-vast-onstart
+             kill -0 "${contender_pid}"
+             kill -0 "${waiter_pid}"
+             test "$(stat -c "%d:%i:%u:%g:%a:%s" -- "${marker}")" = "${marker_before}"
+             /usr/bin/flock -u 8
+             exec 8>&-
+             wait "${contender_pid}"
+             contender_pid=
+             test ! -s /tmp/f41-sshd-contender.stderr
+             trap - EXIT HUP INT TERM
+             cat /workspace/READY' \
+            > 917-component-factory-f41-vast-lock-contention-ready.json \
+            2> 917-component-factory-f41-vast-lock-contention-ready.stderr
+          test ! -s 917-component-factory-f41-vast-lock-contention-ready.stderr
+          jq -e '
+            .status == "vast_onstart_ready_for_public_archive_transfer_cad_not_started" and
+            .runtime_host_keys_ready_before_cad_smoke == true and
+            .synthetic_build123d_step_smoke_passed == true and
+            .f41_component_factory_executed == false and
+            .physical_claims_validated == false and
+            .manufacturing_authorized == false
+          ' 917-component-factory-f41-vast-lock-contention-ready.json >/dev/null
           printf '%s\n' "${PINNED_REF}" > 917-component-factory-f41-vast-image-ref.txt
           printf '%s\n' "${platform_digest}" > 917-component-factory-f41-vast-platform-digest.txt
 
@@ -281,6 +358,8 @@ jobs:
             917-component-factory-f41-vast-base-cad-smoke.stderr
             917-component-factory-f41-vast-ready.json
             917-component-factory-f41-vast-ready.stderr
+            917-component-factory-f41-vast-lock-contention-ready.json
+            917-component-factory-f41-vast-lock-contention-ready.stderr
             917-component-factory-f41-vast-anonymous-smoke.json
             917-component-factory-f41-vast-anonymous-smoke.stderr
             917-component-factory-f41-vast-image-ref.txt
