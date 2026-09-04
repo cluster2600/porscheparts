@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F47",
+  "asset_id": "917_30_turbo_5374_2v_4v_cae_load_transfer_f47",
+  "classification": "uncorrelated_zero_dimensional_load_envelopes_for_future_cae_not_cfd_not_cht_not_fea",
+  "$comment": "Transfert borne des 36 traces F46 vers des tables de chargement. Aucun domaine fluide, solide, maillage ou calcul CAE n'est cree.",
+  "upstream": {
+    "f46_contract": {
+      "path": "twins/reference-917-engine/cantera-2v-4v-crank-cycle-f46.json",
+      "sha256": "1b31514637a1e8d630e14f036f84412aaf5f021145b1a0f441958fb256c50936"
+    },
+    "f46_cycle_report": {
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/cycle-report.json",
+      "sha256": "b2c0c661e42f0d18fc8779270affa967720e507916a2bf0b9fcad0ba07d3b1b6"
+    },
+    "f46_manifest": {
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/manifest.json",
+      "sha256": "dec4b9514655404bdf95947c7172c7a6563319fbdea747600be36f497cc321c9"
+    },
+    "solver_authority": {
+      "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+      "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482"
+    }
+  },
+  "source_matrix": {
+    "architectures": ["2v", "4v"],
+    "combustion_models": ["cantera_finite_rate", "wiebe_counter_model"],
+    "discharge_coefficients": [0.62, 0.72, 0.82],
+    "crank_steps_deg": [1.0, 0.5, 0.25],
+    "expected_case_count": 36,
+    "same_non_geometry_boundaries_required": true
+  },
+  "transfer_grid": {
+    "start_deg": 0,
+    "stop_exclusive_deg": 720,
+    "step_deg": 1,
+    "interpolation_allowed": false,
+    "selection": "exact_integer_angle_samples_present_in_every_F46_trace",
+    "speed_rpm": 9000.0,
+    "time_equation": "t_s=theta_deg/(6*N_rpm)"
+  },
+  "load_equations": {
+    "mean_piston_speed": "Up=2*S*N/60",
+    "h_gas": "h=130*(max(p,1e4)/1e5)^0.8*(max(T,200)/300)^-0.53*(max(Up,1)/10)^0.8",
+    "wall_flux_closure": "q_wall=h_gas*(T_gas-T_wall)",
+    "structural_gauge_pressure": "p_gauge=p_abs-p_reference",
+    "wall_temperature_k": 475.0,
+    "structural_reference_pressure_pa_abs": 101325.0,
+    "reference_pressure_classification": "screening_hypothesis_not_measured_engine_backside_pressure",
+    "positive_wall_flux_direction": "gas_to_solid"
+  },
+  "envelope_policy": {
+    "per_architecture_per_model": "pointwise_min_max_across_three_Cd_and_three_crank_steps",
+    "cross_model_bracket": "pointwise_outer_bound_of_Cantera_and_Wiebe_model_envelopes",
+    "contributors_per_model_per_angle": 9,
+    "variables": [
+      "pressure_pa_abs",
+      "temperature_k",
+      "h_gas_w_m2_k",
+      "wall_heat_flux_w_m2"
+    ],
+    "joint_trajectory_claimed": false,
+    "warning": "Une enveloppe point par point peut melanger plusieurs cas et ne constitue pas une trajectoire thermodynamique realisable. Un calcul aval doit choisir une trace F46 complete et garder son identite de cas."
+  },
+  "geometry_policy": {
+    "geometry_created": false,
+    "cad_created": false,
+    "mesh_created": false,
+    "external_scan_contour_modified": false,
+    "oval_or_ellipse_created": false,
+    "patches_are_unresolved_names_only": true
+  },
+  "solver_handoff": {
+    "openfoam_family": {
+      "roles": ["AATE_OpenFOAM_ICengines", "historical_engineFoam_counter_solver"],
+      "execution_claimed": false,
+      "mapping_path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/openfoam-aate-enginefoam-patches.json",
+      "rule": "p_et_T_sont_des_cibles_de_comparaison_dans_le_volume_cylindre; h_et_T_ou_q_seulement_alimentent_une_future_paroi_CHT"
+    },
+    "calculix": {
+      "execution_claimed": false,
+      "mapping_path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/calculix-loads.json",
+      "pressure_rule": "DLOAD_P_from_signed_p_gauge_after_face_normal_review",
+      "thermal_rule": "FILM_h_Tgas_or_DFLUX_qwall_never_both",
+      "geometry_sets_available": false
+    }
+  },
+  "quality_limits": {
+    "source_hashes_must_match": true,
+    "all_36_cases_must_be_represented": true,
+    "rows_per_architecture_envelope": 720,
+    "relative_wall_flux_closure_limit": 0.000001,
+    "finite_positive_h_required": true
+  },
+  "release_gates": {
+    "sealed_2v_fluid_domain_available": false,
+    "sealed_4v_fluid_domain_available": false,
+    "patch_mapping_verified_on_geometry": false,
+    "three_dimensional_CFD_completed": false,
+    "CHT_completed": false,
+    "CalculiX_pressure_analysis_completed": false,
+    "CalculiX_thermal_analysis_completed": false,
+    "Cd_correlated_on_flow_bench": false,
+    "cylinder_pressure_correlated": false,
+    "wall_heat_transfer_correlated": false,
+    "cross_model_acceptance_passed": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
