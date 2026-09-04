@@ -132,6 +132,7 @@ Après exécution, les VTK, CSV de bain et nombres de Courant sont extraits puis
 
 ```sh
 python3 twins/reference-917-engine/source/extract_additivefoam_f42_metrics.py \
+  --jobs 12 \
   --run-manifest work/917-f42-lpbf/doe/917-head-lpbf-doe-f42-manifest.json \
   --output work/917-f42-lpbf/doe/measurements.json
 
@@ -144,6 +145,24 @@ Le schéma de chaque mesure exige : identifiant, résolution, état de fin,
 finitude, températures maximale et P99, volume fondu, trois dimensions du bain
 et nombre de Courant maximal. Une mesure manquante, dupliquée ou hors matrice
 échoue explicitement.
+
+L'extracteur lit uniquement les fichiers VTK volumiques `layer1_*.vtk` à la
+racine de chaque export. Les fichiers `POLYDATA` des patches ne sont pas des
+états volumiques et sont volontairement exclus. `--jobs` parallélise cette
+lecture sans modifier les résultats.
+
+## Exécution mesurée F42.2
+
+Deux hôtes x86 indépendants ont exécuté la matrice complète : `33/33` calculs
+terminés sur chacun, `0` saturation à `3 300 K`, `3/3` études de convergence
+passées et `33/33` résultats reproduits dans les tolérances. La plage T99 des
+27 cas nominaux vaut `329,300–392,168 K` sur les deux hôtes. L'écart absolu
+inter-hôtes maximal sur T99 est `3,0517578125e-5 K`.
+
+Les preuves, images et SHA-256 sont décrits dans
+[le rapport F42.2 exécuté](917_F42_2_ADDITIVEFOAM_LIVE.md). Cette réussite ouvre
+uniquement la gate de classement numérique du DOE ; les gates de support,
+fichier machine, coupon, matériau, impression et démarrage restent fermées.
 
 Le futur export de tranchage fournisseur peut être contrôlé séparément :
 

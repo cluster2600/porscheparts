@@ -1,0 +1,53 @@
+{
+  "artifacts": {
+    "comparison": {
+      "file": "917-head-f42-2-cross-host.json",
+      "sha256": "a1624877230fe9fbff51f74207fd2e27e864b7e630283047047f1255d12256ae"
+    },
+    "comparison_image": {
+      "file": "917-head-f42-2-cross-host.png",
+      "sha256": "3e9de3878aeb1bed1255fee142b794f7b5e9ebb63640351c20a2f8221e5d1518"
+    },
+    "host_a_provenance": {
+      "file": "917-head-f42-2-provenance-host-a.json",
+      "sha256": "b4b299de03e2a6838b8fa1f4bf920cf96b5a7c3e39f0f1b9f1682f94c29f6f6f"
+    },
+    "host_a_results": {
+      "file": "917-head-f42-2-results-host-a.json",
+      "sha256": "f85ac6b3503c0123bcb35f870e6120ef83d518988e972f303a71600b1ef9dec8"
+    },
+    "host_a_results_image": {
+      "file": "917-head-f42-2-results-host-a.png",
+      "sha256": "60553dd24a2a221f87f7a5b4c82c3178466f10acf035f8fec9f347457c6f01b3"
+    },
+    "host_b_provenance": {
+      "file": "917-head-f42-2-provenance-host-b.json",
+      "sha256": "706568c42841a3bcf9d1b2f69059213582285607c8ecba3e126453e06de7b462"
+    },
+    "host_b_results": {
+      "file": "917-head-f42-2-results-host-b.json",
+      "sha256": "6f389f286dbc28207211b567e7c15815480e3090971bc93c2205f8fe608aae2f"
+    },
+    "host_b_results_image": {
+      "file": "917-head-f42-2-results-host-b.png",
+      "sha256": "5b1eaba043ef397b06dfe06914558b7e18e3ca216992edfdea36d6bcb7bad3fd"
+    }
+  },
+  "gates": {
+    "all_33_runs_reproduced_within_tolerance": true,
+    "contains_private_geometry": false,
+    "engine_start_authorized": false,
+    "metal_print_authorized": false,
+    "second_independent_physics_method_completed": false
+  },
+  "phase": "F42.2",
+  "processing_sources": {
+    "compare_additivefoam_f42_hosts.py": "655b668800739e2bd8795e543a2a2087db38201986be01dcc7092cd5594e1c8f",
+    "evaluate_additivefoam_f42_doe.py": "38d4817156a2bb83465faba421406d94968a7e75ae85afef0f9d60497cf37fd9",
+    "extract_additivefoam_f42_metrics.py": "e6cf67c814a7fab67450971353b3628128e513da2f5b0b934c6a60b8101e66fd",
+    "render_additivefoam_f42_comparison.py": "b2f268e8d1d77bbb3a9f78f5aa4224cf3e70a119d8e1c3b3e948072ba7413adb",
+    "render_additivefoam_f42_results.py": "4deee595e5b025b79b8ab880cc9a5be699718385ce1ad9e353c03dbabfa0a73b"
+  },
+  "privacy": "aggregate solver measurements and path-free provenance only; no scan-derived geometry, private paths or instance identifiers",
+  "schema_version": "1.0.0"
+}
