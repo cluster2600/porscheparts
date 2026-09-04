@@ -204,6 +204,21 @@ Le contrôle autonome du lot public est :
 make 917-f50-cfd-recovery-check
 ```
 
+## Calculateur et coût de la campagne
+
+La campagne sélectionnée a utilisé un seul calculateur éphémère vérifié :
+`32` cœurs CPU effectifs, `128565 MB` de RAM et une NVIDIA RTX PRO 6000
+Blackwell de `97887 MB`. L'image `linux/amd64` était épinglée au digest
+`sha256:897ee887e0d442d871ac7980730d3a4d7ae59fff4aff17e4ff5809cb735fd331`.
+La fenêtre d'exécution observée, depuis le marqueur runtime prêt jusqu'à la
+vérification de destruction, est restée inférieure à une heure. Au tarif
+affiché de `2,0072888889 USD/h`, le coût conservateur retenu est donc
+`<= 2,01 USD` pour le calculateur, hors trafic réseau. Ce chiffre est une borne
+technique calculée, pas une facture fournisseur. Après récupération et
+vérification SHA-256 des douze rapports et des journaux bruts, la location a
+été détruite et l'inventaire actif vérifié vide. Aucun identifiant d'instance,
+hôte SSH ou chemin privé n'est publié.
+
 ## Portes explicitement fermées
 
 - énergie `<= 1 %` : indisponible sur le contrôle incompressible et en échec sur
