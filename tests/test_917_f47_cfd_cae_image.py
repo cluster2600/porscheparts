@@ -115,6 +115,7 @@ class F47CfdCaeImageTests(unittest.TestCase):
     def test_workflow_publishes_only_a_candidate_and_keeps_gpu_gate_closed(self):
         workflow = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("workflow_dispatch:", workflow)
+        self.assertIn("timeout-minutes: 240", workflow)
         self.assertIn("IMAGE_REPOSITORY: ghcr.io/cluster2600/3dprinting993-cfd-cae-f46", workflow)
         self.assertNotIn("github.repository_owner", workflow)
         self.assertIn('test "${GITHUB_REF}" = "refs/heads/main"', workflow)
