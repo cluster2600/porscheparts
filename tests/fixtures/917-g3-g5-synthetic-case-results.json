@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "classification": "synthetic_numerical_validator_fixture_not_engine_geometry_or_simulation_evidence",
+  "physical_or_release_evidence": false,
+  "description": "Valeurs artificielles uniquement destinées à exercer les calculs de bilan, convergence et écart interméthodes du validateur F43.",
+  "architectures": {
+    "2v": [
+      {
+        "mesh_id": "coarse",
+        "mass_in_kg_s": 0.1200,
+        "mass_out_kg_s": 0.1197,
+        "total_energy_in_w": 1000.0,
+        "total_energy_out_w": 1099.0,
+        "wall_heat_w": 100.0,
+        "method_a_mass_flow_kg_s": 0.1200,
+        "method_b_mass_flow_kg_s": 0.1150
+      },
+      {
+        "mesh_id": "medium",
+        "mass_in_kg_s": 0.1100,
+        "mass_out_kg_s": 0.1097,
+        "total_energy_in_w": 1000.0,
+        "total_energy_out_w": 1099.0,
+        "wall_heat_w": 100.0,
+        "method_a_mass_flow_kg_s": 0.1100,
+        "method_b_mass_flow_kg_s": 0.1080
+      },
+      {
+        "mesh_id": "fine",
+        "mass_in_kg_s": 0.1060,
+        "mass_out_kg_s": 0.1058,
+        "total_energy_in_w": 1000.0,
+        "total_energy_out_w": 1099.0,
+        "wall_heat_w": 100.0,
+        "method_a_mass_flow_kg_s": 0.1060,
+        "method_b_mass_flow_kg_s": 0.1050
+      }
+    ],
+    "4v": [
+      {
+        "mesh_id": "coarse",
+        "mass_in_kg_s": 0.1400,
+        "mass_out_kg_s": 0.1396,
+        "total_energy_in_w": 1200.0,
+        "total_energy_out_w": 1319.0,
+        "wall_heat_w": 120.0,
+        "method_a_mass_flow_kg_s": 0.1400,
+        "method_b_mass_flow_kg_s": 0.1340
+      },
+      {
+        "mesh_id": "medium",
+        "mass_in_kg_s": 0.1300,
+        "mass_out_kg_s": 0.1297,
+        "total_energy_in_w": 1200.0,
+        "total_energy_out_w": 1319.0,
+        "wall_heat_w": 120.0,
+        "method_a_mass_flow_kg_s": 0.1300,
+        "method_b_mass_flow_kg_s": 0.1280
+      },
+      {
+        "mesh_id": "fine",
+        "mass_in_kg_s": 0.1250,
+        "mass_out_kg_s": 0.1247,
+        "total_energy_in_w": 1200.0,
+        "total_energy_out_w": 1319.0,
+        "wall_heat_w": 120.0,
+        "method_a_mass_flow_kg_s": 0.1250,
+        "method_b_mass_flow_kg_s": 0.1240
+      }
+    ]
+  },
+  "release_gates": {
+    "physical_validation": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

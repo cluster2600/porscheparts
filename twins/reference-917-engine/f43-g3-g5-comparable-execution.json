@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-head-f43-g3-g5-comparable-execution",
+  "classification": "fail_closed_execution_contract_and_existing_evidence_audit_not_new_CFD_not_validation_not_release",
+  "authority_boundary": {
+    "geometry_source": "existing_scan_and_existing_concept_artifacts_only",
+    "new_dimensions_invented": false,
+    "historical_1973_geometry_relabelled_as_2026_geometry": false,
+    "synthetic_results_are_engine_evidence": false,
+    "physical_validation_claimed": false
+  },
+  "upstream_evidence": [
+    {
+      "id": "f29_geometry_report",
+      "path": "twins/reference-917-engine/evidence/f29/cad/geometry-report.json",
+      "sha256": "986081b66ff973b24fa965992dfbe7e3bd44afce7da5c885f03b90c90ec274ba"
+    },
+    {
+      "id": "f33_integrated_contract",
+      "path": "twins/reference-917-engine/integrated-virtual-validation-f33.json",
+      "sha256": "79e9aeed144b9fdbad5054856353ef854eb95a26a5e1e8c570e9fad6b1d9cb08"
+    },
+    {
+      "id": "f33_integrated_report",
+      "path": "twins/reference-917-engine/evidence/f33/report.json",
+      "sha256": "0fa6da90e91a367a70f717a5d2ac877fc9aae3d06e6330b3a68502de6b731f7e"
+    },
+    {
+      "id": "f33_cycle_contract",
+      "path": "twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json",
+      "sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b"
+    },
+    {
+      "id": "f33_cycle_report",
+      "path": "twins/reference-917-engine/evidence/f33/cycle-thermal-report.json",
+      "sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed"
+    },
+    {
+      "id": "f34_external_cooling",
+      "path": "twins/reference-917-engine/evidence/f34/openfoam-external-cooling.json",
+      "sha256": "a7cbb9caf196ec8fb9bba81bac698d460f6ab9c0dd3f6a8ffd63611f8f6701c2"
+    },
+    {
+      "id": "f36_cross_solver",
+      "path": "twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json",
+      "sha256": "85e7c7f3c6d885712b9652b90a2b1797ef5ae9bb1a9e5c323ca395ac9a995625"
+    },
+    {
+      "id": "f37_ice_engine_foam",
+      "path": "twins/reference-917-engine/evidence/f37-ice-engine-foam/report.json",
+      "sha256": "8c1ca3b24b075032082acc5508c63502e4fd094450b8d5e7459601b8af0b18c6"
+    },
+    {
+      "id": "f37_oil_hydraulic_screen",
+      "path": "twins/reference-917-engine/evidence/f37-manufacturing-definition/f37-oil-hydraulic-report.json",
+      "sha256": "46c6cf3101deb2d11a17bd90371faa49e3d47adb240fe5e42b7856c46de75571"
+    },
+    {
+      "id": "f41_lpbf_geometry",
+      "path": "twins/reference-917-engine/evidence/f41-lpbf-process/917-head-lpbf-candidate-f41-report.json",
+      "sha256": "fb73947051a869d3f0e1d893f9af0fcff137b8229e8089af8d0eaea466572913"
+    },
+    {
+      "id": "f41_lpbf_audit",
+      "path": "twins/reference-917-engine/evidence/f41-lpbf-process/917-head-lpbf-candidate-f41-audit.json",
+      "sha256": "1b2ae44ae87055b2599a30da987f382f5806fe9d12fe214e585b041e696d3cc7"
+    },
+    {
+      "id": "f42_cooling_cross_check",
+      "path": "twins/reference-917-engine/evidence/f42-cooling-cht/f42-cooling-cht-cross-check.json",
+      "sha256": "7c519cba6967b55d87a7fc9c3ba0f1456047ec613f0a8a4a4913a1cdae84bc94"
+    },
+    {
+      "id": "f42_2_material_screen",
+      "path": "twins/reference-917-engine/f42-2-material-process-screen.json",
+      "sha256": "ec390bc122457e2d87813156f12e8d0d466a0d2cfcce005ff9396351572282b1"
+    }
+  ],
+  "comparison_geometry": {
+    "revision_id": "F33_functional_solver_CAD_report_ee940330",
+    "report_path": "twins/reference-917-engine/evidence/f33/functional-cad/geometry-report.json",
+    "report_sha256": "ee9403307094271b80119762a3d16b7b93d3746dc55b2b10f313eafe2285f2ee",
+    "classification": "paired_watertight_solid_surrogates_not_manufacturing_CAD_not_scan_faithful_head",
+    "paired_variants": [
+      {
+        "architecture": "2v",
+        "step_sha256": "70234ad3dc083b289cb8557adbeef817545b80c15024af782af929103a0aeaad",
+        "stl_sha256": "00595073c82f43d21a21eff3f4f5fd910634853d9976114b9a3f6a98f065b925",
+        "geometry_file_available_in_repository": false,
+        "sealed_intake_exhaust_fluid_domain_available": false,
+        "moving_piston_valve_domain_available": false,
+        "engine_installed_external_air_domain_available": false
+      },
+      {
+        "architecture": "4v",
+        "step_sha256": "9340e183e4ea1eb18c83794f2006b1772ff28ed16dad555162e2abfe9e63d274",
+        "stl_sha256": "0559fbf308403d1aac65c969d9fe9e8702f3b995db207f16bad4c36b2e714ede",
+        "geometry_file_available_in_repository": false,
+        "sealed_intake_exhaust_fluid_domain_available": false,
+        "moving_piston_valve_domain_available": false,
+        "engine_installed_external_air_domain_available": false
+      }
+    ],
+    "same_generation_revision_verified": true,
+    "same_external_envelope_verified": false,
+    "same_interfaces_verified": false,
+    "execution_authorized": false
+  },
+  "shared_turbo_boundary": {
+    "source_variant_id": "917_2026_flat12_twin_turbo_1600hp_target",
+    "classification": "F33_clean_sheet_0d_hypothesis_applied_identically_for_comparison_not_historical_1973_data_not_validated_BC",
+    "applies_identically_to": ["2v", "4v"],
+    "engine_speed_rpm": 9000.0,
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "cylinder_count": 12,
+    "compression_ratio": 9.5,
+    "manifold_pressure_pa_abs": 283700.0,
+    "manifold_temperature_k": 325.0,
+    "volumetric_efficiency": 1.02,
+    "equivalence_ratio": 1.35,
+    "exhaust_pressure_pa_abs": 296000.0,
+    "compressor_inlet_pressure_pa_abs": 96000.0,
+    "compressor_inlet_temperature_k": 298.15,
+    "charge_path_loss_pa": 25000.0,
+    "turbine_inlet_temperature_k": 1100.0,
+    "turbine_outlet_pressure_pa_abs": 110000.0,
+    "combustion_calibration_available": false,
+    "cam_and_valve_laws_available": false,
+    "validated": false
+  },
+  "three_mesh_execution": {
+    "mesh_ids": ["coarse", "medium", "fine"],
+    "characteristic_cell_sizes_mm": {
+      "coarse": null,
+      "medium": null,
+      "fine": null
+    },
+    "reason_sizes_null": "Aucun domaine fluide 2V/4V comparable et aucune echelle absolue certifiee ne permettent de fixer une taille de maille en mm.",
+    "same_mesher_controls_between_architectures_required": true,
+    "independent_meshes_not_uniform_subsamples_required": true,
+    "domains": [
+      {
+        "id": "G3_steady_port_flow",
+        "architectures": ["2v", "4v"],
+        "method_a": "OpenFOAM_compressible_RANS_full_sealed_intake_and_exhaust_domains",
+        "method_b": "independent_quasi_1d_isentropic_orifice_and_discharge_coefficient_reduction",
+        "required_outputs": ["inlet_mass_flow_kg_s", "outlet_mass_flow_kg_s", "pressure_drop_pa", "total_enthalpy_flux_in_w", "total_enthalpy_flux_out_w", "wall_heat_flux_w", "effective_area_m2", "discharge_coefficient"],
+        "geometry_ready": false,
+        "execution_authorized": false
+      },
+      {
+        "id": "G4_moving_engine_cycle",
+        "architectures": ["2v", "4v"],
+        "method_a": "OpenFOAM_foamRun_XiFluid_multiValveEngine_or_exact_available_successor",
+        "method_b": "Cantera_crank_angle_single_zone_or_multi_zone_cycle_with_identical_chemistry_and_wall_heat_model",
+        "required_outputs": ["trapped_air_mass_kg_cycle", "fuel_mass_kg_cycle", "exhaust_mass_kg_cycle", "indicated_work_j_cycle", "wall_heat_j_cycle", "exhaust_enthalpy_j_cycle", "peak_pressure_pa_abs", "peak_temperature_k", "imep_pa"],
+        "geometry_ready": false,
+        "execution_authorized": false
+      },
+      {
+        "id": "G5_external_air_cooling",
+        "architectures": ["2v", "4v"],
+        "method_a": "OpenFOAM_external_air_then_CHT_only_after_material_card",
+        "method_b": "Gnielinski_Darcy_fin_efficiency_network_plus_sequential_solid_conduction",
+        "required_outputs": ["inlet_mass_flow_kg_s", "outlet_mass_flow_kg_s", "pressure_drop_pa", "air_total_energy_gain_w", "wall_heat_rejection_w", "effective_h_w_m2k", "seat_temperature_c", "exhaust_bridge_temperature_c", "spark_plug_bridge_temperature_c"],
+        "geometry_ready": false,
+        "execution_authorized": false
+      }
+    ],
+    "planned_case_count": 18,
+    "executed_case_count": 0
+  },
+  "numerical_acceptance": {
+    "relative_difference_definition": "abs(a-b)/max(abs(a),abs(b),1e-12)",
+    "mass_balance_relative_maximum": 0.005,
+    "energy_balance_relative_maximum": 0.05,
+    "fine_to_medium_primary_metric_change_maximum": 0.05,
+    "cross_method_relative_difference_maximum": 0.20,
+    "minimum_three_meshes_per_architecture_and_domain": 3,
+    "G3_cross_method_metrics": ["mass_flow", "effective_area", "pressure_drop"],
+    "G4_cross_method_metrics": ["indicated_work", "peak_pressure", "wall_heat"],
+    "G5_cross_method_metrics": ["effective_h", "pressure_drop", "wall_heat_rejection"],
+    "numerical_pass_is_physical_validation": false
+  },
+  "f43_air_cooling_LPBF_DOE": {
+    "scope": "four_valve_F41_scan_locked_external_skin_only_separate_from_the_F33_2V_4V_concept_pair",
+    "baseline_source_step_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a",
+    "baseline_source_stl_sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81",
+    "baseline_geometry_local_only": true,
+    "designs": [
+      {
+        "id": "D0_scan_faithful_baseline",
+        "change": "none"
+      },
+      {
+        "id": "D1_through_air_teardrop",
+        "change": "powder_removable_self_supporting_teardrop_through_channels"
+      },
+      {
+        "id": "D2_through_air_diamond",
+        "change": "powder_removable_self_supporting_diamond_through_channels"
+      },
+      {
+        "id": "D3_variable_fin_pitch_thickness",
+        "change": "variable_fin_pitch_and_thickness_without_external_envelope_growth"
+      },
+      {
+        "id": "D4_open_pin_fins",
+        "change": "open_pin_fins_around_exhaust_seat_spark_plug_bridge"
+      },
+      {
+        "id": "D5_open_lattice",
+        "change": "CT_visible_powder_removable_open_lattice_around_exhaust_seat_spark_plug_bridge"
+      },
+      {
+        "id": "D6_conduction_ribs",
+        "change": "conduction_ribs_from_hot_bridges_to_measured_high_airflow_zones"
+      }
+    ],
+    "dimension_parameters_mm": {
+      "through_channel_hydraulic_diameter": null,
+      "through_channel_wall_ligament": null,
+      "fin_root_thickness": null,
+      "fin_tip_thickness": null,
+      "fin_pitch": null,
+      "pin_diameter": null,
+      "pin_pitch": null,
+      "lattice_strut_diameter": null,
+      "lattice_cell_size": null,
+      "conduction_rib_thickness": null
+    },
+    "reason_dimensions_null": "Les minima LPBF, la CT, le depoudrage, la carte matiere chaude et les distances reelles aux sieges/guides ne sont pas qualifies.",
+    "mesh_ids": ["coarse", "medium", "fine"],
+    "planned_case_count": 21,
+    "executed_case_count": 0,
+    "external_envelope_control": {
+      "comparison_method": "registered_surface_normal_distance_to_F41_baseline_excluding_machining_datums",
+      "maximum_allowed_deviation_mm": null,
+      "measured_deviation_per_design_mm": null,
+      "quasi_identical_verified": false
+    },
+    "mandatory_metrics": [
+      "maximum_exhaust_seat_temperature_c",
+      "maximum_exhaust_bridge_temperature_c",
+      "maximum_spark_plug_bridge_temperature_c",
+      "pressure_drop_pa",
+      "mass_flow_kg_s_by_zone",
+      "zone_temperature_uniformity_coefficient_of_variation",
+      "mass_delta_kg",
+      "maximum_thermal_stress_mpa",
+      "minimum_self_support_angle_deg",
+      "support_volume_mm3",
+      "open_powder_escape_path_count",
+      "minimum_CT_visible_feature_mm"
+    ],
+    "inherited_screen_targets": {
+      "maximum_bridge_temperature_c": 260.0,
+      "maximum_pressure_drop_pa": 6700.0,
+      "targets_are_release_allowables": false
+    },
+    "prohibited_features": [
+      "liquid_cooling_jacket",
+      "closed_internal_cavity",
+      "blind_powder_trap",
+      "microchannel_without_demonstrated_CT_probability_of_detection",
+      "microchannel_without_demonstrated_powder_removal",
+      "support_that_cannot_be_removed_or_inspected"
+    ],
+    "mandatory_manufacturing_checks": [
+      "two_open_ends_or_equivalent_verified_powder_escape_for_every_air_channel",
+      "three_resolution_exterior_flood_fill_void_screen",
+      "supplier_process_specific_overhang_and_support_analysis",
+      "CT_probability_of_detection_study",
+      "powder_mass_balance_and_borescope_or_CT_cleanliness_check",
+      "hot_coupon_material_card_before_thermal_stress_acceptance"
+    ],
+    "selected_design": null,
+    "geometry_generation_authorized": false,
+    "simulation_authorized": false
+  },
+  "f43_secondary_oil_cooling_DOE": {
+    "role": "secondary_local_heat_pickup_and_valvetrain_lubrication_air_forced_remains_primary",
+    "architecture": [
+      "dry_sump_pressure_supply_to_head_distribution_gallery",
+      "metered_supply_to_guides_and_valvetrain_bearings",
+      "calibrated_jets_toward_exhaust_zone_springs_and_rocker_or_cam_carrier",
+      "open_gravity_returns_to_scavenge_pickup",
+      "scavenge_return_to_external_dry_sump_tank_and_oil_cooler"
+    ],
+    "printed_passage_policy": [
+      "through_or_open_ended_only",
+      "flushable_from_machined_access",
+      "CT_inspectable_with_probability_of_detection_study",
+      "straight_tool_access_or_qualified_removable_plugs",
+      "no_blind_powder_trap",
+      "no_liquid_jacket_around_combustion_chamber"
+    ],
+    "design_lock_values": {
+      "oil_grade": null,
+      "oil_density_kg_m3_by_temperature": null,
+      "oil_dynamic_viscosity_pa_s_by_temperature": null,
+      "oil_specific_heat_j_kgk_by_temperature": null,
+      "oil_thermal_conductivity_w_mk_by_temperature": null,
+      "supply_pressure_pa_by_temperature_and_speed": null,
+      "gallery_diameters_mm": null,
+      "jet_diameters_mm": null,
+      "jet_target_coordinates_mm": null,
+      "return_diameters_mm": null,
+      "minimum_drain_slope_deg": null,
+      "coking_wall_temperature_limit_c": null,
+      "inclination_cases_deg": null,
+      "acceleration_cases_m_s2": null
+    },
+    "DOE_axes": [
+      "cold_to_hot_measured_viscosity_curve",
+      "engine_speed_and_measured_supply_pressure",
+      "metering_jet_count_diameter_and_target_after_geometry_measurement",
+      "return_area_slope_and_scavenge_boundary",
+      "vehicle_inclination_and_acceleration_vector",
+      "entrained_air_fraction_and_deaeration_boundary"
+    ],
+    "mandatory_metrics": [
+      "pressure_drop_pa",
+      "mass_flow_kg_s_per_jet",
+      "jet_imbalance_coefficient_of_variation",
+      "maximum_wetted_wall_temperature_c",
+      "coking_margin_k",
+      "entrained_air_volume_fraction",
+      "drainback_mass_residual_kg",
+      "time_to_clear_head_sump_s",
+      "scavenge_margin_kg_s",
+      "bearing_and_guide_minimum_supply_pressure_pa"
+    ],
+    "method_a": "temperature_dependent_1D_network_with_measured_orifice_coefficients_and_mass_balance",
+    "method_b": "geometry_resolved_multiphase_CFD_for_jets_aeration_and_gravity_drainback",
+    "existing_F37_values_are_design_lock": false,
+    "planned_case_count": null,
+    "executed_case_count": 0,
+    "selected_design": null,
+    "geometry_generation_authorized": false,
+    "simulation_authorized": false
+  },
+  "synthetic_test_policy": {
+    "fixture_path": "tests/fixtures/917-g3-g5-synthetic-case-results.json",
+    "required_classification": "synthetic_numerical_validator_fixture_not_engine_geometry_or_simulation_evidence",
+    "may_test_validator_math": true,
+    "may_open_physical_or_release_gate": false,
+    "excluded_from_evidence_report_metrics": true
+  },
+  "release_gates": {
+    "comparable_2v_4v_geometry_domains_complete": false,
+    "shared_turbo_boundary_conditions_validated": false,
+    "G3_three_mesh_two_method_comparison_complete": false,
+    "G4_three_mesh_two_method_comparison_complete": false,
+    "G5_three_mesh_two_method_comparison_complete": false,
+    "F43_LPBF_cooling_DOE_geometry_complete": false,
+    "F43_LPBF_cooling_DOE_three_mesh_complete": false,
+    "F43_secondary_oil_cooling_DOE_complete": false,
+    "mass_and_energy_balances_passed": false,
+    "cross_method_thresholds_passed": false,
+    "hot_material_card_qualified": false,
+    "thermal_stress_validated": false,
+    "physical_flow_bench_correlated": false,
+    "physical_engine_dyno_correlated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
