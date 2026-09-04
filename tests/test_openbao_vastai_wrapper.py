@@ -3104,6 +3104,49 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertNotIn("OPENBAO_GHCR_IMAGE_LOGIN", source)
         self.assertNotIn("image_login", source)
 
+    def test_refresh_local_ssh_replaces_only_matching_instance_keys(self):
+        stdout = io.StringIO()
+        approved = "ssh-ed25519 AAAATEST approved"
+        responses = [
+            {"instances": {"actual_status": "stopped"}},
+            {
+                "ssh_keys": json.dumps(
+                    [
+                        {"id": 11, "public_key": approved},
+                        {"id": 12, "public_key": approved},
+                        {"id": 99, "public_key": "ssh-ed25519 AAAAOTHER other"},
+                    ]
+                )
+            },
+            {"success": True},
+            {"success": True},
+            {"success": True},
+        ]
+        with (
+            mock.patch("sys.argv", ["openbao-vastai", "refresh-local-ssh", "49857647"]),
+            mock.patch.object(self.wrapper, "login", return_value="session"),
+            mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+            mock.patch.object(self.wrapper, "revoke_token") as revoke,
+            mock.patch.object(
+                self.wrapper, "read_local_ssh_public_key", return_value=approved
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                side_effect=responses,
+            ) as request,
+            mock.patch("sys.stdout", stdout),
+        ):
+            self.assertEqual(self.wrapper.cli(), 0)
+        calls = request.call_args_list
+        self.assertIn("/ssh/11/", calls[2].args[1])
+        self.assertIn("/ssh/12/", calls[3].args[1])
+        self.assertNotIn("/ssh/99/", " ".join(str(call) for call in calls))
+        self.assertEqual(calls[4].kwargs["payload"], {"ssh_key": approved})
+        self.assertIn('"approved_key_refreshed": true', stdout.getvalue())
+        self.assertIn('"duplicate_attachments_removed": 1', stdout.getvalue())
+        revoke.assert_called_once_with("session")
+
     def test_mesh_image_is_immutable_linux_amd64_candidate(self):
         image = self.wrapper.MESH_IMAGE
         self.assertEqual(

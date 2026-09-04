@@ -3901,6 +3901,8 @@ def run(operation: list[str]) -> int:
             return 0
         if len(operation) == 2 and operation[0] == "ssh-keys":
             instance_id = positive_id(operation[1], "instance id")
+            approved_key_fields = read_local_ssh_public_key().split()
+            approved_key_identity = " ".join(approved_key_fields[:2])
             result = vast_request(api_key, f"/api/v0/instances/{instance_id}/ssh")
             raw_keys = result.get("ssh_keys", "[]")
             try:
@@ -3915,7 +3917,19 @@ def run(operation: list[str]) -> int:
                     continue
                 public_key = item.get("public_key", "")
                 key_type = public_key.split(" ", 1)[0] if isinstance(public_key, str) else None
-                safe_keys.append({"id": item.get("id"), "name": item.get("name"), "type": key_type})
+                public_key_fields = public_key.split() if isinstance(public_key, str) else []
+                public_key_identity = " ".join(public_key_fields[:2])
+                safe_keys.append(
+                    {
+                        "id": item.get("id"),
+                        "name": item.get("name"),
+                        "type": key_type,
+                        "matches_approved_local_key": (
+                            bool(public_key_identity)
+                            and public_key_identity == approved_key_identity
+                        ),
+                    }
+                )
             print_json(safe_keys)
             return 0
         if len(operation) == 2 and operation[0] == "attach-local-ssh":
@@ -3927,6 +3941,59 @@ def run(operation: list[str]) -> int:
                 payload={"ssh_key": read_local_ssh_public_key()},
             )
             print_json({"instance_id": instance_id, "attached": bool(result.get("success", True))})
+            return 0
+        if len(operation) == 2 and operation[0] == "refresh-local-ssh":
+            instance_id = positive_id(operation[1], "instance id")
+            approved_key = read_local_ssh_public_key()
+            instance_result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+            raw_instance = instance_result.get("instances")
+            if not isinstance(raw_instance, dict):
+                raise SafeError("Vast.ai returned invalid SSH refresh instance metadata")
+            if safe_instance(raw_instance).get("status") not in {"exited", "stopped"}:
+                raise SafeError("SSH key refresh requires a stopped instance")
+            approved_fields = approved_key.split()
+            approved_identity = " ".join(approved_fields[:2])
+            keys_result = vast_request(api_key, f"/api/v0/instances/{instance_id}/ssh")
+            raw_keys = keys_result.get("ssh_keys", "[]")
+            try:
+                keys = json.loads(raw_keys) if isinstance(raw_keys, str) else raw_keys
+            except json.JSONDecodeError as exc:
+                raise SafeError("Vast.ai returned invalid SSH key metadata") from exc
+            if not isinstance(keys, list):
+                raise SafeError("Vast.ai returned invalid SSH key metadata")
+            matching_ids = []
+            for item in keys:
+                if not isinstance(item, dict):
+                    continue
+                fields = str(item.get("public_key", "")).split()
+                if " ".join(fields[:2]) != approved_identity:
+                    continue
+                matching_ids.append(positive_id(str(item.get("id")), "SSH key id"))
+            if not matching_ids:
+                raise SafeError("approved local SSH key is not attached to this instance")
+            for key_id in matching_ids:
+                detached = vast_request(
+                    api_key,
+                    f"/api/v0/instances/{instance_id}/ssh/{key_id}/",
+                    method="DELETE",
+                )
+                if detached.get("success") is not True:
+                    raise SafeError("Vast.ai did not confirm exact SSH key detachment")
+            attached = vast_request(
+                api_key,
+                f"/api/v0/instances/{instance_id}/ssh/",
+                method="POST",
+                payload={"ssh_key": approved_key},
+            )
+            if attached.get("success") is not True:
+                raise SafeError("Vast.ai did not confirm approved SSH key reattachment")
+            print_json(
+                {
+                    "instance_id": instance_id,
+                    "approved_key_refreshed": True,
+                    "duplicate_attachments_removed": max(0, len(matching_ids) - 1),
+                }
+            )
             return 0
         if operation == ["ensure-local-ssh"]:
             ensure_local_ssh_registered(api_key)
@@ -4144,7 +4211,7 @@ def run(operation: list[str]) -> int:
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
-            "show <id>|ssh-keys <id>|attach-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
+            "show <id>|ssh-keys <id>|attach-local-ssh <id>|refresh-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
             "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
             "launch-f46 <offer_id> <image@digest> <deadline_epoch> [--attempt-label <label>]|"
