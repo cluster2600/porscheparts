@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-f47-cfd-cae-linux-amd64-image",
+  "classification": "image_recipe_contract_not_runtime_or_simulation_evidence",
+  "source_revision": "3ab2ee4258c26584dd39205190a5174edbc06fbb",
+  "image_repository": "ghcr.io/cluster2600/3dprinting993-cfd-cae-f46",
+  "platform": "linux/amd64",
+  "runtime_identity": {
+    "transport_user": "root",
+    "solver_uid": 9147,
+    "solver_gid": 9147,
+    "root_scope": [
+      "Vast ssh_direct transport",
+      "ephemeral SSH host keys",
+      "remote deadline watchdog"
+    ],
+    "solver_processes_must_be_non_root": true
+  },
+  "solver_authority": {
+    "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+    "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482",
+    "OpenFOAM": "14-20260724",
+    "AATE_OpenFOAM_ICengines_revision": "c0f75f953d67cd325d28d1300672d14288f22934",
+    "Cantera": "3.2.0",
+    "Gmsh": "4.12.1+ds1-1.1build2",
+    "CalculiX": "2.21-1",
+    "exact_ICEEngineFoam_executable_found": false,
+    "fabricated_alias_allowed": false,
+    "historical_engineFoam": {
+      "requested_revision": "221b8ab77307b0ea3831a055bedc2cd77c1417f9",
+      "built": false,
+      "smoke_passed": false,
+      "version": "not_built"
+    }
+  },
+  "fixtures": {
+    "OpenFOAM": "synthetic Poiseuille serial solve",
+    "AATE_ICengines": "four real utility help invocations",
+    "Cantera": "generic methane-air HP equilibrium",
+    "Gmsh": "circular cylinder 3D mesh",
+    "CalculiX": "generic linear elastic cube",
+    "CHT": "OpenFOAM official heatedDuct shortened to two coupled time steps",
+    "CUDA": "runtime-only driver allocation of 4096 bytes",
+    "job_runner": "one digest-bound command array with deadline"
+  },
+  "job_contract": {
+    "manifest": "twins/reference-917-engine/f46-vast-job-manifest.json",
+    "planned_case_count": 26,
+    "currently_executable_case_count": 0,
+    "image_does_not_authorize_jobs": true,
+    "all_commands_and_input_manifests_must_be_digest_bound": true
+  },
+  "vast_runtime": {
+    "onstart_executable": "f46-vast-onstart",
+    "runner_executable": "f46-run-manifest",
+    "maximum_remote_deadline_seconds": 28800,
+    "solver_stop_signal": "SIGTERM then SIGKILL after 30 seconds",
+    "provider_instance_destruction": "local F46 controller responsibility",
+    "launch_performed": false,
+    "spend_incurred_usd": 0.0
+  },
+  "reproducibility": {
+    "base_images_by_digest": true,
+    "Python_wheels_by_sha256": true,
+    "AATE_archive_by_sha256": true,
+    "direct_APT_versions_pinned": true,
+    "all_transitive_APT_artifacts_by_sha256": false,
+    "bit_reproducible": false,
+    "reason": "OpenFOAM and Ubuntu transitive APT artifacts are version-pinned but not vendored or individually hash-locked."
+  },
+  "current_gates": {
+    "recipe_static_tests_passed": false,
+    "native_Kali_linux_amd64_build_passed": false,
+    "offline_CPU_smokes_passed": false,
+    "minimal_CHT_fixture_executed": false,
+    "CUDA_runtime_smoke_passed": false,
+    "GHCR_index_digest_verified": false,
+    "linux_amd64_platform_manifest_verified": false,
+    "SBOM_verified": false,
+    "provenance_verified": false,
+    "anonymous_digest_pull_smoke_passed": false,
+    "F46_runtime_smoke_verified": false,
+    "F46_image_proof_lockable": false,
+    "Vast_launch_authorized": false,
+    "simulation_executed": false,
+    "physical_validation": false,
+    "manufacturing_release": false
+  }
+}

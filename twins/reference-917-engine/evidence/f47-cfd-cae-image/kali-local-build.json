@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-f47-kali-local-linux-amd64-build",
+  "classification": "native_local_image_and_generic_runtime_smoke_evidence_not_registry_gpu_or_simulation_evidence",
+  "recorded_at": "2026-09-04T12:02:30+02:00",
+  "source_base_revision": "3ab2ee4258c26584dd39205190a5174edbc06fbb",
+  "build_host": {
+    "name": "Kali x86 local network host",
+    "platform": "linux/amd64",
+    "native_architecture": "x86_64",
+    "secrets_read": false
+  },
+  "image": {
+    "local_reference": "3dprinting993-cfd-cae-f47:kali-local",
+    "local_image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "size_bytes": 2212871101,
+    "created": "2026-09-04T12:02:01.38179717+02:00",
+    "os": "linux",
+    "architecture": "amd64",
+    "transport_user": "0:0",
+    "solver_uid": 9147,
+    "solver_gid": 9147,
+    "registry_digest": null
+  },
+  "build_inputs": {
+    "Dockerfile_sha256": "17bb5a6125708a7c9b7799d62cefc01f43488c29a0e38dd7327b8a3e4d6dfde7",
+    "image_smoke_py_sha256": "c1a250b1d5a64f14603eede6325934bdbd726ba8481411ad4e25545dd6bb9883",
+    "openfoam_smoke_sh_sha256": "a1ff754293d93790665779a4954931d98ea2ee8df907611663a6325d153dcb5c",
+    "cht_smoke_sh_sha256": "dde4b0048d5ff4e80afcee3dd12f2209de3d8e74069817c6b104f0886cf85966",
+    "run_manifest_py_sha256": "1e88e8b56c301bd43b178f4f1a78c69016440b0f19ed36fb6a1f388aa56f7a21",
+    "vast_onstart_sh_sha256": "115461f46658fce385ac16b0495052de5341b2b3cd673eec7b6d793f91336493",
+    "requirements_sha256": "1da2fe643628655b2468ad1f16d562b274c2bea0653542ed7eebddd99145ab15"
+  },
+  "hardened_smoke": {
+    "exit_code": 0,
+    "network": "none",
+    "root_filesystem_read_only": true,
+    "capabilities_dropped": "ALL",
+    "no_new_privileges": true,
+    "runtime_uid": 9147,
+    "offline_fixture_inputs": true,
+    "status": "cpu_and_cht_smokes_passed_runtime_gpu_blocked",
+    "tools": {
+      "OpenFOAM": {
+        "passed": true,
+        "version": "14-20260724",
+        "fixture": "synthetic_poiseuille"
+      },
+      "AATE_OpenFOAM_ICengines": {
+        "passed": true,
+        "revision": "c0f75f953d67cd325d28d1300672d14288f22934",
+        "smoke": "four_real_help_invocations"
+      },
+      "Cantera": {
+        "passed": true,
+        "version": "3.2.0",
+        "fixture": "generic_CH4_air_HP"
+      },
+      "Gmsh": {
+        "passed": true,
+        "version": "4.12.1",
+        "fixture": "circular_cylinder_3d"
+      },
+      "CalculiX": {
+        "passed": true,
+        "version": "2.21-1",
+        "fixture": "generic_linear_cube"
+      },
+      "CHT": {
+        "passed": true,
+        "version": "OpenFOAM-14-foamMultiRun",
+        "fixture": "official_heatedDuct_shortened_to_two_steps",
+        "fluid_regions": 1,
+        "solid_regions": 2
+      },
+      "job_runner": {
+        "passed": true,
+        "version": "f47-1.0.0",
+        "digest_bound_command_array_executed": true
+      },
+      "CUDA": {
+        "passed": false,
+        "allocation_bytes": 0,
+        "reason": "No GPU was exposed on the Kali build host."
+      },
+      "historical_engineFoam": {
+        "built": false,
+        "passed": false,
+        "version": "not_built"
+      }
+    },
+    "exact_ICEEngineFoam_executable_found": false
+  },
+  "gates": {
+    "native_Kali_linux_amd64_build_passed": true,
+    "offline_CPU_smokes_passed": true,
+    "minimal_CHT_fixture_executed": true,
+    "CUDA_runtime_smoke_passed": false,
+    "GHCR_index_digest_verified": false,
+    "linux_amd64_platform_manifest_verified": false,
+    "SBOM_verified": false,
+    "provenance_verified": false,
+    "anonymous_digest_pull_smoke_passed": false,
+    "F46_runtime_smoke_verified": false,
+    "F46_image_proof_lockable": false,
+    "Vast_launch_authorized": false,
+    "simulation_executed": false,
+    "physical_validation": false,
+    "manufacturing_release": false
+  },
+  "external_actions": {
+    "Vast_instance_created": false,
+    "GHCR_push_performed": false,
+    "spend_incurred_usd": 0.0
+  },
+  "limitations": [
+    "The image ID is a Docker local configuration digest, not a registry manifest digest.",
+    "All executed fixtures are generic and do not contain Porsche geometry, boundary conditions or hot material cards.",
+    "No GPU was available, so the runtime CUDA allocation gate remains false.",
+    "The 26 F46 jobs remain non-executable until their SHA-bound domains and inputs exist."
+  ]
+}
