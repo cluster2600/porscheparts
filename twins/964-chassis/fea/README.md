@@ -72,3 +72,18 @@ Ne sont pas robustes : toutes les valeurs absolues de raideur et de contrainte.
     source ../source/env.sh
     pycad build_shell.py 0.8 1.0 && pycad run_fea.py 0.8 t08
     pycad build_shell.py 1.0 1.0 && pycad run_fea.py 1.0 t10
+
+## Variante composite
+
+`run_fea.py` accepte desormais deux arguments optionnels, `E` et `nu`, qui
+valent par defaut ceux de l'acier : les appels a deux arguments ci-dessus sont
+inchanges. `laminate.py` calcule les proprietes quasi-isotropes d'un stratifie
+carbone, aramide ou hybride depuis les constantes de pli, et `composite_study.py`
+rejoue l'essai de torsion a raideur egale pour chacun.
+
+Resultat court : a iso-raideur, le carbone monolithique ne gagne que **18 %** de
+masse surfacique et l'aramide en **perd 30 %**, parce que ce caisson travaille en
+cisaillement de membrane et que le critere est `G/rho`, non `E/rho`. L'analyse
+complete et ses reserves sont dans `docs/research/964-chassis-carbone-kevlar.md`.
+
+    pycad build_shell.py 0.8 1.0 && pycad composite_study.py

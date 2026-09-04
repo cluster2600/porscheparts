@@ -1,6 +1,12 @@
-"""Torsion load case on the 964 floor shell model, CalculiX."""
+"""Torsion load case on the 964 floor shell model, CalculiX.
+
+Usage: run_fea.py <thickness_mm> <tag> [E_MPa] [nu]
+E and nu default to steel, so the historic two-argument calls are unchanged.
+"""
 import numpy as np, subprocess, os, sys, re
 T=float(sys.argv[1]); tag=sys.argv[2]
+E  = float(sys.argv[3]) if len(sys.argv)>3 else 210000.0   # MPa
+NU = float(sys.argv[4]) if len(sys.argv)>4 else 0.3
 d=np.load('mesh.npz'); nid,xyz,tri=d['nid'],d['xyz'],d['tri']
 idx={int(n):i for i,n in enumerate(nid)}
 X_F,X_R,YS_I,SILL_W,Z0=400.0,-1500.0,600.0,90.0,271.7
@@ -15,8 +21,8 @@ with open(f'{tag}.inp','w') as f:
     for n,p in zip(nid,xyz): f.write(f"{int(n)}, {p[0]:.4f}, {p[1]:.4f}, {p[2]:.4f}\n")
     f.write("*ELEMENT, TYPE=S3, ELSET=SHELL\n")
     for i,e in enumerate(tri,1): f.write(f"{i}, {int(e[0])}, {int(e[1])}, {int(e[2])}\n")
-    f.write(f"*SHELL SECTION, ELSET=SHELL, MATERIAL=STEEL\n{T}\n")
-    f.write("*MATERIAL, NAME=STEEL\n*ELASTIC\n210000., 0.3\n")
+    f.write(f"*SHELL SECTION, ELSET=SHELL, MATERIAL=MAT\n{T}\n")
+    f.write(f"*MATERIAL, NAME=MAT\n*ELASTIC\n{E}, {NU}\n")
     for nm,st in (('REAR',rear),('FRL',frL),('FRR',frR)):
         f.write(f"*NSET, NSET={nm}\n")
         for i in range(0,len(st),8): f.write(", ".join(str(int(x)) for x in st[i:i+8])+",\n")
@@ -50,7 +56,7 @@ theta=np.degrees(np.arctan((zl-zr)/ARM))
 torque=F*ARM/1000.0                                    # N.m
 K=torque/theta if theta else float('nan')
 s=np.array(list(vm.values()))
-print(f"t={T:>4} mm | twist {theta:7.4f} deg | K = {K:8.0f} N.m/deg | "
+print(f"E={E:>7.0f} nu={NU:.3f} | t={T:>5} mm | twist {theta:7.4f} deg | K = {K:8.0f} N.m/deg | "
       f"uz L{zl:+7.3f} R{zr:+7.3f} mm | vM p99 {np.percentile(s,99):6.1f} MPa max {s.max():6.1f}")
-np.savez(f'{tag}_res.npz',K=K,theta=theta,vm=np.array(list(vm.values())),
+np.savez(f'{tag}_res.npz',K=K,theta=theta,E=E,nu=NU,vm=np.array(list(vm.values())),
          vmn=np.array(list(vm.keys())),torque=torque,T=T)
