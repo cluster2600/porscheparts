@@ -1,0 +1,137 @@
+{
+  "$comment": "Sous-lot F46 de calcul 0D angle-vilebrequin comparatif. Les deux architectures utilisent strictement le meme alésage circulaire, les memes conditions turbo, le meme carburant et les memes hypotheses de combustion. Les lois de soupape, Cd, bielle et conditions de paroi sont des hypotheses de recherche non corrélées. Ce fichier ne crée aucune enveloppe de culasse et n'autorise ni impression, ni démarrage.",
+  "schema_version": "1.0.0",
+  "phase": "F46",
+  "asset_id": "porsche-917-30-turbo-2v-4v-cantera-crank-cycle-f46",
+  "classification": "uncorrelated_zero_dimensional_crank_angle_research_screen",
+  "upstream_manifest": [
+    {
+      "path": "twins/reference-917-engine/valvetrain-material-screen-f45.json",
+      "sha256": "9d4df959ea9b6ee3bc78a8e62a4ab1ac7d274567c0f6309d0f091e8696118883",
+      "reuse_scope": "valve_count_head_diameter_maximum_lift_and_throat_area_hypotheses_only"
+    },
+    {
+      "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+      "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482",
+      "reuse_scope": "solver_identity_comparison_and_fail_closed_release_contract"
+    }
+  ],
+  "geometry": {
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "connecting_rod_length_mm": 132.0,
+    "connecting_rod_classification": "legacy_project_hypothesis_not_917_30_metrology",
+    "compression_ratio": 9.5,
+    "cylinder_count": 12,
+    "external_head_geometry_used": false,
+    "external_scan_contour_modified": false,
+    "oval_or_ellipse_created": false,
+    "model_dimension": "single_zone_zero_dimensional"
+  },
+  "common_operating_point": {
+    "speed_rpm": 9000.0,
+    "intake_pressure_pa_abs": 283700.0,
+    "intake_temperature_k": 325.0,
+    "exhaust_pressure_pa_abs": 296000.0,
+    "exhaust_reservoir_temperature_k": 950.0,
+    "wall_temperature_k": 475.0,
+    "equivalence_ratio": 1.0,
+    "fuel_lhv_j_kg": 43000000.0,
+    "air_composition_mole": "o2:1,n2:3.76",
+    "fuel_species": "c12h26",
+    "turbocharger_count": 2,
+    "power_target_mechanical_hp": 1600.0,
+    "power_target_is_solver_boundary": false,
+    "all_values_classification": "shared_research_hypotheses_not_measured_917_30_boundary_conditions"
+  },
+  "valve_law": {
+    "profile": "symmetric_half_cosine_lift_not_a_measured_cam_law",
+    "intake_open_deg_atdc_overlap": -10.0,
+    "intake_close_deg_atdc_overlap": 230.0,
+    "exhaust_open_deg_atdc_overlap": 500.0,
+    "exhaust_close_deg_atdc_overlap": 20.0,
+    "timing_reference": "0_deg_is_overlap_TDC_360_deg_is_combustion_TDC",
+    "flow_model": "quasi_steady_isentropic_compressible_orifice_bidirectional",
+    "throat_to_head_ratio": 0.86,
+    "flow_coefficients_cd": [0.62, 0.72, 0.82],
+    "baseline_cd": 0.72,
+    "cd_measured_on_flow_bench": false,
+    "cam_law_measured": false
+  },
+  "combustion_models": {
+    "cantera_finite_rate": {
+      "cantera_version": "3.2.0",
+      "mechanism_file": "nDodecane_Reitz.yaml",
+      "phase_name": "nDodecane_IG",
+      "mechanism_sha256": "3d3b59ed91dec0d0bcbac2fa2ef2cba13fbd565bfff8f266ca847ed6aa92f7f1",
+      "fuel_role": "public_builtin_kinetic_surrogate_not_historical_917_race_gasoline",
+      "injection_start_deg": 330.0,
+      "injection_end_deg": 350.0,
+      "injection_model": "homogeneous_gaseous_direct_injection_no_spray_or_wall_film",
+      "ignition_model": "unforced_compression_autoignition_screen",
+      "spark_ignition_represented": false,
+      "knock_prediction_authorized": false
+    },
+    "wiebe_counter_model": {
+      "kinetic_reactions_enabled": false,
+      "start_deg": 350.0,
+      "duration_deg": 65.0,
+      "efficiency": 0.94,
+      "a": 6.908,
+      "m": 2.0,
+      "calibrated_to_cylinder_pressure": false,
+      "independence_scope": "prescribed_heat_release_independent_of_cantera_reaction_rates_but_same_thermodynamic_and_flow_harness"
+    }
+  },
+  "heat_transfer": {
+    "model": "explicit_woschni_like_screening_correlation",
+    "equation": "h=130*(p/1e5)^0.8*(T/300)^-0.53*(max(Up,1)/10)^0.8",
+    "surface": "two_piston_areas_plus_exposed_liner",
+    "coefficient_source_calibrated": false,
+    "head_wall_temperature_measured": false
+  },
+  "numerics": {
+    "crank_angle_steps_deg": [1.0, 0.5, 0.25],
+    "cycles": 5,
+    "cycle_degrees": 720.0,
+    "relative_tolerance": 1e-07,
+    "absolute_tolerance": 1e-14,
+    "raw_output": "deterministic_gzip_csv_one_file_per_case",
+    "mass_balance_acceptance_fraction": 0.01,
+    "energy_balance_acceptance_fraction": 0.03,
+    "step_convergence_acceptance_fraction": 0.05
+  },
+  "required_outputs": [
+    "pressure_vs_crank_angle",
+    "temperature_vs_crank_angle",
+    "chemical_or_prescribed_heat_release_rate",
+    "mass_flow_intake_exhaust_and_fuel",
+    "indicated_work_and_imep",
+    "volumetric_efficiency_screen",
+    "wall_heat_flux",
+    "mass_balance",
+    "energy_balance",
+    "crank_step_convergence",
+    "Cd_bracket",
+    "2v_4v_comparison"
+  ],
+  "unavailable_from_zero_dimensional_model": {
+    "tumble_and_swirl": "requires_3D_velocity_field",
+    "local_wall_heat_flux": "requires_CHT_and_resolved_solid_geometry",
+    "knock_margin": "fuel_and_chemistry_not_correlated_to_917_race_gasoline",
+    "port_flow_distribution": "requires_sealed_3D_ports_and_flow_bench_correlation"
+  },
+  "release_gates": {
+    "Cd_correlated_on_flow_bench": false,
+    "cam_laws_measured": false,
+    "fuel_mechanism_correlated": false,
+    "cylinder_pressure_correlated": false,
+    "three_dimensional_CFD_completed": false,
+    "CHT_completed": false,
+    "combustion_validated": false,
+    "knock_validated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  }
+}

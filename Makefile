@@ -6,7 +6,7 @@
 .PHONY: 917-component-factory-f42a-usd-test
 .PHONY: 917-variant-authority-f43-check
 .PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
-.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check
+.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -43,6 +43,7 @@ F41_PLAN_OUTPUT ?= work/917-component-factory-f41-plan
 F41_BUNDLE_OUTPUT ?= work/917-component-factory-f41-bundle
 override F44_CAD_IMAGE := ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
 override F44_OUTPUT := work/917-connecting-rod-cad-f44
+F46_PYTHON ?= python3
 
 .PHONY: 917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly 917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish 917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad 917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich 917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea 917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan 917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render 917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check 917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check 917-manufacturing-f37-check
 .PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-brep-audit-test 917-f42-1-topology-repair-test 917-f42-2-pcurve-repair-test 917-f42-1-thermal-optimization-check 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-f43-g3-g5-comparable-check 917-f43-scan-contour-patch-test
@@ -68,7 +69,7 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 917-f43-scan-contour-patch-test:
 	python3 tests/test_917_f43_scan_contour_patch_rebuild.py -v
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -76,6 +77,13 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 917-valvetrain-material-f45-check:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root . --check
 	python3 tests/test_917_valvetrain_material_screen_f45.py -v
+
+917-cantera-2v-4v-f46:
+	$(F46_PYTHON) twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py --project-root .
+
+917-cantera-2v-4v-f46-check:
+	python3 twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py --project-root . --check
+	python3 tests/test_917_cantera_2v_4v_crank_cycle_f46.py -v
 
 validate:
 	python3 scripts/validate_catalog.py

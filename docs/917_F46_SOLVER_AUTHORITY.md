@@ -33,3 +33,10 @@ python3 tests/test_917_engine_solver_authority_f46.py -v
 Ce contrat choisit et fige les outils. Il ne prouve pas encore leur exécution,
 la convergence, la tenue thermique, la résistance mécanique ou l'autorisation
 d'impression.
+
+La voie Cantera a depuis été exécutée dans le sous-lot
+[`917_CANTERA_2V_4V_CRANK_CYCLE_F46.md`](917_CANTERA_2V_4V_CRANK_CYCLE_F46.md) :
+36 cas 0D angle-vilebrequin 2V/4V avec un contre-modèle Wiebe, trois Cd et trois
+pas angulaires. Cette exécution ferme une lacune numérique 0D, mais son écart
+inter-modèle de pression demeure hors tolérance ; les gates CFD, corrélation et
+fabrication restent fermés.
