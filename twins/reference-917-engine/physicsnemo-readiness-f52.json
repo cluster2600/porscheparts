@@ -1,0 +1,302 @@
+{
+  "$comment": "Contrat F52 fail-closed. Il ne contient ni geometrie, ni dataset, ni poids de modele et n'autorise aucun entrainement.",
+  "schema": "porsche-917-physicsnemo-readiness-f52/v1",
+  "phase": "F52",
+  "scope": "readiness_dataset_and_model_governance_only",
+  "geometry_policy": {
+    "geometry_modified_by_F52": false,
+    "private_geometry_published": false,
+    "source_variants": [
+      "2V",
+      "4V"
+    ],
+    "outer_skin_authority": "F43_scan_locked_identity_scale_only",
+    "2V_private_native_BREP_sha256": "1574eb58b7af09bcadab6c9cfcdd9a56940d479a5aa1b1eb807d31d41d4f7c36",
+    "4V_private_native_BREP_sha256": "10ff1a2af8f2dbca78cf6ac2f72a9e1f2842e171f1e1e76080f07eacd4162131"
+  },
+  "runtime_pin": {
+    "lock_path": "containers/physicsnemo-cae-cu12.lock.json",
+    "lock_sha256": "692e6231f79a6680c82860637d40feff53d7b7c183bf40c4302e1e3174f15fc7",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a",
+    "platform": "linux/amd64",
+    "physicsnemo_version": "2.2.1",
+    "image_build_and_public_pull_verified": true,
+    "offline_import_smoke_verified": true,
+    "gpu_runtime_verified_for_this_image": false
+  },
+  "execution_status": {
+    "container_smoke_executed": true,
+    "physicsnemo_imports_executed": true,
+    "imported_public_models": [
+      "DoMINO",
+      "GeoTransolver",
+      "MeshGraphNet"
+    ],
+    "physicsnemo_model_forward_executed": false,
+    "physicsnemo_training_executed": false,
+    "physicsnemo_inference_evaluation_executed": false,
+    "physicsnemo_dataset_curator_executed": false,
+    "physicsnemo_model_executed": false,
+    "model_weights_produced": false,
+    "interpretation": "IMPORT_SMOKE_ONLY_NOT_MODEL_EXECUTION"
+  },
+  "audited_inputs": [
+    {
+      "id": "f14_dataset_contract",
+      "path": "twins/reference-917-engine/physicsnemo-dataset-f14.json",
+      "sha256": "da0ad83ebc05aa7e5aafaf653ed3f16caebcdf1fb1bc0122e6079d1ca3784d5e",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "contract_only"
+    },
+    {
+      "id": "f46_cantera_boundary_loads",
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/manifest.json",
+      "sha256": "dec4b9514655404bdf95947c7172c7a6563319fbdea747600be36f497cc321c9",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "zero_dimensional_load_witness_not_spatial_CFD_or_CHT_field_dataset"
+    },
+    {
+      "id": "f49_compressible_CFD_CHT",
+      "path": "twins/reference-917-engine/evidence/f49-cfd-cht/f49-cfd-cht-report.json",
+      "sha256": "979ed768126b1ad81e0ac66e38608b989360ce7f13a1083167b0154a68ae023c",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "all_cases_fail_closed_and_no_reference_dataset_release"
+    },
+    {
+      "id": "f50_steady_incompressible_CFD_recovery",
+      "path": "twins/reference-917-engine/evidence/f50-cfd-recovery/f50-cfd-recovery-report.json",
+      "sha256": null,
+      "availability": "pending_external_publication_not_consumed_by_F52",
+      "eligible_training_sample": false,
+      "reason": "twelve_steady_cases_are_not_CHT_have_no_energy_equation_and_include_fail_closed_cases"
+    },
+    {
+      "id": "f50_thermomechanical_screen",
+      "path": "twins/reference-917-engine/evidence/f50-thermomechanical/thermomechanical-screen-report.json",
+      "sha256": "fcd6fcfb7f947fc3dac5239d63571648a9b036bc1571e8547d4aa1ac963ab824",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "local_deck_witness_not_full_head_no_hot_card_no_fatigue_life"
+    },
+    {
+      "id": "f50_native_BREP_mesh",
+      "path": "twins/reference-917-engine/evidence/f50-native-brep/native-brep-mesh-f50.json",
+      "sha256": "dfd1a4b3128ac50b319d8c42d6ab4ae2e1b879cf80283c7bdd910bed7b0bc160",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "geometry_provenance_only_strict_volume_mesh_gates_red"
+    },
+    {
+      "id": "f50_additive_print",
+      "path": "twins/reference-917-engine/evidence/f50-additive-print/manifest.json",
+      "sha256": "514039d27a40460a2f06284313ec01e7e00bc74d15ca56971e48fbe3e6e52351",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "manufacturing_screen_not_physicsnemo_field_dataset"
+    },
+    {
+      "id": "f51_native_OpenUSD",
+      "path": "twins/reference-917-engine/evidence/f51-native-usd-validation/native-brep-usd-f51.json",
+      "sha256": "3f39e3e9a6801d1986f5b46f915dbbedb5c8c8209037878c5317583d7831e760",
+      "availability": "present_hash_verified",
+      "eligible_training_sample": false,
+      "reason": "visualization_validation_only_no_physics_fields"
+    }
+  ],
+  "dataset_contract": {
+    "sample_identity_fields": [
+      "sample_id",
+      "variant_id",
+      "geometry_family_id",
+      "geometry_revision_sha256",
+      "operating_regime_family_id",
+      "solver_campaign_id",
+      "physical_test_campaign_id"
+    ],
+    "required_artifact_roles": [
+      "dimensioned_geometry",
+      "volume_mesh",
+      "solver_configuration",
+      "boundary_conditions",
+      "field_tensors",
+      "convergence_report",
+      "conservation_report",
+      "mesh_independence_report",
+      "physical_correlation_report"
+    ],
+    "provenance_requirements": {
+      "relative_paths_only": true,
+      "sha256_for_every_artifact": true,
+      "solver_name_version_commit_required": true,
+      "immutable_container_digest_required": true,
+      "units_and_coordinate_frame_required": true,
+      "licence_and_training_rights_required": true,
+      "raw_scan_as_solver_geometry_forbidden": true,
+      "unconverged_sample_forbidden": true,
+      "failed_conservation_sample_forbidden": true,
+      "uncorrelated_sample_forbidden": true
+    },
+    "coverage_gate": {
+      "minimum_sample_count": null,
+      "sample_count_must_be_predeclared_from_learning_curve": true,
+      "learning_curve_plateau_required": true,
+      "both_2V_and_4V_required": true,
+      "multiple_independent_geometry_families_per_variant_required": true,
+      "multiple_independent_operating_regime_families_required": true,
+      "three_mesh_levels_per_reference_family_required": true,
+      "physical_correlation_campaign_required": true,
+      "current_accepted_sample_count": 0
+    }
+  },
+  "model_lanes": {
+    "DoMINO_CFD_CHT": {
+      "model": "DoMINO",
+      "purpose": "spatial_CFD_and_conjugate_heat_transfer_surrogate",
+      "reference_solver_authority": "OpenFOAM_or_ICEEngineFoam_plus_CHT_and_Cantera_boundary_loads",
+      "required_inputs": [
+        "dimensioned_geometry_encoding",
+        "variant_id",
+        "speed_load_boost_and_boundary_state",
+        "valve_lift_or_crank_angle_state",
+        "fluid_and_solid_material_state"
+      ],
+      "required_outputs": [
+        "pressure",
+        "velocity_vector",
+        "density",
+        "temperature_fluid",
+        "temperature_solid",
+        "wall_heat_flux",
+        "mass_flow"
+      ],
+      "release_requirements": [
+        "all_reference_cases_converged",
+        "mass_and_energy_conservation_passed",
+        "mesh_independence_passed",
+        "compressible_and_independent_method_agreement_passed",
+        "full_CHT_fields_available",
+        "physical_flow_and_thermal_correlation_passed"
+      ],
+      "current_reference_case_count": 12,
+      "current_cases_are_steady_incompressible": true,
+      "current_energy_equation_available": false,
+      "current_all_cases_passed": false,
+      "dataset_ready": false,
+      "training_authorized": false
+    },
+    "GeoTransolver_thermomechanical": {
+      "model": "GeoTransolver",
+      "purpose": "full_head_thermomechanical_field_surrogate",
+      "reference_solver_authority": "full_head_FEA_with_CHT_temperature_transfer_and_hot_material_card",
+      "required_inputs": [
+        "dimensioned_full_head_volume_mesh",
+        "pressure_and_temperature_history",
+        "fastener_preload_and_contact_state",
+        "temperature_dependent_LPBF_material_card",
+        "support_and_interface_conditions"
+      ],
+      "required_outputs": [
+        "temperature_solid",
+        "displacement_vector",
+        "stress_tensor",
+        "equivalent_stress",
+        "fatigue_damage_or_life"
+      ],
+      "release_requirements": [
+        "full_F43_head_solid_mesh_used",
+        "full_head_CHT_completed",
+        "three_level_mesh_convergence_passed_for_p95_and_maxima",
+        "hot_material_card_qualified_by_supplier_coupons",
+        "contact_and_preload_modeled",
+        "thermomechanical_fatigue_life_computed",
+        "physical_thermal_and_strain_correlation_passed"
+      ],
+      "current_full_head_fields_available": false,
+      "current_hot_material_card_available": false,
+      "current_fatigue_life_available": false,
+      "dataset_ready": false,
+      "training_authorized": false
+    }
+  },
+  "split_policy": {
+    "split_unit": "group_not_individual_mesh_or_time_step",
+    "fractions_after_readiness": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    },
+    "group_keys": [
+      "geometry_family_id",
+      "operating_regime_family_id",
+      "solver_campaign_id",
+      "physical_test_campaign_id"
+    ],
+    "required_holdouts": [
+      "unseen_geometry_family_per_variant",
+      "unseen_operating_regime_family",
+      "independent_solver_campaign",
+      "independent_physical_test_campaign"
+    ],
+    "same_geometry_across_splits_allowed": false,
+    "same_operating_regime_family_across_splits_allowed": false,
+    "same_physical_test_campaign_across_splits_allowed": false,
+    "normalization_fit_on_train_only": true,
+    "model_selection_uses_test_split": false,
+    "split_manifest_hash_required_before_training": true
+  },
+  "evaluation_and_guardrails": {
+    "metric_gates": {
+      "field_relative_L2_max": 0.05,
+      "integral_quantity_relative_error_max": 0.05,
+      "peak_temperature_relative_error_max": 0.05,
+      "p95_equivalent_stress_relative_error_max": 0.05,
+      "mass_and_energy_residual_not_worse_than_reference_gate": true,
+      "ninety_percent_interval_empirical_coverage_min": 0.85,
+      "ninety_percent_interval_empirical_coverage_max": 0.95
+    },
+    "uncertainty_quantification": {
+      "deep_ensemble_members_min": 5,
+      "calibration_on_validation_only": true,
+      "coverage_reported_per_field_variant_and_regime": true,
+      "error_uncertainty_rank_correlation_required": true
+    },
+    "out_of_distribution": {
+      "hard_OOD_suite_required": true,
+      "geometry_OOD_required": true,
+      "operating_regime_OOD_required": true,
+      "material_OOD_required": true,
+      "OOD_detection_AUROC_min": 0.95,
+      "hard_OOD_abstention_recall_min": 0.95,
+      "in_distribution_false_abstention_max": 0.05
+    },
+    "runtime_guardrails": [
+      "abstain_on_unknown_geometry_hash",
+      "abstain_outside_declared_operating_envelope",
+      "abstain_on_excessive_predictive_uncertainty",
+      "reject_nonphysical_temperature_density_or_pressure",
+      "reject_mass_or_energy_conservation_violation",
+      "never_override_reference_solver_or_physical_test",
+      "never_issue_manufacturing_or_engine_start_release"
+    ]
+  },
+  "release_gates": {
+    "all_declared_input_hashes_verified": false,
+    "DoMINO_dataset_ready": false,
+    "GeoTransolver_dataset_ready": false,
+    "split_manifest_locked": false,
+    "gpu_model_runtime_verified": false,
+    "physicsnemo_training_authorized": false,
+    "physicsnemo_model_trained": false,
+    "holdout_metrics_passed": false,
+    "UQ_calibration_passed": false,
+    "OOD_abstention_passed": false,
+    "reference_solver_replaced": false,
+    "physical_validation_replaced": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
