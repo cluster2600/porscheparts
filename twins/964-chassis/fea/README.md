@@ -87,3 +87,18 @@ cisaillement de membrane et que le critere est `G/rho`, non `E/rho`. L'analyse
 complete et ses reserves sont dans `docs/research/964-chassis-carbone-kevlar.md`.
 
     pycad build_shell.py 0.8 1.0 && pycad composite_study.py
+
+## Architecture contre materiau
+
+`build_body.py` etend le modele coque aux elements qui **ferment** le caisson —
+tablier avant, cloison arriere, tunnel central — et `architecture_study.py`
+rejoue l'essai sur trois architectures et deux materiaux a masse egale. Le cas
+`f`, plancher seul, redonne le maillage et la valeur de `build_shell.py`.
+
+A masse egale, fermer la caisse vaut **x 1,61** en raideur specifique, passer au
+carbone **x 1,25**, et les deux se multiplient (1,98 mesure pour 2,01 attendu) :
+les leviers sont separables et ne se substituent pas. Le tunnel central seul
+apporte +72 %, plus que les deux cloisons. Sections et hauteurs de cloison sont
+`ASSUMED` ; seuls les rapports sont exploitables.
+
+    pycad architecture_study.py

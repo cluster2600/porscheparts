@@ -90,6 +90,58 @@ la cloison arriere, le tunnel, les passages de roue, les pieds milieu et le cadr
 de pare-brise, qui portent l'essentiel de la torsion d'une caisse complete et
 qu'aucune source du dossier ne cote.
 
+## Architecture contre materiau : la question est tranchee
+
+L'affirmation « le levier est architectural » etait, dans la premiere version de
+ce document, un raisonnement. Elle est maintenant mesuree. L'astuce est qu'elle
+est **relative** : elle ne demande donc aucune raideur de caisse 964 publiee, ce
+qui tombe bien puisqu'il n'en existe pas.
+
+Meme essai de torsion, trois architectures de plus en plus fermees, deux
+materiaux **a masse egale** — le stratifie carbone est mis a 3,92 mm pour peser
+exactement ce que pese l'acier a 0,8 mm. La grandeur comparee est la raideur
+specifique `K/m`.
+
+| architecture | materiau | aire | masse | K (N.m/deg) | K/m |
+|---|---|---|---|---|---|
+| plancher seul | acier 0,8 mm | 4,67 m2 | 29,3 kg | 2442 | 83,3 |
+| plancher seul | carbone QI 3,92 mm | 4,67 m2 | 29,3 kg | 3063 | 104,5 |
+| + cloisons | acier 0,8 mm | 5,87 m2 | 36,9 kg | 3262 | 88,5 |
+| + cloisons | carbone QI 3,92 mm | 5,87 m2 | 36,9 kg | 4067 | 110,4 |
+| + cloisons + tunnel | acier 0,8 mm | 6,67 m2 | 41,9 kg | 5602 | 133,8 |
+| + cloisons + tunnel | carbone QI 3,92 mm | 6,67 m2 | 41,9 kg | 6917 | 165,2 |
+
+Les deux leviers, a masse egale :
+
+| levier | gain en K/m |
+|---|---|
+| **fermer la caisse**, a acier constant | **x 1,61** |
+| **passer au carbone**, a plancher seul | **x 1,25** |
+| les deux ensemble | x 1,98 |
+
+**L'architecture rapporte donc environ 30 % de plus que le materiau**, et surtout
+les deux leviers **se multiplient presque exactement** : 1,61 x 1,25 = 2,01
+contre 1,98 mesure. Ils sont separables, ce qui veut dire qu'ils ne se
+substituent pas l'un a l'autre. Choisir le carbone ne dispense pas de fermer la
+caisse, et fermer la caisse ne rend pas le carbone inutile.
+
+Le detail est instructif : l'essentiel du gain architectural ne vient pas des
+cloisons mais du **tunnel central**, qui a lui seul fait passer la raideur de
+3262 a 5602 N.m/deg, soit +72 %. Une poutre longitudinale fermee sur toute la
+longueur vaut plus que deux cloisons en bout.
+
+Deux controles de coherence entre les deux etudes. A masse egale, le carbone
+donne x 1,25 ; a raideur egale, il donnait 0,82x la masse, soit 1/0,82 = 1,22.
+Les deux lectures concordent. Et le cas « plancher seul, acier » redonne 2442
+N.m/deg, la valeur d'origine : la refonte du script de geometrie est fidele.
+
+**Reserve majeure, inchangee.** Les cloisons, leur hauteur de 500 mm et la
+section de tunnel 180 x 120 mm sont `ASSUMED` : aucune n'est publiee. Il manque
+toujours le pavillon, les pieds milieu, les passages de roue et le cadre de
+pare-brise. Les valeurs absolues du tableau ne sont donc toujours pas des
+raideurs de 964. **Seuls les rapports comptent**, et ce sont eux qui repondent a
+la question posee.
+
 ## Ce que cette etude n'est pas
 
 - **Ce ne sont pas des raideurs de caisse 964.** Le modele est un plancher, deux
@@ -128,3 +180,4 @@ ce qu'un monocoque apporterait a la voiture.
     pycad laminate.py                          # proprietes QI et auto-verification
     pycad build_shell.py 0.8 1.0
     pycad composite_study.py                   # tableau iso-raideur ci-dessus
+    pycad architecture_study.py                # ablation architecture / materiau
