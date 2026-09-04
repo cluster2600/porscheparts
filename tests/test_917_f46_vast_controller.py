@@ -72,17 +72,24 @@ class F46ControllerTests(unittest.TestCase):
         budget = self.contract["budget"]
         self.assertEqual(budget["hard_total_usd"], 23.0)
         self.assertEqual(
-            budget["planned_compute_ceiling_usd"] + budget["cleanup_and_billing_reserve_usd"],
+            budget["planned_compute_ceiling_usd"] + budget["planned_network_ceiling_usd"],
+            budget["planned_workload_ceiling_usd"],
+        )
+        self.assertEqual(
+            budget["planned_workload_ceiling_usd"] + budget["cleanup_and_billing_reserve_usd"],
             23.0,
         )
         self.assertEqual(
             self.contract["offer_policy"]["maximum_inet_up_cost_usd_per_gb"],
-            0.0,
+            0.01,
         )
         self.assertEqual(
             self.contract["offer_policy"]["maximum_inet_down_cost_usd_per_gb"],
-            0.0,
+            0.01,
         )
+        self.assertEqual(budget["maximum_image_pull_gb"], 4.0)
+        self.assertEqual(budget["maximum_input_bundle_gb"], 0.1)
+        self.assertEqual(budget["maximum_output_bundle_gb"], 1.0)
         self.assertEqual({item["family"] for item in self.jobs["jobs"]}, CTRL.REQUIRED_FAMILIES)
         self.assertEqual(self.jobs["planned_case_count"], 26)
         self.assertEqual(self.jobs["executable_case_count"], 0)
@@ -162,6 +169,7 @@ class F46ControllerTests(unittest.TestCase):
         self.assertEqual(plan["local_deadline_epoch"], plan["remote_deadline_epoch"])
         self.assertEqual(plan["local_deadline_epoch"], self.fixture["operator_deadline_epoch"])
         self.assertLessEqual(float(plan["projected_cumulative_spend_usd"]), 20.0)
+        self.assertEqual(plan["reserved_network_transfer_usd"], "0.000000")
         self.assertFalse(plan["launch_authorized"])
         self.assertIn("fixture synthétique", " ".join(plan["blockers"]))
         self.assertTrue(all(value is False for value in plan["release_gates"].values()))
@@ -206,8 +214,8 @@ class F46ControllerTests(unittest.TestCase):
         with self.assertRaisesRegex(CTRL.ContractError, "déjà consommé"):
             self.plan(ledger=ledger)
         offers = deepcopy(self.fixture["offers"])
-        offers["offers"][0]["inet_down_cost_usd_per_gb"] = 0.01
-        offers["offers"][1]["inet_down_cost_usd_per_gb"] = 0.01
+        offers["offers"][0]["inet_down_cost_usd_per_gb"] = 0.010001
+        offers["offers"][1]["inet_down_cost_usd_per_gb"] = 0.010001
         with self.assertRaisesRegex(CTRL.ContractError, "aucune offre"):
             self.plan(offers=offers)
 
@@ -353,10 +361,11 @@ class F46WrapperTests(unittest.TestCase):
     def test_f46_offer_filter_is_exact_and_budgeted(self):
         self.assertTrue(VAST.f46_offer_eligible(self.eligible_offer()))
         self.assertTrue(VAST.f46_offer_eligible(self.eligible_offer(gpu_name="RTX A6000", gpu_ram=49152)))
+        self.assertTrue(VAST.f46_offer_eligible(self.eligible_offer(inet_up_cost=0.01, inet_down_cost=0.01)))
         self.assertFalse(VAST.f46_offer_eligible(self.eligible_offer(gpu_name="RTX 4090")))
         self.assertFalse(VAST.f46_offer_eligible(self.eligible_offer(dph_total=2.51)))
         self.assertFalse(VAST.f46_offer_eligible(self.eligible_offer(type="interruptible")))
-        self.assertFalse(VAST.f46_offer_eligible(self.eligible_offer(inet_down_cost=0.01)))
+        self.assertFalse(VAST.f46_offer_eligible(self.eligible_offer(inet_down_cost=0.010001)))
 
     def test_existing_heavy_offer_listing_is_not_regressed(self):
         offer = self.eligible_offer()

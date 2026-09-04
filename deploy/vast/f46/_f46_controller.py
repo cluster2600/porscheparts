@@ -238,8 +238,15 @@ def validate_contract(contract: dict[str, Any], manifest: dict[str, Any], root: 
         raise ContractError("budget F46 absent")
     hard = number(budget.get("hard_total_usd"), "hard_total_usd")
     planned = number(budget.get("planned_compute_ceiling_usd"), "planned_compute_ceiling_usd")
+    network = number(budget.get("planned_network_ceiling_usd"), "planned_network_ceiling_usd")
+    workload = number(budget.get("planned_workload_ceiling_usd"), "planned_workload_ceiling_usd")
     reserve = number(budget.get("cleanup_and_billing_reserve_usd"), "cleanup reserve")
-    if hard != Decimal("23") or planned + reserve != hard or planned >= hard:
+    if (
+        hard != Decimal("23")
+        or planned + network != workload
+        or workload + reserve != hard
+        or planned >= workload
+    ):
         raise ContractError("décomposition du plafond F46 incohérente")
     if number(budget.get("maximum_selected_dph_usd"), "maximum_selected_dph_usd") > Decimal("2.5"):
         raise ContractError("débit horaire supérieur au contrat")
@@ -253,12 +260,24 @@ def validate_contract(contract: dict[str, Any], manifest: dict[str, Any], root: 
         raise ContractError("politique d'offre F46 absente")
     if offer_policy.get("allowed_gpu_models") != list(F46_GPU_NAMES):
         raise ContractError("liste de GPU F46 différente du contrat")
-    for key in (
+    maximum_up = number(
+        offer_policy.get("maximum_inet_up_cost_usd_per_gb"),
         "maximum_inet_up_cost_usd_per_gb",
+        allow_zero=True,
+    )
+    maximum_down = number(
+        offer_policy.get("maximum_inet_down_cost_usd_per_gb"),
         "maximum_inet_down_cost_usd_per_gb",
-    ):
-        if number(offer_policy.get(key), key, allow_zero=True) != 0:
-            raise ContractError("les transferts facturables doivent être refusés")
+        allow_zero=True,
+    )
+    if maximum_up > Decimal("0.01") or maximum_down > Decimal("0.01"):
+        raise ContractError("tarif réseau F46 supérieur à la borne")
+    image_gb = number(budget.get("maximum_image_pull_gb"), "maximum_image_pull_gb")
+    input_gb = number(budget.get("maximum_input_bundle_gb"), "maximum_input_bundle_gb")
+    output_gb = number(budget.get("maximum_output_bundle_gb"), "maximum_output_bundle_gb")
+    maximum_network = (image_gb + input_gb) * maximum_down + output_gb * maximum_up
+    if maximum_network != network:
+        raise ContractError("réserve réseau F46 différente des volumes et tarifs bornés")
 
     image = contract.get("image_policy")
     if not isinstance(image, dict):
@@ -695,6 +714,8 @@ def build_plan(
     prior_spend, ledger_synthetic = ledger_total(ledger, allow_synthetic=allow_synthetic)
     budget = contract["budget"]
     planned_ceiling = number(budget["planned_compute_ceiling_usd"], "planned ceiling")
+    network_ceiling = number(budget["planned_network_ceiling_usd"], "network ceiling")
+    workload_ceiling = number(budget["planned_workload_ceiling_usd"], "workload ceiling")
     remaining = planned_ceiling - prior_spend
     if remaining <= 0:
         raise ContractError("plafond calcul déjà consommé")
@@ -712,6 +733,21 @@ def build_plan(
     projected = prior_spend + dph * Decimal(runtime_seconds) / Decimal("3600")
     if projected > planned_ceiling:
         raise ContractError("projection de coût supérieure au plafond calcul")
+    selected_up = number(
+        selected["inet_up_cost_usd_per_gb"], "selected inet up", allow_zero=True
+    )
+    selected_down = number(
+        selected["inet_down_cost_usd_per_gb"], "selected inet down", allow_zero=True
+    )
+    reserved_network = (
+        number(budget["maximum_image_pull_gb"], "maximum image pull")
+        + number(budget["maximum_input_bundle_gb"], "maximum input bundle")
+    ) * selected_down + number(
+        budget["maximum_output_bundle_gb"], "maximum output bundle"
+    ) * selected_up
+    projected_workload = projected + reserved_network
+    if reserved_network > network_ceiling or projected_workload > workload_ceiling:
+        raise ContractError("projection calcul plus réseau supérieure au plafond workload")
 
     synthetic = image_synthetic or inventory_synthetic or offers_synthetic or ledger_synthetic
     jobs_ready = all(job.get("execution_ready") is True for job in manifest["jobs"])
@@ -743,9 +779,13 @@ def build_plan(
         "expected_label": None,
         "prior_cumulative_spend_usd": str(prior_spend),
         "selected_dph_total_usd": str(dph),
-        "projected_cumulative_spend_usd": str(projected.quantize(Decimal("0.000001"))),
+        "projected_compute_spend_usd": str(projected.quantize(Decimal("0.000001"))),
+        "reserved_network_transfer_usd": str(reserved_network.quantize(Decimal("0.000001"))),
+        "projected_cumulative_spend_usd": str(projected_workload.quantize(Decimal("0.000001"))),
         "hard_total_budget_usd": str(number(budget["hard_total_usd"], "hard total")),
         "planned_compute_ceiling_usd": str(planned_ceiling),
+        "planned_network_ceiling_usd": str(network_ceiling),
+        "planned_workload_ceiling_usd": str(workload_ceiling),
         "local_deadline_epoch": hard_deadline,
         "remote_deadline_epoch": hard_deadline,
         "compute_stop_epoch": compute_deadline,
@@ -803,7 +843,13 @@ def cost_check(
     elapsed_charge = Decimal(now_epoch - start) * dph / Decimal("3600")
     provider_charge = number(instance.get("provider_charge_usd"), "provider charge", allow_zero=True)
     current_charge = max(elapsed_charge, provider_charge)
-    cumulative = prior + current_charge
+    cumulative_compute = prior + current_charge
+    reserved_network = number(
+        plan.get("reserved_network_transfer_usd"),
+        "reserved network transfer",
+        allow_zero=True,
+    )
+    cumulative = cumulative_compute + reserved_network
     planned_cap = number(contract["budget"]["planned_compute_ceiling_usd"], "planned cap")
     hard_cap = number(contract["budget"]["hard_total_usd"], "hard cap")
     compute_deadline = positive_integer(plan.get("compute_stop_epoch"), "compute_stop_epoch")
@@ -811,7 +857,7 @@ def cost_check(
     contract_ok = dph <= number(contract["budget"]["maximum_selected_dph_usd"], "max dph")
     continue_compute = (
         contract_ok
-        and cumulative < planned_cap
+        and cumulative_compute < planned_cap
         and now_epoch < compute_deadline
         and plan.get("launch_authorized") is True
         and not synthetic
@@ -826,8 +872,13 @@ def cost_check(
         "continue_compute": continue_compute,
         "cleanup_required": cleanup_required,
         "current_conservative_charge_usd": str(current_charge.quantize(Decimal("0.000001"))),
+        "cumulative_compute_spend_usd": str(cumulative_compute.quantize(Decimal("0.000001"))),
+        "reserved_network_transfer_usd": str(reserved_network.quantize(Decimal("0.000001"))),
         "cumulative_conservative_spend_usd": str(cumulative.quantize(Decimal("0.000001"))),
         "planned_compute_ceiling_usd": str(planned_cap),
+        "planned_workload_ceiling_usd": str(
+            number(contract["budget"]["planned_workload_ceiling_usd"], "planned workload")
+        ),
         "hard_total_budget_usd": str(hard_cap),
         "hard_budget_exceeded": hard_budget_exceeded,
         "compute_deadline_reached": now_epoch >= compute_deadline,
@@ -931,6 +982,8 @@ def preparation_report(contract: dict[str, Any], manifest: dict[str, Any], root:
         "executable_case_count": manifest["executable_case_count"],
         "hard_total_budget_usd": contract["budget"]["hard_total_usd"],
         "planned_compute_ceiling_usd": contract["budget"]["planned_compute_ceiling_usd"],
+        "planned_network_ceiling_usd": contract["budget"]["planned_network_ceiling_usd"],
+        "planned_workload_ceiling_usd": contract["budget"]["planned_workload_ceiling_usd"],
         "cleanup_and_billing_reserve_usd": contract["budget"]["cleanup_and_billing_reserve_usd"],
         "current_blockers": [
             "F46 linux/amd64 image digest and committed smoke evidence absent",

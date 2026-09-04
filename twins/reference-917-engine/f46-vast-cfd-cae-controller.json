@@ -21,14 +21,20 @@
   },
   "budget": {
     "hard_total_usd": 23.0,
-    "planned_compute_ceiling_usd": 20.0,
+    "planned_compute_ceiling_usd": 19.949,
+    "planned_network_ceiling_usd": 0.051,
+    "planned_workload_ceiling_usd": 20.0,
     "cleanup_and_billing_reserve_usd": 3.0,
     "maximum_selected_dph_usd": 2.5,
     "maximum_runtime_seconds": 28800,
     "minimum_useful_runtime_seconds": 3600,
     "cleanup_reserve_seconds": 1800,
     "cost_basis": "max(provider_reported_charge, elapsed_seconds*dph_total/3600) plus immutable prior ledger entries",
-    "network_tariff_must_be_zero_before_launch": true,
+    "network_tariff_must_be_zero_before_launch": false,
+    "maximum_image_pull_gb": 4.0,
+    "maximum_input_bundle_gb": 0.1,
+    "maximum_output_bundle_gb": 1.0,
+    "network_cost_basis": "(image_pull_gb + input_bundle_gb) * inet_down_cost_usd_per_gb + output_bundle_gb * inet_up_cost_usd_per_gb; reserve the maximum before launch",
     "overspend_never_suppresses_cleanup": true
   },
   "offer_policy": {
@@ -46,8 +52,8 @@
     "minimum_cpu_ram_mb": 128000,
     "minimum_disk_space_gb": 500,
     "minimum_reliability": 0.99,
-    "maximum_inet_up_cost_usd_per_gb": 0.0,
-    "maximum_inet_down_cost_usd_per_gb": 0.0,
+    "maximum_inet_up_cost_usd_per_gb": 0.01,
+    "maximum_inet_down_cost_usd_per_gb": 0.01,
     "verified_machine_required": true,
     "on_demand_required": true,
     "selection_order": [
@@ -116,7 +122,8 @@
     "poll_seconds": 60,
     "provider_instance_snapshot_required": true,
     "prior_ledger_is_append_only": true,
-    "stop_compute_at_planned_ceiling_usd": 20.0,
+    "stop_compute_at_planned_ceiling_usd": 19.949,
+    "reserved_network_ceiling_usd": 0.051,
     "destroy_before_hard_total_usd": 23.0,
     "missing_or_nonfinite_cost_blocks_compute_and_triggers_cleanup": true
   },

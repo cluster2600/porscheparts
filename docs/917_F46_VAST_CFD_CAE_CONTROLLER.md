@@ -72,9 +72,10 @@ mémoire ; le contrôleur départage donc ensuite par cœurs CPU, RAM, coût et
 identifiant stable. Il ne code aucun identifiant d'offre, car une offre Vast
 est temporaire.
 
-Les tarifs `inet_up_cost` et `inet_down_cost` doivent être présents et égaux à
-zéro. Une offre dont le transfert est facturable est rejetée : sans volume de
-transfert borné, elle serait incompatible avec un plafond total de 23 USD.
+Les tarifs `inet_up_cost` et `inet_down_cost` doivent être présents et ne pas
+dépasser `0,01 USD/Go`. Le contrôleur réserve avant lancement le pire cas borné :
+`4,0 Go` pour l'image, `0,1 Go` d'entrées et `1,0 Go` de résultats. Une offre
+plus chère ou un bundle plus gros reste refusé.
 
 Le wrapper expose seulement des métadonnées sûres avec :
 
@@ -114,17 +115,21 @@ déléguer le lancement au wrapper Vast ; aucun credential GitHub n'est transmis
 
 ## Budget et TTL
 
-Le plafond dur est 23 USD : 20 USD maximum sont planifiés pour la fenêtre
-d'instance et 3 USD restent réservés au cleanup et aux arrondis de facturation.
-Les transferts facturables sont interdits avant lancement. Le débit horaire de
-l'instance créée est relu, et non déduit du prix public de l'offre.
+Le plafond dur est 23 USD : `19,949 USD` maximum sont planifiés pour la fenêtre
+d'instance, `0,051 USD` sont réservés aux transferts bornés et `3 USD` restent
+réservés au cleanup et aux arrondis de facturation. Le débit horaire et les
+deux tarifs réseau de l'instance créée sont relus, et non déduits du prix public
+de l'offre.
 
 À chaque contrôle :
 
 ```text
 charge courante = max(charge fournisseur disponible,
                       durée écoulée × dph_total / 3600)
-coût cumulé      = somme immuable des charges finalisées + charge courante
+réserve réseau   = (image + entrées) × tarif descendant
+                   + résultats × tarif montant
+coût conservatif = somme immuable des charges finalisées
+                   + charge courante + réserve réseau
 ```
 
 La fenêtre ne dépasse jamais huit heures. La deadline locale et celle passée
