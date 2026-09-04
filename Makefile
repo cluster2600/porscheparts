@@ -6,7 +6,7 @@
 .PHONY: 917-component-factory-f42a-usd-test
 .PHONY: 917-variant-authority-f43-check
 .PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
-.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check 917-cae-load-transfer-f47 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f48-cfd-domain-test 917-mesh-diagnostic-f48 917-mesh-diagnostic-f48-check 917-material-lpbf-f49 917-material-lpbf-f49-check
+.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check 917-cae-load-transfer-f47 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f48-cfd-domain-test 917-mesh-diagnostic-f48 917-mesh-diagnostic-f48-check 917-material-lpbf-f49 917-material-lpbf-f49-check 917-omniverse-simready-f49-check
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -70,7 +70,7 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 917-f43-scan-contour-patch-test:
 	python3 tests/test_917_f43_scan_contour_patch_rebuild.py -v
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f47-cfd-cae-image-check 917-f48-cfd-domain-test 917-mesh-diagnostic-f48-check 917-material-lpbf-f49-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f47-cfd-cae-image-check 917-f48-cfd-domain-test 917-mesh-diagnostic-f48-check 917-material-lpbf-f49-check 917-omniverse-simready-f49-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -112,6 +112,9 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 917-material-lpbf-f49-check:
 	python3 twins/reference-917-engine/source/build_material_lpbf_qualification_f49.py --project-root . --check
 	python3 tests/test_917_material_lpbf_qualification_f49.py -v
+
+917-omniverse-simready-f49-check:
+	python3 tests/test_917_f49_omniverse_simready.py -v
 
 validate:
 	python3 scripts/validate_catalog.py

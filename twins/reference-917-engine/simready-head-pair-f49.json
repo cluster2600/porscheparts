@@ -1,0 +1,181 @@
+{
+  "$comment": "Contrat Omniverse/SimReady F49 fail-closed. Aucun STEP F49 n'est accepte ou converti a la date de ce contrat; les anciens candidats invalides sont interdits.",
+  "schema_version": "1.0.0",
+  "phase": "F49",
+  "status": "blocked_pending_two_accepted_f49_step_solids_and_live_content_agents_preflight",
+  "request": {
+    "workflow": "end_to_end_cad_to_simready_with_final_ovrtx_renders",
+    "property_assignment_intent": "run",
+    "simready_profile": "Prop-Robotics-Neutral",
+    "profile_version": "1.0.0",
+    "variants_must_run_independently": true
+  },
+  "geometry_authority": {
+    "external_skin": {
+      "source": "F43 scan contour patch",
+      "private_step_filename": "917-head-scan-contour-repaired-v2-f43.step",
+      "private_step_sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+      "public_report": {
+        "path": "twins/reference-917-engine/evidence/f43-scan-contour-patch/f43-scan-contour-patch-report.json",
+        "sha256": "7d004358f0823ab4120f411334e396a187cd77a16dbd02e02f8e153f4b1b2aa5"
+      },
+      "visible_policy": {
+        "path": "twins/reference-917-engine/visible-product-policy-f49.json",
+        "sha256": "6f08ee923e8a3c51dbe4f1187e6346d55d4a7f609ae255e60d30b8e6b7f8c9bb"
+      },
+      "same_exact_source_bytes_required_for_2v_and_4v": true,
+      "external_face_signatures_must_be_identical_outside_declared_openings": true,
+      "anisotropic_scale_allowed": false,
+      "synthetic_external_envelope_allowed": false
+    },
+    "future_step_pair": [
+      {
+        "variant": "2V",
+        "expected_private_path": "work/917-f49-solid/917-head-2v-f49-private.step",
+        "accepted_sha256": null,
+        "accepted": false
+      },
+      {
+        "variant": "4V",
+        "expected_private_path": "work/917-f49-solid/917-head-4v-f49-private.step",
+        "accepted_sha256": null,
+        "accepted": false
+      }
+    ],
+    "expected_private_audit_path": "work/917-f49-solid/f49-solid-private-audit.json",
+    "expected_public_report_path": "twins/reference-917-engine/evidence/f49-solid/f49-solid-public-report.json",
+    "currently_accepted_public_report_present": false,
+    "forbidden_as_source_or_render": [
+      "F39",
+      "F42",
+      "F47 head STEP ca5ad5b5cc7b168946cb93d49adb7409e9e3ac4853b808e86ed8ad5f3477ea0b",
+      "F47 head STEP 196e9b83629b0f5ecacc822153766fcf388da557a6fc30e50f7141f45479c6c9"
+    ]
+  },
+  "input_acceptance": {
+    "manifest_template": {
+      "path": "twins/reference-917-engine/remote-simready/f49/input-manifest.template.json",
+      "sha256": "498bbfc480c77eb54c217459fc7e5ae6a9a2fe34642f6317fcabdce1ba2d386a"
+    },
+    "validator": {
+      "path": "twins/reference-917-engine/remote-simready/f49/validate_inputs.py",
+      "sha256": "d1075eb386d6d28acc667a47e9b211372823956dff600313695e8989562770d0"
+    },
+    "required_per_variant_gates": [
+      "step_file_exists_and_sha256_matches",
+      "iso_10303_21_header_present",
+      "solid_candidate_accepted",
+      "brepcheck_exact_valid",
+      "bopalgo_fault_count_zero_after_step_roundtrip",
+      "one_closed_manifold_solid",
+      "gmsh_volume_mesh_completed",
+      "external_skin_f43_source_sha256_matches",
+      "external_face_signatures_locked_outside_openings",
+      "no_global_scale_transform",
+      "no_anisotropic_scale",
+      "no_synthetic_external_envelope",
+      "no_forbidden_lineage"
+    ],
+    "all_gates_required_before_preflight": true,
+    "failure_action": "stop_before_asset_inspection_converter_probe_conversion_or_usd_authoring"
+  },
+  "runtime": {
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "platform": "linux/amd64",
+    "public_audit": {
+      "path": "twins/reference-917-engine/evidence/f49-simready-runtime/public-runtime-audit.json",
+      "sha256": "259a61f5464d94f573bcbcf1de91968949eb4025e686705d231ae032b7711e03"
+    },
+    "public_image_and_cpu_smokes_qualified": true,
+    "live_gpu_smoke_required_before_asset_workflow": true,
+    "content_agents_health_required_before_asset_inspection": true,
+    "ovrtx_health_required_before_asset_inspection": true,
+    "current_live_gpu_and_service_readiness": false
+  },
+  "assignment": {
+    "material_prompt": {
+      "path": "twins/reference-917-engine/remote-simready/f49/material-prompt.txt",
+      "sha256": "ffb539d0ef6a82c67338f5d057cefa9da3155ad6c0550c8f0ec70c9fbb0b955e"
+    },
+    "physics_prompt": {
+      "path": "twins/reference-917-engine/remote-simready/f49/physics-prompt.txt",
+      "sha256": "66dbd0b3a5cd08b08d0e17e04f4512219d77c3e7b09883cb5ebd1d0326f5b494"
+    },
+    "material_candidate_authority": {
+      "path": "twins/reference-917-engine/material-lpbf-qualification-f49.json",
+      "sha256": "09b3af21c5089dc68d472706a6eaf6491709fd8fe93a8e8e1825a0932bce32b5"
+    },
+    "material_then_physics": true,
+    "geometry_mutation_allowed": false,
+    "unit_mutation_before_assignment_allowed": false,
+    "physical_properties_may_be_invented": false,
+    "texture_assignment_requested": false
+  },
+  "atomic_workflow": {
+    "command_contract": {
+      "path": "twins/reference-917-engine/remote-simready/f49/commands.json",
+      "sha256": "cab5a78942a829c14d93fd5763c66b2faefb35f8a21a26e8e0a7cdbd3b1c6699"
+    },
+    "order": [
+      "input-gate",
+      "preflight",
+      "content-agents-readiness",
+      "identify-asset-context",
+      "convert-to-usd",
+      "validate-usd-minimum",
+      "material-agent",
+      "physics-agent",
+      "simready-conform-profile",
+      "omni-asset-validate",
+      "omni-asset-validate-geometry",
+      "omni-asset-validate-physics",
+      "simready-validate",
+      "conditional-fet-repair-and-rerun",
+      "ovrtx-render-service",
+      "consolidated-report"
+    ],
+    "single_monolithic_runner_allowed": false,
+    "concrete_report_output_path_must_feed_next_stage": true,
+    "stop_at_first_deployment_conversion_assignment_or_conformance_failure": true,
+    "continue_diagnostic_validators_after_meaningful_usd_exists": true,
+    "final_render_must_come_from_ovrtx_render_service": true
+  },
+  "visual_policy": {
+    "render_only_accepted_f49_pair": true,
+    "same_f43_external_skin_for_both_variants": true,
+    "historical_f39_or_f42_assets_allowed_in_gallery": false,
+    "generated_or_proxy_geometry_allowed": false,
+    "anisotropic_scale_allowed": false,
+    "final_views": [
+      "2V three-quarter external",
+      "2V section",
+      "4V three-quarter external",
+      "4V section",
+      "2V-4V same-camera comparison"
+    ],
+    "section_views_must_cut_the_accepted_usd_not_construct_a_new_shape": true,
+    "blank_or_uniform_render_is_failure": true
+  },
+  "current_gates": {
+    "2v_step_accepted": false,
+    "4v_step_accepted": false,
+    "pair_external_skin_lock_verified": false,
+    "input_manifest_ready": false,
+    "preflight_ready": false,
+    "content_agents_ready": false,
+    "conversion_complete": false,
+    "minimum_usd_valid": false,
+    "material_assignment_complete": false,
+    "physics_assignment_complete": false,
+    "conformance_complete": false,
+    "asset_validation_complete": false,
+    "geometry_validation_complete": false,
+    "physics_validation_complete": false,
+    "simready_profile_complete": false,
+    "ovrtx_render_complete": false,
+    "omniverse_simready_released": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
