@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F46",
+  "purpose": "Autorite des solveurs moteur comparables pour les culasses turbo 2V et 4V",
+  "requested_tools": [
+    "OpenFOAM",
+    "ICEEngineFoam",
+    "Cantera"
+  ],
+  "name_resolution": {
+    "exact_ICEEngineFoam_executable_found_in_official_sources": false,
+    "fabricated_alias_allowed": false,
+    "accepted_current_engine_framework": "AATE_OpenFOAM_ICengines",
+    "accepted_historical_counter_solver": "OpenFOAM_3.0.x_engineFoam",
+    "claim_boundary": "Aucune execution ne doit etre etiquetee ICEEngineFoam tant qu'un executable source et sa revision ne sont pas prouves."
+  },
+  "source_locks": {
+    "current_engine_framework": {
+      "repository": "https://github.com/OpenFOAM/ICengines",
+      "revision": "c0f75f953d67cd325d28d1300672d14288f22934",
+      "build_against": "OpenFOAM-dev",
+      "role": "maillage_mobile_et_CFD_moteur_industriel_AATE"
+    },
+    "historical_counter_solver": {
+      "repository": "https://github.com/OpenFOAM/OpenFOAM-3.0.x",
+      "revision": "221b8ab77307b0ea3831a055bedc2cd77c1417f9",
+      "executable": "engineFoam",
+      "role": "contre_calcul_RANS_combustion_bXi"
+    },
+    "thermochemistry": {
+      "project": "Cantera",
+      "version": "3.2.0",
+      "role": "equilibre_et_cinetique_0D_separes"
+    }
+  },
+  "comparison_contract": {
+    "variants": [
+      "917_30_turbo_5374_2v_f45",
+      "917_30_turbo_5374_4v_f45"
+    ],
+    "same_external_scan_contour_required": true,
+    "same_bore_stroke_compression_boost_fuel_and_boundary_conditions_required": true,
+    "minimum_mesh_levels": 3,
+    "mass_and_energy_balance_limit_fraction": 0.01,
+    "mesh_convergence_limit_fraction": 0.05,
+    "cross_method_difference_limit_fraction": 0.05,
+    "required_outputs": [
+      "pressure_vs_crank_angle",
+      "temperature_vs_crank_angle",
+      "heat_release_rate",
+      "mass_flow_intake_exhaust",
+      "volumetric_efficiency",
+      "tumble_and_swirl",
+      "wall_heat_flux",
+      "knock_margin",
+      "residual_mass_fraction",
+      "mass_and_energy_balance"
+    ]
+  },
+  "runtime_evidence_required": {
+    "immutable_linux_amd64_image_digest": true,
+    "build_log": true,
+    "solver_version_log": true,
+    "input_manifest_sha256": true,
+    "mesh_quality_report": true,
+    "residual_history": true,
+    "raw_fields_and_postprocessing_hashes": true,
+    "hardware_and_wallclock_report": true
+  },
+  "execution_gates": {
+    "AATE_image_built_and_digest_locked": false,
+    "historical_engineFoam_image_built_and_digest_locked": false,
+    "Cantera_3_2_image_digest_locked": false,
+    "sealed_2v_fluid_domain_available": false,
+    "sealed_4v_fluid_domain_available": false,
+    "three_mesh_levels_completed_both_variants": false,
+    "cross_method_acceptance_passed": false,
+    "combustion_validation_claimed": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
