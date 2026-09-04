@@ -21,7 +21,6 @@ REQUIRED_GROUP_KEYS = {
     "physical_test_campaign_id",
 }
 REQUIRED_FALSE_GATES = {
-    "all_declared_input_hashes_verified",
     "DoMINO_dataset_ready",
     "GeoTransolver_dataset_ready",
     "split_manifest_locked",
@@ -36,6 +35,25 @@ REQUIRED_FALSE_GATES = {
     "manufacturing_authorized",
     "metal_print_authorized",
     "engine_start_authorized",
+}
+REQUIRED_RELEASE_GATES = REQUIRED_FALSE_GATES | {"all_declared_input_hashes_verified"}
+F50_AUDIT_KEYS = {
+    "source_schema",
+    "source_status",
+    "declared_cases",
+    "executed_cases_with_solver_receipt",
+    "flow_numerical_gate_pass_cases",
+    "flow_numerical_gate_fail_cases",
+    "energy_gate_applicable_cases",
+    "energy_gate_pass_cases",
+    "case_validation_gate_pass_cases",
+    "energy_equation_solved",
+    "conjugate_CHT_executed",
+    "all_flow_gates_passed",
+    "all_energy_gates_passed",
+    "validation_claim",
+    "accepted_training_samples",
+    "training_blocker",
 }
 
 
@@ -63,6 +81,126 @@ def _safe_path(root: Path, relative: Any) -> Path | None:
     except ValueError:
         return None
     return candidate
+
+
+def _audit_f50_cfd_recovery(report: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
+    """Recalcule les compteurs F50 depuis les 12 cas, sans croire le résumé."""
+
+    errors: list[str] = []
+    if report.get("schema_version") != "porsche-917-f50-cfd-recovery-public/v1":
+        errors.append("f50_source_schema_invalid")
+    if report.get("status") != "CFD_RECOVERY_FAIL_CLOSED":
+        errors.append("f50_source_status_invalid")
+    if report.get("validation_claim") is not False:
+        errors.append("f50_validation_claim_must_be_false")
+
+    case_index = report.get("case_index")
+    if not isinstance(case_index, dict):
+        case_index = {}
+        errors.append("f50_case_index_invalid")
+    expected_ids = {
+        f"{variant.lower()}-{level}-{screen}"
+        for variant in ("2V", "4V")
+        for level in ("coarse", "medium", "fine")
+        for screen in ("intake", "exhaust")
+    }
+    if set(case_index) != expected_ids:
+        errors.append("f50_case_matrix_invalid")
+    if report.get("case_count") != 12:
+        errors.append("f50_declared_case_count_invalid")
+
+    executed = 0
+    flow_pass = 0
+    energy_applicable = 0
+    energy_pass = 0
+    validation_pass = 0
+    for case_id in sorted(expected_ids):
+        case = case_index.get(case_id)
+        if not isinstance(case, dict):
+            errors.append(f"f50_case_missing:{case_id}")
+            continue
+        if case.get("case_id") != case_id:
+            errors.append(f"f50_case_id_mismatch:{case_id}")
+        for key in ("flow_numerical_gate_pass", "energy_gate_applicable", "case_validation_gate_pass"):
+            if not isinstance(case.get(key), bool):
+                errors.append(f"f50_case_boolean_invalid:{case_id}:{key}")
+        gates = case.get("gates")
+        if not isinstance(gates, dict) or not isinstance(gates.get("energy"), bool):
+            errors.append(f"f50_case_energy_gate_invalid:{case_id}")
+            gates = {}
+        solver_step = case.get("solver_step")
+        receipt_ok = (
+            case.get("execution_status") == "EXECUTED"
+            and isinstance(solver_step, dict)
+            and solver_step.get("return_code") == 0
+            and isinstance(solver_step.get("elapsed_s"), (int, float))
+            and not isinstance(solver_step.get("elapsed_s"), bool)
+            and solver_step.get("elapsed_s", 0) > 0
+            and SHA256_RE.fullmatch(str(solver_step.get("log_sha256", ""))) is not None
+        )
+        if receipt_ok:
+            executed += 1
+        else:
+            errors.append(f"f50_execution_receipt_invalid:{case_id}")
+        flow_pass += case.get("flow_numerical_gate_pass") is True
+        energy_applicable += case.get("energy_gate_applicable") is True
+        energy_pass += gates.get("energy") is True
+        validation_pass += case.get("case_validation_gate_pass") is True
+        values = case.get("values")
+        if not isinstance(values, dict) or values.get("energy_balance") is not None:
+            errors.append(f"f50_energy_balance_must_be_unavailable:{case_id}")
+        if case.get("validation_claim") is not False:
+            errors.append(f"f50_case_validation_claim_must_be_false:{case_id}")
+
+    if executed != 12:
+        errors.append("f50_executed_case_count_not_12")
+    if flow_pass != 7:
+        errors.append("f50_flow_pass_count_not_7")
+    if energy_applicable != 0:
+        errors.append("f50_energy_applicable_count_not_0")
+    if energy_pass != 0:
+        errors.append("f50_energy_pass_count_not_0")
+    if validation_pass != 0:
+        errors.append("f50_case_validation_pass_count_not_0")
+
+    method = report.get("method", {})
+    gates = report.get("gates", {})
+    if not isinstance(method, dict):
+        method = {}
+        errors.append("f50_method_schema_invalid")
+    if not isinstance(gates, dict):
+        gates = {}
+        errors.append("f50_gates_schema_invalid")
+    if method.get("energy_equation_solved") is not False:
+        errors.append("f50_energy_equation_claim_invalid")
+    for key in (
+        "all_12_flow_numerical_gates_pass",
+        "conjugate_CHT_executed",
+        "cross_method_agreement_below_5_percent",
+        "energy_balance_below_1_percent",
+    ):
+        if gates.get(key) is not False:
+            errors.append(f"f50_aggregate_gate_must_be_false:{key}")
+
+    summary = {
+        "source_schema": report.get("schema_version"),
+        "source_status": report.get("status"),
+        "declared_cases": report.get("case_count"),
+        "executed_cases_with_solver_receipt": executed,
+        "flow_numerical_gate_pass_cases": flow_pass,
+        "flow_numerical_gate_fail_cases": len(case_index) - flow_pass,
+        "energy_gate_applicable_cases": energy_applicable,
+        "energy_gate_pass_cases": energy_pass,
+        "case_validation_gate_pass_cases": validation_pass,
+        "energy_equation_solved": method.get("energy_equation_solved"),
+        "conjugate_CHT_executed": gates.get("conjugate_CHT_executed"),
+        "all_flow_gates_passed": gates.get("all_12_flow_numerical_gates_pass"),
+        "all_energy_gates_passed": gates.get("energy_balance_below_1_percent"),
+        "validation_claim": report.get("validation_claim"),
+        "accepted_training_samples": 0,
+        "training_blocker": "energy_and_CHT_are_required_by_the_DoMINO_lane_but_absent",
+    }
+    return summary, errors
 
 
 def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, Any]:
@@ -133,6 +271,7 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
         errors.append("execution_interpretation_invalid")
 
     artifact_results: list[dict[str, Any]] = []
+    f50_report: dict[str, Any] | None = None
     for item in contract.get("audited_inputs", []):
         if not isinstance(item, dict):
             errors.append("audited_input_not_object")
@@ -147,12 +286,9 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
                 actual_sha = _sha256(path)
                 if item.get("sha256") != actual_sha:
                     errors.append(f"audited_input_sha256_mismatch:{item.get('id')}")
+                elif item.get("id") == "f50_steady_incompressible_CFD_recovery":
+                    f50_report = _read_json(path)
             status = "HASH_VERIFIED" if actual_sha == item.get("sha256") else "FAILED"
-        elif availability == "pending_external_publication_not_consumed_by_F52":
-            if item.get("sha256") is not None:
-                errors.append(f"pending_input_hash_must_be_null:{item.get('id')}")
-            actual_sha = _sha256(path) if path is not None and path.is_file() else None
-            status = "PRESENT_BUT_NOT_CONSUMED" if actual_sha else "PENDING"
         else:
             errors.append(f"audited_input_availability_invalid:{item.get('id')}")
             actual_sha = None
@@ -160,6 +296,29 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
         if item.get("eligible_training_sample") is not False:
             errors.append(f"training_sample_must_be_rejected:{item.get('id')}")
         artifact_results.append({"id": item.get("id"), "status": status})
+
+    if len(contract.get("audited_inputs", [])) != 8:
+        errors.append("audited_input_count_invalid")
+    if f50_report is None:
+        f50_audit: dict[str, Any] = {}
+        errors.append("f50_recovery_not_consumed")
+    else:
+        f50_audit, f50_errors = _audit_f50_cfd_recovery(f50_report)
+        errors.extend(f50_errors)
+    source_audits = contract.get("source_audits", {})
+    if not isinstance(source_audits, dict) or set(source_audits) != {"f50_CFD_recovery"}:
+        errors.append("source_audits_schema_invalid")
+        source_audits = {}
+    declared_f50_audit = source_audits.get("f50_CFD_recovery", {})
+    if set(declared_f50_audit) != F50_AUDIT_KEYS:
+        errors.append("f50_contract_audit_schema_invalid")
+    if declared_f50_audit != f50_audit:
+        errors.append("f50_contract_audit_mismatch")
+    public_f50_audit = evidence.get("input_audit", {}).get("F50_CFD_recovery", {})
+    if set(public_f50_audit) != F50_AUDIT_KEYS:
+        errors.append("f50_public_audit_schema_invalid")
+    if public_f50_audit != f50_audit:
+        errors.append("f50_public_audit_mismatch")
 
     lanes = contract.get("model_lanes", {})
     if set(lanes) != set(EXPECTED_MODELS):
@@ -177,6 +336,14 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
     domino = lanes.get("DoMINO_CFD_CHT", {})
     if domino.get("current_reference_case_count") != 12:
         errors.append("domino_current_case_count_invalid")
+    if domino.get("current_executed_case_count") != f50_audit.get("executed_cases_with_solver_receipt"):
+        errors.append("domino_executed_case_count_invalid")
+    if domino.get("current_flow_numerical_gate_pass_count") != f50_audit.get("flow_numerical_gate_pass_cases"):
+        errors.append("domino_flow_pass_count_invalid")
+    if domino.get("current_flow_numerical_gate_fail_count") != f50_audit.get("flow_numerical_gate_fail_cases"):
+        errors.append("domino_flow_fail_count_invalid")
+    if domino.get("current_energy_gate_pass_count") != f50_audit.get("energy_gate_pass_cases"):
+        errors.append("domino_energy_pass_count_invalid")
     if domino.get("current_energy_equation_available") is not False:
         errors.append("domino_energy_gate_must_be_false")
     if domino.get("current_all_cases_passed") is not False:
@@ -219,8 +386,10 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
         errors.append("runtime_guardrails_incomplete")
 
     gates = contract.get("release_gates", {})
-    if set(gates) != REQUIRED_FALSE_GATES:
+    if set(gates) != REQUIRED_RELEASE_GATES:
         errors.append("release_gate_set_invalid")
+    if gates.get("all_declared_input_hashes_verified") is not True:
+        errors.append("all_declared_input_hashes_verified_must_be_true")
     for key in REQUIRED_FALSE_GATES:
         if gates.get(key) is not False:
             errors.append(f"release_gate_must_be_false:{key}")
@@ -238,6 +407,10 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
             errors.append(f"evidence_execution_claim_invalid:{key}")
     if evidence.get("input_audit", {}).get("eligible_training_samples") != 0:
         errors.append("evidence_eligible_sample_count_must_be_zero")
+    if evidence.get("input_audit", {}).get("present_hash_verified_artifacts") != 8:
+        errors.append("evidence_verified_artifact_count_must_be_eight")
+    if evidence.get("input_audit", {}).get("pending_artifacts") != 0:
+        errors.append("evidence_pending_artifact_count_must_be_zero")
     for value in evidence.get("release", {}).values():
         if value is not False:
             errors.append("evidence_release_gate_must_be_false")
@@ -248,6 +421,7 @@ def validate(root: Path, contract_path: Path, evidence_path: Path) -> dict[str, 
         "fail_closed": True,
         "errors": errors,
         "artifact_results": artifact_results,
+        "f50_CFD_recovery": f50_audit,
         "physicsnemo_execution": "IMPORT_SMOKE_ONLY_NOT_MODEL_EXECUTION",
         "accepted_training_samples": 0,
         "training_authorized": False,

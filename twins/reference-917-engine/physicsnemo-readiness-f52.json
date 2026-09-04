@@ -68,10 +68,10 @@
     {
       "id": "f50_steady_incompressible_CFD_recovery",
       "path": "twins/reference-917-engine/evidence/f50-cfd-recovery/f50-cfd-recovery-report.json",
-      "sha256": null,
-      "availability": "pending_external_publication_not_consumed_by_F52",
+      "sha256": "cf6c0b9cbab09ba3f3f6ecdadfe4075a4de0b7346b8d264412d0a798cf9a2877",
+      "availability": "present_hash_verified",
       "eligible_training_sample": false,
-      "reason": "twelve_steady_cases_are_not_CHT_have_no_energy_equation_and_include_fail_closed_cases"
+      "reason": "twelve_cases_executed_but_only_seven_flow_gates_pass_zero_energy_gates_pass_and_no_CHT_fields_exist"
     },
     {
       "id": "f50_thermomechanical_screen",
@@ -106,6 +106,26 @@
       "reason": "visualization_validation_only_no_physics_fields"
     }
   ],
+  "source_audits": {
+    "f50_CFD_recovery": {
+      "source_schema": "porsche-917-f50-cfd-recovery-public/v1",
+      "source_status": "CFD_RECOVERY_FAIL_CLOSED",
+      "declared_cases": 12,
+      "executed_cases_with_solver_receipt": 12,
+      "flow_numerical_gate_pass_cases": 7,
+      "flow_numerical_gate_fail_cases": 5,
+      "energy_gate_applicable_cases": 0,
+      "energy_gate_pass_cases": 0,
+      "case_validation_gate_pass_cases": 0,
+      "energy_equation_solved": false,
+      "conjugate_CHT_executed": false,
+      "all_flow_gates_passed": false,
+      "all_energy_gates_passed": false,
+      "validation_claim": false,
+      "accepted_training_samples": 0,
+      "training_blocker": "energy_and_CHT_are_required_by_the_DoMINO_lane_but_absent"
+    }
+  },
   "dataset_contract": {
     "sample_identity_fields": [
       "sample_id",
@@ -181,6 +201,10 @@
         "physical_flow_and_thermal_correlation_passed"
       ],
       "current_reference_case_count": 12,
+      "current_executed_case_count": 12,
+      "current_flow_numerical_gate_pass_count": 7,
+      "current_flow_numerical_gate_fail_count": 5,
+      "current_energy_gate_pass_count": 0,
       "current_cases_are_steady_incompressible": true,
       "current_energy_equation_available": false,
       "current_all_cases_passed": false,
@@ -283,7 +307,7 @@
     ]
   },
   "release_gates": {
-    "all_declared_input_hashes_verified": false,
+    "all_declared_input_hashes_verified": true,
     "DoMINO_dataset_ready": false,
     "GeoTransolver_dataset_ready": false,
     "split_manifest_locked": false,

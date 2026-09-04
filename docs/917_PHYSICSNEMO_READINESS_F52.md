@@ -44,13 +44,15 @@ et une corrélation thermique/déformation.
 
 ## Pourquoi les 12 cas steady ne suffisent pas
 
-Les cas F50 en cours de publication sont un contrôle incompressible stationnaire
-sur trois niveaux de maillage. Ils n’ont pas d’équation d’énergie, ne produisent
-pas de CHT, comportent des cas fail-closed et ne constituent que deux familles
-de géométrie. Ils ne peuvent donc pas fournir les sorties DoMINO requises ni un
-holdout géométrique indépendant. Le témoin thermomécanique F50 porte sur un deck
-local, sans carte matériau à chaud ni durée de vie en fatigue ; il ne peut pas
-alimenter GeoTransolver.
+Les 12 cas F50 publiés sont un contrôle incompressible stationnaire sur trois
+niveaux de maillage. Les 12 ont un reçu d’exécution OpenFOAM, mais seulement 7
+passent leur porte numérique de débit et 5 échouent. Aucun ne résout l’équation
+d’énergie : 0/12 passe une porte énergie et aucun champ CHT n’est produit. Le
+rapport F50 reste donc `CFD_RECOVERY_FAIL_CLOSED` et sa revendication de
+validation est fausse. Ces cas ne peuvent pas fournir les sorties DoMINO
+requises ni un holdout géométrique indépendant. Le témoin thermomécanique F50
+porte sur un deck local, sans carte matériau à chaud ni durée de vie en fatigue ;
+il ne peut pas alimenter GeoTransolver.
 
 Le nombre d’échantillons ne sera pas inventé. Il sera figé avant entraînement à
 partir d’une courbe d’apprentissage, après couverture des deux variantes, de
@@ -88,6 +90,9 @@ référence, les essais ni une décision de fabrication.
 | GPU pour cette image | non vérifié |
 | Passe avant de modèle | non exécutée |
 | Dataset admissible | 0 échantillon |
+| F50 exécuté | 12/12 cas avec reçu solveur |
+| F50 débit numérique | 7/12 passent, 5/12 échouent |
+| F50 énergie/CHT | 0/12 ; équation énergie et CHT absents |
 | DoMINO | bloqué |
 | GeoTransolver | bloqué |
 | Split figé | non |

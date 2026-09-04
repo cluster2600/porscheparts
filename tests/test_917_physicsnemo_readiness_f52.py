@@ -16,6 +16,7 @@ EVIDENCE_DIR = ROOT / "twins/reference-917-engine/evidence/f52-physicsnemo-readi
 EVIDENCE_PATH = EVIDENCE_DIR / "physicsnemo-readiness-f52.json"
 VALIDATOR_PATH = ROOT / "twins/reference-917-engine/source/validate_physicsnemo_readiness_f52.py"
 LOCK_PATH = ROOT / "containers/physicsnemo-cae-cu12.lock.json"
+F50_CFD_PATH = ROOT / "twins/reference-917-engine/evidence/f50-cfd-recovery/f50-cfd-recovery-report.json"
 
 
 def _load_validator():
@@ -32,6 +33,7 @@ class PhysicsNeMoReadinessF52Tests(unittest.TestCase):
         cls.contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
         cls.evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
         cls.lock = json.loads(LOCK_PATH.read_text(encoding="utf-8"))
+        cls.f50_cfd = json.loads(F50_CFD_PATH.read_text(encoding="utf-8"))
         cls.validator = _load_validator()
 
     def test_validator_passes_while_releases_stay_closed(self) -> None:
@@ -67,6 +69,10 @@ class PhysicsNeMoReadinessF52Tests(unittest.TestCase):
             self.assertFalse(lane["training_authorized"])
         domino = lanes["DoMINO_CFD_CHT"]
         self.assertEqual(domino["current_reference_case_count"], 12)
+        self.assertEqual(domino["current_executed_case_count"], 12)
+        self.assertEqual(domino["current_flow_numerical_gate_pass_count"], 7)
+        self.assertEqual(domino["current_flow_numerical_gate_fail_count"], 5)
+        self.assertEqual(domino["current_energy_gate_pass_count"], 0)
         self.assertTrue(domino["current_cases_are_steady_incompressible"])
         self.assertFalse(domino["current_energy_equation_available"])
         self.assertFalse(domino["current_all_cases_passed"])
@@ -78,8 +84,8 @@ class PhysicsNeMoReadinessF52Tests(unittest.TestCase):
     def test_artifacts_are_hashed_and_none_is_a_training_sample(self) -> None:
         inputs = self.contract["audited_inputs"]
         self.assertEqual(len(inputs), 8)
-        self.assertEqual(sum(item["availability"] == "present_hash_verified" for item in inputs), 7)
-        self.assertEqual(sum(item["sha256"] is None for item in inputs), 1)
+        self.assertEqual(sum(item["availability"] == "present_hash_verified" for item in inputs), 8)
+        self.assertEqual(sum(item["sha256"] is None for item in inputs), 0)
         self.assertTrue(all(item["eligible_training_sample"] is False for item in inputs))
         for item in inputs:
             if item["availability"] != "present_hash_verified":
@@ -120,10 +126,66 @@ class PhysicsNeMoReadinessF52Tests(unittest.TestCase):
         self.assertIn("reject_mass_or_energy_conservation_violation", guards)
         self.assertIn("never_issue_manufacturing_or_engine_start_release", guards)
 
-    def test_every_release_gate_is_false(self) -> None:
+    def test_every_authorization_gate_is_false(self) -> None:
         self.assertTrue(self.contract["release_gates"])
-        self.assertTrue(all(value is False for value in self.contract["release_gates"].values()))
+        self.assertTrue(self.contract["release_gates"]["all_declared_input_hashes_verified"])
+        self.assertTrue(
+            all(
+                value is False
+                for key, value in self.contract["release_gates"].items()
+                if key != "all_declared_input_hashes_verified"
+            )
+        )
         self.assertTrue(all(value is False for value in self.evidence["release"].values()))
+
+    def test_f50_schema_and_counts_are_recomputed_from_cases(self) -> None:
+        summary, errors = self.validator._audit_f50_cfd_recovery(self.f50_cfd)
+        self.assertEqual(errors, [])
+        self.assertEqual(summary, self.contract["source_audits"]["f50_CFD_recovery"])
+        self.assertEqual(summary, self.evidence["input_audit"]["F50_CFD_recovery"])
+        self.assertEqual(summary["declared_cases"], 12)
+        self.assertEqual(summary["executed_cases_with_solver_receipt"], 12)
+        self.assertEqual(summary["flow_numerical_gate_pass_cases"], 7)
+        self.assertEqual(summary["flow_numerical_gate_fail_cases"], 5)
+        self.assertEqual(summary["energy_gate_pass_cases"], 0)
+        self.assertEqual(summary["accepted_training_samples"], 0)
+        self.assertFalse(summary["energy_equation_solved"])
+        self.assertFalse(summary["conjugate_CHT_executed"])
+        self.assertFalse(summary["validation_claim"])
+
+    def test_f50_schema_and_execution_false_positives_are_rejected(self) -> None:
+        schema_mutation = json.loads(json.dumps(self.f50_cfd))
+        schema_mutation["schema_version"] = "invented/v1"
+        _, errors = self.validator._audit_f50_cfd_recovery(schema_mutation)
+        self.assertIn("f50_source_schema_invalid", errors)
+
+        receipt_mutation = json.loads(json.dumps(self.f50_cfd))
+        receipt_mutation["case_index"]["2v-coarse-intake"]["execution_status"] = "prepared_not_run"
+        summary, errors = self.validator._audit_f50_cfd_recovery(receipt_mutation)
+        self.assertEqual(summary["executed_cases_with_solver_receipt"], 11)
+        self.assertIn("f50_execution_receipt_invalid:2v-coarse-intake", errors)
+        self.assertIn("f50_executed_case_count_not_12", errors)
+
+    def test_f50_physics_false_positives_are_rejected(self) -> None:
+        flow_mutation = json.loads(json.dumps(self.f50_cfd))
+        flow_mutation["case_index"]["2v-fine-intake"]["flow_numerical_gate_pass"] = True
+        summary, errors = self.validator._audit_f50_cfd_recovery(flow_mutation)
+        self.assertEqual(summary["flow_numerical_gate_pass_cases"], 8)
+        self.assertIn("f50_flow_pass_count_not_7", errors)
+
+        energy_mutation = json.loads(json.dumps(self.f50_cfd))
+        case = energy_mutation["case_index"]["2v-coarse-intake"]
+        case["energy_gate_applicable"] = True
+        case["gates"]["energy"] = True
+        case["values"]["energy_balance"] = 0.0
+        energy_mutation["method"]["energy_equation_solved"] = True
+        energy_mutation["gates"]["energy_balance_below_1_percent"] = True
+        summary, errors = self.validator._audit_f50_cfd_recovery(energy_mutation)
+        self.assertEqual(summary["energy_gate_pass_cases"], 1)
+        self.assertIn("f50_energy_applicable_count_not_0", errors)
+        self.assertIn("f50_energy_pass_count_not_0", errors)
+        self.assertIn("f50_energy_equation_claim_invalid", errors)
+        self.assertIn("f50_aggregate_gate_must_be_false:energy_balance_below_1_percent", errors)
 
     def test_public_evidence_has_no_geometry_dataset_or_weights(self) -> None:
         forbidden_suffixes = (
