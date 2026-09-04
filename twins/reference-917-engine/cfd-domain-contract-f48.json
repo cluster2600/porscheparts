@@ -1,0 +1,170 @@
+{
+  "$comment": "F48 reconstruit uniquement des volumes fluides analytiques 2V/4V. Il n'importe ni n'approche la peau du scan et ne constitue aucune preuve de culasse solide, d'ajustement ou de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F48",
+  "authority": {
+    "F47_contract": {
+      "path": "twins/reference-917-engine/internal-brep-contract-f47.json",
+      "sha256": "cdf1c54c038994d12ba1e6d726746240a270e1d1683ffe5409db27bc4ea5693e"
+    }
+  },
+  "geometry_policy": {
+    "outer_scan_or_skin_imported": false,
+    "solid_head_or_fin_geometry_generated": false,
+    "ellipse_or_oval_profile_or_surface_primitive_used": false,
+    "OCC_generated_conic_intersection_edges_may_be_named_Ellipse": true,
+    "OCC_intersection_edge_note": "an_oblique_intersection_between_two_circular_cylinders_can_be_reported_as_a_conic_edge_this_is_not_an_elliptic_port_or_envelope",
+    "proxy_envelope_used": false,
+    "allowed_operations": [
+      "functional_circular_cylinder",
+      "boolean_fuse"
+    ],
+    "spark_plug_in_gas_domain": false,
+    "spark_plug_reason": "installed_spark_plug_is_a_solid_boundary_not_a_flow_volume",
+    "full_domain": true,
+    "symmetry_patch_applicable": false
+  },
+  "gas_geometry_from_F47": {
+    "bore_chamber": {
+      "diameter_scan_units": 90.0,
+      "z_start_scan_units": -6.0,
+      "z_end_scan_units": 8.0
+    },
+    "throat_z_start_scan_units": 4.0,
+    "throat_z_end_scan_units": 22.0,
+    "port_start_z_scan_units": 12.0,
+    "variants": {
+      "2V": {
+        "valves": [
+          {
+            "id": "intake_1",
+            "role": "intake",
+            "centre_xy_scan_units": [0.0, 21.5],
+            "head_diameter_scan_units": 42.0,
+            "throat_ratio": 0.86,
+            "port_exit_xyz_scan_units": [0.0, 125.0, 42.0]
+          },
+          {
+            "id": "exhaust_1",
+            "role": "exhaust",
+            "centre_xy_scan_units": [0.0, -21.0],
+            "head_diameter_scan_units": 35.0,
+            "throat_ratio": 0.86,
+            "port_exit_xyz_scan_units": [0.0, -98.0, 38.0]
+          }
+        ]
+      },
+      "4V": {
+        "valves": [
+          {
+            "id": "intake_1",
+            "role": "intake",
+            "centre_xy_scan_units": [-19.5, 15.5],
+            "head_diameter_scan_units": 31.5,
+            "throat_ratio": 0.86,
+            "port_exit_xyz_scan_units": [-19.5, 125.0, 42.0]
+          },
+          {
+            "id": "intake_2",
+            "role": "intake",
+            "centre_xy_scan_units": [19.5, 15.5],
+            "head_diameter_scan_units": 31.5,
+            "throat_ratio": 0.86,
+            "port_exit_xyz_scan_units": [19.5, 125.0, 42.0]
+          },
+          {
+            "id": "exhaust_1",
+            "role": "exhaust",
+            "centre_xy_scan_units": [-19.5, -19.0],
+            "head_diameter_scan_units": 26.0,
+            "throat_ratio": 0.86,
+            "port_exit_xyz_scan_units": [-19.5, -98.0, 38.0]
+          },
+          {
+            "id": "exhaust_2",
+            "role": "exhaust",
+            "centre_xy_scan_units": [19.5, -19.0],
+            "head_diameter_scan_units": 26.0,
+            "throat_ratio": 0.86,
+            "port_exit_xyz_scan_units": [19.5, -98.0, 38.0]
+          }
+        ]
+      }
+    },
+    "dimension_classification": "F47_research_hypotheses_scan_unit_interpreted_as_mm_but_absolute_scale_and_fitment_uncertified"
+  },
+  "oil_geometry_from_F47": {
+    "main_gallery": {
+      "start_xyz_scan_units": [-70.0, 62.0, 62.0],
+      "end_xyz_scan_units": [70.0, 62.0, 62.0],
+      "diameter_scan_units": 6.0
+    },
+    "vertical_cleanouts": [
+      {
+        "start_xyz_scan_units": [-35.0, 62.0, 62.0],
+        "z_end_scan_units": 85.0,
+        "diameter_scan_units": 7.0
+      },
+      {
+        "start_xyz_scan_units": [35.0, 62.0, 62.0],
+        "z_end_scan_units": 85.0,
+        "diameter_scan_units": 7.0
+      }
+    ],
+    "separate_from_gas": true,
+    "liquid_coolant_jacket": false,
+    "computational_caps_represent_open_boundaries": true,
+    "drainback_or_pressure_validated": false
+  },
+  "patch_policy": {
+    "required_gas_patches": [
+      "intake",
+      "exhaust",
+      "valve",
+      "chamber",
+      "deck",
+      "bore",
+      "walls"
+    ],
+    "symmetry": "not_applicable_full_360_degree_domain",
+    "required_oil_patches": [
+      "oil_x_minus",
+      "oil_x_plus",
+      "oil_cleanout",
+      "oil_walls"
+    ],
+    "every_boundary_surface_exactly_one_patch": true
+  },
+  "mesh_matrix": {
+    "algorithm_3D": "Delaunay",
+    "optimization": "Relocate3D",
+    "single_thread": true,
+    "levels": {
+      "coarse": {
+        "characteristic_length_max_scan_units": 6.0
+      },
+      "medium": {
+        "characteristic_length_max_scan_units": 4.0
+      },
+      "fine": {
+        "characteristic_length_max_scan_units": 2.5
+      }
+    },
+    "quality_gates": {
+      "count_minSICN_le_0": 0,
+      "minimum_minSICN_strictly_above": 0.0,
+      "p01_minSICN_at_least": 0.1,
+      "volume_relative_spread_at_most": 1e-12
+    }
+  },
+  "release_gates": {
+    "CFD_domain_geometry_research_only": true,
+    "fitment_OEM_certified": false,
+    "solid_head_BRep_validated": false,
+    "wall_thickness_validated": false,
+    "solid_FEA_validated": false,
+    "thermal_CHT_validated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

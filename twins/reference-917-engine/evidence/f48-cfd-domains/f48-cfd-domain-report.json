@@ -1,0 +1,561 @@
+{
+  "CFD_domain_gate": {
+    "does_not_open_fitment_or_manufacturing_gates": true,
+    "pass": true
+  },
+  "builder": {
+    "sha256": "108659b00caebd7fc5ea4c5ffd4fdfb6be0587bf6262c9912c2e847eff12e0a2"
+  },
+  "comparability": {
+    "2V": {
+      "same_characteristic_lengths_as_other_variant": true,
+      "volume_gate": true,
+      "volume_relative_spread": 0.0
+    },
+    "4V": {
+      "same_characteristic_lengths_as_other_variant": true,
+      "volume_gate": true,
+      "volume_relative_spread": 0.0
+    }
+  },
+  "construction": {
+    "OCC_generated_conic_intersection_edges_may_be_named_Ellipse": true,
+    "ellipse_or_oval_profile_or_surface_primitive_used": false,
+    "full_domain_no_symmetry_plane": true,
+    "functional_circular_cylinders_only": true,
+    "outer_scan_or_skin_imported": false,
+    "proxy_envelope_used": false,
+    "solid_head_generated": false,
+    "spark_plug_flow_volume_excluded": true
+  },
+  "contract": {
+    "sha256": "a6beaee5fcd0f6ab0032a29e8082d1e81eec22d756356e61a9816074788f86e0"
+  },
+  "gas_domains": {
+    "2V": {
+      "coarse": {
+        "all_boundary_surfaces_assigned_once": true,
+        "boundary_surface_count": 13,
+        "characteristic_length_max_scan_units": 6.0,
+        "count_minSICN_le_0": 0,
+        "count_minSICN_lt_0_1": 0,
+        "geometry_brep": null,
+        "kind": "gas",
+        "level": "coarse",
+        "mean_minSICN": 0.8001468851651778,
+        "median_minSICN": 0.8262529202375826,
+        "minimum_minDetJac": 20.34226422229954,
+        "minimum_minSICN": 0.3018568126330951,
+        "msh_bytes": 360469,
+        "msh_sha256": "1d7c27f63b5252e3b338a1f58a0fa7b1460609621eaecea38add61d5e0d9cc94",
+        "node_count": 2029,
+        "one_volume": true,
+        "p01_minSICN": 0.37036506605010483,
+        "p05_minSICN": 0.5391959672023001,
+        "patch_surface_coverage_count": 13,
+        "patches": {
+          "bore": {
+            "surface_area_scan_units_squared": 3729.908312111453,
+            "surface_count": 1,
+            "triangle_count": 282
+          },
+          "chamber": {
+            "surface_area_scan_units_squared": 4134.307928957224,
+            "surface_count": 1,
+            "triangle_count": 321
+          },
+          "deck": {
+            "surface_area_scan_units_squared": 6361.72512351933,
+            "surface_count": 1,
+            "triangle_count": 454
+          },
+          "exhaust": {
+            "surface_area_scan_units_squared": 711.578590019722,
+            "surface_count": 1,
+            "triangle_count": 74
+          },
+          "intake": {
+            "surface_area_scan_units_squared": 1024.6731696284,
+            "surface_count": 1,
+            "triangle_count": 81
+          },
+          "valve": {
+            "surface_area_scan_units_squared": 224.7952485597582,
+            "surface_count": 2,
+            "triangle_count": 22
+          },
+          "walls": {
+            "surface_area_scan_units_squared": 20621.50672190611,
+            "surface_count": 6,
+            "triangle_count": 1754
+          }
+        },
+        "quality_gates": {
+          "minimum_positive": true,
+          "no_inverted_tetrahedra": true,
+          "p01_at_least_0_1": true,
+          "pass": true
+        },
+        "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+        "symmetry_patch": "not_applicable_full_domain",
+        "tetrahedron_count": 7496,
+        "variant": "2V",
+        "volume_scan_units_cubed": 260701.0052327414
+      },
+      "fine": {
+        "all_boundary_surfaces_assigned_once": true,
+        "boundary_surface_count": 13,
+        "characteristic_length_max_scan_units": 2.5,
+        "count_minSICN_le_0": 0,
+        "count_minSICN_lt_0_1": 0,
+        "geometry_brep": null,
+        "kind": "gas",
+        "level": "fine",
+        "mean_minSICN": 0.8159733182623349,
+        "median_minSICN": 0.8485924090383072,
+        "minimum_minDetJac": 3.1931767865918306,
+        "minimum_minSICN": 0.24239136045561754,
+        "msh_bytes": 3776351,
+        "msh_sha256": "c899d37004b00f69829ec12092641ca70920c131e36c35996c5db60dccc0487a",
+        "node_count": 17373,
+        "one_volume": true,
+        "p01_minSICN": 0.37325912607706585,
+        "p05_minSICN": 0.5363816548407652,
+        "patch_surface_coverage_count": 13,
+        "patches": {
+          "bore": {
+            "surface_area_scan_units_squared": 3729.908312111453,
+            "surface_count": 1,
+            "triangle_count": 1540
+          },
+          "chamber": {
+            "surface_area_scan_units_squared": 4134.307928957224,
+            "surface_count": 1,
+            "triangle_count": 1711
+          },
+          "deck": {
+            "surface_area_scan_units_squared": 6361.72512351933,
+            "surface_count": 1,
+            "triangle_count": 2444
+          },
+          "exhaust": {
+            "surface_area_scan_units_squared": 711.578590019722,
+            "surface_count": 1,
+            "triangle_count": 286
+          },
+          "intake": {
+            "surface_area_scan_units_squared": 1024.6731696284,
+            "surface_count": 1,
+            "triangle_count": 410
+          },
+          "valve": {
+            "surface_area_scan_units_squared": 224.7952485597582,
+            "surface_count": 2,
+            "triangle_count": 97
+          },
+          "walls": {
+            "surface_area_scan_units_squared": 20621.50672190611,
+            "surface_count": 6,
+            "triangle_count": 8674
+          }
+        },
+        "quality_gates": {
+          "minimum_positive": true,
+          "no_inverted_tetrahedra": true,
+          "p01_at_least_0_1": true,
+          "pass": true
+        },
+        "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+        "symmetry_patch": "not_applicable_full_domain",
+        "tetrahedron_count": 83767,
+        "variant": "2V",
+        "volume_scan_units_cubed": 260701.0052327414
+      },
+      "medium": {
+        "all_boundary_surfaces_assigned_once": true,
+        "boundary_surface_count": 13,
+        "characteristic_length_max_scan_units": 4.0,
+        "count_minSICN_le_0": 0,
+        "count_minSICN_lt_0_1": 0,
+        "geometry_brep": {
+          "bytes": 36100,
+          "sha256": "9264761b8a5f7db59a14783989ff723327370effbf30803046f0e2f6915fb2ab"
+        },
+        "kind": "gas",
+        "level": "medium",
+        "mean_minSICN": 0.8072607710812126,
+        "median_minSICN": 0.8388553792206803,
+        "minimum_minDetJac": 7.556399949209199,
+        "minimum_minSICN": 0.27221922721183545,
+        "msh_bytes": 1003483,
+        "msh_sha256": "21387d9a89089f6af8df5d60c13be359a3d05ea39831524386833196ebd4b2b6",
+        "node_count": 5177,
+        "one_volume": true,
+        "p01_minSICN": 0.3627174847461753,
+        "p05_minSICN": 0.522961454005051,
+        "patch_surface_coverage_count": 13,
+        "patches": {
+          "bore": {
+            "surface_area_scan_units_squared": 3729.908312111453,
+            "surface_count": 1,
+            "triangle_count": 568
+          },
+          "chamber": {
+            "surface_area_scan_units_squared": 4134.307928957224,
+            "surface_count": 1,
+            "triangle_count": 683
+          },
+          "deck": {
+            "surface_area_scan_units_squared": 6361.72512351933,
+            "surface_count": 1,
+            "triangle_count": 957
+          },
+          "exhaust": {
+            "surface_area_scan_units_squared": 711.578590019722,
+            "surface_count": 1,
+            "triangle_count": 122
+          },
+          "intake": {
+            "surface_area_scan_units_squared": 1024.6731696284,
+            "surface_count": 1,
+            "triangle_count": 177
+          },
+          "valve": {
+            "surface_area_scan_units_squared": 224.7952485597582,
+            "surface_count": 2,
+            "triangle_count": 52
+          },
+          "walls": {
+            "surface_area_scan_units_squared": 20621.50672190611,
+            "surface_count": 6,
+            "triangle_count": 3581
+          }
+        },
+        "quality_gates": {
+          "minimum_positive": true,
+          "no_inverted_tetrahedra": true,
+          "p01_at_least_0_1": true,
+          "pass": true
+        },
+        "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+        "symmetry_patch": "not_applicable_full_domain",
+        "tetrahedron_count": 22063,
+        "variant": "2V",
+        "volume_scan_units_cubed": 260701.0052327414
+      }
+    },
+    "4V": {
+      "coarse": {
+        "all_boundary_surfaces_assigned_once": true,
+        "boundary_surface_count": 23,
+        "characteristic_length_max_scan_units": 6.0,
+        "count_minSICN_le_0": 0,
+        "count_minSICN_lt_0_1": 0,
+        "geometry_brep": null,
+        "kind": "gas",
+        "level": "coarse",
+        "mean_minSICN": 0.7984772230330599,
+        "median_minSICN": 0.8227611719132346,
+        "minimum_minDetJac": 6.633770873601195,
+        "minimum_minSICN": 0.2965593369069389,
+        "msh_bytes": 499452,
+        "msh_sha256": "e87f72c956aede17067c48146412bec8da44bcf842c1573a5f08112706fd1125",
+        "node_count": 2783,
+        "one_volume": true,
+        "p01_minSICN": 0.36803083014569665,
+        "p05_minSICN": 0.5283429241727066,
+        "patch_surface_coverage_count": 23,
+        "patches": {
+          "bore": {
+            "surface_area_scan_units_squared": 3853.958892877355,
+            "surface_count": 1,
+            "triangle_count": 346
+          },
+          "chamber": {
+            "surface_area_scan_units_squared": 3574.2091202610136,
+            "surface_count": 1,
+            "triangle_count": 306
+          },
+          "deck": {
+            "surface_area_scan_units_squared": 6361.72512351933,
+            "surface_count": 1,
+            "triangle_count": 454
+          },
+          "exhaust": {
+            "surface_area_scan_units_squared": 785.3504111891135,
+            "surface_count": 2,
+            "triangle_count": 146
+          },
+          "intake": {
+            "surface_area_scan_units_squared": 1152.7573158319499,
+            "surface_count": 2,
+            "triangle_count": 152
+          },
+          "valve": {
+            "surface_area_scan_units_squared": 82.3372196210307,
+            "surface_count": 4,
+            "triangle_count": 14
+          },
+          "walls": {
+            "surface_area_scan_units_squared": 32084.471097283782,
+            "surface_count": 12,
+            "triangle_count": 2940
+          }
+        },
+        "quality_gates": {
+          "minimum_positive": true,
+          "no_inverted_tetrahedra": true,
+          "p01_at_least_0_1": true,
+          "pass": true
+        },
+        "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+        "symmetry_patch": "not_applicable_full_domain",
+        "tetrahedron_count": 9660,
+        "variant": "4V",
+        "volume_scan_units_cubed": 291788.01095745416
+      },
+      "fine": {
+        "all_boundary_surfaces_assigned_once": true,
+        "boundary_surface_count": 23,
+        "characteristic_length_max_scan_units": 2.5,
+        "count_minSICN_le_0": 0,
+        "count_minSICN_lt_0_1": 0,
+        "geometry_brep": null,
+        "kind": "gas",
+        "level": "fine",
+        "mean_minSICN": 0.8124177867440162,
+        "median_minSICN": 0.8446720927742604,
+        "minimum_minDetJac": 1.0440746689957585,
+        "minimum_minSICN": 0.27146123951046736,
+        "msh_bytes": 4494979,
+        "msh_sha256": "bbac6bc83ceef6212d4db54454138454db218f93161c475cdb01cde91ebcaac7",
+        "node_count": 20542,
+        "one_volume": true,
+        "p01_minSICN": 0.36815316827704725,
+        "p05_minSICN": 0.5310469866339877,
+        "patch_surface_coverage_count": 23,
+        "patches": {
+          "bore": {
+            "surface_area_scan_units_squared": 3853.958892877355,
+            "surface_count": 1,
+            "triangle_count": 1615
+          },
+          "chamber": {
+            "surface_area_scan_units_squared": 3574.2091202610136,
+            "surface_count": 1,
+            "triangle_count": 1505
+          },
+          "deck": {
+            "surface_area_scan_units_squared": 6361.72512351933,
+            "surface_count": 1,
+            "triangle_count": 2444
+          },
+          "exhaust": {
+            "surface_area_scan_units_squared": 785.3504111891135,
+            "surface_count": 2,
+            "triangle_count": 350
+          },
+          "intake": {
+            "surface_area_scan_units_squared": 1152.7573158319499,
+            "surface_count": 2,
+            "triangle_count": 500
+          },
+          "valve": {
+            "surface_area_scan_units_squared": 82.3372196210307,
+            "surface_count": 4,
+            "triangle_count": 58
+          },
+          "walls": {
+            "surface_area_scan_units_squared": 32084.471097283782,
+            "surface_count": 12,
+            "triangle_count": 13538
+          }
+        },
+        "quality_gates": {
+          "minimum_positive": true,
+          "no_inverted_tetrahedra": true,
+          "p01_at_least_0_1": true,
+          "pass": true
+        },
+        "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+        "symmetry_patch": "not_applicable_full_domain",
+        "tetrahedron_count": 95381,
+        "variant": "4V",
+        "volume_scan_units_cubed": 291788.01095745416
+      },
+      "medium": {
+        "all_boundary_surfaces_assigned_once": true,
+        "boundary_surface_count": 23,
+        "characteristic_length_max_scan_units": 4.0,
+        "count_minSICN_le_0": 0,
+        "count_minSICN_lt_0_1": 0,
+        "geometry_brep": {
+          "bytes": 70429,
+          "sha256": "dfbb47fb9e9ef572c75c05bf6440bbadebc951738d70ceba4086cedd9ac43e92"
+        },
+        "kind": "gas",
+        "level": "medium",
+        "mean_minSICN": 0.8068754702009505,
+        "median_minSICN": 0.8369362454837067,
+        "minimum_minDetJac": 5.930129165883207,
+        "minimum_minSICN": 0.2926070925016933,
+        "msh_bytes": 1231343,
+        "msh_sha256": "b9409ffa5dc770085f1cf41a0555b37b7d233d152fe29088827f506d4ef593cb",
+        "node_count": 6392,
+        "one_volume": true,
+        "p01_minSICN": 0.3669447463818455,
+        "p05_minSICN": 0.5248692102679051,
+        "patch_surface_coverage_count": 23,
+        "patches": {
+          "bore": {
+            "surface_area_scan_units_squared": 3853.958892877355,
+            "surface_count": 1,
+            "triangle_count": 639
+          },
+          "chamber": {
+            "surface_area_scan_units_squared": 3574.2091202610136,
+            "surface_count": 1,
+            "triangle_count": 616
+          },
+          "deck": {
+            "surface_area_scan_units_squared": 6361.72512351933,
+            "surface_count": 1,
+            "triangle_count": 957
+          },
+          "exhaust": {
+            "surface_area_scan_units_squared": 785.3504111891135,
+            "surface_count": 2,
+            "triangle_count": 150
+          },
+          "intake": {
+            "surface_area_scan_units_squared": 1152.7573158319499,
+            "surface_count": 2,
+            "triangle_count": 212
+          },
+          "valve": {
+            "surface_area_scan_units_squared": 82.3372196210307,
+            "surface_count": 4,
+            "triangle_count": 22
+          },
+          "walls": {
+            "surface_area_scan_units_squared": 32084.471097283782,
+            "surface_count": 12,
+            "triangle_count": 5614
+          }
+        },
+        "quality_gates": {
+          "minimum_positive": true,
+          "no_inverted_tetrahedra": true,
+          "p01_at_least_0_1": true,
+          "pass": true
+        },
+        "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+        "symmetry_patch": "not_applicable_full_domain",
+        "tetrahedron_count": 25951,
+        "variant": "4V",
+        "volume_scan_units_cubed": 291788.01095745416
+      }
+    }
+  },
+  "images": {
+    "overview": {
+      "path": "twins/reference-917-engine/evidence/f48-cfd-domains/917-f48-cfd-domain-overview.png",
+      "sha256": "ac5e704ec6aaed6859ac228f856858fac4503d131946be2188524b66c7260055"
+    },
+    "sections": {
+      "path": "twins/reference-917-engine/evidence/f48-cfd-domains/917-f48-cfd-domain-sections.png",
+      "sha256": "3bfe759acd5bb0b4078be91ffe446423e6a27cff7c36285e1884712ddbf66d1c"
+    }
+  },
+  "interpretation": {
+    "correlated_engine_physics": false,
+    "domain_geometry_and_mesh_quality": "passed_for_declared_analytic_F47_assumptions",
+    "flow_solution_executed": false,
+    "manufacturing_or_engine_start_authority": false,
+    "solid_head_or_wall_thickness_evidence": false
+  },
+  "oil_domain": {
+    "all_boundary_surfaces_assigned_once": true,
+    "boundary_surface_count": 11,
+    "characteristic_length_max_scan_units": 4.0,
+    "count_minSICN_le_0": 0,
+    "count_minSICN_lt_0_1": 0,
+    "geometry_brep": {
+      "bytes": 49110,
+      "sha256": "3f701b669d33f596ba50ac36ec64ea326642b2987497bf5474b8cba67c8727b8"
+    },
+    "kind": "oil",
+    "level": "medium",
+    "liquid_coolant_jacket": false,
+    "mean_minSICN": 0.76117862056916,
+    "median_minSICN": 0.7694670748443022,
+    "minimum_minDetJac": 0.4570654675181781,
+    "minimum_minSICN": 0.3106898476752977,
+    "msh_bytes": 108726,
+    "msh_sha256": "0d498c2ce6cc022b27d52580d082004d21b765f401f453126eda23b55127634e",
+    "node_count": 754,
+    "one_volume": true,
+    "p01_minSICN": 0.41561363934270884,
+    "p05_minSICN": 0.5243544170734641,
+    "patch_surface_coverage_count": 11,
+    "patches": {
+      "oil_cleanout": {
+        "surface_area_scan_units_squared": 76.96902001294993,
+        "surface_count": 2,
+        "triangle_count": 142
+      },
+      "oil_walls": {
+        "surface_area_scan_units_squared": 3488.6380385941243,
+        "surface_count": 7,
+        "triangle_count": 1120
+      },
+      "oil_x_minus": {
+        "surface_area_scan_units_squared": 28.274333882308145,
+        "surface_count": 1,
+        "triangle_count": 74
+      },
+      "oil_x_plus": {
+        "surface_area_scan_units_squared": 28.274333882308145,
+        "surface_count": 1,
+        "triangle_count": 74
+      }
+    },
+    "repository_policy": "generated_analytic_BREP_and_MSH_local_not_committed",
+    "separate_lubrication_domain_only": true,
+    "symmetry_patch": "not_applicable_full_domain",
+    "tetrahedron_count": 1937,
+    "variant": "COMMON",
+    "volume_scan_units_cubed": 5551.2133766695715
+  },
+  "phase": "F48",
+  "release_gates": {
+    "CFD_domain_geometry_research_only": true,
+    "engine_start_authorized": false,
+    "fitment_OEM_certified": false,
+    "metal_print_authorized": false,
+    "solid_FEA_validated": false,
+    "solid_head_BRep_validated": false,
+    "thermal_CHT_validated": false,
+    "wall_thickness_validated": false
+  },
+  "repeatability": {
+    "BREP_and_MSH_hash_mismatch_count": 0,
+    "BREP_and_MSH_hashes_checked": 10,
+    "build_report_sha256": "92c7ebd47c0ad6c32774e27a24ed6c5bdd631ef1f653a4173b459334f7826cc9",
+    "complete_build_reports_bit_identical": true,
+    "independent_same_source_rebuilds": 2,
+    "repeat_report_sha256": "92c7ebd47c0ad6c32774e27a24ed6c5bdd631ef1f653a4173b459334f7826cc9"
+  },
+  "repository_policy": {
+    "analytic_BREP_and_MSH_committed": false,
+    "analytic_BREP_and_MSH_reproducible_locally": true,
+    "raw_scan_committed": false,
+    "scan_derived_STEP_or_mesh_committed": false
+  },
+  "schema": "porsche-917-f48-cfd-domains/v1",
+  "status": "CFD_DOMAIN_MESH_GATE_PASS_RESEARCH_ONLY",
+  "toolchain": {
+    "gmsh": "4.12.1",
+    "numpy": "2.5.2"
+  }
+}

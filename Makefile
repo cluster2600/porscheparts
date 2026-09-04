@@ -6,7 +6,7 @@
 .PHONY: 917-component-factory-f42a-usd-test
 .PHONY: 917-variant-authority-f43-check
 .PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
-.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check 917-cae-load-transfer-f47 917-cae-load-transfer-f47-check 917-f47-internal-brep-test
+.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check 917-cae-load-transfer-f47 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f48-cfd-domain-test
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -95,6 +95,9 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 
 917-f47-internal-brep-test:
 	python3 tests/test_917_f47_internal_brep_variants.py -v
+
+917-f48-cfd-domain-test:
+	python3 tests/test_917_f48_cfd_domains.py -v
 
 validate:
 	python3 scripts/validate_catalog.py
