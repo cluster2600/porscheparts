@@ -76,6 +76,39 @@
       "lpbf_support_volume_mm3"
     ]
   },
+  "secondary_oil_circuit": {
+    "role": "valvetrain_lubrication_and_local_heat_extraction_not_primary_head_coolant",
+    "dry_sump_return_required": true,
+    "pressurized_gallery_required": true,
+    "metered_jets_required": true,
+    "target_zones": [
+      "rocker_or_finger_follower_contacts",
+      "valve_guides",
+      "exhaust_bridge_and_spring_pockets",
+      "cam_or_rocker_carrier_bearings"
+    ],
+    "gravity_and_scavenge_returns_required": true,
+    "printed_passages_must_be_through_open_flushable_and_ct_inspectable": true,
+    "machining_and_cleanout_access_required": true,
+    "closed_oil_cooling_jacket_allowed": false,
+    "required_design_cases": [
+      "cold_start_high_viscosity",
+      "nominal_hot_operation",
+      "maximum_oil_temperature",
+      "lateral_and_longitudinal_acceleration_drainback",
+      "loss_of_pressure_fail_safe"
+    ],
+    "required_metrics": [
+      "gallery_pressure_drop_pa",
+      "jet_mass_flow_kg_s",
+      "minimum_bearing_supply_margin",
+      "maximum_wetted_wall_temperature_k",
+      "oil_heat_pickup_w_per_head",
+      "drainback_residence_time_s",
+      "entrained_air_volume_fraction"
+    ],
+    "hardware_ranges_and_oil_grade_locked": false
+  },
   "required_solver_matrix": {
     "combustion": [
       "Cantera_reactor_network",
@@ -108,6 +141,7 @@
     "scan_deviation_reviewed": false,
     "no_global_ovalization_verified": false,
     "no_closed_powder_trap_verified": false,
+    "oil_pressure_flow_and_drainback_verified": false,
     "valvetrain_kinematics_verified": false,
     "fluid_mesh_convergence_verified": false,
     "combustion_cross_check_verified": false,

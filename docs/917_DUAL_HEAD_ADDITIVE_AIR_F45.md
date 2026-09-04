@@ -24,6 +24,13 @@ zones chaudes aux bancs d'ailettes parcourus par le débit le plus élevé.
 Une cavité fermée, une chemise d'eau, un canal impossible à contrôler par CT ou
 une réduction de paroi non qualifiée ferme la porte de fabrication.
 
+Un circuit d'huile secondaire dessert la distribution, les guides et les zones
+chaudes côté échappement. Il comporte une galerie pressurisée, des jets calibrés
+et des retours gravitaires/scavenge vers le carter sec. Les passages imprimés
+doivent rester traversants, nettoyables et contrôlables par CT, avec des accès
+d'usinage et de bouchonnage. Il ne remplace pas le refroidissement principal par
+air et ne forme jamais une chemise fermée autour de la chambre.
+
 ## Validation exigée
 
 Les architectures 2V et 4V utilisent les mêmes conditions turbo. Chaque

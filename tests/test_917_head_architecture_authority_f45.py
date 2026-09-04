@@ -40,6 +40,16 @@ class HeadArchitectureAuthorityF45Tests(unittest.TestCase):
             all(variant["metal_print_authorized"] is False for variant in contract["head_variants"])
         )
 
+    def test_oil_is_secondary_open_and_inspectable(self) -> None:
+        contract = json.loads((ROOT / MODULE.CONTRACT).read_text(encoding="utf-8"))
+        oil = contract["secondary_oil_circuit"]
+        self.assertEqual(
+            oil["role"],
+            "valvetrain_lubrication_and_local_heat_extraction_not_primary_head_coolant",
+        )
+        self.assertIs(oil["printed_passages_must_be_through_open_flushable_and_ct_inspectable"], True)
+        self.assertIs(oil["closed_oil_cooling_jacket_allowed"], False)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -92,6 +92,21 @@ def validate(root: Path) -> list[str]:
         if cooling.get(key) is not True:
             errors.append(f"additive_air_cooling/{key}_must_be_true")
 
+    oil = contract.get("secondary_oil_circuit", {})
+    for key in (
+        "dry_sump_return_required",
+        "pressurized_gallery_required",
+        "metered_jets_required",
+        "gravity_and_scavenge_returns_required",
+        "printed_passages_must_be_through_open_flushable_and_ct_inspectable",
+        "machining_and_cleanout_access_required",
+    ):
+        if oil.get(key) is not True:
+            errors.append(f"secondary_oil_circuit/{key}_must_be_true")
+    for key in ("closed_oil_cooling_jacket_allowed", "hardware_ranges_and_oil_grade_locked"):
+        if oil.get(key) is not False:
+            errors.append(f"secondary_oil_circuit/{key}_must_be_false")
+
     limits = contract.get("required_solver_matrix", {})
     if limits.get("minimum_mesh_levels") != 3:
         errors.append("three_mesh_levels_required")
