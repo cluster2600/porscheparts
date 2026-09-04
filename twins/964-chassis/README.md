@@ -158,7 +158,21 @@ calee.**
 
 ## Prochaine donnee utile
 
-Localiser **un seul** point de datum publie sur un vehicule ou un scan de
+Le diagnostic a evolue le 2026-09-04. Ce qui manque n'est pas une entite a
+trouver sur le scan mais **une cote a trouver dans une publication** : le scan ne
+resout pas les percages, alors qu'il localise les centres de roue a +/- 7 mm. Il
+suffirait donc d'**une seule cote longitudinale publiee entre un point de datum
+et une ligne d'essieu**. Le volume IV ne la donne pas, il donne des hauteurs au
+sol. L'etat complet des pistes, avec leurs priorites, est dans
+`docs/research/964-combler-le-gap-de-donnees.md`.
+
+La piste la moins couteuse dort dans le depot : `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF`
+signale un tableau de points en millimetres, non obtenu. Et un recoupement le
+rend transferable : un fil 993 rapporte 1245 mm entre points de levage, soit la
+cote R du manuel 964 au millimetre pres. Les deux generations partagent
+l'entraxe longitudinal des points de levage.
+
+Formulation d'origine, toujours valable : localiser **un seul** point de datum publie sur un vehicule ou un scan de
 serie, a mieux que sa tolerance, suffirait a caler la chaine longitudinale et a
 faire passer ce jumeau en `F2_interface`. Le point 17, trou de reprise du cric
 avant, est le meilleur candidat : il est publie a +/- 1 mm et visible de dessous.
