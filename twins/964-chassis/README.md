@@ -46,6 +46,23 @@ contre **1788 +/- 3 mm** au manuel, soit **0.2 mm d'ecart**. M relie donc le
 point 17 gauche au point 18 droit. Cette verification est purement documentaire
 et ne depend pas du scan.
 
+## Le repere est desormais exploitable par machine
+
+La fiche de jumeau ne decrivait le passage scan -> vehicule qu'en prose. Il porte
+maintenant la **matrice homogene 4x4** correspondante, dans
+`coordinate_system.vehicle_transform`, composee par `source/vehicle_transform.py`
+depuis `frame_params.npy` : recentrage lateral, annulation du lacet, annulation du
+roulis, puis permutation d'axes et mise a l'origine.
+
+Elle est verifiee, et pas seulement relue. Sa partie rotation est orthonormee a
+2,5e-18 pres pour un determinant de 1,000000000, et appliquee a **200 000 sommets
+tires au hasard dans le scan** elle reproduit `verts_vehicle.npy` a **1,3e-4 mm**
+au maximum. La verification n'est pas cosmetique : la chaine enchaine une
+translation, deux rotations et une permutation d'axes, ou une convention de signe
+ou un ordre de composition se trompent facilement.
+
+La prose d'origine est conservee dans `vehicle_transform_note`.
+
 ## Ce qui n'est pas etabli
 
 **Le calage longitudinal du reseau de datums est non resolu.** Un recalage du

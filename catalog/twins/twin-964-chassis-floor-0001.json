@@ -27,7 +27,26 @@
     "origin": "plan de symetrie, a la verticale du centre d'essieu avant, sur le plan de sol nominal",
     "axes": "X vers l'avant, Y vers la gauche, Z vers le haut",
     "units": "mm",
-    "vehicle_transform": "etabli par ajustement du plan de symetrie sur le scan : lacet -2.236 deg, roulis -0.451 deg, axe median a X_scan +112.0 mm ; sol pris au contact moyen des quatre pneus"
+    "vehicle_transform": [
+      0.039015,
+      0.999239,
+      0.0,
+      -1246.181545,
+      -0.999208,
+      0.039014,
+      -0.00787,
+      111.957391,
+      -0.007864,
+      0.000307,
+      0.999969,
+      412.939201,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "vehicle_transform_note": "etabli par ajustement du plan de symetrie sur le scan : lacet -2.236 deg, roulis -0.451 deg, axe median a X_scan +112.0 mm ; sol pris au contact moyen des quatre pneus",
+    "vehicle_transform_provenance": "Matrice homogene 4x4 en ligne, qui envoie les coordonnees du scan brut vers le repere vehicule ADR-0003. Composee depuis frame_params.npy : recentrage lateral, annulation du lacet, annulation du roulis, puis permutation d'axes et mise a l'origine. VERIFIEE bout en bout — appliquee a 200 000 sommets tires au hasard dans le scan, elle reproduit verts_vehicle.npy avec une erreur maximale de 1.3e-4 mm."
   },
   "components": [
     {
