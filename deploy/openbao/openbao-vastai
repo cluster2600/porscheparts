@@ -1556,7 +1556,10 @@ def f46_offer_eligible(offer: dict) -> bool:
         and verified
         and rentable
         and rented
-        and rental_type == "on-demand"
+        # Vast currently returns null rental metadata for some on-demand
+        # search results. Creating without a bid is still on-demand; explicit
+        # interruptible/bid metadata remains rejected.
+        and rental_type in (None, "on-demand", "ondemand")
         and price is not None
         and 0 <= price <= F46_MAX_DPH
         and upload_cost is not None
