@@ -8,6 +8,7 @@ import fcntl
 import json
 import math
 import os
+import re
 import secrets
 import selectors
 import shlex
@@ -101,6 +102,26 @@ COMPONENT_FACTORY_F41_CLEANUP_PREFIX = "OPENBAO_VASTAI_F41_CLEANUP "
 COMPONENT_FACTORY_F41_SSH_PROBE_TIMEOUT_SECONDS = 20
 COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM = 64 * 1024
 COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS = 0.5
+F46_LABEL = "3dprinting993-f46-cfd-cae"
+F46_ATTEMPT_TOKEN_BYTES = 10
+F46_CLEANUP_PREFIX = "OPENBAO_VASTAI_F46_CLEANUP "
+F46_IMAGE_RE = re.compile(
+    r"ghcr\.io/cluster2600/3dprinting993-cfd-cae-f46@sha256:[0-9a-f]{64}"
+)
+F46_GPU_NAMES = (
+    "RTX PRO 6000 WS",
+    "RTX PRO 6000 Blackwell Max-Q",
+    "RTX A6000",
+)
+F46_MIN_GPU_RAM_MB = 48000
+F46_MIN_CPU_CORES = 24
+F46_MIN_CPU_RAM_MB = 128000
+F46_MIN_DISK_GB = 500
+F46_MAX_DPH = 2.50
+F46_MIN_RELIABILITY = 0.99
+F46_MAX_INET_UP_COST_USD_PER_GB = 0.0
+F46_MAX_INET_DOWN_COST_USD_PER_GB = 0.0
+F46_MAX_DEADLINE_SECONDS = 8 * 60 * 60
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -110,6 +131,8 @@ WAVE_CONTRACT_ATTEMPTS = 180
 WAVE_SSH_READY_ATTEMPTS = 30
 COMPONENT_FACTORY_F41_CONTRACT_ATTEMPTS = 180
 COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS = 30
+F46_CONTRACT_ATTEMPTS = 180
+F46_SINGLETON_STABILITY_SNAPSHOTS = 3
 SIMREADY_SSH_READY_ATTEMPTS = 900
 SIMREADY_SSH_READY_TIMEOUT_SECONDS = 30 * 60
 SIMREADY_SINGLETON_STABILITY_SNAPSHOTS = 5
@@ -507,6 +530,27 @@ def is_component_factory_f41_family_label(label: object) -> bool:
     )
 
 
+def f46_attempt_label() -> str:
+    """Return a collision-resistant ownership label for one F46 create call."""
+    return f"{F46_LABEL}-{secrets.token_hex(F46_ATTEMPT_TOKEN_BYTES)}"
+
+
+def is_f46_attempt_label(label: object) -> bool:
+    if not isinstance(label, str):
+        return False
+    prefix = f"{F46_LABEL}-"
+    if not label.startswith(prefix):
+        return False
+    token = label[len(prefix) :]
+    return len(token) == F46_ATTEMPT_TOKEN_BYTES * 2 and all(
+        character in "0123456789abcdef" for character in token
+    )
+
+
+def is_f46_family_label(label: object) -> bool:
+    return label == F46_LABEL or is_f46_attempt_label(label)
+
+
 def require_no_component_factory_f41_instance(api_key: str) -> None:
     existing = [
         instance
@@ -518,6 +562,16 @@ def require_no_component_factory_f41_instance(api_key: str) -> None:
             "a component-factory F41 instance already exists; "
             "destroy it before launching another"
         )
+
+
+def require_no_f46_instance(api_key: str) -> None:
+    existing = [
+        instance
+        for instance in strict_instance_inventory(api_key)
+        if is_f46_family_label(instance.get("label"))
+    ]
+    if existing:
+        raise SafeError("an F46 instance already exists; destroy it before launching another")
 
 
 def verify_single_simready_instance(
@@ -617,6 +671,40 @@ def verify_single_component_factory_f41_instance(
         "the new component-factory F41 instance did not appear in the "
         "paginated instance list"
     )
+
+
+def verify_single_f46_instance(
+    api_key: str, instance_id: int, attempt_label: str
+) -> None:
+    """Require one stable F46-family instance owned by this create attempt."""
+    if not is_f46_attempt_label(attempt_label):
+        raise SafeError("F46 attempt label is invalid")
+    appeared = False
+    stable_snapshots = 0
+    for _ in range(30):
+        existing = [
+            instance
+            for instance in strict_instance_inventory(api_key)
+            if is_f46_family_label(instance.get("label"))
+        ]
+        ids = sorted(
+            instance.get("id")
+            for instance in existing
+            if instance.get("label") == attempt_label
+        )
+        if len(existing) == 1 and ids == [instance_id]:
+            appeared = True
+            stable_snapshots += 1
+            if stable_snapshots >= F46_SINGLETON_STABILITY_SNAPSHOTS:
+                return
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        if existing:
+            raise SafeError("F46 post-launch uniqueness verification failed")
+        if appeared:
+            raise SafeError("F46 family changed during singleton stability window")
+        time.sleep(1)
+    raise SafeError("the new F46 instance did not appear in the paginated instance list")
 
 
 def verify_simready_contract(
@@ -849,6 +937,115 @@ def verify_component_factory_f41_contract(
     )
 
 
+def verify_f46_contract(
+    api_key: str,
+    instance_id: int,
+    attempt_label: str,
+    expected_image: str,
+    selected_offer: dict,
+) -> dict:
+    """Fail closed until the F46 instance repeats the selected paid contract."""
+    if not is_f46_attempt_label(attempt_label):
+        raise SafeError("F46 attempt label is invalid")
+    if F46_IMAGE_RE.fullmatch(expected_image) is None:
+        raise SafeError("F46 image must use the fixed repository and a complete digest")
+    if not f46_offer_eligible(selected_offer):
+        raise SafeError("F46 selected offer is outside the fixed contract")
+    required_fields = (
+        "id",
+        "label",
+        "status",
+        "gpu",
+        "gpu_ram_mb",
+        "num_gpus",
+        "gpu_fraction",
+        "machine_verification",
+        "cpu_cores_effective",
+        "cpu_ram_mb",
+        "disk_space_gb",
+        "dph_total",
+        "image",
+    )
+    for _ in range(F46_CONTRACT_ATTEMPTS):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeHttpError as exc:
+            if exc.status_code == 404:
+                time.sleep(POLL_INTERVAL_SECONDS)
+                continue
+            raise
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid post-launch F46 metadata")
+        instance = safe_instance(raw_instance)
+        if any(instance.get(field) is None for field in required_fields):
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        errors = []
+        exact_contract = (
+            (instance["id"], instance_id, "instance id"),
+            (instance["label"], attempt_label, "attempt label"),
+            (instance["image"], expected_image, "image digest"),
+            (instance["gpu"], selected_offer.get("gpu_name"), "GPU name"),
+            (finite_number(instance["num_gpus"]), 1.0, "GPU count"),
+            (finite_number(instance["gpu_fraction"]), 1.0, "GPU fraction"),
+        )
+        for actual, expected, label in exact_contract:
+            if actual != expected:
+                errors.append(label)
+        if instance["status"] not in {"created", "loading", "running"}:
+            errors.append("status")
+        for value, minimum, label in (
+            (instance["gpu_ram_mb"], F46_MIN_GPU_RAM_MB, "GPU RAM"),
+            (instance["cpu_cores_effective"], F46_MIN_CPU_CORES, "CPU cores"),
+            (instance["cpu_ram_mb"], F46_MIN_CPU_RAM_MB, "CPU RAM"),
+            (instance["disk_space_gb"], F46_MIN_DISK_GB, "disk"),
+        ):
+            actual = finite_number(value)
+            if actual is None or actual < minimum:
+                errors.append(label)
+        instance_price = finite_number(instance["dph_total"])
+        selected_price = finite_number(
+            selected_offer.get("dph_total", selected_offer.get("dph"))
+        )
+        if (
+            instance_price is None
+            or selected_price is None
+            or instance_price != selected_price
+            or not 0 <= instance_price <= F46_MAX_DPH
+        ):
+            errors.append("dph_total")
+        for value, maximum, label in (
+            (
+                instance["inet_up_cost_usd_per_gb"],
+                F46_MAX_INET_UP_COST_USD_PER_GB,
+                "inet_up_cost",
+            ),
+            (
+                instance["inet_down_cost_usd_per_gb"],
+                F46_MAX_INET_DOWN_COST_USD_PER_GB,
+                "inet_down_cost",
+            ),
+        ):
+            if value is None:
+                continue
+            cost = finite_number(value)
+            if cost is None or not 0 <= cost <= maximum:
+                errors.append(label)
+        if instance["machine_verification"] != "verified":
+            errors.append("machine verification")
+        if errors:
+            raise SafeError(
+                "post-launch F46 contract is outside fixed limits: "
+                + ", ".join(errors)
+            )
+        if instance["status"] != "running":
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        return instance
+    raise SafeError("Vast.ai did not expose a complete running F46 contract in time")
+
+
 def reconcile_uncertain_simready_launch(api_key: str, attempt_label: str) -> int:
     """Rollback only the instance correlated to one unique SimReady PUT."""
     if not is_simready_attempt_label(attempt_label):
@@ -950,6 +1147,45 @@ def reconcile_uncertain_component_factory_f41_launch(
     raise SafeError(
         "launch outcome remains uncertain after the reconciliation window; "
         "do not retry automatically and inspect the unique F41 attempt label first"
+    )
+
+
+def reconcile_uncertain_f46_launch(
+    api_key: str, attempt_label: str, expected_image: str
+) -> int:
+    """Destroy only the instance correlated to one unique F46 create attempt."""
+    if not is_f46_attempt_label(attempt_label):
+        raise SafeError("F46 attempt label is invalid")
+    if F46_IMAGE_RE.fullmatch(expected_image) is None:
+        raise SafeError("F46 image must use the fixed repository and a complete digest")
+    for _ in range(30):
+        try:
+            existing = [
+                instance
+                for instance in strict_instance_inventory(api_key)
+                if instance.get("label") == attempt_label
+            ]
+        except SafeError:
+            time.sleep(1)
+            continue
+        if existing:
+            ids = [instance.get("id") for instance in existing]
+            if len(existing) == 1 and len(ids) == 1:
+                destroy_instance_verified(
+                    api_key,
+                    ids[0],
+                    expected_label=attempt_label,
+                    expected_image=expected_image,
+                )
+                return ids[0]
+            raise SafeError(
+                "launch outcome is uncertain and the F46 attempt label is not "
+                "mapped to one valid instance; inspect inventory before retrying"
+            )
+        time.sleep(1)
+    raise SafeError(
+        "launch outcome remains uncertain; do not retry before inspecting the "
+        "unique F46 attempt label"
     )
 
 
@@ -1101,6 +1337,16 @@ def report_simready_billing_risk(attempt_label: str) -> None:
     )
 
 
+def report_f46_billing_risk(attempt_label: str) -> None:
+    print(
+        "OpenBao Vast.ai CRITICAL: F46 rollback was not verified; an instance "
+        "may still be running and billed for attempt label "
+        f"{attempt_label}.",
+        file=sys.stderr,
+        flush=True,
+    )
+
+
 def emit_simready_cleanup_attestation(
     instance_id: int, attempt_label: str
 ) -> None:
@@ -1151,6 +1397,35 @@ def emit_component_factory_f41_cleanup_attestation(
     }
     print(
         COMPONENT_FACTORY_F41_CLEANUP_PREFIX
+        + json.dumps(receipt, sort_keys=True, separators=(",", ":"), allow_nan=False),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
+def emit_f46_cleanup_attestation(
+    instance_id: int, attempt_label: str, expected_image: str
+) -> None:
+    if (
+        not isinstance(instance_id, int)
+        or isinstance(instance_id, bool)
+        or instance_id <= 0
+        or not is_f46_attempt_label(attempt_label)
+        or F46_IMAGE_RE.fullmatch(expected_image) is None
+    ):
+        raise SafeError("refusing to emit invalid F46 cleanup attestation")
+    receipt = {
+        "schema_version": "1.0.0",
+        "status": "destroyed_verified_stably_absent",
+        "instance_id": instance_id,
+        "label": attempt_label,
+        "requested_image": expected_image,
+        "delete_acknowledged": True,
+        "paginated_absence_verified": True,
+        "stable_absence_snapshots": DESTROY_ABSENCE_STABILITY_SNAPSHOTS,
+    }
+    print(
+        F46_CLEANUP_PREFIX
         + json.dumps(receipt, sort_keys=True, separators=(",", ":"), allow_nan=False),
         file=sys.stderr,
         flush=True,
@@ -1213,6 +1488,106 @@ def get_heavy_offers(api_key: str) -> list[dict]:
             -float(item.get("gpu_ram", 0)),
             -float(item.get("cpu_cores_effective", 0)),
             float(item.get("dph_total", item.get("dph", 999))),
+        ),
+    )
+
+
+def f46_offer_query(offer_id: int | None = None) -> dict:
+    query = {
+        "allocated_storage": F46_MIN_DISK_GB,
+        "num_gpus": {"eq": 1},
+        "gpu_frac": {"eq": 1},
+        "gpu_ram": {"gte": F46_MIN_GPU_RAM_MB},
+        "cpu_cores_effective": {"gte": F46_MIN_CPU_CORES},
+        "cpu_ram": {"gte": F46_MIN_CPU_RAM_MB},
+        "disk_space": {"gte": F46_MIN_DISK_GB},
+        "reliability": {"gte": F46_MIN_RELIABILITY},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 100,
+    }
+    if offer_id is not None:
+        query["limit"] = 1000
+    return query
+
+
+def f46_offer_eligible(offer: dict) -> bool:
+    offer_id = offer.get("id")
+    price = finite_number(offer.get("dph_total"))
+    reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
+    upload_cost = finite_number(offer.get("inet_up_cost"))
+    download_cost = finite_number(offer.get("inet_down_cost"))
+    verified_value = offer.get("verified")
+    rentable_value = offer.get("rentable")
+    rented_value = offer.get("rented")
+    verified = (
+        verified_value is True
+        or verified_value == 1
+        or offer.get("verification") == "verified"
+    )
+    rentable = rentable_value is True or rentable_value == 1
+    rented = rented_value is False or rented_value == 0
+    rental_type = offer.get(
+        "rentable_type", offer.get("rental_type", offer.get("type"))
+    )
+    floors = (
+        (offer.get("gpu_ram"), F46_MIN_GPU_RAM_MB),
+        (offer.get("cpu_cores_effective"), F46_MIN_CPU_CORES),
+        (offer.get("cpu_ram"), F46_MIN_CPU_RAM_MB),
+        (offer.get("disk_space"), F46_MIN_DISK_GB),
+    )
+    return (
+        isinstance(offer_id, int)
+        and not isinstance(offer_id, bool)
+        and offer_id > 0
+        and offer.get("gpu_name") in F46_GPU_NAMES
+        and finite_number(offer.get("num_gpus")) == 1.0
+        and finite_number(offer.get("gpu_frac")) == 1.0
+        and all(
+            (actual := finite_number(value)) is not None and actual >= minimum
+            for value, minimum in floors
+        )
+        and reliability is not None
+        and reliability >= F46_MIN_RELIABILITY
+        and verified
+        and rentable
+        and rented
+        and rental_type == "on-demand"
+        and price is not None
+        and 0 <= price <= F46_MAX_DPH
+        and upload_cost is not None
+        and 0 <= upload_cost <= F46_MAX_INET_UP_COST_USD_PER_GB
+        and download_cost is not None
+        and 0 <= download_cost <= F46_MAX_INET_DOWN_COST_USD_PER_GB
+    )
+
+
+def get_f46_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=f46_offer_query(offer_id),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai F46 offer search returned an invalid result")
+    preference = {name: rank for rank, name in enumerate(F46_GPU_NAMES)}
+    eligible = [
+        offer
+        for offer in offers
+        if isinstance(offer, dict) and f46_offer_eligible(offer)
+    ]
+    return sorted(
+        eligible,
+        key=lambda item: (
+            preference[str(item.get("gpu_name"))],
+            -float(item.get("cpu_cores_effective", 0)),
+            -float(item.get("cpu_ram", 0)),
+            float(item.get("dph_total", 999)),
+            int(item.get("id", 0)),
         ),
     )
 
@@ -1469,6 +1844,9 @@ def safe_offer(offer: dict) -> dict:
         "verified": offer.get("verified", offer.get("verification")),
         "rentable": offer.get("rentable"),
         "rented": offer.get("rented"),
+        "rental_type": offer.get(
+            "rentable_type", offer.get("rental_type", offer.get("type"))
+        ),
         "geolocation": offer.get("geolocation"),
         "inet_down_mbps": offer.get("inet_down"),
         "inet_up_mbps": offer.get("inet_up"),
@@ -3153,6 +3531,156 @@ def launch_component_factory_f41_offer(
         return 0
 
 
+def launch_f46_offer(
+    api_key: str,
+    offer: dict,
+    expected_image: str,
+    deadline_epoch: int,
+    *,
+    attempt_label: str | None = None,
+) -> int:
+    """Create one F46 instance only after all immutable paid fields are bounded."""
+    if F46_IMAGE_RE.fullmatch(expected_image) is None:
+        raise SafeError("F46 image must use the fixed GHCR repository and digest")
+    if not f46_offer_eligible(offer):
+        raise SafeError("F46 offer is outside the fixed safety and price limits")
+    now_epoch = int(time.time())
+    if (
+        not isinstance(deadline_epoch, int)
+        or isinstance(deadline_epoch, bool)
+        or deadline_epoch <= now_epoch
+        or deadline_epoch > now_epoch + F46_MAX_DEADLINE_SECONDS
+    ):
+        raise SafeError("F46 remote deadline is invalid or outside eight hours")
+    with simready_launch_lock():
+        require_no_f46_instance(api_key)
+        ensure_local_ssh_registered(api_key)
+        offer_id = positive_id(str(offer.get("id")), "offer id")
+        if attempt_label is None:
+            attempt_label = f46_attempt_label()
+        if not is_f46_attempt_label(attempt_label):
+            raise SafeError("F46 attempt label is invalid")
+        print(
+            f"OpenBao Vast.ai F46 paid launch attempt label: {attempt_label}",
+            file=sys.stderr,
+            flush=True,
+        )
+        try:
+            result = vast_request(
+                api_key,
+                f"/api/v0/asks/{offer_id}/",
+                method="PUT",
+                payload={
+                    "image": expected_image,
+                    "label": attempt_label,
+                    "disk": F46_MIN_DISK_GB,
+                    "runtype": "ssh_direct",
+                    "env": {},
+                    "onstart": (
+                        "f46-vast-onstart --deadline-epoch "
+                        f"{deadline_epoch}"
+                    ),
+                    "cancel_unavail": True,
+                },
+            )
+        except BaseException as launch_error:
+            try:
+                reconciled_id = reconcile_uncertain_f46_launch(
+                    api_key, attempt_label, expected_image
+                )
+            except BaseException as cleanup_error:
+                report_f46_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    add_exception_note(
+                        launch_error,
+                        "F46 paid create outcome is uncertain and rollback was not verified",
+                    )
+                    raise launch_error from cleanup_error
+                raise
+            add_exception_note(
+                launch_error,
+                f"F46 instance {reconciled_id} was destroyed and verified absent",
+            )
+            emit_f46_cleanup_attestation(
+                reconciled_id, attempt_label, expected_image
+            )
+            raise
+        instance_id = result.get("new_contract")
+        if (
+            not isinstance(instance_id, int)
+            or isinstance(instance_id, bool)
+            or instance_id <= 0
+        ):
+            try:
+                reconciled_id = reconcile_uncertain_f46_launch(
+                    api_key, attempt_label, expected_image
+                )
+            except BaseException as cleanup_error:
+                report_f46_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    raise SafeError(
+                        "Vast.ai did not return a valid F46 instance id; rollback "
+                        "was not verified"
+                    ) from cleanup_error
+                raise
+            emit_f46_cleanup_attestation(
+                reconciled_id, attempt_label, expected_image
+            )
+            raise SafeError(
+                "Vast.ai did not return a valid F46 instance id; instance "
+                f"{reconciled_id} was destroyed and verified absent"
+            )
+        try:
+            verify_single_f46_instance(api_key, instance_id, attempt_label)
+            verify_f46_contract(
+                api_key,
+                instance_id,
+                attempt_label,
+                expected_image,
+                offer,
+            )
+        except BaseException as post_create_error:
+            try:
+                reconciled_id = reconcile_uncertain_f46_launch(
+                    api_key, attempt_label, expected_image
+                )
+            except BaseException as cleanup_error:
+                report_f46_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    add_exception_note(
+                        post_create_error,
+                        "post-launch F46 failure occurred and rollback was not verified",
+                    )
+                    raise post_create_error from cleanup_error
+                raise
+            emit_f46_cleanup_attestation(
+                reconciled_id, attempt_label, expected_image
+            )
+            add_exception_note(
+                post_create_error,
+                f"F46 instance {reconciled_id} was destroyed and verified absent",
+            )
+            raise
+        print_json(
+            {
+                "instance_id": instance_id,
+                "image": expected_image,
+                "label": attempt_label,
+                "selected_offer": safe_offer(offer),
+                "offer_contract_verified": True,
+                "singleton_preflight_verified": True,
+                "singleton_verified": True,
+                "contract_verified": True,
+                "running_state_verified": True,
+                "remote_deadline_epoch": deadline_epoch,
+                "remote_watchdog_armed": True,
+                "simulation_validated": False,
+                "manufacturing_authorized": False,
+            }
+        )
+        return 0
+
+
 def launch_simready_offer(
     api_key: str,
     offer: dict,
@@ -3335,6 +3863,9 @@ def run(operation: list[str]) -> int:
         if operation == ["heavy-offers"]:
             print_json([safe_offer(item) for item in get_heavy_offers(api_key)[:20]])
             return 0
+        if operation == ["f46-offers"]:
+            print_json([safe_offer(item) for item in get_f46_offers(api_key)[:20]])
+            return 0
         if operation == ["wave-offers"]:
             print_json([safe_offer(item) for item in get_wave_offers(api_key)[:20]])
             return 0
@@ -3488,6 +4019,33 @@ def run(operation: list[str]) -> int:
                 matching[0],
                 attempt_label=supervised_attempt_label,
             )
+        if len(operation) in {4, 6} and operation[0] == "launch-f46":
+            offer_id = positive_id(operation[1], "offer id")
+            expected_image = operation[2]
+            deadline_epoch = positive_id(operation[3], "F46 deadline epoch")
+            supervised_attempt_label = None
+            if len(operation) == 6:
+                if operation[4] != "--attempt-label" or not is_f46_attempt_label(
+                    operation[5]
+                ):
+                    raise SafeError("supervised F46 attempt label is invalid")
+                supervised_attempt_label = operation[5]
+            matching = [
+                item
+                for item in get_f46_offers(api_key, offer_id)
+                if item.get("id") == offer_id
+            ]
+            if len(matching) != 1:
+                raise SafeError(
+                    "F46 offer is unavailable or outside fixed safety and price limits"
+                )
+            return launch_f46_offer(
+                api_key,
+                matching[0],
+                expected_image,
+                deadline_epoch,
+                attempt_label=supervised_attempt_label,
+            )
         if (
             len(operation) in {2, 4}
             and operation[0] in {
@@ -3526,6 +4084,14 @@ def run(operation: list[str]) -> int:
                 api_key, attempt_label
             )
             emit_simready_cleanup_attestation(instance_id, attempt_label)
+            return 0
+        if len(operation) == 3 and operation[0] == "reconcile-f46-attempt":
+            attempt_label = operation[1]
+            expected_image = operation[2]
+            instance_id = reconcile_uncertain_f46_launch(
+                api_key, attempt_label, expected_image
+            )
+            emit_f46_cleanup_attestation(instance_id, attempt_label, expected_image)
             return 0
         if operation == ["launch-best-eu"]:
             eu_countries = {
@@ -3569,14 +4135,16 @@ def run(operation: list[str]) -> int:
             print_json({"instance_id": instance_id, "destroyed": True, "verified_absent": True})
             return 0
         raise SafeError(
-            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|wave-offers|"
+            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
             "show <id>|ssh-keys <id>|attach-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
             "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
+            "launch-f46 <offer_id> <image@digest> <deadline_epoch> [--attempt-label <label>]|"
             "launch-simready-heavy <offer_id> [--attempt-label <label>]|"
             "launch-simready-validation-only <offer_id> [--attempt-label <label>]|"
-            "reconcile-simready-attempt <label>|launch-best-eu|"
+            "reconcile-simready-attempt <label>|"
+            "reconcile-f46-attempt <label> <image@digest>|launch-best-eu|"
             "start <id>|stop <id>|"
             "destroy <id> --confirm"
         )
