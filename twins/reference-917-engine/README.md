@@ -642,6 +642,26 @@ de géométrie, collision ou physique PhysX. Une animation USD ne prouve ni le
 fonctionnement du moteur ni les 1 600 hp ; cette puissance reste une exigence
 de conception jusqu'à corrélation indépendante sur banc instrumenté.
 
+## Contrôles LPBF et Omniverse F42
+
+F42 publie deux paquets de preuves complémentaires, sans confondre leurs
+portées :
+
+- le [DOE AdditiveFOAM exécuté sur deux hôtes indépendants](../../docs/917_F42_2_ADDITIVEFOAM_LIVE.md)
+  compare 33 cas par hôte et conserve les métriques de reproductibilité du
+  solveur ;
+- le [contrôle Omniverse/OVRTX](../../docs/917_F42_OMNIVERSE_VALIDATION.md)
+  valide l'ouverture, la topologie fermée et le rendu natif de l'USD exact,
+  avec [image et turntable publiés](evidence/f42-omniverse-validation/README.md).
+
+Le rendu OVRTX conserve exactement les coordonnées du STL soudé : 34 313
+points, 68 678 triangles, zéro arête de bord et zéro arête non-manifold. Cette
+preuve visuelle et de schéma n'est ni une CFD, ni une FEA, ni une simulation de
+distorsion LPBF. Le routeur CAD officiel, le profil SimReady, le B-Rep
+fabricable, les propriétés matière à chaud, les supports fournisseur et la
+qualification physique restent bloquants ; aucune impression ni mise en route
+n'est autorisée.
+
 ## Autorité des variantes produit 2026 F43
 
 Le contrat `variant-authority-f43.json` supprime l'ambiguïté de cylindrée entre
