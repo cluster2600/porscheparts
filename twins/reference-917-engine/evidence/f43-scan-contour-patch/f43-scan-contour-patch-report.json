@@ -1,0 +1,214 @@
+{
+  "schema": "porsche-917-f43-public-scan-contour-patch-report/v1",
+  "phase": "F43",
+  "verdict": "EXTERNAL_BREP_BASELINE_ONLY_FAIL_CLOSED",
+  "scope": {
+    "description": "Non-oval external skin reconstruction from local scan contours",
+    "external_skin_only": true,
+    "same_external_skin_for_future_2V_and_4V_variants": true,
+    "functional_internal_geometry_present": false,
+    "fitment_OEM_certified": false,
+    "CAE_ready": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  },
+  "unit_contract": {
+    "unit": "scan_OBJ_unit",
+    "millimetre_interpretation": "convention_only_not_certified_metrology",
+    "absolute_scale_certified": false
+  },
+  "provenance": {
+    "available_isolated_head_reference": "935 scan-derived stock, not a measured Porsche 917 head",
+    "f36_stock_sha256": "3da906d148dd5edd7f3a0ccf1d9e3bcc525b8d47a8430a48dd9e2169b533ec16",
+    "f36_stock_bytes": 29326984,
+    "f40_traceable_outer_STEP_sha256": "f255276560a10dc6eb6859d54a38c8c4c0061392bda1d236b5bde51ee19d41e6",
+    "f40_traceable_outer_STEP_bytes": 1923468,
+    "raw_scan_or_profiles_published": false
+  },
+  "construction": {
+    "source_contour_count": 44,
+    "retained_contour_count": 41,
+    "points_per_contour": 128,
+    "body_and_fins_follow_irregular_scan_contours": true,
+    "profile_curve_type": "piecewise_linear_closed_wire",
+    "loft_type": "ruled_OCCT_sections",
+    "cyclic_alignment_changes_coordinates": false,
+    "removed_local_profiles_scan_z": [
+      {
+        "z": 41.25,
+        "reason": "invalid surface mesh transition from z39.75"
+      },
+      {
+        "z": 70.25,
+        "reason": "reproduced self-intersection near z70"
+      },
+      {
+        "z": 75.75,
+        "reason": "reproduced segment/facet intersection in z74.875-z76.875 transition"
+      }
+    ],
+    "top_local_rebuild": {
+      "target_z": 82.0,
+      "donor_profile_z": 79.5,
+      "target_z_preserved": true
+    },
+    "forbidden_primitive_gate": {
+      "ellipse_volume_used": false,
+      "global_ellipse_used": false,
+      "global_box_used": false,
+      "allowed_functional_circles_present_in_this_external_baseline": false,
+      "automated_test": "tests/test_917_f43_scan_contour_patch_rebuild.py"
+    }
+  },
+  "private_geometry_binding": {
+    "repository_policy": "STEP_STL_MSH_and_coordinate_bearing_profiles_private_local_only",
+    "STEP": {
+      "filename": "917-head-scan-contour-repaired-v2-f43.step",
+      "sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+      "bytes": 15966661,
+      "published": false
+    },
+    "surface_STL": {
+      "filename": "917-head-scan-contour-repaired-v2-f43.local.stl",
+      "sha256": "3513b62068160ea41d01380bf7c3d3081a6950fe109244186a8094234b743122",
+      "bytes": 15236033,
+      "published": false,
+      "trimesh_watertight": true,
+      "trimesh_winding_consistent": false,
+      "accepted_as_geometry_authority": false
+    },
+    "base_Gmsh_mesh": {
+      "filename": "917-head-scan-contour-repaired-v2-f43.msh",
+      "sha256": "062a978d56acabe3bcba752594f51e2ab3fef56912ec608bf119ee5f725930f9",
+      "bytes": 7727651,
+      "published": false
+    },
+    "refined_Gmsh_mesh": {
+      "filename": "mesh-delaunay2p5.msh",
+      "sha256": "1354a5f66525306be87fdc715f49443a547ead69ec8aaaf4cdb18f55b86e58e4",
+      "bytes": 33542975,
+      "published": false
+    }
+  },
+  "builder_replay": {
+    "executed_on": "Kali x86_64, pinned local linux/amd64 mesh-CFD image",
+    "Gmsh_version": "4.12.1",
+    "source_stock_sha256_matches": true,
+    "replayed_STEP_bytes": 15966661,
+    "replayed_STEP_sha256": "00c26d32820b23b3589beb7b26d34bc3eb176a89000b9374ffdbe334278b41ef",
+    "bitwise_equal_to_Gmsh_4_15_2_candidate": false,
+    "interpretation": "same builder and byte count; serializer-version hash differs, so bitwise determinism is only claimed within a pinned runtime",
+    "replayed_geometry_released": false
+  },
+  "roundtrip_OCCT": {
+    "BRepCheck_exact": {
+      "shape_valid": true,
+      "subshapes_checked": 20740,
+      "nonzero_status_counts": {}
+    },
+    "topology": {
+      "solid_count": 1,
+      "shell_count": 1,
+      "face_count": 5122,
+      "edge_count": 10368,
+      "vertex_count": 5248,
+      "free_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "degenerated_edge_count": 0,
+      "two_face_manifold_edge_count": 10368
+    },
+    "pcurve_fault_count": 0,
+    "BOPAlgo": {
+      "has_faulty": false,
+      "result_count": 0,
+      "status_counts": {}
+    },
+    "properties_scan_units": {
+      "bbox_size": [119.51770669885045, 205.50032967238545, 82.00000019999999],
+      "volume_cubed": 1498102.2282409682,
+      "surface_area_squared": 112256.35492828638
+    }
+  },
+  "scan_deviation_screen": {
+    "method": "one_way_sampled_external_side_skin_F36_stock_to_F43_STL",
+    "sample_count_total": 100000,
+    "sample_count_selected": 55258,
+    "lateral_skin": {
+      "median_scan_units": 0.36698806149804564,
+      "p95_scan_units": 3.207385463417696,
+      "p99_scan_units": 7.453905314796978,
+      "maximum_scan_units": 17.875,
+      "threshold_p95_scan_units": 2.0,
+      "passed": false
+    },
+    "section_contour_fit": {
+      "sample_count": 41132,
+      "median_scan_units": 0.16339953245149386,
+      "p95_scan_units": 1.027486328510379,
+      "p99_scan_units": 1.7137937544079274,
+      "maximum_scan_units": 3.777333218880017,
+      "threshold_p95_scan_units": 1.5,
+      "passed": true
+    },
+    "metrology_certification": false
+  },
+  "Gmsh_3D": {
+    "software": "Gmsh 4.15.2 with OpenCASCADE STEP reimport",
+    "surface_mesh_completed": true,
+    "volume_mesh_completed": true,
+    "refined_Delaunay_Relocate3D": {
+      "tetrahedra": 654729,
+      "minimum_minSICN": 0.0002676708995296536,
+      "p001_minSICN": 0.16418136029785454,
+      "p01_minSICN": 0.37406402292907004,
+      "p05_minSICN": 0.49577842769306774,
+      "count_minSICN_le_0": 0,
+      "count_minSICN_lt_0_1": 378,
+      "strict_minSICN_gate": 0.1,
+      "strict_gate_passed": false
+    },
+    "weak_element_localization": {
+      "coordinates_published": false,
+      "z_bin_2_scan_unit_counts": {
+        "40-42": 159,
+        "42-44": 49,
+        "50-52": 62,
+        "52-54": 32,
+        "other_bins_total": 76
+      },
+      "interpretation": "distributed transition and fin slivers; use local partition or prismatic layers rather than deforming remaining contours"
+    },
+    "optimizer_comparison": {
+      "Netgen": "no measurable improvement on base mesh",
+      "Relocate3D": "retained; modest improvement on base and used on refined mesh",
+      "UntangleMeshGeometry": "rejected; degraded p01, p05 and count below 0.1",
+      "HXT": "rejected after mesher process failure"
+    }
+  },
+  "unresolved_gates": {
+    "lateral_scan_deviation_p95_at_most_2": false,
+    "all_tetrahedra_minSICN_at_least_0_1": false,
+    "minimum_wall_thickness_at_least_1_5": false,
+    "minimum_wall_thickness_reason": "external solid baseline has no internal shell or functional cavities",
+    "trapped_void_audit": false,
+    "functional_2V_geometry": false,
+    "functional_4V_geometry": false,
+    "thermal_validation": false,
+    "structural_validation": false,
+    "fatigue_validation": false,
+    "virtual_print_validation": false,
+    "physical_correlation": false
+  },
+  "published_images": {
+    "four_views": {
+      "filename": "917-head-f43-scan-contour-4views.png",
+      "sha256": "2479145726cd070370cdb1637e93b7b4c43cfbe0e96d6e4e7791bc18356d428a",
+      "bytes": 968984
+    },
+    "section": {
+      "filename": "917-head-f43-scan-contour-section.png",
+      "sha256": "ee27c8b7e195081cebd106a19a24d9ece26d4a084154a885ac0839e57216fda5",
+      "bytes": 520680
+    }
+  }
+}
