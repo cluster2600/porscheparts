@@ -162,3 +162,18 @@ Localiser **un seul** point de datum publie sur un vehicule ou un scan de
 serie, a mieux que sa tolerance, suffirait a caler la chaine longitudinale et a
 faire passer ce jumeau en `F2_interface`. Le point 17, trou de reprise du cric
 avant, est le meilleur candidat : il est publie a +/- 1 mm et visible de dessous.
+
+## Piste composite
+
+Une etude de materiau a ete menee sur l'essai de torsion existant, sans en
+changer ni la geometrie ni le chargement, pour repondre a la question du
+monocoque carbone de type ZESAD. A raideur en torsion egale, le carbone
+quasi-isotrope monolithique ne gagne que 18 % de masse surfacique et l'aramide
+en perd 30 % : ce caisson travaille en cisaillement de membrane, donc le critere
+est `G/rho` et non `E/rho`, et une ame de sandwich n'y change rien. Le levier
+d'un monocoque est architectural, pas materiel, et ne se demontre pas sur un
+plancher seul.
+
+Voir `docs/research/964-chassis-carbone-kevlar.md`. Cette piste ne produit
+aucune geometrie liberable : une structure autoportante porte la retenue des
+occupants et reste `prohibited_pending_engineering`.
