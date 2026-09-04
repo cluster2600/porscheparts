@@ -10,7 +10,10 @@ from pathlib import Path
 import sys
 import unittest
 
-from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+try:
+    from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+except ImportError:  # OCP is only required for the synthetic CAD test.
+    BRepPrimAPI_MakeBox = None
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,10 +36,11 @@ def load_module():
 class F422PcurveRepairTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.repair = load_module()
+        cls.repair = load_module() if BRepPrimAPI_MakeBox is not None else None
         cls.summary_text = SUMMARY.read_text(encoding="utf-8")
         cls.summary = json.loads(cls.summary_text)
 
+    @unittest.skipIf(BRepPrimAPI_MakeBox is None, "OCP is not installed")
     def test_clean_synthetic_box_needs_no_pcurve_repair(self) -> None:
         box = BRepPrimAPI_MakeBox(20.0, 30.0, 10.0).Shape()
         candidate, trial = self.repair.make_trial(box, None, 2.0e-2)
