@@ -1,69 +1,1075 @@
 {
+  "$comment": "Transcription de valeurs publiees par Porsche, et non mesures physiques. Deux hauteurs y sont prises du sol jusqu'a un point de CAISSE et interessent donc le repere du jumeau. Valeurs depliees en declared_values, une entree par reglage, avec la page du manuel dans le champ plate : ce manuel n'a pas de pagination PDF exploitable.",
   "schema_version": "1.0.0",
-  "measurement_set_id": "MEAS-MANUAL-964-SUSPENSION-ALIGNMENT",
-  "name": "Reglages de trains et hauteurs de caisse, Porsche 911 (964)",
+  "measurement_id": "MEAS-MANUAL-964-SUSPENSION-ALIGNMENT",
+  "record_kind": "documented_specification",
   "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
-  "vehicle": { "generation": "964", "variants": ["Carrera_2", "Carrera_4", "Turbo_Look", "America_Roadster", "Carrera_RS", "Carrera_RS_America", "Speedster"] },
-  "units": "mm et minutes d'angle",
-  "method": "transcription_de_valeurs_publiees",
-  "measured_by": "Porsche AG",
-  "transcribed_on": "2026-09-03",
-  "load_state": "poids a vide DIN 70020 : reservoir plein, roue de secours et outillage a bord",
-  "note_us": "les valeurs entre parentheses sont les reglages des vehicules destines aux Etats-Unis",
-  "front_axle": {
-    "page": "44-02",
-    "height_definition": "de l'aire de contact de la roue au sol jusqu'au boulon six pans de fixation exterieur « Crossmember to body » — c'est-a-dire le point de datum P5 du volume V, « Mount - outer cross member FA », d'ecartement transversal 770 +/- 2 mm",
-    "height_mm": {
-      "Carrera_2_4": { "nominal": 165, "tolerance": 10, "us": 175 },
-      "Turbo_Look_America_Roadster": { "nominal": 165, "tolerance": 10, "us": 175 },
-      "Carrera_RS": { "nominal": 125, "tolerance": 5, "us": null },
-      "Carrera_RS_America": { "nominal": 175, "tolerance": 10, "us": null },
-      "Speedster": { "nominal": 165, "tolerance": 10, "us": 175 }
-    },
-    "height_max_left_right_difference_mm": { "standard": 10, "Carrera_RS": 5 },
-    "toe_unpressed_total": { "Carrera_2_4": "+25' +/- 5'", "Carrera_RS_America": "+15' +/- 5'", "Speedster": "+15' +/- 5'" },
-    "toe_difference_angle_at_20deg_lock": { "Carrera_2_4": "-40' +/- 30'", "Turbo_Look": "-1deg20' +/- 30'", "Carrera_RS": "-1deg50' +/- 30'" },
-    "camber_straight_ahead": { "Carrera_2_4": "0deg +/- 10'", "Carrera_RS": "-1deg +/- 10'", "Carrera_RS_America": "-15' +/- 10'", "Speedster": "-15' +/- 10'", "max_left_right_difference": "10'" },
-    "caster": { "value": "4deg25' +15' / -30'", "max_left_right_difference": "15'",
-      "note": "tolerance modifiee en cours de millesime 1992, de 4deg25' +/- 15' a 4deg25' +15'/-30', applicable retroactivement ; l'ecart gauche-droite maximal de 15' reste valable" }
+  "subject": {
+    "part_id": null,
+    "part_reference": "Porsche 964 workshop manual",
+    "variant": "multiple_964_variants",
+    "description": "Reglages de trains et hauteurs de caisse transcrits du volume IV « Chassis », pages 44-01 a 44-03."
   },
-  "rear_axle": {
-    "page": "44-03",
-    "height_definitions": {
-      "at_control_arm": "de l'aire de contact au sol jusqu'au point de mesure sur le bras",
-      "at_outer_control_arm_mount_body_side": "de l'aire de contact au sol jusqu'au point de mesure a la fixation exterieure du bras, cote caisse"
-    },
-    "height_at_control_arm_mm": {
-      "Carrera_2_4": { "nominal": 258, "tolerance": 5, "us": 268 },
-      "Turbo_Look_America_Roadster": { "nominal": 258, "tolerance": 5, "us": 268 },
-      "Carrera_RS": { "nominal": 223, "tolerance": 5, "us": null },
-      "Carrera_RS_America": { "nominal": 268, "tolerance": 5, "us": null },
-      "Speedster": { "nominal": 258, "tolerance": 5, "us": 268 }
-    },
-    "height_at_outer_mount_body_side_mm": {
-      "Carrera_2_4": { "nominal": 270, "tolerance": 5, "us": 280 },
-      "Turbo_Look_America_Roadster": { "nominal": 270, "tolerance": 5, "us": 280 },
-      "Carrera_RS": { "nominal": 235, "tolerance": 5, "us": null },
-      "Carrera_RS_America": { "nominal": 280, "tolerance": 5, "us": null },
-      "Speedster": { "nominal": 270, "tolerance": 5, "us": 280 }
-    },
-    "height_max_left_right_difference_mm": { "standard": 10, "Carrera_RS": 5 },
-    "toe_in_per_wheel": { "value": "+10' +/- 5'", "max_left_right_difference": "10'" },
-    "camber": { "Carrera_2_4": "-40' +/- 10'", "Turbo_Look": "-45' +/- 10' (max -55', min -15')", "Carrera_RS": "-1deg15' +/- 10'", "Speedster": "-45' +/- 10'", "max_left_right_difference": "20'",
-      "note": "reglages arriere modifies pour le service et applicables retroactivement a toutes les Carrera 2/4 depuis le debut de production ; anciennes valeurs, pincement par roue +15' +/- 5' et carrossage -20' +/- 10'" }
+  "session": {
+    "performed_on": "2026-09-03",
+    "operator_role": "document indexer",
+    "ambient_temperature_c": null
   },
-  "tyre_pressures_bar_cold_20C": {
-    "page": "44-01",
-    "wheels_16in": { "front": 2.5, "rear": 3.0 },
-    "wheels_17in": { "front": 2.5, "rear": 2.5, "rear_with_275_35_ZR17": 3.0 },
-    "collapsible_spare": 2.5,
-    "note": "le volume IV ne donne pas de tableau de dimensions de jantes ni de deport ; il renvoie a l'Information Technique groupe 4. Seule dimension de pneu nommee dans le texte : 275/35 ZR 17."
+  "datum": {
+    "origin": "Planche et page du manuel d'atelier 964 de reference",
+    "axes": "Non applicable : aucune piece physique n'a ete mesuree",
+    "reference_image": null
   },
-  "notes": [
-    "Interet principal pour le jumeau : la hauteur avant est definie du sol jusqu'a un point de CAISSE, le boulon exterieur « Crossmember to body ». Ce point est le P5 du volume V. Le volume IV fournit donc une cote en Z rattachee au plan de sol pour un point de datum dont le volume V ne donnait que l'ecartement transversal.",
-    "Meme logique a l'arriere : la fixation exterieure de bras cote caisse est cotee a 270 +/- 5 mm du sol.",
-    "Reserve d'emploi : ces hauteurs valent au poids a vide DIN 70020, suspension chargee. Elles ne peuvent servir a verifier un plan de sol sur un vehicule scanne que si l'etat de charge et la hauteur de caisse de ce vehicule sont connus. Sur une carrosserie large probablement modifiee, un ecart mesure indique un rabaissement, pas une erreur de repere.",
-    "La RS est 40 mm plus basse a l'avant, 125 contre 165, et 35 mm plus basse a l'arriere, 235 contre 270 au point caisse.",
-    "Le carrossage arriere de -40' et le pincement de +10' par roue expliquent en partie la dispersion des ajustements de cercle sur les pneus du scan : le plan de roue n'est pas parallele au plan YZ du vehicule."
-  ]
+  "instruments": [],
+  "readings": [],
+  "declared_values": [
+    {
+      "value_id": "MNL-964SA-0001",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_definition",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "de l'aire de contact de la roue au sol jusqu'au boulon six pans de fixation exterieur « Crossmember to body » — c'est-a-dire le point de datum P5 du volume V, « Mount - outer cross member FA », d'ecartement transversal 770 +/- 2 mm",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_definition"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0002",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_mm / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "165 +/- 10 (US 175)",
+      "unit": "mm",
+      "numeric_values": [
+        165.0,
+        10.0,
+        175.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_mm",
+        "variant": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0003",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_mm / Turbo_Look_America_Roadster",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "165 +/- 10 (US 175)",
+      "unit": "mm",
+      "numeric_values": [
+        165.0,
+        10.0,
+        175.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_mm",
+        "variant": "Turbo_Look_America_Roadster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0004",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_mm / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "125 +/- 5",
+      "unit": "mm",
+      "numeric_values": [
+        125.0,
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_mm",
+        "variant": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0005",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_mm / Carrera_RS_America",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "175 +/- 10",
+      "unit": "mm",
+      "numeric_values": [
+        175.0,
+        10.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_mm",
+        "variant": "Carrera_RS_America"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0006",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_mm / Speedster",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "165 +/- 10 (US 175)",
+      "unit": "mm",
+      "numeric_values": [
+        165.0,
+        10.0,
+        175.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_mm",
+        "variant": "Speedster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0007",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_max_left_right_difference_mm / standard",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "10",
+      "unit": "",
+      "numeric_values": [
+        10.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_max_left_right_difference_mm",
+        "key": "standard"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0008",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / height_max_left_right_difference_mm / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "5",
+      "unit": "",
+      "numeric_values": [
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "height_max_left_right_difference_mm",
+        "key": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0009",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / toe_unpressed_total / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "+25' +/- 5'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "toe_unpressed_total",
+        "key": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0010",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / toe_unpressed_total / Carrera_RS_America",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "+15' +/- 5'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "toe_unpressed_total",
+        "key": "Carrera_RS_America"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0011",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / toe_unpressed_total / Speedster",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "+15' +/- 5'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "toe_unpressed_total",
+        "key": "Speedster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0012",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / toe_difference_angle_at_20deg_lock / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "-40' +/- 30'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "toe_difference_angle_at_20deg_lock",
+        "key": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0013",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / toe_difference_angle_at_20deg_lock / Turbo_Look",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "-1deg20' +/- 30'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "toe_difference_angle_at_20deg_lock",
+        "key": "Turbo_Look"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0014",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / toe_difference_angle_at_20deg_lock / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "-1deg50' +/- 30'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "toe_difference_angle_at_20deg_lock",
+        "key": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0015",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / camber_straight_ahead / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "0deg +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "camber_straight_ahead",
+        "key": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0016",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / camber_straight_ahead / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "-1deg +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "camber_straight_ahead",
+        "key": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0017",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / camber_straight_ahead / Carrera_RS_America",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "-15' +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "camber_straight_ahead",
+        "key": "Carrera_RS_America"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0018",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / camber_straight_ahead / Speedster",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "-15' +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "camber_straight_ahead",
+        "key": "Speedster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0019",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / camber_straight_ahead / max_left_right_difference",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "camber_straight_ahead",
+        "key": "max_left_right_difference"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0020",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / caster / value",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "4deg25' +15' / -30'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "caster",
+        "key": "value"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0021",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / caster / max_left_right_difference",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "15'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "caster",
+        "key": "max_left_right_difference"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0022",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "front_axle / caster / note",
+      "pdf_page": null,
+      "plate": "44-02",
+      "line": null,
+      "value_text": "tolerance modifiee en cours de millesime 1992, de 4deg25' +/- 15' a 4deg25' +15'/-30', applicable retroactivement ; l'ecart gauche-droite maximal de 15' reste valable",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "front_axle",
+        "field": "caster",
+        "key": "note"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0023",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_definitions / at_control_arm",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "de l'aire de contact au sol jusqu'au point de mesure sur le bras",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_definitions",
+        "key": "at_control_arm"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0024",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_definitions / at_outer_control_arm_mount_body_side",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "de l'aire de contact au sol jusqu'au point de mesure a la fixation exterieure du bras, cote caisse",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_definitions",
+        "key": "at_outer_control_arm_mount_body_side"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0025",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_control_arm_mm / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "258 +/- 5 (US 268)",
+      "unit": "mm",
+      "numeric_values": [
+        258.0,
+        5.0,
+        268.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_control_arm_mm",
+        "variant": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0026",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_control_arm_mm / Turbo_Look_America_Roadster",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "258 +/- 5 (US 268)",
+      "unit": "mm",
+      "numeric_values": [
+        258.0,
+        5.0,
+        268.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_control_arm_mm",
+        "variant": "Turbo_Look_America_Roadster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0027",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_control_arm_mm / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "223 +/- 5",
+      "unit": "mm",
+      "numeric_values": [
+        223.0,
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_control_arm_mm",
+        "variant": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0028",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_control_arm_mm / Carrera_RS_America",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "268 +/- 5",
+      "unit": "mm",
+      "numeric_values": [
+        268.0,
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_control_arm_mm",
+        "variant": "Carrera_RS_America"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0029",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_control_arm_mm / Speedster",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "258 +/- 5 (US 268)",
+      "unit": "mm",
+      "numeric_values": [
+        258.0,
+        5.0,
+        268.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_control_arm_mm",
+        "variant": "Speedster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0030",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_outer_mount_body_side_mm / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "270 +/- 5 (US 280)",
+      "unit": "mm",
+      "numeric_values": [
+        270.0,
+        5.0,
+        280.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_outer_mount_body_side_mm",
+        "variant": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0031",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_outer_mount_body_side_mm / Turbo_Look_America_Roadster",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "270 +/- 5 (US 280)",
+      "unit": "mm",
+      "numeric_values": [
+        270.0,
+        5.0,
+        280.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_outer_mount_body_side_mm",
+        "variant": "Turbo_Look_America_Roadster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0032",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_outer_mount_body_side_mm / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "235 +/- 5",
+      "unit": "mm",
+      "numeric_values": [
+        235.0,
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_outer_mount_body_side_mm",
+        "variant": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0033",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_outer_mount_body_side_mm / Carrera_RS_America",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "280 +/- 5",
+      "unit": "mm",
+      "numeric_values": [
+        280.0,
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_outer_mount_body_side_mm",
+        "variant": "Carrera_RS_America"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0034",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_at_outer_mount_body_side_mm / Speedster",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "270 +/- 5 (US 280)",
+      "unit": "mm",
+      "numeric_values": [
+        270.0,
+        5.0,
+        280.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_at_outer_mount_body_side_mm",
+        "variant": "Speedster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0035",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_max_left_right_difference_mm / standard",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "10",
+      "unit": "",
+      "numeric_values": [
+        10.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_max_left_right_difference_mm",
+        "key": "standard"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0036",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / height_max_left_right_difference_mm / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "5",
+      "unit": "",
+      "numeric_values": [
+        5.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "height_max_left_right_difference_mm",
+        "key": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0037",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / toe_in_per_wheel / value",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "+10' +/- 5'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "toe_in_per_wheel",
+        "key": "value"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0038",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / toe_in_per_wheel / max_left_right_difference",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "toe_in_per_wheel",
+        "key": "max_left_right_difference"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0039",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / camber / Carrera_2_4",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "-40' +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "camber",
+        "key": "Carrera_2_4"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0040",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / camber / Turbo_Look",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "-45' +/- 10' (max -55', min -15')",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "camber",
+        "key": "Turbo_Look"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0041",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / camber / Carrera_RS",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "-1deg15' +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "camber",
+        "key": "Carrera_RS"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0042",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / camber / Speedster",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "-45' +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "camber",
+        "key": "Speedster"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0043",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / camber / max_left_right_difference",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "20'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "camber",
+        "key": "max_left_right_difference"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0044",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "rear_axle / camber / note",
+      "pdf_page": null,
+      "plate": "44-03",
+      "line": null,
+      "value_text": "reglages arriere modifies pour le service et applicables retroactivement a toutes les Carrera 2/4 depuis le debut de production ; anciennes valeurs, pincement par roue +15' +/- 5' et carrossage -20' +/- 10'",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "axle": "rear_axle",
+        "field": "camber",
+        "key": "note"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0045",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / wheels_16in / front",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "2.5",
+      "unit": "bar",
+      "numeric_values": [
+        2.5
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "wheel": "wheels_16in",
+        "position": "front"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0046",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / wheels_16in / rear",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "3.0",
+      "unit": "bar",
+      "numeric_values": [
+        3.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "wheel": "wheels_16in",
+        "position": "rear"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0047",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / wheels_17in / front",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "2.5",
+      "unit": "bar",
+      "numeric_values": [
+        2.5
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "wheel": "wheels_17in",
+        "position": "front"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0048",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / wheels_17in / rear",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "2.5",
+      "unit": "bar",
+      "numeric_values": [
+        2.5
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "wheel": "wheels_17in",
+        "position": "rear"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0049",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / wheels_17in / rear_with_275_35_ZR17",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "3.0",
+      "unit": "bar",
+      "numeric_values": [
+        3.0
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "wheel": "wheels_17in",
+        "position": "rear_with_275_35_ZR17"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0050",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / collapsible_spare",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "2.5",
+      "unit": "bar",
+      "numeric_values": [
+        2.5
+      ],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "item": "collapsible_spare"
+      }
+    },
+    {
+      "value_id": "MNL-964SA-0051",
+      "record_type": "technical_data",
+      "source_collection": "suspension_alignment",
+      "description": "pression de gonflage / note",
+      "pdf_page": null,
+      "plate": "44-01",
+      "line": null,
+      "value_text": "le volume IV ne donne pas de tableau de dimensions de jantes ni de deport ; il renvoie a l'Information Technique groupe 4. Seule dimension de pneu nommee dans le texte : 275/35 ZR 17.",
+      "unit": "",
+      "numeric_values": [],
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL4-CHASSIS",
+      "extraction_status": "manually_checked",
+      "details": {
+        "kind": "tyre_pressure",
+        "item": "note"
+      }
+    }
+  ],
+  "evidence": {
+    "level": "A",
+    "files": [
+      "catalog/sources/src-porsche-workshop-manual-964-vol4-chassis.json"
+    ],
+    "contradictions": []
+  },
+  "notes": "Valeurs publiees par Porsche AG, en mm et minutes d'angle, methode : transcription_de_valeurs_publiees. Etat de charge : poids a vide DIN 70020 : reservoir plein, roue de secours et outillage a bord. les valeurs entre parentheses sont les reglages des vehicules destines aux Etats-Unis. Interet principal pour le jumeau : la hauteur avant est definie du sol jusqu'a un point de CAISSE, le boulon exterieur « Crossmember to body ». Ce point est le P5 du volume V. Le volume IV fournit donc une cote en Z rattachee au plan de sol pour un point de datum dont le volume V ne donnait que l'ecartement transversal. Meme logique a l'arriere : la fixation exterieure de bras cote caisse est cotee a 270 +/- 5 mm du sol. Reserve d'emploi : ces hauteurs valent au poids a vide DIN 70020, suspension chargee. Elles ne peuvent servir a verifier un plan de sol sur un vehicule scanne que si l'etat de charge et la hauteur de caisse de ce vehicule sont connus. Sur une carrosserie large probablement modifiee, un ecart mesure indique un rabaissement, pas une erreur de repere. La RS est 40 mm plus basse a l'avant, 125 contre 165, et 35 mm plus basse a l'arriere, 235 contre 270 au point caisse. Le carrossage arriere de -40' et le pincement de +10' par roue expliquent en partie la dispersion des ajustements de cercle sur les pneus du scan : le plan de roue n'est pas parallele au plan YZ du vehicule."
 }
