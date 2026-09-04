@@ -19,6 +19,16 @@ def numeric_suffix(path: Path) -> int:
     return int(match.group(1)) if match else -1
 
 
+def volume_state_paths(case: Path) -> list[Path]:
+    """Return only the volume datasets emitted by foamToVTK.
+
+    Patch subdirectories contain POLYDATA surfaces and must not be read as
+    unstructured volume grids.  The top-level ``layer1_*.vtk`` files contain
+    the cell temperatures and volumes used by the DOE metrics.
+    """
+    return sorted((case / "layer1/VTK").glob("layer1_*.vtk"), key=numeric_suffix)
+
+
 def read_state(path: Path) -> dict:
     try:
         import numpy as np
@@ -98,7 +108,7 @@ def parse_max_courant(paths: list[Path]) -> float:
 
 def extract_case(configured: dict, solver_result: dict) -> dict:
     case = Path(configured["case_path"])
-    vtk_files = sorted((case / "layer1/VTK").rglob("*.vtk"), key=numeric_suffix)
+    vtk_files = volume_state_paths(case)
     if not vtk_files:
         raise RuntimeError(f"vtk_absent:{case}")
     states = [read_state(path) for path in vtk_files]

@@ -187,6 +187,24 @@ class F42LpbfDoeTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "nombre_Courant_absent"):
                 extract_module.parse_max_courant([absent])
 
+    def test_extractor_selects_only_top_level_volume_vtk(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            case = Path(directory)
+            vtk = case / "layer1/VTK"
+            (vtk / "bottom").mkdir(parents=True)
+            (vtk / "internalFaces").mkdir(parents=True)
+            for relative in (
+                "layer1_12.vtk",
+                "layer1_3.vtk",
+                "bottom/bottom_3.vtk",
+                "internalFaces/internalFaces_3.vtk",
+            ):
+                (vtk / relative).write_text("fixture\n", encoding="utf-8")
+            self.assertEqual(
+                [path.name for path in extract_module.volume_state_paths(case)],
+                ["layer1_3.vtk", "layer1_12.vtk"],
+            )
+
     def test_supplier_slice_schedule_is_exhaustively_verified_without_release(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
