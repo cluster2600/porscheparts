@@ -1,0 +1,216 @@
+{
+  "$comment": "F42a importe uniquement les six STEP F41 valides. Ce contrat n'autorise ni simulation, ni assemblage, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F42a",
+  "status": "hash_bound_f41_archive_to_minimum_usd_conversion_only",
+  "source": {
+    "phase": "F41",
+    "run_id": "f41-c59-20260903t025511z",
+    "archive_filename": "f41-c59-20260903t025511z.tar.gz",
+    "archive_root": "f41-c59-20260903t025511z",
+    "archive_sha256": "59ef86584e9dfb16481b76ce79bf5739b129ddf2d3a3869f700b2dd614bd86b5",
+    "archive_size_bytes": 772358,
+    "source_revision": "045f41037f04b3dd69b72591d29713a17db8e1c3",
+    "imported_file_count": 15,
+    "imported_size_bytes": 724745
+  },
+  "runtime": {
+    "image_repository": "ghcr.io/cluster2600/3dprinting993-simready-workflow",
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+    "qualification_status": "qualified_public_linux_amd64_digest",
+    "platform": "linux/amd64",
+    "network_required_during_job": false,
+    "gpu_required": false,
+    "skill_name": "omniverse-cad-to-simready",
+    "preflight_targets": [
+      "conversion",
+      "validation"
+    ],
+    "content_agents": "skipped",
+    "conversion_route": "usd-convert-cad",
+    "minimum_validator": "validate-usd-minimum",
+    "converter_adapter": {
+      "path": "/opt/usd-convert-cad-preflight/convert.py",
+      "sha256": "270aed09c44c7d7d2e0b5f505c2b80153aed8f17b681dc0d68895efceeb7f1ef",
+      "size_bytes": 9010
+    },
+    "skill_file_allowlist": [
+      {
+        "path": "SKILL.md",
+        "sha256": "8ff34f478610613bd37aa19ce0c3b0fdc2352226ca561b831799fce4db069531",
+        "size_bytes": 17961
+      },
+      {
+        "path": "references/preflight/scripts/preflight.py",
+        "sha256": "112232a81374a1be2e116f9d2c5403d8baac8a042dc205e17fc3354eee4526f7",
+        "size_bytes": 70437
+      },
+      {
+        "path": "references/validate-usd-minimum/scripts/run.py",
+        "sha256": "9bc080ea5a414e1bb1b8370b607c3028e10d80f05d6a494df7539d9c5c24984d",
+        "size_bytes": 11808
+      },
+      {
+        "path": "shared/script_utils.py",
+        "sha256": "7cb8463cfc7b0951cabbdcf528ad826962acb03ceecafde2205a9efb94d20cca",
+        "size_bytes": 11997
+      },
+      {
+        "path": "shared/usd_convert_cad_diagnostics.py",
+        "sha256": "5623395283a580a195ae8edb6ba9b31a37ec3281b5fdeabaa2eb327a4f9ca0e0",
+        "size_bytes": 3258
+      }
+    ]
+  },
+  "families": [
+    "connecting_rod",
+    "crankshaft",
+    "main_bearing_pair",
+    "piston",
+    "piston_pin",
+    "piston_ring"
+  ],
+  "input_allowlist": [
+    {
+      "path": "artifacts/connecting_rod/cad-family-report.json",
+      "role": "family_report",
+      "family_id": "connecting_rod",
+      "sha256": "65e9d84a1f4ad87b462fbd11837471cd2b078451772a37951651ecc2b1afc34a",
+      "size_bytes": 1616
+    },
+    {
+      "path": "artifacts/connecting_rod/step/connecting_rod.step",
+      "role": "step",
+      "family_id": "connecting_rod",
+      "sha256": "ecc1387600bac402f9b879eaaeb3a5d9d5e378a926389585037586810ff8ad46",
+      "size_bytes": 58917
+    },
+    {
+      "path": "artifacts/crankshaft/cad-family-report.json",
+      "role": "family_report",
+      "family_id": "crankshaft",
+      "sha256": "5e1178abecbd0553923ab5f848057a0d2031bae2c6246682bc7bc15b59fbdf88",
+      "size_bytes": 1604
+    },
+    {
+      "path": "artifacts/crankshaft/step/crankshaft.step",
+      "role": "step",
+      "family_id": "crankshaft",
+      "sha256": "80c20e4683cc20aafc876b335e309988fe7c713a0d10039250f7ba2d352a8e74",
+      "size_bytes": 314522
+    },
+    {
+      "path": "artifacts/main_bearing_pair/cad-family-report.json",
+      "role": "family_report",
+      "family_id": "main_bearing_pair",
+      "sha256": "2b716d06b60288d65a9d1a5c101cf9a01be76bc8523150e50dc61a5fd472f3b6",
+      "size_bytes": 1640
+    },
+    {
+      "path": "artifacts/main_bearing_pair/step/main_bearing_pair.step",
+      "role": "step",
+      "family_id": "main_bearing_pair",
+      "sha256": "afe96207045362b564c1de793ccfa467c430d9cbfd496648b42309e83c247343",
+      "size_bytes": 35803
+    },
+    {
+      "path": "artifacts/piston/cad-family-report.json",
+      "role": "family_report",
+      "family_id": "piston",
+      "sha256": "225d4d876c8bd0e836e9848b5761250678a6810c1199c7d1587da8ce9a79495a",
+      "size_bytes": 1561
+    },
+    {
+      "path": "artifacts/piston/step/piston.step",
+      "role": "step",
+      "family_id": "piston",
+      "sha256": "2ec4eb453853021d6244113629f76f501687ca1ee01a279abda80a50764cfd39",
+      "size_bytes": 263094
+    },
+    {
+      "path": "artifacts/piston_pin/cad-family-report.json",
+      "role": "family_report",
+      "family_id": "piston_pin",
+      "sha256": "e3fc07cd7a29939b2958157322264d13612436a26c21083765520501ad20398b",
+      "size_bytes": 1585
+    },
+    {
+      "path": "artifacts/piston_pin/step/piston_pin.step",
+      "role": "step",
+      "family_id": "piston_pin",
+      "sha256": "b45f41dabccb3c92cb72f66de7f0b68f4ec51bbbd3ec17e165ef1f79e8d9fa1f",
+      "size_bytes": 9693
+    },
+    {
+      "path": "artifacts/piston_ring/cad-family-report.json",
+      "role": "family_report",
+      "family_id": "piston_ring",
+      "sha256": "405f1dfca28ca890252a6d2a26f85b83ba62349c8dfb5502dc378b8ec527ef7f",
+      "size_bytes": 1597
+    },
+    {
+      "path": "artifacts/piston_ring/step/piston_ring.step",
+      "role": "step",
+      "family_id": "piston_ring",
+      "sha256": "fba0282c6edbc077b19e06f96dea0ba8f80ba3f39b2e14d7e57967b748962c14",
+      "size_bytes": 17969
+    },
+    {
+      "path": "cad-execution-report.json",
+      "role": "cad_execution_report",
+      "sha256": "9d5fb0c3b9ec5664efa60aba28ae5372da60b81833ee8c9a38987efbd2775a56",
+      "size_bytes": 12239
+    },
+    {
+      "path": "logs/f35-cad-seed.log",
+      "role": "generation_log",
+      "sha256": "220d30a302e5abfb4148179fbb8f3d24bda993ad3fdf030db34798528973d05a",
+      "size_bytes": 1582
+    },
+    {
+      "path": "preflight/cad.json",
+      "role": "cad_preflight_report",
+      "sha256": "a31417bc90beb26c316b0c5c7d0d23d4a7260d0cc49102052d87587968b5845c",
+      "size_bytes": 1323
+    }
+  ],
+  "usd_audit": {
+    "expected_default_prim_template": "/{family_id}",
+    "expected_up_axis": "Z",
+    "expected_meters_per_unit": 0.001,
+    "bounds_relative_tolerance": 0.01,
+    "bounds_absolute_tolerance_m": 0.0001,
+    "physics_schema_count": 0,
+    "material_assignment_required": false
+  },
+  "output_contract": {
+    "converted_family_count": 6,
+    "maximum_usd_size_bytes_per_family": 268435456,
+    "maximum_total_usd_size_bytes": 1073741824,
+    "property_assignment_intent": "skip",
+    "preview_status": "not_run_until_conversion_and_minimum_validation_pass",
+    "claim": "conversion_only_minimum_openable_usd_not_simready"
+  },
+  "release_gates": {
+    "all_family_counts_closed": false,
+    "all_interface_dimensions_measured": false,
+    "all_materials_qualified": false,
+    "all_tolerances_and_clearances_released": false,
+    "all_editable_cad_generated": false,
+    "all_step_roundtrips_validated": false,
+    "all_3mf_meshes_validated": false,
+    "all_usd_assets_minimum_valid": false,
+    "simready_property_assignment_complete": false,
+    "assembly_interference_check_passed": false,
+    "lubrication_and_cooling_validated": false,
+    "combustion_and_boost_validated": false,
+    "fatigue_and_rotordynamics_validated": false,
+    "physical_flowbench_correlated": false,
+    "physical_dyno_correlated": false,
+    "professional_engineering_review_approved": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false,
+    "installation_in_993_authorized": false,
+    "performance_1600_hp_claim_authorized": false
+  }
+}

@@ -1,0 +1,506 @@
+{
+  "asset_id": "porsche-917-gas-path-network-f38",
+  "contract_path": "twins/reference-917-engine/gas-path-network-f38.json",
+  "contract_sha256": "e52c7e7910f0263578e4197276a2abbafc36e83460f9bd55346af4a497c51c1d",
+  "model_scope": {
+    "duct_geometry_or_wave_action_solved": false,
+    "independent_model_cross_check": false,
+    "moving_valve_or_piston_cfd_executed": false,
+    "physical_correlation_complete": false,
+    "steady_station_network_executed": true,
+    "unsteady_one_dimensional_gas_dynamics_executed": false
+  },
+  "phase": "F38",
+  "release_gates": {
+    "combustion_and_knock_validated": false,
+    "compressor_map_containment_validated": false,
+    "engine_start_authorized": false,
+    "full_engine_energy_balance_validated": false,
+    "manufacturing_authorized": false,
+    "physical_engine_dyno_correlated": false,
+    "target_power_proven": false,
+    "turbine_map_containment_validated": false,
+    "turbo_rotor_transient_validated": false,
+    "unsteady_one_dimensional_gas_dynamics_validated": false
+  },
+  "required_next_evidence": [
+    "licensed_digitized_compressor_maps_with_speed_efficiency_and_choke_surge_lines",
+    "licensed_digitized_turbine_maps_with_reduced_flow_and_efficiency",
+    "turbo_rotor_inertia_bearing_friction_and_speed_limits",
+    "turbo_bearing_and_chra_thermal_loss_partition",
+    "measured_watertight_intake_and_exhaust_internal_geometry",
+    "unsteady_1d_wave_action_model_with_valve_lift_and_discharge_coefficients",
+    "moving_piston_valve_combustion_cfd_and_mesh_independence",
+    "physical_flowbench_turbo_bench_and_engine_dyno_correlation"
+  ],
+  "runtime": {
+    "deterministic": true,
+    "external_api_used": false,
+    "gpu_used": false,
+    "implementation": "python_standard_library",
+    "network_access_used": false
+  },
+  "schema_version": "1.0.0",
+  "source_evidence": {
+    "air_oil_controls_contract_f34a": {
+      "actual_sha256": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa",
+      "expected_sha256": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/air-oil-core-controls-f34a.json"
+    },
+    "air_oil_forward_seeds_f34b": {
+      "actual_sha256": "74745e4ac18915c224e40fae1dbae739a9b6eea2aa9b374d4d7cbc234cd21149",
+      "expected_sha256": "74745e4ac18915c224e40fae1dbae739a9b6eea2aa9b374d4d7cbc234cd21149",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json"
+    },
+    "cycle_thermal_contract_f33": {
+      "actual_sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b",
+      "expected_sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json"
+    },
+    "cycle_thermal_report_f33": {
+      "actual_sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed",
+      "expected_sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/evidence/f33/cycle-thermal-report.json"
+    },
+    "doe_contract_f34": {
+      "actual_sha256": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e",
+      "expected_sha256": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/doe-surrogate-f34.json"
+    },
+    "integrated_bench_contract_f37": {
+      "actual_sha256": "44241ab4b756f0308ab811e91e8b5c2f5bf5aca20eec8871221c3e6348ea6f4f",
+      "expected_sha256": "44241ab4b756f0308ab811e91e8b5c2f5bf5aca20eec8871221c3e6348ea6f4f",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/integrated-bench-assembly-f37.json"
+    },
+    "verification_report_f34": {
+      "actual_sha256": "f1477c08142ab99d21b7b8145918e705176fc977609cdea84c66eed9a394386a",
+      "expected_sha256": "f1477c08142ab99d21b7b8145918e705176fc977609cdea84c66eed9a394386a",
+      "hash_verified": true,
+      "path": "twins/reference-917-engine/evidence/f34/report.json"
+    }
+  },
+  "status": "steady_gas_path_accounting_executed_prescribed_duties_and_shaft_identity_closed_physical_validation_blocked",
+  "target_independence": {
+    "full_target_independence_proven": false,
+    "inverse_sizing_seed_ancestry_present": true,
+    "requested_power_target_has_indirect_sampling_ancestry": true,
+    "requested_power_target_used_as_direct_f38_solver_input": false,
+    "scope": "absence_of_direct_target_input_in_f38_only"
+  },
+  "technical_gates": {
+    "charge_cooler_required_duty_computed_from_prescribed_states": true,
+    "f33_turbo_algebra_subset_recomputed_from_same_inputs": true,
+    "nonnegative_energy_complements_constructed": true,
+    "source_hashes_verified": true,
+    "steady_turbo_shaft_identity_closed": true,
+    "two_variant_topology_executed": true,
+    "upstream_mass_identities_rechecked": true
+  },
+  "thermal_architecture_authority": {
+    "auxiliary_liquid_allowed_consumers": [
+      "charge_cooling",
+      "turbo_chra"
+    ],
+    "auxiliary_liquid_isolated_from_engine_core": true,
+    "dry_sump_oil_network_solved": false,
+    "engine_core": "strict_forced_air_and_dry_sump_oil_only",
+    "engine_core_liquid_coolant_loop_present": false,
+    "forced_air_network_solved": false,
+    "physically_validated": false,
+    "source": "F34a"
+  },
+  "unit_registry": {
+    "mass_flow_kg_s": "kg/s",
+    "mechanical_power_hp": "mechanical_hp",
+    "metric_power_ps": "metric_PS_or_ch",
+    "power_w": "W",
+    "pressure_pa_abs": "Pa_abs",
+    "ratio": "dimensionless",
+    "speed_rpm": "rpm",
+    "temperature_k": "K",
+    "torque_nm": "N*m"
+  },
+  "variant_count": 2,
+  "variants": [
+    {
+      "bench_geometry_identity_match": false,
+      "bench_variant_id": "type_912_4_5_na",
+      "configuration": "naturally_aspirated",
+      "edges": [
+        {
+          "id": "ambient_to_plenum",
+          "mass_flow_kg_s": 0.502349890331,
+          "pressure_drop_solved": false
+        },
+        {
+          "id": "plenum_to_cylinders",
+          "mass_flow_kg_s": 0.502349890331
+        },
+        {
+          "id": "fuel_rail_to_cylinders",
+          "mass_flow_kg_s": 0.031996861952
+        },
+        {
+          "id": "cylinders_to_collector",
+          "mass_flow_kg_s": 0.534346752283
+        },
+        {
+          "id": "collector_to_extraction",
+          "mass_flow_kg_s": 0.534346752283,
+          "pressure_drop_solved": false
+        }
+      ],
+      "engine_energy_accounting": {
+        "accounting_method": "unresolved_complement_by_difference_not_independent_energy_balance",
+        "brake_power_mechanical_hp": 620.41009895,
+        "brake_power_metric_ps": 629.014979448,
+        "brake_power_w": 462639.731115,
+        "constructed_complement_residual_w": 0.0,
+        "declared_thermal_load_total_w": 375242.855571,
+        "declared_thermal_loads_w": {
+          "cylinder_fin_air": 55034.6025578,
+          "head_ht_coolant": 192621.108952,
+          "oil_loop": 127587.144061
+        },
+        "fuel_power_w": 1375865.06395,
+        "full_engine_energy_balance_validated": false,
+        "nonnegative_arithmetic_complement_constructed": true,
+        "thermal_load_authority": "legacy_F33_hybrid_head_hypotheses_preserved_for_accounting_not_selected_by_F34a",
+        "unresolved_exhaust_wall_and_model_residual_w": 537982.47726
+      },
+      "mass_balance": {
+        "air_mass_flow_kg_s": 0.502349890331,
+        "exhaust_mass_flow_kg_s": 0.534346752283,
+        "fuel_mass_flow_kg_s": 0.031996861952,
+        "numerical_identity_closed": true,
+        "physical_mass_balance_validated": false,
+        "relative_residual": 3.89572531746e-17,
+        "residual_kg_s": 2.08166817117e-17
+      },
+      "nodes": [
+        {
+          "classification": "boundary_state_not_provided_by_f33",
+          "id": "bench_ambient",
+          "pressure_pa_abs": null,
+          "temperature_k": null
+        },
+        {
+          "id": "intake_plenum",
+          "mass_flow_kg_s": 0.502349890331,
+          "pressure_pa_abs": 100000.0,
+          "temperature_k": 303.0
+        },
+        {
+          "air_mass_flow_kg_s": 0.502349890331,
+          "exhaust_mass_flow_kg_s": 0.534346752283,
+          "fuel_mass_flow_kg_s": 0.031996861952,
+          "id": "cylinder_control_volume"
+        },
+        {
+          "classification": "temperature_not_provided_by_f33",
+          "id": "exhaust_collector",
+          "mass_flow_kg_s": 0.534346752283,
+          "pressure_pa_abs": 108000.0,
+          "temperature_k": null
+        },
+        {
+          "classification": "boundary_state_not_provided_by_f33",
+          "id": "bench_extraction",
+          "mass_flow_kg_s": 0.534346752283,
+          "pressure_pa_abs": null,
+          "temperature_k": null
+        }
+      ],
+      "operating_point": {
+        "classification": "single_non_correlated_f33_forward_screening_point",
+        "speed_rpm": 9000.0
+      },
+      "target_comparison": {
+        "forward_predicted_mechanical_hp": 620.41009895,
+        "forward_predicted_metric_ps": 629.014979448,
+        "power_units": "mechanical_hp_and_metric_PS_are_distinct",
+        "target_power_mechanical_hp": null,
+        "target_power_proven": false
+      },
+      "turbo_system": null,
+      "variant_id": "917_2026_flat12_na_candidate"
+    },
+    {
+      "bench_geometry_identity_match": false,
+      "bench_variant_id": "917_30_turbo_5374",
+      "charge_cooler_required_duty": {
+        "charge_cooler_outlet_temperature_k": 325.0,
+        "compressor_inlet_temperature_k": 298.15,
+        "compressor_outlet_temperature_k": 453.561809618,
+        "constructed_duty_residual_w": 0.0,
+        "heat_exchanger_validated": false,
+        "independent_charge_enthalpy_balance_validated": false,
+        "required_charge_cooler_heat_rejection_w": 158475.870674,
+        "required_duty_computed_from_prescribed_states": true
+      },
+      "configuration": "twin_turbo",
+      "edges": [
+        {
+          "id": "ambient_to_compressors",
+          "mass_flow_kg_s": 1.22654957935
+        },
+        {
+          "id": "compressors_to_charge_cooler",
+          "mass_flow_kg_s": 1.22654957935,
+          "shaft_power_w": 191573.39116
+        },
+        {
+          "heat_rejection_w": 158475.870674,
+          "id": "charge_cooler_to_plenum",
+          "mass_flow_kg_s": 1.22654957935
+        },
+        {
+          "id": "plenum_to_cylinders",
+          "mass_flow_kg_s": 1.22654957935
+        },
+        {
+          "id": "fuel_rail_to_cylinders",
+          "mass_flow_kg_s": 0.111018753507
+        },
+        {
+          "id": "cylinders_to_collectors",
+          "mass_flow_kg_s": 1.33756833285
+        },
+        {
+          "id": "collectors_to_turbines",
+          "mass_flow_kg_s": 1.02417159958
+        },
+        {
+          "id": "collectors_to_wastegates",
+          "mass_flow_kg_s": 0.313396733271
+        },
+        {
+          "id": "turbines_to_extraction",
+          "mass_flow_kg_s": 1.02417159958
+        },
+        {
+          "id": "wastegates_to_extraction",
+          "mass_flow_kg_s": 0.313396733271
+        }
+      ],
+      "engine_energy_accounting": {
+        "accounting_method": "unresolved_complement_by_difference_not_independent_energy_balance",
+        "brake_power_mechanical_hp": 1601.19594455,
+        "brake_power_metric_ps": 1623.40399658,
+        "brake_power_w": 1194011.61023,
+        "constructed_complement_residual_w": 0.0,
+        "declared_thermal_load_total_w": 1303553.5851,
+        "declared_thermal_loads_w": {
+          "charge_lt_coolant": 158475.870674,
+          "cylinder_fin_air": 190952.256033,
+          "head_ht_coolant": 668332.896114,
+          "oil_loop": 285792.562281
+        },
+        "fuel_power_w": 4773806.40081,
+        "full_engine_energy_balance_validated": false,
+        "nonnegative_arithmetic_complement_constructed": true,
+        "thermal_load_authority": "legacy_F33_hybrid_head_hypotheses_preserved_for_accounting_not_selected_by_F34a",
+        "unresolved_exhaust_wall_and_model_residual_w": 2276241.20548
+      },
+      "mass_balance": {
+        "air_mass_flow_kg_s": 1.22654957935,
+        "exhaust_mass_flow_kg_s": 1.33756833285,
+        "fuel_mass_flow_kg_s": 0.111018753507,
+        "numerical_identity_closed": true,
+        "physical_mass_balance_validated": false,
+        "relative_residual": 2.07507720794e-17,
+        "residual_kg_s": -2.77555756156e-17
+      },
+      "nodes": [
+        {
+          "classification": "F33_compressor_inlet_hypothesis",
+          "id": "bench_ambient",
+          "pressure_pa_abs": 96000.0,
+          "temperature_k": 298.15
+        },
+        {
+          "id": "compressor_inlet_left",
+          "mass_flow_kg_s": 0.613274789673,
+          "pressure_pa_abs": 96000.0,
+          "temperature_k": 298.15
+        },
+        {
+          "id": "compressor_inlet_right",
+          "mass_flow_kg_s": 0.613274789673,
+          "pressure_pa_abs": 96000.0,
+          "temperature_k": 298.15
+        },
+        {
+          "id": "compressor_outlet_left",
+          "mass_flow_kg_s": 0.613274789673,
+          "pressure_pa_abs": 308700.0,
+          "temperature_k": 453.561809618
+        },
+        {
+          "id": "compressor_outlet_right",
+          "mass_flow_kg_s": 0.613274789673,
+          "pressure_pa_abs": 308700.0,
+          "temperature_k": 453.561809618
+        },
+        {
+          "id": "charge_cooler_outlet",
+          "mass_flow_kg_s": 1.22654957935,
+          "pressure_pa_abs": 283700.0,
+          "temperature_k": 325.0
+        },
+        {
+          "id": "charge_plenum",
+          "mass_flow_kg_s": 1.22654957935,
+          "pressure_pa_abs": 283700.0,
+          "temperature_k": 325.0
+        },
+        {
+          "air_mass_flow_kg_s": 1.22654957935,
+          "exhaust_mass_flow_kg_s": 1.33756833285,
+          "fuel_mass_flow_kg_s": 0.111018753507,
+          "id": "cylinder_control_volume"
+        },
+        {
+          "id": "exhaust_collector_left",
+          "mass_flow_kg_s": 0.668784166426,
+          "pressure_pa_abs": 296000.0,
+          "temperature_k": 1100.0
+        },
+        {
+          "id": "exhaust_collector_right",
+          "mass_flow_kg_s": 0.668784166426,
+          "pressure_pa_abs": 296000.0,
+          "temperature_k": 1100.0
+        },
+        {
+          "id": "turbine_outlet_left",
+          "mass_flow_kg_s": 0.512085799791,
+          "pressure_pa_abs": 110000.0,
+          "temperature_k": 932.315514029
+        },
+        {
+          "id": "turbine_outlet_right",
+          "mass_flow_kg_s": 0.512085799791,
+          "pressure_pa_abs": 110000.0,
+          "temperature_k": 932.315514029
+        },
+        {
+          "id": "wastegate_bypass_left",
+          "mass_flow_kg_s": 0.156698366635,
+          "pressure_pa_abs": 110000.0,
+          "temperature_k": 1100.0
+        },
+        {
+          "id": "wastegate_bypass_right",
+          "mass_flow_kg_s": 0.156698366635,
+          "pressure_pa_abs": 110000.0,
+          "temperature_k": 1100.0
+        },
+        {
+          "id": "bench_extraction",
+          "mass_flow_kg_s": 1.33756833285,
+          "pressure_pa_abs": 110000.0,
+          "temperature_k": 971.604549835
+        }
+      ],
+      "operating_point": {
+        "classification": "single_non_correlated_f33_forward_screening_point",
+        "speed_rpm": 9000.0
+      },
+      "target_comparison": {
+        "forward_predicted_mechanical_hp": 1601.19594455,
+        "forward_predicted_metric_ps": 1623.40399658,
+        "full_target_independence_proven": false,
+        "inverse_sizing_seed_ancestry_present": true,
+        "numerically_within_one_percent_of_requirement": true,
+        "relative_difference": 0.000747465345426,
+        "requested_power_target_has_indirect_sampling_ancestry": true,
+        "requested_power_target_used_as_direct_f38_solver_input": false,
+        "scope": "absence_of_direct_target_input_in_f38_only",
+        "target_power_mechanical_hp": 1600.0,
+        "target_power_metric_ps": 1622.19146468,
+        "target_power_proven": false,
+        "target_unit": "mechanical_hp_not_metric_PS_or_ch"
+      },
+      "turbo_system": {
+        "candidate_model": "Garrett_G42_1325_pair_candidate",
+        "candidate_name_is_map_evidence": false,
+        "chra_thermal_model_executed": false,
+        "classification": "steady_inverse_wastegate_shaft_identity_not_map_match",
+        "compressor_fluid_power_total_w": 191573.39116,
+        "compressor_map_containment_validated": false,
+        "compressor_map_digitized": false,
+        "compressor_power_per_turbo_w": 95786.6955802,
+        "compressor_power_total_w": 191573.39116,
+        "compressor_pressure_ratio": 3.215625,
+        "corrected_air_mass_flow_per_turbo_kg_s": 0.609927871011,
+        "independent_model_cross_check": false,
+        "map_interpolation_executed": false,
+        "rotor_speed_calculated": false,
+        "steady_shaft_balance": {
+          "capacity_available": true,
+          "converged": true,
+          "iterations": 28,
+          "relative_shaft_power_residual": 2.69400503668e-10,
+          "shaft_power_residual_w": 2.5804984034e-05,
+          "turbine_flow_fraction": 0.765696655959,
+          "wastegate_bypass_fraction": 0.234303344041
+        },
+        "transient_rotor_dynamics_executed": false,
+        "turbine_gas_power_full_flow_per_turbo_w": 128966.438549,
+        "turbine_gas_power_selected_total_w": 197498.341456,
+        "turbine_map_containment_validated": false,
+        "turbine_map_digitized": false,
+        "turbine_mass_flow_per_side_kg_s": 0.512085799791,
+        "turbine_outlet_temperature_k": 932.315514029,
+        "turbine_shaft_power_full_flow_per_turbo_w": 125097.445392,
+        "turbine_shaft_power_selected_total_w": 191573.391212,
+        "turbo_match_validated": false,
+        "turbo_mechanical_loss_destination_known": false,
+        "turbo_mechanical_loss_thermal_destination": null,
+        "turbo_mechanical_loss_total_w": 5924.95024367,
+        "turbocharger_count": 2,
+        "upstream_reproduction": {
+          "charge_cooler_heat_rejection_w": {
+            "calculated": 158475.870674,
+            "relative_difference": 3.4672806446e-13,
+            "upstream": 158475.870674,
+            "within_tolerance": true
+          },
+          "compressor_outlet_temperature_k": {
+            "calculated": 453.561809618,
+            "relative_difference": 6.26633654504e-16,
+            "upstream": 453.561809618,
+            "within_tolerance": true
+          },
+          "compressor_power_total_w": {
+            "calculated": 191573.39116,
+            "relative_difference": 3.46833370388e-13,
+            "upstream": 191573.39116,
+            "within_tolerance": true
+          },
+          "compressor_pressure_ratio": {
+            "calculated": 3.215625,
+            "relative_difference": 0.0,
+            "upstream": 3.215625,
+            "within_tolerance": true
+          },
+          "turbine_shaft_power_full_flow_per_turbo_w": {
+            "calculated": 125097.445392,
+            "relative_difference": 8.07292997615e-14,
+            "upstream": 125097.445392,
+            "within_tolerance": true
+          }
+        },
+        "wastegate_mass_flow_per_side_kg_s": 0.156698366635
+      },
+      "variant_id": "917_2026_flat12_twin_turbo_1600hp_target"
+    }
+  ]
+}

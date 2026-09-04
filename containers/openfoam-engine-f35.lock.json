@@ -1,0 +1,100 @@
+{
+  "$comment": "Contrat fail-closed avant publication. Seul un digest OCI verifie, accompagne des attestations et des smokes, pourra devenir une reference de calcul.",
+  "schema_version": "1.0.0",
+  "phase": "F35",
+  "lot": "openfoam-engine-f35",
+  "status": "publication_not_verified_fail_closed",
+  "claim_scope": {
+    "synthetic_serial_and_mpi_solver_smoke_only": true,
+    "porsche_geometry_used": false,
+    "engine_geometry_verified": false,
+    "moving_engine_case_verified": false,
+    "combustion_verified": false,
+    "physics_simulation_correlated": false,
+    "performance_1600_hp_proved": false,
+    "fabrication_authorized": false
+  },
+  "recipe": {
+    "platform": "linux/amd64",
+    "dockerfile_frontend": "docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517",
+    "openfoam_package_version": "20260724",
+    "openmpi_version": "4.1.6-7ubuntu2",
+    "python3_version": "3.12.3-0ubuntu2.1",
+    "aate_commit": "c0f75f953d67cd325d28d1300672d14288f22934",
+    "aate_archive_sha256": "28ee8d96b6943fab11b3d70ea3befe472d06d24741962cdb399b1d54e7ff7d3b",
+    "runtime_uid": 9135,
+    "runtime_gid": 9135,
+    "planned_inputs": [
+      ".github/workflows/openfoam-engine-f35-image.yml",
+      "Makefile",
+      "benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json",
+      "benchmarks/openfoam-poiseuille-f25/generate_cases.py",
+      "containers/openfoam-engine-f35-smoke.sh",
+      "containers/openfoam-engine-f35.Dockerfile",
+      "containers/openfoam-engine-f35.Dockerfile.dockerignore",
+      "containers/openfoam-engine-f35.lock.json",
+      "docs/917_INTEL_CPU_NODE_F35.md",
+      "docs/917_OPENFOAM_ENGINE_F35.md",
+      "tests/test_openfoam_engine_f35_image.py",
+      "tests/test_openfoam_engine_f35_lock.py"
+    ]
+  },
+  "planned_image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-openfoam-engine-f35",
+    "candidate_tag": null,
+    "verified_tag": null,
+    "digest": null,
+    "immutable_reference": null,
+    "tags_are_release_authority": false
+  },
+  "verification": {
+    "publication_verified": false,
+    "workflow_run_id": null,
+    "workflow_run_attempt": null,
+    "source_revision": null,
+    "source_inputs_sha256_file": null,
+    "oci_index_sha256_verified": false,
+    "linux_amd64_manifest_verified": false,
+    "provenance_attestation_verified": false,
+    "sbom_attestation_verified": false,
+    "openfoam_in_sbom_verified": false,
+    "aate_source_verified": false,
+    "hardened_serial_mpi_smoke_verified": false,
+    "anonymous_digest_pull_verified": false
+  },
+  "software_verification_gates": {
+    "source_inputs_hashed": false,
+    "linux_amd64_image_built": false,
+    "non_root_runtime_verified": false,
+    "offline_runtime_verified": false,
+    "openfoam_14_verified": false,
+    "openmpi_two_rank_verified": false,
+    "aate_four_utilities_verified": false,
+    "synthetic_serial_case_verified": false,
+    "synthetic_mpi_case_verified": false,
+    "oci_digest_verified": false,
+    "provenance_verified": false,
+    "sbom_verified": false,
+    "anonymous_pull_verified": false
+  },
+  "physical_release_gates": {
+    "porsche_geometry_scaled_and_registered": false,
+    "moving_piston_valve_mesh_validated": false,
+    "combustion_model_validated": false,
+    "spray_model_validated": false,
+    "cht_model_validated": false,
+    "mesh_independence_demonstrated": false,
+    "physical_correlation_complete": false,
+    "engine_start_authorized": false,
+    "fabrication_authorized": false,
+    "target_power_proven": false
+  },
+  "known_limits": [
+    "Les smokes utilisent uniquement des cas de Poiseuille synthetiques sans geometrie Porsche.",
+    "La presence des utilitaires ICengines ne prouve aucun maillage mobile de piston ou de soupape.",
+    "Aucune combustion, injection, huile, turbo ou condition de banc 917 n'est incluse.",
+    "Le digest OCI, les attestations, le SBOM et le pull anonyme restent inconnus avant publication GHCR.",
+    "Aucune sortie de ce lot n'autorise une fabrication, un montage ou un demarrage moteur."
+  ]
+}

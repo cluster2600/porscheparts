@@ -1,0 +1,333 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-head-f42-2-material-process-screen",
+  "classification": "primary_manufacturer_documentary_screen_plus_physical_coupon_plan_not_material_qualification_not_release",
+  "scope": {
+    "part": "Porsche_917_scan_conforming_four_valve_head",
+    "external_envelope_modified": false,
+    "absolute_scale_confirmed": false,
+    "required_property_band_c": [260.0, 350.0],
+    "f42_1_report": {
+      "path": "twins/reference-917-engine/evidence/f42-1-thermal-optimization/f42-1-thermal-optimization-report.json",
+      "sha256": "36bb9b9b2cc1402fed53e8c29229118a28cc6583cd29229d3147b539e5b2d685",
+      "lowest_executed_calculix_tmax_c": 267.5362,
+      "best_option_network_bridge_temperature_c": 279.9084318328072,
+      "temperature_target_met": false
+    }
+  },
+  "source_policy": {
+    "allowed": "manufacturer_or_standards_body_primary_source_only",
+    "accessed_on": "2026-09-04",
+    "public_datasheets_are_not_build_lot_qualification": true,
+    "missing_values_are_null_not_interpolated": true
+  },
+  "materials": [
+    {
+      "id": "EOS_Aluminium_AlSi10Mg_M290_30um_T6",
+      "role": "baseline_widely_available_LPBF",
+      "manufacturer": "EOS",
+      "alloy_family": "Al-Si10-Mg",
+      "lpbf_availability_evidence": "LPBF EOS M 290 parameter set, 30 um, TRL 9",
+      "source_url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alsi10mg",
+      "process": {
+        "machine": "EOS M 290",
+        "layer_um": 30,
+        "process_trl": 9,
+        "heat_treatment": "EOS T6: solution anneal 30 min at 530 C, immediate water quench, artificial age 6 h at 165 C, air cool",
+        "quench_required": true,
+        "exact_public_recipe_available": true
+      },
+      "published_room_temperature_properties": {
+        "condition": "EOS_T6_machined_specimens",
+        "vertical_yield_mpa": 250.0,
+        "vertical_uts_mpa": 310.0,
+        "vertical_elongation_percent": 11.0,
+        "thermal_conductivity_w_mk": {"vertical": 165.0, "horizontal": 155.0, "measurement_temperature_c": null}
+      },
+      "published_numeric_hot_tensile_points": [],
+      "maximum_published_numeric_hot_tensile_temperature_c": null,
+      "numeric_thermal_conductivity_260_to_350_c_available": false,
+      "numeric_tensile_260_to_350_c_available": false,
+      "fatigue_260_to_350_c_available": false,
+      "creep_260_to_350_c_available": false,
+      "hot_band_gate": false,
+      "reason_blocked": "La fiche primaire publie les propriétés mécaniques à température ambiante et une conductivité sans température de mesure, pas une carte 260-350 C."
+    },
+    {
+      "id": "EOS_Aluminium_AlF357_M290_30um_T6_like",
+      "role": "aerospace_dynamic_load_candidate",
+      "manufacturer": "EOS",
+      "alloy_family": "AlSi7Mg0.6_beryllium_free",
+      "lpbf_availability_evidence": "LPBF EOS M 290 parameter set, 30 um, TRL 7, composition SAE AMS 4289",
+      "source_url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alf357",
+      "process": {
+        "machine": "EOS M 290",
+        "layer_um": 30,
+        "process_trl": 7,
+        "heat_treatment": "T6-like: solution anneal 30 min at 540 +/- 6 C, immediate room-temperature water quench, age 6 h at 165 +/- 6 C, air cool",
+        "quench_required": true,
+        "exact_public_recipe_available": true
+      },
+      "published_room_temperature_properties": {
+        "condition": "T6_like_machined_specimens",
+        "vertical_yield_mpa": 265.0,
+        "vertical_uts_mpa": 330.0,
+        "vertical_elongation_percent": 11.5,
+        "thermal_conductivity_w_mk": {"vertical": 150.0, "horizontal": 150.0, "measurement_temperature_c": null}
+      },
+      "published_numeric_hot_tensile_points": [],
+      "maximum_published_numeric_hot_tensile_temperature_c": null,
+      "numeric_thermal_conductivity_260_to_350_c_available": false,
+      "numeric_tensile_260_to_350_c_available": false,
+      "fatigue_260_to_350_c_available": false,
+      "creep_260_to_350_c_available": false,
+      "hot_band_gate": false,
+      "reason_blocked": "L'endurance aux charges thermiques est qualitative; aucune propriété mécanique ou thermique numérique 260-350 C n'est publiée."
+    },
+    {
+      "id": "EOS_Constellium_Aheadd_CP1_M290_60um_HT",
+      "role": "high_conductivity_and_thermal_stability_candidate",
+      "manufacturer": "EOS_and_Constellium",
+      "alloy_family": "Al-Fe-Zr_AA8A61.50_SAE_AMS_7074",
+      "lpbf_availability_evidence": "LPBF EOS M 290 parameter set, 60 um, TRL 3",
+      "source_url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-constellium-cp1",
+      "secondary_primary_product_sheet_url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf",
+      "process": {
+        "machine": "EOS M 290",
+        "layer_um": 60,
+        "process_trl": 3,
+        "build_platform_temperature_c": 125.0,
+        "heat_treatment": "4 h at 400 C; EOS states no careful heating or cooling control is needed",
+        "quench_required": false,
+        "exact_public_recipe_available": true
+      },
+      "published_room_temperature_properties": {
+        "condition": "heat_treated_machined_specimens",
+        "vertical_yield_mpa": 300.0,
+        "vertical_uts_mpa": 340.0,
+        "vertical_elongation_percent": 10.0,
+        "electrical_conductivity_percent_iacs": 46.0,
+        "thermal_conductivity_w_mk": null
+      },
+      "manufacturer_hot_claim": "Constellium states no softening over thousands of hours at service temperatures as high as 250-300 C, without publishing numerical hot strength in the cited sheet.",
+      "published_numeric_hot_tensile_points": [],
+      "maximum_published_numeric_hot_tensile_temperature_c": null,
+      "numeric_thermal_conductivity_260_to_350_c_available": false,
+      "numeric_tensile_260_to_350_c_available": false,
+      "fatigue_260_to_350_c_available": false,
+      "creep_260_to_350_c_available": false,
+      "hot_band_gate": false,
+      "reason_blocked": "La stabilité 250-300 C et la bonne conductivité sont des revendications qualitatives; aucune courbe numérique k(T), Rp0,2(T), fatigue ou fluage 260-350 C n'est publique."
+    },
+    {
+      "id": "Constellium_Aheadd_HT1_M290_60um_HT2",
+      "role": "high_temperature_screening_candidate",
+      "manufacturer": "Constellium",
+      "alloy_family": "proprietary_Al_high_temperature_no_volatile_Zn_or_Mg",
+      "lpbf_availability_evidence": "LPBF 60 um layers on EOS M290; manufacturer also reports compatibility with EOS, SLM, Renishaw and AddUp systems",
+      "source_url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/aheadd_ht1_fact_sheet_230620.ccac52e244fb.pdf",
+      "process": {
+        "machine": "EOS M 290 in published specimens",
+        "layer_um": 60,
+        "process_trl": null,
+        "heat_treatment": "Constellium HT2 for high-temperature applications; exact time-temperature cycle is not public in the cited fact sheet",
+        "quench_required": false,
+        "exact_public_recipe_available": false
+      },
+      "published_room_temperature_properties": {
+        "condition": "HT2_vertical_machined_specimens",
+        "vertical_yield_mpa": 285.0,
+        "vertical_uts_mpa": 445.0,
+        "vertical_elongation_percent": 6.0,
+        "thermal_conductivity_w_mk": null
+      },
+      "manufacturer_hot_claim": "Suitable for service temperatures up to around 260 C; no significant property variation claimed up to around 260 C.",
+      "published_numeric_hot_tensile_points": [
+        {"temperature_c": 200.0, "condition": "HT2_vertical_machined", "yield_mpa": 270.0, "uts_mpa": 293.0, "elongation_percent": 11.0},
+        {"temperature_c": 250.0, "condition": "HT2_vertical_machined", "yield_mpa": 216.0, "uts_mpa": 265.0, "elongation_percent": 5.0}
+      ],
+      "maximum_published_numeric_hot_tensile_temperature_c": 250.0,
+      "numeric_thermal_conductivity_260_to_350_c_available": false,
+      "numeric_tensile_260_to_350_c_available": false,
+      "fatigue_260_to_350_c_available": false,
+      "creep_260_to_350_c_available": false,
+      "hot_band_gate": false,
+      "reason_blocked": "C'est le seul candidat avec traction primaire proche de la cible, mais le dernier point est 250 C; aucune propriété numérique 260-350 C ni recette HT2 complète n'est publique."
+    },
+    {
+      "id": "APWORKS_Scalmalloy_LPBF",
+      "role": "high_room_temperature_strength_candidate",
+      "manufacturer": "APWORKS",
+      "alloy_family": "Al-Mg-Sc-Zr",
+      "lpbf_availability_evidence": "APWORKS states the alloy is designed for LPBF and offers build-to-print production",
+      "source_url": "https://www.apworks.de/scalmalloy",
+      "process": {
+        "machine": null,
+        "layer_um": null,
+        "process_trl": null,
+        "heat_treatment": "supplier-controlled; no public cycle on the cited manufacturer page",
+        "quench_required": null,
+        "exact_public_recipe_available": false
+      },
+      "published_room_temperature_properties": {
+        "condition": "manufacturer_typical_condition_not_fully_specified",
+        "yield_mpa": 480.0,
+        "uts_mpa": 520.0,
+        "elongation_percent": 13.0,
+        "density_g_cm3": 2.67,
+        "thermal_conductivity_w_mk": null
+      },
+      "published_numeric_hot_tensile_points": [],
+      "maximum_published_numeric_hot_tensile_temperature_c": null,
+      "numeric_thermal_conductivity_260_to_350_c_available": false,
+      "numeric_tensile_260_to_350_c_available": false,
+      "fatigue_260_to_350_c_available": false,
+      "creep_260_to_350_c_available": false,
+      "hot_band_gate": false,
+      "reason_blocked": "La page fabricant publie une résistance élevée à température ambiante, mais aucune carte numérique 260-350 C ni recette complète."
+    }
+  ],
+  "provisional_decision": {
+    "screening_candidate": "Constellium_Aheadd_HT1_M290_60um_HT2",
+    "final_material_selected": false,
+    "rationale": "HT1 HT2 fournit le seul point de traction primaire proche de la cible (216 MPa de limite à 250 C) et une plage de service fabricant autour de 260 C.",
+    "high_conductivity_alternative": "EOS_Constellium_Aheadd_CP1_M290_60um_HT",
+    "current_F42_1_temperature_field_compatible": false,
+    "blocking_reason": "F42.1 reste à 267.5362 C au meilleur point CalculiX exécuté et 279.9084318328072 C dans la meilleure option réseau; aucune carte fournisseur ne couvre numériquement traction, fatigue, fluage et conductivité jusqu'à 350 C.",
+    "allowed_use": "coupon_and_process_development_only",
+    "design_allowables_available": false
+  },
+  "process_route": {
+    "common_sequence": [
+      "freeze_powder_lot_machine_parameter_set_build_orientation_and_witness_layout",
+      "build_with_witnesses_and_in_process_log_retention",
+      "supplier_qualified_on_plate_stress_relief_if_required",
+      "powder_removal_mass_balance_and_borescope",
+      "wire_EDM_separation_and_support_removal",
+      "material_specific_heat_treatment_no_generic_substitution",
+      "CT_before_HIP_decision",
+      "paired_HIP_and_non_HIP_coupon_comparison",
+      "rough_machine_functional_datums_and_coupon_blanks",
+      "CT_and_surface_NDT_after_heat_treatment",
+      "finish_machine_deck_bores_seats_guides_threads_sealing_lands_and_oil_galleries",
+      "dimensional_CMM_cleanliness_pressure_flow_and_leak_checks"
+    ],
+    "hip": {
+      "production_requirement": "not_selected",
+      "temperature_pressure_time": null,
+      "decision_rule": "HIP may be adopted only if paired coupons show improved defect tolerance and fatigue without unacceptable loss of hot strength, conductivity, dimensional control or surface-connected defect masking.",
+      "qualified": false
+    },
+    "machining": {
+      "stock_allowances_mm": null,
+      "reason_null": "No machining trial, datum capability study or supplier compensation map exists.",
+      "mandatory_finished_features": [
+        "deck_and_cylinder_register",
+        "valve_seat_and_guide_bores",
+        "spark_plug_and_sensor_threads",
+        "stud_and_fastener_faces",
+        "rocker_or_cam_carrier_datums_and_bores",
+        "oil_gallery_bores_and_plug_lands",
+        "intake_and_exhaust_sealing_faces"
+      ]
+    }
+  },
+  "seat_guide_corrosion_control": {
+    "seat_material_selected": false,
+    "guide_material_selected": false,
+    "candidate_families": ["sintered_ferrous_or_nickel_alloy_seat_supplier_grade_TBD", "bronze_or_ferrous_guide_supplier_grade_TBD"],
+    "controls": [
+      "measure_hot_CTE_for_head_seat_and_guide_before_interference_fit_calculation",
+      "mask_combustion_deck_seat_guide_bores_threads_and_electrical_bonds_from_external_conversion_or_anodic_coating",
+      "do_not_use_unqualified_assembly_compound_or_coating_in_interference_joints",
+      "test_each_dissimilar_metal_couple_in_representative_condensate_salt_and_water_contaminated_oil_environments",
+      "inspect_fretting_pullout_contact_resistance_and_crevice_corrosion_after_thermal_cycles"
+    ],
+    "galvanic_test_standard": "ASTM_G71-81_2024",
+    "compatible": false
+  },
+  "coupon_plan": {
+    "governance": {
+      "process_standard": "ISO_ASTM_52904_2024",
+      "post_process_and_part_test_standard": "ISO_ASTM_52908_2023",
+      "orientation_standard": "ISO_ASTM_52909_2024",
+      "powder_standard": "ISO_ASTM_52907_2019",
+      "same_powder_lot_machine_parameter_set_plate_and_heat_treatment_as_part_required": true
+    },
+    "orientations": ["XY", "Z"],
+    "build_locations": ["lower", "middle", "upper"],
+    "temperatures_c": [20.0, 200.0, 260.0, 300.0, 350.0],
+    "engineering_minimum_replicates_per_orientation_temperature_condition": 5,
+    "replicate_count_is_a_planning_minimum_not_a_standard_requirement": true,
+    "tests": [
+      {
+        "id": "powder_and_metallography",
+        "standards": ["ISO_ASTM_52907_2019", "ISO_ASTM_52908_2023"],
+        "outputs": ["chemistry", "particle_size_shape_flow", "oxygen_hydrogen_moisture", "density_porosity", "microstructure_grain_precipitates", "surface_and_internal_defect_population"]
+      },
+      {
+        "id": "computed_tomography",
+        "standards": ["ASTM_E1570-19_2026", "ISO_ASTM_TR_52905_2023"],
+        "scope": ["coupon_defect_artifact_each_build", "full_head_before_and_after_thermal_route", "oil_galleries_seat_bridge_and_spark_plug_regions"],
+        "voxel_size_um": null,
+        "acceptance_limit": null,
+        "reason_null": "Detection probability study and critical defect calculation are not complete."
+      },
+      {
+        "id": "hot_tension",
+        "standards": ["ASTM_E21-20", "ISO_6892-2_2026"],
+        "temperatures_c": [20.0, 200.0, 260.0, 300.0, 350.0],
+        "outputs": ["E", "Rp0p2", "UTS", "elongation", "reduction_of_area"]
+      },
+      {
+        "id": "thermal_properties",
+        "standards": ["ASTM_E1461-13_2022", "ASTM_E228-22"],
+        "temperatures_c": [20.0, 100.0, 200.0, 260.0, 300.0, 350.0],
+        "outputs": ["diffusivity", "density", "specific_heat", "conductivity_from_alpha_rho_cp", "CTE"]
+      },
+      {
+        "id": "fatigue_and_creep",
+        "standards": ["ASTM_E466-21", "ASTM_E606_E606M-21", "ASTM_E2368-25", "ASTM_E139-24"],
+        "temperatures_c": [20.0, 260.0, 300.0, 350.0],
+        "outputs": ["HCF_SN", "LCF_strain_life", "TMF_in_phase_and_out_of_phase", "creep_and_stress_rupture", "fractography"]
+      },
+      {
+        "id": "seat_guide_galvanic_and_thermal_joint",
+        "standards": ["ASTM_G71-81_2024"],
+        "outputs": ["galvanic_current", "mass_loss", "pit_depth", "joint_interference_retention", "pullout_force", "leakage_after_cycles"]
+      }
+    ],
+    "acceptance_values": null,
+    "reason_acceptance_null": "Allowables require the final CHT/stress spectrum, target reliability, defect criticality and supplier process capability."
+  },
+  "primary_standards": [
+    {"id": "ISO_ASTM_52904_2024", "url": "https://www.iso.org/standard/82919.html"},
+    {"id": "ISO_ASTM_52908_2023", "url": "https://www.iso.org/standard/81779.html"},
+    {"id": "ISO_ASTM_52909_2024", "url": "https://www.iso.org/standard/87956.html"},
+    {"id": "ISO_ASTM_52907_2019", "url": "https://www.iso.org/standard/73565.html"},
+    {"id": "ISO_ASTM_TR_52905_2023", "url": "https://www.iso.org/standard/82539.html"},
+    {"id": "ISO_6892-2_2026", "url": "https://www.iso.org/standard/87885.html"},
+    {"id": "ASTM_E21-20", "url": "https://store.astm.org/e0021-20.html"},
+    {"id": "ASTM_E1461-13_2022", "url": "https://store.astm.org/e1461-13.html"},
+    {"id": "ASTM_E228-22", "url": "https://store.astm.org/e0228-22.html"},
+    {"id": "ASTM_E466-21", "url": "https://store.astm.org/standards/e466"},
+    {"id": "ASTM_E606_E606M-21", "url": "https://store.astm.org/standards/e606"},
+    {"id": "ASTM_E2368-25", "url": "https://store.astm.org/standards/e2368.htm"},
+    {"id": "ASTM_E139-24", "url": "https://store.astm.org/standards/e139"},
+    {"id": "ASTM_E1570-19_2026", "url": "https://store.astm.org/standards/e1570"},
+    {"id": "ASTM_G71-81_2024", "url": "https://store.astm.org/standards/g71"}
+  ],
+  "release_gates": {
+    "all_materials_have_numeric_260_to_350c_tensile": false,
+    "all_materials_have_numeric_260_to_350c_thermal_conductivity": false,
+    "selected_material_coupon_card_qualified": false,
+    "selected_LPBF_machine_powder_parameter_route_qualified": false,
+    "HIP_route_qualified": false,
+    "seat_guide_hot_interference_and_corrosion_qualified": false,
+    "full_head_CT_acceptance_demonstrated": false,
+    "F42_1_temperature_target_met": false,
+    "material_design_allowables_released": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

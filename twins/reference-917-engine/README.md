@@ -574,3 +574,142 @@ objet, groupe ou matériau nommé ; sa segmentation mécanique ne peut donc pas
 inactives, mais zéro coordonnée, solide, joint, animation ou échantillon
 PhysicsNeMo. Cette frontière empêche de transformer silencieusement un scan
 extérieur incomplet en moteur prétendument fonctionnel ou imprimable.
+
+## Réseau de stations F38
+
+Le premier bilan admission–moteur–échappement bi-variante est documenté dans
+[`docs/917_GAS_PATH_NETWORK_F38.md`](../../docs/917_GAS_PATH_NETWORK_F38.md).
+F38 relit hors réseau l'identité de masse F33, calcule le devoir thermique requis
+à partir d'états prescrits et ferme l'identité d'arbre turbo par bissection. Il
+publie séparément la perte mécanique turbo sans lui inventer de destination
+thermique. L'absence d'entrée directe de la cible dans F38 est vérifiée, mais
+F34 conserve une ascendance indirecte et un seed de dimensionnement inverse :
+l'indépendance complète reste fausse. La cible est exprimée en hp mécaniques,
+distincts des PS/ch métriques. F38 lie aussi la décision F34a de conserver un
+cœur strictement air/huile et refuse toute équivalence géométrique entre le
+4,5 L F35 et le candidat NA 5,374 L F33. Les maps turbo, la dynamique 1D, la
+corrélation banc, le démarrage, la fabrication et toute preuve de puissance
+restent explicitement bloqués.
+
+Une image CPU F38 minimale, standard-library et sans clé API accompagne ce
+réseau. Son smoke est reproductible sur Docker Desktop et sur un nœud Intel
+Linux natif ; la recette GHCR vérifie en plus provenance, SBOM et accès anonyme
+par digest avant de considérer l'image exploitable sur Vast.
+
+## Réseau instationnaire 0D/1D F39
+
+La suite est cadrée dans
+[`docs/917_UNSTEADY_NETWORK_F39.md`](../../docs/917_UNSTEADY_NETWORK_F39.md).
+F39 sépare les capacités 0D des cylindres, plénums et collecteurs des conduits
+1D compressibles. L'incrément F39 exécute avec Aeolus1D 0.3.3 un cas NA
+`motored` de 720° : 12 cylindres 0D, 27 conduits 1D, 3 jonctions, 48 soupapes
+physiques issues de la tête clean-sheet F29 4V et 24 ports équivalents.
+Injection et combustion sont désactivées ; aucun couple ni aucune puissance
+n'est calculé. La branche biturbo, ses arbres et ses wastegates restent une
+topologie future. Le rapport stationnaire F38 peut servir de comparaison ou
+d'amorce ; il n'est pas une solution instationnaire ni une mesure de banc.
+
+La première exécution reste un `screening_proxy`. Les longueurs, sections et
+volumes internes de F8 ne sont pas mesurés, les profils complets de came et
+tables `CdA` manquent, et aucune carte compresseur/turbine, inertie rotor ou loi
+wastegate n'est intégrée. Le F35 atmosphérique 4,5 L à 85 × 66 mm ne doit pas
+être confondu avec le candidat F33 NA à 90 × 70,4 mm ; le F33 turbo moderne à
+rapport 9,5 reste également distinct du 917/30 historique à rapport 6,5.
+
+L'interface prévue est :
+
+```bash
+make 917-unsteady-network-f39-test
+make 917-unsteady-network-f39
+make 917-wave-action-f39-image
+```
+
+Le contrat est `twins/reference-917-engine/unsteady-network-f39.json`, le
+runner `twins/reference-917-engine/source/run_unsteady_network_f39.py` et les
+sorties restent sous `work/917-unsteady-network-f39/`. Le solveur est destiné
+au CPU et peut tourner sur le nœud Intel sans GPU ni clé API NVIDIA. L'image
+est verrouillée à
+`ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3`.
+Son workflow `linux/amd64` a validé le smoke hors réseau, la provenance, le
+SBOM et l'accès anonyme au manifeste. Cela rend le runtime reproductible sur
+Intel ou Vast, sans valider le modèle moteur qu'il exécutera.
+
+Aeolus1D est un projet MIT récent encore alpha : le smoke du tube à choc de Sod
+prouve seulement son runtime CPU `amd64`, pas le modèle 917. Le JSON demeure
+l'autorité numérique. Un overlay USD aval peut exposer dans
+Omniverse les stations, séries temporelles et classes de provenance sans créer
+de géométrie, collision ou physique PhysX. Une animation USD ne prouve ni le
+fonctionnement du moteur ni les 1 600 hp ; cette puissance reste une exigence
+de conception jusqu'à corrélation indépendante sur banc instrumenté.
+
+## Contrôles LPBF et Omniverse F42
+
+F42 publie deux paquets de preuves complémentaires, sans confondre leurs
+portées :
+
+- le [DOE AdditiveFOAM exécuté sur deux hôtes indépendants](../../docs/917_F42_2_ADDITIVEFOAM_LIVE.md)
+  compare 33 cas par hôte et conserve les métriques de reproductibilité du
+  solveur ;
+- le [contrôle Omniverse/OVRTX](../../docs/917_F42_OMNIVERSE_VALIDATION.md)
+  valide l'ouverture, la topologie fermée et le rendu natif de l'USD exact,
+  avec [image et turntable publiés](evidence/f42-omniverse-validation/README.md).
+
+Le rendu OVRTX conserve exactement les coordonnées du STL soudé : 34 313
+points, 68 678 triangles, zéro arête de bord et zéro arête non-manifold. Cette
+preuve visuelle et de schéma n'est ni une CFD, ni une FEA, ni une simulation de
+distorsion LPBF. Le routeur CAD officiel, le profil SimReady, le B-Rep
+fabricable, les propriétés matière à chaud, les supports fournisseur et la
+qualification physique restent bloquants ; aucune impression ni mise en route
+n'est autorisée.
+
+## Autorité des variantes produit 2026 F43
+
+Le contrat `variant-authority-f43.json` supprime l'ambiguïté de cylindrée entre
+les branches historiques et les deux produits 2026 :
+
+- `917_2026_flat12_na_candidate` désigne désormais exclusivement le flat-12
+  atmosphérique 5,0 L, soit 12 cylindres, 86,8 × 70,4 mm et 4 999 cm³ publiés ;
+- `917_2026_flat12_twin_turbo_1600hp_target` désigne le flat-12 biturbo
+  5,374 L, soit 12 cylindres, 90 × 70,4 mm et 5 374 cm³ publiés.
+
+La branche F10 `type_912_4_5_na` à 85 × 66 mm reste un historique visuel et ne
+peut plus fournir silencieusement l'identité, les dimensions, la géométrie ou
+les entrées solveur du produit atmosphérique 2026. F43 enregistre également les
+snapshots F33, F37, F38 et F39 incohérents : leurs résultats ne sont pas des
+preuves produit F43 et doivent être régénérés après liaison au contrat par
+chemin et SHA-256.
+
+Cette autorité reste documentaire. Elle ne libère aucune géométrie, simulation,
+puissance, mise en route ou fabrication. Aucune puissance atmosphérique n'est
+inventée ; les 1 600 hp biturbo restent une exigence utilisateur non mesurée,
+non simulée et non prouvée.
+
+```bash
+make 917-variant-authority-f43-check
+```
+
+## Bielle détaillée de démonstration F44
+
+F44 ajoute une bielle unique de revue visuelle avec corps et chapeau séparés,
+deux perçages dans des oreilles à vrais lamages paramétrés et deux vis
+identifiables, deux demi-coussinets, une bague de pied et un canal d'huile
+soustractif continu. Les marges d'oreille, le dégagement radial et la profondeur
+des lamages sont des paramètres explicites du contrat. Un audit BRep interdit
+les trous absents, le percement du logement de coussinet et toute interférence
+volumique vis/bielle; il vérifie aussi les quatre lamages et la connexion
+géométrique du canal avec les deux alésages, les deux demi-coussinets et la
+bague, ainsi que sa sortie au-delà du rayon extérieur du demi-coussinet
+inférieur. Toutes ses cotes restent des hypothèses de conception non mesurées. La
+note complète est
+`docs/917_CONNECTING_ROD_CAD_F44.md`.
+
+Le montage côte à côte reste volontairement bloqué : deux bielles de 22 mm et
+le jeu visuel F35 occupent 45,32 mm sur un maneton déclaré à 26 mm. F44 ne
+modifie aucune de ces valeurs et n'exporte qu'une bielle. Il ne constitue ni
+une simulation physique, ni une validation de lubrification ou de fatigue, ni
+une autorisation de fabrication ou une preuve de 1 600 hp.
+
+```bash
+make 917-connecting-rod-cad-f44-check
+make 917-connecting-rod-cad-f44
+```

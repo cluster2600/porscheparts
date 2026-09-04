@@ -1,0 +1,206 @@
+{
+  "$comment": "F38 exécute un réseau stationnaire admission-moteur-échappement bi-variante à partir des résultats F33. Les identités numériques ne constituent ni une simulation 1D acoustique, ni un map matching turbo, ni une preuve de puissance.",
+  "schema_version": "1.0.0",
+  "phase": "F38",
+  "status": "steady_gas_path_network_contract_fail_closed",
+  "asset_id": "porsche-917-gas-path-network-f38",
+  "source_evidence": {
+    "cycle_thermal_contract_f33": {
+      "path": "twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json",
+      "expected_sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b"
+    },
+    "cycle_thermal_report_f33": {
+      "path": "twins/reference-917-engine/evidence/f33/cycle-thermal-report.json",
+      "expected_sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed"
+    },
+    "doe_contract_f34": {
+      "path": "twins/reference-917-engine/doe-surrogate-f34.json",
+      "expected_sha256": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e"
+    },
+    "air_oil_controls_contract_f34a": {
+      "path": "twins/reference-917-engine/air-oil-core-controls-f34a.json",
+      "expected_sha256": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa"
+    },
+    "air_oil_forward_seeds_f34b": {
+      "path": "twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json",
+      "expected_sha256": "74745e4ac18915c224e40fae1dbae739a9b6eea2aa9b374d4d7cbc234cd21149"
+    },
+    "integrated_bench_contract_f37": {
+      "path": "twins/reference-917-engine/integrated-bench-assembly-f37.json",
+      "expected_sha256": "44241ab4b756f0308ab811e91e8b5c2f5bf5aca20eec8871221c3e6348ea6f4f"
+    },
+    "verification_report_f34": {
+      "path": "twins/reference-917-engine/evidence/f34/report.json",
+      "expected_sha256": "f1477c08142ab99d21b7b8145918e705176fc977609cdea84c66eed9a394386a"
+    }
+  },
+  "authority_boundary": {
+    "source_values": "Les débits, pressions, températures et puissances sont consommés depuis le calcul 0D F33 non corrélé et ses hypothèses typées.",
+    "f38_addition": "F38 reconstruit les stations, ferme les identités arithmétiques et résout par bissection le partage turbine-wastegate stationnaire lorsque la capacité algébrique le permet.",
+    "requested_power_target_used_as_direct_f38_solver_input": false,
+    "requested_power_target_has_indirect_sampling_ancestry": true,
+    "inverse_sizing_seed_ancestry_present": true,
+    "full_target_independence_proven": false,
+    "target_independence_scope": "absence_of_direct_target_input_in_f38_only",
+    "not_authorized": [
+      "measured_or_correlated_engine_performance",
+      "unsteady_one_dimensional_gas_dynamics",
+      "compressor_or_turbine_map_containment",
+      "turbo_rotor_speed_or_transient_response",
+      "combustion_knock_or_emissions_validation",
+      "engine_start_or_manufacturing_release",
+      "1600_hp_proof"
+    ]
+  },
+  "variants": [
+    {
+      "variant_id": "917_2026_flat12_na_candidate",
+      "bench_variant_id": "type_912_4_5_na",
+      "bench_geometry_identity_match": false,
+      "bench_binding_scope": "gas_path_design_study_only_no_geometry_or_displacement_identity_transfer",
+      "configuration": "naturally_aspirated",
+      "turbocharger_count": 0,
+      "target_power_mechanical_hp": null,
+      "target_power_is_requirement": false
+    },
+    {
+      "variant_id": "917_2026_flat12_twin_turbo_1600hp_target",
+      "bench_variant_id": "917_30_turbo_5374",
+      "bench_geometry_identity_match": false,
+      "bench_binding_scope": "gas_path_design_study_only_no_geometry_or_historical_turbo_identity_transfer",
+      "configuration": "twin_turbo",
+      "turbocharger_count": 2,
+      "target_power_mechanical_hp": 1600.0,
+      "target_power_is_requirement": true
+    }
+  ],
+  "station_topology": {
+    "naturally_aspirated": {
+      "nodes": [
+        "bench_ambient",
+        "intake_plenum",
+        "cylinder_control_volume",
+        "exhaust_collector",
+        "bench_extraction"
+      ],
+      "edges": [
+        "ambient_to_plenum",
+        "plenum_to_cylinders",
+        "fuel_rail_to_cylinders",
+        "cylinders_to_collector",
+        "collector_to_extraction"
+      ]
+    },
+    "twin_turbo": {
+      "nodes": [
+        "bench_ambient",
+        "compressor_inlet_left",
+        "compressor_inlet_right",
+        "compressor_outlet_left",
+        "compressor_outlet_right",
+        "charge_cooler_outlet",
+        "charge_plenum",
+        "cylinder_control_volume",
+        "exhaust_collector_left",
+        "exhaust_collector_right",
+        "turbine_outlet_left",
+        "turbine_outlet_right",
+        "wastegate_bypass_left",
+        "wastegate_bypass_right",
+        "bench_extraction"
+      ],
+      "edges": [
+        "ambient_to_compressors",
+        "compressors_to_charge_cooler",
+        "charge_cooler_to_plenum",
+        "plenum_to_cylinders",
+        "fuel_rail_to_cylinders",
+        "cylinders_to_collectors",
+        "collectors_to_turbines",
+        "collectors_to_wastegates",
+        "turbines_to_extraction",
+        "wastegates_to_extraction"
+      ]
+    }
+  },
+  "numerical_policy": {
+    "solver": "deterministic_python_standard_library_steady_station_network",
+    "network_dimension": "steady_station_lumped_path",
+    "report_significant_digits": 12,
+    "unsteady_one_dimensional_gas_dynamics_executed": false,
+    "mass_relative_tolerance": 1e-10,
+    "energy_relative_tolerance": 1e-10,
+    "upstream_reproduction_relative_tolerance": 1e-9,
+    "shaft_balance_relative_tolerance": 1e-9,
+    "wastegate_bisection": {
+      "lower_turbine_flow_fraction": 0.0,
+      "upper_turbine_flow_fraction": 1.0,
+      "maximum_iterations": 96
+    },
+    "finite_positive_inputs_required": true,
+    "network_access_required": false,
+    "external_api_required": false
+  },
+  "unit_registry": {
+    "pressure_pa_abs": "Pa_abs",
+    "temperature_k": "K",
+    "mass_flow_kg_s": "kg/s",
+    "power_w": "W",
+    "speed_rpm": "rpm",
+    "torque_nm": "N*m",
+    "ratio": "dimensionless",
+    "mechanical_power_hp": "mechanical_hp",
+    "metric_power_ps": "metric_PS_or_ch"
+  },
+  "bench_overlay_policy": {
+    "f37_runtime_required": true,
+    "f37_stage_hash_verification_required": true,
+    "f37_stage_sublayered_not_modified": true,
+    "output_format": "ASCII_USDA_semantic_overlay",
+    "station_values_authored": true,
+    "geometry_authored": false,
+    "physics_schema_authored": false,
+    "rigid_body_authored": false,
+    "collider_authored": false,
+    "physical_joint_authored": false,
+    "mass_or_inertia_authored": false,
+    "material_binding_authored": false,
+    "cfd_volume_authored": false
+  },
+  "required_false_upstream_gates": {
+    "f33_target_power_proven": false,
+    "f33_turbo_match_validated": false,
+    "f33_physical_correlation_complete": false,
+    "f34_target_power_proven": false,
+    "f34_physical_engine_dyno_correlated": false,
+    "f34_full_3d_intake_exhaust_cfd_cross_validated": false,
+    "f34a_boost_control_validated": false,
+    "f34b_solver_cases_executed": 0,
+    "f34b_one_dimensional_model_validated": false
+  },
+  "release_gates": {
+    "source_integrity_complete": false,
+    "steady_mass_identity_closed": false,
+    "steady_charge_enthalpy_identity_closed": false,
+    "steady_turbo_shaft_identity_closed": false,
+    "full_engine_energy_balance_validated": false,
+    "unsteady_one_dimensional_gas_dynamics_validated": false,
+    "compressor_map_containment_validated": false,
+    "turbine_map_containment_validated": false,
+    "turbo_rotor_transient_validated": false,
+    "target_power_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "prohibited_claims": [
+    "arithmetic_identity_is_physical_correlation",
+    "inverse_wastegate_solution_is_a_calibrated_control_map",
+    "candidate_turbo_name_is_digitized_map_evidence",
+    "f33_target_near_1600hp_is_power_proof",
+    "f38_network_is_unsteady_wave_action_or_moving_valve_cfd",
+    "absence_of_direct_f38_target_input_is_full_target_independence",
+    "same_equation_recomputation_is_an_independent_model_cross_check",
+    "constructed_energy_complement_is_an_independent_energy_balance",
+    "f38_result_authorizes_engine_start_or_part_manufacture"
+  ]
+}

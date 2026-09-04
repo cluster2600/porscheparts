@@ -1,0 +1,254 @@
+name: Build OpenFOAM engine F35 image
+
+# Publication manuelle uniquement. Aucun scan, STEP Porsche, dataset, secret
+# ou mecanisme de combustion n'entre dans le contexte Docker allow-list.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_openfoam_source_compliance:
+        description: Confirme la revue GPL et l'acces au code source correspondant d'OpenFOAM et ICengines
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: openfoam-engine-f35-${{ github.sha }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-openfoam-engine-f35
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Verify main release source
+        run: |
+          test "${GITHUB_REF}" = "refs/heads/main"
+          test "${GITHUB_SHA}" = "$(git rev-parse HEAD)"
+          test "${{ inputs.confirm_openfoam_source_compliance }}" = "true"
+
+      - name: Verify fail-closed lock and static guards
+        run: |
+          set -o pipefail
+          {
+            python3 tests/test_openfoam_engine_f35_image.py -v
+            python3 tests/test_openfoam_engine_f35_lock.py -v
+          } 2>&1 | tee openfoam-engine-f35-static-tests.txt
+
+      - name: Record exact public image inputs
+        run: |
+          sha256sum \
+            .github/workflows/openfoam-engine-f35-image.yml \
+            Makefile \
+            benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json \
+            benchmarks/openfoam-poiseuille-f25/generate_cases.py \
+            containers/openfoam-engine-f35-smoke.sh \
+            containers/openfoam-engine-f35.Dockerfile \
+            containers/openfoam-engine-f35.Dockerfile.dockerignore \
+            containers/openfoam-engine-f35.lock.json \
+            docs/917_INTEL_CPU_NODE_F35.md \
+            docs/917_OPENFOAM_ENGINE_F35.md \
+            tests/test_openfoam_engine_f35_image.py \
+            tests/test_openfoam_engine_f35_lock.py \
+            > openfoam-engine-f35-source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Verify pinned Buildx and BuildKit
+        run: |
+          docker buildx version 2>&1 | tee openfoam-engine-f35-builder.txt
+          docker buildx inspect --bootstrap 2>&1 | tee -a openfoam-engine-f35-builder.txt
+          grep -F 'v0.36.1' openfoam-engine-f35-builder.txt >/dev/null
+          grep -F 'v0.32.2' openfoam-engine-f35-builder.txt >/dev/null
+          buildkit_container_ids="$(docker ps --filter name=buildx_buildkit --format '{{.ID}}')"
+          test "$(printf '%s\n' "${buildkit_container_ids}" | grep -c .)" -eq 1
+          test "$(docker container inspect --format '{{.Config.Image}}' "${buildkit_container_ids}")" = \
+            "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+
+      - name: Log in to GHCR for candidate publication
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/openfoam-engine-f35.Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:candidate-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          cache-from: type=gha,scope=openfoam-engine-f35
+          cache-to: type=gha,mode=max,scope=openfoam-engine-f35
+
+      - name: Gate digest, attestations, SBOM and hardened smoke
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          tag_ref="${IMAGE_REPOSITORY}:candidate-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          tag_digest=""
+          for attempt in 1 2 3 4 5; do
+            tag_digest="$(docker buildx imagetools inspect "${tag_ref}" 2>/dev/null | awk '$1 == "Digest:" { print $2; exit }')"
+            if test "${tag_digest}" = "${IMAGE_DIGEST}"; then break; fi
+            sleep 3
+          done
+          test "${tag_digest}" = "${IMAGE_DIGEST}"
+
+          docker buildx imagetools inspect --raw "${pinned_ref}" > openfoam-engine-f35-index.json
+          test "$(sha256sum openfoam-engine-f35-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            (.manifests | length) == 2 and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.platform.os == "unknown" and .platform.architecture == "unknown" and .annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' openfoam-engine-f35-index.json >/dev/null
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' openfoam-engine-f35-index.json)"
+          attestation_digest="$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .digest' openfoam-engine-f35-index.json)"
+          test "$(jq -er '.manifests[] | select(.annotations["vnd.docker.reference.type"] == "attestation-manifest") | .annotations["vnd.docker.reference.digest"]' openfoam-engine-f35-index.json)" = "${platform_digest}"
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${platform_digest}" > openfoam-engine-f35-platform-manifest.json
+          test "$(sha256sum openfoam-engine-f35-platform-manifest.json | cut -d' ' -f1)" = "${platform_digest#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.manifest.v1+json" and
+            all(.layers[]; .mediaType == "application/vnd.oci.image.layer.v1.tar+gzip") and
+            ([.layers[].size] | add) < 900000000
+          ' openfoam-engine-f35-platform-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${attestation_digest}" > openfoam-engine-f35-attestation-manifest.json
+          test "$(sha256sum openfoam-engine-f35-attestation-manifest.json | cut -d' ' -f1)" = "${attestation_digest#sha256:}"
+          jq -e --arg subject "${platform_digest}" '
+            .artifactType == "application/vnd.docker.attestation.manifest.v1+json" and
+            .subject.digest == $subject and
+            ([.layers[] | select(.annotations["in-toto.io/predicate-type"] == "https://slsa.dev/provenance/v1")] | length) == 1 and
+            ([.layers[] | select(.annotations["in-toto.io/predicate-type"] == "https://spdx.dev/Document")] | length) == 1
+          ' openfoam-engine-f35-attestation-manifest.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${pinned_ref}" > openfoam-engine-f35-provenance.json
+          jq -e \
+            --arg source "https://github.com/${GITHUB_REPOSITORY}" \
+            --arg revision "${GITHUB_SHA}" '
+            (.SLSA.buildDefinition.buildType | startswith("https://github.com/moby/buildkit/")) and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:source"] == $source and
+            .SLSA.buildDefinition.externalParameters.request.root.request.args["vcs:revision"] == $revision and
+            any(.SLSA.buildDefinition.resolvedDependencies[]; .digest.sha256 == "a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e") and
+            any(.SLSA.buildDefinition.resolvedDependencies[]; .digest.sha256 == "33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517")
+          ' openfoam-engine-f35-provenance.json >/dev/null
+
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${pinned_ref}" > openfoam-engine-f35-sbom.json
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $spdx |
+            $spdx.spdxVersion == "SPDX-2.3" and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "openfoam14" and .versionInfo == "20260724") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "openmpi-bin" and (.versionInfo | startswith("4.1.6")))
+          ' openfoam-engine-f35-sbom.json >/dev/null
+
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${pinned_ref}")" = 9135:9135
+          if ! docker run --rm --platform linux/amd64 --user 9135:9135 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,nodev,size=2g \
+            --tmpfs /dev/shm:rw,noexec,nosuid,nodev,size=512m \
+            --pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" > openfoam-engine-f35-smoke.json 2> openfoam-engine-f35-smoke.stderr; then
+            cat openfoam-engine-f35-smoke.json
+            cat openfoam-engine-f35-smoke.stderr >&2
+            exit 1
+          fi
+          test ! -s openfoam-engine-f35-smoke.stderr
+          jq -e '
+            .status == "passed_synthetic_serial_and_mpi_solver_smoke_only" and
+            .openfoam_major == 14 and .openfoam_package_version == "20260724" and
+            .mpi_ranks == 2 and .aate_utilities == 4 and
+            .engine_simulation_proved == false and .performance_1600_hp_proved == false
+          ' openfoam-engine-f35-smoke.json >/dev/null
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --cap-drop ALL --security-opt no-new-privileges "${pinned_ref}" \
+            cat /opt/aate/share/ICengines-source.txt > openfoam-engine-f35-aate-source.txt
+          test "$(cat openfoam-engine-f35-aate-source.txt)" = \
+            "https://github.com/OpenFOAM/ICengines/tree/c0f75f953d67cd325d28d1300672d14288f22934"
+          printf '%s\n' "${pinned_ref}" > openfoam-engine-f35-image-ref.txt
+
+          docker logout ghcr.io
+          docker image rm -f "${pinned_ref}" >/dev/null
+          anonymous_config="$(mktemp -d)"
+          trap 'rm -rf -- "${anonymous_config}"' EXIT
+          printf '{"auths":{}}\n' > "${anonymous_config}/config.json"
+          DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64 "${pinned_ref}" \
+            2>&1 | tee openfoam-engine-f35-anonymous-pull.txt
+          if ! docker run --rm --platform linux/amd64 --user 9135:9135 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,nodev,size=2g \
+            --tmpfs /dev/shm:rw,noexec,nosuid,nodev,size=512m \
+            --pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+            "${pinned_ref}" > openfoam-engine-f35-anonymous-smoke.json 2> openfoam-engine-f35-anonymous-smoke.stderr; then
+            cat openfoam-engine-f35-anonymous-smoke.json
+            cat openfoam-engine-f35-anonymous-smoke.stderr >&2
+            exit 1
+          fi
+          test ! -s openfoam-engine-f35-anonymous-smoke.stderr
+          cmp openfoam-engine-f35-smoke.json openfoam-engine-f35-anonymous-smoke.json
+
+      - name: Log in to GHCR for verified tag promotion
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Promote verified digest to unique tag
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          pinned_ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          release_ref="${IMAGE_REPOSITORY}:verified-${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          docker buildx imagetools create --tag "${release_ref}" "${pinned_ref}"
+          test "$(docker buildx imagetools inspect "${release_ref}" | awk '$1 == "Digest:" { print $2; exit }')" = "${IMAGE_DIGEST}"
+          printf '%s\n' "${release_ref}" > openfoam-engine-f35-release-tag.txt
+          docker logout ghcr.io
+
+      - name: Upload immutable image evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: openfoam-engine-f35-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            openfoam-engine-f35-image-ref.txt
+            openfoam-engine-f35-release-tag.txt
+            openfoam-engine-f35-source-inputs.sha256
+            openfoam-engine-f35-static-tests.txt
+            openfoam-engine-f35-builder.txt
+            openfoam-engine-f35-index.json
+            openfoam-engine-f35-platform-manifest.json
+            openfoam-engine-f35-attestation-manifest.json
+            openfoam-engine-f35-provenance.json
+            openfoam-engine-f35-sbom.json
+            openfoam-engine-f35-aate-source.txt
+            openfoam-engine-f35-smoke.json
+            openfoam-engine-f35-smoke.stderr
+            openfoam-engine-f35-anonymous-pull.txt
+            openfoam-engine-f35-anonymous-smoke.json
+            openfoam-engine-f35-anonymous-smoke.stderr
+          if-no-files-found: error
+          retention-days: 30

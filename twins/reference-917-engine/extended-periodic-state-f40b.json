@@ -1,0 +1,121 @@
+{
+  "$comment": "F40b prolonge uniquement le cas nominal motored F40 jusqu'a un maximum de 24 cycles de 720 degres afin de rechercher un regime periodique sur sept metriques agregees. Il ne valide ni geometrie, ni combustion, ni puissance, ni demarrage, ni fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F40b",
+  "status": "extended_periodic_state_contract_fail_closed",
+  "asset_id": "porsche-917-extended-periodic-state-f40b",
+  "source_bindings": {
+    "f40_contract": {
+      "path": "twins/reference-917-engine/unsteady-convergence-campaign-f40.json",
+      "expected_sha256": "6fff578fe167b8563b48271b9234f36c05b9bb1b2003a5ddee594acd6de9178c"
+    },
+    "f40_runner": {
+      "path": "twins/reference-917-engine/source/run_unsteady_convergence_f40.py",
+      "expected_sha256": "fa2e529389c6a493789fb4528e973e7c987100f941f83ab744ea45822ff925d3"
+    }
+  },
+  "repository_snapshot": {
+    "commit": "c3d68ba9eddbaf19e316ff79ef39037d3d7e5bd6",
+    "classification": "documentary_snapshot_not_runtime_head_requirement",
+    "enforce_current_head": false
+  },
+  "runtime_image": {
+    "reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "digest": "sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "runtime_digest_verified_by_runner": false
+  },
+  "authority_boundary": {
+    "purpose": "rechercher un regime periodique agrege du cas nominal F40 avant toute extension physique F41",
+    "motored_only": true,
+    "combustion_enabled": false,
+    "fuel_injection_enabled": false,
+    "turbochargers_enabled": false,
+    "power_or_torque_evaluated": false,
+    "physical_correlation_complete": false,
+    "manufacturing_authorized": false
+  },
+  "campaign": {
+    "nominal_case": {
+      "case_id": "mesh_2p0_cfl_0p2_init_1p00",
+      "mesh_scale": 2.0,
+      "cfl": 0.2,
+      "initial_pressure_factor": 1.0
+    },
+    "cycle_degrees": 720.0,
+    "minimum_cycles": 4,
+    "maximum_cycles": 24,
+    "one_runtime_network": true,
+    "state_preserved_between_cycles": true,
+    "cumulative_t_start_required": true,
+    "record_every_cycle_boundary": true,
+    "wall_clock_fields_prohibited": true,
+    "early_stop": {
+      "permitted_only_after_minimum_cycles": true,
+      "stop_on_first_satisfied_window": true,
+      "all_metrics_must_pass": true
+    }
+  },
+  "convergence_policy": {
+    "policy_version": "f40b-v1",
+    "relative_floor": 1e-12,
+    "required_consecutive_deltas": 3,
+    "cyclic_max_relative_delta": 0.001,
+    "cycle_metrics": [
+      "total_pipe_mass_kg",
+      "total_component_mass_kg",
+      "total_gas_mass_kg",
+      "pipe_pressure_volume_mean_pa_abs",
+      "pipe_temperature_mass_mean_k",
+      "component_pressure_volume_mean_pa_abs",
+      "component_temperature_mass_mean_k"
+    ],
+    "comparison": "successive_cycle_boundaries",
+    "failure_on_cycle_budget_exhaustion": true,
+    "failure_does_not_suppress_report": true
+  },
+  "phase_resolved_sampling": {
+    "status": "not_implemented_fail_closed",
+    "reason": "Aeolus1D 0.3.3 dispatch_advance ne fournit pas ici de hook stable et verifie de traces phase-resolues; F40b ne remplace pas des normes L2/Linf par un echantillonnage implicite.",
+    "sampling_evaluated": false,
+    "l2_norm_evaluated": false,
+    "linf_norm_evaluated": false
+  },
+  "numerical_gates": {
+    "source_hashes_verified": false,
+    "nominal_case_validated": false,
+    "runtime_network_built_once": false,
+    "minimum_cycles_completed": false,
+    "maximum_cycle_budget_not_exceeded": false,
+    "all_cycle_windows_completed": false,
+    "all_runtime_fields_finite": false,
+    "all_runtime_states_positive": false,
+    "exact_runtime_coverage_all_boundaries": false,
+    "all_cycle_boundaries_recorded": false,
+    "three_consecutive_deltas_evaluated": false,
+    "early_stop_rule_respected": false,
+    "aggregate_periodic_state_demonstrated": false,
+    "phase_resolved_convergence_evaluated": false
+  },
+  "physical_release_gates": {
+    "measured_network_geometry_available": false,
+    "measured_valve_cda_available": false,
+    "absolute_crank_phase_validated": false,
+    "physical_cycle_correlation_complete": false,
+    "mass_balance_validated": false,
+    "energy_balance_validated": false,
+    "physical_engine_dyno_correlated": false,
+    "power_or_torque_prediction_authorized": false,
+    "target_power_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "prohibited_claims": [
+    "aggregate_periodicity_is_phase_resolved_convergence",
+    "numerical_convergence_is_physical_validation",
+    "finite_positive_state_is_mass_or_energy_conservation",
+    "motored_cycles_predict_fired_power_or_torque",
+    "f40b_models_combustion_or_turbochargers",
+    "f40b_proves_1600_hp",
+    "f40b_authorizes_engine_start_or_manufacturing"
+  ]
+}

@@ -8,15 +8,17 @@
 
 ## Résultat
 
-F34 archive une CAO paramétrique défeaturée, un STEP de prototype de procédé,
-une image de cette enveloppe et une campagne virtuelle traçable. Il ne livre
-pas une géométrie de culasse crédible ni une culasse prête à
+F34 archive le script d'une CAO paramétrique défeaturée et les métadonnées
+textuelles d'une campagne virtuelle traçable. Le STEP de prototype et le rendu
+restent des sorties locales ignorées sous `work/`; ils ne sont pas publiés. F34
+ne livre pas une géométrie de culasse crédible ni une culasse prête à
 imprimer ou à démarrer. Les deux scans disponibles suffisent à amorcer une
 géométrie et à identifier des interfaces, mais pas à prouver l'échelle absolue,
 l'identité dimensionnelle Porsche 917, les volumes internes ni le comportement
 du matériau imprimé à chaud.
 
-![Culasse F34 4V refroidie par air](../twins/reference-917-engine/evidence/f34/product-aircooled-4v-f34.png)
+Le rendu local `work/917-aircooled-4v-f34-publication/product-aircooled-4v-f34.png`
+n'est volontairement ni suivi ni affiché dans cette documentation.
 
 Le statut machine est `virtual_campaign_executed_release_blocked`. Toutes les
 portes de fabrication métallique, de démarrage moteur et de validation physique
@@ -54,9 +56,9 @@ l'enveloppe étanche destinée au calcul d'air externe.
 | Volume du solide | 2,660509 l |
 | Encombrement | 200,0 × 208,4 × 114,1 mm |
 
-Le
-[STEP publié](../twins/reference-917-engine/evidence/f34/917-head-aircooled-4v-f34-process-prototype.step)
-reste un **prototype de procédé**. Il manque notamment les interférences de
+Le STEP local
+`work/917-aircooled-4v-f34-publication/917-head-aircooled-4v-f34-process-prototype.step`
+reste un **prototype de procédé non publié**. Il manque notamment les interférences de
 sièges et guides, les filetages, états de surface, tolérances, réseau complet
 d'huile, porte-arbres complet, supports et compensation propres à la machine
 LPBF.
@@ -200,11 +202,14 @@ make check
 
 Le dossier
 [`evidence/f34`](../twins/reference-917-engine/evidence/f34/README.md)
-contient dix artefacts air-cooled suivis et hachés dans `publication.json`.
+contient huit preuves textuelles suivies et hachées dans `publication.json`.
 Les autres preuves F34 présentes dans ce répertoire conservent leur propre
-manifeste. Les STL lourds,
-les maillages, les champs solveurs et les scans restent hors Git; le script
-paramétrique et le STEP compact sont publiés.
+manifeste. Les STEP, rendus, STL lourds, maillages, champs solveurs et scans
+restent hors Git; seul le script paramétrique et les métadonnées JSON/Markdown
+sont suivis. Malgré son nom historique, la cible
+`917-aircooled-4v-f34-publish` écrit uniquement sous
+`work/917-aircooled-4v-f34-publication/`, qui est ignoré par Git; le publisher
+refuse toute autre racine de sortie.
 
 ## Conditions minimales avant impression ou démarrage
 

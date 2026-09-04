@@ -8,6 +8,10 @@ import fcntl
 import json
 import math
 import os
+import secrets
+import selectors
+import shlex
+import signal
 import socket
 import ssl
 import stat
@@ -46,10 +50,74 @@ MESH_IMAGE = (
     "sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f"
 )
 MESH_LABEL = "3dprinting993-mesh-cfd"
-SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+SIMREADY_REVOKED_IMAGE_E04 = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+SIMREADY_REVOKED_IMAGE_F8A = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:f8a17661a23f3c83d89139cdc0a0b9f29d8553523de166a86e9e453e420d9a00"
+SIMREADY_REVOKED_IMAGES = frozenset(
+    {SIMREADY_REVOKED_IMAGE_E04, SIMREADY_REVOKED_IMAGE_F8A}
+)
+# Replaced after the corrected image passes publication and anonymous-pull
+# checks. Keeping the revoked value here makes every paid launch fail closed.
+SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
+SIMREADY_ATTEMPT_TOKEN_BYTES = 10
+SIMREADY_CLEANUP_PREFIX = "OPENBAO_VASTAI_SIMREADY_CLEANUP "
+WAVE_MAX_DPH = 1.25
+WAVE_MIN_CPU_THREADS = 64
+WAVE_MIN_CPU_RAM_MB = 256000
+WAVE_DISK_GB = 300
+WAVE_MIN_RELIABILITY = 0.985
+WAVE_IMAGE = "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3"
+WAVE_LABEL = "3dprinting993-wave-action-f39"
+COMPONENT_FACTORY_F41_MAX_DPH = 1.25
+COMPONENT_FACTORY_F41_MIN_CPU_THREADS = 64
+COMPONENT_FACTORY_F41_MIN_CPU_RAM_MB = 256000
+COMPONENT_FACTORY_F41_DISK_GB = 300
+COMPONENT_FACTORY_F41_MIN_RELIABILITY = 0.985
+COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB = 0.05
+COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB = 0.05
+# Four published images are revoked: DD0 lacked runtime host keys, 66C allowed
+# Vast auto-tmux to intercept BatchMode commands, 356A exposed an exact Git
+# file-mode mismatch before any paid launch, and 7155 raced concurrent sshd
+# initialization against onstart. Keep every failed digest denylisted.
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:dd0a9745badb03a30a795509b442e53ac27675d1ee8f08ef8dfd3498be4b4c16"
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:66cef346acfd8b3d84e87fa5c53d112ade07d4e183a3e1c00165d6a1c922f70a"
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:356a92db961bd4d14aaba3ad44379e869b7f36cf741c0411dca40ed7e299b91f"
+COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155 = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
+COMPONENT_FACTORY_F41_REVOKED_IMAGES = frozenset(
+    {
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_DD0,
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_66C,
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_356A,
+        COMPONENT_FACTORY_F41_REVOKED_IMAGE_7155,
+    }
+)
+# Corrected candidate C59 passed the public linux/amd64 workflow, attestations,
+# cold-start and deterministic lock-contention smokes, then an anonymous exact
+# digest pull. Its first Vast execution remains supervised and fail closed.
+COMPONENT_FACTORY_F41_IMAGE = "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b"
+COMPONENT_FACTORY_F41_LABEL = "3dprinting993-component-factory-f41-cad"
+COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES = 10
+COMPONENT_FACTORY_F41_CLEANUP_PREFIX = "OPENBAO_VASTAI_F41_CLEANUP "
+COMPONENT_FACTORY_F41_SSH_PROBE_TIMEOUT_SECONDS = 20
+COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM = 64 * 1024
+COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS = 0.5
+SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
+COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR = LAUNCH_LOCK_FILE.parent / "known-hosts"
+SIMREADY_KNOWN_HOSTS_DIR = LAUNCH_LOCK_FILE.parent / "known-hosts"
+WAVE_CONTRACT_ATTEMPTS = 180
+WAVE_SSH_READY_ATTEMPTS = 30
+COMPONENT_FACTORY_F41_CONTRACT_ATTEMPTS = 180
+COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS = 30
+SIMREADY_SSH_READY_ATTEMPTS = 900
+SIMREADY_SSH_READY_TIMEOUT_SECONDS = 30 * 60
+SIMREADY_SINGLETON_STABILITY_SNAPSHOTS = 5
+DESTROY_ABSENCE_STABILITY_SNAPSHOTS = 5
+DESTROY_VERIFY_ATTEMPTS = 60
+COMPONENT_FACTORY_F41_SINGLETON_STABILITY_SNAPSHOTS = 3
+STATE_TRANSITION_ATTEMPTS = 60
+POLL_INTERVAL_SECONDS = 2
 
 
 class SafeError(Exception):
@@ -62,6 +130,26 @@ class SafeHttpError(SafeError):
     def __init__(self, source: str, status_code: int, detail: str = "") -> None:
         super().__init__(f"{source} rejected the request with HTTP {status_code}{detail}")
         self.status_code = status_code
+
+
+class ComponentFactoryF41ProbeTimeout(Exception):
+    """The bounded F41 SSH probe exceeded its absolute deadline."""
+
+
+class ComponentFactoryF41ProbeOutputLimit(Exception):
+    """The bounded F41 SSH probe exceeded one fixed stream limit."""
+
+
+class ComponentFactoryF41ProbeSpawnError(Exception):
+    """The local OpenSSH process could not be started safely."""
+
+
+class ComponentFactoryF41ProbeLocalIoError(Exception):
+    """The local bounded drain failed before the SSH probe completed."""
+
+
+class ComponentFactoryF41ProbeCleanupError(Exception):
+    """The isolated SSH process group could not be proven terminated."""
 
 
 def validate_private_file(path: Path) -> None:
@@ -277,7 +365,7 @@ def list_instances(api_key: str, *, label: str | None = None) -> list[dict]:
             "/api/v1/instances/?" + urllib.parse.urlencode(parameters),
         )
         page = result.get("instances")
-        if result.get("success") is False or not isinstance(page, list):
+        if result.get("success") is not True or not isinstance(page, list):
             raise SafeError("Vast.ai instance list returned an invalid result")
         for instance in page:
             if not isinstance(instance, dict):
@@ -297,6 +385,26 @@ def list_instances(api_key: str, *, label: str | None = None) -> list[dict]:
         seen_tokens.add(candidate)
         after_token = candidate
     raise SafeError("Vast.ai instance pagination exceeded the safety limit")
+
+
+def strict_instance_inventory(api_key: str) -> list[dict]:
+    """Return a complete inventory only when every instance identity is strict."""
+    instances = list_instances(api_key)
+    seen_ids: set[int] = set()
+    for instance in instances:
+        instance_id = instance.get("id")
+        if (
+            not isinstance(instance_id, int)
+            or isinstance(instance_id, bool)
+            or instance_id <= 0
+            or instance_id in seen_ids
+        ):
+            raise SafeError("Vast.ai strict inventory contains an invalid or duplicate id")
+        seen_ids.add(instance_id)
+        label = instance.get("label")
+        if label is not None and not isinstance(label, str):
+            raise SafeError("Vast.ai strict inventory contains a non-string label")
+    return instances
 
 
 @contextmanager
@@ -332,28 +440,191 @@ def simready_launch_lock():
 
 
 def require_no_simready_instance(api_key: str) -> None:
-    existing = list_instances(api_key, label=SIMREADY_LABEL)
+    existing = [
+        instance
+        for instance in strict_instance_inventory(api_key)
+        if is_simready_family_label(instance.get("label"))
+    ]
     if existing:
         raise SafeError("a SimReady instance already exists; destroy it before launching another")
 
 
-def verify_single_simready_instance(api_key: str, instance_id: int) -> None:
+def require_no_wave_instance(api_key: str) -> None:
+    existing = list_instances(api_key, label=WAVE_LABEL)
+    if existing:
+        raise SafeError(
+            "a wave-action F39 instance already exists; destroy it before launching another"
+        )
+
+
+def component_factory_f41_attempt_label() -> str:
+    """Return a collision-resistant label that correlates one paid create call."""
+    return (
+        f"{COMPONENT_FACTORY_F41_LABEL}-"
+        f"{secrets.token_hex(COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES)}"
+    )
+
+
+def simready_attempt_label() -> str:
+    """Return a collision-resistant label for exactly one paid SimReady PUT."""
+    return f"{SIMREADY_LABEL}-{secrets.token_hex(SIMREADY_ATTEMPT_TOKEN_BYTES)}"
+
+
+def is_simready_attempt_label(label: object) -> bool:
+    if not isinstance(label, str):
+        return False
+    prefix = f"{SIMREADY_LABEL}-"
+    if not label.startswith(prefix):
+        return False
+    token = label[len(prefix) :]
+    return len(token) == SIMREADY_ATTEMPT_TOKEN_BYTES * 2 and all(
+        character in "0123456789abcdef" for character in token
+    )
+
+
+def is_simready_family_label(label: object) -> bool:
+    return label == SIMREADY_LABEL or is_simready_attempt_label(label)
+
+
+def is_component_factory_f41_attempt_label(label: object) -> bool:
+    """Accept only labels emitted by component_factory_f41_attempt_label()."""
+    if not isinstance(label, str):
+        return False
+    prefix = f"{COMPONENT_FACTORY_F41_LABEL}-"
+    if not label.startswith(prefix):
+        return False
+    token = label[len(prefix) :]
+    expected_length = COMPONENT_FACTORY_F41_ATTEMPT_TOKEN_BYTES * 2
+    return len(token) == expected_length and all(
+        character in "0123456789abcdef" for character in token
+    )
+
+
+def is_component_factory_f41_family_label(label: object) -> bool:
+    """Recognize legacy and per-attempt F41 labels for duplicate prevention."""
+    return label == COMPONENT_FACTORY_F41_LABEL or is_component_factory_f41_attempt_label(
+        label
+    )
+
+
+def require_no_component_factory_f41_instance(api_key: str) -> None:
+    existing = [
+        instance
+        for instance in list_instances(api_key)
+        if is_component_factory_f41_family_label(instance.get("label"))
+    ]
+    if existing:
+        raise SafeError(
+            "a component-factory F41 instance already exists; "
+            "destroy it before launching another"
+        )
+
+
+def verify_single_simready_instance(
+    api_key: str, instance_id: int, attempt_label: str
+) -> None:
+    if not is_simready_attempt_label(attempt_label):
+        raise SafeError("SimReady attempt label is invalid")
+    appeared = False
+    stable_snapshots = 0
     for _ in range(30):
+        existing = [
+            instance
+            for instance in strict_instance_inventory(api_key)
+            if is_simready_family_label(instance.get("label"))
+        ]
         ids = sorted(
             instance.get("id")
-            for instance in list_instances(api_key, label=SIMREADY_LABEL)
-            if isinstance(instance.get("id"), int)
+            for instance in existing
+            if instance.get("label") == attempt_label
         )
-        if ids == [instance_id]:
-            return
-        if ids:
+        if len(existing) == 1 and ids == [instance_id]:
+            appeared = True
+            stable_snapshots += 1
+            if stable_snapshots >= SIMREADY_SINGLETON_STABILITY_SNAPSHOTS:
+                return
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        if existing:
             raise SafeError("SimReady post-launch uniqueness verification failed")
+        if appeared:
+            raise SafeError("SimReady family changed during singleton stability window")
         time.sleep(1)
     raise SafeError("the new SimReady instance did not appear in the paginated instance list")
 
 
-def verify_simready_contract(api_key: str, instance_id: int) -> None:
+def verify_single_wave_instance(api_key: str, instance_id: int) -> None:
+    """Require the exact newly created id to be the sole F39-labelled instance."""
+    for _ in range(30):
+        existing = list_instances(api_key, label=WAVE_LABEL)
+        ids = sorted(
+            instance.get("id")
+            for instance in existing
+            if isinstance(instance.get("id"), int)
+            and not isinstance(instance.get("id"), bool)
+        )
+        if len(existing) == 1 and ids == [instance_id]:
+            return
+        if existing:
+            raise SafeError("wave-action F39 post-launch uniqueness verification failed")
+        time.sleep(1)
+    raise SafeError(
+        "the new wave-action F39 instance did not appear in the paginated instance list"
+    )
+
+
+def verify_single_component_factory_f41_instance(
+    api_key: str, instance_id: int, attempt_label: str
+) -> None:
+    """Require the created id to be the sole instance in the whole F41 family."""
+    if not is_component_factory_f41_attempt_label(attempt_label):
+        raise SafeError("component-factory F41 attempt label is invalid")
+    appeared = False
+    stable_snapshots = 0
+    for _ in range(30):
+        existing = [
+            instance
+            for instance in list_instances(api_key)
+            if is_component_factory_f41_family_label(instance.get("label"))
+        ]
+        ids = sorted(
+            instance.get("id")
+            for instance in existing
+            if isinstance(instance.get("id"), int)
+            and not isinstance(instance.get("id"), bool)
+            and instance.get("label") == attempt_label
+        )
+        if len(existing) == 1 and ids == [instance_id]:
+            appeared = True
+            stable_snapshots += 1
+            if (
+                stable_snapshots
+                >= COMPONENT_FACTORY_F41_SINGLETON_STABILITY_SNAPSHOTS
+            ):
+                return
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        if existing:
+            raise SafeError(
+                "component-factory F41 post-launch uniqueness verification failed"
+            )
+        if appeared:
+            raise SafeError(
+                "component-factory F41 family changed during singleton stability window"
+            )
+        time.sleep(1)
+    raise SafeError(
+        "the new component-factory F41 instance did not appear in the "
+        "paginated instance list"
+    )
+
+
+def verify_simready_contract(
+    api_key: str, instance_id: int, attempt_label: str
+) -> None:
     """Fail closed on immutable/cost fields as soon as Vast exposes the contract."""
+    if not is_simready_attempt_label(attempt_label):
+        raise SafeError("SimReady attempt label is invalid")
     required_fields = (
         "id", "label", "status", "gpu", "gpu_ram_mb", "num_gpus",
         "gpu_fraction", "machine_verification", "cpu_cores_effective",
@@ -377,7 +648,7 @@ def verify_simready_contract(api_key: str, instance_id: int) -> None:
         errors = []
         if instance["id"] != instance_id:
             errors.append("instance id")
-        if instance["label"] != SIMREADY_LABEL:
+        if instance["label"] != attempt_label:
             errors.append("label")
         if instance["image"] != SIMREADY_IMAGE:
             errors.append("image digest")
@@ -411,11 +682,216 @@ def verify_simready_contract(api_key: str, instance_id: int) -> None:
     raise SafeError("Vast.ai did not expose complete post-launch contract metadata in time")
 
 
-def reconcile_uncertain_simready_launch(api_key: str) -> None:
-    """Rollback the sole project instance when a create response is uncertain."""
+def verify_wave_contract(api_key: str, instance_id: int) -> dict:
+    """Fail closed until the complete immutable F39 contract is running."""
+    required_fields = (
+        "id",
+        "label",
+        "status",
+        "machine_verification",
+        "cpu_cores_effective",
+        "cpu_ram_mb",
+        "disk_space_gb",
+        "dph_total",
+        "image",
+    )
+    for _ in range(WAVE_CONTRACT_ATTEMPTS):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeHttpError as exc:
+            if exc.status_code == 404:
+                time.sleep(POLL_INTERVAL_SECONDS)
+                continue
+            raise
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid post-launch F39 instance metadata")
+        instance = safe_instance(raw_instance)
+        if any(instance.get(field) is None for field in required_fields):
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        errors = []
+        if instance["id"] != instance_id:
+            errors.append("instance id")
+        if instance["label"] != WAVE_LABEL:
+            errors.append("label")
+        if instance["image"] != WAVE_IMAGE:
+            errors.append("image digest")
+        if instance["status"] not in {"created", "loading", "running"}:
+            errors.append("status")
+        numeric_contract = (
+            (
+                instance["cpu_cores_effective"],
+                WAVE_MIN_CPU_THREADS,
+                "effective CPU threads",
+            ),
+            (instance["cpu_ram_mb"], WAVE_MIN_CPU_RAM_MB, "CPU RAM"),
+            (instance["disk_space_gb"], WAVE_DISK_GB, "disk"),
+        )
+        for value, minimum, label in numeric_contract:
+            number = finite_number(value)
+            if number is None or number < minimum:
+                errors.append(label)
+        price = finite_number(instance["dph_total"])
+        if price is None or not 0 <= price <= WAVE_MAX_DPH:
+            errors.append("dph_total")
+        if instance["machine_verification"] != "verified":
+            errors.append("machine verification")
+        if errors:
+            raise SafeError(
+                "post-launch contract is outside the fixed wave-action F39 limits: "
+                + ", ".join(errors)
+            )
+        if instance["status"] != "running":
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        return instance
+    raise SafeError(
+        "Vast.ai did not expose a complete running post-launch F39 contract in time"
+    )
+
+
+def verify_component_factory_f41_contract(
+    api_key: str, instance_id: int, attempt_label: str
+) -> dict:
+    """Fail closed until the complete immutable F41 contract is running."""
+    if not is_component_factory_f41_attempt_label(attempt_label):
+        raise SafeError("component-factory F41 attempt label is invalid")
+    required_fields = (
+        "id",
+        "label",
+        "status",
+        "machine_verification",
+        "cpu_cores_effective",
+        "cpu_ram_mb",
+        "disk_space_gb",
+        "dph_total",
+        "image",
+    )
+    for _ in range(COMPONENT_FACTORY_F41_CONTRACT_ATTEMPTS):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeHttpError as exc:
+            if exc.status_code == 404:
+                time.sleep(POLL_INTERVAL_SECONDS)
+                continue
+            raise
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid post-launch F41 instance metadata")
+        instance = safe_instance(raw_instance)
+        if any(instance.get(field) is None for field in required_fields):
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        errors = []
+        if instance["id"] != instance_id:
+            errors.append("instance id")
+        if instance["label"] != attempt_label:
+            errors.append("label")
+        if instance["image"] != COMPONENT_FACTORY_F41_IMAGE:
+            errors.append("image digest")
+        if instance["status"] not in {"created", "loading", "running"}:
+            errors.append("status")
+        numeric_contract = (
+            (
+                instance["cpu_cores_effective"],
+                COMPONENT_FACTORY_F41_MIN_CPU_THREADS,
+                "effective CPU threads",
+            ),
+            (
+                instance["cpu_ram_mb"],
+                COMPONENT_FACTORY_F41_MIN_CPU_RAM_MB,
+                "CPU RAM",
+            ),
+            (instance["disk_space_gb"], COMPONENT_FACTORY_F41_DISK_GB, "disk"),
+        )
+        for value, minimum, label in numeric_contract:
+            number = finite_number(value)
+            if number is None or number < minimum:
+                errors.append(label)
+        price = finite_number(instance["dph_total"])
+        if price is None or not 0 <= price <= COMPONENT_FACTORY_F41_MAX_DPH:
+            errors.append("dph_total")
+        bandwidth_contract = (
+            (
+                instance["inet_up_cost_usd_per_gb"],
+                COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB,
+                "inet_up_cost",
+            ),
+            (
+                instance["inet_down_cost_usd_per_gb"],
+                COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB,
+                "inet_down_cost",
+            ),
+        )
+        for value, maximum, label in bandwidth_contract:
+            # Vast does not expose these fields on every instance response. The
+            # offer is always checked immediately before create; when the
+            # instance response repeats a tariff, it must still fit the cap.
+            if value is None:
+                continue
+            cost = finite_number(value)
+            if cost is None or not 0 <= cost <= maximum:
+                errors.append(label)
+        if instance["machine_verification"] != "verified":
+            errors.append("machine verification")
+        if errors:
+            raise SafeError(
+                "post-launch contract is outside the fixed component-factory "
+                "F41 limits: " + ", ".join(errors)
+            )
+        if instance["status"] != "running":
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        return instance
+    raise SafeError(
+        "Vast.ai did not expose a complete running post-launch F41 contract in time"
+    )
+
+
+def reconcile_uncertain_simready_launch(api_key: str, attempt_label: str) -> int:
+    """Rollback only the instance correlated to one unique SimReady PUT."""
+    if not is_simready_attempt_label(attempt_label):
+        raise SafeError("SimReady attempt label is invalid")
     for _ in range(30):
         try:
-            existing = list_instances(api_key, label=SIMREADY_LABEL)
+            existing = [
+                instance
+                for instance in strict_instance_inventory(api_key)
+                if instance.get("label") == attempt_label
+            ]
+        except SafeError:
+            time.sleep(1)
+            continue
+        if existing:
+            ids = sorted(
+                instance.get("id")
+                for instance in existing
+                if instance.get("label") == attempt_label
+            )
+            if len(existing) == 1 and len(ids) == 1:
+                destroy_instance_verified(
+                    api_key,
+                    ids[0],
+                    expected_label=attempt_label,
+                )
+                return ids[0]
+            raise SafeError(
+                "launch outcome is uncertain and the unique SimReady attempt label "
+                "is not mapped to one valid instance id; inspect instances before retrying"
+            )
+        time.sleep(1)
+    raise SafeError(
+        "launch outcome remains uncertain after the reconciliation window; "
+        "do not retry automatically and inspect the unique SimReady attempt label first"
+    )
+
+
+def reconcile_uncertain_wave_launch(api_key: str) -> None:
+    """Rollback the sole F39-labelled instance after an uncertain create call."""
+    for _ in range(30):
+        try:
+            existing = list_instances(api_key, label=WAVE_LABEL)
         except SafeError:
             time.sleep(1)
             continue
@@ -424,42 +900,111 @@ def reconcile_uncertain_simready_launch(api_key: str) -> None:
                 instance.get("id")
                 for instance in existing
                 if isinstance(instance.get("id"), int)
+                and not isinstance(instance.get("id"), bool)
             )
-            if len(ids) == 1:
+            if len(existing) == 1 and len(ids) == 1:
                 destroy_instance_verified(api_key, ids[0])
                 raise SafeError(
-                    "launch outcome was uncertain; the sole SimReady instance "
+                    "launch outcome was uncertain; the sole wave-action F39 instance "
                     f"{ids[0]} was automatically destroyed and verified absent"
                 )
             raise SafeError(
-                "launch outcome is uncertain and multiple SimReady instances exist; "
-                "inspect instances before retrying"
+                "launch outcome is uncertain and the F39 label is not uniquely mapped "
+                "to one valid instance id; inspect instances before retrying"
             )
         time.sleep(1)
-
-
-def destroy_instance_verified(api_key: str, instance_id: int) -> None:
-    result = vast_request(
-        api_key,
-        f"/api/v0/instances/{instance_id}/",
-        method="DELETE",
+    raise SafeError(
+        "launch outcome remains uncertain after the reconciliation window; "
+        "do not retry automatically and inspect F39-labelled instances first"
     )
-    if result.get("success") is not True:
-        raise SafeError("Vast.ai did not confirm the destroy request")
+
+
+def reconcile_uncertain_component_factory_f41_launch(
+    api_key: str, attempt_label: str
+) -> int:
+    """Rollback only the instance correlated to this unique create attempt."""
+    if not is_component_factory_f41_attempt_label(attempt_label):
+        raise SafeError("component-factory F41 attempt label is invalid")
     for _ in range(30):
         try:
-            ids = {
-                instance.get("id")
-                for instance in list_instances(api_key)
-                if isinstance(instance.get("id"), int)
-            }
+            existing = list_instances(api_key, label=attempt_label)
         except SafeError:
             time.sleep(1)
             continue
-        if instance_id not in ids:
-            return
+        if existing:
+            ids = sorted(
+                instance.get("id")
+                for instance in existing
+                if isinstance(instance.get("id"), int)
+                and not isinstance(instance.get("id"), bool)
+                and instance.get("label") == attempt_label
+            )
+            if len(existing) == 1 and len(ids) == 1:
+                destroy_instance_verified(api_key, ids[0])
+                return ids[0]
+            raise SafeError(
+                "launch outcome is uncertain and the unique F41 attempt label is "
+                "not mapped to one valid instance id; inspect instances before retrying"
+            )
         time.sleep(1)
-    raise SafeError("Vast.ai paginated instance list did not verify destruction")
+    raise SafeError(
+        "launch outcome remains uncertain after the reconciliation window; "
+        "do not retry automatically and inspect the unique F41 attempt label first"
+    )
+
+
+def destroy_instance_verified(
+    api_key: str,
+    instance_id: int,
+    *,
+    expected_label: str | None = None,
+    expected_image: str | None = None,
+) -> None:
+    if (
+        not isinstance(instance_id, int)
+        or isinstance(instance_id, bool)
+        or instance_id <= 0
+    ):
+        raise SafeError("refusing to destroy an invalid Vast.ai instance id")
+    inventory = strict_instance_inventory(api_key)
+    matches = [item for item in inventory if item.get("id") == instance_id]
+    if len(matches) != 1:
+        raise SafeError("Vast.ai instance identity was not observed exactly once before destroy")
+    identity = safe_instance(matches[0])
+    if expected_label is not None and identity.get("label") != expected_label:
+        raise SafeError("refusing to destroy a Vast.ai instance with an unexpected label")
+    if expected_image is not None and identity.get("image") != expected_image:
+        raise SafeError("refusing to destroy a Vast.ai instance with an unexpected image")
+
+    def request_delete() -> None:
+        result = vast_request(
+            api_key,
+            f"/api/v0/instances/{instance_id}/",
+            method="DELETE",
+        )
+        if set(result) != {"success"} or result.get("success") is not True:
+            raise SafeError("Vast.ai did not return the exact destroy acknowledgement")
+
+    request_delete()
+    consecutive_absent = 0
+    for _ in range(DESTROY_VERIFY_ATTEMPTS):
+        try:
+            ids = {instance.get("id") for instance in strict_instance_inventory(api_key)}
+        except SafeError:
+            consecutive_absent = 0
+            time.sleep(1)
+            continue
+        if instance_id not in ids:
+            consecutive_absent += 1
+            if consecutive_absent >= DESTROY_ABSENCE_STABILITY_SNAPSHOTS:
+                return
+        else:
+            consecutive_absent = 0
+            request_delete()
+        time.sleep(1)
+    raise SafeError(
+        "Vast.ai paginated instance list did not verify stable destruction"
+    )
 
 
 def offer_query(offer_id: int | None = None) -> dict:
@@ -528,6 +1073,90 @@ def finite_number(value: object) -> float | None:
     return candidate if math.isfinite(candidate) else None
 
 
+def add_exception_note(error: BaseException, note: str) -> None:
+    """Attach cleanup context on Python versions that support exception notes."""
+    add_note = getattr(error, "add_note", None)
+    if callable(add_note):
+        add_note(note)
+
+
+def report_component_factory_f41_billing_risk(attempt_label: str) -> None:
+    """Make an unverified paid-instance cleanup visible even on cancellation."""
+    print(
+        "OpenBao Vast.ai CRITICAL: F41 rollback was not verified; an instance "
+        "may still be running and billed. Do not retry before inspecting exact "
+        f"attempt label {attempt_label}.",
+        file=sys.stderr,
+        flush=True,
+    )
+
+
+def report_simready_billing_risk(attempt_label: str) -> None:
+    print(
+        "OpenBao Vast.ai CRITICAL: SimReady rollback was not verified; an "
+        "instance may still be running and billed for attempt label "
+        f"{attempt_label}.",
+        file=sys.stderr,
+        flush=True,
+    )
+
+
+def emit_simready_cleanup_attestation(
+    instance_id: int, attempt_label: str
+) -> None:
+    if (
+        not isinstance(instance_id, int)
+        or isinstance(instance_id, bool)
+        or instance_id <= 0
+        or not is_simready_attempt_label(attempt_label)
+    ):
+        raise SafeError("refusing to emit invalid SimReady cleanup attestation")
+    receipt = {
+        "schema_version": "1.0.0",
+        "status": "destroyed_verified_stably_absent",
+        "instance_id": instance_id,
+        "label": attempt_label,
+        "requested_image": SIMREADY_IMAGE,
+        "delete_acknowledged": True,
+        "paginated_absence_verified": True,
+        "stable_absence_snapshots": DESTROY_ABSENCE_STABILITY_SNAPSHOTS,
+    }
+    print(
+        SIMREADY_CLEANUP_PREFIX
+        + json.dumps(receipt, sort_keys=True, separators=(",", ":"), allow_nan=False),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
+def emit_component_factory_f41_cleanup_attestation(
+    instance_id: int, attempt_label: str
+) -> None:
+    """Emit a bounded non-secret receipt only after verified provider cleanup."""
+    if (
+        not isinstance(instance_id, int)
+        or isinstance(instance_id, bool)
+        or instance_id <= 0
+        or not is_component_factory_f41_attempt_label(attempt_label)
+    ):
+        raise SafeError("refusing to emit invalid F41 cleanup attestation")
+    receipt = {
+        "schema_version": "1.0.0",
+        "status": "destroyed_verified_absent",
+        "instance_id": instance_id,
+        "label": attempt_label,
+        "image": COMPONENT_FACTORY_F41_IMAGE,
+        "delete_acknowledged": True,
+        "paginated_absence_verified": True,
+    }
+    print(
+        COMPONENT_FACTORY_F41_CLEANUP_PREFIX
+        + json.dumps(receipt, sort_keys=True, separators=(",", ":"), allow_nan=False),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
 def heavy_offer_eligible(offer: dict) -> bool:
     price = finite_number(offer.get("dph_total", offer.get("dph")))
     reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
@@ -584,6 +1213,196 @@ def get_heavy_offers(api_key: str) -> list[dict]:
             -float(item.get("gpu_ram", 0)),
             -float(item.get("cpu_cores_effective", 0)),
             float(item.get("dph_total", item.get("dph", 999))),
+        ),
+    )
+
+
+def wave_offer_query(offer_id: int | None = None) -> dict:
+    query = {
+        "allocated_storage": WAVE_DISK_GB,
+        "cpu_cores_effective": {"gte": WAVE_MIN_CPU_THREADS},
+        "cpu_ram": {"gte": WAVE_MIN_CPU_RAM_MB},
+        "disk_space": {"gte": WAVE_DISK_GB},
+        "reliability": {"gte": WAVE_MIN_RELIABILITY},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 100,
+    }
+    if offer_id is not None:
+        # Vast does not consistently honor an id predicate on bundle search.
+        # Fetch a bounded wider result, then match the requested id locally.
+        query["limit"] = 1000
+    return query
+
+
+def wave_offer_eligible(offer: dict) -> bool:
+    offer_id = offer.get("id")
+    price = finite_number(offer.get("dph_total"))
+    cpu_threads = finite_number(offer.get("cpu_cores_effective"))
+    cpu_ram_mb = finite_number(offer.get("cpu_ram"))
+    disk_gb = finite_number(offer.get("disk_space"))
+    reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
+    verified_value = offer.get("verified")
+    rentable_value = offer.get("rentable")
+    rented_value = offer.get("rented")
+    verified = (
+        verified_value is True
+        or verified_value == 1
+        or offer.get("verification") == "verified"
+    )
+    rentable = rentable_value is True or rentable_value == 1
+    not_rented = rented_value is False or rented_value == 0
+    return (
+        isinstance(offer_id, int)
+        and not isinstance(offer_id, bool)
+        and offer_id > 0
+        and price is not None
+        and 0 <= price <= WAVE_MAX_DPH
+        and cpu_threads is not None
+        and cpu_threads >= WAVE_MIN_CPU_THREADS
+        and cpu_ram_mb is not None
+        and cpu_ram_mb >= WAVE_MIN_CPU_RAM_MB
+        and disk_gb is not None
+        and disk_gb >= WAVE_DISK_GB
+        and reliability is not None
+        and reliability >= WAVE_MIN_RELIABILITY
+        and verified
+        and rentable
+        and not_rented
+    )
+
+
+def get_wave_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=wave_offer_query(offer_id),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai wave-action offer search returned an invalid result")
+    eligible = [
+        offer
+        for offer in offers
+        if isinstance(offer, dict) and wave_offer_eligible(offer)
+    ]
+    return sorted(
+        eligible,
+        key=lambda item: (
+            -float(item["cpu_cores_effective"]),
+            -float(item["cpu_ram"]),
+            float(item["dph_total"]),
+            int(item["id"]),
+        ),
+    )
+
+
+def component_factory_f41_offer_query(offer_id: int | None = None) -> dict:
+    query = {
+        "allocated_storage": COMPONENT_FACTORY_F41_DISK_GB,
+        "cpu_cores_effective": {"gte": COMPONENT_FACTORY_F41_MIN_CPU_THREADS},
+        "cpu_ram": {"gte": COMPONENT_FACTORY_F41_MIN_CPU_RAM_MB},
+        "disk_space": {"gte": COMPONENT_FACTORY_F41_DISK_GB},
+        "inet_up_cost": {
+            "lte": COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB
+        },
+        "inet_down_cost": {
+            "lte": COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB
+        },
+        "reliability": {"gte": COMPONENT_FACTORY_F41_MIN_RELIABILITY},
+        "verified": {"eq": True},
+        "rentable": {"eq": True},
+        "rented": {"eq": False},
+        "type": "on-demand",
+        "limit": 100,
+    }
+    if offer_id is not None:
+        # Vast does not consistently honor an id predicate on bundle search.
+        # Fetch a bounded wider result, then match the requested id locally.
+        query["limit"] = 1000
+    return query
+
+
+def component_factory_f41_offer_eligible(offer: dict) -> bool:
+    offer_id = offer.get("id")
+    price = finite_number(offer.get("dph_total"))
+    cpu_threads = finite_number(offer.get("cpu_cores_effective"))
+    cpu_ram_mb = finite_number(offer.get("cpu_ram"))
+    disk_gb = finite_number(offer.get("disk_space"))
+    inet_up_cost = finite_number(offer.get("inet_up_cost"))
+    inet_down_cost = finite_number(offer.get("inet_down_cost"))
+    reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
+    verified_value = offer.get("verified")
+    rentable_value = offer.get("rentable")
+    rented_value = offer.get("rented")
+    verified = (
+        verified_value is True
+        or verified_value == 1
+        or offer.get("verification") == "verified"
+    )
+    rentable = rentable_value is True or rentable_value == 1
+    not_rented = rented_value is False or rented_value == 0
+    inet_up_cost_allowed = (
+        inet_up_cost is not None
+        and 0 <= inet_up_cost <= COMPONENT_FACTORY_F41_MAX_INET_UP_COST_USD_PER_GB
+    )
+    inet_down_cost_allowed = (
+        inet_down_cost is not None
+        and 0
+        <= inet_down_cost
+        <= COMPONENT_FACTORY_F41_MAX_INET_DOWN_COST_USD_PER_GB
+    )
+    return (
+        isinstance(offer_id, int)
+        and not isinstance(offer_id, bool)
+        and offer_id > 0
+        and price is not None
+        and 0 <= price <= COMPONENT_FACTORY_F41_MAX_DPH
+        and cpu_threads is not None
+        and cpu_threads >= COMPONENT_FACTORY_F41_MIN_CPU_THREADS
+        and cpu_ram_mb is not None
+        and cpu_ram_mb >= COMPONENT_FACTORY_F41_MIN_CPU_RAM_MB
+        and disk_gb is not None
+        and disk_gb >= COMPONENT_FACTORY_F41_DISK_GB
+        and inet_up_cost_allowed
+        and inet_down_cost_allowed
+        and reliability is not None
+        and reliability >= COMPONENT_FACTORY_F41_MIN_RELIABILITY
+        and verified
+        and rentable
+        and not_rented
+    )
+
+
+def get_component_factory_f41_offers(
+    api_key: str, offer_id: int | None = None
+) -> list[dict]:
+    result = vast_request(
+        api_key,
+        "/api/v0/bundles",
+        method="POST",
+        payload=component_factory_f41_offer_query(offer_id),
+    )
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError(
+            "Vast.ai component-factory F41 offer search returned an invalid result"
+        )
+    eligible = [
+        offer
+        for offer in offers
+        if isinstance(offer, dict) and component_factory_f41_offer_eligible(offer)
+    ]
+    return sorted(
+        eligible,
+        key=lambda item: (
+            -float(item["cpu_cores_effective"]),
+            -float(item["cpu_ram"]),
+            float(item["dph_total"]),
+            int(item["id"]),
         ),
     )
 
@@ -653,6 +1472,8 @@ def safe_offer(offer: dict) -> dict:
         "geolocation": offer.get("geolocation"),
         "inet_down_mbps": offer.get("inet_down"),
         "inet_up_mbps": offer.get("inet_up"),
+        "inet_down_cost_usd_per_gb": offer.get("inet_down_cost"),
+        "inet_up_cost_usd_per_gb": offer.get("inet_up_cost"),
     }
 
 
@@ -686,6 +1507,8 @@ def safe_instance(instance: dict) -> dict:
         "cpu_ram_mb": instance.get("cpu_ram"),
         "disk_space_gb": instance.get("disk_space"),
         "dph_total": instance.get("dph_total"),
+        "inet_up_cost_usd_per_gb": instance.get("inet_up_cost"),
+        "inet_down_cost_usd_per_gb": instance.get("inet_down_cost"),
         "ssh_host": instance.get("ssh_host"),
         "ssh_port": instance.get("ssh_port", ssh_port),
         "api_host": instance.get("public_ipaddr"),
@@ -710,11 +1533,17 @@ def positive_id(raw: str, label: str) -> int:
 
 
 def read_local_ssh_public_key() -> str:
+    validate_approved_ssh_private_key()
     try:
-        info = SSH_PUBLIC_KEY_FILE.stat()
+        info = SSH_PUBLIC_KEY_FILE.lstat()
     except FileNotFoundError as exc:
         raise SafeError(f"missing approved SSH public key: {SSH_PUBLIC_KEY_FILE}") from exc
-    if not stat.S_ISREG(info.st_mode) or info.st_size <= 0 or info.st_size > 16384:
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or info.st_size <= 0
+        or info.st_size > 16384
+    ):
         raise SafeError(f"approved SSH public key is invalid: {SSH_PUBLIC_KEY_FILE}")
     value = SSH_PUBLIC_KEY_FILE.read_text(encoding="utf-8").strip()
     if not value.startswith(("ssh-ed25519 ", "ssh-rsa ", "ecdsa-sha2-")):
@@ -722,29 +1551,199 @@ def read_local_ssh_public_key() -> str:
     return value
 
 
-def require_local_ssh_key_loaded() -> str:
-    local_key = read_local_ssh_public_key()
-    local_identity = " ".join(local_key.split()[:2])
+def validate_approved_ssh_private_key() -> None:
+    """Validate metadata only; never read or print the private key."""
     try:
-        result = subprocess.run(
-            ["ssh-add", "-L"],
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=5,
-        )
-    except (FileNotFoundError, subprocess.SubprocessError) as exc:
-        raise SafeError("ssh-agent is unavailable for the approved Vast.ai key") from exc
-    loaded_identities = {
-        " ".join(line.split()[:2])
-        for line in result.stdout.splitlines()
-        if len(line.split()) >= 2
-    }
-    if result.returncode != 0 or local_identity not in loaded_identities:
+        info = SSH_PRIVATE_KEY_FILE.lstat()
+    except FileNotFoundError as exc:
         raise SafeError(
-            f"approved SSH key is not loaded; run: ssh-add {SSH_PUBLIC_KEY_FILE.with_suffix('')}"
+            f"missing approved SSH private key: {SSH_PRIVATE_KEY_FILE}"
+        ) from exc
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) & 0o077
+        or info.st_size <= 0
+        or info.st_size > 1024 * 1024
+    ):
+        raise SafeError(
+            "approved SSH private key has unsafe ownership, type, permissions, or size: "
+            f"{SSH_PRIVATE_KEY_FILE}"
         )
-    return local_key
+
+
+def prepare_component_factory_f41_known_hosts(instance_id: int) -> Path:
+    """Create one persistent, private TOFU file for this exact Vast instance."""
+    if not isinstance(instance_id, int) or isinstance(instance_id, bool) or instance_id <= 0:
+        raise SafeError("F41 instance id is invalid for scoped known_hosts")
+    parent = COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR.parent
+    parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    for directory in (parent, COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR):
+        directory.mkdir(mode=0o700, exist_ok=True)
+        info = directory.lstat()
+        if (
+            info.st_uid != os.getuid()
+            or not stat.S_ISDIR(info.st_mode)
+            or stat.S_IMODE(info.st_mode) != 0o700
+        ):
+            raise SafeError(f"F41 known_hosts directory is unsafe: {directory}")
+    path = COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR / f"f41-{instance_id}"
+    flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags, 0o600)
+    except FileExistsError as exc:
+        raise SafeError(f"F41 scoped known_hosts already exists: {path}") from exc
+    try:
+        info = os.fstat(descriptor)
+        if (
+            info.st_uid != os.getuid()
+            or not stat.S_ISREG(info.st_mode)
+            or stat.S_IMODE(info.st_mode) != 0o600
+        ):
+            raise SafeError("F41 scoped known_hosts metadata is unsafe")
+    finally:
+        os.close(descriptor)
+    return path
+
+
+def component_factory_f41_host_key_alias(instance_id: int) -> str:
+    if not isinstance(instance_id, int) or isinstance(instance_id, bool) or instance_id <= 0:
+        raise SafeError("F41 instance id is invalid for SSH host-key alias")
+    return f"f41-{instance_id}"
+
+
+def validate_component_factory_f41_known_hosts(path: Path, instance_id: int) -> None:
+    try:
+        info = path.lstat()
+    except FileNotFoundError as exc:
+        raise SafeError("F41 scoped known_hosts was not written by OpenSSH") from exc
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o600
+        or info.st_size <= 0
+        or info.st_size > 64 * 1024
+    ):
+        raise SafeError("F41 scoped known_hosts has unsafe metadata or size")
+    alias = component_factory_f41_host_key_alias(instance_id)
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeError) as exc:
+        raise SafeError("F41 scoped known_hosts cannot be read safely") from exc
+    matches = []
+    for line in lines:
+        fields = line.split()
+        if len(fields) < 3 or fields[0].startswith(("#", "@")):
+            continue
+        if alias in fields[0].split(","):
+            matches.append(fields)
+    if len(matches) != 1:
+        raise SafeError("F41 scoped known_hosts does not contain exactly one expected alias")
+
+
+def remove_component_factory_f41_known_hosts_after_destroy(instance_id: int) -> None:
+    """Remove only this instance trust file after remote destruction is verified."""
+    path = COMPONENT_FACTORY_F41_KNOWN_HOSTS_DIR / component_factory_f41_host_key_alias(
+        instance_id
+    )
+    try:
+        info = path.lstat()
+    except FileNotFoundError:
+        return
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o600
+        or info.st_size > 64 * 1024
+    ):
+        raise SafeError("refusing to remove unsafe F41 scoped known_hosts")
+    path.unlink()
+
+
+def simready_host_key_alias(instance_id: int) -> str:
+    if not isinstance(instance_id, int) or isinstance(instance_id, bool) or instance_id <= 0:
+        raise SafeError("SimReady instance id is invalid for SSH host-key alias")
+    return f"simready-{instance_id}"
+
+
+def prepare_simready_known_hosts(instance_id: int) -> Path:
+    """Create one private TOFU file scoped to the exact SimReady instance."""
+    alias = simready_host_key_alias(instance_id)
+    parent = SIMREADY_KNOWN_HOSTS_DIR.parent
+    parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+    for directory in (parent, SIMREADY_KNOWN_HOSTS_DIR):
+        directory.mkdir(mode=0o700, exist_ok=True)
+        info = directory.lstat()
+        if (
+            info.st_uid != os.getuid()
+            or not stat.S_ISDIR(info.st_mode)
+            or stat.S_IMODE(info.st_mode) != 0o700
+        ):
+            raise SafeError(f"SimReady known_hosts directory is unsafe: {directory}")
+    path = SIMREADY_KNOWN_HOSTS_DIR / alias
+    flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags, 0o600)
+    except FileExistsError as exc:
+        raise SafeError(f"SimReady scoped known_hosts already exists: {path}") from exc
+    try:
+        info = os.fstat(descriptor)
+        if (
+            info.st_uid != os.getuid()
+            or not stat.S_ISREG(info.st_mode)
+            or stat.S_IMODE(info.st_mode) != 0o600
+        ):
+            raise SafeError("SimReady scoped known_hosts metadata is unsafe")
+    finally:
+        os.close(descriptor)
+    return path
+
+
+def validate_simready_known_hosts(path: Path, instance_id: int) -> None:
+    try:
+        info = path.lstat()
+    except FileNotFoundError as exc:
+        raise SafeError("SimReady scoped known_hosts was not written by OpenSSH") from exc
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o600
+        or info.st_size <= 0
+        or info.st_size > 64 * 1024
+    ):
+        raise SafeError("SimReady scoped known_hosts has unsafe metadata or size")
+    alias = simready_host_key_alias(instance_id)
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeError) as exc:
+        raise SafeError("SimReady scoped known_hosts cannot be read safely") from exc
+    matches = []
+    for line in lines:
+        fields = line.split()
+        if len(fields) < 3 or fields[0].startswith(("#", "@")):
+            continue
+        if alias in fields[0].split(","):
+            matches.append(fields)
+    if len(matches) != 1:
+        raise SafeError(
+            "SimReady scoped known_hosts does not contain exactly one expected alias"
+        )
+
+
+def remove_simready_known_hosts_after_destroy(instance_id: int) -> None:
+    path = SIMREADY_KNOWN_HOSTS_DIR / simready_host_key_alias(instance_id)
+    try:
+        info = path.lstat()
+    except FileNotFoundError:
+        return
+    if (
+        info.st_uid != os.getuid()
+        or not stat.S_ISREG(info.st_mode)
+        or stat.S_IMODE(info.st_mode) != 0o600
+        or info.st_size > 64 * 1024
+    ):
+        raise SafeError("refusing to remove unsafe SimReady scoped known_hosts")
+    path.unlink()
 
 
 def ensure_local_ssh_registered(api_key: str) -> None:
@@ -753,14 +1752,1103 @@ def ensure_local_ssh_registered(api_key: str) -> None:
             api_key,
             "/api/v0/ssh/",
             method="POST",
-            payload={"ssh_key": require_local_ssh_key_loaded()},
+            payload={"ssh_key": read_local_ssh_public_key()},
         )
     except SafeError as exc:
         if "SSH key already exists on this account" in str(exc):
             return
         raise
-    if result.get("success") is False:
+    if result.get("success") is not True:
         raise SafeError("Vast.ai did not accept the approved SSH key")
+
+
+def wave_remote_smoke_command() -> str:
+    script = """\
+import json
+from pathlib import Path
+
+ready = Path('/workspace/READY').read_text(encoding='utf-8').strip()
+assert ready == 'F39 smoke passed'
+stderr_path = Path('/workspace/logs/wave-action-f39-smoke.stderr')
+assert stderr_path.is_file() and stderr_path.stat().st_size == 0
+report = json.loads(
+    Path('/workspace/logs/wave-action-f39-smoke.json').read_text(encoding='utf-8')
+)
+assert report.get('status') == 'runtime_smoke_passed_engine_validation_blocked'
+assert report.get('runtime', {}).get('system') == 'Linux'
+assert report.get('runtime', {}).get('machine') == 'x86_64'
+assert report.get('claim_scope', {}).get('generic_sod_benchmark_executed') is True
+assert report.get('claim_scope', {}).get('flat_12_model_executed') is False
+print('F39_REMOTE_READY')
+"""
+    return f"python -c {shlex.quote(script)}"
+
+
+def verify_wave_ssh_ready(api_key: str, instance_id: int) -> None:
+    """Prove BatchMode SSH and the exact F39 smoke marker before success."""
+    validate_approved_ssh_private_key()
+    last_state = "unknown"
+    for _ in range(WAVE_SSH_READY_ATTEMPTS):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeError:
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid F39 SSH endpoint metadata")
+        instance = safe_instance(raw_instance)
+        last_state = str(instance.get("status") or "unknown")
+        if last_state != "running":
+            if last_state not in {"created", "loading"}:
+                raise SafeError(
+                    f"F39 instance left running state before SSH smoke verification: {last_state}"
+                )
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        host = instance.get("ssh_host")
+        port = finite_number(instance.get("ssh_port"))
+        if (
+            not isinstance(host, str)
+            or not host
+            or len(host) > 253
+            or any(
+                character
+                not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:-"
+                for character in host
+            )
+            or port is None
+            or not port.is_integer()
+            or not 1 <= port <= 65535
+        ):
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        command = [
+            "ssh",
+            "-T",
+            "-i",
+            str(SSH_PRIVATE_KEY_FILE),
+            "-o",
+            "BatchMode=yes",
+            "-o",
+            "IdentitiesOnly=yes",
+            "-o",
+            "ConnectionAttempts=1",
+            "-o",
+            "ConnectTimeout=5",
+            "-o",
+            "StrictHostKeyChecking=accept-new",
+            "-o",
+            "LogLevel=ERROR",
+            "-p",
+            str(int(port)),
+            f"root@{host}",
+            wave_remote_smoke_command(),
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                check=False,
+                capture_output=True,
+                text=True,
+                timeout=20,
+            )
+        except FileNotFoundError as exc:
+            raise SafeError("OpenSSH client is unavailable for F39 verification") from exc
+        except subprocess.SubprocessError:
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        if completed.returncode == 0 and completed.stdout.strip() == "F39_REMOTE_READY":
+            return
+        time.sleep(POLL_INTERVAL_SECONDS)
+    raise SafeError(
+        "F39 SSH /workspace/READY and smoke verification did not pass in time "
+        f"(last state: {last_state}); do not treat the instance as ready"
+    )
+
+
+def component_factory_f41_onstart_command() -> str:
+    """Wrap the immutable image onstart with an atomic non-secret status file."""
+    return """set -eu
+umask 077
+status_path=/workspace/f41-onstart-status.json
+test -d /workspace
+rm -f -- "${status_path}"
+write_status() {
+    status_value=$1
+    exit_code_value=$2
+    status_tmp=$(/usr/bin/mktemp /workspace/.f41-onstart-status.XXXXXX)
+    /usr/bin/printf '{"schema_version":"1.0.0","status":"%s","exit_code":%s}\n' \
+        "${status_value}" "${exit_code_value}" >"${status_tmp}"
+    /bin/chmod 0644 "${status_tmp}"
+    /bin/mv -f -- "${status_tmp}" "${status_path}"
+}
+write_status running null
+if /usr/local/bin/917-cad-vast-onstart; then
+    write_status passed 0
+else
+    onstart_rc=$?
+    write_status failed "${onstart_rc}"
+    exit "${onstart_rc}"
+fi
+"""
+
+
+def component_factory_f41_remote_smoke_command() -> str:
+    script = """\
+import json
+import os
+from pathlib import Path
+import stat
+
+READY_MISSING = 41
+REPORT_MISSING = 42
+CONTRACT_REJECTED = 43
+ONSTART_STATUS_MISSING = 44
+ONSTART_RUNNING = 45
+ONSTART_FAILED = 46
+STATUS_MAX_BYTES = 16 * 1024
+READY_MAX_BYTES = 16 * 1024
+REPORT_MAX_BYTES = 1024 * 1024
+
+def require(condition):
+    if not condition:
+        raise SystemExit(CONTRACT_REJECTED)
+
+def duplicate_rejecting_object(pairs):
+    value = {}
+    for key, item in pairs:
+        require(key not in value)
+        value[key] = item
+    return value
+
+def read_json(path, missing_code, maximum):
+    try:
+        descriptor = os.open(
+            path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK
+        )
+    except FileNotFoundError:
+        raise SystemExit(missing_code)
+    except OSError:
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        with os.fdopen(descriptor, 'rb') as stream:
+            metadata = os.fstat(stream.fileno())
+            require(stat.S_ISREG(metadata.st_mode))
+            require(0 < metadata.st_size <= maximum)
+            payload = stream.read(maximum + 1)
+            require(len(payload) == metadata.st_size)
+    except SystemExit:
+        raise
+    except (OSError, ValueError):
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        return json.loads(
+            payload.decode('utf-8', errors='strict'),
+            object_pairs_hook=duplicate_rejecting_object,
+            parse_constant=lambda _value: require(False),
+        )
+    except SystemExit:
+        raise
+    except (OSError, UnicodeError, ValueError, TypeError):
+        raise SystemExit(CONTRACT_REJECTED)
+
+status_path = Path('/workspace/f41-onstart-status.json')
+onstart = read_json(status_path, ONSTART_STATUS_MISSING, STATUS_MAX_BYTES)
+require(isinstance(onstart, dict))
+require(set(onstart) == {'schema_version', 'status', 'exit_code'})
+require(onstart.get('schema_version') == '1.0.0')
+if onstart.get('status') == 'running':
+    require(onstart.get('exit_code') is None)
+    raise SystemExit(ONSTART_RUNNING)
+if onstart.get('status') == 'failed':
+    exit_code = onstart.get('exit_code')
+    require(type(exit_code) is int and 1 <= exit_code <= 255)
+    raise SystemExit(ONSTART_FAILED)
+require(onstart.get('status') == 'passed')
+require(type(onstart.get('exit_code')) is int and onstart.get('exit_code') == 0)
+
+ready_path = Path('/workspace/READY')
+report_path = Path('/workspace/image-smoke.json')
+ready = read_json(ready_path, READY_MISSING, READY_MAX_BYTES)
+require(ready == {
+    'schema_version': '1.0.0',
+    'status': 'vast_onstart_ready_for_public_archive_transfer_cad_not_started',
+    'authorized_key_file_present': True,
+    'noninteractive_ssh_auto_tmux_disabled': True,
+    'runtime_host_keys_ready_before_cad_smoke': True,
+    'synthetic_build123d_step_smoke_passed': True,
+    'f41_component_factory_executed': False,
+    'physical_claims_validated': False,
+    'manufacturing_authorized': False,
+})
+report = read_json(report_path, REPORT_MISSING, REPORT_MAX_BYTES)
+require(isinstance(report, dict))
+require(report.get('schema_version') == '1.0.0')
+require(report.get('phase') == 'F41-vast-cad-image')
+require(report.get('status') == 'offline_transport_and_cad_step_smoke_passed_vast_f41_and_manufacturing_validation_blocked')
+runtime = report.get('runtime', {})
+require(isinstance(runtime, dict))
+require(runtime.get('system') == 'Linux')
+require(runtime.get('machine') == 'x86_64')
+require(runtime.get('gpu_required') is False)
+require(runtime.get('external_api_required') is False)
+require(runtime.get('flock_available') is True)
+ssh_transport = report.get('ssh_transport', {})
+require(isinstance(ssh_transport, dict))
+require(ssh_transport.get('runtime_authorized_keys_expected') is True)
+require(ssh_transport.get('runtime_authorized_keys_present') is True)
+require(ssh_transport.get('sshd_runtime_wrapper_installed') is True)
+require(ssh_transport.get('real_sshd_binary_separated') is True)
+require(ssh_transport.get('noninteractive_ssh_auto_tmux_disabled') is True)
+require(ssh_transport.get('runtime_host_private_key_count', 0) > 0)
+require(ssh_transport.get('runtime_host_keys_expected') is True)
+require(ssh_transport.get('runtime_host_keys_generated_by_wrapper') is True)
+require(ssh_transport.get('baked_authorized_keys') is False)
+cad = report.get('cad_isolation', {})
+require(isinstance(cad, dict))
+require(cad.get('synthetic_step_roundtrip_executed') is True)
+require(cad.get('synthetic_closed_solid_after_roundtrip') is True)
+require(cad.get('cad_effective_uid') == 9178)
+require(cad.get('cad_effective_gid') == 9178)
+require(cad.get('cad_no_new_privileges') is True)
+require(cad.get('cad_capability_bounding_set_empty') is True)
+require(report.get('claim_scope') == {
+    'vast_entrypoint_injection_executed': False,
+    'vast_authorized_key_injection_verified': False,
+    'vast_ssh_direct_handshake_verified': False,
+    'f41_component_factory_executed': False,
+    'f41_geometry_dimensionally_validated': False,
+    'engine_model_physically_correlated': False,
+    'omniverse_simready_validated': False,
+    'target_1600_mechanical_hp_proven': False,
+    'engine_start_authorized': False,
+    'manufacturing_authorized': False,
+})
+print('F41_REMOTE_READY')
+"""
+    return f"python -c {shlex.quote(script)}"
+
+
+def simready_remote_ready_command() -> str:
+    """Return a bounded remote validator for the exact SimReady READY contract."""
+    script = """\
+import json
+import os
+from pathlib import Path
+import stat
+
+READY_MISSING = 41
+GPU_REPORT_MISSING = 42
+CONTRACT_REJECTED = 43
+READY_MAX_BYTES = 16 * 1024
+GPU_REPORT_MAX_BYTES = 64 * 1024
+
+def require(condition):
+    if not condition:
+        raise SystemExit(CONTRACT_REJECTED)
+
+def duplicate_rejecting_object(pairs):
+    value = {}
+    for key, item in pairs:
+        require(key not in value)
+        value[key] = item
+    return value
+
+def read_json(path, missing_code, maximum):
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    except FileNotFoundError:
+        raise SystemExit(missing_code)
+    except OSError:
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        with os.fdopen(descriptor, 'rb') as stream:
+            metadata = os.fstat(stream.fileno())
+            require(stat.S_ISREG(metadata.st_mode))
+            require(0 < metadata.st_size <= maximum)
+            payload = stream.read(maximum + 1)
+            require(len(payload) == metadata.st_size)
+    except SystemExit:
+        raise
+    except (OSError, ValueError):
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        return json.loads(
+            payload.decode('utf-8', errors='strict'),
+            object_pairs_hook=duplicate_rejecting_object,
+            parse_constant=lambda _value: require(False),
+        )
+    except SystemExit:
+        raise
+    except (OSError, UnicodeError, ValueError, TypeError):
+        raise SystemExit(CONTRACT_REJECTED)
+
+ready = read_json(Path('/workspace/READY'), READY_MISSING, READY_MAX_BYTES)
+require(ready == {
+    'schema_version': '1.0.0',
+    'status': 'simready_local_ai_services_ready',
+    'ephemeral_ssh_host_keys': True,
+    'batch_ssh_auto_tmux_disabled': True,
+    'physicsnemo_gpu_smoke_passed': True,
+    'local_vlm_ready': True,
+    'ovrtx_ready': True,
+    'material_agent_ready': True,
+    'physics_agent_ready': True,
+    'simulation_validated': False,
+    'manufacturing_authorized': False,
+    'target_1600_ch_validated': False,
+})
+for boolean_field in (
+    'ephemeral_ssh_host_keys', 'batch_ssh_auto_tmux_disabled',
+    'physicsnemo_gpu_smoke_passed', 'local_vlm_ready', 'ovrtx_ready',
+    'material_agent_ready', 'physics_agent_ready', 'simulation_validated',
+    'manufacturing_authorized', 'target_1600_ch_validated',
+):
+    require(type(ready.get(boolean_field)) is bool)
+gpu = read_json(
+    Path('/workspace/logs/physicsnemo-gpu-smoke.json'),
+    GPU_REPORT_MISSING,
+    GPU_REPORT_MAX_BYTES,
+)
+require(isinstance(gpu, dict))
+require(set(gpu) == {
+    'schema_version', 'status', 'claim_scope', 'physicsnemo_version',
+    'torch_version', 'torch_cuda_version', 'gpu_name', 'gpu_memory_bytes',
+    'gpu_count', 'tensor_result',
+})
+require(gpu.get('schema_version') == '1.0.0')
+require(gpu.get('status') == 'passed')
+require(gpu.get('claim_scope') == 'runtime GPU only; no engine simulation or physical validation')
+require(gpu.get('physicsnemo_version') == '2.2.0')
+require(isinstance(gpu.get('torch_version'), str) and gpu['torch_version'].split('+', 1)[0] == '2.10.0')
+require(gpu.get('torch_cuda_version') == '12.9')
+require(isinstance(gpu.get('gpu_name'), str) and 0 < len(gpu['gpu_name']) <= 256)
+require(type(gpu.get('gpu_memory_bytes')) is int and gpu['gpu_memory_bytes'] >= 80000 * 1024 * 1024)
+require(type(gpu.get('gpu_count')) is int and gpu['gpu_count'] == 1)
+require(type(gpu.get('tensor_result')) in (int, float) and gpu['tensor_result'] == 14.0)
+for path in (
+    Path('/workspace/logs/nvidia-smi.log'),
+    Path('/workspace/logs/simready-smoke.log'),
+    Path('/workspace/logs/simready-services-start.log'),
+    Path('/workspace/logs/simready-services-status.log'),
+):
+    try:
+        metadata = path.lstat()
+    except OSError:
+        raise SystemExit(CONTRACT_REJECTED)
+    require(stat.S_ISREG(metadata.st_mode) and not stat.S_ISLNK(metadata.st_mode))
+    require(0 < metadata.st_size <= 16 * 1024 * 1024)
+print('SIMREADY_REMOTE_READY')
+"""
+    return f"python -c {shlex.quote(script)}"
+
+
+def simready_validation_only_onstart_command() -> str:
+    """Start only deterministic CAD/USD validation prerequisites on Vast."""
+    script = r"""\
+set -euo pipefail
+workspace=/workspace
+ready=${workspace}/READY
+umask 077
+test -d "${workspace}" && test ! -L "${workspace}"
+install -d -o root -g root -m 0755 "${workspace}/logs" "${workspace}/simready"
+rm -f -- "${ready}"
+test -f /root/.no_auto_tmux && test ! -L /root/.no_auto_tmux
+test "$(stat -c '%u:%g:%a' /root/.no_auto_tmux)" = "0:0:600"
+test -d /root/.ssh && test ! -L /root/.ssh
+chown root:root /root/.ssh
+chmod 0700 /root/.ssh
+test -f /root/.ssh/authorized_keys && test ! -L /root/.ssh/authorized_keys
+chown root:root /root/.ssh/authorized_keys
+chmod 0600 /root/.ssh/authorized_keys
+test -s /root/.ssh/authorized_keys
+nvidia-smi >"${workspace}/logs/nvidia-smi.log" 2>&1
+smoke-test.sh simready-local-ai >"${workspace}/logs/simready-smoke.log" 2>&1
+"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" \
+    /usr/local/bin/physicsnemo-gpu-smoke \
+    >"${workspace}/logs/physicsnemo-gpu-smoke.json" 2>&1
+ready_tmp="$(/usr/bin/mktemp "${workspace}/.READY.XXXXXX")"
+cat >"${ready_tmp}" <<'EOF'
+{
+  "schema_version": "1.0.0",
+  "status": "simready_validation_only_ready",
+  "ephemeral_ssh_host_keys": true,
+  "batch_ssh_auto_tmux_disabled": true,
+  "physicsnemo_gpu_smoke_passed": true,
+  "validation_runtime_ready": true,
+  "content_agents_started": false,
+  "property_assignment_intent": "skip",
+  "simulation_validated": false,
+  "manufacturing_authorized": false,
+  "target_1600_ch_validated": false
+}
+EOF
+chmod 0644 "${ready_tmp}"
+mv -f -- "${ready_tmp}" "${ready}"
+"""
+    return f"bash -lc {shlex.quote(script)}"
+
+
+def simready_validation_only_remote_ready_command() -> str:
+    """Validate the exact validation-only READY and GPU-smoke contracts."""
+    script = """\
+import json
+import os
+from pathlib import Path
+import stat
+
+READY_MISSING = 41
+GPU_REPORT_MISSING = 42
+CONTRACT_REJECTED = 43
+
+def require(condition):
+    if not condition:
+        raise SystemExit(CONTRACT_REJECTED)
+
+def duplicate_rejecting_object(pairs):
+    value = {}
+    for key, item in pairs:
+        require(key not in value)
+        value[key] = item
+    return value
+
+def read_json(path, missing_code, maximum):
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    except FileNotFoundError:
+        raise SystemExit(missing_code)
+    except OSError:
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        with os.fdopen(descriptor, 'rb') as stream:
+            metadata = os.fstat(stream.fileno())
+            require(stat.S_ISREG(metadata.st_mode))
+            require(0 < metadata.st_size <= maximum)
+            payload = stream.read(maximum + 1)
+            require(len(payload) == metadata.st_size)
+    except SystemExit:
+        raise
+    except (OSError, ValueError):
+        raise SystemExit(CONTRACT_REJECTED)
+    try:
+        return json.loads(
+            payload.decode('utf-8', errors='strict'),
+            object_pairs_hook=duplicate_rejecting_object,
+            parse_constant=lambda _value: require(False),
+        )
+    except SystemExit:
+        raise
+    except (OSError, UnicodeError, ValueError, TypeError):
+        raise SystemExit(CONTRACT_REJECTED)
+
+ready = read_json(Path('/workspace/READY'), READY_MISSING, 16 * 1024)
+require(ready == {
+    'schema_version': '1.0.0',
+    'status': 'simready_validation_only_ready',
+    'ephemeral_ssh_host_keys': True,
+    'batch_ssh_auto_tmux_disabled': True,
+    'physicsnemo_gpu_smoke_passed': True,
+    'validation_runtime_ready': True,
+    'content_agents_started': False,
+    'property_assignment_intent': 'skip',
+    'simulation_validated': False,
+    'manufacturing_authorized': False,
+    'target_1600_ch_validated': False,
+})
+gpu = read_json(
+    Path('/workspace/logs/physicsnemo-gpu-smoke.json'),
+    GPU_REPORT_MISSING,
+    64 * 1024,
+)
+require(isinstance(gpu, dict))
+require(set(gpu) == {
+    'schema_version', 'status', 'claim_scope', 'physicsnemo_version',
+    'torch_version', 'torch_cuda_version', 'gpu_name', 'gpu_memory_bytes',
+    'gpu_count', 'tensor_result',
+})
+require(gpu.get('schema_version') == '1.0.0')
+require(gpu.get('status') == 'passed')
+require(gpu.get('claim_scope') == 'runtime GPU only; no engine simulation or physical validation')
+require(gpu.get('physicsnemo_version') == '2.2.0')
+require(isinstance(gpu.get('torch_version'), str) and gpu['torch_version'].split('+', 1)[0] == '2.10.0')
+require(gpu.get('torch_cuda_version') == '12.9')
+require(isinstance(gpu.get('gpu_name'), str) and 0 < len(gpu['gpu_name']) <= 256)
+require(type(gpu.get('gpu_memory_bytes')) is int and gpu['gpu_memory_bytes'] >= 80000 * 1024 * 1024)
+require(type(gpu.get('gpu_count')) is int and gpu['gpu_count'] == 1)
+require(type(gpu.get('tensor_result')) in (int, float) and gpu['tensor_result'] == 14.0)
+for path in (
+    Path('/workspace/logs/nvidia-smi.log'),
+    Path('/workspace/logs/simready-smoke.log'),
+):
+    metadata = path.lstat()
+    require(stat.S_ISREG(metadata.st_mode) and not stat.S_ISLNK(metadata.st_mode))
+    require(0 < metadata.st_size <= 16 * 1024 * 1024)
+print('SIMREADY_VALIDATION_ONLY_REMOTE_READY')
+"""
+    return f"python -c {shlex.quote(script)}"
+
+
+def terminate_component_factory_f41_probe(
+    process: subprocess.Popen[bytes],
+) -> bool:
+    """Terminate and prove absence of the isolated SSH process group."""
+    try:
+        os.killpg(process.pid, signal.SIGTERM)
+    except ProcessLookupError:
+        pass
+    except OSError:
+        try:
+            process.terminate()
+        except OSError:
+            pass
+    try:
+        process.wait(timeout=COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS)
+    except subprocess.TimeoutExpired:
+        pass
+    except OSError:
+        pass
+    try:
+        os.killpg(process.pid, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    except OSError:
+        if process.poll() is None:
+            try:
+                process.kill()
+            except OSError:
+                pass
+    try:
+        process.wait(timeout=COMPONENT_FACTORY_F41_SSH_PROBE_TERMINATE_GRACE_SECONDS)
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    try:
+        parent_reaped = process.poll() is not None
+    except OSError:
+        parent_reaped = False
+    try:
+        os.killpg(process.pid, 0)
+    except ProcessLookupError:
+        group_gone = True
+    except OSError:
+        group_gone = False
+    else:
+        group_gone = False
+    return parent_reaped and group_gone
+
+
+def run_component_factory_f41_ssh_probe(
+    command: list[str], environment: dict[str, str]
+) -> subprocess.CompletedProcess[str]:
+    """Run SSH with an absolute deadline and bounded progressive pipe drains."""
+    selector: selectors.BaseSelector | None = None
+    stdout = None
+    stderr = None
+    try:
+        process = subprocess.Popen(
+            command,
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            env=environment,
+            start_new_session=True,
+        )
+    except FileNotFoundError:
+        raise
+    except OSError as exc:
+        raise ComponentFactoryF41ProbeSpawnError() from exc
+    try:
+        stdout = process.stdout
+        stderr = process.stderr
+        if stdout is None or stderr is None:
+            raise ComponentFactoryF41ProbeLocalIoError()
+        streams = {stdout: "stdout", stderr: "stderr"}
+        buffers = {"stdout": bytearray(), "stderr": bytearray()}
+        selector = selectors.DefaultSelector()
+        deadline = (
+            time.monotonic() + COMPONENT_FACTORY_F41_SSH_PROBE_TIMEOUT_SECONDS
+        )
+        for stream, name in streams.items():
+            os.set_blocking(stream.fileno(), False)
+            selector.register(stream, selectors.EVENT_READ, name)
+        while selector.get_map():
+            remaining_seconds = deadline - time.monotonic()
+            if remaining_seconds <= 0:
+                raise ComponentFactoryF41ProbeTimeout()
+            events = selector.select(min(remaining_seconds, 0.25))
+            for key, _ in events:
+                stream = key.fileobj
+                name = key.data
+                remaining_bytes = (
+                    COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM
+                    + 1
+                    - len(buffers[name])
+                )
+                if remaining_bytes <= 0:
+                    raise ComponentFactoryF41ProbeOutputLimit()
+                try:
+                    chunk = os.read(stream.fileno(), min(16 * 1024, remaining_bytes))
+                except BlockingIOError:
+                    continue
+                if not chunk:
+                    selector.unregister(stream)
+                    continue
+                if (
+                    len(buffers[name]) + len(chunk)
+                    > COMPONENT_FACTORY_F41_SSH_PROBE_MAX_BYTES_PER_STREAM
+                ):
+                    raise ComponentFactoryF41ProbeOutputLimit()
+                buffers[name].extend(chunk)
+        remaining_seconds = deadline - time.monotonic()
+        if remaining_seconds <= 0:
+            raise ComponentFactoryF41ProbeTimeout()
+        try:
+            returncode = process.wait(timeout=remaining_seconds)
+        except subprocess.TimeoutExpired:
+            raise ComponentFactoryF41ProbeTimeout()
+    except OSError as exc:
+        if not terminate_component_factory_f41_probe(process):
+            raise ComponentFactoryF41ProbeCleanupError() from exc
+        raise ComponentFactoryF41ProbeLocalIoError() from exc
+    except BaseException as exc:
+        if not terminate_component_factory_f41_probe(process) and isinstance(
+            exc, Exception
+        ):
+            raise ComponentFactoryF41ProbeCleanupError() from exc
+        raise
+    finally:
+        if selector is not None:
+            try:
+                selector.close()
+            except Exception:
+                pass
+        if stdout is not None:
+            try:
+                stdout.close()
+            except Exception:
+                pass
+        if stderr is not None:
+            try:
+                stderr.close()
+            except Exception:
+                pass
+    return subprocess.CompletedProcess(
+        args=command,
+        returncode=returncode,
+        stdout=bytes(buffers["stdout"]).decode("utf-8", errors="replace"),
+        stderr=bytes(buffers["stderr"]).decode("utf-8", errors="replace"),
+    )
+
+
+def classify_component_factory_f41_ssh_probe(
+    completed: subprocess.CompletedProcess[str],
+) -> str:
+    """Map SSH failures to fixed non-secret diagnostic categories."""
+    stderr = completed.stderr if isinstance(completed.stderr, str) else ""
+    if completed.returncode == 41:
+        return "ready_marker_missing"
+    if completed.returncode == 42:
+        return "image_smoke_report_missing"
+    if completed.returncode == 43:
+        return "remote_ready_contract_rejected"
+    if completed.returncode == 44:
+        return "onstart_status_missing"
+    if completed.returncode == 45:
+        return "onstart_running"
+    if completed.returncode == 46:
+        return "onstart_failed"
+    if completed.returncode != 255:
+        return "remote_command_rejected"
+    lowered = stderr.lower()
+    if "permission denied" in lowered or "publickey" in lowered:
+        return "ssh_authentication_failed"
+    if "connection refused" in lowered:
+        return "ssh_connection_refused"
+    if "connection timed out" in lowered or "operation timed out" in lowered:
+        return "ssh_connection_timeout"
+    if (
+        "host key verification failed" in lowered
+        or "remote host identification has changed" in lowered
+    ):
+        return "ssh_host_key_rejected"
+    if "connection closed" in lowered or "closed by" in lowered:
+        return "ssh_connection_closed"
+    if any(
+        marker in lowered
+        for marker in (
+            "no route to host",
+            "network is unreachable",
+            "could not resolve hostname",
+        )
+    ):
+        return "ssh_network_unreachable"
+    return "ssh_transport_failed"
+
+
+def classify_simready_ssh_probe(
+    completed: subprocess.CompletedProcess[str],
+) -> str:
+    if completed.returncode == 41:
+        return "ready_marker_missing"
+    if completed.returncode == 42:
+        return "physicsnemo_gpu_report_missing"
+    if completed.returncode == 43:
+        return "remote_ready_contract_rejected"
+    return classify_component_factory_f41_ssh_probe(completed)
+
+
+def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Path:
+    """Prove BatchMode SSH and the exact F41 image READY contract."""
+    validate_approved_ssh_private_key()
+    known_hosts_path = prepare_component_factory_f41_known_hosts(instance_id)
+    host_key_alias = component_factory_f41_host_key_alias(instance_id)
+    last_state = "unknown"
+    last_probe = "provider_metadata_not_ready"
+    for _ in range(COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS):
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeError:
+            last_probe = "provider_metadata_unavailable"
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid F41 SSH endpoint metadata")
+        instance = safe_instance(raw_instance)
+        last_state = str(instance.get("status") or "unknown")
+        if last_state != "running":
+            if last_state not in {"created", "loading"}:
+                raise SafeError(
+                    "F41 instance left running state before SSH READY verification: "
+                    f"{last_state}"
+                )
+            last_probe = "instance_not_running_yet"
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        host = instance.get("ssh_host")
+        port = finite_number(instance.get("ssh_port"))
+        if (
+            not isinstance(host, str)
+            or not host
+            or len(host) > 253
+            or any(
+                character
+                not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:-"
+                for character in host
+            )
+            or port is None
+            or not port.is_integer()
+            or not 1 <= port <= 65535
+        ):
+            last_probe = "ssh_endpoint_unavailable"
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        command = [
+            "ssh",
+            "-F",
+            "/dev/null",
+            "-T",
+            "-i",
+            str(SSH_PRIVATE_KEY_FILE),
+            "-o",
+            "BatchMode=yes",
+            "-o",
+            "IdentitiesOnly=yes",
+            "-o",
+            "ForwardAgent=no",
+            "-o",
+            "ClearAllForwardings=yes",
+            "-o",
+            "PermitLocalCommand=no",
+            "-o",
+            "PasswordAuthentication=no",
+            "-o",
+            "KbdInteractiveAuthentication=no",
+            "-o",
+            "ConnectionAttempts=1",
+            "-o",
+            "ConnectTimeout=5",
+            "-o",
+            "StrictHostKeyChecking=accept-new",
+            "-o",
+            "UpdateHostKeys=no",
+            "-o",
+            "GlobalKnownHostsFile=/dev/null",
+            "-o",
+            "HashKnownHosts=no",
+            "-o",
+            f"HostKeyAlias={host_key_alias}",
+            "-o",
+            f"UserKnownHostsFile={known_hosts_path}",
+            "-o",
+            "LogLevel=ERROR",
+            "-p",
+            str(int(port)),
+            f"root@{host}",
+            component_factory_f41_remote_smoke_command(),
+        ]
+        try:
+            ssh_environment = {
+                "LC_ALL": "C",
+                "PATH": os.environ.get("PATH", os.defpath),
+            }
+            completed = run_component_factory_f41_ssh_probe(
+                command, ssh_environment
+            )
+        except FileNotFoundError as exc:
+            raise SafeError("OpenSSH client is unavailable for F41 verification") from exc
+        except ComponentFactoryF41ProbeTimeout:
+            last_probe = "ssh_probe_timeout"
+            time.sleep(POLL_INTERVAL_SECONDS)
+            continue
+        except (
+            ComponentFactoryF41ProbeOutputLimit,
+            ComponentFactoryF41ProbeSpawnError,
+            ComponentFactoryF41ProbeLocalIoError,
+            ComponentFactoryF41ProbeCleanupError,
+            OSError,
+            subprocess.SubprocessError,
+        ) as exc:
+            if isinstance(exc, ComponentFactoryF41ProbeOutputLimit):
+                fixed_probe = "ssh_probe_output_limit"
+            elif isinstance(exc, ComponentFactoryF41ProbeSpawnError):
+                fixed_probe = "ssh_probe_spawn_failed"
+            elif isinstance(exc, ComponentFactoryF41ProbeCleanupError):
+                fixed_probe = "ssh_probe_cleanup_failed"
+            else:
+                fixed_probe = "ssh_probe_local_io_failed"
+            raise SafeError(
+                "F41 SSH /workspace/READY and image smoke verification failed "
+                f"(last state: {last_state}; last probe: {fixed_probe}); do not "
+                "treat the instance as ready"
+            ) from exc
+        if completed.returncode == 0 and completed.stdout.strip() == "F41_REMOTE_READY":
+            validate_component_factory_f41_known_hosts(known_hosts_path, instance_id)
+            return known_hosts_path
+        last_probe = classify_component_factory_f41_ssh_probe(completed)
+        if last_probe in {
+            "ssh_authentication_failed",
+            "ssh_host_key_rejected",
+            "image_smoke_report_missing",
+            "remote_ready_contract_rejected",
+            "onstart_failed",
+            "remote_command_rejected",
+        }:
+            raise SafeError(
+                "F41 SSH /workspace/READY and image smoke verification failed "
+                f"(last state: {last_state}; last probe: {last_probe}); do not "
+                "treat the instance as ready"
+            )
+        time.sleep(POLL_INTERVAL_SECONDS)
+    raise SafeError(
+        "F41 SSH /workspace/READY and image smoke verification did not pass in time "
+        f"(last state: {last_state}; last probe: {last_probe}); do not treat the "
+        "instance as ready"
+    )
+
+
+def verify_simready_ssh_ready(
+    api_key: str, instance_id: int, *, validation_only: bool = False
+) -> Path:
+    """Prove BatchMode SSH plus the selected exact SimReady READY state."""
+    validate_approved_ssh_private_key()
+    known_hosts_path = prepare_simready_known_hosts(instance_id)
+    host_key_alias = simready_host_key_alias(instance_id)
+    deadline = time.monotonic() + SIMREADY_SSH_READY_TIMEOUT_SECONDS
+
+    def wait_before_retry() -> bool:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            return False
+        time.sleep(min(POLL_INTERVAL_SECONDS, remaining))
+        return True
+
+    last_state = "unknown"
+    last_probe = "provider_metadata_not_ready"
+    for _ in range(SIMREADY_SSH_READY_ATTEMPTS):
+        if time.monotonic() >= deadline:
+            break
+        try:
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        except SafeError:
+            last_probe = "provider_metadata_unavailable"
+            if not wait_before_retry():
+                break
+            continue
+        raw_instance = result.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid SimReady SSH endpoint metadata")
+        instance = safe_instance(raw_instance)
+        last_state = str(instance.get("status") or "unknown")
+        if last_state != "running":
+            if last_state not in {"created", "loading"}:
+                raise SafeError(
+                    "SimReady instance left running state before SSH READY verification: "
+                    f"{last_state}"
+                )
+            last_probe = "instance_not_running_yet"
+            if not wait_before_retry():
+                break
+            continue
+        host = instance.get("ssh_host")
+        port = finite_number(instance.get("ssh_port"))
+        if (
+            not isinstance(host, str)
+            or not host
+            or len(host) > 253
+            or any(
+                character
+                not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:-"
+                for character in host
+            )
+            or port is None
+            or not port.is_integer()
+            or not 1 <= port <= 65535
+        ):
+            last_probe = "ssh_endpoint_unavailable"
+            if not wait_before_retry():
+                break
+            continue
+        command = [
+            "ssh",
+            "-F",
+            "/dev/null",
+            "-T",
+            "-i",
+            str(SSH_PRIVATE_KEY_FILE),
+            "-o",
+            "BatchMode=yes",
+            "-o",
+            "IdentitiesOnly=yes",
+            "-o",
+            "ForwardAgent=no",
+            "-o",
+            "ClearAllForwardings=yes",
+            "-o",
+            "PermitLocalCommand=no",
+            "-o",
+            "PasswordAuthentication=no",
+            "-o",
+            "KbdInteractiveAuthentication=no",
+            "-o",
+            "ConnectionAttempts=1",
+            "-o",
+            "ConnectTimeout=5",
+            "-o",
+            "StrictHostKeyChecking=accept-new",
+            "-o",
+            "UpdateHostKeys=no",
+            "-o",
+            "GlobalKnownHostsFile=/dev/null",
+            "-o",
+            "HashKnownHosts=no",
+            "-o",
+            f"HostKeyAlias={host_key_alias}",
+            "-o",
+            f"UserKnownHostsFile={known_hosts_path}",
+            "-o",
+            "LogLevel=ERROR",
+            "-p",
+            str(int(port)),
+            f"root@{host}",
+            (
+                simready_validation_only_remote_ready_command()
+                if validation_only
+                else simready_remote_ready_command()
+            ),
+        ]
+        try:
+            ssh_environment = {
+                "LC_ALL": "C",
+                "PATH": os.environ.get("PATH", os.defpath),
+            }
+            completed = run_component_factory_f41_ssh_probe(
+                command, ssh_environment
+            )
+        except FileNotFoundError as exc:
+            raise SafeError("OpenSSH client is unavailable for SimReady verification") from exc
+        except ComponentFactoryF41ProbeTimeout:
+            last_probe = "ssh_probe_timeout"
+            if not wait_before_retry():
+                break
+            continue
+        except (
+            ComponentFactoryF41ProbeOutputLimit,
+            ComponentFactoryF41ProbeSpawnError,
+            ComponentFactoryF41ProbeLocalIoError,
+            ComponentFactoryF41ProbeCleanupError,
+            OSError,
+            subprocess.SubprocessError,
+        ) as exc:
+            if isinstance(exc, ComponentFactoryF41ProbeOutputLimit):
+                fixed_probe = "ssh_probe_output_limit"
+            elif isinstance(exc, ComponentFactoryF41ProbeSpawnError):
+                fixed_probe = "ssh_probe_spawn_failed"
+            elif isinstance(exc, ComponentFactoryF41ProbeCleanupError):
+                fixed_probe = "ssh_probe_cleanup_failed"
+            else:
+                fixed_probe = "ssh_probe_local_io_failed"
+            raise SafeError(
+                "SimReady SSH /workspace/READY verification failed "
+                f"(last state: {last_state}; last probe: {fixed_probe}); do not "
+                "treat the instance as ready"
+            ) from exc
+        if (
+            completed.returncode == 0
+            and completed.stdout.strip()
+            == (
+                "SIMREADY_VALIDATION_ONLY_REMOTE_READY"
+                if validation_only
+                else "SIMREADY_REMOTE_READY"
+            )
+        ):
+            validate_simready_known_hosts(known_hosts_path, instance_id)
+            return known_hosts_path
+        last_probe = classify_simready_ssh_probe(completed)
+        if last_probe in {
+            "ssh_authentication_failed",
+            "ssh_host_key_rejected",
+            "physicsnemo_gpu_report_missing",
+            "remote_ready_contract_rejected",
+            "remote_command_rejected",
+        }:
+            raise SafeError(
+                "SimReady SSH /workspace/READY verification failed "
+                f"(last state: {last_state}; last probe: {last_probe}); do not "
+                "treat the instance as ready"
+            )
+        if not wait_before_retry():
+            break
+    raise SafeError(
+        "SimReady SSH /workspace/READY verification did not pass in time "
+        f"(last state: {last_state}; last probe: {last_probe}); do not treat the "
+        "instance as ready"
+    )
+
+
+def set_instance_state_verified(api_key: str, instance_id: int, state: str) -> None:
+    if state not in {"running", "stopped"}:
+        raise SafeError("unsupported instance target state")
+    result = vast_request(
+        api_key,
+        f"/api/v0/instances/{instance_id}/",
+        method="PUT",
+        payload={"state": state},
+    )
+    if result.get("success") is not True:
+        raise SafeError(f"Vast.ai did not confirm the {state} request")
+    for _ in range(STATE_TRANSITION_ATTEMPTS):
+        metadata = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        raw_instance = metadata.get("instances")
+        if not isinstance(raw_instance, dict):
+            raise SafeError("Vast.ai returned invalid state-transition metadata")
+        actual_state = safe_instance(raw_instance).get("status")
+        if actual_state == state:
+            return
+        time.sleep(POLL_INTERVAL_SECONDS)
+    raise SafeError(
+        f"Vast.ai did not verify final instance state {state} in time"
+    )
 
 
 def launch_offer(api_key: str, offer: dict) -> int:
@@ -833,17 +2921,13 @@ def launch_mesh_offer(api_key: str, offer: dict) -> int:
     return 0
 
 
-def launch_simready_offer(
-    api_key: str,
-    offer: dict,
-    disk_gb: int = 300,
-    *,
-    enforce_singleton: bool = False,
-) -> int:
-    launch_context = simready_launch_lock() if enforce_singleton else nullcontext()
-    with launch_context:
-        if enforce_singleton:
-            require_no_simready_instance(api_key)
+def launch_wave_f39_offer(api_key: str, offer: dict) -> int:
+    # Revalidate the complete selected object immediately before the paid call.
+    if not wave_offer_eligible(offer):
+        raise SafeError("wave-action offer is outside the fixed safety and price limits")
+    # Reuse the paid-launch lock so a local SimReady or F39 launch cannot race.
+    with simready_launch_lock():
+        require_no_wave_instance(api_key)
         ensure_local_ssh_registered(api_key)
         offer_id = positive_id(str(offer.get("id")), "offer id")
         try:
@@ -852,50 +2936,388 @@ def launch_simready_offer(
                 f"/api/v0/asks/{offer_id}/",
                 method="PUT",
                 payload={
-                    "image": SIMREADY_IMAGE,
-                    "label": SIMREADY_LABEL,
-                    "disk": disk_gb,
+                    "image": WAVE_IMAGE,
+                    "label": WAVE_LABEL,
+                    "disk": WAVE_DISK_GB,
                     "runtype": "ssh_direct",
                     "env": {},
-                    "onstart": "simready-vast-onstart",
+                    "onstart": (
+                        "rm -f /workspace/READY; "
+                        "mkdir -p /workspace/logs; "
+                        "python /opt/917-engine-wave-f39/smoke.py "
+                        ">/workspace/logs/wave-action-f39-smoke.json "
+                        "2>/workspace/logs/wave-action-f39-smoke.stderr "
+                        "&& test ! -s /workspace/logs/wave-action-f39-smoke.stderr "
+                        "&& printf '%s\\n' 'F39 smoke passed' >/workspace/READY"
+                    ),
                     "cancel_unavail": True,
                 },
             )
         except SafeHttpError as exc:
             if 400 <= exc.status_code < 500:
                 raise
-            reconcile_uncertain_simready_launch(api_key)
+            reconcile_uncertain_wave_launch(api_key)
             raise
         except SafeError:
-            reconcile_uncertain_simready_launch(api_key)
+            reconcile_uncertain_wave_launch(api_key)
             raise
         instance_id = result.get("new_contract")
-        if not isinstance(instance_id, int):
-            if enforce_singleton:
-                reconcile_uncertain_simready_launch(api_key)
-            raise SafeError("Vast.ai did not return a new SimReady instance id")
-        if enforce_singleton:
+        if not isinstance(instance_id, int) or isinstance(instance_id, bool):
+            reconcile_uncertain_wave_launch(api_key)
+            raise SafeError("Vast.ai did not return a new wave-action instance id")
+        try:
+            verify_single_wave_instance(api_key, instance_id)
+            verify_wave_contract(api_key, instance_id)
+            verify_wave_ssh_ready(api_key, instance_id)
+        except SafeError:
             try:
-                verify_single_simready_instance(api_key, instance_id)
-                verify_simready_contract(api_key, instance_id)
-            except SafeError:
-                try:
-                    destroy_instance_verified(api_key, instance_id)
-                except SafeError as cleanup_error:
-                    raise SafeError(
-                        f"post-launch uniqueness failed and rollback was not verified for instance {instance_id}"
-                    ) from cleanup_error
-                raise
+                destroy_instance_verified(api_key, instance_id)
+            except SafeError as cleanup_error:
+                raise SafeError(
+                    "post-launch F39 verification failed and rollback was not "
+                    f"verified for instance {instance_id}"
+                ) from cleanup_error
+            raise
         print_json(
             {
                 "instance_id": instance_id,
-                "image": SIMREADY_IMAGE,
-                "label": SIMREADY_LABEL,
+                "image": WAVE_IMAGE,
+                "label": WAVE_LABEL,
                 "selected_offer": safe_offer(offer),
-                "singleton_verified": enforce_singleton,
-                "contract_verified": enforce_singleton,
+                "offer_contract_verified": True,
+                "singleton_preflight_verified": True,
+                "singleton_verified": True,
+                "contract_verified": True,
+                "running_state_verified": True,
+                "ssh_batch_mode_verified": True,
+                "runtime_smoke_verified": True,
             }
         )
+        return 0
+
+
+def launch_component_factory_f41_offer(
+    api_key: str, offer: dict, *, attempt_label: str | None = None
+) -> int:
+    # Revalidate every paid resource field immediately before the create call.
+    if not component_factory_f41_offer_eligible(offer):
+        raise SafeError(
+            "component-factory F41 offer is outside the fixed safety and price limits"
+        )
+    if COMPONENT_FACTORY_F41_IMAGE in COMPONENT_FACTORY_F41_REVOKED_IMAGES:
+        raise SafeError(
+            "component-factory F41 runtime image is revoked after a failed real "
+            "Vast SSH command path; publish and qualify a corrected digest before "
+            "any paid launch"
+        )
+    with simready_launch_lock():
+        require_no_component_factory_f41_instance(api_key)
+        ensure_local_ssh_registered(api_key)
+        offer_id = positive_id(str(offer.get("id")), "offer id")
+        if attempt_label is None:
+            attempt_label = component_factory_f41_attempt_label()
+        if not is_component_factory_f41_attempt_label(attempt_label):
+            raise SafeError("component-factory F41 attempt label generation failed")
+        # Emit the non-secret ownership handle before the paid request. A
+        # supervisor can reconcile only this attempt if this child is killed
+        # after Vast accepts the create call.
+        print(
+            f"OpenBao Vast.ai F41 paid launch attempt label: {attempt_label}",
+            file=sys.stderr,
+            flush=True,
+        )
+        try:
+            result = vast_request(
+                api_key,
+                f"/api/v0/asks/{offer_id}/",
+                method="PUT",
+                payload={
+                    "image": COMPONENT_FACTORY_F41_IMAGE,
+                    "label": attempt_label,
+                    "disk": COMPONENT_FACTORY_F41_DISK_GB,
+                    "runtype": "ssh_direct",
+                    "env": {},
+                    "onstart": component_factory_f41_onstart_command(),
+                    "cancel_unavail": True,
+                },
+            )
+        except BaseException as launch_error:
+            try:
+                reconciled_id = reconcile_uncertain_component_factory_f41_launch(
+                    api_key, attempt_label
+                )
+            except BaseException as cleanup_error:
+                report_component_factory_f41_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    add_exception_note(
+                        launch_error,
+                        "F41 paid create outcome is uncertain and rollback was not verified"
+                    )
+                    raise launch_error from cleanup_error
+                raise
+            add_exception_note(
+                launch_error,
+                f"F41 instance {reconciled_id} was automatically destroyed and "
+                "verified absent after the interrupted or uncertain create call"
+            )
+            emit_component_factory_f41_cleanup_attestation(
+                reconciled_id, attempt_label
+            )
+            raise
+        instance_id = result.get("new_contract")
+        if not isinstance(instance_id, int) or isinstance(instance_id, bool):
+            try:
+                reconciled_id = reconcile_uncertain_component_factory_f41_launch(
+                    api_key, attempt_label
+                )
+            except BaseException as cleanup_error:
+                report_component_factory_f41_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    raise SafeError(
+                        "Vast.ai did not return a new component-factory F41 instance "
+                        "id; rollback was not verified and an instance may still be "
+                        "running and billed"
+                    ) from cleanup_error
+                raise
+            emit_component_factory_f41_cleanup_attestation(
+                reconciled_id, attempt_label
+            )
+            raise SafeError(
+                "Vast.ai did not return a new component-factory F41 instance id; "
+                f"F41 instance {reconciled_id} was automatically destroyed and "
+                "verified absent"
+            )
+        try:
+            verify_single_component_factory_f41_instance(
+                api_key, instance_id, attempt_label
+            )
+            verify_component_factory_f41_contract(api_key, instance_id, attempt_label)
+            known_hosts_path = verify_component_factory_f41_ssh_ready(
+                api_key, instance_id
+            )
+            print_json(
+                {
+                    "instance_id": instance_id,
+                    "image": COMPONENT_FACTORY_F41_IMAGE,
+                    "label": attempt_label,
+                    "selected_offer": safe_offer(offer),
+                    "offer_contract_verified": True,
+                    "singleton_preflight_verified": True,
+                    "singleton_verified": True,
+                    "contract_verified": True,
+                    "running_state_verified": True,
+                    "ssh_batch_mode_verified": True,
+                    "image_transport_smoke_verified": True,
+                    "host_key_alias": component_factory_f41_host_key_alias(
+                        instance_id
+                    ),
+                    "known_hosts_path": str(known_hosts_path),
+                    "f41_component_factory_executed": False,
+                    "physical_claims_validated": False,
+                    "manufacturing_authorized": False,
+                }
+            )
+        except BaseException as post_create_error:
+            try:
+                reconciled_id = reconcile_uncertain_component_factory_f41_launch(
+                    api_key, attempt_label
+                )
+            except BaseException as cleanup_error:
+                report_component_factory_f41_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    add_exception_note(
+                        post_create_error,
+                        "post-launch F41 failure occurred and rollback ownership or "
+                        f"destruction was not verified for instance {instance_id}"
+                    )
+                    raise post_create_error from cleanup_error
+                raise
+            emit_component_factory_f41_cleanup_attestation(
+                reconciled_id, attempt_label
+            )
+            try:
+                remove_component_factory_f41_known_hosts_after_destroy(reconciled_id)
+            except Exception as local_cleanup_error:
+                add_exception_note(
+                    post_create_error,
+                    "F41 remote destruction was verified but its local scoped "
+                    "known_hosts file could not be removed",
+                )
+                raise post_create_error from local_cleanup_error
+            add_exception_note(
+                post_create_error,
+                f"F41 instance {reconciled_id} was automatically destroyed and "
+                "verified absent after the post-create failure"
+            )
+            raise
+        return 0
+
+
+def launch_simready_offer(
+    api_key: str,
+    offer: dict,
+    disk_gb: int = 300,
+    *,
+    enforce_singleton: bool = False,
+    attempt_label: str | None = None,
+    validation_only: bool = False,
+) -> int:
+    if SIMREADY_IMAGE in SIMREADY_REVOKED_IMAGES:
+        raise SafeError(
+            "the pinned SimReady image is revoked; publish and pin the corrected image first"
+        )
+    if (
+        not enforce_singleton
+        or disk_gb != HEAVY_MIN_DISK_GB
+        or not heavy_offer_eligible(offer)
+    ):
+        raise SafeError(
+            "SimReady launch requires the supervised heavy offer contract"
+        )
+    with simready_launch_lock():
+        require_no_simready_instance(api_key)
+        ensure_local_ssh_registered(api_key)
+        if attempt_label is None:
+            attempt_label = simready_attempt_label()
+        if not is_simready_attempt_label(attempt_label):
+            raise SafeError("SimReady attempt label is invalid")
+        print(
+            f"OpenBao Vast.ai SimReady paid launch attempt label: {attempt_label}",
+            file=sys.stderr,
+            flush=True,
+        )
+        offer_id = positive_id(str(offer.get("id")), "offer id")
+        try:
+            result = vast_request(
+                api_key,
+                f"/api/v0/asks/{offer_id}/",
+                method="PUT",
+                payload={
+                    "image": SIMREADY_IMAGE,
+                    "label": attempt_label,
+                    "disk": disk_gb,
+                    "runtype": "ssh_direct",
+                    "env": {},
+                    "onstart": (
+                        simready_validation_only_onstart_command()
+                        if validation_only
+                        else "simready-vast-onstart"
+                    ),
+                    "cancel_unavail": True,
+                },
+            )
+        except BaseException as launch_error:
+            try:
+                reconciled_id = reconcile_uncertain_simready_launch(
+                    api_key, attempt_label
+                )
+            except BaseException as cleanup_error:
+                report_simready_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    add_exception_note(
+                        launch_error,
+                        "interrupted or uncertain SimReady create was not reconciled; "
+                        f"inspect the unique attempt label {attempt_label} before retrying",
+                    )
+                    raise launch_error from cleanup_error
+                raise
+            add_exception_note(
+                launch_error,
+                f"SimReady instance {reconciled_id} was automatically destroyed "
+                "and verified stably absent after the interrupted create call",
+            )
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            raise
+        instance_id = result.get("new_contract")
+        if (
+            not isinstance(instance_id, int)
+            or isinstance(instance_id, bool)
+            or instance_id <= 0
+        ):
+            try:
+                reconciled_id = reconcile_uncertain_simready_launch(
+                    api_key, attempt_label
+                )
+            except BaseException as cleanup_error:
+                report_simready_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    raise SafeError(
+                        "Vast.ai did not return a valid SimReady instance id; "
+                        "rollback was not verified and the unique attempt label "
+                        f"{attempt_label} must be inspected before retrying"
+                    ) from cleanup_error
+                raise
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            raise SafeError(
+                "Vast.ai did not return a valid SimReady instance id; instance "
+                f"{reconciled_id} was automatically destroyed and verified stably absent"
+            )
+        try:
+            verify_single_simready_instance(api_key, instance_id, attempt_label)
+            verify_simready_contract(api_key, instance_id, attempt_label)
+            if validation_only:
+                known_hosts_path = verify_simready_ssh_ready(
+                    api_key, instance_id, validation_only=True
+                )
+            else:
+                known_hosts_path = verify_simready_ssh_ready(api_key, instance_id)
+            print_json(
+                {
+                    "instance_id": instance_id,
+                    "image": SIMREADY_IMAGE,
+                    "label": attempt_label,
+                    "selected_offer": safe_offer(offer),
+                    "offer_contract_verified": True,
+                    "singleton_preflight_verified": True,
+                    "singleton_verified": True,
+                    "contract_verified": True,
+                    "running_state_verified": True,
+                    "ssh_batch_mode_verified": True,
+                    "runtime_ready_verified": True,
+                    "validation_only": validation_only,
+                    "property_assignment_intent": (
+                        "skip" if validation_only else "run"
+                    ),
+                    "content_agents_started": not validation_only,
+                    "physicsnemo_gpu_runtime_verified": True,
+                    "host_key_alias": simready_host_key_alias(instance_id),
+                    "known_hosts_path": str(known_hosts_path),
+                    "simulation_validated": False,
+                    "manufacturing_authorized": False,
+                    "target_1600_ch_validated": False,
+                }
+            )
+        except BaseException as post_create_error:
+            try:
+                reconciled_id = reconcile_uncertain_simready_launch(
+                    api_key, attempt_label
+                )
+            except BaseException as cleanup_error:
+                report_simready_billing_risk(attempt_label)
+                if isinstance(cleanup_error, Exception):
+                    add_exception_note(
+                        post_create_error,
+                        "post-launch SimReady verification failed and rollback of "
+                        f"attempt {attempt_label} was not verified",
+                    )
+                    raise post_create_error from cleanup_error
+                raise
+            try:
+                remove_simready_known_hosts_after_destroy(reconciled_id)
+            except Exception as local_cleanup_error:
+                add_exception_note(
+                    post_create_error,
+                    "SimReady remote destruction was verified but its local scoped "
+                    "known_hosts file could not be removed",
+                )
+                raise post_create_error from local_cleanup_error
+            add_exception_note(
+                post_create_error,
+                f"SimReady instance {reconciled_id} was automatically destroyed and "
+                "verified stably absent after the post-create failure",
+            )
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            raise
         return 0
 
 
@@ -912,6 +3334,17 @@ def run(operation: list[str]) -> int:
             return 0
         if operation == ["heavy-offers"]:
             print_json([safe_offer(item) for item in get_heavy_offers(api_key)[:20]])
+            return 0
+        if operation == ["wave-offers"]:
+            print_json([safe_offer(item) for item in get_wave_offers(api_key)[:20]])
+            return 0
+        if operation == ["component-factory-f41-offers"]:
+            print_json(
+                [
+                    safe_offer(item)
+                    for item in get_component_factory_f41_offers(api_key)[:20]
+                ]
+            )
             return 0
         if operation == ["mesh-offers"]:
             print_json([safe_offer(item) for item in get_mesh_offers(api_key)[:20]])
@@ -959,7 +3392,13 @@ def run(operation: list[str]) -> int:
             return 0
         if operation == ["ensure-local-ssh"]:
             ensure_local_ssh_registered(api_key)
-            print_json({"registered": True, "loaded_in_agent": True})
+            print_json(
+                {
+                    "registered": True,
+                    "approved_private_key_file_verified": True,
+                    "ssh_agent_required": False,
+                }
+            )
             return 0
         if len(operation) == 2 and operation[0] == "probe":
             instance_id = positive_id(operation[1], "instance id")
@@ -1010,18 +3449,60 @@ def run(operation: list[str]) -> int:
             if len(matching) != 1:
                 raise SafeError("mesh offer is unavailable or outside the fixed safety and price limits")
             return launch_mesh_offer(api_key, matching[0])
-        if len(operation) == 2 and operation[0] == "launch-simready":
+        if len(operation) == 2 and operation[0] == "launch-wave-f39":
             offer_id = positive_id(operation[1], "offer id")
             matching = [
                 item
-                for item in get_offers(api_key)
-                if str(item.get("id")) == str(offer_id)
+                for item in get_wave_offers(api_key, offer_id)
+                if item.get("id") == offer_id
             ]
             if len(matching) != 1:
-                raise SafeError("SimReady offer is unavailable or outside the fixed safety and price limits")
-            return launch_simready_offer(api_key, matching[0])
-        if len(operation) == 2 and operation[0] == "launch-simready-heavy":
+                raise SafeError(
+                    "wave-action offer is unavailable or outside the fixed safety and price limits"
+                )
+            return launch_wave_f39_offer(api_key, matching[0])
+        if (
+            len(operation) in {2, 4}
+            and operation[0] == "launch-component-factory-f41"
+        ):
             offer_id = positive_id(operation[1], "offer id")
+            supervised_attempt_label = None
+            if len(operation) == 4:
+                if operation[2] != "--attempt-label" or not is_component_factory_f41_attempt_label(
+                    operation[3]
+                ):
+                    raise SafeError("supervised F41 attempt label is invalid")
+                supervised_attempt_label = operation[3]
+            matching = [
+                item
+                for item in get_component_factory_f41_offers(api_key, offer_id)
+                if item.get("id") == offer_id
+            ]
+            if len(matching) != 1:
+                raise SafeError(
+                    "component-factory F41 offer is unavailable or outside the "
+                    "fixed safety and price limits"
+                )
+            return launch_component_factory_f41_offer(
+                api_key,
+                matching[0],
+                attempt_label=supervised_attempt_label,
+            )
+        if (
+            len(operation) in {2, 4}
+            and operation[0] in {
+                "launch-simready-heavy",
+                "launch-simready-validation-only",
+            }
+        ):
+            offer_id = positive_id(operation[1], "offer id")
+            supervised_attempt_label = None
+            if len(operation) == 4:
+                if operation[2] != "--attempt-label" or not is_simready_attempt_label(
+                    operation[3]
+                ):
+                    raise SafeError("supervised SimReady attempt label is invalid")
+                supervised_attempt_label = operation[3]
             matching = [
                 item
                 for item in get_heavy_offers(api_key)
@@ -1034,26 +3515,18 @@ def run(operation: list[str]) -> int:
                 matching[0],
                 disk_gb=500,
                 enforce_singleton=True,
+                attempt_label=supervised_attempt_label,
+                validation_only=operation[0] == "launch-simready-validation-only",
             )
-        if operation == ["launch-simready-best"]:
-            candidates = [item for item in get_offers(api_key) if item.get("gpu_name") != "CMP 170HX"]
-            if not candidates:
-                raise SafeError("no eligible SimReady offer is currently available")
-            return launch_simready_offer(api_key, candidates[0])
-        if operation == ["launch-simready-best-eu"]:
-            eu_countries = {
-                "AT", "BE", "BG", "HR", "CY", "CZ", "DE", "DK", "EE", "ES",
-                "FI", "FR", "GR", "HU", "IE", "IS", "IT", "LT", "LU", "LV",
-                "MT", "NL", "NO", "PL", "PT", "RO", "SE", "SI", "SK", "CH",
-            }
-            candidates = [
-                item for item in get_offers(api_key)
-                if str(item.get("geolocation", "")).rsplit(", ", 1)[-1] in eu_countries
-                and item.get("gpu_name") != "CMP 170HX"
-            ]
-            if not candidates:
-                raise SafeError("no eligible European SimReady offer is currently available")
-            return launch_simready_offer(api_key, candidates[0])
+        if len(operation) == 2 and operation[0] == "reconcile-simready-attempt":
+            attempt_label = operation[1]
+            if not is_simready_attempt_label(attempt_label):
+                raise SafeError("SimReady attempt label is invalid")
+            instance_id = reconcile_uncertain_simready_launch(
+                api_key, attempt_label
+            )
+            emit_simready_cleanup_attestation(instance_id, attempt_label)
+            return 0
         if operation == ["launch-best-eu"]:
             eu_countries = {
                 "AT", "BE", "BG", "HR", "CY", "CZ", "DE", "DK", "EE", "ES",
@@ -1080,13 +3553,15 @@ def run(operation: list[str]) -> int:
         if len(operation) == 2 and operation[0] in {"start", "stop"}:
             instance_id = positive_id(operation[1], "instance id")
             state = "running" if operation[0] == "start" else "stopped"
-            result = vast_request(
-                api_key,
-                f"/api/v0/instances/{instance_id}/",
-                method="PUT",
-                payload={"state": state},
+            set_instance_state_verified(api_key, instance_id, state)
+            print_json(
+                {
+                    "instance_id": instance_id,
+                    "requested_state": state,
+                    "success": True,
+                    "final_state_verified": True,
+                }
             )
-            print_json({"instance_id": instance_id, "requested_state": state, "success": result.get("success")})
             return 0
         if len(operation) == 3 and operation[0] == "destroy" and operation[2] == "--confirm":
             instance_id = positive_id(operation[1], "instance id")
@@ -1094,9 +3569,14 @@ def run(operation: list[str]) -> int:
             print_json({"instance_id": instance_id, "destroyed": True, "verified_absent": True})
             return 0
         raise SafeError(
-            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|mesh-offers|instances|"
+            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|wave-offers|"
+            "component-factory-f41-offers|mesh-offers|instances|"
             "show <id>|ssh-keys <id>|attach-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
-            "launch <offer_id>|launch-mesh <offer_id>|launch-simready <offer_id>|launch-simready-heavy <offer_id>|launch-simready-best|launch-simready-best-eu|launch-best-eu|"
+            "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
+            "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
+            "launch-simready-heavy <offer_id> [--attempt-label <label>]|"
+            "launch-simready-validation-only <offer_id> [--attempt-label <label>]|"
+            "reconcile-simready-attempt <label>|launch-best-eu|"
             "start <id>|stop <id>|"
             "destroy <id> --confirm"
         )
@@ -1113,12 +3593,17 @@ def main() -> int:
     return run(sys.argv[1:])
 
 
-if __name__ == "__main__":
+def cli() -> int:
+    """Render safe operator-facing errors and return a process exit status."""
     try:
-        raise SystemExit(main())
+        return main()
     except KeyboardInterrupt:
         print("OpenBao Vast.ai: cancelled", file=sys.stderr)
-        raise SystemExit(130) from None
+        return 130
     except SafeError as exc:
         print(f"OpenBao Vast.ai error: {exc}", file=sys.stderr)
-        raise SystemExit(1) from None
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(cli())

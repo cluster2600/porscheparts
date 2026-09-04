@@ -1,0 +1,99 @@
+{
+  "$comment": "Preuve assainie de deux executions CPU F42a. Aucun STEP, USD, journal ou chemin prive n'est inclus.",
+  "contract_sha256": "bf27a00032fe060e0e5eacd75b3f7c43408d98ff780808b7d3dd8212a9192c40",
+  "date_utc": "2026-09-03",
+  "manufacturing_authorized": false,
+  "performance_1600_hp_claim_authorized": false,
+  "phase": "F42a-cpu-usd-repeatability",
+  "private_artifacts_committed": false,
+  "release_gates": {
+    "all_3mf_meshes_validated": false,
+    "all_editable_cad_generated": false,
+    "all_family_counts_closed": false,
+    "all_interface_dimensions_measured": false,
+    "all_materials_qualified": false,
+    "all_step_roundtrips_validated": false,
+    "all_tolerances_and_clearances_released": false,
+    "all_usd_assets_minimum_valid": false,
+    "assembly_interference_check_passed": false,
+    "combustion_and_boost_validated": false,
+    "engine_start_authorized": false,
+    "fatigue_and_rotordynamics_validated": false,
+    "installation_in_993_authorized": false,
+    "lubrication_and_cooling_validated": false,
+    "metal_print_authorized": false,
+    "performance_1600_hp_claim_authorized": false,
+    "physical_dyno_correlated": false,
+    "physical_flowbench_correlated": false,
+    "professional_engineering_review_approved": false,
+    "simready_property_assignment_complete": false
+  },
+  "repeatability": {
+    "all_six_USD_bitwise_identical": true,
+    "canonical_namespace": true,
+    "families": [
+      {
+        "USD_sha256": "f995b603ec6d6b467e87b2ad26913e402b864bee10736fca16a65612260d1ec8",
+        "USD_size_bytes": 22222,
+        "default_prim_path": "/connecting_rod",
+        "family_id": "connecting_rod"
+      },
+      {
+        "USD_sha256": "20be6e2ff0afe25bde546148833d51d7546a7e50d9abe75e963808c472292cf1",
+        "USD_size_bytes": 40439,
+        "default_prim_path": "/crankshaft",
+        "family_id": "crankshaft"
+      },
+      {
+        "USD_sha256": "aaa12a2eb966a506be21f9f44733dac3edb4c5d399441a2d9a8fbfd44b657a33",
+        "USD_size_bytes": 15091,
+        "default_prim_path": "/main_bearing_pair",
+        "family_id": "main_bearing_pair"
+      },
+      {
+        "USD_sha256": "95a4c5ef57c87af25e12a5784ced63c6fd88b3199f86213903ad2e03d05506df",
+        "USD_size_bytes": 65639,
+        "default_prim_path": "/piston",
+        "family_id": "piston"
+      },
+      {
+        "USD_sha256": "fefe43fdabd8b7eea63bf7b8e191f02eac2f4be28c538c644f76a63da526934d",
+        "USD_size_bytes": 11219,
+        "default_prim_path": "/piston_pin",
+        "family_id": "piston_pin"
+      },
+      {
+        "USD_sha256": "a0f7bba825e4e3f9e3faae2d1318584d99ab836da0d224ab35039b4c0a7a1aa3",
+        "USD_size_bytes": 12156,
+        "default_prim_path": "/piston_ring",
+        "family_id": "piston_ring"
+      }
+    ],
+    "private_execution_reports": {
+      "run_a": {
+        "sha256": "cd59164014339cde65d5c968598b4c3a85491db885433844c94d9ce4c36934ca",
+        "size_bytes": 11737
+      },
+      "run_b": {
+        "sha256": "b78237926c05d937ea57eb3fe064d2d5a445acf90d58baa02d5c09195428622e",
+        "size_bytes": 11737
+      }
+    },
+    "run_count": 2
+  },
+  "runtime": {
+    "container_network_enabled": false,
+    "gpu_used": false,
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+    "platform": "linux/amd64"
+  },
+  "schema_version": "1.0.0",
+  "simulation_validated": false,
+  "source": {
+    "filename": "f41.tar.gz",
+    "run_id": "f41-c59-20260903t025511z",
+    "sha256": "59ef86584e9dfb16481b76ce79bf5739b129ddf2d3a3869f700b2dd614bd86b5",
+    "size_bytes": 772358
+  },
+  "status": "passed_two_runs_six_canonical_USD_bitwise_identical_not_simready"
+}

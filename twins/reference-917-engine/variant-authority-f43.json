@@ -1,0 +1,183 @@
+{
+  "$comment": "F43 fixe l'autorite documentaire des deux produits 2026. Il ne transfere aucune geometrie, puissance, performance ou autorisation de fabrication depuis les branches historiques ou les calculs precedents.",
+  "schema_version": "1.0.0",
+  "phase": "F43",
+  "status": "source_bound_2026_variant_authority_only_all_geometry_solver_and_release_gates_blocked",
+  "asset_id": "porsche-917-2026-variant-authority-f43",
+  "authority_scope": {
+    "program": "917_inspired_2026_flat12_test_bench",
+    "historical_replica": false,
+    "variant_parameter_authority": true,
+    "geometry_authority": false,
+    "performance_authority": false,
+    "manufacturing_authority": false,
+    "consumer_migration_complete": false
+  },
+  "source_bindings": [
+    {
+      "id": "ams_917_engine_technical_analysis",
+      "path": "catalog/sources/src-ams-917-engine-technical-analysis.json",
+      "sha256": "87669cfbda481b816acb880f54c37e3cc73dffd6e753fd8b695248c9c9765a37",
+      "role": "secondary_documentary_source_for_bore_stroke_and_displacement",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "porsche_newsroom_91730_turbo",
+      "path": "catalog/sources/src-porsche-newsroom-91730-turbo.json",
+      "sha256": "beffabf935be3baec242bb134a50b6a112c038564c8664f803778cae5f219e55",
+      "role": "primary_documentary_source_for_5374_cm3",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "classical_solver_facts_f13",
+      "path": "twins/reference-917-engine/classical-solver-cases-f13.json",
+      "sha256": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
+      "role": "canonical_fact_records_only",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "dimensional_skeleton_f14",
+      "path": "twins/reference-917-engine/dimensional-skeleton-f14.json",
+      "sha256": "2824eb0aeb9bfa5f16d7720ade0ba05236d2e4319ef6cbb97b11ff2e0e28b00e",
+      "role": "source_bounded_variant_fact_crosscheck_only",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "dual_variant_parametric_contract_f28",
+      "path": "twins/reference-917-engine/dual-variant-parametric-cad-contract-f28.json",
+      "sha256": "920b8c022676a9941c8764fb1f0f178da47220798dd6fa7e96ba6d410aee5abb",
+      "role": "documentary_design_guides_only",
+      "geometry_transfer_authorized": false
+    },
+    {
+      "id": "clean_sheet_turbo_screening_f32",
+      "path": "twins/reference-917-engine/clean-sheet-2026-f32.json",
+      "sha256": "485a381b26f4d02da82d66b277e9e4ab16dbeaf7f72b5eb341b02304355ddfb4",
+      "role": "user_target_lineage_and_unvalidated_turbo_screening_only",
+      "geometry_transfer_authorized": false
+    }
+  ],
+  "product_variants": [
+    {
+      "variant_id": "917_2026_flat12_na_candidate",
+      "product_label": "917-inspired 2026 flat-12 5,0 L atmospherique",
+      "configuration": "naturally_aspirated",
+      "source_fact_variant_id": "type_912_5_0_na",
+      "cylinder_count": 12,
+      "bore_mm": 86.8,
+      "stroke_mm": 70.4,
+      "documented_displacement_cm3": 4999.0,
+      "calculated_displacement_cm3": 4999.001152861555,
+      "turbocharger_count": 0,
+      "requested_power": null,
+      "parameter_classification": "documentary_product_seed_not_measured_or_manufacturing_geometry",
+      "historical_hardware_identity_equivalent": false,
+      "geometry_released": false,
+      "solver_results_released": false
+    },
+    {
+      "variant_id": "917_2026_flat12_twin_turbo_1600hp_target",
+      "product_label": "917-inspired 2026 flat-12 5,374 L biturbo",
+      "configuration": "twin_turbo",
+      "source_fact_variant_id": "917_30_1973_turbo_5374",
+      "cylinder_count": 12,
+      "bore_mm": 90.0,
+      "stroke_mm": 70.4,
+      "documented_displacement_cm3": 5374.0,
+      "calculated_displacement_cm3": 5374.3853843491315,
+      "turbocharger_count": 2,
+      "requested_power": {
+        "value": 1600.0,
+        "unit": "mechanical_hp",
+        "origin": "user_design_requirement_carried_by_f32",
+        "measured": false,
+        "simulated": false,
+        "proven": false
+      },
+      "parameter_classification": "documentary_product_seed_not_measured_or_manufacturing_geometry",
+      "historical_hardware_identity_equivalent": false,
+      "geometry_released": false,
+      "solver_results_released": false
+    }
+  ],
+  "legacy_branch_exclusions": {
+    "f10_path": "twins/reference-917-engine/variant-configurations-f10.json",
+    "f10_sha256": "dfb6ee25f367c934b11ff020e34d9d77296d2b5a535030a73221696af7c7a640",
+    "excluded_na_variant_id": "type_912_4_5_na",
+    "excluded_na_bore_mm": 85.0,
+    "excluded_na_stroke_mm": 66.0,
+    "excluded_na_documented_displacement_cm3": 4494.0,
+    "allowed_reuse_scope": "visual_and_semantic_history_only_no_product_identity_dimension_geometry_or_solver_input_transfer",
+    "silent_na_inheritance_allowed": false,
+    "historical_turbo_hardware_identity_transfer_allowed": false
+  },
+  "downstream_conflict_register": [
+    {
+      "id": "f33_na_uses_turbo_bore",
+      "path": "twins/reference-917-engine/clean-sheet-cycle-thermal-f33.json",
+      "sha256": "6bbd5a5373660641c50e85dce6b45ac23222751d77f9f86783d82bd72530e73b",
+      "observed_variant_id": "917_2026_flat12_na_candidate",
+      "observed_bore_mm": 90.0,
+      "observed_stroke_mm": 70.4,
+      "conforms_to_f43": false,
+      "results_reusable_as_f43_product_evidence": false
+    },
+    {
+      "id": "f37_na_bench_uses_legacy_4_5_identity",
+      "path": "twins/reference-917-engine/integrated-bench-assembly-f37.json",
+      "sha256": "44241ab4b756f0308ab811e91e8b5c2f5bf5aca20eec8871221c3e6348ea6f4f",
+      "observed_variant_id": "type_912_4_5_na",
+      "observed_f28_variant_id": "type_912_5_0_na",
+      "observed_identity_match": false,
+      "conforms_to_f43": false,
+      "results_reusable_as_f43_product_evidence": false
+    },
+    {
+      "id": "f38_na_bench_lineage_uses_legacy_4_5_identity",
+      "path": "twins/reference-917-engine/gas-path-network-f38.json",
+      "sha256": "e52c7e7910f0263578e4197276a2abbafc36e83460f9bd55346af4a497c51c1d",
+      "observed_variant_id": "917_2026_flat12_na_candidate",
+      "observed_bench_variant_id": "type_912_4_5_na",
+      "observed_geometry_identity_match": false,
+      "conforms_to_f43": false,
+      "results_reusable_as_f43_product_evidence": false
+    },
+    {
+      "id": "f39_na_uses_turbo_bore",
+      "path": "twins/reference-917-engine/unsteady-network-f39.json",
+      "sha256": "c62d1dffcd57a13dce569eb1af05e61c84b893b27613f77c01b0878831743432",
+      "observed_variant_id": "917_2026_flat12_na_candidate",
+      "observed_bore_mm": 90.0,
+      "observed_stroke_mm": 70.4,
+      "conforms_to_f43": false,
+      "results_reusable_as_f43_product_evidence": false
+    }
+  ],
+  "migration_policy": {
+    "f43_product_variant_ids_are_authoritative_for_future_2026_work": true,
+    "existing_f33_f37_f38_f39_results_are_grandfathered_as_product_evidence": false,
+    "consumer_must_bind_this_contract_by_path_and_sha256": true,
+    "consumer_must_regenerate_after_parameter_change": true,
+    "cross_variant_geometry_or_solver_result_reuse_allowed": false,
+    "unmeasured_dimensions_may_be_filled_from_other_variants": false
+  },
+  "release_gates": {
+    "cad_geometry_authorized": false,
+    "usd_simready_authorized": false,
+    "cfd_authorized": false,
+    "combustion_simulation_authorized": false,
+    "power_claim_authorized": false,
+    "1600_hp_proven": false,
+    "engine_start_authorized": false,
+    "vehicle_installation_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false
+  },
+  "required_next_evidence": [
+    "rebase_each_2026_consumer_to_f43_by_path_and_sha256",
+    "regenerate_na_geometry_and_solver_inputs_at_86_8_x_70_4_mm",
+    "regenerate_turbo_geometry_and_solver_inputs_at_90_x_70_4_mm",
+    "measure_or_engineer_every_remaining_interface_dimension_independently",
+    "validate_classical_solvers_and_correlate_against_instrumented_physical_tests_before_any_power_or_release_claim"
+  ]
+}

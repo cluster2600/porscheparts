@@ -1,0 +1,88 @@
+{
+  "$comment": "Métadonnées de deux exécutions natives Intel byte-identiques de la campagne F40b motored. Le cas nominal atteint une périodicité agrégée au cycle 16; la convergence phase-résolue et toutes les gates physiques restent fermées.",
+  "schema_version": "1.0.0",
+  "phase": "F40b",
+  "status": "two_native_runs_byte_identical_aggregate_periodic_state_demonstrated_phase_resolved_and_physical_release_closed",
+  "source_commit": "864d60a",
+  "contract": {
+    "path": "twins/reference-917-engine/extended-periodic-state-f40b.json",
+    "sha256": "02d319c4b1c686080648549bcfd52f9b44236e5d5ba7b803d83f96a2b655ec94"
+  },
+  "runner": {
+    "path": "twins/reference-917-engine/source/run_extended_periodic_state_f40b.py",
+    "sha256": "a2a14e5d19b3eebbc74e0c87b7c7abf8ca15b3bf88e424efbc7ac802cbaddfcc"
+  },
+  "report_documentary_repository_snapshot": {
+    "commit": "c3d68ba9eddbaf19e316ff79ef39037d3d7e5bd6",
+    "classification": "documentary_snapshot_not_runtime_head_requirement",
+    "enforce_current_head": false
+  },
+  "container": {
+    "reported_reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "os": "linux",
+    "architecture": "amd64",
+    "runtime_digest_verified_by_runner": false
+  },
+  "execution_host": {
+    "role": "user_authorized_intel_cpu_validation_node"
+  },
+  "campaign": {
+    "engine_cylinder_count": 12,
+    "case_count": 1,
+    "cycles_completed": 16,
+    "cycle_degrees": 720.0,
+    "pipe_count": 27,
+    "equivalent_valve_port_count": 24,
+    "zero_dimensional_component_count": 15,
+    "aggregate_relative_delta_tolerance": 0.001,
+    "required_consecutive_deltas": 3,
+    "first_satisfied_at_cycle": 16,
+    "satisfied_window_maximum_relative_deltas": [
+      0.0005528999787436965,
+      0.00019262889509060575,
+      0.000030146002643767643
+    ]
+  },
+  "runs": [
+    {
+      "id": "intel-864d60a-run1",
+      "report_sha256": "b3045e91cf8c20606166caef132c2b15030a5204d220c093b89446b0476a1b35"
+    },
+    {
+      "id": "intel-864d60a-run2",
+      "report_sha256": "b3045e91cf8c20606166caef132c2b15030a5204d220c093b89446b0476a1b35"
+    }
+  ],
+  "canonical_report": {
+    "path": "twins/reference-917-engine/evidence/f40b/intel-native-run-864d60a.json",
+    "sha256": "b3045e91cf8c20606166caef132c2b15030a5204d220c093b89446b0476a1b35",
+    "byte_count": 435189
+  },
+  "observations": {
+    "two_runs_byte_identical": true,
+    "source_hashes_verified": true,
+    "one_runtime_network_preserved_across_cycles": true,
+    "all_sixteen_cycle_windows_completed": true,
+    "all_cycle_boundaries_recorded": true,
+    "runtime_fields_finite": true,
+    "runtime_states_positive": true,
+    "aggregate_periodic_state_demonstrated": true,
+    "phase_resolved_convergence_evaluated": false,
+    "physical_release_gates_all_false": true
+  },
+  "not_proven": [
+    "runtime_container_digest_verified_by_runner",
+    "phase_resolved_local_convergence",
+    "mass_or_energy_balance",
+    "measured_network_geometry",
+    "measured_valve_cda",
+    "physical_cycle_correlation",
+    "combustion",
+    "fuel_injection",
+    "turbo_matching",
+    "power_or_torque",
+    "engine_start",
+    "manufacturing",
+    "1600_hp_or_ch"
+  ]
+}

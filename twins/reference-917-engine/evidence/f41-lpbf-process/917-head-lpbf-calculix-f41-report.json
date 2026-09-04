@@ -1,0 +1,143 @@
+{
+  "cases": [
+    {
+      "boundary": "all_build_plate_nodes_fixed_1_to_3_locked_plate_screen",
+      "files": {
+        "dat": "f41-lpbf-distortion.dat",
+        "input": "f41-lpbf-distortion.inp",
+        "log": "calculix.log"
+      },
+      "inherent_strain_assumption": {
+        "calibrated_to_machine_and_scan_strategy": false,
+        "equivalent_delta_temperature_k": -116.27906976744185,
+        "isotropic_shrinkage": 0.0025
+      },
+      "material_assumption": {
+        "coupon_qualified": false,
+        "elastic_modulus_mpa": 70000.0,
+        "poisson": 0.33,
+        "temperature_dependent": false,
+        "thermal_expansion_1_k": 2.15e-05
+      },
+      "mesh": {
+        "base_nodes": 132,
+        "elements_C3D8": 12408,
+        "nodes": 15666,
+        "shape": [
+          25,
+          17,
+          42
+        ]
+      },
+      "pitch_mm": 5.0,
+      "results": {
+        "maximum_displacement_mm": 0.553034897926098,
+        "von_mises_maximum_mpa": 539.2831416482929,
+        "von_mises_p95_mpa": 46.73780862343558,
+        "von_mises_p99_mpa": 157.22323748548416
+      },
+      "solver": "CalculiX_ccx",
+      "status": "completed"
+    },
+    {
+      "boundary": "all_build_plate_nodes_fixed_1_to_3_locked_plate_screen",
+      "files": {
+        "dat": "f41-lpbf-distortion.dat",
+        "input": "f41-lpbf-distortion.inp",
+        "log": "calculix.log"
+      },
+      "inherent_strain_assumption": {
+        "calibrated_to_machine_and_scan_strategy": false,
+        "equivalent_delta_temperature_k": -116.27906976744185,
+        "isotropic_shrinkage": 0.0025
+      },
+      "material_assumption": {
+        "coupon_qualified": false,
+        "elastic_modulus_mpa": 70000.0,
+        "poisson": 0.33,
+        "temperature_dependent": false,
+        "thermal_expansion_1_k": 2.15e-05
+      },
+      "mesh": {
+        "base_nodes": 150,
+        "elements_C3D8": 22574,
+        "nodes": 27795,
+        "shape": [
+          31,
+          22,
+          53
+        ]
+      },
+      "pitch_mm": 4.0,
+      "results": {
+        "maximum_displacement_mm": 0.550078588381299,
+        "von_mises_maximum_mpa": 654.4868694672863,
+        "von_mises_p95_mpa": 39.667675432417596,
+        "von_mises_p99_mpa": 121.08258796955626
+      },
+      "solver": "CalculiX_ccx",
+      "status": "completed"
+    },
+    {
+      "boundary": "all_build_plate_nodes_fixed_1_to_3_locked_plate_screen",
+      "files": {
+        "dat": "f41-lpbf-distortion.dat",
+        "input": "f41-lpbf-distortion.inp",
+        "log": "calculix.log"
+      },
+      "inherent_strain_assumption": {
+        "calibrated_to_machine_and_scan_strategy": false,
+        "equivalent_delta_temperature_k": -116.27906976744185,
+        "isotropic_shrinkage": 0.0025
+      },
+      "material_assumption": {
+        "coupon_qualified": false,
+        "elastic_modulus_mpa": 70000.0,
+        "poisson": 0.33,
+        "temperature_dependent": false,
+        "thermal_expansion_1_k": 2.15e-05
+      },
+      "mesh": {
+        "base_nodes": 169,
+        "elements_C3D8": 50232,
+        "nodes": 59646,
+        "shape": [
+          41,
+          28,
+          70
+        ]
+      },
+      "pitch_mm": 3.0,
+      "results": {
+        "maximum_displacement_mm": 0.5436294433869308,
+        "von_mises_maximum_mpa": 934.9245820792953,
+        "von_mises_p95_mpa": 30.828745579320866,
+        "von_mises_p99_mpa": 91.19645826992479
+      },
+      "solver": "CalculiX_ccx",
+      "status": "completed"
+    }
+  ],
+  "classification": "voxel_locked_plate_linear_elastic_inherent_strain_sensitivity_not_calibrated_distortion_prediction",
+  "finest_pair_convergence": {
+    "maximum_displacement_relative_difference": 0.011724042946928614,
+    "p95_stress_relative_difference": 0.222824497698529
+  },
+  "gates": {
+    "all_cases_completed": true,
+    "displacement_mesh_difference_below_5_percent": true,
+    "lpbf_process_released": false,
+    "machine_inherent_strain_calibrated": false,
+    "p95_stress_mesh_difference_below_10_percent": false,
+    "support_contact_and_release_simulated": false,
+    "temperature_dependent_coupon_card_used": false
+  },
+  "input": {
+    "path": "local-only://917-head-lpbf-candidate-f41.stl",
+    "repository_policy": "local_only_scan_derived_mesh_rights_unverified",
+    "sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81"
+  },
+  "phase": "F41",
+  "schema_version": "1.0.0",
+  "status": "calculix_locked_plate_inherent_strain_screen_complete"
+}

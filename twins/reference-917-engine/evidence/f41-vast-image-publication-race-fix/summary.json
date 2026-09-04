@@ -1,0 +1,92 @@
+{
+  "$comment": "Preuve textuelle de publication OCI de l'image Vast CAD F41 corrigee contre la course sshd/onstart. Elle qualifie le workflow, le digest et les smokes synthetiques, pas le runtime Vast, la CAO moteur reelle ni une validation physique ou de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F41-vast-cad-image-publication-race-fix",
+  "status": "ghcr_publication_verified_corrected_candidate_not_yet_vast_qualified",
+  "source": {
+    "repository": "https://github.com/cluster2600/3dprinting993",
+    "head_sha": "7ae01d2fb67fe13385726124f9dfac249b99e8ea"
+  },
+  "workflow": {
+    "run_id": 33708557585,
+    "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33708557585",
+    "status": "completed",
+    "conclusion": "success",
+    "all_steps_succeeded": true,
+    "anonymous_pull_step_succeeded": true,
+    "synthetic_image_smoke_succeeded": true,
+    "base_cad_smoke_succeeded": true,
+    "cold_onstart_smoke_succeeded": true,
+    "deterministic_lock_contention_smoke_succeeded": true,
+    "ready_path": "/workspace/READY"
+  },
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-cad-author-f28",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b",
+    "oci_index_digest": "sha256:c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b",
+    "platform": "linux/amd64",
+    "platform_manifest_digest": "sha256:7a7f83cbe9f37e381ba763f2f7f1126d816c27c16712575cf5104d312045ac44",
+    "attestation_manifest_digest": "sha256:fd1610badfd3a8d4f7fe3d09db61ac6551c3706ed057e13d59ecba863630df92",
+    "size": {
+      "compressed_config_and_layers_bytes": 254621325,
+      "added_size_budget_bytes": 16000000,
+      "workflow_size_budget_step_succeeded": true,
+      "exact_uncompressed_added_size_recorded_here": false
+    }
+  },
+  "workflow_artifact": {
+    "id": 9876138185,
+    "name": "917-component-factory-f41-vast-33708557585-1",
+    "digest": "sha256:dac83038b4c394edee308559212dbabfecf5eae9dfc579678a40c7754e95b9b8",
+    "size_bytes": 363827,
+    "committed_to_repository": false
+  },
+  "verified_scope": {
+    "oci_index_published": true,
+    "linux_amd64_manifest_present": true,
+    "attestation_manifest_present": true,
+    "anonymous_exact_digest_pull_succeeded": true,
+    "offline_transport_smoke_succeeded": true,
+    "synthetic_build123d_step_roundtrip_succeeded": true,
+    "cold_onstart_ready_smoke_succeeded": true,
+    "deterministic_runtime_host_key_lock_contention_smoke_succeeded": true
+  },
+  "excluded_from_repository": [
+    "workflow_artifact_archive",
+    "oci_layers",
+    "raw_scans",
+    "cad_geometry",
+    "step",
+    "stl",
+    "3mf",
+    "usd",
+    "renders",
+    "runtime_logs",
+    "secrets"
+  ],
+  "repository_evidence": {
+    "text_files_only": true,
+    "binary_asset_count": 0,
+    "raw_scan_count": 0
+  },
+  "qualification": {
+    "authorized_candidate_for_supervised_vast_qualification": true,
+    "vast_runtime_qualified": false,
+    "f41_batch_qualified": false,
+    "runtime_attempt_evidence": null,
+    "predecessor_revoked_publication": "../f41-vast-image-publication/summary.json",
+    "predecessor_failed_runtime_evidence": "../f41-vast-runtime-attempt-1/summary.json",
+    "supervisor_required": "deploy/openbao/run-917-component-factory-f41-cad"
+  },
+  "gates": {
+    "f41_component_factory_executed": false,
+    "real_engine_cad_generated": false,
+    "geometry_dimensionally_validated": false,
+    "engine_model_physically_correlated": false,
+    "omniverse_simready_validated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false
+  }
+}

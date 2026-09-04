@@ -8,18 +8,20 @@ ROOT = Path(__file__).resolve().parents[1]
 class SimReadyLocalAiImageTests(unittest.TestCase):
     def test_image_pins_model_runtime_and_physicsnemo(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
+        smoke = (ROOT / "containers/simready-local-ai-smoke.sh").read_text()
         self.assertIn("VLLM_VERSION=0.26.0", dockerfile)
         self.assertIn("VLLM_TORCH_VERSION=2.11.0", dockerfile)
         self.assertIn("VLLM_TORCHVISION_VERSION=0.26.0", dockerfile)
         self.assertIn("VLLM_TORCHAUDIO_VERSION=2.11.0", dockerfile)
         self.assertIn("https://download.pytorch.org/whl/cu129", dockerfile)
-        self.assertGreaterEqual(dockerfile.count('torch.version.cuda == "12.9"'), 3)
+        self.assertEqual(dockerfile.count("pip install --no-cache-dir --no-compile"), 9)
         self.assertNotIn("TRANSFORMERS_VERSION", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
         self.assertIn("TORCH_VERSION=2.10.0", dockerfile)
         self.assertIn("TORCHVISION_VERSION=0.25.0", dockerfile)
         self.assertNotIn("cu128", dockerfile)
-        self.assertIn("torch.version.cuda == \"12.9\"", dockerfile)
+        self.assertEqual(smoke.count('torch.version.cuda == "12.9"'), 1)
+        self.assertEqual(smoke.count('actual["cuda"] == "12.9"'), 1)
         self.assertIn("COPY containers/simready-physicsnemo-constraints.txt", dockerfile)
         self.assertIn("--constraint /opt/build/physicsnemo-constraints.txt", dockerfile)
         self.assertIn("/opt/venv/bin/pip check", dockerfile)
@@ -31,7 +33,10 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("LOCAL_VLM_REVISION=cc594898137f460bfe9f0759e9844b3ce807cfb5", dockerfile)
         self.assertIn("HF_HUB_DISABLE_XET=1", dockerfile)
         self.assertIn("max_workers=2", dockerfile)
-        self.assertEqual(dockerfile.count("ADD --checksum=sha256:"), 5)
+        self.assertIn("ARG PYTHONDONTWRITEBYTECODE=1", dockerfile)
+        self.assertIn("ARG PIP_DISABLE_PIP_VERSION_CHECK=1", dockerfile)
+        self.assertIn("ARG PIP_PROGRESS_BAR=off", dockerfile)
+        self.assertEqual(dockerfile.count("ADD --link --checksum=sha256:"), 5)
         self.assertIn("ffmpeg", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
         self.assertIn('"torch==${VLLM_TORCH_VERSION}"', dockerfile)
@@ -54,14 +59,39 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             "COPY containers/physicsnemo-gpu-smoke.py /usr/local/bin/physicsnemo-gpu-smoke",
             dockerfile,
         )
+        base_dockerfile = (ROOT / "containers/simready.Dockerfile").read_text()
+        self.assertIn(
+            "COPY containers/simready-sshd-runtime-wrapper.sh /usr/local/bin/simready-sshd-runtime-wrapper",
+            base_dockerfile,
+        )
+        self.assertIn(
+            "COPY containers/simready-nvidia-auth-check.sh /usr/local/bin/simready-nvidia-auth-check",
+            base_dockerfile,
+        )
+        self.assertIn(
+            "COPY containers/simready-profile-validate.sh /usr/local/bin/simready-profile-validate",
+            base_dockerfile,
+        )
+        self.assertIn("/usr/local/bin/simready-nvidia-auth-check \\", base_dockerfile)
+        self.assertIn("/usr/local/bin/simready-profile-validate \\", base_dockerfile)
+        self.assertIn("mv /usr/sbin/sshd /usr/lib/openssh/sshd.real", base_dockerfile)
+        self.assertIn("rm -f /etc/ssh/ssh_host_*_key", base_dockerfile)
+        self.assertIn("/root/.no_auto_tmux", base_dockerfile)
+        self.assertIn(
+            "ln -s /usr/local/bin/simready-sshd-runtime-wrapper /usr/sbin/sshd",
+            base_dockerfile,
+        )
         self.assertIn("smoke-test.sh simready-local-ai", onstart)
         self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}"', onstart)
         self.assertIn("/usr/local/bin/physicsnemo-gpu-smoke", onstart)
-        self.assertLess(onstart.index("physicsnemo-gpu-smoke"), onstart.index('touch "${WORKSPACE}/READY"'))
+        self.assertLess(onstart.index("physicsnemo-gpu-smoke"), onstart.index('mv -f -- "${READY_TMP}" "${READY}"'))
         self.assertNotIn("smoke-test.sh simready >", onstart)
         self.assertIn("simready-services start", onstart)
         self.assertIn("simready-services status", onstart)
-        self.assertLess(onstart.index("simready-services status"), onstart.index('touch "${WORKSPACE}/READY"'))
+        self.assertLess(onstart.index("simready-services status"), onstart.index('mv -f -- "${READY_TMP}" "${READY}"'))
+        self.assertIn("/run/sshd/simready-runtime-host-keys.ready", onstart)
+        self.assertIn("/root/.no_auto_tmux", onstart)
+        self.assertIn("target_1600_ch_validated\": false", onstart)
         self.assertIn("Verify published local AI manifest limits", workflow)
         self.assertIn(".Image.OS}}/{{.Image.Architecture", workflow)
         self.assertIn("max) < 5000000000", workflow)
@@ -72,20 +102,85 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             workflow.index("- name: Verify published local AI manifest limits")
         ]
         self.assertNotIn("simready-local-ai:latest", local_build)
-        self.assertIn("- name: Promote verified local AI image", workflow)
+        self.assertIn("- name: Promote verified image", workflow)
         self.assertIn("docker buildx imagetools create", workflow)
         self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
-        self.assertIn("Verify anonymous local AI manifest access", workflow)
-        self.assertIn('PINNED_IMAGE: ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai@${{ steps.local_ai_manifest.outputs.digest }}', workflow)
-        self.assertIn('DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw "${PINNED_IMAGE}"', workflow)
+        self.assertIn("Verify anonymous digest pull", workflow)
+        self.assertIn(
+            'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
+            workflow,
+        )
+        self.assertIn("group: container-publication-${{ matrix.image }}", workflow)
+        self.assertIn("GOMAXPROCS=3 GOMEMLIMIT=12GiB", workflow)
+        self.assertIn("id: standard_build", workflow)
+        self.assertIn("steps.standard_build.outputs.digest", workflow)
+        self.assertIn("id: local_ai_build", workflow)
+        self.assertIn('--metadata-file "$metadata_file"', workflow)
+        self.assertIn('--cache-from "type=registry,ref=${repository}:latest"', workflow)
+        self.assertIn("cache_args+=(--build-arg BUILDKIT_INLINE_CACHE=1)", workflow)
+        self.assertIn("steps.local_ai_build.outputs.digest", workflow)
+        self.assertIn("--platform linux/amd64", workflow)
         self.assertLess(
-            workflow.index("- name: Verify anonymous local AI manifest access"),
-            workflow.index("- name: Promote verified local AI image"),
+            workflow.index("- name: Verify anonymous digest pull"),
+            workflow.index("- name: Promote verified image"),
         )
         self.assertLess(
-            workflow.index("- name: Pull and smoke test the published image"),
-            workflow.index("- name: Verify anonymous local AI manifest access"),
+            workflow.index("- name: Verify published local AI manifest limits"),
+            workflow.index("- name: Verify anonymous digest pull"),
+        )
+        self.assertNotIn("Pull and smoke test the published image", workflow)
+        self.assertIn("/usr/local/bin/simready-sshd-runtime-smoke", workflow)
+        anonymous = workflow[
+            workflow.index("- name: Verify anonymous digest pull") :
+            workflow.index("- name: Promote verified image")
+        ]
+        self.assertIn("docker image rm -f", anonymous)
+        self.assertIn("docker buildx prune --all --force", anonymous)
+        self.assertIn("docker system prune --all --force --volumes", anonymous)
+        self.assertIn("printf '{}\\n'", anonymous)
+        self.assertLess(
+            anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker pull'),
+            anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker run'),
+        )
+
+        ssh_wrapper = (ROOT / "containers/simready-sshd-runtime-wrapper.sh").read_text()
+        self.assertIn("/usr/bin/flock -x 9", ssh_wrapper)
+        self.assertIn("/usr/bin/ssh-keygen -A", ssh_wrapper)
+        self.assertIn("simready-runtime-host-keys.ready", ssh_wrapper)
+        self.assertIn('if [ "${argument}" = "-R" ]', ssh_wrapper)
+
+        ssh_smoke = (ROOT / "containers/simready-sshd-runtime-smoke.sh").read_text()
+        self.assertIn("/usr/bin/flock -x 8", ssh_smoke)
+        self.assertIn('kill -0 "${first}"', ssh_smoke)
+        self.assertIn('kill -0 "${second}"', ssh_smoke)
+        self.assertIn("simready_ephemeral_sshd_concurrency_smoke_passed", ssh_smoke)
+
+    def test_simready_validate_is_discoverable_with_the_reduced_ssh_path(self):
+        dockerfile = (ROOT / "containers/simready.Dockerfile").read_text()
+        smoke = (ROOT / "containers/simready-smoke.sh").read_text()
+        executable = "/opt/simready-validation/bin/simready-validate"
+        link = "/usr/local/bin/simready-validate"
+
+        self.assertIn(f"test -x {executable}", dockerfile)
+        self.assertIn(f"test ! -e {link}", dockerfile)
+        self.assertIn(f"test ! -L {link}", dockerfile)
+        self.assertIn(f"ln -s -- {executable} \\", dockerfile)
+        self.assertIn(f'test "$(readlink -- {link})" = \\', dockerfile)
+        self.assertNotIn(f"ln -sf {executable}", dockerfile)
+        self.assertLess(
+            dockerfile.index("-r /opt/simready-foundation/requirements.txt"),
+            dockerfile.index(f"ln -s -- {executable}"),
+        )
+        self.assertIn(
+            "check simready-validate env \\\n"
+            "    PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \\\n"
+            "    simready-validate --help",
+            smoke,
+        )
+        self.assertNotIn(
+            "check simready-validate /opt/simready-validation/bin/simready-validate --help",
+            smoke,
         )
 
     def test_both_agents_use_the_local_endpoint(self):
@@ -110,15 +205,21 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("image_url", smoke)
         self.assertIn("--limit-mm-per-prompt '{\"image\":20}'", config)
         self.assertIn("--max-model-len 32768", config)
-        self.assertEqual(smoke.count('torch.version.cuda == "12.9"'), 2)
-        self.assertIn('vllm.__version__ == "0.26.0"', smoke)
-        self.assertIn('torch.__version__.split("+", 1)[0] == "2.11.0"', smoke)
-        self.assertIn('torchaudio.__version__.split("+", 1)[0] == "2.11.0"', smoke)
-        self.assertIn('torchvision.__version__.split("+", 1)[0] == "0.26.0"', smoke)
+        self.assertEqual(smoke.count('torch.version.cuda == "12.9"'), 1)
+        self.assertEqual(smoke.count('actual["cuda"] == "12.9"'), 1)
+        self.assertIn('actual["runtime"].split("+", 1)[0] == "0.26.0"', smoke)
+        self.assertIn('actual["torch"].split("+", 1)[0] == "2.11.0"', smoke)
+        self.assertIn('actual["torchaudio"].split("+", 1)[0] == "2.11.0"', smoke)
+        self.assertIn('actual["torchvision"].split("+", 1)[0] == "0.26.0"', smoke)
         self.assertIn("/opt/local-ai/bin/pip check", smoke)
         self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -m pip check', smoke)
         self.assertIn('VLLM_USE_FLASHINFER_SAMPLER="0"', config)
         self.assertIn('PATH="/opt/local-ai/bin:', config)
+        self.assertIn('LD_LIBRARY_PATH="/opt/local-ai/lib/python3.12/site-packages/torch/lib:', config)
+        self.assertIn("VLLM_LIBRARY_PATH=", smoke)
+        self.assertIn('env LD_LIBRARY_PATH="${VLLM_LIBRARY_PATH}" /opt/local-ai/bin/python', smoke)
+        self.assertIn('actual["distribution"].split("+", 1)[0] == "0.26.0"', smoke)
+        self.assertNotIn('== "0.26.0+cu129"', smoke)
 
 
 if __name__ == "__main__":

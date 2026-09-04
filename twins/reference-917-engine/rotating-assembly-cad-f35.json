@@ -1,0 +1,526 @@
+{
+  "$comment": "F35 définit une CAO paramétrique de recherche pour l'équipage mobile des deux variantes. Chaque valeur est soit un fait documentaire candidat, soit une dérivation explicite, soit une hypothèse de conception 2026. Aucune valeur ne constitue une cote de fabrication, une tolérance, une preuve historique ou une preuve de puissance.",
+  "schema_version": "1.0.0",
+  "phase": "F35",
+  "status": "parametric_rotating_assembly_research_contract_all_physical_release_gates_blocked",
+  "units": "mm",
+  "upstream_contracts": {
+    "variant_geometry": "twins/reference-917-engine/variant-configurations-f10.json",
+    "documentary_facts": "twins/reference-917-engine/classical-solver-cases-f13.json",
+    "unknown_interface_register": "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json"
+  },
+  "classification_vocabulary": {
+    "documentary_candidate": "Valeur publiée et liée à un fait documentaire ; elle n'est ni mesurée sur le moteur du projet ni libérée pour fabriquer.",
+    "derived_from_documentary_candidate": "Valeur calculée uniquement à partir d'un candidat documentaire par la formule écrite dans la note.",
+    "design_hypothesis": "Choix paramétrique de recherche 2026 sans revendication historique, métrologique ou de fabrication."
+  },
+  "cad_policy": {
+    "static_review_crank_angle_deg": 17.0,
+    "static_review_angle_classification": "design_hypothesis",
+    "static_review_angle_note": "Angle arbitraire de présentation destiné à rendre les six manetons visibles ; ce n'est ni un calage historique ni un zéro moteur.",
+    "separate_variant_output_required": true,
+    "analytical_linkage_closure_required": true,
+    "physical_joint_authoring_allowed": false,
+    "mass_or_inertia_assignment_allowed": false
+  },
+  "source_fact_bindings": {
+    "type_912_4_5_na": {
+      "cylinder_count": "FACT-CYLINDER-COUNT-45-NA",
+      "bore_mm": "FACT-45-BORE",
+      "stroke_mm": "FACT-45-STROKE",
+      "main_bearing_count": "FACT-MAIN-BEARING-COUNT",
+      "crankpin_diameter_mm": "FACT-45-CRANKPIN-BEARING-DIAMETER",
+      "piston_crown_to_pin_axis_mm": "FACT-45-PISTON-COMPRESSION-HEIGHT"
+    },
+    "917_30_turbo_5374": {
+      "cylinder_count": "FACT-CYLINDER-COUNT-91730-1973",
+      "bore_mm": "FACT-5374-BORE",
+      "stroke_mm": "FACT-5374-STROKE",
+      "main_bearing_count": "FACT-MAIN-BEARING-COUNT"
+    }
+  },
+  "documentary_mass_register": {
+    "type_912_4_5_na": {
+      "component_group": "piston_pin_ring_group",
+      "fact_id": "FACT-45-PISTON-GROUP-MASS",
+      "value": 0.46,
+      "unit": "kg",
+      "declared_tolerance": {
+        "plus_minus": 0.02,
+        "unit": "kg"
+      },
+      "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+      "status": "documentary_candidate_not_assigned_to_geometry_or_usd",
+      "physical_mass_assignment_allowed": false
+    },
+    "917_30_turbo_5374": {
+      "component_group": "piston_pin_ring_group",
+      "fact_id": null,
+      "value": null,
+      "unit": "kg",
+      "declared_tolerance": null,
+      "source_refs": [],
+      "status": "unknown_not_transferred_from_type_912_4_5_na",
+      "physical_mass_assignment_allowed": false
+    }
+  },
+  "variants": [
+    {
+      "id": "type_912_4_5_na",
+      "architecture": "naturally_aspirated_flat_12",
+      "historicalCylinderId": null,
+      "parameters": {
+        "cylinder_count": {
+          "value": 12,
+          "unit": "count",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+          "note": "Topologie candidate de la variante 4,5 L ; aucune identification de cylindre historique n'est attribuée."
+        },
+        "bore_mm": {
+          "value": 85.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+          "note": "Alésage publié pour le Type 912 4,5 L ; candidat d'enveloppe, pas diamètre de fabrication."
+        },
+        "stroke_mm": {
+          "value": 66.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+          "note": "Course publiée pour le Type 912 4,5 L ; aucune tolérance ni géométrie de maneton n'est fournie."
+        },
+        "crank_radius_mm": {
+          "value": 33.0,
+          "unit": "mm",
+          "classification": "derived_from_documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+          "note": "Dérivation exacte stroke_mm / 2 ; ne définit ni phase, ni largeur, ni profil de maneton."
+        },
+        "crankpin_count": {
+          "value": 6,
+          "unit": "count",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse de topologie à six manetons pour une maquette flat-12 ; à confirmer par démontage ou documentation primaire."
+        },
+        "main_bearing_count": {
+          "value": 8,
+          "unit": "count",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+          "note": "Nombre publié de paliers principaux ; positions, diamètres, largeurs et jeu restent inconnus."
+        },
+        "cylinder_pitch_mm": {
+          "value": 118.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+          "note": "Pas régulier secondaire candidat pour l'implantation visuelle ; le pas central est exclu de cette affirmation."
+        },
+        "central_pair_pitch_mm": {
+          "value": 173.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Valeur héritée de l'implantation F1 sans preuve champ-par-champ ; hypothèse d'encombrement seulement."
+        },
+        "crankshaft_envelope_length_mm": {
+          "value": 757.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-STUTTCARS-917-TECHNICAL-DETAILS"],
+          "note": "Longueur globale publiée par une source secondaire ; aucun nez, épaulement ou registre n'est dimensionné."
+        },
+        "rod_center_distance_mm": {
+          "value": 132.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse visuelle F1 conservée pour comparer le mouvement ; elle n'est pas une cote Porsche."
+        },
+        "crankpin_diameter_mm": {
+          "value": 52.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+          "note": "Candidat d'interface FIA propre au 4,5 L, sans tolérance, état de surface ni autorisation de transfert."
+        },
+        "main_journal_diameter_mm": {
+          "value": 58.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Diamètre de prototype choisi pour distinguer les paliers principaux ; aucune source ne le libère."
+        },
+        "crankpin_width_mm": {
+          "value": 22.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Largeur paramétrique de recherche sans jeu axial ni tolérance."
+        },
+        "main_journal_width_mm": {
+          "value": 20.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Largeur paramétrique de recherche ; les huit largeurs réelles peuvent différer."
+        },
+        "rod_big_end_outer_diameter_mm": {
+          "value": 72.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Diamètre extérieur de prototype ; la valeur FIA ambiguë de 56 mm n'est pas utilisée."
+        },
+        "rod_small_end_bore_mm": {
+          "value": 24.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Alésage nominal de prototype égal au diamètre nominal d'axe, sans jeu fonctionnel revendiqué."
+        },
+        "rod_width_mm": {
+          "value": 20.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Largeur de prototype ; le chapeau, les vis, bagues et jeux latéraux restent à concevoir."
+        },
+        "piston_pin_diameter_mm": {
+          "value": 24.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Diamètre d'axe nominal de recherche ; aucune tolérance de montage n'est définie."
+        },
+        "piston_pin_length_mm": {
+          "value": 70.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Longueur d'axe de prototype ; clips, chanfreins et alésage interne restent hypothétiques."
+        },
+        "piston_crown_to_pin_axis_mm": {
+          "value": 43.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-FIA-917-HOMOLOGATION-250"],
+          "note": "Hauteur candidate FIA propre au 4,5 L ; le profil de calotte et les jeux soupape restent inconnus."
+        },
+        "piston_skirt_below_pin_mm": {
+          "value": 34.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Longueur de jupe sous axe choisie pour la maquette paramétrique, sans profil thermique ni ovalisation."
+        },
+        "piston_radial_clearance_mm": {
+          "value": 0.08,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse de jeu radial de recherche ; ne pas utiliser pour usiner, imprimer ou démarrer un moteur."
+        },
+        "ring_count": {
+          "value": 3,
+          "unit": "count_per_piston",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Topologie de prototype à trois segments par piston ; fonctions et matériaux non libérés."
+        },
+        "ring_axial_height_mm": {
+          "value": 1.2,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hauteur de section de prototype sans tolérance de gorge ni jeu axial."
+        },
+        "ring_radial_thickness_mm": {
+          "value": 3.4,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Épaisseur radiale de prototype sans tension, revêtement ni jeu à la coupe validé."
+        }
+      }
+    },
+    {
+      "id": "917_30_turbo_5374",
+      "architecture": "twin_turbo_flat_12",
+      "historicalCylinderId": null,
+      "parameters": {
+        "cylinder_count": {
+          "value": 12,
+          "unit": "count",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-PORSCHE-NEWSROOM-91730-TURBO", "SRC-PORSCHE-NEWSROOM-91730-AM-LIMIT"],
+          "note": "Topologie candidate de la configuration 917/30 1973 ; aucune identité de cylindre historique n'est attribuée."
+        },
+        "bore_mm": {
+          "value": 90.0,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+          "note": "Alésage secondaire publié pour le 5 374 cm3 turbo ; pas une cote de fabrication."
+        },
+        "stroke_mm": {
+          "value": 70.4,
+          "unit": "mm",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+          "note": "Course secondaire publiée pour le 5 374 cm3 turbo ; géométrie du vilebrequin inconnue."
+        },
+        "crank_radius_mm": {
+          "value": 35.2,
+          "unit": "mm",
+          "classification": "derived_from_documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS"],
+          "note": "Dérivation exacte stroke_mm / 2 ; ne prouve ni phase, ni contrepoids, ni rigidité du vilebrequin."
+        },
+        "crankpin_count": {
+          "value": 6,
+          "unit": "count",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse de topologie à six manetons pour le prototype 2026 ; aucune cote historique n'est revendiquée."
+        },
+        "main_bearing_count": {
+          "value": 8,
+          "unit": "count",
+          "classification": "documentary_candidate",
+          "source_refs": ["SRC-AMS-917-ENGINE-TECHNICAL-ANALYSIS", "SRC-KFZ-TECH-917-TYPE912-ENGINE"],
+          "note": "Candidat documentaire au niveau de la famille 917 ; aucune position ni interface turbo n'est publiée."
+        },
+        "cylinder_pitch_mm": {
+          "value": 118.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse d'encombrement 2026 ; le pas secondaire du 4,5 L n'est pas transféré comme fait historique au turbo."
+        },
+        "central_pair_pitch_mm": {
+          "value": 173.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse d'encombrement conservée pour composer les deux variantes dans un repère comparable."
+        },
+        "crankshaft_envelope_length_mm": {
+          "value": 757.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Enveloppe de conception 2026 ; la longueur secondaire du Type 912 n'est pas transférée comme cote 917/30."
+        },
+        "rod_center_distance_mm": {
+          "value": 138.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse de bielle moderne pour l'étude cinématique turbo ; à optimiser et corréler avant tout calcul de charge."
+        },
+        "crankpin_diameter_mm": {
+          "value": 54.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Choix de conception turbo 2026 ; le candidat FIA 52 mm du 4,5 L n'est pas transféré."
+        },
+        "main_journal_diameter_mm": {
+          "value": 62.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Diamètre de prototype turbo à dimensionner par charges, lubrification et rotordynamique."
+        },
+        "crankpin_width_mm": {
+          "value": 26.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Largeur de prototype turbo sans jeu axial ni tolérance."
+        },
+        "main_journal_width_mm": {
+          "value": 24.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Largeur de prototype turbo ; les huit positions réelles restent à déterminer."
+        },
+        "rod_big_end_outer_diameter_mm": {
+          "value": 80.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Enveloppe extérieure de tête de bielle moderne ; aucune lecture FIA ambiguë n'est utilisée."
+        },
+        "rod_small_end_bore_mm": {
+          "value": 26.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Alésage nominal de prototype égal au diamètre nominal d'axe, sans jeu revendiqué."
+        },
+        "rod_width_mm": {
+          "value": 22.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Largeur de bielle turbo de recherche ; fatigue, flambage, vis et bagues non validés."
+        },
+        "piston_pin_diameter_mm": {
+          "value": 26.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Diamètre d'axe turbo de recherche ; aucune tolérance ou nuance n'est sélectionnée."
+        },
+        "piston_pin_length_mm": {
+          "value": 74.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Longueur d'axe turbo de recherche ; clips, chanfreins et alésage interne à concevoir."
+        },
+        "piston_crown_to_pin_axis_mm": {
+          "value": 39.5,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hauteur de compression turbo 2026 hypothétique ; le candidat FIA 43 mm du 4,5 L n'est pas transféré."
+        },
+        "piston_skirt_below_pin_mm": {
+          "value": 36.0,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Longueur de jupe de recherche sans ovalisation, profil thermique ni revêtement validé."
+        },
+        "piston_radial_clearance_mm": {
+          "value": 0.10,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hypothèse de jeu radial à chaud/froid non corrélée ; interdite pour une libération moteur."
+        },
+        "ring_count": {
+          "value": 3,
+          "unit": "count_per_piston",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Topologie de prototype turbo à trois segments ; étanchéité et frottement non simulés."
+        },
+        "ring_axial_height_mm": {
+          "value": 1.2,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Hauteur de section turbo de prototype sans tolérance de gorge ni jeu axial."
+        },
+        "ring_radial_thickness_mm": {
+          "value": 3.6,
+          "unit": "mm",
+          "classification": "design_hypothesis",
+          "source_refs": [],
+          "note": "Épaisseur radiale turbo de prototype sans tension, revêtement ou jeu à la coupe validé."
+        }
+      }
+    }
+  ],
+  "expected_component_counts_per_variant": {
+    "crankshaft": 1,
+    "main_bearing": 8,
+    "connecting_rod": 12,
+    "piston": 12,
+    "piston_pin": 12,
+    "piston_ring": 36
+  },
+  "required_interface_frames_per_variant": [
+    "crankshaft_axis",
+    "main_journal_centres_01_to_08",
+    "crankpin_centres_01_to_06",
+    "rod_big_end_axis",
+    "rod_small_end_axis",
+    "piston_pin_axis",
+    "piston_crown_datum",
+    "piston_ring_groove_datums"
+  ],
+  "required_interface_frame_counts_per_variant": {
+    "crankshaft_axis": 1,
+    "main_journal_centres_01_to_08": 8,
+    "crankpin_centres_01_to_06": 6,
+    "rod_big_end_axis": 12,
+    "rod_small_end_axis": 12,
+    "piston_pin_axis": 12,
+    "piston_crown_datum": 12,
+    "piston_ring_groove_datums": 36
+  },
+  "excluded_fact_refs": [
+    {
+      "id": "FACT-45-CONNECTING-ROD-BIG-END-DIAMETER",
+      "reason": "La valeur FIA de 56 mm est conservée avec un libellé ambigu et ne peut alimenter aucune géométrie F35."
+    }
+  ],
+  "output_policy": {
+    "generated_root": "work/917-rotating-assembly-f35",
+    "editable_master": "python_build123d_source_plus_json_parameters",
+    "derived_formats": ["STEP", "STL", "JSON", "USD", "USDC"],
+    "derived_output_layout": {
+      "cad_prototype_step": "{variant}/step/{family}.step",
+      "display_mesh_stl": "{variant}/stl/{family}-display-only.stl",
+      "cad_geometry_report": "{variant}/geometry-report.json",
+      "converted_usd_prototype": "usd-conversion/{variant}/prototypes/{family}/{family}.usd",
+      "animated_usdc_stage": "{variant}/usd/rotating-assembly-f35.usdc",
+      "usd_stage_report": "{variant}/usd/rotating-assembly-f35-report.json"
+    },
+    "derived_artifacts_committed": false,
+    "raw_scan_required": false,
+    "raw_scan_in_output": false,
+    "source_pdf_in_output": false,
+    "private_absolute_paths_allowed": false
+  },
+  "release_gates": {
+    "historical_identity_confirmed": false,
+    "traceable_metrology_complete": false,
+    "variant_geometry_physically_correlated": false,
+    "crankshaft_geometry_ready": false,
+    "main_bearing_interfaces_ready": false,
+    "connecting_rod_geometry_ready": false,
+    "piston_group_geometry_ready": false,
+    "running_clearances_ready": false,
+    "tolerance_stack_ready": false,
+    "mass_and_inertia_correlated": false,
+    "material_selection_ready": false,
+    "fatigue_validation_ready": false,
+    "rotordynamics_validation_ready": false,
+    "lubrication_validation_ready": false,
+    "manufacturing_geometry_ready": false,
+    "engine_start_authorized": false,
+    "performance_1600_hp_claim_authorized": false
+  },
+  "prohibited_use": [
+    "historical_replica_claim",
+    "claim_that_design_hypotheses_are_sourced_dimensions",
+    "transfer_of_type_912_fia_dimensions_to_917_30_turbo",
+    "clearance_or_interference_release",
+    "mass_inertia_or_balance_claim",
+    "fatigue_rotordynamics_or_lubrication_signoff",
+    "manufacturing_or_metal_print_release",
+    "engine_start_release",
+    "claim_that_F35_proves_1600_hp"
+  ],
+  "prohibited_claims": [
+    "historical_replica_claim",
+    "claim_that_design_hypotheses_are_sourced_dimensions",
+    "transfer_of_type_912_fia_dimensions_to_917_30_turbo",
+    "clearance_or_interference_release",
+    "mass_inertia_or_balance_claim",
+    "fatigue_rotordynamics_or_lubrication_signoff",
+    "manufacturing_or_metal_print_release",
+    "engine_start_release",
+    "claim_that_F35_proves_1600_hp"
+  ]
+}

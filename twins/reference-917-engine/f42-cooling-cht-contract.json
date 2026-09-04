@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-head-f42-cooling-cht-screen",
+  "classification": "exact_F41_surface_OpenFOAM_external_air_plus_independent_fin_correlation_and_sequential_solid_conduction_not_full_CHT_not_release",
+  "geometry": {
+    "source_step_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a",
+    "source_stl_sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81",
+    "stl_repository_policy": "local_only_scan_derived_mesh_rights_unverified",
+    "surface_area_mm2_if_scan_unit_is_mm": 179816.30481805696,
+    "bounds_mm_if_scan_unit_is_mm": {
+      "minimum": [-60.236549377441406, -89.47174072265625, -5.684341886080802e-14],
+      "maximum": [58.875, 116.61710357666016, 82.0]
+    },
+    "watertight": true,
+    "triangles": 262554,
+    "absolute_scale_confirmed": false,
+    "external_shape_modified_by_F42": false,
+    "engine_interfaces_capped_for_CFD": false,
+    "open_interfaces_effect": "le domaine d'air peut atteindre des surfaces internes; h et temperature sont des bornes optimistes, pas un etat moteur installe"
+  },
+  "boundary_conditions": {
+    "air_inlet_temperature_k": 308.15,
+    "air_mass_flow_kg_s_per_head": 0.85,
+    "outlet_static_pressure_pa": 100000.0,
+    "isothermal_wall_temperature_k": 533.15,
+    "nominal_head_heat_load_w": 4300.0,
+    "maximum_bridge_temperature_c": 260.0,
+    "maximum_pressure_drop_pa": 6700.0,
+    "air_density_kg_m3": 1.132,
+    "air_dynamic_viscosity_pa_s": 1.9e-05,
+    "air_thermal_conductivity_w_mk": 0.0273,
+    "air_specific_heat_j_kgk": 1007.0,
+    "air_prandtl": 0.7
+  },
+  "method_a_openfoam": {
+    "solver": "OpenFOAM_14_foamRun_fluid_hePsiThermo_kOmegaSST",
+    "geometry": "exact_F41_OCCT_tessellation",
+    "duct": "rectangular_adiabatic_no_slip_shroud",
+    "shroud_gaps_mm": [12.0, 20.0],
+    "base_cells_mm": [6.0, 4.5],
+    "classification": "steady_RANS_fixed_wall_temperature_not_conjugate_heat_transfer",
+    "required_energy_balance_relative": 0.05,
+    "required_mass_balance_relative": 0.005,
+    "required_last_heat_change_relative": 0.02
+  },
+  "inherited_openfoam_reference": {
+    "path": "twins/reference-917-engine/evidence/f38-cooling-redesign/f38-cooling-cross-check.json",
+    "case_id": "fine",
+    "geometry": "canonical_inter_fin_channel_gap_4p5mm_span_86mm_length_180mm_not_F41_whole_head",
+    "use": "numerically_converged_proxy_only_when_exact_F41_external_RANS_is_not_accepted"
+  },
+  "method_b_analytical": {
+    "method": "Gnielinski_plus_Darcy_Weisbach_plus_rectangular_channel_hydraulic_diameter",
+    "fin_levels_mm_if_scan_unit_is_mm": [6.0, 11.25, 16.5, 22.25, 27.75, 33.0, 39.0, 44.25, 49.5, 55.5, 60.25, 67.5, 73.25, 78.75],
+    "fin_thickness_mm_if_scan_unit_is_mm": 1.5,
+    "mean_flow_length_mm_if_scan_unit_is_mm": 206.0888442993164,
+    "mean_fin_profile_area_mm2_if_scan_unit_is_mm": 18637.632472113593,
+    "passage_count_bounds": [13, 26],
+    "capture_fraction_cases": [0.7, 1.0],
+    "selected_cross_check": {"passage_count": 26, "capture_fraction": 0.7},
+    "maximum_cross_method_h_relative_difference": 0.2,
+    "classification": "independent_smooth_channel_correlation_geometry_reduction_not_head_CFD"
+  },
+  "sequential_solid_conduction": {
+    "solver": "CalculiX_DC3D8_voxel",
+    "pitch_mm_if_scan_unit_is_mm": 2.5,
+    "chamber_heat_load_w": 4300.0,
+    "temperature_dependent_conductivity_w_mk": [[20.0, 150.0], [200.0, 135.0], [300.0, 120.0]],
+    "material": "AlSi10Mg_candidate_unqualified",
+    "classification": "exact_F41_solid_voxel_with_proxy_surface_region_classification_and_mean_films_not_full_CHT"
+  },
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "engine_installed_external_air_domain_closed": false,
+    "full_head_conjugate_heat_transfer_complete": false,
+    "temperature_dependent_printed_hot_coupon_card_qualified": false,
+    "fan_map_and_duct_leakage_measured": false,
+    "physical_thermocouple_correlation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

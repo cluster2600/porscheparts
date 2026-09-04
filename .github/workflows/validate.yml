@@ -22,5 +22,8 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install numerical test dependencies
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6 matplotlib==3.10.8
+
       - name: Validate repository
         run: make check

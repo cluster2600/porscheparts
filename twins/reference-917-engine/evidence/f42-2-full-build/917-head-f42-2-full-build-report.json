@@ -1,0 +1,180 @@
+{
+  "gates": {
+    "actual_full_layer_slicing_completed": true,
+    "all_layers_finite_and_contiguous": true,
+    "blt_s310_nominal_envelope_fit": true,
+    "exact_4122_layers_at_50_um": true,
+    "machine_file_generated_and_signed": false,
+    "manufacturing_release": false,
+    "private_support_stack_generated": true,
+    "process_thermal_model_correlated": false,
+    "recoater_collision_clearance_verified": false,
+    "supplier_slicer_project_reviewed": false,
+    "support_proxy_computed": true
+  },
+  "geometric_slicing": {
+    "all_layer_indices_contiguous": true,
+    "build_height_mm": 206.09364318847656,
+    "empty_internal_layers": 0,
+    "executed": true,
+    "first_midplane_z_mm": 0.025,
+    "last_midplane_z_mm": 206.07500000000002,
+    "layer_thickness_mm": 0.05,
+    "method": "exact triangle-plane intersections at every layer midplane; Shapely polygonization",
+    "required_layer_count": 4122
+  },
+  "machine_envelope": {
+    "locked_orientation": "scan_y_down",
+    "machine": "BLT-S310",
+    "nominal_build_envelope_mm": [
+      250.0,
+      250.0,
+      400.0
+    ],
+    "nominal_envelope_fit": true,
+    "part_extents_in_locked_build_frame_mm": [
+      119.11445617675781,
+      82.0,
+      206.09364318847656
+    ],
+    "source_of_machine_dimensions": "documented machine specification; no supplier project review"
+  },
+  "orientation_screen": {
+    "candidate_requires_independent_full_slice": true,
+    "locked_orientation": "+Y_locked",
+    "lowest_projected_overhang_cardinal_candidate": "-Y",
+    "method": "six cardinal orientations; triangle normal 45 deg downward-face proxy",
+    "results": [
+      {
+        "blt_s310_nominal_envelope_fit": true,
+        "downward_overhang_surface_mm2": 23766.213840730976,
+        "downward_projected_area_mm2": 21636.37688012993,
+        "height_mm": 119.11445617675781,
+        "orientation": "+X",
+        "plate_extents_mm": [
+          206.09364318847656,
+          82.0
+        ]
+      },
+      {
+        "blt_s310_nominal_envelope_fit": true,
+        "downward_overhang_surface_mm2": 23254.17310326038,
+        "downward_projected_area_mm2": 21135.988086138517,
+        "height_mm": 119.11445617675781,
+        "orientation": "-X",
+        "plate_extents_mm": [
+          206.09364318847656,
+          82.0
+        ]
+      },
+      {
+        "blt_s310_nominal_envelope_fit": true,
+        "downward_overhang_surface_mm2": 13142.704664223398,
+        "downward_projected_area_mm2": 11879.135885971169,
+        "height_mm": 206.09364318847656,
+        "orientation": "+Y_locked",
+        "plate_extents_mm": [
+          119.11445617675781,
+          82.0
+        ]
+      },
+      {
+        "blt_s310_nominal_envelope_fit": true,
+        "downward_overhang_surface_mm2": 12513.728376507297,
+        "downward_projected_area_mm2": 11309.23081934789,
+        "height_mm": 206.09364318847656,
+        "orientation": "-Y",
+        "plate_extents_mm": [
+          119.11445617675781,
+          82.0
+        ]
+      },
+      {
+        "blt_s310_nominal_envelope_fit": true,
+        "downward_overhang_surface_mm2": 57864.30756617624,
+        "downward_projected_area_mm2": 55335.04235052965,
+        "height_mm": 82.0,
+        "orientation": "+Z",
+        "plate_extents_mm": [
+          119.11445617675781,
+          206.09364318847656
+        ]
+      },
+      {
+        "blt_s310_nominal_envelope_fit": true,
+        "downward_overhang_surface_mm2": 58508.377858675085,
+        "downward_projected_area_mm2": 56410.381670639516,
+        "height_mm": 82.0,
+        "orientation": "-Z",
+        "plate_extents_mm": [
+          119.11445617675781,
+          206.09364318847656
+        ]
+      }
+    ]
+  },
+  "overhang_and_islands": {
+    "horizontal_carry_per_layer_mm": 0.05000000000000001,
+    "layers_with_new_islands": 112,
+    "layers_with_unsupported_regions": 2098,
+    "maximum_unsupported_area_on_one_layer_mm2": 458.46384776,
+    "minimum_reported_feature_area_mm2": 0.01,
+    "new_island_count_total": 179,
+    "overhang_limit_deg_from_horizontal": 45.0,
+    "unsupported_area_layer_integral_mm2_layers": 7688.30399845
+  },
+  "phase": "F42.2",
+  "private_input": {
+    "byte_size": 3433984,
+    "published": false,
+    "role": "private welded scan-conforming head surface",
+    "sha256": "7ac7235c6c5a50e053f398df6f5470057a5939b5129d8ba605f9d45a33a50210"
+  },
+  "publication": {
+    "contains_coordinates_or_contours": false,
+    "contains_private_geometry": false,
+    "public_layer_metrics_csv": "917-head-f42-2-layer-metrics.csv",
+    "public_layer_metrics_sha256": "515c0e08971d13d0bd0a6003450c66af4a6ac4aa3fb31917e0ce563dd9903f8c"
+  },
+  "recoater": {
+    "collision_clearance_verified": false,
+    "missing_inputs": [
+      "distortion field from a calibrated thermo-mechanical LPBF simulation",
+      "recoater blade clearance, compliance and sweep direction",
+      "optimized supplier support geometry",
+      "supplier slicer project and machine file review"
+    ],
+    "nominal_z_schedule_inside_envelope": true,
+    "risk_unresolved": true
+  },
+  "schema_version": "1.0.0",
+  "support_proxy": {
+    "approximate_vertical_side_surface_mm2": 216843.70000000068,
+    "method": "vertical solid-column envelope propagated downward on a private binary grid from exact-slice unsupported regions",
+    "nonempty_support_layers": 3008,
+    "private_geometry_byte_size": 1088219,
+    "private_geometry_sha256": "928b06305c7e831de0242b419f04f38c8409c36b03390e160bd385c34ceac1bf",
+    "private_layer_resolved_geometry_generated": true,
+    "private_raster_pitch_mm": 0.25,
+    "published": false,
+    "raster_shape_yx": [
+      329,
+      478
+    ],
+    "status": "conservative geometric proxy; not optimized or supplier-ready supports",
+    "surface_limit": "horizontal interfaces and support strut topology are not represented",
+    "volume_cm3": 265.16111874999956,
+    "volume_mm3": 265161.11874999956
+  },
+  "thermal_process": {
+    "additivefoam_executed_in_this_phase": false,
+    "statement": "F42.2 is a geometric slicer audit only; AdditiveFOAM is a separate thermal-process workflow.",
+    "thermal_or_melt_pool_field_produced": false
+  },
+  "title": "Full-build 50 um geometric slicing and conservative support audit",
+  "verdict": {
+    "geometric_full_build_audit_completed": true,
+    "part_authorized_for_print": false,
+    "reason": "supplier slicer, calibrated thermal-distortion model, recoater clearance and signed machine file are missing"
+  }
+}

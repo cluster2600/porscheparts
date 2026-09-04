@@ -1,0 +1,352 @@
+{
+  "boundary_conditions": {
+    "air_density_kg_m3": 1.132,
+    "air_dynamic_viscosity_pa_s": 1.9e-05,
+    "air_inlet_temperature_k": 308.15,
+    "air_mass_flow_kg_s_per_head": 0.85,
+    "air_prandtl": 0.7,
+    "air_specific_heat_j_kgk": 1007.0,
+    "air_thermal_conductivity_w_mk": 0.0273,
+    "isothermal_wall_temperature_k": 533.15,
+    "maximum_bridge_temperature_c": 260.0,
+    "maximum_pressure_drop_pa": 6700.0,
+    "nominal_head_heat_load_w": 4300.0,
+    "outlet_static_pressure_pa": 100000.0
+  },
+  "classification": "exact_F41_surface_OpenFOAM_external_air_plus_independent_fin_correlation_and_sequential_solid_conduction_not_full_CHT_not_release",
+  "cross_method": {
+    "agreement_is_physical_validation": false,
+    "h_agreement_below_20_percent": true,
+    "h_relative_difference": 0.0645183135003192,
+    "pressure_agreement_below_20_percent": false,
+    "pressure_drop_relative_difference": 0.5729577766904849,
+    "reference_kind": "inherited_F38_channel_proxy"
+  },
+  "decision": {
+    "absolute_scale_confirmed": false,
+    "all_pressure_screens_below_6p7kpa": false,
+    "all_thermal_screens_below_260c": false,
+    "cross_method_h_gate_passed": true,
+    "cross_method_pressure_gate_passed": false,
+    "engine_installed_external_air_domain_closed": false,
+    "engine_start_authorized": false,
+    "exact_F41_openfoam_numerical_case_accepted": false,
+    "fan_map_and_duct_leakage_measured": false,
+    "full_head_CHT_complete": false,
+    "full_head_conjugate_heat_transfer_complete": false,
+    "inherited_F38_channel_proxy_accepted": true,
+    "metal_print_authorized": false,
+    "physical_thermocouple_correlation_complete": false,
+    "reason_full_CHT_false": "OpenFOAM impose une paroi isotherme; CalculiX, si pr\u00e9sent, re\u00e7oit un h moyen s\u00e9quentiel; les interfaces moteur ne sont pas obtur\u00e9es.",
+    "temperature_dependent_printed_hot_coupon_card_qualified": false
+  },
+  "id": "917-head-f42-cooling-cht-cross-check",
+  "inputs": {
+    "contract": {
+      "path": "twins/reference-917-engine/f42-cooling-cht-contract.json",
+      "sha256": "2eddbb42b10fab35fdd74c3d2715dd405e6768f1a52396a6db10968b8eed5588"
+    },
+    "geometry": {
+      "absolute_scale_confirmed": false,
+      "bounds_mm_if_scan_unit_is_mm": {
+        "maximum": [
+          58.875,
+          116.61710357666016,
+          82.0
+        ],
+        "minimum": [
+          -60.236549377441406,
+          -89.47174072265625,
+          -5.684341886080802e-14
+        ]
+      },
+      "engine_interfaces_capped_for_CFD": false,
+      "external_shape_modified_by_F42": false,
+      "open_interfaces_effect": "le domaine d'air peut atteindre des surfaces internes; h et temperature sont des bornes optimistes, pas un etat moteur installe",
+      "source_step_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a",
+      "source_stl_sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81",
+      "stl_repository_policy": "local_only_scan_derived_mesh_rights_unverified",
+      "surface_area_mm2_if_scan_unit_is_mm": 179816.30481805696,
+      "triangles": 262554,
+      "watertight": true
+    }
+  },
+  "method_a_openfoam": {
+    "accepted_completed_case_count": 0,
+    "cases": [
+      {
+        "case_id": "f42-shroud12-coarse-r3",
+        "classification": "scan_conforming_external_airflow_with_rectangular_adiabatic_noslip_shroud_not_CHT",
+        "metadata_sha256": "ceae4d6c7bb80b147d5c9c7722f4ba42cf2bfd066a522051299906c5e8f3c3d8",
+        "numerical_divergence_detected": true,
+        "release_claim": false,
+        "solver_completed": false,
+        "solver_log_sha256": "b425caba478f9435096eee8c117fcf6b43924dbe1c7d88bf9bae99e9955c2e6e",
+        "standard_mesh_check_passed": true,
+        "status": "failed_or_incomplete",
+        "strict_mesh_check_passed": false
+      },
+      {
+        "case_id": "f42-shroud20-coarse-r4",
+        "classification": "scan_conforming_external_airflow_with_rectangular_adiabatic_noslip_shroud_not_CHT",
+        "metadata_sha256": "1518f0298803baae2053ebec46fdb62fe27ac3c1afd3f37fafb38dc6a54d1398",
+        "numerical_divergence_detected": true,
+        "release_claim": false,
+        "solver_completed": false,
+        "solver_log_sha256": "0f124e14509903a4cc04f1927515ef8321687664333d28264c79de1b87a7a9ed",
+        "standard_mesh_check_passed": true,
+        "status": "failed_or_incomplete",
+        "strict_mesh_check_passed": false
+      },
+      {
+        "case_id": "f42-shroud20-laminar-coarse-r5",
+        "classification": "scan_conforming_external_airflow_with_rectangular_adiabatic_noslip_shroud_not_CHT",
+        "metadata_sha256": "431eb6c079d47067b53cc73dfc68a7499efea5b5b3896187aa4159fd761445dc",
+        "numerical_divergence_detected": false,
+        "release_claim": false,
+        "solver_completed": false,
+        "solver_log_sha256": "f026db145f840a318a70b60bee8c6abafcef67866c4641a1003e15404b64912b",
+        "standard_mesh_check_passed": true,
+        "status": "failed_or_incomplete",
+        "strict_mesh_check_passed": false
+      }
+    ],
+    "full_head_CHT": false,
+    "inherited_converged_reference": {
+      "accepted_as_F41_whole_head": false,
+      "accepted_as_proxy": true,
+      "case_id": "fine",
+      "cell_count": 138240,
+      "classification": "inherited_converged_F38_canonical_channel_proxy_not_F41_whole_head",
+      "effective_h_w_m2k": 201.8432157948752,
+      "geometry": "canonical_inter_fin_channel_gap_4p5mm_span_86mm_length_180mm_not_F41_whole_head",
+      "pressure_drop_pa": 1715.572933000003,
+      "relative_energy_balance_error": 0.01770935077561751,
+      "relative_mass_balance_error": 3.166457464231949e-11,
+      "source_path": "twins/reference-917-engine/evidence/f38-cooling-redesign/f38-cooling-cross-check.json",
+      "source_sha256": "e7c03b179ac1ef3bd908b3f77acd6487f14626a65caf7367f4eee211ca233c0f",
+      "two_grid_h_change_relative": 0.0012221729484686314
+    },
+    "solver": "OpenFOAM_14_foamRun_fluid_hePsiThermo_kOmegaSST"
+  },
+  "method_b_analytical": {
+    "cases": [
+      {
+        "capture_fraction": 0.7,
+        "case_id": "p13-capture0.70",
+        "correlation_in_reynolds_range": true,
+        "darcy_friction_factor": 0.020866273280613773,
+        "effective_h_w_m2k": 368.33095897571815,
+        "effective_span_mm": 90.43494098615515,
+        "hydraulic_diameter_m": 0.00783732446988496,
+        "mean_clear_gap_mm": 4.096153846153846,
+        "nusselt": 105.74099772148679,
+        "open_area_m2": 0.004815660607512761,
+        "passage_count_equivalent": 13,
+        "pressure_drop_below_6p7kpa": true,
+        "reynolds": 50965.386296737845,
+        "straight_pressure_drop_pa": 3699.7920362655345,
+        "velocity_m_s": 109.14771978288985
+      },
+      {
+        "capture_fraction": 1.0,
+        "case_id": "p13-capture1.00",
+        "correlation_in_reynolds_range": true,
+        "darcy_friction_factor": 0.01926600252472597,
+        "effective_h_w_m2k": 485.727439283859,
+        "effective_span_mm": 90.43494098615515,
+        "hydraulic_diameter_m": 0.00783732446988496,
+        "mean_clear_gap_mm": 4.096153846153846,
+        "nusselt": 139.44335331845969,
+        "open_area_m2": 0.004815660607512761,
+        "passage_count_equivalent": 13,
+        "pressure_drop_below_6p7kpa": false,
+        "reynolds": 72807.69470962549,
+        "straight_pressure_drop_pa": 6971.527665532123,
+        "velocity_m_s": 155.92531397555692
+      },
+      {
+        "capture_fraction": 0.7,
+        "case_id": "p26-capture0.70",
+        "correlation_in_reynolds_range": true,
+        "darcy_friction_factor": 0.024604791532768663,
+        "effective_h_w_m2k": 215.7639414087494,
+        "effective_span_mm": 90.43494098615515,
+        "hydraulic_diameter_m": 0.00783732446988496,
+        "mean_clear_gap_mm": 4.096153846153846,
+        "nusselt": 61.94183215097496,
+        "open_area_m2": 0.009631321215025522,
+        "passage_count_equivalent": 26,
+        "pressure_drop_below_6p7kpa": true,
+        "reynolds": 25482.693148368922,
+        "straight_pressure_drop_pa": 1090.6668687633698,
+        "velocity_m_s": 54.573859891444926
+      },
+      {
+        "capture_fraction": 1.0,
+        "case_id": "p26-capture1.00",
+        "correlation_in_reynolds_range": true,
+        "darcy_friction_factor": 0.022565937961048502,
+        "effective_h_w_m2k": 284.0506485432542,
+        "effective_span_mm": 90.43494098615515,
+        "hydraulic_diameter_m": 0.00783732446988496,
+        "mean_clear_gap_mm": 4.096153846153846,
+        "nusselt": 81.54568126427615,
+        "open_area_m2": 0.009631321215025522,
+        "passage_count_equivalent": 26,
+        "pressure_drop_below_6p7kpa": true,
+        "reynolds": 36403.847354812744,
+        "straight_pressure_drop_pa": 2041.40766347648,
+        "velocity_m_s": 77.96265698777846
+      }
+    ],
+    "method": "Gnielinski_plus_Darcy_Weisbach_plus_rectangular_channel_hydraulic_diameter",
+    "selected_cross_check": {
+      "capture_fraction": 0.7,
+      "case_id": "p26-capture0.70",
+      "correlation_in_reynolds_range": true,
+      "darcy_friction_factor": 0.024604791532768663,
+      "effective_h_w_m2k": 215.7639414087494,
+      "effective_span_mm": 90.43494098615515,
+      "hydraulic_diameter_m": 0.00783732446988496,
+      "mean_clear_gap_mm": 4.096153846153846,
+      "nusselt": 61.94183215097496,
+      "open_area_m2": 0.009631321215025522,
+      "passage_count_equivalent": 26,
+      "pressure_drop_below_6p7kpa": true,
+      "reynolds": 25482.693148368922,
+      "straight_pressure_drop_pa": 1090.6668687633698,
+      "velocity_m_s": 54.573859891444926
+    }
+  },
+  "schema_version": "1.0.0",
+  "sequential_solid_conduction": {
+    "boundary_conditions": {
+      "analysis_type": "steady_state",
+      "chamber_flux_w_mm2": 0.4447317388493859,
+      "exhaust_port": {
+        "h_w_mm2k": 0.00035,
+        "sink_c": 900.0
+      },
+      "external_air": {
+        "h_w_mm2k": 0.00021576,
+        "sink_c": 35.0
+      },
+      "initial_temperature_c": 80.0,
+      "intake_port": {
+        "h_w_mm2k": 0.0001,
+        "sink_c": 100.0
+      },
+      "transient_duration_s": null
+    },
+    "classification": "scan_conforming_voxel_solid_conduction_with_mean_flux_and_film_hypotheses",
+    "engineering_gates": {
+      "engine_start_authorized": false,
+      "maximum_below_260_c_service_screen": false,
+      "metal_print_authorized": false,
+      "physical_thermocouple_correlation": false,
+      "temperature_field_from_conjugate_cfd": false,
+      "thermal_material_card_qualified": false
+    },
+    "input_sha256": "ab906a554fdfffa9c6c1e5d6cc2b9fac7498177e4cc0b3fd4c08bdb37e1b8359",
+    "inputs": {
+      "flow_core_sha256": "771ddca592483708a4515f0dc9db4eb335913a933d9f8eb95c8010b1386ab1dc",
+      "head_sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81"
+    },
+    "local_files": {
+      "917-head-f36-thermal-map.png": {
+        "bytes": 1546596,
+        "sha256": "b21833de78f0912df575915440d8d96622ece603a1152b8c744e3b4e454707e3"
+      }
+    },
+    "material": {
+      "card_qualified": false,
+      "conductivity_scale": 1.0,
+      "conductivity_w_mk_by_temperature_c": [
+        [
+          20.0,
+          150.0
+        ],
+        [
+          200.0,
+          135.0
+        ],
+        [
+          300.0,
+          120.0
+        ]
+      ],
+      "density_kg_mm3": 2.67e-06,
+      "id": "Aheadd_HT1_candidate_unqualified_thermal_screen",
+      "specific_heat_j_kgk": 900.0
+    },
+    "mesh": {
+      "discarded_non_primary_voxels": 0,
+      "face_connected_components": 1,
+      "hexahedra": 85334,
+      "nodes": 99391,
+      "pitch_mm_if_obj_unit_is_mm": 2.5,
+      "raw_occupied_voxels": 85334
+    },
+    "path": "work/917-f42-cooling-cht/run/f42-calculix-p2p5-analytic-h/report.json",
+    "phase": "F36",
+    "release_claim": false,
+    "results": {
+      "maximum_temperature_c": 542.1844,
+      "median_temperature_c": 321.8797,
+      "minimum_temperature_c": 180.3577,
+      "p95_temperature_c": 414.37800000000004,
+      "temperature_samples": 99391
+    },
+    "schema_version": "1.0.0",
+    "sha256": "a1551f181f0ee67acb40850040021fca40e43798faa8347e97a8e148fd1e4d51",
+    "solver": "CalculiX",
+    "status": "completed_screening",
+    "surface_regions": {
+      "chamber": {
+        "faces": 1547,
+        "voxel_area_mm2": 9668.75
+      },
+      "exhaust_port": {
+        "faces": 2874,
+        "voxel_area_mm2": 17962.5
+      },
+      "external_air": {
+        "faces": 21397,
+        "voxel_area_mm2": 133731.25
+      },
+      "intake_port": {
+        "faces": 2454,
+        "voxel_area_mm2": 15337.5
+      }
+    }
+  },
+  "thermal_screens": {
+    "Gnielinski_p26_c70": {
+      "above_300c_conductivity_treatment": "120_W_mK_constant_unqualified_extrapolation",
+      "bridge_area_mm2_proxy": 1200.0,
+      "bridge_length_mm_proxy": 8.0,
+      "bridge_temperature_c": 370.67968803647784,
+      "classification": "two_resistance_lower_bound_using_resolved_wetted_area_and_F38_bridge_proxy_not_3D_CHT",
+      "external_h_w_m2k": 215.7639414087494,
+      "fin_root_temperature_c": 145.83081323406935,
+      "heat_load_w": 4300.0,
+      "maximum_below_260_c": false,
+      "wetted_area_m2": 0.17981630481805697,
+      "within_qualified_interpolation_range_to_300c": false
+    },
+    "OpenFOAM_F38_channel_proxy": {
+      "above_300c_conductivity_treatment": "120_W_mK_constant_unqualified_extrapolation",
+      "bridge_area_mm2_proxy": 1200.0,
+      "bridge_length_mm_proxy": 8.0,
+      "bridge_temperature_c": 379.546206175934,
+      "classification": "two_resistance_lower_bound_using_resolved_wetted_area_and_F38_bridge_proxy_not_3D_CHT",
+      "external_h_w_m2k": 201.8432157948752,
+      "fin_root_temperature_c": 153.4745942475563,
+      "heat_load_w": 4300.0,
+      "maximum_below_260_c": false,
+      "wetted_area_m2": 0.17981630481805697,
+      "within_qualified_interpolation_range_to_300c": false
+    }
+  }
+}

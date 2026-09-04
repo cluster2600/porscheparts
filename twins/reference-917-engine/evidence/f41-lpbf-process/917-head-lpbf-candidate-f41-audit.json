@@ -1,0 +1,733 @@
+{
+  "classification": "virtual_geometry_and_layer_activation_screen_not_machine_qualification_or_physical_release",
+  "closed_void_and_powder_escape": {
+    "finest_trapped_volume_mm3_if_scale_is_mm": 0.0,
+    "physical_powder_removal_test_complete": false,
+    "resolutions": [
+      {
+        "all_detected_void_connected_to_exterior": true,
+        "classification": "voxel_resolution_screen_not_CT_or_powder_flow_test",
+        "grid_point_count": 303345,
+        "grid_shape": [
+          63,
+          107,
+          45
+        ],
+        "largest_components": [],
+        "method": "deterministic_VTK_polydata_to_image_stencil_plus_6_connected_exterior_flood_fill",
+        "physical_powder_removal_verified": false,
+        "pitch_mm_if_scale_is_mm": 2.0,
+        "solid_grid_points": 135748,
+        "trapped_component_count": 0,
+        "trapped_volume_mm3_if_scale_is_mm": 0.0,
+        "trapped_voxel_count": 0
+      },
+      {
+        "all_detected_void_connected_to_exterior": true,
+        "classification": "voxel_resolution_screen_not_CT_or_powder_flow_test",
+        "grid_point_count": 1147608,
+        "grid_shape": [
+          99,
+          168,
+          69
+        ],
+        "largest_components": [],
+        "method": "deterministic_VTK_polydata_to_image_stencil_plus_6_connected_exterior_flood_fill",
+        "physical_powder_removal_verified": false,
+        "pitch_mm_if_scale_is_mm": 1.25,
+        "solid_grid_points": 555418,
+        "trapped_component_count": 0,
+        "trapped_volume_mm3_if_scale_is_mm": 0.0,
+        "trapped_voxel_count": 0
+      }
+    ]
+  },
+  "exhaustive_thickness_screen": {
+    "all_resolved_chords_meet_inherited_requirement": false,
+    "classification": "exhaustive_faceted_chord_screen_not_continuous_medial_thickness_or_CT",
+    "continuous_surface_proof": false,
+    "ct_verified": false,
+    "domain": "all_triangles_of_exact_F37_scan_mesh",
+    "evaluated_triangle_count": 262554,
+    "inherited_screen_requirement_mm_if_scale_is_mm": 1.5,
+    "limitation": "face_normal_chord_on_faceted_scan_not_medial_thickness_or_production_CAD_wall_map",
+    "map": {
+      "bytes": 7441555,
+      "path": "local-only://917-head-lpbf-candidate-f41-thickness-map.npz",
+      "repository_policy": "local_only_scan_derived_field",
+      "sha256": "66bca80b392290d161a8f8ff1a07974dc646e2463ce24fa9f764b91354380d38"
+    },
+    "maximum_mm_if_scale_is_mm": 201.76410335283475,
+    "median_mm_if_scale_is_mm": 12.046665659820745,
+    "method": "exhaustive_triangle_centroid_inward_normal_first_opposite_surface_chord_VTK",
+    "minimum_mm_if_scale_is_mm": 0.00015182422348710992,
+    "p01_mm_if_scale_is_mm": 0.002277824712610526,
+    "p05_mm_if_scale_is_mm": 0.04359259734472269,
+    "p95_mm_if_scale_is_mm": 78.12968954288537,
+    "resolved_area_below_inherited_requirement_fraction": 0.09003100649566263,
+    "resolved_fraction": 0.9988421429496408,
+    "resolved_triangle_count": 262250,
+    "triangle_count": 262554,
+    "unresolved_triangle_count": 304
+  },
+  "gates": {
+    "all_resolved_chords_at_least_1_5_mm": false,
+    "all_triangle_chords_resolved": false,
+    "calibrated_process_simulation_complete": false,
+    "complete_machine_layer_activation_schedule": true,
+    "engine_start_authorized": false,
+    "machine_scan_path_and_supports_sliced": false,
+    "metal_print_authorized": false,
+    "no_closed_void_detected_at_both_voxel_pitches": true,
+    "orientation_fits_conditional_machine_envelope": true,
+    "source_brep_one_valid_solid": true,
+    "surface_mesh_watertight_volume": true
+  },
+  "inputs": {
+    "build_report": {
+      "execution_sha256": "bdc6a2be9521d13352296d60839f16c1b417929a65c38984b13d9c893122aa3a",
+      "path": "917-head-lpbf-candidate-f41-report.json",
+      "sha256": "fb73947051a869d3f0e1d893f9af0fcff137b8229e8089af8d0eaea466572913"
+    },
+    "head": {
+      "path": "local-only://917-head-lpbf-candidate-f41.stl",
+      "repository_policy": "local_only_scan_derived_mesh_rights_unverified",
+      "sha256": "2c1af796e851b680f67fd28b780d4b00fb8115efcf7e25a30d99361e6da1ac81"
+    }
+  },
+  "mesh": {
+    "boundary_or_nonmanifold_edges": 0,
+    "bounds_mm_if_scale_is_mm": [
+      [
+        -60.236549377441406,
+        58.875
+      ],
+      [
+        -89.47174072265625,
+        116.61710357666016
+      ],
+      [
+        -5.684341886080802e-14,
+        82.0
+      ]
+    ],
+    "connected_surface_regions": 1,
+    "signed_volume_mm3_if_scale_is_mm": 1091074.6724214975,
+    "surface_area_mm2_if_scale_is_mm": 179816.30481805696,
+    "triangles": 262554,
+    "vertices": 131251,
+    "watertight_manifold_screen": true
+  },
+  "orientation_and_support": {
+    "candidates": [
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1733250.7320891793,
+        "downward_face_area_fraction": 0.28559844557779457,
+        "downward_face_area_mm2_if_scale_is_mm": 51355.257145579955,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          206.0888442993164,
+          82.00000000000006
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_z_up",
+        "projected_support_area_mm2_if_scale_is_mm": 48843.48731251854,
+        "score": 4175425.097715107,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1205126.8471156913,
+        "downward_face_area_fraction": 0.289268979997959,
+        "downward_face_area_mm2_if_scale_is_mm": 52015.27908172141,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          206.0888442993164,
+          82.00000000000007
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_z_down",
+        "projected_support_area_mm2_if_scale_is_mm": 49942.0660771038,
+        "score": 3702230.1509708813,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0,
+            -1.2246467991473532e-16
+          ],
+          [
+            0.0,
+            1.2246467991473532e-16,
+            -1.0
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 964412.7391043252,
+        "downward_face_area_fraction": 0.13339755197116684,
+        "downward_face_area_mm2_if_scale_is_mm": 23987.054867229934,
+        "extents_mm_if_scale_is_mm": [
+          82.00000000000006,
+          206.0888442993164,
+          119.1115493774414
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_x_up",
+        "projected_support_area_mm2_if_scale_is_mm": 21814.30363606661,
+        "score": 2055127.9209076555,
+        "transform": [
+          [
+            6.123233995736766e-17,
+            0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 898486.9107355946,
+        "downward_face_area_fraction": 0.13129563274201067,
+        "downward_face_area_mm2_if_scale_is_mm": 23609.095518417053,
+        "extents_mm_if_scale_is_mm": [
+          82.00000000000006,
+          206.0888442993164,
+          119.1115493774414
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_x_down",
+        "projected_support_area_mm2_if_scale_is_mm": 21406.090370724254,
+        "score": 1968791.4292718072,
+        "transform": [
+          [
+            6.123233995736766e-17,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1058921.7431843586,
+        "downward_face_area_fraction": 0.069484731847166,
+        "downward_face_area_mm2_if_scale_is_mm": 12494.487722030952,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          82.00000000000006,
+          206.0888442993164
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_up",
+        "projected_support_area_mm2_if_scale_is_mm": 11279.746791785137,
+        "score": 1622909.0827736156,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 786933.4667484411,
+        "downward_face_area_fraction": 0.07349870067294721,
+        "downward_face_area_mm2_if_scale_is_mm": 13216.264763937805,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          82.00000000000006,
+          206.0888442993164
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down",
+        "projected_support_area_mm2_if_scale_is_mm": 11947.167482851433,
+        "score": 1384291.840891013,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1272117.0489420937,
+        "downward_face_area_fraction": 0.1168072224943219,
+        "downward_face_area_mm2_if_scale_is_mm": 21003.843124989588,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          196.2551003928713,
+          197.49522285713488
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_-45",
+        "projected_support_area_mm2_if_scale_is_mm": 16996.072442011635,
+        "score": 2121920.6710426756,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.7071067811865475,
+            -0.7071067811865476
+          ],
+          [
+            0.0,
+            0.7071067811865476,
+            0.7071067811865475
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 958560.0769681504,
+        "downward_face_area_fraction": 0.08901174427368447,
+        "downward_face_area_mm2_if_scale_is_mm": 16005.762940703782,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          166.9938709271193,
+          212.6541333849379
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_-30",
+        "projected_support_area_mm2_if_scale_is_mm": 13333.28216867639,
+        "score": 1625224.18540197,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.5,
+            -0.8660254037844387
+          ],
+          [
+            0.0,
+            0.8660254037844387,
+            0.5
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 852458.7742173166,
+        "downward_face_area_fraction": 0.07554532622196386,
+        "downward_face_area_mm2_if_scale_is_mm": 13584.281407508206,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          126.35228512810413,
+          214.22654490934843
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_-15",
+        "projected_support_area_mm2_if_scale_is_mm": 12016.027898044049,
+        "score": 1453260.1691195192,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.2588190451025208,
+            -0.9659258262890683
+          ],
+          [
+            0.0,
+            0.9659258262890683,
+            0.2588190451025208
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 842893.5077103234,
+        "downward_face_area_fraction": 0.07288557994010711,
+        "downward_face_area_mm2_if_scale_is_mm": 13106.015659351157,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          129.621674714701,
+          215.76914460686905
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_+15",
+        "projected_support_area_mm2_if_scale_is_mm": 11582.040877727684,
+        "score": 1421995.5515967077,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2588190451025207,
+            -0.9659258262890683
+          ],
+          [
+            0.0,
+            0.9659258262890683,
+            -0.2588190451025207
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 850524.7160470973,
+        "downward_face_area_fraction": 0.07660492344332354,
+        "downward_face_area_mm2_if_scale_is_mm": 13774.814264448583,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          168.87733926790548,
+          212.15330723398745
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_+30",
+        "projected_support_area_mm2_if_scale_is_mm": 11486.505514671375,
+        "score": 1424849.9917806662,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4999999999999999,
+            -0.8660254037844387
+          ],
+          [
+            0.0,
+            0.8660254037844387,
+            -0.4999999999999999
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 945682.9715424062,
+        "downward_face_area_fraction": 0.10782222175628531,
+        "downward_face_area_mm2_if_scale_is_mm": 19388.193493488332,
+        "extents_mm_if_scale_is_mm": [
+          119.1115493774414,
+          197.49522285713488,
+          196.25510039287133
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_+45",
+        "projected_support_area_mm2_if_scale_is_mm": 15428.734388588806,
+        "score": 1717119.6909718467,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7071067811865475,
+            -0.7071067811865476
+          ],
+          [
+            0.0,
+            0.7071067811865476,
+            -0.7071067811865475
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1007532.335038227,
+        "downward_face_area_fraction": 0.08505754400414664,
+        "downward_face_area_mm2_if_scale_is_mm": 15294.733259724924,
+        "extents_mm_if_scale_is_mm": [
+          191.18624694219804,
+          82.00000000000006,
+          190.41825988127448
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_-45",
+        "projected_support_area_mm2_if_scale_is_mm": 12883.765170674491,
+        "score": 1651720.5935719516,
+        "transform": [
+          [
+            0.7071067811865476,
+            -0.7071067811865475,
+            -4.329780281177466e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.7071067811865475,
+            0.7071067811865476,
+            4.329780281177467e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 926291.9756098834,
+        "downward_face_area_fraction": 0.07621562754815947,
+        "downward_face_area_mm2_if_scale_is_mm": 13704.812515099344,
+        "extents_mm_if_scale_is_mm": [
+          177.0582563375325,
+          82.00000000000006,
+          205.09416800013616
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_-30",
+        "projected_support_area_mm2_if_scale_is_mm": 11882.130616339613,
+        "score": 1520398.506426864,
+        "transform": [
+          [
+            0.8660254037844387,
+            -0.49999999999999994,
+            -3.0616169978683824e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.49999999999999994,
+            0.8660254037844387,
+            5.3028761936245346e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 840950.2030775095,
+        "downward_face_area_fraction": 0.07368967602051064,
+        "downward_face_area_mm2_if_scale_is_mm": 13250.605245248003,
+        "extents_mm_if_scale_is_mm": [
+          152.3839085344497,
+          82.00000000000006,
+          209.78520616748378
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_-15",
+        "projected_support_area_mm2_if_scale_is_mm": 11822.04090110578,
+        "score": 1432052.2481327986,
+        "transform": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            -1.5848095757158825e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            5.914589856893349e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 844913.3318041373,
+        "downward_face_area_fraction": 0.074574274649442,
+        "downward_face_area_mm2_if_scale_is_mm": 13409.67050194956,
+        "extents_mm_if_scale_is_mm": [
+          151.52598494142774,
+          82.00000000000006,
+          209.24483827338221
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_+15",
+        "projected_support_area_mm2_if_scale_is_mm": 12013.033687326839,
+        "score": 1445565.0161704794,
+        "transform": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            1.5848095757158825e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            5.914589856893349e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 934289.2701144072,
+        "downward_face_area_fraction": 0.07848642164975396,
+        "downward_face_area_mm2_if_scale_is_mm": 14113.138319450703,
+        "extents_mm_if_scale_is_mm": [
+          176.3702880227582,
+          82.00000000000006,
+          204.6759531940266
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_+30",
+        "projected_support_area_mm2_if_scale_is_mm": 12283.931850437728,
+        "score": 1548485.8626362935,
+        "transform": [
+          [
+            0.8660254037844387,
+            0.49999999999999994,
+            3.0616169978683824e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            -0.49999999999999994,
+            0.8660254037844387,
+            5.3028761936245346e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1018922.2382210623,
+        "downward_face_area_fraction": 0.08492696193880957,
+        "downward_face_area_mm2_if_scale_is_mm": 15271.252475260502,
+        "extents_mm_if_scale_is_mm": [
+          190.41825988127448,
+          82.00000000000006,
+          191.18624694219807
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_+45",
+        "projected_support_area_mm2_if_scale_is_mm": 12967.281637833808,
+        "score": 1667286.3201127527,
+        "transform": [
+          [
+            0.7071067811865476,
+            0.7071067811865475,
+            4.329780281177466e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            -0.7071067811865475,
+            0.7071067811865476,
+            4.329780281177467e-17
+          ]
+        ]
+      }
+    ],
+    "selected": {
+      "column_support_volume_proxy_mm3_if_scale_is_mm": 786933.4667484411,
+      "downward_face_area_fraction": 0.07349870067294721,
+      "downward_face_area_mm2_if_scale_is_mm": 13216.264763937805,
+      "extents_mm_if_scale_is_mm": [
+        119.1115493774414,
+        82.00000000000006,
+        206.0888442993164
+      ],
+      "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+      "id": "scan_y_down",
+      "projected_support_area_mm2_if_scale_is_mm": 11947.167482851433,
+      "score": 1384291.840891013,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          6.123233995736766e-17,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          6.123233995736766e-17
+        ]
+      ]
+    },
+    "supplier_slicer_review_complete": false,
+    "support_geometry_generated": false
+  },
+  "phase": "F41",
+  "schema_version": "1.0.0",
+  "status": "lpbf_geometry_audit_complete_release_depends_on_gates",
+  "verdict": "geometry_correction_required_before_supplier_slicing",
+  "virtual_layer_activation": {
+    "complete_layer_schedule_generated": true,
+    "first_nonempty_layer": 6,
+    "height_mm_if_scale_is_mm": 206.0888442993164,
+    "last_nonempty_layer": 5151,
+    "layer_count": 5153,
+    "layer_height_um": 40.0,
+    "machine_build_file_generated": false,
+    "maximum_activated_triangle_area_mm2_if_scale_is_mm": 880.7236763524747,
+    "method": "triangle_centroid_layer_activation_at_40_um_not_laser_scan_path_or_melt_pool",
+    "nonempty_layer_count": 5141,
+    "p95_activated_triangle_area_mm2_if_scale_is_mm": 87.19973377699357
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F40-vast-publication",
+  "status": "ghcr_publication_and_anonymous_smoke_verified_vast_runtime_pending",
+  "verified_at": "2026-09-02T21:06:51Z",
+  "source": {
+    "repository": "https://github.com/cluster2600/3dprinting993",
+    "branch": "codex/917-f40-vast-image-publish",
+    "commit": "8c98ccfc7beb1010c3738ebf97b41ca51dbf0659"
+  },
+  "workflow": {
+    "id": 33682226117,
+    "attempt": 1,
+    "url": "https://github.com/cluster2600/3dprinting993/actions/runs/33682226117",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-09-02T20:56:07Z",
+    "completed_at": "2026-09-02T20:57:57Z",
+    "evidence_artifact": {
+      "id": 9866745547,
+      "name": "917-engine-wave-f40-vast-33682226117-1",
+      "size_bytes": 330010,
+      "expires_at": "2026-10-02T20:57:49Z"
+    }
+  },
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-wave-action-f39",
+    "tag": "8c98ccfc7beb1010c3738ebf97b41ca51dbf0659-vast-f40",
+    "immutable_reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:7767037d971da04b6130bcf9da6014953c118333b6cd8b406220f469b55546fa",
+    "oci_index_digest": "sha256:7767037d971da04b6130bcf9da6014953c118333b6cd8b406220f469b55546fa",
+    "platform_manifest_digest": "sha256:a7c1c49667aea657bd72899fae523217d79d9c9efd547dfc20466f2f16686ecc",
+    "attestation_manifest_digest": "sha256:43cae078ab0933bba2ccd4f310e65a0aeb425c67c7bc0d3234fef94ad8113328",
+    "platform": "linux/amd64",
+    "runtime_user": "0:0",
+    "entrypoint": "/opt/917-engine-wave-f40-vast/entrypoint.sh"
+  },
+  "verification": {
+    "workflow_build_passed": true,
+    "sbom_gate_passed": true,
+    "provenance_gate_passed": true,
+    "workflow_anonymous_pull_passed": true,
+    "independent_anonymous_pull_passed": true,
+    "independent_offline_transport_smoke_passed": true,
+    "solver_uid": 9139,
+    "solver_no_new_privileges": true,
+    "aeolus1d_version": "0.3.3",
+    "embedded_authorized_keys": false,
+    "embedded_ssh_host_private_keys": false
+  },
+  "claim_scope": {
+    "vast_authorized_key_injection_verified": false,
+    "vast_ssh_direct_handshake_verified": false,
+    "f40_campaign_executed_in_this_image": false,
+    "engine_model_physically_correlated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  }
+}
+

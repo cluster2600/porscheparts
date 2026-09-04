@@ -1,0 +1,11 @@
+--- a/references/simready-validate/scripts/run.py
++++ b/references/simready-validate/scripts/run.py
+@@ -644,7 +644,7 @@ def _build_command(
+     if foundation_spec_root:
+         capabilities = foundation_spec_root / "capabilities"
+         features = foundation_spec_root / "features"
+-        profiles = foundation_spec_root / "profiles" / "profiles.toml"
++        profiles = foundation_spec_root / "profiles"
+         if capabilities.exists():
+             command.extend(["--rules-path", str(capabilities)])
+         if features.exists():

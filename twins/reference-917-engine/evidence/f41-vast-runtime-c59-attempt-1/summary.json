@@ -1,0 +1,82 @@
+{
+  "$comment": "Preuve textuelle de la qualification Vast du digest C59 et de l'execution du lot CAO F41 limite a six graines F35. Elle ne constitue aucune validation geometrique, physique, de simulation ou de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F41-vast-runtime-qualification",
+  "status": "passed_remote_cad_archive_validated_instance_destroyed_not_released",
+  "publication_evidence": "../f41-vast-image-publication-race-fix/summary.json",
+  "attempt": {
+    "date_utc": "2026-09-03",
+    "source_revision": "045f41037f04b3dd69b72591d29713a17db8e1c3",
+    "image": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:c59c53b2611a1e3a9e9de5d2cedf8bfb0cd57e72582b2d6b29f6c8fc82bf7e6b",
+    "bundle_sha256": "2b2d7ace49c0915b5a56da001cf3fae8ca6b97d9bb9c30fd0bda19099c7b0db5",
+    "bundle_size_bytes": 40368,
+    "offer_id": 49691948,
+    "instance_id": 49707819,
+    "provider_region": "Texas, US",
+    "job_id": "f41-c59-20260903t025511z",
+    "parent_exit_code": 0
+  },
+  "qualification": {
+    "vast_runtime_qualified": true,
+    "f41_batch_qualified": true,
+    "qualification_scope": "six_hash_bound_F35_research_seed_families_only"
+  },
+  "cad_batch": {
+    "planned_family_count": 138,
+    "generateable_family_count": 6,
+    "generated_family_count": 6,
+    "blocked_family_count": 132,
+    "family_ids": [
+      "connecting_rod",
+      "crankshaft",
+      "main_bearing_pair",
+      "piston",
+      "piston_pin",
+      "piston_ring"
+    ],
+    "generated_format_counts": {
+      "STEP": 6,
+      "STL": 6,
+      "3MF": 6,
+      "USD": 0
+    },
+    "verified_artifact_count": 18,
+    "source_generation_log_verified": true,
+    "release_gates_all_false": true,
+    "geometry_semantics_validated": false,
+    "physical_validation_complete": false,
+    "simulation_validated": false,
+    "manufacturing_released": false
+  },
+  "result_archive": {
+    "sha256": "59ef86584e9dfb16481b76ce79bf5739b129ddf2d3a3869f700b2dd614bd86b5",
+    "size_bytes": 772358,
+    "transport_integrity_verified": true,
+    "local_contract_validation_passed": true,
+    "committed_to_repository": false
+  },
+  "cleanup_evidence": {
+    "instance_destroyed_verified": true,
+    "known_hosts_removed_after_destroy": true,
+    "compute_billing_risk_cleared": true
+  },
+  "repository_scope": {
+    "raw_runtime_captures_committed": false,
+    "other_instance_inventory_committed": false,
+    "secret_committed": false,
+    "raw_scan_committed": false,
+    "geometry_committed": false,
+    "binary_artifacts_committed": false
+  },
+  "gates": {
+    "f41_component_factory_executed": true,
+    "real_engine_cad_generated": false,
+    "geometry_dimensionally_validated": false,
+    "engine_model_physically_correlated": false,
+    "omniverse_simready_validated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false
+  }
+}

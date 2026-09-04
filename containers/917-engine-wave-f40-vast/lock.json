@@ -1,0 +1,74 @@
+{
+  "$comment": "Verrou de recette avant publication. Il lie la couche Vast au digest public F39, fixe OpenSSH et maintient fermes le SSH reel, la campagne F40 et toutes les affirmations physiques tant qu'un digest GHCR puis une execution Vast n'ont pas produit leurs preuves.",
+  "schema_version": "1.0.0",
+  "phase": "F40-vast-image",
+  "status": "recipe_locked_publication_and_vast_runtime_unverified",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-wave-action-f39",
+    "tag_pattern": "<git-sha>-vast-f40",
+    "digest": null,
+    "immutable_reference": null,
+    "platform": "linux/amd64",
+    "runtime_user": "0:0",
+    "solver_user": "9139:9139",
+    "base_immutable_reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "base_contains": {
+      "aeolus1d": "0.3.3",
+      "python": "3.12.14"
+    }
+  },
+  "system_packages": {
+    "libbsd0": "0.11.7-2",
+    "libcbor0.8": "0.8.0-2+b1",
+    "libedit2": "3.1-20221030-2",
+    "libfido2-1": "1.12.0-2+b1",
+    "libproc2-0": "2:4.0.2-3",
+    "libwrap0": "7.6.q-32",
+    "openssh-client": "1:9.2p1-2+deb12u10",
+    "openssh-server": "1:9.2p1-2+deb12u10",
+    "openssh-sftp-server": "1:9.2p1-2+deb12u10",
+    "procps": "2:4.0.2-3",
+    "runit-helper": "2.15.2",
+    "sensible-utils": "0.0.17+nmu1",
+    "ucf": "3.0043+nmu1+deb12u1"
+  },
+  "system_package_artifact_lock": {
+    "path": "containers/917-engine-wave-f40-vast/system-packages.sha256",
+    "sha256": "d2db2dc5d01dbb39f28974bbb66fc7045ea7e2eb9b3f4a4a981638ab44490227",
+    "artifact_count": 13,
+    "verification_before_install": true
+  },
+  "security_contract": {
+    "vast_runtype": "ssh_direct",
+    "vast_replaces_image_entrypoint": true,
+    "onstart_command": "/usr/local/bin/917-wave-vast-onstart",
+    "root_scope": [
+      "vast_injected_sshd_initialization",
+      "ssh_scp_transport",
+      "archive_validation_and_ownership_transfer"
+    ],
+    "solver_launcher": "/usr/local/bin/917-wave-run-job",
+    "solver_no_new_privileges": true,
+    "solver_capability_bounding_set": "empty",
+    "baked_authorized_keys": false,
+    "baked_ssh_host_keys": false,
+    "embedded_secrets": false,
+    "embedded_private_assets": false
+  },
+  "gates": {
+    "base_digest_pinned": true,
+    "dependency_versions_pinned": true,
+    "secure_archive_contract_present": true,
+    "solver_uid_drop_contract_present": true,
+    "linux_amd64_build_verified": false,
+    "ghcr_digest_published": false,
+    "ghcr_anonymous_pull_verified": false,
+    "vast_authorized_key_injection_verified": false,
+    "vast_ssh_direct_handshake_verified": false,
+    "f40_campaign_executed_in_this_image": false,
+    "engine_model_physically_correlated": false,
+    "target_1600_mechanical_hp_proven": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false
+  }
+}

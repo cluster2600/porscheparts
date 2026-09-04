@@ -1,0 +1,95 @@
+{
+  "$comment": "Contrat fail-closed avant publication. Les tags sont informatifs; seul un digest OCI verifie pourra devenir une autorite de reproduction.",
+  "schema_version": "1.0.0",
+  "phase": "F35",
+  "lot": "gmsh-mesh-f35",
+  "status": "publication_not_verified_fail_closed",
+  "claim_scope": {
+    "synthetic_occ_volume_mesh_only": true,
+    "porsche_geometry_used": false,
+    "engine_geometry_verified": false,
+    "physics_simulation_verified": false,
+    "fitment_verified": false,
+    "fabrication_authorized": false
+  },
+  "recipe": {
+    "platform": "linux/amd64",
+    "dockerfile_frontend": "docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e",
+    "base_image": "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "gmsh_version": "4.15.2",
+    "gmsh_wheel_sha256": "4076a948ce22625330d1413d4982e22b5c69fc2f0f7951f5df64c778cf54108c",
+    "libgmsh_sha256": "9db3090d3b720c57b76bcbfa01d13854823ae2698c91343c20bdd4c2b81f6317",
+    "system_package_hash_count": 24,
+    "runtime_uid": 9135,
+    "runtime_gid": 9135,
+    "planned_inputs": [
+      ".github/workflows/gmsh-mesh-f35-image.yml",
+      "containers/gmsh-mesh-f35.Dockerfile",
+      "containers/gmsh-mesh-f35.Dockerfile.dockerignore",
+      "containers/gmsh-mesh-f35.requirements.txt",
+      "containers/gmsh-mesh-f35-system-packages.sha256",
+      "containers/gmsh-mesh-f35-smoke.py",
+      "containers/gmsh-mesh-f35.lock.json",
+      "tests/test_gmsh_mesh_f35_image.py",
+      "tests/test_gmsh_mesh_f35_lock.py"
+    ]
+  },
+  "planned_image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-gmsh-mesh-f35",
+    "candidate_tag": null,
+    "verified_tag": null,
+    "digest": null,
+    "immutable_reference": null,
+    "tags_are_release_authority": false
+  },
+  "verification": {
+    "publication_verified": false,
+    "workflow_run_id": null,
+    "workflow_run_attempt": null,
+    "source_revision": null,
+    "source_inputs_sha256_file": null,
+    "oci_index_sha256_verified": false,
+    "linux_amd64_manifest_verified": false,
+    "provenance_attestation_verified": false,
+    "sbom_attestation_verified": false,
+    "gmsh_in_sbom_verified": false,
+    "license_distribution_compliance_verified": false,
+    "hardened_smoke_verified": false,
+    "anonymous_digest_pull_verified": false
+  },
+  "software_verification_gates": {
+    "source_inputs_hashed": false,
+    "linux_amd64_image_built": false,
+    "non_root_runtime_verified": false,
+    "offline_runtime_verified": false,
+    "synthetic_occ_volume_created": false,
+    "physical_groups_verified": false,
+    "volume_elements_verified": false,
+    "positive_jacobians_verified": false,
+    "oci_digest_verified": false,
+    "provenance_verified": false,
+    "sbom_verified": false,
+    "license_distribution_compliance_verified": false,
+    "anonymous_pull_verified": false
+  },
+  "physical_release_gates": {
+    "porsche_geometry_scaled_and_registered": false,
+    "engine_interfaces_dimensionally_verified": false,
+    "engine_mesh_quality_validated": false,
+    "cfd_model_validated": false,
+    "fea_model_validated": false,
+    "physical_correlation_complete": false,
+    "fitment_verified": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false,
+    "target_power_proven": false
+  },
+  "known_limits": [
+    "Le smoke utilise uniquement un cylindre OCC synthetique sans geometrie Porsche.",
+    "Le conteneur maille mais ne resout aucune physique CFD, thermique ou structurelle.",
+    "Le digest OCI, les attestations, le SBOM et le pull anonyme restent inconnus avant une publication GHCR reussie.",
+    "La conformite de redistribution GPL et l'acces au code source correspondant doivent etre verifies avant de declencher le workflow public.",
+    "Aucune sortie de ce lot n'autorise une fabrication, un montage vehicule ou un demarrage moteur."
+  ]
+}

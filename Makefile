@@ -1,4 +1,11 @@
 .PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
+.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke 917-unsteady-network-f39-test 917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate 917-unsteady-network-f39 917-wave-action-f39-image-test 917-wave-action-f39-image 917-wave-action-f39-image-smoke
+.PHONY: 917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest 917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
+.PHONY: 917-extended-periodic-state-f40b-test 917-extended-periodic-state-f40b-manifest 917-extended-periodic-state-f40b-image-smoke 917-extended-periodic-state-f40b
+.PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
+.PHONY: 917-component-factory-f42a-usd-test
+.PHONY: 917-variant-authority-f43-check
+.PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -14,11 +21,50 @@ F34_CAE_IMAGE ?= 3dprinting993-cae-aircooled-f34:dev
 F34_FLUIDX3D_IMAGE ?= 3dprinting993-fluidx3d-aircooled-f34:dev
 F37_CAE_IMAGE ?= 3dprinting993-cae-integrated-f33:dev
 F37_CAE_IMAGE_ID ?= sha256:4a19fa7d1f253beb3106970ae2635cff85d5aeeaf062aaf807d1dab7b940fb33
+F35_CAD_AUTHOR_IMAGE ?= $(CAD_AUTHOR_F29_IMAGE)
+F35_SIMREADY_WORKFLOW_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
+F35_GMSH_IMAGE ?= 3dprinting993-gmsh-mesh-f35:dev
+F35_OPENFOAM_IMAGE ?= 3dprinting993-openfoam-engine-f35:dev
+F38_GAS_PATH_IMAGE ?= 3dprinting993-gas-path-f38:dev
+F38_OVERLAY_OUTPUT ?= work/917-gas-path-network-f38/omniverse
+F39_WAVE_IMAGE ?= 3dprinting993-wave-action-f39:dev
+F39_WAVE_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3
+F39_OUTPUT ?= work/917-unsteady-network-f39
+F40_WAVE_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3
+F40_OUTPUT ?= work/917-unsteady-convergence-f40
+F40_WORKERS ?= 1
+F40B_WAVE_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3
+F40B_OUTPUT ?= work/917-extended-periodic-state-f40b
+F41_CAD_IMAGE ?= ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+F41_USD_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
+F41_OUTPUT ?= work/917-component-factory-f41-execution
+F41_PLAN_OUTPUT ?= work/917-component-factory-f41-plan
+F41_BUNDLE_OUTPUT ?= work/917-component-factory-f41-bundle
+override F44_CAD_IMAGE := ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
+override F44_OUTPUT := work/917-connecting-rod-cad-f44
 
 .PHONY: 917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly 917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish 917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad 917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich 917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea 917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan 917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render 917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check 917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check 917-manufacturing-f37-check
-.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check
+.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-brep-audit-test 917-f42-1-topology-repair-test 917-f42-2-pcurve-repair-test 917-f42-1-thermal-optimization-check 917-f42-2-material-process-check 917-f42-omniverse-validation-check
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+F40_PYTHON ?= python3
+F42_PYTHON ?= python3
+F40_STOCK ?= work/917-scan-conforming-f36/run-013/917-head-scan-stock-f36.local.stl
+F40_FLOW_CORE ?= work/917-scan-conforming-f36/run-013/917-head-4v-flow-core-f36.local.stl
+F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
+
+917-f41-lpbf-evidence-check:
+	python3 tests/test_917_f41_lpbf_process.py -v
+
+917-f42-brep-audit-test:
+	$(F42_PYTHON) tests/test_917_f42_brep_audit.py -v
+
+917-f42-1-topology-repair-test:
+	$(F42_PYTHON) tests/test_917_f42_1_topology_repair.py -v
+
+917-f42-2-pcurve-repair-test:
+	$(F42_PYTHON) tests/test_917_f42_2_pcurve_repair.py -v
+
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -299,6 +345,286 @@ engine-components:
 		--pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
 		$(F34B_AIR_OIL_IMAGE)
 
+917-rotating-assembly-f35-test:
+	python3 tests/test_917_rotating_assembly_cad_f35.py -v
+	python3 tests/test_917_rotating_assembly_usd_f35.py -v
+	python3 tests/test_917_rotating_assembly_usd_f35_runner.py -v
+
+917-rotating-assembly-f35: 917-rotating-assembly-f35-test
+	mkdir -p work/917-rotating-assembly-f35
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-e HOME=/tmp -e XDG_CACHE_HOME=/tmp/cad-author-cache \
+		-e F35_CAD_RUNTIME_IMAGE_REF="$(F35_CAD_AUTHOR_IMAGE)" \
+		--mount type=bind,src="$(CURDIR)/twins",dst=/workspace/twins,readonly \
+		--mount type=bind,src="$(CURDIR)/work",dst=/workspace/work \
+		--workdir /workspace --entrypoint python $(F35_CAD_AUTHOR_IMAGE) \
+		/workspace/twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py \
+		--contract /workspace/twins/reference-917-engine/rotating-assembly-cad-f35.json \
+		--output /workspace/work/917-rotating-assembly-f35
+
+917-rotating-assembly-usd-f35-test:
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=1g \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		-e HOME=/tmp -e XDG_CACHE_HOME=/tmp/simready-cache \
+		--mount type=bind,src="$(CURDIR)",dst=/workspace,readonly \
+		--workdir /workspace --entrypoint /opt/simready-validation/bin/python \
+		$(F35_SIMREADY_WORKFLOW_IMAGE) tests/test_917_rotating_assembly_usd_f35.py -v
+
+917-rotating-assembly-usd-f35: 917-rotating-assembly-f35
+	F35_SIMREADY_WORKFLOW_IMAGE_REF=$(F35_SIMREADY_WORKFLOW_IMAGE) \
+		twins/reference-917-engine/source/run_rotating_assembly_usd_f35.sh
+
+917-intel-cpu-f35-test:
+	python3 tests/test_intel_cpu_node_f35.py -v
+	python3 tests/test_intel_cpu_smokes_f35.py -v
+
+917-gmsh-mesh-f35-test:
+	python3 tests/test_gmsh_mesh_f35_image.py -v
+	python3 tests/test_gmsh_mesh_f35_lock.py -v
+
+917-gmsh-mesh-f35-image: 917-gmsh-mesh-f35-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/gmsh-mesh-f35.Dockerfile \
+		-t $(F35_GMSH_IMAGE) --load .
+
+917-gmsh-mesh-f35-smoke:
+	docker run --rm --platform linux/amd64 --user 9135:9135 \
+		--network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+		--pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+		$(F35_GMSH_IMAGE)
+
+917-openfoam-engine-f35-test:
+	python3 tests/test_openfoam_engine_f35_image.py -v
+	python3 tests/test_openfoam_engine_f35_lock.py -v
+
+917-openfoam-engine-f35-image: 917-openfoam-engine-f35-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/openfoam-engine-f35.Dockerfile \
+		-t $(F35_OPENFOAM_IMAGE) --load .
+
+917-openfoam-engine-f35-smoke:
+	docker run --rm --platform linux/amd64 --user 9135:9135 \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=2g \
+		--tmpfs /dev/shm:rw,noexec,nosuid,nodev,size=512m \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		$(F35_OPENFOAM_IMAGE)
+
+917-gas-path-network-f38-test:
+	python3 tests/test_917_gas_path_network_f38.py -v
+
+917-gas-path-network-f38: 917-gas-path-network-f38-test
+	python3 twins/reference-917-engine/source/run_gas_path_network_f38.py \
+		--project-root . \
+		--contract twins/reference-917-engine/gas-path-network-f38.json \
+		--output work/917-gas-path-network-f38
+
+917-gas-path-overlay-f38-test:
+	python3 tests/test_917_gas_path_overlay_f38.py -v
+
+917-gas-path-overlay-f38: 917-gas-path-network-f38 917-gas-path-overlay-f38-test
+	@test -f work/917-integrated-bench-f37/integrated-bench-f37-report.json || { echo "Exécuter F37 avant l'overlay F38" >&2; exit 2; }
+	python3 twins/reference-917-engine/source/author_bench_overlay_f38.py \
+		--contract twins/reference-917-engine/gas-path-network-f38.json \
+		--f37-work-root work/917-integrated-bench-f37 \
+		--f38-report work/917-gas-path-network-f38/gas-path-network-f38-report.json \
+		--canonical-f38-report twins/reference-917-engine/evidence/f38/gas-path-network-f38-report.json \
+		--output $(F38_OVERLAY_OUTPUT)
+
+917-gas-path-f38-image-test:
+	python3 tests/test_gas_path_f38_image.py -v
+
+917-gas-path-f38-image: 917-gas-path-network-f38-test 917-gas-path-f38-image-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/gas-path-f38.Dockerfile \
+		-t $(F38_GAS_PATH_IMAGE) --load .
+
+917-gas-path-f38-image-smoke:
+	docker run --rm --platform linux/amd64 --user 9138:9138 \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=64m \
+		--pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+		$(F38_GAS_PATH_IMAGE)
+
+917-unsteady-network-f39-test:
+	python3 tests/test_917_unsteady_network_f39.py -v
+	python3 tests/test_917_engine_wave_f39_image.py -v
+
+917-unsteady-network-f39-manifest: 917-unsteady-network-f39-test
+	python3 twins/reference-917-engine/source/run_unsteady_network_f39.py \
+		--project-root . \
+		--contract twins/reference-917-engine/unsteady-network-f39.json \
+		--output-dir $(F39_OUTPUT)
+
+917-unsteady-network-f39-validate: 917-unsteady-network-f39-test
+	mkdir -p $(F39_OUTPUT)
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=256m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -v "$(CURDIR)/$(F39_OUTPUT):/output:rw" \
+		--entrypoint python $(F39_WAVE_RELEASE_IMAGE) \
+		/workspace/twins/reference-917-engine/source/run_unsteady_network_f39.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/unsteady-network-f39.json \
+		--output-dir /output --validate-aeolus
+
+917-unsteady-network-f39: 917-unsteady-network-f39-test
+	mkdir -p $(F39_OUTPUT)
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -v "$(CURDIR)/$(F39_OUTPUT):/output:rw" \
+		--entrypoint python $(F39_WAVE_RELEASE_IMAGE) \
+		/workspace/twins/reference-917-engine/source/run_unsteady_network_f39.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/unsteady-network-f39.json \
+		--output-dir /output --execute
+
+917-unsteady-convergence-f40-test:
+	python3 tests/test_917_unsteady_convergence_f40.py -v
+
+917-unsteady-convergence-f40-manifest: 917-unsteady-convergence-f40-test
+	python3 twins/reference-917-engine/source/run_unsteady_convergence_f40.py \
+		--project-root . \
+		--contract twins/reference-917-engine/unsteady-convergence-campaign-f40.json \
+		--output-dir $(F40_OUTPUT) --manifest
+
+917-unsteady-convergence-f40-image-smoke:
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -w /workspace \
+		--entrypoint python $(F40_WAVE_RELEASE_IMAGE) \
+		tests/test_917_unsteady_convergence_f40.py -v
+
+917-unsteady-convergence-f40: 917-unsteady-convergence-f40-test
+	mkdir -p "$(abspath $(F40_OUTPUT))"
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=1024m \
+		--pids-limit 256 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -v "$(abspath $(F40_OUTPUT)):/output:rw" \
+		--entrypoint python $(F40_WAVE_RELEASE_IMAGE) \
+		/workspace/twins/reference-917-engine/source/run_unsteady_convergence_f40.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/unsteady-convergence-campaign-f40.json \
+		--output-dir /output --execute --workers $(F40_WORKERS)
+
+917-extended-periodic-state-f40b-test:
+	python3 tests/test_917_extended_periodic_state_f40b.py -v
+
+917-extended-periodic-state-f40b-manifest: 917-extended-periodic-state-f40b-test
+	python3 twins/reference-917-engine/source/run_extended_periodic_state_f40b.py \
+		--project-root . \
+		--contract twins/reference-917-engine/extended-periodic-state-f40b.json \
+		--output-dir $(F40B_OUTPUT) --manifest
+
+917-extended-periodic-state-f40b-image-smoke:
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -w /workspace \
+		--entrypoint python $(F40B_WAVE_RELEASE_IMAGE) \
+		tests/test_917_extended_periodic_state_f40b.py -v
+
+917-extended-periodic-state-f40b: 917-extended-periodic-state-f40b-test
+	mkdir -p "$(abspath $(F40B_OUTPUT))"
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=1024m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-v "$(CURDIR):/workspace:ro" -v "$(abspath $(F40B_OUTPUT)):/output:rw" \
+		--entrypoint python $(F40B_WAVE_RELEASE_IMAGE) \
+		/workspace/twins/reference-917-engine/source/run_extended_periodic_state_f40b.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/extended-periodic-state-f40b.json \
+		--output-dir /output --execute
+
+917-component-factory-f41-test:
+	python3 tests/test_917_component_factory_f41.py -v
+
+917-component-factory-f41-plan: 917-component-factory-f41-test
+	test ! -e "$(F41_PLAN_OUTPUT)"
+	python3 twins/reference-917-engine/source/build_component_factory_f41.py \
+		--project-root . \
+		--contract twins/reference-917-engine/component-factory-f41.json \
+		--output "$(F41_PLAN_OUTPUT)"
+
+917-component-factory-f41-preflight: 917-component-factory-f41-test
+	F41_CAD_IMAGE_REF="$(F41_CAD_IMAGE)" \
+	F41_USD_IMAGE_REF="$(F41_USD_IMAGE)" \
+		twins/reference-917-engine/source/run_component_factory_f41.sh --preflight-only
+
+917-component-factory-f41: 917-component-factory-f41-test
+	F41_CAD_IMAGE_REF="$(F41_CAD_IMAGE)" \
+	F41_USD_IMAGE_REF="$(F41_USD_IMAGE)" \
+	F41_OUTPUT="$(abspath $(F41_OUTPUT))" \
+		twins/reference-917-engine/source/run_component_factory_f41.sh
+
+917-component-factory-f41-bundle: 917-component-factory-f41-test
+	test ! -e "$(F41_BUNDLE_OUTPUT)"
+	python3 twins/reference-917-engine/source/build_component_factory_bundle_f41.py \
+		--project-root . --output "$(F41_BUNDLE_OUTPUT)"
+
+917-component-factory-f42a-usd-test:
+	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_component_factory_f42a_usd.py -v
+
+917-variant-authority-f43-check:
+	PYTHONDONTWRITEBYTECODE=1 python3 twins/reference-917-engine/source/validate_variant_authority_f43.py \
+		--project-root . \
+		--contract twins/reference-917-engine/variant-authority-f43.json
+	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_variant_authority_f43.py -v
+
+917-connecting-rod-cad-f44-check:
+	PYTHONDONTWRITEBYTECODE=1 python3 twins/reference-917-engine/source/validate_connecting_rod_cad_f44.py \
+		--project-root . \
+		--contract twins/reference-917-engine/connecting-rod-cad-f44.json
+	PYTHONDONTWRITEBYTECODE=1 python3 tests/test_917_connecting_rod_cad_f44.py -v
+
+917-connecting-rod-cad-f44: 917-connecting-rod-cad-f44-check
+	test ! -L work
+	test ! -L "$(F44_OUTPUT)"
+	test ! -e "$(F44_OUTPUT)"
+	mkdir -p work
+	test -d work
+	docker run --rm --platform linux/amd64 --user "$$(id -u):$$(id -g)" \
+		--network none --read-only \
+		--tmpfs /tmp:rw,noexec,nosuid,nodev,size=512m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		-e HOME=/tmp -e XDG_CACHE_HOME=/tmp/cad-author-cache \
+		-e F44_CAD_RUNTIME_IMAGE_REF="$(F44_CAD_IMAGE)" \
+		--mount type=bind,src="$(CURDIR)/twins",dst=/workspace/twins,readonly \
+		--mount type=bind,src="$(CURDIR)/work",dst=/workspace/work \
+		--workdir /workspace --entrypoint python "$(F44_CAD_IMAGE)" \
+		/workspace/twins/reference-917-engine/source/smoke_connecting_rod_cad_f44.py \
+		--project-root /workspace \
+		--contract /workspace/twins/reference-917-engine/connecting-rod-cad-f44.json \
+		--output "/workspace/$(F44_OUTPUT)"
+
+917-wave-action-f39-image-test:
+	python3 tests/test_917_engine_wave_f39_image.py -v
+
+917-wave-action-f39-image: 917-wave-action-f39-image-test
+	docker buildx build --platform linux/amd64 \
+		-f containers/917-engine-wave-f39/Dockerfile \
+		-t $(F39_WAVE_IMAGE) --load .
+
+917-wave-action-f39-image-smoke:
+	docker run --rm --platform linux/amd64 --user 9139:9139 \
+		--network none --read-only \
+		--tmpfs /tmp:rw,exec,nosuid,nodev,size=256m \
+		--pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+		$(F39_WAVE_IMAGE)
+
 917-integrated-virtual-f33-image:
 	docker build -f containers/cae-integrated-f33.Dockerfile -t $(F33_CAE_IMAGE) .
 
@@ -504,6 +830,18 @@ engine-components:
 917-f39-cooling-optimization-check:
 	python3 tests/test_917_f39_cooling_optimization.py -v
 
+917-f42-cooling-cht-check:
+	python3 tests/test_917_f42_cooling_cht.py -v
+
+917-f42-1-thermal-optimization-check:
+	python3 tests/test_917_f42_1_thermal_optimization.py -v
+
+917-f42-omniverse-validation-check:
+	python3 tests/test_917_f42_omniverse_validation.py -v
+
+917-f42-2-material-process-check:
+	python3 tests/test_917_f42_2_material_process.py -v
+
 917-f39-lpbf-structural-check:
 	python3 tests/test_917_f39_lpbf_structural.py -v
 
@@ -514,6 +852,43 @@ engine-components:
 	python3 tests/test_917_f39_functional_video.py -v
 
 917-f39-check: 917-f39-scan-only-program-check 917-f39-brep-scan-only-check 917-f39-cooling-optimization-check 917-f39-lpbf-structural-check 917-f39-functional-video-check
+
+917-f40-935-head-reference-check:
+	python3 tests/test_917_f40_935_head_reference.py -v
+
+917-f40-935-scale-audit:
+	python3 twins/reference-917-engine/source/audit_935_scan_scale_f40.py \
+		--scan work/wolfe-classics-935-cylinder-head/pipeline/input/935-xtreme-cylinder-head-working-copy.obj \
+		--envelope work/wolfe-classics-935-cylinder-head/pipeline/segmented/head-envelope-uncapped.ply \
+		--interfaces work/wolfe-classics-935-cylinder-head/pipeline/reports/interfaces.json \
+		--contract twins/reference-917-engine/935-head-reference-f40.json \
+		--output work/917-f40-reference/scale-audit
+
+917-f40-scan-locked-outer:
+	$(F40_PYTHON) twins/reference-917-engine/source/build_scan_locked_outer_brep_f40.py \
+		--stock $(F40_STOCK) \
+		--contract twins/reference-917-engine/935-head-reference-f40.json \
+		--output work/917-f40-reference/outer-brep
+
+917-f40-4v-packaging: 917-f40-scan-locked-outer
+	$(F40_PYTHON) twins/reference-917-engine/source/render_scan_locked_4v_packaging_f40.py \
+		--outer work/917-f40-reference/outer-brep/917-head-935-scan-locked-outer-f40.local.stl \
+		--flow-core $(F40_FLOW_CORE) \
+		--cad $(F40_CAD) \
+		--output work/917-f40-reference/packaging
+
+917-f40-functional-trial: 917-f40-scan-locked-outer
+	$(F40_PYTHON) twins/reference-917-engine/source/build_scan_locked_functional_trial_f40.py \
+		--outer work/917-f40-reference/outer-brep/917-head-935-scan-locked-outer-f40.local.stl \
+		--flow-core $(F40_FLOW_CORE) \
+		--interfaces work/wolfe-classics-935-cylinder-head/pipeline/reports/interfaces.json \
+		--output work/917-f40-reference/functional-trial
+
+917-f40-thickness-screen: 917-f40-functional-trial
+	$(F40_PYTHON) twins/reference-917-engine/source/audit_scan_locked_functional_f40.py \
+		--head work/917-f40-reference/functional-trial/917-head-935-scan-locked-functional-trial-f40.local.stl \
+		--functional-report work/917-f40-reference/functional-trial/917-head-935-scan-locked-functional-trial-f40-report.json \
+		--output work/917-f40-reference/thickness-screen
 
 917-aircooled-4v-f34-publish:
 	python3 twins/reference-917-engine/source/publish_aircooled_4v_f34.py \
@@ -528,7 +903,7 @@ engine-components:
 		--toolchain-audit work/917-aircooled-4v-f34/toolchain-audit.json \
 		--step work/917-aircooled-4v-f34/cad-domain-separated/917-head-aircooled-4v-f34.step \
 		--image work/917-aircooled-4v-f34/product-aircooled-4v-f34-v2.png \
-		--output twins/reference-917-engine/evidence/f34
+		--output work/917-aircooled-4v-f34-publication
 
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1

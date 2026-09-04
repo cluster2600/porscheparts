@@ -4,8 +4,11 @@
 from __future__ import annotations
 
 import base64
+from datetime import datetime, timezone
+import hashlib
 import json
 import os
+import re
 import socket
 import ssl
 import stat
@@ -26,12 +29,42 @@ SECRET_PATH_FILE = CONFIG_DIR / "secret_path"
 ALLOWED_SECRET_PATH = "secrets/data/github"
 GHCR_USERNAME = "cluster2600"
 GHCR_REPOSITORY = f"{GHCR_USERNAME}/3dprinting993-simready-local-ai"
-GHCR_DIGEST = "sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+GHCR_DIGEST = "sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
+GHCR_REVOKED_DIGESTS = frozenset(
+    {
+        "sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+        "sha256:f8a17661a23f3c83d89139cdc0a0b9f29d8553523de166a86e9e453e420d9a00",
+    }
+)
 GHCR_TOKEN_URL = (
     "https://ghcr.io/token?service=ghcr.io&scope="
     + urllib.parse.quote(f"repository:{GHCR_REPOSITORY}:pull", safe="")
 )
 GHCR_MANIFEST_URL = f"https://ghcr.io/v2/{GHCR_REPOSITORY}/manifests/{GHCR_DIGEST}"
+GITHUB_REPOSITORY = "cluster2600/3dprinting993"
+GITHUB_API_URL = f"https://api.github.com/repos/{GITHUB_REPOSITORY}"
+QUALIFIED_STATUS = "qualified_public_linux_amd64_digest"
+WORKFLOW_PATH = ".github/workflows/containers.yml"
+QUALIFICATION_CHECKS = {
+    "workflow_conclusion_success",
+    "public_package_visible",
+    "linux_amd64_manifest_verified",
+    "anonymous_exact_digest_pull_verified",
+    "runtime_smoke_verified",
+}
+REQUIRED_JOB_NAME = "build (simready-local-ai)"
+REQUIRED_STEPS = {
+    "Build large local AI image from Docker store": "success",
+    "Resolve published immutable digest": "success",
+    "Verify published local AI manifest limits": "success",
+    "Verify anonymous digest pull": "success",
+    "Promote verified image": "success",
+}
+ATTESTOR_COMMAND = "attest-simready-runtime"
+ATTESTOR_REPOSITORY_PATH = "deploy/openbao/openbao-ghcr"
+ATTESTATION_AUTHENTICITY_SCOPE = (
+    "local_live_procedural_receipt_not_cryptographic_signature"
+)
 TLS_CA_FILE = Path("/etc/ssl/cert.pem")
 MAX_RESPONSE_BYTES = 4 * 1024 * 1024
 TIMEOUT_SECONDS = 30
@@ -40,6 +73,22 @@ VAST_WRAPPER = Path.home() / ".local" / "bin" / "openbao-vastai"
 
 class SafeError(Exception):
     """An error safe to print without secret material."""
+
+
+class RejectRedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Never replay a request, including its credentials, after a redirect."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def validate_pinned_digest() -> None:
+    if re.fullmatch(r"sha256:[0-9a-f]{64}", GHCR_DIGEST) is None:
+        raise SafeError("GHCR pinned SimReady digest is invalid")
+    if GHCR_DIGEST in GHCR_REVOKED_DIGESTS:
+        raise SafeError(
+            "GHCR pinned SimReady digest is revoked; publish and pin the corrected image first"
+        )
 
 
 def validate_private_file(path: Path) -> None:
@@ -98,12 +147,25 @@ def request(
     if not TLS_CA_FILE.is_file():
         raise SafeError(f"missing system CA bundle: {TLS_CA_FILE}")
     context = ssl.create_default_context(cafile=str(TLS_CA_FILE))
+    opener = urllib.request.build_opener(
+        RejectRedirectHandler(),
+        urllib.request.HTTPSHandler(context=context),
+    )
     try:
-        with urllib.request.urlopen(web_request, timeout=TIMEOUT_SECONDS, context=context) as response:
+        with opener.open(web_request, timeout=TIMEOUT_SECONDS) as response:
+            if (
+                300 <= response.getcode() < 400
+                or response.geturl() != web_request.full_url
+            ):
+                raise SafeError(f"{source} returned an unsafe redirect")
             body = response.read(MAX_RESPONSE_BYTES + 1)
             response_headers = {key.lower(): value for key, value in response.headers.items()}
+    except SafeError:
+        raise
     except urllib.error.HTTPError as exc:
-        raise SafeError(f"{source} rejected the request with HTTP {exc.code}") from None
+        status_code = exc.code
+        exc.close()
+        raise SafeError(f"{source} rejected the request with HTTP {status_code}") from None
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         raise SafeError(f"{source} is unavailable") from exc
     return (decode_json(body, source) if body else {}, response_headers)
@@ -183,7 +245,7 @@ def registry_auth_check(username: str, password: str) -> None:
     if not isinstance(registry_token, str) or not registry_token:
         raise SafeError("GHCR token service did not grant repository pull access")
     _, headers = request(
-        GHCR_MANIFEST_URL,
+        f"https://ghcr.io/v2/{GHCR_REPOSITORY}/manifests/{GHCR_DIGEST}",
         headers={
             "Authorization": f"Bearer {registry_token}",
             "Accept": "application/vnd.oci.image.manifest.v1+json,application/vnd.docker.distribution.manifest.v2+json",
@@ -194,12 +256,350 @@ def registry_auth_check(username: str, password: str) -> None:
         raise SafeError("GHCR returned an unexpected image digest")
 
 
+def validate_qualification_evidence(path: Path) -> tuple[dict, bytes]:
+    """Read one tracked public qualification record without following a link."""
+    try:
+        descriptor = os.open(
+            path,
+            os.O_RDONLY
+            | getattr(os, "O_CLOEXEC", 0)
+            | getattr(os, "O_NOFOLLOW", 0),
+        )
+    except OSError as exc:
+        raise SafeError("runtime qualification evidence is unavailable") from exc
+    try:
+        with os.fdopen(descriptor, "rb") as handle:
+            info = os.fstat(handle.fileno())
+            if not stat.S_ISREG(info.st_mode):
+                raise SafeError("runtime qualification evidence must be a regular file")
+            data = handle.read(1024 * 1024 + 1)
+    except SafeError:
+        raise
+    except OSError as exc:
+        raise SafeError("runtime qualification evidence is unavailable") from exc
+    if not data or len(data) > 1024 * 1024:
+        raise SafeError("runtime qualification evidence has an unsafe size")
+    try:
+        payload = json.loads(data.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise SafeError("runtime qualification evidence is invalid") from exc
+    if not isinstance(payload, dict):
+        raise SafeError("runtime qualification evidence is invalid")
+    expected_ref = f"ghcr.io/{GHCR_REPOSITORY}@{GHCR_DIGEST}"
+    run_id = payload.get("github_run_id")
+    checks = payload.get("checks")
+    source_revision = payload.get("source_revision")
+    source_branch = payload.get("source_branch")
+    workflow_git_blob = payload.get("workflow_git_blob")
+    if (
+        payload.get("schema_version") != "1.0.0"
+        or payload.get("status") != QUALIFIED_STATUS
+        or payload.get("image_ref") != expected_ref
+        or payload.get("image_repository") != f"ghcr.io/{GHCR_REPOSITORY}"
+        or payload.get("manifest_digest") != GHCR_DIGEST
+        or payload.get("platform") != "linux/amd64"
+        or type(run_id) is not int
+        or run_id <= 0
+        or payload.get("github_run_url")
+        != f"https://github.com/{GITHUB_REPOSITORY}/actions/runs/{run_id}"
+        or type(source_revision) is not str
+        or re.fullmatch(r"[0-9a-f]{40}", source_revision) is None
+        or type(source_branch) is not str
+        or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._/-]{0,127}", source_branch)
+        is None
+        or type(payload.get("run_attempt")) is not int
+        or payload["run_attempt"] <= 0
+        or payload.get("workflow_path") != WORKFLOW_PATH
+        or type(workflow_git_blob) is not str
+        or re.fullmatch(r"[0-9a-f]{40}", workflow_git_blob) is None
+        or not isinstance(checks, dict)
+        or set(checks) != QUALIFICATION_CHECKS
+        or any(value is not True for value in checks.values())
+    ):
+        raise SafeError("runtime qualification evidence does not match the pinned image")
+    return payload, data
+
+
+def anonymous_runtime_check(source_revision: str) -> None:
+    """Verify the public single-platform digest and both publication tags."""
+    validate_pinned_digest()
+    if (
+        type(source_revision) is not str
+        or re.fullmatch(r"[0-9a-f]{40}", source_revision) is None
+    ):
+        raise SafeError("public GHCR source revision tag is invalid")
+    token_result, _ = request(GHCR_TOKEN_URL, source="public GHCR token service")
+    registry_token = token_result.get("token", token_result.get("access_token"))
+    if not isinstance(registry_token, str) or not registry_token:
+        raise SafeError("public GHCR token service did not grant pull access")
+    manifest_headers = {
+        "Authorization": f"Bearer {registry_token}",
+        "Accept": (
+            "application/vnd.oci.image.manifest.v1+json,"
+            "application/vnd.docker.distribution.manifest.v2+json"
+        ),
+    }
+    manifest, headers = request(
+        f"https://ghcr.io/v2/{GHCR_REPOSITORY}/manifests/{GHCR_DIGEST}",
+        headers=manifest_headers,
+        source="public GHCR manifest",
+    )
+    if headers.get("docker-content-digest") != GHCR_DIGEST:
+        raise SafeError("public GHCR returned an unexpected image digest")
+    if manifest.get("mediaType") not in {
+        "application/vnd.oci.image.manifest.v1+json",
+        "application/vnd.docker.distribution.manifest.v2+json",
+    }:
+        raise SafeError("public GHCR digest is not a single-platform image manifest")
+    for tag in (source_revision, "latest"):
+        _, tag_headers = request(
+            f"https://ghcr.io/v2/{GHCR_REPOSITORY}/manifests/{tag}",
+            headers=manifest_headers,
+            source=f"public GHCR {tag} tag",
+        )
+        if tag_headers.get("docker-content-digest") != GHCR_DIGEST:
+            raise SafeError(f"public GHCR {tag} tag does not resolve to the pinned digest")
+    config = manifest.get("config")
+    if not isinstance(config, dict):
+        raise SafeError("public GHCR manifest has no image config")
+    config_digest = config.get("digest")
+    if (
+        re.fullmatch(r"sha256:[0-9a-f]{64}", str(config_digest)) is None
+        or config.get("mediaType")
+        not in {
+            "application/vnd.oci.image.config.v1+json",
+            "application/vnd.docker.container.image.v1+json",
+        }
+        or type(config.get("size")) is not int
+        or not 0 < config["size"] <= MAX_RESPONSE_BYTES
+    ):
+        raise SafeError("public GHCR manifest has an invalid image config digest")
+
+
+def git_blob_sha1(data: bytes) -> str:
+    """Return the Git SHA-1 object id for exact blob bytes."""
+    header = f"blob {len(data)}\0".encode("ascii")
+    return hashlib.sha1(header + data).hexdigest()
+
+
+def decode_github_workflow_blob(workflow: dict, expected_blob: str) -> bytes:
+    """Decode and hash the exact workflow bytes returned by GitHub."""
+    content = workflow.get("content")
+    size = workflow.get("size")
+    if (
+        workflow.get("type") != "file"
+        or workflow.get("path") != WORKFLOW_PATH
+        or workflow.get("sha") != expected_blob
+        or workflow.get("encoding") != "base64"
+        or type(content) is not str
+        or type(size) is not int
+        or not 0 < size <= 1024 * 1024
+    ):
+        raise SafeError("GitHub Actions workflow source does not match its qualified blob")
+    compact_content = content.replace("\n", "").replace("\r", "")
+    try:
+        data = base64.b64decode(compact_content, validate=True)
+    except (ValueError, base64.binascii.Error) as exc:
+        raise SafeError("GitHub Actions workflow source content is invalid") from exc
+    if len(data) != size or git_blob_sha1(data) != expected_blob:
+        raise SafeError("GitHub Actions workflow source content does not match its qualified blob")
+    return data
+
+
+def github_runtime_check(evidence: dict) -> tuple[int, str]:
+    """Bind the attestation to one successful public workflow job and its steps."""
+    run_id = evidence["github_run_id"]
+    request_headers = {
+        "Accept": "application/vnd.github+json",
+        "User-Agent": "3dprinting993-runtime-attestor",
+    }
+    run, _ = request(
+        f"{GITHUB_API_URL}/actions/runs/{run_id}",
+        headers=request_headers,
+        source="GitHub Actions run",
+    )
+    if (
+        run.get("id") != run_id
+        or not isinstance(run.get("repository"), dict)
+        or run["repository"].get("full_name") != GITHUB_REPOSITORY
+        or run.get("name") != "Build compute images"
+        or run.get("path") != WORKFLOW_PATH
+        or run.get("status") != "completed"
+        or run.get("conclusion") != "success"
+        or run.get("head_sha") != evidence["source_revision"]
+        or run.get("head_branch") != evidence["source_branch"]
+        or run.get("run_attempt") != evidence["run_attempt"]
+        or run.get("html_url") != evidence["github_run_url"]
+        or run.get("event") != "workflow_dispatch"
+    ):
+        raise SafeError("GitHub Actions qualification run is not the expected success")
+    workflow, _ = request(
+        f"{GITHUB_API_URL}/contents/{WORKFLOW_PATH}?ref={evidence['source_revision']}",
+        headers=request_headers,
+        source="GitHub Actions workflow source",
+    )
+    decode_github_workflow_blob(workflow, evidence["workflow_git_blob"])
+    jobs_payload, _ = request(
+        f"{GITHUB_API_URL}/actions/runs/{run_id}/jobs?per_page=100",
+        headers=request_headers,
+        source="GitHub Actions jobs",
+    )
+    jobs = jobs_payload.get("jobs")
+    if not isinstance(jobs, list):
+        raise SafeError("GitHub Actions jobs response is invalid")
+    candidates = [job for job in jobs if isinstance(job, dict) and job.get("name") == REQUIRED_JOB_NAME]
+    if len(candidates) != 1:
+        raise SafeError("GitHub Actions qualification job is missing or ambiguous")
+    job = candidates[0]
+    job_id = job.get("id")
+    if (
+        type(job_id) is not int
+        or job_id <= 0
+        or job.get("status") != "completed"
+        or job.get("conclusion") != "success"
+    ):
+        raise SafeError("GitHub Actions qualification job is not successful")
+    steps = job.get("steps")
+    if not isinstance(steps, list):
+        raise SafeError("GitHub Actions qualification steps are missing")
+    selected_steps = [
+        step
+        for step in steps
+        if isinstance(step, dict) and step.get("name") in REQUIRED_STEPS
+    ]
+    actual = {step.get("name"): step.get("conclusion") for step in selected_steps}
+    if len(selected_steps) != len(REQUIRED_STEPS) or actual != REQUIRED_STEPS:
+        raise SafeError("GitHub Actions qualification steps are incomplete")
+    expected_url = f"https://github.com/{GITHUB_REPOSITORY}/actions/runs/{run_id}/job/{job_id}"
+    if job.get("html_url") != expected_url:
+        raise SafeError("GitHub Actions qualification job URL is invalid")
+    return job_id, expected_url
+
+
+def self_git_blob() -> str:
+    """Return the SHA-1 Git blob id of the installed, attesting wrapper bytes."""
+    try:
+        data = Path(__file__).read_bytes()
+    except OSError as exc:
+        raise SafeError("cannot hash the installed GHCR wrapper") from exc
+    return git_blob_sha1(data)
+
+
+def write_private_attestation(path: Path, payload: dict) -> None:
+    if not path.name or path.name in {".", ".."}:
+        raise SafeError("runtime attestation output path is invalid")
+    parent_flags = (
+        os.O_RDONLY
+        | getattr(os, "O_CLOEXEC", 0)
+        | getattr(os, "O_DIRECTORY", 0)
+        | getattr(os, "O_NOFOLLOW", 0)
+    )
+    try:
+        parent_descriptor = os.open(path.parent, parent_flags)
+    except OSError as exc:
+        raise SafeError("runtime attestation output parent must be a private non-symlink directory") from exc
+    try:
+        parent_info = os.fstat(parent_descriptor)
+        if (
+            not stat.S_ISDIR(parent_info.st_mode)
+            or parent_info.st_uid != os.getuid()
+            or stat.S_IMODE(parent_info.st_mode) != 0o700
+        ):
+            raise SafeError(
+                "runtime attestation output parent must be a private non-symlink directory"
+            )
+        flags = (
+            os.O_WRONLY
+            | os.O_CREAT
+            | os.O_EXCL
+            | getattr(os, "O_CLOEXEC", 0)
+            | getattr(os, "O_NOFOLLOW", 0)
+        )
+        try:
+            descriptor = os.open(path.name, flags, 0o600, dir_fd=parent_descriptor)
+        except OSError as exc:
+            raise SafeError("runtime attestation output must be a new private file") from exc
+        try:
+            data = (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
+            with os.fdopen(descriptor, "wb") as handle:
+                os.fchmod(handle.fileno(), 0o600)
+                handle.write(data)
+                handle.flush()
+                os.fsync(handle.fileno())
+                output_info = os.fstat(handle.fileno())
+                if (
+                    not stat.S_ISREG(output_info.st_mode)
+                    or output_info.st_uid != os.getuid()
+                    or stat.S_IMODE(output_info.st_mode) != 0o600
+                    or output_info.st_nlink != 1
+                ):
+                    raise SafeError("runtime attestation output permissions are unsafe")
+        except Exception:
+            try:
+                os.unlink(path.name, dir_fd=parent_descriptor)
+            except OSError:
+                pass
+            raise
+    finally:
+        os.close(parent_descriptor)
+
+
+def attest_runtime(
+    qualification_path: Path,
+    output_path: Path,
+    job_id: str,
+    nonce: str,
+) -> None:
+    validate_pinned_digest()
+    if (
+        type(job_id) is not str
+        or re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", job_id) is None
+    ):
+        raise SafeError("runtime attestation job id is invalid")
+    if type(nonce) is not str or re.fullmatch(r"[0-9a-f]{32}", nonce) is None:
+        raise SafeError("runtime attestation invocation nonce is invalid")
+    evidence, evidence_bytes = validate_qualification_evidence(qualification_path)
+    anonymous_runtime_check(evidence["source_revision"])
+    github_job_id, github_job_url = github_runtime_check(evidence)
+    payload = {
+        "schema_version": "1.0.0",
+        "status": "verified_public_runtime",
+        "verified_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "image_ref": evidence["image_ref"],
+        "manifest_digest": evidence["manifest_digest"],
+        "platform": "linux/amd64",
+        "source_revision": evidence["source_revision"],
+        "source_branch": evidence["source_branch"],
+        "github_run_id": evidence["github_run_id"],
+        "github_run_url": evidence["github_run_url"],
+        "run_attempt": evidence["run_attempt"],
+        "workflow_path": evidence["workflow_path"],
+        "workflow_git_blob": evidence["workflow_git_blob"],
+        "github_job_id": github_job_id,
+        "github_job_url": github_job_url,
+        "qualification_evidence_sha256": hashlib.sha256(evidence_bytes).hexdigest(),
+        "verified_steps": dict(REQUIRED_STEPS),
+        "attestor": {
+            "path": ATTESTOR_REPOSITORY_PATH,
+            "command": ATTESTOR_COMMAND,
+            "git_blob": self_git_blob(),
+        },
+        "invocation": {
+            "job_id": job_id,
+            "nonce": nonce,
+            "authenticity_scope": ATTESTATION_AUTHENTICITY_SCOPE,
+        },
+    }
+    write_private_attestation(output_path, payload)
+
+
 def run_vast(operation: list[str]) -> int:
     if len(operation) == 2 and operation[0] == "launch-vast-simready-heavy" and operation[1].isdigit():
         vast_operation = ["launch-simready-heavy", operation[1]]
     else:
         raise SafeError(
             "usage: openbao-ghcr --check|--auth-check|"
+            "attest-simready-runtime <qualification.json> <new-output.json> <job_id> <nonce>|"
             "launch-vast-simready-heavy <offer_id>"
         )
     if not VAST_WRAPPER.is_file() or not os.access(VAST_WRAPPER, os.X_OK):
@@ -215,6 +615,7 @@ def main() -> int:
     operation = sys.argv[1:]
     try:
         validate_bootstrap_metadata()
+        validate_pinned_digest()
         if operation == ["--check"]:
             if read_bootstrap_value(SECRET_PATH_FILE) != ALLOWED_SECRET_PATH:
                 raise SafeError("OpenBao GHCR path is outside the fixed allowlist")
@@ -226,6 +627,12 @@ def main() -> int:
             registry_auth_check(username, password)
             if operation == ["--auth-check"]:
                 print(f"GHCR read access OK for {username} and pinned SimReady image")
+                return 0
+            if len(operation) == 5 and operation[0] == ATTESTOR_COMMAND:
+                attest_runtime(
+                    Path(operation[1]), Path(operation[2]), operation[3], operation[4]
+                )
+                print("GHCR public runtime attestation written")
                 return 0
             return run_vast(operation)
         finally:

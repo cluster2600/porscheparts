@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.1",
+  "study_id": "porsche-917-head-f42-omniverse-validation",
+  "status": "needs_rerun",
+  "executed_on": "2026-09-04",
+  "input": {
+    "designation": "private F41 welded head baseline",
+    "step_sha256": "b3110e5d6d102c7af865b4f5a8067281ed4b9452e331eb68433e4119d36c609a",
+    "welded_stl_sha256": "7ac7235c6c5a50e053f398df6f5470057a5939b5129d8ba605f9d45a33a50210",
+    "render_usd_sha256": "48d0f0d2179ae361fbbdddf2960493506b40da90a69ed20961fa5bdb7366e8d1",
+    "source_geometry_published": false
+  },
+  "runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "instance_id": 49811285,
+    "offer_id": 36072512,
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "gpu_memory_mib": 97887,
+    "gpu_driver": "595.71.05",
+    "cpu_cores_effective": 32,
+    "cpu_ram_mb": 128560,
+    "hourly_rate_usd": 1.9759555555555552,
+    "openusd_version": "0.26.8",
+    "native_ovrtx_render_executed": true,
+    "cpu_reference_render_executed": true,
+    "content_agents_services_started": true,
+    "material_assignment_executed": false,
+    "physics_assignment_executed": false,
+    "instance_destroyed_after_recovery": true
+  },
+  "geometry": {
+    "default_prim": "/HeadF41Baseline",
+    "mesh_count": 1,
+    "point_count": 34313,
+    "triangle_count": 68678,
+    "unique_edge_count": 103017,
+    "boundary_edge_count": 0,
+    "nonmanifold_edge_count": 0,
+    "watertight_after_exact_seam_weld": true,
+    "coordinate_displacement_from_weld": 0.0,
+    "normals": "faceVarying geometric triangle normals",
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "bounds_mm": [119.11445617675781, 206.09364318847656, 82.0],
+    "usd_published": false,
+    "indexing_report_sha256": "b6d374a474be448bdc5cd9f65608b2ce54276f3aef337d0403189e41f26432a3"
+  },
+  "official_nvidia_workflow": {
+    "preflight": {
+      "status": "ready",
+      "report_sha256": "edf331cf2a22d5f572f49d0808c7935d6de1f68dd1c2b925854546f4422e508c"
+    },
+    "cad_to_usd_router": {
+      "status": "fail",
+      "reason": "The converter generated a temporary USD but the adapter rejected the non-canonical generated default-prim namespace before atomic publication."
+    },
+    "minimum_usd": {
+      "status": "pass",
+      "report_sha256": "6a9405aba311b65f01173fa5d17363359de834bceb9c4d8197a411702520457b",
+      "warning": "Asset uses a private session layer during validation"
+    },
+    "asset_validator": {
+      "status": "pass",
+      "issues": 0,
+      "report_sha256": "13d5e6174f2538ad098e1fc97aba9c685828c566678a85f220d6ed8907cb9a82"
+    },
+    "geometry_validator": {
+      "status": "pass",
+      "issues": 0,
+      "report_sha256": "e7454bffc1ce231d8b61726179b184eb00b7f9c83665521f15aecc6d368496c0"
+    },
+    "physics_validator": {
+      "status": "pass",
+      "issues": 0,
+      "qualification_scope": "USD schema integrity only; the asset has no collider, rigid body or physical material",
+      "report_sha256": "d5d3f2eb00ffa341bd3dff1746e163cfcd4a7a777a82b6034669f5f3bc0ec65d"
+    },
+    "simready_profile": {
+      "status": "fail",
+      "requested_profile": "Prop-Robotics-Neutral 1.0.0",
+      "available_profile_count": 0,
+      "report_sha256": "f212555c3b1be79ac5636101051142af0a0677f1b3d4c90622d1765125c21e94"
+    },
+    "ovrtx": {
+      "status": "pass",
+      "renderer": "OVRTX local service",
+      "preview_report_sha256": "6079126662ff1dd4af2bdadec407ea913a088a14c24e095e92014b7a4cbfdadc",
+      "turntable_report_sha256": "0593f73e52940058a1d8e6fe2f7453f8a97b8453e0e5c8bd3bf668ec8be97df4",
+      "frames_requested": 24,
+      "frames_rendered": 24,
+      "all_frames_non_uniform": true,
+      "source_usd_mutated": false
+    }
+  },
+  "publication": {
+    "images": [
+      {
+        "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-preview.png",
+        "sha256": "a8585de09d3e4d6a9d901241a1b3daa156eff74c09ccc02700e8bcd7eaf7d53e",
+        "role": "primary OVRTX preview"
+      },
+      {
+        "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-front.png",
+        "sha256": "61204bfa49a51900b38e65b129898067db5d440bdbda49828ca62adba9606857",
+        "role": "turntable frame 0"
+      },
+      {
+        "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-right.png",
+        "sha256": "93102c44f3c8ef3d5fa0358346b5ed239895ec1c1147c21848814a5425afdd8d",
+        "role": "turntable frame 6"
+      },
+      {
+        "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-rear.png",
+        "sha256": "5ec0f48199e9e1f4806fd99fcdf22763552728f807627f5dd148885f49df9067",
+        "role": "turntable frame 12"
+      },
+      {
+        "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-left.png",
+        "sha256": "b7600fb6da3f7be157c48046f68e2846d5b77956edd55cbac475e08f9a0276fc",
+        "role": "turntable frame 18"
+      }
+    ],
+    "video": {
+      "path": "twins/reference-917-engine/evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-turntable.mp4",
+      "sha256": "7d0703b09590dc568f72c63cba782ed66419d901349fe5600cebd9e6c5ead5b2",
+      "codec": "h264",
+      "pixel_format": "yuv420p",
+      "width": 1280,
+      "height": 720,
+      "frame_count": 24,
+      "duration_seconds": 3.0,
+      "is_functional_simulation": false
+    },
+    "all_images_are_solver_results": false,
+    "raw_reports_published": false,
+    "reason": "Raw reports contain private absolute paths; only hashes and this sanitized result summary are published."
+  },
+  "gates": {
+    "topology_closed": true,
+    "usd_minimum_valid": true,
+    "asset_schema_valid": true,
+    "geometry_schema_valid": true,
+    "physics_schema_valid": true,
+    "native_ovrtx_render_valid": true,
+    "official_cad_to_usd_route_complete": false,
+    "simready_profile_valid": false,
+    "physical_properties_authored": false,
+    "material_card_qualified": false,
+    "thermal_validation_complete": false,
+    "structural_validation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

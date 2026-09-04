@@ -63,6 +63,14 @@ PY
     phase_add_output "${asset}"
     local reference
     reference="$(require_skill_reference "${reference_relative}")"
+    local nvidia_skill
+    case "${phase_name}" in
+        validate-asset) nvidia_skill="omni-asset-validate" ;;
+        validate-geometry) nvidia_skill="omni-asset-validate-geometry" ;;
+        validate-physics) nvidia_skill="omni-asset-validate-physics" ;;
+        validate-simready) nvidia_skill="simready-validate" ;;
+        *) phase_block "validateur NVIDIA inattendu"; return 1 ;;
+    esac
     local command=("${USD_PYTHON}" "${reference}" "${asset}")
     if [ "${phase_name}" = "validate-simready" ]; then
         command+=(--profile "${profile}" --profile-version "${profile_version}" --foundation-root "${SIMREADY_FOUNDATION_ROOT:-/opt/simready-foundation}")
@@ -73,6 +81,48 @@ PY
     local validation_code=$?
     set -e
     require_file "${reference_report}"
+    local workflow_profile
+    workflow_profile="$(${SYSTEM_PYTHON} - "${CONTROL_REPORT}" <<'PY'
+import json
+from pathlib import Path
+import sys
+value = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8")).get("workflow_profile")
+print("legacy-f10" if value in (None, "") else value)
+PY
+)"
+    case "${workflow_profile}" in
+    f42b-six-usd-v1)
+        local f42b_helper validation_outcome
+        f42b_helper="${PROJECT_ROOT}/twins/reference-917-engine/remote-simready/f42b/_contract.py"
+        require_file "${f42b_helper}"
+        if ! validation_outcome="$(${SYSTEM_PYTHON} "${f42b_helper}" classify-nvidia-validation \
+            --report "${reference_report}" --asset "${asset}" \
+            --validator-skill "${nvidia_skill}" --exit-code "${validation_code}" \
+            2>>"${phase_log_path}")"; then
+            phase_block "validateur NVIDIA bloqué, interrompu ou sans findings structurés"
+            return 1
+        fi
+        case "${validation_outcome}" in
+            passed)
+                phase_pass "validation ${phase_name} réussie"
+                return 0
+                ;;
+            needs_rerun)
+                phase_needs_rerun "validation ${phase_name} exécutée avec findings structurés; l'USD reste un artefact diagnostique"
+                return 3
+                ;;
+            *)
+                phase_block "classification du validateur NVIDIA inattendue"
+                return 1
+                ;;
+        esac
+        ;;
+    legacy-f10) ;;
+    *)
+        phase_block "workflow_profile de validation inconnu"
+        return 1
+        ;;
+    esac
     if [ "${validation_code}" -eq 0 ]; then
         require_passed_report "${reference_report}"
         phase_pass "validation ${phase_name} réussie"

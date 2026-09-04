@@ -1,0 +1,135 @@
+{
+  "$comment": "F37 compose un registre semantique bi-variante a partir des artefacts F35 verifies a l'execution. Il n'ajoute ni piece mesuree, ni joint physique, ni volume CFD, ni preuve de puissance.",
+  "schema_version": "1.0.0",
+  "phase": "F37",
+  "status": "integrated_semantic_bench_contract_fail_closed",
+  "asset_id": "porsche-917-integrated-bench-assembly-f37",
+  "source_contracts": {
+    "mechanical_connections_f8": {
+      "path": "twins/reference-917-engine/mechanical-connections-f8.json",
+      "expected_sha256": "d2daa00ab84948a70e9d1ff265d701c6f74a25f32710f8f6f1cfbaebc81f89d9"
+    },
+    "ducts_f8": {
+      "path": "twins/reference-917-engine/ducts-f8.json",
+      "expected_sha256": "71fdd5143212e10173e69697644a76f2ac91c56dd4c30e7edc0c483e1a16aa41"
+    },
+    "sealing_interfaces_f8": {
+      "path": "twins/reference-917-engine/sealing-interfaces-f8.json",
+      "expected_sha256": "9de5a4a0e1ecbd964aabe2f99ce944ab1ddde962b4994867fbfe423c1cd02a28"
+    },
+    "external_interfaces_f8": {
+      "path": "twins/reference-917-engine/external-interfaces-f8.json",
+      "expected_sha256": "7945a22f55608e3f4824efd0ebdde2bfe284a1bd9565108ea903a9113752383a"
+    },
+    "bench_executable_f14": {
+      "path": "twins/reference-917-engine/bench-executable-skeleton-f14.json",
+      "expected_sha256": "718151c342b31ab918b7a02f4f2ae954b3ff5ff323757dd9158397f48e4dde59"
+    },
+    "dual_variant_parametric_cad_f28": {
+      "path": "twins/reference-917-engine/dual-variant-parametric-cad-contract-f28.json",
+      "expected_sha256": "920b8c022676a9941c8764fb1f0f178da47220798dd6fa7e96ba6d410aee5abb"
+    }
+  },
+  "runtime_inputs": {
+    "f35_work_root_default": "work/917-rotating-assembly-f35",
+    "run_report": "run-report.json",
+    "geometry_report_template": "{variant_id}/geometry-report.json",
+    "usd_report_template": "{variant_id}/usd/rotating-assembly-f35-report.json",
+    "usdc_template": "{variant_id}/usd/rotating-assembly-f35.usdc",
+    "sha256_required_for_every_input": true,
+    "openusd_runtime_required": false,
+    "semantic_usda_contains_source_paths_not_live_geometry_references": true
+  },
+  "classification_vocabulary": {
+    "proxy": "Occurrence ou endpoint semantique visible dans F35/F14/F8, sans autorite dimensionnelle ou physique.",
+    "not_modelled": "Famille, liaison ou domaine inventorie mais absent comme geometrie exploitable dans F37."
+  },
+  "variants": [
+    {
+      "variant_id": "type_912_4_5_na",
+      "f14_variant_id": "type_912_4_5_na",
+      "f28_variant_id": "type_912_5_0_na",
+      "f28_identity_match": false,
+      "f28_reuse_scope": "semantic_family_vocabulary_only_no_dimension_geometry_or_variant_identity_transfer"
+    },
+    {
+      "variant_id": "917_30_turbo_5374",
+      "f14_variant_id": "917_30_turbo_5374",
+      "f28_variant_id": "917_30_1973_turbo_5374",
+      "f28_identity_match": false,
+      "f28_reuse_scope": "semantic_family_vocabulary_only_alias_not_geometry_binding"
+    }
+  ],
+  "f35_expected": {
+    "component_family_counts": {
+      "crankshaft": 1,
+      "main_bearing": 8,
+      "connecting_rod": 12,
+      "piston": 12,
+      "piston_pin": 12,
+      "piston_ring": 36
+    },
+    "component_occurrence_total": 81,
+    "interface_frame_total": 99,
+    "interface_frame_family_counts": {
+      "crankshaft_axis": 1,
+      "main_journal_centres_01_to_08": 8,
+      "crankpin_centres_01_to_06": 6,
+      "rod_big_end_axis": 12,
+      "rod_small_end_axis": 12,
+      "piston_pin_axis": 12,
+      "piston_crown_datum": 12,
+      "piston_ring_groove_datums": 36
+    },
+    "candidate_joint_count": 37,
+    "physical_joint_count": 0,
+    "rigid_body_count": 0,
+    "collider_count": 0,
+    "mass_property_count": 0,
+    "inertia_property_count": 0
+  },
+  "closed_cfd_geometry_policy": {
+    "default_state": "not_modelled",
+    "claim_fields": [
+      "geometry_released",
+      "flow_simulation_ready"
+    ],
+    "required_evidence_fields_when_claimed": [
+      "path",
+      "sha256",
+      "watertight_check_passed"
+    ],
+    "watertight_check_must_be_true": true,
+    "missing_or_invalid_evidence_blocks_authoring": true
+  },
+  "output_policy": {
+    "outputs_under_work_only": true,
+    "semantic_usda_only": true,
+    "self_contained_semantic_registry": true,
+    "f35_usdc_copied_or_embedded": false,
+    "geometry_authored": false,
+    "physics_schema_authored": false,
+    "cfd_volume_authored": false,
+    "material_assignment_authored": false
+  },
+  "release_gates": {
+    "source_integrity_complete": false,
+    "mass_and_inertia_correlated": false,
+    "physical_joints_validated": false,
+    "closed_cfd_geometry_validated": false,
+    "fluid_boundary_conditions_validated": false,
+    "engine_start_authorized": false,
+    "manufacturing_geometry_ready": false,
+    "performance_1600_hp_claim_authorized": false
+  },
+  "prohibited_claims": [
+    "f28_5_0_na_is_the_same_geometry_as_f35_4_5_na",
+    "semantic_proxy_is_a_measured_or_printable_component",
+    "f8_connection_is_an_enabled_physics_joint",
+    "f8_duct_edge_is_a_closed_cfd_volume",
+    "f35_display_animation_is_dynamic_validation",
+    "engine_start_or_dyno_load_authorization",
+    "manufacturing_or_metal_print_release",
+    "1600_hp_simulation_or_test_proof"
+  ]
+}
