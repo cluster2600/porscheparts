@@ -130,6 +130,25 @@ cloisons mais du **tunnel central**, qui a lui seul fait passer la raideur de
 3262 a 5602 N.m/deg, soit +72 %. Une poutre longitudinale fermee sur toute la
 longueur vaut plus que deux cloisons en bout.
 
+**Et ce tunnel n'existe pas sur la 964.** Ce parametre etant le plus influent de
+tout le dossier, il ne pouvait pas rester `ASSUMED` : il a ete cherche sur le
+scan (`source/tunnel_probe.py`). Le relief central du plancher d'habitacle, pris
+comme l'ecart entre le Z median a |Y| < 60 mm et celui des flancs a
+250 < |Y| < 400 mm, vaut entre **-0,7 et -3,1 mm** sur huit stations couvrant
+1000 mm de long. C'est sous le residu de symetrie du scan, qui est de 7,54 mm
+RMS : le relief n'est meme pas distinguable du bruit. Le soubassement est plat,
+ce qui est coherent avec un moteur arriere et l'absence d'arbre de transmission
+longitudinal. En avant de X = -200 mm un creux apparait, mais c'est la zone de
+traverse et de train avant, pas un tunnel.
+
+Le cas « tunnel » mesure donc **ce que la 964 n'a pas**, non ce qu'elle a. Cela
+ne l'invalide pas, cela le requalifie : c'est le chiffrage d'une modification
+architecturale possible, et c'est la conclusion la plus actionnable de l'etude.
+**Ajouter une poutre longitudinale fermee rapporte plus que passer au carbone**,
++72 % contre +25 %, et pour une masse bien moindre que le passage au composite de
+toute la caisse. Un monocoque de type ZESAD, lui, obtient cette poutre gratuitement
+par construction : c'est precisement cela, un gain architectural.
+
 Deux controles de coherence entre les deux etudes. A masse egale, le carbone
 donne x 1,25 ; a raideur egale, il donnait 0,82x la masse, soit 1/0,82 = 1,22.
 Les deux lectures concordent. Et le cas « plancher seul, acier » redonne 2442
