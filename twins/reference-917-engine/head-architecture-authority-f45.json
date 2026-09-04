@@ -1,0 +1,124 @@
+{
+  "$comment": "F45 fixe les deux architectures de culasse turbo et interdit l'ovalisation analytique introduite par F39. Ce contrat ne constitue pas une liberation de fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F45",
+  "status": "dual_head_requirements_locked_geometry_and_release_pending",
+  "asset_id": "porsche-917-30-turbo-dual-head-f45",
+  "engine_authority": {
+    "variant_id": "917_2026_flat12_twin_turbo_1600hp_target",
+    "path": "twins/reference-917-engine/variant-authority-f43.json",
+    "sha256": "021be0be4412f8bd16301af2b3c0536d56e6211d2fef56f94e88b7e9a0f1e15d",
+    "bore_mm": 90.0,
+    "stroke_mm": 70.4,
+    "cylinder_count": 12,
+    "turbocharger_count": 2,
+    "requested_power_mechanical_hp": 1600.0,
+    "requested_power_proven": false
+  },
+  "morphology_authority": {
+    "source_record_path": "catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json",
+    "source_record_sha256": "2dbf4c7afc9b51f6371824e153db89b63b0e5cf34591bebe180d9e6dd7078ffb",
+    "local_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "identity_scope": "935_morphology_reference_not_917_fitment_proof",
+    "absolute_scale_certified": false,
+    "preserve_external_scan_morphology": true,
+    "global_anisotropic_scaling_allowed": false,
+    "global_ellipse_or_oval_envelope_allowed": false,
+    "ellipse_extrusion_allowed_for_head_body_or_fins": false,
+    "f39_ellipse_volume_lineage_accepted": false,
+    "local_shape_change_requires_quantified_mass_thermal_or_mechanical_gain": true
+  },
+  "head_variants": [
+    {
+      "variant_id": "917_30_turbo_5374_2v_f45",
+      "valve_count_per_cylinder": 2,
+      "intake_valve_count": 1,
+      "exhaust_valve_count": 1,
+      "role": "scan_morphology_control_and_print_candidate",
+      "geometry_released": false,
+      "solver_results_released": false,
+      "metal_print_authorized": false
+    },
+    {
+      "variant_id": "917_30_turbo_5374_4v_f45",
+      "valve_count_per_cylinder": 4,
+      "intake_valve_count": 2,
+      "exhaust_valve_count": 2,
+      "role": "optimized_additive_air_cooled_print_candidate",
+      "geometry_released": false,
+      "solver_results_released": false,
+      "metal_print_authorized": false
+    }
+  ],
+  "additive_air_cooling": {
+    "engine_core_coolant": "forced_air_and_engine_oil_only",
+    "liquid_water_jacket_allowed": false,
+    "closed_powder_trap_allowed": false,
+    "all_internal_air_channels_must_be_through_open": true,
+    "all_internal_air_channels_must_be_powder_removable": true,
+    "all_internal_air_channels_must_be_ct_inspectable": true,
+    "candidate_features": [
+      "self_supporting_teardrop_or_diamond_through_air_channels",
+      "variable_pitch_and_variable_thickness_external_fins",
+      "open_pin_fin_arrays_around_exhaust_bridge_and_spark_plug",
+      "conductive_ribs_from_exhaust_seat_region_to_high_velocity_fin_banks"
+    ],
+    "required_comparative_metrics": [
+      "peak_exhaust_seat_temperature_k",
+      "peak_valve_bridge_temperature_k",
+      "peak_spark_plug_bridge_temperature_k",
+      "air_mass_flow_kg_s_per_head",
+      "pressure_drop_pa",
+      "heat_rejection_w_per_head",
+      "temperature_uniformity_k",
+      "head_mass_kg",
+      "peak_thermomechanical_stress_mpa",
+      "lpbf_support_volume_mm3"
+    ]
+  },
+  "required_solver_matrix": {
+    "combustion": [
+      "Cantera_reactor_network",
+      "independent_Wiebe_heat_release"
+    ],
+    "internal_flow": [
+      "OpenFOAM_or_ICEEngineFoam_FVM",
+      "independent_LBM_or_second_FVM"
+    ],
+    "cooling": [
+      "OpenFOAM_CHT",
+      "independent_thermal_conduction_convection_model"
+    ],
+    "mechanics": [
+      "CalculiX_thermomechanical",
+      "Code_Aster_or_Elmer_cross_check"
+    ],
+    "manufacturing": [
+      "AdditiveFOAM_local_thermal_process",
+      "independent_macro_distortion_and_residual_stress_model"
+    ],
+    "minimum_mesh_levels": 3,
+    "mass_and_energy_balance_limit_fraction": 0.01,
+    "mesh_convergence_limit_fraction": 0.05,
+    "cross_method_difference_limit_fraction": 0.05
+  },
+  "release_gates": {
+    "two_valve_brep_valid": false,
+    "four_valve_brep_valid": false,
+    "scan_deviation_reviewed": false,
+    "no_global_ovalization_verified": false,
+    "no_closed_powder_trap_verified": false,
+    "valvetrain_kinematics_verified": false,
+    "fluid_mesh_convergence_verified": false,
+    "combustion_cross_check_verified": false,
+    "cht_cross_check_verified": false,
+    "thermomechanical_cross_check_verified": false,
+    "hot_material_card_qualified": false,
+    "lpbf_process_window_qualified": false,
+    "simready_twins_validated": false,
+    "professional_engineering_review_approved": false,
+    "two_valve_metal_print_authorized": false,
+    "four_valve_metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}
