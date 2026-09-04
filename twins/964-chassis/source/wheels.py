@@ -1,3 +1,13 @@
+"""Ajustement des roues sur le scan BRUT, pour la verification d'echelle.
+
+ATTENTION AU REPERE. Ce script travaille dans les axes du scan brut, ou +Y est
+l'avant et +X la droite. La sortie `wheel_fits.npy` a donc pour colonnes
+(cY_longitudinal, cZ, rayon, Xmin, Xmax) EN COORDONNEES SCAN, et ne peut pas etre
+combinee avec `verts_vehicle.npy`, qui est aligne. Le faire place l'essieu avant
+hors de la boite englobante du vehicule.
+
+Pour des centres d'essieu dans le repere vehicule, utiliser `wheels_vehicle.py`.
+"""
 import numpy as np, trimesh
 from trimesh.graph import connected_components
 m = trimesh.load('raw/964widebodyunderside2poin13.obj', process=False)
