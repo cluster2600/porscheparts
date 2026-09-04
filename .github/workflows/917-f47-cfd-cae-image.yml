@@ -1,0 +1,138 @@
+name: Build F47 CFD CAE image candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_solver_source_compliance:
+        description: Confirme la revue des sources et licences OpenFOAM, ICengines, Cantera, Gmsh et CalculiX
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: 917-f47-cfd-cae-${{ github.sha }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/cluster2600/3dprinting993-cfd-cae-f46
+
+jobs:
+  build-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Verify reviewed main source
+        run: |
+          test "${GITHUB_REF}" = "refs/heads/main"
+          test "${GITHUB_SHA}" = "$(git rev-parse HEAD)"
+          test "${{ inputs.confirm_solver_source_compliance }}" = "true"
+
+      - name: Run static contract tests
+        run: python3 tests/test_917_f47_cfd_cae_image.py -v | tee f47-static-tests.txt
+
+      - name: Record exact public source inputs
+        run: |
+          sha256sum \
+            .github/workflows/917-f47-cfd-cae-image.yml \
+            containers/engine-cycle-f33.requirements.txt \
+            containers/917-f47-cfd-cae/* \
+            docs/917_F47_CFD_CAE_IMAGE.md \
+            tests/test_917_f47_cfd_cae_image.py \
+            > f47-source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Log in to GHCR
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish attested linux amd64 candidate
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/917-f47-cfd-cae/Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:f47-candidate-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          cache-from: type=gha,scope=917-f47-cfd-cae
+          cache-to: type=gha,mode=max,scope=917-f47-cfd-cae
+
+      - name: Gate OCI digest platform SBOM provenance and CPU smokes
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          ref="${IMAGE_REPOSITORY}@${IMAGE_DIGEST}"
+          docker buildx imagetools inspect --raw "${ref}" > f47-index.json
+          test "$(sha256sum f47-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.platform.os == "unknown" and .platform.architecture == "unknown" and .annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' f47-index.json >/dev/null
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' f47-index.json)"
+          docker buildx imagetools inspect --raw "${IMAGE_REPOSITORY}@${platform_digest}" > f47-platform-manifest.json
+          test "$(sha256sum f47-platform-manifest.json | cut -d' ' -f1)" = "${platform_digest#sha256:}"
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${ref}" > f47-provenance.json
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${ref}" > f47-sbom.json
+          jq -e '.SLSA.buildDefinition.buildType | startswith("https://github.com/moby/buildkit/")' f47-provenance.json >/dev/null
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $s |
+            $s.spdxVersion == "SPDX-2.3" and
+            any($s.packages[]; ((.name // "") | ascii_downcase) == "openfoam14" and .versionInfo == "20260724") and
+            any($s.packages[]; ((.name // "") | ascii_downcase) == "calculix-ccx" and (.versionInfo | startswith("2.21"))) and
+            any($s.packages[]; ((.name // "") | ascii_downcase) == "gmsh" and (.versionInfo | startswith("4.12.1")))
+          ' f47-sbom.json >/dev/null
+          docker pull --platform linux/amd64 "${ref}"
+          docker run --rm --platform linux/amd64 --user 9147:9147 \
+            --entrypoint /usr/local/bin/f47-image-smoke --network none --read-only \
+            --tmpfs /tmp:rw,nosuid,nodev,size=2g \
+            --tmpfs /workspace:rw,nosuid,nodev,uid=9147,gid=9147,mode=0750,size=2g \
+            --pids-limit 512 --cap-drop ALL --security-opt no-new-privileges \
+            "${ref}" > f47-cpu-smoke.json
+          jq -e '
+            .status == "cpu_and_cht_smokes_passed_runtime_gpu_blocked" and
+            .platform == "linux/amd64" and .runtime_uid == 9147 and
+            .tools.openfoam.passed == true and .tools.aate_icengines.passed == true and
+            .tools.cantera_3_2.passed == true and .tools.gmsh.passed == true and
+            .tools.fea.passed == true and
+            .tools.job_runner.passed == true and .tools.cht.passed == true and
+            .tools.cuda.passed == false and
+            .all_required_F46_runtime_smokes_passed == false and
+            .exact_ICEEngineFoam_executable_found == false
+          ' f47-cpu-smoke.json >/dev/null
+          printf '%s\n' "${ref}" > f47-candidate-image-ref.txt
+
+      - name: Upload candidate evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: 917-f47-cfd-cae-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            f47-candidate-image-ref.txt
+            f47-source-inputs.sha256
+            f47-static-tests.txt
+            f47-index.json
+            f47-platform-manifest.json
+            f47-provenance.json
+            f47-sbom.json
+            f47-cpu-smoke.json
+          if-no-files-found: error
+          retention-days: 30
