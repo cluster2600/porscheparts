@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ProcessPoolExecutor
 import csv
 import json
 import math
@@ -126,10 +127,15 @@ def extract_case(configured: dict, solver_result: dict) -> dict:
     }
 
 
+def extract_case_pair(pair: tuple[dict, dict]) -> dict:
+    return extract_case(*pair)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--jobs", type=int, default=1)
     args = parser.parse_args()
 
     manifest = json.loads(args.run_manifest.read_text(encoding="utf-8"))
@@ -141,9 +147,14 @@ def main() -> int:
         missing = sorted(set(configured) - set(solver_results))
         extra = sorted(set(solver_results) - set(configured))
         raise SystemExit(f"resultats_incomplets_ou_inconnus:missing={missing}:extra={extra}")
-    measurements = [
-        extract_case(configured[key], solver_results[key]) for key in sorted(configured)
-    ]
+    if args.jobs < 1:
+        raise SystemExit("jobs_doit_etre_positif")
+    work = [(configured[key], solver_results[key]) for key in sorted(configured)]
+    if args.jobs == 1:
+        measurements = [extract_case_pair(pair) for pair in work]
+    else:
+        with ProcessPoolExecutor(max_workers=args.jobs) as executor:
+            measurements = list(executor.map(extract_case_pair, work))
     payload = {
         "schema_version": "1.0.0",
         "phase": "F42",
