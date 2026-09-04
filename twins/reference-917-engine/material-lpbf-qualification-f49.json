@@ -1,0 +1,680 @@
+{
+  "$comment": "F49 ne cree ni CAO ni maillage. CP1 est un candidat d'eprouvettes, pas une matiere qualifiee. Toutes les portes de fabrication et de demarrage restent fermees.",
+  "additivefoam_contract": {
+    "calibrated_to_physical_CP1_coupon": false,
+    "classification": "process_model_calibration_contract_not_virtual_print_proof",
+    "numerical_acceptance": {
+      "all_fields_finite": true,
+      "mass_and_energy_balance_tolerance": null,
+      "maximum_relative_change_melt_pool_dimensions_between_last_two_levels": 0.05,
+      "maximum_relative_change_molten_volume_between_last_two_levels": 0.05,
+      "maximum_relative_change_temperature_p99_between_last_two_levels": 0.03,
+      "temperature_cap_hit_allowed": false,
+      "temperature_cap_k": 3300.0
+    },
+    "outputs_required": [
+      "melt_pool_width_depth_length_by_layer_and_scan_feature",
+      "cooling_rate_and_thermal_gradient_distributions",
+      "temperature_cap_and_conservation_audit",
+      "mesh_and_time_step_convergence",
+      "coupon_calibration_error_with_uncertainty"
+    ],
+    "pinned_revision": "9c05c5eb54db03faa342b14b0806efe740de8c44",
+    "qualified_for_production_head": false,
+    "repository": "https://github.com/ORNL/AdditiveFOAM",
+    "required_inputs": {
+      "beam_profile_spot_power_and_absorptivity": false,
+      "build_plate_contact_preheat_and_gas_boundary": false,
+      "coupon_melt_pool_calibration_data": false,
+      "exact_supplier_scan_strategy_and_path": false,
+      "powder_and_solid_k_cp_density_vs_temperature": false,
+      "solidus_liquidus_latent_heat_and_emissivity": false,
+      "support_geometry_and_contact_properties": false
+    },
+    "simulation_executed_for_CP1_route": false
+  },
+  "asset_id": "917-30-turbo-head-material-lpbf-qualification-f49",
+  "classification": "material_and_process_screening_not_part_qualification_not_print_release",
+  "conclusion": {
+    "machine_screening_result": "Sapphire_bare_envelope_only",
+    "manufacturing_release_claimed": false,
+    "material_screening_result": "CP1_first_coupon_route_A20X_alternate",
+    "part_qualified": false,
+    "printable_part_claimed": false
+  },
+  "coupon_qualification_plan": {
+    "coupon_heat_history_matches_part": false,
+    "coupon_locations": [
+      "platform_center",
+      "platform_near_edge_1",
+      "platform_near_edge_2",
+      "adjacent_to_part_hot_feature_region"
+    ],
+    "coupon_machining_surface_and_HIP_match_part": false,
+    "design_allowable_statistical_sample_plan": null,
+    "fatigue_TMF_creep_acceptance_curves": null,
+    "hot_strength_acceptance_curves": null,
+    "minimum_independent_builds_for_screening": 3,
+    "orientations": [
+      "X",
+      "Y",
+      "Z",
+      "45deg"
+    ],
+    "qualification_complete": false,
+    "route_branches": [
+      "CP1_400C_4h_without_HIP",
+      "CP1_HIP_at_400C_supplier_cycle_then_final_route"
+    ],
+    "screening_reference_only_if_exact_50um_route": {
+      "design_allowable": false,
+      "minimum_elongation_percent_at_20C": 13.9,
+      "minimum_uts_mpa_at_20C": 331.0,
+      "minimum_yield_mpa_at_20C": 297.0
+    },
+    "screening_replicates_per_temperature_orientation_route": 3,
+    "statistical_lower_tolerance_basis": null,
+    "temperatures_c": [
+      20.0,
+      150.0,
+      200.0,
+      250.0,
+      300.0
+    ],
+    "tests": [
+      {
+        "method": "ASTM_E21_at_hot_points_and_ASTM_E8_E8M_25_at_20C",
+        "property": "yield_uts_elongation_reduction_of_area"
+      },
+      {
+        "method": "ASTM_E1461",
+        "property": "thermal_diffusivity"
+      },
+      {
+        "method": "k_equals_diffusivity_times_density_times_cp_same_route_temperature",
+        "property": "thermal_conductivity"
+      },
+      {
+        "method": "approved_current_methods_to_be_frozen_in_PQR",
+        "property": "E_nu_CTE_cp_density_hardness_plasticity"
+      },
+      {
+        "method": "load_ratio_waveform_surface_and_temperature_from_correlated_duty_cycle",
+        "property": "HCF_LCF_TMF"
+      },
+      {
+        "method": "200_250_300C_screen_with_100h_and_1000h_holds",
+        "property": "creep_and_stress_relaxation"
+      },
+      {
+        "method": "metallography_CT_and_notched_coupon_plan",
+        "property": "microstructure_porosity_and_defect_sensitivity"
+      },
+      {
+        "method": "route_specific_witness_artifacts",
+        "property": "thin_feature_overhang_support_and_powder_removal"
+      }
+    ],
+    "thermal_property_acceptance_curves": null
+  },
+  "inspection_and_acceptance_plan": {
+    "CT": {
+      "gas_oil_wall_segmentation_accepted": false,
+      "maximum_accepted_defect_by_zone": null,
+      "probability_of_detection_curve": null,
+      "reference_defect_artifact_required": true,
+      "standard_family": "ISO_15708_parts_1_to_4_current_2024_2025",
+      "voxel_size_um": null
+    },
+    "acceptance_criteria_frozen_before_build": false,
+    "metrology": {
+      "CMM_datum_scheme": null,
+      "accepted": false,
+      "machined_bore_and_face_limits": null,
+      "surface_profile_limits": null
+    },
+    "powder": {
+      "lifecycle_standard": "ISO_ASTM_52928_2024",
+      "lot_CoA_reviewed": false,
+      "oxygen_hydrogen_and_contamination_limits": null,
+      "required_specification": "SAE_AMS7074_controlled_copy",
+      "virgin_reused_blend_limits": null
+    },
+    "pressure_leak_and_cleanliness": {
+      "accepted": false,
+      "leak_rate_limit": null,
+      "oil_and_gas_circuit_cross_leak_limit": null,
+      "proof_pressure_pa": null,
+      "residual_powder_limit": null,
+      "test_fluid_temperature_and_duration": null
+    },
+    "process_site": {
+      "current_certificates_and_audit_received": false,
+      "machine_standard": "ISO_ASTM_TS_52930_2021_IQ_OQ_PQ",
+      "material_reporting_standard": "ISO_ASTM_52929_2025",
+      "monitoring_data_standard": "ISO_ASTM_52953_2025",
+      "native_Assure_monitoring_archive_received": false,
+      "quality_standard": "ISO_ASTM_52920_2023"
+    },
+    "surface_NDT": {
+      "accepted": false,
+      "linear_indication_limit": null,
+      "method": "ASTM_E1417_E1417M_21e1_liquid_penetrant",
+      "procedure_level": null,
+      "rounded_indication_limit": null
+    }
+  },
+  "material_comparison": [
+    {
+      "blocking_gaps": [
+        "yield_uts_elongation_vs_temperature_for_exact_route",
+        "thermal_conductivity_cp_density_cte_E_plasticity_vs_temperature",
+        "LCF_HCF_TMF_creep_and_stress_relaxation",
+        "defect_surface_and_orientation_allowables",
+        "multiple_build_and_machine_repeatability"
+      ],
+      "complete_hot_card": false,
+      "density_kg_m3": 2670.0,
+      "id": "Aheadd_CP1_400C_4h",
+      "machine_specific_50um_screening_minimum": {
+        "design_allowable": false,
+        "elongation_percent": 13.9,
+        "source": "SRC-VELO3D-CP1-MATERIAL-DATASHEET",
+        "uts_mpa": 331.0,
+        "vertical_machined_specimens_n": 56,
+        "yield_mpa": 297.0
+      },
+      "manufacturing_route": "LPBF_Velo3D_Sapphire_50um_then_400C_4h",
+      "powder_specification": "SAE_AMS7074_issued_2025",
+      "public_hot_tensile_points": [],
+      "room_temperature": {
+        "elongation_percent": 12.8,
+        "source": "SRC-CONSTELLIUM-AHEADD-CP1-PRODUCT-SHEET",
+        "thermal_conductivity_w_mk": 187.0,
+        "uts_mpa": 342.0,
+        "yield_mpa": 323.0
+      },
+      "screening_rank": 1,
+      "screening_role": "primary_coupon_candidate_for_heat_rejection_and_thermal_stability",
+      "stability_statement_is_strength_curve": false,
+      "supplier_thermal_stability_scope_c": [
+        250.0,
+        300.0
+      ]
+    },
+    {
+      "blocking_gaps": [
+        "thermal_conductivity_vs_temperature",
+        "public_heat_treatment_recipe_for_purchased_route",
+        "E_cte_plasticity_fatigue_TMF_creep_vs_temperature",
+        "machine_specific_process_and_repeatability"
+      ],
+      "complete_hot_card": false,
+      "density_kg_m3": 2850.0,
+      "id": "A20X_A205_LPBF_T7",
+      "manufacturing_route": "LPBF_then_proprietary_ECKART_T7",
+      "point_at_250C_extends_supplier_service_scope": false,
+      "powder_specification": "SAE_AMS7033_issued_2021",
+      "public_hot_tensile_points": [
+        {
+          "elongation_percent": 10.0,
+          "temperature_c": 100.0,
+          "uts_mpa": 423.0,
+          "yield_mpa": 375.0
+        },
+        {
+          "elongation_percent": 20.0,
+          "temperature_c": 150.0,
+          "uts_mpa": 369.0,
+          "yield_mpa": 354.0
+        },
+        {
+          "elongation_percent": 15.0,
+          "temperature_c": 200.0,
+          "uts_mpa": 331.0,
+          "yield_mpa": 311.0
+        },
+        {
+          "elongation_percent": 12.0,
+          "temperature_c": 250.0,
+          "uts_mpa": 224.0,
+          "yield_mpa": 215.0
+        }
+      ],
+      "room_temperature": {
+        "elongation_percent": 11.0,
+        "source": "SRC-ECKART-A20X-LPBF",
+        "thermal_conductivity_w_mk": null,
+        "uts_mpa": 511.0,
+        "yield_mpa": 445.0
+      },
+      "screening_rank": 2,
+      "screening_role": "alternate_coupon_candidate_if_CP1_hot_strength_is_insufficient",
+      "supplier_thermal_stability_scope_c": [
+        20.0,
+        190.0
+      ]
+    },
+    {
+      "blocking_gaps": [
+        "hot_mechanical_card",
+        "fatigue_TMF_creep_and_stress_relaxation_for_final_route",
+        "T6_porosity_and_leak_tightness_demonstration"
+      ],
+      "complete_hot_card": false,
+      "density_kg_m3": 2660.0,
+      "id": "EOS_AlSi10Mg_T6",
+      "manufacturing_route": "EOS_M290_30um_T6_reference_process",
+      "powder_specification": "ASTM_F3318_18_finished_part_baseline",
+      "public_hot_tensile_points": [],
+      "room_temperature": {
+        "elongation_percent": 5.0,
+        "source": "SRC-EOS-ALSI10MG-MATERIAL-DATA",
+        "thermal_conductivity_w_mk": {
+          "horizontal": 155.0,
+          "vertical": 165.0
+        },
+        "uts_mpa": 460.0,
+        "yield_mpa": 245.0
+      },
+      "screening_rank": 3,
+      "screening_role": "mature_process_control_not_preferred_for_turbo_head",
+      "supplier_thermal_stability_scope_c": null
+    },
+    {
+      "blocking_gaps": [
+        "hot_mechanical_and_thermal_card",
+        "fatigue_TMF_creep_and_stress_relaxation_for_final_route",
+        "route_specific_density_and_defect_allowables"
+      ],
+      "complete_hot_card": false,
+      "density_kg_m3": null,
+      "id": "EOS_AlF357_T6_like",
+      "manufacturing_route": "EOS_M290_30um_T6_like_reference_process",
+      "powder_specification": "SAE_AMS4289_chemistry_listed_by_EOS",
+      "public_hot_tensile_points": [],
+      "room_temperature": {
+        "elongation_percent": 11.5,
+        "source": "SRC-EOS-ALF357-MATERIAL-DATA",
+        "thermal_conductivity_w_mk": 150.0,
+        "uts_mpa": 330.0,
+        "yield_mpa": 265.0
+      },
+      "screening_rank": 4,
+      "screening_role": "AlSi7Mg_family_process_control",
+      "supplier_thermal_stability_scope_c": null
+    },
+    {
+      "blocking_gaps": [
+        "same_product_form_and_temper_comparison",
+        "current_controlled_hot_allowables",
+        "thermal_and_fatigue_card_for_head_duty"
+      ],
+      "complete_hot_card": false,
+      "density_kg_m3": 2760.0,
+      "digitized_graph_values_are_design_allowables": false,
+      "hot_points_source": "SRC-NASA-2618-ELEVATED-TEMPERATURE",
+      "id": "2618_T61_wrought_machined_reference",
+      "manufacturing_route": "forged_or_rolled_stock_then_machined_not_LPBF",
+      "powder_specification": null,
+      "product_specification": "SAE_AMS4132J_2026_for_2618_T61_forgings",
+      "public_hot_tensile_points": [
+        {
+          "exposure_h": 100.0,
+          "product_form": "2618_T6511_extrusion",
+          "temperature_c": 204.0,
+          "yield_mpa_approximate": 269.0
+        },
+        {
+          "exposure_h": 100.0,
+          "product_form": "2618_T6511_extrusion",
+          "temperature_c": 260.0,
+          "yield_mpa_approximate": 172.0
+        }
+      ],
+      "room_temperature": {
+        "elongation_percent": null,
+        "source": "SRC-SAE-AMS4132J-2618-T61",
+        "thermal_conductivity_w_mk": null,
+        "uts_mpa": null,
+        "yield_mpa": null
+      },
+      "screening_rank": 5,
+      "screening_role": "machined_wrought_reference_only"
+    }
+  ],
+  "phase": "F49",
+  "process_plan": {
+    "machining_allowance_hypotheses": {
+      "carrier_support_axial_mm": 0.8,
+      "classification": "process_planning_start_values_not_released_dimensions",
+      "deck_axial_mm": 1.0,
+      "guide_bore_radial_mm": 0.2,
+      "port_flange_axial_mm": 1.0,
+      "seat_bore_radial_mm": 0.3,
+      "shaft_bore_radial_mm": 0.3,
+      "stud_passage_radial_mm": 0.3,
+      "supplier_and_machinist_approved": false,
+      "threads": "print_solid_or_pilot_then_machine_with_inserts_where_approved"
+    },
+    "orientation_DOE_roll_deg": [
+      25.0,
+      35.0,
+      45.0
+    ],
+    "orientation_status": "35deg_roll_screen_requires_supplier_Flow_optimization",
+    "post_processing": {
+      "A20X_branch": {
+        "public_full_recipe_available": false,
+        "temper": "T7",
+        "transfer_to_CP1_allowed": false
+      },
+      "HIP_branch": {
+        "cooling_rate": null,
+        "hold_time_h": null,
+        "manufacturer_declares_400C_compatible": true,
+        "pressure_mpa": null,
+        "qualification_requires_side_by_side_fatigue_thermal_and_CT_results": true,
+        "selected": false
+      },
+      "baseline_route": {
+        "T6_designation_used": false,
+        "cycle": "400_degC_4h",
+        "material": "Aheadd_CP1",
+        "quench": "none",
+        "route_qualified_on_head_coupons": false,
+        "source": "SRC-CONSTELLIUM-AHEADD-CP1-PRODUCT-SHEET"
+      },
+      "final_machining_and_cleaning_sequence_approved": false,
+      "part_on_plate_heat_treatment_sequence_approved": false,
+      "support_removal_sequence_approved": false
+    },
+    "support_policy": {
+      "cooling_feature_support_removal_verified": false,
+      "external_supports": "sacrificial_and_accessible_only_on_designated_nonfunctional_machined_pads",
+      "internal_gas_or_oil_passage_supports_allowed": false,
+      "powder_removal_access_verified": false,
+      "support_contact_on_seat_guide_bore_deck_or_bearing_surface_allowed": false,
+      "support_projection_generated": false
+    }
+  },
+  "release_gates": {
+    "AdditiveFOAM_calibrated_and_converged": false,
+    "CT_detectability_and_acceptance_approved": false,
+    "HIP_route_selected_and_qualified": false,
+    "controlled_standard_copies_reviewed": false,
+    "coupon_hot_material_card_qualified": false,
+    "engine_start_authorized": false,
+    "exact_machine_material_parameter_set_approved": false,
+    "independent_engineering_review_signed": false,
+    "machine_IQ_OQ_PQ_current": false,
+    "machining_and_powder_removal_plan_approved": false,
+    "metal_print_authorized": false,
+    "powder_lot_and_reuse_plan_approved": false,
+    "pressure_leak_and_flow_tests_accepted": false,
+    "supplier_DfAM_and_build_placement_approved": false,
+    "support_and_recoater_review_passed": false,
+    "surface_NDT_accepted": false,
+    "thermomechanical_analysis_correlated": false
+  },
+  "schema_version": "1.0.0",
+  "scope": {
+    "CAD_or_mesh_created": false,
+    "air_cooled_turbo_head": true,
+    "architectures": [
+      "2v",
+      "4v"
+    ],
+    "external_scan_skin_modified": false,
+    "functional_interface_dimension_created": false,
+    "geometry_claimed": false,
+    "outer_surface_policy": {
+      "authority": "F43_scan_contour_outer_skin_via_F47_internal_contract",
+      "external_shape_change_allowed": false,
+      "global_envelope_authored_by_F49": false,
+      "historical_proxy_geometry_reusable": false,
+      "internal_analytic_scope": "functional_circular_cylinders_only_per_F47",
+      "same_exact_F43_bytes_required_for_2v_and_4v": true,
+      "uniform_or_directional_scaling_allowed": false
+    },
+    "same_material_process_and_acceptance_for_both_architectures": true
+  },
+  "screening_decision": {
+    "alternate_coupon_candidate": "A20X_A205_LPBF_T7",
+    "machined_reference": "2618_T61_wrought_machined_reference",
+    "primary_coupon_candidate": "Aheadd_CP1_400C_4h",
+    "process_controls": [
+      "EOS_AlSi10Mg_T6",
+      "EOS_AlF357_T6_like"
+    ],
+    "qualified_material": null,
+    "reason": "CP1 combine la conductivite publique la plus elevee du tableau et une stabilite fournisseur 250-300 degC; A20X conserve les meilleurs points de traction a chaud. CP1 ne dispose toutefois pas d'une carte mecanique publique a chaud et aucun candidat ne fournit la carte route-machine-orientation complete.",
+    "selection_is_manufacturing_release": false
+  },
+  "selected_machine_route": {
+    "candidate_layer_reason": "higher_public_CP1_tensile_minima_than_100um_route_and_lower_rate_screen",
+    "candidate_layer_thickness_um": 50.0,
+    "fit_screen": {
+      "axis_aligned_envelope_after_roll_mm": [
+        225.0,
+        154.508736,
+        149.106073
+      ],
+      "bare_envelope_screen_pass": true,
+      "candidate_orientation": {
+        "long_axis_yaw_deg": 0.0,
+        "reason": "incline_air_cooling_features_and_avoid_a_flat_stack_screen_only",
+        "roll_about_long_axis_deg": 35.0,
+        "supplier_flow_project_selected": false
+      },
+      "diametral_clearance_before_stock_supports_and_supplier_margin_mm": 42.056875,
+      "final_build_fit_verified": false,
+      "height_clearance_before_plate_and_supports_mm": 250.893927,
+      "input_classification": "minimum_requested_machine_fit_envelope_not_a_CAD_definition",
+      "published_machine_volume": {
+        "diameter_mm": 315.0,
+        "height_mm": 400.0,
+        "shape": "circular_platform"
+      },
+      "recoater_clearance_verified": false,
+      "required_platform_diameter_from_bounding_box_mm": 272.943125,
+      "screening_input_envelope_mm": [
+        225.0,
+        120.0,
+        98.0
+      ],
+      "supplier_edge_margin_mm": null,
+      "support_extent_mm": null
+    },
+    "laser_configuration": "dual_1kW",
+    "machine_build_file_created": false,
+    "machine_manufacturer": "Velo3D",
+    "machine_model": "Sapphire_standard",
+    "machine_source": "SRC-VELO3D-SAPPHIRE-PRODUCT-BRIEF",
+    "provider_committed_to_this_part": false,
+    "provider_source": "SRC-PWR-VELO3D-CP1-PRODUCTION",
+    "recoater": "non_contact",
+    "service_provider_candidate": "PWR_Advanced_Cooling_Technology",
+    "supplier_order_placed": false,
+    "supplier_parameter_card_received": false
+  },
+  "source_bindings": {
+    "SRC-ASTM-E1417-E1417M-21E1": {
+      "path": "catalog/sources/src-astm-e1417-e1417m-21e1.json",
+      "publisher": "ASTM International",
+      "sha256": "a543291d56135e07d9e83c5135753a6bc485deeed30d9339e3fae3c60fafd73c",
+      "url": "https://store.astm.org/e1417_e1417m-21.html"
+    },
+    "SRC-ASTM-E1461-13R22": {
+      "path": "catalog/sources/src-astm-e1461-13r22.json",
+      "publisher": "ASTM International",
+      "sha256": "774e2c96cd19932e240bca4127d83293b129eddc42f7776220c707c43ef5cc30",
+      "url": "https://store.astm.org/e1461-13.html"
+    },
+    "SRC-ASTM-E21-20": {
+      "path": "catalog/sources/src-astm-e21-20.json",
+      "publisher": "ASTM International",
+      "sha256": "705110c508974a66bce3a38ca6052407ada7fba5b47994a23351114efa755d56",
+      "url": "https://store.astm.org/e0021-20.html"
+    },
+    "SRC-ASTM-E8-E8M-25": {
+      "path": "catalog/sources/src-astm-e8-e8m-25.json",
+      "publisher": "ASTM International",
+      "sha256": "0be0084f96d20bb6d5e2115c853524d6ca16d5a6b5c340e5c5f2958785fa01a7",
+      "url": "https://store.astm.org/e0008_e0008m-25.html"
+    },
+    "SRC-ASTM-F3318-18": {
+      "path": "catalog/sources/src-astm-f3318-18.json",
+      "publisher": "ASTM International",
+      "sha256": "b59d548b97ffd20ebb29c11768909c4b4ed700cbe5f3504d035ab0b417f70677",
+      "url": "https://store.astm.org/f3318-18.html"
+    },
+    "SRC-CONSTELLIUM-AHEADD-CP1-PRODUCT-SHEET": {
+      "path": "catalog/sources/src-constellium-aheadd-cp1-product-sheet.json",
+      "publisher": "Constellium SE",
+      "sha256": "20c7789ca5d7b3a9cb3685df97760f9351370ba07437c9cac6a07b47d9100cd3",
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf"
+    },
+    "SRC-ECKART-A20X-LPBF": {
+      "path": "catalog/sources/src-eckart-a20x-lpbf.json",
+      "publisher": "ECKART GmbH",
+      "sha256": "03f1e4397faa71e130be8eeb9ff1ffaa9758e8dbd0546d5e72aa863e63ec960c",
+      "url": "https://www.eckart.net/en/download/document/view/id/519"
+    },
+    "SRC-EOS-ALF357-MATERIAL-DATA": {
+      "path": "catalog/sources/src-eos-alf357-material-data.json",
+      "publisher": "EOS GmbH",
+      "sha256": "03e3fd6000c3db59445b9c665470350864f1ba8a834b5d8b45208dd4e80dba40",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alf357"
+    },
+    "SRC-EOS-ALSI10MG-MATERIAL-DATA": {
+      "path": "catalog/sources/src-eos-alsi10mg-material-data.json",
+      "publisher": "EOS GmbH",
+      "sha256": "d2fe5ea1ad5e425a6dc95905c1a23ae1a31aa04bc781d57008f273d99d18266d",
+      "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg"
+    },
+    "SRC-ISO-15708-CT-2025": {
+      "path": "catalog/sources/src-iso-15708-ct-2025.json",
+      "publisher": "International Organization for Standardization",
+      "sha256": "1225899269c9b585c57df84b2197ac30b329bc2ab6d60df120446b75f95ae8ba",
+      "url": "https://www.iso.org/committee/52418/x/catalogue/"
+    },
+    "SRC-ISO-ASTM-52920-2023": {
+      "path": "catalog/sources/src-iso-astm-52920-2023.json",
+      "publisher": "International Organization for Standardization",
+      "sha256": "06d6a6724db85bd0b0aee3c69882baa7b2bdc35b02ad1a3d49acaafa24436452",
+      "url": "https://www.iso.org/standard/76911.html"
+    },
+    "SRC-ISO-ASTM-52928-2024": {
+      "path": "catalog/sources/src-iso-astm-52928-2024.json",
+      "publisher": "International Organization for Standardization",
+      "sha256": "dfbe70bdc42eaf3a377bf5f1423d140538c50075cd792984f63ce70c9aebf15e",
+      "url": "https://www.iso.org/standard/78527.html"
+    },
+    "SRC-ISO-ASTM-52929-2025": {
+      "path": "catalog/sources/src-iso-astm-52929-2025.json",
+      "publisher": "International Organization for Standardization",
+      "sha256": "5a49c17d2fb70b8189fb48f89abf321c215c363f5bebc2c1de02d4d1523e208b",
+      "url": "https://www.iso.org/standard/84733.html"
+    },
+    "SRC-ISO-ASTM-52953-2025": {
+      "path": "catalog/sources/src-iso-astm-52953-2025.json",
+      "publisher": "International Organization for Standardization",
+      "sha256": "4738575d6a6e7efbc833ea097a9d0ad16bace445e117499d75cdc3f83de59bd3",
+      "url": "https://www.iso.org/standard/84117.html"
+    },
+    "SRC-ISO-ASTM-TS-52930-2021": {
+      "path": "catalog/sources/src-iso-astm-ts-52930-2021.json",
+      "publisher": "International Organization for Standardization",
+      "sha256": "3f041ab2837c5bda8d8b4d95c418a699ebd54d70a1363aab207f720bfe99e161",
+      "url": "https://www.iso.org/standard/79527.html"
+    },
+    "SRC-NASA-2618-ELEVATED-TEMPERATURE": {
+      "path": "catalog/sources/src-nasa-2618-elevated-temperature.json",
+      "publisher": "NASA Technical Reports Server",
+      "sha256": "f9f8e4639b4557d736ac5ac345e39829f08315761a0310ba4a1191c250b50491",
+      "url": "https://ntrs.nasa.gov/api/citations/19930022454/downloads/19930022454.pdf"
+    },
+    "SRC-PWR-VELO3D-CP1-PRODUCTION": {
+      "path": "catalog/sources/src-pwr-velo3d-cp1-production.json",
+      "publisher": "PWR Holdings Limited",
+      "sha256": "38a966fbb2d2173be662d29dba8307f10cdcef53c82b5440e455c324d214354a",
+      "url": "https://www.pwr.com.au/products/additive-manufacturing"
+    },
+    "SRC-SAE-AMS4132J-2618-T61": {
+      "path": "catalog/sources/src-sae-ams4132j-2618-t61.json",
+      "publisher": "SAE International",
+      "sha256": "4598f797c4170f005a863c70b47d889dca35dc786bc90cdc463d3cba662d735b",
+      "url": "https://saemobilus.sae.org/standards/ams4132j-aluminum-alloy-die-hand-forgings-rolled-rings-23cu-16mg-11fe-10ni-018si-007ti-2618-t61-solution-precipitation-heat-treated"
+    },
+    "SRC-SAE-AMS7074-CP1": {
+      "path": "catalog/sources/src-sae-ams7074-cp1.json",
+      "publisher": "SAE International",
+      "sha256": "31d826db3eb58ffd1cec844f1454f0f5df80ef825f40761c10bf7286df8a6859",
+      "url": "https://saemobilus.sae.org/standards/ams7074-aluminum-alloy-powder-11zr-10fe-aheadd-cp1"
+    },
+    "SRC-VELO3D-CP1-MATERIAL-DATASHEET": {
+      "path": "catalog/sources/src-velo3d-cp1-material-datasheet.json",
+      "publisher": "Velo3D, Inc.",
+      "sha256": "2d8b1f779d1c36111e4b677725f80c4fabf5322aaab6775338cd2a7359fbf418",
+      "url": "https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf"
+    },
+    "SRC-VELO3D-SAPPHIRE-PRODUCT-BRIEF": {
+      "path": "catalog/sources/src-velo3d-sapphire-product-brief.json",
+      "publisher": "Velo3D, Inc.",
+      "sha256": "01e860a84d9d4a836f0811949ea1ca505a05be54ec0ddf2a1757ad3e06f4227e",
+      "url": "https://www.velo3d.com/wp-content/uploads/2021/06/Product-Brief-Sapphire.pdf"
+    }
+  },
+  "thermomechanical_contract": {
+    "F47_loads_bound_by_hash": true,
+    "F47_loads_correlated": false,
+    "accepted": false,
+    "analysis_executed": false,
+    "approved_duty_cycle_path": null,
+    "approved_surface_sets_path": null,
+    "creep_strain_requirement": null,
+    "distortion_and_seal_flatness_requirement": null,
+    "fatigue_life_requirement_cycles": null,
+    "mesh_time_step_and_cycle_convergence_requirement": null,
+    "physical_thermal_and_pressure_correlation_complete": false,
+    "qualified_material_card_path": null,
+    "required_material_fields_vs_temperature": [
+      "thermal_conductivity",
+      "heat_capacity",
+      "density",
+      "elastic_modulus",
+      "poisson_ratio",
+      "thermal_expansion",
+      "yield_and_plastic_hardening",
+      "LCF_HCF_TMF",
+      "creep_and_stress_relaxation",
+      "defect_surface_orientation_knockdowns"
+    ],
+    "same_F47_load_basis_for_2v_and_4v": true,
+    "solid_mesh_available_for_this_contract": false,
+    "yield_margin_requirement": null
+  },
+  "upstream": {
+    "F45_material_and_valvetrain_screen": {
+      "path": "twins/reference-917-engine/valvetrain-material-screen-f45.json",
+      "sha256": "9d4df959ea9b6ee3bc78a8e62a4ab1ac7d274567c0f6309d0f091e8696118883"
+    },
+    "F47_CAE_load_contract": {
+      "path": "twins/reference-917-engine/cae-load-transfer-f47.json",
+      "sha256": "593978c5ddd0387206acb15c594874e9c91188466fc06f24482deac2520984d5"
+    },
+    "F47_internal_geometry_policy": {
+      "path": "twins/reference-917-engine/internal-brep-contract-f47.json",
+      "sha256": "cdf1c54c038994d12ba1e6d726746240a270e1d1683ffe5409db27bc4ea5693e"
+    },
+    "F47_load_summary": {
+      "gas_temperature_is_not_metal_temperature": true,
+      "loads_are_physically_correlated": false,
+      "path": "twins/reference-917-engine/evidence/f47-cae-loads/summary.json",
+      "peak_cross_model_absolute_pressure_pa": 22495931.6308,
+      "peak_cross_model_gas_temperature_k": 2964.6283585,
+      "sha256": "510586f171670e289400006ede94804602999e5bd99f8569ceb721f95acf78ae"
+    }
+  }
+}
