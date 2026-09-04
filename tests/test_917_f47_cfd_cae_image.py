@@ -125,6 +125,8 @@ class F47CfdCaeImageTests(unittest.TestCase):
         self.assertIn("f47-platform-manifest.json", workflow)
         self.assertIn("f47-provenance.json", workflow)
         self.assertIn("f47-sbom.json", workflow)
+        self.assertIn("find containers/917-f47-cfd-cae -maxdepth 1 -type f -print", workflow)
+        self.assertNotIn("containers/917-f47-cfd-cae/*", workflow)
         self.assertIn("--user 9147:9147", workflow)
         self.assertIn("--entrypoint /usr/local/bin/f47-image-smoke", workflow)
         self.assertIn(".tools.cht.passed == true", workflow)
