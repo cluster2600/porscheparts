@@ -1529,8 +1529,10 @@ def f46_offer_eligible(offer: dict) -> bool:
     )
     rentable = rentable_value is True or rentable_value == 1
     rented = rented_value is False or rented_value == 0
-    rental_type = offer.get(
-        "rentable_type", offer.get("rental_type", offer.get("type"))
+    rental_type = (
+        offer.get("rentable_type")
+        or offer.get("rental_type")
+        or offer.get("type")
     )
     floors = (
         (offer.get("gpu_ram"), F46_MIN_GPU_RAM_MB),
@@ -1844,8 +1846,10 @@ def safe_offer(offer: dict) -> dict:
         "verified": offer.get("verified", offer.get("verification")),
         "rentable": offer.get("rentable"),
         "rented": offer.get("rented"),
-        "rental_type": offer.get(
-            "rentable_type", offer.get("rental_type", offer.get("type"))
+        "rental_type": (
+            offer.get("rentable_type")
+            or offer.get("rental_type")
+            or offer.get("type")
         ),
         "geolocation": offer.get("geolocation"),
         "inet_down_mbps": offer.get("inet_down"),

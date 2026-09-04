@@ -360,6 +360,11 @@ class F46WrapperTests(unittest.TestCase):
 
     def test_f46_offer_filter_is_exact_and_budgeted(self):
         self.assertTrue(VAST.f46_offer_eligible(self.eligible_offer()))
+        self.assertTrue(
+            VAST.f46_offer_eligible(
+                self.eligible_offer(rentable_type=None, rental_type=None)
+            )
+        )
         self.assertTrue(VAST.f46_offer_eligible(self.eligible_offer(gpu_name="RTX A6000", gpu_ram=49152)))
         self.assertTrue(VAST.f46_offer_eligible(self.eligible_offer(inet_up_cost=0.01, inet_down_cost=0.01)))
         self.assertFalse(VAST.f46_offer_eligible(self.eligible_offer(gpu_name="RTX 4090")))
