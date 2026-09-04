@@ -1,0 +1,958 @@
+{
+  "cases": [
+    {
+      "classification": "executed_local_circular_deck_witness_not_full_head",
+      "complete_trace": {
+        "case_id": "2v-cantera_finite_rate-cd0.72-dca0.25",
+        "crank_step_deg": 0.25,
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "pressure_peak_mpa_gauge": 20.0378836446,
+        "pressure_peak_pa_abs": 20139208.6446,
+        "row_count": 2880,
+        "sha256": "3d13ece6bc9ad8c3792df9dfca30d17838611ee877a3cc6abd7423d0b4b62907",
+        "temperature_peak_k": 2940.58024124,
+        "wall_heat_flux_cycle_mean_w_m2": 1085428.999242258,
+        "wall_heat_flux_cycle_positive_mean_w_m2": 1091947.4704354755,
+        "wall_heat_flux_minimum_w_m2": -33028.3682002,
+        "wall_heat_flux_peak_w_m2": 12118707.4627
+      },
+      "fatigue_proxy": {
+        "Miner_damage": null,
+        "SWT_like_sigma_a_squared_over_E_mpa": 2.1616139322413965,
+        "basis": "zero-to-peak elastic screen, not a duty-cycle fatigue calculation",
+        "cycles_to_failure": null,
+        "elastic_stress_amplitude_p95_mpa": 388.98968528342465,
+        "hot_curve_available": false,
+        "room_temperature_yield_utilization_p95": 2.408604862436066,
+        "support_excluded_stress_range_p95_mpa": 777.9793705668493
+      },
+      "local_artifact_hashes": {
+        "local_fields_sha256": "c1f7098926b4277aabbb66fb5a3721776cd30a8c6090151c05d821b7019e396b",
+        "mesh_msh_sha256": "83febb1ebd019932a558fb5e6f52de5b604b1fffe1dba00905c6b07caa73b47f",
+        "pressure_dat_sha256": "943dc053a39daed719d80fe777e1e077d0bc4d055f8123ce60711330d00203f1",
+        "pressure_input_sha256": "bea4e279217fc3d0b047cae4100d142b103cb7fbea355ef96e46879cf5959744",
+        "thermal_dat_sha256": "5725799a9ca936ac885f8632bc3328433cb10e3f811c4c43200a5826c545cc31",
+        "thermal_input_sha256": "879379fc2e2345d2dc78c4f72e18b96d2742d7f039fca31eb3a095257f33071f",
+        "thermo_pressure_dat_sha256": "c7e865af342c8770766cd850f3e56bcd6e311b3b61533182159737ce7ff83edc",
+        "thermo_pressure_input_sha256": "cef73a75f6f6dc3d3ebbdf5003e8ef289c16092fb1a8c607c6cd694bdc286679"
+      },
+      "mesh": {
+        "boundary_faces": 1876,
+        "chamber_area_mm2": 4569.783714218339,
+        "chamber_faces": 484,
+        "cooling_faces": 956,
+        "local_cooling_area_mm2": 9657.206167949653,
+        "minimum_mean_ratio": 0.4013384605697747,
+        "minimum_signed_volume_mm3": 4.853268244502228,
+        "nodes": 1123,
+        "p01_mean_ratio": 0.4985726769027549,
+        "p05_mean_ratio": 0.6437430684654893,
+        "support_nodes": 291,
+        "tetrahedra_C3D4": 3731
+      },
+      "mesh_target_size_mm": 5.0,
+      "numerical_gates": {
+        "all_three_CalculiX_jobs_completed": true,
+        "complete_stress_and_displacement_fields": true,
+        "complete_temperature_field": true,
+        "positive_tetrahedra_and_minimum_mean_ratio": true,
+        "thermal_balance_below_2_percent": true
+      },
+      "structural": {
+        "pressure_only": {
+          "results": {
+            "displacement_p95_mm": 0.046157065936264154,
+            "displacement_sample_count": 1123,
+            "maximum_displacement_mm": 0.053490731861530104,
+            "stress_sample_count": 3731,
+            "support_excluded_sample_count": 2575,
+            "support_excluded_von_mises_maximum_mpa": 79.63006749838117,
+            "support_excluded_von_mises_p95_mpa": 50.598417992997135,
+            "support_excluded_von_mises_p99_mpa": 60.99271392338165,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 85.13514132734375,
+            "von_mises_p95_mpa": 57.006493311373745,
+            "von_mises_p99_mpa": 69.09706096929139
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        },
+        "thermo_pressure": {
+          "results": {
+            "displacement_p95_mm": 0.14612725315950797,
+            "displacement_sample_count": 1123,
+            "maximum_displacement_mm": 0.19259398938280184,
+            "stress_sample_count": 3731,
+            "support_excluded_sample_count": 2575,
+            "support_excluded_von_mises_maximum_mpa": 1347.9024894943539,
+            "support_excluded_von_mises_p95_mpa": 777.9793705668493,
+            "support_excluded_von_mises_p99_mpa": 1080.2977085233529,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 1347.9024894943539,
+            "von_mises_p95_mpa": 705.7224361093497,
+            "von_mises_p99_mpa": 1041.2661185959698
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        }
+      },
+      "thermal_boundary": {
+        "air_sink_temperature_c": 80.0,
+        "area_enhancement_ratio": 11.624102558858368,
+        "chamber_heat_input_w": 4960.175763677581,
+        "equivalent_local_h_w_m2_k": 2906.025639714592,
+        "f43_total_area_mm2": 112256.35492828638,
+        "local_cooling_area_mm2": 9657.206167949653,
+        "physical_air_h_w_m2_k_hypothesis": 250.0
+      },
+      "thermal_results": {
+        "heat_balance": {
+          "film_heat_output_w": 4960.175772176659,
+          "heat_input_w": 4960.175763677581,
+          "relative_imbalance": 1.7134630558213974e-09
+        },
+        "temperature_maximum_c": 382.8743,
+        "temperature_median_c": 284.117,
+        "temperature_minimum_c": 194.547,
+        "temperature_p95_c": 357.78421999999995
+      },
+      "thermal_solver": {
+        "job_finished_marker": true,
+        "return_code": 0
+      },
+      "variant": "2v"
+    },
+    {
+      "classification": "executed_local_circular_deck_witness_not_full_head",
+      "complete_trace": {
+        "case_id": "2v-cantera_finite_rate-cd0.72-dca0.25",
+        "crank_step_deg": 0.25,
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "pressure_peak_mpa_gauge": 20.0378836446,
+        "pressure_peak_pa_abs": 20139208.6446,
+        "row_count": 2880,
+        "sha256": "3d13ece6bc9ad8c3792df9dfca30d17838611ee877a3cc6abd7423d0b4b62907",
+        "temperature_peak_k": 2940.58024124,
+        "wall_heat_flux_cycle_mean_w_m2": 1085428.999242258,
+        "wall_heat_flux_cycle_positive_mean_w_m2": 1091947.4704354755,
+        "wall_heat_flux_minimum_w_m2": -33028.3682002,
+        "wall_heat_flux_peak_w_m2": 12118707.4627
+      },
+      "fatigue_proxy": {
+        "Miner_damage": null,
+        "SWT_like_sigma_a_squared_over_E_mpa": 2.157292805955032,
+        "basis": "zero-to-peak elastic screen, not a duty-cycle fatigue calculation",
+        "cycles_to_failure": null,
+        "elastic_stress_amplitude_p95_mpa": 388.6006901909108,
+        "hot_curve_available": false,
+        "room_temperature_yield_utilization_p95": 2.406196224092327,
+        "support_excluded_stress_range_p95_mpa": 777.2013803818217
+      },
+      "local_artifact_hashes": {
+        "local_fields_sha256": "d536bf0a128d1994e2fdc7f5d72af61807af46982465629761cdd4b2c3f79925",
+        "mesh_msh_sha256": "9342951bb16c8851d5af3bcabafe12ffa4df47057facd730f2de6c74f6a7deed",
+        "pressure_dat_sha256": "32a4c18ad90230fb8ad9c81af53dfab7f426f379ceaf6582b834c05b5b0749a0",
+        "pressure_input_sha256": "3e7276d70072130ef12dd00a69d3ffa1e7412f52e50520db7227f7969000140b",
+        "thermal_dat_sha256": "39829d54336d499e4cc468fd8cb366f8def0dd93dbb01df38819b77cb7993819",
+        "thermal_input_sha256": "f43a0d24c84c48611eeae4acee512e5a95f09e29e83c64cc327139182a0b89b7",
+        "thermo_pressure_dat_sha256": "b62edc58e11c49ba5f237e3cef3492db6974f79670888ce072153ec4c62c913c",
+        "thermo_pressure_input_sha256": "0f4c6a8d296d50c3b124b73a5b617d372b5630957d12cd369a156ecede4171c1"
+      },
+      "mesh": {
+        "boundary_faces": 3856,
+        "chamber_area_mm2": 4558.9185662351665,
+        "chamber_faces": 947,
+        "cooling_faces": 1999,
+        "local_cooling_area_mm2": 9647.38531413555,
+        "minimum_mean_ratio": 0.39251015164336744,
+        "minimum_signed_volume_mm3": 1.7973459587942473,
+        "nodes": 2672,
+        "p01_mean_ratio": 0.4690236152788054,
+        "p05_mean_ratio": 0.5975308937354304,
+        "support_nodes": 607,
+        "tetrahedra_C3D4": 10164
+      },
+      "mesh_target_size_mm": 3.5,
+      "numerical_gates": {
+        "all_three_CalculiX_jobs_completed": true,
+        "complete_stress_and_displacement_fields": true,
+        "complete_temperature_field": true,
+        "positive_tetrahedra_and_minimum_mean_ratio": true,
+        "thermal_balance_below_2_percent": true
+      },
+      "structural": {
+        "pressure_only": {
+          "results": {
+            "displacement_p95_mm": 0.05097612057456186,
+            "displacement_sample_count": 2672,
+            "maximum_displacement_mm": 0.058780963090773825,
+            "stress_sample_count": 10164,
+            "support_excluded_sample_count": 6970,
+            "support_excluded_von_mises_maximum_mpa": 98.54812252812188,
+            "support_excluded_von_mises_p95_mpa": 52.219758751553826,
+            "support_excluded_von_mises_p99_mpa": 64.34039734180529,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 98.54812252812188,
+            "von_mises_p95_mpa": 58.30906730892236,
+            "von_mises_p99_mpa": 76.20260778524782
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        },
+        "thermo_pressure": {
+          "results": {
+            "displacement_p95_mm": 0.14383587739805165,
+            "displacement_sample_count": 2672,
+            "maximum_displacement_mm": 0.19139093962439424,
+            "stress_sample_count": 10164,
+            "support_excluded_sample_count": 6970,
+            "support_excluded_von_mises_maximum_mpa": 1389.911309011237,
+            "support_excluded_von_mises_p95_mpa": 777.2013803818217,
+            "support_excluded_von_mises_p99_mpa": 1090.8534786381342,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 1389.911309011237,
+            "von_mises_p95_mpa": 709.9721075226513,
+            "von_mises_p99_mpa": 1045.1499018375926
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        }
+      },
+      "thermal_boundary": {
+        "air_sink_temperature_c": 80.0,
+        "area_enhancement_ratio": 11.63593567303734,
+        "chamber_heat_input_w": 4948.382416975586,
+        "equivalent_local_h_w_m2_k": 2908.983918259335,
+        "f43_total_area_mm2": 112256.35492828638,
+        "local_cooling_area_mm2": 9647.38531413555,
+        "physical_air_h_w_m2_k_hypothesis": 250.0
+      },
+      "thermal_results": {
+        "heat_balance": {
+          "film_heat_output_w": 4948.382424346968,
+          "heat_input_w": 4948.382416975586,
+          "relative_imbalance": 1.4896548360946553e-09
+        },
+        "temperature_maximum_c": 382.5536,
+        "temperature_median_c": 283.57394999999997,
+        "temperature_minimum_c": 193.8205,
+        "temperature_p95_c": 355.82955499999997
+      },
+      "thermal_solver": {
+        "job_finished_marker": true,
+        "return_code": 0
+      },
+      "variant": "2v"
+    },
+    {
+      "classification": "executed_local_circular_deck_witness_not_full_head",
+      "complete_trace": {
+        "case_id": "2v-cantera_finite_rate-cd0.72-dca0.25",
+        "crank_step_deg": 0.25,
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "pressure_peak_mpa_gauge": 20.0378836446,
+        "pressure_peak_pa_abs": 20139208.6446,
+        "row_count": 2880,
+        "sha256": "3d13ece6bc9ad8c3792df9dfca30d17838611ee877a3cc6abd7423d0b4b62907",
+        "temperature_peak_k": 2940.58024124,
+        "wall_heat_flux_cycle_mean_w_m2": 1085428.999242258,
+        "wall_heat_flux_cycle_positive_mean_w_m2": 1091947.4704354755,
+        "wall_heat_flux_minimum_w_m2": -33028.3682002,
+        "wall_heat_flux_peak_w_m2": 12118707.4627
+      },
+      "fatigue_proxy": {
+        "Miner_damage": null,
+        "SWT_like_sigma_a_squared_over_E_mpa": 2.1145363389420275,
+        "basis": "zero-to-peak elastic screen, not a duty-cycle fatigue calculation",
+        "cycles_to_failure": null,
+        "elastic_stress_amplitude_p95_mpa": 384.7304819298075,
+        "hot_curve_available": false,
+        "room_temperature_yield_utilization_p95": 2.382232086252678,
+        "support_excluded_stress_range_p95_mpa": 769.460963859615
+      },
+      "local_artifact_hashes": {
+        "local_fields_sha256": "9491c2137356a4563f161114fc43eef965bf99c081f0a3d70fb15964d491e113",
+        "mesh_msh_sha256": "3f0ada5a7b0a808ea1152dba739879f302c6bf98a3a3814af81a00ffb7c8efab",
+        "pressure_dat_sha256": "e7b538d75a1f85fc3b9bf858793306faf8ea6768121857aa735e33ade6aec824",
+        "pressure_input_sha256": "0750cdb937b19d7472528dbaeedc11e6e7c4708ca563fd113960ddd26065ef3c",
+        "thermal_dat_sha256": "6da4d8ab632e975b2f3a83d3a1bc54803f8f2bbf97295f76de4e186491dc3135",
+        "thermal_input_sha256": "25e5991e8ea89f6abcff4b68288f4ce96bd4ebfa67e8477bce81ad7d5951cf7b",
+        "thermo_pressure_dat_sha256": "0bf17b0bc0e9d7c45be2ab90b8dd708cc18db955f119f85cae54d2b2865233bd",
+        "thermo_pressure_input_sha256": "9c98caecf96d861d8275244962cb0263a7b90d82a7ace9639db90e324be2ff52"
+      },
+      "mesh": {
+        "boundary_faces": 7342,
+        "chamber_area_mm2": 4553.156683311603,
+        "chamber_faces": 1823,
+        "cooling_faces": 3839,
+        "local_cooling_area_mm2": 9642.061213579986,
+        "minimum_mean_ratio": 0.389527095709202,
+        "minimum_signed_volume_mm3": 0.6747233130127571,
+        "nodes": 6141,
+        "p01_mean_ratio": 0.46870791759001423,
+        "p05_mean_ratio": 0.6020824683892896,
+        "support_nodes": 1124,
+        "tetrahedra_C3D4": 26154
+      },
+      "mesh_target_size_mm": 2.5,
+      "numerical_gates": {
+        "all_three_CalculiX_jobs_completed": true,
+        "complete_stress_and_displacement_fields": true,
+        "complete_temperature_field": true,
+        "positive_tetrahedra_and_minimum_mean_ratio": true,
+        "thermal_balance_below_2_percent": true
+      },
+      "structural": {
+        "pressure_only": {
+          "results": {
+            "displacement_p95_mm": 0.05345397234532965,
+            "displacement_sample_count": 6141,
+            "maximum_displacement_mm": 0.06246132377159857,
+            "stress_sample_count": 26154,
+            "support_excluded_sample_count": 17928,
+            "support_excluded_von_mises_maximum_mpa": 109.08925614556058,
+            "support_excluded_von_mises_p95_mpa": 53.536441725348055,
+            "support_excluded_von_mises_p99_mpa": 65.99919457492021,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 109.08925614556058,
+            "von_mises_p95_mpa": 59.095422883960204,
+            "von_mises_p99_mpa": 79.85162970794937
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        },
+        "thermo_pressure": {
+          "results": {
+            "displacement_p95_mm": 0.1413454813870044,
+            "displacement_sample_count": 6141,
+            "maximum_displacement_mm": 0.19730240871268956,
+            "stress_sample_count": 26154,
+            "support_excluded_sample_count": 17928,
+            "support_excluded_von_mises_maximum_mpa": 1491.5634492003635,
+            "support_excluded_von_mises_p95_mpa": 769.460963859615,
+            "support_excluded_von_mises_p99_mpa": 1075.938725566611,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 1491.5634492003635,
+            "von_mises_p95_mpa": 715.5422237923809,
+            "von_mises_p99_mpa": 1025.265906111473
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        }
+      },
+      "thermal_boundary": {
+        "air_sink_temperature_c": 80.0,
+        "area_enhancement_ratio": 11.642360740272348,
+        "chamber_heat_input_w": 4942.128302160112,
+        "equivalent_local_h_w_m2_k": 2910.5901850680875,
+        "f43_total_area_mm2": 112256.35492828638,
+        "local_cooling_area_mm2": 9642.061213579986,
+        "physical_air_h_w_m2_k_hypothesis": 250.0
+      },
+      "thermal_results": {
+        "heat_balance": {
+          "film_heat_output_w": 4942.128319839757,
+          "heat_input_w": 4942.128302160112,
+          "relative_imbalance": 3.5773342352664064e-09
+        },
+        "temperature_maximum_c": 382.4786,
+        "temperature_median_c": 284.0921,
+        "temperature_minimum_c": 193.764,
+        "temperature_p95_c": 353.6821
+      },
+      "thermal_solver": {
+        "job_finished_marker": true,
+        "return_code": 0
+      },
+      "variant": "2v"
+    },
+    {
+      "classification": "executed_local_circular_deck_witness_not_full_head",
+      "complete_trace": {
+        "case_id": "4v-cantera_finite_rate-cd0.72-dca0.25",
+        "crank_step_deg": 0.25,
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "pressure_peak_mpa_gauge": 21.8002519225,
+        "pressure_peak_pa_abs": 21901576.9225,
+        "row_count": 2880,
+        "sha256": "632a66647a871736509f180048009d52f5d5312693dd456059e11455570b7518",
+        "temperature_peak_k": 2963.9950767,
+        "wall_heat_flux_cycle_mean_w_m2": 1149478.4298646492,
+        "wall_heat_flux_cycle_positive_mean_w_m2": 1158803.3976000769,
+        "wall_heat_flux_minimum_w_m2": -41236.2291833,
+        "wall_heat_flux_peak_w_m2": 13028128.4237
+      },
+      "fatigue_proxy": {
+        "Miner_damage": null,
+        "SWT_like_sigma_a_squared_over_E_mpa": 2.3345404094701094,
+        "basis": "zero-to-peak elastic screen, not a duty-cycle fatigue calculation",
+        "cycles_to_failure": null,
+        "elastic_stress_amplitude_p95_mpa": 404.24971077652935,
+        "hot_curve_available": false,
+        "room_temperature_yield_utilization_p95": 2.503094184374795,
+        "support_excluded_stress_range_p95_mpa": 808.4994215530587
+      },
+      "local_artifact_hashes": {
+        "local_fields_sha256": "1764c44481379f07837c7493304d8b8f84046f6d4974da143358e37d4378a5b2",
+        "mesh_msh_sha256": "ba0be72ea401e2334e068566c4e268fffb5afbb82f3ec406ecf51626a2148f79",
+        "pressure_dat_sha256": "54295ff9db0dca8fbdd47b3a10efd5b16162e9190016beed1958bf24dc43b27e",
+        "pressure_input_sha256": "d12cb5b55f6223fbebc3a61d514bc3701faad4ad2247b6620f88aae10d77ec72",
+        "thermal_dat_sha256": "dd204c74ec58240ed6974aa9f2321ec69769f03958d93e92225e01964c0c2e11",
+        "thermal_input_sha256": "cf36b93c6f17daa1a3d52cfff2984ce37a8c983f494cf50cea575ce399ab425e",
+        "thermo_pressure_dat_sha256": "37d268b56ac725546d7db3308a152d4ae4a935769f27797a3fd61cf91b31aa44",
+        "thermo_pressure_input_sha256": "f448d0983d914087fb9c170f7ef4421a97c37649d039f8df6ba9135b42ea2cb1"
+      },
+      "mesh": {
+        "boundary_faces": 2152,
+        "chamber_area_mm2": 4388.364834266421,
+        "chamber_faces": 486,
+        "cooling_faces": 954,
+        "local_cooling_area_mm2": 9475.787287997735,
+        "minimum_mean_ratio": 0.39063598788493825,
+        "minimum_signed_volume_mm3": 4.76598420404057,
+        "nodes": 1208,
+        "p01_mean_ratio": 0.46539487668883217,
+        "p05_mean_ratio": 0.6165647023845492,
+        "support_nodes": 291,
+        "tetrahedra_C3D4": 3809
+      },
+      "mesh_target_size_mm": 5.0,
+      "numerical_gates": {
+        "all_three_CalculiX_jobs_completed": true,
+        "complete_stress_and_displacement_fields": true,
+        "complete_temperature_field": true,
+        "positive_tetrahedra_and_minimum_mean_ratio": true,
+        "thermal_balance_below_2_percent": true
+      },
+      "structural": {
+        "pressure_only": {
+          "results": {
+            "displacement_p95_mm": 0.05622967948332401,
+            "displacement_sample_count": 1208,
+            "maximum_displacement_mm": 0.06016063754099701,
+            "stress_sample_count": 3809,
+            "support_excluded_sample_count": 2646,
+            "support_excluded_von_mises_maximum_mpa": 99.70549763761821,
+            "support_excluded_von_mises_p95_mpa": 61.96367662031752,
+            "support_excluded_von_mises_p99_mpa": 69.72780890243855,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 99.70549763761821,
+            "von_mises_p95_mpa": 64.52885670653713,
+            "von_mises_p99_mpa": 77.44046867525641
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        },
+        "thermo_pressure": {
+          "results": {
+            "displacement_p95_mm": 0.14172982454895738,
+            "displacement_sample_count": 1208,
+            "maximum_displacement_mm": 0.17390373955008673,
+            "stress_sample_count": 3809,
+            "support_excluded_sample_count": 2646,
+            "support_excluded_von_mises_maximum_mpa": 1144.5688457635813,
+            "support_excluded_von_mises_p95_mpa": 808.4994215530587,
+            "support_excluded_von_mises_p99_mpa": 936.7395441243262,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 1144.5688457635813,
+            "von_mises_p95_mpa": 761.8703013963266,
+            "von_mises_p99_mpa": 914.567178376256
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        }
+      },
+      "thermal_boundary": {
+        "air_sink_temperature_c": 80.0,
+        "area_enhancement_ratio": 11.846652052908896,
+        "chamber_heat_input_w": 5044.330719365807,
+        "equivalent_local_h_w_m2_k": 2961.663013227224,
+        "f43_total_area_mm2": 112256.35492828638,
+        "local_cooling_area_mm2": 9475.787287997735,
+        "physical_air_h_w_m2_k_hypothesis": 250.0
+      },
+      "thermal_results": {
+        "heat_balance": {
+          "film_heat_output_w": 5044.330725879364,
+          "heat_input_w": 5044.330719365807,
+          "relative_imbalance": 1.2912627586087069e-09
+        },
+        "temperature_maximum_c": 397.7217,
+        "temperature_median_c": 292.99855,
+        "temperature_minimum_c": 213.7819,
+        "temperature_p95_c": 380.12748499999975
+      },
+      "thermal_solver": {
+        "job_finished_marker": true,
+        "return_code": 0
+      },
+      "variant": "4v"
+    },
+    {
+      "classification": "executed_local_circular_deck_witness_not_full_head",
+      "complete_trace": {
+        "case_id": "4v-cantera_finite_rate-cd0.72-dca0.25",
+        "crank_step_deg": 0.25,
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "pressure_peak_mpa_gauge": 21.8002519225,
+        "pressure_peak_pa_abs": 21901576.9225,
+        "row_count": 2880,
+        "sha256": "632a66647a871736509f180048009d52f5d5312693dd456059e11455570b7518",
+        "temperature_peak_k": 2963.9950767,
+        "wall_heat_flux_cycle_mean_w_m2": 1149478.4298646492,
+        "wall_heat_flux_cycle_positive_mean_w_m2": 1158803.3976000769,
+        "wall_heat_flux_minimum_w_m2": -41236.2291833,
+        "wall_heat_flux_peak_w_m2": 13028128.4237
+      },
+      "fatigue_proxy": {
+        "Miner_damage": null,
+        "SWT_like_sigma_a_squared_over_E_mpa": 2.2106715729831388,
+        "basis": "zero-to-peak elastic screen, not a duty-cycle fatigue calculation",
+        "cycles_to_failure": null,
+        "elastic_stress_amplitude_p95_mpa": 393.3789650055271,
+        "hot_curve_available": false,
+        "room_temperature_yield_utilization_p95": 2.4357830650497037,
+        "support_excluded_stress_range_p95_mpa": 786.7579300110542
+      },
+      "local_artifact_hashes": {
+        "local_fields_sha256": "3b12e1ec36e801af5a725537db9d5cb125c99d99fe6f6dedf172d194b079e38b",
+        "mesh_msh_sha256": "cb565cea8596bb21c10c52d87839056dcb48cf0f01dfb9c77cabfc94546bc7bd",
+        "pressure_dat_sha256": "c5e6c416fa83d3801257eb35278c9340e9c04effd09127c9e803c15748dd10fa",
+        "pressure_input_sha256": "9016855a30811b6610ea41a2663407116227b2c3d41af74436fe249f45cfb91d",
+        "thermal_dat_sha256": "487906e210d80398407bf686c3c1b3ab805fea6f61c5326651b8f2d573ee0848",
+        "thermal_input_sha256": "602b9f963097f2d9cac61e256ff80774a657f6bdaa220c9af2889b5851cfb65e",
+        "thermo_pressure_dat_sha256": "75ff97110c407423fe428bde38ffba81ccdcaaebd2117a2dda129f72a1b751e0",
+        "thermo_pressure_input_sha256": "a93da984644f70b605d2acbcd8a6ed23179d72cc348eba94140d7d808a9a3a0f"
+      },
+      "mesh": {
+        "boundary_faces": 4282,
+        "chamber_area_mm2": 4368.688410721174,
+        "chamber_faces": 952,
+        "cooling_faces": 2004,
+        "local_cooling_area_mm2": 9457.155158621557,
+        "minimum_mean_ratio": 0.3869395467873752,
+        "minimum_signed_volume_mm3": 1.7979936676498252,
+        "nodes": 2820,
+        "p01_mean_ratio": 0.4658494506280611,
+        "p05_mean_ratio": 0.6013886044672989,
+        "support_nodes": 607,
+        "tetrahedra_C3D4": 10389
+      },
+      "mesh_target_size_mm": 3.5,
+      "numerical_gates": {
+        "all_three_CalculiX_jobs_completed": true,
+        "complete_stress_and_displacement_fields": true,
+        "complete_temperature_field": true,
+        "positive_tetrahedra_and_minimum_mean_ratio": true,
+        "thermal_balance_below_2_percent": true
+      },
+      "structural": {
+        "pressure_only": {
+          "results": {
+            "displacement_p95_mm": 0.06073708229057827,
+            "displacement_sample_count": 2820,
+            "maximum_displacement_mm": 0.06508939948563404,
+            "stress_sample_count": 10389,
+            "support_excluded_sample_count": 7221,
+            "support_excluded_von_mises_maximum_mpa": 107.67670396103144,
+            "support_excluded_von_mises_p95_mpa": 63.82555568274878,
+            "support_excluded_von_mises_p99_mpa": 73.81910971157637,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 107.67670396103144,
+            "von_mises_p95_mpa": 66.93358337897074,
+            "von_mises_p99_mpa": 82.17538435401123
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        },
+        "thermo_pressure": {
+          "results": {
+            "displacement_p95_mm": 0.13799987292260882,
+            "displacement_sample_count": 2820,
+            "maximum_displacement_mm": 0.1796269170258756,
+            "stress_sample_count": 10389,
+            "support_excluded_sample_count": 7221,
+            "support_excluded_von_mises_maximum_mpa": 1219.0398431919537,
+            "support_excluded_von_mises_p95_mpa": 786.7579300110542,
+            "support_excluded_von_mises_p99_mpa": 936.2782503200199,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 1219.0398431919537,
+            "von_mises_p95_mpa": 743.2291339724668,
+            "von_mises_p99_mpa": 909.583262045378
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        }
+      },
+      "thermal_boundary": {
+        "air_sink_temperature_c": 80.0,
+        "area_enhancement_ratio": 11.869991878683365,
+        "chamber_heat_input_w": 5021.713094923663,
+        "equivalent_local_h_w_m2_k": 2967.4979696708415,
+        "f43_total_area_mm2": 112256.35492828638,
+        "local_cooling_area_mm2": 9457.155158621557,
+        "physical_air_h_w_m2_k_hypothesis": 250.0
+      },
+      "thermal_results": {
+        "heat_balance": {
+          "film_heat_output_w": 5021.71310080948,
+          "heat_input_w": 5021.713094923663,
+          "relative_imbalance": 1.1720734894922984e-09
+        },
+        "temperature_maximum_c": 397.3079,
+        "temperature_median_c": 289.82495,
+        "temperature_minimum_c": 213.2087,
+        "temperature_p95_c": 374.04463999999996
+      },
+      "thermal_solver": {
+        "job_finished_marker": true,
+        "return_code": 0
+      },
+      "variant": "4v"
+    },
+    {
+      "classification": "executed_local_circular_deck_witness_not_full_head",
+      "complete_trace": {
+        "case_id": "4v-cantera_finite_rate-cd0.72-dca0.25",
+        "crank_step_deg": 0.25,
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "pressure_peak_mpa_gauge": 21.8002519225,
+        "pressure_peak_pa_abs": 21901576.9225,
+        "row_count": 2880,
+        "sha256": "632a66647a871736509f180048009d52f5d5312693dd456059e11455570b7518",
+        "temperature_peak_k": 2963.9950767,
+        "wall_heat_flux_cycle_mean_w_m2": 1149478.4298646492,
+        "wall_heat_flux_cycle_positive_mean_w_m2": 1158803.3976000769,
+        "wall_heat_flux_minimum_w_m2": -41236.2291833,
+        "wall_heat_flux_peak_w_m2": 13028128.4237
+      },
+      "fatigue_proxy": {
+        "Miner_damage": null,
+        "SWT_like_sigma_a_squared_over_E_mpa": 2.1457675179454476,
+        "basis": "zero-to-peak elastic screen, not a duty-cycle fatigue calculation",
+        "cycles_to_failure": null,
+        "elastic_stress_amplitude_p95_mpa": 387.5612548439038,
+        "hot_curve_available": false,
+        "room_temperature_yield_utilization_p95": 2.399760091912717,
+        "support_excluded_stress_range_p95_mpa": 775.1225096878076
+      },
+      "local_artifact_hashes": {
+        "local_fields_sha256": "877f0885482b5180dea6e862a938a5daefd8cda1348eefeda958b9d49a6e4fcf",
+        "mesh_msh_sha256": "489fd7dfc914893e097afc5ea166b70ebfdc4e86737ae600c8c55b8f04ed029e",
+        "pressure_dat_sha256": "002aee85f69c2cf22ff41e47e4f4ed6d8d76bc09058f2c2f19f02203f272472e",
+        "pressure_input_sha256": "5a3e091acb2cbd0ea3cd12755348a836b5cab49931433645a09c5a96e13461bc",
+        "thermal_dat_sha256": "10ce995efa20e7d44382a73aaf029aa374bbb10f74928331912531865f6af6a3",
+        "thermal_input_sha256": "a7665d4fa90aa93275f3f4cf882b5f6f1545376d6c209b6bc77d76d51e1e3d5e",
+        "thermo_pressure_dat_sha256": "822996efeb52aa13ec536c389c17c02d8b91fce4d844ac2fecf241bf111bd41e",
+        "thermo_pressure_input_sha256": "13a459523b40fdd12027e320ea6cc4e951fcb0f4f92ba3a330cfae4eee91103b"
+      },
+      "mesh": {
+        "boundary_faces": 8156,
+        "chamber_area_mm2": 4357.191177470682,
+        "chamber_faces": 1789,
+        "cooling_faces": 3809,
+        "local_cooling_area_mm2": 9446.095707739065,
+        "minimum_mean_ratio": 0.38196201493833515,
+        "minimum_signed_volume_mm3": 0.7074045021218739,
+        "nodes": 6300,
+        "p01_mean_ratio": 0.4683232034393159,
+        "p05_mean_ratio": 0.5937560657176206,
+        "support_nodes": 1124,
+        "tetrahedra_C3D4": 25864
+      },
+      "mesh_target_size_mm": 2.5,
+      "numerical_gates": {
+        "all_three_CalculiX_jobs_completed": true,
+        "complete_stress_and_displacement_fields": true,
+        "complete_temperature_field": true,
+        "positive_tetrahedra_and_minimum_mean_ratio": true,
+        "thermal_balance_below_2_percent": true
+      },
+      "structural": {
+        "pressure_only": {
+          "results": {
+            "displacement_p95_mm": 0.06469716180306669,
+            "displacement_sample_count": 6300,
+            "maximum_displacement_mm": 0.06922194263325712,
+            "stress_sample_count": 25864,
+            "support_excluded_sample_count": 17806,
+            "support_excluded_von_mises_maximum_mpa": 117.27965455244286,
+            "support_excluded_von_mises_p95_mpa": 65.99256405788933,
+            "support_excluded_von_mises_p99_mpa": 77.73904103697434,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 130.2180823860394,
+            "von_mises_p95_mpa": 68.90512190409665,
+            "von_mises_p99_mpa": 86.12286553771096
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        },
+        "thermo_pressure": {
+          "results": {
+            "displacement_p95_mm": 0.13648730594766004,
+            "displacement_sample_count": 6300,
+            "maximum_displacement_mm": 0.18123535635916188,
+            "stress_sample_count": 25864,
+            "support_excluded_sample_count": 17806,
+            "support_excluded_von_mises_maximum_mpa": 1280.3848371382448,
+            "support_excluded_von_mises_p95_mpa": 775.1225096878076,
+            "support_excluded_von_mises_p99_mpa": 941.3812999973585,
+            "support_exclusion_radius_from_outer_edge_mm": 5.0,
+            "von_mises_maximum_mpa": 1280.3848371382448,
+            "von_mises_p95_mpa": 738.6024985509097,
+            "von_mises_p99_mpa": 903.5597350195955
+          },
+          "solver": {
+            "job_finished_marker": true,
+            "return_code": 0
+          }
+        }
+      },
+      "thermal_boundary": {
+        "air_sink_temperature_c": 80.0,
+        "area_enhancement_ratio": 11.88388921745904,
+        "chamber_heat_input_w": 5008.497273299102,
+        "equivalent_local_h_w_m2_k": 2970.97230436476,
+        "f43_total_area_mm2": 112256.35492828638,
+        "local_cooling_area_mm2": 9446.095707739065,
+        "physical_air_h_w_m2_k_hypothesis": 250.0
+      },
+      "thermal_results": {
+        "heat_balance": {
+          "film_heat_output_w": 5008.497261578569,
+          "heat_input_w": 5008.497273299102,
+          "relative_imbalance": 2.340129598145624e-09
+        },
+        "temperature_maximum_c": 396.6453,
+        "temperature_median_c": 289.7856,
+        "temperature_minimum_c": 212.8784,
+        "temperature_p95_c": 373.6136649999999
+      },
+      "thermal_solver": {
+        "job_finished_marker": true,
+        "return_code": 0
+      },
+      "variant": "4v"
+    }
+  ],
+  "classification": "executed_local_circular_deck_witness_screen_not_full_head_FEA_not_CHT_not_fatigue_life",
+  "contract": {
+    "path": "twins/reference-917-engine/thermomechanical-screen-f50.json",
+    "sha256": "c8fbdd362a2196949f9385d377c45c70e79b8392a80802cc93d128b0715bb921"
+  },
+  "finest_mesh_comparison": {
+    "fatigue_proxy_SWT_like_mpa": {
+      "2v": 2.1145363389420275,
+      "4v": 2.1457675179454476,
+      "four_v_change_fraction": 0.014769752795568454
+    },
+    "maximum_displacement_mm": {
+      "2v": 0.19730240871268956,
+      "4v": 0.18123535635916188,
+      "four_v_change_fraction": -0.08143363509020517
+    },
+    "support_excluded_von_mises_p95_mpa": {
+      "2v": 769.460963859615,
+      "4v": 775.1225096878076,
+      "four_v_change_fraction": 0.007357807730484741
+    },
+    "temperature_maximum_c": {
+      "2v": 382.4786,
+      "4v": 396.6453,
+      "four_v_change_fraction": 0.03703919644131737
+    }
+  },
+  "finest_pair_convergence": {
+    "2v": {
+      "gates": {
+        "maximum_displacement_converged": true,
+        "stress_p95_converged": true,
+        "temperature_converged": true
+      },
+      "limits": {
+        "maximum_displacement_relative_difference": 0.05,
+        "support_excluded_p95_stress_relative_difference": 0.1,
+        "temperature_max_relative_difference": 0.02
+      },
+      "maximum_displacement_relative_difference": 0.029961464367642666,
+      "support_excluded_p95_stress_relative_difference": 0.00995934479478653,
+      "temperature_max_relative_difference": 0.00019605095861088609
+    },
+    "4v": {
+      "gates": {
+        "maximum_displacement_converged": true,
+        "stress_p95_converged": true,
+        "temperature_converged": true
+      },
+      "limits": {
+        "maximum_displacement_relative_difference": 0.05,
+        "support_excluded_p95_stress_relative_difference": 0.1,
+        "temperature_max_relative_difference": 0.02
+      },
+      "maximum_displacement_relative_difference": 0.008874865068263852,
+      "support_excluded_p95_stress_relative_difference": 0.014789072825847675,
+      "temperature_max_relative_difference": 0.0016677242008024448
+    }
+  },
+  "gates": {
+    "all_six_mesh_cases_pass_local_numerical_gates": true,
+    "both_variants_below_300C_screen_limit": false,
+    "both_variants_below_CP1_room_temperature_yield_p95": false,
+    "both_variants_pass_finest_pair_convergence": true,
+    "engine_start_authorized": false,
+    "full_F43_head_solid_mesh_used": false,
+    "full_head_CHT_completed": false,
+    "linear_elastic_response_within_model_validity_screen": false,
+    "local_witness_engineering_screen_passed": false,
+    "local_witness_numerical_screen_passed": true,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "physical_correlation_completed": false,
+    "room_temperature_yield_reference_is_hot_design_allowable": false,
+    "stress_acceptance_against_hot_design_allowable": false,
+    "temperature_dependent_hot_material_card_used": false,
+    "thermomechanical_fatigue_life_computed": false,
+    "verified_chamber_cooling_and_support_surface_mapping": false
+  },
+  "method": {
+    "fatigue_proxy": {
+      "Miner_damage_computed": false,
+      "cycles_to_failure_computed": false,
+      "definition": "relaxed-cold to peak-hot elastic half-range; SWT-like proxy=sigma_a^2/E",
+      "hot_S_N_or_epsilon_N_curve_available": false
+    },
+    "loads": {
+      "pressure": "peak gauge pressure from selected complete trace, p_gauge=max(p_abs)-101325 Pa",
+      "pressure_correlated_to_engine": false,
+      "speed_rpm": 9000.0,
+      "structural_reference_pressure_pa_abs": 101325.0,
+      "thermal": "signed cycle-mean wall heat flux from selected complete trace",
+      "time_mapping": "t_s=theta_deg/(6*N_rpm)",
+      "trace_selection": "one complete F46 trace per architecture; no pointwise envelope used as history",
+      "wall_heat_flux_correlated_to_engine": false
+    },
+    "mesher": "Gmsh OCC circular deck witness with functional circular voids",
+    "structural": {
+      "boundary_condition": "outer circular witness edge fully clamped; research sensitivity only",
+      "contact_preload_and_stud_interfaces_modelled": false,
+      "elastic_modulus_mpa_hypothesis": 70000.0,
+      "material_hypotheses_are_F49_qualified": false,
+      "poisson_ratio_hypothesis": 0.33,
+      "room_temperature_uts_mpa_from_F49": 342.0,
+      "room_temperature_yield_mpa_from_F49": 323.0,
+      "thermal_expansion_per_k_hypothesis": 2.3e-05
+    },
+    "structural_solver": "CalculiX 2.21 C3D4 linear elastic pressure-only and sequential thermo-pressure",
+    "thermal": {
+      "F43_total_surface_area_scan_unit_squared_interpreted_as_mm2": 112256.35492828638,
+      "air_sink_temperature_c_hypothesis": 80.0,
+      "equivalent_local_film_equation": "h_eq=h_air*A_F43/A_local_cooling_faces",
+      "equivalent_local_film_is_CHT": false,
+      "material": {
+        "conductivity_basis": "F49 room-temperature supplier value held constant",
+        "conductivity_w_m_k": 187.0,
+        "id": "Aheadd_CP1_400C_4h",
+        "temperature_dependent_hot_card_available": false
+      },
+      "physical_air_film_hypothesis_w_m2_k": 250.0
+    },
+    "thermal_solver": "CalculiX 2.21 DC3D4 steady conduction"
+  },
+  "phase": "F50",
+  "publication": {
+    "images_are_local_witness_result_fields_not_product_renders": true,
+    "node_coordinates_or_connectivity_published": false,
+    "private_scan_geometry_published": false,
+    "raw_solver_fields_published": false
+  },
+  "schema_version": "1.0.0",
+  "scope": {
+    "F43_external_skin_loaded_modified_or_approximated": false,
+    "anisotropic_scaling_used": false,
+    "comparison_same_boundary_and_material_hypotheses": true,
+    "executed_geometry": "local circular combustion-deck witness only",
+    "full_head_CHT_completed": false,
+    "full_head_FEA_completed": false,
+    "global_oval_or_ellipse_created": false
+  },
+  "status": "local_witness_numerically_converged_engineering_screen_failed_release_blocked",
+  "validated_inputs": [
+    {
+      "bytes": 7728,
+      "id": "f43_scan_skin_report",
+      "path": "twins/reference-917-engine/evidence/f43-scan-contour-patch/f43-scan-contour-patch-report.json",
+      "sha256": "7d004358f0823ab4120f411334e396a187cd77a16dbd02e02f8e153f4b1b2aa5"
+    },
+    {
+      "bytes": 31590,
+      "id": "f45_valvetrain",
+      "path": "twins/reference-917-engine/valvetrain-material-screen-f45.json",
+      "sha256": "9d4df959ea9b6ee3bc78a8e62a4ab1ac7d274567c0f6309d0f091e8696118883"
+    },
+    {
+      "bytes": 2950,
+      "id": "f47_calculix_mapping",
+      "path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/calculix-loads.json",
+      "sha256": "a99939ecfc7b36d6352ac5451057ede20bce6fa95b37c7e8d62c47f4559a4923"
+    },
+    {
+      "bytes": 27267,
+      "id": "f49_material_process",
+      "path": "twins/reference-917-engine/material-lpbf-qualification-f49.json",
+      "sha256": "09b3af21c5089dc68d472706a6eaf6491709fd8fe93a8e8e1825a0932bce32b5"
+    },
+    {
+      "bytes": 199794,
+      "case_id": "2v-cantera_finite_rate-cd0.72-dca0.25",
+      "id": "2v_complete_F46_trace",
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+      "sha256": "3d13ece6bc9ad8c3792df9dfca30d17838611ee877a3cc6abd7423d0b4b62907"
+    },
+    {
+      "bytes": 199285,
+      "case_id": "4v-cantera_finite_rate-cd0.72-dca0.25",
+      "id": "4v_complete_F46_trace",
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+      "sha256": "632a66647a871736509f180048009d52f5d5312693dd456059e11455570b7518"
+    }
+  ],
+  "verdict": {
+    "blocking_reasons": [
+      "private F43/F50 full-head solid mesh not used in this public witness run",
+      "no measured and verified chamber/cooling/stud surface map",
+      "both local witnesses exceed the 300 C screening limit",
+      "both thermo-pressure p95 stresses exceed even the CP1 room-temperature yield reference",
+      "F49 has no complete temperature-dependent CP1 material card",
+      "no hot HCF/LCF/TMF curves or contact/preload model",
+      "no correlated CHT, thermocouples, pressure trace, or physical engine test"
+    ],
+    "engineering_screen_passed": false,
+    "full_head_validated": false,
+    "numerically_converged": true,
+    "printable_or_startable_claimed": false,
+    "reference_proxy_result_available": true,
+    "stress_interpretation": "the thermo-pressure linear result exceeds room-temperature yield and is therefore a red divergence indicator, not a valid post-yield stress prediction"
+  }
+}
