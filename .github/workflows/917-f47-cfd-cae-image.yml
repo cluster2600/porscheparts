@@ -39,13 +39,14 @@ jobs:
 
       - name: Record exact public source inputs
         run: |
-          sha256sum \
-            .github/workflows/917-f47-cfd-cae-image.yml \
-            containers/engine-cycle-f33.requirements.txt \
-            containers/917-f47-cfd-cae/* \
-            docs/917_F47_CFD_CAE_IMAGE.md \
-            tests/test_917_f47_cfd_cae_image.py \
-            > f47-source-inputs.sha256
+          {
+            printf '%s\n' \
+              .github/workflows/917-f47-cfd-cae-image.yml \
+              containers/engine-cycle-f33.requirements.txt \
+              docs/917_F47_CFD_CAE_IMAGE.md \
+              tests/test_917_f47_cfd_cae_image.py
+            find containers/917-f47-cfd-cae -maxdepth 1 -type f -print
+          } | LC_ALL=C sort | xargs sha256sum > f47-source-inputs.sha256
 
       - name: Set up pinned Buildx
         uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
