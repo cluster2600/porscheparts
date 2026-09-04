@@ -1,0 +1,131 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format          ascii;
+    class           dictionary;
+    location        "system";
+    object          controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solver          fluid;
+
+startFrom       startTime;
+
+startTime       100;
+
+stopAt          endTime;
+
+endTime         800;
+
+deltaT          1;
+
+writeControl    timeStep;
+
+writeInterval   20;
+
+purgeWrite      2;
+
+writeFormat     binary;
+
+writePrecision  10;
+
+runTimeModifiable false;
+
+functions
+{
+    residuals
+    {
+        type            residuals;
+        libs            ( "libutilityFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        fields          ( p U T k epsilon );
+    }
+    outletMassFlow
+    {
+        type            surfaceFieldValue;
+        libs            ( "libfieldFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        writeFields     false;
+        patch           outlet;
+        operation       sum;
+        fields          ( phi );
+    }
+    outletTemperature
+    {
+        type            surfaceFieldValue;
+        libs            ( "libfieldFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        writeFields     false;
+        patch           outlet;
+        operation       areaAverage;
+        weightField     phi;
+        fields          ( T p );
+    }
+    weightedOutletTemperature
+    {
+        type            surfaceFieldValue;
+        libs            ( "libfieldFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        writeFields     false;
+        patch           outlet;
+        operation       average;
+        weightField     phi;
+        fields          ( T );
+    }
+    velocityMagnitudeSquared
+    {
+        type            magSqr;
+        libs            ( "libfieldFunctionObjects.so" );
+        field           U;
+        result          UMagSqr;
+        executeControl  timeStep;
+        executeInterval 1;
+        writeControl    timeStep;
+        writeInterval   10;
+    }
+    outletTotalEnergyTerms
+    {
+        type            surfaceFieldValue;
+        libs            ( "libfieldFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        writeFields     false;
+        patch           outlet;
+        operation       average;
+        weightField     phi;
+        fields          ( T UMagSqr );
+    }
+    inletPressure
+    {
+        type            surfaceFieldValue;
+        libs            ( "libfieldFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        writeFields     false;
+        patch           inlet;
+        operation       areaAverage;
+        fields          ( p );
+    }
+    headHeatFlux
+    {
+        type            wallHeatFlux;
+        libs            ( "libfieldFunctionObjects.so" );
+        writeControl    timeStep;
+        writeInterval   10;
+        patches         ( head );
+    }
+}
+
+
+// ************************************************************************* //

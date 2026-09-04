@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "id": "917-head-f38-cooling-redesign",
+  "classification": "scan_derived_air_cooling_redesign_screen_not_physical_validation",
+  "source_evidence": {
+    "f36_cfd_thermal": "twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json",
+    "f37_head_mesh": "twins/reference-917-engine/evidence/f37-manufacturing-definition/f37-printable-head-mesh-report.json",
+    "f37_lpbf": "twins/reference-917-engine/evidence/f37-manufacturing-definition/f37-lpbf-manufacturing-report.json"
+  },
+  "boundary_conditions": {
+    "air_inlet_temperature_k": 308.15,
+    "isothermal_wall_temperature_k": 533.15,
+    "nominal_head_air_mass_flow_kg_s": 0.85,
+    "air_density_kg_m3": 1.132,
+    "air_dynamic_viscosity_pa_s": 1.9e-05,
+    "air_thermal_conductivity_w_mk": 0.0273,
+    "air_specific_heat_j_kgk": 1007.0,
+    "air_prandtl": 0.70,
+    "maximum_pressure_drop_pa": 6700.0,
+    "maximum_continuous_bridge_temperature_c": 240.0,
+    "maximum_burst_bridge_temperature_c": 260.0,
+    "chamber_heat_load_w_per_head": 4300.0,
+    "chamber_heat_load_basis": "back_calculated_order_of_magnitude_from_F36_solid_screen_and_retained_unchanged_for_F38"
+  },
+  "f38_fin_pack": {
+    "fin_level_count": 12,
+    "half_bank_count": 2,
+    "gaps_per_half_bank": 11,
+    "passage_count_equivalent": 22,
+    "fin_thickness_mm": 2.0,
+    "clear_gap_mm": 4.5,
+    "mean_flow_length_mm": 180.0,
+    "mean_span_mm": 86.0,
+    "fin_height_mm": 19.0,
+    "root_radius_mm": 2.0,
+    "tip_radius_mm": 1.0,
+    "minimum_as_designed_thickness_mm": 1.8,
+    "fin_pitch_mm": 6.5,
+    "whole_head_wetted_surface_area_m2": 0.18486967359948758,
+    "whole_head_wetted_surface_area_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+    "provisional_flat_fin_face_area_m2_not_BRep": 0.37152,
+    "open_passage_area_m2": 0.008514,
+    "air_capture_fraction": 0.70,
+    "passage_velocity_m_s": 61.73,
+    "duct_clearance_mm": 12.0,
+    "duct_type": "close_fitting_split_plenum_with_exhaust_bridge_turning_vanes",
+    "baffles": [
+      {
+        "id": "central_splitter",
+        "thickness_mm": 2.0,
+        "leading_edge_radius_mm": 2.0,
+        "purpose": "reduce_top_bypass_and_balance_banks"
+      },
+      {
+        "id": "exhaust_bridge_turning_vanes",
+        "quantity": 2,
+        "thickness_mm": 1.8,
+        "angle_deg": 28.0,
+        "purpose": "redirect_air_to_exhaust_seat_bridge_without_closing_powder_escape"
+      }
+    ],
+    "manufacturing_note": "dimensions_are_conditional_on_1_OBJ_unit_equals_1_mm; thermal projection area is the F37 scan-conforming parent surface because the intermediate boxy F38 BRep was rejected"
+  },
+  "provisional_hot_material_card_cp1": {
+    "id": "F36_Aheadd_HT1_unqualified_screen_reused_as_CP1",
+    "conductivity_w_mk_by_temperature_c": [[20.0, 150.0], [200.0, 135.0], [300.0, 120.0]],
+    "qualification": false,
+    "maximum_interpolation_temperature_c": 300.0
+  },
+  "bridge_network": {
+    "characteristic_conduction_length_mm": 8.0,
+    "effective_bridge_cross_section_mm2": 1200.0,
+    "classification": "conservative_chamber_to_deck_to_fin_root_1D_nonlinear_screen_not_measured_geometry"
+  },
+  "openfoam_reference_case": {
+    "runtime": {
+      "tool": "OpenFOAM 14",
+      "container_tag": "3dprinting993-cae-aircooled-f34:dev",
+      "container_image_id": "sha256:d3e0364f73efc28e225d7b8f72631c2eba055c1fe27ffe648d483b0edbe12cdf",
+      "architecture": "linux/arm64",
+      "immutable_registry_digest_verified": false
+    },
+    "geometry": "one_straight_inter_fin_passage_with_two_isothermal_no_slip_fin_faces_and_two_symmetry_side_faces",
+    "length_m": 0.18,
+    "gap_m": 0.0045,
+    "span_m": 0.086,
+    "velocity_m_s": 61.73,
+    "turbulence_model": "kOmegaSST",
+    "grids": {
+      "coarse": [180, 12, 8],
+      "fine": [360, 24, 16]
+    },
+    "end_time_steps": {"coarse": 1200, "fine": 2400},
+    "limitations": "canonical_passage_not_full_head_CHT; entrance_and_baffle_losses_are_not_resolved"
+  },
+  "independent_method": {
+    "method": "Gnielinski_Darcy_friction_plus_rectangular_channel_hydraulic_diameter_and_1D_fin_efficiency",
+    "applicability": "turbulent_smooth_channel_screen; extrapolation_to_complex_scan_fins_requires_bench_correlation"
+  },
+  "cooling_variants": [
+    {"id": "open_bypass", "air_capture_fraction": 0.45, "minor_loss_k": 0.2, "configuration": "ailettes_sans_carénage"},
+    {"id": "close_shroud", "air_capture_fraction": 0.60, "minor_loss_k": 0.8, "configuration": "carénage_12mm_sans_déflecteur"},
+    {"id": "splitter_turning_vanes", "air_capture_fraction": 0.70, "minor_loss_k": 1.8, "configuration": "carénage_splitter_et_deux_déflecteurs_pont_échappement"},
+    {"id": "aggressive_exhaust_jets", "air_capture_fraction": 0.78, "minor_loss_k": 3.2, "configuration": "buses_locales_pont_échappement_forte_perte"}
+  ],
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "full_head_brep_linked": false,
+    "full_head_conjugate_heat_transfer_complete": false,
+    "hot_material_coupon_card_qualified": false,
+    "physical_airflow_and_thermal_correlation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

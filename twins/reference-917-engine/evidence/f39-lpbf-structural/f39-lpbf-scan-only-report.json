@@ -1,0 +1,2446 @@
+{
+  "carrier_distributed_contact_correction_plan": {
+    "contact_clearances_mm": null,
+    "executed": false,
+    "f38_baseline": {
+      "calculix_report_sha256": "2df30c2d0c12f29cc3651c400839733078880cf76a86738abcd4e46b5d152545",
+      "carrier_cad_report_sha256": "6872f3d0947210b814ca69e4ad76a4a648b9ea32bc21e3d74bbe03655223ddd7",
+      "finest_maximum_displacement_mm": 0.06017876739526263,
+      "finest_mesh_size_mm": 1.25,
+      "finest_p99_mpa": 31.627909800897534,
+      "finest_raw_maximum_mpa": 137.02989655826315,
+      "nonlinear_contact_complete": false,
+      "p99_relative_change": 0.0005540705564014376,
+      "qualified_material_card": false,
+      "raw_maximum_converged_below_10_percent": false,
+      "raw_maximum_relative_change": 0.16539801922564282
+    },
+    "fastener_pretension_n": null,
+    "geometry_corrections_mm": null,
+    "implementation_sequence": [
+      "replace_nodal_ring_loads_with_resultant_preserving_distributed_tractions_on_measured_bearing_contact_patches",
+      "model_two_shafts_four_rockers_carrier_and_head_interface_as_separate_bodies",
+      "add_surface_to_surface_contact_and_measured_clearances_without_penalty_stiffness_tuning_to_force_convergence",
+      "apply_measured_fastener_pretension_and_head_interface_contact_instead_of_fully_fixed_mount_nodes",
+      "refine_contact_edges_and_curved_load_transitions_with_three_independent_meshes",
+      "track_raw_maximum_p99_displacement_strain_energy_and_contact_pressure_p99",
+      "if_raw_maximum_remains_mesh_singular_modify_the_physical_fillet_or_load_transfer_geometry_then_repeat_all_grids"
+    ],
+    "load_resultants_n": null,
+    "missing_evidence": [
+      "measured_rocker_to_shaft_and_shaft_to_carrier_clearances",
+      "measured_fastener_pretension_and_head_interface_compliance",
+      "measured_cam_resultants_and_directions_over_cycle",
+      "qualified_temperature_dependent_material_and_contact_cards"
+    ],
+    "model_scope": "carrier_plus_two_shafts_plus_four_rockers_plus_head_interface",
+    "status": "plan_defined_not_executed_missing_measured_contacts_clearances_and_resultants",
+    "target_relative_change": 0.1
+  },
+  "classification": "exhaustive_discrete_scan_screen_and_correction_plan_not_production_CAD_process_simulation_or_release",
+  "closed_void_and_powder_escape": {
+    "correction_plan": "connect_each_persistent_closed_component_to_an_exterior_service_opening_then_repeat_resolution_study_and_physical_powder_removal_test",
+    "fine_vs_previous_trapped_volume_relative_change": 1.5901162790697674,
+    "minimum_escape_diameter_missing_reason": "powder_distribution_machine_recipe_and_absolute_scale_not_qualified",
+    "minimum_escape_diameter_mm": null,
+    "resolution_converged_below_10_percent": false,
+    "resolutions": [
+      {
+        "all_detected_void_connected_to_exterior": false,
+        "classification": "voxel_resolution_screen_not_CT_or_powder_flow_test",
+        "grid_point_count": 367224,
+        "grid_shape": [
+          66,
+          107,
+          52
+        ],
+        "largest_components": [
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -15.125,
+              61.375,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 5.346018470287903,
+            "label": 16,
+            "volume_mm3_if_scale_is_mm": 80.0,
+            "voxel_count": 10
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -35.56944444444444,
+              52.81944444444446,
+              57.29166666666667
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 5.161524082968597,
+            "label": 5,
+            "volume_mm3_if_scale_is_mm": 72.0,
+            "voxel_count": 9
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -17.125,
+              55.375,
+              54.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 4.9628039271952,
+            "label": 15,
+            "volume_mm3_if_scale_is_mm": 64.0,
+            "voxel_count": 8
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -38.125,
+              54.375,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.938980087370786,
+            "label": 4,
+            "volume_mm3_if_scale_is_mm": 32.0,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -27.125,
+              42.375,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.578800915758598,
+            "label": 13,
+            "volume_mm3_if_scale_is_mm": 24.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -55.125,
+              69.375,
+              74.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 2,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -37.125,
+              -53.625,
+              57.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 7,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -31.125,
+              -46.625,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 11,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -31.125,
+              -46.625,
+              58.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 12,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -25.125,
+              -43.625,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 14,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              14.875,
+              75.375,
+              26.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 18,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              24.875,
+              44.375,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 20,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              26.875,
+              42.375,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 21,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              31.875,
+              56.375,
+              76.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 22,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              32.875,
+              -49.625,
+              53.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 23,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              49.875,
+              -69.625,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 26,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              17.375,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 29,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -55.125,
+              70.375,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 3,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -37.125,
+              -53.625,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 6,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -35.125,
+              52.375,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 8,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -33.125,
+              -51.625,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 9,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -33.125,
+              -51.625,
+              58.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 10,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -13.125,
+              66.375,
+              58.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 17,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              24.875,
+              -43.625,
+              50.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 19,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              44.875,
+              -73.625,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 24,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              46.875,
+              -71.625,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 25,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              50.875,
+              26.375,
+              76.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 27,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              16.375,
+              40.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 28,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              24.375,
+              76.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 30,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              26.375,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 31,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              64.375,
+              68.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.4814019635976,
+            "label": 32,
+            "volume_mm3_if_scale_is_mm": 8.0,
+            "voxel_count": 1
+          }
+        ],
+        "method": "deterministic_VTK_polydata_to_image_stencil_plus_6_connected_exterior_flood_fill",
+        "physical_powder_removal_verified": false,
+        "pitch_mm_if_scale_is_mm": 2.0,
+        "solid_grid_points": 133869,
+        "trapped_component_count": 31,
+        "trapped_volume_mm3_if_scale_is_mm": 576.0,
+        "trapped_voxel_count": 72
+      },
+      {
+        "all_detected_void_connected_to_exterior": false,
+        "classification": "voxel_resolution_screen_not_CT_or_powder_flow_test",
+        "grid_point_count": 834156,
+        "grid_shape": [
+          87,
+          141,
+          68
+        ],
+        "largest_components": [
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -34.925,
+              52.07499999999999,
+              57.224999999999994
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 4.589747612918804,
+            "label": 7,
+            "volume_mm3_if_scale_is_mm": 50.625,
+            "voxel_count": 15
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -17.625,
+              58.125,
+              53.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 4.260744253844965,
+            "label": 22,
+            "volume_mm3_if_scale_is_mm": 40.5,
+            "voxel_count": 12
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              34.875,
+              -52.125,
+              55.875
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.3817549553604795,
+            "label": 39,
+            "volume_mm3_if_scale_is_mm": 20.25,
+            "voxel_count": 6
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              15.375,
+              52.875,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.182353253841166,
+            "label": 27,
+            "volume_mm3_if_scale_is_mm": 16.875,
+            "voxel_count": 5
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              15.375,
+              61.875,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.182353253841166,
+            "label": 28,
+            "volume_mm3_if_scale_is_mm": 16.875,
+            "voxel_count": 5
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              19.875,
+              51.375,
+              50.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.182353253841166,
+            "label": 30,
+            "volume_mm3_if_scale_is_mm": 16.875,
+            "voxel_count": 5
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -37.875,
+              54.375,
+              51.375
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.9542350655280893,
+            "label": 6,
+            "volume_mm3_if_scale_is_mm": 13.5,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -11.625,
+              68.625,
+              59.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.9542350655280893,
+            "label": 23,
+            "volume_mm3_if_scale_is_mm": 13.5,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              16.125,
+              70.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.9542350655280893,
+            "label": 50,
+            "volume_mm3_if_scale_is_mm": 13.5,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -36.625,
+              -53.625,
+              57.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 9,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -32.625,
+              -49.625,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 13,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -26.625,
+              42.375,
+              50.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 18,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              13.875,
+              61.875,
+              58.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 26,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              16.875,
+              58.875,
+              55.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 29,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              25.875,
+              -43.125,
+              50.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 34,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              30.875,
+              55.375,
+              76.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 36,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              35.875,
+              -73.125,
+              59.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.6841006868189483,
+            "label": 38,
+            "volume_mm3_if_scale_is_mm": 10.125,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -55.125,
+              70.125,
+              74.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 3,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -52.125,
+              -15.375,
+              70.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 5,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -37.125,
+              -53.625,
+              52.875
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 8,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -32.625,
+              -49.875,
+              58.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 14,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -31.125,
+              -46.875,
+              58.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 15,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -25.125,
+              43.875,
+              51.375
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 19,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              10.875,
+              76.125,
+              23.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 25,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              24.375,
+              43.875,
+              49.875
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 33,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              40.125,
+              79.875,
+              14.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 41,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              49.125,
+              -70.125,
+              64.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 44,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.125,
+              -65.625,
+              70.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 48,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              64.125,
+              68.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.344777925390316,
+            "label": 53,
+            "volume_mm3_if_scale_is_mm": 6.75,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -56.625,
+              -65.625,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 2,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -55.125,
+              70.875,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 4,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -35.625,
+              52.875,
+              52.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 10,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -34.125,
+              -52.125,
+              52.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 11,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -34.125,
+              -52.125,
+              58.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 12,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -31.125,
+              -46.125,
+              52.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 16,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -26.625,
+              -43.125,
+              55.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 17,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -23.625,
+              -44.625,
+              52.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 20,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -22.125,
+              45.375,
+              52.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 21,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -4.125,
+              52.875,
+              73.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 24,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              21.375,
+              45.375,
+              49.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 31,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              22.875,
+              -44.625,
+              49.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 32,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              27.375,
+              42.375,
+              55.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 35,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              31.875,
+              55.875,
+              70.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 37,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              39.375,
+              -73.125,
+              58.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 40,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              46.875,
+              -73.125,
+              47.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 42,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              46.875,
+              -71.625,
+              64.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 43,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              49.875,
+              27.375,
+              76.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 45,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.375,
+              -71.625,
+              47.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 46,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.375,
+              -68.625,
+              64.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 47,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.375,
+              22.875,
+              64.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.8610514726982001,
+            "label": 49,
+            "volume_mm3_if_scale_is_mm": 3.375,
+            "voxel_count": 1
+          }
+        ],
+        "method": "deterministic_VTK_polydata_to_image_stencil_plus_6_connected_exterior_flood_fill",
+        "physical_powder_removal_verified": false,
+        "pitch_mm_if_scale_is_mm": 1.5,
+        "solid_grid_points": 322850,
+        "trapped_component_count": 53,
+        "trapped_volume_mm3_if_scale_is_mm": 445.5,
+        "trapped_voxel_count": 132
+      },
+      {
+        "all_detected_void_connected_to_exterior": false,
+        "classification": "voxel_resolution_screen_not_CT_or_powder_flow_test",
+        "grid_point_count": 2709000,
+        "grid_shape": [
+          129,
+          210,
+          100
+        ],
+        "largest_components": [
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -15.125,
+              61.375,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.310688545402854,
+            "label": 19,
+            "volume_mm3_if_scale_is_mm": 19.0,
+            "voxel_count": 19
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              48.263888888888886,
+              -71.06944444444444,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.2515564208357337,
+            "label": 29,
+            "volume_mm3_if_scale_is_mm": 18.0,
+            "voxel_count": 18
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -16.125,
+              57.875,
+              55.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 18,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 16
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -14.125,
+              63.875,
+              57.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 3.126370567187088,
+            "label": 20,
+            "volume_mm3_if_scale_is_mm": 16.0,
+            "voxel_count": 16
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              53.875,
+              18.375,
+              76.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.5807620414842987,
+            "label": 48,
+            "volume_mm3_if_scale_is_mm": 9.0,
+            "voxel_count": 9
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              16.375,
+              69.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.3733755965792427,
+            "label": 40,
+            "volume_mm3_if_scale_is_mm": 7.0,
+            "voxel_count": 7
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              13.875,
+              76.375,
+              25.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.1215688358941103,
+            "label": 22,
+            "volume_mm3_if_scale_is_mm": 5.0,
+            "voxel_count": 5
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              14.875,
+              75.375,
+              26.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.1215688358941103,
+            "label": 23,
+            "volume_mm3_if_scale_is_mm": 5.0,
+            "voxel_count": 5
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.875,
+              15.375,
+              70.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 2.1215688358941103,
+            "label": 36,
+            "volume_mm3_if_scale_is_mm": 5.0,
+            "voxel_count": 5
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -45.625,
+              -73.625,
+              41.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.969490043685393,
+            "label": 12,
+            "volume_mm3_if_scale_is_mm": 4.0,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -31.125,
+              -46.375,
+              52.875
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.969490043685393,
+            "label": 13,
+            "volume_mm3_if_scale_is_mm": 4.0,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -19.125,
+              59.875,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.969490043685393,
+            "label": 17,
+            "volume_mm3_if_scale_is_mm": 4.0,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.875,
+              -71.125,
+              47.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.969490043685393,
+            "label": 34,
+            "volume_mm3_if_scale_is_mm": 4.0,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              16.875,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.969490043685393,
+            "label": 41,
+            "volume_mm3_if_scale_is_mm": 4.0,
+            "voxel_count": 4
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -49.791666666666664,
+              76.375,
+              1.291666666666666
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.789400457879299,
+            "label": 10,
+            "volume_mm3_if_scale_is_mm": 3.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -31.125,
+              -46.625,
+              58.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.789400457879299,
+            "label": 14,
+            "volume_mm3_if_scale_is_mm": 3.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -13.125,
+              66.375,
+              58.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.789400457879299,
+            "label": 21,
+            "volume_mm3_if_scale_is_mm": 3.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              48.875,
+              -72.625,
+              47.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.789400457879299,
+            "label": 32,
+            "volume_mm3_if_scale_is_mm": 3.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              64.375,
+              68.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.789400457879299,
+            "label": 45,
+            "volume_mm3_if_scale_is_mm": 3.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              56.875,
+              42.375,
+              -4.375
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.789400457879299,
+            "label": 50,
+            "volume_mm3_if_scale_is_mm": 3.0,
+            "voxel_count": 3
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -52.625,
+              -72.625,
+              57.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.563185283593544,
+            "label": 4,
+            "volume_mm3_if_scale_is_mm": 2.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -27.125,
+              42.375,
+              55.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.563185283593544,
+            "label": 15,
+            "volume_mm3_if_scale_is_mm": 2.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              28.875,
+              41.375,
+              61.125
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.563185283593544,
+            "label": 28,
+            "volume_mm3_if_scale_is_mm": 2.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.875,
+              21.875,
+              64.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.563185283593544,
+            "label": 38,
+            "volume_mm3_if_scale_is_mm": 2.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              67.875,
+              68.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.563185283593544,
+            "label": 46,
+            "volume_mm3_if_scale_is_mm": 2.0,
+            "voxel_count": 2
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -56.125,
+              68.375,
+              22.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 2,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -55.125,
+              -66.625,
+              68.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 3,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -53.125,
+              -71.625,
+              68.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 5,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -53.125,
+              -70.625,
+              69.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 6,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -52.125,
+              -18.625,
+              39.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 7,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -52.125,
+              -8.625,
+              69.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 8,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -52.125,
+              75.375,
+              1.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 9,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -49.125,
+              -46.625,
+              34.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 11,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              -22.125,
+              45.375,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 16,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              15.875,
+              57.375,
+              56.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 24,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              19.875,
+              56.375,
+              49.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 25,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              21.875,
+              45.375,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 26,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              23.875,
+              -44.625,
+              51.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 27,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              44.875,
+              -76.625,
+              14.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 30,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              44.875,
+              -73.625,
+              41.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 31,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              49.875,
+              -73.625,
+              29.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 33,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.875,
+              -74.625,
+              13.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 35,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              51.875,
+              15.375,
+              40.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 37,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              -65.625,
+              69.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 39,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              16.375,
+              40.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 42,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              24.375,
+              76.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 43,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              52.875,
+              26.375,
+              52.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 44,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              53.875,
+              -73.625,
+              13.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 47,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          },
+          {
+            "centroid_mm_if_scale_is_mm": [
+              54.875,
+              -72.625,
+              13.625
+            ],
+            "connected_to_exterior": false,
+            "equivalent_sphere_diameter_mm_if_scale_is_mm": 1.2407009817988,
+            "label": 49,
+            "volume_mm3_if_scale_is_mm": 1.0,
+            "voxel_count": 1
+          }
+        ],
+        "method": "deterministic_VTK_polydata_to_image_stencil_plus_6_connected_exterior_flood_fill",
+        "physical_powder_removal_verified": false,
+        "pitch_mm_if_scale_is_mm": 1.0,
+        "solid_grid_points": 1072905,
+        "trapped_component_count": 49,
+        "trapped_volume_mm3_if_scale_is_mm": 172.0,
+        "trapped_voxel_count": 172
+      }
+    ]
+  },
+  "exhaustive_thickness_map": {
+    "all_resolved_chords_meet_inherited_requirement": false,
+    "continuous_surface_proof": false,
+    "ct_verified": false,
+    "domain": "all_triangles_of_exact_F37_scan_mesh",
+    "evaluated_triangle_count": 857330,
+    "inherited_screen_requirement_mm_if_scale_is_mm": 1.5,
+    "limitation": "face_normal_chord_on_faceted_scan_not_medial_thickness_or_production_CAD_wall_map",
+    "local_map": {
+      "bytes": 6903342,
+      "path": "local-only://f39-lpbf-exhaustive-triangle-thickness-map.npz",
+      "repository_policy": "local_only_derived_scan_data",
+      "sha256": "1a4cb814fba97ded5f1bf5cabf3c8679586bad0890d94f24774e73f173e7f30c"
+    },
+    "maximum_mm_if_scale_is_mm": 197.5,
+    "median_mm_if_scale_is_mm": 19.445436482630058,
+    "method": "exhaustive_triangle_centroid_inward_normal_first_opposite_surface_chord_VTK",
+    "minimum_mm_if_scale_is_mm": 0.0004095774225077267,
+    "p01_mm_if_scale_is_mm": 0.707106781186546,
+    "p05_mm_if_scale_is_mm": 2.2499999999999982,
+    "p95_mm_if_scale_is_mm": 74.95331880577405,
+    "resolved_area_below_inherited_requirement_fraction": 0.030950363564747424,
+    "resolved_fraction": 1.0,
+    "resolved_triangle_count": 857330,
+    "triangle_count": 857330,
+    "unresolved_triangle_count": 0
+  },
+  "gates": {
+    "absolute_scale_confirmed": false,
+    "all_resolved_chords_meet_inherited_1_5_mm_screen": false,
+    "all_scan_triangles_evaluated_for_normal_chord": true,
+    "all_triangle_chords_resolved": true,
+    "calibrated_inherent_strain_simulation_complete": false,
+    "carrier_distributed_contact_model_complete": false,
+    "carrier_raw_maximum_converged_below_10_percent": false,
+    "closed_void_zero_at_all_voxel_resolutions": false,
+    "continuous_wall_thickness_proved": false,
+    "ct_cmm_fpi_pressure_test_complete": false,
+    "engine_start_authorized": false,
+    "exact_scan_sha256_verified": true,
+    "machining_allowances_dimensioned": false,
+    "metal_print_authorized": false,
+    "orientation_fits_inherited_envelope_conditionally": true,
+    "powder_escape_physically_demonstrated": false,
+    "professional_engineering_review_complete": false,
+    "qualified_hot_material_card": false,
+    "support_topology_sliced_and_reviewed": false
+  },
+  "inherent_strain_simulation": {
+    "calibrated_machine_scan_strategy_and_inherent_strain_parameters_available": false,
+    "commands_checked": {
+      "AdditiveFOAM": null,
+      "ElmerSolver": null,
+      "abaqus": null,
+      "amphyon": null,
+      "ansys-additive": null,
+      "ccx": null,
+      "code_aster": null,
+      "simufact": null
+    },
+    "dedicated_additive_layer_activation_solver_available": false,
+    "reason": "no_dedicated_solver_and_no_calibrated_machine_material_scan_strategy_parameter_set",
+    "simulation_executed": false,
+    "uniform_locked_plate_or_free_shrink_promoted_to_process_simulation": false
+  },
+  "inputs": {
+    "contract": {
+      "path": "../../f39-lpbf-scan-only-contract.json",
+      "sha256": "5cad623372edba784489e1e825afed8fa85b1a49d78c7108500101bba3ebde78"
+    },
+    "exact_f37_head": {
+      "path": "local-only://917-head-f37-printable-proof.local.stl",
+      "sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb"
+    },
+    "f37_exact_lpbf_report": {
+      "path": "local-only://f37-lpbf-exact/lpbf-printability-report.json",
+      "sha256": "b86fea350985d33ea7aa6a03feb4dac5c73f0d1b96847f8bfd744de2ab6ecf89"
+    },
+    "f38_brep_lpbf_report": {
+      "path": "../f38-brep-lpbf/f38-brep-lpbf-report.json",
+      "sha256": "f0dfcc3b9d908f990273d808762efadfcba0f9fa1c9e0a3e444cba6a1b10c8d2"
+    },
+    "f38_carrier_cad_report": {
+      "path": "local-only://f38-rocker-carrier-cad-report.json",
+      "sha256": "6872f3d0947210b814ca69e4ad76a4a648b9ea32bc21e3d74bbe03655223ddd7"
+    },
+    "f38_carrier_calculix_report": {
+      "path": "local-only://f38-carrier-calculix-report.json",
+      "sha256": "2df30c2d0c12f29cc3651c400839733078880cf76a86738abcd4e46b5d152545"
+    }
+  },
+  "machining_allowances": {
+    "correction_rule": "reconstruct_and_measure_each_functional_surface_then_assign_process_specific_allowance_in_a_tolerance_stack",
+    "numeric_allowances_defined": false,
+    "reason": "functional_surfaces_datums_tolerance_stack_and_absolute_scale_unmeasured",
+    "zones": [
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "cylinder_sealing_deck"
+      },
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "valve_seat_pockets"
+      },
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "valve_guide_bores"
+      },
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "spark_plug_seat_and_thread"
+      },
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "rocker_shaft_bores_and_carrier_mounts"
+      },
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "intake_and_exhaust_flange_faces"
+      },
+      {
+        "additional_allowance_mm": null,
+        "datum_defined": false,
+        "id": "stud_threads_and_counterbores"
+      }
+    ]
+  },
+  "orientation_and_support_screen": {
+    "candidate_count": 18,
+    "candidates": [
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 745005.8959037262,
+        "downward_face_area_fraction": 0.12082074321775126,
+        "downward_face_area_mm2_if_scale_is_mm": 23699.687101495092,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          206.25,
+          96.75
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_z_up",
+        "projected_support_area_mm2_if_scale_is_mm": 23554.905085625287,
+        "score": 1922751.1501849904,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 990785.394251099,
+        "downward_face_area_fraction": 0.15204183171020105,
+        "downward_face_area_mm2_if_scale_is_mm": 29823.88406083342,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          206.25,
+          96.75000000000001
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_z_down",
+        "projected_support_area_mm2_if_scale_is_mm": 28651.336085430758,
+        "score": 2423352.1985226367,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -1.0,
+            -1.2246467991473532e-16
+          ],
+          [
+            0.0,
+            1.2246467991473532e-16,
+            -1.0
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 818674.3070372518,
+        "downward_face_area_fraction": 0.09549612564285463,
+        "downward_face_area_mm2_if_scale_is_mm": 18732.11699303798,
+        "extents_mm_if_scale_is_mm": [
+          96.75,
+          206.25,
+          125.25
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_x_up",
+        "projected_support_area_mm2_if_scale_is_mm": 18463.848863686082,
+        "score": 1741866.7502215558,
+        "transform": [
+          [
+            6.123233995736766e-17,
+            0.0,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 879596.9226914553,
+        "downward_face_area_fraction": 0.09433448899003946,
+        "downward_face_area_mm2_if_scale_is_mm": 18504.25524956459,
+        "extents_mm_if_scale_is_mm": [
+          96.75,
+          206.25,
+          125.25
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_x_down",
+        "projected_support_area_mm2_if_scale_is_mm": 18253.75427506243,
+        "score": 1792284.636444577,
+        "transform": [
+          [
+            6.123233995736766e-17,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            -1.0,
+            0.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 974282.3652184287,
+        "downward_face_area_fraction": 0.05312533295887029,
+        "downward_face_area_mm2_if_scale_is_mm": 10420.841113506636,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          96.75,
+          206.25
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_up",
+        "projected_support_area_mm2_if_scale_is_mm": 10222.201800121515,
+        "score": 1485392.4552245045,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            1.0
+          ],
+          [
+            0.0,
+            -1.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 747916.6951782014,
+        "downward_face_area_fraction": 0.056393196534983134,
+        "downward_face_area_mm2_if_scale_is_mm": 11061.85144154829,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          96.75,
+          206.25
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down",
+        "projected_support_area_mm2_if_scale_is_mm": 10854.425670732791,
+        "score": 1290637.978714841,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.0,
+            1.0,
+            6.123233995736766e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 836596.5901517852,
+        "downward_face_area_fraction": 0.06703257069183476,
+        "downward_face_area_mm2_if_scale_is_mm": 13148.8261758344,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          196.75246186515685,
+          196.75246186515685
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_-45",
+        "projected_support_area_mm2_if_scale_is_mm": 11577.906438620006,
+        "score": 1415491.9120827855,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.7071067811865475,
+            -0.7071067811865476
+          ],
+          [
+            0.0,
+            0.7071067811865476,
+            0.7071067811865475
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1552016.9305537401,
+        "downward_face_area_fraction": 0.11925645846292189,
+        "downward_face_area_mm2_if_scale_is_mm": 23392.843605587444,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          168.77305770653953,
+          212.4215871078339
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_-30",
+        "projected_support_area_mm2_if_scale_is_mm": 20002.55331731811,
+        "score": 2552144.5964196455,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.5,
+            -0.8660254037844387
+          ],
+          [
+            0.0,
+            0.8660254037844387,
+            0.5
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1057509.323214113,
+        "downward_face_area_fraction": 0.07824522002007836,
+        "downward_face_area_mm2_if_scale_is_mm": 15348.25214840299,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          130.77901330237495,
+          214.76528115680776
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_-15",
+        "projected_support_area_mm2_if_scale_is_mm": 14228.986144122886,
+        "score": 1768958.6304202573,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.2588190451025208,
+            -0.9659258262890683
+          ],
+          [
+            0.0,
+            0.9659258262890683,
+            0.2588190451025208
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1007874.1207721607,
+        "downward_face_area_fraction": 0.07361804789164182,
+        "downward_face_area_mm2_if_scale_is_mm": 14440.605591295956,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          131.7495847215094,
+          216.3042586488867
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_+15",
+        "projected_support_area_mm2_if_scale_is_mm": 13441.292256897104,
+        "score": 1679938.7336170159,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2588190451025207,
+            -0.9659258262890683
+          ],
+          [
+            0.0,
+            0.9659258262890683,
+            -0.2588190451025207
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1564291.1403068006,
+        "downward_face_area_fraction": 0.11319200359118349,
+        "downward_face_area_mm2_if_scale_is_mm": 22203.26573117969,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          169.87113391789285,
+          212.87014426634883
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_+30",
+        "projected_support_area_mm2_if_scale_is_mm": 18902.77856856808,
+        "score": 2509430.0687352046,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4999999999999999,
+            -0.8660254037844387
+          ],
+          [
+            0.0,
+            0.8660254037844387,
+            -0.4999999999999999
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 882793.3217359945,
+        "downward_face_area_fraction": 0.06105420816125442,
+        "downward_face_area_mm2_if_scale_is_mm": 11976.135811741027,
+        "extents_mm_if_scale_is_mm": [
+          125.25,
+          196.75246186515685,
+          196.75246186515687
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_x_+45",
+        "projected_support_area_mm2_if_scale_is_mm": 10453.979195257638,
+        "score": 1405492.2814988764,
+        "transform": [
+          [
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.7071067811865475,
+            -0.7071067811865476
+          ],
+          [
+            0.0,
+            0.7071067811865476,
+            -0.7071067811865475
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1111115.774085546,
+        "downward_face_area_fraction": 0.07318296069409229,
+        "downward_face_area_mm2_if_scale_is_mm": 14355.260722781064,
+        "extents_mm_if_scale_is_mm": [
+          191.97949109214767,
+          96.75,
+          191.44916100625773
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_-45",
+        "projected_support_area_mm2_if_scale_is_mm": 12684.15486411972,
+        "score": 1745323.517291532,
+        "transform": [
+          [
+            0.7071067811865476,
+            -0.7071067811865475,
+            -4.329780281177466e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.7071067811865475,
+            0.7071067811865476,
+            4.329780281177467e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1718521.913051189,
+        "downward_face_area_fraction": 0.12057186939801197,
+        "downward_face_area_mm2_if_scale_is_mm": 23650.86906331315,
+        "extents_mm_if_scale_is_mm": [
+          178.57497224277932,
+          96.75,
+          207.54658710783383
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_-30",
+        "projected_support_area_mm2_if_scale_is_mm": 20340.271683435876,
+        "score": 2735535.497222983,
+        "transform": [
+          [
+            0.8660254037844387,
+            -0.49999999999999994,
+            -3.0616169978683824e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.49999999999999994,
+            0.8660254037844387,
+            5.3028761936245346e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1131956.6719589934,
+        "downward_face_area_fraction": 0.07918233286438091,
+        "downward_face_area_mm2_if_scale_is_mm": 15532.07224913466,
+        "extents_mm_if_scale_is_mm": [
+          153.67329574828648,
+          96.75,
+          211.32323681351448
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_-15",
+        "projected_support_area_mm2_if_scale_is_mm": 14412.034905835031,
+        "score": 1852558.417250745,
+        "transform": [
+          [
+            0.9659258262890683,
+            -0.25881904510252074,
+            -1.5848095757158825e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            0.25881904510252074,
+            0.9659258262890683,
+            5.914589856893349e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1082977.0970790754,
+        "downward_face_area_fraction": 0.07727709198744415,
+        "downward_face_area_mm2_if_scale_is_mm": 15158.348239218578,
+        "extents_mm_if_scale_is_mm": [
+          152.75473709474278,
+          96.75,
+          210.3145894073254
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_+15",
+        "projected_support_area_mm2_if_scale_is_mm": 14086.203308398,
+        "score": 1787287.2624989753,
+        "transform": [
+          [
+            0.9659258262890683,
+            0.25881904510252074,
+            1.5848095757158825e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            -0.25881904510252074,
+            0.9659258262890683,
+            5.914589856893349e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1638768.9992040452,
+        "downward_face_area_fraction": 0.11829635240864579,
+        "downward_face_area_mm2_if_scale_is_mm": 23204.51325382338,
+        "extents_mm_if_scale_is_mm": [
+          177.55045318994098,
+          96.75,
+          206.04658710783383
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_+30",
+        "projected_support_area_mm2_if_scale_is_mm": 19917.430197866015,
+        "score": 2634640.509097346,
+        "transform": [
+          [
+            0.8660254037844387,
+            0.49999999999999994,
+            3.0616169978683824e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            -0.49999999999999994,
+            0.8660254037844387,
+            5.3028761936245346e-17
+          ]
+        ]
+      },
+      {
+        "column_support_volume_proxy_mm3_if_scale_is_mm": 1041121.5236331301,
+        "downward_face_area_fraction": 0.07063001926268159,
+        "downward_face_area_mm2_if_scale_is_mm": 13854.48650552739,
+        "extents_mm_if_scale_is_mm": [
+          191.44916100625773,
+          96.75,
+          191.97949109214767
+        ],
+        "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+        "id": "scan_y_down_tilt_y_+45",
+        "projected_support_area_mm2_if_scale_is_mm": 12206.042652871514,
+        "score": 1651423.6562767057,
+        "transform": [
+          [
+            0.7071067811865476,
+            0.7071067811865475,
+            4.329780281177466e-17
+          ],
+          [
+            0.0,
+            6.123233995736766e-17,
+            -1.0
+          ],
+          [
+            -0.7071067811865475,
+            0.7071067811865476,
+            4.329780281177467e-17
+          ]
+        ]
+      }
+    ],
+    "critical_angle_deg": 45.0,
+    "distortion_simulated": false,
+    "machine_sliced": false,
+    "method": "all_triangle_downward_normal_area_and_vertical_column_proxy",
+    "selected": {
+      "column_support_volume_proxy_mm3_if_scale_is_mm": 747916.6951782014,
+      "downward_face_area_fraction": 0.056393196534983134,
+      "downward_face_area_mm2_if_scale_is_mm": 11061.85144154829,
+      "extents_mm_if_scale_is_mm": [
+        125.25,
+        96.75,
+        206.25
+      ],
+      "fits_inherited_250x250x325_envelope_if_scale_is_mm": true,
+      "id": "scan_y_down",
+      "projected_support_area_mm2_if_scale_is_mm": 10854.425670732791,
+      "score": 1290637.978714841,
+      "transform": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          6.123233995736766e-17,
+          -1.0
+        ],
+        [
+          0.0,
+          1.0,
+          6.123233995736766e-17
+        ]
+      ]
+    },
+    "supports_generated": false
+  },
+  "phase": "F39",
+  "published_image": {
+    "bytes": 389718,
+    "path": "f39-lpbf-scan-only-audit.png",
+    "sha256": "c9192522a66e7e2b965bed01f0f94101754992af48cb743640b8e3d858d1b160"
+  },
+  "scan_mesh": {
+    "boundary_or_nonmanifold_edges": 0,
+    "bounds_mm_if_scale_is_mm": [
+      [
+        -61.125,
+        64.125
+      ],
+      [
+        -89.625,
+        116.625
+      ],
+      [
+        -9.375,
+        87.375
+      ]
+    ],
+    "connected_surface_regions": 1,
+    "signed_volume_mm3_if_scale_is_mm": 1064770.6330189754,
+    "surface_area_mm2_if_scale_is_mm": 196155.779796702,
+    "triangles": 857330,
+    "vertices": 427985,
+    "watertight_manifold_screen": true
+  },
+  "schema_version": "1.0.0",
+  "source_constraints": {
+    "F38_evidence_reused_without_promotion": true,
+    "absolute_scale_confirmed": false,
+    "additional_part_dimensions_introduced": false,
+    "production_brep_available": false,
+    "scan_only": true
+  },
+  "status": "scan_only_lpbf_and_structural_audit_complete_release_blocked",
+  "toolchain": {
+    "generator_sha256": "a980d8b87daed2ed6f33990c2382d913d744ee7ab30ab27c5f425929a7c0d8d6",
+    "matplotlib": "3.10.6",
+    "numpy": "1.26.4",
+    "python": "3.10.11",
+    "scipy": "1.12.0",
+    "vtk": "9.3.1"
+  },
+  "verdict": "NON IMPRIMABLE / NON AUTORISE. La peau de scan fournit une carte discrete exhaustive, mais pas une CAO de production; parois, cavites, supports, sur\u00e9paisseurs, proc\u00e9d\u00e9 calibr\u00e9 et contact du porte-axes restent non lib\u00e9r\u00e9s."
+}

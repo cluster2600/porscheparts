@@ -19,6 +19,8 @@ F34B_AIR_OIL_IMAGE ?= 3dprinting993-air-oil-cycle-f34b:dev
 F34B_AIR_OIL_RELEASE_IMAGE ?= ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664
 F34_CAE_IMAGE ?= 3dprinting993-cae-aircooled-f34:dev
 F34_FLUIDX3D_IMAGE ?= 3dprinting993-fluidx3d-aircooled-f34:dev
+F37_CAE_IMAGE ?= 3dprinting993-cae-integrated-f33:dev
+F37_CAE_IMAGE_ID ?= sha256:4a19fa7d1f253beb3106970ae2635cff85d5aeeaf062aaf807d1dab7b940fb33
 F35_CAD_AUTHOR_IMAGE ?= $(CAD_AUTHOR_F29_IMAGE)
 F35_SIMREADY_WORKFLOW_IMAGE ?= ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe
 F35_GMSH_IMAGE ?= 3dprinting993-gmsh-mesh-f35:dev
@@ -62,7 +64,7 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 917-f42-2-pcurve-repair-test:
 	$(F42_PYTHON) tests/test_917_f42_2_pcurve_repair.py -v
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 validate:
 	python3 scripts/validate_catalog.py

@@ -1,0 +1,80 @@
+{
+  "$comment": "F39 est une reconstruction analytique conditionnelle parce qu'aucune cote supplementaire n'existe. Une unite du scan est traitee comme 1 mm par convention de travail, sans certifier l'echelle ni l'ajustement OEM Porsche 917.",
+  "schema_version": "1.0.0",
+  "phase": "F39",
+  "status": "scan_only_analytic_brep_reconstruction_release_blocked",
+  "classification": "smooth_parametric_scan_fitted_proxy_not_OEM_definition",
+  "inputs": {
+    "f37_local_scan_derived_mesh_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "f36_geometry_report_sha256": "7bc414009e6b09a7ca190e304eb708e52e37a991b479f0f78a14e4cc53256f36",
+    "f38_brep_report_sha256": "f0dfcc3b9d908f990273d808762efadfcba0f9fa1c9e0a3e444cba6a1b10c8d2"
+  },
+  "unit_convention": {
+    "scan_unit_treated_as_mm": true,
+    "metrologically_confirmed": false,
+    "oem_fitment_certified": false,
+    "additional_dimensions_available": false
+  },
+  "scan_reference_envelope_units": {
+    "minimum": [-61.125, -89.625, -9.375],
+    "maximum": [64.125, 116.625, 87.375]
+  },
+  "outer_reconstruction": {
+    "method": "analytic_OCC_elliptic_core_and_fins_with_canted_port_bosses",
+    "body_centre_y_mm_by_convention": 10.0,
+    "lower_core_radii_xy_mm": [55.0, 71.0],
+    "upper_core_radii_xy_mm": [51.0, 63.0],
+    "deck_outer_radius_mm": 59.75,
+    "fin_count": 12,
+    "fin_thickness_mm": 2.0,
+    "fin_pitch_mm": 6.5,
+    "fin_first_z_mm": -1.0,
+    "fin_radii_xy_bottom_mm": [62.6, 98.0],
+    "fin_radii_xy_top_mm": [58.2, 88.0],
+    "intake_boss_outer_radius_mm": 17.0,
+    "exhaust_boss_outer_radius_mm": 14.0,
+    "minimum_analytic_feature_mm": 2.0
+  },
+  "functional_geometry": {
+    "valve_count": 4,
+    "intake_centres_mm": [[-18.0, -17.0, 0.0], [18.0, -17.0, 0.0]],
+    "exhaust_centres_mm": [[-18.0, 17.0, 0.0], [18.0, 17.0, 0.0]],
+    "included_valve_angle_deg": 36.0,
+    "intake_port_radius_mm": 13.0,
+    "exhaust_port_radius_mm": 11.0,
+    "intake_seat_pocket_radius_mm": 17.29,
+    "exhaust_seat_pocket_radius_mm": 14.55,
+    "guide_clearance_radius_mm": 4.0,
+    "twin_spark_pilot_radius_mm": 4.25,
+    "stud_hole_radius_mm": 5.3701216,
+    "chamber_conical_frustum_mm": {
+      "start_z": -12.0,
+      "height": 24.0,
+      "opening_radius": 45.406,
+      "roof_radius": 34.0,
+      "classification": "analytic_scan_only_combustion_chamber_proxy_open_at_deck"
+    },
+    "oil_header_radius_mm": 3.5,
+    "oil_riser_radius_mm": 3.0,
+    "oil_drain_radius_mm": 4.5,
+    "all_functional_voids_designed_open_to_exterior": true
+  },
+  "validation_targets": {
+    "one_valid_reimported_solid": true,
+    "gmsh_volume_mesh_success": true,
+    "minimum_wall_mm": 1.5,
+    "trapped_void_volume_mm3": 0.0,
+    "scan_fit_is_reported_not_certified": true
+  },
+  "release_gates": {
+    "unit_scale_metrologically_confirmed": false,
+    "oem_fitment_certified": false,
+    "complete_OEM_surface_reconstruction": false,
+    "functional_interfaces_dimensionally_validated": false,
+    "material_card_qualified": false,
+    "thermal_and_structural_validation_complete": false,
+    "professional_engineering_review_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

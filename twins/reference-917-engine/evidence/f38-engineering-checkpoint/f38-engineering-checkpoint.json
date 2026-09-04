@@ -1,0 +1,164 @@
+{
+  "artifacts": {
+    "917-head-f38-engineering-views.png": {
+      "bytes": 706387,
+      "sha256": "f45754b4b50adc40173e74caef47e5f152eed098f10ae94b022853717587e583"
+    },
+    "917-head-f38-functional-contact-sheet.png": {
+      "bytes": 368484,
+      "sha256": "ad170618061063bf2476e0502212a40b8a9814da7673c094c86bb6e5f5046a19"
+    },
+    "917-head-f38-functional.mp4": {
+      "bytes": 7713078,
+      "sha256": "43e80c65b11ecb30d1206730319fa29043156ac8123443ce7f5b2c2b14cc7ec2"
+    },
+    "917-head-f38-hot-coupon-matrix.png": {
+      "bytes": 80562,
+      "sha256": "188441aaebe9344b738b6ff2d79d340c8b468317d913a30ca082b284027c97e1"
+    },
+    "f38-hot-coupon-qualification-plan.json": {
+      "bytes": 5463,
+      "sha256": "56a1e0b5d533acffabf9d136a456bf593e525f372552c6651493f07cea437455"
+    }
+  },
+  "classification": "virtual_evidence_bundle_not_production_cad_not_manufacturing_release",
+  "cooling": {
+    "h_relative_difference": 0.04077104472672597,
+    "independent_gnielinski_effective_h_w_m2k": 193.93623296646663,
+    "openfoam_cell_counts": [
+      17280,
+      138240
+    ],
+    "openfoam_effective_h_w_m2k": [
+      202.0899031130516,
+      201.8432157948752
+    ],
+    "openfoam_fine_energy_balance_relative": 0.01770935077561751,
+    "pressure_drop_relative_difference": 0.6172275108189874,
+    "projected_bridge_temperature_range_c": [
+      375.7946450544165,
+      381.2349286912123
+    ],
+    "temperature_screen_passed": false,
+    "whole_head_cht_complete": false
+  },
+  "engine_solver_boundary": {
+    "cantera_0d_reference_executed": true,
+    "cantera_coupled_to_f38_cfd": false,
+    "exact_ice_engine_foam_executable_executed": false,
+    "f38_geometry_coupled": false,
+    "generic_tutorial_valve_count": 2,
+    "generic_xifluid_tutorial_executed": true,
+    "pressure_cross_method_passed": false
+  },
+  "geometry": {
+    "authoritative_local_mesh_sha256": "d51129380f33d5613b6e8cf8cc5e01f05d4fcd9f22f5e98682c8d05b86f0e032",
+    "boxy_prototype_rejected": true,
+    "constructed_offset_mm_if_scan_unit_is_mm": 0.45,
+    "gmsh_volume_mesh_success": false,
+    "minimum_wall_mm": 0.00497486149,
+    "minimum_wall_requirement_mm": 1.5,
+    "production_brep_complete": false,
+    "scan_morphology_preserved": true,
+    "support_area_fraction": 0.1037070243865552,
+    "trapped_void_volume_mm3_at_1_mm": 106.0,
+    "void_study_converged": false
+  },
+  "material": {
+    "candidate_only": "EOS Aluminium Constellium CP1",
+    "coupon_count_executed": 0,
+    "coupon_count_planned": 168,
+    "hot_material_card_qualified": false
+  },
+  "phase": "F38",
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "engine_start_authorized": false,
+    "full_head_cht_complete": false,
+    "hot_material_card_qualified": false,
+    "metal_print_authorized": false,
+    "physical_ct_ndt_complete": false,
+    "physical_engine_bench_correlated": false,
+    "physical_flow_bench_correlated": false,
+    "porsche_917_interfaces_measured": false,
+    "production_brep_complete": false,
+    "thermomechanical_fatigue_complete": false,
+    "virtual_lpbf_process_simulation_complete": false
+  },
+  "schema_version": "1.0.0",
+  "source_reports": {
+    "cantera_reference": {
+      "bytes": 12256,
+      "path": "twins/reference-917-engine/evidence/f33/cycle-thermal-report.json",
+      "sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed"
+    },
+    "cooling": {
+      "bytes": 27241,
+      "path": "twins/reference-917-engine/evidence/f38-cooling-redesign/f38-cooling-cross-check.json",
+      "sha256": "e7c03b179ac1ef3bd908b3f77acd6487f14626a65caf7367f4eee211ca233c0f"
+    },
+    "geometry_and_lpbf": {
+      "bytes": 7324,
+      "path": "twins/reference-917-engine/evidence/f38-brep-lpbf/f38-brep-lpbf-report.json",
+      "sha256": "f0dfcc3b9d908f990273d808762efadfcba0f9fa1c9e0a3e444cba6a1b10c8d2"
+    },
+    "ice_engine_reference": {
+      "bytes": 6125,
+      "path": "twins/reference-917-engine/evidence/f37-ice-engine-foam/report.json",
+      "sha256": "8c1ca3b24b075032082acc5508c63502e4fd094450b8d5e7459601b8af0b18c6"
+    },
+    "material_contract": {
+      "bytes": 4393,
+      "path": "twins/reference-917-engine/f38-material-coupon-qualification.json",
+      "sha256": "6c1b9ccee2bb16d0e9f5db9698bacc2cd2242f0786f28b26c2d6e7909ec33eaa"
+    },
+    "rocker_carrier_contract": {
+      "bytes": 5091,
+      "path": "twins/reference-917-engine/f38-rocker-carrier-redesign.json",
+      "sha256": "a83409a80b837a913098d8ef2d6b7debd8a1d8382611b9f023e96f54b39ce503"
+    },
+    "valvetrain_package": {
+      "bytes": 8729,
+      "path": "twins/reference-917-engine/evidence/f38-valvetrain-package/f38-valvetrain-package-report.json",
+      "sha256": "933a483bd9248ad4e8246051c9d1cf9f9fce129c580a2b84ed0c9ff6491b8920"
+    }
+  },
+  "status": "scan_conforming_engineering_checkpoint_release_blocked",
+  "structure": {
+    "actual_resultant_direction_complete": false,
+    "classification": "linear_elastic_hot_modulus_screen_not_fatigue_or_release_validation",
+    "f37_parent_linear_screen_transfer_allowed": false,
+    "f38_calculix_three_grid_screen_present": true,
+    "fatigue_and_thermal_cycle_complete": false,
+    "finest_maximum_displacement_mm": 0.06017876739526263,
+    "finest_p99_mpa": 31.627909800897534,
+    "finest_raw_maximum_mpa": 137.02989655826315,
+    "mesh_sizes_mm": [
+      2.0,
+      1.5,
+      1.25
+    ],
+    "nonlinear_contact_complete": false,
+    "p99_grid_change_below_10_percent": true,
+    "qualified_material_card": false,
+    "raw_maximum_grid_change_below_10_percent": false,
+    "reason": "le calcul lineaire trois maillages est un ecran; maximum brut non converge, chargements, contacts, matiere et fatigue non valides",
+    "structural_proof": false
+  },
+  "valvetrain": {
+    "cam_profile_measured": false,
+    "components_are_separate_analytic_parts": true,
+    "fatigue_and_thermal_cycle_complete": false,
+    "guides": 4,
+    "integrated_dimensional_fit_proved": false,
+    "nonlinear_contact_complete": false,
+    "rocker_shafts": 2,
+    "rockers": 4,
+    "seats": 4,
+    "springs": 8,
+    "structural_proof": false,
+    "total_separate_solids": 35,
+    "valves": 4
+  },
+  "verdict": "F38 corrige la morphologie ext\u00e9rieure, mais \u00e9choue les portes g\u00e9om\u00e9trie, maillage, refroidissement et qualification mati\u00e8re. Impression m\u00e9tal et d\u00e9marrage moteur interdits."
+}

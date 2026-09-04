@@ -1,0 +1,1544 @@
+{
+  "classification": "compact_published_evidence_for_all_requested_openfoam_runs",
+  "runs": [
+    {
+      "case_id": "coarse",
+      "classification": "steady_RANS_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 231,
+            "path": "openfoam-runs/coarse/driver-recovered.log",
+            "sha256": "6b118310c704a7b79822139cc6c0af5d5d26c8fbe6b6f049d9e48fac7cba119d"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1194,
+            "path": "openfoam-runs/coarse/constant/polyMesh/boundary",
+            "sha256": "ac2e840ca44b749744a015f79d21fda3bd8c6298ec95b0f17f32bb9566e4c586"
+          },
+          "case_metadata": {
+            "bytes": 775,
+            "path": "openfoam-runs/coarse/case-metadata.json",
+            "sha256": "95bddf3e39aec2d83c577e4b5651049ecc110d1820e99c18c505e348365a4174"
+          },
+          "control_dict": {
+            "bytes": 2374,
+            "path": "openfoam-runs/coarse/system/controlDict",
+            "sha256": "98470712d8ca032ec4ff79f932b92ae9bd495b07086d0178523c0f3330048a56"
+          },
+          "fluid_log": {
+            "bytes": 787353,
+            "path": "openfoam-runs/coarse/log.fluid-recovered",
+            "sha256": "3cca59a0fd576bb2f7f0739b19a84a7594defe45dce54c18005ffe46cf329c55"
+          },
+          "fv_schemes": {
+            "bytes": 833,
+            "path": "openfoam-runs/coarse/system/fvSchemes",
+            "sha256": "ffbc4b15b6c6a05ea8f5e2eebb74ed1358c0455c8b464f2775560607760c4669"
+          },
+          "fv_solution": {
+            "bytes": 627,
+            "path": "openfoam-runs/coarse/system/fvSolution",
+            "sha256": "d594e221b92ddd4e1c50c4831c3126ad98bd968701116aa2c46b987a4e5e4384"
+          },
+          "mesh_check_standard": {
+            "bytes": 3245,
+            "path": "openfoam-runs/coarse/log.checkMesh-recovered-default",
+            "sha256": "f35ab97892acb9374e5cdde95c8c3d157538d3c7ee9f4393c8027b169ce78c87"
+          },
+          "mesh_check_strict": {
+            "bytes": 4884,
+            "path": "openfoam-runs/coarse/log.checkMesh-recovered-strict",
+            "sha256": "1a564897f105a58a9d804a45079debdde87b2941515a2063ccfcf953b72963a4"
+          },
+          "momentum_transport": {
+            "bytes": 200,
+            "path": "openfoam-runs/coarse/constant/momentumTransport",
+            "sha256": "f1711cd7487c67abf51fa6d6e995aec39e685dda46a67fb87d5b4afb3d3d3e4d"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 7423,
+                "path": "openfoam-runs/coarse/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "ad56eb732ce44e5789714d1d21251f97ea9e5a28a95f6f2454e82ef86eda7735"
+              }
+            ],
+            "previous": {
+              "line_number": 82,
+              "row": [
+                "7.9000000000e+02",
+                "head",
+                "1.1740757034e+03",
+                "9.7185019952e+05",
+                "2.9493678353e+03",
+                "1.8349987893e+04"
+              ],
+              "source": {
+                "bytes": 7423,
+                "path": "openfoam-runs/coarse/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "ad56eb732ce44e5789714d1d21251f97ea9e5a28a95f6f2454e82ef86eda7735"
+              }
+            },
+            "selected": {
+              "line_number": 83,
+              "row": [
+                "8.0000000000e+02",
+                "head",
+                "1.2816593120e+03",
+                "9.7208111510e+05",
+                "2.9491187734e+03",
+                "1.8348438312e+04"
+              ],
+              "source": {
+                "bytes": 7423,
+                "path": "openfoam-runs/coarse/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "ad56eb732ce44e5789714d1d21251f97ea9e5a28a95f6f2454e82ef86eda7735"
+              }
+            }
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3044,
+                "path": "openfoam-runs/coarse/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "957e0fadd4cf2895dbfcb85ed28750d75b6687ef0d88a9a96a075c926d2797cf"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "1.0068597410e+05"
+              ],
+              "source": {
+                "bytes": 3044,
+                "path": "openfoam-runs/coarse/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "957e0fadd4cf2895dbfcb85ed28750d75b6687ef0d88a9a96a075c926d2797cf"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "1.0068445092e+05"
+              ],
+              "source": {
+                "bytes": 3044,
+                "path": "openfoam-runs/coarse/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "957e0fadd4cf2895dbfcb85ed28750d75b6687ef0d88a9a96a075c926d2797cf"
+              }
+            }
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3039,
+                "path": "openfoam-runs/coarse/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "f6df52a62c2eaefd51a0bf7bdb4dfa158a0a0c902553e34f085ec5532c55b797"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "8.5001294120e-01"
+              ],
+              "source": {
+                "bytes": 3039,
+                "path": "openfoam-runs/coarse/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "f6df52a62c2eaefd51a0bf7bdb4dfa158a0a0c902553e34f085ec5532c55b797"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "8.5001200001e-01"
+              ],
+              "source": {
+                "bytes": 3039,
+                "path": "openfoam-runs/coarse/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "f6df52a62c2eaefd51a0bf7bdb4dfa158a0a0c902553e34f085ec5532c55b797"
+              }
+            }
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 4435,
+                "path": "openfoam-runs/coarse/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "9bfa5365eeeb369d6bb416956a57c455790a0605639168d436b86ce03a1fcf3c"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "3.1110671698e+02",
+                "1.5471027203e+03"
+              ],
+              "source": {
+                "bytes": 4435,
+                "path": "openfoam-runs/coarse/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "9bfa5365eeeb369d6bb416956a57c455790a0605639168d436b86ce03a1fcf3c"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "3.1112212007e+02",
+                "1.5439198776e+03"
+              ],
+              "source": {
+                "bytes": 4435,
+                "path": "openfoam-runs/coarse/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "9bfa5365eeeb369d6bb416956a57c455790a0605639168d436b86ce03a1fcf3c"
+              }
+            }
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3041,
+                "path": "openfoam-runs/coarse/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "629ef54793c88905db7ea2a247f24ccc61d00356d717fd0dc3e5983e868bbbec"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "3.1110671698e+02"
+              ],
+              "source": {
+                "bytes": 3041,
+                "path": "openfoam-runs/coarse/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "629ef54793c88905db7ea2a247f24ccc61d00356d717fd0dc3e5983e868bbbec"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "3.1112212007e+02"
+              ],
+              "source": {
+                "bytes": 3041,
+                "path": "openfoam-runs/coarse/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "629ef54793c88905db7ea2a247f24ccc61d00356d717fd0dc3e5983e868bbbec"
+              }
+            }
+          }
+        }
+      },
+      "status": "completed_geometry_resolved_screen"
+    },
+    {
+      "case_id": "shroud-gap10-nonslip-coarse",
+      "classification": "steady_RANS_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 182,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/driver-parallel-clean.log",
+            "sha256": "f80b08b453239e2476e8cfe90cb9a0c6f6640348dbcf0d4949d62894e90caaf2"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1733,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/constant/polyMesh/boundary",
+            "sha256": "cb1278798e21cf522cc1c1c62f1dc0abadd3ce49104f1eea5e263a0a8c853ed7"
+          },
+          "case_metadata": {
+            "bytes": 1195,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/case-metadata.json",
+            "sha256": "0a9217be9ba308478e64dc53d6a494f6358af766bda5d029eff14d475ff7f24c"
+          },
+          "control_dict": {
+            "bytes": 2374,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/system/controlDict",
+            "sha256": "98470712d8ca032ec4ff79f932b92ae9bd495b07086d0178523c0f3330048a56"
+          },
+          "fluid_log": {
+            "bytes": 21182,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/log.fluid-recovered",
+            "sha256": "61f8c74546ec078619f4a072c11e7b91eb0f64ded68d95dab62b69d7e2da43d9"
+          },
+          "fv_schemes": {
+            "bytes": 833,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/system/fvSchemes",
+            "sha256": "ffbc4b15b6c6a05ea8f5e2eebb74ed1358c0455c8b464f2775560607760c4669"
+          },
+          "fv_solution": {
+            "bytes": 627,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/system/fvSolution",
+            "sha256": "d594e221b92ddd4e1c50c4831c3126ad98bd968701116aa2c46b987a4e5e4384"
+          },
+          "mesh_check_standard": {
+            "bytes": 3421,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/log.checkMesh-recovered-default",
+            "sha256": "7dfaff18ec39a176d7d90633366a4015199be72bef44d1cae728d30b7a618812"
+          },
+          "mesh_check_strict": {
+            "bytes": 5215,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/log.checkMesh-recovered-strict",
+            "sha256": "dfecf25477fe24126bfc96f5c293df090f1d09ab6eb5c8fd76795d95c4cc0460"
+          },
+          "momentum_transport": {
+            "bytes": 200,
+            "path": "openfoam-runs/shroud-gap10-nonslip-coarse/constant/momentumTransport",
+            "sha256": "f1711cd7487c67abf51fa6d6e995aec39e685dda46a67fb87d5b4afb3d3d3e4d"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          }
+        }
+      },
+      "status": "incomplete_or_rejected"
+    },
+    {
+      "case_id": "shroud-gap20-kepsilon-base7p5",
+      "classification": "steady_RANS_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 192,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/driver-parallel-clean.log",
+            "sha256": "907e24c6dec72fb13de5ab7e291e088ad28818aff4aa22839c8e5edf65c60ee8"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1731,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/constant/polyMesh/boundary",
+            "sha256": "fb9426fd6c159598411cda7adc66fcd7bb060a1872e99346958915ca5b2ae109"
+          },
+          "case_metadata": {
+            "bytes": 1474,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/case-metadata.json",
+            "sha256": "f4df841e52d04e1f774c9a7c94ad61dbc793c9311699ee47f7b81643ea37b114"
+          },
+          "control_dict": {
+            "bytes": 3477,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/system/controlDict",
+            "sha256": "3d009794d6fdab5e398daa1ea5ab19f61ece129ec480b38c10da4a7a0847edf8"
+          },
+          "fluid_log": {
+            "bytes": 825121,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/log.fluid-recovered",
+            "sha256": "5e45aea31213c26c0b56ab2dd88469227ab49beb26512b01fcd7579548c869b6"
+          },
+          "fv_schemes": {
+            "bytes": 1604,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/system/fvSchemes",
+            "sha256": "465ddd363e95b274cc3785d35799888c3a5e3c6a344b9a595e9630b6f3a4901f"
+          },
+          "fv_solution": {
+            "bytes": 1578,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/system/fvSolution",
+            "sha256": "89e19f6f3ca23e852135d9f1108aff0716df85c63ca394bd1ef7f3df39fdec7c"
+          },
+          "mesh_check_standard": {
+            "bytes": 3424,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/log.checkMesh-recovered-default",
+            "sha256": "179ab84ac7c024499545dd8961a90f44574df956cfe6a63046896e7cc038bfc9"
+          },
+          "mesh_check_strict": {
+            "bytes": 5289,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/log.checkMesh-recovered-strict",
+            "sha256": "155ad09e72e8cfaa8edde14679e297f268255922b3b235138427f3eebe3a9092"
+          },
+          "momentum_transport": {
+            "bytes": 199,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/constant/momentumTransport",
+            "sha256": "839b308bcc84fa267d09fccd60f0e6855fb20f0668582225e50d88baa4036d6d"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 4,
+            "files": [
+              {
+                "bytes": 583,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "bb180532330f2de82393fb1e1ea52e319b3b97cfaf8c3c50ea24fafec43ed2a4"
+              },
+              {
+                "bytes": 6523,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/headHeatFlux/100/wallHeatFlux.dat",
+                "sha256": "237f583ee45cff9f55e55432a035a0fad8388ccb761867d9290176bd5d737be4"
+              },
+              {
+                "bytes": 943,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/headHeatFlux/40/wallHeatFlux.dat",
+                "sha256": "395db4443558f300899aa83ff4f9fa3a1014441d177e045afd313ce4d80d547f"
+              }
+            ],
+            "previous": {
+              "line_number": 72,
+              "row": [
+                "7.9000000000e+02",
+                "head",
+                "2.9015431524e+03",
+                "6.7674090621e+05",
+                "4.4817846309e+03",
+                "2.8246017757e+04"
+              ],
+              "source": {
+                "bytes": 6523,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/headHeatFlux/100/wallHeatFlux.dat",
+                "sha256": "237f583ee45cff9f55e55432a035a0fad8388ccb761867d9290176bd5d737be4"
+              }
+            },
+            "selected": {
+              "line_number": 73,
+              "row": [
+                "8.0000000000e+02",
+                "head",
+                "2.8544793283e+03",
+                "6.6781896455e+05",
+                "4.4796829252e+03",
+                "2.8232771959e+04"
+              ],
+              "source": {
+                "bytes": 6523,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/headHeatFlux/100/wallHeatFlux.dat",
+                "sha256": "237f583ee45cff9f55e55432a035a0fad8388ccb761867d9290176bd5d737be4"
+              }
+            }
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 4,
+            "files": [
+              {
+                "bytes": 308,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "ee777bcfdb6a2163437a27dd38d86d653afa68058509e21f6ba3586cd8834d6c"
+              },
+              {
+                "bytes": 2684,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/inletPressure/100/surfaceFieldValue.dat",
+                "sha256": "1c4366a0c0949c674a4026ba98c22447d169157fe46f3bc1546cca64cbfbf5bb"
+              },
+              {
+                "bytes": 452,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/inletPressure/40/surfaceFieldValue.dat",
+                "sha256": "7773940915e395e777acd5e73bc320a4b9ad6600bf83f17ec40dc1226cbab51c"
+              }
+            ],
+            "previous": {
+              "line_number": 74,
+              "row": [
+                "790",
+                "1.0182544893e+05"
+              ],
+              "source": {
+                "bytes": 2684,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/inletPressure/100/surfaceFieldValue.dat",
+                "sha256": "1c4366a0c0949c674a4026ba98c22447d169157fe46f3bc1546cca64cbfbf5bb"
+              }
+            },
+            "selected": {
+              "line_number": 75,
+              "row": [
+                "800",
+                "1.0183061939e+05"
+              ],
+              "source": {
+                "bytes": 2684,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/inletPressure/100/surfaceFieldValue.dat",
+                "sha256": "1c4366a0c0949c674a4026ba98c22447d169157fe46f3bc1546cca64cbfbf5bb"
+              }
+            }
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 4,
+            "files": [
+              {
+                "bytes": 303,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "6f4bb3406b55bb66f9c4b09aafe78a27a11b031efdcc8e6ef4295977f2e7b11e"
+              },
+              {
+                "bytes": 2679,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletMassFlow/100/surfaceFieldValue.dat",
+                "sha256": "e6ac5e592def32908d7f3861509838177cd717735bbe09abf56b2f99dd798ae7"
+              },
+              {
+                "bytes": 447,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletMassFlow/40/surfaceFieldValue.dat",
+                "sha256": "6356612da9dd24447bfeefe592d93428b6f3f1edf2af42beb702d2922af38b0c"
+              }
+            ],
+            "previous": {
+              "line_number": 74,
+              "row": [
+                "790",
+                "8.4998999401e-01"
+              ],
+              "source": {
+                "bytes": 2679,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletMassFlow/100/surfaceFieldValue.dat",
+                "sha256": "e6ac5e592def32908d7f3861509838177cd717735bbe09abf56b2f99dd798ae7"
+              }
+            },
+            "selected": {
+              "line_number": 75,
+              "row": [
+                "800",
+                "8.4998959958e-01"
+              ],
+              "source": {
+                "bytes": 2679,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletMassFlow/100/surfaceFieldValue.dat",
+                "sha256": "e6ac5e592def32908d7f3861509838177cd717735bbe09abf56b2f99dd798ae7"
+              }
+            }
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 4,
+            "files": [
+              {
+                "bytes": 407,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "f9c7612b950448f9a4787f562b8eb7b66610335fdb671ad649fdce04c87a32d7"
+              },
+              {
+                "bytes": 3905,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletTotalEnergyTerms/100/surfaceFieldValue.dat",
+                "sha256": "45194c52122b6dfcf48f19ddff0acdd376b4997e55a9e9816be05b114cf08a26"
+              },
+              {
+                "bytes": 619,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletTotalEnergyTerms/40/surfaceFieldValue.dat",
+                "sha256": "56c3620adcd3d5d801873bf2823bd493a8b3d2f6b01c4651e574b34399a3bddc"
+              }
+            ],
+            "previous": {
+              "line_number": 74,
+              "row": [
+                "790",
+                "3.0835874087e+02",
+                "3.1752350673e+03"
+              ],
+              "source": {
+                "bytes": 3905,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletTotalEnergyTerms/100/surfaceFieldValue.dat",
+                "sha256": "45194c52122b6dfcf48f19ddff0acdd376b4997e55a9e9816be05b114cf08a26"
+              }
+            },
+            "selected": {
+              "line_number": 75,
+              "row": [
+                "800",
+                "3.0836016352e+02",
+                "3.1780692828e+03"
+              ],
+              "source": {
+                "bytes": 3905,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/outletTotalEnergyTerms/100/surfaceFieldValue.dat",
+                "sha256": "45194c52122b6dfcf48f19ddff0acdd376b4997e55a9e9816be05b114cf08a26"
+              }
+            }
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 4,
+            "files": [
+              {
+                "bytes": 305,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "283bf97063c9047dda0d81c49a1251d2803fb3eec8b67c77418b37e0284cb63f"
+              },
+              {
+                "bytes": 2681,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/weightedOutletTemperature/100/surfaceFieldValue.dat",
+                "sha256": "07d6c827bbfdf65a29637291cad121759eda2b8e9a6d7a64fa02469aae482fb8"
+              },
+              {
+                "bytes": 449,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/weightedOutletTemperature/40/surfaceFieldValue.dat",
+                "sha256": "028bcf2b42557d33f1159fd5585cb43ac889c2aaf479b97b059ec1d994efc8c5"
+              }
+            ],
+            "previous": {
+              "line_number": 74,
+              "row": [
+                "790",
+                "3.0835874087e+02"
+              ],
+              "source": {
+                "bytes": 2681,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/weightedOutletTemperature/100/surfaceFieldValue.dat",
+                "sha256": "07d6c827bbfdf65a29637291cad121759eda2b8e9a6d7a64fa02469aae482fb8"
+              }
+            },
+            "selected": {
+              "line_number": 75,
+              "row": [
+                "800",
+                "3.0836016352e+02"
+              ],
+              "source": {
+                "bytes": 2681,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base7p5/postProcessing/weightedOutletTemperature/100/surfaceFieldValue.dat",
+                "sha256": "07d6c827bbfdf65a29637291cad121759eda2b8e9a6d7a64fa02469aae482fb8"
+              }
+            }
+          }
+        }
+      },
+      "status": "completed_with_failed_checks"
+    },
+    {
+      "case_id": "shroud-gap20-kepsilon-base5",
+      "classification": "steady_RANS_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 238,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/driver-parallel-clean.log",
+            "sha256": "62bee037737c4d2a719e5c05de902fa887ab176cf407d6487c44c952ebccf7ab"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1741,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/constant/polyMesh/boundary",
+            "sha256": "525b8738fe90c6cec7e83058ab7ad622aa8b1cf226eaffe5ecd4a0cd7a9cd51d"
+          },
+          "case_metadata": {
+            "bytes": 1590,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/case-metadata.json",
+            "sha256": "0398ae47e0d638f3c2ed84f4f395a3befe7d876dc59a90c48b061ab2707ac861"
+          },
+          "control_dict": {
+            "bytes": 3476,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/system/controlDict",
+            "sha256": "2f9a465b96e489b207ae6b4f2b6669466ddf1e69178ad74c9f41db0ffe886c16"
+          },
+          "fluid_log": {
+            "bytes": 395007,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/log.fluid-recovered",
+            "sha256": "2bb3a85eff30b34bae6ae105defc277378a341c202be7b60d959bb6e6944a07e"
+          },
+          "fv_schemes": {
+            "bytes": 1604,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/system/fvSchemes",
+            "sha256": "465ddd363e95b274cc3785d35799888c3a5e3c6a344b9a595e9630b6f3a4901f"
+          },
+          "fv_solution": {
+            "bytes": 1578,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/system/fvSolution",
+            "sha256": "89e19f6f3ca23e852135d9f1108aff0716df85c63ca394bd1ef7f3df39fdec7c"
+          },
+          "mesh_check_standard": {
+            "bytes": 3491,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/log.checkMesh-recovered-default",
+            "sha256": "fca6e5c4640108163f89a38b303898a788b914ba4b936776b0dfbe4a06b232e8"
+          },
+          "mesh_check_strict": {
+            "bytes": 5284,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/log.checkMesh-recovered-strict",
+            "sha256": "2081977fcadadb95368e02777e6022a8a1d0f8dff00ec450acd79196521810ee"
+          },
+          "momentum_transport": {
+            "bytes": 199,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-base5/constant/momentumTransport",
+            "sha256": "839b308bcc84fa267d09fccd60f0e6855fb20f0668582225e50d88baa4036d6d"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3823,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "8b13d80e30f4657f95d48bbdceadd970255f8411140b634a61efaac6d8b06572"
+              }
+            ],
+            "previous": {
+              "line_number": 42,
+              "row": [
+                "3.9000000000e+02",
+                "head",
+                "4.8843709616e+02",
+                "1.2026467126e+06",
+                "5.4851375265e+03",
+                "3.2840907471e+04"
+              ],
+              "source": {
+                "bytes": 3823,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "8b13d80e30f4657f95d48bbdceadd970255f8411140b634a61efaac6d8b06572"
+              }
+            },
+            "selected": {
+              "line_number": 43,
+              "row": [
+                "4.0000000000e+02",
+                "head",
+                "4.4896837314e+02",
+                "1.2291071277e+06",
+                "5.4820642294e+03",
+                "3.2822506864e+04"
+              ],
+              "source": {
+                "bytes": 3823,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "8b13d80e30f4657f95d48bbdceadd970255f8411140b634a61efaac6d8b06572"
+              }
+            }
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 1604,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "4f962846e8523f5634035e1750bbe6a6974c00671cbda26aa7c7f5dd2489ac16"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "1.0165299494e+05"
+              ],
+              "source": {
+                "bytes": 1604,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "4f962846e8523f5634035e1750bbe6a6974c00671cbda26aa7c7f5dd2489ac16"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "1.0164853522e+05"
+              ],
+              "source": {
+                "bytes": 1604,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "4f962846e8523f5634035e1750bbe6a6974c00671cbda26aa7c7f5dd2489ac16"
+              }
+            }
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 1599,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "fb9d814e4b54396b892329961bbd1258c6f16e829d5f3b34e1976f2dc224879d"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "8.5001095844e-01"
+              ],
+              "source": {
+                "bytes": 1599,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "fb9d814e4b54396b892329961bbd1258c6f16e829d5f3b34e1976f2dc224879d"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "8.5000992540e-01"
+              ],
+              "source": {
+                "bytes": 1599,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "fb9d814e4b54396b892329961bbd1258c6f16e829d5f3b34e1976f2dc224879d"
+              }
+            }
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 2315,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "9b79ed9a2aad0cd77ea1a6456d7648c27ea9248c4c384b052818c6764dd1b8e1"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "3.0839460424e+02",
+                "2.9009049414e+03"
+              ],
+              "source": {
+                "bytes": 2315,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "9b79ed9a2aad0cd77ea1a6456d7648c27ea9248c4c384b052818c6764dd1b8e1"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "3.0839710064e+02",
+                "2.8902209928e+03"
+              ],
+              "source": {
+                "bytes": 2315,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "9b79ed9a2aad0cd77ea1a6456d7648c27ea9248c4c384b052818c6764dd1b8e1"
+              }
+            }
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 1601,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "b1790de02c3aa7961ac5d432aab7606854a4986d0456f64a658a61bb938ff9f6"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "3.0839460424e+02"
+              ],
+              "source": {
+                "bytes": 1601,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "b1790de02c3aa7961ac5d432aab7606854a4986d0456f64a658a61bb938ff9f6"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "3.0839710064e+02"
+              ],
+              "source": {
+                "bytes": 1601,
+                "path": "openfoam-runs/shroud-gap20-kepsilon-base5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "b1790de02c3aa7961ac5d432aab7606854a4986d0456f64a658a61bb938ff9f6"
+              }
+            }
+          }
+        }
+      },
+      "status": "completed_with_failed_checks"
+    },
+    {
+      "case_id": "shroud-gap20-kepsilon-long-base7p5",
+      "classification": "steady_RANS_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 154598,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/log.fluid-lowrelax-from0",
+            "sha256": "d63861c411774a2fd0e0512de386419140bd042132d24864609424483be87548"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1733,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/constant/polyMesh/boundary",
+            "sha256": "e53a3ea1ba18deb46e5244333001e7f100fb364258ffe83316df914082c8a732"
+          },
+          "case_metadata": {
+            "bytes": 1690,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/case-metadata.json",
+            "sha256": "56ff70035d0ad94936b96c6e562b1157d369c387d67f91efee7db5daa8d1c474"
+          },
+          "control_dict": {
+            "bytes": 3475,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/system/controlDict",
+            "sha256": "61695372df83c9f92bc00a65d542226e18d89ecf22fb22009f79dc9fecc4b27d"
+          },
+          "fluid_log": {
+            "bytes": 72003,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/log.fluid-recovered",
+            "sha256": "645a8f3829700bdad065275e73eea8f5f32ef0654c9b2c2a03a15fa7fd3f7f5a"
+          },
+          "fv_schemes": {
+            "bytes": 843,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/system/fvSchemes",
+            "sha256": "0294c43a7f86e758b119a88a78554861a14fcad44c4230c3831877b9a30e10c0"
+          },
+          "fv_solution": {
+            "bytes": 1578,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/system/fvSolution",
+            "sha256": "0767ae922c37307fa4ceb9552c392b1dbe5dab214eabea02bb9ae8722fe4ac40"
+          },
+          "mesh_check_standard": {
+            "bytes": 3434,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/log.checkMesh-recovered-default",
+            "sha256": "24cb4fbc9f9273f3607e212464d63726a5f85638236f0fcc21dd4f955dac0aa8"
+          },
+          "mesh_check_strict": {
+            "bytes": 5311,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/log.checkMesh-recovered-strict",
+            "sha256": "9f001dbb8b99754fd915a9d3c5d8816af174af4e94e54025291fc7f2676a882d"
+          },
+          "momentum_transport": {
+            "bytes": 199,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base7p5/constant/momentumTransport",
+            "sha256": "839b308bcc84fa267d09fccd60f0e6855fb20f0668582225e50d88baa4036d6d"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          }
+        }
+      },
+      "status": "incomplete_or_rejected"
+    },
+    {
+      "case_id": "shroud-gap20-kepsilon-long-base5",
+      "classification": "steady_RANS_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1741,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/constant/polyMesh/boundary",
+            "sha256": "bc623315d9b5e5dff7b8254b9bbd9663e4b6b15fd5cbb5e9c3d70cbb5144036d"
+          },
+          "case_metadata": {
+            "bytes": 1689,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/case-metadata.json",
+            "sha256": "7abae7d59b614e40d1d57aff2e4a72e65f48407fe68cd0078a8718c09b56d959"
+          },
+          "control_dict": {
+            "bytes": 3476,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/system/controlDict",
+            "sha256": "2f9a465b96e489b207ae6b4f2b6669466ddf1e69178ad74c9f41db0ffe886c16"
+          },
+          "fluid_log": {
+            "bytes": 20352,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/log.fluid-recovered",
+            "sha256": "46a3fd59593b1ee21199efcb1e22d9db048e75fad3d69212c96eb98bd8e3a29a"
+          },
+          "fv_schemes": {
+            "bytes": 843,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/system/fvSchemes",
+            "sha256": "0294c43a7f86e758b119a88a78554861a14fcad44c4230c3831877b9a30e10c0"
+          },
+          "fv_solution": {
+            "bytes": 1578,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/system/fvSolution",
+            "sha256": "0767ae922c37307fa4ceb9552c392b1dbe5dab214eabea02bb9ae8722fe4ac40"
+          },
+          "mesh_check_standard": {
+            "bytes": 3501,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/log.checkMesh-recovered-default",
+            "sha256": "911549b16a791031cf674a799de85a1bcf5c80083302b737354b7edf54a46daa"
+          },
+          "mesh_check_strict": {
+            "bytes": 5220,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/log.checkMesh-recovered-strict",
+            "sha256": "043ebc23cd15bf39e78770e577e81030a8f24266e04765fbcb789dfc81fae1d4"
+          },
+          "momentum_transport": {
+            "bytes": 199,
+            "path": "openfoam-runs/shroud-gap20-kepsilon-long-base5/constant/momentumTransport",
+            "sha256": "839b308bcc84fa267d09fccd60f0e6855fb20f0668582225e50d88baa4036d6d"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [],
+            "previous": null,
+            "selected": null
+          }
+        }
+      },
+      "status": "incomplete_or_rejected"
+    },
+    {
+      "case_id": "shroud-gap20-laminar-base7p5",
+      "classification": "steady_laminar_lower_bound_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 237,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/driver-parallel-clean.log",
+            "sha256": "3123c435fae6091e2e83e122495d4c2ca7866caced559c5159794ce3d196b91a"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1731,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/constant/polyMesh/boundary",
+            "sha256": "fb9426fd6c159598411cda7adc66fcd7bb060a1872e99346958915ca5b2ae109"
+          },
+          "case_metadata": {
+            "bytes": 1781,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/case-metadata.json",
+            "sha256": "e646fe9def1b2f3541133a3ef18167cb1b403513aec1d6050bc83a90936a094f"
+          },
+          "control_dict": {
+            "bytes": 2374,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/system/controlDict",
+            "sha256": "98470712d8ca032ec4ff79f932b92ae9bd495b07086d0178523c0f3330048a56"
+          },
+          "fluid_log": {
+            "bytes": 594987,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/log.fluid-recovered",
+            "sha256": "3988f31fbafaf6fe1d641fad5dd486ece66640cd145c2957f1e4ee3388a55a60"
+          },
+          "fv_schemes": {
+            "bytes": 839,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/system/fvSchemes",
+            "sha256": "dec78cdac3888458bf445829efd1b521a75d10bb01c51277ebd5576f7df88d27"
+          },
+          "fv_solution": {
+            "bytes": 627,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/system/fvSolution",
+            "sha256": "6a5b3788049ca7f7db85be482d0eaf080f2cdcd14bbf86a382489f8c3429c613"
+          },
+          "mesh_check_standard": {
+            "bytes": 3422,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/log.checkMesh-recovered-default",
+            "sha256": "2a85335aeb7536afa6ccb9f97163cbe1fd473862c2927b22350195d536446e21"
+          },
+          "mesh_check_strict": {
+            "bytes": 5287,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/log.checkMesh-recovered-strict",
+            "sha256": "3607da00ce0ebd649999f99b6b78522ce12a9a28ab4fa9cd58ff35c3f7b6b0e0"
+          },
+          "momentum_transport": {
+            "bytes": 204,
+            "path": "openfoam-runs/shroud-gap20-laminar-base7p5/constant/momentumTransport",
+            "sha256": "d697384fb58bc659ddbbe4f028529afdc1f5984b422cc863b0ded22223e1ec97"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 7423,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "c88fb78bf14d11c65e4dab78ae3a387961609af4639d1810d95db3ef6be2bf1e"
+              }
+            ],
+            "previous": {
+              "line_number": 82,
+              "row": [
+                "7.9000000000e+02",
+                "head",
+                "2.8825861548e+03",
+                "4.9838110288e+05",
+                "2.0332394403e+03",
+                "1.2814296550e+04"
+              ],
+              "source": {
+                "bytes": 7423,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "c88fb78bf14d11c65e4dab78ae3a387961609af4639d1810d95db3ef6be2bf1e"
+              }
+            },
+            "selected": {
+              "line_number": 83,
+              "row": [
+                "8.0000000000e+02",
+                "head",
+                "2.8911616670e+03",
+                "4.9922084685e+05",
+                "2.0324262409e+03",
+                "1.2809171439e+04"
+              ],
+              "source": {
+                "bytes": 7423,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "c88fb78bf14d11c65e4dab78ae3a387961609af4639d1810d95db3ef6be2bf1e"
+              }
+            }
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3044,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "bb5c1f96b33ee5ee161b71b03ddb3dc52494b3c1c5837b6b8f4fd1745320e719"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "1.0183174867e+05"
+              ],
+              "source": {
+                "bytes": 3044,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "bb5c1f96b33ee5ee161b71b03ddb3dc52494b3c1c5837b6b8f4fd1745320e719"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "1.0183027264e+05"
+              ],
+              "source": {
+                "bytes": 3044,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "bb5c1f96b33ee5ee161b71b03ddb3dc52494b3c1c5837b6b8f4fd1745320e719"
+              }
+            }
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3039,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "ece44644cf92964fed7e6a2fc03ac974014ab6329d006e3d6ed947c8f252612a"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "8.5003030440e-01"
+              ],
+              "source": {
+                "bytes": 3039,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "ece44644cf92964fed7e6a2fc03ac974014ab6329d006e3d6ed947c8f252612a"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "8.4993450050e-01"
+              ],
+              "source": {
+                "bytes": 3039,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "ece44644cf92964fed7e6a2fc03ac974014ab6329d006e3d6ed947c8f252612a"
+              }
+            }
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 4435,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "be4e14ffaaccb2a667f3fbfd9d5f6392215f4c1f4e14a69d097f2e03384c57dd"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "3.0843017070e+02",
+                "3.3219152926e+03"
+              ],
+              "source": {
+                "bytes": 4435,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "be4e14ffaaccb2a667f3fbfd9d5f6392215f4c1f4e14a69d097f2e03384c57dd"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "3.0843295930e+02",
+                "3.2819381276e+03"
+              ],
+              "source": {
+                "bytes": 4435,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "be4e14ffaaccb2a667f3fbfd9d5f6392215f4c1f4e14a69d097f2e03384c57dd"
+              }
+            }
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3041,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "12198b92e8f38ae20f4a35412ee4bc83c32814678fb55a86df19e1f733200b7b"
+              }
+            ],
+            "previous": {
+              "line_number": 84,
+              "row": [
+                "790",
+                "3.0843017070e+02"
+              ],
+              "source": {
+                "bytes": 3041,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "12198b92e8f38ae20f4a35412ee4bc83c32814678fb55a86df19e1f733200b7b"
+              }
+            },
+            "selected": {
+              "line_number": 85,
+              "row": [
+                "800",
+                "3.0843295930e+02"
+              ],
+              "source": {
+                "bytes": 3041,
+                "path": "openfoam-runs/shroud-gap20-laminar-base7p5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "12198b92e8f38ae20f4a35412ee4bc83c32814678fb55a86df19e1f733200b7b"
+              }
+            }
+          }
+        }
+      },
+      "status": "completed_with_failed_checks"
+    },
+    {
+      "case_id": "shroud-gap20-laminar-base5",
+      "classification": "steady_laminar_lower_bound_fixed_wall_temperature_external_air_not_CHT",
+      "input_evidence": {
+        "auxiliary_solver_logs": [
+          {
+            "bytes": 237,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/driver-parallel-clean.log",
+            "sha256": "bfef63d8698a8e8187b7ed25cecbcafd73f702cba257e4bf511539f7ba6fb7f4"
+          }
+        ],
+        "fixed_files": {
+          "boundary": {
+            "bytes": 1741,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/constant/polyMesh/boundary",
+            "sha256": "525b8738fe90c6cec7e83058ab7ad622aa8b1cf226eaffe5ecd4a0cd7a9cd51d"
+          },
+          "case_metadata": {
+            "bytes": 1779,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/case-metadata.json",
+            "sha256": "5ca5d2c5dcd43bd07871ad3a2871a439f077d6e87a6d7129f87dd194cc2246db"
+          },
+          "control_dict": {
+            "bytes": 3474,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/system/controlDict",
+            "sha256": "0959ca14304df1da2ffe56fc7c8637f76c836ca5e297d97df8e87c0b6fc098ea"
+          },
+          "fluid_log": {
+            "bytes": 298658,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/log.fluid-recovered",
+            "sha256": "3c0fc1224fc10f78973c8835fd40a45be8b1699afcceb2e039c21c7cc86498fb"
+          },
+          "fv_schemes": {
+            "bytes": 839,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/system/fvSchemes",
+            "sha256": "dec78cdac3888458bf445829efd1b521a75d10bb01c51277ebd5576f7df88d27"
+          },
+          "fv_solution": {
+            "bytes": 627,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/system/fvSolution",
+            "sha256": "6a5b3788049ca7f7db85be482d0eaf080f2cdcd14bbf86a382489f8c3429c613"
+          },
+          "mesh_check_standard": {
+            "bytes": 3489,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/log.checkMesh-recovered-default",
+            "sha256": "4e9f6417ab21735d64eb6cff20e6d3e6084edad37d064dbc69257bc2bf75e88a"
+          },
+          "mesh_check_strict": {
+            "bytes": 5282,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/log.checkMesh-recovered-strict",
+            "sha256": "d5a57ab04428a0769176f9536018e9faa56f958eb85f32ecf6583ad69ac61437"
+          },
+          "momentum_transport": {
+            "bytes": 204,
+            "path": "openfoam-runs/shroud-gap20-laminar-base5/constant/momentumTransport",
+            "sha256": "d697384fb58bc659ddbbe4f028529afdc1f5984b422cc863b0ded22223e1ec97"
+          }
+        },
+        "numerical_selections": {
+          "head_heat_flux": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 3823,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "67ebc8ce9f573098dec1143d61691e6e40cfe96fe95520cac03ac454f2647f65"
+              }
+            ],
+            "previous": {
+              "line_number": 42,
+              "row": [
+                "3.9000000000e+02",
+                "head",
+                "2.1645092789e+03",
+                "4.4909170429e+05",
+                "3.0694825223e+03",
+                "1.8377769201e+04"
+              ],
+              "source": {
+                "bytes": 3823,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "67ebc8ce9f573098dec1143d61691e6e40cfe96fe95520cac03ac454f2647f65"
+              }
+            },
+            "selected": {
+              "line_number": 43,
+              "row": [
+                "4.0000000000e+02",
+                "head",
+                "2.0621720257e+03",
+                "4.4859677149e+05",
+                "3.0667764576e+03",
+                "1.8361567307e+04"
+              ],
+              "source": {
+                "bytes": 3823,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/headHeatFlux/0/wallHeatFlux.dat",
+                "sha256": "67ebc8ce9f573098dec1143d61691e6e40cfe96fe95520cac03ac454f2647f65"
+              }
+            }
+          },
+          "inlet_pressure": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 1604,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "86c3cc6fcbbdd5db133b6c7cbb4946a2ba09a6d9b3434ebff754caf081d3bb9c"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "1.0157714269e+05"
+              ],
+              "source": {
+                "bytes": 1604,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "86c3cc6fcbbdd5db133b6c7cbb4946a2ba09a6d9b3434ebff754caf081d3bb9c"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "1.0161174180e+05"
+              ],
+              "source": {
+                "bytes": 1604,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/inletPressure/0/surfaceFieldValue.dat",
+                "sha256": "86c3cc6fcbbdd5db133b6c7cbb4946a2ba09a6d9b3434ebff754caf081d3bb9c"
+              }
+            }
+          },
+          "outlet_mass_flow": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 1599,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "a1573981a381b7db47191e1fc2faed1761566865c172bb9bd667241ad2191cea"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "8.4993271705e-01"
+              ],
+              "source": {
+                "bytes": 1599,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "a1573981a381b7db47191e1fc2faed1761566865c172bb9bd667241ad2191cea"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "8.4993420435e-01"
+              ],
+              "source": {
+                "bytes": 1599,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/outletMassFlow/0/surfaceFieldValue.dat",
+                "sha256": "a1573981a381b7db47191e1fc2faed1761566865c172bb9bd667241ad2191cea"
+              }
+            }
+          },
+          "outlet_total_energy_terms": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 2315,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "664133318f324e67f1029e94b6a580c496f8fea84bcb60f383651e602d6ecf4d"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "3.0826910428e+02",
+                "2.1836658052e+03"
+              ],
+              "source": {
+                "bytes": 2315,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "664133318f324e67f1029e94b6a580c496f8fea84bcb60f383651e602d6ecf4d"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "3.0827615336e+02",
+                "2.2487621413e+03"
+              ],
+              "source": {
+                "bytes": 2315,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/outletTotalEnergyTerms/0/surfaceFieldValue.dat",
+                "sha256": "664133318f324e67f1029e94b6a580c496f8fea84bcb60f383651e602d6ecf4d"
+              }
+            }
+          },
+          "weighted_outlet_temperature": {
+            "duplicate_time_rows_removed": 0,
+            "files": [
+              {
+                "bytes": 1601,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "2f597615eeaecfcf2e2e17b36d2e96d1f203e5b90eeae87a88c77c6094a6138b"
+              }
+            ],
+            "previous": {
+              "line_number": 44,
+              "row": [
+                "390",
+                "3.0826910428e+02"
+              ],
+              "source": {
+                "bytes": 1601,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "2f597615eeaecfcf2e2e17b36d2e96d1f203e5b90eeae87a88c77c6094a6138b"
+              }
+            },
+            "selected": {
+              "line_number": 45,
+              "row": [
+                "400",
+                "3.0827615336e+02"
+              ],
+              "source": {
+                "bytes": 1601,
+                "path": "openfoam-runs/shroud-gap20-laminar-base5/postProcessing/weightedOutletTemperature/0/surfaceFieldValue.dat",
+                "sha256": "2f597615eeaecfcf2e2e17b36d2e96d1f203e5b90eeae87a88c77c6094a6138b"
+              }
+            }
+          }
+        }
+      },
+      "status": "completed_with_failed_checks"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

@@ -189,7 +189,10 @@ def _subtract_voxel_mesh(matrix: np.ndarray, grid_transform: np.ndarray, cutter:
 def voxel_boolean_head(
     stock: trimesh.Trimesh,
     cutters: list[trimesh.Trimesh],
+    cfg: dict,
     pitch: float = 0.75,
+    valvetrain_bay_radius: float = 50.85,
+    valvetrain_bay_floor: float = 49.15,
 ) -> tuple[trimesh.Trimesh, trimesh.Trimesh]:
     """Bouche l'ancien coeur en voxels puis soustrait l'architecture 4V.
 
@@ -218,6 +221,29 @@ def voxel_boolean_head(
     exhaust_fill = (xx * xx + (zz - 42.0) ** 2 <= 21.0**2) & (yy >= 36.0) & (yy <= 116.0)
     matrix |= core_fill | intake_fill | exhaust_fill
     stock_matrix = matrix.copy()
+
+    # La reconstruction Poisson rebouche aussi la baie de distribution que le
+    # scan ouvert ne décrit pas proprement. Une baie ouverte est donc recréée
+    # au-dessus de la zone chaude, tout en conservant quatre tours de guides et
+    # les bossages des deux bougies. Elle retire une masse froide inutile sans
+    # toucher au deck, aux sièges ni aux ailettes externes.
+    protected = np.zeros(matrix.shape, dtype=bool)
+    for family in ("intake", "exhaust"):
+        data = cfg[family]
+        for centre in data["centres_mm"]:
+            start, end = valve_axis(centre, data["tilt_y_deg"], 96.0)
+            direction = end - start
+            direction /= np.linalg.norm(direction)
+            rx = xx - start[0]
+            ry = yy - start[1]
+            rz = zz - start[2]
+            projection = rx * direction[0] + ry * direction[1] + rz * direction[2]
+            distance_squared = rx * rx + ry * ry + rz * rz - projection * projection
+            protected |= (distance_squared <= 11.5**2) & (projection >= 0.0) & (projection <= 96.0)
+    for plug in cfg["spark_plug"]["electrode_centres_mm"]:
+        protected |= (xx - plug[0]) ** 2 + yy * yy <= 9.0**2
+    valvetrain_bay = (xx * xx + yy * yy <= valvetrain_bay_radius**2) & (zz >= valvetrain_bay_floor)
+    matrix &= ~(valvetrain_bay & ~protected)
 
     # Chambre spherique analytique: evite de voxeliser une sphere complete de
     # 160 mm alors que seule sa calotte coupe le plan de combustion.
@@ -259,6 +285,11 @@ def architecture() -> dict:
             "count": 2,
             "head_diameter_mm": 31.5,
             "stem_diameter_mm": 7.0,
+            "guide_outer_diameter_mm": 15.0,
+            "guide_bore_diameter_mm": 14.94,
+            "guide_inner_diameter_mm": 7.04,
+            "seat_outer_diameter_mm": 34.70,
+            "seat_bore_diameter_mm": 34.58,
             "centres_mm": [[-18.0, -17.0, 0.0], [18.0, -17.0, 0.0]],
             "tilt_y_deg": -18.0,
             "candidate_material": "Ti-6Al-4V forged or wrought; not LPBF release",
@@ -267,6 +298,11 @@ def architecture() -> dict:
             "count": 2,
             "head_diameter_mm": 26.0,
             "stem_diameter_mm": 7.0,
+            "guide_outer_diameter_mm": 15.0,
+            "guide_bore_diameter_mm": 14.94,
+            "guide_inner_diameter_mm": 7.08,
+            "seat_outer_diameter_mm": 29.20,
+            "seat_bore_diameter_mm": 29.10,
             "centres_mm": [[-18.0, 17.0, 0.0], [18.0, 17.0, 0.0]],
             "tilt_y_deg": 18.0,
             "candidate_material": "INCONEL alloy 751 wrought; not printed",
@@ -293,6 +329,8 @@ def build_geometry(
     stock_scan: trimesh.Trimesh,
     cfg: dict,
     interfaces: dict,
+    valvetrain_bay_radius: float,
+    valvetrain_bay_floor: float,
 ) -> tuple[trimesh.Trimesh, trimesh.Trimesh, trimesh.Trimesh, dict]:
     print("F36: preparation du repere scan local", flush=True)
     transform = local_transform(interfaces)
@@ -346,11 +384,24 @@ def build_geometry(
         data = cfg[family]
         for centre in data["centres_mm"]:
             start, end = valve_axis(centre, data["tilt_y_deg"], 88.0)
-            guide = cylinder_between(start - np.asarray([0.0, 0.0, 3.0]), end, data["stem_diameter_mm"] / 2.0 + 0.35, 48)
-            cutters.append(guide)
+            axis = end - start
+            axis /= np.linalg.norm(axis)
+            stem_clearance = cylinder_between(
+                start - 3.0 * axis,
+                end,
+                data["stem_diameter_mm"] / 2.0 + 0.35,
+                48,
+            )
+            guide_pocket = cylinder_between(
+                start + 4.0 * axis,
+                start + 60.0 * axis,
+                data["guide_bore_diameter_mm"] / 2.0,
+                48,
+            )
+            cutters.extend((stem_clearance, guide_pocket))
             # Sur-epaisseur de siege usinee: le diametre de poche est distingue
             # du diametre de tete de soupape.
-            seat_radius = data["head_diameter_mm"] / 2.0 + 1.6
+            seat_radius = data["seat_bore_diameter_mm"] / 2.0
             seat_end = start + (end - start) / np.linalg.norm(end - start) * 7.0
             cutters.append(cylinder_between(start - (seat_end - start) * 0.2, seat_end, seat_radius, 64))
 
@@ -374,7 +425,14 @@ def build_geometry(
         stud_points.append([x, y])
 
     print("F36: booleenne voxel du noyau 4V dans la peau scan-conforme", flush=True)
-    head, filled_stock = voxel_boolean_head(stock, cutters, pitch=0.75)
+    head, filled_stock = voxel_boolean_head(
+        stock,
+        cutters,
+        cfg,
+        pitch=0.75,
+        valvetrain_bay_radius=valvetrain_bay_radius,
+        valvetrain_bay_floor=valvetrain_bay_floor,
+    )
     head.remove_unreferenced_vertices()
     if not head.is_watertight or not head.is_winding_consistent:
         raise RuntimeError("le concept 4V apres booleens n'est pas etanche")
@@ -393,19 +451,21 @@ def build_geometry(
     seat_pocket_clearance = min(
         cfg["chamber_diameter_mm"] / 2.0
         - math.hypot(*centre[:2])
-        - (data["head_diameter_mm"] / 2.0 + 1.6)
+        - data["seat_outer_diameter_mm"] / 2.0
         for data in (intake, exhaust)
         for centre in data["centres_mm"]
     )
     plug_to_seat_pocket_clearance = min(
         math.dist(centre[:2], plug[:2])
-        - (data["head_diameter_mm"] / 2.0 + 1.6)
+        - data["seat_outer_diameter_mm"] / 2.0
         - cfg["spark_plug"]["pilot_diameter_mm"] / 2.0
         for data in (intake, exhaust)
         for centre in data["centres_mm"]
         for plug in cfg["spark_plug"]["electrode_centres_mm"]
     )
     checks = {
+        "valvetrain_bay_radius_mm_if_obj_unit_is_mm": valvetrain_bay_radius,
+        "valvetrain_bay_floor_mm_if_obj_unit_is_mm": valvetrain_bay_floor,
         "intake_head_pair_gap_mm": intake_pair_gap,
         "exhaust_head_pair_gap_mm": exhaust_pair_gap,
         "same_column_intake_exhaust_head_gap_mm": bank_gap,
@@ -609,6 +669,8 @@ def main() -> int:
     parser.add_argument("--interfaces", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--target-faces", type=int, default=150_000)
+    parser.add_argument("--valvetrain-bay-radius", type=float, default=50.85)
+    parser.add_argument("--valvetrain-bay-floor", type=float, default=49.15)
     args = parser.parse_args()
 
     if sha256(args.scan) != EXPECTED_SCAN_SHA256:
@@ -632,7 +694,13 @@ def main() -> int:
             f"unites OBJ",
             flush=True,
         )
-        head, filled_stock, flow, checks = build_geometry(stock_scan, cfg, interfaces)
+        head, filled_stock, flow, checks = build_geometry(
+            stock_scan,
+            cfg,
+            interfaces,
+            args.valvetrain_bay_radius,
+            args.valvetrain_bay_floor,
+        )
         wall = wall_screen(filled_stock, flow)
         print(
             f"F36: ecran paroi interne minimum echantillonne={wall['minimum_obj_units']:.3f} "
@@ -669,6 +737,7 @@ def main() -> int:
             "vertices": int(len(head.vertices)),
             "triangles": int(len(head.faces)),
             "volume_cubic_obj_units": float(head.volume),
+            "candidate_mass_kg_if_obj_unit_is_mm_and_density_2670": float(head.volume) * 2670.0e-9,
             "surface_area_square_obj_units": float(head.area),
             "bounds_local_obj_units": head.bounds.tolist(),
             "architecture": cfg,
@@ -688,6 +757,7 @@ def main() -> int:
             "porsche_917_interfaces": False,
             "oil_galleries": False,
             "valvetrain_kinematics": False,
+            "valvetrain_bay_local_ligament_validated": False,
             "minimum_wall_ct_verified": False,
             "cht_converged": False,
             "thermomechanical_fatigue": False,

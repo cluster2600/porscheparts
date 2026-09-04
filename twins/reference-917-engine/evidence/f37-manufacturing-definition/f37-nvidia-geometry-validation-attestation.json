@@ -1,0 +1,88 @@
+{
+  "execution": {
+    "coexecution_claim": "operator_recorded_same_run_context",
+    "command_from_normalized_report": [
+      "/opt/simready-validation/bin/python",
+      "-m",
+      "omni.asset_validator",
+      "--category",
+      "Geometry",
+      "--json-output",
+      "/tmp/tmpvdc2baxu/asset-validator-report.json",
+      "/workspace/f37-simready/917-head-f37-nvidia-welded-candidate.local.usda"
+    ],
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2",
+    "normalization_layer": "omni-asset-validate-geometry skill wrapper normalized the temporary raw omni.asset_validator JSON",
+    "validator_skill": "omni-asset-validate-geometry",
+    "validator_tool": "omni_asset_validate",
+    "vast_instance_id": "49689149"
+  },
+  "gates": {
+    "asset_report_hashes_recorded": true,
+    "command_targets_report_asset": true,
+    "container_image_digest_pinned": true,
+    "engine_start_authorized": false,
+    "geometry_category_requested": true,
+    "metal_print_authorized": false,
+    "nvidia_geometry_clear": true,
+    "production_brep_validated": false,
+    "report_names_same_asset": true,
+    "source_geometry_report_matches_converted_usd": true,
+    "source_official_conversion_vg007_observed": true
+  },
+  "limitations": [
+    "Le wrapper de comp\u00e9tence a normalis\u00e9 le rapport brut; le rapport brut temporaire n'a pas \u00e9t\u00e9 conserv\u00e9 dans cette attestation.",
+    "Le STL source, le USDC officiel et son rapport VG.007 sont li\u00e9s par empreinte, mais le rapport normalis\u00e9 ne prouve pas cryptographiquement que le convertisseur a consomm\u00e9 ce STL.",
+    "L'image et l'instance sont consign\u00e9es depuis le contexte op\u00e9rateur du m\u00eame run; elles ne sont pas attest\u00e9es ind\u00e9pendamment par le rapport normalis\u00e9.",
+    "Les SHA-256 lient les deux fichiers enregistr\u00e9s et leur contexte d\u00e9clar\u00e9, mais ne constituent pas une signature cryptographique de la machine Vast.",
+    "Un PASS Geometry sur un USDA diagnostic ne remplace ni CAO B-Rep de production, ni qualification LPBF, ni CT/CMM, ni validation fabrication."
+  ],
+  "linkage": {
+    "asset": {
+      "bytes": 70932403,
+      "path": "917-head-f37-nvidia-welded-candidate.local.usda",
+      "sha256": "e9d37090d94a26c40ef6de8972e5290b85ffc5b139c7c773cfe5da5548ee039b"
+    },
+    "command_asset_path": "/workspace/f37-simready/917-head-f37-nvidia-welded-candidate.local.usda",
+    "command_matches_report_asset_path": true,
+    "normalized_report": {
+      "bytes": 897,
+      "path": "direct-usda-normals-geometry.json",
+      "sha256": "855f7a70fa658b60ddf2951d5e1a9c4bf6a2cd52c705d5688b7da59693cd1955"
+    },
+    "report_asset_basename_matches": true,
+    "report_asset_path": "/workspace/f37-simready/917-head-f37-nvidia-welded-candidate.local.usda",
+    "source_converted_usd": {
+      "bytes": 13525478,
+      "path": "f37-final.usdc",
+      "sha256": "ed898b1dd5383dbf6985c553d3b364f8fe13d341e7269b9e6063c7eaa242648d"
+    },
+    "source_geometry_report": {
+      "bytes": 1170,
+      "path": "geometry.json",
+      "sha256": "83517e19fc413096640962ff0cd820d2ed9c8ed803f0d00bafed48f40b9411a6"
+    },
+    "source_report_asset_path": "/workspace/f37-simready/output/final/f37-final.usdc",
+    "source_report_matches_converted_usd": true,
+    "source_stl": {
+      "bytes": 42866584,
+      "path": "917-head-f37-printable-proof.local.stl",
+      "sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb"
+    }
+  },
+  "phase": "F37_nvidia_geometry_validation_attestation",
+  "result": {
+    "geometry_clear": true,
+    "issue_counts": {
+      "ERROR": 0,
+      "FAILURE": 0,
+      "INFO": 0,
+      "WARNING": 0
+    },
+    "passed": true,
+    "source_official_conversion_vg007_non_manifold_vertices": 8047,
+    "status": "PASS"
+  },
+  "schema_version": "1.0.0",
+  "status": "hash_linked_geometry_pass_manufacturing_release_blocked"
+}

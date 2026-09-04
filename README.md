@@ -33,6 +33,14 @@ Omniverse, sans preuve transférable à une vraie culasse. La correction
 [F36](docs/917_SCAN_CONFORMING_4V_F36.md) conserve la morphologie du scan 935,
 remplace le coeur par une architecture quatre soupapes et ferme toutes les
 portes de calcul physique jusqu'à la revue de forme.
+La [définition F37](docs/917_F37_MANUFACTURING_DEFINITION.md) ajoute les STEP
+fonctionnels, la lubrification, le porte-axes, les criblages et leurs preuves
+SHA-256, tout en maintenant l'impression métal et le démarrage interdits.
+Son [audit Omniverse / SimReady](docs/917_F37_OMNIVERSE_SIMREADY.md) publie le
+rendu GPU final et conserve l'avertissement topologique NVIDIA comme blocage.
+L'[audit moteur mobile](docs/917_F37_ICE_ENGINE_FOAM.md) exécute le remplaçant
+OpenFOAM 13 disponible sur un tutoriel deux soupapes, sans le présenter comme
+une simulation de la géométrie F37.
 
 La couverture massique dit quelle part de la masse à vide est décrite par des
 pièces dont la masse est documentée et sourcée. Elle ne vaut ni validation

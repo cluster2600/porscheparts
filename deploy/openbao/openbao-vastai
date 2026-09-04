@@ -45,7 +45,10 @@ IMAGE = "vllm/vllm-openai:v0.19.0"
 MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
 LABEL = "3dprinting993-qwen-cad"
 MESH_MAX_DPH = 0.35
-MESH_IMAGE = "ghcr.io/cluster2600/3dprinting993-mesh-cfd:f5affdfe7c93a9c402c1544b3f48d32f8d2d9e7d"
+MESH_IMAGE = (
+    "ghcr.io/cluster2600/3dprinting993-mesh-cfd@"
+    "sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f"
+)
 MESH_LABEL = "3dprinting993-mesh-cfd"
 SIMREADY_REVOKED_IMAGE_E04 = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
 SIMREADY_REVOKED_IMAGE_F8A = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:f8a17661a23f3c83d89139cdc0a0b9f29d8553523de166a86e9e453e420d9a00"

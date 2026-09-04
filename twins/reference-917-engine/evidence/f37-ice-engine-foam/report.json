@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F37-ice-engine-foam-gap",
+  "status": "reference_engine_solver_smoke_completed_fail_closed",
+  "executed_at_utc": "2026-09-02T21:56:00Z",
+  "execution_environment": {
+    "provider": "Vast.ai",
+    "instance_id": 49674042,
+    "architecture": "x86_64",
+    "logical_processors_visible": 96,
+    "openfoam_distribution": "OpenFOAM Foundation",
+    "openfoam_version": "OpenFOAM-13",
+    "build": "13-18870c24d21c",
+    "unprivileged_runtime_user": "nobody",
+    "initial_root_attempt_rejected_by_openfoam_dynamic_code_security": true
+  },
+  "requested_solver_probe": {
+    "requested_label": "iceEngineFoam",
+    "iceEngineFoam_executable_present": false,
+    "engineFoam_executable_present": false,
+    "XiEngineFoam_executable_present": false,
+    "coldEngineFoam_executable_present": false,
+    "interpretation": "Aucun executable portant ces noms n'est livre dans l'image Foundation 13 inspectee. Le chemin moteur disponible est l'architecture modulaire foamRun + XiFluid + multiValveEngine.",
+    "substitution_claimed": false
+  },
+  "executed_reference_case": {
+    "source": "OpenFOAM-13/tutorials/XiFluid/engine2Valve2D",
+    "classification": "official_generic_2d_two_valve_engine_tutorial_smoke_not_f37",
+    "solver_command": "foamRun",
+    "solver_module": "XiFluid",
+    "mesh_mover": "multiValveEngine",
+    "topology_changer": "meshToMesh",
+    "combustion_model_loaded": "multiCycleConstantbXiIgnition",
+    "rpm": 500,
+    "spatial_dimension": "2D",
+    "valve_count": 2,
+    "f37_geometry_used": false,
+    "porsche_917_geometry_used": false,
+    "cantera_coupled_to_case": false,
+    "crank_angle_range_executed_deg": [
+      0.0,
+      110.0
+    ],
+    "split_runs_deg": [
+      [
+        0.0,
+        20.0
+      ],
+      [
+        20.0,
+        110.0
+      ]
+    ],
+    "mesh_generation_exit_code": 0,
+    "check_mesh_exit_code": 0,
+    "solver_exit_codes": [
+      0,
+      0
+    ],
+    "initial_mesh": {
+      "points": 5040,
+      "cells": 2178,
+      "hexahedra": 2178,
+      "strict_check_mesh_ok": true
+    },
+    "topology_change_at_100_cad": {
+      "observed": true,
+      "source_cells": 2178,
+      "target_cells": 3966,
+      "overlapping_volume": 0.1559032106,
+      "cell_couplings": 10868
+    },
+    "final_state_at_110_cad": {
+      "piston_position_from_tdc_m": 0.6711204494,
+      "piston_speed_m_s": -24.60135426,
+      "exhaust_valve_lift_m": 0.03,
+      "intake_valve_lift_m": 0.0,
+      "continuity_cumulative_reported": -0.003005556811,
+      "mesh_ok": true,
+      "maximum_non_orthogonality_deg": 45.00019624,
+      "maximum_skewness": 1.936399992
+    },
+    "terminal_solver_failure_count": 0,
+    "full_remote_logs": {
+      "allmesh": {
+        "bytes": 27541,
+        "sha256": "4873a746793f2a0ee9a75bf90ac3a437e5d2ff143d1ebc23edcca6662d52bd72"
+      },
+      "foamRun_0_20": {
+        "bytes": 1243572,
+        "sha256": "d94e00942cff208dbc12789f20149ac1ba67038a78146bf7ae92a5bb52d7ed77"
+      },
+      "foamRun_20_110": {
+        "bytes": 3473778,
+        "sha256": "820fd9c6da745d8b80900ece56c8d5dcc07dcbf5dc17e71a99b4b40314e07f0a"
+      }
+    }
+  },
+  "software_provenance": {
+    "official_tutorial_allmesh_sha256": "01963510aa84ceddebb4214b7c062355862b2d0ef3bc8c87705a9e4821d71fe4",
+    "official_tutorial_dynamicMeshDict_sha256": "4db314bba64e79ea904ea9d81dc7ee5a29d5693a6c0cd222107bdf05ec016a23",
+    "official_tutorial_controlDict_sha256": "99ddc9e914613afc3e76e6506e03ca104a62de4f318bdcf62e372698459ae8e5",
+    "foamRun_binary_sha256": "96aeb56a4fb12fae411076235ca7469f988fc09c0a2eeb288f18cfce3522aead",
+    "libXiFluid_sha256": "e25add17e37155e3ddb5c1bb9a4976329974b3a0525f48bb97a0a9f33c511e33"
+  },
+  "cantera_load_boundary": {
+    "source_report": "../f33/cycle-thermal-report.json",
+    "source_report_sha256": "b12ba3dc54b66e1a5a6c695eee0d9fe3e4093508ebc999133284e32a0edc10ed",
+    "cross_method_report": "../f34/report.json",
+    "cross_method_report_sha256": "f1477c08142ab99d21b7b8145918e705176fc977609cdea84c66eed9a394386a",
+    "na_pressure_load_mpa_abs": 11.884661289587568,
+    "turbo_conservative_pressure_load_mpa_abs": 24.686079671224434,
+    "pressure_cross_method_passed": false,
+    "use_in_f37_program": "downstream_conservative_structural_load_only",
+    "injected_into_reference_engine_tutorial": false,
+    "combustion_or_power_validation_claimed": false
+  },
+  "published_evidence": {
+    "log.checkMesh.txt": "726b9dc547999b2510d0441d0d657f5468e0bcc6046ac98a0faa3d2001b41a2d",
+    "log.foamRun.excerpt.txt": "18694f2d3d68c907e83b4b303f9cc81ea2e4c474103213fad4361975200e8eed"
+  },
+  "limitations": [
+    "Le calcul execute est le tutoriel moteur 2D a deux soupapes de la distribution installee; il ne contient ni la culasse F37, ni ses quatre soupapes, ni ses conduits internes.",
+    "Le piston, la bielle, la course, les lois de levee et le calage du tutoriel sont generiques et ne sont pas des dimensions Porsche 917.",
+    "L'intervalle 0-110 CAD traverse un changement de topologie et le debut d'ouverture echappement, mais pas un cycle complet ni une convergence cyclique.",
+    "La chimie Cantera F33 n'est pas couplee a XiFluid; sa pression reste uniquement une charge conservatrice non correlee pour les ecrans structurels.",
+    "Aucune combustion, puissance, CHT, fatigue thermomecanique, aptitude a l'impression ou demarrage moteur F37 n'est valide par ce smoke test.",
+    "Un vrai cas F37 exige des volumes fluides 3D etanches, piston/cylindre, lois de came, jeux soupape-piston, conditions admission/echappement et correlation experimentale qui ne sont pas disponibles dans le scan externe."
+  ],
+  "gates": {
+    "reference_engine_solver_path_executed": true,
+    "reference_dynamic_mesh_topology_change_executed": true,
+    "exact_iceEngineFoam_executable_executed": false,
+    "f37_four_valve_moving_mesh_executed": false,
+    "f37_combustion_executed": false,
+    "f37_cycle_convergence_demonstrated": false,
+    "cantera_xifluid_coupling_executed": false,
+    "physical_correlation_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "carrier": {
+    "bending_stress_mpa": 81.20236138784311,
+    "maximum_bending_moment_n_mm": 103533.01076949998,
+    "midspan_deflection_closed_form_mm": 0.13879423905173263,
+    "midspan_deflection_numerical_mm": 0.13879423100750532,
+    "minimum_lower_chord_height_mm": 15.0,
+    "second_moment_mm4": 9562.5,
+    "section_modulus_mm3": 1275.0,
+    "shaft_bearing_pressure_mpa": 19.43190476190476,
+    "spring_only_scaled_bending_stress_mpa": 37.768540180392144,
+    "spring_only_scaled_midspan_deflection_mm": 0.06455545628256061,
+    "support_span_mm": 86.74277,
+    "two_load_positions_from_left_support_mm": [
+      25.371384999999997,
+      61.371385
+    ],
+    "two_method_relative_difference": 5.795793375144764e-08
+  },
+  "factors_of_safety": {
+    "carrier_hot_yield": 2.4629825608734355,
+    "rocker_yield": 4.359611969945803,
+    "shaft_yield": 21.125126182886255,
+    "shared_head_stud_shear": 7.69866114536671
+  },
+  "gates": {
+    "actual_resultant_direction_complete": false,
+    "carrier_factor_of_safety_at_least_2": true,
+    "carrier_midspan_deflection_below_0_15_mm": true,
+    "fatigue_rig_correlated": false,
+    "material_cards_qualified": false,
+    "nonlinear_contact_fea_complete": false,
+    "pivot_reaction_magnitude_upper_envelope_applied": true,
+    "rocker_factor_of_safety_at_least_2": true,
+    "rocker_pivot_resultant_load_complete": false,
+    "shaft_factor_of_safety_at_least_3": true,
+    "shared_head_stud_shear_factor_at_least_3": true,
+    "two_deflection_methods_agree_within_0_1_percent": true
+  },
+  "inputs": {
+    "contract_sha256": "b954612301f68b69c5cd16eebabf21f1e57c54340740898c946ae159d842b4eb",
+    "kinematics_sha256": "0388bb58684638184a021548d83f82c420744aa8d61ee9fd5b8fa3eb53855f74"
+  },
+  "limitations": [
+    "Euler-Bernoulli linear elastic beam screen",
+    "pivot reaction uses a collinear magnitude upper envelope applied in the valve-axis screen direction; actual cam/valve force directions are unavailable",
+    "no shaft-carrier-rocker contact",
+    "no bolt preload",
+    "no thermal distortion",
+    "no fatigue correlation"
+  ],
+  "loads": {
+    "actual_resultant_direction_complete": false,
+    "cam_side_design_load_per_valve_n": 2182.7,
+    "cam_to_valve_force_ratio": 1.15,
+    "carrier_shaft_and_mount_load_case": "pivot_reaction_magnitude_upper_envelope_applied_along_valve_axis_screen_direction",
+    "dynamic_factor": 1.3,
+    "pivot_reaction_collinear_upper_envelope_factor": 2.15,
+    "pivot_reaction_upper_envelope_per_valve_n": 4080.7,
+    "spring_only_design_load_per_valve_n": 1898.0,
+    "spring_open_n": 1460.0
+  },
+  "mount": {
+    "carrier_finished_clearance_diameter_mm": 10.74,
+    "clamp_stack_released": false,
+    "screen_shear_allowable_mpa": 400.0,
+    "shared_head_stud_nominal_diameter_mm": 10.0,
+    "shared_head_stud_nominal_screen_shear_stress_mpa": 51.95708610200778
+  },
+  "phase": "F37",
+  "rocker": {
+    "arm_section_xz_mm": [
+      11.0,
+      12.0
+    ],
+    "bending_stress_mpa": 206.44039107250833,
+    "load_case": "spring_side_design_load",
+    "section_modulus_mm3": 264.0
+  },
+  "schema_version": "1.0.0",
+  "shaft": {
+    "bending_stress_mpa": 56.804394426393344,
+    "section_modulus_mm3": 269.3915700453248
+  },
+  "status": "carrier_rocker_shaft_envelope_screen_complete_actual_pivot_direction_and_fea_pending"
+}

@@ -1,0 +1,425 @@
+{
+  "candidate_mass_kg_if_scale_is_mm": 2.8429375901606653,
+  "classification": "scan_derived_triangle_mesh_with_oil_and_integral_mount_pads_not_production_brep",
+  "gates": {
+    "absolute_scale_confirmed": false,
+    "all_declared_accesses_cross_parent_skin": true,
+    "all_four_mount_planes_detected": true,
+    "engine_start_authorized": false,
+    "geometry_redesign_required": true,
+    "independent_topology_validators_agree": false,
+    "lpbf_machine_parameter_set_qualified": false,
+    "machining_setup_and_tolerances_validated": false,
+    "metal_print_authorized": false,
+    "metal_printability_demonstrated": false,
+    "minimum_wall_ct_verified": false,
+    "nvidia_asset_validator_vg007_clear": false,
+    "oil_boolean_removed_parent_material": true,
+    "oil_to_gas_flow_collision_absent": true,
+    "strict_vertex_manifold_local_algorithm_only": true,
+    "watertight_single_body_topology_only": true,
+    "whole_head_production_brep": false
+  },
+  "head_with_integral_mount_pads_and_stud_bores": {
+    "body_count": 1,
+    "bounds_mm_if_scale_is_mm": [
+      [
+        -61.125,
+        -89.625,
+        -9.375
+      ],
+      [
+        64.125,
+        116.625,
+        87.375
+      ]
+    ],
+    "euler_number": -650,
+    "surface_area_mm2_if_scale_is_mm": 190944.58622649848,
+    "triangles": 823572,
+    "vertices": 411136,
+    "volume_mm3_if_scale_is_mm": 1076722.445116779,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "inputs": {
+    "cad_report_sha256": "2a9fac821474d5dd218cc029e7ff3ed6bc1841a38d3189194f44261ab48bb8b4",
+    "contract_sha256": "b954612301f68b69c5cd16eebabf21f1e57c54340740898c946ae159d842b4eb",
+    "flow_core": {
+      "path": "917-head-4v-flow-core-f36.local.stl",
+      "sha256": "771ddca592483708a4515f0dc9db4eb335913a933d9f8eb95c8010b1386ab1dc"
+    },
+    "geometry_report_sha256": "7bc414009e6b09a7ca190e304eb708e52e37a991b479f0f78a14e4cc53256f36",
+    "head": {
+      "path": "917-head-scan-conforming-4v-f36.local.stl",
+      "sha256": "1e946dc72684da2dcded6959e3ef53cd49df634813ff3c3a3690c3b883aeec42"
+    },
+    "oil_core": {
+      "path": "oil-gallery-core.stl",
+      "sha256": "c606ed6cbbbfa5f8e6be199e8127b8b28d11c8e90c671f3d12cfcdf886426137"
+    },
+    "scale_confirmed": false
+  },
+  "limitations": [
+    "Le parent est un maillage triangul\u00e9 d\u00e9riv\u00e9 d'un scan dont l'\u00e9chelle absolue n'est pas confirm\u00e9e.",
+    "La soustraction exacte prouve la topologie du maillage, pas une reconstruction NURBS/B-Rep de production.",
+    "Le contr\u00f4le de paroi pr\u00e8s de l'huile est une distance de peau \u00e9chantillonn\u00e9e, pas une mesure CT d'\u00e9paisseur.",
+    "Les plans d'appui, axes de per\u00e7age et d\u00e9bouch\u00e9s exigent encore CMM/CT, gamme d'usinage et contr\u00f4le physique.",
+    "Aucune carte mati\u00e8re LPBF \u00e0 chaud, aucun jeu de param\u00e8tres machine ni essai coupon n'est qualifi\u00e9.",
+    "L'audit local du lien de sommet et NVIDIA Asset Validator VG.007 divergent; le r\u00e9sultat NVIDIA conservateur bloque l'impression jusqu'au remaillage et \u00e0 une contre-validation convergente."
+  ],
+  "local_only_artifacts": {
+    "917-head-f37-printable-proof.local.stl": {
+      "bytes": 42866584,
+      "sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb"
+    },
+    "917-head-f37-printable-proof.png": {
+      "bytes": 1048971,
+      "sha256": "3e847bc2b62d3f41dd1dac0903cf9b956e3a9c5da6b743d9a5ddce8f89cc01bb"
+    }
+  },
+  "method": {
+    "boolean_engine": "manifold",
+    "flow_input_processing": {
+      "discarded_absolute_volume_mm3": 0.0,
+      "discarded_absolute_volume_tolerance_mm3": 1e-09,
+      "discarded_component_count": 1,
+      "discarded_triangle_count": 2,
+      "method": "retain_largest_positive_watertight_component_discard_only_zero_volume_debris",
+      "retained_triangle_count": 15370,
+      "source_triangle_count": 15372
+    },
+    "mount_centres_mm_if_scale_is_mm": [
+      [
+        -43.34901553501102,
+        42.90334617910004
+      ],
+      [
+        -42.847149261240205,
+        -42.78730191374882
+      ],
+      [
+        43.100281745848605,
+        43.12853583540159
+      ],
+      [
+        43.39375446372094,
+        -42.44463944735773
+      ]
+    ],
+    "mount_interface_z_mm_if_scale_is_mm": 60.0,
+    "mount_operation": "union of four integral cylindrical head pads followed by restoration of measured stud bores",
+    "mount_pad_foundation_z_mm_if_scale_is_mm": 48.0,
+    "mount_pad_radius_mm_if_scale_is_mm": 12.0,
+    "oil_operation": "exact triangle boolean difference"
+  },
+  "mount_pad_planes": [
+    {
+      "centre_xy_mm": [
+        -43.34901553501102,
+        42.90334617910004
+      ],
+      "cutter_radius_mm": 12.0,
+      "detected_upward_planar_area_mm2": 351.42091557198,
+      "id": "stud_pad_1",
+      "planar_face_count": 238,
+      "planar_surface_detected": true,
+      "target_plane_z_mm": 60.0
+    },
+    {
+      "centre_xy_mm": [
+        -42.847149261240205,
+        -42.78730191374882
+      ],
+      "cutter_radius_mm": 12.0,
+      "detected_upward_planar_area_mm2": 352.5104321425606,
+      "id": "stud_pad_2",
+      "planar_face_count": 239,
+      "planar_surface_detected": true,
+      "target_plane_z_mm": 60.0
+    },
+    {
+      "centre_xy_mm": [
+        43.100281745848605,
+        43.12853583540159
+      ],
+      "cutter_radius_mm": 12.0,
+      "detected_upward_planar_area_mm2": 354.12155394567526,
+      "id": "stud_pad_3",
+      "planar_face_count": 243,
+      "planar_surface_detected": true,
+      "target_plane_z_mm": 60.0
+    },
+    {
+      "centre_xy_mm": [
+        43.39375446372094,
+        -42.44463944735773
+      ],
+      "cutter_radius_mm": 12.0,
+      "detected_upward_planar_area_mm2": 353.943460886072,
+      "id": "stud_pad_4",
+      "planar_face_count": 241,
+      "planar_surface_detected": true,
+      "target_plane_z_mm": 60.0
+    }
+  ],
+  "nvidia_asset_validator_observation": {
+    "evidence": {
+      "bytes": 3978,
+      "path": "f37-nvidia-geometry-validation-attestation.json",
+      "sha256": "1a03735f57635c5807791388e5620f31eceff3533d7c05b0a41528f5266d3471"
+    },
+    "exact_stl_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "interpretation": "VG.007 signale des sommets non-manifold; impression bloqu\u00e9e malgr\u00e9 l'audit local.",
+    "non_manifold_vertex_count": 8047,
+    "rule": "VG.007",
+    "status": "warning",
+    "tool": "NVIDIA Asset Validator",
+    "vg007_clear": false
+  },
+  "oil_access_openings": [
+    {
+      "diameter_mm": 6.0,
+      "end_mm": [
+        -50.0,
+        3.0,
+        44.0
+      ],
+      "first_transition_mm": [
+        -50.0,
+        -77.85,
+        44.0
+      ],
+      "id": "feed_from_intake_fin_side",
+      "inside_sample_count": 137,
+      "last_transition_mm": [
+        -50.0,
+        -31.70833333333333,
+        44.0
+      ],
+      "limitations": "axe central \u00e9chantillonn\u00e9; ne remplace pas contr\u00f4le CMM/CT ni tol\u00e9rance r\u00e9elle du per\u00e7age",
+      "method": "sampled_parent_solid_contains_along_declared_straight_axis",
+      "outside_at_end": false,
+      "outside_at_start": true,
+      "parent_skin_transition_count": 3,
+      "required_outside_end": "start",
+      "sample_count": 241,
+      "skin_opening_proved": true,
+      "start_mm": [
+        -50.0,
+        -95.0,
+        44.0
+      ]
+    },
+    {
+      "diameter_mm": 6.0,
+      "end_mm": [
+        0.0,
+        0.0,
+        44.0
+      ],
+      "first_transition_mm": [
+        -51.1875,
+        0.0,
+        44.0
+      ],
+      "id": "header_left_plug",
+      "inside_sample_count": 154,
+      "last_transition_mm": [
+        -39.270833333333336,
+        0.0,
+        44.0
+      ],
+      "limitations": "axe central \u00e9chantillonn\u00e9; ne remplace pas contr\u00f4le CMM/CT ni tol\u00e9rance r\u00e9elle du per\u00e7age",
+      "method": "sampled_parent_solid_contains_along_declared_straight_axis",
+      "outside_at_end": false,
+      "outside_at_start": true,
+      "parent_skin_transition_count": 3,
+      "required_outside_end": "start",
+      "sample_count": 241,
+      "skin_opening_proved": true,
+      "start_mm": [
+        -65.0,
+        0.0,
+        44.0
+      ]
+    },
+    {
+      "diameter_mm": 6.0,
+      "end_mm": [
+        0.0,
+        0.0,
+        44.0
+      ],
+      "first_transition_mm": [
+        51.1875,
+        0.0,
+        44.0
+      ],
+      "id": "header_right_plug",
+      "inside_sample_count": 154,
+      "last_transition_mm": [
+        39.270833333333336,
+        0.0,
+        44.0
+      ],
+      "limitations": "axe central \u00e9chantillonn\u00e9; ne remplace pas contr\u00f4le CMM/CT ni tol\u00e9rance r\u00e9elle du per\u00e7age",
+      "method": "sampled_parent_solid_contains_along_declared_straight_axis",
+      "outside_at_end": false,
+      "outside_at_start": true,
+      "parent_skin_transition_count": 3,
+      "required_outside_end": "start",
+      "sample_count": 241,
+      "skin_opening_proved": true,
+      "start_mm": [
+        65.0,
+        0.0,
+        44.0
+      ]
+    },
+    {
+      "diameter_mm": 8.0,
+      "end_mm": [
+        -38.0,
+        0.0,
+        42.0
+      ],
+      "first_transition_mm": [
+        -38.0,
+        -76.79166666666667,
+        42.0
+      ],
+      "id": "return_drain_1_lateral_outlet",
+      "inside_sample_count": 141,
+      "last_transition_mm": [
+        -38.0,
+        -34.04166666666667,
+        42.0
+      ],
+      "limitations": "axe central \u00e9chantillonn\u00e9; ne remplace pas contr\u00f4le CMM/CT ni tol\u00e9rance r\u00e9elle du per\u00e7age",
+      "method": "sampled_parent_solid_contains_along_declared_straight_axis",
+      "outside_at_end": false,
+      "outside_at_start": true,
+      "parent_skin_transition_count": 3,
+      "required_outside_end": "start",
+      "sample_count": 241,
+      "skin_opening_proved": true,
+      "start_mm": [
+        -38.0,
+        -95.0,
+        42.0
+      ]
+    },
+    {
+      "diameter_mm": 8.0,
+      "end_mm": [
+        38.0,
+        0.0,
+        42.0
+      ],
+      "first_transition_mm": [
+        38.0,
+        -75.20833333333333,
+        42.0
+      ],
+      "id": "return_drain_2_lateral_outlet",
+      "inside_sample_count": 138,
+      "last_transition_mm": [
+        38.0,
+        -34.04166666666667,
+        42.0
+      ],
+      "limitations": "axe central \u00e9chantillonn\u00e9; ne remplace pas contr\u00f4le CMM/CT ni tol\u00e9rance r\u00e9elle du per\u00e7age",
+      "method": "sampled_parent_solid_contains_along_declared_straight_axis",
+      "outside_at_end": false,
+      "outside_at_start": true,
+      "parent_skin_transition_count": 3,
+      "required_outside_end": "start",
+      "sample_count": 241,
+      "skin_opening_proved": true,
+      "start_mm": [
+        38.0,
+        -95.0,
+        42.0
+      ]
+    }
+  ],
+  "oil_to_gas_clearance_screen": {
+    "ct_verified": false,
+    "limitations": "distance euclidienne entre noyaux, incluant leurs portions hors solide; ne mesure pas l'\u00e9paisseur locale du m\u00e9tal",
+    "median_mm_if_scale_is_mm": 31.623436119697548,
+    "method": "sampled_nearest_surface_distance_oil_core_to_gas_flow_core_not_true_wall_thickness",
+    "minimum_mm_if_scale_is_mm": 11.885056219212585,
+    "p01_mm_if_scale_is_mm": 13.543249060983307,
+    "p05_mm_if_scale_is_mm": 15.787963328030802,
+    "sample_count": 4000,
+    "valid_for_release": false
+  },
+  "oil_to_gas_flow_collision": {
+    "calculation_succeeded": true,
+    "intersection_location": null,
+    "method": "exact_manifold_boolean",
+    "screen_limit_mm3": 0.01,
+    "screen_passed": true,
+    "volume_mm3": 0.0
+  },
+  "parent": {
+    "body_count": 1,
+    "bounds_mm_if_scale_is_mm": [
+      [
+        -61.125,
+        -89.625,
+        -9.375
+      ],
+      [
+        64.125,
+        116.625,
+        87.375
+      ]
+    ],
+    "euler_number": -596,
+    "surface_area_mm2_if_scale_is_mm": 184869.67359948758,
+    "triangles": 827084,
+    "vertices": 412946,
+    "volume_mm3_if_scale_is_mm": 1059854.923828125,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "phase": "F37",
+  "result": {
+    "body_count": 1,
+    "bounds_mm_if_scale_is_mm": [
+      [
+        -61.125,
+        -89.625,
+        -9.375
+      ],
+      [
+        64.125,
+        116.625,
+        87.375
+      ]
+    ],
+    "euler_number": -680,
+    "surface_area_mm2_if_scale_is_mm": 196155.77979670206,
+    "triangles": 857330,
+    "vertices": 427985,
+    "volume_mm3_if_scale_is_mm": 1064770.6330189756,
+    "watertight": true,
+    "winding_consistent": true
+  },
+  "schema_version": "1.0.0",
+  "status": "local_mesh_boolean_proof_complete_physical_and_manufacturing_release_blocked",
+  "strict_vertex_manifold_audit": {
+    "maximum_link_fan_count": 1,
+    "method": "closed_vertex_link_must_be_one_connected_cycle",
+    "non_manifold_vertex_count": 0,
+    "sample_non_manifold_vertices": [],
+    "strict_vertex_manifold": true,
+    "vertex_count": 427985
+  },
+  "volume_change": {
+    "net_four_integral_mount_pads_added_mm3": 16867.52128865407,
+    "oil_removed_mm3": 11951.812097803457
+  }
+}

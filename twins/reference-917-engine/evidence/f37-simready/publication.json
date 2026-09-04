@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F37-SimReady",
+  "status": "usd_conversion_validation_and_render_complete_geometry_warning_unresolved",
+  "compute": {
+    "provider": "Vast.ai",
+    "instance_id": 49689149,
+    "gpu": "Quadro RTX 8000",
+    "gpu_memory_mib": 49152,
+    "cpu_cores_effective": 14.0,
+    "ram_mb": 257822,
+    "hourly_cost_usd": 0.29088888888888886,
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:e04df7b05298d318bb0ae4ca79684ca07e0f68c8802d1a0be4deb6981ff8e8c2"
+  },
+  "inputs": {
+    "local_head_stl_committed": false,
+    "local_head_stl_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "converted_usdc_committed": false,
+    "converted_usdc_sha256": "ed898b1dd5383dbf6985c553d3b364f8fe13d341e7269b9e6063c7eaa242648d",
+    "usd_convert_cad_upstream_commit": "208fe2c1cd71ae2bb7bd825daf712617000ae028",
+    "simready_foundation_commit": "0ed0dfbc539c9de99289771bd6848effe3ef5779"
+  },
+  "results": {
+    "preflight_ready": true,
+    "minimum_usd_passed": true,
+    "generic_asset_validator_passed_with_warning": true,
+    "geometry_validator_passed_with_warning": true,
+    "nvidia_vg007_non_manifold_vertices": 8047,
+    "ovrtx_render_passed": true,
+    "render_width_px": 1600,
+    "render_height_px": 1200,
+    "render_triangle_count": 857330,
+    "render_point_count": 843308,
+    "content_agents_completed": false,
+    "content_agents_blocker": "local_vllm_runtime_requires_libcudart_so_13_not_present_on_this_host_image",
+    "physics_solver_run_by_omniverse": false
+  },
+  "release_gates": {
+    "validator_consensus": false,
+    "whole_head_single_production_brep": false,
+    "material_card_qualified": false,
+    "thermomechanical_fatigue_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "files": {
+    "917-head-f37-ovrtx-final.png": "6cba1f68fbcf3f80f987824aa5faff9cf9d579543edab0827aa992ca950d350f",
+    "asset-validator.json": "eaff1e0e528f0aa63d44e44bb7eb4b00395677d907e5b6e40dfa0b5cde62f159",
+    "geometry.json": "83517e19fc413096640962ff0cd820d2ed9c8ed803f0d00bafed48f40b9411a6",
+    "minimum.json": "04f727912be28100e735fce5385e37ceeb3bf20a15db9011970dcce43fe9b976",
+    "ovrtx-render.json": "a2bd757bf533caeaf05313e3ca00a3042b967575ef69e0d4d5fc497939801663",
+    "ovrtx-render.md": "9b6f204c6a8185ad12c20ffa442cc74e79aacf0f0affb0f991d0be5db702a571",
+    "preflight.json": "7ed64ecbcbfcc8bd99e46b064dadef289c4a80ae00b0abe8ff52c872bbf6f7b9"
+  }
+}

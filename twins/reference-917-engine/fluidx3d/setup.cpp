@@ -51,7 +51,8 @@ static OutletSample sample_outlet(
 	const float lbm_velocity,
 	const float si_density,
 	const float si_air_temperature,
-	const float si_wall_temperature
+	const float si_wall_temperature,
+	const float external_area_m2
 ) {
 	lbm.update_fields();
 	lbm.u.read_from_device();
@@ -88,7 +89,6 @@ static OutletSample sample_outlet(
 	sample.mass_flow_kg_s = (double)si_density*volume_flow_m3_s;
 	sample.heat_rejection_w = sample.mass_flow_kg_s*1007.0
 		*(sample.temperature_k-(double)si_air_temperature);
-	const double external_area_m2 = 0.6703955311;
 	sample.effective_h_w_m2k = sample.heat_rejection_w/
 		(external_area_m2*((double)si_wall_temperature-(double)si_air_temperature));
 	if(outlet_cells>0ull) {
@@ -110,12 +110,12 @@ void main_setup() {
 	const uint Nz = env_uint("F34_NZ", 88u);
 	const ulong steps = (ulong)env_uint("F34_STEPS", 5000u);
 	const ulong chunk_steps = (ulong)env_uint("F34_CHUNK_STEPS", 250u);
-	const float si_domain_x = 0.600f;
-	const float si_head_longest_side = 0.208364f;
-	const float si_velocity = 77.0f;
-	const float si_density = 1.06f;
-	const float si_nu = 1.93396E-5f;
-	const float si_alpha_molecular = 2.86E-5f;
+	const float si_domain_x = env_float("F34_DOMAIN_X_M", 0.600f);
+	const float si_head_longest_side = env_float("F34_HEAD_LONGEST_SIDE_M", 0.208364f);
+	const float si_velocity = env_float("F34_VELOCITY_M_S", 77.0f);
+	const float si_density = env_float("F34_DENSITY_KG_M3", 1.06f);
+	const float si_nu = env_float("F34_NU_M2_S", 1.93396E-5f);
+	const float si_alpha_molecular = env_float("F34_MOLECULAR_ALPHA_M2_S", 2.86E-5f);
 	const float turbulence_intensity = 0.05f;
 	const float mixing_length_m = 0.012f;
 	const float turbulent_prandtl = 0.85f;
@@ -124,9 +124,11 @@ void main_setup() {
 	const float eddy_nu_m2_s = powf(c_mu, 0.25f)*sqrtf(turbulent_k_m2_s2)*mixing_length_m;
 	const float modelled_effective_alpha = si_alpha_molecular+eddy_nu_m2_s/turbulent_prandtl;
 	const float si_alpha = env_float("F34_EFFECTIVE_ALPHA_M2_S", modelled_effective_alpha);
-	const float si_air_temperature = 308.15f;
-	const float si_wall_temperature = 533.15f;
-	const float lbm_velocity = 0.060f;
+	const float si_air_temperature = env_float("F34_AIR_TEMPERATURE_K", 308.15f);
+	const float si_wall_temperature = env_float("F34_WALL_TEMPERATURE_K", 533.15f);
+	const float external_area_m2 = env_float("F34_EXTERNAL_AREA_M2", 0.6703955311f);
+	const float domain_cross_section_m2 = env_float("F34_DOMAIN_CROSS_SECTION_M2", 0.36f*0.26f);
+	const float lbm_velocity = env_float("F34_LBM_VELOCITY", 0.060f);
 
 	units.set_m_kg_s_K(
 		(float)Nx,
@@ -154,21 +156,43 @@ void main_setup() {
 	);
 	lbm.voxelize_mesh_on_device(mesh, TYPE_S);
 	delete mesh;
+	lbm.flags.read_from_device();
 
 	const float lbm_air_temperature = units.T(si_air_temperature);
 	const float lbm_wall_temperature = units.T(si_wall_temperature);
 	const uint nx=lbm.get_Nx(), ny=lbm.get_Ny(), nz=lbm.get_Nz();
+	// FluidX3D applique TYPE_T sur une cellule fluide. Une cellule TYPE_S|TYPE_T
+	// reste un solide adiabatique, car le noyau fluide retourne avant la
+	// collision D3Q7. On construit donc une couche fluide isotherme d'une maille
+	// autour de la peau voxelisée et on conserve la peau comme paroi no-slip.
+	std::vector<uchar> hot_wall(lbm.get_N(), 0u);
+	parallel_for(lbm.get_N(), [&](ulong n) {
+		uint x=0u, y=0u, z=0u;
+		lbm.coordinates(n, x, y, z);
+		if((lbm.flags[n]&TYPE_S)!=0u||x==0u||x==nx-1u||y==0u||y==ny-1u||z==0u||z==nz-1u) return;
+		const bool adjacent_solid =
+			(lbm.flags[lbm.index(x-1u, y, z)]&TYPE_S)!=0u||
+			(lbm.flags[lbm.index(x+1u, y, z)]&TYPE_S)!=0u||
+			(lbm.flags[lbm.index(x, y-1u, z)]&TYPE_S)!=0u||
+			(lbm.flags[lbm.index(x, y+1u, z)]&TYPE_S)!=0u||
+			(lbm.flags[lbm.index(x, y, z-1u)]&TYPE_S)!=0u||
+			(lbm.flags[lbm.index(x, y, z+1u)]&TYPE_S)!=0u;
+		hot_wall[n] = adjacent_solid ? 1u : 0u;
+	});
 	parallel_for(lbm.get_N(), [&](ulong n) {
 		uint x=0u, y=0u, z=0u;
 		lbm.coordinates(n, x, y, z);
 		if((lbm.flags[n]&TYPE_S)!=0u) {
-			lbm.flags[n] = TYPE_S|TYPE_T|TYPE_X;
-			lbm.T[n] = lbm_wall_temperature;
+			lbm.flags[n] = TYPE_S|TYPE_X;
 		} else {
 			lbm.u.x[n] = lbm_velocity;
 			lbm.u.y[n] = 0.0f;
 			lbm.u.z[n] = 0.0f;
 			lbm.T[n] = lbm_air_temperature;
+			if(hot_wall[n]!=0u) {
+				lbm.flags[n] = TYPE_T;
+				lbm.T[n] = lbm_wall_temperature;
+			}
 		}
 		if(x==0u||x==nx-1u||y==0u||y==ny-1u||z==0u||z==nz-1u) {
 			lbm.flags[n] = TYPE_E|TYPE_T;
@@ -187,13 +211,13 @@ void main_setup() {
 	uint stable_checks = 0u;
 	bool converged = false;
 	std::vector<double> temperature_history;
-	const size_t minimum_statistical_samples = 40u;
+	const size_t minimum_statistical_samples = (size_t)env_uint("F34_MINIMUM_STATISTICAL_SAMPLES", 40u);
 	while(lbm.get_t()<steps) {
 		const ulong remaining = steps-lbm.get_t();
 		lbm.run(min(chunk_steps, remaining), steps);
 		sample = sample_outlet(
 			lbm, si_domain_x, si_velocity, lbm_velocity, si_density,
-			si_air_temperature, si_wall_temperature
+			si_air_temperature, si_wall_temperature, external_area_m2
 		);
 		if(lbm.get_t()>=minimum_steps && std::isfinite(sample.temperature_k)) {
 			temperature_history.push_back(sample.temperature_k);
@@ -234,24 +258,29 @@ void main_setup() {
 		sample.heat_rejection_w = sample.mass_flow_kg_s*1007.0
 			*(sample.temperature_k-(double)si_air_temperature);
 		sample.effective_h_w_m2k = sample.heat_rejection_w/
-			(0.6703955311*((double)si_wall_temperature-(double)si_air_temperature));
+			((double)external_area_m2*((double)si_wall_temperature-(double)si_air_temperature));
 	}
 	const double cell_size_m = (double)si_domain_x/(double)Nx;
+	const bool temperature_bounded = sample.temperature_k>=(double)si_air_temperature-1.0
+		&& sample.temperature_k<=(double)si_wall_temperature+1.0;
+	const bool heat_direction_physical = sample.heat_rejection_w>=0.0;
 	const bool numerically_stable = std::isfinite(sample.temperature_k)
 		&& std::isfinite(sample.heat_rejection_w)
-		&& std::isfinite(sample.density_delta_pressure_pa);
+		&& std::isfinite(sample.density_delta_pressure_pa)
+		&& temperature_bounded
+		&& heat_direction_physical;
 	if(!numerically_stable) converged = false;
-	const float3 force_lbm = lbm.object_force(TYPE_S|TYPE_T|TYPE_X);
+	const float3 force_lbm = lbm.object_force(TYPE_S|TYPE_X);
 	const double drag_force_n = numerically_stable ? fabs((double)units.si_F(force_lbm.x)) : NAN;
-	const double domain_cross_section_m2 = 0.36*0.26;
 	const double pressure_drop_from_drag_pa = drag_force_n/domain_cross_section_m2;
 
 	const string result_path = env_string("F34_RESULT", "f34-fluidx3d-result.json");
+	const string phase = env_string("F34_PHASE", "F34");
 	std::ofstream result(result_path);
 	result << std::setprecision(10)
 		<< "{\n"
 		<< "  \"schema_version\": \"1.0.0\",\n"
-		<< "  \"phase\": \"F34\",\n"
+		<< "  \"phase\": \"" << phase << "\",\n"
 		<< "  \"solver\": \"FluidX3D_D3Q19_TRT_FP32_SUBGRID_TEMPERATURE\",\n"
 		<< "  \"classification\": \"independent_LBM_external_cooling_fixed_wall_temperature\",\n"
 		<< "  \"thermal_closure\": \"constant_effective_diffusivity_sensitivity\",\n"
@@ -266,6 +295,9 @@ void main_setup() {
 		<< "  \"minimum_statistical_samples\": " << minimum_statistical_samples << ",\n"
 		<< "  \"mach_lbm\": " << units.Ma(lbm_velocity) << ",\n"
 		<< "  \"velocity_m_s\": " << si_velocity << ",\n"
+		<< "  \"domain_x_m\": " << si_domain_x << ",\n"
+		<< "  \"domain_cross_section_m2\": " << domain_cross_section_m2 << ",\n"
+		<< "  \"external_area_m2\": " << external_area_m2 << ",\n"
 		<< "  \"molecular_thermal_diffusivity_m2_s\": " << si_alpha_molecular << ",\n"
 		<< "  \"effective_thermal_diffusivity_m2_s\": " << si_alpha << ",\n"
 		<< "  \"thermal_closure_inputs\": {\"turbulence_intensity\": " << turbulence_intensity
@@ -282,6 +314,8 @@ void main_setup() {
 		<< "  \"pressure_drop_from_drag_pa\": " << json_number(pressure_drop_from_drag_pa) << ",\n"
 		<< "  \"density_delta_pressure_pa_diagnostic\": " << json_number(sample.density_delta_pressure_pa) << ",\n"
 		<< "  \"outlet_sample_cells\": " << sample.cells << ",\n"
+		<< "  \"temperature_bounded\": " << (temperature_bounded ? "true" : "false") << ",\n"
+		<< "  \"heat_direction_physical\": " << (heat_direction_physical ? "true" : "false") << ",\n"
 		<< "  \"numerically_stable\": " << (numerically_stable ? "true" : "false") << ",\n"
 		<< "  \"converged\": " << (converged ? "true" : "false") << ",\n"
 		<< "  \"release_claim\": false\n"

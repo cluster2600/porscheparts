@@ -1,0 +1,107 @@
+{
+  "$comment": "Plan de qualification matière F38. Il définit les essais nécessaires mais ne transforme aucune donnée fournisseur en propriété certifiée de la culasse.",
+  "schema_version": "1.0.0",
+  "phase": "F38",
+  "candidate": {
+    "name": "EOS Aluminium Constellium CP1",
+    "designation": "AA8A61.50 / SAE AMS 7074",
+    "alloy_family": "Al-Fe-Zr",
+    "process": "laser_powder_bed_fusion",
+    "machine": "EOS M 290",
+    "layer_thickness_um": 60,
+    "supplier_process_trl": 3,
+    "heat_treatment": "4 h at 400 degC; heating and cooling route recorded per lot",
+    "selection_status": "conditional_pending_hot_coupon_qualification"
+  },
+  "official_sources": [
+    {
+      "title": "EOS Aluminium Constellium CP1 material and process data sheet",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-constellium-cp1",
+      "scope": "powder composition, M290 process, heat treatment and room-temperature properties"
+    },
+    {
+      "title": "Constellium CP1 Formula 1 application announcement",
+      "url": "https://www.constellium.com/news/aheadd-r-cp1-constelliums-high-performance-aluminium-additive-manufacturing-powder-approved-for-use-on-formula1-racing-cars",
+      "scope": "application provenance only; not a Porsche 917 material qualification"
+    }
+  ],
+  "temperature_points_degC": [20, 150, 200, 250, 300],
+  "orientations": ["XY", "Z"],
+  "test_families": [
+    {
+      "id": "tensile_hot",
+      "standard": "ISO 6892-2",
+      "temperatures_degC": [20, 150, 200, 250, 300],
+      "orientations": ["XY", "Z"],
+      "replicates": 5,
+      "outputs": ["E", "Rp0.2", "Rm", "A"]
+    },
+    {
+      "id": "low_cycle_fatigue_hot",
+      "standard": "ASTM E606/E606M",
+      "temperatures_degC": [150, 200, 250],
+      "orientations": ["XY", "Z"],
+      "replicates": 3,
+      "outputs": ["strain_life_curve", "cyclic_stress_strain_curve"]
+    },
+    {
+      "id": "high_cycle_fatigue_hot",
+      "standard": "ASTM E466",
+      "temperatures_degC": [150, 200, 250],
+      "orientations": ["XY", "Z"],
+      "replicates": 5,
+      "outputs": ["stress_life_curve", "runout_definition"]
+    },
+    {
+      "id": "creep_hot",
+      "standard": "ASTM E139",
+      "temperatures_degC": [200, 250, 300],
+      "orientations": ["XY", "Z"],
+      "replicates": 3,
+      "outputs": ["creep_rate", "time_to_rupture"]
+    },
+    {
+      "id": "thermal_diffusivity_conductivity",
+      "standard": "ASTM E1461",
+      "temperatures_degC": [20, 150, 200, 250, 300],
+      "orientations": ["XY", "Z"],
+      "replicates": 3,
+      "outputs": ["diffusivity", "conductivity_with_density_and_cp"]
+    },
+    {
+      "id": "thermal_expansion",
+      "standard": "ASTM E228",
+      "temperatures_degC": [20, 300],
+      "orientations": ["XY", "Z"],
+      "replicates": 3,
+      "outputs": ["alpha_T"]
+    },
+    {
+      "id": "density_metallography_ct",
+      "standard": "ASTM F3122 plus ISO/ASTM 52907 process witness strategy",
+      "temperatures_degC": [20],
+      "orientations": ["XY", "Z"],
+      "replicates": 5,
+      "outputs": ["relative_density", "porosity_distribution", "largest_indication", "microstructure"]
+    }
+  ],
+  "acceptance_logic": {
+    "statistical_basis": "one-sided 95/90 lower tolerance bound where applicable",
+    "design_allowable": "measured lower tolerance bound divided by the documented design factor; no supplier typical value is an allowable",
+    "thermal_card": "temperature-dependent k, cp, alpha, E and Poisson ratio must cover the entire calculated metal-temperature range",
+    "fatigue_card": "LCF and HCF curves must include build orientation, surface state and heat-treatment lot",
+    "process_witness": "same powder lot, machine, parameter set, orientation and heat-treatment batch as the head",
+    "out_of_range_action": "redesign cooling or change process; extrapolation above the highest qualified temperature is forbidden"
+  },
+  "release_gates": {
+    "hot_coupon_campaign_complete": false,
+    "temperature_dependent_material_card_released": false,
+    "powder_lot_certificate_received": false,
+    "machine_parameter_set_frozen": false,
+    "witness_coupons_linked_to_head_serial": false,
+    "ct_acceptance_criteria_signed": false,
+    "professional_material_review_complete": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

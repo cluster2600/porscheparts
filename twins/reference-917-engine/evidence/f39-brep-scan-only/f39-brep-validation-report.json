@@ -1,0 +1,162 @@
+{
+  "classification": "smooth_parametric_scan_fitted_proxy_not_OEM_definition",
+  "contract_sha256": "b5859d170e14b13fef4596e87f5ffb19f830e0c69f056c6e50cc248825780571",
+  "geometry_master": {
+    "bytes": 10259205,
+    "local_derivatives_not_published": [
+      "f39-brep-scan-only-head.local.stl",
+      "f39-brep-scan-only-head.local.msh"
+    ],
+    "path": "f39-brep-scan-only-head.step",
+    "role": "analytic_OCC_STEP_master_not_scan_mesh",
+    "sha256": "562a274fb22b9b957a47b0d51020ad1807a2733c3e6b8a4eddb526b9c8a0c71a"
+  },
+  "input_policy": {
+    "additional_dimensions_available": false,
+    "local_scan_sha256": "3c7159d47be2cd4632ae823a272f73514c784b0659207c002e34c9dc7e49fbbb",
+    "raw_or_scan_derived_geometry_published": false,
+    "scan_unit_is_mm_by_convention_only": true
+  },
+  "minimum_wall": {
+    "global_minimum_1_5_mm_proven": false,
+    "independent_sampled_mesh": {
+      "ct_verified": false,
+      "limitation": "Echantillonnage non exhaustif; les intersections proches des levres et raccords sont incluses.",
+      "median_mm_if_scale_is_mm": 3.0414765182285732,
+      "method": "sampled_inward_normal_ray_uniform_grid_exact_triangle_intersection",
+      "minimum_mm_if_scale_is_mm": 0.058197217533772494,
+      "minimum_resolved_fraction": 0.95,
+      "p01_gate_passes": false,
+      "p01_mm_if_scale_is_mm": 1.0750942945466286,
+      "p05_mm_if_scale_is_mm": 1.9999999999999958,
+      "requested_sample_count": 2400,
+      "requirement_mm_if_unit_convention_holds": 1.5,
+      "sample_count": 2400,
+      "spatial_index_bins": 43200,
+      "spatial_index_cell_mm": 4.0,
+      "spatial_index_reference_limit": 12000000,
+      "spatial_index_triangle_references": 281056,
+      "unresolved_sample_count": 0
+    },
+    "named_analytic_features": {
+      "features": {
+        "exhaust_boss_nominal_radial_wall_mm": 3.0,
+        "fin_thickness_mm": 2.0,
+        "intake_boss_nominal_radial_wall_mm": 4.0
+      },
+      "method": "analytic_named_feature_dimensions_before_local_boolean_intersection",
+      "minimum_mm": 2.0,
+      "passes_named_features": true,
+      "proves_global_post_boolean_minimum": false,
+      "requirement_mm": 1.5
+    }
+  },
+  "phase": "F39",
+  "release_decision": {
+    "engine_start_authorized": false,
+    "geometric_step_reimport_and_mesh_demonstrated": true,
+    "mesh_quality_gate_passed": false,
+    "metal_print_authorized": false,
+    "minimum_wall_gate_passed": false,
+    "no_closed_void_screen_passed": true,
+    "oem_fitment_certified": false,
+    "reason": "Epaisseur globale et qualite minimale du maillage restent sous les portes; echelle et interfaces OEM non mesurees."
+  },
+  "release_gates": {
+    "complete_OEM_surface_reconstruction": false,
+    "engine_start_authorized": false,
+    "functional_interfaces_dimensionally_validated": false,
+    "material_card_qualified": false,
+    "metal_print_authorized": false,
+    "oem_fitment_certified": false,
+    "professional_engineering_review_complete": false,
+    "thermal_and_structural_validation_complete": false,
+    "unit_scale_metrologically_confirmed": false
+  },
+  "scan_conformance": {
+    "analytic_to_scan_distance_units": {
+      "maximum": 26.093896005645504,
+      "mean": 5.053272625376612,
+      "median": 4.130163925607292,
+      "p95": 11.742408488389776,
+      "p99": 15.965994141396129
+    },
+    "limitation": "Approximation par nuages echantillonnes; les details organiques du scan ne sont pas une definition OEM.",
+    "method": "bidirectional_nearest_between_deterministic_surface_samples_not_exact_Hausdorff",
+    "sample_count_per_surface": 20000,
+    "scale_or_fitment_certification": false,
+    "scan_to_analytic_distance_units": {
+      "maximum": 26.563983204218673,
+      "mean": 5.801349418019025,
+      "median": 4.279237382071122,
+      "p95": 16.0232164149108,
+      "p99": 20.98789586278386
+    },
+    "symmetric_sampled_max_distance_units": 26.563983204218673
+  },
+  "schema_version": "1.0.0",
+  "status": "scan_only_analytic_brep_geometric_evidence_complete_release_blocked",
+  "step_volume_mesh": {
+    "element_types": [
+      4
+    ],
+    "elements_minSICN_le_0": 0,
+    "elements_minSICN_lt_0_01": 0,
+    "elements_minSICN_lt_0_05": 15,
+    "elements_minSICN_lt_0_1": 34,
+    "gmsh_success": true,
+    "mean_minSICN": 0.8057048135078586,
+    "median_minSICN": 0.8403045865042981,
+    "mesh_size_max_mm_if_convention": 2.5,
+    "minimum_minSICN": 0.020492256300107037,
+    "nodes": 89643,
+    "p01_minSICN": 0.36454300981774035,
+    "p05_minSICN": 0.5315542865123408,
+    "quality_gate_minSICN_above_0_1": false,
+    "volume_elements": 382602
+  },
+  "topology_and_open_voids": {
+    "closed_internal_shells_detected": 0,
+    "limitation": "Le flood-fill voxel n'est ni une CT ni une verification de depoudrage machine.",
+    "passes": true,
+    "step_boundary_shell_components": 1,
+    "step_reimport_solid_count": 1,
+    "surface_stl_body_count": 1,
+    "surface_stl_watertight": true,
+    "surface_stl_winding_consistent": true,
+    "voxel_method": "surface_voxel_components_plus_chunked_winding_number_without_fill_holes",
+    "voxel_resolution_study": [
+      {
+        "grid_shape": [
+          65,
+          111,
+          52
+        ],
+        "pitch_mm_if_unit_convention_holds": 2.0,
+        "trapped_void_volume_mm3": 0.0,
+        "trapped_void_voxels": 0
+      },
+      {
+        "grid_shape": [
+          87,
+          147,
+          67
+        ],
+        "pitch_mm_if_unit_convention_holds": 1.5,
+        "trapped_void_volume_mm3": 0.0,
+        "trapped_void_voxels": 0
+      },
+      {
+        "grid_shape": [
+          129,
+          218,
+          99
+        ],
+        "pitch_mm_if_unit_convention_holds": 1.0,
+        "trapped_void_volume_mm3": 0.0,
+        "trapped_void_voxels": 0
+      }
+    ],
+    "zero_at_all_three_resolutions": true
+  }
+}

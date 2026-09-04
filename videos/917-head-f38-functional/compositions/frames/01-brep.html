@@ -1,0 +1,20 @@
+<!doctype html><html><body><template>
+  <style>
+    @font-face{font-family:EBG;src:url('/assets/fonts/EBGaramond-700.woff2')}@font-face{font-family:JBM;src:url('/assets/fonts/JetBrainsMono-400.woff2')}@font-face{font-family:JBM;src:url('/assets/fonts/JetBrainsMono-700.woff2');font-weight:700}
+    *{box-sizing:border-box}#root{position:absolute;inset:0;overflow:hidden;background:#0b1116;color:#eef4f6;font-family:JBM}
+    #root:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#19242c 1px,transparent 1px),linear-gradient(90deg,#19242c 1px,transparent 1px);background-size:64px 64px;opacity:.28}
+    .hero{position:absolute;left:70px;top:105px;width:1260px;height:860px;object-fit:contain;filter:drop-shadow(0 24px 30px #000b)}
+    .scan{position:absolute;left:200px;top:240px;width:920px;height:570px;border:2px dashed #65717a;border-radius:48% 38% 42% 34%;opacity:.45;transform:rotate(-4deg)}
+    .kicker{position:absolute;left:96px;top:62px;color:#59c7ff;font-weight:700;letter-spacing:.18em;font-size:22px}.title{position:absolute;right:86px;top:104px;width:510px;font-family:EBG;font-size:68px;line-height:.92;text-align:right}.subtitle{position:absolute;right:90px;top:350px;width:470px;text-align:right;color:#9fb0b9;font-size:19px;line-height:1.5}
+    .metrics{position:absolute;right:84px;bottom:148px;width:470px;display:grid;gap:14px}.metric{border-left:4px solid #64d98b;background:#111b22e8;padding:18px 22px}.metric .v{font-size:33px;font-weight:700;color:#f2d28a}.metric .l{font-size:15px;color:#a8b6bd;margin-top:5px}.footer{position:absolute;left:0;right:0;bottom:0;height:62px;background:#081015e8;border-top:1px solid #34424b;color:#ff9b85;display:flex;align-items:center;justify-content:center;font-size:15px;letter-spacing:.08em}
+  </style>
+  <div id="root" data-composition-id="f38-brep" data-duration="5" data-width="1920" data-height="1080">
+    <div class="scan"></div><img class="hero" src="/assets/f38-exterior.png" alt="Peau F38 conservant la morphologie du scan" />
+    <div class="kicker">PORSCHE 917 · CHECKPOINT F38</div><div class="title">Morphologie du scan préservée</div><div class="subtitle">Le prototype parallélépipédique est rejeté. Cette peau est un offset local de +0,45 mm du scan F37, pas encore une CAO de production.</div>
+    <div class="metrics"><div class="metric"><div class="v" id="minwall">0,005 mm</div><div class="l">épaisseur minimale échantillonnée — échec</div></div><div class="metric"><div class="v" id="voids">106 mm³</div><div class="l">volume piégé au voxel 1 mm — non convergé</div></div><div class="metric"><div class="v" id="support">10,37 %</div><div class="l">surface nécessitant des supports — échec</div></div></div>
+    <div class="footer">SCAN CONSERVÉ — B‑REP DE PRODUCTION, ÉCHELLE ET INTERFACES 917 NON ACQUIS</div>
+  </div>
+  <script>
+    document.fonts.ready.then(()=>{const tl=gsap.timeline({paused:true});tl.fromTo('.hero',{autoAlpha:0,scale:1.08,x:-60},{autoAlpha:1,scale:1,x:0,duration:1.15,ease:'power3.out'},0).fromTo('.scan',{autoAlpha:0,scale:.85},{autoAlpha:.45,scale:1,duration:.9,ease:'power2.out'},.55).fromTo('.title,.subtitle',{autoAlpha:0,x:60},{autoAlpha:1,x:0,duration:.7,stagger:.12,ease:'power2.out'},.45).fromTo('.metric',{autoAlpha:0,y:24},{autoAlpha:1,y:0,duration:.5,stagger:.15,ease:'power2.out'},1.3).to('.hero',{scale:1.035,x:18,duration:3.2,ease:'sine.inOut'},1.7);window.__timelines['f38-brep']=tl;window.__hfForceTimelineRebind?.()});
+  </script>
+</template></body></html>

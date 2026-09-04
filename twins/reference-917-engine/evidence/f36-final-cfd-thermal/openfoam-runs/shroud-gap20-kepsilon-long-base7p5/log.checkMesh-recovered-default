@@ -1,0 +1,111 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  13
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 13-18870c24d21c
+Exec   : checkMesh -parallel -case /workspace/f36/final-013/openfoam/shroud-gap20-kepsilon-long-base7p5
+Date   : Sep 02 2026
+Time   : 22:14:24
+Host   : "7f6d9aa3f856"
+PID    : 87432
+I/O    : uncollated
+Case   : /workspace/f36/final-013/openfoam/shroud-gap20-kepsilon-long-base7p5
+nProcs : 8
+Slaves : 
+7
+(
+"7f6d9aa3f856.87433"
+"7f6d9aa3f856.87434"
+"7f6d9aa3f856.87435"
+"7f6d9aa3f856.87436"
+"7f6d9aa3f856.87437"
+"7f6d9aa3f856.87438"
+"7f6d9aa3f856.87439"
+)
+
+Pstream initialised with:
+    floatTransfer      : false
+    nProcsSimpleSum    : 0
+    commsType          : nonBlocking
+    polling iterations : 0
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Time = 0s
+
+Mesh stats
+    points:           279478
+    faces:            702456
+    internal faces:   627600
+    cells:            214528
+    faces per cell:   6.199917959
+    boundary patches: 10
+    point zones:      0
+    face zones:       0
+    cell zones:       0
+
+Overall number of cells of each type:
+    hexahedra:     190704
+    prisms:        1575
+    wedges:        0
+    pyramids:      0
+    tet wedges:    63
+    tetrahedra:    0
+    polyhedra:     22186
+    Breakdown of polyhedra by number of faces:
+        faces   number of cells
+            4   2576
+            5   3449
+            6   4500
+            9   7590
+           12   2385
+           15   1381
+           18   298
+           21   7
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+    Upper triangular ordering OK.
+    Face vertices OK.
+    Number of regions: 1 (OK).
+
+Checking basic patch addressing...
+                   Patch    Faces   Points
+                   inlet      437      480
+                  outlet      437      480
+              shroudYmin     1824     2004
+              shroudYmax     1824     2026
+              shroudZmin     2208     2464
+              shroudZmax     2208     2447
+                    head    50184    55970
+
+Checking geometry...
+    Overall domain bounding box (-0.36 -0.082625 -0.068375) (0.36 0.082625 0.068375)
+    Mesh has 3 geometric (non-empty/wedge) directions (1 1 1)
+    Mesh has 3 solution (non-empty) directions (1 1 1)
+    Max cell openness = 3.223773127e-16 OK.
+    Max aspect ratio = 16.74743662 OK.
+    Minimum face area = 6.087779428e-08. Maximum face area = 5.871588697e-05.  Face area magnitudes OK.
+    Min volume = 1.269198036e-10. Max volume = 4.263540089e-07.  Total volume = 0.01519141529.  Cell volumes OK.
+    Mesh non-orthogonality Max: 68.98470882 average: 11.96938363
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 3.987346746 OK.
+    Coupled point location match (average 0) OK.
+
+Mesh OK.
+
+End
+
+Finalising parallel run

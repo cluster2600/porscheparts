@@ -1,0 +1,1125 @@
+{
+  "analytical_method": {
+    "bare_channel_h_w_m2k": 232.56512867830855,
+    "correlation_physically_validated_on_head": false,
+    "darcy_friction_factor": 0.02336947501973383,
+    "effective_h_w_m2k": 193.93623296646663,
+    "fin_efficiency": 0.8339007402727404,
+    "hot_material_coupon_card_qualified": false,
+    "hydraulic_diameter_m": 0.008552486187845305,
+    "method": "Gnielinski_smooth_channel_plus_Darcy_Weisbach_plus_1D_adiabatic_tip_fin_efficiency",
+    "nusselt": 72.85751101815751,
+    "predicted_bridge_temperature_c": 381.2349286912123,
+    "predicted_fin_root_temperature_c": 154.9344162209224,
+    "predicted_outlet_air_temperature_c": 40.02365792394416,
+    "pressure_drop_straight_channel_pa": 1060.8111236811772,
+    "reynolds": 31454.405722593776,
+    "solid_thermal_conductivity_w_mk_assumption": 135.0
+  },
+  "boundary_conditions": {
+    "air_density_kg_m3": 1.132,
+    "air_dynamic_viscosity_pa_s": 1.9e-05,
+    "air_inlet_temperature_k": 308.15,
+    "air_prandtl": 0.7,
+    "air_specific_heat_j_kgk": 1007.0,
+    "air_thermal_conductivity_w_mk": 0.0273,
+    "chamber_heat_load_basis": "back_calculated_order_of_magnitude_from_F36_solid_screen_and_retained_unchanged_for_F38",
+    "chamber_heat_load_w_per_head": 4300.0,
+    "isothermal_wall_temperature_k": 533.15,
+    "maximum_burst_bridge_temperature_c": 260.0,
+    "maximum_continuous_bridge_temperature_c": 240.0,
+    "maximum_pressure_drop_pa": 6700.0,
+    "nominal_head_air_mass_flow_kg_s": 0.85
+  },
+  "classification": "OpenFOAM_RANS_canonical_fin_passage_plus_independent_correlation_not_full_head_CHT_not_physical_validation",
+  "cooling_variant_sweep": [
+    {
+      "air_capture_fraction": 0.45,
+      "blower_pressure_screen_passed": true,
+      "configuration": "ailettes_sans_car\u00e9nage",
+      "effective_h_w_m2k": 144.66517847921,
+      "global_temperature_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+      "id": "open_bypass",
+      "minor_loss_k": 0.2,
+      "projected_bridge_temperature_c": 427.8880210536645,
+      "reynolds": 20222.580559887916,
+      "straight_pressure_drop_pa": 489.29126569895584,
+      "temperature_screen_passed": false,
+      "total_pressure_drop_pa": 667.5903695791598,
+      "velocity_m_s": 39.68728288721715
+    },
+    {
+      "air_capture_fraction": 0.6,
+      "blower_pressure_screen_passed": true,
+      "configuration": "car\u00e9nage_12mm_sans_d\u00e9flecteur",
+      "effective_h_w_m2k": 175.3700819531744,
+      "global_temperature_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+      "id": "close_shroud",
+      "minor_loss_k": 0.8,
+      "projected_bridge_temperature_c": 395.8607480797583,
+      "reynolds": 26963.44074651723,
+      "straight_pressure_drop_pa": 809.3533695658614,
+      "temperature_screen_passed": false,
+      "total_pressure_drop_pa": 2077.258108269534,
+      "velocity_m_s": 52.916377182956204
+    },
+    {
+      "air_capture_fraction": 0.7,
+      "blower_pressure_screen_passed": true,
+      "configuration": "car\u00e9nage_splitter_et_deux_d\u00e9flecteurs_pont_\u00e9chappement",
+      "effective_h_w_m2k": 193.9479803608619,
+      "global_temperature_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+      "id": "splitter_turning_vanes",
+      "minor_loss_k": 1.8,
+      "projected_bridge_temperature_c": 381.22653003493645,
+      "reynolds": 31457.34753760343,
+      "straight_pressure_drop_pa": 1060.9855938590867,
+      "temperature_screen_passed": false,
+      "total_pressure_drop_pa": 4943.943856139082,
+      "velocity_m_s": 61.73577338011556
+    },
+    {
+      "air_capture_fraction": 0.78,
+      "blower_pressure_screen_passed": false,
+      "configuration": "buses_locales_pont_\u00e9chappement_forte_perte",
+      "effective_h_w_m2k": 207.94079859724928,
+      "global_temperature_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+      "id": "aggressive_exhaust_jets",
+      "minor_loss_k": 3.2,
+      "projected_bridge_temperature_c": 371.87235721836055,
+      "reynolds": 35052.472970472394,
+      "straight_pressure_drop_pa": 1283.5858446951736,
+      "temperature_screen_passed": false,
+      "total_pressure_drop_pa": 9854.621878331998,
+      "velocity_m_s": 68.79129033784307
+    }
+  ],
+  "cross_method": {
+    "agreement_is_physical_validation": false,
+    "h_agreement_below_20_percent": true,
+    "h_relative_difference": 0.04077104472672597,
+    "pressure_agreement_below_20_percent": false,
+    "pressure_drop_relative_difference": 0.6172275108189874
+  },
+  "decision": {
+    "absolute_scale_confirmed": false,
+    "accepted_F38_BRep_linked": false,
+    "canonical_channel_numerical_closure": false,
+    "cooling_layout_selected_for_next_full_head_CHT": true,
+    "engine_start_authorized": false,
+    "full_head_cooling_close_reason": "canonical passage omits bypass, baffle losses, conjugate conduction and measured fan map",
+    "full_head_cooling_closed": false,
+    "hot_material_coupon_card_qualified": false,
+    "metal_print_authorized": false,
+    "physical_correlation_complete": false,
+    "reason": "le canal converge en h et bilan, mais deltaP diverge de 61,7% entre m\u00e9thodes et Tpont=375,8-381,2C d\u00e9passe 260C et la plage CP1 de 300C; aucune CHT culasse compl\u00e8te",
+    "selection": "12_fin_levels_22_equivalent_passages_2mm_4p5mm_gap_12mm_shroud_with_splitter_and_exhaust_turning_vanes",
+    "selection_basis": "fixed F34 nominal flow; best defensible geometry screen, not a temperature target fit",
+    "temperature_screen_passed": false,
+    "temperature_within_CP1_interpolation_range": false,
+    "whole_head_CHT_complete": false
+  },
+  "design": {
+    "air_capture_fraction": 0.7,
+    "baffles": [
+      {
+        "id": "central_splitter",
+        "leading_edge_radius_mm": 2.0,
+        "purpose": "reduce_top_bypass_and_balance_banks",
+        "thickness_mm": 2.0
+      },
+      {
+        "angle_deg": 28.0,
+        "id": "exhaust_bridge_turning_vanes",
+        "purpose": "redirect_air_to_exhaust_seat_bridge_without_closing_powder_escape",
+        "quantity": 2,
+        "thickness_mm": 1.8
+      }
+    ],
+    "clear_gap_mm": 4.5,
+    "duct_clearance_mm": 12.0,
+    "duct_type": "close_fitting_split_plenum_with_exhaust_bridge_turning_vanes",
+    "fin_height_mm": 19.0,
+    "fin_level_count": 12,
+    "fin_pitch_mm": 6.5,
+    "fin_thickness_mm": 2.0,
+    "gaps_per_half_bank": 11,
+    "half_bank_count": 2,
+    "manufacturing_note": "dimensions_are_conditional_on_1_OBJ_unit_equals_1_mm; thermal projection area is the F37 scan-conforming parent surface because the intermediate boxy F38 BRep was rejected",
+    "mean_flow_length_mm": 180.0,
+    "mean_span_mm": 86.0,
+    "minimum_as_designed_thickness_mm": 1.8,
+    "open_passage_area_m2": 0.008514,
+    "passage_count_equivalent": 22,
+    "passage_velocity_m_s": 61.73,
+    "provisional_flat_fin_face_area_m2_not_BRep": 0.37152,
+    "root_radius_mm": 2.0,
+    "tip_radius_mm": 1.0,
+    "whole_head_wetted_surface_area_m2": 0.18486967359948758,
+    "whole_head_wetted_surface_area_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep"
+  },
+  "id": "917-head-f38-cooling-cross-check",
+  "inputs": {
+    "contract": {
+      "path": "twins/reference-917-engine/f38-cooling-redesign.json",
+      "sha256": "f6f884cf0b3d7747f2b50612d00b2aaf537b21e6ad3591ace5b79d7d591f3247"
+    },
+    "f36_report": {
+      "path": "twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json",
+      "sha256": "85e7c7f3c6d885712b9652b90a2b1797ef5ae9bb1a9e5c323ca395ac9a995625"
+    },
+    "f37_head_report": {
+      "path": "twins/reference-917-engine/evidence/f37-manufacturing-definition/f37-printable-head-mesh-report.json",
+      "sha256": "ffafa6eaf8c357361e8d65721ff613df3b1c981253f20aa447d367cce51ae44b"
+    }
+  },
+  "openfoam": {
+    "cases": [
+      {
+        "air_enthalpy_gain_w": 1240.8431047005502,
+        "case_id": "coarse",
+        "cell_count": 17280,
+        "cells": [
+          180,
+          12,
+          8
+        ],
+        "centreline_temperature_k": [
+          [
+            6.49110763537e-20,
+            308.15
+          ],
+          [
+            0.0018,
+            308.139586469
+          ],
+          [
+            0.0036,
+            308.125515858
+          ],
+          [
+            0.0054,
+            308.111625661
+          ],
+          [
+            0.0072,
+            308.099388467
+          ],
+          [
+            0.009,
+            308.090589777
+          ],
+          [
+            0.0108,
+            308.086934375
+          ],
+          [
+            0.0126,
+            308.089350221
+          ],
+          [
+            0.0144,
+            308.098547152
+          ],
+          [
+            0.0162,
+            308.115150762
+          ],
+          [
+            0.018,
+            308.139757535
+          ],
+          [
+            0.0198,
+            308.173247491
+          ],
+          [
+            0.0216,
+            308.215285557
+          ],
+          [
+            0.0234,
+            308.265954045
+          ],
+          [
+            0.0252,
+            308.325221201
+          ],
+          [
+            0.027,
+            308.392945709
+          ],
+          [
+            0.0288,
+            308.469554352
+          ],
+          [
+            0.0306,
+            308.554324474
+          ],
+          [
+            0.0324,
+            308.647007177
+          ],
+          [
+            0.0342,
+            308.747297777
+          ],
+          [
+            0.036,
+            308.85484179
+          ],
+          [
+            0.0378,
+            308.969644987
+          ],
+          [
+            0.0396,
+            309.090848081
+          ],
+          [
+            0.0414,
+            309.218070493
+          ],
+          [
+            0.0432,
+            309.350962951
+          ],
+          [
+            0.045,
+            309.489209387
+          ],
+          [
+            0.0468,
+            309.632825166
+          ],
+          [
+            0.0486,
+            309.781230061
+          ],
+          [
+            0.0504,
+            309.934205941
+          ],
+          [
+            0.0522,
+            310.091554844
+          ],
+          [
+            0.054,
+            310.25309017
+          ],
+          [
+            0.0558,
+            310.418861794
+          ],
+          [
+            0.0576,
+            310.588411286
+          ],
+          [
+            0.0594,
+            310.761542891
+          ],
+          [
+            0.0612,
+            310.938074389
+          ],
+          [
+            0.063,
+            311.117841003
+          ],
+          [
+            0.0648,
+            311.30088308
+          ],
+          [
+            0.0666,
+            311.486885594
+          ],
+          [
+            0.0684,
+            311.6757666
+          ],
+          [
+            0.0702,
+            311.867476712
+          ],
+          [
+            0.072,
+            312.061999969
+          ],
+          [
+            0.0738,
+            312.259532472
+          ],
+          [
+            0.0756,
+            312.459950921
+          ],
+          [
+            0.0774,
+            312.663333363
+          ],
+          [
+            0.0792,
+            312.869779555
+          ],
+          [
+            0.081,
+            313.079407485
+          ],
+          [
+            0.0828,
+            313.292562409
+          ],
+          [
+            0.0846,
+            313.50916783
+          ],
+          [
+            0.0864,
+            313.729319323
+          ],
+          [
+            0.0882,
+            313.95305213
+          ],
+          [
+            0.09,
+            314.180382337
+          ],
+          [
+            0.0918,
+            314.41158681
+          ],
+          [
+            0.0936,
+            314.646486523
+          ],
+          [
+            0.0954,
+            314.885147507
+          ],
+          [
+            0.0972,
+            315.127656341
+          ],
+          [
+            0.099,
+            315.374118531
+          ],
+          [
+            0.1008,
+            315.62491995
+          ],
+          [
+            0.1026,
+            315.879947078
+          ],
+          [
+            0.1044,
+            316.139336994
+          ],
+          [
+            0.1062,
+            316.403228076
+          ],
+          [
+            0.108,
+            316.671756776
+          ],
+          [
+            0.1098,
+            316.945362901
+          ],
+          [
+            0.1116,
+            317.223881099
+          ],
+          [
+            0.1134,
+            317.507426439
+          ],
+          [
+            0.1152,
+            317.796105019
+          ],
+          [
+            0.117,
+            318.090012016
+          ],
+          [
+            0.1188,
+            318.389569336
+          ],
+          [
+            0.1206,
+            318.694519676
+          ],
+          [
+            0.1224,
+            319.004919819
+          ],
+          [
+            0.1242,
+            319.320813513
+          ],
+          [
+            0.126,
+            319.642231217
+          ],
+          [
+            0.1278,
+            319.969536575
+          ],
+          [
+            0.1296,
+            320.302383858
+          ],
+          [
+            0.1314,
+            320.640760203
+          ],
+          [
+            0.1332,
+            320.984638581
+          ],
+          [
+            0.135,
+            321.33397831
+          ],
+          [
+            0.1368,
+            321.689059209
+          ],
+          [
+            0.1386,
+            322.049472708
+          ],
+          [
+            0.1404,
+            322.415141336
+          ],
+          [
+            0.1422,
+            322.785976213
+          ],
+          [
+            0.144,
+            323.161876536
+          ],
+          [
+            0.1458,
+            323.543038944
+          ],
+          [
+            0.1476,
+            323.929043178
+          ],
+          [
+            0.1494,
+            324.319771712
+          ],
+          [
+            0.1512,
+            324.715093582
+          ],
+          [
+            0.153,
+            325.114907432
+          ],
+          [
+            0.1548,
+            325.519361467
+          ],
+          [
+            0.1566,
+            325.927990292
+          ],
+          [
+            0.1584,
+            326.340605131
+          ],
+          [
+            0.1602,
+            326.757014076
+          ],
+          [
+            0.162,
+            327.17702418
+          ],
+          [
+            0.1638,
+            327.600639247
+          ],
+          [
+            0.1656,
+            328.027438408
+          ],
+          [
+            0.1674,
+            328.457227449
+          ],
+          [
+            0.1692,
+            328.889813484
+          ],
+          [
+            0.171,
+            329.325005694
+          ],
+          [
+            0.1728,
+            329.762752755
+          ],
+          [
+            0.1746,
+            330.202704537
+          ],
+          [
+            0.1764,
+            330.644671844
+          ],
+          [
+            0.1782,
+            331.088302092
+          ],
+          [
+            0.18,
+            331.408380502
+          ]
+        ],
+        "effective_h_w_m2k": 202.0899031130516,
+        "energy_balance_relative": 0.016943632344545163,
+        "mass_balance_relative": 2.5483052090319198e-11,
+        "mass_flow_in_kg_s": 0.02746920125549,
+        "mass_flow_out_kg_s": 0.02746920125479,
+        "metadata_sha256": "3585d39d62324a358a0dda47755a33d0dd2ae95159a269ca486e4540586c87ff",
+        "outlet_temperature_k": 353.0081511417,
+        "pressure_drop_pa": 1692.0279988999973,
+        "solver_log_sha256": "3dbc7a6d2e83a633859d78c0f4ac3955fc6273e19b93cf06c83f8549f0293dab",
+        "wall_heat_w": 1262.229863441
+      },
+      {
+        "air_enthalpy_gain_w": 1238.6587600079636,
+        "case_id": "fine",
+        "cell_count": 138240,
+        "cells": [
+          360,
+          24,
+          16
+        ],
+        "centreline_temperature_k": [
+          [
+            7.13829399427e-20,
+            308.15
+          ],
+          [
+            0.0018,
+            308.139060581
+          ],
+          [
+            0.0036,
+            308.120964893
+          ],
+          [
+            0.0054,
+            308.101950327
+          ],
+          [
+            0.0072,
+            308.083262395
+          ],
+          [
+            0.009,
+            308.06551068
+          ],
+          [
+            0.0108,
+            308.049471964
+          ],
+          [
+            0.0126,
+            308.035787605
+          ],
+          [
+            0.0144,
+            308.025136512
+          ],
+          [
+            0.0162,
+            308.018118815
+          ],
+          [
+            0.018,
+            308.0153573
+          ],
+          [
+            0.0198,
+            308.017664812
+          ],
+          [
+            0.0216,
+            308.024943663
+          ],
+          [
+            0.0234,
+            308.036646275
+          ],
+          [
+            0.0252,
+            308.052670003
+          ],
+          [
+            0.027,
+            308.073079929
+          ],
+          [
+            0.0288,
+            308.098094774
+          ],
+          [
+            0.0306,
+            308.127681198
+          ],
+          [
+            0.0324,
+            308.16205037
+          ],
+          [
+            0.0342,
+            308.201340523
+          ],
+          [
+            0.036,
+            308.245580325
+          ],
+          [
+            0.0378,
+            308.294960384
+          ],
+          [
+            0.0396,
+            308.349296319
+          ],
+          [
+            0.0414,
+            308.408599068
+          ],
+          [
+            0.0432,
+            308.472788232
+          ],
+          [
+            0.045,
+            308.541718072
+          ],
+          [
+            0.0468,
+            308.615466579
+          ],
+          [
+            0.0486,
+            308.693821396
+          ],
+          [
+            0.0504,
+            308.776804323
+          ],
+          [
+            0.0522,
+            308.864402308
+          ],
+          [
+            0.054,
+            308.956563335
+          ],
+          [
+            0.0558,
+            309.053461051
+          ],
+          [
+            0.0576,
+            309.154998176
+          ],
+          [
+            0.0594,
+            309.261322922
+          ],
+          [
+            0.0612,
+            309.37254939
+          ],
+          [
+            0.063,
+            309.488726218
+          ],
+          [
+            0.0648,
+            309.610127631
+          ],
+          [
+            0.0666,
+            309.736702054
+          ],
+          [
+            0.0684,
+            309.868648184
+          ],
+          [
+            0.0702,
+            310.006105498
+          ],
+          [
+            0.072,
+            310.149119576
+          ],
+          [
+            0.0738,
+            310.297965947
+          ],
+          [
+            0.0756,
+            310.452542061
+          ],
+          [
+            0.0774,
+            310.613021687
+          ],
+          [
+            0.0792,
+            310.77952115
+          ],
+          [
+            0.081,
+            310.952065432
+          ],
+          [
+            0.0828,
+            311.130925389
+          ],
+          [
+            0.0846,
+            311.315957797
+          ],
+          [
+            0.0864,
+            311.507323763
+          ],
+          [
+            0.0882,
+            311.705135676
+          ],
+          [
+            0.09,
+            311.9094429
+          ],
+          [
+            0.0918,
+            312.120604737
+          ],
+          [
+            0.0936,
+            312.338520517
+          ],
+          [
+            0.0954,
+            312.563365649
+          ],
+          [
+            0.0972,
+            312.795216756
+          ],
+          [
+            0.099,
+            313.034066914
+          ],
+          [
+            0.1008,
+            313.280266204
+          ],
+          [
+            0.1026,
+            313.533728525
+          ],
+          [
+            0.1044,
+            313.794698005
+          ],
+          [
+            0.1062,
+            314.063292817
+          ],
+          [
+            0.108,
+            314.339488845
+          ],
+          [
+            0.1098,
+            314.623593457
+          ],
+          [
+            0.1116,
+            314.91540491
+          ],
+          [
+            0.1134,
+            315.215052782
+          ],
+          [
+            0.1152,
+            315.522521167
+          ],
+          [
+            0.117,
+            315.837653931
+          ],
+          [
+            0.1188,
+            316.160617091
+          ],
+          [
+            0.1206,
+            316.491122345
+          ],
+          [
+            0.1224,
+            316.82921096
+          ],
+          [
+            0.1242,
+            317.174768725
+          ],
+          [
+            0.126,
+            317.527555829
+          ],
+          [
+            0.1278,
+            317.887650386
+          ],
+          [
+            0.1296,
+            318.254670067
+          ],
+          [
+            0.1314,
+            318.628546102
+          ],
+          [
+            0.1332,
+            319.0090825
+          ],
+          [
+            0.135,
+            319.395974599
+          ],
+          [
+            0.1368,
+            319.789198171
+          ],
+          [
+            0.1386,
+            320.188340071
+          ],
+          [
+            0.1404,
+            320.593270573
+          ],
+          [
+            0.1422,
+            321.003770593
+          ],
+          [
+            0.144,
+            321.419525762
+          ],
+          [
+            0.1458,
+            321.840419853
+          ],
+          [
+            0.1476,
+            322.266019822
+          ],
+          [
+            0.1494,
+            322.696120436
+          ],
+          [
+            0.1512,
+            323.130437377
+          ],
+          [
+            0.153,
+            323.568632821
+          ],
+          [
+            0.1548,
+            324.010544323
+          ],
+          [
+            0.1566,
+            324.455788426
+          ],
+          [
+            0.1584,
+            324.904152415
+          ],
+          [
+            0.1602,
+            325.355372659
+          ],
+          [
+            0.162,
+            325.809157753
+          ],
+          [
+            0.1638,
+            326.265336241
+          ],
+          [
+            0.1656,
+            326.723600295
+          ],
+          [
+            0.1674,
+            327.183756948
+          ],
+          [
+            0.1692,
+            327.645585834
+          ],
+          [
+            0.171,
+            328.10885815
+          ],
+          [
+            0.1728,
+            328.573416061
+          ],
+          [
+            0.1746,
+            329.039033395
+          ],
+          [
+            0.1764,
+            329.505545217
+          ],
+          [
+            0.1782,
+            329.972742028
+          ],
+          [
+            0.18,
+            330.373252402
+          ]
+        ],
+        "effective_h_w_m2k": 201.8432157948752,
+        "energy_balance_relative": 0.01770935077561751,
+        "mass_balance_relative": 3.166457464231949e-11,
+        "mass_flow_in_kg_s": 0.02747556210517,
+        "mass_flow_out_kg_s": 0.02747556210604,
+        "metadata_sha256": "c2e1464bbbed51b02c4add4fc976e2bbda10a72e36f63984d76d24618e0bacb5",
+        "outlet_temperature_k": 352.9188173335,
+        "pressure_drop_pa": 1715.572933000003,
+        "solver_log_sha256": "3b074444738565f2468f580da4e382f4f323b4fcc3d43de46c28b17f2cdc04f6",
+        "wall_heat_w": 1260.990075581
+      }
+    ],
+    "fine_energy_balance_below_5_percent": true,
+    "fine_grid_h_change_relative": 0.0012221729484686314,
+    "fine_mass_balance_below_1_percent": true,
+    "full_head_CHT": false,
+    "geometry": "one_straight_inter_fin_passage_with_two_isothermal_no_slip_fin_faces_and_two_symmetry_side_faces",
+    "runtime": {
+      "architecture": "linux/arm64",
+      "container_image_id": "sha256:d3e0364f73efc28e225d7b8f72631c2eba055c1fe27ffe648d483b0edbe12cdf",
+      "container_tag": "3dprinting993-cae-aircooled-f34:dev",
+      "immutable_registry_digest_verified": false,
+      "tool": "OpenFOAM 14"
+    },
+    "solver": "OpenFOAM_14_foamRun_fluid_hePsiThermo_kOmegaSST",
+    "two_grid_h_agreement_below_5_percent": true
+  },
+  "schema_version": "1.0",
+  "thermal_projection": {
+    "from_analytical": {
+      "bridge_network": {
+        "characteristic_conduction_length_mm": 8.0,
+        "classification": "conservative_chamber_to_deck_to_fin_root_1D_nonlinear_screen_not_measured_geometry",
+        "effective_bridge_cross_section_mm2": 1200.0
+      },
+      "bridge_temperature_c": 381.2349286912123,
+      "convection_resistance_k_w": 0.027891724702540092,
+      "equivalent_conduction_resistance_k_w": 0.05262802615588137,
+      "fin_root_temperature_c": 154.9344162209224,
+      "global_temperature_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+      "heat_load_w": 4300.0,
+      "hot_conductivity_card": {
+        "conductivity_w_mk_by_temperature_c": [
+          [
+            20.0,
+            150.0
+          ],
+          [
+            200.0,
+            135.0
+          ],
+          [
+            300.0,
+            120.0
+          ]
+        ],
+        "id": "F36_Aheadd_HT1_unqualified_screen_reused_as_CP1",
+        "maximum_interpolation_temperature_c": 300.0,
+        "qualification": false
+      },
+      "model": "two_resistance_steady_screen_not_3D_CHT",
+      "outlet_air_temperature_c": 40.02365792394416,
+      "passes_260c_screen": false,
+      "wetted_area_m2": 0.18486967359948758,
+      "wetted_area_measured_from_F38_BRep": false,
+      "within_cp1_interpolation_range": false
+    },
+    "from_openfoam": {
+      "bridge_network": {
+        "characteristic_conduction_length_mm": 8.0,
+        "classification": "conservative_chamber_to_deck_to_fin_root_1D_nonlinear_screen_not_measured_geometry",
+        "effective_bridge_cross_section_mm2": 1200.0
+      },
+      "bridge_temperature_c": 375.7946450544165,
+      "convection_resistance_k_w": 0.026799097499742207,
+      "equivalent_conduction_resistance_k_w": 0.052455471117563955,
+      "fin_root_temperature_c": 150.2361192488915,
+      "global_temperature_status": "F37_scan_conforming_parent_surface_proxy_not_F38_BRep",
+      "heat_load_w": 4300.0,
+      "hot_conductivity_card": {
+        "conductivity_w_mk_by_temperature_c": [
+          [
+            20.0,
+            150.0
+          ],
+          [
+            200.0,
+            135.0
+          ],
+          [
+            300.0,
+            120.0
+          ]
+        ],
+        "id": "F36_Aheadd_HT1_unqualified_screen_reused_as_CP1",
+        "maximum_interpolation_temperature_c": 300.0,
+        "qualification": false
+      },
+      "model": "two_resistance_steady_screen_not_3D_CHT",
+      "outlet_air_temperature_c": 40.02365792394416,
+      "passes_260c_screen": false,
+      "wetted_area_m2": 0.18486967359948758,
+      "wetted_area_measured_from_F38_BRep": false,
+      "within_cp1_interpolation_range": false
+    }
+  }
+}

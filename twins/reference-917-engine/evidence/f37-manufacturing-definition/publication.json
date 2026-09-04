@@ -1,0 +1,77 @@
+{
+  "contract": {
+    "path": "twins/reference-917-engine/f37-manufacturing-definition.json",
+    "sha256": "b954612301f68b69c5cd16eebabf21f1e57c54340740898c946ae159d842b4eb"
+  },
+  "files": {
+    "917-head-f37-carrier-strength-screen.png": "488836ceb2b30ee413e47782c67550cd8e674723d963c67971f557cdff59a878",
+    "917-head-f37-lpbf-manufacturing.png": "e444be96398313a361b6859d97c334c9838ddb8dc166a77b81362a803fceab98",
+    "917-head-f37-manufacturing-definition.png": "cbde31990cd79abf9c6cfd0cdcb7675c65bf587ffa81b46497b12778bfb97b14",
+    "917-head-f37-nvidia-repair-diagnostic.png": "d599093858bb9675cdf6110928b73a6c3526f9ab2be56cde2838864d5e842169",
+    "917-head-f37-oil-hydraulic-screen.png": "b16101748d1e08c3911cd12a674e3253e262d1a96a1b7036d0b65fbd683aee41",
+    "917-head-f37-printable-proof.png": "3e847bc2b62d3f41dd1dac0903cf9b956e3a9c5da6b743d9a5ddce8f89cc01bb",
+    "917-head-f37-rocker-kinematic-screen.png": "8cb107e0248cfc2706a6b79a9ae53c86195fc486e62f9fb96fab60f4426e4045",
+    "README.md": "b5347989dcd7a68c36bda1b4a3a7ea2c89f3236e03838f979f20900b3372c7ed",
+    "f37-cad-report.json": "2a9fac821474d5dd218cc029e7ff3ed6bc1841a38d3189194f44261ab48bb8b4",
+    "f37-carrier-calculix-report.json": "5908f397ec17b1f48bf1d691672133b35614e7b28062a6df34363828cc9737c2",
+    "f37-carrier-strength-report.json": "e5c7cb7a29dec2e675f51b1fec753a31b5ae7aaafbc6db22aabeb9aeea500131",
+    "f37-lpbf-manufacturing-report.json": "bf9845e3238cb9ab4a32317a783c4281fbd29dc360877018f1369e1c5c474d22",
+    "f37-nvidia-direct-usda-normals-geometry.json": "855f7a70fa658b60ddf2951d5e1a9c4bf6a2cd52c705d5688b7da59693cd1955",
+    "f37-nvidia-geometry-validation-attestation.json": "1a03735f57635c5807791388e5620f31eceff3533d7c05b0a41528f5266d3471",
+    "f37-nvidia-mesh-repair-report.json": "6df75fdc61eaa012d5dacd5919786459b1b07e5fa3f004ab2c204829426d10be",
+    "f37-oil-hydraulic-report.json": "46c6cf3101deb2d11a17bd90371faa49e3d47adb240fe5e42b7856c46de75571",
+    "f37-printable-head-mesh-report.json": "ffafa6eaf8c357361e8d65721ff613df3b1c981253f20aa447d367cce51ae44b",
+    "f37-rocker-kinematic-report.json": "0388bb58684638184a021548d83f82c420744aa8d61ee9fd5b8fa3eb53855f74",
+    "finish-machining-cutters.step": "9e1c9ec94a62d9fb8f5aa0f271336ef037f0dd48f02eb36d298afc1f0193777f",
+    "four-rocker-envelopes.step": "0fd62fa4376619cfb367c264d0f9c44d56f54c218683b7a64130b2224d0f014c",
+    "machining-allowance-volumes.step": "be1e70678440e7cd8b8244d1d9aad6a38dfbc0c7f1226482b95d11a2f1e16315",
+    "oil-gallery-core.step": "bca22c9ff4e20b7dc0c200d82b435d5283ecf451de02fedb23740671194997c7",
+    "rocker-carrier-as-printed.step": "b1e2ea048fced92bd4087b4cc467b1c651a570a6770d2b010ad07c716984d827",
+    "two-rocker-shafts.step": "53f1ff0ccafd5803aa8760ce866bfd8bcf38392cd1bf9101271fb907c36e4540"
+  },
+  "known_conflicts": {
+    "external_cooling_cross_solver": {
+      "blocking": true,
+      "fluidx3d_openfoam_heat_relative_difference": 6.849051072064223,
+      "openfoam_linked_solid_maximum_c": 617.4191,
+      "resolved": false
+    },
+    "rocker_pivot_resultant": {
+      "actual_resultant_direction_complete": false,
+      "blocking": true,
+      "collinear_magnitude_upper_envelope_factor": 2.15,
+      "note": "L'enveloppe borne la magnitude; sans g\u00e9om\u00e9trie de came mesur\u00e9e, direction r\u00e9elle, contact, inertie et pr\u00e9charge restent inconnus.",
+      "pivot_magnitude_upper_envelope_per_valve_n": 4080.7,
+      "resolved": false,
+      "spring_only_design_load_per_valve_n": 1898.0
+    },
+    "stl_vertex_manifold": {
+      "blocking": true,
+      "diagnostic_direct_usda_geometry_clear": true,
+      "local_custom_audit_non_manifold_vertices": 0,
+      "note": "La route USDA est diagnostique; VG.007 sur la conversion officielle du STL exact reste bloquant.",
+      "nvidia_exact_validator_non_manifold_vertices": 8047,
+      "official_stl_or_obj_conversion_geometry_clear": false,
+      "resolved": false
+    }
+  },
+  "phase": "F37",
+  "publication_method": "fail_closed_allowlist_atomic_file_replacement_manifest_written_last",
+  "release_gates": {
+    "absolute_scale_confirmed": false,
+    "ct_ndt_and_cmm_complete": false,
+    "engine_start_authorized": false,
+    "hot_material_card_qualified": false,
+    "lpbf_machine_parameter_set_qualified": false,
+    "metal_print_authorized": false,
+    "nonlinear_contact_and_thermomechanical_fatigue_complete": false,
+    "physical_flow_oil_thermal_and_engine_correlation_complete": false,
+    "porsche_917_mating_interfaces_confirmed": false,
+    "professional_engineering_review_approved": false,
+    "rocker_pivot_resultant_load_complete": false,
+    "vertex_manifold_validators_agree": false,
+    "whole_head_single_valid_brep": false
+  },
+  "schema_version": "1.1.0",
+  "status": "published_virtual_definition_evidence_not_manufacturing_or_engine_release"
+}
