@@ -21,6 +21,26 @@ parts for additive and conventional manufacturing.
   treatment, machining, inspection, fatigue assumptions, and galvanic isolation.
 - Keep changes surgical and run `make check` before proposing a merge.
 
+## Emplacement du depot
+
+Le depot doit vivre sur un **systeme de fichiers Linux natif**, par exemple
+`/home/<user>/3dprinting993`, et **non sur un montage DrvFs de WSL** du type
+`/mnt/c/...`.
+
+Ce n'est pas une preference. `tests/test_917_parametric_layout_master_f30.py`
+echoue systematiquement depuis `/mnt/c` sur
+`test_authoring_publishes_only_wireframe_contract_with_completion_marker`, avec
+un statut `failed_closed_no_output` et une erreur interne `authoring_failed:OSError`.
+La cause est que l'authoring publie sa sortie par des operations POSIX relatives
+a un descripteur de repertoire — creation d'un repertoire de transit puis
+renommage atomique — que DrvFs ne sert pas correctement. Le script echoue donc
+fermé, ce qui est le comportement voulu, mais pour une raison d'environnement et
+non de donnee.
+
+Verifie : le meme commit passe sur ext4 et echoue sur `/mnt/c`, y compris sur des
+commits anterieurs a toute modification. Sur ext4 la suite complete donne
+**915 tests OK**, 30 ignores, en 31 secondes contre 190 secondes sur DrvFs.
+
 ## Repository language
 
 Project documentation is written in French. Stable identifiers, schema field
