@@ -150,3 +150,17 @@ défauts subsistent ; il ne transforme pas une réparation partielle en succès.
 logiciel et les contrats documentaires ; elle ne prouve pas la résistance,
 le refroidissement ou la fabricabilité de la culasse. Les nouveaux outils
 sont également exécutés sur les fichiers STEP privés sous OCP sur Kali.
+
+### Suppression des derniers défauts paramétriques 4V
+
+Une projection directe à `1e-9` réduit les trois défauts non cylindriques à
+un seul. Pour ce dernier support BSpline, une projection ponctuelle suivie
+d'interpolation adaptative (option explicite `--project-bspline`) utilise
+35 points, deux itérations et un maximum échantillonné de `6,275e-8` unité
+du scan. La surface porteuse et la courbe 3D ne sont pas reconstruites.
+
+Le STEP `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`
+présente zéro défaut pcurve avant/après réimport et BRepCheck valide : un
+solide, une coque, 4 929 faces, aucune arête libre/non-manifold/dégénérée.
+Le contrôle BOP complet de ce hash est lancé, mais son résultat n'est pas
+encore acquis ici. Aucune autorisation de fabrication n'est accordée.
