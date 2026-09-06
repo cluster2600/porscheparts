@@ -197,3 +197,9 @@ ne permettent pas d'écarter les défauts. La valeur 1,5 reste en unités du
 scan tant que l'échelle absolue n'est pas certifiée. La carte privée sert à
 localiser la reprise CAO ; aucune paroi n'a encore été épaissie par cet outil.
 Les scripts et rapports n'introduisent aucune nouvelle silhouette globale.
+
+La même localisation sur le STL F50 2V reproduit 211 sondes faibles par
+sphère inscrite (10,55 %), contre 35 par rayon normal (1,75 %), avec 35
+accords et 176 désaccords. Les deux cartes restent conservées intégralement
+dans les sorties privées : ni le seuil ni la méthode initiale ne sont
+remplacés pour faire disparaître les signalements.
