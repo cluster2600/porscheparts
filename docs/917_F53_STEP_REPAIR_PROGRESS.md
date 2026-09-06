@@ -72,3 +72,25 @@ La prochaine correction doit examiner le raccordement entre ces cylindres et
 leurs faces voisines. Le seuil de tolérance n'a pas été élargi pour obtenir
 une acceptation. Les défauts concernent toujours le candidat 2V ; aucune
 acceptation STEP 2V ou 4V n'est revendiquée à ce stade.
+
+## Supports voisins et projection directe
+
+Le contrôle des faces voisines révèle deux intersections cylindre/cylindre.
+Sur 101 paramètres par arête, la distance minimale de la courbe 3D à chacun
+des quatre supports reste inférieure à `4,97e-8` unité du scan. Ce contrôle
+échantillonné indique une incohérence de représentation paramétrique ; il ne
+certifie pas l'intégralité des courbes.
+
+Une projection directe `GeomProjLib.Curve2d`, sans refit SameParameter, réduit
+les maxima échantillonnés après STEP à `4,1126721e-7` et `5,7000656e-7`, contre
+`1,9849185e-5` et `7,0727442e-5` avant cette opération. Le nombre de défauts
+reste deux. À la réimportation, OCCT porte les tolérances de ces arêtes à
+`1,1897365e-7` et `1,4998458e-7`, insuffisantes pour les écarts observés.
+Le rapport expose cette augmentation automatique ; elle n'est pas présentée
+comme une réparation validée.
+
+Les précisions de projection demandées `1e-9` puis `1e-12` donnent les mêmes
+comptages et métriques globales. Réduire ce seul paramètre ne résout donc pas
+les défauts. La suite devra contrôler la représentation 2D sur les intervalles
+de nœuds des splines, puis reconstruire celle-ci avec un contrôle d'erreur
+adaptatif avant le prochain round-trip.
