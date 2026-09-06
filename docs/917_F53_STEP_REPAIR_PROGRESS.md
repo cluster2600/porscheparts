@@ -28,3 +28,26 @@ Le script reproductible est
 Les deux fichiers STEP et rapports détaillés restent dans l'espace privé de
 travail ; les maîtres F50 ne sont pas écrasés. Le code retour 2 de ces deux
 essais représente un rejet numérique attendu, pas une exécution inachevée.
+
+## Localisation et première correction
+
+L'inspection de 1 001 paramètres par raccord trouve huit arêtes B-spline
+sur cinq faces (quatre supports cylindriques et un support B-spline). Aucun
+des huit couples n'est une couture périodique. Les deux écarts les plus élevés
+échantillonnés valent `1,9849185e-5` et `7,0727442e-5` unité du scan.
+Ces valeurs échantillonnées ne constituent pas une borne globale certifiée.
+
+Une copie profonde du STEP de contrôle a ensuite reçu une correction
+`FixSameParameter` uniquement sur les huit arêtes repérées. Le réglage demandé
+est `1e-7`. Le diagnostic passe de huit à six défauts avant export et conserve
+six défauts après réimport. Les tolérances des arêtes traitées n'augmentent pas.
+BRepCheck reste valide ; l'écart relatif de volume est `-1,9732054e-11` et
+l'écart maximal de boîte englobante `4,2632564e-14` unité du scan. Ces métriques
+globales ne remplacent pas le contrôle spatial des surfaces et l'audit BOP
+complet, encore requis. La copie corrigée n'est pas promue comme nouveau maître.
+
+Le STEP candidat privé a l'empreinte
+`52f637bc348c765b1e39476df8206d31f0d636527b34cf815f993a3d794889c5`.
+Les scripts `inspect_step_faults_f53.py` et
+`probe_step_same_parameter_f53.py` reproduisent ces opérations avec contrôle
+de l'empreinte d'entrée et refus d'écraser les sorties existantes.
