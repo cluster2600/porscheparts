@@ -54,5 +54,9 @@ inversé, mais **1 050 éléments sous `minSICN=0,1`** et un minimum
 minimum est plus faible. La génération réussie ne satisfait donc pas le
 critère strict : maillage refusé, aucune amélioration suffisante revendiquée.
 
+L'audit BOP complet du STEP simplifié termine ensuite sans défaut signalé,
+avec BRepCheck valide. Ce succès d'intégrité ne change pas le refus du
+maillage ni l'absence de correction des épaisseurs.
+
 Tous les fichiers géométriques et indices de faces restent privés. Aucun
 de ces essais n'autorise une fabrication, un montage ou un démarrage.
