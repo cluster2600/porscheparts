@@ -16,6 +16,8 @@ def main():
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--allow-partial', action='store_true',
                    help='Leave unsupported surfaces untouched and report remaining faults')
+    p.add_argument('--project-bspline', action='store_true',
+                   help='Also interpolate nearest-point projections on BSpline supports')
     a = p.parse_args()
     if hashlib.sha256(a.input.read_bytes()).hexdigest() != a.sha256:
         raise ValueError('source hash mismatch')
@@ -28,7 +30,8 @@ def main():
     from OCP.BRepBuilderAPI import BRepBuilderAPI_Copy
     from OCP.BRepAdaptor import BRepAdaptor_Surface
     from OCP.ElSLib import ElSLib
-    from OCP.GeomAbs import GeomAbs_Cylinder
+    from OCP.GeomAbs import GeomAbs_Cylinder, GeomAbs_BSplineSurface
+    from OCP.GeomAPI import GeomAPI_ProjectPointOnSurf
     from OCP.Geom2dAPI import Geom2dAPI_Interpolate
     from OCP.TColgp import TColgp_HArray1OfPnt2d
     from OCP.TColStd import TColStd_HArray1OfReal
@@ -44,13 +47,16 @@ def main():
     skipped = []
     for fi, ei in faults['face_edge_pairs_private']:
         face, edge = TopoDS.Face_s(faces.FindKey(fi)), TopoDS.Edge_s(edges.FindKey(ei))
-        if BRepAdaptor_Surface(face).GetType() != GeomAbs_Cylinder or BRep_Tool.IsClosed_s(edge, face):
+        surface_type = BRepAdaptor_Surface(face).GetType()
+        supported = surface_type == GeomAbs_Cylinder or (
+            a.project_bspline and surface_type == GeomAbs_BSplineSurface)
+        if not supported or BRep_Tool.IsClosed_s(edge, face):
             if a.allow_partial:
                 skipped.append([fi, ei])
                 continue
             raise ValueError('only non-seam cylindrical faults supported')
         surface = BRep_Tool.Surface_s(face)
-        cylinder = surface.Cylinder()
+        cylinder = surface.Cylinder() if surface_type == GeomAbs_Cylinder else None
         curve = BRep_Tool.Curve_s(edge, 0., 0.)
         old_pcurve = BRep_Tool.CurveOnSurface_s(edge, face, 0., 0.)
         start, end = BRep_Tool.Range_s(edge)
@@ -59,8 +65,14 @@ def main():
             points = TColgp_HArray1OfPnt2d(1, len(parameters))
             params = TColStd_HArray1OfReal(1, len(parameters))
             for i, t in enumerate(parameters, 1):
-                u, v = ElSLib.Parameters_s(cylinder, curve.Value(t))
-                u += 2*math.pi*round((old_pcurve.Value(t).X()-u)/(2*math.pi))
+                if cylinder is not None:
+                    u, v = ElSLib.Parameters_s(cylinder, curve.Value(t))
+                    u += 2*math.pi*round((old_pcurve.Value(t).X()-u)/(2*math.pi))
+                else:
+                    projection = GeomAPI_ProjectPointOnSurf(curve.Value(t), surface)
+                    if not projection.IsDone() or projection.NbPoints() == 0:
+                        raise RuntimeError('surface projection failed')
+                    u, v = projection.LowerDistanceParameters()
                 points.SetValue(i, gp_Pnt2d(u, v))
                 params.SetValue(i, t)
             interpolator = Geom2dAPI_Interpolate(points, params, False, 1e-12)
@@ -86,6 +98,7 @@ def main():
             raise RuntimeError('adaptive error target not achieved')
         BRep_Builder().UpdateEdge(edge, result, face, BRep_Tool.Tolerance_s(edge))
         records.append({'face_private': fi, 'edge_private': ei, 'points': len(parameters),
+                        'surface_type': str(surface_type),
                         'iterations': iteration+1, 'held_out_sampled_max_error': max(errors)})
     before = pcurve_fault_map(shape)['result_count']
     out = a.output / 'candidate.step'
