@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0@sha256:f190d2dd9eef2899c91ac323caa0bd2b39334a5400ba93013e5199da39dad940
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    cmake ninja-build g++ libboost-iostreams-dev libboost-system-dev \
+    libtbb-dev libblosc-dev zlib1g-dev libimath-dev libopenexr-dev \
+    libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev \
+    libgl1-mesa-dev libwayland-dev libxkbcommon-dev \
+    && apt-get clean
+WORKDIR /src
+COPY sources.lock bootstrap.sh Smoke.csproj Program.cs ./
+RUN sh bootstrap.sh /upstream
+RUN git -C /upstream/PicoGKRuntime submodule update --init --depth 1
+RUN cmake -S /upstream/PicoGKRuntime -B /native-build -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release -DOPENVDB_BUILD_BINARIES=OFF \
+    -DOPENVDB_BUILD_UNITTESTS=OFF -DOPENVDB_CORE_SHARED=OFF \
+    -DOPENVDB_CORE_STATIC=ON -DGLFW_BUILD_WAYLAND=OFF \
+    -DOPENVDB_USE_DELAYED_LOADING=OFF -DUSE_IMATH_HALF=OFF -DUSE_EXR=OFF \
+    -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF
+RUN cmake --build /native-build --target picogk -j 4
+RUN dotnet build Smoke.csproj -c Release -o /app -p:GeneratePackageOnBuild=false
+# Linux target upstream has no version suffix; satisfy the pinned C# import.
+RUN cp /native-build/lib/picogk.so /app/picogk.26.2.so
+ENTRYPOINT ["dotnet", "/app/Smoke.dll"]
