@@ -94,3 +94,59 @@ comptages et métriques globales. Réduire ce seul paramètre ne résout donc pa
 les défauts. La suite devra contrôler la représentation 2D sur les intervalles
 de nœuds des splines, puis reconstruire celle-ci avec un contrôle d'erreur
 adaptatif avant le prochain round-trip.
+
+## Reconstruction adaptative des deux courbes cylindriques 2V
+
+`rebuild_cylinder_pcurves_f53.py` reconstruit uniquement les deux courbes
+paramétriques fautives, sur leurs cylindres existants. Les angles sont dépliés
+par rapport à la représentation précédente. L'interpolation conserve les
+paramètres de la courbe 3D ; des sondes intermédiaires entraînent le raffinement.
+Ni la silhouette extérieure ni les surfaces porteuses ne sont redessinées.
+
+Le candidat `5a8e29c5e8c0e445a72fd8918fc25a4189e8d662978af14149d3cbd2a38d0653`
+présente **zéro défaut de courbe paramétrique avant et après réimport STEP**.
+Les deux reconstructions utilisent respectivement 232 et 560 points, avec des
+maxima échantillonnés de `5,52e-8` et `7,30e-8` unité du scan. Ce ne sont pas
+des bornes continues garanties.
+
+BRepCheck passe sur 20 651 sous-formes ; la topologie contient un solide,
+une coque, 5 034 faces, aucune arête libre, non-manifold ou dégénérée.
+La variation relative de volume par rapport au STEP d'entrée est `-3,50e-10`,
+la variation maximale des bornes `5,68e-14` unité du scan. Ces valeurs ne
+certifient ni l'échelle physique ni les interfaces moteur.
+
+Le contrôle complet BOP (intersections, petites arêtes, reconstruction des
+faces, continuité, courbes sur surfaces) est lancé séparément avec
+`audit_step_candidate_f53.py`. Le succès pcurve seul ne constitue pas une
+acceptation globale du STEP, encore moins une autorisation de fabrication.
+Les rapports complets et les géométries restent privés.
+
+La version 4V est contrôlée séparément : son export témoin présente 32 défauts
+de courbe paramétrique. Le résultat 2V ne lui est pas transféré par hypothèse.
+
+### Résultat du contrôle complet 2V
+
+Le contrôle BOP du même hash est terminé : `has_faulty=false`, zéro résultat,
+aucune catégorie d'erreur signalée avec les cinq modes précités activés.
+BRepCheck et les comptages topologiques sont également inchangés. La
+réparation passe donc les contrôles OCCT exécutés sur le STEP 2V. Il reste à
+quantifier la déviation de surface par rapport au maître et à reprendre le
+maillage, les épaisseurs et les vérifications de procédé ; ce succès ne
+remplace aucun de ces contrôles.
+
+Pour la 4V, une reprojection locale suivie de SameParameter réduit les défauts
+de 32 à 22, avec BRepCheck valide. Les supports restants sont inspectés avant
+d'appliquer la reconstruction adaptative aux seuls cylindres admissibles.
+
+Cette reconstruction corrige ensuite les 19 paires cylindriques : il reste
+**3 défauts 4V**, avant et après STEP, sur les surfaces non cylindriques
+laissées intactes. Le candidat est
+`38344c77438c5406b1faa2ce0420507d234660f56aa91e0f78331fd03a148306`.
+Il conserve un solide fermé, sans arête libre ni non-manifold, et BRepCheck
+passe. Le mode partiel est explicite et sort avec le code 2 tant que des
+défauts subsistent ; il ne transforme pas une réparation partielle en succès.
+
+`make check` passe sur cette révision de travail. Cette suite contrôle le
+logiciel et les contrats documentaires ; elle ne prouve pas la résistance,
+le refroidissement ou la fabricabilité de la culasse. Les nouveaux outils
+sont également exécutés sur les fichiers STEP privés sous OCP sur Kali.
