@@ -164,3 +164,36 @@ présente zéro défaut pcurve avant/après réimport et BRepCheck valide : un
 solide, une coque, 4 929 faces, aucune arête libre/non-manifold/dégénérée.
 Le contrôle BOP complet de ce hash est lancé, mais son résultat n'est pas
 encore acquis ici. Aucune autorisation de fabrication n'est accordée.
+
+Le contrôle complet 4V est maintenant terminé : zéro résultat BOP,
+`has_faulty=false`, BRepCheck valide. Les deux candidats STEP passent les
+contrôles d'intégrité OCCT exécutés. La comparaison de peau échantillonnée,
+le maillage exploitable et les validations fonctionnelles restent séparés.
+
+## Maillage et localisation des faibles épaisseurs
+
+Sur le maillage volumique F50 4V, l'optimisation Gmsh par défaut, Relocate3D,
+puis par défaut (5 itérations demandées par appel) réduit les tétraèdres de
+`minSICN < 0,1` de **1 086 à 1 048**. Tous les nœuds classés sur la frontière
+(dimensions 0, 1, 2) conservent exactement leurs coordonnées. Aucun élément
+inversé n'est détecté, mais le minimum `minSICN=2,48e-5` reste insuffisant :
+le candidat est refusé par le seuil strict. Cette expérience ne régénère pas
+un maillage depuis le nouveau STEP et ne lui transfère aucune acceptation.
+
+Sur le maillage initial, 936 des 1 086 tétraèdres insuffisants ont au moins
+trois nœuds de frontière (310 en ont quatre). Ce constat motive une reprise
+du maillage de surface et de ses subdivisions plutôt qu'un lissage volumique
+répété sans effet suffisant.
+
+Le contrôle privé `localize_thickness_f53.py` conserve les positions des
+2 000 sondes et compare deux méthodes géométriques sur le même STL F50 4V :
+
+- sphère inscrite : 194 sondes sous 1,5 unité du scan (9,70 %) ;
+- rayon normal : 42 sondes sous ce seuil (2,10 %) ;
+- 42 sondes signalées par les deux méthodes, 152 désaccords à examiner.
+
+Ce ne sont pas deux simulations physiques indépendantes et les désaccords
+ne permettent pas d'écarter les défauts. La valeur 1,5 reste en unités du
+scan tant que l'échelle absolue n'est pas certifiée. La carte privée sert à
+localiser la reprise CAO ; aucune paroi n'a encore été épaissie par cet outil.
+Les scripts et rapports n'introduisent aucune nouvelle silhouette globale.
