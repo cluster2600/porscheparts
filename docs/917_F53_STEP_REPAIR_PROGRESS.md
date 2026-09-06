@@ -51,3 +51,24 @@ Le STEP candidat privé a l'empreinte
 Les scripts `inspect_step_faults_f53.py` et
 `probe_step_same_parameter_f53.py` reproduisent ces opérations avec contrôle
 de l'empreinte d'entrée et refus d'écraser les sorties existantes.
+
+## Reprojection précise et contrôle des deux défauts persistants
+
+Sur la copie à six défauts, la reprojection locale à `1e-7`, suivie de
+SameParameter, réduit le résultat à **deux défauts avant et après export**.
+Les maxima des tolérances de faces et d'arêtes après réimport valent `1e-7`.
+BRepCheck reste valide. Le STEP privé obtenu est lié au SHA-256
+`0ba32a920749a6ae9d4fde04ba2b04b470d5b9a555c68f0c3b06ba02e2bc31c1`.
+
+L'inspection relancée confirme que les deux raccords restants sont les deux
+supports cylindriques présentant les écarts `1,9849185e-5` et `7,0727442e-5`.
+Une reconstruction expérimentale des courbes 3D à partir des p-curves sur une
+nouvelle copie ne réduit pas ce nombre : deux défauts persistent après STEP.
+Cette voie n'est donc pas retenue comme amélioration. Les déplacements
+échantillonnés avant SameParameter sont inférieurs à `9,78e-8` unité du scan ;
+ils ne prouvent pas une borne après l'ensemble des opérations.
+
+La prochaine correction doit examiner le raccordement entre ces cylindres et
+leurs faces voisines. Le seuil de tolérance n'a pas été élargi pour obtenir
+une acceptation. Les défauts concernent toujours le candidat 2V ; aucune
+acceptation STEP 2V ou 4V n'est revendiquée à ce stade.
