@@ -26,14 +26,37 @@ def main():
     from OCP.BRepAdaptor import BRepAdaptor_Surface, BRepAdaptor_Curve
     from OCP.TopAbs import TopAbs_FACE, TopAbs_EDGE
     from OCP.TopoDS import TopoDS
+    from OCP.GeomAPI import GeomAPI_ProjectPointOnSurf
     shape, roots = read_step(a.input)
     faults = pcurve_fault_map(shape)
     faces, edges = indexed(shape, TopAbs_FACE), indexed(shape, TopAbs_EDGE)
+    adjacency = {}
+    for fi in range(1, faces.Extent() + 1):
+        local_edges = indexed(faces.FindKey(fi), TopAbs_EDGE)
+        for ei in range(1, local_edges.Extent() + 1):
+            adjacency.setdefault(edges.FindIndex(local_edges.FindKey(ei)), []).append(fi)
     details = []
     for pair in faults['face_edge_pairs_private']:
         face = TopoDS.Face_s(faces.FindKey(pair[0]))
         edge = TopoDS.Edge_s(edges.FindKey(pair[1]))
+        neighbors = []
+        curve = BRepAdaptor_Curve(edge)
+        start, end = curve.FirstParameter(), curve.LastParameter()
+        for fi in adjacency[pair[1]]:
+            neighbor = TopoDS.Face_s(faces.FindKey(fi))
+            surface = BRep_Tool.Surface_s(neighbor)
+            distances = []
+            for j in range(101):
+                projection = GeomAPI_ProjectPointOnSurf(curve.Value(start+(end-start)*j/100), surface)
+                if projection.NbPoints() == 0:
+                    raise RuntimeError('surface projection failed')
+                distances.append(projection.LowerDistance())
+            neighbors.append({'face_private': fi,
+                              'surface_type': str(BRepAdaptor_Surface(neighbor).GetType()),
+                              'sampled_max_distance_to_support': max(distances),
+                              'sample_count': 101})
         details.append({
+            'adjacent_supports': neighbors,
             'pair_private': pair,
             'surface_type': str(BRepAdaptor_Surface(face).GetType()),
             'curve_type': str(BRepAdaptor_Curve(edge).GetType()),
