@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "target_family": "M64",
+  "target_generations": ["964", "993"],
+  "selected_variant": null,
+  "design_intent": {"forced_induction": "turbo", "valves_per_cylinder": 4, "comparison_valves_per_cylinder": 2},
+  "status": "documentary_research_not_manufacturing_release",
+  "manufacturing_authorized": false,
+  "legacy_917_geometry_transferred": false,
+  "source_register": "docs/M64_INTERFACE_SOURCE_REGISTER.md",
+  "sources": {
+    "P1": {"url": "https://files.porsche.com/f/332100/b26b3c7233/kat013-d-911-94-katalog.pdf", "title": "Porsche PET 964 Kat. 013, 24.07.2017"},
+    "P3": {"url": "https://newsroom.porsche.com/en/history/porsche-history-white-giants-991-turbo-964-turbo-3-6-993-turbo-s-13863.html", "title": "Porsche White giants"},
+    "S2": {"url": "https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf", "title": "Swindon M64 24 valve product sheet"}
+  },
+  "documented_reference_dimensions": {
+    "cylinder_bore": {"nominal": 100.0, "unit": "mm", "tolerance": null, "source": "P3", "source_locator": "Technical data", "applies_to": ["964 Turbo 3.6", "993 Turbo S"], "role": "historical_reference_not_register_diameter"},
+    "crank_stroke": {"nominal": 76.4, "unit": "mm", "tolerance": null, "source": "P3", "source_locator": "Technical data", "applies_to": ["964 Turbo 3.6", "993 Turbo S"], "role": "historical_reference_not_selected_design"},
+    "swindon_intake_valve_diameter": {"nominal": 40.0, "unit": "mm", "tolerance": null, "source": "S2", "source_locator": "PDF page 4", "applies_to": ["Swindon M64 24V kit"], "role": "benchmark_not_selected_design"},
+    "swindon_exhaust_valve_diameter": {"nominal": 33.0, "unit": "mm", "tolerance": null, "source": "S2", "source_locator": "PDF page 4", "applies_to": ["Swindon M64 24V kit"], "role": "benchmark_not_selected_design"}
+  },
+  "documented_component_designations": [
+    {"designation": "BM 8 X 20", "part_number": "99906200602", "source": "P1", "source_locator": "PDF page 58, plate 103-00, item 5", "position_coordinates": null, "tolerance": null},
+    {"designation": "BM 8 X 50", "part_number": "99906204102", "source": "P1", "source_locator": "PDF page 58, plate 103-00, item 6", "position_coordinates": null, "tolerance": null}
+  ],
+  "local_manual_research_leads": {
+    "registry": "catalog/manual/993-workshop-manual-measurements.json",
+    "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+    "source_record": "catalog/sources/src-porsche-workshop-manual-993.json",
+    "applicability": "993 Carrera, not a Turbo manual or a 4V design",
+    "confidence": "ocr_unreviewed_at_record_level",
+    "promoted_to_design_dimensions": false,
+    "raw_manual_redistribution": "prohibited",
+    "records": [
+      {"pdf_page": 148, "line": 46, "raw_value": "M8 x 22", "kind": "thread_designation", "interpretation": "stud designation; no coordinates"},
+      {"pdf_page": 153, "line": 17, "raw_value": "8.00 to 8.015", "unit": "mm", "interpretation": "guide-related dimension g; exact feature and procedure need page review"},
+      {"pdf_page": 153, "line": 56, "raw_value": "0.06 to 0.08", "unit": "mm", "interpretation": "guide-related fit; do not assume running clearance or interference without full procedure"},
+      {"pdf_page": 155, "line": 22, "raw_value": "7.970 - 0.012", "unit": "mm", "interpretation": "valve dimension b; Carrera/RS table alignment needs verification"},
+      {"pdf_page": 157, "line": 35, "raw_value": "36.7 + 0.3", "unit": "mm", "interpretation": "intake dimension A; adjacent variant value 37.2 + 0.3, not yet assigned"}
+    ]
+  },
+  "critical_interfaces": {
+    "main_stud_axes": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "cylinder_register_diameter": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "cylinder_register_depth": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "sealing_surface_definition": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "cam_carrier_axes": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "oil_feed_and_return_interfaces": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "intake_and_exhaust_flange_interfaces": {"nominal": null, "unit": "mm", "tolerance": null, "source": null},
+    "seat_guide_and_spark_plug_interfaces": {"nominal": null, "unit": "mm", "tolerance": null, "source": null}
+  },
+  "release_evidence": {
+    "professional_engineering_review": null,
+    "approved_validation_plan": null,
+    "material_process_qualification": null,
+    "physical_correlation": null
+  }
+}
