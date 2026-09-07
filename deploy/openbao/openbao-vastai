@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from contextlib import contextmanager, nullcontext
 import fcntl
+import ipaddress
 import json
 import math
 import os
@@ -1932,6 +1933,51 @@ def safe_instance(instance: dict) -> dict:
     }
 
 
+def safe_ssh_endpoints(instance: dict, instance_id: int) -> dict:
+    """Expose the two provider endpoint pairs without selecting or connecting."""
+    if instance.get("id") != instance_id or isinstance(instance.get("id"), bool):
+        raise SafeError("Vast.ai SSH endpoint metadata does not match the requested instance")
+
+    def endpoint(host: object, port: object, source: str, *, ip_only: bool = False):
+        if isinstance(port, str) and re.fullmatch(r"[0-9]{1,5}", port):
+            port = int(port)
+        number = finite_number(port)
+        if (
+            not isinstance(host, str)
+            or not re.fullmatch(r"[A-Za-z0-9.:-]{1,253}", host)
+            or number is None or not number.is_integer()
+            or not 1 <= number <= 65535
+        ):
+            return None
+        if ip_only:
+            try:
+                ipaddress.ip_address(host)
+            except ValueError:
+                return None
+        return {"host": host, "port": int(number), "source": source}
+
+    proxy = endpoint(instance.get("ssh_host"), instance.get("ssh_port"), "ssh_host+ssh_port")
+    ports = instance.get("ports")
+    mappings = ports.get("22/tcp") if isinstance(ports, dict) else None
+    mapped_port = (
+        mappings[0].get("HostPort")
+        if isinstance(mappings, list) and mappings and isinstance(mappings[0], dict)
+        else None
+    )
+    direct = endpoint(
+        instance.get("public_ipaddr"), mapped_port,
+        "public_ipaddr+ports[22/tcp][0].HostPort", ip_only=True,
+    )
+    return {
+        "instance_id": instance_id,
+        "proxy": proxy,
+        "direct": direct,
+        "evidence_scope": "provider_metadata_only",
+        "ssh_connection_tested": False,
+        "endpoint_selection_changed": False,
+    }
+
+
 def print_json(value: object) -> None:
     print(json.dumps(value, indent=2, sort_keys=True))
 
@@ -1962,7 +2008,35 @@ def read_local_ssh_public_key() -> str:
     value = SSH_PUBLIC_KEY_FILE.read_text(encoding="utf-8").strip()
     if not value.startswith(("ssh-ed25519 ", "ssh-rsa ", "ecdsa-sha2-")):
         raise SafeError("approved SSH public key is not in OpenSSH format")
+    verify_local_ssh_key_pair(value)
     return value
+
+
+def verify_local_ssh_key_pair(public_key: str) -> None:
+    """Let OpenSSH derive only the public identity; never expose private data."""
+    validate_approved_ssh_private_key()
+    try:
+        result = subprocess.run(
+            ["ssh-keygen", "-y", "-P", "", "-f", str(SSH_PRIVATE_KEY_FILE)],
+            stdin=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            timeout=10,
+            check=False,
+            env={"LC_ALL": "C", "PATH": os.environ.get("PATH", os.defpath)},
+        )
+    except (OSError, subprocess.SubprocessError):
+        raise SafeError("approved SSH public/private pair verification failed") from None
+    derived_fields = result.stdout.split() if isinstance(result.stdout, str) else []
+    supplied_fields = public_key.split()
+    if (
+        result.returncode != 0
+        or len(derived_fields) < 2
+        or len(supplied_fields) < 2
+        or derived_fields[:2] != supplied_fields[:2]
+    ):
+        raise SafeError("approved SSH public/private pair does not match or is not usable non-interactively")
 
 
 def validate_approved_ssh_private_key() -> None:
@@ -2174,6 +2248,65 @@ def ensure_local_ssh_registered(api_key: str) -> None:
         raise
     if result.get("success") is not True:
         raise SafeError("Vast.ai did not accept the approved SSH key")
+
+
+def instance_lists_approved_ssh_key(api_key: str, instance_id: int, public_key: str) -> bool:
+    """Check one instance's public metadata, not its in-container injection."""
+    result = vast_request(api_key, f"/api/v0/instances/{instance_id}/ssh")
+    raw_keys = result.get("ssh_keys")
+    try:
+        keys = json.loads(raw_keys) if isinstance(raw_keys, str) else raw_keys
+    except json.JSONDecodeError:
+        raise SafeError("Vast.ai returned invalid instance SSH key metadata") from None
+    if not isinstance(keys, list):
+        raise SafeError("Vast.ai returned invalid instance SSH key metadata")
+    approved_identity = public_key.split()[:2]
+    return any(
+        isinstance(item, dict)
+        and isinstance(item.get("public_key"), str)
+        and item["public_key"].split()[:2] == approved_identity
+        for item in keys
+    )
+
+
+def ensure_simready_instance_ssh_key(api_key: str, instance_id: int, attempt_label: str) -> None:
+    """Attach only the approved key if missing, then require metadata proof."""
+    if not is_simready_attempt_label(attempt_label):
+        raise SafeError("SimReady SSH preflight attempt label is invalid")
+    public_key = read_local_ssh_public_key()
+    listed = instance_lists_approved_ssh_key(api_key, instance_id, public_key)
+    attached = False
+    if not listed:
+        result = vast_request(
+            api_key,
+            f"/api/v0/instances/{instance_id}/ssh/",
+            method="POST",
+            payload={"ssh_key": public_key},
+        )
+        if result.get("success") is not True:
+            raise SafeError("Vast.ai did not confirm approved instance SSH key attachment")
+        attached = True
+        for attempt in range(3):
+            listed = instance_lists_approved_ssh_key(api_key, instance_id, public_key)
+            if listed:
+                break
+            if attempt < 2:
+                time.sleep(5)
+    if not listed:
+        raise SafeError("approved SSH key attachment was not visible in instance metadata")
+    print(
+        "OPENBAO_VASTAI_SIMREADY_SSH_PREFLIGHT " + json.dumps({
+            "instance_id": instance_id,
+            "label": attempt_label,
+            "public_private_pair_verified": True,
+            "approved_key_listed_by_provider": True,
+            "approved_key_attached_by_this_preflight": attached,
+            "runtime_authorized_keys_verified": False,
+            "ssh_authentication_verified": False,
+        }, sort_keys=True),
+        file=sys.stderr,
+        flush=True,
+    )
 
 
 def wave_remote_smoke_command() -> str:
@@ -3061,6 +3194,34 @@ def verify_component_factory_f41_ssh_ready(api_key: str, instance_id: int) -> Pa
     )
 
 
+def emit_simready_ssh_failure_diagnostic(
+    instance_id: int, host: str, port: int,
+    completed: subprocess.CompletedProcess[str], last_probe: str,
+) -> None:
+    """Keep actionable, bounded authentication evidence without raw SSH output."""
+    stderr = completed.stderr.lower() if isinstance(completed.stderr, str) else ""
+    print(
+        "OPENBAO_VASTAI_SIMREADY_SSH_FAILURE " + json.dumps({
+            "instance_id": instance_id,
+            "endpoint_host": host,
+            "endpoint_port": port,
+            "exit_code": completed.returncode,
+            "probe_classification": last_probe,
+            "permission_denied": "permission denied" in stderr,
+            "key_load_failed": any(marker in stderr for marker in (
+                "load key", "invalid format", "error in libcrypto", "no such identity",
+            )),
+            "bad_key_permissions": any(marker in stderr for marker in (
+                "bad permissions", "unprotected private key", "permissions are too open",
+            )),
+            "raw_output_recorded": False,
+            "runtime_authorized_keys_verified": False,
+        }, sort_keys=True),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
 def verify_simready_ssh_ready(
     api_key: str, instance_id: int, *, validation_only: bool = False
 ) -> Path:
@@ -3226,6 +3387,9 @@ def verify_simready_ssh_ready(
             "remote_ready_contract_rejected",
             "remote_command_rejected",
         }:
+            emit_simready_ssh_failure_diagnostic(
+                instance_id, host, int(port), completed, last_probe
+            )
             raise SafeError(
                 "SimReady SSH /workspace/READY verification failed "
                 f"(last state: {last_state}; last probe: {last_probe}); do not "
@@ -3819,6 +3983,7 @@ def launch_simready_offer(
         try:
             verify_single_simready_instance(api_key, instance_id, attempt_label)
             verify_simready_contract(api_key, instance_id, attempt_label)
+            ensure_simready_instance_ssh_key(api_key, instance_id, attempt_label)
             if validation_only:
                 known_hosts_path = verify_simready_ssh_ready(
                     api_key, instance_id, validation_only=True
@@ -3837,6 +4002,8 @@ def launch_simready_offer(
                     "contract_verified": True,
                     "running_state_verified": True,
                     "ssh_batch_mode_verified": True,
+                    "ssh_public_private_pair_verified": True,
+                    "approved_ssh_key_listed_by_provider": True,
                     "runtime_ready_verified": True,
                     "validation_only": validation_only,
                     "property_assignment_intent": (
@@ -3961,6 +4128,14 @@ def run(operation: list[str]) -> int:
                 )
             print_json(safe_keys)
             return 0
+        if len(operation) == 2 and operation[0] == "ssh-endpoints":
+            instance_id = positive_id(operation[1], "instance id")
+            result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+            instance = result.get("instances")
+            if not isinstance(instance, dict):
+                raise SafeError("Vast.ai returned invalid SSH endpoint metadata")
+            print_json(safe_ssh_endpoints(instance, instance_id))
+            return 0
         if len(operation) == 2 and operation[0] == "attach-local-ssh":
             instance_id = positive_id(operation[1], "instance id")
             result = vast_request(
@@ -4030,6 +4205,7 @@ def run(operation: list[str]) -> int:
                 {
                     "registered": True,
                     "approved_private_key_file_verified": True,
+                    "approved_public_private_key_pair_verified": True,
                     "ssh_agent_required": False,
                 }
             )
@@ -4240,7 +4416,7 @@ def run(operation: list[str]) -> int:
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
-            "show <id>|ssh-keys <id>|attach-local-ssh <id>|refresh-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
+            "show <id>|ssh-keys <id>|ssh-endpoints <id>|attach-local-ssh <id>|refresh-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
             "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
             "launch-f46 <offer_id> <image@digest> <deadline_epoch> [--attempt-label <label>]|"
