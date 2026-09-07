@@ -1,6 +1,122 @@
 # PicoGK — exploitation du corps réel M64/4V
 
-## Résultat du lot du 7 septembre 2026
+## Dernière reprise : audit complet et location arrêtée
+
+La reprise du 7 septembre a terminé **les trois audits à 0,6 / 0,3 / 0,15**,
+avec rapports récupérés, empreintes concordantes et sortie processus zéro.
+Le [reçu complet](../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json)
+conserve aussi les défauts : « audit terminé » ne signifie pas « pièce acceptée ».
+Le STEP et les trois sorties PicoGK d'entrée n'ont pas été modifiés.
+
+| Pas voxel, unité du scan | Écart relatif d'intégrale volumique | Distance maître → sortie, p95 | Maximum échantillonné dans les deux sens |
+|---|---:|---:|---:|
+| 0,6 | +0,128645 % | 0,240100 | 2,142979 |
+| 0,3 | +0,030637 % | 0,056512 | 0,879505 |
+| 0,15 | +0,007549 % | 0,010575 | 0,398493 |
+
+Les distances utilisent 4 096 points pondérés par aire dans chaque sens, vers
+les **triangles**, pas vers les seuls sommets. Le p95 maître → sortie repose
+sur le même échantillonnage du maître. Ce ne sont ni des distances au STEP
+exact, ni une borne continue de Hausdorff, ni une tolérance d'usinage.
+L'échelle absolue reste hypothétique. Les écarts diminuent, sans établir une
+indépendance au maillage ou la conservation des interfaces fonctionnelles.
+L'intégrale volumique du cas 0,6 est seulement diagnostique : son maillage
+échoue aux contrôles ci-dessous.
+
+### Défauts conservés, pas masqués par les petits écarts globaux
+
+- **0,6 brut rejeté** : quatre triangles exactement dégénérés, trois arêtes
+  non-manifold et orientation incohérente. Le calcul de cordes normales a
+  refusé ce cas ; aucun résultat d'épaisseur n'y est inventé.
+- **0,3 et 0,15 fermés et orientés**, sans ces défauts d'arêtes, mais avec
+  respectivement une et trois micro-coques négatives supplémentaires. La
+  topologie n'est donc pas celle du maître. Toutes restent conservées.
+- À 0,3, la micro-coque de 12 triangles a été localisée en privé. Son volume
+  géométrique, environ 0,00174247 unité³, a été comparé au STEP par opérations
+  booléennes OCCT : région moins maître topologiquement vide, intersection
+  égale à la région, erreur de partition nulle aux tolérances déclarées.
+  La coque négative enferme donc une région occupée par de la matière dans
+  le STEP fourni. Son imbrication dans la coque principale du candidat reste
+  à tester ; ce défaut numérique n'est pas une porosité physique mesurée.
+  Cette preuve concerne **ce cas seulement** ;
+  les trois micro-coques à 0,15 n'ont pas subi ce contre-test STEP.
+- Les cordes normales à 0,3 et 0,15 donnent respectivement 10/512 et 3/512
+  valeurs sous 1,5 unité. Ce ne sont **pas des pourcentages exacts de parois
+  trop fines**, ni une amélioration mécanique : points, normales et biais de
+  mesure changent avec la triangulation. Aucune épaisseur minimale n'est prouvée.
+
+La surface triangulée à 0,15 reste inférieure d'environ 1,215 % à celle du
+maître. Aucun gain de refroidissement n'est déduit du seul raffinement.
+Le script [`audit_shell_against_step.py`](../twins/m64-cylinder-head/source/picogk/audit_shell_against_step.py)
+sépare l'extraction exacte des triangles et le contre-test OCCT ; aucun
+point intérieur isolé n'est utilisé comme preuve de toute une région.
+
+### Connectivité, rendu et calcul distant
+
+Le [contrôle de connectivité](../twins/m64-cylinder-head/source/picogk-connectivity/README.md)
+a été exécuté sur Kali : 2 719 728 points, pas 1,2 et phase 0,371, sur les
+champs VDB natifs de 0,3. Tous les points vides sont reliés aux faces du bord
+en 6 et 26 voisins. **Aucune cavité isolée détectée sur cette grille** ne veut
+pas dire absence de cavité dans la pièce : les micro-coques précédentes
+illustrent précisément sa limite de résolution. Les deux conventions des
+points exactement sur la frontière sont explicites et testées ; aucune
+tolérance n'a été augmentée pour faire passer un recouvrement.
+
+Un nouveau rendu VTK du maître et de la sortie 0,3, avec coupe dans les axes
+des logements de sièges et guides, a été calculé et montré dans le fil.
+Tous les 293 308 / 3 391 888 triangles sont affichés, sans décimation ni
+lissage des coordonnées. Ce n'est pas une carte thermique ou une photo d'une
+culasse fabriquée. Le corps demeure incomplet, notamment pour les conduits et
+la distribution ; les sources géométriques restent privées.
+
+La nouvelle image qualifiée inclut le runtime Python d'audit :
+
+```text
+ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd
+```
+
+[Construction et témoin réussis](https://github.com/cluster2600/porscheparts/actions/runs/34154864350) ;
+[qualification indépendante](../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
+Les scripts d'audit sont transférés séparément et identifiés par leur SHA.
+Chaque résolution s'exécute dans un processus séparé ; les checkpoints sont
+atomiques et liés aux entrées, au code, aux versions et aux paramètres. Une
+reprise incompatible est refusée. Les requêtes sont limitées à 32 points par
+lot, sans prétendre que cela plafonne toute la mémoire du maillage.
+
+L'instance **50193671** offrait 88 threads CPU, 257 773 Mo de RAM annoncés
+(251 Gio visibles par l'OS), RTX 3060 12 Go et 100 Go de disque, pour environ
+**0,2815 USD/h**. Les audits géométriques ont utilisé le CPU. Durée du contrôle
+principal : **28 min 02 s**, mémoire résidente maximale environ **12,91 Gio**.
+Ces mesures n'incluent pas toute la durée de location ni les autres processus.
+
+Budget de lot plafonné à **4 USD**, garde externe armé avant location, durée
+maximale de trois heures. Clés SSH vérifiées cryptographiquement, association
+à l'instance et connexion directe contrôlées avant le travail. Après collecte,
+la location a été détruite sans attendre l'échéance ; le wrapper, le garde et
+un inventaire indépendant ont confirmé son absence. Crédit observé :
+**44,114244 → 43,936093 USD**, soit environ **0,1782 USD** de baisse. Ce relevé
+n'est pas une facture définitive et n'exclut pas une comptabilisation retardée.
+Aucune recharge automatique ni autre location n'a été lancée dans ce lot.
+
+`make check` complet a terminé avec le code zéro : 2 076 tests recensés dans
+la suite principale, 61 ignorés pour dépendances optionnelles, puis contrôles
+complémentaires. Les 16 tests maillage/checkpoint et les cinq tests de coques
+ont réellement passé dans l'image Linux ; les deux témoins STEP ont passé
+avec OCP. Le contrôle de connectivité dispose de 12 tests et d'un contre-test
+SciPy sur 80 configurations synthétiques. Ce dernier est exécuté dans le
+runtime QA dédié : le Python général du Mac possède une extension SciPy
+qui ne se charge pas, signalée comme dépendance optionnelle indisponible et
+non comme un test scientifique réussi. Le modèle cible 700 PS a 14 tests.
+Ces contrôles logiciels ne prouvent ni résistance moteur ni fabricabilité.
+
+Les recherches parallèles livrent aussi le
+[dimensionnement cible 700 PS](M64_700CH_ENGINE_RESEARCH.md) et la
+[campagne matériau/air/huile/LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
+Le témoin AdditiveFOAM laser éteint et le nouveau pas de 25 ns ont réellement
+été exécutés, **sur un coupon AlSi10Mg, pas sur cette culasse**. Le cas actif
+reste plafonné et non qualifié ; son bilan n'autorise aucune impression moteur.
+
+## Historique : premier lot du 7 septembre, avant cette reprise
 
 L'image Docker publique a été construite et utilisée sur une instance Vast.
 Le corps réel et trois domaines volumiques ont été calculés à 0,6 unité,
@@ -28,7 +144,7 @@ Le STEP maître reste intact. L'hypothèse d'échelle `1 unité = 1 mm` n'est pa
 une certification métrologique. Aucun nouvel ovale ni contour extérieur libre
 n'est introduit.
 
-## Image de calcul publiée et qualifiée
+## Image de calcul du premier lot
 
 Image logicielle publique, sans scan, STEP ni géométrie privée :
 
@@ -66,9 +182,9 @@ bibliothèque native sont identifiés dans chaque reçu.
 - Contrôle du STEP, triangulation déclarée et SHA de l'entrée avant/après.
 - Fermeture, orientation, connectivité de surface et volumes de maillage.
 - Outil de distances échantillonnées dans les deux sens vers les triangles du
-  maître, pas seulement vers leurs sommets. La campagne à trois résolutions
-  n'a pas persisté son rapport détaillé : aucune distribution de distances
-  n'est déclarée validée par ce lot. Ce ne sont pas des bornes de Hausdorff.
+  maître, pas seulement vers leurs sommets. La première campagne n'avait pas
+  persisté son rapport détaillé ; la reprise décrite en tête livre maintenant
+  les distributions et ses défauts. Ce ne sont pas des bornes de Hausdorff.
 - Partitions corps/complément et réserve/enveloppe vérifiées séparément.
 - Témoin de cube creux pour distinguer volume matériel et enveloppe externe.
 - Relecture des champs VDB par nom et contrôle de leurs volumes reconstruits.
@@ -105,11 +221,12 @@ conservée et signalée pour investigation : ni suppression arbitraire ni
 interprétation comme porosité du matériau. Ces contrôles ne classent toujours
 pas la connectivité des volumes fluides.
 
-Deux coques de surface ne prouvent pas deux cavités volumiques. Une analyse
-de connectivité par occupation et propagation depuis l'extérieur reste à
-effectuer avant d'appeler le complément « domaine CFD de refroidissement ».
+Deux coques de surface ne prouvent pas deux cavités volumiques. Le premier
+contrôle de propagation décrit en tête ne qualifie pas encore le complément
+comme « domaine CFD de refroidissement » : résolution, accès et fonctions
+des volumes doivent encore être établis.
 
-## Exécution Vast, incidents et arrêt
+## Historique Vast du premier lot, incidents et arrêt
 
 ```mermaid
 graph TD
@@ -173,7 +290,7 @@ La diminution de crédit observée sur les quatre tentatives est d'environ
 la comptabilisation du calcul, du stockage ou des transferts peut être retardée.
 Aucune recharge automatique n'a été demandée.
 
-## Vérification logicielle du lot
+## Vérification logicielle du premier lot
 
 `make check` a terminé avec le code 0 : suite principale de 2 032 tests,
 46 ignorés, puis contrôles complémentaires. Les tests de contrat ne prouvent
@@ -227,6 +344,9 @@ d'apprentissage de culasse n'est déclaré constitué ou exécuté dans ce lot.
 
 ## Reçus publiables et fichiers privés
 
+- [Reprise complète des audits, micro-coques, coût et arrêt](../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json).
+- [Qualification de la nouvelle image Python/PicoGK](../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
+- [Connectivité échantillonnée des vides](../twins/m64-cylinder-head/evidence/picogk-connectivity-20260907.json).
 - [Qualification de l'image](../twins/m64-cylinder-head/evidence/picogk-image-qualification-20260907.json).
 - [Trois exécutions de voxelisation sur Kali](../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
 - [Audits indépendants des trois résolutions, avec état partiel](../twins/m64-cylinder-head/evidence/picogk-three-resolution-audit-20260907.json).

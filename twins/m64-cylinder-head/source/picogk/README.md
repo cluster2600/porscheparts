@@ -17,18 +17,71 @@ interfaces moteur ne deviennent pas des cotes M64 mesurées.
 3. `compare_meshes.py` : comparer ces trois sorties au même maître triangulé,
    vérifier la topologie, le volume, les boîtes et les distances échantillonnées
    dans les deux sens. Effectuer le repérage échantillonné des zones fines et
-   produire la vue comparative et une section.
+   sauvegarder séparément chaque résolution. Produire la vue comparative et
+   une section dans une étape distincte du gros audit.
 
 Le contre-contrôle Python nécessite `numpy`, `scipy`, `trimesh`, `rtree`,
 `matplotlib` et `networkx` (construction des contours de coupe). Son
-environnement est distinct du conteneur PicoGK .NET ; les versions réellement
-utilisées doivent accompagner le reçu d'audit. Le rendu Matplotlib peut
+environnement Python est isolé dans `/opt/geometry-qa` de l'image PicoGK de
+recherche ; les versions réellement utilisées accompagnent le reçu d'audit.
+Le témoin de l'image utilise uniquement des formes synthétiques, hors réseau.
+Le rendu Matplotlib peut
 présenter des défauts de tri de profondeur sur les faces coplanaires : une
 vue opaque VTK permet de les distinguer de défauts géométriques.
 
 L'import-export PicoGK remaille les surfaces : les maillages résultants ne
 remplacent **pas** le maître B-Rep des interfaces et des portées usinées.
 Une faible erreur volumique globale ne suffit pas à qualifier ces interfaces.
+
+## Audit reprenable et mémoire
+
+`compare_meshes.py --output NOUVEAU_DOSSIER --query-chunk-size 32` crée un
+contexte lié aux SHA des entrées, reçus et sources, aux versions Python et
+bibliothèques, ainsi qu'aux paramètres. Il exécute le maître puis chacune des
+trois résolutions dans un processus neuf. Chaque résultat complet est écrit
+atomiquement en JSON privé avant le suivant ; temps et pic RSS sont conservés.
+
+Après interruption, la même commande avec `--resume` réutilise seulement les
+checkpoints intègres dont tout le contexte correspond. Une modification de
+maillage, code, versions, seed ou taille de lot interdit la reprise du même
+dossier. Les sorties anciennes sans contexte ne sont pas promues en checkpoints.
+Le repli de classification intérieur/extérieur est explicitement seedé et
+les ambiguïtés persistantes sont rejetées et comptées, non résolues au hasard.
+
+Les lots bornent les requêtes de proximité et de rayons, **pas** la taille du
+maillage ou de son index spatial. Sur le maillage à 13,7 millions de triangles,
+lancer **sans `--render`**, avec limites mémoire/temps externes et supervision
+du groupe de processus. Après arrêt brutal du parent, vérifier l'absence de
+worker orphelin avant reprise : le verrou du répertoire seul ne le démontre pas.
+Le rendu Matplotlib ne possède pas de checkpoint distinct et ne doit pas
+conditionner la sauvegarde du calcul fin.
+
+Les tests couvrent panne après première résolution, reprise, corruption,
+contexte changé, verrou concurrent et invariance des requêtes, y compris une
+branche de parité incohérente forcée. Ils ne qualifient pas la pièce.
+
+## Coques orientées et contre-test du STEP
+
+`audit_roundtrip_shells.py` relit un candidat lié explicitement à son SHA,
+au maître et au reçu de voxelisation. Il conserve toutes les coques, compte
+leurs triangles et intègre leurs volumes signés ; la somme est comparée au
+volume du maillage entier. Une petite coque négative n'est ni supprimée selon
+sa taille, ni interprétée automatiquement comme porosité physique.
+
+`audit_shell_against_step.py extract` localise une coque choisie et enregistre
+ses triangles exacts **en privé**. Son mode `occt` utilise ces triangles comme
+un opérande fermé distinct, orienté positivement pour le diagnostic, puis
+calcule région moins STEP et région intersectée avec STEP. Il contrôle la
+validité et le bilan volumique aux tolérances OCCT déclarées, avec valeur
+floue supplémentaire nulle. Il n'inverse jamais le maillage source.
+Les témoins couvrent régions intérieures, extérieures et traversantes.
+
+Le [reçu de reprise](../../evidence/picogk-roundtrip-checkpoint-audit-20260907.json)
+conserve l'audit complet, les défauts et le contre-test de la micro-coque à
+0,3. Les coques de 0,15 ne sont pas assimilées à ce résultat. La
+[propagation des vides](../picogk-connectivity/README.md) est un contrôle
+distinct : connexité de surface et connectivité d'un volume ne sont pas
+équivalentes. Aucune de ces commandes ne répare ni n'autorise la fabrication.
 
 ## Diagnostic morphologique distinct
 
