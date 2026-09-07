@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
+  "status": "f0_published_dimensional_string_clean_sheet_flow_screen_only",
+  "geometry_authority": {
+    "published": [
+      "commercial title string 46 mm x 42 mm x 100 mm",
+      "three-bolt manifold set with two pieces",
+      "raw aluminium finish, alloy not disclosed"
+    ],
+    "catalogue_identity": [
+      "FUE PMO 9150",
+      "PM-O915-0",
+      "PMO9150"
+    ],
+    "hypotheses": [
+      "46 mm interpreted as upper flow diameter",
+      "42 mm interpreted as lower flow diameter",
+      "100 mm interpreted as axial runner height",
+      "three runners per bank on synthetic center positions",
+      "2 mm walls and two 6 mm common flanges",
+      "side runners splayed 10 mm outward and 5 mm laterally",
+      "three-bolt pattern intentionally omitted"
+    ],
+    "not_claimed": "No PMO or Porsche surface, port spacing, bolt pattern, flange, fitment or flow performance is claimed."
+  },
+  "synthetic_cases": {
+    "engine_displacement_l": 3.6,
+    "engine_speed_rpm": 6800.0,
+    "volumetric_efficiency": 0.95,
+    "runner_count_engine": 6,
+    "air_temperature_k": 320.0,
+    "screen_gauge_pressure_pa": 10000.0,
+    "contraction_loss_coefficient": 0.05,
+    "authority": "regression inputs only; no measured M64 volumetric efficiency, pulse, temperature, port field or complete intake tract"
+  },
+  "material_screen": {
+    "candidate": "generic LPBF AlSi10Mg, study only",
+    "density_g_cm3": 2.67,
+    "elastic_modulus_mpa": 70000.0,
+    "comparison_yield_strength_mpa": 245.0,
+    "thermal_expansion_per_k": 2.1e-05,
+    "thermal_conductivity_w_mk": 155.0,
+    "specific_heat_j_kg_k": 900.0,
+    "scope": "generic ambient screening values; no qualified intake-manifold LPBF material card"
+  },
+  "results": {
+    "analytic_volume_mm3": 172663.82345176407,
+    "cad_volume_mm3": 172671.9723247464,
+    "cad_minus_analytic_volume_mm3": 8.14887298233225,
+    "screening_mass_each_bank_g": 461.0341661070729,
+    "screening_mass_pair_g": 922.0683322141458,
+    "top_flow_area_each_m2": 0.0016619025137490004,
+    "bottom_flow_area_each_m2": 0.001385442360233099,
+    "total_cold_volume_flow_m3_s": 0.1938,
+    "runner_volume_flow_m3_s": 0.0323,
+    "top_velocity_m_s": 19.43555637757361,
+    "bottom_velocity_m_s": 23.313853341805984,
+    "bottom_reynolds": 59781.628148041455,
+    "bottom_mach": 0.06501807465194805,
+    "ideal_kinetic_pressure_change_pa": 96.16104544368956,
+    "screening_contraction_loss_pa": 15.762536971653903,
+    "screening_flow_power_engine_w": 3.054779665106526,
+    "engine_firing_frequency_hz": 340.0,
+    "runner_quarter_wave_hz": 896.4373932405988,
+    "quarter_wave_to_firing_frequency_ratio": 2.6365805683547023,
+    "first_order_quarter_wave_length_mm": 263.65805683547023,
+    "side_runner_splay_deg": 5.710593137499642,
+    "thin_wall_hoop_stress_mpa": 0.11,
+    "ambient_yield_ratio": 2227.2727272727275,
+    "free_thermal_expansion_mm": 0.21,
+    "fully_constrained_elastic_thermal_stress_mpa": 147.0,
+    "lumped_heat_capacity_each_bank_j_k": 414.93074949636565
+  },
+  "equations": {
+    "frustum": "V=pi*L*(r0^2+r0*r1+r1^2)/3",
+    "mass": "m=rho*V",
+    "four_stroke_flow": "Q=Vd*N*eta_v/(2*60); Qrunner=Q/6",
+    "continuity": "u=Q/A",
+    "reynolds": "Re=rho*u*D/mu",
+    "mach": "M=u/sqrt(gamma*R*T)",
+    "kinetic_pressure": "delta_p_kin=rho*(u2^2-u1^2)/2",
+    "minor_loss_screen": "delta_p_loss=K*rho*u2^2/2; P=delta_p_loss*Q",
+    "firing_frequency": "f_fire=N/60*n_cyl/2",
+    "quarter_wave": "f1=a/(4*L); L1=a/(4*f_fire)",
+    "thin_wall_pressure": "sigma_hoop=p*r/t",
+    "free_thermal_expansion": "delta_L=alpha*L*delta_T",
+    "fully_constrained_thermal_stress": "sigma_th=E*alpha*delta_T",
+    "heat_capacity": "C=m*cp"
+  },
+  "dfam_screen": {
+    "part_consolidation": "three splayed tapered runners and two common flanges in one BREP",
+    "open_flow_channels": 3,
+    "trapped_powder_volume": false,
+    "nominal_runner_wall_mm": 2.0,
+    "mounting_holes_intentionally_absent": true,
+    "machining_allowance_defined": false,
+    "orientation_selected": false,
+    "process_comparison_required": [
+      "cast or CNC/fabricated aluminium manifold",
+      "LPBF AlSi10Mg personalized runner manifold"
+    ]
+  },
+  "interpretation": {
+    "flow": "one-dimensional steady screen only; port pulsation, runner interaction, boundary layers, roughness and full plenum are absent",
+    "acoustic": "100 mm quarter-wave result is not intake tuning because the complete runner, valve timing and reflection boundaries are absent",
+    "mechanics": "thin-wall pressure only; flange bending, bolt preload, vibration, fatigue and backfire are absent",
+    "thermal": "uniform delta-T screen only; head conduction, fuel film and transient heat soak are absent",
+    "mass": "no commercial mass is published, so the calculated pair mass cannot validate the concept",
+    "physicsnemo": "deferred until correlated CFD/CHT and structural cases with uncertainty and OOD gates exist",
+    "simready": "deferred until ports, bolt pattern, installed environment and qualified material card are measured"
+  },
+  "release_blockers": [
+    "No measured PMO part, cylinder-head ports, throttle interface, spacings, bolt pattern, gaskets, clearances or tolerances.",
+    "The 46 x 42 x 100 mm string has no public drawing defining its datums or meaning.",
+    "No commercial mass, aluminium grade, heat treatment, process or wall distribution.",
+    "No measured M64 airflow, volumetric-efficiency map, valve timing, pressure pulses, temperature or acoustic boundary conditions.",
+    "No qualified LPBF material card, surface condition, leak criterion or fuel compatibility assessment.",
+    "No build orientation, supports, recoater check, machining stock or distortion compensation.",
+    "No transient compressible CFD, conjugate heat transfer, modal, fatigue or backfire load case.",
+    "No dimensional inspection, CT, pressure/leak bench, flow bench, thermal cycle, shaker or engine dyno test.",
+    "No professional engine engineering review or approved validation plan."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "volume_mm3": 172671.9723247464,
+    "envelope_mm": [
+      180.0,
+      70.0,
+      100.0
+    ],
+    "maximum_volume_delta_mm3": 0.05,
+    "maximum_envelope_delta_mm": 0.01
+  }
+}
