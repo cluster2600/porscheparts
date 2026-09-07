@@ -136,6 +136,12 @@ def main():
     # parallele depuis le meme dossier partageaient mesh.npz et les fichiers du
     # solveur : elles se seraient contaminees en silence.
     ap.add_argument('--work', default=None)
+    # Parallelisation par tranches. CalculiX passe mal a l'echelle en fils — 4
+    # fils ne rendent que 1,3 fois le debit d'un seul — alors que N cas menes de
+    # front sur un fil chacun rendent presque N. Chaque tranche a son repertoire
+    # de travail ; la reprise par existence de fichier les rend independantes.
+    ap.add_argument('--shard', type=int, default=0)
+    ap.add_argument('--shards', type=int, default=1)
     a = ap.parse_args()
     if a.smoke:
         a.n, a.out = 4, 'corpus_smoke'
@@ -156,13 +162,16 @@ def main():
     S = '/home/maxime/work/964twin/syslibs/usr/lib/x86_64-linux-gnu'
     env_base['LD_LIBRARY_PATH'] = f"{S}:{S}/lapack:{S}/blas:{S}/openmpi/lib"
     env_base.setdefault('OMP_NUM_THREADS', '4')
-    env_base['FEA_WORK'] = a.work or f'work_{a.out}'
+    env_base['FEA_WORK'] = a.work or (f'work_{a.out}_{a.shard}' if a.shards > 1
+                                      else f'work_{a.out}')
     (HERE / env_base['FEA_WORK']).mkdir(exist_ok=True)
 
     plan = sample(np.random.default_rng(a.seed), a.n)
     t0, done, failed = time.time(), 0, 0
     with open(out / 'index.jsonl', 'a') as idx:
         for i, p in enumerate(plan):
+            if a.shards > 1 and i % a.shards != a.shard:
+                continue
             f = out / f'case_{i:05d}.npz'
             if f.exists():
                 done += 1; continue
@@ -180,6 +189,14 @@ def main():
             if done % 10 == 0 or a.smoke:
                 print(f"  {done}/{a.n}  dernier K={rec['K']:.0f} N.m/deg  "
                       f"{len(rec['xyz'])} noeuds  {time.time()-t0:.0f}s")
+
+    # Une tranche ne connait qu'une partie du corpus : elle n'a pas de quoi ecrire
+    # un manifeste juste. C'est la passe finale sans tranches — qui saute tout ce
+    # qui existe et ne recalcule que les manques — qui l'ecrit.
+    if a.shards > 1:
+        print(f"tranche {a.shard}/{a.shards} terminee ; relancer sans --shards "
+              f"pour completer et ecrire le manifeste")
+        return
 
     manifest = {
         "corpus": a.out, "seed": a.seed, "n_demande": a.n,
