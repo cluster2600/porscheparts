@@ -116,7 +116,7 @@ documentaire, sans importer le PDF ni les présenter comme des relevés physique
 
 La **Phase 2 — Inventaire physique et assemblage du jumeau** est menée en mode
 numérique. Une première enveloppe paramétrique de référence est disponible dans
-[`twin/993/`](twin/993/) et les premières zones fonctionnelles sont suivies dans
+[`twins/993-reference-envelope/`](twins/993-reference-envelope/) et les premières zones fonctionnelles sont suivies dans
 [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md). Ces géométries ne prétendent pas
 reconstruire la carrosserie ni prouver un montage.
 Aucun jumeau n'est encore au niveau `F2_interface` et aucune pièce n'est encore
@@ -127,7 +127,7 @@ premier inventaire physique est décrit dans
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
-![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
+![État sourcé du jumeau numérique 993](media/diagrams/digital-twin-993-etat.svg)
 
 Ce schéma représente les relations logiques actuellement sourcées, pas la
 position réelle des composants dans la voiture. La recherche des modèles CAO,
