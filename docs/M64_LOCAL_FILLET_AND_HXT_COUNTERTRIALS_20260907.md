@@ -6,6 +6,8 @@ discrétisation sans changer arbitrairement la silhouette extérieure.
 **Ces essais restent des développements CAO et maillage, pas une culasse
 thermiquement ou mécaniquement validée.**
 
+La suite est tracée dans le [témoin de raccord local PicoGK du 8 septembre](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md).
+
 ## Raccord local : avant/après réel, deux constructions rejetées
 
 Le [reçu des deux prototypes](../twins/m64-cylinder-head/evidence/local-intake-fillet-countertrials-20260907.json)

@@ -1,0 +1,38 @@
+{
+  "schema": "m64-picogk-local-witness-software-checks/v1",
+  "date_local": "2026-09-08",
+  "scope": "software_and_synthetic_geometry_checks_not_engine_validation",
+  "make_check": {
+    "exit_code": 0,
+    "main_suite_tests_run": 2167,
+    "main_suite_skipped": 82,
+    "main_suite_elapsed_seconds": 175.237,
+    "additional_make_targets_completed": true,
+    "additional_targets_also_contain_skipped_tests": true,
+    "log_sha256": "aecedc040662ff8cda3a5a3b6838d2cd56ef8533aa19f5e0ebb2afc304e4986f"
+  },
+  "targeted_QA_tests": {
+    "runtime": "Python 3.14.7; NumPy 2.5.3; Trimesh 5.1.0",
+    "modules": [
+      "tests.test_picogk_local_junction",
+      "tests.test_picogk_exact_zero_countertrial",
+      "tests.test_picogk_surface_topology",
+      "tests.test_picogk_direct_union_junction",
+      "tests.test_picogk_direct_surface_counteraudit"
+    ],
+    "exit_code": 0,
+    "tests_run": 23,
+    "skipped": 0,
+    "elapsed_seconds": 0.459,
+    "log_sha256": "028bdf06558cf3a74b92037a9504753d28dbf894f6bc76bbdd611ff90693615d",
+    "negative_zero_volume_fixture_emits_Trimesh_RuntimeWarning": true
+  },
+  "six_public_source_and_policy_hash_bindings_checked": true,
+  "git_diff_check_passed": true,
+  "raw_witness_rejections_overridden_by_unit_tests": false,
+  "ROI_failure_overridden_by_unit_tests": false,
+  "original_master_modified": false,
+  "new_vast_instances_for_this_lot": 0,
+  "CFD_qualified": false,
+  "manufacturing_authorized": false
+}
