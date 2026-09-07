@@ -352,6 +352,16 @@ tombe. Ce n'est pas un defaut de finesse de maillage : raffiner en S3 fait
 descendre K de 2442 a 1750 sans converger, tandis que le S6 rend 1436 des la
 finesse la plus grossiere. **C'est l'ordre de l'element, pas le pas du maillage.**
 
+Une reserve sur la comparaison elle-meme. `dominance_study.py` ecrit son propre
+jeu de donnees et depouille le modele **etendu en 3D** par CalculiX, alors que
+`run_fea.py` demande `OUTPUT=2D` et mesure sur la surface moyenne. Les deux ne
+prennent donc pas tout a fait les memes noeuds : sur la cellule fermee en S6,
+5733 N.m/deg d'un cote et 5415 de l'autre, soit 5,5 %. Les **rapports** ne s'en
+ressentent pas, chaque etude comparant ses propres cas entre eux, et c'est
+verifiable : `run_fea.py` en S6 rend +93,5 % et +2,3 % la ou `dominance_study.py`
+rend +93,8 % et +2,1 %. Les valeurs S6 du tableau ci-dessus sont toutes prises
+avec `run_fea.py`, donc sur la meme base que les valeurs S3.
+
 ### Ce que cela detruit
 
 `dominance_study.py` etait deja en S6, et c'est ce qui a permis de voir le
