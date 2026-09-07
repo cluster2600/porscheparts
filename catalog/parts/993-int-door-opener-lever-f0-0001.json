@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+  "name": "Levier intérieur d'ouverture de porte 993, concept F0 aluminium",
+  "description": "Concept indépendant de levier et chape intégrés pour étudier une refabrication LPBF à faible volume. PorscheFanatics établit les références PET gauche et droite ; FVD publie l'enveloppe et la masse d'une paire aftermarket, mais aucune géométrie d'interface ne permet un montage.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_door_trim_variants_to_confirm"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "99355585100",
+      "99355585200"
+    ]
+  },
+  "classification": {
+    "category": "interior_door_release",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, DfAM et mécanique d'un levier ouvrant ; aucun montage ou usage d'évacuation autorisé"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-int-door-opener-lever-f0-0001/source/door_opener_lever.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - références PET des ouvre-portes intérieurs 993",
+        "url": "https://porschefanatics.com/oem/",
+        "source_type": "community",
+        "license": "site-du-proprietaire-du-projet-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Le dataset au commit 4192f9699f1176bcfe8b8ec7cbcc7c05dc7ee296 identifie 993 555 851 00 et 993 555 852 00 comme door opener aux positions PET 807-10/807-11. Voir SRC-PORSCHEFANATICS-993-DOOR-OPENER-PET. Il n'apporte aucune cote."
+      },
+      {
+        "title": "FVD - jeu d'ouvre-portes aluminium FVD55599301B",
+        "url": "https://www.fvd.net/de/shop/tueroeffnersatz-2-stk-aluminium-schwarz-993-fvd55599301b~p310555",
+        "source_type": "manufacturer",
+        "license": "commercial-retailer-page-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "FVD déclare 108 x 45 x 27 mm, 0,18 kg la paire, aluminium haute résistance anodisé ou thermolaqué et fixations d'origine. Ces valeurs sont une enveloppe produit, pas une définition OEM. Voir SRC-FVD-993-DOOR-HANDLE-DIMENSIONS."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-04",
+        "notes": "Carte ambiante de criblage seulement ; le grade du produit FVD est inconnu et aucune équivalence n'est revendiquée. Voir SRC-EOS-ALSI10MG-MATERIAL-DATA."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "CNC"
+    ],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "aluminium LPBF candidat",
+      "grade": "AlSi10Mg de criblage ; matériau OEM et grade du produit commercial inconnus",
+      "standard": "ASTM F3318-18 à contractualiser si le concept progresse"
+    },
+    "post_processing": [
+      "retrait des supports avec accès conservé aux poches",
+      "traitement thermique qualifié pour la machine et l'orientation",
+      "alésage et finition du pivot après définition du jeu",
+      "usinage des portées de fixation avec surépaisseur future",
+      "anodisation ou thermolaquage après contrôle dimensionnel"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation et lot traçables",
+      "coupon témoin dans l'orientation critique du levier",
+      "contrôle dimensionnel de l'enveloppe, du pivot, des portées et des butées",
+      "CT ou radiographie de la chape et ressuage après usinage",
+      "rugosité et arrondis contrôlés dans les zones de préhension",
+      "essais statiques et cycliques instrumentés avant tout montage"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "À étudier entre aluminium imprimé, axe, fixations et mécanisme OEM après identification des matériaux réels."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-door-opener-pet.json",
+      "catalog/sources/src-fvd-993-door-handle-dimensions.json",
+      "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seule l'enveloppe 108 x 45 x 27 mm vient de la fiche commerciale ; la plaque, les poches, la chape et les alésages sont des hypothèses F0.",
+      "La masse publiée de 0,18 kg concerne la paire commerciale complète et ne valide pas la masse du concept.",
+      "Le cas de 150 N et +60 K est synthétique ; aucune charge, direction, butée ou température 993 n'a été mesurée.",
+      "Le calcul nominal ignore concentration de contrainte, contact, défauts LPBF, fatigue, jeu d'axe, revêtement et vieillissement.",
+      "Le STEP prouve seulement un BREP calculable dans l'enveloppe ; il ne doit être ni imprimé pour montage ni installé dans une porte."
+    ]
+  }
+}
