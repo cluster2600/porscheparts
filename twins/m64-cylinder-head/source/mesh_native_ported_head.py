@@ -157,6 +157,33 @@ def reread_quality_gate(qualities, determinants, expected_count):
     return result
 
 
+def triangle_signatures(points, triangles):
+    """Tag/order-independent coordinate signatures; exact hex is not rounded."""
+    exact=[]; oriented=[]; rounded=[]
+    for triangle in triangles:
+        vertices=tuple(tuple(float(value).hex() for value in points[tag]) for tag in triangle)
+        if len(vertices)!=3:raise ValueError('only_triangles_supported')
+        exact.append(tuple(sorted(vertices)))
+        oriented.append(min(vertices[i:]+vertices[:i] for i in range(3)))
+        rounded.append(tuple(sorted(tuple(round(value,12) for value in points[tag]) for tag in triangle)))
+    def digest(rows):
+        return hashlib.sha256(json.dumps(sorted(rows),separators=(',',':')).encode()).hexdigest()
+    return {'triangles':len(exact),'exact_unoriented_sha256':digest(exact),
+            'exact_oriented_sha256':digest(oriented),'rounded12_unoriented_sha256':digest(rounded)}
+
+
+def surface_mesh_snapshot(gmsh):
+    tags,xyz,_=gmsh.model.mesh.getNodes()
+    points={int(tag):tuple(map(float,xyz[3*i:3*i+3])) for i,tag in enumerate(tags)}
+    rows=[]
+    for _,tag in gmsh.model.getEntities(2):
+        types,_,flat=gmsh.model.mesh.getElements(2,tag)
+        if list(map(int,types))!=[2]:raise ValueError('only_linear_surface_triangles_supported')
+        triangles=[tuple(map(int,flat[0][i:i+3])) for i in range(0,len(flat[0]),3)]
+        rows.append({'gmsh_face_tag':tag,**triangle_signatures(points,triangles)})
+    return sorted(rows,key=lambda row:row['gmsh_face_tag'])
+
+
 def quality_locations(gmsh, surfaces, binding, tags, tetrahedra, points, quality, determinants):
     """Private mesh diagnostics, not an inferred anatomical classification."""
     boundary={}; type_by_tag={};surface_quality=[]
@@ -253,6 +280,7 @@ def mesh(args):
             'volume_relative_error_limit':.01,'import_relative_mass_limit':1e-6,
             'minSICN_project_limit':.1,'maximum_tetrahedra_audited':args.maximum_tetrahedra}
     report['tetrahedral_optimizer']=args.optimizer
+    report['volume_algorithm']=args.volume_algorithm
     local_evidence_hash=sha256(args.preserved_skin_meshadapt_evidence) if args.preserved_skin_meshadapt_evidence else None
     if local_evidence_hash and local_evidence_hash!=PRESERVED_SKIN_EVIDENCE_SHA256:
         raise ValueError('preserved_skin_evidence_hash_mismatch')
@@ -264,7 +292,7 @@ def mesh(args):
                  'Mesh.MaxNumThreads1D':2,'Mesh.MaxNumThreads2D':2,'Mesh.MaxNumThreads3D':2,
                  'Geometry.OCCFixDegenerated':0,'Geometry.OCCFixSmallEdges':0,'Geometry.OCCFixSmallFaces':0,
                  'Geometry.OCCSewFaces':0,'Geometry.OCCMakeSolids':0,'Geometry.OCCAutoFix':0,'Geometry.OCCScaling':1,
-                 'Mesh.ElementOrder':1,'Mesh.RecombineAll':0,'Mesh.Algorithm':6,'Mesh.Algorithm3D':1,
+                 'Mesh.ElementOrder':1,'Mesh.RecombineAll':0,'Mesh.Algorithm':6,'Mesh.Algorithm3D':args.volume_algorithm,
                  'Mesh.MeshSizeMin':args.minimum,'Mesh.MeshSizeMax':args.maximum,
                  'Mesh.MeshSizeFromCurvature':12,'Mesh.MeshSizeFromPoints':0,
                  'Mesh.Optimize':0,'Mesh.OptimizeNetgen':0,'Mesh.RandomSeed':1}
@@ -297,12 +325,27 @@ def mesh(args):
                 gmsh.model.mesh.setAlgorithm(2,item['gmsh_face_tag'],item['algorithm'])
             report['local_surface_algorithm_override']={'native_BRep_sha256':args.sha256,
                 'preserved_source_evidence_sha256':local_evidence_hash,'assignments':assignments,
-                'only_meshing_parameter_change':'MeshAdapt_1_instead_of_Frontal_Delaunay_6_on_three_preserved_faces',
+                'only_local_surface_meshing_parameter_change':'MeshAdapt_1_instead_of_Frontal_Delaunay_6_on_three_preserved_faces',
                 'primary_documentation':'https://gmsh.info/doc/texinfo/#Choosing-the-right-unstructured-algorithm'}
             save(report_path,report)
         for dimension in (1,2,3):
             report['stage']='meshing_'+str(dimension)+'D';save(report_path,report)
             gmsh.model.mesh.generate(dimension)
+            if args.volume_algorithm==10 and dimension in (2,3):
+                snapshot=surface_mesh_snapshot(gmsh)
+                snapshot_path=args.output/('surface-before-3D-private.json' if dimension==2 else 'surface-after-3D-private.json')
+                save(snapshot_path,{'schema':'m64-private-surface-triangulation-snapshot/v1',
+                    'native_BRep_sha256':args.sha256,'source_sha256':report['source_sha256'],
+                    'gmsh_version':gmsh.__version__,'surface_rows_private':snapshot,
+                    'exact_signature_scope':'Coordinates serialized as float.hex, triangles unordered; oriented signature retains winding modulo cyclic permutation.',
+                    'rounded_signature_scope':'Unoriented triangles with coordinates rounded to 12 decimals; not exact equivalence.'})
+                if dimension==2:
+                    before_surfaces=snapshot
+                    report['surface_before_3D_sha256']=sha256(snapshot_path)
+                else:
+                    report['surface_after_3D_sha256']=sha256(snapshot_path)
+                    report['surface_triangulations_unchanged_during_3D']=snapshot==before_surfaces
+                save(report_path,report)
         if args.optimizer=='netgen':
             report['stage']='optimizing_tetrahedra_netgen';save(report_path,report)
             before_types,before_tags,before_nodes=gmsh.model.mesh.getElements(3)
@@ -383,6 +426,8 @@ def mesh(args):
                'reread_minSICN_project_limit':reread_quality['minSICN_project_limit'],
                'coarse_volume_error_limit':report['mesh']['volume_relative_difference_from_native']<=.01,
                'mesh_export_roundtrip':export_ok}
+        if args.volume_algorithm==10:
+            gates['surface_triangulations_unchanged_during_3D']=report['surface_triangulations_unchanged_during_3D']
         report['gates']=gates
         report['status']='coarse_mesh_checks_passed_NOT_CAE_VALIDATED' if all(gates.values()) else 'mesh_generated_but_rejected_by_quality_or_integrity_gate'
     except Exception as error:
@@ -402,7 +447,7 @@ def mesh(args):
     return 0 if report['status']=='coarse_mesh_checks_passed_NOT_CAE_VALIDATED' else 2
 
 
-def main():
+def argument_parser():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode',choices=('baseline','mesh'),required=True)
     parser.add_argument('--input',type=Path,required=True);parser.add_argument('--sha256',required=True)
@@ -410,9 +455,15 @@ def main():
     parser.add_argument('--minimum',type=float,default=1.);parser.add_argument('--maximum',type=float,default=6.)
     parser.add_argument('--maximum-tetrahedra',type=int,default=1500000)
     parser.add_argument('--optimizer',choices=('none','netgen'),default='none')
+    parser.add_argument('--volume-algorithm',type=int,choices=(1,10),default=1,
+                        help='1: historical Delaunay; 10: opt-in HXT volume counter-experiment')
     parser.add_argument('--preserved-skin-meshadapt-evidence',type=Path,
                         help='Exact private trial05 preserved-face evidence; never valid on another body')
-    args=parser.parse_args()
+    return parser
+
+
+def main():
+    parser=argument_parser();args=parser.parse_args()
     if not (math.isfinite(args.minimum) and math.isfinite(args.maximum) and 0<args.minimum<=args.maximum):parser.error('positive_mesh_size_interval_required')
     if args.mode=='mesh' and args.baseline is None:parser.error('baseline_required')
     if args.preserved_skin_meshadapt_evidence and (args.mode!='mesh' or args.optimizer!='none'

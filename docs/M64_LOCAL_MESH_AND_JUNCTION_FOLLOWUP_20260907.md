@@ -111,3 +111,6 @@ preuves privées. Elle n'a exécuté aucun nouveau maillage.
 Les compétences de tests et de documentation ont conduit à conserver le
 contre-exemple d'inversion après export, les résultats rejetés et les
 empreintes du code réellement exécuté, sans les confondre avec le code futur.
+
+La [suite des prototypes de raccord et du maillage](M64_LOCAL_FILLET_AND_HXT_COUNTERTRIALS_20260907.md)
+conserve les nouveaux essais et leurs rejets séparément.
