@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+  "name": "Support d'intercooler 993 Turbo/GT2, concept titane F0",
+  "description": "Concept indépendant de support ouvert à deux rails pour cribler l'intérêt d'une refabrication LPBF en Ti-6Al-4V. PorscheFanatics et le PET établissent les références du circuit ; FVD publie l'enveloppe et la masse d'un support renforcé aftermarket, sans géométrie d'interface exploitable.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo",
+      "993_GT2"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "99311011050",
+      "99311011052"
+    ]
+  },
+  "classification": {
+    "category": "charge_air_support",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, DfAM, masse et mécanique d'un support d'intercooler ; aucun montage véhicule autorisé"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-intercooler-bracket-ti-f0-0001/source/intercooler_bracket.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration PET ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - relevé PET des groupes Turbo 993",
+        "url": "https://porschefanatics.com/oem/993/202-16/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Le catalogue localise le circuit de suralimentation et ses supports. Il fournit identité et contexte, mais aucune cote, tolérance ou surface CAO. Voir SRC-PORSCHEFANATICS-993-TURBO-PET."
+      },
+      {
+        "title": "FVD - support renforcé d'intercooler FVD11011050",
+        "url": "https://www.fvd.net/de/shop/traeger-ladeluftkuehler-993-turbo-gt2-verstaerkt-fvd11011050~p265005",
+        "source_type": "manufacturer",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "FVD déclare 255 x 80 x 23 mm, 0,2 kg et une application 993 Turbo/GT2. L'enveloppe est conservée ; rails, perçages et plot central du F0 sont indépendants. Voir SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS."
+      },
+      {
+        "title": "EOS Titanium Ti64 Grade 5 material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-titanium-ti64-grade-5",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Référence procédé LPBF/DMLS : anisotropie, paramètres machine et traitement thermique doivent être qualifiés. Voir SRC-EOS-TI64-GRADE5."
+      },
+      {
+        "title": "TIMETAL 6-4 physical properties",
+        "url": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Densité, module, dilatation et limite minimale de tôle corroyée servent uniquement au criblage ; ils ne sont pas des valeurs admissibles LPBF. Voir SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "CNC",
+      "sheet_metal"
+    ],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "titane LPBF candidat",
+      "grade": "Ti-6Al-4V Grade 5 de criblage ; matériau OEM et produit FVD inconnus",
+      "standard": "ASTM F2924 ou spécification fournisseur équivalente à contractualiser"
+    },
+    "post_processing": [
+      "retrait des supports avec accès conservé aux deux évidements ouverts",
+      "traitement thermique qualifié pour la machine, les paramètres et l'orientation",
+      "HIP à décider après analyse fatigue et population de défauts",
+      "usinage des alésages d'extrémité et de l'interface centrale après définition des jeux",
+      "ébavurage, rayonnage et finition des chemins de charge",
+      "passivation et isolation galvanique après contrôle dimensionnel"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage de poudre traçables",
+      "coupons témoins en orientations critiques avec traction et fatigue représentatives",
+      "contrôle dimensionnel des datums, entraxes, alésages et enveloppe",
+      "CT des noeuds et bossages, puis ressuage après usinage",
+      "rugosité, porosité, couche alpha et contraintes résiduelles contractualisées",
+      "essais statiques, vibratoires et thermiques instrumentés avant tout montage"
+    ]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V Grade 5 candidat uniquement",
+    "heat_treatment": "Cycle EOS indicatif à confirmer pour la machine et les paramètres retenus ; aucune recette n'est gelée",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": [
+      "deux alésages d'extrémité",
+      "alésage et datum du plot central",
+      "portées de fixation à définir sur pièce mesurée"
+    ],
+    "inspection": [
+      "CT des bossages et jonctions de rails",
+      "contrôle dimensionnel des interfaces usinées",
+      "ressuage après usinage",
+      "rugosité et porosité",
+      "coupons de traction et fatigue représentatifs de l'orientation"
+    ],
+    "galvanic_isolation": "Séparer électriquement le titane de l'intercooler aluminium et des fixations acier par bagues, rondelles, revêtement et étanchéité qualifiés après identification des matériaux réels."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-turbo-pet.json",
+      "catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json",
+      "catalog/sources/src-eos-ti64-grade5.json",
+      "catalog/sources/src-timet-ti64-physical-properties.json",
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seule l'enveloppe 255 x 80 x 23 mm vient de la fiche commerciale ; les rails, perçages et le plot central sont des hypothèses F0.",
+      "La masse publiée de 0,2 kg concerne le produit FVD dont la matière et la topologie exactes sont inconnues ; elle ne valide pas le concept.",
+      "Le cas central de 400 N, la portée de 220 mm et +120 K sont synthétiques ; aucune charge 993 n'a été mesurée.",
+      "Le calcul de poutre ignore courbure, concentrations, contact, précharge, vibration, fatigue, défauts LPBF et contraintes thermiques.",
+      "La limite de comparaison 828 MPa vient d'une référence corroyée TIMET et n'est pas une valeur admissible LPBF.",
+      "Le STEP prouve seulement un BREP calculable dans l'enveloppe ; il ne doit être ni fabriqué pour montage ni installé."
+    ]
+  }
+}
