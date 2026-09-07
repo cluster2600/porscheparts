@@ -19,4 +19,5 @@ timeout 120 dotnet /opt/m64/HeadVoxels.dll \
 # Host keys intentionally do not exist in distributed layers. Runtime/startup
 # validates the SSH server with freshly generated container-specific keys.
 test -x /usr/sbin/sshd
+timeout 120 /opt/geometry-qa/bin/python /opt/picogk-witness/geometry-python-smoke.py
 echo PICOGK_M64_SMOKE_PASS
