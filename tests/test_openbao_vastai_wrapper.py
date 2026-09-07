@@ -522,7 +522,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def test_m64_endpoint_malformed_direct_never_silently_uses_proxy(self):
         base = {"id": 12345, "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
                 "public_ipaddr": "203.0.113.8"}
-        bad_mappings = (None, [], {}, [None], [{}], [{"HostPort": True}],
+        bad_mappings = ({}, [None], [{}], [{"HostPort": True}],
                         [{"HostPort": "32001;id"}], [{"HostPort": "32001.0"}],
                         [{"HostPort": float("nan")}], [{"HostPort": 0}],
                         [{"HostPort": 65536}], [{"HostPort": 32001}, {"HostPort": 32002}])
@@ -535,6 +535,73 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         for extra in ({"id": True}, {"id": 2}, {"ports": []}, {"ssh_host": "-bad"}, {"ssh_port": True}):
             with self.subTest(extra=extra), self.assertRaises(self.wrapper.SafeError):
                 self.wrapper.m64_ssh_endpoint(dict(base, **extra), 12345)
+
+    def test_m64_direct_selects_matching_ipv4_or_ipv6_family_not_first_mapping(self):
+        bindings = [{"HostIp": "::", "HostPort": "32002"}, {"HostIp": "0.0.0.0", "HostPort": "32001"}]
+        for host, expected_port in (("1.1.1.1", 32001), ("2606:4700:4700::1111", 32002)):
+            for rows in (bindings, list(reversed(bindings))):
+                with self.subTest(host=host, rows=rows):
+                    raw = {"id": 12345, "public_ipaddr": host, "ports": {"22/tcp": rows}}
+                    result = self.wrapper.m64_ssh_endpoint(raw, 12345)
+                    self.assertEqual(result["port"], expected_port)
+                    selected = next(i for i,row in enumerate(rows) if int(row["HostPort"]) == expected_port)
+                    self.assertEqual(result["source"], f"public_ipaddr+ports[22/tcp][{selected}].HostPort")
+
+    def test_m64_direct_deduplicates_identical_normalized_bindings(self):
+        for rows in (
+            [{"HostIp": "0.0.0.0", "HostPort": "32001"}, {"HostIp": "0.0.0.0", "HostPort": 32001}],
+            [{"HostPort": "32001"}, {"HostPort": 32001}],
+        ):
+            with self.subTest(rows=rows):
+                result = self.wrapper.m64_ssh_endpoint({"id": 12345, "public_ipaddr": "1.1.1.1", "ports": {"22/tcp": rows}}, 12345)
+                self.assertEqual(result["port"], 32001)
+                self.assertEqual(result["source"], "public_ipaddr+ports[22/tcp][0].HostPort+ports[22/tcp][1].HostPort")
+
+    def test_m64_direct_rejects_ambiguous_or_malformed_bindings_with_safe_diagnostic(self):
+        cases = (
+            [{"HostIp": "0.0.0.0", "HostPort": "32001"}, {"HostIp": "0.0.0.0", "HostPort": "32002"}],
+            [{"HostIp": "::", "HostPort": "32002"}],
+            [{"HostPort": "32001"}, {"HostIp": "0.0.0.0", "HostPort": "32001"}],
+            [{"HostIp": "synthetic-secret", "HostPort": "32001"}],
+        )
+        for rows in cases:
+            raw = {"id": 12345, "public_ipaddr": "1.1.1.1", "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                   "ports": {"22/tcp": rows}, "env": {"TOKEN": "synthetic-secret"}}
+            with self.subTest(rows=rows), mock.patch("sys.stderr", io.StringIO()) as output, self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(raw, 12345)
+            text = output.getvalue()
+            self.assertTrue(text.startswith("OPENBAO_VASTAI_M64_ENDPOINT_DIAGNOSTIC "))
+            report = json.loads(text.split(" ", 1)[1])
+            self.assertEqual(report["mapping_count"], len(rows))
+            self.assertEqual(report["mapping_summaries"][0]["port"], 32001 if len(rows)!=1 or rows[0].get("HostIp")!="::" else 32002)
+            self.assertNotIn("synthetic-secret", text)
+            self.assertNotIn("TOKEN", text)
+            self.assertFalse(report["ssh_connection_tested"])
+
+    def test_m64_unallocated_direct_mappings_wait_without_proxy(self):
+        for mappings in (None, []):
+            raw = self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", public_ipaddr="1.1.1.1",
+                                        ssh_host="ssh.example.invalid", ssh_port=22001, ports={"22/tcp": mappings})
+            receipt = {}
+            with self.subTest(mappings=mappings), self.fake_simready_clock(lambda clock: {"instances": raw}) as clock, mock.patch("sys.stderr", io.StringIO()) as output, mock.patch.object(self.wrapper, "SIMREADY_TOTAL_READY_TIMEOUT_SECONDS", 45), mock.patch.object(self.wrapper, "SIMREADY_SSH_READY_TIMEOUT_SECONDS", 30), self.assertRaisesRegex(self.wrapper.SafeError, "did not pass in time"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+            self.assertEqual(clock["probe_calls"], 0)
+            self.assertEqual(clock["now"], 30)
+            self.assertEqual(receipt, {})
+            self.assertIn('"reason": "direct_mapping_not_allocated"', output.getvalue())
+
+    def test_m64_direct_allocation_arrives_within_original_deadline(self):
+        def metadata(clock):
+            mappings = None if clock["metadata_calls"] == 1 else [{"HostIp": "::", "HostPort": "32002"}, {"HostIp": "0.0.0.0", "HostPort": "32001"}]
+            return {"instances": self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", public_ipaddr="1.1.1.1",
+                    ssh_host="ssh.example.invalid", ssh_port=22001, ports={"22/tcp": mappings})}
+        receipt = {}
+        with self.fake_simready_clock(metadata) as clock, mock.patch("sys.stderr", io.StringIO()):
+            self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+        self.assertEqual(clock["now"], 15)
+        self.assertEqual(clock["probe_calls"], 1)
+        self.assertEqual(receipt["port"], 32001)
+        self.assertEqual(receipt["source"], "public_ipaddr+ports[22/tcp][1].HostPort")
 
     def test_ssh_endpoints_command_only_reads_one_instance(self):
         output = io.StringIO()

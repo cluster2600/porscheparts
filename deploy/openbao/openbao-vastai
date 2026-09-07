@@ -2046,30 +2046,92 @@ def safe_ssh_endpoints(instance: dict, instance_id: int) -> dict:
 def m64_ssh_endpoint(instance: dict, instance_id: int) -> dict | None:
     """M64 uses the provider's direct pair; legacy safe_instance stays unchanged.
 
-    An unpublished direct mapping permits proxy use. A published but malformed
-    mapping is an error, never a reason to silently change transport.
+    Unallocated direct mappings wait without using the proxy. Multiple Docker
+    bindings must resolve to one port for the public address's IP family.
     """
-    if type(instance.get("id")) is not int or instance["id"] != instance_id:
-        raise SafeError("M64 SSH endpoint instance id does not match")
     ports = instance.get("ports")
+    mappings = ports.get("22/tcp") if isinstance(ports, dict) else None
+    diagnostic = {
+        "schema_version": "1.0.0", "instance_id": instance_id,
+        "ports_type": type(ports).__name__, "mappings_type": type(mappings).__name__,
+        "mapping_count": len(mappings) if isinstance(mappings, list) else None,
+        "mapping_summaries": [], "public_ip_family": None,
+        "public_ip_global_verified": False, "candidate_ports": [],
+        "ssh_connection_tested": False,
+    }
+
+    def report(reason: str) -> None:
+        print("OPENBAO_VASTAI_M64_ENDPOINT_DIAGNOSTIC " + json.dumps(
+            {**diagnostic, "reason": reason}, sort_keys=True), file=sys.stderr, flush=True)
+
+    def reject(reason: str, message: str) -> None:
+        report(reason)
+        raise SafeError(message)
+
+    if type(instance.get("id")) is not int or instance["id"] != instance_id:
+        reject("instance_id_mismatch", "M64 SSH endpoint instance id does not match")
     if ports is not None and not isinstance(ports, dict):
-        raise SafeError("M64 SSH port mappings are malformed")
-    endpoints = safe_ssh_endpoints(instance, instance_id)
+        reject("ports_type_invalid", "M64 SSH port mappings are malformed")
     if isinstance(ports, dict) and "22/tcp" in ports:
-        mappings = ports["22/tcp"]
-        if (
-            not isinstance(mappings, list) or len(mappings) != 1
-            or not isinstance(mappings[0], dict) or endpoints["direct"] is None
-        ):
-            raise SafeError("M64 published direct SSH endpoint is malformed")
-        address = ipaddress.ip_address(endpoints["direct"]["host"])
+        if mappings is None or mappings == []:
+            report("direct_mapping_not_allocated")
+            return None
+        if not isinstance(mappings, list) or len(mappings) > 64:
+            reject("mapping_list_invalid", "M64 published direct SSH endpoint is malformed")
+        bindings = {}
+        malformed = False
+        for index, item in enumerate(mappings):
+            port = normalized_ssh_port(item.get("HostPort")) if isinstance(item, dict) else None
+            summary = {"index": index, "entry_type": type(item).__name__, "port": port,
+                       "source": f"ports[22/tcp][{index}].HostPort", "host_ip_family": None,
+                       "host_ip_state": "absent"}
+            binding = None
+            if isinstance(item, dict) and "HostIp" in item:
+                value = item["HostIp"]
+                try:
+                    if not isinstance(value, str) or not re.fullmatch(r"[A-Fa-f0-9.:]{1,45}", value):
+                        raise ValueError("invalid bind address")
+                    binding = ipaddress.ip_address(value)
+                    summary.update(host_ip_family=binding.version, host_ip_state="parsed")
+                except ValueError:
+                    summary["host_ip_state"] = "invalid"
+                    malformed = True
+            diagnostic["mapping_summaries"].append(summary)
+            if port is None:
+                malformed = True
+            key = (str(binding) if binding is not None else None, port)
+            bindings.setdefault(key, []).append(index)
+        if malformed:
+            reject("mapping_entry_invalid", "M64 published direct SSH endpoint is malformed")
+        value = instance.get("public_ipaddr")
+        try:
+            if not isinstance(value, str) or not re.fullmatch(r"[A-Fa-f0-9.:]{1,45}", value):
+                raise ValueError("invalid public address")
+            address = ipaddress.ip_address(value)
+        except ValueError:
+            reject("public_ip_invalid", "M64 published direct SSH endpoint is malformed")
+        diagnostic["public_ip_family"] = address.version
         if (
             not address.is_global or address.is_multicast or address.is_loopback
             or address.is_private or address.is_link_local or address.is_unspecified
             or address.is_reserved
         ):
-            raise SafeError("M64 direct SSH endpoint must be a global unicast IP address")
-        return {"kind": "direct", **endpoints["direct"]}
+            reject("public_ip_not_global_unicast", "M64 direct SSH endpoint must be a global unicast IP address")
+        diagnostic["public_ip_global_verified"] = True
+        if any(host is None for host, port in bindings) and len(bindings) != 1:
+            reject("missing_bind_ip_ambiguous", "M64 direct SSH bindings without HostIp are ambiguous")
+        matches = {(host, port): indices for (host, port), indices in bindings.items()
+                   if host is None or ipaddress.ip_address(host).version == address.version}
+        candidates = {port for host, port in matches}
+        diagnostic["candidate_ports"] = sorted(candidates)
+        if len(candidates) != 1:
+            reject("no_unique_family_port", "M64 direct SSH bindings have no unique port for the public IP family")
+        indices = sorted(index for group in matches.values() for index in group)
+        # Every candidate has the same port; provenance names all matching
+        # indices instead of choosing an arbitrary first mapping.
+        source = "public_ipaddr+" + "+".join(f"ports[22/tcp][{i}].HostPort" for i in indices)
+        return {"kind": "direct", "host": str(address), "port": next(iter(candidates)), "source": source}
+    endpoints = safe_ssh_endpoints(instance, instance_id)
     host, port = instance.get("ssh_host"), instance.get("ssh_port")
     if host is None and port is None:
         return None
@@ -2077,7 +2139,7 @@ def m64_ssh_endpoint(instance: dict, instance_id: int) -> dict | None:
         endpoints["proxy"] is None or not isinstance(host, str)
         or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.:-]{0,252}", host)
     ):
-        raise SafeError("M64 published proxy SSH endpoint is malformed")
+        reject("proxy_endpoint_invalid", "M64 published proxy SSH endpoint is malformed")
     return {"kind": "proxy", **endpoints["proxy"]}
 
 
@@ -3399,8 +3461,12 @@ def verify_simready_ssh_ready(
                 break
             continue
         endpoint = m64_ssh_endpoint(raw_instance, instance_id) if profile == M64_PROFILE else None
-        host = endpoint["host"] if endpoint else instance.get("ssh_host")
-        port = finite_number(endpoint["port"] if endpoint else instance.get("ssh_port"))
+        if profile == M64_PROFILE:
+            host = endpoint["host"] if endpoint else None
+            port = finite_number(endpoint["port"]) if endpoint else None
+        else:
+            host = instance.get("ssh_host")
+            port = finite_number(instance.get("ssh_port"))
         if (
             not isinstance(host, str)
             or not host
