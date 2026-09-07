@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Politique de publication visuelle F49. Elle ne libere ni la fabrication ni le demarrage.",
+  "authority": {
+    "external_skin": "F43 scan contour patch",
+    "source_contours": 44,
+    "same_skin_required_for": [
+      "2V",
+      "4V"
+    ],
+    "global_anisotropic_scaling_allowed": false,
+    "global_ellipse_or_oval_envelope_allowed": false,
+    "synthetic_head_envelope_allowed": false
+  },
+  "functional_round_geometry": {
+    "allowed_only_for": [
+      "cylinder_bore",
+      "valves",
+      "valve_seats",
+      "valve_guides",
+      "spark_plug_bore",
+      "stud_and_service_bores",
+      "circular_port_and_gallery_sections"
+    ],
+    "may_define_external_skin": false
+  },
+  "current_product_visuals": [
+    {
+      "path": "twins/reference-917-engine/evidence/f43-scan-contour-patch/917-head-f43-scan-contour-4views.png",
+      "sha256": "2479145726cd070370cdb1637e93b7b4c43cfbe0e96d6e4e7791bc18356d428a",
+      "purpose": "scan_derived_external_skin_four_views"
+    },
+    {
+      "path": "twins/reference-917-engine/evidence/f43-scan-contour-patch/917-head-f43-scan-contour-section.png",
+      "sha256": "ee27c8b7e195081cebd106a19a24d9ece26d4a084154a885ac0839e57216fda5",
+      "purpose": "scan_derived_external_skin_section"
+    }
+  ],
+  "historical_lineages_forbidden_from_current_product_gallery": [
+    "f39",
+    "f42"
+  ],
+  "release_state": {
+    "geometry_baseline_only": true,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}

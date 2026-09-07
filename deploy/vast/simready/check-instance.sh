@@ -68,6 +68,11 @@ python3 "${INSTANCE_GUARD}" \
     --instance-id "${INSTANCE_ID}" \
     --expected-image "${EXPECTED_IMAGE}" \
     --expected-label "${EXPECTED_LABEL}" \
+    --expected-gpu-name "${EXPECTED_GPU_NAME}" \
+    --min-gpu-ram-mb "${MIN_GPU_RAM_MB}" \
+    --min-cpu-cores "${MIN_CPU_CORES}" \
+    --min-cpu-ram-mb "${MIN_CPU_RAM_MB}" \
+    --min-disk-space-gb "${MIN_DISK_SPACE_GB}" \
     --max-actual-dph "${MAX_DPH}" \
     --allowed-status created \
     --allowed-status loading \
@@ -84,6 +89,11 @@ while [ "${SECONDS}" -lt "${deadline}" ]; do
         --instance-id "${INSTANCE_ID}" \
         --expected-image "${EXPECTED_IMAGE}" \
         --expected-label "${EXPECTED_LABEL}" \
+        --expected-gpu-name "${EXPECTED_GPU_NAME}" \
+        --min-gpu-ram-mb "${MIN_GPU_RAM_MB}" \
+        --min-cpu-cores "${MIN_CPU_CORES}" \
+        --min-cpu-ram-mb "${MIN_CPU_RAM_MB}" \
+        --min-disk-space-gb "${MIN_DISK_SPACE_GB}" \
         --max-actual-dph "${MAX_DPH}" \
         --require-ssh \
         --allowed-status created \

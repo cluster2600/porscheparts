@@ -1,0 +1,39 @@
+{
+  "schema_version": "porsche-917-f49-runtime-policy/v1",
+  "$comment": "Politique corrigée après observation de l'arrêt résiduel prématuré des deux smokes échappement.",
+  "phase": "F49-runtime-correction",
+  "bound_inputs": {
+    "base_contract_sha256": "d44bb4ffd2383a0f28ff4a4e0cce9ddb87f985d01e0b0d318c0961a6699bd913",
+    "executed_corrective_profile_sha256": "08bb0793392ba1c038097291be769275f556aecdaaee5fa0aa9437b7746a3831",
+    "builder_without_residualControl": {
+      "path": "twins/reference-917-engine/source/build_cfd_cases_f49.py",
+      "sha256": "6edbb7445525598029e5323d572fa1dd7a070f10fd730c8c25176012d9a3c415"
+    },
+    "runner": {
+      "path": "twins/reference-917-engine/source/run_cfd_cases_f49.py",
+      "sha256": "90ebe8f4ce5a1773ae2577e5f44f31632f887a9ea5bdba365500de45f94dc8ab"
+    },
+    "failed_rerun_summarizer": {
+      "path": "twins/reference-917-engine/source/summarize_failed_reruns_f49.py",
+      "sha256": "8f1bd57ea8babced387b1b3f0e609d3fb8c9e552898df37d38f30e87f1d26a9a"
+    }
+  },
+  "PIMPLE_residualControl_early_stop_enabled": false,
+  "residuals_remain_recorded_metrics": true,
+  "minimum_physical_time_before_positive_stop_s": 0.005,
+  "maximum_authorized_future_horizon_s": 0.02,
+  "positive_stop_requires_all": [
+    "minimum physical horizon reached",
+    "mass-flow plateau over a final averaging window",
+    "mass balance at or below 1 percent",
+    "reference-invariant total-enthalpy balance at or below 1 percent",
+    "all residual targets pass"
+  ],
+  "implementation_rule": "runTimeControl or post-processing may stop positively only after evaluating every combined condition",
+  "executed_early_stops": {
+    "2v-coarse-exhaust": "preserved_as_failed_smoke",
+    "4v-coarse-exhaust": "preserved_as_failed_smoke"
+  },
+  "threshold_relaxation_allowed": false,
+  "physical_validation_claim": false
+}

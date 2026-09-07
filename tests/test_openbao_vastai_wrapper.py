@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from contextlib import nullcontext
+from contextlib import contextmanager, nullcontext
 import importlib.util
 from importlib.machinery import SourceFileLoader
 import io
@@ -36,6 +36,461 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.wrapper = load_wrapper()
+
+    def test_get_429_retries_are_bounded_and_do_not_log_request_data(self):
+        error = self.wrapper.SafeHttpError("Vast.ai", 429, ": synthetic-secret")
+        stderr = io.StringIO()
+        with (
+            mock.patch.object(self.wrapper, "http_json", side_effect=[error] * 3 + [{"ok": True}]) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            mock.patch("sys.stderr", stderr),
+        ):
+            result = self.wrapper.vast_request("synthetic-secret", "/private-path")
+        self.assertEqual(result, {"ok": True})
+        self.assertEqual(request.call_count, 4)
+        self.assertEqual(sleep.call_args_list, [mock.call(20), mock.call(40), mock.call(60)])
+        self.assertNotIn("synthetic-secret", stderr.getvalue())
+        self.assertNotIn("private-path", stderr.getvalue())
+
+    def test_get_429_exhaustion_stays_fail_closed(self):
+        error = self.wrapper.SafeHttpError("Vast.ai", 429, ": synthetic-secret")
+        with (
+            mock.patch.object(self.wrapper, "http_json", side_effect=error) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            mock.patch("sys.stderr", io.StringIO()),
+            self.assertRaises(self.wrapper.SafeHttpError) as raised,
+        ):
+            self.wrapper.vast_request("synthetic-secret", "/instances")
+        self.assertEqual(request.call_count, 4)
+        self.assertEqual(sleep.call_count, 3)
+        self.assertEqual(raised.exception.status_code, 429)
+        self.assertNotIn("synthetic-secret", str(raised.exception))
+
+    def test_rate_limit_does_not_replay_mutations(self):
+        for method in ("POST", "PUT", "DELETE", "PATCH"):
+            with (
+                self.subTest(method=method),
+                mock.patch.object(self.wrapper, "http_json", side_effect=self.wrapper.SafeHttpError("Vast.ai", 429)) as request,
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaises(self.wrapper.SafeHttpError),
+            ):
+                self.wrapper.vast_request("key", "/instances", method=method)
+            request.assert_called_once()
+            sleep.assert_not_called()
+
+    def test_get_other_errors_and_offline_are_not_retried(self):
+        for error in (
+            self.wrapper.SafeHttpError("Vast.ai", 401),
+            self.wrapper.SafeHttpError("Vast.ai", 404),
+            self.wrapper.SafeHttpError("Vast.ai", 500),
+            self.wrapper.SafeError("Vast.ai is unavailable"),
+        ):
+            with (
+                self.subTest(error=str(error)),
+                mock.patch.object(self.wrapper, "http_json", side_effect=error) as request,
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaises(self.wrapper.SafeError),
+            ):
+                self.wrapper.vast_request("key", "/instances")
+            request.assert_called_once()
+            sleep.assert_not_called()
+
+    def test_simready_poll_interval_does_not_change_other_workflows(self):
+        self.assertEqual(self.wrapper.SIMREADY_POLL_INTERVAL_SECONDS, 15)
+        self.assertEqual(self.wrapper.POLL_INTERVAL_SECONDS, 2)
+
+    def test_safe_offer_exposes_documented_disk_read_metrics_not_cache_claims(self):
+        offer = self.eligible_offer(disk_bw=1234.5, disk_name="Synthetic NVMe", cached=True, env={"secret": "not-for-output"})
+        report = self.wrapper.safe_offer(offer)
+        self.assertEqual(report["disk_read_bw_mb_s"], 1234.5)
+        self.assertEqual(report["disk_model"], "Synthetic NVMe")
+        self.assertEqual(report["disk_space_gb"], 500)
+        self.assertNotIn("cached", report)
+        self.assertNotIn("not-for-output", json.dumps(report))
+        self.assertTrue(self.wrapper.heavy_offer_eligible(offer))
+        self.assertIsNone(self.wrapper.safe_offer({})["disk_read_bw_mb_s"])
+        self.assertIsNone(self.wrapper.safe_offer({})["disk_model"])
+
+    @contextmanager
+    def fake_simready_clock(self, metadata, probe_result=None):
+        clock = {"now": 0.0, "metadata_calls": 0, "probe_calls": 0}
+
+        def request(*args, **kwargs):
+            clock["metadata_calls"] += 1
+            return metadata(clock)
+
+        def probe(*args, **kwargs):
+            clock["probe_calls"] += 1
+            return probe_result(clock) if probe_result else self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", "")
+
+        def sleep(seconds):
+            clock["now"] += seconds
+
+        with (
+            mock.patch.object(self.wrapper.time, "monotonic", side_effect=lambda: clock["now"]),
+            mock.patch.object(self.wrapper.time, "sleep", side_effect=sleep),
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+            mock.patch.object(self.wrapper, "prepare_simready_known_hosts", return_value=Path("/tmp/test-clock-known-hosts")),
+            mock.patch.object(self.wrapper, "validate_simready_known_hosts"),
+            mock.patch.object(self.wrapper, "vast_request", side_effect=request),
+            mock.patch.object(self.wrapper, "run_component_factory_f41_ssh_probe", side_effect=probe),
+        ):
+            yield clock
+
+    def timed_instance(self, status):
+        return {"instances": {"id": 12345, "actual_status": status, "ssh_host": "ssh.example.invalid", "ssh_port": 22001}}
+
+    def test_simready_loading_35_minutes_then_running_is_allowed(self):
+        with self.fake_simready_clock(lambda clock: self.timed_instance("loading" if clock["now"] < 35 * 60 else "running")) as clock:
+            self.assertEqual(self.wrapper.verify_simready_ssh_ready("unused", 12345), Path("/tmp/test-clock-known-hosts"))
+        self.assertEqual(clock["now"], 35 * 60)
+        self.assertEqual(clock["probe_calls"], 1)
+
+    def test_simready_loading_expires_at_two_hours_without_ssh(self):
+        self.assertEqual(self.wrapper.SIMREADY_TOTAL_READY_TIMEOUT_SECONDS, 2 * 60 * 60)
+        with self.fake_simready_clock(lambda clock: self.timed_instance("loading")) as clock:
+            with self.assertRaisesRegex(self.wrapper.SafeError, "total limit: 7200s"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(clock["now"], 2 * 60 * 60)
+        self.assertEqual(clock["probe_calls"], 0)
+
+    def test_simready_running_clock_does_not_reset_after_loading(self):
+        def metadata(clock):
+            status = "loading" if 0 < clock["now"] < 20 * 60 else "running"
+            return self.timed_instance(status)
+
+        def not_ready(clock):
+            return self.wrapper.subprocess.CompletedProcess([], 41, "", "")
+
+        with self.fake_simready_clock(metadata, not_ready) as clock:
+            with self.assertRaisesRegex(self.wrapper.SafeError, "first-running limit: 1800s"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(clock["now"], 30 * 60)
+        self.assertGreater(clock["probe_calls"], 1)
+
+    def test_simready_running_31_minutes_rejected_after_slow_metadata(self):
+        def metadata(clock):
+            if clock["metadata_calls"] > 1:
+                clock["now"] = 31 * 60
+            return self.timed_instance("running")
+
+        with self.fake_simready_clock(metadata, lambda clock: self.wrapper.subprocess.CompletedProcess([], 41, "", "")) as clock:
+            with self.assertRaisesRegex(self.wrapper.SafeError, "did not pass in time"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(clock["probe_calls"], 1)
+
+    def test_simready_ready_after_deadline_is_never_accepted(self):
+        def slow_ready(clock):
+            clock["now"] += 31 * 60
+            return self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", "")
+
+        with self.fake_simready_clock(lambda clock: self.timed_instance("running"), slow_ready):
+            with self.assertRaisesRegex(self.wrapper.SafeError, "ready_arrived_after_deadline"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+
+    def test_simready_429_retries_remain_bounded_and_do_not_reset_total_clock(self):
+        real_request = self.wrapper.vast_request
+        with (
+            mock.patch.object(self.wrapper, "http_json", side_effect=self.wrapper.SafeHttpError("Vast.ai", 429)) as http,
+            mock.patch("sys.stderr", io.StringIO()),
+            self.fake_simready_clock(lambda clock: real_request("unused", "/api/v0/instances/12345/")) as clock,
+        ):
+            with self.assertRaisesRegex(self.wrapper.SafeError, "did not pass in time"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(http.call_count, clock["metadata_calls"] * 4)
+        self.assertGreaterEqual(clock["now"], 2 * 60 * 60)
+        self.assertLessEqual(clock["now"], 2 * 60 * 60 + sum(self.wrapper.VAST_GET_RATE_LIMIT_BACKOFF_SECONDS))
+        self.assertEqual(clock["probe_calls"], 0)
+
+    def test_local_ssh_pair_uses_only_approved_file_without_interactive_secrets(self):
+        result = self.wrapper.subprocess.CompletedProcess([], 0, "ssh-ed25519 AAAATEST derived-comment\n")
+        stdout, stderr = io.StringIO(), io.StringIO()
+        with (
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key") as metadata,
+            mock.patch.object(self.wrapper.subprocess, "run", return_value=result) as derive,
+            mock.patch("sys.stdout", stdout), mock.patch("sys.stderr", stderr),
+        ):
+            self.wrapper.verify_local_ssh_key_pair("ssh-ed25519 AAAATEST existing-comment")
+        metadata.assert_called_once()
+        self.assertEqual(derive.call_args.args[0], [
+            "ssh-keygen", "-y", "-P", "", "-f", str(self.wrapper.SSH_PRIVATE_KEY_FILE)
+        ])
+        options = derive.call_args.kwargs
+        self.assertEqual(options["stdin"], self.wrapper.subprocess.DEVNULL)
+        self.assertEqual(options["stderr"], self.wrapper.subprocess.DEVNULL)
+        self.assertEqual(options["stdout"], self.wrapper.subprocess.PIPE)
+        self.assertEqual(options["timeout"], 10)
+        self.assertEqual(set(options["env"]), {"LC_ALL", "PATH"})
+        self.assertEqual(stdout.getvalue() + stderr.getvalue(), "")
+
+    def test_local_ssh_pair_rejects_mismatch_failures_and_unusable_keys(self):
+        for result in (
+            self.wrapper.subprocess.CompletedProcess([], 0, "ssh-ed25519 AAAAOTHER"),
+            self.wrapper.subprocess.CompletedProcess([], 0, ""),
+            self.wrapper.subprocess.CompletedProcess([], 1, "ssh-ed25519 AAAATEST"),
+        ):
+            with (
+                self.subTest(result=result),
+                mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+                mock.patch.object(self.wrapper.subprocess, "run", return_value=result),
+                self.assertRaises(self.wrapper.SafeError) as raised,
+            ):
+                self.wrapper.verify_local_ssh_key_pair("ssh-ed25519 AAAATEST")
+            self.assertNotIn("AAAA", str(raised.exception))
+
+    def test_local_ssh_pair_timeout_and_spawn_errors_are_sanitized(self):
+        for error in (
+            self.wrapper.subprocess.TimeoutExpired("synthetic-secret", 10),
+            OSError("synthetic-secret"),
+        ):
+            with (
+                self.subTest(error=type(error)),
+                mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+                mock.patch.object(self.wrapper.subprocess, "run", side_effect=error),
+                self.assertRaises(self.wrapper.SafeError) as raised,
+            ):
+                self.wrapper.verify_local_ssh_key_pair("ssh-ed25519 AAAATEST")
+            self.assertNotIn("synthetic-secret", str(raised.exception))
+
+    def test_pair_failure_blocks_account_registration_before_network(self):
+        with (
+            mock.patch.object(self.wrapper, "read_local_ssh_public_key", side_effect=self.wrapper.SafeError("pair mismatch")),
+            mock.patch.object(self.wrapper, "vast_request") as request,
+            self.assertRaisesRegex(self.wrapper.SafeError, "pair mismatch"),
+        ):
+            self.wrapper.ensure_local_ssh_registered("unused")
+        request.assert_not_called()
+
+    def test_instance_ssh_metadata_requires_exact_approved_identity(self):
+        approved = "ssh-ed25519 AAAATEST approved"
+        for keys, expected in (
+            ([{"public_key": "ssh-ed25519 AAAATEST different-comment"}], True),
+            ([{"public_key": "ssh-ed25519 AAAAOTHER approved"}], False),
+            ([], False),
+        ):
+            for raw in (keys, json.dumps(keys)):
+                with (
+                    self.subTest(raw=raw),
+                    mock.patch.object(self.wrapper, "vast_request", return_value={"ssh_keys": raw}) as request,
+                ):
+                    self.assertEqual(self.wrapper.instance_lists_approved_ssh_key("unused", 12345, approved), expected)
+                request.assert_called_once_with("unused", "/api/v0/instances/12345/ssh")
+
+    def test_instance_ssh_metadata_missing_or_malformed_is_not_absence(self):
+        for result in ({}, {"ssh_keys": None}, {"ssh_keys": "bad-json"}, {"ssh_keys": {}}):
+            with (
+                self.subTest(result=result),
+                mock.patch.object(self.wrapper, "vast_request", return_value=result),
+                self.assertRaises(self.wrapper.SafeError),
+            ):
+                self.wrapper.instance_lists_approved_ssh_key("unused", 12345, "ssh-ed25519 AAAATEST")
+
+    def test_instance_ssh_preflight_reuses_existing_key_and_emits_safe_receipt(self):
+        stderr = io.StringIO()
+        label = self.simready_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "read_local_ssh_public_key", return_value="ssh-ed25519 AAAATEST private-comment"),
+            mock.patch.object(self.wrapper, "instance_lists_approved_ssh_key", return_value=True),
+            mock.patch.object(self.wrapper, "vast_request") as request,
+            mock.patch("sys.stderr", stderr),
+        ):
+            self.wrapper.ensure_simready_instance_ssh_key("unused", 12345, label)
+        request.assert_not_called()
+        report = json.loads(stderr.getvalue().split(" ", 1)[1])
+        self.assertEqual(report["instance_id"], 12345)
+        self.assertEqual(report["label"], label)
+        self.assertTrue(report["approved_key_listed_by_provider"])
+        self.assertFalse(report["runtime_authorized_keys_verified"])
+        self.assertFalse(report["ssh_authentication_verified"])
+        self.assertNotIn("AAAATEST", stderr.getvalue())
+        self.assertNotIn("private-comment", stderr.getvalue())
+
+    def test_instance_ssh_preflight_attaches_exact_key_once_and_requires_reread(self):
+        approved = "ssh-ed25519 AAAATEST approved"
+        with (
+            mock.patch.object(self.wrapper, "read_local_ssh_public_key", return_value=approved),
+            mock.patch.object(self.wrapper, "instance_lists_approved_ssh_key", side_effect=[False, False, True]) as listed,
+            mock.patch.object(self.wrapper, "vast_request", return_value={"success": True}) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            mock.patch("sys.stderr", io.StringIO()),
+        ):
+            self.wrapper.ensure_simready_instance_ssh_key("unused", 12345, self.simready_attempt_label())
+        request.assert_called_once_with("unused", "/api/v0/instances/12345/ssh/", method="POST", payload={"ssh_key": approved})
+        self.assertEqual(listed.call_count, 3)
+        sleep.assert_called_once_with(5)
+
+    def test_instance_ssh_preflight_rejects_unconfirmed_or_invisible_attachment(self):
+        for response in ({"success": False}, {"success": 1}, {}, {"success": True}):
+            with (
+                self.subTest(response=response),
+                mock.patch.object(self.wrapper, "read_local_ssh_public_key", return_value="ssh-ed25519 AAAATEST"),
+                mock.patch.object(self.wrapper, "instance_lists_approved_ssh_key", return_value=False) as listed,
+                mock.patch.object(self.wrapper, "vast_request", return_value=response) as request,
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaises(self.wrapper.SafeError),
+            ):
+                self.wrapper.ensure_simready_instance_ssh_key("unused", 12345, self.simready_attempt_label())
+            request.assert_called_once()
+            self.assertEqual(listed.call_count, 4 if response.get("success") is True else 1)
+            self.assertEqual(sleep.call_count, 2 if response.get("success") is True else 0)
+
+    def test_simready_ssh_failure_receipt_keeps_endpoint_and_flags_not_raw_output(self):
+        stderr = io.StringIO()
+        result = self.wrapper.subprocess.CompletedProcess(
+            [], 255, "synthetic-secret", 'Load key "/secret-path": invalid format\nPermission denied (publickey)\nbad permissions\n'
+        )
+        with mock.patch("sys.stderr", stderr):
+            self.wrapper.emit_simready_ssh_failure_diagnostic(
+                12345, "ssh.example.invalid", 22001, result, "ssh_authentication_failed"
+            )
+        report = json.loads(stderr.getvalue().split(" ", 1)[1])
+        self.assertEqual(report["endpoint_host"], "ssh.example.invalid")
+        self.assertEqual(report["endpoint_port"], 22001)
+        self.assertEqual(report["exit_code"], 255)
+        self.assertTrue(report["permission_denied"])
+        self.assertTrue(report["key_load_failed"])
+        self.assertTrue(report["bad_key_permissions"])
+        self.assertFalse(report["raw_output_recorded"])
+        self.assertNotIn("synthetic-secret", stderr.getvalue())
+        self.assertNotIn("secret-path", stderr.getvalue())
+
+    def test_ssh_endpoint_keeps_complete_proxy_pair(self):
+        result = self.wrapper.safe_instance({
+            "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+            "public_ipaddr": "203.0.113.8",
+            "ports": {"22/tcp": [{"HostPort": "32001"}]},
+        })
+        self.assertEqual((result["ssh_host"], result["ssh_port"]),
+                         ("ssh.example.invalid", 22001))
+
+    def test_missing_proxy_port_never_pairs_proxy_host_with_direct_port(self):
+        for proxy_fields in ({}, {"ssh_port": None}):
+            with self.subTest(proxy_fields=proxy_fields):
+                result = self.wrapper.safe_instance({
+                    "ssh_host": "ssh.example.invalid", **proxy_fields,
+                    "public_ipaddr": "203.0.113.8",
+                    "ports": {"22/tcp": [{"HostPort": "32001"}]},
+                })
+                self.assertEqual((result["ssh_host"], result["ssh_port"]),
+                                 ("203.0.113.8", 32001))
+
+    def test_direct_hostport_accepts_strict_decimal_string_or_numeric_port(self):
+        for port in ("32001", 32001, 32001.0):
+            for proxy in ({}, {"ssh_host": "ssh.example.invalid"}, {"ssh_port": 22001}):
+                with self.subTest(port=port, proxy=proxy):
+                    result = self.wrapper.safe_instance({
+                        **proxy, "public_ipaddr": "203.0.113.8",
+                        "ports": {"22/tcp": [{"HostPort": port}]},
+                    })
+                    self.assertEqual((result["ssh_host"], result["ssh_port"]), ("203.0.113.8", 32001))
+                    self.assertIs(type(result["ssh_port"]), int)
+
+    def test_invalid_direct_hostport_fails_closed_without_hybrid_endpoint(self):
+        for port in (
+            "", " 32001", "32001 ", "+32001", "32001.0", "3e4", "３２００１",
+            "65536", "000001", "0", "-1", 0, -1, 65536, 2.5,
+            True, False, None, float("nan"), float("inf"), {}, [],
+        ):
+            with self.subTest(port=port):
+                result = self.wrapper.safe_instance({
+                    "ssh_host": "ssh.example.invalid", "public_ipaddr": "203.0.113.8",
+                    "ports": {"22/tcp": [{"HostPort": port}]},
+                })
+                self.assertIsNone(result["ssh_host"])
+                self.assertIsNone(result["ssh_port"])
+
+    def test_complete_proxy_keeps_precedence_regardless_of_direct_port_format(self):
+        for port in ("32001", 32001, "invalid", None):
+            with self.subTest(port=port):
+                result = self.wrapper.safe_instance({
+                    "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                    "public_ipaddr": "203.0.113.8", "ports": {"22/tcp": [{"HostPort": port}]},
+                })
+                self.assertEqual((result["ssh_host"], result["ssh_port"]), ("ssh.example.invalid", 22001))
+
+    def test_simready_direct_string_hostport_reaches_ssh_probe_with_same_auth_checks(self):
+        instance = {
+            "id": 12345, "actual_status": "running", "ssh_host": "ssh.example.invalid",
+            "public_ipaddr": "203.0.113.8", "ports": {"22/tcp": [{"HostPort": "32001"}]},
+        }
+        known_hosts = Path("/tmp/test-only-known-hosts")
+        with (
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+            mock.patch.object(self.wrapper, "prepare_simready_known_hosts", return_value=known_hosts),
+            mock.patch.object(self.wrapper, "validate_simready_known_hosts"),
+            mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}),
+            mock.patch.object(self.wrapper, "run_component_factory_f41_ssh_probe", return_value=self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", "")) as probe,
+            mock.patch.object(self.wrapper, "SIMREADY_SSH_READY_ATTEMPTS", 1),
+        ):
+            self.assertEqual(self.wrapper.verify_simready_ssh_ready("unused", 12345), known_hosts)
+        command = probe.call_args.args[0]
+        self.assertEqual(command[command.index("-p") + 1], "32001")
+        self.assertIn("root@203.0.113.8", command)
+        self.assertNotIn("root@ssh.example.invalid", command)
+        self.assertIn("BatchMode=yes", command)
+        self.assertIn("IdentitiesOnly=yes", command)
+        self.assertIn("StrictHostKeyChecking=accept-new", command)
+        self.assertIn("HostKeyAlias=simready-12345", command)
+
+    def test_incomplete_ssh_pairs_fail_closed(self):
+        for metadata in (
+            {"ssh_host": "ssh.example.invalid", "ports": {"22/tcp": [{"HostPort": "32001"}]}},
+            {"ssh_port": 22001, "public_ipaddr": "203.0.113.8"},
+            {"public_ipaddr": "203.0.113.8", "ports": {"22/tcp": []}},
+        ):
+            with self.subTest(metadata=metadata):
+                result = self.wrapper.safe_instance(metadata)
+                self.assertIsNone(result["ssh_host"])
+                self.assertIsNone(result["ssh_port"])
+
+    def test_ssh_endpoints_preserve_both_complete_pairs_and_provenance(self):
+        raw = {
+            "id": 12345, "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+            "public_ipaddr": "203.0.113.8",
+            "ports": {"22/tcp": [{"HostPort": "32001"}]},
+            "env": {"TOKEN": "synthetic-secret"},
+        }
+        report = self.wrapper.safe_ssh_endpoints(raw, 12345)
+        self.assertEqual(report["proxy"], {
+            "host": "ssh.example.invalid", "port": 22001, "source": "ssh_host+ssh_port"
+        })
+        self.assertEqual(report["direct"], {
+            "host": "203.0.113.8", "port": 32001,
+            "source": "public_ipaddr+ports[22/tcp][0].HostPort",
+        })
+        self.assertFalse(report["ssh_connection_tested"])
+        self.assertFalse(report["endpoint_selection_changed"])
+        self.assertNotIn("synthetic-secret", json.dumps(report))
+        self.assertEqual(self.wrapper.safe_instance(raw)["ssh_host"], "ssh.example.invalid")
+
+    def test_ssh_endpoints_never_mix_pairs_or_expose_invalid_data(self):
+        for raw in (
+            {"ssh_host": "ssh.example.invalid", "ports": {"22/tcp": [{"HostPort": "32001"}]}},
+            {"ssh_host": "unsafe host", "ssh_port": 22001, "public_ipaddr": "not-an-ip", "ports": {"22/tcp": [{"HostPort": 32001}]}},
+            {"ssh_host": "ssh.example.invalid", "ssh_port": True, "public_ipaddr": "203.0.113.8", "ports": {"22/tcp": [{"HostPort": 99999}]}},
+        ):
+            with self.subTest(raw=raw):
+                result = self.wrapper.safe_ssh_endpoints({"id": 12345, **raw}, 12345)
+                self.assertIsNone(result["proxy"])
+                self.assertIsNone(result["direct"])
+        for raw in ({}, {"id": 99}, {"id": True}):
+            with self.subTest(raw=raw), self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.safe_ssh_endpoints(raw, 12345)
+
+    def test_ssh_endpoints_command_only_reads_one_instance(self):
+        output = io.StringIO()
+        with (
+            mock.patch.object(self.wrapper, "login", return_value="session"),
+            mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+            mock.patch.object(self.wrapper, "revoke_token"),
+            mock.patch.object(self.wrapper, "vast_request", return_value={"instances": {"id": 12345}}) as request,
+            mock.patch.object(self.wrapper.subprocess, "run") as process,
+            mock.patch("sys.stdout", output),
+        ):
+            self.assertEqual(self.wrapper.run(["ssh-endpoints", "12345"]), 0)
+        request.assert_called_once_with("unused", "/api/v0/instances/12345/")
+        process.assert_not_called()
+        self.assertEqual(json.loads(output.getvalue())["instance_id"], 12345)
 
     def setUp(self):
         # Most unit tests isolate the launch state machine from the immutable
@@ -807,6 +1262,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             ) as request,
             mock.patch.object(self.wrapper, "verify_single_simready_instance") as singleton,
             mock.patch.object(self.wrapper, "verify_simready_contract") as contract,
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key") as instance_key,
             mock.patch.object(
                 self.wrapper,
                 "verify_simready_ssh_ready",
@@ -821,6 +1277,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         no_existing.assert_called_once_with("unused")
         singleton.assert_called_once_with("unused", 12345, attempt_label)
         contract.assert_called_once_with("unused", 12345, attempt_label)
+        instance_key.assert_called_once_with("unused", 12345, attempt_label)
         ssh_ready.assert_called_once_with("unused", 12345)
         self.assertEqual(request.call_args.kwargs["payload"]["label"], attempt_label)
         payload = json.loads(output.getvalue())
@@ -854,6 +1311,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             ) as request,
             mock.patch.object(self.wrapper, "verify_single_simready_instance"),
             mock.patch.object(self.wrapper, "verify_simready_contract"),
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key"),
             mock.patch.object(
                 self.wrapper,
                 "verify_simready_ssh_ready",
@@ -972,6 +1430,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             ),
             mock.patch.object(self.wrapper, "verify_single_simready_instance"),
             mock.patch.object(self.wrapper, "verify_simready_contract"),
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key"),
             mock.patch.object(
                 self.wrapper,
                 "verify_simready_ssh_ready",
@@ -992,6 +1451,42 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             )
         reconcile.assert_called_once_with("unused", attempt_label)
         remove_known_hosts.assert_called_once_with(12345)
+
+    def test_simready_instance_key_failure_rolls_back_before_ssh(self):
+        label = self.simready_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(self.wrapper, "vast_request", return_value={"new_contract": 12345}),
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "verify_simready_contract"),
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key", side_effect=self.wrapper.SafeError("instance key unproven")),
+            mock.patch.object(self.wrapper, "verify_simready_ssh_ready") as ssh,
+            mock.patch.object(self.wrapper, "reconcile_uncertain_simready_launch", return_value=12345) as reconcile,
+            mock.patch.object(self.wrapper, "remove_simready_known_hosts_after_destroy"),
+            mock.patch("sys.stderr", io.StringIO()),
+            self.assertRaisesRegex(self.wrapper.SafeError, "instance key unproven"),
+        ):
+            self.wrapper.launch_simready_offer(
+                "unused", self.eligible_offer(), disk_gb=500,
+                enforce_singleton=True, attempt_label=label,
+            )
+        ssh.assert_not_called()
+        reconcile.assert_called_once_with("unused", label)
+
+    def test_simready_local_key_failure_blocks_paid_create(self):
+        with (
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered", side_effect=self.wrapper.SafeError("pair unproven")),
+            mock.patch.object(self.wrapper, "vast_request") as request,
+            self.assertRaisesRegex(self.wrapper.SafeError, "pair unproven"),
+        ):
+            self.wrapper.launch_simready_offer(
+                "unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True,
+            )
+        request.assert_not_called()
 
     def test_simready_ssh_ready_uses_batch_mode_and_exact_scoped_tofu(self):
         self.assertEqual(self.wrapper.SIMREADY_SSH_READY_TIMEOUT_SECONDS, 30 * 60)
@@ -3103,6 +3598,49 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         source = WRAPPER_PATH.read_text(encoding="utf-8")
         self.assertNotIn("OPENBAO_GHCR_IMAGE_LOGIN", source)
         self.assertNotIn("image_login", source)
+
+    def test_refresh_local_ssh_replaces_only_matching_instance_keys(self):
+        stdout = io.StringIO()
+        approved = "ssh-ed25519 AAAATEST approved"
+        responses = [
+            {"instances": {"actual_status": "stopped"}},
+            {
+                "ssh_keys": json.dumps(
+                    [
+                        {"id": 11, "public_key": approved},
+                        {"id": 12, "public_key": approved},
+                        {"id": 99, "public_key": "ssh-ed25519 AAAAOTHER other"},
+                    ]
+                )
+            },
+            {"success": True},
+            {"success": True},
+            {"success": True},
+        ]
+        with (
+            mock.patch("sys.argv", ["openbao-vastai", "refresh-local-ssh", "49857647"]),
+            mock.patch.object(self.wrapper, "login", return_value="session"),
+            mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+            mock.patch.object(self.wrapper, "revoke_token") as revoke,
+            mock.patch.object(
+                self.wrapper, "read_local_ssh_public_key", return_value=approved
+            ),
+            mock.patch.object(
+                self.wrapper,
+                "vast_request",
+                side_effect=responses,
+            ) as request,
+            mock.patch("sys.stdout", stdout),
+        ):
+            self.assertEqual(self.wrapper.cli(), 0)
+        calls = request.call_args_list
+        self.assertIn("/ssh/11/", calls[2].args[1])
+        self.assertIn("/ssh/12/", calls[3].args[1])
+        self.assertNotIn("/ssh/99/", " ".join(str(call) for call in calls))
+        self.assertEqual(calls[4].kwargs["payload"], {"ssh_key": approved})
+        self.assertIn('"approved_key_refreshed": true', stdout.getvalue())
+        self.assertIn('"duplicate_attachments_removed": 1', stdout.getvalue())
+        revoke.assert_called_once_with("session")
 
     def test_mesh_image_is_immutable_linux_amd64_candidate(self):
         image = self.wrapper.MESH_IMAGE

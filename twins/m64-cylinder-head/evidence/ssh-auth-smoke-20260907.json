@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "status": "passed",
+  "execution_date": "2026-09-07",
+  "execution_environment": {
+    "host": "Kali",
+    "os": "linux",
+    "architecture": "amd64",
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+    "local_image_id": "sha256:df6c6111c838834dd4d64777e92abf673c133b6231b33c6e8d7954105a8453d8",
+    "openssh": "OpenSSH_9.6p1 Ubuntu-3ubuntu13.18, OpenSSL 3.0.13 30 Jan 2024",
+    "network": "none",
+    "listener": "127.0.0.1:22222 inside disposable container only",
+    "published_ports": [],
+    "cpus": 1,
+    "memory_bytes": 1073741824,
+    "pids_limit": 64,
+    "outer_timeout_seconds": 90,
+    "exit_code": 0,
+    "remaining_containers_with_image_after_test": 0
+  },
+  "harness": {
+    "path": "tests/manual/simready_ssh_auth_smoke.py",
+    "sha256": "a0ca61209e91358fa8a7d4820b2b3833d92b514676e305b1aa810204adbf6550",
+    "production_wrapper_sha256": "ebbf1c1e65203519d8386d2685ff48b98fb181e6a6bc7e09322df92143765f4b",
+    "production_wrapper_byte_match_verified": true,
+    "user_keys_used_inside_container": false,
+    "bao_or_keychain_accessed": false,
+    "ephemeral_synthetic_key_pairs": 2
+  },
+  "checks": {
+    "delayed_injection_allows_same_key_without_sshd_restart": true,
+    "ephemeral_private_keys_removed": true,
+    "exact_wrapper_started_listener": true,
+    "loopback_only_no_published_port": true,
+    "missing_authorized_keys_rejects_key": true,
+    "onstart_equivalent_permission_operations_restore_auth": true,
+    "other_identity_rejected": true,
+    "server_logged_bad_permissions": true,
+    "unsafe_authorized_keys_permissions_rejected": true,
+    "wrong_host_key_rejected": true
+  },
+  "boundaries": {
+    "production_full_image_tested": false,
+    "full_onstart_with_gpu_services_executed": false,
+    "vast_key_injection_order_verified": false,
+    "vast_proxy_tested": false,
+    "gpu_or_head_simulation_performed": false,
+    "raw_ssh_output_recorded": false,
+    "production_scripts_modified": false
+  }
+}

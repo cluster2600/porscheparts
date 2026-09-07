@@ -1,0 +1,237 @@
+{
+  "$comment": "Commandes atomiques du workflow NVIDIA. Ce fichier n'est pas un runner et ne doit jamais etre execute comme une boucle aveugle.",
+  "schema_version": "1.0.0",
+  "phase": "F49",
+  "scope": "one_variant_per_output_root_repeat_independently_for_2V_and_4V",
+  "required_environment": [
+    "PROJECT_ROOT",
+    "SIMREADY_SKILL_ROOT",
+    "SOURCE_STEP",
+    "VARIANT_ID",
+    "OUTPUT_ROOT",
+    "INPUT_MANIFEST",
+    "MATERIAL_PROMPT_TEXT",
+    "PHYSICS_PROMPT_TEXT"
+  ],
+  "preconditions": {
+    "accepted_input_gate_command": [
+      "python3",
+      "${PROJECT_ROOT}/twins/reference-917-engine/remote-simready/f49/validate_inputs.py",
+      "--manifest",
+      "${INPUT_MANIFEST}",
+      "--report",
+      "${OUTPUT_ROOT}/00_input/input-gate.json"
+    ],
+    "must_exit_zero_before_any_nvidia_stage": true,
+    "property_assignment_intent": "run",
+    "content_agents_must_be_ready_before_asset_inspection": true
+  },
+  "stages": [
+    {
+      "id": "preflight",
+      "reference": "preflight",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/preflight/scripts/preflight.py",
+        "--source-asset",
+        "${SOURCE_STEP}",
+        "--source-format",
+        "step",
+        "--output-root",
+        "${OUTPUT_ROOT}",
+        "--targets",
+        "conversion,validation,content-agents",
+        "--env-file",
+        "${OUTPUT_ROOT}/01_preflight/preflight.env",
+        "--report",
+        "${OUTPUT_ROOT}/01_preflight/preflight.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/01_preflight/preflight.md"
+      ],
+      "pass_condition": "status_ready_and_all_material_physics_ovrtx_services_ready",
+      "failure_action": "stop"
+    },
+    {
+      "id": "content-agents-readiness",
+      "reference": "deploy-content-agents",
+      "execution": "reuse healthy OVRTX Material and Physics endpoints or follow the three matching upstream nvidia-omniverse/content-agents deployment skills",
+      "precondition": "preflight manifest written and property_assignment_intent_run",
+      "pass_condition": "shared OVRTX and independent Material and Physics services healthy and exported by the preflight manifest",
+      "failure_action": "stop_before_asset_inspection",
+      "secrets_policy": "credentials only through private environment or file-backed injection; never argv report or repository"
+    },
+    {
+      "id": "identify-asset-context",
+      "reference": "identify-asset-context",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/identify-asset-context/scripts/run.py",
+        "${SOURCE_STEP}",
+        "--report",
+        "${OUTPUT_ROOT}/02_context/asset-context.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/02_context/asset-context.md"
+      ],
+      "precondition": "preflight_ready_and_content_agents_ready",
+      "failure_action": "stop"
+    },
+    {
+      "id": "convert-to-usd",
+      "reference": "convert-to-usd",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/convert-to-usd/scripts/run.py",
+        "${SOURCE_STEP}",
+        "${OUTPUT_ROOT}/03_conversion",
+        "--report",
+        "${OUTPUT_ROOT}/03_conversion/conversion.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/03_conversion/conversion.md"
+      ],
+      "output_handoff": "read_output_usd_path_from_conversion_report",
+      "failure_action": "stop"
+    },
+    {
+      "id": "validate-usd-minimum",
+      "reference": "validate-usd-minimum",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/validate-usd-minimum/scripts/run.py",
+        "${CONVERTED_USD}",
+        "--report",
+        "${OUTPUT_ROOT}/04_minimum/minimum.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/04_minimum/minimum.md"
+      ],
+      "forbidden_before_assignment": ["FET000", "FET001", "FET004", "FET005", "simready-validate"],
+      "failure_action": "stop"
+    },
+    {
+      "id": "material-agent",
+      "reference": "content-agents",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/content-agents/scripts/run.py",
+        "${CONVERTED_USD}",
+        "--output-dir",
+        "${OUTPUT_ROOT}/05_assignment/material",
+        "--call",
+        "material",
+        "--prompt",
+        "${MATERIAL_PROMPT_TEXT}",
+        "--report",
+        "${OUTPUT_ROOT}/05_assignment/material.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/05_assignment/material.md"
+      ],
+      "output_handoff": "read_concrete_output_usd_or_usdz_path_from_material_report",
+      "failure_action": "stop"
+    },
+    {
+      "id": "physics-agent",
+      "reference": "content-agents",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/content-agents/scripts/run.py",
+        "${MATERIAL_USD}",
+        "--output-dir",
+        "${OUTPUT_ROOT}/05_assignment/physics",
+        "--call",
+        "physics",
+        "--prompt",
+        "${PHYSICS_PROMPT_TEXT}",
+        "--convert-physics-output-to-usd",
+        "--report",
+        "${OUTPUT_ROOT}/05_assignment/physics.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/05_assignment/physics.md"
+      ],
+      "output_handoff": "read_concrete_output_usd_path_from_physics_report",
+      "failure_action": "stop"
+    },
+    {
+      "id": "simready-conform-profile",
+      "reference": "simready-conform-profile",
+      "argv": [
+        "python3",
+        "${SIMREADY_SKILL_ROOT}/references/simready-conform-profile/scripts/run.py",
+        "${PHYSICS_USD}",
+        "--output-dir",
+        "${OUTPUT_ROOT}/06_conform",
+        "--profile",
+        "Prop-Robotics-Neutral",
+        "--profile-version",
+        "1.0.0",
+        "--source-asset",
+        "${SOURCE_STEP}",
+        "--identifier",
+        "${VARIANT_ID}",
+        "--pipeline-step",
+        "material-agent-client",
+        "--pipeline-step",
+        "physics-agent-client",
+        "--report",
+        "${OUTPUT_ROOT}/06_conform/conform.json",
+        "--markdown-report",
+        "${OUTPUT_ROOT}/06_conform/conform.md"
+      ],
+      "output_handoff": "read_concrete_output_usd_path_from_conform_report",
+      "failure_action": "stop"
+    },
+    {
+      "id": "omni-asset-validate",
+      "reference": "omni-asset-validate",
+      "argv": ["python3", "${SIMREADY_SKILL_ROOT}/references/omni-asset-validate/scripts/run.py", "${CONFORMED_USD}", "--report", "${OUTPUT_ROOT}/07_validation/asset.json", "--markdown-report", "${OUTPUT_ROOT}/07_validation/asset.md"],
+      "validation_failure_action": "record_and_continue_diagnostics"
+    },
+    {
+      "id": "omni-asset-validate-geometry",
+      "reference": "omni-asset-validate-geometry",
+      "argv": ["python3", "${SIMREADY_SKILL_ROOT}/references/omni-asset-validate-geometry/scripts/run.py", "${CONFORMED_USD}", "--report", "${OUTPUT_ROOT}/07_validation/geometry.json", "--markdown-report", "${OUTPUT_ROOT}/07_validation/geometry.md"],
+      "validation_failure_action": "record_and_continue_diagnostics"
+    },
+    {
+      "id": "omni-asset-validate-physics",
+      "reference": "omni-asset-validate-physics",
+      "argv": ["python3", "${SIMREADY_SKILL_ROOT}/references/omni-asset-validate-physics/scripts/run.py", "${CONFORMED_USD}", "--report", "${OUTPUT_ROOT}/07_validation/physics.json", "--markdown-report", "${OUTPUT_ROOT}/07_validation/physics.md"],
+      "validation_failure_action": "record_and_continue_diagnostics"
+    },
+    {
+      "id": "simready-validate",
+      "reference": "simready-validate",
+      "argv": ["python3", "${SIMREADY_SKILL_ROOT}/references/simready-validate/scripts/run.py", "${CONFORMED_USD}", "--profile", "Prop-Robotics-Neutral", "--profile-version", "1.0.0", "--report", "${OUTPUT_ROOT}/07_validation/simready.json", "--markdown-report", "${OUTPUT_ROOT}/07_validation/simready.md"],
+      "validation_failure_action": "route_each_repairable_requirement_then_rerun_on_newest_usd"
+    },
+    {
+      "id": "conditional-fet-repair-and-rerun",
+      "reference": "simready-conform-profile",
+      "policy": {
+        "GSP.001": "FET005 requires inspected visual evidence or explicit points; otherwise record blocked and author nothing",
+        "RB.MB.001": "FET004 may reuse existing component bodies only; never create geometry",
+        "UN.007": "FET001 only after property assignment",
+        "all_repairs": "rerun simready-validate on the newest authored USD and preserve every report"
+      }
+    },
+    {
+      "id": "ovrtx-render-service",
+      "reference": "ovrtx-render-service",
+      "argv": ["python3", "${SIMREADY_SKILL_ROOT}/references/ovrtx-render-service/scripts/run.py", "${FINAL_USD}", "${OUTPUT_ROOT}/08_render/${VARIANT_ID}-final.png", "--width", "1600", "--height", "1200", "--fail-on-uniform", "--report", "${OUTPUT_ROOT}/08_render/ovrtx.json", "--markdown-report", "${OUTPUT_ROOT}/08_render/ovrtx.md"],
+      "must_not_use": ["default_lights_for_final", "flatten_for_final_unless_composition_is_blocked", "non_ovrtx_substitute", "legacy_or_proxy_asset"],
+      "failure_action": "blocked_no_substitute_image"
+    },
+    {
+      "id": "consolidated-report",
+      "reference": "omniverse-cad-to-simready-output-contract",
+      "execution": "assemble one Markdown and one JSON report from preserved stage reports without rerunning or hiding a failed stage",
+      "required_status_values": ["passed", "blocked", "failed", "needs_rerun"],
+      "failure_action": "blocked_missing_required_report"
+    }
+  ],
+  "report": {
+    "markdown": "${OUTPUT_ROOT}/omniverse-cad-to-simready-report.md",
+    "json": "${OUTPUT_ROOT}/omniverse-cad-to-simready-report.json",
+    "required_overall_status_values": ["passed", "blocked", "failed", "needs_rerun"],
+    "must_record_credentials": false,
+    "must_record_all_stage_paths_and_rerun_reasons": true
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$comment": "F50 exécute un écran CalculiX sur un témoin local circulaire du pont de chambre. Ce témoin n'est ni la peau extérieure F43, ni une approximation de la culasse complète. Aucun résultat n'autorise la fabrication ou le démarrage.",
+  "schema_version": "1.0.0",
+  "phase": "F50",
+  "asset_id": "917_30_turbo_5374_2v_4v_local_deck_thermomechanical_screen_f50",
+  "classification": "executed_local_circular_deck_witness_screen_not_full_head_FEA_not_CHT_not_fatigue_life",
+  "upstream": {
+    "f43_scan_skin_report": {
+      "path": "twins/reference-917-engine/evidence/f43-scan-contour-patch/f43-scan-contour-patch-report.json",
+      "sha256": "7d004358f0823ab4120f411334e396a187cd77a16dbd02e02f8e153f4b1b2aa5"
+    },
+    "f45_valvetrain": {
+      "path": "twins/reference-917-engine/valvetrain-material-screen-f45.json",
+      "sha256": "9d4df959ea9b6ee3bc78a8e62a4ab1ac7d274567c0f6309d0f091e8696118883"
+    },
+    "f47_calculix_mapping": {
+      "path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/calculix-loads.json",
+      "sha256": "a99939ecfc7b36d6352ac5451057ede20bce6fa95b37c7e8d62c47f4559a4923"
+    },
+    "f49_material_process": {
+      "path": "twins/reference-917-engine/material-lpbf-qualification-f49.json",
+      "sha256": "09b3af21c5089dc68d472706a6eaf6491709fd8fe93a8e8e1825a0932bce32b5"
+    }
+  },
+  "geometry_policy": {
+    "modelled_domain": "local_circular_combustion_deck_witness_only",
+    "full_head_or_external_skin_modelled": false,
+    "F43_external_skin_loaded_or_modified": false,
+    "F43_external_skin_approximated": false,
+    "same_F43_external_skin_required_for_future_2v_and_4v_full_head_runs": true,
+    "bore_shape": "circle",
+    "bore_diameter_mm": 90.0,
+    "witness_thickness_mm": 18.0,
+    "witness_thickness_basis": "F47 throat span z=4..22 mm; research proxy, not a measured wall",
+    "functional_voids_only": true,
+    "global_oval_or_ellipse_created": false,
+    "anisotropic_scaling_used": false,
+    "external_geometry_published": false
+  },
+  "variants": {
+    "2v": {
+      "trace": {
+        "case_id": "2v-cantera_finite_rate-cd0.72-dca0.25",
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "sha256": "3d13ece6bc9ad8c3792df9dfca30d17838611ee877a3cc6abd7423d0b4b62907"
+      },
+      "functional_circular_voids": [
+        {"id": "intake_1", "centre_xy_mm": [0.0, 21.5], "diameter_mm": 36.12, "basis": "F47 head diameter 42 mm times throat ratio 0.86"},
+        {"id": "exhaust_1", "centre_xy_mm": [0.0, -21.0], "diameter_mm": 30.1, "basis": "F47 head diameter 35 mm times throat ratio 0.86"},
+        {"id": "spark", "centre_xy_mm": [30.0, 0.0], "diameter_mm": 10.0, "basis": "F47 packaging hypothesis"}
+      ]
+    },
+    "4v": {
+      "trace": {
+        "case_id": "4v-cantera_finite_rate-cd0.72-dca0.25",
+        "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+        "sha256": "632a66647a871736509f180048009d52f5d5312693dd456059e11455570b7518"
+      },
+      "functional_circular_voids": [
+        {"id": "intake_1", "centre_xy_mm": [-19.5, 15.5], "diameter_mm": 27.09, "basis": "F47 head diameter 31.5 mm times throat ratio 0.86"},
+        {"id": "intake_2", "centre_xy_mm": [19.5, 15.5], "diameter_mm": 27.09, "basis": "F47 head diameter 31.5 mm times throat ratio 0.86"},
+        {"id": "exhaust_1", "centre_xy_mm": [-19.5, -19.0], "diameter_mm": 22.36, "basis": "F47 head diameter 26 mm times throat ratio 0.86"},
+        {"id": "exhaust_2", "centre_xy_mm": [19.5, -19.0], "diameter_mm": 22.36, "basis": "F47 head diameter 26 mm times throat ratio 0.86"},
+        {"id": "spark", "centre_xy_mm": [0.0, 0.0], "diameter_mm": 10.0, "basis": "F47 packaging hypothesis"}
+      ]
+    }
+  },
+  "load_policy": {
+    "speed_rpm": 9000.0,
+    "trace_selection": "one complete F46 trace per architecture; no pointwise envelope used as history",
+    "pressure": "peak gauge pressure from selected complete trace, p_gauge=max(p_abs)-101325 Pa",
+    "thermal": "signed cycle-mean wall heat flux from selected complete trace",
+    "time_mapping": "t_s=theta_deg/(6*N_rpm)",
+    "structural_reference_pressure_pa_abs": 101325.0,
+    "pressure_correlated_to_engine": false,
+    "wall_heat_flux_correlated_to_engine": false
+  },
+  "thermal_screen": {
+    "F43_total_surface_area_scan_unit_squared_interpreted_as_mm2": 112256.35492828638,
+    "physical_air_film_hypothesis_w_m2_k": 250.0,
+    "air_sink_temperature_c_hypothesis": 80.0,
+    "equivalent_local_film_equation": "h_eq=h_air*A_F43/A_local_cooling_faces",
+    "equivalent_local_film_is_CHT": false,
+    "material": {
+      "id": "Aheadd_CP1_400C_4h",
+      "conductivity_w_m_k": 187.0,
+      "conductivity_basis": "F49 room-temperature supplier value held constant",
+      "temperature_dependent_hot_card_available": false
+    }
+  },
+  "structural_screen": {
+    "elastic_modulus_mpa_hypothesis": 70000.0,
+    "poisson_ratio_hypothesis": 0.33,
+    "thermal_expansion_per_k_hypothesis": 0.000023,
+    "material_hypotheses_are_F49_qualified": false,
+    "room_temperature_yield_mpa_from_F49": 323.0,
+    "room_temperature_uts_mpa_from_F49": 342.0,
+    "boundary_condition": "outer circular witness edge fully clamped; research sensitivity only",
+    "contact_preload_and_stud_interfaces_modelled": false
+  },
+  "mesh_campaign": {
+    "element": "linear_tetrahedron_DC3D4_then_C3D4",
+    "target_sizes_mm": [5.0, 3.5, 2.5],
+    "positive_tetrahedra_required": true,
+    "minimum_mean_ratio_required": 0.05,
+    "finest_pair_limits": {
+      "temperature_max_relative_difference": 0.02,
+      "support_excluded_p95_stress_relative_difference": 0.1,
+      "maximum_displacement_relative_difference": 0.05
+    }
+  },
+  "fatigue_proxy": {
+    "definition": "relaxed-cold to peak-hot elastic half-range; SWT-like proxy=sigma_a^2/E",
+    "cycles_to_failure_computed": false,
+    "Miner_damage_computed": false,
+    "hot_S_N_or_epsilon_N_curve_available": false
+  },
+  "release_gates": {
+    "full_F43_head_solid_mesh_used": false,
+    "verified_chamber_cooling_and_support_surface_mapping": false,
+    "temperature_dependent_hot_material_card_used": false,
+    "thermomechanical_fatigue_life_computed": false,
+    "full_head_CHT_completed": false,
+    "physical_correlation_completed": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

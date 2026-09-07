@@ -1,0 +1,62 @@
+{
+  "schema_version": "porsche-917-f49-vast-execution-budget/v1",
+  "$comment": "Budget fail-closed lu et calcule sans lancement ni depense.",
+  "offer_snapshot_read_only": {
+    "offer_id": 39351028,
+    "gpu": "RTX PRO 6000 WS 97.9GB",
+    "cpu_cores": 32,
+    "ram_mb": 128565,
+    "disk_gb": 1286,
+    "hourly_usd": 2.00729,
+    "reliability": 0.9985,
+    "transfer_up_usd_per_gb": 0.004,
+    "transfer_down_usd_per_gb": 0.002667
+  },
+  "budget_ceiling_usd": 23.0,
+  "remote_TTL_h": 8.0,
+  "transfer_bounds_gb": {
+    "image_and_dependencies_to_instance": 4.0,
+    "F49_inputs_to_instance": 0.1,
+    "results_from_instance": 1.0,
+    "total": 5.1
+  },
+  "cost_bound_method": "all 5.1 GB charged conservatively at max(up,down)=0.004 USD/GB",
+  "compute_cost_bound_usd": 16.05832,
+  "transfer_cost_bound_usd": 0.0204,
+  "total_cost_bound_usd": 16.07872,
+  "planned_cases_if_authorized": {
+    "OpenFOAM_case_ids": [
+      "2v-coarse-intake",
+      "2v-coarse-exhaust",
+      "2v-medium-intake",
+      "2v-medium-exhaust",
+      "2v-fine-intake",
+      "2v-fine-exhaust",
+      "4v-coarse-intake",
+      "4v-coarse-exhaust",
+      "4v-medium-intake",
+      "4v-medium-exhaust",
+      "4v-fine-intake",
+      "4v-fine-exhaust"
+    ],
+    "expected_job_count": 12,
+    "AATE_dynamic_engine_case": false,
+    "conjugate_CHT_case": false
+  },
+  "planned_solver_horizon_if_authorized": {
+    "maximum_physical_time_s": 0.02,
+    "adaptive_early_stop": true,
+    "final_averaging_window_required": true,
+    "stationarity_requirements": [
+      "mass-flow plateau over the final averaging window",
+      "mass balance at or below the unchanged 1 percent gate",
+      "total-enthalpy balance at or below the unchanged 1 percent gate",
+      "all configured residual targets pass"
+    ],
+    "threshold_relaxation_allowed": false,
+    "local_5ms_role": "stability smoke only, never a validation result"
+  },
+  "registry_digest_verified": false,
+  "launch_ready": false,
+  "launched": false
+}

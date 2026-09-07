@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-f46-vast-cfd-cae-controller",
+  "classification": "execution_controller_contract_not_execution_evidence",
+  "purpose": "Préparer une location Vast bornée pour les calculs CFD/CAE F46 sans lancer d'instance.",
+  "authority_boundary": {
+    "contract_prepared": true,
+    "offer_selected_live": false,
+    "image_verified_live": false,
+    "instance_created": false,
+    "spend_incurred_usd": 0.0,
+    "simulation_executed": false,
+    "physical_validation": false,
+    "manufacturing_release": false
+  },
+  "approved_secret_boundary": {
+    "vast_wrapper": "/Users/maxime/.local/bin/openbao-vastai",
+    "ghcr_wrapper": "/Users/maxime/.local/bin/openbao-ghcr",
+    "raw_secret_access_forbidden": true,
+    "controller_accepts_secret_values": false
+  },
+  "budget": {
+    "hard_total_usd": 23.0,
+    "planned_compute_ceiling_usd": 19.949,
+    "planned_network_ceiling_usd": 0.051,
+    "planned_workload_ceiling_usd": 20.0,
+    "cleanup_and_billing_reserve_usd": 3.0,
+    "maximum_selected_dph_usd": 2.5,
+    "maximum_runtime_seconds": 28800,
+    "minimum_useful_runtime_seconds": 3600,
+    "cleanup_reserve_seconds": 1800,
+    "cost_basis": "max(provider_reported_charge, elapsed_seconds*dph_total/3600) plus immutable prior ledger entries",
+    "network_tariff_must_be_zero_before_launch": false,
+    "maximum_image_pull_gb": 4.0,
+    "maximum_input_bundle_gb": 0.1,
+    "maximum_output_bundle_gb": 1.0,
+    "network_cost_basis": "(image_pull_gb + input_bundle_gb) * inet_down_cost_usd_per_gb + output_bundle_gb * inet_up_cost_usd_per_gb; reserve the maximum before launch",
+    "overspend_never_suppresses_cleanup": true
+  },
+  "offer_policy": {
+    "selection_is_live_only": true,
+    "snapshot_max_age_seconds": 300,
+    "allowed_gpu_models": [
+      "RTX PRO 6000 WS",
+      "RTX PRO 6000 Blackwell Max-Q",
+      "RTX A6000"
+    ],
+    "required_gpu_count": 1,
+    "required_gpu_fraction": 1.0,
+    "minimum_gpu_ram_mb": 48000,
+    "minimum_cpu_cores_effective": 24,
+    "minimum_cpu_ram_mb": 128000,
+    "minimum_disk_space_gb": 500,
+    "minimum_reliability": 0.99,
+    "maximum_inet_up_cost_usd_per_gb": 0.01,
+    "maximum_inet_down_cost_usd_per_gb": 0.01,
+    "verified_machine_required": true,
+    "on_demand_required": true,
+    "selection_order": [
+      "gpu_model_preference",
+      "cpu_cores_effective_descending",
+      "cpu_ram_mb_descending",
+      "dph_total_ascending",
+      "offer_id_ascending"
+    ]
+  },
+  "image_policy": {
+    "expected_repository": "ghcr.io/cluster2600/3dprinting993-cfd-cae-f46",
+    "expected_immutable_ref": null,
+    "committed_evidence_path": null,
+    "committed_evidence_sha256": null,
+    "required_os": "linux",
+    "required_architecture": "amd64",
+    "registry_digest_verification_required": true,
+    "platform_manifest_verification_required": true,
+    "runtime_smoke_required": true,
+    "solver_authority": {
+      "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+      "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482",
+      "exact_ICEEngineFoam_executable_found": false,
+      "fabricated_alias_allowed": false,
+      "current_engine_framework": "AATE_OpenFOAM_ICengines",
+      "historical_counter_solver_if_built": "OpenFOAM_3.0.x_engineFoam",
+      "cantera_version": "3.2.0"
+    },
+    "required_tools": {
+      "openfoam": "version_pinned_and_smoked",
+      "aate_icengines": "official_revision_built_against_pinned_OpenFOAM_and_smoked",
+      "cantera_3_2": "exact_version_3.2.0_pinned_and_import_smoked",
+      "cht": "solver_and_minimal_conjugate_fixture_smoked",
+      "fea": "calculix_or_exact_declared_solver_pinned_and_smoked",
+      "cuda": "nvidia_smi_and_minimal_cuda_allocation_smoked",
+      "job_runner": "f46-run-manifest_deadline_and_command_array_smoked"
+    },
+    "optional_tools": {
+      "historical_enginefoam": "only_if_built_from_locked_OpenFOAM_3.0.x_revision_then_version_and_smoke_required"
+    },
+    "existing_images_satisfy_complete_F46_toolchain": false,
+    "reason_expected_ref_null": "Aucun digest GHCR linux/amd64 vert ne couvre actuellement les capacités requises dans une image unique."
+  },
+  "lifecycle": {
+    "label": "3dprinting993-f46-cfd-cae",
+    "attempt_label_token_hex_chars": 20,
+    "singleton_required": true,
+    "inventory_before_must_be_empty_for_label": true,
+    "local_and_remote_deadline_must_match": true,
+    "remote_job_start_cutoff_before_deadline_seconds": 1800,
+    "local_watchdog_poll_seconds": 15,
+    "remote_watchdog_poll_seconds": 15,
+    "destroy_on_normal_exit": true,
+    "destroy_on_error": true,
+    "destroy_on_signal": true,
+    "destroy_on_deadline": true,
+    "destroy_on_budget_gate": true,
+    "destroy_on_image_or_instance_drift": true,
+    "destroy_retry_count": 5,
+    "destroy_retry_interval_seconds": 15,
+    "inventory_after_must_be_empty_for_label": true,
+    "complete_paginated_inventory_required": true
+  },
+  "cost_monitor": {
+    "poll_seconds": 60,
+    "provider_instance_snapshot_required": true,
+    "prior_ledger_is_append_only": true,
+    "stop_compute_at_planned_ceiling_usd": 19.949,
+    "reserved_network_ceiling_usd": 0.051,
+    "destroy_before_hard_total_usd": 23.0,
+    "missing_or_nonfinite_cost_blocks_compute_and_triggers_cleanup": true
+  },
+  "job_manifest": {
+    "path": "twins/reference-917-engine/f46-vast-job-manifest.json",
+    "required_families": [
+      "OpenFOAM",
+      "AATE_ICengines",
+      "Cantera",
+      "CHT",
+      "FEA"
+    ],
+    "all_commands_must_be_exact_and_digest_bound_before_execution": true
+  },
+  "current_release_gates": {
+    "live_offer_snapshot_verified": false,
+    "eligible_offer_selected": false,
+    "F46_image_digest_verified": false,
+    "F46_linux_amd64_platform_verified": false,
+    "F46_runtime_smoke_verified": false,
+    "input_domains_complete": false,
+    "all_job_commands_digest_bound": false,
+    "launch_authorized": false,
+    "launch_executed": false,
+    "cleanup_verified": false,
+    "empty_final_inventory_verified": false,
+    "simulation_validated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

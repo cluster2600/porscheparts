@@ -1,11 +1,12 @@
 .PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
-.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke 917-unsteady-network-f39-test 917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate 917-unsteady-network-f39 917-wave-action-f39-image-test 917-wave-action-f39-image 917-wave-action-f39-image-smoke
+.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke 917-unsteady-network-f39-test 917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate 917-unsteady-network-f39 917-wave-action-f39-image-test 917-wave-action-f39-image 917-wave-action-f39-image-smoke 917-f50-cfd-recovery-check
 .PHONY: 917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest 917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
 .PHONY: 917-extended-periodic-state-f40b-test 917-extended-periodic-state-f40b-manifest 917-extended-periodic-state-f40b-image-smoke 917-extended-periodic-state-f40b
 .PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
 .PHONY: 917-component-factory-f42a-usd-test
 .PHONY: 917-variant-authority-f43-check
 .PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
+.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check 917-cae-load-transfer-f47 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f48-cfd-domain-test 917-mesh-diagnostic-f48 917-mesh-diagnostic-f48-check 917-material-lpbf-f49 917-material-lpbf-f49-check 917-omniverse-simready-f49-check 917-f49-solid-repair-check 917-f49-cfd-cht-check 917-thermomechanical-f50 917-thermomechanical-f50-publish 917-thermomechanical-f50-check 917-native-brep-mesh-f50-check 917-additive-print-f50-check 917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -42,9 +43,11 @@ F41_PLAN_OUTPUT ?= work/917-component-factory-f41-plan
 F41_BUNDLE_OUTPUT ?= work/917-component-factory-f41-bundle
 override F44_CAD_IMAGE := ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57
 override F44_OUTPUT := work/917-connecting-rod-cad-f44
+F46_PYTHON ?= python3
+F47_PYTHON ?= python3
 
 .PHONY: 917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly 917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish 917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad 917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich 917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea 917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan 917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render 917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check 917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check 917-manufacturing-f37-check
-.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-brep-audit-test 917-f42-1-topology-repair-test 917-f42-2-pcurve-repair-test 917-f42-1-thermal-optimization-check 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-engine-solver-authority-f46-check 917-f47-cfd-cae-image-check
+.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-brep-audit-test 917-f42-1-topology-repair-test 917-f42-2-pcurve-repair-test 917-f42-1-thermal-optimization-check 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-f43-g3-g5-comparable-check 917-f43-scan-contour-patch-test 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-f47-cfd-cae-image-check
 
 F40_PYTHON ?= python3
 F42_PYTHON ?= python3
@@ -64,7 +67,89 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 917-f42-2-pcurve-repair-test:
 	$(F42_PYTHON) tests/test_917_f42_2_pcurve_repair.py -v
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-engine-solver-authority-f46-check 917-f47-cfd-cae-image-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+917-f43-scan-contour-patch-test:
+	python3 tests/test_917_f43_scan_contour_patch_rebuild.py -v
+
+check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f47-cfd-cae-image-check 917-f48-cfd-domain-test 917-mesh-diagnostic-f48-check 917-material-lpbf-f49-check 917-omniverse-simready-f49-check 917-f49-solid-repair-check 917-f49-cfd-cht-check 917-thermomechanical-f50-check 917-native-brep-mesh-f50-check 917-additive-print-f50-check 917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+
+917-valvetrain-material-f45:
+	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
+
+917-valvetrain-material-f45-check:
+	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root . --check
+	python3 tests/test_917_valvetrain_material_screen_f45.py -v
+
+917-cantera-2v-4v-f46:
+	$(F46_PYTHON) twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py --project-root .
+
+917-cantera-2v-4v-f46-check:
+	python3 twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py --project-root . --check
+	python3 tests/test_917_cantera_2v_4v_crank_cycle_f46.py -v
+
+917-cae-load-transfer-f47:
+	$(F47_PYTHON) twins/reference-917-engine/source/build_cae_load_transfer_f47.py --project-root .
+
+917-cae-load-transfer-f47-check:
+	python3 twins/reference-917-engine/source/build_cae_load_transfer_f47.py --project-root . --check
+	python3 tests/test_917_cae_load_transfer_f47.py -v
+
+917-f47-internal-brep-test:
+	python3 tests/test_917_f47_internal_brep_variants.py -v
+
+917-f48-cfd-domain-test:
+	python3 tests/test_917_f48_cfd_domains.py -v
+
+917-mesh-diagnostic-f48:
+	python3 twins/reference-917-engine/source/publish_mesh_diagnostic_f48.py --project-root .
+
+917-mesh-diagnostic-f48-check:
+	python3 twins/reference-917-engine/source/publish_mesh_diagnostic_f48.py --project-root . --check
+	python3 tests/test_917_mesh_diagnostic_f48.py -v
+
+917-f49-solid-repair-check:
+	python3 twins/reference-917-engine/source/publish_internal_solid_repair_f49.py --project-root . --check
+	python3 tests/test_917_f49_internal_solid_repair.py -v
+
+917-material-lpbf-f49:
+	python3 twins/reference-917-engine/source/build_material_lpbf_qualification_f49.py --project-root .
+
+917-material-lpbf-f49-check:
+	python3 twins/reference-917-engine/source/build_material_lpbf_qualification_f49.py --project-root . --check
+	python3 tests/test_917_material_lpbf_qualification_f49.py -v
+
+917-omniverse-simready-f49-check:
+	python3 tests/test_917_f49_omniverse_simready.py -v
+
+917-thermomechanical-f50:
+	test ! -e work/917-f50-thermomechanical
+	docker run --rm --entrypoint /bin/sh -v "$(CURDIR):/repo" -w /repo $(F33_CAE_IMAGE) -lc 'python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py solve --root /repo --contract /repo/twins/reference-917-engine/thermomechanical-screen-f50.json --work /repo/work/917-f50-thermomechanical'
+
+917-thermomechanical-f50-publish:
+	test ! -e twins/reference-917-engine/evidence/f50-thermomechanical
+	python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py publish --root . --contract twins/reference-917-engine/thermomechanical-screen-f50.json --work work/917-f50-thermomechanical --evidence twins/reference-917-engine/evidence/f50-thermomechanical
+
+917-thermomechanical-f50-check:
+	python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py verify --root . --contract twins/reference-917-engine/thermomechanical-screen-f50.json --evidence twins/reference-917-engine/evidence/f50-thermomechanical
+	python3 tests/test_917_f50_thermomechanical_screen.py -v
+
+917-additive-print-f50-check:
+	python3 tests/test_917_f50_additive_print.py -v
+
+917-f49-cfd-cht-check:
+	python3 tests/test_917_f49_cfd_cht.py -v
+
+917-native-brep-mesh-f50-check:
+	python3 tests/test_917_f50_native_brep_mesh.py -v
+
+917-native-brep-usd-f51-check:
+	python3 tests/test_917_f51_native_brep_usd_validation.py -v
+
+917-physicsnemo-readiness-f52-check:
+	python3 twins/reference-917-engine/source/validate_physicsnemo_readiness_f52.py --project-root .
+	python3 tests/test_917_physicsnemo_readiness_f52.py -v
+
+917-f50-cfd-recovery-check:
+	python3 tests/test_917_f50_cfd_recovery.py -v
 
 validate:
 	python3 scripts/validate_catalog.py
@@ -842,9 +927,20 @@ engine-components:
 917-f42-2-material-process-check:
 	python3 tests/test_917_f42_2_material_process.py -v
 
+917-f43-g3-g5-comparable-check:
+	python3 twins/reference-917-engine/source/audit_g3_g5_comparable_execution_f43.py --check twins/reference-917-engine/evidence/f43-g3-g5-comparable/audit-report.json
+	python3 tests/test_917_f43_g3_g5_comparable.py -v
+
 917-engine-solver-authority-f46-check:
 	python3 twins/reference-917-engine/source/validate_engine_solver_authority_f46.py --project-root .
 	python3 tests/test_917_engine_solver_authority_f46.py -v
+
+917-f46-vast-controller-check:
+	python3 twins/reference-917-engine/source/validate_engine_solver_authority_f46.py --project-root .
+	python3 tests/test_917_engine_solver_authority_f46.py -v
+	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . check
+	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller/preparation-report.json
+	python3 tests/test_917_f46_vast_controller.py -v
 
 917-f47-cfd-cae-image-check:
 	python3 tests/test_917_f47_cfd_cae_image.py -v

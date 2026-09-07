@@ -41,12 +41,17 @@ validate_controller_id "${JOB_ID}"
 validate_pinned_image "${EXPECTED_IMAGE}"
 case "${WORKFLOW_PROFILE}" in
     legacy-f10) RETRIEVAL_SUMMARIZER="${SCRIPT_DIR}/_summarize_retrieval.py" ;;
+    f46-cfd-cae-v1)
+        RETRIEVAL_SUMMARIZER=""
+        [ -z "${RETRIEVAL_REPORT}" ] \
+            || controller_die "le profil F46 ne peut pas réutiliser un résumé SimReady"
+        ;;
     f42b-six-usd-v1)
         RETRIEVAL_SUMMARIZER="${SCRIPT_DIR}/_summarize_f42b_retrieval.py"
         PRIVATE_DESTINATION_HELPER="${SCRIPT_DIR}/_private_destination.py"
         [ -f "${PRIVATE_DESTINATION_HELPER}" ] || controller_die "helper de destination privée F42b absent"
         ;;
-    *) controller_die "--workflow-profile doit être legacy-f10 ou f42b-six-usd-v1" ;;
+    *) controller_die "--workflow-profile doit être legacy-f10, f46-cfd-cae-v1 ou f42b-six-usd-v1" ;;
 esac
 require_vast_wrapper
 CONTROL_ROOT="${CONTROL_ROOT:-${REPOSITORY_ROOT}/work/vast-simready/controller/${JOB_ID}}"
@@ -341,7 +346,8 @@ if (
     raise SystemExit("le wrapper n'a pas confirmé la destruction")
 retrieval = json.loads(Path(sys.argv[6]).read_text(encoding="utf-8"))
 payload = {
-    "schema_version": "1.0.0", "status": "passed", "passed": True,
+    "schema_version": "1.0.0", "classification": "production_wrapper_evidence",
+    "status": "passed", "passed": True, "destroyed": True,
     "job_id": sys.argv[3], "instance_id": int(sys.argv[4]), "expected_image": sys.argv[5],
     "workflow_profile": sys.argv[7],
     "retrieval_waived": retrieval["retrieval_waived"],

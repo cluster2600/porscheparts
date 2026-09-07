@@ -1,0 +1,813 @@
+{
+  "$comment": "F45 compare analytiquement 2V et 4V dans un alésage circulaire de 90 mm sans créer ni modifier l'enveloppe de culasse. Aucun résultat ne libère la fabrication.",
+  "architectures": {
+    "2v": {
+      "architecture": "2v",
+      "classification": "F45_research_hypothesis_in_circular_90_mm_bore",
+      "component_routes": {
+        "head": "LPBF_candidate_not_selected",
+        "seats_and_guides": "purchased_inserts_finish_machined_not_printed",
+        "springs": "purchased_CrSi_not_printed",
+        "valves": "purchased_forged_bar_or_wrought_not_printed"
+      },
+      "external_benchmark": null,
+      "geometry_policy": {
+        "body_or_fin_geometry_created": false,
+        "combustion_bore_diameter_mm": 90.0,
+        "combustion_bore_shape": "circle",
+        "external_head_envelope": "preserve_scan_contour_no_synthetic_body_in_this_sublot",
+        "global_anisotropic_scale_allowed": false,
+        "global_ovalization_allowed": false
+      },
+      "historical_reference": {
+        "direct_transfer_to_F45": false,
+        "exhaust_head_diameter_mm": 40.5,
+        "exhaust_max_lift_mm": 10.5,
+        "intake_head_diameter_mm": 47.5,
+        "intake_max_lift_mm": 12.1,
+        "reason": "Valeurs FIA du moteur initial 4 494,2 cm3; elles ne définissent pas le 917/30 turbo.",
+        "variant": "type_912_4_5_na_not_917_30"
+      },
+      "id": "917_30_turbo_5374_2v_f45",
+      "operating_screen": {
+        "cam_or_valve_event_frequency_hz": 75.0,
+        "engine_speed_rpm": 9000.0,
+        "event_duration_crank_deg": 300.0,
+        "event_profile": "symmetric_half_cosine_full_lift_event_not_a_cam_law",
+        "pressure_trace_correlated": false
+      },
+      "packing": {
+        "bore_diameter_mm": 90.0,
+        "bore_shape": "circle",
+        "fitment_or_interface_proof": false,
+        "global_shape_change": false,
+        "minimum_bore_edge_gap_mm": 1.5,
+        "minimum_seat_to_plug_gap_mm": null,
+        "minimum_seat_to_seat_gap_mm": 2.0,
+        "minimum_spring_envelope_gap_mm": 12.9,
+        "pairwise_seat_gaps": [
+          {
+            "between": [
+              "intake_1",
+              "exhaust_1"
+            ],
+            "gap_mm": 2.0
+          }
+        ],
+        "plug_package": null,
+        "screen_pass": true,
+        "seat_envelope_area_fraction_of_bore": 0.408025,
+        "seat_to_plug_gaps": [],
+        "spring_outer_envelope_diameter_mm": 29.6
+      },
+      "seat_and_guide_strategy": {
+        "exhaust_seat_candidate": "purchased_copper_infiltrated_powder_metal_high_temperature_insert_finish_machined",
+        "guide_candidate": "purchased_high_temperature_powder_metal_guide_finish_honed",
+        "guide_length_outer_diameter_interference_clearance_and_finish": null,
+        "intake_seat_candidate": "purchased_sintered_high_speed_tool_steel_insert_finish_machined",
+        "interface_dimension_invented": false,
+        "seat_angle_contact_width_interference_and_bore": null,
+        "selected_supplier_part": null,
+        "technical_basis": "SRC-MAHLE-VALVETRAIN-TECHNICAL-2025_generic_function_and_material_families_only"
+      },
+      "total_valve_mass_kg": 0.081779,
+      "valves": {
+        "exhaust": {
+          "additional_equivalent_moving_mass_kg": 0.038,
+          "centres_xy_mm": [
+            [
+              0.0,
+              -21.0
+            ]
+          ],
+          "component_dimension_classification": "F45_research_hypothesis_not_Porsche_interface",
+          "count": 1,
+          "density_kg_m3": 8220.0,
+          "equivalent_moving_mass_each_kg": 0.08814,
+          "event_time_ms": 5.555556,
+          "flow": {
+            "curtain_area_mm2": 1099.557429,
+            "curtain_throat_crossover_lift_mm": 6.4715,
+            "effective_area_at_cd_0_72_mm2": 512.336585,
+            "flow_coefficient_correlated": false,
+            "limiter_at_maximum_lift": "throat",
+            "limiting_geometric_area_mm2": 711.57859,
+            "throat_area_mm2": 711.57859,
+            "throat_to_head_diameter_ratio": 0.86
+          },
+          "head_diameter_mm": 35.0,
+          "material": "purchased_bar_or_forged_INCONEL_751_candidate",
+          "maximum_acceleration_m_s2": 6395.503652,
+          "maximum_lift_mm": 10.0,
+          "maximum_velocity_m_s": 5.654867,
+          "opening_pressure_difference_mpa": 0.5,
+          "seat_envelope_diameter_mm": 37.0,
+          "spring": {
+            "analytical_screen_pass": false,
+            "combined_opening_load_n": 1044.758072,
+            "combined_rate_n_mm": 92.703221,
+            "dynamic_blocker": "Courbe de came, raideur dynamique, surge map fournisseur et essai spintron absents.",
+            "dynamic_screen_pass": false,
+            "estimated_dual_spring_mass_kg": 0.093821,
+            "inertial_force_n": 563.701697,
+            "inner": {
+              "active_coils": 5.5,
+              "mean_diameter_mm": 17.0,
+              "open_shear_mpa": 898.205816,
+              "seat_shear_mpa": 270.741225,
+              "spring_index": 5.483871,
+              "wahl_factor": 1.279413,
+              "wire_diameter_mm": 3.1
+            },
+            "maximum_wahl_corrected_shear_mpa": 898.205816,
+            "natural_to_event_frequency_ratio": 1.869729,
+            "nominal_coil_bind_margin_mm": 4.72,
+            "open_force_n": 1327.032211,
+            "open_force_to_combined_load_margin": 1.270181,
+            "opening_gas_force_n": 481.056375,
+            "outer": {
+              "active_coils": 4.8,
+              "mean_diameter_mm": 25.0,
+              "open_shear_mpa": 707.754285,
+              "seat_shear_mpa": 213.33447,
+              "spring_index": 5.434783,
+              "wahl_factor": 1.282278,
+              "wire_diameter_mm": 4.6
+            },
+            "research_shear_limit_is_supplier_allowable": false,
+            "research_shear_screen_limit_mpa": 1000.0,
+            "seat_force_n": 400.0,
+            "shear_screen_margin_to_1000_mpa": 1.113331,
+            "single_dof_natural_frequency_hz": 140.229696,
+            "static_analytical_screen_pass": true,
+            "supplier_curve_or_spintron_validated": false,
+            "valve_event_frequency_hz": 75.0,
+            "worst_case_coil_bind_margin_mm": 4.02
+          },
+          "stem_diameter_mm": 7.0,
+          "total_valve_mass_kg": 0.05014,
+          "valve_mass_each_kg": 0.05014
+        },
+        "intake": {
+          "additional_equivalent_moving_mass_kg": 0.038,
+          "centres_xy_mm": [
+            [
+              0.0,
+              21.5
+            ]
+          ],
+          "component_dimension_classification": "F45_research_hypothesis_not_Porsche_interface",
+          "count": 1,
+          "density_kg_m3": 4420.0,
+          "equivalent_moving_mass_each_kg": 0.069639,
+          "event_time_ms": 5.555556,
+          "flow": {
+            "curtain_area_mm2": 1517.389252,
+            "curtain_throat_crossover_lift_mm": 7.7658,
+            "effective_area_at_cd_0_72_mm2": 737.764682,
+            "flow_coefficient_correlated": false,
+            "limiter_at_maximum_lift": "throat",
+            "limiting_geometric_area_mm2": 1024.67317,
+            "throat_area_mm2": 1024.67317,
+            "throat_to_head_diameter_ratio": 0.86
+          },
+          "head_diameter_mm": 42.0,
+          "material": "purchased_forged_or_wrought_Ti_6Al_4V_candidate",
+          "maximum_acceleration_m_s2": 7354.8292,
+          "maximum_lift_mm": 11.5,
+          "maximum_velocity_m_s": 6.503097,
+          "opening_pressure_difference_mpa": 0.25,
+          "seat_envelope_diameter_mm": 44.0,
+          "spring": {
+            "analytical_screen_pass": false,
+            "combined_opening_load_n": 858.542698,
+            "combined_rate_n_mm": 92.703221,
+            "dynamic_blocker": "Courbe de came, raideur dynamique, surge map fournisseur et essai spintron absents.",
+            "dynamic_screen_pass": false,
+            "estimated_dual_spring_mass_kg": 0.093821,
+            "inertial_force_n": 512.182108,
+            "inner": {
+              "active_coils": 5.5,
+              "mean_diameter_mm": 17.0,
+              "open_shear_mpa": 992.325505,
+              "seat_shear_mpa": 270.741225,
+              "spring_index": 5.483871,
+              "wahl_factor": 1.279413,
+              "wire_diameter_mm": 3.1
+            },
+            "maximum_wahl_corrected_shear_mpa": 992.325505,
+            "natural_to_event_frequency_ratio": 2.033919,
+            "nominal_coil_bind_margin_mm": 3.22,
+            "open_force_n": 1466.087043,
+            "open_force_to_combined_load_margin": 1.707646,
+            "opening_gas_force_n": 346.36059,
+            "outer": {
+              "active_coils": 4.8,
+              "mean_diameter_mm": 25.0,
+              "open_shear_mpa": 781.917257,
+              "seat_shear_mpa": 213.33447,
+              "spring_index": 5.434783,
+              "wahl_factor": 1.282278,
+              "wire_diameter_mm": 4.6
+            },
+            "research_shear_limit_is_supplier_allowable": false,
+            "research_shear_screen_limit_mpa": 1000.0,
+            "seat_force_n": 400.0,
+            "shear_screen_margin_to_1000_mpa": 1.007734,
+            "single_dof_natural_frequency_hz": 152.543951,
+            "static_analytical_screen_pass": true,
+            "supplier_curve_or_spintron_validated": false,
+            "valve_event_frequency_hz": 75.0,
+            "worst_case_coil_bind_margin_mm": 2.52
+          },
+          "stem_diameter_mm": 7.0,
+          "total_valve_mass_kg": 0.031639,
+          "valve_mass_each_kg": 0.031639
+        }
+      }
+    },
+    "4v": {
+      "architecture": "4v",
+      "classification": "F45_research_hypothesis_in_circular_90_mm_bore",
+      "component_routes": {
+        "head": "LPBF_candidate_not_selected",
+        "seats_and_guides": "purchased_inserts_finish_machined_not_printed",
+        "springs": "purchased_CrSi_not_printed",
+        "valves": "purchased_forged_bar_or_wrought_not_printed"
+      },
+      "external_benchmark": {
+        "declared_exhaust_diameter_mm": 33.0,
+        "declared_intake_diameter_mm": 40.0,
+        "direct_transfer_to_F45": false,
+        "scope": "M64_95_to_102_7_mm_bore_not_917_geometry",
+        "source": "SRC-SWINDON-M64-24V-HEAD-KIT"
+      },
+      "geometry_policy": {
+        "body_or_fin_geometry_created": false,
+        "combustion_bore_diameter_mm": 90.0,
+        "combustion_bore_shape": "circle",
+        "external_head_envelope": "preserve_scan_contour_no_synthetic_body_in_this_sublot",
+        "global_anisotropic_scale_allowed": false,
+        "global_ovalization_allowed": false
+      },
+      "historical_reference": null,
+      "id": "917_30_turbo_5374_4v_f45",
+      "operating_screen": {
+        "cam_or_valve_event_frequency_hz": 75.0,
+        "engine_speed_rpm": 9000.0,
+        "event_duration_crank_deg": 300.0,
+        "event_profile": "symmetric_half_cosine_full_lift_event_not_a_cam_law",
+        "pressure_trace_correlated": false
+      },
+      "packing": {
+        "bore_diameter_mm": 90.0,
+        "bore_shape": "circle",
+        "fitment_or_interface_proof": false,
+        "global_shape_change": false,
+        "minimum_bore_edge_gap_mm": 3.274093,
+        "minimum_seat_to_plug_gap_mm": 3.159837,
+        "minimum_seat_to_seat_gap_mm": 3.25,
+        "minimum_spring_envelope_gap_mm": 8.7,
+        "pairwise_seat_gaps": [
+          {
+            "between": [
+              "intake_1",
+              "intake_2"
+            ],
+            "gap_mm": 5.5
+          },
+          {
+            "between": [
+              "intake_1",
+              "exhaust_1"
+            ],
+            "gap_mm": 3.25
+          },
+          {
+            "between": [
+              "intake_1",
+              "exhaust_2"
+            ],
+            "gap_mm": 20.819665
+          },
+          {
+            "between": [
+              "intake_2",
+              "exhaust_1"
+            ],
+            "gap_mm": 20.819665
+          },
+          {
+            "between": [
+              "intake_2",
+              "exhaust_2"
+            ],
+            "gap_mm": 3.25
+          },
+          {
+            "between": [
+              "exhaust_1",
+              "exhaust_2"
+            ],
+            "gap_mm": 10.0
+          }
+        ],
+        "plug_package": {
+          "centre_xy_mm": [
+            0.0,
+            0.0
+          ],
+          "classification": "research_hypothesis_not_Porsche_interface",
+          "diameter_mm": 10.0,
+          "id": "central_M10_bore_packaging_envelope"
+        },
+        "screen_pass": true,
+        "seat_envelope_area_fraction_of_bore": 0.484753,
+        "seat_to_plug_gaps": [
+          {
+            "between": [
+              "intake_1",
+              "central_M10_bore_packaging_envelope"
+            ],
+            "gap_mm": 3.159837
+          },
+          {
+            "between": [
+              "intake_2",
+              "central_M10_bore_packaging_envelope"
+            ],
+            "gap_mm": 3.159837
+          },
+          {
+            "between": [
+              "exhaust_1",
+              "central_M10_bore_packaging_envelope"
+            ],
+            "gap_mm": 7.725907
+          },
+          {
+            "between": [
+              "exhaust_2",
+              "central_M10_bore_packaging_envelope"
+            ],
+            "gap_mm": 7.725907
+          }
+        ],
+        "spring_outer_envelope_diameter_mm": 25.8
+      },
+      "seat_and_guide_strategy": {
+        "exhaust_seat_candidate": "purchased_copper_infiltrated_powder_metal_high_temperature_insert_finish_machined",
+        "guide_candidate": "purchased_high_temperature_powder_metal_guide_finish_honed",
+        "guide_length_outer_diameter_interference_clearance_and_finish": null,
+        "intake_seat_candidate": "purchased_sintered_high_speed_tool_steel_insert_finish_machined",
+        "interface_dimension_invented": false,
+        "seat_angle_contact_width_interference_and_bore": null,
+        "selected_supplier_part": null,
+        "technical_basis": "SRC-MAHLE-VALVETRAIN-TECHNICAL-2025_generic_function_and_material_families_only"
+      },
+      "total_valve_mass_kg": 0.132441,
+      "valves": {
+        "exhaust": {
+          "additional_equivalent_moving_mass_kg": 0.025,
+          "centres_xy_mm": [
+            [
+              -19.5,
+              -19.0
+            ],
+            [
+              19.5,
+              -19.0
+            ]
+          ],
+          "component_dimension_classification": "F45_research_hypothesis_not_Porsche_interface",
+          "count": 2,
+          "density_kg_m3": 8220.0,
+          "equivalent_moving_mass_each_kg": 0.066279,
+          "event_time_ms": 5.555556,
+          "flow": {
+            "curtain_area_mm2": 1470.265362,
+            "curtain_throat_crossover_lift_mm": 4.8074,
+            "effective_area_at_cd_0_72_mm2": 565.452296,
+            "flow_coefficient_correlated": false,
+            "limiter_at_maximum_lift": "throat",
+            "limiting_geometric_area_mm2": 785.350411,
+            "throat_area_mm2": 785.350411,
+            "throat_to_head_diameter_ratio": 0.86
+          },
+          "head_diameter_mm": 26.0,
+          "material": "purchased_bar_or_forged_INCONEL_751_candidate",
+          "maximum_acceleration_m_s2": 5755.953287,
+          "maximum_lift_mm": 9.0,
+          "maximum_velocity_m_s": 5.08938,
+          "opening_pressure_difference_mpa": 0.5,
+          "seat_envelope_diameter_mm": 29.0,
+          "spring": {
+            "analytical_screen_pass": false,
+            "combined_opening_load_n": 646.966232,
+            "combined_rate_n_mm": 59.763593,
+            "dynamic_blocker": "Courbe de came, raideur dynamique, surge map fournisseur et essai spintron absents.",
+            "dynamic_screen_pass": false,
+            "estimated_dual_spring_mass_kg": 0.05737,
+            "inertial_force_n": 381.501653,
+            "inner": {
+              "active_coils": 6.0,
+              "mean_diameter_mm": 14.5,
+              "open_shear_mpa": 839.815574,
+              "seat_shear_mpa": 273.667903,
+              "spring_index": 5.8,
+              "wahl_factor": 1.262284,
+              "wire_diameter_mm": 2.5
+            },
+            "maximum_wahl_corrected_shear_mpa": 839.815574,
+            "natural_to_event_frequency_ratio": 1.775175,
+            "nominal_coil_bind_margin_mm": 6.4,
+            "open_force_n": 797.872338,
+            "open_force_to_combined_load_margin": 1.233252,
+            "opening_gas_force_n": 265.464579,
+            "outer": {
+              "active_coils": 5.0,
+              "mean_diameter_mm": 22.0,
+              "open_shear_mpa": 665.708102,
+              "seat_shear_mpa": 216.932081,
+              "spring_index": 5.789474,
+              "wahl_factor": 1.262821,
+              "wire_diameter_mm": 3.8
+            },
+            "research_shear_limit_is_supplier_allowable": false,
+            "research_shear_screen_limit_mpa": 1000.0,
+            "seat_force_n": 260.0,
+            "shear_screen_margin_to_1000_mpa": 1.190738,
+            "single_dof_natural_frequency_hz": 133.138162,
+            "static_analytical_screen_pass": true,
+            "supplier_curve_or_spintron_validated": false,
+            "valve_event_frequency_hz": 75.0,
+            "worst_case_coil_bind_margin_mm": 5.7
+          },
+          "stem_diameter_mm": 7.0,
+          "total_valve_mass_kg": 0.082559,
+          "valve_mass_each_kg": 0.041279
+        },
+        "intake": {
+          "additional_equivalent_moving_mass_kg": 0.025,
+          "centres_xy_mm": [
+            [
+              -19.5,
+              15.5
+            ],
+            [
+              19.5,
+              15.5
+            ]
+          ],
+          "component_dimension_classification": "F45_research_hypothesis_not_Porsche_interface",
+          "count": 2,
+          "density_kg_m3": 4420.0,
+          "equivalent_moving_mass_each_kg": 0.049941,
+          "event_time_ms": 5.555556,
+          "flow": {
+            "curtain_area_mm2": 1979.203372,
+            "curtain_throat_crossover_lift_mm": 5.82435,
+            "effective_area_at_cd_0_72_mm2": 829.985267,
+            "flow_coefficient_correlated": false,
+            "limiter_at_maximum_lift": "throat",
+            "limiting_geometric_area_mm2": 1152.757316,
+            "throat_area_mm2": 1152.757316,
+            "throat_to_head_diameter_ratio": 0.86
+          },
+          "head_diameter_mm": 31.5,
+          "material": "purchased_forged_or_wrought_Ti_6Al_4V_candidate",
+          "maximum_acceleration_m_s2": 6395.503652,
+          "maximum_lift_mm": 10.0,
+          "maximum_velocity_m_s": 5.654867,
+          "opening_pressure_difference_mpa": 0.25,
+          "seat_envelope_diameter_mm": 33.5,
+          "spring": {
+            "analytical_screen_pass": false,
+            "combined_opening_load_n": 514.226559,
+            "combined_rate_n_mm": 59.763593,
+            "dynamic_blocker": "Courbe de came, raideur dynamique, surge map fournisseur et essai spintron absents.",
+            "dynamic_screen_pass": false,
+            "estimated_dual_spring_mass_kg": 0.05737,
+            "inertial_force_n": 319.398727,
+            "inner": {
+              "active_coils": 6.0,
+              "mean_diameter_mm": 14.5,
+              "open_shear_mpa": 902.720871,
+              "seat_shear_mpa": 273.667903,
+              "spring_index": 5.8,
+              "wahl_factor": 1.262284,
+              "wire_diameter_mm": 2.5
+            },
+            "maximum_wahl_corrected_shear_mpa": 902.720871,
+            "natural_to_event_frequency_ratio": 1.974013,
+            "nominal_coil_bind_margin_mm": 5.4,
+            "open_force_n": 857.635931,
+            "open_force_to_combined_load_margin": 1.667817,
+            "opening_gas_force_n": 194.827832,
+            "outer": {
+              "active_coils": 5.0,
+              "mean_diameter_mm": 22.0,
+              "open_shear_mpa": 715.572104,
+              "seat_shear_mpa": 216.932081,
+              "spring_index": 5.789474,
+              "wahl_factor": 1.262821,
+              "wire_diameter_mm": 3.8
+            },
+            "research_shear_limit_is_supplier_allowable": false,
+            "research_shear_screen_limit_mpa": 1000.0,
+            "seat_force_n": 260.0,
+            "shear_screen_margin_to_1000_mpa": 1.107762,
+            "single_dof_natural_frequency_hz": 148.05101,
+            "static_analytical_screen_pass": true,
+            "supplier_curve_or_spintron_validated": false,
+            "valve_event_frequency_hz": 75.0,
+            "worst_case_coil_bind_margin_mm": 4.7
+          },
+          "stem_diameter_mm": 7.0,
+          "total_valve_mass_kg": 0.049882,
+          "valve_mass_each_kg": 0.024941
+        }
+      }
+    }
+  },
+  "asset_id": "porsche-917-30-turbo-f45-valvetrain-material-screen",
+  "authority_boundary": {
+    "Porsche_interface_dimensions_created": false,
+    "all_new_component_dimensions_are_research_hypotheses": true,
+    "bore_mm": 90.0,
+    "bore_source": "twins/reference-917-engine/head-architecture-authority-f45.json",
+    "external_scan_contour_modified": false,
+    "global_ovalization": false,
+    "target": "917_30_turbo_5374_2v_and_4v_research_candidates",
+    "type_912_values_never_relabelled_as_917_30_exact": true
+  },
+  "comparison": {
+    "decision": "no_architecture_release_analytical_screen_only",
+    "four_vs_two_percent": {
+      "exhaust_effective_area": 10.367347,
+      "intake_effective_area": 12.5,
+      "total_valve_mass": 61.949889
+    }
+  },
+  "component_material_screen": {
+    "exhaust_valve": {
+      "candidate": "INCONEL_alloy_751_bar_or_forged_purchased",
+      "printed": false,
+      "selected_supplier_part": null,
+      "source": "SRC-SPECIAL-METALS-INCONEL-751",
+      "status": "candidate_only_supplier_drawing_and_valve_process_route_missing"
+    },
+    "intake_valve": {
+      "candidate": "Ti_6Al_4V_forged_or_wrought_purchased",
+      "printed": false,
+      "selected_supplier_part": null,
+      "source": "SRC-TIMET-TI64-PHYSICAL-PROPERTIES",
+      "status": "candidate_only_supplier_drawing_and_hot_fatigue_missing"
+    },
+    "nimonic_exhaust_alternative": {
+      "candidate": null,
+      "printed": false,
+      "selected_supplier_part": null,
+      "source": null,
+      "status": "not_scored_no_tracked_official_manufacturer_record"
+    },
+    "seats_and_guides": {
+      "candidate": "purchased_powder_metal_inserts_finish_machined",
+      "printed": false,
+      "selected_supplier_part": null,
+      "source": "SRC-MAHLE-VALVETRAIN-TECHNICAL-2025_generic_only",
+      "status": "family_screen_only_press_fits_and_hot_clearances_unknown"
+    },
+    "spring": {
+      "candidate": "ultra_clean_CrSi_oil_tempered_nitrided_shot_peened_purchased",
+      "printed": false,
+      "selected_supplier_part": null,
+      "source": "SRC-MAHLE-VALVETRAIN-TECHNICAL-2025_generic_only",
+      "status": "research_hypothesis_no_supplier_curve_or_surge_map"
+    }
+  },
+  "equations": {
+    "circle_edge_gap": "g_edge=R_bore-sqrt(x^2+y^2)-D_seat/2",
+    "circle_pair_gap": "g_pair=distance(centres)-(D1+D2)/2",
+    "curtain_area": "A_curtain=n*pi*d_v*L",
+    "event_time": "t_event=duration_crank_deg/(6*rpm)",
+    "gas_force_screen": "F_gas=delta_p*pi*d_v^2/4",
+    "half_cosine_peak_acceleration": "a_max=2*pi^2*L/t_event^2",
+    "half_cosine_peak_velocity": "v_max=pi*L/t_event",
+    "spring_rate": "k=G*d_wire^4/(8*D_mean^3*N_active)",
+    "spring_shear": "tau=K_w*8*F*D_mean/(pi*d_wire^3)",
+    "system_frequency": "f_n=(1/(2*pi))*sqrt(k_total/(m_moving+m_spring/3))",
+    "throat_area": "A_throat=n*pi*(0.86*d_v)^2/4",
+    "wahl_factor": "K_w=(4*C-1)/(4*C-4)+0.615/C; C=D_mean/d_wire"
+  },
+  "head_material_matrix": [
+    {
+      "complete_hot_card": false,
+      "density_kg_m3": null,
+      "id": "Aheadd_HT1_heat_treatment_1",
+      "missing_for_release": [
+        "route_specific_k_vs_temperature",
+        "route_specific_E_alpha_plasticity_vs_temperature",
+        "LCF_HCF_and_thermomechanical_fatigue_after_final_heat_treatment",
+        "creep_or_stress_relaxation",
+        "defect_notch_and_surface_condition_allowables",
+        "machine_powder_orientation_coupon_and_build_repeatability"
+      ],
+      "property_points": [
+        {
+          "elongation_percent": 6,
+          "temperature_c": 25,
+          "uts_mpa": 445,
+          "yield_mpa": 425
+        },
+        {
+          "elongation_percent": 13,
+          "temperature_c": 200,
+          "uts_mpa": 268,
+          "yield_mpa": 238
+        },
+        {
+          "elongation_percent": 6,
+          "temperature_c": 250,
+          "uts_mpa": 225,
+          "yield_mpa": 188
+        }
+      ],
+      "requested_alias": "Aheadd_HT1",
+      "room_temperature_conductivity_w_mk": null,
+      "source": "SRC-CONSTELLIUM-AHEADD-HT1-FACT-SHEET",
+      "supplier_service_temperature_scope_c": 260
+    },
+    {
+      "complete_hot_card": false,
+      "density_kg_m3": null,
+      "id": "Aheadd_HT1_heat_treatment_2",
+      "missing_for_release": [
+        "route_specific_k_vs_temperature",
+        "route_specific_E_alpha_plasticity_vs_temperature",
+        "LCF_HCF_and_thermomechanical_fatigue_after_final_heat_treatment",
+        "creep_or_stress_relaxation",
+        "defect_notch_and_surface_condition_allowables",
+        "machine_powder_orientation_coupon_and_build_repeatability"
+      ],
+      "normalization_note": "La source officielle nomme ceci traitement #2 du même alliage Aheadd HT1, pas un alliage Aheadd HT2 distinct.",
+      "property_points": [
+        {
+          "elongation_percent": 6,
+          "temperature_c": 25,
+          "uts_mpa": 445,
+          "yield_mpa": 285
+        },
+        {
+          "elongation_percent": 11,
+          "temperature_c": 200,
+          "uts_mpa": 293,
+          "yield_mpa": 270
+        },
+        {
+          "elongation_percent": 5,
+          "temperature_c": 250,
+          "uts_mpa": 265,
+          "yield_mpa": 216
+        }
+      ],
+      "requested_alias": "Aheadd_HT2",
+      "room_temperature_conductivity_w_mk": null,
+      "source": "SRC-CONSTELLIUM-AHEADD-HT1-FACT-SHEET",
+      "supplier_service_temperature_scope_c": 260
+    },
+    {
+      "complete_hot_card": false,
+      "density_kg_m3": 2850,
+      "id": "A20X_A205_LPBF_T7",
+      "missing_for_release": [
+        "route_specific_k_vs_temperature",
+        "route_specific_E_alpha_plasticity_vs_temperature",
+        "LCF_HCF_and_thermomechanical_fatigue_after_final_heat_treatment",
+        "creep_or_stress_relaxation",
+        "defect_notch_and_surface_condition_allowables",
+        "machine_powder_orientation_coupon_and_build_repeatability"
+      ],
+      "property_points": [
+        {
+          "elongation_percent": 11,
+          "temperature_c": 20,
+          "uts_mpa": 511,
+          "yield_mpa": 445
+        },
+        {
+          "elongation_percent": 10,
+          "temperature_c": 100,
+          "uts_mpa": 423,
+          "yield_mpa": 375
+        },
+        {
+          "elongation_percent": 20,
+          "temperature_c": 150,
+          "uts_mpa": 369,
+          "yield_mpa": 354
+        },
+        {
+          "elongation_percent": 15,
+          "temperature_c": 200,
+          "uts_mpa": 331,
+          "yield_mpa": 311
+        },
+        {
+          "elongation_percent": 12,
+          "temperature_c": 250,
+          "uts_mpa": 224,
+          "yield_mpa": 215
+        }
+      ],
+      "room_temperature_conductivity_w_mk": null,
+      "source": "SRC-ECKART-A20X-LPBF",
+      "supplier_service_temperature_scope_c": 190
+    },
+    {
+      "complete_hot_card": false,
+      "density_kg_m3": null,
+      "id": "EOS_AlF357_T6_like",
+      "missing_for_release": [
+        "route_specific_k_vs_temperature",
+        "route_specific_E_alpha_plasticity_vs_temperature",
+        "LCF_HCF_and_thermomechanical_fatigue_after_final_heat_treatment",
+        "creep_or_stress_relaxation",
+        "defect_notch_and_surface_condition_allowables",
+        "machine_powder_orientation_coupon_and_build_repeatability"
+      ],
+      "property_points": [
+        {
+          "elongation_percent": 11.5,
+          "temperature_c": 20,
+          "uts_mpa": 330,
+          "yield_mpa": 265
+        }
+      ],
+      "room_temperature_conductivity_w_mk": 150,
+      "source": "SRC-EOS-ALF357-MATERIAL-DATA",
+      "supplier_service_temperature_scope_c": null
+    },
+    {
+      "complete_hot_card": false,
+      "density_kg_m3": 2660,
+      "id": "EOS_AlSi10Mg_T6",
+      "missing_for_release": [
+        "route_specific_k_vs_temperature",
+        "route_specific_E_alpha_plasticity_vs_temperature",
+        "LCF_HCF_and_thermomechanical_fatigue_after_final_heat_treatment",
+        "creep_or_stress_relaxation",
+        "defect_notch_and_surface_condition_allowables",
+        "machine_powder_orientation_coupon_and_build_repeatability"
+      ],
+      "property_points": [
+        {
+          "elongation_percent": 5,
+          "temperature_c": 20,
+          "uts_mpa": 460,
+          "yield_mpa": 245
+        }
+      ],
+      "room_temperature_conductivity_w_mk": {
+        "horizontal": 155,
+        "vertical": 165
+      },
+      "source": "SRC-EOS-ALSI10MG-MATERIAL-DATA",
+      "supplier_service_temperature_scope_c": null
+    }
+  ],
+  "head_material_selection": {
+    "coupon_plan_required": true,
+    "reason": "Aucun candidat ne fournit la carte chaude route/machine/orientation complète requise; Aheadd HT1 traitement #2 et A20X ne sont que des points de criblage à 250 °C.",
+    "selected": null
+  },
+  "input_digests": {
+    "catalog/sources/src-constellium-aheadd-ht1-fact-sheet.json": "e4ef079806e495a7ce80a934d484bce76b7d5ea0799b696b8d2f83bf1789a192",
+    "catalog/sources/src-eckart-a20x-lpbf.json": "03f1e4397faa71e130be8eeb9ff1ffaa9758e8dbd0546d5e72aa863e63ec960c",
+    "catalog/sources/src-eos-alf357-material-data.json": "03e3fd6000c3db59445b9c665470350864f1ba8a834b5d8b45208dd4e80dba40",
+    "catalog/sources/src-eos-alsi10mg-material-data.json": "d2fe5ea1ad5e425a6dc95905c1a23ae1a31aa04bc781d57008f273d99d18266d",
+    "catalog/sources/src-fia-917-homologation-250.json": "f253d07d178fecdb62f6c79d6fa94764ebd8f60048f1d019fa7873c62cad69a1",
+    "catalog/sources/src-mahle-valvetrain-technical-2025.json": "fe159cb97c521ee34cb60c69a4cad146942b6d062f32123b70241e21e3ae01b4",
+    "catalog/sources/src-special-metals-inconel-751.json": "c042ceb7bcc1709a4322bc629d009d7cf7e48751bb2bdddd7d0b6b5e77d3745d",
+    "catalog/sources/src-swindon-m64-24v-head-kit.json": "4aa086c6f2bc0961bbe8a3f621273ca945e95f95bf8107ab51a295a103114bf7",
+    "catalog/sources/src-timet-ti64-physical-properties.json": "469a7352a513847b638cdab5767709dea3e4074d11b69d0583c420cebcfd3ac4",
+    "twins/reference-917-engine/head-architecture-authority-f45.json": "ef4355e0dc83df1bf7335d53051f35ece302c9840942f35fbb9bb47340538da3",
+    "twins/reference-917-engine/valvetrain-flow-inputs-f20.json": "29a3fbe2d57b4e9961dfd7c7e1698dce01a31df0956db499fd3e1e9c87fcf288"
+  },
+  "phase": "F45",
+  "release_gates": {
+    "Porsche_917_interface_dimensions_verified": false,
+    "cam_law_measured": false,
+    "complete_head_hot_material_card_available": false,
+    "engine_start_authorized": false,
+    "external_scan_contour_brep_integrated": false,
+    "metal_print_authorized": false,
+    "seat_and_guide_press_fits_qualified_hot": false,
+    "spring_supplier_load_curve_and_surge_map_approved": false,
+    "thermal_mechanical_fatigue_correlated": false,
+    "valve_supplier_drawing_approved": false,
+    "valvetrain_multibody_or_spintron_correlated": false
+  },
+  "schema_version": "1.0.0",
+  "status": "analytical_valvetrain_and_material_screen_complete_all_release_gates_blocked"
+}

@@ -1,0 +1,243 @@
+{
+  "F43_LPBF_air_cooling_DOE": {
+    "CT_and_powder_removal_required": true,
+    "baseline": "D0_scan_faithful_baseline",
+    "candidate_ids": [
+      "D1_through_air_teardrop",
+      "D2_through_air_diamond",
+      "D3_variable_fin_pitch_thickness",
+      "D4_open_pin_fins",
+      "D5_open_lattice",
+      "D6_conduction_ribs"
+    ],
+    "closed_cavity_prohibited": true,
+    "dimension_parameters_all_null": true,
+    "executed_case_count": 0,
+    "external_envelope_quasi_identical_verified": false,
+    "liquid_jacket_prohibited": true,
+    "mesh_count_per_design": 3,
+    "planned_case_count": 21,
+    "selected_design": null
+  },
+  "F43_secondary_oil_cooling_DOE": {
+    "air_forced_remains_primary": true,
+    "design_lock_values_all_null": true,
+    "executed_case_count": 0,
+    "planned_case_count": null,
+    "printed_passages_through_flushable_CT_inspectable_required": true,
+    "selected_design": null
+  },
+  "classification": "deterministic_existing_evidence_audit_and_blocked_execution_matrix_not_new_CFD_not_validation",
+  "contract": {
+    "all_upstream_hashes_verified": true,
+    "path": "twins/reference-917-engine/f43-g3-g5-comparable-execution.json",
+    "sha256": "b433eb775b1cf45938ebd6df84dc160e1718b73b7fc94d54dc8d2d13fe50c2e6"
+  },
+  "decision": {
+    "F43_LPBF_cooling_improvement_quantified": false,
+    "comparable_2v_4v_execution_complete": false,
+    "engine_start_authorized": false,
+    "metal_print_authorized": false,
+    "new_long_solver_run_started": false,
+    "reason_no_run": "geometry and boundary preflight is blocked; running would create non-comparable evidence"
+  },
+  "exact_gaps": [
+    "GAP-GEO-01: F33 paired STEP/STL solver-surrogate files are not published in the repository.",
+    "GAP-GEO-02: no sealed 2V/4V intake, exhaust, moving-engine and installed-air domains share one verified external revision.",
+    "GAP-GEO-03: no scan-faithful 2V counterpart exists for the F41 four-valve local-only master.",
+    "GAP-BC-01: F33 turbo values are unvalidated clean-sheet hypotheses and cam/valve laws are absent.",
+    "GAP-G3-01: the six F33 OpenFOAM runs are equivalent rectangular ports, not full runner/valve geometry.",
+    "GAP-G3-02: F33 rows lack inlet/outlet mass balance and total-energy balance fields and no independent second method exists.",
+    "GAP-G3-03: F33 medium-to-fine mass-flow changes exceed the F43 five-percent rule for both architectures.",
+    "GAP-G4-01: Cantera executed a four-state equilibrium screen, not a crank-angle 2V/4V cycle.",
+    "GAP-G4-02: the only moving-mesh engine run is a generic 2D two-valve tutorial; exact iceEngineFoam and F37/F41 4V were not run.",
+    "GAP-G5-01: F34/F36/F42 air-cooling evidence is four-valve only; no paired 2V case exists.",
+    "GAP-G5-02: exact-F41 OpenFOAM was not accepted, F36 RANS failed closure, and no whole-head CHT is complete.",
+    "GAP-LPBF-01: all DOE dimensions, external-deviation limit, CT resolution and powder-removal thresholds remain unqualified.",
+    "GAP-OIL-01: oil properties versus temperature, supply map, jet coefficients, coking limit and scavenge boundary are not sourced.",
+    "GAP-OIL-02: F37 oil equations are algebraically equivalent in laminar flow and do not model jets, aeration or drainback.",
+    "GAP-OIL-03: no geometry-resolved oil CFD or tilted/accelerated dry-sump rig correlation exists.",
+    "GAP-MAT-01: all five F42.2 material hot-band gates remain false, so thermal-stress acceptance is unavailable."
+  ],
+  "existing_Cantera_audit": {
+    "accepted_for_G4_cross_method": false,
+    "cantera_equilibrium_uv_executed": true,
+    "classification": "non_correlated_four_state_closed_cycle_0d_forward_screen",
+    "crank_angle_time_marching_executed": false,
+    "mass_identity_residual_kg_s": 0.0,
+    "same_2v_4v_turbo_case_executed": false,
+    "valve_architecture_is_an_input": false
+  },
+  "existing_G3_OpenFOAM_audit": {
+    "accepted_for_F43_comparison": false,
+    "architectures": {
+      "2v": {
+        "cell_counts": [
+          3456,
+          11664,
+          27648
+        ],
+        "fine_to_medium_relative": 0.07532710312812341,
+        "mass_flow_kg_s": [
+          0.1420326827536,
+          0.122574400939,
+          0.1133412263986
+        ],
+        "mesh_ids": [
+          "coarse",
+          "medium",
+          "fine"
+        ],
+        "passes_F43_five_percent_mesh_rule": false
+      },
+      "4v": {
+        "cell_counts": [
+          3456,
+          11664,
+          27648
+        ],
+        "fine_to_medium_relative": 0.0776909871862237,
+        "mass_flow_kg_s": [
+          0.1723653183457,
+          0.1480190825087,
+          0.1365193338662
+        ],
+        "mesh_ids": [
+          "coarse",
+          "medium",
+          "fine"
+        ],
+        "passes_F43_five_percent_mesh_rule": false
+      }
+    },
+    "boundary_mass_balance_fields_present": false,
+    "classification": "steady_compressible_perfect_gas_equivalent_port_cfd_not_full_runner_or_moving_valve_cfd",
+    "energy_balance_fields_present": false,
+    "executed_case_count": 6,
+    "four_valve_fine_mass_flow_gain_percent_legacy": 20.44984707160915,
+    "full_runner_or_moving_valve_geometry_used": false,
+    "independent_second_method_present": false,
+    "same_flowbench_boundary_used": true,
+    "solver_return_codes_all_zero": true,
+    "turbo_boundary_used": false
+  },
+  "existing_G5_air_cooling_audit": {
+    "F34_OpenFOAM": {
+      "architecture": "4v_only",
+      "classification": "actual_full_external_head_steady_compressible_RANS_FVM_fixed_wall_temperature",
+      "effective_h_w_m2k": 120.3823147279227,
+      "pressure_drop_pa": 1859.4264799999946,
+      "relative_energy_imbalance": 0.010253435223164692,
+      "solver_completed": true,
+      "strict_mesh_passed": false
+    },
+    "F36_cross_solver": {
+      "RANS_two_grid_agreement": false,
+      "classification": "external_air_CFD_and_solid_conduction_cross_screen_not_CHT_not_physical_validation",
+      "cooling_closed": false,
+      "full_CHT": false
+    },
+    "F42_cross_method": {
+      "architecture": "4v_only",
+      "classification": "exact_F41_surface_OpenFOAM_external_air_plus_independent_fin_correlation_and_sequential_solid_conduction_not_full_CHT_not_release",
+      "exact_F41_OpenFOAM_case_accepted": false,
+      "full_head_CHT_complete": false,
+      "h_gate_passed": true,
+      "pressure_gate_passed": false
+    },
+    "accepted_for_F43_comparison": false,
+    "paired_2v_4v_same_geometry_revision_exists": false
+  },
+  "existing_ICEEngineFoam_audit": {
+    "accepted_for_G4_cross_method": false,
+    "cantera_coupled": false,
+    "exact_iceEngineFoam_executable_present": false,
+    "executed_case_classification": "official_generic_2d_two_valve_engine_tutorial_smoke_not_f37",
+    "executed_valve_count": 2,
+    "four_valve_case_executed": false,
+    "porsche_917_geometry_used": false
+  },
+  "existing_secondary_oil_audit": {
+    "accepted_for_F43_oil_DOE": false,
+    "case_ids": [
+      "hot_110c",
+      "cold_screen"
+    ],
+    "classification": "oil_network_analytical_double_check_complete_physical_correlation_pending",
+    "jet_impingement_CFD_executed": false,
+    "methods_are_independent_for_laminar_flow": false,
+    "multiphase_aeration_and_drainback_executed": false,
+    "physical_oil_rig_correlated": false,
+    "reason_methods_not_independent": "Hagen-Poiseuille and Darcy-Weisbach with f=64/Re reduce to the same laminar relation.",
+    "values_promoted_to_F43_design_lock": false
+  },
+  "geometry_audit": {
+    "legacy_F29_1973_concept_pair_exists": true,
+    "legacy_F29_1973_reopened_STEP_bounds_equal": true,
+    "legacy_F29_pair_reused_as_F33_2026_geometry": false,
+    "paired_fluid_domains_available": false,
+    "paired_geometry_files_available_in_repository": false,
+    "paired_geometry_report_hash_verified": true,
+    "same_external_envelope_verified": false,
+    "scan_faithful_2v_variant_available": false,
+    "selected_comparison_revision": "F33_functional_solver_CAD_report_ee940330"
+  },
+  "id": "917-head-f43-g3-g5-comparable-execution-audit",
+  "material_boundary": {
+    "all_hot_band_gates_false": true,
+    "candidate_count": 5,
+    "thermal_stress_acceptance_available": false
+  },
+  "planned_execution": {
+    "architectures": [
+      "2v",
+      "4v"
+    ],
+    "cross_method_relative_difference_maximum": 0.2,
+    "domains": [
+      "G3_steady_port_flow",
+      "G4_moving_engine_cycle",
+      "G5_external_air_cooling"
+    ],
+    "energy_balance_required": true,
+    "executed_case_count": 0,
+    "mass_balance_required": true,
+    "meshes": [
+      "coarse",
+      "medium",
+      "fine"
+    ],
+    "planned_case_count": 18
+  },
+  "release_gates": {
+    "F43_LPBF_cooling_DOE_geometry_complete": false,
+    "F43_LPBF_cooling_DOE_three_mesh_complete": false,
+    "F43_secondary_oil_cooling_DOE_complete": false,
+    "G3_three_mesh_two_method_comparison_complete": false,
+    "G4_three_mesh_two_method_comparison_complete": false,
+    "G5_three_mesh_two_method_comparison_complete": false,
+    "comparable_2v_4v_geometry_domains_complete": false,
+    "cross_method_thresholds_passed": false,
+    "engine_start_authorized": false,
+    "hot_material_card_qualified": false,
+    "mass_and_energy_balances_passed": false,
+    "metal_print_authorized": false,
+    "physical_engine_dyno_correlated": false,
+    "physical_flow_bench_correlated": false,
+    "shared_turbo_boundary_conditions_validated": false,
+    "thermal_stress_validated": false
+  },
+  "schema_version": "1.0.0",
+  "shared_turbo_boundary": {
+    "defined_once_and_applied_identically_in_contract": true,
+    "executed_in_paired_G3_G4_G5_cases": false,
+    "source_variant_id": "917_2026_flat12_twin_turbo_1600hp_target",
+    "validated": false
+  },
+  "status": "audit_complete_comparable_execution_blocked",
+  "synthetic_fixture": {
+    "included_in_engine_evidence_metrics": false,
+    "path": "tests/fixtures/917-g3-g5-synthetic-case-results.json",
+    "role": "validator_math_only"
+  }
+}

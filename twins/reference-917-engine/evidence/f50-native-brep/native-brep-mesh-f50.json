@@ -1,0 +1,255 @@
+{
+  "$comment": "Preuve F50 expurgee. Aucun fichier geometrique prive ni coordonnee n'est publie.",
+  "schema": "porsche-917-f50-native-brep-mesh-public-evidence/v1",
+  "phase": "F50",
+  "authority": {
+    "outer_skin": {
+      "phase": "F43",
+      "private_STEP_sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+      "deformed_by_F50": false
+    },
+    "candidate_scale": "one_scan_unit_interpreted_as_one_mm_for_candidate_only_not_certified"
+  },
+  "geometry_policy": {
+    "pcurve_reprojection_only": true,
+    "all_3D_surfaces_shared_with_input": true,
+    "all_3D_curves_shared_with_input": true,
+    "surface_or_curve_deformation_used": false,
+    "anisotropic_scale_used": false,
+    "global_ellipse_used": false,
+    "global_oval_used": false,
+    "global_box_used": false,
+    "private_geometry_committed": false
+  },
+  "native_OCCT_masters": {
+    "2V": {
+      "input_F47_private_STEP_sha256": "ca5ad5b5cc7b168946cb93d49adb7409e9e3ac4853b808e86ed8ad5f3477ea0b",
+      "input_STEP_BOP_fault_count": 8,
+      "private_native_BREP_sha256": "1574eb58b7af09bcadab6c9cfcdd9a56940d479a5aa1b1eb807d31d41d4f7c36",
+      "private_native_BREP_bytes": 5014395,
+      "roundtrip": {
+        "BOP_fault_count": 0,
+        "exact_BRepCheck_valid": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 5034,
+        "edge_count": 10328,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0,
+        "bbox_maximum_coordinate_delta_scan_units": 0.0,
+        "volume_relative_delta": 3.3746759557829237e-10
+      },
+      "accepted_as_private_same_kernel_CAD_CAE_master": true
+    },
+    "4V": {
+      "input_F47_private_STEP_sha256": "196e9b83629b0f5ecacc822153766fcf388da557a6fc30e50f7141f45479c6c9",
+      "input_STEP_BOP_fault_count": 32,
+      "private_native_BREP_sha256": "10ff1a2af8f2dbca78cf6ac2f72a9e1f2842e171f1e1e76080f07eacd4162131",
+      "private_native_BREP_bytes": 5098803,
+      "roundtrip": {
+        "BOP_fault_count": 0,
+        "exact_BRepCheck_valid": true,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 4929,
+        "edge_count": 10222,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0,
+        "bbox_maximum_coordinate_delta_scan_units": 0.0,
+        "volume_relative_delta": 2.3283919170534767e-9
+      },
+      "accepted_as_private_same_kernel_CAD_CAE_master": true
+    }
+  },
+  "rejected_repair_strategies": [
+    {
+      "id": "F49_grouped_or_individual_subtraction_STEP",
+      "2V_roundtrip_BOP_fault_count": 8,
+      "accepted": false
+    },
+    {
+      "id": "F49_sequential_subtraction_STEP",
+      "2V_roundtrip_BOP_fault_count": 8,
+      "accepted": false
+    },
+    {
+      "id": "F49_pcurve_reprojection_then_STEP",
+      "2V_pre_export_BOP_fault_count": 0,
+      "2V_roundtrip_BOP_fault_count": 8,
+      "accepted": false
+    },
+    {
+      "id": "F49_NURBS_conversion",
+      "accepted": false,
+      "reason": "pcurve_faults_and_geometry_property_drift"
+    },
+    {
+      "id": "F50_96_sided_local_port_faceting",
+      "maximum_radial_excess_mm": 0.009674730148521604,
+      "2V_roundtrip_BOP_fault_count": 22,
+      "accepted": false
+    }
+  ],
+  "STEP_interoperability": {
+    "accepted": false,
+    "2V_profiles": [
+      {
+        "id": "AP214_surfacecurves_kernel_precision",
+        "BOP_InvalidCurveOnSurface_count": 8,
+        "unique_face_count": 5,
+        "unique_edge_count": 8
+      },
+      {
+        "id": "AP214_surfacecurves_user_precision_0p02",
+        "BOP_InvalidCurveOnSurface_count": 8,
+        "unique_face_count": 5,
+        "unique_edge_count": 8
+      },
+      {
+        "id": "AP242DIS_surfacecurves_user_precision_0p02",
+        "BOP_InvalidCurveOnSurface_count": 8,
+        "unique_face_count": 5,
+        "unique_edge_count": 8
+      }
+    ]
+  },
+  "Gmsh": {
+    "version": "4.12.1",
+    "strict_acceptance": "count_le_0_equals_0_and_count_lt_minSICN_0p1_equals_0_and_grid_convergence",
+    "2V_profiles": [
+      {
+        "id": "surface6_Delaunay3D_coarse",
+        "status": "FAILED",
+        "failure_class": "PLC_FACET_INTERSECTION"
+      },
+      {
+        "id": "surface6_HXT3D_coarse",
+        "status": "FAILED",
+        "failure_class": "HXT_BOUNDARY_RECOVERY_ALLOCATOR_ABORT"
+      },
+      {
+        "id": "surface6_Frontal3D_coarse",
+        "status": "FAILED",
+        "failure_class": "NETGEN_NOT_AVAILABLE"
+      },
+      {
+        "id": "surface5_Delaunay3D_curvature40_coarse_raw",
+        "tetrahedra": 556459,
+        "minimum_minSICN": -9.536378788363129e-16,
+        "p01_minSICN": 0.29939691597926615,
+        "count_le_0": 1,
+        "count_lt_0p1": 1271,
+        "accepted": false
+      },
+      {
+        "id": "surface5_Delaunay3D_curvature40_coarse_Relocate3D",
+        "tetrahedra": 556459,
+        "minimum_minSICN": 1.8462503983027574e-14,
+        "p01_minSICN": 0.2994989270842236,
+        "count_le_0": 0,
+        "count_lt_0p1": 1236,
+        "accepted": false
+      },
+      {
+        "id": "surface5_Delaunay3D_curvature60_medium",
+        "tetrahedra": 1557441,
+        "minimum_minSICN": 7.880791018169636e-6,
+        "p01_minSICN": 0.3457670260865043,
+        "count_le_0": 0,
+        "count_lt_0p1": 1095,
+        "accepted": false
+      },
+      {
+        "id": "surface5_Delaunay3D_curvature80_fine",
+        "tetrahedra": 3433600,
+        "minimum_minSICN": 3.3276721340066702e-6,
+        "p01_minSICN": 0.3598841509074869,
+        "count_le_0": 0,
+        "count_lt_0p1": 676,
+        "accepted": false
+      }
+    ],
+    "4V_profiles": [
+      {
+        "id": "surface5_Delaunay3D_curvature60_medium",
+        "tetrahedra": 1906555,
+        "minimum_minSICN": 3.802907192913753e-6,
+        "p01_minSICN": 0.35037697485328967,
+        "count_le_0": 0,
+        "count_lt_0p1": 1086,
+        "accepted": false
+      }
+    ],
+    "strict_mesh_accepted": false
+  },
+  "independent_tessellation": {
+    "2V": {
+      "node_count": 110266,
+      "triangle_count": 220560,
+      "unique_edge_count": 330840,
+      "all_edge_incidence_equals_2": true,
+      "TetGen_self_intersection_check": "PASS_NO_FACES_INTERSECTING",
+      "absolute_volume_relative_delta_from_BREP": 0.0003456126080662131
+    },
+    "4V": {
+      "node_count": 126517,
+      "triangle_count": 253078,
+      "unique_edge_count": 379617,
+      "all_edge_incidence_equals_2": true,
+      "TetGen_self_intersection_check": "PASS_NO_FACES_INTERSECTING",
+      "absolute_volume_relative_delta_from_BREP": 0.00000986919232087195
+    }
+  },
+  "TetGen": {
+    "version": "1.5.0-5build1",
+    "metric_note": "TetGen_radius_edge_and_dihedral_constraints_are_not_equivalent_to_Gmsh_minSICN; minSICN_is_recomputed_after_meshio_conversion",
+    "2V_profiles": [
+      {
+        "id": "PLC_q1p4_dihedral10_max_volume20",
+        "tetrahedra": 3037292,
+        "count_le_0": 0,
+        "minimum_minSICN": 0.004035133563228093,
+        "p001_minSICN": 0.19021904917624297,
+        "p01_minSICN": 0.2655460661834326,
+        "count_lt_0p1": 416,
+        "accepted": false
+      },
+      {
+        "id": "PLC_q1p2_dihedral15_optimization_O2_final_bounded_attempt",
+        "tetrahedra": 14320517,
+        "count_le_0": 0,
+        "minimum_minSICN": 0.0032944438278827495,
+        "p001_minSICN": 0.2882948877553238,
+        "p01_minSICN": 0.35697035654653475,
+        "count_lt_0p1": 497,
+        "accepted": false
+      }
+    ],
+    "4V_profiles": [
+      {
+        "id": "PLC_q1p2_dihedral15_optimization_O2_final_bounded_attempt",
+        "tetrahedra": 16590701,
+        "count_le_0": 0,
+        "minimum_minSICN": 0.006157612689922356,
+        "p001_minSICN": 0.289025047210312,
+        "p01_minSICN": 0.3570738860195981,
+        "p05_minSICN": 0.5012600260319499,
+        "count_lt_0p1": 402,
+        "accepted": false
+      }
+    ],
+    "strict_mesh_accepted": false
+  },
+  "gates": {
+    "native_same_kernel_CAD_CAE_master_accepted": true,
+    "STEP_interoperability_accepted": false,
+    "Gmsh_strict_mesh_accepted": false,
+    "TetGen_strict_mesh_accepted": false,
+    "minimum_wall_1p5_mm_verified": false,
+    "absolute_scale_and_917_interfaces_certified": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false,
+    "power_1600_hp_claim_authorized": false
+  }
+}
