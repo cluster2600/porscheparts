@@ -1,13 +1,16 @@
 # M64 — périmètre de simulation multiphysique
 
 État détaillé du dernier lot : [PicoGK et Vast](M64_PICOGK_EXECUTION.md).
+Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
+Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
 Les cartes Mermaid et l'inventaire ci-dessous couvrent la pile demandée ;
 ils ne déclarent pas toute la chaîne exécutée sur le corps actuel.
 
 ## Décision utilisateur
 
 Base M64 964/993, objectif turbo, quatre soupapes par cylindre et comparaison
-deux soupapes. La variante précise reste ouverte. Conserver la silhouette
+deux soupapes. La cible de calcul est 700 ch métriques au vilebrequin ; elle
+n'est pas une puissance obtenue. La variante précise reste ouverte. Conserver la silhouette
 Porsche issue des références pertinentes : aucune enveloppe ovale de substitution.
 Les anciens modèles 917/935 ne sont pas des interfaces M64 validées.
 
@@ -135,17 +138,17 @@ La géométrie actuelle est celle liée au STL `e006e148…` dans le
 |---|---|---|
 | build123d, Open CASCADE/OCP, CadQuery, FreeCAD | OCP exécuté sur le maître actuel ; autres constructeurs ou dépendances présents, sans preuve récente d'utilisation de chacun sur ce corps. [Audit CAO](M64_FOUR_SEAT_BODY_CAD_AUDIT.md). | Achever les fonctions et l'assemblage ; contrôler le STEP éditable et les reprises d'usinage. |
 | Open3D, Trimesh, PyMeshLab, MeshFix | Trimesh utilisé sur les sorties actuelles ; autres réparateurs disponibles ou utilisés historiquement. [Audit des domaines](../twins/m64-cylinder-head/evidence/picogk-cooling-domain-mesh-audit-20260907.json). | Employer chaque réparation seulement sur un défaut identifié ; conserver le brut et les écarts. |
-| PicoGK, ShapeKernel, HelixHeatX | Voxelisation et domaines réellement exécutés ; HelixHeatX reste un exemple, pas un échangeur greffé. [Exécution réelle](M64_PICOGK_EXECUTION.md). | Terminer l'audit à mémoire bornée, classer les vides et générer les variantes locales admissibles. |
+| PicoGK, ShapeKernel, HelixHeatX | Trois résolutions auditées, défauts conservés et connectivité grossière exécutée ; HelixHeatX reste un exemple, pas un échangeur greffé. [Exécution réelle](M64_PICOGK_EXECUTION.md). | Traiter les micro-coques avec preuve de leur origine, affiner les fonctions des vides et générer uniquement les variantes locales admissibles. |
 | Gmsh, meshio | Générateurs/conversions intégrés ; deux maillages solides audités mais non qualifiés pour la CAE actuelle. [Audit solide](M64_SOLID_MESH_AUDIT_20260907.md). | Mailler le bon SHA avec régions et groupes physiques, puis vérifier qualité et convergence. |
 | OpenFOAM, AATE/ICengines, engineFoam | Exécutions OpenFOAM historiques, utilitaires AATE testés ; aucun cycle complet attesté sur ce corps. [F49](917_F49_CFD_CHT.md), [F37](917_F37_ICE_ENGINE_FOAM.md). | Fixer version, exécutable réellement disponible et cas moteur mobile ; ne pas créer un alias prétendant être un solveur absent. |
 | Cantera et modèle Wiebe | Cas zéro dimension historiques, pas combustion 3D de la géométrie actuelle. [Autorité des modèles](../twins/reference-917-engine/engine-solver-authority-f46.json). | Scénarios turbo/carburant/lois de levée documentés ; comparer les modèles et transmettre les charges avec leur incertitude. |
 | FluidX3D | LBM déjà exécutée sur F36, pas sur ce corps ; désaccords anciens non résolus. [Contre-calcul historique](../twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json). | Cas d'écoulement comparable, avec domaine de validité et licence compatibles. |
 | CalculiX ; Code_Aster ou Elmer | CalculiX exécuté sur d'anciens modèles ; aucune exécution Code_Aster/Elmer retrouvée. | Choisir et qualifier le second solveur sur témoins, puis comparer contacts, transferts thermiques et contraintes du même cas. |
-| AdditiveFOAM et distorsion globale | Coupon F58 exécuté ; ce n'est pas une impression de culasse. [Diagnostic d'énergie](917_F58_COUPON_ENERGY_DIAGNOSTIC.md). | Corriger le plafonnement artificiel, qualifier la recette, puis calculer supports, distorsion, retrait du plateau et usinage. |
+| AdditiveFOAM et distorsion globale | Coupon F58, témoin laser nul et trois pas temporels exécutés ; le cas actif reste plafonné. Ce n'est pas une impression de culasse. [Derniers contrôles](M64_700CH_MATERIAL_COOLING_LPBF.md). | Corriger le plafonnement artificiel, qualifier la recette, puis calculer supports, distorsion, retrait du plateau et usinage. |
 | OpenUSD, Omniverse/SimReady, OVRTX, Material/Physics Agents | Conversion du module V2 de 12 composants réussie, **sans corps** ; Material a échoué, suite physique non exécutée. [État NVIDIA](M64_AVANCEMENT_20260907.md). | Assembler corps et distribution ; résoudre les échecs de services, vérifier unités/instances et superposer les vrais champs CAE. |
 | PhysicsNeMo, PyTorch, Qwen, vLLM | Runtimes préparés/testés, pas de modèle de culasse entraîné et évalué. [Contrat IA](../twins/reference-917-engine/physicsnemo-readiness-f52.json). | Constituer des cas admissibles ; séparer apprentissage/test, mesurer l'erreur et recalculer les variantes retenues. Qwen/vLLM assistent, sans autorité de validation. |
 | ParaView, PyVista, Blender | Rendus et coupes PyVista/VTK actuels ; code Blender et exports ParaView présents, sans reçu récent pour chaque application. | Montrer mêmes unités, géométrie, cas et échelles de couleur ; conserver des vues de coupe et animations explicitement étiquetées. |
-| Docker, CI, GHCR, Vast, OpenBao | Image publiée et calculs PicoGK réels collectés ; location arrêtée. [Reçu Vast](../twins/m64-cylinder-head/evidence/picogk-vast-execution-20260907.json). | Un job borné par reçu, digest, budget et garde d'arrêt ; jamais de secret ni de scan propriétaire dans l'image publique. |
+| Docker, CI, GHCR, Vast, OpenBao | Image Python/PicoGK publiée, calculs réels collectés ; location de reprise arrêtée et absence vérifiée. [Dernier reçu](../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json). | Un job borné par reçu, digest, budget et garde d'arrêt ; jamais de secret ni de scan propriétaire dans l'image publique. |
 
 Tous les noms de la photo sont suivis. Faire fonctionner plusieurs interfaces
 du même noyau ou plusieurs réparateurs sans besoin identifié ne crée pas une

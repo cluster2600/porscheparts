@@ -1,0 +1,49 @@
+{
+  "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+  "platform": "linux/amd64",
+  "runtime_smoke_verified": true,
+  "anonymous_exact_digest_pull_verified": true,
+  "manufacturing_validated": false,
+  "engine_validated": false,
+  "schema_version": "1.0.0",
+  "verified_at_utc": "2026-09-07T19:21:15.089170+00:00",
+  "verification_host": "Kali native x86_64",
+  "fresh_empty_docker_config_used": true,
+  "image_uncompressed_size_bytes": 3183541461,
+  "compressed_layer_size_bytes": 1099287405,
+  "ci": {
+    "id": 34154864350,
+    "head_sha": "de2a84a05aa1dc9a94ff328cf4e4798c1a3ff54e",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/cluster2600/porscheparts/actions/runs/34154864350"
+  },
+  "smoke": {
+    "exit_code": 0,
+    "network_mode": "none",
+    "cpu_limit": 2,
+    "memory_limit_bytes": 4294967296,
+    "stdout_sha256": "151721d8d7800b2e2cdbc642915e99e71f5687797ce37701a214dce746904d31",
+    "python_records": [
+      {
+        "GPU_acceleration_tested": false,
+        "head_geometry_tested": false,
+        "manufacturing_authorized": false,
+        "packages": {
+          "matplotlib": "3.11.1",
+          "networkx": "3.6.1",
+          "numpy": "2.3.5",
+          "pyvista": "0.48.4",
+          "rtree": "1.4.1",
+          "scipy": "1.16.3",
+          "trimesh": "5.1.0",
+          "vtk": "9.6.2"
+        },
+        "status": "PYTHON_GEOMETRY_SYNTHETIC_SMOKE_PASS",
+        "thermal_or_structural_validation": false,
+        "witness": "closed_box_volume_inside_outside_distance_ray_and_components"
+      }
+    ],
+    "scope": "Software-only geometry witnesses; no head physics, engine or manufacturing qualification."
+  }
+}

@@ -10,6 +10,7 @@ reçus datés, liés depuis les documents.
 | Chaîne logicielle | [m64-stack.mmd](m64-stack.mmd) | [Périmètre multiphysique](../docs/M64_MULTIPHYSICS_EXECUTION.md) |
 | Parcours de validation | [m64-validation.mmd](m64-validation.mmd) | [Périmètre multiphysique](../docs/M64_MULTIPHYSICS_EXECUTION.md) |
 | Location et collecte | [m64-vast-run.mmd](m64-vast-run.mmd) | [Exécution PicoGK](../docs/M64_PICOGK_EXECUTION.md) |
+| Dimensionnement cible 700 PS | [m64-700ps-execution.mmd](m64-700ps-execution.mmd) | [Recherche moteur et bilan 0D](../docs/M64_700CH_ENGINE_RESEARCH.md) |
 
 Chaque source est accompagnée de `.svg`, `.png` et `.excalidraw` au même nom.
 Les scènes Excalidraw restent éditables via **File → Open** dans Excalidraw.
@@ -29,3 +30,8 @@ HTML `br` non fermées après la conversion Excalidraw. La reprise recharge une
 page de rendu fraîche avant chaque diagramme, puis produit SVG/PNG avant la
 scène éditable. Les trois SVG finalement livrés passent le parseur XML. Les
 sources des diagrammes n'ont pas été remplacées par des images génératives.
+
+Le schéma 700 PS a également été rendu en SVG/PNG et Excalidraw avec ce
+bundle. Une tentative PNG après conversion Excalidraw a été refusée par la
+sécurité du canvas ; un rechargement de la page et un rendu SVG/PNG frais
+ont corrigé l'export, sans changer le modèle de calcul.
