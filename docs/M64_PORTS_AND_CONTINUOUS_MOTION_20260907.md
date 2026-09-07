@@ -5,6 +5,10 @@ quatre logements. Il ne remplace pas la silhouette par une nouvelle enveloppe.
 La référence reste issue d'un scan 935 ; le recalage vers le module 4V est
 une hypothèse de conception, pas une interface M64 certifiée.
 
+La [suite du lot — troncs C1, contacts et maillage natif](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md)
+conserve les nouveaux essais, dont le rejet du corps intégré 06. Les résultats
+de l'essai 05 ci-dessous ne sont pas transférés à cette nouvelle géométrie.
+
 **Résultat du premier candidat découpé : non retenu.** Le B-Rep natif est
 monobloc et passe les cinq contrôles BOP exécutés, mais l'interpolation du
 tronc admission crée une excroissance réelle et son STEP présente 55 défauts
