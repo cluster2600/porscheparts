@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+  "name": "Piston M64/60 à galerie de refroidissement, concept CP1 F0",
+  "description": "Concept indépendant de piston LPBF Aheadd CP1 avec galerie torique sous calotte et deux ports temporaires de dépoudrage. Seuls l'alésage/course/régime M64/60 et le précédent méthodologique Porsche sont publiés ; toute la géométrie du piston reste une hypothèse F0.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo", "M64_60_research"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "piston_with_cooling_gallery",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage CAO, DfAM, mécanique de plaque, inertie, pression d'axe, conduction et hydraulique de galerie ; aucune fabrication, installation ou mise en route moteur autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-piston-cp1-gallery-f0-0001/source/piston.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-eng-piston-cp1-gallery-f0-0001/derived/piston_cp1_gallery_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/MAHLE/Swindon ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - précédent piston additif et pistons 993",
+        "url": "https://porschefanatics.com/parts/c/engine-internals/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Établit le candidat et le précédent de galerie fermée seulement ; aucune géométrie ni nuance CP1 993. Voir SRC-PORSCHEFANATICS-993-ADDITIVE-PISTON-PRECEDENT."
+      },
+      {
+        "title": "Porsche Newsroom - pistons fabriqués par fusion laser",
+        "url": "https://newsroom.porsche.com/en/2020/technology/porsche-cooperation-mahle-trumpf-pistons-3d-printer-power-efficiency-911-gt2-rs-21462.html",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Porsche déclare pour le projet moderne GT2 RS une structure adaptée aux charges, 10 % de masse en moins, une galerie fermée sous calotte et 200 h d'essai moteur. Référence de méthode uniquement, sans transfert au 993. Voir SRC-PORSCHE-ADDITIVE-PISTON-VALIDATION."
+      },
+      {
+        "title": "elferclassic - données techniques allemandes du 993 Turbo",
+        "url": "https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php",
+        "source_type": "community",
+        "license": "site-copyright-redistribution-unclear",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie six cylindres, alésage 100 mm, course 76,4 mm et limiteur 6 720 +/- 20 tr/min. Ces valeurs moteur ne définissent pas le piston. Voir SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA."
+      },
+      {
+        "title": "Velo3D - Aheadd CP1 Material & Process Capability",
+        "url": "https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie pour Sapphire/50 µm, éprouvettes verticales usinées et 400 °C/4 h : densité 2,67 g/cm3, Rp0,2 minimal 297 MPa et Rm minimal 331 MPa. Ce ne sont pas des admissibles piston à chaud/fatigue. Voir SRC-VELO3D-CP1-MATERIAL-DATASHEET."
+      },
+      {
+        "title": "Constellium - Aheadd CP1 product fact sheet",
+        "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie 187 W/m.K à l'ambiante et une stabilité qualitative sur plusieurs milliers d'heures à 250-300 °C, sans carte complète à chaud. Voir SRC-CONSTELLIUM-AHEADD-CP1-PRODUCT-SHEET."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "CNC", "casting"],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "alliage aluminium-fer-zirconium LPBF candidat",
+      "grade": "Constellium Aheadd CP1, route Velo3D Sapphire 50 µm de criblage uniquement",
+      "standard": "AMS7074 pour la poudre et spécification piston/machine propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "évacuation contrôlée de toute la poudre par deux ports temporaires opposés",
+      "traitement 400 °C pendant 4 h selon la route publiée, à requalifier sur la pièce",
+      "HIP à décider après analyse des défauts, de la fatigue et de la galerie",
+      "fermeture des ports par procédé qualifié puis épreuve et CT de la galerie",
+      "usinage du diamètre, de la jupe, des gorges, des alésages d'axe et des faces de référence",
+      "finition, revêtement antifriction, appairage axe/segments et équilibrage par jeu"
+    ],
+    "supplier_requirements": [
+      "poudre CP1, machine, paramètres, orientation, lot et recyclage traçables",
+      "coupons orientés avec traction, fatigue, fluage, conductivité et dilatation de l'ambiante à la température qualifiée",
+      "simulation et témoins de distorsion pour calotte, galerie, bossages et gorges",
+      "CT avant et après usinage/fermeture des ports, porosité et épaisseur de galerie contractualisées",
+      "métrologie du profil de jupe, ovalisation, conicité, compression height, gorges, axe et masse bout à bout",
+      "épreuve hydraulique, cycles thermomécaniques, fatigue grandeur réelle et 200 h moteur avant véhicule"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier tribologie et compatibilité du CP1 avec axe acier, segments, revêtements de jupe, cylindre nickel-carbure de silicium, huile et produits de combustion."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-additive-piston-precedent.json",
+      "catalog/sources/src-porsche-additive-piston-validation.json",
+      "catalog/sources/src-elferclassic-993-turbo-technical-data.json",
+      "catalog/sources/src-velo3d-cp1-material-datasheet.json",
+      "catalog/sources/src-constellium-aheadd-cp1-product-sheet.json",
+      "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Le diamètre moteur 100 mm, la course 76,4 mm et le limiteur sont documentaires ; aucune cote de piston 993 n'est publiée ici.",
+      "Le diamètre F0 99 mm, la hauteur 70 mm, la cavité, l'axe, les gorges, le bol et la galerie sont entièrement synthétiques.",
+      "Le précédent Porsche 10 % plus léger, galerie fermée et 200 h concerne un piston moderne 911 GT2 RS, pas ce F0 ni une 993.",
+      "La masse CAO 681,32 g dépend de la forme synthétique et ne se compare à aucune masse de piston 993 mesurée.",
+      "La pression cylindre 12 MPa, les masses axe/segments, les 2 l/min d'huile, 5 kW et +200 K sont des cas de régression non mesurés.",
+      "La marge ambiante de 1,07 issue d'une plaque circulaire et d'une limite CP1 minimale ne constitue pas une marge de conception à chaud.",
+      "Les modèles 1D ignorent combustion transitoire, contact jupe/cylindre, segments, lubrification, accélération de l'huile et fatigue multiaxiale.",
+      "Le STEP prouve seulement un BREP relisible avec galerie ouverte par deux ports ; il n'est autorisé ni pour fabrication, ni pour montage, ni pour moteur."
+    ]
+  }
+}
