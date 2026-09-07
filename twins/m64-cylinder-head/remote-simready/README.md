@@ -28,8 +28,14 @@ arbres. Aucun scan privé n'est transféré par ce paquet.
   Son contrôle local et son authentification OpenBao passent ; l'inventaire
   Vast était vide au contrôle préalable. Le code source fixe désormais le
   digest M64 qualifié dans `M64_SIMREADY_IMAGE`, séparé du digest historique
-  `SIMREADY_IMAGE` de F42b : vérifier sa réinstallation et le vrai test
-  d'authentification SSH isolé avant toute location.
+  `SIMREADY_IMAGE` de F42b. Le wrapper réinstallé et testé porte le SHA256
+  `84c90cdc5bcaa04d43594305feb9648ddde317b4dbccd1898c5f92b0c6775ee8`.
+- Le [vrai test SSH isolé sur l'image M64 complète](../evidence/ssh-auth-m64-image-20260907.json)
+  passe sur Kali à 13:24 UTC : connexion client/serveur, injection retardée
+  d'une clé synthétique, refus de mauvaise identité, de permissions dangereuses
+  et de mauvaise clé d'hôte. L'identité de l'image et l'isolation ont été
+  inspectées hors du conteneur ; le conteneur de test a été supprimé.
+  **Cela ne prouve pas l'ordre d'initialisation réel de Vast.**
 - `make check` passe sur le lot local après régénération de l'empreinte de
   préparation F46. Cette régénération ne modifie aucun résultat de simulation.
 - À ce stade, aucun résultat GPU ou validation SimReady de ce module n'est
