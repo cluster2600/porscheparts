@@ -26,9 +26,9 @@ python3 scripts/generate_twin_envelope.py
 Si OpenSCAD est installé, produire un maillage de visualisation :
 
 ```bash
-mkdir -p twin/993/derived
-openscad -o twin/993/derived/reference_envelope.stl \
-  twin/993/source/reference_envelope.scad
+mkdir -p twins/993-reference-envelope/derived
+openscad -o twins/993-reference-envelope/derived/reference_envelope.stl \
+  twins/993-reference-envelope/source/reference_envelope.scad
 ```
 
 Le STL est un dérivé visuel. Il ne constitue ni une géométrie de carrosserie ni
