@@ -151,6 +151,19 @@ F46_MIN_RELIABILITY = 0.99
 F46_MAX_INET_UP_COST_USD_PER_GB = 0.01
 F46_MAX_INET_DOWN_COST_USD_PER_GB = 0.01
 F46_MAX_DEADLINE_SECONDS = 8 * 60 * 60
+PICOGK_PROFILE = "picogk-m64-v1"
+PICOGK_LABEL = "3dprinting993-picogk-m64"
+PICOGK_IMAGE_RE = re.compile(
+    r"ghcr\.io/cluster2600/3dprinting993-picogk-m64@sha256:[0-9a-f]{64}"
+)
+PICOGK_MAX_DPH = 0.80
+PICOGK_MAX_BUDGET_USD = 4.0
+PICOGK_MAX_SECONDS = 3 * 60 * 60
+PICOGK_MIN_CPU = 32
+PICOGK_MIN_RAM_MB = 64000
+PICOGK_DISK_GB = 100
+PICOGK_MAX_TRANSFER_RATE = 0.01
+PICOGK_CLEANUP_RESERVE_USD = 1.0
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -4872,7 +4885,392 @@ def m64_operation(api_key: str, operation: list[str], bundle: tuple) -> int:
     return result
 
 
+def picogk_account_balance(api_key: str) -> dict:
+    """Select only billing numbers; never expose the user record or identity."""
+    # Official endpoint: https://docs.vast.ai/api-reference/accounts/show-user
+    result = vast_request(api_key, "/api/v0/users/current/")
+    balance = finite_number(result.get("balance"))
+    credit = finite_number(result.get("credit"))
+    if balance is None and credit is None:
+        raise SafeError("Vast.ai balance response has no finite billing value")
+    # Current CLI exposes prepaid credit separately from pending balance. Keep
+    # both visible and subtract any negative pending balance conservatively.
+    available = credit + min(balance or 0.0, 0.0) if credit is not None else balance
+    return {"balance_usd": balance, "credit_usd": credit,
+            "conservative_available_usd": available,
+            "automatic_recharge_requested": False}
+
+
+def picogk_offer_eligible(offer: dict) -> bool:
+    floors = (("cpu_cores_effective", PICOGK_MIN_CPU),
+              ("cpu_ram", PICOGK_MIN_RAM_MB), ("disk_space", PICOGK_DISK_GB))
+    return (
+        type(offer.get("id")) is int and offer["id"] > 0
+        and finite_number(offer.get("num_gpus")) == 1
+        and finite_number(offer.get("gpu_frac")) == 1
+        and all((value := finite_number(offer.get(key))) is not None and value >= floor
+                for key, floor in floors)
+        and (price := finite_number(offer.get("dph_total"))) is not None
+        and 0 < price <= PICOGK_MAX_DPH
+        and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None
+        and reliability >= 0.99
+        and (offer.get("verified") is True or offer.get("verification") == "verified")
+        and offer.get("rentable") in (True, 1) and offer.get("rented") in (False, 0)
+        and (offer.get("rentable_type") or offer.get("rental_type") or offer.get("type"))
+            in (None, "on-demand", "ondemand")
+        and all((value := finite_number(offer.get(key))) is not None
+                and 0 <= value <= PICOGK_MAX_TRANSFER_RATE
+                for key in ("inet_up_cost", "inet_down_cost"))
+    )
+
+
+def get_picogk_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    query = {"allocated_storage": PICOGK_DISK_GB, "num_gpus": {"eq": 1},
+             "gpu_frac": {"eq": 1}, "cpu_cores_effective": {"gte": PICOGK_MIN_CPU},
+             "cpu_ram": {"gte": PICOGK_MIN_RAM_MB}, "disk_space": {"gte": PICOGK_DISK_GB},
+             "dph_total": {"lte": PICOGK_MAX_DPH}, "reliability": {"gte": 0.99},
+             "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
+             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 100}
+    if offer_id is not None:
+        query["id"] = {"eq": offer_id}
+    result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai PicoGK offer response is invalid")
+    return sorted((offer for offer in offers if isinstance(offer, dict)
+                   and picogk_offer_eligible(offer)), key=lambda offer: offer["dph_total"])
+
+
+def picogk_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
+    data = m64_read_file(path, 65536)
+    try:
+        manifest = json.loads(data)
+    except (ValueError, UnicodeError):
+        raise SafeError("PicoGK manifest is not valid JSON") from None
+    fields = {"schema_version", "profile", "job_id", "attempt_label", "image_ref",
+              "created_epoch", "deadline_epoch", "budget_usd", "image_download_gb",
+              "max_input_gb", "max_output_gb", "qualification_path", "qualification_sha256",
+              "guard_ready_path"}
+    if not isinstance(manifest, dict) or set(manifest) != fields:
+        raise SafeError("PicoGK manifest fields differ from the fixed contract")
+    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != PICOGK_PROFILE
+        or not isinstance(manifest["job_id"], str)
+        or not re.fullmatch(r"picogk-m64-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"])
+        or not isinstance(manifest["attempt_label"], str)
+        or not re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", manifest["attempt_label"])
+        or not isinstance(manifest["image_ref"], str)
+        or PICOGK_IMAGE_RE.fullmatch(manifest["image_ref"]) is None):
+        raise SafeError("PicoGK manifest identity or immutable image is invalid")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if (type(created) is not int or type(deadline) is not int
+        or created > time.time() or (require_active and time.time() >= deadline)
+        or not 60 <= deadline - created <= PICOGK_MAX_SECONDS):
+        raise SafeError("PicoGK deadline is expired or exceeds three hours")
+    budget = finite_number(manifest["budget_usd"])
+    if budget is None or not PICOGK_CLEANUP_RESERVE_USD < budget <= PICOGK_MAX_BUDGET_USD:
+        raise SafeError("PicoGK budget must exceed reserve and cannot exceed four USD")
+    for field, maximum in (("image_download_gb", 20), ("max_input_gb", 2), ("max_output_gb", 2)):
+        value = finite_number(manifest[field])
+        if value is None or not 0 <= value <= maximum:
+            raise SafeError("PicoGK declared transfer size is invalid")
+    if manifest["image_download_gb"] <= 0:
+        raise SafeError("PicoGK image size must be measured before rental")
+    if (not isinstance(manifest["qualification_path"], str)
+        or not isinstance(manifest["qualification_sha256"], str)
+        or not re.fullmatch(r"[0-9a-f]{64}", manifest["qualification_sha256"])):
+        raise SafeError("PicoGK qualification path or SHA256 is invalid")
+    if (not isinstance(manifest["guard_ready_path"], str)
+        or Path(manifest["guard_ready_path"]).parent != path.parent
+        or Path(manifest["guard_ready_path"]).name != manifest["job_id"] + ".guard-ready.json"):
+        raise SafeError("PicoGK guard readiness must be the exact sibling job receipt")
+    proof_data = m64_read_file(Path(manifest["qualification_path"]), 65536)
+    if hashlib.sha256(proof_data).hexdigest() != manifest["qualification_sha256"]:
+        raise SafeError("PicoGK qualification SHA256 does not match")
+    try:
+        proof = json.loads(proof_data)
+    except (ValueError, UnicodeError):
+        raise SafeError("PicoGK qualification is not JSON") from None
+    if (not isinstance(proof, dict) or proof.get("image_ref") != manifest["image_ref"]
+        or proof.get("platform") != "linux/amd64"
+        or proof.get("runtime_smoke_verified") is not True
+        or proof.get("anonymous_exact_digest_pull_verified") is not True
+        or proof.get("manufacturing_validated") is not False
+        or proof.get("engine_validated") is not False):
+        raise SafeError("PicoGK image is not qualified for this software-only run")
+    return manifest, hashlib.sha256(data).hexdigest()
+
+
+def picogk_budget_cost(manifest: dict, price: object, up: object, down: object) -> float:
+    values = [finite_number(item) for item in (price, up, down)]
+    if any(item is None for item in values):
+        raise SafeError("PicoGK instance cost metadata is missing")
+    price, up, down = values
+    if not 0 < price <= PICOGK_MAX_DPH or not all(0 <= rate <= PICOGK_MAX_TRANSFER_RATE for rate in (up, down)):
+        raise SafeError("PicoGK price or transfer tariff exceeds its fixed cap")
+    hours = (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
+    cost = hours * price + (manifest["image_download_gb"] + manifest["max_input_gb"]) * down
+    cost += manifest["max_output_gb"] * up + PICOGK_CLEANUP_RESERVE_USD
+    if cost > manifest["budget_usd"]:
+        raise SafeError("PicoGK planned worst-case cost exceeds its declared budget")
+    return cost
+
+
+def picogk_singleton(api_key: str, instance_id: int | None, manifest: dict) -> None:
+    # The small budget is account-wide: do not overlap any existing rental.
+    inventory = strict_instance_inventory(api_key)
+    if instance_id is None:
+        if inventory:
+            raise SafeError("PicoGK rental requires an empty Vast instance inventory")
+    elif (len(inventory) != 1 or inventory[0].get("id") != instance_id
+          or inventory[0].get("label") != manifest["attempt_label"]):
+        raise SafeError("PicoGK instance is not the unique expected rental")
+
+
+def picogk_contract(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> dict:
+    instance = safe_instance(raw)
+    if (type(instance["id"]) is not int or instance["id"] != instance_id
+        or instance["label"] != manifest["attempt_label"]
+        or instance["image"] != manifest["image_ref"]
+        or instance["status"] not in {"created", "loading", "running"}
+        or instance["machine_verification"] != "verified"
+        or finite_number(instance["num_gpus"]) != 1
+        or finite_number(instance["gpu_fraction"]) != 1):
+        raise SafeError("PicoGK instance identity or hardware contract changed")
+    for key, floor in (("cpu_cores_effective", PICOGK_MIN_CPU), ("cpu_ram_mb", PICOGK_MIN_RAM_MB),
+                       ("disk_space_gb", PICOGK_DISK_GB)):
+        value = finite_number(instance[key])
+        if value is None or value < floor:
+            raise SafeError("PicoGK instance resources are below the fixed minimum")
+    if offer is not None and (instance["gpu"] != offer.get("gpu_name")
+        or finite_number(instance["dph_total"]) != finite_number(offer.get("dph_total"))):
+        raise SafeError("PicoGK instance differs from the freshly selected offer")
+    picogk_budget_cost(manifest, instance["dph_total"], instance["inet_up_cost_usd_per_gb"],
+                      instance["inet_down_cost_usd_per_gb"])
+    return instance
+
+
+def picogk_smoke_valid(output: str) -> bool:
+    try:
+        report = json.loads(output)
+    except (ValueError, UnicodeError):
+        return False
+    error = finite_number(report.get("relative_volume_error")) if isinstance(report, dict) else None
+    return (isinstance(report, dict) and report.get("status") == "PASS"
+            and report.get("architecture") == "X64"
+            and report.get("scope") == "software_geometry_witness_only"
+            and type(report.get("triangles")) is int and report["triangles"] > 0
+            and type(report.get("stl_roundtrip_triangles")) is int
+            and report["stl_roundtrip_triangles"] == report["triangles"]
+            and error is not None and 0 <= error <= 0.10
+            and report.get("manufacturing_validated") is False
+            and report.get("engine_validated") is False)
+
+
+def picogk_remote_ready_command() -> str:
+    # Runtime is .NET-only. Read exactly the fixed non-secret witness files;
+    # parse its bounded JSON locally and never print remote raw streams.
+    return (
+        "test -f /workspace/PICOGK_READY && test ! -L /workspace/PICOGK_READY "
+        "&& test \"$(wc -c </workspace/PICOGK_READY)\" -le 128 "
+        "&& test \"$(cat /workspace/PICOGK_READY)\" = PICOGK_M64_READY "
+        "&& test -f /workspace/picogk-smoke/report.json "
+        "&& test ! -L /workspace/picogk-smoke/report.json "
+        "&& test \"$(wc -c </workspace/picogk-smoke/report.json)\" -le 65536 "
+        "&& head -c 65536 /workspace/picogk-smoke/report.json"
+    )
+
+
+def picogk_ssh_ready(api_key: str, instance_id: int, manifest: dict, offer: dict) -> dict:
+    public_key = read_local_ssh_public_key()
+    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+        result = vast_request(api_key, f"/api/v0/instances/{instance_id}/ssh/", method="POST",
+                              payload={"ssh_key": public_key})
+        if result.get("success") is not True:
+            raise SafeError("PicoGK exact instance SSH attachment was not confirmed")
+        for attempt in range(3):
+            if instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+                break
+            if attempt == 2:
+                raise SafeError("PicoGK approved SSH key is not listed by the provider")
+            time.sleep(5)
+    known_hosts = prepare_component_factory_f41_known_hosts(instance_id)
+    alias = component_factory_f41_host_key_alias(instance_id)
+    deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
+    while time.time() < deadline:
+        result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        raw = result.get("instances")
+        if not isinstance(raw, dict):
+            raise SafeError("PicoGK instance metadata is invalid")
+        # Loading may expose partial resource metadata; never spend past the
+        # bounded READY clock and never accept a known identity mismatch.
+        safe = safe_instance(raw)
+        for field, expected in (("id", instance_id), ("label", manifest["attempt_label"]),
+                                ("image", manifest["image_ref"])):
+            if safe[field] is not None and safe[field] != expected:
+                raise SafeError("PicoGK loading identity changed")
+        if safe["status"] in {"created", "loading"}:
+            time.sleep(min(15, max(0, deadline - time.time())))
+            continue
+        instance = picogk_contract(raw, instance_id, manifest, offer)
+        endpoint = m64_ssh_endpoint(raw, instance_id)
+        if endpoint is None:
+            time.sleep(min(15, max(0, deadline - time.time())))
+            continue
+        if time.time() >= deadline:
+            break
+        options = {"BatchMode": "yes", "IdentitiesOnly": "yes", "ForwardAgent": "no",
+                   "ClearAllForwardings": "yes", "PermitLocalCommand": "no",
+                   "PasswordAuthentication": "no", "KbdInteractiveAuthentication": "no",
+                   "ConnectionAttempts": "1", "ConnectTimeout": "5",
+                   "StrictHostKeyChecking": "accept-new", "UpdateHostKeys": "no",
+                   "GlobalKnownHostsFile": "/dev/null", "HashKnownHosts": "no",
+                   "HostKeyAlias": alias, "UserKnownHostsFile": str(known_hosts), "LogLevel": "ERROR"}
+        command = ["ssh", "-F", "/dev/null", "-T", "-i", str(SSH_PRIVATE_KEY_FILE)]
+        for key, value in options.items():
+            command.extend(["-o", key + "=" + value])
+        command += ["-p", str(endpoint["port"]), "root@" + endpoint["host"],
+                    picogk_remote_ready_command()]
+        try:
+            completed = run_component_factory_f41_ssh_probe(command, {
+                "LC_ALL": "C", "PATH": os.environ.get("PATH", os.defpath)})
+        except ComponentFactoryF41ProbeTimeout:
+            time.sleep(min(15, max(0, deadline - time.time())))
+            continue
+        if (completed.returncode == 0 and picogk_smoke_valid(completed.stdout)
+            and not completed.stderr.strip()):
+            validate_component_factory_f41_known_hosts(known_hosts, instance_id)
+            picogk_singleton(api_key, instance_id, manifest)
+            return {"instance": instance, "ssh_endpoint": endpoint,
+                    "known_hosts_path": str(known_hosts), "host_key_alias": alias}
+        lowered = completed.stderr.lower()
+        if any(marker in lowered for marker in ("permission denied", "host key verification failed",
+                                                "remote host identification has changed", "load key")):
+            raise SafeError("PicoGK SSH identity or host-key verification failed; private streams withheld")
+        time.sleep(min(15, max(0, deadline - time.time())))
+    raise SafeError("PicoGK SSH and geometry witness did not become ready within fifteen minutes")
+
+
+def picogk_reconcile(api_key: str, manifest: dict) -> int:
+    for _ in range(6):
+        matches = [item for item in strict_instance_inventory(api_key)
+                   if item.get("label") == manifest["attempt_label"]]
+        if matches:
+            if len(matches) != 1:
+                raise SafeError("PicoGK uncertain launch has ambiguous ownership; no automatic deletion")
+            instance_id = matches[0]["id"]
+            destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"],
+                                      expected_image=manifest["image_ref"])
+            return instance_id
+        time.sleep(5)
+    raise SafeError("PicoGK launch remains uncertain; do not retry before reconciling its exact label")
+
+
+def launch_picogk_m64(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
+    with simready_launch_lock():
+        picogk_singleton(api_key, None, manifest)
+        funds = picogk_account_balance(api_key)
+        if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
+            raise SafeError("PicoGK available credit does not cover the run and account reserve")
+        ensure_local_ssh_registered(api_key)
+        offers = [item for item in get_picogk_offers(api_key, offer_id) if item["id"] == offer_id]
+        if len(offers) != 1:
+            raise SafeError("PicoGK offer is unavailable or outside the fixed resource and price limits")
+        offer = offers[0]
+        ceiling = picogk_budget_cost(manifest, offer["dph_total"], offer["inet_up_cost"], offer["inet_down_cost"])
+        if not manifest["created_epoch"] <= time.time() < manifest["deadline_epoch"] - 300:
+            raise SafeError("PicoGK deadline leaves insufficient startup and cleanup time")
+        picogk_verify_armed_guard(manifest, manifest_sha256)
+        picogk_consume_attempt(manifest, manifest_sha256, offer_id)
+        print("OPENBAO_VASTAI_PICOGK_ATTEMPT " + json.dumps({"label": manifest["attempt_label"],
+              "manifest_sha256": manifest_sha256, "image_ref": manifest["image_ref"],
+              "deadline_epoch": manifest["deadline_epoch"], "worst_case_planned_usd": ceiling}),
+              file=sys.stderr, flush=True)
+        instance_id = None
+        try:
+            result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
+                "image": manifest["image_ref"], "label": manifest["attempt_label"],
+                "disk": PICOGK_DISK_GB, "runtype": "ssh_direct", "env": {},
+                "onstart": "picogk-vast-onstart --deadline-epoch " + str(manifest["deadline_epoch"]),
+                "cancel_unavail": True})
+            returned = result.get("new_contract")
+            if type(returned) is not int or returned <= 0:
+                raise SafeError("Vast.ai did not return an exact PicoGK instance ID")
+            instance_id = returned
+            verified = picogk_ssh_ready(api_key, instance_id, manifest, offer)
+        except BaseException:
+            try:
+                if instance_id is None:
+                    instance_id = picogk_reconcile(api_key, manifest)
+                else:
+                    destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"],
+                                              expected_image=manifest["image_ref"])
+                print("OPENBAO_VASTAI_PICOGK_CLEANUP " + json.dumps({"instance_id": instance_id,
+                    "verified_absent": True, "label": manifest["attempt_label"]}), file=sys.stderr, flush=True)
+            except BaseException:
+                print("OPENBAO_VASTAI_PICOGK_BILLING_RISK " + manifest["attempt_label"], file=sys.stderr, flush=True)
+                raise
+            raise
+        print_json({"profile": PICOGK_PROFILE, "instance_id": instance_id,
+                    "label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
+                    "manifest_sha256": manifest_sha256, "deadline_epoch": manifest["deadline_epoch"],
+                    "budget_usd": manifest["budget_usd"], "planned_cost_with_reserve_usd": ceiling,
+                    "balance_before": funds, "approved_public_private_pair_verified": True,
+                    "approved_instance_key_verified": True, "ssh_batch_mode_verified": True,
+                    "runtime_smoke_verified": True, "external_destroy_watchdog_armed": True,
+                    "manufacturing_validated": False, "engine_validated": False, **verified})
+        return 0
+
+
+def picogk_consume_attempt(manifest: dict, manifest_sha256: str, offer_id: int) -> Path:
+    """Durably consume one paid attempt before PUT; uncertainty never permits replay."""
+    path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + ".paid-attempt.json")
+    m64_no_symlink_path(path.parent)
+    try:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    except FileExistsError:
+        raise SafeError("PicoGK paid attempt is already consumed; reconcile this manifest instead of replaying PUT") from None
+    receipt = {"label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
+               "manifest_sha256": manifest_sha256, "offer_id": offer_id,
+               "created_epoch": int(time.time()), "paid_outcome": "unknown_until_provider_receipt"}
+    with os.fdopen(fd, "w") as stream:
+        json.dump(receipt, stream, sort_keys=True)
+        stream.flush()
+        os.fsync(stream.fileno())
+    directory = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+    return path
+
+
+def picogk_verify_armed_guard(manifest: dict, manifest_sha256: str) -> None:
+    try:
+        ready = json.loads(m64_read_file(Path(manifest["guard_ready_path"]), 4096))
+    except (ValueError, UnicodeError):
+        raise SafeError("PicoGK guard readiness is not valid JSON") from None
+    if (not isinstance(ready, dict) or ready.get("armed") is not True
+        or ready.get("manifest_sha256") != manifest_sha256
+        or ready.get("deadline_epoch") != manifest["deadline_epoch"]
+        or ready.get("label") != manifest["attempt_label"]
+        or ready.get("image_ref") != manifest["image_ref"]
+        or ready.get("wrapper_sha256") != hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        or type(ready.get("pid")) is not int or ready["pid"] <= 0):
+        raise SafeError("PicoGK external destruction guard is not armed for this exact run")
+    try:
+        os.kill(ready["pid"], 0)
+    except OSError:
+        raise SafeError("PicoGK external destruction guard is not alive") from None
+
+
 def run(operation: list[str]) -> int:
+    picogk_bundle = None
+    if operation and operation[0] in {"launch-picogk-m64", "reconcile-picogk-m64"}:
+        if len(operation) != (2 if operation[0] == "reconcile-picogk-m64" else 3):
+            raise SafeError("PicoGK requires its exact local manifest")
+        if operation[0] != "reconcile-picogk-m64":
+            positive_id(operation[1], "PicoGK offer id")
+        picogk_bundle = picogk_load_manifest(Path(operation[-1]), require_active=operation[0] == "launch-picogk-m64")
     m64_bundle = None
     if operation and operation[0].startswith("m64-"):
         name = operation[0]
@@ -4889,6 +5287,20 @@ def run(operation: list[str]) -> int:
     token = login()
     try:
         api_key = read_vast_key(token)
+        if operation == ["account-balance"]:
+            print_json(picogk_account_balance(api_key))
+            return 0
+        if operation == ["picogk-offers"]:
+            print_json([safe_offer(item) for item in get_picogk_offers(api_key)[:20]])
+            return 0
+        if picogk_bundle is not None:
+            manifest, manifest_sha256 = picogk_bundle
+            if operation[0] == "launch-picogk-m64":
+                return launch_picogk_m64(api_key, int(operation[1]), manifest, manifest_sha256)
+            instance_id = picogk_reconcile(api_key, manifest)
+            print_json({"instance_id": instance_id, "verified_absent": True,
+                        "label": manifest["attempt_label"]})
+            return 0
         if m64_bundle is not None:
             return m64_operation(api_key, operation, m64_bundle)
         if operation == ["--auth-check"]:
@@ -5254,7 +5666,9 @@ def run(operation: list[str]) -> int:
             print_json({"instance_id": instance_id, "destroyed": True, "verified_absent": True})
             return 0
         raise SafeError(
-            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|f46-offers|wave-offers|"
+            "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
+            "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"
+            "offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
             "m64-transfer <id> <absolute-manifest>|m64-phase <id> <absolute-manifest> <phase>|"
             "m64-collect <id> <absolute-manifest> <new-private-directory>|"

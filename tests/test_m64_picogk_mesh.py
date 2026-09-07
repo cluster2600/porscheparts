@@ -3,6 +3,7 @@ from pathlib import Path
 import struct
 import sys
 import tempfile
+from types import SimpleNamespace
 import unittest
 
 SOURCE = Path(__file__).resolve().parents[1] / 'twins/m64-cylinder-head/source/picogk'
@@ -69,6 +70,49 @@ class PicoGKMeshTests(unittest.TestCase):
         self.assertIn("'manufacturing_authorized': False", source)
         self.assertIn("'functional_interface_preservation_certified': False", source)
         self.assertIn("'continuous_Hausdorff_bound': False", source)
+
+    @unittest.skipUnless(importlib.util.find_spec('trimesh') and importlib.util.find_spec('rtree'), 'optional mesh QA runtime')
+    def test_three_resolution_pipeline_on_explicit_synthetic_fixture(self):
+        import json
+        import trimesh
+        import compare_meshes
+        with tempfile.TemporaryDirectory(prefix='synthetic-picogk-software-test-') as directory:
+            root = Path(directory)
+            master = root / 'synthetic-cube.stl'
+            cube = trimesh.creation.box(extents=[2., 2., 2.])
+            cube.export(master)
+            receipt = root / 'synthetic-export.json'
+            receipt.write_text(json.dumps({'mesh_sha256': export_master.sha256(master),
+                                           'voxel_input_topology_gate_passed': True,
+                                           'source_STEP_sha256': 'synthetic_unit_test_no_actual_STEP'}))
+            candidates = []
+            for resolution, offset in ((.8, .08), (.4, .04), (.2, .02)):
+                run_directory = root / f'synthetic-{resolution}'
+                run_directory.mkdir()
+                path = run_directory / 'head-roundtrip.stl'
+                copy = cube.copy(); copy.apply_translation([offset, 0., 0.]); copy.export(path)
+                (run_directory / 'run-report.json').write_text(json.dumps({
+                    'input_sha256': export_master.sha256(master), 'input_unchanged': True,
+                    'transform': 'identity', 'voxel_mm': resolution,
+                    'scope': 'synthetic_software_test_not_actual_PicoGK_run',
+                    'roundtrip': {'sha256': export_master.sha256(path), 'filename': path.name,
+                                  'triangles': len(copy.faces)}}))
+                candidates.append((str(resolution), str(path)))
+            args = SimpleNamespace(master=master, master_report=receipt, candidate=candidates,
+                                   output=root / 'report', samples=64, chord_samples=64, seed=17, render=False)
+            self.assertEqual(compare_meshes.run(args), 0)
+            report = json.loads((args.output / 'mesh-comparison-report.json').read_text())
+            self.assertEqual(len(report['runs']), 3)
+            self.assertTrue(report['master_unchanged_after_audit'])
+            self.assertTrue(report['convergence_screen']['sampled_maximum_distance_monotone_nonincreasing'])
+            self.assertFalse(report['manufacturing_authorized'])
+            bad_receipt = Path(candidates[0][1]).parent / 'run-report.json'
+            wrong = json.loads(bad_receipt.read_text()); wrong['input_sha256'] = 'wrong_master'
+            bad_receipt.write_text(json.dumps(wrong))
+            args.output = root / 'rejected-report'
+            with self.assertRaisesRegex(ValueError, 'candidate_run_receipt_provenance'):
+                compare_meshes.run(args)
+            self.assertFalse((args.output / 'mesh-comparison-report.json').exists())
 
 
 if __name__ == '__main__':
