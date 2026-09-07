@@ -3,6 +3,19 @@
 Date : 2026-09-06. Statut : **exécution de référence réussie après correction du
 tutoriel ; aucune validation physique ou industrielle du M64**.
 
+## Périmètre courant — actualisation du 7 septembre 2026
+
+Le corps privé courant `four-seat-candidate.step` comporte **5 130 faces**,
+SHA-256 `92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f`.
+**Il ne dispose pas encore d'affectations thermiques approuvées ni d'un maillage
+volumique de calcul.** Les inventaires et maillages F53/F54 concernent d'autres
+géométries et ne se transfèrent pas à ses faces.
+
+Le résultat ci-dessous reste strictement le témoin logiciel historique
+`circuitBoardCooling` : ni ce corps ni son refroidissement n'ont été simulés.
+Voir l'[état des entrées de culasse](M64_CHT_HEAD_INPUT_AUDIT.md) avant de préparer
+un cas thermique sur la géométrie courante.
+
 ## Cas et environnement effectivement exécutés
 
 - Kali, image locale amd64

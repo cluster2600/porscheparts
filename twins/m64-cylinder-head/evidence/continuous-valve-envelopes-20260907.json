@@ -1,0 +1,242 @@
+{
+  "schema": "m64-public-continuous-nominal-valve-exclusions/v1",
+  "date": "2026-09-07",
+  "private_report_sha256": "1017bd8b02aee78e76cf4637ee528f364f45da4f4460ddc53b4351d04f1a8f65",
+  "implementation_sha256": "2db51b372aa0a3b3e57f737bea73ae405111bf38b6bdafc9dd1532d4fe11fbed",
+  "status": "completed_geometric_diagnostic_not_engine_validation",
+  "context_sha256": "2ad0b5e0f2123ae2875c348bd9d3fd233e4b97300deb236d112ff1b040c67619",
+  "combined_exclusions_STEP_sha256": "da25566809028694a55d0a3c2ae8b85a53cbf3d71d2f31ccefcf16bc524f1d5c",
+  "all_nominal_motion_envelopes_disjoint_from_body": true,
+  "source_files_unchanged": true,
+  "records": [
+    {
+      "name": "intake_1",
+      "module_STEP_sha256": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+      "body_STEP_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+      "envelope_STEP_sha256": "6ee09888801b61e4390e521e04a33443552990b08555914e0b2106d7e530c510",
+      "envelope_native_volume": 22204.515076184864,
+      "STEP_roundtrip_volume_delta": 1.8662831280380487e-9,
+      "intersection_with_current_body": {
+        "exact_BRep_check_valid": true,
+        "topology_counts": {
+          "solids": 0,
+          "shells": 0,
+          "faces": 0,
+          "edges": 0,
+          "vertices": 0
+        },
+        "volume_scan_units_cubed": 0,
+        "topologically_empty": true
+      },
+      "elapsed_seconds": 4.316266834037378,
+      "profile_monotonicity_and_coverage_proof": {
+        "radius_positive": true,
+        "outer_z_strictly_increasing": true,
+        "initial_base_cylindrical_with_positive_height": true,
+        "initial_cylindrical_base_height": 1.5,
+        "radius_piecewise_linear_nonincreasing": true,
+        "outer_segment_dr_dz": [
+          0,
+          -1.0000000000000002,
+          -3.5714285714285716,
+          -0.75,
+          0
+        ],
+        "lift_interval": [
+          0,
+          11.5
+        ],
+        "translation_axis_local": [
+          0,
+          0,
+          -1
+        ],
+        "union_formula": "union_{0<=t<=L}(S-t*ez) = extended_base_profile",
+        "above_original_base": "at z>=zmin, r(z+t)<=r(z); t=0 attains r(z)",
+        "below_original_base": "at zmin-L<=z<zmin, t=zmin-z attains the maximum radius r(zmin)",
+        "outside_axial_extent": "no translated point lies outside [zmin-L,zmax]",
+        "added_volume_formula": "pi*r(zmin)^2*L",
+        "analytic_added_volume": 14451.32620651305,
+        "proof_is_for_rigid_nominal_translation_only": true,
+        "sampling_is_not_the_continuous_coverage_proof": true
+      }
+    },
+    {
+      "name": "intake_2",
+      "module_STEP_sha256": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+      "body_STEP_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+      "envelope_STEP_sha256": "57041341158067060efb9e4f501278e0c60b26bf9a635eca4ef4b1c0077e139d",
+      "envelope_native_volume": 22204.515076184864,
+      "STEP_roundtrip_volume_delta": 1.8662831280380487e-9,
+      "intersection_with_current_body": {
+        "exact_BRep_check_valid": true,
+        "topology_counts": {
+          "solids": 0,
+          "shells": 0,
+          "faces": 0,
+          "edges": 0,
+          "vertices": 0
+        },
+        "volume_scan_units_cubed": 0,
+        "topologically_empty": true
+      },
+      "elapsed_seconds": 4.279625875060447,
+      "profile_monotonicity_and_coverage_proof": {
+        "radius_positive": true,
+        "outer_z_strictly_increasing": true,
+        "initial_base_cylindrical_with_positive_height": true,
+        "initial_cylindrical_base_height": 1.5,
+        "radius_piecewise_linear_nonincreasing": true,
+        "outer_segment_dr_dz": [
+          0,
+          -1.0000000000000002,
+          -3.5714285714285716,
+          -0.75,
+          0
+        ],
+        "lift_interval": [
+          0,
+          11.5
+        ],
+        "translation_axis_local": [
+          0,
+          0,
+          -1
+        ],
+        "union_formula": "union_{0<=t<=L}(S-t*ez) = extended_base_profile",
+        "above_original_base": "at z>=zmin, r(z+t)<=r(z); t=0 attains r(z)",
+        "below_original_base": "at zmin-L<=z<zmin, t=zmin-z attains the maximum radius r(zmin)",
+        "outside_axial_extent": "no translated point lies outside [zmin-L,zmax]",
+        "added_volume_formula": "pi*r(zmin)^2*L",
+        "analytic_added_volume": 14451.32620651305,
+        "proof_is_for_rigid_nominal_translation_only": true,
+        "sampling_is_not_the_continuous_coverage_proof": true
+      }
+    },
+    {
+      "name": "exhaust_1",
+      "module_STEP_sha256": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+      "body_STEP_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+      "envelope_STEP_sha256": "6814aa6d3042e9c07a4f48894a2fa4b2905f81d41a4df1978e8e6b4dac0668eb",
+      "envelope_native_volume": 14278.067371667576,
+      "STEP_roundtrip_volume_delta": 7.457856554538012e-10,
+      "intersection_with_current_body": {
+        "exact_BRep_check_valid": true,
+        "topology_counts": {
+          "solids": 0,
+          "shells": 0,
+          "faces": 0,
+          "edges": 0,
+          "vertices": 0
+        },
+        "volume_scan_units_cubed": 0,
+        "topologically_empty": true
+      },
+      "elapsed_seconds": 4.370489499997348,
+      "profile_monotonicity_and_coverage_proof": {
+        "radius_positive": true,
+        "outer_z_strictly_increasing": true,
+        "initial_base_cylindrical_with_positive_height": true,
+        "initial_cylindrical_base_height": 1.5,
+        "radius_piecewise_linear_nonincreasing": true,
+        "outer_segment_dr_dz": [
+          0,
+          -1.0000000000000002,
+          -2.5714285714285716,
+          -0.75,
+          0
+        ],
+        "lift_interval": [
+          0,
+          9.6
+        ],
+        "translation_axis_local": [
+          0,
+          0,
+          -1
+        ],
+        "union_formula": "union_{0<=t<=L}(S-t*ez) = extended_base_profile",
+        "above_original_base": "at z>=zmin, r(z+t)<=r(z); t=0 attains r(z)",
+        "below_original_base": "at zmin-L<=z<zmin, t=zmin-z attains the maximum radius r(zmin)",
+        "outside_axial_extent": "no translated point lies outside [zmin-L,zmax]",
+        "added_volume_formula": "pi*r(zmin)^2*L",
+        "analytic_added_volume": 8210.866559422284,
+        "proof_is_for_rigid_nominal_translation_only": true,
+        "sampling_is_not_the_continuous_coverage_proof": true
+      }
+    },
+    {
+      "name": "exhaust_2",
+      "module_STEP_sha256": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+      "body_STEP_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+      "envelope_STEP_sha256": "ade59673fcb5b1666e84faabc73e93f139df101f4539cb70b97d347d78335dca",
+      "envelope_native_volume": 14278.067371667581,
+      "STEP_roundtrip_volume_delta": 7.403286872431636e-10,
+      "intersection_with_current_body": {
+        "exact_BRep_check_valid": true,
+        "topology_counts": {
+          "solids": 0,
+          "shells": 0,
+          "faces": 0,
+          "edges": 0,
+          "vertices": 0
+        },
+        "volume_scan_units_cubed": 0,
+        "topologically_empty": true
+      },
+      "elapsed_seconds": 4.4520887499675155,
+      "profile_monotonicity_and_coverage_proof": {
+        "radius_positive": true,
+        "outer_z_strictly_increasing": true,
+        "initial_base_cylindrical_with_positive_height": true,
+        "initial_cylindrical_base_height": 1.5,
+        "radius_piecewise_linear_nonincreasing": true,
+        "outer_segment_dr_dz": [
+          0,
+          -1.0000000000000002,
+          -2.5714285714285716,
+          -0.75,
+          0
+        ],
+        "lift_interval": [
+          0,
+          9.6
+        ],
+        "translation_axis_local": [
+          0,
+          0,
+          -1
+        ],
+        "union_formula": "union_{0<=t<=L}(S-t*ez) = extended_base_profile",
+        "above_original_base": "at z>=zmin, r(z+t)<=r(z); t=0 attains r(z)",
+        "below_original_base": "at zmin-L<=z<zmin, t=zmin-z attains the maximum radius r(zmin)",
+        "outside_axial_extent": "no translated point lies outside [zmin-L,zmax]",
+        "added_volume_formula": "pi*r(zmin)^2*L",
+        "analytic_added_volume": 8210.866559422284,
+        "proof_is_for_rigid_nominal_translation_only": true,
+        "sampling_is_not_the_continuous_coverage_proof": true
+      }
+    }
+  ],
+  "scope": {
+    "length_unit": "scan_units_under_unverified_1_unit_per_mm_hypothesis",
+    "body_geometry_modified": false,
+    "coverage": "continuous_rigid_nominal_translation_for_V2_profiles_with_initial_cylindrical_base",
+    "cam_law_needed_for_this_geometric_union": false,
+    "piston_checked": false,
+    "thermal_growth_or_deflection_margin_included": false,
+    "minimum_positive_clearance_proven": false,
+    "manufacturing_authorized": false
+  },
+  "verification": {
+    "native_runtime": "OCP 7.9.3.1",
+    "native_tests_passed": 7,
+    "native_tests_include": "initial_conical_profile_rejected_and_midcourse_collision_missed_by_two_endpoints",
+    "execution_host": "local",
+    "Vast_instance_created": false
+  },
+  "sources": {
+    "implementation": "../source/build_continuous_valve_envelopes.py",
+    "module": "four-valve-design-v2-20260907/build-report.json"
+  }
+}
