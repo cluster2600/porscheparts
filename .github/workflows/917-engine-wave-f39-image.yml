@@ -1,0 +1,158 @@
+name: Build 917 engine wave F39 image
+
+on:
+  push:
+    branches:
+      - main
+      - codex/917-f39-unsteady-network
+    paths:
+      - .github/workflows/917-engine-wave-f39-image.yml
+      - containers/917-engine-wave-f39/**
+      - tests/test_917_engine_wave_f39_image.py
+  workflow_dispatch:
+
+concurrency:
+  group: 917-engine-wave-f39-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/${{ github.repository_owner }}/3dprinting993-wave-action-f39
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Run static image guard
+        run: python3 tests/test_917_engine_wave_f39_image.py -v
+
+      - name: Hash exact public inputs
+        run: |
+          sha256sum \
+            .github/workflows/917-engine-wave-f39-image.yml \
+            containers/917-engine-wave-f39/Dockerfile \
+            containers/917-engine-wave-f39/Dockerfile.dockerignore \
+            containers/917-engine-wave-f39/requirements.txt \
+            containers/917-engine-wave-f39/smoke.py \
+            containers/917-engine-wave-f39/entrypoint.sh \
+            tests/test_917_engine_wave_f39_image.py \
+            > 917-engine-wave-f39-source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Verify pinned Buildx and BuildKit
+        run: |
+          docker buildx version 2>&1 | tee 917-engine-wave-f39-builder.txt
+          docker buildx inspect --bootstrap 2>&1 | tee -a 917-engine-wave-f39-builder.txt
+          grep -F 'v0.36.1' 917-engine-wave-f39-builder.txt >/dev/null
+          grep -F 'v0.32.2' 917-engine-wave-f39-builder.txt >/dev/null
+
+      - name: Log in to GHCR
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish linux/amd64 candidate with attestations
+        id: build
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/917-engine-wave-f39/Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: mode=max
+          sbom: true
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ github.sha }}
+          cache-from: type=gha,scope=917-engine-wave-f39
+          cache-to: type=gha,mode=max,scope=917-engine-wave-f39
+
+      - name: Gate digest, attestations and offline runtime
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+          PINNED_REF: ${{ env.IMAGE_REPOSITORY }}@${{ steps.build.outputs.digest }}
+        run: |
+          [[ "${IMAGE_DIGEST}" =~ ^sha256:[0-9a-f]{64}$ ]]
+          docker buildx imagetools inspect --raw "${PINNED_REF}" > 917-engine-wave-f39-index.json
+          test "$(sha256sum 917-engine-wave-f39-index.json | cut -d' ' -f1)" = "${IMAGE_DIGEST#sha256:}"
+          jq -e '
+            .mediaType == "application/vnd.oci.image.index.v1+json" and
+            ([.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64")] | length) == 1 and
+            ([.manifests[] | select(.platform.os == "unknown" and .platform.architecture == "unknown" and .annotations["vnd.docker.reference.type"] == "attestation-manifest")] | length) == 1
+          ' 917-engine-wave-f39-index.json >/dev/null
+
+          platform_digest="$(jq -er '.manifests[] | select(.platform.os == "linux" and .platform.architecture == "amd64") | .digest' 917-engine-wave-f39-index.json)"
+          docker buildx imagetools inspect --format '{{json .Provenance}}' "${PINNED_REF}" > 917-engine-wave-f39-provenance.json
+          docker buildx imagetools inspect --format '{{json .SBOM}}' "${PINNED_REF}" > 917-engine-wave-f39-sbom.json
+          jq -e '
+            (if .SPDX then .SPDX elif type == "array" then .[0].SPDX else null end) as $spdx |
+            $spdx.spdxVersion == "SPDX-2.3" and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "aeolus1d" and .versionInfo == "0.3.3") and
+            any($spdx.packages[]; ((.name // "") | ascii_downcase) == "numpy" and .versionInfo == "2.2.6")
+          ' 917-engine-wave-f39-sbom.json >/dev/null
+
+          docker pull --platform linux/amd64 "${PINNED_REF}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${PINNED_REF}")" = linux/amd64
+          test "$(docker image inspect --format '{{.Config.User}}' "${PINNED_REF}")" = 9139:9139
+          if ! docker run --rm --platform linux/amd64 --user 9139:9139 \
+            --network none --read-only \
+            --tmpfs /tmp:rw,exec,nosuid,size=256m \
+            --pids-limit 128 --cap-drop ALL --security-opt no-new-privileges \
+            "${PINNED_REF}" \
+            > 917-engine-wave-f39-smoke.json \
+            2> 917-engine-wave-f39-smoke.stderr; then
+            cat 917-engine-wave-f39-smoke.json
+            cat 917-engine-wave-f39-smoke.stderr >&2
+            exit 1
+          fi
+          test ! -s 917-engine-wave-f39-smoke.stderr
+          jq -e '
+            .status == "runtime_smoke_passed_engine_validation_blocked" and
+            .runtime.machine == "x86_64" and
+            .runtime.uid == 9139 and .runtime.gid == 9139 and
+            .runtime.gpu_required == false and
+            .runtime.external_api_required == false and
+            .dependencies.aeolus1d == "0.3.3" and
+            .native_runtime.numba_jit_executed == true and
+            .native_runtime.hdf5_round_trip_executed == true and
+            .benchmark.finite_positive_state_verified == true and
+            .claim_scope.generic_sod_benchmark_executed == true and
+            .claim_scope.flat_12_model_executed == false and
+            .claim_scope.turbo_maps_validated == false and
+            .claim_scope.engine_model_physically_correlated == false and
+            .claim_scope.target_1600_mechanical_hp_proven == false and
+            .claim_scope.engine_start_authorized == false and
+            .claim_scope.manufacturing_authorized == false
+          ' 917-engine-wave-f39-smoke.json >/dev/null
+          printf '%s\n' "${PINNED_REF}" > 917-engine-wave-f39-image-ref.txt
+          printf '%s\n' "${platform_digest}" > 917-engine-wave-f39-platform-digest.txt
+
+      - name: Upload immutable image evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: 917-engine-wave-f39-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            917-engine-wave-f39-source-inputs.sha256
+            917-engine-wave-f39-builder.txt
+            917-engine-wave-f39-index.json
+            917-engine-wave-f39-provenance.json
+            917-engine-wave-f39-sbom.json
+            917-engine-wave-f39-smoke.json
+            917-engine-wave-f39-smoke.stderr
+            917-engine-wave-f39-image-ref.txt
+            917-engine-wave-f39-platform-digest.txt
+          if-no-files-found: error
+          retention-days: 30

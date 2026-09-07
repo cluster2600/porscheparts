@@ -1,0 +1,61 @@
+{
+  "$comment": "Métadonnées de deux exécutions natives x86_64 identiques du cas motored F39. Elles qualifient uniquement la reproductibilité numérique observée; aucune corrélation physique, combustion, puissance ou autorisation de fabrication n'en découle.",
+  "schema_version": "1.0.0",
+  "phase": "F39",
+  "status": "two_native_runs_byte_identical_physical_release_closed",
+  "source_commit": "ddc7703d4ad949b2712bdf178a28dbaaf0ae3cda",
+  "contract": {
+    "path": "twins/reference-917-engine/unsteady-network-f39.json",
+    "sha256": "c62d1dffcd57a13dce569eb1af05e61c84b893b27613f77c01b0878831743432"
+  },
+  "runner": {
+    "path": "twins/reference-917-engine/source/run_unsteady_network_f39.py",
+    "sha256": "4a2f7b905cd512a77b5c9719f79423c5c3eff1b606bd9390b7de47539188d174"
+  },
+  "container": {
+    "reference": "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3",
+    "local_image_id": "sha256:4d0dfac1f48766e7b25d7c0b588bf14f15642852f423482068aa51b1cbdb7938",
+    "os": "linux",
+    "architecture": "amd64"
+  },
+  "execution_host": {
+    "role": "user_authorized_intel_cpu_validation_node",
+    "kernel": "Linux 6.19.14+kali-amd64 x86_64",
+    "cpu_model": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "logical_cpu_count": 12,
+    "memory_bytes": 16455098368,
+    "docker_server_version": "28.5.2+dfsg4"
+  },
+  "runs": [
+    {
+      "id": "intel-ddc7703-run1",
+      "report_sha256": "86b5b1ede7b2a54e23b71e0bb4ddd99e753991873f507eb768819f7e5ba5718c"
+    },
+    {
+      "id": "intel-ddc7703-run2",
+      "report_sha256": "86b5b1ede7b2a54e23b71e0bb4ddd99e753991873f507eb768819f7e5ba5718c"
+    }
+  ],
+  "canonical_report": {
+    "path": "twins/reference-917-engine/evidence/f39/intel-native-run-ddc7703.json",
+    "sha256": "86b5b1ede7b2a54e23b71e0bb4ddd99e753991873f507eb768819f7e5ba5718c",
+    "byte_count": 56171
+  },
+  "observations": {
+    "two_runs_byte_identical": true,
+    "full_720_time_march_executed": true,
+    "runtime_fields_finite": true,
+    "runtime_state_positive": true,
+    "physical_release_gates_all_false": true
+  },
+  "not_proven": [
+    "cycle_convergence",
+    "mass_or_energy_balance",
+    "combustion",
+    "power_or_torque",
+    "turbo_matching",
+    "engine_start",
+    "manufacturing",
+    "1600_hp"
+  ]
+}

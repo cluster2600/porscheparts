@@ -1,9 +1,11 @@
-# Wrapper OpenBao pour GHCR
+# Wrappers OpenBao pour GHCR et Vast.ai
 
 Ce dossier versionne les wrappers Vast.ai et GHCR utilisés pour l'image
 SimReady locale. Il ne contient aucun secret. `openbao-vastai` garde la
 location, l'unicité et la destruction ; `openbao-ghcr` vérifie l'accès au
-digest puis délègue uniquement l'offre explicitement relue.
+digest puis délègue uniquement l'offre explicitement relue. Le chemin F39
+utilise directement l'image publique immuable et ne transmet aucun identifiant
+GHCR à Vast.ai.
 
 Le wrapper est volontairement borné à :
 
@@ -12,6 +14,11 @@ Le wrapper est volontairement borné à :
 - l'image `cluster2600/3dprinting993-simready-local-ai` ;
 - le digest OCI déclaré dans `openbao-ghcr` ;
 - une opération de lancement SimReady explicite du wrapper `openbao-vastai`.
+- l'image F39 publique
+  `ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3` ;
+- une offre F39 relue par identifiant, à 1,25 USD/h maximum, avec au moins
+  64 threads CPU effectifs, 256 000 MB de RAM et 300 GB de disque ;
+- une machine vérifiée, de fiabilité minimale 0,985, louable et non déjà louée.
 
 Il accepte un token stocké sous l'un des champs `GITHUB_TOKEN`, `GH_TOKEN`,
 `github_token` ou `token`. Sa valeur n'est jamais imprimée. Le wrapper vérifie
@@ -47,8 +54,46 @@ Le lancement reste séparé de l'installation :
 ```zsh
 openbao-vastai heavy-offers
 openbao-ghcr launch-vast-simready-heavy OFFER_ID
+
+openbao-vastai wave-offers
+openbao-vastai launch-wave-f39 OFFER_ID
 ```
 
-L'identifiant reste obligatoire : l'offre doit être relue avant location. Le
-wrapper Vast refuse un second contrat portant le label du projet et contrôle
-l'unicité après création.
+L'identifiant reste obligatoire : l'offre doit être relue avant location. Pour
+SimReady, le wrapper Vast refuse un second contrat portant le label du projet
+et contrôle l'unicité après création.
+
+Pour F39, `wave-offers` demande le prix total avec 300 GB de stockage puis
+réapplique localement chaque seuil. `launch-wave-f39` refait la correspondance
+exacte sur l'identifiant et revalide l'offre immédiatement avant l'appel payant.
+Le conteneur utilise `ssh_direct`; son `onstart` exécute
+`/opt/917-engine-wave-f39/smoke.py` et ne crée `/workspace/READY` que si le
+smoke termine sans sortie d'erreur.
+
+Ce `onstart` est obligatoire : la documentation officielle Vast.ai précise
+que les modes SSH/Jupyter remplacent l'`ENTRYPOINT` de l'image par celui de
+Vast, puis exécutent `onstart` après cette initialisation. Voir
+[Creating Instances with the API](https://docs.vast.ai/api-reference/creating-instances-with-api).
+Le wrapper effectue aussi un prévol d'unicité sous verrou local et refuse de
+louer si une instance portant déjà le label F39 existe. Après création, il
+relit la liste complète et exige que l'identifiant retourné soit l'unique
+instance portant ce label. Il relit ensuite le contrat Vast et exige le digest
+immuable, le label, un état `created`, `loading` ou `running`, au moins 64
+threads CPU effectifs, 256 000 MB de RAM, 300 GB de disque, un prix total au
+plus égal à 1,25 USD/h et une machine vérifiée.
+
+Toute erreur de cette vérification post-création détruit exactement
+l'identifiant retourné et exige que sa disparition soit confirmée dans la liste
+paginée. Après un résultat de création incertain (erreur réseau, erreur sûre du
+wrapper ou HTTP 5xx), le wrapper réconcilie le label F39 : il détruit et vérifie
+absente l'unique instance correspondante. Il ne détruit rien automatiquement si
+plusieurs identifiants portent ce label, et une réponse HTTP 4xx certaine ne
+déclenche aucun nettoyage destructif. L'appel de création payant n'est jamais
+retenté automatiquement : aucune branche ne peut créer implicitement une
+seconde instance.
+
+L'offre `#49655039` est uniquement un candidat communiqué par l'utilisateur le
+2 septembre 2026. Sa présence dans les tests est une fixture : elle ne garantit
+ni sa disponibilité actuelle, ni son prix futur, et n'atteste aucune location.
+Il faut impérativement la revoir dans la sortie courante de `wave-offers` avant
+de lancer la commande avec cet identifiant ou tout autre identifiant conforme.

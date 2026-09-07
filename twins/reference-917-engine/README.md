@@ -595,3 +595,49 @@ Une image CPU F38 minimale, standard-library et sans clé API accompagne ce
 réseau. Son smoke est reproductible sur Docker Desktop et sur un nœud Intel
 Linux natif ; la recette GHCR vérifie en plus provenance, SBOM et accès anonyme
 par digest avant de considérer l'image exploitable sur Vast.
+
+## Réseau instationnaire 0D/1D F39
+
+La suite est cadrée dans
+[`docs/917_UNSTEADY_NETWORK_F39.md`](../../docs/917_UNSTEADY_NETWORK_F39.md).
+F39 sépare les capacités 0D des cylindres, plénums et collecteurs des conduits
+1D compressibles. L'incrément F39 exécute avec Aeolus1D 0.3.3 un cas NA
+`motored` de 720° : 12 cylindres 0D, 27 conduits 1D, 3 jonctions, 48 soupapes
+physiques issues de la tête clean-sheet F29 4V et 24 ports équivalents.
+Injection et combustion sont désactivées ; aucun couple ni aucune puissance
+n'est calculé. La branche biturbo, ses arbres et ses wastegates restent une
+topologie future. Le rapport stationnaire F38 peut servir de comparaison ou
+d'amorce ; il n'est pas une solution instationnaire ni une mesure de banc.
+
+La première exécution reste un `screening_proxy`. Les longueurs, sections et
+volumes internes de F8 ne sont pas mesurés, les profils complets de came et
+tables `CdA` manquent, et aucune carte compresseur/turbine, inertie rotor ou loi
+wastegate n'est intégrée. Le F35 atmosphérique 4,5 L à 85 × 66 mm ne doit pas
+être confondu avec le candidat F33 NA à 90 × 70,4 mm ; le F33 turbo moderne à
+rapport 9,5 reste également distinct du 917/30 historique à rapport 6,5.
+
+L'interface prévue est :
+
+```bash
+make 917-unsteady-network-f39-test
+make 917-unsteady-network-f39
+make 917-wave-action-f39-image
+```
+
+Le contrat est `twins/reference-917-engine/unsteady-network-f39.json`, le
+runner `twins/reference-917-engine/source/run_unsteady_network_f39.py` et les
+sorties restent sous `work/917-unsteady-network-f39/`. Le solveur est destiné
+au CPU et peut tourner sur le nœud Intel sans GPU ni clé API NVIDIA. L'image
+est verrouillée à
+`ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3`.
+Son workflow `linux/amd64` a validé le smoke hors réseau, la provenance, le
+SBOM et l'accès anonyme au manifeste. Cela rend le runtime reproductible sur
+Intel ou Vast, sans valider le modèle moteur qu'il exécutera.
+
+Aeolus1D est un projet MIT récent encore alpha : le smoke du tube à choc de Sod
+prouve seulement son runtime CPU `amd64`, pas le modèle 917. Le JSON demeure
+l'autorité numérique. Un overlay USD aval peut exposer dans
+Omniverse les stations, séries temporelles et classes de provenance sans créer
+de géométrie, collision ou physique PhysX. Une animation USD ne prouve ni le
+fonctionnement du moteur ni les 1 600 hp ; cette puissance reste une exigence
+de conception jusqu'à corrélation indépendante sur banc instrumenté.
