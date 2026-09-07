@@ -4,6 +4,22 @@ Audit du 7 septembre 2026. **Aucun calcul thermique de culasse M64 abouti.**
 Le prochain calcul doit contenir le solide réel et ses interfaces thermiques,
 pas seulement un écoulement dans les conduits ou un disque de contrôle.
 
+## État courant — actualisation du 7 septembre 2026
+
+Le maître privé courant est `four-seat-candidate.step`, **5 130 faces**, SHA-256
+`92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f`.
+Il reprend l'enveloppe F43 avec les quatre contre-alésages et guides V2 ; cette
+reconstruction n'établit pas encore les interfaces d'une culasse M64 fonctionnelle.
+**Aucune affectation thermique approuvée ni maillage volumique de calcul n'est
+disponible pour ce corps courant.** Les indices de faces, propositions de groupes
+et maillages F53/F54 ne lui sont pas transférables.
+
+L'audit F53 ci-dessous et sa commande sont conservés comme **historique de cette
+autre géométrie**, non comme prétraitement du maître courant. Le prochain calcul
+stationnaire sous hypothèses doit attendre la CAO fonctionnelle, ses groupes de
+frontières et son maillage vérifiés. L'objectif de 700 PS au vilebrequin ne fixe
+pas le flux thermique entrant dans la culasse.
+
 ## Travail exécuté sur la géométrie disponible
 
 Le script `twins/m64-cylinder-head/inventory_thermal_boundaries.py` a été
