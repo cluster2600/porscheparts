@@ -5,7 +5,13 @@ LC  = float(sys.argv[2]) if len(sys.argv)>2 else 1.0    # mesh size factor
 X_F, X_R = 400.0, -1500.0          # floor extent (SCAN)
 YS_I, SILL_W, SILL_H = 600.0, 90.0, 120.0
 Z0 = 271.7
-XM = {'front_floor':21.3, 'seat_base':-506.0, 'trans':-1703.0}   # datum-placed crossmembers
+# La traverse arriere du reseau de datums (P12, x = -1703) N'EST PAS ici. Elle
+# tombe derriere le bord arriere du plancher modelise, donc derriere la section
+# encastree de l'essai : elle ne peut porter aucun effort. Elle a longtemps
+# figure dans ce dictionnaire, ou elle formait un ilot flottant — masse comptee,
+# raideur nulle. Le controle de connexite de build_body.py interdit desormais
+# qu'un tel ilot reparaisse sans etre signale.
+XM = {'front_floor':21.3, 'seat_base':-506.0}   # datum-placed crossmembers
 XW, XH = 80.0, 70.0
 
 gmsh.initialize(); gmsh.option.setNumber("General.Terminal",0)

@@ -48,7 +48,7 @@ for name, f in cases:
         m = hybrid(f)
         E, nu, rho, G = m['E'], m['nu'], m['rho'], m['G']
         t = REF_T * G_steel / G          # prediction iso-raideur, membrane en cisaillement
-    K, vm99 = run(t, f"study_{f}", E, nu)
+    K, vm99 = run(t, "study_ref" if f is None else f"study_c{int(f*100):03d}", E, nu)
     a = areal_mass(t, rho)
     plies = "-" if f is None else f"{int(np.ceil(t/PLY/4)*4)}"   # multiple de 4, stack QI
     rows.append((name, E, G, t, K, a, vm99))

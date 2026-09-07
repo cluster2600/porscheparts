@@ -194,6 +194,12 @@ serie, a mieux que sa tolerance, suffirait a caler la chaine longitudinale et a
 faire passer ce jumeau en `F2_interface`. Le point 17, trou de reprise du cric
 avant, est le meilleur candidat : il est publie a +/- 1 mm et visible de dessous.
 
+La quatrieme priorite du dossier, etendre le modele coque, est faite : voir
+« Ce que la caisse ajoute au plancher » ci-dessous. Il ne reste donc plus, dans
+les pistes qui dependent de nous seuls, que des travaux de second rang. Les
+items decisifs — un releve de marbre, un scan de carrosserie de serie, un
+tableau de points publie — dependent tous d'un tiers.
+
 ## Piste composite
 
 Une etude de materiau a ete menee sur l'essai de torsion existant, sans en
@@ -208,3 +214,35 @@ plancher seul.
 Voir `docs/research/964-chassis-carbone-kevlar.md`. Cette piste ne produit
 aucune geometrie liberable : une structure autoportante porte la retenue des
 occupants et reste `prohibited_pending_engineering`.
+
+## Ce que la caisse ajoute au plancher
+
+Le modele coque a ete prolonge du plancher seul jusqu'a une cellule fermee —
+passages de roue, pieds milieu, brancards, pavillon, cadre de pare-brise. C'etait
+la seule piste du dossier a ne dependre d'aucune donnee exterieure : elle ne
+demande que des sections `ASSUMED` de plus.
+
+Deux resultats en sortent, tous deux relatifs et donc exploitables malgre les
+sections supposees.
+
+**Le classement des elements ne suit pas leur masse.** Du plancher nu a la
+cellule fermee, la raideur en torsion est multipliee par 3,7 pour une masse
+multipliee par 2,3. Mais le pavillon, 10,5 kg, n'apporte que +1 % ; le cadre de
+pare-brise, 1,1 kg, apporte le plus gros increment de toute l'echelle. Le
+rapport de rendement au kilo entre les deux est de **deux ordres de grandeur**,
+et il tient a trois finesses de maillage alors que la raideur absolue, elle,
+derive de 11 %. Ce qui compte en haut de caisse n'est pas la matiere, c'est la
+**fermeture de l'anneau** : pieds milieu et brancards ajoutes seuls, sans rien
+pour fermer a l'avant, apportent exactement zero pour 7,5 kg.
+
+**Une traverse du modele ne portait rien.** Un controle de connexite ajoute au
+constructeur a montre que la traverse arriere, placee a x = -1703 par la chaine
+de datums, tombait derriere le bord du plancher modelise : elle comptait pour
+5,7 % de la masse et pour rien dans la raideur. Les raideurs deja publiees
+etaient justes — retirer cette traverse redonne exactement les 2442 N.m/deg
+publies — mais les masses, donc les raideurs specifiques, etaient minorees.
+Detail et consequences dans `fea/README.md`.
+
+Aucun de ces chiffres n'est une raideur de 964, et le fait que le modele ignore
+vitrage colle, portes et ouvertures de panneaux joue precisement dans le sens
+qui flatte l'anneau ferme.

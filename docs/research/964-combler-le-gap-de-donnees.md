@@ -116,10 +116,16 @@ que la recherche ne soit pas refaite.
 
 - Dossier de presse Porsche de 1988 et litterature SAE de benchmarking de caisses.
 - Preparateurs restomod : recherche faite sur Tuthill, aucun chiffre publie trouve.
-- **Etendre le modele coque** au pavillon, aux pieds milieu, aux passages de roue
-  et au cadre de pare-brise. Ne demande aucune donnee exterieure, seulement des
-  sections `ASSUMED` supplementaires, et ferait converger le modele vers une
-  caisse. C'est la suite naturelle de l'etude d'architecture.
+- ~~**Etendre le modele coque** au pavillon, aux pieds milieu, aux passages de
+  roue et au cadre de pare-brise.~~ **Fait.** Voir `twins/964-chassis/fea/README.md`,
+  sections « Du plancher a la cellule fermee » et « Ce que ce classement dit ».
+  Du plancher nu a la cellule fermee, K x 3,7 pour une masse x 2,3. Le resultat
+  utile n'est pas ce facteur mais le classement : le cadre de pare-brise, 1,1 kg,
+  rapporte deux ordres de grandeur de plus au kilo que le pavillon, 10,5 kg,
+  parce qu'il ferme l'anneau superieur. Verifie a trois finesses de maillage.
+  L'extension a aussi fait apparaitre, par un controle de connexite, qu'une
+  traverse du modele flottait depuis l'origine : 5,7 % de masse morte, raideur
+  nulle, et toutes les raideurs specifiques publiees minorees d'autant.
 
 ## Priorites
 
@@ -128,6 +134,13 @@ que la recherche ne soit pas refaite.
 2. **Une demande de fiche unitaire a Autorobot**, en invoquant les photographies
    de points de mesure. Gratuit a demander.
 3. **La base FIA**, a ouvrir dans un navigateur.
-4. **Etendre le modele coque.** Entierement sous notre controle.
+4. ~~**Etendre le modele coque.**~~ Fait, voir ci-dessus. Ce qui reste de
+   comparable — vitrage colle, ouvertures de panneaux, portes — affinerait le
+   modele sans changer le classement qu'il produit, et pese donc moins que les
+   items suivants.
 5. Le relevé de marbre et le scan de serie, qui dependent de tiers et restent les
    deux items decisifs.
+
+Il n'y a donc plus, dans ce dossier, de piste a la fois decisive et entierement
+sous notre controle. Les trois premieres priorites sont des demandes a formuler
+ou une page a ouvrir dans un navigateur ; elles n'ont besoin d'aucun calcul.
