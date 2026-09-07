@@ -1,0 +1,271 @@
+{
+  "schema": "porsche-917-f47-internal-brep-public-report/v1",
+  "phase": "F47",
+  "verdict": "FAIL_CLOSED_NOT_CAE_READY_NOT_PRINTABLE_NOT_ENGINE_START_AUTHORIZED",
+  "scope": "two_internal_candidates_in_one_locked_F43_scan_contour_outer_skin",
+  "authority": {
+    "contract": {
+      "path": "twins/reference-917-engine/internal-brep-contract-f47.json",
+      "sha256": "cdf1c54c038994d12ba1e6d726746240a270e1d1683ffe5409db27bc4ea5693e"
+    },
+    "outer_skin_F43_private": {
+      "sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+      "repository_policy": "private_local_only_scan_derived_geometry",
+      "absolute_scale_certified": false,
+      "fitment_OEM_certified": false
+    },
+    "head_architecture_F45_sha256": "ef4355e0dc83df1bf7335d53051f35ece302c9840942f35fbb9bb47340538da3",
+    "valvetrain_material_F45_sha256": "9d4df959ea9b6ee3bc78a8e62a4ab1ac7d274567c0f6309d0f091e8696118883"
+  },
+  "construction": {
+    "builder": {
+      "path": "twins/reference-917-engine/source/build_internal_brep_variants_f47.py",
+      "sha256": "9a418c5210b4e89c4fd5646a0533a4afd7a6ac7683363d6e23631151faf5d0fb"
+    },
+    "same_private_outer_STEP_bytes_loaded_for_2V_and_4V": true,
+    "surface_deformation_operation_used": false,
+    "global_ellipse_used": false,
+    "global_oval_used": false,
+    "global_box_used": false,
+    "functional_circular_cylinders_only": true,
+    "scan_contour_fin_skin_preserved": true,
+    "bore_diameter_candidate_scan_units_interpreted_as_mm": 90.0,
+    "bore_classification": "F45_candidate_not_measured_Porsche_interface"
+  },
+  "common_outer_envelope_OCCT": {
+    "bbox_scan_units": [
+      -60.37284990888845,
+      -88.87533003668999,
+      -1e-07,
+      59.144856789962,
+      116.6249996356955,
+      82.0000001
+    ],
+    "bbox_size_scan_units": [
+      119.51770669885045,
+      205.50032967238548,
+      82.00000019999999
+    ],
+    "bbox_coordinate_maximum_difference_2V_vs_4V_scan_units": 0.0,
+    "meaning": "same_locked_F43_source_and_same_envelope_not_an_OEM_fitment_proof"
+  },
+  "variants": {
+    "2V": {
+      "head_private_STEP": {
+        "sha256": "ca5ad5b5cc7b168946cb93d49adb7409e9e3ac4853b808e86ed8ad5f3477ea0b",
+        "bytes": 16514911,
+        "repository_policy": "private_local_only"
+      },
+      "OCCT_round_trip": {
+        "roots": 1,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 5034,
+        "exact_BRepCheck_valid": true,
+        "exact_subshapes_checked": 20651,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0
+      },
+      "BOPAlgo": {
+        "pass": false,
+        "fault_count": 8,
+        "status_counts": {
+          "BOPAlgo_InvalidCurveOnSurface": 8
+        },
+        "self_intersection_count": 0
+      },
+      "Gmsh_3D": {
+        "pass": false,
+        "version": "4.12.1",
+        "algorithm": "Delaunay_then_Relocate3D_requested",
+        "failure": "PLC Error: A segment and a facet intersect at point",
+        "tetrahedron_count": 0
+      },
+      "properties_under_scan_unit_convention": {
+        "volume": 1274264.0705082184,
+        "surface_area": 135643.74921743284
+      },
+      "separate_components": {
+        "seat_count": 2,
+        "guide_count": 2,
+        "valve_count": 2,
+        "solid_count": 6,
+        "private_STEP_sha256": "0b0ca44caf2da19d56ccc5f98b01211438115ee72b6e4f3e2cec90c4fa52125a"
+      },
+      "gas_core": {
+        "private_STEP_sha256": "cd2ec146875cd403f688a3e6d1dd87a8bbb7ab6f6eaecd4aec2bd9735b4f2632",
+        "solid_count": 1,
+        "shell_count": 1,
+        "free_edge_count": 0,
+        "exact_BRepCheck_valid": true,
+        "BOPAlgo_pass": false,
+        "BOPAlgo_InvalidCurveOnSurface_count": 4
+      },
+      "oil_core": {
+        "private_STEP_sha256": "acc26fce48be0bc02b5079130e2fc580f4e694171a35b04950a1e43fc9f967ac",
+        "solid_count": 1,
+        "shell_count": 1,
+        "free_edge_count": 0,
+        "exact_BRepCheck_valid": true,
+        "BOPAlgo_pass": true,
+        "BOPAlgo_fault_count": 0
+      },
+      "gas_oil_separation": {
+        "common_boolean_done": true,
+        "intersection_volume_scan_units_cubed": 0.0,
+        "minimum_distance_scan_units": 15.688278354570878
+      },
+      "analytic_functional_packaging_screen": {
+        "minimum_nominal_ligament_scan_units": 1.5,
+        "limiting_pair": "bore_to_intake_seat_envelope",
+        "pass_if_and_only_if_one_scan_unit_equals_one_mm": true,
+        "global_wall_thickness_verified": false
+      }
+    },
+    "4V": {
+      "head_private_STEP": {
+        "sha256": "196e9b83629b0f5ecacc822153766fcf388da557a6fc30e50f7141f45479c6c9",
+        "bytes": 16565498,
+        "repository_policy": "private_local_only"
+      },
+      "OCCT_round_trip": {
+        "roots": 1,
+        "solid_count": 1,
+        "shell_count": 1,
+        "face_count": 4929,
+        "exact_BRepCheck_valid": true,
+        "exact_subshapes_checked": 20431,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0
+      },
+      "BOPAlgo": {
+        "pass": false,
+        "fault_count": 32,
+        "status_counts": {
+          "BOPAlgo_InvalidCurveOnSurface": 32
+        },
+        "self_intersection_count": 0
+      },
+      "Gmsh_3D": {
+        "pass": false,
+        "version": "4.12.1",
+        "algorithm": "Delaunay_then_Relocate3D_requested",
+        "failure": "PLC Error: Two facets intersect at point",
+        "tetrahedron_count": 0
+      },
+      "properties_under_scan_unit_convention": {
+        "volume": 1246030.353738083,
+        "surface_area": 144617.77728301805
+      },
+      "separate_components": {
+        "seat_count": 4,
+        "guide_count": 4,
+        "valve_count": 4,
+        "solid_count": 12,
+        "private_STEP_sha256": "754490ea29f279d796816420f9cd2669a2bd47dc189b91ea86776da63e33f415"
+      },
+      "gas_core": {
+        "private_STEP_sha256": "fd555b74c2ad1873cf048713c4ff27c33acc37474acae9e90ffe248e8b15d484",
+        "solid_count": 1,
+        "shell_count": 1,
+        "free_edge_count": 0,
+        "exact_BRepCheck_valid": true,
+        "BOPAlgo_pass": false,
+        "BOPAlgo_InvalidCurveOnSurface_count": 22
+      },
+      "oil_core": {
+        "private_STEP_sha256": "953745be195f92e0e95cfe6a34403ede05526c5c6aecd8ffa010ec1a412a6b98",
+        "solid_count": 1,
+        "shell_count": 1,
+        "free_edge_count": 0,
+        "exact_BRepCheck_valid": true,
+        "BOPAlgo_pass": true,
+        "BOPAlgo_fault_count": 0
+      },
+      "gas_oil_separation": {
+        "common_boolean_done": true,
+        "intersection_volume_scan_units_cubed": 0.0,
+        "minimum_distance_scan_units": 19.39098000266852
+      },
+      "analytic_functional_packaging_screen": {
+        "minimum_nominal_ligament_scan_units": 3.1598374141623005,
+        "limiting_pair": "central_spark_bore_to_intake_seat_envelope",
+        "pass_if_and_only_if_one_scan_unit_equals_one_mm": true,
+        "global_wall_thickness_verified": false
+      }
+    }
+  },
+  "open_boundary_and_powder_review": {
+    "declared_head_openings": [
+      "deck_bottom",
+      "top_guides",
+      "top_spark_bore",
+      "intake_side",
+      "exhaust_side",
+      "oil_both_x_sides",
+      "oil_two_top_cleanouts"
+    ],
+    "gas_and_oil_exported_as_separate_closed_solids": true,
+    "closed_core_caps_represent_CFD_open_boundary_patches": true,
+    "physical_powder_removal_test_completed": false,
+    "connectivity_graph_independently_verified": false,
+    "trapped_powder_gate": false
+  },
+  "wall_thickness": {
+    "target_mm": 1.5,
+    "full_BRep_skin_to_internal_void_map_completed": false,
+    "scan_absolute_scale_certified": false,
+    "gate_pass": false,
+    "reason": "only_nominal_functional_ligaments_were_computed_outer_skin_and_all_internal_voids_not_exhaustively_sampled"
+  },
+  "images": {
+    "four_views": {
+      "path": "twins/reference-917-engine/evidence/f47-internal-brep/917-head-f47-2v-4v-four-views.png",
+      "sha256": "fd6ded4ad4a165a850cd7717be20ea75026b7ab2cfad37f22cb229f7097379f8"
+    },
+    "sections": {
+      "path": "twins/reference-917-engine/evidence/f47-internal-brep/917-head-f47-2v-4v-sections.png",
+      "sha256": "63df11f71d7b34be66d73888142fb891b7ed4198c08e0ceac48bc9f8b82af812"
+    },
+    "renderer": {
+      "path": "twins/reference-917-engine/source/render_internal_brep_variants_f47.py",
+      "sha256": "63b9ac62d0671eca441f51fcf8ae9e9688afd909c5206128dfdfde67c971151f"
+    }
+  },
+  "release_gates": {
+    "same_locked_F43_source_used": true,
+    "same_bbox_verified": true,
+    "anti_ellipse_and_anti_global_box_source_gate": true,
+    "two_valve_exact_BRepCheck": true,
+    "four_valve_exact_BRepCheck": true,
+    "two_valve_BOPAlgo_clean": false,
+    "four_valve_BOPAlgo_clean": false,
+    "two_valve_Gmsh_3D": false,
+    "four_valve_Gmsh_3D": false,
+    "gas_core_BOPAlgo_clean_both_variants": false,
+    "oil_core_BOPAlgo_clean_both_variants": true,
+    "gas_oil_domains_separate": true,
+    "minimum_wall_1_5_mm_verified": false,
+    "no_trapped_powder_verified": false,
+    "fitment_OEM_certified": false,
+    "thermal_validated": false,
+    "structural_validated": false,
+    "fatigue_validated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "repository_policy": {
+    "raw_scan_committed": false,
+    "private_SCAN_derived_STEP_STL_MSH_committed": false,
+    "published": [
+      "contract",
+      "deterministic_builder",
+      "renderer",
+      "hashes",
+      "sanitized_metrics",
+      "images",
+      "tests",
+      "documentation"
+    ]
+  }
+}

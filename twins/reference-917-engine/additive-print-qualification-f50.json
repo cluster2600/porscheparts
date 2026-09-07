@@ -1,0 +1,250 @@
+{
+  "$comment": "Qualification virtuelle F50 fail-closed. Les deux methodes sont complementaires; aucune n'autorise une impression metal ou un demarrage moteur.",
+  "asset_id": "917_head_scan_locked_2v_4v_additive_print_qualification_f50",
+  "classification": "executed_full_piece_geometric_slicing_plus_local_AdditiveFOAM_process_witness_not_manufacturing_release",
+  "comparison_2v_4v": {
+    "new_island_count": {
+      "2v": 90,
+      "4v": 81
+    },
+    "support_proxy_volume_cm3": {
+      "2v": 299.00816250000037,
+      "4v": 319.27334999999965
+    },
+    "thickness_p01_mm": {
+      "2v": 0.5000474260146078,
+      "4v": 0.46406556831163037
+    },
+    "thin_probe_fraction_below_1p5_mm": {
+      "2v": 0.1055,
+      "4v": 0.097
+    }
+  },
+  "full_piece_thermomechanical_distortion": {
+    "executed": false,
+    "existing_local_witness_reference": "twins/reference-917-engine/thermomechanical-screen-f50.json",
+    "reason": "No complete CP1 temperature-dependent elastic-plastic, creep, relaxation and calibrated LPBF inherent-strain card is available. A result would fabricate material evidence."
+  },
+  "geometry_policy": {
+    "absolute_scale_certified": false,
+    "analysis_transforms": "rigid rotations and translations only",
+    "anisotropic_scaling_used": false,
+    "envelope_proxy_used": false,
+    "global_oval_or_ellipse_used": false,
+    "private_F50_native_masters_used": true,
+    "private_geometry_published": false,
+    "scan_skin_modified": false
+  },
+  "machine_candidate": {
+    "build_cylinder_diameter_mm": 315.0,
+    "build_height_mm": 400.0,
+    "laser_configuration": "2 x 1 kW",
+    "manufacturer": "Velo3D",
+    "model": "Sapphire standard",
+    "recoater": "non-contact recoater",
+    "source": "https://velo3d.com/solution/sapphire/"
+  },
+  "method_1_full_piece_macro_geometry": {
+    "classification": "actual triangle-plane slicing of private same-master tessellation; aggregate results only",
+    "closed_volume_model": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+    "layer_thickness_mm": 0.05,
+    "orientation_rule": "minimum downward projected area among bare-part envelope-fitting candidates",
+    "results": {
+      "2v": {
+        "full_build_slicing": {
+          "bare_part_nominal_fit": true,
+          "build_height_mm": 205.50032947237997,
+          "conservative_required_diameter_mm": 144.94303076292883,
+          "diametral_margin_mm": 170.05696923707117,
+          "empty_internal_layers": 0,
+          "height_margin_mm": 194.49967052762003,
+          "layer_count": 4111,
+          "layer_thickness_mm": 0.05,
+          "layers_with_new_islands": 49,
+          "layers_with_unsupported_area": 1867,
+          "maximum_unsupported_area_mm2": 5023.19197819,
+          "new_island_count": 90,
+          "orientation": "build_y",
+          "part_extents_mm": [
+            119.51770649884199,
+            82.0,
+            205.50032947237997
+          ],
+          "rigid_transform_only": true,
+          "support_classification": "conservative vertical-column proxy; no supplier support topology",
+          "support_proxy_side_area_mm2": 171479.1999999995,
+          "support_proxy_volume_cm3": 299.00816250000037,
+          "support_proxy_volume_mm3": 299008.1625000004,
+          "support_raster_pitch_mm": 0.5
+        },
+        "powder_escape_screen": {
+          "classification": "resolution-limited depowdering screen; CT and endoscopy still required",
+          "connected_void_labels_including_outside": 1,
+          "method": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+          "no_trapped_volume_detected_at_screen_resolution": true,
+          "pitch_mm": 1.5,
+          "trapped_void_volume_mm3": 0.0,
+          "trapped_void_voxel_count": 0,
+          "voxel_grid_shape": [
+            80,
+            138,
+            56
+          ]
+        },
+        "report": "twins/reference-917-engine/evidence/f50-additive-print/geometry-2v/917-head-f50-2v-lpbf-geometry-report.json",
+        "selected_orientation": "build_y",
+        "thickness_screen": {
+          "analysis_normals_repaired_without_vertex_motion": false,
+          "classification": "screening_only_not_a_certified_minimum_wall_map",
+          "median_mm": 7.139360290588206,
+          "method": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes",
+          "minimum_mm": 0.15366480433020918,
+          "p01_mm": 0.5000474260146078,
+          "p05_mm": 0.9177126250756467,
+          "p95_mm": 29.67806511219006,
+          "sample_count": 2000,
+          "sample_fraction_below_1p5_mm": 0.1055
+        }
+      },
+      "4v": {
+        "full_build_slicing": {
+          "bare_part_nominal_fit": true,
+          "build_height_mm": 205.50032947237997,
+          "conservative_required_diameter_mm": 144.94303076292883,
+          "diametral_margin_mm": 170.05696923707117,
+          "empty_internal_layers": 0,
+          "height_margin_mm": 194.49967052762003,
+          "layer_count": 4111,
+          "layer_thickness_mm": 0.05,
+          "layers_with_new_islands": 49,
+          "layers_with_unsupported_area": 1859,
+          "maximum_unsupported_area_mm2": 5043.68213573,
+          "new_island_count": 81,
+          "orientation": "build_y",
+          "part_extents_mm": [
+            119.51770649884199,
+            82.0,
+            205.50032947237997
+          ],
+          "rigid_transform_only": true,
+          "support_classification": "conservative vertical-column proxy; no supplier support topology",
+          "support_proxy_side_area_mm2": 176528.00000000047,
+          "support_proxy_volume_cm3": 319.27334999999965,
+          "support_proxy_volume_mm3": 319273.3499999996,
+          "support_raster_pitch_mm": 0.5
+        },
+        "powder_escape_screen": {
+          "classification": "resolution-limited depowdering screen; CT and endoscopy still required",
+          "connected_void_labels_including_outside": 1,
+          "method": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+          "no_trapped_volume_detected_at_screen_resolution": true,
+          "pitch_mm": 1.5,
+          "trapped_void_volume_mm3": 0.0,
+          "trapped_void_voxel_count": 0,
+          "voxel_grid_shape": [
+            80,
+            138,
+            56
+          ]
+        },
+        "report": "twins/reference-917-engine/evidence/f50-additive-print/geometry-4v/917-head-f50-4v-lpbf-geometry-report.json",
+        "selected_orientation": "build_y",
+        "thickness_screen": {
+          "analysis_normals_repaired_without_vertex_motion": true,
+          "classification": "screening_only_not_a_certified_minimum_wall_map",
+          "median_mm": 7.365453333065517,
+          "method": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes",
+          "minimum_mm": 0.025505247870173196,
+          "p01_mm": 0.46406556831163037,
+          "p05_mm": 1.0233755098700097,
+          "p95_mm": 25.22654612667969,
+          "sample_count": 2000,
+          "sample_fraction_below_1p5_mm": 0.097
+        }
+      }
+    },
+    "support_model": "conservative vertical-column raster proxy, not supplier supports",
+    "thickness_model": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes"
+  },
+  "method_2_local_process_physics": {
+    "classification": "sanitized_hash-linked_AdditiveFOAM_coupon_campaign_not_full-head_distortion",
+    "gates": {
+      "all_numerical_case_gates_passed": false,
+      "engine_start_authorized": false,
+      "four_hash_linked_solver_runs_completed": true,
+      "full_head_thermomechanical_distortion_simulated": false,
+      "metal_print_authorized": false,
+      "physical_coupon_qualified": false,
+      "supplier_process_calibrated": false,
+      "target_CP1_material_card_used": false,
+      "temperature_cap_free": false,
+      "witness_nominal_to_fine_converged": false
+    },
+    "governing_equation": "rho*cp*dT/dt = div(k*grad(T)) + Q_laser - Q_losses + Q_latent",
+    "material": {
+      "name": "AlSi10Mg",
+      "reason": "No complete supplier CP1 temperature-dependent AdditiveFOAM card is available.",
+      "role": "F42 published control model only",
+      "target_CP1_card_used": false
+    },
+    "report": "twins/reference-917-engine/evidence/f50-additive-print/additivefoam-coupons/917-head-f50-additivefoam-report.json",
+    "representativity": {
+      "2v_thickness_p01_mm": 0.5000474260146078,
+      "4v_thickness_p01_mm": 0.46406556831163037,
+      "full_head_distortion_simulated": false,
+      "low_ved_screen_role": "local lower-energy sensitivity; no bulk-head or support geometry",
+      "published_witness_role": "local melt-pool control for thin-feature process risk; no cylinder-head sector geometry",
+      "reason": "No complete CP1 hot constitutive and process-calibration card exists; inventing it is prohibited."
+    },
+    "resolution_convergence": {
+      "nominal_to_fine_relative_difference": {
+        "melt_pool_depth_mm": 0.0034974195970675086,
+        "melt_pool_length_mm": 0.004812062758064271,
+        "melt_pool_width_mm": 0.008896078486686793,
+        "molten_volume_mm3": 0.4376552092939938,
+        "temperature_p99_k": 0.02839237902128197
+      },
+      "passes": false
+    },
+    "software": {
+      "additivefoam_binary_sha256": "da5dced5324774c466372075e4edaa4dfe94683992123d6c75bb45d092d91fbd",
+      "additivefoam_revision": "9c05c5eb54db03faa342b14b0806efe740de8c44",
+      "observed_openfoam_runtime_builds": [
+        "14-7b05503f98a8"
+      ],
+      "openfoam": "14-20260724"
+    }
+  },
+  "phase": "F50",
+  "private_master_hash_lock": {
+    "master_hashes": {
+      "2v": "1574eb58b7af09bcadab6c9cfcdd9a56940d479a5aa1b1eb807d31d41d4f7c36",
+      "4v": "10ff1a2af8f2dbca78cf6ac2f72a9e1f2842e171f1e1e76080f07eacd4162131"
+    },
+    "path": "twins/reference-917-engine/f50-private-master-hash-lock.json",
+    "sha256": "4eae45e9c6bb5b9460a6f32fdc4f106d6926d01a442775bfd9155d23298fade1"
+  },
+  "process_media": {
+    "classification": "aggregate_lpbf_process_dashboard_not_engine_operation_not_physical_print",
+    "manifest": "twins/reference-917-engine/evidence/f50-additive-print/media/917-head-f50-lpbf-process-media-manifest.json"
+  },
+  "release_gates": {
+    "ct_or_endoscopy_completed": false,
+    "engine_start_authorized": false,
+    "full_piece_50um_macro_slicing_completed_both_variants": true,
+    "full_piece_thermomechanical_distortion_converged": false,
+    "metal_print_authorized": false,
+    "minimum_wall_1p5mm_everywhere": false,
+    "native_master_topology_locked": true,
+    "nominal_bare_part_machine_envelope_fit_both_variants": true,
+    "physical_coupon_qualified": false,
+    "powder_removal_physically_validated": false,
+    "recoater_collision_with_distorted_part_validated": false,
+    "supplier_machine_file_signed": false,
+    "supplier_support_topology_validated": false,
+    "support_removal_access_validated": false,
+    "target_CP1_hot_material_card_used": false
+  },
+  "schema_version": "1.0.0",
+  "verdict": "F50 virtual screens executed and traceable; both variants remain prohibited for metal printing and engine start"
+}

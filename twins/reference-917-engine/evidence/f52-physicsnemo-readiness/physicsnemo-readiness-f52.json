@@ -1,0 +1,91 @@
+{
+  "$comment": "Preuve publique non geometrique. Un statut PASS signifie que le verrou fail-closed F52 est coherent, pas que PhysicsNeMo a ete entraine ou valide.",
+  "schema": "porsche-917-physicsnemo-readiness-f52-public/v1",
+  "phase": "F52",
+  "audit_status": "PASS_FAIL_CLOSED",
+  "contract": "twins/reference-917-engine/physicsnemo-readiness-f52.json",
+  "geometry_modified": false,
+  "private_geometry_published": false,
+  "runtime": {
+    "physicsnemo_version": "2.2.1",
+    "immutable_image_digest": "sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a",
+    "linux_amd64_image_and_offline_import_smoke_verified": true,
+    "gpu_runtime_verified_for_this_image": false
+  },
+  "execution": {
+    "imports_only": true,
+    "physicsnemo_model_executed": false,
+    "physicsnemo_training_executed": false,
+    "physicsnemo_inference_evaluation_executed": false,
+    "weights_produced": false
+  },
+  "input_audit": {
+    "declared_artifacts": 8,
+    "present_hash_verified_artifacts": 8,
+    "pending_artifacts": 0,
+    "eligible_training_samples": 0,
+    "F50_CFD_recovery": {
+      "source_schema": "porsche-917-f50-cfd-recovery-public/v1",
+      "source_status": "CFD_RECOVERY_FAIL_CLOSED",
+      "declared_cases": 12,
+      "executed_cases_with_solver_receipt": 12,
+      "flow_numerical_gate_pass_cases": 7,
+      "flow_numerical_gate_fail_cases": 5,
+      "energy_gate_applicable_cases": 0,
+      "energy_gate_pass_cases": 0,
+      "case_validation_gate_pass_cases": 0,
+      "energy_equation_solved": false,
+      "conjugate_CHT_executed": false,
+      "all_flow_gates_passed": false,
+      "all_energy_gates_passed": false,
+      "validation_claim": false,
+      "accepted_training_samples": 0,
+      "training_blocker": "energy_and_CHT_are_required_by_the_DoMINO_lane_but_absent"
+    },
+    "F50_steady_cases_sufficient_for_DoMINO": false,
+    "F50_local_deck_screen_sufficient_for_GeoTransolver": false
+  },
+  "lanes": {
+    "DoMINO_CFD_CHT": {
+      "dataset_ready": false,
+      "training_authorized": false,
+      "blockers": [
+        "steady_incompressible_cases_have_no_energy_equation",
+        "some_cases_fail_closed",
+        "full_CHT_fields_absent",
+        "mesh_independence_not_accepted",
+        "independent_method_agreement_absent",
+        "physical_flow_and_thermal_correlation_absent"
+      ]
+    },
+    "GeoTransolver_thermomechanical": {
+      "dataset_ready": false,
+      "training_authorized": false,
+      "blockers": [
+        "current_witness_is_not_full_head",
+        "full_head_CHT_temperature_transfer_absent",
+        "temperature_dependent_hot_material_card_absent",
+        "contact_and_preload_model_absent",
+        "thermomechanical_fatigue_life_absent",
+        "physical_thermal_and_strain_correlation_absent"
+      ]
+    }
+  },
+  "split_UQ_OOD": {
+    "grouped_split_defined": true,
+    "split_manifest_locked": false,
+    "UQ_acceptance_defined": true,
+    "OOD_acceptance_defined": true,
+    "runtime_abstention_defined": true,
+    "evaluated": false
+  },
+  "release": {
+    "dataset_ready": false,
+    "training_authorized": false,
+    "surrogate_validated": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  },
+  "verdict": "PHYSICSNEMO_PLANNED_AND_GATED_IMPORT_SMOKE_ONLY_NO_MODEL_EXECUTION_NO_TRAINING"
+}

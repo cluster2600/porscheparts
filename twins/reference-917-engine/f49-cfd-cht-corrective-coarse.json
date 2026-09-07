@@ -1,0 +1,58 @@
+{
+  "schema_version": "porsche-917-f49-corrective-coarse/v1",
+  "$comment": "Itération numérique corrective bornée aux quatre cas coarse; les conditions physiques F49 restent inchangées.",
+  "phase": "F49-corrective-coarse",
+  "base_contract": {
+    "path": "twins/reference-917-engine/f49-cfd-cht-contract.json",
+    "sha256": "d44bb4ffd2383a0f28ff4a4e0cce9ddb87f985d01e0b0d318c0961a6699bd913"
+  },
+  "scope": {
+    "variants": ["2V", "4V"],
+    "levels": ["coarse"],
+    "screens": ["intake", "exhaust"],
+    "physical_boundary_conditions_changed": false,
+    "geometry_changed": false
+  },
+  "numerical_controls": {
+    "initial_time_step_s": 1e-8,
+    "maximum_Courant_number": 0.1,
+    "maximum_time_step_s": 2e-6,
+    "end_time_s": 0.005,
+    "n_outer_correctors": 2,
+    "n_correctors": 3,
+    "n_non_orthogonal_correctors": 1,
+    "equation_relaxation": {
+      "U": 0.7,
+      "h": 0.7,
+      "k": 0.5,
+      "omega": 0.5
+    },
+    "gradient_limiter": 0.5,
+    "laplacian_correction_limiter": 0.5,
+    "advection": "bounded first-order upwind for U, h, K, k and omega"
+  },
+  "initialization": {
+    "velocity_m_s": [0.0, 0.0, 0.0],
+    "pressure_pa_abs": "arithmetic mean of source total pressure and sink static pressure",
+    "temperature_k": "source temperature",
+    "rationale": "quiescent pressure-driven start with no reversed initial kinetic energy; thermal wall step is retained rather than softened"
+  },
+  "patch_audit": {
+    "omegaWallFunction_allowed_only_where_U_is_noSlip": true,
+    "source_and_sink_must_remain_patch_type": true,
+    "all_other_named_boundaries_must_be_wall_type": true
+  },
+  "energy_balance": {
+    "port_flux_sign": "OpenFOAM phi is outward-positive: source inflow is negative and sink outflow is positive",
+    "specific_total_enthalpy_j_kg": "Cp*T + 0.5*mag(U)^2",
+    "advective_net_out_w": "m_source*ht_source + m_sink*ht_sink",
+    "unsteady_storage_w": "finite difference of volume integral rho*(h + 0.5*mag(U)^2)",
+    "wall_flux_interpretation": "reported wallHeatFlux sign is retained explicitly; no sign is flipped to force closure",
+    "gate_rule": "closure may pass only with measured transient storage and without a solver or temperature-guard failure"
+  },
+  "claims": {
+    "numerical_correction_is_physical_validation": false,
+    "mixed_initial_and_corrective_grid_comparison_allowed": false,
+    "performance_claim_allowed": false
+  }
+}

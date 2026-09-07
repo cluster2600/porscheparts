@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0.0",
+  "id": "917-f46-vast-cfd-cae-job-manifest",
+  "classification": "planned_jobs_not_execution_evidence",
+  "source_contracts": [
+    {
+      "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+      "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482"
+    },
+    {
+      "path": "twins/reference-917-engine/f43-g3-g5-comparable-execution.json",
+      "sha256": "b433eb775b1cf45938ebd6df84dc160e1718b73b7fc94d54dc8d2d13fe50c2e6"
+    },
+    {
+      "path": "twins/reference-917-engine/evidence/f43-g3-g5-comparable/audit-report.json",
+      "sha256": "efd139da959034eef06ddde364329f91b6858bf4a71d7c1bfe58d0aacc9f21c0"
+    },
+    {
+      "path": "twins/reference-917-engine/f42-2-material-process-screen.json",
+      "sha256": "ec390bc122457e2d87813156f12e8d0d466a0d2cfcce005ff9396351572282b1"
+    }
+  ],
+  "global_policy": {
+    "geometry_revision": null,
+    "geometry_domains_complete": false,
+    "same_2v_4v_revision_required": true,
+    "mesh_ids": [
+      "coarse",
+      "medium",
+      "fine"
+    ],
+    "synthetic_inputs_allowed_as_engineering_evidence": false,
+    "continue_after_failed_mass_or_energy_gate": false,
+    "maximum_parallel_heavy_jobs": 1,
+    "total_phase_timeout_seconds": 25200,
+    "cleanup_reserve_seconds": 1800
+  },
+  "geometry_binding": {
+    "external_geometry_revision": null,
+    "geometry_input_artifacts": [],
+    "functional_sections_must_be_circular_and_justified": true,
+    "forbidden_shape_name_tokens": [
+      "ellipse",
+      "elliptic",
+      "oval",
+      "ovale"
+    ],
+    "forbidden_geometry_revision_aliases": [
+      "F39",
+      "F42"
+    ]
+  },
+  "solver_authority": {
+    "exact_ICEEngineFoam_executable_found": false,
+    "fabricated_alias_allowed": false,
+    "current_engine_framework": "AATE_OpenFOAM_ICengines",
+    "current_engine_framework_revision": "c0f75f953d67cd325d28d1300672d14288f22934",
+    "historical_counter_solver": "OpenFOAM_3.0.x_engineFoam",
+    "historical_counter_solver_revision": "221b8ab77307b0ea3831a055bedc2cd77c1417f9",
+    "historical_counter_solver_included_only_if_built": true,
+    "historical_counter_solver_image_built_and_digest_locked": false,
+    "cantera_version": "3.2.0"
+  },
+  "jobs": [
+    {
+      "id": "F46-G3-OPENFOAM-2V4V",
+      "family": "OpenFOAM",
+      "scope": "G3 steady full-port 2V/4V on three meshes",
+      "case_count": 6,
+      "timeout_seconds": 3600,
+      "required_executable": "foamRun",
+      "command": null,
+      "input_manifest_path": null,
+      "input_manifest_sha256": null,
+      "required_outputs": [
+        "mass_balance.json",
+        "energy_balance.json",
+        "mesh_convergence.json"
+      ],
+      "execution_ready": false,
+      "blocked_by": [
+        "sealed paired 2V/4V port domains absent",
+        "exact command and input manifest not bound"
+      ]
+    },
+    {
+      "id": "F46-G4-AATE-ICENGINES-2V4V",
+      "family": "AATE_ICengines",
+      "scope": "G4 maillage mobile et CFD moteur 2V/4V via AATE/OpenFOAM ICengines sur trois maillages",
+      "case_count": 6,
+      "timeout_seconds": 5400,
+      "solver_authority": "AATE_OpenFOAM_ICengines",
+      "source_revision": "c0f75f953d67cd325d28d1300672d14288f22934",
+      "required_executable": null,
+      "command": null,
+      "input_manifest_path": null,
+      "input_manifest_sha256": null,
+      "required_outputs": [
+        "cycle_mass_balance.json",
+        "cycle_energy_balance.json",
+        "mesh_convergence.json"
+      ],
+      "execution_ready": false,
+      "blocked_by": [
+        "moving 2V/4V domains absent",
+        "cam and valve laws absent",
+        "AATE application name and build log not yet bound",
+        "exact command and input manifest not bound"
+      ]
+    },
+    {
+      "id": "F46-G4-CANTERA-2V4V",
+      "family": "Cantera",
+      "scope": "G4 thermochimie 0D angle-vilebrequin Cantera 3.2.0 pour 2V/4V",
+      "case_count": 2,
+      "timeout_seconds": 900,
+      "required_executable": "python3",
+      "required_python_distribution": "Cantera==3.2.0",
+      "command": null,
+      "input_manifest_path": null,
+      "input_manifest_sha256": null,
+      "required_outputs": [
+        "cycle_mass_balance.json",
+        "cycle_energy_balance.json",
+        "cross_method_comparison.json"
+      ],
+      "execution_ready": false,
+      "blocked_by": [
+        "crank-angle model and shared valve laws absent",
+        "exact command and input manifest not bound"
+      ]
+    },
+    {
+      "id": "F46-G5-CHT-2V4V",
+      "family": "CHT",
+      "scope": "G5 installed-air conjugate heat transfer 2V/4V on three meshes",
+      "case_count": 6,
+      "timeout_seconds": 7200,
+      "required_executable": "foamRun",
+      "required_solver_application": "chtMultiRegionFoam",
+      "command": null,
+      "input_manifest_path": null,
+      "input_manifest_sha256": null,
+      "required_outputs": [
+        "mass_balance.json",
+        "energy_balance.json",
+        "thermal_targets.json",
+        "mesh_convergence.json"
+      ],
+      "execution_ready": false,
+      "blocked_by": [
+        "installed-air and solid domains absent",
+        "qualified hot material card absent",
+        "exact command and input manifest not bound"
+      ]
+    },
+    {
+      "id": "F46-FEA-THERMOMECHANICAL-2V4V",
+      "family": "FEA",
+      "scope": "mapped CHT load thermomechanical screen for 2V/4V on three meshes",
+      "case_count": 6,
+      "timeout_seconds": 8100,
+      "required_executable": "ccx",
+      "command": null,
+      "input_manifest_path": null,
+      "input_manifest_sha256": null,
+      "required_outputs": [
+        "load_mapping_balance.json",
+        "stress_convergence.json",
+        "hot_allowable_margins.json"
+      ],
+      "execution_ready": false,
+      "blocked_by": [
+        "accepted CHT field absent",
+        "qualified hot material card absent",
+        "boundary conditions and exact command not bound"
+      ]
+    }
+  ],
+  "planned_case_count": 26,
+  "executable_case_count": 0,
+  "execution_authorized": false,
+  "simulation_validated": false,
+  "manufacturing_release": false
+}

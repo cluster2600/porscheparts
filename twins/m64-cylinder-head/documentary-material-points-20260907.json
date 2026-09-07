@@ -1,0 +1,110 @@
+{
+  "schema": "m64-documentary-material-points/v1",
+  "reviewed_on": "2026-09-07",
+  "classification": "visually_reviewed_manufacturer_facts_not_material_allowables",
+  "sources": {
+    "eckart_a20x": {
+      "url": "https://www.eckart.net/en/download/document/view/id/519",
+      "publisher": "ECKART GmbH",
+      "title": "Metal Powders for Additive Manufacturing",
+      "pdf_sha256": "cb76ece2660dac093f9cce0e921ecb84be09e2788cd63e649f139da3c818e9b7",
+      "bytes": 1882817,
+      "pages": 16,
+      "visually_reviewed_pdf_pages_1_based": [4, 5],
+      "printed_pages": ["04", "05"],
+      "pdf_metadata_creation_date": "2025-09-26",
+      "metadata_date_is_publication_date": false,
+      "rights": "manufacturer_copyright_reference_only_no_pdf_redistribution"
+    },
+    "constellium_cp1": {
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf",
+      "publisher": "Constellium",
+      "title": "Aheadd CP1 Product Fact Sheet",
+      "edition_label": "November 2021",
+      "pdf_sha256": "30d4071189259ae1c2fad121d52d9bedf04269cf220acd0eaaf0aa17ea7aa7bc",
+      "bytes": 622364,
+      "pages": 2,
+      "visually_reviewed_pdf_pages_1_based": [1, 2],
+      "rights": "manufacturer_copyright_reference_only_no_pdf_redistribution"
+    }
+  },
+  "materials": {
+    "A20X": {
+      "source_id": "eckart_a20x",
+      "room_temperature_table": {
+        "pdf_page": 5,
+        "location": "upper table",
+        "test_temperature_c": null,
+        "test_temperature_label": "room temperature",
+        "test_method_published": "ASTM B557",
+        "machined_test_bars": true,
+        "HIP_used": false,
+        "yield_offset_percent": null,
+        "orientation": null,
+        "sample_count": null,
+        "states": [
+          {"state": "as_built", "ultimate_tensile_strength_mpa_range": [357, 394], "yield_strength_mpa_range": [350, 385], "elongation_percent_range": [12, 15], "young_modulus_gpa": 74},
+          {"state": "stress_relieved", "treatment": {"temperature_c": 300, "duration_h": 2, "on_build_plate": true, "cooling": "air"}, "ultimate_tensile_strength_mpa": 312, "yield_strength_mpa": 310, "elongation_percent": 20, "young_modulus_gpa": 77},
+          {"state": "heat_treated_T7", "treatment": {"recipe": "proprietary_solution_treatment_quench_precipitation_hardening", "exact_time_temperature_recipe": null}, "ultimate_tensile_strength_mpa_range": [450, 511], "yield_strength_mpa_range": [390, 440], "elongation_percent_range": [10, 13], "young_modulus_gpa": 79}
+        ]
+      },
+      "temperature_dependent_tensile_table": {
+        "pdf_page": 5,
+        "location": "lower table",
+        "heat_treatment_explicitly_identified_in_this_table": false,
+        "heat_treatment": null,
+        "automatic_T7_assignment_allowed": false,
+        "test_method": null,
+        "yield_offset_percent": null,
+        "orientation": null,
+        "sample_count": null,
+        "dwell_duration_h": null,
+        "statistical_design_basis": null,
+        "rows": [
+          {"test_temperature_c": 20, "ultimate_tensile_strength_mpa": 511, "yield_strength_mpa": 445, "elongation_percent": 11},
+          {"test_temperature_c": 100, "ultimate_tensile_strength_mpa": 423, "yield_strength_mpa": 375, "elongation_percent": 10},
+          {"test_temperature_c": 150, "ultimate_tensile_strength_mpa": 369, "yield_strength_mpa": 354, "elongation_percent": 20},
+          {"test_temperature_c": 200, "ultimate_tensile_strength_mpa": 331, "yield_strength_mpa": 311, "elongation_percent": 15},
+          {"test_temperature_c": 250, "ultimate_tensile_strength_mpa": 224, "yield_strength_mpa": 215, "elongation_percent": 12}
+        ],
+        "source_discrepancy": "20C yield 445 MPa in lower table exceeds 440 MPa upper-table T7 range endpoint; retained without correction or merging"
+      },
+      "density_reference": {"pdf_page": 4, "density_g_cm3": 2.85, "test_temperature_c": null, "temperature_dependence": null},
+      "thermal_service_statement": {"pdf_page": 4, "manufacturer_performance_statement_up_to_c": 190, "is_strength_curve_or_permanent_service_allowable": false},
+      "not_published_in_reviewed_pages": ["thermal_conductivity_vs_temperature", "specific_heat_vs_temperature", "thermal_expansion_vs_temperature", "young_modulus_vs_temperature", "poisson_ratio_vs_temperature", "full_plastic_stress_strain_curves", "creep_stress_relaxation", "fatigue_TMF_allowables"]
+    },
+    "Aheadd_CP1": {
+      "source_id": "constellium_cp1",
+      "heat_treatment_comparison": {
+        "pdf_page": 2,
+        "location": "bottom table",
+        "heat_treatment_temperature_c": 400,
+        "tensile_test_temperature_c": 25,
+        "tensile_orientation": "vertical",
+        "yield_offset_percent": null,
+        "test_method": null,
+        "sample_count": null,
+        "machine_and_layer_for_this_table": null,
+        "conductivity_measurement_temperature_c": null,
+        "conductivity_temperature_note": "25C belongs to the tensile-properties header, not explicitly to the adjacent conductivity column",
+        "rows": [
+          {"heat_treatment_duration_h": 1, "ultimate_tensile_strength_mpa": 340, "yield_strength_mpa": 321, "elongation_percent": 14.2, "thermal_conductivity_w_mk": 182},
+          {"heat_treatment_duration_h": 4, "ultimate_tensile_strength_mpa": 342, "yield_strength_mpa": 323, "elongation_percent": 12.8, "thermal_conductivity_w_mk": 187},
+          {"heat_treatment_duration_h": 7, "ultimate_tensile_strength_mpa": 332, "yield_strength_mpa": 313, "elongation_percent": 16.8, "thermal_conductivity_w_mk": 189}
+        ]
+      },
+      "published_hot_tensile_rows": [],
+      "thermal_stability_statement": {"pdf_page": 1, "service_temperature_range_c": [250, 300], "duration_description": "thousands_of_hours", "exact_duration_h": null, "quantitative_hot_strength_or_creep_curve": false},
+      "not_published_in_reviewed_pages": ["hot_yield_strength_vs_temperature", "hot_ultimate_tensile_strength_vs_temperature", "thermal_conductivity_vs_temperature", "specific_heat_vs_temperature", "thermal_expansion_vs_temperature", "young_modulus_vs_temperature", "poisson_ratio_vs_temperature", "density_vs_temperature", "full_plastic_stress_strain_curves", "creep_stress_relaxation", "fatigue_TMF_allowables"]
+    }
+  },
+  "use_boundaries": {
+    "interpolated_rows_created": false,
+    "properties_transferred_between_materials_or_processes": false,
+    "yield_labels_automatically_relabelled_Rp02": false,
+    "selected_material": null,
+    "assigned_to_M64_solver": false,
+    "hot_material_qualified": false,
+    "manufacturing_authorized": false
+  }
+}

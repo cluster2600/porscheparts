@@ -1,0 +1,278 @@
+{
+  "$comment": "Preuve F51 expurgee; aucune geometrie, coordonnee ou chemin prive n'est publie.",
+  "NVIDIA_preflight": {
+    "asset_validator_status": "ready",
+    "content_agents_status": "skipped",
+    "openusd_status": "ready",
+    "platform": {
+      "machine": "x86_64",
+      "python": "3.12.3",
+      "system": "linux"
+    },
+    "simready_foundation_commit": "0ed0dfbc539c9de99289771bd6848effe3ef5779",
+    "simready_validate_runtime_status": "ready",
+    "status": "PASS"
+  },
+  "authority": {
+    "candidate_scale": "one_scan_unit_interpreted_as_one_mm_for_candidate_only_not_certified",
+    "outer_skin": {
+      "deformed_by_F50": false,
+      "phase": "F43",
+      "private_STEP_sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24"
+    }
+  },
+  "blockers": [
+    "SimReady Foundation profile discovery is blocked in the supplied runtime checkout; no profile result is claimed.",
+    "No approved OVRTX runtime was available and Vast use was forbidden; no substitute render is published.",
+    "F50 strict volumetric mesh gates remain red.",
+    "Absolute scale and Porsche 917 interfaces remain uncertified."
+  ],
+  "gates": {
+    "NVIDIA_minimum_and_asset_geometry_diagnostics_accepted": true,
+    "OVRTX_render_validated": false,
+    "engine_start_authorized": false,
+    "formal_SimReady_profile_accepted": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "private_USD_geometry_roundtrip_accepted": true,
+    "private_native_BREP_authority_accepted": true,
+    "private_surface_tessellation_accepted": true
+  },
+  "geometry_policy": {
+    "STEP_intermediate_used": false,
+    "anisotropic_scale_used": false,
+    "ellipse_or_oval_used": false,
+    "material_assignment_used": false,
+    "physics_authoring_used": false,
+    "point_displacement_used": false,
+    "private_geometry_committed": false,
+    "proxy_used": false,
+    "scale_transform": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "surface_deformation_used": false
+  },
+  "ordered_stage_results": [
+    {
+      "stage": "NVIDIA_preflight_validation_only_skip_Content_Agents",
+      "status": "PASS"
+    },
+    {
+      "stage": "direct_native_BREP_tessellation",
+      "status": "PASS"
+    },
+    {
+      "stage": "OpenUSD_authoring_and_roundtrip",
+      "status": "PASS"
+    },
+    {
+      "stage": "validate_usd_minimum",
+      "status": "PASS"
+    },
+    {
+      "stage": "NVIDIA_Asset_Validator_generic",
+      "status": "PASS"
+    },
+    {
+      "stage": "NVIDIA_Asset_Validator_geometry",
+      "status": "PASS"
+    },
+    {
+      "stage": "NVIDIA_Asset_Validator_physics_diagnostics",
+      "status": "PASS"
+    },
+    {
+      "stage": "SimReady_formal_profile",
+      "status": "BLOCKED_NEEDS_RERUN"
+    },
+    {
+      "stage": "OVRTX_render",
+      "status": "BLOCKED_NO_APPROVED_RUNTIME"
+    }
+  ],
+  "phase": "F51",
+  "schema": "porsche-917-f51-native-brep-usd-public-evidence/v1",
+  "variants": {
+    "2V": {
+      "USD_roundtrip": {
+        "applied_schema_count": 0,
+        "component_count": 1,
+        "format": ".usdc",
+        "maximum_bbox_delta_from_F43_scan_units": 1.9727251441281624e-06,
+        "maximum_float32_coordinate_quantization_scan_units": 3.8146637564295816e-06,
+        "mesh_count": 1,
+        "meters_per_unit": 0.001,
+        "normal_alignment_minimum": 0.9999999066808805,
+        "normal_count": 220560,
+        "normal_interpolation": "uniform",
+        "normal_length_maximum_error": 4.6659560881678885e-08,
+        "point_count": 110266,
+        "stage_roundtrip_opened": true,
+        "triangle_count": 220560,
+        "up_axis": "Z",
+        "xform_op_count": 0
+      },
+      "formal_SimReady_profile": {
+        "available_profile_count_reported_by_runtime": 0,
+        "passed": false,
+        "reason": "upstream_checkout_does_not_expose_profiles/profiles.toml_to_reference_wrapper",
+        "status": "BLOCKED_NEEDS_RERUN",
+        "target": "Prop-Robotics-Neutral@2.1.0"
+      },
+      "geometry_validation_accepted": true,
+      "private_USD_bytes": 5491359,
+      "private_USD_sha256": "33192aacc2372551a83fff845aaef70d330a6b6119a1a17b42f35bbe5c4a8dc7",
+      "simready_profile_accepted": false,
+      "source_native_BREP_sha256": "1574eb58b7af09bcadab6c9cfcdd9a56940d479a5aa1b1eb807d31d41d4f7c36",
+      "surface_archive_sha256": "8209ac2d49ea5eee1a10b4c79afa07410ac74e5e0260975b395391081efc7edb",
+      "tessellation": {
+        "absolute_volume_relative_delta_from_native_BREP": 0.0003456126080504994,
+        "boundary_edge_count": 0,
+        "connected_component_count": 1,
+        "degenerate_triangle_count": 0,
+        "maximum_bbox_delta_from_native_BREP_scan_units": 1.0000844952173793e-07,
+        "nonmanifold_edge_count": 0,
+        "point_count": 110266,
+        "reorientation_changed_coordinates": false,
+        "triangle_count": 220560,
+        "triangle_index_records_reoriented": 0,
+        "unique_edge_count": 330840,
+        "winding_conflict_edge_count_after_index_reorientation": 0,
+        "winding_conflict_edge_count_before_index_reorientation": 0
+      },
+      "validators": {
+        "asset": {
+          "issue_counts": {
+            "ERROR": 0,
+            "FAILURE": 0,
+            "INFO": 0,
+            "WARNING": 0
+          },
+          "passed": true,
+          "status": "PASS"
+        },
+        "geometry": {
+          "issue_counts": {
+            "ERROR": 0,
+            "FAILURE": 0,
+            "INFO": 0,
+            "WARNING": 0
+          },
+          "passed": true,
+          "status": "PASS"
+        },
+        "minimum": {
+          "issue_counts": {},
+          "passed": true,
+          "status": "PASS"
+        },
+        "physics": {
+          "issue_counts": {
+            "ERROR": 0,
+            "FAILURE": 0,
+            "INFO": 0,
+            "WARNING": 0
+          },
+          "passed": true,
+          "status": "PASS"
+        }
+      }
+    },
+    "4V": {
+      "USD_roundtrip": {
+        "applied_schema_count": 0,
+        "component_count": 1,
+        "format": ".usdc",
+        "maximum_bbox_delta_from_F43_scan_units": 1.9727251441281624e-06,
+        "maximum_float32_coordinate_quantization_scan_units": 3.8146637564295816e-06,
+        "mesh_count": 1,
+        "meters_per_unit": 0.001,
+        "normal_alignment_minimum": 0.9999999066808805,
+        "normal_count": 253078,
+        "normal_interpolation": "uniform",
+        "normal_length_maximum_error": 4.6659560881678885e-08,
+        "point_count": 126517,
+        "stage_roundtrip_opened": true,
+        "triangle_count": 253078,
+        "up_axis": "Z",
+        "xform_op_count": 0
+      },
+      "formal_SimReady_profile": {
+        "available_profile_count_reported_by_runtime": 0,
+        "passed": false,
+        "reason": "upstream_checkout_does_not_expose_profiles/profiles.toml_to_reference_wrapper",
+        "status": "BLOCKED_NEEDS_RERUN",
+        "target": "Prop-Robotics-Neutral@2.1.0"
+      },
+      "geometry_validation_accepted": true,
+      "private_USD_bytes": 6296154,
+      "private_USD_sha256": "68c157dabda9e1237b331f5573c42e858699b8856fe9620b15b5da9681bfd58c",
+      "simready_profile_accepted": false,
+      "source_native_BREP_sha256": "10ff1a2af8f2dbca78cf6ac2f72a9e1f2842e171f1e1e76080f07eacd4162131",
+      "surface_archive_sha256": "99cc716c253e2831fab9633c2f88afa3d8f776352638e1d89bcd4eb207f6f541",
+      "tessellation": {
+        "absolute_volume_relative_delta_from_native_BREP": 0.0003983438884839873,
+        "boundary_edge_count": 0,
+        "connected_component_count": 1,
+        "degenerate_triangle_count": 0,
+        "maximum_bbox_delta_from_native_BREP_scan_units": 1.0000844952173793e-07,
+        "nonmanifold_edge_count": 0,
+        "point_count": 126517,
+        "reorientation_changed_coordinates": false,
+        "triangle_count": 253078,
+        "triangle_index_records_reoriented": 43,
+        "unique_edge_count": 379617,
+        "winding_conflict_edge_count_after_index_reorientation": 0,
+        "winding_conflict_edge_count_before_index_reorientation": 23
+      },
+      "validators": {
+        "asset": {
+          "issue_counts": {
+            "ERROR": 0,
+            "FAILURE": 0,
+            "INFO": 0,
+            "WARNING": 0
+          },
+          "passed": true,
+          "status": "PASS"
+        },
+        "geometry": {
+          "issue_counts": {
+            "ERROR": 0,
+            "FAILURE": 0,
+            "INFO": 0,
+            "WARNING": 0
+          },
+          "passed": true,
+          "status": "PASS"
+        },
+        "minimum": {
+          "issue_counts": {},
+          "passed": true,
+          "status": "PASS"
+        },
+        "physics": {
+          "issue_counts": {
+            "ERROR": 0,
+            "FAILURE": 0,
+            "INFO": 0,
+            "WARNING": 0
+          },
+          "passed": true,
+          "status": "PASS"
+        }
+      }
+    }
+  },
+  "workflow": {
+    "STEP_intermediate_used": false,
+    "classification": "validation_only",
+    "output_root": "private_not_committed",
+    "path": "native_OCCT_BREP_to_Gmsh_OCCT_surface_to_OpenUSD",
+    "property_assignment_intent": "skip",
+    "render_output": "none",
+    "source_geometry": "F50_private_native_OCCT_BREP_masters"
+  }
+}

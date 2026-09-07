@@ -1,0 +1,83 @@
+{
+  "classification": "synthetic_test_fixture",
+  "warning": "Valeurs artificielles uniquement pour tester le contrôleur; aucune offre, image, instance ou dépense Vast réelle.",
+  "now_epoch": 2000000000,
+  "operator_deadline_epoch": 2000028800,
+  "offers": {
+    "classification": "synthetic_test_fixture",
+    "pagination_complete": true,
+    "captured_at_epoch": 1999999900,
+    "offers": [
+      {
+        "id": 6001,
+        "gpu": "RTX A6000",
+        "gpu_ram_mb": 49152,
+        "num_gpus": 1,
+        "gpu_fraction": 1.0,
+        "cpu_cores_effective": 64,
+        "cpu_ram_mb": 262144,
+        "disk_space_gb": 1000,
+        "dph_total": 1.35,
+        "inet_up_cost_usd_per_gb": 0.0,
+        "inet_down_cost_usd_per_gb": 0.0,
+        "reliability": 0.999,
+        "verified": true,
+        "rentable": true,
+        "rented": false,
+        "rental_type": "on-demand"
+      },
+      {
+        "id": 6000,
+        "gpu": "RTX PRO 6000 WS",
+        "gpu_ram_mb": 98304,
+        "num_gpus": 1,
+        "gpu_fraction": 1.0,
+        "cpu_cores_effective": 32,
+        "cpu_ram_mb": 131072,
+        "disk_space_gb": 500,
+        "dph_total": 2.4,
+        "inet_up_cost_usd_per_gb": 0.0,
+        "inet_down_cost_usd_per_gb": 0.0,
+        "reliability": 0.995,
+        "verified": true,
+        "rentable": true,
+        "rented": false,
+        "rental_type": "on-demand"
+      }
+    ]
+  },
+  "image_proof": {
+    "classification": "synthetic_test_fixture",
+    "immutable_ref": "ghcr.io/cluster2600/3dprinting993-cfd-cae-f46@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "index_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "platform_manifest_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "os": "linux",
+    "architecture": "amd64",
+    "registry_digest_verified": true,
+    "platform_manifest_verified": true,
+    "runtime_smoke_verified": true,
+    "solver_authority_sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482",
+    "exact_ICEEngineFoam_executable_found": false,
+    "tools": {
+      "openfoam": {"passed": true, "version": "synthetic"},
+      "aate_icengines": {"passed": true, "version": "c0f75f953d67cd325d28d1300672d14288f22934"},
+      "historical_enginefoam": {"available": false, "passed": false, "version": "not_built"},
+      "cantera_3_2": {"passed": true, "version": "3.2.0"},
+      "cht": {"passed": true, "version": "synthetic"},
+      "fea": {"passed": true, "version": "synthetic"},
+      "cuda": {"passed": true, "version": "synthetic"},
+      "job_runner": {"passed": true, "version": "synthetic"}
+    }
+  },
+  "inventory_empty": {
+    "classification": "synthetic_test_fixture",
+    "pagination_complete": true,
+    "label_filter": "3dprinting993-f46-cfd-cae",
+    "instances": []
+  },
+  "ledger_empty": {
+    "classification": "synthetic_test_fixture",
+    "entries": [],
+    "cumulative_spend_usd": 0
+  }
+}

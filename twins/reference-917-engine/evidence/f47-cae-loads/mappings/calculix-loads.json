@@ -1,0 +1,80 @@
+{
+  "classification": "planned_pressure_and_thermal_load_mapping_not_an_input_deck_not_a_FEA_run",
+  "execution_claimed": false,
+  "geometry_loaded": false,
+  "load_tables": {
+    "2v": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-2v-load-envelope.csv",
+    "4v": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-4v-load-envelope.csv"
+  },
+  "phase": "F47",
+  "release_gates": {
+    "CHT_completed": false,
+    "CalculiX_pressure_analysis_completed": false,
+    "CalculiX_thermal_analysis_completed": false,
+    "Cd_correlated_on_flow_bench": false,
+    "cross_model_acceptance_passed": false,
+    "cylinder_pressure_correlated": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "patch_mapping_verified_on_geometry": false,
+    "sealed_2v_fluid_domain_available": false,
+    "sealed_4v_fluid_domain_available": false,
+    "three_dimensional_CFD_completed": false,
+    "wall_heat_transfer_correlated": false
+  },
+  "required_surface_sets": [
+    {
+      "normal_orientation_reviewed": false,
+      "resolved_element_face_set": null,
+      "semantic_name": "combustion_chamber_surface",
+      "status": "blocked_no_verified_solid_mesh"
+    },
+    {
+      "normal_orientation_reviewed": false,
+      "resolved_element_face_set": null,
+      "semantic_name": "external_cooling_surface",
+      "status": "blocked_no_verified_solid_mesh"
+    },
+    {
+      "contact_model_verified": false,
+      "resolved_node_or_face_set": null,
+      "semantic_name": "deck_and_stud_constraints",
+      "status": "blocked_no_interface_metrology"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "source_case_policy": {
+    "available_case_count": 36,
+    "pointwise_envelope_as_solver_history_allowed": false,
+    "required": "choose_one_complete_F46_trace_and_preserve_case_id"
+  },
+  "structural_pressure": {
+    "dynamic_inertia_or_contact_included": false,
+    "equation": "p_gauge=p_abs-p_reference",
+    "intended_keyword": "DLOAD_P_after_surface_normal_review",
+    "reference_pressure_classification": "screening_hypothesis_not_measured_engine_backside_pressure",
+    "reference_pressure_pa_abs": 101325.0,
+    "source": "pressure_gauge_pa_from_one_complete_F46_trace"
+  },
+  "thermal": {
+    "material_card_at_temperature_available": false,
+    "recommended": {
+      "equation": "q_into_solid=h_gas*(T_gas-T_solid_local)",
+      "intended_keyword": "FILM_or_equivalent_time_dependent_Robin_load",
+      "source": "h_gas_w_m2_k_and_temperature_k_from_one_complete_F46_trace"
+    },
+    "sensitivity_alternative": {
+      "intended_keyword": "DFLUX_after_sign_review",
+      "source": "wall_heat_flux_w_m2_from_same_complete_F46_trace"
+    },
+    "simultaneous_Robin_and_direct_flux_allowed": false
+  },
+  "time_mapping": "t_s=theta_deg/(6*N_rpm)",
+  "units": {
+    "heat_flux": "W/m2",
+    "length": "m",
+    "pressure": "Pa",
+    "temperature": "K"
+  }
+}

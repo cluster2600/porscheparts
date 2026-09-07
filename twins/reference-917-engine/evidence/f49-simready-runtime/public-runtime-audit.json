@@ -1,0 +1,59 @@
+{
+  "$comment": "Audit public sans secret du runtime SimReady existant. Il ne constitue pas une preuve GPU, Content Agents, OVRTX, CAE ou fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F49",
+  "checked_at_utc": "2026-09-04T10:53:27Z",
+  "status": "qualified_public_linux_amd64_and_cpu_smokes_gpu_execution_pending",
+  "image": {
+    "repository": "ghcr.io/cluster2600/3dprinting993-simready-local-ai",
+    "manifest_digest": "sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "pinned_ref": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "manifest_media_type": "application/vnd.docker.distribution.manifest.v2+json",
+    "config_digest": "sha256:70c085bbcf7e47821ed5ffd1933f097b76f87f1af61c6c362447237cf8f4d23f",
+    "layer_count": 54,
+    "os": "linux",
+    "architecture": "amd64",
+    "created": "2026-09-03T08:11:15.343772146Z"
+  },
+  "public_registry_audit": {
+    "authentication_mode": "anonymous_registry_pull_token",
+    "exact_digest_manifest_get_succeeded": true,
+    "exact_digest_config_blob_get_succeeded": true,
+    "public_package_visible": true,
+    "linux_amd64_config_verified": true,
+    "credentials_or_tokens_recorded": false
+  },
+  "github_workflow": {
+    "run_id": 33730827271,
+    "run_url": "https://github.com/cluster2600/3dprinting993/actions/runs/33730827271",
+    "job_id": 100570126609,
+    "job_url": "https://github.com/cluster2600/3dprinting993/actions/runs/33730827271/job/100570126609",
+    "workflow": "Build compute images",
+    "source_branch": "codex/917-f42-simready-runtime",
+    "source_revision": "009a880b93232f0a43876a98fcc3d2e0740299b4",
+    "conclusion": "success",
+    "smokes": {
+      "offline_image_checks_passed": true,
+      "material_agent_import_passed": true,
+      "physics_agent_import_passed": true,
+      "simready_image_checks_passed": true,
+      "anonymous_exact_digest_pull_passed": true,
+      "ephemeral_sshd_concurrency_smoke_passed": true
+    }
+  },
+  "prior_qualification_evidence": {
+    "path": "twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json",
+    "sha256": "5db0d75cd88299973a336f616df47121119813ae8217d12c9d21f2cd2e60f79d"
+  },
+  "unproven": {
+    "nvidia_gpu_visible": false,
+    "cuda_kernel_executed": false,
+    "content_agents_services_healthy": false,
+    "material_assignment_on_f49": false,
+    "physics_assignment_on_f49": false,
+    "ovrtx_render_of_f49": false,
+    "simready_profile_of_f49": false,
+    "physical_simulation": false,
+    "manufacturing_authorization": false
+  }
+}

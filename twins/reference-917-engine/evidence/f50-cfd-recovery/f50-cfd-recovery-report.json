@@ -1,0 +1,2017 @@
+{
+  "F49_public_report_sha256": "979ed768126b1ad81e0ac66e38608b989360ce7f13a1083167b0154a68ae023c",
+  "Vast_used": true,
+  "case_count": 12,
+  "case_index": {
+    "2v-coarse-exhaust": {
+      "F48_native_tetrahedron_count": 7496,
+      "F48_native_volume_scan_units_cubed": 260701.0052327414,
+      "case_id": "2v-coarse-exhaust",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 1.6219263071895426e-05,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "coarse",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 7496,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000258356811832,
+        "volume_relative_difference_from_F48": 0.00899188477868964
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "patch",
+          "intake": "wall",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "fixedValue",
+          "exhaust": "inletOutlet",
+          "intake": "omegaWallFunction",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "pressureInletOutletVelocity",
+          "intake": "noSlip",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 1.989212879999e-09,
+          "Uy": 2.704272224618e-10,
+          "Uz": 6.343569753454e-10,
+          "k": 2.225908125697e-09,
+          "omega": 1.225404155662e-08,
+          "p": 3.5211902022e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "exhaust",
+      "sink_mass_flow_tail_spread_percent": 1.033010888002371e-09,
+      "solver_step": {
+        "elapsed_s": 174.405095,
+        "log_sha256": "d4a570a0b256eb96fccd868f0c71f15ca3441b307db337a259acdeb6a6377860",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 1.122122498372739,
+      "source_mesh_sha256": "1d7c27f63b5252e3b338a1f58a0fa7b1460609621eaecea38add61d5e0d9cc94",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 1.158408024955718e-06,
+        "sink_mass_flow_kg_s": 0.07603819079130376,
+        "sink_volume_flow_m3_s": 0.06776282527226,
+        "source_mass_flow_kg_s": -0.07603818991047126,
+        "source_volume_flow_m3_s": -0.06776282448729
+      },
+      "variant": "2V"
+    },
+    "2v-coarse-intake": {
+      "F48_native_tetrahedron_count": 7496,
+      "F48_native_volume_scan_units_cubed": 260701.0052327414,
+      "case_id": "2v-coarse-intake",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 5.984845787804017e-06,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "coarse",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 7496,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000258356811832,
+        "volume_relative_difference_from_F48": 0.00899188477868964
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "wall",
+          "intake": "patch",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "inletOutlet",
+          "exhaust": "omegaWallFunction",
+          "intake": "fixedValue",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "noSlip",
+          "intake": "pressureInletOutletVelocity",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 9.485852043826e-10,
+          "Uy": 6.240827258434e-11,
+          "Uz": 1.495464394605e-10,
+          "k": 6.403554996913e-10,
+          "omega": 3.722408166682e-09,
+          "p": 2.368076472731e-08,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "intake",
+      "sink_mass_flow_tail_spread_percent": 1.12107314814814e-08,
+      "solver_step": {
+        "elapsed_s": 172.786517,
+        "log_sha256": "e04463b7d69194724c8f18f9a3f933d7544966e3b315d84c1bc7ee9ff9460445",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 3.0410140286468454,
+      "source_mesh_sha256": "1d7c27f63b5252e3b338a1f58a0fa7b1460609621eaecea38add61d5e0d9cc94",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 2.7065550549186313e-09,
+        "sink_mass_flow_kg_s": 0.19774817243202175,
+        "sink_volume_flow_m3_s": 0.06502705037504,
+        "source_mass_flow_kg_s": -0.19774817243737391,
+        "source_volume_flow_m3_s": -0.0650270503768
+      },
+      "variant": "2V"
+    },
+    "2v-fine-exhaust": {
+      "F48_native_tetrahedron_count": 83767,
+      "F48_native_volume_scan_units_cubed": 260701.0052327414,
+      "case_id": "2v-fine-exhaust",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 1.6219263071895426e-05,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "fine",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 83767,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000260248231329,
+        "volume_relative_difference_from_F48": 0.0017367554963479508
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "patch",
+          "intake": "wall",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "fixedValue",
+          "exhaust": "inletOutlet",
+          "intake": "omegaWallFunction",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "pressureInletOutletVelocity",
+          "intake": "noSlip",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 1.463412817758e-08,
+          "Uy": 2.012287226251e-09,
+          "Uz": 4.955935187117e-09,
+          "k": 4.242222842266e-09,
+          "omega": 4.313821729478e-08,
+          "p": 4.189847781466e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "exhaust",
+      "sink_mass_flow_tail_spread_percent": 4.991426996658809e-10,
+      "solver_step": {
+        "elapsed_s": 1915.619158,
+        "log_sha256": "c46dbf7ecfdb14ceddf4de72c3a9a114257b19e05be052e15b5961131d9ffe0b",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 1.122122498372739,
+      "source_mesh_sha256": "c899d37004b00f69829ec12092641ca70920c131e36c35996c5db60dccc0487a",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 4.481177381801461e-07,
+        "sink_mass_flow_kg_s": 0.07868318924068897,
+        "sink_volume_flow_m3_s": 0.07011996404563,
+        "source_mass_flow_kg_s": -0.0786831895932823,
+        "source_volume_flow_m3_s": -0.07011996435985
+      },
+      "variant": "2V"
+    },
+    "2v-fine-intake": {
+      "F48_native_tetrahedron_count": 83767,
+      "F48_native_volume_scan_units_cubed": 260701.0052327414,
+      "case_id": "2v-fine-intake",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": false,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": false,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 5.984845787804017e-06,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "fine",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 83767,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000260248231329,
+        "volume_relative_difference_from_F48": 0.0017367554963479508
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "wall",
+          "intake": "patch",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "inletOutlet",
+          "exhaust": "omegaWallFunction",
+          "intake": "fixedValue",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "noSlip",
+          "intake": "pressureInletOutletVelocity",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": false
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 7.262546919725e-10,
+          "Uy": 8.314514350051e-11,
+          "Uz": 1.005384241336e-10,
+          "k": 9.276295702458e-10,
+          "omega": 9.988771004993e-10,
+          "p": 3.951214466076e-06,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "intake",
+      "sink_mass_flow_tail_spread_percent": 5.500044104096623e-10,
+      "solver_step": {
+        "elapsed_s": 1891.34391,
+        "log_sha256": "f57cc54d80d20140e38c931710864954e758bc02342f9effcf8482a246e4cf5b",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 3.0410140286468454,
+      "source_mesh_sha256": "c899d37004b00f69829ec12092641ca70920c131e36c35996c5db60dccc0487a",
+      "status": "EXECUTED_FAIL_CLOSED",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 5.328041644330822e-07,
+        "sink_mass_flow_kg_s": 0.19905129920053816,
+        "sink_volume_flow_m3_s": 0.06545556755919,
+        "source_mass_flow_kg_s": -0.19905130026109177,
+        "source_volume_flow_m3_s": -0.06545556790794
+      },
+      "variant": "2V"
+    },
+    "2v-medium-exhaust": {
+      "F48_native_tetrahedron_count": 22063,
+      "F48_native_volume_scan_units_cubed": 260701.0052327414,
+      "case_id": "2v-medium-exhaust",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 1.6219263071895426e-05,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "medium",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 22063,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000259576182727,
+        "volume_relative_difference_from_F48": 0.004314607474325602
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "patch",
+          "intake": "wall",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "fixedValue",
+          "exhaust": "inletOutlet",
+          "intake": "omegaWallFunction",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "pressureInletOutletVelocity",
+          "intake": "noSlip",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 9.663339010856e-10,
+          "Uy": 1.183163552028e-10,
+          "Uz": 3.154007362197e-10,
+          "k": 3.244907133393e-09,
+          "omega": 1.148417393908e-08,
+          "p": 1.139872313743e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "exhaust",
+      "sink_mass_flow_tail_spread_percent": 4.3274212373094344e-10,
+      "solver_step": {
+        "elapsed_s": 442.368662,
+        "log_sha256": "9a603b24d87237a9cd0efb120f05d5f9d5e4f88124140dedb443f044dc0eb772",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 1.122122498372739,
+      "source_mesh_sha256": "21387d9a89089f6af8df5d60c13be359a3d05ea39831524386833196ebd4b2b6",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 9.191530480304752e-08,
+        "sink_mass_flow_kg_s": 0.07779078587292247,
+        "sink_volume_flow_m3_s": 0.06932468245288,
+        "source_mass_flow_kg_s": -0.07779078580142083,
+        "source_volume_flow_m3_s": -0.06932468238916
+      },
+      "variant": "2V"
+    },
+    "2v-medium-intake": {
+      "F48_native_tetrahedron_count": 22063,
+      "F48_native_volume_scan_units_cubed": 260701.0052327414,
+      "case_id": "2v-medium-intake",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 5.984845787804017e-06,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "medium",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 22063,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000259576182727,
+        "volume_relative_difference_from_F48": 0.004314607474325602
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "wall",
+          "intake": "patch",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "inletOutlet",
+          "exhaust": "omegaWallFunction",
+          "intake": "fixedValue",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "noSlip",
+          "intake": "pressureInletOutletVelocity",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 1.463204266462e-09,
+          "Uy": 8.249867902753e-11,
+          "Uz": 1.732052824685e-10,
+          "k": 1.293162468386e-09,
+          "omega": 1.072988718557e-08,
+          "p": 1.805546469916e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "intake",
+      "sink_mass_flow_tail_spread_percent": 4.07860678573348e-08,
+      "solver_step": {
+        "elapsed_s": 443.40362,
+        "log_sha256": "0e2e15cb74811b28edcb9f45c6b6784daba2d530890d1a944be5a57ca3139b38",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 3.0410140286468454,
+      "source_mesh_sha256": "21387d9a89089f6af8df5d60c13be359a3d05ea39831524386833196ebd4b2b6",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 1.8022797941088002e-08,
+        "sink_mass_flow_kg_s": 0.20079042480713546,
+        "sink_volume_flow_m3_s": 0.06602745759002,
+        "source_mass_flow_kg_s": -0.20079042484332352,
+        "source_volume_flow_m3_s": -0.06602745760192
+      },
+      "variant": "2V"
+    },
+    "4v-coarse-exhaust": {
+      "F48_native_tetrahedron_count": 9660,
+      "F48_native_volume_scan_units_cubed": 291788.01095745416,
+      "case_id": "4v-coarse-exhaust",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": false,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": false,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 1.6219263071895426e-05,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "coarse",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 9660,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000287399771833,
+        "volume_relative_difference_from_F48": 0.015039134438919964
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "patch",
+          "intake": "wall",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "fixedValue",
+          "exhaust": "inletOutlet",
+          "intake": "omegaWallFunction",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "pressureInletOutletVelocity",
+          "intake": "noSlip",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 2.871337253021e-09,
+          "Uy": 3.044507643026e-10,
+          "Uz": 8.438985407363e-10,
+          "k": 1.044358097453e-09,
+          "omega": 6.991681393385e-09,
+          "p": 1.877125979845e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "exhaust",
+      "sink_mass_flow_tail_spread_percent": 3.6849257378737397e-09,
+      "solver_step": {
+        "elapsed_s": 230.614841,
+        "log_sha256": "62b36f05ba912bc91016686dd7d223196f4ff3b46192ac70f4587f0a2a97a0e8",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 1.122122498372739,
+      "source_mesh_sha256": "e87f72c956aede17067c48146412bec8da44bcf842c1573a5f08112706fd1125",
+      "status": "EXECUTED_FAIL_CLOSED",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 4.979019510175883e-07,
+        "sink_mass_flow_kg_s": 0.08221954689756326,
+        "sink_volume_flow_m3_s": 0.07327145388921,
+        "source_mass_flow_kg_s": -0.082219547306936,
+        "source_volume_flow_m3_s": -0.07327145425403
+      },
+      "variant": "4V"
+    },
+    "4v-coarse-intake": {
+      "F48_native_tetrahedron_count": 9660,
+      "F48_native_volume_scan_units_cubed": 291788.01095745416,
+      "case_id": "4v-coarse-intake",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": false,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": false,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": false,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 5.984845787804017e-06,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "coarse",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 9660,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000287399771833,
+        "volume_relative_difference_from_F48": 0.015039134438919964
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "wall",
+          "intake": "patch",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "inletOutlet",
+          "exhaust": "omegaWallFunction",
+          "intake": "fixedValue",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "noSlip",
+          "intake": "pressureInletOutletVelocity",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": false
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 8.345567380436e-07,
+          "Uy": 6.553492780887e-08,
+          "Uz": 1.73714583456e-07,
+          "k": 9.670738891591e-07,
+          "omega": 1.696280276328e-06,
+          "p": 9.131447196353e-06,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "intake",
+      "sink_mass_flow_tail_spread_percent": 2.386175609807184e-07,
+      "solver_step": {
+        "elapsed_s": 240.518377,
+        "log_sha256": "1db58960c21a7bd627610a259b47696255d922aaa186c6dff2bc494d55c6918a",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 3.0410140286468454,
+      "source_mesh_sha256": "e87f72c956aede17067c48146412bec8da44bcf842c1573a5f08112706fd1125",
+      "status": "EXECUTED_FAIL_CLOSED",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 7.244123559643355e-06,
+        "sink_mass_flow_kg_s": 0.23629207905814648,
+        "sink_volume_flow_m3_s": 0.07770173923311,
+        "source_mass_flow_kg_s": -0.2362920619408563,
+        "source_volume_flow_m3_s": -0.0777017336043
+      },
+      "variant": "4V"
+    },
+    "4v-fine-exhaust": {
+      "F48_native_tetrahedron_count": 95381,
+      "F48_native_volume_scan_units_cubed": 291788.01095745416,
+      "case_id": "4v-fine-exhaust",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 1.6219263071895426e-05,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "fine",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 95381,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000290879856504,
+        "volume_relative_difference_from_F48": 0.003112377545856768
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "patch",
+          "intake": "wall",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "fixedValue",
+          "exhaust": "inletOutlet",
+          "intake": "omegaWallFunction",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "pressureInletOutletVelocity",
+          "intake": "noSlip",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 3.111766526687e-09,
+          "Uy": 3.519056392531e-10,
+          "Uz": 1.084466156469e-09,
+          "k": 1.397999625195e-08,
+          "omega": 4.850463698581e-08,
+          "p": 1.593747644826e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "exhaust",
+      "sink_mass_flow_tail_spread_percent": 4.292409383047397e-09,
+      "solver_step": {
+        "elapsed_s": 2300.509952,
+        "log_sha256": "11747b17c2d736a2a7708393556b0e56e39b9dd6446d89a5db1e32ed04a59a4f",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 1.122122498372739,
+      "source_mesh_sha256": "bbac6bc83ceef6212d4db54454138454db218f93161c475cdb01cde91ebcaac7",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 3.205271437058811e-08,
+        "sink_mass_flow_kg_s": 0.08391575126360878,
+        "sink_volume_flow_m3_s": 0.07478305745166,
+        "source_mass_flow_kg_s": -0.08391575129050606,
+        "source_volume_flow_m3_s": -0.07478305747563
+      },
+      "variant": "4V"
+    },
+    "4v-fine-intake": {
+      "F48_native_tetrahedron_count": 95381,
+      "F48_native_volume_scan_units_cubed": 291788.01095745416,
+      "case_id": "4v-fine-intake",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": false,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": false,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 5.984845787804017e-06,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "fine",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 95381,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000290879856504,
+        "volume_relative_difference_from_F48": 0.003112377545856768
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "wall",
+          "intake": "patch",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "inletOutlet",
+          "exhaust": "omegaWallFunction",
+          "intake": "fixedValue",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "noSlip",
+          "intake": "pressureInletOutletVelocity",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": false
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 2.227500606987e-08,
+          "Uy": 1.617360020594e-09,
+          "Uz": 4.723228817137e-09,
+          "k": 7.989336775389e-09,
+          "omega": 3.113913429292e-08,
+          "p": 1.578015530304e-06,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "intake",
+      "sink_mass_flow_tail_spread_percent": 9.859852640257442e-07,
+      "solver_step": {
+        "elapsed_s": 2344.643075,
+        "log_sha256": "a864773a0043cc56297937a9a5feba6cf25e94bb74f5cda0010742e460841163",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 3.0410140286468454,
+      "source_mesh_sha256": "bbac6bc83ceef6212d4db54454138454db218f93161c475cdb01cde91ebcaac7",
+      "status": "EXECUTED_FAIL_CLOSED",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 3.3541459121539083e-06,
+        "sink_mass_flow_kg_s": 0.24247359906324698,
+        "sink_volume_flow_m3_s": 0.07973445593447,
+        "source_mass_flow_kg_s": -0.24247359093032866,
+        "source_volume_flow_m3_s": -0.07973445326006
+      },
+      "variant": "4V"
+    },
+    "4v-medium-exhaust": {
+      "F48_native_tetrahedron_count": 25951,
+      "F48_native_volume_scan_units_cubed": 291788.01095745416,
+      "case_id": "4v-medium-exhaust",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": true,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": true,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 1.6219263071895426e-05,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "medium",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 25951,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000289549004059,
+        "volume_relative_difference_from_F48": 0.007673402656631704
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "patch",
+          "intake": "wall",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "fixedValue",
+          "exhaust": "inletOutlet",
+          "intake": "omegaWallFunction",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "pressureInletOutletVelocity",
+          "intake": "noSlip",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": true
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 1.297030431685e-09,
+          "Uy": 1.365485911845e-10,
+          "Uz": 4.22940678974e-10,
+          "k": 1.458797471984e-09,
+          "omega": 1.051648458067e-08,
+          "p": 1.670181917628e-07,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "exhaust",
+      "sink_mass_flow_tail_spread_percent": 6.256135682621702e-10,
+      "solver_step": {
+        "elapsed_s": 679.841883,
+        "log_sha256": "e82086528de4cb5fe36fb152b50dcc18005b73ecbbc18b9e613928d6f9eac479",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 1.122122498372739,
+      "source_mesh_sha256": "b9409ffa5dc770085f1cf41a0555b37b7d233d152fe29088827f506d4ef593cb",
+      "status": "FLOW_CONVERGED_ENERGY_UNAVAILABLE",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 2.1822510756667807e-07,
+        "sink_mass_flow_kg_s": 0.08250405491820768,
+        "sink_volume_flow_m3_s": 0.07352499841849,
+        "source_mass_flow_kg_s": -0.08250405473816312,
+        "source_volume_flow_m3_s": -0.07352499825804
+      },
+      "variant": "4V"
+    },
+    "4v-medium-intake": {
+      "F48_native_tetrahedron_count": 25951,
+      "F48_native_volume_scan_units_cubed": 291788.01095745416,
+      "case_id": "4v-medium-intake",
+      "case_validation_gate_pass": false,
+      "energy_gate_applicable": false,
+      "execution_status": "EXECUTED",
+      "execution_status_normalization": "legacy builder metadata prepared_not_run is superseded by recorded foamRun command, return code, elapsed time and log SHA-256",
+      "flow_numerical_gate_pass": false,
+      "gates": {
+        "energy": false,
+        "mass": true,
+        "mesh": true,
+        "patch_audit": true,
+        "plateau": true,
+        "residuals": false,
+        "solver": true
+      },
+      "imposed_physical_pressure_difference_pa": 10000.0,
+      "kinematic_viscosity_m2_s": 5.984845787804017e-06,
+      "latest_iteration": 6000.0,
+      "legacy_input_execution_status": "prepared_not_run",
+      "level": "medium",
+      "mesh": {
+        "F48_reference_volume_kind": "exact_OCC_getMass_before_linear_tetrahedral_conversion",
+        "cells": 25951,
+        "failed_mesh_checks": 0,
+        "mesh_ok_marker": true,
+        "negative_volume_marker": false,
+        "patch_names_seen_in_log": [
+          "bore",
+          "chamber",
+          "deck",
+          "exhaust",
+          "intake",
+          "valve",
+          "walls"
+        ],
+        "volume_difference_interpretation": "linear_tetrahedral_discretization_and_MSH4_to_MSH2_conversion_error; source_geometry_not_modified",
+        "volume_m3": 0.000289549004059,
+        "volume_relative_difference_from_F48": 0.007673402656631704
+      },
+      "patch_type_audit": {
+        "checks": {
+          "all_named_patches_present": true,
+          "all_non_flow_patches_are_mesh_walls": true,
+          "flow_patches_have_no_omega_wall_function": true,
+          "omega_wall_function_exactly_on_wall_set": true,
+          "omega_wall_function_only_on_no_slip": true,
+          "source_and_sink_are_not_mesh_walls": true
+        },
+        "mesh_patch_types": {
+          "bore": "wall",
+          "chamber": "wall",
+          "deck": "patch",
+          "exhaust": "wall",
+          "intake": "patch",
+          "valve": "wall",
+          "walls": "wall"
+        },
+        "omega_patch_types": {
+          "bore": "omegaWallFunction",
+          "chamber": "omegaWallFunction",
+          "deck": "inletOutlet",
+          "exhaust": "omegaWallFunction",
+          "intake": "fixedValue",
+          "valve": "omegaWallFunction",
+          "walls": "omegaWallFunction"
+        },
+        "pass": true,
+        "velocity_patch_types": {
+          "bore": "noSlip",
+          "chamber": "noSlip",
+          "deck": "pressureInletOutletVelocity",
+          "exhaust": "noSlip",
+          "intake": "pressureInletOutletVelocity",
+          "valve": "noSlip",
+          "walls": "noSlip"
+        }
+      },
+      "residual_checks": {
+        "U": true,
+        "k": true,
+        "omega": true,
+        "p": false
+      },
+      "residuals": {
+        "fields": {
+          "Ux": 3.216071604697e-06,
+          "Uy": 2.846966106751e-07,
+          "Uz": 7.624403148633e-07,
+          "k": 3.166274705522e-06,
+          "omega": 9.198376424391e-07,
+          "p": 1.253598550614e-05,
+          "time": 6000.0
+        },
+        "path": "postProcessing/residuals/0/residuals.dat"
+      },
+      "screen": "intake",
+      "sink_mass_flow_tail_spread_percent": 6.278184390763311e-05,
+      "solver_step": {
+        "elapsed_s": 697.850302,
+        "log_sha256": "d20b8ce9f4310fd09c9cc3d5bd417e61e143cb73ad32630ea402cfd2b0261cb8",
+        "return_code": 0
+      },
+      "source_density_kg_m3": 3.0410140286468454,
+      "source_mesh_sha256": "b9409ffa5dc770085f1cf41a0555b37b7d233d152fe29088827f506d4ef593cb",
+      "status": "EXECUTED_FAIL_CLOSED",
+      "validation_claim": false,
+      "values": {
+        "energy_balance": null,
+        "energy_balance_reason": "incompressible control has no energy equation",
+        "mass_imbalance_percent": 3.3272656501156615e-05,
+        "sink_mass_flow_kg_s": 0.24148412256916563,
+        "sink_volume_flow_m3_s": 0.0794090787791,
+        "source_mass_flow_kg_s": -0.24148404222098302,
+        "source_volume_flow_m3_s": -0.07940905235759
+      },
+      "variant": "4V"
+    }
+  },
+  "compute_provenance": {
+    "execution_bundle": {
+      "bytes": 9574,
+      "filename": "f50-cfd-final12.tar.gz",
+      "sha256": "c939326b884c75e77de314841503c49c71b96bab38c854dfb7c3156fa5a30c81"
+    },
+    "steady_compressible_attempt_site": "kali",
+    "steady_incompressible_matrix_site": "vast",
+    "transient_diagnostic_site": "kali"
+  },
+  "cross_method_F49_transient_vs_F50_incompressible": {
+    "2v-coarse-exhaust": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": true,
+      "pass": false,
+      "raw_difference_percent_not_validated": 4.488179465693021,
+      "status": "unavailable_F49_not_converged"
+    },
+    "2v-coarse-intake": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": true,
+      "pass": false,
+      "raw_difference_percent_not_validated": 1.0635720633868084,
+      "status": "unavailable_F49_not_converged"
+    },
+    "2v-fine-exhaust": {
+      "pass": false,
+      "status": "unavailable_F49_case_missing"
+    },
+    "2v-fine-intake": {
+      "pass": false,
+      "status": "unavailable_F49_case_missing"
+    },
+    "2v-medium-exhaust": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": true,
+      "pass": false,
+      "raw_difference_percent_not_validated": 59.78271113912914,
+      "status": "unavailable_F49_not_converged"
+    },
+    "2v-medium-intake": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": true,
+      "pass": false,
+      "raw_difference_percent_not_validated": 4.174208661287637,
+      "status": "unavailable_F49_not_converged"
+    },
+    "4v-coarse-exhaust": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": false,
+      "pass": false,
+      "raw_difference_percent_not_validated": 6.493882392345052,
+      "status": "unavailable_F49_not_converged"
+    },
+    "4v-coarse-intake": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": false,
+      "pass": false,
+      "raw_difference_percent_not_validated": 3.7070843406221465,
+      "status": "unavailable_F49_not_converged"
+    },
+    "4v-fine-exhaust": {
+      "pass": false,
+      "status": "unavailable_F49_case_missing"
+    },
+    "4v-fine-intake": {
+      "pass": false,
+      "status": "unavailable_F49_case_missing"
+    },
+    "4v-medium-exhaust": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": true,
+      "pass": false,
+      "raw_difference_percent_not_validated": -16.491663751378482,
+      "status": "unavailable_F49_not_converged"
+    },
+    "4v-medium-intake": {
+      "F49_converged_claim": false,
+      "F50_incompressible_flow_numerical_gate_pass": false,
+      "pass": false,
+      "raw_difference_percent_not_validated": 4.214279205775706,
+      "status": "unavailable_F49_not_converged"
+    }
+  },
+  "csv": {
+    "path": "twins/reference-917-engine/evidence/f50-cfd-recovery/917-f50-incompressible-cases.csv",
+    "sha256": "8c879201577607162cfdba0e2bd6a36c27df83e848e351ef84cae7f8f2b56e90"
+  },
+  "diagnostic": {
+    "sha256": "48234e589e1fcab385b807efcd6e864e01926ab9a4efd9255ac04044f5dbf42f",
+    "summary": {
+      "F49_public_report_sha256": "979ed768126b1ad81e0ac66e38608b989360ce7f13a1083167b0154a68ae023c",
+      "Vast_used": false,
+      "ellipse_or_oval_proxy_used": false,
+      "geometry_modified": false,
+      "root_cause_conclusion": "compressible pressure-energy coupling diverges on the F48 exhaust screen; geometry/mesh causality not established",
+      "schema_version": "porsche-917-f50-cfd-recovery-diagnostic/v1",
+      "steady_compressible_F50": {
+        "case_id": "2v-coarse-exhaust",
+        "fixed_final_boundary_conditions_identical_to_F49": true,
+        "formulation": "steady compressible RANS kOmegaSST",
+        "input_report_sha256": "00a3b9ba74a16157a4cdc007ee72ad1c4adba61edd6ea4e6385686996369ace9",
+        "interpretation": "1 percent ramp stage completed; 10 percent stage diverged with flow reversal and pressure-solver SIGFPE",
+        "laminar_pressure_and_temperature_ramp": [
+          {
+            "elapsed_s": 7.150278,
+            "log_sha256": "0b40f5f8a552f18cb24a6016b128f723ee023632abce09722ca3afcbe5ce3120",
+            "return_code": 0,
+            "stage_end_iteration": 250,
+            "stage_fraction": 0.01
+          },
+          {
+            "elapsed_s": 5.875688,
+            "log_sha256": "8f6d700dfc6fef2a4ccae5a1647ba33c85a58573d4465799ea267910bb8de002",
+            "return_code": -8,
+            "stage_end_iteration": 500,
+            "stage_fraction": 0.1
+          }
+        ],
+        "last_complete_iteration": 440.0,
+        "mass_imbalance_percent_at_failure": 0.05584105138041627,
+        "sink_mass_flow_tail_spread_percent_at_failure": 48.02560900225096,
+        "solver_gate_pass": false,
+        "steady_energy_imbalance_percent_at_failure": 99.99863257569459,
+        "validation_claim": false
+      },
+      "transient_F49": {
+        "2v-coarse-exhaust": {
+          "case_id": "2v-coarse-exhaust",
+          "diagnosis": [
+            "adaptive Courant control held Co near target only by collapsing deltaT",
+            "U/k/omega residuals trend to machine-small values while h later rises sharply",
+            "constant physical time with orders-of-magnitude more iterations proves numerical stagnation, not convergence"
+          ],
+          "final_physical_time_s": 0.0022126814217794,
+          "local_convective_rate_growth_lower_bound_from_dt_ratio": 4.7645599203636954e+30,
+          "maximum_Courant_observed": 0.120050624512,
+          "minimum_time_step_s": 2.01063659098e-39,
+          "physical_cause_established": false,
+          "sample_count": 7943,
+          "solver_log_sha256": "084263a7cd342ee04cf3ea581bb6cbdf56313cdb645ce772d5b25e8c21651b4a",
+          "threshold_crossings": [
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.104570481287,
+                "initial_residuals_previous": {
+                  "Ux": 3.25151072985e-05,
+                  "Uy": 4.16086196564e-06,
+                  "Uz": 6.53105211042e-06,
+                  "h": 1.74021447053e-05,
+                  "k": 4.44852687968e-06,
+                  "omega": 3.3996521908e-06
+                },
+                "physical_time_s": 0.002191148,
+                "time_step_s": 9.5797985158e-09
+              },
+              "threshold_s": 1e-08
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.113486087175,
+                "initial_residuals_previous": {
+                  "Ux": 5.45815753419e-08,
+                  "Uy": 6.69863113581e-09,
+                  "Uz": 3.51352489781e-09,
+                  "h": 7.23156922092e-07,
+                  "k": 1.38227122947e-09,
+                  "omega": 1.60048117774e-07
+                },
+                "physical_time_s": 0.0022126814071,
+                "time_step_s": 9.57531188727e-13
+              },
+              "threshold_s": 1e-12
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.113409112452,
+                "initial_residuals_previous": {
+                  "Ux": 1.5516574722e-09,
+                  "Uy": 1.55165958103e-09,
+                  "Uz": 1.55166003895e-09,
+                  "h": 0.999968057968,
+                  "k": 3.50884705663e-09,
+                  "omega": 2.72610983564e-09
+                },
+                "physical_time_s": 0.0022126814217794,
+                "time_step_s": 9.99653650454e-21
+              },
+              "threshold_s": 1e-20
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.113364496933,
+                "initial_residuals_previous": {
+                  "Ux": 4.22339022512e-14,
+                  "Uy": 4.22339022514e-14,
+                  "Uz": 4.22339022514e-14,
+                  "h": 0.999999999985,
+                  "k": 9.65578270721e-14,
+                  "omega": 7.43319709109e-14
+                },
+                "physical_time_s": 0.0022126814217794,
+                "time_step_s": 9.24011320407e-31
+              },
+              "threshold_s": 1e-30
+            },
+            {
+              "first_crossing": null,
+              "threshold_s": 1e-40
+            }
+          ],
+          "validation_claim": false
+        },
+        "4v-coarse-exhaust": {
+          "case_id": "4v-coarse-exhaust",
+          "diagnosis": [
+            "adaptive Courant control held Co near target only by collapsing deltaT",
+            "U/k/omega residuals trend to machine-small values while h later rises sharply",
+            "constant physical time with orders-of-magnitude more iterations proves numerical stagnation, not convergence"
+          ],
+          "final_physical_time_s": 0.0019150304474065,
+          "local_convective_rate_growth_lower_bound_from_dt_ratio": 1.3969166602762813e+38,
+          "maximum_Courant_observed": 0.121395525417,
+          "minimum_time_step_s": 6.78436041124e-47,
+          "physical_cause_established": false,
+          "sample_count": 5886,
+          "solver_log_sha256": "d53c289167a74491ccc0935577e8f7b06467d721b7d36c53e7340ab671308fe9",
+          "threshold_crossings": [
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.10723298601,
+                "initial_residuals_previous": {
+                  "Ux": 2.33392235337e-05,
+                  "Uy": 2.39202222404e-06,
+                  "Uz": 3.67798975412e-06,
+                  "h": 6.86404946032e-06,
+                  "k": 5.5511312685e-06,
+                  "omega": 3.58055237268e-06
+                },
+                "physical_time_s": 0.001914923,
+                "time_step_s": 9.47718608778e-09
+              },
+              "threshold_s": 1e-08
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.119517383323,
+                "initial_residuals_previous": {
+                  "Ux": 6.21936979956e-08,
+                  "Uy": 4.51599220444e-09,
+                  "Uz": 9.39064747152e-09,
+                  "h": 2.18231013827e-07,
+                  "k": 1.02964023504e-09,
+                  "omega": 2.57731564081e-07
+                },
+                "physical_time_s": 0.0019150304428,
+                "time_step_s": 9.29776456189e-13
+              },
+              "threshold_s": 1e-12
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.12139092871,
+                "initial_residuals_previous": {
+                  "Ux": 9.93486142212e-13,
+                  "Uy": 1.01046911259e-12,
+                  "Uz": 9.85436147099e-13,
+                  "h": 2.73798469483e-07,
+                  "k": 5.01963008485e-15,
+                  "omega": 1.52650225479e-12
+                },
+                "physical_time_s": 0.0019150304474065,
+                "time_step_s": 9.87032182699e-21
+              },
+              "threshold_s": 1e-20
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.121395214412,
+                "initial_residuals_previous": {
+                  "Ux": 2.63002026487e-19,
+                  "Uy": 2.63448016209e-19,
+                  "Uz": 2.63208663635e-19,
+                  "h": 7.46322513775e-07,
+                  "k": 1.67040298482e-17,
+                  "omega": 4.04006846541e-19
+                },
+                "physical_time_s": 0.0019150304474065,
+                "time_step_s": 9.42959859738e-31
+              },
+              "threshold_s": 1e-30
+            },
+            {
+              "first_crossing": {
+                "Courant_max_previous": 0.106888135076,
+                "initial_residuals_previous": {
+                  "Ux": 1.35888823035e-24,
+                  "Uy": 1.36693223766e-24,
+                  "Uz": 1.36271026197e-24,
+                  "h": 0.0180809262756,
+                  "k": 1.79280379928e-17,
+                  "omega": 2.08657257238e-24
+                },
+                "physical_time_s": 0.0019150304474065,
+                "time_step_s": 9.85127338046e-41
+              },
+              "threshold_s": 1e-40
+            }
+          ],
+          "validation_claim": false
+        }
+      },
+      "validation_claim": false
+    }
+  },
+  "ellipse_or_oval_proxy_used": false,
+  "gates": {
+    "all_12_flow_numerical_gates_pass": false,
+    "all_four_three_grid_GCI_gates_pass": false,
+    "conjugate_CHT_executed": false,
+    "cross_method_agreement_below_5_percent": false,
+    "energy_balance_below_1_percent": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "mass_balance_all_below_1_percent": true,
+    "residual_and_plateau_all_pass": false
+  },
+  "geometry_modified": false,
+  "images": {
+    "grid_comparison": {
+      "path": "twins/reference-917-engine/evidence/f50-cfd-recovery/917-f50-incompressible-grid-comparison.png",
+      "sha256": "d5acd3a257fd86b116ed348bf60f509ba7cd3b7478a7e497601297455219ea8b"
+    },
+    "numerical_gates": {
+      "path": "twins/reference-917-engine/evidence/f50-cfd-recovery/917-f50-incompressible-numerical-gates.png",
+      "sha256": "db9eb3dfc550ffbbf2a0ee0c1ebe28683f930a9096f9e96a46945a5c9515c018"
+    },
+    "time_step_collapse": {
+      "path": "twins/reference-917-engine/evidence/f50-cfd-recovery/917-f50-transient-timestep-collapse.png",
+      "sha256": "c338545d334e99213fe111fab2d0dd016939d2aa722a2c585caf3e0fc02cc535"
+    }
+  },
+  "inputs": [
+    {
+      "case_count": 1,
+      "filename": "inc-2v-coarse-exhaust.json",
+      "sha256": "2c61d28129c4c746dd68affb171156809464c25982ab8ad834a15479c74a2c50"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-2v-coarse-intake.json",
+      "sha256": "36852299453bb38219f126fe60989a1fdd9c213f50441c37a2d61a200cc4e160"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-2v-fine-exhaust.json",
+      "sha256": "d76eb4846928772371ba7e120381250b785acae9dba3fdb8a3d4ba018ccdd694"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-2v-fine-intake.json",
+      "sha256": "588011065e49e5f1d90323a3c67d8f42192bc662843f7b24f231bcc5eef673c3"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-2v-medium-exhaust.json",
+      "sha256": "d3aed9570ac461d5eaf9c469d71f980e69446213f2d082316405e9fdae81a6cd"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-2v-medium-intake.json",
+      "sha256": "5b083926836fedd530335ad681815dd7e0d4ce98d0176d94d3a8e3c3d746d5b1"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-4v-coarse-exhaust.json",
+      "sha256": "70fd48f2949339e46d859fd3cd45befa2f5135b33aea289c29194ce2a70317f5"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-4v-coarse-intake.json",
+      "sha256": "4748c3ffc2bea903f5af0187b48a88d395f9fec04d0412f43524e053ebb96f97"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-4v-fine-exhaust.json",
+      "sha256": "fcb298d98d9b5533999c7111243a4244c832c1ce75151bb7a2e8966a214e2884"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-4v-fine-intake.json",
+      "sha256": "926b68c7ebca3e691ad602a881508c505dd0cf520b24c3c7f2dc12f1f1a55c0a"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-4v-medium-exhaust.json",
+      "sha256": "5c0ade2e0bdc406d6c379569c36ca61d89dd58bc5c6b60d58cf5c6763f07bf30"
+    },
+    {
+      "case_count": 1,
+      "filename": "inc-4v-medium-intake.json",
+      "sha256": "f6445897525ede5f8e01e52d3e6af70c271140a1f6fd5ece924d3b2498bd4b5a"
+    }
+  ],
+  "limitations": [
+    "incompressible control has no energy equation, so the strict energy gate is unavailable",
+    "F49 transient and F50 steady-compressible exhaust formulations diverged",
+    "F49 transient cases are not converged, so cross-method differences are not validation evidence",
+    "F48 domains are analytic gas volumes under an unverified 1 scan unit = 1 mm assumption",
+    "no solid domain, conjugate heat transfer, moving valves, piston, combustion or physical correlation is present"
+  ],
+  "method": {
+    "density_model": "one constant ideal-gas source-state density per screen",
+    "energy_equation_solved": false,
+    "formulation": "steady incompressible RANS kOmegaSST",
+    "physical_pressure_difference_pa": 10000.0,
+    "software": "OpenFOAM Foundation 14",
+    "solver": "foamRun -solver incompressibleFluid"
+  },
+  "normalizations": {
+    "legacy_execution_status": "all selected runner inputs retained prepared_not_run from the build manifest; public cases are normalized to EXECUTED only after a recorded foamRun command and log hash are required"
+  },
+  "runtime_authority": {
+    "image_expected": "3dprinting993-cfd-cae-f47:kali-local",
+    "image_id_expected": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "openfoam_environment": {
+      "WM_PROJECT_DIR": "/opt/openfoam14",
+      "configDict": "/opt/openfoam14/etc/configDict",
+      "foamEtcFile": "/opt/openfoam14/bin/foamEtcFile"
+    }
+  },
+  "schema_version": "porsche-917-f50-cfd-recovery-public/v1",
+  "source_artifacts": {
+    "F48_domain_report": {
+      "path": "twins/reference-917-engine/evidence/f48-cfd-domains/f48-cfd-domain-report.json",
+      "sha256": "bb2662f5bce3de0358dddb2efee9062f2c2d57e341bc976aaadb860955e7aa17"
+    },
+    "F49_boundary_condition_contract": {
+      "path": "twins/reference-917-engine/f49-cfd-cht-contract.json",
+      "sha256": "d44bb4ffd2383a0f28ff4a4e0cce9ddb87f985d01e0b0d318c0961a6699bd913"
+    },
+    "F49_public_report": {
+      "path": "twins/reference-917-engine/evidence/f49-cfd-cht/f49-cfd-cht-report.json",
+      "sha256": "979ed768126b1ad81e0ac66e38608b989360ce7f13a1083167b0154a68ae023c"
+    },
+    "contract": {
+      "path": "twins/reference-917-engine/f50-cfd-recovery-contract.json",
+      "sha256": "55366ddd3d7818f25137c690e75c4574b7899d40965fb99bb06f3d6f6dee68fb"
+    },
+    "incompressible_builder": {
+      "path": "twins/reference-917-engine/source/build_cfd_cases_f50_incompressible.py",
+      "sha256": "45c2ad513dbdb0ce9dc1ceb62e6e664ac0ca1c877ee0aa59167fd8ea7ff2caf3"
+    },
+    "incompressible_runner": {
+      "path": "twins/reference-917-engine/source/run_cfd_cases_f50_incompressible.py",
+      "sha256": "0e60fcee980b12a0901fefd81151280db50397fd641ac180efcabb8131c79a88"
+    },
+    "publisher": {
+      "path": "twins/reference-917-engine/source/publish_cfd_recovery_f50.py",
+      "sha256": "245ec0ff0abbe859d2cc1a3b976d39012f8baa3623d2ddabe9458b4d219126a1"
+    },
+    "steady_compressible_builder": {
+      "path": "twins/reference-917-engine/source/build_cfd_cases_f50_steady.py",
+      "sha256": "2d08374b798c944672fc7fac6c935c3023ab91570dce9b86790ecc090953681a"
+    },
+    "steady_compressible_contract": {
+      "path": "twins/reference-917-engine/f50-steady-cfd-contract.json",
+      "sha256": "d0c282170a3130a9c1d7120422a33cf60771a9fbcef64922e5b677d7de80c239"
+    },
+    "steady_compressible_runner": {
+      "path": "twins/reference-917-engine/source/run_cfd_cases_f50_steady.py",
+      "sha256": "bbd1fb8f7793567ddd58d7ad0741a0d28f8d0e789f11bfd4fb3274c252cbb7b3"
+    },
+    "transient_diagnostic": {
+      "path": "twins/reference-917-engine/source/diagnose_cfd_recovery_f50.py",
+      "sha256": "327c4cd42e496734f51b586587a42dd3a5f5ee5b6509710dc01881782bbff182"
+    }
+  },
+  "status": "CFD_RECOVERY_FAIL_CLOSED",
+  "three_grid_GCI": {
+    "2V": {
+      "exhaust": {
+        "GCI_fine_medium_percent": 0.830609309064256,
+        "GCI_medium_coarse_percent": 2.27411779475521,
+        "Richardson_extrapolated_mass_flow_kg_s": 0.07920602915629041,
+        "asymptotic_ratio": 1.011471838959136,
+        "differences_kg_s": {
+          "epsilon21_medium_minus_fine": -0.0008924033677664978,
+          "epsilon32_coarse_minus_medium": -0.0017525950816187075
+        },
+        "gate_definition": "monotonic, 0.5<=p<=10, GCI_fine<=5%, 0.9<=asymptotic_ratio<=1.1",
+        "mass_flows_kg_s": {
+          "coarse": 0.07603819079130376,
+          "fine": 0.07868318924068897,
+          "medium": 0.07779078587292247
+        },
+        "monotonic": true,
+        "observed_order": 2.2391582625035253,
+        "pass": true,
+        "refinement_ratios": {
+          "r21_medium_over_fine": 1.5600414310668462,
+          "r32_coarse_over_medium": 1.4331060487191671
+        },
+        "status": "GCI_PASS"
+      },
+      "intake": {
+        "pass": false,
+        "status": "unavailable_unconverged_grid"
+      }
+    },
+    "4V": {
+      "exhaust": {
+        "pass": false,
+        "status": "unavailable_unconverged_grid"
+      },
+      "intake": {
+        "pass": false,
+        "status": "unavailable_unconverged_grid"
+      }
+    }
+  },
+  "validation_claim": false,
+  "variant_comparison": {
+    "exhaust": {
+      "coarse": {
+        "2V_mass_flow_kg_s": 0.07603819079130376,
+        "4V_mass_flow_kg_s": 0.08221954689756326,
+        "4V_minus_2V_percent": 8.129278250747696,
+        "both_flow_numerical_gates_pass": false,
+        "performance_claim": false
+      },
+      "fine": {
+        "2V_mass_flow_kg_s": 0.07868318924068897,
+        "4V_mass_flow_kg_s": 0.08391575126360878,
+        "4V_minus_2V_percent": 6.65016514126493,
+        "both_flow_numerical_gates_pass": true,
+        "performance_claim": false
+      },
+      "medium": {
+        "2V_mass_flow_kg_s": 0.07779078587292247,
+        "4V_mass_flow_kg_s": 0.08250405491820768,
+        "4V_minus_2V_percent": 6.0589040107972725,
+        "both_flow_numerical_gates_pass": true,
+        "performance_claim": false
+      }
+    },
+    "intake": {
+      "coarse": {
+        "2V_mass_flow_kg_s": 0.19774817243202175,
+        "4V_mass_flow_kg_s": 0.23629207905814648,
+        "4V_minus_2V_percent": 19.491409782497303,
+        "both_flow_numerical_gates_pass": false,
+        "performance_claim": false
+      },
+      "fine": {
+        "2V_mass_flow_kg_s": 0.19905129920053816,
+        "4V_mass_flow_kg_s": 0.24247359906324698,
+        "4V_minus_2V_percent": 21.81462770507323,
+        "both_flow_numerical_gates_pass": false,
+        "performance_claim": false
+      },
+      "medium": {
+        "2V_mass_flow_kg_s": 0.20079042480713546,
+        "4V_mass_flow_kg_s": 0.24148412256916563,
+        "4V_minus_2V_percent": 20.26675216266789,
+        "both_flow_numerical_gates_pass": false,
+        "performance_claim": false
+      }
+    }
+  }
+}

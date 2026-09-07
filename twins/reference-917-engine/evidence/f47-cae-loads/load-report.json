@@ -1,0 +1,708 @@
+{
+  "classification": "uncorrelated_zero_dimensional_load_envelopes_for_future_cae_not_cfd_not_cht_not_fea",
+  "conclusion": {
+    "CFD_or_CHT_or_FEA_executed": false,
+    "future_solver_inputs_ready_without_geometry": false,
+    "load_transfer_completed": true,
+    "manufacturing_or_start_authorized": false
+  },
+  "figure": {
+    "png_dimensions_px": [
+      1920,
+      1080
+    ],
+    "png_path": "twins/reference-917-engine/evidence/f47-cae-loads/figures/f47-cae-load-envelopes.png",
+    "png_renderer": "Pillow 11.3.0",
+    "svg_path": "twins/reference-917-engine/evidence/f47-cae-loads/figures/f47-cae-load-envelopes.svg"
+  },
+  "geometry": {
+    "cad_created": false,
+    "external_scan_contour_modified": false,
+    "geometry_created": false,
+    "mesh_created": false,
+    "oval_or_ellipse_created": false,
+    "patches_are_unresolved_names_only": true
+  },
+  "input_manifest": {
+    "f46_contract": {
+      "path": "twins/reference-917-engine/cantera-2v-4v-crank-cycle-f46.json",
+      "sha256": "1b31514637a1e8d630e14f036f84412aaf5f021145b1a0f441958fb256c50936"
+    },
+    "f46_cycle_report": {
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/cycle-report.json",
+      "sha256": "b2c0c661e42f0d18fc8779270affa967720e507916a2bf0b9fcad0ba07d3b1b6"
+    },
+    "f46_manifest": {
+      "path": "twins/reference-917-engine/evidence/f46-cantera-cycle/manifest.json",
+      "sha256": "dec4b9514655404bdf95947c7172c7a6563319fbdea747600be36f497cc321c9"
+    },
+    "solver_authority": {
+      "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+      "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482"
+    }
+  },
+  "metrics": {
+    "architectures": {
+      "2v": {
+        "h_gas_w_m2_k": {
+          "cantera": {
+            "maximum": 5165.091518746,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 244.650027925,
+            "minimum_crank_angle_deg": 39
+          },
+          "cross_model": {
+            "maximum": 5165.091518746,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 238.705906111,
+            "minimum_crank_angle_deg": 38
+          },
+          "model_peak_spread_fraction": 0.299997956,
+          "wiebe": {
+            "maximum": 3615.574622303,
+            "maximum_crank_angle_deg": 368,
+            "minimum": 238.705906111,
+            "minimum_crank_angle_deg": 38
+          }
+        },
+        "pressure_gauge_pa": {
+          "cantera": {
+            "maximum": 21416554.6337,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 79153.573078,
+            "minimum_crank_angle_deg": 95
+          },
+          "cross_model": {
+            "maximum": 21416554.6337,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 79153.573078,
+            "minimum_crank_angle_deg": 95
+          },
+          "model_peak_spread_fraction": 0.569378238,
+          "wiebe": {
+            "maximum": 9222434.50272,
+            "maximum_crank_angle_deg": 384,
+            "minimum": 83021.641807,
+            "minimum_crank_angle_deg": 98
+          }
+        },
+        "pressure_pa_abs": {
+          "cantera": {
+            "maximum": 21517879.6337,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 180478.573078,
+            "minimum_crank_angle_deg": 95
+          },
+          "cross_model": {
+            "maximum": 21517879.6337,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 180478.573078,
+            "minimum_crank_angle_deg": 95
+          },
+          "model_peak_spread_fraction": 0.566697107,
+          "wiebe": {
+            "maximum": 9323759.50272,
+            "maximum_crank_angle_deg": 384,
+            "minimum": 184346.641807,
+            "minimum_crank_angle_deg": 98
+          }
+        },
+        "temperature_k": {
+          "cantera": {
+            "maximum": 2959.35322088,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 385.385215723,
+            "minimum_crank_angle_deg": 147
+          },
+          "cross_model": {
+            "maximum": 2959.35322088,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 385.385215723,
+            "minimum_crank_angle_deg": 147
+          },
+          "model_peak_spread_fraction": 0.173855524,
+          "wiebe": {
+            "maximum": 2444.8533152,
+            "maximum_crank_angle_deg": 401,
+            "minimum": 390.773811681,
+            "minimum_crank_angle_deg": 151
+          }
+        },
+        "wall_heat_flux_w_m2": {
+          "cantera": {
+            "maximum": 12831911.7507,
+            "maximum_crank_angle_deg": 360,
+            "minimum": -38983.7525808,
+            "minimum_crank_angle_deg": 179
+          },
+          "cross_model": {
+            "maximum": 12831911.7507,
+            "maximum_crank_angle_deg": 360,
+            "minimum": -38983.7525808,
+            "minimum_crank_angle_deg": 179
+          },
+          "model_peak_spread_fraction": 0.585365388,
+          "wiebe": {
+            "maximum": 5320554.7476,
+            "maximum_crank_angle_deg": 390,
+            "minimum": -36715.142511,
+            "minimum_crank_angle_deg": 180
+          }
+        }
+      },
+      "4v": {
+        "h_gas_w_m2_k": {
+          "cantera": {
+            "maximum": 5347.01864028,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 247.468989373,
+            "minimum_crank_angle_deg": 28
+          },
+          "cross_model": {
+            "maximum": 5347.01864028,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 241.077413805,
+            "minimum_crank_angle_deg": 28
+          },
+          "model_peak_spread_fraction": 0.301261054,
+          "wiebe": {
+            "maximum": 3736.170170074,
+            "maximum_crank_angle_deg": 369,
+            "minimum": 241.077413805,
+            "minimum_crank_angle_deg": 28
+          }
+        },
+        "pressure_gauge_pa": {
+          "cantera": {
+            "maximum": 22394606.6308,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 90749.678246,
+            "minimum_crank_angle_deg": 89
+          },
+          "cross_model": {
+            "maximum": 22394606.6308,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 90749.678246,
+            "minimum_crank_angle_deg": 89
+          },
+          "model_peak_spread_fraction": 0.569161717,
+          "wiebe": {
+            "maximum": 9648453.87687,
+            "maximum_crank_angle_deg": 384,
+            "minimum": 93138.209433,
+            "minimum_crank_angle_deg": 93
+          }
+        },
+        "pressure_pa_abs": {
+          "cantera": {
+            "maximum": 22495931.6308,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 192074.678246,
+            "minimum_crank_angle_deg": 89
+          },
+          "cross_model": {
+            "maximum": 22495931.6308,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 192074.678246,
+            "minimum_crank_angle_deg": 89
+          },
+          "model_peak_spread_fraction": 0.566598128,
+          "wiebe": {
+            "maximum": 9749778.87687,
+            "maximum_crank_angle_deg": 384,
+            "minimum": 194463.209433,
+            "minimum_crank_angle_deg": 93
+          }
+        },
+        "temperature_k": {
+          "cantera": {
+            "maximum": 2964.6283585,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 375.935515616,
+            "minimum_crank_angle_deg": 142
+          },
+          "cross_model": {
+            "maximum": 2964.6283585,
+            "maximum_crank_angle_deg": 360,
+            "minimum": 375.935515616,
+            "minimum_crank_angle_deg": 142
+          },
+          "model_peak_spread_fraction": 0.172973966,
+          "wiebe": {
+            "maximum": 2451.82483296,
+            "maximum_crank_angle_deg": 401,
+            "minimum": 379.822548362,
+            "minimum_crank_angle_deg": 146
+          }
+        },
+        "wall_heat_flux_w_m2": {
+          "cantera": {
+            "maximum": 13312089.2402,
+            "maximum_crank_angle_deg": 360,
+            "minimum": -44815.7934751,
+            "minimum_crank_angle_deg": 178
+          },
+          "cross_model": {
+            "maximum": 13312089.2402,
+            "maximum_crank_angle_deg": 360,
+            "minimum": -44815.7934751,
+            "minimum_crank_angle_deg": 178
+          },
+          "model_peak_spread_fraction": 0.584727196,
+          "wiebe": {
+            "maximum": 5528148.62073,
+            "maximum_crank_angle_deg": 390,
+            "minimum": -43093.5911045,
+            "minimum_crank_angle_deg": 179
+          }
+        }
+      }
+    },
+    "outer_maximum_4v_change_fraction": {
+      "h_gas_w_m2_k": 0.035222439,
+      "pressure_gauge_pa": 0.045668036,
+      "pressure_pa_abs": 0.045452991,
+      "temperature_k": 0.001782531,
+      "wall_heat_flux_w_m2": 0.037420573
+    },
+    "wall_flux_equation_closure": {
+      "pass": true,
+      "worst_relative_error": 1.6085e-08
+    }
+  },
+  "phase": "F47",
+  "quality": {
+    "all_36_traces_loaded": true,
+    "all_source_hashes_verified": true,
+    "exact_samples_without_interpolation": true,
+    "physical_correlation_completed": false,
+    "pointwise_envelopes_are_joint_trajectories": false,
+    "wall_flux_closure_limit": 1e-06,
+    "wall_flux_closure_pass": true,
+    "wall_flux_closure_worst_relative_error": 1.6085e-08
+  },
+  "release_gates": {
+    "CHT_completed": false,
+    "CalculiX_pressure_analysis_completed": false,
+    "CalculiX_thermal_analysis_completed": false,
+    "Cd_correlated_on_flow_bench": false,
+    "cross_model_acceptance_passed": false,
+    "cylinder_pressure_correlated": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "patch_mapping_verified_on_geometry": false,
+    "sealed_2v_fluid_domain_available": false,
+    "sealed_4v_fluid_domain_available": false,
+    "three_dimensional_CFD_completed": false,
+    "wall_heat_transfer_correlated": false
+  },
+  "schema_version": "1.0.0",
+  "solver_handoff": {
+    "calculix_mapping_path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/calculix-loads.json",
+    "openfoam_mapping_path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/openfoam-aate-enginefoam-patches.json",
+    "solver_execution_claimed": false
+  },
+  "source_case_count": 36,
+  "source_case_index": [
+    {
+      "Cd": 0.62,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.62-dca0.25",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.62-dca0.25.csv.gz",
+      "raw_sha256": "1ccf3637da4f2c1f11ef30e309eba184be6ed922c87d945f346f5322465f5948"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.62-dca0.5",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.62-dca0.5.csv.gz",
+      "raw_sha256": "d8d9340ef582c986211c85e5d47e334d3bcb88633e8c02fc9e7fd85e835a8bb0"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.62-dca1",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.62-dca1.csv.gz",
+      "raw_sha256": "4c6aba619ca2bbe6f022e39437e308e03e5bb7d0dd7d080d3f335c31d2f87db8"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.72-dca0.25",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+      "raw_sha256": "3d13ece6bc9ad8c3792df9dfca30d17838611ee877a3cc6abd7423d0b4b62907"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.72-dca0.5",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca0.5.csv.gz",
+      "raw_sha256": "425331e9e3988ff44da944e6068e81bc22ca1fbe8aecc879595a038116a98a75"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.72-dca1",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.72-dca1.csv.gz",
+      "raw_sha256": "f364f77448f78d5b98dc739d4ca9b873760557ecc9a85aef1e11bcce5e5b818d"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.82-dca0.25",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.82-dca0.25.csv.gz",
+      "raw_sha256": "b88dcbcb46fe6c5ed22743ce4b4d44d8a35fff249fdf8b23d63e8c1da354e59f"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.82-dca0.5",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.82-dca0.5.csv.gz",
+      "raw_sha256": "7c382bc6b048f7b02289649afe34c66ea85185ba07e00fc7aedda3fb50952b03"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "2v",
+      "case_id": "2v-cantera_finite_rate-cd0.82-dca1",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-cantera_finite_rate-cd0.82-dca1.csv.gz",
+      "raw_sha256": "3c72adfcce2422691c1a025ff73a11c40c629c1ce6697d6825f7eb5c7f2f556e"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.62-dca0.25",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.62-dca0.25.csv.gz",
+      "raw_sha256": "b2764a2f45466b3d56777f68d26342377028e58b9a4d3340029d20db3ccb60bc"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.62-dca0.5",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.62-dca0.5.csv.gz",
+      "raw_sha256": "e191e4890f42b87fc63dddb1417e3f2e1ec40236d1096ceeffe0236c670115b9"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.62-dca1",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.62-dca1.csv.gz",
+      "raw_sha256": "cfe41ec2402d204e1e8869b79d8732c6c1cd24191945f10b0273775382b863e4"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.72-dca0.25",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.72-dca0.25.csv.gz",
+      "raw_sha256": "bb35b4f01002ceb8cfec1ca88e01d6936b31839f443eb95c461e342ecee14cb3"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.72-dca0.5",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.72-dca0.5.csv.gz",
+      "raw_sha256": "9440ee8a5cdc489d2056fa0eb0305d7088061669d6dba670e8ab31473799ea0b"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.72-dca1",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.72-dca1.csv.gz",
+      "raw_sha256": "924a980462c334c3bc921b7a7e886d50ee8645ccac178bae19808421635793ba"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.82-dca0.25",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.82-dca0.25.csv.gz",
+      "raw_sha256": "f40a36afd0f444b49a944741b83bd2cf0930bbeccb83ea576eff055de5731cfb"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.82-dca0.5",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.82-dca0.5.csv.gz",
+      "raw_sha256": "75f2734e5ff3794acbd6b85367f1f24a0e033e651a09bb56f4750d0de99f6f59"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "2v",
+      "case_id": "2v-wiebe_counter_model-cd0.82-dca1",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/2v-wiebe_counter_model-cd0.82-dca1.csv.gz",
+      "raw_sha256": "3efaec18418d6c419078911287d77097e1234438b5c1112ac838d9e3607e2421"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.62-dca0.25",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.62-dca0.25.csv.gz",
+      "raw_sha256": "168f9ca559edc2c62ae1ed5f6e53f35caf4e9e5652e310ebd7e18cf79ee5fb05"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.62-dca0.5",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.62-dca0.5.csv.gz",
+      "raw_sha256": "d2d52fe0c58da235ad2516211b300f1fd6ca8720501317685d0b9db3fcec16ae"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.62-dca1",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.62-dca1.csv.gz",
+      "raw_sha256": "4da5fda9f6b6c2c5281f939505c5214e2f97e4153ae4dfc2040d52c32c789d7f"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.72-dca0.25",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.25.csv.gz",
+      "raw_sha256": "632a66647a871736509f180048009d52f5d5312693dd456059e11455570b7518"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.72-dca0.5",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca0.5.csv.gz",
+      "raw_sha256": "f582973bfb2d39f9a1695f45d53dacd5b06c499a04a7e5dd003c542e24d40e7c"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.72-dca1",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.72-dca1.csv.gz",
+      "raw_sha256": "a80d27c13d120c1962edd3286aefff4111e05a7eb763d8d503fb3a33b87fb3bc"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.82-dca0.25",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.82-dca0.25.csv.gz",
+      "raw_sha256": "945040b7be65b908e7b1666290c2c03f7cca321d6a2b389664a52ff1354c7827"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.82-dca0.5",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.82-dca0.5.csv.gz",
+      "raw_sha256": "d1274b3dbdfda533841368e61683119ee17755b427c8518fbccfaa1e44fc37bd"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "4v",
+      "case_id": "4v-cantera_finite_rate-cd0.82-dca1",
+      "combustion_model": "cantera_finite_rate",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-cantera_finite_rate-cd0.82-dca1.csv.gz",
+      "raw_sha256": "d7cabf754cc3b3064286b7f4be285310ea3ae8e6a148800d1ddf363d47988fa2"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.62-dca0.25",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.62-dca0.25.csv.gz",
+      "raw_sha256": "6574b13bb1574aa494b39f43ed0648b5d3f871dad4603dbd208715efdfdb1a4c"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.62-dca0.5",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.62-dca0.5.csv.gz",
+      "raw_sha256": "bc3b3b52b1d42f26535c84dce82add599cd7959c95fb37f951931ec466b0eff0"
+    },
+    {
+      "Cd": 0.62,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.62-dca1",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.62-dca1.csv.gz",
+      "raw_sha256": "f4d545b4331a5e925422e067c54d32f5c0b923aa67caef3fb7f2d89ed1f4d4da"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.72-dca0.25",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.72-dca0.25.csv.gz",
+      "raw_sha256": "ad0e7d9a14a116b6e8ea4645321608eb383fcd966f9d752642019422191bbf45"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.72-dca0.5",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.72-dca0.5.csv.gz",
+      "raw_sha256": "ef03411cd4c08df58af22022e61062710eb18c4fcf26321b50f0fb7c694c1376"
+    },
+    {
+      "Cd": 0.72,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.72-dca1",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.72-dca1.csv.gz",
+      "raw_sha256": "0ba1bd0e74fc354e380e11930010639a32f99ab02c0b1949d40e699130722008"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.82-dca0.25",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.25,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.82-dca0.25.csv.gz",
+      "raw_sha256": "952e160c8ff55841ed2dee841cf4800f60b1253aef0b5cfab300818cdf230c0e"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.82-dca0.5",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 0.5,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.82-dca0.5.csv.gz",
+      "raw_sha256": "c4057f984423cda9983240e7d90ba6e40b43e11ab9d11f9922ebccc9b0d4e334"
+    },
+    {
+      "Cd": 0.82,
+      "architecture": "4v",
+      "case_id": "4v-wiebe_counter_model-cd0.82-dca1",
+      "combustion_model": "wiebe_counter_model",
+      "crank_step_deg": 1.0,
+      "integer_samples_used": 720,
+      "raw_path": "twins/reference-917-engine/evidence/f46-cantera-cycle/raw/4v-wiebe_counter_model-cd0.82-dca1.csv.gz",
+      "raw_sha256": "89ebd6eaaad17d4188c3f4a3e3abe408310239cdd1f743b807376c479bb2ff5e"
+    }
+  ],
+  "transfer": {
+    "envelope_csv_paths": {
+      "2v": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-2v-load-envelope.csv",
+      "4v": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-4v-load-envelope.csv"
+    },
+    "envelope_json_path": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-load-envelopes.json",
+    "envelope_policy": {
+      "contributors_per_model_per_angle": 9,
+      "cross_model_bracket": "pointwise_outer_bound_of_Cantera_and_Wiebe_model_envelopes",
+      "joint_trajectory_claimed": false,
+      "per_architecture_per_model": "pointwise_min_max_across_three_Cd_and_three_crank_steps",
+      "variables": [
+        "pressure_pa_abs",
+        "temperature_k",
+        "h_gas_w_m2_k",
+        "wall_heat_flux_w_m2"
+      ],
+      "warning": "Une enveloppe point par point peut melanger plusieurs cas et ne constitue pas une trajectoire thermodynamique realisable. Un calcul aval doit choisir une trace F46 complete et garder son identite de cas."
+    },
+    "equations": {
+      "h_gas": "h=130*(max(p,1e4)/1e5)^0.8*(max(T,200)/300)^-0.53*(max(Up,1)/10)^0.8",
+      "mean_piston_speed": "Up=2*S*N/60",
+      "positive_wall_flux_direction": "gas_to_solid",
+      "reference_pressure_classification": "screening_hypothesis_not_measured_engine_backside_pressure",
+      "structural_gauge_pressure": "p_gauge=p_abs-p_reference",
+      "structural_reference_pressure_pa_abs": 101325.0,
+      "wall_flux_closure": "q_wall=h_gas*(T_gas-T_wall)",
+      "wall_temperature_k": 475.0
+    },
+    "grid": {
+      "interpolation_allowed": false,
+      "selection": "exact_integer_angle_samples_present_in_every_F46_trace",
+      "speed_rpm": 9000.0,
+      "start_deg": 0,
+      "step_deg": 1,
+      "stop_exclusive_deg": 720,
+      "time_equation": "t_s=theta_deg/(6*N_rpm)"
+    }
+  }
+}

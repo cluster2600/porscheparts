@@ -1,0 +1,299 @@
+{
+  "causal_assessment": {
+    "inference": "The primary defect is inconsistent or missing 2D p-curves on trimmed internal gas-core edge/face pairs, created or amplified by the fusion of circular chamber, coaxial seat/throat/guide cylinders and inclined circular port cylinders, then propagated by subtraction from F43.",
+    "inference_confidence": "high_for_fault_family_and_domain_medium_for_exact_primitive_without_feature_history",
+    "not_supported": [
+      "oil_gallery_collision",
+      "external_F43_skin_self_intersection",
+      "insufficient_tetrahedral_algorithm_choice",
+      "validated_CFD_or_CHT_or_structure"
+    ],
+    "observed": [
+      "Every audited solid is one closed manifold solid and passes exact BRepCheck.",
+      "BOPAlgo finds only InvalidCurveOnSurface faults in the gas cores and heads.",
+      "Both oil cores have zero BOPAlgo fault.",
+      "The measured common gas/oil intersection volume is zero for both variants.",
+      "The fault count increases from gas core to the head after Boolean subtraction.",
+      "Gmsh fails during PLC-constrained tetrahedralization after surface meshing."
+    ]
+  },
+  "claims": {
+    "CAE_executed": false,
+    "STEP_or_mesh_published": false,
+    "geometry_repaired": false,
+    "manufacturing_release": false,
+    "printability_validated": false
+  },
+  "classification": "diagnostic_only_private_STEP_not_CAE_not_manufacturing_release",
+  "contract": {
+    "path": "twins/reference-917-engine/mesh-diagnostic-f48.json",
+    "sha256": "eee5f3ec899a335ed2d0f2ed69c53c24694ab12e5f1e43a0a73e0fd856c14aa2"
+  },
+  "locked_geometry_policy": {
+    "external_scan_skin_modification_allowed": false,
+    "f43_outer_sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+    "geometry_created_by_f48": false,
+    "global_healing_allowed": false,
+    "mesh_committed_by_f48": false,
+    "oval_or_ellipse_allowed": false,
+    "proxy_geometry_allowed": false,
+    "same_f43_outer_bytes_used_for_2v_and_4v": true
+  },
+  "observations": {
+    "2v": {
+      "gmsh": {
+        "error_class": "PLC_segment_facet_intersection",
+        "error_text_public": "PLC Error: A segment and a facet intersect",
+        "surface_mesh_completed_before_failure": true,
+        "volume_mesh_completed": false
+      },
+      "input_receipts": {
+        "gas_core_step_sha256": "cd2ec146875cd403f688a3e6d1dd87a8bbb7ab6f6eaecd4aec2bd9735b4f2632",
+        "head_step_sha256": "ca5ad5b5cc7b168946cb93d49adb7409e9e3ac4853b808e86ed8ad5f3477ea0b",
+        "oil_core_step_sha256": "acc26fce48be0bc02b5079130e2fc580f4e694171a35b04950a1e43fc9f967ac"
+      },
+      "occt": {
+        "gas_core": {
+          "BOPAlgo_fault_count": 4,
+          "BOPAlgo_status_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 4
+          },
+          "BRepCheck_exact_valid": true,
+          "faulty_edge_count": 4,
+          "faulty_face_count": 3,
+          "opaque_entity_refs": [
+            "gas-face-dd0b144b60acc583",
+            "gas-face-6bdf6bc20fc7d823",
+            "gas-face-8c9749751b60ef00",
+            "gas-edge-ad55c07fbcd980f2",
+            "gas-edge-8a8db717c3c478af",
+            "gas-edge-b8564ca31809705b",
+            "gas-edge-93efd8abe3b7b019"
+          ]
+        },
+        "head_after_subtraction": {
+          "BOPAlgo_fault_count": 8,
+          "BOPAlgo_status_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 8
+          },
+          "BRepCheck_exact_valid": true,
+          "faulty_edge_count": 8,
+          "faulty_face_count": 5,
+          "opaque_entity_refs": [
+            "head-face-f11382eb679813af",
+            "head-face-cac5e1f0cb1cd7e3",
+            "head-face-7e04c174aba49e14",
+            "head-face-5e312651dcbc4e12",
+            "head-face-a489e8526c10ff4f",
+            "head-edge-e7e96023e3bc5901",
+            "head-edge-23607d36d121518f",
+            "head-edge-67c066b6871293f3",
+            "head-edge-0ee9530432b0b99d",
+            "head-edge-d035a8a20b7056f8",
+            "head-edge-9ce3b52d9e42d9b0",
+            "head-edge-2a744128d7c52fa5",
+            "head-edge-b76e72d5359a6861"
+          ]
+        },
+        "oil_core": {
+          "BOPAlgo_fault_count": 0,
+          "BOPAlgo_status_counts": {},
+          "BRepCheck_exact_valid": true,
+          "faulty_edge_count": 0,
+          "faulty_face_count": 0,
+          "opaque_entity_refs": []
+        }
+      }
+    },
+    "4v": {
+      "gmsh": {
+        "error_class": "PLC_facet_facet_intersection",
+        "error_text_public": "PLC Error: Two facets intersect",
+        "surface_mesh_completed_before_failure": true,
+        "volume_mesh_completed": false
+      },
+      "input_receipts": {
+        "gas_core_step_sha256": "fd555b74c2ad1873cf048713c4ff27c33acc37474acae9e90ffe248e8b15d484",
+        "head_step_sha256": "196e9b83629b0f5ecacc822153766fcf388da557a6fc30e50f7141f45479c6c9",
+        "oil_core_step_sha256": "953745be195f92e0e95cfe6a34403ede05526c5c6aecd8ffa010ec1a412a6b98"
+      },
+      "occt": {
+        "gas_core": {
+          "BOPAlgo_fault_count": 22,
+          "BOPAlgo_status_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 22
+          },
+          "BRepCheck_exact_valid": true,
+          "faulty_edge_count": 18,
+          "faulty_face_count": 10,
+          "opaque_entity_refs": [
+            "gas-face-5bc8cefa8e2c64b8",
+            "gas-face-95eab022d900059b",
+            "gas-face-f2fae92f09e409df",
+            "gas-face-3ce7346efca9a4fb",
+            "gas-face-0a993404771a0bf7",
+            "gas-face-7ddffa59de78a6d6",
+            "gas-face-aece9db8615f9a02",
+            "gas-face-7d61153a3b906160",
+            "gas-face-6995cdca5b324a48",
+            "gas-face-20e6b46471264c16",
+            "gas-edge-8ab0f6ec68408092",
+            "gas-edge-5c272b2c318203d6",
+            "gas-edge-25c1ff3ff2742b31",
+            "gas-edge-dcf66a118511d848",
+            "gas-edge-1c621e89239775d0",
+            "gas-edge-a7ea64f7c9f144bd",
+            "gas-edge-b612385c530716ff",
+            "gas-edge-fac1aceb78ca82d9",
+            "gas-edge-3a602601fcabf431",
+            "gas-edge-4de6d11ae285e713",
+            "gas-edge-37711248800299ee",
+            "gas-edge-e8fccca535769f29",
+            "gas-edge-25b0282be47eb4ce",
+            "gas-edge-d3e968fa7df09edc",
+            "gas-edge-f3a1570c8c30716b",
+            "gas-edge-9b972e697cefa299",
+            "gas-edge-d8aa148480aa52c3",
+            "gas-edge-02e67c9cadf7b644"
+          ]
+        },
+        "head_after_subtraction": {
+          "BOPAlgo_fault_count": 32,
+          "BOPAlgo_status_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 32
+          },
+          "BRepCheck_exact_valid": true,
+          "faulty_edge_count": 28,
+          "faulty_face_count": 17,
+          "opaque_entity_refs": [
+            "head-face-c98240289d27e3cf",
+            "head-face-2e31b446ca8a273f",
+            "head-face-02031f3668128a12",
+            "head-face-c4c8ec0bc9310e63",
+            "head-face-860ff906ac20c092",
+            "head-face-a83d79196199c10f",
+            "head-face-342944997359b405",
+            "head-face-ba609bd7cf21e0c5",
+            "head-face-8ce8f367a97793a6",
+            "head-face-27f4b10b479b2bf0",
+            "head-face-6f1878f3da477fd7",
+            "head-face-43710ce7171072bd",
+            "head-face-5493ef0283344959",
+            "head-face-ad895a40aa7a2a82",
+            "head-face-12031b768009f0bf",
+            "head-face-05222d7f9ec0352f",
+            "head-face-73ca09f8b387dd7a",
+            "head-edge-4088b417b3db2eb5",
+            "head-edge-84841abc57b13b2c",
+            "head-edge-dd7f00ed9a9d95ae",
+            "head-edge-c327c87ad6a256ea",
+            "head-edge-1e8a709baaebb384",
+            "head-edge-2dc794c7af8c573e",
+            "head-edge-2ec760c0d5e84c21",
+            "head-edge-636605507f168f2a",
+            "head-edge-127eb8ad07cba759",
+            "head-edge-4956d6275a9dd7b6",
+            "head-edge-d8831dee1c350bd9",
+            "head-edge-aa7bd33158e3303d",
+            "head-edge-e7b58a1f1f19bc4b",
+            "head-edge-168668b4349ffd17",
+            "head-edge-9973d5e0dd987d84",
+            "head-edge-24834b5301d0c582",
+            "head-edge-debfcf98a9706dbd",
+            "head-edge-112e5d6852f2699b",
+            "head-edge-e840652afeb9a0b2",
+            "head-edge-52dc5182da64d0c5",
+            "head-edge-ee7b7316622ca765",
+            "head-edge-be899ee536e29fcd",
+            "head-edge-963a0c6b8e88f6a6",
+            "head-edge-e6b4a788fe5f0650",
+            "head-edge-7386fac1c86d2252",
+            "head-edge-b0d0e8597365bd52",
+            "head-edge-7057c52e1bc27ea3",
+            "head-edge-170ed8811af31ce1"
+          ]
+        },
+        "oil_core": {
+          "BOPAlgo_fault_count": 0,
+          "BOPAlgo_status_counts": {},
+          "BRepCheck_exact_valid": true,
+          "faulty_edge_count": 0,
+          "faulty_face_count": 0,
+          "opaque_entity_refs": []
+        }
+      }
+    }
+  },
+  "phase": "F48",
+  "private_diagnostic_harness": {
+    "coordinate_output_must_remain_outside_repository": true,
+    "path": "twins/reference-917-engine/source/diagnose_private_f47_step_mesh_f48.py",
+    "sha256": "844d636bacb89299e517fbbbcba8d8cd497152b07b000ab9306fc5953a7a8060"
+  },
+  "private_evidence": {
+    "coordinate_bearing_localization_bytes": 34895,
+    "coordinate_bearing_localization_receipt_sha256": "0fdaa6491d4c4c16190856e1858ed76d5ef0609eabab0ee9322176d2d3841ed8",
+    "coordinates_published": false,
+    "entity_indices_published": false,
+    "local_receipt_is_not_a_release_artifact": true,
+    "public_entity_reference_method": "sha256(step_sha256|entity_kind|private_index)[:16]",
+    "step_and_coordinate_policy": "private_local_only_not_copied_to_git"
+  },
+  "release_gates": {
+    "2v_gmsh_volume_mesh_passed": false,
+    "2v_zero_BOPAlgo_faults": false,
+    "4v_gmsh_volume_mesh_passed": false,
+    "4v_zero_BOPAlgo_faults": false,
+    "CFD_or_CHT_or_FEA_completed": false,
+    "engine_start_authorized": false,
+    "external_skin_lock_verified_after_repair": false,
+    "manufacturing_authorized": false,
+    "mesh_convergence_passed": false,
+    "metal_print_authorized": false
+  },
+  "required_outer_lock_checks": {
+    "bbox_and_mass_properties_within_declared_tolerance": false,
+    "maximum_sampled_external_skin_distance_zero": false,
+    "outer_face_geometric_signatures_equal_outside_declared_openings": false,
+    "reason_false": "No repaired candidate was created in diagnostic-only F48.",
+    "same_f43_source_sha256": true
+  },
+  "schema": "porsche-917-f48-public-step-mesh-diagnostic/v1",
+  "surgical_correction_plan": [
+    {
+      "acceptance": "zero BOPAlgo InvalidCurveOnSurface before export and after STEP round-trip",
+      "operation": "Rebuild only the reported gas-core edge/face p-curves from their existing 3D curves on their existing support surfaces; preserve the 3D curves and surfaces.",
+      "order": 1,
+      "scope": "gas_core_fault_pairs_only"
+    },
+    {
+      "acceptance": "one closed gas solid, BRepCheck exact true, BOPAlgo zero",
+      "operation": "If local p-curve reprojection fails, reconstruct only the affected internal circular fusion junctions with explicit overlap and OCC fragments before fuse; do not sew or heal the full head.",
+      "order": 2,
+      "scope": "internal_gas_core_junctions_only"
+    },
+    {
+      "acceptance": "one closed head solid and no unexpected external-face signature change",
+      "operation": "Subtract the accepted gas core and unchanged oil core from the byte-locked F43 outer solid.",
+      "order": 3,
+      "scope": "boolean_subtraction_only"
+    },
+    {
+      "acceptance": "zero PLC intersections and stable quality metrics; no CAE claim",
+      "operation": "Run STEP round-trip, exact OCCT checks and Gmsh 3D convergence on at least three mesh sizes.",
+      "order": 4,
+      "scope": "2v_and_4v_independently"
+    }
+  ],
+  "toolchain": {
+    "deterministic_controls": {
+      "gmsh_threads": 1,
+      "mesh_size_max_scan_units": 12.0,
+      "mesh_size_min_scan_units": 4.0
+    },
+    "gmsh": "4.15.2",
+    "gmsh_image_id": "sha256:61a0eb9c679cfac6775a9d5a0162505db43bae6d27e7e1b4a33014ef58ef4368",
+    "occt": "7.9.3.1"
+  },
+  "verdict": "F47_STEP_MESH_REJECTED_INTERNAL_GAS_PCURVES_REPAIR_REQUIRED"
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "porsche-cp1-process-reference-f56/v1",
+  "retrieved_on": "2026-09-06",
+  "classification": "manufacturer_reference_not_part_or_supplier_qualification",
+  "sources": {
+    "m290": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-290-60um",
+    "m400_4": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-400-4-60um"
+  },
+  "processes": [
+    {
+      "machine": "EOS M 290",
+      "source_id": "m290",
+      "material_set": "AlCP1_060_M291",
+      "layer_um": 60,
+      "platform_temperature_c": 125,
+      "nozzle": "EOS Grid Nozzle"
+    },
+    {
+      "machine": "EOS M 400-4",
+      "source_id": "m400_4",
+      "material_set": "AlCP1_060_M404",
+      "layer_um": 60,
+      "platform_temperature_c": 150,
+      "nozzle": "EOS Aerospike Nozzle"
+    }
+  ],
+  "shared_published_process_data": {
+    "material": "EOS Aluminium Constellium CP1",
+    "trl": 3,
+    "software": "EOSPRINT 2.13 or newer",
+    "recoater": "HSS blade",
+    "gas": "argon",
+    "sieve_um": 90,
+    "heat_treatment": {"temperature_c": 400, "duration_h": 4},
+    "process_not_automatically_in_build_plans": true
+  },
+  "thermal_expansion_reference": {
+    "reference_temperature_c": 25,
+    "published_intervals": [
+      {"lower_c": 25, "upper_c": 100, "coefficient_per_k": 0.000019},
+      {"lower_c": 25, "upper_c": 200, "coefficient_per_k": 0.000021},
+      {"lower_c": 25, "upper_c": 300, "coefficient_per_k": 0.000022}
+    ],
+    "interpretation": "mean_CTE_over_each_published_interval",
+    "strain_interpolation_hypothesis": "piecewise_linear_between_interval_endpoint_strains",
+    "extrapolation_allowed": false,
+    "heat_treatment_state_explicitly_identified_for_CTE": false,
+    "supplier_confirmation_required_before_solver_integration": true
+  },
+  "missing_for_qualification": [
+    "named_provider_and_machine_serial",
+    "licensed_parameter_set_and_scan_strategy",
+    "measured_absorptivity_and_beam_profile",
+    "temperature_dependent_thermal_and_mechanical_cards",
+    "powder_lot_build_orientation_and_supports",
+    "qualified_shrinkage_and_machining_allowances",
+    "hot_coupons_and_correlated_process_validation"
+  ],
+  "existing_AlSi10Mg_Sapphire_results_transferred": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,83 @@
+{
+  "$comment": "F49 tente une correction topologique strictement interne des candidats F47. La peau extérieure F43 reste une entrée privée verrouillée octet par octet. Un échec d'un seul contrôle BOP/STEP/Gmsh maintient toutes les autorisations physiques fermées.",
+  "schema_version": "1.0.0",
+  "phase": "F49",
+  "status": "repair_attempted_fail_closed",
+  "authority": {
+    "outer_skin_F43_private": {
+      "sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+      "repository_policy": "private_local_only_scan_derived_geometry",
+      "absolute_scale_certified": false,
+      "same_exact_source_bytes_required_for_2V_and_4V": true
+    },
+    "F47_internal_contract": {
+      "path": "twins/reference-917-engine/internal-brep-contract-f47.json",
+      "sha256": "cdf1c54c038994d12ba1e6d726746240a270e1d1683ffe5409db27bc4ea5693e"
+    },
+    "F48_private_STEP_diagnostic": {
+      "path": "twins/reference-917-engine/evidence/f48-mesh-diagnostic/diagnostic-report.json",
+      "sha256": "71a9d58b3990ae54ad4e2780861c6c9fa1737230e520c2a3eddf8bb2164d7f3e"
+    }
+  },
+  "geometry_lock": {
+    "outer_skin_surface_edit_allowed": false,
+    "global_healing_or_sewing_allowed": false,
+    "anisotropic_scale_allowed": false,
+    "ellipse_or_oval_primitive_allowed": false,
+    "global_proxy_allowed": false,
+    "functional_circular_features_allowed": [
+      "bore",
+      "seat",
+      "throat",
+      "guide",
+      "spark_plug_bore",
+      "circular_port",
+      "oil_gallery"
+    ],
+    "maximum_outer_skin_displacement_scan_units": 0.0
+  },
+  "acceptance": {
+    "STEP_round_trip_required": true,
+    "exact_BRepCheck_required": true,
+    "one_solid_one_shell_required": true,
+    "free_edge_count_required": 0,
+    "nonmanifold_edge_count_required": 0,
+    "BOPAlgo_fault_count_required": 0,
+    "Gmsh_3D_required": true,
+    "Gmsh_inverted_tetrahedra_required": 0,
+    "Gmsh_minSICN_strictly_above": 0.0,
+    "outer_bbox_maximum_coordinate_delta_scan_units": 0.0,
+    "minimum_wall_target_mm_if_scan_unit_is_mm": 1.5,
+    "exhaustive_wall_proof_required": true
+  },
+  "fail_fast_order": [
+    "outer_source_hash",
+    "STEP_round_trip",
+    "BRepCheck_and_manifold",
+    "BOPAlgo_zero_fault",
+    "Gmsh_3D",
+    "outer_face_signature_and_skin_distance",
+    "wall_and_ligament_audit",
+    "physical_validation"
+  ],
+  "oil_policy": {
+    "separate_from_gas": true,
+    "unchanged_from_F47": true,
+    "liquid_coolant_jacket": false,
+    "pressure_and_drainback_validated": false
+  },
+  "release_gates": {
+    "2V_BOP_zero": false,
+    "4V_BOP_zero": false,
+    "2V_Gmsh_3D": false,
+    "4V_Gmsh_3D": false,
+    "outer_skin_equivalence_complete": false,
+    "minimum_wall_1_5_mm_verified": false,
+    "oil_pressure_and_drainback_validated": false,
+    "thermal_validated": false,
+    "structural_validated": false,
+    "fatigue_validated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

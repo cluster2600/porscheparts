@@ -1,0 +1,113 @@
+{
+  "classification": "planned_field_and_patch_mapping_not_a_solver_deck_not_a_CFD_run",
+  "execution_claimed": false,
+  "field_mapping": {
+    "h_gas_w_m2_k_plus_temperature_k": {
+      "allowed_with_direct_flux": false,
+      "destination": "future_conjugate_wall_Robin_condition",
+      "equation": "q_into_solid=h_gas*(T_gas-T_solid_local)"
+    },
+    "pressure_pa_abs": {
+      "boundary_condition": false,
+      "destination": "volume_averaged_cylinder_pressure_comparison_target",
+      "warning": "Imposer la pression 0D sur la chambre supprimerait la prediction CFD."
+    },
+    "temperature_k": {
+      "boundary_condition": false,
+      "destination": "volume_averaged_cylinder_temperature_comparison_target"
+    },
+    "wall_heat_flux_w_m2": {
+      "allowed_with_Robin_condition": false,
+      "destination": "future_prescribed_wall_flux_sensitivity_only",
+      "positive_direction": "gas_to_solid"
+    }
+  },
+  "geometry_loaded": false,
+  "load_tables": {
+    "2v": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-2v-load-envelope.csv",
+    "4v": "twins/reference-917-engine/evidence/f47-cae-loads/envelopes/f47-4v-load-envelope.csv"
+  },
+  "patch_templates": [
+    {
+      "intended_use": "p_and_T_comparison_target_only",
+      "required_type": "cell_zone",
+      "resolved_geometry_patch": null,
+      "semantic_name": "cylinder_gas_zone",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    },
+    {
+      "intended_use": "Robin_h_Tgas_or_direct_qwall",
+      "required_type": "wall",
+      "resolved_geometry_patch": null,
+      "semantic_name": "combustion_chamber_wall",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    },
+    {
+      "intended_use": "Robin_h_Tgas_or_direct_qwall",
+      "required_type": "moving_wall",
+      "resolved_geometry_patch": null,
+      "semantic_name": "piston_crown_wall",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    },
+    {
+      "intended_use": "motion_and_thermal_mapping_pending",
+      "required_type": "moving_wall",
+      "resolved_geometry_patch": null,
+      "semantic_name": "intake_valve_faces",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    },
+    {
+      "intended_use": "motion_and_thermal_mapping_pending",
+      "required_type": "moving_wall",
+      "resolved_geometry_patch": null,
+      "semantic_name": "exhaust_valve_faces",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    },
+    {
+      "intended_use": "plenum_boundary_from_F46_hypothesis_only",
+      "required_type": "patch",
+      "resolved_geometry_patch": null,
+      "semantic_name": "intake_port_boundary",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    },
+    {
+      "intended_use": "plenum_boundary_from_F46_hypothesis_only",
+      "required_type": "patch",
+      "resolved_geometry_patch": null,
+      "semantic_name": "exhaust_port_boundary",
+      "status": "blocked_no_sealed_variant_fluid_domain"
+    }
+  ],
+  "phase": "F47",
+  "release_gates": {
+    "CHT_completed": false,
+    "CalculiX_pressure_analysis_completed": false,
+    "CalculiX_thermal_analysis_completed": false,
+    "Cd_correlated_on_flow_bench": false,
+    "cross_model_acceptance_passed": false,
+    "cylinder_pressure_correlated": false,
+    "engine_start_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "patch_mapping_verified_on_geometry": false,
+    "sealed_2v_fluid_domain_available": false,
+    "sealed_4v_fluid_domain_available": false,
+    "three_dimensional_CFD_completed": false,
+    "wall_heat_transfer_correlated": false
+  },
+  "schema_version": "1.0.0",
+  "solver_authority_binding": {
+    "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+    "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482"
+  },
+  "solver_roles": [
+    "AATE_OpenFOAM_ICengines",
+    "historical_engineFoam_counter_solver"
+  ],
+  "source_case_policy": {
+    "available_case_count": 36,
+    "pointwise_envelope_as_solver_history_allowed": false,
+    "required": "choose_one_complete_F46_trace_and_preserve_case_id"
+  },
+  "time_mapping": "t_s=theta_deg/(6*N_rpm)"
+}

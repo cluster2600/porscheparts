@@ -36,6 +36,13 @@ GHCR_REVOKED_DIGESTS = frozenset(
         "sha256:f8a17661a23f3c83d89139cdc0a0b9f29d8553523de166a86e9e453e420d9a00",
     }
 )
+F46_REPOSITORY = f"{GHCR_USERNAME}/3dprinting993-cfd-cae-f46"
+F46_IMAGE_RE = re.compile(
+    rf"ghcr\.io/{re.escape(F46_REPOSITORY)}@(?P<digest>sha256:[0-9a-f]{{64}})"
+)
+F46_ATTEMPT_LABEL_RE = re.compile(
+    r"3dprinting993-f46-cfd-cae-[0-9a-f]{20}"
+)
 GHCR_TOKEN_URL = (
     "https://ghcr.io/token?service=ghcr.io&scope="
     + urllib.parse.quote(f"repository:{GHCR_REPOSITORY}:pull", safe="")
@@ -254,6 +261,87 @@ def registry_auth_check(username: str, password: str) -> None:
     )
     if headers.get("docker-content-digest") != GHCR_DIGEST:
         raise SafeError("GHCR returned an unexpected image digest")
+
+
+def f46_registry_proof(username: str, password: str, immutable_ref: str) -> dict:
+    """Verify one fixed-repository F46 index and its sole linux/amd64 child."""
+    match = F46_IMAGE_RE.fullmatch(immutable_ref)
+    if match is None:
+        raise SafeError("F46 image must use the fixed repository and a complete digest")
+    index_digest = match.group("digest")
+    token_url = (
+        "https://ghcr.io/token?service=ghcr.io&scope="
+        + urllib.parse.quote(f"repository:{F46_REPOSITORY}:pull", safe="")
+    )
+    basic = base64.b64encode(f"{username}:{password}".encode("utf-8")).decode(
+        "ascii"
+    )
+    token_result, _ = request(
+        token_url,
+        headers={"Authorization": f"Basic {basic}"},
+        source="GHCR F46 token service",
+    )
+    registry_token = token_result.get("token", token_result.get("access_token"))
+    if not isinstance(registry_token, str) or not registry_token:
+        raise SafeError("GHCR F46 token service did not grant pull access")
+    index, index_headers = request(
+        f"https://ghcr.io/v2/{F46_REPOSITORY}/manifests/{index_digest}",
+        headers={
+            "Authorization": f"Bearer {registry_token}",
+            "Accept": (
+                "application/vnd.oci.image.index.v1+json,"
+                "application/vnd.docker.distribution.manifest.list.v2+json"
+            ),
+        },
+        source="GHCR F46 index",
+    )
+    if index_headers.get("docker-content-digest") != index_digest:
+        raise SafeError("GHCR F46 returned an unexpected index digest")
+    manifests = index.get("manifests")
+    if not isinstance(manifests, list):
+        raise SafeError("GHCR F46 reference is not a multi-platform index")
+    matching = [
+        item
+        for item in manifests
+        if isinstance(item, dict)
+        and isinstance(item.get("platform"), dict)
+        and item["platform"].get("os") == "linux"
+        and item["platform"].get("architecture") == "amd64"
+        and item["platform"].get("variant") in (None, "")
+    ]
+    if len(matching) != 1:
+        raise SafeError("GHCR F46 must expose exactly one linux/amd64 manifest")
+    platform_digest = matching[0].get("digest")
+    if (
+        not isinstance(platform_digest, str)
+        or re.fullmatch(r"sha256:[0-9a-f]{64}", platform_digest) is None
+    ):
+        raise SafeError("GHCR F46 linux/amd64 platform digest is invalid")
+    _, platform_headers = request(
+        f"https://ghcr.io/v2/{F46_REPOSITORY}/manifests/{platform_digest}",
+        headers={
+            "Authorization": f"Bearer {registry_token}",
+            "Accept": (
+                "application/vnd.oci.image.manifest.v1+json,"
+                "application/vnd.docker.distribution.manifest.v2+json"
+            ),
+        },
+        source="GHCR F46 linux/amd64 manifest",
+    )
+    if platform_headers.get("docker-content-digest") != platform_digest:
+        raise SafeError("GHCR F46 returned an unexpected platform digest")
+    return {
+        "classification": "production_wrapper_evidence",
+        "immutable_ref": immutable_ref,
+        "index_digest": index_digest,
+        "platform_manifest_digest": platform_digest,
+        "os": "linux",
+        "architecture": "amd64",
+        "registry_digest_verified": True,
+        "platform_manifest_verified": True,
+        "runtime_smoke_verified": False,
+        "scope": "registry_and_platform_only_runtime_smoke_still_required",
+    }
 
 
 def validate_qualification_evidence(path: Path) -> tuple[dict, bytes]:
@@ -596,11 +684,30 @@ def attest_runtime(
 def run_vast(operation: list[str]) -> int:
     if len(operation) == 2 and operation[0] == "launch-vast-simready-heavy" and operation[1].isdigit():
         vast_operation = ["launch-simready-heavy", operation[1]]
+    elif (
+        len(operation) == 6
+        and operation[0] == "launch-vast-f46"
+        and operation[1].isdigit()
+        and F46_IMAGE_RE.fullmatch(operation[2]) is not None
+        and operation[3].isdigit()
+        and operation[4] == "--attempt-label"
+        and F46_ATTEMPT_LABEL_RE.fullmatch(operation[5]) is not None
+    ):
+        vast_operation = [
+            "launch-f46",
+            operation[1],
+            operation[2],
+            operation[3],
+            operation[4],
+            operation[5],
+        ]
     else:
         raise SafeError(
             "usage: openbao-ghcr --check|--auth-check|"
             "attest-simready-runtime <qualification.json> <new-output.json> <job_id> <nonce>|"
-            "launch-vast-simready-heavy <offer_id>"
+            "verify-f46 <image@digest>|launch-vast-simready-heavy <offer_id>|"
+            "launch-vast-f46 <offer_id> <image@digest> <deadline_epoch> "
+            "--attempt-label <label>"
         )
     if not VAST_WRAPPER.is_file() or not os.access(VAST_WRAPPER, os.X_OK):
         raise SafeError(f"missing approved Vast.ai wrapper: {VAST_WRAPPER}")
@@ -634,6 +741,17 @@ def main() -> int:
                 )
                 print("GHCR public runtime attestation written")
                 return 0
+            if len(operation) == 2 and operation[0] == "verify-f46":
+                print(
+                    json.dumps(
+                        f46_registry_proof(username, password, operation[1]),
+                        indent=2,
+                        sort_keys=True,
+                    )
+                )
+                return 0
+            if len(operation) == 6 and operation[0] == "launch-vast-f46":
+                f46_registry_proof(username, password, operation[2])
             return run_vast(operation)
         finally:
             revoke_token(session_token)

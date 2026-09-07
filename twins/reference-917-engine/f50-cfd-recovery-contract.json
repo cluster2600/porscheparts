@@ -1,0 +1,74 @@
+{
+  "schema_version": "porsche-917-f50-cfd-recovery-contract/v1",
+  "$comment": "Diagnostic et contrôle de débit CFD sur les domaines gaz F48 inchangés. Aucune géométrie produit, CHT ni autorisation de fabrication.",
+  "phase": "F50-CFD-recovery",
+  "authorities": {
+    "F48_domain_report": "twins/reference-917-engine/evidence/f48-cfd-domains/f48-cfd-domain-report.json",
+    "F49_CFD_report": "twins/reference-917-engine/evidence/f49-cfd-cht/f49-cfd-cht-report.json",
+    "F49_boundary_condition_contract": "twins/reference-917-engine/f49-cfd-cht-contract.json"
+  },
+  "geometry_policy": {
+    "authority": "F48 native analytic gas domains, exact source-mesh SHA checked",
+    "outer_geometry_imported_or_modified": false,
+    "inner_geometry_modified": false,
+    "ellipse_or_oval_primitive_or_proxy_allowed": false,
+    "raw_scan_or_product_CAD_publishable": false
+  },
+  "attempts": {
+    "F49_transient_compressible": {
+      "solver": "foamRun -solver fluid",
+      "time_discretization": "transient",
+      "energy_equation": true,
+      "role": "failed reference formulation; diagnose time-step collapse"
+    },
+    "F50_steady_compressible": {
+      "contract": "twins/reference-917-engine/f50-steady-cfd-contract.json",
+      "solver": "foamRun -solver fluid",
+      "time_discretization": "steadyState",
+      "energy_equation": true,
+      "role": "independent official OpenFOAM formulation; fail closed on divergence"
+    },
+    "F50_steady_incompressible": {
+      "solver": "foamRun -solver incompressibleFluid",
+      "time_discretization": "steadyState",
+      "turbulence_model": "RANS kOmegaSST",
+      "energy_equation": false,
+      "role": "independent conductance and mesh-convergence control only",
+      "physical_comparability": {
+        "pressure_difference_pa": 10000.0,
+        "density": "rho = p_source_abs / (287.05 * T_source)",
+        "kinematic_pressure_difference": "delta_p_kinematic = 10000 / rho",
+        "dynamic_viscosity_pa_s": 1.82e-5
+      }
+    }
+  },
+  "matrix": {
+    "variants": ["2V", "4V"],
+    "levels": ["coarse", "medium", "fine"],
+    "screens": ["intake", "exhaust"],
+    "case_count": 12
+  },
+  "strict_gates": {
+    "openfoam_volume_relative_difference_from_F48_at_most": 0.01,
+    "mass_imbalance_percent_at_most": 1.0,
+    "sink_mass_flow_tail_spread_percent_at_most": 1.0,
+    "residual_targets": {"p": 1e-6, "U": 1e-5, "k": 1e-5, "omega": 1e-5},
+    "energy_imbalance_percent_at_most": 1.0,
+    "three_grid_GCI": {
+      "safety_factor": 1.25,
+      "observed_order_minimum": 0.5,
+      "observed_order_maximum": 10.0,
+      "fine_grid_GCI_percent_at_most": 5.0,
+      "asymptotic_ratio_minimum": 0.9,
+      "asymptotic_ratio_maximum": 1.1
+    },
+    "cross_method_difference_percent_at_most": 5.0
+  },
+  "fail_closed": {
+    "incompressible_flow_can_open_energy_gate": false,
+    "unconverged_F49_value_can_validate_cross_method_agreement": false,
+    "missing_solid_domain_can_open_CHT_gate": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}

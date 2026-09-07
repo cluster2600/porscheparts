@@ -44,7 +44,8 @@ test "$(stat -c '%u:%g:%a' "${NO_AUTO_TMUX}")" = "0:0:600" || {
 
 HOST_KEY_MARKER=/run/sshd/simready-runtime-host-keys.ready
 if [ ! -e "${HOST_KEY_MARKER}" ] && [ ! -L "${HOST_KEY_MARKER}" ]; then
-    /usr/sbin/sshd -T >/dev/null
+    # The marketplace may replace /usr/sbin/sshd; call our initializer itself.
+    /usr/local/bin/simready-sshd-runtime-wrapper -T >/dev/null
 fi
 test -f "${HOST_KEY_MARKER}" && test ! -L "${HOST_KEY_MARKER}" || {
     echo "simready runtime host-key marker rejected" >&2

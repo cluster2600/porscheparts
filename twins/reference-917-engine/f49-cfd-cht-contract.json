@@ -1,0 +1,139 @@
+{
+  "schema_version": "porsche-917-f49-cfd-cht/v1",
+  "$comment": "Contrat de criblage CFD statique, pas une validation moteur ni une CHT de culasse.",
+  "phase": "F49",
+  "authority": {
+    "base_commit": "8d93821b1baa22bd6fdfffd7ed64fa819feecea5",
+    "F48_domain_contract": {
+      "path": "twins/reference-917-engine/cfd-domain-contract-f48.json",
+      "sha256": "a6beaee5fcd0f6ab0032a29e8082d1e81eec22d756356e61a9816074788f86e0"
+    },
+    "F48_public_mesh_report": {
+      "path": "twins/reference-917-engine/evidence/f48-cfd-domains/f48-cfd-domain-report.json",
+      "sha256": "bb2662f5bce3de0358dddb2efee9062f2c2d57e341bc976aaadb860955e7aa17"
+    },
+    "F47_load_contract": {
+      "path": "twins/reference-917-engine/cae-load-transfer-f47.json",
+      "sha256": "593978c5ddd0387206acb15c594874e9c91188466fc06f24482deac2520984d5"
+    },
+    "F47_load_report": {
+      "path": "twins/reference-917-engine/evidence/f47-cae-loads/load-report.json",
+      "sha256": "42369017b862fed8acdebb6f9ae66a8549eba45341899fd779e61f98d4f4b1ae"
+    },
+    "F47_patch_mapping": {
+      "path": "twins/reference-917-engine/evidence/f47-cae-loads/mappings/openfoam-aate-enginefoam-patches.json",
+      "sha256": "77c71c69f38e691a9acd2bb2f522d9adb7d4e127ad6ecb708c245a7638290cf4"
+    },
+    "F43_comparable_execution": {
+      "path": "twins/reference-917-engine/f43-g3-g5-comparable-execution.json",
+      "sha256": "b433eb775b1cf45938ebd6df84dc160e1718b73b7fc94d54dc8d2d13fe50c2e6"
+    },
+    "F46_solver_authority": {
+      "path": "twins/reference-917-engine/engine-solver-authority-f46.json",
+      "sha256": "f32953481ae75414425c8bd31f196708b502a3619cb96fdffd505628bde90482"
+    },
+    "F47_local_image_evidence": {
+      "path": "twins/reference-917-engine/evidence/f47-cfd-cae-image/kali-local-build.json",
+      "sha256": "457b133c4a8a2187ffb0c12696694a35187da7175cdfc8aec47032d989cfeee4"
+    }
+  },
+  "geometry_policy": {
+    "source": "F48 analytic gas domains only",
+    "variants": ["2V", "4V"],
+    "external_F43_skin_imported_or_modified": false,
+    "solid_head_present": false,
+    "ellipse_or_oval_primitive_or_envelope_allowed": false,
+    "scale_assumption": "1 scan unit = 1 mm, inherited and unverified",
+    "patches": ["intake", "exhaust", "valve", "chamber", "deck", "bore", "walls"]
+  },
+  "mesh_matrix": {
+    "levels": ["coarse", "medium", "fine"],
+    "source_format": "Gmsh 4.1 tetrahedral MSH",
+    "conversion": ["gmsh -format msh2", "gmshToFoam", "transformPoints scale 0.001"],
+    "openfoam_mesh_gate": {
+      "checkMesh_default_must_pass": true,
+      "cell_volume_relative_difference_from_F48_at_most": 0.01,
+      "named_patches_exact": true
+    }
+  },
+  "openfoam": {
+    "version": "OpenFOAM Foundation 14",
+    "executable": "foamRun -solver fluid",
+    "model": "transient compressible RANS kOmegaSST, perfect-gas air, constant Cp/mu/Pr",
+    "end_time_s": 0.005,
+    "initial_time_step_s": 1e-6,
+    "maximum_Courant_number": 0.5,
+    "residual_targets": {"p": 1e-6, "U": 1e-5, "k": 1e-5, "omega": 1e-5, "h": 1e-5},
+    "screens": {
+      "intake": {
+        "source_patch": "intake",
+        "sink_patch": "deck",
+        "sealed_patch": "exhaust",
+        "source_total_pressure_pa_abs": 283700.0,
+        "sink_static_pressure_pa_abs": 273700.0,
+        "source_temperature_k": 325.0,
+        "imposed_pressure_difference_pa": 10000.0,
+        "pressure_difference_role": "unmeasured fixed screen differential, not a predicted loss"
+      },
+      "exhaust": {
+        "source_patch": "deck",
+        "sink_patch": "exhaust",
+        "sealed_patch": "intake",
+        "source_total_pressure_pa_abs": 306000.0,
+        "sink_static_pressure_pa_abs": 296000.0,
+        "source_temperature_k": 950.0,
+        "imposed_pressure_difference_pa": 10000.0,
+        "pressure_difference_role": "unmeasured fixed screen differential, not a predicted loss"
+      }
+    },
+    "common_boundary_conditions": {
+      "wall_temperature_k": 475.0,
+      "wall_temperature_role": "F46 research hypothesis, unmeasured",
+      "turbulent_kinetic_energy_m2_s2": 1.0,
+      "specific_dissipation_rate_s-1": 500.0,
+      "wall_roughness_m": 0.0,
+      "temperature_constraint_k": [250.0, 1200.0],
+      "temperature_constraint_role": "explicit numerical guard; any activation prevents a convergence claim"
+    }
+  },
+  "comparison_gates": {
+    "mass_imbalance_percent_at_most": 1.0,
+    "approximate_energy_imbalance_percent_at_most": 1.0,
+    "coarse_to_medium_quantity_change_percent_at_most": 5.0,
+    "three_grid_solution_available": false,
+    "cross_method_difference_percent_at_most": 5.0,
+    "cross_method_solution_available": false
+  },
+  "aate_icengines": {
+    "framework_revision": "c0f75f953d67cd325d28d1300672d14288f22934",
+    "installed_preprocessors": ["engineMeshConfig", "moveSurfaces", "predictRemeshInstants", "reorderPatchesAndFaces"],
+    "exact_ICEEngineFoam_executable_found": false,
+    "engine_case_execution_ready": false,
+    "blockers": [
+      "F48 provides a static gas volume, not separate moving piston and valve surfaces",
+      "no measured crank-angle valve-lift law",
+      "no measured piston motion and connecting-rod geometry bound to the F48 domain",
+      "no dynamic-mesh topology or engineDict validated against this domain"
+    ],
+    "permitted_execution": "binary/version smoke and fail-closed readiness audit only",
+    "simulation_claim_permitted": false
+  },
+  "F47_envelope_use": {
+    "role": "post-run comparison bounds only",
+    "used_as_CFD_boundary_condition": false,
+    "reason": "a pointwise min/max envelope is not a realizable engine trajectory"
+  },
+  "release_gates": {
+    "OpenFOAM_static_screen_executed": false,
+    "OpenFOAM_mesh_gate_pass": false,
+    "OpenFOAM_solution_converged": false,
+    "AATE_dynamic_engine_case_executed": false,
+    "three_grid_convergence_pass": false,
+    "cross_method_agreement_pass": false,
+    "conjugate_CHT_executed": false,
+    "thermal_CHT_validated": false,
+    "fitment_validated": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}

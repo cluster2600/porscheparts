@@ -1,0 +1,228 @@
+{
+  "Gmsh_policy": {
+    "minSICN_proved": false,
+    "new_F49_head_mesh_created": false,
+    "reason": "all_roundtrip_candidates_failed_the_BOPAlgo_zero_fault_precondition",
+    "zero_inverted_tetrahedra_proved": false
+  },
+  "authority": {
+    "F43_private_outer_skin": {
+      "absolute_scale_certified": false,
+      "fitment_OEM_certified": false,
+      "repository_policy": "private_local_only_scan_derived_geometry",
+      "sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24"
+    },
+    "F47_public_report": {
+      "path": "twins/reference-917-engine/evidence/f47-internal-brep/f47-internal-brep-public-report.json",
+      "sha256": "73fde591801deee697a87a259374884ba06f7ec1f4acdb1f2ed678bf62d4b372"
+    },
+    "F48_diagnostic": {
+      "path": "twins/reference-917-engine/evidence/f48-mesh-diagnostic/diagnostic-report.json",
+      "sha256": "71a9d58b3990ae54ad4e2780861c6c9fa1737230e520c2a3eddf8bb2164d7f3e"
+    },
+    "contract": {
+      "path": "twins/reference-917-engine/internal-solid-repair-f49.json",
+      "sha256": "997b8ff9333803e36adeca0ec370d43a5c73c5b34f33b884f911896d18c975d7"
+    }
+  },
+  "images": {
+    "classification": "annotated_F47_scan_derived_visual_evidence_of_rejected_candidates_not_new_F49_geometry",
+    "four_views": {
+      "path": "twins/reference-917-engine/evidence/f49-solid/917-head-f49-scan-derived-exterior-four-views.png",
+      "sha256": "ce643978a51e7800a647d165dc2eef602f6d3af04ac7bb438210e44382760c13"
+    },
+    "sections": {
+      "path": "twins/reference-917-engine/evidence/f49-solid/917-head-f49-2v-4v-sections.png",
+      "sha256": "cae09b938d7daf7f96de003a7cfd479b5551ddc9ad691858eef6f8cfc7021e7f"
+    }
+  },
+  "locked_outer_skin": {
+    "anisotropic_scale_used": false,
+    "candidate_bbox_coordinate_max_delta_scan_units": 5.684341886080802e-14,
+    "candidate_sampled_skin_max_distance_scan_units": 1.5943977756741603e-14,
+    "ellipse_or_oval_primitive_used": false,
+    "external_face_signature_equal_outside_openings": false,
+    "external_face_signature_reason_false": "not_completed; exact bbox and sparse samples do not prove complete external-face identity",
+    "functional_circular_features_only": true,
+    "global_proxy_used": false,
+    "same_exact_F43_source_bytes_loaded": true,
+    "sample_classification": "sparse_symmetric_OCCT_point_to_trimmed_BRep_samples_not_continuous_Hausdorff",
+    "source_bbox_scan_units": [
+      -60.37284990888845,
+      -88.87533003668999,
+      -1e-07,
+      59.144856789962,
+      116.6249996356955,
+      82.0000001
+    ],
+    "surface_edit_operation_used": false
+  },
+  "oil_core": {
+    "2V": {
+      "BOPAlgo_fault_count": 0,
+      "BOPAlgo_pass": true,
+      "exact_BRepCheck_valid": true,
+      "free_edge_count": 0,
+      "private_STEP_sha256": "acc26fce48be0bc02b5079130e2fc580f4e694171a35b04950a1e43fc9f967ac",
+      "shell_count": 1,
+      "solid_count": 1
+    },
+    "4V": {
+      "BOPAlgo_fault_count": 0,
+      "BOPAlgo_pass": true,
+      "exact_BRepCheck_valid": true,
+      "free_edge_count": 0,
+      "private_STEP_sha256": "953745be195f92e0e95cfe6a34403ede05526c5c6aecd8ffa010ec1a412a6b98",
+      "shell_count": 1,
+      "solid_count": 1
+    },
+    "liquid_coolant_jacket": false,
+    "pressure_and_drainback_validated": false,
+    "separate_from_gas": true,
+    "unchanged_from_F47": true
+  },
+  "phase": "F49",
+  "release_gates": {
+    "2V_BOPAlgo_zero": false,
+    "2V_Gmsh_3D": false,
+    "2V_exact_BRepCheck": true,
+    "4V_BOPAlgo_zero": false,
+    "4V_Gmsh_3D": false,
+    "4V_exact_BRepCheck": true,
+    "anti_ellipse_oval_and_global_proxy_gate": true,
+    "complete_outer_face_identity_proved": false,
+    "engine_start_authorized": false,
+    "fatigue_validated": false,
+    "fitment_OEM_certified": false,
+    "metal_print_authorized": false,
+    "minimum_wall_1_5_mm_verified": false,
+    "no_trapped_powder_verified": false,
+    "oil_core_BOPAlgo_clean_both_variants": true,
+    "same_bbox_screen_passed": true,
+    "same_locked_F43_source_used": true,
+    "structural_validated": false,
+    "thermal_validated": false
+  },
+  "repair_attempts": {
+    "2V": {
+      "accepted": false,
+      "baseline_F47": {
+        "BOPAlgo_fault_count": 8,
+        "BOPAlgo_status_counts": {
+          "BOPAlgo_InvalidCurveOnSurface": 8
+        },
+        "Gmsh_3D_pass": false,
+        "exact_BRepCheck_valid": true,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0,
+        "private_STEP_sha256": "ca5ad5b5cc7b168946cb93d49adb7409e9e3ac4853b808e86ed8ad5f3477ea0b",
+        "shell_count": 1,
+        "solid_count": 1
+      },
+      "bounded_pcurve_reprojection_surfacecurve_mode_1": {
+        "pre_export_BOPAlgo_fault_count": 0,
+        "private_audit_receipt_sha256": "9987e8f97935b905bf7b1dcb256692ee957b595ca69495f3362286b7816b210f",
+        "private_rejected_STEP_sha256": "1e3c3ba8b07eb49cb70986dcb1853d0b8cdc2d6a57910fe02b8369bcbe14aed4",
+        "roundtrip_BOPAlgo_fault_count": 8,
+        "roundtrip_Gmsh_3D_attempted": false,
+        "roundtrip_Gmsh_reason_not_attempted": "fail_fast_BOPAlgo_nonzero",
+        "roundtrip_exact_BRepCheck_valid": true,
+        "same_3D_surfaces_and_curves_before_export": true
+      },
+      "individual_boolean_rebuild": {
+        "BOPAlgo_fault_count": 8,
+        "exact_BRepCheck_valid": true,
+        "faulty_edge_count_private": 8,
+        "faulty_face_count_private": 5,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0,
+        "private_audit_receipt_sha256": "045436309fc723c3e0f48093fd9cc132db3473b8681ab85aa6f5e937b95c4d53",
+        "private_indices_and_coordinates_published": false,
+        "private_rejected_STEP_sha256": "e52fa3b4469de44b9aedc95eb08ad257212e9dc462b55566e243cb67b3b9a9bb",
+        "shell_count": 1,
+        "solid_count": 1
+      },
+      "sequential_boolean_rebuild": {
+        "BOPAlgo_fault_count": 8,
+        "exact_BRepCheck_valid": true,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0,
+        "private_audit_receipt_sha256": "ab74403dfffa096c3a2e1514f679ea68520ecfe9c1f6257697ea61a9c1804469",
+        "private_rejected_STEP_sha256": "2362f635cf62a4414466ff807d2fbbb9b744f4a6ab1e3cb2deb118d59f71caa4",
+        "shell_count": 1,
+        "solid_count": 1
+      },
+      "surfacecurve_mode_0": {
+        "faulty_edge_count_private": 69,
+        "faulty_face_count_private": 61,
+        "private_audit_receipt_sha256": "ea5bdb9e5aad4c99db04eef07547716820664f9614c84a895e42e2f408dab984",
+        "private_rejected_STEP_sha256": "4675c4dfc7074159ff9a0635a12e105ccbc97ade7c483c1cdf96abba35ffa90a",
+        "roundtrip_BOPAlgo_fault_count": 131,
+        "roundtrip_Gmsh_3D_attempted": false,
+        "roundtrip_Gmsh_reason_not_attempted": "fail_fast_BOPAlgo_nonzero",
+        "roundtrip_exact_BRepCheck_valid": true
+      }
+    },
+    "4V": {
+      "accepted": false,
+      "baseline_F47": {
+        "BOPAlgo_fault_count": 32,
+        "BOPAlgo_status_counts": {
+          "BOPAlgo_InvalidCurveOnSurface": 32
+        },
+        "Gmsh_3D_pass": false,
+        "exact_BRepCheck_valid": true,
+        "free_edge_count": 0,
+        "nonmanifold_edge_count": 0,
+        "private_STEP_sha256": "196e9b83629b0f5ecacc822153766fcf388da557a6fc30e50f7141f45479c6c9",
+        "shell_count": 1,
+        "solid_count": 1
+      },
+      "bounded_pcurve_reprojection_surfacecurve_mode_1": {
+        "accepted": false,
+        "pre_export_BOPAlgo_fault_count": 0,
+        "private_audit_receipt_sha256": "28eb5082d851e9a19c02f1bbb3419fd815f1900b99c3b9034124fe06fab0524c",
+        "private_rejected_STEP_sha256": "0f2d2974f339fc56170ed96a133bf87d142e12bfbfc3ae09fa6f5db2d14c0a48",
+        "roundtrip_BOPAlgo_fault_count": 32,
+        "roundtrip_Gmsh_3D_attempted": false,
+        "roundtrip_Gmsh_reason_not_attempted": "fail_fast_BOPAlgo_nonzero",
+        "roundtrip_exact_BRepCheck_valid": true,
+        "same_3D_surfaces_and_curves_before_export": true
+      }
+    },
+    "rejected_alternatives": {
+      "circular_tangent_sweep_prototype": {
+        "reason": "27_BOP_faults_including_21_self_intersections_and_nonmanifold_topology",
+        "used": false
+      },
+      "global_NURBS_conversion": {
+        "reason": "introduced_22_BOP_faults_and_changed_gas_core_volume_and_area",
+        "used": false
+      }
+    }
+  },
+  "repository_policy": {
+    "private_STEP_STL_BREP_MSH_OBJ_committed": false,
+    "private_fault_indices_or_coordinates_committed": false,
+    "published": [
+      "contract",
+      "sanitized_metrics",
+      "hashes",
+      "annotated_images",
+      "tests",
+      "documentation"
+    ],
+    "raw_scan_committed": false
+  },
+  "schema": "porsche-917-f49-internal-solid-repair-public-report/v1",
+  "scope": "non_deforming_internal_topology_repair_attempt_on_F47_2V_and_4V_heads",
+  "verdict": "FAIL_CLOSED_NO_ACCEPTED_F49_SOLID_NOT_CAE_READY_NOT_PRINTABLE",
+  "wall_and_ligament_audit": {
+    "2V_minimum_nominal_ligament_scan_units": 1.5,
+    "4V_minimum_nominal_ligament_scan_units": 3.1598374141623005,
+    "full_skin_to_void_map_completed": false,
+    "minimum_wall_1_5_mm_verified": false,
+    "reason_false": "nominal functional ligaments are not an exhaustive wall-thickness proof and absolute scan scale is uncertified",
+    "target_mm_if_one_scan_unit_equals_one_mm": 1.5
+  }
+}

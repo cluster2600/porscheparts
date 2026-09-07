@@ -1,0 +1,183 @@
+{
+  "$comment": "F47 construit deux candidats internes 2V/4V dans la meme peau F43. Toutes les cotes non issues de F45 restent des hypotheses de recherche; aucune interface Porsche 917 ni fabrication n'est liberee.",
+  "schema_version": "1.0.0",
+  "phase": "F47",
+  "status": "internal_BRep_candidates_requested_all_release_gates_closed",
+  "authority": {
+    "head_architecture_f45": {
+      "path": "twins/reference-917-engine/head-architecture-authority-f45.json",
+      "sha256": "ef4355e0dc83df1bf7335d53051f35ece302c9840942f35fbb9bb47340538da3"
+    },
+    "valvetrain_material_f45": {
+      "path": "twins/reference-917-engine/valvetrain-material-screen-f45.json",
+      "sha256": "9d4df959ea9b6ee3bc78a8e62a4ab1ac7d274567c0f6309d0f091e8696118883"
+    },
+    "outer_skin_f43_private": {
+      "sha256": "38f8ed3071005e5f64156d8670b5a755c98599d8702ef030ff132b7a034f0f24",
+      "repository_policy": "private_local_only_scan_derived_geometry",
+      "same_exact_bytes_required_for_2v_and_4v": true,
+      "absolute_scale_certified": false,
+      "scan_unit_interpreted_as_mm_for_candidate_only": true
+    }
+  },
+  "geometry_policy": {
+    "body_and_fins_generated_from_F43_scan_contours_only": true,
+    "global_ellipse_allowed": false,
+    "global_oval_allowed": false,
+    "global_box_allowed": false,
+    "allowed_analytic_primitives": [
+      "functional_circular_cylinder",
+      "boolean_cut",
+      "boolean_fuse"
+    ],
+    "minimum_wall_target_mm": 1.5,
+    "intended_open_boundaries_excluded_from_wall_screen": true
+  },
+  "common_candidate_geometry": {
+    "bore": {
+      "diameter_mm": 90.0,
+      "z_start_mm": -6.0,
+      "z_end_mm": 8.0,
+      "classification": "F45_bore_candidate_scale_and_fitment_not_certified"
+    },
+    "seat_counterbore_depth_mm": 5.0,
+    "seat_counterbore_z_start_mm": 6.0,
+    "throat_z_start_mm": 4.0,
+    "throat_z_end_mm": 22.0,
+    "guide_bore_diameter_mm": 9.0,
+    "guide_bore_z_start_mm": 18.0,
+    "guide_bore_z_end_mm": 84.0,
+    "guide_insert_inner_diameter_mm": 7.1,
+    "guide_insert_length_mm": 35.0,
+    "spark_bore_z_start_mm": -2.0,
+    "spark_bore_z_end_mm": 84.0,
+    "dimension_classification": "F47_research_geometry_hypothesis_not_measured_interface",
+    "oil_domain": {
+      "main_gallery": {
+        "start_xyz_mm": [-70.0, 62.0, 62.0],
+        "end_xyz_mm": [70.0, 62.0, 62.0],
+        "diameter_mm": 6.0
+      },
+      "vertical_cleanout_accesses": [
+        {
+          "xyz_mm": [-35.0, 62.0, 62.0],
+          "z_end_mm": 85.0,
+          "diameter_mm": 7.0
+        },
+        {
+          "xyz_mm": [35.0, 62.0, 62.0],
+          "z_end_mm": 85.0,
+          "diameter_mm": 7.0
+        }
+      ],
+      "closed_jacket": false,
+      "through_open_cleanout": true,
+      "classification": "F47_powder_access_candidate_not_pressure_or_drainback_validated"
+    }
+  },
+  "variants": {
+    "2v": {
+      "variant_id": "917_30_turbo_5374_2v_f47",
+      "spark_plug": {
+        "centre_xy_mm": [30.0, 0.0],
+        "diameter_mm": 10.0,
+        "classification": "F47_packaging_hypothesis_because_F45_2V_has_no_plug_interface"
+      },
+      "valves": [
+        {
+          "id": "intake_1",
+          "role": "intake",
+          "centre_xy_mm": [0.0, 21.5],
+          "head_diameter_mm": 42.0,
+          "seat_envelope_diameter_mm": 44.0,
+          "throat_ratio": 0.86,
+          "port_exit_y_mm": 125.0,
+          "port_exit_z_mm": 42.0
+        },
+        {
+          "id": "exhaust_1",
+          "role": "exhaust",
+          "centre_xy_mm": [0.0, -21.0],
+          "head_diameter_mm": 35.0,
+          "seat_envelope_diameter_mm": 37.0,
+          "throat_ratio": 0.86,
+          "port_exit_y_mm": -98.0,
+          "port_exit_z_mm": 38.0
+        }
+      ],
+      "valve_dimensions_and_centres_classification": "F45_research_hypothesis_not_Porsche_interface",
+      "port_paths_classification": "F47_straight_circular_first_candidate_not_flow_optimized"
+    },
+    "4v": {
+      "variant_id": "917_30_turbo_5374_4v_f47",
+      "spark_plug": {
+        "centre_xy_mm": [0.0, 0.0],
+        "diameter_mm": 10.0,
+        "classification": "F45_research_hypothesis_not_Porsche_interface"
+      },
+      "valves": [
+        {
+          "id": "intake_1",
+          "role": "intake",
+          "centre_xy_mm": [-19.5, 15.5],
+          "head_diameter_mm": 31.5,
+          "seat_envelope_diameter_mm": 33.5,
+          "throat_ratio": 0.86,
+          "port_exit_y_mm": 125.0,
+          "port_exit_z_mm": 42.0
+        },
+        {
+          "id": "intake_2",
+          "role": "intake",
+          "centre_xy_mm": [19.5, 15.5],
+          "head_diameter_mm": 31.5,
+          "seat_envelope_diameter_mm": 33.5,
+          "throat_ratio": 0.86,
+          "port_exit_y_mm": 125.0,
+          "port_exit_z_mm": 42.0
+        },
+        {
+          "id": "exhaust_1",
+          "role": "exhaust",
+          "centre_xy_mm": [-19.5, -19.0],
+          "head_diameter_mm": 26.0,
+          "seat_envelope_diameter_mm": 29.0,
+          "throat_ratio": 0.86,
+          "port_exit_y_mm": -98.0,
+          "port_exit_z_mm": 38.0
+        },
+        {
+          "id": "exhaust_2",
+          "role": "exhaust",
+          "centre_xy_mm": [19.5, -19.0],
+          "head_diameter_mm": 26.0,
+          "seat_envelope_diameter_mm": 29.0,
+          "throat_ratio": 0.86,
+          "port_exit_y_mm": -98.0,
+          "port_exit_z_mm": 38.0
+        }
+      ],
+      "valve_dimensions_and_centres_classification": "F45_research_hypothesis_not_Porsche_interface",
+      "port_paths_classification": "F47_straight_circular_first_candidate_not_flow_optimized"
+    }
+  },
+  "fluid_domain_policy": {
+    "gas_and_oil_exported_as_separate_closed_BRep_solids": true,
+    "closed_solid_caps_represent_open_boundary_patches_for_CFD": true,
+    "gas_and_oil_domains_must_not_intersect": true,
+    "head_voids_must_connect_to_declared_external_openings": true,
+    "powder_removal_physical_test_completed": false
+  },
+  "release_gates": {
+    "two_valve_BRep_valid": false,
+    "four_valve_BRep_valid": false,
+    "same_external_skin_verified": false,
+    "minimum_wall_1_5_mm_verified": false,
+    "no_trapped_powder_verified": false,
+    "fluid_domains_meshable_and_separate": false,
+    "thermal_validated": false,
+    "structural_validated": false,
+    "metal_print_authorized": false,
+    "engine_start_authorized": false
+  }
+}

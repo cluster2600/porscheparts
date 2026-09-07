@@ -1,0 +1,64 @@
+{
+  "schema_version": "porsche-917-f50-steady-cfd/v1",
+  "$comment": "Seconde formulation OpenFOAM stationnaire compressible sur domaines gaz F48 inchanges; aucun claim moteur/CHT.",
+  "phase": "F50",
+  "geometry": {
+    "authority": "F48 native analytic gas domains, hash checked through F49 builder",
+    "outer_geometry_imported_or_modified": false,
+    "inner_geometry_modified": false,
+    "ellipse_or_oval_primitive_or_proxy_allowed": false,
+    "solid_head_present": false
+  },
+  "method": {
+    "software": "OpenFOAM Foundation 14",
+    "executable": "foamRun -solver fluid",
+    "time_discretization": "steadyState",
+    "model": "steady compressible RANS kOmegaSST, perfect-gas air, constant Cp/mu/Pr",
+    "official_reference_case": "$FOAM_TUTORIALS/fluid/aerofoilNACA0012Steady",
+    "laminar_initialization_iterations": 1500,
+    "laminar_initialization_role": "numerical initialization only; final reported solution is RANS kOmegaSST",
+    "laminar_initialization_ramp": [
+      {"end_iteration": 250, "fraction_of_final_pressure_and_temperature_delta": 0.01},
+      {"end_iteration": 500, "fraction_of_final_pressure_and_temperature_delta": 0.10},
+      {"end_iteration": 1000, "fraction_of_final_pressure_and_temperature_delta": 0.30},
+      {"end_iteration": 1500, "fraction_of_final_pressure_and_temperature_delta": 1.00}
+    ],
+    "fixed_iterations": 6000,
+    "early_positive_residual_stop_allowed": false,
+    "numerics": {
+      "advection": "bounded Gauss upwind",
+      "gradient": "cellLimited Gauss linear 1",
+      "laplacian": "Gauss linear limited corrected 0.5",
+      "relaxation": {"p": 0.05, "rho": 0.001, "U": 0.10, "h": 0.10, "k": 0.10, "omega": 0.08}
+    }
+  },
+  "boundary_conditions": {
+    "identical_final_physical_values_to_F49": true,
+    "F49_contract_path": "twins/reference-917-engine/f49-cfd-cht-contract.json"
+  },
+  "matrix": {
+    "variants": ["2V", "4V"],
+    "levels": ["coarse", "medium", "fine"],
+    "screens": ["intake", "exhaust"],
+    "case_count": 12
+  },
+  "strict_gates": {
+    "checkMesh_and_volume_gate": true,
+    "solver_return_code_zero": true,
+    "mass_imbalance_percent_at_most": 1.0,
+    "steady_energy_imbalance_percent_at_most": 1.0,
+    "sink_mass_flow_tail_spread_percent_at_most": 1.0,
+    "residual_targets": {"p": 1e-6, "U": 1e-5, "k": 1e-5, "omega": 1e-5, "h": 1e-5},
+    "three_grid_GCI_required": true,
+    "cross_method_difference_percent_at_most": 5.0,
+    "temperature_constraint_activation_must_be_zero": true
+  },
+  "prohibited_claims": [
+    "engine cycle",
+    "combustion",
+    "conjugate heat transfer",
+    "metal temperature",
+    "manufacturing authorization",
+    "engine start authorization"
+  ]
+}
