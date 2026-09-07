@@ -44,6 +44,11 @@ RANGES = {
 }
 T_RANGE = (0.6, 2.0)                   # epaisseur de peau, mm
 E_RANGE = (40000.0, 210000.0)          # module, MPa : de l'ordre composite a l'acier
+# Rapport du module de cisaillement a sa valeur isotrope. A 1,0 le materiau est
+# isotrope ; ailleurs E et G sont decouples. Sans cette dimension, G resterait
+# proportionnel a E et le substitut ne pourrait pas apprendre la difference entre
+# flexion et cisaillement — celle-la meme qui commande l'architecture.
+GK_RANGE = (0.4, 2.0)
 NU = 0.30
 RHO = 7.85e-6
 
@@ -55,7 +60,7 @@ def sha(path):
 def sample(rng, n):
     """Hypercube latin : chaque marge est balayee uniformement, sans grille."""
     keys = list(RANGES)
-    cuts = {k: (rng.permutation(n) + rng.random(n)) / n for k in keys + ["_t", "_e"]}
+    cuts = {k: (rng.permutation(n) + rng.random(n)) / n for k in keys + ["_t", "_e", "_g"]}
     out = []
     feats = np.array(FEATURES)[rng.integers(0, len(FEATURES), n)]
     for i in range(n):
@@ -63,6 +68,9 @@ def sample(rng, n):
         p["features"] = str(feats[i])
         p["t"] = T_RANGE[0] + cuts["_t"][i] * (T_RANGE[1] - T_RANGE[0])
         p["E"] = E_RANGE[0] + cuts["_e"][i] * (E_RANGE[1] - E_RANGE[0])
+        gk = GK_RANGE[0] + cuts["_g"][i] * (GK_RANGE[1] - GK_RANGE[0])
+        p["G"] = p["E"] / (2.0 * (1.0 + NU)) * gk
+        p["G_ratio_iso"] = gk
         out.append(p)
     return out
 
@@ -89,7 +97,8 @@ def run_case(p, order, env_base):
     if r.returncode:
         return None, f"build: {r.stdout.strip()[:120]}"
     mesh = np.load(HERE / 'mesh.npz')
-    r = subprocess.run([PY, 'run_fea.py', f"{p['t']:.4f}", CCX_TAG, f"{p['E']:.1f}", f"{NU}"],
+    r = subprocess.run([PY, 'run_fea.py', f"{p['t']:.4f}", CCX_TAG, f"{p['E']:.1f}", f"{NU}",
+                        f"{p['G']:.1f}"],
                        capture_output=True, text=True, env=env, cwd=HERE)
     if r.returncode:
         return None, f"solve: {r.stdout.strip()[-120:]}"
@@ -115,6 +124,16 @@ def main():
         a.n, a.out = 4, 'corpus_smoke'
 
     out = HERE / a.out; out.mkdir(exist_ok=True)
+    # Reprendre suppose le MEME plan. Le tirage depend de n et de la graine :
+    # relancer avec un n different reattribuerait d'autres parametres aux memes
+    # numeros de cas, et l'index deviendrait faux sans que rien ne le signale.
+    prev = out / 'manifest.json'
+    if prev.exists():
+        m = json.loads(prev.read_text())
+        if (m.get('n_demande'), m.get('seed')) != (a.n, a.seed):
+            sys.exit(f"corpus existant tire avec n={m.get('n_demande')} seed={m.get('seed')} ; "
+                     f"reprise demandee avec n={a.n} seed={a.seed}. Refusé : les numeros de cas "
+                     f"ne designeraient plus les memes parametres. Choisir --out different.")
     env_base = dict(os.environ)
     S = '/home/maxime/work/964twin/syslibs/usr/lib/x86_64-linux-gnu'
     env_base['LD_LIBRARY_PATH'] = f"{S}:{S}/lapack:{S}/blas:{S}/openmpi/lib"
@@ -146,7 +165,8 @@ def main():
         "corpus": a.out, "seed": a.seed, "n_demande": a.n,
         "n_ecrit": done, "n_echec": failed, "ordre_element": a.order,
         "espace": {"features": FEATURES, "continus": RANGES,
-                   "t_mm": T_RANGE, "E_MPa": E_RANGE, "nu": NU},
+                   "t_mm": T_RANGE, "E_MPa": E_RANGE, "nu": NU,
+                   "G_sur_G_isotrope": GK_RANGE},
         "cible": "champ nodal de deplacement u (n,3) + scalaires K, masse",
         "scripts": {n: sha(HERE / n) for n in
                     ('build_body.py', 'run_fea.py', 'doe_corpus.py')},
