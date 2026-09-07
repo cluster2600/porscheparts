@@ -31,8 +31,10 @@ SECRET_ID_FILE = CONFIG_DIR / "secret_id"
 SECRET_PATH_FILE = CONFIG_DIR / "secret_path"
 ALLOWED_SECRET_PATH = "secrets/data/github"
 GITHUB_API = "https://api.github.com"
-REPOSITORY = "cluster2600/3dprinting993"
+REPOSITORY = "cluster2600/porscheparts"
 REMOTE_URL = f"https://github.com/{REPOSITORY}.git"
+LEGACY_REMOTE_URL = "https://github.com/cluster2600/3dprinting993.git"
+REPOSITORY_ID = 1349420480
 ALLOWED_WORKFLOWS = {
     "917-engine-wave-f40-vast-image.yml",
     "917-component-factory-f41-vast-image.yml",
@@ -228,7 +230,7 @@ def github_request(
 
 def repository_auth_check(token: str) -> None:
     _, repository = github_request(token, f"/repos/{REPOSITORY}")
-    if repository.get("full_name") != REPOSITORY:
+    if repository.get("full_name") != REPOSITORY or repository.get("id") != REPOSITORY_ID:
         raise SafeError("GitHub returned an unexpected repository")
     permissions = repository.get("permissions")
     if not isinstance(permissions, dict) or permissions.get("push") is not True:
@@ -250,7 +252,7 @@ def git_stdout(arguments: list[str]) -> str:
 
 def current_branch_contract() -> str:
     remote = git_stdout(["remote", "get-url", "origin"])
-    if remote != REMOTE_URL:
+    if remote not in (REMOTE_URL, LEGACY_REMOTE_URL):
         raise SafeError("origin is not the fixed 3dprinting993 HTTPS repository")
     branch = git_stdout(["branch", "--show-current"])
     if not branch.startswith("codex/") or len(branch) > 120:
@@ -399,6 +401,24 @@ def dispatch_simready_local_ai(token: str, ref: str) -> None:
     dispatch_simready_image(token, "simready-local-ai", ref)
 
 
+def dispatch_picogk_m64(token: str, ref: str) -> None:
+    """Publish only the user-requested PicoGK image; keep secret scope unchanged."""
+    ref = validate_ref(ref)
+    if current_branch_contract() != ref:
+        raise SafeError("PicoGK publication ref must equal the clean current branch")
+    if not Path("containers/picogk-m64.Dockerfile").is_file():
+        raise SafeError("PicoGK Dockerfile is missing")
+    status, body = github_request(
+        token,
+        f"/repos/{REPOSITORY}/actions/workflows/containers.yml/dispatches",
+        method="POST",
+        payload={"ref": ref, "inputs": {"image": "picogk-m64", "push": True}},
+    )
+    if status != 204 or body:
+        raise SafeError("GitHub PicoGK dispatch did not return the expected acknowledgement")
+    print(f"GitHub PicoGK publication accepted on {ref}")
+
+
 def list_workflow_runs(token: str, workflow: str, ref: str) -> None:
     workflow = validate_run_workflow(workflow)
     ref = validate_ref(ref)
@@ -438,6 +458,7 @@ def usage() -> str:
         f"dispatch <{workflows}> <codex/ref>|"
         "publish-simready-image <simready|simready-workflow|simready-local-ai> <codex/ref>|"
         "publish-simready-local-ai <codex/ref>|"
+        "publish-picogk-m64 <codex/ref>|"
         "runs <workflow> <codex/ref>"
     )
 
@@ -469,6 +490,10 @@ def main() -> int:
             if len(operation) == 2 and operation[0] == "publish-simready-local-ai":
                 repository_auth_check(token)
                 dispatch_simready_local_ai(token, operation[1])
+                return 0
+            if len(operation) == 2 and operation[0] == "publish-picogk-m64":
+                repository_auth_check(token)
+                dispatch_picogk_m64(token, operation[1])
                 return 0
             if len(operation) == 3 and operation[0] == "publish-simready-image":
                 repository_auth_check(token)

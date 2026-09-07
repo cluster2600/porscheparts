@@ -33,7 +33,8 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
         cls.wrapper = load_wrapper()
 
     def test_scope_is_fixed_to_one_repository_and_two_direct_workflows(self) -> None:
-        self.assertEqual(self.wrapper.REPOSITORY, "cluster2600/3dprinting993")
+        self.assertEqual(self.wrapper.REPOSITORY, "cluster2600/porscheparts")
+        self.assertEqual(self.wrapper.REPOSITORY_ID, 1349420480)
         self.assertEqual(
             self.wrapper.ALLOWED_WORKFLOWS,
             {
@@ -111,10 +112,25 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
         with patch.object(
             self.wrapper,
             "github_request",
-            return_value=(200, {"full_name": self.wrapper.REPOSITORY, "permissions": {"push": False}}),
+            return_value=(200, {"id": self.wrapper.REPOSITORY_ID, "full_name": self.wrapper.REPOSITORY, "permissions": {"push": False}}),
         ):
             with self.assertRaisesRegex(self.wrapper.SafeError, "push permission"):
                 self.wrapper.repository_auth_check("secret")
+
+    def test_picogk_dispatch_is_fixed_and_requires_clean_matching_branch(self) -> None:
+        with (
+            patch.object(self.wrapper, "current_branch_contract", return_value="codex/picogk"),
+            patch.object(self.wrapper.Path, "is_file", return_value=True),
+            patch.object(self.wrapper, "github_request", return_value=(204, {})) as request,
+        ):
+            self.wrapper.dispatch_picogk_m64("dummy", "codex/picogk")
+            self.assertEqual(request.call_args.kwargs["payload"], {
+                "ref": "codex/picogk", "inputs": {"image": "picogk-m64", "push": True}
+            })
+            with self.assertRaisesRegex(self.wrapper.SafeError, "clean current branch"):
+                self.wrapper.dispatch_picogk_m64("dummy", "codex/unrelated")
+        with self.assertRaisesRegex(self.wrapper.SafeError, "codex"):
+            self.wrapper.dispatch_picogk_m64("dummy", "main")
 
     def test_simready_publication_is_fixed_to_one_image_and_push(self) -> None:
         parent = (
