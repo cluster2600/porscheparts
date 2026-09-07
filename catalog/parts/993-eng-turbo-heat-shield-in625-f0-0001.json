@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001",
+  "name": "Couvercle thermique gauche de turbo 993, concept IN625 F0",
+  "description": "Concept indépendant de coque ouverte avec bossages intégrés pour cribler une refabrication LPBF en IN625. PorscheFanatics confirme l'identité PET ; FVD publie seulement l'enveloppe et la masse du couvercle gauche 993 123 113 51.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo", "993_GT2"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": ["99312311351"]
+  },
+  "classification": {
+    "category": "turbocharger_heat_protection",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, thermique, mécanique et DfAM ; aucune fabrication pour montage ni installation véhicule autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-eng-turbo-heat-shield-in625-f0-0001/derived/turbo_heat_shield_in625_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration PET ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - relevé PET des groupes Turbo 993",
+        "url": "https://porschefanatics.com/oem/993/202-16/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Confirme 993 123 113 51 dans le groupe turbo 202-16, sans cote ni surface CAO. Voir SRC-PORSCHEFANATICS-993-TURBO-PET."
+      },
+      {
+        "title": "FVD - couvercle thermique gauche 99312311351",
+        "url": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+        "source_type": "manufacturer",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "FVD déclare 160 x 110 x 105 mm, 0,23 kg et les applications 993 Turbo/GT2. La topologie et les interfaces F0 sont indépendantes. Voir SRC-FVD-993-TURBO-HEAT-SHIELD-DIMENSIONS."
+      },
+      {
+        "title": "EOS NickelAlloy IN625 material data sheet",
+        "url": "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Valeurs M 290 40 µm de criblage, dépendantes de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+      },
+      {
+        "title": "Special Metals - INCONEL alloy 625",
+        "url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Propriétés thermiques corroyées utilisées comme références, jamais comme carte LPBF admissible. Voir SRC-SPECIAL-METALS-INCONEL-625."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "sheet_metal"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "superalliage nickel LPBF candidat",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625 de criblage ; matière OEM inconnue",
+      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 à contractualiser selon le procédé retenu"
+    },
+    "post_processing": [
+      "retrait des supports avec ouverture complète de la coque",
+      "détensionnement qualifié pour la machine et les paramètres",
+      "découpe du plateau et redressage contrôlé de la paroi mince",
+      "usinage ou alésage des interfaces après ajout des surépaisseurs",
+      "ébavurage et finition des bords",
+      "revêtement thermique à décider après essais"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "capabilité démontrée sur paroi 0,8 mm et coupons représentatifs",
+      "contrôle dimensionnel de l'enveloppe, des bords et interfaces",
+      "CT ou radiographie des bossages et ressuage après finition",
+      "rugosité, porosité, contraintes résiduelles et distorsion contractualisées",
+      "essais thermiques, vibratoires et cycliques avant montage"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Compatibilité galvanique du IN625 avec fixations et supports OEM à définir après identification des matériaux réels."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-turbo-pet.json",
+      "catalog/sources/src-fvd-993-turbo-heat-shield-dimensions.json",
+      "catalog/sources/src-eos-in625-material-data.json",
+      "catalog/sources/src-special-metals-inconel-625.json",
+      "parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seule l'enveloppe 160 x 110 x 105 mm vient de FVD ; profil, paroi, bossages et perçages sont hypothétiques.",
+      "La masse F0 de 325,58 g dépasse de 41,6 % les 230 g publiés ; la matière commerciale est inconnue et aucune validation par masse n'est possible.",
+      "Les températures, l'émissivité, le facteur de vue, la force et les conditions d'appui sont synthétiques.",
+      "Le calcul ignore convection, géométrie réelle du turbo, courbure de coque, contact, vibration, fatigue thermique, oxydation et fluage.",
+      "Le STEP prouve seulement un BREP calculable dans l'enveloppe et ne doit pas être fabriqué pour montage."
+    ]
+  }
+}
