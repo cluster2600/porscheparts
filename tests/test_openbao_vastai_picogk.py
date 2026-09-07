@@ -51,7 +51,8 @@ class PicoGKTests(unittest.TestCase):
                       "dph_total": 0.5, "reliability": 0.999, "verified": True,
                       "rentable": True, "rented": False, "inet_up_cost": 0.001, "inet_down_cost": 0.001}
         self.raw = {**self.offer, "id": 999, "label": self.manifest["attempt_label"],
-                    "actual_status": "running", "image_uuid": image, "verification": "verified"}
+                    "actual_status": "running", "image_uuid": image, "verification": "verified",
+                    "public_ipaddr": "1.1.1.1", "ports": {"22/tcp": [{"HostPort": "1234"}]}}
         self.save()
 
     def save(self):
@@ -101,6 +102,27 @@ class PicoGKTests(unittest.TestCase):
         self.assertLess(self.w.picogk_budget_cost(self.manifest, 0.5, 0.001, 0.001), 4)
         with self.assertRaises(self.w.SafeError):
             self.w.picogk_budget_cost({**self.manifest, "budget_usd": 1.01}, 0.5, 0.001, 0.001)
+
+    def test_offer_refresh_filters_exact_id_locally_without_vast_id_predicate(self):
+        other = {**self.offer, "id": 456, "dph_total": 0.4}
+        def provider(_key, _path, *, method, payload):
+            # Regression fixture for Vast returning no bundles when an id
+            # predicate is present, although the bounded inventory has it.
+            return {"offers": [] if "id" in payload else [other, self.offer]}
+        with mock.patch.object(self.w, "vast_request", side_effect=provider) as call:
+            result = self.w.get_picogk_offers("synthetic", 123)
+        self.assertEqual(result, [self.offer])
+        payload = call.call_args.kwargs["payload"]
+        self.assertNotIn("id", payload)
+        self.assertEqual(payload["limit"], 1000)
+        self.assertEqual(payload["allocated_storage"], 100)
+        self.assertEqual(payload["dph_total"], {"lte": 0.8})
+        with mock.patch.object(self.w, "vast_request", side_effect=provider):
+            self.assertEqual(self.w.get_picogk_offers("synthetic", 789), [])
+        with mock.patch.object(self.w, "vast_request") as call:
+            with self.assertRaises(self.w.SafeError):
+                self.w.get_picogk_offers("synthetic", True)
+            call.assert_not_called()
 
     def test_account_billing_redacts_identity_and_recharge(self):
         with mock.patch.object(self.w, "vast_request", return_value={"balance": -0.1, "credit": 19.1,
@@ -219,7 +241,7 @@ class PicoGKTests(unittest.TestCase):
         proof = {"instance_id": 999, "destroyed": True, "verified_absent": True}
         with mock.patch.object(self.g, "WRAPPER", fake_wrapper), \
              mock.patch.object(self.g, "wrapper_call", side_effect=[[], [safe]]), \
-             mock.patch.object(self.g.time, "monotonic", side_effect=[0, 0, 400]), \
+             mock.patch.object(self.g.time, "monotonic", side_effect=[0, 0, 0, 400, 400]), \
              mock.patch.object(self.g, "cleanup_until_absent", return_value=proof) as destroy, \
              redirect_stdout(io.StringIO()):
             result = self.g.guard(self.path)
@@ -277,6 +299,163 @@ class PicoGKTests(unittest.TestCase):
             result = self.g.cleanup_until_absent(999, self.manifest)
         self.assertTrue(result["verified_absent"])
         self.assertEqual(call.call_count, 8)
+
+    def test_startup_state_requires_provider_evidence_and_preserves_terminal_states(self):
+        pending = {**self.raw, "actual_status": None, "cur_state": "loading", "intended_status": "running"}
+        self.assertTrue(self.w.picogk_startup_pending(pending))
+        self.assertTrue(self.g.startup_pending(self.w.picogk_safe_instance(pending)))
+        for state in ("exited", "offline", "error", "stopped"):
+            raw = {**pending, "actual_status": state}
+            self.assertFalse(self.w.picogk_startup_pending(raw))
+            self.assertFalse(self.g.startup_pending(self.w.picogk_safe_instance(raw)))
+        ambiguous = {**pending, "actual_status": "unknown", "cur_state": "running", "next_state": "running"}
+        self.assertFalse(self.w.picogk_startup_pending(ambiguous))
+        self.assertFalse(self.g.startup_pending(self.w.picogk_safe_instance(ambiguous)))
+
+    def test_current_state_fallback_never_uses_desired_or_overrides_actual_status(self):
+        for absent in (None, ""):
+            raw = {**self.raw, "actual_status": absent, "cur_state": "running",
+                   "intended_status": "running", "next_state": "running"}
+            instance = self.w.picogk_contract(raw, 999, self.manifest, self.offer)
+            self.assertEqual(instance["status"], "running")
+            self.assertEqual(self.w.picogk_or_legacy_safe_instance(raw)["status"], "running")
+        for change in ({"actual_status": None, "cur_state": "exited"},
+                       {"actual_status": "exited", "cur_state": "running"},
+                       {"actual_status": "unknown", "cur_state": "running"},
+                       {"actual_status": None, "cur_state": None}):
+            raw = {**self.raw, "intended_status": "running", "next_state": "running", **change}
+            with self.subTest(change=change), redirect_stderr(io.StringIO()):
+                with self.assertRaisesRegex(self.w.SafeError, "status"):
+                    self.w.picogk_contract(raw, 999, self.manifest, self.offer)
+
+    def test_contract_diagnostic_names_faults_without_raw_response(self):
+        raw = {**self.raw, "actual_status": "unknown", "cur_state": "loading", "intended_status": "running",
+               "gpu_frac": None, "num_gpus": 2, "status_msg": "PRIVATE_DIAGNOSTIC_NEVER_PRINT",
+               "jupyter_token": "PRIVATE_DIAGNOSTIC_NEVER_PRINT"}
+        output = io.StringIO()
+        with redirect_stderr(output), self.assertRaisesRegex(self.w.SafeError, "gpu_fraction.*num_gpus,status"):
+            self.w.picogk_contract(raw, 999, self.manifest, self.offer)
+        text = output.getvalue()
+        self.assertNotIn("PRIVATE_DIAGNOSTIC_NEVER_PRINT", text)
+        diagnostic = json.loads(text.split(" ", 1)[1])
+        self.assertIn("gpu_fraction", diagnostic["missing_fields"])
+        self.assertEqual(diagnostic["mismatched_fields"], ["num_gpus", "status"])
+        self.assertEqual(diagnostic["provider_states"]["intended_status"], "running")
+
+    def test_ssh_ready_waits_for_correlated_startup_and_missing_metadata(self):
+        first = {**self.raw, "actual_status": None, "cur_state": "loading", "intended_status": "running",
+                 "gpu_frac": None, "num_gpus": None}
+        second = {**self.raw, "gpu_frac": None}
+        witness = {"status": "PASS", "architecture": "X64", "scope": "software_geometry_witness_only",
+                   "triangles": 100, "stl_roundtrip_triangles": 100, "relative_volume_error": 0.03,
+                   "manufacturing_validated": False, "engine_validated": False}
+        with ExitStack() as stack:
+            stack.enter_context(redirect_stderr(io.StringIO()))
+            stack.enter_context(mock.patch.object(self.w, "read_local_ssh_public_key", return_value="fixture"))
+            stack.enter_context(mock.patch.object(self.w, "instance_lists_approved_ssh_key", return_value=True))
+            stack.enter_context(mock.patch.object(self.w, "prepare_component_factory_f41_known_hosts", return_value=self.root / "known-hosts"))
+            stack.enter_context(mock.patch.object(self.w, "validate_component_factory_f41_known_hosts"))
+            stack.enter_context(mock.patch.object(self.w, "picogk_singleton"))
+            stack.enter_context(mock.patch.object(self.w, "vast_request", side_effect=[{"instances": first}, {"instances": second}, {"instances": self.raw}]))
+            stack.enter_context(mock.patch.object(self.w, "m64_ssh_endpoint", return_value={"kind": "direct", "host": "1.1.1.1", "port": 1234}))
+            probe = stack.enter_context(mock.patch.object(self.w, "run_component_factory_f41_ssh_probe", return_value=mock.Mock(
+                returncode=0, stdout=json.dumps(witness), stderr="")))
+            sleep = stack.enter_context(mock.patch.object(self.w.time, "sleep"))
+            result = self.w.picogk_ssh_ready("synthetic", 999, self.manifest, self.offer)
+        self.assertEqual(result["instance"]["id"], 999)
+        self.assertEqual(sleep.call_count, 2)
+        self.assertEqual(probe.call_count, 1)
+
+    def test_ssh_ready_does_not_wait_for_terminal_state_or_known_wrong_hardware(self):
+        for change, field in (({"actual_status": "exited", "intended_status": "running"}, "status"),
+                              ({"actual_status": "loading", "gpu_frac": 0.125}, "gpu_fraction")):
+            with self.subTest(change=change), ExitStack() as stack:
+                stack.enter_context(redirect_stderr(io.StringIO()))
+                stack.enter_context(mock.patch.object(self.w, "read_local_ssh_public_key", return_value="fixture"))
+                stack.enter_context(mock.patch.object(self.w, "instance_lists_approved_ssh_key", return_value=True))
+                stack.enter_context(mock.patch.object(self.w, "prepare_component_factory_f41_known_hosts", return_value=self.root / "known-hosts"))
+                stack.enter_context(mock.patch.object(self.w, "vast_request", return_value={"instances": {**self.raw, **change}}))
+                probe = stack.enter_context(mock.patch.object(self.w, "run_component_factory_f41_ssh_probe"))
+                sleep = stack.enter_context(mock.patch.object(self.w.time, "sleep"))
+                with self.assertRaisesRegex(self.w.SafeError, field):
+                    self.w.picogk_ssh_ready("synthetic", 999, self.manifest, self.offer)
+                sleep.assert_not_called()
+                probe.assert_not_called()
+
+    def test_missing_metadata_wait_is_bounded_to_120_seconds(self):
+        now = [time.time()]
+        def advance(seconds):
+            now[0] += seconds
+        with ExitStack() as stack:
+            stack.enter_context(redirect_stderr(io.StringIO()))
+            stack.enter_context(mock.patch.object(self.w, "read_local_ssh_public_key", return_value="fixture"))
+            stack.enter_context(mock.patch.object(self.w, "instance_lists_approved_ssh_key", return_value=True))
+            stack.enter_context(mock.patch.object(self.w, "prepare_component_factory_f41_known_hosts", return_value=self.root / "known-hosts"))
+            stack.enter_context(mock.patch.object(self.w, "vast_request", return_value={"instances": {**self.raw, "gpu_frac": None}}))
+            stack.enter_context(mock.patch.object(self.w.time, "time", side_effect=lambda: now[0]))
+            sleep = stack.enter_context(mock.patch.object(self.w.time, "sleep", side_effect=advance))
+            probe = stack.enter_context(mock.patch.object(self.w, "run_component_factory_f41_ssh_probe"))
+            with self.assertRaisesRegex(self.w.SafeError, "gpu_fraction"):
+                self.w.picogk_ssh_ready("synthetic", 999, self.manifest, self.offer)
+        self.assertEqual(sleep.call_count, 8)
+        probe.assert_not_called()
+
+    def test_picogk_never_falls_back_to_proxy_without_direct_mapping(self):
+        for ports in (None, {}, {"80/tcp": [{"HostPort": "9876"}]}, {"22/tcp": []}):
+            raw = {**self.raw, "ports": ports, "ssh_host": "ssh.example.test", "ssh_port": 4567}
+            with self.subTest(ports=ports), redirect_stderr(io.StringIO()):
+                self.assertIsNone(self.w.picogk_direct_ssh_endpoint(raw, 999))
+
+    def test_picogk_direct_mapping_and_unexpected_proxy_rejection(self):
+        endpoint = self.w.picogk_direct_ssh_endpoint(self.raw, 999)
+        self.assertEqual((endpoint["kind"], endpoint["host"], endpoint["port"]), ("direct", "1.1.1.1", 1234))
+        with mock.patch.object(self.w, "m64_ssh_endpoint", return_value={"kind": "proxy"}):
+            with self.assertRaisesRegex(self.w.SafeError, "direct"):
+                self.w.picogk_direct_ssh_endpoint(self.raw, 999)
+
+    def test_picogk_ssh_failure_diagnostic_uses_only_allowlisted_category(self):
+        for marker, category in (("Permission denied", "authentication_denied"),
+                                 ("Host key verification failed", "host_key_verification_failed"),
+                                 ("REMOTE HOST IDENTIFICATION HAS CHANGED", "host_key_changed"),
+                                 ("Load key", "local_key_load_failed")):
+            output = io.StringIO()
+            with self.subTest(marker=marker), ExitStack() as stack:
+                stack.enter_context(redirect_stderr(output))
+                stack.enter_context(mock.patch.object(self.w, "read_local_ssh_public_key", return_value="fixture"))
+                stack.enter_context(mock.patch.object(self.w, "instance_lists_approved_ssh_key", return_value=True))
+                stack.enter_context(mock.patch.object(self.w, "prepare_component_factory_f41_known_hosts", return_value=self.root / "known-hosts"))
+                stack.enter_context(mock.patch.object(self.w, "vast_request", return_value={"instances": self.raw}))
+                probe = stack.enter_context(mock.patch.object(self.w, "run_component_factory_f41_ssh_probe", return_value=mock.Mock(
+                    returncode=255, stdout="PRIVATE_STREAM_NEVER_PRINT", stderr=marker + " PRIVATE_STREAM_NEVER_PRINT")))
+                with self.assertRaisesRegex(self.w.SafeError, category):
+                    self.w.picogk_ssh_ready("synthetic", 999, self.manifest, self.offer)
+            diagnostics = [json.loads(line.split(" ", 1)[1]) for line in output.getvalue().splitlines()
+                           if line.startswith("OPENBAO_VASTAI_PICOGK_SSH ")]
+            self.assertEqual(diagnostics[-1]["failure_category"], category)
+            self.assertEqual(diagnostics[-1]["return_code"], 255)
+            self.assertEqual(diagnostics[0]["endpoint_kind"], "direct")
+            self.assertNotIn("PRIVATE_STREAM_NEVER_PRINT", output.getvalue())
+            self.assertNotIn("1.1.1.1", output.getvalue())
+            self.assertEqual(probe.call_count, 1)
+
+    def test_picogk_waits_for_mapping_then_rejects_endpoint_change_before_second_probe(self):
+        unallocated = {**self.raw, "ports": {}, "ssh_host": "ssh.example.test", "ssh_port": 4567}
+        moved = {**self.raw, "ports": {"22/tcp": [{"HostPort": "5678"}]}}
+        with ExitStack() as stack:
+            stack.enter_context(redirect_stderr(io.StringIO()))
+            stack.enter_context(mock.patch.object(self.w, "read_local_ssh_public_key", return_value="fixture"))
+            stack.enter_context(mock.patch.object(self.w, "instance_lists_approved_ssh_key", return_value=True))
+            stack.enter_context(mock.patch.object(self.w, "prepare_component_factory_f41_known_hosts", return_value=self.root / "known-hosts"))
+            stack.enter_context(mock.patch.object(self.w, "vast_request", side_effect=[
+                {"instances": unallocated}, {"instances": self.raw}, {"instances": moved}]))
+            probe = stack.enter_context(mock.patch.object(self.w, "run_component_factory_f41_ssh_probe", return_value=mock.Mock(
+                returncode=255, stdout="", stderr="Connection refused")))
+            sleep = stack.enter_context(mock.patch.object(self.w.time, "sleep"))
+            with self.assertRaisesRegex(self.w.SafeError, "endpoint changed"):
+                self.w.picogk_ssh_ready("synthetic", 999, self.manifest, self.offer)
+        self.assertEqual(probe.call_count, 1)
+        self.assertEqual(sleep.call_count, 2)
+        self.assertIn("root@1.1.1.1", probe.call_args.args[0])
 
 
 if __name__ == "__main__":

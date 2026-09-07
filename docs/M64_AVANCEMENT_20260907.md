@@ -1,5 +1,10 @@
 # M64 turbo 4V — état des preuves au 7 septembre 2026
 
+Mise à jour du soir : [calculs PicoGK réels sur Kali et Vast](M64_PICOGK_EXECUTION.md),
+[chaîne complète et diagrammes Mermaid](M64_MULTIPHYSICS_EXECUTION.md).
+Le présent état conserve les preuves des lots précédents ; leurs résultats
+ne qualifient pas automatiquement les nouveaux dérivés géométriques.
+
 **Le projet n'a pas encore livré une culasse fonctionnelle, qualifiée ou
 autorisée à imprimer.** Les contrôles logiciels, les contrôles de géométrie et
 les calculs physiques ci-dessous portent sur des objets différents. Ils ne

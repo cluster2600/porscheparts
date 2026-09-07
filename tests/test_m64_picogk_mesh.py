@@ -65,6 +65,42 @@ class PicoGKMeshTests(unittest.TestCase):
         distances = surface_distances(cube, cube, 128, 11)
         self.assertLess(distances['distance_scan_units']['maximum'], 1e-12)
 
+    @unittest.skipUnless(importlib.util.find_spec('trimesh') and importlib.util.find_spec('scipy'), 'optional mesh QA runtime')
+    def test_hollow_domain_has_two_oriented_boundary_shells_not_two_fluid_volumes(self):
+        import trimesh
+        from audit_cooling_domains import boundary_shells
+        outer = trimesh.creation.box(extents=[20., 20., 20.])
+        inner = trimesh.creation.box(extents=[12., 12., 12.])
+        inner.invert()
+        hollow = trimesh.util.concatenate([outer, inner])
+        shells = boundary_shells(hollow)
+        self.assertEqual(len(shells), 2)
+        self.assertEqual(sorted(item['orientation_sign'] for item in shells), ['negative', 'positive'])
+        self.assertAlmostEqual(sum(item['signed_volume_scan_units_cubed'] for item in shells), 6272.)
+        self.assertAlmostEqual(hollow.volume, 6272.)
+        self.assertTrue(hollow.is_watertight)
+        self.assertTrue(hollow.is_winding_consistent)
+
+    def test_exact_degenerate_filter_preserves_nonzero_triangle_binary_records(self):
+        import numpy as np
+        from filter_exact_degenerates import filter_records
+        records = [
+            struct.pack('<12fH', *([7., 8., 9.] + [0., 0., 0., 1., 0., 0., 0., 1., 0.]), 17),
+            struct.pack('<12fH', *([0.] * 3 + [0., 0., 0., 1., 0., 0., 2., 0., 0.]), 23),
+            struct.pack('<12fH', *([1., 2., 3.] + [0., 0., 0., 1., 0., 0., 0., 1e-20, 0.]), 42),
+        ]
+        data = b'synthetic_fixture'.ljust(80, b' ') + struct.pack('<I', 3) + b''.join(records)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'synthetic.stl'
+            path.write_bytes(data)
+            triangles = export_master.load_binary_stl(path)
+            output, removed = filter_records(data, triangles)
+            self.assertEqual(removed, [1])
+            self.assertEqual(output[:80], data[:80])
+            self.assertEqual(output[84:], records[0] + records[2])
+            path.write_bytes(output)
+            self.assertTrue(np.array_equal(export_master.load_binary_stl(path), triangles[[0, 2]]))
+
     def test_no_reconstruction_or_fabrication_claims_in_source(self):
         source = (SOURCE / 'compare_meshes.py').read_text()
         self.assertIn("'manufacturing_authorized': False", source)

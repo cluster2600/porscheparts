@@ -19,6 +19,13 @@ interfaces moteur ne deviennent pas des cotes M64 mesurées.
    dans les deux sens. Effectuer le repérage échantillonné des zones fines et
    produire la vue comparative et une section.
 
+Le contre-contrôle Python nécessite `numpy`, `scipy`, `trimesh`, `rtree`,
+`matplotlib` et `networkx` (construction des contours de coupe). Son
+environnement est distinct du conteneur PicoGK .NET ; les versions réellement
+utilisées doivent accompagner le reçu d'audit. Le rendu Matplotlib peut
+présenter des défauts de tri de profondeur sur les faces coplanaires : une
+vue opaque VTK permet de les distinguer de défauts géométriques.
+
 L'import-export PicoGK remaille les surfaces : les maillages résultants ne
 remplacent **pas** le maître B-Rep des interfaces et des portées usinées.
 Une faible erreur volumique globale ne suffit pas à qualifier ces interfaces.

@@ -1,0 +1,167 @@
+{
+  "schema": "m64-picogk-vast-execution-evidence-v1",
+  "status": "actual_head_and_geometric_domains_computed_collected_instance_destroyed",
+  "date_utc": "2026-09-07",
+  "geometry_included": false,
+  "private_paths_included": false,
+  "credentials_included": false,
+  "scope": "M64 turbo 964/993 project; private reconstruction derived from a 935 reference scan; not certified M64 geometry",
+  "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:131d29d42635b1c691649edb04fa716d8fddd7751f3ebc6011efb9be8a1b0414",
+  "image_qualification": "picogk-image-qualification-20260907.json",
+  "instance": {
+    "id": 50187676,
+    "cpu_threads_advertised": 80,
+    "ram_mb_advertised": 257776,
+    "gpu": "RTX 3060",
+    "gpu_ram_mb_advertised": 12288,
+    "disk_gb": 100,
+    "price_usd_per_hour_observed": 0.2796296296296296,
+    "transfer_usd_per_gb_each_direction_observed": 0.006510416666666667,
+    "gpu_acceleration_used_for_these_geometry_jobs": false
+  },
+  "access": {
+    "approved_openbao_wrapper_used": true,
+    "wrapper_sha256": "a88f40dda53d76f4318654c572f4e2ba03158f6ac455ef11c6d76d0cfb2577df",
+    "manifest_sha256": "b9da3ef4e322be07f1843f0ff79990b425aa09e120d8341e0e91a22b02faf513",
+    "approved_public_private_key_pair_verified": true,
+    "approved_instance_key_association_verified": true,
+    "direct_ssh_verified": true,
+    "native_runtime_smoke_verified": true,
+    "deadline_guard_armed_before_launch": true
+  },
+  "input": {
+    "sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+    "triangles": 293308,
+    "transform": "identity",
+    "unchanged": true,
+    "units": "mm_under_unverified_1_scan_unit_per_mm_hypothesis"
+  },
+  "head_roundtrip": {
+    "voxel_mm": 0.6,
+    "utc_completed": "2026-09-07T18:12:08.6869363+00:00",
+    "private_report_sha256": "07a1283095b1c8f17c4602274edad80a9773c9ce00fecced5e9229ffceb8d7a6",
+    "elapsed_seconds_from_report": 3.0625179,
+    "peak_working_set_bytes": 861216768,
+    "outputs": [
+      {
+        "filename": "head-roundtrip.stl",
+        "sha256": "ab285bf63a02b0aac35df18057882a50f484c436c0309ff27a4d6bee04524c13",
+        "triangles": 828376
+      },
+      {
+        "filename": "opening-sensitive-features.stl",
+        "sha256": "e3304ca43b16c40e623933df1ebbde21d0b890fc3746a353c8ee6ae02d3411d6",
+        "triangles": 129768
+      }
+    ],
+    "head_stl_byte_identical_to_kali_same_digest": true,
+    "comparison_receipt": "picogk-roundtrips-20260907.json",
+    "morphology_is_wall_thickness_measurement": false
+  },
+  "geometric_domains": {
+    "voxel_mm": 0.6,
+    "utc_completed": "2026-09-07T18:13:22.1816548+00:00",
+    "private_report_sha256": "b59f013a7daaf28693a74209e7c7fa9bc1e5c984a5113cc6501438e9debadbd2",
+    "application_assembly_sha256": "21c6f7aaeb2f9e7ff139543eb16dacc3a41f4372e1d5f6517349d3f1ca32ee03",
+    "native_library_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+    "module_compiled_with_qualified_image_sdk": true,
+    "upstream_image_modified": false,
+    "elapsed_seconds_from_report": 12.3240391,
+    "peak_working_set_bytes": 1293873152,
+    "outputs": [
+      {
+        "filename": "unclassified-void-complement.stl",
+        "sha256": "a0fd734c22d817266ad93df52e589e386740795a0063e59a0b1611741717ec21",
+        "triangles": 1809204
+      },
+      {
+        "filename": "geometric-clearance-core-1p5mm.stl",
+        "sha256": "90998b39a411efbd8306ed6f6c16e20c62a2989ae532240be6ce4ec731018ab1",
+        "triangles": 788524
+      },
+      {
+        "filename": "geometric-protected-skin-1p5mm.stl",
+        "sha256": "c851a17ff4cc5244f19280fd09986b1e7dd8aedad1be98d44e4af9472baf1fb2",
+        "triangles": 1616900
+      }
+    ],
+    "three_stls_byte_identical_to_kali_same_native_library": true,
+    "comparison_receipt": "picogk-domains-20260907.json",
+    "kali_execution_image_is_different_local_build": true,
+    "openvdb": {
+      "filename": "head-and-cooling-geometry-fields.vdb",
+      "sha256": "6e04f677fc8b880d2116a02c156452021c0ee30538bca51349ec1fe00f62252c",
+      "named_fields_count": 4,
+      "named_reload_verified": true,
+      "byte_identical_to_kali": false,
+      "reason_for_file_hash_difference_not_investigated": true
+    },
+    "numerical_partition": {
+      "tested_occupancy_points": 22140,
+      "overlap_count": 0,
+      "union_mismatch_count": 0,
+      "exhaustive": false,
+      "body_plus_void_volume_relative_error": 1.0109228341663832e-7,
+      "core_plus_skin_volume_relative_error": 2.3016951954252074e-7
+    },
+    "raw_export_topology_all_passed": false,
+    "raw_export_warning": "Byte-identical Kali audit found four exact-zero-area triangles in void and skin. Traceable filtering is a separate derivative, not performed on the remote originals.",
+    "independent_mesh_audit": "picogk-cooling-domain-mesh-audit-20260907.json",
+    "fluid_connectivity_classified": false
+  },
+  "collection": {
+    "private_outputs_retrieved": true,
+    "remote_local_sha256_matches": true,
+    "report_embedded_output_sha256_matches": true,
+    "all_required_geometry_and_report_files_collected_before_instance_deletion": true
+  },
+  "retained_paid_attempts": [
+    {
+      "instance_id": 50185391,
+      "outcome": "pre_job_state_contract_rejected_and_rolled_back",
+      "exact_rejection_cause_preserved": false,
+      "verified_absent": true
+    },
+    {
+      "instance_id": 50186579,
+      "outcome": "missing_actual_status_with_running_cur_state_rejected_and_rolled_back",
+      "fix": "Fallback to observed cur_state only when actual_status is absent; never desired state.",
+      "verified_absent": true
+    },
+    {
+      "instance_id": 50186920,
+      "outcome": "ssh_identity_validation_failed_and_rolled_back",
+      "exact_ssh_failure_category_preserved": false,
+      "fix": "Wait for direct SSH mapping, pin endpoint and retain classified SSH errors; original cause not proven.",
+      "verified_absent": true
+    }
+  ],
+  "cleanup": {
+    "instance_id": 50187676,
+    "destroyed": true,
+    "guard_reason": "deadline_cleanup_reserve",
+    "guard_verified_absent": true,
+    "independent_instance_inventory_count": 0,
+    "independently_checked_utc": "2026-09-07T18:18:30Z",
+    "private_guard_log_sha256": "98018d01ce6e6065cf2109b121dfef1109172aeb2dda561066a6f7cc9627781a",
+    "geometry_backup_verified_before_publication": true
+  },
+  "cost": {
+    "observed_credit_decrease_all_four_attempts_usd": 0.0530533893999916,
+    "automatic_recharge_requested": false,
+    "final_invoice_verified": false,
+    "interpretation": "Provider balance snapshot delta only; delayed compute, storage or transfer charges may remain."
+  },
+  "limits": {
+    "dimensions_or_interfaces_certified": false,
+    "master_modified": false,
+    "exterior_redesigned": false,
+    "CFD_simulation_in_this_batch": false,
+    "thermal_simulation_in_this_batch": false,
+    "structural_simulation_in_this_batch": false,
+    "LPBF_simulation_in_this_batch": false,
+    "external_cooling_domain_qualified": false,
+    "engine_validated": false,
+    "manufacturing_authorized": false
+  }
+}

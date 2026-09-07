@@ -1,0 +1,14 @@
+graph TD
+    A["1. Contrat M64 turbo<br/>interfaces, objectifs et incertitudes"] --> B["2. CAO et assemblage<br/>contour Porsche préservé"]
+    B --> C{"3. Contrôles numériques<br/>persistés et acceptés ?"}
+    C -- "non" --> B
+    C -- "oui" --> D["4. CFD et thermique couplée<br/>bilans et convergence"]
+    D --> E["5. Tenue mécanique<br/>contacts, fatigue et dilatations"]
+    E --> F["6. Procédé d'impression<br/>supports, distorsion et usinage"]
+    F --> G{"7. Dossier revu par<br/>fabricant et ingénieur ?"}
+    G -- "corrections" --> B
+    G -- "prototype autorisé" --> H["8. Coupons et prototype physique<br/>matière à chaud, contrôles et métrologie"]
+    H --> I["9. Bancs et corrélation<br/>débit, température, moteur, endurance"]
+    I --> J{"10. Critères démontrés<br/>dans le domaine prévu ?"}
+    J -- "non" --> B
+    J -- "oui" --> K["Décision de mise en service<br/>documentée et limitée au domaine validé"]

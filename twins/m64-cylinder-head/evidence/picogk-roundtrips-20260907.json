@@ -1,0 +1,146 @@
+{
+  "schema": "m64-picogk-roundtrip-execution-evidence-v1",
+  "execution_host": "authorized_Kali_linux_amd64",
+  "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:131d29d42635b1c691649edb04fa716d8fddd7751f3ebc6011efb9be8a1b0414",
+  "image_id": "sha256:7942a0dec9884e0bf1e302e011cf5b24cf58614b153f4aa5e3226ac00b9c676e",
+  "native_library_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+  "application_assembly_sha256": "f112175223a9cb6cec6eccd0b84ae9d81958245139a5e1bb12e2cac5a41800c7",
+  "execution_limits": {
+    "sequential": true,
+    "cpu_count": 8,
+    "memory_bytes": 8589934592,
+    "swap_allowed_bytes": 0,
+    "timeout_seconds_each_run": 900,
+    "kill_grace_seconds": 15,
+    "network_disabled": true,
+    "input_mounted_read_only": true,
+    "output_on_disk_not_tmpfs": true
+  },
+  "runs": [
+    {
+      "voxel_mm": 0.6,
+      "utc_completed": "2026-09-07T18:02:10.616037+00:00",
+      "status": "geometry_job_completed_not_physics_validation",
+      "exit_code": 0,
+      "input_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "input_unchanged": true,
+      "transform": "identity",
+      "private_report_sha256": "e577e166c9bc7c246f0e03c0d447484b739e43a75295ce4c2591cd372993a4d7",
+      "private_stdout_log_sha256": "f5e865ec7727f6bccb51cf1d150fa0d0c5cf6403b8d82e402fd6f924610d0765",
+      "elapsed_seconds": 4.9580824,
+      "peak_working_set_bytes": 331046912,
+      "outputs": [
+        {
+          "purpose": "roundtrip",
+          "filename": "head-roundtrip.stl",
+          "sha256": "ab285bf63a02b0aac35df18057882a50f484c436c0309ff27a4d6bee04524c13",
+          "bytes": 41418884,
+          "triangles": 828376
+        },
+        {
+          "purpose": "morphology",
+          "filename": "opening-sensitive-features.stl",
+          "sha256": "e3304ca43b16c40e623933df1ebbde21d0b890fc3746a353c8ee6ae02d3411d6",
+          "bytes": 6488484,
+          "triangles": 129768
+        }
+      ],
+      "independent_topology_and_distance_audit": "progress_summary_retained_no_complete_audit_report",
+      "complete_independent_audit_report_delivered": false,
+      "independent_audit_preserved_progress_metrics": {
+        "relative_signed_volume_error": 0.0012864486145564506,
+        "boundary_edges": 0,
+        "source": "captured_stdout_not_a_complete_detailed_audit_report"
+      }
+    },
+    {
+      "voxel_mm": 0.3,
+      "utc_completed": "2026-09-07T18:02:56.3040865+00:00",
+      "status": "geometry_job_completed_not_physics_validation",
+      "exit_code": 0,
+      "input_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "input_unchanged": true,
+      "transform": "identity",
+      "private_report_sha256": "a41e023ce1c9101b35ea4871dd412e6dcdcafb8a18bc00e15c209653f2ce7fde",
+      "private_stdout_log_sha256": "e6ec13ea304d5ea68f9f97a7fb3a5dd9792d8f7e00f2941b0c505a724a13529a",
+      "elapsed_seconds": 45.7391293,
+      "peak_working_set_bytes": 825344000,
+      "outputs": [
+        {
+          "purpose": "roundtrip",
+          "filename": "head-roundtrip.stl",
+          "sha256": "3c06acb8810278c07de17e1e8bc712c70e3d3d1258848e1dc54db84e3fd5b073",
+          "bytes": 169594484,
+          "triangles": 3391888
+        },
+        {
+          "purpose": "morphology",
+          "filename": "opening-sensitive-features.stl",
+          "sha256": "81fee3f4574454e8eb62491c5f46b3b003c3cf163666fd29770ce955108c0efb",
+          "bytes": 27347484,
+          "triangles": 546948
+        }
+      ],
+      "independent_topology_and_distance_audit": "progress_summary_retained_no_complete_audit_report",
+      "complete_independent_audit_report_delivered": false,
+      "independent_audit_preserved_progress_metrics": {
+        "relative_signed_volume_error": 0.0003063738600301023,
+        "boundary_edges": 0,
+        "source": "captured_stdout_not_a_complete_detailed_audit_report"
+      }
+    },
+    {
+      "voxel_mm": 0.15,
+      "utc_completed": "2026-09-07T18:07:39.0720813+00:00",
+      "status": "geometry_job_completed_not_physics_validation",
+      "exit_code": 0,
+      "input_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "input_unchanged": true,
+      "transform": "identity",
+      "private_report_sha256": "b66f2a3d2e7fdbc375515cd7438fe73014f9570fa88fa14ed82dbea768a4e754",
+      "private_stdout_log_sha256": "9af3296ec8ead62f9e15a0670d430452794b1be6417b63bb6005bdaa57f5d2fc",
+      "elapsed_seconds": 283.1961769,
+      "peak_working_set_bytes": 2575753216,
+      "outputs": [
+        {
+          "purpose": "roundtrip",
+          "filename": "head-roundtrip.stl",
+          "sha256": "375556af4ba5a27e97de042e1595bb044a26c145151b5e08af3886d1de16312c",
+          "bytes": 683619684,
+          "triangles": 13672392
+        },
+        {
+          "purpose": "morphology",
+          "filename": "opening-sensitive-features.stl",
+          "sha256": "6bd164cce058454542e94492311ea54821b26a962bf5ebcd3c84802b0d73d944",
+          "bytes": 111898684,
+          "triangles": 2237972
+        }
+      ],
+      "independent_topology_and_distance_audit": "incomplete_exit_137",
+      "complete_independent_audit_report_delivered": false
+    }
+  ],
+  "local_artifact_sha256_all_verified": true,
+  "master_hash_verified_after_all_runs": true,
+  "currency_cost_usd": 0,
+  "geometry_included": false,
+  "private_paths_included": false,
+  "units": "mm_under_unverified_1_scan_unit_per_mm_hypothesis",
+  "dimensions_or_interfaces_certified": false,
+  "morphology_is_wall_thickness_measurement": false,
+  "CFD_simulation": false,
+  "thermal_simulation": false,
+  "structural_simulation": false,
+  "LPBF_simulation": false,
+  "manufacturing_authorized": false,
+  "independent_audit": {
+    "receipt": "twins/m64-cylinder-head/evidence/picogk-three-resolution-audit-20260907.json",
+    "sha256": "458e048db2ef6d9230d7a1edee9c18e744be3490a20a872744111d3e3f25c0fa",
+    "status": "partial_2_of_3_progress_summaries_retained",
+    "complete_detailed_report_delivered": false,
+    "exit_code": 137,
+    "memory_cause_confirmed": false,
+    "note": "All three voxelization jobs completed; the independent audit retained two stdout progress summaries before interruption, not two persisted detailed audit reports."
+  }
+}

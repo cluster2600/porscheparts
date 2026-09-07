@@ -1,0 +1,256 @@
+{
+  "schema": "m64-picogk-domains-execution-evidence-v1",
+  "status": "actual_head_geometry_computed_not_physical_validation",
+  "execution_host": "authorized_Kali_linux_amd64",
+  "currency_cost_usd": 0,
+  "geometry_included": false,
+  "private_paths_included": false,
+  "dimensions_or_interfaces_certified": false,
+  "independent_mesh_audit": {
+    "path": "picogk-cooling-domain-mesh-audit-20260907.json",
+    "sha256": "249c010c568b62226433cc71cbab2eb10ccd07814f5d5f1c543a507abc8fe4c5"
+  },
+  "runs": [
+    {
+      "voxel_mm": 0.6,
+      "execution_image_ref_or_local_tag": "3dprinting993-picogk-m64:preflight",
+      "execution_image_id": "sha256:a570938d6111a8a5595f0404c18d63bacfe617e91850772b14bbc010bea55f4a",
+      "execution_image_was_public_GHCR_digest": false,
+      "utc_completed": "2026-09-07T17:49:22.0590734+00:00",
+      "input_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "input_unchanged": true,
+      "private_report_sha256": "5cb186c863a921747f1e81b37731fd688ec0e8823ae44a510d0d77d6001f52f0",
+      "outputs": [
+        {
+          "filename": "unclassified-void-complement.stl",
+          "sha256": "a0fd734c22d817266ad93df52e589e386740795a0063e59a0b1611741717ec21",
+          "triangles": 1809204,
+          "bytes": 90460284
+        },
+        {
+          "filename": "geometric-clearance-core-1p5mm.stl",
+          "sha256": "90998b39a411efbd8306ed6f6c16e20c62a2989ae532240be6ce4ec731018ab1",
+          "triangles": 788524,
+          "bytes": 39426284
+        },
+        {
+          "filename": "geometric-protected-skin-1p5mm.stl",
+          "sha256": "c851a17ff4cc5244f19280fd09986b1e7dd8aedad1be98d44e4af9472baf1fb2",
+          "triangles": 1616900,
+          "bytes": 80845084
+        }
+      ],
+      "openvdb": {
+        "filename": "head-and-cooling-geometry-fields.vdb",
+        "sha256": "9e7eaacb18348578b8247045878a4d1d3b4c9ca1520f82ac48af2aa1b38c6bd0",
+        "bytes": 32357467,
+        "named_fields": [
+          "head_body",
+          "unclassified_void_complement",
+          "geometric_clearance_core_1p5mm",
+          "geometric_protected_skin_1p5mm"
+        ],
+        "named_reload_verified": true,
+        "reload_volume_relative_errors": {
+          "head_body": 0,
+          "unclassified_void_complement": 0,
+          "geometric_clearance_core_1p5mm": 0,
+          "geometric_protected_skin_1p5mm": 0
+        }
+      },
+      "application_assembly_sha256": "e69a7a2d6846d725d5f96d95ca6d34cfc8a320bf5035d65dfa0eaa09bd333b4f",
+      "native_library_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+      "elapsed_seconds": 45.0792713,
+      "peak_working_set_bytes": 750100480,
+      "synthetic_hollow_cube_witness": {
+        "oriented_mesh_relative_error": 0.005232561685196932,
+        "native_relative_error": 0.269795865428691,
+        "oriented_mesh_witness_passed": true,
+        "occupancy_expected": [
+          false,
+          true,
+          false
+        ],
+        "occupancy_native_byte_return": [
+          false,
+          true,
+          false
+        ],
+        "occupancy_upstream_default_bool_return": [
+          false,
+          true,
+          true
+        ],
+        "occupancy_byte_return_witness_passed": true
+      },
+      "volume_screen": {
+        "relative_tolerance": 0.02,
+        "method": "compensated_oriented_triangle_divergence_integration_requires_closed_consistent_winding",
+        "threshold_scope": "coarse_numerical_smoke_only_not_physical_acceptance",
+        "analytic_box_relative_error": 0.00007660536129335583,
+        "body_plus_void_partition_relative_error": 1.0109228341663832e-7,
+        "core_plus_skin_partition_relative_error": 2.3016951954252074e-7,
+        "passed": true,
+        "proves_topology_or_mesh_convergence": false
+      },
+      "native_volume_api_audit": {
+        "method": "PicoGK_CalculateProperties_remesh_then_revoxelize",
+        "body_plus_void_partition_relative_error": 0.29906985031887634,
+        "core_plus_skin_partition_relative_error": 0.8531549143593299,
+        "discrepancy_flagged": true,
+        "warning": "Pinned CalculateProperties resamples each mesh independently and overestimates nested-cavity examples. Native values are preserved for audit, not used as hollow-domain volume truth. Exhaustive voxelwise partition remains unchecked."
+      },
+      "sampled_occupancy_partition": {
+        "method": "PicoGK_native_Voxels_bIsInside_byte_return_on_fixed_phase_6mm_sample_grid",
+        "interop_audit": "Pinned upstream C# declaration marshals C++ bool as default four-byte BOOL. A module-local byte-return declaration is checked against hollow-cube inside/outside witnesses; upstream image and kernel are not patched.",
+        "sample_step_mm": 6,
+        "interface_probe_epsilon_mm": 0.030000001,
+        "tested_points": 22140,
+        "near_interface_points_excluded": 0,
+        "body_void_overlap_count": 0,
+        "body_void_union_mismatch_count": 0,
+        "core_skin_overlap_count": 0,
+        "core_skin_union_mismatch_count": 0,
+        "passed_at_sampled_points": true,
+        "exhaustive": false,
+        "fluid_connectivity_classified": false,
+        "warning": "Points with a classification change under small axis perturbations are excluded; sparse sampling does not prove voxelwise partition or topology."
+      },
+      "raw_export_topology_status": "warning_exact_zero_area_triangles_in_void_and_skin",
+      "independent_topology_audit_private_report_sha256": "12cd640a7d1c4dec186e8754dc729bd49eb3f654ca079f91b01f3c0a4de4ed0d",
+      "raw_export_topology_all_passed": false,
+      "traceable_exact_degenerate_cleanup_available_separately": true
+    },
+    {
+      "voxel_mm": 0.3,
+      "execution_image_ref_or_local_tag": "3dprinting993-picogk-m64:preflight",
+      "execution_image_id": "sha256:a570938d6111a8a5595f0404c18d63bacfe617e91850772b14bbc010bea55f4a",
+      "execution_image_was_public_GHCR_digest": false,
+      "utc_completed": "2026-09-07T17:57:01.1623752+00:00",
+      "input_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "input_unchanged": true,
+      "private_report_sha256": "e906d9270f937c7dd50fef3a0c07b6be12513b106ef48d94485ecb398e869ff7",
+      "outputs": [
+        {
+          "filename": "unclassified-void-complement.stl",
+          "sha256": "985ac652aa01942abc99e1918ddf4215b687937bce1c758cae1f8e52cf0fc0c9",
+          "triangles": 7320096,
+          "bytes": 366004884
+        },
+        {
+          "filename": "geometric-clearance-core-1p5mm.stl",
+          "sha256": "519ac2691d3aeeec665bbcc6ec37bf30f6fc2c27a4bbebaef363d724668be379",
+          "triangles": 3193868,
+          "bytes": 159693484
+        },
+        {
+          "filename": "geometric-protected-skin-1p5mm.stl",
+          "sha256": "2c851faefdf617726ce46719ef098de0dfbf6c365d63163ac17e4416fc6dc7c7",
+          "triangles": 6585756,
+          "bytes": 329287884
+        }
+      ],
+      "openvdb": {
+        "filename": "head-and-cooling-geometry-fields.vdb",
+        "sha256": "c87be35a0f9ad926a336e65919b494d9f6b110fa1381a467a0abd9556bc19201",
+        "bytes": 138743727,
+        "named_fields": [
+          "head_body",
+          "unclassified_void_complement",
+          "geometric_clearance_core_1p5mm",
+          "geometric_protected_skin_1p5mm"
+        ],
+        "named_reload_verified": true,
+        "reload_volume_relative_errors": {
+          "head_body": 0,
+          "unclassified_void_complement": 0,
+          "geometric_clearance_core_1p5mm": 0,
+          "geometric_protected_skin_1p5mm": 0
+        }
+      },
+      "application_assembly_sha256": "e69a7a2d6846d725d5f96d95ca6d34cfc8a320bf5035d65dfa0eaa09bd333b4f",
+      "native_library_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+      "elapsed_seconds": 145.9164248,
+      "peak_working_set_bytes": 2700496896,
+      "synthetic_hollow_cube_witness": {
+        "oriented_mesh_relative_error": 0.0004749167582818997,
+        "native_relative_error": 0.2774750845772879,
+        "oriented_mesh_witness_passed": true,
+        "occupancy_expected": [
+          false,
+          true,
+          false
+        ],
+        "occupancy_native_byte_return": [
+          false,
+          true,
+          false
+        ],
+        "occupancy_upstream_default_bool_return": [
+          false,
+          true,
+          true
+        ],
+        "occupancy_byte_return_witness_passed": true
+      },
+      "volume_screen": {
+        "relative_tolerance": 0.02,
+        "method": "compensated_oriented_triangle_divergence_integration_requires_closed_consistent_winding",
+        "threshold_scope": "coarse_numerical_smoke_only_not_physical_acceptance",
+        "analytic_box_relative_error": 0.000021401216420551223,
+        "body_plus_void_partition_relative_error": 4.979140593233126e-9,
+        "core_plus_skin_partition_relative_error": 9.551891692675537e-8,
+        "passed": true,
+        "proves_topology_or_mesh_convergence": false
+      },
+      "native_volume_api_audit": {
+        "method": "PicoGK_CalculateProperties_remesh_then_revoxelize",
+        "body_plus_void_partition_relative_error": 0.29882107089305,
+        "core_plus_skin_partition_relative_error": 0.8745257502405726,
+        "discrepancy_flagged": true,
+        "warning": "Pinned CalculateProperties resamples each mesh independently and overestimates nested-cavity examples. Native values are preserved for audit, not used as hollow-domain volume truth. Exhaustive voxelwise partition remains unchecked."
+      },
+      "sampled_occupancy_partition": {
+        "method": "PicoGK_native_Voxels_bIsInside_byte_return_on_fixed_phase_6mm_sample_grid",
+        "interop_audit": "Pinned upstream C# declaration marshals C++ bool as default four-byte BOOL. A module-local byte-return declaration is checked against hollow-cube inside/outside witnesses; upstream image and kernel are not patched.",
+        "sample_step_mm": 6,
+        "interface_probe_epsilon_mm": 0.015000001,
+        "tested_points": 21979,
+        "near_interface_points_excluded": 161,
+        "body_void_overlap_count": 0,
+        "body_void_union_mismatch_count": 0,
+        "core_skin_overlap_count": 0,
+        "core_skin_union_mismatch_count": 0,
+        "passed_at_sampled_points": true,
+        "exhaustive": false,
+        "fluid_connectivity_classified": false,
+        "warning": "Points with a classification change under small axis perturbations are excluded; sparse sampling does not prove voxelwise partition or topology."
+      },
+      "raw_export_topology_status": "closed_edge_manifold_consistently_oriented_with_micro_shell_warning",
+      "independent_topology_audit_private_report_sha256": "64f2bf714859f2b8b4c6e6100620219b9f072b547abd77a36cb6e123ac247ef3",
+      "raw_export_topology_all_passed": true,
+      "exact_zero_area_triangles_removed": 0,
+      "surface_shell_counts": { "void": 2, "core": 1, "skin": 3 },
+      "micro_shell_warning": "The skin includes a tiny additional negative-volume shell with 12 triangles. It is preserved and is not proof of physical porosity or qualified fluid connectivity.",
+      "fluid_region_connectivity_proved": false
+    }
+  ],
+  "software_qualification": {
+    "source_contract_tests_passed": 4,
+    "dedicated_native_synthetic_regression_passed": true,
+    "upstream_image_modified": false,
+    "module_local_occupancy_abi_adapter_used": true,
+    "equivalent_I1_patch_applied": false
+  },
+  "retained_failed_attempts": [
+    "native_resampled_volume_partition_failure",
+    "upstream_bool_occupancy_marshalling_failure",
+    "tmpfs_exhaustion_at_0p3_retried_on_disk"
+  ],
+  "CFD_simulation": false,
+  "thermal_simulation": false,
+  "structural_simulation": false,
+  "LPBF_simulation": false,
+  "external_cooling_domain_qualified": false,
+  "manufacturing_authorized": false
+}
