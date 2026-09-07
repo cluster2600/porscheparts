@@ -12,6 +12,22 @@ de p-curves après lecture. Le maître de départ n'est ni remplacé ni modifié
 Le [reçu de l'essai 04](../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-04-20260907.json)
 conserve les empreintes et distingue ces contrôles de la validation moteur.
 
+**Dernière exécution : essai 05, tronc à interpolation réglée.** La correction
+a été réellement reconstruite et découpée, en 374 s sur processeur local.
+Le [reçu de l'essai 05](../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-05-ruled-20260907.json)
+confirme un seul solide natif, aucun défaut BOP signalé dans les cinq modes
+exécutés et une relecture `.brep` cohérente. Le STEP présente encore **26 défauts
+de p-curves** et reste rejeté. Ce candidat privé n'est pas promu en maître ni
+en fichier de fabrication ; le contrôle des ouvertures est distinct.
+
+Ce contrôle a ensuite été exécuté sur l'essai 05, sans réutiliser les contacts
+de l'ancienne géométrie : **zéro portion de face et zéro aire hors des
+enveloppes définies**, côté admission comme échappement. Les partitions d'aire
+passent sans changer les seuils. L'enveloppe réglée est cette fois identique
+au nouveau tronc : ce résultat reste relatif à ces régions et ne prouve ni
+la conformité OEM des bouches ni l'absence d'une poche à l'intérieur d'une
+région autorisée. Tous les contacts bruts restent conservés.
+
 ## Course complète des quatre soupapes
 
 Les quatre volumes d'exclusion natifs couvrent toutes les positions entre
@@ -107,10 +123,31 @@ localise l'excroissance dans le tronc, pas dans les deux branches ; des sections
 natives confirment que ce n'est pas uniquement une boîte englobante conservative.
 Le résultat échappement de ce contre-contrôle reste indéterminé après échec
 de conservation d'aire ; le seuil n'est pas relâché pour obtenir un succès.
+Les [reçus du contre-contrôle et du rendu](../twins/m64-cylinder-head/evidence/scan-seeded-ports-counterchecks-20260907.json)
+conservent résultats, échecs et empreintes, sans les coordonnées privées.
+
+Une reprise limitée sur les trois mêmes surfaces échappement utilise une
+quadrature adaptative explicite. Les écarts de partition passent alors sous
+le seuil inchangé pour ε = 10⁻⁷, 10⁻⁹ et 10⁻¹¹. Cependant, certaines aires
+varient encore entre les deux derniers réglages. Les estimateurs internes ne
+sont pas des bornes rigoureuses : cette reprise explique la sensibilité
+numérique, sans remplacer le verdict initial par une conformité des ouvertures.
 
 La correction suivante porte donc sur l'interpolation du tronc uniquement.
 Les raccordements réglés constituent un témoin géométrique borné, pas une
 validation de pertes de charge ni des rayons de raccordement finaux.
+
+Le générateur propose `--trunk-interpolation ruled` pour cet essai contrôlé ;
+le mode `smooth` reste disponible pour reproduire l'essai rejeté. Le choix est
+enregistré dans le contexte et le rapport. Les branches gardent leur loft
+lisse ; aucune section du scan, aucun rayon et aucune tolérance ne changent.
+Les jonctions du tronc réglé sont seulement C0. Elles ne constituent pas les
+surfaces fluidiques définitives.
+
+Sur la tessellation réelle de l'essai 05, la borne latérale positive du
+négatif admission diminue de 31,50 unités de scan : l'excroissance signalée
+dans l'essai 04 n'est plus présente. Cette comparaison locale ne prouve pas
+la bonne implantation de toutes les ouvertures ni l'épaisseur des parois.
 
 ## Contrôles restant à fermer sur la pièce
 
@@ -134,15 +171,32 @@ situe ce lot dans la préparation CAO, avant les calculs de pièce.
 
 - [Générateur des enveloppes continues](../twins/m64-cylinder-head/source/build_continuous_valve_envelopes.py).
 - [Générateur de conduits sous hypothèses](../twins/m64-cylinder-head/source/build_scan_seeded_ports.py).
+- [Contre-contrôle des ouvertures](../twins/m64-cylinder-head/source/audit_port_skin_openings.py),
+  avec conservation des contacts bruts et contre-exemple de poche cachée.
 - [Tests des enveloppes](../tests/test_continuous_valve_envelopes.py) et
-  [tests des raccordements](../tests/test_m64_scan_seeded_ports.py).
+  [tests des raccordements](../tests/test_m64_scan_seeded_ports.py), complétés
+  par les [témoins de contrôle de peau](../tests/test_m64_port_skin_openings.py).
 
 Toutes les géométries liées au scan, coupes et images de ce lot restent privées.
 Seuls code, hypothèses et reçus sans coordonnées privées sont publiables.
 Aucune autorisation de fabrication ou de fonctionnement moteur n'est acquise.
 
-Les vues privées proviennent des 4 837 faces du candidat natif, toutes
+Les premières vues privées proviennent des 4 837 faces de l'essai 04, toutes
 tessellées, sans lissage ou décimation : extérieur, demi-vue avec noyaux
 colorés et coupe plane. Le bleu/orange distingue les conduits, **pas des
 températures ou vitesses calculées**. Le [script de rendu](../twins/m64-cylinder-head/source/render_scan_seeded_ports.py)
 lie les maillages, images et avertissements au reçu de calcul.
+
+Les vues actualisées de l'essai 05 représentent ses **4 892 faces et 70 386
+triangles**, avec le même cadrage et les mêmes avertissements. Leurs empreintes
+et celles de la coupe sont liées au B-Rep exact dans le reçu de l'essai 05.
+
+## Vérifications logicielles de ce lot
+
+`make check` termine avec sortie 0 ; sa découverte principale exécute
+2 095 tests, dont 68 explicitement ignorés dans le runtime par défaut.
+Les trois suites ciblées sont aussi exécutées dans le runtime OCP qualifié :
+7 tests d'enveloppes continues, 10 de raccordement et 2 de contrôle de peau,
+tous réussis, aucun ignoré. Le [reçu des vérifications](../twins/m64-cylinder-head/evidence/port-geometry-software-checks-20260907.json)
+conserve l'empreinte du journal. Ces tests de logiciel et de géométrie ne sont
+pas des essais physiques de la culasse.

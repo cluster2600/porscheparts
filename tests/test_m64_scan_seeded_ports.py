@@ -1,10 +1,13 @@
 """Routing mathematics and native witnesses, not physical head validation."""
 import importlib.util
 import copy
+import contextlib
+import io
 import math
 from pathlib import Path
 import sys
 import unittest
+from unittest import mock
 
 SOURCE=Path(__file__).resolve().parents[1]/'twins/m64-cylinder-head/source'
 sys.path.insert(0,str(SOURCE))
@@ -74,6 +77,56 @@ class RoutingTests(unittest.TestCase):
         for direction in ([0.,0.,0.],[math.nan,0.,1.]):
             with self.assertRaises(ValueError): ports.unit(direction)
         with self.assertRaises(ValueError): ports.bezier([[0.,0.,0.]]*4,1.1)
+
+    def test_trunk_interpolation_cli_default_and_explicit(self):
+        arguments=['ports']
+        for key in ('body','body-build','repair-report','interfaces','module-build','output'):
+            arguments.extend(['--'+key,'unused-private-fixture'])
+        for key in ('body-sha256','interfaces-sha256'):
+            arguments.extend(['--'+key,'0'*64])
+        for extra,expected in [([], 'smooth'),(['--trunk-interpolation','smooth'], 'smooth'),
+                               (['--trunk-interpolation','ruled'], 'ruled')]:
+            with mock.patch.object(sys,'argv',arguments+extra), \
+                 mock.patch.object(ports.resource,'setrlimit'), \
+                 mock.patch.object(ports,'run',return_value=0) as execute:
+                self.assertEqual(ports.main(),0)
+                self.assertEqual(execute.call_args.args[0].trunk_interpolation,expected)
+        with mock.patch.object(sys,'argv',arguments+['--trunk-interpolation','unknown']), \
+             contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as caught:
+            ports.main()
+        self.assertEqual(caught.exception.code,2)
+
+    def test_ruled_flag_is_explicit_boolean(self):
+        with self.assertRaisesRegex(ValueError,'Boolean'):
+            ports.loft(None,{},[],ruled='smooth')
+
+    def test_native_ruled_trunk_preserves_station_envelope(self):
+        if importlib.util.find_spec('OCP') is None:
+            self.skipTest('OCP native witness requires qualified CAD runtime')
+        cad=ports.design.CAD(); api=ports.native()
+        stations=[{'center':[x,0.,z],'normal':[0.,0.,1.],'radius':r}
+                  for x,z,r in [(0.,0.,2.),(1.,3.,3.),(-1.,7.,1.5),(0.,12.,2.5)]]
+        original=copy.deepcopy(stations)
+        factory=mock.Mock(wraps=api['BRepOffsetAPI_ThruSections'])
+        with mock.patch.dict(api,{'BRepOffsetAPI_ThruSections':factory}):
+            ruled=ports.loft(cad,api,stations,ruled=True)
+            self.assertEqual(factory.call_args.args,(True,True,1e-6))
+            smooth=ports.loft(cad,api,stations)
+            self.assertEqual(factory.call_args.args,(True,False,1e-6))
+        self.assertEqual(stations,original)
+        for shape in (ruled,smooth):
+            self.assertTrue(cad.valid(shape))
+            self.assertEqual(cad.indexed(shape,cad.TopAbs_SOLID).Extent(),1)
+            self.assertGreater(cad.volume(shape),0.)
+        bounds=ports.bbox(api,ruled)
+        expected=[min(s['center'][0]-s['radius'] for s in stations),
+                  -max(s['radius'] for s in stations),0.,
+                  max(s['center'][0]+s['radius'] for s in stations),
+                  max(s['radius'] for s in stations),12.]
+        # A synthetic envelope witness only; the private head still requires
+        # its own BOP, skin-opening and wall-thickness checks after cutting.
+        for actual,limit in zip(bounds,expected):
+            self.assertAlmostEqual(actual,limit,delta=1e-5)
 
     def test_native_loft_and_nondestructive_boolean(self):
         if importlib.util.find_spec('OCP') is None:
