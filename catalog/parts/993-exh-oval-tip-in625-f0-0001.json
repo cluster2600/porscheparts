@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+  "name": "Embout d'échappement ovale 993, concept double paroi IN625 F0",
+  "description": "Concept indépendant rond-vers-ovale à double paroi ventilée et huit attaches intégrées pour cribler une fabrication LPBF en IN625. FVD publie uniquement une enveloppe de sortie de 120 x 85 mm pour son embout inox FVD11199300 ; PorscheFanatics documente séparément un précédent IN625 sur des échappements 993 Turbo.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_C2", "993_C4", "993_RS_narrow_body"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "exhaust_tip",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, DfAM, débit, thermique, pression et modal ; aucune fabrication pour montage ni installation véhicule autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-exh-oval-tip-in625-f0-0001/source/oval_exhaust_tip.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-exh-oval-tip-in625-f0-0001/derived/oval_exhaust_tip_in625_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration PET ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "FVD - embouts inox ovales 993 étroites",
+        "url": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+        "source_type": "manufacturer",
+        "license": "commercial-product-content-rights-not-verified-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "FVD déclare 120 mm au plus large, 85 mm au plus haut, une construction inox et les applications C2/C4/RS. Aucun diamètre d'entrée, longueur, angle, épaisseur ou datum. Voir SRC-FVD-993-EXHAUST-TIPS-DIMENSIONS."
+      },
+      {
+        "title": "PorscheFanatics - registre des matériaux déclarés",
+        "url": "https://porschefanatics.com/materials/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Documente des offres d'échappement 993 Turbo déclarées en IN625 ; précédent matière uniquement, sans géométrie ni transfert de fitment. Voir SRC-PORSCHEFANATICS-993-IN625-EXHAUST-REGISTER."
+      },
+      {
+        "title": "EOS NickelAlloy IN625 material data sheet",
+        "url": "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Valeurs M 290 40 µm de criblage, dépendantes de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+      },
+      {
+        "title": "Special Metals - INCONEL alloy 625",
+        "url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Propriétés thermiques corroyées de référence, jamais une carte admissible LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "sheet_metal"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "superalliage nickel LPBF candidat",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625 de criblage ; produit FVD déclaré en inox",
+      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 à contractualiser si la voie LPBF est retenue"
+    },
+    "post_processing": [
+      "évacuation complète de la poudre par les deux extrémités de la double paroi",
+      "détensionnement qualifié pour la machine et les paramètres",
+      "découpe du plateau avec contrôle de l'ovalisation",
+      "usinage de l'emmanchement et de la portée de serrage après ajout de surépaisseurs",
+      "ébavurage et polissage du chemin de gaz",
+      "passivation ou finition de surface à définir après essais"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "capabilité démontrée sur doubles parois de 0,8 mm et entrefer ouvert de 2,7 mm",
+      "stratégie de supports et simulation de distorsion avant lancement",
+      "contrôle dimensionnel du raccord, de l'ovale, de l'angle et des jeux",
+      "CT ou radiographie de la double paroi et ressuage après finition",
+      "essais de fuite, vibration, cycles thermiques et température de jupe arrière avant véhicule"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Compatibilité galvanique du IN625 avec collier, tube et fixations à définir après identification des matériaux réels."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-fvd-993-exhaust-tips-dimensions.json",
+      "catalog/sources/src-porschefanatics-993-in625-exhaust-register.json",
+      "catalog/sources/src-eos-in625-material-data.json",
+      "catalog/sources/src-special-metals-inconel-625.json",
+      "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seule la sortie 120 x 85 mm vient de FVD ; longueur, entrée, doubles parois et attaches sont hypothétiques.",
+      "Le volume STEP donne 406,38 g en IN625 ; aucune masse commerciale comparable n'est publiée.",
+      "Le criblage de perte Borda-Carnot est une borne d'expansion brusque, pas la prédiction du diffuseur progressif.",
+      "Le mode de bande à 44,12 Hz n'est pas un mode de coque et ne peut pas être comparé à un spectre véhicule absent.",
+      "Les températures, débits, pressions, rendement volumétrique et conditions d'appui sont synthétiques.",
+      "Le calcul ignore pulses, courbures amont, joints, convection, CHT, ovalisation, rugosité, oxydation et fatigue thermique.",
+      "Le STEP prouve seulement un BREP calculable dans l'enveloppe et ne doit pas être fabriqué pour montage."
+    ]
+  }
+}
