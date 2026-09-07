@@ -160,6 +160,39 @@ class RereadQualityGateTests(unittest.TestCase):
                     MODULE.reread_quality_gate(qualities, determinants, 1)
 
 
+class VolumeAlgorithmAndSurfaceSignatureTests(unittest.TestCase):
+    def test_historical_algorithm_is_default_and_hxt_is_explicit(self):
+        parser=MODULE.argument_parser()
+        base=['--mode','mesh','--input','body.brep','--sha256','a'*64,'--output','out']
+        self.assertEqual(parser.parse_args(base).volume_algorithm,1)
+        self.assertEqual(parser.parse_args(base+['--volume-algorithm','10']).volume_algorithm,10)
+        with self.assertRaises(SystemExit):
+            parser.parse_args(base+['--volume-algorithm','4'])
+
+    def test_signatures_ignore_tags_triangle_order_and_cyclic_rotation(self):
+        points={1:(0.,0.,0.),2:(1.,0.,0.),3:(0.,1.,0.),4:(1.,1.,0.)}
+        other={tag+10:xyz for tag,xyz in points.items()}
+        a=MODULE.triangle_signatures(points,[(1,2,3),(2,4,3)])
+        b=MODULE.triangle_signatures(other,[(14,13,12),(12,13,11)])
+        self.assertEqual(a,b)
+
+    def test_exact_signature_catches_sub_rounding_motion_and_winding(self):
+        points={1:(0.,0.,0.),2:(1.,0.,0.),3:(0.,1.,0.)}
+        reference=MODULE.triangle_signatures(points,[(1,2,3)])
+        moved=dict(points);moved[1]=(1e-14,0.,0.)
+        motion=MODULE.triangle_signatures(moved,[(1,2,3)])
+        self.assertEqual(reference['rounded12_unoriented_sha256'],motion['rounded12_unoriented_sha256'])
+        self.assertNotEqual(reference['exact_unoriented_sha256'],motion['exact_unoriented_sha256'])
+        reversed_=MODULE.triangle_signatures(points,[(1,3,2)])
+        self.assertEqual(reference['exact_unoriented_sha256'],reversed_['exact_unoriented_sha256'])
+        self.assertNotEqual(reference['exact_oriented_sha256'],reversed_['exact_oriented_sha256'])
+
+    def test_signature_catches_changed_connectivity_with_same_vertices(self):
+        points={1:(0.,0.,0.),2:(1.,0.,0.),3:(0.,1.,0.),4:(1.,1.,0.)}
+        self.assertNotEqual(MODULE.triangle_signatures(points,[(1,2,3),(2,4,3)]),
+                            MODULE.triangle_signatures(points,[(1,2,4),(1,4,3)]))
+
+
 class PreservedSkinMeshAdaptTests(unittest.TestCase):
     def setUp(self):
         self.native_sha = "3e3cc1631612fb9b7c36a34ceb157888ce66fdf3efb95f3ddad8578f74950ec5"
