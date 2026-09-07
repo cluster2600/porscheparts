@@ -69,7 +69,7 @@ class M64JobTests(unittest.TestCase):
         self.manifest = {
             "schema_version": "1.0.0", "profile": self.w.M64_PROFILE,
             "job_id": "m64-offline-test", "instance_id": self.instance_id, "label": self.label,
-            "image": self.w.SIMREADY_IMAGE, "created_epoch": now - 1,
+            "image": self.w.M64_SIMREADY_IMAGE, "created_epoch": now - 1,
             "deadline_epoch": now + 600, "max_dph": 2.5, "budget_usd": 5,
             "files": entries(self.files),
             "outputs": [{"path": "results/proof.json", "max_bytes": 4096}],
@@ -116,7 +116,7 @@ class M64JobTests(unittest.TestCase):
             login.assert_not_called()
 
     def test_manifest_bound_to_exact_instance_label_image_profile(self):
-        for name, bad in (("instance_id", self.instance_id + 1), ("instance_id", True), ("label", "other"), ("image", "unapproved:latest"), ("profile", "917")):
+        for name, bad in (("instance_id", self.instance_id + 1), ("instance_id", True), ("label", "other"), ("image", "unapproved:latest"), ("image", self.w.SIMREADY_IMAGE), ("profile", "917")):
             old = self.manifest[name]
             with self.subTest(name=name, value=bad):
                 self.manifest[name] = bad
@@ -214,7 +214,7 @@ class M64JobTests(unittest.TestCase):
     def metadata(self):
         return {
             "id": self.instance_id, "label": self.label, "actual_status": "running",
-            "image_uuid": self.w.SIMREADY_IMAGE, "ssh_host": "ssh.example.test", "ssh_port": 12345,
+            "image_uuid": self.w.M64_SIMREADY_IMAGE, "ssh_host": "ssh.example.test", "ssh_port": 12345,
             "dph_total": 2, "inet_up_cost": 0.01, "inet_down_cost": 0.01,
         }
 
@@ -236,10 +236,17 @@ class M64JobTests(unittest.TestCase):
         for option in ("ForwardAgent=no", "ClearAllForwardings=yes", "IdentitiesOnly=yes", "BatchMode=yes"):
             self.assertIn(option, command)
         self.w.read_local_ssh_public_key.assert_called_once_with()
+        self.w.verify_simready_contract.assert_called_once_with(
+            "synthetic", self.instance_id, self.label, profile=self.w.M64_PROFILE)
         self.w.instance_lists_approved_ssh_key.assert_called_once_with("synthetic", self.instance_id, "synthetic approved public key")
 
     def test_wrong_remote_instance_rejected_even_for_rescue_collection(self):
         self.mock_verified_dependencies(dict(self.metadata(), id=self.instance_id + 1))
+        with self.assertRaisesRegex(self.w.SafeError, "exact running instance"):
+            self.w.m64_verified_ssh("synthetic", self.manifest, collecting=True)
+
+    def test_legacy_image_is_rejected_even_for_rescue_collection(self):
+        self.mock_verified_dependencies(dict(self.metadata(), image_uuid=self.w.SIMREADY_IMAGE))
         with self.assertRaisesRegex(self.w.SafeError, "exact running instance"):
             self.w.m64_verified_ssh("synthetic", self.manifest, collecting=True)
 
