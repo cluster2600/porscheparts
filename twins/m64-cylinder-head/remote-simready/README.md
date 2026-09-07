@@ -28,8 +28,9 @@ arbres. Aucun scan privé n'est transféré par ce paquet.
   Son contrôle local et son authentification OpenBao passent ; l'inventaire
   Vast était vide au contrôle préalable. Le code source fixe désormais le
   digest M64 qualifié dans `M64_SIMREADY_IMAGE`, séparé du digest historique
-  `SIMREADY_IMAGE` de F42b. Le wrapper réinstallé et testé porte le SHA256
-  `84c90cdc5bcaa04d43594305feb9648ddde317b4dbccd1898c5f92b0c6775ee8`.
+  `SIMREADY_IMAGE` de F42b. La première installation séparant ces profils
+  portait le SHA256 `84c90cdc5bcaa04d43594305feb9648ddde317b4dbccd1898c5f92b0c6775ee8` ;
+  la version courante est indiquée ci-dessous.
 - Le [vrai test SSH isolé sur l'image M64 complète](../evidence/ssh-auth-m64-image-20260907.json)
   passe sur Kali à 13:24 UTC : connexion client/serveur, injection retardée
   d'une clé synthétique, refus de mauvaise identité, de permissions dangereuses
@@ -38,8 +39,9 @@ arbres. Aucun scan privé n'est transféré par ce paquet.
   **Cela ne prouve pas l'ordre d'initialisation réel de Vast.**
 - `make check` passe sur le lot local après régénération de l'empreinte de
   préparation F46. Cette régénération ne modifie aucun résultat de simulation.
-- À ce stade, aucun résultat GPU ou validation SimReady de ce module n'est
-  produit par ce dossier.
+- L'essai final a maintenant produit de vraies preuves de services GPU et de
+  conversion NVIDIA, décrites ci-dessous ; aucune validation complète SimReady
+  ou simulation moteur n'est acquise.
 - Le [premier essai distant M64](../evidence/vast-m64-proxy-attempt-20260907.json)
   a chargé l'image et atteint l'état fournisseur `running`, mais son relais
   SSH échouait à ouvrir le port distant. Aucun paquet de calcul n'a été
@@ -48,23 +50,99 @@ arbres. Aucun scan privé n'est transféré par ce paquet.
   séparément. Le garde indique honnêtement une absence vérifiée **sans
   collecte**, et non une récupération de résultats inexistants. Le coût
   contractuel était de 1,36556 USD/h ; aucune facture finale n'est encore liée.
+- Le [deuxième essai distant M64](../evidence/vast-m64-direct-attempt-20260907.json),
+  instance `50165737`, a été fermé après rejet local des métadonnées d'accès
+  direct, avant toute authentification SSH, transfert ou phase de travail.
+  Le nettoyage automatique a confirmé cinq observations d'absence, puis un
+  inventaire indépendant vide. Les mappings rejetés n'ont pas été conservés :
+  leur cause précise reste **inconnue**. Des bindings multiples ou des ports
+  non encore alloués sont des hypothèses, pas des faits établis pour cet essai.
 
 La documentation [SSH de Vast](https://docs.vast.ai/guides/instances/connect/ssh)
 distingue accès direct et proxy. Un point d'accès direct était annoncé pour
-cet essai, mais le wrapper utilisé conservait le proxy lorsqu'il était publié.
+le premier essai, mais son wrapper conservait le proxy lorsqu'il était publié.
 Le correctif M64 privilégie maintenant la paire directe exacte publiée par le
 fournisseur, avec IP globale unicast et port valides ; un mapping malformé est
 refusé, pas remplacé silencieusement par le proxy. Le profil historique reste
 inchangé. Le même choix s'applique au précontrôle, au transfert et à la collecte.
+Les bindings Docker multiples sont examinés par famille IPv4/IPv6, puis doivent
+conduire à un seul port distinct ; des doublons normalisés identiques sont
+admis. `HostIp` absent n'est admis que pour un binding unique après déduplication.
+Un champ `22/tcp` publié mais `null` ou vide fait attendre le délai déjà fixé,
+sans connexion ni repli proxy. Les erreurs produisent un diagnostic expurgé
+`OPENBAO_VASTAI_M64_ENDPOINT_DIAGNOSTIC` avec types, compte, ports normalisés,
+familles et provenance d'indices, jamais le dictionnaire brut du fournisseur.
 Le reçu de lancement identifie l'endpoint réellement vérifié après `READY`,
 sans prétendre vérifier la clé d'hôte par un canal indépendant.
 
 Le wrapper source et installé portent désormais le SHA256
-`cec1bffe0c8f00076121a530575caa68c70716cdcfac3b3f9e681289bb1097cb`.
-Ses 170 tests wrapper/transport, les 31 tests F42b (un ignoré) et `make check`
+`da8023143fe7f6867d55839a6d0e1cfd2cb8845e85f4ad43761188c50261b6f9`.
+Ses 175 tests wrapper/transport, les 31 tests F42b (un ignoré) et `make check`
 passent. Les contrôles OpenBao et de paire de clés passent également ; aucune
 instance ne restait active au contrôle précédant cette réinstallation.
 Cela ne remplace pas l'authentification réelle sur une nouvelle instance.
+
+Le [dernier essai distant](../evidence/vast-m64-gpu-attempt-20260907.json),
+instance `50167152`, est **fermé après échec de Material Agent**, avec
+suppression confirmée et inventaire indépendant vide. Le transfert SSH et les
+phases NVIDIA `preflight`, `context`, `convert`, `minimum` ont réussi. Le
+précontrôle rapporte OVRTX initialisé sur GPU et un smoke de rendu PNG réussi.
+Ces preuves réelles restent distinctes du **contrat `READY` complet du lanceur,
+non confirmé** ; aucune réussite de ce contrat n'est déduite des phases.
+
+L'[USD converti](../evidence/omniverse-static-v2-20260907/converted-assembly.usd)
+`04c501a3…` est récupéré et ajouté au dossier public : 12 meshes et 12 prototypes, Z-up,
+`metersPerUnit=0.001`, boîte de 82,285663 × 88 × 85,888367 mm selon le contrôle
+minimal NVIDIA. Cela concerne le sous-assemblage soupapes/sièges/guides, pas
+une culasse complète ou un moteur validé.
+
+Le contre-audit local parcourt les instances, leurs transformations composées
+et les 6 656 points : les 12 composants nommés restent distincts, avec un
+écart maximal de boîte par pièce de `1,803422e-6 mm` par rapport au STEP source.
+Le premier vérificateur rejetait une référence interne USD valide ; ce
+contre-audit séparé ne modifie pas l'asset. Ses empreintes figurent dans le
+reçu de l'essai. Une concordance de boîtes ne prouve ni les contacts
+soupapes/sièges, ni les interfaces moteur ou la résistance.
+
+Material Agent a échoué avec `material_pipeline_failed`, étape précise
+`unknown`, sans USD matériau produit. Son rapport annonce **60 aperçus pour
+12 prims**, puis la préparation du dataset ; **aucune de ces images n'a été
+rapatriée ni inspectée**. Ces aperçus éphémères n'ont pas été récupérés avant
+la suppression de l'instance et ne sont pas des livrables certifiés. Aucune
+phase Physics, conformance, validation de profil ou rendu final n'a suivi.
+
+La collecte opérateur a récupéré **29 fichiers privés, 266 299 octets**, tous
+revérifiés par taille et SHA256 ; le reçu porte `d2811fec…`. Elle reste
+partielle : huit racines de sorties correspondent aux phases jamais exécutées.
+Le garde conserve `absence_verified=true` mais `collection_verified=false`
+avec `unexpected_absence_collection_unverified` ; son constat n'est pas
+réécrit pour lui attribuer la collecte opérateur. Le superviseur confirme les
+sorties du lanceur et du garde avec code **1**, et de `caffeinate` avec code
+130 ; aucun processus ni instance de cet essai ne reste actif. Après la
+suppression externe, le lanceur signale un rollback non vérifié et des
+métadonnées SSH invalides : cette erreur est conservée, distincte des reçus
+de suppression et d'inventaire vide. Le marqueur d'arrêt du garde a été créé
+trop tard pour changer son constat. Les journaux bruts restent privés ; seul
+l'USD converti indépendant est publié séparément.
+
+L'allocation conservatrice était de **4 USD et 30 minutes**, du 7 septembre
+2026 à 14:23:45 UTC jusqu'à 14:53:45 UTC, avec réserve de récupération. Les
+allocations précédentes réservées étaient de 16 USD, soit le plafond cumulé
+de 20 USD ; **ces réservations ne sont pas une facture finale**. Aucune
+nouvelle relance n'est autorisée par cette note de clôture.
+
+Limites restantes du sélecteur, constatées sur fixtures locales seulement :
+
+- La concordance de famille d'un `HostIp` ne prouve ni sa joignabilité publique
+  ni l'état du listener : un bind loopback de même famille est encore accepté
+  comme métadonnée. L'adresse effectivement contactée reste l'IP publique
+  validée, et l'authentification reste obligatoire.
+- Si le champ `22/tcp` n'est pas publié du tout, le contrat permet toujours le
+  proxy ; ce cas est distinct d'un champ publié `null` ou vide, qui attend.
+- Un port JSON numérique pathologiquement grand peut lever `OverflowError`
+  avant le diagnostic expurgé. Le lanceur intercepte encore cette exception
+  pour son nettoyage ; cela n'autorise aucune connexion. Ce cas n'a pas été
+  observé dans les essais réels et ne justifie pas d'en inventer la cause.
 
 Le runtime historique ne correspondait pas aux versions requises par le skill
 NVIDIA installé. La couche dérivée conserve les services existants et ajoute
