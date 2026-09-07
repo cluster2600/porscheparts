@@ -76,3 +76,10 @@ du fournisseur indique **`exited`**, pas encore `stopped` ; ce relevé seul ne
 permet pas d'attester la suspension de la facturation GPU. Le garde-fou de
 suppression de la tentative exacte reste actif. La CAO indépendante sur Kali
 peut continuer ; aucune autre location n'a été lancée.
+
+Le contrôle borné d'arrêt s'est ensuite terminé en erreur : l'état `stopped`
+n'a pas été confirmé. L'instance exacte a donc été supprimée par
+`openbao-vastai destroy 50130746 --confirm`. Le wrapper a confirmé
+`destroyed=true` et `verified_absent=true`. Le conteneur et son disque de
+travail sont supprimés ; aucun résultat de calcul de culasse n'y avait été
+produit. Le source et les preuves enregistrées localement sont conservés.
