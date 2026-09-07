@@ -161,8 +161,16 @@ def operation(cad, kind, a, b):
     return result
 
 
-def loft(cad, api, stations):
-    maker = api['BRepOffsetAPI_ThruSections'](True,False,1e-6)
+def loft(cad, api, stations, *, ruled=False):
+    """Keep every circle; optionally join consecutive circles by ruled faces.
+
+    Ruled trunks deliberately retain C0 junctions at recorded stations. This
+    option does not fair, refit, inflate or remove a measured section. Branches
+    retain the historical smooth loft because they do not pass this flag.
+    """
+    if not isinstance(ruled,bool):
+        raise ValueError('ruled flag must be Boolean')
+    maker = api['BRepOffsetAPI_ThruSections'](True,ruled,1e-6)
     maker.CheckCompatibility(False)
     maker.SetMaxDegree(8)
     for station in stations:
@@ -263,6 +271,7 @@ def run(args):
     import OCP
     save(args.output/'execution-context.json',{'inputs_sha256':hashes,'OCP_version':OCP.__version__,
          'axis_comparison_absolute_tolerance_scan_units':1e-10,'new_geometry_is_exploratory':True,
+         'trunk_interpolation':args.trunk_interpolation,'branch_interpolation':'smooth',
          'manufacturing_authorized':False})
     report={'schema':'m64-scan-seeded-port-routing-private/v1','inputs_sha256':hashes,
             'source_sha256':sha(__file__),'length_unit':'scan_units_under_unverified_1_unit_per_mm_hypothesis',
@@ -275,6 +284,10 @@ def run(args):
                               'throat_start_axial':5.99,'branch_trunk_overlap':3.,
                               'terminal_lateral_offset':{'intake':2.,'exhaust':3.},
                               'branch_radius':'constant_throat_radius',
+                              'trunk_interpolation':args.trunk_interpolation,
+                              'branch_interpolation':'smooth',
+                              'trunk_C0_station_junctions_expected':args.trunk_interpolation=='ruled',
+                              'trunk_section_centres_and_radii_modified':False,
                               'outlet_extension_beyond_body_bbox':8.},
             'bank_records':[],'wall_thickness_verified':False,'exterior_openings_qualified':False,
             'M64_fitment_validated':False,'flow_or_thermal_performance_simulated':False,
@@ -291,7 +304,7 @@ def run(args):
         extension=dict(seeds[-1]); extension['center']=list(extension['center'])
         sign=seeds[-1]['normal'][1]
         extension['center'][1]=report['source_bbox_private'][4 if sign>0 else 1]+8*sign
-        trunk=loft(cad,api,seeds+[extension])
+        trunk=loft(cad,api,seeds+[extension],ruled=args.trunk_interpolation=='ruled')
         branches=[]; records=[]
         for spec in design.valve_specs(p):
             if spec['kind']!=kind: continue
@@ -372,6 +385,8 @@ def main():
         parser.add_argument('--'+key,type=Path,required=True)
     for key in ('body-sha256','interfaces-sha256'):
         parser.add_argument('--'+key,required=True)
+    parser.add_argument('--trunk-interpolation',choices=('smooth','ruled'),default='smooth',
+                        help='trunk only; ruled retains C0 joins at every recorded section')
     args=parser.parse_args()
     resource.setrlimit(resource.RLIMIT_CPU,(1200,1210))
     output_preexisted=args.output.exists()
