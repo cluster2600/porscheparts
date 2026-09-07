@@ -1,0 +1,87 @@
+{
+  "schema": "m64-reference-local-repair-public-summary/v1",
+  "date": "2026-09-07",
+  "status": "local_geometric_checks_passed_not_manufacturing_release",
+  "provenance": {
+    "geometry_role": "935_scan_derived_research_reference",
+    "source_id": "SRC-WOLFE-CLASSICS-935-BILLET-CYLINDER-HEAD-SCAN",
+    "attribution": "Wolfe Classics",
+    "source_step_sha256": "700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2",
+    "candidate_step_sha256": "42057011e25ecc48b215a58e979a0d9bcf4769f2f96f9690b751a81a7bde2cd8",
+    "master_unchanged": true,
+    "absolute_scale_certified": false,
+    "M64_interfaces_validated": false,
+    "units": "scan_units_not_certified_millimeters"
+  },
+  "local_operation": {
+    "modified_faces": 1,
+    "method": "localized_polynomial_Bernstein_products_no_BRepFill",
+    "exponents": [4, 2, 2, 5],
+    "surface_bidegree": [10, 11],
+    "global_substitute_envelope_introduced": false,
+    "local_exterior_surface_modified": true,
+    "target_displacement_scan_units": 0.85,
+    "target_position_error_scan_units": 3.891802844472395e-14,
+    "maximum_sampled_boundary_same_parameter_error_scan_units": 6.251595184757835e-9,
+    "boundary_samples_per_edge": 121,
+    "boundary_edge_count": 5
+  },
+  "geometric_checks": {
+    "face_exact_brepcheck": true,
+    "face_step_roundtrip_exact_brepcheck": true,
+    "solid_exact_brepcheck": true,
+    "solid_step_roundtrip_exact_brepcheck": true,
+    "solid_count": 1,
+    "shell_count": 1,
+    "face_count": 4929,
+    "edge_count": 10222,
+    "vertex_count": 5278,
+    "free_edges": 0,
+    "nonmanifold_edges": 0,
+    "self_intersection_BOP_completed": true,
+    "self_intersection_BOP_faults_reported": false,
+    "all_face_edge_vertex_tolerance_distributions_unchanged": true,
+    "face_edge_vertex_tolerance_minimum_scan_units": 1e-7,
+    "face_edge_vertex_tolerance_maximum_scan_units": 1e-7,
+    "maximum_bbox_coordinate_delta_before_export_scan_units": 0.0,
+    "volume_delta_scan_units_cubed": 10.69632832868956,
+    "surface_area_delta_scan_units_squared": 7.4938666700036265
+  },
+  "paired_rays": {
+    "count": 42,
+    "unchanged_within_1e_minus_5": 39,
+    "increased": 1,
+    "decreased": 0,
+    "not_paired_resolved": 2,
+    "target_before_scan_units": 0.7526668925348803,
+    "target_after_scan_units": 1.6026668925329832,
+    "remaining_known_weak_nonadjacent_rays": 4,
+    "exhaustive_wall_thickness_proof": false
+  },
+  "global_scalar_displacement_bound": {
+    "receipt": "evidence/bernstein-global-bound-20260907.json",
+    "input_sha256": "48447c3d5a65e9a4cde06cf946b8c4bd1ade835b404d6d0f36ff405f1ad9ad12",
+    "domain": "complete_normalized_UV_square",
+    "limit_scan_units": 1.0,
+    "upper_bound_scan_units": 0.9512202009568349,
+    "arithmetic": "exact_rational_subdivision_of_stored_float_coefficients",
+    "native_OCCT_roundoff_bound_included": false
+  },
+  "evidence": {
+    "surface_report_sha256": "33f99d631f77a6a6bc14a4a9a3dea531f2e40c2a44a31a97606e76a94209636f",
+    "solid_report_sha256": "6482f829ed18a836ed54351b630bb2703ab5c3d2b99063b428a1da83ef5784e9",
+    "paired_ray_and_BOP_report_sha256": "d2bb2b1195b1ef320ca8dc9fac7a57a910aa9477a28c3022f771f4e70eb508af",
+    "complete_tolerance_audit_sha256": "c68b62f1386ff8879e3d6c90e52937cd2949252a73c1b7179a93e08e79cb85fe",
+    "image": "evidence/935-reference-bernstein-local-repair-before-after.png",
+    "image_sha256": "18057ee6e124420960d5f1d8e742d8f000898f688e78ba68141107c973eaa08a",
+    "raw_geometry_published": false
+  },
+  "readiness": {
+    "thermal_CHT_validated": false,
+    "strength_fatigue_validated": false,
+    "LPBF_process_validated": false,
+    "physical_validation_complete": false,
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false
+  }
+}

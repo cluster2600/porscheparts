@@ -13,14 +13,18 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ('baseline', 'candidate', 'report', 'patches', 'helpers', 'output'):
         parser.add_argument('--'+name, type=Path, required=True)
+    parser.add_argument('--geometry-report', type=Path)
     args = parser.parse_args()
     resource.setrlimit(resource.RLIMIT_AS, (4*1024**3, 4*1024**3))
     os.sched_setaffinity(0, sorted(os.sched_getaffinity(0))[:2])
     report = json.loads(args.report.read_text())
+    geometry_report = json.loads(args.geometry_report.read_text()) if args.geometry_report else report
+    if geometry_report['source_sha256'] != report['source_sha256']:
+        raise ValueError('geometry and ray provenance mismatch')
     patches = json.loads(args.patches.read_text())
     if hashlib.sha256(args.baseline.read_bytes()).hexdigest() != report['source_sha256']['step']:
         raise ValueError('baseline provenance mismatch')
-    if hashlib.sha256(args.candidate.read_bytes()).hexdigest() != report['candidate_sha256']:
+    if hashlib.sha256(args.candidate.read_bytes()).hexdigest() != geometry_report['candidate_sha256']:
         raise ValueError('candidate provenance mismatch')
     if patches['source_sha256'] != report['source_sha256']:
         raise ValueError('patch provenance mismatch')
@@ -44,7 +48,10 @@ def main():
     from OCP.gp import gp_Pnt, gp_Dir, gp_Pln
     probe = next(p for patch in patches['patches_private'] for p in patch['probes_private']
                  if p['index'] == report['probe_private'])
-    row = next(r for r in report['fixed_rays_private'] if r['probe_private'] == probe['index'])
+    ray_rows = report.get('fixed_rays_private', report.get('candidate_fixed_rays_private'))
+    if ray_rows is None:
+        raise ValueError('paired candidate ray data missing')
+    row = next(r for r in ray_rows if r['probe_private'] == probe['index'])
     if row['status'] != 'resolved':
         raise ValueError('selected ray unresolved')
     first = np.array(probe['entry_xyz_scan_units'])

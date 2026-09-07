@@ -147,6 +147,14 @@ Ce n'est donc pas simplement une arête isoparamétrique scindée. Même une
 ne préserverait pas cette courbe de rognage non isoparamétrique. Cette piste
 simple est arrêtée sans aucune élévation de degré ni déformation supplémentaire.
 
+Une piste distincte a ensuite identifié le cylindre analytique de la
+cinquième limite et testé un polynôme nul sur les cinq bords. Le champ
+dépasse la limite locale de déplacement et est rejeté avant construction :
+[audit de la bulle à contraintes implicites](M64_IMPLICIT_BOUNDARY_BUBBLE_20260907.md).
+La suite distincte en produits Bernstein aboutit ensuite à un candidat
+local 10 × 11 dont les contrôles CAO passent, sans libération moteur :
+[dossier consolidé de réparation Bernstein](M64_LOCAL_BERNSTEIN_REPAIR_20260907.md).
+
 Les quatre autres trajets non adjacents faibles et les autres zones de la
 pièce restent à traiter. Thermique/CHT, résistance, fatigue, circulation
 d'huile, interfaces M64 et LPBF complets ne sont pas validés. La géométrie
