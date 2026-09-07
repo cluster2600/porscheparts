@@ -123,6 +123,7 @@ Aucun jumeau n'est encore au niveau `F2_interface` et aucune pièce n'est encore
 déclarée imprimable ou validée. L'impression est volontairement suspendue. Le
 premier inventaire physique est décrit dans
 [docs/COMPONENT_INVENTORY.md](docs/COMPONENT_INVENTORY.md). Voir
+[la stack logicielle vérifiée](docs/SOFTWARE_STACK.md),
 [la suite libre LLM/CAO et son déploiement Vast.ai](docs/AI_DIGITAL_TWIN_STACK.md),
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
