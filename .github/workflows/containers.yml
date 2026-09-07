@@ -10,7 +10,7 @@ on:
         required: true
         default: cadsim
         type: choice
-        options: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, both]
+        options: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime, both]
       push:
         description: "Push to ghcr.io"
         required: true
@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai]
+        image: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime]
     concurrency:
       group: container-publication-${{ matrix.image }}
       cancel-in-progress: false
@@ -43,11 +43,11 @@ jobs:
           fi
 
       - name: Stop Docker before enlarging its storage
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && (matrix.image == 'simready-local-ai' || matrix.image == 'simready-m64-runtime')
         run: sudo systemctl stop docker.socket docker
 
       - name: Maximize local AI build storage
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && (matrix.image == 'simready-local-ai' || matrix.image == 'simready-m64-runtime')
         uses: easimon/maximize-build-space@c28619d8999a147d5e09c1199f84ff6af6ad5794
         with:
           root-reserve-mb: 4096
@@ -61,7 +61,7 @@ jobs:
           remove-codeql: 'true'
 
       - name: Restart Docker on enlarged storage
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && (matrix.image == 'simready-local-ai' || matrix.image == 'simready-m64-runtime')
         run: |
           # Bound dockerd/embedded BuildKit Go scheduling and its soft heap
           # target so the Actions listener keeps headroom while exporting the
@@ -89,8 +89,17 @@ jobs:
           df -h /
 
       - name: Set up Buildx
-        if: steps.gate.outputs.run == 'true' && matrix.image != 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && matrix.image != 'simready-local-ai' && matrix.image != 'simready-m64-runtime'
         uses: docker/setup-buildx-action@v3
+
+      - name: Set up bounded M64 Buildx
+        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-m64-runtime'
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: |
+            env.GOMAXPROCS=3
+            env.GOMEMLIMIT=12GiB
+            memory=13g
 
       - name: Log in to ghcr.io
         if: steps.gate.outputs.run == 'true' && (inputs.push || matrix.image == 'simready-local-ai')
@@ -235,7 +244,7 @@ jobs:
             "$pinned_image")" = linux/amd64
           DOCKER_CONFIG="${anonymous_config}" docker run --rm \
             "$pinned_image" smoke-test.sh ${{ matrix.image }}
-          if [[ "${{ matrix.image }}" =~ ^simready($|-workflow$|-local-ai$) ]]; then
+          if [[ "${{ matrix.image }}" =~ ^simready($|-workflow$|-local-ai$|-m64-runtime$) ]]; then
             DOCKER_CONFIG="${anonymous_config}" docker run --rm \
               --entrypoint /usr/local/bin/simready-sshd-runtime-smoke \
               "$pinned_image"
