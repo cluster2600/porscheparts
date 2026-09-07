@@ -87,7 +87,7 @@ les gates fail-closed sont enregistrés dans
 ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a
 ```
 
-La [preuve CI](https://github.com/cluster2600/3dprinting993/actions/runs/33567830241)
+La [preuve CI](https://github.com/cluster2600/porscheparts/actions/runs/33567830241)
 confirme le pull public anonyme du digest et le smoke hors GPU. Elle ne contient
 aucun scan, dataset ou poids. Le runtime GPU, le transport SSH d'une future
 location, les solveurs moteur, l'entraînement et la corrélation au banc restent

@@ -212,7 +212,7 @@ smoke synthétique ; jamais les trois sorties locales.
 ## Publication immuable vérifiée
 
 Le premier workflow de publication est vert :
-[run 33580635075](https://github.com/cluster2600/3dprinting993/actions/runs/33580635075),
+[run 33580635075](https://github.com/cluster2600/porscheparts/actions/runs/33580635075),
 sur la révision `1ae15656080df2a1042db15fdc2dff2881c474a2`. La référence
 exécutable est désormais exclusivement le digest immuable :
 

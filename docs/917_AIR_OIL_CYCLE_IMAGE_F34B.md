@@ -150,7 +150,7 @@ lecture des preuves du run et recomputation des digests.
 ## Publication immuable F34b vérifiée
 
 Le workflow public
-[run 33634398619](https://github.com/cluster2600/3dprinting993/actions/runs/33634398619)
+[run 33634398619](https://github.com/cluster2600/porscheparts/actions/runs/33634398619)
 a construit la révision source
 `6a02829cdf6cd968086af63145259091d7f34937`. La seule référence exécutable
 autorisée par F34b est l'index public immuable :

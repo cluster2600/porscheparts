@@ -61,7 +61,7 @@ L'index OCI de 857 octets référence exactement un manifeste exécutable
 28 232 655 octets. La configuration fixe Python 3.12.14 et l'utilisateur non
 root `9175:9175`.
 
-Le [workflow GitHub Actions vérifié](https://github.com/cluster2600/3dprinting993/actions/runs/33571699112)
+Le [workflow GitHub Actions vérifié](https://github.com/cluster2600/porscheparts/actions/runs/33571699112)
 a terminé avec succès au commit
 `6c3856b97b8fa87556c4443172e26683d6423d7d`. L'index, son manifeste de
 plateforme et son manifeste d'attestations ont été relus et leurs digests

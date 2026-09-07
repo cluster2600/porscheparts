@@ -95,7 +95,7 @@ EXPOSE 22
 
 LABEL org.opencontainers.image.title="3dprinting993-cadsim" \
       org.opencontainers.image.description="Scriptable CAD and simulation toolchain (build123d, CadQuery, Gmsh, CalculiX, OpenFOAM, PrusaSlicer) for Porsche 993 parts" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
