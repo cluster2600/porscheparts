@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
+  "name": "Collecteur d'admission trois conduits 993, concept AlSi10Mg F0",
+  "description": "Concept indépendant de collecteur à trois conduits coniques décalés et deux brides communes pour cribler le LPBF AlSi10Mg. PorscheFanatics et Patrick Motorsports recoupent le kit PMO FUE PMO 9150, annoncé 46 x 42 x 100 mm, trois boulons, deux pièces et finition aluminium brute ; aucune géométrie d'interface n'est publiée.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_3.6L_conversion", "993_3.8L_conversion", "964_shared_engine_conversion"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "three_runner_intake_manifold",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, DfAM, débit, acoustique, pression et thermique ; aucune fabrication, installation ou mise en route moteur autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-eng-three-runner-intake-alsi10mg-f0-0001/derived/three_runner_intake_alsi10mg_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration ou géométrie PMO/Porsche redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - collecteur PMO 46 mm pour moteur 964/993",
+        "url": "https://porschefanatics.com/parts/g/964/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Recoupe la désignation 46 x 42 x 100 mm, trois boulons, l'aluminium brut et le fitment moteur 964/993. Voir SRC-PORSCHEFANATICS-PMO-964-993-46MM-INTAKE-MANIFOLD."
+      },
+      {
+        "title": "Patrick Motorsports - PMO FUE PMO 9150",
+        "url": "https://patrickmotorsports.com/collections/all-engine/products/fuepmo9150",
+        "source_type": "manufacturer",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare le jeu de deux collecteurs, 46 x 42 x 100 mm, trois boulons, finition aluminium brute et conversions Motronic 964/993 3,6-3,8 L, sans dessin ni alliage. Voir SRC-PATRICK-PMO-964-993-46MM-INTAKE-MANIFOLD."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material page",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Référence de famille et de procédé LPBF, pas la preuve de l'alliage PMO ni une carte admissible moteur. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "CNC", "casting"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "alliage aluminium LPBF candidat",
+      "grade": "AlSi10Mg générique de criblage ; alliage et état du produit PMO inconnus",
+      "standard": "ASTM F3318 et spécification moteur propre au programme à contractualiser si le LPBF est retenu"
+    },
+    "post_processing": [
+      "évacuation complète de la poudre par les trois conduits ouverts",
+      "détensionnement et traitement thermique qualifiés sur coupons représentatifs",
+      "découpe du plateau avec contrôle de planéité des brides",
+      "usinage des deux brides, ports et perçages après ajout de surépaisseurs mesurées",
+      "ébavurage, polissage ou finition abrasive du chemin de gaz avec rugosité vérifiée",
+      "nettoyage particulaire et épreuve de fuite avant tout essai de débit"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "capabilité sur parois de 2 mm, conduits inclinés et brides de 6 mm",
+      "simulation de supports, recoater et distorsion avant lancement",
+      "CT des conduits et métrologie des ports, brides et futures fixations",
+      "porosité, rugosité, planéité, étanchéité et propreté contractualisées",
+      "essais de débit, pression, vibration, cycles thermiques et banc moteur avant véhicule"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Compatibilité galvanique de l'AlSi10Mg avec culasses, goujons, papillons, joints et revêtements à qualifier."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-pmo-964-993-46mm-intake-manifold.json",
+      "catalog/sources/src-patrick-pmo-964-993-46mm-intake-manifold.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-three-runner-intake-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "La chaîne 46 x 42 x 100 mm n'est pas définie par un dessin ; son interprétation en diamètres et hauteur reste hypothétique.",
+      "Les entraxes, décalages, brides, épaisseurs et l'absence de perçages du F0 ne reproduisent pas PMO ou Porsche.",
+      "Les 461,03 g par banc et 922,07 g la paire ne peuvent être comparés à aucune masse commerciale publiée.",
+      "Le débit à 6 800 tr/min, le rendement volumétrique 0,95 et le coefficient de perte 0,05 sont synthétiques.",
+      "Le calcul 1D ignore pulsations, interactions, rugosité, plénum, injection, conduction de culasse, fatigue et retour de flamme.",
+      "Le STEP prouve seulement un BREP calculable et ne doit pas être fabriqué pour un moteur."
+    ]
+  }
+}
