@@ -1,11 +1,55 @@
 import unittest
 from pathlib import Path
+import shlex
+import subprocess
+import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class SimReadyLocalAiImageTests(unittest.TestCase):
+    def test_onstart_initializes_marker_when_marketplace_replaces_sshd(self):
+        onstart = (ROOT / "containers/simready-vast-onstart.sh").read_text()
+        marker_path = "/run/sshd/simready-runtime-host-keys.ready"
+        initializer_path = "/usr/local/bin/simready-sshd-runtime-wrapper"
+        start = onstart.index("HOST_KEY_MARKER=")
+        # Execute the actual fallback and missing-marker guard. Ownership/mode
+        # validation remains outside this portable stub test (not run as root).
+        end = onstart.index('test "$(stat -c', start)
+        block = onstart[start:end]
+        self.assertIn(f"{initializer_path} -T", block)
+        self.assertNotIn("/usr/sbin/sshd -T", block)
+        with tempfile.TemporaryDirectory(prefix="simready-onstart-unit-") as temporary:
+            directory = Path(temporary)
+            marker = directory / "marker"
+            initializer = directory / "initializer"
+            replacement_sshd = directory / "sshd"
+            calls = directory / "initializer-calls"
+            replacement_sshd.write_text("#!/bin/sh\nexit 0\n")
+            replacement_sshd.chmod(0o700)
+            initializer.write_text(
+                '#!/bin/sh\nset -eu\ntest "$1" = -T\n'
+                f"touch {shlex.quote(str(calls))} {shlex.quote(str(marker))}\n"
+                f"chmod 0600 {shlex.quote(str(marker))}\n"
+            )
+            initializer.chmod(0o700)
+            portable = block.replace(marker_path, str(marker)).replace(initializer_path, str(initializer))
+            # Model the previously failing path: a normal sshd -T succeeds but
+            # does not create the application-specific readiness marker.
+            old_path = portable.replace(str(initializer), str(replacement_sshd))
+            old = subprocess.run(["bash", "-euc", old_path], capture_output=True, text=True, timeout=5)
+            self.assertEqual(old.returncode, 80)
+            self.assertFalse(marker.exists())
+            fixed = subprocess.run(["bash", "-euc", portable], capture_output=True, text=True, timeout=5)
+            self.assertEqual(fixed.returncode, 0, fixed.stderr)
+            self.assertTrue(marker.is_file())
+            self.assertTrue(calls.is_file())
+            calls.unlink()
+            again = subprocess.run(["bash", "-euc", portable], capture_output=True, text=True, timeout=5)
+            self.assertEqual(again.returncode, 0, again.stderr)
+            self.assertFalse(calls.exists(), "existing marker must not reinitialize host keys")
+
     def test_image_pins_model_runtime_and_physicsnemo(self):
         dockerfile = (ROOT / "containers/simready-local-ai.Dockerfile").read_text()
         smoke = (ROOT / "containers/simready-local-ai-smoke.sh").read_text()
