@@ -38,6 +38,32 @@ def quasi_isotropic(Q):
     return dict(E=(U1 ** 2 - U4 ** 2) / U1, nu=U4 / U1, G=U5)
 
 
+def laminate_inplane(Q, cos2=0.0, cos4=0.0):
+    """Effective in-plane constants of a BALANCED laminate, from the A-matrix invariants.
+
+    `cos2` and `cos4` are the ply-angle averages <cos 2t> and <cos 4t>, which is
+    all the A matrix of a balanced stack depends on:
+        quasi-isotropic [0/+45/-45/90]s -> (0, 0)
+        angle-ply       [+45/-45]ns     -> (0, -1)
+        cross-ply       [0/90]ns        -> (0, +1)
+
+    A quasi-isotropic stack is the (0, 0) case, so `quasi_isotropic` is this
+    function's special case and the two agree by construction.
+    """
+    Q11, Q22, Q12, Q66 = Q[0, 0], Q[1, 1], Q[0, 1], Q[2, 2]
+    U1 = (3 * Q11 + 3 * Q22 + 2 * Q12 + 4 * Q66) / 8.0
+    U3 = (Q11 + Q22 - 2 * Q12 - 4 * Q66) / 8.0
+    U4 = (Q11 + Q22 + 6 * Q12 - 4 * Q66) / 8.0
+    U5 = (Q11 + Q22 - 2 * Q12 + 4 * Q66) / 8.0
+    A11 = U1 + U3 * cos4
+    A12 = U4 - U3 * cos4
+    A66 = U5 - U3 * cos4
+    return dict(E=(A11 ** 2 - A12 ** 2) / A11, nu=A12 / A11, G=A66)
+
+
+STACKS = {"QI": 0.0, "+-45": -1.0, "0/90": 1.0}    # <cos 4t> par empilement
+
+
 def hybrid(carbon_ply_fraction):
     """Carbon/aramid hybrid, quasi-isotropic. Ply-fraction mixing of Q is exact for A."""
     f = float(carbon_ply_fraction)
@@ -62,3 +88,21 @@ if __name__ == "__main__":
         print(f"{name:<24}{m['E']:10.0f}{m['nu']:7.3f}{m['G']:10.0f}{m['rho']:7.2f}")
     print(f"{'acier':<24}{STEEL['E']:10.0f}{STEEL['nu']:7.3f}"
           f"{STEEL['E']/(2*(1+STEEL['nu'])):10.0f}{STEEL['rho']:7.2f}")
+
+    # Le caisson travaille en cisaillement de membrane : le critere est G, pas E.
+    # Un empilement quasi-isotrope depense donc la moitie de ses plis a porter du
+    # module axial dont ce chemin d'effort n'a pas l'usage.
+    print(f"\n{'empilement':<24}{'E (MPa)':>10}{'nu':>7}{'G (MPa)':>10}{'G vs QI':>9}")
+    for name in ("carbon", "aramid"):
+        Q = reduced_stiffness(**LAMINA[name])
+        gqi = laminate_inplane(Q, cos4=STACKS["QI"])["G"]
+        for stack, c4 in STACKS.items():
+            m = laminate_inplane(Q, cos4=c4)
+            print(f"{name + ' ' + stack:<24}{m['E']:10.0f}{m['nu']:7.3f}"
+                  f"{m['G']:10.0f}{m['G']/gqi:8.2f}x")
+    print("""
+Lecture. A masse egale, un empilement +/-45 rend environ 1,75 fois le module de
+cisaillement d'un quasi-isotrope, et perd les deux tiers du module axial. Pour ce
+caisson, dont la raideur suit G*t, c'est un levier plus gros que le choix du
+materiau lui-meme. Il ne se generalise pas a toute la caisse : voir
+docs/MONOCOQUE_964_993_ARCHITECTURE.md.""")
