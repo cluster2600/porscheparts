@@ -122,3 +122,28 @@ l'alésage 100 et la course 76,4, mais avec unités OCR corrompues et statut
 manuel, pas un contre-contrôle indépendant. P3 reste la source retenue pour
 les valeurs historiques turbo. Le contrat contient maintenant ces pistes
 locales en section séparée ; toutes les interfaces critiques demeurent nulles.
+
+### Vérification des localisateurs de pages, 7 septembre 2026
+
+Le script local PorscheFanatics `scripts/ingest-993-manual.mjs` désigne
+`docs/993 Workshop Manual.pdf`, `/tmp/manual-ocr.pdf` puis
+`data/raw/993-manual/layout.txt` comme chaîne d'extraction. Le PDF du checkout
+PorscheFanatics courant et le PDF temporaire sont absents ; le répertoire brut
+n'a pas été retrouvé dans les checkouts courant et iCloud identifiés. Aucun
+rendu de pages 152–157 n'a été localisé par ces chemins ciblés. Le registre
+source ne contient pas d'autre localisateur de l'exemplaire.
+
+Il n'y a donc eu **aucune nouvelle lecture visuelle** de ces pages, ni
+requalification de cote. Une référence commerciale de manuel et une précédente
+mention de consultation ne prouvent pas que l'exemplaire est accessible
+aujourd'hui. Le prochain apport utile est le fichier exact ou ses rendus de
+pages issus d'un exemplaire dont l'accès est autorisé, pas une seconde lecture
+du même OCR. Cela ne suspend pas la recherche des catalogues officiels ni les
+travaux indépendants de ces interfaces.
+
+Un candidat local supplémentaire nommé `Porsche PDF.pdf` a été identifié par
+ses métadonnées et sa première page rendue, selon le skill PDF : document de
+158 pages attribué à Dennis Adler, couverture « Porsche — The Classic Era »
+avec habillage Bookey. Ce n'est pas le manuel d'atelier 993 de 1 481 pages.
+Ses pages 152–157 ne sont donc pas utilisées comme substitut. Aucun contenu
+du document ni rendu de couverture n'est ajouté au dépôt.

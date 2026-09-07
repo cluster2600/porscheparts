@@ -141,6 +141,8 @@ DESTROY_VERIFY_ATTEMPTS = 60
 COMPONENT_FACTORY_F41_SINGLETON_STABILITY_SNAPSHOTS = 3
 STATE_TRANSITION_ATTEMPTS = 60
 POLL_INTERVAL_SECONDS = 2
+SIMREADY_POLL_INTERVAL_SECONDS = 15
+VAST_GET_RATE_LIMIT_BACKOFF_SECONDS = (20, 40, 60)
 
 
 class SafeError(Exception):
@@ -326,13 +328,29 @@ def vast_request(
     method: str = "GET",
     payload: dict | None = None,
 ) -> dict:
-    return http_json(
-        f"{VAST_BASE}{path}",
-        method=method,
-        payload=payload,
-        headers={"Authorization": f"Bearer {api_key}"},
-        source="Vast.ai",
-    )
+    for attempt in range(len(VAST_GET_RATE_LIMIT_BACKOFF_SECONDS) + 1):
+        try:
+            return http_json(
+                f"{VAST_BASE}{path}",
+                method=method,
+                payload=payload,
+                headers={"Authorization": f"Bearer {api_key}"},
+                source="Vast.ai",
+            )
+        except SafeHttpError as exc:
+            # Never replay a mutation, an uncertain network failure, or Bao.
+            if method != "GET" or exc.status_code != 429:
+                raise
+            if attempt == len(VAST_GET_RATE_LIMIT_BACKOFF_SECONDS):
+                # Provider details can echo request data; keep this message fixed.
+                raise SafeHttpError("Vast.ai", 429) from None
+            delay = VAST_GET_RATE_LIMIT_BACKOFF_SECONDS[attempt]
+            print(
+                f"Vast.ai GET rate limited; retry {attempt + 1}/3 in {delay}s",
+                file=sys.stderr,
+            )
+            time.sleep(delay)
+    raise SafeError("Vast.ai GET retry limit reached")
 
 
 def fetch_execution_result(url: str) -> str:
@@ -1877,6 +1895,17 @@ def safe_instance(instance: dict) -> dict:
             and isinstance(api_mappings[0], dict)
         ):
             api_port = api_mappings[0].get("HostPort")
+    # Proxy host/port and direct public-IP/mapped-port are separate endpoint
+    # pairs. Never combine a proxy host with a container's mapped host port.
+    proxy_host = instance.get("ssh_host")
+    proxy_port = instance.get("ssh_port")
+    if proxy_host and proxy_port is not None:
+        selected_ssh_host, selected_ssh_port = proxy_host, proxy_port
+    elif instance.get("public_ipaddr") and ssh_port is not None:
+        selected_ssh_host = instance["public_ipaddr"]
+        selected_ssh_port = ssh_port
+    else:
+        selected_ssh_host, selected_ssh_port = None, None
     return {
         "id": instance.get("id"),
         "label": instance.get("label"),
@@ -1894,8 +1923,8 @@ def safe_instance(instance: dict) -> dict:
         "dph_total": instance.get("dph_total"),
         "inet_up_cost_usd_per_gb": instance.get("inet_up_cost"),
         "inet_down_cost_usd_per_gb": instance.get("inet_down_cost"),
-        "ssh_host": instance.get("ssh_host"),
-        "ssh_port": instance.get("ssh_port", ssh_port),
+        "ssh_host": selected_ssh_host,
+        "ssh_port": selected_ssh_port,
         "api_host": instance.get("public_ipaddr"),
         "api_port": api_port,
         "status_msg": instance.get("status_msg"),
@@ -3045,7 +3074,7 @@ def verify_simready_ssh_ready(
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             return False
-        time.sleep(min(POLL_INTERVAL_SECONDS, remaining))
+        time.sleep(min(SIMREADY_POLL_INTERVAL_SECONDS, remaining))
         return True
 
     last_state = "unknown"

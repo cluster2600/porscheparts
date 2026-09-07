@@ -37,6 +37,99 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def setUpClass(cls):
         cls.wrapper = load_wrapper()
 
+    def test_get_429_retries_are_bounded_and_do_not_log_request_data(self):
+        error = self.wrapper.SafeHttpError("Vast.ai", 429, ": synthetic-secret")
+        stderr = io.StringIO()
+        with (
+            mock.patch.object(self.wrapper, "http_json", side_effect=[error] * 3 + [{"ok": True}]) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            mock.patch("sys.stderr", stderr),
+        ):
+            result = self.wrapper.vast_request("synthetic-secret", "/private-path")
+        self.assertEqual(result, {"ok": True})
+        self.assertEqual(request.call_count, 4)
+        self.assertEqual(sleep.call_args_list, [mock.call(20), mock.call(40), mock.call(60)])
+        self.assertNotIn("synthetic-secret", stderr.getvalue())
+        self.assertNotIn("private-path", stderr.getvalue())
+
+    def test_get_429_exhaustion_stays_fail_closed(self):
+        error = self.wrapper.SafeHttpError("Vast.ai", 429, ": synthetic-secret")
+        with (
+            mock.patch.object(self.wrapper, "http_json", side_effect=error) as request,
+            mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            mock.patch("sys.stderr", io.StringIO()),
+            self.assertRaises(self.wrapper.SafeHttpError) as raised,
+        ):
+            self.wrapper.vast_request("synthetic-secret", "/instances")
+        self.assertEqual(request.call_count, 4)
+        self.assertEqual(sleep.call_count, 3)
+        self.assertEqual(raised.exception.status_code, 429)
+        self.assertNotIn("synthetic-secret", str(raised.exception))
+
+    def test_rate_limit_does_not_replay_mutations(self):
+        for method in ("POST", "PUT", "DELETE", "PATCH"):
+            with (
+                self.subTest(method=method),
+                mock.patch.object(self.wrapper, "http_json", side_effect=self.wrapper.SafeHttpError("Vast.ai", 429)) as request,
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaises(self.wrapper.SafeHttpError),
+            ):
+                self.wrapper.vast_request("key", "/instances", method=method)
+            request.assert_called_once()
+            sleep.assert_not_called()
+
+    def test_get_other_errors_and_offline_are_not_retried(self):
+        for error in (
+            self.wrapper.SafeHttpError("Vast.ai", 401),
+            self.wrapper.SafeHttpError("Vast.ai", 404),
+            self.wrapper.SafeHttpError("Vast.ai", 500),
+            self.wrapper.SafeError("Vast.ai is unavailable"),
+        ):
+            with (
+                self.subTest(error=str(error)),
+                mock.patch.object(self.wrapper, "http_json", side_effect=error) as request,
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                self.assertRaises(self.wrapper.SafeError),
+            ):
+                self.wrapper.vast_request("key", "/instances")
+            request.assert_called_once()
+            sleep.assert_not_called()
+
+    def test_simready_poll_interval_does_not_change_other_workflows(self):
+        self.assertEqual(self.wrapper.SIMREADY_POLL_INTERVAL_SECONDS, 15)
+        self.assertEqual(self.wrapper.POLL_INTERVAL_SECONDS, 2)
+
+    def test_ssh_endpoint_keeps_complete_proxy_pair(self):
+        result = self.wrapper.safe_instance({
+            "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+            "public_ipaddr": "203.0.113.8",
+            "ports": {"22/tcp": [{"HostPort": "32001"}]},
+        })
+        self.assertEqual((result["ssh_host"], result["ssh_port"]),
+                         ("ssh.example.invalid", 22001))
+
+    def test_missing_proxy_port_never_pairs_proxy_host_with_direct_port(self):
+        for proxy_fields in ({}, {"ssh_port": None}):
+            with self.subTest(proxy_fields=proxy_fields):
+                result = self.wrapper.safe_instance({
+                    "ssh_host": "ssh.example.invalid", **proxy_fields,
+                    "public_ipaddr": "203.0.113.8",
+                    "ports": {"22/tcp": [{"HostPort": "32001"}]},
+                })
+                self.assertEqual((result["ssh_host"], result["ssh_port"]),
+                                 ("203.0.113.8", "32001"))
+
+    def test_incomplete_ssh_pairs_fail_closed(self):
+        for metadata in (
+            {"ssh_host": "ssh.example.invalid", "ports": {"22/tcp": [{"HostPort": "32001"}]}},
+            {"ssh_port": 22001, "public_ipaddr": "203.0.113.8"},
+            {"public_ipaddr": "203.0.113.8", "ports": {"22/tcp": []}},
+        ):
+            with self.subTest(metadata=metadata):
+                result = self.wrapper.safe_instance(metadata)
+                self.assertIsNone(result["ssh_host"])
+                self.assertIsNone(result["ssh_port"])
+
     def setUp(self):
         # Most unit tests isolate the launch state machine from the immutable
         # production denylist. Production keeps every known-bad digest
