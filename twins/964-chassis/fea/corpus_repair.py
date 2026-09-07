@@ -64,10 +64,15 @@ def main():
     ap.add_argument('--corpus', default='corpus')
     ap.add_argument('--work', default=None)
     ap.add_argument('--limit', type=int, default=0)
+    # Meme parallelisation par tranches que doe_corpus.py, et pour la meme
+    # raison : le solveur ne passe pas a l'echelle en fils, les cas si.
+    ap.add_argument('--shard', type=int, default=0)
+    ap.add_argument('--shards', type=int, default=1)
     a = ap.parse_args()
     corpus = HERE / a.corpus
     man = json.loads((corpus / 'manifest.json').read_text())
-    work = a.work or f'work_repair_{a.corpus}'
+    work = a.work or (f'work_repair_{a.corpus}_{a.shard}' if a.shards > 1
+                      else f'work_repair_{a.corpus}')
     (HERE / work).mkdir(exist_ok=True)
 
     env = dict(os.environ)
@@ -79,9 +84,13 @@ def main():
 
     plan = D.sample(np.random.default_rng(man['seed']), man['n_demande'])
     cases = sorted(int(f.stem.split('_')[1]) for f in corpus.glob('case_*.npz'))
+    if a.shards > 1:
+        cases = [i for i in cases if i % a.shards == a.shard]
     if a.limit:
         cases = cases[:a.limit]
-    journal = corpus / 'repair.jsonl'
+    # Un journal par tranche : plusieurs processus n'ecrivent pas dans le meme
+    # fichier, et le bilan se lit en les concatenant.
+    journal = corpus / (f'repair.{a.shard}.jsonl' if a.shards > 1 else 'repair.jsonl')
     deja = set()
     if journal.exists():
         deja = {json.loads(l)['case'] for l in open(journal)}
@@ -134,7 +143,7 @@ def main():
                       f"{n_ko} echecs  {time.time()-t0:.0f}s", flush=True)
 
     print(f"\n{n_ok} confirmes, {n_rep} repares, {n_amb} ambigus, {n_ko} echecs")
-    if not a.limit:
+    if not a.limit and a.shards == 1:
         # Le taux d'erreur mesure appartient au manifeste : c'est une propriete du
         # corpus, pas une note de passage.
         man['reparation'] = {"confirmes": n_ok, "repares": n_rep, "ambigus": n_amb,
