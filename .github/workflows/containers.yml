@@ -10,7 +10,7 @@ on:
         required: true
         default: cadsim
         type: choice
-        options: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime, both]
+        options: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime, picogk-m64, both]
       push:
         description: "Push to ghcr.io"
         required: true
@@ -33,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime]
+        image: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime, picogk-m64]
     concurrency:
       group: container-publication-${{ matrix.image }}${{ inputs.qualify_digest != '' && '-qualification' || '' }}
       cancel-in-progress: false
