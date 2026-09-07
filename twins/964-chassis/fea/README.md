@@ -377,6 +377,32 @@ soit +136 par kg, contre +2307 pour 5,01 kg au tunnel central, soit **+460 par
 kg**. Le meilleur rendement au kilo du dossier est celui du tunnel, dans les deux
 ordres pour ce qui est de l'absolu, et en S6 aussi pour ce qui est du kilo.
 
+### Une exactitude qui etait celle de l'element
+
+Le dossier tient depuis le debut que « la raideur suit l'epaisseur lineairement,
+pas au cube », et le chiffre etait net : rapport 1,251 pour un rapport
+d'epaisseur 1,250. En S6, la meme mesure sur cinq epaisseurs de 0,6 a 2,0 mm
+donne un exposant de **1,10**, sur le plancher nu comme sur la cellule fermee.
+
+| epaisseur | plancher nu S3 | plancher nu S6 | cellule S3 | cellule S6 |
+|---|---|---|---|---|
+| 0,6 mm | 1830 | 1049 | 6813 | 3969 |
+| 0,8 mm | 2442 | 1436 | 9093 | 5415 |
+| 1,0 mm | 3056 | 1829 | 11378 | 6904 |
+| 1,5 mm | 4596 | 2846 | 16831 | 10822 |
+| 2,0 mm | 6151 | 3915 | 22923 | 14987 |
+| **exposant** | **1,01** | **1,10** | **1,01** | **1,11** |
+
+La conclusion mecanique ne bouge pas : 1,10 est tres loin de 3, la structure ne
+travaille pas en flexion de plaque. Ce qui tombe est l'**exactitude** — les
+elements lineaires rendaient un exposant de 1,00 parce qu'ils representent mal la
+flexion des panneaux, pas parce que la structure serait exactement lineaire. Le
+terme en t^3 existe, il est simplement faible.
+
+Consequence pratique sur la seule mesure du dossier qui vienne du proprietaire :
+l'ecart entre 0,8 mm annonce et 1,0 mm mesure vaut **27 %** de raideur en S6, et
+non 25 %.
+
 ### Ce que cela laisse debout
 
 Les trois conclusions de topologie tiennent, et l'une d'elles au chiffre pres.

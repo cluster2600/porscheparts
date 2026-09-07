@@ -91,9 +91,11 @@ def main():
     # Un journal par tranche : plusieurs processus n'ecrivent pas dans le meme
     # fichier, et le bilan se lit en les concatenant.
     journal = corpus / (f'repair.{a.shard}.jsonl' if a.shards > 1 else 'repair.jsonl')
-    deja = set()
-    if journal.exists():
-        deja = {json.loads(l)['case'] for l in open(journal)}
+    # Ce qui est deja juge l'est dans n'importe quel journal, tranche ou non :
+    # la passe finale ne doit pas tout recalculer parce que les tranches ont
+    # ecrit ailleurs qu'elle.
+    deja = {json.loads(l)['case']
+            for f in sorted(corpus.glob('repair*.jsonl')) for l in open(f)}
 
     t0, n_ok, n_rep, n_amb, n_ko = time.time(), 0, 0, 0, 0
     with open(journal, 'a') as jl:
@@ -145,9 +147,16 @@ def main():
     print(f"\n{n_ok} confirmes, {n_rep} repares, {n_amb} ambigus, {n_ko} echecs")
     if not a.limit and a.shards == 1:
         # Le taux d'erreur mesure appartient au manifeste : c'est une propriete du
-        # corpus, pas une note de passage.
-        man['reparation'] = {"confirmes": n_ok, "repares": n_rep, "ambigus": n_amb,
-                             "echecs": n_ko, "tolerance": TOL,
+        # corpus, pas une note de passage. Il se compte sur tous les journaux, y
+        # compris ceux des tranches, sinon la passe finale n'en verrait presque rien.
+        tous = [json.loads(l) for f in sorted(corpus.glob('repair*.jsonl'))
+                for l in open(f)]
+        v = [r['verdict'] for r in tous]
+        man['reparation'] = {"confirmes": v.count('ok'), "repares": v.count('repare'),
+                             "ambigus": v.count('ambigu'), "echecs": v.count('echec'),
+                             "cas_repares": sorted(r['case'] for r in tous
+                                                   if r['verdict'] == 'repare'),
+                             "tolerance": TOL,
                              "regle": "remplace seulement si deux rejeux independants "
                                       "s'accordent contre la valeur stockee"}
         (corpus / 'manifest.json').write_text(json.dumps(man, indent=1,
