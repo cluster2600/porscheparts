@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+  "name": "Bague aluminium de finition de commutateur, reconstruction F1",
+  "description": "Premier pilote métallique 993 : reconstruction paramétrique de l'enveloppe publiée de la bague aftermarket EQ850101. Le modèle sert à valider la chaîne CAO et les calculs géométriques ; il n'est pas une géométrie OEM ni une pièce autorisée au montage.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_tous_modeles_selon_fournisseur_a_confirmer"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "interior_trim",
+    "safety_class": "non_critical",
+    "intended_use": "Pilote de reconstruction et de comparaison LPBF/CNC, sans montage véhicule à ce stade"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "parts/993-int-switch-trim-ring-f1-0001/source/switch_trim_ring.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le script et la fiche ; aucun média ou modèle tiers redistribué",
+    "sources": [
+      {
+        "title": "Oldtimer-Ersatzteile24 - Bague de finition de commutateur 911/964/993",
+        "url": "https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101",
+        "source_type": "community",
+        "license": "commercial-product-page-site-terms-reference-only",
+        "accessed_on": "2026-08-30",
+        "notes": "Dimensions déclarées : diamètre extérieur 30,5 mm, profondeur 10,5 mm, diamètre intérieur avant 23 mm et arrière 28 mm. Matière déclarée : aluminium. Aucun plan, datum, tolérance ou contrôle indépendant. Voir SRC-OLDTIMER-ERSATZTEILE24-993-SWITCH-RING-DIMENSIONS."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-04",
+        "notes": "AlSi10Mg sert uniquement d'alliage candidat pour le criblage LPBF ; rien ne prouve que le produit commercial emploie cet alliage. Voir SRC-EOS-ALSI10MG-MATERIAL-DATA."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "aluminium déclaré par le fournisseur",
+      "grade": "original inconnu ; AlSi10Mg seulement candidat LPBF",
+      "standard": "ASTM F3318-18 à contractualiser si AlSi10Mg PBF-LB est retenu"
+    },
+    "post_processing": [
+      "détourage et retrait des supports si LPBF",
+      "finition des arêtes après mesure d'un exemplaire",
+      "microbillage ou polissage selon aspect cible",
+      "anodisation à qualifier après contrôle dimensionnel"
+    ],
+    "supplier_requirements": [
+      "Certificat matière et traçabilité du lot",
+      "Plan de fabrication et orientation documentés pour LPBF",
+      "Contrôle dimensionnel des quatre cotes et du profil axial",
+      "Comparaison coût, état de surface et répétabilité avec tournage CNC"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Sans objet pour le candidat aluminium ; à réévaluer si la matière change."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-oldtimer-ersatzteile24-993-switch-ring-dimensions.json",
+      "parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Le profil intérieur conique continu est une hypothèse F1 à remplacer par une mesure.",
+      "Aucune tolérance, aucun rayon d'arête et aucune spécification de finition ne sont publiés.",
+      "L'ouverture OEM et la condition de jeu ou serrage ne sont pas mesurées.",
+      "Le grade d'aluminium du produit commercial est inconnu.",
+      "Le modèle STEP n'est ni dimensionnellement revu, ni ajusté, ni testé sur véhicule.",
+      "La géométrie axisymétrique favorise probablement le tournage CNC ; l'intérêt LPBF reste à démontrer par coût ou personnalisation."
+    ]
+  }
+}
