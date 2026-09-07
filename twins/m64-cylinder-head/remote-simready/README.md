@@ -14,15 +14,22 @@ arbres. Aucun scan privé n'est transféré par ce paquet.
   pas que leurs opérations ou les services GPU ont été exécutés.
 - L'image dérivée est publiée publiquement et associée au dépôt `porscheparts` :
   `ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44`.
-  La qualification complète est encore en cours dans
-  [la CI](https://github.com/cluster2600/porscheparts/actions/runs/34119750567).
-  **Ce lancement n'est pas une preuve de succès de la CI.**
+  La [qualification séparée](https://github.com/cluster2600/porscheparts/actions/runs/34123205685)
+  s'est terminée avec succès à 13:01 UTC : `linux/amd64`, limites des couches,
+  téléchargement anonyme et smoke M64 passent. Le premier workflow de
+  construction a été arrêté pendant son export de cache, après publication ;
+  il n'est pas cité comme une CI réussie. Le test SSH de cette qualification
+  vérifie l'initialisation concurrente de `sshd`, **pas une authentification
+  client**, ni l'injection des clés par Vast. Le
+  [reçu de qualification](../evidence/runtime-image-qualification-20260907.json)
+  conserve cette distinction et les commits de construction et de contrôle.
 - Le wrapper approuvé a été installé avec le code M64 épinglé à
   `f841e5e572103acda304e62a3a7fe7dc3c0dce128defa301d2c5373fcd76c805`.
   Son contrôle local et son authentification OpenBao passent ; l'inventaire
-  Vast est vide. Son image de lancement reste historique tant que la nouvelle
-  CI n'est pas entièrement verte : **ne pas lancer ce module avant mise à jour
-  et vérification de ce digest dans le wrapper**.
+  Vast était vide au contrôle préalable. Le code source fixe désormais le
+  digest M64 qualifié dans `M64_SIMREADY_IMAGE`, séparé du digest historique
+  `SIMREADY_IMAGE` de F42b : vérifier sa réinstallation et le vrai test
+  d'authentification SSH isolé avant toute location.
 - `make check` passe sur le lot local après régénération de l'empreinte de
   préparation F46. Cette régénération ne modifie aucun résultat de simulation.
 - À ce stade, aucun résultat GPU ou validation SimReady de ce module n'est
@@ -57,12 +64,18 @@ du skill** sont couverts par `code-manifest.json`. Son empreinte doit ensuite
 être épinglée dans le wrapper approuvé, après revue et tests.
 
 `prepare_bundle.py bind` lie ce paquet à l'identifiant réellement retourné
-par une location, son label, le digest GHCR vérifié, sa date de création,
+par une location, son label, le digest GHCR vérifié, le début du budget,
 une échéance absolue et l'allocation restante. Il ne loue pas. La durée de
 travail est bornée à deux heures ; le plafond utilisateur reste **20 USD
 sans recharge**. Réserver aussi l'import de l'image, la collecte et la
 suppression : le calcul de transfert du manifeste ne couvre que le paquet
 de travail, pas le téléchargement de l'image ni une facture globale Vast.
+Pour ce premier essai, réserver au maximum **8 USD**, dont jusqu'à 5 USD
+de calcul et 2,25 USD d'import (45 Go à 0,05 USD/Go), puis la récupération.
+Si l'API ne fournit pas l'heure de création, `created_epoch` est capturé
+**avant** l'appel de location : c'est une borne conservatrice opérateur,
+pas une date de création déclarée par Vast. Le chargement de l'image et
+l'initialisation consomment donc le délai, sans le repousser.
 
 ## Transport approuvé
 
@@ -70,13 +83,18 @@ Après vérification de la CI, du digest `linux/amd64`, des clés SSH, de
 l'inventaire et du coût réel :
 
 ```text
+openbao-vastai launch-m64-heavy OFFER --attempt-label LABEL_UNIQUE
 openbao-vastai m64-transfer INSTANCE /chemin/prive/m64-job/job-manifest.json
 openbao-vastai m64-phase INSTANCE /chemin/prive/m64-job/job-manifest.json preflight
 openbao-vastai m64-collect INSTANCE /chemin/prive/m64-job/job-manifest.json /nouveau/dossier/prive
 ```
 
 Remplacer les valeurs descriptives par celles vérifiées, jamais par un ancien
-identifiant d'instance. Aucun appel SSH manuel ou accès direct aux secrets
+identifiant d'instance. Lier le manifeste et armer le garde dès que le lancement
+retourne l'identité vérifiée, avant le transfert. La route historique
+`launch-simready-heavy` ne sélectionne pas l'image M64. Le verrou singleton
+reste commun aux deux profils pour éviter une deuxième location.
+Aucun appel SSH manuel ou accès direct aux secrets
 n'est nécessaire. Le wrapper n'accepte pas de commande distante arbitraire.
 
 Ordre d'exécution : `preflight`, `context`, `convert`, `minimum`, `material`,

@@ -45,6 +45,7 @@ HEAVY_MIN_GPU_RAM_MB = 80000
 HEAVY_MIN_CPU_CORES = 24
 HEAVY_MIN_CPU_RAM_MB = 128000
 HEAVY_MIN_DISK_GB = 500
+HEAVY_MAX_TRANSFER_RATE_USD_PER_GB = 0.05
 IMAGE = "vllm/vllm-openai:v0.19.0"
 MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
 LABEL = "3dprinting993-qwen-cad"
@@ -59,9 +60,11 @@ SIMREADY_REVOKED_IMAGE_F8A = "ghcr.io/cluster2600/3dprinting993-simready-local-a
 SIMREADY_REVOKED_IMAGES = frozenset(
     {SIMREADY_REVOKED_IMAGE_E04, SIMREADY_REVOKED_IMAGE_F8A}
 )
-# Replaced after the corrected image passes publication and anonymous-pull
-# checks. Keeping the revoked value here makes every paid launch fail closed.
+# Historical F42b profile: its qualified image and evidence remain unchanged.
 SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
+# Exact amd64 M64 digest: public anonymous pull and CPU image checks passed in
+# porscheparts Actions run 34123205685. GPU readiness is checked after creation.
+M64_SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44"
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
 # Set only after review of every phase, helper and bundled skill file. A job's
 # own hashes are integrity evidence, not permission to execute arbitrary code.
@@ -753,16 +756,27 @@ def verify_single_f46_instance(
     raise SafeError("the new F46 instance did not appear in the paginated instance list")
 
 
+def simready_profile_image(profile: str = "legacy") -> str:
+    """Select one reviewed image by profile, never by a caller-supplied digest."""
+    if type(profile) is str and profile == "legacy":
+        return SIMREADY_IMAGE
+    if type(profile) is str and profile == M64_PROFILE:
+        return M64_SIMREADY_IMAGE
+    raise SafeError("SimReady execution profile is not approved")
+
+
 def verify_simready_contract(
-    api_key: str, instance_id: int, attempt_label: str
+    api_key: str, instance_id: int, attempt_label: str, *, profile: str = "legacy"
 ) -> None:
     """Fail closed on immutable/cost fields as soon as Vast exposes the contract."""
+    expected_image = simready_profile_image(profile)
     if not is_simready_attempt_label(attempt_label):
         raise SafeError("SimReady attempt label is invalid")
     required_fields = (
         "id", "label", "status", "gpu", "gpu_ram_mb", "num_gpus",
         "gpu_fraction", "machine_verification", "cpu_cores_effective",
         "cpu_ram_mb", "disk_space_gb", "dph_total", "image",
+        "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb",
     )
     for _ in range(30):
         try:
@@ -784,7 +798,7 @@ def verify_simready_contract(
             errors.append("instance id")
         if instance["label"] != attempt_label:
             errors.append("label")
-        if instance["image"] != SIMREADY_IMAGE:
+        if instance["image"] != expected_image:
             errors.append("image digest")
         if instance["status"] not in {"created", "loading", "running"}:
             errors.append("status")
@@ -805,6 +819,10 @@ def verify_simready_contract(
         price = finite_number(instance["dph_total"])
         if price is None or not 0 <= price <= HEAVY_MAX_DPH:
             errors.append("dph_total")
+        for field in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+            rate = finite_number(instance[field])
+            if rate is None or not 0 <= rate <= HEAVY_MAX_TRANSFER_RATE_USD_PER_GB:
+                errors.append(field)
         if instance["machine_verification"] != "verified":
             errors.append("machine verification")
         if errors:
@@ -1333,6 +1351,12 @@ def get_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
 def heavy_offer_query() -> dict:
     return {
         "allocated_storage": HEAVY_MIN_DISK_GB,
+        # Filter the permitted model/price BEFORE the server's 100-row limit;
+        # filtering a page of unrelated GPUs locally can falsely return none.
+        "gpu_name": {"eq": HEAVY_GPU_NAME},
+        "dph_total": {"lte": HEAVY_MAX_DPH},
+        "inet_down_cost": {"lte": HEAVY_MAX_TRANSFER_RATE_USD_PER_GB},
+        "inet_up_cost": {"lte": HEAVY_MAX_TRANSFER_RATE_USD_PER_GB},
         "num_gpus": {"eq": 1},
         "gpu_frac": {"eq": 1},
         "gpu_ram": {"gte": HEAVY_MIN_GPU_RAM_MB},
@@ -1394,8 +1418,9 @@ def report_f46_billing_risk(attempt_label: str) -> None:
 
 
 def emit_simready_cleanup_attestation(
-    instance_id: int, attempt_label: str
+    instance_id: int, attempt_label: str, *, profile: str = "legacy"
 ) -> None:
+    expected_image = simready_profile_image(profile)
     if (
         not isinstance(instance_id, int)
         or isinstance(instance_id, bool)
@@ -1408,7 +1433,7 @@ def emit_simready_cleanup_attestation(
         "status": "destroyed_verified_stably_absent",
         "instance_id": instance_id,
         "label": attempt_label,
-        "requested_image": SIMREADY_IMAGE,
+        "requested_image": expected_image,
         "delete_acknowledged": True,
         "paginated_absence_verified": True,
         "stable_absence_snapshots": DESTROY_ABSENCE_STABILITY_SNAPSHOTS,
@@ -1480,6 +1505,8 @@ def emit_f46_cleanup_attestation(
 
 def heavy_offer_eligible(offer: dict) -> bool:
     price = finite_number(offer.get("dph_total", offer.get("dph")))
+    transfer_rates = [finite_number(offer.get(field))
+                      for field in ("inet_down_cost", "inet_up_cost")]
     reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
     floors = (
         (offer.get("gpu_ram"), HEAVY_MIN_GPU_RAM_MB),
@@ -1509,6 +1536,8 @@ def heavy_offer_eligible(offer: dict) -> bool:
         and rented
         and price is not None
         and 0 <= price <= HEAVY_MAX_DPH
+        and all(rate is not None and 0 <= rate <= HEAVY_MAX_TRANSFER_RATE_USD_PER_GB
+                for rate in transfer_rates)
     )
 
 
@@ -3272,9 +3301,11 @@ def emit_simready_ssh_failure_diagnostic(
 
 
 def verify_simready_ssh_ready(
-    api_key: str, instance_id: int, *, validation_only: bool = False
+    api_key: str, instance_id: int, *, validation_only: bool = False,
+    profile: str = "legacy",
 ) -> Path:
     """Prove BatchMode SSH plus the selected exact SimReady READY state."""
+    expected_image = simready_profile_image(profile)
     total_deadline = time.monotonic() + SIMREADY_TOTAL_READY_TIMEOUT_SECONDS
     running_deadline = None
     validate_approved_ssh_private_key()
@@ -3307,6 +3338,8 @@ def verify_simready_ssh_ready(
         if not isinstance(raw_instance, dict):
             raise SafeError("Vast.ai returned invalid SimReady SSH endpoint metadata")
         instance = safe_instance(raw_instance)
+        if type(instance["id"]) is not int or instance["id"] != instance_id or instance["image"] != expected_image:
+            raise SafeError("SimReady SSH instance id or profile image digest changed")
         last_state = str(instance.get("status") or "unknown")
         if last_state == "running" and running_deadline is None:
             running_deadline = time.monotonic() + SIMREADY_SSH_READY_TIMEOUT_SECONDS
@@ -3953,8 +3986,13 @@ def launch_simready_offer(
     enforce_singleton: bool = False,
     attempt_label: str | None = None,
     validation_only: bool = False,
+    profile: str = "legacy",
 ) -> int:
-    if SIMREADY_IMAGE in SIMREADY_REVOKED_IMAGES:
+    expected_image = simready_profile_image(profile)
+    profile_options = {} if profile == "legacy" else {"profile": profile}
+    if profile == M64_PROFILE and validation_only:
+        raise SafeError("M64 requires the full Content Agents runtime")
+    if expected_image in SIMREADY_REVOKED_IMAGES:
         raise SafeError(
             "the pinned SimReady image is revoked; publish and pin the corrected image first"
         )
@@ -3985,7 +4023,7 @@ def launch_simready_offer(
                 f"/api/v0/asks/{offer_id}/",
                 method="PUT",
                 payload={
-                    "image": SIMREADY_IMAGE,
+                    "image": expected_image,
                     "label": attempt_label,
                     "disk": disk_gb,
                     "runtype": "ssh_direct",
@@ -4018,7 +4056,7 @@ def launch_simready_offer(
                 f"SimReady instance {reconciled_id} was automatically destroyed "
                 "and verified stably absent after the interrupted create call",
             )
-            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label, **profile_options)
             raise
         instance_id = result.get("new_contract")
         if (
@@ -4039,25 +4077,25 @@ def launch_simready_offer(
                         f"{attempt_label} must be inspected before retrying"
                     ) from cleanup_error
                 raise
-            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label, **profile_options)
             raise SafeError(
                 "Vast.ai did not return a valid SimReady instance id; instance "
                 f"{reconciled_id} was automatically destroyed and verified stably absent"
             )
         try:
             verify_single_simready_instance(api_key, instance_id, attempt_label)
-            verify_simready_contract(api_key, instance_id, attempt_label)
+            verify_simready_contract(api_key, instance_id, attempt_label, **profile_options)
             ensure_simready_instance_ssh_key(api_key, instance_id, attempt_label)
             if validation_only:
                 known_hosts_path = verify_simready_ssh_ready(
-                    api_key, instance_id, validation_only=True
+                    api_key, instance_id, validation_only=True, **profile_options
                 )
             else:
-                known_hosts_path = verify_simready_ssh_ready(api_key, instance_id)
+                known_hosts_path = verify_simready_ssh_ready(api_key, instance_id, **profile_options)
             print_json(
                 {
                     "instance_id": instance_id,
-                    "image": SIMREADY_IMAGE,
+                    "image": expected_image,
                     "label": attempt_label,
                     "selected_offer": safe_offer(offer),
                     "offer_contract_verified": True,
@@ -4111,7 +4149,7 @@ def launch_simready_offer(
                 f"SimReady instance {reconciled_id} was automatically destroyed and "
                 "verified stably absent after the post-create failure",
             )
-            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label, **profile_options)
             raise
         return 0
 
@@ -4230,7 +4268,7 @@ def m64_load_bundle(path: Path, instance_id: int) -> tuple[dict, bytes, dict[str
         raise SafeError("M64 job id is invalid")
     if type(manifest["instance_id"]) is not int or manifest["instance_id"] != instance_id or instance_id <= 0:
         raise SafeError("M64 manifest is bound to a different instance")
-    if not is_simready_attempt_label(manifest["label"]) or manifest["image"] != SIMREADY_IMAGE:
+    if not is_simready_attempt_label(manifest["label"]) or manifest["image"] != M64_SIMREADY_IMAGE:
         raise SafeError("M64 manifest label or image digest is not approved")
     created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
     if type(created) is not int or type(deadline) is not int or created <= 0 or not 0 < deadline - created <= M64_MAX_JOB_SECONDS:
@@ -4285,7 +4323,7 @@ def m64_verified_ssh(api_key: str, manifest: dict, *, collecting: bool) -> list[
         m64_start_deadline(manifest)
     verify_single_simready_instance(api_key, instance_id, manifest["label"])
     if not collecting:
-        verify_simready_contract(api_key, instance_id, manifest["label"])
+        verify_simready_contract(api_key, instance_id, manifest["label"], profile=M64_PROFILE)
     result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
     raw = result.get("instances")
     if not isinstance(raw, dict):
@@ -5004,6 +5042,7 @@ def run(operation: list[str]) -> int:
             and operation[0] in {
                 "launch-simready-heavy",
                 "launch-simready-validation-only",
+                "launch-m64-heavy",
             }
         ):
             offer_id = positive_id(operation[1], "offer id")
@@ -5028,15 +5067,19 @@ def run(operation: list[str]) -> int:
                 enforce_singleton=True,
                 attempt_label=supervised_attempt_label,
                 validation_only=operation[0] == "launch-simready-validation-only",
+                **({"profile": M64_PROFILE} if operation[0] == "launch-m64-heavy" else {}),
             )
-        if len(operation) == 2 and operation[0] == "reconcile-simready-attempt":
+        if len(operation) == 2 and operation[0] in {"reconcile-simready-attempt", "reconcile-m64-attempt"}:
             attempt_label = operation[1]
             if not is_simready_attempt_label(attempt_label):
                 raise SafeError("SimReady attempt label is invalid")
             instance_id = reconcile_uncertain_simready_launch(
                 api_key, attempt_label
             )
-            emit_simready_cleanup_attestation(instance_id, attempt_label)
+            emit_simready_cleanup_attestation(
+                instance_id, attempt_label,
+                **({"profile": M64_PROFILE} if operation[0] == "reconcile-m64-attempt" else {}),
+            )
             return 0
         if len(operation) == 3 and operation[0] == "reconcile-f46-attempt":
             attempt_label = operation[1]
@@ -5098,7 +5141,9 @@ def run(operation: list[str]) -> int:
             "launch-f46 <offer_id> <image@digest> <deadline_epoch> [--attempt-label <label>]|"
             "launch-simready-heavy <offer_id> [--attempt-label <label>]|"
             "launch-simready-validation-only <offer_id> [--attempt-label <label>]|"
+            "launch-m64-heavy <offer_id> [--attempt-label <label>]|"
             "reconcile-simready-attempt <label>|"
+            "reconcile-m64-attempt <label>|"
             "reconcile-f46-attempt <label> <image@digest>|launch-best-eu|"
             "start <id>|stop <id>|"
             "destroy <id> --confirm"
