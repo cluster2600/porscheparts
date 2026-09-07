@@ -1,0 +1,134 @@
+{
+  "schema": "m64-cp1-hot-documentary-supplement/v1",
+  "retrieved_on": "2026-09-07",
+  "material": "Constellium_Aheadd_CP1",
+  "status": "manufacturer_documentary_points_not_a_qualified_material_card",
+  "sources": [
+    {
+      "id": "constellium_formnext_2021_p9",
+      "title": "Constellium Aheadd: Aluminium Alloys Designed for Laser Powder Bed AM to Improve Properties and Processing Performance",
+      "authors": ["Ravi Shahani", "Bechir Chehab"],
+      "institution": "C-TEC Constellium Technology Center",
+      "source_type": "manufacturer_conference_presentation",
+      "event": "Formnext 2021",
+      "url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/2021-11-8_constellium_aheadd_formnext_final.a0a8c4307e76.pdf",
+      "sha256": "fb545cdaa3bbbbcf69768c334158cce2f67de4012738134659058b13be60f45f",
+      "bytes": 3683631,
+      "page_one_based": 9,
+      "page_visually_verified": true,
+      "visual_verification_method": "pdftoppm_page_9_1800px_and_view_image",
+      "rights_note": "Publicly retrievable manufacturer PDF bears Constellium Confidential marking; no PDF or images redistributed, factual points only."
+    },
+    {
+      "id": "eos_cp1_m290_60um_20260904",
+      "title": "EOS Aluminium Constellium CP1 for EOS M 290 | 60 micrometres",
+      "institution": "EOS GmbH",
+      "source_type": "manufacturer_process_data_sheet_HTML",
+      "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-290-60um",
+      "document_displayed_status_date": "2026-09-04",
+      "publication_date_inferred_from_status_date": false,
+      "private_HTML_snapshot_sha256": "0d1f80dab03fa858cb9df37d18036465dc070cc4c2c1ccd5fc7bf05fad22cb24",
+      "section": "Coefficient of Thermal Expansion",
+      "PDF_generation_attempt": "HTTP_500",
+      "PDF_visual_verification_claimed": false,
+      "process_scope": {
+        "machine": "EOS_M_290",
+        "material_set": "AlCP1_060_M291",
+        "layer_thickness_um": 60,
+        "TRL": 3,
+        "build_platform_temperature_C": 125,
+        "inert_gas": "argon"
+      }
+    }
+  ],
+  "elevated_temperature_tensile_points": [
+    {
+      "source_id": "constellium_formnext_2021_p9",
+      "machine": "EOS_M290",
+      "process": "LPBF",
+      "layer_thickness_um": 60,
+      "orientation": "vertical",
+      "heat_treatment_temperature_C": 400,
+      "heat_treatment_duration_h": 1,
+      "test_temperature_C": 200,
+      "yield_strength_MPa": 126,
+      "yield_strength_source_notation": "YS",
+      "yield_offset_percent": null,
+      "ultimate_tensile_strength_MPa": 149,
+      "elongation_percent": 17.0,
+      "statistical_basis": "typical_properties",
+      "sample_count": null,
+      "uncertainty_MPa": null,
+      "test_standard": null,
+      "strain_rate_per_second": null,
+      "test_temperature_dwell_time_h": null,
+      "surface_finish": null,
+      "transfer_to_4h_heat_treatment_permitted": false,
+      "is_design_allowable": false
+    }
+  ],
+  "thermal_expansion_interval_coefficients": [
+    {
+      "source_id": "constellium_formnext_2021_p9",
+      "temperature_interval_C": [20, 200],
+      "coefficient_per_K": 0.00002519,
+      "heat_treatment": null,
+      "orientation": null,
+      "test_standard": null,
+      "uncertainty_per_K": null
+    },
+    {
+      "source_id": "eos_cp1_m290_60um_20260904",
+      "temperature_interval_C": [25, 100],
+      "coefficient_per_K": 0.000019,
+      "heat_treatment": null,
+      "orientation": null,
+      "test_standard": null,
+      "uncertainty_per_K": null
+    },
+    {
+      "source_id": "eos_cp1_m290_60um_20260904",
+      "temperature_interval_C": [25, 200],
+      "coefficient_per_K": 0.000021,
+      "heat_treatment": null,
+      "orientation": null,
+      "test_standard": null,
+      "uncertainty_per_K": null
+    },
+    {
+      "source_id": "eos_cp1_m290_60um_20260904",
+      "temperature_interval_C": [25, 300],
+      "coefficient_per_K": 0.000022,
+      "heat_treatment": null,
+      "orientation": null,
+      "test_standard": null,
+      "uncertainty_per_K": null
+    }
+  ],
+  "interpretation_constraints": {
+    "expansion_coefficients_are_reported_over_intervals": true,
+    "do_not_treat_interval_coefficients_as_instantaneous_alpha_T": true,
+    "do_not_merge_2021_and_EOS_values": true,
+    "no_interpolation_or_extrapolation_created": true,
+    "thermal_stability_not_tensile_strength_at_temperature": true,
+    "heat_treatment_temperature_not_test_temperature": true,
+    "new_k_T_points_verified": false,
+    "new_Cp_T_points_verified": false,
+    "solver_material_assignment_allowed": false,
+    "manufacturing_authorized": false
+  },
+  "recent_sheets_checked_without_new_hot_curve": [
+    {
+      "manufacturer": "Nikon_SLM_Solutions",
+      "revision": "MDS_Aheadd_CP1_2024-11.2_EN",
+      "url": "https://nikon-slm-solutions.com/wp-content/uploads/2024/11/mds5144.pdf",
+      "reason": "note_7_explicit_room_temperature_tensile_testing"
+    },
+    {
+      "manufacturer": "Velo3D",
+      "revision": "DS-AheaddCP1.EN.2024-02-16.v2-0.U.USL",
+      "url": "https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf",
+      "reason": "mechanical_properties_heading_explicit_room_temperature"
+    }
+  ]
+}

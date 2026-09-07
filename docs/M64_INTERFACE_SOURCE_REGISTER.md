@@ -147,3 +147,16 @@ ses métadonnées et sa première page rendue, selon le skill PDF : document de
 avec habillage Bookey. Ce n'est pas le manuel d'atelier 993 de 1 481 pages.
 Ses pages 152–157 ne sont donc pas utilisées comme substitut. Aucun contenu
 du document ni rendu de couverture n'est ajouté au dépôt.
+
+### Bulletin de réparation retrouvé, distinct de la TI recherchée
+
+Le [bulletin Porsche Cars North America 9404 du 8 février 1994](https://www.design911.co.uk/uploads/pdfs/964_Cylinder_TSB.pdf),
+identifiant 1570, est désormais consultable et ses figures ont été revues.
+Il décrit une reprise du plan d'accostage pour certaines Carrera M64.01/02
+de 1989–1991 : enlèvement 0,10 ± 0,02 mm, maximum 0,20 mm et diamètre de
+surface usinée 145 mm (p.4, figure 4). Ce sont des données de **réparation**,
+pas une définition dimensionnelle de notre culasse neuve.
+
+L'identité avec la TI « 1570 (02/00) » et l'applicabilité aux M64 turbo ne
+sont pas établies. Le contrat CAO garde donc ses interfaces inconnues.
+[Provenance, conditions et limites du bulletin](M64_TI1570_ACCESS_AND_REPAIR_SCOPE_20260907.md).
