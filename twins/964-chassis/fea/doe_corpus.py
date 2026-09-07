@@ -93,15 +93,27 @@ def run_case(p, order, env_base):
     work = pathlib.Path(env.get('FEA_WORK', '.'))
     for k in RANGES:
         env[k] = f"{p[k]:.4f}"
-    r = subprocess.run([PY, 'build_body.py', f"{p['t']:.4f}", p['features'], '1.0', str(order)],
-                       capture_output=True, text=True, env=env, cwd=HERE)
-    if r.returncode:
-        return None, f"build: {r.stdout.strip()[:120]}"
-    mesh = np.load(HERE / work / 'mesh.npz')
-    r = subprocess.run([PY, 'run_fea.py', f"{p['t']:.4f}", CCX_TAG, f"{p['E']:.1f}", f"{NU}",
-                        f"{p['G']:.1f}"],
-                       capture_output=True, text=True, env=env, cwd=HERE)
-    if r.returncode:
+    # Contournement du defaut de partitionnement de SPOOLES. Sur certaines
+    # geometries il meurt en pleine factorisation ; le meme cas maille 1 % plus
+    # fin passe sans broncher, et rend la meme raideur a 0,1 % pres — verifie a
+    # 0,99, 0,98 et 1,02. Le maillage est un choix de discretisation, pas un
+    # parametre du cas : le decaler est licite, l'abandonner ne l'est pas. Ce qui
+    # ne l'etait pas non plus etait de perdre ainsi 2 % des cas, tous de la meme
+    # famille d'architectures : un trou oriente, que le substitut apprendrait.
+    for lc, mode in (('1.0', 'direct'), ('0.99', 'direct'), ('0.98', 'direct'),
+                     ('1.0', '')):
+        env['CCX_SOLVER'] = mode
+        r = subprocess.run([PY, 'build_body.py', f"{p['t']:.4f}", p['features'], lc, str(order)],
+                           capture_output=True, text=True, env=env, cwd=HERE)
+        if r.returncode:
+            return None, f"build: {r.stdout.strip()[:120]}"
+        mesh = np.load(HERE / work / 'mesh.npz')
+        r = subprocess.run([PY, 'run_fea.py', f"{p['t']:.4f}", CCX_TAG, f"{p['E']:.1f}", f"{NU}",
+                            f"{p['G']:.1f}"],
+                           capture_output=True, text=True, env=env, cwd=HERE)
+        if r.returncode == 0:
+            break
+    else:
         return None, f"solve: {r.stdout.strip()[-120:]}"
     res = np.load(HERE / work / f'{CCX_TAG}_res.npz')
     u = read_field(str(HERE / work / CCX_TAG), mesh['nid'])
@@ -110,7 +122,7 @@ def run_case(p, order, env_base):
     area = float(mesh['area'])
     return dict(xyz=mesh['xyz'].astype(np.float32), tri=mesh['tri'].astype(np.int32),
                 u=u, K=float(res['K']), theta=float(res['theta']),
-                area=area, mass=area * p['t'] * RHO), None
+                area=area, mass=area * p['t'] * RHO, lc=float(lc)), None
 
 
 def main():
