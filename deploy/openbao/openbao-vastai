@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 from contextlib import contextmanager, nullcontext
+import base64
 import fcntl
+import hashlib
 import ipaddress
 import json
 import math
@@ -61,6 +63,29 @@ SIMREADY_REVOKED_IMAGES = frozenset(
 # checks. Keeping the revoked value here makes every paid launch fail closed.
 SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
+# Set only after review of every phase, helper and bundled skill file. A job's
+# own hashes are integrity evidence, not permission to execute arbitrary code.
+M64_APPROVED_CODE_MANIFEST_SHA256 = "f841e5e572103acda304e62a3a7fe7dc3c0dce128defa301d2c5373fcd76c805"
+M64_PROFILE = "m64-omni-static-v1"
+M64_PHASES = (
+    "preflight", "context", "convert", "minimum", "material", "physics", "profile-initial", "conform",
+    "asset-validation", "geometry-validation", "physics-validation",
+    "profile-validation", "render",
+)
+M64_INPUTS = frozenset({
+    "inputs/assembly.step", "inputs/asset-context.json",
+    "inputs/material-prompt.txt", "inputs/physics-prompt.txt",
+})
+M64_MAX_BUNDLE_BYTES = 128 * 1024 * 1024
+M64_MAX_RESULTS_BYTES = 128 * 1024 * 1024
+M64_MAX_RESULT_FILES = 1024
+M64_MAX_MANIFEST_BYTES = 1024 * 1024
+M64_MAX_PHASE_SECONDS = 1800
+M64_TRANSFER_SECONDS = 300
+M64_COLLECT_SECONDS = 300
+M64_MAX_JOB_SECONDS = 7200
+M64_MAX_BUDGET_USD = 20.0
+M64_MAX_TRANSFER_RATE_USD_PER_GB = 0.05
 SIMREADY_ATTEMPT_TOKEN_BYTES = 10
 SIMREADY_CLEANUP_PREFIX = "OPENBAO_VASTAI_SIMREADY_CLEANUP "
 WAVE_MAX_DPH = 1.25
@@ -2702,6 +2727,19 @@ print('SIMREADY_REMOTE_READY')
     return f"python -c {shlex.quote(script)}"
 
 
+def simready_full_onstart_command() -> str:
+    """Call the pinned image's helper even when Vast replaces /usr/sbin/sshd.
+
+    Its flock-serialized ssh-keygen -A creates only missing host keys; -T audits
+    the configuration and exits without starting/replacing the live listener.
+    The helper must pass before the normal onstart is allowed to run.
+    """
+    return (
+        "/usr/local/bin/simready-sshd-runtime-wrapper -T >/dev/null"
+        " && simready-vast-onstart"
+    )
+
+
 def simready_validation_only_onstart_command() -> str:
     """Start only deterministic CAD/USD validation prerequisites on Vast."""
     script = r"""\
@@ -3955,7 +3993,7 @@ def launch_simready_offer(
                     "onstart": (
                         simready_validation_only_onstart_command()
                         if validation_only
-                        else "simready-vast-onstart"
+                        else simready_full_onstart_command()
                     ),
                     "cancel_unavail": True,
                 },
@@ -4078,10 +4116,620 @@ def launch_simready_offer(
         return 0
 
 
+def m64_json(payload: bytes) -> dict:
+    """Reject ambiguous JSON, including duplicate fields and non-finite values."""
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError("duplicate field")
+            result[key] = value
+        return result
+
+    def invalid_constant(_):
+        raise ValueError("non-finite JSON number")
+
+    try:
+        result = json.loads(payload, object_pairs_hook=pairs, parse_constant=invalid_constant)
+    except (ValueError, UnicodeError, RecursionError) as exc:
+        raise SafeError("M64 manifest or receipt is not strict JSON") from exc
+    if not isinstance(result, dict):
+        raise SafeError("M64 manifest or receipt must be an object")
+    return result
+
+
+def m64_relative_path(value: object) -> str:
+    if (
+        not isinstance(value, str) or len(value) > 240
+        or not re.fullmatch(r"[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*", value)
+        or any(part in {".", ".."} or part.startswith(".") for part in value.split("/"))
+    ):
+        raise SafeError("M64 path is outside the fixed relative-path contract")
+    return value
+
+
+def m64_no_symlink_path(path: Path) -> None:
+    if not path.is_absolute():
+        raise SafeError("M64 local paths must be absolute")
+    for component in (*reversed(path.parents), path):
+        try:
+            if stat.S_ISLNK(component.lstat().st_mode):
+                raise SafeError("M64 symlink paths are forbidden")
+        except FileNotFoundError:
+            raise SafeError("M64 required local path is missing") from None
+
+
+def m64_read_file(path: Path, maximum: int) -> bytes:
+    m64_no_symlink_path(path)
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+        with os.fdopen(descriptor, "rb") as stream:
+            info = os.fstat(stream.fileno())
+            if (
+                not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid()
+                or info.st_nlink != 1 or info.st_mode & 0o022
+                or not 0 <= info.st_size <= maximum
+            ):
+                raise SafeError("M64 local file metadata or size is unsafe")
+            payload = stream.read(maximum + 1)
+            after = os.fstat(stream.fileno())
+            if (
+                len(payload) != info.st_size or len(payload) > maximum
+                or (info.st_size, info.st_mtime_ns) != (after.st_size, after.st_mtime_ns)
+            ):
+                raise SafeError("M64 local file changed while being read")
+            return payload
+    except OSError as exc:
+        raise SafeError("M64 local file could not be read safely") from exc
+
+
+def m64_entries(items: object, *, outputs: bool = False) -> dict[str, dict]:
+    if not isinstance(items, list) or not 1 <= len(items) <= (128 if outputs else 4096):
+        raise SafeError("M64 file list is missing or exceeds its bound")
+    result = {}
+    folded = set()
+    total = 0
+    for entry in items:
+        fields = {"path", "max_bytes"} if outputs else {"path", "size", "sha256"}
+        if not isinstance(entry, dict) or set(entry) != fields:
+            raise SafeError("M64 file entry has unexpected fields")
+        path = m64_relative_path(entry["path"])
+        size = entry["max_bytes" if outputs else "size"]
+        if type(size) is not int or not 0 <= size <= M64_MAX_BUNDLE_BYTES:
+            raise SafeError("M64 file size is invalid")
+        if outputs:
+            if not path.startswith("results/") or size == 0:
+                raise SafeError("M64 outputs must be bounded files under results")
+        elif not isinstance(entry["sha256"], str) or not re.fullmatch(r"[0-9a-f]{64}", entry["sha256"]):
+            raise SafeError("M64 file SHA256 is invalid")
+        if path.casefold() in folded:
+            raise SafeError("M64 duplicate or case-ambiguous file paths are forbidden")
+        folded.add(path.casefold())
+        result[path] = entry
+        total += size
+    if total > (M64_MAX_RESULTS_BYTES if outputs else M64_MAX_BUNDLE_BYTES):
+        raise SafeError("M64 total file bytes exceed the fixed limit")
+    for path in result:
+        if any(str(parent).casefold() in folded for parent in Path(path).parents if str(parent) != "."):
+            raise SafeError("M64 a file path cannot also be a directory")
+    return result
+
+
+def m64_load_bundle(path: Path, instance_id: int) -> tuple[dict, bytes, dict[str, bytes]]:
+    """Snapshot and hash the same bytes that will be transferred; never execute them locally."""
+    payload = m64_read_file(path, M64_MAX_MANIFEST_BYTES)
+    manifest = m64_json(payload)
+    if set(manifest) != {
+        "schema_version", "profile", "job_id", "instance_id", "label", "image",
+        "created_epoch", "deadline_epoch", "max_dph", "budget_usd", "files", "outputs",
+    }:
+        raise SafeError("M64 transport manifest fields do not match the fixed contract")
+    if manifest["schema_version"] != "1.0.0" or manifest["profile"] != M64_PROFILE:
+        raise SafeError("M64 manifest schema or profile is not approved")
+    if not isinstance(manifest["job_id"], str) or not re.fullmatch(r"m64-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"]):
+        raise SafeError("M64 job id is invalid")
+    if type(manifest["instance_id"]) is not int or manifest["instance_id"] != instance_id or instance_id <= 0:
+        raise SafeError("M64 manifest is bound to a different instance")
+    if not is_simready_attempt_label(manifest["label"]) or manifest["image"] != SIMREADY_IMAGE:
+        raise SafeError("M64 manifest label or image digest is not approved")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if type(created) is not int or type(deadline) is not int or created <= 0 or not 0 < deadline - created <= M64_MAX_JOB_SECONDS:
+        raise SafeError("M64 absolute job lifetime must be bounded to two hours")
+    for key, cap in (("max_dph", HEAVY_MAX_DPH), ("budget_usd", M64_MAX_BUDGET_USD)):
+        value = manifest[key]
+        if type(value) not in (int, float) or not math.isfinite(value) or not 0 < value <= cap:
+            raise SafeError("M64 rate or remaining budget allocation is invalid")
+    entries = m64_entries(manifest["files"])
+    outputs = m64_entries(manifest["outputs"], outputs=True)
+    if not M64_INPUTS | {"code-manifest.json"} <= entries.keys():
+        raise SafeError("M64 requires the code manifest and all four fixed inputs")
+    if not isinstance(M64_APPROVED_CODE_MANIFEST_SHA256, str) or not re.fullmatch(r"[0-9a-f]{64}", M64_APPROVED_CODE_MANIFEST_SHA256):
+        raise SafeError("M64 code manifest is not yet pinned by the reviewed wrapper")
+    files = {}
+    for relative, entry in entries.items():
+        content = m64_read_file(path.parent / relative, entry["size"])
+        if len(content) != entry["size"] or hashlib.sha256(content).hexdigest() != entry["sha256"]:
+            raise SafeError("M64 bundle file does not match its declared size and SHA256")
+        files[relative] = content
+    code_bytes = files["code-manifest.json"]
+    if hashlib.sha256(code_bytes).hexdigest() != M64_APPROVED_CODE_MANIFEST_SHA256:
+        raise SafeError("M64 code manifest is not the approved immutable code bundle")
+    code = m64_json(code_bytes)
+    if set(code) != {"schema_version", "profile", "files"} or code["schema_version"] != "1.0.0" or code["profile"] != M64_PROFILE:
+        raise SafeError("M64 code manifest schema or profile is invalid")
+    code_entries = m64_entries(code["files"])
+    if any(not name.startswith(("phases/", "skill/")) for name in code_entries):
+        raise SafeError("M64 code is outside the two approved code directories")
+    if not {"phases/common.py", *(f"phases/{phase}.py" for phase in M64_PHASES)} <= code_entries.keys():
+        raise SafeError("M64 code manifest is missing a fixed phase or its shared helper")
+    if set(entries) != set(code_entries) | M64_INPUTS | {"code-manifest.json"} or any(entries[name] != entry for name, entry in code_entries.items()):
+        raise SafeError("M64 bundle contains undeclared code or divergent code hashes")
+    # Allocation is a remaining, user-authorized cap, not a claim about the
+    # provider's account-wide invoice. The external instance watchdog remains required.
+    transfer_reserve = 2 * (sum(item["size"] for item in entries.values()) + sum(item["max_bytes"] for item in outputs.values())) / 1e9 * M64_MAX_TRANSFER_RATE_USD_PER_GB
+    if manifest["max_dph"] * (deadline - created) / 3600 + transfer_reserve > manifest["budget_usd"]:
+        raise SafeError("M64 lifetime and bounded transfers exceed the allocated budget")
+    return manifest, payload, files
+
+
+def m64_start_deadline(manifest: dict) -> float:
+    now = time.time()
+    if now < manifest["created_epoch"] or now >= manifest["deadline_epoch"]:
+        raise SafeError("M64 start is outside the immutable job deadline")
+    return manifest["deadline_epoch"] - now
+
+
+def m64_verified_ssh(api_key: str, manifest: dict, *, collecting: bool) -> list[str]:
+    instance_id = manifest["instance_id"]
+    if not collecting:
+        m64_start_deadline(manifest)
+    verify_single_simready_instance(api_key, instance_id, manifest["label"])
+    if not collecting:
+        verify_simready_contract(api_key, instance_id, manifest["label"])
+    result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+    raw = result.get("instances")
+    if not isinstance(raw, dict):
+        raise SafeError("M64 instance lookup returned invalid metadata")
+    instance = safe_instance(raw)
+    if (
+        type(instance["id"]) is not int or instance["id"] != instance_id
+        or instance["label"] != manifest["label"] or instance["image"] != manifest["image"]
+        or instance["status"] != "running"
+    ):
+        raise SafeError("M64 requires its exact running instance, label and image digest")
+    if not collecting:
+        price = finite_number(instance["dph_total"])
+        if price is None or not 0 <= price <= manifest["max_dph"]:
+            raise SafeError("M64 instance rate exceeds its immutable allocation")
+        for field in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+            rate = finite_number(instance[field])
+            if rate is None or not 0 <= rate <= M64_MAX_TRANSFER_RATE_USD_PER_GB:
+                raise SafeError("M64 data transfer rate is unavailable or over its cap")
+    public_key = read_local_ssh_public_key()  # Also verifies the cryptographic key pair.
+    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+        raise SafeError("M64 approved public key is not listed on this exact instance")
+    known_hosts = SIMREADY_KNOWN_HOSTS_DIR / simready_host_key_alias(instance_id)
+    m64_no_symlink_path(known_hosts)
+    validate_simready_known_hosts(known_hosts, instance_id)
+    host, port = instance["ssh_host"], finite_number(instance["ssh_port"])
+    if (
+        not isinstance(host, str) or len(host) > 253
+        or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.:-]*", host)
+        or port is None or not port.is_integer() or not 1 <= port <= 65535
+    ):
+        raise SafeError("M64 verified SSH endpoint is unavailable")
+    if not collecting:
+        m64_start_deadline(manifest)
+    options = (
+        "BatchMode=yes", "IdentitiesOnly=yes", "ForwardAgent=no", "ClearAllForwardings=yes",
+        "PermitLocalCommand=no", "PasswordAuthentication=no", "KbdInteractiveAuthentication=no",
+        "ConnectionAttempts=1", "ConnectTimeout=5", "StrictHostKeyChecking=yes",
+        "UpdateHostKeys=no", "GlobalKnownHostsFile=/dev/null", "HashKnownHosts=no",
+        f"HostKeyAlias={simready_host_key_alias(instance_id)}", f"UserKnownHostsFile={known_hosts}",
+        "LogLevel=ERROR", "ServerAliveInterval=15", "ServerAliveCountMax=4",
+    )
+    command = ["ssh", "-F", "/dev/null", "-T", "-i", str(SSH_PRIVATE_KEY_FILE)]
+    for option in options:
+        command.extend(("-o", option))
+    command.extend(("-p", str(int(port)), f"root@{host}"))
+    return command
+
+
+# This is a transport and single-phase guard, not an Omniverse workflow runner.
+# No command, interpreter, argv, remote path or code digest comes from user input.
+# The stdin document is constructed only after m64_load_bundle has validated it.
+M64_REMOTE_HELPER = r'''
+import base64, fcntl, hashlib, json, os, re, resource, signal, stat, subprocess, sys, time
+from pathlib import Path
+ROOT = Path("/workspace/jobs")
+PIN = "__M64_CODE_PIN__"
+PHASES = ("preflight", "context", "convert", "minimum", "material", "physics", "profile-initial", "conform", "asset-validation", "geometry-validation", "physics-validation", "profile-validation", "render")
+MAX_BYTES = 128 * 1024 * 1024
+MAX_WIRE = 180 * 1024 * 1024
+
+def fail():
+    raise ValueError("fixed M64 transport contract rejected")
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+def decoded(value):
+    return base64.b64decode(value, validate=True)
+
+def checked(path, directory=False):
+    for part in (*reversed(path.parents), path):
+        meta = part.lstat()
+        if stat.S_ISLNK(meta.st_mode):
+            fail()
+    meta = path.lstat()
+    if meta.st_uid != os.getuid() or meta.st_mode & 0o022:
+        fail()
+    if directory:
+        if not stat.S_ISDIR(meta.st_mode):
+            fail()
+    elif not stat.S_ISREG(meta.st_mode) or meta.st_nlink != 1:
+        fail()
+
+def relative(value):
+    if not isinstance(value, str) or len(value) > 240 or not re.fullmatch(r"[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*", value):
+        fail()
+    if any(x in (".", "..") or x.startswith(".") for x in value.split("/")):
+        fail()
+    return value
+
+def read(path, maximum):
+    checked(path)
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "rb") as stream:
+        before = os.fstat(stream.fileno())
+        if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1 or before.st_size > maximum:
+            fail()
+        value = stream.read(maximum + 1)
+        after = os.fstat(stream.fileno())
+        if len(value) != before.st_size or len(value) > maximum or (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+            fail()
+        return value
+
+def write(path, payload, mode=0o600):
+    path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    checked(path.parent, directory=True)
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, mode)
+    with os.fdopen(fd, "wb") as stream:
+        stream.write(payload)
+
+def main():
+    os.umask(0o077)
+    wire = sys.stdin.buffer.read(MAX_WIRE + 1)
+    if len(wire) > MAX_WIRE:
+        fail()
+    request = json.loads(wire)
+    if set(request) != {"operation", "manifest_b64", "manifest_sha256", "files_b64", "phase", "timeout_seconds"}:
+        fail()
+    operation = request["operation"]
+    if operation not in ("transfer", "phase", "collect"):
+        fail()
+    manifest_bytes = decoded(request["manifest_b64"])
+    if digest(manifest_bytes) != request["manifest_sha256"]:
+        fail()
+    manifest = json.loads(manifest_bytes)
+    job = manifest["job_id"]
+    if manifest["profile"] != "m64-omni-static-v1" or not re.fullmatch(r"m64-[a-z0-9][a-z0-9-]{0,63}", job):
+        fail()
+    entries = {relative(item["path"]): item for item in manifest["files"]}
+    outputs = {relative(item["path"]): item for item in manifest["outputs"]}
+    if len(entries) != len(manifest["files"]) or len(outputs) != len(manifest["outputs"]):
+        fail()
+    if any(not name.startswith("results/") for name in outputs) or sum(x["max_bytes"] for x in outputs.values()) > MAX_BYTES:
+        fail()
+    if entries["code-manifest.json"]["sha256"] != PIN or sum(x["size"] for x in entries.values()) > MAX_BYTES:
+        fail()
+    if operation != "collect" and not manifest["created_epoch"] <= time.time() < manifest["deadline_epoch"]:
+        fail()
+    ROOT.mkdir(exist_ok=True, mode=0o700)
+    checked(ROOT, directory=True)
+    root = ROOT / job
+    if operation == "transfer":
+        if set(request["files_b64"]) != set(entries):
+            fail()
+        payloads = {}
+        for name, entry in entries.items():
+            data = decoded(request["files_b64"][name])
+            if len(data) != entry["size"] or digest(data) != entry["sha256"]:
+                fail()
+            payloads[name] = data
+        root.mkdir(mode=0o700)  # No overwrite, merge or replacement of a prior job.
+        write(root / "job-manifest.json", manifest_bytes, 0o400)
+        for name, data in payloads.items():
+            write(root / name, data, 0o400)
+        (root / "results").mkdir(mode=0o700)
+    checked(root, directory=True)
+    if read(root / "job-manifest.json", 1024 * 1024) != manifest_bytes:
+        fail()
+    lock_path = root / ".transport.lock"
+    lock_fd = os.open(lock_path, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    with os.fdopen(lock_fd, "r+b") as lock:
+        checked(lock_path)
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        def verify_inputs():
+            for name, entry in entries.items():
+                value = read(root / name, entry["size"])
+                if len(value) != entry["size"] or digest(value) != entry["sha256"]:
+                    fail()
+            # Imports or subprocesses must not find added code in either tree.
+            actual = set()
+            for folder in ("phases", "skill"):
+                checked(root / folder, directory=True)
+                for path in (root / folder).rglob("*"):
+                    checked(path, directory=path.is_dir())
+                    if path.is_file():
+                        actual.add(str(path.relative_to(root)))
+            if actual != {name for name in entries if name.startswith(("phases/", "skill/"))}:
+                fail()
+        verify_inputs()
+        response = {"schema_version": "1.0.0", "job_id": job, "instance_id": manifest["instance_id"], "operation": operation, "manifest_sha256": digest(manifest_bytes)}
+        if operation == "phase":
+            phase = request["phase"]
+            seconds = request["timeout_seconds"]
+            if phase not in PHASES or type(seconds) is not int or not 1 <= seconds <= 1800:
+                fail()
+            seconds = min(seconds, int(manifest["deadline_epoch"] - time.time()))
+            if seconds < 1:
+                fail()
+            log_path = root / "results" / "wrapper" / (phase + ".log")
+            log_path.parent.mkdir(mode=0o700, exist_ok=True)
+            checked(log_path.parent, directory=True)
+            fd = os.open(log_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+            timed_out = False
+            def limits():
+                resource.setrlimit(resource.RLIMIT_FSIZE, (MAX_BYTES, MAX_BYTES))
+            with os.fdopen(fd, "wb") as log:
+                process = subprocess.Popen(
+                    ["/opt/simready-validation/bin/python", "-B", "-E", "-s", str(root / "phases" / (phase + ".py")), "--job-root", str(root)],
+                    cwd=root, env={"PATH": "/opt/simready-validation/bin:/usr/local/bin:/usr/bin:/bin", "LANG": "C.UTF-8", "PYTHONDONTWRITEBYTECODE": "1"},
+                    stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                    start_new_session=True, preexec_fn=limits,
+                )
+                try:
+                    code = process.wait(timeout=seconds)
+                except subprocess.TimeoutExpired:
+                    timed_out = True
+                    os.killpg(process.pid, signal.SIGTERM)
+                    try:
+                        process.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        os.killpg(process.pid, signal.SIGKILL)
+                        process.wait(timeout=5)
+                    code = 124
+            verify_inputs()
+            response.update(phase=phase, exit_code=code, timed_out=timed_out)
+            write(root / "results" / "wrapper" / (phase + ".json"), json.dumps(response, sort_keys=True).encode())
+        elif operation == "collect":
+            found, missing, present = {}, [], []
+            visited = 0
+            for name, entry in outputs.items():
+                path = root / name
+                # A missing file is reportable; dangling or parent symlinks are not.
+                for part in path.relative_to(root).parents:
+                    candidate = root / part
+                    if candidate.is_symlink():
+                        fail()
+                if not path.exists() and not path.is_symlink():
+                    missing.append(name)
+                    continue
+                checked(path, directory=path.is_dir())
+                candidates = path.rglob("*") if path.is_dir() else [path]
+                used = 0
+                for candidate in candidates:
+                    visited += 1
+                    if visited > 8192:
+                        fail()
+                    # Every visited node is checked, including empty directories.
+                    checked(candidate, directory=candidate.is_dir())
+                    if candidate.is_dir():
+                        continue
+                    relative_name = relative(str(candidate.relative_to(root)))
+                    if relative_name in found or len(found) >= 1024:
+                        fail()
+                    data = read(candidate, entry["max_bytes"] - used)
+                    used += len(data)
+                    if used > entry["max_bytes"]:
+                        fail()
+                    found[relative_name] = {"size": len(data), "sha256": digest(data), "base64": base64.b64encode(data).decode()}
+                present.append(name)
+            response.update(files=found, present_outputs=present, missing_outputs=missing)
+        print(json.dumps(response, separators=(",", ":")), flush=True)
+
+try:
+    main()
+except BaseException:
+    # Never echo a local path, remote log, payload, exception or environment.
+    print('{"error":"m64_remote_contract_rejected"}', flush=True)
+    raise SystemExit(1)
+'''
+
+
+def run_m64_transport(command: list[str], payload: bytes, timeout_seconds: float) -> bytes:
+    """Bound both directions, runtime and process-group cleanup; do not print streams."""
+    maximum = 180 * 1024 * 1024
+    if len(payload) > maximum or not math.isfinite(timeout_seconds) or not 0 < timeout_seconds <= M64_MAX_PHASE_SECONDS + 30:
+        raise SafeError("M64 transport exceeds fixed byte or time bounds")
+    process = subprocess.Popen(
+        command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        env={"LC_ALL": "C", "PATH": os.environ.get("PATH", os.defpath)}, start_new_session=True,
+    )
+    streams = (process.stdin, process.stdout, process.stderr)
+    selector = selectors.DefaultSelector()
+    output, error = bytearray(), bytearray()
+    offset = 0
+    deadline = time.monotonic() + timeout_seconds
+    try:
+        for stream in streams:
+            os.set_blocking(stream.fileno(), False)
+        selector.register(process.stdin, selectors.EVENT_WRITE, "input")
+        selector.register(process.stdout, selectors.EVENT_READ, "output")
+        selector.register(process.stderr, selectors.EVENT_READ, "error")
+        while selector.get_map():
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise SafeError("M64 transport reached its bounded timeout")
+            for key, _ in selector.select(min(remaining, 0.25)):
+                stream = key.fileobj
+                if key.data == "input":
+                    if offset < len(payload):
+                        offset += os.write(stream.fileno(), payload[offset:offset + 65536])
+                    if offset == len(payload):
+                        selector.unregister(stream)
+                        stream.close()
+                    continue
+                chunk = os.read(stream.fileno(), 65536)
+                if not chunk:
+                    selector.unregister(stream)
+                    stream.close()
+                    continue
+                buffer = output if key.data == "output" else error
+                if len(buffer) + len(chunk) > (maximum if key.data == "output" else 65536):
+                    raise SafeError("M64 transport output exceeded its fixed bound")
+                buffer.extend(chunk)
+        code = process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        if code != 0:
+            raise SafeError("M64 strict SSH transport or remote contract failed; private streams withheld")
+        return bytes(output)
+    except BaseException as exc:
+        if not terminate_component_factory_f41_probe(process):
+            raise SafeError("M64 transport failed and local process-group cleanup was not verified") from exc
+        if isinstance(exc, (SafeError, KeyboardInterrupt, SystemExit)):
+            raise
+        raise SafeError("M64 bounded transport failed; private streams withheld") from exc
+    finally:
+        selector.close()
+        for stream in streams:
+            if not stream.closed:
+                stream.close()
+
+
+def m64_store_results(destination: Path, manifest: dict, response: dict) -> dict:
+    """Validate the complete response before creating a new 0700 private directory."""
+    entries = m64_entries(manifest["outputs"], outputs=True)
+    found, missing, present = response.get("files"), response.get("missing_outputs"), response.get("present_outputs")
+    if (
+        not isinstance(found, dict) or len(found) > M64_MAX_RESULT_FILES
+        or not isinstance(missing, list) or not isinstance(present, list)
+        or any(not isinstance(item, str) for item in missing + present)
+        or len(set(missing)) != len(missing) or len(set(present)) != len(present)
+        or set(present) & set(missing) or set(present) | set(missing) != set(entries)
+    ):
+        raise SafeError("M64 result inventory does not match the exact output allowlist")
+    payloads = {}
+    used = dict.fromkeys(present, 0)
+    folded = set()
+    for name, entry in found.items():
+        m64_relative_path(name)
+        roots = [root for root in present if name == root or name.startswith(root + "/")]
+        if len(roots) != 1 or name.casefold() in folded:
+            raise SafeError("M64 result inventory includes an unapproved or ambiguous path")
+        folded.add(name.casefold())
+        root = roots[0]
+        if not isinstance(entry, dict) or set(entry) != {"size", "sha256", "base64"}:
+            raise SafeError("M64 result entry has unexpected fields")
+        if type(entry["size"]) is not int or not 0 <= entry["size"] <= entries[root]["max_bytes"]:
+            raise SafeError("M64 result size is invalid")
+        used[root] += entry["size"]
+        if used[root] > entries[root]["max_bytes"]:
+            raise SafeError("M64 recursive result bytes exceed their root allocation")
+        try:
+            data = base64.b64decode(entry["base64"], validate=True)
+        except (ValueError, TypeError) as exc:
+            raise SafeError("M64 result encoding is invalid") from exc
+        if len(data) != entry["size"] or hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise SafeError("M64 result hash or size verification failed")
+        payloads[name] = data
+    for name in payloads:
+        if any(str(parent).casefold() in folded for parent in Path(name).parents if str(parent) != "."):
+            raise SafeError("M64 result file path cannot also be a directory")
+    m64_no_symlink_path(destination.parent)
+    if destination.exists() or destination.is_symlink() or destination.name in {"", ".", ".."}:
+        raise SafeError("M64 collection requires a new private destination directory")
+    try:
+        destination.mkdir(mode=0o700)
+        for name, data in payloads.items():
+            path = destination / name
+            path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+            descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(data)
+        receipt = {key: value for key, value in response.items() if key != "files"}
+        receipt["files"] = {name: {key: value for key, value in found[name].items() if key != "base64"} for name in found}
+        descriptor = os.open(destination / "collection-receipt.json", os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
+        with os.fdopen(descriptor, "w") as stream:
+            json.dump(receipt, stream, indent=2)
+            stream.write("\n")
+    except OSError as exc:
+        raise SafeError("M64 private retrieval could not complete; any partial files remain private") from exc
+    return {"retrieved_files": len(found), "missing_outputs": missing, "retrieval_complete": not missing, "destination": str(destination)}
+
+
+def m64_operation(api_key: str, operation: list[str], bundle: tuple) -> int:
+    manifest, manifest_bytes, files = bundle
+    action = operation[0].removeprefix("m64-")
+    collecting = action == "collect"
+    ssh = m64_verified_ssh(api_key, manifest, collecting=collecting)
+    seconds = M64_COLLECT_SECONDS if collecting else min(
+        M64_MAX_PHASE_SECONDS if action == "phase" else M64_TRANSFER_SECONDS,
+        int(m64_start_deadline(manifest)),
+    )
+    if seconds < 1:
+        raise SafeError("M64 deadline leaves no time to start this phase")
+    expected_sha = hashlib.sha256(manifest_bytes).hexdigest()
+    request = {
+        "operation": action, "manifest_b64": base64.b64encode(manifest_bytes).decode(),
+        "manifest_sha256": expected_sha,
+        "files_b64": {name: base64.b64encode(data).decode() for name, data in files.items()} if action == "transfer" else {},
+        "phase": operation[3] if action == "phase" else None, "timeout_seconds": seconds,
+    }
+    helper = M64_REMOTE_HELPER.replace("__M64_CODE_PIN__", M64_APPROVED_CODE_MANIFEST_SHA256)
+    command = ssh + [shlex.join(["/opt/simready-validation/bin/python", "-I", "-c", helper])]
+    response = m64_json(run_m64_transport(command, json.dumps(request, separators=(",", ":")).encode(), seconds + 25))
+    fields = {"schema_version", "job_id", "instance_id", "operation", "manifest_sha256"}
+    fields |= {"files", "present_outputs", "missing_outputs"} if collecting else ({"phase", "exit_code", "timed_out"} if action == "phase" else set())
+    if (
+        set(response) != fields or response["schema_version"] != "1.0.0"
+        or response["job_id"] != manifest["job_id"] or type(response["instance_id"]) is not int
+        or response["instance_id"] != manifest["instance_id"] or response["operation"] != action
+        or response["manifest_sha256"] != expected_sha
+    ):
+        raise SafeError("M64 remote receipt identity or manifest hash mismatch")
+    summary = {"job_id": manifest["job_id"], "instance_id": manifest["instance_id"], "operation": action, "manifest_sha256": expected_sha}
+    result = 0
+    if collecting:
+        summary.update(m64_store_results(Path(operation[3]), manifest, response))
+    elif action == "phase":
+        if response["phase"] != operation[3] or type(response["exit_code"]) is not int or not -255 <= response["exit_code"] <= 255 or type(response["timed_out"]) is not bool:
+            raise SafeError("M64 phase result does not match the fixed invocation")
+        summary.update(phase=operation[3], exit_code=response["exit_code"], timed_out=response["timed_out"])
+        result = 0 if response["exit_code"] == 0 and not response["timed_out"] else 1
+    print_json(summary)
+    return result
+
+
 def run(operation: list[str]) -> int:
+    m64_bundle = None
+    if operation and operation[0].startswith("m64-"):
+        name = operation[0]
+        if name not in {"m64-transfer", "m64-phase", "m64-collect"} or len(operation) != (3 if name == "m64-transfer" else 4):
+            raise SafeError("M64 supports only transfer, one named phase, or private collect")
+        if name == "m64-phase" and operation[3] not in M64_PHASES:
+            raise SafeError("M64 phase is not in the immutable registry")
+        if name == "m64-collect":
+            destination = Path(operation[3])
+            m64_no_symlink_path(destination.parent)
+            if destination.exists() or destination.is_symlink():
+                raise SafeError("M64 collection requires a new private directory")
+        m64_bundle = m64_load_bundle(Path(operation[2]), positive_id(operation[1], "M64 instance id"))
     token = login()
     try:
         api_key = read_vast_key(token)
+        if m64_bundle is not None:
+            return m64_operation(api_key, operation, m64_bundle)
         if operation == ["--auth-check"]:
             list_instances(api_key)
             print("OpenBao Vast.ai reader auth check OK")
@@ -4442,6 +5090,8 @@ def run(operation: list[str]) -> int:
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
+            "m64-transfer <id> <absolute-manifest>|m64-phase <id> <absolute-manifest> <phase>|"
+            "m64-collect <id> <absolute-manifest> <new-private-directory>|"
             "show <id>|ssh-keys <id>|ssh-endpoints <id>|attach-local-ssh <id>|refresh-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
             "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
