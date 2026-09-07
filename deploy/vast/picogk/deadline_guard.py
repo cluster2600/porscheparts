@@ -113,6 +113,34 @@ def cost_valid(instance, manifest, first_price=None):
     return ceiling + up * manifest["max_output_gb"] + 1 <= manifest["budget_usd"]
 
 
+def startup_pending(instance):
+    states = instance.get("provider_states")
+    if not isinstance(states, dict):
+        return instance.get("status") in {"created", "loading"}
+    active_start = {"created", "creating", "starting", "loading"}
+    if states.get("intended_status") in {"stopped", "stopping", "destroyed"}:
+        return False
+    if states.get("actual_status") in active_start:
+        return True
+    return states.get("actual_status") in {None, "unknown"} and any(
+        states.get(field) in active_start for field in ("cur_state", "next_state"))
+
+
+def only_cost_metadata_missing(instance, first_price):
+    missing = False
+    for field, cap in (("dph_total", 0.8), ("inet_up_cost_usd_per_gb", 0.01),
+                       ("inet_down_cost_usd_per_gb", 0.01)):
+        value = instance.get(field)
+        if value is None:
+            missing = True
+            continue
+        if not finite(value) or not 0 <= value <= cap or (field == "dph_total" and value == 0):
+            return False
+        if field == "dph_total" and first_price is not None and value != first_price:
+            return False
+    return missing
+
+
 def destroy_exact(instance_id: int, manifest: dict):
     current = wrapper_call("show", str(instance_id))
     exact_match([current], manifest, instance_id)
@@ -194,6 +222,7 @@ def guard(manifest_path: Path):
     monotonic_deadline = time.monotonic() + max(0, manifest["deadline_epoch"] - time.time() - 300)
     startup_deadline = min(monotonic_deadline, time.monotonic() + 1200)
     instance_id, first_price = None, None
+    metadata_deadline = None
     reason = "deadline_cleanup_reserve"
     while True:
         try:
@@ -226,13 +255,29 @@ def guard(manifest_path: Path):
             time.sleep(15)
             continue
         instance_id = current["id"]
-        if current.get("status") not in {"created", "loading", "running"}:
+        if metadata_deadline is None:
+            metadata_deadline = min(monotonic_deadline, time.monotonic() + 120)
+        pending = startup_pending(current)
+        status = current.get("status")
+        # A provider-supported startup transition may wait, never pass READY.
+        # Invalid prices and terminal states still trigger immediate cleanup.
+        metadata_wait = time.monotonic() < metadata_deadline
+        if status not in {"created", "loading", "running"} and not (pending and metadata_wait):
+            print(json.dumps({"instance_id": instance_id, "reason": "instance_left_active_states",
+                              "provider_states": current.get("provider_states"), "status": status}), flush=True)
             reason = "instance_left_active_states"
             break
-        if not cost_valid(current, manifest, first_price) or len(inventory) != 1:
+        cost_ok = cost_valid(current, manifest, first_price)
+        may_wait_for_cost = ((pending or status == "running") and metadata_wait
+                             and only_cost_metadata_missing(current, first_price))
+        if (not cost_ok and not may_wait_for_cost) or len(inventory) != 1:
+            print(json.dumps({"instance_id": instance_id, "reason": "contract_or_cost_guard",
+                              "provider_states": current.get("provider_states"), "status": status,
+                              "missing_cost_fields": [field for field in ("dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")
+                                                      if current.get(field) is None]}), flush=True)
             reason = "contract_or_cost_guard"
             break
-        if first_price is None:
+        if first_price is None and finite(current.get("dph_total")):
             first_price = current["dph_total"]
         if time.monotonic() >= monotonic_deadline or time.time() >= manifest["deadline_epoch"] - 300:
             break

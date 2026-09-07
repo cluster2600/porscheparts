@@ -4932,13 +4932,19 @@ def get_picogk_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
              "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
              "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 100}
     if offer_id is not None:
-        query["id"] = {"eq": offer_id}
+        if type(offer_id) is not int or offer_id <= 0:
+            raise SafeError("PicoGK requested offer ID is invalid")
+        # As in F41/F46, Vast bundle search does not reliably honor an id
+        # predicate. Re-read a bounded wider inventory and match locally.
+        query["limit"] = 1000
     result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
     offers = result.get("offers")
     if not isinstance(offers, list):
         raise SafeError("Vast.ai PicoGK offer response is invalid")
     return sorted((offer for offer in offers if isinstance(offer, dict)
-                   and picogk_offer_eligible(offer)), key=lambda offer: offer["dph_total"])
+                   and picogk_offer_eligible(offer)
+                   and (offer_id is None or offer.get("id") == offer_id)),
+                  key=lambda offer: offer["dph_total"])
 
 
 def picogk_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
@@ -5026,24 +5032,103 @@ def picogk_singleton(api_key: str, instance_id: int | None, manifest: dict) -> N
         raise SafeError("PicoGK instance is not the unique expected rental")
 
 
-def picogk_contract(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> dict:
-    instance = safe_instance(raw)
-    if (type(instance["id"]) is not int or instance["id"] != instance_id
-        or instance["label"] != manifest["attempt_label"]
-        or instance["image"] != manifest["image_ref"]
-        or instance["status"] not in {"created", "loading", "running"}
-        or instance["machine_verification"] != "verified"
-        or finite_number(instance["num_gpus"]) != 1
-        or finite_number(instance["gpu_fraction"]) != 1):
-        raise SafeError("PicoGK instance identity or hardware contract changed")
+def picogk_provider_states(raw: dict) -> dict:
+    allowed = {"created", "creating", "starting", "loading", "running", "unknown",
+               "exited", "stopped", "stopping", "offline", "error", "destroyed", "rebooting"}
+    def normalized(value):
+        if value is None or value == "":
+            return None
+        return value if isinstance(value, str) and value in allowed else "unrecognized"
+    return {field: normalized(raw.get(field)) for field in
+            ("actual_status", "intended_status", "cur_state", "next_state")}
+
+
+def picogk_safe_instance(raw: dict) -> dict:
+    states = picogk_provider_states(raw)
+    # Vast may omit actual_status while exposing the observed cur_state.
+    # Desired/future states never establish the current instance status.
+    status = states["actual_status"] if states["actual_status"] is not None else states["cur_state"]
+    return {**safe_instance(raw), "status": status, "provider_states": states}
+
+
+def picogk_or_legacy_safe_instance(raw: dict) -> dict:
+    label = raw.get("label")
+    if isinstance(label, str) and re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", label):
+        return picogk_safe_instance(raw)
+    return safe_instance(raw)
+
+
+def picogk_startup_pending(raw: dict) -> bool:
+    states = picogk_provider_states(raw)
+    active_start = {"created", "creating", "starting", "loading"}
+    if states["intended_status"] in {"stopped", "stopping", "destroyed"}:
+        return False
+    if states["actual_status"] in active_start:
+        return True
+    return states["actual_status"] in {None, "unknown"} and any(
+        states[field] in active_start for field in ("cur_state", "next_state"))
+
+
+def picogk_contract_findings(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> tuple:
+    instance = picogk_safe_instance(raw)
+    required = ("id", "label", "image", "status", "machine_verification", "gpu", "num_gpus",
+                "gpu_fraction", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb", "dph_total",
+                "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")
+    missing = [field for field in required if instance.get(field) is None or instance[field] == ""]
+    errors = []
+    for field, expected in (("id", instance_id), ("label", manifest["attempt_label"]),
+                            ("image", manifest["image_ref"]), ("machine_verification", "verified")):
+        if field not in missing and instance[field] != expected:
+            errors.append(field)
+    if "id" not in missing and type(instance["id"]) is not int:
+        errors.append("id")
+    if "status" not in missing and instance["status"] not in {"created", "loading", "running"}:
+        errors.append("status")
+    for field in ("num_gpus", "gpu_fraction"):
+        if field not in missing and finite_number(instance[field]) != 1:
+            errors.append(field)
     for key, floor in (("cpu_cores_effective", PICOGK_MIN_CPU), ("cpu_ram_mb", PICOGK_MIN_RAM_MB),
                        ("disk_space_gb", PICOGK_DISK_GB)):
         value = finite_number(instance[key])
-        if value is None or value < floor:
-            raise SafeError("PicoGK instance resources are below the fixed minimum")
-    if offer is not None and (instance["gpu"] != offer.get("gpu_name")
-        or finite_number(instance["dph_total"]) != finite_number(offer.get("dph_total"))):
-        raise SafeError("PicoGK instance differs from the freshly selected offer")
+        if key not in missing and (value is None or value < floor):
+            errors.append(key)
+    for field, maximum in (("dph_total", PICOGK_MAX_DPH),
+                           ("inet_up_cost_usd_per_gb", PICOGK_MAX_TRANSFER_RATE),
+                           ("inet_down_cost_usd_per_gb", PICOGK_MAX_TRANSFER_RATE)):
+        value = finite_number(instance[field])
+        if field not in missing and (value is None or not 0 <= value <= maximum
+                                     or (field == "dph_total" and value == 0)):
+            errors.append(field)
+    if offer is not None:
+        if "gpu" not in missing and instance["gpu"] != offer.get("gpu_name"):
+            errors.append("gpu")
+        if "dph_total" not in missing and finite_number(instance["dph_total"]) != finite_number(offer.get("dph_total")):
+            errors.append("dph_total")
+    return instance, missing, sorted(set(errors))
+
+
+def picogk_emit_contract_diagnostic(raw: dict, instance_id: int, manifest: dict,
+                                   offer: dict | None, reason: str) -> None:
+    instance, missing, errors = picogk_contract_findings(raw, instance_id, manifest, offer)
+    numeric = {field: finite_number(instance.get(field)) for field in
+               ("num_gpus", "gpu_fraction", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb",
+                "dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")}
+    print("OPENBAO_VASTAI_PICOGK_CONTRACT " + json.dumps({
+        "instance_id": instance_id, "reason": reason, "provider_states": instance["provider_states"],
+        "missing_fields": missing, "mismatched_fields": errors, "observed_numeric_fields": numeric,
+        "label_matches": instance["label"] == manifest["attempt_label"],
+        "image_matches": instance["image"] == manifest["image_ref"],
+        "machine_verified": instance["machine_verification"] == "verified",
+        "startup_pending": picogk_startup_pending(raw), "ssh_authentication_verified": False,
+    }, sort_keys=True), file=sys.stderr, flush=True)
+
+
+def picogk_contract(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> dict:
+    instance, missing, errors = picogk_contract_findings(raw, instance_id, manifest, offer)
+    if missing or errors:
+        picogk_emit_contract_diagnostic(raw, instance_id, manifest, offer, "contract_rejected")
+        raise SafeError("PicoGK contract rejected; missing=" + ",".join(missing)
+                        + "; mismatched=" + ",".join(errors))
     picogk_budget_cost(manifest, instance["dph_total"], instance["inet_up_cost_usd_per_gb"],
                       instance["inet_down_cost_usd_per_gb"])
     return instance
@@ -5080,6 +5165,27 @@ def picogk_remote_ready_command() -> str:
     )
 
 
+def picogk_direct_ssh_endpoint(raw: dict, instance_id: int) -> dict | None:
+    ports = raw.get("ports")
+    if ports is None or (isinstance(ports, dict) and "22/tcp" not in ports):
+        return None
+    endpoint = m64_ssh_endpoint(raw, instance_id)
+    if endpoint is not None and endpoint.get("kind") != "direct":
+        raise SafeError("PicoGK SSH requires the published direct endpoint")
+    return endpoint
+
+
+def picogk_ssh_failure_category(stderr: str) -> str | None:
+    lowered = stderr.lower()
+    for marker, category in (("remote host identification has changed", "host_key_changed"),
+                             ("host key verification failed", "host_key_verification_failed"),
+                             ("load key", "local_key_load_failed"),
+                             ("permission denied", "authentication_denied")):
+        if marker in lowered:
+            return category
+    return None
+
+
 def picogk_ssh_ready(api_key: str, instance_id: int, manifest: dict, offer: dict) -> dict:
     public_key = read_local_ssh_public_key()
     if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
@@ -5096,6 +5202,9 @@ def picogk_ssh_ready(api_key: str, instance_id: int, manifest: dict, offer: dict
     known_hosts = prepare_component_factory_f41_known_hosts(instance_id)
     alias = component_factory_f41_host_key_alias(instance_id)
     deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
+    metadata_deadline = min(time.time() + 120, deadline)
+    last_diagnostic = None
+    pinned_endpoint = None
     while time.time() < deadline:
         result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
         raw = result.get("instances")
@@ -5103,21 +5212,44 @@ def picogk_ssh_ready(api_key: str, instance_id: int, manifest: dict, offer: dict
             raise SafeError("PicoGK instance metadata is invalid")
         # Loading may expose partial resource metadata; never spend past the
         # bounded READY clock and never accept a known identity mismatch.
-        safe = safe_instance(raw)
+        safe, missing, errors = picogk_contract_findings(raw, instance_id, manifest, offer)
+        signature = (tuple(safe["provider_states"].values()), tuple(missing), tuple(errors))
+        if signature != last_diagnostic:
+            picogk_emit_contract_diagnostic(raw, instance_id, manifest, offer, "startup_snapshot")
+            last_diagnostic = signature
         for field, expected in (("id", instance_id), ("label", manifest["attempt_label"]),
                                 ("image", manifest["image_ref"])):
             if safe[field] is not None and safe[field] != expected:
                 raise SafeError("PicoGK loading identity changed")
-        if safe["status"] in {"created", "loading"}:
+        # Missing metadata is not acceptance. Known mismatches remain fatal,
+        # except a startup state that is explicitly corroborated by provider
+        # state fields; no terminal state is relabelled as loading/running.
+        hard_errors = [field for field in errors if field != "status"]
+        if hard_errors:
+            picogk_contract(raw, instance_id, manifest, offer)
+        pending = picogk_startup_pending(raw)
+        if pending and (safe["status"] in {"created", "loading"} or time.time() < metadata_deadline):
             time.sleep(min(15, max(0, deadline - time.time())))
             continue
+        if safe["status"] == "running" and missing and time.time() < metadata_deadline:
+            time.sleep(min(15, max(0, metadata_deadline - time.time())))
+            continue
         instance = picogk_contract(raw, instance_id, manifest, offer)
-        endpoint = m64_ssh_endpoint(raw, instance_id)
+        endpoint = picogk_direct_ssh_endpoint(raw, instance_id)
         if endpoint is None:
             time.sleep(min(15, max(0, deadline - time.time())))
             continue
         if time.time() >= deadline:
             break
+        endpoint_identity = (endpoint["host"], endpoint["port"])
+        if pinned_endpoint is not None and endpoint_identity != pinned_endpoint:
+            raise SafeError("PicoGK direct SSH endpoint changed after the first probe; host trust not reused")
+        pinned_endpoint = endpoint_identity
+        endpoint_diagnostic = {"instance_id": instance_id, "endpoint_kind": "direct",
+                               "port": endpoint["port"],
+                               "host_sha256": hashlib.sha256(endpoint["host"].encode("ascii")).hexdigest()}
+        print("OPENBAO_VASTAI_PICOGK_SSH " + json.dumps(
+            {**endpoint_diagnostic, "stage": "before_probe"}, sort_keys=True), file=sys.stderr, flush=True)
         options = {"BatchMode": "yes", "IdentitiesOnly": "yes", "ForwardAgent": "no",
                    "ClearAllForwardings": "yes", "PermitLocalCommand": "no",
                    "PasswordAuthentication": "no", "KbdInteractiveAuthentication": "no",
@@ -5142,10 +5274,13 @@ def picogk_ssh_ready(api_key: str, instance_id: int, manifest: dict, offer: dict
             picogk_singleton(api_key, instance_id, manifest)
             return {"instance": instance, "ssh_endpoint": endpoint,
                     "known_hosts_path": str(known_hosts), "host_key_alias": alias}
-        lowered = completed.stderr.lower()
-        if any(marker in lowered for marker in ("permission denied", "host key verification failed",
-                                                "remote host identification has changed", "load key")):
-            raise SafeError("PicoGK SSH identity or host-key verification failed; private streams withheld")
+        failure_category = picogk_ssh_failure_category(completed.stderr)
+        print("OPENBAO_VASTAI_PICOGK_SSH " + json.dumps(
+            {**endpoint_diagnostic, "stage": "probe_not_ready", "return_code": completed.returncode,
+             "failure_category": failure_category or "unclassified_not_ready"}, sort_keys=True),
+            file=sys.stderr, flush=True)
+        if failure_category is not None:
+            raise SafeError("PicoGK SSH failed: " + failure_category + "; private streams withheld")
         time.sleep(min(15, max(0, deadline - time.time())))
     raise SafeError("PicoGK SSH and geometry witness did not become ready within fifteen minutes")
 
@@ -5332,7 +5467,7 @@ def run(operation: list[str]) -> int:
             return 0
         if operation == ["instances"]:
             items = list_instances(api_key)
-            print_json([safe_instance(item) for item in items if isinstance(item, dict)])
+            print_json([picogk_or_legacy_safe_instance(item) for item in items if isinstance(item, dict)])
             return 0
         if len(operation) == 2 and operation[0] == "show":
             instance_id = positive_id(operation[1], "instance id")
@@ -5340,7 +5475,7 @@ def run(operation: list[str]) -> int:
             instance = result.get("instances")
             if not isinstance(instance, dict):
                 raise SafeError("Vast.ai instance lookup returned an invalid result")
-            print_json(safe_instance(instance))
+            print_json(picogk_or_legacy_safe_instance(instance))
             return 0
         if len(operation) == 2 and operation[0] == "ssh-keys":
             instance_id = positive_id(operation[1], "instance id")

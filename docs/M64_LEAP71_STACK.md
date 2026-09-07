@@ -1,5 +1,8 @@
 # Intégration LEAP 71 — prévol M64
 
+Suite du 7 septembre : voir [l'exécution PicoGK sur le corps réel](M64_PICOGK_EXECUTION.md).
+Le présent document conserve les étapes historiques du prévol.
+
 État vérifié le 6 septembre 2026 : **compilation C# et runtime C++ réussis ;
 smoke géométrique headless réussi sur Kali Linux amd64**. Le premier échec
 sur l'image managed Linux arm64 reste documenté ci-dessous. Aucune culasse modifiée,

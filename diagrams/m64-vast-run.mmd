@@ -1,0 +1,11 @@
+graph TD
+    A["Image amd64 épinglée<br/>test natif et accès anonyme"] --> B["Clés SSH vérifiées<br/>budget et garde d'arrêt armé"]
+    B --> C["Location bornée"]
+    C --> D{"SSH direct et<br/>témoin natif réussis ?"}
+    D -- "non" --> H["Suppression de l'instance"]
+    D -- "oui" --> E["Calcul du corps réel<br/>et domaines géométriques"]
+    E --> F["Collecte privée des sorties<br/>comparaison des SHA-256"]
+    F --> H
+    B -. "échéance, même en cas d'échec" .-> H
+    H --> I["Vérification indépendante<br/>inventaire Vast vide"]
+    I --> J["GitHub : code et reçus assainis<br/>aucune géométrie privée ni secret"]
