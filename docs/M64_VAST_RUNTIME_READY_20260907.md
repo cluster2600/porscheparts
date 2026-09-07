@@ -60,3 +60,19 @@ fatigue, impression ou compatibilité M64 n'est déduite de ce succès.
 Ne pas confondre cet incident avec la précédente instance **50128235**,
 supprimée alors qu'elle chargeait encore son image : son expiration ne
 constituait pas un échec d'authentification SSH.
+
+## Suite de l'exécution : limite d'accès et arrêt demandé
+
+Le contrôle d'accès d'un agent a refusé une commande SSH directe et demandé
+une voie OpenBao approuvée. Aucun contournement n'a été tenté après ce refus.
+L'inspection des wrappers existants confirme qu'ils exposent le lancement et
+les contrôles de disponibilité, mais pas le transfert ou le traitement d'un
+asset M64. `property_assignment_intent=run` dans le reçu est une intention,
+pas la preuve d'une affectation de propriétés à la culasse.
+
+Une demande d'arrêt a donc été envoyée par `openbao-vastai stop 50130746`
+afin de ne pas laisser du calcul sans travail exploitable. Le relevé suivant
+du fournisseur indique **`exited`**, pas encore `stopped` ; ce relevé seul ne
+permet pas d'attester la suspension de la facturation GPU. Le garde-fou de
+suppression de la tentative exacte reste actif. La CAO indépendante sur Kali
+peut continuer ; aucune autre location n'a été lancée.
