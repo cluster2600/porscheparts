@@ -65,6 +65,45 @@ wrapper ont changé, sans nouvelle autorité physique. La cible interrompue et
 toutes les cibles restantes de `check` ont ensuite été rejouées avec succès.
 La suite wrapper finale a été relancée séparément : 90 tests réussis.
 
+## Deuxième essai : preuve de clé obtenue, chargement trop long
+
+Après ajout et test de la vérification réelle de paire locale et de la clé
+listée pour l'instance, une deuxième création payante a été exécutée par
+`openbao-vastai launch-simready-heavy 49836870`. Les paragraphes précédents
+décrivent uniquement le premier essai ; ils ne sont pas un décompte de la
+journée entière.
+
+- Instance `50128235`, label
+  `3dprinting993-simready-local-ai-58a4ab46c6b7f8badea7`.
+- Même digest, GPU/CPU/RAM, disque et tarif annoncés que ci-dessus.
+- Paire publique/privée locale vérifiée ; clé approuvée déjà listée pour
+  cette instance par le fournisseur. Aucun nouvel attachement nécessaire.
+- Endpoint proxy annoncé : `ssh9.vast.ai:18234` ; aucune paire directe
+  complète annoncée pendant le chargement. Ceci ne prouve pas une connexion.
+- L'image a continué à télécharger puis extraire ses couches, mais l'instance
+  était encore `loading` à l'expiration du contrôle borné à 30 minutes.
+- Erreur terminale : `instance_not_running_yet`, **pas**
+  `ssh_authentication_failed`. Aucun test SSH réussi, marqueur READY,
+  service Omniverse ni calcul GPU de culasse n'est démontré.
+- Suppression acquittée, cinq instantanés d'absence consécutifs dans le
+  reçu du contrôleur ; une lecture indépendante retourne `[]`. Le garde-fou
+  local propre à cette instance a ensuite été arrêté.
+
+Le wrapper installé pour cet essai avait le SHA-256
+`0dd2916aed0de577396d8b53da3cf2a2eb66a29abafdf1b5704643140370c804`.
+La correction ultérieure du port direct fourni sous forme de chaîne n'était
+pas dans ce processus déjà lancé ; elle ne peut pas expliquer ni résoudre ce
+chargement trop long. Elle est testée hors ligne, séparément.
+
+Le débit réel du téléchargement et la facture finale ne sont pas disponibles
+dans ces reçus. Aucun solde exact ni coût nul n'est revendiqué. Le prochain
+choix d'hôte doit tenir compte du chargement de l'image, pas seulement du GPU.
+La [documentation Vast consultée ce jour](https://docs.vast.ai/guides/instances/manage-instances)
+précise que `Loading` peut durer plusieurs heures pour une grosse image et
+n'est pas facturé. Il serait donc erroné de multiplier les 30 minutes de cet
+état par le tarif GPU pour annoncer une facture. Cela ne constitue pas une
+vérification du relevé de compte ni des éventuels transferts.
+
 La cible reste le **M64 turbo 964/993**. Les anciens résultats 917 et les
 géométries de recherche issues du scan 935 ne valident pas ses interfaces.
 `simulation_validated=false`, `manufacturing_authorized=false`.
