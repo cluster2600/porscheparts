@@ -139,6 +139,40 @@ Pour lancer, plus tard ou maintenant :
     python3 doe_corpus.py --smoke          # 4 cas, verifie la chaine
     python3 doe_corpus.py --n 1000         # corpus d'entrainement
 
+### Corpus genere le 2026-09-07
+
+Premier corpus complet, graine 0, elements d'ordre 1.
+
+| grandeur | valeur |
+|---|---|
+| cas demandes / ecrits | 1000 / **998** |
+| duree | 35 min, un seul coeur de machine de bureau |
+| taille | 126 Mo |
+| raideur K | 365 a 26 637 N.m/deg, mediane 5535 |
+| masse | 21,3 a 164,2 kg |
+| noeuds par cas | 2 389 a 7 461 |
+| champs non finis, K nul ou negatif | **aucun** |
+
+Repartition par architecture entre 122 et 156 cas sur sept familles : le plan
+n'est pas biaise. L'amplitude de K est d'un facteur 73 entre le cas le plus
+souple et le plus raide, ce qui donne au substitut de quoi apprendre autre chose
+que du bruit.
+
+**Les deux cas perdus sont instructifs.** Tous deux sont des `fbtap` — la cage
+ouverte : pieds milieu et brancards sans cadre de baie ni pavillon pour fermer a
+l'avant. CalculiX s'y interrompt en pleine factorisation, sans message, signature
+d'un systeme quasi singulier. Ce n'est pas un hasard de tirage : c'est
+exactement l'architecture dont `body_study.py` mesure un apport nul, et la seule
+ou une non-reproductibilite de 0,9 % avait ete observee. **Un quasi-mecanisme se
+calcule mal parce qu'il est un quasi-mecanisme.** Deux echecs sur 136 cas
+`fbtap`, soit 0,2 % du corpus : sans consequence sur l'apprentissage, mais a ne
+pas prendre pour du bruit numerique.
+
+**Point pour la passe d'entrainement :** le nombre de noeuds varie d'un cas a
+l'autre, de 2 389 a 7 461. C'est precisement pourquoi l'exemple crash de
+PhysicsNeMo travaille a `batch_size=1`. Il faudra soit accepter cette contrainte,
+soit uniformiser le maillage, ce qui appauvrirait le corpus.
+
 Les sections `ASSUMED` de `build_body.py` sont desormais surchargeables par
 l'environnement (`BODY_SILL_H`, `BODY_TUN_W`...). Sans surcharge, les valeurs
 publiees sont inchangees : le cas de reference redonne bien 2442 N.m/deg.
@@ -172,7 +206,7 @@ argument structurel.
 |---|---|---|---|
 | raideur, drapage, architecture | CalculiX | non | rien — **disponible maintenant** |
 | plan d'experiences, corpus | CalculiX en parallele | non | parametrisation figee |
-| **generation du corpus** | **CalculiX, CPU** | **non** | **rien — pret, `doe_corpus.py`** |
+| **generation du corpus** | **CalculiX, CPU** | **non** | **fait le 2026-09-07 : 998 cas, 126 Mo** |
 | substitut de conception | PhysicsNeMo | oui, Vast.ai | corpus + smoke GPU du conteneur |
 | choc | OpenRadioss | non | geometrie, donc M1 |
 | correlation choc | essais physiques | — | rien ne les remplace |
