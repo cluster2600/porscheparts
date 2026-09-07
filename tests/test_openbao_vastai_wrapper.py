@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from contextlib import nullcontext
+from contextlib import contextmanager, nullcontext
 import importlib.util
 from importlib.machinery import SourceFileLoader
 import io
@@ -98,6 +98,109 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def test_simready_poll_interval_does_not_change_other_workflows(self):
         self.assertEqual(self.wrapper.SIMREADY_POLL_INTERVAL_SECONDS, 15)
         self.assertEqual(self.wrapper.POLL_INTERVAL_SECONDS, 2)
+
+    def test_safe_offer_exposes_documented_disk_read_metrics_not_cache_claims(self):
+        offer = self.eligible_offer(disk_bw=1234.5, disk_name="Synthetic NVMe", cached=True, env={"secret": "not-for-output"})
+        report = self.wrapper.safe_offer(offer)
+        self.assertEqual(report["disk_read_bw_mb_s"], 1234.5)
+        self.assertEqual(report["disk_model"], "Synthetic NVMe")
+        self.assertEqual(report["disk_space_gb"], 500)
+        self.assertNotIn("cached", report)
+        self.assertNotIn("not-for-output", json.dumps(report))
+        self.assertTrue(self.wrapper.heavy_offer_eligible(offer))
+        self.assertIsNone(self.wrapper.safe_offer({})["disk_read_bw_mb_s"])
+        self.assertIsNone(self.wrapper.safe_offer({})["disk_model"])
+
+    @contextmanager
+    def fake_simready_clock(self, metadata, probe_result=None):
+        clock = {"now": 0.0, "metadata_calls": 0, "probe_calls": 0}
+
+        def request(*args, **kwargs):
+            clock["metadata_calls"] += 1
+            return metadata(clock)
+
+        def probe(*args, **kwargs):
+            clock["probe_calls"] += 1
+            return probe_result(clock) if probe_result else self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", "")
+
+        def sleep(seconds):
+            clock["now"] += seconds
+
+        with (
+            mock.patch.object(self.wrapper.time, "monotonic", side_effect=lambda: clock["now"]),
+            mock.patch.object(self.wrapper.time, "sleep", side_effect=sleep),
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+            mock.patch.object(self.wrapper, "prepare_simready_known_hosts", return_value=Path("/tmp/test-clock-known-hosts")),
+            mock.patch.object(self.wrapper, "validate_simready_known_hosts"),
+            mock.patch.object(self.wrapper, "vast_request", side_effect=request),
+            mock.patch.object(self.wrapper, "run_component_factory_f41_ssh_probe", side_effect=probe),
+        ):
+            yield clock
+
+    def timed_instance(self, status):
+        return {"instances": {"id": 12345, "actual_status": status, "ssh_host": "ssh.example.invalid", "ssh_port": 22001}}
+
+    def test_simready_loading_35_minutes_then_running_is_allowed(self):
+        with self.fake_simready_clock(lambda clock: self.timed_instance("loading" if clock["now"] < 35 * 60 else "running")) as clock:
+            self.assertEqual(self.wrapper.verify_simready_ssh_ready("unused", 12345), Path("/tmp/test-clock-known-hosts"))
+        self.assertEqual(clock["now"], 35 * 60)
+        self.assertEqual(clock["probe_calls"], 1)
+
+    def test_simready_loading_expires_at_two_hours_without_ssh(self):
+        self.assertEqual(self.wrapper.SIMREADY_TOTAL_READY_TIMEOUT_SECONDS, 2 * 60 * 60)
+        with self.fake_simready_clock(lambda clock: self.timed_instance("loading")) as clock:
+            with self.assertRaisesRegex(self.wrapper.SafeError, "total limit: 7200s"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(clock["now"], 2 * 60 * 60)
+        self.assertEqual(clock["probe_calls"], 0)
+
+    def test_simready_running_clock_does_not_reset_after_loading(self):
+        def metadata(clock):
+            status = "loading" if 0 < clock["now"] < 20 * 60 else "running"
+            return self.timed_instance(status)
+
+        def not_ready(clock):
+            return self.wrapper.subprocess.CompletedProcess([], 41, "", "")
+
+        with self.fake_simready_clock(metadata, not_ready) as clock:
+            with self.assertRaisesRegex(self.wrapper.SafeError, "first-running limit: 1800s"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(clock["now"], 30 * 60)
+        self.assertGreater(clock["probe_calls"], 1)
+
+    def test_simready_running_31_minutes_rejected_after_slow_metadata(self):
+        def metadata(clock):
+            if clock["metadata_calls"] > 1:
+                clock["now"] = 31 * 60
+            return self.timed_instance("running")
+
+        with self.fake_simready_clock(metadata, lambda clock: self.wrapper.subprocess.CompletedProcess([], 41, "", "")) as clock:
+            with self.assertRaisesRegex(self.wrapper.SafeError, "did not pass in time"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(clock["probe_calls"], 1)
+
+    def test_simready_ready_after_deadline_is_never_accepted(self):
+        def slow_ready(clock):
+            clock["now"] += 31 * 60
+            return self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", "")
+
+        with self.fake_simready_clock(lambda clock: self.timed_instance("running"), slow_ready):
+            with self.assertRaisesRegex(self.wrapper.SafeError, "ready_arrived_after_deadline"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+
+    def test_simready_429_retries_remain_bounded_and_do_not_reset_total_clock(self):
+        real_request = self.wrapper.vast_request
+        with (
+            mock.patch.object(self.wrapper, "http_json", side_effect=self.wrapper.SafeHttpError("Vast.ai", 429)) as http,
+            mock.patch("sys.stderr", io.StringIO()),
+            self.fake_simready_clock(lambda clock: real_request("unused", "/api/v0/instances/12345/")) as clock,
+        ):
+            with self.assertRaisesRegex(self.wrapper.SafeError, "did not pass in time"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345)
+        self.assertEqual(http.call_count, clock["metadata_calls"] * 4)
+        self.assertGreaterEqual(clock["now"], 2 * 60 * 60)
+        self.assertLessEqual(clock["now"], 2 * 60 * 60 + sum(self.wrapper.VAST_GET_RATE_LIMIT_BACKOFF_SECONDS))
+        self.assertEqual(clock["probe_calls"], 0)
 
     def test_local_ssh_pair_uses_only_approved_file_without_interactive_secrets(self):
         result = self.wrapper.subprocess.CompletedProcess([], 0, "ssh-ed25519 AAAATEST derived-comment\n")
@@ -269,7 +372,65 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
                     "ports": {"22/tcp": [{"HostPort": "32001"}]},
                 })
                 self.assertEqual((result["ssh_host"], result["ssh_port"]),
-                                 ("203.0.113.8", "32001"))
+                                 ("203.0.113.8", 32001))
+
+    def test_direct_hostport_accepts_strict_decimal_string_or_numeric_port(self):
+        for port in ("32001", 32001, 32001.0):
+            for proxy in ({}, {"ssh_host": "ssh.example.invalid"}, {"ssh_port": 22001}):
+                with self.subTest(port=port, proxy=proxy):
+                    result = self.wrapper.safe_instance({
+                        **proxy, "public_ipaddr": "203.0.113.8",
+                        "ports": {"22/tcp": [{"HostPort": port}]},
+                    })
+                    self.assertEqual((result["ssh_host"], result["ssh_port"]), ("203.0.113.8", 32001))
+                    self.assertIs(type(result["ssh_port"]), int)
+
+    def test_invalid_direct_hostport_fails_closed_without_hybrid_endpoint(self):
+        for port in (
+            "", " 32001", "32001 ", "+32001", "32001.0", "3e4", "３２００１",
+            "65536", "000001", "0", "-1", 0, -1, 65536, 2.5,
+            True, False, None, float("nan"), float("inf"), {}, [],
+        ):
+            with self.subTest(port=port):
+                result = self.wrapper.safe_instance({
+                    "ssh_host": "ssh.example.invalid", "public_ipaddr": "203.0.113.8",
+                    "ports": {"22/tcp": [{"HostPort": port}]},
+                })
+                self.assertIsNone(result["ssh_host"])
+                self.assertIsNone(result["ssh_port"])
+
+    def test_complete_proxy_keeps_precedence_regardless_of_direct_port_format(self):
+        for port in ("32001", 32001, "invalid", None):
+            with self.subTest(port=port):
+                result = self.wrapper.safe_instance({
+                    "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                    "public_ipaddr": "203.0.113.8", "ports": {"22/tcp": [{"HostPort": port}]},
+                })
+                self.assertEqual((result["ssh_host"], result["ssh_port"]), ("ssh.example.invalid", 22001))
+
+    def test_simready_direct_string_hostport_reaches_ssh_probe_with_same_auth_checks(self):
+        instance = {
+            "id": 12345, "actual_status": "running", "ssh_host": "ssh.example.invalid",
+            "public_ipaddr": "203.0.113.8", "ports": {"22/tcp": [{"HostPort": "32001"}]},
+        }
+        known_hosts = Path("/tmp/test-only-known-hosts")
+        with (
+            mock.patch.object(self.wrapper, "validate_approved_ssh_private_key"),
+            mock.patch.object(self.wrapper, "prepare_simready_known_hosts", return_value=known_hosts),
+            mock.patch.object(self.wrapper, "validate_simready_known_hosts"),
+            mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}),
+            mock.patch.object(self.wrapper, "run_component_factory_f41_ssh_probe", return_value=self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", "")) as probe,
+            mock.patch.object(self.wrapper, "SIMREADY_SSH_READY_ATTEMPTS", 1),
+        ):
+            self.assertEqual(self.wrapper.verify_simready_ssh_ready("unused", 12345), known_hosts)
+        command = probe.call_args.args[0]
+        self.assertEqual(command[command.index("-p") + 1], "32001")
+        self.assertIn("root@203.0.113.8", command)
+        self.assertNotIn("root@ssh.example.invalid", command)
+        self.assertIn("BatchMode=yes", command)
+        self.assertIn("IdentitiesOnly=yes", command)
+        self.assertIn("StrictHostKeyChecking=accept-new", command)
+        self.assertIn("HostKeyAlias=simready-12345", command)
 
     def test_incomplete_ssh_pairs_fail_closed(self):
         for metadata in (

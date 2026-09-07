@@ -33,6 +33,12 @@ Elle refuse un ID retourné différent et masque une paire incomplète ou invali
 Elle ne change pas le choix courant du wrapper, n'essaie pas de connexion et ne
 présente pas ces métadonnées comme une preuve d'accessibilité.
 
+Le sélecteur existant normalise aussi le `HostPort` direct en entier : Vast
+peut le retourner sous forme de chaîne décimale. Les formats non décimaux,
+booléens et valeurs hors de 1 à 65535 sont refusés. La priorité de la paire
+proxy complète reste inchangée ; aucune adresse proxy n'est combinée avec
+le port direct, et aucun contrôle d'authentification n'est assoupli.
+
 Références du fournisseur :
 [SSH](https://docs.vast.ai/guides/instances/connect/ssh),
 [attachement SSH](https://docs.vast.ai/api-reference/instances/attach-ssh-key).

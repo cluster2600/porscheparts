@@ -1,0 +1,58 @@
+{
+  "schema": "m64-existing-solid-mesh-provenance/v1",
+  "observed_on": "2026-09-07",
+  "scope": "private_Kali_F53_F54_existing_volume_candidates",
+  "reference_STEP": {
+    "sha256": "700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2",
+    "face_count": 4929,
+    "volume_scan_units_cubed": 1246030.353585284,
+    "volume_method": "OCP_7.9.3.1_BRepGProp.VolumeProperties_s_UseTriangulation_false",
+    "absolute_scale_certified": false
+  },
+  "candidates": [
+    {
+      "id": "F53_optimized_existing_volume",
+      "mesh_sha256": "4f3dfffeae9c44b9b5b2397557a6d220cab19a977211700276e378439de54da7",
+      "parent_mesh_sha256": "d1e8dc93382a4d3cd08427ba311a1d0cbdd6958bcbcad8de352fee6c4e868524",
+      "generation_geometry_format": "native_OCCT_BREP",
+      "generation_geometry_sha256": "10ff1a2af8f2dbca78cf6ac2f72a9e1f2842e171f1e1e76080f07eacd4162131",
+      "generator_report_sha256": "38c66ddb9bfa9fc592598e9a1c46d90b43de87e201230bf659490f0479223cf5",
+      "optimization_report_sha256": "7b1dda128a5ae80a6d51c3617fc9e9bad9c67b405f0fa46aba649feec5c1c94c",
+      "boundary_nodes_unchanged_during_optimization": "reported_true_each_of_3_steps_not_independently_replayed_in_this_audit",
+      "directly_generated_from_exact_reference_STEP": false,
+      "tetra_volume_relative_delta_to_reference_STEP": 0.0003983463404801946,
+      "numerical_quality_accepted": false,
+      "exact_reference_boundary_mapping_verified": false,
+      "physical_groups_present": false
+    },
+    {
+      "id": "F54_unify_same_domain_existing_volume",
+      "mesh_sha256": "b68dc349c0de10adda859c4d97f6309b2100cb52b4f5c724490694f3a20f21d2",
+      "generation_geometry_format": "STEP",
+      "generation_geometry_sha256": "825169c8c361b59176921796ed3e5b3ccd7b6f600c4baabf04e628bfee5d8e7a",
+      "geometry_parent_sha256": "700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2",
+      "geometry_transformation": "ShapeUpgrade_UnifySameDomain_4929_to_4454_faces",
+      "generator_report_sha256": "919c7e27eb9720a8bc0fba851f9cbbb88986b74131284bbb1cfb22388ad65d54",
+      "geometry_transformation_report_sha256": "c66a9b3f28a83ca90440cb637ce06d7ea211d6f694089c52dea8b176f9540cda",
+      "legacy_generator_hash_field_name_is_misleading": "native_BREP_sha256_contains_STEP_file_hash",
+      "directly_generated_from_exact_reference_STEP": false,
+      "tetra_volume_relative_delta_to_reference_STEP": 0.00040865788873160506,
+      "numerical_quality_accepted": false,
+      "exact_reference_boundary_mapping_verified": false,
+      "physical_groups_present": false
+    }
+  ],
+  "runtime": {
+    "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "gmsh_version": "4.12.1",
+    "cpu_limit": 2,
+    "memory_limit_GiB": 4,
+    "timeout_seconds_per_mesh": 300,
+    "network": "none",
+    "remeshing": false,
+    "private_geometry_committed": false,
+    "paid_compute_used": false
+  },
+  "ready_for_head_CHT_or_structural_validation": false,
+  "manufacturing_authorized": false
+}
