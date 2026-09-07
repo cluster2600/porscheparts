@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "status": "passed",
+  "execution": "Kali native linux/amd64 disposable Docker container",
+  "image": "ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44",
+  "externally_inspected_image_id": "sha256:3f97e71ebf07ee38b5729fa61858578d9c759dfa212f757e7286f3f09f7dc02d",
+  "container_image_matched_external_image_inspect": true,
+  "harness_path": "tests/manual/simready_ssh_auth_smoke.py",
+  "harness_sha256": "45e0aad185cc568b13096ade6096411ea78bfdbb3668974e53bb07f30be00532",
+  "sshd_wrapper_sha256": "ebbf1c1e65203519d8386d2685ff48b98fb181e6a6bc7e09322df92143765f4b",
+  "started_at": "2026-09-07T13:24:14.400385388Z",
+  "finished_at": "2026-09-07T13:24:15.895508342Z",
+  "container_exit_code": 0,
+  "isolation": {
+    "network_mode": "none",
+    "published_ports": false,
+    "privileged": false,
+    "only_bind_mount": "read-only harness script",
+    "cpu_limit": 1,
+    "memory_limit_gib": 1,
+    "pids_limit": 64,
+    "user_keys_mounted": false,
+    "keychain_or_openbao_used_inside_test": false
+  },
+  "checks": {
+    "exact_wrapper_started_listener": true,
+    "loopback_only_no_published_port": true,
+    "missing_authorized_keys_rejects_key": true,
+    "delayed_injection_allows_same_key_without_sshd_restart": true,
+    "other_identity_rejected": true,
+    "unsafe_authorized_keys_permissions_rejected": true,
+    "server_logged_bad_permissions": true,
+    "onstart_equivalent_permission_operations_restore_auth": true,
+    "wrong_host_key_rejected": true,
+    "ephemeral_private_keys_removed": true
+  },
+  "stopped_test_container_removed_and_absence_checked": true,
+  "vast_key_injection_order_verified": false,
+  "vast_ssh_test_in_this_receipt": false,
+  "gpu_or_head_simulation_performed": false,
+  "manufacturing_authorized": false,
+  "claim_scope": "Real isolated SSH client/server authentication on the exact full image; not provider initialization, GPU operation or head validation."
+}
