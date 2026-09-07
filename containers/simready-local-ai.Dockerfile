@@ -150,5 +150,5 @@ EXPOSE 8000 8001 8100 8200 22
 
 LABEL org.opencontainers.image.title="3dprinting993-simready-local-ai" \
       org.opencontainers.image.description="Offline Qwen VLM, PhysicsNeMo and NVIDIA SimReady runtime for Porsche digital-twin research" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="Apache-2.0 AND LicenseRef-NVIDIA-Omniverse"
