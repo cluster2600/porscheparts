@@ -18,6 +18,34 @@ import sys
 import time
 
 
+TRIAL05_NATIVE_SHA256='3e3cc1631612fb9b7c36a34ceb157888ce66fdf3efb95f3ddad8578f74950ec5'
+PRESERVED_SKIN_EVIDENCE_SHA256='21650160410a967cf85ee16f54ded5dad25610e07c67022d602fea8c27174a98'
+
+
+def preserved_skin_meshadapt_assignments(native_sha, evidence, binding):
+    """This experiment targets one hash-bound body's faces, never generic IDs."""
+    if (native_sha!=TRIAL05_NATIVE_SHA256 or evidence.get('post_cut_native_BRep_sha256')!=native_sha
+            or evidence.get('status')!='completed' or evidence.get('geometry_modified') is not False
+            or evidence.get('native_tolerances_modified') is not False
+            or evidence.get('pre_cut_source_unchanged') is not True
+            or evidence.get('post_cut_source_unchanged') is not True
+            or binding.get('descriptor_bijection_verified') is not True):
+        raise ValueError('preserved_skin_experiment_provenance_failed')
+    selected=(2193,2194,2263);rows=evidence.get('face_results',[])
+    if (sorted(row.get('post_cut_face_index',-1) for row in rows)!=list(selected)
+            or any(row.get('two_way_surface_area_equivalence_verified') is not True
+                   or row.get('outside_both_gas_negatives_by_prior_bound_common') is not True for row in rows)):
+        raise ValueError('preserved_skin_face_evidence_failed')
+    assignments=[]
+    for face in selected:
+        matches=[row for row in binding['matches_private'] if row['source_face_index']==face]
+        if len(matches)!=1:raise ValueError('preserved_skin_face_bijection_failed')
+        assignments.append({'source_face_index':face,'gmsh_face_tag':matches[0]['gmsh_face_tag'],'algorithm':1})
+    if len({row['gmsh_face_tag'] for row in assignments})!=len(selected):
+        raise ValueError('preserved_skin_face_bijection_failed')
+    return assignments
+
+
 def sha256(path):
     digest = hashlib.sha256()
     with Path(path).open('rb') as handle:
@@ -118,18 +146,40 @@ def quality_distribution(qualities, determinants):
             'bad_tetrahedron_absolute_volume_fraction':math.fsum(abs(determinants[i])/6 for i in bad)/absolute_volume if absolute_volume else None}
 
 
+def reread_quality_gate(qualities, determinants, expected_count):
+    """Recompute export acceptance; tiny coordinate drift is not a quality proof."""
+    distribution=quality_distribution(qualities,determinants)
+    result={'tetrahedron_count_matches':len(qualities)==expected_count and expected_count>0,
+            'positive_jacobians':distribution['nonpositive_Jacobians']==0,
+            'minSICN_project_limit':distribution['minimum_minSICN']>=.1,
+            'quality_distribution':distribution}
+    result['passed']=all(result[key] for key in ('tetrahedron_count_matches','positive_jacobians','minSICN_project_limit'))
+    return result
+
+
 def quality_locations(gmsh, surfaces, binding, tags, tetrahedra, points, quality, determinants):
     """Private mesh diagnostics, not an inferred anatomical classification."""
-    boundary={}; type_by_tag={}
+    boundary={}; type_by_tag={};surface_quality=[]
+    source_by_tag={item['gmsh_face_tag']:item['source_face_index'] for item in binding['matches_private']}
     for _,surface in surfaces:
-        types,_,nodes=gmsh.model.mesh.getElements(2,surface)
+        types,triangle_tags,nodes=gmsh.model.mesh.getElements(2,surface)
         if list(map(int,types))!=[2]:raise ValueError('nontriangular_surface_in_diagnostic')
+        triangle_quality=list(map(float,gmsh.model.mesh.getElementQualities(triangle_tags[0],'minSICN')))
+        if not triangle_quality or not all(math.isfinite(q) for q in triangle_quality):raise ValueError('invalid_surface_quality')
         flat=list(map(int,nodes[0]));type_by_tag[surface]=gmsh.model.getType(2,surface)
+        areas=[]
         for i in range(0,len(flat),3):
             face=tuple(sorted(flat[i:i+3]))
             if face in boundary:raise ValueError('surface_triangle_multiple_CAD_owners')
             boundary[face]=surface
-    source_by_tag={item['gmsh_face_tag']:item['source_face_index'] for item in binding['matches_private']}
+            a,b,c=(points[node] for node in face);u=[b[k]-a[k] for k in range(3)];v=[c[k]-a[k] for k in range(3)]
+            areas.append(math.sqrt(sum(x*x for x in (u[1]*v[2]-u[2]*v[1],u[2]*v[0]-u[0]*v[2],u[0]*v[1]-u[1]*v[0])))/2)
+        surface_quality.append({'source_face_index':source_by_tag[surface],'gmsh_face_tag':surface,
+                                'triangles':len(triangle_quality),'minimum_minSICN':min(triangle_quality),
+                                'minSICN_below_0p1':sum(q<.1 for q in triangle_quality),
+                                'minSICN_below_1e_6':sum(q<1e-6 for q in triangle_quality),
+                                'nonpositive_minSICN':sum(q<=0 for q in triangle_quality),
+                                'triangulated_area':math.fsum(areas),'minimum_triangle_area':min(areas)})
     bad=sorted((i for i,q in enumerate(quality) if q<.1),key=lambda i:quality[i])
     counts=Counter();no_boundary=0;worst=[]
     for rank,i in enumerate(bad):
@@ -144,6 +194,7 @@ def quality_locations(gmsh, surfaces, binding, tags, tetrahedra, points, quality
                           'boundary_source_face_indices':[source_by_tag[tag] for tag in owners],
                           'boundary_gmsh_face_tags':owners,'boundary_CAD_types':[type_by_tag[tag] for tag in owners]})
     return {'worst_100_tetrahedra_private':worst,'bad_tetrahedra_with_no_boundary_face':no_boundary,
+            'surface_quality_by_source_face_private':surface_quality,
             'bad_tetrahedra_touching_boundary_face':len(bad)-no_boundary,
             'surface_incidence_counts_are_not_unique_tetrahedron_counts':True,
             'CAD_surface_incidence_private':[{'gmsh_face_tag':tag,'source_face_index':source_by_tag[tag],
@@ -202,6 +253,9 @@ def mesh(args):
             'volume_relative_error_limit':.01,'import_relative_mass_limit':1e-6,
             'minSICN_project_limit':.1,'maximum_tetrahedra_audited':args.maximum_tetrahedra}
     report['tetrahedral_optimizer']=args.optimizer
+    local_evidence_hash=sha256(args.preserved_skin_meshadapt_evidence) if args.preserved_skin_meshadapt_evidence else None
+    if local_evidence_hash and local_evidence_hash!=PRESERVED_SKIN_EVIDENCE_SHA256:
+        raise ValueError('preserved_skin_evidence_hash_mismatch')
     report_path=args.output/'mesh-report.json';save(report_path,report)
     gmsh.initialize(['native-ported-head','-nopopup'],readConfigFiles=False,run=False)
     gmsh.logger.start()
@@ -236,6 +290,16 @@ def mesh(args):
                 or report['import']['volume_relative_difference']>1e-6
                 or report['import']['area_relative_difference']>1e-6):
             raise ValueError('native_import_geometry_invariants_failed')
+        if local_evidence_hash:
+            evidence=json.loads(args.preserved_skin_meshadapt_evidence.read_text())
+            assignments=preserved_skin_meshadapt_assignments(args.sha256,evidence,binding)
+            for item in assignments:
+                gmsh.model.mesh.setAlgorithm(2,item['gmsh_face_tag'],item['algorithm'])
+            report['local_surface_algorithm_override']={'native_BRep_sha256':args.sha256,
+                'preserved_source_evidence_sha256':local_evidence_hash,'assignments':assignments,
+                'only_meshing_parameter_change':'MeshAdapt_1_instead_of_Frontal_Delaunay_6_on_three_preserved_faces',
+                'primary_documentation':'https://gmsh.info/doc/texinfo/#Choosing-the-right-unstructured-algorithm'}
+            save(report_path,report)
         for dimension in (1,2,3):
             report['stage']='meshing_'+str(dimension)+'D';save(report_path,report)
             gmsh.model.mesh.generate(dimension)
@@ -302,7 +366,12 @@ def mesh(args):
             'maximum_coordinate_roundtrip_difference':max((math.dist(point,reread_points.get(tag,(math.inf,)*3)) for tag,point in original_points.items()),default=0.),
             'file_sha256_unchanged':sha256(path)==mesh_hash}
         reread=report['mesh']['roundtrip']
+        report['mesh']['reread_quality']=reread_quality_gate(
+            list(map(float,gmsh.model.mesh.getElementQualities(reread_tags[0],'minSICN'))),
+            list(map(float,gmsh.model.mesh.getElementQualities(reread_tags[0],'minDetJac'))),len(tags))
+        reread_quality=report['mesh']['reread_quality']
         export_ok=all(value is True for key,value in reread.items() if key!='maximum_coordinate_roundtrip_difference') and reread['maximum_coordinate_roundtrip_difference']<=1e-10
+        export_ok=export_ok and reread_quality['passed']
         gates={'positive_jacobians':report['mesh']['nonpositive_Jacobians']==0,
                'native_CAD_model_unchanged_after_meshing':report['native_CAD_model_unchanged_after_meshing'],
                'positive_signed_tetra_volumes':not(conn['count_negative'] or conn['count_zero'] or conn['repeated_node_tetrahedra']),
@@ -310,6 +379,8 @@ def mesh(args):
                'complete_tetra_boundary':conn['boundary_matches'],
                'all_CAD_faces_meshed':not report['mesh']['CAD_faces_without_surface_elements'],
                'minSICN_project_limit':min(quality)>=.1,
+               'reread_positive_jacobians':reread_quality['positive_jacobians'],
+               'reread_minSICN_project_limit':reread_quality['minSICN_project_limit'],
                'coarse_volume_error_limit':report['mesh']['volume_relative_difference_from_native']<=.01,
                'mesh_export_roundtrip':export_ok}
         report['gates']=gates
@@ -323,7 +394,9 @@ def mesh(args):
         report['native_input_unchanged']=sha256(args.input)==args.sha256
         report['baseline_unchanged']=sha256(args.baseline)==baseline_hash
         report['source_unchanged']=sha256(Path(__file__))==report['source_sha256']
+        report['preserved_skin_evidence_unchanged']=(sha256(args.preserved_skin_meshadapt_evidence)==local_evidence_hash) if local_evidence_hash else None
         if not all(report[key] for key in ('native_input_unchanged','baseline_unchanged','source_unchanged')):report['status']='failed_source_changed'
+        if local_evidence_hash and not report['preserved_skin_evidence_unchanged']:report['status']='failed_source_changed'
         save(report_path,report)
     print(json.dumps({'status':report['status'],'stage':report['stage'],'elapsed_seconds':report['elapsed_seconds']}),flush=True)
     return 0 if report['status']=='coarse_mesh_checks_passed_NOT_CAE_VALIDATED' else 2
@@ -337,9 +410,14 @@ def main():
     parser.add_argument('--minimum',type=float,default=1.);parser.add_argument('--maximum',type=float,default=6.)
     parser.add_argument('--maximum-tetrahedra',type=int,default=1500000)
     parser.add_argument('--optimizer',choices=('none','netgen'),default='none')
+    parser.add_argument('--preserved-skin-meshadapt-evidence',type=Path,
+                        help='Exact private trial05 preserved-face evidence; never valid on another body')
     args=parser.parse_args()
     if not (math.isfinite(args.minimum) and math.isfinite(args.maximum) and 0<args.minimum<=args.maximum):parser.error('positive_mesh_size_interval_required')
     if args.mode=='mesh' and args.baseline is None:parser.error('baseline_required')
+    if args.preserved_skin_meshadapt_evidence and (args.mode!='mesh' or args.optimizer!='none'
+            or args.minimum!=1. or args.maximum!=6. or args.sha256!=TRIAL05_NATIVE_SHA256):
+        parser.error('isolated_trial05_MeshAdapt_experiment_requires_original_sizes_and_no_optimizer')
     if args.output.exists():raise FileExistsError(args.output)
     if sha256(args.input)!=args.sha256:raise ValueError('native_BRep_hash_mismatch')
     args.output.mkdir(parents=True,mode=0o700)

@@ -163,10 +163,12 @@ Un vrai maillage est généré, exporté puis relu : **261 564 tétraèdres,
 frontière complète. Le volume discrétisé dépasse le volume natif de 0,282 %.
 Mais 4 902 tétras ont un indice de qualité minSICN inférieur au seuil projet
 0,1, dont sept quasi dégénérés sous 10⁻⁶. Le minimum vaut environ 7,52 × 10⁻¹⁷.
-Les Jacobiens sont positifs, ce qui ne suffit pas à rendre ces éléments
-utilisables. **Ce maillage est rejeté avant calcul thermique ou mécanique.**
+Les Jacobiens étaient positifs en mémoire. Un contrôle ultérieur du MSH relu
+trouve un Jacobien non positif, ce qui renforce son rejet ; voir la
+[correction locale et le contrôle après export](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md).
+**Ce maillage est rejeté avant calcul thermique ou mécanique.**
 
-Le seul contre-essai conserve géométrie, tailles 1 à 6 unités et génération,
+Le premier contre-essai conserve géométrie, tailles 1 à 6 unités et génération,
 puis ajoute une optimisation tétraédrique Netgen. Le maillage initial est
 reproduit, mais l'optimiseur termine avec code 139, sans dépassement mémoire.
 Aucun maillage optimisé n'est accepté. Le crash logiciel ne prouve pas que
@@ -189,6 +191,9 @@ les deux négatifs gaz. Elles sont donc héritées de la peau conservée, selon
 ces opérations à tolérances natives. **Inférence pour la prochaine étape :**
 modifier les seuls troncs de conduits ne devrait pas résoudre ces mauvais
 éléments ; il faut tester une correction locale de discrétisation de cette peau.
+Ce [contre-essai local a ensuite été exécuté](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md) :
+il supprime les sept tétras quasi plats sans modifier la CAO, mais ne satisfait
+pas encore le seuil global de qualité.
 
 ## Vues de l'essai 06
 
