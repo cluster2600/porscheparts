@@ -152,6 +152,25 @@ python3 -m unittest discover -s tests -p test_917_additive_energy_diagnostic_f58
 
 ## Décision suivante
 
+Une contre-vérification algébrique supplémentaire des mêmes 3 600 pas ne
+montre pas de création d'énergie par la source laser : l'incident vaut
+`380 W × 120 µs = 45,60 mJ`, et les intégrales absorbées représentent
+69,1934 % / 69,2051 % de cet incident. Aucune puissance absorbée enregistrée
+ne dépasse 380 W. Le recalcul de Kelly depuis les profondeurs de référence
+des journaux reproduit les puissances intégrées à 1,47e-8 W près au maximum.
+Le diamètre D4σ de ce profil vaut 72,51699 µm ; `etaMin=0,35` est un plancher,
+pas une absorption constante. L'absorption finale calculée est d'environ 0,772.
+La profondeur utilisée est celle d'une isotherme simulée : cet accord ne
+calibre pas l'absorption physique ou le capillaire laser.
+
+La trajectoire exacte F55/F58 fait 2 mm à 1,3 m/s ; la fenêtre analysée couvre
+seulement ses 120 premières µs, soit 0,156 mm nominal. Ne pas lui substituer la
+trace de 0,4 mm de la campagne F50 générale. Aucun solveur n'a été relancé
+pour cette vérification. Le script algébrique privé porte le SHA256
+`202815577b43b4fe7edece86b2ee6807773fb366f96089e5858bdf8f5554efa7`
+et le rapport privé détaillé
+`b0152123aa55a296ad468601c4e3b4dca9c5c7f157ba3730b38fba54ab4934a5`.
+
 Le diagnostic ne justifie pas une nouvelle location pour balayer aveuglément
 puissance et absorption. Il faut maintenant examiner le modèle d'absorption,
 le profil/profondeur de source et les pertes physiques du coupon avec données
