@@ -135,6 +135,8 @@ COMPONENT_FACTORY_F41_SSH_READY_ATTEMPTS = 30
 F46_CONTRACT_ATTEMPTS = 180
 F46_SINGLETON_STABILITY_SNAPSHOTS = 3
 SIMREADY_SSH_READY_ATTEMPTS = 900
+# Image loading and the first running/READY phase have separate bounded clocks.
+SIMREADY_TOTAL_READY_TIMEOUT_SECONDS = 2 * 60 * 60
 SIMREADY_SSH_READY_TIMEOUT_SECONDS = 30 * 60
 SIMREADY_SINGLETON_STABILITY_SNAPSHOTS = 5
 DESTROY_ABSENCE_STABILITY_SNAPSHOTS = 5
@@ -1860,6 +1862,8 @@ def safe_offer(offer: dict) -> dict:
         "cpu_cores_effective": offer.get("cpu_cores_effective"),
         "cpu_ram_mb": offer.get("cpu_ram"),
         "disk_space_gb": offer.get("disk_space"),
+        "disk_read_bw_mb_s": finite_number(offer.get("disk_bw")),
+        "disk_model": offer.get("disk_name"),
         "dph_base": offer.get("dph_base"),
         "dph_total": offer.get("dph_total", offer.get("dph")),
         "storage_cost_usd_per_gb_month": offer.get("storage_cost"),
@@ -1881,6 +1885,16 @@ def safe_offer(offer: dict) -> dict:
     }
 
 
+def normalized_ssh_port(value: object) -> int | None:
+    """Accept provider numeric ports or strict decimal HostPort strings only."""
+    if isinstance(value, str) and re.fullmatch(r"[0-9]{1,5}", value):
+        value = int(value)
+    number = finite_number(value)
+    if number is None or not number.is_integer() or not 1 <= number <= 65535:
+        return None
+    return int(number)
+
+
 def safe_instance(instance: dict) -> dict:
     ports = instance.get("ports")
     ssh_port = None
@@ -1888,7 +1902,7 @@ def safe_instance(instance: dict) -> dict:
     if isinstance(ports, dict):
         mappings = ports.get("22/tcp")
         if isinstance(mappings, list) and mappings and isinstance(mappings[0], dict):
-            ssh_port = mappings[0].get("HostPort")
+            ssh_port = normalized_ssh_port(mappings[0].get("HostPort"))
         api_mappings = ports.get("8000/tcp")
         if (
             isinstance(api_mappings, list)
@@ -1939,14 +1953,11 @@ def safe_ssh_endpoints(instance: dict, instance_id: int) -> dict:
         raise SafeError("Vast.ai SSH endpoint metadata does not match the requested instance")
 
     def endpoint(host: object, port: object, source: str, *, ip_only: bool = False):
-        if isinstance(port, str) and re.fullmatch(r"[0-9]{1,5}", port):
-            port = int(port)
-        number = finite_number(port)
+        number = normalized_ssh_port(port)
         if (
             not isinstance(host, str)
             or not re.fullmatch(r"[A-Za-z0-9.:-]{1,253}", host)
-            or number is None or not number.is_integer()
-            or not 1 <= number <= 65535
+            or number is None
         ):
             return None
         if ip_only:
@@ -1954,7 +1965,7 @@ def safe_ssh_endpoints(instance: dict, instance_id: int) -> dict:
                 ipaddress.ip_address(host)
             except ValueError:
                 return None
-        return {"host": host, "port": int(number), "source": source}
+        return {"host": host, "port": number, "source": source}
 
     proxy = endpoint(instance.get("ssh_host"), instance.get("ssh_port"), "ssh_host+ssh_port")
     ports = instance.get("ports")
@@ -3226,13 +3237,17 @@ def verify_simready_ssh_ready(
     api_key: str, instance_id: int, *, validation_only: bool = False
 ) -> Path:
     """Prove BatchMode SSH plus the selected exact SimReady READY state."""
+    total_deadline = time.monotonic() + SIMREADY_TOTAL_READY_TIMEOUT_SECONDS
+    running_deadline = None
     validate_approved_ssh_private_key()
     known_hosts_path = prepare_simready_known_hosts(instance_id)
     host_key_alias = simready_host_key_alias(instance_id)
-    deadline = time.monotonic() + SIMREADY_SSH_READY_TIMEOUT_SECONDS
+
+    def active_deadline() -> float:
+        return min(total_deadline, running_deadline) if running_deadline is not None else total_deadline
 
     def wait_before_retry() -> bool:
-        remaining = deadline - time.monotonic()
+        remaining = active_deadline() - time.monotonic()
         if remaining <= 0:
             return False
         time.sleep(min(SIMREADY_POLL_INTERVAL_SECONDS, remaining))
@@ -3241,7 +3256,7 @@ def verify_simready_ssh_ready(
     last_state = "unknown"
     last_probe = "provider_metadata_not_ready"
     for _ in range(SIMREADY_SSH_READY_ATTEMPTS):
-        if time.monotonic() >= deadline:
+        if time.monotonic() >= active_deadline():
             break
         try:
             result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
@@ -3255,6 +3270,12 @@ def verify_simready_ssh_ready(
             raise SafeError("Vast.ai returned invalid SimReady SSH endpoint metadata")
         instance = safe_instance(raw_instance)
         last_state = str(instance.get("status") or "unknown")
+        if last_state == "running" and running_deadline is None:
+            running_deadline = time.monotonic() + SIMREADY_SSH_READY_TIMEOUT_SECONDS
+        # Slow metadata reads (including bounded 429 retries) cannot extend
+        # either deadline or authorize a new SSH probe after it has elapsed.
+        if time.monotonic() >= active_deadline():
+            break
         if last_state != "running":
             if last_state not in {"created", "loading"}:
                 raise SafeError(
@@ -3377,6 +3398,9 @@ def verify_simready_ssh_ready(
                 else "SIMREADY_REMOTE_READY"
             )
         ):
+            if time.monotonic() >= active_deadline():
+                last_probe = "ready_arrived_after_deadline"
+                break
             validate_simready_known_hosts(known_hosts_path, instance_id)
             return known_hosts_path
         last_probe = classify_simready_ssh_probe(completed)
@@ -3399,7 +3423,9 @@ def verify_simready_ssh_ready(
             break
     raise SafeError(
         "SimReady SSH /workspace/READY verification did not pass in time "
-        f"(last state: {last_state}; last probe: {last_probe}); do not treat the "
+        f"(last state: {last_state}; last probe: {last_probe}; "
+        f"total limit: {SIMREADY_TOTAL_READY_TIMEOUT_SECONDS}s; "
+        f"first-running limit: {SIMREADY_SSH_READY_TIMEOUT_SECONDS}s); do not treat the "
         "instance as ready"
     )
 
