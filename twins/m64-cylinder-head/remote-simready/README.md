@@ -40,6 +40,31 @@ arbres. Aucun scan privé n'est transféré par ce paquet.
   préparation F46. Cette régénération ne modifie aucun résultat de simulation.
 - À ce stade, aucun résultat GPU ou validation SimReady de ce module n'est
   produit par ce dossier.
+- Le [premier essai distant M64](../evidence/vast-m64-proxy-attempt-20260907.json)
+  a chargé l'image et atteint l'état fournisseur `running`, mais son relais
+  SSH échouait à ouvrir le port distant. Aucun paquet de calcul n'a été
+  transféré. L'instance a été supprimée explicitement et son absence vérifiée
+  indépendamment ; l'échec ultérieur de réconciliation du lanceur est conservé
+  séparément. Le garde indique honnêtement une absence vérifiée **sans
+  collecte**, et non une récupération de résultats inexistants. Le coût
+  contractuel était de 1,36556 USD/h ; aucune facture finale n'est encore liée.
+
+La documentation [SSH de Vast](https://docs.vast.ai/guides/instances/connect/ssh)
+distingue accès direct et proxy. Un point d'accès direct était annoncé pour
+cet essai, mais le wrapper utilisé conservait le proxy lorsqu'il était publié.
+Le correctif M64 privilégie maintenant la paire directe exacte publiée par le
+fournisseur, avec IP globale unicast et port valides ; un mapping malformé est
+refusé, pas remplacé silencieusement par le proxy. Le profil historique reste
+inchangé. Le même choix s'applique au précontrôle, au transfert et à la collecte.
+Le reçu de lancement identifie l'endpoint réellement vérifié après `READY`,
+sans prétendre vérifier la clé d'hôte par un canal indépendant.
+
+Le wrapper source et installé portent désormais le SHA256
+`cec1bffe0c8f00076121a530575caa68c70716cdcfac3b3f9e681289bb1097cb`.
+Ses 170 tests wrapper/transport, les 31 tests F42b (un ignoré) et `make check`
+passent. Les contrôles OpenBao et de paire de clés passent également ; aucune
+instance ne restait active au contrôle précédant cette réinstallation.
+Cela ne remplace pas l'authentification réelle sur une nouvelle instance.
 
 Le runtime historique ne correspondait pas aux versions requises par le skill
 NVIDIA installé. La couche dérivée conserve les services existants et ajoute

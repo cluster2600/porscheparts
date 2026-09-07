@@ -245,6 +245,25 @@ class M64JobTests(unittest.TestCase):
         with self.assertRaisesRegex(self.w.SafeError, "exact running instance"):
             self.w.m64_verified_ssh("synthetic", self.manifest, collecting=True)
 
+    def test_transport_and_rescue_prefer_provider_direct_pair_with_strict_knownhost(self):
+        metadata = dict(self.metadata(), public_ipaddr="1.1.1.1", ports={"22/tcp": [{"HostPort": "32001"}]})
+        self.mock_verified_dependencies(metadata)
+        for collecting in (False, True):
+            with self.subTest(collecting=collecting):
+                command = self.w.m64_verified_ssh("synthetic", self.manifest, collecting=collecting)
+                self.assertIn("root@1.1.1.1", command)
+                self.assertNotIn("root@ssh.example.test", command)
+                self.assertEqual(command[command.index("-p") + 1], "32001")
+                self.assertIn("StrictHostKeyChecking=yes", command)
+                self.assertIn(f"HostKeyAlias=simready-{self.instance_id}", command)
+
+    def test_transport_refuses_malformed_direct_instead_of_proxy_even_for_collect(self):
+        metadata = dict(self.metadata(), public_ipaddr="203.0.113.8", ports={"22/tcp": [{"HostPort": True}]})
+        self.mock_verified_dependencies(metadata)
+        for collecting in (False, True):
+            with self.subTest(collecting=collecting), self.assertRaisesRegex(self.w.SafeError, "direct SSH endpoint is malformed"):
+                self.w.m64_verified_ssh("synthetic", self.manifest, collecting=collecting)
+
     def test_legacy_image_is_rejected_even_for_rescue_collection(self):
         self.mock_verified_dependencies(dict(self.metadata(), image_uuid=self.w.SIMREADY_IMAGE))
         with self.assertRaisesRegex(self.w.SafeError, "exact running instance"):

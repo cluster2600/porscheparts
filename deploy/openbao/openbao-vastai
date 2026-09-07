@@ -2043,6 +2043,44 @@ def safe_ssh_endpoints(instance: dict, instance_id: int) -> dict:
     }
 
 
+def m64_ssh_endpoint(instance: dict, instance_id: int) -> dict | None:
+    """M64 uses the provider's direct pair; legacy safe_instance stays unchanged.
+
+    An unpublished direct mapping permits proxy use. A published but malformed
+    mapping is an error, never a reason to silently change transport.
+    """
+    if type(instance.get("id")) is not int or instance["id"] != instance_id:
+        raise SafeError("M64 SSH endpoint instance id does not match")
+    ports = instance.get("ports")
+    if ports is not None and not isinstance(ports, dict):
+        raise SafeError("M64 SSH port mappings are malformed")
+    endpoints = safe_ssh_endpoints(instance, instance_id)
+    if isinstance(ports, dict) and "22/tcp" in ports:
+        mappings = ports["22/tcp"]
+        if (
+            not isinstance(mappings, list) or len(mappings) != 1
+            or not isinstance(mappings[0], dict) or endpoints["direct"] is None
+        ):
+            raise SafeError("M64 published direct SSH endpoint is malformed")
+        address = ipaddress.ip_address(endpoints["direct"]["host"])
+        if (
+            not address.is_global or address.is_multicast or address.is_loopback
+            or address.is_private or address.is_link_local or address.is_unspecified
+            or address.is_reserved
+        ):
+            raise SafeError("M64 direct SSH endpoint must be a global unicast IP address")
+        return {"kind": "direct", **endpoints["direct"]}
+    host, port = instance.get("ssh_host"), instance.get("ssh_port")
+    if host is None and port is None:
+        return None
+    if (
+        endpoints["proxy"] is None or not isinstance(host, str)
+        or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.:-]{0,252}", host)
+    ):
+        raise SafeError("M64 published proxy SSH endpoint is malformed")
+    return {"kind": "proxy", **endpoints["proxy"]}
+
+
 def print_json(value: object) -> None:
     print(json.dumps(value, indent=2, sort_keys=True))
 
@@ -3302,10 +3340,13 @@ def emit_simready_ssh_failure_diagnostic(
 
 def verify_simready_ssh_ready(
     api_key: str, instance_id: int, *, validation_only: bool = False,
-    profile: str = "legacy",
+    profile: str = "legacy", verified_endpoint: dict | None = None,
 ) -> Path:
     """Prove BatchMode SSH plus the selected exact SimReady READY state."""
     expected_image = simready_profile_image(profile)
+    if verified_endpoint is not None:
+        if type(verified_endpoint) is not dict or verified_endpoint:
+            raise SafeError("SimReady verified endpoint receipt must start empty")
     total_deadline = time.monotonic() + SIMREADY_TOTAL_READY_TIMEOUT_SECONDS
     running_deadline = None
     validate_approved_ssh_private_key()
@@ -3357,8 +3398,9 @@ def verify_simready_ssh_ready(
             if not wait_before_retry():
                 break
             continue
-        host = instance.get("ssh_host")
-        port = finite_number(instance.get("ssh_port"))
+        endpoint = m64_ssh_endpoint(raw_instance, instance_id) if profile == M64_PROFILE else None
+        host = endpoint["host"] if endpoint else instance.get("ssh_host")
+        port = finite_number(endpoint["port"] if endpoint else instance.get("ssh_port"))
         if (
             not isinstance(host, str)
             or not host
@@ -3473,6 +3515,8 @@ def verify_simready_ssh_ready(
                 last_probe = "ready_arrived_after_deadline"
                 break
             validate_simready_known_hosts(known_hosts_path, instance_id)
+            if verified_endpoint is not None and endpoint is not None:
+                verified_endpoint.update(endpoint)
             return known_hosts_path
         last_probe = classify_simready_ssh_probe(completed)
         if last_probe in {
@@ -4091,7 +4135,13 @@ def launch_simready_offer(
                     api_key, instance_id, validation_only=True, **profile_options
                 )
             else:
-                known_hosts_path = verify_simready_ssh_ready(api_key, instance_id, **profile_options)
+                verified_endpoint = {}
+                known_hosts_path = verify_simready_ssh_ready(
+                    api_key, instance_id, **profile_options,
+                    **({"verified_endpoint": verified_endpoint} if profile == M64_PROFILE else {}),
+                )
+                if profile == M64_PROFILE and not verified_endpoint:
+                    raise SafeError("M64 SSH READY did not provide its verified endpoint receipt")
             print_json(
                 {
                     "instance_id": instance_id,
@@ -4115,6 +4165,11 @@ def launch_simready_offer(
                     "physicsnemo_gpu_runtime_verified": True,
                     "host_key_alias": simready_host_key_alias(instance_id),
                     "known_hosts_path": str(known_hosts_path),
+                    **({
+                        "verified_ssh_endpoint": verified_endpoint,
+                        "ssh_host_identity_policy": "instance_scoped_known_hosts_accept_new_or_existing",
+                        "ssh_host_identity_verified_out_of_band": False,
+                    } if profile == M64_PROFILE else {}),
                     "simulation_validated": False,
                     "manufacturing_authorized": False,
                     "target_1600_ch_validated": False,
@@ -4349,7 +4404,9 @@ def m64_verified_ssh(api_key: str, manifest: dict, *, collecting: bool) -> list[
     known_hosts = SIMREADY_KNOWN_HOSTS_DIR / simready_host_key_alias(instance_id)
     m64_no_symlink_path(known_hosts)
     validate_simready_known_hosts(known_hosts, instance_id)
-    host, port = instance["ssh_host"], finite_number(instance["ssh_port"])
+    endpoint = m64_ssh_endpoint(raw, instance_id)
+    host = endpoint["host"] if endpoint else None
+    port = finite_number(endpoint["port"]) if endpoint else None
     if (
         not isinstance(host, str) or len(host) > 253
         or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.:-]*", host)
