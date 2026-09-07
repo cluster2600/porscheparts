@@ -90,20 +90,21 @@ def read_field(tag, nid):
 
 def run_case(p, order, env_base):
     env = dict(env_base)
+    work = pathlib.Path(env.get('FEA_WORK', '.'))
     for k in RANGES:
         env[k] = f"{p[k]:.4f}"
     r = subprocess.run([PY, 'build_body.py', f"{p['t']:.4f}", p['features'], '1.0', str(order)],
                        capture_output=True, text=True, env=env, cwd=HERE)
     if r.returncode:
         return None, f"build: {r.stdout.strip()[:120]}"
-    mesh = np.load(HERE / 'mesh.npz')
+    mesh = np.load(HERE / work / 'mesh.npz')
     r = subprocess.run([PY, 'run_fea.py', f"{p['t']:.4f}", CCX_TAG, f"{p['E']:.1f}", f"{NU}",
                         f"{p['G']:.1f}"],
                        capture_output=True, text=True, env=env, cwd=HERE)
     if r.returncode:
         return None, f"solve: {r.stdout.strip()[-120:]}"
-    res = np.load(HERE / f'{CCX_TAG}_res.npz')
-    u = read_field(str(HERE / CCX_TAG), mesh['nid'])
+    res = np.load(HERE / work / f'{CCX_TAG}_res.npz')
+    u = read_field(str(HERE / work / CCX_TAG), mesh['nid'])
     if u is None:
         return None, "champ de deplacement incomplet"
     area = float(mesh['area'])
@@ -119,6 +120,10 @@ def main():
     ap.add_argument('--out', default='corpus')
     ap.add_argument('--order', type=int, default=1)
     ap.add_argument('--smoke', action='store_true')
+    # Repertoire de travail propre a la campagne. Deux campagnes lancees en
+    # parallele depuis le meme dossier partageaient mesh.npz et les fichiers du
+    # solveur : elles se seraient contaminees en silence.
+    ap.add_argument('--work', default=None)
     a = ap.parse_args()
     if a.smoke:
         a.n, a.out = 4, 'corpus_smoke'
@@ -128,8 +133,9 @@ def main():
     # relancer avec un n different reattribuerait d'autres parametres aux memes
     # numeros de cas, et l'index deviendrait faux sans que rien ne le signale.
     prev = out / 'manifest.json'
+    m_prev = None
     if prev.exists():
-        m = json.loads(prev.read_text())
+        m = m_prev = json.loads(prev.read_text())
         if (m.get('n_demande'), m.get('seed')) != (a.n, a.seed):
             sys.exit(f"corpus existant tire avec n={m.get('n_demande')} seed={m.get('seed')} ; "
                      f"reprise demandee avec n={a.n} seed={a.seed}. Refusé : les numeros de cas "
@@ -138,6 +144,8 @@ def main():
     S = '/home/maxime/work/964twin/syslibs/usr/lib/x86_64-linux-gnu'
     env_base['LD_LIBRARY_PATH'] = f"{S}:{S}/lapack:{S}/blas:{S}/openmpi/lib"
     env_base.setdefault('OMP_NUM_THREADS', '4')
+    env_base['FEA_WORK'] = a.work or f'work_{a.out}'
+    (HERE / env_base['FEA_WORK']).mkdir(exist_ok=True)
 
     plan = sample(np.random.default_rng(a.seed), a.n)
     t0, done, failed = time.time(), 0, 0
@@ -164,6 +172,7 @@ def main():
     manifest = {
         "corpus": a.out, "seed": a.seed, "n_demande": a.n,
         "n_ecrit": done, "n_echec": failed, "ordre_element": a.order,
+        "element": "S6" if a.order == 2 else "S3",
         "espace": {"features": FEATURES, "continus": RANGES,
                    "t_mm": T_RANGE, "E_MPa": E_RANGE, "nu": NU,
                    "G_sur_G_isotrope": GK_RANGE},
@@ -174,6 +183,13 @@ def main():
                           "en maillage, aucune valeur absolue exploitable. Sert a entrainer "
                           "un modele de tendance, pas a etablir une raideur."),
     }
+    # Une reprise avec des scripts modifies ne doit pas effacer l'empreinte sous
+    # laquelle les cas deja presents ont ete calcules : le manifeste garderait
+    # alors une seule empreinte pour un corpus mixte. Les anciennes sont donc
+    # empilees, et c'est au lecteur de juger si le melange est acceptable.
+    if m_prev and m_prev.get('scripts') and m_prev['scripts'] != manifest['scripts']:
+        manifest['scripts_precedents'] = (m_prev.get('scripts_precedents', [])
+                                          + [m_prev['scripts']])
     (out / 'manifest.json').write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
     print(f"\n{done} cas ecrits, {failed} echecs, {time.time()-t0:.0f}s -> {out}/")
     print(f"manifeste : {out}/manifest.json")

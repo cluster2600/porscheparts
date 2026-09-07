@@ -186,7 +186,12 @@ ncomp = n_components(np.vectorize(idx.get)(tri), len(nt))
 if ncomp != 1:
     sys.exit(f"maillage non connexe : {ncomp} composantes pour features '{FEAT}'")
 
-np.savez('mesh.npz', nid=nt, xyz=nc, tri=tri, cells=cells, order=ORDER,
+# Repertoire de travail. Deux campagnes lancees en parallele depuis le meme
+# dossier s'ecrasaient mutuellement mesh.npz : une mesure a deja ete faussee
+# ainsi, sans aucun signe exterieur. Par defaut, rien ne change.
+WORK = os.environ.get('FEA_WORK', '.')
+os.makedirs(WORK, exist_ok=True)
+np.savez(os.path.join(WORK, 'mesh.npz'), nid=nt, xyz=nc, tri=tri, cells=cells, order=ORDER,
          quad=np.zeros((0, 4), int), T=T, area=area)
 print(f"features '{FEAT}'  nodes {len(nt):,}  tri {len(tri):,}  t {T} mm  "
       f"aire {area/1e6:.3f} m2  ordre {ORDER}  connexe")
