@@ -190,8 +190,20 @@ def run(args):
     finest = None
     for resolution, filename in sorted(args.candidate, key=lambda pair: float(pair[0]), reverse=True):
         resolution = float(resolution); path = Path(filename); before = sha256(path)
+        run_path = path.parent / 'run-report.json'
+        run_record = json.loads(run_path.read_text())
+        if (run_record.get('input_sha256') != master_hash or run_record.get('input_unchanged') is not True
+                or run_record.get('transform') != 'identity'
+                or not math.isclose(float(run_record['voxel_mm']), resolution, rel_tol=1e-6, abs_tol=1e-8)
+                or run_record['roundtrip']['sha256'] != before
+                or run_record['roundtrip']['filename'] != path.name):
+            raise ValueError('candidate_run_receipt_provenance_resolution_or_frame_mismatch')
         candidate, summary = read_mesh(path)
-        record = {'voxel_size_scan_units': resolution, 'candidate_sha256': before, 'mesh': summary,
+        if run_record['roundtrip']['triangles'] != summary['triangles']:
+            raise ValueError('candidate_triangle_count_does_not_match_run_receipt')
+        record = {'voxel_size_scan_units': resolution, 'candidate_sha256': before,
+                  'candidate_run_receipt_sha256': sha256(run_path),
+                  'run_input_frame_resolution_output_verified': True, 'mesh': summary,
                   'bbox_max_absolute_delta_scan_units': float(np.abs(candidate.bounds - master.bounds).max()),
                   'relative_signed_volume_error': float((candidate.volume - master.volume) / master.volume),
                   'relative_area_error': float((candidate.area - master.area) / master.area),
