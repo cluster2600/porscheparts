@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
+  "status": "f0_published_identity_material_mass_clean_sheet_flow_core_screen_only",
+  "geometry_authority": {
+    "published": [
+      "993 Turbo manifold offering in Inconel 625",
+      "2.9 kg per side with heat exchanger included",
+      "left and right factory heat-exchanger identities in PET group 202-10"
+    ],
+    "catalogue_identity": [
+      "993 211 039 55",
+      "993 211 040 55",
+      "Kline 993 Turbo Inconel 625 manifold with heat exchanger"
+    ],
+    "hypotheses": [
+      "34 mm primary inside diameter",
+      "56 mm collector inside diameter",
+      "1.2 mm nominal wall",
+      "three synthetic inlet centers converging over 130 mm",
+      "215 mm total axial envelope",
+      "single open 3-to-1 flow shell without flanges or heat exchanger"
+    ],
+    "not_claimed": "No Porsche or Kline surface, tube path, flange, port, heat exchanger, fitment or performance is claimed."
+  },
+  "synthetic_cases": {
+    "engine_displacement_l": 3.6,
+    "engine_speed_rpm": 5750.0,
+    "volumetric_efficiency": 0.95,
+    "intake_reference_k": 300.0,
+    "exhaust_gas_k": 900.0,
+    "screen_surface_k": 750.0,
+    "screen_gauge_pressure_pa": 50000.0,
+    "junction_loss_coefficient": 0.2,
+    "authority": "regression inputs only; no measured M64/60 flow, pulse, pressure, temperature, lambda, ignition, turbine or duty-cycle data"
+  },
+  "material_screen": {
+    "candidate": "EOS NickelAlloy IN625 / UNS N06625, LPBF study only",
+    "density_g_cm3": 8.44,
+    "elastic_modulus_mpa": 204000.0,
+    "comparison_yield_strength_mpa": 640.0,
+    "thermal_expansion_per_k": 1.37e-05,
+    "thermal_conductivity_w_mk": 15.7,
+    "specific_heat_j_kg_k": 511.0,
+    "scope": "ambient LPBF and wrought thermal references only; no hot thin-wall LPBF fatigue or creep allowables"
+  },
+  "results": {
+    "cad_volume_mm3": 60423.17529883349,
+    "screening_mass_flow_core_g": 509.97159952215463,
+    "published_mass_each_with_heat_exchanger_g": 2900.0,
+    "flow_core_to_published_assembly_mass_ratio": 0.1758522756972947,
+    "primary_centerline_lengths_mm": [
+      138.67227552759059,
+      130.0,
+      138.67227552759059
+    ],
+    "mean_primary_centerline_length_mm": 135.7815170183937,
+    "primary_flow_area_each_m2": 0.0009079202768874504,
+    "collector_flow_area_m2": 0.002463008640414398,
+    "collector_to_three_primary_area_ratio": 0.9042675893886967,
+    "cold_volume_flow_total_m3_s": 0.163875,
+    "hot_volume_flow_bank_m3_s": 0.24581249999999996,
+    "hot_volume_flow_primary_m3_s": 0.08193749999999998,
+    "hot_density_kg_m3": 0.3933333333333333,
+    "primary_velocity_m_s": 90.24746124285238,
+    "collector_velocity_m_s": 99.80172053259314,
+    "primary_reynolds": 28735.937659232048,
+    "collector_reynolds": 52340.457879315516,
+    "collector_mach": 0.17027465334945321,
+    "screening_junction_pressure_loss_pa": 391.77508123645566,
+    "screening_flow_power_bank_w": 96.30321215643625,
+    "thin_wall_hoop_stress_mpa": 1.1666666666666667,
+    "ambient_yield_to_hoop_ratio": 548.5714285714286,
+    "collector_pressure_force_n": 123.1504320207199,
+    "free_thermal_expansion_mm": 1.7879185,
+    "fully_constrained_elastic_thermal_stress_mpa": 1696.4436,
+    "outer_lateral_area_approx_m2": 0.06676305883298317,
+    "radiative_flux_at_screen_surface_w_m2": 13815.16595998536,
+    "radiative_power_approx_w": 922.3427377739289,
+    "wall_through_thickness_resistance_m2_k_w": 7.643312101910827e-05,
+    "lumped_heat_capacity_flow_core_j_k": 260.59548735582104,
+    "bank_pulse_frequency_hz": 143.75,
+    "acoustic_path_mm": 220.7815170183937,
+    "path_quarter_wave_hz": 663.6900688828827,
+    "first_order_quarter_wave_length_mm": 1019.3426103513397
+  },
+  "equations": {
+    "mass": "m=rho*Vcad",
+    "four_stroke_flow": "Qcold=Vd*N*eta_v/(2*60); Qhot,bank=Qcold/2*Thot/Tref",
+    "continuity": "u_primary=(Qhot,bank/3)/Aprimary; u_collector=Qhot,bank/Acollector",
+    "hot_density": "rho_hot=rho_ref*Tref/Thot",
+    "reynolds": "Re=rho*u*D/mu",
+    "mach": "M=u/sqrt(gamma*R*T)",
+    "minor_loss_screen": "delta_p=K*rho*u_collector^2/2; P=delta_p*Qhot,bank",
+    "thin_wall_pressure": "sigma_hoop=p*r/t; Faxial=p*Acollector",
+    "free_thermal_expansion": "delta_L=alpha*L*delta_T",
+    "fully_constrained_thermal_stress": "sigma_th=E*alpha*delta_T",
+    "radiation": "q=epsilon*sigma_SB*A*(Tsurface^4-Tambient^4)",
+    "thermal_resistance": "R_double_prime=t/k",
+    "bank_pulse_frequency": "f=N/60*n_cyl_bank/2",
+    "quarter_wave": "f1=a/(4*L); L1=a/(4*f_bank)"
+  },
+  "dfam_screen": {
+    "part_consolidation": "three converging primaries and one collector in a single thin-wall BREP",
+    "connected_internal_flow_volume": true,
+    "open_inlets": 3,
+    "open_outlets": 1,
+    "trapped_powder_volume": false,
+    "nominal_wall_mm": 1.2,
+    "internal_supports_allowed": false,
+    "machining_allowance_defined": false,
+    "orientation_selected": false,
+    "process_comparison_required": [
+      "bent and welded IN625 or stainless thin-wall manifold",
+      "LPBF IN625 integrated 3-to-1 merge flow shell"
+    ]
+  },
+  "interpretation": {
+    "flow": "steady equal-bank ideal-gas screen; pulses, scavenging, bends, roughness, heat loss, turbine and lambda are absent",
+    "mechanics": "thin-wall pressure membrane only; welds, flanges, supports, vibration, creep and fatigue are absent",
+    "thermal": "uniform temperatures, free expansion and radiation screen only; no CHT, shielding, cabin heat or oxidation model",
+    "constraint": "fully constrained elastic stress exceeds the ambient comparison value and is a warning, not a predicted hot stress",
+    "mass": "2.9 kg includes the commercial heat exchanger; the F0 flow-core mass is not a like-for-like validation",
+    "physicsnemo": "deferred until converged CFD/CHT/structure cases and physical correlation provide train, holdout and OOD datasets",
+    "simready": "deferred until measured ports, routes, supports, turbine interface, heat exchanger and installed clearances exist"
+  },
+  "release_blockers": [
+    "No measured Kline or factory manifold, exhaust ports, flanges, turbine interfaces, routes, supports, joints, clearances or tolerances.",
+    "The published 2.9 kg includes the heat exchanger and cannot validate the F0 flow-core mass.",
+    "No published 993 Turbo primary diameter, collector diameter, wall, merge length or tube centerline.",
+    "No measured M64/60 exhaust flow, pulse, pressure, temperature, lambda, ignition, turbine map or duty cycle.",
+    "No hot thin-wall LPBF material card, creep, oxidation, fatigue, anisotropy or surface-condition allowable.",
+    "No heat-exchanger shell, cabin-air path, leak boundary or carbon-monoxide safety analysis.",
+    "No build orientation, support strategy, recoater check, machining stock or distortion compensation.",
+    "No transient compressible CFD, CHT, shell/contact/modal FEA, creep or thermal-fatigue calculation.",
+    "No dimensional inspection, CT, ressuage, leak, pressure, thermal-cycle, shaker, dyno or vehicle fit test.",
+    "No professional engine/exhaust engineering review or approved validation plan."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "connected_flow_volume_count": 1,
+    "volume_mm3": 60423.17529883349,
+    "envelope_mm": [
+      146.4000002,
+      66.40000020000001,
+      215.0000002
+    ],
+    "maximum_volume_delta_mm3": 0.05
+  }
+}
