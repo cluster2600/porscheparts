@@ -29,7 +29,7 @@ LABEL org.opencontainers.image.title="M64 PicoGK headless workstation" \
       org.opencontainers.image.description="Geometry research only; no manufacturing or engine validation" \
       org.opencontainers.image.source="https://github.com/cluster2600/porscheparts"
 RUN test "$(dotnet --version)" = 9.0.317 \
-    && apt-get update && apt-get install -y --no-install-recommends openssh-server ca-certificates \
+    && apt-get update && apt-get install -y --no-install-recommends openssh-server ca-certificates python3-venv time libgl1 \
     && apt-get clean \
     && find /etc/ssh -maxdepth 1 -type f -name 'ssh_host_*' -delete \
     && mv /usr/sbin/sshd /usr/lib/openssh/sshd.real \
@@ -37,7 +37,15 @@ RUN test "$(dotnet --version)" = 9.0.317 \
     && install -m 0600 /dev/null /root/.no_auto_tmux
 ENV LD_LIBRARY_PATH=/app \
     DOTNET_CLI_TELEMETRY_OPTOUT=1 \
-    DOTNET_NOLOGO=1
+    DOTNET_NOLOGO=1 \
+    PATH=/opt/geometry-qa/bin:$PATH \
+    MPLBACKEND=Agg \
+    PYTHONUNBUFFERED=1
+COPY containers/m64-leap71/geometry-qa-requirements.txt /opt/provenance/geometry-qa-requirements.txt
+RUN python3 -m venv /opt/geometry-qa \
+    && /opt/geometry-qa/bin/pip install --no-cache-dir -r /opt/provenance/geometry-qa-requirements.txt \
+    && /opt/geometry-qa/bin/pip freeze > /opt/provenance/geometry-qa-resolved.txt
+COPY containers/m64-leap71/geometry-python-smoke.py /opt/picogk-witness/geometry-python-smoke.py
 COPY containers/m64-leap71/RuntimeWitness.csproj containers/m64-leap71/RuntimeWitness.cs /opt/picogk-witness/
 COPY containers/m64-leap71/vast-entrypoint.sh /usr/local/bin/picogk-entrypoint
 COPY containers/m64-leap71/vast-onstart.sh /usr/local/bin/picogk-vast-onstart
