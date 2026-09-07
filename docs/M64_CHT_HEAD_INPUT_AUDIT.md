@@ -14,6 +14,14 @@ reconstruction n'établit pas encore les interfaces d'une culasse M64 fonctionne
 disponible pour ce corps courant.** Les indices de faces, propositions de groupes
 et maillages F53/F54 ne lui sont pas transférables.
 
+Une [suite CAO et maillage natif](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md)
+a depuis calculé les surfaces nominales de contact des huit inserts sur le
+candidat à conduits 05 et généré un maillage tétraédrique de ce candidat.
+Le maillage est **rejeté pour qualité**, sans calcul thermique. Les contacts
+restent géométriques à tolérance native, sans conductance ni serrage à chaud.
+Le candidat intégré C1 06 est lui aussi rejeté par son contrôle BOP ; aucun
+de ces essais ne remplace le maître ou ne ferme les entrées physiques ci-dessous.
+
 L'audit F53 ci-dessous et sa commande sont conservés comme **historique de cette
 autre géométrie**, non comme prétraitement du maître courant. Le prochain calcul
 stationnaire sous hypothèses doit attendre la CAO fonctionnelle, ses groupes de

@@ -85,7 +85,8 @@ class RoutingTests(unittest.TestCase):
         for key in ('body-sha256','interfaces-sha256'):
             arguments.extend(['--'+key,'0'*64])
         for extra,expected in [([], 'smooth'),(['--trunk-interpolation','smooth'], 'smooth'),
-                               (['--trunk-interpolation','ruled'], 'ruled')]:
+                               (['--trunk-interpolation','ruled'], 'ruled'),
+                               (['--trunk-interpolation','bounded-c1'], 'bounded-c1')]:
             with mock.patch.object(sys,'argv',arguments+extra), \
                  mock.patch.object(ports.resource,'setrlimit'), \
                  mock.patch.object(ports,'run',return_value=0) as execute:
@@ -99,6 +100,41 @@ class RoutingTests(unittest.TestCase):
     def test_ruled_flag_is_explicit_boolean(self):
         with self.assertRaisesRegex(ValueError,'Boolean'):
             ports.loft(None,{},[],ruled='smooth')
+
+    def test_trunk_selector_preserves_explicit_method_and_rejects_unknown(self):
+        for mode in ('smooth', 'ruled'):
+            with mock.patch.object(ports, 'loft', return_value='witness') as loft:
+                shape, quality = ports.make_trunk(None, {}, ['station'], mode)
+                self.assertEqual(shape, 'witness')
+                self.assertEqual(quality['method'], mode)
+                self.assertFalse(quality['C1_claimed'])
+                loft.assert_called_once_with(None, {}, ['station'], ruled=mode == 'ruled')
+        with self.assertRaisesRegex(ValueError, 'unknown trunk'):
+            ports.make_trunk(None, {}, [], 'implicit')
+
+    def test_native_bounded_c1_trunk_selector(self):
+        if importlib.util.find_spec('OCP') is None:
+            self.skipTest('OCP native witness requires qualified CAD runtime')
+        cad=ports.design.CAD(); api=ports.native()
+        stations=[{'center':[0., y, 0.], 'normal':[0., 1., 0.], 'radius':2.}
+                  for y in (0., 3., 10.)]
+        with mock.patch.object(ports, 'loft', side_effect=AssertionError('global loft forbidden')):
+            shape, quality = ports.make_trunk(cad, api, stations, 'bounded-c1')
+        self.assertTrue(cad.valid(shape))
+        self.assertEqual(cad.indexed(shape, cad.TopAbs_SOLID).Extent(), 1)
+        self.assertLessEqual(quality['volume_relative_error'], 1e-7)
+        self.assertTrue(quality['native_quality']['native_C1_U_and_V_all_quarters'])
+        self.assertFalse(quality['branch_trunk_boolean_junction_C1_claimed'])
+
+    def test_bounded_selector_rejects_wrong_or_nonfinite_volume(self):
+        import build_bounded_c1_trunk as bounded
+        stations=[{'center':[0., y, 0.], 'normal':[0., 1., 0.], 'radius':2.}
+                  for y in (0., 3., 10.)]
+        for volume in (0., 41*math.pi, math.nan, math.inf):
+            with mock.patch.object(bounded, 'construct_native', return_value=(
+                    'witness', {'signed_volume_adaptive_integration':volume})):
+                with self.assertRaisesRegex(ValueError, 'analytic volume'):
+                    ports.make_trunk(None, {}, stations, 'bounded-c1')
 
     def test_native_ruled_trunk_preserves_station_envelope(self):
         if importlib.util.find_spec('OCP') is None:

@@ -191,6 +191,30 @@ def loft(cad, api, stations, *, ruled=False):
     return result
 
 
+def make_trunk(cad, api, stations, interpolation):
+    """Select explicit historical loft or bounded local C1 construction.
+
+    C1 applies to this trunk's lateral surface, not to its Boolean junction
+    with the two valve branches. Every subsequent union still needs its audit.
+    """
+    if interpolation not in ('smooth', 'ruled', 'bounded-c1'):
+        raise ValueError('unknown trunk interpolation')
+    if interpolation != 'bounded-c1':
+        return loft(cad, api, stations, ruled=interpolation == 'ruled'), {
+            'method': interpolation, 'C1_claimed': False}
+    import build_bounded_c1_trunk as bounded
+    model = bounded.build_model(stations)
+    shape, quality = bounded.construct_native(model)
+    mathematical = bounded.analytic_report(model)
+    expected = mathematical['volume_by_exact_polynomial_integration_times_pi']
+    relative_error = abs(quality['signed_volume_adaptive_integration']-expected)/expected
+    if not math.isfinite(relative_error) or relative_error > 1e-7:
+        raise ValueError('C1 trunk disagrees with analytic volume integral')
+    return shape, {'method': interpolation, 'mathematical_model': mathematical,
+                   'native_quality': quality, 'volume_relative_error': relative_error,
+                   'branch_trunk_boolean_junction_C1_claimed': False}
+
+
 def bbox(api, shape):
     box=api['Bnd_Box'](); api['BRepBndLib'].AddOptimal_s(shape,box,False,False)
     return list(box.Get())
@@ -244,6 +268,8 @@ def run(args):
            'repair_report':args.repair_report,'module_build':args.module_build,
            'module_STEP':args.module_build.parent/'closed.step',
            'routing_source':Path(__file__),'module_source':Path(design.__file__)}
+    if args.trunk_interpolation == 'bounded-c1':
+        paths['bounded_trunk_source'] = Path(__file__).with_name('build_bounded_c1_trunk.py')
     hashes={key:sha(path) for key,path in paths.items()}
     if hashes['body']!=args.body_sha256 or hashes['interfaces']!=args.interfaces_sha256:
         raise ValueError('source hash mismatch')
@@ -304,7 +330,7 @@ def run(args):
         extension=dict(seeds[-1]); extension['center']=list(extension['center'])
         sign=seeds[-1]['normal'][1]
         extension['center'][1]=report['source_bbox_private'][4 if sign>0 else 1]+8*sign
-        trunk=loft(cad,api,seeds+[extension],ruled=args.trunk_interpolation=='ruled')
+        trunk,trunk_quality=make_trunk(cad,api,seeds+[extension],args.trunk_interpolation)
         branches=[]; records=[]
         for spec in design.valve_specs(p):
             if spec['kind']!=kind: continue
@@ -347,6 +373,7 @@ def run(args):
         # to cut the body or represented as a fabrication-ready export.
         banks[kind]=bank
         row={'kind':kind,'side':side,'seed_sections_private':seeds,'extension_private':extension,
+             'trunk_quality':trunk_quality,
              'branches':records,'stages':stages,'exports':exported,
              'body_cut_uses':'native_BRep_not_STEP_reimport',
              'volume_scan_units_cubed':cad.volume(bank)}
@@ -385,8 +412,8 @@ def main():
         parser.add_argument('--'+key,type=Path,required=True)
     for key in ('body-sha256','interfaces-sha256'):
         parser.add_argument('--'+key,required=True)
-    parser.add_argument('--trunk-interpolation',choices=('smooth','ruled'),default='smooth',
-                        help='trunk only; ruled retains C0 joins at every recorded section')
+    parser.add_argument('--trunk-interpolation',choices=('smooth','ruled','bounded-c1'),default='smooth',
+                        help='trunk only; historical smooth/ruled or bounded local C1 surface')
     args=parser.parse_args()
     resource.setrlimit(resource.RLIMIT_CPU,(1200,1210))
     output_preexisted=args.output.exists()
