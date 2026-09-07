@@ -1,0 +1,171 @@
+{
+  "schema": "porsche-additive-energy-public-summary-f58/v1",
+  "classification": "two_time_steps_local_AlSi10Mg_coupon_not_convergence_order_or_physical_validation",
+  "scope": {
+    "object": "coupon rectangulaire AlSi10Mg F50/F55, sans architecture de culasse",
+    "temperature_limit_k": 3300,
+    "physics": "Euler thermique explicite; absorption Kelly conservee; nOuterCorrectors=0",
+    "not_simulated": [
+      "culasse M64",
+      "carte CP1",
+      "hydrodynamique complete du bain",
+      "distorsion de construction complete"
+    ],
+    "coordinate_or_mesh_data_included": false,
+    "original_and_recomputed_private_reports_preserved": true
+  },
+  "provenance": {
+    "source_recomputed_report_sha256": "d8bbb8fd72db1f6e191614ed325e71cd6bd2f7ebf0dd6efe32463df25a4caf1d",
+    "prior_report_sha256": "afabeb547951c603cfed34bf6f92e17c08bf2a67a73572aedcbe4dc30962ea6a",
+    "postprocessor_sha256": "65d07baa7d0f4395849263c1fcd62e28a281ad406453c51fa7c1faeb2bd73824",
+    "additivefoam_revision": "9c05c5eb54db03faa342b14b0806efe740de8c44",
+    "source_repository": "https://github.com/ORNL/AdditiveFOAM",
+    "local_image_sha256": "a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "instrumented_solver_binary_sha256": "b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d",
+    "alsi10mg_material_card_sha256": "65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea",
+    "original_solver_source_pins_sha256": {
+      "additiveFoam.C": "206016ec961e2da24fd33fb481f97c7f48f8b4851b8239e5e83ddb2cefb74914",
+      "thermo/TEqn.H": "1f1058b95e0b64f99c3640180b3cda69e832d8e69ea026e261e7d9baa340d42b",
+      "thermo/thermoScheme.H": "03b6c8f10ba5a2fff5974ae00f926f5ebd02c7e3fbff2f7f04892b48a5ddf7fd"
+    },
+    "additional_source_readback_sha256": {
+      "thermo/thermoSource.H": "efab43bb4cd3f05b29eb326a2b2ead2508de43ff705bdf546ab7d58295a57b4f",
+      "updateProperties.H": "98e6e85e1a8cd2c10ee385864280a88ff6649d45e51148eeee47fd55b136da2a"
+    },
+    "instrumented_solver_source_sha256": {
+      "additiveFoam.C": "730691880ac985a6fa0f049e346061f037445abeb891416abf6c6e15c4ed0903",
+      "thermo/TEqn.H": "ad2d1ae4835078373dc5f9a37e48e775bc93385c835f4b2ef36b6404f2217d3b",
+      "thermo/thermoScheme.H": "03b6c8f10ba5a2fff5974ae00f926f5ebd02c7e3fbff2f7f04892b48a5ddf7fd",
+      "thermo/thermoSource.H": "efab43bb4cd3f05b29eb326a2b2ead2508de43ff705bdf546ab7d58295a57b4f",
+      "updateProperties.H": "98e6e85e1a8cd2c10ee385864280a88ff6649d45e51148eeee47fd55b136da2a"
+    },
+    "shared_configuration_sha256": {
+      "0/T": "a086c0bd1083378baef1c975dbc9bbb8f5d812a0ef8390f0194d6d11e9d52c8f",
+      "constant/heatSourceDict": "8109cbbe77cba6cf4f4e17eb9cb285aa7033bf3c6c6b199bdc487bea23bc8d4a",
+      "constant/scanPath": "106559b1ee5b48ee2e27569f3e91783e1f8e08f3ab6139bc615e985b5ec9a022",
+      "constant/transportProperties": "89929d92ed1b49e5204ed5d627f964a1424d1bf0d3b2cf5213c6a8dd1e6b3894",
+      "system/fvSchemes": "9b9d1f34192f909f2688f6909b1e42e1b4ec3960da824d990f2850c2fc306d3e",
+      "system/fvSolution": "4cc602c18a7c83813239e70139d52f4e1b29e7f574d03be06db120646b0ee489"
+    },
+    "cp_source_review": {
+      "method": "lecture complete des fichiers effectivement compiles",
+      "cp_updated_in": "updateProperties.H, avant inclusion de thermo/TEqn.H",
+      "cp_modified_inside_thermal_equation_or_its_includes": false,
+      "mixed_temperature_boundary_modifies_cp": false,
+      "interpretation": "Le stockage utilise le Cp retarde de l'assemblage, pas rho*Cp*T."
+    }
+  },
+  "energy_balance": {
+    "equation": "sensible_storage + latent_storage = boundary_diffusion_in + laser_in - advective_out - limiter_sink",
+    "residual_recomputed_from": "six component columns with math.fsum; logged residual only cross-checked",
+    "sensible_storage": "sum(rho*Cp_lagged*delta_T*V)/dt",
+    "latent_storage": "-sum(rho*Lf*delta_alpha_solid*V)/dt",
+    "boundary_flux": "integral of the actual conservative fvc::laplacian(kappa,T)",
+    "limiter": "actual implicit penalty, separate from physical losses",
+    "units": {
+      "time": "s",
+      "temperature": "K",
+      "integrated_energy": "J",
+      "instantaneous_power": "W",
+      "ratios": "dimensionless"
+    }
+  },
+  "cases": {
+    "dt": {
+      "time_step_s": 1e-7,
+      "control_dict_sha256": "df2275ea0cce8f7638056fc7b45b42f4ccad4225872c7aea64e7852c5ab22814",
+      "samples": 1200,
+      "time_series_complete": true,
+      "fatal_error_in_log": false,
+      "solver_exit_code": null,
+      "solver_exit_status_verified": false,
+      "final_time_s": 0.0001200000000000021,
+      "max_temperature_k": 3300.000000087125,
+      "temperature_cap_hit": true,
+      "integrated_terms": {
+        "sensible_storage_j": 0.02833105641610585,
+        "latent_storage_j": 0.003692309842920608,
+        "boundary_diffusion_in_j": 0.0038081647871890455,
+        "laser_in_j": 0.0315521920477391,
+        "advective_out_j": 0,
+        "limiter_sink_j": 0.0033369993239773543,
+        "equation_residual_j": 8.748075674777932e-9
+      },
+      "absolute_residual_energy_j": 1.1891973871089511e-8,
+      "relative_absolute_energy_residual": 3.7689850052562805e-7,
+      "residual_verification": {
+        "method": "independent_fsum_of_six_component_columns_before_integration",
+        "log_precision_significant_digits": 16,
+        "rounding_tolerance_formula": "absolute_w + relative * sum(abs(component_w))",
+        "rounding_tolerance_absolute_w": 1e-12,
+        "rounding_tolerance_relative": 5e-15,
+        "max_logged_recomputed_difference_w": 1.580957570125564e-13,
+        "all_logged_residuals_consistent": true
+      },
+      "log_sha256": "fd95a18b51c3e252f4e92d2625e62fe21b82b5ac66abbf6abc14877a5cf1a44c",
+      "manufacturing_authorized": false,
+      "limiter_fraction_of_absorbed_laser_energy": 0.10576125167241654
+    },
+    "dt_half": {
+      "time_step_s": 5e-8,
+      "control_dict_sha256": "92f24248fe6f13445528b507c5af994c983a92104447989dbe91b2b4eca3c2b8",
+      "samples": 2400,
+      "time_series_complete": true,
+      "fatal_error_in_log": false,
+      "solver_exit_code": null,
+      "solver_exit_status_verified": false,
+      "final_time_s": 0.0001200000000000025,
+      "max_temperature_k": 3300.000000043498,
+      "temperature_cap_hit": true,
+      "integrated_terms": {
+        "sensible_storage_j": 0.028340616150568886,
+        "latent_storage_j": 0.0036924011853044767,
+        "boundary_diffusion_in_j": 0.003806926488204504,
+        "laser_in_j": 0.03155754571464708,
+        "advective_out_j": 0,
+        "limiter_sink_j": 0.0033314726408661976,
+        "equation_residual_j": 1.7773887975129086e-8
+      },
+      "absolute_residual_energy_j": 2.420794184599513e-8,
+      "relative_absolute_energy_residual": 7.671047065855723e-7,
+      "residual_verification": {
+        "method": "independent_fsum_of_six_component_columns_before_integration",
+        "log_precision_significant_digits": 16,
+        "rounding_tolerance_formula": "absolute_w + relative * sum(abs(component_w))",
+        "rounding_tolerance_absolute_w": 1e-12,
+        "rounding_tolerance_relative": 5e-15,
+        "max_logged_recomputed_difference_w": 1.7141842144959701e-13,
+        "all_logged_residuals_consistent": true
+      },
+      "log_sha256": "27f3733c41e8e4d448c94b6e3979a776164f43c7b01732f7bfc449b125d8f1bf",
+      "manufacturing_authorized": false,
+      "limiter_fraction_of_absorbed_laser_energy": 0.10556817919208249
+    }
+  },
+  "relative_dt_pair_differences": {
+    "sensible_storage_j": 0.0003373156889831027,
+    "latent_storage_j": 0.000024737935908056157,
+    "boundary_diffusion_in_j": 0.0003252752550851966,
+    "laser_in_j": 0.00016964775893503635,
+    "advective_out_j": 0,
+    "limiter_sink_j": 0.001658930961450042
+  },
+  "process_exit_evidence": {
+    "parser_infers_exit_code_from_time_series": false,
+    "parser_exit_codes_preserved_as_null": true,
+    "zero_exit_codes_documented_elsewhere": "observations des outils lors des executions initiales, separees du parseur et de ce recu",
+    "machine_readable_process_exit_receipt_included": false
+  },
+  "limitations": [
+    "La fermeture de l'equation discrete ne valide pas la physique du procede.",
+    "Les deux pics sont ecretes a 3300 K; ils ne prouvent pas la convergence de temperature.",
+    "Deux pas de temps ne determinent ni ordre de convergence ni convergence spatiale.",
+    "Le limiteur retire environ 10,6 % de l'energie laser absorbee.",
+    "Absorption et donnees fournisseur non calibrees; aucune qualification CP1 ou culasse M64.",
+    "Aucun droit de fabrication, de demarrage ou de transfert a une carte solveur industrielle."
+  ],
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "M64_head_simulated": false,
+  "supplier_recipe_calibrated": false
+}

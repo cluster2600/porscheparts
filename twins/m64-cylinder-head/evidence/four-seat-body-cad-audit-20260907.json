@@ -1,0 +1,160 @@
+{
+  "schema": "m64-four-seat-body-cad-audit-public/v1",
+  "date": "2026-09-07",
+  "status": "body_kernel_checks_passed_functional_integration_incomplete",
+  "source_classification": "private_935_scan_derived_F43_research_body_not_certified_M64_geometry",
+  "target": "M64_turbo_964_993_research",
+  "publication_boundary": {
+    "numeric_results_and_hashes_only": true,
+    "raw_scan_included": false,
+    "private_CAD_included": false,
+    "derived_images_included": false,
+    "private_coordinates_or_face_identifiers_included": false,
+    "source_reports_verified_against_exact_bytes": true
+  },
+  "artifacts_sha256": {
+    "source_F43_body": "00c26d32820b23b3589beb7b26d34bc3eb176a89000b9374ffdbe334278b41ef",
+    "source_V2_closed_module": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+    "four_seat_body_before_pcurve_repair": "79a8f3efe897f408da8e3a9820229df9bf712a0534992dfb120b8d10c7d8121c",
+    "four_seat_body_final": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "closed_body_plus_twelve_components_assembly": "33a420f9413e55d21417d71840fbf977adafab897d41a22798922cdb4c15d231",
+    "build_report": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+    "targeted_pcurve_report": "c01c7568f15066cd89cba2516941705f14b66aadfdf32d00a58cdd34ac203d10",
+    "comparison_and_lift_report": "389ad32984bdf7fd3dc2ca0d4eae28e5aa549911e6515bdf400cc790d1e4e9a1"
+  },
+  "source_integrity": {
+    "F43_master_sha256_unchanged": true,
+    "V2_module_sha256_unchanged": true,
+    "previous_single_seat_candidate_preserved": true
+  },
+  "registration_hypotheses": {
+    "scale_scan_units_per_module_mm": 1.0,
+    "rotation_Z_degrees": -90.0,
+    "translation_Z_scan_units": 3.0,
+    "certified_engine_registration": false,
+    "absolute_scale_certified": false,
+    "length_unit_for_body_results": "scan_unit",
+    "global_envelope_replacement_performed": false,
+    "outer_skin_unchanged_claimed": false
+  },
+  "nominal_tools": {
+    "counterbore_count": 4,
+    "guide_bore_count": 4,
+    "intake_counterbore_diameter_module_mm": 43.0,
+    "exhaust_counterbore_diameter_module_mm": 36.0,
+    "guide_bore_diameter_module_mm": 11.0,
+    "guide_bores_continue_above_insert_engagement": true,
+    "cold_interference_selected": false,
+    "conical_contact_is_between_insert_and_valve_not_body_counterbore": true
+  },
+  "body_change_from_F43": {
+    "source_volume_scan_units_cubed": 1498102.2282409677,
+    "cut_body_before_repair_volume_scan_units_cubed": 1427076.3878966784,
+    "global_bbox_max_delta_scan_units": 2.3447910280083306e-12,
+    "bbox_agreement_does_not_prove_unchanged_skin": true
+  },
+  "removed_surface_patch_screen": {
+    "method": "boolean_source_face_history_and_face_tool_intersection_with_conservative_axial_bbox_projection",
+    "scope": "source_surface_patches_outside_global_flat_caps",
+    "total_patch_count": 54,
+    "distinct_physical_hole_count": null,
+    "patch_count_is_not_hole_count": true,
+    "per_axis": [
+      {"axis": "intake_1", "patch_count": 26, "area_scan_units_squared": 270.45790524380106},
+      {"axis": "intake_2", "patch_count": 0, "area_scan_units_squared": 0.0},
+      {"axis": "exhaust_1", "patch_count": 0, "area_scan_units_squared": 0.0},
+      {"axis": "exhaust_2", "patch_count": 28, "area_scan_units_squared": 258.61484727733824}
+    ],
+    "patches_entirely_above_actual_guide_engagement": 54,
+    "patches_overlapping_guide_engagement_interval": 0,
+    "patches_overlapping_seat_engagement_interval": 0,
+    "eight_seat_and_guide_inserts_fully_inside_original_body_by_volume": true,
+    "seat_or_guide_material_shortage_demonstrated": false,
+    "upper_openings_functionally_accepted": false,
+    "interpretation": "Les portions retirées au-dessus des guides peuvent relever du futur espace de distribution. Leur fonction et leur fermeture éventuelle restent à définir."
+  },
+  "pcurve_repair": {
+    "initial_checker_scope": "curve_on_surface_only_not_full_BOP",
+    "initial_invalid_curve_on_surface_count": 5,
+    "initial_max_native_error_scan_units": 1.1042325702342555e-5,
+    "modified_pcurves": 5,
+    "method": "analytic_cylinder_projection_cubic_UV_interpolation_129_nodes_with_exact_unscaled_endpoint_derivatives",
+    "unconstrained_endpoint_interpolation_rejected": true,
+    "support_surfaces_or_3D_edge_curves_intentionally_modified": false,
+    "global_shape_healing_performed": false,
+    "all_tolerance_arrays_identical_in_memory_before_after_repair": true,
+    "sample_points_per_corrected_pcurve": 2001,
+    "maximum_sampled_new_curve_surface_error_scan_units": 5.181639578400948e-8,
+    "sampled_error_is_not_continuous_supremum_bound": true
+  },
+  "final_body_kernel_checks": {
+    "BRep_valid_before_STEP": true,
+    "BRep_valid_after_STEP": true,
+    "BOP_after_STEP": {
+      "modes": ["self_intersection", "small_edge", "face_rebuild", "continuity", "curve_on_surface"],
+      "has_faulty": false,
+      "has_error": false,
+      "has_warning": false,
+      "result_count": 0
+    },
+    "unique_subshape_counts": {"solid": 1, "shell": 1, "face": 5130, "edge": 10412, "vertex": 5286},
+    "edge_classification": {
+      "closed_surface_seams": 8,
+      "degenerated_edges": 0,
+      "free_edges": 0,
+      "two_face_manifold_edges": 10404,
+      "nonmanifold_edges": 0
+    },
+    "checks_apply_to_body_not_complete_assembly": true
+  },
+  "before_after_repair_STEP_comparison": {
+    "all_subshapes_compared": true,
+    "geometric_comparison_is_sampled_not_Hausdorff_supremum": true,
+    "edge_sample_points_each": 17,
+    "face_sample_points_each": 9,
+    "vertex_max_distance_scan_units": 0.0,
+    "edge_sampled_max_distance_scan_units": 2.29324847243167e-12,
+    "face_sampled_max_distance_scan_units": 2.7084636475004115e-13,
+    "global_bbox_max_delta_scan_units": 5.684341886080802e-14,
+    "volume_before_scan_units_cubed": 1427076.3878966784,
+    "volume_after_scan_units_cubed": 1427076.3879131183,
+    "volume_delta_scan_units_cubed": 1.643993891775608e-5,
+    "strict_geometric_identity_claimed": false,
+    "tolerance_increase_count_all_vertices_edges_faces": 0,
+    "tolerance_decrease_counts": {"vertex": 4, "edge": 3, "face": 0},
+    "minimum_tolerance_delta_scan_units": -4.363875619702055e-8
+  },
+  "assembly_and_discrete_body_collision_screen": {
+    "components_imported_from_exact_V2_STEP": 12,
+    "component_identification": "unique_volume_and_bbox_match_to_V2_definitions",
+    "component_counts": {"valve": 4, "seat": 4, "guide": 4},
+    "exported_assembly_solid_count": 13,
+    "native_common_volume_method": true,
+    "closed_cut_body_component_checks": 12,
+    "closed_cut_body_component_nonzero_intersection_count": 0,
+    "repaired_body_valve_discrete_checks": 8,
+    "repaired_body_valve_nonzero_intersection_count": 0,
+    "valve_lifts_tested_scan_units_under_scale_hypothesis": {
+      "intake_1": [0.0, 11.5], "intake_2": [0.0, 11.5],
+      "exhaust_1": [0.0, 9.6], "exhaust_2": [0.0, 9.6]
+    },
+    "simultaneous_maximum_body_intersections": "Same four pairwise maximum-lift results apply to the fixed body; no additional coupled assembly run was performed.",
+    "seat_and_guide_fixed": true,
+    "valve_valve_intersections_recomputed_in_this_screen": false,
+    "continuous_sweep_checked": false,
+    "cam_timing_or_piston_checked": false,
+    "nominal_contact_is_not_interference_fit_qualification": true
+  },
+  "release_gates": {
+    "complete_four_valve_head": false,
+    "M64_fitment_validated": false,
+    "ports_and_final_combustion_chamber_defined": false,
+    "cam_carrier_springs_and_full_distribution_defined": false,
+    "oil_galleries_and_threads_defined": false,
+    "cold_and_hot_insert_fits_qualified": false,
+    "thermal_or_structural_validation_performed_in_this_screen": false,
+    "LPBF_process_validated_on_this_body": false,
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false
+  }
+}

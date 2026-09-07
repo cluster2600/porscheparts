@@ -246,7 +246,10 @@ class M64JobTests(unittest.TestCase):
             self.w.m64_verified_ssh("synthetic", self.manifest, collecting=True)
 
     def test_transport_and_rescue_prefer_provider_direct_pair_with_strict_knownhost(self):
-        metadata = dict(self.metadata(), public_ipaddr="1.1.1.1", ports={"22/tcp": [{"HostPort": "32001"}]})
+        metadata = dict(self.metadata(), public_ipaddr="1.1.1.1", ports={"22/tcp": [
+            {"HostIp": "::", "HostPort": "32002"},
+            {"HostIp": "0.0.0.0", "HostPort": "32001"},
+        ]})
         self.mock_verified_dependencies(metadata)
         for collecting in (False, True):
             with self.subTest(collecting=collecting):
