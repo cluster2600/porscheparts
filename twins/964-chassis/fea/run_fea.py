@@ -81,6 +81,10 @@ LIMITE = float(os.environ.get('CCX_TIMEOUT', '600'))
 SOLVERS = [("", "spooles"), (", SOLVER=ITERATIVE CHOLESKY", "iterative_cholesky")]
 if os.environ.get('CCX_SOLVER') == 'iterative':
     SOLVERS = SOLVERS[1:]
+elif os.environ.get('CCX_SOLVER') == 'direct':
+    # Sans repli : l'appelant a une meilleure carte a jouer que le solveur
+    # iteratif, par exemple rejouer le cas sur un maillage a peine different.
+    SOLVERS = SOLVERS[:1]
 for kw, solver in SOLVERS:
     write_inp(kw)
     for ext in ('.frd', '.dat', '.sta', '.cvg', '.12d'):
