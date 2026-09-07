@@ -100,8 +100,12 @@ def run_case(p, order, env_base):
     # parametre du cas : le decaler est licite, l'abandonner ne l'est pas. Ce qui
     # ne l'etait pas non plus etait de perdre ainsi 2 % des cas, tous de la meme
     # famille d'architectures : un trou oriente, que le substitut apprendrait.
+    # Un cas du corpus S6 a resiste aux trois premieres finesses et cede a 1,01 :
+    # l'echelle va donc dans les deux sens. Elle s'arrete a 2 % parce qu'au-dela
+    # la valeur bouge — a 0,95 le meme cas rend 3,5 % de plus, ce n'est plus le
+    # meme calcul mais un autre maillage.
     for lc, mode in (('1.0', 'direct'), ('0.99', 'direct'), ('0.98', 'direct'),
-                     ('1.0', '')):
+                     ('1.01', 'direct'), ('1.02', 'direct'), ('1.0', '')):
         env['CCX_SOLVER'] = mode
         r = subprocess.run([PY, 'build_body.py', f"{p['t']:.4f}", p['features'], lc, str(order)],
                            capture_output=True, text=True, env=env, cwd=HERE)

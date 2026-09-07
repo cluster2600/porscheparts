@@ -115,11 +115,17 @@ def main():
     if not somme_ok:
         sys.exit(1)
 
-    # L'exposant de t doit valoir 1 : la loi d'echelle lineaire en epaisseur est
-    # le resultat le plus robuste du dossier. Le corpus doit la contenir.
+    # L'exposant de t departage deux mecanismes : une raideur de membrane ou de
+    # poutre a paroi mince varie comme t, une flexion de plaque comme t au cube.
+    # En coques lineaires il vaut exactement 1,00 ; en quadratiques 1,10 environ,
+    # la flexion des panneaux apportant un terme en t^3 faible mais reel. Une
+    # linearite exacte etait donc une propriete de l'element, pas de la structure.
     et = [expo[f]['t'] for f in expo]
     print(f"   exposant de t : de {min(et):.3f} a {max(et):.3f} — "
-          f"la loi lineaire en epaisseur est {'presente' if max(abs(np.array(et)-1))<0.05 else 'ABSENTE'}.")
+          + ("proche de 1, la raideur suit l'epaisseur et non son cube."
+             if max(et) < 1.5 else
+             "trop loin de 1 : la flexion de plaque domine, ce qui contredit "
+             "tout le dossier et demande une explication avant tout usage."))
 
     ouvert, ferme = expo.get('f'), expo.get(feats[-1])
     if ouvert and ferme:
