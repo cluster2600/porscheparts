@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+  "name": "Crochet de réparation du ressort de lampe, concept F0 aluminium",
+  "description": "Concept indépendant de crochet creux destiné à étudier une réparation additive du support de ressort de lampe d'un phare 993. Une offre commerciale prouve l'usage réel de l'impression métal pour cette fonction, mais aucune cote publique n'autorise à présenter ce F0 comme sa copie ou comme une pièce ajustée.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_headlamp_application_declared_by_vendor_to_confirm"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "lighting_repair",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, LPBF et mécanique d'un concept de réparation ; aucun montage ni maintien de lampe autorisé"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "parts/993-elec-headlamp-spring-hook-f0-0001/source/headlamp_spring_hook.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-elec-headlamp-spring-hook-f0-0001/derived/headlamp_spring_hook_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photo ni géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "Roadster-Fashion - Crochet imprimé de ressort de phare pour 993",
+        "url": "https://shop.roadster-fashion.de/de/reparaturteil-federhaken-am-scheinwerfer.html",
+        "source_type": "manufacturer",
+        "license": "commercial-product-page-site-terms-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Le fabricant déclare une fabrication 3D en aluminium ou inox, un montage sur le reste du crochet par collage haute température et une possibilité M3 si la base est cassée. Les images servent uniquement à comprendre la fonction ; aucune cote ni géométrie n'est copiée. Voir SRC-ROADSTER-FASHION-993-HEADLAMP-HOOK."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-04",
+        "notes": "Référence ambiante de criblage seulement ; la carte chaude, la machine, l'orientation et les paramètres restent à qualifier. Voir SRC-EOS-ALSI10MG-MATERIAL-DATA."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "CNC"],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "aluminium LPBF candidat",
+      "grade": "AlSi10Mg de criblage, non attribué à la pièce commerciale",
+      "standard": "ASTM F3318-18 à contractualiser si le concept progresse"
+    },
+    "post_processing": [
+      "retrait des supports hors cavité",
+      "ébavurage contrôlé de la gorge de ressort",
+      "traitement thermique lié à la machine et au jeu de paramètres",
+      "finition de la surface de collage sans arrondir les datums futurs"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, orientation et lot traçables",
+      "coupon témoin dans l'orientation critique du bras",
+      "CT ou radiographie de la racine et contrôle dimensionnel",
+      "rapport de rugosité dans la gorge",
+      "essais thermiques, vibratoires et de maintien avant véhicule"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "À étudier entre aluminium imprimé, support de phare et fixation seulement après identification des matériaux réels."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-roadster-fashion-993-headlamp-hook.json",
+      "parts/993-elec-headlamp-spring-hook-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Toutes les cotes du F0 sont des variables de conception indépendantes et non des mesures du produit ou du phare.",
+      "Le cas à 30 N et 100 K est synthétique et ne représente pas une charge ou température 993 mesurée.",
+      "La vérification élastique utilise une carte AlSi10Mg ambiante et ignore défauts LPBF, entailles, fatigue et température.",
+      "La liaison collée n'a aucune résistance admissible tant que colle, préparation, jeu et cycle thermique ne sont pas qualifiés.",
+      "Le STEP prouve seulement une géométrie calculable ; il ne doit être ni imprimé pour montage ni installé dans un phare."
+    ]
+  }
+}
