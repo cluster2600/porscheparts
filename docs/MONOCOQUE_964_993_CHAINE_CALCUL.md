@@ -160,13 +160,21 @@ que du bruit.
 
 **Les deux cas perdus sont instructifs.** Tous deux sont des `fbtap` — la cage
 ouverte : pieds milieu et brancards sans cadre de baie ni pavillon pour fermer a
-l'avant. CalculiX s'y interrompt en pleine factorisation, sans message, signature
-d'un systeme quasi singulier. Ce n'est pas un hasard de tirage : c'est
-exactement l'architecture dont `body_study.py` mesure un apport nul, et la seule
-ou une non-reproductibilite de 0,9 % avait ete observee. **Un quasi-mecanisme se
-calcule mal parce qu'il est un quasi-mecanisme.** Deux echecs sur 136 cas
-`fbtap`, soit 0,2 % du corpus : sans consequence sur l'apprentissage, mais a ne
-pas prendre pour du bruit numerique.
+l'avant. CalculiX s'y interrompt en pleine factorisation, sans message, ce qui a
+d'abord ete lu comme la signature d'un systeme quasi singulier — un
+quasi-mecanisme qui se calcule mal parce qu'il est un quasi-mecanisme.
+
+**Cette lecture etait fausse**, et le corpus elargi l'a montre : sur 3000 cas,
+onze echecs, tous `fbtap` a nouveau. Le message existait, mais partait sur
+`stderr`, que `run_fea.py` n'affichait pas. Il dit `fatal error in
+GPart_makeYCmap / bad input` : c'est le **partitionneur de graphe de SPOOLES**
+qui echoue, pas le systeme qui est singulier. C'est deterministe, insensible au
+nombre de fils, et le solveur iteratif de CalculiX resout ces memes cas en une
+dizaine de secondes — ce qu'il ne ferait pas d'un systeme reellement singulier.
+Reste vrai que l'architecture, elle, n'est pas tiree au hasard : c'est bien la
+topologie de la cage ouverte qui met le partitionneur en defaut.
+
+Avec le repli de solveur, le corpus est complet : **3000 cas ecrits, zero echec**.
 
 **Point pour la passe d'entrainement :** le nombre de noeuds varie d'un cas a
 l'autre, de 2 389 a 7 461. C'est precisement pourquoi l'exemple crash de
@@ -176,6 +184,55 @@ soit uniformiser le maillage, ce qui appauvrirait le corpus.
 Les sections `ASSUMED` de `build_body.py` sont desormais surchargeables par
 l'environnement (`BODY_SILL_H`, `BODY_TUN_W`...). Sans surcharge, les valeurs
 publiees sont inchangees : le cas de reference redonne bien 2442 N.m/deg.
+
+### Corpus elargi du 2026-09-07, et ce que son audit a trouve
+
+Le corpus a ete refait a 3000 cas apres que le plan d'experiences eut ete corrige
+sur deux points (decouplage de G, refus d'une reprise incoherente). Il a ensuite
+ete **audite avant tout entrainement**, par `fea/corpus_audit.py`, et l'audit a
+coute moins d'une minute de CPU pour ce qu'il a rapporte.
+
+| grandeur | valeur |
+|---|---|
+| cas demandes / ecrits | 3000 / **3000**, zero echec |
+| duree | 1 h 48, quatre coeurs de machine de bureau |
+| raideur K | 376 a 44 242 N.m/deg, mediane 5826 |
+| noeuds par cas | 2 402 a 7 530 |
+| repartition sur sept architectures | 394 a 442 cas, aucun ecart > 2 sigma |
+
+**Trois controles passent.** L'exposant `d ln K / d ln t` vaut 1,00 sur les sept
+architectures : la loi d'echelle lineaire en epaisseur est bien dans le corpus.
+La somme `d ln K / d ln E + d ln K / d ln G` vaut 1,000 partout, comme l'exige
+l'homogeneite de degre 1 de l'elasticite lineaire — un controle, pas un
+ajustement. Et l'exposant de G monte de 0,364 sur le plancher nu a 0,631 sur la
+cellule fermee : le changement de mecanisme est present.
+
+**Un controle rate, et c'est le plus important.** Cette montee de l'exposant de G
+devrait partir de **zero** sur le plancher nu, puisque `dominance_study.py` y
+mesure +2,1 % en doublant G. Elle part de 0,364. La cause n'est pas le corpus
+mais l'element : le corpus est en **S3 lineaires**, `dominance_study.py` en **S6
+quadratiques**, et les S3 attribuent au cisaillement une part de la raideur qui
+revient a la flexion. Le README du dossier FEA chiffre l'ecart architecture par
+architecture. Un substitut entraine sur ce corpus apprendrait donc, sur les
+architectures ouvertes, une repartition flexion / cisaillement fausse — celle-la
+meme que le decouplage de G avait pour but de lui enseigner.
+
+**Le corpus contient aussi des valeurs simplement fausses.** L'ajustement
+log-lineaire a signale un cas aberrant ; rejoue, il rend 4422 N.m/deg au lieu des
+39 269 stockes. Sur 65 cas rejoues au total, deux divergent — l'un d'un facteur
+9, l'autre de 2,4 %. Le champ de deplacement stocke est coherent avec la raideur
+stockee dans les deux cas : ils viennent du meme solve rate, et **aucun controle
+interne ne peut les voir**. `fea/corpus_repair.py` rejoue le corpus et ne
+remplace une valeur que si deux calculs independants s'accordent contre elle.
+
+**Le lot de validation est gele** (`corpus/split.json`, 450 cas sur 3000,
+stratifie par architecture, graine 20260907). Il a ete tire avant qu'aucun
+substitut n'existe, ce qui est le seul moment ou cela veut dire quelque chose :
+un lot de test choisi apres coup est une note qu'on se donne a soi-meme.
+
+**Un corpus en S6 est en cours de generation** (`corpus_s6`, meme graine et meme
+plan, donc comparable cas par cas). C'est lui qui servira a l'entrainement ; le
+corpus S3 reste comme terme de comparaison sur l'effet de l'ordre d'element.
 
 **Reste a faire quand l'acces GPU sera la** — et rien de tout cela n'est bloquant
 aujourd'hui : conversion du corpus vers VTP ou Zarr par PhysicsNeMo-Curator,
@@ -206,7 +263,7 @@ argument structurel.
 |---|---|---|---|
 | raideur, drapage, architecture | CalculiX | non | rien — **disponible maintenant** |
 | plan d'experiences, corpus | CalculiX en parallele | non | parametrisation figee |
-| **generation du corpus** | **CalculiX, CPU** | **non** | **fait le 2026-09-07 : 998 cas, 126 Mo** |
+| **generation du corpus** | **CalculiX, CPU** | **non** | **fait le 2026-09-07 : 3000 cas S3 audites, corpus S6 en cours** |
 | substitut de conception | PhysicsNeMo | oui, Vast.ai | corpus + smoke GPU du conteneur |
 | choc | OpenRadioss | non | geometrie, donc M1 |
 | correlation choc | essais physiques | — | rien ne les remplace |

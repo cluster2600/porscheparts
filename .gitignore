@@ -41,4 +41,9 @@ twins/964-chassis/fea/*.cvg
 twins/964-chassis/fea/*.12d
 twins/964-chassis/fea/spooles.out
 # Corpus de plan d'experiences : volumineux et regenerable depuis son manifeste.
-twins/964-chassis/fea/corpus*
+# Le motif ne vise que les repertoires et les journaux : `corpus*` sans plus
+# masquait aussi corpus_audit.py et corpus_repair.py, qui doivent etre versionnes.
+twins/964-chassis/fea/corpus*/
+twins/964-chassis/fea/corpus*.log
+# Repertoires de travail des campagnes : fichiers du solveur, regenerables.
+twins/964-chassis/fea/work_*

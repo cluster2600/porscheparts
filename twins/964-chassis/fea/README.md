@@ -294,6 +294,11 @@ cloison arriere. Ils ajoutent 7,5 kg et aucun chemin d'effort ferme.
 seul element a fermer un anneau : tablier, montants A, traverse haute,
 brancards, pieds milieu, montant arriere.
 
+Cette phrase-la est fausse, et la section « L'ordre d'element » plus bas dit
+pourquoi : en coques quadratiques, le meilleur rendement au kilo est celui du
+tunnel central, pas celui du cadre de baie. Ce qui reste vrai du paragraphe est
+le reste : l'anneau ferme, et le pavillon seul ne paie pas.
+
 Cette lecture est une hypothese topologique, donc elle se refute.
 `ring_study.py` ajoute pavillon et cadre de pare-brise **separement** a la meme
 cage ouverte, a trois finesses de maillage :
@@ -319,3 +324,106 @@ c'est precisement une baie vitree qui fait qu'un anneau de caisse reel est moins
 ferme que celui-ci. Le modele n'est pas non plus converge en maillage : la
 raideur absolue baisse encore de 4 % au dernier raffinement. Ce qui est
 exploitable est le **classement** et les rapports, pas les valeurs.
+
+## L'ordre d'element change les conclusions, pas seulement les valeurs
+
+Tout ce qui precede est calcule en triangles **lineaires S3**. Les stratifies
+composites, eux, ont ete calcules en **S6 quadratiques**, parce que CalculiX
+l'exige pour `*SHELL SECTION, COMPOSITE`. Les deux moities du dossier n'etaient
+donc pas comparables, et personne ne l'avait verifie.
+
+`run_fea.py` lit desormais l'ordre dans le maillage et ecrit des elements S6
+quand le maillage est quadratique. La meme geometrie, le meme chargement et le
+meme depouillement peuvent enfin etre passes dans les deux ordres.
+
+| architecture | masse | S3 | S6 | ecart |
+|---|---|---|---|---|
+| plancher, longerons, traverses | 27,7 kg | 2442 | **1436** | -41 % |
+| + tablier et cloison arriere | 35,2 kg | 3147 | 1550 | -51 % |
+| + tunnel central | 40,2 kg | 5371 | 3857 | -28 % |
+| + passages de roue | 45,0 kg | 6866 | 5227 | -24 % |
+| + pieds milieu et brancards | 52,4 kg | 6859 | 5240 | -24 % |
+| + pavillon | 63,0 kg | 6925 | 5264 | -24 % |
+| + cadre de pare-brise | 64,1 kg | 9093 | 5415 | -40 % |
+
+Les S3 sont trop raides, et **ils le sont inegalement**. La ou la flexion domine
+— le plancher nu — ils surestiment de 70 %. La ou le cisaillement domine, l'ecart
+tombe. Ce n'est pas un defaut de finesse de maillage : raffiner en S3 fait
+descendre K de 2442 a 1750 sans converger, tandis que le S6 rend 1436 des la
+finesse la plus grossiere. **C'est l'ordre de l'element, pas le pas du maillage.**
+
+### Ce que cela detruit
+
+`dominance_study.py` etait deja en S6, et c'est ce qui a permis de voir le
+probleme : sur le plancher nu il mesure +2,1 % en doublant G, la ou le meme
+modele en S3 en mesure +36,6 %. Verifie avec `run_fea.py`, qui redonne bien
++2,3 % en S6 et +93,5 % en doublant E. **Les S3 attribuent au cisaillement une
+part de la raideur qui revient a la flexion**, precisement sur les architectures
+ouvertes.
+
+Tombe donc, en plus de la phrase corrigee plus haut : le **rendement au kilo du
+cadre de pare-brise**. En S6, l'echelle cumulee donne +151 N.m/deg pour 1,11 kg,
+soit +136 par kg, contre +2307 pour 5,01 kg au tunnel central, soit **+460 par
+kg**. Le meilleur rendement au kilo du dossier est celui du tunnel, dans les deux
+ordres pour ce qui est de l'absolu, et en S6 aussi pour ce qui est du kilo.
+
+### Ce que cela laisse debout
+
+Les trois conclusions de topologie tiennent, et l'une d'elles au chiffre pres.
+
+| resultat | S3 | S6 |
+|---|---|---|
+| pavillon seul ajoute a la cage ouverte | +66 (+6/kg) | +24 (**+2/kg**) |
+| cadre de baie seul ajoute a la meme cage | +1321 (+1190/kg) | +83 (**+75/kg**) |
+| rapport des rendements au kilo | 191x | **33x** |
+| les deux ensemble / somme des deux seuls | 1,6x | **1,63x** |
+
+Le pavillon seul ne paie pas, le cadre de baie paie beaucoup plus, et les deux
+ensemble valent plus que leur somme parce que le pavillon ne travaille qu'une
+fois l'anneau ferme. La synergie de 1,6 se retrouve a la troisieme decimale dans
+un ordre d'element ou tout le reste a bouge de 25 a 50 % : c'est bien un
+resultat de topologie.
+
+Tient aussi le rapport d'ensemble du plancher nu a la cellule fermee : x 3,7 en
+S3, **x 3,77 en S6**.
+
+### Ce qu'il faut en retenir pour la suite
+
+Aucune valeur absolue du dossier n'etait exploitable, et cela etait deja ecrit.
+Ce qui est nouveau est qu'un **classement** — celui des rendements au kilo — ne
+l'etait pas non plus. Les rapports qui survivent au changement d'ordre sont ceux
+qui portent sur la topologie ; ceux qui portent sur la repartition flexion /
+cisaillement ne survivent pas.
+
+    pycad build_body.py 0.8 f 1.0 2 && pycad run_fea.py 0.8 s6
+
+## Un quatrieme garde-fou, et un repli de solveur
+
+Deux defauts trouves en auditant le corpus du plan d'experiences, tous deux du
+meme genre que les precedents : ils produisaient un resultat au lieu d'une erreur.
+
+**SPOOLES echoue sur certaines geometries, et son message ne sortait pas.**
+Onze cas du corpus etaient perdus « sans message », ce qui avait ete lu comme la
+signature d'un systeme quasi singulier. C'en est une autre : le solveur direct
+meurt dans son partitionnement de graphe avec `fatal error in GPart_makeYCmap /
+bad input`, message qu'il ecrit sur `stderr` — que `run_fea.py` n'affichait pas.
+C'est deterministe, insensible au nombre de fils, et le solveur iteratif de
+CalculiX passe sur ces memes cas. `run_fea.py` bascule donc sur lui en repli,
+sans jamais s'en servir par defaut. Controles : le cas de reference rend toujours
+2442 N.m/deg, et la ou SPOOLES aboutit les deux solveurs s'accordent a 0,04 %.
+
+**Deux campagnes lancees en parallele se partageaient `mesh.npz`.** Elles se
+seraient contaminees en silence, et une mesure de cette session l'a effectivement
+ete avant que l'on comprenne pourquoi : un rejeu de cas lisait le maillage d'une
+autre campagne en cours. `build_body.py` et `run_fea.py` acceptent desormais un
+repertoire de travail par la variable `FEA_WORK`, et `doe_corpus.py` en cree un
+par campagne. Sans surcharge, rien ne change.
+
+**Le solveur se trompe parfois, et se trompe en silence.** Sur 65 cas du corpus
+rejoues a l'identique, 63 redonnent le chiffre stocke a la decimale et deux non :
+l'un a 2,4 %, l'autre d'un facteur 9. Le champ de deplacement stocke est
+parfaitement coherent avec la raideur stockee dans les deux cas, parce que les
+deux viennent du meme solve rate : **aucun controle interne ne peut les voir**.
+Seule la repetition les trouve. `corpus_repair.py` rejoue le corpus cas par cas
+et ne remplace une valeur que si deux calculs independants s'accordent contre
+elle.
