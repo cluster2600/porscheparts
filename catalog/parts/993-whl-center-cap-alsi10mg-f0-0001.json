@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-WHL-CENTER-CAP-ALSI10MG-F0-0001",
+  "name": "Cache-moyeu 993, concept AlSi10Mg F0 sans blason",
+  "description": "Concept indépendant de cache-moyeu métallique à quatre languettes intégrées pour cribler une petite série LPBF. PorscheFanatics confirme l'identité et le statut PET historique ; partworks publie trois dimensions et déclare que l'original est en plastique.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_wheel_fitment_to_confirm"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": ["99336130307", "9933613030761M"]
+  },
+  "classification": {
+    "category": "wheel_center_cap",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, clipsage, centrifugation, thermique et DfAM ; aucun montage routier autorisé"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-whl-center-cap-alsi10mg-f0-0001/derived/wheel_center_cap_alsi10mg_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept neutre, le script et les calculs ; aucun blason, logo, photographie ou modèle commercial redistribué",
+    "sources": [
+      {
+        "title": "PorscheFanatics - registre historique des références supprimées",
+        "url": "https://porschefanatics.com/oem/discontinued/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Identifie 993 361 303 07 comme hub cap avec statut PET historique U ; la disponibilité actuelle y reste inconnue. Voir SRC-PORSCHEFANATICS-993-WHEEL-CENTER-CAP-STATUS."
+      },
+      {
+        "title": "partworks - cache-moyeu original 993",
+        "url": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+        "source_type": "manufacturer",
+        "license": "commercial-retailer-page-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Déclare plastique, diamètre extérieur 76 mm, diamètre intérieur 60 mm et hauteur 46 mm. Ces valeurs sont une enveloppe commerciale, pas la définition des clips. Voir SRC-PARTWORKS-993-WHEEL-CENTER-CAP-DIMENSIONS."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Référence procédé et composition seulement ; les constantes mécaniques F0 sont génériques. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "MJF", "SLS", "CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "aluminium LPBF candidat",
+      "grade": "AlSi10Mg de criblage ; original commercial déclaré en plastique",
+      "standard": "ASTM F3318 à contractualiser si la voie métal survit aux essais"
+    },
+    "post_processing": [
+      "retrait des supports avec volume intérieur ouvert",
+      "traitement thermique qualifié pour préserver la flexibilité des languettes",
+      "finition des surfaces de clipsage et arêtes",
+      "anodisation après contrôle dimensionnel",
+      "face avant laissée neutre sans marque Porsche"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "coupon de flexion dans l'orientation des languettes",
+      "contrôle CT ou radiographique des racines de languettes",
+      "contrôle dimensionnel de la bague et des quatre clips",
+      "rugosité, arrondis, porosité et fatigue contractualisés",
+      "essais d'insertion, arrachement, rotation, choc et cycles thermiques"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Compatibilité aluminium du cache, alliage réel de roue, revêtement et milieu salin à qualifier."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-wheel-center-cap-status.json",
+      "catalog/sources/src-partworks-993-wheel-center-cap-dimensions.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-whl-center-cap-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seuls Ø76, Ø60, hauteur 46 mm et plastique viennent de la fiche commerciale ; toutes les interfaces sont hypothétiques.",
+      "Le remplacement du plastique par AlSi10Mg change masse, compliance, fatigue et corrosion ; aucune équivalence n'est revendiquée.",
+      "Les cas 0,4 mm, coefficient 0,30, 250 km/h, 20 g et +120 K sont synthétiques.",
+      "Le modèle n'inclut aucun emblème, blason ou dessin Porsche.",
+      "Le STEP prouve seulement un BREP calculable et ne doit pas être installé sur une roue."
+    ]
+  }
+}
