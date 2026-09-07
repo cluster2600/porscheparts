@@ -16,6 +16,11 @@ on:
         required: true
         default: false
         type: boolean
+      qualify_digest:
+        description: "Qualify an already published M64 sha256 digest without building or promoting"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: read
@@ -30,13 +35,26 @@ jobs:
       matrix:
         image: [cadsim, recon, mesh-cfd, physicsml, simready, simready-workflow, simready-local-ai, simready-m64-runtime]
     concurrency:
-      group: container-publication-${{ matrix.image }}
+      group: container-publication-${{ matrix.image }}${{ inputs.qualify_digest != '' && '-qualification' || '' }}
       cancel-in-progress: false
     steps:
       - name: Skip images not requested
         id: gate
+        env:
+          REQUESTED_IMAGE: ${{ inputs.image }}
+          MATRIX_IMAGE: ${{ matrix.image }}
+          PUSH_IMAGE: ${{ inputs.push }}
+          QUALIFY_DIGEST: ${{ inputs.qualify_digest }}
         run: |
-          if [ "${{ inputs.image }}" = "both" ] || [ "${{ inputs.image }}" = "${{ matrix.image }}" ]; then
+          set -euo pipefail
+          if [ -n "$QUALIFY_DIGEST" ]; then
+            if [ "$REQUESTED_IMAGE" != simready-m64-runtime ] || [ "$PUSH_IMAGE" != true ] \
+              || ! [[ "$QUALIFY_DIGEST" =~ ^sha256:[0-9a-f]{64}$ ]]; then
+              echo "Qualification requires image=simready-m64-runtime, push=true and a strict sha256 digest" >&2
+              exit 1
+            fi
+          fi
+          if [ "$REQUESTED_IMAGE" = "both" ] || [ "$REQUESTED_IMAGE" = "$MATRIX_IMAGE" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -89,11 +107,11 @@ jobs:
           df -h /
 
       - name: Set up Buildx
-        if: steps.gate.outputs.run == 'true' && matrix.image != 'simready-local-ai' && matrix.image != 'simready-m64-runtime'
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && matrix.image != 'simready-local-ai' && matrix.image != 'simready-m64-runtime'
         uses: docker/setup-buildx-action@v3
 
       - name: Set up bounded M64 Buildx
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-m64-runtime'
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && matrix.image == 'simready-m64-runtime'
         uses: docker/setup-buildx-action@v3
         with:
           driver-opts: |
@@ -102,7 +120,7 @@ jobs:
             memory=13g
 
       - name: Log in to ghcr.io
-        if: steps.gate.outputs.run == 'true' && (inputs.push || matrix.image == 'simready-local-ai')
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && (inputs.push || matrix.image == 'simready-local-ai')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -111,7 +129,7 @@ jobs:
 
       - name: Build image
         id: standard_build
-        if: steps.gate.outputs.run == 'true' && matrix.image != 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && matrix.image != 'simready-local-ai'
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -127,7 +145,7 @@ jobs:
       # Pull the pinned amd64 base into the enlarged Docker store with bounded
       # backoff before assembling the large local-AI image.
       - name: Preload local AI base images
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && matrix.image == 'simready-local-ai'
         run: |
           mapfile -t base_images < <(
             awk '$1 == "FROM" { for (i = 2; i <= NF; i++) if ($i !~ /^--platform=/) { print $i; break } }' \
@@ -150,7 +168,7 @@ jobs:
 
       - name: Build large local AI image from Docker store
         id: local_ai_build
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai'
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && matrix.image == 'simready-local-ai'
         run: |
           set -euo pipefail
           repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai
@@ -183,11 +201,18 @@ jobs:
       - name: Resolve published immutable digest
         id: published_image
         if: steps.gate.outputs.run == 'true' && inputs.push
+        env:
+          QUALIFY_DIGEST: ${{ inputs.qualify_digest }}
+          STANDARD_DIGEST: ${{ steps.standard_build.outputs.digest }}
+          LOCAL_AI_DIGEST: ${{ steps.local_ai_build.outputs.digest }}
         run: |
           set -euo pipefail
-          digest='${{ steps.standard_build.outputs.digest }}'
-          if [ "${{ matrix.image }}" = simready-local-ai ]; then
-            digest='${{ steps.local_ai_build.outputs.digest }}'
+          digest="$QUALIFY_DIGEST"
+          if [ -z "$digest" ]; then
+            digest="$STANDARD_DIGEST"
+            if [ "${{ matrix.image }}" = simready-local-ai ]; then
+              digest="$LOCAL_AI_DIGEST"
+            fi
           fi
           [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
           repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}
@@ -198,9 +223,10 @@ jobs:
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
 
       - name: Verify published local AI manifest limits
-        if: steps.gate.outputs.run == 'true' && matrix.image == 'simready-local-ai' && inputs.push
+        if: steps.gate.outputs.run == 'true' && (matrix.image == 'simready-local-ai' || matrix.image == 'simready-m64-runtime') && inputs.push
         run: |
-          repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai
+          set -euo pipefail
+          repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}
           digest='${{ steps.published_image.outputs.digest }}'
           pinned_ref="${repository}@${digest}"
           docker buildx imagetools inspect --raw "$pinned_ref" \
@@ -222,6 +248,8 @@ jobs:
       - name: Verify anonymous digest pull
         id: public_manifest
         if: steps.gate.outputs.run == 'true' && inputs.push
+        env:
+          QUALIFY_DIGEST: ${{ inputs.qualify_digest }}
         run: |
           set -euo pipefail
           repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}
@@ -230,9 +258,14 @@ jobs:
           pinned_image="${repository}@${digest}"
           docker image rm -f \
             "${repository}:${{ github.sha }}" "$pinned_image" >/dev/null 2>&1 || true
-          docker buildx prune --all --force
+          if [ -z "$QUALIFY_DIGEST" ]; then
+            docker buildx prune --all --force
+          fi
           docker system prune --all --force --volumes
-          ! docker image inspect "$pinned_image" >/dev/null 2>&1
+          if docker image inspect "$pinned_image" >/dev/null 2>&1; then
+            echo "Anonymous qualification requires the pinned image to be absent locally before pull" >&2
+            exit 1
+          fi
           anonymous_config="$(mktemp -d)"
           trap 'rm -rf "${anonymous_config}"' EXIT
           printf '{}\n' > "${anonymous_config}/config.json"
@@ -252,7 +285,7 @@ jobs:
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
 
       - name: Promote verified image
-        if: steps.gate.outputs.run == 'true' && inputs.push
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && inputs.push
         run: |
           expected_digest=${{ steps.public_manifest.outputs.digest }}
           docker buildx imagetools create \
