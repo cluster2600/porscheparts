@@ -1,12 +1,18 @@
 """Torsion load case on the 964 floor shell model, CalculiX.
 
-Usage: run_fea.py <thickness_mm> <tag> [E_MPa] [nu]
+Usage: run_fea.py <thickness_mm> <tag> [E_MPa] [nu] [G_MPa]
 E and nu default to steel, so the historic two-argument calls are unchanged.
 """
 import numpy as np, subprocess, os, sys, re, pathlib
 T=float(sys.argv[1]); tag=sys.argv[2]
 E  = float(sys.argv[3]) if len(sys.argv)>3 else 210000.0   # MPa
 NU = float(sys.argv[4]) if len(sys.argv)>4 else 0.3
+# G optionnel. Absent, le materiau est isotrope et G decoule de E et nu : tous
+# les appels historiques sont donc inchanges. Present, il est impose
+# INDEPENDAMMENT de E, ce qui rend le materiau non physique et c'est voulu :
+# c'est le seul moyen de faire apprendre a un substitut la difference entre
+# flexion et cisaillement, que dominance_study.py a montree decisive ici.
+G  = float(sys.argv[5]) if len(sys.argv)>5 else None
 d=np.load('mesh.npz'); nid,xyz,tri=d['nid'],d['xyz'],d['tri']
 idx={int(n):i for i,n in enumerate(nid)}
 YS_I,SILL_W,SILL_H,Z0=600.0,90.0,120.0,271.7
@@ -30,7 +36,11 @@ with open(f'{tag}.inp','w') as f:
     f.write("*ELEMENT, TYPE=S3, ELSET=SHELL\n")
     for i,e in enumerate(tri,1): f.write(f"{i}, {int(e[0])}, {int(e[1])}, {int(e[2])}\n")
     f.write(f"*SHELL SECTION, ELSET=SHELL, MATERIAL=MAT\n{T}\n")
-    f.write(f"*MATERIAL, NAME=MAT\n*ELASTIC\n{E}, {NU}\n")
+    if G is None:
+        f.write(f"*MATERIAL, NAME=MAT\n*ELASTIC\n{E}, {NU}\n")
+    else:
+        f.write("*MATERIAL, NAME=MAT\n*ELASTIC, TYPE=ENGINEERING CONSTANTS\n")
+        f.write(f"{E}, {E}, {E}, {NU}, {NU}, {NU}, {G}, {G}\n{G}\n")
     for nm,st in (('REAR',rear),('FRL',frL),('FRR',frR)):
         f.write(f"*NSET, NSET={nm}\n")
         for i in range(0,len(st),8): f.write(", ".join(str(int(x)) for x in st[i:i+8])+",\n")
