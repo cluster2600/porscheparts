@@ -42,15 +42,15 @@ try
     string inputSha = Sha(input);
     Stage("load_input_stl_mm_no_transform");
     using Library library = new(voxelMm);
-    Mesh source = Mesh.mshFromStlFile(input, Mesh.EStlUnit.MM, libSet: library);
+    using Mesh source = Mesh.mshFromStlFile(input, Mesh.EStlUnit.MM, libSet: library);
     int sourceTriangles = source.nTriangleCount();
     if (sourceTriangles <= 0) throw new InvalidDataException("Input mesh is empty");
     Stage("voxelize_master_copy");
-    Voxels voxels = new(source);
+    using Voxels voxels = new(source);
     voxels.CalculateProperties(out float volume, out BBox3 bounds);
     if (!float.IsFinite(volume) || volume <= 0) throw new InvalidDataException("Nonpositive voxel volume");
     Stage("export_roundtrip");
-    Mesh roundtrip = new(voxels);
+    using Mesh roundtrip = new(voxels);
     string roundtripPath = Path.Combine(output, "head-roundtrip.stl");
     roundtrip.SaveToStlFile(roundtripPath, Mesh.EStlUnit.MM);
 
@@ -59,12 +59,12 @@ try
     // These diagnostic volumes are not candidates for manufacture.
     const float openingRadius = 0.75f;
     Stage("morphological_opening_diagnostic_only");
-    Voxels opened = voxels.voxDoubleOffset(-openingRadius, openingRadius);
+    using Voxels opened = voxels.voxDoubleOffset(-openingRadius, openingRadius);
     opened.BoolIntersect(voxels);
-    Voxels removed = voxels.voxBoolSubtract(opened);
+    using Voxels removed = voxels.voxBoolSubtract(opened);
     removed.CalculateProperties(out float removedVolume, out BBox3 removedBounds);
     string removedPath = Path.Combine(output, "opening-sensitive-features.stl");
-    Mesh removedMesh = new(removed);
+    using Mesh removedMesh = new(removed);
     removedMesh.SaveToStlFile(removedPath, Mesh.EStlUnit.MM);
 
     string finalInputSha = Sha(input);
