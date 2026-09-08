@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
+  "name": "Turbine de refroidissement moteur, concept tournant AlSi10Mg F0",
+  "description": "Concept indépendant d'une turbine monobloc réunissant moyeu, douze pales balayées et anneau périphérique. PorscheFanatics et les revendeurs établissent la référence 964 106 015 31, une enveloppe commerciale, deux masses cohérentes et une déclaration aluminium, mais aucune géométrie fonctionnelle. Le test d'ensemble rejette explicitement l'interférence avec le carter F0 précédent.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Carrera_fitment_to_confirm", "964_shared_component"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": ["96410601531"]
+  },
+  "classification": {
+    "category": "engine_cooling_fan_impeller",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage F0 de CAO ouverte, valeur DfAM, masse, survitesse, contrainte centrifuge, modal, débit cible, thermique et compatibilité avec le carter F0 ; aucune fabrication, rotation, installation ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration, surface Porsche/PorscheFanatics/FVD/Porsche Poitiers/Partworks/EOS ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - turbine de refroidissement moteur 964/993",
+        "url": "https://porschefanatics.com/parts/c/cooling/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifie la pièce Porsche AG 964 106 015 31 pour 964/993 sans géométrie ni matériau. Voir SRC-PORSCHEFANATICS-993-ENGINE-COOLING-IMPELLER-CANDIDATE."
+      },
+      {
+        "title": "FVD Brombacher - turbine 964/993 964 106 015 31",
+        "url": "https://www.fvd.net/de-ch/shop/laufrad-964-89-94-993-94-98-96410601531~p252655",
+        "source_type": "community",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie 300 x 300 x 150 mm et 0,94 kg comme données produit, sans définition de pale ou interface. Voir SRC-FVD-964-993-FAN-WHEEL-DIMENSIONS."
+      },
+      {
+        "title": "Centre Service Porsche Poitiers - turbine 964 106 015 31",
+        "url": "https://www.boutiqueporschepoitiers.fr/produit/96410601531-turbine-de-refroidissement-moteur-porsche/",
+        "source_type": "manufacturer",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie 0,948 kg pour la turbine 964/993, sans protocole. Voir SRC-PORSCHE-POITIERS-964-993-FAN-WHEEL-MASS."
+      },
+      {
+        "title": "Partworks - turbine 964/993 déclarée aluminium",
+        "url": "https://partworks.de/Original-fan-wheel-for-Porsche-964-993-Carrera-96410601531",
+        "source_type": "community",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare aluminium sans nuance, procédé ou certificat ; ne prouve pas AlSi10Mg. Voir SRC-PARTWORKS-964-993-FAN-WHEEL-ALUMINIUM."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Route T6 et matériau candidat ; valeurs numériques maintenues comme comparaisons génériques. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "CNC", "casting"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "alliage aluminium-silicium-magnésium candidat LPBF",
+      "grade": "EOS Aluminium AlSi10Mg T6 de comparaison ; pièce commerciale déclarée seulement aluminium non spécifié",
+      "standard": "DIN EN 1706 EN AC-43000 et ASTM F3318 pour le candidat ; spécification tournante, HCF, balance et survitesse propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation, supports et accès entre pales à qualifier",
+      "détensionnement puis T6 avec trempe et distorsion suivies",
+      "HIP obligatoire à décider par la carte HCF/défauts et non par habitude",
+      "usinage du moyeu, alésage, faces et références de correction de balance",
+      "finition contrôlée des pieds de pales sans entailles ni média retenu",
+      "protection anticorrosion compatible température et fretting",
+      "équilibrage dynamique à deux plans après état final"
+    ],
+    "supplier_requirements": [
+      "machine, paramètres, orientation, supports, poudre, recyclage et lot traçables",
+      "coupons orientés avec traction, HCF, fretting et corrosion à chaud",
+      "éprouvettes entaillées et témoins de pied de pale dans l'état de surface final",
+      "CT intégral, FPI et métallographie avec critères de défauts zonés",
+      "métrologie moyeu, alésage, voile, concentricité, pales, jeu et masse",
+      "preuve de balance, survitesse, vibration, débit, perte de pale/confinement et endurance"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier AlSi10Mg contre axe, moyeu, alternateur, poulie, cales, fixations et carter ; traiter corrosion, fretting et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-engine-cooling-impeller-candidate.json",
+      "catalog/sources/src-fvd-964-993-fan-wheel-dimensions.json",
+      "catalog/sources/src-porsche-poitiers-964-993-fan-wheel-mass.json",
+      "catalog/sources/src-partworks-964-993-fan-wheel-aluminium.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Les 300 x 300 x 150 mm sont une enveloppe commerciale, pas un dessin de turbine.",
+      "Les masses 0,94/0,948 kg sont des déclarations commerciales sans protocole ni frontière de pesée.",
+      "La matière aluminium n'a ni nuance, ni procédé, ni certificat ; AlSi10Mg reste un candidat.",
+      "Le diamètre 280 mm, le moyeu 80/30 mm, les douze pales et l'anneau sont synthétiques.",
+      "Le carter F0 précédent a une gorge synthétique 252 mm : le jeu radial calculé est -14 mm et l'intégration échoue.",
+      "Les cas 10 000/12 000 tr/min, débit, pression et températures sont des régressions sans autorité 993.",
+      "Les écrans centrifuges et modaux passent, mais le thermique échoue ; HCF, balance, débit et confinement restent non calculables.",
+      "Le STEP prouve seulement un BREP relisible ; aucune fabrication, rotation, installation ou mise en route n'est autorisée."
+    ]
+  }
+}
