@@ -19,6 +19,7 @@ REVIEW = '7cb1fecc8b4f710e74824e9cfdac4bf2fb8e845288fb4ec07973fbab3d665e00'
 UNIFIED_DOMAIN = 'fab1338a3e3cf36469977716a9cb54b3118382f592c7c41d7c789bdb5fb3aeba'
 UNIFIED_MANIFEST = '58b8be5aa0faeac678e6801cad29cfc5520cbf1590076276dbf5ad5157776aa1'
 UNIFIED_REVIEW = '7bd9c92d5ac4bafc0146cb77e55f8e95c45d041972ad235f2dce0ab84a21b897'
+PREVIOUS_UNIFIED_AUDIT = 'ec44d805d748ff75d45a16121321588ed6706e8782e3aa91bb9ae74bab5d6f6a'
 
 
 def sha(path):
@@ -195,6 +196,62 @@ def exact_chain_partition(shared_edges, chains):
             and set(counts)==set(shared_edges) and all(v==1 for v in counts.values())}
 
 
+def exact_native_chain_partition(shared_edges, chains, native_edge_ids):
+    """Partition de toute l'interface par chaque courbe native, exactement une fois."""
+    counts=Counter(tuple(sorted(edge)) for row in chains if row.get('passes')
+        for edge in zip(row['nodes_private'],row['nodes_private'][1:]))
+    identities=Counter(row['native_edge_id'] for row in chains)
+    complete_ids=bool(native_edge_ids) and len(set(native_edge_ids))==len(native_edge_ids)
+    complete_ids=complete_ids and identities==Counter(native_edge_ids)
+    return {'native_curves':len(native_edge_ids),'native_curve_identity_bijection':complete_ids,
+        'shared_edges':len(shared_edges),'covered_edges':len(counts),
+        'missing_edges':len(set(shared_edges)-counts.keys()),
+        'extra_edges':len(counts.keys()-set(shared_edges)),
+        'multiply_counted_edges':sum(v>1 for v in counts.values()),
+        'passes':complete_ids and all(r.get('passes') for r in chains)
+            and set(counts)==set(shared_edges) and all(v==1 for v in counts.values())}
+
+
+def native_interface_graph(edges):
+    """Classer les composantes par incidence native, sans fermer une chaîne ouverte."""
+    graph=defaultdict(list); identities=[row['id'] for row in edges]
+    if len(set(identities))!=len(identities): raise ValueError('duplicate_native_interface_curve')
+    for row in edges:
+        a,b=row['vertex_ids_private'];graph[a].append((b,row['id']));graph[b].append((a,row['id']))
+    pending=set(graph); components=[]
+    while pending:
+        stack=[min(pending)];nodes=set();curves=set()
+        while stack:
+            vertex=stack.pop()
+            if vertex in nodes:continue
+            nodes.add(vertex);pending.discard(vertex)
+            for other,eid in graph[vertex]:curves.add(eid);stack.append(other)
+        ends=sorted(v for v in nodes if len(graph[v])==1)
+        regular=all(len(graph[v]) in (1,2) for v in nodes)
+        kind=('closed_cycle' if not ends else 'open_chain' if len(ends)==2 else 'unresolved') if regular else 'branched'
+        components.append({'kind':kind,'native_vertex_ids_private':sorted(nodes),
+            'native_edge_ids_private':sorted(curves),'endpoint_vertex_ids_private':ends})
+    return {'components_private':components,'vertices':len(graph),'curves':len(edges),
+        'open_chains':sum(c['kind']=='open_chain' for c in components),
+        'closed_cycles':sum(c['kind']=='closed_cycle' for c in components),
+        'unbranched':bool(components) and all(c['kind'] in ('open_chain','closed_cycle') for c in components)}
+
+
+def native_endpoint_ball(node, vertex, curve_endpoint):
+    """Le sommet et son extrémité de courbe utilisent la boule native du sommet.
+
+    Les points intérieurs restent soumis à la tolérance native de l'arête.
+    Aucune tolérance n'est agrandie ou déduite des résultats du maillage.
+    """
+    node_error=math.dist(node,vertex['point_private'])
+    endpoint_error=math.dist(curve_endpoint,vertex['point_private'])
+    return {'node_to_native_vertex_distance':node_error,
+        'curve_endpoint_to_native_vertex_distance':endpoint_error,
+        'node_to_curve_endpoint_distance':math.dist(node,curve_endpoint),
+        'native_vertex_tolerance':vertex['tolerance'],
+        'passes':all(math.isfinite(x) and x<=vertex['tolerance'] for x in (node_error,endpoint_error))}
+
+
 def verified_face_lookup(binding, domain=DOMAIN):
     count={DOMAIN:88,UNIFIED_DOMAIN:86}.get(domain)
     if count is None: raise ValueError('unregistered_native_domain')
@@ -251,10 +308,38 @@ def unified_correspondence(review, merge, manifest):
         'after_faces':{str(j):data['after_faces'][str(j)] for _,j in face_pairs}}
 
 
-def native_inventory(path, review, correspondence=None):
+def complete_unified_correspondence(correspondence, merge):
+    """Étendre explicitement de quatre C0 à toutes les courbes communes aux faces.
+
+    L'union des faces change le périmètre d'incidence, pas les seuils. Les
+    courbes supplémentaires doivent elles aussi être conservées exactement.
+    """
+    data=merge['descriptors_private']; faces=correspondence['after_faces']
+    if len(faces)!=2: raise ValueError('two_adjacent_interface_faces_required')
+    sets=[{r['edge_id'] for r in f['occurrences']} for f in faces.values()]
+    shared=sets[0]&sets[1]; c0=[j for _,j in correspondence['edge_pairs_private']]
+    if len(shared)!=8 or len(c0)!=4 or not set(c0)<shared:
+        raise ValueError('reviewed_eight_curve_interface_including_four_C0_required')
+    pairs=[];origins={}
+    for eid in sorted(shared):
+        current=data['after_edges'][str(eid)]
+        old=[int(k) for k,row in data['before_edges'].items() if row==current]
+        if len(old)!=1: raise ValueError('unique_exact_preserved_interface_curve_required')
+        pairs.append((old[0],eid))
+        origins[str(eid)]=[int(k) for k,row in data['before_faces'].items()
+            if any(r['edge_id']==old[0] for r in row['occurrences'])]
+        occurrences=[[r for r in f['occurrences'] if r['edge_id']==eid] for f in faces.values()]
+        if any(len(rows)!=1 for rows in occurrences) or sum(rows[0]['orientation'] for rows in occurrences)!=0:
+            raise ValueError('single_opposite_native_occurrence_per_interface_face_required')
+    return {**correspondence,'edge_pairs_private':pairs,'c0_edge_ids_private':c0,
+        'other_edge_ids_private':sorted(shared-set(c0)),'original_adjacent_faces_private':origins,
+        'after_edges':{str(j):data['after_edges'][str(j)] for _,j in pairs}}
+
+
+def native_inventory(path, review, correspondence=None, complete_interface=False):
     import OCP
     from OCP.BRep import BRep_Builder, BRep_Tool
-    from OCP.BRepTools import BRepTools
+    from OCP.BRepTools import BRepTools, BRepTools_WireExplorer
     from OCP.BRepAdaptor import BRepAdaptor_Curve
     from OCP.TopoDS import TopoDS_Shape, TopoDS
     from OCP.TopExp import TopExp
@@ -286,8 +371,9 @@ def native_inventory(path, review, correspondence=None):
         edge=TopoDS.Edge_s(edge_map.FindKey(i)); curve=BRepAdaptor_Curve(edge)
         endpoints=[TopExp.FirstVertex_s(edge),TopExp.LastVertex_s(edge)]
         ids=[vertex_map.FindIndex(v) for v in endpoints]
-        if chain and chain[-1] != ids[0]: raise ValueError('split_chain_not_topologically_consecutive')
-        chain.extend(ids if not chain else ids[1:])
+        if not complete_interface:
+            if chain and chain[-1] != ids[0]: raise ValueError('split_chain_not_topologically_consecutive')
+            chain.extend(ids if not chain else ids[1:])
         for j,v in zip(ids,endpoints):
             p=BRep_Tool.Pnt_s(v)
             vertices[j]={'id':j,'point_private':[p.X(),p.Y(),p.Z()], 'tolerance':BRep_Tool.Tolerance_s(v)}
@@ -304,6 +390,7 @@ def native_inventory(path, review, correspondence=None):
         edges.append({'id':i,'vertex_ids_private':ids,'parameter_range_private':[curve.FirstParameter(),curve.LastParameter()],
             'length':props.Mass(),'tolerance':BRep_Tool.Tolerance_s(edge),'adjacent_native_face_ids':adjacent})
         native_edges.append(edge)
+    wire_loops=[]
     if correspondence:
         for _,j in correspondence['face_pairs_private']:
             face=TopoDS.Face_s(face_map.FindKey(j)); expected_face=correspondence['after_faces'][str(j)]
@@ -314,32 +401,71 @@ def native_inventory(path, review, correspondence=None):
             measured=[]; wires=indexed(face,TopAbs_WIRE)
             for k in range(1,wires.Extent()+1):
                 walk=TopoDS_Iterator(wires.FindKey(k))
+                stored=[]
                 while walk.More():
                     edge=TopoDS.Edge_s(walk.Value()); eid=edge_map.FindIndex(edge)
+                    stored.append((eid,str(edge.Orientation())))
                     if eid in edge_ids:
                         measured.append({'edge_id':eid,'native_orientation':str(edge.Orientation()),
                             'pcurve_sha256':encoded(BRepAdaptor_Curve2d(edge,face).Curve()),
                             'range_on_surface':list(BRep_Tool.Range_s(edge,face))})
                     walk.Next()
+                if complete_interface:
+                    ordered=[]; explorer=BRepTools_WireExplorer(TopoDS.Wire_s(wires.FindKey(k)),face)
+                    while explorer.More():
+                        edge=explorer.Current()
+                        ordered.append({'edge_id':edge_map.FindIndex(edge),'orientation':str(edge.Orientation()),
+                            'start_vertex':vertex_map.FindIndex(TopExp.FirstVertex_s(edge,True)),
+                            'end_vertex':vertex_map.FindIndex(TopExp.LastVertex_s(edge,True))})
+                        explorer.Next()
+                    same=Counter(stored)==Counter((r['edge_id'],r['orientation']) for r in ordered)
+                    closed=bool(ordered) and all(a['end_vertex']==b['start_vertex'] for a,b in zip(ordered,ordered[1:]+ordered[:1]))
+                    wire_loops.append({'face_id':j,'wire_index':k,'ordered_occurrences_private':ordered,
+                        'all_stored_occurrences_covered':same,'topologically_closed':closed})
             fields=('edge_id','native_orientation','pcurve_sha256','range_on_surface')
             expected_occ=[{k:r[k] for k in fields} for r in expected_face['occurrences'] if r['edge_id'] in edge_ids]
             key=lambda r:json.dumps(r,sort_keys=True)
             if Counter(map(key,measured))!=Counter(map(key,expected_occ)):
                 raise ValueError('native_C0_pcurve_occurrences_review_mismatch')
-    if len(edges)!=4 or len(set(chain))!=5 or len(set(tuple(r['adjacent_native_face_ids']) for r in edges))!=1:
+    if complete_interface:
+        selected={r['id']:r for r in edges};c0chain=[]
+        for eid in correspondence['c0_edge_ids_private']:
+            ids=selected[eid]['vertex_ids_private']
+            if c0chain and c0chain[-1]!=ids[0]:raise ValueError('split_chain_not_topologically_consecutive')
+            c0chain.extend(ids if not c0chain else ids[1:])
+        chain=c0chain
+    if len(edges)!=(8 if complete_interface else 4) or len(set(chain))!=5 or len(set(tuple(r['adjacent_native_face_ids']) for r in edges))!=1:
         raise ValueError('four_split_segments_five_vertices_two_adjacent_faces_required')
     if len(edges[0]['adjacent_native_face_ids'])!=2: raise ValueError('two_adjacent_faces_required')
     graph=review['vertex_graph']
     if not (graph['new_interior_split_vertices_are_distinct_and_not_old_vertices']
             and graph['split_endpoints_preserve_old_vertex_identity_mapping']):
         raise ValueError('independent_vertex_identity_proof_required')
-    return {'OCP_version':OCP.__version__, 'edges_private':edges,
-        'vertices_private':[vertices[i] for i in chain], 'new_vertex_ids_private':chain[1:-1],
-        'new_vertices_distinct_from_old_by_independent_review':True}, native_edges
+    inventory={'OCP_version':OCP.__version__, 'edges_private':edges,
+        'vertices_private':[vertices[i] for i in (sorted(vertices) if complete_interface else chain)],
+        'new_vertex_ids_private':chain[1:-1], 'new_vertices_distinct_from_old_by_independent_review':True}
+    if complete_interface:
+        # Exhaustivité native indépendante de la liste issue du reçu.
+        pair=[j for _,j in correspondence['face_pairs_private']]
+        face_edges=[indexed(face_map.FindKey(j),TopAbs_EDGE) for j in pair]
+        actual_shared={i for i in range(1,edge_map.Extent()+1) if all(m.Contains(edge_map.FindKey(i)) for m in face_edges)}
+        if actual_shared!=set(edge_ids):raise ValueError('native_shared_interface_inventory_not_exhaustive')
+        inventory.update(native_interface_graph_private=native_interface_graph(edges),
+            native_face_wire_loops_private=wire_loops,native_shared_curve_inventory_complete=True,
+            C0_edge_ids_private=correspondence['c0_edge_ids_private'],
+            other_interface_edge_ids_private=correspondence['other_edge_ids_private'])
+        if (not inventory['native_interface_graph_private']['unbranched']
+                or not all(r['all_stored_occurrences_covered'] and r['topologically_closed'] for r in wire_loops)):
+            raise ValueError('native_interface_and_face_wire_incidence_not_proven')
+    return inventory, native_edges
 
 
 def run(args):
     started=time.monotonic(); unified=args.unified_native_only
+    complete=args.complete_unified_interface
+    if complete and (not unified or not args.previous_audit):
+        raise ValueError('complete_interface_requires_unified_mode_and_historical_audit')
+    if args.previous_audit and not complete: raise ValueError('historical_audit_requires_explicit_scope_evolution')
     domain=UNIFIED_DOMAIN if unified else DOMAIN
     paths={args.domain:domain,args.review:REVIEW,Path(__file__):sha(__file__)}
     if unified:
@@ -347,12 +473,14 @@ def run(args):
         paths.update({args.manifest:UNIFIED_MANIFEST,args.merge_review:UNIFIED_REVIEW})
     elif args.manifest or args.merge_review:
         raise ValueError('explicit_unified_native_mode_required')
+    if complete: paths[args.previous_audit]=PREVIOUS_UNIFIED_AUDIT
     for p,h in paths.items():
         if p.is_symlink() or sha(p)!=h: raise ValueError('exact_native_and_review_required')
     review=json.loads(args.review.read_text()); correspondence=None
     if unified:
         correspondence=unified_correspondence(review,json.loads(args.merge_review.read_text()),json.loads(args.manifest.read_text()))
-    inventory,native_edges=native_inventory(args.domain,review,correspondence)
+        if complete:correspondence=complete_unified_correspondence(correspondence,json.loads(args.merge_review.read_text()))
+    inventory,native_edges=native_inventory(args.domain,review,correspondence,complete)
     report={'schema':'m64-segmented-C0-surface-conservation/v1','source_sha256':sha(__file__),
         'domain_sha256':domain,'independent_review_sha256':REVIEW,**inventory,
         'status':'native_inventory_only_no_mesh', 'mesh_audited':False,
@@ -368,6 +496,14 @@ def run(args):
             'vertex_distinction_inherited_from_split_review_with_exact_retained_endpoints':True,
             'comparison_basis':'reviewed_serialization_control_not_raw_original_descriptor_identity',
             'previous_mesh_results_transferred':False}
+    if complete:
+        report['schema']='m64-complete-native-interface-conservation/v2'
+        report['scope_evolution']={'previous_audit_sha256':PREVIOUS_UNIFIED_AUDIT,
+            'previous_result_preserved':'four_C0_chains_do_not_partition_the_enlarged_interface',
+            'new_requirement':'all_eight_native_shared_curves_exactly_partition_all_shared_mesh_edges',
+            'native_edge_and_vertex_tolerances_unchanged':True,
+            'endpoint_rule':'native_vertex_ball_for_topological_endpoints; native_edge_tolerance_for_interior_projection',
+            'original_adjacent_faces_private':correspondence['original_adjacent_faces_private']}
     if args.import_report:
         paths[args.import_report]=sha(args.import_report); imp=json.loads(args.import_report.read_text())
         if domain not in imp['input_sha256'].values(): raise ValueError('import_domain_mismatch')
@@ -394,6 +530,8 @@ def run(args):
         shared=common_face_edges(faces[tags[0]],faces[tags[1]])
         boundary_nodes=set(n for e in shared for n in e)
         anchors,anchors_pass=match_anchors(points,boundary_nodes,inventory['vertices_private'])
+        anchors_by_id={r['native_vertex_id']:r for r in anchors}
+        vertices_by_id={r['id']:r for r in inventory['vertices_private']}
         rows=[]
         if anchors_pass:
             from OCP.BRep import BRep_Tool
@@ -407,16 +545,34 @@ def run(args):
                         projected[n]=job.LowerDistanceParameter(); distances[n]=job.LowerDistance()
                 # The exact shared CAD vertex is the interval endpoint; clamp
                 # only its parameter after independently checking spatial error.
-                for row,p in ((anchors[k],lo),(anchors[k+1],hi)):
+                endpoint_rows=[anchors_by_id[v] for v in edge['vertex_ids_private']]
+                endpoint_checks=[]
+                for row,p,vid in zip(endpoint_rows,(lo,hi),edge['vertex_ids_private']):
+                    if complete:
+                        endpoint=curve.Value(p)
+                        check=native_endpoint_ball(points[row['node']],vertices_by_id[vid],(endpoint.X(),endpoint.Y(),endpoint.Z()))
+                        endpoint_checks.append(check)
+                        if not check['passes']:continue
                     if row['distance']<=edge['tolerance']:
                         projected[row['node']]=p; distances[row['node']]=row['distance']
-                barriers={a['node'] for j,a in enumerate(anchors) if j not in (k,k+1)}
-                result=monotone_segment_chain(shared,projected,anchors[k]['node'],anchors[k+1]['node'],barriers)
+                barriers={a['node'] for a in anchors if a['native_vertex_id'] not in edge['vertex_ids_private']}
+                result=monotone_segment_chain(shared,projected,endpoint_rows[0]['node'],endpoint_rows[1]['node'],barriers)
                 result['native_edge_id']=edge['id']
+                if complete:
+                    result['native_endpoint_ball_checks']=endpoint_checks
+                    result['kind']='C0_split' if edge['id'] in inventory['C0_edge_ids_private'] else 'other_native_interface_curve'
+                    if not all(r['passes'] for r in endpoint_checks):
+                        result.update(passes=False,reason='native_curve_endpoint_outside_native_vertex_tolerance_ball')
                 if result['passes']:
-                    result['maximum_native_node_projection_distance']=max((distances.get(n,0.) for n in result['nodes_private']),default=0.)
+                    if complete:
+                        interior=[n for n in result['nodes_private'] if n not in {r['node'] for r in endpoint_rows}]
+                        result['interior_surface_nodes_projected']=len(interior)
+                        result['maximum_interior_native_curve_projection_distance']=max((distances[n] for n in interior),default=None)
+                    else:
+                        result['maximum_native_node_projection_distance']=max((distances.get(n,0.) for n in result['nodes_private']),default=0.)
                 rows.append(result)
-        partition=exact_chain_partition(shared,rows)
+        partition=(exact_native_chain_partition(shared,rows,[r['id'] for r in inventory['edges_private']])
+            if complete else exact_chain_partition(shared,rows))
         accepted=anchors_pass and partition['passes']
         report.update(mesh_audited=True,mesh_sha256=paths[args.mesh],mesh_report_sha256=paths[args.mesh_report],
             anchors_private=anchors,all_five_anchors_distinct_and_uniquely_matched=anchors_pass,
@@ -424,6 +580,11 @@ def run(args):
             segment_chains_private=rows,complete_shared_interface_partition=partition,
             surface_incidence_segment_representation=accepted,
             status='surface_incidence_conservation_passed_limited_scope' if accepted else 'surface_incidence_conservation_not_proven')
+        if complete:
+            report.pop('all_five_anchors_distinct_and_uniquely_matched')
+            report.update(all_native_interface_anchors_distinct_and_uniquely_matched=anchors_pass,
+                historical_C0_only_partition_recomputed=exact_chain_partition(shared,[r for r in rows if r['kind']=='C0_split']),
+                status='complete_native_interface_conservation_passed_limited_scope' if accepted else 'complete_native_interface_conservation_not_proven')
     if args.volume_mesh:
         if not args.mesh: raise ValueError('surface_mesh_and_report_required_before_volume_boundary_comparison')
         paths[args.volume_mesh]=sha(args.volume_mesh)
@@ -444,8 +605,10 @@ def run(args):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for key in ('domain','review','output'): parser.add_argument('--'+key,type=Path,required=True)
-    for key in ('mesh','mesh-report','import-report','manifest','merge-review','volume-mesh'):parser.add_argument('--'+key,type=Path)
+    for key in ('mesh','mesh-report','import-report','manifest','merge-review','volume-mesh','previous-audit'):parser.add_argument('--'+key,type=Path)
     parser.add_argument('--unified-native-only',action='store_true',
         help='Audit the separately pinned native fab domain; no STEP or prior mesh result is inherited')
+    parser.add_argument('--complete-unified-interface',action='store_true',
+        help='Separately audit all eight shared native curves; preserve the historical four-C0 partition result')
     resource.setrlimit(resource.RLIMIT_CPU,(120,125))
     raise SystemExit(run(parser.parse_args()))

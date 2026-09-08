@@ -1,6 +1,6 @@
 # M64 — maillage du domaine à partition unifiée
 
-## Résultat — volume obtenu, qualité OpenFOAM et couverture C0 refusées
+## Résultat — volume obtenu, qualité OpenFOAM toujours refusée
 
 Le domaine gazeux `fab1338a…` dispose d'un **nouveau paquet natif avec
 86 faces, 191 arêtes, 118 sommets, une coque et un solide**. Le transfert
@@ -10,8 +10,11 @@ tétraèdres et 186 370 triangles de frontière**, obtenus en 36,113 s.
 Ses onze gardes d'intégrité et les enveloppes radiales des guides avant
 et après la 3D passent. **OpenFOAM rejette encore cinq familles de qualité**,
 contre six auparavant ; le nombre de cellules à faible déterminant
-**augmente de 4 579 à 5 442**. Le contre-audit C0 retrouve les quatre
-chaînes, mais refuse la couverture de l'interface complète désormais élargie.
+**augmente de 4 579 à 5 442**. Un nouveau contrôle des huit courbes natives
+couvre désormais l'interface entière ; le refus historique des quatre
+seules chaînes C0 reste consigné, sans être requalifié en succès.
+L'essai de subdivision centrale exécuté ensuite diminue les faibles
+déterminants, mais dégrade d'autres indicateurs : **il n'est pas adopté**.
 
 Cette étape ne valide ni CFD, ni thermique, ni résistance, ni procédé LPBF.
 L'impression, le montage M64 et le fonctionnement à 700 PS biturbo ne sont
@@ -132,7 +135,7 @@ Les trois frontières comptent 184 917 faces `walls`, 1 191 de sortie et
 de type des parois ne change pas la géométrie. L'absence du conteneur
 de diagnostic après nettoyage est vérifiée.
 
-## Contre-audit C0 terminé : garde de couverture refusée
+## Premier contre-audit C0 : refus historique conservé
 
 Le contrôle indépendant `ec44d805…` termine en **8,312 s, code 2**.
 Les cinq ancres sont distinctes et appariées de manière unique avec une
@@ -145,7 +148,7 @@ La conservation pré/post 3D des 93 185 nœuds et 186 370 triangles passe
 orientée vers l'extérieur des tétraèdres, et pas seulement comme des
 enregistrements de surface conservés dans le fichier MSH.
 
-**Le résultat global reste refusé.** L'interface des faces 36/37 contient
+**Le résultat global de ce premier audit reste refusé.** L'interface des faces 36/37 contient
 34 arêtes de maillage, dont seulement 18 couvertes par les quatre chaînes
 et 16 autres. Après fusion, l'interface native comporte les courbes 93–100,
 au lieu des seules 97–100 de l'ancienne paire de faces. Le prédicat
@@ -153,42 +156,119 @@ historique exigeant que les quatre chaînes couvrent toute l'interface
 ne correspond donc plus à ce périmètre élargi. Aucun critère n'a été changé
 pour convertir ce refus en acceptation.
 
-La prochaine vérification devra décrire et contrôler **les huit courbes
-natives et la couverture complète de cette interface**. Les quatre chaînes
-retrouvées ne prouvent ni cette couverture, ni la classification native 1D
-du maillage, ni la fidélité continue des cordes à la CAO.
+Les quatre chaînes seules ne prouvent ni la couverture complète, ni la
+classification native 1D du maillage, ni la fidélité continue des cordes
+à la CAO. Le contrôle étendu ci-dessous répond au premier de ces manques.
+
+## Résultats supplémentaires : interface complète et défauts localisés
+
+Le nouveau contrôle `dfdeb376…` examine **les huit courbes natives 93–100**
+et leurs chaînes : **34 arêtes de maillage sur 34 couvertes**, sans manque,
+surplus ni double compte. L'inventaire natif et ses ancres sont appariés
+de façon unique ; la conservation de la vraie frontière tétraédrique
+reste vérifiée. Ce contrôle de portée limitée termine en 7,674 s.
+Il recalcule aussi l'ancien sous-ensemble C0 : **18/34, refus inchangé**.
+Étendre explicitement l'inventaire à toute l'interface n'est pas supprimer
+les 16 arêtes restantes du critère. Cela ne prouve toujours ni conformité
+continue des cordes, ni qualité CFD ou fabrication.
+
+Les cinq familles OpenFOAM sont maintenant localisées sur **ce même volume**,
+via les labels natifs, les 112 649 points et les 186 370 triangles de
+frontière ; les 86 faces et leurs rôles sont retrouvés. L'appariement tient
+compte de l'écriture OpenFOAM à 12 chiffres significatifs, sans prétendre
+à une identité binaire des coordonnées et sans employer le VTK comme CAO.
+
+Sur les **5 442 cellules à faible déterminant, 4 382 touchent les passages
+annulaires guide–tige**. Les trois cellules à fort rapport d'aspect touchent
+la face 37 ; les dix faces à forte skewness se répartissent entre les faces
+natives 29 (cinq), 28 (trois) et 36 (deux). Une adjacence n'établit pas,
+à elle seule, la cause numérique ou physique du défaut.
+
+Le nombre de faces internes des cellules à faible déterminant se répartit
+ainsi : **degré 1 : 1 ; degré 2 : 710 ; degré 3 : 4 605 ; degré 4 : 126**.
+Il s'agit d'un diagnostic topologique du cas sans frontières couplées,
+pas d'une exemption de qualité.
+
+Pour une cellule 3D et les faces internes ou couplées `I`, OpenFOAM 14 calcule
+`A_moy = Σᵢ∈I |Sᵢ| / |I|`, puis
+`D = |det(Σᵢ∈I (Sᵢ/A_moy) ⊗ (Sᵢ/A_moy))|` ; si `I` est vide, `D = 0`.
+**Les parois non couplées sont exclues de cette somme.** Ce déterminant de
+tenseur d'aires n'est pas le Jacobien du tétraèdre. La formule est vérifiée
+dans [`primitiveMeshCheck.C`, commit `7b05503f98a85be88af930df48623b4d152bfc35`](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C#L457-L551).
+
+Avec au plus deux vecteurs dans cette somme, son rang ne peut pas atteindre
+trois : cela explique une difficulté structurelle pour 711 cellules du
+lot, pas les 4 731 autres. Cette observation a motivé l'essai ciblé
+ci-dessous ; elle ne permettait pas d'en présumer la qualité finale.
+
+## Essai topologique exécuté : candidat rejeté
+
+Le producteur `59893e71…` subdivise chacun des **711 tétraèdres ayant au
+plus deux faces internes** en quatre enfants autour d'un nouveau barycentre :
+2 844 enfants, en 12,144 s. Le candidat est `7e942138…`, distinct de la
+référence `c0cbb257…`. La sélection vient de l'incidence de tout le maillage,
+pas de la seule liste des défauts OpenFOAM.
+
+Le contre-audit `2d9cdd23…`, en 11,879 s, conserve exactement les
+112 649 enregistrements de nœuds d'origine, les 186 370 triangles de
+frontière et les 401 250 tétraèdres non ciblés. Les 711 nouveaux nœuds
+sont vérifiés séparément. En arithmétique rationnelle sur les coordonnées
+décimales sérialisées, chaque enfant a exactement **un quart du volume
+positif du parent**. La vraie frontière et les orientations internes sont
+préservées. Ce contrôle de transformation n'accepte pas la qualité du candidat.
+
+| Mesure après relecture ou `checkMesh` | Référence `c0cbb257…` | Candidat `7e942138…` |
+| --- | ---: | ---: |
+| Tétraèdres | 401 961 | 404 094 |
+| Cellules de déterminant inférieur à 0,001 | 5 442 | 5 259 |
+| Rapport d'aspect excessif : cellules | 3 | 3 |
+| Skewness excessive : faces | 10 | 10 |
+| Poids d'interpolation inférieur à 0,05 : faces | 519 | **529** |
+| Rapport de volumes inférieur à 0,01 : faces | 149 | **158** |
+| Non-orthogonalité supérieure à 70° : faces | 262 008 | **263 136** |
+| Tétraèdres de SICN inférieur à 0,1 | 491 | **1 000** |
+| SICN minimal | 1,29054×10⁻⁵ | 1,29054×10⁻⁵ |
+
+La relecture Gmsh prend 1,287 s, sans optimisation du fichier. La chaîne
+OpenFOAM termine en environ 9 s : ses quatre commandes rendent zéro,
+mais **cinq familles restent rejetées** et le superviseur rend 2.
+La réduction de 183 faibles déterminants ne compense pas les dégradations
+observées ; **la référence `c0cbb257…` est conservée et le candidat n'est
+pas adopté**. Aucun solveur CFD, calcul thermique ou essai LPBF n'est lancé.
 
 ```mermaid
 flowchart TD
-    A["fab1338 : revue au témoin de sérialisation"] --> B["Nouveau paquet : rôles et 86 exports vérifiés"]
-    B --> C["Inventaire guides + quadrature recalculés"]
-    C --> D["Delaunay sur Kali : 401 961 tétraèdres"]
-    D --> E["11 gardes d'intégrité + enveloppes guides pré/post : passent"]
-    E --> F["C0 : 4 chaînes retrouvées ; couverture complète refusée"]
-    E --> G["Revue de conversion puis OpenFOAM : 5 familles rejetées, déterminants aggravés"]
-    G --> H["Localiser les nouveaux défauts ; revoir la discrétisation annulaire"]
-    F --> I["Contrôler les 8 courbes natives et toute l'interface élargie"]
+    A["Vraie frontière conservée ; 8 courbes couvrent 34/34 arêtes"] --> B["Localisation native des 5 familles et degrés internes"]
+    B --> C["711 parents subdivisés ; transformation contre-vérifiée"]
+    C --> D["Même checkMesh : 5 familles refusées, autres indicateurs dégradés"]
+    D --> E["Candidat non adopté ; référence conservée"]
+    E --> F["Maillage annulaire conforme et partition volumique locale à préparer"]
+    F --> G["Nouveau checkMesh obligatoire ; aucune CFD avant acceptation et revue"]
 ```
 
 Les résultats des anciens maillages ne sont pas attribués à cette passe.
-La suite consiste à compléter la preuve de couverture de l'interface,
-à localiser les défauts de ce nouveau volume et à tester une
-stratégie adaptée aux passages annulaires, **sans déformer la CAO ni élargir
-les jeux pour faire passer le contrôle**. La localisation des anciens
-défauts ne prouve pas celle des nouveaux ; aucun achat de GPU ne remplace
-ce diagnostic. Un volume produit ne suffit pas à autoriser un solveur CFD.
+La suite vise un maillage conforme des passages annulaires et une partition
+volumique locale adaptée, **sans déformer la CAO ni élargir les jeux pour
+faire passer le contrôle**. Aucun modèle annulaire simplifié n'a encore
+été exécuté ou qualifié. Un volume produit ne suffit pas à autoriser un solveur CFD.
 
 ## Traçabilité et ressources
 
-`make check` se termine avec le code **0** : **2 359 tests** dans la suite
-principale, dont **108 ignorés**, puis cibles complémentaires terminées.
-Journal privé : `f2156040904294f5bac72626be8be00527ed5dd2633d51ea68337de4087e5572`.
+Au checkpoint courant, `make check` s'est terminé avec le code **0** :
+**2 391 tests** dans la suite principale en **178,922 s**, dont **108 ignorés**,
+puis cibles complémentaires terminées. Journal privé :
+`dc765bd25cd723689caad0c97dda53d12afdd8bcf81cc83cb354c865d92df23a`.
 Ces tests vérifient les logiciels et contrats ; ils ne renversent aucun refus
 du contrôle de maillage ni ne valident physiquement la culasse.
 
 Le [reçu public synthétique](../twins/m64-cylinder-head/evidence/unified-native-mesh-20260908.json)
 regroupe les empreintes, mesures, refus et limites de cette passe. Les géométries
 et coordonnées détaillées restent dans les traces privées.
+
+Le [reçu de l'interface complète et de l'essai de subdivision](../twins/m64-cylinder-head/evidence/unified-interface-and-star-trial-20260908.json)
+porte les preuves supplémentaires : producteur `59893e71…`, contre-audit
+`2d9cdd23…`, contrôle OpenFOAM `9c68cb1d…`, journal `135f9d8f…` et
+qualité Gmsh `1f3af0ca…`. Il distingue l'intégrité conservée du rejet de qualité.
 
 Empreintes du paquet préparé : domaine `fab1338a…`, manifeste `58b8be5a…`,
 source du constructeur `9bb1486f…`, revue `7bd9c92d…`, inventaire `815716df…`
@@ -199,7 +279,12 @@ et son journal `f3ec17cd…`. Le contre-audit C0 est `ec44d805…`, lié à
 la source `d29d5dae…` ; ses 20 tests ciblés passent sans test ignoré.
 Ces tests logiciels ne remplacent pas le refus observé sur le maillage réel.
 
-La source réellement exécutée est **`04811670b4e46fbbc4e1268e277db9744ec39cb20846869243d5623bf7164408`**,
+Nouveaux reçus : inventaire complet d'interface `dfdeb376…`, localisation
+`801dad7d…`, complément des degrés `ca37bc26…`, export des ensembles natifs
+`4eb33217…`. Ils concernent les mêmes fichiers `c0cbb257…` et `0ab139b2…` ;
+ils sont distincts des reçus de l'essai de subdivision `7e942138…`.
+
+Pour le maillage Delaunay initial, la source réellement exécutée est **`04811670b4e46fbbc4e1268e277db9744ec39cb20846869243d5623bf7164408`**,
 gelée dans les traces privées. Après cette passe, une garde de prévol a été
 ajoutée contre l'omission de la taille et de la référence des guides ; huit
 tests ciblés du profil unifié passent. La passe exécutée fournissait déjà
@@ -209,5 +294,7 @@ est pas attribuée rétroactivement.** Le point de départ source reste `e9ac07c
 Aucune nouvelle dépense Vast pour cette exécution locale x86. Le solde
 disponible vérifié est **43,9166429608502 USD**, sous le plafond utilisateur
 de **44 USD** ; aucune instance Vast n'est présente au relevé vérifié.
+Les deux conteneurs de diagnostic de l'essai sur Kali, limités chacun à
+quatre CPU et 4 Gio, ont été supprimés ; leur absence a été vérifiée.
 Aucune promesse de maillage accepté ou de culasse imprimable n'est attachée
 à ce résultat d'intégrité.
