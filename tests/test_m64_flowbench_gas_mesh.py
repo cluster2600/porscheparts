@@ -194,5 +194,72 @@ $EndElements
         changed=[tuple(reversed(triangles[0])),*triangles[1:]]
         self.assertEqual(MODULE.surface_topology(changed)['incoherent_two_triangle_edge_orientations'],3)
 
+    def test_local_surface_algorithm_is_bound_to_exact_native_face_not_raw_Gmsh_tag(self):
+        manifest={'exports':{'domain_brep':{'sha256':MODULE.GAS05_NATIVE_SHA}},
+                  'boundary_faces':[{'id':38,'sha256':MODULE.GAS05_FACE38_SHA,'role':'walls_port'}]}
+        binding={'descriptor_bijection_verified':True,'matches_private':[{'source_face_index':38,'gmsh_face_tag':104}]}
+        self.assertIsNone(MODULE.face38_algorithm_assignment(manifest,binding,None))
+        for algorithm in (1,5):
+            assigned=MODULE.face38_algorithm_assignment(manifest,binding,algorithm)
+            self.assertEqual(assigned['gmsh_face_tag'],104)
+            self.assertEqual(assigned['surface_algorithm'],algorithm)
+        with self.assertRaises(ValueError):MODULE.face38_algorithm_assignment(manifest,binding,6)
+        for target,path,value in (('manifest',('exports','domain_brep','sha256'),'0'*64),
+                                 ('manifest',('boundary_faces',0,'sha256'),'0'*64),
+                                 ('manifest',('boundary_faces',0,'role'),'walls_valve'),
+                                 ('binding',('descriptor_bijection_verified',),False),
+                                 ('binding',('matches_private',0,'source_face_index'),39)):
+            state={'manifest':deepcopy(manifest),'binding':deepcopy(binding)};obj=state[target]
+            for key in path[:-1]:obj=obj[key]
+            obj[path[-1]]=value
+            with self.subTest(path=path),self.assertRaises(ValueError):
+                MODULE.face38_algorithm_assignment(state['manifest'],state['binding'],1)
+
+    def test_local_size_field_preserves_CAD_and_global_minimum(self):
+        manifest={'exports':{'domain_brep':{'sha256':MODULE.GAS05_NATIVE_SHA}},
+                  'boundary_faces':[{'id':38,'sha256':MODULE.GAS05_FACE38_SHA,'role':'walls_port'}]}
+        binding={'descriptor_bijection_verified':True,'matches_private':[{'source_face_index':38,'gmsh_face_tag':104}]}
+        result=MODULE.face38_size_assignment(manifest,binding,.15)
+        self.assertEqual(result['gmsh_face_tag'],104)
+        self.assertEqual(result['global_minimum_size_unchanged'],.005)
+        self.assertTrue(result['include_boundary'])
+        self.assertFalse(result['CAD_geometry_modified'])
+        self.assertNotIn('surface_algorithm',result)
+        for value in (0.,.004,.21,float('inf'),float('nan'),True):
+            with self.assertRaises(ValueError):MODULE.face38_size_assignment(manifest,binding,value)
+        manifest['exports']['domain_brep']['sha256']='0'*64
+        with self.assertRaises(ValueError):MODULE.face38_size_assignment(manifest,binding,.15)
+
+    def test_guide_refinement_binds_all_four_exact_cylinders_without_claiming_a_bound(self):
+        manifest={'exports':{'domain_brep':{'sha256':MODULE.GAS05_NATIVE_SHA}},'boundary_faces':[
+            {'id':i,'role':r,'sha256':h,'surface_type':'GeomAbs_Cylinder'}
+            for i,(r,h) in MODULE.GAS05_GUIDE_STEM_FACES.items()]}
+        binding={'descriptor_bijection_verified':True,'matches_private':[
+            {'source_face_index':i,'gmsh_face_tag':100+i} for i in MODULE.GAS05_GUIDE_STEM_FACES]}
+        self.assertIsNone(MODULE.guide_size_assignment(manifest,binding,None))
+        result=MODULE.guide_size_assignment(manifest,binding,.2)
+        self.assertEqual([r['gmsh_face_tag'] for r in result['faces']],[155,158,162,163])
+        self.assertTrue(result['target_size_is_not_a_guaranteed_actual_chord_bound'])
+        self.assertFalse(result['CAD_geometry_modified'])
+        for value in (0.,.004,.21,float('inf'),float('nan'),True):
+            with self.assertRaises(ValueError):MODULE.guide_size_assignment(manifest,binding,value)
+        for field,value in (('sha256','0'*64),('role','walls_port'),('surface_type','GeomAbs_Plane')):
+            changed=deepcopy(manifest);changed['boundary_faces'][0][field]=value
+            with self.assertRaises(ValueError):MODULE.guide_size_assignment(changed,binding,.2)
+        changed=deepcopy(binding);changed['matches_private'].pop()
+        with self.assertRaises(ValueError):MODULE.guide_size_assignment(manifest,changed,.2)
+
+    def test_guide_frame_reference_does_not_reuse_an_earlier_mesh_acceptance(self):
+        frames={'domain_sha256':MODULE.GAS05_NATIVE_SHA,'faces_private':[]}
+        receipt={'schema':'m64-persisted-guide-chord-diagnostic/v1','mode':'native_cylinder_diagnostics',
+                 'all_inputs_unchanged':True,'inputs_sha256':{'domain':MODULE.GAS05_NATIVE_SHA,
+                 'source':MODULE.GUIDE_CHORD_SOURCE_SHA},'result':{'frames_private':frames,
+                 'whole_facet_chord_gate':{'local_radial_envelopes_accepted':False}}}
+        self.assertIs(MODULE.validated_guide_frames(receipt,MODULE.GUIDE_FRAME_RECEIPT_SHA),frames)
+        with self.assertRaises(ValueError):MODULE.validated_guide_frames(receipt,'0'*64)
+        for key,value in (('mode','crossings'),('all_inputs_unchanged',False),('schema','unknown')):
+            changed=deepcopy(receipt);changed[key]=value
+            with self.assertRaises(ValueError):MODULE.validated_guide_frames(changed,MODULE.GUIDE_FRAME_RECEIPT_SHA)
+
 
 if __name__=='__main__':unittest.main()
