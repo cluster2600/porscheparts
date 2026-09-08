@@ -230,9 +230,36 @@ stratifie par architecture, graine 20260907). Il a ete tire avant qu'aucun
 substitut n'existe, ce qui est le seul moment ou cela veut dire quelque chose :
 un lot de test choisi apres coup est une note qu'on se donne a soi-meme.
 
-**Un corpus en S6 est en cours de generation** (`corpus_s6`, meme graine et meme
-plan, donc comparable cas par cas). C'est lui qui servira a l'entrainement ; le
-corpus S3 reste comme terme de comparaison sur l'effet de l'ordre d'element.
+### Corpus S6, celui qui servira a l'entrainement
+
+Meme graine et meme plan que le corpus S3, donc comparable cas par cas.
+
+| grandeur | corpus S3 | corpus S6 |
+|---|---|---|
+| cas ecrits | 3000 / 3000 | **3000 / 3000** |
+| element | S3 lineaire | **S6 quadratique** |
+| duree | 1 h 48 | 2 h 05, en douze tranches |
+| taille | 126 Mo | 1,1 Go |
+| noeuds par cas | 2 402 a 7 530 | 9 703 a 31 098 |
+| K | 376 a 44 242, mediane 5826 | 133 a 33 455, mediane 3983 |
+| exposant de G, plancher nu | 0,364 | **0,051** |
+| exposant de G, cellule fermee | 0,631 | 0,593 |
+| exposant d'epaisseur | 1,00 | 1,14 a 1,22 |
+
+**Le controle qui avait disqualifie le corpus S3 passe.** L'exposant de G sur le
+plancher nu vaut 0,051 pour 0,03 attendu de `dominance_study.py`, contre 0,364 en
+S3. La repartition flexion / cisaillement est correcte, et le substitut peut
+maintenant l'apprendre.
+
+**Un controle nouveau est a lire avec soin.** L'exposant d'epaisseur, exactement
+1,00 en S3, vaut 1,10 mesure hors corpus sur cinq epaisseurs, et 1,14 a 1,22 dans
+l'ajustement multivarie du corpus. La structure ne travaille pas en flexion de
+plaque — 1,10 reste tres loin de 3 — mais l'exactitude de la loi lineaire etait
+une propriete de l'element lineaire, pas de la structure. Le README du dossier
+FEA porte le detail et la consequence sur la question 0,8 / 1,0 mm.
+
+Le corpus S3 reste comme terme de comparaison sur l'effet de l'ordre d'element,
+et pour rien d'autre.
 
 **Reste a faire quand l'acces GPU sera la** — et rien de tout cela n'est bloquant
 aujourd'hui : conversion du corpus vers VTP ou Zarr par PhysicsNeMo-Curator,
