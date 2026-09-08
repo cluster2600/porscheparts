@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001",
+  "name": "Console de filtre à huile moteur à galeries intégrées, concept AlSi10Mg F0",
+  "description": "Concept indépendant d'une console 993 réunissant socle de filtre, deux galeries non colinéaires et deux ports dans un seul corps. Les sources établissent les références, une masse commerciale et l'interface du filtre MAHLE OC 229, mais aucune géométrie OEM ; toutes les interfaces du F0 restent synthétiques.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_M64_fitment_to_confirm"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "99310705700",
+      "99310705701"
+    ]
+  },
+  "classification": {
+    "category": "engine_oil_filter_console",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage F0 de CAO ouverte, valeur DfAM, perte de charge chaud/froid, pression, filetage, thermique, masse et propreté ; aucune fabrication, étanchéité, installation, circulation d'huile ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-oil-filter-console-alsi10mg-f0-0001/source/oil_filter_console.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-oil-filter-console-alsi10mg-f0-0001/derived/oil_filter_console_alsi10mg_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/PorscheFanatics/OEMVWShop/MAHLE/Islandworks/EOS ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - console et filtre à huile moteur 993",
+        "url": "https://porschefanatics.com/oem/993/101-10/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifie les consoles 993 107 057 00/01 et les filtres moteur dont 993 107 203 03/MAHLE OC 229 ; aucune géométrie ni matière. Voir SRC-PORSCHEFANATICS-993-OIL-FILTER-CONSOLE-CANDIDATE."
+      },
+      {
+        "title": "OEMVWShop - console Porsche 993 107 057 01",
+        "url": "https://www.oemvwshop.fr/99310705701-pieces-d-origine-porsche-p2689124/",
+        "source_type": "community",
+        "license": "commercial-retailer-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare 0,78 kg sans frontière de pesée ni protocole ; comparaison de masse uniquement. Voir SRC-OEMVWSHOP-993-OIL-FILTER-CONSOLE-MASS."
+      },
+      {
+        "title": "MHTeile - filtre MAHLE OC 229 pour Porsche 993",
+        "url": "https://www.mhteile.com/en/p/1100-crankcase-mahle-oil-filter-for-porsche-993-1993-97-oc-229-99310720303-993170101",
+        "source_type": "community",
+        "license": "commercial-retailer-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie filtre 76 x 101 mm, M20x1,5 ; des données distributeur complètent 72/62 mm, 20 Nm et 333 g. Ces cotes concernent le filtre, pas la console. Voir SRC-MAHLERETAIL-OC229-993-FILTER-INTERFACE."
+      },
+      {
+        "title": "Islandworks - console thermostat/filtre intégrée 6061-T6",
+        "url": "https://islandworks.se/products/integrated-thermostat-filter-console-with-dual-cooler-output",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Précédent fonctionnel en billet 6061-T6 utilisant un filtre 993 ; ce n'est pas une pièce de remplacement 993 et aucune géométrie n'est reprise. Voir SRC-ISLANDWORKS-INTEGRATED-THERMOSTAT-FILTER-CONSOLE-6061."
+      },
+      {
+        "title": "PorscheFanatics - données du manuel 993",
+        "url": "https://porschefanatics.com/993/manual/",
+        "source_type": "community",
+        "license": "derived-facts-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Occurrence OCR non vérifiée : environ 6,5 bar à 5 000 tr/min et 90 °C pour Carrera. Utilisée comme référence de régression, jamais comme cas de charge libéré. Voir SRC-PORSCHEFANATICS-993-MANUAL-DATA."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Route T6 et matériau candidat ; valeurs numériques du calcul conservées comme comparaisons génériques. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "CNC",
+      "casting"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "alliage aluminium-silicium-magnésium candidat LPBF",
+      "grade": "EOS Aluminium AlSi10Mg T6 de comparaison ; architecture commerciale analogue en billet 6061-T6",
+      "standard": "DIN EN 1706 EN AC-43000 et ASTM F3318 pour le candidat ; spécification huile, étanchéité et propreté propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation et supports assurant l'ouverture de toutes les galeries à qualifier",
+      "détensionnement puis T6 avec distorsion et porosité suivies",
+      "HIP à décider sur fatigue, étanchéité et résultats de tomographie",
+      "usinage du plan de carter, des ports, perçages, bossages, portée filtre et filetage M20x1,5",
+      "ébavurage interne, dépoudrage, rinçage et extraction particulaire validés",
+      "traitement de surface compatible huile, joints, filets et température",
+      "conditionnement final en propreté moteur"
+    ],
+    "supplier_requirements": [
+      "machine, paramètres, orientation, supports, poudre et lot traçables",
+      "coupons orientés avec traction, fatigue, corrosion huile et pression à chaud",
+      "témoins de galeries pour rugosité, dépoudrage et propreté résiduelle",
+      "CT intégral, FPI et métallographie avec critères de défauts zonés",
+      "métrologie des datums, ports, face carter, filetage, portée filtre et perçages",
+      "preuve pression, éclatement, fuite, débit, cyclage thermique, vibration et endurance moteur"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier l'AlSi10Mg contre carter, goujons, inserts, capteurs, raccords, filtre et huile ; traiter corrosion, fretting et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-oil-filter-console-candidate.json",
+      "catalog/sources/src-oemvwshop-993-oil-filter-console-mass.json",
+      "catalog/sources/src-mahleretail-oc229-993-filter-interface.json",
+      "catalog/sources/src-islandworks-integrated-oil-console-6061.json",
+      "catalog/sources/src-porschefanatics-993-manual-data.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-oil-filter-console-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "PorscheFanatics identifie la pièce et le filtre mais ne fournit ni géométrie ni matière.",
+      "La masse de 0,78 kg est une déclaration commerciale sans protocole ni frontière de pesée.",
+      "Les dimensions 76 x 101 mm, M20x1,5, 72/62 mm concernent le filtre OC 229, pas la console.",
+      "Le corps 144 x 90 x 50 mm, les quatre fixations, deux ports et deux galeries sont entièrement synthétiques.",
+      "La pression 6,5 bar est une occurrence OCR non vérifiée ; débit, viscosités, pertes locales et rugosité sont des scénarios.",
+      "Le filtre, sa soupape de dérivation et le circuit moteur sont absents du calcul hydraulique.",
+      "L'écran à froid et l'écran thermique contraint échouent.",
+      "Aucune propreté interne, étanchéité, fatigue, corrosion, CHT-CFD ou intégration moteur n'est démontrée.",
+      "Le STEP prouve seulement un BREP relisible ; aucune fabrication, circulation d'huile ou mise en route n'est autorisée."
+    ]
+  }
+}
