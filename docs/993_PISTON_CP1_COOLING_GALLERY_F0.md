@@ -68,6 +68,32 @@ un quatre-temps. `200 h` au régime maximal correspondraient mathématiquement �
 Ces nombres sont des contrôles mathématiques reproductibles, pas une FEA, une
 CHT, une CFD multiphasique ni une prédiction de durée de vie.
 
+## Simulation d'impression et Omniverse exécutées
+
+Le STEP a été maillé en `273 988` triangles étanches puis réellement sectionné
+sur les `2 390` couches de `50 µm` de l'orientation candidate `roll_y_45`.
+L'écran trouve quatre nouveaux îlots, `759` couches avec une région non
+soutenue, un maximum de `4,898 mm²` et une enveloppe conservative de supports
+de `8,365 cm³`. Aucun vide piégé n'est détecté au pas voxel de `1 mm`, ce qui ne
+remplace pas un CT. L'épaisseur locale p01 vaut `0,420 mm` sur 2 000 sondes et
+`6,25 %` des sondes sont sous `1,5 mm` : le dessin doit donc encore être revu.
+
+Le même master passe OpenUSD minimum, NVIDIA Asset Validator, Geometry,
+Physics et le profil SimReady `Prop-Robotics-Neutral 1.0.0`. Le rendu OVRTX est
+visible dans le dossier de preuves. Il s'agit d'un prop d'inspection isolé ; les
+interfaces du moteur sont absentes.
+
+Une scène de préparation LPBF séparée place le piston dans l'orientation
+`roll_y_45` sur un plateau nominal Sapphire `Ø315 mm`, contrôle l'enveloppe et
+passe OpenUSD minimum, NVIDIA Asset Validator, Geometry et Physics. Le piston
+est présent dans le rendu aplati inspecté. Le recoater animé n'est qu'un guide :
+la distorsion, les supports fournisseur et la collision recoater restent faux
+dans les portes de validation.
+
+Voir [le pipeline et le verdict détaillé](AM_VALIDATION_PIPELINE.md),
+[les résultats LPBF](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/)
+et [le résumé Omniverse](../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
+
 ## Reproduction logicielle
 
 Le master build123d est exécuté dans l'image CAO `linux/amd64` fixée par digest :
@@ -96,6 +122,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
    moteur instrumentées avant toute décision véhicule.
 
 PhysicsNeMo attend un dataset corrélé avec train, holdout et cas
-hors-distribution. SimReady attend les interfaces piston–segments–axe–bielle–
-cylindre–soupapes mesurées. Ce STEP F0 n'est autorisé ni pour fabrication, ni
-pour montage, ni pour mise en route moteur.
+hors-distribution. Le niveau asset SimReady est acquis, mais le test fonctionnel
+Omniverse attend toujours les interfaces piston–segments–axe–bielle–cylindre–
+soupapes mesurées. Ce STEP F0 n'est autorisé ni pour fabrication, ni pour
+montage, ni pour mise en route moteur.
