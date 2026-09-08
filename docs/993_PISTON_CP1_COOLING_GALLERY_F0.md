@@ -51,11 +51,19 @@ circulaire encastrée donne `277,57 MPa` et `0,486 mm` au centre pour un ligamen
 analytique de `5,5 mm`. Le rapport entre le minimum CP1 ambiant et cette
 contrainte n'est que `1,07` : le F0 n'a pas de marge démontrée à chaud.
 
+À `6 720 tr/min`, la course publiée donne une vitesse moyenne de piston de
+`17,1136 m/s`, une accélération synthétique au PMH de `2 509,25 g` et un rapport
+bielle/manivelle hypothétique de `3,3246`. L'alésage et la course documentaires
+restituent `600,044 cm³` par cylindre et `3 600,265 cm³` pour six cylindres ;
+ce contrôle de cohérence ne fournit aucune cote de piston.
+
 La pression projetée d'axe vaut `124,41 MPa`. Le modèle laminaire de galerie
 donne Reynolds `515`, `0,866 m/s` et `1,21 kPa` de perte linéaire. À `5 kW`, le
 débit hypothétique prendrait `88,24 K`. La conduction 1D fournit une borne haute
 de `35,91 kW`, la dilatation libre du diamètre `0,455 mm` et le cycle de `100 h`
-`40,32 millions` de tours.
+`40,32 millions` de tours, soit `20,16 millions` de combustions par cylindre pour
+un quatre-temps. `200 h` au régime maximal correspondraient mathématiquement à
+`80,64 millions` de tours ; ce n'est pas le profil du banc Porsche, non publié.
 
 Ces nombres sont des contrôles mathématiques reproductibles, pas une FEA, une
 CHT, une CFD multiphasique ni une prédiction de durée de vie.
