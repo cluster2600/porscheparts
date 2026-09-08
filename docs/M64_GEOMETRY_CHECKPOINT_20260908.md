@@ -74,12 +74,42 @@ Les contrôles d'ascendance des frontières et d'interfaces partagées précède
 le refus `native_partition_volume_sum_failed`. Le seuil relatif `1e−9` n'est
 pas modifié. Aucun export BRep de cette partition ni `gmsh.generate` exécuté.
 
-La somme des dix-sept volumes enregistrés vaut
+La somme des dix-sept volumes enregistrés lors de ce premier essai vaut
 `995961.7204052373` unités scan³. Le volume initial de **cet appel** n'ayant
 pas été consigné avant le refus, l'écart exact du garde n'est pas reconstructible.
 Il faut instrumenter les deux intégrales et leurs estimations de quadrature
 avant de conclure à une erreur de partition ou d'intégration. Les valeurs
 d'anciens reçus ne remplacent pas la valeur manquante.
+
+### Deuxième essai : intégration instrumentée, sans changer la partition
+
+Un nouvel appel consigne désormais le volume initial, les dix-sept volumes et
+leur somme avant la décision. Il retrouve le refus : `995961.70449802` contre
+`995961.7204052373` unités scan³, soit un écart relatif `1.59717e−8`, supérieur
+au seuil inchangé `1e−9`. Le premier reçu n'est ni corrigé ni remplacé.
+
+Les mêmes formes en mémoire sont ensuite intégrées à trois précisions
+adaptatives, avec la surcharge `Eps` explicite d'OCCT :
+
+| Eps demandé | Volume du domaine, unités scan³ | Somme des 17 volumes, unités scan³ | Écart relatif |
+|---:|---:|---:|---:|
+| `1e−7` | 995964,5780437368 | 995964,5779154756 | `1,28781e−10` |
+| `1e−9` | 995964,5870689296 | 995964,5870742635 | `5,35549e−12` |
+| `1e−11` | 995964,5869731805 | 995964,5869750070 | `1,83387e−12` |
+
+Cet accord est un indice de sensibilité à la quadrature, **pas une preuve de
+conservation géométrique** : l'estimation retournée pour le domaine reste
+proche de `1,054e−7`, malgré les précisions plus strictes demandées. Les
+estimations OCCT ne sont pas des bornes garanties ; accord somme/domaine et
+convergence absolue sont deux contrôles différents.
+[API OCCT 7.9.3](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepGProp/BRepGProp.hxx)
+
+Le deuxième essai dure 5,099 s natifs, 5,654 s nettoyage compris ; sortie 2,
+sans OOM ni timeout. Un BRep **diagnostic privé** est exporté avant la décision,
+avec cinq checkpoints. Sa relecture indépendante et le non-recouvrement des
+solides restent à contrôler. Aucun maillage ni solveur lancé ; le refus
+non adaptatif reste actif. Sources et entrées inchangées, conteneur exact
+supprimé et absence revérifiée hors du lanceur.
 
 ## Suite et périmètre d'exécution
 
