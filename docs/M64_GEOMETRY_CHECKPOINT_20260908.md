@@ -1262,6 +1262,74 @@ ni écrire de maillage. Cinq tests synthétiques passent, répétés par la raci
 Cela ferme ces deux essais, pas toute possibilité de correction dans un
 voisinage plus large.
 
+### Reprise locale : un nouveau point intérieur, frontière inchangée
+
+L'étoile complète de l'arête intérieure opposée à la jonction siège/chambre
+contient cinq tétraèdres. Les cinq triangulations du lien pentagonal ont
+été calculées en rationnels : chacune introduit au moins une inversion et
+est refusée (reçu 238e43f9…). Ce résultat motive un changement de méthode,
+pas une nouvelle répétition des mêmes échanges d'arêtes.
+
+Trois cavités de 5, 12 et 26 tétraèdres sont ensuite étudiées. Un programme
+linéaire propose, pour chacune, un point maximisant la distance minimale
+aux plans de frontière. Ses tolérances numériques ne valent pas admission :
+les coordonnées finales binary64 sont reconverties en rationnels pour
+vérifier tous les déterminants, la frontière orientée et le volume.
+Les trois propositions passent ces contrôles locaux. La plus petite est
+retenue pour la suite : **5 tétraèdres remplacés par 10, un nouveau nœud
+intérieur**, sans déplacement d'un nœud existant. Son minimum hauteur/arête
+passe de `1,02e−12` à `0,137866` (reçu 9ec56ff5…). Il s'agit d'un indicateur
+géométrique, pas d'une tolérance dimensionnelle ou d'un gain moteur.
+
+Le contrôle indépendant des contacts (b9e02335…) examine toutes les paires
+impliquant les dix nouveaux éléments. Sur 7 182 890 paires potentielles
+avec les cellules extérieures à la cavité, 7 182 425 sont strictement
+séparées par leurs boîtes englobantes ; les 465 restantes sont calculées
+en rationnels, ainsi que les 45 paires internes. Aucun chevauchement ni
+contact hors du simplexe commun déclaré n'est détecté, y compris lorsque
+le volume d'intersection est nul. Ce n'est pas un audit des paires de
+cellules laissées intactes. Neuf tests du contrôleur de contacts passent,
+dont deux témoins indépendants de contacts coplanaires.
+
+La proposition privée c40959ba… a ensuite été appliquée **une seule fois sur
+une copie**, dans Gmsh 4.15.2 sur Kali : 4 CPU, 4 Gio, plafond de 600 secondes.
+Le processus s'est terminé en 95,49 secondes, nettoyage compris, sans
+dépassement ni manque de mémoire. L'absence du conteneur a été contrôlée
+indépendamment. Douze tests du programme de correction et dix du lanceur
+passent, relus et répétés par la racine avant cette exécution.
+
+Le fichier e873b8ae… contient désormais 718 299 tétraèdres et 122 355 nœuds.
+Les anciens nœuds, leurs classes, les éléments extérieurs à la cavité et
+les 33 422 triangles de frontière sont conservés. Les sept tableaux natifs
+sont complets, finis, positifs là où requis, et identiques par identifiant
+après sauvegarde puis relecture. Aucun avertissement ni erreur Gmsh.
+Reçus : calcul 6aff1c46…, processus 219fd71b… ; la CAO et le maillage maître
+n'ont pas été modifiés. Aucune dépense Vast supplémentaire.
+
+Le minimum global minSICN passe de `2,182e−12` à `1,632e−5` ; parmi les
+dix nouveaux éléments, il vaut au minimum `0,28809`. Les valeurs minSICN et
+gamma des 718 289 cellules laissées intactes restent identiques. Les comptes
+diagnostiques passent de 3 282 à **3 281 minSICN sous 0,1**, et de 148 à
+**147 gamma sous 0,001**. Ces seuils de suivi ne sont pas des critères
+suffisants d'admission CFD : la correction est réelle mais locale.
+Le contre-contrôle du fichier sauvegardé **sans Gmsh** passe ensuite en
+13,48 secondes (ab8ed9a4…). Le parseur MSH 4.1 vérifie le delta exact,
+les classes et paramètres des nœuds, groupes et triangles. La topologie
+reste une composante, sans doublon, face non-manifold ni conflit
+d'orientation. Les 718 299 déterminants flottants sont positifs ; aucun
+ne déclenche la règle globale de recomputation exacte. Les preuves
+rationnelles locales restent distinctes de ce contrôle flottant global.
+Quatre tests de cette contrelecture passent et ont été répétés par la racine.
+Cette copie devient le prochain point de départ **diagnostique**, sans
+admission CFD ni modification du contour.
+
+Suite proposée : regrouper les défauts restants et préparer un premier lot
+d'au plus huit cavités indépendantes, puis contrôler aussi les contacts
+entre remplacements. Même conservation exacte, une application bornée
+sur copie, aucune régression de qualité et baisse du nombre de cellules
+faibles exigées. Réévaluer le gain et le coût après ce premier lot ; il
+n'est pas exécuté dans le présent reçu.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
@@ -1312,6 +1380,8 @@ flowchart LR
     AE --> AF[Optimisation intérieure sur copie<br/>0 non-fini, 3 282 minSICN sous 0,1]
     AF --> AG[Frontière et relecture conservées<br/>Cellules très aplaties encore à traiter]
     AG --> AH[148 gamma sous 0,001 localisés sur la frontière<br/>Connectivité locale à corriger, contour conservé]
+    AH --> AI[5 échanges pentagonaux refusés<br/>3 cavités coniques proposées]
+    AI --> AJ[Plus petite cavité 5 vers 10 appliquée<br/>Frontière et relecture exactes, 3 281 minSICN sous 0,1]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
