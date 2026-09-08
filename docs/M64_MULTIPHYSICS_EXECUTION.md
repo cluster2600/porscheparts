@@ -15,6 +15,7 @@ Diagnostic suivant : [contrat du prédicteur Marangoni, témoin natif passé](M6
 Essai corrigé : [coupon avec écoulement, arrêté à 109,55 µs sur 120 µs](M64_F58_CORRECTED_COUPON_20260908.md).
 CAO : [copie avec échappement et audit natif, qualification refusée](M64_EXHAUST_NATIVE_AUDIT_20260908.md).
 Contrôle suivant : [matière retirée et parois des logements de guides d'échappement](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md), contacts réels encore à vérifier.
+Point suivant : [contacts nominaux des quatre guides mesurés, supports de courbes vérifiés et partition gazeuse refusée](M64_GEOMETRY_CHECKPOINT_20260908.md), sans modification du corps ni qualification physique.
 Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
 Cycle moteur : [thermodynamique variable Cantera et contre-calcul énergétique](M64_700PS_VARIABLE_THERMO_20260908.md), sans validation de puissance ni charges locales.
 Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
