@@ -1,12 +1,14 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Un candidat BRep avec les deux arêtes segmentées est sauvegardé, mais reste
-refusé : sa resérialisation n'est pas identique.** Les contrôles de validité
-avant/après relecture passent ; le contrôle BOP complet n'est pas exécuté.
+**Le candidat BRep sauvegardé passe désormais les cinq modes BOP sélectionnés ;
+les 136 contrôles de non-recouvrement du gaz passent également.** Le refus de
+resérialisation n'est pas encore levé : ses différences sont attribuées sur
+macOS, sans borne spatiale globale ni équivalence multiplateforme démontrées.
 Le maître `21c9c40b…` reste inchangé, sans promotion du candidat `450ba081…`.
 Les contacts nominaux des guides sont mesurés, sans qualification à chaud.
-La partition du gaz reste refusée : sa relecture passe les contrôles de
-validité, mais frontières et non-recouvrement ne sont pas complètement audités.
+La partition du gaz reste refusée : validité et non-recouvrement sont contrôlés,
+mais la couverture des frontières, leurs rôles physiques et le bilan de volumes
+ne sont pas encore acceptés.
 
 Ce point suit les [contrôles de matière et de logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
 et la [localisation des défauts du maillage](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
@@ -125,6 +127,59 @@ Pour V5, les plafonds demandés sont enregistrés, mais la sonde de ressources a
 échoué avant inspection : aucune mesure effective CPU/RAM n'est revendiquée.
 Suppression et absence du conteneur sont vérifiées séparément.
 
+### BOP indépendant du candidat sauvegardé : cinq modes réussis
+
+Un contrôle distinct relit directement le binaire `450ba081…` sur Kali/OCP
+7.9.3.1, sans reconstruire ni exporter le corps. `SelfInterMode`,
+`SmallEdgeMode`, `RebuildFaceMode`, `ContinuityMode` et `CurveOnSurfaceMode`
+sont tous activés et terminés : **zéro défaut, erreur ou avertissement**.
+Les quatre autres modes restent désactivés et sont consignés dans le reçu.
+Ce résultat concerne ces cinq modes, pas tous les critères possibles d'OCCT.
+
+`BRepCheck` exact passe avant et après. Les tolérances brutes/effectives et les
+empreintes binaires du même objet chargé restent identiques durant le contrôle.
+Le fichier source est inchangé ; l'ancien refus de resérialisation n'est pas
+effacé. Durées : 173,501 s pour BOP, 178,128 s pour le worker et 178,849 s
+nettoyage compris. Sorties 0, sans OOM ni expiration. Les plafonds effectifs
+2 CPU/4 Gio, le système de fichiers racine en lecture seule et l'absence de
+réseau sont vérifiés. Conteneur supprimé, absence revérifiée séparément.
+
+### Sérialisation : les 1 114 octets différents sont localisés sur macOS
+
+Une lecture par chemin suivie de deux écritures **en mémoire** reproduit une
+différence de 1 114 octets sur 5 205 080, sans changement de longueur. Les deux
+écritures successives du même objet sont identiques. Un lecteur du format OCCT
+V3 attribue ensuite toutes les différences ; il vérifie les limites des tables,
+les références topologiques, les orientations, les drapeaux et la fin du fichier.
+
+| Champs modifiés après lecture/écriture | Octets différents | Écart maximal par composante |
+|---|---:|---:|
+| Directions des courbes 2D | 90 | `1,11023e−16` |
+| Directions des courbes 3D | 366 | `2,22045e−16` |
+| Directions des repères de surfaces planes/cylindriques | 374 | `2,22045e−16` |
+| Caches des extrémités UV de 101 arêtes | 284 | `4,26326e−14` en coordonnées UV |
+
+Aucun octet différent ne reste non attribué. Les localisations, points,
+coefficients des B-splines, rayons, intervalles, tolérances, références et
+drapeaux topologiques sérialisés ne changent pas dans cette comparaison.
+Les directions sont sans dimension ; un écart UV **n'est pas** une distance 3D.
+Les 32 correspondances exactes à une normalisation simple parmi 45 groupes de
+directions 2D modifiés ne justifient pas d'attribuer tous les écarts à cette seule
+opération. Le format reconstruit des directions/repères et recalcule des caches
+UV lors de la lecture ; ce sont des mécanismes à distinguer.
+[Lecture des directions](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_Curve2dSet.cxx),
+[lecture et écriture des arêtes](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx).
+
+Ces diagnostics de 0,756 s, 1,343 s et 1,683 s utilisent **macOS arm64**, pas le
+conteneur Linux. L'empreinte après lecture y est `7f3cc7e4…`, contre `37eda433…`
+dans l'audit BOP Linux, avec le même format V3. L'attribution macOS ne prouve
+donc pas celle de Linux. Les empreintes avant/après chaque audit ne sont
+comparées qu'au sein de la même exécution. Aucun BRep n'est exporté, aucune
+tolérance augmentée et aucun candidat promu. Une première sonde atteint son
+plafond CPU sans checkpoint ; deux essais du lecteur s'arrêtent sur des erreurs
+de séparateurs avant correction d'après le format source. Leurs reçus privés
+sont conservés ; ils ne sont pas des échecs physiques de la pièce.
+
 ## Partition du gaz : refus conservé
 
 Sur le domaine d'admission `fab1338a…`, le calcul natif obtient en mémoire
@@ -218,21 +273,59 @@ lanceur. La suite doit enregistrer le groupe, le sens et les messages natifs
 de chaque opération ; le non-recouvrement peut faire l'objet d'un lot distinct,
 sans prétendre que la couverture des frontières est acquise.
 
+### Lot indépendant : les 136 intersections entre solides sont terminées
+
+Les mêmes quatre entrées gelées sont relues, sans nouvelle partition, sans
+soustraction de frontières et sans quadrature. Les 19 contrôles `BRepCheck`
+exacts passent de nouveau. Les `17 × 16 / 2 = 136` paires font chacune l'objet
+d'un `Common` non destructif et d'un journal avant/après l'opération.
+
+**136 résultats valides, zéro solide d'intersection, zéro erreur, avertissement
+ou résultat inconnu.** Les fichiers d'entrée et les instantanés mémoire
+texte/tolérances sont inchangés ; l'empreinte texte n'est pas une preuve complète
+de tous les coefficients binaires. Le non-recouvrement est contrôlé dans le
+cadre des tolérances natives. Ce lot ne contrôle ni l'auto-intersection interne
+de chaque solide ni la couverture totale du domaine.
+
+Durées : 5,256 s natives / 5,796 s nettoyage compris ; pas d'OOM ni expiration,
+plafonds effectifs 2 CPU/4 Gio et conteneur absent après suppression. Le code
+retour 2 est prévu même si les 136 paires passent : les refus antérieurs sur
+frontières, rôles physiques et volumes restent en vigueur. Aucun maillage lancé.
+
+Les deux nouveaux lots Kali enregistrent une valeur `FuzzyValue()` effective
+de `1e−7` unité scan, pour une demande à zéro. OCCT impose un plancher dans
+[`SetFuzzyValue`](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BOPAlgo/BOPAlgo_Options.cxx).
+Ils ne sont donc pas décrits comme des opérations booléennes en arithmétique
+exacte ou à tolérance effective nulle. Cela ne modifie pas les tolérances
+stockées dans les entrées.
+
 ## Suite et périmètre d'exécution
 
-Priorités : identifier la différence de resérialisation et exécuter le contrôle
-BOP du candidat conservé ; diagnostiquer les opérations de frontières, auditer
-séparément le non-recouvrement et résoudre l'attribution physique et le bilan
-de volumes, puis mailler le domaine. Les contacts de
+Priorités : borner l'effet spatial des champs de sérialisation modifiés et
+contrôler leur comportement sous Linux ; terminer les opérations de frontières,
+l'attribution physique et le bilan de volumes, puis mailler le domaine.
+Le BOP du candidat et le lot des 136 paires n'ont pas à être relancés sur les
+mêmes entrées inchangées. Les contacts de
 sièges, l'assemblage complet, les parois, la thermique, la résistance et le
 procédé LPBF restent des contrôles distincts. Aucune puissance de 700 ch ni
 aucune aptitude à la fabrication ne sont démontrées par ces diagnostics.
+
+```mermaid
+flowchart LR
+    A[Corps V5 sauvegardé] --> B[5 modes BOP réussis]
+    A --> C[Écarts de sérialisation localisés sur Mac]
+    C --> D[Borne spatiale et contrôle Linux à établir]
+    E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
+    E --> G[Frontières, rôles et volumes à accepter]
+    G --> H[Maillage puis calculs physiques]
+```
 
 Les essais utilisent Kali et l'image OCP existants, sans réseau dans les
 conteneurs et avec sources/entrées en lecture seule. Les budgets sont
 respectivement 90 s/2 Gio pour les supports, 60 s/2 Gio pour chaque témoin,
 300 s/4 Gio pour les guides et 90 s/4 Gio pour la partition, avec deux CPU et
 le même plafond pour RAM et RAM+swap. Les réintégrations sont bornées à
-300 s/4 Gio et les audits indépendants à 150 s/4 Gio, toujours deux CPU.
+300 s/4 Gio, les audits du gaz à 150 s/4 Gio et le BOP indépendant à
+240 s au total/4 Gio, toujours deux CPU.
 Aucun OOM ni timeout pour ces essais Kali ; conteneurs exacts
 supprimés et absence vérifiée. Aucune nouvelle dépense Vast pour ce lot.
