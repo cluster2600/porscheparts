@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
+  "name": "Soupape d'admission 993 creuse Ti64, concept LPBF F0",
+  "description": "Concept indépendant de soupape d'admission Ti-6Al-4V creuse avec quatre nervures internes et alésage axial ouvert pour le dépoudrage. Seuls le diamètre de tête, le diamètre de queue, l'encombrement produit, la masse déclarée et la référence sont publiés ; toute la géométrie fonctionnelle reste une hypothèse F0.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_C2",
+      "993_C4",
+      "993_Turbo",
+      "M64_research"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "99310540902"
+    ]
+  },
+  "classification": {
+    "category": "intake_valve_hollow",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage CAO, DfAM, masse, cinématique harmonique, effort axial, flambement, mode propre et thermique ; aucune fabrication, installation ou mise en route moteur autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-intake-valve-ti64-hollow-f0-0001/source/intake_valve.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-intake-valve-ti64-hollow-f0-0001/derived/intake_valve_ti64_hollow_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/FVD/Swindon ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "FVD - dimensions déclarées de soupape d'admission 993",
+        "url": "https://www.fvd.net/de/shop/einlassventil-49mm-993-94-95-turbo-95-98-m64-05-06-07-08-60-nicht-natrium-gekuehlt-99310540902eq1-99310540902~p306501",
+        "source_type": "community",
+        "license": "commercial-product-page-site-terms",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare tête 49 mm, queue 8 mm, masse 120 g, enveloppe 50 x 110 x 50 mm et référence 99310540902. Aucun profil, matériau, traitement ou tolérance. Voir SRC-FVD-993-INLET-VALVE-DIMENSIONS."
+      },
+      {
+        "title": "PorscheFanatics - contexte de soupapes titane pour moteur 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifie des soupapes titane dans le système Swindon quatre soupapes ; ne prouve ni une nuance, ni une forme, ni la compatibilité avec la soupape M64 deux soupapes. Voir SRC-PORSCHEFANATICS-993-TITANIUM-VALVE-CONTEXT."
+      },
+      {
+        "title": "EOS Titanium Ti64 Grade 5",
+        "url": "https://www.eos.info/metal-solutions/data-sheets/titanium/pds-eos-titanium-ti64-grade5-eos-m-290-80um",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Fournit des propriétés LPBF typiques dépendantes de la machine, de l'orientation et du traitement ; aucune validation de soupape. Voir SRC-EOS-TI64-GRADE5."
+      },
+      {
+        "title": "TIMETAL 6-4 physical properties",
+        "url": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Densité, module, dilatation, conductivité et chaleur spécifique corroyés servent uniquement au criblage physique. Voir SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
+      },
+      {
+        "title": "elferclassic - données techniques du 993 Turbo",
+        "url": "https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php",
+        "source_type": "community",
+        "license": "site-copyright-redistribution-unclear",
+        "accessed_on": "2026-09-08",
+        "notes": "Le limiteur 6 720 tr/min fournit seulement une borne documentaire de régime ; la loi de came, le ressort, les pressions et températures restent synthétiques. Voir SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "CNC"
+    ],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "titane candidat",
+      "grade": "Ti-6Al-4V Grade 5 LPBF de criblage ; matière de la référence 993 et du kit Swindon non publiée",
+      "standard": "ASTM F2924 et spécification soupape propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation axe vertical et stratégie de supports à qualifier",
+      "dépoudrage documenté de la cavité par l'alésage axial ouvert",
+      "détensionnement et traitement thermique qualifiés pour la machine et les paramètres",
+      "HIP à décider sur la population de défauts et la fatigue représentative",
+      "fermeture de l'extrémité par un procédé à définir puis CT et épreuve",
+      "usinage et finition de la queue, du siège, de la gorge, de la tête et des datums",
+      "revêtement, dureté de pointe, appairage guide-siège et équilibrage par jeu"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "coupons orientés avec traction, HCF/LCF, impact, fluage, oxydation, usure et couche alpha à température",
+      "preuve de dépoudrage de l'alésage 5 mm sur environ 100 mm et critère de propreté interne",
+      "qualification de la fermeture d'extrémité, de son étanchéité et de sa rétention",
+      "CT intégral, métallographie, ressuage et métrologie après tous post-traitements",
+      "essais de soupape grandeur réelle sur banc chaud, culasse entraînée puis moteur avant véhicule"
+    ]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V Grade 5 candidat uniquement ; aucune nuance n'est établie pour la référence Porsche 99310540902",
+    "heat_treatment": "Traitement de détente et de ductilité EOS à qualifier ; aucune recette gelée sans machine, orientation, coupons et fermeture",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": [
+      "diamètre, rectitude et état de surface de queue",
+      "face et angle de siège",
+      "marge et profil de tête",
+      "gorge de clavettes et pointe",
+      "interface de fermeture de l'alésage axial"
+    ],
+    "inspection": [
+      "CT de la tête, des nervures, de l'alésage, de la fermeture et des transitions",
+      "métrologie de longueur, diamètre, rectitude, battement, siège et gorge",
+      "rugosité, porosité, couche alpha, contraintes résiduelles et propreté interne",
+      "ressuage après usinage et contrôle de la fermeture",
+      "essais chauds d'impact, rebond, usure, fatigue et rétention"
+    ],
+    "galvanic_isolation": "Qualifier couples titane-guide, siège, ressort, clavettes et coupelle, fretting, grippage, revêtements, huile, produits de combustion et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-fvd-993-inlet-valve-dimensions.json",
+      "catalog/sources/src-porschefanatics-993-titanium-valve-context.json",
+      "catalog/sources/src-eos-ti64-grade5.json",
+      "catalog/sources/src-timet-ti64-physical-properties.json",
+      "catalog/sources/src-elferclassic-993-turbo-technical-data.json",
+      "parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Les 49 mm, 8 mm, 50 x 110 x 50 mm, 120 g et la référence viennent d'une fiche commerciale sans plan ni mesure indépendante.",
+      "La longueur 109 mm, la tête, le col, la cavité, l'alésage de 5 mm et quatre nervures de 1,2 mm sont entièrement synthétiques.",
+      "La masse CAO 55,45 g et le gain de 23,38 % comparent deux F0 partageant le même extérieur inventé ; ils ne valident pas un gain OEM.",
+      "Les 12 mm de levée, 240 degrés vilebrequin, ressort 520 N + 40 N/mm, 0,20 MPa et +400 K sont des cas de régression non mesurés.",
+      "Le premier mode à 190,8 Hz est un écran de poutre encastrée, pas une analyse modale du système guide-siège-ressort-came.",
+      "Les contraintes sur section, Euler et plaque circulaire ignorent contacts, impact, flottement, gorge, défauts et fatigue multiaxiale.",
+      "Les valeurs EOS/TIMET sont des comparaisons ambiantes et physiques, pas des admissibles de soupape LPBF à chaud.",
+      "Le STEP prouve seulement un BREP relisible avec cavité ouverte ; il n'est autorisé ni pour fabrication, ni pour installation, ni pour moteur."
+    ]
+  }
+}
