@@ -73,6 +73,12 @@ couvrant pas toutes les occurrences n'a pas été présenté comme exhaustif.
 
 ## Limites et prochaine utilisation
 
+La [passe de remaillage suivante](M64_REMAILLAGE_NATIF_20260908.md)
+est maintenant exécutée sur ce candidat : nouveau volume de 469 985
+tétraèdres, contre-audits de frontière et contrôle OpenFOAM. L'intégrité
+du volume passe, mais six familles de qualité restent rejetées ; aucune
+autorisation CFD n'en découle.
+
 Le candidat peut maintenant servir de base à une **nouvelle tentative de
 maillage diagnostique**, avec ses propres contrôles de frontières et de
 qualité. Cela ne dispense pas des gardes du programme de maillage.

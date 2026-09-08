@@ -10,6 +10,7 @@ import argparse
 from collections import defaultdict
 from fractions import Fraction
 import hashlib
+import importlib.util
 import json
 import math
 from pathlib import Path
@@ -28,6 +29,8 @@ FACE_SHAS={55:'f4b546496c1b4a040c561ea46685469ec7e9feb4ab3c5dbe9efbeba58b81d465'
            63:'5134bae58c7ae348813da1ea39c02e2e639b9f266828067d616fd40569b4c646',
            64:'fc19b8b3258fb45cf7122f4d839a427b46c93c35e2be1b6de46c4570858ec159'}
 PRIVATE_ROOT=Path('/Users/maxime/projects/3dprinting993/work/m64-private-20260907')
+_PROFILE_SPEC=importlib.util.spec_from_file_location('guide_native_profiles',Path(__file__).with_name('native_gas_profiles.py'))
+profiles=importlib.util.module_from_spec(_PROFILE_SPEC);_PROFILE_SPEC.loader.exec_module(profiles)
 
 
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -164,7 +167,10 @@ def mesh_chord_gate(points,triangles_by_face,frames):
     Passing only bounds the paired cylinders, never all surface intersections,
     volume quality, CFD or manufacturing. Target h is not an acceptance metric.
     """
-    if frames.get('schema')!='m64-native-guide-cylinder-frames/v2' or frames['domain_sha256']!=DOMAIN_SHA:
+    domain_sha=frames.get('domain_sha256')
+    face_shas=(profiles.guide_face_hashes(domain_sha,frames)
+               if domain_sha==profiles.SEGMENTED_DOMAIN_SHA else FACE_SHAS)
+    if frames.get('schema')!='m64-native-guide-cylinder-frames/v2' or domain_sha not in (DOMAIN_SHA,profiles.SEGMENTED_DOMAIN_SHA):
         raise ValueError('exact_native05_v2_inventory_frames_required')
     inventory=frames['native_inventory']
     if not inventory['all_native_faces_examined'] or len(inventory['surface_types'])!=inventory['native_face_count']:
@@ -182,7 +188,7 @@ def mesh_chord_gate(points,triangles_by_face,frames):
     if any(rows[fid]!=inventoried[fid] for fid in FACES):raise ValueError('selected_frames_differ_from_native_inventory')
     results={}
     for fid,row in rows.items():
-        if row['face_sha256']!=FACE_SHAS[fid]:raise ValueError('native_face_frame_hash_mismatch')
+        if row['face_sha256']!=face_shas[fid]:raise ValueError('native_face_frame_hash_mismatch')
         radius=row['radius'];axis=tuple(row['axis_direction_private']);origin=tuple(row['axis_point_private'])
         tolerance=row['native_max_tolerance'];values=(radius,tolerance,*axis,*origin)
         if len(axis)!=3 or len(origin)!=3 or not all(math.isfinite(v) for v in values):
@@ -301,7 +307,8 @@ def crossings(points,triangles):
             'broad_phase_parallel_relative_filter':1e-13,'broad_phase_barycentric_margin':1e-10}
 
 
-def native_cylinders(domain,points,triangles,manifest):
+def native_frames(domain,manifest):
+    """Inspect native cylinders independently of any existing mesh."""
     from OCP.BRep import BRep_Builder,BRep_Tool
     from OCP.BRepTools import BRepTools
     from OCP.TopoDS import TopoDS_Shape,TopoDS
@@ -353,6 +360,14 @@ def native_cylinders(domain,points,triangles,manifest):
     frames={'schema':'m64-native-guide-cylinder-frames/v2','domain_sha256':sha(domain),
         'native_inventory':inventory,'coverage':coverage,
         'faces_private':[r for r in inventory['cylinders_private'] if r['face_id'] in coverage['selected_face_ids']]}
+    if frames['domain_sha256']==profiles.SEGMENTED_DOMAIN_SHA:
+        registration=profiles.registered_segmented_manifest(manifest,for_meshing=False)
+        frames['classified_manifest_sha256']=registration['manifest_sha256']
+    return frames
+
+
+def native_cylinders(domain,points,triangles,manifest):
+    frames=native_frames(domain,manifest)
     grouped={fid:[t['nodes'] for t in triangles if t['face']==fid] for fid in FACES}
     gate=mesh_chord_gate({n:tuple(map(float,p)) for n,p in points.items()},grouped,frames)
     return {'frames_private':frames,'whole_facet_chord_gate':gate}
@@ -361,25 +376,44 @@ def native_cylinders(domain,points,triangles,manifest):
 def main(args):
     start=time.monotonic();out=args.output.resolve()
     if not out.is_relative_to(PRIVATE_ROOT) or out.exists():raise ValueError('new_private_output_required')
-    manifest=json.loads(args.boundary_report.read_text());mr=json.loads(args.mesh_report.read_text())
-    if sha(args.domain)!=DOMAIN_SHA or mr['native_BRep_sha256']!=DOMAIN_SHA:raise ValueError('exact_native05_required')
-    if sha(args.boundary_report)!=mr['gas_domain_report_sha256']:raise ValueError('manifest_hash_mismatch')
-    if sha(args.mesh)!=mr['persisted_surface']['MSH_sha256']:raise ValueError('saved_MSH_hash_mismatch')
-    paths={'domain':args.domain,'boundary_report':args.boundary_report,'mesh_report':args.mesh_report,'mesh':args.mesh,'source':Path(__file__)}
+    inventory_only=getattr(args,'native_inventory_only',False)
+    manifest=json.loads(args.boundary_report.read_text());domain_sha=sha(args.domain)
+    segmented=domain_sha==profiles.SEGMENTED_DOMAIN_SHA
+    if segmented:profiles.registered_segmented_manifest(manifest,sha(args.boundary_report),for_meshing=False)
+    elif domain_sha!=DOMAIN_SHA:raise ValueError('exact_registered_native_domain_required')
+    paths={'domain':args.domain,'boundary_report':args.boundary_report,'source':Path(__file__)}
+    if segmented:paths['profile_source']=Path(profiles.__file__)
+    if inventory_only:
+        if args.mesh is not None or args.mesh_report is not None:
+            raise ValueError('native_inventory_must_not_use_a_mesh_or_mesh_report')
+    else:
+        if args.mesh is None or args.mesh_report is None:raise ValueError('saved_surface_and_mesh_report_required')
+        mr=json.loads(args.mesh_report.read_text())
+        if mr['native_BRep_sha256']!=domain_sha:raise ValueError('exact_mesh_native_domain_required')
+        if sha(args.boundary_report)!=mr['gas_domain_report_sha256']:raise ValueError('manifest_hash_mismatch')
+        if sha(args.mesh)!=mr['persisted_surface']['MSH_sha256']:raise ValueError('saved_MSH_hash_mismatch')
+        paths.update(mesh_report=args.mesh_report,mesh=args.mesh)
+    face_shas=profiles.guide_face_hashes(domain_sha) if segmented else FACE_SHAS
     native_faces=[]
     for row in manifest['boundary_faces']:
         path=args.boundary_report.parent/row['file']
         if sha(path)!=row['sha256']:raise ValueError('native_face_hash_mismatch')
-        if row['id'] in FACE_SHAS and row['sha256']!=FACE_SHAS[row['id']]:raise ValueError('native_gap_face_hash_mismatch')
+        if row['id'] in face_shas and row['sha256']!=face_shas[row['id']]:raise ValueError('native_gap_face_hash_mismatch')
         paths['face_%d'%row['id']]=path
         native_faces.append({k:row[k] for k in ('id','role','sha256','area','surface_type','source_match')})
-    hashes={k:sha(p) for k,p in paths.items()};points,triangles=read_surface(args.mesh)
-    triangles=bind_triangles_to_native(triangles,mr,[r['id'] for r in manifest['boundary_faces']])
-    result=native_cylinders(args.domain,points,triangles,manifest) if args.native_only else crossings(points,triangles)
-    report={'schema':'m64-persisted-guide-chord-diagnostic/v2','status':'diagnostic_complete_not_mesh_acceptance',
-        'mode':'native_cylinder_diagnostics' if args.native_only else 'exact_rational_crossing_confirmation',
+    hashes={k:sha(p) for k,p in paths.items()}
+    if inventory_only:
+        result={'frames_private':native_frames(args.domain,manifest),'whole_facet_chord_gate':None}
+        mode='native_inventory_only'
+    else:
+        points,triangles=read_surface(args.mesh)
+        triangles=bind_triangles_to_native(triangles,mr,[r['id'] for r in manifest['boundary_faces']])
+        result=native_cylinders(args.domain,points,triangles,manifest) if args.native_only else crossings(points,triangles)
+        mode='native_cylinder_diagnostics' if args.native_only else 'exact_rational_crossing_confirmation'
+    report={'schema':'m64-native-guide-frame-inventory/v1' if inventory_only else 'm64-persisted-guide-chord-diagnostic/v2',
+        'status':'diagnostic_complete_not_mesh_acceptance','mode':mode,
         'inputs_sha256':hashes,'native_faces':native_faces,'mesh_accepted':False,'CFD_executed':False,
-        'MSH_faces_rebound_through_verified_native_import_bijection':True,
+        'MSH_faces_rebound_through_verified_native_import_bijection':None if inventory_only else True,
         'CAD_modified':False,'manufacturing_authorized':False,'result':result,
         'elapsed_seconds':time.monotonic()-start,'all_inputs_unchanged':all(sha(p)==hashes[k] for k,p in paths.items())}
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,indent=2)+'\n')
@@ -389,7 +423,10 @@ def main(args):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    for field in ('domain','boundary-report','mesh-report','mesh','output'):parser.add_argument('--'+field,type=Path,required=True)
-    parser.add_argument('--native-only',action='store_true')
+    for field in ('domain','boundary-report','output'):parser.add_argument('--'+field,type=Path,required=True)
+    for field in ('mesh-report','mesh'):parser.add_argument('--'+field,type=Path)
+    mode=parser.add_mutually_exclusive_group()
+    mode.add_argument('--native-only',action='store_true')
+    mode.add_argument('--native-inventory-only',action='store_true',help='Extract native frames only; no mesh input or chord acceptance')
     resource.setrlimit(resource.RLIMIT_CPU,(110,115))
     raise SystemExit(main(parser.parse_args()))
