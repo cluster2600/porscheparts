@@ -1,5 +1,12 @@
 # M64 — contacts de guides et préparation géométrique
 
+**Dernier résultat : l'optimisation du maillage solide réduit de 4 871 à
+1 722 le nombre de tétraèdres sous `minSICN = 0,1`, sans déplacer la frontière.**
+Les 45 636 nœuds de frontière et les 91 300 triangles sont conservés exactement,
+y compris après export/relecture. Le pire élément reste sous le seuil :
+ce résultat améliore le maillage, pas la résistance démontrée de la culasse.
+L'admission CAE et la fabrication restent refusées.
+
 **Le candidat BRep sauvegardé passe les cinq modes BOP sélectionnés ;
 les 136 contrôles de non-recouvrement du gaz passent également.** Le nouveau
 diagnostic complet des frontières termine 104 soustractions : 102 passent,
@@ -549,13 +556,100 @@ maillage 2 attendu, sans OOM ; les quatre conteneurs ont été supprimés et leu
 absence revérifiée. Huit tests purs du wrapper et 21 du producteur passent.
 Aucune nouvelle dépense Vast, charge moteur, simulation thermique ou mécanique.
 
+### Optimisation intérieure du solide V5, frontière gelée
+
+Deux tentatives partent chacune d'une copie du **même MSH initial** `763a2ad9…`.
+Elles ne chargent aucune CAO et ne génèrent pas de nouveau maillage depuis la
+géométrie. L'optimiseur natif par défaut de Gmsh modifie la connectivité et des
+nœuds intérieurs ; les éléments et nœuds des entités de dimension 0/1/2 doivent
+rester strictement identiques. La vraie frontière des tétraèdres est également
+comparée aux triangles stockés, et les nœuds de frontière ne doivent pas être
+classés comme nœuds volumiques mobiles.
+
+La première tentative exécute l'optimiseur mais échoue ensuite avec
+`Unknown element 396236` pendant le calcul des qualités. Aucun MSH optimisé
+n'est exporté et aucune amélioration n'est créditée à ce reçu `67c8fb6b…`.
+L'ancien cache d'éléments n'était pas invalidé après les échanges, avec
+`Mesh.Renumber=0`. La seconde version ajoute uniquement
+[`rebuildElementCache(onlyIfNecessary=False)`](https://gmsh.info/doc/texinfo/gmsh.html#index-gmsh_002fmodel_002fmesh_002frebuildElementCache)
+après l'optimisation et sa trace dans le rapport. Cette opération reconstruit
+l'index tags→éléments, pas la géométrie ; renumérotation, frontière, métrique et
+seuils restent inchangés. Le reçu initial et les deux versions sont conservés.
+
+| Contrôle | Avant | Après, export binaire relu |
+| --- | ---: | ---: |
+| Tétraèdres | 271 001 | 260 107 |
+| Tétraèdres sous `minSICN = 0,1` | 4 871 | **1 722** |
+| Fraction en nombre sous le seuil | 1,7974 % | 0,6620 % |
+| Fraction du volume absolu dans ces éléments | 0,1676 % | 0,1149 % |
+| Minimum `minSICN` | 0,0000406853 | 0,0000406853 |
+| Nœuds / nœuds frontières / triangles frontières | 65 735 / 45 636 / 91 300 | Identiques |
+
+Le MSH dérivé `a6871a23…` contient **64,6479 % de tétraèdres insuffisants en
+moins**, sans amélioration du minimum. La somme des volumes signés reste
+`1 157 574,359375028` unités scan³ ; aucune Jacobienne ni aucun volume nul ou
+négatif, une seule composante, aucune frontière manquante, surnuméraire ou
+non-manifold. Les entités de frontière, tags, orientations, connectivités et
+coordonnées binary64 sont exactement conservés. L'ensemble du maillage après
+optimisation est identique après export/relecture MSH 4.1 binaire.
+
+L'optimiseur utilise en interne `gamma = 3 r_inscrit / R_circonscrit`, pas
+`minSICN`. Ses annonces de tétraèdres « ill-shaped » ne remplacent pas notre
+recalcul du seuil `0,1`. Un seul appel API par tentative, `force=True` pour le
+volume discret, `OptimizeThreshold=0,3`, sans Netgen ni périodicité. Dans cette
+méthode, `niter=1` ne borne pas la boucle interne et `dimTags` ne restreint pas
+le modèle : l'isolation à un seul volume et le watchdog externe bornent l'essai.
+
+Les durées, nettoyage compris, sont 6,601 s pour l'échec initial puis 13,800 s
+pour la version corrigée ; sorties 2 puis 0. Ce dernier code indique seulement
+la fin du diagnostic, **pas l'acceptation de la qualité**. Chaque essai est
+plafonné à 120 s, dont 20 s réservées au nettoyage, 2 CPU/2 Gio sans swap
+supplémentaire, un thread de maillage configuré, sans réseau. Les deux
+conteneurs exacts sont supprimés ; leur absence est revérifiée par la racine.
+Pas d'OOM, entrées et programmes gelés inchangés. Les huit tests purs corrigés
+passent également lors de leur réexécution par la racine. Aucun nouveau coût
+Vast, aucune nouvelle charge thermique, mécanique ou moteur.
+Le contrôle logiciel `make check` termine avec le code 0 : sa découverte
+unitaire compte 2 431 tests, dont 108 ignorés selon les dépendances disponibles,
+puis les contrôles complémentaires passent. Cela ne signifie pas que tous les
+solveurs natifs ont été exercés ni que la pièce est physiquement validée.
+
+La lecture du diagnostic de surface initial, conservé par cette optimisation,
+retrouve **856 triangles sous `minSICN = 0,1` sur 146 faces**, avec un minimum
+2D de `0,0018031574`. Cette valeur 2D n'est pas assimilée à une borne de qualité
+3D. Elle désigne un travail distinct : reprendre la discrétisation de surface
+sur les supports CAO existants puis contrôler à nouveau conformité, frontière
+et qualité volumique. Aucun changement de silhouette n'est justifié par ces
+seuls défauts de maillage. Le rattachement anatomique des faces n'est pas inféré
+de leurs numéros Gmsh. Les limites d'import et de conformité CAO précédentes
+restent entières ; la répétabilité de plusieurs optimisations complètes n'est
+pas démontrée.
+
+### Piste gaz préparée en parallèle, pas encore exécutée
+
+La partition existante comprend un cœur et 16 blocs annulaires à six faces.
+Le pilote proposé conserve cette CAO : deux couches radiales, 24 éléments
+par quart de circonférence et 60/115 éléments sur les deux tronçons axiaux,
+soit **67 200 hexas et 384 quadrangles vers le cœur attendus**, non produits.
+Le cœur demanderait des tétraèdres et des pyramides de transition. Le plan
+prévoit les 124 faces externes et conserve les 32 interfaces internes sans les
+transformer en parois. Le contrôle du jeu portera sur les facettes réellement
+générées, pas sur la seule estimation géométrique nominale.
+
+Cette préparation privée n'est **pas un programme exécutable** : il manque
+l'inventaire ciblé des extrémités/cycles natifs et l'adaptateur de maillage mixte
+avec liaison native→Gmsh sans égalité supposée des tags. Aucun nouveau découpage,
+calcul de volumes ou maillage du gaz n'a été lancé. Le plan gelé `e329ac39…`
+prévoit MSH 4.1 binaire/SaveAll, une limite de 300 s et 4 CPU/4 Gio sur l'image
+existante ; l'admission CFD reste distincte et refusée.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
 de représentation, de frontières et du registre des 124 rôles ; conclure la
 couverture et le bilan de volumes avant admission du domaine gazeux.
-Pour le solide, exploiter la localisation des 4 871 éléments trop déformés
-pour choisir une correction de maillage ciblée, puis recontrôler frontière,
+Pour le solide, poursuivre à partir des 1 722 éléments encore trop déformés
+et des 146 faces de surface signalées, puis recontrôler frontière,
 qualité et conformité CAO. Ne pas retoucher la silhouette pour masquer ces
 défauts numériques. L'attribution des
 quatre octets auxiliaires est terminée : elle n'appelle ni nouvelle correction
@@ -573,7 +667,10 @@ flowchart LR
     C --> D[Borne locale calculée<br/>Équivalence globale à conclure]
     A --> J[Maillage solide diagnostic<br/>271 001 tétraèdres]
     J --> K[Qualité refusée<br/>4 871 éléments à traiter]
+    K --> L[Optimisation intérieure<br/>Frontière exactement conservée]
+    L --> M[1 722 éléments encore insuffisants<br/>Reprise de la discrétisation de surface]
     E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
+    E --> N[Pilote hexa-tétra préparé<br/>Adaptateur à implémenter, non exécuté]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
