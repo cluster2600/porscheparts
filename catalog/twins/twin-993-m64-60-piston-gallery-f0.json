@@ -107,6 +107,9 @@
     "status": "concept",
     "evidence": [
       "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/picogk-optimization-screen.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/picogk-output-integrity.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json",
       "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json",
       "twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/simready-validation-summary.json",
       "catalog/sources/src-porschefanatics-993-additive-piston-precedent.json",
@@ -116,7 +119,9 @@
       "L'enveloppe de piston, la jupe, la calotte, les bossages, les gorges et la galerie sont des hypothèses F0 indépendantes, non des surfaces Porsche ou MAHLE.",
       "Le diamètre moteur publié de 100 mm ne définit ni le diamètre fini du cylindre, ni le diamètre de jauge du piston, ni le jeu de fonctionnement.",
       "Les quatre contextes d'interface restent sans géométrie tant que les pièces exactes et leurs tolérances ne sont pas établies.",
-      "Les calculs incluent désormais un tranchage LPBF pleine pièce et un asset SimReady isolé ; aucune FEA non linéaire, CFD/VOF, fatigue à chaud, simulation d'assemblage Omniverse ou corrélation PhysicsNeMo n'est achevée.",
+      "Les calculs incluent désormais un tranchage LPBF pleine pièce, un asset SimReady isolé et six cas CalculiX linéaires/séquentiels sur le master sain ; aucune FEA non linéaire avec contacts, CFD/VOF, fatigue à chaud, simulation d'assemblage Omniverse ou corrélation PhysicsNeMo n'est achevée.",
+      "Le cas CalculiX chaud à 2,5 mm donne 323,46 MPa au p95 et un ratio de 0,918 contre la référence CP1 ambiante ; cette comparaison défavorable rejette le F0 sans constituer un admissible à chaud.",
+      "Le criblage PicoGK a bien été exécuté sur six variantes F0, mais il ne sélectionne aucun dessin : la marge mécanique cible et l'intégrité manifold échouent.",
       "Le précédent Porsche/Mahle/Trumpf définit une méthode de développement moderne, pas une validation transférable au M64/60.",
       "Aucune fabrication, installation ou mise en route moteur n'est autorisée."
     ]

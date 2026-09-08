@@ -65,16 +65,57 @@ def validate_machine(card: dict[str, Any]) -> None:
     required = {
         "manufacturer",
         "model",
-        "build_cylinder_diameter_mm",
         "build_height_mm",
         "source",
     }
     if not required <= card.keys():
         raise ScreenError("incomplete_machine_card")
-    for key in ("build_cylinder_diameter_mm", "build_height_mm"):
+    circular = "build_cylinder_diameter_mm" in card
+    rectangular = {"build_width_mm", "build_depth_mm"} <= card.keys()
+    if circular == rectangular:
+        raise ScreenError("machine_card_requires_exactly_one_build_envelope_type")
+    dimension_keys = ["build_height_mm"]
+    dimension_keys += (
+        ["build_cylinder_diameter_mm"]
+        if circular
+        else ["build_width_mm", "build_depth_mm"]
+    )
+    for key in dimension_keys:
         value = card[key]
         if not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
             raise ScreenError(f"invalid_machine_card:{key}")
+
+
+def machine_fit(card: dict[str, Any], extents: np.ndarray) -> dict[str, Any]:
+    values = np.asarray(extents, dtype=float)
+    if values.shape != (3,) or not np.isfinite(values).all() or np.any(values <= 0):
+        raise ScreenError("invalid_oriented_part_extents")
+    height_margin = float(card["build_height_mm"] - values[2])
+    common = {
+        "part_extents_mm": [float(value) for value in values],
+        "height_margin_mm": height_margin,
+    }
+    if "build_cylinder_diameter_mm" in card:
+        required_diameter = float(math.hypot(float(values[0]), float(values[1])))
+        diameter_margin = float(card["build_cylinder_diameter_mm"] - required_diameter)
+        return {
+            **common,
+            "build_envelope_type": "circular_cylinder",
+            "conservative_required_diameter_mm": required_diameter,
+            "diametral_margin_mm": diameter_margin,
+            "bare_part_nominal_fit": diameter_margin >= 0.0 and height_margin >= 0.0,
+        }
+    width_margin = float(card["build_width_mm"] - values[0])
+    depth_margin = float(card["build_depth_mm"] - values[1])
+    return {
+        **common,
+        "build_envelope_type": "rectangular_prism",
+        "width_margin_mm": width_margin,
+        "depth_margin_mm": depth_margin,
+        "bare_part_nominal_fit": (
+            width_margin >= 0.0 and depth_margin >= 0.0 and height_margin >= 0.0
+        ),
+    }
 
 
 def write_rows(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -128,7 +169,7 @@ def render(path: Path, report: dict[str, Any], rows: list[dict[str, Any]]) -> No
                 f"Vide piégé détecté : {powder['trapped_void_volume_mm3']:.1f} mm³",
                 "",
                 "TRANCHAGE GEOMETRIQUE : TERMINE",
-                "PROCEDE THERMIQUE CP1 : BLOQUE",
+                "PROCEDE THERMIQUE CIBLE : BLOQUE",
                 "IMPRESSION METAL : NON AUTORISEE",
             )
         ),
@@ -169,6 +210,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     kernel.LAYER_MM = args.layer_thickness_mm
     kernel.OVERHANG_DEG = args.overhang_deg
     kernel.SUPPORT_RASTER_MM = args.support_raster_mm
+    kernel.machine_fit = lambda extents: machine_fit(machine, extents)
 
     import trimesh
 
