@@ -7,6 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 TWIN = ROOT / "catalog/twins/twin-993-m64-60-piston-gallery-f0.json"
 PART = ROOT / "catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json"
 REPORT = ROOT / "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json"
+MATERIAL_PROMPT = ROOT / "twins/993-m64-60-piston-gallery-f0/simready/material-prompt.txt"
+PHYSICS_PROMPT = ROOT / "twins/993-m64-60-piston-gallery-f0/simready/physics-prompt.txt"
 
 
 class PistonDigitalTwinF0Tests(unittest.TestCase):
@@ -52,6 +54,18 @@ class PistonDigitalTwinF0Tests(unittest.TestCase):
         self.assertFalse(self.report["manufacturing_authorized"])
         self.assertFalse(self.report["engine_operation_authorized"])
         self.assertFalse(self.report["release_authorized"])
+
+    def test_simready_prompts_preserve_the_evidence_boundary(self) -> None:
+        material = MATERIAL_PROMPT.read_text(encoding="utf-8")
+        physics = PHYSICS_PROMPT.read_text(encoding="utf-8")
+        self.assertIn("Aheadd CP1", material)
+        self.assertIn("not Porsche or MAHLE production geometry", material)
+        self.assertIn("0.681318 kg", physics)
+        self.assertIn("Do not author joints", physics)
+        for prompt in (material, physics):
+            self.assertLess(len(prompt.encode("utf-8")), 20_000)
+            self.assertNotRegex(prompt.lower(), r"(api[_-]?key|access[_-]?token|password|secret)\s*[:=]")
+            self.assertIn("unauthorized", prompt)
 
 
 if __name__ == "__main__":
