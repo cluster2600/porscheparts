@@ -4,6 +4,7 @@
 Reprise du 8 septembre : [chambre candidate, assemblage et préparation du
 banc d'admission](M64_ADMISSION_CHAMBRE_20260908.md), avec
 [comparaison PicoGK locale](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md).
+Suite du lot : [volume gazeux, correction CAO et témoin OpenFOAM exécuté](M64_DOMAINE_GAZ_OPENFOAM_20260908.md).
 Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
 Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
 Les cartes Mermaid et l'inventaire ci-dessous couvrent la pile demandée ;

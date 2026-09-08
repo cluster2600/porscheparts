@@ -1,0 +1,72 @@
+{
+  "schema": "m64-intake-openfoam-runtime-smoke/v1",
+  "date": "2026-09-08",
+  "status": "synthetic_runtime_executed_not_head_CFD",
+  "purpose": "Verify mesh import, one-time unit conversion, boundary conditions and the Foundation 14 fluid solver on a synthetic duct",
+  "runtime": {
+    "host": "authorized_local_x86_host",
+    "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "openfoam": "Foundation 14, build 14-7b05503f98a8",
+    "registry_image_qualified_for_new_rental": false,
+    "cpu_limit": 1,
+    "memory_limit_GiB": 1,
+    "network": "none",
+    "outer_timeout_seconds": 180,
+    "observed_exit_code": 0,
+    "container_removed": true,
+    "new_vast_spend_USD": 0
+  },
+  "source_sha256": {
+    "source/flowbench-intake/prepare_openfoam_case.py": "a139c46e02dd5517946a643575f434a1918d9d283ef6fc9cb2881fcbfe78ee14",
+    "source/flowbench-intake/run_openfoam_pilot.py": "ae17b54a9647fbbf0afe04029bbebe6c840eeb0a8ff9724a8ac04c006aa42d39",
+    "source/flowbench-intake/runtime-smoke.geo": "0b90f9ca1b493d384af6bfbcc92e954ce30b931932fbeb1bb32ce7903912d288",
+    "source/flowbench-intake/runtime-smoke-hex.geo": "48d7f5444509ae6e15dfc305bf0937df408f680ef0bf023b22afda372a171328"
+  },
+  "accepted_runtime_fixture": {
+    "private_relative_directory": "openfoam-runtime-smoke-20260908/m64-of14-flowbench-smoke.YhBnTA/smoke-hex-case-02",
+    "shape": "synthetic rectangular duct, 40 x 40 x 100 input units",
+    "mesh": "325 structured hexahedra, 504 points",
+    "mesh_sha256": "afecc03eba2cd46a9e1fbb6bd491970f961c91db153e8a3f6b40dd1b658d8272",
+    "input_length_unit_to_m": 0.001,
+    "volume_m3_after_conversion": 0.00016,
+    "boundary_faces": {"inlet": 25, "receiver_outlet": 25, "walls": 260},
+    "checkMesh_allTopology_allGeometry": "Mesh OK.",
+    "observed_stage_exit_codes": {"gmshToFoam": 0, "transformPoints": 0, "createPatch": 0, "checkMesh": 0, "foamRun": 0},
+    "steady_iterations_executed": 20,
+    "iterations_are_physical_seconds": false,
+    "case_manifest_sha256": "2423ae80e59e7fc439237871b472e9b10ac5c4030bf778972d3558672373393d",
+    "execution_report_sha256": "585a5fae6c593e32401cf44436a7f716963bcad55cb0af1a5420fee65b4d02f6",
+    "log_checkMesh_sha256": "7263db8dbd3e32e2adb184ac16f8c0a99dcf346f513469cd692a30365391d196",
+    "log_foamRun_sha256": "725376bff76a814d51cbe7d1f2d47bda92ff89d20d40fbbddd59e30af5649a72",
+    "last_iteration_diagnostics_not_head_results": {
+      "inlet_mass_flow_kg_s": -0.169596408752,
+      "outlet_mass_flow_kg_s": 0.169596411132,
+      "wall_mass_flow_kg_s": 0,
+      "minimum_pressure_Pa": 94423.3381144,
+      "minimum_temperature_K": 289.177988616,
+      "maximum_temperature_K": 291.912545378,
+      "flow_still_changing_at_stop": true
+    }
+  },
+  "rejected_attempts_preserved": [
+    {"case": "smoke-case-01", "reason": "createPatch retained patch type on existing walls; exact metadata correction added"},
+    {"case": "smoke-case-02", "reason": "1768 positive-Jacobian tetrahedra fail one OpenFOAM check: 92 low-determinant FV cells", "checkMesh_exit_code": 0, "log_sha256": "d962e3f224961ab21d829920c4ef84b7b381bd601ebd8bc52ca70e9e59897720"},
+    {"case": "smoke-case-03", "reason": "dual conversion retained obsolete primal cellZone indices; checkMesh aborted"},
+    {"case": "smoke-case-04", "reason": "primal cellZone format guard rejected Foundation 14 syntax before conversion"},
+    {"case": "smoke-case-05", "reason": "dual conversion consumed but rejected: one bad face-decomposition tetrahedron and 139 concave cells; 116 concave faces also reported", "failed_mesh_checks": 2, "log_sha256": "11a1fd0bc84e0cefc71b05d5e56c82f8d7329cfc92946d5298aa3e19686e696e"},
+    {"case": "smoke-hex-case-01", "reason": "mesh passed; solver rejected unavailable fieldMinMax function object; replaced with native volFieldValue diagnostics", "foamRun_exit_code": 1, "log_sha256": "c44de6be0dc21ef1966c123556c802d20acf802bf5eeeb799149ed6bbdf10a8e"}
+  ],
+  "claims": {
+    "synthetic_runtime_executed": true,
+    "head_CFD_executed": false,
+    "head_mesh_qualified": false,
+    "poly_dual_qualified": false,
+    "convergence_demonstrated": false,
+    "thermal_head_validation": false,
+    "mechanical_validation": false,
+    "manufacturing_authorized": false,
+    "engine_power_PS": null,
+    "head_mass_flow_kg_s": null,
+    "head_Cd": null
+  }
+}
