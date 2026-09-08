@@ -1,8 +1,10 @@
 """Pilot mesh integrity witnesses; never a CFD or manufacturing qualification."""
 import importlib.util
 from copy import deepcopy
+from contextlib import ExitStack
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 SOURCE=Path(__file__).resolve().parents[1]/'twins/m64-cylinder-head/source/flowbench-intake/mesh_gas_domain.py'
 SPEC=importlib.util.spec_from_file_location('gas_mesh',SOURCE)
@@ -284,6 +286,74 @@ $EndElements
         changed=deepcopy(receipt)
         changed['result']['frames_private']['coverage']['selected_face_ids']=[55,58,62,63]
         with self.assertRaises(ValueError):MODULE.validated_guide_frames(changed,MODULE.GUIDE_FRAME_RECEIPT_SHA)
+
+    def segmented_fixture(self):
+        p=MODULE.profiles
+        faces=[]
+        for i in range(1,89):
+            role='inlet' if i==50 else 'receiver_outlet' if i==17 else 'walls_port'
+            if i in MODULE.GAS05_GUIDE_STEM_FACES:role=MODULE.GAS05_GUIDE_STEM_FACES[i][0]
+            faces.append({'id':i,'role':role,'sha256':p.SEGMENTED_FACE_SHAS.get(i,format(i,'064x')),
+                          'area':1.,'center':[0.,0.,float(i)]})
+        clean={'has_faulty':False,'has_errors':False,'has_warnings':False,'faults':[]}
+        manifest={'schema':'m64-intake-gas-domain/v1','exports':{'domain_brep':{'sha256':p.SEGMENTED_DOMAIN_SHA}},
+            'gates':{**dict.fromkeys(p.NATIVE_ONLY_GATES,True),'step_roundtrip_valid':None},
+            'STEP_BOP_qualified':False,'manufacturing_authorized':False,'inputs_unchanged':True,
+            'native_BOP':clean,'native_roundtrip_BOP':deepcopy(clean),'boundary_faces':faces,
+            'boundary_role_transfer':{'synthetic_protocol_witness':True}}
+        registration=ExitStack()
+        registration.enter_context(patch.object(p,'SEGMENTED_MANIFEST_SHA','e'*64))
+        registration.enter_context(patch.object(p,'SEGMENTED_MANIFEST_CONTENT_SHA',p.content_sha(manifest)))
+        return manifest,registration
+
+    def test_segmented_path_is_explicit_native_only_not_historical_C0_or_STEP(self):
+        manifest,registration=self.segmented_fixture();before=deepcopy(manifest)
+        with registration:
+            result=MODULE.validated_boundary_contract(manifest,segmented_native_only=True)
+            self.assertEqual(result['groups']['inlet'],[50])
+            with self.assertRaises(ValueError):MODULE.validated_boundary_contract(manifest)
+            with self.assertRaises(ValueError):MODULE.validated_boundary_contract(manifest,True,True)
+            with self.assertRaises(ValueError):MODULE.validated_c0_advisory(manifest,'e'*64,{})
+        self.assertEqual(before,manifest)
+
+    def test_segmented_face38_uses_new_pinned_face_and_actual_Gmsh_binding(self):
+        manifest,registration=self.segmented_fixture()
+        binding={'descriptor_bijection_verified':True,'matches_private':[{'source_face_index':38,'gmsh_face_tag':904}]}
+        with registration:
+            result=MODULE.face38_size_assignment(manifest,binding,.15)
+            self.assertEqual(result['gmsh_face_tag'],904)
+            self.assertEqual(result['native_face_sha256'],MODULE.profiles.SEGMENTED_FACE_SHAS[38])
+            self.assertNotEqual(result['native_face_sha256'],MODULE.GAS05_FACE38_SHA)
+            self.assertEqual(result['global_minimum_size_unchanged'],.005)
+            manifest['boundary_faces'][37]['sha256']=MODULE.GAS05_FACE38_SHA
+            with self.assertRaises(ValueError):MODULE.face38_size_assignment(manifest,binding,.15)
+
+    def test_segmented_inventory_cannot_be_an_old_mesh_review_or_a_chord_pass(self):
+        manifest,registration=self.segmented_fixture();p=MODULE.profiles
+        frames={'schema':'m64-native-guide-cylinder-frames/v2','domain_sha256':p.SEGMENTED_DOMAIN_SHA,
+            'classified_manifest_sha256':'e'*64,'coverage':{'selected_face_ids':list(p.GUIDE_FACE_IDS)}}
+        receipt={'schema':'m64-native-guide-frame-inventory/v1','mode':'native_inventory_only',
+            'all_inputs_unchanged':True,'CAD_modified':False,'mesh_accepted':False,'CFD_executed':False,
+            'manufacturing_authorized':False,'inputs_sha256':{'domain':p.SEGMENTED_DOMAIN_SHA,
+                'boundary_report':'e'*64,'source':MODULE.GUIDE_CHORD_RUNTIME_SOURCE_SHA,
+                'profile_source':MODULE.checks.sha256(p.__file__)},
+            'result':{'frames_private':frames,'whole_facet_chord_gate':None}}
+        with registration,patch.object(MODULE,'SEGMENTED_GUIDE_FRAME_RECEIPT_SHA','f'*64):
+            self.assertEqual(MODULE.validated_guide_frames(receipt,'f'*64,manifest),frames)
+            with self.assertRaises(ValueError):MODULE.validated_guide_frames(receipt,MODULE.GUIDE_FRAME_RECEIPT_SHA,manifest)
+            with self.assertRaises(ValueError):MODULE.validated_guide_frames(receipt,'f'*64)
+            for path,value in ((('schema',),'m64-persisted-guide-chord-diagnostic/v2'),
+                    (('inputs_sha256','domain'),MODULE.GAS05_NATIVE_SHA),
+                    (('inputs_sha256','source'),MODULE.GUIDE_CHORD_SOURCE_SHA),
+                    (('inputs_sha256','profile_source'),'0'*64),
+                    (('result','whole_facet_chord_gate'),{'local_radial_envelopes_accepted':True}),
+                    (('result','frames_private','coverage','selected_face_ids'),[55,58,62,63]),
+                    (('CFD_executed',),True)):
+                changed=deepcopy(receipt);obj=changed
+                for key in path[:-1]:obj=obj[key]
+                obj[path[-1]]=value
+                with self.subTest(path=path),self.assertRaises(ValueError):
+                    MODULE.validated_guide_frames(changed,'f'*64,manifest)
 
 
 if __name__=='__main__':unittest.main()

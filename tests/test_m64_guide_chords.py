@@ -78,6 +78,19 @@ class GuideChordTests(unittest.TestCase):
             frames['faces_private'][0]['face_sha256']='bad'
             with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
 
+    def test_segmented_domain_cannot_reuse_old_face_hashes_or_manifest(self):
+        points,triangles,frames=fixture()
+        frames['domain_sha256']=audit.profiles.SEGMENTED_DOMAIN_SHA
+        with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+        frames['classified_manifest_sha256']=audit.profiles.PREPARED_MANIFEST_SHA
+        with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+        for row in frames['native_inventory']['cylinders_private']:
+            if row['face_id'] in audit.FACES:
+                row['face_sha256']=audit.profiles.SEGMENTED_FACE_SHAS[row['face_id']]
+        self.assertTrue(audit.mesh_chord_gate(points,triangles,frames)['local_radial_envelopes_accepted'])
+        frames['domain_sha256']=audit.DOMAIN_SHA
+        with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+
     def test_worst_portion_controls_whole_component_not_old_four_pairs(self):
         points,triangles,frames=fixture(bad_face=57)
         result=audit.mesh_chord_gate(points,triangles,frames)
