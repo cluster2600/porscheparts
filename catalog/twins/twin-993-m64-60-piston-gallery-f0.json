@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-M64-60-PISTON-GALLERY-F0",
+  "name": "Piston M64/60 CP1 à galerie fermée, jumeau F0",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo", "M64_60_research"],
+    "model_years": {"from": 1995, "to": 1998}
+  },
+  "scope": {
+    "zone": "m64_60_piston_cylinder_and_oil_gallery",
+    "purposes": ["fit", "clearance", "motion", "structural", "thermal", "fluid"]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "centre géométrique de l'enveloppe cylindrique F0 du piston",
+    "axes": "Z suivant l'axe du cylindre vers la chambre, X suivant l'axe de piston, Y complète le repère direct",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "PISTON_CP1_GALLERY_F0",
+      "role": "candidate",
+      "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+      "geometry_file": "parts/993-eng-piston-cp1-gallery-f0-0001/derived/piston_cp1_gallery_f0.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "M64_60_CYLINDER_CONTEXT",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "PIN_RING_ROD_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "CHAMBER_VALVE_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "OIL_JET_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_PISTON_CYLINDER_RUNNING_CLEARANCE",
+      "kind": "clearance",
+      "components": ["PISTON_CP1_GALLERY_F0", "M64_60_CYLINDER_CONTEXT"],
+      "required_measurements": ["CYLINDER_BORE_GRADE_MAP", "PISTON_GAUGE_DIAMETER", "GAUGE_HEIGHT", "SKIRT_PROFILE", "OVALITY", "HOT_DIAMETER_MAP", "OIL_FILM_TARGET"],
+      "acceptance_rule": "Le jeu diamétral mesuré reste dans la carte approuvée à froid, à chaud et sous basculement, sans serrage ni rupture du film d'huile.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_RING_PACK_AND_GROOVES",
+      "kind": "contact",
+      "components": ["PISTON_CP1_GALLERY_F0", "PIN_RING_ROD_CONTEXT"],
+      "required_measurements": ["RING_COUNT", "RING_SECTIONS", "GROOVE_PROFILES", "LAND_HEIGHTS", "SIDE_CLEARANCES", "END_GAPS", "COATINGS", "BLOW_BY_LIMIT"],
+      "acceptance_rule": "Les gorges usinées, jeux, contacts et revêtements respectent la définition du segment et les limites approuvées de flottement, usure, température et blow-by.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_PIN_BOSS_AND_ROD_SMALL_END",
+      "kind": "contact",
+      "components": ["PISTON_CP1_GALLERY_F0", "PIN_RING_ROD_CONTEXT"],
+      "required_measurements": ["PIN_DIAMETER", "PIN_LENGTH", "PIN_WALL", "BOSS_SPACING", "BORE_CLASS", "RETENTION", "SMALL_END_WIDTH", "BUSHING_CLEARANCE", "LOAD_HISTORY"],
+      "acceptance_rule": "La pression de contact, la déformation, la fatigue et l'arrachement des bossages restent sous les admissibles qualifiés sur toute l'histoire de charge.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CROWN_CHAMBER_AND_VALVES",
+      "kind": "motion",
+      "components": ["PISTON_CP1_GALLERY_F0", "CHAMBER_VALVE_CONTEXT"],
+      "required_measurements": ["COMPRESSION_HEIGHT", "DECK_HEIGHT", "CROWN_PROFILE", "CHAMBER_SURFACE", "VALVE_LIFT_CURVES", "CAM_TIMING", "ROD_LENGTH", "CRANK_THROW", "HOT_CLEARANCE_LIMIT"],
+      "acceptance_rule": "L'enveloppe cinématique et thermomécanique conserve les jeux piston-culasse et piston-soupapes approuvés sur tolérances et survitesse.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_OIL_JET_AND_CLOSED_GALLERY",
+      "kind": "contact",
+      "components": ["PISTON_CP1_GALLERY_F0", "OIL_JET_CONTEXT"],
+      "required_measurements": ["JET_ORIGIN", "JET_DIRECTION", "SUPPLY_PRESSURE_MAP", "FLOW_MAP", "OIL_TEMPERATURE", "CAPTURE_FRACTION", "AERATION", "DRAINAGE", "GALLERY_PROOF_PRESSURE"],
+      "acceptance_rule": "La galerie dépoudrée et obturée capte le jet, évacue l'huile et respecte les limites de température et de pression démontrées par CFD corrélée, CT et épreuve.",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-piston-cp1-gallery-f0-0001/source/piston.py",
+    "derived_files": ["parts/993-eng-piston-cp1-gallery-f0-0001/derived/piston_cp1_gallery_f0.step"]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json",
+      "catalog/sources/src-porschefanatics-993-additive-piston-precedent.json",
+      "catalog/sources/src-porsche-additive-piston-validation.json"
+    ],
+    "known_limits": [
+      "L'enveloppe de piston, la jupe, la calotte, les bossages, les gorges et la galerie sont des hypothèses F0 indépendantes, non des surfaces Porsche ou MAHLE.",
+      "Le diamètre moteur publié de 100 mm ne définit ni le diamètre fini du cylindre, ni le diamètre de jauge du piston, ni le jeu de fonctionnement.",
+      "Les quatre contextes d'interface restent sans géométrie tant que les pièces exactes et leurs tolérances ne sont pas établies.",
+      "Les calculs actuels sont des criblages 0D/1D synthétiques ; aucune FEA non linéaire, CFD/VOF, fatigue à chaud ou corrélation PhysicsNeMo n'est achevée.",
+      "Le précédent Porsche/Mahle/Trumpf définit une méthode de développement moderne, pas une validation transférable au M64/60.",
+      "Aucune fabrication, installation ou mise en route moteur n'est autorisée."
+    ]
+  }
+}

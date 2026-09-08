@@ -12,6 +12,13 @@ les charges et doté d'une galerie fermée sous calotte impossible à obtenir pa
 les méthodes conventionnelles retenues. Porsche annonce aussi `200 h` d'essai
 moteur. C'est un précédent de méthode, pas une validation transférable au 993.
 
+Le registre
+[`TWIN-993-M64-60-PISTON-GALLERY-F0`](../catalog/twins/twin-993-m64-60-piston-gallery-f0.json)
+relie maintenant la CAO aux cinq interfaces indispensables : cylindre, segments,
+axe–bielle, chambre–soupapes et jet d'huile–galerie. Elles restent toutes
+`missing_data` : ce statut est volontaire et empêche de confondre enveloppe F0
+et piston M64/60 ajusté.
+
 ## Pourquoi l'additif a du sens ici
 
 La galerie sous calotte est la fonction que l'usinage conventionnel ne peut pas
