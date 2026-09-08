@@ -128,6 +128,11 @@ premier inventaire physique est décrit dans
 [ROADMAP.md](ROADMAP.md) et
 [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md).
 
+Le premier sous-ensemble moteur 993 composé est le
+[carter–turbine de refroidissement F0](docs/993_ENGINE_COOLING_FAN_SYSTEM_F0.md).
+Sa conversion OpenUSD minimale réussit, mais son test de jeu échoue avec une
+collision BRep explicite ; il reste donc un jumeau de recherche non fabricable.
+
 ![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
 
 Ce schéma représente les relations logiques actuellement sourcées, pas la

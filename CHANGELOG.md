@@ -4,6 +4,17 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Sous-ensemble de refroidissement moteur 993 F0, 8 septembre 2026 :
+
+- composition du carter et de la turbine F0 dans un jumeau d'interface dédié ;
+- calcul de jeu froid et libre à chaud, contrôle exact d'intersection BRep et
+  rejet explicite de la collision de 40 388,378651 mm³ ;
+- conversion des deux STEP et composition de l'assemblage en OpenUSD minimal
+  sous Linux AMD64, avec préflight NVIDIA et validations minimales réussies
+  sans GPU ;
+- propriétés SimReady, PhysicsNeMo, fabrication, rotation et démarrage moteur
+  maintenus fermés.
+
 Culasse 917-inspired F34 quatre soupapes refroidie par air, 2 septembre 2026 :
 
 - CAO paramétrique et STEP de procédé générés localement à partir des seules
