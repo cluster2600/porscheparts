@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTERCOOLER-END-TANK-ALSI10MG-F0-0001",
+  "name": "End-tank d'intercooler 993 Turbo, concept AlSi10Mg F0",
+  "description": "Concept indépendant de transition ronde vers face rectangulaire avec trois guides internes ouverts, destiné à cribler un end-tank LPBF AlSi10Mg. Les dimensions d'ensemble publiées bornent le F0 mais ne définissent ni l'orientation du noyau, ni une géométrie compatible.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo", "993_GT2", "M64_60_research"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "charge_air_intercooler_end_tank",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage CAO, DfAM, débit, perte, pression, membrane, panneau guidé, thermique et cycles ; aucune fabrication, installation ou mise en route moteur autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/source/end_tank.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/derived/end_tank_alsi10mg_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface TA Technix/Albert/Porsche ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "TA Technix - intercooler pour Porsche 911 Turbo 993",
+        "url": "https://www.tatechnix.de/tatechnix/gx/ta-technix-produkte/performance-parts/intercooler/-138841/911-141181/993-159629/ta-technix-intercooler-suitable-for-porsche-911-turbo-type-993.html",
+        "source_type": "manufacturer",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie deux noyaux 260 x 260 x 100 mm, raccords 66 mm extérieurs et 68 mm intérieur, largeur maximale 860 mm, hauteur 240 mm et entraxe 690 mm. L'orientation et les end-tanks ne sont pas définis. Voir SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS."
+      },
+      {
+        "title": "Albert Motorsport - intercooler aluminium 993 Turbo/GT2",
+        "url": "https://albertmotorsport.de/en/993-turbo-gt2-engine/993-tt-gt2-intercooler-aluminum-oem-replacement-porsche-911",
+        "source_type": "manufacturer",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Recoupe deux noyaux 260 x 260 x 100 mm et déclare un ensemble aluminium soudé, sans alliage ni géométrie d'end-tank. Voir SRC-ALBERT-MOTORSPORT-993-ALUMINUM-INTERCOOLER."
+      },
+      {
+        "title": "PorscheFanatics - architecture de refroidissement de suralimentation 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifie la fonction air-air et les charge coolers du 993 Turbo ; aucune cote ou surface n'est transférée. Voir SRC-PORSCHEFANATICS-993-INTERCOOLER-END-TANK-CANDIDATE."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Référence de matière LPBF légère automobile ; propriétés et traitement restent dépendants de la route exacte. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      },
+      {
+        "title": "elferclassic - données techniques allemandes du 993 Turbo",
+        "url": "https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php",
+        "source_type": "community",
+        "license": "site-copyright-redistribution-unclear",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie 3,6 l et 5 750 tr/min au point de puissance ; débit, VE, boost et température du criblage restent synthétiques. Voir SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "sheet_metal", "casting", "CNC"],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "alliage aluminium LPBF candidat",
+      "grade": "EOS Aluminium AlSi10Mg de criblage ; alliage commercial inconnu",
+      "standard": "DIN EN 1706 EN AC-43000, ASTM F3318 et spécification end-tank propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation et supports gardant le conduit entièrement ouvert au dépoudrage",
+      "traitement thermique qualifié pour machine, paramètres, paroi et guides",
+      "découpe plateau et retrait des supports sans endommager les interfaces",
+      "usinage de la face noyau et du raccord après ajout des surépaisseurs mesurées",
+      "finition interne des guides et de la transition avec rugosité contrôlée",
+      "assemblage au noyau par soudure ou brasage qualifié puis épreuve et nettoyage"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "capabilité démontrée sur paroi 2,2 mm et guide 1,5 mm après post-traitement",
+      "simulation supports/recoater/distorsion et témoins de transition/flange",
+      "CT des guides et jonctions, puis métrologie des parois, face, raccord et datums",
+      "coupons orientés avec traction, fatigue, pression et température représentatives",
+      "comparaison LPBF, tôle TIG et fonderie sur débit, masse, coût, réparabilité et durée de vie"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier l'interface AlSi10Mg avec noyau aluminium, filler de soudure/brasage, raccords, colliers acier, humidité et condensats de suralimentation."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-ta-technix-993-intercooler-dimensions.json",
+      "catalog/sources/src-albert-motorsport-993-aluminum-intercooler.json",
+      "catalog/sources/src-porschefanatics-993-intercooler-end-tank-candidate.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "catalog/sources/src-elferclassic-993-turbo-technical-data.json",
+      "parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Les valeurs commerciales décrivent l'intercooler complet et ne définissent ni une face de noyau ni un end-tank.",
+      "L'interprétation 260 x 100 mm, la transition 120 mm, la paroi 2,2 mm et les trois guides sont synthétiques.",
+      "Le raccord 66 mm représente une position extérieure ; le raccord central 68 mm et le second core ne sont pas modélisés.",
+      "La masse CAO 605,92 g est celle d'un end-tank synthétique et ne se compare pas aux 14 kg de l'ensemble commercial.",
+      "Le débit utilise 3,6 l, 5 750 tr/min, VE 0,95, 1,8 bar absolu, 330 K et porosité 0,65 sans mesure sur le véhicule.",
+      "La perte de 487 Pa est un écran d'expansion brusque et non une CFD avec noyau, turbulence ou uniformité de face.",
+      "Les contraintes de membrane/panneau et bornes thermiques ne remplacent ni FEA, ni soudure/brasage, ni fatigue pression-température.",
+      "Le STEP prouve seulement un BREP ouvert et un volume fluide connecté ; il n'est autorisé ni pour fabrication, ni pour montage, ni pour moteur."
+    ]
+  }
+}
