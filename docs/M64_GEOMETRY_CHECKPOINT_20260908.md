@@ -1,9 +1,10 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : le contre-essai sans optimisation finale génère
-243 337 cellules mixtes, dont les 67 200 hexas attendus. Aucun doublon ni face
-non-manifold n'est détecté, mais 132 recouvrements locaux sont confirmés.
-Ce n'est pas encore un maillage admissible pour OpenFOAM.**
+**Dernier résultat gaz : l'optimisation du cœur sauvegardé supprime les
+valeurs non finies et réduit de 5 858 à 3 282 les tétraèdres sous
+`minSICN = 0,1`, avec frontière, classifications et relecture conservées.
+Des cellules restent extrêmement aplaties : ce n'est pas encore une
+admission à OpenFOAM. Les refus précédents restent documentés séparément.**
 Pour le solide, le déplacement intérieur réduit de 309 à 283 les tétraèdres
 sous `minSICN = 0,1`, sans améliorer le minimum de 0,000792. Le fichier CAO
 et la frontière du maillage restent inchangés ; la distance
@@ -1125,6 +1126,132 @@ est la lecture native du **même MSH sauvegardé**, avec conservation des
 tableaux de qualité et identification des éléments concernés, sans nouvelle
 génération. Les intersections globales et le réassemblage restent à contrôler.
 
+### Relecture native du même cœur : anomalies attribuées, sans mutation
+
+L'audit Gmsh 4.15.2 lit le fichier `1740a425…` sans génération, optimisation,
+accès CAO ni export de maillage. Il conserve les quatre tableaux complets de
+733 762 valeurs, avec les identifiants d'éléments dans l'ordre de l'API.
+Les tableaux de Jacobiennes directes sont également conservés : neuf
+composantes, un déterminant et trois coordonnées d'évaluation par tétraèdre,
+au point de référence `(0,25 ; 0,25 ; 0,25)`. Les `NaN` ne sont ni supprimés
+ni remplacés par zéro. Aucun tableau n'est tronqué ou complété artificiellement.
+
+| Mesure native | Anomalie observée | Portée |
+|---|---|---|
+| `minDetJac` | Deux zéros, éléments 45583 et 87069 | Tous les autres déterminants retournés sont positifs. |
+| `minSJ` | Deux `NaN`, mêmes éléments | Les 733 760 autres valeurs sont finies ; aucun problème de compte. |
+| `minSICN` | Neuf valeurs négatives ; 5 858 sous 0,1 | Minimum `−2,14113e−15` ; le seuil 0,1 est un compteur diagnostique. |
+| `gamma` | 28 valeurs nulles | Mesure de forme, distincte du déterminant dimensionné. |
+| Déterminants directs | Un zéro, élément 45583 | Matrices et coordonnées d'évaluation intégralement finies. |
+
+L'union des éléments signalés non positifs ou non finis contient 28
+tétraèdres. L'évaluation native et les déterminants rationnels du précédent
+contre-calcul ne doivent pas être confondus : l'audit ne démontre pas que ces
+tétraèdres sont exactement coplanaires. Les mauvaises qualités sans dimension
+justifient de traiter leur forme ; un faible déterminant dimensionné, seul,
+ne le justifierait pas.
+
+Une contre-lecture indépendante (`09310c14…`, sans Gmsh) vérifie les sept
+tableaux complets, leurs empreintes, ordres, extrema et cellules concernées.
+Les 28 éléments anormaux sont tous inclus dans les 53 déterminants recalculés
+en rationnels, tous strictement positifs sur les coordonnées binary64 du MSH.
+Pour 45583 et 87069, `det6` exact vaut environ `1,71343e−16` et
+`1,62699e−16` unité scan³. Cela n'efface pas l'échec de leur évaluation native.
+Le rapport indépendant `det6 / longueur_arête_max³` situe la forme des
+28 cellules entre `2,08e−18` et `2,37e−15`, indépendamment d'un changement
+uniforme d'échelle. Huit tests purs passent, répétés par la racine ; analyse
+de 13,463 s sans écriture du maillage.
+
+Les instantanés de toutes les coordonnées binary64, connectivités, facettes
+et groupes physiques restent identiques avant/après. Le reçu `39da7133…`
+enregistre une **collecte complète avec refus de qualité**, et non un calcul
+physique réussi : 24,021 s natives, 24,661 s nettoyage compris, sortie 2.
+Aucune erreur ou alerte native, aucun OOM ni timeout ; plafonds effectifs
+4 CPU/4 Gio et réseau absent contrôlés. Le conteneur exact est supprimé et
+son absence revérifiée. Quinze tests purs de l'auditeur et sept du runner
+passent aussi en contre-vérification racine. Aucune nouvelle dépense Vast,
+aucun réassemblage, aucune admission CFD ou fabrication.
+
+### 9 septembre : une optimisation intérieure exécutée et relue
+
+Un unique `optimize("", force=True)` Gmsh 4.15.2 travaille sur une copie
+du cœur `1740a425…`, sans génération ni accès à la CAO. L'entrée réparatrice
+est distincte de l'acceptation CFD : tous les tableaux sont complets ; les
+deux `minSJ` indéfinis et les zéros initiaux restent consignés. Les autres
+tableaux sont finis et toutes les cellules anormales
+sont couvertes par les déterminants exacts positifs du contre-reçu épinglé.
+Le code natif traite explicitement les `gamma = 0` et les sélectionne pour
+tentative de correction. `Mesh.OptimizeThreshold = 0,3` concerne `gamma`,
+pas `minSICN`. Le paramètre `niter=1` ne borne pas les boucles de cette route ;
+le lanceur impose une limite externe de 600 s, dont 30 s de nettoyage.
+
+Le candidat `69552099…` est sauvegardé avant les contrôles postérieurs.
+Les 33 422 triangles, les coordonnées binary64 des 16 711 nœuds de frontière,
+leurs classifications et les groupes physiques restent identiques. Seules
+la connectivité et des positions intérieures peuvent changer. La relecture
+binaire reproduit le maillage et les sept tableaux de métriques/Jacobiennes,
+comparés par identifiant d'élément, sans effacer les non-finis de l'état initial.
+
+| Mesure du cœur | Avant | Après et après relecture |
+|---|---:|---:|
+| Tétraèdres | 733 762 | 718 294 |
+| `minSJ` non fini | 2 | 0 |
+| `minDetJac` non positif | 2 | 0 |
+| `gamma` nul | 28 | 0 |
+| Tétraèdres sous `minSICN = 0,1` | 5 858 | 3 282 |
+| Minimum `minSICN` | `−2,14113e−15` | `2,18219e−12` |
+
+La baisse d'environ 44 % du nombre sous le seuil diagnostique ne signifie
+pas que la qualité minimale est suffisante. Le minimum `gamma` reste à
+`1,52209e−23` et le journal signale encore **75 tétraèdres mal formés**.
+Les contrôles de tableaux complets, finis et strictement positifs passent
+après correction ; ils ne remplacent ni l'admission de qualité, ni la
+convergence, ni la recherche d'intersections et le réassemblage hexa/pyramides.
+
+Le reçu `cd9d965e…` conserve 140,609 s pour l'ensemble copie/optimisation/
+audits/relecture, 141,271 s nettoyage compris. Le journal attribue 0,939 s
+à l'optimisation proprement dite. Sorties 0, aucun OOM, timeout ou erreur
+native ; l'avertissement de forme ci-dessus est conservé. Les plafonds
+effectifs 4 CPU/4 Gio sont contrôlés ; conteneur supprimé et absence
+revérifiée. Huit tests purs du worker et huit du runner passent, répétés par
+la racine, dont le refus de prétendre une absence certaine après création
+Docker incertaine. Aucune nouvelle dépense Vast et aucune modification du
+maître. La suite porte sur les cellules résiduelles et les contrôles
+indépendants du nouveau volume, pas sur une répétition identique de l'essai.
+
+La contre-lecture pure du candidat (`94c1a588…`, 12,880 s) ne détecte
+aucun doublon, sommet répété, défaut manifold ou conflit d'orientation
+entre cellules voisines. Les 718 294 tétraèdres forment une composante et
+leur frontière orientée correspond exactement au cœur HXT précédent et à
+la coque extraite initialement. Aucun identifiant de frontière ne change
+par rapport au MSH précédent. Tous les déterminants flottants sont positifs ;
+le seul élément sélectionné par le même détecteur de faibles déterminants
+est également positif en rationnels. Les autres ne sont pas tous recalculés
+en arithmétique exacte. Quatre tests purs de l'analyseur réutilisé passent,
+répétés par la racine. Ce contrôle topologique n'est pas une recherche
+exhaustive d'intersections et ne lève pas le refus de qualité de forme.
+
+La localisation indépendante (`f3ba307a…`, 4,321 s) sélectionne **tous les
+148 éléments dont le `gamma` sauvegardé est inférieur à 0,001**, sans les
+assimiler aux 75 annoncés par le journal. Tous touchent la frontière :
+37 ont quatre sommets frontière, 96 en ont trois, 11 en ont deux et 4 un seul.
+112 partagent au moins une facette frontière ; les 133 incidences sont
+correctement orientées. Aucun ne touche une interface pyramidale, même par
+un sommet. Les coordonnées et provenances restent reliées exactement à la
+coque initiale. Les 148 signes rationnels sont positifs ; ce n'est pas un
+critère suffisant de qualité.
+
+Le minimum, élément 49443, a quatre sommets fixes et deux facettes frontière
+de provenance siège/chambre. Ses arêtes sont comparables, mais son rapport
+hauteur minimale/arête maximale vaut environ `1,02e−12` : c'est une cellule
+presque plate. À connectivité inchangée, déplacer uniquement les sommets
+intérieurs ne peut la corriger. La prochaine recherche porte donc sur la
+connectivité locale, sans modifier le contour ni les facettes imposées.
+Trois tests synthétiques de la géométrie passent, répétés par la racine ;
+la sélection complète depuis le tableau compressé et les empreintes des
+entrées sont également revérifiées. Aucun nouveau calcul natif ni maillage
+écrit pour cette localisation.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
@@ -1171,6 +1298,10 @@ flowchart LR
     AA --> AB[Optimisation locale distincte exécutée<br/>Gain nul, aucune modification retenue]
     Z --> AC[Coque triangulaire du cœur extraite<br/>Transitions hexa-pyramides conservées]
     AC --> AD[Témoin HXT réussi puis cœur sauvegardé<br/>Frontière conservée, contrôle minSJ refusé]
+    AD --> AE[Relecture native complète sans mutation<br/>2 minSJ non finis, 5 858 minSICN sous 0,1]
+    AE --> AF[Optimisation intérieure sur copie<br/>0 non-fini, 3 282 minSICN sous 0,1]
+    AF --> AG[Frontière et relecture conservées<br/>Cellules très aplaties encore à traiter]
+    AG --> AH[148 gamma sous 0,001 localisés sur la frontière<br/>Connectivité locale à corriger, contour conservé]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
