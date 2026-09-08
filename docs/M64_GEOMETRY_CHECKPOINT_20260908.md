@@ -1,13 +1,14 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat : deux essais ciblés de discrétisation, suivis chacun
-d'une optimisation intérieure, réduisent de 1 722 à 433 puis à 346 le nombre
-de tétraèdres sous `minSICN = 0,1`. Le fichier CAO reste inchangé.**
-Le minimum monte de 0,0000407 à 0,00300, encore sous le seuil 0,1. Le maximum
-de distance échantillonnée à la CAO reste non qualifié : ces résultats
-améliorent plusieurs indicateurs de maillage,
-pas la résistance démontrée de la culasse. Il ne justifie pas une promotion
-globale du candidat. L'admission CAE et la fabrication restent refusées.
+**Dernier résultat gaz : le correctif de huit arcs permet de générer
+240 806 cellules mixtes, dont les 67 200 hexas attendus. Le contrôle final
+refuse cependant la topologie : des recouvrements locaux de tétraèdres sont
+confirmés. Ce n'est pas encore un maillage admissible pour OpenFOAM.**
+Pour le solide, le déplacement intérieur réduit de 309 à 283 les tétraèdres
+sous `minSICN = 0,1`, sans améliorer le minimum de 0,000792. Le fichier CAO
+et la frontière du maillage restent inchangés ; la distance
+échantillonnée à la CAO reste non qualifiée. Ces diagnostics ne démontrent
+ni amélioration de résistance ni aptitude à la fabrication.
 
 **Le candidat BRep sauvegardé passe les cinq modes BOP sélectionnés ;
 les 136 contrôles de non-recouvrement du gaz passent également.** Le nouveau
@@ -774,6 +775,34 @@ Le programme termine en 50,829 s, 51,663 s nettoyage compris ; plafond
 Les fichiers et programmes gelés restent inchangés. Aucun coût Vast ni
 résultat thermique ou mécanique crédité.
 
+### Solide : déplacement intérieur Relocate3D
+
+Le MSH du lot 192 est relu directement, sans import CAO ni régénération du
+maillage. Un appel `Relocate3D`, `force=False`, `niter=1` effectue trois
+passages internes dans Gmsh 4.15.2. Cette méthode optimise le gamma local des
+tétraèdres incidents, pas le SICN ; aucune monotonie de tous les indicateurs
+n'est présumée. Le cache de recherche d'éléments est reconstruit avant leur
+réévaluation.
+
+Les **276 262 tétraèdres et leurs connexions restent identiques**. Le nombre
+sous SICN 0,1 passe de **309 à 283**, mais le minimum reste exactement
+0,00079205104. Le minimum gamma reste également inchangé ; son maximum
+diminue. Le pire défaut n'est donc pas résolu. Les 45 830 nœuds de frontière,
+les 91 688 triangles, tous leurs tags et leurs coordonnées binary64 sont
+conservés, ainsi que la classification des nœuds. Les volumes signés et
+Jacobiens restent positifs ; une seule composante, aucun trou ou défaut
+non-manifold détecté par ces contrôles. La relecture binaire conserve
+exactement le maillage exporté et les métriques.
+
+Le reçu `8f732823…` et le MSH privé `eac017b3…` conservent cette amélioration
+partielle et le refus du seuil. Durée native 17,737 s, nettoyage compris
+18,433 s ; plafond 120 s dont 20 s de nettoyage, 2 CPU/2 Gio, sans réseau,
+OOM ni timeout. Les 19 tests purs du worker et du superviseur passent,
+notamment la suppression du seul conteneur déjà identifié lorsque son
+inspection finale échoue. Le conteneur réel a été supprimé et son absence
+revérifiée par la racine. Sources et entrées inchangées, aucune dépense Vast
+et aucune admission CAE ou fabrication.
+
 ### Piste gaz : préparation initiale du pilote
 
 La partition existante comprend un cœur et 16 blocs annulaires à six faces.
@@ -855,13 +884,86 @@ ils ne remplacent pas ce résultat natif incomplet. Aucun coût Vast.
 `make check` termine à 0 sur le dépôt modifié ; ce succès logiciel ne change
 aucun verdict de maillage ou de qualification physique.
 
+### Pilote gaz V2 : volume obtenu, défauts topologiques encore refusés
+
+Une seule modification de discrétisation est appliquée : 25 nœuds sur chacun
+des huit arcs extérieurs 128–135. Les 104 demandes antérieures, les 72 faces
+transfinies, les 17 volumes et le BRep sont conservés. Les 162 ancres et les
+114 chaînes suivies — 104 anciennes, huit ajoutées et deux contraintes
+intérieures — restent exactement identiques après 2D puis après 3D, y compris
+leurs tags, connexions orientées et coordonnées binary64.
+
+Avant 2D, les deux paires de polylignes réelles comportent chacune 96 segments
+par contour. La séparation radiale calculée sur les segments entiers vaut au
+minimum 0,00588171564 unité scan. Les 72 faces structurées ont ensuite leurs
+comptes exacts de quadrangles : le défaut de subdivision constaté dans le
+premier pilote n'est plus présent dans cet essai. La surface sauvegardée
+compte 31 888 triangles et 71 152 quadrangles. Le contrôle local du jeu entre
+les facettes guide/tige passe avant et après 3D, avec une borne restante
+minimale de 0,01177949 unité scan. Ces calculs flottants sur les facettes ne
+certifient ni la géométrie continue ni un jeu mécanique à chaud.
+
+Le MSH `61c4ee9d…` contient **173 222 tétraèdres, 67 200 hexaèdres et 384
+pyramides**, soit 240 806 cellules. Tous les Jacobiens et volumes évalués
+sont positifs ; la relecture binaire conserve exactement le maillage et les
+métriques. Ce succès partiel ne suffit pas : le contrôle topologique signale
+trois cellules dupliquées, six faces non-manifold et 126 incompatibilités
+d'orientation interne. Les nœuds de surface sont conservés, mais pas la
+photographie exacte de leurs éléments. Ces défauts doivent être localisés
+dans les fichiers sauvegardés avant tout nouvel essai ou conversion CFD.
+
+Le minimum SICN des tétraèdres est 0,00001418, avec 2 918 sous 0,1. Les hexas
+minces ont un SICN proche de 0,08 ; le seuil 0,1 est ici **diagnostique**, pas
+un critère universel d'admission CFD. L'angle entre directions de référence
+Gmsh ne remplace pas la non-orthogonalité volumes-finis d'OpenFOAM.
+
+Durée native : 33,420 s ; nettoyage compris : 34,192 s. Les 62 tests purs
+passent avant exécution. Le plafond reste 300 s/4 CPU/4 Gio, sans réseau,
+sans OOM ni timeout. Les entrées, sources et la CAO sont inchangées. Le
+conteneur exact est supprimé et son absence revérifiée par la racine.
+Aucun coût Vast, calcul moteur, thermique, mécanique ou entraînement IA
+n'est crédité. Le reçu `ed79eef5…` conserve le refus, les contrôles réussis
+et les deux fichiers de maillage privés.
+
+Une contre-lecture Python standard des deux MSH distingue ensuite les causes
+du refus. Les **103 040 facettes des 156 surfaces, interfaces comprises**, ont
+les mêmes coordonnées, classifications et connexions orientées ; seuls
+**31 343 identifiants d'éléments sont renommés**. Le refus de la photographie
+exacte est donc expliqué sans constater de déformation de ces facettes et
+sans effacer le critère historique. Ce constat discret n'est pas une preuve
+d'identité continue à la CAO.
+
+En revanche, les trois doublons et six faces non-manifold sont confirmés.
+Les 126 faces à orientations incompatibles correspondent à **123 paires
+distinctes de tétraèdres qui se recouvrent localement**. Pour ces paires, les
+deux sommets opposés sont strictement du même côté du triangle commun,
+vérification par déterminants rationnels exacts sur les coordonnées binary64
+enregistrées. Les 166 tétraèdres impliqués ont pourtant chacun un déterminant
+positif : une cellule individuellement positive ne garantit pas un maillage
+sans recouvrement. Tous appartiennent au cœur, sans hexa ou pyramide
+directement impliqué. Les adjacences localisent les défauts notamment près
+des faces natives 51/52 et 69/70. Ce n'est pas une recherche exhaustive de
+toutes les intersections possibles.
+
+Le reçu agrégé `c48c4e5e…` lie les fichiers, douze tests purs réussis et les
+signes exacts. Le diagnostic prend 5,942 s sans appel natif ni modification.
+Les 31 composantes de défauts ne montrent pas le motif complet de deux
+tessellations 2↔3 superposées ; aucune causalité de permutation n'est établie.
+La variante suivante proposée est de désactiver **uniquement la passe finale
+`Mesh.Optimize`**, en conservant `OptimizeNetgen=0` et tous les autres
+paramètres. Elle n'est pas exécutée dans ce lot et son succès n'est pas présumé.
+La [source Gmsh 4.15.2](https://gitlab.onelab.info/gmsh/gmsh/-/blob/gmsh_4_15_2/src/mesh/Generator.cpp#L1522)
+sépare cette passe de la récupération de frontière et de la création des
+pyramides, qui ne seraient pas supprimées par ce changement.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
 de représentation, de frontières et du registre des 124 rôles ; conclure la
 couverture et le bilan de volumes avant admission du domaine gazeux.
-Pour le solide, comparer les résultats 147 et 192 : le nombre insuffisant
-baisse à 309, mais le minimum se dégrade. Traiter le nouveau mécanisme volumique
+Pour le solide, les résultats 147 puis 192 et Relocate3D montrent une baisse
+du nombre insuffisant à 283, mais le minimum dégradé n'est pas corrigé.
+Traiter le mécanisme volumique
 et les 22 faces de surface signalées, tout en traitant la conformité CAO dont
 le maximum échantillonné a augmenté. Ne pas retoucher la silhouette pour masquer ces
 défauts numériques. L'attribution des
@@ -885,12 +987,16 @@ flowchart LR
     M --> O[Essai MeshAdapt puis optimisation<br/>433 éléments encore insuffisants]
     O --> P[Ajout ciblé de la face 4839<br/>346 insuffisants, minimum amélioré]
     P --> S[Lot ciblé de 45 faces ajouté<br/>309 insuffisants, minimum dégradé]
-    S --> Q[Qualité et conformité non admises<br/>Aucun résultat physique crédité]
+    S --> Y[Relocate3D intérieur, frontière conservée<br/>283 insuffisants, minimum inchangé]
+    Y --> Q[Qualité et conformité non admises<br/>Aucun résultat physique crédité]
     E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
     E --> N[Pilote hexa-tétra préparé<br/>Adaptateur à implémenter, non exécuté]
     N --> R[Inventaire natif obtenu<br/>2 contraintes internes à préserver]
     R --> T[Import lié, contraintes 1D vérifiées<br/>Surface mixte sauvegardée]
-    T --> U[Types de surface refusés<br/>Pas de génération volumique]
+    T --> U[Premier pilote : types de surface refusés<br/>Pas de génération volumique]
+    U --> V[Huit arcs corrigés sans modifier la CAO<br/>72 faces structurées conformes]
+    V --> W[240 806 cellules mixtes générées<br/>Jeu local conservé]
+    W --> X[Recouvrements locaux du cœur confirmés<br/>Facettes inchangées, tags renommés]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
