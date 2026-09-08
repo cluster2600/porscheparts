@@ -1,5 +1,8 @@
 # M64 — approximation des petites arêtes : résultat et portée des tolérances
 
+Suite exécutée séparément : [remaillage à une corde et refus OpenFOAM](M64_SHORT_EDGE_REMESH_20260908.md).
+Les bornes et le périmètre historique ci-dessous restent inchangés.
+
 **Aucun nouveau maillage ni changement de CAO dans ce sous-lot.** Les bornes
 calculées ci-dessous éclairent une possible réduction du nombre de segments
 sur les arêtes natives 98/99 du domaine gazeux unifié `fab1338a…`.

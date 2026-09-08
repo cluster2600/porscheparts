@@ -8,6 +8,9 @@ Suite du lot : [volume gazeux, correction CAO et témoin OpenFOAM exécuté](M64
 Contrôles complémentaires du 8 septembre : [corps natif chambre/admission](M64_CORPS_ADMISSION_MAILLAGE_20260908.md),
 [approximation des petites arêtes](M64_NATIVE_EDGE_APPROXIMATION_20260908.md) et
 [raffinement spatial du coupon AdditiveFOAM](M64_F58_SPATIAL_REFINEMENT_20260908.md).
+Essai suivant : [remaillage des deux petites arêtes, non retenu après contrôle OpenFOAM](M64_SHORT_EDGE_REMESH_20260908.md).
+Procédé : [témoins natifs et essai d'écoulement du coupon F58](M64_F58_COUPLED_FLOW_20260908.md).
+CAO : [copie avec échappement et audit natif, qualification refusée](M64_EXHAUST_NATIVE_AUDIT_20260908.md).
 Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
 Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
 Les cartes Mermaid et l'inventaire ci-dessous couvrent la pile demandée ;
@@ -135,6 +138,9 @@ graph TD
 [Scène éditable](../diagrams/m64-stack.excalidraw).
 
 ### Inventaire des preuves au 7 septembre 2026
+
+Cet inventaire historique n'est pas le statut des nouveaux candidats du
+8 septembre : leurs empreintes et résultats distincts sont liés en tête de page.
 
 Lecture du code, des contrats et des reçus conservés, sans nouvelle installation.
 « Intégré » ne veut pas dire « exécuté », et une exécution ne vaut pas validation.

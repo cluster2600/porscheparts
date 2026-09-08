@@ -1,0 +1,370 @@
+{
+  "schema": "m64-f58-coupled-flow-public/v1",
+  "status": "coupled_native_continuity_refusal_at_step474_partial_window_accounting_verified",
+  "date_utc": "2026-09-08",
+  "scope": "manufactured_native_code_witnesses_and_interrupted_AlSi10Mg_coupled_coupon_not_M64_head_not_CP1_not_full_build",
+  "runtime_pins": {
+    "host_class": "existing_Kali_x86",
+    "image_sha256": "a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "OpenFOAM_commit": "7b05503f98a85be88af930df48623b4d152bfc35",
+    "AdditiveFOAM_upstream_commit": "9c05c5eb54db03faa342b14b0806efe740de8c44",
+    "instrumented_coupon_binary_sha256": "b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d",
+    "nominal_material_sha256": "65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea"
+  },
+  "marangoni_native_witness": {
+    "scope": "compiled_unchanged_native_boundary_condition_manufactured_fields_no_transport_PDE_no_laser",
+    "first_attempt": {
+      "status": "driver_API_compile_refusal_preserved",
+      "exit_code": 2,
+      "wall_seconds": 6.12750287912786,
+      "reason": "driver_used_boundaryMesh_and_Info_precision_not_supported_by_this_OF14_API",
+      "backend_unchanged": true,
+      "container_absence_verified": true,
+      "receipt_sha256": "fd32b9be0ebd0e79ceeceb16c66240bac1f567679d0120b9043943520c03d9ec",
+      "log_sha256": "029ab5ec078ec05762dee4513b9d3a673923722c6745e71f61c641c232a1724b"
+    },
+    "second_attempt": {
+      "status": "native_boundary_witness_passed_not_physical_calibration",
+      "native_exit_code": 0,
+      "started_utc": "2026-09-08T10:31:09.111724089Z",
+      "finished_utc": "2026-09-08T10:31:17.826667301Z",
+      "wall_seconds": 8.922924180980772,
+      "last_sampled_cgroup_CPU_seconds_not_final_total": 8.518825,
+      "manufactured_cells": 32,
+      "top_faces": 16,
+      "gradient_cases": 3,
+      "maximum_traction_error_Pa": 5.106203292012938e-12,
+      "maximum_normal_speed_m_s": 9.860761315262648e-32,
+      "traction_oracle_tolerance_Pa": 1e-9,
+      "normal_speed_oracle_tolerance_m_s": 1e-14,
+      "native_mesh_ok": true,
+      "OOM": false,
+      "timeout": false,
+      "inputs_unchanged": true,
+      "backend_unchanged": true,
+      "container_absence_verified": true,
+      "receipt_sha256": "641a76d03c84533ca8d5ca1edbce1f273daaa9b3803223037ecaffb75f879a59",
+      "log_sha256": "6dd4de7fc6392623e36c01f7a65001a79231ea486ccd48e930b6800591336262",
+      "ledger_sha256": "878215973754ade2844a6fe338c3f78ebd229299ba17e6c01f0bfec7381054da",
+      "native_boundary_C_sha256": "a6ed0f184fc6d3101d05da83675a4b1e9452f9ca6a6aaa92f7535956eee8bdc3",
+      "native_boundary_H_sha256": "bb21f5c705425c6903945f9ca95055d6ca4083d8b9d58e1b15e2a1c75deb022a",
+      "driver_C_sha256": "4d76cabbaa1ba0cb8b9a1ede655e874b4f5c9a895158bf9b44bf4ad49df90f78",
+      "driver_binary_sha256": "947ff5516b12085c78580688b883df7661680fd71a2f2482cf70bf7df9f30862"
+    }
+  },
+  "native_sensor_witness": {
+    "status": "native_time_loop_and_nonzero_sensor_response_passed_no_PDE",
+    "native_exit_code": 0,
+    "started_utc": "2026-09-08T10:45:49.654953526Z",
+    "finished_utc": "2026-09-08T10:45:54.280872973Z",
+    "wall_seconds": 4.921505932696164,
+    "last_sampled_cgroup_CPU_seconds_not_final_total": 4.450447,
+    "native_mesh_ok": true,
+    "OOM": false,
+    "timeout": false,
+    "container_absence_verified": true,
+    "inputs_unchanged": true,
+    "system_and_driver_read_only": true,
+    "manufactured_scales_including_initial": [
+      0,
+      1,
+      2,
+      -1
+    ],
+    "samples": 4,
+    "dt_s": 2.5e-8,
+    "every_completed_step_and_last_step_verified": true,
+    "producer_reducer_order_verified": true,
+    "same_sensor_dictionary_as_prepared_coupon": true,
+    "oracle_relative_tolerance": 2e-12,
+    "oracle_absolute_tolerance": 1e-18,
+    "observed_U_max_m_s": [
+      0,
+      0.29817151104691403,
+      0.5963430220938281,
+      0.29817151104691403
+    ],
+    "observed_Courant_max": [
+      0,
+      0.000375,
+      0.00075,
+      0.000375
+    ],
+    "observed_abs_div_phi_max_s_inverse": [
+      0,
+      6000.000000000004,
+      12000.000000000007,
+      6000.000000000004
+    ],
+    "observed_boundary_sum_abs_phi_m3_s": [
+      0,
+      5.999999999999998e-9,
+      1.1999999999999997e-8,
+      5.999999999999998e-9
+    ],
+    "receipt_sha256": "f142acc9b45efbb8b70d33f5a4043337ff4f60cdc950ccbc3647603ce9948cee",
+    "log_sha256": "d1ede04c7693adba3c2cc0ac1edcc98b2e6d62a44b6b6c2dfaa780aca668e6fc",
+    "ledger_sha256": "ee883a79fa8c5cd82e97bafb3a8d911cb5c73ae3645fb562c0f8d64cce486013",
+    "source_C_sha256": "1d6a564cd2c80bcaefb9ca404010ea35de7fb5d53ec3dce7af3683bcf8a9ab53",
+    "runner_and_oracle_sha256": "7769ead334f80f619c16903e34b1eb4803f1dfe295e65d020331521c9a9808b6",
+    "maxima_file_sha256": "88be499ad161f37e47ea4c4322cce2e6df2f1f8a1178ca988c77bb270a2d4b74",
+    "boundary_file_sha256": "e4d4014094fb14925b7f51ec8fbe3852dc26993775275a4b8ed13a3a56d4ef2a"
+  },
+  "native_witness_resource_limits": {
+    "cpus": 2,
+    "memory_bytes": 2147483648,
+    "CPU_time_budget_s": 120,
+    "wall_limit_s": 180,
+    "network": "none",
+    "read_only_root": true,
+    "tmpfs_bytes": 67108864,
+    "new_Vast_jobs": 0
+  },
+  "coupled_preparation": {
+    "receipt_sha256": "27b989557cd6f8aa5dba9e9fb49b1b13adb2fc05fe0a35ed5a8795dcee46c79e",
+    "preparer_sha256": "19bf310bf350f3fb0d2896ba344b2837bcb78d148c63013bffad0fb77e0bfdd2",
+    "sensor_dictionary_sha256": "b956ba77619d6e226351bcc32b080f4cba88632a18871792c2ad80b397c0d0b0",
+    "source_input_files_initially_copied_exactly": 29,
+    "changed_preexisting_inputs": [
+      "system/fvSolution",
+      "system/controlDict"
+    ],
+    "added_input": "system/flowDiagnostics",
+    "physical_change": {
+      "nOuterCorrectors": [
+        0,
+        1
+      ]
+    },
+    "momentumPredictor": "no_unchanged",
+    "mesh_regenerated": false,
+    "mesh_and_powder_inputs_byte_identical": true,
+    "original_prepared_case_preserved": true,
+    "coarse_grid": [
+      120,
+      20,
+      24
+    ],
+    "cells": 57600,
+    "dt_s": 2.5e-8,
+    "intended_duration_s": 0.00012,
+    "expected_energy_steps": 4800,
+    "expected_sensor_samples_including_initial": 4801,
+    "incident_power_W": 380,
+    "temperature_cap_K": 3300,
+    "coupled_run_receipt_available": true,
+    "runner_executed_sha256": "c023ddfa1fbff288cb2e5f87ae16701ffea5996ccf957ce72125e37654c8ace4"
+  },
+  "private_software_tests": {
+    "preparer_tests_passed": 8,
+    "runner_tests_passed": 24,
+    "sensor_oracle_tests_passed": 6,
+    "preparer_tests_sha256": "004e7148fb2b6c6bae42e7d044350a6a2633e207933d3850a33039604d9aa041",
+    "runner_tests_sha256": "112d10f4c488e6886b60bfe3daee897643acd463ce0fe914284e804807b2f873",
+    "sensor_oracle_tests_sha256": "f22e789a9ce9590f9757d8de8bc8bb138dd947252e104f28ef5aff1c5897b718",
+    "publication_make_check_result_attached": false,
+    "partial_energy_readback_tests_passed": 7,
+    "partial_energy_readback_tests_sha256": "c80bfd4c721d5bd869138c6c6cd3924e304437d458cf2ff91340a8137bf069be"
+  },
+  "new_Vast_jobs_in_this_subtask": 0,
+  "new_Vast_spend_USD_in_this_subtask": 0,
+  "physical_material_calibration_completed": false,
+  "powder_effective_conductivity_measured": false,
+  "evaporation_mass_loss_model_added": false,
+  "independent_physical_validation_completed": false,
+  "whole_head_thermal_mechanical_or_build_distortion_validated": false,
+  "manufacturing_authorized": false,
+  "run_contract": {
+    "parent_authorization_pinned_to_preparation_and_runner_required": true,
+    "native_Mesh_OK_required_before_laser": true,
+    "cpus": 4,
+    "memory_bytes": 4294967296,
+    "memory_plus_swap_bytes": 4294967296,
+    "wall_limit_s": 900,
+    "serial": true,
+    "network": "none",
+    "backend_and_system_read_only": true,
+    "stop_on_nonfinite_or_native_fatal": true,
+    "max_Courant_guard": 0.5,
+    "pressure_final_residual_guard": 0.000001,
+    "Di_upper": 0.05087640449438203,
+    "explicit_transport_guard": "Di_upper + Co_max + 0.5 * dt * max_abs_div_phi < 1",
+    "all_preexisting_inputs_must_remain_byte_identical": true,
+    "only_allowed_added_initial_outputs": [
+      "0/f58_Co",
+      "0/f58_divPhi"
+    ],
+    "six_energy_terms": [
+      "sensible",
+      "latent",
+      "boundary_diffusion_in",
+      "laser_in",
+      "discrete_rho_Cp_div_phi_T",
+      "artificial_limiter_sink"
+    ],
+    "discrete_balance": "S + L - D - Q + A + limiter",
+    "advection_term_is_boundary_enthalpy_flux": false,
+    "advection_definition": "A = sum_cells(rho * Cp * div(phi,T) * V); Cp varies, so A is not a physical net boundary enthalpy flux",
+    "timeout_means_incomplete_not_equal_duration_comparison": true,
+    "automatic_rerun": false
+  },
+  "coupled_run": {
+    "status": "native_refusal_preserved_not_120us_complete",
+    "native_exit_code": 1,
+    "docker_client_exit_code": 1,
+    "started_utc": "2026-09-08T11:09:10.205559122Z",
+    "finished_utc": "2026-09-08T11:09:42.922386618Z",
+    "wall_seconds": 33.00142860226333,
+    "OOM": false,
+    "timeout": false,
+    "native_mesh_ok": true,
+    "container_absence_verified": true,
+    "completed_energy_steps": 473,
+    "completed_duration_s": 0.000011825,
+    "attempted_failing_step": 474,
+    "attempted_failing_time_s": 0.00001185,
+    "completed_sensor_instants_including_initial": 474,
+    "failure_location": "Foam::adjustPhi",
+    "failure_message": "Continuity error cannot be removed by adjusting the outflow.",
+    "precise_trial_flux_root_cause_proven_by_energy_parser": false,
+    "automatic_rerun_performed": false,
+    "maxima_on_completed_steps_only": {
+      "velocity_norm_m_s": 0.6849800172866468,
+      "Courant": 0.000477982923581973,
+      "explicit_transport_row_bound": 0.05135438742258197,
+      "abs_div_phi_s_inverse": 0.003150457838797481,
+      "boundary_sum_abs_phi_m3_s": 1.333205390621387e-26
+    },
+    "pressure_solves_before_failure": 442,
+    "maximum_final_pressure_residual": "9.925780464954486E-7",
+    "run_receipt_sha256": "27071c71f69040fbadf9dfece580383bf285e6393d823278be5ca57cdacc32aa",
+    "log_sha256": "6b62b94a02cc4fdf824ce9f4ff1d5a5a2cb95e0d3a37ee868ff8ea585cce26ed",
+    "ledger_sha256": "9cf8c33f82b0f2ca36371d964a9842fb6dee3073c88a603383e9aa343c57d502",
+    "integrity_sha256": "40ae57abd072d8f635231a1f529912674ad8fa7381123f57a55b1e3ad26f9f13"
+  },
+  "same_window_energy_comparison": {
+    "scope": "completed_473_steps_only_not_full120us",
+    "method": "independent_stdlib_Decimal_precision60_no_import_of_Guard_or_prior_energy_evaluator",
+    "completed_duration_s": "0.000011825",
+    "common_incident_energy_J": "0.004493500",
+    "coarse_same_window": {
+      "energy_J": {
+        "sensible": "0.0030352862937654134475",
+        "latent": "0.000235353092077005854350",
+        "boundary_diffusion_in": "0.00138829861912798341800",
+        "absorbed_laser": "0.0018959411307490177075",
+        "discrete_rho_Cp_div_phi_T": "0E-9",
+        "artificial_limiter_sink": "0.000013600757853282612150"
+      },
+      "signed_residual_J": "3.93818700788500E-10",
+      "absolute_residual_J": "3.96296876191400E-10",
+      "absolute_residual_over_absorbed": "2.09023829782540479093573599947894913901944641149409288406734E-7",
+      "maximum_reported_vs_recomputed_residual_difference_W": "1.27062487E-13",
+      "limiter_over_absorbed": "0.00717361822722282788968523688412250488624618752848424799814308",
+      "Tmax_K": "3300.000000017447",
+      "steps_at_cap_with_1e_minus6_K_tolerance": 54,
+      "maximum_absorbed_power_W": "221.2801218893235",
+      "steps_above_380_W_plus_1e_minus8_W": 0
+    },
+    "coupled_partial_window": {
+      "energy_J": {
+        "sensible": "0.0030356479638084907850",
+        "latent": "0.000235890619749365605675",
+        "boundary_diffusion_in": "0.00138829868880687512575",
+        "absorbed_laser": "0.0018956213065413540475",
+        "discrete_rho_Cp_div_phi_T": "3.7215303956020592569100E-8",
+        "artificial_limiter_sink": "0.000012344543165454508550"
+      },
+      "signed_residual_J": "3.46679037746567569100E-10",
+      "absolute_residual_J": "3.49152464037520650550E-10",
+      "absolute_residual_over_absorbed": "1.84188932057619121672768002360199295730967353006419179991857E-7",
+      "maximum_reported_vs_recomputed_residual_difference_W": "1.37806292E-13",
+      "limiter_over_absorbed": "0.00651213569021213435139267997616597026844682893821180105250353",
+      "Tmax_K": "3300.000000016719",
+      "steps_at_cap_with_1e_minus6_K_tolerance": 51,
+      "maximum_absorbed_power_W": "221.1721974911192",
+      "steps_above_380_W_plus_1e_minus8_W": 0
+    },
+    "full_120us_comparison_performed": false,
+    "independent_physical_solvers_compared": false
+  },
+  "native_isotherm_outputs": {
+    "scope": "model_function_object_outputs_not_measured_melt_pool",
+    "independent_readback_completed": true,
+    "common_samples_including_initial": 474,
+    "dimension_order": [
+      "length",
+      "width",
+      "depth"
+    ],
+    "outputs": {
+      "850": {
+        "coarse_full_samples": 4801,
+        "coupled_samples": 474,
+        "common_samples": 474,
+        "final_time_s": "0.000011825",
+        "coarse_final_dimensions_m": [
+          "0.00009774852",
+          "0.00010948259",
+          "0.000052407419"
+        ],
+        "coupled_final_dimensions_m": [
+          "0.000097801111",
+          "0.00011002275",
+          "0.000052338893"
+        ],
+        "relative_change_vs_coarse": [
+          "0.000538023491301965492674467091675659130184272866740079542892312",
+          "0.00493375248064555286826882703450840905389614915028955745383809",
+          "-0.00130756296164861696394550550180691020101562337958295561168544"
+        ]
+      },
+      "870": {
+        "coarse_full_samples": 4801,
+        "coupled_samples": 474,
+        "common_samples": 474,
+        "final_time_s": "0.000011825",
+        "coarse_final_dimensions_m": [
+          "0.000096902884",
+          "0.00010848321",
+          "0.000052066613"
+        ],
+        "coupled_final_dimensions_m": [
+          "0.000096959544",
+          "0.0001090496",
+          "0.000051994773"
+        ],
+        "relative_change_vs_coarse": [
+          "0.000584709119699677875428351544212038106110443524054454354526745",
+          "0.00522099226230492257742004500051206080646028081211829922805566",
+          "-0.00137977094841947948486681858871826365966996931411689867362795"
+        ]
+      }
+    }
+  },
+  "coupled_integrity": {
+    "all_30_prepared_inputs_byte_identical_independent_rehash": true,
+    "original_coarse_inputs_unchanged_runner_observation": true,
+    "backend_unchanged_runner_observation": true,
+    "runner_unchanged": true,
+    "exact_initial_snapshot_equal": false,
+    "only_predeclared_initial_outputs_added": true,
+    "new_initial_outputs_sha256": {
+      "0/f58_Co": "e2caccf84700cb241528e0bcd52f50e508840c0ca9a09bbdf4ea9719c5dc559f",
+      "0/f58_divPhi": "b260be05a0dc0dc8be851cd39ab7d408abd43f7ed83429bde1faf9bb17e9594c"
+    },
+    "native_refusal_not_reclassified_as_success": true
+  },
+  "partial_readback_evidence": {
+    "independent_receipt_sha256": "f3c9f9a9b59433027a6379ed33f72275fbf3ca78e20fa23586cb8be9f196732e",
+    "independent_source_sha256": "08fc5636dcbed6c60a226dc4f3851a6c11db9c673f6085681a0985615a7441ce",
+    "coarse_log_sha256": "319343f84fd40295811ffa9d5769fc1df487fe668aed9baeaadadd9b4939a94b",
+    "coupled_850K_csv_sha256": "e848cdb88911002040892209efaac342cfcc2b7dd35cc126875d8afa9ed05d0b",
+    "coupled_870K_csv_sha256": "ed197e0a45afa52d08b8f1267699a28b0a8d03447c5bc99658b6ef04c85e8627",
+    "coarse_850K_csv_sha256": "11411504c91eaf72ba759ff7021294e60bb0092753306c9e94a13e8b2d16e56c",
+    "coarse_870K_csv_sha256": "f36a3add8024715f1f2c1c1f448fa5068f1d5b46a5b89d71954f61ac0f19eaee",
+    "coupled_flow_maxima_sha256": "045bd279ea3be8335c1258049f264405f3dea294e62b43c3c467dd8a08263432",
+    "coupled_boundary_flux_sha256": "1684fa076fbb8a6f2606601ac33a770d4241a7efb9156e384433eb72fd9c0da4",
+    "rounding_aware_file_log_maxima_comparison": true
+  }
+}

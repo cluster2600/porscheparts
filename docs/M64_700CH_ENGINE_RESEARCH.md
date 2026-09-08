@@ -1,5 +1,10 @@
 # M64 biturbo 700 ch : cible calculable et recherche moteur
 
+Suite du 8 septembre : [contre-calcul thermodynamique et limites des anciens
+modèles 2V/4V](M64_700PS_CYCLE_MODEL_AUDIT_20260908.md). Le bilan ci-dessous
+reste figé ; les avantages de remplissage ou de combustion imposés dans
+certains modèles historiques ne sont pas des gains démontrés pour le M64.
+
 État au 7 septembre 2026 : **dimensionnement exploratoire**, pas puissance
 obtenue, ni validation thermique, mécanique ou d'impression. La cible utilisateur
 est interprétée comme **700 ch métriques (PS) au vilebrequin**, soit
