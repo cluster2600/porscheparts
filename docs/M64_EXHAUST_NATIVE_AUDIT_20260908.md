@@ -2,18 +2,21 @@
 
 Le corps avec admission et échappement a été exporté, mais **reste refusé** :
 le contrôle bit à bit des tolérances après sérialisation échoue et un audit
-BOP indépendant signale deux `BOPAlgo_GeomAbs_C0`, encore non localisés.
+BOP indépendant signale deux `BOPAlgo_GeomAbs_C0`, désormais **localisés mais
+non corrigés** par un contrôle ultérieur limité à la continuité.
 Aucune dérogation, qualification fonctionnelle ou autorisation de fabrication
 n’est accordée. La [capsule de preuves](../twins/m64-cylinder-head/evidence/exhaust-native-audit-20260908.json)
-relie les trois étapes aux reçus privés, sans publier la géométrie.
+relie les trois étapes initiales et ce complément aux reçus privés, sans
+publier la géométrie.
 
-## Trois étapes distinctes
+## Trois étapes initiales et un complément distinct
 
 | Étape réellement exécutée | Observation | Décision conservée |
 |---|---|---|
 | Essai 01 | Appel d’API `HasErrors` indisponible sur l’objet `BRepAlgoAPI_Cut` ; arrêt avant export | Erreur du programme, pas preuve d’invalidité de la pièce |
 | Essai 02 | Export natif `21c9c40b…`, un solide, une coque, 4 900 faces ; BRepCheck exact valide avant/après relecture | Refus `rejected_native_tolerance_integrity` |
 | Audit indépendant | Relecture du même export, cinq modes BOP activés ensemble ; deux signalements C0 | Refus maintenu, incidence non qualifiée |
+| Localisation ultérieure | Continuité seule ; les deux arêtes et trois nœuds internes sont identifiés | Localisées, non corrigées ; aucun refus levé |
 
 L’essai 01 termine avec un code travailleur 1 et un code conteneur 2, en
 7,514 s murales supervisées. L’essai 02 termine avec le code 2 en 12,569 s.
@@ -64,16 +67,52 @@ avec fuzzy nul, sans arrêt au premier défaut.
 Ce contrôle dure 174,308 s pour BOP, 177,111 s au niveau du wrapper, et
 retourne 2. Les tolérances et toutes les entrées restent inchangées ; aucun
 B-Rep/STEP n’est écrit ou réparé. Les deux signalements ne sont **pas des
-fissures physiques démontrées** : leurs entités et leur incidence fonctionnelle
-ne sont pas encore déterminées. Ce reçu ne transforme aucun refus en succès.
+fissures physiques démontrées**. Dans ce snapshot, leurs entités ne sont pas
+localisées et leur incidence fonctionnelle n'est pas qualifiée. Ce reçu reste
+inchangé ; le complément ci-dessous ne transforme aucun refus en succès.
+
+## Complément : localisation native, sans correction
+
+Le reçu `18dba811…` concerne exactement le même candidat `21c9c40b…`. Seul
+`ContinuityMode` est activé ; les huit autres modes sont explicitement
+désactivés. Ce contrôle ne répète ni le BOP complet, ni BRepCheck, ni une
+découpe. Le corps d'entrée et l'outil seuls donnent chacun zéro alerte de
+continuité ; le candidat conserve exactement les deux alertes attendues.
+
+Les sous-formes signalées sont les arêtes natives **1603 et 1606 de ce
+candidat exact**. Elles sont chacune incidentes à la face 678, dont le support
+B-spline global complet correspond à celui de la face 1 de l'outil
+d'échappement. Leurs autres faces incidentes sont respectivement 881 et 884,
+dont les supports correspondent aux faces 4408 et 4194 du corps avant coupe.
+Ces associations utilisent l'adjacence native et les représentations complètes
+binary64 des supports : degrés, pôles, poids, nœuds, multiplicités et
+périodicité. Elles ne reposent pas sur d'anciens IDs réutilisés et ne prouvent
+pas l'identité des faces tronquées.
+
+Aux **trois nœuds internes examinés**, les évaluations natives unilatérales
+donnent chacune un saut de position numérique nul. Les angles entre tangentes
+sont respectivement **0,03993974°, 0,01033415° et 0,25917866°**. Ces observations
+ponctuelles ne prouvent ni l'absence globale de jeu ou de défaut géométrique,
+ni la continuité des dérivées, ni l'intégrité mécanique. Les supports complets
+des deux courbes n'ont pas de représentation identique retrouvée dans les
+entrées ; une absence de correspondance ne démontre pas une géométrie nouvelle.
+
+La localisation termine avec le code 0 en **1,043 s** pour le lecteur et
+**1,477 s** pour le wrapper, nettoyage compris. Entrées locales et distantes,
+sources et empreintes des tolérances natives restent inchangées. Quinze tests
+sans OCP passent, dont le refus d'un compte d'alertes différent, d'un résultat
+vide, d'une forme absente ou d'un avertissement natif. Leur réussite ne vaut
+pas qualification de la CAO. Aucune géométrie n'est écrite ou réparée ; les
+coordonnées, paramètres de coupe et pôles restent privés.
 
 ```mermaid
 flowchart TD
     A["Essai 01 : erreur API, aucun export"] --> B["Essai 02 : export natif du corps"]
     B --> C["Tolérances bit à bit : refus conservé"]
     C --> D["Audit séparé : deux C0 non localisés"]
-    D --> E["Localiser et qualifier avant nouvelle décision"]
-    E --> F["Contrôles fonctionnels, CFD et fabrication toujours non autorisés"]
+    D --> E["Complément continuité seule : deux arêtes localisées"]
+    E --> F["Correction bornée à préparer et à contre-vérifier"]
+    F --> G["Contrôles fonctionnels, CFD et fabrication toujours non autorisés"]
 ```
 
 ## Ce qui reste absent
@@ -97,12 +136,20 @@ matériau. Image, maillage dérivé et coordonnées restent privés.
 
 ## Ressources et portée
 
-Kali x86 : deux CPU, 4 Gio de mémoire et swap combinés, limite 300 s par
-exécution native, réseau coupé et entrées montées en lecture seule. L’essai
+Pour les étapes initiales sur Kali x86 : deux CPU, 4 Gio de mémoire et swap
+combinés, limite 300 s par exécution native, réseau coupé et entrées montées
+en lecture seule. L’essai
 02 est lié à la commande du wrapper figé ; l’inspection HostConfig en direct
 a manqué ce conteneur déjà terminé. Pour l’audit indépendant, les limites
 ont aussi été constatées sur le conteneur vivant. Les conteneurs sont
 supprimés, absence vérifiée ; aucun OOM ni timeout n’est signalé.
+
+La localisation ultérieure utilise la même image et OCP 7.9.3.1, mais une
+borne distincte de **30 s CPU et murales, deux CPU et 2 Gio mémoire+swap au
+total**. Ses limites sont liées à la commande du wrapper figé ; aucune capture
+HostConfig en direct de ce court passage n'est revendiquée. Le conteneur exact
+est supprimé et son absence est revérifiée indépendamment. Aucune OOM ni
+expiration n'est observée.
 
 Le rendu local dure 3,834 s d’extraction puis 5,220 s de rendu, sans timeout.
 Aucune nouvelle location ni dépense Vast pour ce lot. Le plafond autorisé de

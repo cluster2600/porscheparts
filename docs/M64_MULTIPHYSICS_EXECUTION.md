@@ -10,6 +10,7 @@ Contrôles complémentaires du 8 septembre : [corps natif chambre/admission](M64
 [raffinement spatial du coupon AdditiveFOAM](M64_F58_SPATIAL_REFINEMENT_20260908.md).
 Essai suivant : [remaillage des deux petites arêtes, non retenu après contrôle OpenFOAM](M64_SHORT_EDGE_REMESH_20260908.md).
 Procédé : [témoins natifs et essai d'écoulement du coupon F58](M64_F58_COUPLED_FLOW_20260908.md).
+Diagnostic suivant : [contrat du prédicteur Marangoni, témoin natif passé](M64_F58_PREDICTOR_CONTRACT_20260908.md).
 CAO : [copie avec échappement et audit natif, qualification refusée](M64_EXHAUST_NATIVE_AUDIT_20260908.md).
 Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
 Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
