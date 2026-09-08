@@ -1,5 +1,9 @@
 # M64 — premier volume d'admission maillé, qualité OpenFOAM rejetée
 
+La [reprise de la représentation C0](M64_CORRECTIONS_NATIVES_20260908.md)
+produit ensuite un autre candidat natif. Elle ne modifie pas le maillage
+historique ni ses six rejets OpenFOAM documentés ci-dessous.
+
 ## Résultat
 
 Le domaine gazeux natif `gas-domain-05` produit désormais **481 189 tétraèdres**.
@@ -157,9 +161,8 @@ interfaces moteur, maintien à chaud des guides, matière et procédé restent
 Calculs bornés sur Kali, sans réseau dans les conteneurs : maillage et
 OpenFOAM limités à 4 CPU/4 Gio ; STEP à 2 CPU/4 Gio. Tous les conteneurs de
 ces exécutions ont été supprimés après récupération, sans OOM observé.
-**Aucune nouvelle dépense Vast.** Lecture du wrapper approuvé pendant ce lot :
-43,9166429608502 USD de crédit, aucune instance, plafond utilisateur 44 USD
-sans recharge. Ce constat ne garantit pas un solde futur.
+**Aucune nouvelle dépense Vast.** Le contrôle des instances retourne une
+liste vide pendant ce lot. Les données de solde restent privées.
 
 Les tests logiciels, les observations géométriques et les résultats physiques
 sont documentés séparément. Un test logiciel réussi ne qualifie pas une

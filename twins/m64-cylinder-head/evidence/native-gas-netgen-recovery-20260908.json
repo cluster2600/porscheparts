@@ -1,0 +1,290 @@
+{
+  "schema": "m64-native-gas-netgen-recovery/v1",
+  "date": "2026-09-08",
+  "status": "recovered_generation_OpenFOAM_mesh_rejected",
+  "scope": "Diagnostic de transfert et d'optimisation du maillage volumique du domaine gaz d'admission. Ce lot ne valide pas la culasse ni son fonctionnement.",
+  "runtime": {
+    "gmsh_version": "4.15.2",
+    "python_series": "3.11",
+    "platform": "linux/amd64",
+    "container_image_sha256": "27bb1cabdb66a34d0f3812adb4930f9f43814cb0d4331fd16f30b5771b2764d4",
+    "netgen_attempt_limits": {
+      "cpus": 4,
+      "memory_bytes": 4294967296,
+      "wall_seconds": 300,
+      "network": "none"
+    },
+    "quality_read_limits": {
+      "cpus": 1,
+      "memory_bytes": 2147483648,
+      "wall_seconds": 60,
+      "network": "none"
+    },
+    "netgen_call": {
+      "method": "Netgen",
+      "force": true,
+      "niter_argument": 1,
+      "niter_ignored_by_this_native_branch": true
+    },
+    "mesh_options": {
+      "Mesh.MshFileVersion": 2.2,
+      "Mesh.Binary": 0,
+      "Mesh.SaveAll": 0,
+      "Mesh.Renumber": 0,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0
+    },
+    "mesh_preserve_numbering_msh2": {
+      "set_explicitly": false,
+      "documented_default": 0
+    },
+    "all_containers_removed_and_absence_verified": true,
+    "new_Vast_rental": false
+  },
+  "inputs": {
+    "original_mesh_sha256": "98c6628b01eb255563a6183d91243cd07aeb8d365f6d00467102e76cecf0e044",
+    "tetrahedra": 481189,
+    "nodes": 126760,
+    "boundary_triangles": 191968,
+    "boundary_nodes": 95984,
+    "boundary_faces": 88,
+    "original_unchanged": true,
+    "scale_status": "scan_units_not_physically_calibrated",
+    "native_domain_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+    "C0_split_candidate_7fc_not_used": true
+  },
+  "execution_history": [
+    {
+      "id": "dependency_preflight",
+      "result": "Échec d'import NumPy avant tout appel d'optimisation ; l'image a ensuite été utilisée avec un post-traitement sans cette dépendance.",
+      "native_optimizer_reached": false,
+      "exit_code": 2,
+      "elapsed_wall_seconds_integer_receipt": 4,
+      "script": "optimize_volume.py",
+      "source_sha256": "9b36d26c17d243b08dc7668af5a0122ef04ed521a043a6897e6e3a45b3001fea",
+      "report_sha256": "11b7e3ff329e63e5ddf268506a7d44aec92f10e9e0cc7f052a6962ad2cd321be",
+      "process_sha256": "e03cc338ca9d487a38e017aaa9e30de84e785810d51ffa0b1dbf637506c99a88"
+    },
+    {
+      "id": "netgen_without_effective_discrete_adjacency",
+      "result": "Arrêt natif par signal, sortie 139. Le transfert Netgen voyait zéro élément de surface ; ce constat et le contrôle suivant établissent un problème d'adjacence, sans prétendre fournir une trace de pile du crash.",
+      "native_optimizer_reached": true,
+      "exit_code": 139,
+      "elapsed_wall_seconds_integer_receipt": 10,
+      "historical_checkpoint_running_status_overridden_by_process_exit": true,
+      "script": "optimize_volume.py",
+      "source_sha256": "0175f3d11ce7ebf7399638073aa79449e6042e844f6344c620d173c5c3495459",
+      "report_sha256": "66c6ab23508947ac2e13d4835e219f8f4a5f920b2cced5a5d16fee37f4e59306",
+      "process_sha256": "52783e8e9145e7fec4f73175cf23769878c3e64f86e63e12399e217622e0d888"
+    },
+    {
+      "id": "netgen_after_identity_checked_createTopology",
+      "result": "Les 88 liens volume–faces sont rétablis sans modifier les anciens nœuds ni éléments. L'optimiseur termine, mais l'audit de qualité échoue sur un cache d'éléments obsolète avant sauvegarde du candidat.",
+      "native_optimizer_reached": true,
+      "exit_code": 2,
+      "elapsed_wall_seconds_integer_receipt": 65,
+      "native_optimizer_seconds": 44.9580380753614,
+      "script": "optimize_volume.py",
+      "source_sha256": "d54e91611a45f186ba2dd718645916f98dd5b59b546b31863ebfcb959233208e",
+      "report_sha256": "7a6dcc9248781e02d0e524af1584429919355341c6b9d65ad8148be886ed4855",
+      "process_sha256": "410a4aaa311986d0a3f68012d52df05df9580b1c8f20de5454e5985c8bc60f91"
+    },
+    {
+      "id": "netgen_with_immediate_save_and_cache_rebuild",
+      "result": "Le candidat brut est sauvegardé, puis le cache d'indexation est reconstruit. L'audit rejette deux générations superposées : 939496 tétras et un volume signé total doublé.",
+      "native_optimizer_reached": true,
+      "exit_code": 2,
+      "elapsed_wall_seconds_integer_receipt": 129,
+      "native_optimizer_seconds": 45.102405707817525,
+      "script": "optimize_volume.py",
+      "source_sha256": "99ccf5502d9f25a8f97cbf86fd050508434614890f58c91f145204bb6fe25c58",
+      "report_sha256": "1a8f1bc3ca047fe81d05201bc2a804a6a1f69d0327987add8ed433f9a6909757",
+      "process_sha256": "c8b4b9ad044fae1eb46a1c5bc03d87a219ca474d0b280c9eb595a2d26d9b0d49"
+    }
+  ],
+  "actual_native_optimizer_calls": 3,
+  "topology_reconstruction": {
+    "method": "createTopology(makeSimplyConnected=False, exportDiscrete=False)",
+    "effective_volume_surface_links_before": 0,
+    "effective_volume_surface_links_after": 88,
+    "existing_nodes_and_float_hex_coordinates_identical": true,
+    "existing_element_tags_connectivity_owners_and_physical_groups_identical": true,
+    "new_auxiliary_points": 101,
+    "new_auxiliary_lines": 3687,
+    "new_auxiliary_points_only_on_existing_boundary_nodes": true,
+    "new_auxiliary_lines_only_on_existing_triangle_edges": true,
+    "no_CAD_import_healing_or_mesh_generation": true
+  },
+  "whole_generation_recovery": {
+    "status": "exact_generation_transfer_recovered",
+    "raw_candidate_preserved_sha256": "b940e785c9f3c6a994158a190484f630af7fe0d723b68ba39a424c9e4be1264d",
+    "recovered_mesh_sha256": "eeaf1c79ba7bef30165a1e12c026613beb932edbb964849b3cfa82c41656d66d",
+    "script": "compare_generations.py",
+    "source_sha256": "649bad6f727e0cfd68ea539d958390907e6a3fc6a3d5ea223b0bc797befb7bc9",
+    "proof_sha256": "2f6a38945b92e41554f2ad82a99f6331b675d1a1e5450e4025c83b9546e767b0",
+    "proof": "Vérification exhaustive des 481189 anciens tétras : labels et ordre de connectivité identiques sous une seule bijection globale de 126760 nœuds, coordonnées ASCII comparées exactement avec Decimal ; vérification de toutes les faces frontières. Les numéros sérialisés seuls ne constituent pas la preuve.",
+    "all_proof_gates_pass": true,
+    "removed_entire_old_generation_tetrahedra": 481189,
+    "retained_entire_new_generation_tetrahedra": 458307,
+    "removed_incidence_proven_orphan_nodes_only": 30776,
+    "retained_nodes": 124940,
+    "selective_deletion_deduplication_or_coordinate_edit": false,
+    "additional_Netgen_or_mesh_generation_call": false,
+    "boundary_triangles_after_exact_node_remapping": 191968,
+    "boundary_faces": 88,
+    "boundary_coordinates_orientations_roles_and_physical_names_identical": true,
+    "patch_names": [
+      "inlet",
+      "receiver_outlet",
+      "walls"
+    ],
+    "volume_physical_name": "air",
+    "volume_physical_tag": 100,
+    "direct_topology": {
+      "duplicate_tetrahedra": 0,
+      "facets_with_more_than_two_tetrahedra": 0,
+      "internal_faces_with_equal_orientation": 0,
+      "nonpositive_signed_tetra_volumes": 0,
+      "oriented_exterior_tetra_faces_match_complete_boundary": true,
+      "total_signed_volume_ratio_to_original": 1
+    }
+  },
+  "quality_readback": {
+    "status": "measured_only_not_CFD_qualified",
+    "script": "measure_recovered_quality.py",
+    "source_sha256": "6dbf4614b17bc9463110f27d5aec2eb85b4898471084f9a35ff68503f647e36d",
+    "report_sha256": "4b25d8968c4b1668f959dc0576fd0b03d6591cfc15430c7f7dfd680062ecaef1",
+    "process_sha256": "9897dcfdb34638e9262a8d2fe11b282a11c5947236df18dc015529d9bc8c9fb3",
+    "exit_code": 0,
+    "elapsed_seconds": 2.287149650976062,
+    "original": {
+      "tetrahedra": 481189,
+      "minimum_minSICN": 1.3983034598374955e-7,
+      "minSICN_below_0p1": 1409,
+      "minSICN_below_1e_6": 8,
+      "nonpositive_minSICN": 0,
+      "minimum_Jacobian_determinant": 6.213320004046181e-12,
+      "nonpositive_Jacobians": 0
+    },
+    "recovered": {
+      "tetrahedra": 458307,
+      "minimum_minSICN": 7.62990667541886e-7,
+      "minSICN_below_0p1": 1595,
+      "minSICN_below_1e_6": 1,
+      "nonpositive_minSICN": 0,
+      "minimum_Jacobian_determinant": 9.837844073033752e-12,
+      "nonpositive_Jacobians": 0
+    },
+    "interpretation": "Le minimum SICN et le nombre d'éléments presque dégénérés s'améliorent, mais le nombre sous0.1 augmente. Aucun gain uniforme ni qualification CFD n'est revendiqué.",
+    "minSICN_0p1_is_diagnostic_not_CFD_acceptance_gate": true,
+    "Jacobian_values_in_unscaled_scan_coordinates_not_certified_mm": true
+  },
+  "tests": {
+    "final_optimization_helper_assertions_passed": 14,
+    "exact_generation_transfer_assertions_passed": 4,
+    "includes_rejection_of_coordinate_change_orientation_change_role_change_and_duplicate_volume": true,
+    "not_physical_validation": true
+  },
+  "this_lot": {
+    "OpenFOAM_mesh_check": {
+      "status": "executed_mesh_rejected",
+      "version": "OpenFOAM Foundation 14",
+      "image_sha256": "a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+      "script": "check_openfoam_mesh.py",
+      "source_sha256": "e79a769d62e09cfb90653c552fabafdd0f8b45278dba241d1a8749676693a250",
+      "pilot_helper": "run_openfoam_pilot.py",
+      "pilot_helper_sha256": "ae17b54a9647fbbf0afe04029bbebe6c840eeb0a8ff9724a8ac04c006aa42d39",
+      "report_sha256": "624e45dfe194f98c85029b645ffa8e5054ac2ef7df7a9688e89479ea0fd4a225",
+      "log_sha256": "a0ce4926c5f0bdb7f00a6381b9a8c2b41501966f5cee117122fd0803a981e308",
+      "independent_review_sha256": "a5586f06c94ff4dbc50aa9cfadea0bbb90255083f1a14ebe2095b185557861a1",
+      "process_sha256": "de5eb2c204177b586dbe3e62fbb725eea2223bdd13a9cd6f03077b488935c56a",
+      "original_mesh_reference_log_sha256": "d9873cc5833491dc08b31e7e9f63ec6bded85b1a13f8c449d57922e6f2d68d93",
+      "independent_review_scope": "Autorisation de conversion et de contrôle de maillage uniquement, sans autorisation de solveur.",
+      "mesh_sha256": "eeaf1c79ba7bef30165a1e12c026613beb932edbb964849b3cfa82c41656d66d",
+      "stages": [
+        "gmshToFoam",
+        "transformPoints",
+        "createPatch",
+        "checkMesh -allTopology -allGeometry"
+      ],
+      "all_stage_process_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "checkMesh_exit_code": 0,
+      "supervisor_exit_code": 2,
+      "mesh_checks_passed": false,
+      "failed_check_families": 6,
+      "elapsed_wall_seconds_integer_receipt": 11,
+      "checkMesh_elapsed_seconds": 6.437978256959468,
+      "unchanged_script_image_and_quality_criteria": true,
+      "scale_applications": 1,
+      "meters_per_scan_unit_unverified_hypothesis": 0.001,
+      "wall_type_metadata_update_without_geometry_change": true,
+      "patch_face_counts": {
+        "walls": 190519,
+        "receiver_outlet": 1191,
+        "inlet": 258
+      },
+      "initial": {
+        "high_aspect_ratio_cells": 139,
+        "maximum_aspect_ratio": 36243.0624729,
+        "highly_skew_faces": 53,
+        "maximum_skewness": 183.104749536,
+        "cells_with_determinant_below_0p001": 4243,
+        "concave_cells": 25,
+        "faces_with_interpolation_weight_below_0p05": 1200,
+        "faces_with_volume_ratio_below_0p01": 532
+      },
+      "recovered": {
+        "high_aspect_ratio_cells": 151,
+        "maximum_aspect_ratio": 53139.0571275,
+        "highly_skew_faces": 30,
+        "maximum_skewness": 104.314274663,
+        "cells_with_determinant_below_0p001": 1790,
+        "concave_cells": 15,
+        "faces_with_interpolation_weight_below_0p05": 897,
+        "faces_with_volume_ratio_below_0p01": 443
+      },
+      "interpretation": "Cinq décomptes diminuent, mais les cellules très allongées et leur rapport maximal augmentent. Les six familles restent en échec ; aucune CFD n'est autorisée.",
+      "OpenFOAM_cell_determinant_is_not_Gmsh_Jacobian": true,
+      "all_original_inputs_unchanged": true,
+      "container_removed_and_absence_verified": true,
+      "solver_executed": false
+    },
+    "CFD_solver": {
+      "status": "non_executed",
+      "converged": null
+    },
+    "thermal_solver": {
+      "status": "non_executed"
+    },
+    "structural_solver": {
+      "status": "non_executed"
+    },
+    "additive_process_solver": {
+      "status": "non_executed"
+    },
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "aggregate_private_evidence_sha256": "b4e96ecd4753e28faf9be5547963d1b23da029bcbcf888865e6f99186091f9a6",
+  "references": [
+    {
+      "url": "https://gmsh.info/src/gmsh-4.15.2-source.tgz",
+      "sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+      "scope": "Relecture des chemins de transfert Netgen, cache et écriture MSH2, pas une validation CFD."
+    },
+    {
+      "url": "https://gmsh.info/doc/texinfo/gmsh.html#index-gmsh_002fmodel_002fmesh_002frebuildElementCache",
+      "scope": "Reconstruction explicite du cache d'indexation des éléments."
+    },
+    {
+      "url": "https://gmsh.info/doc/texinfo/gmsh.html#index-Mesh_002ePreserveNumberingMsh2",
+      "scope": "La conservation des numéros MSH2 est distincte de Mesh.Renumber."
+    }
+  ],
+  "next_step": "Diagnostiquer les défauts de maillage encore bloquants et préparer une correction locale justifiée, avec les critères OpenFOAM inchangés. Ne pas lancer de solveur sur ce maillage rejeté ; la récupération correcte d'une génération et des Jacobiens positifs ne constituent pas une qualification CFD."
+}
