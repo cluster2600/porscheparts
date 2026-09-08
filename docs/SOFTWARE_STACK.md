@@ -38,12 +38,12 @@ flowchart LR
 | Structure/thermique | CalculiX 2.21 | X1/CPU Vast | maillage + cas → contraintes/températures | exécuté |
 | CFD/CHT moteur | OpenFOAM 13/14, Cantera 3.2.0, FluidX3D en contre-calcul | CPU/GPU selon cas | domaine + limites → champs | exécuté sur témoins, pas corrélé véhicule |
 | Géométrie LPBF | trancheur de couches du dépôt + trimesh 5.1.0 | X1 | maillage fermé → couches/supports proxy | exécuté |
-| Bain de fusion | ORNL AdditiveFOAM 2.0.0 sur OpenFOAM 14 | CPU/HPC | carte procédé + coupon → bain fondu | exécuté sur témoins 917, bloqué pour le crochet |
+| Bain de fusion | ORNL AdditiveFOAM 2.0.0 sur OpenFOAM 14 | CPU/HPC | carte procédé + coupon → bain fondu | exécuté sur témoins 917, bloqué pour les petits F0 993 |
 | CAO → USD | `usd-convert-cad 0.2.0`, OpenUSD 26.8 | X1 | STEP → USD binaire | exécuté |
 | Validation USD | `nvidia_usd_validate 1.21.0` | X1 | USD → rapport de règles | exécuté |
-| Scène partagée | `ovstage 0.1.1.355824` | X1/Vast | USD composé → état runtime | exécuté sur crochet |
-| Corps rigides | `ovphysx 0.5.11` | X1 CPU; Vast pour GPU | ovstage → contacts/mouvements | exécuté sur crochet, cas synthétique |
-| Rendu/senseurs | OVRTX + ovstage | Vast RTX | scène → pixels/senseurs | exécuté sur d'autres révisions; bloqué pour crochet F0 |
+| Scène partagée | `ovstage 0.1.1.355824` | X1/Vast | USD composé → état runtime | exécuté sur crochet et levier |
+| Corps rigides | `ovphysx 0.5.11` | X1 CPU; Vast pour GPU | ovstage → contacts/mouvements | exécuté sur crochet et levier, cas synthétiques |
+| Rendu/senseurs | OVRTX + ovstage | Vast RTX | scène → pixels/senseurs | exécuté sur d'autres révisions; bloqué pour crochet et levier F0 |
 | Enrichissement USD | NVIDIA Material Agent, Physics Agent, SimReady Foundation | Vast RTX | USD + références → USD proposé | exécuté ailleurs; toute propriété non sourcée est retirée |
 | Surrogate | PhysicsNeMo 2.2.x, PyTorch CUDA | Vast GPU | cas solveur corrélés → modèle accéléré | smoke GPU seulement; aucun surrogate de pièce |
 | Préparation machine | logiciel et fichier signé du fournisseur, typiquement EOSPRINT pour EOS | fournisseur | STEP + exigences → build industriel | bloqué tant que la route n'est pas qualifiée |
@@ -165,10 +165,11 @@ calcul EF plus fiable.
 
 Le runtime CPU reproductible [`ov-libraries-cpu.Dockerfile`](../containers/ov-libraries-cpu.Dockerfile)
 épingle Python 3.12 par digest, NumPy 2.5.2, `ovstage 0.1.1.355824` et
-`ovphysx 0.5.11`. Sur le crochet F0, il a exécuté la séquence création,
+`ovphysx 0.5.11`. Sur le crochet et le levier F0, il a exécuté la séquence création,
 population USD, scellement d'ordinal, attachement, 240 pas synchrones, lecture
-des positions, détachement et destruction. Le témoin tombe de `22` à `17 mm`
-et s'immobilise sur le maillage importé.
+des positions, détachement et destruction. Les témoins tombent respectivement
+de `22` à `17 mm` et de `35` à `29 mm`, puis s'immobilisent sur les maillages
+importés.
 
 La conversion et le contrôle de cette même révision utilisent
 `usd-convert-cad 0.2.0`, OpenUSD 26.8 et
@@ -207,6 +208,13 @@ le profil SimReady après suppression des propriétés physiques inventées. La
 scène EOS M 290 et les rendus OVRTX sont validés comme préparation visuelle,
 pas comme simulation de procédé ou preuve d'installation.
 
+Sur le levier F0, le préflight du 8 septembre 2026 a confirmé les accès
+OpenBao/GHCR/Vast mais aucune instance Content Agents active. Le workflow
+complet s'est donc arrêté avant Material Agent et Physics Agent. La conversion
+OpenUSD minimale, les deux validations NVIDIA et le témoin ovstage/ovphysx CPU
+ont été exécutés séparément ; aucune propriété LLM, conformance de profil ou
+image OVRTX n'est revendiquée.
+
 Sources NVIDIA primaires :
 [ovstage](https://github.com/NVIDIA-Omniverse/ovstage),
 [ovphysx dans PhysX](https://github.com/NVIDIA-Omniverse/PhysX),
@@ -222,6 +230,9 @@ conformance SimReady, rendu et empaquetage. Il ne remplace aucun solveur. Le
 crochet F0 a utilisé ses étapes conversion et validation, puis la skill
 `ovphysx-basic-workflow` pour respecter l'ordre de vie `create → populate →
 attach → step → detach → destroy`.
+Le levier applique la même discipline, mais le préflight conserve explicitement
+`property_assignment_intent=run` comme bloqué tant que les services Material et
+Physics ne sont pas prêts.
 
 L'assignation par Material Agent ou Physics Agent reste une proposition. Une
 densité, un frottement, une restitution, une masse ou une gravité non reliés à

@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+  "twin_id": "TWIN-993-DOOR-OPENER-LEVER-ALSI10MG-F0",
+  "status": "scene_authored",
+  "tool": {
+    "name": "OpenUSD Python",
+    "usd_version": [
+      0,
+      26,
+      8
+    ]
+  },
+  "asset": {
+    "path": "door_opener_lever_f0.usd",
+    "sha256": "d711bfeb170b0094782babb5581914c31dc6f811a4973a1b175270c04cb2f4b2",
+    "source_mesh_prim": "/door_opener_lever_f0/COMPOUND/Mesh",
+    "meters_per_unit": 0.001
+  },
+  "scene": {
+    "path": "door-opener-rigid-screen.usd",
+    "sha256": "b6d13bbc0618502dde0b6f327386a8020a6cd102d8ace2653194f6ca5d47a168",
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "static_lever_collider": "/World/Lever/COMPOUND/Mesh",
+    "dynamic_witness": "/World/WitnessSphere",
+    "fall_guard": "/World/FallGuard"
+  },
+  "synthetic_case": {
+    "gravity_mm_s2": 9810.0,
+    "witness_mass_kg": 0.01,
+    "witness_radius_mm": 2.0,
+    "initial_position_mm": [
+      98.0,
+      0.0,
+      35.0
+    ]
+  },
+  "interpretation": "Témoin de contact rigide seulement; aucune interface de porte ou charge fonctionnelle n'est modélisée.",
+  "engineering_validation": false,
+  "manufacturing_release_authorized": false
+}

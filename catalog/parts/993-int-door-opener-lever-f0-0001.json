@@ -29,7 +29,8 @@
     "units": "mm",
     "accuracy_mm": null,
     "derived_files": [
-      "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step"
+      "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step",
+      "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.stl"
     ]
   },
   "provenance": {
@@ -103,7 +104,13 @@
     "evidence": [
       "catalog/sources/src-porschefanatics-993-door-opener-pet.json",
       "catalog/sources/src-fvd-993-door-handle-dimensions.json",
-      "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json"
+      "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/summary.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/binary-validation.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/rigid-scene-validation.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
@@ -111,7 +118,10 @@
       "Seule l'enveloppe 108 x 45 x 27 mm vient de la fiche commerciale ; la plaque, les poches, la chape et les alésages sont des hypothèses F0.",
       "La masse publiée de 0,18 kg concerne la paire commerciale complète et ne valide pas la masse du concept.",
       "Le cas de 150 N et +60 K est synthétique ; aucune charge, direction, butée ou température 993 n'a été mesurée.",
-      "Le calcul nominal ignore concentration de contrainte, contact, défauts LPBF, fatigue, jeu d'axe, revêtement et vieillissement.",
+      "Le calcul nominal ignore contact réel, défauts LPBF, jeu d'axe, précharge, revêtement, corrosion et vieillissement.",
+      "Le criblage CalculiX utilise six cas synthétiques et une comparaison Goodman de coupons ; il ne calcule aucune durée de vie de pièce.",
+      "Le tranchage géométrique n'est ni un projet EOSPRINT, ni un calcul de bain de fusion, distorsion ou recoater.",
+      "L'asset et la scène passent la validation USD minimale et un témoin ovphysx ; les Content Agents, le profil SimReady complet, OVRTX et l'assemblage de porte n'ont pas été exécutés.",
       "Le STEP prouve seulement un BREP calculable dans l'enveloppe ; il ne doit être ni imprimé pour montage ni installé dans une porte."
     ]
   }
