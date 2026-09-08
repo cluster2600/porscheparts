@@ -2,6 +2,10 @@
 
 ## Résultat actuel
 
+Suite : [localisation des rejets, essai HXT et fusion native ciblée](M64_LOCALISATION_ET_HXT_20260908.md).
+Cette nouvelle correction ne modifie pas rétroactivement les résultats du
+maillage décrit ici et ne constitue pas une validation physique.
+
 Le domaine gazeux corrigé **`7fc114c1…` dispose maintenant d'un nouveau
 maillage volumique de 469 985 tétraèdres**, calculé avec Gmsh 4.15.2 en
 42,018 s. Ses onze gardes d'intégrité passent après relecture, mais

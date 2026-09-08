@@ -12,6 +12,16 @@ MODULE=importlib.util.module_from_spec(SPEC);SPEC.loader.exec_module(MODULE)
 
 
 class GasMeshTests(unittest.TestCase):
+    def test_volume_algorithm_changes_only_explicit_3D_choice(self):
+        self.assertEqual(MODULE.volume_algorithm_options(1,''),{'Mesh.Algorithm3D':1})
+        self.assertEqual(MODULE.volume_algorithm_options(10,'Mesh Hxt OpenCASCADE'),{'Mesh.Algorithm3D':10})
+        for algorithm in (True,False,1.0,10.0,'10',0,4,11,None):
+            with self.subTest(algorithm=algorithm),self.assertRaises(ValueError):
+                MODULE.volume_algorithm_options(algorithm,'Hxt')
+        for unavailable in ('','Mesh OpenCASCADE','NotHxt','HxtDisabled'):
+            with self.subTest(build=unavailable),self.assertRaisesRegex(ValueError,'not_available'):
+                MODULE.volume_algorithm_options(10,unavailable)
+
     def setUp(self):
         self.msh='''$MeshFormat
 2.2 0 8
