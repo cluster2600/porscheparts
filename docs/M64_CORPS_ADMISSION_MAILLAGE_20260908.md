@@ -2,6 +2,12 @@
 
 ## Résultat et périmètre
 
+**Suite publiée :** le [lot suivant](M64_VOLUME_REEL_CONTROLES_20260908.md)
+couvre les huit portions guide–tige et obtient un volume de 481 189
+tétraèdres. OpenFOAM rejette encore sa qualité. Le présent document conserve
+la chronologie des essais précédents, sans transformer leurs contrôles locaux
+en validation du résultat suivant.
+
 Les conduits d'admission sont désormais **réellement soustraits au corps déjà
 pourvu de la chambre candidate**. Le nouvel export natif est un solide B-Rep
 valide ; son dérivé STEP est rejeté. En parallèle, un raffinement local améliore

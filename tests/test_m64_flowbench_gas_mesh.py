@@ -230,28 +230,49 @@ $EndElements
         manifest['exports']['domain_brep']['sha256']='0'*64
         with self.assertRaises(ValueError):MODULE.face38_size_assignment(manifest,binding,.15)
 
-    def test_guide_refinement_binds_all_four_exact_cylinders_without_claiming_a_bound(self):
+    def test_guide_refinement_binds_all_eight_exact_cylinders_without_claiming_a_bound(self):
         manifest={'exports':{'domain_brep':{'sha256':MODULE.GAS05_NATIVE_SHA}},'boundary_faces':[
-            {'id':i,'role':r,'sha256':h,'surface_type':'GeomAbs_Cylinder'}
+            {'id':i,'role':r,'sha256':h,'surface_type':'GeomAbs_Cylinder',
+             'source_match':[{'source':MODULE.GAS05_GUIDE_STEM_SOURCES[i]}]}
             for i,(r,h) in MODULE.GAS05_GUIDE_STEM_FACES.items()]}
+        for i in range(65,71):
+            manifest['boundary_faces'].append({'id':i,'role':'walls_valve','sha256':format(i,'064x'),
+                'surface_type':'GeomAbs_Cylinder','source_match':[{'source':'intake_%d_valve_face_6'%(1 if i%2 else 2)}]})
+        frames={'native_inventory':{'cylinders_private':[{'face_id':r['id'],'face_sha256':r['sha256'],
+                'role':r['role'],'source_names':[s['source'] for s in r['source_match']]}
+                for r in manifest['boundary_faces']]},
+                'coverage':{'selected_face_ids':sorted(MODULE.GAS05_GUIDE_STEM_FACES),
+                            'excluded_cylinders':[{'face_id':i} for i in range(65,71)]}}
         binding={'descriptor_bijection_verified':True,'matches_private':[
             {'source_face_index':i,'gmsh_face_tag':100+i} for i in MODULE.GAS05_GUIDE_STEM_FACES]}
         self.assertIsNone(MODULE.guide_size_assignment(manifest,binding,None))
-        result=MODULE.guide_size_assignment(manifest,binding,.2)
-        self.assertEqual([r['gmsh_face_tag'] for r in result['faces']],[155,158,162,163])
+        result=MODULE.guide_size_assignment(manifest,binding,.2,frames)
+        self.assertEqual([r['gmsh_face_tag'] for r in result['faces']],[155,156,157,158,161,162,163,164])
+        self.assertTrue(result['complete_classified_eight_fragment_inventory_verified'])
+        self.assertEqual(result['native_axially_excluded_stem_fragments'],list(range(65,71)))
+        self.assertEqual(len(result['source_fragments_examined']),14)
         self.assertTrue(result['target_size_is_not_a_guaranteed_actual_chord_bound'])
         self.assertFalse(result['CAD_geometry_modified'])
         for value in (0.,.004,.21,float('inf'),float('nan'),True):
             with self.assertRaises(ValueError):MODULE.guide_size_assignment(manifest,binding,value)
         for field,value in (('sha256','0'*64),('role','walls_port'),('surface_type','GeomAbs_Plane')):
             changed=deepcopy(manifest);changed['boundary_faces'][0][field]=value
-            with self.assertRaises(ValueError):MODULE.guide_size_assignment(changed,binding,.2)
+            with self.assertRaises(ValueError):MODULE.guide_size_assignment(changed,binding,.2,frames)
         changed=deepcopy(binding);changed['matches_private'].pop()
-        with self.assertRaises(ValueError):MODULE.guide_size_assignment(manifest,changed,.2)
+        with self.assertRaises(ValueError):MODULE.guide_size_assignment(manifest,changed,.2,frames)
+        changed=deepcopy(manifest);changed['boundary_faces'].pop()
+        with self.assertRaises(ValueError):MODULE.guide_size_assignment(changed,binding,.2,frames)
+        changed=deepcopy(manifest);extra=deepcopy(changed['boundary_faces'][0]);extra['id']=155
+        changed['boundary_faces'].append(extra)
+        with self.assertRaises(ValueError):MODULE.guide_size_assignment(changed,binding,.2,frames)
+        changed=deepcopy(manifest);changed['boundary_faces'][0]['source_match']=[{'source':'intake_2_guide_face_4'}]
+        with self.assertRaises(ValueError):MODULE.guide_size_assignment(changed,binding,.2,frames)
+        with self.assertRaises(ValueError):MODULE.guide_size_assignment(manifest,binding,.2)
 
     def test_guide_frame_reference_does_not_reuse_an_earlier_mesh_acceptance(self):
-        frames={'domain_sha256':MODULE.GAS05_NATIVE_SHA,'faces_private':[]}
-        receipt={'schema':'m64-persisted-guide-chord-diagnostic/v1','mode':'native_cylinder_diagnostics',
+        frames={'schema':'m64-native-guide-cylinder-frames/v2','domain_sha256':MODULE.GAS05_NATIVE_SHA,
+                'coverage':{'selected_face_ids':sorted(MODULE.GAS05_GUIDE_STEM_FACES)},'faces_private':[]}
+        receipt={'schema':'m64-persisted-guide-chord-diagnostic/v2','mode':'native_cylinder_diagnostics',
                  'all_inputs_unchanged':True,'inputs_sha256':{'domain':MODULE.GAS05_NATIVE_SHA,
                  'source':MODULE.GUIDE_CHORD_SOURCE_SHA},'result':{'frames_private':frames,
                  'whole_facet_chord_gate':{'local_radial_envelopes_accepted':False}}}
@@ -260,6 +281,9 @@ $EndElements
         for key,value in (('mode','crossings'),('all_inputs_unchanged',False),('schema','unknown')):
             changed=deepcopy(receipt);changed[key]=value
             with self.assertRaises(ValueError):MODULE.validated_guide_frames(changed,MODULE.GUIDE_FRAME_RECEIPT_SHA)
+        changed=deepcopy(receipt)
+        changed['result']['frames_private']['coverage']['selected_face_ids']=[55,58,62,63]
+        with self.assertRaises(ValueError):MODULE.validated_guide_frames(changed,MODULE.GUIDE_FRAME_RECEIPT_SHA)
 
 
 if __name__=='__main__':unittest.main()

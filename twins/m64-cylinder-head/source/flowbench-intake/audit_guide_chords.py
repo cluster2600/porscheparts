@@ -14,15 +14,19 @@ import json
 import math
 from pathlib import Path
 import resource
-import sys
+import re
 import time
 
-FACES=(55,58,62,63)
+FACES=(55,56,57,58,61,62,63,64)
 DOMAIN_SHA='3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3'
 FACE_SHAS={55:'f4b546496c1b4a040c561ea46685469ec7e9feb4ab3c5dbe9efbeba58b81d465',
+           56:'d3bfc62403f1bbf60bb1e71dbdda09a48e0fbf4aed8dcbbeb62a480e63b074e0',
+           57:'c8dc168593fdc85c1cf52b425861ea1505d5a000dfad054f7ab8d8b7959845df',
            58:'6312431d0d6bc19ac6a13b9197de9a2c2ff01741c0b065062f3c355afdcf1e82',
+           61:'3a4754f6312c4ca4b78fe14ba4127cbdb18bb8d6254d8e07a8e8dd0b16e2ba97',
            62:'fe1820f9e706df3db439445746ede2b9c5888f61dd019c2bb489ff01129c9ffc',
-           63:'5134bae58c7ae348813da1ea39c02e2e639b9f266828067d616fd40569b4c646'}
+           63:'5134bae58c7ae348813da1ea39c02e2e639b9f266828067d616fd40569b4c646',
+           64:'fc19b8b3258fb45cf7122f4d839a427b46c93c35e2be1b6de46c4570858ec159'}
 PRIVATE_ROOT=Path('/Users/maxime/projects/3dprinting993/work/m64-private-20260907')
 
 
@@ -73,17 +77,109 @@ def radial_triangle_minimum(radial,axis):
     return minimum
 
 
+def axial_interval(row,reference):
+    axis=reference['axis_direction_private'];own=row['axis_direction_private']
+    angular=math.sqrt(dot(cross(axis,own),cross(axis,own)))
+    offset=sub(row['axis_point_private'],reference['axis_point_private']);along=dot(offset,axis)
+    radial=sub(offset,tuple(along*a for a in axis))
+    if angular>1e-12 or math.sqrt(dot(radial,radial))>row['native_max_tolerance']+reference['native_max_tolerance']:
+        raise ValueError('component_cylinders_not_coaxial_within_native_tolerances')
+    return sorted(along+dot(own,axis)*v for v in row['native_axial_parameter_bounds'])
+
+
+def interval_union_length(intervals):
+    if not intervals:return 0.
+    current=None;length=0.
+    for low,high in sorted(intervals):
+        if current is None:current=[low,high]
+        elif low<=current[1]:current[1]=max(current[1],high)
+        else:length+=current[1]-current[0];current=[low,high]
+    return length+current[1]-current[0]
+
+
+def gap_portion_inventory(cylinders):
+    """Select finite-length annular portions from ALL native cylinders.
+
+    Radius/axis/axial overlap supplement the source component attribution.
+    Boundary-only contacts inside native tolerance are explicit exclusions,
+    not asserted to be exactly disjoint mathematical surfaces.
+    """
+    if len({r['face_id'] for r in cylinders})!=len(cylinders):raise ValueError('unique_cylinder_inventory_required')
+    candidates=[];excluded=[]
+    for row in cylinders:
+        radius=row['radius']
+        if not math.isfinite(radius) or radius<=0:raise ValueError('positive_native_radius_required')
+        kind='guide' if abs(radius-3.015)<=1e-12 else 'stem' if abs(radius-3.)<=1e-12 else None
+        if kind is None:
+            excluded.append({'face_id':row['face_id'],'reason':'radius_not_inner_guide_or_stem','radius':radius});continue
+        expected='walls_guide' if kind=='guide' else 'walls_valve'
+        if row['role']!=expected or row['component'] not in ('intake_1','intake_2'):
+            raise ValueError('unattributed_possible_gap_cylinder_must_be_reviewed')
+        if not row['BRep_face_valid'] or not row['full_cylindrical_band_verified_numeric']:
+            raise ValueError('axial_interval_requires_valid_full_cylindrical_band')
+        candidates.append((row,kind))
+    groups=[]
+    for component in ('intake_1','intake_2'):
+        guides=sorted([r for r,k in candidates if k=='guide' and r['component']==component],key=lambda r:r['face_id'])
+        stems=sorted([r for r,k in candidates if k=='stem' and r['component']==component],key=lambda r:r['face_id'])
+        if not guides or not stems:raise ValueError('guide_and_stem_component_required')
+        reference=guides[0];intervals={r['face_id']:axial_interval(r,reference) for r in guides+stems}
+        active=[];touches=[]
+        for stem in stems:
+            si=intervals[stem['face_id']];overlaps=[]
+            for guide in guides:
+                gi=intervals[guide['face_id']]
+                overlaps.append((min(si[1],gi[1])-max(si[0],gi[0]),stem['native_max_tolerance']+guide['native_max_tolerance']))
+            if any(length>tolerance for length,tolerance in overlaps):active.append(stem)
+            else:
+                touch=any(abs(length)<=tolerance for length,tolerance in overlaps)
+                note={'face_id':stem['face_id'],'component':component,
+                    'reason':'boundary_touch_within_native_tolerance_no_finite_length_pairing' if touch else 'no_axial_overlap_with_inner_guide',
+                    'maximum_axial_overlap_numeric':max(x for x,t in overlaps)}
+                excluded.append(note)
+                if touch:touches.append(stem['face_id'])
+        coverage=[]
+        for guide in guides:
+            low,high=intervals[guide['face_id']]
+            clips=[(max(low,intervals[s['face_id']][0]),min(high,intervals[s['face_id']][1])) for s in active]
+            covered=interval_union_length([(a,b) for a,b in clips if b>a]);missing=max(0.,high-low-covered)
+            tolerance=guide['native_max_tolerance']+max(s['native_max_tolerance'] for s in active) if active else 0.
+            if not active or missing>tolerance:raise ValueError('inner_guide_axial_coverage_incomplete')
+            coverage.append({'guide_face':guide['face_id'],'axial_length':high-low,'covered_stem_length':covered,
+                'uncovered_length_numeric':missing,'native_tolerance_budget':tolerance})
+        groups.append({'component':component,'guide_faces':[r['face_id'] for r in guides],
+            'stem_faces':[r['face_id'] for r in active],'reference_axis_face':reference['face_id'],
+            'guide_axial_coverage':coverage,'boundary_touch_exclusions':touches})
+    selected=sorted({fid for g in groups for key in ('guide_faces','stem_faces') for fid in g[key]})
+    return {'groups':groups,'selected_face_ids':selected,'excluded_cylinders':excluded,
+        'selection':'native_radius_component_coaxiality_and_finite_axial_overlap',
+        'native_tolerances_not_modified':True}
+
+
 def mesh_chord_gate(points,triangles_by_face,frames):
-    """Pure, conservative radial envelope gate on the four exact native05 faces.
+    """Pure conservative envelope gate on every native05 annular portion.
 
     Frames are private native exports; caller must verify the frame receipt SHA.
+    triangles_by_face keys are NATIVE face indices, not Gmsh entity tags.
     Passing only bounds the paired cylinders, never all surface intersections,
     volume quality, CFD or manufacturing. Target h is not an acceptance metric.
     """
-    if frames['domain_sha256']!=DOMAIN_SHA:raise ValueError('exact_native05_frames_required')
+    if frames.get('schema')!='m64-native-guide-cylinder-frames/v2' or frames['domain_sha256']!=DOMAIN_SHA:
+        raise ValueError('exact_native05_v2_inventory_frames_required')
+    inventory=frames['native_inventory']
+    if not inventory['all_native_faces_examined'] or len(inventory['surface_types'])!=inventory['native_face_count']:
+        raise ValueError('complete_native_face_inventory_required')
+    actual_cylinders=sorted(r['face_id'] for r in inventory['surface_types'] if r['surface_type']=='GeomAbs_Cylinder')
+    if actual_cylinders!=sorted(r['face_id'] for r in inventory['cylinders_private']):
+        raise ValueError('native_cylinder_inventory_incomplete')
+    coverage=gap_portion_inventory(inventory['cylinders_private'])
+    if coverage!=frames['coverage'] or coverage['selected_face_ids']!=list(FACES):
+        raise ValueError('derived_gap_portion_inventory_changed_or_incomplete')
     rows={r['face_id']:r for r in frames['faces_private']}
-    if len(rows)!=4 or len(frames['faces_private'])!=4 or set(rows)!=set(FACES):
-        raise ValueError('four_unique_native_cylinder_frames_required')
+    if len(rows)!=8 or len(frames['faces_private'])!=8 or set(rows)!=set(FACES):
+        raise ValueError('eight_unique_native_gap_portion_frames_required')
+    inventoried={r['face_id']:r for r in inventory['cylinders_private']}
+    if any(rows[fid]!=inventoried[fid] for fid in FACES):raise ValueError('selected_frames_differ_from_native_inventory')
     results={}
     for fid,row in rows.items():
         if row['face_sha256']!=FACE_SHAS[fid]:raise ValueError('native_face_frame_hash_mismatch')
@@ -95,12 +191,12 @@ def mesh_chord_gate(points,triangles_by_face,frames):
             raise ValueError('positive_radius_tolerance_and_unit_axis_required')
         triangles=triangles_by_face.get(fid)
         if not triangles:raise ValueError('nonempty_native_cylinder_mesh_required')
-        radial={};node_error=0.
+        radial={};node_error=0.;node_axials=[]
         for n in {n for tri in triangles for n in tri}:
             xyz=tuple(points[n])
             if len(xyz)!=3 or not all(math.isfinite(v) for v in xyz):raise ValueError('finite_mesh_points_required')
             d=sub(xyz,origin);axial=dot(d,axis);r=tuple(x-axial*a for x,a in zip(d,axis))
-            radial[n]=r;node_error=max(node_error,abs(math.sqrt(dot(r,r))-radius))
+            radial[n]=r;node_axials.append(axial);node_error=max(node_error,abs(math.sqrt(dot(r,r))-radius))
         minimum=math.inf;maximum_chord=0.
         for tri in triangles:
             if len(tri)!=3 or len(set(tri))!=3:raise ValueError('three_distinct_nodes_required')
@@ -110,35 +206,31 @@ def mesh_chord_gate(points,triangles_by_face,frames):
         inward=max(0.,radius-minimum)
         results[fid]={'face_id':fid,'radius':radius,'triangles':len(triangles),
             'maximum_node_radial_error':node_error,'node_radius_within_native_tolerance':node_error<=tolerance,
+            'nodes_within_native_axial_interval':min(node_axials)>=row['native_axial_parameter_bounds'][0]-tolerance and max(node_axials)<=row['native_axial_parameter_bounds'][1]+tolerance,
             'minimum_radius_over_whole_facets':minimum,'maximum_transverse_chord':maximum_chord,
             'radial_envelope_error_bound':max(inward,node_error)}
-    pairs=[]
-    for guide,stem in ((55,63),(58,62)):
-        g,s=rows[guide],rows[stem];axis=tuple(g['axis_direction_private'])
-        direction_cross=cross(axis,s['axis_direction_private'])
-        offset=sub(s['axis_point_private'],g['axis_point_private']);axial=dot(offset,axis)
-        residual=tuple(d-axial*a for d,a in zip(offset,axis));axis_distance=math.sqrt(dot(residual,residual))
-        parallel=math.sqrt(dot(direction_cross,direction_cross))<=1e-12
-        gap=g['radius']-s['radius']
-        # Bound frame differences over the whole convex facets by the maximum
-        # norm of their linear radial-projection difference at mesh vertices.
-        # This covers tiny nonparallel axes as well as an origin offset.
-        frame_error=0.;stem_axis=tuple(s['axis_direction_private'])
-        for n in {n for tri in triangles_by_face[stem] for n in tri}:
-            dg=sub(points[n],g['axis_point_private']);ds=sub(points[n],s['axis_point_private'])
-            rg=tuple(x-dot(dg,axis)*a for x,a in zip(dg,axis))
-            rs=tuple(x-dot(ds,stem_axis)*a for x,a in zip(ds,stem_axis))
-            difference=sub(rg,rs);frame_error=max(frame_error,math.sqrt(dot(difference,difference)))
-        bound=results[guide]['radial_envelope_error_bound']+results[stem]['radial_envelope_error_bound']+frame_error
-        matching_gap=abs(gap-.015)<=1e-12
-        accepted=parallel and matching_gap and bound<=.0075 and all(results[i]['node_radius_within_native_tolerance'] for i in (guide,stem))
-        pairs.append({'guide_face':guide,'stem_face':stem,'native_radial_gap':gap,
-            'parallel_axes_numeric':parallel,'axis_line_distance':axis_distance,
-            'maximum_frame_radial_projection_difference_over_stem_vertices':frame_error,
+    groups=[]
+    for group in coverage['groups']:
+        reference=rows[group['reference_axis_face']];axis=reference['axis_direction_private']
+        all_ids=group['guide_faces']+group['stem_faces'];bounds={}
+        for fid in all_ids:
+            own=rows[fid];own_axis=own['axis_direction_private'];frame_error=0.
+            for n in {n for tri in triangles_by_face[fid] for n in tri}:
+                dr=sub(points[n],reference['axis_point_private']);ds=sub(points[n],own['axis_point_private'])
+                rr=tuple(x-dot(dr,axis)*a for x,a in zip(dr,axis));rs=tuple(x-dot(ds,own_axis)*a for x,a in zip(ds,own_axis))
+                difference=sub(rr,rs);frame_error=max(frame_error,math.sqrt(dot(difference,difference)))
+            bounds[fid]=results[fid]['radial_envelope_error_bound']+frame_error
+        guide_bound=max(bounds[i] for i in group['guide_faces']);stem_bound=max(bounds[i] for i in group['stem_faces'])
+        gap=min(rows[i]['radius'] for i in group['guide_faces'])-max(rows[i]['radius'] for i in group['stem_faces'])
+        bound=guide_bound+stem_bound
+        accepted=abs(gap-.015)<=1e-12 and bound<=.0075 and all(results[i]['node_radius_within_native_tolerance'] and results[i]['nodes_within_native_axial_interval'] for i in all_ids)
+        groups.append({'component':group['component'],'guide_faces':group['guide_faces'],'stem_faces':group['stem_faces'],
+            'native_radial_gap':gap,'worst_guide_envelope_error_in_common_frame':guide_bound,
+            'worst_stem_envelope_error_in_common_frame':stem_bound,
             'sum_radial_envelope_errors_including_axis_offset':bound,'maximum_allowed_error_sum':.0075,
             'conservative_remaining_radial_clearance':gap-bound,'accepted_local_radial_envelope':accepted})
-    return {'faces':list(results.values()),'pairs':pairs,
-        'local_radial_envelopes_accepted':all(p['accepted_local_radial_envelope'] for p in pairs),
+    return {'faces':list(results.values()),'groups':groups,'coverage':coverage,
+        'local_radial_envelopes_accepted':all(g['accepted_local_radial_envelope'] for g in groups),
         'all_surface_intersections_or_CFD_or_manufacturing_qualified':False,
         'method':'minimum_radius_of_entire_projected_triangle_convex_hull_not_edges_only'}
 
@@ -157,6 +249,17 @@ def read_surface(path):
         triangles.append({'tag':v[0],'face':v[4],'nodes':tuple(v[3+v[2]:])})
     if len(triangles)>250000:raise ValueError('bounded_diagnostic_limit_exceeded')
     return points,triangles
+
+
+def bind_triangles_to_native(triangles,mesh_report,expected_native_ids):
+    """Consume the saved import bijection; never assume native/Gmsh ID equality."""
+    binding=mesh_report['import']['face_binding_private'];matches=binding['matches_private']
+    if not binding['descriptor_bijection_verified']:raise ValueError('verified_native_Gmsh_bijection_required')
+    reverse={r['gmsh_face_tag']:r['source_face_index'] for r in matches}
+    if len(reverse)!=len(matches) or len(set(reverse.values()))!=len(matches) or set(reverse.values())!=set(expected_native_ids):
+        raise ValueError('complete_one_to_one_native_Gmsh_binding_required')
+    if {t['face'] for t in triangles}!=set(reverse):raise ValueError('saved_MSH_native_face_coverage_mismatch')
+    return [{**t,'gmsh_face_tag_private':t['face'],'face':reverse[t['face']]} for t in triangles]
 
 
 def crossings(points,triangles):
@@ -198,8 +301,7 @@ def crossings(points,triangles):
             'broad_phase_parallel_relative_filter':1e-13,'broad_phase_barycentric_margin':1e-10}
 
 
-def native_cylinders(domain,points,triangles):
-    import numpy as np
+def native_cylinders(domain,points,triangles,manifest):
     from OCP.BRep import BRep_Builder,BRep_Tool
     from OCP.BRepTools import BRepTools
     from OCP.TopoDS import TopoDS_Shape,TopoDS
@@ -208,49 +310,52 @@ def native_cylinders(domain,points,triangles):
     from OCP.TopExp import TopExp
     from OCP.TopAbs import TopAbs_FACE,TopAbs_EDGE,TopAbs_VERTEX
     from OCP.GeomAbs import GeomAbs_Cylinder
+    from OCP.BRepGProp import BRepGProp
+    from OCP.GProp import GProp_GProps
+    from OCP.BRepCheck import BRepCheck_Analyzer
     shape=TopoDS_Shape()
     if not BRepTools.Read_s(shape,str(domain),BRep_Builder()):raise ValueError('native_read_failed')
     faces=TopTools_IndexedMapOfShape();TopExp.MapShapes_s(shape,TopAbs_FACE,faces)
-    result=[];axes={};frames={'domain_sha256':sha(domain),'faces_private':[]}
-    for fid in FACES:
-        adaptor=BRepAdaptor_Surface(TopoDS.Face_s(faces.FindKey(fid)),True)
-        if adaptor.GetType()!=GeomAbs_Cylinder:raise ValueError('expected_native_cylinder')
-        cylinder=adaptor.Cylinder();origin=np.asarray(cylinder.Location().Coord())
-        axis=np.asarray(cylinder.Axis().Direction().Coord());radius=cylinder.Radius();axes[fid]=(origin,axis)
-        face=TopoDS.Face_s(faces.FindKey(fid));tolerance=BRep_Tool.Tolerance_s(face)
+    source_rows={r['id']:r for r in manifest['boundary_faces']}
+    if len(source_rows)!=len(manifest['boundary_faces']) or set(source_rows)!=set(range(1,faces.Extent()+1)):
+        raise ValueError('complete_unique_classified_face_inventory_required')
+    inventory={'native_face_count':faces.Extent(),'all_native_faces_examined':False,
+               'surface_types':[],'cylinders_private':[]}
+    for fid in range(1,faces.Extent()+1):
+        face=TopoDS.Face_s(faces.FindKey(fid));adaptor=BRepAdaptor_Surface(face,True)
+        surface_type=str(adaptor.GetType()).split('.')[-1];source=source_rows[fid]
+        if source['surface_type']!=surface_type:raise ValueError('classified_native_surface_type_mismatch')
+        inventory['surface_types'].append({'face_id':fid,'surface_type':surface_type})
+        if adaptor.GetType()!=GeomAbs_Cylinder:continue
+        cylinder=adaptor.Cylinder();tolerance=BRep_Tool.Tolerance_s(face)
         for kind,cast in ((TopAbs_EDGE,TopoDS.Edge_s),(TopAbs_VERTEX,TopoDS.Vertex_s)):
             indexed=TopTools_IndexedMapOfShape();TopExp.MapShapes_s(face,kind,indexed)
             tolerance=max(tolerance,*(BRep_Tool.Tolerance_s(cast(indexed.FindKey(i))) for i in range(1,indexed.Extent()+1)))
-        frames['faces_private'].append({'face_id':fid,'face_sha256':FACE_SHAS[fid],'radius':radius,
-            'axis_point_private':list(map(float,origin)),'axis_direction_private':list(map(float,axis)),
+        sources=[r.get('source','') for r in source.get('source_match',[])]
+        components={m.group(1) for name in sources if (m:=re.match(r'^((?:intake|exhaust)_[12])_',name))}
+        span=adaptor.LastUParameter()-adaptor.FirstUParameter();length=adaptor.LastVParameter()-adaptor.FirstVParameter()
+        props=GProp_GProps();BRepGProp.SurfaceProperties_s(face,props)
+        analytic=2*math.pi*cylinder.Radius()*length
+        area_error=abs(props.Mass()/analytic-1.) if analytic>0 else math.inf
+        inventory['cylinders_private'].append({'face_id':fid,'face_sha256':source['sha256'],
+            'radius':cylinder.Radius(),'role':source['role'],'source_names':sources,
+            'component':next(iter(components)) if len(components)==1 else None,
+            'axis_point_private':list(cylinder.Location().Coord()),
+            'axis_direction_private':list(cylinder.Axis().Direction().Coord()),
+            'native_axial_parameter_bounds':[adaptor.FirstVParameter(),adaptor.LastVParameter()],
+            'native_angular_parameter_span':span,'BRep_face_valid':BRepCheck_Analyzer(face,True,False,True).IsValid(),
+            'native_area':props.Mass(),'full_band_analytic_area':analytic,'full_band_relative_area_error':area_error,
+            'full_cylindrical_band_verified_numeric':abs(span-2*math.pi)<=1e-9 and area_error<=1e-9,
+            'full_band_comparison_relative_tolerance':1e-9,
             'native_max_tolerance':tolerance})
-        selected=[t for t in triangles if t['face']==fid];edges=set();nodes=set()
-        for tri in selected:
-            ns=tri['nodes'];nodes.update(ns)
-            for a,b in zip(ns,ns[1:]+ns[:1]):edges.add(tuple(sorted((a,b))))
-        radial={}
-        for n in nodes:
-            d=np.asarray(points[n],dtype=float)-origin;radial[n]=d-(d@axis)*axis
-        node_error=max(abs(float(np.linalg.norm(r))-radius) for r in radial.values())
-        minimum=radius;max_transverse=0.
-        for a,b in edges:
-            v=radial[b]-radial[a];den=float(v@v)
-            at=float(np.clip(-(radial[a]@v)/den,0,1)) if den else 0.
-            minimum=min(minimum,float(np.linalg.norm(radial[a]+at*v)))
-            max_transverse=max(max_transverse,math.sqrt(den))
-        result.append({'face_id':fid,'radius':radius,'triangles':len(selected),
-            'maximum_node_radius_error':node_error,'minimum_edge_radius':minimum,
-            'maximum_edge_sagitta':radius-minimum,'maximum_transverse_edge_chord':max_transverse,
-            'facet_interior_bound_not_proven_by_edge_measurement_alone':True})
-    alignment=[]
-    for guide,stem in ((55,63),(58,62)):
-        o,a=axes[guide];p,b=axes[stem];d=p-o
-        alignment.append({'guide_face':guide,'stem_face':stem,
-            'axis_cross_norm':float(np.linalg.norm(np.cross(a,b))),
-            'axis_line_distance':float(np.linalg.norm(d-(d@a)*a))})
+    inventory['all_native_faces_examined']=True
+    coverage=gap_portion_inventory(inventory['cylinders_private'])
+    frames={'schema':'m64-native-guide-cylinder-frames/v2','domain_sha256':sha(domain),
+        'native_inventory':inventory,'coverage':coverage,
+        'faces_private':[r for r in inventory['cylinders_private'] if r['face_id'] in coverage['selected_face_ids']]}
     grouped={fid:[t['nodes'] for t in triangles if t['face']==fid] for fid in FACES}
     gate=mesh_chord_gate({n:tuple(map(float,p)) for n,p in points.items()},grouped,frames)
-    return {'cylinders':result,'pair_axis_alignment':alignment,'frames_private':frames,'whole_facet_chord_gate':gate}
+    return {'frames_private':frames,'whole_facet_chord_gate':gate}
 
 
 def main(args):
@@ -263,16 +368,18 @@ def main(args):
     paths={'domain':args.domain,'boundary_report':args.boundary_report,'mesh_report':args.mesh_report,'mesh':args.mesh,'source':Path(__file__)}
     native_faces=[]
     for row in manifest['boundary_faces']:
-        if row['id'] not in FACES:continue
         path=args.boundary_report.parent/row['file']
-        if sha(path)!=row['sha256'] or row['sha256']!=FACE_SHAS[row['id']]:raise ValueError('native_face_hash_mismatch')
+        if sha(path)!=row['sha256']:raise ValueError('native_face_hash_mismatch')
+        if row['id'] in FACE_SHAS and row['sha256']!=FACE_SHAS[row['id']]:raise ValueError('native_gap_face_hash_mismatch')
         paths['face_%d'%row['id']]=path
         native_faces.append({k:row[k] for k in ('id','role','sha256','area','surface_type','source_match')})
     hashes={k:sha(p) for k,p in paths.items()};points,triangles=read_surface(args.mesh)
-    result=native_cylinders(args.domain,points,triangles) if args.native_only else crossings(points,triangles)
-    report={'schema':'m64-persisted-guide-chord-diagnostic/v1','status':'diagnostic_complete_not_mesh_acceptance',
+    triangles=bind_triangles_to_native(triangles,mr,[r['id'] for r in manifest['boundary_faces']])
+    result=native_cylinders(args.domain,points,triangles,manifest) if args.native_only else crossings(points,triangles)
+    report={'schema':'m64-persisted-guide-chord-diagnostic/v2','status':'diagnostic_complete_not_mesh_acceptance',
         'mode':'native_cylinder_diagnostics' if args.native_only else 'exact_rational_crossing_confirmation',
         'inputs_sha256':hashes,'native_faces':native_faces,'mesh_accepted':False,'CFD_executed':False,
+        'MSH_faces_rebound_through_verified_native_import_bijection':True,
         'CAD_modified':False,'manufacturing_authorized':False,'result':result,
         'elapsed_seconds':time.monotonic()-start,'all_inputs_unchanged':all(sha(p)==hashes[k] for k,p in paths.items())}
     out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,indent=2)+'\n')
