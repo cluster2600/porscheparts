@@ -1,0 +1,9 @@
+--- a/derivedFvPatchFields/marangoni/marangoniFvPatchVectorField.H
++++ b/derivedFvPatchFields/marangoni/marangoniFvPatchVectorField.H
+@@ -126,0 +127,6 @@
++        //- Preserve the prescribed normal constraint in pressure prediction.
++        virtual bool assignable() const
++        {
++            return false;
++        }
++
