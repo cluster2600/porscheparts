@@ -1,0 +1,143 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+  "name": "Roue de compresseur K16 993, concept AlSi10Mg LPBF F0",
+  "description": "Concept indépendant de roue de compresseur AlSi10Mg à six pales principales et six séparatrices droites. Seuls les diamètres inducer/exducer, le compte 6+6 et les références fournisseur sont publiés ; le moyeu, l'alésage et toutes les surfaces aérodynamiques restent des hypothèses F0.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo",
+      "K16_right_research",
+      "M64_60_research"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "turbocharger_compressor_wheel",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage CAO, DfAM, continuité, thermodynamique compresseur, disque tournant, traction de pale, dilatation, balourd et énergie ; aucune fabrication, rotation, installation ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/source/compressor_wheel.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/derived/compressor_wheel_alsi10mg_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/BorgWarner/fournisseur ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "Invasion Auto Products - données internes déclarées du K16 993 Turbo droit",
+        "url": "https://www.invasionautoproducts.com/94pocark16tu.html",
+        "source_type": "community",
+        "license": "commercial-product-page-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare la roue 53241232006, inducer 40,6 mm, exducer 60,5 mm et 6+6 pales pour le K16 droit 53169886735. Aucun profil, tolérance, matière ou procédé. Voir SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA."
+      },
+      {
+        "title": "PorscheFanatics - contexte des turbocompresseurs 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Confirme le système biturbo et le marché de roues d'upgrade, mais aucune roue K16 LPBF ni géométrie. Voir SRC-PORSCHEFANATICS-993-K16-COMPRESSOR-WHEEL-CANDIDATE."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Fournit des propriétés LPBF génériques dépendantes de la machine, de l'orientation et du traitement ; aucune qualification de rotor. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      },
+      {
+        "title": "TurboMaster - principes de lecture d'une carte compresseur",
+        "url": "https://www.turbomaster.info/eng/turbocharger-map.php",
+        "source_type": "community",
+        "license": "site-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Référence méthodologique seulement pour débit corrigé, rapport de pression, rendement, surge et choke ; aucune carte K16 exploitable. Voir SRC-TURBOMAP-COMPRESSOR-MAP-METHODOLOGY."
+      },
+      {
+        "title": "elferclassic - données techniques du 993 Turbo",
+        "url": "https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php",
+        "source_type": "community",
+        "license": "site-copyright-redistribution-unclear",
+        "accessed_on": "2026-09-08",
+        "notes": "Documente 3,6 litres ; le régime 5 750 tr/min, le remplissage, le débit et tout le point compresseur sont synthétiques. Voir SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "CNC",
+      "casting"
+    ],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "alliage aluminium LPBF candidat",
+      "grade": "EOS AlSi10Mg de criblage ; alliage et procédé de la roue BorgWarner non publiés",
+      "standard": "DIN EN 1706 / ASTM F3318 pour la poudre et spécification rotor propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation, supports de pales et stratégie recoater à qualifier",
+      "détensionnement et traitement thermique qualifiés pour machine, paramètres et fatigue rotor",
+      "HIP à décider sur défauts, ténacité et résultats de sur-vitesse",
+      "usinage de l'alésage, du dos, du nez, des faces et des références d'équilibrage",
+      "ébavurage et finition aérodynamique contrôlée de chaque pale et congé",
+      "équilibrage individuel puis ensemble rotor, preuve de rotation et sur-vitesse confinée"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "coupons orientés avec traction, HCF, ténacité, propagation et défauts à température",
+      "simulation et témoins de distorsion pour pales, exducer, moyeu et alésage",
+      "CT intégral avant et après usinage, critères de défaut par zone et métallographie",
+      "métrologie des profils, épaisseurs, congés, alésage, battements et masse polaire",
+      "équilibrage haute vitesse, spin proof, sur-vitesse, burst et validation de confinement avant banc turbo"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier l'interface AlSi10Mg avec arbre, écrou, backplate et condensats, ainsi que fretting, corrosion et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-invasionautoproducts-993-k16-internal-data.json",
+      "catalog/sources/src-porschefanatics-993-k16-compressor-wheel-candidate.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "catalog/sources/src-turbomap-compressor-map-methodology.json",
+      "catalog/sources/src-elferclassic-993-turbo-technical-data.json",
+      "parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seuls 40,6 mm, 60,5 mm, six pales principales, six séparatrices et les références viennent de la fiche fournisseur.",
+      "Le disque 3 mm, la hauteur 18 mm, l'alésage 6 mm, le moyeu et toutes les pales droites sont synthétiques.",
+      "Le STEP 32,70 g n'est pas comparable à une roue K16 réelle ; le rapport 4,22 emploie un cylindre enveloppe théorique, pas un brut industriel.",
+      "La vitesse 103 464 tr/min est dérivée de Mach 0,9 à 330 K, pas mesurée sur le K16.",
+      "Le point 3,6 l, 5 750 tr/min, VE 0,95, PR 1,8 et rendement 0,72 est un cas de régression sans carte compresseur.",
+      "La pale principale atteint 390,9 MPa au criblage de sur-vitesse, soit un rapport de 0,63 face à la limite ambiante : le dessin F0 échoue.",
+      "Les modèles disque/pale ignorent forme réelle, congés, alésage, précharge, défauts, HCF, rotor dynamique, contact et confinement.",
+      "Les valeurs EOS sont des comparaisons ambiantes, pas des admissibles AlSi10Mg de rotor imprimé.",
+      "Le STEP prouve seulement un BREP relisible à douze pales ; il n'est autorisé ni pour fabrication, ni pour rotation, ni pour turbo ou moteur."
+    ]
+  }
+}
