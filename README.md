@@ -137,6 +137,11 @@ Le [support d'intercooler Ti-6Al-4V F0](docs/993_INTERCOOLER_BRACKET_TI_F0.md)
 ajoute un criblage analytique, trois maillages CalculiX C3D10 et une conversion
 OpenUSD minimale. Il reste un candidat LPBF conditionnel : la géométrie plane
 actuelle doit encore être comparée à la CNC et à la tôlerie.
+Le [piston CP1 à galerie F0](docs/993_PISTON_CP1_COOLING_GALLERY_F0.md)
+dispose maintenant d'un criblage PicoGK réel et de six cas CalculiX
+thermomécaniques sur trois maillages, sans variante sélectionnée, et
+l'[embout ovale IN625 F0](docs/993_OVAL_EXHAUST_TIP_IN625_F0.md) suit le pipeline
+LPBF/Omniverse complet jusqu'aux gates numériques actuellement disponibles.
 
 ![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
 

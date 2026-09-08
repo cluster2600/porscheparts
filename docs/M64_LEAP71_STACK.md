@@ -133,3 +133,25 @@ Pas de publication GHCR ni de digest de registre validé à cette étape.
 
 `native-preflight-result.json` consigne ce résultat distinct. L'ancien rapport
 `preflight-result.json` est conservé sans réécriture.
+
+## Application au piston CP1 F0
+
+Le 8 septembre 2026, le même runtime natif a dépassé le simple témoin : il a
+généré six variantes complètes du piston F0 à partir du maillage BREP dérivé.
+Les opérations PicoGK font varier des poches ouvertes de jupe, le diamètre de
+galerie et des renforts axe–calotte. L'objectif associe masse minimale et
+proxies de refroidissement, avec une marge mécanique provisoire de `1,50`
+comme contrainte éliminatoire.
+
+Le meilleur allègement brut du balayage est `1,60 %`, mais aucune variante ne
+passe la marge mécanique. L'audit indépendant trouve aussi des arêtes
+non-manifold sur les six STL. Le statut exact est donc **criblage géométrique
+PicoGK exécuté, aucune optimisation validée ni variante sélectionnée**. Voir
+[la fiche piston](993_PISTON_CP1_COOLING_GALLERY_F0.md) et les
+[preuves PicoGK](../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
+
+Le master BREP sain a été traité séparément par six cas CalculiX à trois
+maillages. Le p95 chaud fin de `323,46 MPa` dépasse la référence CP1 ambiante ;
+il rejette le F0 sous l'enveloppe synthétique. Ce résultat ne peut pas être
+transféré aux variantes PicoGK tant que leurs sorties ne sont pas reconstruites
+en solides manifold.

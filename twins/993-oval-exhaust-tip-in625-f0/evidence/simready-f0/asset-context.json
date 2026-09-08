@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "source_asset": "parts/993-exh-oval-tip-in625-f0-0001/derived/oval_exhaust_tip_in625_f0.step",
+  "source_sha256": "2a22506069aa6c1a67794ef3e3f1acb3fda8864f6c5263243edbcd1c197ba2a9",
+  "local_identifiers": [
+    "oval_exhaust_tip_in625_f0.step",
+    "Open CASCADE Shape Model"
+  ],
+  "web_queries": [
+    "site:fvd.net FVD11199300 120x85mm Porsche 993 exhaust tip",
+    "site:porschefanatics.com/materials IN625 Porsche 993 exhaust",
+    "site:eos.info EOS NickelAlloy IN625 M 290 40 um"
+  ],
+  "evidence": [
+    {
+      "url": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+      "relevance": "FVD annonce une sortie ovale inox 120 x 85 mm pour 993 C2/C4/RS ; aucune autre cote de la geometrie F0 ne vient de ce produit."
+    },
+    {
+      "url": "https://porschefanatics.com/materials/",
+      "relevance": "Le catalogue recense des echappements de 993 Turbo declares en IN625 ; c'est un precedent matiere, pas une preuve de forme ni de compatibilite."
+    },
+    {
+      "url": "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+      "relevance": "EOS publie une route NickelAlloy IN625 pour EOS M 290 a 40 micrometres ; les donnees publiques restent insuffisantes pour une simulation locale du procede."
+    }
+  ],
+  "likely_identity": "Concept independant F0 d'embout d'echappement ovale double paroi pour Porsche 993 etroite",
+  "manufacturer": "Aucun ; reconstruction originale parametrique",
+  "product_family": "993 exhaust tip concept",
+  "application": "Criblage CAO, LPBF, debit et integration Omniverse hors vehicule",
+  "material_hints": [
+    "EOS NickelAlloy IN625 est le candidat LPBF de criblage.",
+    "L'aspect argent mat est seulement un proxy visuel OpenPBR.",
+    "La page FVD de reference decrit son produit commercial comme inox, pas IN625."
+  ],
+  "physics_hints": [
+    "Traiter l'asset comme un seul prop rigide isole pour inspection, jamais comme un echappement installe.",
+    "La masse analytique de criblage est 0.40638 kg pour une densite IN625 de 8440 kg/m3.",
+    "Un convexHull ne sert qu'aux controles generiques SimReady et ne represente pas le chemin de gaz interne.",
+    "Ne pas inventer coefficient de frottement, restitution, gravite, liaison au silencieux ou appui de jupe."
+  ],
+  "confidence": {
+    "level": "medium",
+    "reason": "Identite du concept et provenance connues ; seule l'enveloppe de sortie 120 x 85 mm est externe, toutes les autres interfaces restent hypothetiques."
+  },
+  "material_physics_prompt": "Porsche 993 oval exhaust-tip F0 clean-sheet concept, not an OEM or FVD geometry replica. Only the 120 x 85 mm outlet envelope is supplier-sourced; inlet, length, double wall and ties are hypotheses. Use a neutral silver OpenPBR visual proxy for the candidate EOS NickelAlloy IN625. For isolated SimReady inspection only, model one rigid part with screening mass 0.40638 kg and density 8440 kg/m3, with convexHull only as a generic inspection collider. Do not infer friction, restitution, gravity, installed joints, exhaust supports, thermal loads, hot material properties, fatigue life, or manufacturing readiness. Preserve uncertainty and mark the asset non-authorized for vehicle installation or metal printing."
+}

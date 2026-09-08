@@ -1,0 +1,364 @@
+{
+  "cases": [
+    {
+      "artifacts": {
+        "checkMesh-extended.log": {
+          "bytes": 3643,
+          "sha256": "a05833b70bfb6be04c2437d0e20f7b637390767205f108851fdcf4695887a72a"
+        },
+        "checkMesh.log": {
+          "bytes": 2697,
+          "sha256": "7411c8d46e00384e9c965801ddb28671bdb8e942e23fe71e545e9738c0f78147"
+        },
+        "flow.msh": {
+          "bytes": 642724,
+          "sha256": "964c4c44369c38fab94ce626ecc82a5d147f1866120f52cc2d7081486469b649"
+        },
+        "gmshToFoam.log": {
+          "bytes": 1814,
+          "sha256": "a94df6d3bb871d8b5879469c9a441c2a629b4326933bb40f928c9afb7753e9ec"
+        },
+        "inlet-pressure.log": {
+          "bytes": 1422,
+          "sha256": "f1cb6a9a01fdea7ee464b7297e206a67a62f22012fae3924b739ba4b847e8838"
+        },
+        "outlet-velocity.log": {
+          "bytes": 1454,
+          "sha256": "ddb787e096ad225efe9655ddf17bf8c06ff264a528f9cfe00f03fbd5a2949041"
+        },
+        "solver.log": {
+          "bytes": 739263,
+          "sha256": "fa3f033e71142b4a21b83a883d832caa2505d54fceb94217ac90c2951b7b190f"
+        },
+        "transformPoints.log": {
+          "bytes": 1044,
+          "sha256": "373726c02d9e9abc7bdd94b59cfab026baa11c78f658ac1e4be9222906123877"
+        }
+      },
+      "boundary_inputs": {
+        "inlet_velocity_m_s": 107.05163919218617,
+        "kinematic_viscosity_m2_s": 9.604519774011301e-05,
+        "turbulence_epsilon_m2_s3": 11521.229195426107,
+        "turbulence_intensity": 0.05,
+        "turbulence_k_m2_s2": 42.975200451502545,
+        "turbulence_length_scale_m": 0.004018000000000001
+      },
+      "mesh": {
+        "gmsh_version": "4.12.1",
+        "mesh_size_mm": 6.0,
+        "msh_bytes": 642724,
+        "msh_sha256": "964c4c44369c38fab94ce626ecc82a5d147f1866120f52cc2d7081486469b649",
+        "nodes": 2781,
+        "patches": {
+          "inlet": 1,
+          "outlet": 1,
+          "walls": 4
+        },
+        "tetrahedra": 12622
+      },
+      "mesh_validation": {
+        "extended_check_mesh_passed": false,
+        "interpretation": "OpenFOAM extended determinant warning retained; no negative volume, topology, non-orthogonality or skewness failure reported.",
+        "low_cell_determinant_cells": 83,
+        "low_cell_determinant_threshold": 0.001,
+        "standard_check_mesh_passed": true
+      },
+      "results": {
+        "bulk_total_pressure_drop_pa": 330.6475682542719,
+        "bulk_total_pressure_flow_power_w": 91.59511681560441,
+        "inlet_area_average_kinematic_pressure_m2_s2": -3994.275212,
+        "outlet_area_average_speed_m_s": 43.40100777597863,
+        "outlet_area_average_velocity_m_s": [
+          4.302414318,
+          -0.05315143972,
+          43.18719581
+        ],
+        "static_pressure_recovery_pa": 1663.498147115294
+      },
+      "solver": {
+        "case_reused": true,
+        "converged": true,
+        "final_initial_residuals": {
+          "Ux": 9.988076395e-06,
+          "Uy": 5.842941896e-06,
+          "Uz": 1.723546996e-06,
+          "epsilon": 1.778227836e-06,
+          "k": 5.101685425e-06,
+          "p": 3.581228928e-06
+        },
+        "model": "OpenFOAM incompressibleFluid steady RANS k-epsilon",
+        "residual_limits": {
+          "Ux": 2e-05,
+          "Uy": 2e-05,
+          "Uz": 2e-05,
+          "epsilon": 1e-05,
+          "k": 2e-05,
+          "p": 5e-05
+        },
+        "simple_residual_control_exit": true
+      }
+    },
+    {
+      "artifacts": {
+        "checkMesh-extended.log": {
+          "bytes": 3642,
+          "sha256": "0d5798ba1dbcfd748bcb45b8b820faa543092215faa36171384f0fad02942b6b"
+        },
+        "checkMesh.log": {
+          "bytes": 2696,
+          "sha256": "a4a1967682694502f06532c8170ff1a2af659a21e14ebfb1fe1208a2304387d7"
+        },
+        "flow.msh": {
+          "bytes": 1976606,
+          "sha256": "d8db4e66895ef04c4bccfffe06cd1beadcb908ca7cb3b4fd5ebb6ba2fc3ce036"
+        },
+        "gmshToFoam.log": {
+          "bytes": 1814,
+          "sha256": "a58fdae2838ebf4a4ae1f73034c31d37fb21e749ea557a589431fe1acd34cb06"
+        },
+        "inlet-pressure.log": {
+          "bytes": 1422,
+          "sha256": "c1613250c758a95df6ef6118e74bc8ffc0aee6bad024250b694b8cd810d5e47c"
+        },
+        "outlet-velocity.log": {
+          "bytes": 1454,
+          "sha256": "792a9d352f0a384b30372b597ab74f7cbfdcb0fe0446680aa2c30cf2b748fe4f"
+        },
+        "solver.log": {
+          "bytes": 926709,
+          "sha256": "7727d221c762120854ca3c152db8b55060afb85bdb79483f9e7b35b563901d1c"
+        },
+        "transformPoints.log": {
+          "bytes": 1044,
+          "sha256": "e12e364a43253e2d46ace1f545cb859ab6dd4bf6d09871d99b2a496e78804d69"
+        }
+      },
+      "boundary_inputs": {
+        "inlet_velocity_m_s": 107.05163919218617,
+        "kinematic_viscosity_m2_s": 9.604519774011301e-05,
+        "turbulence_epsilon_m2_s3": 11521.229195426107,
+        "turbulence_intensity": 0.05,
+        "turbulence_k_m2_s2": 42.975200451502545,
+        "turbulence_length_scale_m": 0.004018000000000001
+      },
+      "mesh": {
+        "gmsh_version": "4.12.1",
+        "mesh_size_mm": 4.0,
+        "msh_bytes": 1976606,
+        "msh_sha256": "d8db4e66895ef04c4bccfffe06cd1beadcb908ca7cb3b4fd5ebb6ba2fc3ce036",
+        "nodes": 7987,
+        "patches": {
+          "inlet": 1,
+          "outlet": 1,
+          "walls": 4
+        },
+        "tetrahedra": 40186
+      },
+      "mesh_validation": {
+        "extended_check_mesh_passed": false,
+        "interpretation": "OpenFOAM extended determinant warning retained; no negative volume, topology, non-orthogonality or skewness failure reported.",
+        "low_cell_determinant_cells": 124,
+        "low_cell_determinant_threshold": 0.001,
+        "standard_check_mesh_passed": true
+      },
+      "results": {
+        "bulk_total_pressure_drop_pa": 446.6957976187675,
+        "bulk_total_pressure_flow_power_w": 123.74249107577393,
+        "inlet_area_average_kinematic_pressure_m2_s2": -3697.650558,
+        "outlet_area_average_speed_m_s": 43.813274553899866,
+        "outlet_area_average_velocity_m_s": [
+          -6.797029407,
+          -0.3364557755,
+          43.2815228
+        ],
+        "static_pressure_recovery_pa": 1539.9627029788235
+      },
+      "solver": {
+        "case_reused": true,
+        "converged": true,
+        "final_initial_residuals": {
+          "Ux": 9.496509153e-06,
+          "Uy": 6.717869776e-06,
+          "Uz": 1.640016801e-06,
+          "epsilon": 2.744118332e-06,
+          "k": 5.536191233e-06,
+          "p": 3.795483659e-06
+        },
+        "model": "OpenFOAM incompressibleFluid steady RANS k-epsilon",
+        "residual_limits": {
+          "Ux": 2e-05,
+          "Uy": 2e-05,
+          "Uz": 2e-05,
+          "epsilon": 1e-05,
+          "k": 2e-05,
+          "p": 5e-05
+        },
+        "simple_residual_control_exit": true
+      }
+    },
+    {
+      "artifacts": {
+        "checkMesh-extended.log": {
+          "bytes": 3708,
+          "sha256": "5237aa1d597452222f000602837f47da9b88025451748a7b8c95f099f536858a"
+        },
+        "checkMesh.log": {
+          "bytes": 2761,
+          "sha256": "df42701826ddb23134be7cb099093b53006c5e77a23bcdf0df1080bf847f4f8f"
+        },
+        "flow.msh": {
+          "bytes": 4563710,
+          "sha256": "22802a520730ce9a996434cd92125aedc7785410afef2e27985963fddadee9de"
+        },
+        "gmshToFoam.log": {
+          "bytes": 1819,
+          "sha256": "87c9829080ef04d40915e9053026f729f0f3e6794cc678693ab34ed3bc86c4a8"
+        },
+        "inlet-pressure.log": {
+          "bytes": 1424,
+          "sha256": "ee1e7768e93d8b0ba4ce5651a67adc987fa23fde884ef81abc04f854c41a8ff4"
+        },
+        "outlet-velocity.log": {
+          "bytes": 1458,
+          "sha256": "1a88bd383cba970a70047eaf59434248b6692067f8ebb5ea958ca762fd215561"
+        },
+        "solver.log": {
+          "bytes": 1297315,
+          "sha256": "3a580fa489b7de453f5072026091af4240df409db625a2c24dd84600ff011789"
+        },
+        "transformPoints.log": {
+          "bytes": 1044,
+          "sha256": "a3a748269e16cbd220a0e4da2e6c3a3e4b3f7fce637ddeec6d76bd237deac081"
+        }
+      },
+      "boundary_inputs": {
+        "inlet_velocity_m_s": 107.05163919218617,
+        "kinematic_viscosity_m2_s": 9.604519774011301e-05,
+        "turbulence_epsilon_m2_s3": 11521.229195426107,
+        "turbulence_intensity": 0.05,
+        "turbulence_k_m2_s2": 42.975200451502545,
+        "turbulence_length_scale_m": 0.004018000000000001
+      },
+      "mesh": {
+        "gmsh_version": "4.12.1",
+        "mesh_size_mm": 3.0,
+        "msh_bytes": 4563710,
+        "msh_sha256": "22802a520730ce9a996434cd92125aedc7785410afef2e27985963fddadee9de",
+        "nodes": 17212,
+        "patches": {
+          "inlet": 1,
+          "outlet": 1,
+          "walls": 4
+        },
+        "tetrahedra": 91086
+      },
+      "mesh_validation": {
+        "extended_check_mesh_passed": false,
+        "interpretation": "OpenFOAM extended determinant warning retained; no negative volume, topology, non-orthogonality or skewness failure reported.",
+        "low_cell_determinant_cells": 163,
+        "low_cell_determinant_threshold": 0.001,
+        "standard_check_mesh_passed": true
+      },
+      "results": {
+        "bulk_total_pressure_drop_pa": 502.86989723385983,
+        "bulk_total_pressure_flow_power_w": 139.3036919139395,
+        "inlet_area_average_kinematic_pressure_m2_s2": -3563.048974,
+        "outlet_area_average_speed_m_s": 43.806889525109995,
+        "outlet_area_average_velocity_m_s": [
+          -6.602378344,
+          0.001733245884,
+          43.30649105
+        ],
+        "static_pressure_recovery_pa": 1483.905102112941
+      },
+      "solver": {
+        "case_reused": true,
+        "converged": true,
+        "final_initial_residuals": {
+          "Ux": 1.660347203e-05,
+          "Uy": 1.486739412e-05,
+          "Uz": 2.505864981e-06,
+          "epsilon": 6.222543259e-06,
+          "k": 1.290360802e-05,
+          "p": 4.265768357e-06
+        },
+        "model": "OpenFOAM incompressibleFluid steady RANS k-epsilon",
+        "residual_limits": {
+          "Ux": 2e-05,
+          "Uy": 2e-05,
+          "Uz": 2e-05,
+          "epsilon": 1e-05,
+          "k": 2e-05,
+          "p": 5e-05
+        },
+        "simple_residual_control_exit": false
+      }
+    }
+  ],
+  "dfam_assessment": {
+    "current_route_decision": "conditional_candidate_requires_formed_welded_stainless_vs_LPBF_IN625_comparison",
+    "favorable_features": [
+      "one BREP consolidates the gas path, outer shield and eight ties",
+      "the annular gap is open at both ends and has no intended trapped-powder volume",
+      "the round-to-oval loft is geometrically natural for additive manufacture"
+    ],
+    "geometry_redesign_authorized": false,
+    "lpbf_preferred_for_current_geometry": false,
+    "unfavorable_features": [
+      "the 0.8 mm double walls and 2.7 mm gap require machine-specific capability evidence",
+      "no measured thermal or acoustic benefit justifies IN625 LPBF over formed or welded stainless",
+      "surface roughness, distortion, supports and post-machining remain undefined"
+    ]
+  },
+  "engineering_gates": {
+    "compressible_pulsating_cfd": false,
+    "conjugate_heat_transfer": false,
+    "measured_exhaust_mass_flow": false,
+    "measured_inlet_interface": false,
+    "measured_pressure_and_temperature": false,
+    "professional_review": false,
+    "vehicle_correlation": false
+  },
+  "grid_comparison_fine_vs_previous": {
+    "bulk_total_pressure_drop_relative_change": 0.1117070238725556,
+    "outlet_velocity_relative_change": 0.00014575398662376612,
+    "screening_threshold": 0.1,
+    "threshold_authority": "project regression threshold only; not a design acceptance criterion"
+  },
+  "inputs": {
+    "authority": "synthetic regression inputs only",
+    "dynamic_viscosity_pa_s": 4e-05,
+    "geometry": "project F0 inner flow loft, not measured 993 geometry",
+    "hot_density_kg_m3": 0.4164705882352941,
+    "volume_flow_m3_s": 0.27701736111111114
+  },
+  "interpretation": {
+    "analytic_comparison": {
+      "borda_carnot_abrupt_expansion_pressure_loss_pa": 845.4273990884485,
+      "finest_cfd_to_borda_pressure_loss_ratio": 0.594811450132869,
+      "scope": "Borda-Carnot is an abrupt-expansion screen, not an expected match for the progressive loft."
+    },
+    "manufacturing": "No numerical result authorizes printing or vehicle installation.",
+    "missing_physics": "Compressibility, exhaust pulses, temperature-dependent properties, roughness, bends and conjugate heat transfer are absent.",
+    "physicsnemo": "No training or inference: three uncorrelated mesh points are not an admissible surrogate dataset.",
+    "scope": "Steady incompressible RANS screen of the clean-sheet F0 inner duct only."
+  },
+  "numerical_gates": {
+    "all_cases_converged": true,
+    "all_extended_mesh_checks_passed": false,
+    "bulk_total_pressure_drop_grid_change_below_10_percent": false,
+    "outlet_velocity_grid_change_below_10_percent": true
+  },
+  "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+  "release_authorized": false,
+  "runtime": {
+    "openfoam": "13",
+    "python": "3.12.3",
+    "runtime_image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "runtime_image_ref": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "runtime_reproducibility": "pinned registry digest and matching local immutable image ID recorded"
+  },
+  "schema_version": "1.0.0",
+  "status": "synthetic_steady_rans_screen_complete_not_vehicle_validation",
+  "twin_id": "TWIN-993-OVAL-EXHAUST-TIP-IN625-F0"
+}

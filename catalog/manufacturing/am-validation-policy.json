@@ -192,6 +192,89 @@
           "blocker": "Aucune revue professionnelle, première pièce, CT, fatigue ni essai moteur de 200 h n'est disponible."
         }
       }
+    },
+    "993-EXH-OVAL-TIP-IN625-F0-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/parts/993-exh-oval-tip-in625-f0-0001.json",
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/asset-context.json"
+          ],
+          "blocker": "Seule l'enveloppe de sortie 120 x 85 mm est publiée ; l'entrée, la longueur, les doubles parois, les attaches et les interfaces restent des hypothèses F0."
+        },
+        "02_cad_brep_and_mesh_integrity": {
+          "status": "passed",
+          "evidence": [
+            "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json",
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json"
+          ]
+        },
+        "03_full_layer_slicing_and_supports": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json",
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json"
+          ],
+          "blocker": "Les 3 702 couches sont tranchées, mais l'orientation, les supports et l'évacuation de poudre n'ont pas été revus dans un projet fournisseur EOSPRINT."
+        },
+        "04_material_machine_process_card": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/manufacturing/machines/eos-m290.json",
+            "catalog/manufacturing/processes/eos-m290-in625-40um.json"
+          ],
+          "blocker": "La route EOS M 290 / IN625 / 40 micromètres est liée aux données publiques, mais les trajectoires laser, supports, propriétés à chaud et calibrations de lot restent absents."
+        },
+        "05_local_melt_pool_thermal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json"
+          ],
+          "blocker": "Aucune carte IN625 EOS M 290 locale complète et corrélée ne permet un calcul AdditiveFOAM du bain de fusion."
+        },
+        "06_full_build_thermomechanical_distortion": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/manufacturing/processes/eos-m290-in625-40um.json"
+          ],
+          "blocker": "La loi constitutive IN625 dépendante de la température, la déformation inhérente et la calibration supports-plaque manquent."
+        },
+        "07_recoater_and_support_removal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json"
+          ],
+          "blocker": "Le champ de distorsion, le jeu et la compliance du recoater ainsi que la géométrie de supports fournisseur manquent."
+        },
+        "08_omniverse_simready_asset": {
+          "status": "passed",
+          "evidence": [
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/simready-validation-summary.json",
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png",
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json",
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png"
+          ]
+        },
+        "09_omniverse_assembly_function": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/twins/twin-993-oval-exhaust-tip-in625-f0.json"
+          ],
+          "blocker": "Les géométries, datums, tolérances et conditions thermovibratoires du silencieux, du collier et de la jupe manquent."
+        },
+        "10_physical_correlation_and_inspection": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "11_engineering_release": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/parts/993-exh-oval-tip-in625-f0-0001.json"
+          ],
+          "blocker": "Aucune revue professionnelle, première pièce, CT/CND, métrologie, essai thermique, vibration ou essai véhicule n'est disponible."
+        }
+      }
     }
   },
   "release_rule": {
