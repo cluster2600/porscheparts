@@ -1,6 +1,89 @@
 # M64 — témoin de raccord local PicoGK, 8 septembre 2026
 
-## Résultat à ne pas confondre avec une culasse
+## Dernier état : masque intérieur testé à 0,2 puis 0,1, suite rejetée
+
+Les travaux ne se limitent plus au premier témoin ci-dessous. Une union
+directe à masque intérieur a passé les gardes normalisés au pas **0,2**, puis
+échoué au pas **0,1** sur **24 points protégés**. Le volume réellement ajouté
+varie de **16,01 %**, au-delà du seuil préenregistré de 5 %. **Aucun de ces
+essais synthétiques n'a été appliqué à la culasse privée.** Le maître reste
+inchangé ; aucune validation physique ou d'impression n'est revendiquée.
+
+La priorité sur la géométrie réelle est documentée séparément dans
+[Admission, chambre et prochain calcul utile](M64_ADMISSION_CHAMBRE_20260908.md).
+Les témoins PicoGK instruisent une méthode de raccord ; ils ne remplacent
+pas les conduits, la chambre et les composants nécessaires au domaine gazeux.
+
+```mermaid
+flowchart TD
+    A["Union directe 0.2 : surfaces hors ROI"] --> B["Masque intérieur, recul monde 0.6"]
+    B --> C["Témoin 0.2 : gardes normalisés réussis"]
+    C --> D["Témoin 0.1 : même masque monde"]
+    D --> E["24 points protégés modifiés et écart volumique 16.01 pour cent"]
+    E --> F["Rejet conservé : pas de traitement de la culasse"]
+    F --> G["Recouvrement masque rectangulaire / couronne identifié"]
+```
+
+### Deux pas comparés, sans assouplissement des gardes
+
+Le [module à masque intérieur](../twins/m64-cylinder-head/source/picogk-local-junction-buffered/README.md)
+conserve la zone autorisée et recule le masque de construction de 0,6 unité.
+La [version fine séparée](../twins/m64-cylinder-head/source/picogk-local-junction-buffered-v2/README.md)
+garde ce recul **fixe en coordonnées monde**, soit 3h à 0,2 et 6h à 0,1.
+Un recul de 3h à 0,1 aurait changé la géométrie ; cette variante n'a pas été
+exécutée. Deux niveaux ne démontrent pas une convergence asymptotique.
+
+L'audit v2 exige aussi explicitement zéro variation SDF hors ROI et aux
+protections, zéro paire indisponible et la relecture bit à bit de six champs
+VDB dans leurs boîtes natives. L'ancien audit affichait les variations SDF
+sans les intégrer à sa décision : le témoin 0,2 a donc été réaudité dans un
+**nouveau reçu**, sans écraser ses résultats, et passe ces gardes renforcés.
+
+| Mesure | Pas 0,2 | Pas 0,1 |
+|---|---:|---:|
+| Nœuds comparés | 1 157 625 | 8 615 125 |
+| Points protégés modifiés, convention `<0` | 0 | 24 |
+| Valeurs SDF modifiées hors ROI | 0 | 0 |
+| Faces nulles brutes du candidat | 16 | 0 |
+| Faces nulles brutes de l'ajout diagnostique | 8 | 40 |
+| Volume effectivement ajouté, unité³ | 9,485154 | 8,176398 |
+| Résidu `Vaprès−Vavant−Vajout diagnostique`, unité³ | 3,618601 | 1,120716 |
+
+Au pas fin, les surfaces brutes avant/après passent l'écran combinatoire ;
+l'ajout diagnostique brut reste rejeté. Après suppression **en mémoire des
+seules faces exactement nulles**, les trois surfaces passent la topologie
+combinatoire aux deux pas. Aucun sommet déplacé, triangle non nul retiré,
+remplissage ou retriangulation. Tous les triangles modifiés sont contenus
+dans la ROI autorisée, mais cette propriété **ne protège pas les interfaces
+qui se trouvent à l'intérieur de cette ROI**.
+
+Les 24 points en échec se trouvent tous dans le masque intérieur **et** dans
+la bande protégée autour de l'anneau R10/Y0. Le coin XZ du masque atteint un
+rayon de **10,46518** : le recouvrement géométrique est démontré. Les valeurs
+SDF y passent de zéro à strictement négatives, maximum **0,00177247 unité**.
+Le garde `<0` échoue même si le garde `<=0` reste nul ; aucun epsilon n'est
+introduit pour faire passer. La cause algorithmique exacte de la variation
+SDF n'est pas établie par cette seule localisation.
+
+La différence volumique relative est **16,0065 % > 5 %**. Les distances
+bidirectionnelles échantillonnées maximales valent 0,09240 avant, 0,10106
+après et **0,36516 pour l'ajout diagnostique > 0,2 unité**. Ce ne sont pas
+des bornes continues de Hausdorff. Les résidus volumiques restent inexpliqués.
+
+Natif : 5,278 s au pas 0,2 et 31,274 s au pas 0,1 ; audit fin 60,52 s,
+comparaison 7,53 s. Plafonds : 2 CPU, 4 Gio, 300 s par étape. L'audit fin a
+reçu un plafond de **ressources seulement** de 500 000 faces ; les helpers
+historiques, leurs prédicats et leurs seuils n'ont pas changé sur disque.
+Les 12 tests ciblés passent dans le runtime QA, dont sept pour la décision
+renforcée et les métriques. Aucun serveur Vast ni nouveau masque radial.
+
+Le [reçu public compact](../twins/m64-cylinder-head/evidence/picogk-buffered-junction-comparison-20260908.json)
+lie les sources, politiques, rapports natifs, audits, comparaison et
+diagnostic par leurs empreintes exactes. Il conserve séparément les échecs
+bruts et combinés. La suite historique ci-dessous reste une trace des essais
+précédents, pas l'état final du lot.
+
+## Historique : premier résultat à ne pas confondre avec une culasse
 
 Le premier témoin synthétique est **rejeté**. Les signes du champ sont bien
 préservés sur les nœuds protégés, mais la surface exportée contient des
@@ -26,14 +109,16 @@ flowchart TD
     I --> J[Contrôles requis avant tout traitement de la culasse]
 ```
 
-## Protocole préenregistré
+## Protocole initial préenregistré
 
 Le [contrat](../twins/m64-cylinder-head/source/picogk-local-junction/criteria.json)
 est figé avant l'exécution : rayon exploratoire 1 unité, résolution 0,2,
 aucune modification d'occupation hors région autorisée ou aux interfaces
 protégées, aucune perte du gaz initial, aucun ajout touchant le bord du masque.
-Chaque garde est évalué avec `< 0` et `<= 0`. La résolution 0,1 et le traitement
-du conduit réel restent interdits après l'échec du témoin.
+Chaque garde est évalué avec `< 0` et `<= 0`. Après cet échec initial, aucune
+passe 0,1 ni application au conduit réel n'a été lancée automatiquement.
+Le témoin fin décrit en tête appartient à une autorisation et une politique
+séparées, postérieures à la correction du masque.
 
 Le témoin n'emploie aucune cote Porsche : il assemble deux cylindres coaxiaux
 étagés. Les unités sont celles de ce problème synthétique, pas une calibration
@@ -115,7 +200,7 @@ aucune conservation exacte du volume n'est revendiquée.
 - Ni les intersections géométriques entre triangles, ni la tenue à chaud,
   ni les interfaces moteur, ni l'imprimabilité de la culasse ne sont validées.
 
-## Correction minimale à éprouver
+## Historique : correction minimale proposée, puis éprouvée ci-dessous
 
 Soit `A` le gaz initial, `C` sa fermeture morphologique et `R` la région
 autorisée. L'identité ensembliste suivante est exacte :
@@ -171,14 +256,15 @@ flowchart LR
     E --> F[Pas de passage au conduit privé]
 ```
 
-La prochaine correction doit distinguer **masque de calcul intérieur** et
+La correction suivante proposée à ce stade distinguait **masque de calcul intérieur** et
 **zone autorisée à changer**, avec une marge d'extraction contrôlée. Élargir
 après coup la zone autorisée pour faire passer cet essai n'est pas une
 correction. Il faut un nouveau témoin préenregistré, puis les mêmes contrôles
 topologiques et spatiaux avant toute application au conduit de culasse.
-La résolution 0,1 n'a pas été lancée dans ce lot.
+La résolution 0,1 n'avait pas été lancée dans ce sous-lot d'union directe.
+Les essais buffered postérieurs et leur rejet fin sont décrits en tête.
 
-## Vérification logicielle du lot
+## Vérification logicielle du lot historique d'union directe
 
 `make check` termine avec exit 0 : suite principale de 2 167 tests, dont
 82 ignorés, et cibles supplémentaires terminées. Ces dernières contiennent

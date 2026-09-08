@@ -1,0 +1,123 @@
+{
+  "schema": "m64-flowbench-intake-chamber-demonstrator-summary/v1",
+  "date": "2026-09-08",
+  "scope": "native_geometry_inspection_and_two_plane_chamber_prototype_only",
+  "units": "scan_units_under_unverified_1_unit_per_mm_hypothesis",
+  "paid_resources_used": false,
+  "master_modified": false,
+  "manufacturing_authorized": false,
+  "M64_fitment_validated": false,
+  "CFD_executed": false,
+  "complete_fluid_domain_created": false,
+  "compression_ratio_computed": false,
+  "input_sha256": {
+    "four_seat_master_STEP": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "actual_closed_module_STEP": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+    "raw_intake_negative_native_BRep": "72e0a786a601b96250380d16296004de9e6746caa3888ee470b6cd218f2d0251",
+    "module_build_report": "7b501ab6ba49b3d8d8cbd2905e6759d38cb8ec2baa1c69f1490d9e87d62ad36e",
+    "registration_report": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2"
+  },
+  "intake_inspection": {
+    "lift_design_mm": 6.0,
+    "imported_component_identity_symmetric_difference_volume": 0.0,
+    "intake_valve_seat_guide_overlap_with_four_seat_master_volume": 0.0,
+    "throat_probe_length": 0.009999999999999787,
+    "throat_probe_radius": 17.8,
+    "throat_probe_nominal_volume": 9.95382216363369,
+    "two_probe_coverage_fractions": [1.0000000000000204, 1.000000000000023],
+    "probe_is_not_leak_or_fluid_domain_qualification": true,
+    "each_open_intake_valve_volume_inside_raw_negative": 735.4154242788352,
+    "each_intake_guide_volume_inside_raw_negative": 797.7047242993746,
+    "original_reconstruction_has_designed_recessed_chamber": false
+  },
+  "chamber_prototype": {
+    "design": "two_planes_through_existing_seat_lower_lips_bounded_by_100_diameter_cylinder",
+    "roof_ridge_height": 6.421136106333932,
+    "spark_plug_central_axis_reserved": true,
+    "spark_plug_hole_or_threads_created": false,
+    "spark_plug_reference_selected": false,
+    "tool_volume": 27001.82530787402,
+    "tool_connected_solid_count": 1,
+    "tool_BRep_valid": true,
+    "tool_BOP": {"executed": true, "has_faulty": false, "has_errors": false, "has_warnings": false},
+    "actual_added_cavity_volume_removed_from_master": 9578.631047667262,
+    "actual_removed_material_solid_count": 1,
+    "assembled_closed_gas_chamber_volume": null,
+    "volume_scope": "tool_envelope_is_not_removed_material_and_neither_is_the_assembled_closed_gas_volume",
+    "candidate_solid_count_before_and_after_STEP": 1,
+    "candidate_BRep_valid_before_and_after_STEP": true,
+    "full_candidate_body_BOP_executed": false,
+    "seat_and_guide_tool_intersections_checked": 8,
+    "maximum_insert_intersection_volume": 0.0,
+    "tool_volume_outside_design_cylinder": 0.0,
+    "candidate_bbox_max_delta": 2.220446049250313e-14,
+    "candidate_volume_partition_error": -0.0000016035301086958498,
+    "volume_partition_absolute_gate": 0.001,
+    "bottom_surface_outside_design_bore_area_lost": 0.0,
+    "bottom_surface_is_certified_sealing_land": false,
+    "STEP_volume_roundtrip_observations": {
+      "candidate_body_signed_difference": -0.0000001387670636177063,
+      "removed_material_signed_difference": 0.01158033817591786,
+      "removed_material_relative_difference": 0.0000012089763263966707,
+      "removed_material_difference_resolved": false,
+      "note": "BRep validity and solid count passed; removed-material STEP volume discrepancy remains documented, not hidden by a tolerance or treated as metrology."
+    }
+  },
+  "execution": {
+    "runtime": "existing_Kali_CPU_container_no_install_no_rental",
+    "local_image_ID": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "architecture": "amd64",
+    "OCP_version": "7.9.3.1",
+    "each_container_limits": {"cpu": 2, "memory": "4g", "pids": 128, "network": "none", "timeout_seconds": 300, "kill_after_seconds": 5},
+    "native_runs": [
+      {"stage": "input_inspection", "reported_seconds": 11.294105071108788, "observed_SSH_Docker_exit_code": 0, "tool_session_id": 54499},
+      {"stage": "original_section_extraction", "reported_seconds": 9.627620906103402, "observed_SSH_Docker_exit_code": 0, "tool_session_id": 98886},
+      {"stage": "chamber_build", "reported_seconds": 14.779371591750532, "observed_SSH_Docker_exit_code": 0, "tool_session_id": 26516},
+      {"stage": "candidate_section_extraction", "reported_seconds": 12.300397338345647, "observed_SSH_Docker_exit_code": 0, "tool_session_id": 86420},
+      {"stage": "candidate_underside_tessellation", "reported_seconds": 4.041186196729541, "observed_SSH_Docker_exit_code": 0, "tool_session_id": 89492}
+    ],
+    "exit_evidence_scope": "Observed terminal completion codes recorded separately from geometry JSON status; no exit status is inferred from geometry reports.",
+    "raw_terminal_logs_exported": false,
+    "containers_removed_and_absence_checked": true,
+    "source_files_unchanged_after_native_runs": true
+  },
+  "private_artifact_sha256": {
+    "original_inspection_report": "e435eb2cd991e55401dc37c27c1baa00765552cd8df2cb677e8e85d66b9e4cec",
+    "original_sections_data": "1fc844e083db8a9968a4fe60ff636ce84ebad023378dd57fc8c8a1fdab4f67b5",
+    "original_sections_PNG": "76d9335ff40240f064bb8ae82ed47769c0de63779b239169c4a69c4fc1c0501a",
+    "chamber_build_report": "cc7d10e2b34cf3c2f786b0fbf6452f52d1a8f23f7ab59c1c711ec1fb58e36830",
+    "chamber_tool_BRep": "8643968ccf678fde1a4ba68ff7866fc468ec8faadbf79a53cc055e50c0010dc8",
+    "chamber_tool_STEP": "67478eef8631712a9e7b85215cb1989b776a3786a67322bfda85c0c74f3f59e9",
+    "candidate_body_BRep": "ba5701be9381c686d6840cc8a0630f38be1ef56fd278d8d9cb0bbcccab3e9e67",
+    "candidate_body_STEP": "3d78fd2ac9e78e5446f1a8fddc2b5d5ad1702cf912a74f579d6b42940124c4a4",
+    "candidate_sections_data": "7df4e592a75a109acc2a744da945f7ac4b8118b6decd22aeae89b41f1832db64",
+    "candidate_sections_PNG": "25f253596dda8c77101175217b7387a0a116c2f55b82fe6cb8edfa1e814038f5",
+    "candidate_underside_tessellation_report": "843e80f7f787618feebff22e1c578af0357e6ef6dc7f9a44efc8da49d0adf1bd",
+    "candidate_underside_VTK_PNG": "565d0d20fd73da00dd2b99ba97e726ac5fdf40a4b5a083599f4f47f7f23ef2ca",
+    "candidate_underside_VTK_render_receipt": "c0a3abbf6716ae6ab082f2819261c23b454bc5a336e45310518ee29c1d33d9c2"
+  },
+  "source_sha256": {
+    "inspect_pilot.py": "c80344db67a53df4ffc24a7158adbaad5e5c9f85fe19b5df3e9eb75a591f5242",
+    "build_candidate_chamber.py": "3e806c39275ffa210713e61d76e2c23722b0f62355e2adcd59462d2fb622541c",
+    "render_sections.py_at_candidate_extraction_and_render": "224ffb7fc8f07d9cbf39391818bc3340b0a341fc76cabaff085e67eea543e756",
+    "build_four_valve_distribution.py": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c",
+    "render_underside.py_at_tessellation": "a1d8608cac6b8321c33c55ff2c92e7eb3f4189416f1a7314ca60b6d23b936193",
+    "render_underside.py_at_final_VTK_render": "8964dd043c5eaef81b2f0bcb0ed4ef8f8809f210fb7ba51aa4a5dbbf30b34bdd"
+  },
+  "final_private_view": {
+    "filename": "chamber-underside-final.png",
+    "renderer": "PyVista0.48.4_VTK9.6.2_off_screen_true_z_buffer",
+    "native_body_triangle_count": 113910,
+    "all_13_parts_included": true,
+    "geometry_smoothing_or_generative_retouch": false,
+    "earlier_Matplotlib_underside_drafts_superseded_due_to_depth_sorting_artifacts": true,
+    "scientific_fields_rendered": false
+  },
+  "remaining_before_flowbench": [
+    "Construct actual throat and seat interior transitions; subtract opened intake valves and exposed guides from gas negative.",
+    "Verify closed exhaust sealing geometry and explicitly handle stem-guide clearance exits.",
+    "Qualify a single complete gas domain and name only the physically intended inlet, walls and receiver outlet.",
+    "Define the separate100diameter bench receiver length and exit position; never substitute it for an OEM chamber.",
+    "Do not reuse rejected ported-body06 as if its BOP were accepted."
+  ]
+}
