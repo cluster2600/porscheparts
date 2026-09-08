@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "simulation_id": "964-993-CARBON-MONOCOQUE-MANUFACTURING-F1-0001",
+  "status": "hypothesis_screening_only",
+  "purpose": "Comparer des cycles de cuisson et des familles d'outillage avant acquisition du système préimprégné, du drapage et des données fournisseur.",
+  "geometry_scope": {
+    "source": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-tooling-concept.step",
+    "authority": "concept_only",
+    "coupon_thicknesses_mm": [4.0, 8.0, 12.0],
+    "heated_length_mm": 2272.0,
+    "reason": "La CAO F1 ne définit pas encore les épaisseurs de stratifié par zone. Les trois épaisseurs sont des éprouvettes de sensibilité, pas une liasse de plis."
+  },
+  "resin_kinetics_hypothesis": {
+    "model": "single_step_nth_order_arrhenius",
+    "pre_exponential_1_s": 100000.0,
+    "activation_energy_J_mol": 60000.0,
+    "reaction_order": 1.2,
+    "initial_degree_of_cure": 0.02,
+    "adiabatic_temperature_rise_C": 55.0,
+    "status": "generic_epoxy_hypothesis_requires_DSC_and_supplier_data"
+  },
+  "thermal_model": {
+    "time_step_s": 5.0,
+    "part_time_constant_s_at_4mm": 150.0,
+    "tool_time_constant_s": 420.0,
+    "part_time_constant_thickness_exponent": 2.0,
+    "model": "two_lumped_nodes_tool_and_laminate_with_cure_exotherm",
+    "not_modelled": [
+      "spatial temperature gradients",
+      "resin flow, bleed and volatile transport",
+      "porosity and fibre volume fraction",
+      "drape shear, wrinkling and bridging",
+      "residual stress and spring-in",
+      "bag, seals, ports and autoclave pressure structure"
+    ]
+  },
+  "process_routes": [
+    {
+      "route_id": "prepreg_autoclave_130C",
+      "pressure_bar_absolute": 7.0,
+      "vacuum_bar_gauge": -0.9,
+      "segments": [
+        {"kind": "ramp", "target_C": 80.0, "rate_C_per_min": 2.0},
+        {"kind": "hold", "duration_min": 30.0},
+        {"kind": "ramp", "target_C": 130.0, "rate_C_per_min": 2.0},
+        {"kind": "hold", "duration_min": 120.0},
+        {"kind": "ramp", "target_C": 50.0, "rate_C_per_min": -2.0}
+      ]
+    },
+    {
+      "route_id": "prepreg_OOA_120C",
+      "pressure_bar_absolute": 1.0,
+      "vacuum_bar_gauge": -0.9,
+      "segments": [
+        {"kind": "ramp", "target_C": 70.0, "rate_C_per_min": 1.5},
+        {"kind": "hold", "duration_min": 45.0},
+        {"kind": "ramp", "target_C": 120.0, "rate_C_per_min": 1.5},
+        {"kind": "hold", "duration_min": 150.0},
+        {"kind": "ramp", "target_C": 50.0, "rate_C_per_min": -1.5}
+      ]
+    }
+  ],
+  "tool_material_hypotheses": [
+    {"material_id": "CFRP_TOOL_EQUIVALENT", "cte_um_mK": 2.0},
+    {"material_id": "INVAR36_EQUIVALENT", "cte_um_mK": 1.2},
+    {"material_id": "ALUMINIUM_TOOL_EQUIVALENT", "cte_um_mK": 23.0}
+  ],
+  "part_in_plane_cte_um_mK": 1.0,
+  "screening_thresholds": {
+    "minimum_final_degree_of_cure": 0.95,
+    "maximum_tool_part_lag_C": 12.0,
+    "maximum_part_overshoot_above_air_C": 12.0,
+    "maximum_free_cte_mismatch_mm": 1.0
+  },
+  "release_gates": {
+    "supplier_resin_data_acquired": false,
+    "DSC_kinetics_correlated": false,
+    "drape_simulation_correlated": false,
+    "cure_thermal_model_correlated": false,
+    "tool_pressure_model_approved": false,
+    "trial_panel_metrology_correlated": false,
+    "manufacturing_route_released": false
+  }
+}

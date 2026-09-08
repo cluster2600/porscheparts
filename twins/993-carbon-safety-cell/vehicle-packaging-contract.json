@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "964-993-CFRP-VEHICLE-PACKAGING-0001",
+  "design_id": "964-993-CARBON-MONOCOQUE-CLEAN-SHEET-0002",
+  "status": "functional_topology_defined_dimensions_blocked",
+  "coordinate_system": {
+    "origin": "centre theorique de l'axe avant",
+    "axes": "X arriere, Y gauche, Z haut",
+    "units": "mm",
+    "status": "provisional_not_registered_to_vehicle_datums"
+  },
+  "design_decision": {
+    "common_outer_tunnel": "Le caisson structural exterieur est commun et reserve l'enveloppe C4, cas le plus encombrant.",
+    "variant_internals": "Des supports et couvercles internes demontables distinguent C2 et C4 sans couper la structure primaire.",
+    "rotating_equipment_rule": "L'arbre longitudinal C4 et ses joints restent dans une enveloppe de garde fermee, sans conduite fixe ni faisceau dans le volume de rotation.",
+    "claim_limit": "Decision d'architecture; aucune cote de production, rigidite locale, crashworthiness ou compatibilite dimensionnelle n'est demontree."
+  },
+  "source_topology": [
+    {
+      "source_id": "SRC-PORSCHE-PET-964",
+      "generation": "964",
+      "evidence": [
+        "304-00: commandes de boite externes distinctes Carrera 2 et Carrera 4",
+        "301-15: tube central Carrera 4",
+        "305-00: transmission finale avant Carrera 4",
+        "401-10: arbres de roue avant Carrera 4"
+      ],
+      "dimensional_use": false
+    },
+    {
+      "source_id": "SRC-PORSCHE-PET-993",
+      "generation": "993",
+      "evidence": [
+        "304-00: commande de boite externe et guidage specifique M339",
+        "301-15: tube central G64 Carrera 4/Turbo",
+        "305-00: transmission finale avant Carrera 4/Turbo",
+        "801-05 et 701-05: tubes-guides de cables et commandes traversant la caisse"
+      ],
+      "dimensional_use": false
+    },
+    {
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOLUME5",
+      "generation": "964",
+      "evidence": [
+        "page 50-03: entraxe gauche-droite des fixations P12 de traverse de boite 278 +/- 1 mm",
+        "pages 50-02 a 50-05a: points de controle de soubassement P1 a P21 et contraintes avec tolerances"
+      ],
+      "dimensional_use": true,
+      "dimensional_use_limit": "Graphe de distances de controle uniquement; ne donne ni largeur ou surface du tunnel, ni axe de l'arbre C4, ni enveloppe dynamique."
+    }
+  ],
+  "variant_matrix": {
+    "964_C2": {
+      "shift_linkage": "required",
+      "longitudinal_propeller_shaft": "absent",
+      "front_final_drive": "absent",
+      "front_halfshafts": "absent",
+      "geometry_status": "hypothesis_envelope"
+    },
+    "964_C4": {
+      "shift_linkage": "required_C4_specific",
+      "longitudinal_propeller_shaft": "required_in_central_tube",
+      "front_final_drive": "required",
+      "front_halfshafts": "required",
+      "geometry_status": "hypothesis_envelope"
+    },
+    "993_C2": {
+      "shift_linkage": "required",
+      "longitudinal_propeller_shaft": "absent",
+      "front_final_drive": "absent",
+      "front_halfshafts": "absent",
+      "geometry_status": "hypothesis_envelope"
+    },
+    "993_C4": {
+      "shift_linkage": "required_M339_or_G64_specific",
+      "longitudinal_propeller_shaft": "required_in_central_tube",
+      "front_final_drive": "required",
+      "front_halfshafts": "required",
+      "geometry_status": "hypothesis_envelope"
+    }
+  },
+  "common_packaging_obligations": [
+    "deux planchers occupants et volumes de sieges",
+    "pied avant, pedalier, colonne de direction et maitre-cylindre",
+    "tour de levier et acces de maintenance de la tringlerie",
+    "cloison arriere coupe-feu et passage du nez de boite",
+    "reservoir avant, direction, traverse et debattements de suspension",
+    "passages de roues et volumes pneus en braquage/debattement",
+    "conduites frein, carburant, retour et mise a l'air protegees",
+    "faisceau principal et conduits de frein a main inspectables",
+    "ancrages sieges, ceintures, portes, vitrages et points de levage",
+    "echappement, refroidissement, chauffage et protections thermiques"
+  ],
+  "required_measurement_campaign": {
+    "vehicles": ["964_C2_coupe", "964_C4_coupe", "993_C2_coupe", "993_C4_coupe"],
+    "methods": ["scan_3D_metrologique", "CMM_points_durs", "mesure_sous_charge", "gabarits_physiques_GO_NOGO"],
+    "deliverables": [
+      "systeme de datums commun et transformations par variante",
+      "surfaces de porte vitrage joints et ouvrants",
+      "points de suspension direction moteur boite et traverse",
+      "enveloppes dynamiques arbre joints cardans pneus et echappement",
+      "tolerances, incertitudes et temperatures de mesure"
+    ],
+    "complete": false
+  },
+  "release_gates": {
+    "packaging_dimensions_measured": false,
+    "all_four_variants_interference_checked": false,
+    "driveline_dynamic_clearance_verified": false,
+    "serviceability_review_passed": false,
+    "fire_and_fluid_separation_review_passed": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

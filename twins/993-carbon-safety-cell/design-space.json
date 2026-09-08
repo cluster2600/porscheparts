@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.0.0",
+  "design_id": "964-993-CARBON-MONOCOQUE-CLEAN-SHEET-0002",
+  "design_intent": "Monocoque centrale CFRP originale commune, avec modules d'interface CFRP distincts à mesurer pour 964 et 993; aucune surface ZESAD ou RUF n'est reproduite.",
+  "material_policy": {
+    "primary_structure_material": "carbon_equivalent",
+    "allow_local_metallic_inserts_bushes_and_fasteners": true,
+    "allow_steel_tube_primary_structure": false,
+    "definition": "Tout carbone signifie que les chemins de charge primaires sont en CFRP; les inserts, bagues, axes et fixations métalliques locaux restent autorisés après dimensionnement et isolation galvanique."
+  },
+  "mass_and_load_basis": {
+    "target_vehicle_mass_kg": 1200.0,
+    "mass_definition": "objectif de masse véhicule prêt à rouler, sans occupant, à figer avec l'expert TÜV et la configuration donneuse",
+    "status": "design_target_not_measured",
+    "gravity_m_s2": 9.80665,
+    "target_monocoque_system_mass_kg": 110.0,
+    "target_common_cell_mass_kg": 90.0,
+    "target_installed_platform_modules_kg": 20.0,
+    "load_envelope": {
+      "static_vehicle_weight_N": 11767.98,
+      "vertical_bump_3g_N": 35303.94,
+      "longitudinal_braking_1_5g_N": 17651.97,
+      "lateral_cornering_1_8g_N": 21182.36
+    },
+    "limitations": [
+      "Ces résultantes ne sont pas encore réparties aux interfaces faute de masses par essieu, centre de gravité, pneus, aérodynamique et cinématique mesurés.",
+      "Les facteurs ultimes, coefficients dynamiques et combinatoires doivent être approuvés avec l'ingénieur structure et l'expert TÜV.",
+      "Crash, toit, sièges et ceintures nécessitent leurs propres procédures et ne sont pas couverts par ces multiples de g."
+    ]
+  },
+  "platform_reference_dimensions_mm": {
+    "964_Carrera_2_Coupe": {
+      "wheelbase": 2272.0,
+      "front_track": 1374.0,
+      "rear_track": 1374.0,
+      "overall_length": 4250.0,
+      "overall_width": 1652.0,
+      "overall_height": 1310.0,
+      "source_id": "SRC-PORSCHE-FINDER-964-C2-COUPE-DIMENSIONS",
+      "status": "official_public_envelope_not_interface_geometry"
+    },
+    "993_Carrera_narrow_reference": {
+      "wheelbase": 2272.0,
+      "front_track": 1405.0,
+      "rear_track": 1444.0,
+      "overall_length": 4245.0,
+      "overall_width": 1735.0,
+      "overall_height": 1300.0,
+      "source_id": "SRC-PORSCHE-FINDER-993-CABRIOLET-DIMENSIONS",
+      "status": "official_public_envelope_not_interface_geometry"
+    }
+  },
+  "screening_geometry_mm": {
+    "front_axle_x": 0.0,
+    "dash_x": 430.0,
+    "rear_bulkhead_x": 1840.0,
+    "rear_axle_x": 2272.0,
+    "front_half_track": 702.5,
+    "rear_half_track": 722.0,
+    "cell_half_width": 650.0,
+    "floor_z": 180.0,
+    "belt_z": 650.0,
+    "roof_z": 1240.0,
+    "roof_width_ratio": 0.78,
+    "tunnel_half_width": 145.0,
+    "tunnel_height": 230.0,
+    "evidence": {
+      "rear_axle_x": "empattement 2272 mm, SRC-ASTRA-993-TYPE-APPROVAL-DIMENSIONS",
+      "front_half_track": "demi-voie avant 1405/2 mm, MNL-TECH-0027, transcription OCR à vérifier",
+      "rear_half_track": "demi-voie arrière 1444/2 mm, MNL-TECH-0028, transcription OCR à vérifier",
+      "all_other_dimensions": "hypothèses de présélection à remplacer par scans, CMM et points de caisse 964/993 mesurés"
+    }
+  },
+  "vehicle_packaging_mm": {
+    "status": "hypothesis_envelopes_pending_964_993_measurement",
+    "claim_limit": "Ces dimensions organisent le concept et les jeux fonctionnels. Elles ne sont ni des cotes Porsche, ni des cotes ZESAD, ni des interfaces fabricables.",
+    "common_cell": {
+      "tub_start_x": 260.0,
+      "tub_end_x": 2020.0,
+      "sill_start_x": 360.0,
+      "sill_end_x": 1860.0,
+      "sill_outer_y": 650.0,
+      "sill_width": 150.0,
+      "sill_height": 300.0,
+      "door_aperture_start_x": 610.0,
+      "door_aperture_end_x": 1580.0,
+      "front_bulkhead_x": 430.0,
+      "rear_bulkhead_x": 1840.0,
+      "seat_floor_z": 205.0,
+      "rear_shelf_z": 480.0,
+      "tunnel_start_x": 430.0,
+      "tunnel_end_x": 1980.0,
+      "tunnel_outer_width": 330.0,
+      "tunnel_outer_height": 275.0,
+      "service_cover_thickness": 18.0
+    },
+    "c2_package": {
+      "external_shift_rod_diameter": 42.0,
+      "external_shift_rod_center_y": 0.0,
+      "external_shift_rod_center_z": 335.0,
+      "external_shift_rod_start_x": 710.0,
+      "external_shift_rod_end_x": 2010.0,
+      "shifter_tower_center_xyz": [980.0, 0.0, 430.0],
+      "shifter_tower_envelope_xyz": [220.0, 250.0, 180.0]
+    },
+    "c4_package": {
+      "central_tube_outer_diameter": 150.0,
+      "propeller_shaft_clearance_diameter": 105.0,
+      "central_tube_center_z": 310.0,
+      "central_tube_start_x": -170.0,
+      "central_tube_end_x": 1980.0,
+      "shift_guide_center_y": 92.0,
+      "shift_guide_diameter": 32.0,
+      "front_final_drive_center_xyz": [-120.0, 0.0, 285.0],
+      "front_final_drive_envelope_xyz": [330.0, 430.0, 240.0],
+      "front_halfshaft_clearance_diameter": 90.0,
+      "front_halfshaft_total_span": 1510.0
+    },
+    "protected_service_channels": {
+      "brake_fuel_left_center_y": 225.0,
+      "wiring_right_center_y": -225.0,
+      "parking_brake_left_center_y": 265.0,
+      "parking_brake_right_center_y": -265.0,
+      "service_tube_diameter": 28.0,
+      "rule": "Aucune conduite fixe ne traverse l'enveloppe de rotation C4; carburant et freinage doivent etre proteges, separes et inspectables."
+    },
+    "evidence": {
+      "topology_964": "SRC-PORSCHE-PET-964, illustrations 301-15, 304-00, 305-00 et 401-10; identite et architecture uniquement",
+      "topology_993": "SRC-PORSCHE-PET-993, illustrations 301-15, 304-00, 305-00 et 401-10; identite et architecture uniquement",
+      "dimensions": "hypotheses de packaging a remplacer par scans CMM et mesures physiques de quatre donneuses 964 C2, 964 C4, 993 C2 et 993 C4"
+    }
+  },
+  "screening_materials": {
+    "carbon_equivalent": {
+      "elastic_modulus_MPa": 18000.0,
+      "poisson_ratio": 0.30,
+      "density_kg_m3": 1550.0,
+      "status": "hypothèse isotrope équivalente pour classement; pas une fiche stratifié ni une valeur admissible"
+    },
+    "steel_tube": {
+      "elastic_modulus_MPa": 210000.0,
+      "poisson_ratio": 0.30,
+      "density_kg_m3": 7850.0,
+      "status": "valeur élastique de présélection; nuance, tube, soudure et protection à définir"
+    }
+  },
+  "load_cases": {
+    "torsion_screening": {
+      "opposed_vertical_force_per_side_N": 5000.0,
+      "application": "nœuds d'interface avant gauche et droit",
+      "constraint": "nœuds d'interface arrière bloqués",
+      "metric": "couple divisé par la rotation relative avant/arrière"
+    },
+    "side_intrusion_screening": {
+      "inward_force_N": 10000.0,
+      "application": "répartie sur les nœuds de ceinture A et B côté gauche",
+      "metric": "force divisée par le déplacement moyen"
+    }
+  },
+  "screening_gates": {
+    "provisional_torsional_stiffness_Nm_per_deg": 20000.0,
+    "minimum_relative_improvement_vs_open_tub": 1.5,
+    "active_member_mass_ceiling_kg": 95.0,
+    "status": "objectifs configurables de présélection, non exigences d'homologation et non valeurs Porsche/ZESAD/RUF"
+  },
+  "architectures": [
+    {
+      "architecture_id": "open_tub_reference",
+      "description": "Tub ouvert avec peau de plancher et flancs travaillants; référence de comparaison, non candidat de sécurité.",
+      "roof_ring": false,
+      "central_tunnel": false,
+      "effective_member_areas_mm2": {
+        "floor_rail": 260.0,
+        "floor_cross": 180.0,
+        "floor_shear": 85.0,
+        "belt_shear": 70.0,
+        "space_shear": 45.0,
+        "sill": 310.0,
+        "side_vertical": 120.0,
+        "side_shear": 95.0,
+        "bulkhead": 150.0,
+        "bulkhead_shear": 95.0,
+        "roof_pillar": 0.0,
+        "roof_cross": 0.0,
+        "roof_rail": 0.0,
+        "roof_shear": 0.0,
+        "tunnel": 0.0,
+        "tunnel_shear": 0.0
+      }
+    },
+    {
+      "architecture_id": "deep_sill_tunnel",
+      "description": "Caissons de bas de caisse renforcés et tunnel central fermé pour accroître la torsion sans fermer le pavillon.",
+      "roof_ring": false,
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 360.0,
+        "floor_cross": 220.0,
+        "floor_shear": 130.0,
+        "belt_shear": 105.0,
+        "space_shear": 70.0,
+        "sill": 520.0,
+        "side_vertical": 160.0,
+        "side_shear": 145.0,
+        "bulkhead": 210.0,
+        "bulkhead_shear": 150.0,
+        "roof_pillar": 0.0,
+        "roof_cross": 0.0,
+        "roof_rail": 0.0,
+        "roof_shear": 0.0,
+        "tunnel": 240.0,
+        "tunnel_shear": 110.0
+      }
+    },
+    {
+      "architecture_id": "closed_carbon_cell",
+      "description": "Cellule carbone fermée par anneaux de pavillon, montants inclinés, tunnel et diaphragmes avant/arrière.",
+      "roof_ring": true,
+      "roof_material": "carbon_equivalent",
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 340.0,
+        "floor_cross": 210.0,
+        "floor_shear": 120.0,
+        "belt_shear": 100.0,
+        "space_shear": 65.0,
+        "sill": 470.0,
+        "side_vertical": 155.0,
+        "side_shear": 140.0,
+        "bulkhead": 205.0,
+        "bulkhead_shear": 145.0,
+        "roof_pillar": 150.0,
+        "roof_cross": 135.0,
+        "roof_rail": 170.0,
+        "roof_shear": 85.0,
+        "tunnel": 220.0,
+        "tunnel_shear": 105.0
+      }
+    },
+    {
+      "architecture_id": "hybrid_tube_safety_cell",
+      "description": "Tub carbone avec anneau supérieur en tubes acier démontable/inspectable; architecture de recherche, pas copie RUF.",
+      "roof_ring": true,
+      "roof_material": "steel_tube",
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 330.0,
+        "floor_cross": 205.0,
+        "floor_shear": 115.0,
+        "belt_shear": 95.0,
+        "space_shear": 60.0,
+        "sill": 450.0,
+        "side_vertical": 150.0,
+        "side_shear": 135.0,
+        "bulkhead": 200.0,
+        "bulkhead_shear": 140.0,
+        "roof_pillar": 105.0,
+        "roof_cross": 95.0,
+        "roof_rail": 110.0,
+        "roof_shear": 55.0,
+        "tunnel": 215.0,
+        "tunnel_shear": 100.0
+      }
+    },
+    {
+      "architecture_id": "hybrid_multicell_reinforced",
+      "description": "Cellule multi-caissons avec bas de caisse profonds, tunnel, diaphragmes renforcés et anneau supérieur acier inspectable.",
+      "roof_ring": true,
+      "roof_material": "steel_tube",
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 470.0,
+        "floor_cross": 290.0,
+        "floor_shear": 165.0,
+        "belt_shear": 135.0,
+        "space_shear": 85.0,
+        "sill": 640.0,
+        "side_vertical": 215.0,
+        "side_shear": 190.0,
+        "bulkhead": 285.0,
+        "bulkhead_shear": 200.0,
+        "roof_pillar": 145.0,
+        "roof_cross": 130.0,
+        "roof_rail": 150.0,
+        "roof_shear": 75.0,
+        "tunnel": 305.0,
+        "tunnel_shear": 145.0
+      }
+    },
+    {
+      "architecture_id": "all_carbon_multicell_x8",
+      "description": "Cellule multi-caissons tout CFRP; anneau de pavillon carbone épaissi huit fois par rapport au benchmark géométrique de base.",
+      "roof_ring": true,
+      "roof_material": "carbon_equivalent",
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 470.0,
+        "floor_cross": 290.0,
+        "floor_shear": 165.0,
+        "belt_shear": 135.0,
+        "space_shear": 85.0,
+        "sill": 640.0,
+        "side_vertical": 215.0,
+        "side_shear": 190.0,
+        "bulkhead": 285.0,
+        "bulkhead_shear": 200.0,
+        "roof_pillar": 1160.0,
+        "roof_cross": 1040.0,
+        "roof_rail": 1200.0,
+        "roof_shear": 600.0,
+        "tunnel": 305.0,
+        "tunnel_shear": 145.0
+      }
+    },
+    {
+      "architecture_id": "all_carbon_multicell_x10",
+      "description": "Cellule multi-caissons tout CFRP; pavillon carbone x10, premier candidat tout carbone qui franchit la cible torsionnelle F1.",
+      "roof_ring": true,
+      "roof_material": "carbon_equivalent",
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 470.0,
+        "floor_cross": 290.0,
+        "floor_shear": 165.0,
+        "belt_shear": 135.0,
+        "space_shear": 85.0,
+        "sill": 640.0,
+        "side_vertical": 215.0,
+        "side_shear": 190.0,
+        "bulkhead": 285.0,
+        "bulkhead_shear": 200.0,
+        "roof_pillar": 1450.0,
+        "roof_cross": 1300.0,
+        "roof_rail": 1500.0,
+        "roof_shear": 750.0,
+        "tunnel": 305.0,
+        "tunnel_shear": 145.0
+      }
+    },
+    {
+      "architecture_id": "all_carbon_multicell_x12",
+      "description": "Cellule multi-caissons tout CFRP; pavillon carbone x12 pour mesurer le gain marginal de rigidité contre la masse.",
+      "roof_ring": true,
+      "roof_material": "carbon_equivalent",
+      "central_tunnel": true,
+      "effective_member_areas_mm2": {
+        "floor_rail": 470.0,
+        "floor_cross": 290.0,
+        "floor_shear": 165.0,
+        "belt_shear": 135.0,
+        "space_shear": 85.0,
+        "sill": 640.0,
+        "side_vertical": 215.0,
+        "side_shear": 190.0,
+        "bulkhead": 285.0,
+        "bulkhead_shear": 200.0,
+        "roof_pillar": 1740.0,
+        "roof_cross": 1560.0,
+        "roof_rail": 1800.0,
+        "roof_shear": 900.0,
+        "tunnel": 305.0,
+        "tunnel_shear": 145.0
+      }
+    }
+  ]
+}

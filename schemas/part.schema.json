@@ -98,10 +98,10 @@
       "properties": {
         "candidate_processes": {
           "type": "array",
-          "items": { "enum": ["FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting"] },
+          "items": { "enum": ["FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting", "composite_layup"] },
           "minItems": 1
         },
-        "preferred_process": { "enum": ["FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting", "undecided"] },
+        "preferred_process": { "enum": ["FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting", "composite_layup", "undecided"] },
         "material": {
           "type": "object",
           "additionalProperties": false,

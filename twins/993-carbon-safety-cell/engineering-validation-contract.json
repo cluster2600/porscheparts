@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0.0",
+  "design_id": "964-993-CARBON-MONOCOQUE-CLEAN-SHEET-0002",
+  "status": "concept_screening_complete_release_blocked",
+  "claim_boundary": {
+    "currently_supported": [
+      "Une geometrie conceptuelle originale de cellule commune, deux jeux de modules d'enveloppe 964/993 et un outillage conceptuel en sept secteurs ont ete generes en STEP.",
+      "Huit topologies de treillis ont ete comparees sous les memes hypotheses et conditions aux limites.",
+      "La topologie all_carbon_multicell_x10 est le candidat tout CFRP le plus leger qui franchit le seuil torsionnel provisoire; x12 le franchit aussi avec un rendement massique inferieur.",
+      "Un assemblage CalculiX independant du solveur Python reproduit la rigidite torsionnelle F1 avec une erreur relative inferieure a 0,0001."
+    ],
+    "not_supported": [
+      "compatibilite dimensionnelle avec une Porsche 964 ou 993",
+      "masse véhicule finale de 1200 kg",
+      "masse de la piece terminee",
+      "rigidite reelle d'un stratifie composite",
+      "resistance, flambement, fatigue, tenue au feu, crash ou protection des occupants",
+      "fabricabilite du moule ou de la piece",
+      "homologation routiere ou eligibilite circuit"
+    ]
+  },
+  "screening_evidence": {
+    "selected_architecture": "all_carbon_multicell_x10",
+    "primary_structure_materials": [
+      "carbon_equivalent"
+    ],
+    "active_member_mass_kg": 78.079,
+    "torsional_stiffness_Nm_per_deg": 21011.7,
+    "relative_to_open_tub": 7.325,
+    "side_intrusion_stiffness_N_per_mm": 25238.5,
+    "python_calculix_relative_error": 0.0000007817523457564439,
+    "global_inertial_screening": "3 g vertical, 1.5 g braking and 1.8 g lateral on the same F1 truss; no release credit",
+    "manufacturing_screening": "generic two-node thermal/cure sensitivity and free tool CTE mismatch; no process selection or release credit",
+    "model_fidelity": "F1 linear pin-jointed truss with equivalent isotropic properties",
+    "release_credit": false
+  },
+  "evidence_ladder": [
+    {
+      "gate_id": "G0_SOURCE_AND_RIGHTS",
+      "purpose": "Separer les precedents commerciaux des donnees de conception reutilisables.",
+      "required_evidence": [
+        "registre de provenance",
+        "absence de geometrie ZESAD ou RUF dans les masters",
+        "droits sur les scans et donnees de vehicule"
+      ],
+      "status": "partial"
+    },
+    {
+      "gate_id": "G1_VEHICLE_METROLOGY",
+      "purpose": "Figer séparément les datums et enveloppes 964 et 993 utiles aux deux modules d'interface.",
+      "required_evidence": [
+        "scan structurel interieur/exterieur de chaque generation avec artefact d'echelle",
+        "mesure CMM des points suspension, direction, groupe motopropulseur, portes, vitrages, sieges et ceintures",
+        "incertitude, repetitions, temperature et certificat d'etalonnage",
+        "gabarits physiques des sous-chassis avant et arriere 964 et 993"
+      ],
+      "acceptance": "rapport metrologique signe et enveloppe CAO F2 avec chaque interface dans sa tolerance approuvee",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G2_MATERIAL_AND_PROCESS",
+      "purpose": "Obtenir des proprietes admissibles du systeme composite fabrique par le procede reel.",
+      "required_evidence": [
+        "selection fibre, resine, tissu, ame, adhesif, inserts et isolants",
+        "coupons 0/90/+45/-45, compression, traction, cisaillement, interlaminaire et bearing/bypass",
+        "conditions a sec, humide, chaud, froid, vieilli, carburant/huile/liquide de frein et cycle thermique",
+        "statistiques de lots et knock-downs de fabrication",
+        "porosite, taux de fibres, epaisseurs et criteres CND"
+      ],
+      "acceptance": "valeurs admissibles et specification materiau-procede approuvees par l'ingenieur structure composite",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G3_LAMINATE_AND_JOINT_DESIGN",
+      "purpose": "Dimensionner peaux, ames, renforts, collages et inserts.",
+      "required_evidence": [
+        "zonage de plis et nomenclature complete",
+        "CLT et criteres de ruine approuves",
+        "modeles de joints et inserts avec non-linearite, contact, pelage et progressive damage",
+        "essais elements technologiques representatifs des rayons, plis, arrets, percages et reparations"
+      ],
+      "acceptance": "marges positives avec facteurs de charge et facteurs environnementaux approuves",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G4_STATIC_MODAL_AND_FATIGUE",
+      "purpose": "Montrer le comportement structurel avant impact.",
+      "required_evidence": [
+        "modele coque/solide composite converge et audite",
+        "torsion, flexion, freinage, virage, bosse, levage, remorquage, siege et ceinture",
+        "modes propres et separation avec excitations moteur, roues et aero",
+        "spectres route et circuit issus de telemetrie instrumentee",
+        "fatigue des stratifies, collages, inserts et structure hybride",
+        "sensibilites aux tolerances, temperature, humidite et dommages d'impact barely-visible"
+      ],
+      "acceptance": "toutes marges positives, convergence documentee et plan d'essais approuve",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G5_ROOF_INTRUSION_FIRE_AND_CRASH",
+      "purpose": "Evaluer survie occupant et compatibilite reglementaire.",
+      "required_evidence": [
+        "cas de toit selon procedure choisie avec l'expert, dont FMVSS 216a comme reference possible",
+        "front, offset, lateral, poteau, arriere et retournement selon route d'homologation applicable",
+        "modeles barriere et mannequin valides avec criteres occupant",
+        "retention batterie, carburant, sieges, ceintures, portes et vitrages",
+        "propagation incendie, toxicite, egress et acces secours",
+        "essais physiques destructifs correles sur sous-ensembles puis caisse complete"
+      ],
+      "acceptance": "laboratoire et expert d'homologation confirment la procedure, les resultats et la representativite",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G6_TOOLING_AND_PROCESS_VALIDATION",
+      "purpose": "Prouver que le moule produit repetablement la structure calculee.",
+      "required_evidence": [
+        "drapabilite, plans de joint, depouilles et sequence de demoulage",
+        "cycle cure, exothermie, gradients, pression, vide et CTE du moule",
+        "premier article complet avec CND et metrologie",
+        "capabilite de procede sur plusieurs pieces et coupons temoins"
+      ],
+      "acceptance": "FAI approuve, aucun defaut critique et capabilite conforme au plan de controle",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G7_PHYSICAL_CORRELATION",
+      "purpose": "Transformer les simulations en modeles predictifs.",
+      "required_evidence": [
+        "essai de torsion et flexion caisse instrumentee",
+        "essais modaux et de joints",
+        "essais fatigue sous-ensemble et caisse",
+        "essais toit, intrusion et crash requis",
+        "ecarts calcul-essai, recalage borne et validation aveugle sur cas separe"
+      ],
+      "acceptance": "criteres de correlation convenus avant essai et satisfaits sans ajustement non documente",
+      "status": "blocked"
+    },
+    {
+      "gate_id": "G8_INDEPENDENT_RELEASE",
+      "purpose": "Autoriser une configuration precise, et non un concept generique.",
+      "required_evidence": [
+        "revue independante par ingenieurs qualifies structure composite, crash, fabrication et homologation",
+        "configuration, logiciel, maillage, materiaux, plans, processus et serie geles",
+        "dossier route specifique au pays",
+        "dossier circuit specifique au championnat, club ou organisateur",
+        "plan inspection, maintenance, dommage, reparation et fin de vie"
+      ],
+      "acceptance": "signatures professionnelles et autorisations ecrites applicables a la configuration fabriquee",
+      "status": "blocked"
+    }
+  ],
+  "mass_and_load_contract": {
+    "target_vehicle_mass_kg": 1200.0,
+    "target_monocoque_system_mass_kg": 110.0,
+    "status": "design_target_not_measured",
+    "derived_preliminary_resultants_N": {
+      "static_1g": 11767.98,
+      "vertical_bump_3g": 35303.94,
+      "braking_1_5g": 17651.97,
+      "cornering_1_8g": 21182.36
+    },
+    "release_credit": false,
+    "blocking_inputs": [
+      "masses par essieu",
+      "centre de gravite",
+      "masses non suspendues",
+      "pneus et adherence",
+      "appuis aerodynamiques",
+      "telemetrie route et circuit"
+    ]
+  },
+  "release_gates": {
+    "manufacturing": false,
+    "installation": false,
+    "engine_start": false,
+    "road_test": false,
+    "track_test": false,
+    "road_use": false,
+    "competitive_use": false
+  }
+}

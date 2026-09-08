@@ -1,0 +1,28 @@
+#usda 1.0
+(
+    defaultPrim = "DigitalTwin"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "DigitalTwin" (
+    kind = "assembly"
+)
+{
+    custom string claimScope = "964 993 all-carbon concept, structural screening and tooling layout only"
+    custom bool simReadyValidated = false
+    custom bool roadOrTrackReleased = false
+
+    def Xform "Cell" (
+        prepend references = @./993-carbon-safety-cell-structural.usda@</World>
+    )
+    {
+    }
+
+    def Xform "Tooling" (
+        prepend references = @./993-carbon-safety-cell-tooling.usda@</World>
+    )
+    {
+        token visibility = "invisible"
+    }
+}

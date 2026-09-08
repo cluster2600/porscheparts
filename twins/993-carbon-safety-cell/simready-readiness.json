@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "checked_on": "2026-09-08",
+  "property_assignment_intent": "run",
+  "source_asset": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-digital-twin.usda",
+  "source_asset_ready": true,
+  "vast": {
+    "approved_secret_boundary": "openbao-vastai and openbao-ghcr wrappers",
+    "vast_reader_check": "passed",
+    "vast_auth_check": "passed",
+    "ghcr_reader_check": "passed",
+    "ghcr_auth_check": "passed",
+    "ssh_key_loaded_in_agent": true,
+    "ssh_key_registered": true,
+    "running_instances": 0,
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "image_manifest_public_anonymous_read": "passed",
+    "image_architecture": "amd64",
+    "image_os": "linux"
+  },
+  "simready_preflight": {
+    "mode": "check-only_skip-deploy",
+    "report": "work/993-carbon-safety-cell/simready-preflight/preflight.json",
+    "status": "blocked",
+    "ready": [
+      "source asset readable",
+      "output root writable",
+      "Docker daemon reachable",
+      "Docker Compose v2 available",
+      "Git LFS available"
+    ],
+    "blockers": [
+      "OpenUSD Python APIs unavailable on the current macOS runtime",
+      "Omniverse Asset Validator unavailable on the current macOS runtime",
+      "SimReady Foundation v2026.04.1 checkout present, but its pinned validation runtime is not installed in check-only mode",
+      "Content Agents v0.5.2 checkout missing and Material, Physics and OVRTX endpoints unhealthy",
+      "no NVIDIA GPU visible on the local host"
+    ]
+  },
+  "decision": {
+    "vast_launch_allowed": false,
+    "vast_launch_executed": false,
+    "reason": "Le préflight macOS reste bloqué. Une exécution Vast explicitement autorisée doit utiliser l'image publique linux/amd64 verrouillée, transférer seulement un commit propre, puis vérifier les services avant tout appel d'agent."
+  },
+  "claim_limits": [
+    "Les couches USDA ont ete generees et verifiees textuellement, mais n'ont pas encore passe OpenUSD, Asset Validator, SimReady Validate, Content Agents ou OVRTX.",
+    "Omniverse n'est pas un solveur de crash ou une preuve d'homologation pour cette structure."
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "architecture_id": "all_carbon_multicell_x10",
+  "existing_local_cases": {
+    "side_intrusion_stiffness_N_per_mm": 25238.5,
+    "torsional_stiffness_Nm_per_deg": 21011.7
+  },
+  "global_inertial_cases": [
+    {
+      "active_member_mass_kg": 78.079,
+      "axial_response": {
+        "allowable_or_factor_of_safety": null,
+        "governing_member_group": "tunnel_shear",
+        "governing_member_id": "B_TUNNEL_BELT_R",
+        "maximum_absolute_axial_strain": 0.000831622,
+        "maximum_absolute_equivalent_axial_stress_MPa": 14.969191
+      },
+      "axis": "Z",
+      "boundary_condition": "anneaux F/R encastrés; interfaces réelles non disponibles",
+      "case_id": "vertical_bump_3g",
+      "governing_node_id": "B_TUNNEL_R",
+      "load_application": "resultant répartie uniformément sur les nœuds A/B du treillis",
+      "maximum_displacement_mm": 1.847762,
+      "passes_release_requirement": false,
+      "resultant_N": -35303.94,
+      "target_node_count": 16
+    },
+    {
+      "active_member_mass_kg": 78.079,
+      "axial_response": {
+        "allowable_or_factor_of_safety": null,
+        "governing_member_group": "tunnel",
+        "governing_member_id": "FA_TUNNEL_L",
+        "maximum_absolute_axial_strain": 0.000163304,
+        "maximum_absolute_equivalent_axial_stress_MPa": 2.939463
+      },
+      "axis": "X",
+      "boundary_condition": "anneaux F/R encastrés; interfaces réelles non disponibles",
+      "case_id": "braking_1_5g",
+      "governing_node_id": "B_R_ROOF",
+      "load_application": "resultant répartie uniformément sur les nœuds A/B du treillis",
+      "maximum_displacement_mm": 0.174337,
+      "passes_release_requirement": false,
+      "resultant_N": -17651.97,
+      "target_node_count": 16
+    },
+    {
+      "active_member_mass_kg": 78.079,
+      "axial_response": {
+        "allowable_or_factor_of_safety": null,
+        "governing_member_group": "tunnel_shear",
+        "governing_member_id": "FA_TUNNEL_D1",
+        "maximum_absolute_axial_strain": 0.000622519,
+        "maximum_absolute_equivalent_axial_stress_MPa": 11.205335
+      },
+      "axis": "Y",
+      "boundary_condition": "anneaux F/R encastrés; interfaces réelles non disponibles",
+      "case_id": "cornering_1_8g",
+      "governing_node_id": "B_TUNNEL_R",
+      "load_application": "resultant répartie uniformément sur les nœuds A/B du treillis",
+      "maximum_displacement_mm": 0.685937,
+      "passes_release_requirement": false,
+      "resultant_N": -21182.36,
+      "target_node_count": 16
+    }
+  ],
+  "model": {
+    "geometry_authority": "F1 hypothesis envelope",
+    "material": "isotropic equivalent carbon for topology ranking",
+    "member_count": 130,
+    "node_count": 28,
+    "type": "linear_3d_pin_jointed_truss"
+  },
+  "next_solver_model": {
+    "mesh": "Gmsh composite shell mesh from measured F2 midsurfaces",
+    "post_processing": "meshio/PyVista/ParaView",
+    "reference_solver": "CalculiX composite shell with zone layups",
+    "surrogate": "PhysicsNeMo only after converged and correlated DOE exists",
+    "visualization": "OpenUSD/Omniverse after solver results are traceable"
+  },
+  "not_proven": [
+    "laminate stress, ply failure or delamination",
+    "joint, insert, bearing and pull-out strength",
+    "buckling, modal response and fatigue",
+    "roof crush, impact and crashworthiness",
+    "964/993 dimensional compatibility",
+    "road, track, TÜV or manufacturing release"
+  ],
+  "release_gates": {
+    "composite_shell_mesh_converged": false,
+    "crash_cases_passed": false,
+    "joints_and_inserts_correlated": false,
+    "laminate_allowables_correlated": false,
+    "measured_F2_geometry": false,
+    "modal_buckling_fatigue_passed": false,
+    "physical_torsion_test_correlated": false,
+    "professional_review": false,
+    "road_or_track_release": false
+  },
+  "schema_version": "1.0.0",
+  "simulation_id": "964-993-CARBON-MONOCOQUE-FINAL-PRODUCT-F1-0001",
+  "status": "global_load_screening_complete_not_structural_validation"
+}

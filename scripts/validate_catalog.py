@@ -45,7 +45,7 @@ GEOMETRY_SOURCE_TYPES = {
     "estimated",
     "mixed",
 }
-PROCESSES = {"FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting"}
+PROCESSES = {"FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting", "composite_layup"}
 
 TOP_LEVEL_KEYS = {
     "schema_version",
@@ -240,7 +240,7 @@ def validate_record(record: Any) -> list[str]:
             errors.append("titanium.inspection: at least one inspection is required")
         if not supplier_requirements:
             errors.append("manufacturing.supplier_requirements: required for titanium")
-        if preferred_process not in {"LPBF", "DMLS", "CNC", "sheet_metal", "casting"}:
+        if preferred_process not in {"LPBF", "DMLS", "CNC", "sheet_metal", "casting", "composite_layup"}:
             errors.append("manufacturing.preferred_process: incompatible with a titanium final part")
 
     validation = _section(record, "validation", errors)

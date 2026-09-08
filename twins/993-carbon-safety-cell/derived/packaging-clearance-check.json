@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "status": "concept_checks_passed_not_measured",
+  "passed": true,
+  "checks": [
+    {
+      "check_id": "C2_SHIFT_ROD_INSIDE_TUNNEL",
+      "passed": true,
+      "margin_y_mm": 118.0,
+      "status": "hypothesis_check_only"
+    },
+    {
+      "check_id": "C4_CENTRAL_TUBE_INSIDE_TUNNEL",
+      "passed": true,
+      "margin_y_mm": 64.0,
+      "margin_top_z_mm": 61.0,
+      "status": "hypothesis_check_only"
+    },
+    {
+      "check_id": "C4_SHIFT_GUIDE_INSIDE_TUNNEL",
+      "passed": true,
+      "margin_y_mm": 31.0,
+      "margin_top_z_mm": 38.0,
+      "status": "hypothesis_check_only"
+    },
+    {
+      "check_id": "FIXED_SERVICES_OUTSIDE_C4_ROTATION_ENVELOPE",
+      "passed": true,
+      "minimum_radial_separation_mm": 136.0,
+      "provisional_required_separation_mm": 100.0,
+      "status": "hypothesis_check_only"
+    },
+    {
+      "check_id": "ALL_FOUR_VARIANTS_EXPORTED",
+      "passed": true,
+      "variants": [
+        "964_C2",
+        "964_C4",
+        "993_C2",
+        "993_C4"
+      ],
+      "status": "file_contract_check"
+    },
+    {
+      "check_id": "C4_FRONT_DRIVE_FEATURES_PRESENT",
+      "passed": true,
+      "status": "file_contract_check"
+    }
+  ],
+  "inputs": {
+    "design_space": "twins/993-carbon-safety-cell/design-space.json",
+    "packaging_contract": "twins/993-carbon-safety-cell/vehicle-packaging-contract.json",
+    "cad_report": "twins/993-carbon-safety-cell/derived/cad-generation-report.json"
+  },
+  "claim_limits": [
+    "Les marges sont calculées entre enveloppes hypothétiques; elles ne valident pas une pièce Porsche réelle.",
+    "Les mouvements de joints, fouettement d'arbre, tolérances, déformations et dilatations thermiques ne sont pas modélisés.",
+    "La réussite ne donne aucun crédit de rigidité, fatigue, crash, feu, fabrication, route, circuit ou TÜV."
+  ],
+  "release_gates": {
+    "measured_vehicle_clearance": false,
+    "dynamic_driveline_clearance": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

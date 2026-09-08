@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "program_id": "964-993-CARBON-MONOCOQUE-SIMULATION-PROGRAM-0001",
+  "status": "F1_screening_active_F2_and_release_blocked",
+  "software_stack_source": "docs/SOFTWARE_STACK.md",
+  "stages": [
+    {
+      "stage_id": "S01_CONCEPT_CAD",
+      "tools": ["build123d 0.11.1", "OCCT 7.9.3.1", "STEP"],
+      "inputs": ["design-space.json", "derived/selected-topology.json"],
+      "outputs": ["derived/993-carbon-safety-cell-concept.step", "derived/993-carbon-safety-cell-tooling-concept.step"],
+      "status": "completed_F1_hypothesis_geometry"
+    },
+    {
+      "stage_id": "S02_MANUFACTURING_SCREEN",
+      "tools": ["Python 3 standard library"],
+      "inputs": ["manufacturing-simulation.json"],
+      "outputs": ["derived/manufacturing-process-screening.json"],
+      "status": "completed_uncorrelated_lumped_thermal_cure_screen"
+    },
+    {
+      "stage_id": "S03_PRODUCT_GLOBAL_LOADS",
+      "tools": ["Python 3 reference truss", "CalculiX 2.21 cross-check"],
+      "inputs": ["design-space.json", "derived/selected-topology.json"],
+      "outputs": ["derived/structural-screening.json", "derived/final-product-f1-screening.json", "derived/calculix-verification.json"],
+      "status": "completed_F1_not_composite_shell"
+    },
+    {
+      "stage_id": "S04_MEASURED_SHELL_CAE",
+      "tools": ["trimesh", "pymeshlab", "Gmsh", "CalculiX composite shells", "meshio", "PyVista", "ParaView"],
+      "required_inputs": ["measured F2 midsurfaces", "zone layups", "coupon allowables", "bond and insert models", "measured interface loads"],
+      "status": "blocked_missing_measured_inputs"
+    },
+    {
+      "stage_id": "S05_SIMREADY",
+      "tools": ["OpenUSD", "SimReady Foundation", "NVIDIA Material Agent", "NVIDIA Physics Agent", "OVRTX"],
+      "inputs": ["derived/993-carbon-safety-cell-digital-twin.usda"],
+      "status": "vast_execution_requested_local_preflight_blocked"
+    },
+    {
+      "stage_id": "S06_SURROGATE",
+      "tools": ["NVIDIA PhysicsNeMo 2.2.1"],
+      "required_inputs": ["converged CAE DOE", "train/holdout/OOD split", "physical correlation"],
+      "status": "blocked_no_training_corpus"
+    }
+  ],
+  "manufacturing_release": false,
+  "road_release": false,
+  "track_release": false,
+  "homologation_release": false
+}

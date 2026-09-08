@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "status": "passed",
+  "comparison_scope": "même modèle treillis linéaire, assemblages numériques indépendants",
+  "calculix": {
+    "version": "2.21",
+    "input": "twins/993-carbon-safety-cell/derived/selected-torsion.inp",
+    "raw_result": "twins/993-carbon-safety-cell/derived/selected-torsion.dat",
+    "front_left_displacement_mm": [
+      0.008565356,
+      3.17205,
+      4.099295
+    ],
+    "front_right_displacement_mm": [
+      -0.008565356,
+      3.17205,
+      -4.099295
+    ],
+    "torsional_stiffness_Nm_per_deg": 21011.7
+  },
+  "python_reference": {
+    "report": "twins/993-carbon-safety-cell/derived/structural-screening.json",
+    "torsional_stiffness_Nm_per_deg": 21011.7
+  },
+  "relative_error": 7.817523457564439e-07,
+  "tolerance": 0.0001,
+  "passed": true,
+  "claim_limits": [
+    "Cette concordance vérifie l'implémentation du treillis, pas sa fidélité à une coque composite.",
+    "Les deux solveurs utilisent les mêmes nœuds, barres, propriétés équivalentes et conditions aux limites.",
+    "Aucun matériau, joint, stratifié, flambement, fatigue, impact ou crash réel n'est corrélé."
+  ],
+  "road_or_track_release": false
+}

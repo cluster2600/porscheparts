@@ -1,0 +1,1359 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "World" (
+    kind = "assembly"
+)
+{
+    custom string analysisStatus = "F1_screening_complete_not_validated"
+    custom string architectureId = "all_carbon_multicell_x10"
+    custom string designOrigin = "clean_sheet_original_topology"
+    custom bool allCarbonPrimaryStructure = true
+    custom bool dimensionalFit964Validated = false
+    custom bool dimensionalFit993Validated = false
+    custom bool C2C4DynamicClearanceValidated = false
+    custom bool roadOrTrackReleased = false
+    custom double targetVehicleMassKg = 1200
+    custom double screeningTorsionalStiffnessNmPerDeg = 21011.7
+    custom string screeningWarning = "Treillis lineaire non correle; aucune aptitude crash route circuit ou fabrication"
+    custom string packagingStatus = "functional topology present; dimensions are hypotheses pending four-vehicle metrology"
+
+    def Scope "Looks"
+    {
+        def Material "Carbon"
+        {
+            token outputs:surface.connect = </World/Looks/Carbon/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.025, 0.035, 0.045)
+                float inputs:metallic = 0.15
+                float inputs:opacity = 1
+                float inputs:roughness = 0.28
+                token outputs:surface
+            }
+        }
+
+        def Material "Interface"
+        {
+            token outputs:surface.connect = </World/Looks/Interface/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.95, 0.56, 0.08)
+                float inputs:metallic = 0.35
+                float inputs:opacity = 1
+                float inputs:roughness = 0.32
+                token outputs:surface
+            }
+        }
+
+        def Material "Platform964"
+        {
+            token outputs:surface.connect = </World/Looks/Platform964/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.12, 0.52, 0.86)
+                float inputs:metallic = 0.25
+                float inputs:opacity = 1
+                float inputs:roughness = 0.32
+                token outputs:surface
+            }
+        }
+
+        def Material "Platform993"
+        {
+            token outputs:surface.connect = </World/Looks/Platform993/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.18, 0.76, 0.38)
+                float inputs:metallic = 0.25
+                float inputs:opacity = 1
+                float inputs:roughness = 0.32
+                token outputs:surface
+            }
+        }
+
+        def Material "Load"
+        {
+            token outputs:surface.connect = </World/Looks/Load/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.9, 0.03, 0.02)
+                float inputs:metallic = 0.05
+                float inputs:opacity = 1
+                float inputs:roughness = 0.42
+                token outputs:surface
+            }
+        }
+
+        def Material "Support"
+        {
+            token outputs:surface.connect = </World/Looks/Support/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.03, 0.18, 0.85)
+                float inputs:metallic = 0.35
+                float inputs:opacity = 1
+                float inputs:roughness = 0.3
+                token outputs:surface
+            }
+        }
+
+        def Material "Deformed"
+        {
+            token outputs:surface.connect = </World/Looks/Deformed/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.95, 0.14, 0.02)
+                float inputs:metallic = 0.05
+                float inputs:opacity = 1
+                float inputs:roughness = 0.35
+                token outputs:surface
+            }
+        }
+
+        def Material "Shift"
+        {
+            token outputs:surface.connect = </World/Looks/Shift/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.96, 0.43, 0.05)
+                float inputs:metallic = 0.22
+                float inputs:opacity = 1
+                float inputs:roughness = 0.34
+                token outputs:surface
+            }
+        }
+
+        def Material "C4"
+        {
+            token outputs:surface.connect = </World/Looks/C4/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.04, 0.58, 0.82)
+                float inputs:metallic = 0.32
+                float inputs:opacity = 1
+                float inputs:roughness = 0.28
+                token outputs:surface
+            }
+        }
+
+        def Material "Service"
+        {
+            token outputs:surface.connect = </World/Looks/Service/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.55, 0.75, 0.18)
+                float inputs:metallic = 0.1
+                float inputs:opacity = 1
+                float inputs:roughness = 0.42
+                token outputs:surface
+            }
+        }
+
+    }
+
+    def Xform "Cell"
+    {
+        def Xform "ConceptPanels"
+        {
+            def Cube "FloorSandwich" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (880, 650, 17)
+                double3 xformOp:translate = (1140, 0, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "L_DeepSill" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (750, 75, 150)
+                double3 xformOp:translate = (1110, 575, 330)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "L_Footwell" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (165, 215, 46)
+                double3 xformOp:translate = (570, 365, 242)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "L_RearSeatWell" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (215, 210, 23)
+                double3 xformOp:translate = (1580, 350, 450)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "L_RearWheelhouseProxy" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (180, 95, 215)
+                double3 xformOp:translate = (1830, 535, 480)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "R_DeepSill" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (750, 75, 150)
+                double3 xformOp:translate = (1110, -575, 330)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "R_Footwell" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (165, 215, 46)
+                double3 xformOp:translate = (570, -365, 242)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "R_RearSeatWell" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (215, 210, 23)
+                double3 xformOp:translate = (1580, -350, 450)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "R_RearWheelhouseProxy" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (180, 95, 215)
+                double3 xformOp:translate = (1830, -535, 480)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "TunnelWallL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (775, 13, 137.5)
+                double3 xformOp:translate = (1205, 152, 317.5)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "TunnelWallR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (775, 13, 137.5)
+                double3 xformOp:translate = (1205, -152, 317.5)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "TunnelRemovableServiceCover" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (775, 165, 9)
+                double3 xformOp:translate = (1205, 0, 455)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "FrontBulkheadL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (19, 212.5, 285)
+                double3 xformOp:translate = (430, 407.5, 490)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearBulkheadL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (22, 212.5, 325)
+                double3 xformOp:translate = (1840, 407.5, 530)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "FrontBulkheadR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (19, 212.5, 285)
+                double3 xformOp:translate = (430, -407.5, 490)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearBulkheadR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (22, 212.5, 325)
+                double3 xformOp:translate = (1840, -407.5, 530)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "FrontBulkheadHeader" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (21, 565, 105)
+                double3 xformOp:translate = (430, 0, 770)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearBulkheadHeader" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (23, 580, 120)
+                double3 xformOp:translate = (1840, 0, 785)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearShelf" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Carbon>
+                double3 xformOp:scale = (180, 520, 21)
+                double3 xformOp:translate = (1660, 0, 480)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "FrontCommonAdapterL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Interface>
+                double3 xformOp:scale = (60, 50, 40)
+                double3 xformOp:translate = (0, 600, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "FrontCommonAdapterR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Interface>
+                double3 xformOp:scale = (60, 50, 40)
+                double3 xformOp:translate = (0, -600, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearCommonAdapterL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Interface>
+                double3 xformOp:scale = (60, 50, 40)
+                double3 xformOp:translate = (2272, 600, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearCommonAdapterR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Interface>
+                double3 xformOp:scale = (60, 50, 40)
+                double3 xformOp:translate = (2272, -600, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def Xform "AutomotiveRoofAndDoorFrames"
+        {
+            def BasisCurves "CFRPFramePaths" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+                point3f[] points = [
+                    (560, -590, 650),
+                    (1660, -590, 670),
+                    (510, -590, 650),
+                    (735, -505, 1240),
+                    (1660, -590, 670),
+                    (1540, -505, 1240),
+                    (735, -505, 1240),
+                    (1540, -505, 1240),
+                    (560, 590, 650),
+                    (1660, 590, 670),
+                    (510, 590, 650),
+                    (735, 505, 1240),
+                    (1660, 590, 670),
+                    (1540, 505, 1240),
+                    (735, 505, 1240),
+                    (1540, 505, 1240),
+                    (735, -505, 1240),
+                    (735, 505, 1240),
+                    (1540, -505, 1240),
+                    (1540, 505, 1240),
+                    (1130, -505, 1250),
+                    (1130, 505, 1250)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Carbon>
+                uniform token type = "linear"
+                float[] widths = [34, 34, 34, 34, 38, 38, 36, 36, 34, 34, 34, 34, 38, 38, 36, 36, 36, 36, 38, 38, 29, 29]
+                uniform token wrap = "nonperiodic"
+            }
+
+        }
+
+        def Xform "EquivalentLoadPaths"
+        {
+            def BasisCurves "CarbonPaths" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+                point3f[] points = [
+                    (0, 702.5, 180),
+                    (0, -702.5, 180),
+                    (0, 702.5, 650),
+                    (0, -702.5, 650),
+                    (0, 702.5, 180),
+                    (0, 702.5, 650),
+                    (0, -702.5, 180),
+                    (0, -702.5, 650),
+                    (0, 702.5, 180),
+                    (0, -702.5, 650),
+                    (0, -702.5, 180),
+                    (0, 702.5, 650),
+                    (430, 650, 180),
+                    (430, -650, 180),
+                    (430, 650, 650),
+                    (430, -650, 650),
+                    (430, 650, 180),
+                    (430, 650, 650),
+                    (430, -650, 180),
+                    (430, -650, 650),
+                    (430, 650, 180),
+                    (430, -650, 650),
+                    (430, -650, 180),
+                    (430, 650, 650),
+                    (1840, 650, 180),
+                    (1840, -650, 180),
+                    (1840, 650, 650),
+                    (1840, -650, 650),
+                    (1840, 650, 180),
+                    (1840, 650, 650),
+                    (1840, -650, 180),
+                    (1840, -650, 650),
+                    (1840, 650, 180),
+                    (1840, -650, 650),
+                    (1840, -650, 180),
+                    (1840, 650, 650),
+                    (2272, 722, 180),
+                    (2272, -722, 180),
+                    (2272, 722, 650),
+                    (2272, -722, 650),
+                    (2272, 722, 180),
+                    (2272, 722, 650),
+                    (2272, -722, 180),
+                    (2272, -722, 650),
+                    (2272, 722, 180),
+                    (2272, -722, 650),
+                    (2272, -722, 180),
+                    (2272, 722, 650),
+                    (0, 702.5, 180),
+                    (430, 650, 180),
+                    (0, 702.5, 650),
+                    (430, 650, 650),
+                    (0, 702.5, 180),
+                    (430, 650, 650),
+                    (0, 702.5, 650),
+                    (430, 650, 180),
+                    (0, -702.5, 180),
+                    (430, -650, 180),
+                    (0, -702.5, 650),
+                    (430, -650, 650),
+                    (0, -702.5, 180),
+                    (430, -650, 650),
+                    (0, -702.5, 650),
+                    (430, -650, 180),
+                    (0, 702.5, 180),
+                    (430, -650, 180),
+                    (0, -702.5, 180),
+                    (430, 650, 180),
+                    (0, 702.5, 650),
+                    (430, -650, 650),
+                    (0, -702.5, 650),
+                    (430, 650, 650),
+                    (0, 702.5, 180),
+                    (430, -650, 650),
+                    (0, -702.5, 180),
+                    (430, 650, 650),
+                    (0, 702.5, 650),
+                    (430, -650, 180),
+                    (0, -702.5, 650),
+                    (430, 650, 180),
+                    (430, 650, 180),
+                    (1840, 650, 180),
+                    (430, 650, 650),
+                    (1840, 650, 650),
+                    (430, 650, 180),
+                    (1840, 650, 650),
+                    (430, 650, 650),
+                    (1840, 650, 180),
+                    (430, -650, 180),
+                    (1840, -650, 180),
+                    (430, -650, 650),
+                    (1840, -650, 650),
+                    (430, -650, 180),
+                    (1840, -650, 650),
+                    (430, -650, 650),
+                    (1840, -650, 180),
+                    (430, 650, 180),
+                    (1840, -650, 180),
+                    (430, -650, 180),
+                    (1840, 650, 180),
+                    (430, 650, 650),
+                    (1840, -650, 650),
+                    (430, -650, 650),
+                    (1840, 650, 650),
+                    (430, 650, 180),
+                    (1840, -650, 650),
+                    (430, -650, 180),
+                    (1840, 650, 650),
+                    (430, 650, 650),
+                    (1840, -650, 180),
+                    (430, -650, 650),
+                    (1840, 650, 180),
+                    (1840, 650, 180),
+                    (2272, 722, 180),
+                    (1840, 650, 650),
+                    (2272, 722, 650),
+                    (1840, 650, 180),
+                    (2272, 722, 650),
+                    (1840, 650, 650),
+                    (2272, 722, 180),
+                    (1840, -650, 180),
+                    (2272, -722, 180),
+                    (1840, -650, 650),
+                    (2272, -722, 650),
+                    (1840, -650, 180),
+                    (2272, -722, 650),
+                    (1840, -650, 650),
+                    (2272, -722, 180),
+                    (1840, 650, 180),
+                    (2272, -722, 180),
+                    (1840, -650, 180),
+                    (2272, 722, 180),
+                    (1840, 650, 650),
+                    (2272, -722, 650),
+                    (1840, -650, 650),
+                    (2272, 722, 650),
+                    (1840, 650, 180),
+                    (2272, -722, 650),
+                    (1840, -650, 180),
+                    (2272, 722, 650),
+                    (1840, 650, 650),
+                    (2272, -722, 180),
+                    (1840, -650, 650),
+                    (2272, 722, 180),
+                    (430, 650, 650),
+                    (430, 507, 1240),
+                    (430, -650, 650),
+                    (430, -507, 1240),
+                    (430, 507, 1240),
+                    (430, -507, 1240),
+                    (430, 650, 650),
+                    (430, -507, 1240),
+                    (430, -650, 650),
+                    (430, 507, 1240),
+                    (1840, 650, 650),
+                    (1840, 507, 1240),
+                    (1840, -650, 650),
+                    (1840, -507, 1240),
+                    (1840, 507, 1240),
+                    (1840, -507, 1240),
+                    (1840, 650, 650),
+                    (1840, -507, 1240),
+                    (1840, -650, 650),
+                    (1840, 507, 1240),
+                    (430, 507, 1240),
+                    (1840, 507, 1240),
+                    (430, -507, 1240),
+                    (1840, -507, 1240),
+                    (430, 507, 1240),
+                    (1840, -507, 1240),
+                    (430, -507, 1240),
+                    (1840, 507, 1240),
+                    (430, 507, 1240),
+                    (1840, -650, 650),
+                    (430, -507, 1240),
+                    (1840, 650, 650),
+                    (1840, 507, 1240),
+                    (430, -650, 650),
+                    (1840, -507, 1240),
+                    (430, 650, 650),
+                    (0, 702.5, 650),
+                    (430, 507, 1240),
+                    (1840, 507, 1240),
+                    (2272, 722, 650),
+                    (0, -702.5, 650),
+                    (430, -507, 1240),
+                    (1840, -507, 1240),
+                    (2272, -722, 650),
+                    (0, 702.5, 180),
+                    (0, 145, 410),
+                    (0, -702.5, 180),
+                    (0, 145, 410),
+                    (0, 702.5, 650),
+                    (0, 145, 410),
+                    (0, -702.5, 180),
+                    (0, -145, 410),
+                    (0, 702.5, 180),
+                    (0, -145, 410),
+                    (0, -702.5, 650),
+                    (0, -145, 410),
+                    (430, 650, 180),
+                    (430, 145, 410),
+                    (430, -650, 180),
+                    (430, 145, 410),
+                    (430, 650, 650),
+                    (430, 145, 410),
+                    (430, -650, 180),
+                    (430, -145, 410),
+                    (430, 650, 180),
+                    (430, -145, 410),
+                    (430, -650, 650),
+                    (430, -145, 410),
+                    (1840, 650, 180),
+                    (1840, 145, 410),
+                    (1840, -650, 180),
+                    (1840, 145, 410),
+                    (1840, 650, 650),
+                    (1840, 145, 410),
+                    (1840, -650, 180),
+                    (1840, -145, 410),
+                    (1840, 650, 180),
+                    (1840, -145, 410),
+                    (1840, -650, 650),
+                    (1840, -145, 410),
+                    (2272, 722, 180),
+                    (2272, 145, 410),
+                    (2272, -722, 180),
+                    (2272, 145, 410),
+                    (2272, 722, 650),
+                    (2272, 145, 410),
+                    (2272, -722, 180),
+                    (2272, -145, 410),
+                    (2272, 722, 180),
+                    (2272, -145, 410),
+                    (2272, -722, 650),
+                    (2272, -145, 410),
+                    (0, 145, 410),
+                    (430, 145, 410),
+                    (0, -145, 410),
+                    (430, -145, 410),
+                    (0, 145, 410),
+                    (430, -145, 410),
+                    (0, -145, 410),
+                    (430, 145, 410),
+                    (430, 145, 410),
+                    (1840, 145, 410),
+                    (430, -145, 410),
+                    (1840, -145, 410),
+                    (430, 145, 410),
+                    (1840, -145, 410),
+                    (430, -145, 410),
+                    (1840, 145, 410),
+                    (1840, 145, 410),
+                    (2272, 145, 410),
+                    (1840, -145, 410),
+                    (2272, -145, 410),
+                    (1840, 145, 410),
+                    (2272, -145, 410),
+                    (1840, -145, 410),
+                    (2272, 145, 410)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Carbon>
+                uniform token type = "linear"
+                float[] widths = [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]
+                uniform token wrap = "nonperiodic"
+            }
+
+        }
+
+        def Xform "PlatformEnvelopeModules"
+        {
+            def Cube "P_964_Carrera_2_Coupe_FrontPodL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (50, 43.5, 32)
+                double3 xformOp:translate = (0, 643.5, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_FrontEnvelopeL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (0, 687, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_FrontPodR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (50, 43.5, 32)
+                double3 xformOp:translate = (0, -643.5, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_FrontEnvelopeR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (0, -687, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_RearPodL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (50, 43.5, 32)
+                double3 xformOp:translate = (2272, 643.5, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_RearEnvelopeL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (2272, 687, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_RearPodR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (50, 43.5, 32)
+                double3 xformOp:translate = (2272, -643.5, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_964_Carrera_2_Coupe_RearEnvelopeR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform964>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (2272, -687, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_FrontPodL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (50, 51.25, 32)
+                double3 xformOp:translate = (0, 651.25, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_FrontEnvelopeL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (0, 702.5, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_FrontPodR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (50, 51.25, 32)
+                double3 xformOp:translate = (0, -651.25, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_FrontEnvelopeR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (0, -702.5, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_RearPodL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (50, 61, 32)
+                double3 xformOp:translate = (2272, 661, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_RearEnvelopeL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (2272, 722, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_RearPodR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (50, 61, 32)
+                double3 xformOp:translate = (2272, -661, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "P_993_Carrera_narrow_reference_RearEnvelopeR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Platform993>
+                double3 xformOp:scale = (55, 45, 37)
+                double3 xformOp:translate = (2272, -722, 180)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+        }
+
+        def Xform "ProtectedServiceChannels"
+        {
+            def BasisCurves "BrakeFuelWiringParkingBrakeGuides" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2, 2, 2, 2]
+                point3f[] points = [
+                    (540, 225, 252),
+                    (1860, 225, 252),
+                    (540, -225, 252),
+                    (1860, -225, 252),
+                    (540, 265, 252),
+                    (1860, 265, 252),
+                    (540, -265, 252),
+                    (1860, -265, 252)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Service>
+                uniform token type = "linear"
+                float[] widths = [14, 14, 14, 14, 14, 14, 14, 14]
+                uniform token wrap = "nonperiodic"
+            }
+
+        }
+
+        def Xform "DrivelinePackages"
+        {
+            def Xform "C2"
+            {
+                custom string status = "hypothesis_envelope_not_measured"
+                custom bool longPropellerShaftPresent = false
+            def BasisCurves "ExternalShiftRodClearance" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2]
+                point3f[] points = [
+                    (710, 0, 335),
+                    (2010, 0, 335)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Shift>
+                uniform token type = "linear"
+                float[] widths = [42, 42]
+                uniform token wrap = "nonperiodic"
+            }
+
+            def Cube "ShifterTowerClearance" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Shift>
+                double3 xformOp:scale = (110, 125, 90)
+                double3 xformOp:translate = (980, 0, 430)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            }
+
+            def Xform "C4"
+            {
+                custom string status = "hypothesis_envelope_not_measured"
+                custom bool longPropellerShaftPresent = true
+            def BasisCurves "CentralTubePropShaftShiftGuideFrontHalfshafts" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2, 2, 2, 2]
+                point3f[] points = [
+                    (-170, 0, 310),
+                    (1980, 0, 310),
+                    (-170, 0, 310),
+                    (1980, 0, 310),
+                    (100, 92, 392),
+                    (1850, 92, 392),
+                    (0, -755, 310),
+                    (0, 755, 310)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/C4>
+                uniform token type = "linear"
+                float[] widths = [150, 150, 105, 105, 32, 32, 90, 90]
+                uniform token wrap = "nonperiodic"
+            }
+
+            def Cube "FrontFinalDriveClearance" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/C4>
+                double3 xformOp:scale = (165, 215, 120)
+                double3 xformOp:translate = (-120, 0, 285)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            }
+        }
+    }
+
+    def Xform "BoundaryConditions"
+    {
+            def BasisCurves "OpposedTorsionLoads" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2, 2]
+                point3f[] points = [
+                    (0, 702.5, 400),
+                    (0, 702.5, 180),
+                    (0, -702.5, -40),
+                    (0, -702.5, 180)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Load>
+                uniform token type = "linear"
+                float[] widths = [18, 18, 18, 18]
+                uniform token wrap = "nonperiodic"
+            }
+
+            def Cube "RearSupportL" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Support>
+                double3 xformOp:scale = (90, 90, 60)
+                double3 xformOp:translate = (2272, 722, 95)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "RearSupportR" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Support>
+                double3 xformOp:scale = (90, 90, 60)
+                double3 xformOp:translate = (2272, -722, 95)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+    }
+
+    def Xform "DeformedShape_x35"
+    {
+            def BasisCurves "TorsionResult" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                int[] curveVertexCounts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+                point3f[] points = [
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (2272, 722, 180),
+                    (2272, -722, 180),
+                    (2272, 722, 650),
+                    (2272, -722, 650),
+                    (2272, 722, 180),
+                    (2272, 722, 650),
+                    (2272, -722, 180),
+                    (2272, -722, 650),
+                    (2272, 722, 180),
+                    (2272, -722, 650),
+                    (2272, -722, 180),
+                    (2272, 722, 650),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (2272, 722, 180),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (2272, 722, 650),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (2272, 722, 650),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (2272, 722, 180),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (2272, -722, 180),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (2272, -722, 650),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (2272, -722, 650),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (2272, -722, 180),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (2272, -722, 180),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (2272, 722, 180),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (2272, -722, 650),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (2272, 722, 650),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (2272, -722, 650),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (2272, 722, 650),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (2272, -722, 180),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (2272, 722, 180),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (406.365439575, 423.7977599, 1340.31954331),
+                    (1816.852301405, 508.847900985, 1231.440676255),
+                    (2272, 722, 650),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (453.634560425, -590.2022401, 1139.68045669),
+                    (1863.147698595, -505.152099015, 1248.559323745),
+                    (2272, -722, 650),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (2.33954063, 210.495939915, 443.09163207),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (2.33954063, 210.495939915, 443.09163207),
+                    (-0.8001693, 729.054270435, 776.15774164),
+                    (2.33954063, 210.495939915, 443.09163207),
+                    (-0.29978746, -591.478244995, 36.5246897),
+                    (-2.33954063, -79.504060085, 376.90836793),
+                    (0.29978746, 813.521755005, 323.4753103),
+                    (-2.33954063, -79.504060085, 376.90836793),
+                    (0.8001693, -675.945729565, 523.84225836),
+                    (-2.33954063, -79.504060085, 376.90836793),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (432.30202616, 673.134668095, 773.27601342),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (430.439508615, -551.955754295, 61.33472803),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (429.560491385, 748.044245705, 298.66527197),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (427.69797384, -626.865331905, 526.72398658),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (1842.02961409, 652.27176929, 645.20783549),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (1840.88042199, -638.290240085, 180.412492045),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (1839.11957801, 661.709759915, 179.587507955),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (1837.97038591, -647.72823071, 654.79216451),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (2272, 722, 180),
+                    (2272, 145, 410),
+                    (2272, -722, 180),
+                    (2272, 145, 410),
+                    (2272, 722, 650),
+                    (2272, 145, 410),
+                    (2272, -722, 180),
+                    (2272, -145, 410),
+                    (2272, 722, 180),
+                    (2272, -145, 410),
+                    (2272, -722, 650),
+                    (2272, -145, 410),
+                    (2.33954063, 210.495939915, 443.09163207),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (-2.33954063, -79.504060085, 376.90836793),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (2.33954063, 210.495939915, 443.09163207),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (-2.33954063, -79.504060085, 376.90836793),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (432.64790057, 204.78842198, 446.357860175),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (427.35209943, -85.21157802, 373.642139825),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (2272, 145, 410),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (2272, -145, 410),
+                    (1841.945990235, 152.805758275, 400.718275345),
+                    (2272, -145, 410),
+                    (1838.054009765, -137.194241725, 419.281724655),
+                    (2272, 145, 410)
+                ]
+                uniform token purpose = "guide"
+                rel material:binding = </World/Looks/Deformed>
+                uniform token type = "linear"
+                float[] widths = [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5]
+                uniform token wrap = "nonperiodic"
+            }
+
+    }
+}

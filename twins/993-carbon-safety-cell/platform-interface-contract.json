@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "964-993-CFRP-PLATFORM-INTERFACES-0002",
+  "design_id": "964-993-CARBON-MONOCOQUE-CLEAN-SHEET-0002",
+  "status": "964_pairwise_body_constraints_available_xyz_and_993_blocked",
+  "architecture": {
+    "common_module": "CFRP occupant cell, floor, sills, tunnel, bulkheads and roof load paths",
+    "platform_modules": [
+      "964_CFRP_FRONT_AND_REAR_INTERFACE_PODS",
+      "993_CFRP_FRONT_AND_REAR_INTERFACE_PODS"
+    ],
+    "driveline_packages": [
+      "964_C2_SHIFT_LINKAGE",
+      "964_C4_CENTRAL_TUBE_PROP_SHAFT_FRONT_FINAL_DRIVE_AND_HALF_SHAFTS",
+      "993_C2_SHIFT_LINKAGE",
+      "993_C4_CENTRAL_TUBE_PROP_SHAFT_FRONT_FINAL_DRIVE_AND_HALF_SHAFTS"
+    ],
+    "primary_structure_material": "CFRP",
+    "local_metallic_hardware_allowed": [
+      "threaded inserts",
+      "bearing bushes",
+      "axes",
+      "fasteners"
+    ],
+    "steel_primary_structure_allowed": false
+  },
+  "common_public_constraint": {
+    "wheelbase_mm": 2272.0,
+    "status": "confirmed_for_named_964_and_993_references",
+    "claim_limit": "Un empattement commun ne prouve ni une origine XYZ commune, ni des points de suspension ou de groupe motopropulseur communs."
+  },
+  "platform_envelopes": {
+    "964_Carrera_2_Coupe": {
+      "source_id": "SRC-PORSCHE-FINDER-964-C2-COUPE-DIMENSIONS",
+      "overall_length_mm": 4250.0,
+      "overall_width_mm": 1652.0,
+      "overall_height_mm": 1310.0,
+      "wheelbase_mm": 2272.0,
+      "front_track_mm": 1374.0,
+      "rear_track_mm": 1374.0,
+      "structural_interface_xyz_mm": null,
+      "tolerances_mm": null,
+      "status": "envelope_only"
+    },
+    "993_Carrera_narrow_reference": {
+      "source_id": "SRC-PORSCHE-FINDER-993-CABRIOLET-DIMENSIONS",
+      "overall_length_mm": 4245.0,
+      "overall_width_mm": 1735.0,
+      "overall_height_mm": 1300.0,
+      "wheelbase_mm": 2272.0,
+      "front_track_mm": 1405.0,
+      "rear_track_mm": 1444.0,
+      "structural_interface_xyz_mm": null,
+      "tolerances_mm": null,
+      "status": "envelope_only"
+    }
+  },
+  "documentary_interface_constraints": {
+    "964": {
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOLUME5",
+      "measurement_id": "MEAS-MANUAL-964-BODY-REPAIR-DIMENSIONS",
+      "available": "17 manually checked pairwise floor-assembly constraints with tolerances; Carrera 4 manual is stated to serve as Carrera 2 repair basis and no alternate floor table is listed in the Carrera 2 addendum",
+      "not_available": [
+        "unique XYZ coordinates",
+        "tunnel surfaces and wall thicknesses",
+        "C4 propeller shaft axis and swept envelope",
+        "door and glazing surfaces"
+      ],
+      "status": "constraint_graph_seed_only"
+    },
+    "993": {
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+      "measurement_id": null,
+      "available": null,
+      "status": "equivalent_body_dimensions_not_transcribed"
+    }
+  },
+  "documentary_deltas_993_minus_964_mm": {
+    "overall_length": -5.0,
+    "overall_width": 83.0,
+    "overall_height": -10.0,
+    "wheelbase": 0.0,
+    "front_track": 31.0,
+    "rear_track": 70.0,
+    "front_half_track_per_side": 15.5,
+    "rear_half_track_per_side": 35.0
+  },
+  "required_measured_interfaces_per_platform": {
+    "body_datums": null,
+    "front_suspension_and_steering_xyz": null,
+    "rear_suspension_and_powertrain_xyz": null,
+    "C2_shift_linkage_swept_envelope_xyz": null,
+    "C4_central_tube_propeller_shaft_and_joint_swept_envelope_xyz": null,
+    "C4_front_final_drive_and_halfshaft_swept_envelope_xyz": null,
+    "brake_fuel_parking_brake_wiring_and_hvac_routes_xyz": null,
+    "door_hinge_latch_and_glazing_surfaces": null,
+    "seat_and_restraint_anchors_xyz": null,
+    "crash_crossmember_towing_and_jacking_xyz": null,
+    "wheel_tyre_steering_and_travel_envelopes": null,
+    "measurement_uncertainty_and_temperature": null
+  },
+  "mass_contract": {
+    "target_vehicle_mass_kg": 1200.0,
+    "target_monocoque_system_mass_kg": 110.0,
+    "target_common_cell_mass_kg": 90.0,
+    "target_installed_platform_modules_kg": 20.0,
+    "status": "allocation_target_not_weighed",
+    "acceptance": "Une nomenclature complete et une pesee du prototype doivent fermer le budget sans retirer de fonctions de securite."
+  },
+  "decision": {
+    "common_cell_concept_authorized": true,
+    "platform_module_envelope_concept_authorized": true,
+    "platform_interface_detail_authorized": false,
+    "dimensionally_compatible_with_964": false,
+    "dimensionally_compatible_with_993": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

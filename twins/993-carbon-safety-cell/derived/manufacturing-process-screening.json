@@ -1,0 +1,165 @@
+{
+  "decision": {
+    "manufacturing_route_selected": false,
+    "reason": "Les résultats dépendent d'une cinétique résine et de constantes thermiques hypothétiques; le drapage, la porosité, la pression et les déformations résiduelles ne sont pas résolus.",
+    "tool_material_selected": false
+  },
+  "kinetics_status": "generic_epoxy_hypothesis_requires_DSC_and_supplier_data",
+  "method": "two_lumped_nodes_tool_and_laminate_with_cure_exotherm",
+  "not_simulated": [
+    "spatial temperature gradients",
+    "resin flow, bleed and volatile transport",
+    "porosity and fibre volume fraction",
+    "drape shear, wrinkling and bridging",
+    "residual stress and spring-in",
+    "bag, seals, ports and autoclave pressure structure"
+  ],
+  "release_gates": {
+    "DSC_kinetics_correlated": false,
+    "cure_thermal_model_correlated": false,
+    "drape_simulation_correlated": false,
+    "manufacturing_route_released": false,
+    "supplier_resin_data_acquired": false,
+    "tool_pressure_model_approved": false,
+    "trial_panel_metrology_correlated": false
+  },
+  "required_next_evidence": [
+    "fiche fournisseur du préimprégné et cycle qualifié",
+    "DSC/DEA pour identifier la cinétique et la vitrification",
+    "modèle de drapage sur surfaces F2 avec angles de cisaillement mesurés",
+    "thermocouples sur panneau témoin et corrélation thermique",
+    "mesure de porosité, fraction volumique et épaisseur après cuisson",
+    "modèle pression/vide et vérification mécanique de l'outillage",
+    "mesure de retrait, spring-in et compensation du moule"
+  ],
+  "schema_version": "1.0.0",
+  "simulation_id": "964-993-CARBON-MONOCOQUE-MANUFACTURING-F1-0001",
+  "status": "manufacturing_hypothesis_screening_complete_not_correlated",
+  "thermal_cure_cases": [
+    {
+      "coupon_thickness_mm": 4.0,
+      "cycle_duration_min": 242.5,
+      "final_degree_of_cure": 0.99887,
+      "maximum_cure_rate_1_s": 0.000408531,
+      "maximum_part_overshoot_above_air_C": 18.599,
+      "maximum_part_temperature_C": 130.503,
+      "maximum_tool_part_lag_C": 4.81,
+      "passes_hypothesis_screening": false,
+      "pressure_bar_absolute": 7.0,
+      "provisional_checks": {
+        "final_degree_of_cure": true,
+        "part_overshoot": false,
+        "tool_part_lag": true
+      },
+      "route_id": "prepreg_autoclave_130C",
+      "vacuum_bar_gauge": -0.9
+    },
+    {
+      "coupon_thickness_mm": 8.0,
+      "cycle_duration_min": 242.5,
+      "final_degree_of_cure": 0.999062,
+      "maximum_cure_rate_1_s": 0.000418021,
+      "maximum_part_overshoot_above_air_C": 32.592,
+      "maximum_part_temperature_C": 134.669,
+      "maximum_tool_part_lag_C": 18.803,
+      "passes_hypothesis_screening": false,
+      "pressure_bar_absolute": 7.0,
+      "provisional_checks": {
+        "final_degree_of_cure": true,
+        "part_overshoot": false,
+        "tool_part_lag": false
+      },
+      "route_id": "prepreg_autoclave_130C",
+      "vacuum_bar_gauge": -0.9
+    },
+    {
+      "coupon_thickness_mm": 12.0,
+      "cycle_duration_min": 242.5,
+      "final_degree_of_cure": 0.999248,
+      "maximum_cure_rate_1_s": 0.000436845,
+      "maximum_part_overshoot_above_air_C": 47.851,
+      "maximum_part_temperature_C": 138.31,
+      "maximum_tool_part_lag_C": 34.062,
+      "passes_hypothesis_screening": false,
+      "pressure_bar_absolute": 7.0,
+      "provisional_checks": {
+        "final_degree_of_cure": true,
+        "part_overshoot": false,
+        "tool_part_lag": false
+      },
+      "route_id": "prepreg_autoclave_130C",
+      "vacuum_bar_gauge": -0.9
+    },
+    {
+      "coupon_thickness_mm": 4.0,
+      "cycle_duration_min": 305.0,
+      "final_degree_of_cure": 0.997471,
+      "maximum_cure_rate_1_s": 0.000322362,
+      "maximum_part_overshoot_above_air_C": 13.981,
+      "maximum_part_temperature_C": 120.834,
+      "maximum_tool_part_lag_C": 3.619,
+      "passes_hypothesis_screening": false,
+      "pressure_bar_absolute": 1.0,
+      "provisional_checks": {
+        "final_degree_of_cure": true,
+        "part_overshoot": false,
+        "tool_part_lag": true
+      },
+      "route_id": "prepreg_OOA_120C",
+      "vacuum_bar_gauge": -0.9
+    },
+    {
+      "coupon_thickness_mm": 8.0,
+      "cycle_duration_min": 305.0,
+      "final_degree_of_cure": 0.997874,
+      "maximum_cure_rate_1_s": 0.000331985,
+      "maximum_part_overshoot_above_air_C": 24.832,
+      "maximum_part_temperature_C": 125.168,
+      "maximum_tool_part_lag_C": 14.47,
+      "passes_hypothesis_screening": false,
+      "pressure_bar_absolute": 1.0,
+      "provisional_checks": {
+        "final_degree_of_cure": true,
+        "part_overshoot": false,
+        "tool_part_lag": false
+      },
+      "route_id": "prepreg_OOA_120C",
+      "vacuum_bar_gauge": -0.9
+    },
+    {
+      "coupon_thickness_mm": 12.0,
+      "cycle_duration_min": 305.0,
+      "final_degree_of_cure": 0.998299,
+      "maximum_cure_rate_1_s": 0.000327431,
+      "maximum_part_overshoot_above_air_C": 37.975,
+      "maximum_part_temperature_C": 128.711,
+      "maximum_tool_part_lag_C": 27.612,
+      "passes_hypothesis_screening": false,
+      "pressure_bar_absolute": 1.0,
+      "provisional_checks": {
+        "final_degree_of_cure": true,
+        "part_overshoot": false,
+        "tool_part_lag": false
+      },
+      "route_id": "prepreg_OOA_120C",
+      "vacuum_bar_gauge": -0.9
+    }
+  ],
+  "tool_cte_sensitivity": [
+    {
+      "free_expansion_mismatch_mm_over_heated_length": 0.2386,
+      "material_id": "CFRP_TOOL_EQUIVALENT",
+      "within_provisional_mismatch_threshold": true
+    },
+    {
+      "free_expansion_mismatch_mm_over_heated_length": 0.0477,
+      "material_id": "INVAR36_EQUIVALENT",
+      "within_provisional_mismatch_threshold": true
+    },
+    {
+      "free_expansion_mismatch_mm_over_heated_length": 5.2483,
+      "material_id": "ALUMINIUM_TOOL_EQUIVALENT",
+      "within_provisional_mismatch_threshold": false
+    }
+  ]
+}

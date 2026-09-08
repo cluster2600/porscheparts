@@ -1,0 +1,215 @@
+{
+  "schema_version": "1.1.0",
+  "status": "concept_cad_generated_packaging_not_measured",
+  "design_id": "964-993-CARBON-MONOCOQUE-CLEAN-SHEET-0002",
+  "architecture_id": "all_carbon_multicell_x10",
+  "kernel": "build123d_OCCT",
+  "units": "mm",
+  "outputs": {
+    "cell_step": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-concept.step",
+    "tooling_step": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-tooling-concept.step",
+    "platform_module_steps": {
+      "964_Carrera_2_Coupe": "twins/993-carbon-safety-cell/derived/964-carbon-interface-modules-concept.step",
+      "993_Carrera_narrow_reference": "twins/993-carbon-safety-cell/derived/993-carbon-interface-modules-concept.step"
+    },
+    "driveline_packaging_steps": {
+      "964_C2": "twins/993-carbon-safety-cell/derived/964-c2-packaging-envelope.step",
+      "964_C4": "twins/993-carbon-safety-cell/derived/964-c4-packaging-envelope.step",
+      "993_C2": "twins/993-carbon-safety-cell/derived/993-c2-packaging-envelope.step",
+      "993_C4": "twins/993-carbon-safety-cell/derived/993-c4-packaging-envelope.step"
+    }
+  },
+  "cell": {
+    "solid_count": 49,
+    "functional_groups": {
+      "floor": 1,
+      "occupant_floor": 2,
+      "footwell": 2,
+      "rear_seat_well": 2,
+      "central_tunnel": 4,
+      "sill": 2,
+      "door_upper_rail": 2,
+      "a_pillar": 2,
+      "rear_pillar": 2,
+      "roof_rail": 2,
+      "rear_wheelhouse": 2,
+      "roof_header": 2,
+      "roof_bow": 1,
+      "front_bulkhead": 3,
+      "rear_bulkhead": 3,
+      "rear_shelf": 1,
+      "seat_support": 4,
+      "pedal_box": 2,
+      "jacking_point": 2,
+      "service_duct": 4,
+      "interface_boss": 4
+    },
+    "door_apertures_modelled": true,
+    "central_tunnel_is_hollow": true,
+    "seat_and_pedal_zones_modelled": true,
+    "wheelhouse_proxies_modelled": true,
+    "protected_service_ducts_modelled": true,
+    "interface_boss_count": 4,
+    "common_adapter_half_width_mm": 600.0,
+    "nominal_envelope_mm": [
+      2272.0,
+      1300.0,
+      1060.0
+    ],
+    "primary_structure_material": "CFRP",
+    "local_metallic_hardware_modelled": false,
+    "geometry_status": "hypothesis_envelopes_pending_964_993_measurement"
+  },
+  "tooling": {
+    "tool_count": 10,
+    "tool_ids": [
+      "M01_FLOOR_LOWER",
+      "M02_LEFT_SILL_SIDE",
+      "M03_RIGHT_SILL_SIDE",
+      "M04_FRONT_BULKHEAD",
+      "M05_REAR_BULKHEAD",
+      "M06_LEFT_ROOF_FRAME_JIG",
+      "M07_RIGHT_ROOF_FRAME_JIG",
+      "M08_TUNNEL_MANDREL",
+      "M09_REAR_SHELF_UPPER",
+      "M10_ROOF_HEADERS_JIG"
+    ],
+    "cavity_subtraction_failures": [],
+    "tunnel_mandrel_modelled": true,
+    "manufacturing_status": "tooling_partition_concept_only"
+  },
+  "platform_modules": {
+    "964_Carrera_2_Coupe": {
+      "platform_id": "964_Carrera_2_Coupe",
+      "solid_count": 12,
+      "pod_ids": [
+        "964_Carrera_2_Coupe_FRONT_L",
+        "964_Carrera_2_Coupe_FRONT_R",
+        "964_Carrera_2_Coupe_REAR_L",
+        "964_Carrera_2_Coupe_REAR_R"
+      ],
+      "front_track_envelope_mm": 1374.0,
+      "rear_track_envelope_mm": 1374.0,
+      "wheelbase_envelope_mm": 2272.0,
+      "suspension_pickup_coordinates_modelled": false,
+      "fastener_holes_or_inserts_modelled": false,
+      "material_intent": "CFRP primary structure; local metallic hardware TBD"
+    },
+    "993_Carrera_narrow_reference": {
+      "platform_id": "993_Carrera_narrow_reference",
+      "solid_count": 12,
+      "pod_ids": [
+        "993_Carrera_narrow_reference_FRONT_L",
+        "993_Carrera_narrow_reference_FRONT_R",
+        "993_Carrera_narrow_reference_REAR_L",
+        "993_Carrera_narrow_reference_REAR_R"
+      ],
+      "front_track_envelope_mm": 1405.0,
+      "rear_track_envelope_mm": 1444.0,
+      "wheelbase_envelope_mm": 2272.0,
+      "suspension_pickup_coordinates_modelled": false,
+      "fastener_holes_or_inserts_modelled": false,
+      "material_intent": "CFRP primary structure; local metallic hardware TBD"
+    }
+  },
+  "driveline_packages": {
+    "964_C2": {
+      "platform": "964",
+      "drive": "C2",
+      "solid_count": 2,
+      "feature_ids": [
+        "external_shift_rod_clearance",
+        "shifter_tower_clearance"
+      ],
+      "geometry_status": "hypothesis_envelope_not_measured",
+      "rotating_parts_are_clearance_only": true,
+      "porsche_part_geometry_used": false
+    },
+    "964_C4": {
+      "platform": "964",
+      "drive": "C4",
+      "solid_count": 5,
+      "feature_ids": [
+        "central_tube_clearance",
+        "propeller_shaft_clearance",
+        "C4_shift_guide_clearance",
+        "front_final_drive_clearance",
+        "front_halfshaft_clearance"
+      ],
+      "geometry_status": "hypothesis_envelope_not_measured",
+      "rotating_parts_are_clearance_only": true,
+      "porsche_part_geometry_used": false
+    },
+    "993_C2": {
+      "platform": "993",
+      "drive": "C2",
+      "solid_count": 2,
+      "feature_ids": [
+        "external_shift_rod_clearance",
+        "shifter_tower_clearance"
+      ],
+      "geometry_status": "hypothesis_envelope_not_measured",
+      "rotating_parts_are_clearance_only": true,
+      "porsche_part_geometry_used": false
+    },
+    "993_C4": {
+      "platform": "993",
+      "drive": "C4",
+      "solid_count": 5,
+      "feature_ids": [
+        "central_tube_clearance",
+        "propeller_shaft_clearance",
+        "C4_shift_guide_clearance",
+        "front_final_drive_clearance",
+        "front_halfshaft_clearance"
+      ],
+      "geometry_status": "hypothesis_envelope_not_measured",
+      "rotating_parts_are_clearance_only": true,
+      "porsche_part_geometry_used": false
+    }
+  },
+  "mass_basis": {
+    "target_vehicle_mass_kg": 1200.0,
+    "mass_definition": "objectif de masse véhicule prêt à rouler, sans occupant, à figer avec l'expert TÜV et la configuration donneuse",
+    "status": "design_target_not_measured",
+    "gravity_m_s2": 9.80665,
+    "target_monocoque_system_mass_kg": 110.0,
+    "target_common_cell_mass_kg": 90.0,
+    "target_installed_platform_modules_kg": 20.0,
+    "load_envelope": {
+      "static_vehicle_weight_N": 11767.98,
+      "vertical_bump_3g_N": 35303.94,
+      "longitudinal_braking_1_5g_N": 17651.97,
+      "lateral_cornering_1_8g_N": 21182.36
+    },
+    "limitations": [
+      "Ces résultantes ne sont pas encore réparties aux interfaces faute de masses par essieu, centre de gravité, pneus, aérodynamique et cinématique mesurés.",
+      "Les facteurs ultimes, coefficients dynamiques et combinatoires doivent être approuvés avec l'ingénieur structure et l'expert TÜV.",
+      "Crash, toit, sièges et ceintures nécessitent leurs propres procédures et ne sont pas couverts par ces multiples de g."
+    ]
+  },
+  "material_policy": {
+    "primary_structure_material": "carbon_equivalent",
+    "allow_local_metallic_inserts_bushes_and_fasteners": true,
+    "allow_steel_tube_primary_structure": false,
+    "definition": "Tout carbone signifie que les chemins de charge primaires sont en CFRP; les inserts, bagues, axes et fixations métalliques locaux restent autorisés après dimensionnement et isolation galvanique."
+  },
+  "source_boundary": {
+    "clean_sheet": true,
+    "zesad_or_ruf_surfaces_used": false,
+    "porsche_pet_used_for_topology_only": true,
+    "porsche_pet_dimensions_used": false,
+    "vehicle_scan_used": false
+  },
+  "release_gates": {
+    "dimensionally_compatible_with_964": false,
+    "dimensionally_compatible_with_993": false,
+    "C2_C4_dynamic_clearance_verified": false,
+    "vehicle_mass_target_verified": false,
+    "laminate_defined": false,
+    "tool_parting_and_draft_validated": false,
+    "tool_thermal_vacuum_pressure_validated": false,
+    "fabrication_released": false,
+    "road_or_track_released": false
+  }
+}

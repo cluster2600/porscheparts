@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-CARBON-SAFETY-CELL-0001",
+  "name": "Jumeau numerique de monocoque carbone 964/993",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "Coupe_a_mesurer",
+      "964_Carrera_2_et_4_modules_conceptuels",
+      "993_Carrera_2_et_4_modules_conceptuels",
+      "restomod_clean_sheet"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    }
+  },
+  "scope": {
+    "zone": "cellule_centrale_et_outillage_composite",
+    "purposes": [
+      "fit",
+      "clearance",
+      "structural"
+    ]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "centre de l'axe avant theorique au plancher; origine provisoire a remplacer par des datums de carrosserie mesures",
+    "axes": "X vers l'arriere, Y vers la gauche, Z vers le haut",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "CARBON_SAFETY_CELL",
+      "role": "candidate",
+      "part_id": "993-BODY-CARBON-SAFETY-CELL-0001",
+      "geometry_file": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-concept.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "CFRP_964_INTERFACE_MODULES",
+      "role": "candidate",
+      "part_id": "993-BODY-CARBON-SAFETY-CELL-0001",
+      "geometry_file": "twins/993-carbon-safety-cell/derived/964-carbon-interface-modules-concept.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "CFRP_993_INTERFACE_MODULES",
+      "role": "candidate",
+      "part_id": "993-BODY-CARBON-SAFETY-CELL-0001",
+      "geometry_file": "twins/993-carbon-safety-cell/derived/993-carbon-interface-modules-concept.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "DRIVELINE_PACKAGING_964_C2_C4",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "twins/993-carbon-safety-cell/derived/964-c4-packaging-envelope.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "DRIVELINE_PACKAGING_993_C2_C4",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "twins/993-carbon-safety-cell/derived/993-c4-packaging-envelope.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "COMPOSITE_TOOLING",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-tooling-concept.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "VEHICLE_993_INTERFACE_DATUMS",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "VEHICLE_964_INTERFACE_DATUMS",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_993_FRONT_SUBFRAME",
+      "kind": "fastener",
+      "components": [
+        "CFRP_993_INTERFACE_MODULES",
+        "VEHICLE_993_INTERFACE_DATUMS"
+      ],
+      "required_measurements": [
+        "FRONT_SUSPENSION_DATUMS_XYZ",
+        "STEERING_RACK_DATUMS_XYZ",
+        "PEDAL_BULKHEAD_ENVELOPE",
+        "FRONT_CRASH_LOAD_PATHS",
+        "FASTENER_AND_INSERT_LOADS"
+      ],
+      "acceptance_rule": "Nuage mesure et gabarit physique concordants dans les tolerances approuvees, sans interference et avec reprise de charge validee",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_993_REAR_POWERTRAIN_SUBFRAME",
+      "kind": "fastener",
+      "components": [
+        "CFRP_993_INTERFACE_MODULES",
+        "VEHICLE_993_INTERFACE_DATUMS"
+      ],
+      "required_measurements": [
+        "REAR_SUSPENSION_DATUMS_XYZ",
+        "ENGINE_GEARBOX_MOUNTS_XYZ",
+        "DRIVELINE_AND_EXHAUST_ENVELOPES",
+        "REAR_CRASH_LOAD_PATHS",
+        "FASTENER_AND_INSERT_LOADS"
+      ],
+      "acceptance_rule": "Nuage mesure et gabarit physique concordants dans les tolerances approuvees, sans interference et avec reprise de charge validee",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_964_FRONT_SUBFRAME",
+      "kind": "fastener",
+      "components": [
+        "CFRP_964_INTERFACE_MODULES",
+        "VEHICLE_964_INTERFACE_DATUMS"
+      ],
+      "required_measurements": [
+        "964_FRONT_SUSPENSION_DATUMS_XYZ",
+        "964_STEERING_RACK_DATUMS_XYZ",
+        "964_PEDAL_BULKHEAD_ENVELOPE",
+        "964_FRONT_CRASH_LOAD_PATHS",
+        "FASTENER_AND_INSERT_LOADS"
+      ],
+      "acceptance_rule": "Nuage 964 mesure et gabarit physique concordants dans les tolerances approuvees, sans interference et avec reprise de charge validee",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_964_REAR_POWERTRAIN_SUBFRAME",
+      "kind": "fastener",
+      "components": [
+        "CFRP_964_INTERFACE_MODULES",
+        "VEHICLE_964_INTERFACE_DATUMS"
+      ],
+      "required_measurements": [
+        "964_REAR_SUSPENSION_DATUMS_XYZ",
+        "964_ENGINE_GEARBOX_MOUNTS_XYZ",
+        "964_DRIVELINE_AND_EXHAUST_ENVELOPES",
+        "964_REAR_CRASH_LOAD_PATHS",
+        "FASTENER_AND_INSERT_LOADS"
+      ],
+      "acceptance_rule": "Nuage 964 mesure et gabarit physique concordants dans les tolerances approuvees, sans interference et avec reprise de charge validee",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_COMMON_CELL_TO_993_MODULE",
+      "kind": "fastener",
+      "components": [
+        "CARBON_SAFETY_CELL",
+        "CFRP_993_INTERFACE_MODULES"
+      ],
+      "required_measurements": [
+        "COMMON_ADAPTER_SURFACES",
+        "BONDLINE_AND_FASTENER_PATTERN",
+        "INSERT_BEARING_BYPASS_LOADS",
+        "GALVANIC_ISOLATION",
+        "INSPECTION_ACCESS"
+      ],
+      "acceptance_rule": "Interface commune qualifiee par calcul composite correle et essais de details du module 993",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_COMMON_CELL_TO_964_MODULE",
+      "kind": "fastener",
+      "components": [
+        "CARBON_SAFETY_CELL",
+        "CFRP_964_INTERFACE_MODULES"
+      ],
+      "required_measurements": [
+        "COMMON_ADAPTER_SURFACES",
+        "BONDLINE_AND_FASTENER_PATTERN",
+        "INSERT_BEARING_BYPASS_LOADS",
+        "GALVANIC_ISOLATION",
+        "INSPECTION_ACCESS"
+      ],
+      "acceptance_rule": "Interface commune qualifiee par calcul composite correle et essais de details du module 964",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_TOOLING_TO_CELL",
+      "kind": "contact",
+      "components": [
+        "COMPOSITE_TOOLING",
+        "CARBON_SAFETY_CELL"
+      ],
+      "required_measurements": [
+        "PARTING_LINES",
+        "DRAFT_ANGLES",
+        "LAMINATE_AND_CORE_OFFSETS",
+        "CURE_SHRINKAGE",
+        "TOOL_CTE",
+        "VACUUM_SEALING_LANDS",
+        "DEMOLDING_SEQUENCE"
+      ],
+      "acceptance_rule": "Aucune contre-depouille non demontable, retrait compense, joints et brides accessibles, geometrie finale dans le plan de tolerance",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "twins/993-carbon-safety-cell/source/build_cad.py",
+    "derived_files": [
+      "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-concept.step",
+      "twins/993-carbon-safety-cell/derived/964-carbon-interface-modules-concept.step",
+      "twins/993-carbon-safety-cell/derived/993-carbon-interface-modules-concept.step",
+      "twins/993-carbon-safety-cell/derived/964-c2-packaging-envelope.step",
+      "twins/993-carbon-safety-cell/derived/964-c4-packaging-envelope.step",
+      "twins/993-carbon-safety-cell/derived/993-c2-packaging-envelope.step",
+      "twins/993-carbon-safety-cell/derived/993-c4-packaging-envelope.step",
+      "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-tooling-concept.step",
+      "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-digital-twin.usda"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "twins/993-carbon-safety-cell/derived/structural-screening.json",
+      "twins/993-carbon-safety-cell/derived/final-product-f1-screening.json",
+      "twins/993-carbon-safety-cell/derived/calculix-verification.json",
+      "twins/993-carbon-safety-cell/derived/manufacturing-process-screening.json",
+      "twins/993-carbon-safety-cell/derived/packaging-clearance-check.json",
+      "twins/993-carbon-safety-cell/derived/cad-generation-report.json",
+      "twins/993-carbon-safety-cell/engineering-validation-contract.json"
+    ],
+    "known_limits": [
+      "F1 enveloppe uniquement : aucune surface de vehicule 964/993, porte, vitrage, siege, retenue, suspension, direction, groupe motopropulseur ou zone de crash n'est mesuree.",
+      "Les PET définissent la présence des commandes C2/C4 et de la transmission avant C4, mais les volumes STEP correspondants restent hypothétiques jusqu'à la métrologie des quatre variantes.",
+      "Les interfaces sont des marqueurs conceptuels et non des perçages ou inserts fabricables.",
+      "La cible de masse vehicule 1200 kg et le budget monocoque 110 kg ne sont pas encore verifies par nomenclature et pesee.",
+      "Le STEP d'outillage illustre une decomposition en dix elements, mandrin de tunnel compris, mais ne constitue pas une liasse de moule.",
+      "Le resultat treillis classe les formes; il ne constitue pas un calcul de structure composite ni une preuve d'aptitude."
+    ]
+  }
+}
