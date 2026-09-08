@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTERCOOLER-END-TANK-ALSI10MG-F0-0001",
+  "status": "f0_published_intercooler_dimensions_clean_sheet_end_tank_screen_only",
+  "geometry_authority": {
+    "published": {
+      "two_core_dimensions_mm": [
+        260.0,
+        260.0,
+        100.0
+      ],
+      "outer_connection_diameter_mm": 66.0,
+      "inner_connection_diameter_mm": 68.0,
+      "assembly_maximum_width_mm": 860.0,
+      "assembly_maximum_height_mm": 240.0,
+      "assembly_mount_spacing_mm": 690.0,
+      "assembly_material": "aluminium, exact alloy not disclosed"
+    },
+    "interpretations": [
+      "260 x 100 mm is used as one rectangular core face; published dimension orientation is not a drawing",
+      "66 mm published outside connection is used as the F0 circular outer diameter",
+      "the separate 68 mm inner connection is not represented by this single outer end-tank",
+      "AlSi10Mg is a separate LPBF candidate; the commercial aluminium alloy is not disclosed"
+    ],
+    "hypotheses": [
+      "120 mm centered round-to-rectangle transition",
+      "2.2 mm nominal shell and 7 mm rectangular flange margin",
+      "three 1.5 mm open internal guides ending before the circular port",
+      "8 mm circular collar and no hose bead",
+      "no mounts, weld preparation, core braze, left/right handedness or installed clearances"
+    ],
+    "not_claimed": "No TA Technix, Albert Motorsport, Porsche or production intercooler surface, end-tank geometry, flow distribution, fitment or pressure capability is claimed."
+  },
+  "synthetic_flow_case": {
+    "engine_displacement_l": 3.6,
+    "engine_speed_rpm": 5750.0,
+    "volumetric_efficiency": 0.95,
+    "manifold_absolute_pressure_pa": 180000.0,
+    "manifold_temperature_k": 330.0,
+    "core_open_area_ratio": 0.65,
+    "screen_gauge_pressure_pa": 80000.0,
+    "delta_t_k": 100.0,
+    "duty_hours": 100.0,
+    "authority": "regression inputs only; no target intercooler flow, boost, temperature, core porosity or duty trace was measured"
+  },
+  "material_screen": {
+    "candidate": "EOS Aluminium AlSi10Mg LPBF, study only",
+    "density_g_cm3": 2.67,
+    "elastic_modulus_mpa": 70000.0,
+    "poisson_ratio": 0.33,
+    "comparison_yield_strength_mpa": 245.0,
+    "thermal_expansion_per_k": 2.1e-05,
+    "scope": "generic screening values; no machine, orientation, heat-treatment, weld/braze, pressure-fatigue or temperature-specific allowable"
+  },
+  "results": {
+    "cad_volume_mm3": 226936.45620277373,
+    "cad_mass_g": 605.9203380614059,
+    "port_inner_diameter_screen_mm": 61.6,
+    "port_flow_area_m2": 0.0029802404549014215,
+    "core_geometric_area_m2": 0.026,
+    "core_open_area_m2": 0.0169,
+    "total_engine_volume_flow_m3_s": 0.163875,
+    "bank_volume_flow_m3_s": 0.0819375,
+    "air_density_kg_m3": 1.9005384859043395,
+    "mass_flow_bank_kg_s": 0.15572537218878682,
+    "port_velocity_m_s": 27.493586923579382,
+    "core_face_velocity_m_s": 4.848372781065089,
+    "port_reynolds": 169408.4945226971,
+    "effective_area_ratio": 5.6706833746269,
+    "port_dynamic_pressure_pa": 718.3059758546866,
+    "sudden_expansion_loss_coefficient": 0.6784065886816393,
+    "screening_expansion_pressure_loss_pa": 487.3035067092139,
+    "ideal_kinetic_pressure_recovery_pa": 695.9682641434042,
+    "screening_flow_power_loss_w": 39.92843108098621,
+    "port_thin_wall_hoop_stress_mpa": 1.2,
+    "unsupported_panel_bay_mm": 25.0,
+    "guided_panel_bending_stress_screen_mpa": 3.1818181818181817,
+    "ambient_yield_to_panel_stress_ratio": 77.0,
+    "core_face_pressure_force_n": 2080.0,
+    "free_flange_width_growth_mm": 0.5753999999999999,
+    "fully_constrained_elastic_thermal_stress_mpa": 147.0,
+    "ambient_yield_to_constrained_thermal_ratio": 1.6666666666666667,
+    "bank_pulse_frequency_hz": 143.75,
+    "pressure_pulses_at_duty": 51750000.0
+  },
+  "equations": {
+    "four_stroke_flow": "Q_total=Vd*N/(2*60)*VE; Q_bank=Q_total/2",
+    "ideal_gas_density": "rho=p_abs/(R*T)",
+    "continuity": "v=Q/A; m_dot=rho*Q",
+    "reynolds": "Re=rho*v*D/mu",
+    "sudden_expansion": "K=(1-A1/A2)^2; delta_p=K*rho*v1^2/2",
+    "kinetic_recovery": "delta_p_ideal=rho*(v1^2-v2^2)/2",
+    "flow_power": "P_loss=delta_p*Q",
+    "thin_wall_port": "sigma_hoop=p*r/t",
+    "guided_panel": "sigma=C*p*(bay/t)^2",
+    "pressure_force": "F=p*A_core",
+    "thermal_expansion": "delta_W=alpha*W*delta_T",
+    "fully_constrained_thermal": "sigma=E*alpha*delta_T",
+    "pressure_cycles": "n=(N/60)*(3/2)*t_seconds",
+    "mass": "m=rho*Vcad"
+  },
+  "dfam_screen": {
+    "additive_value": "smooth round-to-rectangle transition, integrated guides and flange can be printed as one open inspectable part",
+    "open_flow_path": true,
+    "trapped_powder_volume": false,
+    "integrated_flow_guides": 3,
+    "minimum_nominal_wall_mm": 1.5,
+    "orientation_selected": false,
+    "support_strategy_defined": false,
+    "core_and_hose_interfaces_require_machining": true,
+    "process_comparison_required": [
+      "TIG-welded aluminium sheet end-tank",
+      "cast aluminium end-tank plus machining",
+      "LPBF AlSi10Mg end-tank with integrated guides"
+    ]
+  },
+  "interpretation": {
+    "flow": "steady equal-bank incompressible screen; compressor map, pulses, bends, core resistance, heat transfer and leakage are absent",
+    "mechanics": "thin-wall and guided flat-panel formulas omit loft curvature, guide junctions, flange, braze/weld, vibration and fatigue",
+    "thermal": "free and fully constrained bounds are mutually exclusive limits, not a coupled thermal-stress prediction",
+    "mass": "CAD mass covers one synthetic end-tank only and is not comparable to the published 14 kg two-core assembly",
+    "physicsnemo": "deferred until correlated CFD/CHT/pressure-structure cases define train, holdout and OOD sets",
+    "simready": "deferred until both cores, end-tanks, hoses, supports, decklid and installed clearances are measured"
+  },
+  "release_blockers": [
+    "No measured TA Technix, Albert Motorsport or factory end-tank, core face, port, flange, weld/braze, mount or installed clearance.",
+    "The published 260 x 260 x 100 mm values do not define which dimensions form the end-tank core face.",
+    "The 66 and 68 mm connections describe different assembly positions and do not define wall, bead, hose overlap or tolerance.",
+    "The commercial product is aluminium but its alloy, temper, sheet/cast route, weld filler and heat treatment are undisclosed.",
+    "No target core pressure-drop curve, open-area ratio, heat rejection, charge flow, temperature or boost duty trace.",
+    "No compressor maps, throttle transients, surge case, pressure pulses, engine movement, vibration or backfire load.",
+    "No 3D CFD flow-uniformity, conjugate heat transfer, pressure-structure FEA, modal, weld/braze or fatigue analysis.",
+    "No qualified AlSi10Mg card for thin walls, guide junctions, orientation, roughness, heat treatment, porosity and temperature.",
+    "No orientation, supports, recoater, distortion compensation, machining stock or sealing-surface definition.",
+    "No CT, dimensional inspection, roughness, leak, proof pressure, burst, pressure-cycle, thermal-cycle or shaker test.",
+    "No verified left/right handedness, pair assembly, hose routing, decklid duct, support or vehicle fit.",
+    "No professional charge-air engineering review or approved validation plan."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "end_tank_shell_flange_collar_and_guides"
+    ],
+    "connected_flow_volume_count": 1,
+    "volume_mm3": 226936.45620277373,
+    "envelope_mm": [
+      134.0,
+      274.0,
+      114.0
+    ],
+    "flow_guide_count": 3,
+    "open_ports": [
+      "rectangular_core_face",
+      "round_hose_port"
+    ],
+    "maximum_volume_delta_mm3": 0.05
+  }
+}
