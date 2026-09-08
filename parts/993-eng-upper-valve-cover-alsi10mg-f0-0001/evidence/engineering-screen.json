@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
+  "status": "f0_clean_sheet_integrated_cop_cover_analytical_screen_failed",
+  "geometry_authority": {
+    "published": {
+      "fvd_complete_kit_envelope_mm": [
+        400.0,
+        150.0,
+        200.0
+      ],
+      "fvd_complete_kit_mass_kg": 3.32,
+      "fvd_material": "high_strength_billet_aluminium_unspecified_grade",
+      "protomotive_alternative_material": "6061-T6_billet_aluminium",
+      "torque_nm_ocr_unverified": 9.7,
+      "fastener_thread_ocr_unverified": "M6"
+    },
+    "hypotheses": [
+      "one 220 x 95 x 25 mm upper cover with open underside",
+      "3 mm roof, 6 mm side flange and synthetic ten-bolt pattern",
+      "three 24 mm OD coil-on-plug towers with 14 mm bores",
+      "six external 190 x 2.5 x 8 mm fins",
+      "no gasket surface, head interface, breather, oil baffle, wire route, seal or tolerance"
+    ],
+    "not_claimed": "The 400 x 150 x 200 mm and 3.32 kg describe a complete commercial kit, not this cover; no Porsche, FVD, Protomotive or BBi surface or fit is claimed."
+  },
+  "synthetic_cases": {
+    "crankcase_pressure_differential_pa": 20000.0,
+    "unsupported_roof_span_mm": 45.0,
+    "nut_factor": 0.2,
+    "synthetic_bolt_count": 10,
+    "operating_cover_temperature_c": 200.0,
+    "through_thickness_gradient_k": 50.0,
+    "maximum_seal_bow_mm": 0.1,
+    "convection_coefficient_w_m2_k": 30.0,
+    "target_rejected_heat_w": 300.0,
+    "minimum_screen_ratio": 1.5,
+    "authority": "regression inputs only; no measured crankcase pressure, surface temperature, gasket law, bolt preload, heat rejection, vibration or duty"
+  },
+  "material_screen": {
+    "candidate": "EOS Aluminium AlSi10Mg LPBF T6 comparison",
+    "density_kg_m3": 2670.0,
+    "elastic_modulus_pa": 70000000000.0,
+    "poisson_ratio": 0.33,
+    "comparison_yield_strength_pa": 245000000.0,
+    "thermal_expansion_per_k": 2.1e-05,
+    "specific_heat_j_kg_k": 900.0,
+    "published_process_minimum_wall_mm": 0.4,
+    "scope": "generic project comparison values plus verified EOS T6 route; no hot gasket-flange fatigue, creep, porosity, oil, seal or flatness allowable"
+  },
+  "results": {
+    "cad_volume_mm3": 181143.42667726605,
+    "cad_mass_g": 483.6529492283003,
+    "billet_box_mass_g": 2511.1349999999998,
+    "billet_box_to_cad_mass_ratio": 5.192018376000144,
+    "projected_four_cover_mass_kg": 1.9346117969132013,
+    "published_complete_kit_mass_kg": 3.32,
+    "lumped_heat_capacity_j_k": 435.2876543054703,
+    "roof_plate_stress_mpa": 3.375,
+    "roof_plate_deflection_mm": 0.006780133928571429,
+    "ambient_yield_to_roof_pressure_ratio": 72.5925925925926,
+    "per_bolt_preload_n_from_unverified_torque": 8083.333333333332,
+    "total_preload_n_synthetic_pattern": 80833.33333333331,
+    "gasket_band_area_mm2": 3636.0,
+    "average_gasket_pressure_mpa": 22.231389805647225,
+    "ambient_yield_to_average_gasket_pressure_ratio": 11.020453608247426,
+    "local_flange_stress_mpa": 134.7222222222222,
+    "ambient_yield_to_local_flange_stress_ratio": 1.818556701030928,
+    "free_thermal_growth_mm": 0.8316,
+    "fully_constrained_thermal_stress_mpa": 264.6,
+    "ambient_yield_to_constrained_thermal_ratio": 0.9259259259259259,
+    "thermal_gradient_curvature_per_m": 0.35,
+    "thermal_bow_mm": 2.1174999999999997,
+    "seal_bow_allowance_to_prediction_ratio": 0.04722550177095632,
+    "approximate_external_area_m2": 0.043663893421169296,
+    "convection_capacity_w": 157.19001631620947,
+    "convection_capacity_to_target_ratio": 0.5239667210540315,
+    "pressure_screen_pass": true,
+    "clamp_screen_pass": true,
+    "thermal_screen_pass": false,
+    "preliminary_screen_pass": false,
+    "fatigue_and_seal_life_status": "not_computable_without_hot_material_gasket_preload_flatness_vibration_and_cycle_data"
+  },
+  "equations": {
+    "roof_strip_stress": "sigma=0.75*p*a^2/t^2",
+    "roof_strip_deflection": "w=5*p*a^4/(32*E*t^3)",
+    "bolt_preload": "F=T/(K*d), OCR torque and K are not production inputs",
+    "gasket_pressure": "p_gasket=sum(Fbolt)/A_band",
+    "local_flange_bending": "M=Fbolt*e/2; I=b*t^3/12; sigma=M*(t/2)/I",
+    "thermal_growth": "delta_L=alpha*L*delta_T",
+    "constrained_thermal": "sigma=E*alpha*delta_T",
+    "thermal_bow": "kappa=alpha*delta_T_through/t; w=kappa*L^2/8",
+    "convection": "Q=h*A*(Tcover-Tair)",
+    "mass_and_heat_capacity": "m=rho*V; C=m*cp"
+  },
+  "dfam_screen": {
+    "additive_value": "open shell, external fins and three coil-on-plug towers consolidated without billet stock removal",
+    "open_oil_side": true,
+    "trapped_powder_volume": false,
+    "integrated_cop_tower_count": 3,
+    "integrated_fin_count": 6,
+    "nominal_roof_mm": 3.0,
+    "published_process_minimum_wall_mm": 0.4,
+    "roof_to_process_minimum_ratio": 7.5,
+    "orientation_selected": false,
+    "support_strategy_defined": false,
+    "all_sealing_and_fastener_surfaces_require_machining": true,
+    "process_comparison_required": [
+      "qualified injection-moulded production cover",
+      "CNC 6061-T6 billet cover",
+      "cast aluminium cover",
+      "LPBF AlSi10Mg integrated COP cover"
+    ]
+  },
+  "interpretation": {
+    "result": "pressure and clamp algebra pass; constrained growth, thermal bow and heat-rejection screens fail",
+    "mass": "projecting one synthetic cover to four cannot validate the 3.32 kg commercial kit, which includes different parts, gaskets and hardware",
+    "sealing": "flat-strip and average-contact algebra cannot predict gasket leakage or machined face distortion",
+    "thermal": "uniform and gradient bounds omit oil splash, head conduction, radiation and vehicle airflow",
+    "physicsnemo": "deferred until correlated CHT, structural, seal and durability datasets exist",
+    "simready": "deferred until both upper/lower measured covers, heads, gaskets, coils, harnesses and clearances exist"
+  },
+  "release_blockers": [
+    "No measured 993 upper cover, gasket contour, head datum, bolt pattern, sealing width, coil interface, breather or clearance.",
+    "The published envelope and mass describe a four-cover kit with gaskets and hardware, not one cover.",
+    "The F0 220 x 95 mm shell, ten bolts, fins and COP towers are entirely synthetic.",
+    "No evidence that a production or commercial 993 cover uses AlSi10Mg or LPBF.",
+    "The 9.7 Nm value is an unverified OCR transcription and the preload model assumes an arbitrary nut factor.",
+    "No measured crankcase pressure, gasket law, clamp relaxation, fastener preload or leakage threshold.",
+    "No measured cover/head/oil/air temperature, heat flux, radiation, convection or oil coking limit.",
+    "The constrained thermal, bow and convection screens fail their regression criteria.",
+    "No hot LPBF AlSi10Mg fatigue, creep, porosity, oil compatibility, corrosion or flatness allowables.",
+    "No modal, vibration, engine-motion, thermal-cycle, seal-life or fastener-loosening model.",
+    "No CHT, nonlinear contact/gasket FEA, mesh convergence or measured boundary correlation.",
+    "No qualified orientation, supports, distortion compensation, T6, quench control, machining stock or anodizing route.",
+    "No CT, FPI, metallurgy, dimensional inspection, flatness, pressure, leak, thermal-cycle, shaker or endurance test.",
+    "No lower-cover, left/right, turbo-clearance, coil, harness, plug-wire or head integration evidence.",
+    "No professional engine review, approved validation plan, dyno authorization or vehicle release."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "clean_sheet_upper_valve_cover_integrated_cop_f0"
+    ],
+    "volume_mm3": 181143.42667726605,
+    "envelope_mm": [
+      220.0,
+      95.0,
+      45.0
+    ],
+    "open_oil_side_count": 1,
+    "bolt_bore_count": 10,
+    "cop_tower_count": 3,
+    "cop_through_bore_count": 3,
+    "external_fin_count": 6,
+    "maximum_volume_delta_mm3": 0.05
+  }
+}
