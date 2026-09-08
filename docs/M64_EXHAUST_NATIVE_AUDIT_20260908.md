@@ -1,5 +1,10 @@
 # M64 — passage d’échappement natif : candidat conservé, non validé
 
+**Checkpoint historique conservé.** Le [contrôle distinct de matière et des
+logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md) a depuis exécuté le
+`Common` sur les entrées sauvegardées ; il ne requalifie ni cette découpe,
+ni les contacts des guides, ni les deux arêtes C0.
+
 Le corps avec admission et échappement a été exporté, mais **reste refusé** :
 le contrôle bit à bit des tolérances après sérialisation échoue et un audit
 BOP indépendant signale deux `BOPAlgo_GeomAbs_C0`, désormais **localisés mais
