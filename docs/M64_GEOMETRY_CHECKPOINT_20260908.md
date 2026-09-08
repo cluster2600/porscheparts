@@ -1,9 +1,9 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : le correctif de huit arcs permet de générer
-240 806 cellules mixtes, dont les 67 200 hexas attendus. Le contrôle final
-refuse cependant la topologie : des recouvrements locaux de tétraèdres sont
-confirmés. Ce n'est pas encore un maillage admissible pour OpenFOAM.**
+**Dernier résultat gaz : le contre-essai sans optimisation finale génère
+243 337 cellules mixtes, dont les 67 200 hexas attendus. Aucun doublon ni face
+non-manifold n'est détecté, mais 132 recouvrements locaux sont confirmés.
+Ce n'est pas encore un maillage admissible pour OpenFOAM.**
 Pour le solide, le déplacement intérieur réduit de 309 à 283 les tétraèdres
 sous `minSICN = 0,1`, sans améliorer le minimum de 0,000792. Le fichier CAO
 et la frontière du maillage restent inchangés ; la distance
@@ -956,6 +956,86 @@ La [source Gmsh 4.15.2](https://gitlab.onelab.info/gmsh/gmsh/-/blob/gmsh_4_15_2/
 sépare cette passe de la récupération de frontière et de la création des
 pyramides, qui ne seraient pas supprimées par ce changement.
 
+### Pilote gaz V3 : désactiver l'optimisation finale ne suffit pas
+
+Le contre-essai est maintenant exécuté. Les reçus V2 et V3 confirment que
+**seule l'option effective `Mesh.Optimize` passe de 1 à 0** ; Netgen reste
+désactivé. Le BRep, les cinq entrées, la liaison native→Gmsh et les contraintes
+sont identiques. Les 162 ancres et les 114 chaînes sont conservées après
+2D et 3D. La source distingue ce changement de l'héritage des huit arcs V2.
+Les 65 tests purs passent, dont la restauration exacte du programme V2 hors
+différence déclarée ; une revue indépendante précède le lancement natif.
+
+Le fichier `4f41153f…` contient **175 753 tétraèdres, 67 200 hexaèdres et
+384 pyramides**. Les contrôles évaluent des volumes et Jacobiens positifs,
+aucun doublon, aucune face non-manifold, mais **132 faces internes à
+orientations incompatibles**. Le minimum SICN des tétraèdres reste voisin de
+0,00001418 ; 3 351 sont sous 0,1, contre 2 918 dans V2. Le refus est conservé,
+sans conversion en CFD ni assouplissement du seuil. Les jeux locaux sur
+facettes passent ; le MSH et les métriques se relisent exactement.
+
+La surface avant 3D n'est cependant **pas identique entre les deux essais** :
+85 295 nœuds et 31 886 triangles dans V3, contre 85 296 et 31 888 dans V2 ;
+les quadrangles sont au nombre de 71 152 dans les deux cas. Malgré les mêmes
+entrées, ce n'est donc pas une comparaison appariée sur le même maillage
+initial. La disparition des doublons ne peut pas être attribuée à la seule
+passe supprimée. Le journal V3 conserve le lissage propre aux pyramides,
+distinct de l'optimisation finale supprimée.
+
+Le contre-calcul pur `a06e14e6…` confirme **132 paires distinctes de
+tétraèdres qui se recouvrent localement**, impliquant 163 tétraèdres du cœur,
+tous de déterminant signé positif. Les sommets opposés sont du même côté du
+triangle partagé en arithmétique rationnelle exacte. Le contrôle de surface
+V3 retrouve les mêmes 103 038 facettes orientées, coordonnées et étiquettes
+avant/après 3D ; seuls 31 282 tags d'éléments changent. Il ne s'agit donc
+pas d'un défaut limité au renommage de surface. Ce contrôle ne recherche pas
+exhaustivement toutes les intersections et ne prouve pas l'identité CAO continue.
+
+La comparaison pré-3D précise la différence entre V2 et V3 : la face native
+8 passe de 66 à 64 triangles ; les faces 24, 35 et 69 gardent leur compte mais
+changent de coordonnées et de facettes orientées. Les 152 autres maillages
+de face sont identiques modulo identifiants et rotations cycliques. Douze
+tests purs passent, répétés par la racine ; aucune géométrie n'est modifiée.
+Le contre-diagnostic prend 5,862 s et la comparaison pré-3D 2,586 s.
+
+Le reçu `0f3b63f6…` conserve le résultat natif en 33,610 s, 34,404 s nettoyage
+compris. Plafond 300 s/4 CPU/4 Gio RAM+swap total, sans réseau, OOM ni timeout.
+Le conteneur exact est supprimé et son absence revérifiée par la racine ;
+sources et entrées inchangées. Aucune dépense Vast, aucune qualification
+thermique, mécanique ou fabrication.
+
+Le contrôle logiciel `make check` termine à 0 pour ce lot. Sa découverte
+principale porte sur 2 431 cas, dont 108 ignorés pour dépendances optionnelles ;
+les contrôles supplémentaires du Makefile terminent également sans erreur.
+Ce résultat vérifie le logiciel et le dossier, pas la qualité physique de
+la culasse ni l'acceptation des maillages ci-dessus.
+
+### Solide : le pire tétraèdre est réellement inchangé après Relocate3D
+
+Une contre-lecture complète des MSH avant/après, sans nouvel appel natif,
+confirme que le tétraèdre 1776107 conserve ses quatre coordonnées binary64,
+sa connectivité et son triangle de frontière sur la face 2868. Le nœud
+118057 est réellement intérieur, classé `(3,1)` ; il n'est donc pas gelé
+par la garde de frontière. Son étoile reste composée de 34 tétraèdres et
+19 voisins, dont six voisins intérieurs ont bougé.
+
+Sur chacun des deux états sauvegardés, la direction vers la moyenne des
+136 occurrences de sommets utilisée par la méthode est localement
+défavorable : le tétraèdre ciblé s'aplatit dès une fraction du déplacement
+`xi ≈ 0,01555` avant et `0,01327` après. Ces racines sont calculées par
+déterminants rationnels exacts sur les coordonnées binary64. Elles ne
+reconstituent ni l'ordre des sommes flottantes ni la recherche exécutée
+pendant les trois passes natives. Le seuil 0,01 du code est une largeur
+d'intervalle de recherche, pas un déplacement minimal.
+
+Le reçu privé `614f1767…` conserve les signatures et les limites de ce
+diagnostic de 2,584 s ; cinq tests purs passent également en contre-vérification
+racine. La cause exacte du non-déplacement final n'est pas établie, mais
+répéter le même lissage n'est pas justifié par une simple baisse du nombre
+global de mauvais éléments. La qualité volumique et la conformité à la CAO
+restent à traiter ; aucune modification de contour ni tolérance physique
+n'est introduite par cette analyse.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
@@ -997,6 +1077,8 @@ flowchart LR
     U --> V[Huit arcs corrigés sans modifier la CAO<br/>72 faces structurées conformes]
     V --> W[240 806 cellules mixtes générées<br/>Jeu local conservé]
     W --> X[Recouvrements locaux du cœur confirmés<br/>Facettes inchangées, tags renommés]
+    X --> Z[Contre-essai sans optimisation finale<br/>243 337 cellules, 132 recouvrements locaux]
+    Y --> AA[Pire tétraèdre inchangé confirmé<br/>Direction de lissage localement défavorable]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
