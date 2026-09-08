@@ -1,0 +1,114 @@
+{
+  "schema": "m64-native-gas-C0-segmentation-capsule/v1",
+  "date": "2026-09-08",
+  "status": "native_checks_and_independent_geometry_review_passed_no_remesh_no_CFD",
+  "source": "../source/flowbench-intake/split_gas_c0_edge.py",
+  "source_sha256": "3dc97ea77b7b82ba5230766b53a1da7e66f37a8b9f86a6f5e549e79ac826d31c",
+  "original_native_gas_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+  "candidate_native_gas_sha256": "7fc114c1a8229665047c734fd22129783df420deb5e01e809995c6b3efdc5de8",
+  "units": "scan_units_under_unverified_1_unit_equals_1_mm_hypothesis",
+  "method": {
+    "original_edge_id": 97,
+    "internal_C0_knots": 3,
+    "replacement_edges": 4,
+    "requested_knot_removal_tolerance": 0.0,
+    "local_native_edge_tolerance": 0.000005,
+    "local_edge_tolerance_increased": false,
+    "ShapeDivide_boundary_criterion": "C1",
+    "ShapeDivide_surface_and_pcurve_criteria": "C0",
+    "four_edge_SameRange_recomputation_tolerance": 0.0000001,
+    "SameParameter_called": false,
+    "direct_flag_override": false,
+    "scope": "Represent the existing cornered curve as four segments; not a physical smoothing or redesigned port."
+  },
+  "split_intermediate": {
+    "sha256": "b3566ad1c935aaf46d5159cda1ccc8e1f878a47de7abd9b19c43ad8c7fa3fd23",
+    "BRep_valid": false,
+    "issue": "Four new edges had false SameRange flags despite equal recorded 3D and pcurve parameter ranges; InvalidSameRangeFlag and InvalidSameParameterFlag retained.",
+    "report_sha256": "dd4ea097f9134c626e9aa359ea779aa513ce80a4854a3ee746d9ca7b634161dd",
+    "contextual_report_sha256": "6223677a52040b81ab92855603808e4bf0afd71c043a0046df23ee92f418b1d7"
+  },
+  "range_coherence": {
+    "report_sha256": "8775946cdfaaba2aca26c7c9f2739829e94b1ca7f266342dd6b101b18bf5caf5",
+    "elapsed_seconds": 0.7421881250338629,
+    "BRep_valid_before_export": true,
+    "BRep_valid_after_native_reread": true,
+    "topology": {"solids": 1, "faces": 88, "edges": 195, "vertices": 120},
+    "parameter_partition_preserved": true,
+    "maximum_3D_sample_displacement_during_SameRange": 0.0,
+    "sample_displacement_not_exhaustive_equivalence_proof": true
+  },
+  "full_BOP_comparison": {
+    "report_sha256": "860f04e92a61e5b85c66fabb01d217e986a2ba77d1f3cb53c69fa1ee12ad0597",
+    "source_sha256": "9d9d6395426bc346875ed822a339c5f49557bff15d863a42cf5105308ee99dd0",
+    "elapsed_seconds": 18.021542792092077,
+    "modes": ["SelfInterMode", "SmallEdgeMode", "RebuildFaceMode", "ContinuityMode", "CurveOnSurfaceMode"],
+    "original_faults": ["BOPAlgo_GeomAbs_C0"],
+    "candidate": {"has_faulty": false, "has_errors": false, "has_warnings": false, "faults": []},
+    "both_input_files_unchanged": true
+  },
+  "reproduction": {
+    "report_sha256": "69a714d8dc82957f4767076fdbe93909c80ac99408c9bf5ec22510584ab4443f",
+    "elapsed_seconds": 9.391659290995449,
+    "exit_code": 0,
+    "OCP_version": "7.9.3.1",
+    "candidate_SHA_identical_to_private_experiment": true,
+    "original_input_unchanged": true
+  },
+  "independent_geometry_review": {
+    "report_sha256": "7cb1fecc8b4f710e74824e9cfdac4bf2fb8e845288fb4ec07973fbab3d665e00",
+    "source_sha256": "7b65b7aa94a8d1744279bbc57db088e176923ea161a7d16e74f348133a49db04",
+    "elapsed_seconds": 0.420542125008069,
+    "four_split_BSpline_descriptors_equal_to_segmented_native_copies": true,
+    "outer_parameter_endpoints_and_adjacent_intervals_preserved": true,
+    "original_vertices_preserved": 117,
+    "new_shared_split_vertices": 3,
+    "original_vertex_coordinates_and_tolerances_unchanged": true,
+    "face_count": 88,
+    "surface_descriptors_strictly_equal": 77,
+    "surface_descriptors_incompatible": 0,
+    "pcurves_compared": 388,
+    "pcurve_descriptors_strictly_equal": 386,
+    "pcurve_descriptors_incompatible": 0,
+    "other_original_edges_compared": 191,
+    "other_edge_descriptors_strictly_equal": 180,
+    "other_edge_descriptors_incompatible": 0,
+    "remaining_descriptor_differences_are_tiny_axis_roundoff_not_manufacturing_tolerance": true,
+    "all_face_contours_preserved_by_oriented_occurrences_and_vertex_graph": true,
+    "source_and_candidate_files_unchanged": true,
+    "scope": "Native geometry representation comparison, not physical smoothing, metrology or flow qualification."
+  },
+  "preserved_rejected_alternatives": [
+    {
+      "method": "Continuity conversion with native 5e-6 knot-removal tolerance",
+      "candidate_sha256": "1cc1d88d702a180108e2e772da531fe9a30b65441719e737c0c4c9f1701cdcc1",
+      "result": "One knot reduced in multiplicity, two splits; this alternative is not the retained four-segment candidate."
+    },
+    {
+      "method": "Selective edge replacement from that conversion history",
+      "candidate_sha256": "6743f892c0707128222b1d57411670eb212fe33dfbcb151055c5d64336087621",
+      "result": "Invalid wire connectivity and parameter flags; rejected."
+    }
+  ],
+  "limits": {
+    "native_checks_are_not_physical_validation": true,
+    "independent_surface_pcurve_contour_review_completed": true,
+    "candidate_remeshed": false,
+    "old_98c6628b_mesh_does_not_qualify_this_candidate": true,
+    "thermal_mechanical_LPBF_validation": false,
+    "M64_fitment_verified": false,
+    "manufacturing_authorized": false,
+    "CFD_qualified": false
+  },
+  "software_verification": {
+    "make_check_exit_code": 0,
+    "main_suite_tests": 2293,
+    "main_suite_skipped": 108,
+    "main_suite_failures": 0,
+    "private_full_log_sha256": "498cbac74a1eec13839aaee3c65c5e198ffdf423fcd3a7500f9b78d899d86239",
+    "previous_full_log_preserved_sha256": "aaaa250850cd62176228850c4b63c63ca528f22d15ee38542c90033ea0b0be2b",
+    "test_source_sha256": "926d9ded4111f7b0f9a3a2795ac54d027abe43a6155e801e42438a942d17eacf",
+    "software_success_is_not_physical_validation": true
+  },
+  "new_Vast_spend_USD": 0
+}
