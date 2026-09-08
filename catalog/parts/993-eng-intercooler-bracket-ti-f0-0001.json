@@ -76,7 +76,7 @@
       "CNC",
       "sheet_metal"
     ],
-    "preferred_process": "LPBF",
+    "preferred_process": "CNC",
     "material": {
       "family": "titane LPBF candidat",
       "grade": "Ti-6Al-4V Grade 5 de criblage ; matériau OEM et produit FVD inconnus",
@@ -126,7 +126,9 @@
       "catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json",
       "catalog/sources/src-eos-ti64-grade5.json",
       "catalog/sources/src-timet-ti64-physical-properties.json",
-      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/engineering-screen.json"
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/calculix-screen.json",
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/simready-conversion-summary.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
@@ -136,6 +138,8 @@
       "Le cas central de 400 N, la portée de 220 mm et +120 K sont synthétiques ; aucune charge 993 n'a été mesurée.",
       "Le calcul de poutre ignore courbure, concentrations, contact, précharge, vibration, fatigue, défauts LPBF et contraintes thermiques.",
       "La limite de comparaison 828 MPa vient d'une référence corroyée TIMET et n'est pas une valeur admissible LPBF.",
+      "L'écran CalculiX C3D10 converge à moins de 10 % sur le p95 et la flèche, mais conserve des appuis, une charge et une carte élastique synthétiques ; le maximum local augmente encore avec le raffinement.",
+      "Le USD dérivé passe le contrôle structurel minimum seulement ; il ne porte aucune attribution physique SimReady qualifiée.",
       "Le STEP prouve seulement un BREP calculable dans l'enveloppe ; il ne doit être ni fabriqué pour montage ni installé."
     ]
   }
