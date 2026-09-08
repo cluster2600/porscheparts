@@ -9,8 +9,12 @@ preuve d'équivalence globale des solides ni levée du refus historique.
 Le maître `21c9c40b…` reste inchangé, sans promotion du candidat `450ba081…`.
 Les contacts nominaux des guides sont mesurés, sans qualification à chaud.
 La partition du gaz reste refusée : validité et non-recouvrement sont contrôlés,
-mais la couverture des frontières, leurs rôles physiques et le bilan de volumes
-ne sont pas encore acceptés.
+mais la couverture des frontières et le bilan de volumes ne sont pas encore
+acceptés globalement. Un nouveau contrôle du 8 septembre attribue les huit
+faces des deux groupes mixtes aux rôles source. Leur rattachement aux preuves
+antérieures permet un registre des **124 faces externes**, sans revalidation
+physique des étiquettes. Un premier maillage du **solide V5**, distinct du gaz,
+est obtenu puis rejeté : **4 871 éléments sur 271 001 sous le seuil de qualité**.
 
 Ce point suit les [contrôles de matière et de logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
 et la [localisation des défauts du maillage](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
@@ -364,8 +368,9 @@ vérifie 19 formes BRep, les incidences et les instantanés mémoire avant/aprè
 Un contrôle distinct recompte les 86 faces source, toutes les faces externes
 candidates, 208 événements de journal et les empreintes de 312 sorties natives.
 Cela prouve l'exécution exhaustive du diagnostic, pas la couverture géométrique
-des deux opérations averties. Les deux groupes plans aux rôles physiques
-mélangés restent sans attribution résolue.
+des deux opérations averties. À ce stade du diagnostic, les deux groupes plans
+aux rôles physiques mélangés restent sans attribution résolue ; le nouveau
+contrôle du 8 septembre présenté ci-dessous les traite séparément.
 
 Durées : 1,984 s natives / 2,550 s nettoyage compris ; sortie 2 intentionnelle,
 pas d'OOM ni expiration. Aucun nouveau `Common`, GK, BRep ou maillage.
@@ -425,6 +430,57 @@ Durées : 0,450 s natives / 0,995 s nettoyage compris, sorties 2 ; revue du
 graphe sans nouvel appel natif. Entrées inchangées, conteneur exact supprimé,
 absence revérifiée. Aucun nouveau `CUT`, maillage ou solveur physique lancé.
 
+### Nouveau résultat du 8 septembre : huit faces, deux groupes de rôles résolus
+
+Le domaine `fab1338a…`, la partition `c9eceb77…` et leur manifeste gelé sont
+relus sans nouvelle opération géométrique. Les deux groupes plans mixtes sont
+retrouvés dans les inventaires natifs, puis chaque face candidate est comparée
+à **toutes** les faces source de son groupe : `5² + 3² = 34` comparaisons.
+Huit appariements uniques réussissent et **26 appariements croisés sont
+refusés** ; ces derniers ne sont pas des défauts de la partition.
+
+Les huit réussites portent sur les **octets complets de chaque face chargée,
+BinTools VERSION_3**, contours et tolérances compris, avec contrôle séparé du
+placement racine exact, de l'orientation et de l'empreinte du support.
+**Aucune exclusion de donnée auxiliaire n'est nécessaire ici.** Un même plan,
+une aire, un centre ou un numéro identique ne suffit pas à l'appariement.
+L'égalité des numéros ci-dessous est un résultat, pas une hypothèse.
+
+| Groupe | Face candidate | Face source | Rôle source transféré |
+| --- | ---: | ---: | --- |
+| 2 | 2 | 2 | `walls_chamber` |
+| 2 | 3 | 3 | `walls_seat` |
+| 2 | 4 | 4 | `walls_chamber` |
+| 2 | 9 | 9 | `walls_seat` |
+| 2 | 15 | 15 | `walls_chamber` |
+| 3 | 5 | 5 | `walls_chamber` |
+| 3 | 6 | 6 | `walls_seat` |
+| 3 | 14 | 14 | `walls_seat` |
+
+Une contre-lecture vérifie l'unicité et l'exhaustivité des lignes et des
+comparaisons, ainsi que les rôles dans le manifeste relu et rehaché séparément.
+Cette vérification couvre une limite connue du superviseur : sa conversion
+en dictionnaires/ensembles ne rejetterait pas à elle seule des doublons
+fabriqués dans un reçu. Aucun doublon n'existe dans le reçu natif obtenu ;
+le programme exécuté reste gelé, sans correction rétroactive.
+
+Durées : **0,614 s natives / 1,214 s nettoyage compris**, sorties 2 prévues
+pour conserver les autres refus. Plafonds effectifs 2 CPU/4 Gio, budget total
+120 s dont 30 s réservées au nettoyage ; sans OOM ni expiration, sans mesure
+de mémoire de pointe. Entrées, sources et objets chargés inchangés ; conteneur
+supprimé, absence vérifiée indépendamment. Les **11 tests ciblés passent**.
+Le contrôle logiciel global `make check` termine aussi avec le code 0 ;
+ses tests natifs optionnels ignorés ne constituent pas une validation de pièce.
+Les empreintes complètes des huit paires, du rapport `625be76c…`, du processus
+`50b3d0e6…` et de la contre-lecture `d1e997de…` figurent dans la
+[capsule de preuves](../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json).
+
+Ce résultat transfère des étiquettes source existantes, sans nouvelle
+validation physique. Les huit correspondances sont des faces entières :
+aucune preuve générale de couverture de faces subdivisées n'est extrapolée.
+Les `CUT` avertis et le refus volumique restent enregistrés et inchangés.
+Aucun `CUT`, `Common`, GK, BRep, maillage ou solveur supplémentaire n'est produit.
+
 Les lots booléens Kali enregistrent une valeur `FuzzyValue()` effective
 de `1e−7` unité scan, pour une demande à zéro. OCCT impose un plancher dans
 [`SetFuzzyValue`](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BOPAlgo/BOPAlgo_Options.cxx).
@@ -432,11 +488,76 @@ Ils ne sont donc pas décrits comme des opérations booléennes en arithmétique
 exacte ou à tolérance effective nulle. Cela ne modifie pas les tolérances
 stockées dans les entrées.
 
+### Registre dérivé des 124 rôles extérieurs du gaz
+
+Un traitement JSON sans nouvel appel natif relie les reçus précédents :
+113 faces par couverture bidirectionnelle de groupes mono-rôle, huit par
+identité complète, deux par identité du sous-graphe définissant les faces
+28/29 et une par empreinte entière et placement exact de la face 35.
+Le registre `ebd58991…` couvre une fois chacune des 124 faces externes des
+52 groupes, avec un seul propriétaire ; les 32 faces internes en sont exclues.
+La racine a réexécuté ce traitement et retrouvé exactement le même registre.
+Les rôles proposés antérieurement pour la source sont transférés, pas validés
+physiquement. Ni les avertissements du groupe 17 ni le refus volumique ne sont
+réécrits. Aucun nouveau calcul de couverture ou de volume n'est lancé.
+
+### Premier maillage diagnostic du solide V5
+
+Le fichier `450ba081…` est relu dans OCP 7.9.3.1 puis transmis à Gmsh 4.15.2
+par un BRep ASCII V3 privé. L'empreinte de la racine est contrôlée **avant**
+extraction de son unique solide ; les deux empreintes restent distinctes.
+Le pont relu est BRep valide : un solide, une coque, 4 900 faces.
+La conversion attribue 118 octets différents dans le pont ASCII et 101 dans
+la relecture de l'export Gmsh, notamment des repères, sommets, intervalles et
+caches UV. Ces comptes ne sont pas une distance géométrique.
+
+L'essai est explicitement autorisé comme **diagnostic d'import non qualifié** :
+comparaison géométrique globale `false`, borne spatiale cumulée `null`, aucune
+autorisation CAE ou fabrication. Cela ne réduit pas le budget géométrique
+`1e−9` et ne le déclare pas respecté. Avant génération, la réimportation
+reproduit exactement le BRep exporté et l'inventaire Gmsh examinés. Le fichier
+V5 original reste intact ; aucune réparation intentionnelle, décimation ou
+réutilisation d'anciens groupes anatomiques n'est appliquée.
+
+| Contrôle du maillage `763a2ad9…` | Résultat |
+| --- | --- |
+| Éléments / nœuds / triangles frontières | 271 001 / 65 735 / 91 300 |
+| Connexité et frontière | Une composante, frontière complète, aucune face CAO sans triangles |
+| Jacobiennes et volumes signés | Tous strictement positifs |
+| Qualité `minSICN ≥ 0,1` | **Refus : 4 871 éléments (1,7974 %), minimum 0,0000406853** |
+| Écart de volume au BRep importé | 0,24615 %, sous le seuil grossier de 1 % |
+| Relecture MSH | Tags et connectivité conservés ; qualité toujours refusée |
+
+Le contrôle composite `mesh_export_roundtrip=false` inclut le critère de
+qualité : ce n'est pas une corruption du fichier. L'écart maximal de coordonnées
+après relecture est `5,7396e−14` unité scan. Les 4 871 éléments trop déformés
+comprennent 2 916 éléments adjacents à une face frontière et 1 955 sans face
+frontière ; leur localisation privée ne leur attribue pas un rôle anatomique.
+
+Une projection de 46 583 centroïdes de triangles sur leurs supports Gmsh
+donne un maximum de **0,38760 unité scan**. C'est un diagnostic échantillonné,
+pas une borne sur toutes les facettes, une preuve d'appartenance aux contours
+de découpe ou une tolérance d'usinage. Le contrôle du helper après maillage
+porte sur entités, volume et descripteurs, pas sur une identité BRep complète.
+
+Un seul essai : 9,333 s pour les trois stades d'import et 27,440 s pour le
+maillage, nettoyage compris, soit 36,773 s cumulées. Plafond 4 CPU/4 Gio sans
+swap supplémentaire, 1 200 s cumulées dont 60 s de réserve, stade maillage
+limité à 600 s. Le producteur configure deux threads de maillage ; quatre CPU
+sont une limite du conteneur, pas une mesure d'utilisation. Sorties d'import 0,
+maillage 2 attendu, sans OOM ; les quatre conteneurs ont été supprimés et leur
+absence revérifiée. Huit tests purs du wrapper et 21 du producteur passent.
+Aucune nouvelle dépense Vast, charge moteur, simulation thermique ou mécanique.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
-de représentation et de frontières ; terminer l'attribution des rôles physiques
-et accepter le bilan de volumes, puis mailler le domaine. L'attribution des
+de représentation, de frontières et du registre des 124 rôles ; conclure la
+couverture et le bilan de volumes avant admission du domaine gazeux.
+Pour le solide, exploiter la localisation des 4 871 éléments trop déformés
+pour choisir une correction de maillage ciblée, puis recontrôler frontière,
+qualité et conformité CAO. Ne pas retoucher la silhouette pour masquer ces
+défauts numériques. L'attribution des
 quatre octets auxiliaires est terminée : elle n'appelle ni nouvelle correction
 de ces faces ni répétition de leur test binaire strict.
 Le BOP du candidat et le lot des 136 paires n'ont pas à être relancés sur les
@@ -450,9 +571,12 @@ flowchart LR
     A[Corps V5 sauvegardé] --> B[5 modes BOP réussis]
     A --> C[Écarts attribués sur Linux et Mac]
     C --> D[Borne locale calculée<br/>Équivalence globale à conclure]
+    A --> J[Maillage solide diagnostic<br/>271 001 tétraèdres]
+    J --> K[Qualité refusée<br/>4 871 éléments à traiter]
     E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
-    E --> G[102 CUT réussis sur 104<br/>Écarts auxiliaires identifiés<br/>Rôles et volumes à accepter]
-    G --> H[Maillage puis calculs physiques]
+    E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
+    G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
+    H --> I[Maillage puis calculs physiques]
 ```
 
 Les essais utilisent Kali et l'image OCP existants, sans réseau dans les
