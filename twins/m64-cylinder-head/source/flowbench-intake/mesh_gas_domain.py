@@ -26,10 +26,100 @@ REQUIRED_DOMAIN_GATES = ('single_solid','brep_valid','bop_no_faults',
 WALL_ROLES = {'walls_port','walls_chamber','walls_seat','walls_valve','walls_guide',
               'walls_receiver','fixture_stem_seals'}
 C0_DIAGNOSTIC_GATES = {'bop_no_faults','positive_intake_curtain'}
+GAS05_NATIVE_SHA = '3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3'
+GAS05_FACE38_SHA = '9f7dcd51e4548a3222e961c16c0c5586f1725d84be52ee350b37090668753b5b'
+GAS05_GUIDE_STEM_FACES = {
+    55: ('walls_guide','f4b546496c1b4a040c561ea46685469ec7e9feb4ab3c5dbe9efbeba58b81d465'),
+    58: ('walls_guide','6312431d0d6bc19ac6a13b9197de9a2c2ff01741c0b065062f3c355afdcf1e82'),
+    62: ('walls_valve','fe1820f9e706df3db439445746ede2b9c5888f61dd019c2bb489ff01129c9ffc'),
+    63: ('walls_valve','5134bae58c7ae348813da1ea39c02e2e639b9f266828067d616fd40569b4c646'),
+}
+GUIDE_FRAME_RECEIPT_SHA = 'f334b3e96193fc0c15a947a1a9c66b4a1ad929c3bea0638bc2128e12d0b79bd0'
+GUIDE_CHORD_SOURCE_SHA = '31c45d7d3c554d957bf114ba050b42171a332d7054fbe154e443e6ad8ca7aaea'
 
 
 class SurfaceOnlyComplete(Exception):
     """Internal stop after persistence, while still running final provenance checks."""
+
+
+def face38_algorithm_assignment(manifest, binding, algorithm):
+    """The local experiment is valid only on this exact native face, never a reused tag."""
+    if algorithm is None:return None
+    if algorithm not in (1,5):raise ValueError('face38_experiment_allows_only_MeshAdapt1_or_Delaunay5')
+    faces=[face for face in manifest['boundary_faces'] if face['id']==38]
+    if (manifest['exports']['domain_brep']['sha256']!=GAS05_NATIVE_SHA or len(faces)!=1 or
+            faces[0]['sha256']!=GAS05_FACE38_SHA or faces[0]['role']!='walls_port' or
+            binding.get('descriptor_bijection_verified') is not True):
+        raise ValueError('exact_native_gas05_face38_and_bijection_required')
+    matches=[row for row in binding['matches_private'] if row['source_face_index']==38]
+    if len(matches)!=1:raise ValueError('unique_native_face38_binding_required')
+    return {'source_face_id':38,'native_BRep_sha256':GAS05_NATIVE_SHA,'native_face_sha256':GAS05_FACE38_SHA,
+            'gmsh_face_tag':matches[0]['gmsh_face_tag'],'surface_algorithm':algorithm,
+            'other_surfaces_default_algorithm':6,'boundary_geometry_modified':False}
+
+
+def face38_size_assignment(manifest, binding, size):
+    """One resolution experiment, not a dimensional or CAD tolerance change."""
+    if size is None:return None
+    if isinstance(size,bool) or not math.isfinite(size) or not .005<=size<=.2:
+        raise ValueError('local_size_must_be_finite_within_unchanged_minimum_and_0p2')
+    # Reuse only the exact face binding, without applying its algorithm value.
+    target=face38_algorithm_assignment(manifest,binding,1)
+    return {key:target[key] for key in ('source_face_id','native_BRep_sha256','native_face_sha256','gmsh_face_tag')} | {
+        'local_maximum_size_scan_units':size,'include_boundary':True,
+        'CAD_geometry_modified':False,'global_minimum_size_unchanged':.005,
+        'authority':'numerical_chord_resolution_experiment_not_physical_scan_precision',
+        'neighboring_shared_edge_meshes_may_change':True}
+
+
+def guide_size_assignment(manifest, binding, size):
+    """Resolve only the four cylindrical boundaries implicated by saved intersections."""
+    if size is None:return None
+    if isinstance(size,bool) or not math.isfinite(size) or not .005<=size<=.2:
+        raise ValueError('guide_size_must_be_finite_between_0p005_and_0p2')
+    if (manifest['exports']['domain_brep']['sha256']!=GAS05_NATIVE_SHA or
+            binding.get('descriptor_bijection_verified') is not True):
+        raise ValueError('exact_native_gas05_and_bijection_required')
+    faces=[]
+    for face_id,(role,expected_sha) in GAS05_GUIDE_STEM_FACES.items():
+        source=[r for r in manifest['boundary_faces'] if r['id']==face_id]
+        match=[r for r in binding['matches_private'] if r['source_face_index']==face_id]
+        if (len(source)!=1 or source[0]['role']!=role or source[0]['sha256']!=expected_sha or
+                source[0].get('surface_type')!='GeomAbs_Cylinder' or len(match)!=1):
+            raise ValueError('exact_unique_guide_stem_cylinder_binding_required')
+        faces.append({'source_face_id':face_id,'native_face_sha256':expected_sha,
+                      'role':role,'gmsh_face_tag':match[0]['gmsh_face_tag']})
+    return {'faces':faces,'local_target_size_scan_units':size,'include_boundary':True,
+            'CAD_geometry_modified':False,'global_minimum_size_unchanged':.005,
+            'target_size_is_not_a_guaranteed_actual_chord_bound':True,
+            'actual_chords_and_facets_must_be_checked_before_3D':True}
+
+
+def validated_guide_frames(receipt, receipt_sha):
+    """Reuse reviewed native frames, never the earlier surface's acceptance result."""
+    if (receipt_sha!=GUIDE_FRAME_RECEIPT_SHA or
+            receipt.get('schema')!='m64-persisted-guide-chord-diagnostic/v1' or
+            receipt.get('mode')!='native_cylinder_diagnostics' or
+            receipt.get('all_inputs_unchanged') is not True or
+            receipt['inputs_sha256']['domain']!=GAS05_NATIVE_SHA or
+            receipt['inputs_sha256']['source']!=GUIDE_CHORD_SOURCE_SHA):
+        raise ValueError('exact_reviewed_native_guide_frame_receipt_required')
+    return receipt['result']['frames_private']
+
+
+def current_guide_chord_gate(gmsh, assignment, frames):
+    """Inspect the actual in-memory boundary immediately before/after generate(3)."""
+    import audit_guide_chords
+    if checks.sha256(audit_guide_chords.__file__)!=GUIDE_CHORD_SOURCE_SHA:
+        raise ValueError('reviewed_guide_chord_auditor_source_required')
+    tags,xyz,_=gmsh.model.mesh.getNodes()
+    points={int(tag):tuple(map(float,xyz[3*i:3*i+3])) for i,tag in enumerate(tags)}
+    grouped={}
+    for row in assignment['faces']:
+        kinds,_,flat=gmsh.model.mesh.getElements(2,row['gmsh_face_tag'])
+        if list(map(int,kinds))!=[2]:raise ValueError('linear_guide_boundary_triangles_required')
+        grouped[row['source_face_id']]=[tuple(map(int,flat[0][i:i+3])) for i in range(0,len(flat[0]),3)]
+    return audit_guide_chords.mesh_chord_gate(points,grouped,frames)
 
 
 def validated_boundary_contract(manifest, c0_diagnostic=False):
@@ -403,6 +493,48 @@ def run(args):
                 report['import']['relative_volume_difference']>1e-6 or report['import']['relative_area_difference']>1e-6):
             raise ValueError('native_import_conservation_or_bijection_failed')
         lookup={r['source_face_index']:r['gmsh_face_tag'] for r in binding['matches_private']}
+        assignment=face38_algorithm_assignment(manifest,binding,args.face38_algorithm)
+        report['local_surface_algorithm_assignment']=assignment
+        if assignment:gmsh.model.mesh.setAlgorithm(2,assignment['gmsh_face_tag'],assignment['surface_algorithm'])
+        sizing=face38_size_assignment(manifest,binding,args.face38_size)
+        report['local_surface_size_assignment']=sizing
+        background_fields=[]
+        if sizing:
+            constant=gmsh.model.mesh.field.add('MathEval')
+            gmsh.model.mesh.field.setString(constant,'F',format(args.face38_size,'.17g'))
+            restricted=gmsh.model.mesh.field.add('Restrict')
+            gmsh.model.mesh.field.setNumber(restricted,'InField',constant)
+            gmsh.model.mesh.field.setNumbers(restricted,'SurfacesList',[sizing['gmsh_face_tag']])
+            gmsh.model.mesh.field.setNumber(restricted,'IncludeBoundary',1)
+            background_fields.append(restricted)
+            sizing['field_ids']={'MathEval':constant,'Restrict':restricted}
+            sizing['MeshSizeExtendFromBoundary']=gmsh.option.getNumber('Mesh.MeshSizeExtendFromBoundary')
+            sizing['boundary_entities_private']=gmsh.model.getBoundary([(2,sizing['gmsh_face_tag'])],oriented=False,recursive=False)
+        guide_sizing=guide_size_assignment(manifest,binding,args.guide_size)
+        report['guide_stem_size_assignment']=guide_sizing
+        guide_frames=None
+        if guide_sizing:
+            if args.guide_chord_reference:
+                reference_hash=checks.sha256(args.guide_chord_reference)
+                guide_frames=validated_guide_frames(json.loads(args.guide_chord_reference.read_text()),reference_hash)
+                paths[args.guide_chord_reference]=reference_hash
+                paths[Path(__file__).with_name('audit_guide_chords.py')]=GUIDE_CHORD_SOURCE_SHA
+                report['guide_frame_reference_sha256']=reference_hash
+            elif not args.stop_after_surface:
+                raise ValueError('native_guide_frames_required_for_actual_pre3D_chord_gate')
+            constant=gmsh.model.mesh.field.add('MathEval')
+            gmsh.model.mesh.field.setString(constant,'F',format(args.guide_size,'.17g'))
+            restricted=gmsh.model.mesh.field.add('Restrict')
+            gmsh.model.mesh.field.setNumber(restricted,'InField',constant)
+            gmsh.model.mesh.field.setNumbers(restricted,'SurfacesList',[r['gmsh_face_tag'] for r in guide_sizing['faces']])
+            gmsh.model.mesh.field.setNumber(restricted,'IncludeBoundary',1)
+            background_fields.append(restricted)
+            guide_sizing['field_ids']={'MathEval':constant,'Restrict':restricted}
+        if background_fields:
+            minimum=gmsh.model.mesh.field.add('Min')
+            gmsh.model.mesh.field.setNumbers(minimum,'FieldsList',background_fields)
+            gmsh.model.mesh.field.setAsBackgroundMesh(minimum)
+            report['background_Min_fields']=background_fields
         groups={name:[lookup[face] for face in ids] for name,ids in contract['groups'].items()}
         boundary_partition([tag for _,tag in surfaces],groups)
         for name,tags in groups.items():
@@ -429,9 +561,19 @@ def run(args):
                 if count>250000:raise ValueError('pilot_surface_resource_bound_exceeded_before_3D')
                 report['persisted_surface']=persist_surface(gmsh,args.output,groups,binding)
                 checkpoint('surface_persisted_before_any_3D_generation')
+                if guide_frames:
+                    report['guide_chord_gate_before_3D']=current_guide_chord_gate(gmsh,guide_sizing,guide_frames)
+                    checkpoint('actual_surface_guide_chord_gate_measured_before_3D')
+                    if not report['guide_chord_gate_before_3D']['local_radial_envelopes_accepted']:
+                        raise ValueError('actual_guide_surface_radial_envelopes_rejected_before_3D')
                 if args.stop_after_surface:
                     report['status']='surface_only_not_volume_mesh'
                     raise SurfaceOnlyComplete()
+        if guide_frames:
+            report['guide_chord_gate_after_3D']=current_guide_chord_gate(gmsh,guide_sizing,guide_frames)
+            checkpoint('actual_surface_guide_chord_gate_measured_after_3D')
+            if not report['guide_chord_gate_after_3D']['local_radial_envelopes_accepted']:
+                raise ValueError('actual_guide_surface_radial_envelopes_rejected_after_3D')
         types,tags,nodes=gmsh.model.mesh.getElements(3)
         if list(map(int,types))!=[4] or not 0<len(tags[0])<=1000000:
             raise ValueError('linear_tetrahedra_within_pilot_resource_bound_required')
@@ -510,6 +652,10 @@ def main():
     parser.add_argument('--diagnostic-c0-advisory',type=Path,help='Exact reviewed C0 advisory; diagnostic attempt only, not a BOP or CFD waiver')
     parser.add_argument('--volume-quadrature-reference',type=Path,help='Hash-bound OCCT nonadaptive volume reference; import tolerance remains 1e-6')
     parser.add_argument('--stop-after-surface',action='store_true',help='Save all boundary triangles and stop before generate(3); not a volume mesh')
+    parser.add_argument('--face38-algorithm',type=int,choices=(1,5),help='Native gas05 face38 only: MeshAdapt1 or Delaunay5; all other settings unchanged')
+    parser.add_argument('--face38-size',type=float,help='Restrict maximum element size on exact face38 and its boundary; CAD and global minimum unchanged')
+    parser.add_argument('--guide-size',type=float,help='Exact gas05 guide/stem cylinders only: local target size; surface-only until actual chord review')
+    parser.add_argument('--guide-chord-reference',type=Path,help='Exact reviewed native cylinder frames; recompute whole-facet radial bounds before and after 3D')
     resource.setrlimit(resource.RLIMIT_CPU,(285,290))
     raise SystemExit(run(parser.parse_args()))
 

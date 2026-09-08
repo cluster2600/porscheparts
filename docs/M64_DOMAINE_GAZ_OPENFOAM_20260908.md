@@ -1,5 +1,11 @@
 # M64 — volume d'air et exécution OpenFOAM
 
+Suite documentée : [corps réellement évidé et raffinement local du maillage](M64_CORPS_ADMISSION_MAILLAGE_20260908.md).
+Les diagnostics historiques de normales CAO ci-dessous ne sont pas une
+preuve retenue : une erreur d'appariement de projection a été corrigée et
+explicitement retracée dans le nouveau reçu. Les résultats d'aire et de
+distance obtenus indépendamment de cet appariement restent distincts.
+
 ## Ce qui fonctionne effectivement
 
 La chaîne **Gmsh → OpenFOAM Foundation 14 → solveur compressible `fluid`**
