@@ -1,6 +1,9 @@
 # M64 — périmètre de simulation multiphysique
 
 État détaillé du dernier lot : [PicoGK et Vast](M64_PICOGK_EXECUTION.md).
+Reprise du 8 septembre : [chambre candidate, assemblage et préparation du
+banc d'admission](M64_ADMISSION_CHAMBRE_20260908.md), avec
+[comparaison PicoGK locale](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md).
 Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
 Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
 Les cartes Mermaid et l'inventaire ci-dessous couvrent la pile demandée ;
