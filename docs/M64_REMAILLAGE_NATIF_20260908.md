@@ -232,8 +232,15 @@ ce lot. Les conteneurs de génération et de contrôle OpenFOAM sont terminés
 et leur absence a été contrôlée par l'opérateur des calculs. Aucun solde
 de compte n'est publié.
 
-La prochaine action est de **localiser les cellules et faces défectueuses**,
-puis modifier le maillage local ou volumique en fonction de ces défauts.
+Les défauts ont ensuite été exportés sur une copie isolée du cas : dix
+fichiers VTK et dix ensembles natifs de labels, en 18 s. Les six lignes
+de rejet restent identiques et les fichiers géométriques de l'original
+et de la copie sont inchangés. Les VTK servent à la localisation visuelle
+en précision `float` ; les labels natifs, et non ces vues, font autorité
+pour identifier les cellules et faces. Aucun solveur n'est exécuté.
+
+La prochaine action est de **relier ces défauts aux surfaces fonctionnelles**,
+puis modifier le maillage local ou volumique en fonction de cette analyse.
 Chaque nouvel artefact devra conserver ses propres contrôles de frontières
 et repasser les critères OpenFOAM. Cela n'autorise ni une modification
 arbitraire de l'enveloppe de la pièce ni un relâchement des seuils.
