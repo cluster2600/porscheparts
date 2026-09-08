@@ -1,9 +1,11 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Le candidat BRep sauvegardé passe désormais les cinq modes BOP sélectionnés ;
-les 136 contrôles de non-recouvrement du gaz passent également.** Le refus de
-resérialisation n'est pas encore levé : ses différences sont attribuées sur
-macOS, sans borne spatiale globale ni équivalence multiplateforme démontrées.
+**Le candidat BRep sauvegardé passe les cinq modes BOP sélectionnés ;
+les 136 contrôles de non-recouvrement du gaz passent également.** Le nouveau
+diagnostic complet des frontières termine 104 soustractions : 102 passent,
+deux restent averties sur le même groupe de trois faces. Les différences de
+resérialisation sont maintenant attribuées sur Linux comme sur macOS, sans
+preuve d'équivalence globale des solides ni levée du refus historique.
 Le maître `21c9c40b…` reste inchangé, sans promotion du candidat `450ba081…`.
 Les contacts nominaux des guides sont mesurés, sans qualification à chaud.
 La partition du gaz reste refusée : validité et non-recouvrement sont contrôlés,
@@ -13,7 +15,7 @@ ne sont pas encore acceptés.
 Ce point suit les [contrôles de matière et de logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
 et la [localisation des défauts du maillage](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
 Les [empreintes des reçus](../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json)
-séparent ces trois opérations et conservent les échecs. Les unités restent
+séparent les opérations successives et conservent les échecs. Les unités restent
 celles du scan, sans certification de l'échelle ou des interfaces M64.
 
 ## Appui des inserts : mesure sur la géométrie, pas sur une pièce fabriquée
@@ -180,6 +182,62 @@ plafond CPU sans checkpoint ; deux essais du lecteur s'arrêtent sur des erreurs
 de séparateurs avant correction d'après le format source. Leurs reçus privés
 sont conservés ; ils ne sont pas des échecs physiques de la pièce.
 
+### Linux : empreinte BOP reproduite et 175 octets attribués
+
+Un lot distinct utilise la même image OCP 7.9.3.1 linux/amd64 que l'audit BOP.
+La lecture du fichier puis l'écriture V3 en mémoire reproduisent exactement
+son empreinte `37eda433…`. Deux écritures du même objet chargé concordent.
+Le corps comporte toujours 5 205 080 octets : 175 diffèrent du fichier source,
+contre 1 114 sur macOS. Aucun nouveau BOP ni export CAO n'est exécuté.
+
+| Champs Linux modifiés | Octets différents | Entités concernées |
+|---|---:|---:|
+| Directions de lignes 2D | 64 | 32 courbes |
+| Directions de coniques 3D | 40 | 15 courbes |
+| Repères de plans et cylindres | 58 | 23 surfaces |
+| Caches d'extrémités UV | 13 | 10 arêtes de la table TShapes |
+
+Tous les octets différents sont attribués. Points, coefficients des B-splines,
+rayons, intervalles, tolérances, localisations, références et drapeaux
+topologiques sérialisés restent inchangés dans cette comparaison. Les 32
+directions 2D modifiées correspondent à la formule de normalisation simple
+testée ; ce constat ne décrit pas tous les mécanismes de reconstruction des
+repères 3D. L'écart maximal des caches reste une grandeur UV (`1,42109e−14`),
+pas une distance spatiale. Le résultat Linux n'efface pas le résultat macOS.
+
+Durées : 1,360 s natives / 1,955 s nettoyage compris, sorties 0, pas d'OOM ni
+expiration. Plafonds effectifs 2 CPU/4 Gio, racine en lecture seule et réseau
+absent contrôlés ; conteneur supprimé et absence revérifiée. Le fichier source,
+les décodeurs et les entrées restent intacts. Le candidat n'est pas promu.
+
+### Borne des représentations Linux : portée locale explicite
+
+Un calcul séparé, sans appel OCP, traite les valeurs binary64 comme des
+rationnels exacts et arrondit les majorants vers l'extérieur. Il encadre les
+32 lignes 2D sur leurs intervalles complets, les 15 coniques 3D et les 23
+repères de surfaces modifiés. Pour les plans, les contours définissent une
+enveloppe UV finie ; les B-splines utilisées sont non périodiques, à extrémités
+bloquées et poids positifs. Leur enveloppe de pôles fournit un encadrement.
+
+Le maximum des bornes par composante spatiale vaut
+**`1,0854592454916939e−14` unité scan**, sur une ellipse 3D. Par exemple, la
+variation d'une ligne est bornée par `max|t| × |Δdirection|` ; celle d'une
+conique par `rayon1 × |Δaxe1| + rayon2 × |Δaxe2|`. Les repères et changements
+de paramètres sont pris en compte pour les contours projetés sur les plans.
+
+Une revue indépendante reproduit les 72 bornes spatiales et 32 bornes UV,
+vérifie les offsets et les deux décodeurs importés. Ces derniers ne sont pas
+directement épinglés dans le script de bornes : leurs hashes ont été contrôlés
+séparément, comme ceux du corps et du rapport Linux. Durée du calcul initial :
+1,241 s ; aucun natif ni fichier CAO créé.
+
+Cette borne porte sur les **représentations analytiques et contours décrits**,
+pas sur la distance de Hausdorff entre solides, les erreurs d'évaluation
+flottante d'OCCT ou les caches UV d'extrémités. Le budget de représentation
+provisoire `1e−9` unité scan, fixé avant le calcul, n'est ni une tolérance
+d'usinage ni une levée automatique du refus historique. Aucune précision
+physique, équivalence globale ou autorisation de fabrication n'en est déduite.
+
 ## Partition du gaz : refus conservé
 
 Sur le domaine d'admission `fab1338a…`, le calcul natif obtient en mémoire
@@ -292,7 +350,82 @@ plafonds effectifs 2 CPU/4 Gio et conteneur absent après suppression. Le code
 retour 2 est prévu même si les 136 paires passent : les refus antérieurs sur
 frontières, rôles physiques et volumes restent en vigueur. Aucun maillage lancé.
 
-Les deux nouveaux lots Kali enregistrent une valeur `FuzzyValue()` effective
+### Diagnostic complet des frontières : un seul groupe reste averti
+
+Les 52 groupes de supports orientés sont tous examinés dans les deux sens,
+soit 104 `CUT` terminés. **102 résultats sont valides, sans face ni arête
+résiduelle et sans message natif.** Les deux autres opérations, sur le groupe
+17 des faces source/candidat 28, 29 et 35 (`walls_port`), retournent chacune
+quatre `BOPAlgo_AlertFaceBuilderUnusedEdges`, sans erreur. Leurs résultats ne
+sont pas examinés après l'avertissement : aucun résidu nul n'est supposé.
+
+Le diagnostic conserve les paramètres booléens et critères précédents. Il
+vérifie 19 formes BRep, les incidences et les instantanés mémoire avant/après.
+Un contrôle distinct recompte les 86 faces source, toutes les faces externes
+candidates, 208 événements de journal et les empreintes de 312 sorties natives.
+Cela prouve l'exécution exhaustive du diagnostic, pas la couverture géométrique
+des deux opérations averties. Les deux groupes plans aux rôles physiques
+mélangés restent sans attribution résolue.
+
+Durées : 1,984 s natives / 2,550 s nettoyage compris ; sortie 2 intentionnelle,
+pas d'OOM ni expiration. Aucun nouveau `Common`, GK, BRep ou maillage.
+Les plafonds 2 CPU/4 Gio sont vérifiés après la fin du processus, sans mesure
+de mémoire de pointe. Sources/entrées inchangées, conteneur retiré, absence
+revérifiée indépendamment. La capture native complète a réussi ; une limite
+du programme est conservée dans le reçu : la résolution de `GetReport().Dump`
+précède son bloc de capture d'exception. Aucun échec de capture n'est observé.
+
+### Identité complémentaire des trois faces : test strict refusé
+
+Un contrôle séparé sérialise chaque face entière, contours compris, en V3
+binaire en mémoire. Les six contrôles BRep passent et les placements racines
+et orientations correspondants concordent. Cependant, les faces 28 et 29 ont
+des représentations différentes, malgré des longueurs respectivement égales
+à 21 237 et 21 605 octets. La bijection exacte des trois faces est donc refusée.
+
+La face 35 a le même SHA enregistré, mais la fonction de comparaison des
+octets s'arrête au premier non-appariement : aucun succès global ni test
+distinct complet de la face 35 n'est inventé. Cette différence binaire ne
+prouve pas, à elle seule, une différence de forme. Il faut en identifier les
+champs avant de décider d'une comparaison géométrique pertinente.
+
+Durées : 0,461 s natives / 1,034 s nettoyage compris ; sorties 2, aucune
+normalisation demandée, aucun lissage, `CUT`, BOP ou export. Entrées et objets
+chargés inchangés, plafonds 2 CPU/4 Gio vérifiés, absence du conteneur confirmée.
+Les deux soustractions averties ne sont pas renommées en réussites.
+
+### Différences des faces 28/29 : données auxiliaires, géométrie définissante inchangée
+
+Le décodeur complet localise ensuite **deux octets par face**, quatre au total.
+Seules les directions X/Y d'un plan auxiliaire changent, avec un écart maximal
+par composante de `1,23260e−32`, sans dimension. Aucun autre champ sérialisé
+ne diffère. Les empreintes des quatre faces source/candidates reproduisent
+celles du test précédent ; les décodeurs restent inchangés.
+
+Le parcours de toutes les références montre que ces plans sont utilisés
+**exclusivement par des représentations d'arête de type 4, « Regularity »**.
+Ils ne sont référencés ni par les faces, ni par leurs p-curves ou sommets.
+Chaque face possède un support B-spline principal inchangé. Ce lien est
+établi par les références du fichier, pas supposé à partir des numéros de
+surfaces. [Lecture du type 4 et du support de face dans OCCT](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx#L976-L1054).
+
+Le sous-graphe sérialisé définissant les deux faces est donc identique dans
+cette relecture Linux/OCP : support principal, courbes 3D, p-curves et plages,
+contours orientés, sommets, localisations et tolérances. Une revue pure des
+dépendances, reproduite indépendamment, rejette aussi deux témoins altérés :
+plan modifié utilisé par une p-curve et modification d'un champ de sommet.
+
+Ce résultat explique **pourquoi le test d'identité binaire stricte refusait
+ces deux faces**. Il ne démontre pas la cause des avertissements `CUT`, ne
+modifie aucun octet de CAO et ne qualifie pas toute la partition. Les caches
+ou champs non sérialisés, une autre architecture et la précision physique ne
+font pas partie de cette preuve. Les refus historiques sont conservés.
+
+Durées : 0,450 s natives / 0,995 s nettoyage compris, sorties 2 ; revue du
+graphe sans nouvel appel natif. Entrées inchangées, conteneur exact supprimé,
+absence revérifiée. Aucun nouveau `CUT`, maillage ou solveur physique lancé.
+
+Les lots booléens Kali enregistrent une valeur `FuzzyValue()` effective
 de `1e−7` unité scan, pour une demande à zéro. OCCT impose un plancher dans
 [`SetFuzzyValue`](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BOPAlgo/BOPAlgo_Options.cxx).
 Ils ne sont donc pas décrits comme des opérations booléennes en arithmétique
@@ -301,9 +434,11 @@ stockées dans les entrées.
 
 ## Suite et périmètre d'exécution
 
-Priorités : borner l'effet spatial des champs de sérialisation modifiés et
-contrôler leur comportement sous Linux ; terminer les opérations de frontières,
-l'attribution physique et le bilan de volumes, puis mailler le domaine.
+Priorités : établir la décision d'admission à partir des preuves distinctes
+de représentation et de frontières ; terminer l'attribution des rôles physiques
+et accepter le bilan de volumes, puis mailler le domaine. L'attribution des
+quatre octets auxiliaires est terminée : elle n'appelle ni nouvelle correction
+de ces faces ni répétition de leur test binaire strict.
 Le BOP du candidat et le lot des 136 paires n'ont pas à être relancés sur les
 mêmes entrées inchangées. Les contacts de
 sièges, l'assemblage complet, les parois, la thermique, la résistance et le
@@ -313,10 +448,10 @@ aucune aptitude à la fabrication ne sont démontrées par ces diagnostics.
 ```mermaid
 flowchart LR
     A[Corps V5 sauvegardé] --> B[5 modes BOP réussis]
-    A --> C[Écarts de sérialisation localisés sur Mac]
-    C --> D[Borne spatiale et contrôle Linux à établir]
+    A --> C[Écarts attribués sur Linux et Mac]
+    C --> D[Borne locale calculée<br/>Équivalence globale à conclure]
     E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
-    E --> G[Frontières, rôles et volumes à accepter]
+    E --> G[102 CUT réussis sur 104<br/>Écarts auxiliaires identifiés<br/>Rôles et volumes à accepter]
     G --> H[Maillage puis calculs physiques]
 ```
 
