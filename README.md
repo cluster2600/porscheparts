@@ -142,6 +142,10 @@ dispose maintenant d'un criblage PicoGK réel et de six cas CalculiX
 thermomécaniques sur trois maillages, sans variante sélectionnée, et
 l'[embout ovale IN625 F0](docs/993_OVAL_EXHAUST_TIP_IN625_F0.md) suit le pipeline
 LPBF/Omniverse complet jusqu'aux gates numériques actuellement disponibles.
+Le [crochet de ressort de phare AlSi10Mg F0](docs/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md)
+est le premier petit composant de réparation passé par CAO, tranchage LPBF,
+six cas CalculiX, conversion/validation OpenUSD et contact rigide
+`ovstage`/`ovphysx`; il reste interdit d'impression faute de métrologie du phare.
 
 ![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
 

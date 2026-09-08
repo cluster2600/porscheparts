@@ -38,7 +38,7 @@ flowchart LR
 | 05 | AdditiveFOAM ou solveur équivalent, convergence espace/temps, coupons | bain de fusion corrélé |
 | 06 | activation des couches, plaque, supports, plasticité, détente et distorsion | forme déformée convergée |
 | 07 | collision recoater et accès au retrait des supports | construction mécaniquement praticable |
-| 08 | OpenUSD, Asset Validator, Geometry, Physics, profil SimReady et rendu OVRTX | asset Omniverse conforme |
+| 08 | OpenUSD, `nvidia_usd_validate`, Geometry, Physics, profil SimReady et rendu OVRTX | asset Omniverse conforme |
 | 09 | interfaces, tolérances, contacts, mouvement, charges et défauts dans l'assemblage | fonction numérique vérifiée |
 | 10 | coupons, première pièce, CT/CND, métrologie, fatigue et corrélation | modèle relié au réel |
 | 11 | revue professionnelle signée sur une révision précise | autorisation explicitement bornée |
@@ -179,6 +179,36 @@ entre les deux maillages les plus fins et les contrôles étendus conservent des
 cellules à faible déterminant. Aucun calcul de bain de fusion, de distorsion,
 de collision recoater, d'assemblage véhicule ou de fatigue thermique ne passe.
 PhysicsNeMo n'a exécuté qu'un smoke CUDA, sans surrogate entraîné.
+
+## Troisième passage : crochet de ressort de phare AlSi10Mg F0
+
+Le troisième objet est un petit crochet de réparation. L'offre commerciale
+confirme que cette fonction est déjà réalisée par impression 3D métal, mais ne
+publie aucune cote. Le F0 `16 × 8 × 15 mm` est donc un concept indépendant de
+`881 mm³`, soit `2,352 g` avec la densité EOS AlSi10Mg retenue.
+
+L'orientation `roll_y_45` est sectionnée sur `425` couches de `30 µm`. Le
+maillage est étanche et monocomposant; le proxy conservatif de supports vaut
+`3,06 mm³`. Une seule couche contient une région non soutenue, de
+`0,446 mm²`. Aucune poche fermée n'est détectée au voxel de `0,25 mm`.
+
+Six calculs CalculiX 2.21 ont réellement été exécutés : froid et
+thermo-mécanique stationnaire sur trois maillages C3D10. Sur le maillage fin de
+`22 415` nœuds, le p95 vaut `10,786 MPa` à froid et `141,898 MPa` pour le champ
+synthétique `80–180 °C`. Le maximum chaud de `303,467 MPa` et l'absence de
+résistance chaude de pièce interdisent toute conclusion favorable.
+
+Le STEP est ensuite converti par `usd-convert-cad 0.2.0`. L'asset binaire et la
+scène rigide passent `nvidia_usd_validate 1.21.0` sans règle en échec. Enfin,
+`ovstage 0.1.1.355824` et `ovphysx 0.5.11` exécutent `240` pas CPU : une sphère
+témoin tombe de `22` à `17 mm` et se stabilise sur le crochet. Ce contact
+synthétique vérifie l'intégration logicielle seulement; le ressort, le phare et
+l'adhésif réels sont absents.
+
+L'étape 08 reste donc `completed_screening`, pas `passed` : le profil SimReady
+complet et le rendu OVRTX de cette révision manquent. Les étapes 05 à 07, 09 à
+11 restent bloquées. Voir
+[le dossier technique du crochet](993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md).
 
 ## Reproduction
 

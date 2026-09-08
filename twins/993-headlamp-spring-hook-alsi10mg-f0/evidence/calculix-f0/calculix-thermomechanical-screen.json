@@ -1,0 +1,357 @@
+{
+  "ambient_reference_strength_ratios": {
+    "authority": "Coupon ratios against ambient values only; none is a hot part margin.",
+    "cold_maximum_yield_to_stress": 9.328243558129502,
+    "cold_p95_yield_to_stress": 21.602119702617063,
+    "hot_maximum_ambient_yield_to_stress": 0.7677938303246049,
+    "hot_p95_ambient_yield_to_stress": 1.6420289432431976
+  },
+  "analytic_cross_check": {
+    "cantilever_von_mises_mpa": 15.347536447260843,
+    "fea_cold_p95_to_analytic_ratio": 0.7027824041192419,
+    "interpretation": "Different restraint and three-dimensional load path are expected; agreement is diagnostic, not calibration."
+  },
+  "bond_screen": {
+    "adhesive_selected": false,
+    "analytic_average_shear_mpa": 0.23529411764705882,
+    "equation": "tau_average=F/A_bond",
+    "hot_shear_allowable_available": false,
+    "pass": false,
+    "peel_stress_solved": false
+  },
+  "cases": [
+    {
+      "cold_linear_static": {
+        "artifacts": {
+          "hook-cold.dat": {
+            "bytes": 979183,
+            "sha256": "0e704befc5893ee2aadcdedc11d02ef7783ee73d4eb5bda0ed1860d897786439"
+          },
+          "hook-cold.frd": {
+            "bytes": 1095416,
+            "sha256": "3631acae80766dee5e2678cbbb7dc1d774d0e6f9acd9b8941f9f2c3dcabb9db4"
+          },
+          "hook-cold.inp": {
+            "bytes": 254983,
+            "sha256": "d0c11e5426fc33c411b4d5a35c91fb7f66789e7d8bea4577cc92428d6ad304fd"
+          },
+          "hook-cold.log": {
+            "bytes": 2267,
+            "sha256": "4293c3c36570549fcff2f0004c903f236122b91a7c5a1dc16d2abf8a5c5ff3c5"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 0.012500021011933732,
+          "p99": 0.01168250599678299
+        },
+        "return_code": 0,
+        "von_mises_mpa": {
+          "maximum": 18.813203585197485,
+          "p95": 10.979897963320278,
+          "p99": 14.088674758881945
+        }
+      },
+      "hot_sequential_thermomechanical": {
+        "artifacts": {
+          "hook-hot.dat": {
+            "bytes": 1521223,
+            "sha256": "71794afefcdd3c53d62bc44534b11fe4139237c8788b33ebb2285e38781db067"
+          },
+          "hook-hot.frd": {
+            "bytes": 1395232,
+            "sha256": "408745d8e0e8e21ba3cc34c241f22883a719594118e968d7760f47bd99070d75"
+          },
+          "hook-hot.inp": {
+            "bytes": 255133,
+            "sha256": "a1f2ac9332ab9df19721085b4c2a3a2811b30622ac9c56dd6ed0e7697b878656"
+          },
+          "hook-hot.log": {
+            "bytes": 4393,
+            "sha256": "db12a6569cc5d8454b47231cde1455f11c024e2e1d4b619e104df307e1a123e1"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 0.036367861266053306,
+          "p99": 0.03315437770258703
+        },
+        "return_code": 0,
+        "temperature_c": {
+          "maximum": 180.0,
+          "minimum": 80.0,
+          "p50": 95.34488,
+          "p95": 180.0
+        },
+        "von_mises_mpa": {
+          "maximum": 197.22265364104587,
+          "p95": 132.7544023969718,
+          "p99": 154.80854915791429
+        }
+      },
+      "mesh": {
+        "boundary_nodes": 2586,
+        "boundary_set_counts": {
+          "BONDED_CAVITY": 385,
+          "HOT_TIP": 610,
+          "SPRING_LOAD_PAD": 80
+        },
+        "mesh_size_mm": 1.5,
+        "nodes": 3938,
+        "quadratic_tetrahedra": 1945
+      }
+    },
+    {
+      "cold_linear_static": {
+        "artifacts": {
+          "hook-cold.dat": {
+            "bytes": 2268466,
+            "sha256": "f3897c5e080a9831ec7dafc99e40332839243229dac730e44e92779b29222ad7"
+          },
+          "hook-cold.frd": {
+            "bytes": 2437869,
+            "sha256": "b9292ee1ee066c969a4a9c996d1fa7ed3a602a93603dcc72d41a80e2b760320e"
+          },
+          "hook-cold.inp": {
+            "bytes": 593148,
+            "sha256": "e8bbf4d7dcd19ed66e6f5015090508f37d27ab9b04b3e03e6563608ec5312b95"
+          },
+          "hook-cold.log": {
+            "bytes": 2267,
+            "sha256": "cb2cb072dbf542753e784c996dbc3d1b69f75acb249f6232ad0ed9e450a7ca50"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 0.012457052658086732,
+          "p99": 0.011553735552990812
+        },
+        "return_code": 0,
+        "von_mises_mpa": {
+          "maximum": 20.09813342857502,
+          "p95": 10.735085306311262,
+          "p99": 14.313977594547561
+        }
+      },
+      "hot_sequential_thermomechanical": {
+        "artifacts": {
+          "hook-hot.dat": {
+            "bytes": 3526993,
+            "sha256": "4554bc958211f1484efe372f49e97c3de587f8931ef26f6894d4eff115deccca"
+          },
+          "hook-hot.frd": {
+            "bytes": 3093593,
+            "sha256": "42bbfa9f2cd55d96c70d958d7b357571bb5e7841280a314c2a3f5dfdbc2becd9"
+          },
+          "hook-hot.inp": {
+            "bytes": 593298,
+            "sha256": "cbe9d5e563e1d4f577004e0ec769427b5ffacff43c48118f6a366c8d1f524147"
+          },
+          "hook-hot.log": {
+            "bytes": 4393,
+            "sha256": "3a58a3a4b18001288bda668c3f574effac0a9b3081802929e15cfdfb849e8376"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 0.036460995673834797,
+          "p99": 0.03317435529749599
+        },
+        "return_code": 0,
+        "temperature_c": {
+          "maximum": 180.0,
+          "minimum": 80.0,
+          "p50": 95.29839,
+          "p95": 180.0
+        },
+        "von_mises_mpa": {
+          "maximum": 226.6696860827198,
+          "p95": 137.86190842378048,
+          "p99": 166.48264920219705
+        }
+      },
+      "mesh": {
+        "boundary_nodes": 4938,
+        "boundary_set_counts": {
+          "BONDED_CAVITY": 875,
+          "HOT_TIP": 1058,
+          "SPRING_LOAD_PAD": 136
+        },
+        "mesh_size_mm": 1.0,
+        "nodes": 8621,
+        "quadratic_tetrahedra": 4574
+      }
+    },
+    {
+      "cold_linear_static": {
+        "artifacts": {
+          "hook-cold.dat": {
+            "bytes": 6271696,
+            "sha256": "216a7e654ddf155a659a7cf4fd22e13cfce8c0dda19b4eb0ea2f4f17d60e4223"
+          },
+          "hook-cold.frd": {
+            "bytes": 6461176,
+            "sha256": "0c1fc1dfcdb1f6a6652b74df951891e6b4db874ea983cae0b6206b5d41d30f96"
+          },
+          "hook-cold.inp": {
+            "bytes": 1777814,
+            "sha256": "dddb99c39bbd3026239e463412438c8bef0fb1a8caa6dbee3f3d371f056aa64c"
+          },
+          "hook-cold.log": {
+            "bytes": 2268,
+            "sha256": "718ae396fb46a9f6b8ea46b5f26d0522dc3b7c8d62ec36d481b3be82db3d6cfa"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 0.01268855754210485,
+          "p99": 0.011683184574641
+        },
+        "return_code": 0,
+        "von_mises_mpa": {
+          "maximum": 24.977906992677312,
+          "p95": 10.785978561713664,
+          "p99": 14.688588955453657
+        }
+      },
+      "hot_sequential_thermomechanical": {
+        "artifacts": {
+          "hook-hot.dat": {
+            "bytes": 9759037,
+            "sha256": "a443382cc266ab3dd92de0649ec04070c53e30587673cead14c2b5ff38e8015c"
+          },
+          "hook-hot.frd": {
+            "bytes": 8165244,
+            "sha256": "9948ec0e89404acc0e56af6980a21b9d6096da5f765087212a1a0c40423a5911"
+          },
+          "hook-hot.inp": {
+            "bytes": 1777964,
+            "sha256": "25654f081feb858c48d7b2a54782cdaf694bbc4972e31b3fd906ff42f51f09c6"
+          },
+          "hook-hot.log": {
+            "bytes": 4398,
+            "sha256": "55fc5cfa74e1727aa2eaa06864981898122b7ec890a12d80a5402cca0b432cb2"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 0.03642400698601679,
+          "p99": 0.032862693807829704
+        },
+        "return_code": 0,
+        "temperature_c": {
+          "maximum": 180.0,
+          "minimum": 80.0,
+          "p50": 97.50951,
+          "p95": 180.0
+        },
+        "von_mises_mpa": {
+          "maximum": 303.46688238103343,
+          "p95": 141.8976205984518,
+          "p99": 184.30921295547645
+        }
+      },
+      "mesh": {
+        "boundary_nodes": 10486,
+        "boundary_set_counts": {
+          "BONDED_CAVITY": 1631,
+          "HOT_TIP": 2294,
+          "SPRING_LOAD_PAD": 288
+        },
+        "mesh_size_mm": 0.7,
+        "nodes": 22415,
+        "quadratic_tetrahedra": 12837
+      }
+    }
+  ],
+  "engineering_gates": {
+    "adhesive_joint_selected_and_solved": false,
+    "measured_geometry_and_fit": false,
+    "measured_spring_load_and_contact": false,
+    "measured_thermal_and_vibration_environment": false,
+    "modal_harmonic_and_vibration_completed": false,
+    "part_fatigue_life_completed": false,
+    "professional_engineering_review": false,
+    "qualified_hot_material_and_surface_allowables": false
+  },
+  "equations_and_discretization": {
+    "beam_reference": "sigma=M*c/I; tau_max=1.5*F/A; sigma_vm=sqrt(sigma^2+3*tau^2)",
+    "fatigue_proxy": "modified Goodman: sigma_a/Se + sigma_m/Su = 1",
+    "linear_elasticity": "div(sigma)+b=0; sigma=C:(epsilon-epsilon_th)",
+    "load_application": "exact total 30 N distributed equally over external top-pad nodes",
+    "restraint": "all displacement degrees fixed on the synthetic inner cavity; conservative rigid-bond idealization",
+    "thermal_conduction": "div(k*grad(T))=0",
+    "thermal_strain": "epsilon_th=alpha*(T-T_ref)"
+  },
+  "fatigue_proxy": {
+    "alternating_stress_proxy_mpa": 5.392989280856832,
+    "coupon_ratio_allowable_to_alternating": 20.158239507689224,
+    "equation": "sigma_a/Se + sigma_m/Su = 1",
+    "life_prediction": null,
+    "mean_stress_proxy_mpa": 5.392989280856832,
+    "modified_goodman_allowable_proxy_mpa": 108.71316958591268,
+    "reason": "EOS reports turned fully-reversed coupons; the F0 surface, notch, hot cycle and vibration spectrum are unqualified.",
+    "reference_cycles": 20000000,
+    "transferable_to_part": false,
+    "zero_to_peak_p95_stress_mpa": 10.785978561713664
+  },
+  "grid_comparison_fine_vs_previous": {
+    "cold_p95_stress_relative_change": 0.004718464357332812,
+    "hot_maximum_temperature_relative_change": 0.0,
+    "hot_p95_stress_relative_change": 0.028441013722786485,
+    "screening_threshold": 0.1,
+    "threshold_authority": "Project numerical-screen threshold only; not a component acceptance criterion."
+  },
+  "inputs": {
+    "force_authority": "Synthetic regression load; spring force, direction, contact patch and service spectrum are not measured.",
+    "geometry_authority": "Independent synthetic F0 BREP; no commercial or OEM surface and no measured headlamp interface.",
+    "reference_temperature_c": 25.0,
+    "runner_repository_path": "twins/993-headlamp-spring-hook-alsi10mg-f0/source/run_calculix_thermomechanical_screen.py",
+    "runner_sha256": "1e065609bcc0dfbf7feb576ab1287f654f3a1ee2a20c626561dddf1b7bb506ac",
+    "socket_temperature_c": 80.0,
+    "spring_force_n": 30.0,
+    "step_repository_path": "parts/993-elec-headlamp-spring-hook-f0-0001/derived/headlamp_spring_hook_f0.step",
+    "step_sha256": "33af8accffdc2be801193daa1a6ee6ceb0dd41f8c5ad5ecf8263f710cab6dc9c",
+    "thermal_authority": "Synthetic stationary 100 C gradient; no measured lamp temperature, radiation, convection or adhesive temperature map.",
+    "tip_temperature_c": 180.0
+  },
+  "interpretation": {
+    "fatigue": "The Goodman value is a coupon comparison only; it cannot establish component life.",
+    "manufacturing": "Passing numerical gates cannot authorize printing, bonding, lamp retention or road use.",
+    "mechanical": "The synthetic 30 N load is solved on the F0 geometry, but actual spring contact and adhesive compliance are absent.",
+    "physicsnemo": "No training or inference: six uncorrelated cases are not an admissible surrogate dataset.",
+    "thermal": "The 80-to-180 C imposed field is a conservative numerical screen, not a lamp CHT result."
+  },
+  "material": {
+    "candidate": "EOS Aluminium AlSi10Mg / EOS M 290 / 30 um, as-manufactured screening route",
+    "density_tonne_mm3": 2.67e-09,
+    "part_design_allowable_available": false,
+    "provisional_elastic_modulus_mpa": 70000.0,
+    "provisional_poisson_ratio": 0.33,
+    "published_average_thermal_expansion_25_to_200_per_k": 2.2e-05,
+    "published_fatigue_strength_20m_mpa": 110.0,
+    "published_minimum_ultimate_mpa": 461.0,
+    "published_vertical_thermal_conductivity_w_mm_k": 0.1,
+    "published_vertical_yield_mpa": 233.0,
+    "source": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+    "temperature_dependent_strength_card_available": false
+  },
+  "metal_print_authorized": false,
+  "numerical_gates": {
+    "cold_p95_grid_change_below_10_percent": true,
+    "hot_p95_grid_change_below_10_percent": true,
+    "hot_temperature_grid_change_below_10_percent": true,
+    "six_solver_executions_complete": true
+  },
+  "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+  "release_authorized": false,
+  "schema_version": "1.0.0",
+  "selected_variant": null,
+  "solver": {
+    "analysis": "CalculiX cold linear static plus steady uncoupled temperature-displacement, C3D10",
+    "calculix_version_output": "This is Version 2.21",
+    "execution_count": 6,
+    "gmsh_version": "4.12.1",
+    "mesh": "Gmsh second-order tetrahedra imported from the exact committed STEP",
+    "python": "3.12.3",
+    "runtime_image_id": "sha256:22e5ea95954ede922b9666b74e0db1c7fdc34667abc2254ab37002ed4d90996b",
+    "runtime_image_ref": "3dprinting993-cae-integrated-f33:x86-verify"
+  },
+  "status": "f0_real_calculix_six_case_screen_complete_no_print_release",
+  "twin_id": "TWIN-993-HEADLAMP-SPRING-HOOK-ALSI10MG-F0",
+  "vehicle_installation_authorized": false
+}
