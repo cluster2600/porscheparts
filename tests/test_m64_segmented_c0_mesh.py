@@ -1,4 +1,5 @@
 import importlib.util
+import copy
 from pathlib import Path
 import unittest
 
@@ -67,6 +68,111 @@ class SegmentedC0SurfaceTests(unittest.TestCase):
             audit.verified_face_lookup({**binding,'descriptor_bijection_verified':False})
         binding['matches_private'][-1]['source_face_index']=89
         with self.assertRaises(ValueError):audit.verified_face_lookup(binding)
+
+    def test_fab_binding_has_86_faces_without_reusing_historical_88(self):
+        binding={'descriptor_bijection_verified':True,'matches_private':[
+            {'source_face_index':i,'gmsh_face_tag':i+100} for i in range(1,87)]}
+        self.assertEqual(len(audit.verified_face_lookup(binding,audit.UNIFIED_DOMAIN)),86)
+        with self.assertRaises(ValueError):audit.verified_face_lookup(binding)
+        with self.assertRaises(ValueError):audit.verified_face_lookup(binding,'unregistered')
+        binding['matches_private'].append({'source_face_index':87,'gmsh_face_tag':187})
+        with self.assertRaises(ValueError):audit.verified_face_lookup(binding,audit.UNIFIED_DOMAIN)
+
+
+def merge_fixture():
+    """Témoin abstrait : les nouveaux IDs ne suivent aucun décalage constant."""
+    pairs=((1,19),(2,8),(3,51),(4,12))
+    before={str(i):{'curve_global_sha256':str(i),'range':[i,i+1],'tolerance':1e-7} for i,_ in pairs}
+    after={str(j):copy.deepcopy(before[str(i)]) for i,j in pairs}
+    before_faces={}; after_faces={}
+    for a,b in ((10,30),(20,40)):
+        descriptor={'support_sha256':str(a),'orientation':'forward','tolerance':1e-7,
+            'occurrences':[{'edge_id':i,'edge_key':str(i),'pcurve_sha256':str((a,i)),
+                'range_on_surface':[i,i+1]} for i,j in pairs]}
+        before_faces[str(a)]=descriptor
+        after_faces[str(b)]=copy.deepcopy(descriptor)
+        for row,(_,j) in zip(after_faces[str(b)]['occurrences'],pairs):row['edge_id']=j
+    review={'split_curve_reference_comparisons_private':[{'edge_id_private':i} for i,j in pairs]}
+    merge={'original_sha256':audit.DOMAIN,'candidate_sha256':audit.UNIFIED_DOMAIN,
+        'inputs_unchanged':True,'gates':{'native_valid':True},
+        'descriptors_private':{'before_edges':before,'after_edges':after,
+            'before_faces':before_faces,'after_faces':after_faces}}
+    manifest={'boundary_role_transfer':{'original_domain_sha256':audit.DOMAIN,
+        'independent_geometry_review_sha256':audit.UNIFIED_REVIEW,
+        'face_index_relation':[[10,30],[20,40]]}}
+    return review,merge,manifest
+
+
+class UnifiedC0CorrespondenceTests(unittest.TestCase):
+    def test_ids_are_found_by_exact_geometry_not_offset(self):
+        result=audit.unified_correspondence(*merge_fixture())
+        self.assertEqual(result['edge_pairs_private'],[(1,19),(2,8),(3,51),(4,12)])
+        self.assertEqual(result['face_pairs_private'],[(10,30),(20,40)])
+
+    def test_missing_or_ambiguous_edge_is_not_a_match(self):
+        for ambiguous in (False,True):
+            review,merge,manifest=merge_fixture(); edges=merge['descriptors_private']['after_edges']
+            if ambiguous:edges['99']=copy.deepcopy(edges['19'])
+            else:del edges['19']
+            with self.assertRaises(ValueError):audit.unified_correspondence(review,merge,manifest)
+
+    def test_changed_curve_range_or_tolerance_is_rejected(self):
+        for field,value in (('curve_global_sha256','changed'),('range',[0,99]),('tolerance',2e-7)):
+            review,merge,manifest=merge_fixture()
+            merge['descriptors_private']['after_edges']['19'][field]=value
+            with self.assertRaises(ValueError):audit.unified_correspondence(review,merge,manifest)
+
+    def test_support_and_pcurve_proofs_are_required(self):
+        for kind in ('support','pcurve'):
+            review,merge,manifest=merge_fixture();face=merge['descriptors_private']['after_faces']['30']
+            if kind=='support':face['support_sha256']='different'
+            else:face['occurrences'][0]['pcurve_sha256']='different'
+            with self.assertRaises(ValueError):audit.unified_correspondence(review,merge,manifest)
+
+    def test_wrong_domain_review_and_failed_gate_are_rejected(self):
+        for mutation in ('domain','review','gate','unchanged'):
+            review,merge,manifest=merge_fixture()
+            if mutation=='domain':merge['candidate_sha256']=audit.DOMAIN
+            elif mutation=='review':manifest['boundary_role_transfer']['independent_geometry_review_sha256']=audit.REVIEW
+            elif mutation=='gate':merge['gates']['native_valid']=False
+            else:merge['inputs_unchanged']=False
+            with self.assertRaises(ValueError):audit.unified_correspondence(review,merge,manifest)
+
+    def test_duplicate_face_relation_is_rejected(self):
+        review,merge,manifest=merge_fixture()
+        manifest['boundary_role_transfer']['face_index_relation'].append([10,30])
+        with self.assertRaises(ValueError):audit.unified_correspondence(review,merge,manifest)
+
+
+def tetra_fixture(volume=False, reverse=False, group=7, moved=False, omit=False):
+    nodes=['1 0 0 0','2 1 0 0','3 0 1 0','4 0 0 1']
+    if moved:nodes[-1]='4 0 0 1.000000000000001'
+    triangles=[(1,3,2),(1,2,4),(1,4,3),(2,3,4)]
+    if reverse:triangles[0]=triangles[0][::-1]
+    if omit:triangles.pop()
+    start=100 if volume else 10
+    elements=[f'{start+i} 2 2 {group} 38 '+ ' '.join(map(str,tri)) for i,tri in enumerate(triangles)]
+    if volume:elements.append('999 4 2 8 1 1 2 3 4')
+    return ('$MeshFormat\n2.2 0 8\n$EndMeshFormat\n$Nodes\n4\n'+'\n'.join(nodes)+
+        '\n$EndNodes\n$Elements\n'+str(len(elements))+'\n'+'\n'.join(elements)+'\n$EndElements\n')
+
+
+class VolumeBoundaryConservationTests(unittest.TestCase):
+    def test_element_id_permutation_does_not_change_boundary(self):
+        result=audit.compare_volume_boundary(tetra_fixture(),tetra_fixture(volume=True))
+        self.assertTrue(result['passes']);self.assertEqual(result['surface_element_ids_reassigned'],4)
+        self.assertTrue(result['surface_records_equal_actual_tetrahedral_boundary'])
+
+    def test_changed_coordinate_or_physical_label_rejected(self):
+        for kwargs in ({'moved':True},{'group':8}):
+            result=audit.compare_volume_boundary(tetra_fixture(),tetra_fixture(volume=True,**kwargs))
+            self.assertFalse(result['passes'])
+
+    def test_same_bad_surface_records_do_not_replace_real_tetra_boundary(self):
+        for kwargs in ({'reverse':True},{'omit':True}):
+            result=audit.compare_volume_boundary(tetra_fixture(**kwargs),tetra_fixture(volume=True,**kwargs))
+            self.assertTrue(result['oriented_triangles_and_physical_elementary_groups_exact'])
+            self.assertFalse(result['passes'])
 
 
 if __name__=='__main__':unittest.main()

@@ -345,8 +345,8 @@ $EndElements
         receipt={'schema':'m64-native-guide-frame-inventory/v1','mode':'native_inventory_only',
             'all_inputs_unchanged':True,'CAD_modified':False,'mesh_accepted':False,'CFD_executed':False,
             'manufacturing_authorized':False,'inputs_sha256':{'domain':p.SEGMENTED_DOMAIN_SHA,
-                'boundary_report':'e'*64,'source':MODULE.GUIDE_CHORD_RUNTIME_SOURCE_SHA,
-                'profile_source':MODULE.checks.sha256(p.__file__)},
+                'boundary_report':'e'*64,'source':MODULE.SEGMENTED_GUIDE_PRODUCER_SOURCE_SHA,
+                'profile_source':MODULE.SEGMENTED_GUIDE_PRODUCER_PROFILE_SHA},
             'result':{'frames_private':frames,'whole_facet_chord_gate':None}}
         with registration,patch.object(MODULE,'SEGMENTED_GUIDE_FRAME_RECEIPT_SHA','f'*64):
             self.assertEqual(MODULE.validated_guide_frames(receipt,'f'*64,manifest),frames)

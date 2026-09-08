@@ -39,6 +39,16 @@ def cross(a,b):return (a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[
 def dot(a,b):return sum(x*y for x,y in zip(a,b))
 
 
+def registered_native_profile(manifest,domain_sha,manifest_sha=None):
+    """Bind new native inventories without admitting a historical mesh result."""
+    if domain_sha==DOMAIN_SHA:return None
+    if domain_sha==profiles.SEGMENTED_DOMAIN_SHA:
+        return profiles.registered_segmented_manifest(manifest,manifest_sha,for_meshing=False)
+    if domain_sha==profiles.UNIFIED_DOMAIN_SHA256:
+        return profiles.registered_unified_manifest(manifest,manifest_sha,for_meshing=False)
+    raise ValueError('exact_registered_native_domain_required')
+
+
 def exact_crossing(segment,triangle):
     """Strict interior noncoplanar intersection, exact rational arithmetic.
 
@@ -168,9 +178,9 @@ def mesh_chord_gate(points,triangles_by_face,frames):
     volume quality, CFD or manufacturing. Target h is not an acceptance metric.
     """
     domain_sha=frames.get('domain_sha256')
-    face_shas=(profiles.guide_face_hashes(domain_sha,frames)
-               if domain_sha==profiles.SEGMENTED_DOMAIN_SHA else FACE_SHAS)
-    if frames.get('schema')!='m64-native-guide-cylinder-frames/v2' or domain_sha not in (DOMAIN_SHA,profiles.SEGMENTED_DOMAIN_SHA):
+    face_ids=FACES if domain_sha==DOMAIN_SHA else profiles.guide_face_ids(domain_sha)
+    face_shas=FACE_SHAS if domain_sha==DOMAIN_SHA else profiles.guide_face_hashes(domain_sha,frames)
+    if frames.get('schema')!='m64-native-guide-cylinder-frames/v2':
         raise ValueError('exact_native05_v2_inventory_frames_required')
     inventory=frames['native_inventory']
     if not inventory['all_native_faces_examined'] or len(inventory['surface_types'])!=inventory['native_face_count']:
@@ -179,13 +189,13 @@ def mesh_chord_gate(points,triangles_by_face,frames):
     if actual_cylinders!=sorted(r['face_id'] for r in inventory['cylinders_private']):
         raise ValueError('native_cylinder_inventory_incomplete')
     coverage=gap_portion_inventory(inventory['cylinders_private'])
-    if coverage!=frames['coverage'] or coverage['selected_face_ids']!=list(FACES):
+    if coverage!=frames['coverage'] or coverage['selected_face_ids']!=list(face_ids):
         raise ValueError('derived_gap_portion_inventory_changed_or_incomplete')
     rows={r['face_id']:r for r in frames['faces_private']}
-    if len(rows)!=8 or len(frames['faces_private'])!=8 or set(rows)!=set(FACES):
+    if len(rows)!=8 or len(frames['faces_private'])!=8 or set(rows)!=set(face_ids):
         raise ValueError('eight_unique_native_gap_portion_frames_required')
     inventoried={r['face_id']:r for r in inventory['cylinders_private']}
-    if any(rows[fid]!=inventoried[fid] for fid in FACES):raise ValueError('selected_frames_differ_from_native_inventory')
+    if any(rows[fid]!=inventoried[fid] for fid in face_ids):raise ValueError('selected_frames_differ_from_native_inventory')
     results={}
     for fid,row in rows.items():
         if row['face_sha256']!=face_shas[fid]:raise ValueError('native_face_frame_hash_mismatch')
@@ -360,15 +370,16 @@ def native_frames(domain,manifest):
     frames={'schema':'m64-native-guide-cylinder-frames/v2','domain_sha256':sha(domain),
         'native_inventory':inventory,'coverage':coverage,
         'faces_private':[r for r in inventory['cylinders_private'] if r['face_id'] in coverage['selected_face_ids']]}
-    if frames['domain_sha256']==profiles.SEGMENTED_DOMAIN_SHA:
-        registration=profiles.registered_segmented_manifest(manifest,for_meshing=False)
+    registration=registered_native_profile(manifest,frames['domain_sha256'])
+    if registration:
         frames['classified_manifest_sha256']=registration['manifest_sha256']
     return frames
 
 
 def native_cylinders(domain,points,triangles,manifest):
     frames=native_frames(domain,manifest)
-    grouped={fid:[t['nodes'] for t in triangles if t['face']==fid] for fid in FACES}
+    face_ids=FACES if frames['domain_sha256']==DOMAIN_SHA else profiles.guide_face_ids(frames['domain_sha256'])
+    grouped={fid:[t['nodes'] for t in triangles if t['face']==fid] for fid in face_ids}
     gate=mesh_chord_gate({n:tuple(map(float,p)) for n,p in points.items()},grouped,frames)
     return {'frames_private':frames,'whole_facet_chord_gate':gate}
 
@@ -378,11 +389,9 @@ def main(args):
     if not out.is_relative_to(PRIVATE_ROOT) or out.exists():raise ValueError('new_private_output_required')
     inventory_only=getattr(args,'native_inventory_only',False)
     manifest=json.loads(args.boundary_report.read_text());domain_sha=sha(args.domain)
-    segmented=domain_sha==profiles.SEGMENTED_DOMAIN_SHA
-    if segmented:profiles.registered_segmented_manifest(manifest,sha(args.boundary_report),for_meshing=False)
-    elif domain_sha!=DOMAIN_SHA:raise ValueError('exact_registered_native_domain_required')
+    registration=registered_native_profile(manifest,domain_sha,sha(args.boundary_report))
     paths={'domain':args.domain,'boundary_report':args.boundary_report,'source':Path(__file__)}
-    if segmented:paths['profile_source']=Path(profiles.__file__)
+    if registration:paths['profile_source']=Path(profiles.__file__)
     if inventory_only:
         if args.mesh is not None or args.mesh_report is not None:
             raise ValueError('native_inventory_must_not_use_a_mesh_or_mesh_report')
@@ -393,7 +402,7 @@ def main(args):
         if sha(args.boundary_report)!=mr['gas_domain_report_sha256']:raise ValueError('manifest_hash_mismatch')
         if sha(args.mesh)!=mr['persisted_surface']['MSH_sha256']:raise ValueError('saved_MSH_hash_mismatch')
         paths.update(mesh_report=args.mesh_report,mesh=args.mesh)
-    face_shas=profiles.guide_face_hashes(domain_sha) if segmented else FACE_SHAS
+    face_shas=profiles.guide_face_hashes(domain_sha) if registration else FACE_SHAS
     native_faces=[]
     for row in manifest['boundary_faces']:
         path=args.boundary_report.parent/row['file']

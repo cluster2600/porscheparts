@@ -3,6 +3,7 @@ import copy
 import math
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 PATH=Path(__file__).resolve().parents[1]/'twins/m64-cylinder-head/source/flowbench-intake/audit_guide_chords.py'
 spec=importlib.util.spec_from_file_location('guide_chord_audit',PATH)
@@ -37,6 +38,25 @@ def fixture(angle=.03,bad_face=None):
             'cylinders_private':cylinders},'coverage':audit.gap_portion_inventory(cylinders),
         'faces_private':[r for r in cylinders if r['face_id'] in audit.FACES]}
     return points,triangles,frames
+
+
+def unified_fixture(angle=.03,bad_face=None):
+    # Renommage d'un témoin synthétique, pas preuve du transfert de la CAO réelle.
+    points,triangles,frames=fixture(angle,bad_face)
+    domain=audit.profiles.UNIFIED_DOMAIN_SHA256
+    face_ids=audit.profiles.guide_face_ids(domain)
+    mapping=dict(zip(audit.FACES,face_ids))
+    hashes=audit.profiles.guide_face_hashes(domain)
+    frames['domain_sha256']=domain
+    frames['classified_manifest_sha256']=audit.profiles.UNIFIED_MANIFEST_SHA
+    cylinders=frames['native_inventory']['cylinders_private']
+    for row in cylinders:
+        if row['face_id'] in mapping:
+            row['face_id']=mapping[row['face_id']]
+            row['face_sha256']=hashes[row['face_id']]
+    frames['native_inventory']['surface_types']=[{'face_id':r['face_id'],'surface_type':'GeomAbs_Cylinder'} for r in cylinders]
+    frames['coverage']=audit.gap_portion_inventory(cylinders)
+    return points,{mapping[fid]:rows for fid,rows in triangles.items()},frames
 
 
 class GuideChordTests(unittest.TestCase):
@@ -90,6 +110,54 @@ class GuideChordTests(unittest.TestCase):
         self.assertTrue(audit.mesh_chord_gate(points,triangles,frames)['local_radial_envelopes_accepted'])
         frames['domain_sha256']=audit.DOMAIN_SHA
         with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+
+    def test_unified_domain_uses_its_eight_native_portions_and_unchanged_gap_budget(self):
+        points,triangles,frames=unified_fixture()
+        result=audit.mesh_chord_gate(points,triangles,frames)
+        self.assertTrue(result['local_radial_envelopes_accepted'])
+        self.assertEqual(result['coverage']['selected_face_ids'],list(audit.profiles.UNIFIED_GUIDE_FACE_IDS))
+        for group in result['groups']:
+            self.assertAlmostEqual(group['native_radial_gap'],.015)
+            self.assertEqual(group['maximum_allowed_error_sum'],.0075)
+        self.assertFalse(result['all_surface_intersections_or_CFD_or_manufacturing_qualified'])
+
+    def test_unified_domain_cannot_relabel_old_frames_or_old_manifest(self):
+        points,triangles,frames=fixture()
+        frames['domain_sha256']=audit.profiles.UNIFIED_DOMAIN_SHA256
+        frames['classified_manifest_sha256']=audit.profiles.UNIFIED_MANIFEST_SHA
+        with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+        for old_manifest in (audit.profiles.PREPARED_MANIFEST_SHA,audit.profiles.SEGMENTED_MANIFEST_SHA):
+            points,triangles,frames=unified_fixture()
+            frames['classified_manifest_sha256']=old_manifest
+            with self.subTest(old_manifest=old_manifest),self.assertRaises(ValueError):
+                audit.mesh_chord_gate(points,triangles,frames)
+        points,triangles,frames=unified_fixture()
+        frames['faces_private'][0]['face_sha256']='0'*64
+        with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+
+    def test_unified_worst_portion_or_missing_portion_cannot_pass(self):
+        for old_id in audit.FACES:
+            points,triangles,frames=unified_fixture(bad_face=old_id)
+            with self.subTest(old_id=old_id):
+                self.assertFalse(audit.mesh_chord_gate(points,triangles,frames)['local_radial_envelopes_accepted'])
+        points,triangles,frames=unified_fixture();frames['faces_private'].pop()
+        with self.assertRaises(ValueError):audit.mesh_chord_gate(points,triangles,frames)
+
+    def test_unified_native_cylinder_diagnostic_groups_by_current_native_ids(self):
+        points,triangles,frames=unified_fixture()
+        saved=[{'face':fid,'nodes':tri} for fid,rows in triangles.items() for tri in rows]
+        with patch.object(audit,'native_frames',return_value=frames):
+            result=audit.native_cylinders(None,points,saved,{})
+        self.assertTrue(result['whole_facet_chord_gate']['local_radial_envelopes_accepted'])
+        self.assertEqual({r['face_id'] for r in result['whole_facet_chord_gate']['faces']},set(triangles))
+
+    def test_native_registration_dispatch_does_not_reuse_historical_profile(self):
+        expected={'manifest_sha256':'fixture-sha'}
+        with patch.object(audit.profiles,'registered_unified_manifest',return_value=expected) as unified:
+            self.assertEqual(audit.registered_native_profile({},audit.profiles.UNIFIED_DOMAIN_SHA256,'fixture-sha'),expected)
+            unified.assert_called_once_with({},'fixture-sha',for_meshing=False)
+        self.assertIsNone(audit.registered_native_profile({},audit.DOMAIN_SHA))
+        with self.assertRaises(ValueError):audit.registered_native_profile({},'0'*64)
 
     def test_worst_portion_controls_whole_component_not_old_four_pairs(self):
         points,triangles,frames=fixture(bad_face=57)

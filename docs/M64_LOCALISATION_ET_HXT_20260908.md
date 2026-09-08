@@ -1,5 +1,9 @@
 # M64 — défauts localisés, essai HXT et correction native
 
+Suite de ce jalon : [paquet à 86 faces, nouveau volume et contrôles OpenFOAM/C0](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md).
+Le nouveau volume est obtenu ; il reste rejeté pour la CFD. Les résultats HXT
+et de localisation ci-dessous restent ceux de leur exécution historique.
+
 ## Résultat
 
 Les défauts du [remaillage natif précédent](M64_REMAILLAGE_NATIF_20260908.md)
