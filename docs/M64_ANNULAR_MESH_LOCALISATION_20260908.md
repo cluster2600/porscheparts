@@ -54,6 +54,23 @@ essai.** Ce reçu prouve la reproduction des comptes par les formules et la
 correspondance aux frontières, pas l'identité label par label avec de nouveaux
 ensembles OpenFOAM. Huit tests ciblés passent ; ce ne sont pas des tests physiques.
 
+## Hypothèse physique conservée : banc sec à guides bouchés
+
+Les anneaux représentent deux poches d'air reliées au conduit, fermées en haut
+par des bouchons idéalisés : faces **57 et 58**, rôle `fixture_stem_seals`, du
+manifeste `58b8be…` lié dans le [reçu de localisation](../twins/m64-cylinder-head/evidence/annular-mesh-localisation-20260908.json).
+Le [constructeur du domaine](../twins/m64-cylinder-head/source/flowbench-intake/build_gas_domain.py)
+ajoute l'espace intérieur des guides puis soustrait les douze composants
+soupapes/sièges/guides ; ces bouchons ne sont pas des joints mécaniques conçus.
+Le [classement des frontières](../twins/m64-cylinder-head/source/flowbench-intake/mesh_gas_domain.py)
+les affecte à `walls`, avec la [condition de vitesse immobile `noSlip`](../twins/m64-cylinder-head/source/flowbench-intake/prepare_openfoam_case.py).
+
+Cette hypothèse de **banc sec, soupapes immobiles et guides bouchés** est conservée
+pour le diagnostic. Aucun joint de queue réel, film d'huile, pression côté
+porte-arbres ou loi de fuite n'est modélisé. Elle ne qualifie donc ni l'interface
+tige–guide lubrifiée ni les fuites d'un moteur turbo. Elle n'autorise pas à
+combler les jeux, déplacer les bouchons ou modifier silencieusement le domaine.
+
 ## Décision pour le prochain essai — non exécuté
 
 Le générateur actuel impose une taille isotrope aux bandes, sans construire
