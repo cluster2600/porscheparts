@@ -7,6 +7,7 @@ classification, continuous chord fidelity, volume quality, CFD or fabrication.
 import argparse
 from collections import Counter, defaultdict
 import hashlib
+import io
 import json
 import math
 from pathlib import Path
@@ -15,13 +16,16 @@ import time
 
 DOMAIN = '7fc114c1a8229665047c734fd22129783df420deb5e01e809995c6b3efdc5de8'
 REVIEW = '7cb1fecc8b4f710e74824e9cfdac4bf2fb8e845288fb4ec07973fbab3d665e00'
+UNIFIED_DOMAIN = 'fab1338a3e3cf36469977716a9cb54b3118382f592c7c41d7c789bdb5fb3aeba'
+UNIFIED_MANIFEST = '58b8be5aa0faeac678e6801cad29cfc5520cbf1590076276dbf5ad5157776aa1'
+UNIFIED_REVIEW = '7bd9c92d5ac4bafc0146cb77e55f8e95c45d041972ad235f2dce0ab84a21b897'
 
 
 def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def parse_surface_msh22(text):
+def parse_surface_msh22(text, include_records=False):
     """Keep elementary face tags; accept optional linear 0D/1D/3D elements."""
     sections = {}; lines = iter(text.splitlines())
     for line in lines:
@@ -47,7 +51,7 @@ def parse_surface_msh22(text):
         if tag <= 0 or tag in points or len(xyz) != 3 or not all(map(math.isfinite, xyz)):
             raise ValueError('invalid_MSH_node')
         points[tag] = xyz
-    faces = defaultdict(list); counts = Counter(); ids = set()
+    faces = defaultdict(list); counts = Counter(); ids = set(); records = []; tetrahedra = []
     for row in counted('Elements'):
         values = list(map(int, row.split())); tag, kind, n = values[:3]
         nodes = tuple(values[3+n:])
@@ -62,8 +66,56 @@ def parse_surface_msh22(text):
         if kind == 2:
             if values[4] <= 0: raise ValueError('positive_elementary_face_tag_required')
             faces[values[4]].append(nodes)
+            records.append((tag, values[3], values[4], nodes))
+        elif kind == 4: tetrahedra.append(nodes)
     if not faces: raise ValueError('surface_triangles_required')
+    if include_records: return points, dict(faces), dict(counts), records, tetrahedra
     return points, dict(faces), dict(counts)
+
+
+def oriented_triangle(nodes):
+    return min(nodes[i:]+nodes[:i] for i in range(3))
+
+
+def compare_volume_boundary(surface_text, volume_text):
+    """Exact node/label/orientation comparison, allowing only element-ID changes.
+
+    Also compare the surface records to the actual tetrahedral boundary; this
+    is not a test of geometric self-intersections or OpenFOAM cell quality.
+    """
+    sp,_,_,sr,st=parse_surface_msh22(surface_text,True)
+    vp,_,_,vr,vt=parse_surface_msh22(volume_text,True)
+    if st or not vt: raise ValueError('surface_then_tetrahedral_volume_required')
+    sn={n for row in sr for n in row[3]}; vn={n for row in vr for n in row[3]}
+    node_equal=sn==vn and all(sp[n]==vp[n] for n in sn)
+    signature=lambda rows:Counter((p,f,oriented_triangle(nodes)) for _,p,f,nodes in rows)
+    records_equal=signature(sr)==signature(vr)
+    incidence=Counter(); orientation=Counter(); positive=True
+    for a,b,c,d in vt:
+        u=tuple(vp[b][i]-vp[a][i] for i in range(3)); v=tuple(vp[c][i]-vp[a][i] for i in range(3)); w=tuple(vp[d][i]-vp[a][i] for i in range(3))
+        determinant=sum(u[i]*(v[(i+1)%3]*w[(i+2)%3]-v[(i+2)%3]*w[(i+1)%3]) for i in range(3))
+        positive=positive and determinant>0 and math.isfinite(determinant)
+        for tri in ((a,c,b),(a,b,d),(a,d,c),(b,c,d)):
+            key=tuple(sorted(tri)); incidence[key]+=1
+            orientation[key]+=1 if oriented_triangle(tri)==key else -1
+    outer={k for k,v in incidence.items() if v==1}
+    volume_surface=Counter(tuple(sorted(row[3])) for row in vr)
+    surface_orientation={tuple(sorted(row[3])):1 if oriented_triangle(row[3])==tuple(sorted(row[3])) else -1 for row in vr}
+    incidence_ok=all(v in (1,2) for v in incidence.values()) and all(orientation[k]==0 for k,v in incidence.items() if v==2)
+    outer_equal=outer==set(volume_surface) and all(v==1 for v in volume_surface.values())
+    outer_orientation=outer_equal and all(surface_orientation[k]==orientation[k] for k in outer)
+    before_ids={row[0]:row[1:] for row in sr}
+    same_ids=sum(before_ids.get(row[0])==row[1:] for row in vr)
+    return {'surface_nodes':len(sn),'surface_triangles':len(sr),'volume_tetrahedra':len(vt),
+        'boundary_node_ids_and_coordinates_exact':node_equal,
+        'oriented_triangles_and_physical_elementary_groups_exact':records_equal,
+        'surface_element_ids_unchanged':same_ids,'surface_element_ids_reassigned':len(vr)-same_ids,
+        'tetrahedra_positive_signed_determinant':positive,
+        'tetrahedral_face_incidence_and_internal_orientation':incidence_ok,
+        'surface_records_equal_actual_tetrahedral_boundary':outer_equal,
+        'surface_orientation_matches_outward_tetrahedral_boundary':outer_orientation,
+        'passes':node_equal and records_equal and positive and incidence_ok and outer_equal and outer_orientation,
+        'self_intersections_and_CFD_quality_proven':False}
 
 
 def common_face_edges(first, second):
@@ -143,17 +195,63 @@ def exact_chain_partition(shared_edges, chains):
             and set(counts)==set(shared_edges) and all(v==1 for v in counts.values())}
 
 
-def verified_face_lookup(binding):
+def verified_face_lookup(binding, domain=DOMAIN):
+    count={DOMAIN:88,UNIFIED_DOMAIN:86}.get(domain)
+    if count is None: raise ValueError('unregistered_native_domain')
     matches=binding.get('matches_private',[])
     if (binding.get('descriptor_bijection_verified') is not True
             or binding.get('unmatched_gmsh_faces') or binding.get('ambiguous_gmsh_faces')
-            or len(matches)!=88 or {r['source_face_index'] for r in matches}!=set(range(1,89))
-            or len({r['gmsh_face_tag'] for r in matches})!=88):
+            or len(matches)!=count or {r['source_face_index'] for r in matches}!=set(range(1,count+1))
+            or len({r['gmsh_face_tag'] for r in matches})!=count):
         raise ValueError('complete_descriptor_bijective_face_binding_required')
     return {r['source_face_index']:r['gmsh_face_tag'] for r in matches}
 
 
-def native_inventory(path, review):
+def unified_correspondence(review, merge, manifest):
+    """Retrouver les tronçons par descripteurs exacts, jamais par décalage d'IDs."""
+    if (merge.get('original_sha256')!=DOMAIN or merge.get('candidate_sha256')!=UNIFIED_DOMAIN
+            or merge.get('inputs_unchanged') is not True or not merge.get('gates')
+            or any(v is not True for v in merge['gates'].values())):
+        raise ValueError('accepted_exact_native_merge_review_required')
+    transfer=manifest['boundary_role_transfer']
+    if (transfer.get('original_domain_sha256')!=DOMAIN
+            or transfer.get('independent_geometry_review_sha256')!=UNIFIED_REVIEW):
+        raise ValueError('unified_manifest_merge_binding_required')
+    data=merge['descriptors_private']; before=data['before_edges']; after=data['after_edges']
+    old_ids=[r['edge_id_private'] for r in review['split_curve_reference_comparisons_private']]
+    if len(old_ids)!=4 or len(set(old_ids))!=4: raise ValueError('four_reviewed_split_edges_required')
+    pairs=[]
+    for i in old_ids:
+        matches=[int(k) for k,v in after.items() if v==before[str(i)]]
+        if len(matches)!=1: raise ValueError('unique_exact_preserved_split_edge_required')
+        pairs.append((i,matches[0]))
+    if len({j for _,j in pairs})!=4: raise ValueError('split_edge_correspondence_not_bijective')
+    old_faces=[int(k) for k,v in data['before_faces'].items()
+        if set(old_ids)<={r['edge_id'] for r in v['occurrences']}]
+    if len(old_faces)!=2: raise ValueError('two_reviewed_adjacent_faces_required')
+    relation=transfer['face_index_relation']
+    if not isinstance(relation,list) or any(not isinstance(row,list) or len(row)!=2 for row in relation):
+        raise ValueError('explicit_native_face_pair_relation_required')
+    face_relation=dict(relation)
+    if len(face_relation)!=len(relation): raise ValueError('duplicate_original_face_relation')
+    face_pairs=[]
+    for i in old_faces:
+        j=face_relation[i]
+        old=data['before_faces'][str(i)]; new=data['after_faces'][str(j)]
+        if any(old[k]!=new[k] for k in ('support_sha256','orientation','tolerance')):
+            raise ValueError('preserved_C0_adjacent_face_support_required')
+        for a,b in pairs:
+            fields=lambda rows,e:[{k:v for k,v in r.items() if k!='edge_id'} for r in rows if r['edge_id']==e]
+            if not fields(old['occurrences'],a) or fields(old['occurrences'],a)!=fields(new['occurrences'],b):
+                raise ValueError('preserved_C0_pcurve_occurrences_required')
+        face_pairs.append((i,j))
+    if len({j for _,j in face_pairs})!=2: raise ValueError('distinct_C0_adjacent_faces_required')
+    return {'edge_pairs_private':pairs,'face_pairs_private':face_pairs,
+        'after_edges':{str(j):after[str(j)] for _,j in pairs},
+        'after_faces':{str(j):data['after_faces'][str(j)] for _,j in face_pairs}}
+
+
+def native_inventory(path, review, correspondence=None):
     import OCP
     from OCP.BRep import BRep_Builder, BRep_Tool
     from OCP.BRepTools import BRepTools
@@ -164,14 +262,25 @@ def native_inventory(path, review):
     from OCP.TopTools import TopTools_IndexedMapOfShape
     from OCP.GProp import GProp_GProps
     from OCP.BRepGProp import BRepGProp
+    from OCP.GeomTools import GeomTools
+    from OCP.BRepAdaptor import BRepAdaptor_Curve2d
+    from OCP.TopoDS import TopoDS_Iterator
+    from OCP.TopAbs import TopAbs_WIRE
     shape = TopoDS_Shape()
     if not BRepTools.Read_s(shape,str(path),BRep_Builder()): raise ValueError('native_read_failed')
     def indexed(obj, kind):
         result = TopTools_IndexedMapOfShape(); TopExp.MapShapes_s(obj,kind,result); return result
     edge_map=indexed(shape,TopAbs_EDGE); vertex_map=indexed(shape,TopAbs_VERTEX); face_map=indexed(shape,TopAbs_FACE)
-    if (edge_map.Extent(),vertex_map.Extent(),face_map.Extent()) != (195,120,88):
+    expected=(191,118,86) if correspondence else (195,120,88)
+    if (edge_map.Extent(),vertex_map.Extent(),face_map.Extent()) != expected:
         raise ValueError('reviewed_native_topology_required')
-    edge_ids = [r['edge_id_private'] for r in review['split_curve_reference_comparisons_private']]
+    edge_ids = ([j for _,j in correspondence['edge_pairs_private']] if correspondence else
+        [r['edge_id_private'] for r in review['split_curve_reference_comparisons_private']])
+    def encoded(geom):
+        stream=io.BytesIO(); GeomTools.Write_s(geom,stream)
+        return hashlib.sha256(stream.getvalue()).hexdigest()
+    def point(vertex):
+        p=BRep_Tool.Pnt_s(vertex); return [p.X(),p.Y(),p.Z()]
     edges = []; native_edges = []; vertices = {}; chain = []
     for i in edge_ids:
         edge=TopoDS.Edge_s(edge_map.FindKey(i)); curve=BRepAdaptor_Curve(edge)
@@ -184,10 +293,39 @@ def native_inventory(path, review):
             vertices[j]={'id':j,'point_private':[p.X(),p.Y(),p.Z()], 'tolerance':BRep_Tool.Tolerance_s(v)}
         adjacent=[j for j in range(1,face_map.Extent()+1)
                   if indexed(face_map.FindKey(j),TopAbs_EDGE).Contains(edge)]
+        if correspondence:
+            descriptor={'curve_global_sha256':encoded(BRep_Tool.Curve_s(edge,0.,0.)),
+                'range':list(BRep_Tool.Range_s(edge)), 'ends_private':[point(v) for v in endpoints],
+                'tolerance':BRep_Tool.Tolerance_s(edge),'same_range':BRep_Tool.SameRange_s(edge),
+                'same_parameter':BRep_Tool.SameParameter_s(edge),'degenerated':BRep_Tool.Degenerated_s(edge)}
+            if descriptor!=correspondence['after_edges'][str(i)]: raise ValueError('native_split_edge_review_descriptor_mismatch')
+            if set(adjacent)!={j for _,j in correspondence['face_pairs_private']}: raise ValueError('native_adjacent_faces_review_mismatch')
         props=GProp_GProps(); BRepGProp.LinearProperties_s(edge,props)
         edges.append({'id':i,'vertex_ids_private':ids,'parameter_range_private':[curve.FirstParameter(),curve.LastParameter()],
             'length':props.Mass(),'tolerance':BRep_Tool.Tolerance_s(edge),'adjacent_native_face_ids':adjacent})
         native_edges.append(edge)
+    if correspondence:
+        for _,j in correspondence['face_pairs_private']:
+            face=TopoDS.Face_s(face_map.FindKey(j)); expected_face=correspondence['after_faces'][str(j)]
+            if (encoded(BRep_Tool.Surface_s(face))!=expected_face['support_sha256']
+                    or str(face.Orientation())!=expected_face['orientation']
+                    or BRep_Tool.Tolerance_s(face)!=expected_face['tolerance']):
+                raise ValueError('native_C0_face_support_review_mismatch')
+            measured=[]; wires=indexed(face,TopAbs_WIRE)
+            for k in range(1,wires.Extent()+1):
+                walk=TopoDS_Iterator(wires.FindKey(k))
+                while walk.More():
+                    edge=TopoDS.Edge_s(walk.Value()); eid=edge_map.FindIndex(edge)
+                    if eid in edge_ids:
+                        measured.append({'edge_id':eid,'native_orientation':str(edge.Orientation()),
+                            'pcurve_sha256':encoded(BRepAdaptor_Curve2d(edge,face).Curve()),
+                            'range_on_surface':list(BRep_Tool.Range_s(edge,face))})
+                    walk.Next()
+            fields=('edge_id','native_orientation','pcurve_sha256','range_on_surface')
+            expected_occ=[{k:r[k] for k in fields} for r in expected_face['occurrences'] if r['edge_id'] in edge_ids]
+            key=lambda r:json.dumps(r,sort_keys=True)
+            if Counter(map(key,measured))!=Counter(map(key,expected_occ)):
+                raise ValueError('native_C0_pcurve_occurrences_review_mismatch')
     if len(edges)!=4 or len(set(chain))!=5 or len(set(tuple(r['adjacent_native_face_ids']) for r in edges))!=1:
         raise ValueError('four_split_segments_five_vertices_two_adjacent_faces_required')
     if len(edges[0]['adjacent_native_face_ids'])!=2: raise ValueError('two_adjacent_faces_required')
@@ -201,19 +339,38 @@ def native_inventory(path, review):
 
 
 def run(args):
-    started=time.monotonic(); paths={args.domain:DOMAIN,args.review:REVIEW,Path(__file__):sha(__file__)}
+    started=time.monotonic(); unified=args.unified_native_only
+    domain=UNIFIED_DOMAIN if unified else DOMAIN
+    paths={args.domain:domain,args.review:REVIEW,Path(__file__):sha(__file__)}
+    if unified:
+        if not args.manifest or not args.merge_review: raise ValueError('unified_manifest_and_merge_review_required')
+        paths.update({args.manifest:UNIFIED_MANIFEST,args.merge_review:UNIFIED_REVIEW})
+    elif args.manifest or args.merge_review:
+        raise ValueError('explicit_unified_native_mode_required')
     for p,h in paths.items():
         if p.is_symlink() or sha(p)!=h: raise ValueError('exact_native_and_review_required')
-    review=json.loads(args.review.read_text()); inventory,native_edges=native_inventory(args.domain,review)
+    review=json.loads(args.review.read_text()); correspondence=None
+    if unified:
+        correspondence=unified_correspondence(review,json.loads(args.merge_review.read_text()),json.loads(args.manifest.read_text()))
+    inventory,native_edges=native_inventory(args.domain,review,correspondence)
     report={'schema':'m64-segmented-C0-surface-conservation/v1','source_sha256':sha(__file__),
-        'domain_sha256':DOMAIN,'independent_review_sha256':REVIEW,**inventory,
+        'domain_sha256':domain,'independent_review_sha256':REVIEW,**inventory,
         'status':'native_inventory_only_no_mesh', 'mesh_audited':False,
         'native_1D_mesh_classification_proven':False,'continuous_chord_fidelity_proven':False,
         'CFD_qualified':False,'manufacturing_authorized':False,
         'units':'scan_units_under_unverified_1_unit_per_mm_hypothesis'}
+    if unified:
+        report['unified_native_provenance']={'manifest_sha256':UNIFIED_MANIFEST,
+            'merge_review_sha256':UNIFIED_REVIEW,'original_segmented_domain_sha256':DOMAIN,
+            'edge_pairs_private':correspondence['edge_pairs_private'],
+            'adjacent_face_pairs_private':correspondence['face_pairs_private'],
+            'current_native_curves_supports_and_C0_pcurve_occurrences_match_review':True,
+            'vertex_distinction_inherited_from_split_review_with_exact_retained_endpoints':True,
+            'comparison_basis':'reviewed_serialization_control_not_raw_original_descriptor_identity',
+            'previous_mesh_results_transferred':False}
     if args.import_report:
         paths[args.import_report]=sha(args.import_report); imp=json.loads(args.import_report.read_text())
-        if DOMAIN not in imp['input_sha256'].values(): raise ValueError('import_domain_mismatch')
+        if domain not in imp['input_sha256'].values(): raise ValueError('import_domain_mismatch')
         candidates=[]
         for edge in inventory['edges_private']:
             matches=[r for r in imp['curves_private'] if abs(r['length']-edge['length'])<=max(1e-10,edge['length']*1e-10)]
@@ -226,11 +383,13 @@ def run(args):
         if not args.mesh_report: raise ValueError('mesh_report_required_for_native_face_binding')
         paths[args.mesh]=sha(args.mesh);paths[args.mesh_report]=sha(args.mesh_report)
         mr=json.loads(args.mesh_report.read_text())
-        if mr['native_BRep_sha256']!=DOMAIN or mr['persisted_surface']['MSH_sha256']!=paths[args.mesh]:
+        if mr['native_BRep_sha256']!=domain or mr['persisted_surface']['MSH_sha256']!=paths[args.mesh]:
             raise ValueError('mesh_report_native_or_surface_hash_mismatch')
+        if unified and mr.get('gas_domain_report_sha256')!=UNIFIED_MANIFEST:
+            raise ValueError('mesh_report_unified_manifest_mismatch')
         points,faces,counts=parse_surface_msh22(args.mesh.read_text())
         binding=mr['import']['face_binding_private']
-        lookup=verified_face_lookup(binding)
+        lookup=verified_face_lookup(binding,domain)
         tags=[lookup[i] for i in inventory['edges_private'][0]['adjacent_native_face_ids']]
         shared=common_face_edges(faces[tags[0]],faces[tags[1]])
         boundary_nodes=set(n for e in shared for n in e)
@@ -265,18 +424,28 @@ def run(args):
             segment_chains_private=rows,complete_shared_interface_partition=partition,
             surface_incidence_segment_representation=accepted,
             status='surface_incidence_conservation_passed_limited_scope' if accepted else 'surface_incidence_conservation_not_proven')
+    if args.volume_mesh:
+        if not args.mesh: raise ValueError('surface_mesh_and_report_required_before_volume_boundary_comparison')
+        paths[args.volume_mesh]=sha(args.volume_mesh)
+        if mr.get('mesh_sha256')!=paths[args.volume_mesh]: raise ValueError('volume_mesh_report_hash_mismatch')
+        boundary=compare_volume_boundary(args.mesh.read_text(),args.volume_mesh.read_text())
+        report.update(volume_mesh_sha256=paths[args.volume_mesh],volume_boundary_conservation=boundary)
+        if not boundary['passes']: report['status']='volume_boundary_conservation_not_proven'
     report['inputs_unchanged']=all(sha(p)==h for p,h in paths.items())
     report['elapsed_seconds']=time.monotonic()-started
     if args.output.exists(): raise FileExistsError(args.output)
     args.output.parent.mkdir(parents=True,exist_ok=True,mode=0o700)
     args.output.write_text(json.dumps(report,indent=2,allow_nan=False)+'\n');args.output.chmod(0o600)
     print(json.dumps({'status':report['status'],'report_sha256':sha(args.output),'elapsed_seconds':report['elapsed_seconds']}))
-    return 0 if report['inputs_unchanged'] and report.get('surface_incidence_segment_representation',True) else 2
+    return 0 if (report['inputs_unchanged'] and report.get('surface_incidence_segment_representation',True)
+        and report.get('volume_boundary_conservation',{}).get('passes',True)) else 2
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     for key in ('domain','review','output'): parser.add_argument('--'+key,type=Path,required=True)
-    for key in ('mesh','mesh-report','import-report'):parser.add_argument('--'+key,type=Path)
+    for key in ('mesh','mesh-report','import-report','manifest','merge-review','volume-mesh'):parser.add_argument('--'+key,type=Path)
+    parser.add_argument('--unified-native-only',action='store_true',
+        help='Audit the separately pinned native fab domain; no STEP or prior mesh result is inherited')
     resource.setrlimit(resource.RLIMIT_CPU,(120,125))
     raise SystemExit(run(parser.parse_args()))

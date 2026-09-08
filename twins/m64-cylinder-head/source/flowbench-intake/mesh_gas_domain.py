@@ -49,8 +49,19 @@ GAS05_GUIDE_STEM_SOURCES = {
 GUIDE_FRAME_RECEIPT_SHA = '5935ab8da21709637143388cf4932d1f5a09def72b7c550d778a4114dbe11b51'
 GUIDE_CHORD_SOURCE_SHA = '32626cc8def4a6e32693395815788af11a554bb8d768295671c45c2800eece14'
 # The producer pin above remains historical. Runtime and new receipt pins are distinct.
-GUIDE_CHORD_RUNTIME_SOURCE_SHA = 'f91780b69b59964c167558a41d1c3cbb2d0addaf282f711f13c4499719ec5db8'
+GUIDE_CHORD_RUNTIME_SOURCE_SHA = '4a83224a50e43b3e6f1e57e66aea0df02328cbf1b0d3501b24ff1cb44d8c6378'
 SEGMENTED_GUIDE_FRAME_RECEIPT_SHA = 'c4ec27ae21efb5f575aa7d6dd9730ad3b27ae2789fc30698d5e8c0d2b5177900'
+SEGMENTED_GUIDE_PRODUCER_SOURCE_SHA = 'f91780b69b59964c167558a41d1c3cbb2d0addaf282f711f13c4499719ec5db8'
+SEGMENTED_GUIDE_PRODUCER_PROFILE_SHA = '850e036c2d388a3127c202377f5fc40e9d6e4f3d6747047f873f3e4eebf7ea64'
+UNIFIED_GUIDE_FRAME_RECEIPT_SHA = '815716dfea27c8e0e6d8aefd7a0f7d3be9d7677b20cdf37e966af2e4bec07704'
+UNIFIED_GUIDE_PRODUCER_SOURCE_SHA = '4a83224a50e43b3e6f1e57e66aea0df02328cbf1b0d3501b24ff1cb44d8c6378'
+UNIFIED_GUIDE_PRODUCER_PROFILE_SHA = 'fbc0b7289a1d3a5a251338de719572cd71b1207c34bbcfb3f784f918628a3d85'
+UNIFIED_GUIDE_STEM_SOURCES = {
+    53:'intake_1_guide_face_4',55:'intake_1_guide_face_4',
+    54:'intake_2_guide_face_4',56:'intake_2_guide_face_4',
+    59:'intake_1_valve_face_6',61:'intake_1_valve_face_6',
+    60:'intake_2_valve_face_6',62:'intake_2_valve_face_6',
+}
 
 
 class SurfaceOnlyComplete(Exception):
@@ -72,6 +83,8 @@ def face38_algorithm_assignment(manifest, binding, algorithm):
     if algorithm not in (1,5):raise ValueError('face38_experiment_allows_only_MeshAdapt1_or_Delaunay5')
     faces=[face for face in manifest['boundary_faces'] if face['id']==38]
     domain_sha=manifest['exports']['domain_brep']['sha256']
+    if domain_sha==profiles.UNIFIED_DOMAIN_SHA256:
+        raise ValueError('obsolete_face38_experiment_forbidden_on_unified_partition')
     expected_sha=(profiles.segmented_face_sha(manifest,38)
                   if domain_sha==profiles.SEGMENTED_DOMAIN_SHA else GAS05_FACE38_SHA)
     if (domain_sha not in (GAS05_NATIVE_SHA,profiles.SEGMENTED_DOMAIN_SHA) or len(faces)!=1 or
@@ -106,13 +119,19 @@ def guide_size_assignment(manifest, binding, size, frames=None):
         raise ValueError('guide_size_must_be_finite_between_0p005_and_0p2')
     domain_sha=manifest['exports']['domain_brep']['sha256']
     expected_faces=GAS05_GUIDE_STEM_FACES
+    source_names=GAS05_GUIDE_STEM_SOURCES
     if domain_sha==profiles.SEGMENTED_DOMAIN_SHA:
         profiles.registered_segmented_manifest(manifest,for_meshing=False)
         expected_faces={i:(r,profiles.SEGMENTED_FACE_SHAS[i]) for i,(r,_) in GAS05_GUIDE_STEM_FACES.items()}
-    if (domain_sha not in (GAS05_NATIVE_SHA,profiles.SEGMENTED_DOMAIN_SHA) or
+    elif domain_sha==profiles.UNIFIED_DOMAIN_SHA256:
+        profiles.registered_unified_manifest(manifest,for_meshing=False)
+        source_names=UNIFIED_GUIDE_STEM_SOURCES
+        expected_faces={i:('walls_guide' if 'guide' in source_names[i] else 'walls_valve',h)
+                        for i,h in profiles.guide_face_hashes(domain_sha).items()}
+    if (domain_sha not in (GAS05_NATIVE_SHA,profiles.SEGMENTED_DOMAIN_SHA,profiles.UNIFIED_DOMAIN_SHA256) or
             binding.get('descriptor_bijection_verified') is not True):
         raise ValueError('exact_native_gas05_and_bijection_required')
-    expected_sources=set(GAS05_GUIDE_STEM_SOURCES.values())
+    expected_sources=set(source_names.values())
     identified=[r['id'] for r in manifest['boundary_faces'] if any(
         s.get('source') in expected_sources for s in r.get('source_match',[]))]
     if frames is None:raise ValueError('reviewed_native_inventory_required_for_guide_sizing')
@@ -122,7 +141,7 @@ def guide_size_assignment(manifest, binding, size, frames=None):
         raise ValueError('complete_source_fragments_including_nonannular_stems_required')
     selected=set(frames['coverage']['selected_face_ids'])
     excluded={r['face_id'] for r in frames['coverage']['excluded_cylinders']}
-    if selected!=set(GAS05_GUIDE_STEM_FACES) or set(identified)-selected-excluded:
+    if selected!=set(expected_faces) or set(identified)-selected-excluded:
         raise ValueError('complete_eight_fragment_guide_stem_inventory_required')
     for row in manifest['boundary_faces']:
         if row['id'] in inventoried:
@@ -135,10 +154,10 @@ def guide_size_assignment(manifest, binding, size, frames=None):
         match=[r for r in binding['matches_private'] if r['source_face_index']==face_id]
         if (len(source)!=1 or source[0]['role']!=role or source[0]['sha256']!=expected_sha or
                 source[0].get('surface_type')!='GeomAbs_Cylinder' or len(match)!=1 or
-                GAS05_GUIDE_STEM_SOURCES[face_id] not in {r.get('source') for r in source[0].get('source_match',[])}):
+                source_names[face_id] not in {r.get('source') for r in source[0].get('source_match',[])}):
             raise ValueError('exact_unique_guide_stem_cylinder_binding_required')
         faces.append({'source_face_id':face_id,'native_face_sha256':expected_sha,
-                      'role':role,'source_component_surface':GAS05_GUIDE_STEM_SOURCES[face_id],
+                      'role':role,'source_component_surface':source_names[face_id],
                       'gmsh_face_tag':match[0]['gmsh_face_tag']})
     return {'faces':faces,'local_target_size_scan_units':size,'include_boundary':True,
             'complete_classified_eight_fragment_inventory_verified':True,
@@ -151,15 +170,21 @@ def guide_size_assignment(manifest, binding, size, frames=None):
 
 def validated_guide_frames(receipt, receipt_sha, manifest=None):
     """Reuse reviewed native frames, never the earlier surface's acceptance result."""
-    if manifest and manifest.get('exports',{}).get('domain_brep',{}).get('sha256')==profiles.SEGMENTED_DOMAIN_SHA:
-        profiles.registered_segmented_manifest(manifest)
-        if (not SEGMENTED_GUIDE_FRAME_RECEIPT_SHA or receipt_sha!=SEGMENTED_GUIDE_FRAME_RECEIPT_SHA or
+    domain_sha=manifest.get('exports',{}).get('domain_brep',{}).get('sha256') if manifest else None
+    if domain_sha in (profiles.SEGMENTED_DOMAIN_SHA,profiles.UNIFIED_DOMAIN_SHA256):
+        unified=domain_sha==profiles.UNIFIED_DOMAIN_SHA256
+        profile=(profiles.registered_unified_manifest(manifest) if unified else
+                 profiles.registered_segmented_manifest(manifest))
+        expected_receipt=UNIFIED_GUIDE_FRAME_RECEIPT_SHA if unified else SEGMENTED_GUIDE_FRAME_RECEIPT_SHA
+        producer_source=UNIFIED_GUIDE_PRODUCER_SOURCE_SHA if unified else SEGMENTED_GUIDE_PRODUCER_SOURCE_SHA
+        producer_profile=UNIFIED_GUIDE_PRODUCER_PROFILE_SHA if unified else SEGMENTED_GUIDE_PRODUCER_PROFILE_SHA
+        if (not expected_receipt or not producer_source or not producer_profile or receipt_sha!=expected_receipt or
                 receipt.get('schema')!='m64-native-guide-frame-inventory/v1' or
                 receipt.get('mode')!='native_inventory_only' or receipt.get('all_inputs_unchanged') is not True or
-                receipt.get('inputs_sha256',{}).get('domain')!=profiles.SEGMENTED_DOMAIN_SHA or
-                receipt['inputs_sha256'].get('boundary_report')!=profiles.SEGMENTED_MANIFEST_SHA or
-                receipt['inputs_sha256'].get('source')!=GUIDE_CHORD_RUNTIME_SOURCE_SHA or
-                receipt['inputs_sha256'].get('profile_source')!=checks.sha256(profiles.__file__) or
+                receipt.get('inputs_sha256',{}).get('domain')!=domain_sha or
+                receipt['inputs_sha256'].get('boundary_report')!=profile['manifest_sha256'] or
+                receipt['inputs_sha256'].get('source')!=producer_source or
+                receipt['inputs_sha256'].get('profile_source')!=producer_profile or
                 receipt.get('CAD_modified') is not False or receipt.get('mesh_accepted') is not False or
                 receipt.get('CFD_executed') is not False or receipt.get('manufacturing_authorized') is not False or
                 'whole_facet_chord_gate' not in receipt.get('result',{}) or
@@ -168,8 +193,9 @@ def validated_guide_frames(receipt, receipt_sha, manifest=None):
         frames=receipt['result']['frames_private']
         profiles.guide_face_hashes(frames.get('domain_sha256'),frames)
         if (frames.get('schema')!='m64-native-guide-cylinder-frames/v2' or
-                frames.get('coverage',{}).get('selected_face_ids')!=sorted(GAS05_GUIDE_STEM_FACES)):
-            raise ValueError('complete_segmented_eight_fragment_frames_required')
+                frames.get('domain_sha256')!=domain_sha or
+                frames.get('coverage',{}).get('selected_face_ids')!=list(profiles.guide_face_ids(domain_sha))):
+            raise ValueError('complete_profile_specific_eight_fragment_frames_required')
         return frames
     if (receipt_sha!=GUIDE_FRAME_RECEIPT_SHA or
             receipt.get('schema')!='m64-persisted-guide-chord-diagnostic/v2' or
@@ -201,13 +227,15 @@ def current_guide_chord_gate(gmsh, assignment, frames):
     return audit_guide_chords.mesh_chord_gate(points,grouped,frames)
 
 
-def validated_boundary_contract(manifest, c0_diagnostic=False, segmented_native_only=False):
+def validated_boundary_contract(manifest, c0_diagnostic=False, segmented_native_only=False, unified_native_only=False):
     """Preserve failed C0 gates; a reviewed exception permits a diagnostic only."""
     if manifest.get('schema') != 'm64-intake-gas-domain/v1':
         raise ValueError('native_intake_gas_domain_schema_required')
-    if c0_diagnostic and segmented_native_only:raise ValueError('historical_C0_and_segmented_profiles_are_exclusive')
+    if sum(map(bool,(c0_diagnostic,segmented_native_only,unified_native_only)))>1:
+        raise ValueError('historical_C0_segmented_and_unified_profiles_are_exclusive')
     if segmented_native_only:profiles.registered_segmented_manifest(manifest)
-    required=(set(profiles.NATIVE_ONLY_GATES) if segmented_native_only else
+    if unified_native_only:profiles.registered_unified_manifest(manifest)
+    required=(set(profiles.NATIVE_ONLY_GATES) if segmented_native_only or unified_native_only else
               set(REQUIRED_DOMAIN_GATES)-(C0_DIAGNOSTIC_GATES if c0_diagnostic else set()))
     if any(manifest.get('gates',{}).get(key) is not True for key in required):
         raise ValueError('native_gas_domain_gate_not_accepted')
@@ -481,14 +509,18 @@ def validated_volume_reference(manifest, receipt):
     return receipt
 
 
-def validated_input(manifest_path, advisory_path=None, segmented_native_only=False):
+def validated_input(manifest_path, advisory_path=None, segmented_native_only=False, unified_native_only=False):
     manifest=json.loads(manifest_path.read_text())
     if segmented_native_only:
         if advisory_path:raise ValueError('segmented_native_profile_cannot_reuse_historical_C0_advisory')
         profiles.registered_segmented_manifest(manifest,checks.sha256(manifest_path))
+    if unified_native_only:
+        if advisory_path or segmented_native_only:raise ValueError('unified_native_profile_cannot_reuse_previous_profiles')
+        profiles.registered_unified_manifest(manifest,checks.sha256(manifest_path))
     advisory=validated_c0_advisory(manifest,checks.sha256(manifest_path),json.loads(advisory_path.read_text())) if advisory_path else None
-    contract=validated_boundary_contract(manifest,c0_diagnostic=advisory is not None,segmented_native_only=segmented_native_only)
-    required=set(manifest['gates'])-({'step_roundtrip_valid'} if segmented_native_only else C0_DIAGNOSTIC_GATES if advisory else set())
+    contract=validated_boundary_contract(manifest,c0_diagnostic=advisory is not None,
+                                        segmented_native_only=segmented_native_only,unified_native_only=unified_native_only)
+    required=set(manifest['gates'])-({'step_roundtrip_valid'} if segmented_native_only or unified_native_only else C0_DIAGNOSTIC_GATES if advisory else set())
     if (manifest.get('inputs_unchanged') is not True or
             manifest.get('gates',{}).get('native_roundtrip_valid') is not True or
             any(manifest['gates'][key] is not True for key in required)):
@@ -507,10 +539,20 @@ def validated_input(manifest_path, advisory_path=None, segmented_native_only=Fal
     return manifest,contract,native,paths,advisory
 
 
+def validate_unified_guide_request(args):
+    """The new annular domain must never bypass actual guide-facet checks."""
+    if getattr(args,'unified_native_only',False) and (
+            args.guide_size is None or args.guide_chord_reference is None):
+        raise ValueError('unified_native_requires_guide_sizing_and_exact_frame_reference')
+
+
 def run(args):
+    validate_unified_guide_request(args)
     import gmsh
     segmented=getattr(args,'segmented_native_only',False)
-    manifest,contract,native,paths,advisory=validated_input(args.manifest,args.diagnostic_c0_advisory,segmented_native_only=segmented)
+    unified=getattr(args,'unified_native_only',False)
+    manifest,contract,native,paths,advisory=validated_input(args.manifest,args.diagnostic_c0_advisory,
+                                                         segmented_native_only=segmented,unified_native_only=unified)
     paths[Path(profiles.__file__)]=checks.sha256(profiles.__file__)
     volume_reference=validated_volume_reference(manifest,json.loads(args.volume_quadrature_reference.read_text())) if args.volume_quadrature_reference else None
     if volume_reference:paths[args.volume_quadrature_reference]=checks.sha256(args.volume_quadrature_reference)
@@ -522,7 +564,7 @@ def run(args):
             'source_sha256':source_sha,'dependency_sha256':dependency_sha,
             'gas_domain_report_sha256':checks.sha256(args.manifest),
             'native_BRep_sha256':checks.sha256(native),'gmsh_version':gmsh.__version__,
-            'native_profile':profiles.registered_segmented_manifest(manifest) if segmented else {'name':'historical_gas05'},
+            'native_profile':profiles.registered_unified_manifest(manifest) if unified else profiles.registered_segmented_manifest(manifest) if segmented else {'name':'historical_gas05'},
             'native_profile_source_sha256':checks.sha256(profiles.__file__),
             'native_builder_status':manifest.get('status'),
             'native_builder_gates':manifest['gates'],
@@ -747,6 +789,7 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--diagnostic-c0-advisory',type=Path,help='Exact reviewed C0 advisory; diagnostic attempt only, not a BOP or CFD waiver')
     parser.add_argument('--segmented-native-only',action='store_true',help='Exact separately reviewed C0-segmented package; native checks only, no inherited STEP result')
+    parser.add_argument('--unified-native-only',action='store_true',help='Exact new 86-face native partition packet; no historical face38 field or STEP approval')
     parser.add_argument('--volume-quadrature-reference',type=Path,help='Hash-bound OCCT nonadaptive volume reference; import tolerance remains 1e-6')
     parser.add_argument('--stop-after-surface',action='store_true',help='Save all boundary triangles and stop before generate(3); not a volume mesh')
     parser.add_argument('--volume-algorithm',type=int,choices=(1,10),default=1,help='Volume-only comparison after surface persistence: Delaunay1 (default) or HXT10; no quality-gate change')
