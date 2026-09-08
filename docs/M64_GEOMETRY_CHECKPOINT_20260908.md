@@ -1036,6 +1036,95 @@ global de mauvais éléments. La qualité volumique et la conformité à la CAO
 restent à traiter ; aucune modification de contour ni tolérance physique
 n'est introduite par cette analyse.
 
+### Essai local du solide : aucun déplacement retenu
+
+Un optimiseur SLSQP distinct du lissage Gmsh a été exécuté une seule fois
+sur le nœud intérieur 118057. L'objectif était d'augmenter la plus petite
+qualité « mean ratio » de ses 34 tétraèdres, sans dégrader aucune des 34
+qualités individuelles, sans déplacer les 19 voisins et en conservant les
+volumes positifs. Cette mesure n'est ni `minSICN` ni une contrainte mécanique.
+Le rayon numérique autorisé était un quart de la plus courte arête incidente ;
+il ne constitue pas une tolérance de fabrication.
+
+Après correction d'un environnement SciPy défectueux dans un environnement
+privé séparé, le témoin SLSQP et sept tests purs passent. Le calcul réel
+SciPy 1.17.1/NumPy 2.4.6 termine en 1,429 s, après une itération, au point
+initial exact : déplacement nul, minimum mean ratio inchangé à 0,0069819001.
+Le reçu `5ea09065…` conserve les 34 contrôles rationnels et les empreintes ;
+les tests sont répétés par la racine. Aucun fichier de maillage n'est modifié.
+Le résultat ne fournit donc aucun candidat à vérifier nativement et ne prouve
+pas l'infaisabilité d'un autre déplacement ou d'un remaillage.
+
+### Cœur gazeux : frontière triangulaire extraite sans modifier les transitions
+
+HXT ne peut pas recevoir directement les faces quadrangulaires du maillage
+mixte. Un extracteur pur a donc isolé la frontière du seul cœur tétraédrique,
+sans trianguler les interfaces quadrangulaires ni modifier les 67 200
+hexaèdres et les 384 pyramides existants. La coque comporte 33 422 triangles :
+31 886 facettes externes et 1 536 faces latérales des pyramides.
+
+Les 15 gardes topologiques passent : une composante, 16 711 nœuds, aucune
+arête ouverte, aucun doublon, aucune aire exactement nulle et aucune
+incohérence d'orientation. Les voisinages de sommets sont des cycles simples.
+Les orientations côté pyramides sont opposées à celles du cœur. Le reçu
+`8163b885…` et la coque privée `073539bc…` lient ces contrôles aux entrées
+inchangées ; sept tests purs passent aussi en contre-vérification racine.
+
+Cette extraction de 6,638 s rend la coque admissible à un **essai de
+remaillage**, pas le volume à la CFD. Les 132 conflits internes du maillage
+source restent refusés. Aucune absence d'intersection globale ni conformité
+à la CAO continue n'est inférée de la fermeture topologique.
+
+### HXT exécuté sur le cœur : candidat sauvegardé, contrôle de qualité refusé
+
+La route discrète a été vérifiée sur le code Gmsh 4.15.2 : l'appel
+`createGeometry([(3, 1)])` ne vise que le volume. Les surfaces ne sont ni
+paramétrées ni reconstruites ; leurs instantanés avant/après restent exacts.
+Un petit tétraèdre fermé suit d'abord la même route, avec génération HXT,
+contrôles de qualité, frontière et relecture binaire réussis. Le cœur réel
+est ensuite généré une seule fois ; les marqueurs du journal confirment le
+backend HXT dans les deux cas.
+
+Le candidat privé `1740a425…` a été sauvegardé avant l'audit. Les 33 422
+triangles de frontière et leurs coordonnées binary64 restent identiques
+après génération ; 16 581 identifiants de nœuds changent, avec bijection
+enregistrée. Ce changement d'identifiants ne constitue pas un déplacement
+des surfaces. Le contrôle suivant refuse le tableau natif `minSJ`
+(`finite_complete_minSJ`, garde de taille et de finitude). Le reçu ne
+conserve pas ce tableau ; il ne distingue donc pas encore un compte
+incorrect de valeurs non finies. L'audit complet du cœur et sa relecture ne sont
+donc **pas achevés**. Le nombre HXT interne de 818 513 tétraèdres n'est pas
+assimilé au nombre d'éléments physiques exportés.
+
+Le reçu natif `0931b9d7…` conserve cet échec : 6,846 s pour le worker,
+7,408 s nettoyage compris, sans OOM ni timeout. Onze tests purs du worker
+et sept du runner passent, répétés par la racine ; ces derniers incluent
+la suppression du conteneur possédé après timeout et échec d'inspection.
+Le conteneur exact a été supprimé et son absence revérifiée. Aucun
+réassemblage hexa/pyramides, aucune modification du maître, aucune admission
+CFD ni nouvelle dépense Vast. La contre-lecture du fichier sauvegardé doit
+distinguer dégénérescence réelle et problème d'évaluation de la métrique
+avant tout nouvel essai.
+
+La contre-lecture pure du fichier sauvegardé est maintenant terminée
+(`28a0521c…`) : 733 762 tétraèdres et 122 354 nœuds. Elle ne retrouve
+aucun doublon, nœud répété, défaut manifold ni conflit d'orientation entre
+cellules voisines ; les tétraèdres forment une composante et leur frontière
+orientée correspond exactement aux 33 422 facettes enregistrées.
+Les déterminants calculés en flottants sont tous positifs, mais le plus
+petit est très faible : `det6 ≈ 3,4174e−16` en unités scan au cube.
+Les 53 tétraèdres sélectionnés par le détecteur de déterminants faibles
+sont recalculés en rationnels et restent strictement positifs ; les
+733 709 autres ne bénéficient pas de ce recalcul exact. Quatre tests purs
+passent, répétés par la racine.
+
+Cette contre-lecture ne retrouve donc pas les conflits locaux observés
+dans le maillage source. Elle n'autorise pas à effacer le refus natif ni
+à déclarer le nouveau maillage convergé ou apte à la CFD. L'étape suivante
+est la lecture native du **même MSH sauvegardé**, avec conservation des
+tableaux de qualité et identification des éléments concernés, sans nouvelle
+génération. Les intersections globales et le réassemblage restent à contrôler.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
@@ -1079,6 +1168,9 @@ flowchart LR
     W --> X[Recouvrements locaux du cœur confirmés<br/>Facettes inchangées, tags renommés]
     X --> Z[Contre-essai sans optimisation finale<br/>243 337 cellules, 132 recouvrements locaux]
     Y --> AA[Pire tétraèdre inchangé confirmé<br/>Direction de lissage localement défavorable]
+    AA --> AB[Optimisation locale distincte exécutée<br/>Gain nul, aucune modification retenue]
+    Z --> AC[Coque triangulaire du cœur extraite<br/>Transitions hexa-pyramides conservées]
+    AC --> AD[Témoin HXT réussi puis cœur sauvegardé<br/>Frontière conservée, contrôle minSJ refusé]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
