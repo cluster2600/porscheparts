@@ -6,6 +6,10 @@ Le pas suivant échoue dans `adjustPhi` sur un défaut de continuité : les
 passent, mais ne prévoyaient pas ce refus du couplage. Aucun de ces essais
 n'est un essai de culasse ou une qualification d'impression.
 
+Suite séparée : [diagnostic du prédicteur et correctif testé sur un cas
+natif de 32 cellules](M64_F58_PREDICTOR_CONTRACT_20260908.md). Ce témoin
+ne remplace pas le coupon interrompu décrit ici.
+
 Le [raffinement spatial précédent](M64_F58_SPATIAL_REFINEMENT_20260908.md)
 laisse subsister le plafond de 3 300 K. La suite porte sur une physique
 absente de ce témoin thermique, pas sur un nouveau raffinement ni sur un
