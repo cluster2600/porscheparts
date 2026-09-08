@@ -1252,6 +1252,16 @@ la sélection complète depuis le tableau compressé et les empreintes des
 entrées sont également revérifiées. Aucun nouveau calcul natif ni maillage
 écrit pour cette localisation.
 
+Deux remplacements locaux de deux tétraèdres par trois sont ensuite évalués
+en rationnels (reçu c7730c12…, 2,484 s), avec chacun des deux voisins intérieurs
+de 49443. Les frontières orientées et volumes signés des cavités restent
+identiques, mais chaque proposition contient un déterminant négatif et sa
+nouvelle diagonale traverse le plan hors du triangle partagé. **Les deux
+propositions sont rejetées**, sans réorienter artificiellement les cellules
+ni écrire de maillage. Cinq tests synthétiques passent, répétés par la racine.
+Cela ferme ces deux essais, pas toute possibilité de correction dans un
+voisinage plus large.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
