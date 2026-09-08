@@ -1,5 +1,6 @@
 import importlib.util
 import copy
+import math
 from pathlib import Path
 import unittest
 
@@ -142,6 +143,66 @@ class UnifiedC0CorrespondenceTests(unittest.TestCase):
         review,merge,manifest=merge_fixture()
         manifest['boundary_role_transfer']['face_index_relation'].append([10,30])
         with self.assertRaises(ValueError):audit.unified_correspondence(review,merge,manifest)
+
+
+class CompleteNativeInterfaceTests(unittest.TestCase):
+    def test_eight_native_curves_partition_all_edges_not_only_four_C0(self):
+        shared={(i,i+1) for i in range(1,9)}
+        chains=[{'passes':True,'nodes_private':[i,i+1],'native_edge_id':100+i} for i in range(1,9)]
+        self.assertTrue(audit.exact_native_chain_partition(shared,chains,list(range(101,109)))['passes'])
+        self.assertFalse(audit.exact_chain_partition(shared,chains[:4])['passes'])
+        self.assertFalse(audit.exact_native_chain_partition(shared,chains[:7],list(range(101,109)))['passes'])
+        self.assertFalse(audit.exact_native_chain_partition(shared|{(9,10)},chains,list(range(101,109)))['passes'])
+
+    def test_curve_id_bijection_and_no_double_mesh_coverage_are_required(self):
+        shared={(i,i+1) for i in range(1,9)}
+        chains=[{'passes':True,'nodes_private':[i,i+1],'native_edge_id':i} for i in range(1,9)]
+        chains[7]['native_edge_id']=7
+        self.assertFalse(audit.exact_native_chain_partition(shared,chains,list(range(1,9)))['passes'])
+        chains[7]['native_edge_id']=8;chains[7]['nodes_private']=[1,2]
+        result=audit.exact_native_chain_partition(shared,chains,list(range(1,9)))
+        self.assertFalse(result['passes']);self.assertEqual(result['multiply_counted_edges'],1)
+
+    def test_open_chain_is_not_promoted_to_closed_loop(self):
+        edges=[{'id':i,'vertex_ids_private':[i,i+1]} for i in range(1,9)]
+        graph=audit.native_interface_graph(edges)
+        self.assertTrue(graph['unbranched']);self.assertEqual(graph['vertices'],9)
+        self.assertEqual(graph['open_chains'],1);self.assertEqual(graph['closed_cycles'],0)
+        self.assertEqual(graph['components_private'][0]['endpoint_vertex_ids_private'],[1,9])
+        edges[-1]['vertex_ids_private']=[8,1]
+        self.assertEqual(audit.native_interface_graph(edges)['closed_cycles'],1)
+
+    def test_branch_and_duplicate_native_edge_rejected(self):
+        edges=[{'id':i,'vertex_ids_private':[0,i]} for i in range(1,4)]
+        self.assertFalse(audit.native_interface_graph(edges)['unbranched'])
+        with self.assertRaises(ValueError):audit.native_interface_graph(edges+[edges[0]])
+
+    def test_native_vertex_ball_does_not_inflate_edge_or_vertex_tolerance(self):
+        vertex={'point_private':[0.,0.,0.],'tolerance':.25}
+        self.assertTrue(audit.native_endpoint_ball((0.,0.,0.),vertex,(.25,0.,0.))['passes'])
+        outside=math.nextafter(.25,math.inf)
+        self.assertFalse(audit.native_endpoint_ball((0.,0.,0.),vertex,(outside,0.,0.))['passes'])
+        self.assertFalse(audit.native_endpoint_ball((outside,0.,0.),vertex,(0.,0.,0.))['passes'])
+
+    def test_complete_correspondence_inventories_extra_curves_and_opposite_occurrences(self):
+        review,merge,manifest=merge_fixture();data=merge['descriptors_private']
+        for phase in ('before','after'):
+            for f,face in data[phase+'_faces'].items():
+                for row in face['occurrences']:row['orientation']=1 if f in ('10','30') else -1
+        for i in range(4):
+            old=100+i;new=200+i;descriptor={'curve_global_sha256':f'other-{i}','range':[0.,1.]}
+            data['before_edges'][str(old)]=descriptor;data['after_edges'][str(new)]=copy.deepcopy(descriptor)
+            for phase,eid in (('before',old),('after',new)):
+                for f,face in data[phase+'_faces'].items():
+                    face['occurrences'].append({'edge_id':eid,'orientation':1 if f in ('10','30') else -1,
+                        'edge_key':f'other-{i}','pcurve_sha256':str(i),'range_on_surface':[0.,1.]})
+        original=audit.unified_correspondence(review,merge,manifest)
+        complete=audit.complete_unified_correspondence(original,merge)
+        self.assertEqual(len(complete['edge_pairs_private']),8)
+        self.assertEqual(complete['other_edge_ids_private'],list(range(200,204)))
+        changed=copy.deepcopy(merge);changed['descriptors_private']['after_faces']['30']['occurrences'][-1]['orientation']=-1
+        altered={**original,'after_faces':changed['descriptors_private']['after_faces']}
+        with self.assertRaises(ValueError):audit.complete_unified_correspondence(altered,changed)
 
 
 def tetra_fixture(volume=False, reverse=False, group=7, moved=False, omit=False):

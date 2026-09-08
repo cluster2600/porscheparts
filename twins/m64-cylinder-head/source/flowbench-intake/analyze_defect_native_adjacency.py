@@ -26,6 +26,23 @@ MANIFEST='92576714217042c0f152c1da7d8a8fa0da8f1757e5ec06c9c6f4eee3c66ccc58'
 LOCALIZATION='877216865f1a9858ce981044a793e11a2a499c3f49070e3c850e619107595216'
 FAMILIES=('highAspectRatioCells','skewFaces','underdeterminedCells','concaveCells','lowWeightFaces','lowVolRatioFaces')
 ANNULAR={55,56,57,58,61,62,63,64}
+UNIFIED_DOMAIN='fab1338a3e3cf36469977716a9cb54b3118382f592c7c41d7c789bdb5fb3aeba'
+UNIFIED_MESH='c0cbb257619ce378a9c9274da305d6bf34ce55dd4913a55cf122649ec45326ca'
+UNIFIED_MESH_REPORT='de7094fdeff7a338c12ffa89febc80e9273c971d70c306f8238d2863ad980b47'
+UNIFIED_MANIFEST='58b8be5aa0faeac678e6801cad29cfc5520cbf1590076276dbf5ad5157776aa1'
+UNIFIED_LOCALIZATION='4eb33217f5610088af01e7c748c2bfa80bb297713b5e56954a89aad3b75fe0cc'
+UNIFIED_ANNULAR={53,54,55,56,59,60,61,62}
+
+
+def selected_profile(unified=False):
+    if type(unified) is not bool:raise ValueError('explicit_boolean_profile_required')
+    return {'domain':UNIFIED_DOMAIN if unified else DOMAIN,'msh':UNIFIED_MESH if unified else MESH,
+        'mesh_report':UNIFIED_MESH_REPORT if unified else MESH_REPORT,
+        'manifest':UNIFIED_MANIFEST if unified else MANIFEST,
+        'localization':UNIFIED_LOCALIZATION if unified else LOCALIZATION,
+        'annular':UNIFIED_ANNULAR if unified else ANNULAR,
+        'thin_face':None if unified else 38,'merged_port_face':37 if unified else None,
+        'families':tuple(n for n in FAMILIES if n!='concaveCells') if unified else FAMILIES}
 
 
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
@@ -104,7 +121,8 @@ def point_bijection(msh_points,foam_points,precision=12,scale=.001):
 def canonical(nodes):return min(nodes,nodes[1:]+nodes[:1],nodes[2:]+nodes[:2])
 
 
-def family_summary(labels,kind,owner,neighbour,cell_boundary,native):
+def family_summary(labels,kind,owner,neighbour,cell_boundary,native,*,unified=False):
+    profile=selected_profile(unified)
     cells=set()
     if kind=='cellSet':cells.update(labels)
     elif kind=='faceSet':
@@ -112,6 +130,8 @@ def family_summary(labels,kind,owner,neighbour,cell_boundary,native):
             cells.add(owner[face])
             if face<len(neighbour):cells.add(neighbour[face])
     else:raise ValueError('cellSet_or_faceSet_required')
+    internal_degree=Counter(itertools.chain(owner[:len(neighbour)],neighbour))
+    degrees=Counter(internal_degree[c] for c in cells)
     histogram={};roles=Counter();combinations=Counter();boundary_triangles=set();interior=0
     for cell in cells:
         adjacent=cell_boundary.get(cell,())
@@ -122,8 +142,9 @@ def family_summary(labels,kind,owner,neighbour,cell_boundary,native):
             row=histogram.setdefault(face_id,{'native_face_id':face_id,'role':native[face_id]['role'],
                 'source_match':native[face_id]['source_match'],'adjacent_affected_cells':0,'adjacent_boundary_triangles':0})
             row['adjacent_affected_cells']+=1
-            if face_id in ANNULAR:cats.add('annular_guide_or_stem')
-            elif face_id==38:cats.add('thin_face_38')
+            if face_id in profile['annular']:cats.add('annular_guide_or_stem')
+            elif face_id==profile['thin_face']:cats.add('thin_face_38')
+            elif face_id==profile['merged_port_face']:cats.add('merged_port_face_37')
             elif native[face_id]['role']=='walls_seat':cats.add('seat')
             else:cats.add('other_boundary')
         for role in {native[f]['role'] for f in face_ids}:roles[role]+=1
@@ -132,6 +153,9 @@ def family_summary(labels,kind,owner,neighbour,cell_boundary,native):
     for cell in cells:
         for face,face_id in cell_boundary.get(cell,()):histogram[face_id]['adjacent_boundary_triangles']+=1
     return {'selected_kind':kind,'selected_entities':len(labels),'distinct_affected_cells':len(cells),
+        'uncoupled_mesh_internal_face_degree_histogram':dict(sorted(degrees.items())),
+        'affected_cells_with_at_most_two_internal_faces':sum(n for degree,n in degrees.items() if degree<=2),
+        'internal_degree_is_topological_diagnostic_not_a_quality_waiver':True,
         'cells_with_no_boundary_face':interior,'cells_with_boundary_face':len(cells)-interior,
         'directly_selected_boundary_faces':sum(f>=len(neighbour) for f in labels) if kind=='faceSet' else None,
         'directly_selected_internal_faces':sum(f<len(neighbour) for f in labels) if kind=='faceSet' else None,
@@ -143,11 +167,17 @@ def family_summary(labels,kind,owner,neighbour,cell_boundary,native):
 
 
 def run(args):
-    start=time.monotonic();paths={args.msh:MESH,args.mesh_report:MESH_REPORT,args.manifest:MANIFEST,
-        args.localization/ 'localization-receipt.json':LOCALIZATION,Path(__file__):sha(__file__),
+    start=time.monotonic();unified=getattr(args,'unified_native_only',False);profile=selected_profile(unified)
+    paths={args.msh:profile['msh'],args.mesh_report:profile['mesh_report'],args.manifest:profile['manifest'],
+        args.localization/ 'localization-receipt.json':profile['localization'],Path(__file__):sha(__file__),
         Path(mesh_reader.__file__):sha(mesh_reader.__file__)}
     if any(sha(p)!=h for p,h in paths.items()):raise ValueError('fixed_input_or_source_hash_mismatch')
     local=json.loads((args.localization/'localization-receipt.json').read_text())
+    if unified and (local.get('schema')!='m64-private-OpenFOAM-rejected-defect-localization/v2'
+            or local.get('source_MSH_sha256')!=profile['msh'] or local.get('native_domain_sha256')!=profile['domain']
+            or local.get('same_five_failure_lines_exact') is not True
+            or local.get('concavity_check_passed_no_defect_set_exported') is not True):
+        raise ValueError('new_unified_native_label_export_receipt_required')
     hashfile=args.localization/'remote-output'/'copy-geometry-before.sha256'
     if sha(hashfile)!=local['geometry_hash_manifest_sha256']:raise ValueError('geometry_hash_manifest_mismatch')
     for line in hashfile.read_text().splitlines():
@@ -158,7 +188,7 @@ def run(args):
     control=(args.case/'system/controlDict').read_text()
     precision=int(re.search(r'\bwritePrecision\s+(\d+)\s*;',control)[1])
     conversion=json.loads((args.case/'mesh-diagnostic.json').read_text())
-    if conversion['mesh_sha256']!=MESH or conversion['native_domain_sha256']!=DOMAIN or conversion['scale_applications']!=1:
+    if conversion['mesh_sha256']!=profile['msh'] or conversion['native_domain_sha256']!=profile['domain'] or conversion['scale_applications']!=1:
         raise ValueError('converted_case_provenance_mismatch')
     points,gmsh_faces,kinds=mesh_reader.parse_surface_msh22(args.msh.read_text())
     foam_points,_=foam_list(args.case/'constant/polyMesh/points','points')
@@ -172,7 +202,7 @@ def run(args):
     incidences=Counter(itertools.chain(owner,neighbour))
     if len(incidences)!=ncell or any(n!=4 for n in incidences.values()):raise ValueError('four_faces_per_tetra_cell_required')
     mr=json.loads(args.mesh_report.read_text());manifest=json.loads(args.manifest.read_text())
-    lookup=mesh_reader.verified_face_lookup(mr['import']['face_binding_private']);reverse={g:n for n,g in lookup.items()}
+    lookup=mesh_reader.verified_face_lookup(mr['import']['face_binding_private'],profile['domain']);reverse={g:n for n,g in lookup.items()}
     native={r['id']:r for r in manifest['boundary_faces']}
     msh_triangles={}
     for gmsh_face,triangles in gmsh_faces.items():
@@ -200,19 +230,21 @@ def run(args):
         cell_boundary[owner[i]].append((i,face_id))
     if seen!=set(msh_triangles) or orientation_mismatches:raise ValueError('complete_oriented_boundary_required')
     family_results={};export_by_name={r['name']:r for r in local['exports']}
-    for name in FAMILIES:
+    for name in profile['families']:
         path=args.localization/'native-sets'/name;paths[path]=export_by_name[name]['native_set_sha256']
         if sha(path)!=paths[path]:raise ValueError('native_set_hash_mismatch')
         labels,kind=foam_list(path,'labels');maximum=ncell if kind=='cellSet' else len(faces)
         if len(labels)!=len(set(labels)) or any(x<0 or x>=maximum for x in labels):raise ValueError('native_set_labels_invalid')
-        family_results[name]=family_summary(labels,kind,owner,neighbour,cell_boundary,native)
+        family_results[name]=family_summary(labels,kind,owner,neighbour,cell_boundary,native,unified=unified)
     result={'schema':'m64-private-OpenFOAM-native-face-adjacency/v1','status':'exact_boundary_incidence_localized',
         'source_sha256':paths[Path(__file__)],'reader_source_sha256':paths[Path(mesh_reader.__file__)],
-        'native_domain_sha256':DOMAIN,'mesh_sha256':MESH,'mesh_report_sha256':MESH_REPORT,'native_manifest_sha256':MANIFEST,
-        'localization_receipt_sha256':LOCALIZATION,'point_mapping':point_proof,
+        'native_domain_sha256':profile['domain'],'mesh_sha256':profile['msh'],'mesh_report_sha256':profile['mesh_report'],'native_manifest_sha256':profile['manifest'],
+        'localization_receipt_sha256':profile['localization'],'point_mapping':point_proof,
         'boundary_triangle_bijection':{'matches':len(seen),'orientation_mismatches':orientation_mismatches,'native_face_count':len(native),'patch_role_partition_verified':True},
         'cell_count':ncell,'families':family_results,
-        'annular_guide_and_stem_native_face_ids':sorted(ANNULAR),'thin_native_face_id':38,
+        'annular_guide_and_stem_native_face_ids':sorted(profile['annular']),'thin_native_face_id':profile['thin_face'],
+        'merged_port_native_face_id':profile['merged_port_face'],
+        'concavity_check_passed_without_exported_defect_set':True if unified else None,
         'histogram_definition':'For faceSets, affected cells are the union of owner/neighbour of selected faces. Each face/role counts unique affected cells incident to that boundary; cells may count in multiple face/role bins.',
         'distances_computed':False,'VTK_used_as_geometry':False,'mesh_or_CAD_modified':False,'CFD_executed':False,
         'manufacturing_authorized':False,'inputs_unchanged':all(sha(p)==h for p,h in paths.items()),
@@ -227,5 +259,6 @@ def run(args):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('case','msh','mesh-report','manifest','localization','output'):p.add_argument('--'+name,type=Path,required=True)
+    p.add_argument('--unified-native-only',action='store_true',help='Exact new fab mesh and native-label receipt, not relabeled historical sets')
     resource.setrlimit(resource.RLIMIT_CPU,(120,125))
     raise SystemExit(run(p.parse_args()))
