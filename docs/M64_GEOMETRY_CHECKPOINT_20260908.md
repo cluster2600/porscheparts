@@ -1,10 +1,12 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Les contacts nominaux des quatre guides CAO sont mesurés ; la rétention à
-chaud et la fabrication ne sont pas qualifiées.** Le corps `21c9c40b…` reste
-inchangé. L'extraction des supports de courbes passe, mais leur réintégration
-dans un BRep n'est pas encore exécutée. La partition du domaine gazeux est
-refusée sur son bilan de volumes ; aucun nouveau maillage n'est produit.
+**Un candidat BRep avec les deux arêtes segmentées est sauvegardé, mais reste
+refusé : sa resérialisation n'est pas identique.** Les contrôles de validité
+avant/après relecture passent ; le contrôle BOP complet n'est pas exécuté.
+Le maître `21c9c40b…` reste inchangé, sans promotion du candidat `450ba081…`.
+Les contacts nominaux des guides sont mesurés, sans qualification à chaud.
+La partition du gaz reste refusée : sa relecture passe les contrôles de
+validité, mais frontières et non-recouvrement ne sont pas complètement audités.
 
 Ce point suit les [contrôles de matière et de logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
 et la [localisation des défauts du maillage](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
@@ -50,7 +52,7 @@ natifs passent : appui entier, demi-longueur, demi-circonférence et aucun
 contact, avec 32 sections conformes. Le contrôle des quatre guides suit avec
 code natif/wrapper 0, en 7,761 s / 8,196 s nettoyage compris. Aucun corps modifié.
 
-## Courbes : restriction exacte réussie, correction du corps non exécutée
+## Courbes : restriction exacte et candidat segmenté, acceptation non acquise
 
 Les six supports existants des deux arêtes signalées C0 sont divisés en quinze
 supports : cinq courbes 3D et dix p-curves. Pour ces B-splines non rationnelles,
@@ -62,9 +64,66 @@ cet échantillonnage n'est pas, à lui seul, la preuve globale.
 
 Les discontinuités de tangente initiales restent aux jonctions. Il ne s'agit
 pas d'un lissage. Aucun corps BRep n'est lu ou écrit pendant cet essai de
-supports de 0,613 s. Le prochain essai devra réintégrer les segments dans une
-copie topologique et contrôler le corps complet, sans changer les surfaces.
+supports de 0,613 s. À ce stade, leur réintégration dans une copie topologique
+et le contrôle du corps complet restent à faire, sans changer les surfaces.
 L'ancien refus de réduction de multiplicité reste distinct et conservé.
+
+### Réintégration : trois arrêts logiciels avant remplacement des arêtes
+
+| Essai natif | Durée native | Premier arrêt | Travail réellement atteint |
+|---|---:|---|---|
+| V2 | 2,135 s | `topological_occurrence_location_not_identity` | Lecture et contrôles du corps source ; copie non créée. |
+| V3 | 2,542 s | `copy_placement` | Copie créée en mémoire ; correspondance des entités non terminée. |
+| V4 | 2,897 s | `Standard_NoSuchObject` | Bijections des entités copiées contrôlées ; revue racine/hiérarchie non terminée. |
+
+Les deux premiers gardes confondaient représentation interne d'une
+localisation et transformation effective. V4 autorise seulement, pour les
+sommets copiés, un changement de représentation si les deux matrices sont
+exactement identitaires et si coordonnées brutes, coordonnées effectives et
+tolérances sont identiques. Les autres localisations restent comparées sans
+cette exception. Les 4 938 changements de représentation observés en V4 ne
+sont donc pas 4 938 déplacements de sommets.
+
+L'exception V4 ne démontre pas un défaut de la pièce : le reçu la situe après
+la bijection, mais ne contient pas de traceback permettant d'identifier
+l'appel précis. Aucun de ces trois essais ne reconstruit les arêtes,
+n'exporte de BRep, ne relit un candidat ou n'exécute BOP. Les champs de modes
+BOP décrivent le calcul prévu ; `stage=complete` signifie fin du programme,
+pas réussite géométrique. Les entrées et le programme restent inchangés durant
+chaque essai, sorties 2 sans OOM ni timeout. Aucun ancien refus n'est effacé.
+
+Un diagnostic local séparé reproduit une recherche de sous-forme absente avec
+les localisations non cumulées. En cumulant les localisations, comme le fait
+[OCCT lors de la copie](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepTools/BRepTools_Modifier.cxx),
+le parcours complet effectue 75 186 recherches sans erreur, sur 25 069 formes.
+Ce diagnostic ne reconstruit rien et ne modifie pas le corps, en mémoire ou
+sur disque. Il identifie une correction du programme à tester, pas une
+correction du corps déjà acquise.
+
+### V5 : candidat sauvegardé et relu, resérialisation différente
+
+La correction limitée des deux parcours de hiérarchie est exécutée sur Kali.
+Elle produit un candidat binaire privé : un solide, une coque, 4 900 faces,
+10 078 arêtes et 5 179 sommets. Cela ajoute trois arêtes et trois sommets,
+sans changer les supports des surfaces ni leurs localisations/tolérances
+dans la copie en mémoire. Les occurrences orientées des contours correspondent
+aux remplacements prévus. Il ne s'agit pas d'un lissage du contour Porsche.
+
+Après sauvegarde/relecture, les nombres d'entités restent identiques,
+`BRepCheck` exact passe, les tolérances des sommets/arêtes/faces sont conservées
+et les coefficients des quinze supports segmentés correspondent exactement.
+Le corps source reste inchangé en mémoire et sur disque.
+
+Le garde suivant refuse pourtant le candidat : son empreinte de sérialisation
+binaire en mémoire diffère après relecture (`reread_serialized_representation_equal=false`).
+Les contrôles précédents n'identifient pas encore la différence ; elle ne doit
+être ni assimilée sans diagnostic à une déformation, ni écartée comme anodine.
+Les quadratures comparatives et les cinq modes BOP prévus ne sont pas atteints.
+Aucun critère n'est dispensé et le candidat n'est pas promu comme maître.
+Durées 8,307 s natives / 8,905 s nettoyage compris, sorties 2, sans OOM ni timeout.
+Pour V5, les plafonds demandés sont enregistrés, mais la sonde de ressources a
+échoué avant inspection : aucune mesure effective CPU/RAM n'est revendiquée.
+Suppression et absence du conteneur sont vérifiées séparément.
 
 ## Partition du gaz : refus conservé
 
@@ -106,15 +165,65 @@ convergence absolue sont deux contrôles différents.
 
 Le deuxième essai dure 5,099 s natifs, 5,654 s nettoyage compris ; sortie 2,
 sans OOM ni timeout. Un BRep **diagnostic privé** est exporté avant la décision,
-avec cinq checkpoints. Sa relecture indépendante et le non-recouvrement des
-solides restent à contrôler. Aucun maillage ni solveur lancé ; le refus
+avec cinq checkpoints. À l'issue de cet essai, sa relecture indépendante et le
+non-recouvrement restent à contrôler. Aucun maillage ni solveur lancé ; le refus
 non adaptatif reste actif. Sources et entrées inchangées, conteneur exact
 supprimé et absence revérifiée hors du lanceur.
 
+### Relecture indépendante : validité réussie, audit incomplet
+
+Un auditeur distinct relit le domaine source et le BRep diagnostic sauvegardé.
+Les 19 contrôles `BRepCheck` exacts passent : domaine, composé et 17 solides.
+Aucune arête non dégénérée ne manque du drapeau `SameParameter`. Les incidences
+retrouvent 16 blocs annulaires et un cœur, avec huit interfaces cœur/blocs.
+
+L'intégration alternative Gauss–Kronrod sur le domaine et les 17 solides
+donne `995964.5863888268` contre `995964.5863979517` unités scan³, soit
+`9.16178e−12` d'écart relatif. Ce calcul utilise `IsUseSpan=True` et `Eps=1e−9` ;
+il ne remplace pas le refus historique ni ne transforme une estimation en
+borne garantie.
+
+Les ensembles de signatures de supports et d'orientations des frontières
+concordent. Le premier groupe passe les deux soustractions sans résidu de face
+ou d'arête. L'auditeur s'arrête ensuite sur
+`support_group_has_ambiguous_physical_roles` : son regroupement par support
+rencontre plusieurs rôles physiques. Cela ne prouve pas une différence de
+géométrie. La couverture des frontières est **partielle**, les 136
+intersections entre solides ne sont **pas exécutées**, et la comparaison
+finale des instantanés mémoire n'est **pas atteinte**.
+
+Sorties natives/lanceur 2, en 1,082 s / 1,647 s, sans OOM ni timeout ; fichiers
+d'entrée et programmes inchangés. Le candidat n'est pas admis au maillage.
+
+### Séparation des rôles : 16 groupes contrôlés, puis arrêt booléen
+
+La version suivante distingue couverture géométrique et attribution des rôles.
+Elle enregistre deux groupes plans mêlant `walls_chamber` et `walls_seat`, sans
+les traiter comme un défaut géométrique ni les déclarer correctement classés.
+Les opérations booléennes et leurs critères restent inchangés.
+
+Cette fois, 16 groupes passent, soit 32 soustractions réussies documentées,
+sans résidu de face ni d'arête. Une opération du groupe suivant déclenche
+`native_boolean_error_or_warning` ; son sens exact et le total des soustractions
+réussies ne sont pas enregistrés. Le reçu ne
+distingue pas erreur et avertissement, et ne consigne pas le type de message :
+aucune cause géométrique précise ne peut en être déduite. Les 19 contrôles de
+validité et les 18 intégrations GK sont répétés avec les mêmes résultats.
+Les 136 intersections entre solides et le contrôle mémoire final ne sont
+toujours pas exécutés. Les deux versions refusées restent disponibles.
+
+Durées 1,375 s natives / 1,934 s nettoyage compris ; sorties 2, sans OOM ni
+timeout, sources et entrées inchangées, absence du conteneur vérifiée hors
+lanceur. La suite doit enregistrer le groupe, le sens et les messages natifs
+de chaque opération ; le non-recouvrement peut faire l'objet d'un lot distinct,
+sans prétendre que la couverture des frontières est acquise.
+
 ## Suite et périmètre d'exécution
 
-Priorités : réintégrer et contrôler les arêtes, expliquer le refus du bilan de
-volumes, puis mailler le domaine avec ses groupes physiques. Les contacts de
+Priorités : identifier la différence de resérialisation et exécuter le contrôle
+BOP du candidat conservé ; diagnostiquer les opérations de frontières, auditer
+séparément le non-recouvrement et résoudre l'attribution physique et le bilan
+de volumes, puis mailler le domaine. Les contacts de
 sièges, l'assemblage complet, les parois, la thermique, la résistance et le
 procédé LPBF restent des contrôles distincts. Aucune puissance de 700 ch ni
 aucune aptitude à la fabrication ne sont démontrées par ces diagnostics.
@@ -123,5 +232,7 @@ Les essais utilisent Kali et l'image OCP existants, sans réseau dans les
 conteneurs et avec sources/entrées en lecture seule. Les budgets sont
 respectivement 90 s/2 Gio pour les supports, 60 s/2 Gio pour chaque témoin,
 300 s/4 Gio pour les guides et 90 s/4 Gio pour la partition, avec deux CPU et
-le même plafond pour RAM et RAM+swap. Aucun OOM ni timeout ; conteneurs exacts
+le même plafond pour RAM et RAM+swap. Les réintégrations sont bornées à
+300 s/4 Gio et les audits indépendants à 150 s/4 Gio, toujours deux CPU.
+Aucun OOM ni timeout pour ces essais Kali ; conteneurs exacts
 supprimés et absence vérifiée. Aucune nouvelle dépense Vast pour ce lot.
