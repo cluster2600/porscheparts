@@ -33,6 +33,7 @@ Ce dossier transforme l'idée d'une monocoque carbone compatible 964/993 en un p
 - `engineering-validation-contract.json` et `validation-plan.md` : échelle de preuve jusqu'à la libération indépendante.
 - `simulation-program.json` : routage explicite de la pile publiée dans `docs/SOFTWARE_STACK.md`, des calculs F1 actuels jusqu'aux étapes F2, SimReady et PhysicsNeMo encore bloquées ;
 - `simready/material-prompt.txt` et `simready/physics-prompt.txt` : consignes bornées pour l'exécution NVIDIA, sans propriétés mécaniques inventées.
+- `evidence/vast-simready-execution-f1.json` : exécution Vast payante, contrat GPU/image/SSH, coût conservateur, récupération et destruction des instances, avec blocage NVIDIA conservé sans faux succès.
 
 ## Résultat de présélection
 
@@ -52,6 +53,12 @@ Ce dossier transforme l'idée d'une monocoque carbone compatible 964/993 en un p
 Les trois cas globaux ajoutés donnent, avec les anneaux avant et arrière encastrés et une répartition uniforme des résultantes sur les nœuds de cellule, 1,848 mm sous 3 g vertical, 0,174 mm sous 1,5 g de freinage et 0,686 mm sous 1,8 g latéral. Ce sont des réponses du même treillis isotrope équivalent : aucune contrainte de pli, marge, rupture, liaison ou compatibilité véhicule n'en découle.
 
 La première présélection de cuisson compare deux cycles génériques sur témoins de 4, 8 et 12 mm. Avec la cinétique époxy hypothétique, tous dépassent le seuil provisoire de surtempérature et les sections épaisses montrent un retard thermique important. Ce résultat ne condamne aucun procédé : il montre précisément que les données DSC/DEA fournisseur et un panneau témoin instrumenté sont nécessaires avant de sélectionner cycle, résine ou outillage. La sensibilité de dilatation libre écarte provisoirement l'aluminium non compensé sur 2 272 mm, mais ne libère ni Invar ni outillage CFRP.
+
+## Exécution Vast / Omniverse
+
+Une RTX PRO 6000 WS de 97 887 Mo a été louée via les wrappers OpenBao avec l'image publique `linux/amd64` épinglée. Le runtime GPU, PhysicsNeMo, le démarrage des Content Agents, la paire SSH et le transfert du commit propre ont été contrôlés. Le meilleur run s'est toutefois arrêté au préflight, avant ouverture de l'USD : `PyYAML` manquait dans l'interpréteur `/opt/simready-validation/bin/python` choisi par le runner. Aucun appel Material Agent, Physics Agent, Asset Validator, SimReady Validate ou rendu OVRTX n'a donc été exécuté.
+
+Toutes les instances créées ont été détruites ; l'inventaire final était vide. L'enveloppe de coût conservatrice est de 0,5223 USD, en comptant même la fenêtre d'une création refusée comme si elle avait été facturée. Le rapport ne constitue pas une facture fournisseur. Après cette création refusée, le wrapper a demandé de ne plus relancer automatiquement : la prochaine étape est de préqualifier le couple interpréteur/PyYAML hors d'un nouveau run payant.
 
 ## Masse cible et enveloppe de charge
 

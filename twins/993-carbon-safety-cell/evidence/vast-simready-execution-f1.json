@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "VAST-SIMREADY-964-993-CARBON-SAFETY-CELL-F1-20260908",
+  "executed_on": "2026-09-08",
+  "source_revision": "5295c8542228ed98784ee79e21a2dfe3d913d92c",
+  "source_asset": "twins/993-carbon-safety-cell/derived/993-carbon-safety-cell-digital-twin.usda",
+  "source_asset_sha256": "dc36fdcf79f3d6a2c5c2b42fd026563437b8e20e3cb0026378b2613846050ca5",
+  "runtime_contract": {
+    "provider": "Vast.ai",
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "image_os": "linux",
+    "image_architecture": "amd64",
+    "gpu": "RTX PRO 6000 WS",
+    "gpu_ram_mb": 97887,
+    "secret_boundary": [
+      "openbao-vastai",
+      "openbao-ghcr"
+    ],
+    "source_transfer_policy": "tracked clean Git archive allowlist plus pinned NVIDIA skill tree; SHA-256 verified remotely; no raw scans, proprietary manuals or secrets"
+  },
+  "attempts": [
+    {
+      "instance_id": 50261931,
+      "offer_id": 47185008,
+      "result": "controller_guard_rejected_duplicate_provider_records_for_the_same_approved_public_key",
+      "remote_asset_opened": false,
+      "destroyed_verified_absent": true,
+      "conservative_wall_clock_cost_usd": 0.1085
+    },
+    {
+      "instance_id": 50262432,
+      "offer_id": 47185008,
+      "result": "blocked_before_preflight_by_remote_skill_directory_alias_error",
+      "remote_asset_opened": false,
+      "result_archive_sha256": "ce669524f812eaf4ede615bed6bbf5e53d4c99e1eaf5cef5d45f6eb5b785eb66",
+      "destroyed_verified_absent": true,
+      "conservative_wall_clock_cost_usd": 0.198
+    },
+    {
+      "instance_id": 50263420,
+      "offer_id": 47185008,
+      "result": "provider_listed_approved_key_but_runtime_ssh_authentication_failed",
+      "remote_asset_opened": false,
+      "wrapper_cleanup": "destroyed_verified_stably_absent",
+      "conservative_wall_clock_cost_usd": 0.0505
+    },
+    {
+      "instance_id": 50263664,
+      "offer_id": 47185008,
+      "job_id": "monocoque-f1-5295c85-20260908T120900Z",
+      "result": "blocked_preflight",
+      "blocker": "ModuleNotFoundError: No module named 'yaml' in /opt/simready-validation/bin/python",
+      "runtime_ready_verified": true,
+      "content_agents_started": true,
+      "physicsnemo_gpu_runtime_verified": true,
+      "ssh_public_private_pair_verified": true,
+      "approved_ssh_key_listed_by_provider": true,
+      "remote_asset_opened": false,
+      "manufacturing_screen_executed_remotely": false,
+      "final_product_screen_executed_remotely": false,
+      "material_agent_executed": false,
+      "physics_agent_executed": false,
+      "ovrtx_render_executed": false,
+      "result_archive_sha256": "90edefcd7e5c6c8172a3f59635b852d4dcbd8927cf62d82d2eec85a3ea01d882",
+      "destroyed_verified_absent": true,
+      "conservative_wall_clock_cost_usd": 0.1128
+    },
+    {
+      "instance_id": null,
+      "offer_id": 40730068,
+      "result": "provider_rejected_create_with_no_such_ask",
+      "wrapper_reconciliation": "uncertain_after_window",
+      "inventory_observed_empty_afterward": true,
+      "possible_wall_clock_cost_upper_bound_usd": 0.0525
+    }
+  ],
+  "cost": {
+    "currency": "USD",
+    "actual_provider_charge": null,
+    "conservative_wall_clock_upper_bound_usd": 0.5223,
+    "method": "Sum of controller wall-clock windows multiplied by each selected total hourly rate, including the refused no_such_ask window as if it had been billed.",
+    "note": "This is deliberately conservative and is not a provider invoice."
+  },
+  "final_inventory": {
+    "checked_at": "2026-09-08T12:19:48Z",
+    "query": "openbao-vastai instances",
+    "running_instance_count": 0,
+    "instances": []
+  },
+  "workflow_result": {
+    "status": "blocked_before_asset_inspection",
+    "preflight_passed": false,
+    "minimum_usd_validation_executed": false,
+    "property_assignment_executed": false,
+    "conformance_executed": false,
+    "asset_validation_executed": false,
+    "simready_validation_executed": false,
+    "ovrtx_render_executed": false,
+    "automatic_retry_allowed": false,
+    "next_action": "Correct and prequalify the preflight interpreter/dependency contract in the pinned image or a validation-only smoke before another paid run."
+  },
+  "release_gates": {
+    "manufacturing_authorized": false,
+    "road_authorized": false,
+    "track_authorized": false,
+    "homologation_authorized": false
+  },
+  "claim_limits": [
+    "The Vast run proves the paid instance, pinned image, GPU runtime, Content Agents startup and SSH path for one completed attempt; it does not prove the USD asset passed NVIDIA validation.",
+    "No remote manufacturing or final-product CAE was executed.",
+    "Local F1 screens remain hypothesis-only and are not composite-shell, crash, fatigue, process-correlation or TUV evidence."
+  ]
+}

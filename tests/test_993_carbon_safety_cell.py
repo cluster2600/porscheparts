@@ -196,7 +196,15 @@ class CarbonSafetyCellTests(unittest.TestCase):
         self.assertFalse(any(mold["release_gates"].values()))
         self.assertEqual(simready["simready_preflight"]["status"], "blocked")
         self.assertFalse(simready["decision"]["vast_launch_allowed"])
-        self.assertFalse(simready["decision"]["vast_launch_executed"])
+        self.assertTrue(simready["decision"]["vast_launch_executed"])
+
+        vast_evidence = load_json(TWIN / "evidence" / "vast-simready-execution-f1.json")
+        self.assertEqual(vast_evidence["workflow_result"]["status"], "blocked_before_asset_inspection")
+        self.assertFalse(vast_evidence["workflow_result"]["preflight_passed"])
+        self.assertFalse(vast_evidence["workflow_result"]["property_assignment_executed"])
+        self.assertFalse(vast_evidence["workflow_result"]["ovrtx_render_executed"])
+        self.assertEqual(vast_evidence["final_inventory"]["instances"], [])
+        self.assertFalse(any(vast_evidence["release_gates"].values()))
 
     def test_964_993_interface_contract_is_fail_closed(self) -> None:
         contract = load_json(TWIN / "platform-interface-contract.json")

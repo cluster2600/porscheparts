@@ -16,7 +16,10 @@
     "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
     "image_manifest_public_anonymous_read": "passed",
     "image_architecture": "amd64",
-    "image_os": "linux"
+    "image_os": "linux",
+    "paid_execution_evidence": "twins/993-carbon-safety-cell/evidence/vast-simready-execution-f1.json",
+    "conservative_wall_clock_cost_upper_bound_usd": 0.5223,
+    "last_inventory_check": "2026-09-08T12:19:48Z"
   },
   "simready_preflight": {
     "mode": "check-only_skip-deploy",
@@ -37,13 +40,26 @@
       "no NVIDIA GPU visible on the local host"
     ]
   },
+  "vast_simready_preflight": {
+    "status": "blocked_before_asset_inspection",
+    "runtime_ready_verified": true,
+    "content_agents_started": true,
+    "physicsnemo_gpu_runtime_verified": true,
+    "ssh_public_private_pair_verified": true,
+    "source_revision": "5295c8542228ed98784ee79e21a2dfe3d913d92c",
+    "blocker": "The NVIDIA preflight was invoked with /opt/simready-validation/bin/python, where PyYAML was absent.",
+    "minimum_usd_validation_executed": false,
+    "property_assignment_executed": false,
+    "ovrtx_render_executed": false,
+    "instance_destroyed_verified_absent": true
+  },
   "decision": {
     "vast_launch_allowed": false,
-    "vast_launch_executed": false,
-    "reason": "Le préflight macOS reste bloqué. Une exécution Vast explicitement autorisée doit utiliser l'image publique linux/amd64 verrouillée, transférer seulement un commit propre, puis vérifier les services avant tout appel d'agent."
+    "vast_launch_executed": true,
+    "reason": "La location Vast a été exécutée avec l'image épinglée et les instances ont été détruites. Le préflight distant s'est bloqué avant inspection de l'actif car PyYAML manquait dans l'interpréteur de validation choisi. La dernière création refusée a produit une réconciliation incertaine malgré un inventaire final vide ; aucun nouvel essai payant automatique n'est autorisé."
   },
   "claim_limits": [
-    "Les couches USDA ont ete generees et verifiees textuellement, mais n'ont pas encore passe OpenUSD, Asset Validator, SimReady Validate, Content Agents ou OVRTX.",
+    "Les couches USDA ont ete generees et verifiees textuellement, mais n'ont pas encore passe OpenUSD, Asset Validator, SimReady Validate, Content Agents ou OVRTX ; le run Vast s'est arrêté au préflight avant inspection de l'actif.",
     "Omniverse n'est pas un solveur de crash ou une preuve d'homologation pour cette structure."
   ]
 }
