@@ -1,6 +1,11 @@
 # M64 — contrat du prédicteur Marangoni : témoin natif réussi
 
-**Le correctif passe sur un témoin natif de 32 cellules, pas sur le coupon F58.**
+**Ce document conserve le checkpoint du témoin.** La suite a depuis été
+exécutée sur une copie neuve : [nouveau binaire et coupon corrigé, incomplet
+après 109,55 µs](M64_F58_CORRECTED_COUPON_20260908.md). Elle ne requalifie
+aucune des tentatives historiques ci-dessous.
+
+**À ce checkpoint, le correctif passe seulement sur un témoin natif de 32 cellules.**
 L'ancien exécutable reproduit le refus `adjustPhi` ; le nouveau franchit ce
 même garde, tout en conservant les 48 tractions tangentielles comparées.
 Le [coupon couplé interrompu](M64_F58_COUPLED_FLOW_20260908.md) reste refusé :
@@ -16,6 +21,8 @@ contrainte, alors que le U final est correctement projeté.
 
 Le changement testé est une seule méthode du header Marangoni :
 `assignable() const { return false; }`, comme pour la condition `slip` native.
+Le [patch et ses empreintes](../twins/m64-cylinder-head/source/additivefoam/README.md)
+sont publiés pour appliquer le même changement à une copie des sources épinglées.
 Les fonctions de traction `snGrad` et de projection `evaluate`, les conditions
 `noSlip` et `fixedFluxPressure`, ainsi que `adjustPhi`, restent inchangées.
 Le prédicteur du pas fatal F58 n'a pas été sauvegardé : ce témoin isole le
@@ -84,7 +91,8 @@ Le conteneur Kali a été supprimé, sans OOM ni timeout : limites 2 CPU,
 2 Gio mémoire et mémoire+swap combinées, 180 s, réseau désactivé. Aucune
 nouvelle location Vast n'a été utilisée.
 
-**Suite non exécutée :** appliquer uniquement ce correctif à une nouvelle
+**Suite prévue à ce checkpoint, exécutée ensuite dans le document lié en tête :**
+appliquer uniquement ce correctif à une nouvelle
 copie des sources F58, compiler un nouveau binaire épinglé, puis revoir un
 essai couplé borné avec tous les gardes conservés. Le plafond de 3 300 K et
 les questions de validation LPBF restent ouverts ; aucune culasse n'est
