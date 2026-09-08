@@ -1,11 +1,13 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat : l'optimisation du maillage solide réduit de 4 871 à
-1 722 le nombre de tétraèdres sous `minSICN = 0,1`, sans déplacer la frontière.**
-Les 45 636 nœuds de frontière et les 91 300 triangles sont conservés exactement,
-y compris après export/relecture. Le pire élément reste sous le seuil :
-ce résultat améliore le maillage, pas la résistance démontrée de la culasse.
-L'admission CAE et la fabrication restent refusées.
+**Dernier résultat : deux essais ciblés de discrétisation, suivis chacun
+d'une optimisation intérieure, réduisent de 1 722 à 433 puis à 346 le nombre
+de tétraèdres sous `minSICN = 0,1`. Le fichier CAO reste inchangé.**
+Le minimum monte de 0,0000407 à 0,00300, encore sous le seuil 0,1. Le maximum
+de distance échantillonnée à la CAO reste non qualifié : ces résultats
+améliorent plusieurs indicateurs de maillage,
+pas la résistance démontrée de la culasse. Il ne justifie pas une promotion
+globale du candidat. L'admission CAE et la fabrication restent refusées.
 
 **Le candidat BRep sauvegardé passe les cinq modes BOP sélectionnés ;
 les 136 contrôles de non-recouvrement du gaz passent également.** Le nouveau
@@ -625,7 +627,115 @@ de leurs numéros Gmsh. Les limites d'import et de conformité CAO précédentes
 restent entières ; la répétabilité de plusieurs optimisations complètes n'est
 pas démontrée.
 
-### Piste gaz préparée en parallèle, pas encore exécutée
+### Essai MeshAdapt : 433 tétraèdres insuffisants, pas d'admission
+
+L'essai `8a7a499f…` repart du même BRep d'import gelé. Il reproduit exactement
+son empreinte et son inventaire avant de mailler ; le maître et le V5 restent
+inchangés. Sur les 146 faces précédemment signalées, l'algorithme demandé
+devient MeshAdapt (`1`), avec Frontal-Delaunay (`6`) demandé ailleurs. Les logs
+retrouvent aussi 40 bascules automatiques de Frontal-Delaunay vers MeshAdapt,
+soit 186 faces effectivement traitées par MeshAdapt. Le générateur
+recrée cependant **tout le maillage** : il ne garantit pas que seules ces
+146 triangulations changent. Le mécanisme de bascule en cas d'échec reste
+activé et tracé. Aucun nouveau lissage, réparation ou changement de silhouette
+CAO n'est demandé par ce changement de méthode de maillage ; les limites de
+l'import Gmsh déjà documentées restent applicables.
+
+| Indicateur | Optimisation précédente | Nouvel essai, après optimisation |
+| --- | ---: | ---: |
+| Tétraèdres | 260 107 | 273 576 |
+| Sous `minSICN = 0,1` | 1 722 | **433 (0,15827 %)** |
+| Fraction du volume absolu dans ces éléments | 0,11490 % | 0,00771 % |
+| Minimum `minSICN` | 0,0000406853 | 0,0000406853 |
+| Triangles de surface sous le seuil / faces concernées | 856 / 146 | 51 / 23 |
+| Minimum `minSICN` des triangles | 0,00180316 | 0,01592716 |
+
+La baisse en nombre est de 74,8548 % par rapport au dernier essai optimisé,
+et de 91,1107 % par rapport aux 4 871 défauts initiaux. Ces pourcentages
+concernent des maillages différents, pas une amélioration matérielle ou moteur.
+Avant l'unique optimisation intérieure, le nouveau maillage compte 284 333
+tétraèdres dont 3 226 sous le seuil ; après, 433 subsistent, dont 367 adjacents
+à une face frontière et 66 sans face frontière. Les 67 931 nœuds, 45 751
+nœuds frontières et 91 530 triangles restent identiques **pendant cette
+optimisation**, pas par rapport au maillage précédent.
+
+Les empreintes orientées de huit surfaces changent entre génération 2D et 3D.
+Les signatures géométriques exactes non orientées et les comptes de triangles
+restent identiques sur les 4 900 faces : aucune subdivision ou déformation
+de peau n'est détectée entre ces deux stades. La conformité est mesurée à
+nouveau sur la peau finale : 46 698 centroïdes projetés, maximum observé
+**0,45258 unité scan**, contre 0,38760 au premier maillage. Les échantillons
+ne sont pas identiques ; la sélection dépend notamment de l'ordre des triangles.
+Cette hausse n'est donc pas une preuve de régression géométrique et cette
+mesure n'est toujours ni une borne continue,
+ni une preuve d'appartenance aux contours découpés. On conserve cette hausse
+défavorable plutôt que de sélectionner seulement les indicateurs améliorés.
+L'écart volumique au BRep importé passe de 0,24615 % à 0,25589 % ; il ne
+prouve pas une équivalence géométrique. L'admission d'import reste non qualifiée.
+
+L'export MSH 4.1 binaire `5727c17e…` est relu : types, connectivités tétra/surface,
+tags tétra/nœuds et coordonnées sont conservés, écart de coordonnées nul.
+Une composante, frontière complète, aucun volume ni Jacobien non positif.
+La limite de qualité échoue encore après relecture. L'avertissement Gmsh
+sur 49 tétraèdres utilise sa propre métrique : il ne remplace pas les **433**
+défauts recalculés avec `minSICN`.
+
+Un seul essai natif, 49,793 s / 50,619 s nettoyage compris ; plafond 300 s
+dont 30 s de nettoyage, 4 CPU/4 Gio, deux threads configurés, aucun réseau.
+Le wrapper termine à 0 pour le diagnostic, le helper à 2 pour le refus de
+qualité. Pas d'OOM ; conteneur exact supprimé, absence revérifiée par la racine,
+sources et programmes inchangés. Six tests purs de sélection et de portée
+passent, avec revue indépendante des hooks avant exécution. Aucun coût Vast,
+aucune nouvelle simulation de charge moteur, de thermique ou de résistance.
+
+### Essai ciblé supplémentaire : face 4839, minimum 3D amélioré
+
+La revue du pire tétraèdre précédent trouve deux triangles frontières sur
+la même face B-spline 4839 : ses quatre sommets sont sur la frontière gelée.
+Il est presque coplanaire, avec une hauteur d'environ `8,49e−5` unité scan,
+malgré des arêtes de 1,203 à 5,101. Ses triangles de surface sont acceptables
+en 2D (`minSICN ≥ 0,2304`) ; cette face n'était donc pas dans les 146 premières.
+C'est une hypothèse de triangulation contraignante, pas un défaut CAO démontré.
+
+Un second essai ajoute **seulement cette face** aux affectations MeshAdapt
+demandées, mêmes données, tailles, options et seuils. Le test porte donc sur
+147 affectations ; 41 bascules automatiques supplémentaires sont tracées.
+L'optimisation intérieure passe de 285 772 tétraèdres, dont 3 202 insuffisants,
+à **274 680, dont 346 insuffisants (0,12596 %)**. Le minimum final est
+**0,00300248**, soit 73,8 fois le minimum du premier essai ; la limite 0,1
+reste refusée. Le nombre insuffisant baisse de 20,09 % par rapport aux 433,
+et de 79,91 % par rapport aux 1 722 du lot précédent.
+
+Un parseur indépendant en Python lit les deux MSH binaires complets, pas
+seulement les 100 pires éléments : l'ancien quadruplet de sommets est retrouvé
+une fois dans le premier et zéro fois dans le second. La face 4839 passe de
+23 à 25 triangles et n'a plus de tétraèdre insuffisant portant un triangle
+frontière sur elle. Le reçu `9900dca7…` conserve cette preuve et ses limites.
+Le recalcul global change les signatures de 267 surfaces entre essais :
+on n'attribue pas chaque gain global à la seule face 4839. Sa projection locale
+échantillonnée passe de `3,21e−5` à `7,03e−5` unité scan sur 12 puis 13 points,
+sans preuve de conformité continue. Le parseur termine à 0 en 2,679 s, sans
+module natif, sans nouvelle génération et sans modification de CAO.
+
+Les 68 139 nœuds, 45 757 nœuds frontières et 91 542 triangles sont conservés
+pendant l'optimisation. Les signatures non orientées des 4 900 surfaces
+restent exactes entre 2D et 3D ; neuf signatures orientées changent. Une
+composante, frontière complète, Jacobiennes et volumes signés positifs.
+Après relecture binaire du MSH `362c3e75…`, connectivités, tags contrôlés et
+coordonnées sont conservés exactement, qualité toujours refusée. Parmi les
+346 éléments insuffisants, 302 sont adjacents à une face frontière et 44 non.
+Il reste 50 triangles insuffisants sur 23 faces. Le maximum projeté sur les
+46 704 centroïdes échantillonnés reste `0,45258` unité scan : aucune nouvelle
+preuve de conformité continue ou d'équivalence géométrique globale.
+
+Cet unique essai supplémentaire termine en 51,801 s / 52,656 s nettoyage
+compris, avec le même plafond 300 s/4 CPU/4 Gio, sans OOM ni coût Vast.
+Conteneur exact supprimé et absence revérifiée ; CAO, entrées et programmes
+gelés inchangés. Sept tests purs passent. `make check` termine également à 0
+sur les modifications documentaires et le dépôt existant ; ce contrôle
+logiciel n'est pas une validation native de tous les solveurs ni de la pièce.
+
+### Piste gaz : préparation initiale du pilote
 
 La partition existante comprend un cœur et 16 blocs annulaires à six faces.
 Le pilote proposé conserve cette CAO : deux couches radiales, 24 éléments
@@ -636,21 +746,48 @@ prévoit les 124 faces externes et conserve les 32 interfaces internes sans les
 transformer en parois. Le contrôle du jeu portera sur les facettes réellement
 générées, pas sur la seule estimation géométrique nominale.
 
-Cette préparation privée n'est **pas un programme exécutable** : il manque
+Cette préparation initiale privée n'était **pas un programme exécutable** : il manquait
 l'inventaire ciblé des extrémités/cycles natifs et l'adaptateur de maillage mixte
 avec liaison native→Gmsh sans égalité supposée des tags. Aucun nouveau découpage,
 calcul de volumes ou maillage du gaz n'a été lancé. Le plan gelé `e329ac39…`
 prévoit MSH 4.1 binaire/SaveAll, une limite de 300 s et 4 CPU/4 Gio sur l'image
 existante ; l'admission CFD reste distincte et refusée.
 
+### Inventaire natif du gaz : contraintes intérieures identifiées
+
+Une lecture OCP bornée extrait 162 sommets, 291 arêtes, 156 faces et 17 volumes,
+dont les 16 blocs annulaires et leurs 72 faces transfinies proposées. Elle
+termine à 2 sur un contrôle de provenance trop spécifique : il confondait les
+groupes source mono-rôle avec des ancêtres de fragments individuels. Une revue
+des JSON sauvegardés corrige cette interprétation, sans nouvel appel natif ni
+ancêtre inventé : les 32 faces cylindriques sélectionnées par blocs, supports
+et extrémités portent 16 rôles guide et 16 rôles tige. Le refus initial et son
+empreinte mémoire finale non achevée sont conservés ; aucune admission globale.
+
+Deux parcours de contours apparaissaient vides sur les faces 28 et 29. Une
+seconde lecture, limitée à leur stockage TopoDS, observe respectivement les
+arêtes 73 et 77 avec orientation `INTERNAL`, omises par les explorateurs de
+boucles. Ce ne sont pas des cycles fermés manquants à fabriquer ou à supprimer.
+L'adaptateur natif→Gmsh doit représenter et conserver ces contraintes intérieures
+séparément des boucles de frontière avant de lancer le maillage mixte.
+
+Les deux lectures prennent 0,433 s / 1,044 s et 0,419 s / 1,002 s, durée native
+puis nettoyage compris. Plafond de chacune : 60 s dont 15 s de nettoyage,
+2 CPU/2 Gio, lecture seule, sans réseau ni export CAO. Les fichiers restent
+inchangés ; la lecture ciblée confirme aussi l'empreinte mémoire avant/après.
+Les deux conteneurs sont supprimés et leur absence revérifiée par la racine.
+Aucun CUT/Common/GK, aucune nouvelle partition, aucun maillage gaz et aucun
+coût Vast. Le programme de maillage mixte reste à intégrer et à revoir avec
+ces deux contraintes ; les valeurs d'hexas annoncées restent des prévisions.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
 de représentation, de frontières et du registre des 124 rôles ; conclure la
 couverture et le bilan de volumes avant admission du domaine gazeux.
-Pour le solide, poursuivre à partir des 1 722 éléments encore trop déformés
-et des 146 faces de surface signalées, puis recontrôler frontière,
-qualité et conformité CAO. Ne pas retoucher la silhouette pour masquer ces
+Pour le solide, poursuivre à partir des 346 éléments encore trop déformés
+et des 23 faces de surface signalées, tout en traitant la conformité CAO dont
+le maximum échantillonné a augmenté. Ne pas retoucher la silhouette pour masquer ces
 défauts numériques. L'attribution des
 quatre octets auxiliaires est terminée : elle n'appelle ni nouvelle correction
 de ces faces ni répétition de leur test binaire strict.
@@ -669,8 +806,12 @@ flowchart LR
     J --> K[Qualité refusée<br/>4 871 éléments à traiter]
     K --> L[Optimisation intérieure<br/>Frontière exactement conservée]
     L --> M[1 722 éléments encore insuffisants<br/>Reprise de la discrétisation de surface]
+    M --> O[Essai MeshAdapt puis optimisation<br/>433 éléments encore insuffisants]
+    O --> P[Ajout ciblé de la face 4839<br/>346 insuffisants, minimum amélioré]
+    P --> Q[Qualité et conformité non admises<br/>Aucun résultat physique crédité]
     E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
     E --> N[Pilote hexa-tétra préparé<br/>Adaptateur à implémenter, non exécuté]
+    N --> R[Inventaire natif obtenu<br/>2 contraintes internes à préserver]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
