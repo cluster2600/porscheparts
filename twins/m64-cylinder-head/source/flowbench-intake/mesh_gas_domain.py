@@ -57,6 +57,15 @@ class SurfaceOnlyComplete(Exception):
     """Internal stop after persistence, while still running final provenance checks."""
 
 
+def volume_algorithm_options(algorithm, build_options):
+    """One explicit volume-only comparison; no change to boundary sizing or acceptance."""
+    if type(algorithm) is not int or algorithm not in (1,10):
+        raise ValueError('volume_comparison_allows_only_Delaunay1_or_HXT10')
+    if algorithm==10 and 'hxt' not in build_options.lower().split():
+        raise ValueError('HXT_not_available_in_this_Gmsh_build')
+    return {'Mesh.Algorithm3D':algorithm}
+
+
 def face38_algorithm_assignment(manifest, binding, algorithm):
     """The local experiment is valid only on this exact native face, never a reused tag."""
     if algorithm is None:return None
@@ -623,7 +632,13 @@ def run(args):
         tag=gmsh.model.addPhysicalGroup(3,[volumes[0][1]],VOLUME_ID);gmsh.model.setPhysicalName(3,tag,'air')
         report['boundary_entity_groups_private']=groups
         for dimension in (1,2,3):
-            if dimension==3:report['volume_generation_attempted']=True
+            if dimension==3:
+                volume_options=volume_algorithm_options(getattr(args,'volume_algorithm',1),report['build_options'])
+                report['volume_stage_options']={'applied_after_surface_persistence':True,
+                    'options':volume_options,'boundary_sizing_options_changed':False,
+                    'surface_preservation_requires_independent_comparison':True}
+                for key,value in volume_options.items():gmsh.option.setNumber(key,value)
+                report['volume_generation_attempted']=True
             checkpoint('meshing_'+str(dimension)+'D');gmsh.model.mesh.generate(dimension)
             if dimension==2:
                 count=sum(len(ids) for ids in gmsh.model.mesh.getElements(2)[1])
@@ -734,6 +749,7 @@ def main():
     parser.add_argument('--segmented-native-only',action='store_true',help='Exact separately reviewed C0-segmented package; native checks only, no inherited STEP result')
     parser.add_argument('--volume-quadrature-reference',type=Path,help='Hash-bound OCCT nonadaptive volume reference; import tolerance remains 1e-6')
     parser.add_argument('--stop-after-surface',action='store_true',help='Save all boundary triangles and stop before generate(3); not a volume mesh')
+    parser.add_argument('--volume-algorithm',type=int,choices=(1,10),default=1,help='Volume-only comparison after surface persistence: Delaunay1 (default) or HXT10; no quality-gate change')
     parser.add_argument('--face38-algorithm',type=int,choices=(1,5),help='Native gas05 face38 only: MeshAdapt1 or Delaunay5; all other settings unchanged')
     parser.add_argument('--face38-size',type=float,help='Restrict maximum element size on exact face38 and its boundary; CAD and global minimum unchanged')
     parser.add_argument('--guide-size',type=float,help='Exact gas05 guide/stem cylinders only: local target size; surface-only until actual chord review')
