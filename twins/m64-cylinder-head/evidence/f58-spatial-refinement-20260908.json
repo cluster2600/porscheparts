@@ -1,0 +1,118 @@
+{
+  "schema": "m64-f58-spatial-refinement-public/v1",
+  "status": "coupon_diagnostic_complete_cap_persists_strict_runner_refusal_preserved",
+  "scope": "AlSi10Mg_thermal_coupon_not_M64_head_not_CP1_not_full_build",
+  "date_utc": "2026-09-08",
+  "runtime": {
+    "host_class": "existing_Kali_x86_no_new_Vast_rental",
+    "image_sha256": "a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "binary_sha256": "b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d",
+    "material_sha256": "65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea",
+    "native_solver_exit_code": 0,
+    "wrapper_observed_exit_code": 1,
+    "wall_seconds": 1282.1349749881774,
+    "wall_limit_seconds": 1500,
+    "OOM": false,
+    "timeout": false,
+    "container_absence_verified": true
+  },
+  "common_parameters": {
+    "dt_s": 2.5e-8,
+    "duration_s": 0.00012,
+    "steps_each": 4800,
+    "incident_power_W": 380,
+    "incident_energy_J": 0.0456,
+    "temperature_cap_K": 3300,
+    "cap_hit_both": true,
+    "full_melt_convection_resolved": false
+  },
+  "coarse": {
+    "cells": 57600,
+    "grid": [120, 20, 24],
+    "energies_J": {
+      "sensible": 0.028346909962899337,
+      "latent": 0.003692608010029389,
+      "boundary_diffusion_in": 0.003806253678279104,
+      "laser_in": 0.031562272110014538,
+      "advection_out": 0,
+      "limiter_sink": 0.003329043007482826
+    },
+    "limiter_over_absorbed_laser": 0.10547539150156869,
+    "absolute_residual_over_absorbed_laser": 1.5225799510796773e-6
+  },
+  "fine": {
+    "cells": 460800,
+    "grid": [240, 40, 48],
+    "powder_cells": 76800,
+    "substrate_cells": 384000,
+    "native_mesh_check": "Mesh OK",
+    "energies_J": {
+      "sensible": 0.028948196214368716,
+      "latent": 0.0037520335167876983,
+      "boundary_diffusion_in": 0.0038246253106497324,
+      "laser_in": 0.031839641144152744,
+      "advection_out": 0,
+      "limiter_sink": 0.0029640549930043396
+    },
+    "limiter_over_absorbed_laser": 0.09309322864490511,
+    "absolute_residual_over_absorbed_laser": 5.843853361412972e-7
+  },
+  "integrity": {
+    "strict_snapshot_passed": false,
+    "strict_runner_refusal_preserved": true,
+    "all_preexisting_inputs_byte_identical_primary_check": true,
+    "all_24_preexisting_inputs_byte_identical_independent_check": true,
+    "only_added_files": [
+      "constant/polyMesh/cellLevel",
+      "constant/polyMesh/pointLevel",
+      "constant/polyMesh/level0Edge",
+      "constant/polyMesh/refinementHistory"
+    ],
+    "added_metadata_describe_unrefined_grid_primary_check": true,
+    "added_metadata_describe_unrefined_grid_independent_check": true,
+    "global_runner_pass": false,
+    "logged_refinement_counts": 4799,
+    "all_logged_refinement_and_split_counts_zero": true
+  },
+  "energy_countercheck": {
+    "two_independent_parsers_agree": true,
+    "independent_method": "Decimal_precision60_six_terms_same_instrumented_logs",
+    "two_independent_physical_solvers": false,
+    "steps_with_absorption_above_380W_each": 0,
+    "time_series_complete_each": true
+  },
+  "native_isotherm_outputs": {
+    "scope": "same_capped_model_function_objects_not_measured_melt_pool",
+    "csv_samples_including_initial_each": 4801,
+    "independent_csv_readback_completed": true,
+    "dimension_order": ["length", "width", "depth"],
+    "final_dimensions_m": {
+      "coarse_850K": [0.00023772458, 0.00017967999, 0.00016799477],
+      "fine_850K": [0.00023754253, 0.00018435079, 0.00017775484],
+      "coarse_870K": [0.00023485825, 0.0001748249, 0.00016734914],
+      "fine_870K": [0.00023414363, 0.0001814735, 0.00017721333]
+    }
+  },
+  "private_evidence_sha256": {
+    "runner": "936409570698397bb50beb0bedfa97de4ee792efdc6d164b82ea58dcb7543eb2",
+    "independent_mesh_review": "833e6efab6c9439185b814d484649caa393d53375ab1c9fb939861c7f16a8b93",
+    "coarse_log": "319343f84fd40295811ffa9d5769fc1df487fe668aed9baeaadadd9b4939a94b",
+    "fine_log": "9e9c8c2c8bce6ed749885e5cf536634233fd786ec5a076e36d39aa2a0351d290",
+    "native_process": "4792c66a03cdf45076498ae1520ecd4dad25ef270ccf8a2f90380a288c13fb76",
+    "strict_integrity": "2634642de35362643bc6a1a5ccd49a3815cedf94c240ce04e54a542e835e3e20",
+    "wrapper_terminal_observation": "fea528b21ed1caa8db8584217f082cad972cba30d529da9add65f06d6e2d8852",
+    "primary_comparison": "366058e819bad2387beb19545937724ec26e83dc65604e20e52b6020a00f67a0",
+    "primary_comparison_source": "e28a7a142d51a81c81670dfcc1a8c4948be27914ee56a6bb6c458af479cfb79f",
+    "independent_energy_comparison": "c0c0e7fbe8f20931eab565b7b2c017ef2fc49fd94891950ae392bee024f81070",
+    "independent_energy_source": "b6128902a8fcf7c72199656b985c094e5751b252c32d5e5ff2151845d8069e15",
+    "independent_final_integrity_review": "bfe6e903bc81fd9a8bcabda1a9f1d119fefdfb0f68c77608f44f46d59f1ddd84",
+    "independent_final_integrity_source": "2aa0a39c34030937de670c259b5cedcff18cb51d4ac235934326f057753b0f02",
+    "native_isotherm_comparison": "831b2c79d00a342a7b4ef522f5ba458299e0cf0555757b3418e71a22b9b2c439",
+    "postrun_runtime_observation": "de073f56f0fa7721e9e7970950a2abf3d1cb053bc4aced80e1075365532e4acc"
+  },
+  "spatial_convergence_order_established": false,
+  "temperature_convergence_established": false,
+  "physical_calibration_completed": false,
+  "full_head_build_distortion_simulated": false,
+  "manufacturing_authorized": false
+}

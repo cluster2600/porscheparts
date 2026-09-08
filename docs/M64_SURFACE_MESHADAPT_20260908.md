@@ -1,5 +1,9 @@
 # M64 — remaillage local MeshAdapt de quatre faces natives
 
+**Complément en lecture seule :** [bornes d'approximation des petites arêtes](M64_NATIVE_EDGE_APPROXIMATION_20260908.md).
+Il distingue la tolérance native de l'erreur de tessellation ; il ne change
+ni ce maillage ni son verdict OpenFOAM.
+
 ## Résultat : cinq refus OpenFOAM, essai non retenu
 
 Un nouveau maillage du domaine gazeux contient **401 861 tétraèdres et

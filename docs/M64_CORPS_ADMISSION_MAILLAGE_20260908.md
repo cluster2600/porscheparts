@@ -54,8 +54,8 @@ pas échantillonnées : ni minimum global, ni fraction de surface trop mince,
 ni qualification d'impression ne sont établis. De même, les 182 contacts
 avec l'ancienne peau incluent des parois de vides internes ; le résidu nul
 hors masques admission/chambre/logements ne prouve pas à lui seul l'absence
-de toute ouverture extérieure indésirable. Le BOP complet du nouveau corps
-n'a pas été exécuté.
+de toute ouverture extérieure indésirable. Le BOP du nouveau corps
+n'avait pas été exécuté à ce stade ; le complément ci-dessous le documente.
 
 La coupe unique a terminé en 75,94 s, sortie 3 correspondant au statut de
 revue de conception ; les deux diagnostics ont terminé avec une sortie 0.
@@ -69,6 +69,27 @@ rendu sont liées dans le reçu du corps. Il provient du B-Rep natif
 `33375e12…`, pas du STEP rejeté ; ce n'est ni une photographie de fabrication
 ni un champ de température. La seconde version corrige seulement le libellé
 du maintien des guides en « à vérifier », sans modifier la géométrie.
+
+### Complément : contrôle BOP indépendant du même corps
+
+Le B-Rep `33375e12…` a ensuite été relu **sans refaire la coupe**. Le
+[nouveau reçu géométrique](../twins/m64-cylinder-head/evidence/ported-chamber-native-bop-20260908.json)
+confirme un solide et une coque, 5 056 faces, BRepCheck exact valide.
+Les cinq modes mono-corps du projet — auto-intersections, petites arêtes,
+reconstruction des faces, continuité et courbes sur surfaces — terminent
+sans défaut, erreur ni avertissement. Aucun arrêt au premier défaut.
+
+Le BOP prend 107,69 s ; le processus supervisé termine en 113,58 s, sortie 0,
+pic mémoire 2 691 440 Kio, processus absent après fin. Les tolérances ordonnées
+et les empreintes d'entrée sont identiques avant/après. Un premier prévol,
+arrêté sur une incompatibilité de l'API Python de hachage avant lecture CAO,
+est conservé séparément ; la reprise remplace seulement ce hachage.
+
+**Ce PASS ne lève pas la revue mécanique des guides 23/35.** Il ne répare
+pas le STEP, ne crée pas les conduits d'échappement et ne qualifie ni les
+épaisseurs, ni les interfaces, ni la CHT. Aucun rayon, contour, repère,
+logement ou matériau n'est modifié. C'est désormais une preuve de propreté
+géométrique native du corps chambre + admission, pas une culasse libérée.
 
 ## Maillage : amélioration locale mesurée, pas acceptation globale
 
