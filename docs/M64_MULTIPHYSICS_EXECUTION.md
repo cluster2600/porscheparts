@@ -99,6 +99,29 @@ suivante définit leur rôle, pas une déclaration d'installation ou de réussit
 | Modèles réduits | PhysicsNeMo/PyTorch après obtention d'un jeu de calculs éligibles ; Qwen/vLLM n'est pas un solveur ni une autorité de validation |
 | Exécution | Docker/CI/GHCR, Kali et Vast via le wrapper OpenBao autorisé |
 
+### Complément des deux photos : fabrication, moteur et télémétrie
+
+Références vérifiées le 8 septembre 2026. Les tableaux photographiés sont
+des suggestions d'architecture, pas des preuves d'intégration ou de validation.
+Leur examen ne change ni le contour conservé, ni le matériau encore à qualifier,
+ni les critères d'acceptation des calculs.
+
+| Brique photographiée | Rôle retenu et limite |
+|---|---|
+| OpenFOAM avec extensions AM | [AdditiveFOAM d'ORNL](https://github.com/ORNL/AdditiveFOAM) couvre le transport thermique et l'écoulement du procédé local. Il reste distinct de la CFD du moteur. Le [coupon actuel](M64_F58_CORRECTED_COUPON_20260908.md) est incomplet et atteint encore le limiteur de température. |
+| MOOSE | Candidat pour la distorsion globale de fabrication : [mécanique couplée au transfert thermique et aux contacts](https://mooseframework.inl.gov/modules/solid_mechanics/index.html), avec [activation d'éléments](https://mooseframework.inl.gov/source/meshmodifiers/ElementSubdomainModifier.html). Cela exige un modèle configuré : couches, supports, bridage, lois à chaud, refroidissement et retrait du plateau. Aucun cas MOOSE de culasse exécuté n'est établi ici. |
+| « PRISMA-Plasticity » | Le projet identifié est [PRISMS-Plasticity](https://github.com/prisms-center/plasticity), solveur éléments finis de plasticité continue et cristalline. C'est une correspondance probable du nom, pas certaine. Pas de nouveau solveur de microstructure retenu sans données permettant de le paramétrer. |
+| Elmer Multiphysics | [Elmer](https://github.com/ElmerCSC/elmerfem) dispose de modèles de transfert thermique et de mécanique. Il reste candidat au contre-calcul, avec mêmes charges, interfaces et lois matériau. Sa présence dans la liste n'établit pas un calcul exécuté. |
+| NVIDIA Modulus / PhysicsNeMo | [Modulus a été renommé PhysicsNeMo](https://github.com/NVIDIA/physicsnemo). Une seule famille de modèles réduits, pas deux validations indépendantes. Dans ce projet, entraîner et vérifier sur des calculs éligibles avec des cas de test séparés ; ne pas apprendre le limiteur thermique comme s'il était un phénomène réel. |
+| Eclipse Ditto et Mosquitto | [Ditto](https://eclipse.dev/ditto/intro-overview.html) gère l'état numérique des équipements ; [Mosquitto](https://mosquitto.org/) transporte les messages MQTT. À raccorder aux mesures d'un futur banc avec unités, horodatage et étalonnage. Ni solveurs physiques ni préalables à la correction CAO ; aucun capteur ni service nouvellement connecté. |
+| Marlin / Klipper et Node-RED | [Marlin](https://marlinfw.org/docs/gcode/M003.html) peut commander un laser ; [Klipper](https://www.klipper3d.org/Installation.html) est un firmware d'imprimante. Cela ne prouve aucune compatibilité avec le contrôleur d'une machine LPBF industrielle. Une intégration de télémétrie éventuelle dépendra de l'interface réellement fournie par le fabricant, pas d'un G-code présumé. |
+
+Priorité d'exécution inchangée : géométrie et contacts contrôlés, maillages
+acceptables, calculs thermiques et mécaniques, puis procédé et comparaison.
+L'ajout d'un middleware ou d'un modèle IA ne ferme aucun de ces critères.
+Les schémas Mermaid ci-dessous décrivent la chaîne cible ; ces nouvelles pistes
+ne sont pas présentées comme des modules déjà déployés.
+
 Avancement de cette reprise : voir `M64_INTERFACE_SOURCE_REGISTER.md`,
 `M64_LEAP71_STACK.md`, `M64_CHT_RUNTIME_SMOKE.md` et
 `M64_VAST_EXECUTION_20260906.md`. Les preuves de l'ancien projet 917 restent
