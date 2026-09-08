@@ -976,6 +976,516 @@
     "manufacturing_authorized": false,
     "new_Vast_spend_usd": 0
   },
+  "solid_v5_surface_meshadapt_192_trial": {
+    "status": "single_targeted_192_surface_trial_quality_rejected_not_CAE",
+    "source_V5_sha256": "450ba0816bf355f350b45e1878e3327f2070cd10b405f885afb3ef2c026bff0e",
+    "worker_sha256": "d52e39fcb466488b5f0f26ce0d66deb1855cc3debc7d39628470d93bc1112457",
+    "wrapper_sha256": "2a773dd8857e814003277b6422ee1542e9747dc9a811d2c42e83e3702940ab62",
+    "trial_report_sha256": "de3f13dfda961b05a2254fb1e952c8bf04edef77d3c823ee43d7d2a0b0999eb3",
+    "process_report_sha256": "b83fe791072867bdd180b58dd149f284480d3c7d76f582f2e87ba4bdf88d9bc7",
+    "mesh_report_sha256": "4c28ba5c1ce59811a367d8a33af0ed8e11fd3e70e458f62a5ef2a2493a9a9483",
+    "quality_report_sha256": "e5ed7a5ee35c85def8399a81826dec1a3c6710b8af0859646efdac6858593cd6",
+    "sampled_final_projection_report_sha256": "f6e3a4ef3f6566af6ddd40e4a9ebc5d682feac1f7cb632f043757f21757d26d8",
+    "retained_assignments": 147,
+    "additional_faces": 45,
+    "selected_assignments": 192,
+    "automatic_fallback_faces": 41,
+    "effective_MeshAdapt_faces": 233,
+    "additional_face_set_sha256": "e9410804c32a13496c78f0209add64127bc76d4e70eda745dbd43fadbffd0b38",
+    "target_quadruplet_set_sha256": "0aec503552600d09f5e0ff13f743ce02f70630989595ea0f28ff3f494ac713ca",
+    "targeted_comparison": {
+      "report_sha256": "a4f2285a22103cc4e557b5607a334dff587fde60081a9459a7bb2bf798ec5e58",
+      "source_sha256": "20464c67126c547af89cf3988f3513e242cf4af869a7f2e880c3e255bba4d15a",
+      "parser_sha256": "32cef0708f8dc439f50ecf7d4d4a1e36876472ba47ad2ef7eea321f1a1420ee0",
+      "baseline": {
+        "all_targets_present_exactly_once": true,
+        "element_counts_by_type": {
+          "1": 28753,
+          "2": 91542,
+          "4": 274680,
+          "15": 5179
+        },
+        "full_tetra_scan_count": 274680,
+        "nodes": 68139,
+        "target_report_connectivity_and_coordinates_verified": true
+      },
+      "candidate": {
+        "element_counts_by_type": {
+          "1": 28753,
+          "2": 91688,
+          "4": 276262,
+          "15": 5179
+        },
+        "full_tetra_scan_count": 276262,
+        "nodes": 68422,
+        "target_occurrences": 0,
+        "targets_absent": 51,
+        "targets_present": 0,
+        "targets_with_multiple_occurrences": 0
+      },
+      "nearby_similar_slivers_excluded": false,
+      "physical_tolerance_defined": false
+    },
+    "final_mesh": {
+      "nodes": 68422,
+      "tetrahedra": 276262,
+      "surface_triangles": 91688,
+      "connectivity": {
+        "signed_volume_sum": 1157678.9027605501,
+        "absolute_volume_sum": 1157678.9027605501,
+        "minimum_signed_tetra_volume": 0.0000010521189446475854,
+        "count_negative": 0,
+        "count_zero": 0,
+        "repeated_node_tetrahedra": 0,
+        "tetra_connected_components": 1,
+        "boundary_missing_triangles": 0,
+        "stored_triangles_not_on_boundary": 0,
+        "duplicate_stored_triangles": 0,
+        "nonmanifold_faces": 0,
+        "boundary_triangle_count": 91688,
+        "boundary_matches": true
+      },
+      "minimum_minSICN": 0.0007920510429928841,
+      "minSICN_below_0p1": 309,
+      "minimum_Jacobian_determinant": 0.000006312713667885574,
+      "nonpositive_Jacobians": 0,
+      "CAD_faces_without_surface_elements": [],
+      "quality_distribution": {
+        "tetrahedra": 276262,
+        "minimum_minSICN": 0.0007920510429928841,
+        "minSICN_below_0p1": 309,
+        "minSICN_below_1e_6": 0,
+        "minimum_Jacobian_determinant": 0.000006312713667885574,
+        "nonpositive_Jacobians": 0,
+        "bad_tetrahedron_count_fraction": 0.0011185034496239078,
+        "bad_tetrahedron_absolute_volume_fraction": 0.00004581708760692847
+      },
+      "volume_relative_difference_from_native": 0.0025519910192777218,
+      "sha256": "ff79332e09b3516230381c28474e2b0bff32f03e8ad6fd2a08ae64d782c9c908",
+      "roundtrip": {
+        "types_unchanged": true,
+        "tetra_connectivity_unchanged": true,
+        "surface_connectivity_unchanged": true,
+        "tetra_tags_unchanged": true,
+        "node_tags_unchanged": true,
+        "maximum_coordinate_roundtrip_difference": 0,
+        "file_sha256_unchanged": true
+      },
+      "reread_quality": {
+        "tetrahedron_count_matches": true,
+        "positive_jacobians": true,
+        "minSICN_project_limit": false,
+        "quality_distribution": {
+          "tetrahedra": 276262,
+          "minimum_minSICN": 0.0007920510429928841,
+          "minSICN_below_0p1": 309,
+          "minSICN_below_1e_6": 0,
+          "minimum_Jacobian_determinant": 0.000006312713667885574,
+          "nonpositive_Jacobians": 0,
+          "bad_tetrahedron_count_fraction": 0.0011185034496239078,
+          "bad_tetrahedron_absolute_volume_fraction": 0.00004581708760692847
+        },
+        "passed": false
+      }
+    },
+    "previous_bad_tetrahedra": 346,
+    "previous_minimum_minSICN": 0.0030024774560524874,
+    "minimum_quality_improved": false,
+    "boundary_nodes": 45830,
+    "optimization_preserved_exact_boundary": true,
+    "orientation_only_surface_changes_2D_to_3D": 7,
+    "unordered_surface_changes_2D_to_3D": 0,
+    "between_trials_changed_surface_fingerprints": 395,
+    "exclusive_global_causal_gain_claimed": false,
+    "new_worst": {
+      "tetrahedron_tag": 1776107,
+      "face": 2868,
+      "adjacent_boundary_triangles": 1,
+      "boundary_vertices": 3,
+      "interior_vertices": 1,
+      "face_triangulation_changed_from_147": false,
+      "mechanism_is_not_the_51_target_case": true
+    },
+    "bad_surface_triangles": 47,
+    "bad_surface_faces": 22,
+    "bad_tetrahedra_with_boundary_face": 263,
+    "bad_tetrahedra_without_boundary_face": 46,
+    "sampled_surface_conformity": {
+      "triangle_count": 91688,
+      "sampling_stride": 2,
+      "sample_count": 46777,
+      "maximum_sampled_distance_scan_units": 0.4525820899281743,
+      "continuous_facet_bound_proven": false,
+      "trim_membership_proven": false,
+      "physical_tolerance_defined": false
+    },
+    "native_seconds": 50.828581165988,
+    "wall_seconds_with_cleanup": 51.66294655855745,
+    "total_wall_limit_seconds": 300,
+    "cleanup_reserve_seconds": 30,
+    "CPU_cap": 4,
+    "RAM_and_RAM_plus_swap_caps_bytes": 4294967296,
+    "pure_tests_passed": 24,
+    "pure_tests_skipped": 0,
+    "OOM_or_timeout": false,
+    "exact_container_removed_and_absence_rechecked_by_root": true,
+    "frozen_inputs_unchanged": true,
+    "CAD_modified": false,
+    "CFD_or_thermal_or_strength_qualified": false,
+    "manufacturing_authorized": false,
+    "new_Vast_spend_usd": 0
+  },
+  "gas_multizone_first_surface_pilot": {
+    "status": "import_bound_1D_checked_surface_generated_rejected_before_3D",
+    "partition_sha256": "c9eceb771405840a41acdbf48f7052e0d8347e453103465755843d8e3cb3d3cc",
+    "worker_sha256": "ae39fcd24894af8710ed2cc780843db5c6c0e0b3fac74bd779b20d566f516c65",
+    "binder_sha256": "c5bd93ba52fcb477c44ebac3c92dee7adc3a60a8fc112910a54702c7cce47965",
+    "mixed_checks_sha256": "41d8c10b42239e8582588c3d2a29d395183ce240874925b0755de9cbe2df732e",
+    "wrapper_sha256": "1b67869678a0669bd68a3f5e6ce7076d907445efa724baf7c436d0b26a212fed",
+    "report_sha256": "790d9ec183373f5174f17455b16b02386bda7e549fb377e27ee711c1e665ab7c",
+    "process_report_sha256": "7ea12413022b174c8f7998b5870f90b1d480fd75c294f3487d4763d06eb643bc",
+    "import_snapshot_sha256": "5de0199db578a7568c78a97207f915d29e3546d4664937827a92019620911219",
+    "binding_report_sha256": "d5dfea52a3af048ee2e7f6e6635dd1d091490ec74415dc903e440bc80a6cde04",
+    "bijective_import_vertices_edges_faces_volumes": [
+      162,
+      291,
+      156,
+      17
+    ],
+    "internal_edges_73_77_observed_and_bound": true,
+    "native_anchors": 162,
+    "anchor_maximum_coordinate_error": 0,
+    "verified_annular_curve_chains": 104,
+    "verified_embedded_curve_chains": 2,
+    "surface": {
+      "mesh_sha256": "4756aa0dd4e03eda9a62fc3bdbc7bbf1e7edb7ba60e4c6c1c08a694a0233014a",
+      "nodes": 88721,
+      "triangles": 31462,
+      "quadrangles": 74822,
+      "auxiliary_0D_1D_elements": 6599,
+      "saved_before_refusal": true
+    },
+    "saved_surface_diagnostic": {
+      "report_sha256": "893db1a2836191de3ec1fcf709ffbc1c0193e062416bc7bdad9f58c31ff942f7",
+      "source_sha256": "bad1372f66f6a3a0fd046bd04092eb60faf5b9af0687d77427c0ba0be03fb105",
+      "method": "stdlib_struct_complete_sections_counts_references_EOF",
+      "all_expected_156_surface_entities_present": true,
+      "unexpected_faces": [
+        {
+          "native_face": 61,
+          "gmsh_face": 61,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 62,
+          "gmsh_face": 62,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              3,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 63,
+          "gmsh_face": 63,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 64,
+          "gmsh_face": 64,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 65,
+          "gmsh_face": 65,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 66,
+          "gmsh_face": 66,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              7,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 67,
+          "gmsh_face": 67,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        },
+        {
+          "native_face": 68,
+          "gmsh_face": 68,
+          "native_type": "Plane",
+          "role": null,
+          "expected_type": 3,
+          "actual_counts": {
+            "2": 10,
+            "3": 24
+          },
+          "owners": [
+            [
+              1,
+              0
+            ],
+            [
+              9,
+              1
+            ]
+          ]
+        }
+      ],
+      "changed_transfinite_curves": [
+        {
+          "native_edge": 136,
+          "gmsh_curve": 136,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            53,
+            61,
+            93
+          ]
+        },
+        {
+          "native_edge": 139,
+          "gmsh_curve": 139,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            54,
+            62,
+            98
+          ]
+        },
+        {
+          "native_edge": 142,
+          "gmsh_curve": 142,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            55,
+            63,
+            102
+          ]
+        },
+        {
+          "native_edge": 143,
+          "gmsh_curve": 143,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            56,
+            64,
+            106
+          ]
+        },
+        {
+          "native_edge": 144,
+          "gmsh_curve": 144,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            57,
+            65,
+            109
+          ]
+        },
+        {
+          "native_edge": 147,
+          "gmsh_curve": 147,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            58,
+            66,
+            114
+          ]
+        },
+        {
+          "native_edge": 150,
+          "gmsh_curve": 150,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            59,
+            67,
+            118
+          ]
+        },
+        {
+          "native_edge": 151,
+          "gmsh_curve": 151,
+          "type": "Circle",
+          "expected_elements": 24,
+          "actual_elements": 32,
+          "actual_nodes": 33,
+          "adjacent_native_faces": [
+            60,
+            68,
+            122
+          ]
+        }
+      ],
+      "additional_cylindrical_faces_with_transfinite_fallback": [
+        93,
+        98,
+        102,
+        106,
+        109,
+        114,
+        118,
+        122
+      ],
+      "counts_rechecked_after_2D_required": true,
+      "native_calls": 0,
+      "CAD_mesh_changed": false,
+      "original_refusal_preserved": true
+    },
+    "refusal": "all_surface_types_and_entities",
+    "worker_and_process_exit_code": 2,
+    "gap_check_completed": false,
+    "volume_generation_attempted": false,
+    "volume_mesh_generated": false,
+    "native_seconds": 1.9507698360830545,
+    "wall_seconds_with_cleanup": 2.6111924070864916,
+    "total_wall_limit_seconds": 300,
+    "cleanup_reserve_seconds": 30,
+    "CPU_cap": 4,
+    "RAM_and_RAM_plus_swap_caps_bytes": 4294967296,
+    "pure_module_tests_passed": 70,
+    "pure_supervisor_tests_passed": 10,
+    "pure_tests_skipped": 0,
+    "OOM_or_timeout": false,
+    "exact_container_removed_and_absence_rechecked_by_root": true,
+    "sources_and_inputs_unchanged": true,
+    "import_continuous_identity_proved": false,
+    "original_volume_and_inventory_refusals_preserved": true,
+    "global_geometry_admitted": false,
+    "CAD_modified": false,
+    "CFD_or_thermal_or_strength_qualified": false,
+    "manufacturing_authorized": false,
+    "new_Vast_spend_usd": 0
+  },
   "runtime": {
     "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
     "OCP_version": "7.9.3.1",
