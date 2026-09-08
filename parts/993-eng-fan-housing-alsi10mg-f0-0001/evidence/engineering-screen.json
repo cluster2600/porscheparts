@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+  "status": "f0_clean_sheet_stationary_fan_housing_analytical_screen_failed",
+  "geometry_authority": {
+    "published": {
+      "part_numbers": [
+        "99310666703",
+        "99310666701"
+      ],
+      "fvd_commercial_envelope_mm": [
+        300.0,
+        300.0,
+        170.0
+      ],
+      "fvd_commercial_mass_kg": 1.9,
+      "porsche_roissy_commercial_mass_kg": 1.86,
+      "reseller_material": "aluminium_unspecified_grade_and_process"
+    },
+    "hypotheses": [
+      "300 mm F0 outer diameter and 170 mm depth reuse only the published bounding envelope",
+      "252 mm throat, 3 mm shell and 4 mm front flange",
+      "90/70 mm annular alternator hub and six 81 x 12 x 12 mm radial spokes",
+      "six synthetic 6.6 mm mounting bores on a 136 mm radius",
+      "no measured fan tip, alternator, belt, shroud, tinware, vane, seal or engine interface"
+    ],
+    "not_claimed": "The FVD dimensions are a commercial envelope and the reseller aluminium label has no grade/process certificate; neither defines this clean-sheet surface or fit."
+  },
+  "synthetic_cases": {
+    "airflow_m3_s": 1.25,
+    "air_density_kg_m3": 1.05,
+    "flow_loss_k": 0.8,
+    "maximum_pressure_loss_pa": 500.0,
+    "radial_load_n": 2000.0,
+    "fan_speed_rpm": 6000.0,
+    "blade_count": 11,
+    "operating_housing_temperature_c": 150.0,
+    "minimum_screen_ratio": 1.5,
+    "authority": "regression inputs only; no measured 993 airflow map, pressure field, fan diameter, blade count, speed, belt load, thermal field, modal boundary or duty"
+  },
+  "material_screen": {
+    "candidate": "EOS Aluminium AlSi10Mg LPBF T6 comparison",
+    "oem_replacement_material_evidence": "aluminium_unspecified_grade_and_process",
+    "density_kg_m3": 2670.0,
+    "elastic_modulus_pa": 70000000000.0,
+    "comparison_yield_strength_pa": 245000000.0,
+    "thermal_expansion_per_k": 2.1e-05,
+    "specific_heat_j_kg_k": 900.0,
+    "published_process_minimum_wall_mm": 0.4,
+    "scope": "generic ambient comparison only; no hot fatigue, casting-equivalence, porosity, belt-load, corrosion or fan-containment allowable"
+  },
+  "results": {
+    "cad_volume_mm3": 668006.2279871054,
+    "cad_mass_g": 1783.5766287255715,
+    "published_mass_range_kg": [
+      1.86,
+      1.9
+    ],
+    "mass_delta_to_roissy_percent": -4.108783401851003,
+    "billet_box_mass_g": 40851.0,
+    "billet_box_to_cad_mass_ratio": 22.903978075329167,
+    "lumped_heat_capacity_j_k": 1605.2189658530142,
+    "annular_flow_area_m2": 0.04351419984487223,
+    "mean_air_velocity_m_s": 28.726254980126942,
+    "dynamic_pressure_pa": 433.2288057212157,
+    "synthetic_pressure_loss_pa": 346.58304457697255,
+    "air_power_w": 433.2288057212157,
+    "pressure_loss_allowance_ratio": 1.4426556862015074,
+    "per_spoke_load_n": 333.3333333333333,
+    "spoke_second_moment_mm4": 1728.0,
+    "spoke_bending_stress_mpa": 93.75,
+    "ambient_yield_to_spoke_stress_ratio": 2.6133333333333333,
+    "spoke_tip_deflection_mm": 0.48816964285714287,
+    "first_spoke_mode_hz": 1512.8116440191216,
+    "synthetic_blade_pass_frequency_hz": 1100.0,
+    "modal_separation_ratio": 0.375283312744656,
+    "free_throat_diametral_growth_mm": 0.68796,
+    "fully_constrained_thermal_stress_mpa": 191.1,
+    "ambient_yield_to_constrained_thermal_ratio": 1.2820512820512822,
+    "flow_screen_pass": true,
+    "static_screen_pass": true,
+    "modal_screen_pass": true,
+    "thermal_screen_pass": false,
+    "preliminary_screen_pass": false,
+    "fatigue_containment_and_cooling_status": "not_computable_without_measured_interfaces_loads_air_map_hot_material_and_duty"
+  },
+  "equations": {
+    "annular_flow": "A=pi*(D_throat^2-D_hub^2)/4; v=Q/A",
+    "minor_loss": "delta_p=K*rho*v^2/2; P_air=delta_p*Q",
+    "spoke_bending": "I=b*t^3/12; sigma=F*L*(t/2)/I; delta=F*L^3/(3*E*I)",
+    "cantilever_mode": "f1=1.875104^2/(2*pi)*sqrt(E*I/(rho*A*L^4))",
+    "blade_pass": "f_bpf=N_blades*rpm/60",
+    "thermal_growth": "delta_D=alpha*D*delta_T",
+    "constrained_thermal": "sigma=E*alpha*delta_T",
+    "mass_and_heat_capacity": "m=rho*V; C=m*cp"
+  },
+  "dfam_screen": {
+    "additive_value": "low-volume annular housing consolidating thin shell, front flange, alternator hub and six radial supports with little billet removal",
+    "stationary_part": true,
+    "rotating_impeller_included": false,
+    "open_air_path": true,
+    "trapped_powder_volume": false,
+    "integrated_spoke_count": 6,
+    "nominal_shell_mm": 3.0,
+    "shell_to_process_minimum_ratio": 7.5,
+    "build_envelope_mm": [
+      300.0,
+      300.0,
+      170.0
+    ],
+    "orientation_selected": false,
+    "support_strategy_defined": false,
+    "all_fan_alternator_mounting_and_sealing_interfaces_require_machining": true,
+    "process_comparison_required": [
+      "qualified magnesium or aluminium production casting",
+      "fabricated and machined aluminium assembly",
+      "large-billet CNC aluminium housing",
+      "LPBF AlSi10Mg integrated housing"
+    ]
+  },
+  "interpretation": {
+    "result": "synthetic airflow, static and modal algebra pass; fully constrained thermal screen fails",
+    "mass": "similarity to the retailer mass range is not validation because the internal F0 geometry is synthetic",
+    "airflow": "an annular area and lumped loss coefficient cannot predict fan operating point or cylinder-head distribution",
+    "structure": "six isolated cantilever spokes do not model the cast shell, alternator bearings, belt, bolts or fan containment",
+    "physicsnemo": "deferred until correlated CFD, CHT, structural and modal datasets exist",
+    "simready": "deferred until measured fan, hub, alternator, engine, tinware and sealed air-domain interfaces exist"
+  },
+  "release_blockers": [
+    "No measured housing, fan tip, alternator, hub, bearing, belt, tinware, shroud or engine interface.",
+    "Only the 300 x 300 x 170 mm commercial envelope and two retailer masses are published.",
+    "The 252 mm throat, shell, flange, hub, six spokes and bolt pattern are entirely synthetic.",
+    "The aluminium material statement has no alloy, process, heat treatment or certificate.",
+    "No evidence that the production housing uses AlSi10Mg or LPBF.",
+    "Airflow, density, loss coefficient and pressure allowance are arbitrary regression inputs.",
+    "No measured fan curve, system curve, cooling distribution, leakage or hot-cylinder margin.",
+    "Radial load, load sharing, blade count, speed and boundary conditions are synthetic.",
+    "The beam and modal equations omit ring coupling, joint compliance, gyroscopic excitation and harmonics.",
+    "No fan fragment or overspeed containment analysis is present.",
+    "The fully constrained thermal screen fails and no actual temperature field is known.",
+    "No hot LPBF AlSi10Mg fatigue, creep, porosity, corrosion or surface allowables.",
+    "No CFD, CHT, converged FEA, modal survey, fatigue or measured correlation.",
+    "No qualified build orientation, supports, stress relief, T6, HIP, distortion compensation or machining route.",
+    "No CT, FPI, metallurgy, dimensional inspection, balance-clearance, airflow, vibration or endurance test.",
+    "No professional engine review, approved validation plan, dyno authorization or vehicle release."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "clean_sheet_stationary_fan_housing_f0"
+    ],
+    "volume_mm3": 668006.2279871054,
+    "envelope_mm": [
+      300.0,
+      300.0,
+      170.0
+    ],
+    "open_air_path_count": 1,
+    "stationary_spoke_count": 6,
+    "mount_bore_count": 6,
+    "rotating_impeller_count": 0,
+    "maximum_volume_delta_mm3": 0.05
+  }
+}
