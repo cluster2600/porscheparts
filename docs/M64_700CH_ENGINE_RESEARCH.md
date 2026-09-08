@@ -177,6 +177,43 @@ transitoire. Aucun point de notre rapport n'a encore été qualifié sur ces
 cartes ; additionner deux puissances de catalogue ne suffit pas.
 [B1, cartes EFR officielles](https://www.borgwarner.com/aftermarket/boosting-technologies/performance-turbochargers/efr-series-turbochargers)
 
+### Conversion de référence réellement calculée le 8 septembre
+
+La notice Garrett Rev G, **page imprimée 15**, donne une convention de débit
+différente de notre référence interne 288,15 K / 101 325 Pa. Son équation est
+reproduite, avec l'arrondi `460` en Fahrenheit conservé :
+
+```text
+W_corr = W_reel × sqrt((T_entree_F + 460) / 545) / (p_entree_psia / 13,95)
+```
+
+[Notice primaire Garrett](https://www.garrettmotion.com/wp-content/uploads/2023/02/737639-34_781328_Speed_Sensor_Kit_Installation_Instructions_revG.pdf).
+Il ne faut donc pas présenter `545` comme une température SI exacte puis
+changer silencieusement `460` en `459,67`.
+
+Le [calcul séparé](../twins/m64-cylinder-head/targets/700ps_garrett_reference.py)
+relit le bilan 700 PS gelé par SHA-256. Son
+[résultat](../twins/m64-cylinder-head/targets/700ps-garrett-reference-20260908.json)
+donne, pour le **même débit réel** et les mêmes conditions :
+
+| Par turbo | lb/min |
+|---|---:|
+| Débit réel, inchangé | 38,7653 |
+| Débit corrigé, référence interne du projet | 40,6353 |
+| Débit corrigé, formule Garrett Rev G | **37,6410** |
+
+L'écart de −7,369 % est uniquement un changement de convention, **pas un gain
+de débit ou de rendement**. Le rapport de pression reste 3,2298. Le calcul
+inverse restitue le débit réel ; six tests ciblés et un contre-calcul décimal
+indépendant confirment le résultat. Le bilan précédent n'est pas remplacé.
+
+La [carte G25-550](https://www.garrettmotion.com/wp-content/uploads/2022/06/G25-550-Comp-Map-kg-sec-scaled.jpg)
+a été inspectée, mais aucun rendement, régime d'arbre ou marge de pompage
+n'est numérisé/qualifié par ce sous-lot. La convention numérique de référence
+EFR n'est pas établie par les deux fiches consultées : ne lui appliquer ni
+la correction Garrett ni celle du projet par défaut. Le choix des deux turbos,
+leur circuit de refroidissement et la contre-pression turbine restent ouverts.
+
 ## Comment ce travail alimente les calculs de culasse
 
 ```mermaid

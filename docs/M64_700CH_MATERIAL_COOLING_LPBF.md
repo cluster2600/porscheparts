@@ -288,6 +288,21 @@ Les étapes encore utiles sont le contrôle spatial et la vérification/calibrat
 physique de la source et du bain. Ni la baisse du pas, ni le bon retour
 processus ne libèrent la fabrication.
 
+### Raffinement spatial exécuté ensuite : 460 800 cellules
+
+Le 8 septembre, la grille a été divisée par deux dans chaque direction à
+25 ns inchangés. Les 4 800 pas atteignent 120 µs en 1 282,135 s sur Kali,
+sans location Vast. Le [rapport spatial et ses preuves](M64_F58_SPATIAL_REFINEMENT_20260908.md)
+distinguent sortie native 0, refus strict du lanceur causé par quatre
+métadonnées ajoutées, et contre-vérification séparée des entrées conservées.
+
+Le puits artificiel passe de 3,329043 à 2,964055 mJ, soit de 10,54754 % à
+9,30932 % de l'énergie absorbée. **Le plafond reste atteint : le raffinement
+spatial seul n'a pas résolu le défaut physique.** Deux maillages ne donnent
+pas un ordre de convergence ; deux parseurs des mêmes journaux ne sont pas
+deux modèles physiques indépendants. La vérification des propriétés, de la
+source et de la physique du bain, puis leur calibration, restent nécessaires.
+
 Sources : [théorie AdditiveFOAM](https://ornl.github.io/AdditiveFOAM/docs/theory/),
 [conditions aux limites](https://ornl.github.io/AdditiveFOAM/docs/boundary-conditions/),
 [calibration ORNL](https://ornl.github.io/AdditiveFOAM/docs/heat-source-calibration/).
