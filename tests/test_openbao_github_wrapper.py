@@ -33,7 +33,7 @@ class OpenBaoGithubWrapperTests(unittest.TestCase):
         cls.wrapper = load_wrapper()
 
     def test_scope_is_fixed_to_one_repository_and_two_direct_workflows(self) -> None:
-        self.assertEqual(self.wrapper.REPOSITORY, "cluster2600/3dprinting993")
+        self.assertEqual(self.wrapper.REPOSITORY, "cluster2600/porscheparts")
         self.assertEqual(
             self.wrapper.ALLOWED_WORKFLOWS,
             {

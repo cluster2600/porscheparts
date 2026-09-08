@@ -1,7 +1,7 @@
 # Wrapper GitHub borné par OpenBao
 
 `deploy/openbao/openbao-github` pousse uniquement la branche `codex/*` courante
-du dépôt `cluster2600/3dprinting993` et déclenche uniquement les deux workflows
+du dépôt `cluster2600/porscheparts` et déclenche uniquement les deux workflows
 Vast F40/F41 explicitement autorisés. Il réutilise l'AppRole déjà provisionnée
 pour `openbao-ghcr`; aucun jeton n'est ajouté au dépôt ou à la ligne de commande.
 
