@@ -67,9 +67,11 @@ La stack qualifiée hors GPU est :
 - PyTorch Geometric 2.8.0.post1 ;
 - imports vérifiés : DoMINO, GeoTransolver et MeshGraphNet.
 
-Le build, le pull public par digest et le smoke hors GPU sont verts. Le smoke
-GPU, l'entraînement, le holdout/OOD et la corrélation physique restent bloqués ;
-un long job Vast.ai n'est donc pas encore autorisé.
+Le build, le pull public par digest et les smokes hors GPU sont verts. Un smoke
+GPU PhysicsNeMo 2.2.0/PyTorch 2.10.0+cu129 a aussi été exécuté sur le worker du
+piston le 8 septembre 2026. Il prouve seulement l'accès CUDA et les opérations
+tensor ; l'entraînement, le holdout/OOD et la corrélation physique restent
+bloqués.
 
 La voie LLM documentée prévoit Qwen3-Coder-30B-A3B-Instruct pour le code/CAO et
 Qwen3-VL-8B-Instruct pour la lecture multimodale, servis par vLLM. L'image
@@ -90,10 +92,27 @@ L'image Ubuntu 24.04/Python 3.12 isole OVRTX, Material Agent et Physics Agent :
 - base `simready-local-ai` : digest workflow
   `sha256:41ddde8e527fcc17a3f29ac90183bd1326c330388240baf2004f99de980d6ebe`.
 
-Le [prévol courant](../twins/vehicle-993/functional-flow-simready-preflight-f0.json)
-est bloqué : OpenUSD/Asset Validator et les services Material, Physics et OVRTX
-ne sont pas tous disponibles et sains sur le Mac. Aucun statut SimReady validé
-ni véhicule fonctionnel n'est revendiqué.
+Le Mac ne porte toujours pas tous ces runtimes. Sur un worker Vast.ai
+`linux/amd64`, le piston CP1 F0 passe désormais OpenUSD minimum, NVIDIA Asset
+Validator, Geometry, Physics, `Prop-Robotics-Neutral 1.0.0` et les rendus OVRTX.
+Cette preuve est bornée à un accessoire d'inspection isolé ; l'assemblage moteur
+et le véhicule restent non validés. Voir
+[le résumé SimReady](../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/simready-validation-summary.json).
+
+## Simulation d'impression métal
+
+Le pipeline ajoute maintenant un tranchage géométrique générique de chaque
+couche LPBF, un écran d'épaisseur, un contrôle de volume fermé et une enveloppe
+conservative de supports. Le premier passage réel sur le piston compte 2 390
+couches à 50 µm. CalculiX reste le solveur de distorsion de référence et
+AdditiveFOAM le solveur local du bain de fusion, mais ils ne doivent être
+exécutés comme preuve que lorsqu'une carte matière-machine-procédé cohérente est
+disponible. Pour le CP1/Sapphire, cette carte complète manque encore.
+
+La politique et les onze étapes obligatoires sont dans
+[AM_VALIDATION_PIPELINE.md](AM_VALIDATION_PIPELINE.md). Le validateur suit les
+25 fiches qui proposent LPBF ou DMLS et empêche leur libération si une étape est
+contournée.
 
 ## Images OCI verrouillées
 

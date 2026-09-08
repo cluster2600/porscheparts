@@ -153,6 +153,7 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 
 validate:
 	python3 scripts/validate_catalog.py
+	python3 scripts/validate_am_pipeline.py
 	python3 scripts/validate_sources.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_reference.py

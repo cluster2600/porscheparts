@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+  "executed_on": "2026-09-08",
+  "classification": "executed_omniverse_simready_isolated_prop_validation_not_engine_or_manufacturing_validation",
+  "runtime": {
+    "platform": "linux/amd64 Vast.ai GPU worker",
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "content_agents_revision": "36dbf3f274f8e256637230a05a085853f65cc175",
+    "simready_foundation_revision": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "usd_convert_cad_revision": "208fe2c1cd71ae2bb7bd825daf712617000ae028",
+    "simready_validate_version": "2026.4.8",
+    "omniverse_asset_validator_version": "1.18.0"
+  },
+  "asset_binding": {
+    "input_step_sha256": "6c534476364875b528827f3b5edc9bc2c8100526d31f2c6c4ba5b2363c7ddea1",
+    "converted_usd_sha256": "d3380d2650859c4b0daaea19ee26ffe5002dcfa1cab989ee79e4cdfd10fc7296",
+    "final_simready_usd_sha256": "8e1fe7e6f49b653f492b263f0daf3b0eec91a9e861cb6d3dd229fa816baba3fb",
+    "default_prim": "/piston_cp1_gallery_f0",
+    "up_axis": "Z",
+    "meters_per_unit": 1.0,
+    "mesh_count": 1,
+    "bounds_mm": [99.0, 99.0, 70.0]
+  },
+  "authored_screening_properties": {
+    "visual_material": "Silver OpenPBR visual proxy only",
+    "mass_kg": 0.6813179850578308,
+    "density_kg_m3": 2670.0,
+    "collision_approximation": "convexHull",
+    "rigid_body_role": "isolated inspection prop only",
+    "grasp_points": "two visually reviewed external-skirt inspection points",
+    "friction": null,
+    "restitution": null,
+    "gravity_scene": null
+  },
+  "agent_sanitization": {
+    "physics_agent_suggestion_accepted_without_review": false,
+    "removed_unverified_properties": [
+      "physics material binding containing inferred friction and restitution",
+      "inferred physics material prim",
+      "inferred gravity scene"
+    ],
+    "remaining_forbidden_properties": []
+  },
+  "validators": {
+    "minimum_openusd": "PASS",
+    "nvidia_asset_validator": "PASS",
+    "geometry_category": "PASS",
+    "physics_category": "PASS",
+    "simready_profile": {
+      "name": "Prop-Robotics-Neutral",
+      "version": "1.0.0",
+      "status": "PASS",
+      "nonblocking_single_component_requirement": "RB.MB.001"
+    },
+    "ovrtx_still_pixel_check": "PASS",
+    "ovrtx_four_frame_turntable": "PASS"
+  },
+  "public_media": {
+    "still": {
+      "path": "piston-cp1-gallery-f0-ovrtx.png",
+      "sha256": "e3a807df98025e60286c5f6ca460852f920827a0ebd47053de6dd25c3cca5000",
+      "size_px": [1024, 1024]
+    },
+    "turntable": {
+      "path": "piston-cp1-gallery-f0-turntable.gif",
+      "sha256": "255a3770586745b0645ae2840c03590505c3ee78b923285a1082c3864de413e8",
+      "frame_count": 4
+    }
+  },
+  "physicsnemo_runtime_smoke": {
+    "status": "PASS",
+    "scope": "GPU tensor runtime only; no surrogate trained and no physical validation",
+    "nvidia_physicsnemo_version": "2.2.0",
+    "torch_version": "2.10.0+cu129",
+    "cuda_available": true
+  },
+  "gates": {
+    "simready_isolated_asset_passed": true,
+    "measured_piston_geometry_validated": false,
+    "engine_interfaces_available": false,
+    "omniverse_assembly_function_tested": false,
+    "lpbf_process_simulation_correlated": false,
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false
+  }
+}

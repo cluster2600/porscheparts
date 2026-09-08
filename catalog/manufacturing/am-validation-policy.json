@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "METAL-AM-VALIDATION-PIPELINE-0001",
+  "scope": {
+    "catalog_directory": "catalog/parts",
+    "trigger_candidate_processes": ["LPBF", "DMLS"],
+    "rule": "Toute pièce proposant LPBF ou DMLS reste suivie par cette politique, même si son procédé préféré est encore undecided ou conventionnel."
+  },
+  "stage_definitions": [
+    {
+      "stage_id": "01_source_and_geometry_authority",
+      "required_for_release": true,
+      "acceptance": "Provenance, variante, révision CAO, cotes mesurées et hypothèses sont séparées et liées par empreinte."
+    },
+    {
+      "stage_id": "02_cad_brep_and_mesh_integrity",
+      "required_for_release": true,
+      "acceptance": "Le master éditable, le STEP/BREP et le maillage dérivé sont valides, à l'échelle, fermés et reliés par SHA-256."
+    },
+    {
+      "stage_id": "03_full_layer_slicing_and_supports",
+      "required_for_release": true,
+      "acceptance": "Toutes les couches de la pièce sont réellement sectionnées et les îlots, overhangs, supports et évacuations de poudre sont contrôlés."
+    },
+    {
+      "stage_id": "04_material_machine_process_card",
+      "required_for_release": true,
+      "acceptance": "Alliage, poudre, machine, orientation, paramètres, traitements et propriétés dépendantes de la température appartiennent à une même route qualifiée."
+    },
+    {
+      "stage_id": "05_local_melt_pool_thermal",
+      "required_for_release": true,
+      "acceptance": "Le bain de fusion local est calculé avec la carte cible, converge en espace/temps et est corrélé à des coupons de la route retenue."
+    },
+    {
+      "stage_id": "06_full_build_thermomechanical_distortion",
+      "required_for_release": true,
+      "acceptance": "La construction complète, les supports, la plaque, la détente et la distorsion sont simulés avec convergence et carte constitutive calibrée."
+    },
+    {
+      "stage_id": "07_recoater_and_support_removal",
+      "required_for_release": true,
+      "acceptance": "Le jeu au recoater sur forme déformée et l'accès au retrait des supports sont validés avec le projet fournisseur."
+    },
+    {
+      "stage_id": "08_omniverse_simready_asset",
+      "required_for_release": true,
+      "acceptance": "Le USD final passe Asset Validator, Geometry, Physics et le profil SimReady cible, sans propriété physique inventée."
+    },
+    {
+      "stage_id": "09_omniverse_assembly_function",
+      "required_for_release": true,
+      "acceptance": "La pièce est testée avec ses interfaces, tolérances, mouvements, contacts, charges et scénarios de défaillance dans l'assemblage."
+    },
+    {
+      "stage_id": "10_physical_correlation_and_inspection",
+      "required_for_release": true,
+      "acceptance": "Coupons, première pièce, CT/CND, métrologie, essais fonctionnels et corrélation simulation-mesure sont approuvés."
+    },
+    {
+      "stage_id": "11_engineering_release",
+      "required_for_release": true,
+      "acceptance": "Une revue d'ingénierie signée autorise explicitement la fabrication et l'usage visés sur une révision précise."
+    }
+  ],
+  "allowed_stage_statuses": [
+    "not_started",
+    "completed_screening",
+    "passed",
+    "blocked_missing_input",
+    "not_applicable"
+  ],
+  "default_stage_statuses": {
+    "01_source_and_geometry_authority": "not_started",
+    "02_cad_brep_and_mesh_integrity": "not_started",
+    "03_full_layer_slicing_and_supports": "not_started",
+    "04_material_machine_process_card": "not_started",
+    "05_local_melt_pool_thermal": "not_started",
+    "06_full_build_thermomechanical_distortion": "not_started",
+    "07_recoater_and_support_removal": "not_started",
+    "08_omniverse_simready_asset": "not_started",
+    "09_omniverse_assembly_function": "not_started",
+    "10_physical_correlation_and_inspection": "not_started",
+    "11_engineering_release": "not_started"
+  },
+  "tracked_part_ids": [
+    "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
+    "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+    "993-ENG-CONNECTING-ROD-TI64-F0-0001",
+    "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
+    "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
+    "993-ENG-EXHAUST-VALVE-F1-0001",
+    "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+    "993-ENG-INTAKE-VALVE-F1-0001",
+    "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
+    "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+    "993-ENG-INTERCOOLER-END-TANK-ALSI10MG-F0-0001",
+    "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+    "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+    "993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001",
+    "993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001",
+    "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+    "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
+    "993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001",
+    "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001",
+    "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
+    "993-EXH-OVAL-TIP-IN625-F0-0001",
+    "993-INT-DOOR-OPENER-LEVER-F0-0001",
+    "993-INT-SWITCH-TRIM-RING-F1-0001",
+    "993-TURBOCHARGER-K16-PAIR-0001",
+    "993-WHL-CENTER-CAP-ALSI10MG-F0-0001"
+  ],
+  "part_overrides": {
+    "993-ENG-PISTON-CP1-GALLERY-F0-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json",
+            "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json"
+          ],
+          "blocker": "La géométrie F0 est synthétique et aucune cote critique de piston M64/60 n'est mesurée."
+        },
+        "02_cad_brep_and_mesh_integrity": {
+          "status": "passed",
+          "evidence": [
+            "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json",
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json"
+          ]
+        },
+        "03_full_layer_slicing_and_supports": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json",
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json"
+          ],
+          "blocker": "L'orientation et l'enveloppe conservative de supports ne sont pas un projet Velo3D Flow revu."
+        },
+        "04_material_machine_process_card": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "docs/993_PISTON_CP1_COOLING_GALLERY_F0.md"
+          ],
+          "blocker": "La carte CP1 complète dépendante de la température et les paramètres de la machine exacte ne sont pas publics."
+        },
+        "05_local_melt_pool_thermal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json"
+          ],
+          "blocker": "AdditiveFOAM ne possède pas de carte CP1 Sapphire 50 µm calibrée ; la carte AlSi10Mg n'est pas transférable."
+        },
+        "06_full_build_thermomechanical_distortion": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json"
+          ],
+          "blocker": "La loi constitutive CP1 à chaud et la déformation inhérente calibrée par orientation/supports manquent."
+        },
+        "07_recoater_and_support_removal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json"
+          ],
+          "blocker": "Le champ de distorsion, le jeu/raideur du recoater et les supports fournisseur manquent."
+        },
+        "08_omniverse_simready_asset": {
+          "status": "passed",
+          "evidence": [
+            "twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/simready-validation-summary.json",
+            "twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/piston-cp1-gallery-f0-ovrtx.png",
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json",
+            "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/piston-lpbf-build-screen.png"
+          ]
+        },
+        "09_omniverse_assembly_function": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/twins/twin-993-m64-60-piston-gallery-f0.json"
+          ],
+          "blocker": "Les géométries, tolérances et lois de contact piston-cylindre-segments-axe-bielle-soupapes manquent."
+        },
+        "10_physical_correlation_and_inspection": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "11_engineering_release": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json"
+          ],
+          "blocker": "Aucune revue professionnelle, première pièce, CT, fatigue ni essai moteur de 200 h n'est disponible."
+        }
+      }
+    }
+  },
+  "release_rule": {
+    "accepted_status": "passed",
+    "not_applicable_requires_signed_waiver": true,
+    "catalog_released_requires_every_required_stage_passed": true,
+    "simulation_alone_never_authorizes_manufacturing": true
+  }
+}
