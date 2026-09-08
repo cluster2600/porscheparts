@@ -1,0 +1,186 @@
+{
+  "cases": [
+    {
+      "artifacts": {
+        "bracket-static.dat": {
+          "bytes": 1908325,
+          "sha256": "ecabe2fca55e477adfa3d15b611afbd5ea53e62701c1e2b9e0e3542becb0de82"
+        },
+        "bracket-static.inp": {
+          "bytes": 482160,
+          "sha256": "96775e0c818291dffd7880e93a00ea7aba1411109df5d2c675b55ed0dada2f8c"
+        },
+        "bracket.msh": {
+          "bytes": 706185,
+          "sha256": "c89d4cfe7f0ceee3b44e602534a44669500bec8fe32652047767c4cd17e64049"
+        },
+        "calculix.log": {
+          "bytes": 2267,
+          "sha256": "860f778e03162c6679335116267af30fba18f6298fafc86637731ae89c299ff1"
+        }
+      },
+      "maximum_displacement_mm": 1.1856455585571584,
+      "mesh": {
+        "distributed_load_n": 400.0,
+        "left_bore_fixed_xyz_nodes": 84,
+        "load_direction": "negative_local_z",
+        "loaded_pedestal_top_nodes": 237,
+        "mesh_size_mm": 5.0,
+        "nodes": 8132,
+        "quadratic_tetrahedra": 3730,
+        "right_bore_roller_yz_nodes": 82
+      },
+      "von_mises_mpa": {
+        "maximum": 232.17827151859277,
+        "p95": 69.15641596653812,
+        "p99": 90.81728333379691
+      }
+    },
+    {
+      "artifacts": {
+        "bracket-static.dat": {
+          "bytes": 3207061,
+          "sha256": "e616f43fc4bfb28f4581e60e76a7f055add0eed97e9d2a6109d7f0830fb9bbf9"
+        },
+        "bracket-static.inp": {
+          "bytes": 857558,
+          "sha256": "b53af86af5917ef32e248dde1acdb56751ea0b34b53f687b01375b6baf5b644a"
+        },
+        "bracket.msh": {
+          "bytes": 1205371,
+          "sha256": "6379e4ff1e78f0464908703c93280b93577658eefe54af1140a8c67f66bb349c"
+        },
+        "calculix.log": {
+          "bytes": 2268,
+          "sha256": "ef2b377add07e424426991aed6359c88a05411287e4a936783ac0b5d28252f01"
+        }
+      },
+      "maximum_displacement_mm": 1.1935728380194217,
+      "mesh": {
+        "distributed_load_n": 400.0,
+        "left_bore_fixed_xyz_nodes": 118,
+        "load_direction": "negative_local_z",
+        "loaded_pedestal_top_nodes": 355,
+        "mesh_size_mm": 3.5,
+        "nodes": 13352,
+        "quadratic_tetrahedra": 6311,
+        "right_bore_roller_yz_nodes": 94
+      },
+      "von_mises_mpa": {
+        "maximum": 253.7080546617429,
+        "p95": 68.05632169151754,
+        "p99": 90.15312399652052
+      }
+    },
+    {
+      "artifacts": {
+        "bracket-static.dat": {
+          "bytes": 7688435,
+          "sha256": "ac46f9956f53c27ff6341be12b29723c61c2e7f76795a9cc9afc71aaeef2e3b5"
+        },
+        "bracket-static.inp": {
+          "bytes": 2172707,
+          "sha256": "1f9eff479c7494e14b24de5c1583556e49b494abeca53bf4a158a7ab29bec343"
+        },
+        "bracket.msh": {
+          "bytes": 2917237,
+          "sha256": "16caac38c15e0f45802324373de883d59e8914c5be066fc97784a111cdfd623a"
+        },
+        "calculix.log": {
+          "bytes": 2268,
+          "sha256": "4fbb1c4196248231dc25df8c2908bc25d11b27e338656782cb210a18fc3a7ef7"
+        }
+      },
+      "maximum_displacement_mm": 1.2103298959502797,
+      "mesh": {
+        "distributed_load_n": 400.0,
+        "left_bore_fixed_xyz_nodes": 240,
+        "load_direction": "negative_local_z",
+        "loaded_pedestal_top_nodes": 560,
+        "mesh_size_mm": 2.5,
+        "nodes": 29854,
+        "quadratic_tetrahedra": 15419,
+        "right_bore_roller_yz_nodes": 202
+      },
+      "von_mises_mpa": {
+        "maximum": 328.3324434798846,
+        "p95": 73.00589915976964,
+        "p99": 94.11560488811114
+      }
+    }
+  ],
+  "dfam_assessment": {
+    "current_route_decision": "conditional_candidate_requires_CNC_sheet_LPBF_cost_and_performance_comparison",
+    "favorable_features": [
+      "single BREP consolidates the open frame, two end eyes and central pedestal",
+      "two open cutouts and all bores provide direct powder evacuation",
+      "low-volume replacement could avoid dedicated casting tooling"
+    ],
+    "geometry_redesign_authorized": false,
+    "lpbf_preferred_for_current_geometry": false,
+    "unfavorable_features": [
+      "current form is predominantly planar and accessible to profile cutting plus machining",
+      "no measured load path exists to justify topology optimization or lattice features",
+      "Ti-6Al-4V powder, qualification, supports and post-machining add cost and inspection burden"
+    ]
+  },
+  "engineering_gates": {
+    "fastener_contact_and_preload": false,
+    "fatigue_completed": false,
+    "measured_mounting_interfaces": false,
+    "measured_vehicle_loads": false,
+    "modal_and_vibration_completed": false,
+    "professional_review": false,
+    "qualified_lpbf_material_card": false,
+    "thermal_stress_completed": false,
+    "vehicle_fit_test": false
+  },
+  "grid_comparison_fine_vs_previous": {
+    "displacement_relative_change": 0.013845033479654212,
+    "p95_relative_change": 0.06779695237257755,
+    "screening_threshold": 0.1,
+    "threshold_authority": "project regression threshold only; not a design acceptance criterion"
+  },
+  "inputs": {
+    "boundary_condition_authority": "F0 bore locations and roller idealization; no measured vehicle interfaces or fastener preload",
+    "load_authority": "synthetic regression value; no measured 993 intercooler, hose, vibration or acceleration load",
+    "load_n": 400.0,
+    "step_repository_path": "parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step",
+    "step_sha256": "7919fff1cbe6a84efbfa234fb71233472dd140397b3ac52c0cee79a2a22fadbb"
+  },
+  "interpretation": {
+    "manufacturing": "No geometry, numerical, or material result authorizes printing or vehicle installation.",
+    "physicsnemo": "No training or inference: three uncorrelated mesh points are not an admissible surrogate dataset.",
+    "scope": "The solve checks numerical behavior of the F0 clean-sheet BREP under one synthetic static load only.",
+    "singularities": "Raw maxima at idealized supports and point-distributed load edges are reported but p95/p99 and mesh convergence carry more screening value.",
+    "strength": "The 828 MPa value is a wrought comparison reference, never an LPBF design allowable."
+  },
+  "material": {
+    "candidate": "Ti-6Al-4V Grade 5 screening card",
+    "elastic_modulus_mpa": 110000.0,
+    "poisson_ratio": 0.31,
+    "qualified_lpbf_allowable_available": false,
+    "wrought_reference_proof_mpa": 828.0
+  },
+  "numerical_gates": {
+    "displacement_grid_change_below_10_percent": true,
+    "finest_maximum_below_wrought_reference_proof": true,
+    "finest_p99_below_wrought_reference_proof": true,
+    "p95_grid_change_below_10_percent": true
+  },
+  "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+  "release_authorized": false,
+  "schema_version": "1.0.0",
+  "solver": {
+    "analysis": "CalculiX linear static C3D10",
+    "calculix_version_output": "This is Version 2.21",
+    "gmsh_version": "4.12.1",
+    "mesh": "Gmsh second-order tetrahedra from the exact committed STEP",
+    "python": "3.12.3",
+    "runtime_image_id": "sha256:271bcb154604e9ab224334f4b76dc1933cf54af044b50f2c72d2b04da01c872c",
+    "runtime_image_ref": "3dprinting993-cae-reference-f31:dev",
+    "runtime_reproducibility": "local immutable image ID recorded; no registry digest claimed"
+  },
+  "status": "synthetic_linear_static_calculix_screen_complete_not_vehicle_validation",
+  "twin_id": "TWIN-993-INTERCOOLER-BRACKET-TI-F0"
+}

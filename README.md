@@ -132,6 +132,10 @@ Le premier sous-ensemble moteur 993 composé est le
 [carter–turbine de refroidissement F0](docs/993_ENGINE_COOLING_FAN_SYSTEM_F0.md).
 Sa conversion OpenUSD minimale réussit, mais son test de jeu échoue avec une
 collision BRep explicite ; il reste donc un jumeau de recherche non fabricable.
+Le [support d'intercooler Ti-6Al-4V F0](docs/993_INTERCOOLER_BRACKET_TI_F0.md)
+ajoute un criblage analytique, trois maillages CalculiX C3D10 et une conversion
+OpenUSD minimale. Il reste un candidat LPBF conditionnel : la géométrie plane
+actuelle doit encore être comparée à la CNC et à la tôlerie.
 
 ![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
 
