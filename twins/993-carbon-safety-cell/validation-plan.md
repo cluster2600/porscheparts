@@ -6,13 +6,16 @@ Le projet possède un **concept CAO**, un **concept de moule** et un **screening
 
 Le contrat machine-readable est dans `engineering-validation-contract.json`. Il garde explicitement fermées les autorisations de fabrication, installation, démarrage moteur, essai routier et essai circuit.
 
+L'ordre des travaux, les dépendances, les intervenants et les livrables sont
+décrits dans la [feuille de route jusqu'à la version finale](roadmap-to-release.md).
+
 ## Ce qui est déjà vérifié
 
 - Huit architectures sont soumises aux mêmes chargements et hypothèses dans un treillis 3D linéaire.
 - La variante tout CFRP `all_carbon_multicell_x10` donne 21 011,7 Nm/deg et 25 238,5 N/mm dans ce seul modèle 993 d'enveloppe.
 - Les contrôles d'enveloppe du même candidat donnent 20 914,7 Nm/deg avec les voies publiées de la 964 C2 et 21 011,7 Nm/deg avec les voies de référence 993 ; les voies ne sont pas des points de suspension.
-- Le cas torsionnel a été reconstruit dans CalculiX 2.21. L'écart avec le solveur Python est de `1.46e-6`, inférieur à la tolérance numérique `1e-4`.
-- Les STEP cellule, modules 964/993 et outillage sont générés par build123d/OCCT ; le rapport recense 32 solides de cellule, 12 solides par jeu de modules et 7 secteurs d'outillage.
+- Le cas torsionnel a été reconstruit dans CalculiX 2.21. L'écart relatif avec le solveur Python est de `7.8175e-7`, inférieur à la tolérance numérique `1e-4` ; voir le [rapport de contre-calcul](derived/calculix-verification.json).
+- Les STEP cellule, modules 964/993 et outillage sont générés par build123d/OCCT ; le [rapport CAO](derived/cad-generation-report.json) recense 49 solides de cellule, 12 solides par jeu de modules et 10 éléments d'outillage, mandrin de tunnel compris.
 - La limite de la vérification CalculiX est volontairement étroite : elle contrôle l'implémentation du même treillis, pas la fidélité physique d'une coque composite.
 
 ## Modèles à construire

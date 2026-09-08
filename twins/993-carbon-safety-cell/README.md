@@ -4,6 +4,12 @@ Ce dossier transforme l'idée d'une monocoque carbone compatible 964/993 en un p
 
 « Tout carbone » désigne ici la structure primaire. Des inserts filetés, bagues, axes et fixations métalliques locaux resteront nécessaires, avec dimensionnement au matage et isolation galvanique.
 
+La [feuille de route jusqu'à la version finale](roadmap-to-release.md) relie
+les neuf étapes, leurs livrables et critères de passage : réception, mesures,
+CAO, stratification, calcul, fabrication, prototypes, essais et dossier final.
+Elle précise les prochaines actions et le travail requis sur les moules et
+les quatre configurations 964/993 × C2/C4.
+
 ## Livrables présents
 
 - `design-space.json` : hypothèses, enveloppes, masse cible de 1 200 kg, charges et huit architectures ;

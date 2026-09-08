@@ -104,6 +104,13 @@ tests/               tests du catalogue et de ses garde-fous
 
 ## État
 
+Le programme [monocoque carbone autoporteuse 964/993](twins/993-carbon-safety-cell/README.md)
+dispose d'une [feuille de route jusqu'à la version finale](twins/993-carbon-safety-cell/roadmap-to-release.md) :
+neuf étapes de la métrologie à la réception, avec conception du moule,
+simulation de fabrication et du produit, prototypes et essais physiques.
+Il reste au stade d'avant-projet F1 ; compatibilité, fabrication et usage
+route/circuit ne sont pas encore validés.
+
 La **Phase 0 — Fondation** est terminée. La **Phase 1 — Inventaire des
 sources** a dépassé son seuil quantitatif avec 294 fiches valides, mais la
 qualification croisée et l'acquisition de mesures directes restent ouvertes

@@ -201,6 +201,17 @@ des mesures vérifiables.
 - [ ] Ajouter vues, plans cotés et instructions de fabrication
 - [ ] Suivre versions, véhicules testés et retours terrain
 
+## Programme spécifique — monocoque carbone 964/993
+
+Le développement original demandé pour la structure autoporteuse est suivi
+dans la [feuille de route monocoque jusqu'à la version finale](twins/993-carbon-safety-cell/roadmap-to-release.md).
+Elle couvre cahier des charges et préconsultation TÜV, métrologie, CAO des
+variantes C2/C4, composite et assemblages, calculs, moules et procédé,
+prototypes, corrélation physique et réception. Les premiers calculs F1 sont
+disponibles ; les preuves de compatibilité et de validation restent à acquérir.
+Ce programme d'étude étend le périmètre initial ci-dessous sans ouvrir les
+autorisations de fabrication ou d'utilisation.
+
 ## Hors périmètre initial
 
 - Commercialisation de pièces
@@ -213,8 +224,9 @@ des mesures vérifiables.
 
   Précision nécessaire : un tel monocoque **existe commercialement** pour 964 et
   993 (`SRC-ZESAD-CARBON-MONOCOQUE-964-993`), de 129 990 à 219 990 €. Il n'est
-  donc pas exclu du périmètre parce qu'il serait impossible, mais parce que ce
-  dépôt ne peut ni le documenter, ni le vérifier, ni le reproduire : la fiche
+  donc pas exclu du périmètre initial parce qu'il serait impossible, mais parce
+  que les seules données publiques ne permettent pas de vérifier ou reproduire
+  ce produit : la fiche
   produit ne publie ni masse, ni raideur en torsion, ni essai de choc, ni
   homologation. Une structure de sécurité sans donnée structurelle publiée est
   exactement ce que `docs/QUALITY_GATES.md` interdit d'inscrire au catalogue.
