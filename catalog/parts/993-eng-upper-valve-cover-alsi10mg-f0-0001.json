@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
+  "name": "Couvre-culasse supérieur avec tours COP, concept AlSi10Mg F0",
+  "description": "Concept indépendant d'un couvre-culasse supérieur 993 ouvert côté huile, avec six ailettes et trois tours coil-on-plug intégrées. Les sources confirment des alternatives billet et l'intérêt COP, mais aucune géométrie individuelle ; toutes les interfaces F0 sont synthétiques.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Carrera",
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "upper_valve_cover_with_ignition_mounting",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage F0 de CAO ouverte, consolidation COP, pression carter, serrage, planéité, thermique, convection et masse ; aucune fabrication, étanchéité, installation ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/source/upper_valve_cover.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/derived/upper_valve_cover_alsi10mg_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/FVD/Protomotive/BBi/EOS ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - couvre-culasses et intégration coil-on-plug 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Catalogue des alternatives aluminium et identifie un kit BBi portant les bobines COP ; aucune géométrie ou preuve LPBF. Voir SRC-PORSCHEFANATICS-993-VALVE-COVER-CANDIDATE."
+      },
+      {
+        "title": "FVD - jeu complet de couvre-culasses billet 993",
+        "url": "https://www.fvd.net/en-us/shop/complete-upper-and-lower-valve-cover-set-993-carrera-rs-billet-aluminum-made-in-germany-fvd105993cset~p312212",
+        "source_type": "community",
+        "license": "commercial-retailer-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare aluminium billet, kit quatre caches, 400 x 150 x 200 mm et 3,32 kg ; valeurs du kit complet seulement. Voir SRC-FVD-993-BILLET-VALVE-COVER-SET."
+      },
+      {
+        "title": "Protomotive - couvre-culasses supérieurs 993 6061-T6",
+        "url": "https://www.protomotive.com/wp422/product/993-turbo-and-carrera-upper-valve-covers/",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Confirme paire supérieure Carrera/Turbo, CAO, usinage billet 6061-T6 et anodisation ; aucune définition individuelle. Voir SRC-PROTOMOTIVE-993-UPPER-VALVE-COVER-6061."
+      },
+      {
+        "title": "PorscheFanatics - couples de serrage 993",
+        "url": "https://porschefanatics.com/993/torques/",
+        "source_type": "community",
+        "license": "derived-facts-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Transcription OCR non vérifiée : cache sur carter d'arbre à cames, M6, 9,7 Nm, page 60. Utilisée comme scénario, jamais comme instruction. Voir SRC-PORSCHEFANATICS-993-TORQUES."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Route T6 et matériau candidat ; valeurs numériques de calcul maintenues comme comparaisons génériques du projet. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "CNC",
+      "casting"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "alliage aluminium-silicium-magnésium candidat LPBF",
+      "grade": "EOS Aluminium AlSi10Mg T6 de comparaison ; produits commerciaux en aluminium billet/6061-T6",
+      "standard": "DIN EN 1706 EN AC-43000 et ASTM F3318 pour le candidat ; spécification étanchéité/planéité propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation ouverte, supports et stratégie recoater à qualifier",
+      "détensionnement puis T6 avec trempe et distorsion contrôlées",
+      "HIP à décider sur porosité, étanchéité, fatigue et résultats de fuite",
+      "usinage de la face joint, des perçages, tours COP, évents et datums",
+      "ébavurage et finition côté huile sans rétention de poudre ou média",
+      "anodisation compatible huile, température, joints et bobines",
+      "nettoyage moteur et conditionnement de propreté"
+    ],
+    "supplier_requirements": [
+      "machine, paramètres, orientation, supports, poudre et lot traçables",
+      "coupons orientés avec traction, fatigue, fluage, huile et corrosion à chaud",
+      "témoins de planéité et distorsion après T6 et usinage",
+      "CT intégral, FPI et métallographie avec critères de défauts zonés",
+      "métrologie face joint, bolt pattern, tours COP, évents et jeux",
+      "preuve pression, fuite, cyclage thermique, vibration et endurance moteur"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier AlSi10Mg contre carter, goujons, écrous, bobines, joints et huile ; traiter corrosion, fretting et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-valve-cover-candidate.json",
+      "catalog/sources/src-fvd-993-billet-valve-cover-set.json",
+      "catalog/sources/src-protomotive-993-upper-valve-cover-6061.json",
+      "catalog/sources/src-porschefanatics-993-torques.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "L'enveloppe 400 x 150 x 200 mm et 3,32 kg concernent un kit de quatre caches avec joints/visserie, pas la pièce F0.",
+      "La coque 220 x 95 x 45 mm, les dix fixations, six ailettes et trois tours COP sont entièrement synthétiques.",
+      "Le couple 9,7 Nm provient d'une transcription OCR non vérifiée et ne constitue aucune instruction de montage.",
+      "Les valeurs AlSi10Mg sont des comparaisons génériques, pas une carte admissible chaude de face d'étanchéité.",
+      "Les pressions, températures, gradient, convection, chaleur et joint sont des entrées de régression.",
+      "Les écrans thermiques de contrainte, voile et convection échouent ; aucune étanchéité n'est démontrée.",
+      "Aucun contact joint, CHT, modal, fatigue, relaxation de serrage ou intégration bobine/faisceau n'est validé.",
+      "Le STEP prouve seulement un BREP ouvert relisible et n'est autorisé ni pour fabrication, ni pour étanchéité, ni pour moteur."
+    ]
+  }
+}
