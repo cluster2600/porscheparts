@@ -121,4 +121,3 @@ en direct de ces courts passages n’est revendiquée.
 Fichiers, formes d’entrée et tolérances restent inchangés. Géométrie, coordonnées,
 axes, bornes absolues et fichiers CAD restent privés. Les mesures utilisent les
 unités du scan ; ni l’échelle absolue ni les interfaces M64 ne sont certifiées.
-
