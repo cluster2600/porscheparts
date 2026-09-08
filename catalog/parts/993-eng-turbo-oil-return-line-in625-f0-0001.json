@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001",
+  "name": "Conduite de retour d'huile turbo, concept IN625 F0",
+  "description": "Concept propre d'une conduite gauche à passage interne ouvert et deux brides intégrées. PorscheFanatics et Patrick Motorsports confirment le besoin fonctionnel 993 Turbo, mais aucune dimension ni matière ; toute la route F0 reste synthétique.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1996,
+      "to": 1997
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "turbocharger_oil_return_line",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage F0 de CAO creuse, hydraulique, pression, flexion, dilatation, thermique et DfAM ; aucune fabrication, installation, circulation d'huile ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-turbo-oil-return-line-in625-f0-0001/source/turbo_oil_return_line.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-turbo-oil-return-line-in625-f0-0001/derived/turbo_oil_return_line_in625_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/Patrick Motorsports/EOS ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - conduite de retour d'huile turbo candidate",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifie les lignes de balayage/retour comme faiblesse connue et catalogue le jeu Patrick, sans géométrie ni matière. Voir SRC-PORSCHEFANATICS-993-TURBO-OIL-RETURN-CANDIDATE."
+      },
+      {
+        "title": "Patrick Motorsports - jeu de conduites de retour d'huile turbo 993",
+        "url": "https://patrickmotorsports.com/products/tur99310733853pms",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Confirme jeu gauche/droit, 993 Turbo 1996-1997, pompe vers réservoir, forme anti-retour et ajustement final obligatoire ; aucune cote ni matière. Voir SRC-PATRICKMOTORSPORTS-993-TURBO-OIL-RETURN-PIPES."
+      },
+      {
+        "title": "EOS NickelAlloy IN625 material data sheet",
+        "url": "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Valeurs M 290 40 µm de comparaison dépendantes du procédé et de l'orientation. Voir SRC-EOS-IN625-MATERIAL-DATA."
+      },
+      {
+        "title": "Special Metals - INCONEL alloy 625",
+        "url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Référence thermique corroyée utilisée seulement au F0, non équivalente au LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "sheet_metal",
+      "CNC"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "superalliage nickel résistant à la chaleur et à la corrosion, candidat LPBF",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625 de comparaison ; matière commerciale inconnue",
+      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 et spécification de conduite propres au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation sans support interne et stratégie recoater à qualifier",
+      "retrait complet des supports externes et preuve de dé-poudrage",
+      "détensionnement et traitement thermique qualifiés pour la paroi mince",
+      "HIP à décider sur défauts, fatigue, étanchéité et résultats de pression",
+      "usinage des faces, alésages, portées et références après compensation",
+      "finition interne contrôlée sans rétention de média ou débris",
+      "nettoyage huile moteur, passivation et conditionnement de propreté"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, supports, lot et recyclage traçables",
+      "coupons minces orientés avec traction, fatigue, oxydation et compatibilité huile à chaud",
+      "capabilité démontrée sur paroi 1,2 mm et passage 10,3 mm sans support interne",
+      "CT intégral et borescope avec critères de défauts, obstruction et poudre résiduelle",
+      "métrologie des deux routes, brides, faces, entraxes, clocking et jeux véhicule",
+      "preuve pression, fuite, éclatement, débit, retour, cyclage thermique et vibration"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier IN625 contre carter, turbo, fixations, joints et huile ; traiter fretting, corrosion, oxydation et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-turbo-oil-return-candidate.json",
+      "catalog/sources/src-patrickmotorsports-993-turbo-oil-return-pipes.json",
+      "catalog/sources/src-eos-in625-material-data.json",
+      "catalog/sources/src-special-metals-inconel-625.json",
+      "parts/993-eng-turbo-oil-return-line-in625-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Les sources confirment seulement la fonction, le jeu gauche/droit, 1996-1997 et l'ajustement final ; aucune dimension n'est publiée.",
+      "La ligne gauche F0, sa spline, ses diamètres, sa paroi et ses brides sont entièrement synthétiques ; le côté droit est absent.",
+      "La masse théorique dépend du volume F0 et de la densité IN625, sans comparaison avec la pièce commerciale.",
+      "Les débits, pression, température, viscosité, pertes singulières, effort et appuis sont des entrées de régression.",
+      "L'hydraulique monophasique ne représente pas l'huile aérée, le drainage diphasique, les pulsations ou la pompe de balayage.",
+      "L'écran thermique totalement contraint échoue ; la souplesse réelle et les mouvements moteur-turbo sont inconnus.",
+      "Le besoin d'ajustement final annoncé par le fournisseur est incompatible avec un tube LPBF rigide sans métrologie véhicule.",
+      "Le STEP prouve seulement un BREP creux relisible et n'est autorisé ni pour fabrication, ni pour huile, ni pour turbo ou moteur."
+    ]
+  }
+}
