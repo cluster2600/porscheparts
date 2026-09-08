@@ -1330,6 +1330,79 @@ sur copie, aucune régression de qualité et baisse du nombre de cellules
 faibles exigées. Réévaluer le gain et le coût après ce premier lot ; il
 n'est pas exécuté dans le présent reçu.
 
+## Lot intérieur refusé et borne sur les faces fixes — 9 septembre
+
+Le lot proposé ci-dessus a été recherché, **mais aucune application n'a eu
+lieu**. La recherche bornée tente 96 solutions de programmation linéaire en
+8,16 secondes sur le cœur e873b8ae… : zéro cavité retenue. Elle exige des
+déterminants et un bilan de volume exacts, une frontière identique, un gain
+de forme local et une baisse du nombre de cellules sous le seuil minSICN
+de suivi. Parmi ces 96 propositions, 94 échouent à ce dernier critère ;
+les motifs de refus se recouvrent. Ce résultat concerne cette recherche
+bornée, pas toutes les réparations possibles. Rapport privé : 6086ff75… ;
+huit tests du proposeur passent. Les outils de contrôle des contacts,
+d'application native et de relecture par lot sont préparés, mais **aucun
+contrôle de contacts ni calcul natif par lot n'a été exécuté**. Le maillage
+diagnostique de départ reste inchangé.
+
+Une vérification différente établit ensuite une obstruction pour certaines
+facettes fixes. Pour une face triangulaire non dégénérée, poser
+`S = (2/3) × somme des trois longueurs d'arête au carré` et
+`D² = (16/3) × aire²`. Pour tout tétraèdre linéaire positivement orienté
+construit sur cette même face, la métrique SICN idéale vérifie :
+
+`SICN ≤ 3D / (S + D)`.
+
+La borne est atteinte par un sommet projeté au centroïde, à une hauteur
+physique `H² = 2D/3`. Dans le Jacobien idéal, avec `x` égal au carré de la
+hauteur idéale, l'identité
+`(S+x)(D²+Sx) − x(S+D)² = S(x−D)² ≥ 0` donne le maximum ; une composante
+parallèle à la face ne fait qu'augmenter les normes du dénominateur.
+La condition stricte `S² > 841D²` prouve donc `SICN_max < 1/10`.
+Elle est évaluée en rationnels exacts à partir des coordonnées binary64
+sauvegardées, et ne dépend pas de l'ordre des sommets de la face.
+La métrique est rattachée à Gmsh 4.15.2, `CondNumBasis.cpp` et
+`JacobianBasis.cpp` ; empreinte de l'archive source dans le reçu JSON.
+La preuve a été relue indépendamment.
+
+L'audit examine les **33 422 triangles** en 5,24 secondes et trouve
+**661 faces obstructives**, incidentes à **643 tétraèdres actuels distincts** :
+
+| Rôle source du domaine gazeux | Faces dont la borne est sous 0,1 |
+|---|---:|
+| Parois de guides | 384 |
+| Parois de soupapes | 128 |
+| Parois de conduits | 114 |
+| Parois de sièges | 33 |
+| Chambre | 2 |
+| Interfaces latérales des pyramides | 0 sur 1 536 |
+
+Aucune égalité exacte au seuil. La pire borne vaut environ `2,223e−5`
+sur la face source 37 d'un conduit. Les indices du fichier source et du
+cœur ayant été renumérotés, leur correspondance est reconstruite par une
+bijection de coordonnées binary64 exactes et l'égalité des triangles
+remappés, sans recherche de proximité. La première tentative d'audit,
+qui supposait à tort les mêmes identifiants, a été arrêtée par ce contrôle
+avant tout résultat ; le raccordement corrigé est celui du reçu final.
+Six tests couvrent notamment permutations, changement d'échelle, face
+dégénérée et sommets d'essai, dont celui atteignant la borne. Rapport :
+eb761769… ; programme : 7e05f4ca… . Aucune écriture de maillage ou de CAO.
+
+**Conséquence :** déplacer uniquement les sommets intérieurs ne peut pas
+supprimer tous les tétraèdres sous 0,1 tant que ces 661 triangles restent
+identiques. La borne de comptage conservatrice est au moins 166 tétraèdres
+insuffisants dans tout remaillage conservant exactement ces facettes ;
+elle ne s'applique pas après leur subdivision ou retriangulation.
+Cela ne prouve ni l'origine de chacun des 96 refus, ni l'impossibilité de
+fabriquer la pièce. Le seuil est un diagnostic numérique, pas une
+autorisation CFD. Les autres défauts restent à traiter.
+
+Prochaine correction : reprendre la **tessellation sur les mêmes surfaces
+CAO**, en commençant par un pilote ciblé, avec contrôle des arêtes,
+interfaces, écarts à la CAO et contacts après réassemblage. Ne pas changer
+le contour de la culasse pour améliorer cet indicateur. Aucun nouveau
+solveur physique ni aucune location Vast n'a été lancé pour ces audits.
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
@@ -1382,6 +1455,8 @@ flowchart LR
     AG --> AH[148 gamma sous 0,001 localisés sur la frontière<br/>Connectivité locale à corriger, contour conservé]
     AH --> AI[5 échanges pentagonaux refusés<br/>3 cavités coniques proposées]
     AI --> AJ[Plus petite cavité 5 vers 10 appliquée<br/>Frontière et relecture exactes, 3 281 minSICN sous 0,1]
+    AJ --> AK[Lot intérieur : 96 propositions refusées<br/>Aucune application native]
+    AK --> AL[Borne exacte : 661 faces obstructives<br/>Retessellation sur les mêmes surfaces CAO]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
