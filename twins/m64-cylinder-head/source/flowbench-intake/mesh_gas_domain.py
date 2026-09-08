@@ -30,12 +30,22 @@ GAS05_NATIVE_SHA = '3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc486
 GAS05_FACE38_SHA = '9f7dcd51e4548a3222e961c16c0c5586f1725d84be52ee350b37090668753b5b'
 GAS05_GUIDE_STEM_FACES = {
     55: ('walls_guide','f4b546496c1b4a040c561ea46685469ec7e9feb4ab3c5dbe9efbeba58b81d465'),
+    56: ('walls_guide','d3bfc62403f1bbf60bb1e71dbdda09a48e0fbf4aed8dcbbeb62a480e63b074e0'),
+    57: ('walls_guide','c8dc168593fdc85c1cf52b425861ea1505d5a000dfad054f7ab8d8b7959845df'),
     58: ('walls_guide','6312431d0d6bc19ac6a13b9197de9a2c2ff01741c0b065062f3c355afdcf1e82'),
+    61: ('walls_valve','3a4754f6312c4ca4b78fe14ba4127cbdb18bb8d6254d8e07a8e8dd0b16e2ba97'),
     62: ('walls_valve','fe1820f9e706df3db439445746ede2b9c5888f61dd019c2bb489ff01129c9ffc'),
     63: ('walls_valve','5134bae58c7ae348813da1ea39c02e2e639b9f266828067d616fd40569b4c646'),
+    64: ('walls_valve','fc19b8b3258fb45cf7122f4d839a427b46c93c35e2be1b6de46c4570858ec159'),
 }
-GUIDE_FRAME_RECEIPT_SHA = 'f334b3e96193fc0c15a947a1a9c66b4a1ad929c3bea0638bc2128e12d0b79bd0'
-GUIDE_CHORD_SOURCE_SHA = '31c45d7d3c554d957bf114ba050b42171a332d7054fbe154e443e6ad8ca7aaea'
+GAS05_GUIDE_STEM_SOURCES = {
+    55:'intake_1_guide_face_4',57:'intake_1_guide_face_4',
+    56:'intake_2_guide_face_4',58:'intake_2_guide_face_4',
+    61:'intake_1_valve_face_6',63:'intake_1_valve_face_6',
+    62:'intake_2_valve_face_6',64:'intake_2_valve_face_6',
+}
+GUIDE_FRAME_RECEIPT_SHA = '5935ab8da21709637143388cf4932d1f5a09def72b7c550d778a4114dbe11b51'
+GUIDE_CHORD_SOURCE_SHA = '32626cc8def4a6e32693395815788af11a554bb8d768295671c45c2800eece14'
 
 
 class SurfaceOnlyComplete(Exception):
@@ -72,24 +82,46 @@ def face38_size_assignment(manifest, binding, size):
         'neighboring_shared_edge_meshes_may_change':True}
 
 
-def guide_size_assignment(manifest, binding, size):
-    """Resolve only the four cylindrical boundaries implicated by saved intersections."""
+def guide_size_assignment(manifest, binding, size, frames=None):
+    """Cover every classified cylindrical fragment of both guide/stem clearances."""
     if size is None:return None
     if isinstance(size,bool) or not math.isfinite(size) or not .005<=size<=.2:
         raise ValueError('guide_size_must_be_finite_between_0p005_and_0p2')
     if (manifest['exports']['domain_brep']['sha256']!=GAS05_NATIVE_SHA or
             binding.get('descriptor_bijection_verified') is not True):
         raise ValueError('exact_native_gas05_and_bijection_required')
+    expected_sources=set(GAS05_GUIDE_STEM_SOURCES.values())
+    identified=[r['id'] for r in manifest['boundary_faces'] if any(
+        s.get('source') in expected_sources for s in r.get('source_match',[]))]
+    if frames is None:raise ValueError('reviewed_native_inventory_required_for_guide_sizing')
+    inventoried={r['face_id']:r for r in frames['native_inventory']['cylinders_private']
+                 if expected_sources.intersection(r['source_names'])}
+    if len(identified)!=len(inventoried) or set(identified)!=set(inventoried):
+        raise ValueError('complete_source_fragments_including_nonannular_stems_required')
+    selected=set(frames['coverage']['selected_face_ids'])
+    excluded={r['face_id'] for r in frames['coverage']['excluded_cylinders']}
+    if selected!=set(GAS05_GUIDE_STEM_FACES) or set(identified)-selected-excluded:
+        raise ValueError('complete_eight_fragment_guide_stem_inventory_required')
+    for row in manifest['boundary_faces']:
+        if row['id'] in inventoried:
+            native=inventoried[row['id']]
+            if row['sha256']!=native['face_sha256'] or row['role']!=native['role']:
+                raise ValueError('classified_fragment_differs_from_reviewed_native_inventory')
     faces=[]
     for face_id,(role,expected_sha) in GAS05_GUIDE_STEM_FACES.items():
         source=[r for r in manifest['boundary_faces'] if r['id']==face_id]
         match=[r for r in binding['matches_private'] if r['source_face_index']==face_id]
         if (len(source)!=1 or source[0]['role']!=role or source[0]['sha256']!=expected_sha or
-                source[0].get('surface_type')!='GeomAbs_Cylinder' or len(match)!=1):
+                source[0].get('surface_type')!='GeomAbs_Cylinder' or len(match)!=1 or
+                GAS05_GUIDE_STEM_SOURCES[face_id] not in {r.get('source') for r in source[0].get('source_match',[])}):
             raise ValueError('exact_unique_guide_stem_cylinder_binding_required')
         faces.append({'source_face_id':face_id,'native_face_sha256':expected_sha,
-                      'role':role,'gmsh_face_tag':match[0]['gmsh_face_tag']})
+                      'role':role,'source_component_surface':GAS05_GUIDE_STEM_SOURCES[face_id],
+                      'gmsh_face_tag':match[0]['gmsh_face_tag']})
     return {'faces':faces,'local_target_size_scan_units':size,'include_boundary':True,
+            'complete_classified_eight_fragment_inventory_verified':True,
+            'source_fragments_examined':sorted(identified),
+            'native_axially_excluded_stem_fragments':sorted(set(identified)-selected),
             'CAD_geometry_modified':False,'global_minimum_size_unchanged':.005,
             'target_size_is_not_a_guaranteed_actual_chord_bound':True,
             'actual_chords_and_facets_must_be_checked_before_3D':True}
@@ -98,13 +130,18 @@ def guide_size_assignment(manifest, binding, size):
 def validated_guide_frames(receipt, receipt_sha):
     """Reuse reviewed native frames, never the earlier surface's acceptance result."""
     if (receipt_sha!=GUIDE_FRAME_RECEIPT_SHA or
-            receipt.get('schema')!='m64-persisted-guide-chord-diagnostic/v1' or
+            receipt.get('schema')!='m64-persisted-guide-chord-diagnostic/v2' or
             receipt.get('mode')!='native_cylinder_diagnostics' or
             receipt.get('all_inputs_unchanged') is not True or
             receipt['inputs_sha256']['domain']!=GAS05_NATIVE_SHA or
             receipt['inputs_sha256']['source']!=GUIDE_CHORD_SOURCE_SHA):
         raise ValueError('exact_reviewed_native_guide_frame_receipt_required')
-    return receipt['result']['frames_private']
+    frames=receipt['result']['frames_private']
+    if (frames.get('schema')!='m64-native-guide-cylinder-frames/v2' or
+            frames.get('domain_sha256')!=GAS05_NATIVE_SHA or
+            frames.get('coverage',{}).get('selected_face_ids')!=sorted(GAS05_GUIDE_STEM_FACES)):
+        raise ValueError('complete_eight_fragment_native_frames_required')
+    return frames
 
 
 def current_guide_chord_gate(gmsh, assignment, frames):
@@ -510,18 +547,19 @@ def run(args):
             sizing['field_ids']={'MathEval':constant,'Restrict':restricted}
             sizing['MeshSizeExtendFromBoundary']=gmsh.option.getNumber('Mesh.MeshSizeExtendFromBoundary')
             sizing['boundary_entities_private']=gmsh.model.getBoundary([(2,sizing['gmsh_face_tag'])],oriented=False,recursive=False)
-        guide_sizing=guide_size_assignment(manifest,binding,args.guide_size)
-        report['guide_stem_size_assignment']=guide_sizing
         guide_frames=None
-        if guide_sizing:
+        if args.guide_size is not None:
             if args.guide_chord_reference:
                 reference_hash=checks.sha256(args.guide_chord_reference)
                 guide_frames=validated_guide_frames(json.loads(args.guide_chord_reference.read_text()),reference_hash)
                 paths[args.guide_chord_reference]=reference_hash
                 paths[Path(__file__).with_name('audit_guide_chords.py')]=GUIDE_CHORD_SOURCE_SHA
                 report['guide_frame_reference_sha256']=reference_hash
-            elif not args.stop_after_surface:
+            else:
                 raise ValueError('native_guide_frames_required_for_actual_pre3D_chord_gate')
+        guide_sizing=guide_size_assignment(manifest,binding,args.guide_size,guide_frames)
+        report['guide_stem_size_assignment']=guide_sizing
+        if guide_sizing:
             constant=gmsh.model.mesh.field.add('MathEval')
             gmsh.model.mesh.field.setString(constant,'F',format(args.guide_size,'.17g'))
             restricted=gmsh.model.mesh.field.add('Restrict')

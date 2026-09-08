@@ -1,0 +1,304 @@
+{
+  "schema": "m64-native-gas-eightface-volume-diagnostic/v1",
+  "date": "2026-09-08",
+  "status": "native_volume_generated_OpenFOAM_quality_rejected_no_solver",
+  "scope": "Native gas-domain05 mesh, distinct from solid head. No CAD modification or physical validation.",
+  "units": "unverified_1_scan_unit_equals_1_mm_hypothesis",
+  "inventory_evidence": "native-gas-guide-eightface-inventory-20260908.json",
+  "native_frame_receipt_sha256": "5935ab8da21709637143388cf4932d1f5a09def72b7c550d778a4114dbe11b51",
+  "guide_auditor_source_sha256": "32626cc8def4a6e32693395815788af11a554bb8d768295671c45c2800eece14",
+  "refinement": {
+    "face38_target": 0.15,
+    "all_eight_annular_cylinder_faces_target": 0.2,
+    "classified_source_fragments": 14,
+    "refined_fragments": 8,
+    "axially_excluded_stem_fragments": [
+      65,
+      66,
+      67,
+      68,
+      69,
+      70
+    ],
+    "nominal_radial_gap": 0.015,
+    "maximum_sum_radial_envelope_errors": 0.0075,
+    "global_size_bounds_unchanged": [
+      0.005,
+      4
+    ],
+    "CAD_tolerances_changed": false
+  },
+  "surface_only": {
+    "status": "surface_only_not_volume_mesh",
+    "elapsed_seconds": 8.93495522486046,
+    "pre3D_surface_triangles": 191968,
+    "persisted_surface": {
+      "MSH_sha256": "2b0d0480ae13e036364a73261bed1b71245b5f4278058d2ca37ecce1263b22b2",
+      "nodes": 95984
+    },
+    "report_sha256": "9e517299f8ef869507cfbe2fbd6f707d6cad9a60caba3f720316905ed3de73ce",
+    "process_sha256": "61b816afe9d74fa2fb434fd745a0b335e46202fc8ce9aa0403156e71ea1d3a0a",
+    "exit_code": 0
+  },
+  "volume": {
+    "status": "diagnostic_C0_mesh_integrity_passed_source_C0_unresolved_no_CFD_release",
+    "elapsed_seconds": 48.28189048497006,
+    "source_sha256": "4434aa4708def84840fd4c178c717439926b53c6e5bcda1a38c305d9fd6802dc",
+    "native_BRep_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+    "pre_export_quality": {
+      "tetrahedra": 481189,
+      "minimum_minSICN": 1.398303468483971e-7,
+      "minSICN_below_0p1": 1409,
+      "minSICN_below_1e_6": 8,
+      "minimum_Jacobian_determinant": 6.213320005500933e-12,
+      "nonpositive_Jacobians": 0,
+      "bad_tetrahedron_count_fraction": 0.002928163362005366,
+      "bad_tetrahedron_absolute_volume_fraction": 0.00001926748608894846
+    },
+    "gates": {
+      "positive_Gmsh_tetra_Jacobians": true,
+      "positive_direct_tetra_volumes": true,
+      "one_connected_tetra_region": true,
+      "complete_nondegenerate_boundary": true,
+      "outward_boundary_orientation": true,
+      "native_CAD_descriptors_unchanged": true,
+      "same_number_tetrahedra_after_reread": true,
+      "MSH22_connectivity_and_groups_preserved": true,
+      "MSH22_coordinate_error_within_1e_10": true,
+      "coarse_volume_error_within_1percent": true,
+      "MSH_file_unchanged": true
+    },
+    "all_native_inputs_unchanged": true,
+    "mesh_sha256": "98c6628b01eb255563a6183d91243cd07aeb8d365f6d00467102e76cecf0e044",
+    "groups": [
+      {
+        "component": "intake_1",
+        "guide_faces": [
+          55,
+          57
+        ],
+        "stem_faces": [
+          61,
+          63
+        ],
+        "native_radial_gap": 0.015000000000000124,
+        "worst_guide_envelope_error_in_common_frame": 0.002334245803329613,
+        "worst_stem_envelope_error_in_common_frame": 0.00254221215735367,
+        "sum_radial_envelope_errors_including_axis_offset": 0.004876457960683283,
+        "maximum_allowed_error_sum": 0.0075,
+        "conservative_remaining_radial_clearance": 0.01012354203931684,
+        "accepted_local_radial_envelope": true
+      },
+      {
+        "component": "intake_2",
+        "guide_faces": [
+          56,
+          58
+        ],
+        "stem_faces": [
+          62,
+          64
+        ],
+        "native_radial_gap": 0.015000000000000124,
+        "worst_guide_envelope_error_in_common_frame": 0.002406240968390705,
+        "worst_stem_envelope_error_in_common_frame": 0.002686648148878475,
+        "sum_radial_envelope_errors_including_axis_offset": 0.00509288911726918,
+        "maximum_allowed_error_sum": 0.0075,
+        "conservative_remaining_radial_clearance": 0.009907110882730944,
+        "accepted_local_radial_envelope": true
+      }
+    ],
+    "persisted_surface": {
+      "MSH_sha256": "5c3cfbedc4f2d946177b75dc8a7fcd0c2930f4749840db3b925c81ba9980b9ec",
+      "nodes": 95984,
+      "CAD_faces": 88,
+      "surface_topology": {
+        "triangles": 191968,
+        "unique_edges": 287952,
+        "edges_with_one_incident_triangle": 0,
+        "edges_with_more_than_two_triangles": 0,
+        "incoherent_two_triangle_edge_orientations": 0,
+        "duplicate_triangles": 0,
+        "closed_two_manifold_edge_incidence": true,
+        "self_intersection_and_CAD_conformity_not_proven": true
+      }
+    },
+    "report_sha256": "88209eaf9e447b750a9467bfe139f976269a6f7e7627ac1b1cd8fb7e67192eec",
+    "process_sha256": "7402b6d298dd7dc755bfff8ed013e840d2d25a405b8b2318069642eef5b9abc2",
+    "exit_code": 2,
+    "exit_2_interpretation": "Diagnostic volume integrity passed; unresolved native C0 prevents CFD release. Not a failed tetrahedralization."
+  },
+  "crossing_diagnostics": [
+    {
+      "surface_sha256": "2b0d0480ae13e036364a73261bed1b71245b5f4278058d2ca37ecce1263b22b2",
+      "report_sha256": "d98e4697b07416c830923fd761e481ae0499c79dc6f35b543e0c3b48334cc2ca",
+      "proper_crossings_found": 0
+    },
+    {
+      "surface_sha256": "5c3cfbedc4f2d946177b75dc8a7fcd0c2930f4749840db3b925c81ba9980b9ec",
+      "report_sha256": "09016b62752baa9cbdd73e69a8154a63c9474737f38757a89d1d602e5de437cd",
+      "proper_crossings_found": 0
+    }
+  ],
+  "crossing_limits": "Floating-point broad phase with exact rational confirmation; no exhaustive absence proof; coplanarity, shared vertices and boundary touches not classified.",
+  "final_volume_boundary_identity": {
+    "private_receipt_sha256": "32c579c979fc775e6d14abe0031cf66a726be1ea5f2103b12f276dbd445783e2",
+    "private_source_sha256": "0764ccdc9e006b93fa0d8f3669f0b1fcc3a2c2d7cc7b042a01920a8627a82794",
+    "compared_surface_sha256": "5c3cfbedc4f2d946177b75dc8a7fcd0c2930f4749840db3b925c81ba9980b9ec",
+    "compared_volume_sha256": "98c6628b01eb255563a6183d91243cd07aeb8d365f6d00467102e76cecf0e044",
+    "oriented_boundary_triangles_and_patch_labels_exactly_equal": true,
+    "boundary_triangles": 191968,
+    "boundary_nodes": 95984,
+    "changed_ASCII_coordinate_lexemes": 0,
+    "changed_exact_numeric_coordinates": 0,
+    "additional_interior_nodes": 30776,
+    "tetrahedra_counted": 481189,
+    "scope": "Transfers only the bounded crossing diagnostic to the unchanged final boundary, not CFD qualification."
+  },
+  "OpenFOAM": {
+    "status": "mesh_rejected_or_diagnostic_incomplete",
+    "stages": [
+      {
+        "name": "gmshToFoam",
+        "argv": [
+          "gmshToFoam",
+          "input.msh"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 2.3704114207066596,
+        "log_sha256": "51e09d4c4093dfd103ae076f1108c4ef3ecdea2280e0894cf2c70861f1134273"
+      },
+      {
+        "name": "transformPoints",
+        "argv": [
+          "transformPoints",
+          "scale=(0.001 0.001 0.001)"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 0.21593511989340186,
+        "log_sha256": "526be33e6f74bd1e70e908751edb18004beccd8372a4b9f10a264b071fdf98cb"
+      },
+      {
+        "name": "createPatch",
+        "argv": [
+          "createPatch",
+          "-overwrite"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 1.2271894649602473,
+        "log_sha256": "f29f170d01a5203b81713bb89468f82ebb4273ef29a64ee1914fa02977c28c7c"
+      },
+      {
+        "name": "checkMesh",
+        "argv": [
+          "checkMesh",
+          "-allTopology",
+          "-allGeometry"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 6.642501016147435,
+        "log_sha256": "d9873cc5833491dc08b31e7e9f63ec6bded85b1a13f8c449d57922e6f2d68d93"
+      }
+    ],
+    "checkMesh_passed": false,
+    "solver_executed": false,
+    "all_original_inputs_unchanged": true,
+    "scale_applications": 1,
+    "mesh_sha256": "98c6628b01eb255563a6183d91243cd07aeb8d365f6d00467102e76cecf0e044",
+    "source_sha256": "e79a769d62e09cfb90653c552fabafdd0f8b45278dba241d1a8749676693a250",
+    "review_sha256": "3a336f6af7615365a2903bffcc9c02a5f962784becd9a03be5eee867d06efbe3",
+    "boundary": {
+      "walls": {
+        "type": "wall",
+        "faces": 190519
+      },
+      "receiver_outlet": {
+        "type": "patch",
+        "faces": 1191
+      },
+      "inlet": {
+        "type": "patch",
+        "faces": 258
+      }
+    },
+    "report_sha256": "66e2fd96280430289fb9e34edf7e7cdc72605fdbe2d704a242b994622a2a5bc4",
+    "process_sha256": "de5eb2c204177b586dbe3e62fbb725eea2223bdd13a9cd6f03077b488935c56a",
+    "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "failed_mesh_checks": 6,
+    "observed_wrapper_exit_code": 2,
+    "quality": {
+      "high_aspect_ratio_cells": 139,
+      "maximum_aspect_ratio": 36243.0624729,
+      "high_skewness_faces": 53,
+      "maximum_skewness": 183.104749536,
+      "small_determinant_cells": 4243,
+      "concave_cells": 25,
+      "small_interpolation_weight_faces": 1200,
+      "small_volume_ratio_faces": 532,
+      "severely_nonorthogonal_faces_over_70_degrees": 240289,
+      "nonorthogonality_check_reported_OK": true
+    },
+    "no_threshold_lowered": true
+  },
+  "defect_localization": {
+    "private_report_sha256": "e47c7136137d0f662ce5369c7f3723ccc09b337c6443ec6b4c08ea062918e072",
+    "private_detail_sha256": "a4f1ec56a9813b922e0f17d51c9c2fab754917bff011cf0e23d8ac3333906f8d",
+    "private_source_sha256": "dd671c3dce7f8a452134a638fe5e82690c191f45a8d13e40d0229910d90bfa34",
+    "native_OpenFOAM_sets_exported_on_unchanged_case_copy": true,
+    "failed_checks_reproduced": 6,
+    "method": "Unique MSH-to-OpenFOAM point bijection followed by exact boundary triangle keys, not nearest CAD surface attribution.",
+    "all_191968_boundary_triangles_matched_once": true,
+    "maximum_point_roundtrip_error_m": 5.022503814819507e-13,
+    "face38_contacts": {
+      "high_aspect_ratio_cells": 69,
+      "concave_cells": 17,
+      "skew_faces_direct_or_via_adjacent_tetrahedra": 36,
+      "small_determinant_cells": 488
+    },
+    "small_determinant_cells_also_touch_guide_and_stem_passages": true,
+    "contact_counts_overlap_and_are_not_disjoint_regions": true,
+    "entities_without_boundary_contact_not_assigned_by_guess": true,
+    "original_and_copy_mesh_geometry_hashes_unchanged": true,
+    "quality_thresholds_changed": false,
+    "solver_executed": false
+  },
+  "runtime": {
+    "host": "authorized_local_x86_Kali",
+    "Gmsh_image_id": "sha256:27bb1cabdb66a34d0f3812adb4930f9f43814cb0d4331fd16f30b5771b2764d4",
+    "Gmsh": "4.15.2",
+    "CPU_limit": 4,
+    "memory_GiB": 4,
+    "network": "none",
+    "containers_removed": true,
+    "OOM": false,
+    "new_Vast_spend_USD": 0
+  },
+  "budget_observation": {
+    "user_ceiling_USD": 44,
+    "credit_USD": 43.9166429608502,
+    "instances": 0,
+    "automatic_recharge_requested": false,
+    "authority": "approved_OpenBao_wrapper_live_read_this_lot_not_a_future_balance_guarantee"
+  },
+  "retained_claim_limits": {
+    "native_C0_unresolved": true,
+    "M64_interfaces_certified": false,
+    "physical_scale_verified": false,
+    "head_CFD_executed": false,
+    "thermal_validation": false,
+    "mechanical_validation": false,
+    "LPBF_validation": false,
+    "physical_correlation": false,
+    "manufacturing_authorized": false,
+    "demonstrated_power_PS": null
+  },
+  "failed_preflight_preserved": {
+    "private_directory_basename": "flowbench-eightface-h020.1d2gld",
+    "source_sha256": "c194fbc609e15e9e1e091f2dbae18ab98a07803aeca9ab855fc76ded59e7bd74",
+    "reason": "Expected eight source_match rows but real source surfaces also contain six nonannular stem fragments; rejected before meshing, corrected by verified native inventory."
+  }
+}
