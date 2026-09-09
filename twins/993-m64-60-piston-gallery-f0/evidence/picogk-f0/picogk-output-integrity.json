@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "status": "failed_output_mesh_integrity",
+  "source_screen_sha256": "e45b80d59768be7f9c3931ed1514a4f92f54d7addaec17ee0645560bb9c627b8",
+  "method": "trimesh process=True followed by undirected edge multiplicity audit",
+  "all_hashes_match": true,
+  "all_meshes_watertight": false,
+  "variants": [
+    {
+      "variant_id": "P0_reference_voxelisee",
+      "file": "P0_reference_voxelisee.stl",
+      "sha256_matches_screen": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 27,
+      "maximum_edge_multiplicity": 6,
+      "envelope_mm": [
+        99.0,
+        98.97657,
+        70.0
+      ],
+      "volume_mm3": 257492.965572
+    },
+    {
+      "variant_id": "P1_six_poches",
+      "file": "P1_six_poches.stl",
+      "sha256_matches_screen": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 27,
+      "maximum_edge_multiplicity": 6,
+      "envelope_mm": [
+        99.0,
+        98.97657,
+        70.0
+      ],
+      "volume_mm3": 256008.423996
+    },
+    {
+      "variant_id": "P2_eight_poches",
+      "file": "P2_eight_poches.stl",
+      "sha256_matches_screen": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 27,
+      "maximum_edge_multiplicity": 6,
+      "envelope_mm": [
+        99.0,
+        98.97657,
+        70.0
+      ],
+      "volume_mm3": 255102.728232
+    },
+    {
+      "variant_id": "P3_galerie_8_ribs",
+      "file": "P3_galerie_8_ribs.stl",
+      "sha256_matches_screen": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 109,
+      "maximum_edge_multiplicity": 10,
+      "envelope_mm": [
+        99.0,
+        98.97657,
+        70.0
+      ],
+      "volume_mm3": 255803.541024
+    },
+    {
+      "variant_id": "P4_galerie_8p5_ribs",
+      "file": "P4_galerie_8p5_ribs.stl",
+      "sha256_matches_screen": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 27,
+      "maximum_edge_multiplicity": 6,
+      "envelope_mm": [
+        99.0,
+        98.97657,
+        70.0
+      ],
+      "volume_mm3": 254907.781975
+    },
+    {
+      "variant_id": "P5_light_max_screen",
+      "file": "P5_light_max_screen.stl",
+      "sha256_matches_screen": true,
+      "watertight": false,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 103,
+      "maximum_edge_multiplicity": 10,
+      "envelope_mm": [
+        99.0,
+        98.97657,
+        70.0
+      ],
+      "volume_mm3": 250952.299135
+    }
+  ],
+  "decision": {
+    "picogk_geometry_gate_passed": false,
+    "reason": "All raw meshes retain non-manifold edges after vertex processing; none may be promoted to CAD, LPBF slicing or SimReady.",
+    "repair_attempted": false,
+    "manufacturing_authorized": false
+  }
+}

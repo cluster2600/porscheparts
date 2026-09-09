@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+  "twin_id": "TWIN-993-HEADLAMP-SPRING-HOOK-ALSI10MG-F0",
+  "status": "scene_authored",
+  "tool": {
+    "name": "OpenUSD Python",
+    "usd_version": [
+      0,
+      26,
+      8
+    ]
+  },
+  "asset": {
+    "path": "headlamp_spring_hook_f0.usd",
+    "sha256": "ea29ca34516295a061a9d69bef47a0e997add5e37346b778d75a70ca8fbb564b",
+    "source_mesh_prim": "/headlamp_spring_hook_f0/COMPOUND/Mesh",
+    "meters_per_unit": 0.001
+  },
+  "scene": {
+    "path": "headlamp-hook-rigid-screen.usd",
+    "sha256": "6bc2d56fcf8ea023bb7fdaeab45410896eb910ce7f9616fa02610fbd6cbf215a",
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "static_hook_collider": "/World/Hook/COMPOUND/Mesh",
+    "dynamic_witness": "/World/WitnessSphere",
+    "fall_guard": "/World/FallGuard"
+  },
+  "synthetic_case": {
+    "gravity_mm_s2": 9810.0,
+    "witness_mass_kg": 0.01,
+    "witness_radius_mm": 2.0,
+    "initial_position_mm": [
+      8.0,
+      0.0,
+      22.0
+    ]
+  },
+  "interpretation": "Test de branchement rigide seulement; aucune charge ou interface du phare n'est modélisée.",
+  "engineering_validation": false,
+  "manufacturing_release_authorized": false
+}

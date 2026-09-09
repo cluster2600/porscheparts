@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-OVAL-EXHAUST-TIP-IN625-F0",
+  "name": "Embout d'échappement ovale 993 en IN625, jumeau F0",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_C2", "993_C4", "993_RS_narrow_body"],
+    "model_years": {"from": 1994, "to": 1998}
+  },
+  "scope": {
+    "zone": "rear_exhaust_outlet",
+    "purposes": ["fit", "fluid", "thermal", "structural"]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "centre de l'entrée hypothétique F0",
+    "axes": "X largeur, Y hauteur, Z direction de l'écoulement vers la sortie",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "OVAL_EXHAUST_TIP_IN625_F0",
+      "role": "candidate",
+      "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+      "geometry_file": "parts/993-exh-oval-tip-in625-f0-0001/derived/oval_exhaust_tip_in625_f0.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "EXHAUST_CLAMP_AND_BUMPER_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_EXHAUST_INLET_AND_CLAMP",
+      "kind": "contact",
+      "components": ["OVAL_EXHAUST_TIP_IN625_F0", "EXHAUST_CLAMP_AND_BUMPER_CONTEXT"],
+      "required_measurements": ["INLET_DIAMETER", "INSERTION_LENGTH", "CLAMP_GEOMETRY", "SEALING_DATUMS", "TOLERANCES"],
+      "acceptance_rule": "L'emmanchement, le serrage et l'étanchéité mesurés respectent les tolérances approuvées sans contrainte parasite.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_EXHAUST_FLOW",
+      "kind": "contact",
+      "components": ["OVAL_EXHAUST_TIP_IN625_F0", "EXHAUST_CLAMP_AND_BUMPER_CONTEXT"],
+      "required_measurements": ["MASS_FLOW_MAP", "PULSE_SPECTRUM", "TEMPERATURE_FIELD", "BACKPRESSURE_LIMIT", "GAS_PROPERTIES"],
+      "acceptance_rule": "Une CFD compressible pulsee, correlee aux mesures, respecte la contre-pression et les criteres thermiques approuves.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_BUMPER_CLEARANCE_THERMAL_VIBRATION",
+      "kind": "clearance",
+      "components": ["OVAL_EXHAUST_TIP_IN625_F0", "EXHAUST_CLAMP_AND_BUMPER_CONTEXT"],
+      "required_measurements": ["BUMPER_CLEARANCE_ENVELOPE", "BUMPER_TEMPERATURE_LIMIT", "EXHAUST_MOTION_ENVELOPE", "VIBRATION_PSD", "ACOUSTIC_TARGET"],
+      "acceptance_rule": "Les jeux a chaud, temperatures, vibrations et emissions acoustiques restent dans les criteres approuves sur le cycle de vie.",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "parts/993-exh-oval-tip-in625-f0-0001/source/oval_exhaust_tip.py",
+    "derived_files": ["parts/993-exh-oval-tip-in625-f0-0001/derived/oval_exhaust_tip_in625_f0.step"]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json",
+      "parts/993-exh-oval-tip-in625-f0-0001/evidence/openfoam-flow-screen.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/openfoam-f0/openfoam-evidence-audit.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/simready-validation-summary.json"
+    ],
+    "known_limits": [
+      "Seule l'enveloppe de sortie 120 x 85 mm est publiee ; entree, longueur, doubles parois, attaches et interfaces sont des hypotheses F0.",
+      "La CFD RANS stationnaire emploie un debit et des proprietes synthetiques ; la convergence de perte de charge entre les deux maillages les plus fins manque le seuil projet de 10 %.",
+      "Les controles de maillage etendus conservent des cellules a faible determinant, sans volume negatif ni echec standard checkMesh.",
+      "Le tranchage pleine piece trouve une orientation calculable et des proxies de supports, mais aucune carte procede complete, simulation de distorsion ou collision recoater n'est disponible.",
+      "Le USD passe les validateurs SimReady comme prop rigide isole ; ni l'assemblage echappement-jupe, ni la thermique, ni la vibration vehicule ne sont testes.",
+      "Le smoke test PhysicsNeMo prouve seulement le runtime CUDA ; aucun surrogate n'est entraine ou utilise comme preuve physique.",
+      "Aucune fabrication, installation ou utilisation vehicule n'est autorisee."
+    ]
+  }
+}

@@ -45,6 +45,12 @@ class PistonCp1GalleryF0Tests(unittest.TestCase):
         self.assertAlmostEqual(results["synthetic_peak_gas_force_n"], gas_n)
         self.assertAlmostEqual(results["angular_speed_rad_s"], omega)
         self.assertAlmostEqual(results["synthetic_tdc_acceleration_m_s2"], acceleration)
+        self.assertAlmostEqual(results["synthetic_tdc_acceleration_g"], acceleration / 9.80665)
+        self.assertAlmostEqual(results["mean_piston_speed_m_s"], 2.0 * 0.0764 * 6720.0 / 60.0)
+        self.assertAlmostEqual(results["rod_to_crank_ratio"], 0.127 / (0.0764 / 2.0))
+        self.assertAlmostEqual(results["crank_to_rod_ratio"], (0.0764 / 2.0) / 0.127)
+        self.assertAlmostEqual(results["documentary_displacement_per_cylinder_cm3"], piston_area_mm2 * 76.4 / 1000.0)
+        self.assertAlmostEqual(results["documentary_six_cylinder_displacement_cm3"], 6.0 * piston_area_mm2 * 76.4 / 1000.0)
         self.assertAlmostEqual(results["synthetic_tensile_inertia_force_n"], inertia_n)
         self.assertAlmostEqual(results["conservative_pin_force_n"], gas_n + inertia_n)
         self.assertAlmostEqual(results["pin_projected_pressure_screen_mpa"], (gas_n + inertia_n) / (23.0 * 40.0))
@@ -82,6 +88,10 @@ class PistonCp1GalleryF0Tests(unittest.TestCase):
         self.assertAlmostEqual(results["oil_temperature_rise_for_5kw_k"], 5000.0 / ((flow_m3_s * 850.0) * 2000.0))
         self.assertAlmostEqual(results["free_outer_diameter_growth_mm"], 23.0e-6 * 99.0 * 200.0)
         self.assertAlmostEqual(results["load_cycles_at_duty"], 6720.0 / 60.0 * 100.0 * 3600.0)
+        self.assertAlmostEqual(results["shaft_revolutions_at_duty"], 40_320_000.0)
+        self.assertAlmostEqual(results["combustion_events_per_cylinder_at_duty"], 20_160_000.0)
+        self.assertAlmostEqual(results["porsche_200h_max_speed_equivalent_revolutions"], 80_640_000.0)
+        self.assertAlmostEqual(results["porsche_200h_max_speed_equivalent_combustion_events_per_cylinder"], 40_320_000.0)
 
     def test_committed_step_sources_and_catalogue_stay_fail_closed(self) -> None:
         record = json.loads(RECORD.read_text(encoding="utf-8"))

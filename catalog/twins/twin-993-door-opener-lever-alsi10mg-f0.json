@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-DOOR-OPENER-LEVER-ALSI10MG-F0",
+  "name": "Levier intérieur d'ouverture de porte 993 AlSi10Mg, jumeau F0",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_door_trim_variants_to_confirm"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    }
+  },
+  "scope": {
+    "zone": "interior_door_release",
+    "purposes": [
+      "fit",
+      "structural",
+      "thermal",
+      "motion"
+    ]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "extrémité X minimale de l'enveloppe commerciale F0",
+    "axes": "X suivant le levier, Y largeur, Z hauteur",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "DOOR_OPENER_LEVER_ALSI10MG_F0",
+      "role": "candidate",
+      "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+      "geometry_file": "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "DOOR_LOCK_TRIM_AND_LINKAGE_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_LEVER_MOUNTS_PIVOT_AND_FASTENERS",
+      "kind": "fastener",
+      "components": [
+        "DOOR_OPENER_LEVER_ALSI10MG_F0",
+        "DOOR_LOCK_TRIM_AND_LINKAGE_CONTEXT"
+      ],
+      "required_measurements": [
+        "MOUNT_DATUMS_AND_BORE_DIAMETERS",
+        "PIVOT_AXIS_AND_BUSHING_STACK",
+        "FASTENER_GRADE_AND_PRELOAD",
+        "BEARING_CLEARANCE_AND_WEAR_LIMIT",
+        "MACHINING_AND_COATING_ALLOWANCES"
+      ],
+      "acceptance_rule": "L'axe, les portées et fixations respectent les jeux, précharges, contraintes de contact et limites d'usure approuvés.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_LEVER_LINKAGE_STOP_AND_LOCK",
+      "kind": "motion",
+      "components": [
+        "DOOR_OPENER_LEVER_ALSI10MG_F0",
+        "DOOR_LOCK_TRIM_AND_LINKAGE_CONTEXT"
+      ],
+      "required_measurements": [
+        "LINKAGE_ATTACHMENT_GEOMETRY",
+        "LEVER_TRAVEL_AND_STOP_POSITION",
+        "PULL_FORCE_VECTOR",
+        "LOCK_RELEASE_FORCE",
+        "MISUSE_AND_EMERGENCY_LOAD_CASES",
+        "SERVICE_CYCLE_COUNT"
+      ],
+      "acceptance_rule": "La course libère la serrure dans toutes les tolérances et conserve une marge approuvée en statique, fatigue, choc et mauvais usage.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_LEVER_HAND_TRIM_AND_EGRESS",
+      "kind": "clearance",
+      "components": [
+        "DOOR_OPENER_LEVER_ALSI10MG_F0",
+        "DOOR_LOCK_TRIM_AND_LINKAGE_CONTEXT"
+      ],
+      "required_measurements": [
+        "TRIM_ENVELOPE_AND_GAPS",
+        "HAND_CLEARANCE_AND_EDGE_RADII",
+        "EGRESS_FORCE_AND_TIME",
+        "HOT_AND_COLD_TEMPERATURE_RANGE",
+        "VIBRATION_PSD",
+        "CONTACT_MATERIALS_AND_GALVANIC_STACK"
+      ],
+      "acceptance_rule": "La poignée reste accessible, sûre au toucher et capable d'assurer l'ouverture après température, vibration, corrosion et vieillissement qualifiés.",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "parts/993-int-door-opener-lever-f0-0001/source/door_opener_lever.py",
+    "derived_files": [
+      "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step",
+      "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.stl"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/summary.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/binary-validation.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/rigid-scene-validation.json",
+      "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
+    ],
+    "known_limits": [
+      "Le catalogue PorscheFanatics établit seulement les identités PET gauche et droite ; la fiche FVD donne une enveloppe et une masse de paire, sans interface.",
+      "Toutes les formes fonctionnelles, charges et températures du F0 restent hypothétiques.",
+      "La validation USD minimale et le témoin rigide ne représentent pas l'assemblage de porte.",
+      "Aucune impression, installation, dépendance pour l'évacuation ou utilisation routière n'est autorisée."
+    ]
+  }
+}

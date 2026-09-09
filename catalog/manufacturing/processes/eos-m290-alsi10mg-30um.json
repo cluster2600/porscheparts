@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "manufacturer": "EOS",
+  "system": "EOS M 290",
+  "material": "EOS Aluminium AlSi10Mg",
+  "material_designations": [
+    "DIN EN 1706 EN AC-43000",
+    "ASTM F3318-18"
+  ],
+  "process_reference": {
+    "technology_readiness_level": 9,
+    "eos_material_set": "AlSi10Mg_FlexM291 2.01",
+    "layer_thickness_um": 30.0,
+    "volume_rate_mm3_s": 5.1,
+    "minimum_wall_thickness_mm": 0.4,
+    "build_platform_temperature_c": 35.0,
+    "recoater_blade": "EOS HSS blade",
+    "nozzle": "EOS standard nozzle",
+    "inert_gas": "Argon",
+    "sieve_um": 90.0
+  },
+  "published_as_manufactured_coupon_properties": {
+    "density_g_cm3_minimum": 2.67,
+    "average_defect_percentage": 0.04,
+    "vertical_yield_strength_mpa": 233.0,
+    "horizontal_yield_strength_mpa": 270.0,
+    "minimum_ultimate_strength_mpa": 461.0,
+    "fatigue_strength_mpa": 110.0,
+    "fatigue_cycles": 20000000,
+    "fatigue_loading": "fully reversed, turned vertical and horizontal specimens",
+    "thermal_conductivity_w_m_k": {
+      "vertical": 100.0,
+      "horizontal": 110.0
+    },
+    "average_thermal_expansion_per_k": {
+      "25_to_100_c": 0.000020,
+      "25_to_200_c": 0.000022,
+      "25_to_300_c": 0.000027
+    }
+  },
+  "sources": [
+    "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alsi10mg-eos-m-290-30um",
+    "https://www.eos.info/metal-solutions/metal-printers/data-sheets/sds-eos-m-290"
+  ],
+  "solver_readiness": {
+    "complete_and_calibrated": false,
+    "missing_inputs": [
+      "exact laser path, hatch, contour and exposure schedule exported for this build",
+      "powder optical properties and temperature-dependent liquid/solid thermal card",
+      "temperature- and orientation-dependent elastic-plastic constitutive card",
+      "inherent strain or full-build calibration from route-specific coupons",
+      "supplier support geometry, plate contact and release sequence",
+      "recoater clearance, blade compliance and permitted distorted height",
+      "part-surface fatigue, notch and hot adhesive allowables"
+    ]
+  },
+  "scope": "Carte publique matière-machine-procédé de criblage pour le crochet F0. Les valeurs proviennent de coupons EOS et ne constituent ni des admissibles de pièce, ni un fichier EOS BUILD, ni une autorisation d'impression."
+}

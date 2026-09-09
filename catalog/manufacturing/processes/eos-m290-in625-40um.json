@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "manufacturer": "EOS",
+  "system": "EOS M 290",
+  "material": "EOS NickelAlloy IN625",
+  "material_designations": [
+    "UNS N06625",
+    "AMS 5666F",
+    "AMS 5599G",
+    "W.Nr. 2.4856"
+  ],
+  "process_reference": {
+    "eospar_name": "IN625_Performance M291 2.00",
+    "layer_thickness_um": 40.0,
+    "volume_rate_mm3_s": 4.2,
+    "software_requirements": [
+      "EOSPRINT 2.5 or newer",
+      "EOSYSTEM 2.5 or newer"
+    ],
+    "powder_part_numbers": [
+      "9011-0022",
+      "9030-0023"
+    ],
+    "recoater_blade": "EOS HSS Blade",
+    "nozzle": "EOS Grid Nozzle",
+    "inert_gas": "Argon",
+    "sieve_um": 63.0
+  },
+  "published_post_treatment_reference": {
+    "stress_relief_temperature_c": 870.0,
+    "duration_h": 1.0,
+    "cooling": "rapid cooling"
+  },
+  "sources": [
+    "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+    "https://www.eos.info/metal-solutions/metal-printers/eos-m-290"
+  ],
+  "solver_readiness": {
+    "complete_and_calibrated": false,
+    "missing_inputs": [
+      "laser path, hatch, contour and exposure schedule exported for the exact build",
+      "powder absorptivity, packing and temperature-dependent thermal properties",
+      "temperature- and orientation-dependent elastic-plastic constitutive card",
+      "inherent strain or full-build calibration from coupons on the selected machine",
+      "support geometry, plate contact and release sequence",
+      "recoater blade clearance, compliance and permitted distorted height",
+      "surface-condition, oxidation, creep and thermal-fatigue allowables"
+    ]
+  },
+  "scope": "Référence publique matière-machine-procédé pour le criblage. Elle ne constitue ni une carte de solveur complète, ni une qualification de l'embout, ni une autorisation de fabrication."
+}

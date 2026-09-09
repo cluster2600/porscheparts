@@ -196,6 +196,13 @@ numérique, l'impression volontairement suspendue. Détail et critères de sorti
 [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md),
 [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md).
 
+Le pipeline **impression métal et Omniverse** est obligatoire avant toute
+fabrication : [docs/AM_VALIDATION_PIPELINE.md](docs/AM_VALIDATION_PIPELINE.md).
+Le premier sous-ensemble moteur composé, le
+[carter-turbine de refroidissement F0](docs/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
+convertit en OpenUSD mais échoue son test de jeu sur une collision BRep
+explicite : il reste un jumeau de recherche non fabricable.
+
 ![État sourcé du jumeau numérique 993](media/diagrams/digital-twin-993-etat.svg)
 
 Ce schéma représente les relations logiques sourcées, pas la position réelle des

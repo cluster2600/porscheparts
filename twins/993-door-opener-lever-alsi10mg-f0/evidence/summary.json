@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+  "twin_id": "TWIN-993-DOOR-OPENER-LEVER-ALSI10MG-F0",
+  "status": "virtual_screen_complete_full_simready_and_release_blocked",
+  "executed_stack": {
+    "cad": {
+      "build123d": "0.11.1",
+      "occt": "7.9.3.1",
+      "image_id": "sha256:2e02e3aa96eb1375cbc1a230664a08bafb89d461f4caeae8fe3501df6c9d84",
+      "image_digest": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:7155af27ddd4c909c29bbd599dbe18472661c0c5d6575906371a16e7420b7fce"
+    },
+    "lpbf_geometry": {
+      "trimesh": "5.1.0",
+      "numpy": "2.5.2",
+      "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+      "image_digest": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f"
+    },
+    "thermomechanical": {
+      "analysis": "CalculiX cold linear static plus steady uncoupled temperature-displacement, C3D10",
+      "calculix_version_output": "This is Version 2.21",
+      "execution_count": 6,
+      "gmsh_version": "4.12.1",
+      "mesh": "Gmsh second-order tetrahedra imported from the exact STEP",
+      "python": "3.12.3",
+      "runtime_image_id": "sha256:22e5ea95954ede922b9666b74e0db1c7fdc34667abc2254ab37002ed4d90996b",
+      "runtime_image_ref": "3dprinting993-cae-integrated-f33:x86-verify"
+    },
+    "cad_to_usd": {
+      "usd_convert_cad": "0.2.0",
+      "openusd": "26.8",
+      "validation": "usd-validation-nvidia 1.21.0",
+      "image_id": "sha256:3f97e71ebf07ee38b5729fa61858578d9c759dfa212f757e7286f3f09f7dc02d",
+      "image_digest": "ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44"
+    },
+    "rigid_body": {
+      "python": "3.12.14",
+      "platform": "Linux-6.19.14+kali-amd64-x86_64-with-glibc2.41",
+      "ovphysx": "0.5.11",
+      "ovstage": "0.1.1.355824",
+      "device": "cpu",
+      "image_id": "sha256:90b9906fac5bc62d639c630f80490d5253211b0e7d015eb65413685715a912fa"
+    }
+  },
+  "headline_results": {
+    "screening_mass_each_g": 71.62057629939254,
+    "lpbf_layers": 2664,
+    "lpbf_orientation": "roll_y_45",
+    "lpbf_support_proxy_mm3": 2714.49749999991,
+    "fea_execution_count": 6,
+    "fine_cold_p95_mpa": 45.2270231280366,
+    "fine_hot_p95_mpa": 46.54628105929385,
+    "fine_cold_max_displacement_mm": 1.032649515041603,
+    "ovphysx_steps": 240,
+    "ovphysx_final_witness_z_mm": 29.0
+  },
+  "gates": {
+    "exact_step_and_surface_hash_linked": true,
+    "lpbf_geometry_screen_executed": true,
+    "six_case_calculix_screen_executed": true,
+    "nvidia_usd_asset_validation": true,
+    "nvidia_usd_rigid_scene_validation": true,
+    "ovstage_ovphysx_integration": true,
+    "material_agent_for_this_revision": false,
+    "physics_agent_for_this_revision": false,
+    "full_simready_profile_for_this_revision": false,
+    "ovrtx_render_for_this_revision": false,
+    "measured_door_interfaces": false,
+    "functional_door_assembly": false,
+    "physical_correlation": false,
+    "manufacturing_release": false
+  },
+  "artifacts": {
+    "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step": {
+      "bytes": 145316,
+      "sha256": "639ecdd73ff77a2dd8a72d7e89c9e01d84a54f842276261bd56beea8d44c9fd7"
+    },
+    "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.stl": {
+      "bytes": 133884,
+      "sha256": "f159d23be74b61d2f7affb50eab12446bdf30222afd82b6e437d7697c77d48c0"
+    },
+    "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json": {
+      "bytes": 4671,
+      "sha256": "3480b2699e8f61bc3c43239d51c5093cd3951bd92989e668096735dfbedc87ff"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json": {
+      "bytes": 7578,
+      "sha256": "5777db6649dba4b924d6a77c5cdee1d34566f0476e70fb1144b46ae5a0a437c0"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-layer-metrics.csv": {
+      "bytes": 147491,
+      "sha256": "483e8b8882b40dad32890495b3b0a4e795ac17c6bcf212a5431d68326f3ba2f3"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png": {
+      "bytes": 228955,
+      "sha256": "70d3f1656add0227be0c307ede1723536c3c12052139f3e5e854207edeaa06af"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json": {
+      "bytes": 13406,
+      "sha256": "e7c809a88247a401d9fcb14ad35d522c056f0ab7e5a841bbbce34bc6c96dcb88"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/preflight.json": {
+      "bytes": 748,
+      "sha256": "cc0fdcaa72985ff6d73a602864bcd1dce06e7617833515958be5f297cdb842b1"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/door_opener_lever_f0.usd": {
+      "bytes": 9800,
+      "sha256": "d711bfeb170b0094782babb5581914c31dc6f811a4973a1b175270c04cb2f4b2"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/door-opener-rigid-screen.usd": {
+      "bytes": 1937,
+      "sha256": "b6d13bbc0618502dde0b6f327386a8020a6cd102d8ace2653194f6ca5d47a168"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/binary-validation.json": {
+      "bytes": 41,
+      "sha256": "fdb36636e75946975b0e4039ea3ba649570f65388d4497b411fcaa28fd97403f"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/rigid-scene-validation.json": {
+      "bytes": 41,
+      "sha256": "fdb36636e75946975b0e4039ea3ba649570f65388d4497b411fcaa28fd97403f"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/scene-authoring-report.json": {
+      "bytes": 1230,
+      "sha256": "7c664d03719f2edb0828f45d9eab5ec9bf9b1cb52f82d8d8e24ac31e9d3197ea"
+    },
+    "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json": {
+      "bytes": 1906,
+      "sha256": "8a892e8c6f2805cc4274cd604359b99a5e81a597f8dcde851a174f48085c8848"
+    },
+    "containers/ov-libraries-cpu.Dockerfile": {
+      "bytes": 1246,
+      "sha256": "55688c878b0d1997798db1c3c38909e0bb66c02b5e146be8d8f473b1fc556d43"
+    }
+  }
+}

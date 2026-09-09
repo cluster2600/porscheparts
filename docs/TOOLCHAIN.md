@@ -63,10 +63,22 @@ Ordre des formats maîtres : script `build123d`, `.FCStd` ou `.scad`, puis
 | Conversion de résultats | `ccx2paraview`, meshio | CLI et Python |
 | Post-traitement | PyVista, ParaView | Script Python |
 | CFD exploratoire | OpenFOAM + foamlib | CLI et Python |
+| Bain de fusion LPBF local | ORNL AdditiveFOAM 2.0.0 sur OpenFOAM 14 | CLI/MPI, coupons corrélés requis |
+| Surrogate physique | NVIDIA PhysicsNeMo | Python/PyTorch après calculs convergés et corrélés |
+| CAD vers scène | `usd-convert-cad 0.2.0` | CLI, STEP vers OpenUSD binaire |
+| Validation USD | `nvidia_usd_validate 1.21.0` | CLI et rapport JSON |
+| État de scène partagé | `ovstage 0.1.1.355824` | API Python/C |
+| Corps rigides | `ovphysx 0.5.11` | API Python/C, CPU ou GPU |
+| Rendu et capteurs | OVRTX | API Python/C, GPU RTX |
 
 Ces outils permettent une étude initiale. Pour une pièce critique, le modèle, les
 cas de charge, les propriétés du lot imprimé et les résultats doivent être revus
 par une personne compétente.
+
+CalculiX/OpenFOAM restent les solveurs de contrainte, thermique et fluide.
+`ovphysx` vérifie mouvement, contact et assemblage rigide ; OVRTX produit les
+images et capteurs. Un rendu Omniverse ne remplace donc jamais une FEA, et
+PhysicsNeMo ne devient utile qu'après constitution d'un jeu de référence.
 
 ## Impression polymère
 

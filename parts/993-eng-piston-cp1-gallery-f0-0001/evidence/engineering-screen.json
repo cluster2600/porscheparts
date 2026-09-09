@@ -56,6 +56,12 @@
     "synthetic_peak_gas_force_n": 94247.7796076938,
     "angular_speed_rad_s": 703.7167544041137,
     "synthetic_tdc_acceleration_m_s2": 24607.385161105838,
+    "synthetic_tdc_acceleration_g": 2509.254960777211,
+    "mean_piston_speed_m_s": 17.1136,
+    "rod_to_crank_ratio": 3.3246073298429315,
+    "crank_to_rod_ratio": 0.30078740157480316,
+    "documentary_displacement_per_cylinder_cm3": 600.0441968356506,
+    "documentary_six_cylinder_displacement_cm3": 3600.2651810139037,
     "synthetic_reciprocating_mass_kg": 0.8213184433418205,
     "synthetic_tensile_inertia_force_n": 20210.499275232058,
     "conservative_pin_force_n": 114458.27888292585,
@@ -80,6 +86,10 @@
     "one_dimensional_crown_conduction_upper_bound_w": 35910.91730465421,
     "free_outer_diameter_growth_mm": 0.45539999999999997,
     "load_cycles_at_duty": 40320000.0,
+    "shaft_revolutions_at_duty": 40320000.0,
+    "combustion_events_per_cylinder_at_duty": 20160000.0,
+    "porsche_200h_max_speed_equivalent_revolutions": 80640000.0,
+    "porsche_200h_max_speed_equivalent_combustion_events_per_cylinder": 40320000.0,
     "lumped_heat_capacity_j_k": 613.1865990076384
   },
   "equations": {
@@ -96,7 +106,11 @@
     "oil_temperature_rise": "delta_T=Q/(m_dot*cp)",
     "crown_conduction": "Q=k*A*delta_T/t",
     "thermal_expansion": "delta_D=alpha*D*delta_T",
-    "load_cycles": "n=N/60*t_seconds"
+    "mean_piston_speed": "U_mean=2*stroke*N/60",
+    "slider_crank_ratio": "lambda=r/L; rod_ratio=L/r",
+    "displacement": "Vd=pi*bore^2*stroke/4",
+    "shaft_revolutions": "n_rev=N/60*t_seconds",
+    "four_stroke_combustion_events": "n_combustion=n_rev/2 per cylinder"
   },
   "dfam_screen": {
     "additive_value": "closed crown gallery and load-shaped internal support can be integrated without a casting core",
