@@ -72,9 +72,17 @@ Quatre essais, quatre mesures :
 | `containers/` | 11 assertions d'empreinte, verrous d'image invalidés |
 | `scripts/` | `parent_sha_mismatch`, contrats F34 invalidés |
 | `catalog/` | les 917 y renvoient par `catalog_path` ; l'exclure du remplacement casse la résolution des sources |
-| `outils/benchmarks/`, `deploy/` | **conformes**, aucun test perdu |
+| `deploy/` | conforme en apparence, **puis rattrapé** : le rapport de préparation F46 lie l'empreinte des scripts déplacés |
+| `outils/benchmarks/` | **conforme**, aucun test perdu |
 
-Les deux derniers ont pu bouger parce qu'aucun fichier haché ne les nomme.
+Seul le dernier a pu bouger, parce qu'aucun fichier haché ne le nomme.
+
+**Le cas de `deploy/` mérite d'être lu**, parce qu'il a failli passer inaperçu.
+Les tests étaient conformes après le déplacement — mais `make check` s'arrêtait
+alors à la cible `test` et n'atteignait jamais les 37 cibles suivantes. C'est en
+rendant la suite verte que la casse est apparue, trois cibles plus loin. Une
+suite rouge ne cache pas seulement ses propres échecs : elle cache tout ce qui
+vient après elle.
 
 **La règle pratique** : un dossier n'est déplaçable que si son nom n'apparaît
 dans aucun fichier dont l'empreinte est enregistrée. Sinon, le rangement se
