@@ -53,6 +53,39 @@ Ce fichier existe pour que le rangement imparfait cesse d'être trompeur.
 Ce qui a été déplacé, parce que c'était sans effet sur les preuves : les 112
 documents 917, sortis de `docs/` où ils représentaient 60 % des fichiers.
 
+## Ce qui peut être déplacé, et ce qui ne le peut pas
+
+La règle vaut au-delà du dossier 917, et elle a été établie en essayant.
+
+**Ce dépôt lie les chemins aux empreintes.** Des manifestes enregistrent un
+chemin et le SHA-256 du fichier qui s'y trouve ; des verrous de conteneur
+enregistrent le chemin et l'empreinte des scripts embarqués ; des contrats
+enregistrent l'empreinte de leur parent. Déplacer un dossier oblige à réécrire
+les chemins **à l'intérieur** de ces fichiers, ce qui change leur empreinte et
+casse la chaîne.
+
+Quatre essais, quatre mesures :
+
+| déplacement tenté | résultat |
+|---|---|
+| `twins/reference-917-engine/` | 142 tests tombent, 40 assertions d'empreinte |
+| `containers/` | 11 assertions d'empreinte, verrous d'image invalidés |
+| `scripts/` | `parent_sha_mismatch`, contrats F34 invalidés |
+| `catalog/` | les 917 y renvoient par `catalog_path` ; l'exclure du remplacement casse la résolution des sources |
+| `outils/benchmarks/`, `outils/deploy/` | **conformes**, aucun test perdu |
+
+Les deux derniers ont pu bouger parce qu'aucun fichier haché ne les nomme.
+
+**La règle pratique** : un dossier n'est déplaçable que si son nom n'apparaît
+dans aucun fichier dont l'empreinte est enregistrée. Sinon, le rangement se
+paierait en preuves, et les preuves valent plus.
+
+Deux pièges accompagnent tout déplacement, qu'une simple recherche de chaînes ne
+voit pas : les chemins construits par segments — `ROOT / "deploy" / ...`,
+`joinpath("catalog", "sources")` — et les profondeurs `parents[N]`, qui supposent
+le nombre de niveaux au-dessus du fichier et désignent silencieusement le mauvais
+répertoire dès qu'on le niche d'un cran.
+
 ## Actif
 
 | dossier | ce que c'est |
