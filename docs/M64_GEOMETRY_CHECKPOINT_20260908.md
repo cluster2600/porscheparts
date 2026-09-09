@@ -1,10 +1,14 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : l'optimisation du cœur sauvegardé supprime les
-valeurs non finies et réduit de 5 858 à 3 282 les tétraèdres sous
-`minSICN = 0,1`, avec frontière, classifications et relecture conservées.
-Des cellules restent extrêmement aplaties : ce n'est pas encore une
-admission à OpenFOAM. Les refus précédents restent documentés séparément.**
+**Dernier résultat gaz : le remaillage Delaunay de la surface de conduit 37
+passe les contrôles bornés de conservation, sans modifier la CAO. Les
+identifiants hors cible sont rétablis par bijection exacte, sans changer les
+coordonnées, classes ni connectivités. Il réduit de 18 à 17 les triangles
+dont la borne SICN est sous 0,1 : la qualité reste insuffisante pour admettre
+un calcul physique. Le cœur diagnostique
+de référence reste inchangé, avec 3 281 tétraèdres sous `minSICN = 0,1`.
+Il n'y a toujours pas d'admission à OpenFOAM. Les essais et refus restent
+documentés séparément.**
 Pour le solide, le déplacement intérieur réduit de 309 à 283 les tétraèdres
 sous `minSICN = 0,1`, sans améliorer le minimum de 0,000792. Le fichier CAO
 et la frontière du maillage restent inchangés ; la distance
@@ -1403,11 +1407,95 @@ interfaces, écarts à la CAO et contacts après réassemblage. Ne pas changer
 le contour de la culasse pour améliorer cet indicateur. Aucun nouveau
 solveur physique ni aucune location Vast n'a été lancé pour ces audits.
 
+## Pilote de retessellation : isolation contrôlée, qualité encore insuffisante
+
+La face de conduit 37 est retriangulée avec Delaunay, sur la même surface
+OCC, après réinjection du maillage de surface mixte. Les coordonnées et
+classifications de **85 295 nœuds**, les éléments 0D/1D/2D et les groupes
+physiques sont d'abord reconstruits puis réécrits : le fichier de départ
+est reproduit **octet pour octet** (`25905293…`). Aucun volume de maillage
+n'est chargé ; les 67 200 hexaèdres et 384 pyramides de la chaîne précédente
+ne sont donc pas recalculés dans ce pilote.
+
+Le MSH ne contient pas de paramètres de courbe/surface. Les paramètres des
+85 133 nœuds non 0D sont reconstruits et contrôlés par évaluation
+directe aux tolérances natives, sans déplacement XYZ. Les deux premiers
+arrêts identifient un paramètre d'extrémité inférieur d'environ `4e−15` à
+sa borne ; son rattachement utilise ensuite l'identité du sommet et le sens
+de l'arête, sans tolérance ajoutée. Le troisième arrêt révèle les cercles
+fermés : 31 alias de sommet sont traités explicitement avec contrôle des
+deux bornes et du cycle 1D. Cette convention 0D n'est pas injectée comme
+un paramètre de nœud 1D. Les intérieurs de courbe et les UV restent soumis
+aux mêmes gardes.
+
+Le quatrième essai génère et sauvegarde un candidat, puis le refuse : les
+71 152 quadrilatères hors cible ont été remplacés par des triangles. La
+lecture de Gmsh 4.15.2 attribue le détour au calcul du statut du maillage
+réinjecté (`GModel.cpp`, `getMeshStatus(false)`) : les statuts internes
+non terminés déclenchent la passe 1D, qui efface les faces avant le filtre
+`MeshOnlyEmpty`. Ce filtre compte bien les quadrilatères ; il n'est pas
+réservé aux triangles.
+
+Le cinquième essai masque temporairement les courbes et les surfaces hors
+cible avec `MeshOnlyVisible`, sans récursion, puis restaure les visibilités
+avant export. Une seule génération 2D est appelée, sans optimisation ni
+repli automatique d'algorithme. Le journal confirme que seule la surface 37
+est maillée. Le candidat `dfecbc5e…` contient **85 386 nœuds, 32 068 triangles
+et les 71 152 quadrilatères conservés**. La contrelecture indépendante
+confirme tous les XYZ/classes hors cible, les groupes, les incidences et les
+bornes d'entités. Elle refuse cependant les enregistrements d'éléments hors
+cible, car leurs identifiants ont changé. Une contrelecture indépendante,
+en deux étapes, établit une bijection exacte des **107 348 éléments hors cible** :
+107 186 sont seulement renumérotés, sans aucune rotation, permutation ou
+inversion des nœuds. La lecture de `Generator.cpp` et `HighOrder.cpp`
+identifie la cause : l'appel préalable à `SetOrder1` recrée les lignes,
+triangles et quadrilatères, même déjà linéaires, avec de nouveaux tags.
+`Mesh.Renumber = 0` ne désactive pas cette opération.
+
+Le **sixième essai** sauvegarde le brut séparément, identique octet pour
+octet au cinquième candidat. Une bijection totale explicite rétablit les
+identifiants source hors cible et attribue des identifiants neufs aux
+2 471 triangles de la cible, avec un seul appel `renumberElements`.
+Les correspondances exigent le même type, la même entité et les mêmes nœuds
+dans le même ordre ; doublons, permutations, changements XYZ ou de classe
+sont refusés. Le fichier final `81bac4db…` est sauvegardé, parsé puis relu
+par Gmsh. **Les gardes natives et les 15 contrôles de contrelecture passent**,
+y compris tous les identifiants et connectivités hors cible. La table de
+correspondance reste archivée en privé avec son empreinte ; aucun maillage
+volumique de référence n'est remplacé. Deux avertissements Gmsh restent
+enregistrés, concernant les entités 364/face 28 et 368/face 29. Les contrôles
+réussis ne valent pas preuve de conformité continue à la CAO.
+
+Sur la cible : **2 289 → 2 471 triangles**, **18 → 17** bornes SICN sous 0,1,
+minimum de borne **`2,223e−5 → 3,157e−5`**. C'est une diminution limitée
+d'une obstruction de discrétisation, pas un gain de rendement ou de tenue.
+Les 155 segments de frontière orientés sont identiques. Le maillage possède
+trois cycles de frontière, une composante et une caractéristique d'Euler −1,
+avant comme après ; les deux wires CAO ne doivent pas être confondus avec
+ces trois cycles. Aucun triangle nul, doublon ou défaut combinatoire de
+variété n'est relevé sur cette surface ; cela ne contrôle pas ses
+auto-intersections géométriques ni sa conformité continue à la CAO.
+
+Les six essais Kali sont bornés à 300 s, dont 30 s réservées au nettoyage,
+avec quatre CPU et 4 Gio sans swap supplémentaire. Les trois premiers
+s'arrêtent avant génération ; les deux suivants sauvegardent des candidats
+refusés et le dernier passe les contrôles bornés de conservation. Ce dernier
+prend 14,62 s de travailleur, 15,31 s avec nettoyage ; sa contrelecture pure
+prend 1,67 s. Les conteneurs exacts sont supprimés et leur absence revérifiée.
+54 tests ciblés passent ; `make check` passe intégralement. Aucun calcul
+thermique, mécanique, LPBF ou CFD n'est ajouté par ce lot, et aucune dépense
+Vast n'est engagée. Reçus et empreintes :
+[registre de preuve](../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json).
+
 ## Suite et périmètre d'exécution
 
 Priorités : établir la décision d'admission à partir des preuves distinctes
 de représentation, de frontières et du registre des 124 rôles ; conclure la
 couverture et le bilan de volumes avant admission du domaine gazeux.
+Le pilote de surface est maintenant isolé et reproductible ; localiser les
+17 obstructions restantes et leur lien aux contraintes 1D avant de décider
+d'une nouvelle discrétisation. Ne pas relancer le même Delaunay inchangé ni
+promouvoir ce pilote dans le cœur volumique sans contrôle des raccordements.
 Pour le solide, les résultats 147 puis 192 et Relocate3D montrent une baisse
 du nombre insuffisant à 283, mais le minimum dégradé n'est pas corrigé.
 Traiter le mécanisme volumique
@@ -1457,6 +1545,9 @@ flowchart LR
     AI --> AJ[Plus petite cavité 5 vers 10 appliquée<br/>Frontière et relecture exactes, 3 281 minSICN sous 0,1]
     AJ --> AK[Lot intérieur : 96 propositions refusées<br/>Aucune application native]
     AK --> AL[Borne exacte : 661 faces obstructives<br/>Retessellation sur les mêmes surfaces CAO]
+    AL --> AM[Surface 37 retriangulée<br/>18 vers 17 obstructions de face]
+    AM --> AN[Tags source rétablis par bijection exacte<br/>XYZ et connectivités hors cible conservés]
+    AN --> AO[Contrelecture bornée réussie<br/>17 obstructions restantes, aucune admission CFD]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
