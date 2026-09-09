@@ -182,7 +182,7 @@ flowchart TD
 
 Le statut provisoire « aucun digest public F28 et aucun lock d'autorité » n'est
 plus applicable. Le workflow public
-[`33592654832`](https://github.com/cluster2600/3dprinting993/actions/runs/33592654832)
+[`33592654832`](https://github.com/cluster2600/porscheparts/actions/runs/33592654832)
 a publié et validé l'index exact :
 
 ```text

@@ -159,9 +159,16 @@ def _validate_declared_values(
             errors.append(f"{label}.source_collection: expected a non-empty string")
         if not _text(value.get("description")):
             errors.append(f"{label}.description: expected a non-empty string")
+        # Provenance : soit une page de PDF, soit une PLANCHE. Les manuels 964 lus ici
+        # sont cotes par planche (50-02, 44-02) et n'ont pas de pagination PDF ; exiger
+        # un numero de page y forcerait a en inventer un. Une des deux doit etre donnee.
         page = value.get("pdf_page")
-        if not isinstance(page, int) or isinstance(page, bool) or page < 1:
-            errors.append(f"{label}.pdf_page: expected a positive integer")
+        plate = value.get("plate")
+        if page is None:
+            if not _text(plate):
+                errors.append(f"{label}.pdf_page: null requires a non-empty plate reference")
+        elif not isinstance(page, int) or isinstance(page, bool) or page < 1:
+            errors.append(f"{label}.pdf_page: expected a positive integer, or null with a plate")
         line = value.get("line")
         if line is not None and (not isinstance(line, int) or isinstance(line, bool) or line < 1):
             errors.append(f"{label}.line: expected null or a positive integer")

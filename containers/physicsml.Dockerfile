@@ -126,7 +126,7 @@ EXPOSE 22
 
 LABEL org.opencontainers.image.title="3dprinting993-physicsml" \
       org.opencontainers.image.description="GPU CAD, meshing, FEA and physics-ML toolchain (JAX-FEM, PhysicsNeMo, DeepXDE) for Porsche 993 digital-twin research" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

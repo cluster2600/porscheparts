@@ -187,7 +187,7 @@ remplir par le nombre.
 Une masse sans position ne donne ni centre de gravité, ni répartition, ni
 inertie. Une première cage 3D d'encombrement et de repères, basée sur sept
 dimensions du manuel Porsche, est disponible dans
-[`twin/993/`](twin/993/). Elle sert de datum visuel pour le profil USA, mais ne
+[`twins/993-reference-envelope/`](twins/993-reference-envelope/). Elle sert de datum visuel pour le profil USA, mais ne
 reconstruit pas la carrosserie et ne positionne pas encore les pièces.
 
 La suite est de remplacer cette cage par une géométrie de caisse sous licence ou

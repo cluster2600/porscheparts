@@ -20,7 +20,7 @@ WORKDIR /workspace
 
 LABEL org.opencontainers.image.title="3dprinting993-cae-reference-f31" \
       org.opencontainers.image.description="Gmsh and CalculiX reference screening for the Porsche 917 F29 cylinder-head concepts" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["python3"]
