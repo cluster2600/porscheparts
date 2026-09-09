@@ -1,11 +1,17 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : une très petite arête contractée sur copie,
+**Dernier essai gaz : la conversion duale globale est exécutée puis rejetée.
+Dix contrôles qualité échouent contre cinq sur la source, avec une cellule
+de volume négatif et 120 190 cellules concaves. La source et la CAO maîtresse
+sont conservées, sans admission CFD ni fabrication. Voir le
+[rejet documenté et ses preuves](M64_GLOBAL_DUAL_REJECTION_20260909.md).**
+
+Résultat précédent : une très petite arête contractée sur copie,
 après témoins natifs et contre-vérification. Rapport d'allongement maximal :
 54 610 → 15 882 ; cinq familles qualité toujours refusées. La CAO maîtresse
 reste intacte, mais la frontière discrète est légèrement modifiée avec une
 borne contrôlée, sans conformité CAO acquise. Voir la
-[correction locale et ses limites](M64_SHORT_EDGE_CORRECTION_20260909.md).**
+[correction locale et ses limites](M64_SHORT_EDGE_CORRECTION_20260909.md).
 
 Essai précédent : 57 groupes supplémentaires de trois/quatre tétraèdres
 fusionnés nativement. Faible déterminant : 2 021 → 1 963 ; faible poids :
