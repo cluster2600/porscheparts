@@ -1,10 +1,13 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : les défauts OpenFOAM sont exportés et attribués aux
-cellules sources. Les 190 transitions hexaèdre/pyramide à faible poids sont
-distinctes des défauts du cœur tétra ; cinq familles restent refusées.
-Contour et maillage inchangés ; voir la
-[localisation réelle](M64_DEFECT_LOCALISATION_20260909.md).**
+**Dernier résultat gaz : 189 transitions corrigées, 25 cellules à faible
+déterminant et 66 faces trop non orthogonales en moins, sans nouveaux IDs
+défectueux dans les ensembles comparés. Correction de points internes uniquement,
+contour et CAO inchangés ; cinq familles restent refusées. Voir la
+[correction effectivement contrôlée](M64_APEX_TRANSITIONS_20260909.md).**
+
+Essai précédent : les défauts OpenFOAM sont exportés et attribués aux cellules
+sources ; voir la [localisation réelle](M64_DEFECT_LOCALISATION_20260909.md).
 
 Essai précédent : le domaine hybride de 785 883 cellules est assemblé et
 contre-vérifié. OpenFOAM retrouve un domaine connecté et trois patches, mais
