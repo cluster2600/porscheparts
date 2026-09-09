@@ -1,5 +1,8 @@
 # M64 — correction par paires du maillage hybride
 
+Le [complément de 57 groupes](#complément--57-groupes-de-troisquatre-tétraèdres)
+prolonge ce premier lot. Les résultats des 252 paires ci-dessous restent historiques.
+
 **252 unions de tétraèdres ont été réellement exécutées dans OpenFOAM :
 259 cellules à faible déterminant, 67 faces à faible poids et 29 faces trop
 non orthogonales en moins. Aucun nouveau défaut dans les neuf ensembles
@@ -142,3 +145,99 @@ Empreintes recontrôlées des reçus privés : natif `feaf402cf025…`, transfor
 Les preuves complètes sont référencées dans le [registre géométrique](../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json)
 et le [checkpoint](M64_GEOMETRY_CHECKPOINT_20260908.md). Aucun maillage brut,
 coordonnée, identifiant d'entité privé ou donnée de compte n'est publié ici.
+
+## Complément — 57 groupes de trois/quatre tétraèdres
+
+**Le deuxième lot natif remplace 214 tétraèdres par 57 polyèdres :
+58 cellules à faible déterminant, cinq faces à faible poids et deux faces
+trop non orthogonales en moins. Aucun nouveau défaut dans les neuf ensembles
+comparés ; les cinq familles de qualité restent refusées.**
+
+![Résultats natifs du lot de 57 groupes ; pas un champ physique](images/m64-hybrid-group-quality-20260909.png)
+
+La sélection comprend 14 groupes de trois parents et 43 de quatre.
+Les 428 faces voisines affectées sont revérifiées conjointement. La recherche
+est bornée, non exhaustive ; elle ne prétend pas avoir trouvé toutes les
+améliorations possibles. Les hexas et pyramides ne sont pas fusionnés.
+
+```mermaid
+flowchart LR
+    A["57 groupes sélectionnés"] --> B["Quatre cas natifs de contrôle"]
+    B --> C["Fusion sur copie du domaine réel"]
+    C --> D["Audit indépendant de la transformation"]
+    D --> E["checkMesh et comparaison via maps"]
+    E --> F["Progrès partiel : cinq familles encore refusées"]
+```
+
+Le graphe des parents peut contenir des cycles : **214 faces internes** sont
+retirées, mais seulement **157 cellules** disparaissent (`214 − 57`).
+Le résultat contient 785 474 cellules et 1 688 427 faces. L'audit indépendant
+reconstitue les groupes sans reprendre l'algorithme de fusion, vérifie les
+frontières orientées, la convexité et les sommes exactes de volumes sur les
+coordonnées binary64 représentées. Les **223 155 points et 99 470 faces externes**
+sont conservés, ainsi que les patchs et la zone `air`. La CAO ne change pas.
+
+| Ensemble natif | Après paires | Après groupes | Attribution |
+|---|---:|---:|---|
+| Faible déterminant | 2 021 | 1 963 | 58 parents remplacés par des unions non signalées |
+| Faible poids | 1 235 | 1 230 | 2 faces supprimées + 3 conservées désormais non signalées |
+| Non-orthogonalité > 70° | 3 450 | 3 448 | 2 faces conservées désormais non signalées |
+| Deux faces internes | 262 | 208 | 54 parents remplacés par des unions non signalées |
+| Allongement / skewness | 10 / 18 | 10 / 18 | Mêmes entités source |
+| Faible rapport de volumes / arêtes courtes | 137 / 5 | 137 / 5 | Mêmes faces / points source |
+| Zéro/une face interne | 2 | 2 | Mêmes cellules source |
+
+Les ensembles ne s'additionnent pas. Une union est une nouvelle cellule,
+pas une réparation en place de chacun de ses parents. Le déterminant minimum
+reste nul. Les moyennes de poids (`0,434743558 → 0,434737519`) et de rapport
+de volumes (`0,787518094 → 0,787457211`) baissent légèrement ; celle de
+non-orthogonalité s'améliore (`21,556013° → 21,554342°`). Le code processus 0
+de `checkMesh` accompagne toujours **« Failed 5 mesh checks. »**.
+
+### Incident du précontrôle conservé et corrigé
+
+Le premier essai compile et fusionne le petit cas synthétique, puis s'arrête
+dans le lecteur d'audit : les listes uniformes natives `6{0}` et `3{0}`
+n'étaient pas acceptées. Ce format est confirmé dans
+[OpenFOAM 14, UListIO.C](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/containers/Lists/UList/UListIO.C#L84-L106).
+Le domaine réel n'est pas fusionné dans cet essai ; la source est intacte et
+le conteneur supprimé. Ses reçus restent conservés.
+
+Une nouvelle révision accepte uniquement `N{entier}` avec expansion bornée,
+sans relâcher les contrôles géométriques ou les seuils de qualité. Elle passe
+19 tests de transformation/lecture et cinq tests de nettoyage. Le nouvel essai
+natif passe un cas convexe et trois refus attendus : cycle incomplet, point
+devenant orphelin, groupe trop grand. Ensuite seulement, il traite le domaine réel.
+La comparaison des ensembles passe ses neuf tests et termine en 1,472 s.
+
+Le processus réel complet prend **31,988 s**, sous 4 CPU / 4 Gio sur Kali,
+sans OOM ni timeout. Entrées intactes et absence du conteneur sont revérifiées.
+**Nouvelle dépense Vast : 0 USD pour ce lot.** Aucune nouvelle CFD, thermique,
+résistance, impression LPBF ou qualification de puissance n'est établie.
+Le rôle d'OpenFOAM, Elmer, PhysicsNeMo et Ditto/MQTT reste celui du
+[plan d'exécution](M64_MULTIPHYSICS_EXECUTION.md#précision-du-9-septembre--calcul-ia-et-banc-séparés),
+pas celui d'une chaîne entièrement exécutée.
+
+La recherche pure sur la dernière transition teste aussi huit états de
+connectivité puis 337 positions 3D, sans candidat admissible. Une face créée
+par les bascules atteint 81,42° et ne dépend pas du sommet mobile : cette
+recherche locale ne suffit pas. Aucun nouveau maillage n'en est exporté,
+sans prétendre à une impossibilité générale. La suite doit élargir le
+remaillage local, avec une tolérance d'approximation CAO explicite et contrôlée,
+tout en conservant le maître et sa silhouette.
+
+Reçus privés SHA-256 : natif `865b2e82697e…`, audit `3ed282c30ff1…`,
+comparaison `96d505ee63f2…`, processus `6bdc00c03097…` ; premier refus
+`ea0bb38660af…`. Le [registre](../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json)
+contient les empreintes complètes, en conservant toutes les entrées antérieures.
+Pour reproduire ce graphique :
+
+```sh
+python3 twins/m64-cylinder-head/source/render_hybrid_pair_quality.py --groups
+```
+
+Sans `--groups`, le script reproduit toujours le graphique du premier lot.
+`make check` termine avec le code 0 ; les tests optionnels sans leur runtime
+sont explicitement ignorés. Une revue indépendante recoupe le texte, le PNG,
+les comptes et les empreintes avec les reçus. Ces succès logiciels ne lèvent
+pas les cinq refus de qualité ni les validations physiques manquantes.

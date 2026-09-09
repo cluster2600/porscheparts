@@ -1,5 +1,6 @@
 """Render observed mesh defect counts; never a thermal or geometry rendering."""
 from pathlib import Path
+import argparse
 import json
 
 import matplotlib
@@ -8,9 +9,13 @@ import matplotlib.pyplot as plt
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--groups", action="store_true", help="Render the later 57-group checkpoint.")
+    args = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
     evidence = root / "twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json"
-    result = json.loads(evidence.read_text())["gas_hybrid_pair_correction"]
+    key = "gas_hybrid_group_correction" if args.groups else "gas_hybrid_pair_correction"
+    result = json.loads(evidence.read_text())[key]
     comparison = result["mapped_comparison"]
     if result["mesh_quality_accepted"] or result["CFD_qualified"]:
         raise ValueError("This checkpoint must not label the rejected mesh accepted.")
@@ -28,8 +33,10 @@ def main():
     fig.patch.set_facecolor("#f6f8fb")
     ax.set_facecolor("#f6f8fb")
     x = list(range(len(names)))
-    ax.bar([v - .19 for v in x], before, .36, color="#8693a4", label="Avant : candidat V2")
-    ax.bar([v + .19 for v in x], after, .36, color="#0072b2", label="Après : 252 unions natives")
+    before_label = "Avant : après les 252 paires" if args.groups else "Avant : candidat V2"
+    after_label = "Après : 57 groupes supplémentaires" if args.groups else "Après : 252 unions natives"
+    ax.bar([v - .19 for v in x], before, .36, color="#8693a4", label=before_label)
+    ax.bar([v + .19 for v in x], after, .36, color="#0072b2", label=after_label)
     for i, row in enumerate(rows):
         for shift, value in [(-.19, before[i]), (.19, after[i])]:
             ax.text(i + shift, value + 45, f"{value:,}".replace(",", " "), ha="center", fontsize=11)
@@ -48,7 +55,8 @@ def main():
     fig.text(.09, .075, "5 familles restent en échec. Aucun calcul CFD, thermique, résistance ou LPBF validé.", fontsize=11, color="#8c2d22")
     fig.text(.09, .04, "Ensembles non additionnables • certains indicateurs moyens se dégradent légèrement • reçus dans GitHub", fontsize=9)
     fig.subplots_adjust(left=.09, right=.97, bottom=.21, top=.83)
-    output = root / "docs/images/m64-hybrid-pair-quality-20260909.png"
+    kind = "group" if args.groups else "pair"
+    output = root / f"docs/images/m64-hybrid-{kind}-quality-20260909.png"
     fig.savefig(output, dpi=150, metadata={"Software": "matplotlib"})
     plt.close(fig)
     print(output)

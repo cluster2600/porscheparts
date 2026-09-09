@@ -1,11 +1,18 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : 252 paires de tétraèdres fusionnées nativement,
+**Dernier résultat gaz : 57 groupes supplémentaires de trois/quatre tétraèdres
+fusionnés nativement. Faible déterminant : 2 021 → 1 963 ; faible poids :
+1 235 → 1 230 ; non-orthogonalité > 70° : 3 450 → 3 448.
+Aucun nouveau défaut dans les neuf ensembles comparés, points et frontière
+conservés. Les cinq familles restent refusées, sans admission CFD.
+Voir le [complément contrôlé](M64_HYBRID_PAIR_CORRECTION_20260909.md#complément--57-groupes-de-troisquatre-tétraèdres).**
+
+Essai précédent : 252 paires de tétraèdres fusionnées nativement,
 259 cellules à faible déterminant, 67 défauts de poids et 29 faces trop
 non orthogonales en moins. Aucun nouveau défaut dans les ensembles comparés
 après correspondance des identifiants ; tous les points et la frontière sont
 conservés exactement. Cinq familles restent refusées, sans admission CFD.
-Voir le [bilan contrôlé des fusions](M64_HYBRID_PAIR_CORRECTION_20260909.md).**
+Voir le [bilan contrôlé des fusions](M64_HYBRID_PAIR_CORRECTION_20260909.md).
 
 Essai précédent : 189 transitions corrigées, 25 cellules à faible
 déterminant et 66 faces trop non orthogonales en moins, sans nouveaux IDs
