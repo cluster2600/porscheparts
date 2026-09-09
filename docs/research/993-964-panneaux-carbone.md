@@ -130,3 +130,72 @@ masse. Il etablit une liste de candidats identifies par leur numero d'usine et
 classes par un ordre de grandeur declare. La prochaine etape n'est pas de la CAO :
 c'est **une balance et un pied a coulisse sur une aile reelle**, plus la matiere
 et l'epaisseur d'origine. Sans quoi le gain annonce reste celui d'un vendeur.
+
+## Objection, et elle est juste : ces panneaux existent deja
+
+Capots, ailes, becquets et pare-chocs en carbone se trouvent au catalogue de
+plusieurs preparateurs. Refaire ce qui se commande n'apprend rien a ce depot et
+ne lui donne aucune raison d'exister. La question utile n'est donc pas « quelle
+piece pese le plus », mais **quelle piece personne ne vend**.
+
+### Ce que personne ne vend : l'habillage de planche de bord
+
+Fiche : `catalog/parts/993-int-dashboard-trim-0001.json`.
+
+Deux choses portent le meme nom au catalogue d'usine, et les confondre ferait
+sortir du perimetre :
+
+| ce que c'est | numero | nature |
+|---|---|---|
+| `Dashboard` | 993 502 027 02 /LL | **tole de caisse**, groupe carrosserie |
+| `Dashboard trim` | 993 552 055 00 /LL | habillage rapporte, sur ecrous a griffes |
+
+Seul le second est une piece candidate. Le premier est de la structure.
+
+**Ce que le catalogue etablit, et qui commande tout le reste.** L'illustration
+809-00 est intitulee « Dashboard, **for cars with Airbag**, Passenger's side ».
+Celle du Carrera RS porte au contraire « Dashboard, Knee protection strip, **for
+cars without Airbag**, Passenger's side », avec sa propre variante 993 552 055 70
+en M003. Les codes d'option separent M561 airbag conducteur, M562 conducteur et
+passager, **M564 sans airbag**.
+
+Autrement dit : sur une voiture M562, l'habillage porte le **volet de deploiement
+de l'airbag passager**, dont la ligne de rupture est une piece de retenue des
+occupants — presumee critique par `SAFETY.md`. Sur une M564 ou une RS, ce volet
+n'existe pas et la piece redevient un habillage.
+
+La fiche est donc ouverte en `prohibited_pending_engineering`, et le premier
+travail n'est ni de la CAO ni un scan : **relever le code d'option du vehicule
+donneur**. C'est une lecture d'etiquette, et elle decide si le projet existe.
+
+**Ce n'est pas un projet de masse.** Le gain annonce est de 1,15 kg, contre 9,9 kg
+pour un capot avant. La raison de faire cette piece est qu'elle n'est pas au
+catalogue, pas qu'elle allege.
+
+**Aucune geometrie n'existe, et le depot l'a deja verifie.** Les deux pistes
+trouvees en phase 1 sont classees : `SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL` est
+un modele reduit au 1/8, archive comme faux positif ; `SRC-FSH-993-DASHBOARD-TRIM-
+DIMENSIONS` decrit une garniture aftermarket Singer Style, pas la piece d'origine.
+Une planche de bord est une surface libre a interfaces multiples — aerateurs,
+casquette d'instruments, colonne, boite a gants, jonction de console, montants,
+pied de pare-brise — qui ne se releve pas au pied a coulisse. La photogrammetrie a
+l'echelle prevue pour `993-INT-DOOR-PULL-0001` est la bonne methode, sur une piece
+cent fois plus grande.
+
+Trois difficultes lui sont propres, et aucune ne concerne un panneau exterieur :
+
+- l'original a trente ans, il est fissure et gauchi par la chaleur ; mouler une
+  piece deformee donne une piece fausse ;
+- c'est la surface de l'habitacle la plus exposee au soleil, donc la resine y
+  vieillit ;
+- un carbone verni sous pare-brise **renvoie la lumiere dans le champ du
+  conducteur**, ce qu'un similicuir grene ne fait pas. C'est une exigence, pas une
+  finition.
+
+### Ce que devient le classement precedent
+
+Il reste vrai comme classement de **masse**, et il cesse d'etre un ordre de
+travail. Le capot avant garde sa fiche, `993-BODY-FRONT-LID-0001`, ouverte comme
+premier pilote de carrosserie et desormais rattachee a sa reference d'usine
+993 511 010 01. Mais entre refaire un capot qui se commande et relever une planche
+de bord que personne ne propose, c'est la seconde qui apprend quelque chose.
