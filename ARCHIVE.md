@@ -72,7 +72,7 @@ Quatre essais, quatre mesures :
 | `containers/` | 11 assertions d'empreinte, verrous d'image invalidés |
 | `scripts/` | `parent_sha_mismatch`, contrats F34 invalidés |
 | `catalog/` | les 917 y renvoient par `catalog_path` ; l'exclure du remplacement casse la résolution des sources |
-| `outils/benchmarks/`, `outils/deploy/` | **conformes**, aucun test perdu |
+| `outils/benchmarks/`, `deploy/` | **conformes**, aucun test perdu |
 
 Les deux derniers ont pu bouger parce qu'aucun fichier haché ne les nomme.
 

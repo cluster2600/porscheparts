@@ -35,8 +35,8 @@ QUALIFICATION_WORKFLOW_PATH = ".github/workflows/containers.yml"
 RUNTIME_RECEIPT_AUTHENTICITY_SCOPE = (
     "local_live_procedural_receipt_not_cryptographic_signature"
 )
-LAUNCHER_PIN_PATH = "outils/deploy/openbao/openbao-vastai"
-RUNTIME_ATTESTOR_PATH = "outils/deploy/openbao/openbao-ghcr"
+LAUNCHER_PIN_PATH = "deploy/openbao/openbao-vastai"
+RUNTIME_ATTESTOR_PATH = "deploy/openbao/openbao-ghcr"
 RUNTIME_ATTESTOR_COMMAND = "attest-simready-runtime"
 PROFILE = "Prop-Robotics-Physx"
 PROFILE_VERSION = "1.0.0"

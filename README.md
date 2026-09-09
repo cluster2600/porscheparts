@@ -182,7 +182,7 @@ media/              schémas et projets vidéo
 archive/917/docs/   les 112 dossiers écrits de la culasse 917
 schemas/            contrat de données du catalogue
 scripts/  tests/    contrôles automatiques et garde-fous
-containers/ outils/deploy/ images de calcul reproductibles et déploiement
+containers/ deploy/ images de calcul reproductibles et déploiement
 templates/          modèles de fiche, mesure et demande de fabrication
 ```
 

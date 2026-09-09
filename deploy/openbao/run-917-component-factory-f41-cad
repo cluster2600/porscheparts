@@ -372,7 +372,7 @@ class Supervisor:
     def __init__(self, args: argparse.Namespace, entrypoint: Path):
         self.args = args
         self.entrypoint = entrypoint
-        self.repo_root = entrypoint.resolve().parents[3]
+        self.repo_root = entrypoint.resolve().parents[2]
         self.validator = (
             self.repo_root
             / "twins/reference-917-engine/source/validate_component_factory_f41_cad_results.py"
@@ -380,7 +380,7 @@ class Supervisor:
         self.wrapper = validate_tool(
             os.environ.get(
                 "OPENBAO_VASTAI_BIN",
-                str(self.repo_root / "outils/deploy/openbao/openbao-vastai"),
+                str(self.repo_root / "deploy/openbao/openbao-vastai"),
             ),
             "openbao_vastai_wrapper",
         )
@@ -1430,7 +1430,7 @@ def parse_arguments(argv: list[str], repo_root: Path) -> argparse.Namespace:
 def main() -> int:
     require(len(sys.argv) >= 2, "entrypoint_argument_missing")
     entrypoint = Path(os.path.abspath(sys.argv[1]))
-    repo_root = entrypoint.resolve().parents[3]
+    repo_root = entrypoint.resolve().parents[2]
     args = parse_arguments(sys.argv[2:], repo_root)
     supervisor = Supervisor(args, entrypoint)
     previous_handlers: dict[int, Any] = {}

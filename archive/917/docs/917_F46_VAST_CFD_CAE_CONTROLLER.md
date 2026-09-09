@@ -188,7 +188,7 @@ avant une campagne sans surveillance.
 ## Vérification locale sans dépense
 
 ```sh
-python3 outils/deploy/vast/f46/_f46_controller.py \
+python3 deploy/vast/f46/_f46_controller.py \
   --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json \
   --jobs twins/reference-917-engine/f46-vast-job-manifest.json \
   --root . check

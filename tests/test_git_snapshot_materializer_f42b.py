@@ -15,7 +15,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-HELPER = ROOT / "outils/deploy/vast/simready/_materialize_git_snapshot.py"
+HELPER = ROOT / "deploy/vast/simready/_materialize_git_snapshot.py"
 GIT = Path("/usr/bin/git")
 PYTHON = Path(sys.executable).resolve()
 
