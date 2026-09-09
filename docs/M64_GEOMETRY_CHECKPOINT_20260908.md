@@ -1,9 +1,14 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier essai gaz : les champs de taille natifs atteignent la génération 2D,
+**Dernier essai gaz : le domaine hybride de 785 883 cellules est assemblé et
+contre-vérifié. OpenFOAM retrouve un domaine connecté et trois patches, mais
+refuse cinq contrôles qualité. Aucun solveur exécuté ni gain crédité ; voir le
+[diagnostic OpenFOAM](M64_HYBRID_OPENFOAM_20260909.md).**
+
+Essai précédent : les champs de taille natifs atteignent la génération 2D,
 mais la face 37 déclenche des reprises répétées. Arrêt code 137 après
 250,146 s, sans candidat ; entrées inchangées et nettoyage vérifié.
-Aucun gain ni admission CFD. Voir l'[essai natif](M64_NATIVE_SIZE_TRIAL_20260909.md).**
+Aucun gain ni admission CFD. Voir l'[essai natif](M64_NATIVE_SIZE_TRIAL_20260909.md).
 
 Essai précédent : le champ de taille locale s'arrête avec le code 152,
 compatible avec la limite CPU, sans maillage candidat ni rapport final.
