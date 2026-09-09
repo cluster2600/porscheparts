@@ -1,4 +1,302 @@
 {
+  "gas_hybrid_defect_localization": {
+    "status": "native_defects_exported_source_correspondence_verified_and_localized_mesh_quality_rejected_NOT_CFD",
+    "source_hybrid_mesh_sha256": "7733245dd470e6d9da3b5724c2c084720b329d6caa55bcee00125a79c9e09830",
+    "source_saved_case_manifest_sha256": "56b6cf71a9efb3063fba53eb9394f656b77d5b16dcfd278859c72a142387fb9a",
+    "native_export": {
+      "worker_sha256": "7d64d94f9ff47d5cefc8a1b9a29ca71c6a77a9158337fb675ab75ce106ead193",
+      "runner_sha256": "0867692a29ba94713a1cd17d74c71a6c43dc3415986793719c7e7230c84acf48",
+      "report_sha256": "d87bef7e2761f0d6e79667bf5a4bf50a7e30da74c80d0758103c57d3cad6e2a3",
+      "process_report_sha256": "36e873c4a5a1ed05b572f6bb20fe872d7e0bde5121930b9f14a43ab565a7662f",
+      "log_sha256": "17c0f33c87c4c2972b487237eac7f24ea630994e6f7962df3b33b04795d3b82e",
+      "command": [
+        "checkMesh",
+        "-allTopology",
+        "-allGeometry",
+        "-writeSurfaces",
+        "-writeSets",
+        "-surfaceFormat",
+        "vtk"
+      ],
+      "completed": true,
+      "failed_check_count": 5,
+      "mesh_quality_accepted": false,
+      "polyMesh_before_sha256": {
+        "boundary": "f40efa29fe75cf1878b8e67b703cfd0c70afc380d3554056749e97751b7453aa",
+        "cellZones": "972ecf3754f19d7ce3db6ec65e43bb373247246625015073c94ac9c7956b64bf",
+        "faces": "75db6d7b37d438e820b70d0e0236951d65df7fdf75e96b710f51b6f5bab6b419",
+        "neighbour": "807eadd59b635f0ece93db3364916f6361e4d45f0f61717bd7114133ac3c56f0",
+        "owner": "a251c670cfc4667c03148f9472ec4ffeaf562118a741e5c8d8d11d37a2224c0c",
+        "points": "77408aa5a75fb688cc0783702de61c146d9a2ee693a0ee06336d5f544791975c"
+      },
+      "polyMesh_after_sha256": {
+        "points": "77408aa5a75fb688cc0783702de61c146d9a2ee693a0ee06336d5f544791975c",
+        "faces": "75db6d7b37d438e820b70d0e0236951d65df7fdf75e96b710f51b6f5bab6b419",
+        "owner": "a251c670cfc4667c03148f9472ec4ffeaf562118a741e5c8d8d11d37a2224c0c",
+        "neighbour": "807eadd59b635f0ece93db3364916f6361e4d45f0f61717bd7114133ac3c56f0",
+        "boundary": "f40efa29fe75cf1878b8e67b703cfd0c70afc380d3554056749e97751b7453aa",
+        "cellZones": "972ecf3754f19d7ce3db6ec65e43bb373247246625015073c94ac9c7956b64bf"
+      },
+      "source_case_unchanged": true,
+      "copied_original_files_unchanged": true,
+      "sets": {
+        "highAspectRatioCells": {
+          "class": "cellSet",
+          "count": 10,
+          "expected_count": 10,
+          "sha256": "00bb8e8af59d5396bfab8d1f48561105b7d3eb71744c61f0dfb0f4db641d996b",
+          "counts_may_overlap": true
+        },
+        "skewFaces": {
+          "class": "faceSet",
+          "count": 18,
+          "expected_count": 18,
+          "sha256": "b3da3cbd272de821938b08b1209dd36af031b926bb6867f0af61972d575ef7ee",
+          "counts_may_overlap": true
+        },
+        "underdeterminedCells": {
+          "class": "cellSet",
+          "count": 2305,
+          "expected_count": 2305,
+          "sha256": "5b10e4d7aaedb40b4f53f5532dbba99d9e99ce8f335f262a7e39f8055c95159d",
+          "counts_may_overlap": true
+        },
+        "lowWeightFaces": {
+          "class": "faceSet",
+          "count": 1491,
+          "expected_count": 1491,
+          "sha256": "16170dd77194a3c8e7aa2cb743e7d51851f5594dd55d86f8c4b4295c04a4d0b9",
+          "counts_may_overlap": true
+        },
+        "lowVolRatioFaces": {
+          "class": "faceSet",
+          "count": 137,
+          "expected_count": 137,
+          "sha256": "a63e3fba71bf127eed404c2277802aaeb1182877bddf69105130ceb1013ce96f",
+          "counts_may_overlap": true
+        },
+        "nonOrthoFaces": {
+          "class": "faceSet",
+          "count": 3545,
+          "expected_count": 3545,
+          "sha256": "98891586ddbc95614ffa71ddbe28b7c6dda01753baabeae75db8037f7e958f68",
+          "counts_may_overlap": true
+        },
+        "shortEdges": {
+          "class": "pointSet",
+          "count": 5,
+          "expected_count": null,
+          "sha256": "9c28332b2477cb2445320e77d5209e292eac69911f7bb5b5e6136ebab115136a",
+          "counts_may_overlap": true
+        }
+      },
+      "native_seconds": 10.896158265415579,
+      "elapsed_with_cleanup_seconds": 12.148464014288038,
+      "process_completed_and_cleaned": true,
+      "container_absent": true,
+      "native_exit_code": 0,
+      "OOMKilled": false,
+      "timeout": false,
+      "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+      "architecture": "linux/amd64",
+      "host": "existing_Kali",
+      "native_nProcs": 1,
+      "cpus": 4,
+      "memory_bytes": 4294967296
+    },
+    "correspondence": {
+      "first_attempt": {
+        "worker_sha256": "aa4a5007781169f23fb063668f48b2ffc6e8b1168052d948324d5c3bdaad4041",
+        "report_sha256": "f6e2d56f1320c1e9e2788b2c56324a646c20ccb062fcb3bd15dc0712faea72e9",
+        "accepted": false,
+        "error": "point_order_or_serialization_mismatch:1029:1030:2",
+        "cause": "Reader assumed 12 significant digits for gmshToFoam point write; native polyMesh uses fullPrecision.",
+        "seconds": 2.6927472080569714
+      },
+      "corrected_worker_sha256": "e01845646e25d9f00aecbefedca8ba6e3705b0a946463800cb7b762643b6fdee",
+      "report_sha256": "49e1fcc713fc06cdc681721d8d4783e79b6e0dde85cf96a4674043bd7a0fa497",
+      "mapping_sha256": "ccfd33c5df88bdcc8e6b74b828f367762d77f3240b734bf42c59e2119f5f704b",
+      "passed": true,
+      "points": {
+        "point_count": 223155,
+        "source_order_exact": true,
+        "serialization_model": "format15/read -> multiply binary64(0.001) -> format12/read -> format15/read",
+        "geometric_matching_tolerance_used": false,
+        "max_absolute_vs_direct_scale_diagnostic": 5.002526171082877e-13,
+        "signed_zero_text_differences": 0,
+        "scale_is_unverified_metrology_hypothesis": true
+      },
+      "topology": {
+        "cells": 785883,
+        "faces": 1688893,
+        "internal_faces": 1589423,
+        "cell_type_counts": {
+          "4": 718299,
+          "5": 67200,
+          "7": 384
+        },
+        "patch_face_counts": {
+          "walls": 98021,
+          "receiver_outlet": 1191,
+          "inlet": 258
+        },
+        "pyramid_tet_interfaces": 1536,
+        "complete_cell_faces_bijective": true,
+        "owner_neighbour_outward_cycles_exact": true,
+        "boundary_physical_roles_exact": true,
+        "source_surface_winding_comparison": {
+          "same": 99470
+        },
+        "internal_type_pairs": {
+          "(4, 4)": 1419887,
+          "(4, 7)": 1536,
+          "(5, 5)": 167616,
+          "(5, 7)": 384
+        }
+      },
+      "all_inputs_and_source_unchanged": true,
+      "seconds": 28.894759458024055,
+      "cellZones_tested": false,
+      "node_classes_UV_or_CAD_identity_proven": false,
+      "all_pairs_geometric_intersections_tested": false
+    },
+    "attribution": {
+      "worker_sha256": "b072edf7bcf5b1100059ce9219b7c854c3fd9eb7e2eb9772b8fe133bcf04e236",
+      "report_sha256": "391bad12be4f9466554f0ef9c0a691205daeb81d5c033340be13d26bacf2ad4e",
+      "passed": true,
+      "families": {
+        "highAspectRatioCells": {
+          "set_class": "cellSet",
+          "count": 10,
+          "by_cell_type": {
+            "tetra": 10
+          },
+          "internal_face_count_histogram": {
+            "3": 8,
+            "4": 2
+          },
+          "cells_with_at_most_two_internal_faces": 0,
+          "pyramid_tet_interface_faces_touched": 0,
+          "selected_cells_incident_to_pyramid_tet_interfaces": 0
+        },
+        "underdeterminedCells": {
+          "set_class": "cellSet",
+          "count": 2305,
+          "by_cell_type": {
+            "tetra": 2305
+          },
+          "internal_face_count_histogram": {
+            "1": 2,
+            "2": 465,
+            "3": 867,
+            "4": 971
+          },
+          "cells_with_at_most_two_internal_faces": 467,
+          "pyramid_tet_interface_faces_touched": 446,
+          "selected_cells_incident_to_pyramid_tet_interfaces": 416
+        },
+        "skewFaces": {
+          "set_class": "faceSet",
+          "count": 18,
+          "by_adjacent_type_pair": {
+            "tetra/boundary": 18
+          },
+          "boundary_faces_by_patch": {
+            "walls": 18
+          },
+          "pyramid_tet_interface_faces": 0
+        },
+        "lowWeightFaces": {
+          "set_class": "faceSet",
+          "count": 1491,
+          "by_adjacent_type_pair": {
+            "hexa/pyramid": 190,
+            "tetra/tetra": 1301
+          },
+          "boundary_faces_by_patch": {},
+          "pyramid_tet_interface_faces": 0
+        },
+        "lowVolRatioFaces": {
+          "set_class": "faceSet",
+          "count": 137,
+          "by_adjacent_type_pair": {
+            "tetra/tetra": 137
+          },
+          "boundary_faces_by_patch": {},
+          "pyramid_tet_interface_faces": 0
+        },
+        "nonOrthoFaces": {
+          "set_class": "faceSet",
+          "count": 3545,
+          "by_adjacent_type_pair": {
+            "pyramid/tetra": 419,
+            "tetra/tetra": 3126
+          },
+          "boundary_faces_by_patch": {},
+          "pyramid_tet_interface_faces": 419
+        },
+        "shortEdges": {
+          "set_class": "pointSet",
+          "count": 5,
+          "count_is_points_not_edges": true,
+          "unique_incident_cells_by_type": {
+            "tetra": 15
+          },
+          "pyramid_tet_interface_faces_touching_points": 0
+        }
+      },
+      "same_dimension_family_intersections": {
+        "highAspectRatioCells & underdeterminedCells": 10,
+        "skewFaces & lowWeightFaces": 0,
+        "skewFaces & lowVolRatioFaces": 0,
+        "skewFaces & nonOrthoFaces": 0,
+        "lowWeightFaces & lowVolRatioFaces": 137,
+        "lowWeightFaces & nonOrthoFaces": 167,
+        "lowVolRatioFaces & nonOrthoFaces": 48
+      },
+      "internal_face_counts_rechecked": true,
+      "pyramid_tet_interface_count": 1536,
+      "all_inputs_and_source_unchanged": true,
+      "seconds": 8.449044208042324,
+      "markers_sha256": "726d5c6c83c49b047fe91e6ffb768eafd35b699f0a36857ab64572fdc381d162",
+      "boundary_sha256": "67b320869cdade49b0fa0c02ef5ffc773efdad5020ed9adb159826ff6ea3f3f6",
+      "cellZones_tested": false,
+      "native_centroids_recomputed": false
+    },
+    "visualization": {
+      "script_sha256": "1e46ff7f03ec8a2178c34440ce00e2def482140978046f23b71ba04decebcf41",
+      "image_sha256": "5c7aa13ed66bcdd1764c54e16ec63088e37df4b7b646cb3470fd3f5369f7c898",
+      "name": "gas-mesh-defects-20260909-v2.png",
+      "scope": "private orthographic projections of air-domain boundary and every native defect label; not metal cylinder-head geometry",
+      "position_definition": "Arithmetic mean of unique vertices for cell/face markers, actual coordinates for pointSet, not native centroids",
+      "coordinate_display": "scan units recovered from unverified 0.001 scaling; not certified millimetres",
+      "defect_subsampling": false,
+      "private_geometry_not_published": true,
+      "matplotlib_version": "3.10.7"
+    },
+    "tests": {
+      "export_and_supervision": 20,
+      "corrected_mapping": 18,
+      "attribution": 13,
+      "all_51_focused_passed": true,
+      "make_check_exit_code": 0,
+      "optional_native_tests_skipped": true,
+      "first_mapping_version_17_tests_also_passed_but_real_case_rejected": true
+    },
+    "new_Vast_spend_usd": 0,
+    "CAD_modified": false,
+    "source_contour_changed": false,
+    "mesh_correction_executed": false,
+    "reconversion_executed": false,
+    "additional_scale_applications": 0,
+    "solver_executed": false,
+    "CFD_qualified": false,
+    "thermal_or_strength_qualified": false,
+    "LPBF_qualified": false,
+    "power_700_PS_proven": false,
+    "manufacturing_authorized": false,
+    "next_step": "Measure native face/cell centres, signed normal distances, cell volumes, pyramid apex height and hexa layer thickness at the 190 lowWeight hexa/pyramid interfaces; choose a verified local transition correction. Treat tetra rank and wall skew separately. No threshold relaxation."
+  },
   "schema": "m64-geometry-checkpoint/v1",
   "date": "2026-09-08",
   "status": "geometry_diagnostics_only_not_qualified",
