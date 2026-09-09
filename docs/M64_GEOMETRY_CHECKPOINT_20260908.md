@@ -1,11 +1,18 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : 57 groupes supplémentaires de trois/quatre tétraèdres
+**Dernier résultat gaz : une très petite arête contractée sur copie,
+après témoins natifs et contre-vérification. Rapport d'allongement maximal :
+54 610 → 15 882 ; cinq familles qualité toujours refusées. La CAO maîtresse
+reste intacte, mais la frontière discrète est légèrement modifiée avec une
+borne contrôlée, sans conformité CAO acquise. Voir la
+[correction locale et ses limites](M64_SHORT_EDGE_CORRECTION_20260909.md).**
+
+Essai précédent : 57 groupes supplémentaires de trois/quatre tétraèdres
 fusionnés nativement. Faible déterminant : 2 021 → 1 963 ; faible poids :
 1 235 → 1 230 ; non-orthogonalité > 70° : 3 450 → 3 448.
 Aucun nouveau défaut dans les neuf ensembles comparés, points et frontière
 conservés. Les cinq familles restent refusées, sans admission CFD.
-Voir le [complément contrôlé](M64_HYBRID_PAIR_CORRECTION_20260909.md#complément--57-groupes-de-troisquatre-tétraèdres).**
+Voir le [complément contrôlé](M64_HYBRID_PAIR_CORRECTION_20260909.md#complément--57-groupes-de-troisquatre-tétraèdres).
 
 Essai précédent : 252 paires de tétraèdres fusionnées nativement,
 259 cellules à faible déterminant, 67 défauts de poids et 29 faces trop
