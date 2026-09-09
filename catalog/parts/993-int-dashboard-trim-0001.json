@@ -2,24 +2,29 @@
   "schema_version": "1.0.0",
   "part_id": "993-INT-DASHBOARD-TRIM-0001",
   "name": "Habillage de planche de bord, composite",
-  "description": "Habillage de planche de bord du 993 reproduit en composite. La piece n'est PAS la planche de bord : celle-ci, 993 502 027 02, est une tole de caisse. C'est l'habillage qui la recouvre, pose sur ecrous a griffes et vis autotaraudeuses. Retenue comme candidate parce qu'aucun fabricant ne la propose en carbone, contrairement aux panneaux de carrosserie ; bloquee tant que la configuration d'airbag du vehicule donneur n'est pas etablie.",
+  "description": "Habillage de planche de bord du 993 reproduit en composite, **pour les seuls vehicules sans airbag passager**. La piece n'est pas la planche de bord : celle-ci, 993 502 027 02, est une tole de caisse. C'est l'habillage qui la recouvre, pose sur ecrous a griffes et vis autotaraudeuses. Retenue parce qu'aucun fabricant ne la propose en carbone, contrairement aux panneaux de carrosserie.",
   "vehicle": {
     "generation": "993",
-    "variants": ["M564_sans_airbag_passager_a_confirmer_sur_vehicule"],
-    "model_years": { "from": 1994, "to": 1998 },
+    "variants": [
+      "M564 sans airbag",
+      "Carrera RS M002",
+      "Carrera RS Clubsport M003"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
     "porsche_part_numbers": [
       "993 552 055 00",
       "993 552 056 00",
-      "993 552 055 01",
-      "993 552 056 01",
       "993 552 055 70",
       "993 552 056 70"
     ]
   },
   "classification": {
     "category": "interior_trim",
-    "safety_class": "prohibited_pending_engineering",
-    "intended_use": "Habillage visible de la traverse de planche de bord, portant les aerateurs, la casquette d'instruments et, selon equipement, le volet de deploiement de l'airbag passager"
+    "safety_class": "functional",
+    "intended_use": "Habillage visible de la traverse de planche de bord sur vehicule sans airbag passager, portant les aerateurs et la casquette d'instruments, et recevant la baguette de protection des genoux qui reste d'origine"
   },
   "geometry": {
     "source_type": "scan",
@@ -51,7 +56,9 @@
     ]
   },
   "manufacturing": {
-    "candidate_processes": ["casting"],
+    "candidate_processes": [
+      "casting"
+    ],
     "preferred_process": "undecided",
     "material": {
       "family": "composite a matrice organique",
@@ -82,12 +89,14 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "AIRBAG. Sur un vehicule M562, l'habillage porte le volet de deploiement de l'airbag passager, dont la ligne de rupture est une piece de retenue des occupants. SAFETY.md presume ce domaine critique et impose d'abaisser le statut en cas de doute : la piece reste donc prohibited_pending_engineering tant que le code d'option du vehicule donneur n'est pas releve. Sur un vehicule M564, ou sur un Carrera RS dont l'illustration du catalogue est explicitement « for cars without Airbag », le volet n'existe pas et la piece redevient un habillage.",
-      "Ce n'est pas un projet de masse. Le gain annonce est de 1,15 kg, contre 9,9 kg pour un capot avant. La raison de faire cette piece est qu'elle n'existe pas au catalogue des preparateurs, pas qu'elle allege.",
-      "Aucune geometrie. Une planche de bord est une surface libre a interfaces multiples : aerateurs, casquette d'instruments, colonne de direction, boite a gants, jonction de console, montants et pied de pare-brise. Elle ne se releve pas au pied a coulisse ; il faut un scan ou une photogrammetrie a l'echelle, methode deja prevue pour 993-INT-DOOR-PULL-0001 mais sur une piece cent fois plus petite.",
-      "Le vieillissement de l'original fausse le moule. Une planche de bord de trente ans est fissuree, gauchie et deformee par la chaleur ; prendre l'empreinte d'une piece deformee produit une piece fausse. L'etat du donneur doit etre documente avant toute prise d'empreinte.",
-      "Tenue en temperature et UV non evaluees. C'est la piece de l'habitacle la plus exposee au soleil ; une resine mal choisie jaunit ou flue.",
-      "Reflexion. Une surface carbone vernie sous pare-brise renvoie la lumiere dans le champ de vision du conducteur, ce qu'un similicuir grene ne fait pas. Point a traiter comme une exigence, pas comme un detail de finition."
+      "PERIMETRE, ET C'EST UNE EXCLUSION PAS UNE PRECAUTION. Cette piece ne vaut que pour un vehicule M564, ou un Carrera RS dont l'illustration du catalogue porte « for cars without Airbag, Passenger's side ». Sur un vehicule M561 ou M562 l'habillage porte le volet de deploiement de l'airbag passager, dont la ligne de rupture est une piece de retenue des occupants : la monter la serait un remplacement d'organe de securite, et c'est interdit ici. Le code d'option se releve sur l'etiquette du vehicule, avant toute mesure.",
+      "Le fait d'ecarter l'airbag ne rend pas la piece anodine. Une planche de bord d'origine est une surface souple dans la zone de heurt des occupants ; un stratifie carbone y est rigide et casse en eclats coupants la ou une mousse s'ecrase. C'est pourquoi la classe retenue est functional et non non_critical. Les reglements d'amenagement interieur, ECE R21 en Europe et FMVSS 201 aux Etats-Unis, traitent precisement des saillies et de l'absorption d'energie de cette zone : leur applicabilite au cas d'un vehicule de collection modifie n'a pas ete etudiee et doit l'etre avant toute pose.",
+      "La baguette de protection des genoux est une PIECE SEPAREE — 964 552 053 00 /LL et 993 552 054 00 /RL en serie, 964 552 077 70 et 964 552 078 70 sur RS M003 — et elle reste d'origine. L'habillage composite doit conserver ses points de fixation a l'identique. Une reproduction qui supprimerait ou deplacerait ces points supprimerait une protection.",
+      "Ce n'est pas un projet de masse. Le gain annonce est de 1,15 kg, contre 9,9 kg pour un capot avant. La raison de faire cette piece est qu'elle n'existe pas au catalogue des preparateurs.",
+      "Aucune geometrie. Une planche de bord est une surface libre a interfaces multiples : aerateurs, casquette d'instruments, colonne de direction, boite a gants, jonction de console, montants et pied de pare-brise. Elle ne se releve pas au pied a coulisse ; il faut un scan ou une photogrammetrie a l'echelle. Les deux pistes CAO deja qualifiees par le depot sont ecartees : SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL est un modele reduit au 1/8, SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS decrit une garniture aftermarket.",
+      "Le vieillissement de l'original fausse le moule, et sa depose aussi. Une planche de bord de trente ans est fissuree et gauchie par la chaleur ; elle est en outre contrainte par ses fixations, donc elle peut se detendre en sortant du vehicule. La forme doit etre relevee montee ET deposee, et l'ecart entre les deux etats consigne.",
+      "Tenue en temperature et UV non evaluees : c'est la surface de l'habitacle la plus exposee au soleil.",
+      "Reflexion. Une surface carbone vernie sous pare-brise renvoie la lumiere dans le champ de vision du conducteur, ce qu'un similicuir grene ne fait pas. A traiter comme une exigence, pas comme une finition."
     ]
   }
 }
