@@ -3146,6 +3146,259 @@
     "thermal_or_strength_qualified": false,
     "manufacturing_authorized": false
   },
+  "gas_hybrid_openfoam_diagnostic": {
+    "status": "hybrid_assembled_counterchecked_OpenFOAM_mesh_rejected_NOT_CFD",
+    "source_mixed_mesh_sha256": "4f41153f3700d599b351939ed35aefb65abc1fe90c3a90312514878f7dbfc70c",
+    "core_mesh_sha256": "e873b8ae7a9e2d381b22fd5d5ac66eaab55419f7303e32e05dc238c77984d2a8",
+    "shell_sha256": "073539bc9416023e01281873cd88af48031cbfa02d50a84f2e1a83dfa459ae81",
+    "candidate_mesh_sha256": "7733245dd470e6d9da3b5724c2c084720b329d6caa55bcee00125a79c9e09830",
+    "mapping_sha256": "04de8621dfeac87d9493cfb5d6aa3910870f7892d4c7e7482e44868f22e54410",
+    "assembly_worker_sha256": "e9aa95e4d152a3326790d216dbed4d4e7e6aa34d7103454bd1c9812e9d735f4b",
+    "assembly_report_sha256": "cf8b286a215ea15a1c8043a900994d1bc23fe238addd355578aac984d608efb7",
+    "countercheck_worker_sha256": "3ceb57d9057747330f492df5b3353d4998c3cb66788cc8b3e4fb750c9ac34b5d",
+    "countercheck_report_sha256": "26d22f1e348ec52f1fb55c3b56fbed55da6fc8b7b44f75c724a89ae1e7b4f50b",
+    "assembly": {
+      "core_topology": {
+        "cells": 718299,
+        "boundary_faces": 33422,
+        "internal_faces": 1419887,
+        "internal_pairs_by_type": {
+          "(4, 4)": 1419887
+        },
+        "duplicate_cells": 0,
+        "nonmanifold_faces": 0,
+        "same_orientation_internal_faces": 0
+      },
+      "mixed_topology": {
+        "cells": 785883,
+        "boundary_faces": 99470,
+        "internal_faces": 1589423,
+        "internal_pairs_by_type": {
+          "(4, 4)": 1419887,
+          "(4, 7)": 1536,
+          "(5, 5)": 167616,
+          "(5, 7)": 384
+        },
+        "duplicate_cells": 0,
+        "nonmanifold_faces": 0,
+        "same_orientation_internal_faces": 0
+      },
+      "fixed_cell_counts": {
+        "5": 67200,
+        "7": 384
+      },
+      "internal_pyramid_interfaces": 1536,
+      "preserved_source_boundary_elements": 99470,
+      "omitted_internal_source_surfaces": 3568,
+      "new_tetrahedra": 718299,
+      "external_source_winding_same_as_volume_outward": 99470,
+      "external_source_element_order_preserved_even_when_not_outward": true,
+      "global_geometric_intersections_checked": false,
+      "native_SICN_recomputed": false
+    },
+    "countercheck_conservation": {
+      "source_retained_elements": 167054,
+      "source_retained_nodes": 117511,
+      "omitted_source_internal_surface_records": 3568,
+      "removed_source_tetrahedra": 175753,
+      "omitted_unphysical_source_0D1D_elements": 6599,
+      "all_output_points_used_by_cells": true,
+      "added_core_tetrahedra": 718299,
+      "added_core_interior_nodes": 105644,
+      "preserved_hexahedra": 67200,
+      "preserved_pyramids": 384,
+      "exact_whole_core_and_retained_parts": true
+    },
+    "countercheck_topology": {
+      "volume_cells": 785883,
+      "boundary_faces": 99470,
+      "internal_faces_by_arity": {
+        "3": 1421423,
+        "4": 168000
+      },
+      "pyramid_lateral_interfaces_paired": 1536,
+      "face_connected_components": 1,
+      "duplicate_cells": 0,
+      "duplicate_boundary_faces": 0,
+      "nonmanifold_faces": 0,
+      "orientation_conflicts": 0,
+      "external_boundary_unoriented_cycles_complete": true,
+      "external_faces_concordant_with_cell_outward_cycle": 99470,
+      "external_faces_opposed_to_cell_outward_cycle": 0,
+      "internal_and_interface_orientation_strictly_opposite": true,
+      "boundary_record_digest": "761ae39ea487c363e34b180cd67cf0ff6412b0e360694b8bb0b990c68905086c"
+    },
+    "assembly_seconds": 40.87943558301777,
+    "countercheck_seconds": 17.555819666944444,
+    "ascii_roundtrip_binary64_preserved": true,
+    "MSH41_node_classes_or_UV_preserved": false,
+    "source_physical_names": [
+      "inlet",
+      "receiver_outlet",
+      "walls",
+      "air"
+    ],
+    "native_domain_sha256": "c9eceb771405840a41acdbf48f7052e0d8347e453103465755843d8e3cb3d3cc",
+    "review_sha256": "d9155be3da6fd8b75379b0377b8b019fe3ec7d8c97268d6db95f5420b9dc1bb2",
+    "case_manifest_sha256": "bb67923e6ddea1d57318c5f547d4332199960a7869dd536d68bb25ba6d5c2f03",
+    "openfoam_worker_sha256": "e79a769d62e09cfb90653c552fabafdd0f8b45278dba241d1a8749676693a250",
+    "openfoam_helper_sha256": "ae17b54a9647fbbf0afe04029bbebe6c840eeb0a8ff9724a8ac04c006aa42d39",
+    "supervisor_sha256": "65961af9634b8deef9a27a740398303e0921756ec8dfaf61c3d7da9699efd039",
+    "native_process_report_sha256": "5566b16fec57bb3eb6b1fbcc5fc506e20f2007c3c64bb772ddd5a922ab077021",
+    "native_worker_report_sha256": "406f23a94768981aa0c616b5b69333ed43459dd4360983fb6923a6a43775aaa9",
+    "native_log_sha256": "43513803b097f101716b14ed716738ab4c11af2b1c8784bf6ec351d5dba7bc0f",
+    "native_stages": [
+      {
+        "name": "gmshToFoam",
+        "argv": [
+          "gmshToFoam",
+          "input.msh"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 3.3246989850886166,
+        "log_sha256": "ac46f2ca7090019c7ce36188dd8e89e1cf6521bb5d1dfecb2aafc9b1b560660d"
+      },
+      {
+        "name": "transformPoints",
+        "argv": [
+          "transformPoints",
+          "scale=(0.001 0.001 0.001)"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 0.3156794011592865,
+        "log_sha256": "9ec45f94c584069443771989d84e673ae8abd2acc9d9b97c4a304154e0e1aba0"
+      },
+      {
+        "name": "createPatch",
+        "argv": [
+          "createPatch",
+          "-overwrite"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 2.0199152403511107,
+        "log_sha256": "4d0d37a9d67dd2426c0ad7af0e22b4f50c9d2f607e9d8629e336a44f92ead358"
+      },
+      {
+        "name": "checkMesh",
+        "argv": [
+          "checkMesh",
+          "-allTopology",
+          "-allGeometry"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "elapsed_seconds": 10.99658701615408,
+        "log_sha256": "43513803b097f101716b14ed716738ab4c11af2b1c8784bf6ec351d5dba7bc0f"
+      }
+    ],
+    "boundary": {
+      "walls": {
+        "type": "wall",
+        "faces": 98021
+      },
+      "receiver_outlet": {
+        "type": "patch",
+        "faces": 1191
+      },
+      "inlet": {
+        "type": "patch",
+        "faces": 258
+      }
+    },
+    "checkMesh_passed": false,
+    "solver_executed": false,
+    "scale_applications": 1,
+    "meters_per_scan_unit_unverified_hypothesis": 0.001,
+    "wall_type_change_geometry_unchanged": true,
+    "MSH_to_polyMesh_geometric_equivalence_verified": false,
+    "native_exit_code": 2,
+    "exit2_is_mesh_quality_refusal": true,
+    "all_four_mesh_utilities_exited0": true,
+    "process_flags_require_mesh_pass": {
+      "diagnostic_completed": false,
+      "process_completed_and_cleaned": false
+    },
+    "container_absent": true,
+    "container_exit_state": "exited",
+    "OOMKilled": false,
+    "timeout": false,
+    "inputs_unchanged": true,
+    "runtime": {
+      "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+      "version": "OpenFOAM Foundation 14-7b05503f98a8",
+      "architecture": "linux/amd64",
+      "host": "existing_Kali",
+      "cpus": 4,
+      "memory_bytes": 4294967296,
+      "wall_limit_seconds": 300,
+      "elapsed_with_cleanup_seconds": 17.71896284306422,
+      "native_nProcs": 1
+    },
+    "new_Vast_spend_usd": 0,
+    "source_contour_changed": false,
+    "CAD_modified": false,
+    "global_geometric_intersections_checked": false,
+    "CFD_qualified": false,
+    "thermal_or_strength_qualified": false,
+    "LPBF_qualified": false,
+    "power_700_PS_proven": false,
+    "manufacturing_authorized": false,
+    "checkMesh_failures": {
+      "failed_check_count": 5,
+      "high_aspect_ratio_cells": {
+        "count": 10,
+        "max": 54610.2827295
+      },
+      "highly_skew_faces": {
+        "count": 18,
+        "max": 36.679070002
+      },
+      "small_determinant_cells": {
+        "count": 2305,
+        "threshold": 0.001,
+        "min": 0
+      },
+      "low_interpolation_weight_faces": {
+        "count": 1491,
+        "threshold": 0.05,
+        "min": 0.00000956812262274
+      },
+      "low_volume_ratio_faces": {
+        "count": 137,
+        "threshold": 0.01,
+        "min": 0.00000956821416814
+      },
+      "warnings": {
+        "severely_nonorthogonal_faces": 3545,
+        "nonorthogonality_threshold_degrees": 70,
+        "max_nonorthogonality_degrees": 89.9528227843,
+        "mean_nonorthogonality_degrees": 21.5552790863,
+        "short_edges": 5
+      },
+      "topology_passed": true,
+      "cell_volumes_passed": true
+    },
+    "tests": {
+      "assembler": 14,
+      "counterchecker": 10,
+      "supervisor": 17,
+      "all_focused_passed": true,
+      "make_check_exit_code": 0,
+      "optional_native_tests_skipped": true
+    },
+    "next_step": "Localize native failed-cell/face sets on the exact saved polyMesh, check import preservation under renumbering, then repair targeted defects without changing the master contour. No solver or manufacturing approval.",
+    "polyMesh_sha256": {
+      "points": "77408aa5a75fb688cc0783702de61c146d9a2ee693a0ee06336d5f544791975c",
+      "faces": "75db6d7b37d438e820b70d0e0236951d65df7fdf75e96b710f51b6f5bab6b419",
+      "owner": "a251c670cfc4667c03148f9472ec4ffeaf562118a741e5c8d8d11d37a2224c0c",
+      "neighbour": "807eadd59b635f0ece93db3364916f6361e4d45f0f61717bd7114133ac3c56f0",
+      "boundary": "f40efa29fe75cf1878b8e67b703cfd0c70afc380d3554056749e97751b7453aa",
+      "cellZones": "972ecf3754f19d7ce3db6ec65e43bb373247246625015073c94ac9c7956b64bf"
+    }
+  },
   "runtime": {
     "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
     "OCP_version": "7.9.3.1",

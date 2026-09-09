@@ -1,5 +1,8 @@
 # M64 — champ de taille natif : remaillage toujours incomplet
 
+Suite exécutée : [assemblage hybride et contrôle OpenFOAM](M64_HYBRID_OPENFOAM_20260909.md).
+Le résultat historique décrit ci-dessous reste inchangé.
+
 **Le remplacement du callback Python par des champs Gmsh natifs ne termine
 pas le remaillage dans le budget fixé. Aucun nouveau candidat ni gain de
 qualité n'est établi. Le contour Porsche et le maître restent inchangés.**
