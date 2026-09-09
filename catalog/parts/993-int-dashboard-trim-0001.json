@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-DASHBOARD-TRIM-0001",
+  "name": "Habillage de planche de bord, composite",
+  "description": "Habillage de planche de bord du 993 reproduit en composite. La piece n'est PAS la planche de bord : celle-ci, 993 502 027 02, est une tole de caisse. C'est l'habillage qui la recouvre, pose sur ecrous a griffes et vis autotaraudeuses. Retenue comme candidate parce qu'aucun fabricant ne la propose en carbone, contrairement aux panneaux de carrosserie ; bloquee tant que la configuration d'airbag du vehicule donneur n'est pas etablie.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["M564_sans_airbag_passager_a_confirmer_sur_vehicule"],
+    "model_years": { "from": 1994, "to": 1998 },
+    "porsche_part_numbers": [
+      "993 552 055 00",
+      "993 552 056 00",
+      "993 552 055 01",
+      "993 552 056 01",
+      "993 552 055 70",
+      "993 552 056 70"
+    ]
+  },
+  "classification": {
+    "category": "interior_trim",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Habillage visible de la traverse de planche de bord, portant les aerateurs, la casquette d'instruments et, selon equipement, le volet de deploiement de l'airbag passager"
+  },
+  "geometry": {
+    "source_type": "scan",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT for the record, geometry not yet produced",
+    "sources": [
+      {
+        "title": "Porsche PET - 911 1994-1998 Type 993, catalogue de pieces revision Kat 017",
+        "url": "https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-09-09",
+        "notes": "Illustration 809-00, « Dashboard, for cars with Airbag, Passenger's side » : habillage 993 552 055 00 /LL et 993 552 056 00 /RL en similicuir, decline par code de couleur. L'illustration du Carrera RS porte au contraire « Dashboard, Knee protection strip, for cars without Airbag, Passenger's side » et ajoute la variante M003 993 552 055 70. Les codes d'option du meme catalogue separent M561 airbag conducteur, M562 conducteur et passager, M564 sans airbag. Le groupe 502 designe une piece distincte et homonyme, 993 502 027 02 « Dashboard », qui est la tole de caisse et non un habillage."
+      },
+      {
+        "title": "Federleichte Elfer - table des masses, interieur 993",
+        "url": "http://www.federleichte-elfer.de/dp93/innen.html",
+        "source_type": "community",
+        "license": "site-copyright-reference-only",
+        "accessed_on": "2026-08-28",
+        "notes": "Planche de bord annoncee a 2,1 kg d'origine contre 0,95 kg en carbone, soit environ 1,15 kg de gain. Masse declaree par un preparateur, non pesee par ce projet."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["casting"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "composite a matrice organique",
+      "grade": "fibre et resine a determiner ; le rendu visible impose un tissu et un etat de surface, ce que ne fait aucun panneau cache",
+      "standard": "aucune"
+    },
+    "post_processing": [
+      "detourage des ouvertures d'aerateurs et d'instruments",
+      "pose des inserts et des points d'accrochage",
+      "finition de surface visible, vernis et tenue UV",
+      "controle de jeu avec casquette, console centrale et montants"
+    ],
+    "supplier_requirements": []
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "sans objet, piece composite"
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "AIRBAG. Sur un vehicule M562, l'habillage porte le volet de deploiement de l'airbag passager, dont la ligne de rupture est une piece de retenue des occupants. SAFETY.md presume ce domaine critique et impose d'abaisser le statut en cas de doute : la piece reste donc prohibited_pending_engineering tant que le code d'option du vehicule donneur n'est pas releve. Sur un vehicule M564, ou sur un Carrera RS dont l'illustration du catalogue est explicitement « for cars without Airbag », le volet n'existe pas et la piece redevient un habillage.",
+      "Ce n'est pas un projet de masse. Le gain annonce est de 1,15 kg, contre 9,9 kg pour un capot avant. La raison de faire cette piece est qu'elle n'existe pas au catalogue des preparateurs, pas qu'elle allege.",
+      "Aucune geometrie. Une planche de bord est une surface libre a interfaces multiples : aerateurs, casquette d'instruments, colonne de direction, boite a gants, jonction de console, montants et pied de pare-brise. Elle ne se releve pas au pied a coulisse ; il faut un scan ou une photogrammetrie a l'echelle, methode deja prevue pour 993-INT-DOOR-PULL-0001 mais sur une piece cent fois plus petite.",
+      "Le vieillissement de l'original fausse le moule. Une planche de bord de trente ans est fissuree, gauchie et deformee par la chaleur ; prendre l'empreinte d'une piece deformee produit une piece fausse. L'etat du donneur doit etre documente avant toute prise d'empreinte.",
+      "Tenue en temperature et UV non evaluees. C'est la piece de l'habitacle la plus exposee au soleil ; une resine mal choisie jaunit ou flue.",
+      "Reflexion. Une surface carbone vernie sous pare-brise renvoie la lumiere dans le champ de vision du conducteur, ce qu'un similicuir grene ne fait pas. Point a traiter comme une exigence, pas comme un detail de finition."
+    ]
+  }
+}
