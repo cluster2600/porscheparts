@@ -9,9 +9,14 @@ visible, testée et bloque toute libération tant qu'un exemplaire n'est pas mes
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 PART_ID = "993-INT-SWITCH-TRIM-RING-F1-0001"
@@ -110,12 +115,16 @@ def build_solid():
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path)
+    # Surface d'analyse pour le criblage LPBF aval. Le maillage n'est pas le
+    # master : il en derive avec une tolerance declaree, et c'est cette
+    # tolerance qui borne ce que le criblage peut affirmer.
+    parser.add_argument("--surface", type=Path)
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
 
     report = geometry_screen()
-    if args.out:
-        from build123d import export_step, import_step
+    if args.out or args.surface:
+        from build123d import export_step, export_stl, import_step
 
         solid = build_solid()
         expected = float(report["results"]["analytic_volume_mm3"])
@@ -123,23 +132,41 @@ def main() -> int:
             raise SystemExit(
                 f"BREP invalide ou volume incohérent: OCCT={solid.volume}, analytique={expected}"
             )
-        args.out.parent.mkdir(parents=True, exist_ok=True)
-        export_step(solid, str(args.out))
-        roundtrip = import_step(str(args.out))
-        if (
-            not roundtrip.is_valid
-            or len(roundtrip.solids()) != 1
-            or abs(roundtrip.volume - expected) > 0.01
-        ):
-            raise SystemExit("Le STEP relu par OCCT ne reproduit pas le solide attendu.")
-        report["step_roundtrip"] = {
-            "status": "passed",
-            "valid_brep": True,
-            "solid_count": len(roundtrip.solids()),
-            "volume_mm3": roundtrip.volume,
-            "maximum_volume_delta_mm3": 0.01,
-        }
-        print(f"STEP valide après relecture: {args.out} ({roundtrip.volume:.3f} mm3)")
+        if args.out:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            export_step(solid, str(args.out))
+            roundtrip = import_step(str(args.out))
+            if (
+                not roundtrip.is_valid
+                or len(roundtrip.solids()) != 1
+                or abs(roundtrip.volume - expected) > 0.01
+            ):
+                raise SystemExit("Le STEP relu par OCCT ne reproduit pas le solide attendu.")
+            report["step_roundtrip"] = {
+                "status": "passed",
+                "valid_brep": True,
+                "solid_count": len(roundtrip.solids()),
+                "volume_mm3": roundtrip.volume,
+                "maximum_volume_delta_mm3": 0.01,
+                "sha256": sha256(args.out),
+            }
+
+        if args.surface:
+            args.surface.parent.mkdir(parents=True, exist_ok=True)
+            export_stl(
+                solid,
+                str(args.surface),
+                tolerance=0.03,
+                angular_tolerance=0.08,
+            )
+            report["analysis_surface"] = {
+                "status": "exported_for_downstream_mesh_validation",
+                "format": ".stl",
+                "tolerance_mm": 0.03,
+                "angular_tolerance_rad": 0.08,
+                "sha256": sha256(args.surface),
+            }
+
 
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)

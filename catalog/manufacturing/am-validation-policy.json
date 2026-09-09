@@ -3,7 +3,10 @@
   "policy_id": "METAL-AM-VALIDATION-PIPELINE-0001",
   "scope": {
     "catalog_directory": "catalog/parts",
-    "trigger_candidate_processes": ["LPBF", "DMLS"],
+    "trigger_candidate_processes": [
+      "LPBF",
+      "DMLS"
+    ],
     "rule": "Toute pièce proposant LPBF ou DMLS reste suivie par cette politique, même si son procédé préféré est encore undecided ou conventionnel."
   },
   "stage_definitions": [
@@ -446,6 +449,35 @@
             "catalog/parts/993-exh-oval-tip-in625-f0-0001.json"
           ],
           "blocker": "Aucune revue professionnelle, première pièce, CT/CND, métrologie, essai thermique, vibration ou essai véhicule n'est disponible."
+        }
+      }
+    },
+    "993-INT-SWITCH-TRIM-RING-F1-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/parts/993-int-switch-trim-ring-f1-0001.json",
+            "parts/993-int-switch-trim-ring-f1-0001/source/switch_trim_ring.py"
+          ],
+          "blocker": "La bague d'origine n'est ni mesuree ni cotee par une source : les dimensions du F1 sont des variables de conception, et la matiere d'origine reste declaree sans nuance."
+        },
+        "02_cad_brep_and_mesh_integrity": {
+          "status": "passed",
+          "evidence": [
+            "parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step",
+            "parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.stl",
+            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
+            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-manifest.json"
+          ]
+        },
+        "03_full_layer_slicing_and_supports": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
+            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-layer-metrics.csv"
+          ],
+          "blocker": "Les 580 couches sont reellement tranchees a 0,05 mm et le criblage ne trouve aucun nouvel ilot, 0,079 mm2 d'aire non soutenue au pire et aucun volume piege. Mais l'orientation retenue n'est pas revue par un ingenieur, les supports fournisseur n'existent pas, et le criblage recoater reste ferme faute de champ de distorsion et de jeu de lame."
         }
       }
     }
