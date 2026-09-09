@@ -301,7 +301,7 @@ ci-dessus est celui du build local X1, pas un digest de registre publié.
 | Vast.ai | conteneurs `linux/amd64` par digest sur GPU NVIDIA loué à la demande | Reconstruction CUDA, PhysicsNeMo, Omniverse |
 
 Les adresses privées, comptes et clés ne sont pas publiés. Les scripts de
-[`deploy/vast/simready/`](../deploy/vast/simready/) contrôlent l'instance,
+[`outils/deploy/vast/simready/`](../deploy/vast/simready/) contrôlent l'instance,
 transfèrent une allowlist, récupèrent les résultats et vérifient la destruction.
 Le wrapper GHCR installé correspond au dépôt. Le wrapper Vast.ai répond à son
 contrôle de lecture mais diffère de la copie versionnée ; il doit être

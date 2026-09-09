@@ -14,7 +14,7 @@ from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WRAPPER_PATH = ROOT / "deploy" / "openbao" / "openbao-ghcr"
+WRAPPER_PATH = ROOT / "outils" / "deploy" / "openbao" / "openbao-ghcr"
 
 
 def load_wrapper():

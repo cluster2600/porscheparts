@@ -20,7 +20,7 @@ IMPROVEMENT_SOURCE = ROOT / "twins/reference-917-engine/source/screen_f36_improv
 VALVETRAIN_CONTRACT = ROOT / "twins/reference-917-engine/f36-valvetrain-assembly.json"
 IMPROVEMENT_CONTRACT = ROOT / "twins/reference-917-engine/f36-improvement-campaign.json"
 FLUIDX3D_SOURCE = ROOT / "twins/reference-917-engine/fluidx3d/setup.cpp"
-F34_DOC = ROOT / "docs/917_AIRCOOLED_4V_F34.md"
+F34_DOC = ROOT / "archive/917/docs/917_AIRCOOLED_4V_F34.md"
 
 
 class ScanConformingFourValveF36Tests(unittest.TestCase):

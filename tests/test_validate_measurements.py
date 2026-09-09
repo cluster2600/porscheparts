@@ -18,7 +18,7 @@ class MeasurementValidationTests(unittest.TestCase):
     def test_measurement_schema_is_valid_json(self) -> None:
         path = ROOT / "schemas" / "measurement.schema.json"
         schema = json.loads(path.read_text(encoding="utf-8"))
-        self.assertEqual(schema["title"], "3dprinting993 measurement record")
+        self.assertEqual(schema["title"], "porscheparts measurement record")
 
     def test_value_must_match_its_samples(self) -> None:
         record = deepcopy(self.template)

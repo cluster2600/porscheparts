@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-964-CHASSIS-FLOOR-0001",
+  "name": "Plancher et repere de caisse de Porsche 911 (964), acier",
+  "vehicle": {
+    "generation": "964",
+    "variants": [
+      "Carrera_2",
+      "Carrera_4"
+    ],
+    "model_years": {
+      "from": 1989,
+      "to": 1994
+    }
+  },
+  "scope": {
+    "zone": "chassis_floor_assembly",
+    "purposes": [
+      "datum_frame",
+      "envelope",
+      "repair_control"
+    ]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "vehicle",
+    "origin": "plan de symetrie, a la verticale du centre d'essieu avant, sur le plan de sol nominal",
+    "axes": "X vers l'avant, Y vers la gauche, Z vers le haut",
+    "units": "mm",
+    "vehicle_transform": [
+      0.039015,
+      0.999239,
+      0.0,
+      -1246.181545,
+      -0.999208,
+      0.039014,
+      -0.00787,
+      111.957391,
+      -0.007864,
+      0.000307,
+      0.999969,
+      412.939201,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "vehicle_transform_note": "etabli par ajustement du plan de symetrie sur le scan : lacet -2.236 deg, roulis -0.451 deg, axe median a X_scan +112.0 mm ; sol pris au contact moyen des quatre pneus",
+    "vehicle_transform_provenance": "Matrice homogene 4x4 en ligne, qui envoie les coordonnees du scan brut vers le repere vehicule ADR-0003. Composee depuis frame_params.npy : recentrage lateral, annulation du lacet, annulation du roulis, puis permutation d'axes et mise a l'origine. VERIFIEE bout en bout — appliquee a 200 000 sommets tires au hasard dans le scan, elle reproduit verts_vehicle.npy avec une erreur maximale de 1.3e-4 mm."
+  },
+  "components": [
+    {
+      "component_id": "FLOOR_PAN",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "SILL_LEFT",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "SILL_RIGHT",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "FRONT_FLOOR_MEMBER",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "SEAT_BASE_MEMBER",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "REAR_AXLE_CROSSMEMBER",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "ENGINE_MOUNT_CROSSMEMBER",
+      "role": "candidate",
+      "part_id": null,
+      "geometry_file": "twins/964-chassis/derived/964-floor-assembly.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "SCAN_UNDERSIDE_ENVELOPE",
+      "role": "host",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "materials": {
+    "high_strength_steel_members": [
+      "front_wheel_housing",
+      "inner_side_member",
+      "front_floor_section_member",
+      "seat_base",
+      "rear_axle_crossmember",
+      "crossmember_with_engine_mount"
+    ],
+    "source": "planche 50-013, « HS steel body panels »",
+    "grade": null,
+    "sheet_thickness_mm": {
+      "stated_by_porsche": 0.8,
+      "measured": 1.0,
+      "used_for_analysis": 0.8,
+      "provenance": "valeurs rapportees par le proprietaire du projet, non retrouvees dans le volume V lu ici",
+      "note": "Ecart de 0,2 mm non explique. Caisse galvanisee a chaud : zinc, appret, peinture et cire s'ajoutent a la tole, donc une mesure sur panneau en place mesure l'empilement et non l'acier. Le calcul retient 0,8 mm ; retenir 1,0 surestimerait la raideur de 25 %."
+    },
+    "note": "Le volume V nomme les six panneaux en acier haute resistance mais ne publie ni nuance ni epaisseur. La densite 7,85e-6 kg/mm3 utilisee pour la masse est une valeur d'acier generique, pas une donnee constructeur. Recherche germanophone du 2026-09-03 : le procede de galvanisation a chaud est confirme par une source Porsche primaire, mais AUCUNE source publique, allemande ou autre, ne publie d'epaisseur de tole en mm, de masse de zinc au m2 ni de nuance d'acier pour la 964. L'ecart de 0,2 mm reste donc non explique et le calcul a 0,8 mm reste le choix defendable.",
+    "process": "tole d'acier galvanisee a chaud sur les deux faces (feuerverzinkt), caisse en blanc entiere depuis le millesime 1981, documente par Porsche ; voir SRC-PORSCHE-GALVANISED-BODY-911"
+  },
+  "interfaces": [
+    {
+      "interface_id": "IF_BODY_CONTROL_DIMENSIONS",
+      "kind": "datum",
+      "components": [
+        "FLOOR_PAN",
+        "SILL_LEFT",
+        "SILL_RIGHT"
+      ],
+      "required_measurements": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "R",
+        "S"
+      ],
+      "acceptance_rule": "chaque cote de controle recalculee sur le modele doit tomber dans la tolerance publiee en 50-03, ecart gauche/droite compris",
+      "status": "partially_satisfied"
+    },
+    {
+      "interface_id": "IF_SCAN_TO_VEHICLE_FRAME",
+      "kind": "registration",
+      "components": [
+        "SCAN_UNDERSIDE_ENVELOPE",
+        "FLOOR_PAN"
+      ],
+      "required_measurements": [
+        "LONGITUDINAL_ANCHOR"
+      ],
+      "acceptance_rule": "au moins un point de datum publie doit etre localisable sur le scan a mieux que sa tolerance",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "twins/964-chassis/source/floor_assembly.py",
+    "derived_files": [
+      "twins/964-chassis/derived/964-floor-assembly.step",
+      "twins/964-chassis/derived/964-floor-assembly.json"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "catalog/sources/src-porsche-workshop-manual-964-vol5-body.json",
+      "catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json",
+      "twins/964-chassis/evidence/overlay.png",
+      "twins/964-chassis/evidence/plan_aligned.png",
+      "catalog/sources/src-porsche-workshop-manual-964-vol4-chassis.json",
+      "catalog/measurements/MEAS-MANUAL-964-SUSPENSION-ALIGNMENT.json",
+      "docs/research/964-chassis-carbone-kevlar.md",
+      "catalog/sources/src-zesad-carbon-monocoque-964-993.json",
+      "docs/research/964-combler-le-gap-de-donnees.md",
+      "catalog/sources/src-autorobot-measuring-data-service.json",
+      "catalog/sources/src-rennlist-911-torsional-rigidity-list.json"
+    ],
+    "checks_passed": [
+      "Echelle du scan : empattement mesure 2278.1 mm contre 2272 mm d'usine, soit +0.27 %. Le maillage est en millimetres a l'echelle 1:1.",
+      "Repere : apres correction du lacet, l'ecart gauche/droite des centres de roue tombe de 66.7 a 12.7 mm a l'avant et de 51.1 a 5.3 mm a l'arriere, alors que les roues n'entrent pas dans l'ajustement du plan de symetrie.",
+      "Schema de cotation : la diagonale croisee M se recalcule a 1787.8 mm depuis E, F et R publies, contre 1788 +/- 3 mm au manuel, soit 0.2 mm d'ecart. Verification purement documentaire, independante du scan.",
+      "Essai de torsion CalculiX : la raideur suit l'epaisseur lineairement (rapport 1,251 pour 1,250), donc caisson en cisaillement de membrane. Les 1 % de noeuds les plus charges sont a 100 % dans le longeron, y compris apres exclusion de 300 mm autour de l'encastrement, ce qui corrobore le choix d'acier HS de la planche 50-013 pour l'inner side member.",
+      "Convergence a noter, sans surinterpretation : le calcul place le chemin d'effort en torsion dans le longeron, la planche 50-013 y met de l'acier haute resistance, et les guides d'achat allemands nomment la prise de cric du bas de caisse comme foyer de corruption recurrent. Il en decoule que, A CORROSION EGALE, une attaque a la prise de cric a plus de consequence structurelle qu'ailleurs sur le plancher. Ce raisonnement porte sur la consequence, pas sur la frequence : aucune source ne documente de defaillance structurelle a cet endroit.",
+      "Robustesse de l'echelle testee. Les composants de roue sont couverts sur 360 degres, pas sur un arc partiel. En imposant au rayon des valeurs de 560 a 680 mm de diametre, l'empattement deduit reste entre 2270,4 et 2278,9 mm, soit 2272 +/- 7. La verification d'echelle ne depend donc pas de l'estimation du rayon des pneus, qui est elle instable.",
+      "Etude de materiau composite sur le meme essai de torsion, geometrie et chargement inchanges. La reference acier 0,8 mm a d'abord ete reproduite a l'identique (2442 N.m/deg) avant toute modification. Les proprietes de stratifie quasi-isotrope sont calculees depuis les constantes de pli par les invariants de stratifie, module auto-verifie : l'empilement QI d'un pli isotrope redonne ce pli. Le carbone QI ressort a E = 52 401 MPa, valeur de manuel pour un T300/epoxy QI. A raideur egale : carbone monolithique 0,82x la masse surfacique de l'acier, hybride carbone/aramide 50/50 a 0,99x, aramide a 1,30x. L'epaisseur predite par la loi G*t est confirmee par le calcul complet a 6,9 % pres, ce qui etend au materiau la loi d'echelle membranaire deja etablie en epaisseur.",
+      "Troisieme controle d'echelle, independant des roues et du manuel : la longueur hors-tout du scan dans le repere vehicule vaut 4282,4 mm contre 4275 mm au catalogue 964, soit +7,4 mm ou +0,17 %. Meme signe et meme ordre de grandeur que l'ecart d'empattement de +0,27 %. Ne cale rien en X, les extremites etant des peaux de pare-chocs et non des plans de reference.",
+      "Le soubassement de la 964 est PLAT : il n'y a pas de tunnel central. Le relief entre le Z median a |Y| < 60 mm et celui des flancs a 250 < |Y| < 400 mm vaut de -0,7 a -3,1 mm sur huit stations couvrant 1000 mm, soit moins que le residu de symetrie du scan de 7,54 mm RMS. Coherent avec un moteur arriere et l'absence d'arbre longitudinal. Voir source/tunnel_probe.py.",
+      "Recoupement independant de la cote R du volume V : un fil 993 rapporte 1245 mm entre points de levage avant et arriere, contre R = 1245 +/- 2 mm publie entre P17 et P18 pour la 964. Une source non-Porsche reproduit donc la transcription, et 964 et 993 partagent l'entraxe longitudinal des points de levage. Voir SRC-RENNLIST-993-JACKING-POINT-DISCREPANCY.",
+      "Architecture contre materiau, a masse egale, sur le meme essai : fermer la caisse vaut x 1,51 en raideur specifique, passer au carbone x 1,25, et les deux se multiplient (1,86 mesure pour 1,89 attendu), donc les leviers sont separables. Le cas plancher seul redonne exactement le maillage et la valeur 2442 N.m/deg du modele d'origine.",
+      "Defaut trouve par un controle de connexite ajoute au constructeur de maillage : la traverse arriere du reseau de datums, placee a x = -1703, tombait derriere le bord arriere du plancher modelise a x = -1500 et formait un ilot flottant. Elle comptait 0,264 m2 et 1,66 kg, soit 5,7 % de la masse du modele, pour une contribution nulle a la raideur. Verification : a geometrie d'origine, la retirer rend exactement 2442 N.m/deg, la valeur publiee. Les raideurs publiees etaient donc justes ; les masses, et donc toutes les raideurs specifiques K/m, etaient minorees. La traverse a ete retiree et non rattachee, parce qu'elle se situe derriere la section encastree de l'essai et ne pourrait rien porter meme reliee. Le modele CAO floor_assembly.py n'est pas concerne : il produit un assemblage de solides distincts, ou une traverse posee sur un point de datum non cale est un etat documente et non un defaut.",
+      "Modele coque etendu du plancher seul a une cellule fermee (passages de roue, pieds milieu, brancards, pavillon, cadre de pare-brise) : K x 3,7 pour une masse x 2,3. Le resultat exploitable est le classement, pas les valeurs. Le cadre de pare-brise, 1,1 kg, apporte le plus gros increment de toute l'echelle, tandis que le pavillon, 10,5 kg, n'apporte que +1 %, et que les pieds milieu et brancards ajoutes seuls n'apportent rien pour 7,5 kg faute de fermer l'anneau a l'avant. Hypothese topologique testee et non seulement affirmee : ring_study.py ajoute pavillon et cadre de pare-brise separement a la meme cage ouverte, a trois finesses de maillage. Le rapport de rendement au kilo reste de deux ordres de grandeur (191x, 172x, 191x) alors que la raideur absolue derive de 11 %, et les deux elements ensemble rendent 1,6 fois la somme de leurs apports separes, ce qui est la meme affirmation vue de l'autre cote.",
+      "Chaine stratifiee CalculiX etablie et validee : *SHELL SECTION, COMPOSITE avec une *ORIENTATION par pli et par famille de panneaux. Validation sur cas analytique de traction uniaxiale sur pli unidirectionnel : E_x = 130 516 MPa a 0 degre pour E1 = 135 000 attendu, 9 909 a 90 degres pour E2 = 10 000, et 13 080 a 45 degres pour 13 200 predits hors axe, soit 3 % au pire. Trois contraintes non documentees levees : COMPOSITE exige des coques quadratiques S6 ou S8R, le 4e champ d'une couche est un nom d'orientation et non un angle, et OUTPUT=2D est ignore car le .frd porte le modele 3D etendu.",
+      "Mecanisme de reprise d'effort mesure, et non plus suppose. dominance_study.py fait varier E et G separement au moyen d'un materiau orthotrope fictif a modules decouples. Plancher seul : doubler E rend +93,8 %, doubler G rend +2,1 % — la structure travaille en FLEXION, pas en cisaillement. Cellule fermee : +37,7 % et +56,9 % — le cisaillement devient dominant sans etre exclusif. Fermer un anneau ne fait donc pas qu'ajouter de la raideur, cela change le mecanisme qui la porte. Corollaire verifie par calcul stratifie complet : le classement des empilements s'inverse avec l'architecture. Plancher seul 0/90 1910, QI 1586, +/-45 696 ; cellule fermee +/-45 6849, QI 6311, 0/90 4043."
+    ],
+    "known_limits": [
+      "Le calage longitudinal du reseau de datums dans le repere vehicule n'est pas resolu. Le test de recalage sur le scan est non concluant : un controle montre que 68 % de points tires au hasard sous la voiture tombent aussi a moins de 2.8 mm de structure, l'empreinte du plancher couvrant presque tout le plan. Le resultat 16/16 ne prouve donc rien.",
+      "Consequence directe : place selon la diagonale O, le point P21 (palier moteur) tombe a X = -3112 mm, dans la zone du pare-chocs arriere, alors que le scan montre la structure moteur entre -2300 et -2800 mm. L'hypothese de diagonale croisee, verifiee pour M, n'est corroboree pour aucune autre cote.",
+      "Seuls les X de P17, P18 et P19 viennent d'une cote publiee en vue de cote (R et S). Les X de P20, P3, P5, P12 et P21 sont derives sous hypothese et restent a verifier.",
+      "Le scan est une carrosserie large non conforme a l'origine : voie arriere mesuree environ 1459 mm contre 1374 mm d'usine. Les ailes et bas de caisse elargis ne sont pas de la geometrie 964 de serie ; seuls le plancher et la structure centrale sont exploitables comme reference.",
+      "Le plan de sol est le datum le plus faible : deduit du contact des quatre pneus, il presente une dispersion de 55 mm. Toute cote en Z porte cette incertitude.",
+      "Les sections de longeron et de traverse, ainsi que l'epaisseur de tole, ne sont pas publiees au volume V : ce sont des valeurs de travail declarees ASSUMED dans le script. La masse de 36.8 kg ne concerne que les solides modelises et n'est pas une masse de caisse.",
+      "Le residu de symetrie du scan est de 7.54 mm RMS. Une partie est reelle, un dessous de 911 etant asymetrique, mais aucune interface ne peut etre declaree mesuree a mieux que cet ordre de grandeur.",
+      "Aucun controle physique : conformement a la charte, rien n'a ete pese ni mesure sur un vehicule.",
+      "La raideur en torsion calculee, 2442 N.m/deg a 0,8 mm, ne vaut que pour les solides modelises : plancher, deux longerons, deux traverses. Ce n'est pas la raideur d'une caisse 964 et ne doit pas etre citee comme telle. Les variantes plus completes du modele coque, jusqu'a 9093 N.m/deg pour la cellule fermee, ne le sont pas davantage : leurs sections de montant, de brancard, de pied milieu et leur hauteur de pavillon sont toutes ASSUMED, et le modele n'a ni vitrage colle, ni portes, ni ouvertures dans les panneaux, ce qui joue precisement dans le sens qui flatte l'anneau ferme.",
+      "Recherche germanophone : aucune raideur en torsion publiee n'a ete trouvee pour la 964, quelle que soit la variante. Les 2442 N.m/deg calcules n'ont donc aucune valeur d'usine contre laquelle etre confrontes, ni dans un sens ni dans l'autre.",
+      "La nuance des six panneaux en acier haute resistance de la planche 50-013 reste inconnue : aucune source publique ne la donne. Le calcul n'utilise qu'un acier generique E = 210 000 MPa, valable pour la raideur mais pas pour une marge a la limite d'elasticite.",
+      "Le calage longitudinal a une piste identifiee et fermee : Celette vend sous la reference 564.320 un jeu specifique 964 annonce a 42 points de controle, mais toute la documentation est derriere une authentification. Voir SRC-CELETTE-564-320-964-JIG. La voie realiste passe par un carrossier abonne a Car-O-Data ou equipe Celette, pas par une source publique.",
+      "Le volume IV apporte deux cotes verticales rattachees au sol : point de caisse avant « Crossmember to body », qui est P5, a 165 +/- 10 mm, et fixation exterieure de bras arriere cote caisse a 270 +/- 5 mm, pour une Carrera 2/4 au poids a vide DIN 70020. Elles ne sont pas encore utilisees pour verifier le plan de sol du scan : cela suppose de localiser ces fixations sur le maillage et de connaitre la hauteur de caisse du vehicule scanne, qui est une carrosserie large probablement modifiee. Un ecart mesure indiquerait un rabaissement, pas une erreur de repere.",
+      "L'etude composite ne traite QUE la raideur. Elle ne dit rien de la resistance du stratifie, du delaminage, des assemblages colles — point faible reel d'un monocoque composite —, du flambement, du choc, du feu, de la fatigue ni du vieillissement ; un critere de rupture composite n'est pas une contrainte de von Mises. Les constantes de pli sont de classe manuel, niveau de preuve D, non certifiees fournisseur, et l'epaisseur de pli cuit de 0,25 mm est ASSUMED. Le gain reel d'un monocoque est architectural et ne se demontre pas sur un plancher seul. CORRECTION du 2026-09-04 : l'interpretation de cette etude en critere G/rho etait erronee. La mesure de sensibilite separee montre que le plancher seul travaille en flexion, donc que son critere est E/rho. Les valeurs calculees restent valides, toutes portant sur des materiaux isotropes ou E et G sont proportionnels ; c'est leur lecture mecanique qui est corrigee. Le classement carbone devant aramide n'est pas affecte.",
+      "Une structure autoportante de remplacement porte la retenue des occupants : classe prohibited_pending_engineering au sens de SAFETY.md. Aucune geometrie de piece ni sequence de drapage n'est liberable, et la fiche ZESAD ne publie ni masse, ni raideur, ni essai de choc, ni homologation, ni drapage, ni materiau d'ame, donc rien n'y est confrontable.",
+      "Le cas « tunnel » de l'etude d'architecture, qui porte le plus gros gain du dossier (+71 %), n'est PAS de la geometrie 964 : le scan montre un soubassement plat. Il chiffre une modification architecturale possible, non une piece existante. C'est aussi la conclusion la plus actionnable : ajouter une poutre longitudinale fermee rapporte plus que passer au carbone, +71 % contre +25 %.",
+      "Aucune raideur en torsion de caisse 964 publiee n'a ete trouvee, y compris par une recherche germanophone ciblee du 2026-09-04 sur Verwindungssteifigkeit et Torsionssteifigkeit. Le seul chiffre rencontre, environ 11 563 N.m/deg, est un agregat de forum sans source primaire ni protocole, ne precisant meme pas s'il s'agit de caisse en blanc ou de vehicule complet. Il est consigne pour memoire et NE DOIT PAS servir de reference. Voir SRC-RENNLIST-911-TORSIONAL-RIGIDITY-LIST.",
+      "Le modele coque n'est pas converge en maillage. La raideur absolue baisse encore de 4 % au dernier raffinement essaye, les elements S3 convergeant par le haut. Seuls les rapports entre architectures, verifies a trois finesses, sont exploitables ; aucune valeur absolue ne l'est.",
+      "Le choc est le seul verrou logiciel du programme monocoque : CalculiX est un solveur implicite et ne traite ni l'impact a grandes deformations, ni la rupture du stratifie, ni le delaminage. Aucune affirmation de tenue au choc ne peut sortir de cette chaine. Voir docs/MONOCOQUE_964_993_CHAINE_CALCUL.md."
+    ]
+  }
+}

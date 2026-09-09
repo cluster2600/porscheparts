@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PIPELINE = ROOT / "twins/reference-917-engine/source/build_topology_context_f26.py"
 F18_PIPELINE = ROOT / "twins/reference-917-engine/source/review_boundary_components_f18.py"
 CONTRACT = ROOT / "twins/reference-917-engine/topology-context-contract-f26.json"
-DOC = ROOT / "docs/917_TOPOLOGY_CONTEXT_F26.md"
+DOC = ROOT / "archive/917/docs/917_TOPOLOGY_CONTEXT_F26.md"
 
 NUMPY_AVAILABLE = importlib.util.find_spec("numpy") is not None
 if NUMPY_AVAILABLE:

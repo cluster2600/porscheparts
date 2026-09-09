@@ -22,7 +22,7 @@ REMOTE = ENGINE / "remote-simready"
 F42B = REMOTE / "f42b"
 CONTRACT_PATH = ENGINE / "component-factory-f42b-gpu.json"
 SUMMARY_PATH = ENGINE / "evidence/f42a-cpu-usd/repeatability-summary.json"
-CONTROLLER = ROOT / "deploy/vast/simready"
+CONTROLLER = ROOT / "outils/deploy/vast/simready"
 PROFILE_DIRECTORY_PATCH = (
     CONTROLLER / "patches/nvidia-simready-profiles-directory.patch"
 )
@@ -654,7 +654,7 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
             sum(line.startswith("@@") for line in patch.splitlines()), 1
         )
 
-        documentation = (ROOT / "docs/917_COMPONENT_FACTORY_F42B_GPU.md").read_text(
+        documentation = (ROOT / "archive/917/docs/917_COMPONENT_FACTORY_F42B_GPU.md").read_text(
             encoding="utf-8"
         )
         self.assertIn("f42b-917-20260903d", documentation)
@@ -856,7 +856,7 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         self.assertIn("compgen -v", transfer)
         self.assertIn("--runtime-attestation", transfer)
         self.assertIn("runtime-attestation.json", transfer)
-        self.assertIn("deploy/openbao/openbao-ghcr", transfer)
+        self.assertIn("outils/deploy/openbao/openbao-ghcr", transfer)
         self.assertNotIn("raw-scans", transfer)
         for relative in (
             "f42b/_contract.py",

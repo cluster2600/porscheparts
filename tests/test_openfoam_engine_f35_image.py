@@ -48,7 +48,7 @@ class OpenFoamEngineF35ImageTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertTrue(ignore.startswith("*\n"))
         self.assertIn("!containers/openfoam-engine-f35-smoke.sh", ignore)
-        self.assertIn("!benchmarks/openfoam-poiseuille-f25/**", ignore)
+        self.assertIn("!outils/benchmarks/openfoam-poiseuille-f25/**", ignore)
         self.assertNotIn("raw", ignore.lower())
 
     def test_publication_workflow_is_manual_digest_gated_and_anonymous(self):
