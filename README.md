@@ -46,7 +46,19 @@ faudrait établir pour concurrencer une offre existante sur le seul axe où elle
 est nue : la donnée publiée. Il **contredit le périmètre écrit** de
 [ROADMAP.md](ROADMAP.md), et le dit.
 
-### 2. Pièces candidates
+### 2. Pièces 993 en fabrication additive
+
+La ligne la plus fournie du dépôt : **23 dossiers de conception** `993_*_F0` et
+`_F1`, et **31 fiches de pièces**, du guide de ressort de phare à la roue de
+turbine K16 en Inconel 718, en passant par la bielle Ti-6Al-4V, la roue de
+compresseur en AlSi10Mg et le collecteur d'échappement en IN625.
+
+Chaque dossier part de cotes **publiées par un fournisseur**, sépare ce qui est
+sourcé de ce qui est supposé, et dit ce qu'il ne contient pas. Rien n'est
+libéré : les 31 fiches sont **toutes au statut `concept`**, dont 17 en
+`prohibited_pending_engineering` et une en `safety_critical`.
+
+### 3. Pièces candidates de carrosserie et d'habitacle
 
 Les panneaux **boulonnés** — ailes, capots, becquet, portes — sont un objectif
 légitime ; la structure autoportante ne l'est pas. Le catalogue d'usine trace la
@@ -63,11 +75,11 @@ commence par une porte d'entrée qui peut arrêter le projet.
 Trois pilotes d'habitacle plus simples restent en attente d'une séance de mesure
 physique : [docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
 
-### 3. Le catalogue, et son contrat de données
+### 4. Le catalogue, et son contrat de données
 
-**318 fiches de sources** qualifiées par provenance, droits et niveau de preuve ;
-9 fiches de pièces, 4 composants, 2 assemblages, 3 zones de jumeau. Tout est
-validé par un schéma JSON et des tests :
+**381 fiches de sources** qualifiées par provenance, droits et niveau de preuve ;
+31 fiches de pièces, 5 zones de jumeau, 4 composants, 2 assemblages. Tout est
+validé par un schéma JSON et par 1 914 tests :
 
 ```bash
 make check
@@ -123,29 +135,26 @@ partagée. Aucun n'avait laissé de trace dans une sortie d'erreur.
 - **Aucune valeur absolue de raideur n'est une raideur de 964.** Les sections du
   modèle sont `ASSUMED`, le maillage n'est pas convergé ; seuls les rapports et
   les classements sont exploitables.
-- **Aucune pièce n'est déclarée imprimable ni validée.** Aucun jumeau n'atteint
-  le niveau `F2_interface`.
-- **Aucune mesure physique n'est encore enregistrée** dans
-  `catalog/measurements/` : le dépôt n'a accès ni à une 993, ni à une pièce
-  déposée, ni à un instrument.
+- **Aucune pièce n'est déclarée imprimable ni validée.** Les 31 fiches sont au
+  statut `concept`, dont 17 en `prohibited_pending_engineering`. Aucun jumeau
+  n'atteint le niveau `F2_interface`.
+- **Aucune mesure physique n'est encore enregistrée.** Les trois fiches de
+  `catalog/measurements/` sont des relevés du manuel d'atelier, pas des mesures
+  instrumentées : le dépôt n'a accès ni à une 993, ni à une pièce déposée, ni à
+  un instrument.
 - **Un rendu n'est pas une preuve.** Ni Omniverse, ni une image, ni une photo ne
   démontrent un comportement physique.
 
-## Autres dossiers
+## Ce qui est archivé
 
-- **Culasse 917 refroidie par air** : retirée comme produit, conservée comme
-  régression numérique. [F34](archive/917/docs/917_AIRCOOLED_4V_F34.md) réunit CAO
-  paramétrique, OpenFOAM/FluidX3D, CalculiX et Cantera sans preuve transférable ;
-  [F36](archive/917/docs/917_SCAN_CONFORMING_4V_F36.md) conserve la morphologie du scan 935 ;
-  [F37](archive/917/docs/917_F37_MANUFACTURING_DEFINITION.md) ajoute STEP fonctionnels et
-  preuves SHA-256, impression métal et démarrage restant interdits.
-- **Circuit de suralimentation 993** : identification K16, interfaces et première
-  enveloppe de débit —
-  [docs/TURBO_AIRFLOW_SIMULATION_DATA.md](docs/TURBO_AIRFLOW_SIMULATION_DATA.md).
-- **Couverture documentaire du jumeau** : `python3 scripts/twin_coverage.py`. La
-  couverture massique dit quelle part de la masse à vide est décrite par des
-  pièces dont la masse est sourcée. Elle ne vaut ni validation géométrique, ni
-  preuve de montage.
+Le dossier de **culasse 917** — 891 fichiers, itérations F1 à F50 — est retiré
+comme produit et conservé comme régression numérique, avec le scan de culasse
+935. Il n'a pas été déplacé dans un dossier d'archive, et
+[ARCHIVE.md](ARCHIVE.md) explique pourquoi : il porte 2 014 empreintes SHA-256
+que le déplacement invaliderait. Une preuve vaut mieux qu'un rangement.
+
+Y sont listés ce qu'on peut encore en faire — rejouer les calculs, réutiliser les
+cas d'essai — et ce qu'on ne peut pas : une pièce.
 
 ## Démarrage rapide
 
@@ -162,26 +171,21 @@ relancer `make check`.
 ## Organisation
 
 ```text
-catalog/parts/          fiches structurées des pièces
-catalog/sources/        registre des sources, droits et niveaux de preuve
-catalog/manual/         registre quantitatif dérivé du manuel 993, avec pages
-catalog/specifications/ spécifications documentaires et provenance d'extraction
-catalog/measurements/   mesures physiques et valeurs documentaires qualifiées
-catalog/reference/      ossature documentaire et données de référence déclarées
-catalog/twins/          fiches des zones du jumeau et règles d'acceptation
-catalog/components/     composants dont taille, matière et masse sont sourcées
-catalog/assemblies/     relations de montage sourcées entre composants
-parts/                  géométries, plans de mesure et livrables par pièce
-twins/964-chassis/      jumeau de châssis 964 : datums, CAO et calculs
-twins/964-chassis/fea/  essais de torsion, stratifiés, plan d'expériences
-twin/                   enveloppes et repères paramétriques globaux
-schemas/                contrat de données du catalogue
-containers/             images de calcul reproductibles, GPU, CPU et Physics ML
-templates/              modèles de fiche, mesure et demande de fabrication
-docs/                   plan, outils, workflows et critères qualité
-scripts/                contrôles automatiques sans dépendance externe
-tests/                  tests du catalogue et de ses garde-fous
+catalog/            fiches : sources, pièces, mesures, jumeaux, composants
+parts/              géométries, plans de mesure et livrables par pièce
+components/         géométries des composants ; assemblies/ leurs preuves
+twins/964-chassis/  jumeau de châssis 964 : datums, CAO, calculs, corpus
+twins/993-*/        zones fonctionnelles 993
+docs/               dossiers de conception, plans, critères qualité
+simulation/         cas de calcul du circuit de suralimentation
+media/              schémas et projets vidéo
+archive/917/docs/   les 112 dossiers écrits de la culasse 917
+schemas/            contrat de données du catalogue
+scripts/  tests/    contrôles automatiques et garde-fous
+containers/ deploy/ images de calcul reproductibles et déploiement
+templates/          modèles de fiche, mesure et demande de fabrication
 ```
+
 
 ## État
 
