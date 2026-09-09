@@ -30,6 +30,8 @@ Résultats qui tiennent — voir [`twins/964-chassis/fea/`](twins/964-chassis/fe
 - pavillon et cadre de baie ensemble valent **1,63 fois** la somme de leurs
   apports séparés : le pavillon ne travaille qu'une fois l'anneau fermé.
 
+![Part du cisaillement dans la raideur, par architecture](media/diagrams/964-mecanisme-architecture.svg)
+
 Un **corpus de 3 000 cas** CalculiX, en coques quadratiques, est constitué pour
 entraîner plus tard un substitut de conception, avec son lot de validation gelé
 avant qu'aucun modèle n'existe. Chaîne et état :
@@ -90,6 +92,13 @@ précision.
 ## Ce que le dépôt a retiré de ses propres résultats
 
 C'est la partie la plus utile de son historique, et elle est publique.
+
+![Raideur par architecture en coques lineaires et quadratiques](media/diagrams/964-echelle-architectures.svg)
+
+Ci-dessus, la correction la plus lourde : l'échelle des architectures avait été
+publiée en éléments linéaires. Les deux figures se régénèrent avec
+`twins/964-chassis/fea/figures.py`, depuis des valeurs figées dans
+`figures-data.json` qui portent chacune l'origine de son calcul.
 
 | affirmation retirée | ce qui l'a défaite |
 |---|---|
