@@ -16,7 +16,7 @@ DOCKERIGNORE = ROOT / "containers/boundary-review-f23.Dockerfile.dockerignore"
 SMOKE = ROOT / "containers/boundary-review-f23-smoke.py"
 PIPELINE = ROOT / "twins/reference-917-engine/source/build_boundary_review_workpack_f23.py"
 WORKFLOW = ROOT / ".github/workflows/boundary-review-f23-image.yml"
-DOC = ROOT / "docs/917_BOUNDARY_REVIEW_WORKPACK_F23.md"
+DOC = ROOT / "archive/917/docs/917_BOUNDARY_REVIEW_WORKPACK_F23.md"
 LOCK = ROOT / "containers/boundary-review-f23.lock.json"
 
 

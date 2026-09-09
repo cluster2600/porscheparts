@@ -35,7 +35,7 @@ FORBIDDEN_CONTENT = (
 )
 
 ALLOWLIST = (
-    "docs/917_COMPONENT_FACTORY_F41.md",
+    "archive/917/docs/917_COMPONENT_FACTORY_F41.md",
     "twins/reference-917-engine/component-factory-f41.json",
     "twins/reference-917-engine/rotating-assembly-cad-f35.json",
     "twins/reference-917-engine/source/execute_component_factory_f41.py",

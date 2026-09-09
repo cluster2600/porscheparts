@@ -16,7 +16,7 @@ EVIDENCE_ROOT = (
 )
 SUMMARY = EVIDENCE_ROOT / "summary.json"
 README = EVIDENCE_ROOT / "README.md"
-DOC = ROOT / "docs/917_COMPONENT_FACTORY_F41_VAST_RUNTIME.md"
+DOC = ROOT / "archive/917/docs/917_COMPONENT_FACTORY_F41_VAST_RUNTIME.md"
 PUBLICATION = (
     ROOT
     / "twins/reference-917-engine/evidence/f41-vast-image-publication-race-fix/summary.json"

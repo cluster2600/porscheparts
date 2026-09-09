@@ -134,10 +134,10 @@ partagée. Aucun n'avait laissé de trace dans une sortie d'erreur.
 ## Autres dossiers
 
 - **Culasse 917 refroidie par air** : retirée comme produit, conservée comme
-  régression numérique. [F34](docs/917_AIRCOOLED_4V_F34.md) réunit CAO
+  régression numérique. [F34](archive/917/docs/917_AIRCOOLED_4V_F34.md) réunit CAO
   paramétrique, OpenFOAM/FluidX3D, CalculiX et Cantera sans preuve transférable ;
-  [F36](docs/917_SCAN_CONFORMING_4V_F36.md) conserve la morphologie du scan 935 ;
-  [F37](docs/917_F37_MANUFACTURING_DEFINITION.md) ajoute STEP fonctionnels et
+  [F36](archive/917/docs/917_SCAN_CONFORMING_4V_F36.md) conserve la morphologie du scan 935 ;
+  [F37](archive/917/docs/917_F37_MANUFACTURING_DEFINITION.md) ajoute STEP fonctionnels et
   preuves SHA-256, impression métal et démarrage restant interdits.
 - **Circuit de suralimentation 993** : identification K16, interfaces et première
   enveloppe de débit —

@@ -27,4 +27,4 @@ Le préflight Omniverse est une preuve de blocage, pas une conversion : les
 services Content Agents n'étaient pas prêts et aucun USD n'a été créé.
 
 La méthode et l'interprétation sont détaillées dans
-[la documentation F31](../../../../docs/917_HEAD_REFERENCE_CAE_F31.md).
+[la documentation F31](../../../../archive/917/docs/917_HEAD_REFERENCE_CAE_F31.md).

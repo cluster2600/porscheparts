@@ -42,7 +42,7 @@ Les règles F35 sont donc les suivantes :
 | `catalog/sources/src-porsche-additive-piston-validation.json` — [Porsche, pistons LMF](https://newsroom.porsche.com/de/2020/technik/porsche-kooperation-mahle-trumpf-kolben-3d-drucker-leistung-effizienz-911-gt2-rs-21461.html) | Méthode moderne : alliage d'aluminium spécial, canal de refroidissement fermé, allègement déclaré de 10 % et endurance moteur de 200 h | Copyright Porsche. Exemple GT2 RS, pas une définition de piston 917 | `A` pour la méthode, aucune autorité géométrique F35 |
 
 La brochure usine Porsche de 1969 référencée dans
-`docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md` documente un
+`archive/917/docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md` documente un
 vilebrequin forgé en deux pièces, des bielles en titane forgé et des pistons en
 alliage léger pour le 4,494 l. Elle est protégée et hébergée par un tiers : F35
 n'en copie ni texte long, ni dessin, ni image.
