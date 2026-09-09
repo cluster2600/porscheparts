@@ -103,7 +103,7 @@ de cette branche. A instruire avant de l'engager.
 2. **La regle du depot.** `ROADMAP.md` classe hors perimetre un « modele IA de
    substitution avant l'existence d'un corpus FEA/CFD coherent ». La condition 1
    n'est pas une preference, c'est une regle ecrite.
-3. **Le conteneur.** `docs/917_MODULAR_COMPUTE_STACK.md` indique que
+3. **Le conteneur.** `archive/917/docs/917_MODULAR_COMPUTE_STACK.md` indique que
    `physicsnemo-cae-cu12` a un lock OCI verifie mais que **son smoke GPU et son
    transport SSH restent faux** : il n'est pas autorise pour un job long.
 

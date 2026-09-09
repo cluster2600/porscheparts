@@ -45,7 +45,7 @@ jobs:
             printf '%s\n' \
               .github/workflows/917-f47-cfd-cae-image.yml \
               containers/engine-cycle-f33.requirements.txt \
-              docs/917_F47_CFD_CAE_IMAGE.md \
+              archive/917/docs/917_F47_CFD_CAE_IMAGE.md \
               tests/test_917_f47_cfd_cae_image.py
             find containers/917-f47-cfd-cae -maxdepth 1 -type f -print
           } | LC_ALL=C sort | xargs sha256sum > f47-source-inputs.sha256

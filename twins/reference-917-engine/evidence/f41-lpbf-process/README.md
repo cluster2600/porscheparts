@@ -46,4 +46,4 @@ d'une autorisation d'impression ou de démarrage moteur.
 
 Le générateur paramétrique et tous les rapports sont versionnés ; le scan brut,
 le STEP et le STL dérivés restent locaux. La méthode, les limites et les références sont détaillées dans
-`docs/917_F41_LPBF_PROCESS.md`.
+`archive/917/docs/917_F41_LPBF_PROCESS.md`.

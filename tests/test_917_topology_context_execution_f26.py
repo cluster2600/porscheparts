@@ -16,7 +16,7 @@ EVIDENCE = (
 )
 LOCK = ROOT / "containers/topology-context-f26.lock.json"
 CONTRACT = ROOT / "twins/reference-917-engine/topology-context-contract-f26.json"
-DOC = ROOT / "docs/917_TOPOLOGY_CONTEXT_F26.md"
+DOC = ROOT / "archive/917/docs/917_TOPOLOGY_CONTEXT_F26.md"
 
 
 class TopologyContextExecutionF26Tests(unittest.TestCase):

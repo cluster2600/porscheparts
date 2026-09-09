@@ -654,7 +654,7 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
             sum(line.startswith("@@") for line in patch.splitlines()), 1
         )
 
-        documentation = (ROOT / "docs/917_COMPONENT_FACTORY_F42B_GPU.md").read_text(
+        documentation = (ROOT / "archive/917/docs/917_COMPONENT_FACTORY_F42B_GPU.md").read_text(
             encoding="utf-8"
         )
         self.assertIn("f42b-917-20260903d", documentation)

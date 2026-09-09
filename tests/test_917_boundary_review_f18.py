@@ -19,7 +19,7 @@ SCRIPT = (
     ROOT
     / "twins/reference-917-engine/source/review_boundary_components_f18.py"
 )
-DOC = ROOT / "docs/917_BOUNDARY_HUMAN_REVIEW_F18.md"
+DOC = ROOT / "archive/917/docs/917_BOUNDARY_HUMAN_REVIEW_F18.md"
 EVIDENCE = ROOT / "twins/reference-917-engine/boundary-review-execution-evidence-f18.json"
 LOCK = ROOT / "containers/scan-mesh-f17.lock.json"
 LOCAL_OUTPUT = ROOT / "work/917-engine/boundary-review-f18-published"

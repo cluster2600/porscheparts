@@ -187,7 +187,7 @@ refuse ensuite toute mutation distante du bundle.
 ## Transfert privé dédié
 
 Après le lancement et les contrôles décrits dans
-`docs/917_VAST_SIMREADY_NATIVE.md`, définir uniquement des chemins locaux, sans
+`archive/917/docs/917_VAST_SIMREADY_NATIVE.md`, définir uniquement des chemins locaux, sans
 mettre leur contenu dans la ligne de commande :
 
 ```bash

@@ -25,7 +25,7 @@ REQUIREMENTS = ROOT / "containers/cad-author-f28-requirements.txt"
 SYSTEM_PACKAGES = ROOT / "containers/cad-author-f28-system-packages.sha256"
 SMOKE = ROOT / "containers/cad-author-f28-smoke.py"
 WORKFLOW = ROOT / ".github/workflows/cad-author-f28-image.yml"
-DOC = ROOT / "docs/917_CAD_AUTHOR_IMAGE_F28.md"
+DOC = ROOT / "archive/917/docs/917_CAD_AUTHOR_IMAGE_F28.md"
 
 
 class CadAuthorF28ImageTests(unittest.TestCase):

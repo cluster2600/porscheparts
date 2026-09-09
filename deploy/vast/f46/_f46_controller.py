@@ -956,7 +956,7 @@ def preparation_report(contract: dict[str, Any], manifest: dict[str, Any], root:
         "deploy/vast/simready/destroy-instance.sh",
         "deploy/openbao/openbao-vastai",
         "deploy/openbao/openbao-ghcr",
-        "docs/917_F46_VAST_CFD_CAE_CONTROLLER.md",
+        "archive/917/docs/917_F46_VAST_CFD_CAE_CONTROLLER.md",
     )
     artifacts = []
     for relative in artifact_paths:

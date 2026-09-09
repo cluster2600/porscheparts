@@ -10,7 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "containers/cad-author-f28.lock.json"
-DOC = ROOT / "docs/917_CAD_AUTHOR_IMAGE_F28.md"
+DOC = ROOT / "archive/917/docs/917_CAD_AUTHOR_IMAGE_F28.md"
 
 
 class CadAuthorF28LockTests(unittest.TestCase):

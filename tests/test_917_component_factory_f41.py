@@ -363,7 +363,7 @@ class ComponentFactoryF41ContractTest(unittest.TestCase):
                 parent = Path(directory)
                 repository = self.make_bundle_repository(parent)
                 if dirty_kind == "tracked":
-                    path = repository / "docs/917_COMPONENT_FACTORY_F41.md"
+                    path = repository / "archive/917/docs/917_COMPONENT_FACTORY_F41.md"
                     path.write_text(path.read_text(encoding="utf-8") + "\nnon committed\n", encoding="utf-8")
                 else:
                     (repository / "untracked.txt").write_text("not committed\n", encoding="utf-8")

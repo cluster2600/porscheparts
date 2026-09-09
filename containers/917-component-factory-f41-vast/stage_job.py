@@ -38,7 +38,7 @@ ALLOWED_BUNDLE_RELATIVE_FILES = frozenset(
     {
         "REMOTE_JOB.md",
         "containers/simready-preflight/convert.py",
-        "docs/917_COMPONENT_FACTORY_F41.md",
+        "archive/917/docs/917_COMPONENT_FACTORY_F41.md",
         "twins/reference-917-engine/component-factory-f41.json",
         "twins/reference-917-engine/rotating-assembly-cad-f35.json",
         "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py",
@@ -51,7 +51,7 @@ ALLOWED_BUNDLE_RELATIVE_FILES = frozenset(
 EXPECTED_BUNDLE_FILE_MODES = {
     "REMOTE_JOB.md": "0644",
     "containers/simready-preflight/convert.py": "0644",
-    "docs/917_COMPONENT_FACTORY_F41.md": "0644",
+    "archive/917/docs/917_COMPONENT_FACTORY_F41.md": "0644",
     "twins/reference-917-engine/component-factory-f41.json": "0644",
     "twins/reference-917-engine/rotating-assembly-cad-f35.json": "0644",
     "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py": "0644",
