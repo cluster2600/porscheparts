@@ -64,6 +64,14 @@
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
         "notes": "Publie 187 W/m.K à l'ambiante et une stabilité qualitative sur plusieurs milliers d'heures à 250-300 °C, sans carte complète à chaud. Voir SRC-CONSTELLIUM-AHEADD-CP1-PRODUCT-SHEET."
+      },
+      {
+        "title": "IAV / GVSETS 2018 - piston diesel additif",
+        "url": "https://events.esd.org/wp-content/uploads/2018/07/3D-Printed-Piston-for-Heavy-Duty-Diesel-Engines.pdf",
+        "source_type": "official",
+        "license": "conference-paper-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Précédent d'architecture : treillis triangulé et circuits de refroidissement distincts sur un piston diesel lourd d'environ 130 mm. Aucune cote ni propriété n'est transférée au M64/60 CP1. Voir SRC-IAV-2018-ADDITIVE-HEAVY-DUTY-PISTON."
       }
     ]
   },
@@ -110,7 +118,14 @@
       "catalog/sources/src-elferclassic-993-turbo-technical-data.json",
       "catalog/sources/src-velo3d-cp1-material-datasheet.json",
       "catalog/sources/src-constellium-aheadd-cp1-product-sheet.json",
-      "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json"
+      "catalog/sources/src-iav-2018-additive-heavy-duty-piston.json",
+      "catalog/twins/twin-993-m64-60-piston-gallery-f0.json",
+      "parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/picogk-optimization-screen.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/picogk-output-integrity.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-report.json",
+      "twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/simready-validation-summary.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
@@ -122,6 +137,11 @@
       "La pression cylindre 12 MPa, les masses axe/segments, les 2 l/min d'huile, 5 kW et +200 K sont des cas de régression non mesurés.",
       "La marge ambiante de 1,07 issue d'une plaque circulaire et d'une limite CP1 minimale ne constitue pas une marge de conception à chaud.",
       "Les modèles 1D ignorent combustion transitoire, contact jupe/cylindre, segments, lubrification, accélération de l'huile et fatigue multiaxiale.",
+      "Le tranchage de 2 390 couches, l'orientation roll_y_45 et les 8,365 cm3 de supports sont un écran géométrique ; aucun projet Flow, champ de distorsion ou contrôle recoater n'est disponible.",
+      "Le passage SimReady valide un prop isolé, pas l'assemblage piston-cylindre-segments-axe-bielle ni la fonction moteur.",
+      "Le balayage PicoGK F0 inspiré des architectures Porsche et IAV a généré six variantes et jusqu'à 1,60 % d'allègement brut, mais aucune ne passe la marge de plaque ambiante provisoire de 1,50 et les six STL conservent des arêtes non-manifold.",
+      "Le master BREP sain a subi six exécutions CalculiX sur trois maillages : le p95 chaud atteint 323,46 MPa et dépasse la référence CP1 ambiante de 297 MPa dans le cas synthétique, malgré une sensibilité de maillage inférieure à 1 % sur ce p95.",
+      "PicoGK est un noyau géométrique ; sans FEA des variantes manifold, CHT/VOF, admissibles CP1 à chaud et interfaces mesurées, aucune variante ne constitue un piston optimisé ou sélectionné.",
       "Le STEP prouve seulement un BREP relisible avec galerie ouverte par deux ports ; il n'est autorisé ni pour fabrication, ni pour montage, ni pour moteur."
     ]
   }

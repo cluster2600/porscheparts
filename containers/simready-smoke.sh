@@ -26,6 +26,7 @@ check physics-agent-import env PYTHONPATH=/opt/content-agents:/opt/content-agent
 check openusd /opt/simready-validation/bin/python -c 'from pxr import Usd, UsdGeom, UsdPhysics; assert Usd.GetVersion()'
 check png-pixel-inspection /opt/simready-validation/bin/python -c 'from PIL import Image, ImageStat; assert Image and ImageStat'
 check asset-validator /opt/simready-validation/bin/python -c 'import omni.asset_validator'
+check usd-validation-nvidia /opt/simready-validation/bin/nvidia_usd_validate --help
 check simready-validate env \
     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     simready-validate --help

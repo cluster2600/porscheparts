@@ -101,7 +101,12 @@
       "catalog/sources/src-porschefanatics-993-in625-exhaust-register.json",
       "catalog/sources/src-eos-in625-material-data.json",
       "catalog/sources/src-special-metals-inconel-625.json",
-      "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json"
+      "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json",
+      "parts/993-exh-oval-tip-in625-f0-0001/evidence/openfoam-flow-screen.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/openfoam-f0/openfoam-evidence-audit.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/omniverse-build-screen-summary.json",
+      "twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/simready-validation-summary.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
@@ -112,6 +117,10 @@
       "Le mode de bande à 44,12 Hz n'est pas un mode de coque et ne peut pas être comparé à un spectre véhicule absent.",
       "Les températures, débits, pressions, rendement volumétrique et conditions d'appui sont synthétiques.",
       "Le calcul ignore pulses, courbures amont, joints, convection, CHT, ovalisation, rugosité, oxydation et fatigue thermique.",
+      "La CFD RANS stationnaire atteint ses seuils de résidus mais la perte de pression varie encore de 11,17 % entre les deux maillages les plus fins et les contrôles étendus conservent des cellules à faible déterminant.",
+      "Le tranchage pleine pièce et la scène EOS M 290 ne contiennent ni supports fournisseur, ni trajectoires laser, ni simulation thermomécanique ou recoater corrélée.",
+      "Le profil SimReady passe uniquement pour un prop isolé ; les propriétés physiques inventées par les agents ont été supprimées et aucun assemblage échappement-jupe n'est disponible.",
+      "PhysicsNeMo a seulement exécuté un smoke test CUDA ; aucun surrogate n'est entraîné avant convergence et corrélation des cas physiques.",
       "Le STEP prouve seulement un BREP calculable dans l'enveloppe et ne doit pas être fabriqué pour montage."
     ]
   }

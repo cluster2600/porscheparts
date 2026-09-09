@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+  "classification": "executed_omniverse_lpbf_build_setup_screen_not_recoater_or_process_validation",
+  "input_simready_usd": {
+    "sha256": "c4c7a22700f81d8e8d7ba2750aebedc1eaddd6d184d45de38847a80b61e47d1c"
+  },
+  "build_scene": {
+    "orientation": "roll_y_25",
+    "machine": "EOS M 290 nominal envelope",
+    "machine_envelope_mm": {
+      "width": 250.0,
+      "depth": 250.0,
+      "height": 325.0
+    },
+    "slice_geometry_build_height_mm": 148.0587,
+    "conservative_candidate_world_bounds_mm": {
+      "min": [-54.37846722219898, -42.499999999999986, 0.0],
+      "max": [105.09265863108291, 42.499999999999986, 159.47112585328188],
+      "size": [159.47112585328188, 84.99999999999997, 159.47112585328188]
+    },
+    "candidate_grounded_on_plate": true,
+    "bare_part_inside_nominal_machine_envelope": true,
+    "composed_usd_sha256": "8c9348c2a278d61c8bf4ebcc905ec12320287e01e796d344b00905144a5889d8",
+    "flattened_render_copy_sha256": "53ce3f6e1bb0f7f7b1eec12885f06c3efb438874faa18db18bc583e3b95b044e"
+  },
+  "validators": {
+    "minimum_openusd": "PASS",
+    "nvidia_asset_validator": "PASS",
+    "geometry_category": "PASS",
+    "physics_category": "PASS"
+  },
+  "render": {
+    "status": "PASS",
+    "flattened_for_render_only": true,
+    "visually_inspected": true,
+    "image": {
+      "path": "oval-tip-lpbf-build-screen.png",
+      "sha256": "4eaa76d06ca5e8d7224d6f7186335208550add87202f97f299f378c0f4ee759d",
+      "width_px": 1024,
+      "height_px": 1024
+    }
+  },
+  "audit_report_sha256": {
+    "scene_authoring": "7f18c68e1d9f803267571444c70a86117904fde700271cb663676b16c99b665a",
+    "minimum_openusd": "f97fa089ef7ed5ddef550dede170e961c48fd67ed661d3a0c26513dcf0a85fe9",
+    "nvidia_asset_validator": "00ca10605ab72b6e0dfd98cc905b62806dba403ebb03438789236fe9addf949d",
+    "geometry_category": "b75f4a3f2bf0ca95e995740e0aed76612c7034c7503dd6dfadf7b32a5aa09231",
+    "physics_category": "27266f5ca5da0e2f4b01d5e6ea198eb07e50c003358923d531fb90d61bae34b3",
+    "render": "f1abd0c850136543177dcd695b9c2abb1a3e01c6930da6a0343c70b0b9bdd41b"
+  },
+  "gates": {
+    "candidate_orientation_engineering_reviewed": false,
+    "supplier_support_geometry_loaded": false,
+    "distortion_field_applied": false,
+    "recoater_collision_validated": false,
+    "omniverse_exhaust_assembly_function_tested": false,
+    "metal_print_authorized": false
+  },
+  "limitations": [
+    "Le plateau, l'enveloppe machine et le recoater sont des guides de preparation, pas un projet fournisseur.",
+    "La scene composee est l'artefact valide ; la copie aplatie sert uniquement au rendu OVRTX.",
+    "Aucun support fournisseur, champ de distorsion thermomecanique IN625 calibre ni compliance de lame n'est applique.",
+    "Le mouvement du recoater est anime pour inspection visuelle mais aucune collision sur forme deformee n'est calculee."
+  ]
+}

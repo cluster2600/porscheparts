@@ -63,6 +63,7 @@ SCREEN_OIL_DYNAMIC_VISCOSITY_PA_S = 0.010
 SCREEN_OIL_SPECIFIC_HEAT_J_KG_K = 2000.0
 SCREEN_GALLERY_HEAT_REJECTION_W = 5000.0
 SCREEN_DUTY_HOURS = 100.0
+STANDARD_GRAVITY_M_S2 = 9.80665
 
 
 def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]:
@@ -147,7 +148,25 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         * PISTON_OUTER_DIAMETER_MM
         * SCREEN_DELTA_T_K
     )
-    cycles = PUBLISHED_ENGINE_SPEED_RPM / 60.0 * SCREEN_DUTY_HOURS * 3600.0
+    shaft_revolutions = (
+        PUBLISHED_ENGINE_SPEED_RPM / 60.0 * SCREEN_DUTY_HOURS * 3600.0
+    )
+    combustion_events_per_cylinder = shaft_revolutions / 2.0
+    porsche_duration_equivalent_revolutions = (
+        PUBLISHED_ENGINE_SPEED_RPM
+        / 60.0
+        * PUBLISHED_ADDITIVE_ENDURANCE_HOURS
+        * 3600.0
+    )
+    mean_piston_speed_m_s = (
+        2.0
+        * (PUBLISHED_ENGINE_STROKE_MM / 1000.0)
+        * PUBLISHED_ENGINE_SPEED_RPM
+        / 60.0
+    )
+    displacement_per_cylinder_cm3 = (
+        piston_area_mm2 * PUBLISHED_ENGINE_STROKE_MM / 1000.0
+    )
 
     return {
         "schema_version": "1.0.0",
@@ -207,6 +226,12 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "synthetic_peak_gas_force_n": gas_force_n,
             "angular_speed_rad_s": omega_rad_s,
             "synthetic_tdc_acceleration_m_s2": tdc_acceleration_m_s2,
+            "synthetic_tdc_acceleration_g": tdc_acceleration_m_s2 / STANDARD_GRAVITY_M_S2,
+            "mean_piston_speed_m_s": mean_piston_speed_m_s,
+            "rod_to_crank_ratio": rod_length_m / crank_radius_m,
+            "crank_to_rod_ratio": crank_radius_m / rod_length_m,
+            "documentary_displacement_per_cylinder_cm3": displacement_per_cylinder_cm3,
+            "documentary_six_cylinder_displacement_cm3": 6.0 * displacement_per_cylinder_cm3,
             "synthetic_reciprocating_mass_kg": reciprocating_mass_kg,
             "synthetic_tensile_inertia_force_n": inertia_force_n,
             "conservative_pin_force_n": conservative_pin_force_n,
@@ -230,7 +255,11 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "oil_temperature_rise_for_5kw_k": oil_temperature_rise_k,
             "one_dimensional_crown_conduction_upper_bound_w": conduction_upper_bound_w,
             "free_outer_diameter_growth_mm": free_diameter_growth_mm,
-            "load_cycles_at_duty": cycles,
+            "load_cycles_at_duty": shaft_revolutions,
+            "shaft_revolutions_at_duty": shaft_revolutions,
+            "combustion_events_per_cylinder_at_duty": combustion_events_per_cylinder,
+            "porsche_200h_max_speed_equivalent_revolutions": porsche_duration_equivalent_revolutions,
+            "porsche_200h_max_speed_equivalent_combustion_events_per_cylinder": porsche_duration_equivalent_revolutions / 2.0,
             "lumped_heat_capacity_j_k": load_mass_g / 1000.0 * SPECIFIC_HEAT_J_KG_K_PROVISIONAL,
         },
         "equations": {
@@ -247,7 +276,11 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "oil_temperature_rise": "delta_T=Q/(m_dot*cp)",
             "crown_conduction": "Q=k*A*delta_T/t",
             "thermal_expansion": "delta_D=alpha*D*delta_T",
-            "load_cycles": "n=N/60*t_seconds",
+            "mean_piston_speed": "U_mean=2*stroke*N/60",
+            "slider_crank_ratio": "lambda=r/L; rod_ratio=L/r",
+            "displacement": "Vd=pi*bore^2*stroke/4",
+            "shaft_revolutions": "n_rev=N/60*t_seconds",
+            "four_stroke_combustion_events": "n_combustion=n_rev/2 per cylinder",
         },
         "dfam_screen": {
             "additive_value": "closed crown gallery and load-shaped internal support can be integrated without a casting core",

@@ -41,6 +41,9 @@ class HeadlampSpringHookF0Tests(unittest.TestCase):
         self.assertEqual(record["geometry"]["source_type"], "estimated")
         self.assertEqual(record["validation"]["status"], "concept")
         self.assertFalse(report["release_authorized"])
+        self.assertIn("AlSi10Mg_FlexM291 2.01", record["manufacturing"]["material"]["grade"])
+        self.assertEqual(report["material_screen"]["published_vertical_yield_strength_mpa"], 233.0)
+        self.assertFalse(report["material_screen"]["design_allowable"])
         self.assertGreaterEqual(len(report["release_blockers"]), 6)
         self.assertIn("No published dimensions", report["release_blockers"][0])
 
