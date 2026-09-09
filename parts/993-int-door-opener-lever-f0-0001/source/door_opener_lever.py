@@ -10,9 +10,11 @@ conception propres au projet, jamais des cotes OEM ou Rennline/FVD.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
+import re
 
 
 PART_ID = "993-INT-DOOR-OPENER-LEVER-F0-0001"
@@ -53,8 +55,31 @@ SCREEN_DELTA_T_K = 60.0
 # Carte ambiante de criblage AlSi10Mg, non qualifiée pour cette pièce.
 DENSITY_G_CM3 = 2.67
 ELASTIC_MODULUS_MPA = 70_000.0
-YIELD_STRENGTH_MPA = 245.0
-THERMAL_EXPANSION_PER_K = 21.0e-6
+YIELD_STRENGTH_MPA = 233.0
+THERMAL_EXPANSION_PER_K = 22.0e-6
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def normalize_step_header(path: Path) -> None:
+    """Retire l'horodatage OCCT afin que le STEP reste reproductible."""
+
+    payload = path.read_text(encoding="utf-8")
+    normalized, count = re.subn(
+        r"(FILE_NAME\('Open CASCADE Shape Model',)'[^']+'",
+        r"\1'1970-01-01T00:00:00'",
+        payload,
+        count=1,
+    )
+    if count != 1:
+        raise SystemExit("En-tête STEP OCCT inattendu ; normalisation refusée.")
+    path.write_text(normalized, encoding="utf-8")
 
 
 def analytic_volume_mm3() -> float:
@@ -141,7 +166,7 @@ def engineering_screen(force_n: float = SCREEN_FORCE_N) -> dict[str, object]:
             "authority": "regression input only; real hand force, direction, stops and temperature absent",
         },
         "material_screen": {
-            "candidate": "AlSi10Mg LPBF, room-temperature reference only",
+            "candidate": "EOS Aluminium AlSi10Mg / EOS M 290 / 30 um, as-manufactured screening route",
             "commercial_product": "high-strength aluminium declared by FVD; grade unknown",
             "density_g_cm3": DENSITY_G_CM3,
             "elastic_modulus_mpa": ELASTIC_MODULUS_MPA,
@@ -285,13 +310,14 @@ def build_solid():
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--surface", type=Path)
     parser.add_argument("--report", type=Path)
     parser.add_argument("--force-n", type=float, default=SCREEN_FORCE_N)
     args = parser.parse_args()
 
     report = engineering_screen(args.force_n)
-    if args.out:
-        from build123d import export_step, import_step
+    if args.out or args.surface:
+        from build123d import export_step, export_stl, import_step
 
         solid = build_solid()
         expected = analytic_volume_mm3()
@@ -313,24 +339,41 @@ def main() -> int:
                 f"Enveloppe incohérente: OCCT={envelope}, publiée={expected_envelope}"
             )
 
-        args.out.parent.mkdir(parents=True, exist_ok=True)
-        export_step(solid, str(args.out))
-        roundtrip = import_step(str(args.out))
-        if (
-            not roundtrip.is_valid
-            or len(roundtrip.solids()) != 1
-            or abs(roundtrip.volume - expected) > 0.02
-        ):
-            raise SystemExit("Le STEP relu ne reproduit pas le solide attendu.")
-        report["step_roundtrip"] = {
-            "status": "passed",
-            "valid_brep": True,
-            "solid_count": 1,
-            "volume_mm3": roundtrip.volume,
-            "envelope_mm": list(envelope),
-            "maximum_volume_delta_mm3": 0.02,
-            "maximum_envelope_delta_mm": 0.01,
-        }
+        if args.out:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            export_step(solid, str(args.out))
+            normalize_step_header(args.out)
+            roundtrip = import_step(str(args.out))
+            if (
+                not roundtrip.is_valid
+                or len(roundtrip.solids()) != 1
+                or abs(roundtrip.volume - expected) > 0.02
+            ):
+                raise SystemExit("Le STEP relu ne reproduit pas le solide attendu.")
+            report["step_roundtrip"] = {
+                "status": "passed",
+                "valid_brep": True,
+                "solid_count": 1,
+                "volume_mm3": roundtrip.volume,
+                "envelope_mm": list(envelope),
+                "maximum_volume_delta_mm3": 0.02,
+                "maximum_envelope_delta_mm": 0.01,
+                "sha256": sha256(args.out),
+            }
+
+        if args.surface:
+            args.surface.parent.mkdir(parents=True, exist_ok=True)
+            export_stl(
+                solid,
+                str(args.surface),
+                tolerance=0.03,
+                angular_tolerance=0.08,
+            )
+            report["analysis_surface"] = {
+                "status": "exported_for_downstream_mesh_validation",
+                "format": ".stl",
+                "sha256": sha256(args.surface),
+            }
 
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)

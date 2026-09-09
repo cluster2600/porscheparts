@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "observed_on": "2026-09-08",
+  "workflow": "NVIDIA CAD-to-SimReady",
+  "property_assignment_intent": "run",
+  "status": "blocked_before_content_agents",
+  "checks": {
+    "openbao_ghcr_reader": "passed",
+    "openbao_vastai_reader": "passed",
+    "openbao_vastai_auth": "passed",
+    "active_vast_instances": 0,
+    "material_agent_ready": false,
+    "physics_agent_ready": false,
+    "ovrtx_ready": false
+  },
+  "decision": "Le workflow SimReady complet est arrêté avant l'assignation. Une conversion et validation OpenUSD minimales, puis un témoin ovstage/ovphysx CPU, sont exécutés séparément sans propriété physique inventée.",
+  "full_simready_profile_passed": false,
+  "release_authorized": false
+}
