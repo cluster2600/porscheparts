@@ -463,3 +463,16 @@ deux viennent du meme solve rate : **aucun controle interne ne peut les voir**.
 Seule la repetition les trouve. `corpus_repair.py` rejoue le corpus cas par cas
 et ne remplace une valeur que si deux calculs independants s'accordent contre
 elle.
+
+**Ou ces erreurs se trouvent en dit plus que combien il y en a.** Le corpus S6 a
+ete rejoue en entier : 2992 cas confirmes au chiffre pres, **8 remplaces**, aucun
+ambigu. Les huit sont dans les **360 premiers cas** — ceux calcules pendant que
+d'autres essais tournaient sur la meme machine. Les 2640 cas suivants, calcules
+par une campagne qui avait la machine pour elle seule, sont tous confirmes.
+
+La correlation ne vaut pas demonstration, elle ne porte que sur un episode. Mais
+la conclusion pratique ne demande pas mieux : **une campagne ne partage pas la
+machine**, et une campagne qui l'a fait se verifie par rejeu avant d'etre
+utilisee. C'est la troisieme fois dans ce dossier qu'un calcul faux vient d'un
+partage de ressource — apres les fichiers de travail laissés en place et le
+`mesh.npz` commun a deux campagnes.
