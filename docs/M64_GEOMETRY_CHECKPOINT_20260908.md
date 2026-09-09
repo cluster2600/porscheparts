@@ -1,9 +1,15 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier essai gaz : le domaine hybride de 785 883 cellules est assemblé et
+**Dernier résultat gaz : les défauts OpenFOAM sont exportés et attribués aux
+cellules sources. Les 190 transitions hexaèdre/pyramide à faible poids sont
+distinctes des défauts du cœur tétra ; cinq familles restent refusées.
+Contour et maillage inchangés ; voir la
+[localisation réelle](M64_DEFECT_LOCALISATION_20260909.md).**
+
+Essai précédent : le domaine hybride de 785 883 cellules est assemblé et
 contre-vérifié. OpenFOAM retrouve un domaine connecté et trois patches, mais
 refuse cinq contrôles qualité. Aucun solveur exécuté ni gain crédité ; voir le
-[diagnostic OpenFOAM](M64_HYBRID_OPENFOAM_20260909.md).**
+[diagnostic OpenFOAM](M64_HYBRID_OPENFOAM_20260909.md).
 
 Essai précédent : les champs de taille natifs atteignent la génération 2D,
 mais la face 37 déclenche des reprises répétées. Arrêt code 137 après

@@ -1,5 +1,8 @@
 # M64 — domaine hybride assemblé ; contrôle OpenFOAM exécuté et refusé
 
+Suite exécutée : [export et localisation des défauts](M64_DEFECT_LOCALISATION_20260909.md).
+Le maillage décrit ci-dessous est resté inchangé ; ses cinq refus demeurent.
+
 **L'assemblage du domaine gaz est terminé et contre-vérifié. OpenFOAM retrouve
 les 785 883 cellules, un domaine connecté et trois frontières, mais refuse
 la qualité du maillage sur cinq contrôles. Aucun solveur physique n'est lancé.**
