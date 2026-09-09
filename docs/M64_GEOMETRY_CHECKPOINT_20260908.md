@@ -1,10 +1,16 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : la bascule proposée introduit deux intersections
+**Dernier résultat gaz : la redistribution de l'arête 82 et le remaillage
+conjoint des faces 30/37 sont exécutés sur Kali. Le défaut du coin 93
+disparaît sans nouveau contact non conforme avec la face 36, mais la qualité se dégrade
+ailleurs : candidat refusé, contour et maître inchangés. Voir
+l'[essai natif et son contre-calcul](M64_EDGE82_JOINT_REMESH_20260909.md).**
+
+Essai précédent : la bascule proposée introduit deux intersections
 avec la face voisine 36. Les 27 diagonales intérieures voisines des 22 triangles
 obstructifs sont ensuite testées : aucune bascule unique ne donne de gain
 strict en conservant tous les critères. Aucun candidat appliqué ; voir
-l'[audit des diagonales et des contacts](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).**
+l'[audit des diagonales et des contacts](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).
 
 Essai précédent : une passe de déplacement réellement isolée sur la
 face 37 réduit les obstructions de 22 à 16, mais dégrade le minimum de borne

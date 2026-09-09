@@ -2787,6 +2787,151 @@
     "thermal_or_strength_qualified": false,
     "manufacturing_authorized": false
   },
+  "gas_curve82_joint_remesh": {
+    "date": "2026-09-09",
+    "status": "corner93_resolved_but_joint_mesh_quality_regressed_candidate_not_promoted",
+    "baseline_surface_sha256": "7af7f207ddb885be04f698a53850923d05454353c087ca272907949b2062bbfe",
+    "artifacts_sha256": {
+      "worker": "cc50d6c9fd53bc7bc809856e6a6514faa76e1833286b971556de9afcf99f8aa3",
+      "worker_tests": "a163ccb796a9736d8d49a15103d68c6444a39adc4552ea95f36ca85f3da666ca",
+      "runner": "89cb940d3ab119c2786b2736c5ccbd0c26431501ba79920119e6838690c932ea",
+      "runner_tests": "a243c62b9e5c77ebd8a31e6fd1584a7abbae142730dee42e23b9487afc36529c",
+      "worker_report": "934d47c5e7ff8a0fc05098821abaa885b8583c5bcf1790f9fe751396a15025b1",
+      "process_report": "56820817f18d0e2584af9fa159ec2e80c9fe5d52db72432f01c860671fb57148",
+      "candidate": "2de5fd52f51c676fb35c61b7dc706d986199553a05d2ea475cf364189680e3b5",
+      "raw": "01e2a5631783a400e7b8b98bbe8577e9b8c3fda8451f2091cf2d2245b066fbb6",
+      "counterchecker": "8339ab265a7b07d5d02b2905ea4647792306096295d8892eef45d7f3629e3234",
+      "countercheck_tests": "aaba59f4e48d5ea65ebecc8eff4ebdd938918fddab1c84da301d364d34c0b170",
+      "countercheck_report": "5655db153916ffe9ede095e91fa054169bc8b304c36543cfa25b773dc77d903b"
+    },
+    "native_curve": 82,
+    "native_faces": [
+      30,
+      37
+    ],
+    "native_vertex_direction": [
+      54,
+      51
+    ],
+    "source_curve_nodes": 13,
+    "candidate_curve_nodes": 64,
+    "candidate_curve_segments": 63,
+    "requested_progression": 0.9090909090909091,
+    "measured_chord_ratio_range": [
+      0.9090897933722041,
+      0.9093546611122129
+    ],
+    "last82_over_adjacent93": 0.9673597401675682,
+    "gradation_threshold": 2,
+    "gradation_threshold_is_numerical_trial_not_part_dimension": true,
+    "generate_1D_calls": 1,
+    "generate_2D_calls": 1,
+    "scratch_mesh_removed_before_exact_reference_injection": true,
+    "native_conservation_checks": {
+      "outside_exact": true,
+      "all_0D_retained_by_outside_guard": true,
+      "curve82_exact_shared_boundary": true,
+      "union30_37_outer_boundary_exact": true,
+      "replacement82_XYZ_classes_oriented_chain_exact": true,
+      "entities_and_physical_names_exact": true,
+      "OCC_observation_exact": true,
+      "no_generate_error": true,
+      "no_native_errors": true
+    },
+    "injected_curve_parameters_exact": true,
+    "curve_parameters_retained_after_generate2": true,
+    "countercheck_fixed_invariants_pass": true,
+    "countercheck_topology_and_interfaces_pass": true,
+    "unchanged_quad_faces": 72,
+    "unchanged_quadrilaterals": 71152,
+    "removed_target_nodes": 1080,
+    "added_target_nodes": 1250,
+    "changed_retained_node_coordinates": 0,
+    "quality_before": {
+      "30": {
+        "triangles": 107,
+        "obstructions": 0,
+        "min_bound": 0.8882856697583478,
+        "min_angle_degrees": 37.8816673191541
+      },
+      "37": {
+        "triangles": 2299,
+        "obstructions": 22,
+        "min_bound": 0.0032268884416684893,
+        "min_angle_degrees": 0.08576735298225507
+      },
+      "combined": {
+        "triangles": 2406,
+        "obstructions": 22,
+        "min_bound": 0.0032268884416684893,
+        "min_angle_degrees": 0.08576735298225507
+      }
+    },
+    "quality_after": {
+      "30": {
+        "triangles": 268,
+        "obstructions": 1,
+        "min_bound": 0.06930588139271765,
+        "min_angle_degrees": 1.5658543860623113
+      },
+      "37": {
+        "triangles": 2478,
+        "obstructions": 20,
+        "min_bound": 0.0010824347778852271,
+        "min_angle_degrees": 0.023879722884009993
+      },
+      "combined": {
+        "triangles": 2746,
+        "obstructions": 21,
+        "min_bound": 0.0010824347778852271,
+        "min_angle_degrees": 0.023879722884009993
+      }
+    },
+    "corner93_obstruction_removed": true,
+    "quality_nonregression_pass": false,
+    "trial_objective_met": false,
+    "contacts_with_face36": {
+      "exact_pairs_before": 503,
+      "exact_pairs_after": 550,
+      "nonconforming_before": 0,
+      "nonconforming_after": 0,
+      "exact_arithmetic": "rational_numbers_of_binary64_coordinates",
+      "scope": "faces30_37_against_face36_only",
+      "global_intersections_checked": false,
+      "continuous_CAD_coverage_proved": false
+    },
+    "focused_unique_unit_tests_passed": 38,
+    "make_check_exit_code": 0,
+    "make_check_optional_tests_skipped": true,
+    "native_worker_seconds": 16.343689994886518,
+    "countercheck_seconds": 5.933062874944881,
+    "elapsed_with_cleanup_seconds": 17.014431410003453,
+    "native_exit_code": 2,
+    "exit2_is_quality_refusal_not_startup_failure": true,
+    "process_completed_and_cleaned_flag": false,
+    "process_flag_requires_exit0": true,
+    "container_absent_after_cleanup": true,
+    "timeout": false,
+    "OOMKilled": false,
+    "resource_caps_verified": true,
+    "runtime": {
+      "architecture": "linux/amd64",
+      "host": "existing_Kali",
+      "image_id": "sha256:27bb1cabdb66a34d0f3812adb4930f9f43814cb0d4331fd16f30b5771b2764d4",
+      "cpus": 4,
+      "memory_bytes": 4294967296,
+      "total_wall_limit_seconds": 300
+    },
+    "inputs_unchanged": true,
+    "runner_unchanged": true,
+    "new_Vast_spend_usd": 0,
+    "source_contour_changed": false,
+    "authoritative_volume_modified": false,
+    "candidate_promoted": false,
+    "CFD_qualified": false,
+    "thermal_or_strength_qualified": false,
+    "manufacturing_authorized": false
+  },
   "runtime": {
     "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
     "OCP_version": "7.9.3.1",
