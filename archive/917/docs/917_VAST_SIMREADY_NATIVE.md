@@ -48,8 +48,8 @@ JOB_ID="917-simready-$(date -u +%Y%m%dT%H%M%SZ)"
 CONTROL_ROOT="work/vast-simready/controller/${JOB_ID}"
 mkdir -p "${CONTROL_ROOT}"
 
-cmp -s deploy/openbao/openbao-ghcr "${OPENBAO_GHCR_BIN}"
-cmp -s deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"
+cmp -s outils/deploy/openbao/openbao-ghcr "${OPENBAO_GHCR_BIN}"
+cmp -s outils/deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"
 "${OPENBAO_GHCR_BIN}" --check
 "${OPENBAO_VASTAI_BIN}" --check
 "${OPENBAO_GHCR_BIN}" --auth-check
@@ -118,7 +118,7 @@ PY
   # Si le job a été transféré, tenter d'abord une récupération. Toute erreur
   # conserve le code initial et bascule vers la dérogation explicite ci-dessous.
   if [ -f "${CONTROL_ROOT}/transfer-report.json" ]; then
-    deploy/vast/simready/collect-artifacts.sh \
+    outils/deploy/vast/simready/collect-artifacts.sh \
       --instance-id "${INSTANCE_ID}" \
       --expected-image "${EXPECTED_IMAGE}" \
       --job-id "${JOB_ID}" \
@@ -139,10 +139,10 @@ PY
   if [ -f "${retrieval}" ] && jq -e \
     '.artifact_archive_verified == true and .retrieval_complete == true' \
     "${retrieval}" >/dev/null 2>&1; then
-    deploy/vast/simready/destroy-instance.sh \
+    outils/deploy/vast/simready/destroy-instance.sh \
       "${destroy_common[@]}" --retrieval-report "${retrieval}" || true
   else
-    deploy/vast/simready/destroy-instance.sh \
+    outils/deploy/vast/simready/destroy-instance.sh \
       "${destroy_common[@]}" \
       --confirm-no-retrieval "NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}" || true
   fi
@@ -180,7 +180,7 @@ if (
     raise SystemExit("postconditions de lancement absentes")
 PY
 
-deploy/vast/simready/check-instance.sh \
+outils/deploy/vast/simready/check-instance.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --max-actual-dph "${MAX_ACTUAL_DPH}" \
@@ -231,7 +231,7 @@ SKILL_ROOT=/chemin/explicite/vers/omniverse-cad-to-simready
 MATERIAL_PROMPT=/chemin/vers/material-prompt.txt
 PHYSICS_PROMPT=/chemin/vers/physics-prompt.txt
 
-deploy/vast/simready/transfer-job.sh \
+outils/deploy/vast/simready/transfer-job.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \
@@ -505,7 +505,7 @@ simulation physique : un `needs_rerun` peut autoriser la destruction après
 récupération complète, sans valider le jumeau.
 
 ```bash
-deploy/vast/simready/collect-artifacts.sh \
+outils/deploy/vast/simready/collect-artifacts.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \
@@ -516,7 +516,7 @@ jq '{retrieval_complete, simready_validated, simulation_validated, needs_rerun_p
 jq -e '.artifact_archive_verified == true and .retrieval_complete == true' \
   "${RETRIEVAL_REPORT}" >/dev/null
 
-deploy/vast/simready/destroy-instance.sh \
+outils/deploy/vast/simready/destroy-instance.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \
@@ -545,7 +545,7 @@ possible qu'avec la dérogation exacte, visible et spécifique au job :
 
 ```bash
 NO_RETRIEVAL="NO-RETRIEVAL:${JOB_ID}:${INSTANCE_ID}:${EXPECTED_IMAGE}"
-deploy/vast/simready/destroy-instance.sh \
+outils/deploy/vast/simready/destroy-instance.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \

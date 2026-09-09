@@ -22,7 +22,7 @@ REMOTE = ENGINE / "remote-simready"
 F42B = REMOTE / "f42b"
 CONTRACT_PATH = ENGINE / "component-factory-f42b-gpu.json"
 SUMMARY_PATH = ENGINE / "evidence/f42a-cpu-usd/repeatability-summary.json"
-CONTROLLER = ROOT / "deploy/vast/simready"
+CONTROLLER = ROOT / "outils/deploy/vast/simready"
 PROFILE_DIRECTORY_PATCH = (
     CONTROLLER / "patches/nvidia-simready-profiles-directory.patch"
 )
@@ -856,7 +856,7 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         self.assertIn("compgen -v", transfer)
         self.assertIn("--runtime-attestation", transfer)
         self.assertIn("runtime-attestation.json", transfer)
-        self.assertIn("deploy/openbao/openbao-ghcr", transfer)
+        self.assertIn("outils/deploy/openbao/openbao-ghcr", transfer)
         self.assertNotIn("raw-scans", transfer)
         for relative in (
             "f42b/_contract.py",

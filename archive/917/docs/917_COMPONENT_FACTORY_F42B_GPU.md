@@ -147,7 +147,7 @@ répertoire ou un fichier. Le résultat Job D (`available_profiles=[]` puis
 blocage d'orchestration, pas un constat sur la géométrie.
 
 Le patch minimal versionné est
-`deploy/vast/simready/patches/nvidia-simready-profiles-directory.patch`. Il ne
+`outils/deploy/vast/simready/patches/nvidia-simready-profiles-directory.patch`. Il ne
 modifie qu'une ligne du script du skill : la cible devient le répertoire
 `profiles`. Un essai diagnostique sur la même bielle et le même runtime a alors
 chargé `Prop-Robotics-Physx@1.0.0` et produit les constats structurés
@@ -196,7 +196,7 @@ SKILL_ROOT=/chemin/explicite/vers/omniverse-cad-to-simready
 MATERIAL_PROMPT=/chemin/prive/vers/material-prompt.txt
 PHYSICS_PROMPT=/chemin/prive/vers/physics-prompt.txt
 
-deploy/vast/simready/transfer-f42b-job.sh \
+outils/deploy/vast/simready/transfer-f42b-job.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \
@@ -319,7 +319,7 @@ non-symlink, appartenir à l'utilisateur courant et être en mode `0700`.
 ```bash
 PRIVATE_RESULTS_ROOT=/chemin/absolu/hors-git/f42b-results
 
-deploy/vast/simready/collect-artifacts.sh \
+outils/deploy/vast/simready/collect-artifacts.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \
@@ -341,7 +341,7 @@ jq -e '
   .simulation_validated == false
 ' "${RETRIEVAL_REPORT}"
 
-deploy/vast/simready/destroy-instance.sh \
+outils/deploy/vast/simready/destroy-instance.sh \
   --instance-id "${INSTANCE_ID}" \
   --expected-image "${EXPECTED_IMAGE}" \
   --job-id "${JOB_ID}" \

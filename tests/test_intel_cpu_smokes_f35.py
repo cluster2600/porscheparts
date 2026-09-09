@@ -8,7 +8,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "deploy/intel/run-f35-cpu-smokes.sh"
+SCRIPT = ROOT / "outils/deploy/intel/run-f35-cpu-smokes.sh"
 
 
 class IntelCpuSmokesF35Tests(unittest.TestCase):

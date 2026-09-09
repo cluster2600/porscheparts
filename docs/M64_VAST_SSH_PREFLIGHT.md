@@ -1,6 +1,6 @@
 # Prévol SSH Vast — 7 septembre 2026
 
-Le wrapper `deploy/openbao/openbao-vastai` sépare désormais trois preuves :
+Le wrapper `outils/deploy/openbao/openbao-vastai` sépare désormais trois preuves :
 
 1. **Paire locale utilisable**, avant enregistrement et création payante :
    validation des métadonnées du fichier privé approuvé, puis OpenSSH

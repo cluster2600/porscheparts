@@ -68,7 +68,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 RUN test "${TARGETARCH}" = "amd64"
 
 COPY --from=aate-builder /opt/aate /opt/aate
-COPY benchmarks/openfoam-poiseuille-f25 /opt/openfoam-engine-f35/benchmark
+COPY outils/benchmarks/openfoam-poiseuille-f25 /opt/openfoam-engine-f35/benchmark
 COPY containers/openfoam-engine-f35-smoke.sh /usr/local/bin/openfoam-engine-f35-smoke
 
 ARG OPENFOAM_ENGINE_UID=9135
