@@ -1,10 +1,19 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier essai gaz : la conversion duale globale est exécutée puis rejetée.
+**Dernier essai gaz : 34 groupes pyramide/tétras fusionnés nativement sur
+copie. Faibles déterminants : 1 961 → 1 955 ; faces non orthogonales :
+3 447 → 3 411. Points, faces externes et volume PL déclaré sont conservés,
+mais cinq familles qualité restent refusées. La comparaison indépendante
+ne relève aucun nouveau défaut dans les neuf ensembles contrôlés. Le lecteur
+du bilan a échoué après `checkMesh` ; les résultats ont été récupérés en
+lecture seule, sans réécrire ses reçus initiaux. Voir les
+[fusions mixtes, contrôles et limites](M64_MIXED_CELL_CORRECTION_20260909.md).**
+
+Essai précédent : la conversion duale globale est exécutée puis rejetée.
 Dix contrôles qualité échouent contre cinq sur la source, avec une cellule
 de volume négatif et 120 190 cellules concaves. La source et la CAO maîtresse
 sont conservées, sans admission CFD ni fabrication. Voir le
-[rejet documenté et ses preuves](M64_GLOBAL_DUAL_REJECTION_20260909.md).**
+[rejet documenté et ses preuves](M64_GLOBAL_DUAL_REJECTION_20260909.md).
 
 Résultat précédent : une très petite arête contractée sur copie,
 après témoins natifs et contre-vérification. Rapport d'allongement maximal :
