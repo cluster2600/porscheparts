@@ -144,8 +144,8 @@ Ditto et Mosquitto ne sont pas sur le chemin critique de la correction CAO.
 La future acquisition devra conserver provenance, étalonnage, unités,
 horodatage et qualité des mesures ; un message rejoué ou simulé ne sera jamais
 étiqueté comme mesure de banc. Aucune connexion ni location n'est créée pour
-ces services dans ce lot. Le [dernier essai de maillage refusé](M64_SURFACE_RELOCATION_20260909.md)
-reste le point de travail immédiat, sans changement du contour.
+ces services dans ce lot. Le [point de géométrie actualisé](M64_GEOMETRY_CHECKPOINT_20260908.md)
+trace les essais et leurs limites, sans changement du contour.
 
 ```mermaid
 flowchart LR
