@@ -261,6 +261,18 @@ FEA porte le detail et la consequence sur la question 0,8 / 1,0 mm.
 Le corpus S3 reste comme terme de comparaison sur l'effet de l'ordre d'element,
 et pour rien d'autre.
 
+**Le corpus S6 a ete rejoue en entier** par `fea/corpus_repair.py` : 2992 cas
+confirmes au chiffre pres, 8 remplaces, aucun ambigu, aucun echec. Les huit sont
+tous dans les 360 premiers cas, ceux calcules pendant que d'autres essais
+occupaient la machine ; les 2640 suivants sont tous confirmes. Le manifeste porte
+la liste des cas remplaces.
+
+**Le lot de validation est gele** : `corpus_s6/split.json`, 450 cas sur 3000,
+stratifie par architecture, graine 20260907. Il designe exactement les memes cas
+que celui du corpus S3 — le tirage ne depend que des numeros de cas et de leur
+architecture, identiques d'un corpus a l'autre — donc les deux corpus se
+comparent sur le meme lot tenu hors apprentissage.
+
 **Reste a faire quand l'acces GPU sera la** — et rien de tout cela n'est bloquant
 aujourd'hui : conversion du corpus vers VTP ou Zarr par PhysicsNeMo-Curator,
 choix d'architecture, entrainement, et surtout **validation du substitut contre
