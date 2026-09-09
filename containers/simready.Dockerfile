@@ -214,7 +214,7 @@ EXPOSE 8001 8100 8200 22
 
 LABEL org.opencontainers.image.title="3dprinting993-simready" \
       org.opencontainers.image.description="Single-container NVIDIA OVRTX, Material Agent, Physics Agent, USD conversion and SimReady validation runtime" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="Apache-2.0 AND LicenseRef-NVIDIA-Omniverse"
 
 ENTRYPOINT ["tini", "-g", "--", "/usr/local/bin/entrypoint.sh"]

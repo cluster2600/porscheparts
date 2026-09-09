@@ -13,7 +13,7 @@ class DocumentarySpecificationTests(unittest.TestCase):
 
     def test_schema_is_valid_json(self) -> None:
         schema = json.loads((ROOT / "schemas" / "documentary-specification.schema.json").read_text(encoding="utf-8"))
-        self.assertEqual(schema["title"], "3dprinting993 documentary specification set")
+        self.assertEqual(schema["title"], "porscheparts documentary specification set")
 
     def test_complete_porschefanatics_snapshot_is_present(self) -> None:
         technical = json.loads(self.technical_path.read_text(encoding="utf-8"))

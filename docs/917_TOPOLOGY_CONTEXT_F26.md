@@ -147,7 +147,7 @@ relance le smoke hors ligne ; une simple inspection de manifeste ne suffit pas.
 ## Publication immuable vérifiée
 
 Le workflow de publication est vert :
-[run 33585072387](https://github.com/cluster2600/3dprinting993/actions/runs/33585072387),
+[run 33585072387](https://github.com/cluster2600/porscheparts/actions/runs/33585072387),
 sur la révision `88d5033187d27ba47a51fb2f5f3a3230878ed6fa`. La seule
 référence exécutable autorisée est désormais le digest public immuable :
 

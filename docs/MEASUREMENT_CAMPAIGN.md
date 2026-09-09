@@ -17,11 +17,19 @@ inventée.
 | 1 | `993-INT-SWITCH-BLANK-0001` | Pied à coulisse et jauge de rayon | Sept dimensions D01–D07, trois répétitions, photo des repères, fiche JSON |
 | 2 | `993-INT-SEAT-RAIL-COVER-0001` | Pied à coulisse, jauge de profondeur | Dimensions D01–D05 sur les deux côtés, contrôle de l'hypothèse de symétrie, fiche JSON |
 | 3 | `993-INT-DOOR-PULL-0001` | Pied à coulisse et photogrammétrie à l'échelle | Cinq dimensions d'interface, photos avec barre d'échelle, manifeste et fiche JSON |
+| 4 | `993-INT-DASHBOARD-TRIM-0001` | Relevé du code d'option, puis photogrammétrie à l'échelle et pied à coulisse | Preuve d'absence d'airbag passager, quatorze cotes en place **et** déposé, trois pesées, maillage et manifeste |
 
 Les plans détaillés se trouvent dans le répertoire `parts/<part_id>/evidence/`.
 La priorité 1 est le meilleur premier essai : la pièce est non critique et sa
 géométrie maîtresse existe déjà dans
 `parts/993-int-switch-blank-0001/source/switch_blank.py`.
+
+La priorité 4 est d'une autre nature que les trois premières : c'est une surface
+libre de 1,4 m, et surtout la seule dont la mesure commence par une **porte
+d'entrée qui peut tout arrêter**. L'habillage de planche de bord ne se relève que
+sur un véhicule sans airbag passager ; sur une voiture M562 il porte le volet de
+déploiement, donc une pièce de retenue des occupants. Le plan fait lire
+l'étiquette d'options avant de sortir un instrument.
 
 ## Pré-requis du contributeur
 

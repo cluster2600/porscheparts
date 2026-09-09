@@ -1,0 +1,102 @@
+{
+ "twin": "TWIN-964-CHASSIS-FLOOR-0001",
+ "frame": "ADR-0003 vehicule ; X avant, Y gauche, Z haut ; origine essieu avant / sol",
+ "units": "mm",
+ "registration_P17_x_vehicle": -506.0,
+ "floor_pan_height_above_ground": 271.7,
+ "sheet_thickness_assumed": 1.0,
+ "materials": {
+  "floor_pan": "acier (nuance non publiee au volume V)",
+  "sill": "acier haute resistance HS (planche 50-013, 'inner side member')",
+  "front_floor_member": "acier haute resistance HS (planche 50-013)",
+  "seat_base": "acier haute resistance HS (planche 50-013)",
+  "rear_axle_crossmember": "acier haute resistance HS (planche 50-013)",
+  "engine_mount_crossmember": "acier haute resistance HS (planche 50-013)"
+ },
+ "datum_points": {
+  "P3": {
+   "x_vehicle": 148.2,
+   "y_half": 305.0,
+   "transverse_span": 610,
+   "tolerance": 1,
+   "x_source": "DERIVED(L)"
+  },
+  "P5": {
+   "x_vehicle": 21.3,
+   "y_half": 385.0,
+   "transverse_span": 770,
+   "tolerance": 2,
+   "x_source": "DERIVED(P)"
+  },
+  "P12": {
+   "x_vehicle": -1703.0,
+   "y_half": 139.0,
+   "transverse_span": 278,
+   "tolerance": 1,
+   "x_source": "DERIVED(N)"
+  },
+  "P17": {
+   "x_vehicle": -506.0,
+   "y_half": 665.0,
+   "transverse_span": 1330,
+   "tolerance": 1,
+   "x_source": "MANUAL"
+  },
+  "P18": {
+   "x_vehicle": -1751.0,
+   "y_half": 618.0,
+   "transverse_span": 1236,
+   "tolerance": 1,
+   "x_source": "MANUAL(R)"
+  },
+  "P19": {
+   "x_vehicle": -1834.0,
+   "y_half": 509.0,
+   "transverse_span": 1018,
+   "tolerance": 1,
+   "x_source": "MANUAL(S)"
+  },
+  "P20": {
+   "x_vehicle": 705.1,
+   "y_half": 220.0,
+   "transverse_span": 440,
+   "tolerance": 2,
+   "x_source": "DERIVED(K)"
+  },
+  "P21": {
+   "x_vehicle": -3112.1,
+   "y_half": 320.0,
+   "transverse_span": 640,
+   "tolerance": 1,
+   "x_source": "DERIVED(O)"
+  }
+ },
+ "solids": [
+  "datum_P12_L",
+  "datum_P12_R",
+  "datum_P17_L",
+  "datum_P17_R",
+  "datum_P18_L",
+  "datum_P18_R",
+  "datum_P19_L",
+  "datum_P19_R",
+  "datum_P20_L",
+  "datum_P20_R",
+  "datum_P21_L",
+  "datum_P21_R",
+  "datum_P3_L",
+  "datum_P3_R",
+  "datum_P5_L",
+  "datum_P5_R",
+  "engine_mount_crossmember",
+  "floor_pan",
+  "front_floor_member",
+  "rear_axle_crossmember",
+  "seat_base_member",
+  "sill_left",
+  "sill_right"
+ ],
+ "structural_volume_mm3": 4690400.0,
+ "structural_mass_kg_steel": 36.82,
+ "mass_note": "Masse des seuls solides modelises, sections creuses de tole. Ce n'est pas la masse d'une caisse 964 : traverses avant, passages de roue, tabliers et plancher arriere ne sont pas modelises."
+}

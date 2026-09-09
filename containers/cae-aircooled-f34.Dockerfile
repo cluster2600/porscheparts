@@ -38,7 +38,7 @@ WORKDIR /workspace
 
 LABEL org.opencontainers.image.title="3dprinting993-cae-aircooled-f34" \
       org.opencontainers.image.description="OpenFOAM 14 AATE, Gmsh and CalculiX for the F34 air-cooled four-valve head" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="GPL-3.0-or-later AND GPL-2.0-or-later"
 
 ENTRYPOINT ["/bin/bash", "-lc"]
