@@ -28,7 +28,7 @@ ONSTART = IMAGE_ROOT / "vast_onstart.sh"
 ENTRYPOINT = IMAGE_ROOT / "entrypoint.sh"
 SSHD_RUNTIME_WRAPPER = IMAGE_ROOT / "sshd_runtime_wrapper.sh"
 WORKFLOW = ROOT / ".github/workflows/917-component-factory-f41-vast-image.yml"
-DOC = ROOT / "docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md"
+DOC = ROOT / "archive/917/docs/917_COMPONENT_FACTORY_F41_VAST_IMAGE.md"
 PUBLICATION_EVIDENCE = (
     ROOT
     / "twins/reference-917-engine/evidence/f41-vast-image-publication-race-fix/summary.json"
@@ -52,7 +52,7 @@ F41_BUNDLE_BUILDER = (
 EXPECTED_F41_BUNDLE_MODES = {
     "REMOTE_JOB.md": "0644",
     "containers/simready-preflight/convert.py": "0644",
-    "docs/917_COMPONENT_FACTORY_F41.md": "0644",
+    "archive/917/docs/917_COMPONENT_FACTORY_F41.md": "0644",
     "twins/reference-917-engine/component-factory-f41.json": "0644",
     "twins/reference-917-engine/rotating-assembly-cad-f35.json": "0644",
     "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py": "0644",

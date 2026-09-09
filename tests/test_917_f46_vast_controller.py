@@ -18,10 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "twins/reference-917-engine/f46-vast-cfd-cae-controller.json"
 JOBS_PATH = ROOT / "twins/reference-917-engine/f46-vast-job-manifest.json"
 FIXTURE_PATH = ROOT / "tests/fixtures/917-f46-vast-controller-synthetic.json"
-CONTROLLER_PATH = ROOT / "deploy/vast/f46/_f46_controller.py"
-RUNNER_PATH = ROOT / "deploy/vast/f46/run-controller.sh"
-VAST_WRAPPER_PATH = ROOT / "deploy/openbao/openbao-vastai"
-GHCR_WRAPPER_PATH = ROOT / "deploy/openbao/openbao-ghcr"
+CONTROLLER_PATH = ROOT / "outils/deploy/vast/f46/_f46_controller.py"
+RUNNER_PATH = ROOT / "outils/deploy/vast/f46/run-controller.sh"
+VAST_WRAPPER_PATH = ROOT / "outils/deploy/openbao/openbao-vastai"
+GHCR_WRAPPER_PATH = ROOT / "outils/deploy/openbao/openbao-ghcr"
 
 
 def load_module(name: str, path: Path):
@@ -326,7 +326,7 @@ class F46ControllerTests(unittest.TestCase):
         self.assertIn("cost-check", source)
         self.assertIn("local_deadline_epoch", CONTROLLER_PATH.read_text(encoding="utf-8"))
         self.assertIn("remote_deadline_epoch", CONTROLLER_PATH.read_text(encoding="utf-8"))
-        check_instance = (ROOT / "deploy/vast/simready/check-instance.sh").read_text(
+        check_instance = (ROOT / "outils/deploy/vast/simready/check-instance.sh").read_text(
             encoding="utf-8"
         )
         self.assertGreaterEqual(check_instance.count("--expected-gpu-name"), 2)

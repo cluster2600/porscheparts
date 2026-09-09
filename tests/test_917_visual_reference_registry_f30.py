@@ -15,7 +15,7 @@ REGISTRY_PATH = (
     / "reference-917-engine"
     / "visual-reference-registry-f30.json"
 )
-DOC_PATH = ROOT / "docs" / "917_VISUAL_REFERENCE_REGISTRY_F30.md"
+DOC_PATH = ROOT / "archive" / "917" / "docs" / "917_VISUAL_REFERENCE_REGISTRY_F30.md"
 
 EXPECTED_CAPTURE_VARIANTS = {
     "photo_01": "917_30",

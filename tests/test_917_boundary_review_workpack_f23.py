@@ -17,7 +17,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "twins/reference-917-engine/source/build_boundary_review_workpack_f23.py"
 CONTRACT = ROOT / "twins/reference-917-engine/boundary-review-workpack-f23.json"
-DOC = ROOT / "docs/917_BOUNDARY_REVIEW_WORKPACK_F23.md"
+DOC = ROOT / "archive/917/docs/917_BOUNDARY_REVIEW_WORKPACK_F23.md"
 
 
 def load_module():

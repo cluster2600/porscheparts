@@ -17,7 +17,7 @@ class SourceValidationTests(unittest.TestCase):
     def test_source_schema_is_valid_json(self) -> None:
         path = ROOT / "schemas" / "source.schema.json"
         schema = json.loads(path.read_text(encoding="utf-8"))
-        self.assertEqual(schema["title"], "3dprinting993 source record")
+        self.assertEqual(schema["title"], "porscheparts source record")
 
     def test_available_source_must_have_been_accessed(self) -> None:
         record = deepcopy(self.template)

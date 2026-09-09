@@ -10,7 +10,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "containers/topology-context-f26.lock.json"
-DOC = ROOT / "docs/917_TOPOLOGY_CONTEXT_F26.md"
+DOC = ROOT / "archive/917/docs/917_TOPOLOGY_CONTEXT_F26.md"
 
 
 class TopologyContextF26LockTests(unittest.TestCase):

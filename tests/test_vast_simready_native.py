@@ -18,7 +18,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 REMOTE = ROOT / "twins/reference-917-engine/remote-simready"
-CONTROLLER = ROOT / "deploy/vast/simready"
+CONTROLLER = ROOT / "outils/deploy/vast/simready"
 DIGEST = "sha256:" + "a" * 64
 IMAGE = f"ghcr.io/cluster2600/3dprinting993-simready-local-ai@{DIGEST}"
 SUMMARY_SPEC = importlib.util.spec_from_file_location(
@@ -209,7 +209,7 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertTrue((CONTROLLER / "check-instance.sh").stat().st_mode & stat.S_IXUSR)
 
     def test_runbook_lance_via_le_wrapper_ghcr(self):
-        runbook = (ROOT / "docs/917_VAST_SIMREADY_NATIVE.md").read_text(encoding="utf-8")
+        runbook = (ROOT / "archive/917/docs/917_VAST_SIMREADY_NATIVE.md").read_text(encoding="utf-8")
         self.assertIn('"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}"', runbook)
         self.assertNotIn('"${OPENBAO_VASTAI_BIN}" launch-simready-heavy', runbook)
         self.assertIn('--known-hosts "${CONTROL_ROOT}/known_hosts"', runbook)
@@ -217,7 +217,7 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertIn('"${OPENBAO_VASTAI_BIN}" heavy-offers | tee', runbook)
         self.assertIn('offer.get("gpu") == "RTX PRO 6000 WS"', runbook)
         self.assertIn(".artifact_archive_verified == true and .retrieval_complete == true", runbook)
-        self.assertIn('cmp -s deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"', runbook)
+        self.assertIn('cmp -s outils/deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"', runbook)
         self.assertIn("asset-context.json", runbook)
         self.assertIn("repair-loop.json", runbook)
         self.assertIn("omniverse-cad-to-simready-report.json", runbook)

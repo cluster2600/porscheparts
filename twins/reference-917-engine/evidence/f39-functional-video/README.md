@@ -17,4 +17,4 @@ Fichiers de contrôle :
 - `publication.json` : codec, durée, dimensions, empreintes et portes fermées.
 
 Le projet HyperFrames reproductible est sous
-`videos/917-head-f39-function`. Exécuter `npm run check` puis `npm run render`.
+`media/videos/917-head-f39-function`. Exécuter `npm run check` puis `npm run render`.

@@ -11,7 +11,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "containers/air-oil-cycle-f34b.lock.json"
-DOC = ROOT / "docs/917_AIR_OIL_CYCLE_IMAGE_F34B.md"
+DOC = ROOT / "archive/917/docs/917_AIR_OIL_CYCLE_IMAGE_F34B.md"
 
 IMAGE_DIGEST = (
     "sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664"

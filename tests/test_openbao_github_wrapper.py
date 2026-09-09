@@ -14,7 +14,7 @@ from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WRAPPER = ROOT / "deploy/openbao/openbao-github"
+WRAPPER = ROOT / "outils/deploy/openbao/openbao-github"
 
 
 def load_wrapper():
