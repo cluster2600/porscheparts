@@ -1,10 +1,15 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : la redistribution de l'arête 82 et le remaillage
+**Dernier essai gaz : le champ de taille locale s'arrête avec le code 152,
+compatible avec la limite CPU, sans maillage candidat ni rapport final.
+Réinjection exacte et nettoyage vérifiés ; aucun gain ni admission CFD.
+Voir l'[essai local incomplet](M64_LOCAL_SIZE_TRIAL_20260909.md).**
+
+Essai précédent : la redistribution de l'arête 82 et le remaillage
 conjoint des faces 30/37 sont exécutés sur Kali. Le défaut du coin 93
 disparaît sans nouveau contact non conforme avec la face 36, mais la qualité se dégrade
 ailleurs : candidat refusé, contour et maître inchangés. Voir
-l'[essai natif et son contre-calcul](M64_EDGE82_JOINT_REMESH_20260909.md).**
+l'[essai natif et son contre-calcul](M64_EDGE82_JOINT_REMESH_20260909.md).
 
 Essai précédent : la bascule proposée introduit deux intersections
 avec la face voisine 36. Les 27 diagonales intérieures voisines des 22 triangles
