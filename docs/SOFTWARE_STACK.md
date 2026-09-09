@@ -1,6 +1,6 @@
 # Stack logicielle du jumeau numérique
 
-Cette page décrit la stack retenue au **2 septembre 2026**, à partir du commit
+Cette page décrit la stack retenue au **8 septembre 2026**, à partir du commit
 `b36ddca175897795f63e98e2826083da1376c725` de `main`. Elle distingue les
 outils vérifiés des briques seulement définies ou encore bloquées.
 
@@ -80,12 +80,30 @@ Qwen3-VL-8B-Instruct pour la lecture multimodale, servis par vLLM. L'image
 PyTorch 2.11.0 CUDA 12.9. Cette variante est définie, pas qualifiée comme
 runtime courant. Codex orchestre le travail mais n'est jamais une preuve CAE.
 
+PicoGK 2.3.0 avec le runtime natif `picogk.26.2` est maintenant exécuté sur le
+X1 amd64. Un balayage de six variantes du piston CP1 F0 a atteint `1,60 %`
+d'allègement brut au mieux, mais aucune variante ne satisfait la marge
+mécanique provisoire et tous les STL bruts échouent l'intégrité manifold.
+PicoGK est donc qualifié comme générateur géométrique de criblage, pas comme
+optimiseur physique ni comme source d'une pièce libérée.
+
+CalculiX 2.21 a ensuite exécuté, hors réseau sur le X1, six cas du master piston
+sain : statique froide et température–déplacement séquentiel à `5`, `3,5` et
+`2,5 mm`. Le niveau fin compte `139 924` nœuds et `81 861` C3D10. Le p95 passe
+de `112,17 MPa` à froid à `323,46 MPa` à chaud dans l'enveloppe synthétique ; le
+ratio face aux `297 MPa` publiés à l'ambiante tombe à `0,918`. Cette exécution
+qualifie la chaîne numérique, mais rejette le dessin F0 et ne fournit ni
+admissible CP1 chaud, ni fatigue, ni validation moteur.
+
 ## Omniverse et SimReady
 
 L'image Ubuntu 24.04/Python 3.12 isole OVRTX, Material Agent et Physics Agent :
 
 - NVIDIA Content Agents : commit `36dbf3f274f8e256637230a05a085853f65cc175` ;
-- SimReady Foundation : commit `0ed0dfbc539c9de99289771bd6848effe3ef5779` ;
+- SimReady Foundation : commit de l'image `0ed0dfbc539c9de99289771bd6848effe3ef5779` ;
+- workflow isolé du passage embout : SimReady Foundation
+  `a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3` et `usd-convert-cad`
+  `208fe2c1cd71ae2bb7bd825daf712617000ae028` ;
 - `usd-convert-cad` 0.2.0 ;
 - base `simready-workflow` : digest
   `sha256:0562c69276c0d3065990cb9b1b8641dcd29355d0dccb9082dcf266fa2d22e90a` ;
@@ -99,6 +117,11 @@ Cette preuve est bornée à un accessoire d'inspection isolé ; l'assemblage mot
 et le véhicule restent non validés. Voir
 [le résumé SimReady](../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/simready-validation-summary.json).
 
+Le second passage, sur l'embout ovale IN625 F0, passe les mêmes validateurs et
+le profil SimReady après suppression des propriétés physiques inventées. La
+scène EOS M 290 et les rendus OVRTX sont validés comme préparation visuelle,
+pas comme simulation de procédé ou preuve d'installation.
+
 ## Simulation d'impression métal
 
 Le pipeline ajoute maintenant un tranchage géométrique générique de chaque
@@ -108,6 +131,11 @@ couches à 50 µm. CalculiX reste le solveur de distorsion de référence et
 AdditiveFOAM le solveur local du bain de fusion, mais ils ne doivent être
 exécutés comme preuve que lorsqu'une carte matière-machine-procédé cohérente est
 disponible. Pour le CP1/Sapphire, cette carte complète manque encore.
+
+Le second passage réel compte `3 702` couches à `40 µm` pour l'embout IN625 sur
+une enveloppe EOS M 290. Cette route possède une fiche matière-machine-procédé
+cohérente de criblage, mais ni trajectoires EOSPRINT, ni supports fournisseur,
+ni carte constitutive calibrée de construction complète.
 
 La politique et les onze étapes obligatoires sont dans
 [AM_VALIDATION_PIPELINE.md](AM_VALIDATION_PIPELINE.md). Le validateur suit les
