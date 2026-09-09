@@ -8,7 +8,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PREFLIGHT = ROOT / "deploy/intel/host-preflight.sh"
+PREFLIGHT = ROOT / "outils/deploy/intel/host-preflight.sh"
 
 
 class IntelCpuNodeF35Tests(unittest.TestCase):

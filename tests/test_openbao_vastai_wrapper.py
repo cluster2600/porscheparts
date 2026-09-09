@@ -17,7 +17,7 @@ from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
-WRAPPER_PATH = ROOT / "deploy/openbao/openbao-vastai"
+WRAPPER_PATH = ROOT / "outils/deploy/openbao/openbao-vastai"
 # Offre communiquee par l'utilisateur le 2026-09-02. Cette fixture ne prouve
 # ni sa disponibilite actuelle, ni une location.
 USER_PROVIDED_WAVE_CANDIDATE_ID = 49655039

@@ -9,7 +9,7 @@ constitue ni une simulation moteur, ni une validation de conception, ni une
 autorisation de fabrication.
 
 Le contrat expurgé est
-`benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json`. Il ne contient
+`outils/benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json`. Il ne contient
 ni chemin local absolu, ni identité de machine ou d'utilisateur, ni secret, ni
 identifiant véhicule.
 
@@ -145,7 +145,7 @@ ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01
 Depuis la racine du dépôt :
 
 ```bash
-benchmarks/openfoam-poiseuille-f25/run_local.sh
+outils/benchmarks/openfoam-poiseuille-f25/run_local.sh
 ```
 
 Le runner refuse d'écraser une sortie existante, impose `linux/amd64`, désactive
@@ -160,7 +160,7 @@ conteneur ne monte que le cas qu'il traite, avec les protections suivantes :
 Un chemin alternatif peut être fourni, lui aussi sous `work/` :
 
 ```bash
-benchmarks/openfoam-poiseuille-f25/run_local.sh work/openfoam-poiseuille-f25-run-02
+outils/benchmarks/openfoam-poiseuille-f25/run_local.sh work/openfoam-poiseuille-f25-run-02
 ```
 
 Les preuves détaillées restent locales :

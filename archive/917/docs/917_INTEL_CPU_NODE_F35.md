@@ -55,7 +55,7 @@ Sur la machine Intel, depuis une copie du dépôt :
 
 ```bash
 mkdir -p work/intel-f35
-deploy/intel/host-preflight.sh | tee work/intel-f35/host-preflight.json
+outils/deploy/intel/host-preflight.sh | tee work/intel-f35/host-preflight.json
 ```
 
 Le script ne scanne pas le réseau, ne lit aucun secret, ne télécharge rien et
@@ -71,7 +71,7 @@ refuse tout tag mutable et toute image absente du cache local :
 ```bash
 export F35_GMSH_IMAGE_REF='ghcr.io/cluster2600/3dprinting993-gmsh-mesh-f35@sha256:<digest-verifie>'
 export F35_OPENFOAM_IMAGE_REF='ghcr.io/cluster2600/3dprinting993-openfoam-engine-f35@sha256:<digest-verifie>'
-deploy/intel/run-f35-cpu-smokes.sh
+outils/deploy/intel/run-f35-cpu-smokes.sh
 ```
 
 Cantera possède déjà un digest par défaut verrouillé. Le wrapper exécute les

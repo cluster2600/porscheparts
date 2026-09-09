@@ -196,7 +196,7 @@ if sys.argv[7] == "f42b-six-usd-v1":
     helper = importlib.util.module_from_spec(helper_spec)
     helper_spec.loader.exec_module(helper)
     archive_from_report = Path(str(report.get("archive_path", ""))).resolve(strict=True)
-    destination = helper.prepare_destination(archive_from_report.parent, helper_path.parents[3])
+    destination = helper.prepare_destination(archive_from_report.parent, helper_path.parents[4])
     persistent_root = Path(str(report.get("extracted_root", ""))).resolve(strict=True)
     if persistent_root != destination / sys.argv[2] or persistent_root.is_symlink():
         raise SystemExit("racine extraite F42b hors de la destination privée exacte")

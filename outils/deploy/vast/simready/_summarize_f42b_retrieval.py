@@ -152,7 +152,7 @@ def private_destination_policy(archive: Path) -> dict[str, Any]:
         raise RuntimeError("helper de destination privée F42b indisponible")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    repository_root = Path(__file__).resolve().parents[3]
+    repository_root = Path(__file__).resolve().parents[4]
     destination = module.prepare_destination(archive.parent, repository_root)
     info = destination.lstat()
     return {

@@ -938,8 +938,8 @@ engine-components:
 917-f46-vast-controller-check:
 	python3 twins/reference-917-engine/source/validate_engine_solver_authority_f46.py --project-root .
 	python3 tests/test_917_engine_solver_authority_f46.py -v
-	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . check
-	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller/preparation-report.json
+	python3 outils/deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . check
+	python3 outils/deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller/preparation-report.json
 	python3 tests/test_917_f46_vast_controller.py -v
 
 917-f47-cfd-cae-image-check:
