@@ -1,6 +1,12 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : une passe de déplacement réellement isolée sur la
+**Dernier résultat gaz : la bascule proposée introduit deux intersections
+avec la face voisine 36. Les 27 diagonales intérieures voisines des 22 triangles
+obstructifs sont ensuite testées : aucune bascule unique ne donne de gain
+strict en conservant tous les critères. Aucun candidat appliqué ; voir
+l'[audit des diagonales et des contacts](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).**
+
+Essai précédent : une passe de déplacement réellement isolée sur la
 face 37 réduit les obstructions de 22 à 16, mais dégrade le minimum de borne
 et le plus petit angle. Quatorze triangles échouent au contrôle local des
 normales avant/après. Le candidat est refusé ; CAO et raccordements hors
@@ -11,7 +17,7 @@ et la [comparaison précédente](M64_SURFACE_METHOD_COMPARISON_20260909.md).
 Le cœur diagnostique
 de référence reste inchangé, avec 3 281 tétraèdres sous `minSICN = 0,1`.
 Il n'y a toujours pas d'admission à OpenFOAM. Les essais et refus restent
-documentés séparément.**
+documentés séparément.
 Pour le solide, le déplacement intérieur réduit de 309 à 283 les tétraèdres
 sous `minSICN = 0,1`, sans améliorer le minimum de 0,000792. Le fichier CAO
 et la frontière du maillage restent inchangés ; la distance
