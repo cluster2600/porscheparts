@@ -9,6 +9,7 @@ conception explicites, jamais des mesures de la pièce Roadster-Fashion ou OEM.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -35,11 +36,22 @@ TIP_HEIGHT = 5.0
 SCREEN_FORCE_N = 30.0
 SCREEN_DELTA_T_K = 100.0
 
-# Carte ambiante de criblage AlSi10Mg. Elle ne qualifie ni poudre ni procédé.
+# Route EOS M 290 / AlSi10Mg / 30 um, état brut de fabrication. Les valeurs
+# publiées restent des comparaisons de coupons et non des admissibles pièce.
 DENSITY_G_CM3 = 2.67
 ELASTIC_MODULUS_MPA = 70_000.0
-YIELD_STRENGTH_MPA = 245.0
-THERMAL_EXPANSION_PER_K = 21.0e-6
+YIELD_STRENGTH_MPA = 233.0
+ULTIMATE_STRENGTH_MPA = 461.0
+FATIGUE_STRENGTH_20M_MPA = 110.0
+THERMAL_EXPANSION_PER_K = 22.0e-6
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def analytic_volume_mm3() -> float:
@@ -85,11 +97,14 @@ def engineering_screen(force_n: float = SCREEN_FORCE_N) -> dict[str, object]:
             "authority": "regression input only; real spring load and temperature absent",
         },
         "material_screen": {
-            "candidate": "AlSi10Mg LPBF, room-temperature reference only",
+            "candidate": "EOS AlSi10Mg / EOS M 290 / 30 um, as-manufactured screening route",
             "density_g_cm3": DENSITY_G_CM3,
-            "elastic_modulus_mpa": ELASTIC_MODULUS_MPA,
-            "yield_strength_mpa": YIELD_STRENGTH_MPA,
-            "thermal_expansion_per_k": THERMAL_EXPANSION_PER_K,
+            "provisional_elastic_modulus_mpa": ELASTIC_MODULUS_MPA,
+            "published_vertical_yield_strength_mpa": YIELD_STRENGTH_MPA,
+            "published_minimum_ultimate_strength_mpa": ULTIMATE_STRENGTH_MPA,
+            "published_fully_reversed_fatigue_strength_20m_mpa": FATIGUE_STRENGTH_20M_MPA,
+            "published_average_thermal_expansion_25_to_200_per_k": THERMAL_EXPANSION_PER_K,
+            "design_allowable": False,
         },
         "results": {
             "analytic_volume_mm3": volume,
@@ -162,13 +177,14 @@ def build_solid():
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--surface", type=Path)
     parser.add_argument("--report", type=Path)
     parser.add_argument("--force-n", type=float, default=SCREEN_FORCE_N)
     args = parser.parse_args()
 
     report = engineering_screen(args.force_n)
-    if args.out:
-        from build123d import export_step, import_step
+    if args.out or args.surface:
+        from build123d import export_step, export_stl, import_step
 
         solid = build_solid()
         expected = analytic_volume_mm3()
@@ -178,22 +194,37 @@ def main() -> int:
             raise SystemExit(
                 f"Volume incohérent: OCCT={solid.volume}, analytique={expected}"
             )
-        args.out.parent.mkdir(parents=True, exist_ok=True)
-        export_step(solid, str(args.out))
-        roundtrip = import_step(str(args.out))
-        if (
-            not roundtrip.is_valid
-            or len(roundtrip.solids()) != 1
-            or abs(roundtrip.volume - expected) > 0.01
-        ):
-            raise SystemExit("Le STEP relu ne reproduit pas le solide attendu.")
-        report["step_roundtrip"] = {
-            "status": "passed",
-            "valid_brep": True,
-            "solid_count": 1,
-            "volume_mm3": roundtrip.volume,
-            "maximum_volume_delta_mm3": 0.01,
-        }
+        if args.out:
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            export_step(solid, str(args.out))
+            roundtrip = import_step(str(args.out))
+            if (
+                not roundtrip.is_valid
+                or len(roundtrip.solids()) != 1
+                or abs(roundtrip.volume - expected) > 0.01
+            ):
+                raise SystemExit("Le STEP relu ne reproduit pas le solide attendu.")
+            report["step_roundtrip"] = {
+                "status": "passed",
+                "valid_brep": True,
+                "solid_count": 1,
+                "volume_mm3": roundtrip.volume,
+                "maximum_volume_delta_mm3": 0.01,
+                "sha256": sha256(args.out),
+            }
+        if args.surface:
+            args.surface.parent.mkdir(parents=True, exist_ok=True)
+            export_stl(
+                solid,
+                str(args.surface),
+                tolerance=0.03,
+                angular_tolerance=0.08,
+            )
+            report["analysis_surface"] = {
+                "status": "exported_for_downstream_mesh_validation",
+                "format": ".stl",
+                "sha256": sha256(args.surface),
+            }
 
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)

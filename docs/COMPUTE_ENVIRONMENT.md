@@ -2,13 +2,13 @@
 
 Le travail lourd du projet — reconstruction photogrammétrique, maillage, calcul
 EF, CFD et préparation SimReady — ne tient pas sur un poste ordinaire. Il est
-décrit ici comme sept images conteneurs reproductibles, exécutables localement
+décrit ici comme huit images conteneurs reproductibles, exécutables localement
 ou sur une machine GPU louée à l’heure.
 
 Aucun conteneur n’est nécessaire pour contribuer au catalogue. `make check`
 reste une commande Python sans dépendance.
 
-## Sept images, sept besoins
+## Huit images, huit besoins
 
 | Image | Besoin | Contenu | Ordre de grandeur |
 |---|---|---|---|
@@ -19,6 +19,7 @@ reste une commande Python sans dépendance.
 | `3dprinting993-simready` | RTX, 48 Go recommandés | OVRTX, Material Agent, Physics Agent, OpenUSD, SimReady Validator | source 3D → USD enrichi → validation → rendu Omniverse |
 | `3dprinting993-simready-workflow` | RTX, 48 Go recommandés | image SimReady épinglée, prévol CAD et démarrage Vast.ai | validation reproductible avant location |
 | `3dprinting993-simready-local-ai` | GPU 48–80 Go, 500 Go disque | contenu SimReady, Qwen2.5-VL 7B local, vLLM, PhysicsNeMo | chaîne hors API : vues → matériaux/physique → USD → modèles physiques |
+| `3dprinting993-ov-libraries-cpu` | CPU `linux/amd64` | NumPy 2.5.2, ovstage 0.1.1.355824, ovphysx 0.5.11 | USD physique → état partagé → contact/mouvement rigide |
 
 La séparation est volontaire. La reconstruction a besoin d’un GPU et d’une image
 CUDA lourde ; le calcul classique tourne aussi bien sur une machine sans GPU,
@@ -35,6 +36,11 @@ injectés après connexion SSH par le wrapper OpenBao, puis
 minimale qui n'affiche ni secret ni réponse, puis lance les services natifs.
 Une erreur HTTP 401/403 bloque donc la chaîne avant la préparation et le rendu
 des lots.
+
+`ov-libraries-cpu` suit séparément la nouvelle architecture NVIDIA embarquable.
+L'application charge USD dans `ovstage`, puis `ovphysx` lit la même scène et
+réécrit ses résultats. OVRTX reste dans l'image RTX : un rendu ou un capteur
+n'est pas nécessaire pour vérifier un contact rigide CPU.
 
 La variante `simready-local-ai` supprime cette dépendance. Elle épingle dans
 l'image le snapshot Apache-2.0 de `Qwen/Qwen2.5-VL-7B-Instruct`, expose son API
@@ -64,9 +70,10 @@ Les choix logiciels sont justifiés dans
 [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md) :
 tout outil retenu s'exécute sans interface graphique.
 
-Le LLM n'est volontairement pas ajouté à ces images : on lance l'image vLLM
-sur une instance GPU séparée, puis les images de reconstruction et de calcul au
-besoin. Le modèle retenu, le dimensionnement GPU et la frontière d'autorité du
+Les LLM Coder/VL généraux ne sont pas ajoutés aux images de CAO ou de solveur :
+on lance normalement vLLM sur une instance GPU séparée. Seule la variante
+explicitement nommée `simready-local-ai` embarque Qwen2.5-VL pour les Content
+Agents. Le modèle retenu, le dimensionnement GPU et la frontière d'autorité du
 LLM sont décrits dans [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md).
 
 ## Construire et vérifier
@@ -78,6 +85,7 @@ make container-mesh-cfd   # image CPU dédiée aux gros scans et à la CFD
 make container-physicsml  # image GPU pour JAX-FEM / PhysicsNeMo
 make container-simready   # image GPU NVIDIA CAD-to-SimReady, linux/amd64
 make container-simready-local-ai # SimReady + VLM local + PhysicsNeMo
+make container-ov-libraries-cpu # ovstage + ovphysx actuels, CPU linux/amd64
 make container-smoke-all  # exécute smoke-test.sh dans les cinq images
 ```
 

@@ -45,7 +45,7 @@
     {
       "stage_id": "08_omniverse_simready_asset",
       "required_for_release": true,
-      "acceptance": "Le USD final passe Asset Validator, Geometry, Physics et le profil SimReady cible, sans propriété physique inventée."
+      "acceptance": "Le USD final passe usd-validation-nvidia, les contrôles Geometry/Physics et le profil SimReady cible, puis son rendu OVRTX est inspecté, sans propriété physique inventée."
     },
     {
       "stage_id": "09_omniverse_assembly_function",
@@ -111,6 +111,179 @@
     "993-WHL-CENTER-CAP-ALSI10MG-F0-0001"
   ],
   "part_overrides": {
+    "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json",
+            "parts/993-elec-headlamp-spring-hook-f0-0001/evidence/engineering-screen.json"
+          ],
+          "blocker": "La page fournisseur prouve la fonction et l'impression métal, mais aucune cote du crochet commercial ou du phare 993 n'est publiée ou mesurée."
+        },
+        "02_cad_brep_and_mesh_integrity": {
+          "status": "passed",
+          "evidence": [
+            "parts/993-elec-headlamp-spring-hook-f0-0001/evidence/engineering-screen.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/summary.json"
+          ]
+        },
+        "03_full_layer_slicing_and_supports": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-screen.png"
+          ],
+          "blocker": "Les 425 couches et le proxy de supports sont calculés, mais l'orientation, les supports et le dépoudrage n'ont pas été revus dans un projet EOSPRINT fournisseur."
+        },
+        "04_material_machine_process_card": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/sources/src-eos-alsi10mg-m290-30um.json",
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+          ],
+          "blocker": "La route EOS M 290 / AlSi10Mg / 30 µm est cohérente pour le criblage, mais les trajectoires, supports, propriétés chaudes et calibrations de lot manquent."
+        },
+        "05_local_melt_pool_thermal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+          ],
+          "blocker": "La carte optique et thermophysique de poudre, la trajectoire laser et les coupons corrélés de la route exacte manquent."
+        },
+        "06_full_build_thermomechanical_distortion": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json"
+          ],
+          "blocker": "CalculiX a simulé le service synthétique, pas l'activation des couches, la plaque, les supports, la détente et la distorsion de construction calibrée."
+        },
+        "07_recoater_and_support_removal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json"
+          ],
+          "blocker": "La forme déformée, le jeu et la compliance du recoater, les supports fournisseur et leur accès de retrait manquent."
+        },
+        "08_omniverse_simready_asset": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/binary-validation.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/rigid-scene-validation.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
+          ],
+          "blocker": "L'asset et la scène passent usd-validation-nvidia 1.21.0 et le contact rigide passe ovstage/ovphysx, mais le profil SimReady complet et le rendu OVRTX de cette révision n'ont pas encore été exécutés."
+        },
+        "09_omniverse_assembly_function": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/twins/twin-993-headlamp-spring-hook-alsi10mg-f0.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
+          ],
+          "blocker": "Le témoin rigide n'est pas le ressort réel ; géométrie du phare, course, force, contact, tolérances, température et vibrations manquent."
+        },
+        "10_physical_correlation_and_inspection": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "11_engineering_release": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/summary.json"
+          ],
+          "blocker": "Aucune métrologie du phare, première pièce, CT/CND, essai de collage, fatigue, vibration, rétention de lampe ou revue d'ingénierie signée n'est disponible."
+        }
+      }
+    },
+    "993-INT-DOOR-OPENER-LEVER-F0-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/parts/993-int-door-opener-lever-f0-0001.json",
+            "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json"
+          ],
+          "blocker": "PorscheFanatics établit les références PET et FVD publie seulement une enveloppe et une masse de paire ; pivot, fixations, tringlerie, butées, jeux et tolérances ne sont pas mesurés."
+        },
+        "02_cad_brep_and_mesh_integrity": {
+          "status": "passed",
+          "evidence": [
+            "parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/summary.json"
+          ]
+        },
+        "03_full_layer_slicing_and_supports": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png"
+          ],
+          "blocker": "Les 2 664 couches et le proxy de supports sont calculés, mais l'orientation, les supports et le dépoudrage ne sont pas revus dans un projet EOSPRINT fournisseur."
+        },
+        "04_material_machine_process_card": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/sources/src-eos-alsi10mg-m290-30um.json",
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+          ],
+          "blocker": "La route EOS M 290 / AlSi10Mg / 30 µm est cohérente pour le criblage, mais les trajectoires, supports, propriétés chaudes, état de surface et calibrations de lot manquent."
+        },
+        "05_local_melt_pool_thermal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+          ],
+          "blocker": "La carte optique et thermophysique de poudre, la trajectoire laser et les coupons corrélés de la route exacte manquent."
+        },
+        "06_full_build_thermomechanical_distortion": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json"
+          ],
+          "blocker": "CalculiX a simulé le service synthétique, pas l'activation des couches, la plaque, les supports, la détente et la distorsion de construction calibrée."
+        },
+        "07_recoater_and_support_removal": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json"
+          ],
+          "blocker": "La forme déformée, le jeu et la compliance du recoater, les supports fournisseur et leur accès de retrait manquent."
+        },
+        "08_omniverse_simready_asset": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/preflight.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/binary-validation.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/rigid-scene-validation.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
+          ],
+          "blocker": "L'asset et la scène passent la validation NVIDIA minimale et le contact rigide ovstage/ovphysx, mais le préflight a arrêté les Content Agents ; profil SimReady complet et rendu OVRTX manquent."
+        },
+        "09_omniverse_assembly_function": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/twins/twin-993-door-opener-lever-alsi10mg-f0.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
+          ],
+          "blocker": "Le témoin rigide n'est pas la porte réelle ; pivot, serrure, tringlerie, butées, trim, course, efforts, tolérances et mauvais usage manquent."
+        },
+        "10_physical_correlation_and_inspection": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "11_engineering_release": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/parts/993-int-door-opener-lever-f0-0001.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/summary.json"
+          ],
+          "blocker": "Aucune métrologie de porte, première pièce, CT/CND, essai statique/cyclique, corrosion, vieillissement, évacuation ou revue d'ingénierie signée n'est disponible."
+        }
+      }
+    },
     "993-ENG-PISTON-CP1-GALLERY-F0-0001": {
       "stages": {
         "01_source_and_geometry_authority": {

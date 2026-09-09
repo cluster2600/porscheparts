@@ -1,0 +1,345 @@
+{
+  "ambient_reference_strength_ratios": {
+    "authority": "Coupon ratios against ambient values only; none is a hot component margin.",
+    "cold_maximum_yield_to_stress": 1.3340464394804619,
+    "cold_p95_yield_to_stress": 5.151787225535112,
+    "hot_maximum_ambient_yield_to_stress": 1.255143780677925,
+    "hot_p95_ambient_yield_to_stress": 5.005770486866364
+  },
+  "analytic_cross_check": {
+    "cantilever_von_mises_mpa": 45.63288288065964,
+    "fea_cold_p95_to_analytic_ratio": 0.9911059804465026,
+    "interpretation": "The analytic cantilever and two-bore 3D restraint differ; their ratio is diagnostic, not calibration."
+  },
+  "cases": [
+    {
+      "cold_linear_static": {
+        "artifacts": {
+          "door-opener-cold.dat": {
+            "bytes": 2623429,
+            "sha256": "719351f863ef80d9b99f2ce01159b673a40042b17d5b5096fdef6663715c5b07"
+          },
+          "door-opener-cold.frd": {
+            "bytes": 2930532,
+            "sha256": "b3d6f0827bed18617bca374e42ffb20c1c400ebe7a008881932a493d9d553cb7"
+          },
+          "door-opener-cold.inp": {
+            "bytes": 678436,
+            "sha256": "9457596ceb57eecb277cd5f18e6445127632dddd43545da0d1525d3379cdc2e3"
+          },
+          "door-opener-cold.log": {
+            "bytes": 2268,
+            "sha256": "89c5ab1b15557110e873fece8b2c24b16472eb1919bcc9547f43d7b88bbfb84b"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 1.0112665265984386,
+          "p99": 1.002824273292522
+        },
+        "return_code": 0,
+        "von_mises_mpa": {
+          "maximum": 153.41589269482355,
+          "p95": 45.2227951482179,
+          "p99": 80.8720224261979
+        }
+      },
+      "hot_sequential_thermomechanical": {
+        "artifacts": {
+          "door-opener-hot.dat": {
+            "bytes": 4075723,
+            "sha256": "801cc77fe6c5f6442fef61ad94bbfb9caf2c2a7bfdd13d00a1202929585f8ed5"
+          },
+          "door-opener-hot.frd": {
+            "bytes": 3732404,
+            "sha256": "f58475fec5281ac6ed8b39e2df4999eabee2f9e9b702beea6d39c48c7caab233"
+          },
+          "door-opener-hot.inp": {
+            "bytes": 678595,
+            "sha256": "4d29ab8f3b5ee32a14f558450cc13361531b567bbd8d3d57bb13bc67763c038d"
+          },
+          "door-opener-hot.log": {
+            "bytes": 4396,
+            "sha256": "2ef969e5592450032ec72efed4ca19ab3e9195925ac2a624a85be498dd71f2a0"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 1.0347074130931968,
+          "p99": 1.025853429596389
+        },
+        "return_code": 0,
+        "temperature_c": {
+          "maximum": 80.02038,
+          "minimum": 20.0,
+          "p50": 23.77266,
+          "p95": 80.0
+        },
+        "von_mises_mpa": {
+          "maximum": 161.16297361347975,
+          "p95": 46.394560857280624,
+          "p99": 81.36520841312993
+        }
+      },
+      "mesh": {
+        "boundary_nodes": 7080,
+        "boundary_set_counts": {
+          "FIXED_MOUNT_BORES": 236,
+          "HAND_LOAD_PAD": 927
+        },
+        "mesh_size_mm": 4.0,
+        "nodes": 10544,
+        "quadratic_tetrahedra": 5213
+      }
+    },
+    {
+      "cold_linear_static": {
+        "artifacts": {
+          "door-opener-cold.dat": {
+            "bytes": 4065389,
+            "sha256": "bdca9b253b8717685fc73dd7c7db7e9ca24c0a207574245adbb7ef4a8d5ff946"
+          },
+          "door-opener-cold.frd": {
+            "bytes": 4509335,
+            "sha256": "a4d5057a7c27e96c582210a4ae4f286c72edc880acaffcef6a16a4f9cdc6c3ef"
+          },
+          "door-opener-cold.inp": {
+            "bytes": 1102089,
+            "sha256": "2a7493e91ae96d0202204f908ee74c517911b22ad00adbb76b2f7297270d4717"
+          },
+          "door-opener-cold.log": {
+            "bytes": 2268,
+            "sha256": "b2121c1bc75c5eb273a19a79dca5c217adb0c3bf4aba830dafae70c77a1ec3ad"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 1.0110823987944937,
+          "p99": 0.9855563724608546
+        },
+        "return_code": 0,
+        "von_mises_mpa": {
+          "maximum": 162.05801631856068,
+          "p95": 44.70998992543476,
+          "p99": 77.644715276203
+        }
+      },
+      "hot_sequential_thermomechanical": {
+        "artifacts": {
+          "door-opener-hot.dat": {
+            "bytes": 6316819,
+            "sha256": "8f8243cb3e936ab3085d5778d97d9b41f8b6a687f8d799c2702c663107f1e2f8"
+          },
+          "door-opener-hot.frd": {
+            "bytes": 5739543,
+            "sha256": "a77fbd7ecb834bbf97b300052d98e3478a570d4c91fe4dc361ecd69ba5a1f816"
+          },
+          "door-opener-hot.inp": {
+            "bytes": 1102248,
+            "sha256": "6fcb9c85321c659d579d37ded6d879ecdabc7b0eb139c7b7831663c2103cb74e"
+          },
+          "door-opener-hot.log": {
+            "bytes": 4400,
+            "sha256": "be41597358055ab4730584d3c2202da1f83e58b443aeee89cf7e080305c83f99"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 1.034063642426714,
+          "p99": 1.0085974538420042
+        },
+        "return_code": 0,
+        "temperature_c": {
+          "maximum": 80.0,
+          "minimum": 20.0,
+          "p50": 24.04121,
+          "p95": 80.0
+        },
+        "von_mises_mpa": {
+          "maximum": 170.72521135012462,
+          "p95": 46.417800154798414,
+          "p99": 77.30470174785559
+        }
+      },
+      "mesh": {
+        "boundary_nodes": 10644,
+        "boundary_set_counts": {
+          "FIXED_MOUNT_BORES": 236,
+          "HAND_LOAD_PAD": 1430
+        },
+        "mesh_size_mm": 3.0,
+        "nodes": 16180,
+        "quadratic_tetrahedra": 8100
+      }
+    },
+    {
+      "cold_linear_static": {
+        "artifacts": {
+          "door-opener-cold.dat": {
+            "bytes": 8212547,
+            "sha256": "41442423f4bff2a32897f5a89fe2f0f691bf8e9ca1316d1b985b837a7b527d82"
+          },
+          "door-opener-cold.frd": {
+            "bytes": 8909567,
+            "sha256": "a3c97bd113c9b45f1855051fad38ccb35e5e06e65c68b3e8a1f8901268d3c109"
+          },
+          "door-opener-cold.inp": {
+            "bytes": 2374806,
+            "sha256": "bad33ee2b51d3da925845cc1032c868630017b5b88712f727eafb26387dd25f3"
+          },
+          "door-opener-cold.log": {
+            "bytes": 2268,
+            "sha256": "ce234c131b7766040c8a365918661dadfe3c87f85ba4d74ac69928dc1898038f"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 1.032649515041603,
+          "p99": 1.0220611261572932
+        },
+        "return_code": 0,
+        "von_mises_mpa": {
+          "maximum": 174.65658848483622,
+          "p95": 45.2270231280366,
+          "p99": 81.02515175863047
+        }
+      },
+      "hot_sequential_thermomechanical": {
+        "artifacts": {
+          "door-opener-hot.dat": {
+            "bytes": 12766327,
+            "sha256": "7d07ae8ebc227daf1b72e75e3b1113122bba1efb55e80dcad1e9ca0c0898cc10"
+          },
+          "door-opener-hot.frd": {
+            "bytes": 11316711,
+            "sha256": "e3e4223a140e30e77a5e5035335235a0f04800a23b98fd69744afb7388c8feab"
+          },
+          "door-opener-hot.inp": {
+            "bytes": 2374965,
+            "sha256": "f8e46f9287873fae18b4c01a56e4febefcbf21a81e51868f7f38620a6215861d"
+          },
+          "door-opener-hot.log": {
+            "bytes": 4401,
+            "sha256": "2eefaac5b041cf0f28d2461f9561d9eed2e4cf9cbb19c3c28eb6ef668095f324"
+          }
+        },
+        "displacement_mm": {
+          "maximum": 1.0558732714235453,
+          "p99": 1.044650481894425
+        },
+        "return_code": 0,
+        "temperature_c": {
+          "maximum": 80.0,
+          "minimum": 20.0,
+          "p50": 24.25023,
+          "p95": 80.0
+        },
+        "von_mises_mpa": {
+          "maximum": 185.63610288070154,
+          "p95": 46.54628105929385,
+          "p99": 81.19606541675782
+        }
+      },
+      "mesh": {
+        "boundary_nodes": 19148,
+        "boundary_set_counts": {
+          "FIXED_MOUNT_BORES": 296,
+          "HAND_LOAD_PAD": 2669
+        },
+        "mesh_size_mm": 2.2,
+        "nodes": 31666,
+        "quadratic_tetrahedra": 16500
+      }
+    }
+  ],
+  "engineering_gates": {
+    "emergency_egress_and_professional_review": false,
+    "measured_geometry_and_fit": false,
+    "measured_pull_load_stops_and_misuse": false,
+    "measured_thermal_and_vibration_environment": false,
+    "modal_harmonic_and_impact_completed": false,
+    "part_fatigue_life_completed": false,
+    "pivot_contact_wear_and_fastener_preload_solved": false,
+    "qualified_hot_material_surface_and_corrosion_allowables": false
+  },
+  "equations_and_discretization": {
+    "beam_reference": "sigma=M*c/I; tau_max=1.5*F/A; sigma_vm=sqrt(sigma^2+3*tau^2)",
+    "fatigue_proxy": "modified Goodman: sigma_a/Se + sigma_m/Su = 1",
+    "linear_elasticity": "div(sigma)+b=0; sigma=C:(epsilon-epsilon_th)",
+    "load_application": "exact total 150 N distributed equally over the synthetic hand-end surface nodes",
+    "restraint": "all displacement degrees fixed on both synthetic mounting bore surfaces; conservative rigid-bond idealization",
+    "thermal_conduction": "div(k*grad(T))=0",
+    "thermal_strain": "epsilon_th=alpha*(T-T_ref)"
+  },
+  "fatigue_proxy": {
+    "alternating_stress_proxy_mpa": 22.6135115640183,
+    "coupon_ratio_allowable_to_alternating": 4.625736739629011,
+    "equation": "sigma_a/Se + sigma_m/Su = 1",
+    "life_prediction": null,
+    "mean_stress_proxy_mpa": 22.6135115640183,
+    "modified_goodman_allowable_proxy_mpa": 104.60415125370496,
+    "reason": "EOS reports turned fully-reversed coupons; the F0 notch, raw surface, porosity and door duty cycle are unqualified.",
+    "reference_cycles": 20000000,
+    "transferable_to_part": false,
+    "zero_to_peak_p95_stress_mpa": 45.2270231280366
+  },
+  "grid_comparison_fine_vs_previous": {
+    "cold_p95_stress_relative_change": 0.011431952997174472,
+    "hot_maximum_temperature_relative_change": 0.0,
+    "hot_p95_stress_relative_change": 0.0027602829178074426,
+    "screening_threshold": 0.1,
+    "threshold_authority": "Project numerical-screen threshold only; not a component acceptance criterion."
+  },
+  "inputs": {
+    "force_authority": "Synthetic regression load; real pull vector, stops, misuse and cycle spectrum are not measured.",
+    "geometry_authority": "Independent synthetic F0 BREP constrained only by a commercial product envelope; no measured Porsche interface.",
+    "hand_end_temperature_c": 80.0,
+    "pull_force_n": 150.0,
+    "reference_temperature_c": 20.0,
+    "runner_repository_path": "twins/993-door-opener-lever-alsi10mg-f0/source/run_calculix_thermomechanical_screen.py",
+    "runner_sha256": "d8c8f9539ae238dbb43819808c0983f9b65f7769efb14e4695a1dfed019c8cf9",
+    "step_repository_path": "parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step",
+    "step_sha256": "639ecdd73ff77a2dd8a72d7e89c9e01d84a54f842276261bd56beea8d44c9fd7",
+    "thermal_authority": "Synthetic stationary 60 C gradient; no measured door temperature, convection or solar loading."
+  },
+  "interpretation": {
+    "fatigue": "The Goodman result is a coupon comparison only and cannot establish door-release life.",
+    "manufacturing": "Passing numerical gates cannot authorize printing, installation or reliance for vehicle egress.",
+    "mechanical": "The synthetic 150 N pull is solved on the F0 geometry, but actual pivot, stops, contact, misuse and door compliance are absent.",
+    "physicsnemo": "No training or inference: six uncorrelated cases are not an admissible surrogate dataset.",
+    "thermal": "The 20-to-80 C imposed field is a numerical screen, not a measured door environment."
+  },
+  "material": {
+    "candidate": "EOS Aluminium AlSi10Mg / EOS M 290 / 30 um, as-manufactured screening route",
+    "density_tonne_mm3": 2.67e-09,
+    "part_design_allowable_available": false,
+    "provisional_elastic_modulus_mpa": 70000.0,
+    "provisional_poisson_ratio": 0.33,
+    "published_average_thermal_expansion_25_to_200_per_k": 2.2e-05,
+    "published_fatigue_strength_20m_mpa": 110.0,
+    "published_minimum_ultimate_mpa": 461.0,
+    "published_vertical_thermal_conductivity_w_mm_k": 0.1,
+    "published_vertical_yield_mpa": 233.0,
+    "source": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+    "temperature_dependent_strength_card_available": false
+  },
+  "metal_print_authorized": false,
+  "numerical_gates": {
+    "cold_p95_grid_change_below_10_percent": true,
+    "hot_p95_grid_change_below_10_percent": true,
+    "hot_temperature_grid_change_below_10_percent": true,
+    "six_solver_executions_complete": true
+  },
+  "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+  "release_authorized": false,
+  "schema_version": "1.0.0",
+  "selected_variant": null,
+  "solver": {
+    "analysis": "CalculiX cold linear static plus steady uncoupled temperature-displacement, C3D10",
+    "calculix_version_output": "This is Version 2.21",
+    "execution_count": 6,
+    "gmsh_version": "4.12.1",
+    "mesh": "Gmsh second-order tetrahedra imported from the exact STEP",
+    "python": "3.12.3",
+    "runtime_image_id": "sha256:22e5ea95954ede922b9666b74e0db1c7fdc34667abc2254ab37002ed4d90996b",
+    "runtime_image_ref": "3dprinting993-cae-integrated-f33:x86-verify"
+  },
+  "status": "f0_real_calculix_six_case_screen_complete_no_print_or_vehicle_release",
+  "twin_id": "TWIN-993-DOOR-OPENER-LEVER-ALSI10MG-F0",
+  "vehicle_installation_authorized": false
+}
