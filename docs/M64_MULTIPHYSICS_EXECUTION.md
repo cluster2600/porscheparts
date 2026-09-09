@@ -123,6 +123,43 @@ L'ajout d'un middleware ou d'un modèle IA ne ferme aucun de ces critères.
 Les schémas Mermaid ci-dessous décrivent la chaîne cible ; ces nouvelles pistes
 ne sont pas présentées comme des modules déjà déployés.
 
+### Précision du 9 septembre : calcul, IA et banc séparés
+
+La nouvelle photo confirme les mêmes cinq briques ; elle n'impose pas une
+installation supplémentaire. Sources officielles revérifiées :
+[OpenFOAM](https://cfd.direct/openfoam/features/),
+[Elmer / CSC](https://research.csc.fi/eosc-services/elmer-3/),
+[PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/overview.html),
+[Ditto](https://eclipse.dev/ditto/intro-overview.html) et
+[Mosquitto](https://mosquitto.org/).
+
+Pour ce projet, le transfert OpenFOAM vers les éléments finis devra contrôler
+repères, unités, régions et instants : températures du solide et pressions
+appliquées, avec conservation des charges lors du changement de maillage.
+Elmer reste un contre-calcul candidat, pas un couplage déjà opérationnel.
+PhysicsNeMo pourra accélérer l'exploration après évaluation sur des cas
+indépendants ; ses prédictions resteront distinctes des résultats de référence.
+
+Ditto et Mosquitto ne sont pas sur le chemin critique de la correction CAO.
+La future acquisition devra conserver provenance, étalonnage, unités,
+horodatage et qualité des mesures ; un message rejoué ou simulé ne sera jamais
+étiqueté comme mesure de banc. Aucune connexion ni location n'est créée pour
+ces services dans ce lot. Le [dernier essai de maillage refusé](M64_SURFACE_RELOCATION_20260909.md)
+reste le point de travail immédiat, sans changement du contour.
+
+```mermaid
+flowchart LR
+    A["CAO et maillages contrôlés"] --> B["OpenFOAM : écoulement et CHT"]
+    B -->|"Charges transférées et contrôlées"| C["Éléments finis : résistance"]
+    B --> D["Résultats de référence admissibles"]
+    C --> D
+    D --> E["PhysicsNeMo : modèle à entraîner et évaluer"]
+    F["Futur banc et acquisition qualifiée"] --> G["Mosquitto : messages MQTT"]
+    G --> H["Ditto : état de l'équipement"]
+    H --> I["Comparaison mesures / calculs"]
+    D --> I
+```
+
 Avancement de cette reprise : voir `M64_INTERFACE_SOURCE_REGISTER.md`,
 `M64_LEAP71_STACK.md`, `M64_CHT_RUNTIME_SMOKE.md` et
 `M64_VAST_EXECUTION_20260906.md`. Les preuves de l'ancien projet 917 restent

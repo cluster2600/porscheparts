@@ -1,11 +1,13 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : le contre-essai MeshAdapt sur la face 37 améliore
-le minimum de borne SICN de `0,00003157` à `0,00322689`, mais augmente de
-17 à 22 les triangles sous le repère `0,1`. Les gardes de conservation et
-la contrelecture passent, sans modification de la CAO ou des éléments
-hors cible. Ce compromis reste insuffisant pour admettre un calcul physique.
-Voir la [comparaison et le graphique](M64_SURFACE_METHOD_COMPARISON_20260909.md).
+**Dernier résultat gaz : une passe de déplacement réellement isolée sur la
+face 37 réduit les obstructions de 22 à 16, mais dégrade le minimum de borne
+et le plus petit angle. Quatorze triangles échouent au contrôle local des
+normales avant/après. Le candidat est refusé ; CAO et raccordements hors
+cible restent inchangés. Une sélection monotone pure écarte les déplacements
+hors critère, mais retrouve les 22 obstructions et les extrema initiaux ;
+elle n'est pas appliquée. Voir l'[essai natif et la contrelecture](M64_SURFACE_RELOCATION_20260909.md)
+et la [comparaison précédente](M64_SURFACE_METHOD_COMPARISON_20260909.md).
 Le cœur diagnostique
 de référence reste inchangé, avec 3 281 tétraèdres sous `minSICN = 0,1`.
 Il n'y a toujours pas d'admission à OpenFOAM. Les essais et refus restent
@@ -1494,11 +1496,13 @@ Priorités : établir la décision d'admission à partir des preuves distinctes
 de représentation, de frontières et du registre des 124 rôles ; conclure la
 couverture et le bilan de volumes avant admission du domaine gazeux.
 La localisation des 17 obstructions Delaunay est terminée ; elle a conduit
-au contre-essai MeshAdapt, puis à la localisation de ses 22 cas. Vingt et un
-ont désormais au moins un sommet intérieur 2D. Préparer une isolation réelle
-avant tout essai de déplacement : le filtre `dimTags` de `optimize` n'isole
-pas la face dans Gmsh 4.15.2. Ne pas promouvoir ces pilotes dans le cœur
-volumique sans contrôle des raccordements et de la qualité.
+au contre-essai MeshAdapt, puis à la localisation de ses 22 cas. L'isolation
+réelle par retrait temporaire des éléments hors cible a permis une passe
+Relocate2D ; elle est refusée pour dégradation des minima et écart des normales.
+La sélection monotone des propositions ne procure aucun gain ciblé et n'est
+pas appliquée. Évaluer maintenant les connectivités et le découpage 1D avec
+les voisins concernés, sans retoucher les courbes CAO. Ne pas promouvoir ces
+pilotes dans le cœur volumique sans contrôle des raccordements et de la qualité.
 Pour le solide, les résultats 147 puis 192 et Relocate3D montrent une baisse
 du nombre insuffisant à 283, mais le minimum dégradé n'est pas corrigé.
 Traiter le mécanisme volumique
@@ -1553,6 +1557,8 @@ flowchart LR
     AN --> AO[Contrelecture bornée réussie<br/>17 obstructions restantes, aucune admission CFD]
     AO --> AP[MeshAdapt : pire borne améliorée<br/>22 obstructions, raccordements exacts]
     AP --> AQ[Localisation : 21 cas avec sommets libres<br/>Isolation réelle du prochain essai à préparer]
+    AQ --> AR[Relocate2D isolé : 16 obstructions<br/>Minima dégradés et 14 normales hors critère : refus]
+    AR --> AS[Sélection monotone pure : 990 mouvements admissibles<br/>Toujours 22 obstructions, aucun export]
     E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
     G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
     H --> I[Maillage puis calculs physiques]
