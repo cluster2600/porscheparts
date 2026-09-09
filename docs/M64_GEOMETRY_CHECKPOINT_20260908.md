@@ -1,9 +1,14 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier essai gaz : le champ de taille locale s'arrête avec le code 152,
+**Dernier essai gaz : les champs de taille natifs atteignent la génération 2D,
+mais la face 37 déclenche des reprises répétées. Arrêt code 137 après
+250,146 s, sans candidat ; entrées inchangées et nettoyage vérifié.
+Aucun gain ni admission CFD. Voir l'[essai natif](M64_NATIVE_SIZE_TRIAL_20260909.md).**
+
+Essai précédent : le champ de taille locale s'arrête avec le code 152,
 compatible avec la limite CPU, sans maillage candidat ni rapport final.
 Réinjection exacte et nettoyage vérifiés ; aucun gain ni admission CFD.
-Voir l'[essai local incomplet](M64_LOCAL_SIZE_TRIAL_20260909.md).**
+Voir l'[essai local incomplet](M64_LOCAL_SIZE_TRIAL_20260909.md).
 
 Essai précédent : la redistribution de l'arête 82 et le remaillage
 conjoint des faces 30/37 sont exécutés sur Kali. Le défaut du coin 93

@@ -1,5 +1,8 @@
 # M64 — essai de taille locale incomplet
 
+Essai suivant : [champs natifs et journal détaillé](M64_NATIVE_SIZE_TRIAL_20260909.md).
+Le présent document conserve le résultat historique du callback Python.
+
 **Le calcul natif s'arrête sans nouveau maillage candidat ni rapport final.
 Aucun gain de qualité n'est établi et aucune géométrie n'est promue.**
 Le contour Porsche et le maître restent inchangés.
