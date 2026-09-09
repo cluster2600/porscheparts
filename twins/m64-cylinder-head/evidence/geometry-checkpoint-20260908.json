@@ -1,4 +1,400 @@
 {
+  "gas_partition_composed_coverage": {
+    "status": "composed_numerical_coverage_verified_under_declared_native_criterion",
+    "report_sha256": "5cb8a63ce7ba4b20e8f1cc64131dc3247b42f597ffb17b23e388b3f89a9f8df9",
+    "source_sha256": "5f7e04b33cc78f12c8aeaf319ad35497045f37193430396623b6973ad8aa15ba",
+    "tests_sha256": "bb00cad7aa6223460656e7b057a9b26ea6542d69a4fd64a9da0bbb62f7c27d4e",
+    "source_domain_sha256": "fab1338a3e3cf36469977716a9cb54b3118382f592c7c41d7c789bdb5fb3aeba",
+    "partition_sha256": "c9eceb771405840a41acdbf48f7052e0d8347e453103465755843d8e3cb3d3cc",
+    "seconds": 0.033569041872397065,
+    "focused_tests_passed": 12,
+    "independent_review_completed": true,
+    "solids": 17,
+    "source_faces": 86,
+    "exterior_faces": 124,
+    "oriented_face_occurrences": 188,
+    "internal_shared_faces_cancelled": 32,
+    "support_groups": 52,
+    "native_bidirectional_empty_valid_CUTs": 102,
+    "historical_warned_CUTs_preserved": 2,
+    "warned_group_covered_by_defining_identity_capture": true,
+    "pairwise_Common_checks": 136,
+    "intersection_solids_observed": 0,
+    "native_alert_files_rehashed": 312,
+    "all_input_pins_unchanged": true,
+    "effective_native_fuzzy_scan_units": 1e-7,
+    "nonadaptive_relative_volume_difference": 1.597171572775835e-8,
+    "nonadaptive_historical_refusal_preserved": true,
+    "adaptive_relative_volume_differences": [
+      1.2878087485290735e-10,
+      5.35549382618683e-12,
+      1.8338663920758336e-12
+    ],
+    "GK_relative_volume_difference": 9.161782443811717e-12,
+    "limits": {
+      "global_Hausdorff_bound": null,
+      "rigorous_volume_error_bound": null,
+      "exact_external_real_set_equality_claimed": false,
+      "raw_BinTools_face_streams_retained": false,
+      "mesh_or_solid_import_equivalence_covered": false,
+      "global_self_intersection_proven": false,
+      "scale_certified": false,
+      "M64_interfaces_validated": false,
+      "new_native_calls": 0,
+      "geometry_written": false,
+      "automatic_solver_admission": false,
+      "CFD_qualified": false,
+      "CHT_qualified": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "gas_hybrid_pair_correction": {
+    "status": "native_252_pair_unions_verified_global_mesh_quality_rejected_NOT_CFD",
+    "baseline_report_sha256": "c1cd99320a1b1933ac497edbfbdfce5d1b9c519ceafcbcc45dae45431edfe25d",
+    "input_manifest_sha256": "2393e4fdd327632b3e02ca9d64fc1ed5111903646dc31a79cc315d13c2448db3",
+    "selection": {
+      "source_sha256": "9fb75d4b25f83e8057ea5eaa16316d43f82e992fd84c367df4cf1bced3432a89",
+      "report_sha256": "7225c162a0cf3a6d59d501ff4f22dea6d306a06735f653e6c9a5cda7fe4b9357",
+      "preflight_sha256": "3b150bfe07091cd6cddd4a5666db30d100ebf06b2cc5bbf0947f6624ef227474",
+      "face_set_sha256": "24736dae26f7b0eb058343af593d310e8d0c7f296fb01b4baec6724b071043cc",
+      "candidate_faces_examined": 9143,
+      "eligible_pairs": 316,
+      "selected_disjoint_pairs": 252,
+      "jointly_rechecked_faces": 1502,
+      "maximum_matching_claimed": false
+    },
+    "native": {
+      "report_sha256": "feaf402cf025e1d5d832124f9c71dcf6918f2398d5a35cc717ae625bde9a0825",
+      "process_report_sha256": "74a097f1411ef385d271e1e67f5dada01880ca97e2cfc2355c71743eb60994ea",
+      "worker_sha256": "d27567d15c193bc354ab383285439ede1dc58c199211a61e18e098f07c25e190",
+      "runner_sha256": "ac9d6a3e90af4638aab9a37f3a80731d6e9781d18a538a3746d496f30df5c528",
+      "cpp_sha256": "0cdb836ed786b0db31cedbd1655344cffe2e7e6c126b654a287bf92be99347ab",
+      "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+      "OpenFOAM_build": "14-7b05503f98a8",
+      "architecture": "linux/amd64",
+      "host_role": "existing_Kali",
+      "cpu_limit": 4,
+      "memory_limit_gib": 4,
+      "compile": {
+        "exit_code": 0,
+        "seconds": 1.4178407597355545,
+        "log_sha256": "9be9251dbf65f0fb8b32e037080667f2ab7d642ef6ac4963f8b784ef2d4ea886"
+      },
+      "agglomeration": {
+        "exit_code": 0,
+        "seconds": 2.3193843537010252,
+        "log_sha256": "73e6b3b80905bbdaeca883dd524d0ffffa170079edf5f82ddd51da9661a48ae2"
+      },
+      "checkMesh": {
+        "exit_code": 0,
+        "seconds": 11.094762501306832,
+        "log_sha256": "320e4dfc1d097ab21fe1a7642ef31317ea572d9bc60fe79a1ea6be944dfbe863"
+      },
+      "process_seconds_with_cleanup": 31.48213098803535,
+      "inputs_unchanged": true,
+      "container_absent": true,
+      "new_Vast_spend_usd": 0,
+      "writePrecision_before": 12,
+      "writePrecision_after": 17,
+      "scale_applications": 0
+    },
+    "geometry_audit": {
+      "report_sha256": "c9ce6b2f622042042f7066d3ab6064203171bbc2e6af5a7d487050f66ee4727d",
+      "source_sha256": "a6fb198136a19be42661c9543d9838d2786db0603b80f070c1a36bec37945a53",
+      "seconds": 15.551738135982305,
+      "paired_cells": 252,
+      "source_cells": 785883,
+      "candidate_cells": 785631,
+      "unchanged_singleton_cells": 785379,
+      "source_points": 223155,
+      "retained_faces": 1688641,
+      "removed_internal_faces": 252,
+      "boundary_faces": 99470,
+      "point_coordinates_bit_exact_binary64": true,
+      "decimal_token_identity_claimed": false,
+      "rational_coordinate_basis": "exact_rationals_of_loaded_binary64_values",
+      "maps_independently_reproduced": true,
+      "patch_groups_compared_as_native_wall_default_union_only": true,
+      "patch_group_semantics_source": "https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/polyMesh/polyPatches/derived/wall/wallPolyPatch.C#L54-L69",
+      "all_retained_oriented_faces_and_patch_membership_preserved": true,
+      "each_pair_has_exact_six_face_union": true,
+      "parent_sets_disjoint_and_exhaustive": true,
+      "exact_rational_pair_volumes_and_total_conservation_by_partition": true,
+      "global_source_self_intersection_absence_proven": false,
+      "multiple_faces_between_cells_allowed_if_exactly_inherited": true
+    },
+    "mapped_comparison": {
+      "report_sha256": "db85a5861bfd1dad2125344f20b6518cc82f977f3228b69e50ae2cfc63a3ab89",
+      "source_sha256": "521dbe34c327e44212f3659c246ee812ee1f7e2d2141060860076a5539b41c8d",
+      "seconds": 1.3609317091759294,
+      "sets": {
+        "highAspectRatioCells": {
+          "baseline_count": 10,
+          "candidate_count": 10,
+          "native_count_delta": 0,
+          "baseline_flagged_parent_entities_replaced_count": 0,
+          "flagged_parent_entities_replaced_by_unflagged_union_count": 0,
+          "flagged_parent_entities_of_flagged_union_count": 0,
+          "unions_native_flagged_count": 0,
+          "union_classification_counts": {
+            "unflagged_parents_and_union": 252
+          },
+          "mapped_baseline_flagged_entity_count": 10,
+          "newly_flagged_entities_without_flagged_parent_count": 0,
+          "interpretation": "A union is a new cell with two parents; parent retirement is not in-place cell repair.",
+          "unchanged_singleton_source_ids_still_flagged_count": 10,
+          "unchanged_singleton_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_unchanged_singleton_source_ids_count": 0,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "cellSet"
+        },
+        "lowVolRatioFaces": {
+          "baseline_count": 137,
+          "candidate_count": 137,
+          "native_count_delta": 0,
+          "retained_source_ids_still_flagged_count": 137,
+          "retained_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_retained_source_ids_count": 0,
+          "baseline_flagged_source_ids_removed_with_entity_count": 0,
+          "candidate_ids_in_source_space_count": 137,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "faceSet"
+        },
+        "lowWeightFaces": {
+          "baseline_count": 1302,
+          "candidate_count": 1235,
+          "native_count_delta": -67,
+          "retained_source_ids_still_flagged_count": 1235,
+          "retained_source_ids_no_longer_flagged_count": 33,
+          "newly_flagged_retained_source_ids_count": 0,
+          "baseline_flagged_source_ids_removed_with_entity_count": 34,
+          "candidate_ids_in_source_space_count": 1235,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "faceSet"
+        },
+        "nonOrthoFaces": {
+          "baseline_count": 3479,
+          "candidate_count": 3450,
+          "native_count_delta": -29,
+          "retained_source_ids_still_flagged_count": 3450,
+          "retained_source_ids_no_longer_flagged_count": 13,
+          "newly_flagged_retained_source_ids_count": 0,
+          "baseline_flagged_source_ids_removed_with_entity_count": 16,
+          "candidate_ids_in_source_space_count": 3450,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "faceSet"
+        },
+        "oneInternalFaceCells": {
+          "baseline_count": 2,
+          "candidate_count": 2,
+          "native_count_delta": 0,
+          "baseline_flagged_parent_entities_replaced_count": 0,
+          "flagged_parent_entities_replaced_by_unflagged_union_count": 0,
+          "flagged_parent_entities_of_flagged_union_count": 0,
+          "unions_native_flagged_count": 0,
+          "union_classification_counts": {
+            "unflagged_parents_and_union": 252
+          },
+          "mapped_baseline_flagged_entity_count": 2,
+          "newly_flagged_entities_without_flagged_parent_count": 0,
+          "interpretation": "A union is a new cell with two parents; parent retirement is not in-place cell repair.",
+          "unchanged_singleton_source_ids_still_flagged_count": 2,
+          "unchanged_singleton_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_unchanged_singleton_source_ids_count": 0,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "cellSet"
+        },
+        "shortEdges": {
+          "baseline_count": 5,
+          "candidate_count": 5,
+          "native_count_delta": 0,
+          "retained_source_ids_still_flagged_count": 5,
+          "retained_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_retained_source_ids_count": 0,
+          "baseline_flagged_source_ids_removed_with_entity_count": 0,
+          "candidate_ids_in_source_space_count": 5,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "pointSet"
+        },
+        "skewFaces": {
+          "baseline_count": 18,
+          "candidate_count": 18,
+          "native_count_delta": 0,
+          "retained_source_ids_still_flagged_count": 18,
+          "retained_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_retained_source_ids_count": 0,
+          "baseline_flagged_source_ids_removed_with_entity_count": 0,
+          "candidate_ids_in_source_space_count": 18,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "faceSet"
+        },
+        "twoInternalFacesCells": {
+          "baseline_count": 465,
+          "candidate_count": 262,
+          "native_count_delta": -203,
+          "baseline_flagged_parent_entities_replaced_count": 203,
+          "flagged_parent_entities_replaced_by_unflagged_union_count": 203,
+          "flagged_parent_entities_of_flagged_union_count": 0,
+          "unions_native_flagged_count": 0,
+          "union_classification_counts": {
+            "flagged_parent_entities_replaced_by_unflagged_union": 203,
+            "unflagged_parents_and_union": 49
+          },
+          "mapped_baseline_flagged_entity_count": 465,
+          "newly_flagged_entities_without_flagged_parent_count": 0,
+          "interpretation": "A union is a new cell with two parents; parent retirement is not in-place cell repair.",
+          "unchanged_singleton_source_ids_still_flagged_count": 262,
+          "unchanged_singleton_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_unchanged_singleton_source_ids_count": 0,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "cellSet"
+        },
+        "underdeterminedCells": {
+          "baseline_count": 2280,
+          "candidate_count": 2021,
+          "native_count_delta": -259,
+          "baseline_flagged_parent_entities_replaced_count": 259,
+          "flagged_parent_entities_replaced_by_unflagged_union_count": 259,
+          "flagged_parent_entities_of_flagged_union_count": 0,
+          "unions_native_flagged_count": 0,
+          "union_classification_counts": {
+            "flagged_parent_entities_replaced_by_unflagged_union": 252
+          },
+          "mapped_baseline_flagged_entity_count": 2273,
+          "newly_flagged_entities_without_flagged_parent_count": 0,
+          "interpretation": "A union is a new cell with two parents; parent retirement is not in-place cell repair.",
+          "unchanged_singleton_source_ids_still_flagged_count": 2021,
+          "unchanged_singleton_source_ids_no_longer_flagged_count": 0,
+          "newly_flagged_unchanged_singleton_source_ids_count": 0,
+          "status": "compared_actual_native_sets_through_audited_maps",
+          "set_class": "cellSet"
+        }
+      },
+      "failed_checks_before": 5,
+      "failed_checks_after": 5
+    },
+    "polyMesh_sha256": {
+      "points": "9836a5bf84f0d6f75df6f20ef733858fb452177e06f99f184bc54999f9aea18c",
+      "faces": "6b87fc815b1d37f30c8b646243df5b1f5cfbba010d3fc5b18f192d0c995e5486",
+      "owner": "d9d08a83f55d9757df0241ef3882ae4fa6935e183d81160626ae1f5ee1447592",
+      "neighbour": "cbefa9392add668420bb43590f96123df8cf3fc8fb02c57e971cc2482f5d479f",
+      "boundary": "30cf12a5db326b4475069a64171bf1753663f53efd58ee03a731407f83fb418e",
+      "cellZones": "adb3c6bead9d7b6116871af87a4afbbf9c313e34dd5b00ebd640e31e2cc68f02"
+    },
+    "metrics": {
+      "aspect_max": {
+        "value": 54610.28272946896,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "skew_max": {
+        "value": 36.679070001961314,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "nonorth_max": {
+        "value": 89.95282278428537,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "nonorth_average": {
+        "value": 21.556012960688417,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "face_area_min": {
+        "value": 1.6579672832246672e-15,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "face_area_max": {
+        "value": 0.000024722759217779002,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "volume_min": {
+        "value": 5.399336315916147e-19,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "volume_max": {
+        "value": 1.6016811619127867e-8,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "volume_total": {
+        "value": 0.0009949349046178496,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "determinant_min": {
+        "value": 0,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "determinant_average": {
+        "value": 1.1822515925841746,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "weight_min": {
+        "value": 0.000009568122622739644,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "weight_average": {
+        "value": 0.43474355750656757,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "volume_ratio_min": {
+        "value": 0.000009568214168137833,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "volume_ratio_average": {
+        "value": 0.7875180937002756,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "edge_min": {
+        "value": 2.4139292929076296e-8,
+        "match_count": 1,
+        "status": "observed"
+      },
+      "edge_max": {
+        "value": 0.014828707323419388,
+        "match_count": 1,
+        "status": "observed"
+      }
+    },
+    "last_apex": {
+      "normal_report_sha256": "50215fc2bee4818d6e59c98409dc356a363e3109cfc7f390933336c04547e831",
+      "three_dimensional_report_sha256": "14c915c27166b85d802d0e4ad8877a74cf4552edb4b66c0c258a3d7bd451202b",
+      "normal_samples": 65,
+      "three_dimensional_starts": 6,
+      "three_dimensional_evaluations": 655,
+      "candidate_written": false,
+      "global_three_dimensional_infeasibility_proven": false
+    },
+    "tests": {
+      "pair_selection": 9,
+      "transformation_audit": 40,
+      "native_worker_and_runner": 5,
+      "normal_ray": 7,
+      "bounded_three_dimensional_search": 7,
+      "mapped_set_comparison": 10,
+      "all_focused_passed": true,
+      "make_check_exit_code": 0,
+      "optional_native_tests_skipped": true
+    },
+    "master_CAD_changed": false,
+    "mesh_quality_accepted": false,
+    "CFD_qualified": false,
+    "thermal_or_strength_qualified": false,
+    "LPBF_qualified": false,
+    "manufacturing_authorized": false
+  },
   "gas_hybrid_apex_correction": {
     "status": "partial_apex_correction_executed_189_retained_global_mesh_quality_rejected_NOT_CFD",
     "source_saved_case_manifest_sha256": "56b6cf71a9efb3063fba53eb9394f656b77d5b16dcfd278859c72a142387fb9a",

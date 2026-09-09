@@ -1,10 +1,17 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier résultat gaz : 189 transitions corrigées, 25 cellules à faible
+**Dernier résultat gaz : 252 paires de tétraèdres fusionnées nativement,
+259 cellules à faible déterminant, 67 défauts de poids et 29 faces trop
+non orthogonales en moins. Aucun nouveau défaut dans les ensembles comparés
+après correspondance des identifiants ; tous les points et la frontière sont
+conservés exactement. Cinq familles restent refusées, sans admission CFD.
+Voir le [bilan contrôlé des fusions](M64_HYBRID_PAIR_CORRECTION_20260909.md).**
+
+Essai précédent : 189 transitions corrigées, 25 cellules à faible
 déterminant et 66 faces trop non orthogonales en moins, sans nouveaux IDs
 défectueux dans les ensembles comparés. Correction de points internes uniquement,
 contour et CAO inchangés ; cinq familles restent refusées. Voir la
-[correction effectivement contrôlée](M64_APEX_TRANSITIONS_20260909.md).**
+[correction effectivement contrôlée](M64_APEX_TRANSITIONS_20260909.md).
 
 Essai précédent : les défauts OpenFOAM sont exportés et attribués aux cellules
 sources ; voir la [localisation réelle](M64_DEFECT_LOCALISATION_20260909.md).
@@ -62,9 +69,13 @@ resérialisation sont maintenant attribuées sur Linux comme sur macOS, sans
 preuve d'équivalence globale des solides ni levée du refus historique.
 Le maître `21c9c40b…` reste inchangé, sans promotion du candidat `450ba081…`.
 Les contacts nominaux des guides sont mesurés, sans qualification à chaud.
-La partition du gaz reste refusée : validité et non-recouvrement sont contrôlés,
-mais la couverture des frontières et le bilan de volumes ne sont pas encore
-acceptés globalement. Un nouveau contrôle du 8 septembre attribue les huit
+La partition du gaz a été historiquement refusée sur la couverture des
+frontières et le bilan de volumes. Le nouveau
+[contrôle composé](M64_HYBRID_PAIR_CORRECTION_20260909.md#couverture-géométrique-composée--portée-distincte)
+vérifie désormais la couverture numérique sous critère natif déclaré,
+sans borne Hausdorff/volume garantie ni transfert d'admission au maillage
+ou à la physique. Les anciens refus restent conservés.
+Un contrôle du 8 septembre attribue les huit
 faces des deux groupes mixtes aux rôles source. Leur rattachement aux preuves
 antérieures permet un registre des **124 faces externes**, sans revalidation
 physique des étiquettes. Un premier maillage du **solide V5**, distinct du gaz,
