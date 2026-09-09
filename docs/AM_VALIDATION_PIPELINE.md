@@ -210,6 +210,31 @@ complet et le rendu OVRTX de cette révision manquent. Les étapes 05 à 07, 09 
 11 restent bloquées. Voir
 [le dossier technique du crochet](993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md).
 
+## Quatrième passage : levier intérieur de porte AlSi10Mg F0
+
+Le levier est retenu comme petit candidat LPBF car le concept consolide une
+plaque ajourée, un pont et une chape. PorscheFanatics fournit les références PET
+et FVD seulement une enveloppe `108 × 45 × 27 mm` et une masse de paire
+`180 g` : toutes les interfaces restent donc hypothétiques.
+
+Le STEP normalisé reproductible et son STL étanche sont liés par empreinte.
+L'orientation candidate `roll_y_45` est sectionnée sur `2 664` couches de
+`30 µm`; le proxy de supports vaut `2 714,4975 mm³`, l'épaisseur p01 `2 mm` et
+aucun vide piégé n'est détecté au voxel `0,75 mm`.
+
+CalculiX 2.21 exécute six cas froids/chauds sur trois maillages C3D10. Au
+maillage fin de `31 666` nœuds, le p95 vaut `45,227 MPa` à froid et
+`46,546 MPa` dans le champ synthétique `20–80 °C`. La variation p95 entre les
+deux derniers maillages est `1,143 %` et `0,276 %`. Le proxy Goodman ne produit
+aucune durée de vie et ne transfère pas les coupons EOS à la poignée.
+
+Le préflight CAD-to-SimReady arrête l'assignation Material/Physics faute
+d'instance active. Séparément, l'asset et la scène passent la validation USD
+minimale ; `ovstage`/`ovphysx` exécutent `240` pas et stabilisent le témoin de
+`35` à `29 mm`. L'étape 08 reste `completed_screening`, tandis que les étapes
+05 à 07 et 09 à 11 restent bloquées. Voir
+[le dossier technique du levier](993_DOOR_OPENER_LEVER_ALSI10MG_F0.md).
+
 ## Reproduction
 
 Le programme générique peut être appliqué à toute pièce après génération d'un

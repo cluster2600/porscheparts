@@ -146,6 +146,10 @@ Le [crochet de ressort de phare AlSi10Mg F0](docs/993_HEADLAMP_SPRING_HOOK_ALSI1
 est le premier petit composant de réparation passé par CAO, tranchage LPBF,
 six cas CalculiX, conversion/validation OpenUSD et contact rigide
 `ovstage`/`ovphysx`; il reste interdit d'impression faute de métrologie du phare.
+Le [levier intérieur de porte AlSi10Mg F0](docs/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md)
+est le passage simple suivant : `2 664` couches, six cas CalculiX et témoin
+OpenUSD/ovphysx sont exécutés, mais aucune géométrie d'interface, serrure,
+validation d'évacuation, Content Agent ou libération de fabrication n'existe.
 
 ![État sourcé du jumeau numérique 993](diagrams/digital-twin-993-etat.svg)
 
