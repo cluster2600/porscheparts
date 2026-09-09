@@ -19,6 +19,8 @@ complète, en éléments finis, sert à répondre à des questions **relatives**
 entre changer de matériau et fermer la caisse, lequel rapporte le plus ? Que
 vaut un élément de superstructure au kilo ? Où passe l'effort en torsion ?
 
+![Le modele coque, plancher nu et cellule complete](media/diagrams/964-modele-coque.svg)
+
 Résultats qui tiennent — voir [`twins/964-chassis/fea/`](twins/964-chassis/fea/) :
 
 - le **longeron** porte la torsion, pas le plancher, ce qui converge avec la
@@ -29,6 +31,8 @@ Résultats qui tiennent — voir [`twins/964-chassis/fea/`](twins/964-chassis/fe
 - du plancher nu à la cellule fermée, **K × 3,77 pour une masse × 2,3** ;
 - pavillon et cadre de baie ensemble valent **1,63 fois** la somme de leurs
   apports séparés : le pavillon ne travaille qu'une fois l'anneau fermé.
+
+![Contrainte de von Mises sur le plancher nu](media/diagrams/964-chemin-effort.svg)
 
 ![Part du cisaillement dans la raideur, par architecture](media/diagrams/964-mecanisme-architecture.svg)
 
@@ -96,9 +100,11 @@ C'est la partie la plus utile de son historique, et elle est publique.
 ![Raideur par architecture en coques lineaires et quadratiques](media/diagrams/964-echelle-architectures.svg)
 
 Ci-dessus, la correction la plus lourde : l'échelle des architectures avait été
-publiée en éléments linéaires. Les deux figures se régénèrent avec
-`twins/964-chassis/fea/figures.py`, depuis des valeurs figées dans
-`figures-data.json` qui portent chacune l'origine de son calcul.
+publiée en éléments linéaires. Les quatre figures de cette page se régénèrent
+avec `twins/964-chassis/fea/figures.py` — les deux graphiques depuis des valeurs
+figées dans `figures-data.json` qui portent chacune l'origine de son calcul, les
+deux vues du modèle depuis un instantané de maillage et de résultat conservé dans
+`figures-mesh/`. Aucune n'est un rendu : ce sont les données du calcul.
 
 | affirmation retirée | ce qui l'a défaite |
 |---|---|
