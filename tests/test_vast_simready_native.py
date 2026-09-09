@@ -18,7 +18,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 REMOTE = ROOT / "twins/reference-917-engine/remote-simready"
-CONTROLLER = ROOT / "outils/deploy/vast/simready"
+CONTROLLER = ROOT / "deploy/vast/simready"
 DIGEST = "sha256:" + "a" * 64
 IMAGE = f"ghcr.io/cluster2600/3dprinting993-simready-local-ai@{DIGEST}"
 SUMMARY_SPEC = importlib.util.spec_from_file_location(
@@ -217,7 +217,7 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertIn('"${OPENBAO_VASTAI_BIN}" heavy-offers | tee', runbook)
         self.assertIn('offer.get("gpu") == "RTX PRO 6000 WS"', runbook)
         self.assertIn(".artifact_archive_verified == true and .retrieval_complete == true", runbook)
-        self.assertIn('cmp -s outils/deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"', runbook)
+        self.assertIn('cmp -s deploy/openbao/openbao-vastai "${OPENBAO_VASTAI_BIN}"', runbook)
         self.assertIn("asset-context.json", runbook)
         self.assertIn("repair-loop.json", runbook)
         self.assertIn("omniverse-cad-to-simready-report.json", runbook)

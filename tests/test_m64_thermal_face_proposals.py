@@ -1,3 +1,6 @@
+from _deps import require_modules
+require_modules("numpy")
+
 import importlib.util
 from pathlib import Path
 import unittest

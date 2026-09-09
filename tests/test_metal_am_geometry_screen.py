@@ -1,3 +1,6 @@
+from _deps import require_modules
+require_modules("matplotlib")
+
 import importlib.util
 import unittest
 from pathlib import Path

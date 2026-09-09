@@ -108,9 +108,9 @@ SOURCE_FILES=(
     catalog/sources/src-fia-917-homologation-250.json
     catalog/sources/src-stuttcars-917-technical-details.json
     archive/917/docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md
-    outils/deploy/openbao/openbao-vastai
-    outils/deploy/openbao/openbao-ghcr
-    outils/deploy/vast/simready/_materialize_git_snapshot.py
+    deploy/openbao/openbao-vastai
+    deploy/openbao/openbao-ghcr
+    deploy/vast/simready/_materialize_git_snapshot.py
     twins/reference-917-engine/component-factory-f42b-gpu.json
     twins/reference-917-engine/evidence/f42a-cpu-usd/repeatability-summary.json
     twins/reference-917-engine/evidence/f42b-gpu-runtime-qualification.json
@@ -132,7 +132,7 @@ SOURCE_FILES=(
     twins/reference-917-engine/remote-simready/f42b/phase-physics.sh
     twins/reference-917-engine/remote-simready/f42b/phase-render-preview.sh
 )
-SNAPSHOT_HELPER_RELATIVE="outils/deploy/vast/simready/_materialize_git_snapshot.py"
+SNAPSHOT_HELPER_RELATIVE="deploy/vast/simready/_materialize_git_snapshot.py"
 SNAPSHOT_HELPER_SOURCE="${REPOSITORY_ROOT}/${SNAPSHOT_HELPER_RELATIVE}"
 STAGED_SNAPSHOT_HELPER="${TEMPORARY}/materialize-git-snapshot.py"
 STAGED_PROJECT_ROOT="${TEMPORARY}/project"
@@ -256,7 +256,7 @@ def git(*arguments: str) -> str:
     return result.stdout.strip()
 
 
-relative = "outils/deploy/openbao/openbao-ghcr"
+relative = "deploy/openbao/openbao-ghcr"
 committed_blob = git("rev-parse", f"{revision}:{relative}")
 working_blob = hashlib.sha1(
     f"blob {len(tracked_data)}\0".encode("ascii") + tracked_data,

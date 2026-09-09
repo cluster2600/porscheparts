@@ -15,7 +15,7 @@ MANIFEST = ROOT / "twins/reference-917-engine/variant-configurations-f10.json"
 PREPARE = SOURCE / "prepare_variant_configs_f10.py"
 PROXY = SOURCE / "build_material_proxy_f10.py"
 REMOTE = ROOT / "twins/reference-917-engine/remote-simready"
-TRANSFER = ROOT / "outils/deploy/vast/simready/transfer-job.sh"
+TRANSFER = ROOT / "deploy/vast/simready/transfer-job.sh"
 
 
 def load_module(name: str, path: Path):

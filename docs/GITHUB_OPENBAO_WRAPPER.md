@@ -1,6 +1,6 @@
 # Wrapper GitHub borné par OpenBao
 
-`outils/deploy/openbao/openbao-github` pousse uniquement la branche `codex/*` courante
+`deploy/openbao/openbao-github` pousse uniquement la branche `codex/*` courante
 du dépôt `cluster2600/3dprinting993` et déclenche uniquement les deux workflows
 Vast F40/F41 explicitement autorisés. Il réutilise l'AppRole déjà provisionnée
 pour `openbao-ghcr`; aucun jeton n'est ajouté au dépôt ou à la ligne de commande.
@@ -14,7 +14,7 @@ la valeur avant toute erreur et révoque toujours le jeton de session OpenBao.
 
 ```zsh
 cd /Users/maxime/projects/3dprinting993
-install -m 0755 outils/deploy/openbao/openbao-github \
+install -m 0755 deploy/openbao/openbao-github \
   /Users/maxime/.local/bin/openbao-github
 rehash
 openbao-github --check

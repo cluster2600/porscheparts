@@ -33,8 +33,8 @@ administrative OpenBao :
 
 ```zsh
 cd /Users/maxime/projects/3dprinting993
-install -m 0755 outils/deploy/openbao/openbao-vastai /Users/maxime/.local/bin/openbao-vastai
-install -m 0755 outils/deploy/openbao/openbao-ghcr /Users/maxime/.local/bin/openbao-ghcr
+install -m 0755 deploy/openbao/openbao-vastai /Users/maxime/.local/bin/openbao-vastai
+install -m 0755 deploy/openbao/openbao-ghcr /Users/maxime/.local/bin/openbao-ghcr
 rehash
 openbao-vastai --check
 openbao-vastai --auth-check

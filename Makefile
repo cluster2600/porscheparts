@@ -70,14 +70,26 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 917-f43-scan-contour-patch-test:
 	python3 tests/test_917_f43_scan_contour_patch_rebuild.py -v
 
+# Dependances optionnelles. `make check` doit rendre un vert franc sur un Python
+# nu : une suite qui echoue toujours des memes facons ne signale plus rien. Les
+# cibles qui appellent un script a dependance se sautent en le disant, comme les
+# tests le font par tests/_deps.py. Un saut est visible, une erreur permanente ne
+# l'est plus.
+HAS_NUMPY := $(shell python3 -c 'import numpy' 2>/dev/null && echo oui)
+HAS_MATPLOTLIB := $(shell python3 -c 'import matplotlib' 2>/dev/null && echo oui)
+
 check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f47-cfd-cae-image-check 917-f48-cfd-domain-test 917-mesh-diagnostic-f48-check 917-material-lpbf-f49-check 917-omniverse-simready-f49-check 917-f49-solid-repair-check 917-f49-cfd-cht-check 917-thermomechanical-f50-check 917-native-brep-mesh-f50-check 917-additive-print-f50-check 917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
 
 917-valvetrain-material-f45-check:
+ifeq ($(HAS_MATPLOTLIB),oui)
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root . --check
 	python3 tests/test_917_valvetrain_material_screen_f45.py -v
+else
+	@echo "saute 917-valvetrain-material-f45-check : matplotlib absent"
+endif
 
 917-cantera-2v-4v-f46:
 	$(F46_PYTHON) twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py --project-root .
@@ -129,8 +141,12 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 	python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py publish --root . --contract twins/reference-917-engine/thermomechanical-screen-f50.json --work work/917-f50-thermomechanical --evidence twins/reference-917-engine/evidence/f50-thermomechanical
 
 917-thermomechanical-f50-check:
+ifeq ($(HAS_NUMPY),oui)
 	python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py verify --root . --contract twins/reference-917-engine/thermomechanical-screen-f50.json --evidence twins/reference-917-engine/evidence/f50-thermomechanical
 	python3 tests/test_917_f50_thermomechanical_screen.py -v
+else
+	@echo "saute 917-thermomechanical-f50-check : numpy absent"
+endif
 
 917-additive-print-f50-check:
 	python3 tests/test_917_f50_additive_print.py -v
@@ -939,8 +955,8 @@ engine-components:
 917-f46-vast-controller-check:
 	python3 twins/reference-917-engine/source/validate_engine_solver_authority_f46.py --project-root .
 	python3 tests/test_917_engine_solver_authority_f46.py -v
-	python3 outils/deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . check
-	python3 outils/deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller/preparation-report.json
+	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . check
+	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller/preparation-report.json
 	python3 tests/test_917_f46_vast_controller.py -v
 
 917-f47-cfd-cae-image-check:

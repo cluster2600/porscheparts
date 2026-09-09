@@ -16,7 +16,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SUPERVISOR = ROOT / "outils/deploy/openbao/run-917-component-factory-f41-cad"
+SUPERVISOR = ROOT / "deploy/openbao/run-917-component-factory-f41-cad"
 RESULT_TESTS = ROOT / "tests/test_917_component_factory_f41_cad_results.py"
 SOURCE_REVISION = "a" * 40
 EXPECTED_IMAGE = (
