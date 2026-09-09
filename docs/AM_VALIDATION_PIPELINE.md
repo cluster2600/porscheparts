@@ -95,7 +95,38 @@ disponible.
 
 ![Préparation LPBF Omniverse](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/piston-lpbf-build-screen.png)
 
-## Pourquoi la simulation thermique CP1 reste bloquée
+### Gate d'optimisation générative du piston
+
+PicoGK 2.3.0 a réellement généré six variantes F0. Le balayage cherche une
+masse faible et une galerie plus favorable au refroidissement, mais impose une
+marge de plaque ambiante provisoire de `1,50`. Le meilleur allègement brut est
+`1,60 %`; aucune variante ne passe la marge. L'audit aval trouve en outre des
+arêtes non-manifold dans chaque STL PicoGK.
+
+Ce sous-gate relie les étapes 01, 02, 04 et 09 : objectifs et keep-outs sourcés,
+géométrie manifold, carte CP1 chaude et fonction moteur. Il ne crée pas une
+douzième étape et ne change pas le master BREP actuellement validé. Les sorties
+PicoGK restent en quarantaine jusqu'à reconstruction BREP, FEA/CHT/CFD et
+nouveau passage complet LPBF/Omniverse.
+
+### Gate thermomécanique du master piston
+
+Le master BREP sain a maintenant subi six résolutions CalculiX 2.21 : statique
+froide et température–déplacement séquentiel sur trois maillages C3D10. À
+`2,5 mm`, le modèle compte `139 924` nœuds et `81 861` éléments. Les p95 froid
+et chaud valent respectivement `112,17` et `323,46 MPa`; la température maximale
+du cas chaud vaut `187,04 °C`. Les variations fin/précédent restent sous `3 %`.
+
+Le cas impose `5 kW` à la calotte, des puits idéaux de `120 °C` dans la galerie
+et `160 °C` sur la jupe, ainsi que la charge axiale synthétique. Il est donc un
+écran comparatif conservateur, pas une CHT moteur. Son ratio p95 chaud sur la
+référence CP1 ambiante est défavorable (`0,918`) et bloque le F0. Les variantes
+PicoGK ne sont pas simulées tant que leurs maillages ne sont pas manifold.
+
+La preuve est dans
+[`evidence/calculix-f0`](../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
+
+## Pourquoi la simulation thermique du procédé CP1 reste bloquée
 
 La fiche Velo3D documente la route Sapphire `50 µm`, la densité et des
 propriétés mécaniques ambiantes après `400 °C / 4 h`. Elle ne publie pas la
@@ -109,13 +140,45 @@ une carte de solveur complète.
 Par conséquent :
 
 - aucun calcul AlSi10Mg n'est transféré au CP1 ;
-- aucun champ thermique artificiel n'est publié comme prédiction du piston ;
+- le champ thermique F0 de pièce est publié seulement comme enveloppe
+  synthétique explicitement non corrélée ;
 - la thermomécanique pleine construction et le recoater restent
   `blocked_missing_input` ;
 - l'impression métal et l'usage moteur restent interdits.
 
 Références primaires : [Velo3D CP1 / Sapphire 50 et 100 µm](https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf),
 [EOS Aluminium Constellium CP1](https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-constellium-cp1).
+
+## Deuxième passage : embout ovale IN625 F0
+
+Le second objet est un embout rond-vers-ovale double paroi. Seule sa sortie
+commerciale `120 × 85 mm` est publiée ; la longueur, l'entrée, les parois et
+les attaches restent synthétiques. Le STEP forme un BREP monocomposant de
+`48 149,34 mm³`, soit `406,38 g` avec la densité IN625 retenue.
+
+L'orientation `roll_y_25` a été sectionnée sur `3 702` couches de `40 µm` :
+zéro couche interne vide, un nouvel îlot, `784` couches avec surface non
+soutenue, `0,843 mm²` au maximum et `7,194 cm³` de supports conservatifs. Le
+contrôle d'épaisseur trouve `0,636 mm` au centile 1 et les 2 000 sondes sous
+`1,5 mm`; ce résultat est cohérent avec la double paroi nominale très mince et
+reste un avertissement de capabilité.
+
+La scène Omniverse place la pièce sur l'enveloppe nominale EOS M 290
+`250 × 250 × 325 mm`. La scène et l'asset isolé passent OpenUSD minimum,
+NVIDIA Asset Validator, Geometry et Physics ; l'asset passe aussi le profil
+`Prop-Robotics-Neutral 1.0.0`. Les frottements, la restitution, la gravité et
+l'identité inox proposés sans source par les agents ont été supprimés.
+
+![Embout IN625 SimReady](../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
+
+![Préparation LPBF EOS M 290](../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
+
+La CFD OpenFOAM est seulement diagnostique : les trois cas stationnaires sont
+convergés en résidus, mais la perte de pression varie encore de `11,17 %`
+entre les deux maillages les plus fins et les contrôles étendus conservent des
+cellules à faible déterminant. Aucun calcul de bain de fusion, de distorsion,
+de collision recoater, d'assemblage véhicule ou de fatigue thermique ne passe.
+PhysicsNeMo n'a exécuté qu'un smoke CUDA, sans surrogate entraîné.
 
 ## Reproduction
 
