@@ -61,5 +61,21 @@ idéalisés ; ni ces pics ni le p95 ne valent marge de sécurité de la pièce.
 - aucun essai d'ouverture, d'endurance, de vieillissement ou d'évacuation ;
 - aucune revue d'ingénierie automobile signée.
 
+## Gates avant tout prototype
+
+Dans cet ordre, parce que chaque étape conditionne la suivante :
+
+1. Acquérir une paire identifiée et mesurer pivot, butées, interfaces, jeux,
+   portées et trajectoire du mécanisme.
+2. Mesurer l'effort d'ouverture et les cas hors axe, puis définir un spectre
+   cyclique.
+3. Ajouter rayons, surépaisseurs et orientation LPBF à partir du procédé
+   effectivement retenu.
+4. Contrôler dimensionnellement, puis conduire essais statiques, cycliques et
+   ouverture d'urgence sur banc avant tout montage véhicule.
+
+La comparaison avec CNC et tôle reste obligatoire : si les mesures montrent que
+la chape peut être usinée ou assemblée simplement, le LPBF n'est pas retenu.
+
 Les preuves, leurs empreintes et les refus de libération sont regroupés dans
 [`twins/993-door-opener-lever-alsi10mg-f0/evidence/`](../twins/993-door-opener-lever-alsi10mg-f0/evidence/).
