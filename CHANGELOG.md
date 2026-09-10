@@ -4,6 +4,19 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Carte matière-machine-procédé de la bague de commodo, étape 04, 10 septembre 2026 :
+
+- ajout de `scripts/build_process_route_card.py`, générateur générique d'une
+  carte de route et d'un dossier de demande de devis lié aux fichiers par
+  SHA-256, avec onze portes évaluées et un mode `--check` ;
+- première étape 04 du pipeline AM, sur `993-INT-SWITCH-TRIM-RING-F1-0001`,
+  conclue `blocked_missing_input` avec sept portes fermées ;
+- mise au jour d'une incohérence interne : le criblage de l'étape 03 tranche à
+  50 µm quand la seule route AlSi10Mg publiée sur EOS M 290 est à 30 µm ;
+- cibles `route-trim-ring` et `route-trim-ring-check`, et garde
+  `tests/test_993_switch_trim_ring_route_f1.py` qui échoue si une porte
+  s'ouvrait sans coupon, traitement thermique ni lot de poudre.
+
 Support d'intercooler 993 Turbo/GT2 Ti-6Al-4V F0, 8 septembre 2026 :
 
 - création d'une fiche de jumeau F1 limitée à l'enveloppe fournisseur et aux
