@@ -19,7 +19,7 @@ complète, en éléments finis, sert à répondre à des questions **relatives**
 entre changer de matériau et fermer la caisse, lequel rapporte le plus ? Que
 vaut un élément de superstructure au kilo ? Où passe l'effort en torsion ?
 
-![Le modele coque, plancher nu et cellule complete](media/diagrams/964-modele-coque.svg)
+![Le modele coque, plancher nu et cellule complete](docs/media/diagrams/964-modele-coque.svg)
 
 Résultats qui tiennent — voir [`twins/964-chassis/fea/`](twins/964-chassis/fea/) :
 
@@ -32,9 +32,9 @@ Résultats qui tiennent — voir [`twins/964-chassis/fea/`](twins/964-chassis/fe
 - pavillon et cadre de baie ensemble valent **1,63 fois** la somme de leurs
   apports séparés : le pavillon ne travaille qu'une fois l'anneau fermé.
 
-![Contrainte de von Mises sur le plancher nu](media/diagrams/964-chemin-effort.svg)
+![Contrainte de von Mises sur le plancher nu](docs/media/diagrams/964-chemin-effort.svg)
 
-![Part du cisaillement dans la raideur, par architecture](media/diagrams/964-mecanisme-architecture.svg)
+![Part du cisaillement dans la raideur, par architecture](docs/media/diagrams/964-mecanisme-architecture.svg)
 
 Un **corpus de 3 000 cas** CalculiX, en coques quadratiques, est constitué pour
 entraîner plus tard un substitut de conception, avec son lot de validation gelé
@@ -109,7 +109,7 @@ précision.
 
 C'est la partie la plus utile de son historique, et elle est publique.
 
-![Raideur par architecture en coques lineaires et quadratiques](media/diagrams/964-echelle-architectures.svg)
+![Raideur par architecture en coques lineaires et quadratiques](docs/media/diagrams/964-echelle-architectures.svg)
 
 Ci-dessus, la correction la plus lourde : l'échelle des architectures avait été
 publiée en éléments linéaires. Les quatre figures de cette page se régénèrent
@@ -162,7 +162,7 @@ Prérequis : Python 3.11 ou plus récent et `make`.
 
 ```bash
 make check
-cp templates/part-record.json catalog/parts/993-xxx-0001.json
+cp catalog/templates/part-record.json catalog/parts/993-xxx-0001.json
 ```
 
 Compléter la fiche, ajouter les fichiers CAO autorisés dans `parts/<part_id>/`,
@@ -183,7 +183,7 @@ archive/917/docs/   les 112 dossiers écrits de la culasse 917
 schemas/            contrat de données du catalogue
 scripts/  tests/    contrôles automatiques et garde-fous
 containers/ deploy/ images de calcul reproductibles et déploiement
-templates/          modèles de fiche, mesure et demande de fabrication
+catalog/templates/          modèles de fiche, mesure et demande de fabrication
 ```
 
 
@@ -203,7 +203,7 @@ Le premier sous-ensemble moteur composé, le
 convertit en OpenUSD mais échoue son test de jeu sur une collision BRep
 explicite : il reste un jumeau de recherche non fabricable.
 
-![État sourcé du jumeau numérique 993](media/diagrams/digital-twin-993-etat.svg)
+![État sourcé du jumeau numérique 993](docs/media/diagrams/digital-twin-993-etat.svg)
 
 Ce schéma représente les relations logiques sourcées, pas la position réelle des
 composants dans la voiture.

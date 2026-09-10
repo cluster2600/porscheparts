@@ -40,7 +40,7 @@ Sortie : aucune donnée d’origine inconnue dans le modèle publiable.
 
 Choisir le moyen minimal donnant la précision nécessaire : pied à coulisse,
 micromètre, jauge, gabarit, photogrammétrie ou scan structuré. Utiliser le modèle
-de `templates/measurement-plan.md` pour préparer la séance.
+de `catalog/templates/measurement-plan.md` pour préparer la séance.
 
 Enregistrer ensuite le résultat sous forme vérifiable, dans
 `catalog/measurements/`. Quand l’instrument a une sortie données, capturer

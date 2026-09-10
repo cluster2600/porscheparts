@@ -9,14 +9,14 @@ from scripts.validate_measurements import ROOT, load_and_validate, validate_meas
 class MeasurementValidationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.path = ROOT / "templates" / "measurement-record.json"
+        cls.path = ROOT / "catalog" / "templates" / "measurement-record.json"
         cls.template = json.loads(cls.path.read_text(encoding="utf-8"))
 
     def test_template_is_valid(self) -> None:
         self.assertEqual(validate_measurement(self.template), [])
 
     def test_measurement_schema_is_valid_json(self) -> None:
-        path = ROOT / "schemas" / "measurement.schema.json"
+        path = ROOT / "catalog" / "schemas" / "measurement.schema.json"
         schema = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(schema["title"], "porscheparts measurement record")
 

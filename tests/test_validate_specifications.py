@@ -12,7 +12,7 @@ class DocumentarySpecificationTests(unittest.TestCase):
         cls.torque_path = ROOT / "catalog" / "specifications" / "porschefanatics-993-torques.json"
 
     def test_schema_is_valid_json(self) -> None:
-        schema = json.loads((ROOT / "schemas" / "documentary-specification.schema.json").read_text(encoding="utf-8"))
+        schema = json.loads((ROOT / "catalog" / "schemas" / "documentary-specification.schema.json").read_text(encoding="utf-8"))
         self.assertEqual(schema["title"], "porscheparts documentary specification set")
 
     def test_complete_porschefanatics_snapshot_is_present(self) -> None:

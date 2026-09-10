@@ -94,10 +94,10 @@ combustion ou de puissance.
     make 917-f38-valvetrain-package-evidence-check
     make 917-f38-engineering-check
 
-Le film source se trouve sous media/videos/917-head-f38-functional. Son contrôle
+Le film source se trouve sous docs/media/videos/917-head-f38-functional. Son contrôle
 HyperFrames doit être vert avant tout nouvel export :
 
-    cd media/videos/917-head-f38-functional
+    cd docs/media/videos/917-head-f38-functional
     npm run check
     npm run render
 

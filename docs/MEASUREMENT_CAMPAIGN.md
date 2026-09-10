@@ -48,7 +48,7 @@ l'étiquette d'options avant de sortir un instrument.
 
 ## Procédure de séance
 
-1. Copier `templates/measurement-record.json` vers
+1. Copier `catalog/templates/measurement-record.json` vers
    `catalog/measurements/MEAS-<PART>-<DATE>.json` et renseigner le sujet avant
    toute lecture.
 2. Contrôler le zéro et l'instrument sur une cale, une pige ou une référence
