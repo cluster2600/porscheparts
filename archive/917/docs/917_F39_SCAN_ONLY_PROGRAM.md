@@ -62,7 +62,7 @@ La vidéo F39 se trouve dans
 `twins/reference-917-engine/evidence/f39-functional-video/917-head-f39-how-it-works.mp4`.
 Elle montre la cinématique quatre soupapes, les phases de respiration et les
 deux voies de refroidissement. Le projet source reproductible est sous
-`media/videos/917-head-f39-function`.
+`docs/media/videos/917-head-f39-function`.
 
 Cette animation n'est pas une simulation CFD transitoire du cycle moteur. Les
 valeurs thermiques affichées viennent de la présélection F39; la vidéo maintient

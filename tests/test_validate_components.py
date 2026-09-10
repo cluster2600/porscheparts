@@ -21,7 +21,7 @@ class ComponentValidationTests(unittest.TestCase):
 
     def test_schemas_are_valid_json(self) -> None:
         for name in ("component.schema.json", "assembly.schema.json"):
-            schema = json.loads((ROOT / "schemas" / name).read_text(encoding="utf-8"))
+            schema = json.loads((ROOT / "catalog" / "schemas" / name).read_text(encoding="utf-8"))
             self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
 
     def test_unknown_mass_source_is_rejected(self) -> None:

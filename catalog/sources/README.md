@@ -7,4 +7,4 @@ l’accès technique, la méthode de lecture et les droits de réutilisation.
 Une page accessible n’est pas nécessairement redistribuable. Une page lue dans un
 navigateur n’est ni un téléchargement autorisé ni une validation de précision.
 
-Créer une fiche depuis `templates/source-record.json`, puis lancer `make check`.
+Créer une fiche depuis `catalog/templates/source-record.json`, puis lancer `make check`.

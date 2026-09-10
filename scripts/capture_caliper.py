@@ -15,7 +15,7 @@ Examples:
   capture_caliper.py --record <file> --dimension D02 --description "Plate thickness" \\
       --manual --values 3.98,4.01,3.99
 
-The record is created from templates/measurement-record.json when missing, then
+The record is created from catalog/templates/measurement-record.json when missing, then
 validated with scripts/validate_measurements.py before it is written back.
 """
 
@@ -30,7 +30,7 @@ from statistics import fmean
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-TEMPLATE = ROOT / "templates" / "measurement-record.json"
+TEMPLATE = ROOT / "catalog" / "templates" / "measurement-record.json"
 
 sys.path.insert(0, str(ROOT))
 from scripts.validate_measurements import validate_measurement  # noqa: E402

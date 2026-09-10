@@ -14,7 +14,7 @@ régression numérique, comme cas d'essai et comme trace de ce qui n'a pas march
 | `twins/reference-917-engine/` | 891 | culasse 917 refroidie par air, itérations F1 à F50 |
 | `twins/reference-935-cylinder-head/` | 13 | scan de culasse 935, morphologie de référence |
 | `archive/917/docs/` | 112 | les dossiers écrits de ces itérations |
-| `media/videos/` | 48 | deux projets de rendu, F38 et F39 |
+| `docs/media/videos/` | 48 | deux projets de rendu, F38 et F39 |
 | `containers/917-*` | ~40 | images de calcul dédiées |
 
 **Statut.** Retiré comme produit, conservé comme régression numérique. La

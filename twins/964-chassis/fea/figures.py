@@ -10,7 +10,7 @@ Les valeurs sont lues dans `figures-data.json`, qui les fige et les rend
 verifiables sans avoir a regenerer un corpus de 1,1 Go. Chaque champ y porte son
 origine : quel script l'a produit, avec quel maillage.
 
-    pymesh figures.py            # ecrit les SVG dans media/diagrams/
+    pymesh figures.py            # ecrit les SVG dans docs/media/diagrams/
     pymesh figures.py --corpus   # recalcule les exposants depuis les corpus
 """
 import argparse, json, pathlib, subprocess, sys
@@ -22,7 +22,7 @@ import numpy as np
 
 HERE = pathlib.Path(__file__).parent
 ROOT = HERE.parents[2]
-OUT = ROOT / "media" / "diagrams"
+OUT = ROOT / "docs" / "media" / "diagrams"
 DATA = HERE / "figures-data.json"
 
 # Fond clair explicite : GitHub rend le SVG tel quel sous ses deux themes, et un
