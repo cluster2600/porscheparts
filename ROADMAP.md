@@ -80,7 +80,7 @@ Plan d'exécution et dossier de passation :
 [docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
 
 Les spécifications de préparation issues du manuel et de Porsche Fanatics sont
-cartographiées dans [docs/993_MANUAL_DATA_MAP.md](docs/993_MANUAL_DATA_MAP.md).
+cartographiées dans [docs/993/993_MANUAL_DATA_MAP.md](docs/993/993_MANUAL_DATA_MAP.md).
 Le registre exhaustif page par page est dans
 [`catalog/manual/993-workshop-manual-measurements.json`](catalog/manual/993-workshop-manual-measurements.json).
 

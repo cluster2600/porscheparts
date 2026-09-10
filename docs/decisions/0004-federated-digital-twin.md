@@ -1,4 +1,4 @@
-# ADR 0003 — Jumeau numérique fédéré par zones fonctionnelles
+# ADR 0004 — Jumeau numérique fédéré par zones fonctionnelles
 
 ## Statut
 

@@ -147,8 +147,8 @@ Le meilleur allègement brut du balayage est `1,60 %`, mais aucune variante ne
 passe la marge mécanique. L'audit indépendant trouve aussi des arêtes
 non-manifold sur les six STL. Le statut exact est donc **criblage géométrique
 PicoGK exécuté, aucune optimisation validée ni variante sélectionnée**. Voir
-[la fiche piston](993_PISTON_CP1_COOLING_GALLERY_F0.md) et les
-[preuves PicoGK](../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
+[la fiche piston](../993/993_PISTON_CP1_COOLING_GALLERY_F0.md) et les
+[preuves PicoGK](../../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
 
 Le master BREP sain a été traité séparément par six cas CalculiX à trois
 maillages. Le p95 chaud fin de `323,46 MPa` dépasse la référence CP1 ambiante ;

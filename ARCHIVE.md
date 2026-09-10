@@ -104,8 +104,8 @@ les empreintes et le refus de libération.
 
 | retiré | conservé |
 |---|---|
-| `docs/993_DOOR_OPENER_LEVER_F0.md` | `docs/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md` |
-| `docs/993_HEADLAMP_SPRING_HOOK_F0.md` | `docs/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md` |
+| `docs/993_DOOR_OPENER_LEVER_F0.md` | `docs/993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md` |
+| `docs/993_HEADLAMP_SPRING_HOOK_F0.md` | `docs/993/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md` |
 
 Rien n'a été perdu : les premiers jets étaient inclus dans les seconds, à
 l'exception des gates ordonnés du levier, repris dans le dossier conservé. Aucun
@@ -119,7 +119,7 @@ fichier haché ne nommait les retirés, et l'historique git les garde lisibles.
 | `twins/993-*` | zones fonctionnelles 993 : refroidissement, support d'intercooler, planche de bord |
 | `catalog/` | 383 fiches de sources, 31 fiches de pièces, mesures et schémas |
 | `parts/` | géométries, plans de mesure et livrables par pièce |
-| `docs/993_*_F0.md` | dossiers de conception des pièces fabriquées en fabrication additive |
+| `docs/993/` | dossiers de conception des pièces fabriquées en fabrication additive |
 | `simulation/` | cas de calcul du circuit de suralimentation |
 
 ## La règle qui vaut pour les deux

@@ -16,7 +16,7 @@ interfaces M64 ni l'échelle absolue.
 
 ## Contrôles réellement exécutés sur Kali
 
-L'outil [audit_solid_mesh.py](../twins/m64-cylinder-head/audit_solid_mesh.py) lit
+L'outil [audit_solid_mesh.py](../../twins/m64-cylinder-head/audit_solid_mesh.py) lit
 uniquement le MSH adressé par SHA-256, sous Gmsh **4.12.1**. Il recalcule les
 volumes signés par `det(b-a, c-a, d-a)/6`, contrôle la connectivité de la frontière
 des tétraèdres contre tous les triangles de surface stockés, recherche les faces
@@ -51,8 +51,8 @@ pas sur la distance à la surface CAO, l'absence de recouvrement géométrique d
 cellules ou la résolution des gradients physiques.
 
 Rapports expurgés :
-[F53](../twins/m64-cylinder-head/evidence/f53-solid-mesh-audit-20260907.json),
-[F54](../twins/m64-cylinder-head/evidence/f54-solid-mesh-audit-20260907.json).
+[F53](../../twins/m64-cylinder-head/evidence/f53-solid-mesh-audit-20260907.json),
+[F54](../../twins/m64-cylinder-head/evidence/f54-solid-mesh-audit-20260907.json).
 Aucun maillage, nœud ou coordonnée n'est publié.
 
 ## Filiation : ne pas confondre le numéro F53 et le STEP F53
@@ -85,7 +85,7 @@ La méthode d'intégration est documentée par
 [Open CASCADE](https://occt3d.com/dev/doc/refman/html/class_b_rep_g_prop.html).
 
 Les empreintes complètes et celles des rapports privés sont conservées dans
-[le relevé de provenance](../twins/m64-cylinder-head/evidence/solid-mesh-provenance-20260907.json).
+[le relevé de provenance](../../twins/m64-cylinder-head/evidence/solid-mesh-provenance-20260907.json).
 
 ## Frontières et prochain maillage réellement utilisable
 

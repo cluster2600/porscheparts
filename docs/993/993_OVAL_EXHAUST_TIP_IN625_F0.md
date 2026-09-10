@@ -77,7 +77,7 @@ Asset Validator, Geometry et Physics. Le recoater animé est un guide : aucune
 collision sur forme déformée, trajectoire EOSPRINT ou géométrie de supports
 fournisseur n'est disponible.
 
-![Préparation LPBF EOS M 290](../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
+![Préparation LPBF EOS M 290](../../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
 
 ## Asset Omniverse SimReady
 
@@ -91,7 +91,7 @@ L'annotation de préhension a été revue visuellement ; ce n'est pas une
 validation de pince. Aucune interface échappement–collier–jupe arrière n'est
 présente et aucun test fonctionnel d'assemblage n'a été exécuté.
 
-![Asset SimReady de l'embout](../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
+![Asset SimReady de l'embout](../../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
 
 PhysicsNeMo 2.2.0 a seulement passé un smoke CUDA sur le worker GPU. Aucun
 surrogate n'est entraîné : trois maillages CFD non corrélés ne constituent pas

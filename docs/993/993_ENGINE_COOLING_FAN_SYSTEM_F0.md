@@ -25,11 +25,11 @@ calcul analytique de jeu, mais ne transforme pas cet alignement synthétique en
 position Porsche mesurée.
 
 Le registre du jumeau est
-[`catalog/twins/twin-993-engine-cooling-fan-system-f0.json`](../catalog/twins/twin-993-engine-cooling-fan-system-f0.json).
+[`catalog/twins/twin-993-engine-cooling-fan-system-f0.json`](../../catalog/twins/twin-993-engine-cooling-fan-system-f0.json).
 Le calcul reproductible est dans
-[`evaluate_integration.py`](../twins/993-engine-cooling-fan-system-f0/source/evaluate_integration.py)
+[`evaluate_integration.py`](../../twins/993-engine-cooling-fan-system-f0/source/evaluate_integration.py)
 et sa preuve dans
-[`integration-screen.json`](../twins/993-engine-cooling-fan-system-f0/evidence/integration-screen.json).
+[`integration-screen.json`](../../twins/993-engine-cooling-fan-system-f0/evidence/integration-screen.json).
 
 ## Passage OpenUSD
 
@@ -52,9 +52,9 @@ avec `property_assignment_intent=skip`. Elle a utilisé le convertisseur officie
 
 Les USD sont des dérivés rejouables et restent hors Git. Leurs SHA-256, tailles,
 métadonnées et verdicts assainis sont publiés dans
-[`simready-conversion-summary.json`](../twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json).
+[`simready-conversion-summary.json`](../../twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json).
 Le script de composition est
-[`build_usd_assembly.py`](../twins/993-engine-cooling-fan-system-f0/source/build_usd_assembly.py).
+[`build_usd_assembly.py`](../../twins/993-engine-cooling-fan-system-f0/source/build_usd_assembly.py).
 
 ## Frontière de validité
 

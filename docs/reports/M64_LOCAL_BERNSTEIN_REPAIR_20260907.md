@@ -1,6 +1,6 @@
 # Réparation locale Bernstein sur la référence 935 — 7 septembre 2026
 
-![Vraie CAO et coupe avant/après de la réparation locale](../twins/m64-cylinder-head/evidence/935-reference-bernstein-local-repair-before-after.png)
+![Vraie CAO et coupe avant/après de la réparation locale](../../twins/m64-cylinder-head/evidence/935-reference-bernstein-local-repair-before-after.png)
 
 Vue produite depuis les deux STEP contrôlés et leurs sections OCCT, sans
 image générative. Source attribuée à Wolfe Classics selon
@@ -142,7 +142,7 @@ d2bb2b1195b1ef320ca8dc9fac7a57a910aa9477a28c3022f771f4e70eb508af
 ```
 
 Image publiée : SHA `18057ee6e124420960d5f1d8e742d8f000898f688e78ba68141107c973eaa08a`.
-Le [résumé public expurgé](../twins/m64-cylinder-head/bernstein-local-repair-summary-20260907.json)
+Le [résumé public expurgé](../../twins/m64-cylinder-head/bernstein-local-repair-summary-20260907.json)
 ne contient ni coordonnées, ni indices de faces/probes privés, ni STEP/NPZ.
 
 Rapports annexes, sous `/tmp/917-f50/out/` :

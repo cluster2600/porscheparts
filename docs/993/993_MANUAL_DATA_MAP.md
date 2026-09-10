@@ -16,7 +16,7 @@ d'atelier, pas des mesures prises par ce projet et pas des cotes de CAO.
 - Source de référence du catalogue : `SRC-PORSCHE-WORKSHOP-MANUAL-993`.
 - Pont vers l'index public et ses extractions :
   `SRC-PORSCHEFANATICS-993-MANUAL-DATA`.
-- [Registre exhaustif des valeurs quantitatives](../catalog/manual/993-workshop-manual-measurements.json) :
+- [Registre exhaustif des valeurs quantitatives](../../catalog/manual/993-workshop-manual-measurements.json) :
   2 496 enregistrements, dont 2 190 occurrences issues des procédures OCR.
 
 Le fichier PDF consulté localement n'est pas ajouté au dépôt. Le projet

@@ -58,8 +58,8 @@ octets réellement lus, conservés en mémoire.
 - Coefficients privés : `48447c3d5a65e9a4cde06cf946b8c4bd1ade835b404d6d0f36ff405f1ad9ad12`.
 - Le reçu inclut le hash de l'implémentation réellement relue pour ce calcul.
 
-[Reçu numérique expurgé](../twins/m64-cylinder-head/evidence/bernstein-global-bound-20260907.json)
-et [script reproductible](../twins/m64-cylinder-head/bound_bernstein_displacement.py).
+[Reçu numérique expurgé](../../twins/m64-cylinder-head/evidence/bernstein-global-bound-20260907.json)
+et [script reproductible](../../twins/m64-cylinder-head/bound_bernstein_displacement.py).
 Le NPZ, les surfaces et les coordonnées de la pièce restent privés.
 
 ## Limites qui restent ouvertes

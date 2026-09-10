@@ -13,7 +13,7 @@ les méthodes conventionnelles retenues. Porsche annonce aussi `200 h` d'essai
 moteur. C'est un précédent de méthode, pas une validation transférable au 993.
 
 Le registre
-[`TWIN-993-M64-60-PISTON-GALLERY-F0`](../catalog/twins/twin-993-m64-60-piston-gallery-f0.json)
+[`TWIN-993-M64-60-PISTON-GALLERY-F0`](../../catalog/twins/twin-993-m64-60-piston-gallery-f0.json)
 relie maintenant la CAO aux cinq interfaces indispensables : cylindre, segments,
 axe–bielle, chambre–soupapes et jet d'huile–galerie. Elles restent toutes
 `missing_data` : ce statut est volontaire et empêche de confondre enveloppe F0
@@ -101,7 +101,7 @@ dans ce cas conservateur. Les `20,16 millions` de combustions par cylindre sur
 CP1 chaude qualifiée.
 
 Le rapport, les hashes des sorties brutes et son vérificateur indépendant sont
-dans [`evidence/calculix-f0`](../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
+dans [`evidence/calculix-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
 
 ## Criblage d'optimisation PicoGK exécuté
 
@@ -146,7 +146,7 @@ reconstruite en BREP, envoyée au tranchage LPBF ou promue dans Omniverse.
 Le résultat est un **criblage PicoGK exécuté sans dessin sélectionné**, pas une
 optimisation validée. Le meilleur allègement brut observé, `1,60 %`, est un candidat de
 recherche qui échoue le critère mécanique et le gate d'intégrité maillage.
-Voir [`evidence/picogk-f0`](../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
+Voir [`evidence/picogk-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
 
 ## Simulation d'impression et Omniverse exécutées
 
@@ -170,9 +170,9 @@ est présent dans le rendu aplati inspecté. Le recoater animé n'est qu'un guid
 la distorsion, les supports fournisseur et la collision recoater restent faux
 dans les portes de validation.
 
-Voir [le pipeline et le verdict détaillé](AM_VALIDATION_PIPELINE.md),
-[les résultats LPBF](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/)
-et [le résumé Omniverse](../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
+Voir [le pipeline et le verdict détaillé](../AM_VALIDATION_PIPELINE.md),
+[les résultats LPBF](../../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/)
+et [le résumé Omniverse](../../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
 
 ## Reproduction logicielle
 
