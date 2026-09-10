@@ -1,18 +1,48 @@
-# porscheparts
+<div align="center">
 
-Projet ouvert de rétroconception pour Porsche 911 **964** et **993**.
+![Cellule complete 964 en rotation, coloree par la contrainte de von Mises sous couple de torsion](docs/media/diagrams/964-hero.gif)
 
-Ce que le dépôt produit n'est pas une bibliothèque de fichiers à imprimer. Ce
-sont des **données sourcées** et des **calculs réfutables** : chaque affirmation
-de compatibilité, de masse ou de raideur est reliée à une mesure, à une source
-vérifiable ou à un calcul qu'on peut rejouer — et retirée quand elle ne tient
-plus. Le dépôt en compte plusieurs, retirées ici même, plus bas.
+**Rétroconception ouverte pour Porsche 911 964 et 993**
+*Données sourcées, calculs réfutables, aucune pièce fabriquée.*
 
-La phase active **ne fabrique rien**.
+[![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
+[![Licence MIT](https://img.shields.io/badge/licence-MIT-informational)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+[![Phase active](https://img.shields.io/badge/phase%20active-ne%20fabrique%20rien-critical)](SAFETY.md)
 
-## Ce que fait le projet aujourd'hui
+</div>
 
-### 1. Calcul de structure sur la caisse 964
+---
+
+Ce dépôt ne publie pas une bibliothèque de fichiers à imprimer. Il publie des
+**données sourcées** et des **calculs réfutables** : chaque affirmation de
+compatibilité, de masse ou de raideur est reliée à une mesure, à une source
+vérifiable ou à un calcul qu'on peut rejouer — et **retirée quand elle ne tient
+plus**. Le dépôt en compte plusieurs, listées ici même, plus bas.
+
+> [!IMPORTANT]
+> **La phase active ne fabrique rien.** Aucune pièce n'est déclarée imprimable
+> ni validée. Les 31 fiches sont au statut `concept`, dont 17 en
+> `prohibited_pending_engineering`. Lire [SAFETY.md](SAFETY.md).
+
+| | |
+|---|---|
+| **383** fiches de sources qualifiées | **31** fiches de pièces, dont 17 interdites en l'état |
+| **23** dossiers de conception 993 en fabrication additive | **9** jumeaux numériques, aucun au niveau `F2_interface` |
+| **3 000** cas CalculiX sur la caisse 964 | **2 194** tests exécutés par `make check` |
+
+### Sommaire
+
+1. [Calcul de structure sur la caisse 964](#1-calcul-de-structure-sur-la-caisse-964)
+2. [Pièces 993 en fabrication additive](#2-pièces-993-en-fabrication-additive)
+3. [Carrosserie et habitacle](#3-carrosserie-et-habitacle)
+4. [Le catalogue et son contrat de données](#4-le-catalogue-et-son-contrat-de-données)
+5. [Les règles](#les-règles) · [Ce que le dépôt a retiré](#ce-que-le-dépôt-a-retiré-de-ses-propres-résultats) · [Ce qu'il ne prétend pas](#ce-que-le-projet-ne-prétend-pas)
+6. [Démarrage rapide](#démarrage-rapide) · [Organisation](#organisation) · [État](#état)
+
+---
+
+## 1. Calcul de structure sur la caisse 964
 
 Le chantier principal. Un modèle coque de plancher, de caisson et de cellule
 complète, en éléments finis, sert à répondre à des questions **relatives** :
@@ -21,7 +51,7 @@ vaut un élément de superstructure au kilo ? Où passe l'effort en torsion ?
 
 ![Le modele coque, plancher nu et cellule complete](docs/media/diagrams/964-modele-coque.svg)
 
-Résultats qui tiennent — voir [`twins/964-chassis/fea/`](twins/964-chassis/fea/) :
+**Résultats qui tiennent** — voir [`twins/964-chassis/fea/`](twins/964-chassis/fea/) :
 
 - le **longeron** porte la torsion, pas le plancher, ce qui converge avec la
   planche 50-013 du manuel qui y place l'acier haute résistance ;
@@ -46,7 +76,7 @@ faudrait établir pour concurrencer une offre existante sur le seul axe où elle
 est nue : la donnée publiée. Il **contredit le périmètre écrit** de
 [ROADMAP.md](ROADMAP.md), et le dit.
 
-### 2. Pièces 993 en fabrication additive
+## 2. Pièces 993 en fabrication additive
 
 La ligne la plus fournie du dépôt : **23 dossiers de conception** `993_*_F0` et
 `_F1`, et **31 fiches de pièces**, du guide de ressort de phare à la roue de
@@ -58,7 +88,10 @@ sourcé de ce qui est supposé, et dit ce qu'il ne contient pas. Rien n'est
 libéré : les 31 fiches sont **toutes au statut `concept`**, dont 17 en
 `prohibited_pending_engineering` et une en `safety_critical`.
 
-### 3. Pièces candidates de carrosserie et d'habitacle
+Le pipeline [impression métal et Omniverse](docs/AM_VALIDATION_PIPELINE.md) est
+obligatoire avant toute fabrication.
+
+## 3. Carrosserie et habitacle
 
 Les panneaux **boulonnés** — ailes, capots, becquet, portes — sont un objectif
 légitime ; la structure autoportante ne l'est pas. Le catalogue d'usine trace la
@@ -75,11 +108,11 @@ commence par une porte d'entrée qui peut arrêter le projet.
 Trois pilotes d'habitacle plus simples restent en attente d'une séance de mesure
 physique : [docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
 
-### 4. Le catalogue, et son contrat de données
+## 4. Le catalogue et son contrat de données
 
-**381 fiches de sources** qualifiées par provenance, droits et niveau de preuve ;
-31 fiches de pièces, 5 zones de jumeau, 4 composants, 2 assemblages. Tout est
-validé par un schéma JSON et par 1 914 tests :
+**383 fiches de sources** qualifiées par provenance, droits et niveau de preuve ;
+31 fiches de pièces, 9 jumeaux, 4 composants, 2 assemblages. Tout est validé par
+un schéma JSON et par la suite de tests :
 
 ```bash
 make check
@@ -90,20 +123,19 @@ droit de réutilisation. Une page accessible n'est pas redistribuable ; une page
 lue dans un navigateur n'est ni un téléchargement autorisé ni une validation de
 précision.
 
+---
+
 ## Les règles
 
-- **Source avant STL** : FreeCAD, OpenSCAD, build123d ou STEP restent les formats
-  maîtres.
-- **Preuve avant publication** : toute affirmation de compatibilité ou de
-  précision est reliée à une mesure ou à une source.
-- **Numérique avant prototype** : la phase active ne fabrique rien.
-- **Interface avant apparence** : une zone mesurée permettant un contrôle de jeu
-  vaut mieux qu'un scan complet sans précision connue.
-- **Sécurité explicite** : en cas de doute, la pièce est abaissée à
-  `prohibited_pending_engineering`. Voir [SAFETY.md](SAFETY.md).
-- **Pas de moissonnage de vendeurs** : un site fermé aux robots n'est pas
-  interrogé, voir [docs/decisions/0003-no-vendor-harvesting.md](docs/decisions/0003-no-vendor-harvesting.md).
-- **Outils accessibles** : chaîne locale gratuite et open source.
+| règle | ce qu'elle impose |
+|---|---|
+| **Source avant STL** | FreeCAD, OpenSCAD, build123d ou STEP restent les formats maîtres |
+| **Preuve avant publication** | toute affirmation de compatibilité ou de précision est reliée à une mesure ou à une source |
+| **Numérique avant prototype** | la phase active ne fabrique rien |
+| **Interface avant apparence** | une zone mesurée permettant un contrôle de jeu vaut mieux qu'un scan complet sans précision connue |
+| **Sécurité explicite** | en cas de doute, la pièce est abaissée à `prohibited_pending_engineering` — voir [SAFETY.md](SAFETY.md) |
+| **Pas de moissonnage de vendeurs** | un site fermé aux robots n'est pas interrogé — voir [la décision 0003](docs/decisions/0003-no-vendor-harvesting.md) |
+| **Outils accessibles** | chaîne locale gratuite et open source |
 
 ## Ce que le dépôt a retiré de ses propres résultats
 
@@ -113,10 +145,11 @@ C'est la partie la plus utile de son historique, et elle est publique.
 
 Ci-dessus, la correction la plus lourde : l'échelle des architectures avait été
 publiée en éléments linéaires. Les quatre figures de cette page se régénèrent
-avec `twins/964-chassis/fea/figures.py` — les deux graphiques depuis des valeurs
-figées dans `figures-data.json` qui portent chacune l'origine de son calcul, les
-deux vues du modèle depuis un instantané de maillage et de résultat conservé dans
-`figures-mesh/`. Aucune n'est un rendu : ce sont les données du calcul.
+avec `twins/964-chassis/fea/figures.py`, la bannière animée avec
+`twins/964-chassis/fea/hero.py` — les deux graphiques depuis des valeurs figées
+dans `figures-data.json` qui portent chacune l'origine de son calcul, les vues du
+modèle et la bannière depuis un instantané de maillage et de résultat conservé
+dans `figures-mesh/`. Aucune n'est un rendu : ce sont les données du calcul.
 
 | affirmation retirée | ce qui l'a défaite |
 |---|---|
@@ -156,6 +189,8 @@ que le déplacement invaliderait. Une preuve vaut mieux qu'un rangement.
 Y sont listés ce qu'on peut encore en faire — rejouer les calculs, réutiliser les
 cas d'essai — et ce qu'on ne peut pas : une pièce.
 
+---
+
 ## Démarrage rapide
 
 Prérequis : Python 3.11 ou plus récent et `make`.
@@ -166,38 +201,36 @@ cp catalog/templates/part-record.json catalog/parts/993-xxx-0001.json
 ```
 
 Compléter la fiche, ajouter les fichiers CAO autorisés dans `parts/<part_id>/`,
-relancer `make check`.
+relancer `make check`. Détail des conventions : [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Organisation
 
 ```text
 catalog/            fiches : sources, pièces, mesures, jumeaux, composants
+  schemas/            contrat de données du catalogue
+  templates/          modèles de fiche, mesure et demande de fabrication
 parts/              géométries, plans de mesure et livrables par pièce
 components/         géométries des composants ; assemblies/ leurs preuves
 twins/964-chassis/  jumeau de châssis 964 : datums, CAO, calculs, corpus
 twins/993-*/        zones fonctionnelles 993
 docs/               dossiers de conception, plans, critères qualité
+  media/              schémas et projets vidéo
 simulation/         cas de calcul du circuit de suralimentation
-media/              schémas et projets vidéo
 archive/917/docs/   les 112 dossiers écrits de la culasse 917
-schemas/            contrat de données du catalogue
+outils/benchmarks/  cas de vérification de solveur
 scripts/  tests/    contrôles automatiques et garde-fous
 containers/ deploy/ images de calcul reproductibles et déploiement
-catalog/templates/          modèles de fiche, mesure et demande de fabrication
 ```
-
 
 ## État
 
 Phase 0 terminée. Phase 1 au-delà de son seuil quantitatif, la qualification
 croisée et les mesures directes restant ouvertes. Phase 2 menée en mode
 numérique, l'impression volontairement suspendue. Détail et critères de sortie :
-[ROADMAP.md](ROADMAP.md), [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md),
-[docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md),
+[ROADMAP.md](ROADMAP.md) · [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md) ·
+[docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md) ·
 [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md).
 
-Le pipeline **impression métal et Omniverse** est obligatoire avant toute
-fabrication : [docs/AM_VALIDATION_PIPELINE.md](docs/AM_VALIDATION_PIPELINE.md).
 Le premier sous-ensemble moteur composé, le
 [carter-turbine de refroidissement F0](docs/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
 convertit en OpenUSD mais échoue son test de jeu sur une collision BRep
@@ -207,6 +240,8 @@ explicite : il reste un jumeau de recherche non fabricable.
 
 Ce schéma représente les relations logiques sourcées, pas la position réelle des
 composants dans la voiture.
+
+---
 
 ## Avertissement
 
