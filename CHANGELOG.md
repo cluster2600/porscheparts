@@ -4,6 +4,16 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Première passe de sourcing LPBF en Chine, 10 septembre 2026 :
+
+- quatre fiches de sources qualifiées pour Unionfab, JLC3DP et Eplus3D ;
+- Unionfab retenu comme unique candidat, JLC3DP écarté faute d'AlSi10Mg
+  au catalogue métal ;
+- trois contradictions enregistrées et non lissées : trois épaisseurs de
+  couche pour le même sujet dont deux chez le même fournisseur, une carte
+  matière prestataire très inférieure aux coupons EOS, et une règle de paroi
+  minimale que la bague passe chez l'un et pas chez l'autre.
+
 Carte matière-machine-procédé de la bague de commodo, étape 04, 10 septembre 2026 :
 
 - ajout de `scripts/build_process_route_card.py`, générateur générique d'une
