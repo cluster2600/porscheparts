@@ -315,6 +315,6 @@ resynchronisé avant toute location payante.
 4. Coût et unicité de l'instance contrôlés.
 5. Récupération et destruction préparées avant le lancement.
 
-Le runbook est [917_VAST_SIMREADY_NATIVE.md](917_VAST_SIMREADY_NATIVE.md).
+Le runbook est [917_VAST_SIMREADY_NATIVE.md](../archive/917/docs/917_VAST_SIMREADY_NATIVE.md).
 Une sortie verte valide la chaîne logicielle, jamais la précision d'une pièce,
 la physique d'un moteur ou une autorisation de fabrication.

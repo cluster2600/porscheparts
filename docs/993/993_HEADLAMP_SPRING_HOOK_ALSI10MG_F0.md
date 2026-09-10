@@ -60,4 +60,4 @@ conception défavorable à investiguer, jamais une preuve de rupture ni de tenue
   revue d'ingénierie signée.
 
 Les preuves et leurs SHA-256 sont regroupées dans
-[`twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/`](../twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/).
+[`twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/`](../../twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/).

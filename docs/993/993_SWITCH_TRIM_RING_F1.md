@@ -40,7 +40,7 @@ ce premier contrôle.
 ## Étapes 02 et 03 du pipeline AM — 2026-09-09
 
 La bague est la première des 21 pièces suivies par
-[`am-validation-policy.json`](../catalog/manufacturing/am-validation-policy.json)
+[`am-validation-policy.json`](../../catalog/manufacturing/am-validation-policy.json)
 dont aucune étape n'était renseignée à être menée au criblage géométrique. Elle a
 été choisie parce qu'elle est la seule `non_critical` du lot, et qu'elle possède
 déjà un master paramétrique et un STEP relu.

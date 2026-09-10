@@ -74,7 +74,7 @@ utilisait environ 2,1 Gio RSS avant l'arrêt.
 
 ## Artefacts et reproductibilité
 
-![CAO réelle et coupe avant/après](../twins/m64-cylinder-head/evidence/935-reference-transition-before-after.png)
+![CAO réelle et coupe avant/après](../../twins/m64-cylinder-head/evidence/935-reference-transition-before-after.png)
 
 Cette image est produite par `render_transition_filling_section.py` depuis
 les deux STEP contrôlés et leurs sections OCCT ; elle n'est ni une image

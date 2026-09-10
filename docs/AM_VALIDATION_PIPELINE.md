@@ -208,7 +208,7 @@ l'adhésif réels sont absents.
 L'étape 08 reste donc `completed_screening`, pas `passed` : le profil SimReady
 complet et le rendu OVRTX de cette révision manquent. Les étapes 05 à 07, 09 à
 11 restent bloquées. Voir
-[le dossier technique du crochet](993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md).
+[le dossier technique du crochet](993/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md).
 
 ## Quatrième passage : levier intérieur de porte AlSi10Mg F0
 
@@ -233,7 +233,7 @@ d'instance active. Séparément, l'asset et la scène passent la validation USD
 minimale ; `ovstage`/`ovphysx` exécutent `240` pas et stabilisent le témoin de
 `35` à `29 mm`. L'étape 08 reste `completed_screening`, tandis que les étapes
 05 à 07 et 09 à 11 restent bloquées. Voir
-[le dossier technique du levier](993_DOOR_OPENER_LEVER_ALSI10MG_F0.md).
+[le dossier technique du levier](993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md).
 
 ## Reproduction
 

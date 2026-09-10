@@ -213,7 +213,11 @@ parts/              géométries, plans de mesure et livrables par pièce
 components/         géométries des composants ; assemblies/ leurs preuves
 twins/964-chassis/  jumeau de châssis 964 : datums, CAO, calculs, corpus
 twins/993-*/        zones fonctionnelles 993
-docs/               dossiers de conception, plans, critères qualité
+docs/               plans, critères qualité, chaîne logicielle
+  993/                les 23 dossiers de conception des pièces 993
+  decisions/          décisions d'architecture numérotées
+  reports/            comptes rendus datés d'exécution et d'audit
+  research/           recherche de sources par sujet
   media/              schémas et projets vidéo
 simulation/         cas de calcul du circuit de suralimentation
 archive/917/docs/   les 112 dossiers écrits de la culasse 917
@@ -232,7 +236,7 @@ numérique, l'impression volontairement suspendue. Détail et critères de sorti
 [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md).
 
 Le premier sous-ensemble moteur composé, le
-[carter-turbine de refroidissement F0](docs/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
+[carter-turbine de refroidissement F0](docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
 convertit en OpenUSD mais échoue son test de jeu sur une collision BRep
 explicite : il reste un jumeau de recherche non fabricable.
 

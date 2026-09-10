@@ -72,7 +72,7 @@ le calcul de poutre est utile comme ordre de grandeur, pas comme substitut CAE.
 
 Les maillages, decks et champs restent hors Git. Le rapport public conserve
 leurs tailles et SHA-256 dans
-[`calculix-screen.json`](../parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/calculix-screen.json).
+[`calculix-screen.json`](../../parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/calculix-screen.json).
 
 ## Conversion OpenUSD
 
@@ -88,7 +88,7 @@ La passe `conversion-only` du workflow NVIDIA a utilisé l'image
 
 Le fichier USD reste un artefact reproductible hors Git ; son nom, sa taille et
 son SHA-256 sont enregistrés dans
-[`simready-conversion-summary.json`](../parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/simready-conversion-summary.json).
+[`simready-conversion-summary.json`](../../parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/simready-conversion-summary.json).
 Cette réussite ne constitue pas une conformité SimReady complète.
 
 ## Reproduction

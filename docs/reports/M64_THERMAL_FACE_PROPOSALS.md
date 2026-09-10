@@ -97,7 +97,7 @@ Les rôles « chambre ou registre », « guide ou perçage ouvert » et « huile
 bouchon » restent également ambigus physiquement. **Zéro condition aux limites
 thermique définitive a été assignée.**
 
-![Groupes candidats et coupe de la référence F53](../twins/m64-cylinder-head/evidence/thermal-face-proposals-and-section.png)
+![Groupes candidats et coupe de la référence F53](../../twins/m64-cylinder-head/evidence/thermal-face-proposals-and-section.png)
 
 Image relue : 160 856 triangles, coupe à X = −19,5 unités du scan,
 953 segments d'intersection. Les couleurs indiquent les groupes candidats,

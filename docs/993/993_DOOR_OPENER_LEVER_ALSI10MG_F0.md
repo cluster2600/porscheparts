@@ -78,4 +78,4 @@ La comparaison avec CNC et tôle reste obligatoire : si les mesures montrent que
 la chape peut être usinée ou assemblée simplement, le LPBF n'est pas retenu.
 
 Les preuves, leurs empreintes et les refus de libération sont regroupés dans
-[`twins/993-door-opener-lever-alsi10mg-f0/evidence/`](../twins/993-door-opener-lever-alsi10mg-f0/evidence/).
+[`twins/993-door-opener-lever-alsi10mg-f0/evidence/`](../../twins/993-door-opener-lever-alsi10mg-f0/evidence/).

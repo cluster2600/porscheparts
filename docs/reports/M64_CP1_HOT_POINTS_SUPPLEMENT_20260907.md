@@ -70,4 +70,4 @@ mais n'ajoutent pas de loi à chaud à ce complément.
 [Velo3D](https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf).
 
 Relevé machine, conditions et inconnues :
-[cp1-hot-points-supplement-20260907.json](../twins/m64-cylinder-head/cp1-hot-points-supplement-20260907.json).
+[cp1-hot-points-supplement-20260907.json](../../twins/m64-cylinder-head/cp1-hot-points-supplement-20260907.json).
