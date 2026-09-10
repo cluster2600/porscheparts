@@ -94,6 +94,23 @@ voit pas : les chemins construits par segments — `ROOT / "deploy" / ...`,
 le nombre de niveaux au-dessus du fichier et désignent silencieusement le mauvais
 répertoire dès qu'on le niche d'un cran.
 
+## Doublons de dossiers résorbés
+
+Deux pièces portaient deux dossiers F0 chacune, écrits à des dates différentes :
+un premier jet sans nuance au nom, puis le dossier de jumeau suffixé par la
+route matière. Les seconds sont les seuls référencés par
+`docs/AM_VALIDATION_PIPELINE.md` et les seuls à porter les résultats exécutés,
+les empreintes et le refus de libération.
+
+| retiré | conservé |
+|---|---|
+| `docs/993_DOOR_OPENER_LEVER_F0.md` | `docs/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md` |
+| `docs/993_HEADLAMP_SPRING_HOOK_F0.md` | `docs/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md` |
+
+Rien n'a été perdu : les premiers jets étaient inclus dans les seconds, à
+l'exception des gates ordonnés du levier, repris dans le dossier conservé. Aucun
+fichier haché ne nommait les retirés, et l'historique git les garde lisibles.
+
 ## Actif
 
 | dossier | ce que c'est |
