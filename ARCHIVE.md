@@ -117,7 +117,7 @@ fichier haché ne nommait les retirés, et l'historique git les garde lisibles.
 |---|---|
 | `twins/964-chassis/` | calcul de structure sur la caisse 964, corpus de plan d'expériences |
 | `twins/993-*` | zones fonctionnelles 993 : refroidissement, support d'intercooler, planche de bord |
-| `catalog/` | 381 fiches de sources, 31 fiches de pièces, mesures et schémas |
+| `catalog/` | 383 fiches de sources, 31 fiches de pièces, mesures et schémas |
 | `parts/` | géométries, plans de mesure et livrables par pièce |
 | `docs/993_*_F0.md` | dossiers de conception des pièces fabriquées en fabrication additive |
 | `simulation/` | cas de calcul du circuit de suralimentation |
