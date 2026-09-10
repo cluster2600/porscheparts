@@ -277,6 +277,10 @@ cp catalog/templates/part-record.json catalog/parts/993-xxx-0001.json
 Compléter la fiche, ajouter les fichiers CAO autorisés dans `parts/<part_id>/`,
 relancer `make check`. Détail des conventions : [CONTRIBUTING.md](CONTRIBUTING.md).
 
+`make help` liste les cibles actives par thème. Les 162 cibles `917-*` n'y
+figurent pas : elles pilotent la ligne archivée, et `make help-917` les liste
+à part.
+
 ## Organisation
 
 ```text
