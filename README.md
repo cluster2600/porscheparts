@@ -85,11 +85,85 @@ compresseur en AlSi10Mg et le collecteur d'échappement en IN625.
 
 Chaque dossier part de cotes **publiées par un fournisseur**, sépare ce qui est
 sourcé de ce qui est supposé, et dit ce qu'il ne contient pas. Rien n'est
-libéré : les 31 fiches sont **toutes au statut `concept`**, dont 17 en
-`prohibited_pending_engineering` et une en `safety_critical`.
+libéré : les 31 fiches sont **toutes au statut `concept`**. Le pipeline
+[impression métal et Omniverse](docs/AM_VALIDATION_PIPELINE.md) est obligatoire
+avant toute fabrication.
 
-Le pipeline [impression métal et Omniverse](docs/AM_VALIDATION_PIPELINE.md) est
-obligatoire avant toute fabrication.
+Le tableau ci-dessous est engendré depuis `catalog/parts/` à chaque `make check`.
+La colonne « statut » est celle de la fiche, pas une intention : une pièce
+**interdite en l'état** le reste tant qu'aucune revue d'ingénierie ne l'a levée.
+
+<!-- pieces:debut - engendre par scripts/render_parts_table.py -->
+
+**Moteur, admission et refroidissement**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Berceau moteur Turbo (Motortraeger)](catalog/parts/993-eng-carrier-0001.json) | nuance inconnue | CNC | **critique pour la sécurité** |
+| [Bielle 993/993 Turbo](catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json) | Ti-6Al-4V Grade 5 LPBF de criblage | LPBF | **interdit en l'état** |
+| [Turbine de refroidissement moteur](catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
+| [Collecteur d'échappement trois-en-un 993 Turbo](catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | **interdit en l'état** |
+| [Soupapes d'echappement 993 - proxies F1](catalog/parts/993-eng-exhaust-valve-f1-0001.json) | INCONEL 751 / UNS N07751 candidate | CNC | **interdit en l'état** |
+| [Carter fixe de ventilateur moteur](catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
+| [Soupape d'admission 993 - proxy F1 et variant…](catalog/parts/993-eng-intake-valve-f1-0001.json) | Ti-6Al-4V Grade 5 | DMLS | **interdit en l'état** |
+| [Soupape d'admission 993 creuse Ti64](catalog/parts/993-eng-intake-valve-ti64-hollow-f0-0001.json) | Ti-6Al-4V Grade 5 LPBF de criblage | LPBF | **interdit en l'état** |
+| [Support d'intercooler 993 Turbo/GT2](catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json) | Ti-6Al-4V Grade 5 de criblage | CNC | fonctionnel |
+| [End-tank d'intercooler 993 Turbo](catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg de criblage | LPBF | **interdit en l'état** |
+| [Roue de compresseur K16](catalog/parts/993-eng-k16-compressor-wheel-al2139-f1-0001.json) | EOS Aluminium Al2139 AM, M290 60 µm, ét… | LPBF | **interdit en l'état** |
+| [Roue de compresseur K16 993](catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.json) | EOS AlSi10Mg de criblage | LPBF | **interdit en l'état** |
+| [Roue de turbine K16](catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json) | EOS NickelAlloy IN718 API, M290 40 µm… | à décider | **interdit en l'état** |
+| [Console de filtre à huile moteur à galeries i…](catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
+| [Piston M64/60 à galerie de refroidissement](catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json) | Constellium Aheadd CP1, route Velo3D Sa… | LPBF | **interdit en l'état** |
+| [Collecteur d'admission trois conduits 993](catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.json) | AlSi10Mg générique de criblage | à décider | fonctionnel |
+| [Couvercle thermique gauche de turbo 993](catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | fonctionnel |
+| [Conduite de retour d'huile turbo](catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | **interdit en l'état** |
+| [Couvre-culasse supérieur avec tours COP](catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
+
+**Turbocompresseur**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Paire de turbocompresseurs K16 de 993 Turbo](catalog/parts/993-turbocharger-k16-pair-0001.json) | non determine | à décider | **interdit en l'état** |
+
+**Échappement**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Embout d'échappement ovale 993](catalog/parts/993-exh-oval-tip-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | fonctionnel |
+
+**Carrosserie**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Support d'impact avant 993](catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001.json) | AlSi10Mg générique de criblage | à décider | **interdit en l'état** |
+| [Capot avant](catalog/parts/993-body-front-lid-0001.json) | fibre et resine a determiner | à décider | fonctionnel |
+
+**Habitacle**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Habillage de planche de bord](catalog/parts/993-int-dashboard-trim-0001.json) | fibre et resine a determiner | à décider | fonctionnel |
+| [Levier intérieur d'ouverture de porte 993](catalog/parts/993-int-door-opener-lever-f0-0001.json) | AlSi10Mg de criblage | LPBF | fonctionnel |
+| [Poignee de tirage de porte interieure](catalog/parts/993-int-door-pull-0001.json) | a_determiner_apres_essai_de_charge | à décider | fonctionnel |
+| [Cache de glissiere de siege](catalog/parts/993-int-seat-rail-cover-0001.json) | a_determiner_apres_essai_de_montage | FFF | non critique |
+| [Cache d'emplacement d'interrupteur](catalog/parts/993-int-switch-blank-0001.json) | a_determiner_apres_essai_de_montage | FFF | non critique |
+| [Bague aluminium de finition de commutateur](catalog/parts/993-int-switch-trim-ring-f1-0001.json) | original inconnu | à décider | non critique |
+
+**Éclairage**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Crochet de réparation du ressort de lampe](catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json) | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM… | LPBF | fonctionnel |
+
+**Roues**
+
+| pièce | matière candidate | procédé | statut |
+|---|---|---|---|
+| [Cache-moyeu 993](catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json) | AlSi10Mg de criblage | à décider | fonctionnel |
+
+*31 fiches, dont 17 interdites en l'état et aucune libérée. Les dossiers de conception correspondants sont dans [`docs/993/`](docs/993/). Tableau engendré par `scripts/render_parts_table.py`, vérifié par `make check`.*
+
+<!-- pieces:fin -->
 
 ## 3. Carrosserie et habitacle
 
