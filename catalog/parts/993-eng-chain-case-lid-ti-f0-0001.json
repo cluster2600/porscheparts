@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
   "name": "Couvercle gauche de carter de chaîne 964 105 107 01, variante Ti-6Al-4V",
-  "description": "Couvercle boulonné étanche à l'huile du carter de chaîne, planche d'usine 103-05 position 15, apparié au joint 964 105 181 01 en position 16. Refabrication en Ti-6Al-4V fraisé demandée explicitement. Le choix du titane est assumé comme un choix de matière, pas de masse : à géométrie égale il alourdit la pièce de 64 %. Le criblage paramétrique montre en revanche que la dilatation différentielle contre un carter aluminium tient dans le jeu de perçage sur un couvercle de cette taille, ce qui n'est pas vrai du carter entier.",
+  "description": "Couvercle gauche boulonné étanche à l'huile du carter de chaîne, planche d'usine 103-05 position 15, apparié au joint 964 105 181 01. Refabrication en Ti-6Al-4V fraisé demandée explicitement. La pièce d'origine est en **magnésium coulé**, dont le mode de défaillance est la corrosion des portées d'étanchéité : c'est là, et non sur la masse, que le titane apporte quelque chose. Contre le magnésium le titane est 2,45 fois plus dense et perd les deux arbitrages de flexion de plaque, résistance comprise. Reste un obstacle sérieux : le couple galvanique titane/magnésium est le plus défavorable de la grille.",
   "vehicle": {
     "generation": "993",
     "variants": [
@@ -58,7 +58,7 @@
     "preferred_process": "CNC",
     "material": {
       "family": "titane",
-      "grade": "Ti-6Al-4V Grade 5, plaque",
+      "grade": "Ti-6Al-4V Grade 5, plaque — choix assumé ; l'aluminium 6061 billet est la réponse du marché",
       "standard": "ASTM B265 pour la plaque, à contractualiser"
     },
     "post_processing": [
@@ -88,7 +88,7 @@
       "entraxes de perçage",
       "épaisseur"
     ],
-    "galvanic_isolation": "Le joint d'origine 964 105 181 01 sépare déjà les deux métaux sur tout le plan de joint : l'isolation principale est dans la nomenclature. Restent la visserie et la face extérieure, à traiter par rondelles isolantes, pâte anti-grippage et anodisation."
+    "galvanic_isolation": "Le couvercle se boulonne sur un carter lui aussi en magnésium. Le magnésium est le plus anodique des métaux de structure et le titane l'un des plus cathodiques : c'est le couple que TITANIUM.md nomme explicitement. Le joint 964 105 181 01 isole les portées, pas la visserie ni les chemins d'humidité. Un couvercle titane pourrait protéger sa propre portée tout en aggravant l'attaque du carter en face. Non résolu."
   },
   "validation": {
     "status": "concept",
@@ -96,11 +96,14 @@
     "evidence": [
       "parts/993-eng-chain-case-lid-ti-f0-0001/evidence/parametric-screen.json",
       "catalog/sources/src-pet-993-103-05-chain-case.json",
-      "docs/993/993_COUVERCLE_CARTER_CHAINE_TI.md"
+      "docs/993/993_COUVERCLE_CARTER_CHAINE_TI.md",
+      "catalog/sources/src-couvercle-carter-chaine-964-993-magnesium.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
+      "La pièce d'origine est en magnésium coulé, pas en aluminium : toute comparaison de masse menée contre l'aluminium comparait au produit de rechange, pas à l'origine.",
+      "Contre le magnésium, le titane perd les deux indices de flexion de plaque, résistance comprise : il ne sera pas plus léger, quelle que soit l'épaisseur retenue.",
       "Aucune cote n'est mesurée : contour, épaisseur, entraxes, perçages, portée de joint et centrage sont inconnus.",
       "Aucun des deux reproducteurs commerciaux ne publie de cote : les dimensions ne sont pas trouvables en ligne, elles s'obtiennent en achetant la pièce ou son joint.",
       "La marge de dilatation calculée, +0,056 mm, repose sur un entraxe extrême de 100 mm et un perçage de 8,4 mm pour vis M8, tous deux hypothétiques.",
@@ -108,7 +111,8 @@
       "Le titane alourdit la pièce de 64 % à géométrie égale ; c'est un choix de matière assumé, pas un gain.",
       "La pièce retient de l'huile : une fuite sur un moteur refroidi par air a des voisins chauds, d'où la classe `functional` et non `non_critical`.",
       "Aucun essai d'étanchéité, de cyclage thermique ni de dépose-repose répétée.",
-      "Le couple de serrage du manuel, 9,7 Nm, situe la visserie en M6 : la marge de dilatation calculée sur une hypothèse M8 est à refaire une fois le perçage connu."
+      "Le couple de serrage du manuel, 9,7 Nm, situe la visserie en M6 : la marge de dilatation calculée sur une hypothèse M8 est à refaire une fois le perçage connu.",
+      "Le couple galvanique titane/magnésium n'est pas résolu et pourrait déplacer la corrosion du couvercle vers le carter."
     ]
   }
 }

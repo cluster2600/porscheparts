@@ -1,5 +1,12 @@
 # Couvercle de carter de chaîne `964 105 107 01` en Ti-6Al-4V
 
+> **Correction majeure du 11 septembre 2026.** Tout ce document a d'abord comparé
+> le titane à de l'**aluminium**. C'était faux : **la pièce d'origine est en
+> magnésium coulé**, et c'est sa corrosion qui fait vivre tout le marché du
+> couvercle billet. La section « Contre la vraie matière d'origine » ci-dessous
+> refait les comptes, et elle renverse la conclusion sur la masse tout en donnant
+> au titane un argument bien plus fort que celui qu'on lui prêtait.
+
 Demande explicite. Ce document dit ce qui se calcule sans la pièce, ce qui se
 mesure en une heure, et ce qu'il faut envoyer au fraiseur.
 
@@ -85,6 +92,49 @@ de fonderie n'est souvent dictée ni par la raideur ni par la résistance, mais 
 la fonderie elle-même : paroi minimale coulable, dépouille, remplissage. Une
 pièce fraisée n'a aucune de ces contraintes. Dans ce cas le titane peut être plus
 mince que la fonte **et** rester plus raide qu'il ne faut.
+
+### Contre la vraie matière d'origine : le magnésium
+
+| indice | magnésium (origine) | aluminium billet (rechange) | titane |
+|---|---:|---:|---:|
+| raideur imposée `E^⅓/ρ` | **1,965** | 1,526 | 1,095 |
+| résistance imposée `σ_y^½/ρ` | **6,988** | 4,969 | 6,503 |
+
+Le titane est **2,45× plus dense** que le magnésium. Il perd l'arbitrage de
+raideur très largement — et il perd **aussi** celui de résistance, de peu.
+
+Donc : « plus résistant donc moins épais donc plus léger » est exact contre
+l'aluminium, et **faux contre le magnésium**. Sa densité est trop basse pour être
+rattrapée, même par un matériau 5× plus résistant. Un couvercle titane sera plus
+lourd que l'origine, quelle que soit l'épaisseur retenue.
+
+### Mais le titane gagne ailleurs, et c'est plus fort
+
+Le mode de défaillance de la pièce d'origine est la **corrosion** : le magnésium
+se pique sur ses portées d'étanchéité, et aucun joint n'étanche contre une portée
+piquée. C'est exactement le deuxième critère de `TITANIUM.md` — « corrosion
+problématique **avec la matière d'origine** » — et il est ici au cœur du sujet.
+
+Un couvercle titane ne se pique pas. Jamais. C'est le seul vrai argument, et il
+vaut mieux que celui de la masse qu'on lui prêtait.
+
+### L'obstacle qui reste, et il est sérieux
+
+Le couvercle se boulonne sur un carter **lui aussi en magnésium**. Le magnésium
+est le plus anodique des métaux de structure, le titane l'un des plus
+cathodiques : c'est **le couple le plus défavorable de la grille**, et
+`TITANIUM.md` nomme explicitement le magnésium.
+
+Le joint isole les portées. Il n'isole ni la visserie, ni les chemins d'humidité.
+Un couvercle titane pourrait donc protéger sa propre portée **tout en aggravant
+l'attaque du carter en face** — c'est-à-dire déplacer le problème sur la pièce
+qu'on ne peut pas remplacer.
+
+C'est non résolu, et le criblage le compte comme bloquant.
+
+**C'est aussi pourquoi le marché vend de l'aluminium anodisé** : assez résistant à
+la corrosion pour régler le problème, assez proche du magnésium pour que le
+couple reste doux, et plus léger que le titane.
 
 ### Le seuil décidable
 

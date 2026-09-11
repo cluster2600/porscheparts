@@ -26,8 +26,26 @@ PART_ID = "993-ENG-CHAIN-CASE-LID-TI-F0-0001"
 OEM_REFERENCE = "964 105 107 01"
 
 # Cartes matiere de criblage, valeurs ambiantes de reference.
+# La piece d'origine est en MAGNESIUM coule, pas en aluminium. Plusieurs
+# sources independantes le donnent, et la raison d'etre du marche du billet est
+# justement que ces couvercles se corrodent, se piquent et finissent par ne plus
+# etancher. C'est la matiere d'origine, donc la reference de toute comparaison.
+MAGNESIUM = {
+    "name": "magnesium coule, nuance d'origine non identifiee",
+    "density_g_cm3": 1.81,
+    "expansion_per_k": 26.0e-6,
+    "elastic_modulus_gpa": 45.0,
+    "yield_strength_mpa": 160.0,
+    "properties_scope": "valeurs de criblage pour un alliage de magnesium coule courant",
+    "known_failure_mode": (
+        "corrosion : le couvercle se pique sur sa portee, et aucun joint "
+        "n'etanche contre une portee piquee"
+    ),
+}
+
+# L'aluminium billet est la reponse du marche, pas la matiere d'origine.
 ALUMINIUM = {
-    "name": "aluminium de fonderie, nuance d'origine non identifiee",
+    "name": "aluminium 6061 billet, reponse du marche de la rechange",
     "density_g_cm3": 2.70,
     "expansion_per_k": 23.0e-6,
     "elastic_modulus_gpa": 70.0,
@@ -61,6 +79,67 @@ DEFAULT_CLEARANCE_HOLE_MM = CLEARANCE_HOLES_M6_MM["moyen"]
 # point fixe, et non le centre du semis de vis.
 DATUM_CENTROID = "centroid"
 DATUM_DOWEL = "dowel"
+
+
+def index_pair(card: dict) -> dict[str, float]:
+    return {
+        "stiffness_limited_E13_over_rho": card["elastic_modulus_gpa"] ** (1 / 3)
+        / card["density_g_cm3"],
+        "strength_limited_sqrt_sigma_over_rho": card["yield_strength_mpa"] ** 0.5
+        / card["density_g_cm3"],
+    }
+
+
+def against_the_real_incumbent() -> dict[str, object]:
+    """Le titane compare a la matiere d'origine, qui est le magnesium.
+
+    Tout le raisonnement de masse mene jusqu'ici opposait le titane a de
+    l'aluminium. C'etait comparer au produit de rechange, pas a la piece
+    d'origine. Contre du magnesium a 1,81 g/cm3, le titane perd les deux
+    arbitrages, y compris celui de la resistance.
+    """
+    mg = index_pair(MAGNESIUM)
+    al = index_pair(ALUMINIUM)
+    ti = index_pair(TITANIUM)
+    return {
+        "incumbent": MAGNESIUM["name"],
+        "incumbent_failure_mode": MAGNESIUM["known_failure_mode"],
+        "density_penalty_vs_magnesium": TITANIUM["density_g_cm3"]
+        / MAGNESIUM["density_g_cm3"],
+        "indices": {"magnesium": mg, "aluminium_billet": al, "titanium": ti},
+        "titanium_beats_magnesium_on_stiffness": ti[
+            "stiffness_limited_E13_over_rho"
+        ]
+        > mg["stiffness_limited_E13_over_rho"],
+        "titanium_beats_magnesium_on_strength": ti[
+            "strength_limited_sqrt_sigma_over_rho"
+        ]
+        > mg["strength_limited_sqrt_sigma_over_rho"],
+        "verdict_on_mass": (
+            "Le titane est 2,45 fois plus dense que le magnesium d'origine. Il "
+            "perd l'arbitrage de raideur tres largement, et il perd aussi celui "
+            "de resistance, de peu. L'argument « plus resistant donc moins "
+            "epais donc plus leger », valable contre l'aluminium, ne tient pas "
+            "contre le magnesium : sa densite est trop basse pour etre "
+            "rattrapee."
+        ),
+        "what_titanium_does_win": (
+            "La corrosion. Le mode de defaillance de la piece d'origine est "
+            "que sa portee se pique et cesse d'etancher. Un couvercle titane ne "
+            "se pique pas. C'est le deuxieme critere de TITANIUM.md, "
+            "« corrosion problematique avec la matiere d'origine », et il est "
+            "ici au coeur du sujet — pas la masse."
+        ),
+        "the_catch": (
+            "Le couvercle se boulonne sur un carter lui aussi en magnesium. Le "
+            "magnesium est le plus anodique des metaux de structure et le "
+            "titane l'un des plus cathodiques : c'est le couple galvanique le "
+            "plus defavorable de la liste, et TITANIUM.md nomme explicitement "
+            "le magnesium. Le joint isole les portees, pas la visserie ni les "
+            "chemins d'humidite. Un couvercle titane pourrait donc proteger "
+            "sa propre portee tout en aggravant l'attaque du carter en face."
+        ),
+    }
 
 
 def thickness_equivalence(thickness_mm: float) -> dict[str, object]:
@@ -282,6 +361,7 @@ def screen(
                 "geometrie egale est le point de depart, pas la conclusion."
             ),
         },
+        "against_the_real_incumbent": against_the_real_incumbent(),
         "thickness_equivalence": thickness_equivalence(thickness_mm),
         "differential_expansion": {
             "datum": datum,
