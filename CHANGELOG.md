@@ -4,6 +4,15 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Décision 0005, la matière de la bague n'a jamais été choisie, 11 septembre 2026 :
+
+- constat que l'AlSi10Mg est hérité de la seule carte procédé du dépôt, et que
+  la bague est le seul candidat LPBF `non_critical` du catalogue ;
+- deux sources sur l'anodisation : l'AlSi10Mg s'anodise gris-brun du fait de ses
+  9 à 11 % de silicium, quand le 6063 T6 est excellent en anodisation brillante ;
+- conséquence enregistrée : pour cette pièce la question matière et la question
+  procédé n'en font qu'une, et la réponse probable est une barre 6xxx tournée.
+
 Première passe de sourcing LPBF en Chine, 10 septembre 2026 :
 
 - quatre fiches de sources qualifiées pour Unionfab, JLC3DP et Eplus3D ;
