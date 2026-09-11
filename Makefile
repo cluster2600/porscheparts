@@ -24,7 +24,8 @@
 	917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants \
 	omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants \
 	turbo-variants-check turbo-dyno turbo-dyno-check route-trim-ring \
-	turning-trim-ring turning-trim-ring-check \
+	turning-trim-ring turning-trim-ring-check titanium-screen \
+	titanium-screen-check tip-routes tip-routes-check \
 	route-trim-ring-check parts-table \
 	parts-table-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
@@ -199,7 +200,8 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	917-native-brep-mesh-f50-check 917-additive-print-f50-check \
 	917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check \
 	turbo-cold-side-check turbo-variants-check turbo-dyno-check \
-	route-trim-ring-check turning-trim-ring-check parts-table-check help-check
+	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
+	tip-routes-check parts-table-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1175,6 +1177,40 @@ turbo-variants:
 #> 993 | Verifier ces variantes
 turbo-variants-check:
 	python3 scripts/generate_turbo_variants.py --check
+
+#> 993 | Criblage titane de tout le catalogue
+titanium-screen:
+	python3 scripts/screen_titanium_candidates.py \
+	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/titanium-candidate-screen.json $(ROUTE_CHECK)
+
+#> 993 | Verifier ce criblage
+titanium-screen-check:
+	$(MAKE) titanium-screen ROUTE_CHECK=--check
+
+#> 993 | Les deux routes titane de l'embout, etape 04
+tip-routes:
+	python3 scripts/build_process_route_card.py \
+	  --catalog-part catalog/parts/993-exh-oval-tip-ti-f1-0001.json \
+	  --geometry-report twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-report.json \
+	  --machine-card catalog/manufacturing/machines/eos-m290.json \
+	  --process-card catalog/manufacturing/processes/eos-m290-ti64-30um.json \
+	  --master parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.step \
+	  --surface parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.stl \
+	  --part-screen parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json \
+	  --output twins/993-exhaust-tip-ti-f0/evidence/route-ti64 $(ROUTE_CHECK)
+	python3 scripts/build_process_route_card.py \
+	  --catalog-part catalog/parts/993-exh-oval-tip-ti-f1-0001.json \
+	  --geometry-report twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-report.json \
+	  --machine-card catalog/manufacturing/machines/eos-m290.json \
+	  --process-card catalog/manufacturing/processes/lpbf-ti6242-research-route.json \
+	  --master parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.step \
+	  --surface parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.stl \
+	  --part-screen parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti6242.json \
+	  --output twins/993-exhaust-tip-ti-f0/evidence/route-ti6242 $(ROUTE_CHECK)
+
+#> 993 | Verifier ces deux routes
+tip-routes-check:
+	$(MAKE) tip-routes ROUTE_CHECK=--check
 
 #> 993 | Route tournage 6063 de la bague, et son devis
 turning-trim-ring:

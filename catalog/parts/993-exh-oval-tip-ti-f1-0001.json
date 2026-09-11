@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+  "name": "Embout d'échappement ovale, variante titane F1",
+  "description": "Même géométrie double paroi que la variante IN625 F0, criblée en titane. Retenue par le criblage titane du dépôt comme la seule pièce du catalogue où le titane et la fabrication additive gagnent tous les deux sans buter sur la classe de sécurité. L'alliage n'est volontairement pas fixé dans l'identifiant : le Ti-6Al-4V et le Ti-6242 sont tous deux criblés, et c'est une température jamais mesurée qui les sépare.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_C2",
+      "993_C4",
+      "993_RS_narrow_body"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "exhaust_tip",
+    "safety_class": "functional",
+    "intended_use": "Criblage CAO, DfAM, débit, thermique, pression et modal ; aucune fabrication pour montage ni installation véhicule autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-exh-oval-tip-in625-f0-0001/source/oval_exhaust_tip.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.step",
+      "parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.stl"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration PET ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "FVD - embouts inox ovales 993 étroites",
+        "url": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+        "source_type": "manufacturer",
+        "license": "commercial-product-content-rights-not-verified-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "FVD déclare 120 mm au plus large, 85 mm au plus haut, une construction inox et les applications C2/C4/RS. Aucun diamètre d'entrée, longueur, angle, épaisseur ou datum. Voir SRC-FVD-993-EXHAUST-TIPS-DIMENSIONS."
+      },
+      {
+        "title": "PorscheFanatics - registre des matériaux déclarés",
+        "url": "https://porschefanatics.com/materials/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Documente des offres d'échappement 993 Turbo déclarées en IN625 ; précédent matière uniquement, sans géométrie ni transfert de fitment. Voir SRC-PORSCHEFANATICS-993-IN625-EXHAUST-REGISTER."
+      },
+      {
+        "title": "EOS NickelAlloy IN625 material data sheet",
+        "url": "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Valeurs M 290 40 µm de criblage, dépendantes de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+      },
+      {
+        "title": "Special Metals - INCONEL alloy 625",
+        "url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Propriétés thermiques corroyées de référence, jamais une carte admissible LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "sheet_metal"
+    ],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "titane",
+      "grade": "Ti-6Al-4V si la température réelle le permet ; Ti-6242 sinon, mais sans fournisseur identifié",
+      "standard": "ASTM F2924 pour le Ti-6Al-4V PBF-LB ; AMS 4975/4976 pour le Ti-6242 corroyé"
+    },
+    "post_processing": [
+      "détourage, retrait des supports et reprise des attaches",
+      "traitement thermique de détente, 800 °C 2 h sous argon sur la route EOS Ti64",
+      "dépoudrage contrôlé du canal annulaire de 2,7 mm, endoscopie exigée",
+      "état de surface extérieur à définir, l'embout est visible"
+    ],
+    "supplier_requirements": [
+      "Certificat matière, lot de poudre et nombre de réemplois",
+      "Orientation et topologie de supports proposées, avec justification",
+      "Preuve de dépoudrage du canal annulaire, endoscopie ou tomographie",
+      "Traitement thermique et état de livraison documentés",
+      "Épaisseur de couche employée et propriétés coupon de cette épaisseur"
+    ]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V candidat principal, Ti-6242 échappatoire haute température",
+    "heat_treatment": "800 °C 2 h sous argon pour la route EOS Ti64 ; non fixé pour le Ti-6242",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": [],
+    "inspection": [
+      "contrôle dimensionnel de l'enveloppe de sortie",
+      "endoscopie du canal annulaire"
+    ],
+    "galvanic_isolation": "Couple titane/acier inoxydable à la fixation sur la sortie : à traiter, le titane est noble et l'inox le suit de près, mais l'humidité et le sel de route restent présents."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "twins/993-exhaust-tip-ti-f0/evidence/selection/titanium-candidate-screen.json",
+      "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json",
+      "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti6242.json",
+      "twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-report.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "La température de 427 °C qui décide de l'alliage est une entrée synthétique du criblage F0, jamais mesurée sur un véhicule.",
+      "Seule l'enveloppe de sortie 120 x 85 mm est publiée ; longueur, interface d'entrée et profondeur d'emmanchement sont des hypothèses.",
+      "Le dépoudrage du canal annulaire de 2,7 mm n'est vérifié qu'au criblage voxel de 1 mm, résolution insuffisante pour conclure.",
+      "Aucune orientation revue, aucun support fournisseur, aucun fichier machine.",
+      "Aucun essai de tenue, de cyclage thermique, d'acoustique ni de montage véhicule."
+    ]
+  }
+}

@@ -84,8 +84,31 @@ def part_volume_mm3(screen: dict[str, Any] | None) -> float | None:
     if "volume_mm3" in roundtrip:
         return float(roundtrip["volume_mm3"])
     results = screen.get("results", {})
-    if "analytic_volume_mm3" in results:
-        return float(results["analytic_volume_mm3"])
+    for key in ("analytic_volume_mm3", "cad_volume_mm3"):
+        if results.get(key):
+            return float(results[key])
+    return None
+
+
+def coupon_block(process: dict[str, Any]) -> dict[str, Any]:
+    """Retrouve le bloc de proprietes coupon quel que soit son etat declare.
+
+    Les cartes du depot nomment ce bloc d'apres l'etat des eprouvettes —
+    `as_manufactured` pour l'AlSi10Mg, `heat_treated` pour le Ti64. L'etat fait
+    partie de l'information et ne doit pas etre efface ; la lecture, elle, doit
+    rester generique.
+    """
+    for key, value in process.items():
+        if key.startswith("published_") and key.endswith("_properties"):
+            if isinstance(value, dict):
+                return value
+    raise RouteError("carte_procede_sans_bloc_coupon")
+
+
+def coupon_value(coupons: dict[str, Any], *names: str) -> float | None:
+    for name in names:
+        if name in coupons:
+            return float(coupons[name])
     return None
 
 
@@ -99,12 +122,18 @@ def build_route(
     slicing = geometry["full_build_slicing"]
     thickness = geometry["thickness_screen"]
     reference = process["process_reference"]
-    coupons = process["published_as_manufactured_coupon_properties"]
+    coupons = coupon_block(process)
 
     screened_layer_mm = float(slicing["layer_thickness_mm"])
-    qualified_layer_mm = float(reference["layer_thickness_um"]) / 1000.0
+    published_layer_um = reference.get("layer_thickness_um")
+    qualified_layer_mm = (
+        float(published_layer_um) / 1000.0 if published_layer_um is not None else None
+    )
     build_height_mm = float(slicing["build_height_mm"])
-    minimum_wall_mm = float(reference["minimum_wall_thickness_mm"])
+    published_minimum_wall = reference.get("minimum_wall_thickness_mm")
+    minimum_wall_mm = (
+        float(published_minimum_wall) if published_minimum_wall is not None else None
+    )
     solid_volume_mm3 = part_volume_mm3(screen)
 
     gates = [
@@ -123,18 +152,30 @@ def build_route(
         ),
         gate(
             "layer_thickness_consistent",
-            math.isclose(screened_layer_mm, qualified_layer_mm, abs_tol=1e-9),
+            qualified_layer_mm is not None
+            and math.isclose(screened_layer_mm, qualified_layer_mm, abs_tol=1e-9),
             f"Le tranchage a {screened_layer_mm * 1000:.0f} um est celui de la route qualifiee.",
-            f"Le tranchage a ete conduit a {screened_layer_mm * 1000:.0f} um alors que la seule "
-            f"route publiee de cet alliage sur cette machine est a "
-            f"{qualified_layer_mm * 1000:.0f} um. Le nombre de couches, la duree et les "
-            "proprietes coupon ne se transposent pas d'une epaisseur a l'autre.",
+            (
+                f"Le tranchage a ete conduit a {screened_layer_mm * 1000:.0f} um alors que la "
+                f"seule route publiee de cet alliage sur cette machine est a "
+                f"{qualified_layer_mm * 1000:.0f} um. Le nombre de couches, la duree et les "
+                "proprietes coupon ne se transposent pas d'une epaisseur a l'autre."
+                if qualified_layer_mm is not None
+                else "La carte procede ne publie aucune epaisseur de couche : il n'y a "
+                "rien a quoi confronter le tranchage."
+            ),
         ),
         gate(
             "screened_wall_above_process_minimum",
-            float(thickness["p01_mm"]) >= minimum_wall_mm,
-            f"Le premier centile d'epaisseur locale, {float(thickness['p01_mm']):.3f} mm, "
-            f"reste au-dessus du minimum procede de {minimum_wall_mm:.2f} mm.",
+            minimum_wall_mm is not None and float(thickness["p01_mm"]) >= minimum_wall_mm,
+            (
+                f"Le premier centile d'epaisseur locale, {float(thickness['p01_mm']):.3f} mm, "
+                f"reste au-dessus du minimum procede de {minimum_wall_mm:.2f} mm."
+                if minimum_wall_mm is not None
+                else ""
+            ),
+            "La carte procede ne publie aucune paroi minimale : la finesse de la "
+            "piece ne peut etre confrontee a rien.",
         ),
         gate(
             "bare_part_fits_machine_envelope",
@@ -174,11 +215,15 @@ def build_route(
             False,
             "Des admissibles de piece existent.",
             "Les valeurs publiees sont des coupons EOS as-manufactured "
-            f"(Rp0,2 vertical {coupons['vertical_yield_strength_mpa']:.0f} MPa, "
-            f"fatigue {coupons['fatigue_strength_mpa']:.0f} MPa a "
-            f"{coupons['fatigue_cycles'] / 1e6:.0f} millions de cycles) : ce ne sont "
-            "pas des admissibles de cette piece, dans cette orientation, a cet etat "
-            "de surface.",
+            f"(Rp0,2 vertical {coupon_value(coupons, 'vertical_yield_strength_mpa') or 0:.0f} MPa"
+            + (
+                f", fatigue {coupon_value(coupons, 'fatigue_strength_mpa'):.0f} MPa a "
+                f"{coupon_value(coupons, 'fatigue_cycles') / 1e6:.0f} millions de cycles"
+                if coupon_value(coupons, "fatigue_strength_mpa")
+                else ", aucune donnee de fatigue publiee"
+            )
+            + ") : ce ne sont pas des admissibles de cette piece, dans cette "
+            "orientation, a cet etat de surface.",
         ),
         gate(
             "powder_lot_traceability_contracted",
@@ -189,6 +234,34 @@ def build_route(
         ),
     ]
 
+    thermal = (screen or {}).get("temperature_screen")
+    ceiling = process.get("service_temperature", {}).get("creep_limited_ceiling_c")
+    if thermal and ceiling is not None:
+        declared = float(thermal["declared_tip_surface_c"])
+        margin = float(ceiling) - declared
+        gates.append(
+            gate(
+                "alloy_ceiling_above_declared_service_temperature",
+                margin >= 0.0,
+                f"Le plafond de l'alliage, {float(ceiling):.0f} °C, couvre la "
+                f"temperature declaree de {declared:.0f} °C avec {margin:+.0f} °C "
+                "de marge.",
+                f"La temperature declaree de {declared:.0f} °C depasse le plafond "
+                f"de l'alliage de {-margin:.0f} °C. Cette temperature est une "
+                "entree synthetique jamais mesuree : c'est elle qu'il faut aller "
+                "chercher avant de changer d'alliage.",
+            )
+        )
+    if process.get("availability", {}).get("commodity") is False:
+        gates.append(
+            gate(
+                "route_available_from_a_service_supplier",
+                False,
+                "La route se commande chez un atelier de service.",
+                process["availability"]["note"],
+            )
+        )
+
     blocking = [entry for entry in gates if not entry["pass"]]
     status = "passed" if not blocking else "blocked_missing_input"
 
@@ -196,22 +269,31 @@ def build_route(
         "screened_layer_thickness_mm": screened_layer_mm,
         "qualified_layer_thickness_mm": qualified_layer_mm,
         "layers_at_screened_thickness": int(slicing["layer_count"]),
-        "layers_at_qualified_thickness": math.ceil(build_height_mm / qualified_layer_mm),
+        "layers_at_qualified_thickness": (
+            math.ceil(build_height_mm / qualified_layer_mm)
+            if qualified_layer_mm is not None
+            else None
+        ),
         "build_height_mm": build_height_mm,
         "orientation": slicing["orientation"],
         "support_proxy_volume_mm3": float(slicing["support_proxy_volume_mm3"]),
     }
     if solid_volume_mm3:
         deposited = solid_volume_mm3 + derived["support_proxy_volume_mm3"]
-        rate = float(reference["volume_rate_mm3_s"])
+        rate = reference.get("volume_rate_mm3_s")
         derived["deposited_volume_mm3"] = deposited
-        derived["exposure_time_hours_at_published_rate"] = deposited / rate / 3600.0
+        if rate:
+            derived["exposure_time_hours_at_published_rate"] = (
+                deposited / float(rate) / 3600.0
+            )
         derived["exposure_time_scope"] = (
             "volume divise par le debit publie : ni recouvrement, ni chauffe, ni "
             "inertage, ni changement de plateau ne sont comptes"
         )
         derived["screening_mass_g"] = (
-            solid_volume_mm3 / 1000.0 * float(coupons["density_g_cm3_minimum"])
+            solid_volume_mm3
+            / 1000.0
+            * coupon_value(coupons, "density_g_cm3_minimum", "density_g_cm3")
         )
 
     return {
@@ -232,9 +314,10 @@ def build_route(
                 else f"{machine['manufacturer']} {machine['model']}"
             ),
             "material_set": reference.get("eos_material_set", ""),
-            "inert_gas": reference["inert_gas"],
-            "build_platform_temperature_c": reference["build_platform_temperature_c"],
+            "inert_gas": reference.get("inert_gas", ""),
+            "build_platform_temperature_c": reference.get("build_platform_temperature_c"),
             "minimum_wall_thickness_mm": minimum_wall_mm,
+            "heat_treatment": reference.get("heat_treatment", ""),
             "orientation": slicing["orientation"],
         },
         "derived": derived,
@@ -283,11 +366,19 @@ def render_rfq(card: dict[str, Any], part: dict[str, Any], inputs: dict[str, str
         f"| machine | {route['machine']} |",
         f"| jeu de parametres | {route['material_set']} |",
         f"| gaz | {route['inert_gas']} |",
-        f"| plateau | {route['build_platform_temperature_c']:.0f} °C |",
+        (
+            f"| plateau | {route['build_platform_temperature_c']:.0f} °C |"
+            if route.get("build_platform_temperature_c") is not None
+            else "| plateau | non publie |"
+        ),
         f"| orientation de criblage | `{route['orientation']}` |",
         f"| hauteur de construction | {derived['build_height_mm']:.1f} mm |",
-        f"| couches a {derived['qualified_layer_thickness_mm'] * 1000:.0f} µm | "
-        f"{derived['layers_at_qualified_thickness']} |",
+        (
+            f"| couches a {derived['qualified_layer_thickness_mm'] * 1000:.0f} µm | "
+            f"{derived['layers_at_qualified_thickness']} |"
+            if derived.get("qualified_layer_thickness_mm")
+            else "| epaisseur de couche | non publiee par la route |"
+        ),
     ]
     if "screening_mass_g" in derived:
         lines.append(f"| masse de criblage | {derived['screening_mass_g']:.2f} g |")

@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "manufacturer": "EOS",
+  "system": "EOS M 290",
+  "material": "EOS Titanium Ti64",
+  "material_designations": [
+    "Ti-6Al-4V",
+    "ASTM F2924 a contractualiser si cette route est retenue"
+  ],
+  "process_reference": {
+    "technology_readiness_level": 9,
+    "layer_thickness_um": 30.0,
+    "volume_rate_mm3_s": 5.0,
+    "minimum_wall_thickness_mm": 0.4,
+    "minimum_wall_thickness_range_mm": [0.3, 0.4],
+    "inert_gas": "Argon",
+    "heat_treatment": "800 °C pendant 2 heures sous argon, procedure des eprouvettes de la fiche EOS",
+    "surface_roughness_after_shot_peening_ra_um": [5.0, 9.0]
+  },
+  "published_heat_treated_coupon_properties": {
+    "density_g_cm3": 4.41,
+    "horizontal_yield_strength_mpa": 945.0,
+    "vertical_yield_strength_mpa": 965.0,
+    "horizontal_ultimate_strength_mpa": 1055.0,
+    "vertical_ultimate_strength_mpa": 1075.0,
+    "horizontal_elongation_percent": 13.0,
+    "vertical_elongation_percent": 14.0,
+    "screening_elastic_modulus_mpa": 110000.0,
+    "screening_elastic_modulus_scope": "reference corroyee de criblage, absente de la fiche EOS"
+  },
+  "service_temperature": {
+    "creep_limited_ceiling_c": 400.0,
+    "basis": "plafond de service limite par le fluage couramment donne a 350-400 °C pour le Ti-6Al-4V, dont la phase beta fluue tot",
+    "scope": "limite de litterature, pas une garantie de fournisseur ni un admissible de piece"
+  },
+  "availability": {
+    "commodity": true,
+    "note": "Ti64 est la nuance titane universellement proposee par les ateliers de service, y compris a devis instantane et sans minimum de commande."
+  },
+  "solver_readiness": {
+    "complete_and_calibrated": false,
+    "missing_inputs": [
+      "carte thermique et elasto-plastique dependante de la temperature pour cette route",
+      "admissibles de fatigue a l'etat de surface reel de la piece",
+      "limite d'oxydation et tenue au cyclage thermique de l'etat livre",
+      "geometrie de supports fournisseur et sequence de liberation",
+      "surepaisseurs d'usinage des surfaces fonctionnelles"
+    ]
+  },
+  "sources": [
+    "https://3dformtech.fi/wp-content/uploads/2019/11/Ti-Ti64_9011-0014_9011-0039_M290_Material_data_sheet_11-17_en-1.pdf",
+    "https://www.huaxiao-alloy.com/blog/titanium-alloy/titanium-alloy-grade-selection-high-temperature/"
+  ],
+  "scope": "Carte publique matiere-machine-procede de criblage. Les valeurs sont des coupons EOS traites thermiquement et ne constituent ni des admissibles de piece, ni un fichier machine, ni une autorisation d'impression."
+}

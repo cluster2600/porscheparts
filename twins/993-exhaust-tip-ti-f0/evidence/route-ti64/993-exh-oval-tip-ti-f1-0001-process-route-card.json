@@ -1,36 +1,36 @@
 {
   "schema_version": "1.0.0",
-  "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+  "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
   "stage_id": "04_material_machine_process_card",
   "status": "blocked_missing_input",
   "classification": "confrontation_of_published_cards_not_a_qualified_process_route",
-  "safety_class": "non_critical",
+  "safety_class": "functional",
   "route": {
-    "material": "EOS Aluminium AlSi10Mg",
+    "material": "EOS Titanium Ti64",
     "material_designations": [
-      "DIN EN 1706 EN AC-43000",
-      "ASTM F3318-18"
+      "Ti-6Al-4V",
+      "ASTM F2924 a contractualiser si cette route est retenue"
     ],
     "machine": "EOS M 290",
-    "material_set": "AlSi10Mg_FlexM291 2.01",
+    "material_set": "",
     "inert_gas": "Argon",
-    "build_platform_temperature_c": 35.0,
+    "build_platform_temperature_c": null,
     "minimum_wall_thickness_mm": 0.4,
-    "heat_treatment": "",
-    "orientation": "roll_y_45"
+    "heat_treatment": "800 °C pendant 2 heures sous argon, procedure des eprouvettes de la fiche EOS",
+    "orientation": "roll_y_25"
   },
   "derived": {
-    "screened_layer_thickness_mm": 0.05,
+    "screened_layer_thickness_mm": 0.03,
     "qualified_layer_thickness_mm": 0.03,
-    "layers_at_screened_thickness": 580,
-    "layers_at_qualified_thickness": 967,
-    "build_height_mm": 28.991378028648445,
-    "orientation": "roll_y_45",
-    "support_proxy_volume_mm3": 42.7749999999999,
-    "deposited_volume_mm3": 2334.665015564014,
-    "exposure_time_hours_at_published_rate": 0.12716040389782213,
+    "layers_at_screened_thickness": 4936,
+    "layers_at_qualified_thickness": 4936,
+    "build_height_mm": 148.06025867292448,
+    "orientation": "roll_y_25",
+    "support_proxy_volume_mm3": 7244.482499999994,
+    "deposited_volume_mm3": 55393.824943044696,
+    "exposure_time_hours_at_published_rate": 3.0774347190580387,
     "exposure_time_scope": "volume divise par le debit publie : ni recouvrement, ni chauffe, ni inertage, ni changement de plateau ne sont comptes",
-    "screening_mass_g": 6.119346341555917
+    "screening_mass_g": 212.33860017382713
   },
   "gates": [
     {
@@ -45,14 +45,13 @@
     },
     {
       "gate": "layer_thickness_consistent",
-      "pass": false,
-      "statement": "Le tranchage a 50 um est celui de la route qualifiee.",
-      "blocker": "Le tranchage a ete conduit a 50 um alors que la seule route publiee de cet alliage sur cette machine est a 30 um. Le nombre de couches, la duree et les proprietes coupon ne se transposent pas d'une epaisseur a l'autre."
+      "pass": true,
+      "statement": "Le tranchage a 30 um est celui de la route qualifiee."
     },
     {
       "gate": "screened_wall_above_process_minimum",
       "pass": true,
-      "statement": "Le premier centile d'epaisseur locale, 0.833 mm, reste au-dessus du minimum procede de 0.40 mm."
+      "statement": "Le premier centile d'epaisseur locale, 0.600 mm, reste au-dessus du minimum procede de 0.40 mm."
     },
     {
       "gate": "bare_part_fits_machine_envelope",
@@ -69,13 +68,12 @@
       "gate": "temperature_dependent_constitutive_card_available",
       "pass": false,
       "statement": "La carte matiere-procede est complete et calibree en temperature.",
-      "blocker": "La carte procede se declare elle-meme incomplete : exact laser path, hatch, contour and exposure schedule exported for this build ; powder optical properties and temperature-dependent liquid/solid thermal card ; temperature- and orientation-dependent elastic-plastic constitutive card."
+      "blocker": "La carte procede se declare elle-meme incomplete : carte thermique et elasto-plastique dependante de la temperature pour cette route ; admissibles de fatigue a l'etat de surface reel de la piece ; limite d'oxydation et tenue au cyclage thermique de l'etat livre."
     },
     {
       "gate": "heat_treatment_route_defined",
-      "pass": false,
-      "statement": "Le traitement thermique appartient a la route publiee.",
-      "blocker": "La carte procede ne publie aucun traitement thermique : detente, revenu et etat metallurgique de livraison restent a contractualiser."
+      "pass": true,
+      "statement": "Le traitement thermique appartient a la route publiee."
     },
     {
       "gate": "machining_stock_defined",
@@ -87,16 +85,22 @@
       "gate": "part_allowables_derived_from_coupons",
       "pass": false,
       "statement": "Des admissibles de piece existent.",
-      "blocker": "Les valeurs publiees sont des coupons EOS as-manufactured (Rp0,2 vertical 233 MPa, fatigue 110 MPa a 20 millions de cycles) : ce ne sont pas des admissibles de cette piece, dans cette orientation, a cet etat de surface."
+      "blocker": "Les valeurs publiees sont des coupons EOS as-manufactured (Rp0,2 vertical 965 MPa, aucune donnee de fatigue publiee) : ce ne sont pas des admissibles de cette piece, dans cette orientation, a cet etat de surface."
     },
     {
       "gate": "powder_lot_traceability_contracted",
       "pass": false,
       "statement": "La tracabilite du lot de poudre est contractualisee.",
       "blocker": "Ni lot, ni nombre de reemplois, ni certificat matiere ne sont engages avec un fournisseur."
+    },
+    {
+      "gate": "alloy_ceiling_above_declared_service_temperature",
+      "pass": false,
+      "statement": "Le plafond de l'alliage, 400 °C, couvre la temperature declaree de 427 °C avec -27 °C de marge.",
+      "blocker": "La temperature declaree de 427 °C depasse le plafond de l'alliage de 27 °C. Cette temperature est une entree synthetique jamais mesuree : c'est elle qu'il faut aller chercher avant de changer d'alliage."
     }
   ],
-  "blocking_gate_count": 7,
+  "blocking_gate_count": 6,
   "metal_print_authorized": false,
   "authorization_note": "Aucune porte de fabrication n'est ouverte par ce fichier. Une route coherente sur le papier ne remplace ni coupon, ni fichier machine signe, ni revue d'ingenierie."
 }

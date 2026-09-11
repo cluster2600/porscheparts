@@ -4,6 +4,23 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Décision 0007, première pièce titane sélectionnée par grille, 11 septembre 2026 :
+
+- `scripts/screen_titanium_candidates.py` applique la grille de `TITANIUM.md`
+  et les trois familles additives aux 32 fiches, en refusant de tourner si une
+  fiche n'est pas jugée ; cinq pièces seulement sont éligibles ;
+- `993-EXH-OVAL-TIP-TI-F1-0001` retenue à +6, le collecteur d'échappement étant
+  écarté malgré son +7 parce que 900 °C est un cas nickel ;
+- générateur d'embout paramétré par `--material`, une géométrie et trois cartes
+  matière, avec export STL et verdict de température ;
+- étape 02 `passed`, étape 03 `completed_screening` à 4 936 couches de 30 µm ;
+- deux cartes de route titane mutuellement exclusives : le Ti-6Al-4V est
+  disponible partout et bloqué par une marge de −27 °C, le Ti-6242 passe la
+  température et n'a ni machine, ni épaisseur de couche, ni fournisseur ;
+- porte de température générique ajoutée à `build_process_route_card.py` ;
+- constat : la décision tient à 427 °C jamais mesurés, et un thermomètre
+  infrarouge tranche ce que douze mille lignes de calcul ne trancheront pas.
+
 Décision 0006, la bague sera tournée en 6063 T6, 11 septembre 2026 :
 
 - carte de route tournage `cnc-turning-6063-t6-bright-anodised.json`, nuance

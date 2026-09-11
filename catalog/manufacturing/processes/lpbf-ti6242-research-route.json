@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "manufacturer": "aucun fournisseur identifie",
+  "system": "LPBF, machine non fixee",
+  "material": "Ti-6Al-2Sn-4Zr-2Mo (Ti-6242)",
+  "material_designations": [
+    "AMS 4975",
+    "AMS 4976"
+  ],
+  "process_reference": {
+    "technology_readiness_level": 4,
+    "layer_thickness_um": null,
+    "volume_rate_mm3_s": null,
+    "minimum_wall_thickness_mm": null,
+    "inert_gas": "Argon",
+    "heat_treatment": "non fixe ; la litterature LPBF decrit un etat martensitique brut et un durcissement par vieillissement direct au prix de la ductilite"
+  },
+  "published_wrought_reference_properties": {
+    "density_g_cm3": 4.54,
+    "elastic_modulus_mpa": 115000.0,
+    "thermal_conductivity_w_mk": 6.9,
+    "thermal_expansion_per_k_20_to_200_c": 7.7e-06,
+    "scope": "valeurs corroyees a 20 °C, references de criblage et non proprietes de piece LPBF"
+  },
+  "service_temperature": {
+    "creep_limited_ceiling_c": 550.0,
+    "basis": "nuance quasi-alpha developpee pour la tenue au fluage, donnee utilisable jusqu'a environ 550 °C",
+    "scope": "limite de litterature, pas une garantie de fournisseur"
+  },
+  "availability": {
+    "commodity": false,
+    "note": "Le Ti-6242 en LPBF est un sujet de recherche : premiere mise en oeuvre publiee en 2020, densite 99,5 % et microstructure sans fissure. Aucun atelier de service a devis instantane ne le propose au catalogue. Retenir cette route signifie chercher un prestataire specialise et faire qualifier une poudre."
+  },
+  "solver_readiness": {
+    "complete_and_calibrated": false,
+    "missing_inputs": [
+      "fournisseur, machine et jeu de parametres qualifies",
+      "poudre et sa tracabilite",
+      "epaisseur de couche, debit et paroi minimale de la route retenue",
+      "traitement thermique et etat de livraison",
+      "toute propriete de piece, a toute temperature"
+    ]
+  },
+  "sources": [
+    "https://www.stainless.eu/wp-content/uploads/2023/03/Ti-6242-EN.pdf",
+    "https://advanced.onlinelibrary.wiley.com/doi/10.1002/adem.202301122",
+    "https://3dprintingindustry.com/news/beamit-develops-3d-printing-process-for-ti6242-for-lightweight-automotive-and-aerospace-parts-188216/"
+  ],
+  "scope": "Carte d'echappatoire haute temperature. Elle existe pour nommer ce qu'il faudrait si la temperature reelle de l'embout depassait le plafond du Ti-6Al-4V. Elle n'est pas une route disponible."
+}

@@ -9,7 +9,53 @@ import math
 from pathlib import Path
 
 
-PART_ID = "993-EXH-OVAL-TIP-IN625-F0-0001"
+# Une seule geometrie, plusieurs metaux. Le conduit, la coque et les huit
+# nervures ne changent pas d'un alliage a l'autre : ce qui change est la carte
+# matiere et, seule question qui decide vraiment ici, le plafond de service.
+MATERIALS = {
+    "in625": {
+        "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+        "candidate": "EOS NickelAlloy IN625 on M 290 40 µm, study only",
+        "density_g_cm3": 8.44,
+        "elastic_modulus_mpa": 204_000.0,
+        "comparison_yield_strength_mpa": 640.0,
+        "thermal_expansion_per_k": 13.7e-6,
+        "thermal_conductivity_w_mk": 15.7,
+        "specific_heat_j_kg_k": 511.0,
+        "creep_limited_ceiling_c": 980.0,
+        "ceiling_basis": "superalliage nickel, tres au-dela du domaine de cet embout",
+        "commodity": True,
+    },
+    "ti64": {
+        "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+        "candidate": "EOS Titanium Ti64 on M 290 30 µm, heat treated coupons",
+        "density_g_cm3": 4.41,
+        "elastic_modulus_mpa": 110_000.0,
+        "comparison_yield_strength_mpa": 945.0,
+        "thermal_expansion_per_k": 8.6e-6,
+        "thermal_conductivity_w_mk": 7.0,
+        "specific_heat_j_kg_k": 560.0,
+        "creep_limited_ceiling_c": 400.0,
+        "ceiling_basis": "plafond de fluage couramment donne a 350-400 °C",
+        "commodity": True,
+    },
+    "ti6242": {
+        "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+        "candidate": "Ti-6Al-2Sn-4Zr-2Mo LPBF, route de recherche sans fournisseur",
+        "density_g_cm3": 4.54,
+        "elastic_modulus_mpa": 115_000.0,
+        "comparison_yield_strength_mpa": 860.0,
+        "thermal_expansion_per_k": 7.7e-6,
+        "thermal_conductivity_w_mk": 6.9,
+        "specific_heat_j_kg_k": 460.0,
+        "creep_limited_ceiling_c": 550.0,
+        "ceiling_basis": "nuance quasi-alpha developpee pour le fluage",
+        "commodity": False,
+    },
+}
+
+MATERIAL_KEY = "in625"
+PART_ID = MATERIALS[MATERIAL_KEY]["part_id"]
 
 # Seule l'enveloppe de sortie est publiée par FVD.
 PUBLISHED_OUTLET_WIDTH_MM = 120.0
@@ -47,13 +93,32 @@ EMISSIVITY_HYPOTHESIS = 0.8
 STEFAN_BOLTZMANN = 5.670374419e-8
 MODAL_STRIP_WIDTH_MM = 20.0
 
-# Carte de criblage EOS M 290 40 µm et données thermiques corroyées.
-DENSITY_G_CM3 = 8.44
-ELASTIC_MODULUS_MPA = 204_000.0
-COMPARISON_YIELD_STRENGTH_MPA = 640.0
-THERMAL_EXPANSION_PER_K = 13.7e-6
-THERMAL_CONDUCTIVITY_W_MK = 15.7
-SPECIFIC_HEAT_J_KG_K = 511.0
+# Carte de criblage active, fixee par --material. Les references corroyées et
+# ambiantes restent des entrées de criblage, pas des admissibles chauds.
+DENSITY_G_CM3 = MATERIALS[MATERIAL_KEY]["density_g_cm3"]
+ELASTIC_MODULUS_MPA = MATERIALS[MATERIAL_KEY]["elastic_modulus_mpa"]
+COMPARISON_YIELD_STRENGTH_MPA = MATERIALS[MATERIAL_KEY]["comparison_yield_strength_mpa"]
+THERMAL_EXPANSION_PER_K = MATERIALS[MATERIAL_KEY]["thermal_expansion_per_k"]
+THERMAL_CONDUCTIVITY_W_MK = MATERIALS[MATERIAL_KEY]["thermal_conductivity_w_mk"]
+SPECIFIC_HEAT_J_KG_K = MATERIALS[MATERIAL_KEY]["specific_heat_j_kg_k"]
+
+
+def select_material(key: str) -> None:
+    """Bascule la carte matiere active avant tout calcul."""
+    global MATERIAL_KEY, PART_ID, DENSITY_G_CM3, ELASTIC_MODULUS_MPA
+    global COMPARISON_YIELD_STRENGTH_MPA, THERMAL_EXPANSION_PER_K
+    global THERMAL_CONDUCTIVITY_W_MK, SPECIFIC_HEAT_J_KG_K
+    if key not in MATERIALS:
+        raise SystemExit(f"materiau inconnu: {key}")
+    card = MATERIALS[key]
+    MATERIAL_KEY = key
+    PART_ID = card["part_id"]
+    DENSITY_G_CM3 = card["density_g_cm3"]
+    ELASTIC_MODULUS_MPA = card["elastic_modulus_mpa"]
+    COMPARISON_YIELD_STRENGTH_MPA = card["comparison_yield_strength_mpa"]
+    THERMAL_EXPANSION_PER_K = card["thermal_expansion_per_k"]
+    THERMAL_CONDUCTIVITY_W_MK = card["thermal_conductivity_w_mk"]
+    SPECIFIC_HEAT_J_KG_K = card["specific_heat_j_kg_k"]
 
 
 def linear_ellipse_loft_volume_mm3(
@@ -234,7 +299,7 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "authority": "regression inputs only; no measured engine flow, pressure, temperature, pulse spectrum or vehicle duty cycle",
         },
         "material_screen": {
-            "candidate": "EOS NickelAlloy IN625 on M 290 40 µm, study only",
+            "candidate": MATERIALS[MATERIAL_KEY]["candidate"],
             "density_g_cm3": DENSITY_G_CM3,
             "elastic_modulus_mpa": ELASTIC_MODULUS_MPA,
             "comparison_yield_strength_mpa": COMPARISON_YIELD_STRENGTH_MPA,
@@ -242,6 +307,23 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "thermal_conductivity_w_mk": THERMAL_CONDUCTIVITY_W_MK,
             "specific_heat_j_kg_k": SPECIFIC_HEAT_J_KG_K,
             "scope": "ambient and wrought references are screening inputs, not hot LPBF design allowables",
+        },
+        "temperature_screen": {
+            "declared_tip_surface_c": TIP_SURFACE_K - 273.15,
+            "declared_tip_surface_authority": "synthetic screening input, never measured on a vehicle",
+            "alloy_creep_limited_ceiling_c": MATERIALS[MATERIAL_KEY]["creep_limited_ceiling_c"],
+            "ceiling_basis": MATERIALS[MATERIAL_KEY]["ceiling_basis"],
+            "margin_c": MATERIALS[MATERIAL_KEY]["creep_limited_ceiling_c"] - (TIP_SURFACE_K - 273.15),
+            "alloy_adequate_at_declared_temperature": (
+                MATERIALS[MATERIAL_KEY]["creep_limited_ceiling_c"] >= TIP_SURFACE_K - 273.15
+            ),
+            "commodity_supply": MATERIALS[MATERIAL_KEY]["commodity"],
+            "interpretation": (
+                "Le verdict depend entierement d'une temperature synthetique. "
+                "Une mesure au thermometre infrarouge sur la sortie reelle, apres "
+                "roulage, deplacerait la reponse plus surement que n'importe quel "
+                "calcul de ce fichier."
+            ),
         },
         "results": {
             "unribbed_linear_loft_volume_mm3": estimate_mm3,
@@ -379,13 +461,17 @@ def build_solid():
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path)
+    parser.add_argument("--surface", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--material", default="in625", choices=sorted(MATERIALS))
     args = parser.parse_args()
+
+    select_material(args.material)
 
     cad_volume_mm3 = None
     solid = None
-    if args.out:
-        from build123d import export_step, import_step
+    if args.out or args.surface:
+        from build123d import export_step, export_stl, import_step
 
         solid = build_solid()
         if not solid.is_valid or len(solid.solids()) != 1:
@@ -414,7 +500,12 @@ def main() -> int:
             raise SystemExit("Le STEP relu ne reproduit pas le volume OCCT attendu.")
         cad_volume_mm3 = roundtrip.volume
 
+    if args.surface and solid is not None:
+        args.surface.parent.mkdir(parents=True, exist_ok=True)
+        export_stl(solid, str(args.surface), tolerance=0.05, angular_tolerance=0.10)
+
     report = engineering_screen(cad_volume_mm3)
+    report["material_key"] = MATERIAL_KEY
     if solid is not None:
         report["step_roundtrip"] = {
             "status": "passed",
