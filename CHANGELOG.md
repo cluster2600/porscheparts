@@ -4,6 +4,25 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Les 70 désignations du catalogue d'usine instruites, 11 septembre 2026 :
+
+- `catalog/manufacturing/pet-candidate-judgements.json` juge les 70 désignations
+  retenues par le triage : matière d'origine présumée, apport réel du titane,
+  classe présumée, familles additives ;
+- `scripts/screen_pet_candidates.py` **dérive** le verdict de ces entrées et
+  refuse de tourner si un verdict écrit ne découle plus de ses raisons — la
+  garde qui manquait aux criblages précédents ;
+- **sept désignations méritent une fiche**, couvrant 40 références, dont six
+  nouvelles ; elles forment une seule famille, le circuit d'air chaud et d'air
+  secondaire autour des échangeurs d'échappement ;
+- ce gisement passe parce qu'il est chaud sans être à la température des gaz, en
+  tôle d'acier et non en aluminium, mince et consolidable, et bénin à la rupture ;
+- les 63 refus sont motivés mécaniquement : le titane n'améliore pas la matière
+  d'origine, domaine présumé critique, aucune famille additive, ou impossibilité
+  physique pour un échangeur dont la fonction est de conduire la chaleur ;
+- `docs/993/993_BACKLOG_TITANE.md` publie les trois dénominateurs côte à côte
+  pour qu'ils cessent d'être cités l'un pour l'autre.
+
 SAFETY.md réécrit et carter de chaîne instruit, 11 septembre 2026 :
 
 - `SAFETY.md` réécrit : classes, domaines présumés critiques, règle de
