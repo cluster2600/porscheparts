@@ -81,6 +81,30 @@ DATUM_CENTROID = "centroid"
 DATUM_DOWEL = "dowel"
 
 
+# Le magnesium de 1995 et celui d'aujourd'hui ne sont pas le meme materiau. La
+# difference n'est pas le revetement, c'est la **purete** : le fer, le nickel et
+# le cuivre forment des sites cathodiques qui corrodent l'alliage de l'interieur.
+# Les limites ASTM de l'AZ91D les plafonnent a 0,004 %, 0,001 % et 0,015 %, et la
+# haute purete est donnee jusqu'a cent fois plus resistante que le standard.
+MAGNESIUM_MODERN = {
+    "name": "magnesium moderne : alliage haute purete, PEO",
+    "density_g_cm3": 1.81,
+    "expansion_per_k": 26.0e-6,
+    "elastic_modulus_gpa": 45.0,
+    "yield_strength_mpa": 160.0,
+    "impurity_limits_astm_az91d_percent": {"Fe": 0.004, "Ni": 0.001, "Cu": 0.015},
+    "corrosion_gain_versus_standard_purity": "jusqu'a 100x, ASTM B117",
+    "surface_treatment": (
+        "oxydation par plasma electrolytique, aussi dite PEO ou MAO : couche "
+        "ceramique, sans chrome hexavalent, conforme REACH"
+    ),
+    "what_it_replaced": (
+        "la chromatation au chrome hexavalent, technologie de reference en 1995, "
+        "aujourd'hui sous autorisation REACH"
+    ),
+}
+
+
 def index_pair(card: dict) -> dict[str, float]:
     return {
         "stiffness_limited_E13_over_rho": card["elastic_modulus_gpa"] ** (1 / 3)
@@ -130,6 +154,38 @@ def against_the_real_incumbent() -> dict[str, object]:
             "« corrosion problematique avec la matiere d'origine », et il est "
             "ici au coeur du sujet — pas la masse."
         ),
+        "the_1995_versus_today_reframing": {
+            "question": (
+                "La piece d'origine ne se corrode pas parce qu'elle est en "
+                "magnesium. Elle se corrode parce qu'elle est en magnesium **de "
+                "1995** : purete standard, chromatation au chrome hexavalent."
+            ),
+            "what_changed": {
+                "alliage": (
+                    "purete standard -> haute purete, fer, nickel et cuivre "
+                    "plafonnes ; jusqu'a 100x de gain au brouillard salin"
+                ),
+                "traitement": (
+                    "chromatation hexavalente -> PEO/MAO, couche ceramique "
+                    "conforme REACH"
+                ),
+                "mecanisme": "barriere passive -> revetements actifs, sol-gel",
+            },
+            "consequence": (
+                "Un couvercle en magnesium moderne bat le titane et l'aluminium "
+                "sur les deux indices de flexion de plaque, supprime totalement "
+                "le couple galvanique puisqu'il est de meme nature que le carter, "
+                "annule la dilatation differentielle, et traite le mode de "
+                "defaillance a sa racine au lieu de le contourner. C'est la "
+                "matiere d'origine, faite correctement."
+            ),
+            "the_real_obstacles": [
+                "L'usinage du magnesium demande un atelier equipe : les copeaux fins sont inflammables, et tous les tourneurs ne le prennent pas.",
+                "Le PEO depose 5 a 40 um : sur un plan de joint cela se masque ou se reprend apres traitement.",
+                "La plaque corroyee courante est en AZ31B, pas en AZ91E de fonderie : l'alliage disponible n'est pas celui d'origine.",
+                "Aucune de ces trois questions n'est instruite ici.",
+            ],
+        },
         "the_catch": (
             "Le couvercle se boulonne sur un carter lui aussi en magnesium. Le "
             "magnesium est le plus anodique des metaux de structure et le "

@@ -4,6 +4,29 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Décision 0008, le magnésium moderne bat le titane, 11 septembre 2026 :
+
+- le couvercle de 1995 ne pourrit pas parce qu'il est en magnésium, mais parce
+  qu'il est en magnésium **de 1995** : pureté standard et chromatation hexavalente ;
+- ce qui a changé — la corrosion du magnésium est pilotée par trois impuretés
+  internes, fer, nickel et cuivre ; les limites ASTM de l'AZ91D les plafonnent à
+  0,004 / 0,001 / 0,015 %, et la haute pureté est donnée **jusqu'à 100×** plus
+  résistante au brouillard salin, davantage que l'aluminium 380 moulé ou l'acier
+  laminé à froid ; le PEO remplace la chromatation, sans chrome hexavalent ;
+- comparaison finale : le magnésium moderne gagne **les deux** indices de flexion
+  de plaque (1,965 et 6,988), supprime le couple galvanique puisqu'il est de même
+  nature que le carter, annule la dilatation différentielle et traite le mode de
+  défaillance à sa racine ;
+- le titane est écarté sur ces chiffres : plus lourd, moins raide, et porteur du
+  pire couple galvanique de la grille contre un carter magnésium ;
+- leçon enregistrée : trois fois dans ce projet la bonne réponse a été la matière
+  d'origine faite correctement — la question à poser en premier n'est pas « par
+  quoi la remplacer » mais « que sait-on faire aujourd'hui qu'on ne savait pas
+  faire alors » ;
+- obstacles non instruits : atelier capable d'usiner le magnésium, épaisseur PEO
+  de 5 à 40 µm sur un plan de joint, et disponibilité en plaque AZ31B plutôt
+  qu'en AZ91E de fonderie.
+
 La pièce d'origine est en magnésium, pas en aluminium, 11 septembre 2026 :
 
 - correction majeure : les couvercles de carter de chaîne 964/993 montés en usine
