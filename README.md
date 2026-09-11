@@ -101,7 +101,7 @@ La colonne « statut » est celle de la fiche, pas une intention : une pièce
 |---|---|---|---|
 | [Berceau moteur Turbo (Motortraeger)](catalog/parts/993-eng-carrier-0001.json) | nuance inconnue | CNC | **critique pour la sécurité** |
 | [Carter de chaîne de distribution 993 et ses c…](catalog/parts/993-eng-chain-case-0001.json) | non identifié | à décider | **interdit en l'état** |
-| [Couvercle gauche de carter de chaîne 964 105…](catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json) | Ti-6Al-4V Grade 5, plaque | CNC | fonctionnel |
+| [Couvercle gauche de carter de chaîne 964 105…](catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json) | Ti-6Al-4V Grade 5, plaque — choix assumé | CNC | fonctionnel |
 | [Bielle 993/993 Turbo](catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json) | Ti-6Al-4V Grade 5 LPBF de criblage | LPBF | **interdit en l'état** |
 | [Turbine de refroidissement moteur](catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
 | [Collecteur d'échappement trois-en-un 993 Turbo](catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | **interdit en l'état** |
