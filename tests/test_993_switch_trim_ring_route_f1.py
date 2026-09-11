@@ -19,13 +19,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PART_ID = "993-INT-SWITCH-TRIM-RING-F1-0001"
 MASTER = ROOT / "parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step"
-EVIDENCE = ROOT / "twins/993-switch-trim-ring-alsi10mg-f1/evidence/route-f1"
+EVIDENCE = ROOT / "twins/993-switch-trim-ring-f1/evidence/route-f1"
 CARD = EVIDENCE / "993-int-switch-trim-ring-f1-0001-process-route-card.json"
 RFQ = EVIDENCE / "993-int-switch-trim-ring-f1-0001-supplier-rfq.md"
 PROCESS = ROOT / "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
 GEOMETRY = (
     ROOT
-    / "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1"
+    / "twins/993-switch-trim-ring-f1/evidence/lpbf-f1"
     / "993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json"
 )
 POLICY = ROOT / "catalog/manufacturing/am-validation-policy.json"
@@ -88,7 +88,7 @@ class SwitchTrimRingRouteF1Tests(unittest.TestCase):
         ]
         self.assertEqual(stage["status"], "blocked_missing_input")
         self.assertIn(
-            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/route-f1/"
+            "twins/993-switch-trim-ring-f1/evidence/route-f1/"
             "993-int-switch-trim-ring-f1-0001-process-route-card.json",
             stage["evidence"],
         )

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "process_id": "CNC-TURNING-6063-T6-BRIGHT-ANODISED",
+  "technology": "CNC turning from bar",
+  "material": "EN AW-6063 T6",
+  "material_designations": [
+    "EN AW-6063 (AlMg0,7Si)",
+    "UNS A96063",
+    "EN 755-2 for extruded bar"
+  ],
+  "selection_rationale": {
+    "governing_requirement": "appearance",
+    "chosen_for": "anodisation brillante uniforme sur une piece visible d'habitacle",
+    "rejected_alternatives": {
+      "EN AW-6061 T6": "meilleure usinabilite, mais teneur en cuivre et en fer moins favorable a l'anodisation brillante",
+      "EN AW-6262 T6511": "usinabilite superieure par ajout de bismuth et de plomb ; plomb non instruit au regard de la directive vehicules hors d'usage",
+      "AlSi10Mg LPBF": "9 a 11 % de silicium, anodisation decorative gris-brun ; voir docs/decisions/0005-alsi10mg-nest-pas-un-choix.md"
+    }
+  },
+  "machining_notes": [
+    "Le 6063 est tendre et collant : copeaux longs et filants qui chargent l'outil.",
+    "Outil carbure non revetu, arete vive et polie, grande vitesse de coupe, avance continue sans temps mort.",
+    "Ce n'est pas une difficulte de procede mais une contrainte de parametres, a transmettre au tourneur."
+  ],
+  "surface_and_finish": {
+    "machined_ra_um_target_on_visible_faces": 0.8,
+    "finishing_route": "tournage de finition puis anodisation brillante",
+    "anodising": "anodisation sulfurique decorative, incolore, epaisseur a convenir",
+    "anodising_thickness_um_typical_range": [5.0, 15.0],
+    "dimensional_effect_of_anodising": "la couche croit pour moitie vers l'exterieur ; sur un ajustement serre l'epaisseur doit etre soustraite de la cote usinee"
+  },
+  "published_bar_properties_scope": {
+    "complete_and_calibrated": false,
+    "missing_inputs": [
+      "certificat matiere de la barre reellement employee",
+      "etat metallurgique livre et sa verification",
+      "capabilite de tolerance du tour retenu sur cette cote",
+      "epaisseur d'anodisation reellement obtenue et sa dispersion",
+      "brillance cible et methode de mesure convenues"
+    ]
+  },
+  "sources": [
+    "https://www.metalsupermarkets.com/grade-guide-aluminum-6061-vs-6063/",
+    "https://www.1stchoicemetals.co.uk/aluminium/grades-guide/6000-series/",
+    "https://www.practicalmachinist.com/forum/threads/turning-6063-advice.289861/"
+  ],
+  "scope": "Carte de route tournage de criblage. Elle fixe une nuance et une intention de finition ; elle ne contient ni gamme d'usinage, ni capabilite mesuree, ni certificat. Elle n'autorise aucun montage vehicule."
+}

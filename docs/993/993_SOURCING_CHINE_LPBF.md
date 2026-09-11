@@ -79,7 +79,7 @@ le fera.
 ## Prochain pas concret
 
 Envoyer le dossier
-[`supplier-rfq.md`](../../twins/993-switch-trim-ring-alsi10mg-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md)
+[`supplier-rfq.md`](../../twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md)
 et le STEP à Unionfab, en ajoutant les trois contradictions ci-dessus comme
 questions. Le devis attendu porte sur **une** pièce ; son intérêt n'est pas la
 bague, c'est de savoir ce qu'un prestataire chinois accepte de mettre par écrit
