@@ -4,6 +4,19 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Décision 0006, la bague sera tournée en 6063 T6, 11 septembre 2026 :
+
+- carte de route tournage `cnc-turning-6063-t6-bright-anodised.json`, nuance
+  choisie sur l'aspect avec le 6061 T6 en repli et le 6262 écarté pour son plomb ;
+- générateur `scripts/build_turning_route_card.py` et devis tournage associé,
+  cibles `turning-trim-ring` et `turning-trim-ring-check` ;
+- `preferred_process` de la bague passé de `undecided` à `CNC`, le LPBF restant
+  un candidat screené ;
+- jumeau renommé `twins/993-switch-trim-ring-f1`, le nom de dossier n'affirmant
+  plus une matière que le dépôt a écartée ;
+- constat enregistré : changer de procédé n'a fermé aucune des deux portes qui
+  comptent, la cote d'ajustement non tolérancée et les arêtes non définies.
+
 Décision 0005, la matière de la bague n'a jamais été choisie, 11 septembre 2026 :
 
 - constat que l'AlSi10Mg est hérité de la seule carte procédé du dépôt, et que

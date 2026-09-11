@@ -24,6 +24,7 @@
 	917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants \
 	omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants \
 	turbo-variants-check turbo-dyno turbo-dyno-check route-trim-ring \
+	turning-trim-ring turning-trim-ring-check \
 	route-trim-ring-check parts-table \
 	parts-table-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
@@ -198,7 +199,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	917-native-brep-mesh-f50-check 917-additive-print-f50-check \
 	917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check \
 	turbo-cold-side-check turbo-variants-check turbo-dyno-check \
-	route-trim-ring-check parts-table-check help-check
+	route-trim-ring-check turning-trim-ring-check parts-table-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1175,17 +1176,30 @@ turbo-variants:
 turbo-variants-check:
 	python3 scripts/generate_turbo_variants.py --check
 
+#> 993 | Route tournage 6063 de la bague, et son devis
+turning-trim-ring:
+	python3 scripts/build_turning_route_card.py \
+	  --catalog-part catalog/parts/993-int-switch-trim-ring-f1-0001.json \
+	  --part-screen parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json \
+	  --process-card catalog/manufacturing/processes/cnc-turning-6063-t6-bright-anodised.json \
+	  --master parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step \
+	  --output twins/993-switch-trim-ring-f1/evidence/turning-f1 $(ROUTE_CHECK)
+
+#> 993 | Verifier cette route et ce devis
+turning-trim-ring-check:
+	$(MAKE) turning-trim-ring ROUTE_CHECK=--check
+
 #> 993 | Carte matiere-machine-procede de la bague, etape 04
 route-trim-ring:
 	python3 scripts/build_process_route_card.py \
 	  --catalog-part catalog/parts/993-int-switch-trim-ring-f1-0001.json \
-	  --geometry-report twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json \
+	  --geometry-report twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json \
 	  --machine-card catalog/manufacturing/machines/eos-m290.json \
 	  --process-card catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json \
 	  --master parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step \
 	  --surface parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.stl \
 	  --part-screen parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json \
-	  --output twins/993-switch-trim-ring-alsi10mg-f1/evidence/route-f1 $(ROUTE_CHECK)
+	  --output twins/993-switch-trim-ring-f1/evidence/route-f1 $(ROUTE_CHECK)
 
 #> 993 | Verifier cette carte et le dossier de devis
 route-trim-ring-check:

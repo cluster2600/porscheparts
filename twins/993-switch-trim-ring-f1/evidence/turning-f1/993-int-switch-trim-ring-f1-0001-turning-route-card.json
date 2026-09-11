@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+  "stage_id": "04_material_machine_process_card",
+  "route_family": "cnc_turning",
+  "status": "blocked_missing_input",
+  "classification": "turning_route_screen_not_a_qualified_manufacturing_route",
+  "safety_class": "non_critical",
+  "route": {
+    "technology": "CNC turning from bar",
+    "material": "EN AW-6063 T6",
+    "material_designations": [
+      "EN AW-6063 (AlMg0,7Si)",
+      "UNS A96063",
+      "EN 755-2 for extruded bar"
+    ],
+    "governing_requirement": "appearance",
+    "machining_notes": [
+      "Le 6063 est tendre et collant : copeaux longs et filants qui chargent l'outil.",
+      "Outil carbure non revetu, arete vive et polie, grande vitesse de coupe, avance continue sans temps mort.",
+      "Ce n'est pas une difficulte de procede mais une contrainte de parametres, a transmettre au tourneur."
+    ],
+    "finishing_route": "tournage de finition puis anodisation brillante",
+    "anodising": "anodisation sulfurique decorative, incolore, epaisseur a convenir"
+  },
+  "derived": {
+    "outer_diameter_mm": 30.5,
+    "depth_mm": 10.5,
+    "thinnest_radial_wall_mm": 1.25,
+    "thinnest_wall_fraction_of_outer_diameter": 0.040983606557377046,
+    "required_bar_diameter_mm": 31.5,
+    "selected_bar_diameter_mm": 32.0,
+    "part_volume_mm3": 2291.8900155641777,
+    "slug_volume_mm3": 10053.096491487338,
+    "material_removed_fraction": 0.7720214843750002,
+    "removal_scope": "un tournage part d'un lopin et enleve la difference ; le chiffre est donne parce qu'il est l'argument habituel en faveur de l'additif, et qu'il ne suffit pas a le justifier sur une piece de 6 g"
+  },
+  "gates": [
+    {
+      "gate": "bar_stock_covers_outer_diameter",
+      "pass": true,
+      "statement": "Une barre de 32 mm couvre le diametre exterieur de 30.5 mm avec 0.5 mm de surepaisseur radiale de reprise de peau."
+    },
+    {
+      "gate": "bore_accessible_to_boring_bar",
+      "pass": true,
+      "statement": "L'alesage a un elancement de 0.46, sans difficulte de porte-a-faux."
+    },
+    {
+      "gate": "alloy_selected_against_governing_requirement",
+      "pass": true,
+      "statement": "La nuance est choisie sur le critere qui gouverne la piece, l'aspect, et non sur la matiere la mieux documentee du depot."
+    },
+    {
+      "gate": "visible_surface_finish_specified",
+      "pass": true,
+      "statement": "Un Ra cible de 0.8 um est fixe sur les faces visibles avant anodisation."
+    },
+    {
+      "gate": "thin_wall_workholding_reviewed",
+      "pass": false,
+      "statement": "La prise de piece est revue.",
+      "blocker": "La paroi la plus mince vaut 1.25 mm, soit 4.1 % du diametre exterieur. Un serrage en mors durs sur cette bague peut l'ovaliser, et la tronconnage final la liberer deformee. Mors doux, bague de serrage ou reprise sur mandrin expansible sont a arbitrer par le tourneur."
+    },
+    {
+      "gate": "edge_break_specified",
+      "pass": false,
+      "statement": "Les arêtes sont definies.",
+      "blocker": "Le maitre parametrique a des arêtes vives. Une bague decorative se juge d'abord sur son arête avant, et une arête vive s'anodise mal et coupe au montage. Chanfrein ou rayon avant, arriere et d'alesage restent a decider puis a porter au modele."
+    },
+    {
+      "gate": "fit_dimension_toleranced",
+      "pass": false,
+      "statement": "La cote d'ajustement porte une tolerance.",
+      "blocker": "Le diametre exterieur de 30.5 mm est la cote qui decide du maintien dans le tableau de bord, et il n'a aucune tolerance. Il vient d'une page de vente d'une bague adaptable, pas d'une mesure du logement. Sans ouverture mesuree, aucune tolerance ne peut etre prescrite honnetement."
+    },
+    {
+      "gate": "anodising_growth_subtracted_from_fit",
+      "pass": false,
+      "statement": "La croissance d'anodisation est retranchee de la cote usinee.",
+      "blocker": "Une couche de 5 a 15 um croit pour moitie vers l'exterieur, soit environ 0.005 a 0.015 mm sur le diametre. C'est du meme ordre que le jeu recherche : la correction ne peut etre appliquee qu'une fois la porte precedente ouverte."
+    },
+    {
+      "gate": "material_certificate_contracted",
+      "pass": false,
+      "statement": "Le certificat matiere est engage.",
+      "blocker": "Ni nuance certifiee, ni etat metallurgique verifie ne sont engages avec un tourneur."
+    }
+  ],
+  "blocking_gate_count": 5,
+  "fit_strategy": {
+    "problem": "L'ouverture du tableau de bord n'est pas mesuree, et le diametre exterieur est repris d'une page de vente.",
+    "proposal": "Sur une piece tournee, la deuxieme et la troisieme coutent une fraction de la premiere. Commander trois bagues nues, non anodisees, a trois diametres exterieurs echelonnes, essayer, puis n'anodiser que la bonne — en retranchant alors la croissance de couche.",
+    "candidate_outer_diameters_mm": [
+      30.4,
+      30.5,
+      30.6
+    ],
+    "why_not_simply_measure": "Mesurer le logement reste preferable et reste a faire. La serie de trois est ce qui permet d'avancer sans metrologie du vehicule, pas ce qui la remplace."
+  },
+  "vehicle_fitment_authorized": false,
+  "authorization_note": "Cette carte fixe une nuance et une intention de finition. Elle ne contient ni gamme d'usinage, ni capabilite mesuree, ni certificat, et n'autorise aucun montage."
+}
