@@ -68,25 +68,60 @@ class ChainCaseLidTitaniumTests(unittest.TestCase):
         self.assertIn("fonderie", equivalence["what_decides"])
         self.assertIn("D03", equivalence["how_to_settle_it"])
 
-    def test_the_expansion_margin_is_computed_and_currently_holds(self) -> None:
+    def test_the_shift_is_taken_at_a_radius_not_over_the_whole_span(self) -> None:
+        """La premiere version comparait la dilatation d'une portee entiere a un
+        jeu radial, ce qui surestimait le probleme d'un facteur deux. Ce qui doit
+        tenir dans le jeu est l'ecart **au percage le plus eloigne du point
+        fixe**, donc un rayon."""
         expansion = load(SCREEN)["differential_expansion"]
-        self.assertTrue(expansion["play_covers_differential"])
-        self.assertGreater(expansion["margin_mm"], 0.0)
-        # La marge est mince : si elle depassait le jeu, il faudrait ouvrir
-        # les percages, et le rapport doit continuer a le dire.
-        self.assertLess(expansion["margin_mm"], expansion["available_play_at_hole_mm"])
+        span = load(SCREEN)["inputs_mm"]["extreme_hole_span"]
+        self.assertEqual(expansion["datum"], "centroid")
+        self.assertAlmostEqual(expansion["worst_radius_mm"], span / 2.0)
+        self.assertIn("r * (alpha_al - alpha_ti)", expansion["equations"]["relative_shift"])
 
-    def test_a_wider_bolt_span_breaks_the_margin(self) -> None:
-        """La marge n'est pas une propriete de la piece, c'est un resultat.
-        Sur un entraxe plus large, elle doit tomber."""
+    def test_the_expansion_margin_holds_with_room_to_spare(self) -> None:
+        expansion = load(SCREEN)["differential_expansion"]
+        self.assertTrue(expansion["play_covers_shift"])
+        self.assertGreater(expansion["margin_mm"], 0.0)
+        # Le jeu n'est pas consomme : c'est ce qui distingue ce couvercle du
+        # carter entier, et le rapport doit continuer a le montrer.
+        self.assertLess(expansion["utilisation_of_play"], 0.5)
+
+    def test_the_assembly_assumption_is_declared(self) -> None:
+        """Une vis deja en appui du mauvais cote au montage n'a aucun jeu. Le
+        rapport doit le dire, sinon la marge se lit comme une reserve."""
+        expansion = load(SCREEN)["differential_expansion"]
+        self.assertIn("centrees", expansion["assembly_assumption"])
+
+    def test_a_dowel_datum_doubles_the_shift(self) -> None:
+        """La planche 103-05 porte une douille de centrage. Si elle tient le
+        couvercle, le point fixe n'est plus le centre du semis et le pire rayon
+        double."""
+        import subprocess, sys
         result = subprocess.run(
-            [sys.executable, str(SCRIPT), "--bolt-circle-mm", "200"],
+            [sys.executable, str(SCRIPT), "--datum", "dowel"],
+            capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0)
+        dowel = json.loads(result.stdout)["differential_expansion"]
+        centroid = load(SCREEN)["differential_expansion"]
+        self.assertAlmostEqual(
+            dowel["relative_shift_at_worst_hole_mm"],
+            2.0 * centroid["relative_shift_at_worst_hole_mm"],
+        )
+
+    def test_a_wide_enough_span_breaks_the_margin(self) -> None:
+        """La marge n'est pas une propriete de la piece, c'est un resultat. Sur
+        une portee de carter entier, elle doit tomber — c'est ce qui separe le
+        couvercle du carter."""
+        result = subprocess.run(
+            [sys.executable, str(SCRIPT), "--bolt-span-mm", "500", "--datum", "dowel"],
             capture_output=True,
             text=True,
         )
         self.assertEqual(result.returncode, 0)
         report = json.loads(result.stdout)
-        self.assertFalse(report["differential_expansion"]["play_covers_differential"])
+        self.assertFalse(report["differential_expansion"]["play_covers_shift"])
 
     def test_the_part_is_functional_because_it_holds_oil(self) -> None:
         part = load(PART)
