@@ -53,10 +53,38 @@ la fonderie elle-même : paroi minimale coulable, dépouille, remplissage. Une
 pièce fraisée n'a aucune de ces contraintes. Dans ce cas le titane peut être plus
 mince que la fonte **et** rester plus raide qu'il ne faut.
 
-C'est la mesure et l'œil qui trancheront, pas le calcul : une épaisseur uniforme
-généreuse avec de larges congés trahit la fonderie ; des zones minces et des
-nervures trahissent un dimensionnement. Relever `D03` en plusieurs points est
-donc la cote qui décide du poids final.
+### Le seuil décidable
+
+On peut aller plus loin qu'« ça dépend ». Le titane usiné **à la raideur
+strictement nécessaire** est plus léger que la fonte dès que celle-ci porte
+
+> **≈ 39 % d'épaisseur de plus que sa propre exigence de raideur.**
+
+Formellement : titane gagnant ⟺ `t_requis / t_coulé < ρ_al / (ρ_ti · 0,851) = 0,717`.
+
+Sur une pièce de fonderie — paroi minimale coulable, dépouille, remplissage —
+39 % de gras n'est pas une hypothèse extravagante. C'est le cas courant.
+
+**Et ça se teste pour presque rien.** LN Engineering usine ce même couvercle dans
+du 6061 massif, *sans aucune contrainte de fonderie*. Son épaisseur, comparée à
+celle de la pièce d'origine, mesure directement le gras. Deux cotes, et la
+question est tranchée.
+
+### Ce que le couple de serrage ajoute
+
+Le manuel serre ce couvercle à **9,7 Nm sur du M6**. C'est peu. Un faible couple
+veut dire un faible effort de serrage, donc une faible réaction de joint, donc
+une faible demande de flexion sur le couvercle. Ajouté à une pression interne de
+carter qui se compte en centaines de millibars, cela dit que **la pièce ne
+travaille quasiment pas**.
+
+Ce n'est pas une preuve, mais cela pointe dans la même direction : l'épaisseur
+d'origine n'est probablement dictée ni par la raideur ni par la résistance, mais
+par la fonderie. Et c'est le cas où le titane gagne.
+
+C'est la mesure et l'œil qui trancheront : une épaisseur uniforme généreuse avec
+de larges congés trahit la fonderie ; des zones minces et des nervures trahissent
+un dimensionnement. `D03` reste la cote qui décide du poids final.
 
 Une réserve tient, en revanche : amincir réduit la raideur entre vis, donc la
 tenue du plan de joint. Sur un couvercle étanche à l'huile, c'est la contrainte
@@ -67,27 +95,44 @@ qui borne l'exercice, et elle se vérifie après relevé des entraxes.
 C'est le point qui distingue ce couvercle du carter entier, où le titane avait
 été refusé.
 
-**La dilatation différentielle tient.** Le carter en aluminium s'allonge plus que
-le couvercle en titane ; l'écart doit rentrer dans le jeu de perçage, sinon les
-vis travaillent en cisaillement et le plan de joint se déplace.
+**La dilatation différentielle tient, et largement.** Ce calcul a été refait le
+11 septembre 2026 : la première version comparait la dilatation d'une portée
+entière à un jeu radial, ce qui surestimait le problème d'un facteur deux, et
+supposait de la visserie M8 alors que le manuel serre ce couvercle à 9,7 Nm,
+c'est-à-dire du M6.
+
+Ce qui doit tenir dans le jeu n'est pas la dilatation des pièces, c'est leur
+**écart au perçage le plus éloigné du point fixe** : `δ = r · (α_al − α_ti) · ΔT`.
 
 | grandeur | valeur |
 |---|---|
-| entraxe extrême supposé | 100 mm |
+| portée extrême supposée | 100 mm |
+| point fixe | centre du semis de vis → `r` = 50 mm |
 | écart de température supposé | 100 K |
-| allongement du carter aluminium | 0,230 mm |
-| allongement du couvercle titane | 0,086 mm |
-| **différentiel** | **0,144 mm** |
-| jeu disponible, vis M8 dans perçage Ø8,4 | 0,200 mm |
-| **marge** | **+0,056 mm** |
+| **écart relatif au pire perçage** | **0,072 mm** |
+| jeu radial, M6 dans perçage Ø6,6 | 0,300 mm |
+| **marge** | **+0,228 mm — le jeu n'est utilisé qu'à 24 %** |
 
-Ça passe. Mais la marge est mince et repose sur deux hypothèses — l'entraxe et le
-diamètre de perçage — qui sont précisément ce que la mesure doit donner. Si
-l'entraxe réel dépasse ~139 mm au même jeu, ça ne passe plus, et il faut alors
-ouvrir les perçages.
+Et la sensibilité, parce qu'une marge sans sensibilité ne vaut rien :
 
-C'est exactement pourquoi le carter entier, lui, est refusé : son plan de joint
-est bien plus étendu.
+| point fixe | Ø6,4 | Ø6,6 | Ø7,0 |
+|---|---|---|---|
+| centre du semis | 36 % | **24 %** | 14 % |
+| douille de centrage en bord | 72 % | 48 % | 29 % |
+
+Ça passe dans les six cas. Le pire — centrage par douille et perçage fin — utilise
+72 % du jeu, et c'est celui à surveiller : la planche 103-05 porte justement une
+douille de centrage, `993 105 175 00`. Si elle tient ce couvercle, le point fixe
+n'est plus le centre du semis et le rayon défavorable double.
+
+**Une réserve de méthode.** Tout ceci suppose les vis centrées dans leurs
+perçages au montage à froid. Une vis déjà en appui du mauvais côté n'aurait aucun
+jeu : la moitié de la marge affichée est une tolérance de montage, pas une
+réserve de calcul.
+
+C'est exactement pourquoi le carter entier, lui, est refusé : sur une portée de
+500 mm centrée par une douille, l'écart atteint 0,72 mm et aucun perçage courant
+ne l'absorbe.
 
 **Le couple galvanique est déjà traité par la nomenclature.** Le joint
 `964 105 181 01` sépare les deux métaux sur tout le plan de joint. L'isolation

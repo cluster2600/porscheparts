@@ -4,6 +4,32 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Marge de dilatation du couvercle refaite, 11 septembre 2026 :
+
+- deux erreurs corrigées d'un coup. La formule comparait la dilatation d'une
+  portée entière à un jeu **radial**, ce qui surestimait le problème d'un facteur
+  deux ; ce qui doit tenir dans le jeu est l'écart au perçage le plus éloigné du
+  point fixe, donc `δ = r · Δα · ΔT`. Et la visserie était supposée M8 alors que
+  le manuel serre ce couvercle à 9,7 Nm, soit du M6 ;
+- résultat : **0,072 mm d'écart contre 0,300 mm de jeu** en M6 moyen, le jeu
+  n'étant utilisé qu'à **24 %** au lieu des 72 % annoncés ;
+- sensibilité publiée sur six combinaisons de perçage et de point fixe : toutes
+  passent, la plus tendue — centrage par douille et perçage fin — utilisant 72 % ;
+- option `--datum dowel` ajoutée : la planche 103-05 porte une douille de
+  centrage `993 105 175 00`, et si elle tient le couvercle le rayon défavorable
+  double ;
+- hypothèse de montage déclarée : vis centrées dans leurs perçages à froid, sans
+  quoi la moitié de la marge est une tolérance de montage et non une réserve ;
+- seuil de masse rendu décidable : le titane usiné à la raideur strictement
+  nécessaire bat la fonte dès que celle-ci porte **39 % d'épaisseur de plus que
+  son exigence de raideur**, et le couvercle billet 6061 de LN Engineering, sans
+  contrainte de fonderie, mesure ce gras directement ;
+- le couple de 9,7 Nm sur M6 pointe dans le même sens : faible serrage, faible
+  réaction de joint, pièce qui ne travaille quasiment pas ;
+- correction propagée au carter d'arbre à cames, où le motif décisif est requalifié :
+  ce n'est pas le jeu de perçage qui gouverne mais l'alignement des portées
+  d'arbre à cames, qui n'a aucun jeu à consommer.
+
 Acquisition des cotes sans accès aux pièces, 11 septembre 2026 :
 
 - recherche des cotes du couvercle `964 105 107 01` en ligne : **aucune n'est

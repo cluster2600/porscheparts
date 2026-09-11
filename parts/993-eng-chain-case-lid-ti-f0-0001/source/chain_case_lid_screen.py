@@ -45,12 +45,22 @@ TITANIUM = {
 
 # Hypotheses a remplacer par la mesure. Elles sont la pour que le calcul tourne,
 # pas pour decrire la piece.
-DEFAULT_BOLT_CIRCLE_MM = 100.0
+DEFAULT_BOLT_SPAN_MM = 100.0
 DEFAULT_PLAN_AREA_CM2 = 90.0
 DEFAULT_THICKNESS_MM = 5.0
 DEFAULT_DELTA_T_K = 100.0
-DEFAULT_BOLT_DIAMETER_MM = 8.0
-DEFAULT_CLEARANCE_HOLE_MM = 8.4
+
+# Le manuel d'atelier serre le couvercle de carter de chaine a 9,7 Nm, ce qui
+# situe la visserie en M6. Percages de passage ISO 273 pour M6.
+DEFAULT_BOLT_DIAMETER_MM = 6.0
+CLEARANCE_HOLES_M6_MM = {"fin": 6.4, "moyen": 6.6, "large": 7.0}
+DEFAULT_CLEARANCE_HOLE_MM = CLEARANCE_HOLES_M6_MM["moyen"]
+
+# Origine de la dilatation relative. La planche 103-05 porte une douille de
+# centrage, 993 105 175 00 : si elle existe sur ce couvercle, c'est elle le
+# point fixe, et non le centre du semis de vis.
+DATUM_CENTROID = "centroid"
+DATUM_DOWEL = "dowel"
 
 
 def thickness_equivalence(thickness_mm: float) -> dict[str, object]:
@@ -106,6 +116,40 @@ def thickness_equivalence(thickness_mm: float) -> dict[str, object]:
             "remaining_bending_stiffness_fraction": stiffness_at_equal_mass,
             "verdict": "a masse egale il ne reste qu'une fraction de la raideur d'origine",
         },
+        "break_even_against_foundry_fat": {
+            "question": (
+                "La vraie question n'est pas « le titane est-il plus lourd que "
+                "l'aluminium a epaisseur egale » — il l'est. C'est : de combien "
+                "l'epaisseur coulee depasse-t-elle ce que la raideur exige ?"
+            ),
+            "required_thickness_ratio_for_titanium_to_win": (
+                ALUMINIUM["density_g_cm3"]
+                / (TITANIUM["density_g_cm3"] * equal_stiffness)
+            ),
+            "foundry_fat_needed_percent": (
+                1.0
+                / (
+                    ALUMINIUM["density_g_cm3"]
+                    / (TITANIUM["density_g_cm3"] * equal_stiffness)
+                )
+                - 1.0
+            )
+            * 100.0,
+            "reading": (
+                "Le titane usine a la raideur strictement necessaire est plus "
+                "leger que la fonte des que celle-ci porte environ 40 % "
+                "d'epaisseur de plus que sa propre exigence de raideur. Sur une "
+                "piece de fonderie, paroi minimale coulable et depouille "
+                "comprises, ce n'est pas une hypothese extravagante — c'est "
+                "meme le cas courant."
+            ),
+            "how_to_test_it_cheaply": (
+                "LN Engineering usine ce meme couvercle dans du 6061 massif, "
+                "sans aucune contrainte de fonderie. Son epaisseur, comparee a "
+                "celle de la piece d'origine, mesure directement le gras de "
+                "fonderie. Deux cotes, et la question est tranchee."
+            ),
+        },
         "what_decides": (
             "Si le couvercle est dimensionne par sa raideur, donc par la tenue "
             "du plan de joint entre vis, le titane reste plus lourd. S'il est "
@@ -128,12 +172,13 @@ def thickness_equivalence(thickness_mm: float) -> dict[str, object]:
 
 
 def screen(
-    bolt_circle_mm: float,
+    bolt_span_mm: float,
     plan_area_cm2: float,
     thickness_mm: float,
     delta_t_k: float,
     bolt_diameter_mm: float,
     clearance_hole_mm: float,
+    datum: str,
     measured: bool,
 ) -> dict[str, object]:
     volume_cm3 = plan_area_cm2 * thickness_mm / 10.0
@@ -141,13 +186,26 @@ def screen(
     mass_al_g = volume_cm3 * ALUMINIUM["density_g_cm3"]
     mass_ti_g = volume_cm3 * TITANIUM["density_g_cm3"]
 
-    # Dilatation libre de chaque piece sur la distance entre percages extremes.
-    growth_al_mm = ALUMINIUM["expansion_per_k"] * bolt_circle_mm * delta_t_k
-    growth_ti_mm = TITANIUM["expansion_per_k"] * bolt_circle_mm * delta_t_k
-    differential_mm = growth_al_mm - growth_ti_mm
+    # Ce qui compte n'est pas la dilatation totale de la portee, c'est le
+    # **deplacement relatif au percage le plus eloigne du point fixe**. Les deux
+    # pieces se dilatent autour de ce point ; a un rayon r, l'ecart vaut
+    # r * (alpha_al - alpha_ti) * delta_T. Comparer une dilatation de portee
+    # entiere a un jeu radial, comme le faisait la premiere version de ce
+    # criblage, surestimait le probleme d'un facteur deux.
+    #
+    # Le rayon retenu depend du point fixe. Sans centrage, l'assemblage se
+    # centre de lui-meme et le pire rayon vaut la demi-portee. Avec une douille
+    # de centrage en bord de piece, le point fixe est la douille et le pire
+    # rayon vaut la portee entiere.
+    worst_radius_mm = bolt_span_mm if datum == DATUM_DOWEL else bolt_span_mm / 2.0
+    delta_alpha = ALUMINIUM["expansion_per_k"] - TITANIUM["expansion_per_k"]
+    relative_shift_mm = worst_radius_mm * delta_alpha * delta_t_k
 
-    # Le jeu disponible est le demi-jeu au percage, puisque l'ecart se partage
-    # de part et d'autre du cercle de percage.
+    growth_al_mm = ALUMINIUM["expansion_per_k"] * bolt_span_mm * delta_t_k
+    growth_ti_mm = TITANIUM["expansion_per_k"] * bolt_span_mm * delta_t_k
+
+    # Jeu radial au percage : le fut de vis peut s'ecarter de la moitie de la
+    # difference des diametres avant de toucher.
     available_play_mm = (clearance_hole_mm - bolt_diameter_mm) / 2.0
 
     return {
@@ -159,7 +217,7 @@ def screen(
             "mesure d'un exemplaire" if measured else "hypotheses declarees, aucune mesure"
         ),
         "inputs_mm": {
-            "bolt_circle_or_extreme_hole_span": bolt_circle_mm,
+            "extreme_hole_span": bolt_span_mm,
             "plan_area_cm2": plan_area_cm2,
             "thickness": thickness_mm,
             "bolt_diameter": bolt_diameter_mm,
@@ -181,22 +239,37 @@ def screen(
         },
         "thickness_equivalence": thickness_equivalence(thickness_mm),
         "differential_expansion": {
-            "aluminium_growth_mm": growth_al_mm,
-            "titanium_growth_mm": growth_ti_mm,
-            "differential_mm": differential_mm,
+            "datum": datum,
+            "worst_radius_mm": worst_radius_mm,
+            "aluminium_free_growth_over_span_mm": growth_al_mm,
+            "titanium_free_growth_over_span_mm": growth_ti_mm,
+            "relative_shift_at_worst_hole_mm": relative_shift_mm,
             "available_play_at_hole_mm": available_play_mm,
-            "play_covers_differential": available_play_mm >= differential_mm,
-            "margin_mm": available_play_mm - differential_mm,
+            "play_covers_shift": available_play_mm >= relative_shift_mm,
+            "margin_mm": available_play_mm - relative_shift_mm,
+            "utilisation_of_play": (
+                relative_shift_mm / available_play_mm if available_play_mm else None
+            ),
+            "clearance_holes_m6_mm": CLEARANCE_HOLES_M6_MM,
             "equations": {
-                "free_growth": "delta_L = alpha * L * delta_T",
+                "relative_shift": "delta = r * (alpha_al - alpha_ti) * delta_T",
+                "worst_radius_without_dowel": "r = span / 2",
+                "worst_radius_with_dowel": "r = span",
                 "available_play": "(clearance_hole - bolt_diameter) / 2",
             },
+            "assembly_assumption": (
+                "Les vis sont supposees centrees dans leurs percages au montage "
+                "a froid. Une vis deja en appui du mauvais cote au montage "
+                "n'aurait aucun jeu : la moitie de la marge affichee est une "
+                "tolerance de montage, pas une reserve de calcul."
+            ),
             "interpretation": (
-                "Le carter en aluminium s'allonge plus que le couvercle en "
-                "titane. L'ecart doit tenir dans le jeu de percage, sinon les vis "
-                "travaillent en cisaillement et le plan de joint se deplace. Sur "
-                "un petit couvercle l'ecart est faible ; c'est sur un carter "
-                "entier qu'il devient redhibitoire."
+                "Le carter en aluminium se dilate deux fois et demie plus que le "
+                "couvercle en titane. Ce qui doit tenir dans le jeu de percage "
+                "n'est pas leur dilatation, c'est leur **ecart au percage le plus "
+                "eloigne du point fixe**. Sur un petit couvercle il est faible ; "
+                "sur un carter entier, ou sur une piece centree par une douille "
+                "en bord, il double et devient redhibitoire."
             ),
         },
         "galvanic": {
@@ -240,12 +313,13 @@ def screen(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--bolt-circle-mm", type=float, default=DEFAULT_BOLT_CIRCLE_MM)
+    parser.add_argument("--bolt-span-mm", type=float, default=DEFAULT_BOLT_SPAN_MM)
     parser.add_argument("--plan-area-cm2", type=float, default=DEFAULT_PLAN_AREA_CM2)
     parser.add_argument("--thickness-mm", type=float, default=DEFAULT_THICKNESS_MM)
     parser.add_argument("--delta-t-k", type=float, default=DEFAULT_DELTA_T_K)
     parser.add_argument("--bolt-diameter-mm", type=float, default=DEFAULT_BOLT_DIAMETER_MM)
     parser.add_argument("--clearance-hole-mm", type=float, default=DEFAULT_CLEARANCE_HOLE_MM)
+    parser.add_argument("--datum", choices=(DATUM_CENTROID, DATUM_DOWEL), default=DATUM_CENTROID)
     parser.add_argument(
         "--measured",
         action="store_true",
@@ -255,12 +329,13 @@ def main() -> int:
     args = parser.parse_args()
 
     report = screen(
-        args.bolt_circle_mm,
+        args.bolt_span_mm,
         args.plan_area_cm2,
         args.thickness_mm,
         args.delta_t_k,
         args.bolt_diameter_mm,
         args.clearance_hole_mm,
+        args.datum,
         args.measured,
     )
     if args.report:

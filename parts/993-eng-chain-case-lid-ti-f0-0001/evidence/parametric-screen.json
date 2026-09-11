@@ -5,11 +5,11 @@
   "status": "f0_parametric_screen_no_measured_geometry",
   "geometry_authority": "hypotheses declarees, aucune mesure",
   "inputs_mm": {
-    "bolt_circle_or_extreme_hole_span": 100.0,
+    "extreme_hole_span": 100.0,
     "plan_area_cm2": 90.0,
     "thickness": 5.0,
-    "bolt_diameter": 8.0,
-    "clearance_hole": 8.4,
+    "bolt_diameter": 6.0,
+    "clearance_hole": 6.6,
     "delta_t_k": 100.0
   },
   "mass_comparison": {
@@ -41,6 +41,13 @@
       "remaining_bending_stiffness_fraction": 0.3687117052851217,
       "verdict": "a masse egale il ne reste qu'une fraction de la raideur d'origine"
     },
+    "break_even_against_foundry_fat": {
+      "question": "La vraie question n'est pas « le titane est-il plus lourd que l'aluminium a epaisseur egale » — il l'est. C'est : de combien l'epaisseur coulee depasse-t-elle ce que la raideur exige ?",
+      "required_thickness_ratio_for_titanium_to_win": 0.7170712466557991,
+      "foundry_fat_needed_percent": 39.45615650658063,
+      "reading": "Le titane usine a la raideur strictement necessaire est plus leger que la fonte des que celle-ci porte environ 40 % d'epaisseur de plus que sa propre exigence de raideur. Sur une piece de fonderie, paroi minimale coulable et depouille comprises, ce n'est pas une hypothese extravagante — c'est meme le cas courant.",
+      "how_to_test_it_cheaply": "LN Engineering usine ce meme couvercle dans du 6061 massif, sans aucune contrainte de fonderie. Son epaisseur, comparee a celle de la piece d'origine, mesure directement le gras de fonderie. Deux cotes, et la question est tranchee."
+    },
     "what_decides": "Si le couvercle est dimensionne par sa raideur, donc par la tenue du plan de joint entre vis, le titane reste plus lourd. S'il est dimensionne par sa resistance, il devient plus leger d'un quart. Et il existe un troisieme cas, le plus probable sur une piece de fonderie : l'epaisseur d'origine n'est dictee ni par l'une ni par l'autre, mais par la fonderie elle-meme — paroi minimale, depouille, remplissage. Une piece fraisee n'a aucune de ces contraintes. Dans ce cas le titane peut etre plus mince que la fonte tout en restant plus raide qu'il ne faut.",
     "how_to_settle_it": "Mesurer l'epaisseur d'origine, D03, et regarder la piece : une epaisseur uniforme genereuse avec des conges larges trahit la fonderie ; des zones minces et des nervures trahissent un dimensionnement. Le calcul ne tranchera pas a la place de l'oeil.",
     "material_cards": {
@@ -63,17 +70,28 @@
     }
   },
   "differential_expansion": {
-    "aluminium_growth_mm": 0.22999999999999998,
-    "titanium_growth_mm": 0.08600000000000001,
-    "differential_mm": 0.14399999999999996,
-    "available_play_at_hole_mm": 0.20000000000000018,
-    "play_covers_differential": true,
-    "margin_mm": 0.056000000000000216,
+    "datum": "centroid",
+    "worst_radius_mm": 50.0,
+    "aluminium_free_growth_over_span_mm": 0.22999999999999998,
+    "titanium_free_growth_over_span_mm": 0.08600000000000001,
+    "relative_shift_at_worst_hole_mm": 0.072,
+    "available_play_at_hole_mm": 0.2999999999999998,
+    "play_covers_shift": true,
+    "margin_mm": 0.22799999999999981,
+    "utilisation_of_play": 0.24000000000000013,
+    "clearance_holes_m6_mm": {
+      "fin": 6.4,
+      "moyen": 6.6,
+      "large": 7.0
+    },
     "equations": {
-      "free_growth": "delta_L = alpha * L * delta_T",
+      "relative_shift": "delta = r * (alpha_al - alpha_ti) * delta_T",
+      "worst_radius_without_dowel": "r = span / 2",
+      "worst_radius_with_dowel": "r = span",
       "available_play": "(clearance_hole - bolt_diameter) / 2"
     },
-    "interpretation": "Le carter en aluminium s'allonge plus que le couvercle en titane. L'ecart doit tenir dans le jeu de percage, sinon les vis travaillent en cisaillement et le plan de joint se deplace. Sur un petit couvercle l'ecart est faible ; c'est sur un carter entier qu'il devient redhibitoire."
+    "assembly_assumption": "Les vis sont supposees centrees dans leurs percages au montage a froid. Une vis deja en appui du mauvais cote au montage n'aurait aucun jeu : la moitie de la marge affichee est une tolerance de montage, pas une reserve de calcul.",
+    "interpretation": "Le carter en aluminium se dilate deux fois et demie plus que le couvercle en titane. Ce qui doit tenir dans le jeu de percage n'est pas leur dilatation, c'est leur **ecart au percage le plus eloigne du point fixe**. Sur un petit couvercle il est faible ; sur un carter entier, ou sur une piece centree par une douille en bord, il double et devient redhibitoire."
   },
   "galvanic": {
     "couple": "Ti-6Al-4V cathodique vis-a-vis de l'aluminium du carter",
