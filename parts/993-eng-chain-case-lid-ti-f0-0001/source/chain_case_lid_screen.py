@@ -90,7 +90,52 @@ def thickness_equivalence(thickness_mm: float) -> dict[str, object]:
     # Raideur relative a l'epaisseur d'egale masse : E t^3 compare a l'origine.
     stiffness_at_equal_mass = (1.0 / e_ratio) * equal_mass ** 3
 
+    # Indices de performance d'une plaque en flexion, formulation d'Ashby. Pour
+    # une plaque de contour impose dont on ajuste l'epaisseur, le meilleur
+    # materiau maximise :
+    #   - raideur imposee   : E^(1/3) / rho
+    #   - resistance imposee: sigma^(1/2) / rho
+    # Les deux exposants different, et c'est toute l'affaire : l'aluminium gagne
+    # le premier, le titane gagne le second.
+    index_stiffness_al = ALUMINIUM["elastic_modulus_gpa"] ** (1 / 3) / ALUMINIUM["density_g_cm3"]
+    index_stiffness_ti = TITANIUM["elastic_modulus_gpa"] ** (1 / 3) / TITANIUM["density_g_cm3"]
+    index_strength_al = ALUMINIUM["yield_strength_mpa"] ** 0.5 / ALUMINIUM["density_g_cm3"]
+    index_strength_ti = TITANIUM["yield_strength_mpa"] ** 0.5 / TITANIUM["density_g_cm3"]
+
     return {
+        "performance_indices_plate_in_bending": {
+            "method": "indices d'Ashby pour une plaque de contour impose, epaisseur libre",
+            "stiffness_limited": {
+                "index": "E^(1/3) / rho",
+                "aluminium": index_stiffness_al,
+                "titanium": index_stiffness_ti,
+                "titanium_over_aluminium": index_stiffness_ti / index_stiffness_al,
+                "winner": "aluminium",
+            },
+            "strength_limited": {
+                "index": "sigma_y^(1/2) / rho",
+                "aluminium": index_strength_al,
+                "titanium": index_strength_ti,
+                "titanium_over_aluminium": index_strength_ti / index_strength_al,
+                "winner": "titane",
+            },
+            "why_it_flips": (
+                "La raideur d'une plaque varie en t^3 et la resistance en t^2. "
+                "Un materiau plus rigide se rattrape donc a la puissance un "
+                "tiers, un materiau plus resistant a la puissance un demi. Le "
+                "titane n'est que 1,63 fois plus rigide que l'aluminium mais "
+                "environ 4,6 fois plus resistant : il perd le premier "
+                "arbitrage et gagne largement le second. Dire « le titane est "
+                "plus resistant donc moins epais » est exact — a condition que "
+                "ce soit la resistance qui dimensionne."
+            ),
+            "specific_stiffness_note": (
+                "A raideur en traction, E/rho vaut 25,9 pour l'aluminium et "
+                "25,7 pour le titane : ils sont equivalents. Ce n'est qu'en "
+                "flexion de plaque, ou l'exposant est un tiers, que "
+                "l'aluminium prend l'avantage."
+            ),
+        },
         "criterion_matters": (
             "Le couvercle peut etre plus mince en titane. De combien depend "
             "entierement du critere qui le dimensionne, et les trois reponses "
