@@ -4,6 +4,22 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Tout le catalogue d'usine disposé, 11 septembre 2026 :
+
+- `scripts/dispose_pet_catalogue.py` donne une catégorie et une raison aux
+  **1 026 désignations** : plus une seule perte silencieuse, là où 956 tombaient
+  sans motif ;
+- 373 désignations instruites à la main, contre 72 avant ; il ne reste **zéro**
+  désignation sans verdict ;
+- `muffler`, 12 références, remonte du lot : le triage lexical l'avait manqué
+  parce que son nom ne contenait aucun terme du vocabulaire, et c'est avec
+  l'embout le meilleur candidat titane de la voiture ; `y-piece` le rejoint ;
+- le verdict porte désormais sur tout ce qui est jugé et non sur les seules
+  70 désignations que le vocabulaire reconnaissait — le gisement passe de 7 à 9 ;
+- limite comptée plutôt que masquée : **50 désignations génériques, 751
+  références**, où le mot ne nomme pas une fonction — `support` en couvre 142 —
+  et qui demandent un travail référence par référence, non fait.
+
 Couvercle de carter de chaîne 964 105 107 01 en Ti-6Al-4V, 11 septembre 2026 :
 
 - pièce demandée explicitement ; à géométrie égale le titane alourdit de 64 %,

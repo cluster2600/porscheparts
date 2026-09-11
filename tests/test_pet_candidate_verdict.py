@@ -31,11 +31,16 @@ class PetCandidateVerdictTests(unittest.TestCase):
         judged = set(load(JUDGEMENTS)["parts"])
         self.assertEqual(retained - judged, set())
 
-    def test_the_verdict_covers_what_the_triage_retained(self) -> None:
+    def test_the_verdict_covers_everything_judged_not_only_the_triage(self) -> None:
+        """Le verdict portait sur les 70 designations que le vocabulaire
+        reconnaissait. Il porte desormais sur tout ce qui a ete juge a la main,
+        sinon une piece jugee mais absente du vocabulaire — `muffler` — restait
+        invisible."""
         report = load(VERDICT)
-        self.assertEqual(
-            report["designations_judged"], len(load(TRIAGE)["shortlist"])
-        )
+        judged = set(load(JUDGEMENTS)["parts"])
+        retained = {item["description"] for item in load(TRIAGE)["shortlist"]}
+        self.assertGreater(report["designations_judged"], len(retained))
+        self.assertLessEqual(report["designations_judged"], len(judged))
 
     def test_opening_a_fiche_requires_all_three_conditions(self) -> None:
         for row in load(VERDICT)["backlog"]:
