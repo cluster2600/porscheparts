@@ -116,3 +116,26 @@ make pet-verdict
 make pet-verdict-check
 make pet-explain PET_LISTING=<chemin>/oem-listed.json REF="993 105 011 05"
 ```
+
+## Sans accès aux pièces : d'où viennent les cotes
+
+Le dépôt demande partout « mesurer un exemplaire ». Sans accès aux pièces, la
+question devient : que peut-on obtenir autrement ?
+
+| candidat | cotes disponibles ? | d'où |
+|---|---|---|
+| bague de commutateur | **oui, complètes** | fiche fournisseur : Ø30,5 × 10,5, alésage 23 → 28 |
+| embout d'échappement | **partielles** | FVD publie l'enveloppe de sortie 120 × 85 mm ; le reste est hypothèse F0 |
+| couvercle de carter de chaîne | **non** | deux reproducteurs le fabriquent, aucun ne publie de cote |
+| silencieux | **non vérifié** | les équipementiers publient des références, pas des plans |
+| tôlerie d'air chaud | **non** | aucune source identifiée |
+
+**La leçon générale :** ce qui met une cote en ligne, ce n'est pas le
+constructeur, c'est **un vendeur qui doit convaincre l'acheteur que sa pièce
+rentre**. C'est exactement ainsi que la bague a ses quatre cotes et l'embout son
+enveloppe. Quand personne n'a besoin de convaincre, personne ne publie.
+
+**La conséquence pratique :** la bonne question n'est pas « où trouver les
+cotes » mais **« quel est l'objet le moins cher qui les porte »**. Pour le
+couvercle, c'est son joint, à 13 $. Pour la plupart des autres, c'est la pièce
+d'occasion. Dans les deux cas c'est du courrier, pas un accès véhicule.

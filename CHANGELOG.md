@@ -4,6 +4,23 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Acquisition des cotes sans accès aux pièces, 11 septembre 2026 :
+
+- recherche des cotes du couvercle `964 105 107 01` en ligne : **aucune n'est
+  publiée**, mais la recherche établit autre chose — deux reproducteurs
+  indépendants, LN Engineering en aluminium 6061 et Auto-Service Schefter en CNC,
+  confirment que la référence est le couvercle **gauche**, qu'elle est appariée
+  au joint `964 105 181 01`, et que la pièce se fabrique **par usinage dans la
+  masse**, ce qui n'était jusqu'ici qu'un raisonnement ;
+- les deux reproducteurs emploient l'aluminium : le titane est un écart assumé ;
+- le manuel d'atelier donne « Chain housing cover : 9,7 Nm », ce qui situe la
+  visserie en **M6** et non en M8 — la marge de dilatation calculée sur une
+  hypothèse M8 est à refaire ;
+- stratégie enregistrée : la bonne question n'est pas où trouver les cotes mais
+  quel est l'objet le moins cher qui les porte — le joint à 13 $ donne contour et
+  entraxes, un couvercle d'occasion donne tout, et ni l'un ni l'autre ne demande
+  d'accéder à une voiture.
+
 Tout le catalogue d'usine disposé, 11 septembre 2026 :
 
 - `scripts/dispose_pet_catalogue.py` donne une catégorie et une raison aux

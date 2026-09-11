@@ -165,3 +165,61 @@ python3 parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py 
   --bolt-diameter-mm <vis> --clearance-hole-mm <D06> --measured \
   --report parts/993-eng-chain-case-lid-ti-f0-0001/evidence/parametric-screen.json
 ```
+
+## Sans accès à la pièce — 11 septembre 2026
+
+Le plan de mesure ci-dessus suppose le couvercle en main. Sans accès aux pièces,
+la question devient : **les cotes sont-elles trouvables en ligne ?**
+
+Réponse : **non**, et la recherche a quand même rapporté plus que des cotes.
+
+### Ce que le marché établit
+
+Deux reproducteurs indépendants fabriquent ce couvercle.
+
+**LN Engineering** usine des couvercles billet en **aluminium 6061**, donnés
+comme remplacement direct de `96410510801` (droite) et **`96410510701`
+(gauche)**, conçus pour reprendre la visserie et le joint d'origine
+`96410518101`. **Auto-Service Schefter** usine un jeu gauche et droite en CNC,
+585 € le jeu.
+
+Trois choses en découlent, et aucune n'est mince :
+
+1. `964 105 107 01` est bien le couvercle **gauche**, apparié au joint
+   `964 105 181 01` — confirmé par une source indépendante du catalogue ;
+2. la pièce **se reproduit par usinage dans la masse**. Ce n'était jusqu'ici
+   qu'un raisonnement de ma part ; c'est maintenant ce que fait le marché ;
+3. les deux reproducteurs ont choisi **l'aluminium**. Le titane est donc un
+   écart assumé par rapport à ce que deux professionnels ont jugé juste.
+
+Ce qu'aucun des deux ne publie : **la moindre cote**. Ni épaisseur, ni contour,
+ni entraxe, ni nombre de vis.
+
+Le manuel d'atelier apporte en revanche une donnée réelle : **« Chain housing
+cover : 9,7 Nm »**. Un tel couple situe la visserie en **M6**, pas en M8. La
+marge de dilatation calculée plus haut, qui supposait du M8 dans un perçage
+Ø8,4, est donc à refaire une fois le perçage connu.
+
+### Ce qui débloque réellement, et ça ne demande pas la voiture
+
+La bonne question n'est pas « où trouver les cotes » mais **« quel est l'objet le
+moins cher qui les porte »**.
+
+| objet | ce qu'il donne | ordre de prix |
+|---|---|---|
+| **le joint `964 105 181 01`** | contour d'étanchéité, entraxes, nombre et diamètre des perçages, largeur de portée | **~13 $** (Victor Reinz 70-29108-00, Elring 471.200) |
+| **un couvercle d'occasion** | tout, épaisseur et dégagement intérieur compris | quelques dizaines d'euros chez un casseur de pièces 964 |
+
+Le joint arrive dans une enveloppe et donne à lui seul les deux cotes qui
+décidaient, `D08` les entraxes et le contour. Un couvercle d'occasion donne en
+plus `D03` l'épaisseur — celle qui dira si l'on peut amincir et donc gagner du
+poids — et `D13` le dégagement intérieur, la seule cote qui ne se rattrape pas.
+
+**Aucun des deux ne demande d'accéder à une voiture.** C'est du courrier.
+
+### Ce qu'il ne faut pas faire
+
+Reconstruire les cotes depuis des photos de vente. `SOURCE_POLICY.md` est
+explicite : une capture sans échelle n'est pas une mesure. Une pièce étanche à
+l'huile dont le plan de joint viendrait d'une photo redimensionnée ne fuirait pas
+un peu, elle fuirait.
