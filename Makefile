@@ -27,7 +27,7 @@
 	turning-trim-ring turning-trim-ring-check titanium-screen \
 	titanium-screen-check tip-routes tip-routes-check pet-zone-triage \
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
-	pet-explain \
+	pet-explain pet-disposition \
 	route-trim-ring-check parts-table \
 	parts-table-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
@@ -1195,6 +1195,13 @@ pet-explain:
 	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis"; exit 2; }
 	@test -n "$(REF)" || { echo "REF='993 102 050 01' requis"; exit 2; }
 	python3 scripts/explain_pet_reference.py --listing $(PET_LISTING) --reference "$(REF)"
+
+#> 993 | Disposition de TOUTES les designations du PET, releve hors depot requis
+pet-disposition:
+	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis ; le releve reste hors du depot"; exit 2; }
+	python3 scripts/dispose_pet_catalogue.py \
+	  --listing $(PET_LISTING) \
+	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-full-disposition.json
 
 #> 993 | Verdict sur les designations retenues, et fiches a ouvrir
 pet-verdict:

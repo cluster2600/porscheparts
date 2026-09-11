@@ -52,11 +52,24 @@ def derive(judgement: dict[str, Any]) -> tuple[str, list[str]]:
     return (REJECT if blockers else OPEN), blockers
 
 
-def run(triage_path: Path, judgements_path: Path) -> dict[str, Any]:
+def run(triage_path: Path, judgements_path: Path, disposition_path: Path) -> dict[str, Any]:
     triage = load(triage_path)
     judgements = load(judgements_path)["parts"]
 
+    # Le triage lexical ne retient que ce que son vocabulaire reconnait. La
+    # disposition, elle, couvre les 1 026 designations : c'est elle qui porte le
+    # denombrement de reference pour tout ce qui a ete juge a la main, `muffler`
+    # et `y-piece` compris, que le vocabulaire avait manques.
     retained = {item["description"]: item for item in triage["shortlist"]}
+    if disposition_path.exists():
+        for row in load(disposition_path)["rows"]:
+            description = row["description"]
+            if description in judgements and description not in retained:
+                retained[description] = {
+                    "description": description,
+                    "reference_count": row["reference_count"],
+                    "illustrations": [],
+                }
     missing = sorted(set(retained) - set(judgements))
     if missing:
         raise JudgementError(
@@ -131,11 +144,17 @@ def main() -> int:
         type=Path,
         default=ROOT / "catalog/manufacturing/pet-candidate-judgements.json",
     )
+    parser.add_argument(
+        "--disposition",
+        type=Path,
+        default=ROOT
+        / "twins/993-exhaust-tip-ti-f0/evidence/selection/pet-full-disposition.json",
+    )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    report = run(args.triage, args.judgements)
+    report = run(args.triage, args.judgements, args.disposition)
     text = json.dumps(report, indent=2, ensure_ascii=False) + "\n"
 
     if args.check:
