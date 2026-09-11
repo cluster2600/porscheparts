@@ -41,11 +41,44 @@ d'origine de 5 mm prise en hypothèse :
 | **résistance en flexion égale** — `t_ti/t_al = √(σ_al/σ_ti)` | 46,6 % → 2,33 mm | **×0,76**, 24 % plus léger |
 | **masse égale** — `t_ti/t_al = ρ_al/ρ_ti` | 60,9 % → 3,05 mm | il ne reste que **37 %** de la raideur |
 
-Le titane est 1,63 fois plus rigide en module et environ 4,6 fois plus résistant
-que l'aluminium de fonderie retenu en criblage. C'est pourquoi les deux premières
-lignes divergent autant : sur la raideur, le gain est faible parce qu'elle varie
-en `t³` et que le rapport de modules est modeste ; sur la résistance, le gain est
-franc parce qu'elle varie en `t²` et que l'écart de limite élastique est énorme.
+### Pourquoi ça bascule : les deux indices
+
+« Le titane est plus résistant, donc moins épais, donc plus léger » est **exact —
+à condition que ce soit la résistance qui dimensionne.** Pour une plaque de
+contour imposé dont on ajuste l'épaisseur, les deux cas ont chacun leur indice :
+
+| ce qui dimensionne | indice à maximiser | aluminium | titane | Ti/Al |
+|---|---|---:|---:|---:|
+| **raideur** imposée | `E^⅓ / ρ` | 1,526 | 1,095 | **0,72 — l'alu gagne** |
+| **résistance** imposée | `σ_y^½ / ρ` | 4,969 | 6,503 | **1,31 — le titane gagne** |
+
+La raideur d'une plaque varie en `t³`, la résistance en `t²`. Un matériau plus
+rigide se rattrape donc à la puissance ⅓, un matériau plus résistant à la
+puissance ½. Le titane n'est que **1,63×** plus rigide que l'aluminium mais
+**≈ 4,6×** plus résistant : il perd le premier arbitrage et gagne largement le
+second.
+
+Détail qui surprend : en traction pure, `E/ρ` vaut 25,9 pour l'aluminium et 25,7
+pour le titane — ils sont **équivalents**. Ce n'est qu'en flexion de plaque, où
+l'exposant tombe à ⅓, que l'aluminium prend l'avantage.
+
+### Et pour ce couvercle-ci, quatre indices convergent
+
+| observation | ce qu'elle dit |
+|---|---|
+| serrage **9,7 Nm** | faible effort de serrage → faible réaction de joint → faible demande de flexion |
+| visserie **M6** | petites vis, donc probablement nombreuses et rapprochées ; la flèche varie en `L⁴` sur l'entraxe, et des spans courts l'annulent |
+| pression interne de carter | quelques centaines de millibars : négligeable |
+| pièce de **fonderie** | épaisseur portée par la paroi minimale coulable et la dépouille |
+
+Conclusion honnête : il est **probable que ni la raideur ni la résistance ne
+dimensionnent ce couvercle** — c'est la fonderie qui le fait. Dans ce cas la
+contrainte disparaît, un couvercle titane fraisé peut simplement être fait mince,
+et il sera plus léger.
+
+Ce n'est pas démontré. Il manque `D03` (l'épaisseur d'origine) et `D08`
+(l'entraxe, qui pilote la flèche en puissance 4). Mais les quatre indices pointent
+dans le même sens, et aucun ne pointe dans l'autre.
 
 **Et il existe un troisième cas, le plus probable ici.** L'épaisseur d'une pièce
 de fonderie n'est souvent dictée ni par la raideur ni par la résistance, mais par

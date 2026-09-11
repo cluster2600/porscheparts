@@ -4,6 +4,22 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Indices de performance en flexion de plaque, 11 septembre 2026 :
+
+- l'arbitrage masse est reformulé avec les indices d'Ashby : à raideur imposée
+  `E^⅓/ρ` donne 1,526 pour l'aluminium contre 1,095 pour le titane, l'aluminium
+  gagne ; à résistance imposée `σ_y^½/ρ` donne 4,969 contre 6,503, le titane
+  gagne de 31 % ;
+- « le titane est plus résistant donc moins épais donc plus léger » est donc
+  exact, à la condition que ce soit la résistance qui dimensionne ;
+- note ajoutée : en traction pure `E/ρ` vaut 25,9 et 25,7, les deux matériaux
+  sont équivalents ; c'est l'exposant ⅓ de la flexion de plaque qui fait la
+  différence ;
+- pour ce couvercle, quatre observations convergent vers « ni raideur ni
+  résistance ne dimensionnent » — 9,7 Nm de serrage, visserie M6 donc entraxes
+  probablement courts avec une flèche en `L⁴`, pression de carter négligeable, et
+  pièce de fonderie ; dans ce cas le titane fraisé mince est plus léger.
+
 Marge de dilatation du couvercle refaite, 11 septembre 2026 :
 
 - deux erreurs corrigées d'un coup. La formule comparait la dilatation d'une
