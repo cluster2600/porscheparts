@@ -4,6 +4,32 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Couvercle de carter de chaîne 964 105 107 01 en Ti-6Al-4V, 11 septembre 2026 :
+
+- pièce demandée explicitement ; à géométrie égale le titane alourdit de 64 %,
+  mais l'épaisseur n'a aucune raison de rester égale, et l'affirmation inverse
+  était une erreur ;
+- équivalence d'épaisseur calculée sur trois critères : à raideur en flexion
+  égale le titane fait 85 % de l'épaisseur et reste 1,39 fois plus lourd ; à
+  résistance égale il fait 46,6 % et devient 24 % plus léger ; à masse égale il
+  fait 60,9 % et ne conserve que 37 % de la raideur ;
+- troisième cas enregistré, le plus probable sur une pièce de fonderie :
+  l'épaisseur d'origine est dictée par la fonderie — paroi minimale, dépouille,
+  remplissage — et une pièce fraisée n'a aucune de ces contraintes, donc peut
+  être plus mince tout en restant assez raide ; c'est `D03` et l'œil qui
+  trancheront, pas le calcul ;
+- criblage paramétrique : la dilatation différentielle contre le carter
+  aluminium vaut 0,144 mm sur un entraxe de 100 mm à 100 K, et tient dans les
+  0,200 mm de jeu d'un perçage Ø8,4 pour vis M8, marge +0,056 mm ;
+- c'est ce qui distingue le couvercle du carter entier, refusé pour ce motif :
+  au-delà d'environ 139 mm d'entraxe au même jeu, la marge disparaît ;
+- le couple galvanique est déjà traité par la nomenclature : le joint
+  964 105 181 01 sépare les deux métaux sur tout le plan de joint ;
+- route retenue : **fraisage** dans une plaque Ti-6Al-4V, pas impression —
+  aucune des trois familles additives ;
+- plan de mesure publié, treize cotes dont deux décident : les entraxes et le
+  jeu intérieur vis-à-vis de la chaîne.
+
 Interroger le criblage sur une référence précise, 11 septembre 2026 :
 
 - `scripts/explain_pet_reference.py` et la cible `pet-explain` répondent pièce
