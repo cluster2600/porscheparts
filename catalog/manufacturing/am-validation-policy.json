@@ -89,6 +89,7 @@
   "tracked_part_ids": [
     "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
     "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+    "993-ENG-CHAIN-CASE-0001",
     "993-ENG-CONNECTING-ROD-TI64-F0-0001",
     "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
     "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
@@ -528,6 +529,19 @@
             "twins/993-exhaust-tip-ti-f0/evidence/route-ti6242/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
           ],
           "blocker": "Deux routes criblees, et elles s'excluent. Le Ti-6Al-4V ouvre cinq portes, dont l'epaisseur de couche, la paroi minimale et le traitement thermique, mais sa seule porte fermee propre a l'alliage est redhibitoire : 427 C declares contre un plafond de fluage de 400 C. Le Ti-6242 passe la temperature avec 123 C de marge et perd tout le reste, faute de machine, d'epaisseur de couche et de fournisseur. La temperature de 427 C est une entree synthetique jamais mesuree : c'est elle qui decide, et c'est elle qu'il faut aller chercher."
+        }
+      }
+    },
+    "993-ENG-CHAIN-CASE-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/parts/993-eng-chain-case-0001.json",
+            "catalog/sources/src-pet-993-103-05-chain-case.json",
+            "docs/993/993_CACHE_DE_CHAINE_103-05.md"
+          ],
+          "blocker": "L'identite des huit references est etablie par la planche 103-05, mais le catalogue identifie sans coter : aucune dimension, aucune matiere, aucune interface. Rien ne peut etre dessine."
         }
       }
     }

@@ -4,6 +4,34 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+SAFETY.md réécrit et carter de chaîne instruit, 11 septembre 2026 :
+
+- `SAFETY.md` réécrit : classes, domaines présumés critiques, règle de
+  déclassement et signalement conservés à l'identique, et ajout de ce que le
+  projet a appris — le mode de rupture prime sur le domaine et l'incendie en est
+  le cas oublié, un criblage n'autorise rien, la température de service se
+  confronte au plafond de l'alliage, le démontage fait partie de la vie de la
+  pièce, le procédé et la matière sont deux jugements séparés, et relever une
+  classe demande six preuves nommées quand l'abaisser n'en demande aucune ;
+- carter de chaîne de la planche 103-05 instruit : huit références établies,
+  dont trois ponts dont deux aussi désignés galeries d'huile ;
+- verdict : vrai cas de consolidation additive, mais titane refusé trois fois —
+  dilatation différentielle avec le carter aluminium, grippage sur filetages
+  repris, couple galvanique ; la réponse est l'aluminium ;
+- deux corrections du criblage, dont la première était mauvaise : rendre les
+  cinq contre-indications rédhibitoires supprimait les mots « non traité » et
+  « non maîtrisé » que la grille contient ;
+- modèle corrigé : une contre-indication est une **condition à lever**, qui
+  bloque sans parade déclarée et devient une exigence portée à la route quand une
+  parade est déclarée ; seules restent absolues les deux impossibilités
+  physiques, conduire la chaleur et garder la raideur de l'acier ;
+- critère manquant ajouté, et c'est lui qui décidait : **le titane améliore-t-il
+  la matière d'origine ?** La grille le demandait déjà — « corrosion
+  problématique avec la matière d'origine » — et sans lui le criblage classait
+  premier un collecteur d'admission en aluminium tiède ;
+- le rapport porte désormais son propre dénominateur : 33 fiches, pas 6 259
+  références, et il le dit dans `scope_warning`.
+
 Circuit d'huile de turbo instruit et écarté, 11 septembre 2026 :
 
 - identité établie depuis la planche d'usine 202-16 : quatre `oil pipe` en deux
