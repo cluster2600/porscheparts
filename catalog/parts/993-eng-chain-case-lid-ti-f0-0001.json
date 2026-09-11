@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
-  "name": "Couvercle de carter de chaîne 964 105 107 01, variante Ti-6Al-4V",
+  "name": "Couvercle gauche de carter de chaîne 964 105 107 01, variante Ti-6Al-4V",
   "description": "Couvercle boulonné étanche à l'huile du carter de chaîne, planche d'usine 103-05 position 15, apparié au joint 964 105 181 01 en position 16. Refabrication en Ti-6Al-4V fraisé demandée explicitement. Le choix du titane est assumé comme un choix de matière, pas de masse : à géométrie égale il alourdit la pièce de 64 %. Le criblage paramétrique montre en revanche que la dilatation différentielle contre un carter aluminium tient dans le jeu de perçage sur un couvercle de cette taille, ce qui n'est pas vrai du carter entier.",
   "vehicle": {
     "generation": "993",
@@ -40,6 +40,14 @@
         "license": "catalogue-usine-reference-seulement",
         "accessed_on": "2026-09-11",
         "notes": "Position 15 `lid` 964 105 107 01, appariée au joint position 16 `gasket` 964 105 181 01. Le catalogue identifie, il ne cote pas. Voir SRC-PET-993-103-05-CHAIN-CASE."
+      },
+      {
+        "title": "Reproducteurs commerciaux du couvercle : LN Engineering et Auto-Service Schefter",
+        "url": "https://lnengineering.com/porsche-964-993-chain-box-covers.html",
+        "source_type": "manufacturer",
+        "license": "pages-commerciales-reference-seulement",
+        "accessed_on": "2026-09-11",
+        "notes": "Confirme que 964 105 107 01 est le couvercle gauche, apparie au joint 964 105 181 01, et que la piece se reproduit par usinage dans la masse. Les deux reproducteurs emploient l'aluminium. Aucun ne publie de cote. Voir SRC-REPRODUCTEURS-COUVERCLE-CARTER-CHAINE-964-993."
       }
     ]
   },
@@ -94,11 +102,13 @@
     "reviewed_on": null,
     "known_limits": [
       "Aucune cote n'est mesurée : contour, épaisseur, entraxes, perçages, portée de joint et centrage sont inconnus.",
+      "Aucun des deux reproducteurs commerciaux ne publie de cote : les dimensions ne sont pas trouvables en ligne, elles s'obtiennent en achetant la pièce ou son joint.",
       "La marge de dilatation calculée, +0,056 mm, repose sur un entraxe extrême de 100 mm et un perçage de 8,4 mm pour vis M8, tous deux hypothétiques.",
       "Le jeu intérieur vis-à-vis de la chaîne et du tendeur n'est pas relevé.",
       "Le titane alourdit la pièce de 64 % à géométrie égale ; c'est un choix de matière assumé, pas un gain.",
       "La pièce retient de l'huile : une fuite sur un moteur refroidi par air a des voisins chauds, d'où la classe `functional` et non `non_critical`.",
-      "Aucun essai d'étanchéité, de cyclage thermique ni de dépose-repose répétée."
+      "Aucun essai d'étanchéité, de cyclage thermique ni de dépose-repose répétée.",
+      "Le couple de serrage du manuel, 9,7 Nm, situe la visserie en M6 : la marge de dilatation calculée sur une hypothèse M8 est à refaire une fois le perçage connu."
     ]
   }
 }
