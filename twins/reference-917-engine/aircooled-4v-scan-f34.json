@@ -48,7 +48,24 @@
       "use": "finned_external_morphology_and_measured_interface_seed_only",
       "prohibited_claim": "Porsche_917_dimensional_identity_or_fit"
     },
-    "scale_sensitivity": [0.985, 1.0, 1.015]
+    "scale_sensitivity": [
+      0.985,
+      1.0,
+      1.015
+    ],
+    "acquisition_declaration": {
+      "declared_method": "structured_light_or_laser_scanner_calibrated",
+      "declared_by": "operateur du depot, 2026-09-11",
+      "evidence_level": "D_declaration_orale_sans_piece_justificative",
+      "why_it_matters": "Un scanner a lumiere structuree ou laser calibre porte son echelle dans l'instrument : la reconstruction n'est pas libre en taille, contrairement a la photogrammetrie qui est sans echelle et doit etre ancree par une longueur de reference. Si la declaration se confirme, l'echelle absolue cesse d'etre une hypothese et la bande de sensibilite a plus ou moins 1,5 % peut se reduire a 1,0.",
+      "what_is_still_missing": [
+        "L'identite de l'instrument : marque, modele, volume de mesure.",
+        "Sa reference de calibration : etalon employe, date, ecart constate. C'est la condition que pose la declaration elle-meme.",
+        "Le perimetre : la declaration couvre-t-elle les deux scans, le carter moteur et la culasse 935, ou un seul des deux ?"
+      ],
+      "gate_effect": "AUCUN pour l'instant. La porte scan_absolute_scale_confirmed reste fermee, et un test verifie que toutes les portes de liberation le sont. Une declaration n'est pas une piece justificative ; elle devient une preuve quand l'instrument et sa calibration sont nommes.",
+      "does_not_touch": "La porte porsche_917_head_identity_confirmed reste fermee quelle que soit l'echelle : le scan de culasse est une 935 Xtreme, et le contrat interdit d'en tirer une identite ou un ajustement 917."
+    }
   },
   "cad": {
     "classification": "editable_scan_registered_print_process_prototype_not_engine_release_cad",
@@ -74,7 +91,11 @@
       "type": "compact_pent_roof_solver_geometry",
       "depth_mm": 11.5,
       "spark_plug_thread_nominal": "M10x1_candidate_insert_not_modelled_as_thread",
-      "spark_plug_axis": [0.0, 0.0, 1.0]
+      "spark_plug_axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
     },
     "valves": {
       "included_angle_deg": 36.0,
@@ -83,7 +104,16 @@
         "head_diameter_mm": 32.0,
         "stem_diameter_mm": 6.0,
         "maximum_lift_mm": 10.5,
-        "positions_xy_mm": [[-19.0, 19.0], [19.0, 19.0]],
+        "positions_xy_mm": [
+          [
+            -19.0,
+            19.0
+          ],
+          [
+            19.0,
+            19.0
+          ]
+        ],
         "axis_tilt_y_deg": -18.0
       },
       "exhaust": {
@@ -91,7 +121,16 @@
         "head_diameter_mm": 27.0,
         "stem_diameter_mm": 7.0,
         "maximum_lift_mm": 9.5,
-        "positions_xy_mm": [[-18.0, -19.0], [18.0, -19.0]],
+        "positions_xy_mm": [
+          [
+            -18.0,
+            -19.0
+          ],
+          [
+            18.0,
+            -19.0
+          ]
+        ],
         "axis_tilt_y_deg": 18.0
       }
     },
@@ -202,7 +241,12 @@
   },
   "cooling_design": {
     "fin_area_target_m2_per_head": 0.68,
-    "air_mass_flow_points_kg_s_per_head": [0.40, 0.52, 0.66, 0.85],
+    "air_mass_flow_points_kg_s_per_head": [
+      0.4,
+      0.52,
+      0.66,
+      0.85
+    ],
     "blower_total_pressure_pa": 6700.0,
     "blower_efficiency": 0.68,
     "air_heat_capacity_j_kgk": 1007.0,
@@ -216,7 +260,7 @@
     "cycle": {
       "method_a": "Cantera_3_2_0_reactor_network",
       "method_b": "independent_Wiebe_Annand_zero_dimensional_model",
-      "maximum_power_difference_fraction": 0.10,
+      "maximum_power_difference_fraction": 0.1,
       "maximum_peak_pressure_difference_fraction": 0.12
     },
     "external_cooling": {
@@ -230,7 +274,7 @@
       "method_a": "CalculiX_finite_element",
       "method_b": "Elmer_finite_element",
       "maximum_hotspot_temperature_difference_fraction": 0.05,
-      "maximum_p95_von_mises_difference_fraction": 0.10,
+      "maximum_p95_von_mises_difference_fraction": 0.1,
       "minimum_mesh_levels": 3
     },
     "rule": "an_accelerator_or_linear_solver_change_does_not_count_as_an_independent_method"
@@ -261,7 +305,12 @@
       "repository": "https://github.com/NVIDIA/physicsnemo",
       "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
       "observed_version": "2.3.0a0",
-      "candidate_models_verified_in_tree": ["DoMINO", "MeshGraphNet", "Transolver", "FIGConvUNet"],
+      "candidate_models_verified_in_tree": [
+        "DoMINO",
+        "MeshGraphNet",
+        "Transolver",
+        "FIGConvUNet"
+      ],
       "minimum_converged_classical_cases_before_training": 200,
       "training_authorized": false
     }
