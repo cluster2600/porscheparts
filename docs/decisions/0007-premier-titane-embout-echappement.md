@@ -141,3 +141,28 @@ excluait une désignation dès qu'une seule de ses planches touchait un organe
 présumé critique ; `oil pipe`, qui apparaît une fois sur une planche de carter,
 disparaissait ainsi alors que c'est un des meilleurs candidats du lot. Le groupe
 n'exclut désormais que s'il accuse **toutes** les planches de la désignation.
+
+---
+
+## Addendum du 11 septembre 2026 (2) — la grille était appliquée trop mollement
+
+L'instruction du carter de chaîne a montré que le criblage ne traitait que deux
+des cinq contre-indications de `TITANIUM.md` comme des refus. Les trois autres —
+forme simple usinable, grippage sur filetage repris, couple galvanique — n'étaient
+que des malus au score. « Quand le titane n'est pas pertinent » énonce pourtant
+des refus.
+
+Les cinq sont désormais rédhibitoires, et le classement change de nature :
+
+| | avant | après |
+|---|---:|---:|
+| pièces éligibles sur 33 | 5 | **1** |
+
+L'embout d'échappement n'est plus le meilleur d'un lot. Il est **le seul candidat
+titane du catalogue**. Le collecteur d'admission tombe sur le couple galvanique
+avec l'aluminium, le crochet de phare et le levier de porte sur la forme simple,
+le cache-moyeu sur les deux.
+
+Cela renforce la décision plutôt que de la fragiliser, mais il faut le dire dans
+ce sens : ce n'est pas que l'embout ait gagné, c'est que tous les autres
+perdaient déjà et que le criblage ne le disait pas.
