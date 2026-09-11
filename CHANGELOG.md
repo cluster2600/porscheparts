@@ -4,6 +4,20 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Circuit d'huile de turbo instruit et écarté, 11 septembre 2026 :
+
+- identité établie depuis la planche d'usine 202-16 : quatre `oil pipe` en deux
+  positions, trois `vent line`, deux `oil collection container`, deux `bracket` ;
+- quatre références Porsche inscrites sur la fiche du dépôt, qui n'en portait
+  aucune ;
+- correction enregistrée : la fiche s'annonce « retour » sans que la planche
+  l'établisse, l'attribution alimentation/retour reste à faire ;
+- refus motivé deux fois — le mode de rupture est l'incendie au sens de
+  `SAFETY.md`, et la grille de `TITANIUM.md` écarte le titane sur filetage
+  répété exposé au grippage ;
+- conclusion : le meilleur candidat additif du triage n'est pas un candidat
+  titane, les deux questions ne se confondent pas.
+
 Triages titane du catalogue d'usine, 11 septembre 2026 :
 
 - constat que le criblage titane portait sur 32 fiches, soit 0,51 % des 6 259
