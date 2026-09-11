@@ -19,6 +19,30 @@
     "titanium_penalty_percent": 64.07407407407406,
     "interpretation": "A **geometrie egale** le titane est plus lourd de 64 %. Mais l'epaisseur n'a aucune raison de rester egale : voir thickness_equivalence, qui donne les trois epaisseurs equivalentes selon le critere retenu. La comparaison a geometrie egale est le point de depart, pas la conclusion."
   },
+  "against_the_real_incumbent": {
+    "incumbent": "magnesium coule, nuance d'origine non identifiee",
+    "incumbent_failure_mode": "corrosion : le couvercle se pique sur sa portee, et aucun joint n'etanche contre une portee piquee",
+    "density_penalty_vs_magnesium": 2.4475138121546958,
+    "indices": {
+      "magnesium": {
+        "stiffness_limited_E13_over_rho": 1.9651344223702003,
+        "strength_limited_sqrt_sigma_over_rho": 6.988458917499181
+      },
+      "aluminium_billet": {
+        "stiffness_limited_E13_over_rho": 1.5264019628920578,
+        "strength_limited_sqrt_sigma_over_rho": 4.969039949999533
+      },
+      "titanium": {
+        "stiffness_limited_E13_over_rho": 1.0945389584288665,
+        "strength_limited_sqrt_sigma_over_rho": 6.503322930423447
+      }
+    },
+    "titanium_beats_magnesium_on_stiffness": false,
+    "titanium_beats_magnesium_on_strength": false,
+    "verdict_on_mass": "Le titane est 2,45 fois plus dense que le magnesium d'origine. Il perd l'arbitrage de raideur tres largement, et il perd aussi celui de resistance, de peu. L'argument « plus resistant donc moins epais donc plus leger », valable contre l'aluminium, ne tient pas contre le magnesium : sa densite est trop basse pour etre rattrapee.",
+    "what_titanium_does_win": "La corrosion. Le mode de defaillance de la piece d'origine est que sa portee se pique et cesse d'etancher. Un couvercle titane ne se pique pas. C'est le deuxieme critere de TITANIUM.md, « corrosion problematique avec la matiere d'origine », et il est ici au coeur du sujet — pas la masse.",
+    "the_catch": "Le couvercle se boulonne sur un carter lui aussi en magnesium. Le magnesium est le plus anodique des metaux de structure et le titane l'un des plus cathodiques : c'est le couple galvanique le plus defavorable de la liste, et TITANIUM.md nomme explicitement le magnesium. Le joint isole les portees, pas la visserie ni les chemins d'humidite. Un couvercle titane pourrait donc proteger sa propre portee tout en aggravant l'attaque du carter en face."
+  },
   "thickness_equivalence": {
     "performance_indices_plate_in_bending": {
       "method": "indices d'Ashby pour une plaque de contour impose, epaisseur libre",
@@ -71,7 +95,7 @@
     "how_to_settle_it": "Mesurer l'epaisseur d'origine, D03, et regarder la piece : une epaisseur uniforme genereuse avec des conges larges trahit la fonderie ; des zones minces et des nervures trahissent un dimensionnement. Le calcul ne tranchera pas a la place de l'oeil.",
     "material_cards": {
       "aluminium": {
-        "name": "aluminium de fonderie, nuance d'origine non identifiee",
+        "name": "aluminium 6061 billet, reponse du marche de la rechange",
         "density_g_cm3": 2.7,
         "expansion_per_k": 2.3e-05,
         "elastic_modulus_gpa": 70.0,

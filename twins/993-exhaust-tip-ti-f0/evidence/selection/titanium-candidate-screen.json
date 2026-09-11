@@ -917,17 +917,13 @@
       "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
       "safety_class": "functional",
       "score": 0,
-      "relevance_count": 1,
+      "relevance_count": 2,
       "counter_count": 4,
-      "unresolved_counter_count": 1,
+      "unresolved_counter_count": 2,
       "carried_requirements": [
         {
           "condition": "galling_or_repeated_threads",
           "mitigation": "Visserie acier d'origine conservee avec pate anti-grippage ; aucun filetage taille dans le titane."
-        },
-        {
-          "condition": "uncontrolled_galvanic_couple",
-          "mitigation": "Le joint 964 105 181 01 isole deja tout le plan de joint ; rondelles isolantes et anodisation pour le reste."
         },
         {
           "condition": "differential_expansion_with_alloy_mate",
@@ -941,13 +937,13 @@
       "eligible": false,
       "disqualifiers": [
         "n'appartient a aucune des trois familles ou l'additif gagne",
-        "le titane n'ameliore pas la matiere d'origine (couvercle en aluminium : le gain depend entierement de l'epaisseur que l'on s'autorise, question ouverte et non tranchee par le criblage)"
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu"
       ],
       "alloy_note": "",
-      "reason": "Couvercle plan boulonne. Aucune des trois familles additives : il se fraise. Les trois conditions de grille ont des parades declarees, dont la dilatation, qui tient sur un entraxe court. Le titane y est un choix de matiere demande explicitement, pas un resultat du criblage.",
+      "reason": "Couvercle plan boulonne. Aucune des trois familles additives : il se fraise. La piece d'origine est en magnesium coule et se corrode : c'est le critere de corrosion de TITANIUM.md, et c'est le seul vrai argument du titane ici. Mais le carter d'en face est lui aussi en magnesium, et le couple galvanique reste sans parade.",
       "incumbent_material": {
-        "titanium_improves_on_it": false,
-        "reason": "couvercle en aluminium : le gain depend entierement de l'epaisseur que l'on s'autorise, question ouverte et non tranchee par le criblage"
+        "titanium_improves_on_it": true,
+        "reason": "la piece d'origine est en magnesium coule dont le mode de defaillance est la corrosion des portees ; le titane ne se pique pas. Il n'ameliore en revanche ni la masse ni la raideur : contre le magnesium il perd les deux indices de flexion de plaque."
       },
       "variant_of": null
     },

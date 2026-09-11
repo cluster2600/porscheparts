@@ -122,6 +122,15 @@ def score_part(
         if not counters.get(name):
             continue
         parade = (mitigations.get(name) or "").strip()
+        # Une parade qui s'avoue non resolue n'est pas une parade. Le cas s'est
+        # presente sur le couple titane/magnesium du couvercle : le texte
+        # decrivait le probleme et comptait comme sa solution.
+        if parade and "non resolu" in parade.lower():
+            raise ScreenError(
+                f"parade contradictoire sur {part_id}/{name} : une condition "
+                "declaree non resolue ne doit pas porter de parade, elle doit "
+                "bloquer"
+            )
         if parade:
             carried.append({"condition": name, "mitigation": parade})
         else:

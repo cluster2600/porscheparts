@@ -4,6 +4,24 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+La pièce d'origine est en magnésium, pas en aluminium, 11 septembre 2026 :
+
+- correction majeure : les couvercles de carter de chaîne 964/993 montés en usine
+  sont en **magnésium coulé**, et leur mode de défaillance est la corrosion des
+  portées d'étanchéité — c'est la raison d'être du marché du couvercle billet ;
+- toute comparaison de masse menée jusqu'ici opposait le titane à de
+  l'aluminium, donc **au produit de rechange et non à la pièce d'origine** ;
+- refait contre le magnésium à 1,81 g/cm³ : le titane est 2,45× plus dense et
+  perd **les deux** indices de flexion de plaque, résistance comprise, 6,503
+  contre 6,988 — « plus résistant donc plus léger » ne tient pas ici ;
+- en revanche le critère de corrosion de `TITANIUM.md` s'applique désormais
+  pleinement, et c'est un argument plus fort que celui de la masse ;
+- obstacle nouveau et non résolu : le carter d'en face est aussi en magnésium, et
+  le couple titane/magnésium est le plus défavorable de la grille — un couvercle
+  titane pourrait déplacer la corrosion sur la pièce qu'on ne peut pas remplacer ;
+- bug corrigé dans le criblage : une parade dont le texte s'avouait « non résolu »
+  comptait comme une parade ; le script lève désormais une erreur.
+
 Indices de performance en flexion de plaque, 11 septembre 2026 :
 
 - l'arbitrage masse est reformulé avec les indices d'Ashby : à raideur imposée
