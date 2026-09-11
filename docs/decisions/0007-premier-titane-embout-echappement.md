@@ -90,3 +90,54 @@ Aucun calcul de ce dépôt ne remplacera cette mesure.
 - Deux nouveaux îlots et 1 044 couches à aire non soutenue appellent des
   supports, dont aucun n'est dessiné.
 - Le couple galvanique titane/inox à la fixation reste à traiter.
+
+---
+
+## Addendum du 11 septembre 2026 — le périmètre était faux
+
+La décision ci-dessus dit « les 32 fiches du catalogue ». C'est exact, et c'est
+insuffisant : le catalogue d'usine 993 compte **6 259 références distinctes**.
+Les fiches du dépôt en couvrent **0,51 %**. Écrire « appliquée au catalogue »
+laissait croire à une exhaustivité qui n'existait pas.
+
+Deux triages ont été ajoutés pour réparer cela.
+
+**Triage de zones** — `scripts/screen_pet_zones_for_titanium.py`, sur les seules
+données du dépôt : 239 illustrations, 499 libellés, 23 zones retenues couvrant
+1 538 références. Tourne partout, y compris en intégration.
+
+**Triage pièce à pièce** — `scripts/screen_pet_parts_for_titanium.py`, sur le
+relevé de désignations tenu **hors du dépôt**, comme `twin_structure.py` :
+1 026 désignations distinctes, 70 retenues, couvrant 439 références. Seules les
+conclusions agrégées et une liste courte sont publiées ; les lignes du catalogue
+restent chez leur détenteur.
+
+### Ce que le triage élargi trouve
+
+| score | réf. | désignation | lecture |
+|---:|---:|---|---|
+| +5 | 12 | `heat exchanger` | échangeur de chauffage 993 — **température d'échappement, cas nickel** |
+| +5 | 5 | `hot-air manifold` | air chaud, pas gaz ; l'aluminium suffit |
+| +4 | **21** | **`tail pipe`** | **la pièce retenue, reconfirmée indépendamment** |
+| +4 | 4 | `turbocharger` | interdit en l'état |
+| +2 | 21 | `oil pipe` | conduites d'huile de turbo, vrai cas additif, mais fuite d'huile sur échappement |
+
+**La conclusion ne change pas, mais elle est maintenant défendable.** L'embout
+sort dans les quatre premiers d'un triage portant sur toute la voiture, et non
+plus d'un panier de trente-deux fiches choisies. Les deux désignations qui le
+devancent tombent sur la même barrière que le collecteur : la température
+d'échappement est un domaine nickel, pas titane.
+
+### Ce que ces triages ne sont pas
+
+Un triage lexical retient des mots, pas des fonctions. Une désignation de trois
+mots ne dit ni la matière, ni la masse, ni la température. Une entrée retenue
+n'est pas une pièce choisie : c'est une pièce **à aller regarder**, en ouvrant
+la ligne PET, puis en la faisant passer par `screen_titanium_candidates.py` avec
+un jugement déclaré.
+
+La règle de correction du groupe mérite d'être notée. La première version
+excluait une désignation dès qu'une seule de ses planches touchait un organe
+présumé critique ; `oil pipe`, qui apparaît une fois sur une planche de carter,
+disparaissait ainsi alors que c'est un des meilleurs candidats du lot. Le groupe
+n'exclut désormais que s'il accuse **toutes** les planches de la désignation.

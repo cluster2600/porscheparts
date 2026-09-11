@@ -4,6 +4,21 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Triages titane du catalogue d'usine, 11 septembre 2026 :
+
+- constat que le criblage titane portait sur 32 fiches, soit 0,51 % des 6 259
+  références distinctes du catalogue 993 : « appliqué au catalogue » était une
+  surestimation du périmètre, corrigée en addendum de la décision 0007 ;
+- `screen_pet_zones_for_titanium.py` trie les 239 illustrations du squelette
+  avec les seules données du dépôt, 23 zones retenues sur 1 538 références ;
+- `screen_pet_parts_for_titanium.py` trie 1 026 désignations depuis un relevé
+  tenu hors du dépôt, 70 retenues, en ne publiant que la liste courte ;
+- l'embout d'échappement ressort dans les quatre premiers du triage élargi, les
+  deux désignations qui le devancent tombant sur la température d'échappement ;
+- règle d'exclusion par planche corrigée : elle ne joue que si toutes les
+  planches d'une désignation sont critiques, faute de quoi `oil pipe`
+  disparaissait à tort.
+
 Décision 0007, première pièce titane sélectionnée par grille, 11 septembre 2026 :
 
 - `scripts/screen_titanium_candidates.py` applique la grille de `TITANIUM.md`

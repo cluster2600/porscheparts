@@ -25,7 +25,8 @@
 	omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants \
 	turbo-variants-check turbo-dyno turbo-dyno-check route-trim-ring \
 	turning-trim-ring turning-trim-ring-check titanium-screen \
-	titanium-screen-check tip-routes tip-routes-check \
+	titanium-screen-check tip-routes tip-routes-check pet-zone-triage \
+	pet-zone-triage-check pet-part-triage \
 	route-trim-ring-check parts-table \
 	parts-table-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
@@ -201,7 +202,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check \
 	turbo-cold-side-check turbo-variants-check turbo-dyno-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
-	tip-routes-check parts-table-check help-check
+	tip-routes-check pet-zone-triage-check parts-table-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1186,6 +1187,22 @@ titanium-screen:
 #> 993 | Verifier ce criblage
 titanium-screen-check:
 	$(MAKE) titanium-screen ROUTE_CHECK=--check
+
+#> 993 | Triage titane des 239 zones du squelette d'usine
+pet-zone-triage:
+	python3 scripts/screen_pet_zones_for_titanium.py \
+	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-zone-titanium-triage.json $(ROUTE_CHECK)
+
+#> 993 | Verifier ce triage de zones
+pet-zone-triage-check:
+	$(MAKE) pet-zone-triage ROUTE_CHECK=--check
+
+#> 993 | Triage titane piece a piece, releve PET hors depot requis
+pet-part-triage:
+	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis ; le releve reste hors du depot"; exit 2; }
+	python3 scripts/screen_pet_parts_for_titanium.py \
+	  --listing $(PET_LISTING) \
+	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-part-titanium-triage.json
 
 #> 993 | Les deux routes titane de l'embout, etape 04
 tip-routes:
