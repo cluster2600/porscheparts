@@ -1,0 +1,653 @@
+{
+  "schema_version": "1.0.0",
+  "screen_id": "PET-CANDIDATE-JUDGEMENTS",
+  "authority": "repository_judgement_from_a_three_word_designation",
+  "scope": "Chaque entree est un jugement du depot porte sur une designation de catalogue, sa planche et rien d'autre. Ni matiere, ni masse, ni temperature ne sont mesurees : la colonne matiere d'origine est une presomption, et la classe de securite une presomption aussi. Contredire une ligne change le verdict, et c'est le but. Un verdict open_a_fiche ne dit pas que la piece est bonne : il dit qu'elle merite une fiche, et que la fiche tranchera.",
+  "verdicts": {
+    "open_a_fiche": "merite une fiche de catalogue et un criblage complet",
+    "reject": "n'en merite pas, pour la raison donnee"
+  },
+  "parts": {
+    "air distributor tube": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": true,
+      "reason": "meme circuit d'air chaud que le collecteur, meme raisonnement",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "air duct": {
+      "incumbent_material": "tole et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "conduit de refroidissement : consolidable, mais l'aluminium suffit et coute moins",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "air guide": {
+      "incumbent_material": "tole et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "deflecteur de refroidissement : l'aluminium ou le polymere suffisent",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "air tube": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": true,
+      "reason": "tube d'injection d'air secondaire : chaud, mince, rupture benigne, le titane y tient la corrosion",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "air-guide cowl": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": false,
+      "reason": "capotage de refroidissement : consolidable, mais l'aluminium suffit",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "breather adapter": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "event de bloc optique : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "breather pipe": {
+      "incumbent_material": "acier et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "event de boite et d'electricite moteur : aucun gain titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "carrier plate for battery": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": false,
+      "reason": "support de batterie : tolerie plane",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "central tube": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "tube central entre moteur et boite : structure de transmission",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "centre console": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "console centrale : habillage polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "centre nozzle": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "aerateur central : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "charge air cooler": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "meme impossibilite : un echangeur doit conduire la chaleur",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "connecting line": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "liaison de frein : domaine presume critique",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "connecting tube": {
+      "incumbent_material": "aluminium et caoutchouc",
+      "titanium_improves_on_it": false,
+      "reason": "liaison d'admission : aucun gain titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "defroster vent": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "buse de degivrage : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "distributor": {
+      "incumbent_material": "aluminium et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "allumeur : organe electrique, pas une piece de structure",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "distributor housing": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": true,
+      "reason": "boitier de distribution d'air d'injection : chaud, mince, consolidable, rupture benigne",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "elbow": {
+      "incumbent_material": "caoutchouc et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "coude d'embrayage et de ventilation : matiere souple",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "fan housing": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "carter de soufflante : fiche existante, l'aluminium est la bonne matiere",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "flap housing": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "boitier de volet d'admission : aucun gain titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "flap-nozzle": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "buse de corps papillon : polymere",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "footwell outlet vent": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "aerateur de plancher : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "fuel line": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "circuit de carburant : domaine presume critique",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "gate guide": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "glissiere de toit ouvrant : polymere",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "guide": {
+      "incumbent_material": "plastique et acier",
+      "titanium_improves_on_it": false,
+      "reason": "designation generique de guidage : forme simple et contact glissant",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "guide piece": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "piece de guidage de boite et d'evacuation : polymere",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "guide rail": {
+      "incumbent_material": "acier et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "rail de distribution et de toit : contact glissant non traite",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "guide rose": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "rosace de guidage : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "guide shoe": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "patin de guidage : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "guide tube": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "tube de guidage d'embrayage et de commande : forme simple, contact glissant",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "heat control box": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": true,
+      "reason": "boitier de commande d'air chaud, volets integres : consolidation reelle, air chaud, rupture benigne",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "heat dissipator": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "dissipateur d'electronique : la fonction est de conduire la chaleur",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "heat exchanger": {
+      "incumbent_material": "acier inoxydable",
+      "titanium_improves_on_it": false,
+      "reason": "gaz d'echappement : au-dela du plafond de toute nuance titane, c'est un cas nickel",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "heat protection": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": false,
+      "reason": "ecran thermique plan : de la tolerie, aucune des trois familles additives",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "heat protection plate": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": false,
+      "reason": "plaque de protection : tolerie plane",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "heat shield": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": false,
+      "reason": "ecran thermique de carter de chaine : tolerie plane",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "heating tube": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": true,
+      "reason": "tube de chauffage en aval des echangeurs : air chaud et non gaz, sous le plafond titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "hot-air manifold": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": true,
+      "reason": "collecteur d'air chaud, pas de gaz : le titane y gagne en masse et en corrosion de condensat, sous son plafond",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "housing": {
+      "incumbent_material": "varie",
+      "titanium_improves_on_it": false,
+      "reason": "designation generique couvrant des boitiers sans rapport entre eux : non instruisible en l'etat",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "housing cover": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "couvercle de boitier de chauffage : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "impact pipe": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "tube d'absorption de pare-chocs : absorption de choc",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "intake distributor": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "meme raisonnement que le collecteur d'admission",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "intake manifold": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "admission a 80 C : le titane est plus dense et plus cher sans rien apporter",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "intake pipe": {
+      "incumbent_material": "acier et caoutchouc",
+      "titanium_improves_on_it": false,
+      "reason": "bocal de frein, embrayage et circuit de climatisation : domaines ecartes",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "intake trumpet": {
+      "incumbent_material": "aluminium et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "cornet d'admission : aucun gain titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "intermediate housing": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "carter intermediaire de boite : organe de transmission",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "line bracket": {
+      "incumbent_material": "tole d'acier",
+      "titanium_improves_on_it": false,
+      "reason": "support de conduite de frein : domaine ecarte et forme simple",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "mixing tube": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "canule de melange de colle de vitrage : consommable",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "nozzle": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "gicleurs de lave-glace et d'aeration : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "oil cooler": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "la fonction est de conduire la chaleur : impossibilite physique pour le titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "oil pipe": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "instruit separement : le mode de rupture est l'incendie, et les raccords sont repris a chaque entretien",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "oil tube": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "huile moteur : meme mode de rupture que la conduite de turbo, l'incendie",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "pipe": {
+      "incumbent_material": "acier et caoutchouc",
+      "titanium_improves_on_it": false,
+      "reason": "tubulures d'admission et de filtre a air : aucun gain titane",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "pipeline": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "toit ouvrant et corps papillon : deux fonctions sans enjeu de masse ni de temperature",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "pressure line": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "freins, embrayage et direction assistee : domaines presumes critiques",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "protective tube": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "protection de faisceau : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "refrigerant line": {
+      "incumbent_material": "aluminium",
+      "titanium_improves_on_it": false,
+      "reason": "circuit frigorifique : l'aluminium est la matiere du circuit, le titane y serait un corps etranger",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "return line": {
+      "incumbent_material": "acier et caoutchouc",
+      "titanium_improves_on_it": false,
+      "reason": "retour de carburant, d'embrayage et de direction : domaines presumes critiques",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "side vent": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "aerateur d'habitacle : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "support tube": {
+      "incumbent_material": "acier",
+      "titanium_improves_on_it": false,
+      "reason": "tubes d'absorption de pare-chocs : absorption de choc, domaine presume critique",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "tail pipe": {
+      "incumbent_material": "acier inoxydable",
+      "titanium_improves_on_it": true,
+      "reason": "masse divisee par deux et meilleure tenue a la corrosion d'echappement",
+      "presumed_safety_class": "functional",
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "verdict": "open_a_fiche"
+    },
+    "thermostat": {
+      "incumbent_material": "laiton et cire",
+      "titanium_improves_on_it": false,
+      "reason": "thermostat d'huile : composant achete, pas une piece a refabriquer",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "turbocharger": {
+      "incumbent_material": "fonte et alliages chauds",
+      "titanium_improves_on_it": false,
+      "reason": "ensemble tournant a 900 C : ni titane, ni piece a refabriquer",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "consolidation"
+      ],
+      "verdict": "reject"
+    },
+    "vacuum line": {
+      "incumbent_material": "plastique et caoutchouc",
+      "titanium_improves_on_it": false,
+      "reason": "depression d'assistance de frein : domaine ecarte, et matiere souple",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "vent line": {
+      "incumbent_material": "acier et caoutchouc",
+      "titanium_improves_on_it": false,
+      "reason": "circuit de carburant : domaine presume critique",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "ventilation grille": {
+      "incumbent_material": "plastique",
+      "titanium_improves_on_it": false,
+      "reason": "grille d'aeration : piece d'habillage polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "ventilation valve": {
+      "incumbent_material": "acier et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "purgeur de frein et d'embrayage : domaines ecartes",
+      "presumed_safety_class": "prohibited_pending_engineering",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "water drain tube": {
+      "incumbent_material": "caoutchouc et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "evacuation d'eau : ni charge, ni temperature, ni masse",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [
+        "passages_internes"
+      ],
+      "verdict": "reject"
+    },
+    "window guide": {
+      "incumbent_material": "plastique et feutre",
+      "titanium_improves_on_it": false,
+      "reason": "coulisse de vitre : polymere",
+      "presumed_safety_class": "non_critical",
+      "additive_families": [],
+      "verdict": "reject"
+    },
+    "window guide rail": {
+      "incumbent_material": "acier et plastique",
+      "titanium_improves_on_it": false,
+      "reason": "rail de leve-vitre : contact glissant",
+      "presumed_safety_class": "functional",
+      "additive_families": [],
+      "verdict": "reject"
+    }
+  }
+}
