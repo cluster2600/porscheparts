@@ -4,6 +4,16 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Interroger le criblage sur une référence précise, 11 septembre 2026 :
+
+- `scripts/explain_pet_reference.py` et la cible `pet-explain` répondent pièce
+  par pièce : désignation, planches, score du triage, motifs, et jugement ;
+- il dit explicitement quand une désignation n'a **jamais été jugée**, au lieu de
+  laisser croire à un refus — une désignation écartée par le vocabulaire
+  disparaissait jusqu'ici en silence ;
+- `993 102 050 01`, poulie de vilebrequin, instruite en réponse à une question :
+  écartée, sur quatre motifs indépendants.
+
 Les 70 désignations du catalogue d'usine instruites, 11 septembre 2026 :
 
 - `catalog/manufacturing/pet-candidate-judgements.json` juge les 70 désignations

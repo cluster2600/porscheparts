@@ -27,6 +27,7 @@
 	turning-trim-ring turning-trim-ring-check titanium-screen \
 	titanium-screen-check tip-routes tip-routes-check pet-zone-triage \
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
+	pet-explain \
 	route-trim-ring-check parts-table \
 	parts-table-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
@@ -1188,6 +1189,12 @@ titanium-screen:
 #> 993 | Verifier ce criblage
 titanium-screen-check:
 	$(MAKE) titanium-screen ROUTE_CHECK=--check
+
+#> 993 | Ce que le criblage dit d'une reference : REF=... PET_LISTING=...
+pet-explain:
+	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis"; exit 2; }
+	@test -n "$(REF)" || { echo "REF='993 102 050 01' requis"; exit 2; }
+	python3 scripts/explain_pet_reference.py --listing $(PET_LISTING) --reference "$(REF)"
 
 #> 993 | Verdict sur les designations retenues, et fiches a ouvrir
 pet-verdict:
