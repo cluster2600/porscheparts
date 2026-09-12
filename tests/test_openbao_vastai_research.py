@@ -82,6 +82,153 @@ class ResearchTests(unittest.TestCase):
                     self.w.research_load_manifest(self.path)
                 self.manifest[key] = original
 
+    def test_optional_specialist_mode_preserves_legacy_and_guard_contract(self):
+        self.assertEqual(self.w.research_execution_mode(self.manifest), "qwen-server-v1")
+        self.manifest["execution_mode"] = "cad-specialists-v1"
+        self.save()
+        manifest, _digest = self.w.research_load_manifest(self.path)
+        self.assertEqual(manifest, self.manifest)
+        self.g.validate_manifest(manifest)
+        self.assertEqual(hashlib.sha256(Path(manifest["guard_path"]).read_bytes()).hexdigest(),
+                         self.w.RESEARCH_GUARD_SHA256)
+        self.assertAlmostEqual(self.w.research_budget_cost(manifest, 0.5, 0.001, 0.001), 1.561)
+
+    def test_specialist_mode_rejects_arbitrary_commands_and_unknown_fields(self):
+        original = dict(self.manifest)
+        for value in ("shell", "cad-specialists-v1; touch /tmp/forbidden", None, True, [], {}):
+            with self.subTest(value=value):
+                self.manifest = {**original, "execution_mode": value}
+                self.save()
+                with self.assertRaises(self.w.SafeError):
+                    self.w.research_load_manifest(self.path)
+                with self.assertRaises(self.w.SafeError):
+                    self.w.research_onstart(self.manifest)
+        self.manifest = {**original, "execution_mode": "cad-specialists-v1", "command": "arbitrary"}
+        self.save()
+        with self.assertRaises(self.w.SafeError):
+            self.w.research_load_manifest(self.path)
+
+    def test_specialist_idle_has_relative_deadline_no_model_download_or_api(self):
+        manifest = {**self.manifest, "execution_mode": "cad-specialists-v1", "deadline_epoch": 2_000_003_600}
+        with mock.patch.object(self.w.time, "time", return_value=2_000_000_000):
+            command = self.w.research_onstart(manifest)
+        self.assertIn("--kill-after=30 2340 sleep 2340", command)
+        self.assertIn("unset HF_TOKEN HUGGING_FACE_HUB_TOKEN", command)
+        self.assertIn("HF_HUB_DISABLE_IMPLICIT_TOKEN=1", command)
+        self.assertIn("/workspace/research-cad-idle.log", command)
+        for forbidden in ("vllm", "Qwen", "--model", "--host", "8000", "pip ", "curl ", "date"):
+            self.assertNotIn(forbidden, command)
+
+    def test_specialist_offers_accept_24gb_without_weakening_qwen_profile(self):
+        small = {**self.offer, "gpu_name": "RTX 4090", "gpu_ram": 24000,
+                 "cpu_cores_effective": 8, "cpu_ram": 32000}
+        self.assertTrue(self.w.cad_specialist_offer_eligible(small))
+        self.assertFalse(self.w.research_offer_eligible(small))
+        ada48 = {**small, "gpu_name": "RTX 5880Ada", "gpu_ram": 49140,
+                 "cpu_cores_effective": 21.33, "cpu_ram": 128974}
+        self.assertTrue(self.w.cad_specialist_offer_eligible(ada48))
+        self.assertFalse(self.w.research_offer_eligible(ada48))
+        for field, value in (("gpu_name", "RTX 4060"), ("gpu_ram", 22999), ("cpu_cores_effective", 7),
+                             ("cpu_ram", 31999), ("dph_total", 0.851), ("disk_space", 99), ("num_gpus", 2)):
+            with self.subTest(field=field):
+                self.assertFalse(self.w.cad_specialist_offer_eligible({**small, field: value}))
+        with mock.patch.object(self.w, "vast_request", return_value={"offers": [small, {**small, "id": 456}]}) as call, \
+             redirect_stderr(io.StringIO()):
+            self.assertEqual(self.w.get_cad_specialist_offers("synthetic", 123), [small])
+        query = call.call_args.kwargs["payload"]
+        self.assertEqual(query["gpu_ram"], {"gte": 23000})
+        self.assertEqual(query["cpu_cores_effective"], {"gte": 8})
+        self.assertEqual(query["cpu_ram"], {"gte": 32000})
+        self.assertEqual(query["gpu_name"], {"in": list(self.w.RESEARCH_CAD_GPUS)})
+        self.assertEqual(query["allocated_storage"], 100)
+
+    def test_specialist_contract_and_pending_state_use_fixed_small_resource_floor(self):
+        manifest = {**self.manifest, "execution_mode": "cad-specialists-v1"}
+        offer = {**self.offer, "gpu_name": "RTX 3090", "gpu_ram": 24000,
+                 "cpu_cores_effective": 8, "cpu_ram": 32000}
+        raw = {**self.raw, **{key: offer[key] for key in ("gpu_name", "gpu_ram", "cpu_cores_effective", "cpu_ram")}}
+        self.w.research_contract(raw, 999, manifest, offer)
+        with self.assertRaises(self.w.SafeError):
+            self.w.research_contract(raw, 999, self.manifest, offer)
+        pending = {**raw, "ports": None, "actual_status": "loading"}
+        self.assertTrue(self.w.research_metadata_pending(pending, offer, manifest))
+        self.assertFalse(self.w.research_metadata_pending({**pending, "gpu_ram": 22999}, offer, manifest))
+        self.assertFalse(self.w.research_metadata_pending({**pending, "ports": {"8000/tcp": [{}]}}, offer, manifest))
+        diagnostic = self.w.research_contract_diagnostic(raw, 999, manifest, offer, "contract")
+        self.assertEqual(diagnostic["expected"]["gpu_ram_mb_min"], 23000)
+        self.assertEqual(diagnostic["expected"]["cpu_ram_mb_min"], 32000)
+        self.assertEqual(diagnostic["observed"]["gpu"], "RTX 3090")
+
+    def test_specialist_selection_reuses_listing_query_without_changing_bundle_window(self):
+        small = {**self.offer, "gpu_name": "RTX 3090", "gpu_ram": 24000,
+                 "cpu_cores_effective": 8, "cpu_ram": 32000}
+        def bundles(_key, _path, **kwargs):
+            # Changing Vast's query window can produce different bundle IDs.
+            return {"offers": [small, {**small, "id": 456}] if kwargs["payload"]["limit"] == 100 else []}
+        with mock.patch.object(self.w, "vast_request", side_effect=bundles) as call, redirect_stderr(io.StringIO()):
+            self.assertEqual(self.w.get_cad_specialist_offers("synthetic"), [small, {**small, "id": 456}])
+            self.assertEqual(self.w.get_cad_specialist_offers("synthetic", 123), [small])
+            self.assertEqual(self.w.get_cad_specialist_offers("synthetic", 789), [])
+        self.assertEqual(call.call_args_list[0].kwargs["payload"], call.call_args_list[1].kwargs["payload"])
+        self.assertEqual(call.call_args_list[0].kwargs["payload"], call.call_args_list[2].kwargs["payload"])
+
+    def test_specialist_launch_uses_dedicated_offers_and_does_not_claim_qwen_served(self):
+        self.manifest["execution_mode"] = "cad-specialists-v1"
+        result = io.StringIO()
+        with ExitStack() as stack:
+            self.setup_launch(stack)
+            stack.enter_context(redirect_stdout(result))
+            dedicated = stack.enter_context(mock.patch.object(self.w, "get_cad_specialist_offers", return_value=[self.offer]))
+            legacy = stack.enter_context(mock.patch.object(self.w, "get_research_offers"))
+            call = stack.enter_context(mock.patch.object(self.w, "vast_request", side_effect=[{"new_contract": 999}, {"instances": self.raw}]))
+            self.assertEqual(self.w.launch_research("synthetic", 123, self.manifest, "a" * 64), 0)
+            dedicated.assert_called_once_with("synthetic", 123)
+            legacy.assert_not_called()
+        payload = call.call_args_list[0].kwargs["payload"]
+        self.assertEqual(payload["image"], self.w.RESEARCH_IMAGE)
+        self.assertEqual(payload["env"], {})
+        self.assertNotIn("vllm", payload["onstart"])
+        receipt = json.loads(result.getvalue())
+        self.assertEqual(receipt["execution_mode"], "cad-specialists-v1")
+        self.assertIsNone(receipt["model"])
+        self.assertIsNone(receipt["model_revision"])
+        self.assertIsNone(receipt["api_bind"])
+        self.assertFalse(receipt["model_ready_verified"])
+        self.assertFalse(receipt["specialist_weights_verified"])
+        self.assertEqual(receipt["base_profile_model"], self.w.RESEARCH_MODEL)
+
+    def test_specialist_selection_diagnostic_reports_exact_ids_without_provider_fields(self):
+        secret = "PRIVATE_PROVIDER_NEVER_PRINT"
+        raw = [self.offer, {**self.offer, "id": 456, "env": {"HF_TOKEN": secret}},
+               {**self.offer, "id": 789, "gpu_name": secret}, {"id": secret}, {"id": True}, None]
+        result = io.StringIO()
+        with mock.patch.object(self.w, "vast_request", return_value={"offers": raw}), redirect_stderr(result):
+            self.assertEqual(self.w.get_cad_specialist_offers("synthetic", 789), [])
+        rendered = result.getvalue()
+        self.assertNotIn(secret, rendered)
+        self.assertNotIn("HF_TOKEN", rendered)
+        self.assertNotIn("gpu_name", rendered)
+        diagnostic = json.loads(rendered.split(" ", 1)[1])
+        self.assertEqual(diagnostic["selected_offer_id"], 789)
+        self.assertEqual(diagnostic["raw_count"], 6)
+        self.assertEqual(diagnostic["raw_offer_ids"], [123, 456, 789])
+        self.assertEqual(diagnostic["eligible_offer_ids"], [123, 456])
+        self.assertEqual(diagnostic["raw_exact_matches"], 1)
+        self.assertEqual(diagnostic["eligible_exact_matches"], 0)
+        self.assertEqual(len(diagnostic["query_sha256"]), 64)
+
+    def test_specialist_selected_offer_read_only_operation_never_creates_or_changes_keys(self):
+        with mock.patch.object(self.w, "login", return_value="synthetic"), \
+             mock.patch.object(self.w, "read_vast_key", return_value="synthetic"), \
+             mock.patch.object(self.w, "revoke_token"), \
+             mock.patch.object(self.w, "get_cad_specialist_offers", return_value=[self.offer]) as offers, \
+             mock.patch.object(self.w, "launch_research") as launch, \
+             mock.patch.object(self.w, "ensure_local_ssh_registered") as keys, redirect_stdout(io.StringIO()):
+            self.assertEqual(self.w.run(["cad-specialist-offers", "123"]), 0)
+            offers.assert_called_once_with("synthetic", 123)
+            launch.assert_not_called()
+            keys.assert_not_called()
+
     def test_unmeasured_downloads_or_wrong_architecture_rejected(self):
         proof = json.loads(self.proof_path.read_bytes())
         for change in ({"platform": "linux/arm64"}, {"image_download_bytes": 61_000_000_000},
