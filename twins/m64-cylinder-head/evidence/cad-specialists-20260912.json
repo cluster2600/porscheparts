@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "single_open_935_scan_crop_reconstruction_trial_not_M64_head_qualification",
+  "date": "2026-09-12",
+  "input": {
+    "source_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "source_kind": "unrepaired_triangle_crop_from_user_supplied_935_reference_scan",
+    "not_certified_M64_geometry": true,
+    "absolute_units_verified": false,
+    "retained_triangles": 90185,
+    "unique_vertices_exact": 46844,
+    "boundary_edges": 3651,
+    "caps_or_repair_added": false,
+    "point_count": 256,
+    "sampling": "8192_area_weighted_surface_points_then_float32_FPS256_start0_PCG64_seed20260912",
+    "points_sha256": "e2791955d76a2f2e27c39b4db61d71ff252c1953de9ac3a849f37111a20abd9c",
+    "base_report_sha256": "a221167745d30ae8b07901453b3b0478249bb5660567d7d49ed6b5ec8f004eb3",
+    "fps_report_sha256": "83ea9be44b6d395a671fbc3a15c4a9303e4e6024ff7c3a6f1e323cd951655822",
+    "normalization": "longest_crop_extent_equals_2_not_certified_mm",
+    "reference_points_count_each": 32768
+  },
+  "runtime": {
+    "local_arch": "arm64",
+    "local_ram_gib": 64,
+    "torch": "2.5.1",
+    "torchvision": "0.20.1",
+    "transformers": "4.50.3",
+    "cadquery": "2.8.0",
+    "OCP": "7.9.3.1",
+    "geometry_execution_host": "isolated_containers_on_Kali_amd64",
+    "generated_code_reviewed_before_execution": true,
+    "generated_code_executed_on_host": false,
+    "first_cadrille_mps_failure": "invalid_low_watermark_ratio_1.4_before_generation",
+    "successful_mps_high_low_watermarks": [
+      0.5,
+      0.4
+    ],
+    "limits": {
+      "cpu_per_geometry_container": 2,
+      "memory_bytes": 4294967296,
+      "processes": 128,
+      "timeout_per_stage_seconds": 120,
+      "network": "none",
+      "rootfs": "read_only",
+      "user": "non_root",
+      "total_output_and_host_log_quotas_enforced": false
+    }
+  },
+  "results": [
+    {
+      "id": "cadrille",
+      "model": {
+        "processor": "Qwen/Qwen2-VL-2B-Instruct",
+        "processor_revision": "895c3a49bc3fa70a340399125c650a463535e71c",
+        "repo": "maksimko123/cadrille",
+        "revision": "2f422d1169e4362e2288b0e0f54bb3a2b504e0f9",
+        "source_file": "cadrille.py",
+        "source_repo": "col14m/cadrille",
+        "source_revision": "d72acc687273d31d62afe62eb9ded8b66b835321",
+        "source_sha256": "0338162cfb9f78981e63b48638935419e3d92c639bf2f97a9a191de96fca50b8"
+      },
+      "license": "cc-by-nc-4.0",
+      "noncommercial_research_only": true,
+      "device": "mps",
+      "gpu": "Apple MPS",
+      "dtype": "torch.float32",
+      "architecture_adaptation": "point_embedding_cast_uses_model_weight_dtype_instead_of_bfloat16",
+      "official_derived_module_sha256": "47f3aeb6abf1693a6621cafb0412d186b85178f8880051008de7b576ccd89f1c",
+      "driver_sha256": null,
+      "generated_code_sha256": "bdc8d7cc5c496a764823aad5d73451f06fd8dc73649ba8da205e0377ccd28bf1",
+      "input_sha256": "e2791955d76a2f2e27c39b4db61d71ff252c1953de9ac3a849f37111a20abd9c",
+      "seed": 42,
+      "do_sample": false,
+      "max_new_tokens": 1536,
+      "input_tokens": 279,
+      "output_tokens": 185,
+      "ended_with_eos": true,
+      "load_seconds": 5.0775966248475015,
+      "generation_seconds": 32.27896641707048,
+      "supervised_total_seconds": 40.46837074984796,
+      "supervised_return_code": 0,
+      "mps_current_allocated_bytes": 8879099904,
+      "mps_driver_allocated_bytes": 9757016064,
+      "peak_memory_measured": false,
+      "native": {
+        "BRep_valid": true,
+        "topology": {
+          "solids": 1,
+          "shells": 1,
+          "faces": 19,
+          "edges": 51,
+          "vertices": 34
+        },
+        "brep_sha256": "6bcc4dbd1fe8665fff34b3f442ce34c565ca8ed775eda32e75d44e045ad78ef3",
+        "candidate_stl_sha256": "6884ec8dcc5626c9d26e6e3829e167156d12e358d2ec0977ccc909918115fcf9",
+        "image_id": "sha256:3f97e71ebf07ee38b5729fa61858578d9c759dfa212f757e7286f3f09f7dc02d",
+        "controller_sha256": "296910b6ef6248e17f229b8014719a0f9f4febfa76968668d90eff20f5be3d81",
+        "worker_sha256": "5086e8552ebfc76a5f660bda27399d9ed54202bda1a3917778b169b8a470b8fd",
+        "stages": {
+          "execute": {
+            "elapsed_seconds": 1.8184188306331635,
+            "exit_code": 0,
+            "timed_out": false,
+            "removed_verified": true,
+            "absence_probe_return_code": 0,
+            "absence_probe_names": []
+          },
+          "audit": {
+            "elapsed_seconds": 1.7880725762806833,
+            "exit_code": 0,
+            "timed_out": false,
+            "removed_verified": true,
+            "absence_probe_return_code": 0,
+            "absence_probe_names": []
+          }
+        }
+      },
+      "comparison": {
+        "schema": "specialist-CAD-sampled-distance/v1",
+        "method": "bidirectional_finite_surface_samples_nearest_neighbour_not_exact_surface_distance",
+        "sample_count_each": 32768,
+        "length_unit": "normalized_longest_crop_extent_equals_2",
+        "candidate_stl_sha256": "6884ec8dcc5626c9d26e6e3829e167156d12e358d2ec0977ccc909918115fcf9",
+        "input_report_sha256": "a221167745d30ae8b07901453b3b0478249bb5660567d7d49ed6b5ec8f004eb3",
+        "model_input_report_sha256": "83ea9be44b6d395a671fbc3a15c4a9303e4e6024ff7c3a6f1e323cd951655822",
+        "model_input_points_sha256": "e2791955d76a2f2e27c39b4db61d71ff252c1953de9ac3a849f37111a20abd9c",
+        "consumed_reference_points_sha256": {
+          "reference-32768.npy": "d1fab76b94a8f0029e4b839c07ba6726b64b47de802da05852ecb9f859a397d4",
+          "reference-repeat-32768.npy": "383881b7403ea322f828c1d9902dd0a7e5bfac5a854302a792b9863ec5b33341"
+        },
+        "consumed_reference_hashes_verified_before_and_after_read": true,
+        "consumed_reference_shape_and_finiteness_verified": true,
+        "source_sha256": "a56d50a15e4402f59461fef25ee3e3ca8491b9ef5b48f76b86d8b970fe356bb6",
+        "candidate_triangles": 730,
+        "metrics": {
+          "reference_to_candidate": {
+            "mean": 0.08793862073865366,
+            "rms": 0.13657379796816158,
+            "p50": 0.025323768817074776,
+            "p95": 0.326214780753106,
+            "p99": 0.38883264171177145,
+            "sampled_max_not_Hausdorff": 0.4302525691019791
+          },
+          "candidate_to_reference": {
+            "mean": 0.03659469457939579,
+            "rms": 0.053039751736748186,
+            "p50": 0.024032990223900513,
+            "p95": 0.12355083585484743,
+            "p99": 0.1933602967392778,
+            "sampled_max_not_Hausdorff": 0.25063705285057547
+          },
+          "reference_resampling_baseline": {
+            "mean": 0.00640382779168778,
+            "rms": 0.007212975890683405,
+            "p50": 0.006063417604253881,
+            "p95": 0.012359018652972118,
+            "p99": 0.015568819835532285,
+            "sampled_max_not_Hausdorff": 0.026805559697831195
+          }
+        },
+        "bounds_alignment_optimized": false,
+        "inverse_transform_applied_for_fitting": false,
+        "acceptance_threshold_predefined": false,
+        "geometry_promoted_to_master": false,
+        "limitations": [
+          "open reference: inferred closures are not observed surfaces",
+          "finite sampled distances include sampling error; no global Hausdorff bound",
+          "no material, thermal, pressure, fatigue, fitment or LPBF validation"
+        ]
+      },
+      "private_receipt_sha256": {
+        "generation": "2eb028e7da9ec28b553e5742cf23cec26d617a6fc25d2c4a78d0532b08248762",
+        "supervision": "ba407f1810c209df7c4834dc1eb40ff0ea8208bf8d7c4293f479c46dd3877ba1",
+        "native_audit": "fe79485746bb71d33a6e940325ad35a0299dd04ba1d14eb27bfcbd2d25451561",
+        "sandbox": "4df4bd0eb46843455c8075797223ea485008a9b8019c5ff4a69d1ccb5535d22d",
+        "comparison": "51bad2d9787488abd40724211432dff57d709e267ce31eb766bd7e2b84c9d00b"
+      },
+      "observed_mounting_holes_omitted": 4,
+      "geometry_promoted_to_master": false
+    },
+    {
+      "id": "cad-recode",
+      "model": {
+        "processor": "Qwen/Qwen2-1.5B",
+        "processor_revision": "8a16abf2848eda07cc5253dec660bf1ce007ad7a",
+        "repo": "filapro/cad-recode-v1.5",
+        "revision": "765e8cc315a1a77bd8c69ccd0b403bad20ce35e8",
+        "source_file": "demo.ipynb",
+        "source_repo": "filaPro/cad-recode",
+        "source_revision": "03e3262119b38939feaa44b8368ad8db99243d47",
+        "source_sha256": "0e7f29d23885aca46d6aa73fa0bee98b9bbb37745a01a8cfed706e83acd27e8f"
+      },
+      "license": "cc-by-nc-4.0",
+      "noncommercial_research_only": true,
+      "device": "mps",
+      "gpu": "Apple MPS",
+      "dtype": "torch.float32",
+      "architecture_adaptation": "point_embedding_cast_uses_model_weight_dtype_instead_of_bfloat16",
+      "official_derived_module_sha256": "02bd3d0ae2c402a6d487e42b2818383e89b5820c01ca4756f96429f56f5407fa",
+      "driver_sha256": "660eabb8edc550984d29218b96af88b907a939b803f673755517765fd1e93975",
+      "generated_code_sha256": "214056991922b81bb33680882e92d723cdf3d85330ccabd5ace68c97d5442642",
+      "input_sha256": "e2791955d76a2f2e27c39b4db61d71ff252c1953de9ac3a849f37111a20abd9c",
+      "seed": 42,
+      "do_sample": false,
+      "max_new_tokens": 1536,
+      "input_tokens": 257,
+      "output_tokens": 257,
+      "ended_with_eos": true,
+      "load_seconds": 68.44135329197161,
+      "generation_seconds": 33.794661042047665,
+      "supervised_total_seconds": 105.34759562509134,
+      "supervised_return_code": 0,
+      "mps_current_allocated_bytes": 6209270784,
+      "mps_driver_allocated_bytes": 7775928320,
+      "peak_memory_measured": false,
+      "native": {
+        "BRep_valid": true,
+        "topology": {
+          "solids": 1,
+          "shells": 1,
+          "faces": 26,
+          "edges": 69,
+          "vertices": 46
+        },
+        "brep_sha256": "7d66251574374b73071a50c82b03a3737405705d287fe7874e6a78d1f2c98093",
+        "candidate_stl_sha256": "1e876d2c4b0afd7e12320427d4617d44825204165bcd5707c0543fce90fc7f70",
+        "image_id": "sha256:3f97e71ebf07ee38b5729fa61858578d9c759dfa212f757e7286f3f09f7dc02d",
+        "controller_sha256": "296910b6ef6248e17f229b8014719a0f9f4febfa76968668d90eff20f5be3d81",
+        "worker_sha256": "5086e8552ebfc76a5f660bda27399d9ed54202bda1a3917778b169b8a470b8fd",
+        "stages": {
+          "execute": {
+            "elapsed_seconds": 1.8270387300290167,
+            "exit_code": 0,
+            "timed_out": false,
+            "removed_verified": true,
+            "absence_probe_return_code": 0,
+            "absence_probe_names": []
+          },
+          "audit": {
+            "elapsed_seconds": 1.775584074202925,
+            "exit_code": 0,
+            "timed_out": false,
+            "removed_verified": true,
+            "absence_probe_return_code": 0,
+            "absence_probe_names": []
+          }
+        }
+      },
+      "comparison": {
+        "schema": "specialist-CAD-sampled-distance/v1",
+        "method": "bidirectional_finite_surface_samples_nearest_neighbour_not_exact_surface_distance",
+        "sample_count_each": 32768,
+        "length_unit": "normalized_longest_crop_extent_equals_2",
+        "candidate_stl_sha256": "1e876d2c4b0afd7e12320427d4617d44825204165bcd5707c0543fce90fc7f70",
+        "input_report_sha256": "a221167745d30ae8b07901453b3b0478249bb5660567d7d49ed6b5ec8f004eb3",
+        "model_input_report_sha256": "83ea9be44b6d395a671fbc3a15c4a9303e4e6024ff7c3a6f1e323cd951655822",
+        "model_input_points_sha256": "e2791955d76a2f2e27c39b4db61d71ff252c1953de9ac3a849f37111a20abd9c",
+        "consumed_reference_points_sha256": {
+          "reference-32768.npy": "d1fab76b94a8f0029e4b839c07ba6726b64b47de802da05852ecb9f859a397d4",
+          "reference-repeat-32768.npy": "383881b7403ea322f828c1d9902dd0a7e5bfac5a854302a792b9863ec5b33341"
+        },
+        "consumed_reference_hashes_verified_before_and_after_read": true,
+        "consumed_reference_shape_and_finiteness_verified": true,
+        "source_sha256": "a56d50a15e4402f59461fef25ee3e3ca8491b9ef5b48f76b86d8b970fe356bb6",
+        "candidate_triangles": 622,
+        "metrics": {
+          "reference_to_candidate": {
+            "mean": 0.08673686865817312,
+            "rms": 0.14541185938491877,
+            "p50": 0.016251799458086025,
+            "p95": 0.3526463318169696,
+            "p99": 0.4127474967200567,
+            "sampled_max_not_Hausdorff": 0.4397157313695402
+          },
+          "candidate_to_reference": {
+            "mean": 0.04124247307709051,
+            "rms": 0.07962944757774484,
+            "p50": 0.01207605034988514,
+            "p95": 0.19738657520512767,
+            "p99": 0.33497516933983684,
+            "sampled_max_not_Hausdorff": 0.419855406256549
+          },
+          "reference_resampling_baseline": {
+            "mean": 0.00640382779168778,
+            "rms": 0.007212975890683405,
+            "p50": 0.006063417604253881,
+            "p95": 0.012359018652972118,
+            "p99": 0.015568819835532285,
+            "sampled_max_not_Hausdorff": 0.026805559697831195
+          }
+        },
+        "bounds_alignment_optimized": false,
+        "inverse_transform_applied_for_fitting": false,
+        "acceptance_threshold_predefined": false,
+        "geometry_promoted_to_master": false,
+        "limitations": [
+          "open reference: inferred closures are not observed surfaces",
+          "finite sampled distances include sampling error; no global Hausdorff bound",
+          "no material, thermal, pressure, fatigue, fitment or LPBF validation"
+        ]
+      },
+      "private_receipt_sha256": {
+        "generation": "8d42fb91ad13aee0601433a5a69441577f4dd4fe9b396b18a1ca0e6986a149f4",
+        "supervision": "8034622b8edc23dd70625883c122c3c81ba1692c865c656f0209d7b3b1ff11de",
+        "native_audit": "45591b87c87eba7bda9c61899c3d3cd81de65b66bb5e5fe5f700c239d55dccb4",
+        "sandbox": "453169023d613666a56bf6aa60f7397210bf7ea595da22f7df738a7edc9f09f9",
+        "comparison": "66f5e2308de3197a43a832fbb9e64ec09457cde6ed7ebbab3777f003ebafc904"
+      },
+      "observed_mounting_holes_omitted": 4,
+      "geometry_promoted_to_master": false
+    }
+  ],
+  "cloud": {
+    "instance_id": 50801707,
+    "offer_id": 25158881,
+    "gpu": "RTX 5880Ada",
+    "offer_allocated_ram_mb": 128974,
+    "cpu_cores_effective_approx": 21.333,
+    "price_usd_per_hour_including_storage": 0.6259259259259259,
+    "image_ref": "vllm/vllm-openai@sha256:7a0f0fdd2771464b6976625c2b2d5dd46f566aa00fbc53eceab86ef50883da90",
+    "execution_mode": "cad-specialists-v1",
+    "image_linux_amd64_qualified": true,
+    "ssh_key_pair_and_instance_association_verified": true,
+    "ssh_batch_mode_verified": false,
+    "inference_executed": false,
+    "startup_timeout_seconds": 900,
+    "created_epoch": 1789247368,
+    "cleanup_recorded_epoch": 1789248284,
+    "cleanup_receipt_sha256": "e830146f0070e1b5eb5d3c54884f034f93272c0cf8d821370c12b686a7723a02",
+    "qualification_receipt_sha256": "29ff26572ba631353c9aa72d925caad18299afb9ad6c1a61a14a1103b05f0e81",
+    "instance_destroyed": true,
+    "instance_absence_verified": true,
+    "instances_count_at_final_check": 0,
+    "budget_global_with_previous_pilot_usd": 5,
+    "attempt_budget_usd": 3.5,
+    "credit_before_usd": 37.914868583250225,
+    "credit_observed_usd": 37.90752588105019,
+    "observed_credit_decrease_usd": 0.007342702200034523,
+    "credit_observed_about_utc": "2026-09-12T21:36:00Z",
+    "billing_final": false
+  },
+  "software_tests": {
+    "research": 50,
+    "inference": 10,
+    "geometry": 17,
+    "targeted_total": 77,
+    "skipped": 0,
+    "make_check": "failed_at_historical_F46_preparation_report_source_mismatch",
+    "same_failure_reproduced_on_published_baseline": "3c00c0f08a96b9fca07e1b86f6483c78c357be9e",
+    "historical_report_regenerated": false
+  },
+  "master_modified": false,
+  "manufacturing_authorized": false,
+  "thermal_simulation_executed": false,
+  "mechanical_simulation_executed": false,
+  "LPBF_simulation_executed": false,
+  "limitations": [
+    "One open crop and one points-only checkpoint per method do not rank models generally",
+    "Finite sampled distances are not exact surface distances or global Hausdorff bounds",
+    "Closures of unobserved surfaces are hypotheses, not measured geometry",
+    "No arbitrary unsupervised model-generated code execution until total output and logs are quota bounded",
+    "cadrille-v2 runner hash unavailable; never reconstructed retrospectively",
+    "Both model weights CC-BY-NC-4.0; no commercial authorization established"
+  ]
+}

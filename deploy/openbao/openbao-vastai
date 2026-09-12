@@ -171,6 +171,8 @@ RESEARCH_MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
 RESEARCH_REVISION = "dcaee4d4dfc5ee71ad501f01f530e5652438fde0"
 RESEARCH_GUARD_SHA256 = "9ff35f524c1aaf5ebab9b0373b25f1d36f93b6f2781392431104aa719843125c"
 RESEARCH_GPUS = ("L40S", "RTX 6000Ada")
+RESEARCH_CAD_MODE = "cad-specialists-v1"
+RESEARCH_CAD_GPUS = ("RTX 3090", "RTX 4090", "RTX A5000", "RTX 5880Ada", *RESEARCH_GPUS)
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -5407,12 +5409,34 @@ def picogk_verify_armed_guard(manifest: dict, manifest_sha256: str) -> None:
         raise SafeError("PicoGK external destruction guard is not alive") from None
 
 
+def research_execution_mode(manifest: dict) -> str:
+    mode = manifest.get("execution_mode", "qwen-server-v1")
+    if mode not in ("qwen-server-v1", RESEARCH_CAD_MODE):
+        raise SafeError("research execution mode is not approved")
+    return mode
+
+
+def research_hardware(manifest: dict | None = None) -> tuple[tuple, tuple]:
+    if research_execution_mode(manifest or {}) == RESEARCH_CAD_MODE:
+        return RESEARCH_CAD_GPUS, (23000, 8, 32000, 100)
+    return RESEARCH_GPUS, (45000, 12, 64000, 100)
+
+
 def research_offer_eligible(offer: dict) -> bool:
+    return _research_offer_eligible(offer, {})
+
+
+def cad_specialist_offer_eligible(offer: dict) -> bool:
+    return _research_offer_eligible(offer, {"execution_mode": RESEARCH_CAD_MODE})
+
+
+def _research_offer_eligible(offer: dict, manifest: dict) -> bool:
     # gpu_frac is offer GPUs / host GPUs, not a fractional accelerator.
     # https://docs.vast.ai/cli/reference/search-instances
-    floors = (("gpu_ram", 45000), ("cpu_cores_effective", 12), ("cpu_ram", 64000), ("disk_space", 100))
+    gpus, minimums = research_hardware(manifest)
+    floors = tuple(zip(("gpu_ram", "cpu_cores_effective", "cpu_ram", "disk_space"), minimums))
     return (type(offer.get("id")) is int and offer["id"] > 0
-        and offer.get("gpu_name") in RESEARCH_GPUS
+        and offer.get("gpu_name") in gpus
         and finite_number(offer.get("num_gpus")) == 1
         and (fraction := finite_number(offer.get("gpu_frac"))) is not None and 0 < fraction <= 1
         and all((value := finite_number(offer.get(key))) is not None and value >= floor for key, floor in floors)
@@ -5426,17 +5450,42 @@ def research_offer_eligible(offer: dict) -> bool:
 
 
 def get_research_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    return _get_research_offers(api_key, offer_id, {})
+
+
+def get_cad_specialist_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    return _get_research_offers(api_key, offer_id, {"execution_mode": RESEARCH_CAD_MODE})
+
+
+def _get_research_offers(api_key: str, offer_id: int | None, manifest: dict) -> list[dict]:
+    gpus, minimums = research_hardware(manifest)
+    # Keep the specialist listing and selected-ID refresh query scope identical.
+    limit = 100 if research_execution_mode(manifest) == RESEARCH_CAD_MODE or offer_id is None else 1000
     query = {"allocated_storage": 100, "num_gpus": {"eq": 1}, "gpu_frac": {"gt": 0, "lte": 1},
-             "gpu_name": {"in": list(RESEARCH_GPUS)},
-             "gpu_ram": {"gte": 45000}, "cpu_cores_effective": {"gte": 12}, "cpu_ram": {"gte": 64000},
+             "gpu_name": {"in": list(gpus)},
+             "gpu_ram": {"gte": minimums[0]}, "cpu_cores_effective": {"gte": minimums[1]}, "cpu_ram": {"gte": minimums[2]},
              "disk_space": {"gte": 100}, "dph_total": {"lte": 0.85}, "reliability": {"gte": 0.99},
              "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
-             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 1000 if offer_id is not None else 100}
+             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": limit}
     result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
     if not isinstance(result.get("offers"), list):
         raise SafeError("Vast.ai research offer response is invalid")
-    return sorted((item for item in result["offers"] if isinstance(item, dict) and research_offer_eligible(item)
-                   and (offer_id is None or item["id"] == offer_id)), key=lambda item: item["dph_total"])
+    eligible = sorted((item for item in result["offers"] if isinstance(item, dict)
+                       and _research_offer_eligible(item, manifest)), key=lambda item: item["dph_total"])
+    if offer_id is not None and research_execution_mode(manifest) == RESEARCH_CAD_MODE:
+        # Read-only evidence for provider listing/refresh mismatches. Never emit
+        # raw offer objects, provider strings, authentication fields or payloads.
+        raw_ids = [item["id"] for item in result["offers"] if isinstance(item, dict)
+                   and type(item.get("id")) is int and item["id"] > 0]
+        diagnostic = {"execution_mode": RESEARCH_CAD_MODE, "selected_offer_id": offer_id,
+                      "query_sha256": hashlib.sha256(json.dumps(query, sort_keys=True).encode()).hexdigest(),
+                      "query_limit": limit, "raw_count": len(result["offers"]),
+                      "raw_offer_ids": raw_ids[:100], "eligible_count": len(eligible),
+                      "eligible_offer_ids": [item["id"] for item in eligible[:100]],
+                      "raw_exact_matches": raw_ids.count(offer_id),
+                      "eligible_exact_matches": sum(item["id"] == offer_id for item in eligible)}
+        print("OPENBAO_VASTAI_CAD_OFFERS " + json.dumps(diagnostic, sort_keys=True), file=sys.stderr, flush=True)
+    return [item for item in eligible if offer_id is None or item["id"] == offer_id]
 
 
 def research_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
@@ -5448,8 +5497,9 @@ def research_load_manifest(path: Path, *, require_active: bool = True) -> tuple[
     fields = {"schema_version", "profile", "job_id", "attempt_label", "image_ref", "model", "model_revision",
               "created_epoch", "deadline_epoch", "budget_usd", "download_budget_gb", "upload_budget_gb",
               "qualification_path", "qualification_sha256", "guard_path", "guard_sha256", "guard_ready_path"}
-    if not isinstance(manifest, dict) or set(manifest) != fields:
+    if not isinstance(manifest, dict) or set(manifest) not in (fields, fields | {"execution_mode"}):
         raise SafeError("research manifest fields differ from the fixed contract")
+    research_execution_mode(manifest)
     if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != RESEARCH_PROFILE
         or manifest["image_ref"] != RESEARCH_IMAGE or manifest["model"] != RESEARCH_MODEL
         or manifest["model_revision"] != RESEARCH_REVISION
@@ -5519,12 +5569,21 @@ def research_verify_guard(manifest: dict, manifest_sha256: str) -> None:
 
 
 def research_onstart(manifest: dict) -> str:
+    mode = research_execution_mode(manifest)
     # Compute only on the controlling Mac: a provider wall clock may be hours
     # ahead or behind. Reserve image startup (900s), cleanup (300s), and 60s
     # for dispatch/termination tolerance, including timeout's 30s kill grace.
     duration = int(manifest["deadline_epoch"] - time.time()) - 900 - 300 - 60
     if duration < 60:
         raise SafeError("research deadline cannot cover startup, cleanup, tolerance and a sixty-second server run")
+    if mode == RESEARCH_CAD_MODE:
+        # The fixed idle command neither downloads weights nor opens an API.
+        # Its relative TTL bounds this process, not later SSH jobs: the unchanged
+        # independent destruction guard remains responsible for paid lifetime.
+        return ("set -eu; test \"$(id -u)\" = 0; unset HF_TOKEN HUGGING_FACE_HUB_TOKEN; "
+                "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; "
+                f"nohup timeout --signal=TERM --kill-after=30 {duration} sleep {duration} "
+                ">/workspace/research-cad-idle.log 2>&1 </dev/null &")
     command = shlex.join(["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", RESEARCH_MODEL,
                          "--revision", RESEARCH_REVISION, "--host", "127.0.0.1", "--port", "8000",
                          "--max-model-len", "16384", "--max-num-seqs", "4", "--enforce-eager"])
@@ -5535,18 +5594,19 @@ def research_onstart(manifest: dict) -> str:
 
 
 def research_contract(raw: dict, instance_id: int, manifest: dict, offer: dict) -> dict:
+    gpus, minimums = research_hardware(manifest)
     instance = picogk_safe_instance(raw)
     if (type(instance.get("id")) is not int or instance["id"] != instance_id
         or instance.get("label") != manifest["attempt_label"] or instance.get("image") != RESEARCH_IMAGE
         or instance.get("machine_verification") != "verified" or instance.get("gpu") != offer["gpu_name"]
-        or instance.get("gpu") not in RESEARCH_GPUS or instance.get("status") not in {"created", "loading", "running"}
+        or instance.get("gpu") not in gpus or instance.get("status") not in {"created", "loading", "running"}
         or finite_number(instance.get("num_gpus")) != 1
         or (fraction := finite_number(instance.get("gpu_fraction"))) is None or not 0 < fraction <= 1
         or fraction != finite_number(offer.get("gpu_frac"))
         or finite_number(instance.get("dph_total")) != finite_number(offer["dph_total"])
         or not isinstance(raw.get("ports"), dict) or any(port != "22/tcp" and mapping for port, mapping in raw["ports"].items())):
         raise SafeError("research instance identity, hardware, state or published ports violate the contract")
-    for field, floor in (("gpu_ram_mb", 45000), ("cpu_cores_effective", 12), ("cpu_ram_mb", 64000), ("disk_space_gb", 100)):
+    for field, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), minimums):
         value = finite_number(instance.get(field))
         if value is None or value < floor:
             raise SafeError("research instance resource metadata violates the contract: " + field)
@@ -5554,8 +5614,9 @@ def research_contract(raw: dict, instance_id: int, manifest: dict, offer: dict) 
     return instance
 
 
-def research_metadata_pending(raw: dict, offer: dict) -> bool:
+def research_metadata_pending(raw: dict, offer: dict, manifest: dict | None = None) -> bool:
     """Metadata may lag observed running; known violations never may wait."""
+    _, minimums = research_hardware(manifest)
     instance = picogk_safe_instance(raw)
     if not picogk_startup_pending(raw) and instance["status"] != "running":
         return False
@@ -5563,7 +5624,7 @@ def research_metadata_pending(raw: dict, offer: dict) -> bool:
                           ("num_gpus", 1), ("gpu_fraction", offer["gpu_frac"]), ("dph_total", offer["dph_total"])):
         if instance.get(key) is not None and instance[key] != expected:
             return False
-    for key, floor in (("gpu_ram_mb", 45000), ("cpu_cores_effective", 12), ("cpu_ram_mb", 64000), ("disk_space_gb", 100)):
+    for key, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), minimums):
         value = instance.get(key)
         if value is not None and (finite_number(value) is None or value < floor):
             return False
@@ -5636,6 +5697,7 @@ def research_write_receipt(manifest: dict, suffix: str, receipt: dict) -> Path:
 
 def research_contract_diagnostic(raw: object, instance_id: int | None, manifest: dict, offer: dict, stage: str) -> dict:
     """Explicit field allowlist: never print raw provider messages or mappings."""
+    gpus, minimums = research_hardware(manifest)
     raw = raw if isinstance(raw, dict) else {}
     instance = picogk_safe_instance(raw)
     observed = {key: finite_number(instance.get(key)) for key in (
@@ -5643,7 +5705,7 @@ def research_contract_diagnostic(raw: object, instance_id: int | None, manifest:
         "dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")}
     ports = raw.get("ports")
     observed.update(id=raw.get("id") if type(raw.get("id")) is int else None,
-                    gpu=instance["gpu"] if instance.get("gpu") in RESEARCH_GPUS else "missing_or_unrecognized",
+                    gpu=instance["gpu"] if instance.get("gpu") in gpus else "missing_or_unrecognized",
                     machine_verification=instance["machine_verification"] if instance.get("machine_verification") in
                         {"verified", "unverified", "deverified"} else "missing_or_unrecognized",
                     status=instance["status"], provider_states=instance["provider_states"],
@@ -5656,8 +5718,8 @@ def research_contract_diagnostic(raw: object, instance_id: int | None, manifest:
             "label_matches": instance.get("label") == manifest["attempt_label"],
             "image_matches": instance.get("image") == RESEARCH_IMAGE,
             "expected": {"id": instance_id, "gpu": offer["gpu_name"], "num_gpus": 1,
-                         "gpu_fraction": offer["gpu_frac"], "gpu_ram_mb_min": 45000,
-                         "cpu_cores_effective_min": 12, "cpu_ram_mb_min": 64000, "disk_space_gb_min": 100,
+                         "gpu_fraction": offer["gpu_frac"], "gpu_ram_mb_min": minimums[0],
+                         "cpu_cores_effective_min": minimums[1], "cpu_ram_mb_min": minimums[2], "disk_space_gb_min": minimums[3],
                          "machine_verification": "verified", "dph_total": offer["dph_total"],
                          "inet_up_cost_usd_per_gb_max": 0.01, "inet_down_cost_usd_per_gb_max": 0.01,
                          "allowed_statuses": ["created", "loading", "running"], "allowed_published_port_names": ["22/tcp"]},
@@ -5665,6 +5727,7 @@ def research_contract_diagnostic(raw: object, instance_id: int | None, manifest:
 
 
 def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
+    mode = research_execution_mode(manifest)
     with simready_launch_lock():
         public_key = read_local_ssh_public_key()  # Includes cryptographic pair verification.
         ensure_local_ssh_registered(api_key)
@@ -5672,7 +5735,8 @@ def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256
         funds = picogk_account_balance(api_key)
         if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
             raise SafeError("research credit does not cover run and account reserve")
-        offers = get_research_offers(api_key, offer_id)
+        offers = (get_cad_specialist_offers(api_key, offer_id) if mode == RESEARCH_CAD_MODE
+                  else get_research_offers(api_key, offer_id))
         if len(offers) != 1:
             raise SafeError("research selected offer is unavailable or outside fixed limits")
         offer = offers[0]
@@ -5694,6 +5758,7 @@ def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256
             instance_id = returned
             stage = "provider_receipt"
             created = {"instance_id": instance_id, "offer_id": offer_id, "label": manifest["attempt_label"],
+                       "execution_mode": mode,
                        "image_ref": RESEARCH_IMAGE, "manifest_sha256": manifest_sha256,
                        "created_epoch": int(time.time()), "provider_create_acknowledged": True,
                        "instance_identity_checked": False}
@@ -5717,7 +5782,7 @@ def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256
                     picogk_singleton(api_key, instance_id, manifest)
                     break
                 except SafeError:
-                    if not research_metadata_pending(raw, offer) or time.time() >= metadata_deadline:
+                    if not research_metadata_pending(raw, offer, manifest) or time.time() >= metadata_deadline:
                         raise
                     time.sleep(5)
         except BaseException:
@@ -5742,16 +5807,22 @@ def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256
             print("OPENBAO_VASTAI_RESEARCH_CLEANUP " + json.dumps(cleanup, sort_keys=True), file=sys.stderr, flush=True)
             raise
         print_json({"profile": RESEARCH_PROFILE, "instance_id": instance_id, "instance": instance,
-                    "image_ref": RESEARCH_IMAGE, "model": RESEARCH_MODEL, "model_revision": RESEARCH_REVISION,
+                    "execution_mode": mode, "image_ref": RESEARCH_IMAGE,
+                    "model": None if mode == RESEARCH_CAD_MODE else RESEARCH_MODEL,
+                    "model_revision": None if mode == RESEARCH_CAD_MODE else RESEARCH_REVISION,
+                    "base_profile_model": RESEARCH_MODEL, "base_profile_model_revision": RESEARCH_REVISION,
                     "label": manifest["attempt_label"], "deadline_epoch": manifest["deadline_epoch"],
                     "planned_cost_with_reserve_usd": ceiling, "manifest_sha256": manifest_sha256,
                     "approved_public_private_pair_verified": True, "approved_instance_key_verified": True,
                     "external_destroy_watchdog_armed": True, "ssh_batch_mode_verified": False,
-                    "model_ready_verified": False, "api_bind": "127.0.0.1:8000"})
+                    "model_ready_verified": False, "specialist_weights_verified": False,
+                    "api_bind": None if mode == RESEARCH_CAD_MODE else "127.0.0.1:8000"})
         return 0
 
 
 def run(operation: list[str]) -> int:
+    if operation and operation[0] == "cad-specialist-offers" and len(operation) == 2:
+        positive_id(operation[1], "CAD specialist offer id")
     research_bundle = None
     if operation and operation[0] in {"launch-research", "reconcile-research"}:
         if len(operation) != (3 if operation[0] == "launch-research" else 2):
@@ -5784,6 +5855,12 @@ def run(operation: list[str]) -> int:
         api_key = read_vast_key(token)
         if operation == ["research-offers"]:
             print_json([safe_offer(item) for item in get_research_offers(api_key)[:20]])
+            return 0
+        if operation == ["cad-specialist-offers"]:
+            print_json([safe_offer(item) for item in get_cad_specialist_offers(api_key)[:20]])
+            return 0
+        if len(operation) == 2 and operation[0] == "cad-specialist-offers":
+            print_json([safe_offer(item) for item in get_cad_specialist_offers(api_key, int(operation[1]))[:20]])
             return 0
         if research_bundle is not None:
             manifest, manifest_sha256 = research_bundle
@@ -6171,7 +6248,7 @@ def run(operation: list[str]) -> int:
             return 0
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
-            "research-offers|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
+            "research-offers|cad-specialist-offers [offer_id]|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
             "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"
             "offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"

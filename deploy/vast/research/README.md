@@ -83,3 +83,25 @@ de rapports historiques, notamment F46 : ne pas les régénérer pour annoncer �
 tort que les anciens essais ont été réexécutés.
 
 Source de sémantique des offres : [documentation officielle Vast](https://docs.vast.ai/cli/reference/search-instances).
+
+## Mode d'essai des spécialistes CAO
+
+Le champ optionnel du manifeste `execution_mode: "cad-specialists-v1"`
+réutilise l'image et les garde-fous financiers, mais démarre seulement un
+processus d'attente borné : aucun serveur Qwen, téléchargement de ses poids
+ou port API. L'absence du champ conserve le profil documentaire historique.
+`cad-specialist-offers` recherche les GPU explicitement admis de 24 Go ou plus,
+avec 8 CPU effectifs et 32 Go de RAM au minimum. Le plafond de 0,85 USD/h,
+les frais de transfert bornés et la garde de suppression restent inchangés.
+
+`cad-specialist-offers OFFER_ID` fournit un diagnostic de relecture sans
+création : nombres d'offres, identifiants entiers et empreinte de requête.
+Une offre affichée n'est pas une réservation ; le lancement exige une nouvelle
+correspondance exacte avant l'appel payant.
+
+Les champs Qwen de qualification attestent uniquement le profil de base et
+conservent une provision de téléchargement prudente. Le reçu spécialiste
+indique `model: null`, `api_bind: null` et `specialist_weights_verified: false`.
+Il faut donc vérifier séparément les révisions et l'inférence effectives de
+cadrille et CAD-Recode, puis exécuter leur code généré dans un bac à sable
+indépendant. Voir le [compte rendu spécialisé](../../../docs/M64_CAD_SPECIALISTS_20260912.md).
