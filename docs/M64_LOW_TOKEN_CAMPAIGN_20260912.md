@@ -1,5 +1,9 @@
 # M64 — campagnes scriptées, budget Vast 38 USD
 
+Suite effectivement exécutée :
+[pilote PhysicsNeMo-Mesh sur A100, contre-calcul et nettoyage](M64_PHYSICSNEMO_MESH_PILOT_20260912.md).
+Le lot ci-dessous reste le compte rendu de l'étape précédente sans location.
+
 ## Décision et exécution
 
 Option retenue : scripts déterministes, journaux privés sur disque, petits
