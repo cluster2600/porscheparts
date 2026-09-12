@@ -1,103 +1,97 @@
 # Accès Hugging Face pour Flash Next
 
-## Périmètre et état
+## État confirmé le 12 septembre 2026
 
-Le wrapper `openbao-huggingface` effectue le prévol d'accès au modèle
-`orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4`. Il ne loue aucune machine,
-ne télécharge aucun poids et n'exporte aucun token. L'injection distante dans
-vLLM reste une étape distincte, à préparer après ce prévol.
+**L'accès en lecture au dépôt Flash Next est opérationnel.** Le contrôle a été
+réexécuté depuis le wrapper fourni/configuré par l'utilisateur, puis après
+réinstallation du même wrapper. Aucun poids n'a été téléchargé et aucune
+machine Vast n'a été louée pendant ces vérifications.
 
-Le chemin **nouveau, dédié** `secrets/data/huggingface-flashnext` est un contrat
-d'installation, **pas un secret existant découvert**. Le 12 septembre 2026,
-le répertoire d'identité `~/.config/openbao-huggingface-reader` était absent.
-Les wrappers Vast, NVIDIA, GitHub et le writer de déploiement examinés ne
-fournissent pas cet accès. Aucun de leurs droits n'a été élargi et aucune
-identité administrative n'a été récupérée.
+Le projet source est `/Users/maxime/projects/openbao-huggingface-wrapper`.
+Sa source installée a été comparée à `src/openbao_huggingface.py` : les
+fichiers étaient identiques. Ce dossier local n'était pas un dépôt Git lors
+du contrôle ; il n'est pas présenté ici comme un logiciel publié par le dépôt Porsche.
+
+| Élément vérifié | Résultat |
+| --- | --- |
+| Lanceur | `/Users/maxime/.local/bin/openbao-huggingface` |
+| Version du wrapper | `0.1.1` |
+| Bibliothèque | `huggingface-hub 1.31.0` |
+| Secret KV v2 autorisé | `secrets/data/huggingface`, champ `HF_TOKEN` |
+| Version du secret utilisée | `1` |
+| Dépôt | `orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` |
+| Droit confirmé | Lecture |
+
+Ces noms sont des métadonnées : aucune valeur secrète n'est publiée.
+L'indication utilisateur « la clé s'appelle vast » n'a pas servi à substituer
+une clé API Vast.ai : le wrapper relu utilise le champ HF ci-dessus.
+
+## Commandes vérifiées
+
+```sh
+cd /Users/maxime/projects/openbao-huggingface-wrapper
+./scripts/deploy.sh install
+./scripts/deploy.sh verify
+./scripts/deploy.sh auth-check model orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4
+```
+
+L'installation a réussi, avec les dépendances déjà présentes.
+`verify` a retourné `ok: true` et `bootstrap: valid`. Le test d'accès a retourné :
+
+```json
+{
+  "access": "read",
+  "command": "auth-check",
+  "ok": true,
+  "repo_id": "orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4",
+  "repo_type": "model",
+  "secret_version": 1
+}
+```
+
+L'utilisateur a aussi demandé `./scripts/deploy.sh provision`. Cette commande
+a été exécutée et a retourné le refus prévu :
+`bootstrap already exists; refusing to create an orphaned SecretID`.
+Elle n'a pas recréé l'AppRole ni remplacé les identifiants existants. Le contrôle
+d'accès a réussi après ce refus. **Ne pas supprimer le bootstrap ni forcer
+son remplacement pour faire passer cette étape** : elle sert à la première
+initialisation, pas au contrôle courant.
+
+## Circuit d'accès actuel
 
 ```mermaid
 flowchart LR
-    A[AppRole dédiée] --> B[Lecture du seul secret HF]
-    B --> C[Contrôle accès Flash Next sur huggingface.co]
-    C --> D[Révocation session Bao]
-    D --> E[Résultat sans identifiant secret]
+    A[Identité AppRole locale dédiée] --> B[Lecture HF_TOKEN dans Bao]
+    B --> C[Révocation de la session Bao]
+    C --> D[Test lecture du dépôt Hugging Face]
+    D --> E[Résultat JSON sans valeur secrète]
 ```
 
-## Installation du code
+Le token HF passe explicitement en mémoire à la bibliothèque. Le wrapper ne
+l'exporte pas dans l'environnement et ne réalise pas de `hf auth login`.
+La session Bao est révoquée avant l'appel Hugging Face ; un échec de révocation
+empêche cet appel. Installation et provisioning sont inutiles pour un simple
+contrôle d'accès.
 
-Depuis ce dépôt :
+## Ancien prototype de ce dépôt
 
-```sh
-python3 -m unittest discover -s tests -p 'test_openbao_huggingface_wrapper.py' -v
-install -m 0755 deploy/openbao/openbao-huggingface /Users/maxime/.local/bin/openbao-huggingface
-openbao-huggingface --check
-openbao-huggingface --auth-check
-```
+`deploy/openbao/openbao-huggingface` et `huggingface-flashnext-read.hcl`
+restent l'historique du prototype initial, avec son ancien chemin
+`secrets/data/huggingface-flashnext` et ses 28 tests hors ligne.
+**Ne pas installer ce prototype par-dessus le lanceur actuel**, et ne pas
+appliquer sa politique à l'identité désormais opérationnelle.
+Le blocage « identité absente » décrit précédemment est dépassé. Les tests du
+prototype ne constituent pas une qualification du nouveau wrapper.
 
-`--check` contrôle les métadonnées privées de l'identité et le port local Bao,
-sans lire les fichiers d'identité ni appeler Hugging Face. Il échoue tant que
-l'identité n'est pas installée. `--auth-check` utilise l'identité, lit le seul
-champ `HF_TOKEN` à l'emplacement fixé, contrôle l'accès au dépôt puis révoque
-la session Bao, y compris en cas de refus Hugging Face. Une révocation en
-échec interdit le statut de succès ; le TTL administratif borne alors la session.
+## Limites et suite
 
-## Activation administrative requise
+Le succès de l'[API officielle `auth_check`](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.auth_check)
+prouve l'accès en lecture au dépôt, pas un téléchargement complet, une révision
+précise, un chargement vLLM, une cadence d'inférence ou une validation physique
+de la culasse.
 
-À réaliser dans une session administrative OpenBao déjà autorisée, **pas avec
-une identité de lecture Vast/NVIDIA/GitHub**, ni avec un token envoyé dans le chat :
-
-1. Le propriétaire du compte Hugging Face accepte lui-même les conditions du
-   modèle et crée un token **fine-grained, lecture de ce dépôt uniquement**.
-   Vérifier dans Hugging Face les restrictions effectives du token ; le prévol
-   ne prouve pas qu'un token donné est dépourvu de droits sur d'autres dépôts.
-2. Déposer ce token directement dans le coffre : montage KV v2 `secrets`,
-   clé `huggingface-flashnext`, champ `HF_TOKEN`. Ne pas utiliser les caches HF,
-   le Trousseau, un fichier `.env` local ou une recherche de secrets existants.
-3. Appliquer la politique versionnée
-   [huggingface-flashnext-read.hcl](huggingface-flashnext-read.hcl), sous le nom
-   `codex-huggingface-flashnext-read`. Elle autorise seulement la lecture de
-   cette clé et la révocation de sa propre session ; aucune capacité `list`.
-4. Créer l'AppRole `3dprinting993-huggingface-flashnext` sous `auth/codex-deploy`,
-   avec cette seule politique, `token_no_default_policy=true`,
-   `token_ttl=5m`, `token_max_ttl=10m`. Utiliser un SecretID de durée limitée
-   (par exemple 24 h, 50 utilisations), à renouveler par l'administrateur.
-5. Installer uniquement ses fichiers d'amorçage `role_id` et `secret_id` dans
-   `~/.config/openbao-huggingface-reader`, propriétaire utilisateur courant,
-   dossier **0700**, fichiers ordinaires **0600**, sans liens. Le token HF reste
-   dans Bao, jamais dans ces fichiers. Ne pas imprimer les valeurs.
-6. Exécuter les deux contrôles ci-dessus. L'administrateur n'a pas à transmettre
-   de valeur secrète à Codex ; seul le résultat des contrôles est nécessaire.
-
-Le wrapper n'a aucune commande de création de secret/politique, d'export,
-de commande arbitraire, ni de sélection d'un autre chemin Bao ou modèle.
-Les erreurs réseau restent génériques, sans corps de réponse ni en-têtes.
-Les proxies hérités sont désactivés et toutes les redirections sont refusées.
-
-## Vérification du 12 septembre 2026
-
-- **28 tests hors ligne réussis**, dont une redirection HTTP locale réellement
-  refusée, les droits/liens/types de fichiers, l'absence de lecture pendant
-  `--check`, les refus d'accès, la révocation et l'absence de secrets en sortie.
-- Relecture indépendante du code et de la correspondance à l'API officielle :
-  aucun blocage identifié dans ce périmètre.
-- Copie installée dans `~/.local/bin/openbao-huggingface`, identique à la source.
-- Contrôle réel `--check` : **échec attendu, identité dédiée absente**.
-  L'authentification Hugging Face n'est donc **pas vérifiée**. Aucun secret
-  récupéré, aucun poids téléchargé, aucune dépense Vast pendant cette étape.
-
-## Ce que le succès prouve — et ne prouve pas
-
-Le contrôle utilise l'[API officielle `auth_check`](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.auth_check)
-en lecture, `GET /api/models/{repo_id}/auth-check`, et exige HTTP 200.
-Ce n'est pas la fiche publique du modèle : son accès public ne prouve pas
-l'accès aux poids restreints.
-
-Un succès prouve l'autorisation de lecture du **dépôt**, pas l'existence d'une
-révision précise, un transfert CDN, le chargement vLLM ou un serveur fonctionnel.
-Avant une location, il faudra également revalider le digest linux/amd64 de
-l'image existante, la révision des poids et la paire SSH, puis préparer une
-injection distante bornée à l'instance relue. Le serveur restera sur loopback.
-
-Références : [tokens à droits fins](https://huggingface.co/docs/hub/security-tokens),
-[modèles à accès restreint](https://huggingface.co/docs/hub/models-gated).
-L'accès est accordé au compte individuel ; créer un wrapper n'accorde pas
-automatiquement cet accès et n'accepte pas les conditions à sa place.
+Avant toute location : vérifier le crédit courant, le digest linux/amd64 de
+l'image Flash Next existante, la révision des poids et la paire SSH, puis
+préparer le transfert sécurisé ou le préchargement des poids pour l'instance
+exacte. Un accès HF local fonctionnel ne vaut pas injection de credentials
+sur Vast. Le serveur vLLM devra rester sur loopback, accessible par tunnel SSH.
