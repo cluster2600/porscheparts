@@ -1,5 +1,10 @@
 # M64 — périmètre de simulation multiphysique
 
+Préparation du 12 septembre : [revue scientifique, refroidissement air/huile,
+matériaux, essais et 24 missions de recherche](M64_RESEARCH_EXECUTION_20260912.md).
+La nouvelle formulation « 700hp » est conservée comme ambiguïté d'unité ;
+elle ne remplace pas silencieusement la référence historique 700 PS ci-dessous.
+
 État détaillé du dernier lot : [PicoGK et Vast](M64_PICOGK_EXECUTION.md).
 Reprise du 8 septembre : [chambre candidate, assemblage et préparation du
 banc d'admission](M64_ADMISSION_CHAMBRE_20260908.md), avec
