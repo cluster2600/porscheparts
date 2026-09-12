@@ -1,13 +1,15 @@
 # M64 — contacts de guides et préparation géométrique
 
-**Dernier essai gaz : 34 groupes pyramide/tétras fusionnés nativement sur
-copie. Faibles déterminants : 1 961 → 1 955 ; faces non orthogonales :
-3 447 → 3 411. Points, faces externes et volume PL déclaré sont conservés,
-mais cinq familles qualité restent refusées. La comparaison indépendante
-ne relève aucun nouveau défaut dans les neuf ensembles contrôlés. Le lecteur
-du bilan a échoué après `checkMesh` ; les résultats ont été récupérés en
-lecture seule, sans réécrire ses reçus initiaux. Voir les
-[fusions mixtes, contrôles et limites](M64_MIXED_CELL_CORRECTION_20260909.md).**
+**Dernier essai gaz : 533 groupes mixtes fusionnés sur copie, dont les 34
+antérieurs préservés et 499 supplémentaires. Par rapport au lot 34 : faibles
+déterminants 1 955 → 1 886, faces non orthogonales 3 411 → 2 910. La
+comparaison indépendante du 12 septembre confirme zéro nouveau défaut dans
+les neuf ensembles contrôlés. Cinq familles qualité restent refusées ;
+aucune admission CFD ni fabrication. Voir les
+[résultats, contrôles et limites](M64_MIXED_CELL_CORRECTION_20260909.md#extension--533-groupes-contre-vérifiés-le-12-septembre).**
+
+Suite pilotée par scripts : [campagne économe en tokens, budget Vast de
+38 USD et points de revue](M64_LOW_TOKEN_CAMPAIGN_20260912.md).
 
 Essai précédent : la conversion duale globale est exécutée puis rejetée.
 Dix contrôles qualité échouent contre cinq sur la source, avec une cellule

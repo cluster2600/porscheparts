@@ -1,6 +1,8 @@
 # M64 — correction conservatrice des groupes mixtes
 
-**34 groupes mixtes ont été fusionnés nativement sur copie. Le maillage
+**533 groupes mixtes ont été fusionnés nativement sur copie, dont les
+34 antérieurs préservés. Le bilan initial 34 est conservé ci-dessous et
+l'extension est documentée en fin de page. Le maillage
 reste refusé sur cinq familles de qualité. La conservation géométrique
 déclarée passe ; ni la thermique, ni la résistance, ni la fabrication de la
 culasse ne sont validées.**
@@ -197,3 +199,62 @@ Reçus complémentaires, sans réécriture des précédents :
 
 Les empreintes ne constituent pas une preuve de qualité par elles-mêmes :
 elles identifient les fichiers lus, les tests exécutés et les refus conservés.
+
+## Extension : 533 groupes, contre-vérifiés le 12 septembre
+
+Le lot natif du 9 septembre est repris par ses fichiers sauvegardés ; aucun
+nouveau calcul OpenFOAM n'est nécessaire pour cette publication. La recherche
+pure examine les 13 462 paires restantes et engage 12 523 recherches à largeur
+limitée : 572 013 évaluations en 50,743 s, pic mémoire environ 1,27 Go.
+Les 957 groupes individuellement admissibles donnent 533 groupes disjoints
+retenus : **34 inchangés et 499 nouveaux**, 1 330 cellules parentes et 990
+faces internes à retirer. Les 3 292 faces externes sont contrôlées conjointement.
+Toutes les graines sont visitées, mais la recherche reste **non exhaustive**
+(largeur trois, quatre extensions, huit parents maximum, sélection gloutonne).
+
+Compilation, témoins, fusion native, audit indépendant et `checkMesh`
+terminent avec code zéro en 31,842 s sur Kali, sous plafonds quatre CPU/4 Gio.
+Le défaut de classification du premier nom d'entité est corrigé dans une copie
+du travailleur ; les reçus de l'ancien échec ne sont pas réécrits. Les entrées
+sont conservées, le conteneur supprimé et son absence revérifiée le 12 septembre.
+Résultat : **784 675 cellules, 1 687 432 faces, 223 154 points**.
+
+| Ensemble natif | Lot 34 | Lot 533 |
+|---|---:|---:|
+| Faible déterminant | 1 955 | 1 886 |
+| Non-orthogonalité > 70° | 3 411 | 2 910 |
+| Faible poids | 1 229 | 1 223 |
+| Faible rapport de volumes | 135 | 134 |
+| Fort allongement | 9 | 9 |
+| Skewness | 18 | 18 |
+| `shortEdges` : points signalés | 4 | 4 |
+| Une face interne | 2 | 2 |
+| Deux faces internes | 208 | 207 |
+
+La contre-lecture du 12 septembre dure 4,075 s (4,360 s avec supervision),
+sous plafond 60 s. Elle compare les fichiers exportés au **lot 34**, avec
+correspondances composées via le primal commun et tous les parents, pas
+seulement les représentants. Les 34 composantes restent identiques ; les
+499 ajouts sont disjoints. Aucun nouvel identifiant défectueux, ensemble
+inconnu ou nouvelle famille refusée n'est observé.
+
+Les 501 défauts de non-orthogonalité en moins comprennent 175 faces supprimées
+et 326 faces conservées désormais sous le seuil. La baisse de 69 faibles
+déterminants comprend deux coalescences d'images et 67 images désormais non
+signalées : **pas 69 cellules inchangées réparées**. Les pires extrema restent
+insuffisants, et la moyenne du rapport de volumes baisse légèrement. Cette
+non-régression des ensembles n'affirme donc pas une amélioration de tout scalaire.
+Les cinq familles restent en échec : ni CFD, ni thermique/résistance, ni
+fabrication ne sont autorisées par ce lot. Aucune dépense Vast pour ces essais.
+
+Identités des preuves privées, sans coordonnées ni identifiants géométriques :
+
+- Sélection pure : `b7d263f3f2c1c243b939caca04ca21ffcc84453ea01eb58d0cb6f8fc8b1f90cc`.
+- Manifeste natif : `c8215d4dc88aad6513f2685908e90425dd7bbc92ce0b2996d173d0412c0af421`.
+- Rapport natif : `8b5b48f416a96fe054304fe11e0d94b7b978a54d4d66bb682158571dd0d17998`.
+- Audit des unions : `ed53bc2348df6ff4887acd92a2e9322326eb55d32b400dfc49b7f0230913b157`.
+- `checkMesh` : `5782126619c81596d508b5c2d0b12e2faacb0a67ad88ae0bd7dcedfabf5040cb`.
+- Comparaison indépendante : `9fd4feb771388affbe8759f6f4f770163014153b8a606edc3456a58e64add614`.
+
+Le [mode batch](M64_LOW_TOKEN_CAMPAIGN_20260912.md) réutilise ces reçus épinglés
+et s'arrête automatiquement sur le refus qualité, sans relancer ce lot.
