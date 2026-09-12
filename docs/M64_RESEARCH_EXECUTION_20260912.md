@@ -1,5 +1,7 @@
 # M64 turbo : recherche, décisions et préparation des essais
 
+Suite exécutée : [pilote de propositions CAO Qwen/Vast et contrôles natifs](M64_CAD_AGENT_PILOT_20260912.md).
+
 **Décision recommandée :** poursuivre la culasse quatre soupapes à enveloppe Porsche conservée, comparer air forcé seul et huile ciblée, puis sélectionner ensemble géométrie, matériau et procédé. La préparation rassemble quatre revues documentées, un répartiteur testé et une file de 24 missions de recherche. **Aucune nouvelle CAO, simulation moteur ou impression n'est réalisée par ces lecteurs documentaires.** L'exécution Vast est consignée séparément dans le [journal de recherche](research/M64_RESEARCH_VAST_RUN_20260912.md).
 
 La cible nouvellement exprimée est **700hp**. Le dépôt conserve sa référence historique **700 PS au vilebrequin = 514,849 kW**. L'interprétation provisoire de 700 hp mécaniques donne **521,990 kW**, soit +1,387 %. Les deux conventions sont conservées ; ce n'est pas une puissance obtenue. Régime maximal, carburant, variante exacte, durée à pleine charge et norme de correction ne sont pas confirmés. Les scénarios 3,6 L/6 500 tr/min du dépôt restent des hypothèses, pas de nouvelles mesures.
