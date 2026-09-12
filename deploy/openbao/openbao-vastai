@@ -164,6 +164,13 @@ PICOGK_MIN_RAM_MB = 64000
 PICOGK_DISK_GB = 100
 PICOGK_MAX_TRANSFER_RATE = 0.01
 PICOGK_CLEANUP_RESERVE_USD = 1.0
+RESEARCH_PROFILE = "research-qwen-v1"
+RESEARCH_LABEL = "3dprinting993-research-qwen"
+RESEARCH_IMAGE = "vllm/vllm-openai@sha256:7a0f0fdd2771464b6976625c2b2d5dd46f566aa00fbc53eceab86ef50883da90"
+RESEARCH_MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
+RESEARCH_REVISION = "dcaee4d4dfc5ee71ad501f01f530e5652438fde0"
+RESEARCH_GUARD_SHA256 = "9ff35f524c1aaf5ebab9b0373b25f1d36f93b6f2781392431104aa719843125c"
+RESEARCH_GPUS = ("L40S", "RTX 6000Ada")
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -5055,6 +5062,8 @@ def picogk_or_legacy_safe_instance(raw: dict) -> dict:
     label = raw.get("label")
     if isinstance(label, str) and re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", label):
         return picogk_safe_instance(raw)
+    if isinstance(label, str) and re.fullmatch(re.escape(RESEARCH_LABEL) + r"-[0-9a-f]{20}", label):
+        return picogk_safe_instance(raw)
     return safe_instance(raw)
 
 
@@ -5398,7 +5407,358 @@ def picogk_verify_armed_guard(manifest: dict, manifest_sha256: str) -> None:
         raise SafeError("PicoGK external destruction guard is not alive") from None
 
 
+def research_offer_eligible(offer: dict) -> bool:
+    # gpu_frac is offer GPUs / host GPUs, not a fractional accelerator.
+    # https://docs.vast.ai/cli/reference/search-instances
+    floors = (("gpu_ram", 45000), ("cpu_cores_effective", 12), ("cpu_ram", 64000), ("disk_space", 100))
+    return (type(offer.get("id")) is int and offer["id"] > 0
+        and offer.get("gpu_name") in RESEARCH_GPUS
+        and finite_number(offer.get("num_gpus")) == 1
+        and (fraction := finite_number(offer.get("gpu_frac"))) is not None and 0 < fraction <= 1
+        and all((value := finite_number(offer.get(key))) is not None and value >= floor for key, floor in floors)
+        and (price := finite_number(offer.get("dph_total"))) is not None and 0 < price <= 0.85
+        and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None and reliability >= 0.99
+        and (offer.get("verified") is True or offer.get("verification") == "verified")
+        and offer.get("rentable") in (True, 1) and offer.get("rented") in (False, 0)
+        and (offer.get("rentable_type") or offer.get("rental_type") or offer.get("type")) in (None, "on-demand", "ondemand")
+        and all((value := finite_number(offer.get(key))) is not None and 0 <= value <= 0.01
+                for key in ("inet_up_cost", "inet_down_cost")))
+
+
+def get_research_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    query = {"allocated_storage": 100, "num_gpus": {"eq": 1}, "gpu_frac": {"gt": 0, "lte": 1},
+             "gpu_name": {"in": list(RESEARCH_GPUS)},
+             "gpu_ram": {"gte": 45000}, "cpu_cores_effective": {"gte": 12}, "cpu_ram": {"gte": 64000},
+             "disk_space": {"gte": 100}, "dph_total": {"lte": 0.85}, "reliability": {"gte": 0.99},
+             "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
+             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 1000 if offer_id is not None else 100}
+    result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
+    if not isinstance(result.get("offers"), list):
+        raise SafeError("Vast.ai research offer response is invalid")
+    return sorted((item for item in result["offers"] if isinstance(item, dict) and research_offer_eligible(item)
+                   and (offer_id is None or item["id"] == offer_id)), key=lambda item: item["dph_total"])
+
+
+def research_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
+    data = m64_read_file(path, 65536)
+    try:
+        manifest = json.loads(data)
+    except (ValueError, UnicodeError):
+        raise SafeError("research manifest is not JSON") from None
+    fields = {"schema_version", "profile", "job_id", "attempt_label", "image_ref", "model", "model_revision",
+              "created_epoch", "deadline_epoch", "budget_usd", "download_budget_gb", "upload_budget_gb",
+              "qualification_path", "qualification_sha256", "guard_path", "guard_sha256", "guard_ready_path"}
+    if not isinstance(manifest, dict) or set(manifest) != fields:
+        raise SafeError("research manifest fields differ from the fixed contract")
+    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != RESEARCH_PROFILE
+        or manifest["image_ref"] != RESEARCH_IMAGE or manifest["model"] != RESEARCH_MODEL
+        or manifest["model_revision"] != RESEARCH_REVISION
+        or not isinstance(manifest["job_id"], str) or not re.fullmatch(r"research-qwen-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"])
+        or not isinstance(manifest["attempt_label"], str) or not re.fullmatch(re.escape(RESEARCH_LABEL) + r"-[0-9a-f]{20}", manifest["attempt_label"])):
+        raise SafeError("research identity, official image digest or model revision is not approved")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if (type(created) is not int or type(deadline) is not int or created > time.time()
+        or not 600 <= deadline - created <= 7200 or (require_active and time.time() >= deadline - 300)):
+        raise SafeError("research deadline must include setup and cleanup within two hours")
+    for field, lower, cap in (("budget_usd", 1, 4), ("download_budget_gb", 0, 60), ("upload_budget_gb", 0, 1)):
+        value = finite_number(manifest[field])
+        if value is None or not lower < value <= cap:
+            raise SafeError("research budget or transfer allocation exceeds its fixed cap")
+    for field in ("qualification_path", "guard_path", "guard_ready_path"):
+        if not isinstance(manifest[field], str) or not Path(manifest[field]).is_absolute():
+            raise SafeError("research paths must be absolute")
+    if (Path(manifest["guard_ready_path"]).parent != path.parent
+        or Path(manifest["guard_ready_path"]).name != manifest["job_id"] + ".guard-ready.json"):
+        raise SafeError("research guard receipt must be the exact sibling job receipt")
+    if (manifest["guard_sha256"] != RESEARCH_GUARD_SHA256
+        or hashlib.sha256(m64_read_file(Path(manifest["guard_path"]), 65536)).hexdigest() != RESEARCH_GUARD_SHA256):
+        raise SafeError("research guard source fingerprint differs from the approved helper")
+    proof_data = m64_read_file(Path(manifest["qualification_path"]), 65536)
+    if hashlib.sha256(proof_data).hexdigest() != manifest["qualification_sha256"]:
+        raise SafeError("research qualification fingerprint mismatch")
+    try:
+        proof = json.loads(proof_data)
+    except (ValueError, UnicodeError):
+        raise SafeError("research qualification is not JSON") from None
+    expected = {"image_ref": RESEARCH_IMAGE, "image_tag": IMAGE, "platform": "linux/amd64",
+                "anonymous_registry_verified": True, "model": RESEARCH_MODEL,
+                "model_revision": RESEARCH_REVISION, "public_weights_verified": True}
+    if not isinstance(proof, dict) or any(type(proof.get(key)) is not type(value) or proof[key] != value for key, value in expected.items()):
+        raise SafeError("research public image or public weights are not qualified")
+    sizes = [proof.get(field) for field in ("image_download_bytes", "model_download_bytes")]
+    if any(type(value) is not int or value <= 0 for value in sizes) or sum(sizes) + 1024 ** 3 > manifest["download_budget_gb"] * 10 ** 9:
+        raise SafeError("research measured downloads plus input reserve exceed allocation")
+    return manifest, hashlib.sha256(data).hexdigest()
+
+
+def research_budget_cost(manifest: dict, price: object, up: object, down: object) -> float:
+    price, up, down = [finite_number(value) for value in (price, up, down)]
+    if price is None or not 0 < price <= 0.85 or any(value is None or not 0 <= value <= 0.01 for value in (up, down)):
+        raise SafeError("research price metadata is missing or exceeds its cap")
+    cost = price * (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
+    cost += down * manifest["download_budget_gb"] + up * manifest["upload_budget_gb"] + 1
+    if cost > manifest["budget_usd"]:
+        raise SafeError("research planned cost including cleanup reserve exceeds budget")
+    return cost
+
+
+def research_verify_guard(manifest: dict, manifest_sha256: str) -> None:
+    picogk_verify_armed_guard(manifest, manifest_sha256)
+    ready = json.loads(m64_read_file(Path(manifest["guard_ready_path"]), 4096))
+    result = subprocess.run(["/bin/ps", "-ww", "-p", str(ready["pid"]), "-o", "command="],
+                            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                            text=True, timeout=5, check=False)
+    try:
+        argv = shlex.split(result.stdout.strip())
+    except ValueError:
+        raise SafeError("research guard process identity is invalid") from None
+    # Bind the live PID to this immutable helper and the manifest whose bytes
+    # were hashed in its receipt, not merely to an unrelated live process.
+    if result.returncode or len(argv) < 3 or argv[-2:] != [manifest["guard_path"], manifest["_manifest_path"]]:
+        raise SafeError("research guard PID is not executing this exact helper and manifest")
+
+
+def research_onstart(manifest: dict) -> str:
+    # Compute only on the controlling Mac: a provider wall clock may be hours
+    # ahead or behind. Reserve image startup (900s), cleanup (300s), and 60s
+    # for dispatch/termination tolerance, including timeout's 30s kill grace.
+    duration = int(manifest["deadline_epoch"] - time.time()) - 900 - 300 - 60
+    if duration < 60:
+        raise SafeError("research deadline cannot cover startup, cleanup, tolerance and a sixty-second server run")
+    command = shlex.join(["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", RESEARCH_MODEL,
+                         "--revision", RESEARCH_REVISION, "--host", "127.0.0.1", "--port", "8000",
+                         "--max-model-len", "16384", "--max-num-seqs", "4", "--enforce-eager"])
+    return ("set -eu; test \"$(id -u)\" = 0; unset HF_TOKEN HUGGING_FACE_HUB_TOKEN; "
+            "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; "
+            f"nohup timeout --signal=TERM --kill-after=30 {duration} {command} "
+            ">/workspace/research-vllm.log 2>&1 </dev/null &")
+
+
+def research_contract(raw: dict, instance_id: int, manifest: dict, offer: dict) -> dict:
+    instance = picogk_safe_instance(raw)
+    if (type(instance.get("id")) is not int or instance["id"] != instance_id
+        or instance.get("label") != manifest["attempt_label"] or instance.get("image") != RESEARCH_IMAGE
+        or instance.get("machine_verification") != "verified" or instance.get("gpu") != offer["gpu_name"]
+        or instance.get("gpu") not in RESEARCH_GPUS or instance.get("status") not in {"created", "loading", "running"}
+        or finite_number(instance.get("num_gpus")) != 1
+        or (fraction := finite_number(instance.get("gpu_fraction"))) is None or not 0 < fraction <= 1
+        or fraction != finite_number(offer.get("gpu_frac"))
+        or finite_number(instance.get("dph_total")) != finite_number(offer["dph_total"])
+        or not isinstance(raw.get("ports"), dict) or any(port != "22/tcp" and mapping for port, mapping in raw["ports"].items())):
+        raise SafeError("research instance identity, hardware, state or published ports violate the contract")
+    for field, floor in (("gpu_ram_mb", 45000), ("cpu_cores_effective", 12), ("cpu_ram_mb", 64000), ("disk_space_gb", 100)):
+        value = finite_number(instance.get(field))
+        if value is None or value < floor:
+            raise SafeError("research instance resource metadata violates the contract: " + field)
+    research_budget_cost(manifest, instance["dph_total"], instance["inet_up_cost_usd_per_gb"], instance["inet_down_cost_usd_per_gb"])
+    return instance
+
+
+def research_metadata_pending(raw: dict, offer: dict) -> bool:
+    """Metadata may lag observed running; known violations never may wait."""
+    instance = picogk_safe_instance(raw)
+    if not picogk_startup_pending(raw) and instance["status"] != "running":
+        return False
+    for key, expected in (("machine_verification", "verified"), ("gpu", offer["gpu_name"]),
+                          ("num_gpus", 1), ("gpu_fraction", offer["gpu_frac"]), ("dph_total", offer["dph_total"])):
+        if instance.get(key) is not None and instance[key] != expected:
+            return False
+    for key, floor in (("gpu_ram_mb", 45000), ("cpu_cores_effective", 12), ("cpu_ram_mb", 64000), ("disk_space_gb", 100)):
+        value = instance.get(key)
+        if value is not None and (finite_number(value) is None or value < floor):
+            return False
+    for key in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+        value = instance.get(key)
+        if value is not None and (finite_number(value) is None or not 0 <= value <= 0.01):
+            return False
+    ports = raw.get("ports")
+    return ports is None or isinstance(ports, dict) and not any(port != "22/tcp" and mapping for port, mapping in ports.items())
+
+
+def research_reconcile(api_key: str, manifest: dict, manifest_sha256: str, *, expected_instance_id: int | None = None) -> dict:
+    receipt_path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + ".paid-attempt.json")
+    try:
+        receipt = json.loads(m64_read_file(receipt_path, 4096))
+    except (ValueError, UnicodeError):
+        raise SafeError("research paid-attempt receipt is invalid") from None
+    if (not isinstance(receipt, dict) or receipt.get("label") != manifest["attempt_label"]
+        or receipt.get("image_ref") != RESEARCH_IMAGE or receipt.get("manifest_sha256") != manifest_sha256):
+        raise SafeError("research reconciliation requires the exact consumed paid attempt")
+    absent, instance_id = 0, expected_instance_id
+    for _ in range(12):
+        inventory = strict_instance_inventory(api_key)
+        matches = [item for item in inventory if item.get("label") == manifest["attempt_label"]]
+        if len(matches) > 1:
+            raise SafeError("research creation ownership is ambiguous; external guard remains required")
+        if instance_id is not None and any(item.get("id") == instance_id and item.get("label") != manifest["attempt_label"] for item in inventory):
+            raise SafeError("research observed instance label changed; absence is not proven")
+        if matches:
+            if ((instance_id is not None and matches[0]["id"] != instance_id)
+                or safe_instance(matches[0]).get("image") != RESEARCH_IMAGE):
+                raise SafeError("research observed instance identity changed; no automatic deletion")
+            instance_id, absent = matches[0]["id"], 0
+            try:
+                destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"], expected_image=RESEARCH_IMAGE)
+                return {"instance_id": instance_id, "verified_absent": True, "destroyed": True}
+            except SafeError:
+                # Lost DELETE acknowledgement is reconciled through inventory.
+                pass
+        else:
+            absent += 1
+            # Unknown PUT outcomes can surface later: keep the external guard
+            # responsible until the deadline, even after stable present absence.
+            if absent >= 5 and (instance_id is not None or time.time() >= manifest["deadline_epoch"]):
+                return {"instance_id": instance_id, "verified_absent": True, "destroyed": instance_id is not None}
+        time.sleep(5)
+    raise SafeError("research creation remains uncertain; never replay PUT; keep the external guard alive")
+
+
+def research_write_receipt(manifest: dict, suffix: str, receipt: dict) -> Path:
+    if suffix not in {"provider-created", "cleanup"}:
+        raise SafeError("research receipt kind is not allowed")
+    path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + "." + suffix + ".json")
+    m64_no_symlink_path(path.parent)
+    try:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    except FileExistsError:
+        raise SafeError("research receipt already exists; refusing to overwrite evidence") from None
+    with os.fdopen(fd, "w") as stream:
+        json.dump(receipt, stream, sort_keys=True)
+        stream.flush()
+        os.fsync(stream.fileno())
+    directory = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+    return path
+
+
+def research_contract_diagnostic(raw: object, instance_id: int | None, manifest: dict, offer: dict, stage: str) -> dict:
+    """Explicit field allowlist: never print raw provider messages or mappings."""
+    raw = raw if isinstance(raw, dict) else {}
+    instance = picogk_safe_instance(raw)
+    observed = {key: finite_number(instance.get(key)) for key in (
+        "num_gpus", "gpu_fraction", "gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb",
+        "dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")}
+    ports = raw.get("ports")
+    observed.update(id=raw.get("id") if type(raw.get("id")) is int else None,
+                    gpu=instance["gpu"] if instance.get("gpu") in RESEARCH_GPUS else "missing_or_unrecognized",
+                    machine_verification=instance["machine_verification"] if instance.get("machine_verification") in
+                        {"verified", "unverified", "deverified"} else "missing_or_unrecognized",
+                    status=instance["status"], provider_states=instance["provider_states"],
+                    ports_metadata_present=isinstance(ports, dict),
+                    port_names=sorted({key if re.fullmatch(r"[0-9]{1,5}/(?:tcp|udp)", str(key)) else "unrecognized"
+                                       for key in ports}) if isinstance(ports, dict) else [],
+                    published_port_names=sorted({key if re.fullmatch(r"[0-9]{1,5}/(?:tcp|udp)", str(key)) else "unrecognized"
+                                                for key, mapping in ports.items() if mapping}) if isinstance(ports, dict) else [])
+    return {"stage": stage, "instance_id": instance_id,
+            "label_matches": instance.get("label") == manifest["attempt_label"],
+            "image_matches": instance.get("image") == RESEARCH_IMAGE,
+            "expected": {"id": instance_id, "gpu": offer["gpu_name"], "num_gpus": 1,
+                         "gpu_fraction": offer["gpu_frac"], "gpu_ram_mb_min": 45000,
+                         "cpu_cores_effective_min": 12, "cpu_ram_mb_min": 64000, "disk_space_gb_min": 100,
+                         "machine_verification": "verified", "dph_total": offer["dph_total"],
+                         "inet_up_cost_usd_per_gb_max": 0.01, "inet_down_cost_usd_per_gb_max": 0.01,
+                         "allowed_statuses": ["created", "loading", "running"], "allowed_published_port_names": ["22/tcp"]},
+            "observed": observed}
+
+
+def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
+    with simready_launch_lock():
+        public_key = read_local_ssh_public_key()  # Includes cryptographic pair verification.
+        ensure_local_ssh_registered(api_key)
+        picogk_singleton(api_key, None, manifest)
+        funds = picogk_account_balance(api_key)
+        if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
+            raise SafeError("research credit does not cover run and account reserve")
+        offers = get_research_offers(api_key, offer_id)
+        if len(offers) != 1:
+            raise SafeError("research selected offer is unavailable or outside fixed limits")
+        offer = offers[0]
+        ceiling = research_budget_cost(manifest, offer["dph_total"], offer["inet_up_cost"], offer["inet_down_cost"])
+        research_verify_guard(manifest, manifest_sha256)
+        if time.time() >= manifest["deadline_epoch"] - 300:
+            raise SafeError("research deadline leaves no setup and cleanup allowance")
+        picogk_singleton(api_key, None, manifest)
+        onstart = research_onstart(manifest)  # Refuse insufficient TTL before consuming an attempt or issuing PUT.
+        picogk_consume_attempt(manifest, manifest_sha256, offer_id)
+        instance_id, raw, stage = None, None, "provider_create"
+        try:
+            result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
+                "image": RESEARCH_IMAGE, "label": manifest["attempt_label"], "disk": 100,
+                "runtype": "ssh_direct", "env": {}, "onstart": onstart, "cancel_unavail": True})
+            returned = result.get("new_contract")
+            if type(returned) is not int or returned <= 0:
+                raise SafeError("research creation returned no exact instance ID")
+            instance_id = returned
+            stage = "provider_receipt"
+            created = {"instance_id": instance_id, "offer_id": offer_id, "label": manifest["attempt_label"],
+                       "image_ref": RESEARCH_IMAGE, "manifest_sha256": manifest_sha256,
+                       "created_epoch": int(time.time()), "provider_create_acknowledged": True,
+                       "instance_identity_checked": False}
+            print("OPENBAO_VASTAI_RESEARCH_CREATED " + json.dumps(created, sort_keys=True), file=sys.stderr, flush=True)
+            research_write_receipt(manifest, "provider-created", created)
+            # Public image loading can exceed two minutes; its full elapsed
+            # time remains inside the paid global deadline and budget.
+            metadata_deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
+            while True:
+                stage = "instance_lookup"
+                raw = vast_request(api_key, f"/api/v0/instances/{instance_id}/").get("instances")
+                if not isinstance(raw, dict) or raw.get("id") != instance_id or raw.get("label") != manifest["attempt_label"] or raw.get("image_uuid") != RESEARCH_IMAGE:
+                    raise SafeError("research created instance cannot be correlated")
+                try:
+                    stage = "contract"
+                    instance = research_contract(raw, instance_id, manifest, offer)
+                    stage = "instance_ssh_key"
+                    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+                        raise SafeError("research approved instance SSH key is missing")
+                    stage = "singleton"
+                    picogk_singleton(api_key, instance_id, manifest)
+                    break
+                except SafeError:
+                    if not research_metadata_pending(raw, offer) or time.time() >= metadata_deadline:
+                        raise
+                    time.sleep(5)
+        except BaseException:
+            try:
+                diagnostic = research_contract_diagnostic(raw, instance_id, manifest, offer, stage)
+                print("OPENBAO_VASTAI_RESEARCH_CONTRACT " + json.dumps(diagnostic, sort_keys=True), file=sys.stderr, flush=True)
+            except (OSError, ValueError, TypeError):
+                pass  # Diagnostic output failure must never prevent cleanup.
+            cleanup = {"instance_id": instance_id, "label": manifest["attempt_label"], "image_ref": RESEARCH_IMAGE,
+                       "manifest_sha256": manifest_sha256, "verified_absent": False, "destroyed": False}
+            try:
+                proof = research_reconcile(api_key, manifest, manifest_sha256, expected_instance_id=instance_id)
+                cleanup.update({key: proof.get(key) for key in ("instance_id", "verified_absent", "destroyed")})
+            except BaseException:
+                print("OPENBAO_VASTAI_RESEARCH_BILLING_RISK " + manifest["attempt_label"], file=sys.stderr, flush=True)
+            cleanup["recorded_epoch"] = int(time.time())
+            try:
+                research_write_receipt(manifest, "cleanup", cleanup)
+                cleanup["receipt_persisted"] = True
+            except (SafeError, OSError):
+                cleanup["receipt_persisted"] = False
+            print("OPENBAO_VASTAI_RESEARCH_CLEANUP " + json.dumps(cleanup, sort_keys=True), file=sys.stderr, flush=True)
+            raise
+        print_json({"profile": RESEARCH_PROFILE, "instance_id": instance_id, "instance": instance,
+                    "image_ref": RESEARCH_IMAGE, "model": RESEARCH_MODEL, "model_revision": RESEARCH_REVISION,
+                    "label": manifest["attempt_label"], "deadline_epoch": manifest["deadline_epoch"],
+                    "planned_cost_with_reserve_usd": ceiling, "manifest_sha256": manifest_sha256,
+                    "approved_public_private_pair_verified": True, "approved_instance_key_verified": True,
+                    "external_destroy_watchdog_armed": True, "ssh_batch_mode_verified": False,
+                    "model_ready_verified": False, "api_bind": "127.0.0.1:8000"})
+        return 0
+
+
 def run(operation: list[str]) -> int:
+    research_bundle = None
+    if operation and operation[0] in {"launch-research", "reconcile-research"}:
+        if len(operation) != (3 if operation[0] == "launch-research" else 2):
+            raise SafeError("research operation requires its exact local manifest")
+        if operation[0] == "launch-research":
+            positive_id(operation[1], "research offer id")
+        research_bundle = research_load_manifest(Path(operation[-1]), require_active=operation[0] == "launch-research")
     picogk_bundle = None
     if operation and operation[0] in {"launch-picogk-m64", "reconcile-picogk-m64"}:
         if len(operation) != (2 if operation[0] == "reconcile-picogk-m64" else 3):
@@ -5422,6 +5782,15 @@ def run(operation: list[str]) -> int:
     token = login()
     try:
         api_key = read_vast_key(token)
+        if operation == ["research-offers"]:
+            print_json([safe_offer(item) for item in get_research_offers(api_key)[:20]])
+            return 0
+        if research_bundle is not None:
+            manifest, manifest_sha256 = research_bundle
+            if operation[0] == "launch-research":
+                return launch_research(api_key, int(operation[1]), {**manifest, "_manifest_path": operation[-1]}, manifest_sha256)
+            print_json({**research_reconcile(api_key, manifest, manifest_sha256), "label": manifest["attempt_label"]})
+            return 0
         if operation == ["account-balance"]:
             print_json(picogk_account_balance(api_key))
             return 0
@@ -5802,6 +6171,7 @@ def run(operation: list[str]) -> int:
             return 0
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
+            "research-offers|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
             "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"
             "offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
