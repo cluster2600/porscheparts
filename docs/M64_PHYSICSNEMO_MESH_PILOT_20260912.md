@@ -1,5 +1,7 @@
 # M64 — PhysicsNeMo-Mesh réellement exécuté sur Vast
 
+Suite préparée : [jobs 2–3–4, cycle piston/soupapes et recherche GPU](M64_JOBS_234_20260912.md).
+
 ## Résultat et décision
 
 Le 12 septembre 2026, une A100 40 Go a exécuté deux contre-calculs sur les
