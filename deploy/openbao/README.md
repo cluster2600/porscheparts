@@ -1,5 +1,9 @@
 # Wrappers OpenBao pour GHCR et Vast.ai
 
+L'accès Hugging Face de Flash Next dispose désormais d'un
+[wrapper de prévol dédié et de sa procédure d'activation](HUGGINGFACE.md).
+Il reste séparé des identités GitHub, NVIDIA et Vast et n'effectue aucune location.
+
 Ce dossier versionne les wrappers Vast.ai et GHCR utilisés pour l'image
 SimReady locale. Il ne contient aucun secret. `openbao-vastai` garde la
 location, l'unicité et la destruction ; `openbao-ghcr` vérifie l'accès au
