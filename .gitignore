@@ -30,3 +30,20 @@ containers/downloads/
 simulation/**/constant/polyMesh/
 simulation/**/processor*/
 simulation/*/[1-9][0-9][0-9]*/
+
+# Sorties d'execution du modele coque 964 : maillages, jeux CalculiX, resultats.
+twins/964-chassis/fea/*.npz
+twins/964-chassis/fea/*.inp
+twins/964-chassis/fea/*.frd
+twins/964-chassis/fea/*.dat
+twins/964-chassis/fea/*.sta
+twins/964-chassis/fea/*.cvg
+twins/964-chassis/fea/*.12d
+twins/964-chassis/fea/spooles.out
+# Corpus de plan d'experiences : volumineux et regenerable depuis son manifeste.
+# Le motif ne vise que les repertoires et les journaux : `corpus*` sans plus
+# masquait aussi corpus_audit.py et corpus_repair.py, qui doivent etre versionnes.
+twins/964-chassis/fea/corpus*/
+twins/964-chassis/fea/corpus*.log
+# Repertoires de travail des campagnes : fichiers du solveur, regenerables.
+twins/964-chassis/fea/work_*

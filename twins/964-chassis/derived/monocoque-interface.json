@@ -1,0 +1,124 @@
+{
+ "contrat": "MONOCOQUE-964-993-INTERFACE",
+ "statut": "concept",
+ "classe_securite": "prohibited_pending_engineering",
+ "repere": "ADR-0003 vehicule ; X avant, Y gauche, Z haut ; origine essieu avant / sol",
+ "unites": "mm",
+ "inconnue_globale": {
+  "nom": "REGISTRATION_X",
+  "definition": "position de P17 dans le repere vehicule",
+  "valeur_de_travail_mm": -506.0,
+  "source": "SCAN, faiblement contraint",
+  "effet": "translation rigide de tout le reseau ; ne change aucune cote relative"
+ },
+ "cote_gouvernante": {
+  "nom": "SPAN_P5_P12",
+  "definition": "entraxe longitudinal fixation train avant -> traverse essieu arriere",
+  "valeur_mm": 1724.3,
+  "x_sources": [
+   "DERIVED(P)",
+   "DERIVED(N)"
+  ],
+  "statut": "NON VERIFIE — les deux extremites sont DERIVED",
+  "consequence": "Le monocoque impose cet entraxe par construction. Une erreur ici ne se rattrape pas au montage : elle donne un empattement et une geometrie de suspension faux."
+ },
+ "empattement_reference": {
+  "usine_mm": 2272.0,
+  "scan_mm": 2278.1
+ },
+ "points": {
+  "P20": {
+   "designation": "Point de controle avant",
+   "fonction_monocoque": "carrosserie",
+   "y_half_mm": 220.0,
+   "y_tolerance_mm": 2,
+   "y_source": "MANUAL",
+   "x_local_mm": 1211.1,
+   "x_source": "DERIVED(K)",
+   "x_statut": "PARAMETRIQUE",
+   "x_vehicle_mm_provisoire": 705.1
+  },
+  "P3": {
+   "designation": "Fixation traverse avant interieure",
+   "fonction_monocoque": "suspension",
+   "y_half_mm": 305.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": 654.2,
+   "x_source": "DERIVED(L)",
+   "x_statut": "PARAMETRIQUE",
+   "x_vehicle_mm_provisoire": 148.2
+  },
+  "P5": {
+   "designation": "Mount - outer cross member FA",
+   "fonction_monocoque": "suspension",
+   "y_half_mm": 385.0,
+   "y_tolerance_mm": 2,
+   "y_source": "MANUAL",
+   "x_local_mm": 527.3,
+   "x_source": "DERIVED(P)",
+   "x_statut": "PARAMETRIQUE",
+   "x_vehicle_mm_provisoire": 21.3
+  },
+  "P17": {
+   "designation": "Prise de cric avant",
+   "fonction_monocoque": "levage",
+   "y_half_mm": 665.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": 0.0,
+   "x_source": "MANUAL",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": -506.0
+  },
+  "P12": {
+   "designation": "Traverse d'essieu arriere",
+   "fonction_monocoque": "suspension",
+   "y_half_mm": 139.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": -1197.0,
+   "x_source": "DERIVED(N)",
+   "x_statut": "PARAMETRIQUE",
+   "x_vehicle_mm_provisoire": -1703.0
+  },
+  "P18": {
+   "designation": "Prise de cric arriere",
+   "fonction_monocoque": "levage",
+   "y_half_mm": 618.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": -1245.0,
+   "x_source": "MANUAL(R)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": -1751.0
+  },
+  "P19": {
+   "designation": "Point de controle arriere",
+   "fonction_monocoque": "carrosserie",
+   "y_half_mm": 509.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": -1328.0,
+   "x_source": "MANUAL(S)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": -1834.0
+  },
+  "P21": {
+   "designation": "Palier moteur",
+   "fonction_monocoque": "groupe motopropulseur",
+   "y_half_mm": 320.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": -2606.1,
+   "x_source": "DERIVED(O)",
+   "x_statut": "INVALIDE",
+   "x_vehicle_mm_provisoire": -3112.1,
+   "invalide_raison": "hors structure sur le scan, les deux appariements echouent"
+  }
+ },
+ "release_flags": {
+  "geometry_released": false,
+  "manufacturing_released": false
+ }
+}

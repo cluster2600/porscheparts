@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+from _deps import require_modules
+require_modules("numpy")
+
 import importlib.util
 import json
 from pathlib import Path

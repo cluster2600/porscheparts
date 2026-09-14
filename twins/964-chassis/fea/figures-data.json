@@ -1,0 +1,72 @@
+{
+ "avertissement": "Sections ASSUMED, modele non converge en maillage. Aucune valeur absolue n'est une raideur de 964 ; seuls les rapports et les classements sont exploitables.",
+ "echelle_architectures": {
+  "origine": "build_body.py <t> <features> 1.0 <ordre> puis run_fea.py, acier E = 210 000 MPa, nu = 0,3, t = 0,8 mm, couple de 1290 N.m. Le cas 'f' en ordre 1 redonne la valeur publiee de build_shell.py, 2442 N.m/deg.",
+  "features": [
+   "f",
+   "fb",
+   "fbt",
+   "fbta",
+   "fbtap",
+   "fbtapr",
+   "fbtaprw"
+  ],
+  "masse_kg": [
+   27.66,
+   35.19,
+   40.2,
+   44.95,
+   52.42,
+   62.97,
+   64.08
+  ],
+  "K_S3": [
+   2442,
+   3147,
+   5371,
+   6866,
+   6859,
+   6925,
+   9093
+  ],
+  "K_S6": [
+   1436,
+   1550,
+   3857,
+   5227,
+   5240,
+   5264,
+   5415
+  ]
+ },
+ "exposant_G": {
+  "origine": "corpus_audit.py, ajustement log-lineaire de K sur les onze parametres continus, par architecture, sur 3000 cas par corpus. Reference hors corpus : dominance_study.py mesure +2,3 % de raideur en doublant G sur le plancher nu en S6, soit un exposant de 0,03.",
+  "features": [
+   "f",
+   "fb",
+   "fbt",
+   "fbta",
+   "fbtap",
+   "fbtapr",
+   "fbtaprw"
+  ],
+  "S3": [
+   0.364,
+   0.476,
+   0.674,
+   0.675,
+   0.648,
+   0.655,
+   0.631
+  ],
+  "S6": [
+   0.051,
+   0.073,
+   0.574,
+   0.617,
+   0.598,
+   0.59,
+   0.593
+  ]
+ }
+}

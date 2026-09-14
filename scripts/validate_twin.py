@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "twin" / "993" / "reference-envelope.json"
+MANIFEST = ROOT / "twins" / "993-reference-envelope" / "reference-envelope.json"
 MEASUREMENTS = ROOT / "catalog" / "measurements" / "MEAS-MANUAL-993-ALL.json"
 SOURCE_ID_PATTERN = re.compile(r"^SRC-[A-Z0-9][A-Z0-9._-]{2,63}$")
 
@@ -123,11 +123,11 @@ def main() -> int:
     measurements = {row.get("value_id"): row for row in rows if isinstance(row, dict)}
     errors = validate(payload, measurements)
     if errors:
-        print("FAIL twin/993/reference-envelope.json")
+        print("FAIL twins/993-reference-envelope/reference-envelope.json")
         for error in errors:
             print(f"  - {error}")
         return 1
-    print("OK   twin/993/reference-envelope.json (reference envelope, 7 sourced dimensions)")
+    print("OK   twins/993-reference-envelope/reference-envelope.json (reference envelope, 7 sourced dimensions)")
     return 0
 
 

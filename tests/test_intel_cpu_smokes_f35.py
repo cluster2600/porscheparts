@@ -1,3 +1,6 @@
+from _deps import require_commands
+require_commands("jq")
+
 import json
 import os
 from pathlib import Path

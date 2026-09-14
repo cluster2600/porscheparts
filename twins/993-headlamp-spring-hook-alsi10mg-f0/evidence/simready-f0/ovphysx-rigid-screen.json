@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+  "twin_id": "TWIN-993-HEADLAMP-SPRING-HOOK-ALSI10MG-F0",
+  "status": "PASS",
+  "runtime": {
+    "python": "3.12.14",
+    "platform": "Linux-6.19.14+kali-amd64-x86_64-with-glibc2.41",
+    "ovphysx": "0.5.11",
+    "ovstage": "0.1.1.355824",
+    "device": "cpu",
+    "image_id": "sha256:90b9906fac5bc62d639c630f80490d5253211b0e7d015eb65413685715a912fa"
+  },
+  "inputs": {
+    "scene": {
+      "path": "headlamp-hook-rigid-screen.usd",
+      "sha256": "6bc2d56fcf8ea023bb7fdaeab45410896eb910ce7f9616fa02610fbd6cbf215a"
+    },
+    "asset": {
+      "path": "headlamp_spring_hook_f0.usd",
+      "sha256": "ea29ca34516295a061a9d69bef47a0e997add5e37346b778d75a70ca8fbb564b"
+    }
+  },
+  "integration_sequence": [
+    "create_physx",
+    "populate_ovstage_from_usd",
+    "seal_ordinal_1",
+    "attach_ovstage",
+    "step_sync",
+    "read_rigid_body_outputs",
+    "detach_destroy_release"
+  ],
+  "synthetic_case": {
+    "steps": 240,
+    "dt_s": 0.004166666666666667,
+    "simulated_duration_s": 1.0,
+    "rigid_body_count": 1,
+    "initial_position_mm": [
+      8.0,
+      0.0,
+      22.0
+    ],
+    "initial_velocity_mm_s": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "final_position_mm": [
+      8.0,
+      0.0,
+      17.0
+    ],
+    "final_velocity_mm_s": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "vertical_drop_mm": 5.0,
+    "rested_on_hook_height_screen": true
+  },
+  "gates": {
+    "software_integration": true,
+    "functional_headlamp_assembly": false,
+    "engineering_validation": false,
+    "manufacturing_release": false
+  },
+  "limits": [
+    "La sphère témoin, sa masse et la gravité ne représentent pas le ressort du phare.",
+    "Le contact rigide ne calcule ni contraintes, ni échauffement, ni adhésif.",
+    "Le test confirme seulement l'exécution OpenUSD-ovstage-ovphysx sur le maillage importé."
+  ]
+}

@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "twins/reference-917-engine/clean-sheet-2026-f32.json"
 SCRIPT_PATH = ROOT / "twins/reference-917-engine/source/run_clean_sheet_2026_f32.py"
 EVIDENCE_PATH = ROOT / "twins/reference-917-engine/evidence/f32/screening-report.json"
-DOC_PATH = ROOT / "docs/917_CLEAN_SHEET_2026_F32.md"
+DOC_PATH = ROOT / "archive/917/docs/917_CLEAN_SHEET_2026_F32.md"
 
 
 def load_module():

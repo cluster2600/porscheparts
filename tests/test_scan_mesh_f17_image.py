@@ -16,7 +16,7 @@ REQUIREMENTS = ROOT / "containers/scan-mesh-f17-requirements.txt"
 SMOKE = ROOT / "containers/scan-mesh-f17-smoke.py"
 SEGMENT = ROOT / "twins/reference-917-engine/source/segment_engine.py"
 WORKFLOW = ROOT / ".github/workflows/scan-mesh-f17-image.yml"
-DOC = ROOT / "docs/917_SCAN_MESH_CONTAINER_F17.md"
+DOC = ROOT / "archive/917/docs/917_SCAN_MESH_CONTAINER_F17.md"
 LOCK = ROOT / "containers/scan-mesh-f17.lock.json"
 
 

@@ -10,7 +10,7 @@
 ## Ajouter une pièce
 
 ```bash
-cp templates/part-record.json catalog/parts/993-xxx-0001.json
+cp catalog/templates/part-record.json catalog/parts/993-xxx-0001.json
 mkdir -p parts/993-xxx-0001/{source,derived,evidence}
 make check
 ```

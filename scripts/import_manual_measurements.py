@@ -108,7 +108,7 @@ def build(manual: dict[str, Any], generated_on: str) -> dict[str, Any]:
             "files": [
                 "catalog/sources/src-porsche-workshop-manual-993.json",
                 "catalog/sources/src-porschefanatics-993-manual-data.json",
-                "docs/993_MANUAL_DATA_MAP.md",
+                "docs/993/993_MANUAL_DATA_MAP.md",
             ],
             "contradictions": [],
         },

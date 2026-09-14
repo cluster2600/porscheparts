@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
+  "name": "Support d'impact avant 993, concept AlSi10Mg à cœur gradué F0",
+  "description": "Concept indépendant de support avant à coque elliptique et cœur cruciforme ouvert gradué pour cribler l'intérêt du LPBF AlSi10Mg. PorscheFanatics recoupe le support allégé FVD à 145 g ; FVD publie une enveloppe de 139 x 100 x 53 mm et indique seulement aluminium, sans alliage ni géométrie d'interface.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Carrera", "993_Turbo", "993_GT2"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "front_bumper_impact_support",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage CAO, masse, stabilité, énergie et DfAM uniquement ; fabrication, montage, roulage et essai d'impact interdits sans programme crash approuvé"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-body-front-impact-support-alsi10mg-f0-0001/source/front_impact_support.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-body-front-impact-support-alsi10mg-f0-0001/derived/front_impact_support_alsi10mg_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - support de pare-chocs avant allégé 993",
+        "url": "https://porschefanatics.com/993/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Recoupe le nom du produit FVD, sa position avant gauche/droite et 0,145 kg ; aucune géométrie ni validation crash. Voir SRC-PORSCHEFANATICS-993-LIGHTWEIGHT-BUMPER-SUPPORT."
+      },
+      {
+        "title": "FVD - support d'impact avant aluminium 993",
+        "url": "https://www.fvd.net/de-ch/shop/prallrohr-993-vorne-alu-1stk-ca-145-gr-fvd50501700~p237473",
+        "source_type": "manufacturer",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclarations commerciales 139 x 100 x 53 mm, environ 145 g et aluminium ; accès direct bloqué lors de la collecte, sans plan ni protocole. Voir SRC-FVD-993-FRONT-IMPACT-TUBE-DIMENSIONS."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material page",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Référence de procédé et de famille matière, pas une carte crash admissible ni la preuve de l'alliage FVD. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "CNC", "sheet_metal"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "alliage aluminium LPBF candidat",
+      "grade": "AlSi10Mg générique de criblage ; alliage et état du produit FVD inconnus",
+      "standard": "ASTM F3318 et spécification crash propre au programme à contractualiser si le LPBF est retenu"
+    },
+    "post_processing": [
+      "évacuation complète de la poudre par les quatre canaux ouverts",
+      "détensionnement et traitement thermique qualifiés sur coupons représentatifs",
+      "découpe du plateau sans amorcer les parois d'écrasement",
+      "usinage des interfaces uniquement après mesure et ajout de surépaisseurs",
+      "ébavurage sans supprimer les amorces de pliage définies par le futur calcul",
+      "protection galvanique et anticorrosion à définir avec le pare-chocs et la caisse"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "capabilité démontrée sur coque 1,2 mm et cœur gradué jusqu'à 0,8 mm",
+      "coupons dans les orientations pièce avec traction quasi-statique et dynamique",
+      "simulation de distorsion, stratégie de supports et contrôle recoater avant lancement",
+      "CT de la coque et du cœur, métrologie complète et ressuage après finition",
+      "courbes force-course quasi-statiques et dynamiques sur lots représentatifs",
+      "validation sous-système puis véhicule par un ingénieur crash qualifié"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Compatibilité galvanique de l'AlSi10Mg avec la caisse, le pare-chocs, les fixations et les revêtements à qualifier."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-lightweight-bumper-support.json",
+      "catalog/sources/src-fvd-993-front-impact-tube-dimensions.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-body-front-impact-support-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seules l'enveloppe 139 x 100 x 53 mm, la masse 145 g et la famille aluminium sont publiées ; toute topologie F0 est hypothétique.",
+      "Aucun trou ou bossage n'est modélisé car aucune interface de caisse ou de pare-chocs n'est mesurée.",
+      "Les 144,65 g du STEP proches des 145 g commerciaux sont un contrôle scalaire conçu, pas une validation géométrique.",
+      "Le cas 15 kN sur 80 mm et son équivalent 6,55 km/h sont synthétiques et ne correspondent à aucune procédure réglementaire.",
+      "Les calculs élastiques et de plaques ne prédisent ni pliage progressif, rupture, impulsion, intrusion ou protection des occupants.",
+      "Le STEP prouve seulement un BREP calculable ; toute fabrication, installation ou utilisation routière est interdite à ce stade."
+    ]
+  }
+}

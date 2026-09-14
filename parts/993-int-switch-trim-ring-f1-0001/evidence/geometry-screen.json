@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+  "status": "geometry_math_screen_only",
+  "source_dimensions_mm": {
+    "outer_diameter": 30.5,
+    "depth": 10.5,
+    "front_inner_diameter": 23.0,
+    "rear_inner_diameter": 28.0
+  },
+  "explicit_assumptions": [
+    "Le diamètre extérieur est cylindrique sur toute la profondeur.",
+    "L'alésage évolue linéairement de 23 à 28 mm sur 10,5 mm.",
+    "2,67 g/cm3 est une densité de criblage AlSi10Mg, pas la matière identifiée du produit."
+  ],
+  "results": {
+    "front_radial_wall_mm": 3.75,
+    "rear_radial_wall_mm": 1.25,
+    "bore_taper_half_angle_deg": 13.392497753751098,
+    "analytic_volume_mm3": 2291.8900155641777,
+    "screening_mass_g": 6.119346341556354
+  },
+  "equations": {
+    "frustum_bore_volume": "pi*h*(r1^2+r1*r2+r2^2)/3",
+    "ring_volume": "pi*R^2*h-frustum_bore_volume",
+    "mass": "ring_volume*density",
+    "thermal_radial_growth_pending": "delta_r=alpha*r*delta_T",
+    "interference_pressure_pending": "requires OEM opening, tolerances, E and nu"
+  },
+  "release_blockers": [
+    "Tolérances fournisseur absentes.",
+    "Profil axial réel et rayons d'arête non mesurés.",
+    "Ouverture OEM, jeu ou serrage cible non mesurés.",
+    "Alliage et état métallurgique du produit original non identifiés.",
+    "Aucun montage véhicule ni contrôle sur échantillon."
+  ],
+  "manufacturing_decision": {
+    "lpbf": "géométriquement plausible, non qualifié",
+    "cnc": "référence économique probable pour cette géométrie axisymétrique",
+    "decision": "undecided_pending_sample_and_cost_comparison"
+  },
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "volume_mm3": 2291.890015564014,
+    "maximum_volume_delta_mm3": 0.01
+  }
+}

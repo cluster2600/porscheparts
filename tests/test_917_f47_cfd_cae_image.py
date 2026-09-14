@@ -64,7 +64,7 @@ class F47CfdCaeImageTests(unittest.TestCase):
         ]
         self.assertEqual(patterns[0], "**")
         self.assertIn("!containers/engine-cycle-f33.requirements.txt", patterns)
-        self.assertIn("!benchmarks/openfoam-poiseuille-f25/**", patterns)
+        self.assertIn("!outils/benchmarks/openfoam-poiseuille-f25/**", patterns)
         self.assertIn("!containers/917-f47-cfd-cae/**", patterns)
         joined = "\n".join(patterns).lower()
         for forbidden in ("raw", "scan", "work/", ".ssh", "openbao"):

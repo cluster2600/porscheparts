@@ -81,7 +81,7 @@ EXPOSE 22
 
 LABEL org.opencontainers.image.title="3dprinting993-mesh-cfd" \
       org.opencontainers.image.description="Headless OBJ cleanup, STEP proxy generation and OpenFOAM CFD preparation" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

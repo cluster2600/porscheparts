@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+  "executed_on": "2026-09-08",
+  "classification": "executed_omniverse_simready_isolated_prop_validation_not_exhaust_assembly_or_manufacturing_validation",
+  "runtime": {
+    "platform": "linux/amd64 Vast.ai GPU worker",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+    "content_agents_revision": "36dbf3f274f8e256637230a05a085853f65cc175",
+    "simready_foundation_revision": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "usd_convert_cad_revision": "208fe2c1cd71ae2bb7bd825daf712617000ae028",
+    "simready_validate_version": "2026.4.8",
+    "omniverse_asset_validator_version": "1.18.0"
+  },
+  "asset_binding": {
+    "input_step_sha256": "2a22506069aa6c1a67794ef3e3f1acb3fda8864f6c5263243edbcd1c197ba2a9",
+    "converted_usd_sha256": "2fe0dae820c0911dcf0c4cfc00bb11cb0dc01f02d307a3bff76b4a4208481076",
+    "physics_agent_usd_sha256": "97ac8ef65a2bd529d94a640e4123f575d8c774391f7b7031b2a8e83e90764fab",
+    "final_simready_usd_sha256": "c4c7a22700f81d8e8d7ba2750aebedc1eaddd6d184d45de38847a80b61e47d1c",
+    "default_prim": "/oval_exhaust_tip_in625_f0",
+    "up_axis": "Z",
+    "meters_per_unit": 1.0,
+    "mesh_count": 1,
+    "bounds_mm": [120.0, 85.0, 120.0]
+  },
+  "authored_screening_properties": {
+    "visual_material": "Neutral silver OpenPBR proxy labelled IN625 visual proxy, not a calibrated optical material",
+    "mass_kg": 0.40638,
+    "density_kg_m3": 8440.0,
+    "physics_material": "Density-only IN625 screening material",
+    "collision_approximation": "convexHull",
+    "rigid_body_role": "isolated inspection prop only",
+    "friction": null,
+    "restitution": null,
+    "gravity_scene": null
+  },
+  "agent_sanitization": {
+    "physics_agent_suggestion_accepted_without_review": false,
+    "sanitization_report_sha256": "33c7e463bdfc06ca3032c5d1009aa6cd4cb75aebe5f859e259f9e348e43443cc",
+    "removed_unverified_properties": [
+      "stainless-steel polished semantic identity",
+      "physics material containing inferred static and dynamic friction",
+      "inferred restitution",
+      "inferred gravity scene"
+    ],
+    "remaining_forbidden_properties": []
+  },
+  "grasp_annotation": {
+    "classification": "vision_reviewed_handling_annotation_not_runtime_gripper_validation",
+    "prim": "/oval_exhaust_tip_in625_f0/grasp_identifier_01",
+    "local_points_mm": [[0.0, -37.35, 60.0], [0.0, 37.35, 60.0]],
+    "world_points_m": [[0.0, -0.03735, 0.06], [0.0, 0.03735, 0.06]],
+    "rationale": "Opposing outer sidewalls at mid-length, away from the two thin end rims and the hollow gas path.",
+    "authoring_report_sha256": "4a508b8d052dfb6b426cd31a97fac90b8a1df5ea7d6e65fae1a2a7bc92c2e9f6",
+    "overlay": {
+      "path": "grasp-preview-overlay.png",
+      "sha256": "5ab94bb489bcba544529da8f13d90f592bbe2c376976ae26d2f58ac718f6df09",
+      "size_px": [1400, 1000]
+    }
+  },
+  "validators": {
+    "minimum_openusd": "PASS",
+    "nvidia_asset_validator": "PASS",
+    "geometry_category": "PASS",
+    "physics_category": "PASS",
+    "simready_profile": {
+      "name": "Prop-Robotics-Neutral",
+      "version": "1.0.0",
+      "status": "PASS",
+      "nonblocking_single_component_requirement": "RB.MB.001"
+    },
+    "ovrtx_still_pixel_check": "PASS",
+    "ovrtx_still_visual_inspection": "PASS"
+  },
+  "audit_report_sha256": {
+    "minimum_openusd": "936404e98ce669cf40fb5af1dc9ed0b510c2091a078f7e526e7f92f1c995fb08",
+    "nvidia_asset_validator": "3cc42ea219bd92b9d13a377368df1c83ccca942683f359dcea7fffee334442b7",
+    "geometry_category": "6166f56df8d2117dff6d0dd66ddcae679219c535d2f8a49ef8369d048a819b36",
+    "physics_category": "ae9d778101e7b947508ba6ceaef0258968af2a54a20cd1b3b76d20fb413032de",
+    "simready_profile": "7d4bca87dfcdf5e2b27f35ac16957ba69ccfeb3d809f1d85ec4088270c59d63e"
+  },
+  "public_media": {
+    "still": {
+      "path": "oval-tip-in625-f0-ovrtx.png",
+      "sha256": "b7d9132fdbd304eb819ee84ab53b4f0795ba066a6d332093b3ecdd4a8feab4c3",
+      "size_px": [1024, 1024]
+    }
+  },
+  "physicsnemo_runtime_smoke": {
+    "status": "PASS",
+    "scope": "GPU tensor runtime only; no surrogate trained and no physical validation",
+    "nvidia_physicsnemo_version": "2.2.0",
+    "torch_version": "2.10.0+cu129",
+    "cuda_available": true,
+    "report_sha256": "e05b88b52ce3a807b855788a9d01e8af90e19f62a913eb5704f6e68e83051fc7"
+  },
+  "gates": {
+    "simready_isolated_asset_passed": true,
+    "measured_exhaust_geometry_validated": false,
+    "installed_interfaces_available": false,
+    "omniverse_exhaust_assembly_function_tested": false,
+    "lpbf_process_simulation_correlated": false,
+    "manufacturing_authorized": false,
+    "vehicle_installation_authorized": false
+  }
+}

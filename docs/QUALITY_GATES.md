@@ -18,6 +18,10 @@ Le validateur bloque notamment :
 - un identifiant ou un statut inconnu ;
 - une pièce titane sans exigences de traitement, contrôle et isolation ;
 - une pièce critique libérée sans reviewer, preuve et inspection ;
+- une nouvelle pièce candidate LPBF/DMLS absente du registre AM obligatoire ;
+- une pièce additive déclarée `released` sans les onze étapes AM au statut
+  `passed`, dont le tranchage pleine pièce, le procédé, Omniverse et la
+  corrélation physique ;
 - une mesure dont la valeur ne correspond pas à ses propres échantillons ;
 - une incertitude plus fine que la moitié de la résolution de l’instrument ;
 - une lecture déclarée issue d’un instrument alors qu’elle a été saisie à la main ;
@@ -25,6 +29,10 @@ Le validateur bloque notamment :
 
 Ces contrôles assurent la cohérence documentaire. Ils ne réalisent aucune analyse
 mécanique.
+
+Le contrat complet des pièces additives est décrit dans
+[AM_VALIDATION_PIPELINE.md](AM_VALIDATION_PIPELINE.md). `completed_screening`
+ne vaut jamais `passed` et ne peut pas ouvrir une autorisation de fabrication.
 
 ## Revue humaine
 

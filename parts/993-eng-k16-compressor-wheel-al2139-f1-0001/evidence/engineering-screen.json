@@ -1,0 +1,203 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+  "status": "f1_material_and_taper_iteration_ambient_analytical_screen_only",
+  "predecessor": {
+    "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+    "reason": "F0 AlSi10Mg straight main blades failed the ambient 1.2x overspeed root screen",
+    "f0_governing_overspeed_root_stress_mpa": 390.8919938651975,
+    "f0_ambient_yield_mpa": 245.0,
+    "f0_screen_ratio": 0.6267715989202132
+  },
+  "geometry_authority": {
+    "published": {
+      "wheel_reference": "53241232006",
+      "right_turbo_reference": "53169886735",
+      "inducer_diameter_mm": 40.6,
+      "exducer_diameter_mm": 60.5,
+      "main_blade_count": 6,
+      "splitter_blade_count": 6
+    },
+    "interpretations": [
+      "published diameters and 6+6 count retain exactly the F0 scope",
+      "Al2139 AM is a separate candidate selected because the AlSi10Mg F0 failed its ambient overspeed screen",
+      "the EOS heat-treated room-temperature values are comparisons, not K16 rotor allowables"
+    ],
+    "hypotheses": [
+      "main blades taper analytically from 3.0 to 0.8 mm",
+      "splitters taper analytically from 2.4 to 0.8 mm",
+      "CAD represents each continuous taper by four overlapping radial thickness steps",
+      "backplate, 18 mm height, 6 mm bore, hub and all axial blade heights remain F0 hypotheses",
+      "no camber, three-dimensional twist, fillet, nut, shaft fit, balance cut or tip clearance"
+    ],
+    "not_claimed": "No Porsche, BorgWarner, K16 or production compressor surface, map, material, balance, fit, fatigue or burst capability is claimed."
+  },
+  "synthetic_operating_case": {
+    "target_tip_mach": 0.9,
+    "inlet_temperature_k": 330.0,
+    "inlet_absolute_pressure_pa": 180000.0,
+    "pressure_ratio": 1.8,
+    "isentropic_efficiency": 0.72,
+    "engine_displacement_l": 3.6,
+    "engine_speed_rpm": 5750.0,
+    "engine_volumetric_efficiency": 0.95,
+    "overspeed_factor": 1.2,
+    "thermal_delta_t_k": 150.0,
+    "minimum_screen_ratio": 1.5,
+    "authority": "same regression point as F0; no K16 map, shaft-speed trace, temperature, balance, clearance or duty was measured"
+  },
+  "material_screen": {
+    "candidate": "EOS Aluminium Al2139 AM, M290 60 micrometre, heat-treated comparison",
+    "process_trl": 3,
+    "density_kg_m3": 2840.0,
+    "comparison_yield_strength_pa": 460000000.0,
+    "comparison_ultimate_strength_pa": 520000000.0,
+    "comparison_elongation_ratio": 0.04,
+    "published_average_defect_fraction_range": [
+      0.002,
+      0.003
+    ],
+    "published_minimum_wall_mm": 0.4,
+    "provisional_elastic_modulus_pa": 70000000000.0,
+    "provisional_poisson_ratio": 0.33,
+    "provisional_thermal_expansion_per_k": 2.3e-05,
+    "scope": "density and room-temperature tensile values are process-specific EOS data; thermal constants are placeholders and no hot HCF, fracture, defect or burst allowable exists"
+  },
+  "results": {
+    "cad_volume_mm3": 13554.478288611019,
+    "cad_mass_g": 38.49471833965529,
+    "cylindrical_stock_mass_g": 146.9574054416601,
+    "cylindrical_stock_to_cad_mass_ratio": 3.8175991871142507,
+    "sound_speed_m_s": 364.1663081615322,
+    "tip_speed_m_s": 327.749677345379,
+    "derived_shaft_speed_rpm": 103463.76445545294,
+    "shaft_frequency_hz": 1724.396074257549,
+    "bank_volume_flow_m3_s": 0.0819375,
+    "bank_mass_flow_kg_s": 0.15569824705863722,
+    "inducer_annulus_area_m2": 0.0011815215810885855,
+    "inducer_axial_velocity_m_s": 69.34913531118707,
+    "inducer_axial_mach": 0.19043259564920012,
+    "flow_coefficient": 0.2115917729435557,
+    "inducer_reynolds": 281588.22941179696,
+    "efficiency_adjusted_outlet_temperature_k": 413.8129001627048,
+    "specific_compressor_work_j_kg": 84231.96466351833,
+    "screening_compressor_power_w": 13114.769244414878,
+    "screening_compressor_torque_nm": 1.2104413736019914,
+    "main_blade": {
+      "volume_mm3": 485.9249999999999,
+      "mass_g": 1.380027,
+      "mean_radius_mm": 16.38157894736842,
+      "centrifugal_force_n": 2653.8546320375217,
+      "root_area_mm2": 32.99999999999999,
+      "root_stress_mpa": 160.83967466894072,
+      "overspeed_root_stress_mpa": 231.60913152327464
+    },
+    "splitter_blade": {
+      "volume_mm3": 159.59999999999997,
+      "mass_g": 0.45326399999999994,
+      "mean_radius_mm": 21.9375,
+      "centrifugal_force_n": 1167.2722164897255,
+      "root_area_mm2": 16.799999999999997,
+      "root_stress_mpa": 138.96097815353878,
+      "overspeed_root_stress_mpa": 200.10380854109582
+    },
+    "f1_governing_overspeed_root_stress_mpa": 231.60913152327464,
+    "f1_ambient_yield_to_overspeed_root_stress_ratio": 1.9861047661403373,
+    "f0_governing_overspeed_root_stress_mpa_recomputed": 390.8919938651975,
+    "f0_ambient_yield_to_overspeed_root_stress_ratio_recomputed": 0.6267715989202132,
+    "root_stress_reduction_ratio_vs_f0": 0.4074856094311641,
+    "overspeed_rotating_disk_stress_mpa": 182.86038267789607,
+    "f1_ambient_yield_to_overspeed_disk_stress_ratio": 2.5155804295251767,
+    "fully_constrained_thermal_stress_mpa": 241.5,
+    "f1_ambient_yield_to_constrained_thermal_ratio": 1.9047619047619047,
+    "minimum_required_screen_ratio": 1.5,
+    "ambient_analytical_screen_pass": true,
+    "elastic_disk_radius_growth_mm": 0.05487625571434877,
+    "free_thermal_radius_growth_mm": 0.1043625,
+    "screening_combined_radius_growth_mm": 0.15923875571434876,
+    "approximate_rotational_energy_j": 1033.7742270831852,
+    "residual_unbalance_force_n": 1.1739072577009773,
+    "main_blade_pass_frequency_hz": 10346.376445545293,
+    "all_blade_pass_frequency_hz": 20692.752891090586,
+    "revolutions_at_duty": 620782586.7327176
+  },
+  "equations": {
+    "linear_taper_area": "Aplan=L*(troot+ttip)/2",
+    "linear_taper_radial_moment": "int(r*t(r)dr)=L*[troot*(r0+L/2)+(ttip-troot)*(r0/2+L/3)]",
+    "blade_force": "F=rho*h*Aplan*omega^2*rmean",
+    "blade_root_stress": "sigma=Kt*F/(troot*h); sigma_over=sigma*factor^2",
+    "rotating_disk": "sigma=(3+nu)/8*rho*omega^2*r^2",
+    "speed_and_flow": "a=sqrt(gamma*R*T); U=M*a; omega=U/r; Qbank=Vd*N*VE/(240)",
+    "compressor_power": "T2=T1+(T1*PR^((gamma-1)/gamma)-T1)/eta; P=mdot*cp*(T2-T1)",
+    "elastic_growth": "delta_r=sigma/E*r",
+    "thermal_growth": "delta_r=alpha*r*delta_T",
+    "fully_constrained_thermal": "sigma=E*alpha*delta_T",
+    "rotational_energy": "Erot=0.5*(0.5*m*r^2)*omega^2",
+    "unbalance": "F=Ures*omega^2",
+    "revolutions": "n=N/60*t_seconds"
+  },
+  "dfam_screen": {
+    "additive_value": "load-driven root-to-tip blade thickness can be printed without casting tooling and iterated from analysis",
+    "open_blade_topology": true,
+    "trapped_powder_volume": false,
+    "minimum_tip_thickness_mm": 0.8,
+    "published_process_minimum_wall_mm": 0.4,
+    "orientation_selected": false,
+    "support_strategy_defined": false,
+    "bore_backface_profiles_and_balance_features_require_machining": true,
+    "process_comparison_required": [
+      "qualified cast aluminium compressor wheel",
+      "five-axis machined billet aluminium wheel",
+      "LPBF Al2139 AM wheel with complete aerodynamic and burst qualification"
+    ]
+  },
+  "interpretation": {
+    "iteration": "F1 clears three separate ambient algebraic ratios; this is a useful redesign screen, not a valid rotor",
+    "geometry": "four-step radial CAD blades approximate the continuous analytical taper and remain topology markers, not compressor profiles",
+    "material": "460 MPa is a room-temperature heat-treated coupon value and cannot be used as a hot fatigue or burst allowable",
+    "aerodynamics": "unchanged one-point thermodynamics cannot prove that the thickness-profiled F1 blades compress air",
+    "mechanics": "taper integrals and disk equations omit 3D fillets, bore fit, preload, defects, modes, HCF and containment",
+    "physicsnemo": "deferred until correlated CFD, thermal-structure, rotor-dynamic and burst cases define train, holdout and OOD sets",
+    "simready": "deferred until the full measured rotating assembly and compressor housing exist"
+  },
+  "release_blockers": [
+    "No measured K16 wheel, profile, camber, twist, fillet, hub, bore, backface, balance or mass distribution.",
+    "The F1 thickness law and four-step CAD approximation are synthetic and have no aerodynamic optimization or manufacturing tolerance study.",
+    "No evidence that wheel 53241232006 uses Al2139 AM, LPBF or the assumed interfaces.",
+    "EOS marks the M290 60 micrometre process TRL 3 and reports 0.2-0.3 percent average defects.",
+    "The 460 MPa comparison is ambient heat-treated coupon data, not a rotor allowable at temperature or after finishing.",
+    "No measured K16 map, shaft-speed trace, surge/choke, pressure, efficiency, temperature, transient or duty.",
+    "No shaft, nut, bore fit, backplate, diffuser, compressor housing, bearing system, clearance or balance datum.",
+    "No rotating 3D CFD, FSI, mesh convergence or proof that F1 blades produce the target pressure ratio.",
+    "No nonlinear rotating FEA, contact/preload, Campbell diagram, rotor dynamics, HCF, fracture or probabilistic burst analysis.",
+    "No Al2139 AM hot HCF/LCF, crack growth, notch, surface, corrosion and defect allowables for the exact route.",
+    "No qualified orientation, supports, distortion compensation, heat treatment, HIP decision, machining stock or polishing process.",
+    "No CT, metallography, dimensional inspection, balance, spin proof, overspeed, burst or containment test.",
+    "No compatibility evidence for the left K16, housings, charge circuit, controls or engine calibration.",
+    "No professional turbomachinery review, approved validation plan, dyno authorization or vehicle release."
+  ],
+  "manufacturing_authorized": false,
+  "turbo_operation_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "clean_sheet_k16_al2139_four_step_taper_blade_f1"
+    ],
+    "volume_mm3": 13554.478288611019,
+    "envelope_mm": [
+      60.5,
+      60.5,
+      18.0
+    ],
+    "main_blade_count": 6,
+    "splitter_blade_count": 6,
+    "minimum_tip_thickness_mm": 0.8,
+    "cad_taper_segment_count_per_blade": 4,
+    "through_bore_count": 1,
+    "maximum_volume_delta_mm3": 0.05
+  }
+}

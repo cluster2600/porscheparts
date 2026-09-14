@@ -2,7 +2,7 @@
 
 Ce dossier prépare la **conversion et l'inspection du sous-assemblage 4V V2**,
 pas une simulation moteur ni une autorisation de fabrication. Le
-[STEP et ses contrôles géométriques](../../../docs/M64_FOUR_VALVE_DISTRIBUTION_MODULE_20260907.md)
+[STEP et ses contrôles géométriques](../../../docs/reports/M64_FOUR_VALVE_DISTRIBUTION_MODULE_20260907.md)
 ne contiennent pas encore le corps de culasse, le piston, les ressorts ou les
 arbres. Aucun scan privé n'est transféré par ce paquet.
 

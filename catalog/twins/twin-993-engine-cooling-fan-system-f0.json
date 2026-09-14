@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-ENGINE-COOLING-FAN-SYSTEM-F0",
+  "name": "Sous-ensemble carter et turbine de refroidissement moteur 993 F0",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_air_cooled_fitment_to_confirm"],
+    "model_years": {"from": 1994, "to": 1998}
+  },
+  "scope": {
+    "zone": "engine_cooling_fan_housing_and_impeller",
+    "purposes": ["fit", "clearance", "motion", "thermal", "fluid"]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "hypothese F0 au centre de la face avant commune du carter et de la turbine",
+    "axes": "X et Y dans le plan de rotation, Z suivant l'axe du ventilateur vers l'arriere du moteur",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "FAN_HOUSING_F0",
+      "role": "host",
+      "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+      "geometry_file": "parts/993-eng-fan-housing-alsi10mg-f0-0001/derived/fan_housing_alsi10mg_f0.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "COOLING_IMPELLER_F0",
+      "role": "candidate",
+      "part_id": "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
+      "geometry_file": "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_FAN_TIP_CLEARANCE",
+      "kind": "clearance",
+      "components": ["FAN_HOUSING_F0", "COOLING_IMPELLER_F0"],
+      "required_measurements": ["HOUSING_THROAT_DIAMETER", "IMPELLER_OUTER_DIAMETER", "AXIAL_LOCATION", "RADIAL_RUNOUT", "THERMAL_GROWTH"],
+      "acceptance_rule": "cold_radial_clearance_mm >= required_minimum_radial_clearance_mm and hot_radial_clearance_mm >= required_minimum_radial_clearance_mm and BRep intersection volume == 0",
+      "status": "failed"
+    },
+    {
+      "interface_id": "IF_FAN_ROTATION",
+      "kind": "motion",
+      "components": ["FAN_HOUSING_F0", "COOLING_IMPELLER_F0"],
+      "required_measurements": ["PULLEY_RATIO", "MAXIMUM_SPEED", "BLADE_COUNT", "BALANCE", "BEARING_COMPLIANCE"],
+      "acceptance_rule": "measured rotating duty and excitation spectrum are consistent with the stationary assembly and preserve positive clearance",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_COOLING_FLOW",
+      "kind": "contact",
+      "components": ["FAN_HOUSING_F0", "COOLING_IMPELLER_F0"],
+      "required_measurements": ["FAN_MAP", "SYSTEM_CURVE", "LEAKAGE", "CYLINDER_DISTRIBUTION", "AIR_TEMPERATURE"],
+      "acceptance_rule": "measured fan and system curves intersect at an approved operating point with acceptable cylinder distribution and thermal margin",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "none",
+    "master_file": "",
+    "derived_files": [
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/derived/fan_housing_alsi10mg_f0.step",
+      "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "twins/993-engine-cooling-fan-system-f0/evidence/integration-screen.json",
+      "twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json"
+    ],
+    "known_limits": [
+      "Les deux géométries et leur alignement coaxial au plan avant sont des hypothèses F0 non mesurées.",
+      "Le jeu radial froid vaut -14 mm et le test BRep détecte une collision ; le sous-ensemble échoue donc l'intégration.",
+      "Les cibles de débit, vitesses et nombres de pales proviennent de régressions séparées et sont incohérents entre eux.",
+      "Aucun axe, roulement, alternateur, poulie, courroie, cale, tôlerie, joint ou transform véhicule n'est modélisé.",
+      "Aucune attribution Physics/SimReady, simulation PhysicsNeMo, validation physique ou autorisation de fabrication n'est revendiquée."
+    ]
+  }
+}

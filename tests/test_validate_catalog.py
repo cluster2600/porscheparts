@@ -9,14 +9,14 @@ from scripts.validate_catalog import ROOT, load_and_validate, validate_record
 class CatalogueValidationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        template_path = ROOT / "templates" / "part-record.json"
+        template_path = ROOT / "catalog" / "templates" / "part-record.json"
         cls.template = json.loads(template_path.read_text(encoding="utf-8"))
 
     def test_template_is_valid(self) -> None:
         self.assertEqual(validate_record(self.template), [])
 
     def test_schema_is_valid_json(self) -> None:
-        schema_path = ROOT / "schemas" / "part.schema.json"
+        schema_path = ROOT / "catalog" / "schemas" / "part.schema.json"
         schema = json.loads(schema_path.read_text(encoding="utf-8"))
         self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
 
@@ -53,7 +53,7 @@ class CatalogueValidationTests(unittest.TestCase):
         self.assertTrue(any("referenced file does not exist" in error for error in errors))
 
     def test_template_file_loads_and_validates(self) -> None:
-        path = Path(ROOT / "templates" / "part-record.json")
+        path = Path(ROOT / "catalog" / "templates" / "part-record.json")
         self.assertEqual(load_and_validate(path), [])
 
 

@@ -1,0 +1,151 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001",
+  "name": "Roue de turbine K16, concept IN718 F0",
+  "description": "Concept propre de rotor chaud K16 à douze pales pour cribler l'intérêt et les limites d'une route LPBF IN718. Les diamètres, le compte de pales et la référence viennent de catalogues fournisseurs ; tous les profils et interfaces restent hypothétiques.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "turbocharger_turbine_wheel",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage F0 de CAO, rotation, sur-vitesse, thermique, puissance turbine, dilatation, balourd et cycles ; aucune fabrication, rotation, installation ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-k16-turbine-wheel-in718-f0-0001/source/turbine_wheel.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-k16-turbine-wheel-in718-f0-0001/derived/turbine_wheel_in718_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration Porsche, surface BorgWarner/Kinugawa ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - contexte des turbocompresseurs 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Confirme l'intérêt des upgrades hot-side 993 et indique qu'aucun carter ou rotor additif n'est catalogué. Voir SRC-PORSCHEFANATICS-993-K16-COMPRESSOR-WHEEL-CANDIDATE."
+      },
+      {
+        "title": "TurboMaster - K16 5316-988-6735",
+        "url": "https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6735/",
+        "source_type": "community",
+        "license": "commercial-catalogue-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Relie le K16 droit à la roue de turbine 5316-120-5000. Voir SRC-TURBOMASTER-993-K16-6735-PARTS."
+      },
+      {
+        "title": "Invasion Auto Products - données internes déclarées du K16 droit",
+        "url": "https://www.invasionautoproducts.com/94pocark16tu.html",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare 54,96/48,97 mm et douze pales pour 5316-120-5000. Voir SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA."
+      },
+      {
+        "title": "Kinugawa - roue K16 de remplacement",
+        "url": "https://www.kinugawaturbo.com/products/kinugawa-turbo-turbine-wheel-for-posche-911-996-kkk-k16-49mm-55-mm-12-blades",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare 49/55 mm, douze pales, hauteur 9,4 mm et arbre 8,42 mm pour la même référence ; aucune surface ni tolérance. Voir SRC-KINUGAWA-K16-TURBINE-WHEEL-53161205000."
+      },
+      {
+        "title": "EOS NickelAlloy IN718 API pour EOS M 290, 40 micromètres",
+        "url": "https://www.eos.info/metal-solutions/data-sheets/nickel-alloys/pds-eos-nickelalloy-in718-api-eos-m-290-40um",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Données procédé et coupons ambiants du matériau candidat ; aucune qualification de rotor. Voir SRC-EOS-IN718-API-M290-40UM."
+      },
+      {
+        "title": "BorgWarner - Performance Turbocharger Catalog",
+        "url": "https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Contexte 993 Turbo et T3 950 °C continu / 980 °C temporaire de la ligne d'upgrade ; ce n'est pas la température métal de la roue K16. Voir SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "casting",
+      "CNC"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "superalliage nickel durcissable par précipitation, candidat LPBF",
+      "grade": "EOS NickelAlloy IN718 API, M290 40 µm, traité thermiquement pour comparaison",
+      "standard": "UNS N07718 ; spécification rotor, procédé, traitement et admissibles propres au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation et supports de pales à qualifier face au recoater",
+      "détensionnement, mise en solution, trempe gaz et vieillissement tracés",
+      "HIP à décider sur défauts, fluage, ténacité, HCF et éclatement",
+      "usinage de l'interface arbre, du dos, des références et surépaisseurs",
+      "profilage et polissage contrôlé des pales et congés",
+      "procédé de liaison roue-arbre ou arbre monobloc à qualifier",
+      "équilibrage individuel puis rotor, spin proof et sur-vitesse confinée"
+    ],
+    "supplier_requirements": [
+      "machine EOS M290, jeu IN718 API, logiciel, paramètres, poudre et lot traçables",
+      "coupons orientés avec traction, HCF, LCF, fluage, rupture, ténacité et propagation à température",
+      "témoins de distorsion et capabilité après finition des pointes 0,8 mm",
+      "CT intégral avant et après usinage avec critères de défauts zonés",
+      "FPI, métallographie, microstructure, dureté, rugosité et contraintes résiduelles",
+      "métrologie des profils, congés, interface, battements et inertie polaire",
+      "équilibrage haute vitesse, sur-vitesse, éclatement et confinement avant banc turbo"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier la liaison IN718 avec l'arbre, les paliers, les écrans et le carter ainsi que diffusion, fretting, oxydation et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-k16-compressor-wheel-candidate.json",
+      "catalog/sources/src-turbomaster-993-k16-6735-parts.json",
+      "catalog/sources/src-invasionautoproducts-993-k16-internal-data.json",
+      "catalog/sources/src-kinugawa-k16-turbine-wheel-53161205000.json",
+      "catalog/sources/src-eos-in718-api-m290-40um.json",
+      "catalog/sources/src-borgwarner-993-k16-performance-catalog.json",
+      "parts/993-eng-k16-turbine-wheel-in718-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seuls la référence 5316-120-5000, les diamètres, douze pales, la hauteur de pointe et le diamètre d'arbre sont publiés par des catalogues de remplacement.",
+      "L'enveloppe axiale 20 mm, le disque, le moyeu et les pales droites à quatre paliers sont synthétiques.",
+      "Le STEP exclut l'arbre complet, la soudure, les profils aérodynamiques, les congés, les jeux et les détails d'équilibrage.",
+      "La vitesse 103 464 tr/min vient du point synthétique du compresseur F1, pas d'une mesure K16.",
+      "Le F0 échoue les écrans racine et gradient thermique au seuil 1,5 ; le contexte gaz dépasse aussi la plage générique EOS annoncée.",
+      "Les propriétés EOS sont des coupons ambiants du procédé API, pas des admissibles HCF, fluage ou éclatement à chaud.",
+      "Le bilan de puissance à un point ne remplace ni carte turbine, ni CFD tournante, ni CHT, ni rotor-dynamique.",
+      "Le STEP prouve seulement un BREP relisible et n'est autorisé ni pour fabrication, ni pour rotation, ni pour turbo ou moteur."
+    ]
+  }
+}

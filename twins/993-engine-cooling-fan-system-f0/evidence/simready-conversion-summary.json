@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "run_date": "2026-09-08",
+  "scope": "conversion_only_and_minimum_usd_validation",
+  "claim": "conversion_only_minimum_openable_usd_not_simready",
+  "runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+    "platform": "linux/amd64",
+    "gpu_used": false,
+    "network_during_conversion": false,
+    "property_assignment_intent": "skip",
+    "content_agents": "skipped",
+    "usd_convert_cad_version": "0.2.0",
+    "simready_foundation_ref": "v2026.04.1",
+    "simready_foundation_commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "usd_convert_cad_ref": "v0.2.0",
+    "usd_convert_cad_commit": "208fe2c1cd71ae2bb7bd825daf712617000ae028"
+  },
+  "preflight": {
+    "native_mac": {
+      "status": "blocked",
+      "platform": "darwin/arm64",
+      "blockers": [
+        "usd-convert-cad wheel unavailable in the active host Python",
+        "OpenUSD Python APIs unavailable in the active host Python",
+        "Asset Validator unavailable in the active host Python",
+        "usd-exchange 2.3.0 has no macOS arm64 wheel"
+      ]
+    },
+    "linux_container": {
+      "status": "ready",
+      "python": "3.12.3",
+      "usd_convert_cad": "ready",
+      "openusd_python": "ready",
+      "asset_validator": "ready",
+      "simready_validate": "ready",
+      "content_agents": "skipped"
+    }
+  },
+  "assets": {
+    "housing": {
+      "source_step_sha256": "a500d07d32bc52f0a75ac816ecbbd0cbb2da9cd39a85a0d91c584d870828c6d7",
+      "conversion_status": "passed",
+      "output_usd_sha256": "a55789c2fe1224b7e53c020ba073713e5c1576432db907e839adf0465c080550",
+      "output_size_bytes": 26355,
+      "minimum_validation_passed": true,
+      "default_prim_path": "/fan_housing_alsi10mg_f0",
+      "up_axis": "Z",
+      "meters_per_unit": 0.001,
+      "mesh_count": 1,
+      "bounds_stage_units_mm": [300.0, 300.0, 170.0],
+      "rigid_body_count": 0,
+      "collider_count": 0,
+      "joint_count": 0
+    },
+    "impeller": {
+      "source_step_sha256": "252c0e4a4f7e548eedd0c3e6b2e2f461d6c820ca1039847d62a6722b6676603d",
+      "conversion_status": "passed",
+      "output_usd_sha256": "39ef452cb3fec13c3957900119d0eaf92d988139f96c8d8c4b3d2090330311c7",
+      "output_size_bytes": 19369,
+      "minimum_validation_passed": true,
+      "default_prim_path": "/cooling_impeller_alsi10mg_f0",
+      "up_axis": "Z",
+      "meters_per_unit": 0.001,
+      "mesh_count": 1,
+      "bounds_stage_units_mm": [280.0, 280.0, 30.0],
+      "rigid_body_count": 0,
+      "collider_count": 0,
+      "joint_count": 0
+    }
+  },
+  "assembly": {
+    "composition_status": "passed_minimum_composition_not_simready",
+    "minimum_validation_passed": true,
+    "output_usd_sha256": "203d3045e1de7526bec7e3b41924d98fc4d885b9e6108b35bd00afd8ffda177f",
+    "output_size_bytes": 1508,
+    "default_prim_path": "/EngineCoolingFanSystemF0",
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "top_level_authored_reference_count": 2,
+    "composed_authored_reference_count": 4,
+    "mesh_count": 2,
+    "bounds_stage_units_mm": [300.0, 300.0, 170.0],
+    "rigid_body_count": 0,
+    "collider_count": 0,
+    "joint_count": 0,
+    "integration_status_metadata": "failed_clearance"
+  },
+  "artifact_policy": {
+    "usd_committed": false,
+    "reason": "derived replay artifacts stay outside Git; only their hashes, sizes, scripts and sanitized findings are published"
+  },
+  "gates": {
+    "conversion_complete": true,
+    "minimum_usd_validation_complete": true,
+    "simready_property_assignment_complete": false,
+    "full_asset_validation_complete": false,
+    "physics_simulation_complete": false,
+    "physicsnemo_model_executed": false,
+    "physical_correlation_complete": false,
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false,
+    "release_authorized": false
+  }
+}

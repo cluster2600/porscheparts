@@ -31,5 +31,5 @@ ENTRYPOINT ["/opt/FluidX3D/bin/FluidX3D"]
 
 LABEL org.opencontainers.image.title="3dprinting993-fluidx3d-aircooled-f34" \
       org.opencontainers.image.description="Independent LBM cross-check for F34 air-cooled four-valve head" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="FluidX3D free for non-commercial use"

@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-INTERCOOLER-BRACKET-TI-F0",
+  "name": "Support d'intercooler 993 Turbo/GT2 en titane, jumeau F0",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo",
+      "993_GT2"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    }
+  },
+  "scope": {
+    "zone": "charge_air_intercooler_support",
+    "purposes": [
+      "fit",
+      "structural",
+      "thermal"
+    ]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "coin inferieur gauche de l'enveloppe F0 du support",
+    "axes": "X suivant la longueur du support, Y suivant sa largeur et Z suivant son epaisseur et la charge de criblage",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "INTERCOOLER_BRACKET_TI_F0",
+      "role": "candidate",
+      "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+      "geometry_file": "parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "INTERCOOLER_AND_BODY_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_END_MOUNTS",
+      "kind": "fastener",
+      "components": [
+        "INTERCOOLER_BRACKET_TI_F0",
+        "INTERCOOLER_AND_BODY_CONTEXT"
+      ],
+      "required_measurements": [
+        "END_BORE_DIAMETERS",
+        "END_BORE_CENTRES",
+        "FASTENER_SIZES",
+        "FASTENER_PRELOADS",
+        "MATING_SURFACE_DATUMS"
+      ],
+      "acceptance_rule": "Les deux interfaces mesurees, leurs tolerances et leurs precharges reproduisent le montage approuve sans contrainte parasite.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_INTERCOOLER_LOAD",
+      "kind": "fastener",
+      "components": [
+        "INTERCOOLER_BRACKET_TI_F0",
+        "INTERCOOLER_AND_BODY_CONTEXT"
+      ],
+      "required_measurements": [
+        "CENTRAL_MOUNT_GEOMETRY",
+        "INTERCOOLER_MASS",
+        "ACCELERATION_ENVELOPE",
+        "HOSE_REACTION_LOADS",
+        "VIBRATION_PSD"
+      ],
+      "acceptance_rule": "La CAE avec charges mesurees, contacts et precharges respecte les limites statiques, modales et de fatigue approuvees.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_THERMAL_AND_GALVANIC",
+      "kind": "contact",
+      "components": [
+        "INTERCOOLER_BRACKET_TI_F0",
+        "INTERCOOLER_AND_BODY_CONTEXT"
+      ],
+      "required_measurements": [
+        "ENGINE_BAY_TEMPERATURE_FIELD",
+        "MATING_MATERIALS",
+        "THERMAL_CONSTRAINTS",
+        "GALVANIC_ISOLATION_STACK"
+      ],
+      "acceptance_rule": "La dilatation, les contraintes thermiques et l'isolation galvanique restent dans les criteres approuves sur le cycle de vie.",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-intercooler-bracket-ti-f0-0001/source/intercooler_bracket.py",
+    "derived_files": [
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/calculix-screen.json",
+      "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/simready-conversion-summary.json"
+    ],
+    "known_limits": [
+      "Seules l'enveloppe 255 x 80 x 23 mm et la masse commerciale de 200 g sont publiees ; la topologie et les interfaces sont des hypotheses F0.",
+      "La CAE emploie une charge statique synthétique de 400 N, des appuis idealises et une carte elastique de comparaison.",
+      "Le maximum local augmente encore avec le raffinement ; seul le p95 et la fleche satisfont le seuil numerique de convergence retenu.",
+      "Le USD passe le controle minimum, mais aucune affectation physique ou validation SimReady complete n'a ete executee.",
+      "Aucune fabrication, installation ou utilisation vehicule n'est autorisee."
+    ]
+  }
+}

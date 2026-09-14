@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+  "workflow": "omniverse-cad-to-simready conversion-only minimum scope",
+  "status": "minimum_usd_passed_not_simready",
+  "property_assignment_intent": "skip",
+  "property_assignment_reason": "Cette passe est limitee a la conversion et au controle USD minimum du STEP F0. Les interfaces et les proprietes Ti-6Al-4V LPBF ne sont pas qualifiees.",
+  "runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126",
+    "platform": "linux/amd64",
+    "preflight_status": "ready",
+    "simready_foundation_ref": "v2026.04.1",
+    "simready_foundation_commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "usd_convert_cad_ref": "v0.2.0",
+    "usd_convert_cad_commit": "208fe2c1cd71ae2bb7bd825daf712617000ae028",
+    "usd_convert_cad_version": "0.2.0",
+    "usd_exchange_version": "2.3.0",
+    "asset_validator_version": "1.18.0",
+    "usd_profiles_version": "1.10.22",
+    "simready_validate_version": "2026.4.8"
+  },
+  "source": {
+    "repository_path": "parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step",
+    "sha256": "7919fff1cbe6a84efbfa234fb71233472dd140397b3ac52c0cee79a2a22fadbb"
+  },
+  "conversion": {
+    "converter": "usd-convert-cad",
+    "status": "passed",
+    "generated_usd_repository_policy": "derived runtime artifact kept outside Git; regenerate from the STEP and pinned workflow",
+    "generated_usd_filename": "intercooler_bracket_ti_f0.usd",
+    "generated_usd_bytes": 8982,
+    "generated_usd_sha256": "6b6ccd7688eb5c4a66d3a04deb92f04e5ee5a27cbae79dc51803841a82ac480f"
+  },
+  "minimum_usd_validation": {
+    "status": "passed",
+    "default_prim": "/intercooler_bracket_ti_f0",
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "prim_count": 5,
+    "all_prim_count_including_prototype": 11,
+    "mesh_count": 1,
+    "material_binding_count": 1,
+    "rigid_body_count": 0,
+    "collider_count": 0,
+    "joint_count": 0,
+    "bounds_stage_units_mm": [
+      255.0,
+      80.0,
+      23.0
+    ],
+    "warning": "Le fichier emploie plusieurs couches, dont un prototype interne genere par le convertisseur."
+  },
+  "gates": {
+    "step_to_usd_conversion": true,
+    "minimum_usd": true,
+    "material_agent_assignment": false,
+    "physics_agent_assignment": false,
+    "simready_conformance": false,
+    "asset_validator_full_profile": false,
+    "ovrtx_render": false,
+    "physicsnemo_training_or_inference": false,
+    "manufacturing_authorized": false,
+    "vehicle_installation_authorized": false
+  },
+  "limitations": [
+    "Le liage de materiau produit par le convertisseur est visuel et ne constitue pas une carte Ti-6Al-4V LPBF qualifiee.",
+    "Aucun schema de corps rigide, collision ou liaison n'est present.",
+    "Le controle USD minimum ne prouve ni la conformite SimReady complete ni le comportement mecanique.",
+    "Aucun service Content Agents, OVRTX, PhysicsNeMo ou GPU Vast.ai n'a ete utilise pour cette passe."
+  ]
+}

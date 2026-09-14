@@ -8,16 +8,16 @@ from scripts.validate_sources import ROOT, load_and_validate, validate_source
 class SourceValidationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.path = ROOT / "templates" / "source-record.json"
+        cls.path = ROOT / "catalog" / "templates" / "source-record.json"
         cls.template = json.loads(cls.path.read_text(encoding="utf-8"))
 
     def test_template_is_valid(self) -> None:
         self.assertEqual(validate_source(self.template), [])
 
     def test_source_schema_is_valid_json(self) -> None:
-        path = ROOT / "schemas" / "source.schema.json"
+        path = ROOT / "catalog" / "schemas" / "source.schema.json"
         schema = json.loads(path.read_text(encoding="utf-8"))
-        self.assertEqual(schema["title"], "3dprinting993 source record")
+        self.assertEqual(schema["title"], "porscheparts source record")
 
     def test_available_source_must_have_been_accessed(self) -> None:
         record = deepcopy(self.template)

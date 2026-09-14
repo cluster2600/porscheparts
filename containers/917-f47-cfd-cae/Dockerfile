@@ -102,7 +102,7 @@ RUN test "${TARGETARCH}" = "amd64" \
 
 COPY --from=aate-builder /opt/aate /opt/aate
 COPY --from=python-dependencies /usr/local/lib/python3.12/site-packages /opt/f47-python/lib/python3.12/site-packages
-COPY benchmarks/openfoam-poiseuille-f25 /opt/917-f47-cfd-cae/benchmark
+COPY outils/benchmarks/openfoam-poiseuille-f25 /opt/917-f47-cfd-cae/benchmark
 COPY containers/engine-cycle-f33.requirements.txt /opt/917-f47-cfd-cae/requirements.txt
 COPY containers/917-f47-cfd-cae/ /opt/917-f47-cfd-cae/
 

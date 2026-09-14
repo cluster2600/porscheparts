@@ -10,13 +10,13 @@ from scripts.validate_twins import ROOT, load_and_validate, validate_twin
 class TwinValidationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.template = json.loads((ROOT / "templates" / "twin-record.json").read_text(encoding="utf-8"))
+        cls.template = json.loads((ROOT / "catalog" / "templates" / "twin-record.json").read_text(encoding="utf-8"))
 
     def test_template_is_valid(self) -> None:
         self.assertEqual(validate_twin(self.template), [])
 
     def test_schema_is_valid_json(self) -> None:
-        schema = json.loads((ROOT / "schemas" / "twin.schema.json").read_text(encoding="utf-8"))
+        schema = json.loads((ROOT / "catalog" / "schemas" / "twin.schema.json").read_text(encoding="utf-8"))
         self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
 
     def test_checked_twin_requires_interface_fidelity(self) -> None:

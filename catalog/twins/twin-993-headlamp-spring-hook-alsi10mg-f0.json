@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-HEADLAMP-SPRING-HOOK-ALSI10MG-F0",
+  "name": "Crochet de réparation de ressort de phare 993 en AlSi10Mg, jumeau F0",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_headlamp_application_declared_by_vendor_to_confirm"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    }
+  },
+  "scope": {
+    "zone": "headlamp_low_beam_bulb_retainer",
+    "purposes": [
+      "fit",
+      "thermal",
+      "structural"
+    ]
+  },
+  "fidelity": "F1_envelope",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "face ouverte de la douille F0",
+    "axes": "X suivant la douille et le bras, Y largeur du crochet, Z hauteur",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {
+      "component_id": "HEADLAMP_SPRING_HOOK_ALSI10MG_F0",
+      "role": "candidate",
+      "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+      "geometry_file": "parts/993-elec-headlamp-spring-hook-f0-0001/derived/headlamp_spring_hook_f0.step",
+      "accuracy_mm": null
+    },
+    {
+      "component_id": "HEADLAMP_REMAINDER_SPRING_AND_BULB_CONTEXT",
+      "role": "context",
+      "part_id": null,
+      "geometry_file": "",
+      "accuracy_mm": null
+    }
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_HOOK_SOCKET_AND_BOND",
+      "kind": "contact",
+      "components": [
+        "HEADLAMP_SPRING_HOOK_ALSI10MG_F0",
+        "HEADLAMP_REMAINDER_SPRING_AND_BULB_CONTEXT"
+      ],
+      "required_measurements": [
+        "BROKEN_HOOK_STUB_ENVELOPE",
+        "BOND_LINE_THICKNESS",
+        "ADHESIVE_GRADE",
+        "SURFACE_PREPARATION",
+        "HOT_LAP_SHEAR_AND_PEEL_ALLOWABLES"
+      ],
+      "acceptance_rule": "Le jeu de montage et la liaison conservent une marge approuvée en cisaillement, pelage et fatigue sur le cycle thermique.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_HOOK_AND_RETENTION_SPRING",
+      "kind": "contact",
+      "components": [
+        "HEADLAMP_SPRING_HOOK_ALSI10MG_F0",
+        "HEADLAMP_REMAINDER_SPRING_AND_BULB_CONTEXT"
+      ],
+      "required_measurements": [
+        "SPRING_FORCE_VECTOR",
+        "SPRING_WIRE_DIAMETER",
+        "CONTACT_PATCH",
+        "INSTALLATION_STROKE",
+        "SERVICE_CYCLE_COUNT"
+      ],
+      "acceptance_rule": "Le ressort reste captif et la contrainte, la flèche, l'usure et la fatigue respectent les limites approuvées.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_HEADLAMP_THERMAL_VIBRATION",
+      "kind": "clearance",
+      "components": [
+        "HEADLAMP_SPRING_HOOK_ALSI10MG_F0",
+        "HEADLAMP_REMAINDER_SPRING_AND_BULB_CONTEXT"
+      ],
+      "required_measurements": [
+        "LAMP_TEMPERATURE_MAP",
+        "RADIATIVE_HEAT_FLUX",
+        "VEHICLE_VIBRATION_PSD",
+        "BULB_POSITION_TOLERANCE",
+        "BEAM_ALIGNMENT_TOLERANCE"
+      ],
+      "acceptance_rule": "La température, les vibrations et les déplacements ne compromettent ni la rétention de l'ampoule ni le réglage du faisceau.",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "build123d",
+    "master_file": "parts/993-elec-headlamp-spring-hook-f0-0001/source/headlamp_spring_hook.py",
+    "derived_files": [
+      "parts/993-elec-headlamp-spring-hook-f0-0001/derived/headlamp_spring_hook_f0.step"
+    ]
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "parts/993-elec-headlamp-spring-hook-f0-0001/evidence/engineering-screen.json",
+      "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/summary.json",
+      "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json",
+      "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/calculix-f0/calculix-thermomechanical-screen.json",
+      "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/binary-validation.json",
+      "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/rigid-scene-validation.json",
+      "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/simready-f0/ovphysx-rigid-screen.json"
+    ],
+    "known_limits": [
+      "Toutes les cotes et interfaces du F0 restent des variables de conception sans métrologie du phare.",
+      "La pièce commerciale prouve l'intérêt fonctionnel de l'impression métal, mais sa géométrie et sa matière exacte ne sont pas réutilisées.",
+      "Les charges, températures, contacts, vibrations et propriétés de colle manquent.",
+      "Aucune impression, installation, rétention de lampe ou utilisation routière n'est autorisée."
+    ]
+  }
+}

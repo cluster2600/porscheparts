@@ -15,8 +15,8 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 MEASUREMENTS = ROOT / "catalog" / "measurements" / "MEAS-MANUAL-993-ALL.json"
-DEFAULT_SCAD = ROOT / "twin" / "993" / "source" / "reference_envelope.scad"
-DEFAULT_MANIFEST = ROOT / "twin" / "993" / "reference-envelope.json"
+DEFAULT_SCAD = ROOT / "twins" / "993-reference-envelope" / "source" / "reference_envelope.scad"
+DEFAULT_MANIFEST = ROOT / "twins" / "993-reference-envelope" / "reference-envelope.json"
 
 PARAMETERS = {
     "length_mm": ("overall length", "MNL-TECH-0022"),

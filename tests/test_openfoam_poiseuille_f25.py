@@ -13,7 +13,7 @@ sys.dont_write_bytecode = True
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BENCHMARK = ROOT / "benchmarks/openfoam-poiseuille-f25"
+BENCHMARK = ROOT / "outils/benchmarks/openfoam-poiseuille-f25"
 CONTRACT_PATH = BENCHMARK / "benchmark-contract-f25.json"
 GENERATOR_PATH = BENCHMARK / "generate_cases.py"
 ANALYZER_PATH = BENCHMARK / "analyze_results.py"

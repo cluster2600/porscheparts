@@ -73,7 +73,7 @@ RUN --network=none /bin/bash -euo pipefail -c '\
 
 LABEL org.opencontainers.image.title="3dprinting993-engine-cycle-f33" \
       org.opencontainers.image.description="Minimal linux/amd64 CPU image with Cantera 3.2.0 for non-correlated engine-cycle and thermal-network reference studies" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="NOASSERTION"
 
 CMD ["python", "/opt/engine-cycle-f33/smoke.py"]

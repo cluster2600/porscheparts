@@ -107,7 +107,7 @@ REVISION="$("${GIT_BIN}" -C "${REPOSITORY_ROOT}" rev-parse HEAD)"
 SOURCE_FILES=(
     catalog/sources/src-fia-917-homologation-250.json
     catalog/sources/src-stuttcars-917-technical-details.json
-    docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md
+    archive/917/docs/917_GERMAN_SOURCE_AND_MEASUREMENT_MATRIX_F29.md
     deploy/openbao/openbao-vastai
     deploy/openbao/openbao-ghcr
     deploy/vast/simready/_materialize_git_snapshot.py

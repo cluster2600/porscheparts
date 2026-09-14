@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001",
+  "status": "f0_clean_sheet_hot_rotor_analytical_screen_failed",
+  "companion": {
+    "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+    "shared_shaft_speed_only": true,
+    "coupled_rotor_geometry_available": false
+  },
+  "geometry_authority": {
+    "published": {
+      "turbine_wheel_reference": "5316-120-5000",
+      "right_turbo_reference": "5316-988-6735",
+      "inducer_diameter_mm": 54.96,
+      "exducer_diameter_mm": 48.97,
+      "blade_count": 12,
+      "tip_height_mm": 9.4,
+      "shaft_diameter_mm": 8.42
+    },
+    "hypotheses": [
+      "20 mm axial envelope, 5.8 mm backface and hub cone",
+      "four-step straight radial blades approximate a 2.4 to 0.8 mm continuous taper",
+      "9.5 mm analytical blade root radius and 2.5 stress concentration factor",
+      "the shaft is excluded except for a short interface marker",
+      "no camber, twist, scallop, fillet, balance cut, weld, seal or tip clearance"
+    ],
+    "not_claimed": "No Porsche, BorgWarner or production K16 surface, tolerance, material, balance, fit, weld, fatigue, creep or burst capability is claimed."
+  },
+  "synthetic_operating_case": {
+    "derived_shaft_speed_source": "same Mach 0.9 compressor F1 regression point; not measured",
+    "overspeed_factor": 1.2,
+    "turbine_inlet_temperature_c": 950.0,
+    "temperature_authority": "BorgWarner catalogue context T3 for the upgrade line; not K16 wheel metal temperature",
+    "radial_metal_gradient_k": 350.0,
+    "air_fuel_ratio": 12.0,
+    "turbine_isentropic_efficiency": 0.7,
+    "mechanical_efficiency": 0.95,
+    "minimum_screen_ratio": 1.5
+  },
+  "material_screen": {
+    "candidate": "EOS NickelAlloy IN718 API, M290 40 micrometre, heat-treated comparison",
+    "process_trl": 9,
+    "density_kg_m3": 8150.0,
+    "ambient_vertical_yield_strength_pa": 865000000.0,
+    "ambient_vertical_ultimate_strength_pa": 1236000000.0,
+    "ambient_vertical_elongation_ratio": 0.28,
+    "average_defect_fraction": 0.0003,
+    "minimum_wall_range_mm": [
+      0.3,
+      0.4
+    ],
+    "published_use_temperature_limit_c": 700.0,
+    "published_cte_at_700c_per_k": 1.55e-05,
+    "provisional_elastic_modulus_pa": 200000000000.0,
+    "provisional_poisson_ratio": 0.29,
+    "scope": "process-specific room-temperature coupons and a generic marketing temperature range; no K16 hot HCF, LCF, creep, crack-growth, oxidation or burst allowable"
+  },
+  "results": {
+    "cad_volume_mm3": 17076.462962017227,
+    "cad_mass_g": 139.17317314044038,
+    "cylindrical_stock_mass_g": 386.69711668624916,
+    "cylindrical_stock_to_cad_mass_ratio": 2.7785320113096152,
+    "derived_shaft_speed_rpm": 103463.76445545294,
+    "shaft_frequency_hz": 1724.396074257549,
+    "turbine_tip_speed_m_s": 297.7375581306121,
+    "turbine_tip_mach": 0.4357395630225761,
+    "turbine_tip_reynolds": 158142.76044044335,
+    "blade": {
+      "length_mm": 17.980000000000004,
+      "volume_mm3": 270.41920000000005,
+      "mass_g": 2.20391648,
+      "mean_radius_mm": 16.991666666666664,
+      "centrifugal_force_n": 4396.073042479912,
+      "root_area_mm2": 22.56,
+      "nominal_root_stress_mpa": 487.1534843173662,
+      "overspeed_root_stress_mpa": 701.5010174170073
+    },
+    "ambient_yield_to_overspeed_blade_root_stress_ratio": 1.2330702002186844,
+    "overspeed_rotating_disk_stress_mpa": 427.85169438615753,
+    "ambient_yield_to_overspeed_disk_stress_ratio": 2.0217285834079095,
+    "fully_constrained_gradient_stress_mpa": 1528.1690140845071,
+    "ambient_yield_to_constrained_gradient_ratio": 0.5660368663594469,
+    "free_thermal_radius_growth_mm_extrapolated": 0.3961242,
+    "elastic_disk_radius_growth_mm": 0.04082418250601254,
+    "gas_temperature_above_published_material_range_c": 250.0,
+    "bank_air_mass_flow_kg_s": 0.15569824705863722,
+    "bank_fuel_mass_flow_kg_s": 0.012974853921553101,
+    "bank_exhaust_mass_flow_kg_s": 0.1686731009801903,
+    "compressor_power_w": 13114.769244414878,
+    "turbine_power_required_w": 13805.02025727882,
+    "turbine_specific_work_j_kg": 81844.82396455224,
+    "turbine_expansion_ratio_required": 1.4187168666161456,
+    "turbine_inlet_pressure_pa_required": 156058.85532777602,
+    "turbine_outlet_temperature_k": 1151.9805878569111,
+    "turbine_isentropic_outlet_temperature_k": 1121.4794112241589,
+    "shaft_torque_nm": 1.2741488143178858,
+    "approximate_polar_inertia_kg_m2": 5.254833868313641e-05,
+    "approximate_rotational_energy_j": 3084.3438080131427,
+    "residual_unbalance_force_n": 1.1739072577009773,
+    "blade_pass_frequency_hz": 20692.752891090586,
+    "revolutions_at_duty": 620782586.7327176,
+    "blade_events_at_duty": 7449391040.792612,
+    "minimum_required_screen_ratio": 1.5,
+    "temperature_envelope_pass": false,
+    "ambient_mechanical_screen_pass": false,
+    "preliminary_screen_pass": false,
+    "creep_screen_status": "not_computable_without_hot_stress_temperature_time_and_material_constants",
+    "hcf_lcf_screen_status": "not_computable_without_hot_S_N_epsilon_N_notch_surface_and_defect_data"
+  },
+  "equations": {
+    "shared_rotor_speed": "a=sqrt(gamma*R*T); U=M*a; omega=U/r_comp",
+    "linear_taper_blade": "V=h*L*(troot+ttip)/2; F=rho*V*omega^2*rmean",
+    "blade_root_stress": "sigma=Kt*F/(troot*h); sigma_over=sigma*factor^2",
+    "rotating_disk": "sigma=(3+nu)/8*rho*omega^2*r^2",
+    "thermal_gradient": "sigma=E*alpha*delta_T/(1-nu)",
+    "thermal_growth": "delta_r=alpha*r*(Tgas-20C), extrapolated screen only",
+    "compressor_power": "Pcomp=mdot_air*cp*(T2-T1)",
+    "turbine_power": "Pturb=Pcomp/eta_mech; w=Pturb/mdot_exhaust",
+    "expansion_ratio": "PR=(T3/T4s)^(gamma/(gamma-1))",
+    "rotational_energy": "Erot=0.5*(0.5*m*r^2)*omega^2",
+    "unbalance": "F=Ures*omega^2",
+    "cycles": "Nrev=rpm/60*t; Nblade=Nrev*z"
+  },
+  "dfam_screen": {
+    "additive_value": "tooling-free low-volume rotor topology and rapid iteration of a complex twelve-blade hot-side form",
+    "open_blade_topology": true,
+    "trapped_powder_volume": false,
+    "minimum_tip_thickness_mm": 0.8,
+    "published_process_minimum_wall_range_mm": [
+      0.3,
+      0.4
+    ],
+    "orientation_selected": false,
+    "support_strategy_defined": false,
+    "process_comparison_required": [
+      "qualified investment-cast nickel turbine wheel joined to a steel shaft",
+      "five-axis finish-machined conventional rotor route",
+      "LPBF IN718 wheel with qualified shaft joining, finishing and contained burst validation"
+    ]
+  },
+  "interpretation": {
+    "result": "rejected: blade-root and thermal-gradient ratios miss 1.5 and the gas context exceeds the published material range",
+    "geometry": "straight four-step blades are topology markers, not turbine profiles",
+    "thermal": "gas T3 is not wheel metal temperature; the extrapolated growth and constrained gradient are bounding placeholders",
+    "mechanics": "algebra omits 3D fillets, cast/AM defects, weld, contact, modes, creep, HCF, LCF and containment",
+    "aerodynamics": "the one-point power balance is not a K16 turbine map or rotating CFD result",
+    "physicsnemo": "deferred until correlated CFD, thermal-structure, rotor-dynamic and burst datasets exist",
+    "simready": "deferred until the measured full rotor, housings, clearances and bearing assembly exist"
+  },
+  "release_blockers": [
+    "No measured or CT-scanned 5316-120-5000 wheel, shaft or weld.",
+    "No OEM blade camber, twist, thickness, fillet, scallop, hub, backface, balance cut or tolerance.",
+    "The 20 mm envelope, hub, backface and four-step blade form are synthetic.",
+    "No proof that the production K16 wheel uses IN718 or any additive route.",
+    "The EOS API heat treatment and room-temperature coupons are not a turbine-rotor qualification.",
+    "The 950 C value is catalogue gas context, not measured K16 wheel metal temperature.",
+    "The gas context exceeds EOS's published generic 700 C material-use statement.",
+    "No hot yield, creep, stress rupture, HCF, LCF, crack-growth, oxidation or coating allowables for the exact route.",
+    "The blade-root and constrained-gradient algebraic ratios are below the 1.5 regression threshold.",
+    "No K16 turbine map, shaft-speed trace, exhaust pulsation, pressure, efficiency, temperature or transient duty.",
+    "No rotating CFD, conjugate heat transfer, FSI, mesh convergence or measured boundary correlation.",
+    "No nonlinear rotating FEA, weld/contact model, Campbell diagram, rotor dynamics or probabilistic burst analysis.",
+    "No qualified build orientation, supports, distortion compensation, heat treatment, HIP, machining, polishing or joining route.",
+    "No CT, FPI, metallurgy, dimensional inspection, balance, spin proof, overspeed, burst or containment test.",
+    "No bearing, seal, shaft, compressor, housing, clearance, oil/cooling or wastegate integration evidence.",
+    "No professional turbomachinery review, approved validation plan, dyno authorization or vehicle release."
+  ],
+  "manufacturing_authorized": false,
+  "turbo_operation_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "clean_sheet_k16_in718_hot_rotor_f0"
+    ],
+    "volume_mm3": 17076.462962017227,
+    "envelope_mm": [
+      54.96,
+      54.96,
+      20.0
+    ],
+    "blade_count": 12,
+    "cad_taper_segment_count_per_blade": 4,
+    "shaft_interface_marker_diameter_mm": 8.42,
+    "full_shaft_included": false,
+    "maximum_volume_delta_mm3": 0.05
+  }
+}

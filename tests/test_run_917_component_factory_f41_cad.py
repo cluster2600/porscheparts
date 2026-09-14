@@ -26,7 +26,7 @@ JOB_ID = "f41-cad-supervisor-test"
 ALLOWED_BUNDLE_FILES = (
     "REMOTE_JOB.md",
     "containers/simready-preflight/convert.py",
-    "docs/917_COMPONENT_FACTORY_F41.md",
+    "archive/917/docs/917_COMPONENT_FACTORY_F41.md",
     "twins/reference-917-engine/component-factory-f41.json",
     "twins/reference-917-engine/rotating-assembly-cad-f35.json",
     "twins/reference-917-engine/source/build_rotating_assembly_cad_f35.py",

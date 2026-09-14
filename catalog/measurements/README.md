@@ -7,7 +7,7 @@ Une spécification documentaire contient sa source, sa page, son texte de valeur
 et son statut d'extraction ; elle ne remplace pas une séance instrumentée.
 
 Le registre ne remplace pas le plan de mesure
-(`templates/measurement-plan.md`), elle en conserve le résultat sous une forme
+(`catalog/templates/measurement-plan.md`), elle en conserve le résultat sous une forme
 vérifiable par machine.
 
 Le validateur refuse notamment une valeur qui ne correspond pas à ses propres
@@ -15,7 +15,7 @@ Le validateur refuse notamment une valeur qui ne correspond pas à ses propres
 lecture attribuée à un instrument non déclaré, et un niveau de preuve `A` sans
 répétitions ni état d’étalonnage connu.
 
-Créer une fiche depuis `templates/measurement-record.json`, ou la remplir
+Créer une fiche depuis `catalog/templates/measurement-record.json`, ou la remplir
 directement depuis l’instrument :
 
 ```bash

@@ -18,7 +18,7 @@ SMOKE = ROOT / "containers/obj-metrology-f15-smoke.py"
 PIPELINE = ROOT / "twins/reference-917-engine/source/build_scan_segmentation_f15.py"
 CONTRACT = ROOT / "twins/reference-917-engine/scan-segmentation-f15.json"
 WORKFLOW = ROOT / ".github/workflows/obj-metrology-f15-image.yml"
-DOC = ROOT / "docs/917_OBJ_METROLOGY_CONTAINER_F15.md"
+DOC = ROOT / "archive/917/docs/917_OBJ_METROLOGY_CONTAINER_F15.md"
 LOCK = ROOT / "containers/obj-metrology-f15.lock.json"
 
 

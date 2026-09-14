@@ -1,12 +1,77 @@
-.PHONY: check validate test twin twin-validate engine-contracts engine-components engine-contracts-check 917-complete-parts 917-complete-assembly 917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench 917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 917-motion-video-stages-f7 917-motion-video-render-f7 917-interfaces-f8-check 917-interfaces-f8-preflight 917-performance-envelope-f9 917-variant-geometry-f10-check 917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures 917-head-reference-cae-f31-image 917-head-reference-cae-f31 917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 917-cycle-thermal-f33-check 917-cycle-thermal-f33-test 917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b 917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight 917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test 917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image 917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image 917-integrated-virtual-f33 917-integrated-virtual-f33-publish 917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image 917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants turbo-variants-check turbo-dyno turbo-dyno-check container-recon container-cadsim container-mesh-cfd container-physicsml container-simready container-simready-workflow container-simready-local-ai container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow container-smoke-simready-local-ai container-smoke-all container-push container-push-mesh-cfd container-push-simready container-push-simready-workflow container-push-simready-local-ai
-.PHONY: 917-rotating-assembly-f35-test 917-rotating-assembly-f35 917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image 917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test 917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke 917-gas-path-network-f38-test 917-gas-path-network-f38 917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 917-gas-path-f38-image-test 917-gas-path-f38-image 917-gas-path-f38-image-smoke 917-unsteady-network-f39-test 917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate 917-unsteady-network-f39 917-wave-action-f39-image-test 917-wave-action-f39-image 917-wave-action-f39-image-smoke 917-f50-cfd-recovery-check
-.PHONY: 917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest 917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
-.PHONY: 917-extended-periodic-state-f40b-test 917-extended-periodic-state-f40b-manifest 917-extended-periodic-state-f40b-image-smoke 917-extended-periodic-state-f40b
-.PHONY: 917-component-factory-f41-test 917-component-factory-f41-plan 917-component-factory-f41-preflight 917-component-factory-f41 917-component-factory-f41-bundle
+.PHONY: \
+	help help-917 help-check check validate test twin twin-validate \
+	engine-contracts engine-components \
+	engine-contracts-check 917-complete-parts 917-complete-assembly \
+	917-kinematics-f2 917-detail-f3 917-systems-f4 917-virtual-test-bench \
+	917-test-bench-usd 917-start-support-f5 917-oil-prime-f6 \
+	917-motion-video-stages-f7 917-motion-video-render-f7 \
+	917-interfaces-f8-check 917-interfaces-f8-preflight \
+	917-performance-envelope-f9 917-variant-geometry-f10-check \
+	917-variant-geometry-f10 917-reengineering-f11 917-clean-sheet-head-f29 \
+	917-clean-sheet-head-f29-check 917-clean-sheet-head-f29-figures \
+	917-head-reference-cae-f31-image 917-head-reference-cae-f31 \
+	917-head-reference-cae-f31-publish 917-clean-sheet-2026-f32 \
+	917-clean-sheet-2026-f32-check 917-cycle-thermal-f33 \
+	917-cycle-thermal-f33-check 917-cycle-thermal-f33-test \
+	917-air-oil-controls-f34a-check 917-air-oil-controls-f34a-test 917-doe-f34 \
+	917-doe-f34-check 917-doe-f34-test 917-air-oil-seeds-f34b \
+	917-air-oil-seeds-f34b-check 917-air-oil-cycle-f34b-preflight \
+	917-air-oil-cycle-f34b-test 917-air-oil-cycle-f34b-image-test \
+	917-air-oil-cycle-f34b-lock-check 917-air-oil-cycle-f34b-image \
+	917-air-oil-cycle-f34b-smoke 917-integrated-virtual-f33-image \
+	917-integrated-virtual-f33 917-integrated-virtual-f33-publish \
+	917-aircooled-4v-f34-cae-image 917-aircooled-4v-f34-fluidx3d-image \
+	917-aircooled-4v-f34-check 917-aircooled-4v-f34-publish valve-variants \
+	omniverse-assembly turbo-cold-side turbo-cold-side-check turbo-variants \
+	turbo-variants-check turbo-dyno turbo-dyno-check parts-table \
+	parts-table-check container-recon container-cadsim container-mesh-cfd \
+	container-physicsml container-simready container-simready-workflow \
+	container-simready-local-ai container-ov-libraries-cpu container-smoke \
+	container-smoke-physicsml container-smoke-simready \
+	container-smoke-simready-workflow container-smoke-simready-local-ai \
+	container-smoke-all container-push container-push-mesh-cfd \
+	container-push-simready container-push-simready-workflow \
+	container-push-simready-local-ai
+.PHONY: \
+	917-rotating-assembly-f35-test 917-rotating-assembly-f35 \
+	917-rotating-assembly-usd-f35-test 917-rotating-assembly-usd-f35 \
+	917-intel-cpu-f35-test 917-gmsh-mesh-f35-test 917-gmsh-mesh-f35-image \
+	917-gmsh-mesh-f35-smoke 917-openfoam-engine-f35-test \
+	917-openfoam-engine-f35-image 917-openfoam-engine-f35-smoke \
+	917-gas-path-network-f38-test 917-gas-path-network-f38 \
+	917-gas-path-overlay-f38-test 917-gas-path-overlay-f38 \
+	917-gas-path-f38-image-test 917-gas-path-f38-image \
+	917-gas-path-f38-image-smoke 917-unsteady-network-f39-test \
+	917-unsteady-network-f39-manifest 917-unsteady-network-f39-validate \
+	917-unsteady-network-f39 917-wave-action-f39-image-test \
+	917-wave-action-f39-image 917-wave-action-f39-image-smoke \
+	917-f50-cfd-recovery-check
+.PHONY: \
+	917-unsteady-convergence-f40-test 917-unsteady-convergence-f40-manifest \
+	917-unsteady-convergence-f40-image-smoke 917-unsteady-convergence-f40
+.PHONY: \
+	917-extended-periodic-state-f40b-test \
+	917-extended-periodic-state-f40b-manifest \
+	917-extended-periodic-state-f40b-image-smoke \
+	917-extended-periodic-state-f40b
+.PHONY: \
+	917-component-factory-f41-test 917-component-factory-f41-plan \
+	917-component-factory-f41-preflight 917-component-factory-f41 \
+	917-component-factory-f41-bundle
 .PHONY: 917-component-factory-f42a-usd-test
 .PHONY: 917-variant-authority-f43-check
 .PHONY: 917-connecting-rod-cad-f44-check 917-connecting-rod-cad-f44
-.PHONY: 917-valvetrain-material-f45 917-valvetrain-material-f45-check 917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check 917-cae-load-transfer-f47 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f48-cfd-domain-test 917-mesh-diagnostic-f48 917-mesh-diagnostic-f48-check 917-material-lpbf-f49 917-material-lpbf-f49-check 917-omniverse-simready-f49-check 917-f49-solid-repair-check 917-f49-cfd-cht-check 917-thermomechanical-f50 917-thermomechanical-f50-publish 917-thermomechanical-f50-check 917-native-brep-mesh-f50-check 917-additive-print-f50-check 917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check
+.PHONY: \
+	917-valvetrain-material-f45 917-valvetrain-material-f45-check \
+	917-cantera-2v-4v-f46 917-cantera-2v-4v-f46-check \
+	917-cae-load-transfer-f47 917-cae-load-transfer-f47-check \
+	917-f47-internal-brep-test 917-f48-cfd-domain-test 917-mesh-diagnostic-f48 \
+	917-mesh-diagnostic-f48-check 917-material-lpbf-f49 \
+	917-material-lpbf-f49-check 917-omniverse-simready-f49-check \
+	917-f49-solid-repair-check 917-f49-cfd-cht-check 917-thermomechanical-f50 \
+	917-thermomechanical-f50-publish 917-thermomechanical-f50-check \
+	917-native-brep-mesh-f50-check 917-additive-print-f50-check \
+	917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check
 
 REGISTRY ?= ghcr.io/cluster2600
 IMAGE_TAG ?= dev
@@ -46,8 +111,30 @@ override F44_OUTPUT := work/917-connecting-rod-cad-f44
 F46_PYTHON ?= python3
 F47_PYTHON ?= python3
 
-.PHONY: 917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly 917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish 917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad 917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich 917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea 917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan 917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render 917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check 917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check 917-manufacturing-f37-check
-.PHONY: 917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check 917-f38-material-coupon-plan-check 917-f38-valvetrain-package-evidence-check 917-f38-engineering-check 917-f40-935-head-reference-check 917-f40-935-scale-audit 917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial 917-f40-thickness-screen 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-brep-audit-test 917-f42-1-topology-repair-test 917-f42-2-pcurve-repair-test 917-f42-1-thermal-optimization-check 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-f43-g3-g5-comparable-check 917-f43-scan-contour-patch-test 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-f47-cfd-cae-image-check
+.PHONY: \
+	917-scan-conforming-4v-f36-check 917-scan-conforming-4v-f36-assembly \
+	917-scan-conforming-4v-f36-printability 917-scan-conforming-4v-f36-publish \
+	917-scan-conforming-4v-f36-render 917-manufacturing-f37-cad \
+	917-manufacturing-f37-head-mesh 917-manufacturing-f37-head-mesh-enrich \
+	917-manufacturing-f37-screens 917-manufacturing-f37-carrier-fea \
+	917-manufacturing-f37-lpbf-screen 917-manufacturing-f37-lpbf-plan \
+	917-manufacturing-f37-lpbf-audit-check 917-manufacturing-f37-render \
+	917-manufacturing-f37-publish 917-manufacturing-f37-evidence-check \
+	917-f37-simready-evidence-check 917-f37-ice-engine-evidence-check \
+	917-manufacturing-f37-check
+.PHONY: \
+	917-f38-brep-lpbf-evidence-check 917-f38-cooling-evidence-check \
+	917-f38-material-coupon-plan-check \
+	917-f38-valvetrain-package-evidence-check 917-f38-engineering-check \
+	917-f40-935-head-reference-check 917-f40-935-scale-audit \
+	917-f40-scan-locked-outer 917-f40-4v-packaging 917-f40-functional-trial \
+	917-f40-thickness-screen 917-f41-lpbf-evidence-check \
+	917-f42-cooling-cht-check 917-f42-brep-audit-test \
+	917-f42-1-topology-repair-test 917-f42-2-pcurve-repair-test \
+	917-f42-1-thermal-optimization-check 917-f42-2-material-process-check \
+	917-f42-omniverse-validation-check 917-f43-g3-g5-comparable-check \
+	917-f43-scan-contour-patch-test 917-engine-solver-authority-f46-check \
+	917-f46-vast-controller-check 917-f47-cfd-cae-image-check
 
 F40_PYTHON ?= python3
 F42_PYTHON ?= python3
@@ -70,14 +157,58 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 917-f43-scan-contour-patch-test:
 	python3 tests/test_917_f43_scan_contour_patch_rebuild.py -v
 
-check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-check 917-doe-f34-check 917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check 917-manufacturing-f37-evidence-check 917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check 917-f41-lpbf-evidence-check 917-f42-cooling-cht-check 917-f42-2-pcurve-repair-test 917-f42-2-material-process-check 917-f42-omniverse-validation-check 917-variant-authority-f43-check 917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check 917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check 917-engine-solver-authority-f46-check 917-f46-vast-controller-check 917-cae-load-transfer-f47-check 917-f47-internal-brep-test 917-f47-cfd-cae-image-check 917-f48-cfd-domain-test 917-mesh-diagnostic-f48-check 917-material-lpbf-f49-check 917-omniverse-simready-f49-check 917-f49-solid-repair-check 917-f49-cfd-cht-check 917-thermomechanical-f50-check 917-native-brep-mesh-f50-check 917-additive-print-f50-check 917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check turbo-cold-side-check turbo-variants-check turbo-dyno-check
+# Dependances optionnelles. `make check` doit rendre un vert franc sur un Python
+# nu : une suite qui echoue toujours des memes facons ne signale plus rien. Les
+# cibles qui appellent un script a dependance se sautent en le disant, comme les
+# tests le font par tests/_deps.py. Un saut est visible, une erreur permanente ne
+# l'est plus.
+HAS_NUMPY := $(shell python3 -c 'import numpy' 2>/dev/null && echo oui)
+HAS_MATPLOTLIB := $(shell python3 -c 'import matplotlib' 2>/dev/null && echo oui)
+
+#> verifier | Cette liste
+help:
+	@python3 scripts/make_help.py
+
+#> verifier | Les cibles de la ligne 917/935, archivee
+help-917:
+	@grep -hoE '^917-[a-zA-Z0-9_.-]+:' $(MAKEFILE_LIST) | tr -d ':' | sort -u | sed 's/^/  /'
+
+#> verifier | Verifier que chaque cible active est annotee
+help-check:
+	@python3 scripts/make_help.py --check
+
+#> verifier | Tout verifier : schemas, tests, generateurs et empreintes
+check: validate test 917-clean-sheet-2026-f32-check \
+	917-air-oil-controls-f34a-check 917-doe-f34-check \
+	917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check \
+	917-manufacturing-f37-evidence-check \
+	917-manufacturing-f37-lpbf-audit-check 917-f37-simready-evidence-check \
+	917-f41-lpbf-evidence-check 917-f42-cooling-cht-check \
+	917-f42-2-pcurve-repair-test 917-f42-2-material-process-check \
+	917-f42-omniverse-validation-check 917-variant-authority-f43-check \
+	917-connecting-rod-cad-f44-check 917-valvetrain-material-f45-check \
+	917-f43-scan-contour-patch-test 917-cantera-2v-4v-f46-check \
+	917-engine-solver-authority-f46-check 917-f46-vast-controller-check \
+	917-cae-load-transfer-f47-check 917-f47-internal-brep-test \
+	917-f47-cfd-cae-image-check 917-f48-cfd-domain-test \
+	917-mesh-diagnostic-f48-check 917-material-lpbf-f49-check \
+	917-omniverse-simready-f49-check 917-f49-solid-repair-check \
+	917-f49-cfd-cht-check 917-thermomechanical-f50-check \
+	917-native-brep-mesh-f50-check 917-additive-print-f50-check \
+	917-native-brep-usd-f51-check 917-physicsnemo-readiness-f52-check \
+	turbo-cold-side-check turbo-variants-check turbo-dyno-check \
+	parts-table-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
 
 917-valvetrain-material-f45-check:
+ifeq ($(HAS_MATPLOTLIB),oui)
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root . --check
 	python3 tests/test_917_valvetrain_material_screen_f45.py -v
+else
+	@echo "saute 917-valvetrain-material-f45-check : matplotlib absent"
+endif
 
 917-cantera-2v-4v-f46:
 	$(F46_PYTHON) twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py --project-root .
@@ -129,8 +260,12 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 	python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py publish --root . --contract twins/reference-917-engine/thermomechanical-screen-f50.json --work work/917-f50-thermomechanical --evidence twins/reference-917-engine/evidence/f50-thermomechanical
 
 917-thermomechanical-f50-check:
+ifeq ($(HAS_NUMPY),oui)
 	python3 twins/reference-917-engine/source/run_f50_thermomechanical_screen.py verify --root . --contract twins/reference-917-engine/thermomechanical-screen-f50.json --evidence twins/reference-917-engine/evidence/f50-thermomechanical
 	python3 tests/test_917_f50_thermomechanical_screen.py -v
+else
+	@echo "saute 917-thermomechanical-f50-check : numpy absent"
+endif
 
 917-additive-print-f50-check:
 	python3 tests/test_917_f50_additive_print.py -v
@@ -151,8 +286,10 @@ check: validate test 917-clean-sheet-2026-f32-check 917-air-oil-controls-f34a-ch
 917-f50-cfd-recovery-check:
 	python3 tests/test_917_f50_cfd_recovery.py -v
 
+#> verifier | Valider les fiches du catalogue contre leurs schemas
 validate:
 	python3 scripts/validate_catalog.py
+	python3 scripts/validate_am_pipeline.py
 	python3 scripts/validate_sources.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_reference.py
@@ -165,21 +302,27 @@ validate:
 	python3 twins/reference-917-engine/source/validate_interfaces_f8.py --project-root .
 	python3 twins/reference-917-engine/source/prepare_variant_configs_f10.py --manifest twins/reference-917-engine/variant-configurations-f10.json --project-root . --check
 
+#> verifier | Derouler la suite de tests seule
 test:
 	python3 -m unittest discover -s tests -v
 
+#> catalogue | Couverture des jumeaux numeriques par zone
 twin:
 	python3 scripts/twin_coverage.py
 
+#> catalogue | Valider les fiches de jumeau
 twin-validate:
 	python3 scripts/validate_twin.py
 
+#> archive | Contrats de simulation moteur (ligne 917)
 engine-contracts:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/engine-simulation-contracts/source/refine_segmentation.py --project-root /workspace --config /workspace/twins/engine-simulation-contracts/segmentation-f1.json --output /workspace/work/engine-segmentation-f1
 
+#> archive | Verifier ces contrats
 engine-contracts-check:
 	python3 scripts/validate_engine_sim_contracts.py
 
+#> archive | Composants moteur derives des contrats
 engine-components:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/engine-simulation-contracts/source/build_engine_components.py /workspace/work/engine-components-f1
 
@@ -1007,86 +1150,124 @@ engine-components:
 		--image work/917-aircooled-4v-f34/product-aircooled-4v-f34-v2.png \
 		--output work/917-aircooled-4v-f34-publication
 
+#> archive | Variantes de soupape depuis le scan 935
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1
 
+#> archive | Chaine d'assemblage Omniverse
 omniverse-assembly:
 	twins/omniverse-engine-assembly/run_pipeline.sh
 
+#> 993 | Engendrer le cas OpenFOAM cote froid K16
 turbo-cold-side:
 	python3 scripts/generate_cold_side_case.py --write
 
+#> 993 | Verifier ce cas
 turbo-cold-side-check:
 	python3 scripts/generate_cold_side_case.py --check
 
+#> 993 | Engendrer les trois variantes de turbo
 turbo-variants:
 	python3 scripts/generate_turbo_variants.py --write
 
+#> 993 | Verifier ces variantes
 turbo-variants-check:
 	python3 scripts/generate_turbo_variants.py --check
 
+#> 993 | Modele 0D de banc, references de couple
 turbo-dyno:
 	python3 scripts/model_turbo_dyno_0d.py --write
 
+#> 993 | Verifier ces references
 turbo-dyno-check:
 	python3 scripts/model_turbo_dyno_0d.py --check
 
+#> catalogue | Reecrire le tableau des pieces du README
+parts-table:
+	python3 scripts/render_parts_table.py --write
+
+#> catalogue | Verifier que ce tableau suit les fiches
+parts-table-check:
+	python3 scripts/render_parts_table.py --check
+
+#> conteneurs | Image de reconstruction photogrammetrique
 container-recon:
 	docker build -f containers/recon.Dockerfile -t 3dprinting993-recon:$(IMAGE_TAG) .
 
+#> conteneurs | Image CAO et simulation
 container-cadsim:
 	docker build -f containers/cadsim.Dockerfile -t 3dprinting993-cadsim:$(IMAGE_TAG) .
 
+#> conteneurs | Image maillage et CFD
 container-mesh-cfd:
 	docker build -f containers/mesh-cfd.Dockerfile -t 3dprinting993-mesh-cfd:$(IMAGE_TAG) .
 
+#> conteneurs | Image apprentissage physique
 container-physicsml:
 	docker build --build-arg PHYSICSNEMO_EXTRAS=$(PHYSICSNEMO_EXTRAS) -f containers/physicsml.Dockerfile -t 3dprinting993-physicsml:$(IMAGE_TAG) .
 
+#> conteneurs | Image SimReady
 container-simready:
 	docker build --platform linux/amd64 -f containers/simready.Dockerfile -t 3dprinting993-simready:$(IMAGE_TAG) .
 
+#> conteneurs | Image du flux SimReady
 container-simready-workflow:
 	docker build --platform linux/amd64 -f containers/simready-workflow.Dockerfile -t 3dprinting993-simready-workflow:$(IMAGE_TAG) .
 
+#> conteneurs | Image SimReady locale
 container-simready-local-ai:
 	docker build --platform linux/amd64 -f containers/simready-local-ai.Dockerfile -t 3dprinting993-simready-local-ai:$(IMAGE_TAG) .
 
+#> conteneurs | Image bibliotheques Omniverse CPU
+container-ov-libraries-cpu:
+	docker build --platform linux/amd64 -f containers/ov-libraries-cpu.Dockerfile -t 3dprinting993-ov-libraries-cpu:$(IMAGE_TAG) .
+
+#> conteneurs | Fumee d'une image
 container-smoke:
 	docker run --rm 3dprinting993-recon:$(IMAGE_TAG) smoke-test.sh recon
 	docker run --rm 3dprinting993-cadsim:$(IMAGE_TAG) smoke-test.sh cadsim
 	docker run --rm 3dprinting993-mesh-cfd:$(IMAGE_TAG) smoke-test.sh mesh-cfd
 
+#> conteneurs | Pousser mesh-cfd
 container-push-mesh-cfd:
 	docker tag 3dprinting993-mesh-cfd:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-mesh-cfd:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-mesh-cfd:$(IMAGE_TAG)
 
+#> conteneurs | Fumee physicsml
 container-smoke-physicsml:
 	docker run --rm 3dprinting993-physicsml:$(IMAGE_TAG) smoke-test.sh physicsml
 
+#> conteneurs | Fumee simready
 container-smoke-simready:
 	docker run --rm --platform linux/amd64 3dprinting993-simready:$(IMAGE_TAG) smoke-test.sh simready
 
+#> conteneurs | Fumee du flux simready
 container-smoke-simready-workflow:
 	docker run --rm --platform linux/amd64 3dprinting993-simready-workflow:$(IMAGE_TAG) smoke-test.sh simready-workflow
 
+#> conteneurs | Fumee simready locale
 container-smoke-simready-local-ai:
 	docker run --rm --platform linux/amd64 3dprinting993-simready-local-ai:$(IMAGE_TAG) smoke-test.sh simready-local-ai
 
+#> conteneurs | Toutes les fumees d'un coup
 container-smoke-all: container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow
 
+#> conteneurs | Pousser simready
 container-push-simready:
 	docker tag 3dprinting993-simready:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready:$(IMAGE_TAG)
 
+#> conteneurs | Pousser le flux simready
 container-push-simready-workflow:
 	docker tag 3dprinting993-simready-workflow:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready-workflow:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready-workflow:$(IMAGE_TAG)
 
+#> conteneurs | Pousser simready locale
 container-push-simready-local-ai:
 	docker tag 3dprinting993-simready-local-ai:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready-local-ai:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready-local-ai:$(IMAGE_TAG)
 
+#> conteneurs | Pousser les images au registre
 container-push:
 	docker tag 3dprinting993-recon:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-recon:$(IMAGE_TAG)
 	docker tag 3dprinting993-cadsim:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-cadsim:$(IMAGE_TAG)

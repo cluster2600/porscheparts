@@ -14,15 +14,27 @@ REGISTRY = ROOT / "catalog" / "twins"
 TWIN_ID = re.compile(r"^TWIN-[A-Z0-9][A-Z0-9._-]{2,63}$")
 COMPONENT_ID = re.compile(r"^[A-Z][A-Z0-9._-]{1,63}$")
 FIDELITIES = {"F0_reference", "F1_envelope", "F2_interface", "F3_engineering", "F4_correlated"}
-PURPOSES = {"fit", "clearance", "motion", "structural", "thermal", "fluid"}
+# Un jumeau peut servir a autre chose qu'un ajustement de piece : porter un repere,
+# une enveloppe a l'echelle, ou des cotes de controle de reparation.
+PURPOSES = {"fit", "clearance", "motion", "structural", "thermal", "fluid",
+            "datum_frame", "envelope", "repair_control"}
+# Generations couvertes, avec leur plage de millesimes. Le controle est desormais fait
+# CONTRE la generation declaree : une fiche 964 portant des millesimes 993 est refusee,
+# ce que l'ancien controle en dur sur 1993-1998 ne savait pas faire.
+GENERATION_YEARS = {"993": (1993, 1998), "964": (1989, 1994), "911": (1963, 1998)}
 ROLES = {"host", "candidate", "context"}
-KINDS = {"contact", "clearance", "fastener", "clip", "motion"}
-INTERFACE_STATUSES = {"missing_data", "ready", "passed", "failed"}
+# datum : le lien est une cote de controle publiee, non un contact physique.
+# registration : recalage d'un releve sur un repere.
+KINDS = {"contact", "clearance", "fastener", "clip", "motion", "datum", "registration"}
+INTERFACE_STATUSES = {"missing_data", "ready", "passed", "failed", "partially_satisfied"}
 VALIDATION_STATUSES = {"concept", "geometry_ready", "digitally_checked", "physically_correlated"}
 TOP_LEVEL_KEYS = {
     "schema_version", "twin_id", "name", "vehicle", "scope", "fidelity",
     "coordinate_system", "components", "interfaces", "geometry", "validation",
 }
+# Facultatif : un jumeau de structure porte une matiere, nuance, epaisseur et procede,
+# la ou un jumeau d'interface de garniture n'en a pas besoin.
+OPTIONAL_TOP_LEVEL_KEYS = {"materials"}
 
 
 def _text(value: Any) -> bool:
@@ -47,7 +59,7 @@ def validate_twin(record: Any) -> list[str]:
         return ["root: expected an object"]
     errors: list[str] = []
     missing = TOP_LEVEL_KEYS - record.keys()
-    extra = record.keys() - TOP_LEVEL_KEYS
+    extra = record.keys() - TOP_LEVEL_KEYS - OPTIONAL_TOP_LEVEL_KEYS
     if missing:
         errors.append(f"root: missing fields: {', '.join(sorted(missing))}")
     if extra:
@@ -64,8 +76,9 @@ def validate_twin(record: Any) -> list[str]:
     if not isinstance(vehicle, dict):
         errors.append("vehicle: expected an object")
     else:
-        if vehicle.get("generation") != "993":
-            errors.append("vehicle.generation: expected 993")
+        generation = vehicle.get("generation")
+        if generation not in GENERATION_YEARS:
+            errors.append(f"vehicle.generation: expected one of {sorted(GENERATION_YEARS)}")
         variants = vehicle.get("variants")
         if not isinstance(variants, list) or not variants or not all(_text(v) for v in variants):
             errors.append("vehicle.variants: expected at least one string")
@@ -74,10 +87,11 @@ def validate_twin(record: Any) -> list[str]:
             errors.append("vehicle.model_years: expected an object")
         else:
             start, end = years.get("from"), years.get("to")
-            if not isinstance(start, int) or not 1993 <= start <= 1998:
-                errors.append("vehicle.model_years.from: expected 1993..1998")
-            if not isinstance(end, int) or not 1993 <= end <= 1998:
-                errors.append("vehicle.model_years.to: expected 1993..1998")
+            lo, hi = GENERATION_YEARS.get(vehicle.get("generation"), (1963, 1998))
+            if not isinstance(start, int) or not lo <= start <= hi:
+                errors.append(f"vehicle.model_years.from: expected {lo}..{hi} for this generation")
+            if not isinstance(end, int) or not lo <= end <= hi:
+                errors.append(f"vehicle.model_years.to: expected {lo}..{hi} for this generation")
             if isinstance(start, int) and isinstance(end, int) and start > end:
                 errors.append("vehicle.model_years: from must be <= to")
 
@@ -150,9 +164,11 @@ def validate_twin(record: Any) -> list[str]:
             continue
         if interface.get("kind") not in KINDS:
             errors.append(f"{label}.kind: expected one of {sorted(KINDS)}")
+        # Une interface de contact lie deux pieces, mais une interface de datum peut en
+        # lier davantage : la cote E porte sur le plancher et les deux bas de caisse.
         refs = interface.get("components")
-        if not isinstance(refs, list) or len(refs) != 2:
-            errors.append(f"{label}.components: expected exactly two component ids")
+        if not isinstance(refs, list) or len(refs) < 2:
+            errors.append(f"{label}.components: expected at least two component ids")
         elif any(ref not in known_components for ref in refs):
             errors.append(f"{label}.components: references an unknown component")
         required = interface.get("required_measurements")
