@@ -1,0 +1,12 @@
+{
+  "component": "spring_gsc5092",
+  "description": "Ressort conique GSC5092 (991/992 GT3), géométrie enveloppe.",
+  "parameters": {
+    "spring_installed_height": {"value": 40.0, "unit": "mm", "provenance": "supplier_gsc5092", "field": "installed_height_mm"},
+    "spring_max_lift_published": {"value": 14.25, "unit": "mm", "provenance": "supplier_gsc5092", "field": "max_lift_published_mm"},
+    "spring_coil_bind_length": {"value": 24.18, "unit": "mm", "provenance": "supplier_gsc5092", "field": "coil_bind_mm"},
+    "spring_outer_diameter": {"value": 30.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "Ø ext GSC5092 non publié ; borne supposée du criblage ressorts"},
+    "spring_pocket_radial_clearance": {"value": 1.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "jeu radial ressort / logement"},
+    "spring_pocket_diameter": {"unit": "mm", "provenance": "derived", "formula": "spring_outer_diameter + 2·spring_pocket_radial_clearance", "inputs": ["spring_outer_diameter", "spring_pocket_radial_clearance"]}
+  }
+}

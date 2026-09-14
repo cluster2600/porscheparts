@@ -1,0 +1,28 @@
+{
+  "component": "design_space",
+  "description": "Variables de conception admissibles pour la boucle d'itération. Les valeurs retenues prennent la provenance derived_by_iteration avec l'essai d'origine. Étape 1 : aucune valeur sourcée touchée. Étape 2 (seulement si l'étape 1 échoue) : alésage dans la plage Swindon. Étape 3 (dernier recours) : diamètres de soupape.",
+  "seed": 935,
+  "budget": {"grid_samples": 160, "local_evaluations": 240, "search_sweep_step_deg": 2.0, "final_sweep_step_deg": 1.0},
+  "plug_mode": "mirror_y",
+  "bore_sweep": {"bores": [95.0, 96.0, 97.0, 98.0, 99.0, 100.0, 101.0, 102.0, 102.7, 103.0, 104.0, 105.0, 106.0], "documented_upper": 102.7, "cylinders": 6, "grid_samples": 80, "local_evaluations": 200, "search_sweep_step_deg": 2.0, "final_sweep_step_deg": 1.0},
+  "variables": [
+    {"name": "intake_axis_angle", "lower": 14.0, "upper": 34.0, "stage": 1, "why": "angle d'axe admission ; départ 935 26,6°"},
+    {"name": "exhaust_axis_angle", "lower": 14.0, "upper": 34.0, "stage": 1, "why": "angle d'axe échappement ; départ 935 29,2°"},
+    {"name": "intake_valve_x", "lower": -34.0, "upper": -14.0, "stage": 1, "why": "entraxe admission / arête"},
+    {"name": "exhaust_valve_x", "lower": 12.0, "upper": 32.0, "stage": 1, "why": "entraxe échappement / arête"},
+    {"name": "valve_y_extra", "lower": 0.0, "upper": 6.0, "stage": 1, "why": "écartement supplémentaire dans une paire"},
+    {"name": "plug_1_px", "lower": -30.0, "upper": 30.0, "stage": 1, "why": "position bougie 1 au plan (x)"},
+    {"name": "plug_1_py", "lower": 0.0, "upper": 46.0, "stage": 1, "why": "position bougie 1 au plan (y) ; bougie 2 miroir en y"},
+    {"name": "plug_1_tilt", "lower": 0.0, "upper": 45.0, "stage": 1, "why": "inclinaison bougie / normale ; départ 935 28,3°"},
+    {"name": "plug_1_azimuth", "lower": -180.0, "upper": 180.0, "stage": 1, "why": "direction d'inclinaison bougie"},
+    {"name": "piston_pocket_depth", "lower": 0.0, "upper": 5.0, "stage": 1, "why": "poches de soupape"},
+    {"name": "intake_cam_advance", "lower": -10.0, "upper": 10.0, "stage": 1, "why": "calage came adm, bornes du balayage V1"},
+    {"name": "exhaust_cam_advance", "lower": -10.0, "upper": 10.0, "stage": 1, "why": "calage came éch"},
+    {"name": "valve_length_delta", "lower": -15.0, "upper": 25.0, "stage": 1, "why": "longueur 4V vs témoin 993 (remonte le logement de ressort)"},
+    {"name": "bore_diameter", "lower": 95.0, "upper": 106.0, "documented_upper": 102.7, "stage": 2, "why": "plage d'alésage Swindon 95–102,7 documentée ; 102,7–106 = bande exploratoire exploratory_beyond_sources (demande propriétaire, hors plage kit) ; 100 M64 préféré"},
+    {"name": "stud_span_x", "lower": 80.0, "upper": 110.0, "stage": 4, "consequence": "motif de goujons changé : carter et cylindres non compatibles M64", "why": "seulement dans le balayage d'alésage, si le motif 935 échoue"},
+    {"name": "stud_span_y", "lower": 80.0, "upper": 110.0, "stage": 4, "consequence": "motif de goujons changé : carter et cylindres non compatibles M64", "why": "idem"},
+    {"name": "intake_valve_head_diameter", "lower": 34.0, "upper": 40.0, "stage": 3, "why": "dernier recours"},
+    {"name": "exhaust_valve_head_diameter", "lower": 28.0, "upper": 33.0, "stage": 3, "why": "dernier recours"}
+  ]
+}

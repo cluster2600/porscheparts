@@ -1,0 +1,12 @@
+{
+  "component": "cylinder_liner",
+  "description": "Cylindre/chemise : alésage et course M64 sourcés ; épaulement engagé dans le centrage 935.",
+  "parameters": {
+    "bore_diameter": {"value": 100.0, "unit": "mm", "provenance": "sourced_m64", "contract_path": "documented_reference_dimensions.cylinder_bore.nominal", "note": "P3, 964 Turbo 3.6 / 993 Turbo S"},
+    "crank_stroke": {"value": 76.4, "unit": "mm", "provenance": "sourced_m64", "contract_path": "documented_reference_dimensions.crank_stroke.nominal"},
+    "conrod_length": {"value": 127.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "longueur de bielle supposée du modèle V1 (conrod_length_mm, assumed)"},
+    "liner_min_spigot_wall": {"value": 4.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "paroi radiale minimale de chemise (épaulement et fût vers les goujons) : Ø ext requis = alésage + 2 × paroi ; Ø ext chemise M64 non sourcé"},
+    "liner_spigot_radial_clearance": {"value": 0.1, "unit": "mm", "provenance": "unsourced", "hypothesis": "jeu radial épaulement / centrage"},
+    "liner_length": {"value": 90.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "longueur de chemise pour la CAO seulement"}
+  }
+}

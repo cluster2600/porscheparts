@@ -1,0 +1,288 @@
+{
+ "schema_version": 1,
+ "artifact": "m64_g1_four_valve_twin_plug_assembly",
+ "master_geometry": false,
+ "manufacturing_authorized": false,
+ "geometry_origin": "synthétique paramétrique ; aucun maillage de scan importé",
+ "accepted": true,
+ "provenance_counts": {
+  "sourced_m64": 2,
+  "candidate_935_scan_C": 21,
+  "stock_993_2v_manual": 9,
+  "supplier_swindon": 4,
+  "supplier_gsc5092": 3,
+  "derived": 8,
+  "unsourced": 38,
+  "derived_by_iteration": 17
+ },
+ "iteration": {
+  "trials": 402,
+  "accepted_trials": 104,
+  "best_trial": 385,
+  "best_stage": 1,
+  "design_variables": {
+   "intake_axis_angle": 33.375,
+   "exhaust_axis_angle": 24.6207,
+   "intake_valve_x": -20.1204,
+   "exhaust_valve_x": 27.4029,
+   "valve_y_extra": 0.1875,
+   "plug_1_px": 2.8784,
+   "plug_1_py": 32.4872,
+   "plug_1_tilt": 6.8853,
+   "plug_1_azimuth": 30.0723,
+   "piston_pocket_depth": 3.918,
+   "intake_cam_advance": -5.7145,
+   "exhaust_cam_advance": 0.7262,
+   "valve_length_delta": 7.4369
+  },
+  "sourced_values_modified": []
+ },
+ "bore": {
+  "diameter": 100.0,
+  "band": "documented_swindon",
+  "displacement_cc_6_cyl": 3600.3
+ },
+ "start_935_summary": {
+  "passed": 27,
+  "failed": 9,
+  "not_computable": [
+   "inter_cylinder_bridge"
+  ],
+  "blocking_failed": [
+   "ligament_plug_1_to_seats",
+   "ligament_plug_2_to_seats",
+   "plug_vs_ports",
+   "plug_vs_studs",
+   "plug_vs_spring_pockets",
+   "stud_vs_spring_pockets",
+   "valve_piston_intake"
+  ],
+  "min_slack": -11.235,
+  "limiting_check": "plug_vs_studs",
+  "cycle_evaluated": true,
+  "accepted": false
+ },
+ "final_summary": {
+  "passed": 35,
+  "failed": 1,
+  "not_computable": [
+   "inter_cylinder_bridge"
+  ],
+  "blocking_failed": [],
+  "min_slack": 0.188,
+  "limiting_check": "ligament_intake_intake",
+  "cycle_evaluated": true,
+  "accepted": true
+ },
+ "cad": {
+  "brep_valid": {
+   "head": true,
+   "liner": true,
+   "gasket": true,
+   "studs": true,
+   "piston": true,
+   "camshaft_intake": true,
+   "camshaft_exhaust": true,
+   "valve_intake_p": true,
+   "guide_intake_p": true,
+   "seat_intake_p": true,
+   "retainer_intake_p": true,
+   "spring_intake_p": true,
+   "follower_intake_p": true,
+   "valve_intake_m": true,
+   "guide_intake_m": true,
+   "seat_intake_m": true,
+   "retainer_intake_m": true,
+   "spring_intake_m": true,
+   "follower_intake_m": true,
+   "valve_exhaust_p": true,
+   "guide_exhaust_p": true,
+   "seat_exhaust_p": true,
+   "retainer_exhaust_p": true,
+   "spring_exhaust_p": true,
+   "follower_exhaust_p": true,
+   "valve_exhaust_m": true,
+   "guide_exhaust_m": true,
+   "seat_exhaust_m": true,
+   "retainer_exhaust_m": true,
+   "spring_exhaust_m": true,
+   "follower_exhaust_m": true
+  },
+  "all_brep_valid": true,
+  "head_solid_count": 1,
+  "head_volume_mm3": 1651402.9,
+  "files_bytes": {
+   "twin-head.step": 640481,
+   "twin-valve_intake.step": 22638,
+   "twin-valve_exhaust.step": 22590,
+   "twin-guide_seat_retainer.step": 126940,
+   "twin-spring_gsc5092.step": 42759,
+   "twin-camshaft_follower.step": 1012927,
+   "twin-cylinder_liner.step": 17222,
+   "twin-piston.step": 41285,
+   "twin-gasket.step": 9338,
+   "twin-studs.step": 26403,
+   "assembly-phi000.step": 2003728,
+   "head-section-xz.svg": 63073
+  },
+  "moved_out_of_repo": {
+   "twin-camshaft_follower.step": "/home/maxime/m64-local-artifacts/g1-four-valve-20260914/twin-camshaft_follower.step",
+   "assembly-phi000.step": "/home/maxime/m64-local-artifacts/g1-four-valve-20260914/assembly-phi000.step"
+  },
+  "brep_cross_check": [
+   {
+    "pair": "valve_intake/piston",
+    "phi_deg": 2.0,
+    "analytic_vertical_gap": 1.755,
+    "brep_distance": 1.755,
+    "required": 1.5,
+    "passed": true
+   },
+   {
+    "pair": "valve_intake/piston",
+    "phi_deg": 1.0,
+    "analytic_vertical_gap": 1.757,
+    "brep_distance": 1.757,
+    "required": 1.5,
+    "passed": true
+   },
+   {
+    "pair": "valve_intake/piston",
+    "phi_deg": 3.0,
+    "analytic_vertical_gap": 1.765,
+    "brep_distance": 1.765,
+    "required": 1.5,
+    "passed": true
+   },
+   {
+    "pair": "valve_intake/piston",
+    "phi_deg": 0.0,
+    "analytic_vertical_gap": 1.77,
+    "brep_distance": 1.77,
+    "required": 1.5,
+    "passed": true
+   },
+   {
+    "pair": "valve_exhaust/piston",
+    "phi_deg": 718.0,
+    "analytic_vertical_gap": 6.616,
+    "brep_distance": 6.616,
+    "required": 2.0,
+    "passed": true
+   },
+   {
+    "pair": "valve_exhaust/piston",
+    "phi_deg": 719.0,
+    "analytic_vertical_gap": 6.616,
+    "brep_distance": 6.616,
+    "required": 2.0,
+    "passed": true
+   },
+   {
+    "pair": "valve_exhaust/piston",
+    "phi_deg": 717.0,
+    "analytic_vertical_gap": 6.627,
+    "brep_distance": 6.627,
+    "required": 2.0,
+    "passed": true
+   },
+   {
+    "pair": "valve_exhaust/piston",
+    "phi_deg": 0.0,
+    "analytic_vertical_gap": 6.629,
+    "brep_distance": 6.629,
+    "required": 2.0,
+    "passed": true
+   },
+   {
+    "pair": "valve_intake/valve_exhaust",
+    "phi_deg": 111.0,
+    "analytic_distance": 11.478,
+    "brep_distance": 11.424,
+    "required": 1.0,
+    "passed": true
+   }
+  ],
+  "assembly_phi_deg": 0.0,
+  "sha256": {
+   "twin-head.step": "3649982c8831bf386eec95505115377b36228f4d3bef5b33ccb7cfd74e2d751d",
+   "twin-valve_intake.step": "97dae2ee44b564bc275f8b5022f05050f5312c5545dc19e9c75ebcdb5c464a9d",
+   "twin-valve_exhaust.step": "702faff2627f7f588de1613aa7455550af9f9c0b4e4759e8b604899c27356fc8",
+   "twin-guide_seat_retainer.step": "f277f03b3e74ee52b9e1e5ab7e1c8240de1542fd6fca88003422877cc9839f0b",
+   "twin-spring_gsc5092.step": "1bb2bff8c13d653f79cf1f91ee5fc0cf111de196497638ca9eaa0aa1215f998e",
+   "twin-cylinder_liner.step": "d1e5826b58e643c10b0235c63116d6b9cf1c24249df29a259cd67c28bf3821c3",
+   "twin-piston.step": "33be9e2ab41e3bc94f312044bb152a4f8a04110eb625e2c83e0c46f532799c77",
+   "twin-gasket.step": "3ea7696ad5e573d2f478adb8bda26ae1ed0199b9d90b6bd3c815decda2543560",
+   "twin-studs.step": "fe7ac1d31e5cb66e05dfd11ddec237b57d76e004901f6b20776da3ab75f3c89d",
+   "head-section-xz.svg": "471aa240aabccf5fb619964976910885d8bf8817d4cba755cc75b224112af653"
+  }
+ },
+ "environment": {
+  "python": "3.12.3",
+  "numpy": "2.5.3"
+ },
+ "sha256": {
+  "inputs": {
+   "twins/m64-cylinder-head/source/fourvalve/params/camshaft_follower.json": "e3ba0947cd759900e44c3dd3f9569dfaed868bd78c6401d7b33860271263434a",
+   "twins/m64-cylinder-head/source/fourvalve/params/criteria.json": "92181440476ad0c74d2b81af36ca90c2c5691e88eb59ad6d59f60b957a6298a5",
+   "twins/m64-cylinder-head/source/fourvalve/params/cylinder_liner.json": "3455f93641ecbc5e22cdd723eb032c1890e90c3f9882d6b2ed6a13ab93f4f082",
+   "twins/m64-cylinder-head/source/fourvalve/params/design_space.json": "2c8b44d3a5485618f035b79172d0b1ccbf5e29a2f160f9568054c74c2963a9cc",
+   "twins/m64-cylinder-head/source/fourvalve/params/gasket_studs.json": "a2a593cc8fd97bc5541dedb3939f5a9e63f2bc5c890044a421e96133d8d0c605",
+   "twins/m64-cylinder-head/source/fourvalve/params/guide_seat_retainer.json": "5005c18beaa05b870295cab265a7cd8dc1b0831081fcb981cb873d6a902b1d23",
+   "twins/m64-cylinder-head/source/fourvalve/params/head.json": "f4fc57cf9438a9eaef772832927dc76f4acd8cab3a41b675fabf218d94e6f4c9",
+   "twins/m64-cylinder-head/source/fourvalve/params/piston.json": "42c400db095c19b07c1636bb17966d2e1e117369eb2c02cdfa5eca1f74930a04",
+   "twins/m64-cylinder-head/source/fourvalve/params/spring_gsc5092.json": "9eeb78772bae4258612173d03a00934f175cf2b634ea2c5f0080acb7b8065e12",
+   "twins/m64-cylinder-head/source/fourvalve/params/valve.json": "6279f85bbe3a72168c032e39fecb283577f322ee5b1135bb1e1e9ae096a1b0d8"
+  },
+  "sources": {
+   "contract": "8534f4628b5d8ad8479a8f9f3b03b4b4aa9e24bf08d6e8692df5b742e1f7beb1",
+   "scan935": "6b27b2b6c225c3a73640eb7ddaf8616691eb76aa3d28c931bfe9a5a3e9da2912",
+   "manual993": "e9022f758dfe70c9b94286429411055898c647660d9d933bf78d7c87661e6cde",
+   "swindon": "4aa086c6f2bc0961bbe8a3f621273ca945e95f95bf8107ab51a295a103114bf7",
+   "gsc5092": "c7410e8e257a5341d596ee00b1f754495b7ddbbd12d0681ad71cf87e444cb400"
+  },
+  "generators": {
+   "bore_sweep.py": "2a157858c109e3e538f7d94bfa2db4c49c12bca59b9da1b40b9c97ce04e17d1b",
+   "assembly.py": "8b77e7f5345562135e1252af74474b1ab919b0b4cd2d30dcbe678a888192fc25",
+   "cadcommon.py": "eb8b3f9ecd6a14d022501100e4132da634369078b91fb5c09afdc1285c6267aa",
+   "camshaft.py": "31d86c9bc3378c87a5deb0cdd2f6bb0cc04fb831b83e8ee7833059d29a8e981b",
+   "components.py": "4ea8d8ebaf3d7f17d8753ceb6a9e99faab3def4ca5cfa563aa0a962077cedbd5",
+   "gasket.py": "ef73fead4753060006aa1262fb1cb619e131dc0999cbc0d5710a83dac2cafb36",
+   "head.py": "44e7bb423f42bbfe1a6b706d0e8547b41b9c36eec823c453d0a18a75a82a7221",
+   "liner.py": "c25e5c6ee0ab4772c9e14fe3536d693c3bf00459f0e6579d3b9999a306322e34",
+   "piston.py": "449745ab20bac15fc1ae2cebee4ea1b56f2592ad2bf12e6055a8f935e1adc04b",
+   "spring.py": "17d6ac41d29ae2a220e685edc36d7bcf409d0c26e7cc48e5d736821f58ccfc93",
+   "studs.py": "0a1b44739fca525328fd18364d3051dfc810c3dc18bc328a70c047da9314e6ef",
+   "valve.py": "06c720efa6bf1833043b53ee4a2d52e2a64a91ff911a808f747388b0ce636e28",
+   "checks.py": "c4339b129ee43e57c04a1f0ee9ca136a9c7c2b5ce5b4fc4a863b6aed4a1b04ef",
+   "iterate.py": "fe93716b4128d4a54a16984490aad449fed418243cd7866f49fdf22549512371",
+   "kinematics.py": "b7e45b0a9d72f4da3b07201429df20bdd7dabc524bb9b6a8ac2a0474d7a969a1",
+   "layout.py": "13b8180aa62775b354aa85b9570644f40c655ec461c00705663db98b0add135c",
+   "provenance.py": "39bf0f1c90688a4f0a9c48ec3637d35685579f783aaca6d896d86c0fc6093e64",
+   "run.py": "cdb40cf337070d682020975faf9646fcb703805bc072cc9a703c305dded9f1e4"
+  },
+  "outputs": {
+   "parameters-resolved.json": "cfa8bf684c097e32fdc29a26d65de2438b1b56aa995b54ef5fa94623eaeda9de",
+   "checks.json": "27f1af1ba788625b5ca3600935088bb2a0a26c07baf400b45f195d348da416d7",
+   "iteration-history.json": "41762e19d78e1aead2bd48c3aef0377b10869e52c884d5e3adc6a8cbc365465a"
+  }
+ },
+ "derived_parameters": [
+  "intake_axis_angle",
+  "exhaust_axis_angle",
+  "intake_valve_y",
+  "exhaust_valve_y",
+  "intake_valve_x",
+  "exhaust_valve_x",
+  "roof_ridge_height",
+  "intake_throat_diameter",
+  "exhaust_throat_diameter",
+  "plug_1_tilt",
+  "plug_1_azimuth",
+  "plug_2_tilt",
+  "plug_2_azimuth",
+  "intake_spring_seat_axial",
+  "exhaust_spring_seat_axial",
+  "spring_pocket_diameter"
+ ]
+}
