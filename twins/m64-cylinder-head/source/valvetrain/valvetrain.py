@@ -89,6 +89,43 @@ def default_parameters() -> dict:
     }
 
 
+MANUAL_G15 = "catalog/manual/993-workshop-manual-group15-cylinder-head.json"
+
+
+def stock_993_manual_parameters() -> dict:
+    """Jeu `stock_993_manual` : défauts + calage d'origine 993 Carrera 2 soupapes (manuel p.16).
+
+    N'écrase pas default_parameters(). Seuls les centres de levée et le jeu
+    (hydraulique) sont remplacés ; levée, durées et ressort restent supposés.
+    Référence d'origine 2V, pas une loi du 4 soupapes visé.
+    """
+    import copy
+    params = copy.deepcopy(default_parameters())
+    src = f"{MANUAL_G15} ; manuel 993 p.16, levée 1 mm jeu nul, 993 Carrera 2V (applicabilité au 4V non établie)."
+    # admission : -1° (1° av. PMH) à 180+60 = 240° -> centre 119,5°
+    params["intake"]["centreline_crank_deg"] = P(119.5, "deg", "sourced_reference",
+                                                 "Milieu de AO 1° av. PMH / AF 60° ap. PMB ; " + src)
+    # échappement : 540-45 = 495° à 720+6 = 726° -> centre 610,5°
+    params["exhaust"]["centreline_crank_deg"] = P(610.5, "deg", "sourced_reference",
+                                                  "Milieu de EO 45° av. PMB / EF 6° ap. PMH ; p.175 donne EF 2° (conflit non résolu) ; " + src)
+    for kind in ("intake", "exhaust"):
+        params[kind]["lash_cold_mm"] = P(0.0, "mm", "sourced_reference", "Rattrapage hydraulique (manuel 993 p.16, p.160) ; " + MANUAL_G15)
+        params[kind]["lash_hot_delta_mm"] = P(0.0, "mm", "sourced_reference", "Jeu compensé par poussoir hydraulique, p.16 ; " + MANUAL_G15)
+    ref = "Non utilisé dans le calcul ; " + src
+    params["manual_reference"] = {
+        "timing_1mm_inlet_opens_BTDC_deg": P(1, "deg", "sourced_reference", ref),
+        "timing_1mm_inlet_closes_ABDC_deg": P(60, "deg", "sourced_reference", ref),
+        "timing_1mm_exhaust_opens_BBDC_deg": P(45, "deg", "sourced_reference", ref),
+        "timing_1mm_exhaust_closes_ATDC_deg": P(6, "deg", "sourced_reference", ref + " Conflit : p.175 = 2°."),
+        "spring_installed_length_intake_mm": P(36.7, "mm", "sourced_reference", "A = 36,7 +0,3, double ressort, M64/05-08, p.157 ; " + MANUAL_G15),
+        "spring_installed_length_exhaust_mm": P(35.7, "mm", "sourced_reference", "A = 35,7 +0,3, double ressort, M64/05-08, p.157 ; " + MANUAL_G15),
+        "valve_stem_nominal_mm": P(7.97, "mm", "sourced_reference", "b = 7,970 -0,012, guide g 8,00-8,015, p.153/155 ; " + MANUAL_G15),
+        "intake_head_diameter_2v_mm": P(49.0, "mm", "sourced_reference", "a = 49 ±0,1, 2V Carrera, p.155 ; " + MANUAL_G15),
+        "exhaust_head_diameter_2v_mm": P(42.5, "mm", "sourced_reference", "a = 42,5 ±0,1, 2V Carrera, p.155 ; " + MANUAL_G15),
+    }
+    return params
+
+
 def val(params: dict, *keys):
     node = params
     for key in keys:
