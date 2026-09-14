@@ -39,6 +39,10 @@
     "WM993": {
       "url": "https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM",
       "title": "Porsche 911 (993) Workshop Manual WKD 483 121, local copy not redistributed; see catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json"
+    },
+    "W935": {
+      "url": "https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan",
+      "title": "Scan OBJ culasse billet Porsche 935 (Wolfe Classics), SHA-256 4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486 ; brut et dérivés hors Git ; mesures dans twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json"
     }
   },
   "documented_reference_dimensions": {
@@ -325,6 +329,20 @@
           ],
           "interpretation": "procédure de serrage, ni entraxe ni précharge",
           "promoted_to_nominal": false
+        },
+        {
+          "fact": "935_scan_head_stud_pattern",
+          "value_text": "4 trous Ø 10,47-10,88 ; carré 85,7-86,5 ; diagonales 121,5/121,8 ; axes à 0,5-1,3° de la normale ; positions ± 0,08",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: head_studs",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "un seul cylindre scanné ; aucun entraxe entre cylindres ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
         }
       ]
     },
@@ -336,7 +354,22 @@
       "source": null,
       "source_locator": null,
       "confidence": null,
-      "documented_partial_facts": []
+      "documented_partial_facts": [
+        {
+          "fact": "935_scan_register_wall_diameter",
+          "value_text": "Ø 113,42 ± 0,02 (k=1) ; arête intérieure du lamage Ø 94,28 ± 0,09 ; lèvre de chambre Ø 91,19 ± 0,21",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: register_wall ; floor_inner_edge ; chamber_lip_wall",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "centrage d'une 935 (alésage ≈ 95), pas le registre M64 à alésage 100 ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
+        }
+      ]
     },
     "cylinder_register_depth": {
       "status": "absent",
@@ -346,7 +379,22 @@
       "source": null,
       "source_locator": null,
       "confidence": null,
-      "documented_partial_facts": []
+      "documented_partial_facts": [
+        {
+          "fact": "935_scan_register_depth",
+          "value_text": "2,21 ± 0,02 (k=1), fond parallèle à 0,04°",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: register_depth",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
+        }
+      ]
     },
     "sealing_surface_definition": {
       "status": "partial",
@@ -392,6 +440,20 @@
           ],
           "interpretation": "enlèvement de réparation, pas épaisseur nominale",
           "promoted_to_nominal": false
+        },
+        {
+          "fact": "935_scan_sealing_plane_apparent_flatness",
+          "value_text": "RMS 0,047 ; p95 0,105 ; crête-creux 0,30 (25 120 inliers, couronne r 58,5-75)",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: sealing_plane",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "planéité apparente du maillage, bruit de scan inclus ; définit le repère z de la culasse 935 ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
         }
       ]
     },
@@ -427,6 +489,20 @@
           ],
           "interpretation": "filetage en bout d'arbre, pas position d'axe",
           "promoted_to_nominal": false
+        },
+        {
+          "fact": "935_scan_carrier_face",
+          "value_text": "face d'appui à 86,46 ± 0,1 du plan d'étanchéité, parallèle à 0,59° ; 7 trous fermés Ø 7,0-8,3 ; axes d'arbre non mesurables (paliers hors culasse)",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: cam_carrier",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
         }
       ]
     },
@@ -438,7 +514,22 @@
       "source": null,
       "source_locator": null,
       "confidence": null,
-      "documented_partial_facts": []
+      "documented_partial_facts": [
+        {
+          "fact": "935_scan_oil_passages_not_measurable",
+          "value_text": "non mesurable : aucun passage identifiable sans ambiguïté (maillage ouvert, pas de coupe ni CT)",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: cam_carrier.oil_feed_and_return",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "absence de mesure, pas absence de passage ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
+        }
+      ]
     },
     "intake_and_exhaust_flange_interfaces": {
       "status": "partial",
@@ -459,6 +550,20 @@
             "993 Carrera"
           ],
           "interpretation": "existence d'une fixation échappement sur culasse ; ni motif ni bride",
+          "promoted_to_nominal": false
+        },
+        {
+          "fact": "935_scan_flanges",
+          "value_text": "bride B basse : plan à 89,47° de z, 4 fixations en carré 46,2-46,9 (diagonales 65,8/66,1), conduit Ø 39,99 ; bride B haute : plan à 89,35°, 2 goujons visibles à 66,13, contour non mesurable",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: flanges",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "côté admission/échappement non attribué ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
           "promoted_to_nominal": false
         }
       ]
@@ -507,6 +612,34 @@
           ],
           "interpretation": "benchmark 4V tiers, pas choix de conception",
           "promoted_to_nominal": false
+        },
+        {
+          "fact": "935_scan_valve_axes",
+          "value_text": "2 soupapes : axes à 26,6 ± 1,0° et 29,2 ± 1,4° de la normale ; angle inclus 55,7 ± 1,4° ; entraxe au plan 33,0 ± 1,0 ; gorges apparentes ≈ 45,7 et 38,3 ; alésages Ø 39,26/39,15 ; Ø13 au fond des logements",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: valves",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "architecture 2 soupapes 935 ; sièges et logements de bague non mesurables ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
+        },
+        {
+          "fact": "935_scan_spark_plug_bores",
+          "value_text": "2 bougies : alésage lisse apparent Ø 11,23/11,37 ; axes à 61,7 ± 3,7° et 60,3 ± 0,1° du plan d'étanchéité",
+          "source": "W935",
+          "source_locator": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json :: spark_plugs",
+          "confidence": "measured_on_935_scan_evidence_C",
+          "applies_to": [
+            "culasse billet Porsche 935 (scan Wolfe Classics), pas M64"
+          ],
+          "interpretation": "double allumage 935, filetage non résolu ; fait candidat 935, jamais cote M64 ; à remplacer par une mesure MMT sur culasse M64",
+          "candidate_935_scan_fact": true,
+          "unit_basis": "unités OBJ, mm cohérent non étalonné",
+          "promoted_to_nominal": false
         }
       ]
     }
@@ -529,5 +662,13 @@
     "exhaust_closes_ATDC": 6,
     "conflict": "PDF page 175 prints exhaust closes 2 deg ATDC for M64/05/06; unresolved",
     "role": "stock_993_carrera_2v_reference_not_4v_design"
+  },
+  "scan_935_candidate_facts": {
+    "evidence": "twins/m64-cylinder-head/evidence/scan935-interfaces-20260914.json",
+    "report": "docs/reports/M64_SCAN935_INTERFACES_20260914.md",
+    "status": "measured_on_935_scan_evidence_C",
+    "statuses_changed": false,
+    "promoted_to_nominal": false,
+    "rule": "faits candidats 935 enregistrés dans documented_partial_facts ; ils ne remplissent aucun nominal ni tolérance M64 et ne changent aucun statut"
   }
 }

@@ -1,0 +1,1380 @@
+{
+  "schema": "scan935-interfaces/1",
+  "date": "2026-09-14",
+  "status": "measured_on_935_scan_evidence_C",
+  "source": {
+    "catalog_record": "catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json",
+    "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "vertices": 1281608,
+    "triangles": 2466040,
+    "raw_and_geometric_derivatives_in_git": false,
+    "applicability": "culasse billet Porsche 935, pas M64 ; maillage ouvert ; unités non déclarées"
+  },
+  "software": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "script": "twins/m64-cylinder-head/source/scan935/measure_interfaces.py",
+    "fit_module": "twins/m64-cylinder-head/source/scan935/fit_primitives.py"
+  },
+  "parameters": {
+    "seeds_abc": {
+      "chamber_centre_AB": [
+        128.0,
+        -169.0
+      ],
+      "seal_face_C": -87.0,
+      "recess_floor_C": -89.0,
+      "head_studs_ABC": [
+        [
+          84.8,
+          -125.9,
+          -95.0
+        ],
+        [
+          171.3,
+          -125.6,
+          -95.0
+        ],
+        [
+          171.5,
+          -211.2,
+          -95.0
+        ],
+        [
+          85.3,
+          -211.6,
+          -95.0
+        ]
+      ],
+      "spark_plugs_ABC": [
+        [
+          101.4,
+          -171.0,
+          -115.0
+        ],
+        [
+          154.8,
+          -174.6,
+          -115.0
+        ]
+      ],
+      "valve_bucket_bores": [
+        {
+          "seed": [
+            127.7,
+            -111.5,
+            -170.0
+          ],
+          "axis_hint": [
+            0.0,
+            -0.49,
+            0.87
+          ]
+        },
+        {
+          "seed": [
+            127.4,
+            -236.0,
+            -170.0
+          ],
+          "axis_hint": [
+            0.0,
+            0.49,
+            0.87
+          ]
+        }
+      ],
+      "flange_low_B": {
+        "plane_B": -251.5,
+        "port_slab_B": -245.0,
+        "studs_ABC_ball": [
+          [
+            [
+              104.5,
+              -262.0,
+              -98.0
+            ],
+            9.0
+          ],
+          [
+            [
+              150.5,
+              -262.0,
+              -145.1
+            ],
+            9.0
+          ],
+          [
+            [
+              104.1,
+              -248.6,
+              -144.8
+            ],
+            5.0
+          ],
+          [
+            [
+              151.1,
+              -248.9,
+              -98.2
+            ],
+            5.0
+          ]
+        ]
+      },
+      "flange_high_B": {
+        "plane_B": -62.0,
+        "studs_ABC_ball": [
+          [
+            [
+              113.9,
+              -50.0,
+              -104.1
+            ],
+            9.0
+          ],
+          [
+            [
+              141.6,
+              -50.0,
+              -164.1
+            ],
+            9.0
+          ]
+        ]
+      },
+      "carrier_face_C": -173.8
+    },
+    "provisional_frame_rows_abc_in_obj": [
+      [
+        -0.7378988560967272,
+        -0.43985444075767904,
+        0.5118919310917986
+      ],
+      [
+        -0.6685883055304793,
+        0.372821869696816,
+        -0.6434232908308906
+      ],
+      [
+        0.09216808492652868,
+        -0.8170262691134965,
+        -0.5691863664033568
+      ]
+    ],
+    "ransac_seed": 935,
+    "bootstrap_samples": {
+      "circles_planes": 40,
+      "cylinders": 30
+    },
+    "uncertainty_rule": "k=1 : racine(sd_bootstrap² + (étendue de sensibilité / 2)²) ; exclut l'échelle OBJ et l'erreur du scanner"
+  },
+  "frame": {
+    "definition": "origine = axe du registre (cercle) sur le plan d'étanchéité ; z = normale du plan orientée vers le cylindre (matière de culasse en z < 0) ; x = A provisoire projeté ; y = z × x",
+    "origin_obj": [
+      10.2123,
+      -48.2504,
+      223.5449
+    ],
+    "rows_xyz_in_obj": [
+      [
+        -0.7378261751474696,
+        -0.44049419377450866,
+        0.5114463808828847
+      ],
+      [
+        -0.6685375687308598,
+        0.3723729502351302,
+        -0.6437358970327943
+      ],
+      [
+        0.09311312723073095,
+        -0.816886314724473,
+        -0.5692334269464354
+      ]
+    ]
+  },
+  "sealing_plane": {
+    "value": {
+      "flatness_rms": 0.047,
+      "flatness_p95": 0.105,
+      "peak_to_valley_inliers": 0.3
+    },
+    "uncertainty_k1": {
+      "offset": 0.003,
+      "normal_deg": 0.188
+    },
+    "unit": "obj_unit_mm_coherent_not_calibrated",
+    "method": "RANSAC plan (seuil 0,15 ; 500 hypothèses à moins de 5° de C) puis moindres carrés ; sensibilité 3 seuils × 3 couronnes et 4 secteurs",
+    "region": {
+      "C_window": [
+        -87.8,
+        -86.2
+      ],
+      "radial_window_around_chamber": [
+        58.5,
+        75
+      ]
+    },
+    "quality": {
+      "points_in_region": 29586,
+      "inliers": 25120,
+      "inlier_fraction": 0.849,
+      "rms": 0.047,
+      "p95": 0.105,
+      "max": 0.15,
+      "peak_to_valley_inliers": 0.3,
+      "sensitivity_offset_range": 0.006,
+      "sensitivity_normal_max_deg": 0.188,
+      "sector_centroid_offsets": [
+        0.003,
+        -0.003,
+        0.005,
+        -0.004
+      ],
+      "normal_tilt_vs_provisional_C_deg": 0.055
+    },
+    "status": "measured_on_935_scan_evidence_C",
+    "quantity": "planarity",
+    "note": "planéité apparente du maillage, bruit de scan inclus ; pas une planéité métrologique"
+  },
+  "register_wall": {
+    "value": 113.423,
+    "uncertainty_k1": 0.021,
+    "unit": "obj_unit_mm_coherent_not_calibrated",
+    "method": "RANSAC cercle (seuil 0,2) puis Gauss-Newton géométrique sur la bande de sommets, axe = normale du plan d'étanchéité",
+    "region": {
+      "z_window": [
+        -1.6,
+        -0.4
+      ],
+      "radial_window": [
+        55,
+        60
+      ]
+    },
+    "quality": {
+      "points": 3066,
+      "inlier_fraction": 0.71,
+      "coverage_deg": 360.0,
+      "rms": 0.07,
+      "p95": 0.134,
+      "max": 0.199,
+      "bootstrap_sd": 0.0025833191322252353,
+      "sensitivity_range_3_windows": 0.042,
+      "centre_offset_from_origin": 0.0
+    },
+    "status": "measured_on_935_scan_evidence_C",
+    "quantity": "diameter"
+  },
+  "chamber_lip_wall": {
+    "value": 91.19,
+    "uncertainty_k1": 0.21,
+    "unit": "obj_unit_mm_coherent_not_calibrated",
+    "method": "RANSAC cercle (seuil 0,2) puis Gauss-Newton géométrique sur la bande de sommets, axe = normale du plan d'étanchéité",
+    "region": {
+      "z_window": [
+        -5.0,
+        -2.7
+      ],
+      "radial_window": [
+        43,
+        47.5
+      ]
+    },
+    "quality": {
+      "points": 1808,
+      "inlier_fraction": 0.244,
+      "coverage_deg": 360.0,
+      "rms": 0.116,
+      "p95": 0.19,
+      "max": 0.204,
+      "bootstrap_sd": 0.005815705556804104,
+      "sensitivity_range_3_windows": 0.42,
+      "centre_offset_from_origin": 0.522
+    },
+    "status": "measured_on_935_scan_evidence_C",
+    "quantity": "diameter"
+  },
+  "floor_inner_edge": {
+    "value": 94.28,
+    "uncertainty_k1": 0.09,
+    "unit": "obj_unit_mm_coherent_not_calibrated",
+    "method": "RANSAC cercle (seuil 0,2) puis Gauss-Newton géométrique sur la bande de sommets, axe = normale du plan d'étanchéité",
+    "region": {
+      "z_window": [
+        -2.3,
+        -1.9
+      ],
+      "radial_window": [
+        45,
+        49
+      ]
+    },
+    "quality": {
+      "points": 1097,
+      "inlier_fraction": 0.237,
+      "coverage_deg": 350.0,
+      "rms": 0.11,
+      "p95": 0.185,
+      "max": 0.207,
+      "bootstrap_sd": 0.006583356955781779,
+      "sensitivity_range_3_windows": 0.18,
+      "centre_offset_from_origin": 0.157
+    },
+    "status": "measured_on_935_scan_evidence_C",
+    "quantity": "diameter"
+  },
+  "register_axis_tilt_vs_seal_normal_deg": {
+    "value": 5.934,
+    "uncertainty_k1": null,
+    "unit": "obj_unit_mm_coherent_not_calibrated",
+    "method": "cylindre RANSAC libre sur la paroi du registre ; paroi haute d'environ 1,2 unité, angle faiblement contraint",
+    "region": {
+      "z_window": [
+        -1.6,
+        -0.4
+      ],
+      "radial_window": [
+        55,
+        60
+      ]
+    },
+    "quality": {
+      "points": 2264,
+      "rms": 0.077
+    },
+    "status": "measured_on_935_scan_evidence_C",
+    "quantity": "angle_deg"
+  },
+  "register_depth": {
+    "value": 2.21,
+    "uncertainty_k1": 0.017,
+    "unit": "obj_unit_mm_coherent_not_calibrated",
+    "method": "distance du plan d'étanchéité (z = 0) au plan RANSAC du fond de lamage annulaire, prise au centroïde",
+    "region": {
+      "z_window": [
+        -2.9,
+        -1.3
+      ],
+      "radial_window": [
+        48.5,
+        55.5
+      ]
+    },
+    "quality": {
+      "points": 11288.0,
+      "rms": 0.062,
+      "p95": 0.126,
+      "max": 0.152,
+      "floor_parallelism_deg": 0.044,
+      "sensitivity_range_thresholds": 0.035
+    },
+    "status": "measured_on_935_scan_evidence_C",
+    "quantity": "depth"
+  },
+  "head_studs": {
+    "count_found": 4,
+    "search_note": "quatre trous fermés trouvés dans les tranches z = -5 à -8 ; aucune autre ouverture circulaire 4-7 de rayon sur l'emprise",
+    "holes": [
+      {
+        "centre_xy_at_seal_plane": {
+          "value": [
+            -43.381,
+            42.87
+          ],
+          "uncertainty_k1": 0.069,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "intersection de l'axe du cylindre RANSAC avec z = 0",
+          "region": {
+            "seed_local": [
+              -43.32,
+              42.75,
+              -8.11
+            ],
+            "ball_radius": 8.0
+          },
+          "quality": {
+            "points": 2172,
+            "rms": 0.107,
+            "p95": 0.208,
+            "axial_extent": 10.797
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "position"
+        },
+        "diameter": {
+          "value": 10.473,
+          "uncertainty_k1": 0.014,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC (seuil 0,3) sur sommets à normale perpendiculaire à l'axe ; bootstrap 30 tirages ; boules 7/8/10",
+          "region": {
+            "seed_local": [
+              -43.32,
+              42.75,
+              -8.11
+            ]
+          },
+          "quality": {
+            "sensitivity_range_ball": 0.027
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_tilt_vs_seal_normal_deg": 1.098
+      },
+      {
+        "centre_xy_at_seal_plane": {
+          "value": [
+            43.157,
+            42.985
+          ],
+          "uncertainty_k1": 0.06,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "intersection de l'axe du cylindre RANSAC avec z = 0",
+          "region": {
+            "seed_local": [
+              43.18,
+              43.05,
+              -8.18
+            ],
+            "ball_radius": 8.0
+          },
+          "quality": {
+            "points": 1963,
+            "rms": 0.096,
+            "p95": 0.197,
+            "axial_extent": 10.268
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "position"
+        },
+        "diameter": {
+          "value": 10.558,
+          "uncertainty_k1": 0.006,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC (seuil 0,3) sur sommets à normale perpendiculaire à l'axe ; bootstrap 30 tirages ; boules 7/8/10",
+          "region": {
+            "seed_local": [
+              43.18,
+              43.05,
+              -8.18
+            ]
+          },
+          "quality": {
+            "sensitivity_range_ball": 0.01
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_tilt_vs_seal_normal_deg": 0.475
+      },
+      {
+        "centre_xy_at_seal_plane": {
+          "value": [
+            43.2,
+            -42.766
+          ],
+          "uncertainty_k1": 0.072,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "intersection de l'axe du cylindre RANSAC avec z = 0",
+          "region": {
+            "seed_local": [
+              43.38,
+              -42.55,
+              -8.13
+            ],
+            "ball_radius": 8.0
+          },
+          "quality": {
+            "points": 1810,
+            "rms": 0.113,
+            "p95": 0.231,
+            "axial_extent": 11.88
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "position"
+        },
+        "diameter": {
+          "value": 10.708,
+          "uncertainty_k1": 0.012,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC (seuil 0,3) sur sommets à normale perpendiculaire à l'axe ; bootstrap 30 tirages ; boules 7/8/10",
+          "region": {
+            "seed_local": [
+              43.38,
+              -42.55,
+              -8.13
+            ]
+          },
+          "quality": {
+            "sensitivity_range_ball": 0.02
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_tilt_vs_seal_normal_deg": 1.34
+      },
+      {
+        "centre_xy_at_seal_plane": {
+          "value": [
+            -42.867,
+            -42.839
+          ],
+          "uncertainty_k1": 0.078,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "intersection de l'axe du cylindre RANSAC avec z = 0",
+          "region": {
+            "seed_local": [
+              -42.82,
+              -42.95,
+              -8.07
+            ],
+            "ball_radius": 8.0
+          },
+          "quality": {
+            "points": 1979,
+            "rms": 0.118,
+            "p95": 0.227,
+            "axial_extent": 9.43
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "position"
+        },
+        "diameter": {
+          "value": 10.879,
+          "uncertainty_k1": 0.011,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC (seuil 0,3) sur sommets à normale perpendiculaire à l'axe ; bootstrap 30 tirages ; boules 7/8/10",
+          "region": {
+            "seed_local": [
+              -42.82,
+              -42.95,
+              -8.07
+            ]
+          },
+          "quality": {
+            "sensitivity_range_ball": 0.019
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_tilt_vs_seal_normal_deg": 1.09
+      }
+    ],
+    "pattern": {
+      "value": {
+        "span_x": 86.581,
+        "span_y": 85.824,
+        "pair_distances": [
+          85.71,
+          85.751,
+          86.067,
+          86.539,
+          121.515,
+          121.778
+        ],
+        "centroid_offset_from_register_axis": [
+          0.027,
+          0.063
+        ]
+      },
+      "uncertainty_k1": 0.1,
+      "unit": "obj_unit_mm_coherent_not_calibrated",
+      "method": "entraxes entre intersections d'axes au plan d'étanchéité",
+      "region": "quatre trous de goujon de culasse",
+      "quality": "incertitude = somme majorante des positions",
+      "status": "measured_on_935_scan_evidence_C",
+      "quantity": "pattern"
+    }
+  },
+  "spark_plugs": {
+    "count_found": 2,
+    "note": "deux logements symétriques (double allumage 935) ; le filetage n'est pas résolu par le scan, seul un alésage lisse apparent est ajusté",
+    "plugs": [
+      {
+        "diameter_apparent": {
+          "value": 11.234,
+          "uncertainty_k1": 0.073,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC, axe initial = plus petite direction propre des normales locales",
+          "region": {
+            "seed_local": [
+              -26.74,
+              -2.36,
+              -28.1
+            ],
+            "ball_radius": 9.0
+          },
+          "quality": {
+            "points": 2567,
+            "rms": 0.088,
+            "p95": 0.174,
+            "axial_extent": 11.01,
+            "sensitivity_range_ball": 0.145
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_angle_to_seal_plane_deg": {
+          "value": 61.684,
+          "uncertainty_k1": 3.72,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "angle entre l'axe ajusté et le plan z = 0",
+          "region": {
+            "seed_local": [
+              -26.74,
+              -2.36,
+              -28.1
+            ]
+          },
+          "quality": {
+            "sensitivity_range_ball_deg": 7.44
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "angle_deg"
+        },
+        "axis_unit_local": [
+          -0.2042,
+          0.4282,
+          -0.8803
+        ],
+        "axis_point_local": [
+          -27.069,
+          -1.684,
+          -29.308
+        ],
+        "axis_at_seal_plane_xy": [
+          -20.272,
+          -15.938
+        ]
+      },
+      {
+        "diameter_apparent": {
+          "value": 11.372,
+          "uncertainty_k1": 0.008,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC, axe initial = plus petite direction propre des normales locales",
+          "region": {
+            "seed_local": [
+              26.66,
+              -5.96,
+              -28.14
+            ],
+            "ball_radius": 9.0
+          },
+          "quality": {
+            "points": 2960,
+            "rms": 0.093,
+            "p95": 0.184,
+            "axial_extent": 11.236,
+            "sensitivity_range_ball": 0.014
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_angle_to_seal_plane_deg": {
+          "value": 60.263,
+          "uncertainty_k1": 0.075,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "angle entre l'axe ajusté et le plan z = 0",
+          "region": {
+            "seed_local": [
+              26.66,
+              -5.96,
+              -28.14
+            ]
+          },
+          "quality": {
+            "sensitivity_range_ball_deg": 0.151
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "angle_deg"
+        },
+        "axis_unit_local": [
+          -0.1982,
+          0.4547,
+          0.8683
+        ],
+        "axis_point_local": [
+          27.059,
+          -6.65,
+          -29.243
+        ],
+        "axis_at_seal_plane_xy": [
+          20.382,
+          8.663
+        ]
+      }
+    ]
+  },
+  "valves": {
+    "count_found": 2,
+    "labels": [
+      "valve_1_high_B_side",
+      "valve_2_low_B_side"
+    ],
+    "valves": [
+      {
+        "bucket_or_spring_bore_diameter": {
+          "value": 39.262,
+          "uncertainty_k1": 0.138,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC sur l'alésage côté plan d'appui du porte-arbre ; boules 20/22/25",
+          "region": {
+            "seed_local": [
+              -0.48,
+              57.1,
+              -83.16
+            ]
+          },
+          "quality": {
+            "points": 5778,
+            "rms": 0.119,
+            "p95": 0.236,
+            "axial_extent": 17.493
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_angle_to_seal_normal_deg": {
+          "value": 26.576,
+          "uncertainty_k1": 0.99,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "axe de l'alésage ajusté ; incertitude élargie par l'écart à la droite des centres des cercles concentriques (alésage, gorge)",
+          "region": {
+            "seed_local": [
+              -0.48,
+              57.1,
+              -83.16
+            ]
+          },
+          "quality": {
+            "axis_from_circle_centres_deg": 25.958,
+            "circle_centres_used": 22
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "angle_deg"
+        },
+        "axis_unit_local": [
+          0.0207,
+          -0.4469,
+          0.8943
+        ],
+        "axis_at_seal_plane_xy": [
+          1.384,
+          13.511
+        ],
+        "throat_diameter_apparent": {
+          "value": 45.815,
+          "uncertainty_k1": 0.997,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "médiane des cercles RANSAC (couverture >= 240°, centre à < 3 de l'axe) dans des tranches perpendiculaires à l'axe, z entre -25 et -5",
+          "region": {
+            "z_window": [
+              -25.0,
+              -5.0
+            ]
+          },
+          "quality": {
+            "slices": 10,
+            "diameters": [
+              45.943,
+              45.848,
+              45.778,
+              45.732,
+              45.699,
+              45.696,
+              45.782,
+              46.497,
+              47.458,
+              48.877
+            ],
+            "centre_offsets": [
+              0.934,
+              0.967,
+              1.005,
+              1.044,
+              1.088,
+              1.142,
+              1.194,
+              1.46,
+              1.534,
+              1.634
+            ]
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "guide_bore_diameter_apparent": {
+          "value": 13.146,
+          "uncertainty_k1": 0.392,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cercles RANSAC rayon 5,5-7,5 le long de l'axe, côté porte-arbre",
+          "region": {
+            "z_below": -60.0
+          },
+          "quality": {
+            "slices": 4,
+            "diameters": [
+              12.322,
+              13.282,
+              13.011,
+              13.282
+            ],
+            "z": [
+              -83.295,
+              -82.401,
+              -81.507,
+              -80.612
+            ]
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "seat_insert": {
+          "value": null,
+          "status": "not_measurable_on_935_scan",
+          "reason": "portée de siège, angle de siège et logement de bague non séparables d'une surface ouverte sans soupape ni coupe"
+        }
+      },
+      {
+        "bucket_or_spring_bore_diameter": {
+          "value": 39.145,
+          "uncertainty_k1": 0.032,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cylindre RANSAC sur l'alésage côté plan d'appui du porte-arbre ; boules 20/22/25",
+          "region": {
+            "seed_local": [
+              -0.78,
+              -67.4,
+              -83.09
+            ]
+          },
+          "quality": {
+            "points": 7119,
+            "rms": 0.117,
+            "p95": 0.241,
+            "axial_extent": 18.702
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "axis_angle_to_seal_normal_deg": {
+          "value": 29.162,
+          "uncertainty_k1": 1.419,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "axe de l'alésage ajusté ; incertitude élargie par l'écart à la droite des centres des cercles concentriques (alésage, gorge)",
+          "region": {
+            "seed_local": [
+              -0.78,
+              -67.4,
+              -83.09
+            ]
+          },
+          "quality": {
+            "axis_from_circle_centres_deg": 30.13,
+            "circle_centres_used": 21
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "angle_deg"
+        },
+        "axis_unit_local": [
+          0.024,
+          0.4867,
+          0.8732
+        ],
+        "axis_at_seal_plane_xy": [
+          1.789,
+          -19.524
+        ],
+        "throat_diameter_apparent": {
+          "value": 38.769,
+          "uncertainty_k1": 2.112,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "médiane des cercles RANSAC (couverture >= 240°, centre à < 3 de l'axe) dans des tranches perpendiculaires à l'axe, z entre -25 et -5",
+          "region": {
+            "z_window": [
+              -25.0,
+              -5.0
+            ]
+          },
+          "quality": {
+            "slices": 11,
+            "diameters": [
+              38.928,
+              38.769,
+              38.555,
+              38.406,
+              38.342,
+              38.317,
+              38.391,
+              39.177,
+              40.619,
+              42.73,
+              45.073
+            ],
+            "centre_offsets": [
+              1.246,
+              1.337,
+              1.461,
+              1.552,
+              1.594,
+              1.643,
+              1.705,
+              1.963,
+              2.215,
+              2.293,
+              2.529
+            ]
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "guide_bore_diameter_apparent": {
+          "value": 13.09,
+          "uncertainty_k1": 0.2,
+          "unit": "obj_unit_mm_coherent_not_calibrated",
+          "method": "cercles RANSAC rayon 5,5-7,5 le long de l'axe, côté porte-arbre",
+          "region": {
+            "z_below": -60.0
+          },
+          "quality": {
+            "slices": 2,
+            "diameters": [
+              12.961,
+              13.219
+            ],
+            "z": [
+              -81.905,
+              -81.032
+            ]
+          },
+          "status": "measured_on_935_scan_evidence_C",
+          "quantity": "diameter"
+        },
+        "seat_insert": {
+          "value": null,
+          "status": "not_measurable_on_935_scan",
+          "reason": "portée de siège, angle de siège et logement de bague non séparables d'une surface ouverte sans soupape ni coupe"
+        }
+      }
+    ],
+    "included_angle_deg": {
+      "value": 55.672,
+      "uncertainty_k1": 1.419,
+      "unit": "obj_unit_mm_coherent_not_calibrated",
+      "method": "angle entre les deux axes ajustés",
+      "region": "deux alésages de soupape",
+      "quality": "dépend de la qualité des axes",
+      "status": "measured_on_935_scan_evidence_C",
+      "quantity": "angle_deg"
+    },
+    "axis_spacing_at_seal_plane": {
+      "value": 33.037,
+      "uncertainty_k1": 1.0,
+      "unit": "obj_unit_mm_coherent_not_calibrated",
+      "method": "distance des intersections des axes avec z = 0 (extrapolation d'environ 85 unités)",
+      "region": "deux axes de soupape",
+      "quality": "incertitude majorée : 1° d'axe déplace le point de 1,5",
+      "status": "measured_on_935_scan_evidence_C",
+      "quantity": "distance"
+    },
+    "axis_skew_A_offset": 0.405
+  },
+  "flanges": {
+    "low_B": {
+      "plane": {
+        "value": {
+          "normal_abc": [
+            0.0042,
+            0.9999,
+            0.0099
+          ],
+          "offset_B": -251.164,
+          "angle_normal_to_seal_normal_deg": 89.465
+        },
+        "uncertainty_k1": {
+          "offset": 0.1,
+          "angle_deg": 0.2
+        },
+        "unit": "obj_unit_mm_coherent_not_calibrated",
+        "method": "RANSAC plan (seuil 0,15) sur sommets à normale ±B puis moindres carrés",
+        "region": {
+          "B_window": [
+            -252.7,
+            -250.3
+          ]
+        },
+        "quality": {
+          "points": 15590.0,
+          "rms": 0.057,
+          "p95": 0.118,
+          "max": 0.155
+        },
+        "status": "measured_on_935_scan_evidence_C",
+        "quantity": "plane"
+      },
+      "studs_or_holes": [
+        {
+          "in_plane_uv": [
+            -21.998,
+            -23.184
+          ],
+          "diameter_apparent": 7.038,
+          "diameter_bootstrap_sd": 0.006,
+          "points": 3154,
+          "p95": 0.274,
+          "axial_extent": 16.697,
+          "axis_tilt_vs_flange_normal_deg": 0.03
+        },
+        {
+          "in_plane_uv": [
+            24.0,
+            23.905
+          ],
+          "diameter_apparent": 7.675,
+          "diameter_bootstrap_sd": 0.005,
+          "points": 2560,
+          "p95": 0.227,
+          "axial_extent": 16.429,
+          "axis_tilt_vs_flange_normal_deg": 0.108
+        },
+        {
+          "in_plane_uv": [
+            -22.689,
+            23.666
+          ],
+          "diameter_apparent": 7.058,
+          "diameter_bootstrap_sd": 0.009,
+          "points": 736,
+          "p95": 0.234,
+          "axial_extent": 6.163,
+          "axis_tilt_vs_flange_normal_deg": 0.906
+        },
+        {
+          "in_plane_uv": [
+            24.167,
+            -22.981
+          ],
+          "diameter_apparent": 6.917,
+          "diameter_bootstrap_sd": 0.011,
+          "points": 964,
+          "p95": 0.255,
+          "axial_extent": 6.593,
+          "axis_tilt_vs_flange_normal_deg": 2.419
+        }
+      ],
+      "stud_pattern": {
+        "value": {
+          "count": 4,
+          "pair_distances": [
+            46.165,
+            46.69,
+            46.855,
+            46.886,
+            65.827,
+            66.117
+          ]
+        },
+        "uncertainty_k1": 0.3,
+        "unit": "obj_unit_mm_coherent_not_calibrated",
+        "method": "entraxes des intersections d'axes avec le plan de bride",
+        "region": "goujons ou trous visibles",
+        "quality": "positions contraintes par des tronçons de 5 à 17 unités",
+        "status": "measured_on_935_scan_evidence_C",
+        "quantity": "pattern"
+      },
+      "stud_positions_local": [
+        [
+          -23.594,
+          -82.657,
+          -10.971
+        ],
+        [
+          22.367,
+          -82.409,
+          -58.095
+        ],
+        [
+          -24.322,
+          -82.216,
+          -57.818
+        ],
+        [
+          22.57,
+          -82.848,
+          -11.211
+        ]
+      ],
+      "port_circle_at_B_minus_245": {
+        "value": 39.993,
+        "uncertainty_k1": 0.501,
+        "unit": "obj_unit_mm_coherent_not_calibrated",
+        "method": "cercle géométrique sur l'amas de sommets de la tranche B = -245 ± 0,3 (6 unités sous la face)",
+        "region": "conduit débouchant bride B basse",
+        "quality": {
+          "points": 497,
+          "coverage_deg": 360.0,
+          "p95": 0.501
+        },
+        "status": "measured_on_935_scan_evidence_C",
+        "quantity": "diameter",
+        "centre_local": [
+          0.097,
+          -76.369,
+          -35.544
+        ]
+      }
+    },
+    "high_B": {
+      "plane": {
+        "value": {
+          "normal_abc": [
+            -0.0022,
+            0.9999,
+            0.0119
+          ],
+          "offset_B": -61.411,
+          "angle_normal_to_seal_normal_deg": 89.348
+        },
+        "uncertainty_k1": {
+          "offset": 0.1,
+          "angle_deg": 0.2
+        },
+        "unit": "obj_unit_mm_coherent_not_calibrated",
+        "method": "RANSAC plan (seuil 0,15) sur sommets à normale ±B puis moindres carrés",
+        "region": {
+          "B_window": [
+            -63.2,
+            -60.8
+          ]
+        },
+        "quality": {
+          "points": 12026.0,
+          "rms": 0.049,
+          "p95": 0.103,
+          "max": 0.15
+        },
+        "status": "measured_on_935_scan_evidence_C",
+        "quantity": "plane"
+      },
+      "studs_or_holes": [
+        {
+          "in_plane_uv": [
+            -12.699,
+            -30.01
+          ],
+          "diameter_apparent": 6.344,
+          "diameter_bootstrap_sd": 0.008,
+          "points": 1708,
+          "p95": 0.253,
+          "axial_extent": 16.826,
+          "axis_tilt_vs_flange_normal_deg": 0.292
+        },
+        {
+          "in_plane_uv": [
+            14.881,
+            30.096
+          ],
+          "diameter_apparent": 6.753,
+          "diameter_bootstrap_sd": 0.005,
+          "points": 2371,
+          "p95": 0.269,
+          "axial_extent": 16.708,
+          "axis_tilt_vs_flange_normal_deg": 0.627
+        }
+      ],
+      "stud_pattern": {
+        "value": {
+          "count": 2,
+          "pair_distances": [
+            66.132
+          ]
+        },
+        "uncertainty_k1": 0.3,
+        "unit": "obj_unit_mm_coherent_not_calibrated",
+        "method": "entraxes des intersections d'axes avec le plan de bride",
+        "region": "goujons ou trous visibles",
+        "quality": "positions contraintes par des tronçons de 5 à 17 unités",
+        "status": "measured_on_935_scan_evidence_C",
+        "quantity": "pattern"
+      },
+      "stud_positions_local": [
+        [
+          -14.071,
+          106.845,
+          -17.464
+        ],
+        [
+          13.462,
+          107.589,
+          -77.587
+        ]
+      ],
+      "port_circle": {
+        "value": null,
+        "status": "not_measurable_on_935_scan",
+        "reason": "contour de conduit non circulaire ou ouvert dans les tranches B -80 à -62"
+      }
+    }
+  },
+  "cam_carrier": {
+    "carrier_face_plane": {
+      "value": {
+        "height_from_seal_plane": 86.461,
+        "parallelism_to_seal_deg": 0.587
+      },
+      "uncertainty_k1": {
+        "height": 0.1,
+        "angle_deg": 0.2
+      },
+      "unit": "obj_unit_mm_coherent_not_calibrated",
+      "method": "RANSAC plan sur la face arrière (normale ±C) ; hauteur = distance de l'origine du repère au plan",
+      "region": {
+        "C_window": [
+          -175.0,
+          -172.60000000000002
+        ]
+      },
+      "quality": {
+        "points": 25848.0,
+        "rms": 0.042,
+        "p95": 0.085,
+        "max": 0.15
+      },
+      "status": "measured_on_935_scan_evidence_C",
+      "quantity": "plane"
+    },
+    "carrier_fastener_holes": {
+      "value": [
+        {
+          "centre_local_xy": [
+            -28.571,
+            -82.58
+          ],
+          "diameter_apparent": 7.856,
+          "points": 136,
+          "p95": 0.234,
+          "coverage_deg": 360.0,
+          "slice_C": -174.5
+        },
+        {
+          "centre_local_xy": [
+            -28.874,
+            64.468
+          ],
+          "diameter_apparent": 8.018,
+          "points": 162,
+          "p95": 0.267,
+          "coverage_deg": 350.0,
+          "slice_C": -174.5
+        },
+        {
+          "centre_local_xy": [
+            -5.86,
+            -35.052
+          ],
+          "diameter_apparent": 6.995,
+          "points": 120,
+          "p95": 0.206,
+          "coverage_deg": 360.0,
+          "slice_C": -174.5
+        },
+        {
+          "centre_local_xy": [
+            -0.747,
+            -107.716
+          ],
+          "diameter_apparent": 8.268,
+          "points": 296,
+          "p95": 0.397,
+          "coverage_deg": 320.0,
+          "slice_C": -174.5
+        },
+        {
+          "centre_local_xy": [
+            4.319,
+            25.003
+          ],
+          "diameter_apparent": 7.014,
+          "points": 118,
+          "p95": 0.201,
+          "coverage_deg": 360.0,
+          "slice_C": -174.5
+        },
+        {
+          "centre_local_xy": [
+            27.388,
+            -76.851
+          ],
+          "diameter_apparent": 8.162,
+          "points": 268,
+          "p95": 0.19,
+          "coverage_deg": 360.0,
+          "slice_C": -174.5
+        },
+        {
+          "centre_local_xy": [
+            27.445,
+            70.457
+          ],
+          "diameter_apparent": 7.888,
+          "points": 131,
+          "p95": 0.196,
+          "coverage_deg": 300.0,
+          "slice_C": -175.5
+        }
+      ],
+      "uncertainty_k1": 0.3,
+      "unit": "obj_unit_mm_coherent_not_calibrated",
+      "method": "cercles fermés dans les tranches C -174,5 et -175,5 (amas connexes, couverture >= 250°)",
+      "region": "face d'appui porte-arbre",
+      "quality": "liste non exhaustive : seuls les trous à contour fermé sont retenus",
+      "status": "measured_on_935_scan_evidence_C",
+      "quantity": "hole_list",
+      "count_found": 7
+    },
+    "cam_axes": {
+      "value": null,
+      "status": "not_measurable_on_935_scan",
+      "reason": "aucun palier d'arbre dans la culasse scannée : les arbres sont portés par un carter séparé absent du scan"
+    },
+    "oil_feed_and_return": {
+      "value": null,
+      "status": "not_measurable_on_935_scan",
+      "reason": "aucun passage d'huile identifiable sans ambiguïté ; surfaces internes ouvertes, pas de coupe ni de CT"
+    }
+  },
+  "scale_assessment": {
+    "conclusion": "mm_coherent_not_calibrated",
+    "checks": [
+      {
+        "scan": "floor_inner_edge",
+        "value": 94.28,
+        "reference": "alésage 95 (bas de la plage Swindon 95-102,7) et 100 M64 (P3)",
+        "ratio_to_95": 0.992,
+        "ratio_to_100": 0.943
+      },
+      {
+        "scan": "chamber_lip_wall",
+        "value": 91.19,
+        "ratio_to_95": 0.96
+      },
+      {
+        "scan": "register_wall",
+        "value": 113.423,
+        "note": "diamètre de centrage, supérieur à l'alésage comme attendu"
+      },
+      {
+        "scan": "guide_bore_diameter_apparent",
+        "values": [
+          13.146,
+          13.09
+        ],
+        "reference": "logement de guide 993 2V 13,000-13,018 (WM993 p.154), autre moteur, recoupement d'ordre de grandeur seulement"
+      }
+    ],
+    "rule": "unités OBJ = mm retenues comme cohérentes à quelques % ; facteur d'échelle non étalonné, aucune cote physique connue de cette pièce"
+  }
+}
