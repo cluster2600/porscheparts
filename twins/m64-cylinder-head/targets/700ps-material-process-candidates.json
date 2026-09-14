@@ -1,0 +1,160 @@
+{
+  "schema": "m64-700ps-material-process-documentary-candidates/v1",
+  "reviewed_on": "2026-09-07",
+  "target": {"engine_family": "M64", "induction": "twin_turbo", "target_power_metric_ps": 700, "heat_load_inferred_from_power": false},
+  "status": "documentary_screening_branches_not_solver_material_cards",
+  "sources": {
+    "cp1_sheet_2021": {"url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf", "pdf_pages_one_based": [2], "sha256": "30d4071189259ae1c2fad121d52d9bedf04269cf220acd0eaaf0aa17ea7aa7bc", "visual_table_check": true},
+    "cp1_formnext_2021": {"url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/2021-11-8_constellium_aheadd_formnext_final.a0a8c4307e76.pdf", "pdf_pages_one_based": [9], "sha256": "fb545cdaa3bbbbcf69768c334158cce2f67de4012738134659058b13be60f45f", "visual_table_check": true, "redistribute_pdf_or_figures": false},
+    "ht1_sheet": {"url": "https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/aheadd_ht1_fact_sheet_230620.ccac52e244fb.pdf", "pdf_pages_one_based": [1], "sha256": "068006da7419cc7566ae5a5ed18985e0af1f11f48a3bdd52cf3bb51bc9cd360a", "visual_table_check": true, "edition_date_confirmed": null},
+    "a20x_eckart": {"url": "https://www.eckart.net/en/download/document/view/id/519", "pdf_pages_one_based": [4, 5], "sha256": "cb76ece2660dac093f9cce0e921ecb84be09e2788cd63e649f139da3c818e9b7", "visual_hot_table_check": true},
+    "alsi_original_hot_study": {"url": "https://mdpi-res.com/d_attachment/materials/materials-15-07386/article_deploy/materials-15-07386.pdf", "doi": "10.3390/ma15207386", "year": 2022, "pdf_pages_one_based": [1, 5, 6], "sha256": "d85864683c0f86c6ea48b84542513673de459fa3f9511850072cb034a4b756da", "visual_table_check": true},
+    "eos_alsi10mg_m290_30": {"url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alsi10mg-eos-m-290-30um", "format": "manufacturer_html"},
+    "eos_alf357_m290_30": {"url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alf357-eos-m-290-30um", "format": "manufacturer_html"},
+    "eos_cp1_m4004_60": {"url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-400-4-60um", "format": "manufacturer_html"},
+    "nasa_2618": {"url": "https://ntrs.nasa.gov/api/citations/19930022454/downloads/19930022454.pdf", "report": "NASA CR-4517", "year": 1993, "pdf_pages_one_based": [68], "printed_page": 64, "figure": "3a hot; 3b room temperature after exposure", "sha256": "1815885e090292492d7d2ebffc9c99d610b136455edfa83895d9375e0eb2daa2", "visual_figure_check": true},
+    "special_metals_718": {"url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-718.pdf", "report": "SMC-045, September 2007", "pdf_pages_one_based": [1, 2], "sha256": "6c9c60dc272cb4f7275091e02779879760afcb1801fc9bd04fbfca239907da90", "visual_table_check": true},
+    "eplus_ep_m400": {"url": "https://www.eplus3d.com/products/ep-m400-metal-3d-printer/", "format": "manufacturer_html"},
+    "fvd_993_gt2": {"url": "https://www.fvd.net/us-en/FVD10499302/billet-993gt2-993-turbo-cylinder-head.html", "format": "manufacturer_html"},
+    "solukon": {"url": "https://www.solukon.de/en/faq/", "format": "manufacturer_html"},
+    "ornl_calibration": {"url": "https://ornl.github.io/AdditiveFOAM/docs/heat-source-calibration/", "format": "solver_author_documentation"}
+  },
+  "materials": [
+    {
+      "id": "AlSi10Mg", "role": "existing_software_coupon_control",
+      "hot_dataset": {
+        "source": "alsi_original_hot_study", "machine": "EOS M290", "layer_um": 60,
+        "orientation": "vertical_0_degrees", "surface": "unmachined",
+        "heat_treatment": {"temperature_c": 350, "hold_h": 2, "ramp_h": 1, "cooling": "furnace"},
+        "points": [{"test_temperature_c": null, "test_temperature_label": "room_temperature", "Rm_mpa": 280.2, "elongation_percent": 6.4}, {"test_temperature_c": 250, "Rm_mpa": 162.8, "elongation_percent": 15.6}, {"test_temperature_c": 450, "Rm_mpa": 34.4, "elongation_percent": 26.5}],
+        "transfer_to_eos_30um_T6_permitted": false
+      },
+      "separate_manufacturer_ambient_route": {"source": "eos_alsi10mg_m290_30", "process": "AlSi10Mg_FlexM2912.01", "layer_um": 30, "plate_temperature_c": 35, "gas": "argon", "density_min_g_cm3": 2.67, "minimum_wall_process_capability_mm": 0.4, "engine_wall_allowable_mm": null, "T6_vertical_room_temperature_YS_mpa": 250, "T6_vertical_room_temperature_Rm_mpa": 310}
+    },
+    {
+      "id": "Aheadd_CP1", "role": "thermal_diffusion_branch",
+      "hot_dataset": {"source": "cp1_formnext_2021", "machine": "EOS M290", "layer_um": 60, "orientation": "vertical", "heat_treatment": {"temperature_c": 400, "hold_h": 1}, "points": [{"test_temperature_c": 200, "YS_mpa": 126, "Rm_mpa": 149, "elongation_percent": 17}], "transfer_to_4h_heat_treatment_permitted": false},
+      "thermal_point_separate_state": {"source": "cp1_sheet_2021", "heat_treatment": {"temperature_c": 400, "hold_h": 4}, "measurement_temperature_c": null, "conductivity_w_m_k": 187, "is_k_of_T_curve": false},
+      "density": {"source": "cp1_formnext_2021", "g_cm3": 2.73, "state": null},
+      "interval_expansion": {"source": "cp1_formnext_2021", "interval_c": [20, 200], "mean_coefficient_per_k": 0.00002519, "heat_treatment": null, "is_local_alpha_of_T": false},
+      "missing_same_state_curves": ["k(T)", "Cp(T)", "E(T)", "plasticity(T)", "creep", "thermomechanical_fatigue"]
+    },
+    {
+      "id": "Aheadd_HT1", "role": "hot_strength_branch",
+      "source": "ht1_sheet", "machine": "EOS M290", "layer_um": 60, "orientation": "Z", "surface": "machined", "standard_as_printed": "NF EN ISO 6892", "hot_test_rate_per_minute": 0.005,
+      "datasets": [
+        {"heat_treatment_label": "1", "heat_treatment_recipe": null, "points": [{"test_temperature_c": 25, "YS_mpa": 425, "Rm_mpa": 445, "elongation_percent": 6}, {"test_temperature_c": 200, "YS_mpa": 238, "Rm_mpa": 268, "elongation_percent": 13}, {"test_temperature_c": 250, "YS_mpa": 188, "Rm_mpa": 225, "elongation_percent": 6}]},
+        {"heat_treatment_label": "2", "heat_treatment_recipe": null, "points": [{"test_temperature_c": 25, "YS_mpa": 285, "Rm_mpa": 445, "elongation_percent": 6}, {"test_temperature_c": 200, "YS_mpa": 270, "Rm_mpa": 293, "elongation_percent": 11}, {"test_temperature_c": 250, "YS_mpa": 216, "Rm_mpa": 265, "elongation_percent": 5}]}
+      ],
+      "YS_offset_percent_confirmed": null,
+      "missing_same_state_curves": ["k(T)", "Cp(T)", "E(T)", "alpha(T)", "creep", "thermomechanical_fatigue"]
+    },
+    {
+      "id": "A20X", "role": "conditional_alternative",
+      "source": "a20x_eckart", "density_g_cm3": 2.85,
+      "hot_dataset": {"heat_treatment": null, "orientation": null, "sample_count": null, "soak_duration": null, "points": [{"test_temperature_c": 200, "YS_mpa": 311, "Rm_mpa": 331, "elongation_percent": 15}, {"test_temperature_c": 250, "YS_mpa": 215, "Rm_mpa": 224, "elongation_percent": 12}], "T7_assignment_from_adjacent_table_permitted": false}
+    },
+    {
+      "id": "AlF357", "role": "second_aluminium_process_control", "source": "eos_alf357_m290_30",
+      "process": "AlF357_030_M291_100", "layer_um": 30, "plate_temperature_c": null, "gas": "nitrogen", "density_g_cm3": 2.67,
+      "heat_treatment": {"solution_temperature_c": 540, "solution_tolerance_c": 6, "solution_hold_min": 30, "quench": "immediate_water", "age_temperature_c": 165, "age_tolerance_c": 6, "age_hold_h": 6, "maximum_delay_before_age_h": 40},
+      "ambient_tensile": {"orientation": "vertical", "YS_mpa": 265, "Rm_mpa": 330, "elongation_percent": 11.5},
+      "thermal_point": {"state": "heat_treated", "measurement_temperature_c": null, "conductivity_w_m_k": 150},
+      "hot_tensile_points_available_here": false
+    },
+    {
+      "id": "2618", "role": "conventional_manufacturing_benchmark", "source": "nasa_2618",
+      "documented_state": "2618-T6511 ingot metallurgy extrusion", "hot_test_pre_exposure_h": 100,
+      "hot_figure": "3a", "room_temperature_after_exposure_figure": "3b", "digitized_points": [],
+      "equivalent_to_FVD_930_specific_state": false, "lpbf_recipe_established": false
+    },
+    {
+      "id": "INCONEL_718", "role": "density_and_conduction_comparator_not_default_head_material", "source": "special_metals_718",
+      "state": "conventional_annealed_and_aged_not_LPBF",
+      "density": {"source_value_lb_in3": 0.297, "conversion_kg_m3_per_lb_in3": 27679.9047102},
+      "specific_heat_point": {"test_temperature_c": 21, "cp_j_kg_k": 435, "heat_treatment_explicit_for_Cp": null},
+      "conductivity_points": [{"test_temperature_f": 70, "k_btu_in_per_ft2_h_f": 79}, {"test_temperature_f": 400, "k_btu_in_per_ft2_h_f": 100}],
+      "conductivity_conversion_to_w_m_k": 0.144227909,
+      "conductivity_method": "calculated_from_electrical_resistivity",
+      "lpbf_recipe_established": false
+    }
+  ],
+  "process_campaign": {
+    "documentary_cp1_coupon_seed": {"source": "cp1_sheet_2021", "power_w": 370, "scan_speed_mm_s": 1400, "nominal_spot_um": 100, "spot_definition": null, "hatch_mm": 0.13, "layer_um": 60, "plate_temperature_c": 150, "heat_treatment_temperature_c": 400, "heat_treatment_hold_h": 4, "production_recipe_released": false},
+    "separate_current_eos_route": {"source": "eos_cp1_m4004_60", "machine": "EOS M400-4", "parameter_set": "AlCP1_060_M404", "layer_um": 60, "plate_temperature_c": 150, "gas": "argon", "recoater": "HSS", "nozzle": "Aerospike Nozzle", "EOSPRINT_minimum": "2.13", "source_TRL": 3, "power_w": null, "scan_speed_mm_s": null, "hatch_mm": null, "same_as_2021_coupon_seed": null},
+    "representative_chinese_hardware": {"source": "eplus_ep_m400", "machine": "EP-M400", "build_envelope_mm": [400, 400, 450], "height_includes_plate": true, "laser_option_w": 500, "initial_virtual_active_lasers": 1, "spot_range_um": [70, 120], "layer_range_um": [20, 120], "cp1_qualification_confirmed": false, "plate_150_c_capability_confirmed_here": false, "machine_ordered": false}
+  },
+  "cooling_campaign": {
+    "variants": ["forced_air_only", "same_forced_air_plus_local_oil_assistance"],
+    "original_non_oval_outer_shape_preserved_unless_benefit_proven": true,
+    "same_loads_and_outer_geometry_for_first_comparison": true,
+    "fvd_oil_feature_precedent": {"source": "fvd_993_gt2", "feature": "top pocket and drilling for oil cooling from 993 cam carrier", "dimensions_or_flow_available": false, "material_current_page": "7000_series_aluminium", "not_the_930_2618_reference": true},
+    "required_inputs_not_inferred": ["cylinder_pressure_vs_crank_angle", "local_gas_wall_heat_flux", "air_inlet_and_fan_curve", "oil_grade_Cp_viscosity_vs_T", "oil_supply_pressure_temperature_and_available_flow", "interfaces_contact_conductance", "duty_cycle"],
+    "oil_heat_equation": "mass_flow * integral(Cp(T), T_in, T_out)",
+    "pump_power_equation": "pressure_drop * volume_flow / pump_efficiency"
+  },
+  "dfam": {
+    "provisional_project_thickness_screen_mm": 1.5, "universal_material_or_machine_limit": false,
+    "evaluate_after_machining_and_tolerance": true, "structural_minimum_determined": false,
+    "separate_feature_classes": ["cooling_fins", "pressure_walls", "seat_bridges", "guide_housings", "fastener_load_paths"],
+    "closed_powder_cavities_allowed": false, "unremovable_internal_supports_allowed": false,
+    "depowdering_simulation_alone_is_cleanliness_validation": false
+  },
+  "f58_reverified": {
+    "scope": "rectangular_AlSi10Mg_coupon_not_M64_or_CP1", "cells": 57600,
+    "source_summary": "twins/reference-917-engine/evidence/f58-energy-diagnostic/energy-summary.json",
+    "incident_power_w": 380, "duration_s": 0.00012, "incident_energy_j": 0.0456,
+    "cases": [{"dt_s": 1e-7, "absorbed_energy_j": 0.0315521920477391, "limiter_sink_j": 0.0033369993239773543}, {"dt_s": 5e-8, "absorbed_energy_j": 0.03155754571464708, "limiter_sink_j": 0.0033314726408661976}],
+    "temperature_limit_k": 3300, "both_cases_hit_cap": true,
+    "initial_internal_temperature_k": 293.15, "fixed_bottom_and_side_temperature_k": 300,
+    "nOuterCorrectors": 0, "full_melt_flow_resolved": false,
+    "next_control": "independent_spatial_refinement_and_physical_model_calibration_not_time_refinement_alone",
+    "algebraic_energy_agreement_is_absorption_calibration": false,
+    "new_laser_active_simulation_performed_in_this_review": true,
+    "third_time_step_executed": {
+      "public_receipt": "twins/reference-917-engine/evidence/f58-energy-diagnostic/time-refinement-three-levels.json",
+      "public_receipt_sha256": "610465cc2a68bd81464d7e5d8f619a7102be791d11e052de92e4c52b90b83cbb",
+      "dt_s": 2.5e-8, "samples": 4800, "duration_s": 0.00012,
+      "wall_seconds": 131.725590121001, "process_exit_code": 0,
+      "only_changed_input": "system/controlDict deltaT 100 ns to 25 ns",
+      "temperature_cap_still_hit": true,
+      "absorbed_energy_j": 0.031562272110014535,
+      "limiter_sink_j": 0.0033290430074828254,
+      "limiter_fraction_of_absorbed_laser_energy": 0.10547539150156869,
+      "relative_absolute_energy_residual": 1.5225799510796898e-6,
+      "temperature_order_estimated": false,
+      "common_asymptotic_regime_established": false,
+      "manufacturing_authorized": false
+    },
+    "zero_laser_control_executed": {
+      "started_at_utc": "2026-09-07T19:33:29.042328004Z", "finished_at_utc": "2026-09-07T19:34:06.782680309Z",
+      "wall_seconds": 37.88282136712223, "cpu_limit": 2, "memory_limit_gib": 4, "external_timeout_s": 300,
+      "only_input_changed": "constant/scanPath power 380 W to 0 W",
+      "original_source_unchanged": true, "case_inputs_unchanged_after_run": true,
+      "samples": 1200, "dt_s": 1e-7, "duration_s": 0.00012,
+      "process_exit_code": 0, "exit_verified_by_docker_state_not_inferred_from_log": true,
+      "max_temperature_k": 299.9970216779135,
+      "sensible_storage_j": 0.004040712929258926,
+      "latent_storage_j": 0, "laser_in_j": 0, "advective_out_j": 0, "limiter_sink_j": 0,
+      "boundary_diffusion_in_j": 0.004040712916468293,
+      "equation_residual_j": 1.2790632471748608e-11,
+      "absolute_residual_divided_by_net_boundary_energy": 3.1660357169670223e-9,
+      "laser_normalized_relative_residual": null,
+      "laser_normalization_undefined_because_zero_laser": true,
+      "result_sha256": "3acf16c293c77fb0aa7f5f89dbc98fe76613b5844c33c0346d8f679f57650c57",
+      "manifest_sha256": "b7218c6908e94e7bb72ed7ecb7435df901981fe0f10d4f36086f55ccc57ee222",
+      "process_receipt_sha256": "85f0f21987aeb682ec3c695187163f8603a92ab890e0c1c20a98224eb43ced79",
+      "log_sha256": "a35488451593ad506fb5e101b5beb9d9586691d9f28ec14105ba12a6bfa60f1f",
+      "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+      "instrumented_binary_sha256": "b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d",
+      "linear_subtraction_from_laser_case_permitted": false,
+      "active_laser_temperature_cap_problem_solved": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "final_alloy_selected": false,
+  "hot_material_cards_qualified": false,
+  "manufacturer_process_transfer_qualified": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}

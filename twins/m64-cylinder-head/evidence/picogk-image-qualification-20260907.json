@@ -1,0 +1,38 @@
+{
+  "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:131d29d42635b1c691649edb04fa716d8fddd7751f3ebc6011efb9be8a1b0414",
+  "platform": "linux/amd64",
+  "runtime_smoke_verified": true,
+  "anonymous_exact_digest_pull_verified": true,
+  "manufacturing_validated": false,
+  "engine_validated": false,
+  "schema_version": "1.0.0",
+  "verified_at_utc": "2026-09-07T17:32:45Z",
+  "verification_host": "Kali native x86_64",
+  "fresh_empty_docker_config_used": true,
+  "image_uncompressed_size_bytes": 2080774473,
+  "compressed_layer_size_bytes": null,
+  "ci": {
+    "run_id": 34147345040,
+    "url": "https://github.com/cluster2600/porscheparts/actions/runs/34147345040",
+    "head_sha": "16886a8afc9716e0fea90aed8f98fe379c21fb00",
+    "workflow_path": ".github/workflows/containers.yml",
+    "event": "workflow_dispatch",
+    "status": "completed",
+    "conclusion": "success",
+    "public_api_metadata_verified": true
+  },
+  "smoke": {
+    "command": "docker run --rm --network none --cpus 2 --memory 4g IMAGE smoke-test.sh picogk-m64",
+    "exit_code": 0,
+    "network_mode": "none",
+    "cpu_limit": 2,
+    "memory_limit_bytes": 4294967296,
+    "native_geometry_marker": "NATIVE_GEOMETRY_FILE_SMOKE_PASS",
+    "triangles": 3660,
+    "relative_volume_error": 0.00596707,
+    "headvoxels_marker": "M64_PICOGK_GEOMETRY_PASS",
+    "final_marker": "PICOGK_M64_SMOKE_PASS",
+    "headvoxels_elapsed_seconds": 0.5854368,
+    "scope": "Software geometry witnesses only; this smoke does not simulate, fit or validate the cylinder head."
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "schema": "m64-independent-four-valve-design/v1",
+  "length_unit": "mm_design_frame_not_scan",
+  "parameters": {
+    "bore_mm": 100.0,
+    "intake_diameter_mm": 40.0,
+    "exhaust_diameter_mm": 33.0,
+    "intake_max_lift_mm": 11.5,
+    "exhaust_max_lift_mm": 9.6,
+    "bank_inclination_deg": 8.0,
+    "intake_x_mm": -18.0,
+    "exhaust_x_mm": 23.5,
+    "pair_half_spacing_mm": 22.5,
+    "seat_envelope_minimum_gap_design_mm": 2.0,
+    "seat_angle_from_transverse_plane_deg": 45.0,
+    "seat_contact_radial_width_mm": 1.0,
+    "valve_margin_radial_mm": 0.5,
+    "valve_head_axial_margin_mm": 1.5,
+    "seat_outer_radial_allowance_mm": 1.5,
+    "seat_axial_thickness_mm": 5.5,
+    "stem_diameter_mm": 6.0,
+    "intake_guide_diametral_clearance_mm": 0.03,
+    "exhaust_guide_diametral_clearance_mm": 0.04,
+    "guide_outer_diameter_mm": 11.0,
+    "guide_start_above_gauge_mm": 20.0,
+    "guide_length_mm": 35.0,
+    "stem_tip_above_gauge_mm": 82.0,
+    "conical_neck_start_radius_mm": 6.0,
+    "conical_neck_start_z_mm": 5.0,
+    "cylindrical_stem_start_z_mm": 9.0
+  },
+  "parameter_sources": {
+    "diameters_and_maximum_lifts": "https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf",
+    "guide_clearance_design_reference": "https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf",
+    "guide_reference_scope": "generic_6_to_7_mm_stems; source_does_not_explicitly_define_radial_or_diametral",
+    "guide_clearances": "explicit_cold_diametral_design_choices_not_automatically_derived_from_MAHLE_or_validated_for_M64_4V_turbo",
+    "all_other_dimensions": "explicit_exploratory_design_choices_not_Porsche_interfaces"
+  },
+  "bore_scope": "provisional_100_mm_working_bore_not_fitment_contract",
+  "coordinate_frame": "bore_axis_Z; seat_gauges_Z0; positive_Z_toward_stem; positive_lift_toward_chamber_negative_axis",
+  "axis_definition": "stems_splay_outwards_in_X; included_bank_angle_twice_inclination",
+  "scope": {
+    "source_scan_read_or_modified": false,
+    "F53_read_or_modified": false,
+    "M64_fitment_validated": false,
+    "piston_clearance_tested": false,
+    "cams_or_timing_selected": false,
+    "springs_selected_or_modeled": false,
+    "thermal_validation": false,
+    "fatigue_validation": false,
+    "materials_selected": false,
+    "LPBF_simulated": false,
+    "manufacturing_authorized": false,
+    "neck_blends_and_stem_tip_lock_details_complete": false
+  },
+  "parts": [
+    {
+      "name": "intake_1_valve",
+      "role": "valve",
+      "volume_mm3": 7753.188869671812,
+      "brep_valid": true
+    },
+    {
+      "name": "intake_1_seat",
+      "role": "seat",
+      "volume_mm3": 2345.74974181671,
+      "brep_valid": true
+    },
+    {
+      "name": "intake_1_guide",
+      "role": "guide",
+      "volume_mm3": 2326.6387792064534,
+      "brep_valid": true
+    },
+    {
+      "name": "intake_2_valve",
+      "role": "valve",
+      "volume_mm3": 7753.188869671812,
+      "brep_valid": true
+    },
+    {
+      "name": "intake_2_seat",
+      "role": "seat",
+      "volume_mm3": 2345.74974181671,
+      "brep_valid": true
+    },
+    {
+      "name": "intake_2_guide",
+      "role": "guide",
+      "volume_mm3": 2326.6387792064534,
+      "brep_valid": true
+    },
+    {
+      "name": "exhaust_1_valve",
+      "role": "valve",
+      "volume_mm3": 6067.200812245288,
+      "brep_valid": true
+    },
+    {
+      "name": "exhaust_1_seat",
+      "role": "seat",
+      "volume_mm3": 1930.007078003906,
+      "brep_valid": true
+    },
+    {
+      "name": "exhaust_1_guide",
+      "role": "guide",
+      "volume_mm3": 2323.320864665181,
+      "brep_valid": true
+    },
+    {
+      "name": "exhaust_2_valve",
+      "role": "valve",
+      "volume_mm3": 6067.200812245288,
+      "brep_valid": true
+    },
+    {
+      "name": "exhaust_2_seat",
+      "role": "seat",
+      "volume_mm3": 1930.007078003906,
+      "brep_valid": true
+    },
+    {
+      "name": "exhaust_2_guide",
+      "role": "guide",
+      "volume_mm3": 2323.320864665181,
+      "brep_valid": true
+    }
+  ],
+  "closed_step": {
+    "sha256": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+    "brep_valid_after_import": true,
+    "solid_count_after_import": 12
+  },
+  "simultaneous_100pct_step": {
+    "sha256": "46dadeccca48c47f8a464c891969fa5e4e1e387a51d6b0c0aded6bedd1f8d5f3",
+    "brep_valid_after_import": true,
+    "solid_count_after_import": 12
+  },
+  "status": "assembly_built_collision_audit_pending"
+}

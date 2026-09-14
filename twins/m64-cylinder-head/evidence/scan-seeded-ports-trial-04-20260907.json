@@ -1,0 +1,146 @@
+{
+  "schema": "m64-scan-seeded-port-routing-public/v1",
+  "inputs_sha256": {
+    "body": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "body_build": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+    "interfaces": "5068d42f379fcb9a058037fb51aac0c76695977f49a9611bf6a344d25cd425ee",
+    "repair_report": "c01c7568f15066cd89cba2516941705f14b66aadfdf32d00a58cdd34ac203d10",
+    "module_build": "7b501ab6ba49b3d8d8cbd2905e6759d38cb8ec2baa1c69f1490d9e87d62ad36e",
+    "module_STEP": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+    "routing_source": "e5c4f6ef02b46c722592b9240d0531a9ebfde07fc1ed569c84eb4ab090a81d1a",
+    "module_source": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c"
+  },
+  "length_unit": "scan_units_under_unverified_1_unit_per_mm_hypothesis",
+  "status": "native_ported_candidate_built_not_qualified",
+  "private_candidate_not_promoted_to_master": true,
+  "manufacturing_authorized": false,
+  "master_geometry_modified": false,
+  "original_internals_reconstructed": false,
+  "semantic_mapping": {
+    "intake": "high_B",
+    "exhaust": "low_B"
+  },
+  "semantic_mapping_status": "new_V2_design_choice_not_OEM_and_opposite_legacy_F36_labels",
+  "design_choices": {
+    "guide_boss_radius": 7.5,
+    "guide_boss_start_axial": 32,
+    "guide_boss_end_axial": 100,
+    "branch_stations": 17,
+    "throat_start_axial": 5.99,
+    "branch_trunk_overlap": 3,
+    "terminal_lateral_offset": {
+      "intake": 2,
+      "exhaust": 3
+    },
+    "branch_radius": "constant_throat_radius",
+    "outlet_extension_beyond_body_bbox": 8
+  },
+  "bank_records": [
+    {
+      "kind": "intake",
+      "side": "high_B",
+      "exports": {
+        "native_BRep_sha256": "6bff79a444df102d53b148c1aab7999172fff68ca80b32efbdc591616e23bbc3",
+        "native_brep_valid": true,
+        "native_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_solid_count": 1,
+        "native_roundtrip_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_roundtrip_volume_delta": 2.9103830456733704e-11,
+        "STEP_sha256": "141577feb0f10e4361118d6803252e02099fad2578dd9facd96ef6de77412ef8",
+        "STEP_brep_valid": true,
+        "STEP_solid_count": 1,
+        "STEP_BOP": {
+          "has_faulty": true,
+          "fault_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 11
+          }
+        },
+        "STEP_volume_delta": -0.000009468960342928767,
+        "STEP_qualified_for_further_CAD": false,
+        "no_tolerance_or_translator_parameter_override": true
+      },
+      "body_cut_uses": "native_BRep_not_STEP_reimport",
+      "volume_scan_units_cubed": 211610.999042933
+    },
+    {
+      "kind": "exhaust",
+      "side": "low_B",
+      "exports": {
+        "native_BRep_sha256": "cffa9453ef8b434bc36b09e98ad4bb2e75286e85b2d9232de9fa9d11ba1d29f0",
+        "native_brep_valid": true,
+        "native_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_solid_count": 1,
+        "native_roundtrip_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_roundtrip_volume_delta": -1.4551915228366852e-11,
+        "STEP_sha256": "200ffc59fec6675ad7ad15d81efbcc133993385c2f1c685095b16c678da28df4",
+        "STEP_brep_valid": true,
+        "STEP_solid_count": 1,
+        "STEP_BOP": {
+          "has_faulty": true,
+          "fault_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 9
+          }
+        },
+        "STEP_volume_delta": 0.0000215316831599921,
+        "STEP_qualified_for_further_CAD": false,
+        "no_tolerance_or_translator_parameter_override": true
+      },
+      "body_cut_uses": "native_BRep_not_STEP_reimport",
+      "volume_scan_units_cubed": 111761.28333914008
+    }
+  ],
+  "wall_thickness_verified": false,
+  "exterior_openings_qualified": false,
+  "M64_fitment_validated": false,
+  "flow_or_thermal_performance_simulated": false,
+  "intake_exhaust_common_volume": 0,
+  "intake_exhaust_distance": 11.390109265204108,
+  "candidate_exports": {
+    "native_BRep_sha256": "37b654b546f5213c9a479005cb30c9f84e390a8014f72020f61f809f7988f901",
+    "native_brep_valid": true,
+    "native_BOP": {
+      "has_faulty": false,
+      "fault_counts": {}
+    },
+    "native_solid_count": 1,
+    "native_roundtrip_BOP": {
+      "has_faulty": false,
+      "fault_counts": {}
+    },
+    "native_roundtrip_volume_delta": 4.656612873077393e-10,
+    "STEP_sha256": "646b92ecdbbd6016ef49dc37731d1e8430b3cd58ee926b997f7a1e5ae90b7e85",
+    "STEP_brep_valid": true,
+    "STEP_solid_count": 1,
+    "STEP_BOP": {
+      "has_faulty": true,
+      "fault_counts": {
+        "BOPAlgo_InvalidCurveOnSurface": 55
+      }
+    },
+    "STEP_volume_delta": -0.0009158984757959843,
+    "STEP_qualified_for_further_CAD": false,
+    "no_tolerance_or_translator_parameter_override": true
+  },
+  "source_volume_scan_units_cubed": 1427076.3879131186,
+  "candidate_volume_scan_units_cubed": 1163968.0251578605,
+  "wall_seconds": 441.4939415000845,
+  "input_files_unchanged": true,
+  "private_routing_report_sha256": "b3449efbb41fd036c7f6e96b9e4bd0158a378ea815cc56ed3420f7f9466858ef",
+  "interpretation_limits": [
+    "Empty direct intake/exhaust common and their separation are not proof against indirect communication through the chamber or inserts.",
+    "BOP zero refers only to the five enabled native checks, not engine or manufacturing validity.",
+    "No positive hot clearance, strength, thermal performance, 700 PS output or print readiness is established."
+  ]
+}

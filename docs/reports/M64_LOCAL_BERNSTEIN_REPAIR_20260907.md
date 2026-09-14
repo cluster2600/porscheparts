@@ -166,7 +166,12 @@ comptes de rayons et empêchent sa promotion en pièce M64 libérée.
 Les preuves CAO ci-dessus proviennent des exécutions natives,
 pas de ces tests seuls.
 
-## Prochaine correction proposée, sans nouvelle construction
+## Piste suivante et résultat de l'essai séparé
+
+**Mise à jour :** le [renfort local C2 sur le trajet isolé le plus mince](M64_ISOLATED_C2_REJECTION_20260907.md)
+a depuis été construit comme surface séparée, puis rejeté au filtre de
+pente avant toute face ou couture. Il n'est pas combiné avec le
+solide 10 × 11. La proposition et l'audit préalables restent ci-dessous.
 
 `audit_remaining_transition_faces.py` a inspecté les quatre rayons non
 adjacents faibles restants dans la géométrie source réelle. Les quatre
@@ -194,7 +199,7 @@ contrôlés avant puis après toute construction.
 Rapport de lecture seul, privé :
 `/tmp/917-f50/out/m64-remaining-transition-feasibility-20260907.json`,
 SHA `463eaa85b14c10c2e1284049fd57642fce8e93ad1b73e5b4a37da4e7c9768a75`.
-Aucune nouvelle CAO n'a été lancée sur ces quatre rayons.
+Aucune nouvelle CAO n'avait été lancée lors de cet audit préalable.
 
 Thermique, fatigue, charge turbo, interfaces M64, fabrication LPBF et
 contrôles physiques ne sont pas validés par cette réparation. Les autres

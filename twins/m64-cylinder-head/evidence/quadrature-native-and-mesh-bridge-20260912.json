@@ -1,0 +1,173 @@
+{
+  "schema": "m64-quadrature-native-and-mesh-bridge/v1",
+  "status": "NATIVE_COUPON_PAIR_COMPLETED_TEMPERATURE_CENSORED",
+  "date": "2026-09-12",
+  "private_evidence_sha256": {
+    "make_check_log": "2f4da5ed421a4d1a128e3dc2885eb3fc36433428f4e5a25e1389d6148078f3b9",
+    "tetrahedral_region_closure": "0d898212f06b217b07f0f5802d07e8e89a203f6d524d39658c8d01701d4503fa",
+    "independent_energy_review": "4f212911c0aaad6cc904507e873f7116217a385bab89690faf26fd195b1d7ed2",
+    "independent_energy_review_script": "ae5846f637df39f5db42f1b56f4866f8150737e198aaf0aa3ba04c72eecdc777",
+    "process": "a1eb63eb15369fc854a01479b6322a03d06fc8656a90f7b5f73ffe7211ffa2ca",
+    "worker": "092db41ad8127134e90134f3139ac351db50e2390cdc15e7fbc03fe88108b604",
+    "energy": "f3dcd72e768867f38da97fe6600ea4e22428682086f360be433ffa9ba9833f0d",
+    "manifest": "9e9e1e3dd6f7d592c2b8afb48d2db60da505e659d24e62b0f654fbd2b0d09146",
+    "failed_preflight": "4600057660099278accf41caeeb2ff114aec3a70fbd9cb145b2fae5f99fadbe7",
+    "mesh_inventory": "d787311da513a42f4da379a9042f50be1aeaf16e14f9133674b62538040d372b"
+  },
+  "runner_sha256": "264d4a845019745ce8ef8e5e98963dd85ee841f41f5b45850cb05d4390271fb0",
+  "worker_sha256": "3afbcd1efdf396e7ed33ad85953f53f18df0d38badef629a98e31fc670bf2e3d",
+  "energy_adapter_sha256": "dde8edd4905d4be2173654e2fc32bd2208ec9f1fdb09af7fc12f37e24bdcb7a3",
+  "energy_parser_sha256": "65d07baa7d0f4395849263c1fcd62e28a281ad406453c51fa7c1faeb2bd73824",
+  "native": {
+    "executed": true,
+    "host": "authorized_existing_x86_host",
+    "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "cpu_limit": 2,
+    "memory_bytes": 4294967296,
+    "memory_plus_swap_bytes": 4294967296,
+    "network": "none",
+    "elapsed_including_cleanup_seconds": 67.13969689235091,
+    "total_time_limit_seconds": 600,
+    "container_exit_code": 0,
+    "oom_killed": false,
+    "container_absence_verified": true,
+    "inputs_sources_backend_unchanged": true,
+    "regular_source_files_pinned": 91,
+    "source_aliases_pinned": 67,
+    "global_field_files_exported": false,
+    "transient_field_files_removed": true,
+    "raw_logs_retained": true
+  },
+  "pair": {
+    "cells_per_case": 57600,
+    "dt_seconds": 2.5e-8,
+    "end_seconds": 0.00004,
+    "steps_per_case": 1600,
+    "incident_energy_j": 0.0152,
+    "changed_parameter": "nPoints=(10,10,10) vs (20,20,20)",
+    "cases": {
+      "q10": {
+        "native_exit_code": 0,
+        "checkMesh_exit_code": 0,
+        "steps": 1600,
+        "mesh_ok": true,
+        "inputs_unchanged": true,
+        "no_remesh_or_input_addition": true,
+        "log_sha256": "81df518fe4930ad9e70c42601b3a8a267e8ea4e6a23efa4f13f8d519bbf8c7da",
+        "integrated_terms": {
+          "sensible_storage_j": 0.009526164885492079,
+          "latent_storage_j": 0.0010455706668728699,
+          "boundary_diffusion_in_j": 0.00252353293980852,
+          "laser_in_j": 0.00892391841265196,
+          "advective_out_j": 0,
+          "limiter_sink_j": 0.0008757325531405509,
+          "equation_residual_j": 1.6753045019432324e-8
+        },
+        "absolute_residual_energy_j": 1.6761402836408225e-8,
+        "absorbed_fraction_of_incident": 0.5870998955692079,
+        "limiter_fraction_of_absorbed": 0.09813318686318039,
+        "max_temperature_k": 3300.000000021728,
+        "first_cap_time_s": 0.00001050000000000005,
+        "temperature_censored": true,
+        "temperature_validated": false
+      },
+      "q20": {
+        "native_exit_code": 0,
+        "checkMesh_exit_code": 0,
+        "steps": 1600,
+        "mesh_ok": true,
+        "inputs_unchanged": true,
+        "no_remesh_or_input_addition": true,
+        "log_sha256": "bfaa7199a64a2ceee07443c0a7afcb82469c1b0efc30829ed2bcbdf5f3a254f3",
+        "integrated_terms": {
+          "sensible_storage_j": 0.009601712508797232,
+          "latent_storage_j": 0.0010590718123445,
+          "boundary_diffusion_in_j": 0.002523532860232472,
+          "laser_in_j": 0.008929018269087449,
+          "advective_out_j": 0,
+          "limiter_sink_j": 0.000791782781561778,
+          "equation_residual_j": 1.5973383588419925e-8
+        },
+        "absolute_residual_energy_j": 1.6000783217334026e-8,
+        "absorbed_fraction_of_incident": 0.5874354124399638,
+        "limiter_fraction_of_absorbed": 0.08867523368195535,
+        "max_temperature_k": 3300.000000021613,
+        "first_cap_time_s": 0.00001062500000000005,
+        "temperature_censored": true,
+        "temperature_validated": false
+      }
+    },
+    "integral_differences": {
+      "sensible_storage_j": {
+        "absolute": 0.00007554762330515274,
+        "relative_to_q20": 0.007868140525550509
+      },
+      "latent_storage_j": {
+        "absolute": 0.000013501145471630149,
+        "relative_to_q20": 0.012748092541281262
+      },
+      "boundary_diffusion_in_j": {
+        "absolute": 7.957604800795659e-11,
+        "relative_to_q20": 3.1533588986285644e-8
+      },
+      "laser_in_j": {
+        "absolute": 0.000005099856435488229,
+        "relative_to_q20": 0.0005711553366560014
+      },
+      "advective_out_j": {
+        "absolute": 0,
+        "relative_to_q20": null
+      },
+      "limiter_sink_j": {
+        "absolute": 0.00008394977157877292,
+        "relative_to_q20": 0.10602626570532822
+      },
+      "equation_residual_j": {
+        "absolute": 7.796614310123997e-10,
+        "relative_to_q20": 0.04881003618905287
+      }
+    },
+    "max_paired_temperature_difference_k": 33.92879389481277,
+    "energy_decimal_countercheck_passed": true,
+    "convergence_order_established": false
+  },
+  "mesh_bridge": {
+    "status": "LOCAL_REGION_REJECTED_NO_MOTION",
+    "cells": 784675,
+    "tetrahedra": 716383,
+    "globally_eligible_lowD_points": 47,
+    "lowD_cells_with_eligible_points": 129,
+    "region_tetrahedra": 1000,
+    "region_points": 305,
+    "region_fixed_points": 251,
+    "region_free_points": 54,
+    "region_free_dofs": 162,
+    "region_free_lowD_points": 3,
+    "region_lowD_cells": 20,
+    "bad_directed_shell_edges": 18,
+    "rejection": "nonmanifold_or_unclosed_shell",
+    "tet_only_closure_attempted": true,
+    "closure_status": "REJECTED_MIXED_CELL_INTERFACE",
+    "disconnected_edge_stars": 3,
+    "region_cells_added": 0,
+    "source_unchanged": true,
+    "native_mfem_roundtrip_executed": false,
+    "master_modified": false
+  },
+  "spend": {
+    "new_vast_rentals": 0,
+    "new_vast_compute_cost_usd": 0,
+    "flashnext_image_found": true,
+    "flashnext_launched": false,
+    "flashnext_blocker": "gated_HF_access_not_connected_through_inspected_approved_wrappers"
+  },
+  "manufacturing_authorized": false,
+  "software_checks": {
+    "targeted_quadrature_tests_passed": 33,
+    "private_synthetic_bridge_tests_passed": 5,
+    "make_check_exit_code": 0,
+    "optional_native_runtime_checks_skipped": true
+  },
+  "full_head_thermal_simulated": false,
+  "engine_operating_cycle_simulated": false
+}

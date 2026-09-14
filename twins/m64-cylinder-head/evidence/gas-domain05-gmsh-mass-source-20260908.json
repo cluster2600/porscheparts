@@ -1,0 +1,21 @@
+{
+  "schema": "m64-gmsh-mass-source-confirmation/v1",
+  "date": "2026-09-08",
+  "status": "same_nonadaptive_OCCT_call_confirmed_in_official_Gmsh_source",
+  "quadrature_reference_receipt": "gas-domain05-volume-integrators-20260908.json",
+  "quadrature_reference_receipt_sha256": "2cc0343f22a618424ee90f73b9574297ee3905ac43cd985fa3b1f9888a9cc916",
+  "historical_reference_receipt_modified": false,
+  "official_source_archive": "https://gmsh.info/src/gmsh-4.15.2-source.tgz",
+  "archive_member": "gmsh-4.15.2-source/src/geo/GModelIO_OCC.cpp",
+  "source_member_sha256": "5235716410ad58f43ac91f54034f200f2cd3db99611096a20a61ff7b7a83c033",
+  "function": "OCC_Internals::getMass",
+  "function_start_line": 5389,
+  "function_end_line": 5404,
+  "volume_call_line": 5401,
+  "volume_call": "BRepGProp::VolumeProperties(shape, System)",
+  "return_value": "System.Mass()",
+  "conclusion_fr": "La source officielle Gmsh4.15.2 confirme l'appel OCCT non adaptatif par défaut utilisé pour la nouvelle référence d'import. La comparaison antérieure contre l'intégration adaptative portait sur deux méthodes différentes. Le seuil relatif d'import1e-6 reste inchangé ; ce résultat ne dispense pas des contrôles topologiques, de frontières et de qualité du maillage.",
+  "installed_runtime_binary_rebuilt_or_modified": false,
+  "geometry_modified": false,
+  "manufacturing_authorized": false
+}

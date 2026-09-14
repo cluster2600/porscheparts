@@ -1,0 +1,95 @@
+{
+  "schema": "m64-guide-chord-diagnostic-capsule/v1",
+  "status": "local_radial_envelope_corrected_volume_CFD_and_manufacturing_not_qualified",
+  "scope": "Diagnostics on two saved native05 surface meshes; no remeshing or CAD modification by the auditor.",
+  "coordinate_units": "scan_units_with_unverified_mm_hypothesis",
+  "native_BRep_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+  "classified_report_sha256": "e95d7aa7000d0c82d5bdb9e83b57151cb041795d31380f4a802ab47bda155536",
+  "auditor_source": "twins/m64-cylinder-head/source/flowbench-intake/audit_guide_chords.py",
+  "auditor_source_sha256": "31c45d7d3c554d957bf114ba050b42171a332d7054fbe154e443e6ad8ca7aaea",
+  "tests": {
+    "file": "tests/test_m64_guide_chords.py",
+    "sha256": "d89c36854c6e20657230a6f02bd3a2cb0b9d1be691eefd5a85542e46ead73960",
+    "passed": 5,
+    "skipped": 0,
+    "coverage": [
+      "Exact rational strict interior crossing and orientation reversal",
+      "Coplanarity, boundary touch and misses are not claimed as proper crossings",
+      "Analytic sagitta budget",
+      "Whole projected triangle containing the axis, not only its edges",
+      "Fine local envelope accepted, coarse envelope and wrong native face hash rejected"
+    ]
+  },
+  "native_faces": [
+    {"id": 55, "role": "walls_guide", "source": "intake_1_guide_face_4", "radius": 3.015, "sha256": "f4b546496c1b4a040c561ea46685469ec7e9feb4ab3c5dbe9efbeba58b81d465"},
+    {"id": 58, "role": "walls_guide", "source": "intake_2_guide_face_4", "radius": 3.015, "sha256": "6312431d0d6bc19ac6a13b9197de9a2c2ff01741c0b065062f3c355afdcf1e82"},
+    {"id": 62, "role": "walls_valve", "source": "intake_2_valve_face_6", "radius": 3.0, "sha256": "fe1820f9e706df3db439445746ede2b9c5888f61dd019c2bb489ff01129c9ffc"},
+    {"id": 63, "role": "walls_valve", "source": "intake_1_valve_face_6", "radius": 3.0, "sha256": "5134bae58c7ae348813da1ea39c02e2e639b9f266828067d616fd40569b4c646"}
+  ],
+  "rejected_previous_surface": {
+    "MSH_sha256": "0e04f19037fef32e31c23f7598486c9656648be32df444d0b774a5c8f64d7325",
+    "mesh_source_sha256": "bfad7b5c685514742c7ca5606e317c64cfa24cf721c163a3454b795d417c55a9",
+    "triangles": 50526,
+    "surface_edges_examined": 75789,
+    "floating_broad_phase_candidate_pairs": 150384,
+    "proper_crossings_confirmed_by_exact_rational_MSH_coordinates": 16,
+    "pairs": [
+      {"faces": [55, 63], "crossings": 4, "radial_envelope_error_sum": 0.04105774483747531},
+      {"faces": [58, 62], "crossings": 12, "radial_envelope_error_sum": 0.03792506907752878}
+    ],
+    "no_reported_crossing_involves_face38": true,
+    "exact_crossing_report_sha256": "1a302364a1550dc299730117da831289fed141ba36f2db901a37089b2ca1a07b",
+    "native_cylinder_report_sha256": "81231499f4e130af513e2b0b8605537a48fa7c123a069324bada6d56d2264803",
+    "maximum_guide_chord_sagitta_by_face": {"55": 0.02084841739618204, "58": 0.01813850115375626},
+    "inference": "The independent cylindrical triangulations cross across the 0.015 radial guide-stem gap. This explains a concrete invalid PLC, but the logger did not identify which crossing triggered its first exception.",
+    "exhaustive_intersection_count_claimed": false
+  },
+  "local_correction_rationale": {
+    "CAD_geometry_changed": false,
+    "guide_and_stem_target_size": 0.2,
+    "target_faces": [55, 58, 62, 63],
+    "include_face_boundaries": true,
+    "face38_target_size_retained": 0.15,
+    "global_minimum_size_retained": 0.005,
+    "target_size_is_not_a_guaranteed_maximum_edge_length": true,
+    "minor_chord_sagitta_formula": "s(R,c) = R - sqrt(R^2 - (c/2)^2)",
+    "nominal_sum_sagittas_at_chord_0p2_approximately": 0.003326,
+    "predeclared_actual_envelope_error_sum_limit": 0.0075,
+    "native_radial_gap": 0.015,
+    "gate_method": "Minimum radius of the entire projected triangle convex hull; maximum radial error per cylinder plus the frame projection mismatch is summed for each pair.",
+    "frame_mismatch_over_facets_bounded_at_vertices": true
+  },
+  "new_surface_only": {
+    "mesh_source_sha256": "8f09713d40d25d020829e08f3a2934573cd0f3ae3dc58e2b7e889bfc32ba91d0",
+    "mesh_report_sha256": "f472220a9c3c2564f10829109109920daa858256afeb6e5df11bfa2b20e32ca3",
+    "MSH_sha256": "698cfacce418f776544279138a41940fee3095eb551bfa0f624c0e6f106a730a",
+    "connectivity_sha256": "e4a8541935f5edd5ca8abd59cf8182c5fe5897b18eb32293dcb4ce764b686997",
+    "native_cylinder_and_frame_report_sha256": "f334b3e96193fc0c15a947a1a9c66b4a1ad929c3bea0638bc2128e12d0b79bd0",
+    "triangles": 129322,
+    "nodes": 64661,
+    "CAD_faces": 88,
+    "tetrahedra": 0,
+    "closed_two_manifold_edge_incidence": true,
+    "maximum_measured_transverse_chord": 0.24712125754350808,
+    "pairs": [
+      {"guide_face": 55, "stem_face": 63, "radial_envelope_error_sum": 0.0046221349917990725, "remaining_radial_clearance_lower_bound_numeric": 0.010377865008201051, "local_envelope_accepted": true},
+      {"guide_face": 58, "stem_face": 62, "radial_envelope_error_sum": 0.005066293560952032, "remaining_radial_clearance_lower_bound_numeric": 0.009933706439048094, "local_envelope_accepted": true}
+    ],
+    "all_audited_native_and_MSH_inputs_unchanged": true,
+    "global_surface_self_intersection_or_conformity_qualified": false,
+    "volume_mesh_accepted": false
+  },
+  "diagnostic_execution": {
+    "old_surface_exact_crossing_seconds": 4.683889707899652,
+    "old_surface_native_cylinder_seconds": 1.3034098331118003,
+    "new_surface_native_cylinder_seconds": 3.499834334012121,
+    "all_three_exit_codes": [0, 0, 0],
+    "new_compute_rental": false,
+    "coordinate_bearing_frames_and_crossing_details_kept_private": true
+  },
+  "next_action_scope": "A single diagnostic volume attempt may test the local correction, only after checking this same radial-envelope gate on the surface actually used before generate(3). Regeneration does not inherit acceptance from a previous mesh.",
+  "native_C0_advisories_resolved": false,
+  "CAD_physically_validated": false,
+  "CFD_qualified_or_executed": false,
+  "manufacturing_authorized": false
+}

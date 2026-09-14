@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "m64-700ps-biturbo-exploratory",
+  "review_date": "2026-09-07",
+  "status": "engineering_target_not_obtained_performance",
+  "user_target": {
+    "engine_family": "Porsche M64, 964/993",
+    "cylinders": 6,
+    "cycle": "four_stroke",
+    "valves_per_cylinder_candidate": 4,
+    "valves_per_cylinder_reference": 2,
+    "turbochargers": 2,
+    "power": {"value": 700, "unit": "PS", "location": "crankshaft", "status": "metric_crankshaft_interpretation_of_user_chevaux_not_a_measurement"},
+    "power_correction_standard": null,
+    "duty_cycle": null,
+    "preserve_original_exterior_without_demonstrated_benefit": true,
+    "arbitrary_oval_exterior_allowed": false,
+    "head_primary_cooling": "forced_air",
+    "oil_assistance": "candidate_to_compare_not_selected",
+    "manufacturing_route": "metal_additive_with_post_processing_and_machining_not_qualified"
+  },
+  "variant_candidates": [
+    {
+      "id": "993-m64-60-biturbo-3p6",
+      "role": "preferred_documentary_baseline_for_sizing_not_verified_donor",
+      "nominal_displacement_l": 3.6,
+      "published_bore_mm": 100.0,
+      "published_stroke_mm": 76.4,
+      "geometry_dimension_role": "engine_cycle_only_not_head_interface_or_scan_scale",
+      "sources": ["P1", "P2", "P3"],
+      "limitation": "P2 specifies M64/60 R GT2; suffix, market, year and actual donor remain unverified. Turbo S data in P1 do not define every M64/60 part."
+    },
+    {
+      "id": "964-m64-50-turbo-3p6",
+      "role": "separate_single_turbo_reference_not_equivalent_interface",
+      "nominal_displacement_l": 3.6,
+      "sources": ["P1"],
+      "limitation": "964 Turbo 3.3 is M30, not this M64 case. M64.50 label is retained from the project PET register; no new interface equivalence is established."
+    },
+    {
+      "id": "m64-3p8-displacement-sensitivity",
+      "role": "exploratory_capacity_change_not_hardware_selection",
+      "nominal_displacement_l": 3.8,
+      "bore_mm": null,
+      "stroke_mm": null,
+      "sources": [],
+      "limitation": "No bore, barrel, crank or case machining implied by this sensitivity point."
+    }
+  ],
+  "fuel": {
+    "baseline_intent": "gasoline_98_RON_candidate_not_selected_or_knock_qualified",
+    "calculation_proxy": "generic_gasoline",
+    "stoichiometric_air_fuel_mass_ratio": 14.7,
+    "lower_heating_value_mj_per_kg": 43.0,
+    "property_status": "14.7_generic_reference_G1;43.0_analyst_proxy_not_fuel_certificate",
+    "ethanol_fraction": null,
+    "cantera_mechanism": null,
+    "composition_certificate": null,
+    "alternative": "ethanol_blend_scenario_requires_actual_composition_and_new_stoichiometry_BSFC_LHV_material_compatibility"
+  },
+  "balance_model": {
+    "purpose": "zero_dimensional_air_fuel_and_shaft_power_sensitivity_not_cycle_CFD_or_durability_prediction",
+    "base_case": {
+      "power_ps": 700.0,
+      "rpm": 6500.0,
+      "displacement_l": 3.6,
+      "bsfc_kg_per_kwh": 0.34,
+      "lambda_ratio": 0.82,
+      "stoichiometric_afr": 14.7,
+      "volumetric_efficiency": 0.95,
+      "manifold_temperature_k": 333.15,
+      "ambient_pressure_pa": 101325.0,
+      "compressor_inlet_temperature_k": 298.15,
+      "inlet_pressure_loss_pa": 3000.0,
+      "charge_path_pressure_loss_pa": 15000.0,
+      "compressor_isentropic_efficiency": 0.72,
+      "fuel_lhv_mj_per_kg": 43.0,
+      "turbochargers": 2
+    },
+    "sensitivity_axes": {
+      "rpm": [6000.0, 6500.0, 7000.0, 7500.0],
+      "displacement_l": [3.6, 3.8],
+      "bsfc_kg_per_kwh": [0.30, 0.34, 0.38],
+      "lambda_ratio": [0.78, 0.82, 0.86],
+      "volumetric_efficiency": [0.85, 0.95, 1.05],
+      "manifold_temperature_k": [313.15, 333.15, 353.15],
+      "ambient_pressure_pa": [85000.0, 101325.0]
+    },
+    "axis_status": "analyst_selected_sensitivity_points_not_measured_M64_map_not_safe_limits",
+    "rpm_semantics": "alternative_rpm_for_the_same_peak_power_target_not_a_flat_700PS_power_curve",
+    "volumetric_efficiency_definition": "fresh_air_mass_per_intake_event_divided_by_displacement_times_manifold_air_density;not_ambient_referenced",
+    "constant_air_properties": {"R_j_per_kg_k": 287.05, "cp_j_per_kg_k": 1005.0, "gamma": 1.4},
+    "corrected_flow_reference": {"temperature_k": 288.15, "pressure_pa": 101325.0, "status": "explicit_reporting_reference_not_assumed_manufacturer_map_reference"},
+    "missing_physics": ["knock", "pre_ignition", "cycle_resolved_combustion", "residual_gas", "valve_flow_coefficients", "cam_timing", "turbine_map_and_pulses", "fan_system_curve", "head_heat_flux", "oil_heat_partition", "fatigue", "LPBF"]
+  },
+  "future_independent_load_exploration": {
+    "status": "unqualified_points_not_bounding_load_envelope_not_derived_from_700PS",
+    "cylinder_peak_absolute_pressure_pa": [8000000.0, 12000000.0, 16000000.0],
+    "gas_pressure_crank_angle_trace": null,
+    "exhaust_gas_temperature_k": [1073.15, 1173.15, 1273.15],
+    "head_metal_temperature_k": [423.15, 473.15, 523.15, 573.15],
+    "oil_inlet_temperature_k": [363.15, 383.15, 403.15],
+    "cooling_air_inlet_temperature_k": [293.15, 313.15, 323.15],
+    "heat_transfer_coefficients": null,
+    "heat_flux_distributions": null,
+    "head_bolt_preload": null,
+    "solver_ready": false,
+    "promotion_rule": "derive a closed cycle/CHT load case or explicitly label a hypothetical stress screen; never declare these points sufficient durability limits"
+  },
+  "turbo_map_candidates": [
+    {"id": "two-garrett-g25-550", "source": "G2", "selected": false, "warning": "match corrected flow, PR, surge, choke, shaft speed, turbine backpressure and CHRA cooling; manufacturer HP rating is not achieved engine power"},
+    {"id": "two-borgwarner-efr-6258", "source": "B1", "selected": false, "warning": "check full compressor/turbine maps and thermal installation, not just two times catalogue HP"}
+  ],
+  "sources": {
+    "P1": "https://newsroom.porsche.com/en/history/porsche-history-white-giants-991-turbo-964-turbo-3-6-993-turbo-s-13863.html",
+    "P2": "https://newsroom.porsche.com/de/2024/szene-passion/porsche-911-993-gt2-coppa-florio-35734.html",
+    "P3": "https://newsroom.porsche.com/de/pressemappen/60-Jahre-Porsche-911/30-Jahre-911-Carrera-der-Generation-993-%E2%80%93-Der-letzte-seiner-Art.html",
+    "S1": "https://swindonpowertrain.com/products/24-valve-porsche-911-m64-cylinder-head-kit/",
+    "G1": "https://www.garrettmotion.com/news/newsroom/article/how-to-select-a-turbo-part-2-understanding-calculations-to-turbo-any-engine/",
+    "G2": "https://www.garrettmotion.com/de/racing-and-performance/performance-catalog/turbo/g-series-g25-550/",
+    "B1": "https://www.borgwarner.com/aftermarket/boosting-technologies/performance-turbochargers/efr-series-turbochargers",
+    "W1": "https://guntherwerks.com/programs/turbo/",
+    "W2": "https://guntherwerks.com/programs/f26/"
+  },
+  "qualification": {
+    "interfaces_verified": false,
+    "performance_achieved": false,
+    "engine_cycle_validated": false,
+    "thermal_validated": false,
+    "structural_validated": false,
+    "printing_process_qualified": false,
+    "manufacturing_authorized": false
+  }
+}

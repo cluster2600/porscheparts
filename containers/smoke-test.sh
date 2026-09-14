@@ -132,9 +132,19 @@ elif [ "${MODE}" = "mesh-cfd" ]; then
         bash -lc "source /opt/openfoam${FOAM_VERSION:-13}/etc/bashrc && blockMesh -help"
 elif [ "${MODE}" = "simready" ] || [ "${MODE}" = "simready-workflow" ]; then
     /usr/local/bin/simready-smoke || failures=$((failures + 1))
-elif [ "${MODE}" = "simready-local-ai" ]; then
+elif [ "${MODE}" = "simready-local-ai" ] || [ "${MODE}" = "simready-m64-runtime" ]; then
     /usr/local/bin/simready-smoke || failures=$((failures + 1))
     /usr/local/bin/simready-local-ai-smoke --offline || failures=$((failures + 1))
+    if [ "${MODE}" = "simready-m64-runtime" ]; then
+        check m64-pinned-runtime 'm64 pinned runtime OK' /opt/m64-simready-validate/bin/python -I -c \
+            'import importlib.metadata as md; import numpy, omni.asset_validator; from pxr import Usd, UsdGeom, UsdPhysics; expected={"simready-validate":"2026.4.8", "usd-exchange":"2.3.0", "omniverse-asset-validator":"1.18.0", "omniverse-usd-profiles":"1.10.22", "numpy":"1.26.4", "jinja2":"3.1.6", "markdown-it-py":"4.2.0", "markupsafe":"3.0.3", "mdurl":"0.1.2"}; assert all(md.version(k)==v for k,v in expected.items()); print("m64 pinned runtime OK")'
+        check m64-foundation 'a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3' \
+            git -C /opt/m64-simready-foundation rev-parse HEAD
+        check m64-validation-cli 'usage:|Usage:' /opt/m64-simready-validate/bin/simready-validate --help
+        check m64-preflight-yaml '6.0.2' /opt/m64-simready-validate/bin/python -I -c 'import yaml; assert yaml.__version__ == "6.0.2"; print(yaml.__version__)'
+        check m64-cad-guide '208fe2c1cd71ae2bb7bd825daf712617000ae028' \
+            git -C /opt/m64-usd-convert-cad-guide rev-parse HEAD
+    fi
 else
     report FAIL mode "unknown smoke-test mode: ${MODE}"
 fi

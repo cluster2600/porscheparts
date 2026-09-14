@@ -1,0 +1,37 @@
+{
+  "schema": "m64-local-junction-direct-union-preregistered-screen/v1",
+  "scope": "local_intake_morphological_prototype_not_BRep_or_physics_validation",
+  "radius_scan_units": 1,
+  "resolutions_scan_units": [
+    0.2
+  ],
+  "source_intake_BRep_sha256": "72e0a786a601b96250380d16296004de9e6746caa3888ee470b6cd218f2d0251",
+  "original_master_modified": false,
+  "field_operation": "A_union_C_intersect_R_where_C_is_closing_A",
+  "zero_conventions": [
+    "strict_negative_inside",
+    "zero_inside"
+  ],
+  "outside_ROI_occupancy_changes_allowed": 0,
+  "protected_occupancy_changes_allowed": 0,
+  "source_gas_occupancy_losses_allowed": 0,
+  "addition_at_ROI_boundary_allowed": 0,
+  "witness_positive_added_mesh_volume_required": true,
+  "mesh_validation_required_before_candidate_use": true,
+  "relative_added_volume_difference_screen": 0.05,
+  "sampled_bidirectional_distance_screen_scan_units": 0.2,
+  "two_resolutions_establish_asymptotic_convergence": false,
+  "wall_seconds_per_pass": 300,
+  "cpu_limit": 2,
+  "memory_limit_bytes": 4294967296,
+  "stop_before_private_geometry_if_witness_fails": true,
+  "manufacturing_authorized": false,
+  "CFD_qualified": false,
+  "algebraic_identity": "A union ((C minus A) intersect R) equals A union (C intersect R) for all sets",
+  "difference_shell_is_diagnostic_only": true,
+  "original_policy_sha256": "43c2d635925c5dbdc2c321fa839e44d5ec0a97f721ac13173ecec10a5620759e",
+  "native_VDB_fields_must_be_saved": true,
+  "SDF_values_must_be_compared_outside_ROI_and_protections": true,
+  "SDF_changes_are_not_automatically_continuous_isosurface_displacement": true,
+  "no_finer_or_private_geometry_automatic_followup": true
+}

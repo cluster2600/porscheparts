@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "status": "manufacturer_documentary_reference_not_selected_4v_design",
+  "reviewed_on": "2026-09-07",
+  "manufacturing_authorized": false,
+  "supplier_parts_selected_for_m64_4v": false,
+  "source": {
+    "publisher": "MAHLE Aftermarket",
+    "title": "Valve Train Components 2025",
+    "edition_note": "Catalogue copyright 2025; fichier v002 dont les métadonnées PDF indiquent le 27 janvier 2026.",
+    "url": "https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf",
+    "official_landing_page": "https://www.mahle-aftermarket.com/eu/en/media-center/product-catalogs/",
+    "sha256": "d9be89be7a5bb369f7bcf7d20477661f4e93355fc24c362734403c91b346e2c9",
+    "bytes": 15373822,
+    "pdf_page_count": 1161,
+    "visually_reviewed_pdf_pages_1_based": [27, 29, 30, 825],
+    "review_method": "pdftotext layout puis contrôle des rendus de pages, colonnes et en-têtes; figures non redistribuées",
+    "raw_pdf_or_figures_in_repository": false
+  },
+  "catalogue_valves": {
+    "source_pdf_page": 825,
+    "source_printed_page": 823,
+    "source_row": 14,
+    "catalogue_engine_designation": "M 64.01 - 03",
+    "catalogue_application": "911 3.6 Carrera / Carrera 4, 12 soupapes pour six cylindres, 1988-1994; pas une ligne Turbo",
+    "intake": {
+      "part_number": "503 VE 32000 000",
+      "head_diameter_mm": 48.98,
+      "stem_diameter_mm": 8.95,
+      "overall_length_mm": 110.1,
+      "valve_face_angle_deg": 45
+    },
+    "exhaust": {
+      "part_number": "503 VA 32001 000",
+      "head_diameter_mm": 42.5,
+      "stem_diameter_mm": 8.95,
+      "overall_length_mm": 106.4,
+      "valve_face_angle_deg": 45
+    },
+    "tolerances_published_in_row": false,
+    "angle_is_valve_axis_inclination": false,
+    "role": "Deux références commerciales réelles de soupapes 2V; ni pièces sélectionnées pour la conversion 4V ni cotes de fabrication d'une soupape."
+  },
+  "guide_running_clearance_reference": {
+    "source_pdf_page": 27,
+    "source_printed_page": 25,
+    "role": "Valeurs indicatives fabricant pour l'alésage du guide et le jeu tige-guide, distinctes d'un serrage guide-culasse.",
+    "unit": "um",
+    "rows": [
+      {"stem_diameter_range_mm": [6, 7], "intake_clearance_range_um": [10, 40], "exhaust_clearance_range_um": [25, 55]},
+      {"stem_diameter_range_mm": [8, 9], "intake_clearance_range_um": [20, 50], "exhaust_clearance_range_um": [35, 65]}
+    ],
+    "diametral_or_radial_explicit_in_table": false,
+    "measurement_temperature_explicit_in_table": false,
+    "automatic_cad_diameter_derivation_authorized": false,
+    "m64_turbo_specific": false,
+    "limits": "Le tableau ne définit pas un jeu chaud, un jeu de rebut ni un serrage de montage du guide. La définition diamétrale d'un paramètre CAO doit être déclarée comme convention de conception, pas comme citation de cette table."
+  },
+  "seat_insert_retention_reference": {
+    "source_pdf_page": 30,
+    "source_printed_page": 28,
+    "head_material_category": "aluminum",
+    "role": "Serrage de montage entre le diamètre extérieur de l'insert et son logement dans la culasse; pas jeu soupape-guide ni largeur de portée.",
+    "unit": "mm",
+    "rows": [
+      {"seat_insert_outer_diameter_range_mm": [30, 40], "interference_range_mm": [0.050, 0.090]},
+      {"seat_insert_outer_diameter_range_mm": [40, 50], "interference_range_mm": [0.060, 0.100]}
+    ],
+    "range_endpoint_convention_explicit": false,
+    "lpbf_alloy_and_turbo_duty_qualified": false,
+    "guide_to_head_interference_provided": false
+  },
+  "remaining_module_design_choices": [
+    "Diamètres 4V, matériaux des pièces rapportées et références réellement compatibles avec la charge turbo.",
+    "Position et inclinaison des quatre axes, entraxes, engagement des guides et enveloppe de distribution.",
+    "Largeur et position de la bande conique, angles de raccord supérieur/inférieur, gorge sous siège et marge périphérique de soupape.",
+    "Jeu tige-guide explicitement diamétral ou radial, tolérances, température de référence et tenue à chaud.",
+    "Serrage guide-culasse; diamètre/hauteur et tolérances des inserts; serrage siège-culasse propre au matériau LPBF.",
+    "Levée, ressorts, coupelles, clavettes, joint de queue, commande et dégagements sur tout le cycle."
+  ],
+  "excluded_unverified_manual_values": {
+    "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+    "reason": "Exemplaire et rendus PDF 152-157 absents aux localisateurs connus; aucune nouvelle qualification de l'OCR Carrera.",
+    "transferred_to_this_dataset": false
+  }
+}

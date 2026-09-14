@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "status": "image_cpu_qualification_passed",
+  "image": "ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44",
+  "build_source_commit": "20fd6a17b221f091635a110e7a6272f6688687e6",
+  "qualification_workflow_commit": "a987e2dee7a9cb1c872332a5bff04bee15ca2cd2",
+  "qualification_run_url": "https://github.com/cluster2600/porscheparts/actions/runs/34123205685",
+  "qualification_job_id": 101745772048,
+  "qualification_conclusion": "success",
+  "anonymous_pull_completed_at": "2026-09-07T13:00:39Z",
+  "m64_smoke_completed_at": "2026-09-07T13:01:52Z",
+  "checks": {
+    "linux_amd64": true,
+    "fresh_empty_docker_auth_configuration": true,
+    "image_absent_before_pull": true,
+    "anonymous_pull_of_exact_digest": true,
+    "each_compressed_layer_below_5000000000_bytes": true,
+    "total_compressed_layers_below_45000000000_bytes": true,
+    "exact_layer_sizes_recorded": false,
+    "m64_pinned_runtime_smoke": true,
+    "m64_foundation_commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "m64_cad_guide_commit": "208fe2c1cd71ae2bb7bd825daf712617000ae028",
+    "m64_pyyaml_version": "6.0.2",
+    "sshd_initialization_and_concurrency": true,
+    "ssh_client_authentication_in_this_ci": false,
+    "image_promotion_performed": false
+  },
+  "gpu_runtime_executed": false,
+  "vast_key_injection_verified": false,
+  "head_simulation_performed": false,
+  "manufacturing_authorized": false,
+  "claim_scope": "Published image retrieval and CPU runtime checks only; separate SSH authentication and GPU checks are required."
+}

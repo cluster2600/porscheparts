@@ -1,0 +1,103 @@
+{
+  "schema": "m64-public-annular-mesh-localisation/v1",
+  "date": "2026-09-08",
+  "status": "five_native_failure_counts_reproduced_locally_mesh_still_rejected",
+  "scope": "Intake gas flowbench pilot derived from the 4-valve candidate; not complete cylinder-head metal or engine operation",
+  "reference_scan_family": "935_reference_not_measured_M64_interfaces",
+  "absolute_scale_certified": false,
+  "meters_per_scan_unit_unverified_hypothesis": 0.001,
+  "pins": {
+    "native_domain_sha256": "fab1338a3e3cf36469977716a9cb54b3118382f592c7c41d7c789bdb5fb3aeba",
+    "native_manifest_sha256": "58b8be5aa0faeac678e6801cad29cfc5520cbf1590076276dbf5ad5157776aa1",
+    "mesh_sha256": "3b59b622a3f8e818c9da4ec6b850758dd61c31018d0bc13614ffed95f262259a",
+    "mesh_report_sha256": "4f7d38535e14db18c64af57daba6880d01aad61a7e180953de19d981790d7c03",
+    "native_diagnostic_sha256": "b14a4cfdeba2c82fa6d9789be0a24c480df37c14903af509400d37dcb4c2e34d",
+    "native_checkMesh_log_sha256": "875e6118484575243cd179626a6f937656764a1df3e95d892b803d860e2b8954",
+    "local_diagnostic_source_sha256": "83a5bef3234f6d2679751bdbe1ef5f49cc242b7cc89cf9906d46174ecadabd8b",
+    "local_diagnostic_receipt_sha256": "167ca185b64551c568b84ca58bf56ea18e5ae31ab135bf24a216601ddb4d06f6",
+    "test_source_sha256": "4a052c7610f21b5ae8efb1bc7eb3884d8f2f2ae2677d81838c0e09a182fdf4b1",
+    "reused_boundary_incidence_helper_sha256": "93541bdd0513f6a11b104fcd17905a600a9fd60402f5d7d83c23cc929c00b6e1",
+    "reused_MSH_reader_sha256": "56514031e84a0cd8adf751a143521bd805245de407deadd2233266612c126fc2"
+  },
+  "execution": {
+    "kind": "local_read_only_formula_and_boundary_incidence_analysis",
+    "exit_code": 0,
+    "elapsed_seconds": 7.981921833008528,
+    "tests_passed": 8,
+    "tests_skipped": 0,
+    "test_elapsed_seconds_reported": 0.011,
+    "all_inputs_unchanged": true,
+    "Docker_executed": false,
+    "new_mesh_generated": false,
+    "new_Vast_jobs": 0,
+    "new_Vast_spend_USD": 0
+  },
+  "geometry_correspondence": {
+    "native_faces": 86,
+    "tetrahedra": 401854,
+    "points_uniquely_matched": 112632,
+    "oriented_boundary_triangles_bijectively_matched": 186364,
+    "native_boundary_roles_verified": true,
+    "coordinate_mapping": "Unique all-point serialization-budget boxes then exact triangle topology; no nearest-point or nearest-face assignment",
+    "FOAM_significant_digits": 12,
+    "maximum_coordinate_delta_m": 5.001832281692487e-13,
+    "coordinate_binary_identity_claimed": false
+  },
+  "quality": {
+    "native_failure_families": 5,
+    "local_counts_equal_native_log": true,
+    "native_exported_label_identity_verified": false,
+    "native_label_limitation": "The latest native checkMesh did not export defect sets. Counts are reproduced by local binary64 formulas, not an independent native label export.",
+    "counts": {
+      "highAspectRatioCells": 1,
+      "skewFaces": 11,
+      "underdeterminedCells": 5733,
+      "lowWeightFaces": 535,
+      "lowVolRatioFaces": 141
+    },
+    "unchanged_thresholds": {
+      "aspect_maximum": 1000,
+      "skew_maximum": 4,
+      "determinant_minimum": 0.001,
+      "interpolation_weight_minimum": 0.05,
+      "volume_ratio_minimum": 0.01
+    },
+    "low_determinant_cells_touching_annular_bands": 4655,
+    "low_determinant_internal_face_degree_histogram": {"1": 1, "2": 730, "3": 4868, "4": 134},
+    "low_determinant_cells_without_boundary_faces": 134,
+    "low_weight_adjacent_cells": 834,
+    "low_weight_adjacent_cells_touching_annular_bands": 30,
+    "low_volume_ratio_adjacent_cells": 254,
+    "low_volume_ratio_adjacent_cells_touching_annular_bands": 4,
+    "counts_across_native_faces_or_roles_can_overlap": true,
+    "determinant_excludes_uncoupled_boundary_faces": true,
+    "determinant_is_not_tetra_Jacobian": true
+  },
+  "extreme_defect_native_faces": [
+    {"native_face_id": 28, "sha256": "fc509edd5977641fdd32c60f0cfae654166093e06af63aafbf2d8a80a271672f", "role": "walls_port", "surface_type": "BSpline", "inherited_source": "raw_intake_face_7", "skew_faces": 4},
+    {"native_face_id": 29, "sha256": "1ec56dc02510719849057a126533a5e6d7ac3a917095031d9ae3fff8a42f08b3", "role": "walls_port", "surface_type": "BSpline", "inherited_source": "raw_intake_face_7", "skew_faces": 2},
+    {"native_face_id": 36, "sha256": "2cd09f96f39d8d980adf2958467635588a5cb4ff24143eae0c18b68493238e98", "role": "walls_seat", "surface_type": "Cylinder", "inherited_source": "intake_2_seat_face_4", "skew_faces": 5},
+    {"native_face_id": 37, "sha256": "654f0da248f3bb62c51be1c30e512abd6c2140db8493719ae495b53a2776cb88", "role": "walls_port", "surface_type": "BSpline", "inherited_source": "raw_intake_face_8", "high_aspect_cells": 1}
+  ],
+  "face_export_hashes_rechecked_directly": true,
+  "source_role_inheritance_not_new_boolean_overlap_proof": true,
+  "primary_sources": [
+    "https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C",
+    "https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/polyMeshCheck/polyMeshCheck.C"
+  ],
+  "next_candidate": {
+    "status": "not_executed_pending_detailed_preparation_and_review",
+    "strategy": "One conformal multi-zone candidate: radial guide/stem bands plus local seat/port transition treatment; no wall displacement or gap enlargement",
+    "global_blind_polyDual_conversion": false,
+    "nonconformal_interface_or_mortar_implicitly_authorized": false,
+    "whole_boundary_and_eight_curve_interface_reaudit_required": true,
+    "native_checkMesh_still_required": true
+  },
+  "mesh_accepted": false,
+  "CFD_executed": false,
+  "CFD_qualified": false,
+  "thermal_or_mechanical_validation": false,
+  "LPBF_qualified": false,
+  "manufacturing_authorized": false,
+  "private_geometry_or_coordinates_published": false
+}

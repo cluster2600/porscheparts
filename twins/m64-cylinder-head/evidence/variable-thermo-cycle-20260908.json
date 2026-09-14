@@ -1,0 +1,267 @@
+{
+  "schema": "m64-variable-thermo-method-checkpoint/v1",
+  "date": "2026-09-08",
+  "status": "native_closed_cycle_method_and_independent_numerical_checks_passed_not_engine_validation",
+  "prior_constant_gamma_report_sha256": "597d6542433cd7ae34a9e6dc032b67a1922525af7180e947157ea246a2797e06",
+  "frozen_balance_sha256": "db181428b99fdf23dea0cd7725e9b6ff3fa37dd6ec752eb2db9fd0f68c3a67ac",
+  "thermochemistry_sha256": "6a2e6af21cfdd2954d5518fc0873f3880b094fbd354bf90cdec7c75df0406d85",
+  "run_report_sha256": "dbca30db2be29137d2f0f68bc4735e7e28875c8853ec0dbf6d896187f6b1cabf",
+  "artifacts_sha256": {
+    "variable_thermo_cycle.py": "da65a57b4ef635e68251b0decac3aa49032fb325fc91b0b7d7b4d79dba9f1dcd",
+    "test_variable_thermo_cycle.py": "7d0ee5c13d26f5af1d0d522bf2734ba75b3b064fb0805c1c016bf40f76b2acf4",
+    "audit_variable_thermo.py": "4ad7b15dbcdebbda15f857b117d0c7174f06f839b83c99c255f7b576e9d0b7a2",
+    "test_audit_variable_thermo.py": "f4eb046278d6b4628ca4d3b90dedae9f1f4b577b88013aac429cd1d1c38cf968",
+    "run_local.py": "81a5db9f051773f0e6917b4157819b17b95491f34f83c83fd08913e31af01ecd",
+    "requirements-lock-v2.txt": "ed03a2552d8b94441ffd7f97dc54fb4e5dea43d63c051f640db3e8a057f5bb0b",
+    "verify_runtime_inputs.py": "45b84ca297336440d5a7b60cdaf57f43f510d13361ef66629a6e0480edc15cf8",
+    "runtime-data-review-01.json": "782e1a46070f86655961ba63cae239cb12de53f339e91c6cb2c920ebe8bdc6e2",
+    "runtime-preflight-01.json": "b1e71f719037936fe65d6ed1fab4db43c7bb2d4e60fdcc62d9ed15385141c9ae",
+    "process-01.json": "5dacc5cc9645250081ab6f609c57c1c0aea1edf0c6ee522ad9ec6c842c009fe6",
+    "producer-run-01.log": "dbca30db2be29137d2f0f68bc4735e7e28875c8853ec0dbf6d896187f6b1cabf",
+    "tests-final-24.log": "cadf210452cba3af4b8e1af716e11a10c9a8d9a911f2a4087d29af1bcb057451",
+    "collect_checkpoint.py": "f064dd65c3c327b54a4fcd13823ce2b2a4b0fda623825d5c8f2d7622f563b3cb"
+  },
+  "runtime": {
+    "cantera": "3.2.0",
+    "numpy": "2.2.6",
+    "scipy": "1.14.1",
+    "ruamel.yaml": "0.18.16",
+    "ruamel.yaml.clib": "0.2.15",
+    "typing_extensions": "4.15.0"
+  },
+  "run": {
+    "exit_code": 0,
+    "wall_seconds": 1.8043345829937607,
+    "wall_limit_seconds": 120,
+    "CPU_limit_seconds": 120,
+    "maxrss_Mac_bytes": 96387072,
+    "inputs_unchanged": true,
+    "new_Vast_rental": false,
+    "new_cloud_spend": false
+  },
+  "failed_preflight_retained": "SciPy1.15.3 macOS14 ARM64 native import rejected before any cycle; replacement official SciPy1.14.1 macOS12 wheel, no model change",
+  "thermodynamics": {
+    "species": [
+      "C8H18,isooctane",
+      "O2",
+      "N2",
+      "CO2",
+      "CO",
+      "H2O"
+    ],
+    "NASA_data_version": "Cantera v3.2.0 nasa_gas.yaml",
+    "NASA_data_sha256": "4de6199d65d2d3db782e30573720c723130953707336add59713b02d8667e4db",
+    "six_raw_upstream_NASA_records_verified_equal": true,
+    "temperature_domain_K": [
+      200,
+      6000
+    ],
+    "composition": "Y(theta)=(1-xb)Y_reactants+xbY_prescribed_rich_products; atom/mass conserving, not kinetic chemistry or equilibrium",
+    "energy_equation": "dU/dtheta=-p*dV/dtheta; U=m*sum(Yk*uk(T)) includes formation energies; no extra LHV source",
+    "UV_refinement": "Cantera UVY, then at most eight Newton refinements using native cv and TD; final total-U error <=1e-10*max(1J,abs(U)); no thermodynamic coefficient/tolerance changed",
+    "surrogate_lambda_from_fixed_massflows": 0.8021239997133924,
+    "legacy_lambda_with_AFRstoich14p7": 0.82,
+    "geometry_documentary_not_CAD_or_verified_4V_interfaces": {
+      "bore_m": 0.1,
+      "stroke_m": 0.0764,
+      "rod_crank_ratio": 3.5,
+      "compression_ratio": 8
+    },
+    "events_assumed_deg_ATDC": {
+      "IVC_deg": -130,
+      "EVO_deg": 140,
+      "Wiebe_start_deg": -18.189937969843932,
+      "Wiebe_end_deg": 46.81006203015607,
+      "CA50_deg": 12,
+      "a": 6.908,
+      "m": 2
+    },
+    "IVC_temperature_K": 333.15,
+    "mass_from_target_BSFC_balance_kg": 0.0019530647542179483,
+    "event_endpoints_present_exactly_in_integrator_and_output": true,
+    "IVC_EVO_exact_endpoints_do_not_mean_open_valve_flow_solved": true,
+    "temperature_guard_scope": "Final UVY states and all checked RHS/output states, not every internal trial temperature evaluated by the native inversion.",
+    "motored_end_deg_ATDC": 130,
+    "four_fired_cases_IVC_EVO_deg_ATDC": [
+      -130,
+      140
+    ]
+  },
+  "independent_check": {
+    "producer_imported": false,
+    "Cantera_imported": false,
+    "method": "raw NASA7 evaluation plus Simpson pressure-work quadrature on recorded midpoint states and independent piston derivative; entropy for motored",
+    "property_relative_limit": 1e-8,
+    "energy_relative_limit": 0.000001,
+    "energy_scale_J": 4866.232173109338,
+    "energy_absolute_limit_J": 0.004866232173109338,
+    "motored_entropy_limit_J_kgK": 0.0001,
+    "all_five_cases_passed": true,
+    "tests": {
+      "producer": 13,
+      "independent_auditor": 11,
+      "total": 24,
+      "exit_code": 0
+    },
+    "observed_energy_error_decreases_with_three_sample_levels": true,
+    "formal_ODE_convergence_order_established": false,
+    "independent_physical_model_validation": false
+  },
+  "cases": [
+    {
+      "name": "motored",
+      "case_sha256": "e6db212a6e2e65026ba8b5a52d98be43b301739a6eacac6646e142542168930d",
+      "csv_sha256": "d4c834dbb37a9f43ed18dee1caa52ae06aae5e7f8f081e68da5222a012fdd32e",
+      "audit_sha256": "ce4444fac157fb98cf34aaffc0ed9173c78e0425f2abbc221cb0587419967c97",
+      "sample_max_step_deg": 0.25,
+      "row_count": 2081,
+      "sampled_T_range_K": [
+        333.15000000000003,
+        615.868186921813
+      ],
+      "sampled_cv_range_J_kgK": [
+        803.9864688785398,
+        937.461224211543
+      ],
+      "independent_numerical_gates": {
+        "nasa_properties": true,
+        "eos_pressure": true,
+        "piston_geometry": true,
+        "wiebe_composition": true,
+        "energy_balance": true,
+        "motored_entropy": true
+      },
+      "independent_max_cumulative_energy_residual_J": 2.670901722012786e-9,
+      "motored_entropy_max_drift_J_kgK": 2.6657289708964527e-9
+    },
+    {
+      "name": "fired-h1",
+      "case_sha256": "b65af472f127f51b586e3407e8acdd99aac0cd95338bedabaf5e491c53c2a579",
+      "csv_sha256": "8beab40c4b4a772c9e7dee78908db595670708a1f59ae13d97220f100bb92707",
+      "audit_sha256": "81bfdaba229a9466e3ba6bc31f97c0346e6e4980ab2608d90fec0f2905f2ee4d",
+      "sample_max_step_deg": 1,
+      "row_count": 545,
+      "sampled_T_range_K": [
+        333.15000000000003,
+        2521.768949014201
+      ],
+      "sampled_cv_range_J_kgK": [
+        803.9864688785398,
+        1214.2996370959859
+      ],
+      "independent_numerical_gates": {
+        "nasa_properties": true,
+        "eos_pressure": true,
+        "piston_geometry": true,
+        "wiebe_composition": true,
+        "energy_balance": true,
+        "motored_entropy": true
+      },
+      "independent_max_cumulative_energy_residual_J": 0.0000041105073478320264,
+      "motored_entropy_max_drift_J_kgK": null
+    },
+    {
+      "name": "fired-h05",
+      "case_sha256": "716732e06d97a2da27dfca4f42425b85c37de26b9e6c7648b9a4760aba12221c",
+      "csv_sha256": "c59dc5cd60fb941c8ecf6104a27c22e0933ad4dfe1462800501cde2026de130c",
+      "audit_sha256": "031ee4578990ebb239215170cf0a922214086885faf020d98e5bddea66f5a90c",
+      "sample_max_step_deg": 0.5,
+      "row_count": 1085,
+      "sampled_T_range_K": [
+        333.15000000000003,
+        2521.7689490166763
+      ],
+      "sampled_cv_range_J_kgK": [
+        803.9864688785398,
+        1214.2996370957853
+      ],
+      "independent_numerical_gates": {
+        "nasa_properties": true,
+        "eos_pressure": true,
+        "piston_geometry": true,
+        "wiebe_composition": true,
+        "energy_balance": true,
+        "motored_entropy": true
+      },
+      "independent_max_cumulative_energy_residual_J": 2.467864419486432e-7,
+      "motored_entropy_max_drift_J_kgK": null
+    },
+    {
+      "name": "fired-h025-2V",
+      "case_sha256": "4993f5c2dbe8b1ee989586e264656c3f92b599247e70b9c59ee98ed7abfac990",
+      "csv_sha256": "d015c8832a320fdff4378fbf99e8d7dc9cef91694b73564aa0c915530c96936a",
+      "audit_sha256": "f9d68cb03d98dbaefc8e423ecc41e9c2aaf03d10546d3615bc8f989ebe56aff3",
+      "sample_max_step_deg": 0.25,
+      "row_count": 2165,
+      "sampled_T_range_K": [
+        333.15000000000003,
+        2521.7758507947606
+      ],
+      "sampled_cv_range_J_kgK": [
+        803.9864688785398,
+        1214.300884492467
+      ],
+      "independent_numerical_gates": {
+        "nasa_properties": true,
+        "eos_pressure": true,
+        "piston_geometry": true,
+        "wiebe_composition": true,
+        "energy_balance": true,
+        "motored_entropy": true
+      },
+      "independent_max_cumulative_energy_residual_J": 7.114584832379478e-8,
+      "motored_entropy_max_drift_J_kgK": null
+    },
+    {
+      "name": "fired-h025-4V",
+      "case_sha256": "39199e8ed03c5f200a8ebd667e3af3f3b9c013de17deafcacbd0bbf0c2271d1e",
+      "csv_sha256": "d015c8832a320fdff4378fbf99e8d7dc9cef91694b73564aa0c915530c96936a",
+      "audit_sha256": "80dc096382dc9cbe9970d7d5db70f1d7f99f2db7b80bd96a8dc07aaa95063bb4",
+      "sample_max_step_deg": 0.25,
+      "row_count": 2165,
+      "sampled_T_range_K": [
+        333.15000000000003,
+        2521.7758507947606
+      ],
+      "sampled_cv_range_J_kgK": [
+        803.9864688785398,
+        1214.300884492467
+      ],
+      "independent_numerical_gates": {
+        "nasa_properties": true,
+        "eos_pressure": true,
+        "piston_geometry": true,
+        "wiebe_composition": true,
+        "energy_balance": true,
+        "motored_entropy": true
+      },
+      "independent_max_cumulative_energy_residual_J": 7.114584832379478e-8,
+      "motored_entropy_max_drift_J_kgK": null
+    }
+  ],
+  "identical_2V_4V_CSV_sha256": "d015c8832a320fdff4378fbf99e8d7dc9cef91694b73564aa0c915530c96936a",
+  "same_labelled_2V_4V_trajectory_is_method_neutrality_not_architecture_comparison": true,
+  "limitations": [
+    "ideal gas; homogeneous single zone; residual mass zero; all fuel initially gas",
+    "closed IVC-EVO only; IVC/EVO angles assumed, no valve-flow or pumping solution",
+    "prescribed normalized Wiebe progress, not autoignition, spark or flame chemistry",
+    "simplified rich products fixed by atom balance; no H2, dissociation, NOx or soot",
+    "adiabatic walls; no CHT heat flux, no friction or crankshaft power prediction",
+    "fuel-mass input retained, but pure iso-octane is not real RON98 gasoline",
+    "fuel and air masses are derived from the target power and assumed BSFC; target power is not independently predicted",
+    "no comparison of pressure levels with prior constant-gamma model: composition and energy closure also changed",
+    "no actual head CAD, CFD admission/exhaust, oil/air CHT or thermal/mechanical resistance in this 0D witness"
+  ],
+  "sources": [
+    "https://raw.githubusercontent.com/Cantera/cantera/v3.2.0/data/nasa_gas.yaml",
+    "https://cantera.org/3.2/reference/thermo/species-thermo.html",
+    "https://cantera.org/3.2/reference/reactors/ideal-gas-reactor.html",
+    "https://github.com/Cantera/cantera/blob/v3.2.0/interfaces/cython/cantera/thermo.pyx#L1330-L1343",
+    "https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html"
+  ],
+  "target_700PS_achieved": false,
+  "engine_performance_validated": false,
+  "FEA_CHT_transfer_authorized": false,
+  "manufacturing_authorized": false,
+  "document": "docs/M64_700PS_VARIABLE_THERMO_20260908.md"
+}

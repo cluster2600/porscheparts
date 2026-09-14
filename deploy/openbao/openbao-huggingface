@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+"""Check Flash Next access through one dedicated OpenBao identity; never export keys."""
+
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+import re
+import socket
+import ssl
+import stat
+import sys
+import urllib.error
+import urllib.request
+
+
+CONFIG_DIR = Path.home() / ".config" / "openbao-huggingface-reader"
+ALLOWED_SECRET_PATH = "secrets/data/huggingface-flashnext"
+MODEL_ID = "orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4"
+BAO_BASE = "http://127.0.0.1:8200/v1/"
+LOGIN_URL = BAO_BASE + "auth/codex-deploy/login"
+SECRET_URL = BAO_BASE + ALLOWED_SECRET_PATH
+REVOKE_URL = BAO_BASE + "auth/token/revoke-self"
+HF_ACCESS_URL = "https://huggingface.co/api/models/" + MODEL_ID + "/auth-check"
+MAX_RESPONSE_BYTES = 64 * 1024
+TIMEOUT_SECONDS = 20
+
+
+class SafeError(Exception):
+    """Only fixed, non-secret diagnostics may be printed."""
+
+
+class RejectRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def bootstrap(*, read: bool) -> dict[str, str]:
+    """Use owned descriptors, not symlinks; check-only never reads file contents."""
+    values = {}
+    try:
+        directory = os.open(CONFIG_DIR, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    except OSError:
+        raise SafeError("dedicated Hugging Face AppRole bootstrap is missing or unsafe") from None
+    try:
+        info = os.fstat(directory)
+        if info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) != 0o700:
+            raise SafeError("AppRole directory requires current ownership and mode 0700")
+        for name in ("role_id", "secret_id"):
+            try:
+                fd = os.open(name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK, dir_fd=directory)
+            except OSError:
+                raise SafeError("AppRole bootstrap file is missing or unsafe") from None
+            try:
+                info = os.fstat(fd)
+                if (
+                    info.st_uid != os.getuid()
+                    or not stat.S_ISREG(info.st_mode)
+                    or stat.S_IMODE(info.st_mode) != 0o600
+                    or info.st_nlink != 1
+                    or not 0 < info.st_size <= 4096
+                ):
+                    raise SafeError("AppRole files require ownership, mode 0600 and bounded size")
+                if read:
+                    value = os.read(fd, 4097).decode("ascii").strip()
+                    if not re.fullmatch(r"[A-Za-z0-9._-]{1,4096}", value):
+                        raise SafeError("AppRole bootstrap format is invalid")
+                    values[name] = value
+            finally:
+                os.close(fd)
+    except (OSError, UnicodeError):
+        raise SafeError("AppRole bootstrap could not be loaded safely") from None
+    finally:
+        os.close(directory)
+    return values
+
+
+def request(url: str, *, token: str | None = None, payload: dict | None = None) -> dict:
+    """No proxies, redirects, arbitrary targets, response bodies or exception dumps."""
+    if url not in {LOGIN_URL, SECRET_URL, REVOKE_URL, HF_ACCESS_URL}:
+        raise SafeError("request target is outside the fixed allowlist")
+    is_hf = url == HF_ACCESS_URL
+    source = "Hugging Face" if is_hf else "OpenBao"
+    headers = {"Accept": "application/json"}
+    if token is not None:
+        headers["Authorization" if is_hf else "X-Vault-Token"] = (
+            "Bearer " + token if is_hf else token
+        )
+    data = None
+    if payload is not None:
+        headers["Content-Type"] = "application/json"
+        data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers)
+    opener = urllib.request.build_opener(
+        urllib.request.ProxyHandler({}),
+        RejectRedirectHandler(),
+        urllib.request.HTTPSHandler(context=ssl.create_default_context()),
+    )
+    try:
+        with opener.open(req, timeout=TIMEOUT_SECONDS) as response:
+            if response.geturl() != url or response.status not in (200, 204):
+                raise SafeError(source + " returned an unexpected response")
+            # Successful auth-check deliberately ignores any body; no weights are fetched.
+            if is_hf:
+                if response.status != 200:
+                    raise SafeError("Hugging Face access check requires HTTP 200")
+                return {}
+            raw = response.read(MAX_RESPONSE_BYTES + 1)
+    except urllib.error.HTTPError as exc:
+        status = exc.code
+        exc.close()
+        raise SafeError(source + " rejected request (HTTP " + str(status) + ")") from None
+    except (urllib.error.URLError, OSError, TimeoutError):
+        raise SafeError(source + " connection failed") from None
+    if len(raw) > MAX_RESPONSE_BYTES:
+        raise SafeError(source + " response exceeds size limit")
+    try:
+        result = json.loads(raw) if raw else {}
+    except (ValueError, UnicodeError):
+        raise SafeError(source + " returned invalid JSON") from None
+    if not isinstance(result, dict):
+        raise SafeError(source + " response must be an object")
+    return result
+
+
+def read_credential(session: str) -> str:
+    result = request(SECRET_URL, token=session)
+    data = result.get("data")
+    payload = data.get("data") if isinstance(data, dict) else None
+    value = payload.get("HF_TOKEN") if isinstance(payload, dict) else None
+    if not isinstance(value, str) or not re.fullmatch(r"hf_[A-Za-z0-9]{17,4093}", value):
+        raise SafeError("dedicated OpenBao secret requires a valid HF_TOKEN field")
+    return value
+
+
+def auth_check() -> dict:
+    result = request(LOGIN_URL, payload=bootstrap(read=True))
+    auth = result.get("auth")
+    session = auth.get("client_token") if isinstance(auth, dict) else None
+    if not isinstance(session, str) or not re.fullmatch(r"[A-Za-z0-9._-]{1,4096}", session):
+        raise SafeError("OpenBao login did not return a valid session")
+    try:
+        credential = read_credential(session)
+        request(HF_ACCESS_URL, token=credential)
+    finally:
+        # Revocation failure is not hidden as a successful access check.
+        request(REVOKE_URL, token=session, payload={})
+    return {
+        "model_id": MODEL_ID,
+        "repository_read_access_verified": True,
+        "bao_session_revoked": True,
+        "weights_downloaded": False,
+        "runtime_ready": False,
+    }
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = sys.argv[1:] if argv is None else argv
+    try:
+        if args == ["--check"]:
+            bootstrap(read=False)
+            try:
+                with socket.create_connection(("127.0.0.1", 8200), timeout=2):
+                    pass
+            except OSError:
+                raise SafeError("OpenBao is not listening on local loopback") from None
+            print(json.dumps({"bootstrap_metadata_ok": True, "credentials_read": False}))
+        elif args == ["--auth-check"]:
+            print(json.dumps(auth_check(), sort_keys=True))
+        else:
+            raise SafeError("usage: openbao-huggingface --check|--auth-check")
+        return 0
+    except SafeError as exc:
+        print("OpenBao Hugging Face error: " + str(exc), file=sys.stderr)
+    except Exception:
+        # Third-party responses and filesystem errors may contain sensitive values.
+        print("OpenBao Hugging Face error: unexpected failure (details suppressed)", file=sys.stderr)
+    return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

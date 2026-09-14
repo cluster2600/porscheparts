@@ -1,0 +1,8 @@
+--- a/Internals/Interop.cs
++++ b/Internals/Interop.cs
+@@ -415,4 +415,5 @@
+         [DllImport(Config.strPicoGKLib, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Voxels_bIsInside")]
++        [return: MarshalAs(UnmanagedType.I1)]
+         private static extern bool _bIsInside(      LibHandle   hLib,
+                                                     VoxHandle   hThis,
+                                                     in Vector3 vecTestPoint);

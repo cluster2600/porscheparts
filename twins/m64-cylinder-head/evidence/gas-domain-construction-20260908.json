@@ -1,0 +1,170 @@
+{
+  "schema": "m64-intake-gas-construction-public/v1",
+  "date": "2026-09-08",
+  "status": "native_domain_ready_for_one_diagnostic_mesh_attempt_not_CFD_qualified",
+  "scope": "single_cylinder_intake_cold_flow_bench_CAD_candidate_not_engine_simulation",
+  "units": "scan_units_under_unverified_1_unit_per_mm_hypothesis",
+  "inputs_sha256": {
+    "module": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+    "module_build_report": "7b501ab6ba49b3d8d8cbd2905e6759d38cb8ec2baa1c69f1490d9e87d62ad36e",
+    "registration_report": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+    "native_intake_06": "72e0a786a601b96250380d16296004de9e6746caa3888ee470b6cd218f2d0251",
+    "chambered_body": "3d78fd2ac9e78e5446f1a8fddc2b5d5ad1702cf912a74f579d6b42940124c4a4",
+    "native_chamber_tool": "8643968ccf678fde1a4ba68ff7866fc468ec8faadbf79a53cc055e50c0010dc8",
+    "chamber_report": "cc7d10e2b34cf3c2f786b0fbf6452f52d1a8f23f7ab59c1c711ec1fb58e36830",
+    "intake_report": "53beca98c5d152f2cb59d530934fc3fe8481fb7b4e49f541b97ed200ad430e8c"
+  },
+  "execution": {
+    "runtime": "OCP 7.9.3.1 on existing Kali CPU image",
+    "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "cpus": 2,
+    "memory_GiB": 4,
+    "timeout_seconds_per_job": 300,
+    "network": "none",
+    "Vast_rental_performed_by_this_lot": false
+  },
+  "rejected_run_04": {
+    "method": "fuse_constituents_then_one_cut_with_all_12_components",
+    "report_sha256": "501dd5b43239aa3d549eeaa9fbd4502f23b7b7059a252fdda028c5714a86150e",
+    "native_before_sha256": "e0468427f6f2e90a663d7ff9cec61dd65d0f6d17eb04199c19a6afd3c7f922ce",
+    "native_rejected_sha256": "44d5b98018704c307d71a7abfcf4a970f9d774b13e107b33495afc2e8ad52346",
+    "independent_diagnostic_report_sha256": "f554d6230ddcdef68366259fda9314ec99c8ec996dae912844b3229ce5e64a77",
+    "before": {"BRep_valid_exact_method": true, "solids": 1, "shells": 1, "faces": 31},
+    "after": {"BRep_valid_exact_method": false, "solids": 1, "shells": 2, "faces": 71},
+    "only_BRepCheck_fault": "BRepCheck_InvalidImbricationOfShells",
+    "shared_native_faces_between_shells": 3,
+    "shell_distance": 0.0,
+    "small_shell_signed_volume_quadrature_not_bound": -0.0004801203035442736,
+    "small_shell_area": 1.0174799838999293,
+    "small_shell_face_count": 4,
+    "manually_removed_shells": 0,
+    "physical_cavity_inferred": false
+  },
+  "constituent_seat_diagnostic": {
+    "report_sha256": "6345e28890889ad66e34944f6581c904b9c1a56f4d50789e3414b18f0ff96ed8",
+    "pairs": 28,
+    "pairs_with_nonzero_volume_or_solids": 0,
+    "all_pair_intersections_BRep_valid": true,
+    "input_hashes_unchanged": true,
+    "elapsed_seconds": 4.736565383151174,
+    "process_exit_code_observed": 0,
+    "geometry_fused_or_gas_domain_created": false
+  },
+  "native_run_05": {
+    "method": "subtract_same_12_components_from_each_constituent_before_fusion",
+    "set_identity": "union(A_i) minus B equals union(A_i minus B)",
+    "component_tools_omitted": 0,
+    "design_dimensions_or_tolerances_changed": false,
+    "builder_source_sha256": "92f54ab74a48ea1330b27d15f589aff16b9fda27f369669498e8fd3411828701",
+    "original_report_sha256": "f04cb7bb23943d02c58c37760ec2fc919d119e28cb81f33116607471bc347357",
+    "native_domain_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+    "STEP_sha256": "f324db0af8c2e6dc512200f86681424367ca2019e52dda160d5f98cecd40f1f0",
+    "solids": 1,
+    "BRep_valid": true,
+    "volume": 995964.587088009,
+    "area": 79059.5332300156,
+    "volume_relative_quadrature_estimate_not_bound": 9.660373252410243e-8,
+    "native_roundtrip_valid": true,
+    "STEP_roundtrip_BRep_valid": true,
+    "STEP_BOP_qualified": false,
+    "native_BOP": {
+      "has_faulty": true,
+      "has_errors": false,
+      "has_warnings": false,
+      "faults": ["BOPAlgo_GeomAbs_C0"],
+      "review_status": "continuous_C0_edge_diagnosed_conditionally_admissible_for_diagnostic_meshing"
+    },
+    "STEP_BOP_faults": {
+      "BOPAlgo_GeomAbs_C0": 1,
+      "BOPAlgo_InvalidCurveOnSurface": 31
+    },
+    "elapsed_seconds": 45.812553694006056,
+    "process_exit_code_observed": 0,
+    "process_exit_is_not_a_geometry_acceptance_gate": true,
+    "input_hashes_unchanged": true
+  },
+  "boundary_classification_v2": {
+    "report_sha256": "e95d7aa7000d0c82d5bdb9e83b57151cb041795d31380f4a802ab47bda155536",
+    "classifier_source_sha256": "de7fa51c60fdb147c6f50f551607df911e8bb70732b1d9e52fcf89e63eb0bd43",
+    "geometry_sha256_unchanged": true,
+    "native_geometry_rerun": false,
+    "unknown_faces": 0,
+    "ambiguous_faces": 0,
+    "resolved_negative_tool_vs_actual_seat_faces": [3, 6, 9, 14],
+    "actual_seat_full_area_coverages": [1.0, 1.0, 1.0, 1.0],
+    "actual_seat_owned_areas": [253.07164317350248, 210.1682053325112, 253.07164317350203, 210.16820533251268],
+    "roles": {
+      "walls_chamber": 9,
+      "walls_seat": 11,
+      "walls_receiver": 1,
+      "walls_valve": 40,
+      "receiver_outlet": 1,
+      "walls_port": 15,
+      "inlet": 1,
+      "walls_guide": 8,
+      "fixture_stem_seals": 2
+    },
+    "material_ownership_rule": "Whole actual planar seat face takes ownership over coincident negative construction tool; both matches remain recorded",
+    "failed_BOP_and_local_neck_gates_changed": false
+  },
+  "local_intake_necks": [
+    {"name": "intake_1", "BRep_valid": true, "solids": 1, "chamber_side_area": 908.792068848805, "throat_side_area": 967.1080790146368, "shared_trunk_excluded": true, "other_seat_overlap_volume": 0.0, "BOP_no_faults": true},
+    {"name": "intake_2", "BRep_valid": true, "solids": 1, "chamber_side_area": 908.792068848805, "throat_side_area": 967.1079353092703, "shared_trunk_excluded": true, "other_seat_overlap_volume": 0.0, "BOP_no_faults": false, "BOP_fault": "BOPAlgo_GeomAbs_C0"}
+  ],
+  "independent_native_advisory_review": {
+    "public_receipt": "native-gas-domain-independent-diagnostics-20260908.json",
+    "public_receipt_sha256": "bea801d567519d4bf7d598b31b9ae99d390053ed05154d1d110916b139ef18b1",
+    "private_report_sha256": "936846c6a1d5f3b0765eb30b75e6cf1003fa6052cb5717487292dde7c3fec8cd",
+    "domain_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+    "allow_one_diagnostic_meshing_attempt": true,
+    "mesh_accepted": false,
+    "native_BOP_no_faults": false,
+    "geometry_or_tolerance_changed": false,
+    "C0_entity": {
+      "native_edge_id": 97,
+      "curve_type": "GeomAbs_BSplineCurve",
+      "internal_C0_knots": 3,
+      "position_jumps_native_numeric": [0.0, 0.0, 0.0],
+      "tangent_break_angles_degrees": [0.6223641246442542, 6.963778422273408, 16.764326314446265],
+      "adjacent_native_face_ids": [36, 37],
+      "adjacent_material_roles": ["walls_seat", "walls_port"],
+      "interpretation": "Continuous curve with true tangent discontinuities, not a gap and not merely a dihedral angle between faces"
+    },
+    "seat_ownership_independently_confirmed": true,
+    "mesh_attempt_conditions": [
+      "Use the exact native BRep SHA, not the STEP with separate p-curve anomalies.",
+      "Preserve all internal C0 knots and verify their representation and boundary conformity.",
+      "Verify topology, boundary roles, mesh quality and volume cells before any solver run.",
+      "Retain fixture_stem_seals as an explicit idealized-bench subrole.",
+      "No automatic CFD, thermal, strength, performance or manufacturing approval."
+    ]
+  },
+  "private_native_render": {
+    "image_private_basename": "render-01/volume-air-banc.png",
+    "image_sha256": "8b6167b38cc8f7d037a0fb77839cbadd7e1c8ef79d44dd79856534cae6de24c0",
+    "render_report_sha256": "fa97a83c0c267ba7287b7e54b42dfbc1ea05ee4ae64c1aeead9b5369a1718c85",
+    "renderer_source_sha256": "4e75266bc46808ca475c1a7a45bddff4d9f88711fd446fafe0316e61314392f8",
+    "source_report_sha256": "f04cb7bb23943d02c58c37760ec2fc919d119e28cb81f33116607471bc347357",
+    "native_faces": 88,
+    "tessellated_triangles": 14210,
+    "chronology": "Rendered from original run05 before classification enrichment v2; four pink annotated faces are now assigned to their real seats",
+    "physical_CFD_fields_shown": false,
+    "image_published_in_repository": false,
+    "parent_visually_reviewed": true
+  },
+  "limitations": {
+    "mesh_accepted": false,
+    "CFD_execution_authorized_by_this_receipt": false,
+    "CFD_executed": false,
+    "flow_rate_or_Cd_computed": false,
+    "engine_700PS_or_boost_simulated": false,
+    "thermal_or_stress_validation_performed": false,
+    "master_modified": false,
+    "ports_cut_in_body": false,
+    "physical_stem_seal_designed_or_qualified": false,
+    "M64_fitment_validated": false,
+    "manufacturing_authorized": false,
+    "print_process_simulated": false,
+    "raw_scans_coordinates_or_private_CAD_included": false
+  }
+}

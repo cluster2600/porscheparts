@@ -1,0 +1,65 @@
+{
+  "schema": "m64-intake-flowbench-pilot/v1",
+  "status": "preregistered_geometry_not_ready",
+  "scope": "steady_cold_air_two_intake_valves_same_head",
+  "target_engine": "M64_700PS_biturbo_design_hypothesis",
+  "manufacturing_authorized": false,
+  "power_prediction_authorized": false,
+  "CFD_executed": false,
+  "inputs": {
+    "inlet_total_pressure_Pa": 101325.0,
+    "inlet_total_temperature_K": 293.15,
+    "pressure_drop_inH2O_conventional": 28.0,
+    "Pa_per_inH2O_conventional": 249.08891,
+    "air_gas_constant_J_kg_K": 287.05,
+    "air_gamma_for_reference_normalization": 1.4,
+    "reference_throat_diameter_mm": 35.6,
+    "intake_valve_count": 2,
+    "intake_valve_lifts_mm": [2.0, 6.0, 11.5],
+    "pilot_lift_mm": 6.0,
+    "receiver_bore_mm": 100.0
+  },
+  "input_authority": {
+    "test_pressure": "Chosen conventional bench condition, not engine boost or cylinder pressure",
+    "temperature_and_pressure": "Chosen laboratory reference, not measured conditions",
+    "throat_and_lifts": "Existing four-valve design V2 assumptions, not OEM metrology",
+    "receiver_bore": "Documentary M64 baseline hypothesis, not validation of the scanned head scale",
+    "gamma_and_R": "Calorically perfect dry-air normalization; not a combustion model"
+  },
+  "geometry_requirements": [
+    "One connected gas volume with full chamber and bore receiver",
+    "Both intake valves at declared lift, seats and guides subtracted from gas",
+    "Exhaust valves closed and spark-plug boundary sealed",
+    "No outlet substituted for the two intake throats",
+    "Native and persisted topology, boundary labels and leakage checks accepted",
+    "Identical entry radius, receiver, conditions and reference area for A-B comparisons"
+  ],
+  "preregistered_exploratory_checks": {
+    "relative_mass_imbalance_max": 0.001,
+    "relative_mean_mass_flow_change_last_two_windows_max": 0.005,
+    "minimum_spatial_levels_before_comparison": 3,
+    "maximum_relative_flow_change_medium_to_fine": 0.02,
+    "mesh_check_failure_allowed": false,
+    "stationary_solution_assumed_guaranteed": false,
+    "separation_unsteadiness_requires_transient_analysis": true,
+    "agreement_is_not_physical_correlation": true
+  },
+  "results": {
+    "mass_flow_kg_s": null,
+    "effective_flow_area_m2": null,
+    "discharge_coefficient_throat_reference": null,
+    "measured_engine_power_PS": null
+  },
+  "references": [
+    {
+      "url": "https://superflow.com/tech-corner/understanding-and-working-with-superflow-flowbenches/",
+      "checked_UTC_date": "2026-09-08",
+      "scope": "Bench preparation, sealing, matching bore fixture, entry radius, comparable conditions and 28 inH2O; not the geometry or performance of this head"
+    },
+    {
+      "url": "https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html",
+      "checked_UTC_date": "2026-09-08",
+      "scope": "Isentropic ideal-gas mass-flow normalization and sonic maximum; not actual head flow"
+    }
+  ]
+}

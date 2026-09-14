@@ -1,0 +1,865 @@
+{
+  "schema": "m64-seat-guide-free-expansion-screen/v1",
+  "status": "parametric_analytical_screen_not_material_selection_or_head_FEA",
+  "manufacturing_authorized": false,
+  "material_selected": false,
+  "head_contact_pressure_MPa": null,
+  "head_stress_MPa": null,
+  "source_bindings": [
+    {
+      "path": "twins/m64-cylinder-head/seat-guide-thermal-screen/screen.py",
+      "sha256": "9ae8ed0217fc41a809e7a1672d7cd4088791b40f4e3b2eea4dec9641ac613872"
+    },
+    {
+      "path": "twins/m64-cylinder-head/source/build_four_valve_distribution.py",
+      "sha256": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c"
+    },
+    {
+      "path": "twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/build-report.json",
+      "sha256": "7b501ab6ba49b3d8d8cbd2905e6759d38cb8ec2baa1c69f1490d9e87d62ad36e"
+    },
+    {
+      "path": "twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/audit-report.json",
+      "sha256": "fd7aa88e45a50accd2fa38f9fdac73a4cce2b9f3abce5713da6385efa0066fdc"
+    },
+    {
+      "path": "twins/m64-cylinder-head/valve-module-documentary-references-20260907.json",
+      "sha256": "0515ffc3f6dede74b7bfaad2e89adcf6dd10685104c355cd5259d449433798b4"
+    },
+    {
+      "path": "twins/m64-cylinder-head/cp1-hot-points-supplement-20260907.json",
+      "sha256": "dc2c4b01dcd2b3e1b9e1179a83c168f7da9aaaa21e214a716c6f465038991ba3"
+    },
+    {
+      "path": "twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/closed.step",
+      "sha256": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76"
+    }
+  ],
+  "equation_reference": {
+    "url": "https://ocw.mit.edu/courses/22-312-engineering-of-nuclear-reactors-fall-2015/eb49bc4f3e701be60ca651c5a109312f_MIT22_312F15_note_L4.pdf",
+    "scope": "radial_equilibrium_and_Hooke_law; plane_stress_compliance_derived_locally_not_copied_from_plane_strain_case"
+  },
+  "components": [
+    {
+      "id": "intake_seat",
+      "role": "seat",
+      "count_per_4v_module": 2,
+      "outer_diameter_mm": 43.0,
+      "minimum_inner_diameter_mm": 35.6,
+      "geometry_scope": "own_mm_design_module_not_Porsche_fitment",
+      "cold_diametral_interference_selected_mm": null,
+      "cold_reference_range_mm": [
+        0.06,
+        0.1
+      ],
+      "reference_scope": "generic_MAHLE_aluminum_head_not_selected_LPBF_turbo_fit"
+    },
+    {
+      "id": "intake_guide",
+      "role": "guide",
+      "count_per_4v_module": 2,
+      "outer_diameter_mm": 11.0,
+      "minimum_inner_diameter_mm": 6.03,
+      "geometry_scope": "own_mm_design_module_not_Porsche_fitment",
+      "cold_diametral_interference_selected_mm": null,
+      "cold_reference_range_mm": null,
+      "reference_scope": "guide_to_head_press_fit_unknown_running_clearance_not_reused"
+    },
+    {
+      "id": "exhaust_seat",
+      "role": "seat",
+      "count_per_4v_module": 2,
+      "outer_diameter_mm": 36.0,
+      "minimum_inner_diameter_mm": 28.6,
+      "geometry_scope": "own_mm_design_module_not_Porsche_fitment",
+      "cold_diametral_interference_selected_mm": null,
+      "cold_reference_range_mm": [
+        0.05,
+        0.09
+      ],
+      "reference_scope": "generic_MAHLE_aluminum_head_not_selected_LPBF_turbo_fit"
+    },
+    {
+      "id": "exhaust_guide",
+      "role": "guide",
+      "count_per_4v_module": 2,
+      "outer_diameter_mm": 11.0,
+      "minimum_inner_diameter_mm": 6.04,
+      "geometry_scope": "own_mm_design_module_not_Porsche_fitment",
+      "cold_diametral_interference_selected_mm": null,
+      "cold_reference_range_mm": null,
+      "reference_scope": "guide_to_head_press_fit_unknown_running_clearance_not_reused"
+    }
+  ],
+  "synthetic_insert_mean_CTE_values_per_K": [
+    1e-05,
+    1.5e-05,
+    2e-05
+  ],
+  "synthetic_CTE_range_is_material_property_bound": false,
+  "cold_reference_temperature_handling": "MAHLE_room_temperature_no_exact_C; each_case_assumes_dimensions_at_its_CTE_reference_T0_no_cross_source_temperature_rebasing",
+  "CTE_endpoint_cases": [
+    {
+      "head_CTE_source_id": "constellium_formnext_2021_p9",
+      "reference_temperature_C": 20,
+      "head_temperature_C": 200,
+      "insert_temperature_C": 200,
+      "head_mean_CTE_per_K": 2.519e-05,
+      "head_engineering_strain": 0.0045342,
+      "rows": [
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0018000000000000002,
+          "zero_contact_cold_interference_mm": 0.11703991760559272,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.057298548000000005,
+            -0.017117179999999996
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": -0.03720786400000001
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0027,
+          "zero_contact_cold_interference_mm": 0.0785145991047393,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.01859854800000002,
+            0.02158281999999999
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.0014921359999999773
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0036000000000000003,
+          "zero_contact_cold_interference_mm": 0.03998928060388587,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.020101451999999992,
+            0.06028282
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.04019213599999999
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0018000000000000002,
+          "zero_contact_cold_interference_mm": 0.02994044403864,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0027,
+          "zero_contact_cold_interference_mm": 0.02008513000353796,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0036000000000000003,
+          "zero_contact_cold_interference_mm": 0.01022981596843592,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0018000000000000002,
+          "zero_contact_cold_interference_mm": 0.09798690776282182,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.048204489999999996,
+            -0.008023122000000008
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": -0.02811380599999999
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0027,
+          "zero_contact_cold_interference_mm": 0.06573315273885151,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.01580449000000001,
+            0.024376877999999977
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.004286193999999993
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0036000000000000003,
+          "zero_contact_cold_interference_mm": 0.03347939771488119,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.01659551,
+            0.05677687799999999
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.036686194000000005
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0018000000000000002,
+          "zero_contact_cold_interference_mm": 0.02994044403864,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0027,
+          "zero_contact_cold_interference_mm": 0.02008513000353796,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0036000000000000003,
+          "zero_contact_cold_interference_mm": 0.01022981596843592,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        }
+      ]
+    },
+    {
+      "head_CTE_source_id": "eos_cp1_m290_60um_20260904",
+      "reference_temperature_C": 25,
+      "head_temperature_C": 100,
+      "insert_temperature_C": 100,
+      "head_mean_CTE_per_K": 1.9e-05,
+      "head_engineering_strain": 0.001425,
+      "rows": [
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00075,
+          "zero_contact_cold_interference_mm": 0.02898369823002222,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.031060499999999998,
+            0.0711175
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.051089
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0011250000000000001,
+          "zero_contact_cold_interference_mm": 0.012881643657787649,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.047185500000000005,
+            0.08724250000000001
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.06721400000000001
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0015,
+          "zero_contact_cold_interference_mm": -0.0032204109144469122,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.0633105,
+            0.10336750000000001
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.08333900000000001
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00075,
+          "zero_contact_cold_interference_mm": 0.007414434430935916,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0011250000000000001,
+          "zero_contact_cold_interference_mm": 0.003295304191527073,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0015,
+          "zero_contact_cold_interference_mm": -0.0008238260478817683,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00075,
+          "zero_contact_cold_interference_mm": 0.02426542177397209,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.025771250000000002,
+            0.06582824999999999
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.04579975
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0011250000000000001,
+          "zero_contact_cold_interference_mm": 0.010784631899543148,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.03927125000000001,
+            0.07932824999999999
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.059299750000000005
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0015,
+          "zero_contact_cold_interference_mm": -0.002696157974885787,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.052771250000000006,
+            0.09282824999999999
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.07279975
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00075,
+          "zero_contact_cold_interference_mm": 0.007414434430935916,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.0011250000000000001,
+          "zero_contact_cold_interference_mm": 0.003295304191527073,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0015,
+          "zero_contact_cold_interference_mm": -0.0008238260478817683,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        }
+      ]
+    },
+    {
+      "head_CTE_source_id": "eos_cp1_m290_60um_20260904",
+      "reference_temperature_C": 25,
+      "head_temperature_C": 200,
+      "insert_temperature_C": 200,
+      "head_mean_CTE_per_K": 2.1e-05,
+      "head_engineering_strain": 0.003675,
+      "rows": [
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00175,
+          "zero_contact_cold_interference_mm": 0.08247191570976659,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.022554499999999984,
+            0.017592500000000025
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": -0.0024809999999999832
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.002625,
+          "zero_contact_cold_interference_mm": 0.04498468129623632,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.015070500000000014,
+            0.055217500000000024
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.035144000000000016
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0035,
+          "zero_contact_cold_interference_mm": 0.007497446882706046,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.05269550000000001,
+            0.09284250000000002
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.07276900000000001
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00175,
+          "zero_contact_cold_interference_mm": 0.021097466809475177,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.002625,
+          "zero_contact_cold_interference_mm": 0.01150770916880464,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0035,
+          "zero_contact_cold_interference_mm": 0.0019179515281341048,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00175,
+          "zero_contact_cold_interference_mm": 0.06904625501282785,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.019116249999999994,
+            0.02103075
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.0009572500000000067
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.002625,
+          "zero_contact_cold_interference_mm": 0.037661593643360636,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.01238375000000002,
+            0.052530750000000015
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.03245725000000002
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0035,
+          "zero_contact_cold_interference_mm": 0.006276932273893434,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.04388375000000001,
+            0.08403075000000002
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.06395725000000002
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.00175,
+          "zero_contact_cold_interference_mm": 0.021097466809475177,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.002625,
+          "zero_contact_cold_interference_mm": 0.01150770916880464,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0035,
+          "zero_contact_cold_interference_mm": 0.0019179515281341048,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        }
+      ]
+    },
+    {
+      "head_CTE_source_id": "eos_cp1_m290_60um_20260904",
+      "reference_temperature_C": 25,
+      "head_temperature_C": 300,
+      "insert_temperature_C": 300,
+      "head_mean_CTE_per_K": 2.2e-05,
+      "head_engineering_strain": 0.00605,
+      "rows": [
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0027500000000000003,
+          "zero_contact_cold_interference_mm": 0.141046667660653,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.08153699999999997,
+            -0.04129499999999996
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": -0.06141599999999996
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.004125,
+          "zero_contact_cold_interference_mm": 0.08227722280204759,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.02241199999999998,
+            0.017830000000000026
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": -0.0022909999999999736
+        },
+        {
+          "component": "intake_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0055000000000000005,
+          "zero_contact_cold_interference_mm": 0.02350777794344214,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.03671300000000004,
+            0.07695500000000005
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.056834000000000044
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0027500000000000003,
+          "zero_contact_cold_interference_mm": 0.03608170568063216,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.004125,
+          "zero_contact_cold_interference_mm": 0.02104766164703543,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "intake_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0055000000000000005,
+          "zero_contact_cold_interference_mm": 0.006013617613438688,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0027500000000000003,
+          "zero_contact_cold_interference_mm": 0.11808558222752345,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.06849749999999999,
+            -0.02825549999999999
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": -0.048376499999999975
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.004125,
+          "zero_contact_cold_interference_mm": 0.06888325629938868,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            -0.01899749999999998,
+            0.021244500000000013
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.0011235000000000273
+        },
+        {
+          "component": "exhaust_seat",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0055000000000000005,
+          "zero_contact_cold_interference_mm": 0.019680930371253885,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": [
+            0.030502500000000033,
+            0.07074450000000003
+          ],
+          "hot_free_interference_at_cold_reference_midpoint_mm": 0.05062350000000004
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1e-05,
+          "insert_engineering_strain": 0.0027500000000000003,
+          "zero_contact_cold_interference_mm": 0.03608170568063216,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+          "insert_engineering_strain": 0.004125,
+          "zero_contact_cold_interference_mm": 0.02104766164703543,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        },
+        {
+          "component": "exhaust_guide",
+          "insert_mean_alpha_hypothesis_per_K": 2e-05,
+          "insert_engineering_strain": 0.0055000000000000005,
+          "zero_contact_cold_interference_mm": 0.006013617613438688,
+          "required_design_margin_mm": null,
+          "hot_free_interference_for_cold_reference_range_mm": null
+        }
+      ]
+    }
+  ],
+  "unequal_temperature_hypothesis_cases": [
+    {
+      "insert_temperature_hypothesis_C": 150.0,
+      "head_temperature_hypothesis_C": 200,
+      "reference_temperature_C": 20,
+      "head_CTE_source_id": "constellium_formnext_2021_p9",
+      "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+      "zero_contact_cold_interference_mm": {
+        "intake_seat": 0.11061903118878383,
+        "intake_guide": 0.028297891699456325,
+        "exhaust_seat": 0.09261128192549344,
+        "exhaust_guide": 0.028297891699456325
+      }
+    },
+    {
+      "insert_temperature_hypothesis_C": 200.0,
+      "head_temperature_hypothesis_C": 200,
+      "reference_temperature_C": 20,
+      "head_CTE_source_id": "constellium_formnext_2021_p9",
+      "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+      "zero_contact_cold_interference_mm": {
+        "intake_seat": 0.0785145991047393,
+        "intake_guide": 0.02008513000353796,
+        "exhaust_seat": 0.06573315273885151,
+        "exhaust_guide": 0.02008513000353796
+      }
+    },
+    {
+      "insert_temperature_hypothesis_C": 250.0,
+      "head_temperature_hypothesis_C": 200,
+      "reference_temperature_C": 20,
+      "head_CTE_source_id": "constellium_formnext_2021_p9",
+      "insert_mean_alpha_hypothesis_per_K": 1.5e-05,
+      "zero_contact_cold_interference_mm": {
+        "intake_seat": 0.04641016702069479,
+        "intake_guide": 0.011872368307619598,
+        "exhaust_seat": 0.03885502355220959,
+        "exhaust_guide": 0.011872368307619598
+      }
+    }
+  ],
+  "normalized_ring_sensitivity": [
+    {
+      "component": "intake_seat",
+      "a_over_b": 0.8279069767441861,
+      "c_over_b_hypothesis": 1.1,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 7.993751407396694e-05,
+      "pressure_over_E_head_per_interference_over_D": 0.07993751407396693,
+      "housing_bore_hoop_stress_over_E_head": 0.0008412471719212705,
+      "housing_bore_von_mises_over_E_head": 0.000883931003001367,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "intake_seat",
+      "a_over_b": 0.8279069767441861,
+      "c_over_b_hypothesis": 1.5,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0002180567788400497,
+      "pressure_over_E_head_per_interference_over_D": 0.21805677884004968,
+      "housing_bore_hoop_stress_over_E_head": 0.0005669476249841292,
+      "housing_bore_von_mises_over_E_head": 0.0007018583483497927,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "intake_seat",
+      "a_over_b": 0.8279069767441861,
+      "c_over_b_hypothesis": 2.0,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0002737754693464106,
+      "pressure_over_E_head_per_interference_over_D": 0.2737754693464106,
+      "housing_bore_hoop_stress_over_E_head": 0.00045629244891068436,
+      "housing_bore_von_mises_over_E_head": 0.0006388094284749582,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "intake_guide",
+      "a_over_b": 0.5481818181818182,
+      "c_over_b_hypothesis": 1.1,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 8.815588325645554e-05,
+      "pressure_over_E_head_per_interference_over_D": 0.08815588325645553,
+      "housing_bore_hoop_stress_over_E_head": 0.0009277357237941265,
+      "housing_bore_von_mises_over_E_head": 0.0009748078760023311,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "intake_guide",
+      "a_over_b": 0.5481818181818182,
+      "c_over_b_hypothesis": 1.5,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0002924205002677901,
+      "pressure_over_E_head_per_interference_over_D": 0.2924205002677901,
+      "housing_bore_hoop_stress_over_E_head": 0.0007602933006962542,
+      "housing_bore_von_mises_over_E_head": 0.000941212515535316,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "intake_guide",
+      "a_over_b": 0.5481818181818182,
+      "c_over_b_hypothesis": 2.0,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0004021879752689779,
+      "pressure_over_E_head_per_interference_over_D": 0.4021879752689779,
+      "housing_bore_hoop_stress_over_E_head": 0.0006703132921149633,
+      "housing_bore_von_mises_over_E_head": 0.0009384386089609485,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "exhaust_seat",
+      "a_over_b": 0.7944444444444445,
+      "c_over_b_hypothesis": 1.1,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 8.198161818532357e-05,
+      "pressure_over_E_head_per_interference_over_D": 0.08198161818532357,
+      "housing_bore_hoop_stress_over_E_head": 0.0008627589342360235,
+      "housing_bore_von_mises_over_E_head": 0.000906534245275311,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "exhaust_seat",
+      "a_over_b": 0.7944444444444445,
+      "c_over_b_hypothesis": 1.5,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.00023397029706847023,
+      "pressure_over_E_head_per_interference_over_D": 0.23397029706847022,
+      "housing_bore_hoop_stress_over_E_head": 0.0006083227723780227,
+      "housing_bore_von_mises_over_E_head": 0.0007530791160766531,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "exhaust_seat",
+      "a_over_b": 0.7944444444444445,
+      "c_over_b_hypothesis": 2.0,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0002993372551442459,
+      "pressure_over_E_head_per_interference_over_D": 0.2993372551442459,
+      "housing_bore_hoop_stress_over_E_head": 0.0004988954252404099,
+      "housing_bore_von_mises_over_E_head": 0.0006984535953365738,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "exhaust_guide",
+      "a_over_b": 0.5490909090909091,
+      "c_over_b_hypothesis": 1.1,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 8.814530705842959e-05,
+      "pressure_over_E_head_per_interference_over_D": 0.08814530705842959,
+      "housing_bore_hoop_stress_over_E_head": 0.0009276244219006154,
+      "housing_bore_von_mises_over_E_head": 0.0009746909267897202,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "exhaust_guide",
+      "a_over_b": 0.5490909090909091,
+      "c_over_b_hypothesis": 1.5,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0002923041621875666,
+      "pressure_over_E_head_per_interference_over_D": 0.2923041621875666,
+      "housing_bore_hoop_stress_over_E_head": 0.0007599908216876732,
+      "housing_bore_von_mises_over_E_head": 0.0009408380586930652,
+      "contact_active_in_ideal_ring": true
+    },
+    {
+      "component": "exhaust_guide",
+      "a_over_b": 0.5490909090909091,
+      "c_over_b_hypothesis": 2.0,
+      "E_insert_over_E_head_hypothesis": 3.0,
+      "nu_insert_hypothesis": 0.3,
+      "nu_head_hypothesis": 0.3,
+      "interference_over_D_hypothesis": 0.001,
+      "pressure_over_E_head": 0.0004019679363149997,
+      "pressure_over_E_head_per_interference_over_D": 0.40196793631499966,
+      "housing_bore_hoop_stress_over_E_head": 0.0006699465605249995,
+      "housing_bore_von_mises_over_E_head": 0.0009379251847349994,
+      "contact_active_in_ideal_ring": true
+    }
+  ],
+  "four_vs_two_valve_scope": {
+    "four_valve_seat_count": 4,
+    "four_valve_guide_count": 4,
+    "four_valve_cold_seat_envelope_gap_mm": 2.0,
+    "gap_is_existing_body_ligament": false,
+    "two_valve_seat_outer_diameters_mm": null,
+    "two_valve_housing_geometry_known": false,
+    "comparison_of_thermal_or_structural_superiority_performed": false,
+    "bridge_is_axisymmetric_ring": false
+  },
+  "excluded_physics": [
+    "3D_interacting_inclined_seats_and_guides",
+    "housing_not_yet_defined",
+    "seat_cone_and_finite_length_end_effects",
+    "thermal_gradients_and_transients",
+    "plasticity_creep_relaxation_fatigue",
+    "friction_roughness_insertion_damage",
+    "combustion_pressure_valve_impact_and_bolt_loads",
+    "coupled_contact_heat_conductance",
+    "press_fit_guide_ID_contraction"
+  ],
+  "required_data": [
+    "chosen_insert_and_guide_supplier_alloy_and_heat_treatment",
+    "matched_body_insert_guide_expansion_curves_and_uncertainties",
+    "E_T_nu_T_plasticity_creep_strength_for_same_LPBF_build_and_treatment",
+    "actual_seat_and_guide_housing_geometry_and_tolerances_at_named_T0",
+    "guide_to_head_cold_interference_and_engagement",
+    "CHT_temperatures_at_each_side_of_each_contact_through_duty_cycle",
+    "retention_load_requirement_contact_friction_and_heat_transfer_data",
+    "coupled_3D_contact_FEA_and_hot_coupon_retention_tests"
+  ]
+}

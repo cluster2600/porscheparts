@@ -1,0 +1,287 @@
+{
+  "schema": "f58-three-time-step-energy-results/v3",
+  "classification": "AlSi10Mg_rectangular_coupon_discrete_energy_time_refinement_not_head_validation",
+  "mesh_cells": 57600,
+  "end_time_s": 0.00012,
+  "Tmax_k": 3300,
+  "active_laser_power_w": 380,
+  "new_case_only_change_from_100ns": "deltaT 1e-07 to 2.5e-08",
+  "original_case_files_unchanged": true,
+  "new_case_inputs_unchanged_after_run": true,
+  "cases": {
+    "100ns": {
+      "samples": 1200,
+      "time_series_complete": true,
+      "fatal_error_in_log": false,
+      "solver_exit_code": null,
+      "solver_exit_status_verified": false,
+      "final_time_s": 0.0001200000000000021,
+      "max_temperature_k": 3300.000000087125,
+      "temperature_cap_hit": true,
+      "integrated_terms": {
+        "sensible_storage_j": 0.02833105641610585,
+        "latent_storage_j": 0.003692309842920608,
+        "boundary_diffusion_in_j": 0.0038081647871890455,
+        "laser_in_j": 0.0315521920477391,
+        "advective_out_j": 0.0,
+        "limiter_sink_j": 0.0033369993239773543,
+        "equation_residual_j": 8.748075674777932e-09
+      },
+      "absolute_residual_energy_j": 1.1891973871089511e-08,
+      "relative_absolute_energy_residual": 3.7689850052562805e-07,
+      "residual_verification": {
+        "method": "independent_fsum_of_six_component_columns_before_integration",
+        "log_precision_significant_digits": 16,
+        "rounding_tolerance_formula": "absolute_w + relative * sum(abs(component_w))",
+        "rounding_tolerance_absolute_w": 1e-12,
+        "rounding_tolerance_relative": 5e-15,
+        "max_logged_recomputed_difference_w": 1.580957570125564e-13,
+        "all_logged_residuals_consistent": true
+      },
+      "log_sha256": "fd95a18b51c3e252f4e92d2625e62fe21b82b5ac66abbf6abc14877a5cf1a44c",
+      "manufacturing_authorized": false,
+      "dt_s": 1e-07,
+      "limiter_fraction_of_absorbed_laser_energy": 0.10576125167241654,
+      "process_exit_evidence": {
+        "exit_code": null,
+        "receipt_available_here": false
+      }
+    },
+    "50ns": {
+      "samples": 2400,
+      "time_series_complete": true,
+      "fatal_error_in_log": false,
+      "solver_exit_code": null,
+      "solver_exit_status_verified": false,
+      "final_time_s": 0.0001200000000000025,
+      "max_temperature_k": 3300.000000043498,
+      "temperature_cap_hit": true,
+      "integrated_terms": {
+        "sensible_storage_j": 0.028340616150568886,
+        "latent_storage_j": 0.0036924011853044767,
+        "boundary_diffusion_in_j": 0.003806926488204504,
+        "laser_in_j": 0.03155754571464708,
+        "advective_out_j": 0.0,
+        "limiter_sink_j": 0.0033314726408661976,
+        "equation_residual_j": 1.7773887975129086e-08
+      },
+      "absolute_residual_energy_j": 2.420794184599513e-08,
+      "relative_absolute_energy_residual": 7.671047065855723e-07,
+      "residual_verification": {
+        "method": "independent_fsum_of_six_component_columns_before_integration",
+        "log_precision_significant_digits": 16,
+        "rounding_tolerance_formula": "absolute_w + relative * sum(abs(component_w))",
+        "rounding_tolerance_absolute_w": 1e-12,
+        "rounding_tolerance_relative": 5e-15,
+        "max_logged_recomputed_difference_w": 1.7141842144959701e-13,
+        "all_logged_residuals_consistent": true
+      },
+      "log_sha256": "27f3733c41e8e4d448c94b6e3979a776164f43c7b01732f7bfc449b125d8f1bf",
+      "manufacturing_authorized": false,
+      "dt_s": 5e-08,
+      "limiter_fraction_of_absorbed_laser_energy": 0.10556817919208249,
+      "process_exit_evidence": {
+        "exit_code": null,
+        "receipt_available_here": false
+      }
+    },
+    "25ns": {
+      "samples": 4800,
+      "time_series_complete": true,
+      "fatal_error_in_log": false,
+      "solver_exit_code": 0,
+      "solver_exit_status_verified": true,
+      "final_time_s": 0.0001200000000000027,
+      "max_temperature_k": 3300.000000021728,
+      "temperature_cap_hit": true,
+      "integrated_terms": {
+        "sensible_storage_j": 0.028346909962899337,
+        "latent_storage_j": 0.0036926080100293888,
+        "boundary_diffusion_in_j": 0.0038062536782791038,
+        "laser_in_j": 0.031562272110014535,
+        "advective_out_j": 0.0,
+        "limiter_sink_j": 0.0033290430074828254,
+        "equation_residual_j": 3.519211790914225e-08
+      },
+      "absolute_residual_energy_j": 4.8056082725229785e-08,
+      "relative_absolute_energy_residual": 1.5225799510796898e-06,
+      "residual_verification": {
+        "method": "independent_fsum_of_six_component_columns_before_integration",
+        "log_precision_significant_digits": 16,
+        "rounding_tolerance_formula": "absolute_w + relative * sum(abs(component_w))",
+        "rounding_tolerance_absolute_w": 1e-12,
+        "rounding_tolerance_relative": 5e-15,
+        "max_logged_recomputed_difference_w": 1.6875390313115558e-13,
+        "all_logged_residuals_consistent": true
+      },
+      "log_sha256": "319343f84fd40295811ffa9d5769fc1df487fe668aed9baeaadadd9b4939a94b",
+      "manufacturing_authorized": false,
+      "dt_s": 2.5e-08,
+      "limiter_fraction_of_absorbed_laser_energy": 0.10547539150156869,
+      "process_exit_evidence": {
+        "exit_code": 0,
+        "verified_by": "Docker final State.ExitCode",
+        "receipt_available_here": true,
+        "receipt_sha256": "9e439fab8fc5d0e56ab14fabed2fad3be7226aebff9b832e33ad0f076720d0cc",
+        "wall_seconds": 131.725590121001,
+        "oom_killed": false,
+        "external_timeout": false
+      },
+      "log_parser_process_status": {
+        "solver_exit_code": null,
+        "solver_exit_status_verified": false,
+        "scope": "A complete log alone does not prove a process exit code."
+      },
+      "solver_exit_status_evidence": "process_exit_evidence"
+    }
+  },
+  "energy_refinement_metrics": {
+    "sensible_storage_j": {
+      "coarse_minus_medium_j": -9.559734463034791e-06,
+      "medium_minus_fine_j": -6.293812330450399e-06,
+      "fine_relative_change": 0.0002220281624588991,
+      "observed_p": 0.6030363847455562,
+      "asymptotic_regime_established": false,
+      "reason": "three_point_apparent_order_for_capped_discrete_model_only",
+      "strictly_monotonic_three_values": true
+    },
+    "latent_storage_j": {
+      "coarse_minus_medium_j": -9.134238386889273e-08,
+      "medium_minus_fine_j": -2.068247249120518e-07,
+      "fine_relative_change": 5.601047399298842e-05,
+      "observed_p": null,
+      "asymptotic_regime_established": false,
+      "reason": "difference_does_not_decrease; no positive convergence order",
+      "strictly_monotonic_three_values": true
+    },
+    "boundary_diffusion_in_j": {
+      "coarse_minus_medium_j": 1.2382989845413118e-06,
+      "medium_minus_fine_j": 6.728099254003569e-07,
+      "fine_relative_change": 0.00017676434159915217,
+      "observed_p": 0.8800887983945798,
+      "asymptotic_regime_established": false,
+      "reason": "three_point_apparent_order_for_capped_discrete_model_only",
+      "strictly_monotonic_three_values": true
+    },
+    "laser_in_j": {
+      "coarse_minus_medium_j": -5.353666907979837e-06,
+      "medium_minus_fine_j": -4.726395367457559e-06,
+      "fine_relative_change": 0.00014974826118294252,
+      "observed_p": 0.17978706365617628,
+      "asymptotic_regime_established": false,
+      "reason": "three_point_apparent_order_for_capped_discrete_model_only",
+      "strictly_monotonic_three_values": true
+    },
+    "advective_out_j": {
+      "coarse_minus_medium_j": 0.0,
+      "medium_minus_fine_j": 0.0,
+      "fine_relative_change": null,
+      "observed_p": null,
+      "asymptotic_regime_established": false,
+      "reason": "zero_difference_or_nonmonotonic; no unique positive-power convergence fit",
+      "strictly_monotonic_three_values": false
+    },
+    "limiter_sink_j": {
+      "coarse_minus_medium_j": 5.526683111156672e-06,
+      "medium_minus_fine_j": 2.429633383372199e-06,
+      "fine_relative_change": 0.0007298293767641371,
+      "observed_p": 1.1856752571962714,
+      "asymptotic_regime_established": false,
+      "reason": "three_point_apparent_order_for_capped_discrete_model_only",
+      "strictly_monotonic_three_values": true
+    }
+  },
+  "order_formula": "log2(abs((Q100-Q50)/(Q50-Q25))) only when differences have same sign and decrease",
+  "temperature_order_estimated": false,
+  "reason_temperature_excluded": "all maxima hit the same numerical cap",
+  "physical_temperature_convergence_established": false,
+  "discrete_energy_balance_definition": {
+    "equation": "sensible_storage + latent_storage = boundary_diffusion_in + laser_in - advective_out - limiter_sink",
+    "residual_recomputed_from": "six component columns with math.fsum; logged residual only cross-checked",
+    "sensible_storage": "sum(rho*Cp_lagged*delta_T*V)/dt",
+    "latent_storage": "-sum(rho*Lf*delta_alpha_solid*V)/dt",
+    "boundary_flux": "integral of the actual conservative fvc::laplacian(kappa,T)",
+    "limiter": "actual implicit penalty, separate from physical losses",
+    "units": {
+      "time": "s",
+      "temperature": "K",
+      "integrated_energy": "J",
+      "instantaneous_power": "W",
+      "ratios": "dimensionless"
+    }
+  },
+  "provenance": {
+    "prior_public_summary_sha256": "9ba4d8838dc747933a0f68fd4c3580b8e234ce53bf0d4c223d414a4d339d6dc9",
+    "parser_sha256": "65d07baa7d0f4395849263c1fcd62e28a281ad406453c51fa7c1faeb2bd73824",
+    "analysis_script_sha256": "3332e4a44ca6b0d7fdd63eeee9fafa666a007158369f70e48444877951d5b793",
+    "new_case_manifest_sha256": "c1352b80d437e1065453d8d27f1905372a5825ae582977345a8007c3960dda7e",
+    "new_case_process_receipt_sha256": "9e439fab8fc5d0e56ab14fabed2fad3be7226aebff9b832e33ad0f076720d0cc",
+    "new_case_log_sha256": "319343f84fd40295811ffa9d5769fc1df487fe668aed9baeaadadd9b4939a94b",
+    "new_case_input_hashes": {
+      "0/T": "a086c0bd1083378baef1c975dbc9bbb8f5d812a0ef8390f0194d6d11e9d52c8f",
+      "0/U": "c4bc13f1165c1190f92b6911f98a93f134afa9a16f05eeaf7d8012c470c22af0",
+      "0/alpha.powder": "155010fdde45111fa7a0eb7fcc848b6072716e293097b76353ed3dc7f38eb420",
+      "0/alpha.solid": "f4985989bcc1b05cbe9fbdb9c7cecfee0d9dc482264e66f2969faa4d47c1b653",
+      "0/p_rgh": "7e268fdff8b6615e3219c419c571ec3e85c9f159cbaef144b8634166d2cb3ca5",
+      "constant/createScanPathDict": "98f2638c96fef8f1663db29f9d7e2232257094b6fafa6cdca4d7d687eda2725f",
+      "constant/dynamicMeshDict": "e24cd55a17a103538573c43cb312864d34084cb628f6680e458ed01dac13dfae",
+      "constant/g": "e89790f8e103fd664620ff7f181d8fa99890485acc42181a02a5f78221519444",
+      "constant/heatSourceDict": "8109cbbe77cba6cf4f4e17eb9cb285aa7033bf3c6c6b199bdc487bea23bc8d4a",
+      "constant/polyMesh/boundary": "8550b6a167ac2f920ca85649cede8518f23e7e2eb3b13060834d6ee9a1f36c2d",
+      "constant/polyMesh/cellLevel": "18ad07ce8c78795a0a58d9d70e51051e11a393f771d4b32c56c3d7cc58b35d45",
+      "constant/polyMesh/cellProc": "b0851646547a5c0a2206286e54c3613f378fe3fc16d843cac9d238496fbbb132",
+      "constant/polyMesh/faces": "3aaefb1f0cb61307ac74fd384a537f3fc70327f8a0935ab0f69818dc0cd04479",
+      "constant/polyMesh/level0Edge": "0ed2fd178c99831e158fbe4722c206a823096b48186fcbfcd10702fdc962633c",
+      "constant/polyMesh/neighbour": "1e01e0d0969777e14957f627c92e0304a0ee5bd4c9226028c5987093fa548bbe",
+      "constant/polyMesh/owner": "efa0d90b811de49acc6c0587142c4201fedd2c982e55e28360db8057b4d306f3",
+      "constant/polyMesh/pointLevel": "d6ccbc303f9ff78e8df2d003d5dd0ac93ab66ce04a190178836b52a68dc65145",
+      "constant/polyMesh/points": "8fc6e73c685d14977882849996e91d367ca56fa3fbebab93f13accd3bf79e34c",
+      "constant/polyMesh/refinementHistory": "a7eeb8958a69b3472c2c365028980f975ad1f44dbc3c1af52ce581e61b9359cf",
+      "constant/scanPath": "106559b1ee5b48ee2e27569f3e91783e1f8e08f3ab6139bc615e985b5ec9a022",
+      "constant/transportProperties": "89929d92ed1b49e5204ed5d627f964a1424d1bf0d3b2cf5213c6a8dd1e6b3894",
+      "system/blockMeshDict": "808a3ba01ea72a8a721f7b4e3dd2d2a9a24059fd0ffce737970eed354922f3b2",
+      "system/controlDict": "57efb14bb9a14fc6e8dfdf3ec5ccccda1f93edf10e5ab354748604c62d43150d",
+      "system/decomposeParDict": "25a1b3336e1b67f9cea60167448a74d70c9d32c25502433a0972088d1fe639d4",
+      "system/extrudeMeshDict": "2fa66b22ab340de2cfbc4ec2e72575ae5c59f349a4f1280024dcc6ab5f9933d2",
+      "system/fvSchemes": "9b9d1f34192f909f2688f6909b1e42e1b4ec3960da824d990f2850c2fc306d3e",
+      "system/fvSolution": "4cc602c18a7c83813239e70139d52f4e1b29e7f574d03be06db120646b0ee489",
+      "system/mapFieldsDict": "ea8825b99e52dbc2c6100cb6d5fda4e3c238f9dd75ccdb0e5f7e6ea087c23749",
+      "system/setFieldsDict": "bbff4276f5c596b43ffac895abf8ed4dac9354ad56cd2acab9a8d5476ca3984c"
+    },
+    "image_id": "sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17",
+    "instrumented_binary_sha256": "b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d",
+    "material_sha256": "65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea",
+    "library_sha256": {
+      "libadditiveFoamFunctionObjects.so": "38983bea9cf63e1dfe9063bede6bb8d3ad8b6ed06ac7b8dcd5b334aaf4fddbb1",
+      "libadditiveFoamUtilities.so": "b084e707337c3d74e86569ebd18f9d08fed3224353daf110a069ce64687d0f2a",
+      "libmovingBeamModels.so": "1ae3524e60b5de658aedd47479da18a5bd1052803b108e214cbeb193411e0d22"
+    },
+    "process_status_enrichment": {
+      "case": "25ns",
+      "prior_three_level_receipt_sha256": "16825734ba57be544b5d5b63690d53b2475f19552ced45f650db37017b938952",
+      "verified_process_receipt_sha256": "9e439fab8fc5d0e56ab14fabed2fad3be7226aebff9b832e33ad0f076720d0cc",
+      "enrichment_script_sha256": "32e3b1ec0c79901619fd4c082b1864f0b02485fcdbb3bb6f04ea260daa7d8fe9",
+      "method": "Canonical 25 ns exit status enriched from Docker final state; parser-only null/false values preserved separately.",
+      "physical_values_changed": false,
+      "earlier_process_statuses_changed": false
+    },
+    "monotonic_field_name_refinement": {
+      "prior_status_enriched_receipt_sha256": "c6e56e39ed98b88f92713a33ecf37c1e3b8b22d3ffd9568b48e8fa888e0cdccb",
+      "refinement_script_sha256": "47c38caf1fd2ea3bafb36f425d6266c57de2e498a718e57b45fe125719b97720",
+      "old_field": "monotonic_three_values",
+      "new_field": "strictly_monotonic_three_values",
+      "predicate_unchanged": "coarse_minus_medium_j * medium_minus_fine_j > 0",
+      "numeric_values_changed": false,
+      "convergence_criteria_changed": false
+    }
+  },
+  "limitations": [
+    "Apparent orders describe integrals of a model still affected by the artificial limiter.",
+    "Three levels alone do not prove an asymptotic regime or spatial convergence.",
+    "No temperature order from capped peaks, no physical absorption calibration.",
+    "No new M64, CP1, full melt-flow, or full-build simulation.",
+    "Original 100/50 ns process exits are not reinvented from their complete logs."
+  ],
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}

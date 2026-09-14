@@ -1,0 +1,60 @@
+{
+  "schema": "m64-picogk-direct-union-interpretation-erratum/v1",
+  "date": "2026-09-08",
+  "scope": "synthetic_step_cylinder_witness_only_no_private_head",
+  "source_Program_cs_sha256": "4551c0e8234633c25ab69fe4d58c3d669a9db1f82c8e5d600116425ffe27a32e",
+  "native_report_sha256": "42bb1c5c5fef9d6f3d5a62b5c06a0b775b7a9a0b123e0906e62645854ce4cb5d",
+  "independent_mesh_report_sha256": "689de3aad88e4d299e4d89c5961bc217d3d2b3e250456b7f3f80c8c521239f7b",
+  "native_VDB_sha256": "2a637cc19e67d84696d4562f72b989132b5b8f3a1e9ba235d79536d6a9c5dd71",
+  "reports_and_executed_source_modified": false,
+  "units_correction": {
+    "invalid_raw_unit_label": "voxel_units_sign_only",
+    "mislabeled_fields": [
+      "SDF_comparison.max_abs_outside_ROI_delta_native_voxel_units",
+      "SDF_comparison.max_abs_protected_delta_native_voxel_units"
+    ],
+    "invalid_converted_fields_do_not_use": [
+      "SDF_comparison.max_abs_outside_ROI_delta_times_h_scan_units",
+      "SDF_comparison.max_abs_protected_delta_times_h_scan_units"
+    ],
+    "corrected_unit": "native_world_length_unit_MM_in_PicoGK_for_this_synthetic_witness",
+    "corrected_max_abs_outside_ROI_SDF_delta_world_units": 0.0012884736061096191,
+    "corrected_max_abs_protected_SDF_delta_world_units": 0,
+    "additional_multiplication_by_voxel_size_is_incorrect": true,
+    "physical_scan_scale_certified": false,
+    "continuous_surface_displacement_bound": false,
+    "reason": "RenderImplicit samples world coordinates vecToMM and stores the callback distance directly through SetSdValue, clamped only to a world-unit narrow-band background. GetZSlice copies grid values without conversion; the C ABI and C# SignedDistance mode apply no scale."
+  },
+  "VDB_reload_scope": {
+    "named_fields_checked": 6,
+    "field_count_checked": true,
+    "voxel_metadata_scale_checked": true,
+    "named_field_nonempty_memory_checked": true,
+    "field_value_identity_checked": false
+  },
+  "runtime_correction": {
+    "runtime_git_commit": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+    "native_library_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+    "RebuildGrid_calls_present": true,
+    "RebuildGrid_executes_rebuild": false,
+    "reason": "PicoGKVdbVoxels.h lines 773-776 return unconditionally before any rebuilding implementation.",
+    "reconstruction_is_not_an_established_cause_of_observed_defects": true
+  },
+  "source_evidence": [
+    {
+      "url": "https://github.com/leap71/PicoGKRuntime/blob/0f26321c18ed878a7820ef769c38fd5d49d39242/Source/PicoGKVdbVoxels.h",
+      "lines": [[68, 75], [360, 383], [683, 699], [773, 776], [909, 920]]
+    },
+    {
+      "url": "https://github.com/leap71/PicoGKRuntime/blob/0f26321c18ed878a7820ef769c38fd5d49d39242/Source/PicoGKLibrary.cpp",
+      "lines": [[702, 712]]
+    },
+    {
+      "url": "https://github.com/leap71/PicoGK/blob/0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3/Base/Voxels.cs",
+      "lines": [[1099, 1167]]
+    }
+  ],
+  "decision_unchanged": "rejected_raw_mesh_screen_no_finer_resolution_no_private_head",
+  "CFD_qualified": false,
+  "manufacturing_authorized": false
+}

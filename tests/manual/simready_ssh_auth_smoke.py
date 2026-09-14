@@ -5,6 +5,7 @@ Never run directly on a workstation: this harness creates synthetic root
 authorized_keys inside the disposable container. It does not read user keys.
 """
 
+import argparse
 import hashlib
 import json
 import os
@@ -14,6 +15,7 @@ import stat
 import subprocess
 import tempfile
 import time
+import re
 
 
 EXPECTED_WRAPPER_SHA256 = "ebbf1c1e65203519d8386d2685ff48b98fb181e6a6bc7e09322df92143765f4b"
@@ -21,11 +23,16 @@ PARENT_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--container-image", default=PARENT_IMAGE)
+    args = parser.parse_args()
+    if not re.fullmatch(r"ghcr\.io/cluster2600/3dprinting993-[a-z0-9-]+@sha256:[0-9a-f]{64}", args.container_image):
+        parser.error("exact approved repository image digest required")
     report = {
         "schema_version": "1.0.0",
         "status": "failed",
-        "parent_image": PARENT_IMAGE,
-        "production_full_image_tested": False,
+        "declared_container_image": args.container_image,
+        "image_identity_requires_external_docker_inspect": True,
         "vast_key_injection_order_verified": False,
         "gpu_or_head_simulation_performed": False,
         "checks": {},

@@ -1,0 +1,88 @@
+{
+  "schema": "m64-bounded-C1-independent-software-checks/v1",
+  "recorded_at_utc": "2026-09-07T22:04:26Z",
+  "local_date_Europe_Zurich": "2026-09-08",
+  "status": "synthetic_and_native_trunk_witnesses_passed_not_head_qualification",
+  "reviewed_helpers": {
+    "twins/m64-cylinder-head/source/build_bounded_c1_trunk.py": "928a366cb4ab3b4e0a1eac5c9dbe80a9ac70a0e3d54f47d85984c06b5a9255c9",
+    "twins/m64-cylinder-head/source/build_scan_seeded_ports.py": "11ebd8ebd406758d2535182bd61685256e9d61aaf506bd0feb5756ec9c302e68",
+    "twins/m64-cylinder-head/source/build_four_valve_distribution.py": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c"
+  },
+  "helpers_unchanged_during_test_integration": true,
+  "test_source": {
+    "path": "tests/test_bounded_c1_trunk.py",
+    "sha256": "8480a23064df0038623909a33fdc514f9b014b691d2f612eeda311b18b25d8ee",
+    "added_test_methods": 3
+  },
+  "execution": {
+    "command": "python -m unittest discover -s tests -p test_bounded_c1_trunk.py -v",
+    "runtime_role": "existing_local_project_OCP_venv",
+    "python_version": "3.10.11",
+    "OCP_version": "7.9.3.1",
+    "tests_run": 11,
+    "tests_passed": 11,
+    "tests_skipped": 0,
+    "failures": 0,
+    "errors": 0,
+    "exit_code": 0,
+    "unittest_elapsed_seconds": 2.363,
+    "new_Vast_rental": false
+  },
+  "new_witnesses": {
+    "synthetic_only_no_private_scan_coordinates": true,
+    "deterministic_seed": 607,
+    "distinct_generated_models": 8,
+    "station_counts": [2, 3, 4, 6],
+    "axis_signs": [-1, 1],
+    "exact_rational_evaluations_including_repeated_interval_endpoints": 286,
+    "exact_evaluation_properties": [
+      "Hermite_and_BSpline_values_equal",
+      "Hermite_and_BSpline_first_derivatives_equal",
+      "Greville_reproduces_axial_coordinate",
+      "Greville_axial_derivative_equals_one"
+    ],
+    "invalid_X_pole_perturbations_rejected": 8,
+    "reversed_Y_within_same_global_interval_rejected": 8,
+    "post_sewing_native_rechecks": 2,
+    "native_recheck_properties": [
+      "four_lateral_BSpline_surfaces_and_two_planar_caps",
+      "native_degrees_and_knot_multiplicities_match_construction",
+      "positive_U_weights_independent_of_V",
+      "certificate_recomputed_from_actual_post_sewing_poles_matches_original"
+    ],
+    "existing_native_BOP_and_volume_witnesses_also_executed": 2,
+    "total_native_construction_calls_in_suite": 4
+  },
+  "review_conclusions": {
+    "blocking_false_pass_found_in_reviewed_trunk_logic": false,
+    "mathematical_design_bounds": "exact_per_interval_Bernstein_control_certificate",
+    "stored_float_surface_bounds": "global_bounds_with_explicit_rounding_allowance_at_most_1e-10_scan_units",
+    "Y_monotonicity": "positive_derivative_bound_from_exact_arithmetic_on_stored_binary_poles_and_knots",
+    "C1_scope": "mathematical_axial_interpolant_and_each_native_lateral_quarter_surface",
+    "C1_at_caps_claimed": false,
+    "C1_at_branch_trunk_boolean_junctions_claimed": false,
+    "C1_after_STEP_reimport_claimed_by_these_tests": false,
+    "continuous_surface_bound_is_not_a_grid_sampling_claim": true,
+    "station_evaluation_witnesses_are_not_full_physical_validation": true
+  },
+  "separate_trial06_head_status": {
+    "evidence_method": "read_existing_private_routing_report_not_a_new_head_simulation",
+    "routing_report_sha256": "dff24ea1f0c4c48d0f6f050d9558c10be4075df82b038d7956f8e71584d8d8fb",
+    "status": "native_ported_candidate_rejected_BOP",
+    "native_BRep_sha256": "9dbcccc722dedaabac93860c23a3b2f6a12f7429000fed8724cd843345083bea",
+    "native_BOP_fault_counts": {
+      "BOPAlgo_GeomAbs_C0": 2
+    },
+    "STEP_sha256": "608fd16b6fb06ec01ebd69a30d20b5afffa67e8e81cdfd737ac4314178959e8e",
+    "STEP_BOP_fault_counts": {
+      "BOPAlgo_GeomAbs_C0": 2,
+      "BOPAlgo_InvalidCurveOnSurface": 67
+    },
+    "STEP_qualified_for_further_CAD": false,
+    "trunk_test_success_does_not_override_head_rejection": true
+  },
+  "manufacturing_authorized": false,
+  "thermal_or_mechanical_validation": false,
+  "engine_fitment_validated": false,
+  "physical_scan_scale_certified": false
+}
