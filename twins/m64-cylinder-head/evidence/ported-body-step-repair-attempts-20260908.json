@@ -1,0 +1,67 @@
+{
+  "schema": "m64-ported-body-STEP-repair-attempts/v1",
+  "date": "2026-09-08",
+  "status": "two_local_methods_executed_STEP_still_rejected",
+  "native_body_sha256": "33375e12be214a0840b432a3315fc85ce25980359c563142de7967d10fae613f",
+  "original_STEP_sha256": "23755c6c5ea97fc001feb0178dcd2c2850b8e827c921bcf869c57bfb892e22e7",
+  "local_SameParameter_attempt": {
+    "report_sha256": "24d50213a006d47c8d20fe8654d1449c03285fce366d2a9656d3fb8be999929d",
+    "source_sha256": "65ef88bb01fb0b99835ba6b4b7221bfd07fa6164877cb1c8e00aedb6e28b60c4",
+    "elapsed_seconds": 36.13161302590743,
+    "imported_before_and_after_BRep_sha256": "7ed0d527b1d5b39c1d5702713ec84fd75e102463d1c78802c75070a4e47c7ac6",
+    "effective_geometry_or_parameter_change": false,
+    "method_return_true_was_not_proof_of_effective_repair": true,
+    "before_and_after_native_import_fault_counts": {
+      "UnorientableShape": 23, "InvalidCurveOnSurface": 8, "InvalidSameParameterFlag": 8
+    },
+    "reexported_STEP_sha256": "c446eb4a2360c79db76af64b3ede112e2e29ecd634c9852fb394697687bbafd4",
+    "reexported_STEP_reread_fault_counts": {
+      "UnorientableShape": 25, "InvalidCurveOnSurface": 9, "InvalidSameParameterFlag": 9
+    },
+    "tolerance_changes": [],
+    "accepted": false
+  },
+  "single_pcurve_reprojection_attempt": {
+    "report_sha256": "72ab59b7e92efee3b1e18af77418d836213e29f547f0f12479b8ef7bf00ac0d5",
+    "source_sha256": "bb31a963f6c92820bbfa94ba732275b7477c8982334b9ba572d2e93cc37d0c45",
+    "elapsed_seconds": 0.6115214759483933,
+    "target_STEP_edge": 992,
+    "target_STEP_face": 407,
+    "native_counterpart_edge": 993,
+    "old_pcurve_removed": true,
+    "projection_returned_true": true,
+    "candidate_BRep_sha256": "858388ffc36d269ebcc44a2b2eadf730f935a5d1cab08c682dc7ade079044d93",
+    "native_tolerance_budget": 0.000005,
+    "GeomLib_numeric_maximum_distance_before": 0.000013945975460607042,
+    "GeomLib_numeric_maximum_distance_after": 0.000013945975459161597,
+    "native_counterpart_numeric_maximum_distance": 0.000002350333531795951,
+    "residual_within_native_budget": false,
+    "tolerance_changes": [],
+    "all_previous_23_faces_still_invalid": true,
+    "3D_serialization_invariance_guard_passed": false,
+    "failed_serialization_guard_alone_does_not_prove_physical_deformation": true,
+    "extended_to_other_edges": false,
+    "STEP_reexported_after_this_attempt": false,
+    "accepted": false
+  },
+  "preserved_preflight_failure": {
+    "scope": "Stopped before geometry modification",
+    "reason": "Exact float equality did not accommodate STEP-to-BRep decimal serialization for locator tolerance metadata.",
+    "metadata_difference": -4.235164736271502e-22,
+    "corrective_action": "Compare the same 15 significant decimal digits for provenance only; geometric tolerance budget unchanged."
+  },
+  "resource_and_scope": {
+    "host": "authorized_local_x86_Kali",
+    "image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "CPU_limit": 2,
+    "memory_GiB": 4,
+    "wall_seconds_limit": 300,
+    "network": "none",
+    "containers_removed_and_absence_verified": true,
+    "original_native_and_STEP_files_unchanged": true,
+    "global_precision_or_tolerance_changes": false,
+    "new_Vast_spend_USD": 0,
+    "STEP_qualified": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "schema": "m64-scan-seeded-port-routing-public/v1",
+  "inputs_sha256": {
+    "body": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "body_build": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+    "interfaces": "5068d42f379fcb9a058037fb51aac0c76695977f49a9611bf6a344d25cd425ee",
+    "repair_report": "c01c7568f15066cd89cba2516941705f14b66aadfdf32d00a58cdd34ac203d10",
+    "module_build": "7b501ab6ba49b3d8d8cbd2905e6759d38cb8ec2baa1c69f1490d9e87d62ad36e",
+    "module_STEP": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+    "routing_source": "e1199ff4c1016a0e2abf880252b93d830d5cb278960ac0d21ba48e62aa5db8ca",
+    "module_source": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c"
+  },
+  "length_unit": "scan_units_under_unverified_1_unit_per_mm_hypothesis",
+  "status": "native_ported_candidate_built_not_qualified",
+  "private_candidate_not_promoted_to_master": true,
+  "manufacturing_authorized": false,
+  "master_geometry_modified": false,
+  "original_internals_reconstructed": false,
+  "semantic_mapping": {
+    "intake": "high_B",
+    "exhaust": "low_B"
+  },
+  "semantic_mapping_status": "new_V2_design_choice_not_OEM_and_opposite_legacy_F36_labels",
+  "design_choices": {
+    "guide_boss_radius": 7.5,
+    "guide_boss_start_axial": 32,
+    "guide_boss_end_axial": 100,
+    "branch_stations": 17,
+    "throat_start_axial": 5.99,
+    "branch_trunk_overlap": 3,
+    "terminal_lateral_offset": {
+      "intake": 2,
+      "exhaust": 3
+    },
+    "branch_radius": "constant_throat_radius",
+    "trunk_interpolation": "ruled",
+    "branch_interpolation": "smooth",
+    "trunk_C0_station_junctions_expected": true,
+    "trunk_section_centres_and_radii_modified": false,
+    "outlet_extension_beyond_body_bbox": 8
+  },
+  "bank_records": [
+    {
+      "kind": "intake",
+      "side": "high_B",
+      "exports": {
+        "native_BRep_sha256": "2dfaf48afd794cc02898e4d594e8db2caa38f0077ae28175fc3f0f8880260cc4",
+        "native_brep_valid": true,
+        "native_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_solid_count": 1,
+        "native_roundtrip_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_roundtrip_volume_delta": 5.820766091346741e-11,
+        "STEP_sha256": "144e3be7fe688ccba2dfd822e35cf80324fdf27ccaf2612809cc1b375245a36e",
+        "STEP_brep_valid": true,
+        "STEP_solid_count": 1,
+        "STEP_BOP": {
+          "has_faulty": true,
+          "fault_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 11
+          }
+        },
+        "STEP_volume_delta": -0.000007420690963044763,
+        "STEP_qualified_for_further_CAD": false,
+        "no_tolerance_or_translator_parameter_override": true
+      },
+      "body_cut_uses": "native_BRep_not_STEP_reimport",
+      "volume_scan_units_cubed": 190312.6933798196
+    },
+    {
+      "kind": "exhaust",
+      "side": "low_B",
+      "exports": {
+        "native_BRep_sha256": "4e0a7f15538342cdb57b43aa8db27fd0d5c8e410a4639e48266edea4dc5aaf1d",
+        "native_brep_valid": true,
+        "native_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_solid_count": 1,
+        "native_roundtrip_BOP": {
+          "has_faulty": false,
+          "fault_counts": {}
+        },
+        "native_roundtrip_volume_delta": 2.9103830456733704e-11,
+        "STEP_sha256": "dadb8763d78507d8350a0ca822062d619a8e3db6a3e38b357a196f8830b0d4bf",
+        "STEP_brep_valid": true,
+        "STEP_solid_count": 1,
+        "STEP_BOP": {
+          "has_faulty": true,
+          "fault_counts": {
+            "BOPAlgo_InvalidCurveOnSurface": 9
+          }
+        },
+        "STEP_volume_delta": 0.00001869810512289405,
+        "STEP_qualified_for_further_CAD": false,
+        "no_tolerance_or_translator_parameter_override": true
+      },
+      "body_cut_uses": "native_BRep_not_STEP_reimport",
+      "volume_scan_units_cubed": 108205.2087288743
+    }
+  ],
+  "wall_thickness_verified": false,
+  "exterior_openings_qualified": false,
+  "M64_fitment_validated": false,
+  "flow_or_thermal_performance_simulated": false,
+  "intake_exhaust_common_volume": 0,
+  "intake_exhaust_distance": 11.390109265204108,
+  "candidate_exports": {
+    "native_BRep_sha256": "3e3cc1631612fb9b7c36a34ceb157888ce66fdf3efb95f3ddad8578f74950ec5",
+    "native_brep_valid": true,
+    "native_BOP": {
+      "has_faulty": false,
+      "fault_counts": {}
+    },
+    "native_solid_count": 1,
+    "native_roundtrip_BOP": {
+      "has_faulty": false,
+      "fault_counts": {}
+    },
+    "native_roundtrip_volume_delta": 2.3283064365386963e-9,
+    "STEP_sha256": "d4336f5a5a305b5149038a2e3f664521a734583c23d68cccc2779cb0c8de6611",
+    "STEP_brep_valid": true,
+    "STEP_solid_count": 1,
+    "STEP_BOP": {
+      "has_faulty": true,
+      "fault_counts": {
+        "BOPAlgo_InvalidCurveOnSurface": 26
+      }
+    },
+    "STEP_volume_delta": -0.0011184557806700468,
+    "STEP_qualified_for_further_CAD": false,
+    "no_tolerance_or_translator_parameter_override": true
+  },
+  "source_volume_scan_units_cubed": 1427076.3879131186,
+  "candidate_volume_scan_units_cubed": 1164284.2850477933,
+  "wall_seconds": 373.99628904205747,
+  "input_files_unchanged": true,
+  "private_routing_report_sha256": "5253dcd9d82b43f2dd40b5a6a6889f6c4cb188cf70858c0496b4a6ce47cf0ffd",
+  "predecessor_rejected_candidate_native_sha256": "37b654b546f5213c9a479005cb30c9f84e390a8014f72020f61f809f7988f901",
+  "interpretation_limits": [
+    "Ruled trunk interpolation removes the diagnosed global interpolation overshoot, but introduces C0 joins requiring further functional surface design.",
+    "Native BOP zero is not a proof of skin openings, wall thickness, fitted inserts or thermal clearance.",
+    "STEP export still fails and is not a fabrication file.",
+    "No 700 PS performance, structural, thermal, fatigue or LPBF head validation was performed in this geometry run."
+  ],
+  "boundary_contact_screen": {
+    "status": "no_contact_outside_defined_envelopes_NOT_absolute_opening_qualification",
+    "authorization": "ruled_sections_same_as_current_trunk_and_recorded_housings",
+    "absolute_opening_or_wall_thickness_qualification": false,
+    "intake": {
+      "status": "no_residual_above_reporting_threshold_NOT_an_opening_qualification",
+      "inputs_sha256": {
+        "body": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+        "body_build": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+        "context": "ab3fc447b87dc28574a4f5d8ff359e5b11131d843a67818aacec9a24137d1ccd",
+        "audit_source": "b241f33dd0637e10a50d9b5e3754afee8eb6fa6dca50cdf187499c9f0086b6b6",
+        "routing_source": "e1199ff4c1016a0e2abf880252b93d830d5cb278960ac0d21ba48e62aa5db8ca",
+        "module_source": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c",
+        "generation_report": "5253dcd9d82b43f2dd40b5a6a6889f6c4cb188cf70858c0496b4a6ce47cf0ffd",
+        "intake_checkpoint": "89c6c7d0705959dd09e802b8dc285c0ae54f866c315b5c6bf6a114a74809d9e3",
+        "intake_native": "2dfaf48afd794cc02898e4d594e8db2caa38f0077ae28175fc3f0f8880260cc4",
+        "exhaust_checkpoint": "38ca31772f351aa8d0a73c3fc6c8df1b011cca7f8ccc135d22a08548453124a9",
+        "exhaust_native": "4e0a7f15538342cdb57b43aa8db27fd0d5c8e410a4639e48266edea4dc5aaf1d"
+      },
+      "raw_contacts": {
+        "face_count": 182,
+        "area_scan_units_squared": 5128.838913127201
+      },
+      "residual_outside_authorization_volumes": {
+        "face_count": 0,
+        "area_scan_units_squared": 0
+      },
+      "mouth_authorization_definition": "ruled_parallel_circle_sections_linear_centres_and_radii_between_recorded_stations_NO_inflation",
+      "raw_contacts_BRep_sha256": "a0ab29a0018c542ddc006968a68273ca2e1ae40d3810e31fea673b2089031cf2",
+      "residual_BRep_sha256": "fdc75bfe05a54932b6580d63f4b6c2252e66e24302a5c754eeeb1b59d04840bc",
+      "input_files_unchanged": true,
+      "elapsed_seconds": 23.535017125075683,
+      "only_intended_openings_proven": false,
+      "private_report_sha256": "98528181c7c9b9ab5890fdc501dc0375a7295943dffa2d2aa9b02d91aefd184c"
+    },
+    "exhaust": {
+      "status": "no_residual_above_reporting_threshold_NOT_an_opening_qualification",
+      "inputs_sha256": {
+        "body": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+        "body_build": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+        "context": "ab3fc447b87dc28574a4f5d8ff359e5b11131d843a67818aacec9a24137d1ccd",
+        "audit_source": "b241f33dd0637e10a50d9b5e3754afee8eb6fa6dca50cdf187499c9f0086b6b6",
+        "routing_source": "e1199ff4c1016a0e2abf880252b93d830d5cb278960ac0d21ba48e62aa5db8ca",
+        "module_source": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c",
+        "generation_report": "5253dcd9d82b43f2dd40b5a6a6889f6c4cb188cf70858c0496b4a6ce47cf0ffd",
+        "intake_checkpoint": "89c6c7d0705959dd09e802b8dc285c0ae54f866c315b5c6bf6a114a74809d9e3",
+        "intake_native": "2dfaf48afd794cc02898e4d594e8db2caa38f0077ae28175fc3f0f8880260cc4",
+        "exhaust_checkpoint": "38ca31772f351aa8d0a73c3fc6c8df1b011cca7f8ccc135d22a08548453124a9",
+        "exhaust_native": "4e0a7f15538342cdb57b43aa8db27fd0d5c8e410a4639e48266edea4dc5aaf1d"
+      },
+      "raw_contacts": {
+        "face_count": 247,
+        "area_scan_units_squared": 4898.265047152938
+      },
+      "residual_outside_authorization_volumes": {
+        "face_count": 0,
+        "area_scan_units_squared": 0
+      },
+      "mouth_authorization_definition": "ruled_parallel_circle_sections_linear_centres_and_radii_between_recorded_stations_NO_inflation",
+      "raw_contacts_BRep_sha256": "b75a82eded4f2f088a116b187d994196f5e81f731d9ed9b1f89c36de788f0092",
+      "residual_BRep_sha256": "fdc75bfe05a54932b6580d63f4b6c2252e66e24302a5c754eeeb1b59d04840bc",
+      "input_files_unchanged": true,
+      "elapsed_seconds": 12.623210875084624,
+      "only_intended_openings_proven": false,
+      "private_report_sha256": "c405ce7cc077bda4aa3f255b5f6f54d0f6586ca0f0e11343a57cce7c848194c3"
+    }
+  },
+  "private_render_receipt": {
+    "script_sha256": "54b918732a64ac815042123504a8a94976533e695dbea64b1959b5abf68e47d3",
+    "native_BRep_hashes": {
+      "body": "3e3cc1631612fb9b7c36a34ceb157888ce66fdf3efb95f3ddad8578f74950ec5",
+      "intake": "2dfaf48afd794cc02898e4d594e8db2caa38f0077ae28175fc3f0f8880260cc4",
+      "exhaust": "4e0a7f15538342cdb57b43aa8db27fd0d5c8e410a4639e48266edea4dc5aaf1d"
+    },
+    "triangle_counts": {
+      "body": 70386,
+      "intake": 5332,
+      "exhaust": 4760
+    },
+    "all_input_triangles_retained": true,
+    "mesh_smoothing_or_decimation": false,
+    "section_is_tessellated_not_analytic": true,
+    "colours_are_thermal_or_flow_results": false,
+    "image_sha256": "0f9a3a2295e46a9afc857f48bdc1981d4e89189f940852261c7efcc6150782ea",
+    "section_image_sha256": "21e7488c7e19d0112eceb88d2f35f58bee83941f14d1ad55ac25f46ad26df3d4",
+    "tessellation_receipt_sha256": "00e3553ac7fbf9e54b5316331ad188e84186976ae5ad159ddd528a791f0207ed",
+    "routing_report_sha256": "5253dcd9d82b43f2dd40b5a6a6889f6c4cb188cf70858c0496b4a6ce47cf0ffd",
+    "manufacturing_authorized": false,
+    "private_report_sha256": "2527c396cd8f23810c35978608dae341f9dcc039fed5d745188243c4a82af8b4"
+  }
+}

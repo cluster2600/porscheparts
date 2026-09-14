@@ -1,0 +1,59 @@
+{
+  "schema": "m64-native-volume-quadrature-reference/v1",
+  "status": "matched_nonadaptive_reference",
+  "date": "2026-09-08",
+  "domain_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+  "nonadaptive_volume": 995961.8505977857,
+  "adaptive_volume": 995964.5870880088,
+  "input_unchanged": true,
+  "units": "scan_units_cubed_under_unverified_1_unit_per_mm_hypothesis",
+  "OCP_version": "7.9.3.1",
+  "interpreter": "/Users/maxime/projects/3dprinting993/.venv/bin/python",
+  "native_source_read_once_for_all_integrations": true,
+  "integrations": [
+    {
+      "name": "nonadaptive_default",
+      "call": "BRepGProp.VolumeProperties_s(shape, fresh_GProp_GProps)",
+      "volume": 995961.8505977857,
+      "returned_error_estimate": null,
+      "elapsed_seconds": 0.087777458014898
+    },
+    {
+      "name": "nonadaptive_closed_only",
+      "call": "BRepGProp.VolumeProperties_s(shape, fresh_GProp_GProps, True, False, False)",
+      "volume": 995961.8505977857,
+      "returned_error_estimate": null,
+      "elapsed_seconds": 0.08753745805006474
+    },
+    {
+      "name": "adaptive_source_1e-9",
+      "call": "BRepGProp.VolumeProperties_s(shape, fresh_GProp_GProps, 1e-9, True)",
+      "volume": 995964.5870880088,
+      "returned_relative_error_estimate_not_bound": 9.660373252441147e-8,
+      "elapsed_seconds": 0.21457720804028213
+    }
+  ],
+  "gmsh_observation": {
+    "version": "4.15.2",
+    "import_report_sha256": "865d25dd2e2ce6d88efdda34f4f854c5533ecb1c513c466de7adf4560167e6fe",
+    "api_call_in_observed_mesher": "gmsh.model.occ.getMass(3, imported_volume_tag)",
+    "volume": 995961.8505977859,
+    "native_BRep_sha256": "3f20f4c56a3f4bfd5c7f580302dfa08e160ebb13abc3c5217a98312cc48653f3",
+    "regions": 1,
+    "faces": 88,
+    "bijectively_matched_face_descriptors": 88,
+    "all_matched_face_area_and_centre_deltas": 0.0,
+    "relative_global_area_difference": 1.5543122344752192e-15,
+    "full_geometric_equivalence_not_proven_by_descriptors_alone": true,
+    "implementation_source_verified": false,
+    "implementation_inference_fr": "La valeur observée concorde avec l'appel OCCT non adaptatif. Aucune intention ou méthode interne Gmsh n'est attribuée sans lecture de sa source officielle."
+  },
+  "import_relative_volume_threshold_unchanged": 1e-6,
+  "recommendation_fr": "Comparer la masse importée à la référence OCCT non adaptative correspondante, à seuil inchangé, en conservant l'appariement des88 faces et le contrôle d'un seul volume. Conserver la valeur adaptative et l'écart entre intégrateurs comme diagnostic distinct, et non comme preuve d'une altération de géométrie à l'import.",
+  "geometry_modified": false,
+  "tolerance_modified": false,
+  "historical_builder_or_advisory_receipts_modified": false,
+  "mesh_executed_by_this_diagnostic": false,
+  "CFD_qualified": false,
+  "manufacturing_authorized": false
+}

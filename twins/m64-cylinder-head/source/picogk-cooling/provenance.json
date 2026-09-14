@@ -1,0 +1,46 @@
+{
+  "schema": "m64-picogk-cooling-module-provenance-v1",
+  "scope": "geometry_preparation_not_physical_validation",
+  "tested_image_local_tag": "3dprinting993-picogk-m64:preflight",
+  "tested_image_id": "sha256:a570938d6111a8a5595f0404c18d63bacfe617e91850772b14bbc010bea55f4a",
+  "tested_image_was_public_GHCR_digest": false,
+  "upstream": {
+    "PicoGK": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "PicoGKRuntime": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+    "managed_version": "2.3.0.0",
+    "native_filename": "picogk.26.2.so",
+    "tested_native_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+    "upstream_assembly_modified": false,
+    "published_image_modified": false
+  },
+  "module": {
+    "Program.cs_sha256": "ffecccca188d39e25940ac0eaab459dfd91f0b15f8044e18927e53f38332c59c",
+    "CoolingDomains.csproj_sha256": "34423ec7f921890be575e14057f6434e2684a9b3ab184370eef115535b67da4d",
+    "tested_dll_sha256": "e69a7a2d6846d725d5f96d95ca6d34cfc8a320bf5035d65dfa0eaa09bd333b4f",
+    "runtime": ".NET 9.0.19",
+    "sdk": "9.0.317",
+    "architecture": "linux/amd64",
+    "occupancy_adapter": "module_local_PInvoke_byte_return_for_CPP_bool"
+  },
+  "equivalent_upstream_patch": {
+    "filename": "patches/picogk-0e6cf6b-bIsInside-I1.patch",
+    "sha256": "1bc607dfb868e284955168e35f8f67b9232e4f15d7ec232061fd14d381878d70",
+    "git_apply_check_passed": true,
+    "applied": false
+  },
+  "tests": {
+    "source_contract_tests_passed": 4,
+    "native_synthetic_regression_passed": true,
+    "real_head_0p6_numerical_screens_passed": true,
+    "real_head_0p3_numerical_screens_passed": true,
+    "sampled_points_0p6": 22140,
+    "sampled_partition_mismatches_0p6": 0,
+    "sampled_points_0p3": 21979,
+    "sampled_partition_mismatches_0p3": 0,
+    "exhaustive_partition_verified": false,
+    "raw_export_topology_all_passed": false,
+    "raw_export_warning": "Independent audit found four exact zero-area triangles in void and skin STL exports; separate traceable cleanup is required before meshing."
+  },
+  "manufacturing_authorized": false,
+  "external_cooling_domain_qualified": false
+}

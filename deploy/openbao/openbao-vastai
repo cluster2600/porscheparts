@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 from contextlib import contextmanager, nullcontext
+import base64
 import fcntl
+import hashlib
 import ipaddress
 import json
 import math
@@ -43,6 +45,7 @@ HEAVY_MIN_GPU_RAM_MB = 80000
 HEAVY_MIN_CPU_CORES = 24
 HEAVY_MIN_CPU_RAM_MB = 128000
 HEAVY_MIN_DISK_GB = 500
+HEAVY_MAX_TRANSFER_RATE_USD_PER_GB = 0.05
 IMAGE = "vllm/vllm-openai:v0.19.0"
 MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
 LABEL = "3dprinting993-qwen-cad"
@@ -57,10 +60,35 @@ SIMREADY_REVOKED_IMAGE_F8A = "ghcr.io/cluster2600/3dprinting993-simready-local-a
 SIMREADY_REVOKED_IMAGES = frozenset(
     {SIMREADY_REVOKED_IMAGE_E04, SIMREADY_REVOKED_IMAGE_F8A}
 )
-# Replaced after the corrected image passes publication and anonymous-pull
-# checks. Keeping the revoked value here makes every paid launch fail closed.
+# Historical F42b profile: its qualified image and evidence remain unchanged.
 SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
+# Exact amd64 M64 digest: public anonymous pull and CPU image checks passed in
+# porscheparts Actions run 34123205685. GPU readiness is checked after creation.
+M64_SIMREADY_IMAGE = "ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44"
 SIMREADY_LABEL = "3dprinting993-simready-local-ai"
+# Set only after review of every phase, helper and bundled skill file. A job's
+# own hashes are integrity evidence, not permission to execute arbitrary code.
+M64_APPROVED_CODE_MANIFEST_SHA256 = "f841e5e572103acda304e62a3a7fe7dc3c0dce128defa301d2c5373fcd76c805"
+M64_PROFILE = "m64-omni-static-v1"
+M64_PHASES = (
+    "preflight", "context", "convert", "minimum", "material", "physics", "profile-initial", "conform",
+    "asset-validation", "geometry-validation", "physics-validation",
+    "profile-validation", "render",
+)
+M64_INPUTS = frozenset({
+    "inputs/assembly.step", "inputs/asset-context.json",
+    "inputs/material-prompt.txt", "inputs/physics-prompt.txt",
+})
+M64_MAX_BUNDLE_BYTES = 128 * 1024 * 1024
+M64_MAX_RESULTS_BYTES = 128 * 1024 * 1024
+M64_MAX_RESULT_FILES = 1024
+M64_MAX_MANIFEST_BYTES = 1024 * 1024
+M64_MAX_PHASE_SECONDS = 1800
+M64_TRANSFER_SECONDS = 300
+M64_COLLECT_SECONDS = 300
+M64_MAX_JOB_SECONDS = 7200
+M64_MAX_BUDGET_USD = 20.0
+M64_MAX_TRANSFER_RATE_USD_PER_GB = 0.05
 SIMREADY_ATTEMPT_TOKEN_BYTES = 10
 SIMREADY_CLEANUP_PREFIX = "OPENBAO_VASTAI_SIMREADY_CLEANUP "
 WAVE_MAX_DPH = 1.25
@@ -123,6 +151,28 @@ F46_MIN_RELIABILITY = 0.99
 F46_MAX_INET_UP_COST_USD_PER_GB = 0.01
 F46_MAX_INET_DOWN_COST_USD_PER_GB = 0.01
 F46_MAX_DEADLINE_SECONDS = 8 * 60 * 60
+PICOGK_PROFILE = "picogk-m64-v1"
+PICOGK_LABEL = "3dprinting993-picogk-m64"
+PICOGK_IMAGE_RE = re.compile(
+    r"ghcr\.io/cluster2600/3dprinting993-picogk-m64@sha256:[0-9a-f]{64}"
+)
+PICOGK_MAX_DPH = 0.80
+PICOGK_MAX_BUDGET_USD = 4.0
+PICOGK_MAX_SECONDS = 3 * 60 * 60
+PICOGK_MIN_CPU = 32
+PICOGK_MIN_RAM_MB = 64000
+PICOGK_DISK_GB = 100
+PICOGK_MAX_TRANSFER_RATE = 0.01
+PICOGK_CLEANUP_RESERVE_USD = 1.0
+RESEARCH_PROFILE = "research-qwen-v1"
+RESEARCH_LABEL = "3dprinting993-research-qwen"
+RESEARCH_IMAGE = "vllm/vllm-openai@sha256:7a0f0fdd2771464b6976625c2b2d5dd46f566aa00fbc53eceab86ef50883da90"
+RESEARCH_MODEL = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
+RESEARCH_REVISION = "dcaee4d4dfc5ee71ad501f01f530e5652438fde0"
+RESEARCH_GUARD_SHA256 = "9ff35f524c1aaf5ebab9b0373b25f1d36f93b6f2781392431104aa719843125c"
+RESEARCH_GPUS = ("L40S", "RTX 6000Ada")
+RESEARCH_CAD_MODE = "cad-specialists-v1"
+RESEARCH_CAD_GPUS = ("RTX 3090", "RTX 4090", "RTX A5000", "RTX 5880Ada", *RESEARCH_GPUS)
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -728,16 +778,27 @@ def verify_single_f46_instance(
     raise SafeError("the new F46 instance did not appear in the paginated instance list")
 
 
+def simready_profile_image(profile: str = "legacy") -> str:
+    """Select one reviewed image by profile, never by a caller-supplied digest."""
+    if type(profile) is str and profile == "legacy":
+        return SIMREADY_IMAGE
+    if type(profile) is str and profile == M64_PROFILE:
+        return M64_SIMREADY_IMAGE
+    raise SafeError("SimReady execution profile is not approved")
+
+
 def verify_simready_contract(
-    api_key: str, instance_id: int, attempt_label: str
+    api_key: str, instance_id: int, attempt_label: str, *, profile: str = "legacy"
 ) -> None:
     """Fail closed on immutable/cost fields as soon as Vast exposes the contract."""
+    expected_image = simready_profile_image(profile)
     if not is_simready_attempt_label(attempt_label):
         raise SafeError("SimReady attempt label is invalid")
     required_fields = (
         "id", "label", "status", "gpu", "gpu_ram_mb", "num_gpus",
         "gpu_fraction", "machine_verification", "cpu_cores_effective",
         "cpu_ram_mb", "disk_space_gb", "dph_total", "image",
+        "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb",
     )
     for _ in range(30):
         try:
@@ -759,7 +820,7 @@ def verify_simready_contract(
             errors.append("instance id")
         if instance["label"] != attempt_label:
             errors.append("label")
-        if instance["image"] != SIMREADY_IMAGE:
+        if instance["image"] != expected_image:
             errors.append("image digest")
         if instance["status"] not in {"created", "loading", "running"}:
             errors.append("status")
@@ -780,6 +841,10 @@ def verify_simready_contract(
         price = finite_number(instance["dph_total"])
         if price is None or not 0 <= price <= HEAVY_MAX_DPH:
             errors.append("dph_total")
+        for field in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+            rate = finite_number(instance[field])
+            if rate is None or not 0 <= rate <= HEAVY_MAX_TRANSFER_RATE_USD_PER_GB:
+                errors.append(field)
         if instance["machine_verification"] != "verified":
             errors.append("machine verification")
         if errors:
@@ -1308,6 +1373,12 @@ def get_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
 def heavy_offer_query() -> dict:
     return {
         "allocated_storage": HEAVY_MIN_DISK_GB,
+        # Filter the permitted model/price BEFORE the server's 100-row limit;
+        # filtering a page of unrelated GPUs locally can falsely return none.
+        "gpu_name": {"eq": HEAVY_GPU_NAME},
+        "dph_total": {"lte": HEAVY_MAX_DPH},
+        "inet_down_cost": {"lte": HEAVY_MAX_TRANSFER_RATE_USD_PER_GB},
+        "inet_up_cost": {"lte": HEAVY_MAX_TRANSFER_RATE_USD_PER_GB},
         "num_gpus": {"eq": 1},
         "gpu_frac": {"eq": 1},
         "gpu_ram": {"gte": HEAVY_MIN_GPU_RAM_MB},
@@ -1369,8 +1440,9 @@ def report_f46_billing_risk(attempt_label: str) -> None:
 
 
 def emit_simready_cleanup_attestation(
-    instance_id: int, attempt_label: str
+    instance_id: int, attempt_label: str, *, profile: str = "legacy"
 ) -> None:
+    expected_image = simready_profile_image(profile)
     if (
         not isinstance(instance_id, int)
         or isinstance(instance_id, bool)
@@ -1383,7 +1455,7 @@ def emit_simready_cleanup_attestation(
         "status": "destroyed_verified_stably_absent",
         "instance_id": instance_id,
         "label": attempt_label,
-        "requested_image": SIMREADY_IMAGE,
+        "requested_image": expected_image,
         "delete_acknowledged": True,
         "paginated_absence_verified": True,
         "stable_absence_snapshots": DESTROY_ABSENCE_STABILITY_SNAPSHOTS,
@@ -1455,6 +1527,8 @@ def emit_f46_cleanup_attestation(
 
 def heavy_offer_eligible(offer: dict) -> bool:
     price = finite_number(offer.get("dph_total", offer.get("dph")))
+    transfer_rates = [finite_number(offer.get(field))
+                      for field in ("inet_down_cost", "inet_up_cost")]
     reliability = finite_number(offer.get("reliability", offer.get("reliability2")))
     floors = (
         (offer.get("gpu_ram"), HEAVY_MIN_GPU_RAM_MB),
@@ -1484,6 +1558,8 @@ def heavy_offer_eligible(offer: dict) -> bool:
         and rented
         and price is not None
         and 0 <= price <= HEAVY_MAX_DPH
+        and all(rate is not None and 0 <= rate <= HEAVY_MAX_TRANSFER_RATE_USD_PER_GB
+                for rate in transfer_rates)
     )
 
 
@@ -1987,6 +2063,106 @@ def safe_ssh_endpoints(instance: dict, instance_id: int) -> dict:
         "ssh_connection_tested": False,
         "endpoint_selection_changed": False,
     }
+
+
+def m64_ssh_endpoint(instance: dict, instance_id: int) -> dict | None:
+    """M64 uses the provider's direct pair; legacy safe_instance stays unchanged.
+
+    Unallocated direct mappings wait without using the proxy. Multiple Docker
+    bindings must resolve to one port for the public address's IP family.
+    """
+    ports = instance.get("ports")
+    mappings = ports.get("22/tcp") if isinstance(ports, dict) else None
+    diagnostic = {
+        "schema_version": "1.0.0", "instance_id": instance_id,
+        "ports_type": type(ports).__name__, "mappings_type": type(mappings).__name__,
+        "mapping_count": len(mappings) if isinstance(mappings, list) else None,
+        "mapping_summaries": [], "public_ip_family": None,
+        "public_ip_global_verified": False, "candidate_ports": [],
+        "ssh_connection_tested": False,
+    }
+
+    def report(reason: str) -> None:
+        print("OPENBAO_VASTAI_M64_ENDPOINT_DIAGNOSTIC " + json.dumps(
+            {**diagnostic, "reason": reason}, sort_keys=True), file=sys.stderr, flush=True)
+
+    def reject(reason: str, message: str) -> None:
+        report(reason)
+        raise SafeError(message)
+
+    if type(instance.get("id")) is not int or instance["id"] != instance_id:
+        reject("instance_id_mismatch", "M64 SSH endpoint instance id does not match")
+    if ports is not None and not isinstance(ports, dict):
+        reject("ports_type_invalid", "M64 SSH port mappings are malformed")
+    if isinstance(ports, dict) and "22/tcp" in ports:
+        if mappings is None or mappings == []:
+            report("direct_mapping_not_allocated")
+            return None
+        if not isinstance(mappings, list) or len(mappings) > 64:
+            reject("mapping_list_invalid", "M64 published direct SSH endpoint is malformed")
+        bindings = {}
+        malformed = False
+        for index, item in enumerate(mappings):
+            port = normalized_ssh_port(item.get("HostPort")) if isinstance(item, dict) else None
+            summary = {"index": index, "entry_type": type(item).__name__, "port": port,
+                       "source": f"ports[22/tcp][{index}].HostPort", "host_ip_family": None,
+                       "host_ip_state": "absent"}
+            binding = None
+            if isinstance(item, dict) and "HostIp" in item:
+                value = item["HostIp"]
+                try:
+                    if not isinstance(value, str) or not re.fullmatch(r"[A-Fa-f0-9.:]{1,45}", value):
+                        raise ValueError("invalid bind address")
+                    binding = ipaddress.ip_address(value)
+                    summary.update(host_ip_family=binding.version, host_ip_state="parsed")
+                except ValueError:
+                    summary["host_ip_state"] = "invalid"
+                    malformed = True
+            diagnostic["mapping_summaries"].append(summary)
+            if port is None:
+                malformed = True
+            key = (str(binding) if binding is not None else None, port)
+            bindings.setdefault(key, []).append(index)
+        if malformed:
+            reject("mapping_entry_invalid", "M64 published direct SSH endpoint is malformed")
+        value = instance.get("public_ipaddr")
+        try:
+            if not isinstance(value, str) or not re.fullmatch(r"[A-Fa-f0-9.:]{1,45}", value):
+                raise ValueError("invalid public address")
+            address = ipaddress.ip_address(value)
+        except ValueError:
+            reject("public_ip_invalid", "M64 published direct SSH endpoint is malformed")
+        diagnostic["public_ip_family"] = address.version
+        if (
+            not address.is_global or address.is_multicast or address.is_loopback
+            or address.is_private or address.is_link_local or address.is_unspecified
+            or address.is_reserved
+        ):
+            reject("public_ip_not_global_unicast", "M64 direct SSH endpoint must be a global unicast IP address")
+        diagnostic["public_ip_global_verified"] = True
+        if any(host is None for host, port in bindings) and len(bindings) != 1:
+            reject("missing_bind_ip_ambiguous", "M64 direct SSH bindings without HostIp are ambiguous")
+        matches = {(host, port): indices for (host, port), indices in bindings.items()
+                   if host is None or ipaddress.ip_address(host).version == address.version}
+        candidates = {port for host, port in matches}
+        diagnostic["candidate_ports"] = sorted(candidates)
+        if len(candidates) != 1:
+            reject("no_unique_family_port", "M64 direct SSH bindings have no unique port for the public IP family")
+        indices = sorted(index for group in matches.values() for index in group)
+        # Every candidate has the same port; provenance names all matching
+        # indices instead of choosing an arbitrary first mapping.
+        source = "public_ipaddr+" + "+".join(f"ports[22/tcp][{i}].HostPort" for i in indices)
+        return {"kind": "direct", "host": str(address), "port": next(iter(candidates)), "source": source}
+    endpoints = safe_ssh_endpoints(instance, instance_id)
+    host, port = instance.get("ssh_host"), instance.get("ssh_port")
+    if host is None and port is None:
+        return None
+    if (
+        endpoints["proxy"] is None or not isinstance(host, str)
+        or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.:-]{0,252}", host)
+    ):
+        reject("proxy_endpoint_invalid", "M64 published proxy SSH endpoint is malformed")
+    return {"kind": "proxy", **endpoints["proxy"]}
 
 
 def print_json(value: object) -> None:
@@ -2702,6 +2878,19 @@ print('SIMREADY_REMOTE_READY')
     return f"python -c {shlex.quote(script)}"
 
 
+def simready_full_onstart_command() -> str:
+    """Call the pinned image's helper even when Vast replaces /usr/sbin/sshd.
+
+    Its flock-serialized ssh-keygen -A creates only missing host keys; -T audits
+    the configuration and exits without starting/replacing the live listener.
+    The helper must pass before the normal onstart is allowed to run.
+    """
+    return (
+        "/usr/local/bin/simready-sshd-runtime-wrapper -T >/dev/null"
+        " && simready-vast-onstart"
+    )
+
+
 def simready_validation_only_onstart_command() -> str:
     """Start only deterministic CAD/USD validation prerequisites on Vast."""
     script = r"""\
@@ -3234,9 +3423,14 @@ def emit_simready_ssh_failure_diagnostic(
 
 
 def verify_simready_ssh_ready(
-    api_key: str, instance_id: int, *, validation_only: bool = False
+    api_key: str, instance_id: int, *, validation_only: bool = False,
+    profile: str = "legacy", verified_endpoint: dict | None = None,
 ) -> Path:
     """Prove BatchMode SSH plus the selected exact SimReady READY state."""
+    expected_image = simready_profile_image(profile)
+    if verified_endpoint is not None:
+        if type(verified_endpoint) is not dict or verified_endpoint:
+            raise SafeError("SimReady verified endpoint receipt must start empty")
     total_deadline = time.monotonic() + SIMREADY_TOTAL_READY_TIMEOUT_SECONDS
     running_deadline = None
     validate_approved_ssh_private_key()
@@ -3269,6 +3463,8 @@ def verify_simready_ssh_ready(
         if not isinstance(raw_instance, dict):
             raise SafeError("Vast.ai returned invalid SimReady SSH endpoint metadata")
         instance = safe_instance(raw_instance)
+        if type(instance["id"]) is not int or instance["id"] != instance_id or instance["image"] != expected_image:
+            raise SafeError("SimReady SSH instance id or profile image digest changed")
         last_state = str(instance.get("status") or "unknown")
         if last_state == "running" and running_deadline is None:
             running_deadline = time.monotonic() + SIMREADY_SSH_READY_TIMEOUT_SECONDS
@@ -3286,8 +3482,13 @@ def verify_simready_ssh_ready(
             if not wait_before_retry():
                 break
             continue
-        host = instance.get("ssh_host")
-        port = finite_number(instance.get("ssh_port"))
+        endpoint = m64_ssh_endpoint(raw_instance, instance_id) if profile == M64_PROFILE else None
+        if profile == M64_PROFILE:
+            host = endpoint["host"] if endpoint else None
+            port = finite_number(endpoint["port"]) if endpoint else None
+        else:
+            host = instance.get("ssh_host")
+            port = finite_number(instance.get("ssh_port"))
         if (
             not isinstance(host, str)
             or not host
@@ -3402,6 +3603,8 @@ def verify_simready_ssh_ready(
                 last_probe = "ready_arrived_after_deadline"
                 break
             validate_simready_known_hosts(known_hosts_path, instance_id)
+            if verified_endpoint is not None and endpoint is not None:
+                verified_endpoint.update(endpoint)
             return known_hosts_path
         last_probe = classify_simready_ssh_probe(completed)
         if last_probe in {
@@ -3915,8 +4118,13 @@ def launch_simready_offer(
     enforce_singleton: bool = False,
     attempt_label: str | None = None,
     validation_only: bool = False,
+    profile: str = "legacy",
 ) -> int:
-    if SIMREADY_IMAGE in SIMREADY_REVOKED_IMAGES:
+    expected_image = simready_profile_image(profile)
+    profile_options = {} if profile == "legacy" else {"profile": profile}
+    if profile == M64_PROFILE and validation_only:
+        raise SafeError("M64 requires the full Content Agents runtime")
+    if expected_image in SIMREADY_REVOKED_IMAGES:
         raise SafeError(
             "the pinned SimReady image is revoked; publish and pin the corrected image first"
         )
@@ -3947,7 +4155,7 @@ def launch_simready_offer(
                 f"/api/v0/asks/{offer_id}/",
                 method="PUT",
                 payload={
-                    "image": SIMREADY_IMAGE,
+                    "image": expected_image,
                     "label": attempt_label,
                     "disk": disk_gb,
                     "runtype": "ssh_direct",
@@ -3955,7 +4163,7 @@ def launch_simready_offer(
                     "onstart": (
                         simready_validation_only_onstart_command()
                         if validation_only
-                        else "simready-vast-onstart"
+                        else simready_full_onstart_command()
                     ),
                     "cancel_unavail": True,
                 },
@@ -3980,7 +4188,7 @@ def launch_simready_offer(
                 f"SimReady instance {reconciled_id} was automatically destroyed "
                 "and verified stably absent after the interrupted create call",
             )
-            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label, **profile_options)
             raise
         instance_id = result.get("new_contract")
         if (
@@ -4001,25 +4209,31 @@ def launch_simready_offer(
                         f"{attempt_label} must be inspected before retrying"
                     ) from cleanup_error
                 raise
-            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label, **profile_options)
             raise SafeError(
                 "Vast.ai did not return a valid SimReady instance id; instance "
                 f"{reconciled_id} was automatically destroyed and verified stably absent"
             )
         try:
             verify_single_simready_instance(api_key, instance_id, attempt_label)
-            verify_simready_contract(api_key, instance_id, attempt_label)
+            verify_simready_contract(api_key, instance_id, attempt_label, **profile_options)
             ensure_simready_instance_ssh_key(api_key, instance_id, attempt_label)
             if validation_only:
                 known_hosts_path = verify_simready_ssh_ready(
-                    api_key, instance_id, validation_only=True
+                    api_key, instance_id, validation_only=True, **profile_options
                 )
             else:
-                known_hosts_path = verify_simready_ssh_ready(api_key, instance_id)
+                verified_endpoint = {}
+                known_hosts_path = verify_simready_ssh_ready(
+                    api_key, instance_id, **profile_options,
+                    **({"verified_endpoint": verified_endpoint} if profile == M64_PROFILE else {}),
+                )
+                if profile == M64_PROFILE and not verified_endpoint:
+                    raise SafeError("M64 SSH READY did not provide its verified endpoint receipt")
             print_json(
                 {
                     "instance_id": instance_id,
-                    "image": SIMREADY_IMAGE,
+                    "image": expected_image,
                     "label": attempt_label,
                     "selected_offer": safe_offer(offer),
                     "offer_contract_verified": True,
@@ -4039,6 +4253,11 @@ def launch_simready_offer(
                     "physicsnemo_gpu_runtime_verified": True,
                     "host_key_alias": simready_host_key_alias(instance_id),
                     "known_hosts_path": str(known_hosts_path),
+                    **({
+                        "verified_ssh_endpoint": verified_endpoint,
+                        "ssh_host_identity_policy": "instance_scoped_known_hosts_accept_new_or_existing",
+                        "ssh_host_identity_verified_out_of_band": False,
+                    } if profile == M64_PROFILE else {}),
                     "simulation_validated": False,
                     "manufacturing_authorized": False,
                     "target_1600_ch_validated": False,
@@ -4073,15 +4292,1598 @@ def launch_simready_offer(
                 f"SimReady instance {reconciled_id} was automatically destroyed and "
                 "verified stably absent after the post-create failure",
             )
-            emit_simready_cleanup_attestation(reconciled_id, attempt_label)
+            emit_simready_cleanup_attestation(reconciled_id, attempt_label, **profile_options)
             raise
         return 0
 
 
+def m64_json(payload: bytes) -> dict:
+    """Reject ambiguous JSON, including duplicate fields and non-finite values."""
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError("duplicate field")
+            result[key] = value
+        return result
+
+    def invalid_constant(_):
+        raise ValueError("non-finite JSON number")
+
+    try:
+        result = json.loads(payload, object_pairs_hook=pairs, parse_constant=invalid_constant)
+    except (ValueError, UnicodeError, RecursionError) as exc:
+        raise SafeError("M64 manifest or receipt is not strict JSON") from exc
+    if not isinstance(result, dict):
+        raise SafeError("M64 manifest or receipt must be an object")
+    return result
+
+
+def m64_relative_path(value: object) -> str:
+    if (
+        not isinstance(value, str) or len(value) > 240
+        or not re.fullmatch(r"[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*", value)
+        or any(part in {".", ".."} or part.startswith(".") for part in value.split("/"))
+    ):
+        raise SafeError("M64 path is outside the fixed relative-path contract")
+    return value
+
+
+def m64_no_symlink_path(path: Path) -> None:
+    if not path.is_absolute():
+        raise SafeError("M64 local paths must be absolute")
+    for component in (*reversed(path.parents), path):
+        try:
+            if stat.S_ISLNK(component.lstat().st_mode):
+                raise SafeError("M64 symlink paths are forbidden")
+        except FileNotFoundError:
+            raise SafeError("M64 required local path is missing") from None
+
+
+def m64_read_file(path: Path, maximum: int) -> bytes:
+    m64_no_symlink_path(path)
+    try:
+        descriptor = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+        with os.fdopen(descriptor, "rb") as stream:
+            info = os.fstat(stream.fileno())
+            if (
+                not stat.S_ISREG(info.st_mode) or info.st_uid != os.getuid()
+                or info.st_nlink != 1 or info.st_mode & 0o022
+                or not 0 <= info.st_size <= maximum
+            ):
+                raise SafeError("M64 local file metadata or size is unsafe")
+            payload = stream.read(maximum + 1)
+            after = os.fstat(stream.fileno())
+            if (
+                len(payload) != info.st_size or len(payload) > maximum
+                or (info.st_size, info.st_mtime_ns) != (after.st_size, after.st_mtime_ns)
+            ):
+                raise SafeError("M64 local file changed while being read")
+            return payload
+    except OSError as exc:
+        raise SafeError("M64 local file could not be read safely") from exc
+
+
+def m64_entries(items: object, *, outputs: bool = False) -> dict[str, dict]:
+    if not isinstance(items, list) or not 1 <= len(items) <= (128 if outputs else 4096):
+        raise SafeError("M64 file list is missing or exceeds its bound")
+    result = {}
+    folded = set()
+    total = 0
+    for entry in items:
+        fields = {"path", "max_bytes"} if outputs else {"path", "size", "sha256"}
+        if not isinstance(entry, dict) or set(entry) != fields:
+            raise SafeError("M64 file entry has unexpected fields")
+        path = m64_relative_path(entry["path"])
+        size = entry["max_bytes" if outputs else "size"]
+        if type(size) is not int or not 0 <= size <= M64_MAX_BUNDLE_BYTES:
+            raise SafeError("M64 file size is invalid")
+        if outputs:
+            if not path.startswith("results/") or size == 0:
+                raise SafeError("M64 outputs must be bounded files under results")
+        elif not isinstance(entry["sha256"], str) or not re.fullmatch(r"[0-9a-f]{64}", entry["sha256"]):
+            raise SafeError("M64 file SHA256 is invalid")
+        if path.casefold() in folded:
+            raise SafeError("M64 duplicate or case-ambiguous file paths are forbidden")
+        folded.add(path.casefold())
+        result[path] = entry
+        total += size
+    if total > (M64_MAX_RESULTS_BYTES if outputs else M64_MAX_BUNDLE_BYTES):
+        raise SafeError("M64 total file bytes exceed the fixed limit")
+    for path in result:
+        if any(str(parent).casefold() in folded for parent in Path(path).parents if str(parent) != "."):
+            raise SafeError("M64 a file path cannot also be a directory")
+    return result
+
+
+def m64_load_bundle(path: Path, instance_id: int) -> tuple[dict, bytes, dict[str, bytes]]:
+    """Snapshot and hash the same bytes that will be transferred; never execute them locally."""
+    payload = m64_read_file(path, M64_MAX_MANIFEST_BYTES)
+    manifest = m64_json(payload)
+    if set(manifest) != {
+        "schema_version", "profile", "job_id", "instance_id", "label", "image",
+        "created_epoch", "deadline_epoch", "max_dph", "budget_usd", "files", "outputs",
+    }:
+        raise SafeError("M64 transport manifest fields do not match the fixed contract")
+    if manifest["schema_version"] != "1.0.0" or manifest["profile"] != M64_PROFILE:
+        raise SafeError("M64 manifest schema or profile is not approved")
+    if not isinstance(manifest["job_id"], str) or not re.fullmatch(r"m64-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"]):
+        raise SafeError("M64 job id is invalid")
+    if type(manifest["instance_id"]) is not int or manifest["instance_id"] != instance_id or instance_id <= 0:
+        raise SafeError("M64 manifest is bound to a different instance")
+    if not is_simready_attempt_label(manifest["label"]) or manifest["image"] != M64_SIMREADY_IMAGE:
+        raise SafeError("M64 manifest label or image digest is not approved")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if type(created) is not int or type(deadline) is not int or created <= 0 or not 0 < deadline - created <= M64_MAX_JOB_SECONDS:
+        raise SafeError("M64 absolute job lifetime must be bounded to two hours")
+    for key, cap in (("max_dph", HEAVY_MAX_DPH), ("budget_usd", M64_MAX_BUDGET_USD)):
+        value = manifest[key]
+        if type(value) not in (int, float) or not math.isfinite(value) or not 0 < value <= cap:
+            raise SafeError("M64 rate or remaining budget allocation is invalid")
+    entries = m64_entries(manifest["files"])
+    outputs = m64_entries(manifest["outputs"], outputs=True)
+    if not M64_INPUTS | {"code-manifest.json"} <= entries.keys():
+        raise SafeError("M64 requires the code manifest and all four fixed inputs")
+    if not isinstance(M64_APPROVED_CODE_MANIFEST_SHA256, str) or not re.fullmatch(r"[0-9a-f]{64}", M64_APPROVED_CODE_MANIFEST_SHA256):
+        raise SafeError("M64 code manifest is not yet pinned by the reviewed wrapper")
+    files = {}
+    for relative, entry in entries.items():
+        content = m64_read_file(path.parent / relative, entry["size"])
+        if len(content) != entry["size"] or hashlib.sha256(content).hexdigest() != entry["sha256"]:
+            raise SafeError("M64 bundle file does not match its declared size and SHA256")
+        files[relative] = content
+    code_bytes = files["code-manifest.json"]
+    if hashlib.sha256(code_bytes).hexdigest() != M64_APPROVED_CODE_MANIFEST_SHA256:
+        raise SafeError("M64 code manifest is not the approved immutable code bundle")
+    code = m64_json(code_bytes)
+    if set(code) != {"schema_version", "profile", "files"} or code["schema_version"] != "1.0.0" or code["profile"] != M64_PROFILE:
+        raise SafeError("M64 code manifest schema or profile is invalid")
+    code_entries = m64_entries(code["files"])
+    if any(not name.startswith(("phases/", "skill/")) for name in code_entries):
+        raise SafeError("M64 code is outside the two approved code directories")
+    if not {"phases/common.py", *(f"phases/{phase}.py" for phase in M64_PHASES)} <= code_entries.keys():
+        raise SafeError("M64 code manifest is missing a fixed phase or its shared helper")
+    if set(entries) != set(code_entries) | M64_INPUTS | {"code-manifest.json"} or any(entries[name] != entry for name, entry in code_entries.items()):
+        raise SafeError("M64 bundle contains undeclared code or divergent code hashes")
+    # Allocation is a remaining, user-authorized cap, not a claim about the
+    # provider's account-wide invoice. The external instance watchdog remains required.
+    transfer_reserve = 2 * (sum(item["size"] for item in entries.values()) + sum(item["max_bytes"] for item in outputs.values())) / 1e9 * M64_MAX_TRANSFER_RATE_USD_PER_GB
+    if manifest["max_dph"] * (deadline - created) / 3600 + transfer_reserve > manifest["budget_usd"]:
+        raise SafeError("M64 lifetime and bounded transfers exceed the allocated budget")
+    return manifest, payload, files
+
+
+def m64_start_deadline(manifest: dict) -> float:
+    now = time.time()
+    if now < manifest["created_epoch"] or now >= manifest["deadline_epoch"]:
+        raise SafeError("M64 start is outside the immutable job deadline")
+    return manifest["deadline_epoch"] - now
+
+
+def m64_verified_ssh(api_key: str, manifest: dict, *, collecting: bool) -> list[str]:
+    instance_id = manifest["instance_id"]
+    if not collecting:
+        m64_start_deadline(manifest)
+    verify_single_simready_instance(api_key, instance_id, manifest["label"])
+    if not collecting:
+        verify_simready_contract(api_key, instance_id, manifest["label"], profile=M64_PROFILE)
+    result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+    raw = result.get("instances")
+    if not isinstance(raw, dict):
+        raise SafeError("M64 instance lookup returned invalid metadata")
+    instance = safe_instance(raw)
+    if (
+        type(instance["id"]) is not int or instance["id"] != instance_id
+        or instance["label"] != manifest["label"] or instance["image"] != manifest["image"]
+        or instance["status"] != "running"
+    ):
+        raise SafeError("M64 requires its exact running instance, label and image digest")
+    if not collecting:
+        price = finite_number(instance["dph_total"])
+        if price is None or not 0 <= price <= manifest["max_dph"]:
+            raise SafeError("M64 instance rate exceeds its immutable allocation")
+        for field in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+            rate = finite_number(instance[field])
+            if rate is None or not 0 <= rate <= M64_MAX_TRANSFER_RATE_USD_PER_GB:
+                raise SafeError("M64 data transfer rate is unavailable or over its cap")
+    public_key = read_local_ssh_public_key()  # Also verifies the cryptographic key pair.
+    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+        raise SafeError("M64 approved public key is not listed on this exact instance")
+    known_hosts = SIMREADY_KNOWN_HOSTS_DIR / simready_host_key_alias(instance_id)
+    m64_no_symlink_path(known_hosts)
+    validate_simready_known_hosts(known_hosts, instance_id)
+    endpoint = m64_ssh_endpoint(raw, instance_id)
+    host = endpoint["host"] if endpoint else None
+    port = finite_number(endpoint["port"]) if endpoint else None
+    if (
+        not isinstance(host, str) or len(host) > 253
+        or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9.:-]*", host)
+        or port is None or not port.is_integer() or not 1 <= port <= 65535
+    ):
+        raise SafeError("M64 verified SSH endpoint is unavailable")
+    if not collecting:
+        m64_start_deadline(manifest)
+    options = (
+        "BatchMode=yes", "IdentitiesOnly=yes", "ForwardAgent=no", "ClearAllForwardings=yes",
+        "PermitLocalCommand=no", "PasswordAuthentication=no", "KbdInteractiveAuthentication=no",
+        "ConnectionAttempts=1", "ConnectTimeout=5", "StrictHostKeyChecking=yes",
+        "UpdateHostKeys=no", "GlobalKnownHostsFile=/dev/null", "HashKnownHosts=no",
+        f"HostKeyAlias={simready_host_key_alias(instance_id)}", f"UserKnownHostsFile={known_hosts}",
+        "LogLevel=ERROR", "ServerAliveInterval=15", "ServerAliveCountMax=4",
+    )
+    command = ["ssh", "-F", "/dev/null", "-T", "-i", str(SSH_PRIVATE_KEY_FILE)]
+    for option in options:
+        command.extend(("-o", option))
+    command.extend(("-p", str(int(port)), f"root@{host}"))
+    return command
+
+
+# This is a transport and single-phase guard, not an Omniverse workflow runner.
+# No command, interpreter, argv, remote path or code digest comes from user input.
+# The stdin document is constructed only after m64_load_bundle has validated it.
+M64_REMOTE_HELPER = r'''
+import base64, fcntl, hashlib, json, os, re, resource, signal, stat, subprocess, sys, time
+from pathlib import Path
+ROOT = Path("/workspace/jobs")
+PIN = "__M64_CODE_PIN__"
+PHASES = ("preflight", "context", "convert", "minimum", "material", "physics", "profile-initial", "conform", "asset-validation", "geometry-validation", "physics-validation", "profile-validation", "render")
+MAX_BYTES = 128 * 1024 * 1024
+MAX_WIRE = 180 * 1024 * 1024
+
+def fail():
+    raise ValueError("fixed M64 transport contract rejected")
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+def decoded(value):
+    return base64.b64decode(value, validate=True)
+
+def checked(path, directory=False):
+    for part in (*reversed(path.parents), path):
+        meta = part.lstat()
+        if stat.S_ISLNK(meta.st_mode):
+            fail()
+    meta = path.lstat()
+    if meta.st_uid != os.getuid() or meta.st_mode & 0o022:
+        fail()
+    if directory:
+        if not stat.S_ISDIR(meta.st_mode):
+            fail()
+    elif not stat.S_ISREG(meta.st_mode) or meta.st_nlink != 1:
+        fail()
+
+def relative(value):
+    if not isinstance(value, str) or len(value) > 240 or not re.fullmatch(r"[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*", value):
+        fail()
+    if any(x in (".", "..") or x.startswith(".") for x in value.split("/")):
+        fail()
+    return value
+
+def read(path, maximum):
+    checked(path)
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+    with os.fdopen(fd, "rb") as stream:
+        before = os.fstat(stream.fileno())
+        if not stat.S_ISREG(before.st_mode) or before.st_nlink != 1 or before.st_size > maximum:
+            fail()
+        value = stream.read(maximum + 1)
+        after = os.fstat(stream.fileno())
+        if len(value) != before.st_size or len(value) > maximum or (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+            fail()
+        return value
+
+def write(path, payload, mode=0o600):
+    path.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    checked(path.parent, directory=True)
+    fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, mode)
+    with os.fdopen(fd, "wb") as stream:
+        stream.write(payload)
+
+def main():
+    os.umask(0o077)
+    wire = sys.stdin.buffer.read(MAX_WIRE + 1)
+    if len(wire) > MAX_WIRE:
+        fail()
+    request = json.loads(wire)
+    if set(request) != {"operation", "manifest_b64", "manifest_sha256", "files_b64", "phase", "timeout_seconds"}:
+        fail()
+    operation = request["operation"]
+    if operation not in ("transfer", "phase", "collect"):
+        fail()
+    manifest_bytes = decoded(request["manifest_b64"])
+    if digest(manifest_bytes) != request["manifest_sha256"]:
+        fail()
+    manifest = json.loads(manifest_bytes)
+    job = manifest["job_id"]
+    if manifest["profile"] != "m64-omni-static-v1" or not re.fullmatch(r"m64-[a-z0-9][a-z0-9-]{0,63}", job):
+        fail()
+    entries = {relative(item["path"]): item for item in manifest["files"]}
+    outputs = {relative(item["path"]): item for item in manifest["outputs"]}
+    if len(entries) != len(manifest["files"]) or len(outputs) != len(manifest["outputs"]):
+        fail()
+    if any(not name.startswith("results/") for name in outputs) or sum(x["max_bytes"] for x in outputs.values()) > MAX_BYTES:
+        fail()
+    if entries["code-manifest.json"]["sha256"] != PIN or sum(x["size"] for x in entries.values()) > MAX_BYTES:
+        fail()
+    if operation != "collect" and not manifest["created_epoch"] <= time.time() < manifest["deadline_epoch"]:
+        fail()
+    ROOT.mkdir(exist_ok=True, mode=0o700)
+    checked(ROOT, directory=True)
+    root = ROOT / job
+    if operation == "transfer":
+        if set(request["files_b64"]) != set(entries):
+            fail()
+        payloads = {}
+        for name, entry in entries.items():
+            data = decoded(request["files_b64"][name])
+            if len(data) != entry["size"] or digest(data) != entry["sha256"]:
+                fail()
+            payloads[name] = data
+        root.mkdir(mode=0o700)  # No overwrite, merge or replacement of a prior job.
+        write(root / "job-manifest.json", manifest_bytes, 0o400)
+        for name, data in payloads.items():
+            write(root / name, data, 0o400)
+        (root / "results").mkdir(mode=0o700)
+    checked(root, directory=True)
+    if read(root / "job-manifest.json", 1024 * 1024) != manifest_bytes:
+        fail()
+    lock_path = root / ".transport.lock"
+    lock_fd = os.open(lock_path, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    with os.fdopen(lock_fd, "r+b") as lock:
+        checked(lock_path)
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        def verify_inputs():
+            for name, entry in entries.items():
+                value = read(root / name, entry["size"])
+                if len(value) != entry["size"] or digest(value) != entry["sha256"]:
+                    fail()
+            # Imports or subprocesses must not find added code in either tree.
+            actual = set()
+            for folder in ("phases", "skill"):
+                checked(root / folder, directory=True)
+                for path in (root / folder).rglob("*"):
+                    checked(path, directory=path.is_dir())
+                    if path.is_file():
+                        actual.add(str(path.relative_to(root)))
+            if actual != {name for name in entries if name.startswith(("phases/", "skill/"))}:
+                fail()
+        verify_inputs()
+        response = {"schema_version": "1.0.0", "job_id": job, "instance_id": manifest["instance_id"], "operation": operation, "manifest_sha256": digest(manifest_bytes)}
+        if operation == "phase":
+            phase = request["phase"]
+            seconds = request["timeout_seconds"]
+            if phase not in PHASES or type(seconds) is not int or not 1 <= seconds <= 1800:
+                fail()
+            seconds = min(seconds, int(manifest["deadline_epoch"] - time.time()))
+            if seconds < 1:
+                fail()
+            log_path = root / "results" / "wrapper" / (phase + ".log")
+            log_path.parent.mkdir(mode=0o700, exist_ok=True)
+            checked(log_path.parent, directory=True)
+            fd = os.open(log_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+            timed_out = False
+            def limits():
+                resource.setrlimit(resource.RLIMIT_FSIZE, (MAX_BYTES, MAX_BYTES))
+            with os.fdopen(fd, "wb") as log:
+                process = subprocess.Popen(
+                    ["/opt/simready-validation/bin/python", "-B", "-E", "-s", str(root / "phases" / (phase + ".py")), "--job-root", str(root)],
+                    cwd=root, env={"PATH": "/opt/simready-validation/bin:/usr/local/bin:/usr/bin:/bin", "LANG": "C.UTF-8", "PYTHONDONTWRITEBYTECODE": "1"},
+                    stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                    start_new_session=True, preexec_fn=limits,
+                )
+                try:
+                    code = process.wait(timeout=seconds)
+                except subprocess.TimeoutExpired:
+                    timed_out = True
+                    os.killpg(process.pid, signal.SIGTERM)
+                    try:
+                        process.wait(timeout=10)
+                    except subprocess.TimeoutExpired:
+                        os.killpg(process.pid, signal.SIGKILL)
+                        process.wait(timeout=5)
+                    code = 124
+            verify_inputs()
+            response.update(phase=phase, exit_code=code, timed_out=timed_out)
+            write(root / "results" / "wrapper" / (phase + ".json"), json.dumps(response, sort_keys=True).encode())
+        elif operation == "collect":
+            found, missing, present = {}, [], []
+            visited = 0
+            for name, entry in outputs.items():
+                path = root / name
+                # A missing file is reportable; dangling or parent symlinks are not.
+                for part in path.relative_to(root).parents:
+                    candidate = root / part
+                    if candidate.is_symlink():
+                        fail()
+                if not path.exists() and not path.is_symlink():
+                    missing.append(name)
+                    continue
+                checked(path, directory=path.is_dir())
+                candidates = path.rglob("*") if path.is_dir() else [path]
+                used = 0
+                for candidate in candidates:
+                    visited += 1
+                    if visited > 8192:
+                        fail()
+                    # Every visited node is checked, including empty directories.
+                    checked(candidate, directory=candidate.is_dir())
+                    if candidate.is_dir():
+                        continue
+                    relative_name = relative(str(candidate.relative_to(root)))
+                    if relative_name in found or len(found) >= 1024:
+                        fail()
+                    data = read(candidate, entry["max_bytes"] - used)
+                    used += len(data)
+                    if used > entry["max_bytes"]:
+                        fail()
+                    found[relative_name] = {"size": len(data), "sha256": digest(data), "base64": base64.b64encode(data).decode()}
+                present.append(name)
+            response.update(files=found, present_outputs=present, missing_outputs=missing)
+        print(json.dumps(response, separators=(",", ":")), flush=True)
+
+try:
+    main()
+except BaseException:
+    # Never echo a local path, remote log, payload, exception or environment.
+    print('{"error":"m64_remote_contract_rejected"}', flush=True)
+    raise SystemExit(1)
+'''
+
+
+def run_m64_transport(command: list[str], payload: bytes, timeout_seconds: float) -> bytes:
+    """Bound both directions, runtime and process-group cleanup; do not print streams."""
+    maximum = 180 * 1024 * 1024
+    if len(payload) > maximum or not math.isfinite(timeout_seconds) or not 0 < timeout_seconds <= M64_MAX_PHASE_SECONDS + 30:
+        raise SafeError("M64 transport exceeds fixed byte or time bounds")
+    process = subprocess.Popen(
+        command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        env={"LC_ALL": "C", "PATH": os.environ.get("PATH", os.defpath)}, start_new_session=True,
+    )
+    streams = (process.stdin, process.stdout, process.stderr)
+    selector = selectors.DefaultSelector()
+    output, error = bytearray(), bytearray()
+    offset = 0
+    deadline = time.monotonic() + timeout_seconds
+    try:
+        for stream in streams:
+            os.set_blocking(stream.fileno(), False)
+        selector.register(process.stdin, selectors.EVENT_WRITE, "input")
+        selector.register(process.stdout, selectors.EVENT_READ, "output")
+        selector.register(process.stderr, selectors.EVENT_READ, "error")
+        while selector.get_map():
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise SafeError("M64 transport reached its bounded timeout")
+            for key, _ in selector.select(min(remaining, 0.25)):
+                stream = key.fileobj
+                if key.data == "input":
+                    if offset < len(payload):
+                        offset += os.write(stream.fileno(), payload[offset:offset + 65536])
+                    if offset == len(payload):
+                        selector.unregister(stream)
+                        stream.close()
+                    continue
+                chunk = os.read(stream.fileno(), 65536)
+                if not chunk:
+                    selector.unregister(stream)
+                    stream.close()
+                    continue
+                buffer = output if key.data == "output" else error
+                if len(buffer) + len(chunk) > (maximum if key.data == "output" else 65536):
+                    raise SafeError("M64 transport output exceeded its fixed bound")
+                buffer.extend(chunk)
+        code = process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        if code != 0:
+            raise SafeError("M64 strict SSH transport or remote contract failed; private streams withheld")
+        return bytes(output)
+    except BaseException as exc:
+        if not terminate_component_factory_f41_probe(process):
+            raise SafeError("M64 transport failed and local process-group cleanup was not verified") from exc
+        if isinstance(exc, (SafeError, KeyboardInterrupt, SystemExit)):
+            raise
+        raise SafeError("M64 bounded transport failed; private streams withheld") from exc
+    finally:
+        selector.close()
+        for stream in streams:
+            if not stream.closed:
+                stream.close()
+
+
+def m64_store_results(destination: Path, manifest: dict, response: dict) -> dict:
+    """Validate the complete response before creating a new 0700 private directory."""
+    entries = m64_entries(manifest["outputs"], outputs=True)
+    found, missing, present = response.get("files"), response.get("missing_outputs"), response.get("present_outputs")
+    if (
+        not isinstance(found, dict) or len(found) > M64_MAX_RESULT_FILES
+        or not isinstance(missing, list) or not isinstance(present, list)
+        or any(not isinstance(item, str) for item in missing + present)
+        or len(set(missing)) != len(missing) or len(set(present)) != len(present)
+        or set(present) & set(missing) or set(present) | set(missing) != set(entries)
+    ):
+        raise SafeError("M64 result inventory does not match the exact output allowlist")
+    payloads = {}
+    used = dict.fromkeys(present, 0)
+    folded = set()
+    for name, entry in found.items():
+        m64_relative_path(name)
+        roots = [root for root in present if name == root or name.startswith(root + "/")]
+        if len(roots) != 1 or name.casefold() in folded:
+            raise SafeError("M64 result inventory includes an unapproved or ambiguous path")
+        folded.add(name.casefold())
+        root = roots[0]
+        if not isinstance(entry, dict) or set(entry) != {"size", "sha256", "base64"}:
+            raise SafeError("M64 result entry has unexpected fields")
+        if type(entry["size"]) is not int or not 0 <= entry["size"] <= entries[root]["max_bytes"]:
+            raise SafeError("M64 result size is invalid")
+        used[root] += entry["size"]
+        if used[root] > entries[root]["max_bytes"]:
+            raise SafeError("M64 recursive result bytes exceed their root allocation")
+        try:
+            data = base64.b64decode(entry["base64"], validate=True)
+        except (ValueError, TypeError) as exc:
+            raise SafeError("M64 result encoding is invalid") from exc
+        if len(data) != entry["size"] or hashlib.sha256(data).hexdigest() != entry["sha256"]:
+            raise SafeError("M64 result hash or size verification failed")
+        payloads[name] = data
+    for name in payloads:
+        if any(str(parent).casefold() in folded for parent in Path(name).parents if str(parent) != "."):
+            raise SafeError("M64 result file path cannot also be a directory")
+    m64_no_symlink_path(destination.parent)
+    if destination.exists() or destination.is_symlink() or destination.name in {"", ".", ".."}:
+        raise SafeError("M64 collection requires a new private destination directory")
+    try:
+        destination.mkdir(mode=0o700)
+        for name, data in payloads.items():
+            path = destination / name
+            path.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+            descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(data)
+        receipt = {key: value for key, value in response.items() if key != "files"}
+        receipt["files"] = {name: {key: value for key, value in found[name].items() if key != "base64"} for name in found}
+        descriptor = os.open(destination / "collection-receipt.json", os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
+        with os.fdopen(descriptor, "w") as stream:
+            json.dump(receipt, stream, indent=2)
+            stream.write("\n")
+    except OSError as exc:
+        raise SafeError("M64 private retrieval could not complete; any partial files remain private") from exc
+    return {"retrieved_files": len(found), "missing_outputs": missing, "retrieval_complete": not missing, "destination": str(destination)}
+
+
+def m64_operation(api_key: str, operation: list[str], bundle: tuple) -> int:
+    manifest, manifest_bytes, files = bundle
+    action = operation[0].removeprefix("m64-")
+    collecting = action == "collect"
+    ssh = m64_verified_ssh(api_key, manifest, collecting=collecting)
+    seconds = M64_COLLECT_SECONDS if collecting else min(
+        M64_MAX_PHASE_SECONDS if action == "phase" else M64_TRANSFER_SECONDS,
+        int(m64_start_deadline(manifest)),
+    )
+    if seconds < 1:
+        raise SafeError("M64 deadline leaves no time to start this phase")
+    expected_sha = hashlib.sha256(manifest_bytes).hexdigest()
+    request = {
+        "operation": action, "manifest_b64": base64.b64encode(manifest_bytes).decode(),
+        "manifest_sha256": expected_sha,
+        "files_b64": {name: base64.b64encode(data).decode() for name, data in files.items()} if action == "transfer" else {},
+        "phase": operation[3] if action == "phase" else None, "timeout_seconds": seconds,
+    }
+    helper = M64_REMOTE_HELPER.replace("__M64_CODE_PIN__", M64_APPROVED_CODE_MANIFEST_SHA256)
+    command = ssh + [shlex.join(["/opt/simready-validation/bin/python", "-I", "-c", helper])]
+    response = m64_json(run_m64_transport(command, json.dumps(request, separators=(",", ":")).encode(), seconds + 25))
+    fields = {"schema_version", "job_id", "instance_id", "operation", "manifest_sha256"}
+    fields |= {"files", "present_outputs", "missing_outputs"} if collecting else ({"phase", "exit_code", "timed_out"} if action == "phase" else set())
+    if (
+        set(response) != fields or response["schema_version"] != "1.0.0"
+        or response["job_id"] != manifest["job_id"] or type(response["instance_id"]) is not int
+        or response["instance_id"] != manifest["instance_id"] or response["operation"] != action
+        or response["manifest_sha256"] != expected_sha
+    ):
+        raise SafeError("M64 remote receipt identity or manifest hash mismatch")
+    summary = {"job_id": manifest["job_id"], "instance_id": manifest["instance_id"], "operation": action, "manifest_sha256": expected_sha}
+    result = 0
+    if collecting:
+        summary.update(m64_store_results(Path(operation[3]), manifest, response))
+    elif action == "phase":
+        if response["phase"] != operation[3] or type(response["exit_code"]) is not int or not -255 <= response["exit_code"] <= 255 or type(response["timed_out"]) is not bool:
+            raise SafeError("M64 phase result does not match the fixed invocation")
+        summary.update(phase=operation[3], exit_code=response["exit_code"], timed_out=response["timed_out"])
+        result = 0 if response["exit_code"] == 0 and not response["timed_out"] else 1
+    print_json(summary)
+    return result
+
+
+def picogk_account_balance(api_key: str) -> dict:
+    """Select only billing numbers; never expose the user record or identity."""
+    # Official endpoint: https://docs.vast.ai/api-reference/accounts/show-user
+    result = vast_request(api_key, "/api/v0/users/current/")
+    balance = finite_number(result.get("balance"))
+    credit = finite_number(result.get("credit"))
+    if balance is None and credit is None:
+        raise SafeError("Vast.ai balance response has no finite billing value")
+    # Current CLI exposes prepaid credit separately from pending balance. Keep
+    # both visible and subtract any negative pending balance conservatively.
+    available = credit + min(balance or 0.0, 0.0) if credit is not None else balance
+    return {"balance_usd": balance, "credit_usd": credit,
+            "conservative_available_usd": available,
+            "automatic_recharge_requested": False}
+
+
+def picogk_offer_eligible(offer: dict) -> bool:
+    floors = (("cpu_cores_effective", PICOGK_MIN_CPU),
+              ("cpu_ram", PICOGK_MIN_RAM_MB), ("disk_space", PICOGK_DISK_GB))
+    return (
+        type(offer.get("id")) is int and offer["id"] > 0
+        and finite_number(offer.get("num_gpus")) == 1
+        and finite_number(offer.get("gpu_frac")) == 1
+        and all((value := finite_number(offer.get(key))) is not None and value >= floor
+                for key, floor in floors)
+        and (price := finite_number(offer.get("dph_total"))) is not None
+        and 0 < price <= PICOGK_MAX_DPH
+        and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None
+        and reliability >= 0.99
+        and (offer.get("verified") is True or offer.get("verification") == "verified")
+        and offer.get("rentable") in (True, 1) and offer.get("rented") in (False, 0)
+        and (offer.get("rentable_type") or offer.get("rental_type") or offer.get("type"))
+            in (None, "on-demand", "ondemand")
+        and all((value := finite_number(offer.get(key))) is not None
+                and 0 <= value <= PICOGK_MAX_TRANSFER_RATE
+                for key in ("inet_up_cost", "inet_down_cost"))
+    )
+
+
+def get_picogk_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    query = {"allocated_storage": PICOGK_DISK_GB, "num_gpus": {"eq": 1},
+             "gpu_frac": {"eq": 1}, "cpu_cores_effective": {"gte": PICOGK_MIN_CPU},
+             "cpu_ram": {"gte": PICOGK_MIN_RAM_MB}, "disk_space": {"gte": PICOGK_DISK_GB},
+             "dph_total": {"lte": PICOGK_MAX_DPH}, "reliability": {"gte": 0.99},
+             "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
+             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 100}
+    if offer_id is not None:
+        if type(offer_id) is not int or offer_id <= 0:
+            raise SafeError("PicoGK requested offer ID is invalid")
+        # As in F41/F46, Vast bundle search does not reliably honor an id
+        # predicate. Re-read a bounded wider inventory and match locally.
+        query["limit"] = 1000
+    result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
+    offers = result.get("offers")
+    if not isinstance(offers, list):
+        raise SafeError("Vast.ai PicoGK offer response is invalid")
+    return sorted((offer for offer in offers if isinstance(offer, dict)
+                   and picogk_offer_eligible(offer)
+                   and (offer_id is None or offer.get("id") == offer_id)),
+                  key=lambda offer: offer["dph_total"])
+
+
+def picogk_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
+    data = m64_read_file(path, 65536)
+    try:
+        manifest = json.loads(data)
+    except (ValueError, UnicodeError):
+        raise SafeError("PicoGK manifest is not valid JSON") from None
+    fields = {"schema_version", "profile", "job_id", "attempt_label", "image_ref",
+              "created_epoch", "deadline_epoch", "budget_usd", "image_download_gb",
+              "max_input_gb", "max_output_gb", "qualification_path", "qualification_sha256",
+              "guard_ready_path"}
+    if not isinstance(manifest, dict) or set(manifest) != fields:
+        raise SafeError("PicoGK manifest fields differ from the fixed contract")
+    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != PICOGK_PROFILE
+        or not isinstance(manifest["job_id"], str)
+        or not re.fullmatch(r"picogk-m64-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"])
+        or not isinstance(manifest["attempt_label"], str)
+        or not re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", manifest["attempt_label"])
+        or not isinstance(manifest["image_ref"], str)
+        or PICOGK_IMAGE_RE.fullmatch(manifest["image_ref"]) is None):
+        raise SafeError("PicoGK manifest identity or immutable image is invalid")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if (type(created) is not int or type(deadline) is not int
+        or created > time.time() or (require_active and time.time() >= deadline)
+        or not 60 <= deadline - created <= PICOGK_MAX_SECONDS):
+        raise SafeError("PicoGK deadline is expired or exceeds three hours")
+    budget = finite_number(manifest["budget_usd"])
+    if budget is None or not PICOGK_CLEANUP_RESERVE_USD < budget <= PICOGK_MAX_BUDGET_USD:
+        raise SafeError("PicoGK budget must exceed reserve and cannot exceed four USD")
+    for field, maximum in (("image_download_gb", 20), ("max_input_gb", 2), ("max_output_gb", 2)):
+        value = finite_number(manifest[field])
+        if value is None or not 0 <= value <= maximum:
+            raise SafeError("PicoGK declared transfer size is invalid")
+    if manifest["image_download_gb"] <= 0:
+        raise SafeError("PicoGK image size must be measured before rental")
+    if (not isinstance(manifest["qualification_path"], str)
+        or not isinstance(manifest["qualification_sha256"], str)
+        or not re.fullmatch(r"[0-9a-f]{64}", manifest["qualification_sha256"])):
+        raise SafeError("PicoGK qualification path or SHA256 is invalid")
+    if (not isinstance(manifest["guard_ready_path"], str)
+        or Path(manifest["guard_ready_path"]).parent != path.parent
+        or Path(manifest["guard_ready_path"]).name != manifest["job_id"] + ".guard-ready.json"):
+        raise SafeError("PicoGK guard readiness must be the exact sibling job receipt")
+    proof_data = m64_read_file(Path(manifest["qualification_path"]), 65536)
+    if hashlib.sha256(proof_data).hexdigest() != manifest["qualification_sha256"]:
+        raise SafeError("PicoGK qualification SHA256 does not match")
+    try:
+        proof = json.loads(proof_data)
+    except (ValueError, UnicodeError):
+        raise SafeError("PicoGK qualification is not JSON") from None
+    if (not isinstance(proof, dict) or proof.get("image_ref") != manifest["image_ref"]
+        or proof.get("platform") != "linux/amd64"
+        or proof.get("runtime_smoke_verified") is not True
+        or proof.get("anonymous_exact_digest_pull_verified") is not True
+        or proof.get("manufacturing_validated") is not False
+        or proof.get("engine_validated") is not False):
+        raise SafeError("PicoGK image is not qualified for this software-only run")
+    return manifest, hashlib.sha256(data).hexdigest()
+
+
+def picogk_budget_cost(manifest: dict, price: object, up: object, down: object) -> float:
+    values = [finite_number(item) for item in (price, up, down)]
+    if any(item is None for item in values):
+        raise SafeError("PicoGK instance cost metadata is missing")
+    price, up, down = values
+    if not 0 < price <= PICOGK_MAX_DPH or not all(0 <= rate <= PICOGK_MAX_TRANSFER_RATE for rate in (up, down)):
+        raise SafeError("PicoGK price or transfer tariff exceeds its fixed cap")
+    hours = (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
+    cost = hours * price + (manifest["image_download_gb"] + manifest["max_input_gb"]) * down
+    cost += manifest["max_output_gb"] * up + PICOGK_CLEANUP_RESERVE_USD
+    if cost > manifest["budget_usd"]:
+        raise SafeError("PicoGK planned worst-case cost exceeds its declared budget")
+    return cost
+
+
+def picogk_singleton(api_key: str, instance_id: int | None, manifest: dict) -> None:
+    # The small budget is account-wide: do not overlap any existing rental.
+    inventory = strict_instance_inventory(api_key)
+    if instance_id is None:
+        if inventory:
+            raise SafeError("PicoGK rental requires an empty Vast instance inventory")
+    elif (len(inventory) != 1 or inventory[0].get("id") != instance_id
+          or inventory[0].get("label") != manifest["attempt_label"]):
+        raise SafeError("PicoGK instance is not the unique expected rental")
+
+
+def picogk_provider_states(raw: dict) -> dict:
+    allowed = {"created", "creating", "starting", "loading", "running", "unknown",
+               "exited", "stopped", "stopping", "offline", "error", "destroyed", "rebooting"}
+    def normalized(value):
+        if value is None or value == "":
+            return None
+        return value if isinstance(value, str) and value in allowed else "unrecognized"
+    return {field: normalized(raw.get(field)) for field in
+            ("actual_status", "intended_status", "cur_state", "next_state")}
+
+
+def picogk_safe_instance(raw: dict) -> dict:
+    states = picogk_provider_states(raw)
+    # Vast may omit actual_status while exposing the observed cur_state.
+    # Desired/future states never establish the current instance status.
+    status = states["actual_status"] if states["actual_status"] is not None else states["cur_state"]
+    return {**safe_instance(raw), "status": status, "provider_states": states}
+
+
+def picogk_or_legacy_safe_instance(raw: dict) -> dict:
+    label = raw.get("label")
+    if isinstance(label, str) and re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", label):
+        return picogk_safe_instance(raw)
+    if isinstance(label, str) and re.fullmatch(re.escape(RESEARCH_LABEL) + r"-[0-9a-f]{20}", label):
+        return picogk_safe_instance(raw)
+    return safe_instance(raw)
+
+
+def picogk_startup_pending(raw: dict) -> bool:
+    states = picogk_provider_states(raw)
+    active_start = {"created", "creating", "starting", "loading"}
+    if states["intended_status"] in {"stopped", "stopping", "destroyed"}:
+        return False
+    if states["actual_status"] in active_start:
+        return True
+    return states["actual_status"] in {None, "unknown"} and any(
+        states[field] in active_start for field in ("cur_state", "next_state"))
+
+
+def picogk_contract_findings(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> tuple:
+    instance = picogk_safe_instance(raw)
+    required = ("id", "label", "image", "status", "machine_verification", "gpu", "num_gpus",
+                "gpu_fraction", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb", "dph_total",
+                "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")
+    missing = [field for field in required if instance.get(field) is None or instance[field] == ""]
+    errors = []
+    for field, expected in (("id", instance_id), ("label", manifest["attempt_label"]),
+                            ("image", manifest["image_ref"]), ("machine_verification", "verified")):
+        if field not in missing and instance[field] != expected:
+            errors.append(field)
+    if "id" not in missing and type(instance["id"]) is not int:
+        errors.append("id")
+    if "status" not in missing and instance["status"] not in {"created", "loading", "running"}:
+        errors.append("status")
+    for field in ("num_gpus", "gpu_fraction"):
+        if field not in missing and finite_number(instance[field]) != 1:
+            errors.append(field)
+    for key, floor in (("cpu_cores_effective", PICOGK_MIN_CPU), ("cpu_ram_mb", PICOGK_MIN_RAM_MB),
+                       ("disk_space_gb", PICOGK_DISK_GB)):
+        value = finite_number(instance[key])
+        if key not in missing and (value is None or value < floor):
+            errors.append(key)
+    for field, maximum in (("dph_total", PICOGK_MAX_DPH),
+                           ("inet_up_cost_usd_per_gb", PICOGK_MAX_TRANSFER_RATE),
+                           ("inet_down_cost_usd_per_gb", PICOGK_MAX_TRANSFER_RATE)):
+        value = finite_number(instance[field])
+        if field not in missing and (value is None or not 0 <= value <= maximum
+                                     or (field == "dph_total" and value == 0)):
+            errors.append(field)
+    if offer is not None:
+        if "gpu" not in missing and instance["gpu"] != offer.get("gpu_name"):
+            errors.append("gpu")
+        if "dph_total" not in missing and finite_number(instance["dph_total"]) != finite_number(offer.get("dph_total")):
+            errors.append("dph_total")
+    return instance, missing, sorted(set(errors))
+
+
+def picogk_emit_contract_diagnostic(raw: dict, instance_id: int, manifest: dict,
+                                   offer: dict | None, reason: str) -> None:
+    instance, missing, errors = picogk_contract_findings(raw, instance_id, manifest, offer)
+    numeric = {field: finite_number(instance.get(field)) for field in
+               ("num_gpus", "gpu_fraction", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb",
+                "dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")}
+    print("OPENBAO_VASTAI_PICOGK_CONTRACT " + json.dumps({
+        "instance_id": instance_id, "reason": reason, "provider_states": instance["provider_states"],
+        "missing_fields": missing, "mismatched_fields": errors, "observed_numeric_fields": numeric,
+        "label_matches": instance["label"] == manifest["attempt_label"],
+        "image_matches": instance["image"] == manifest["image_ref"],
+        "machine_verified": instance["machine_verification"] == "verified",
+        "startup_pending": picogk_startup_pending(raw), "ssh_authentication_verified": False,
+    }, sort_keys=True), file=sys.stderr, flush=True)
+
+
+def picogk_contract(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> dict:
+    instance, missing, errors = picogk_contract_findings(raw, instance_id, manifest, offer)
+    if missing or errors:
+        picogk_emit_contract_diagnostic(raw, instance_id, manifest, offer, "contract_rejected")
+        raise SafeError("PicoGK contract rejected; missing=" + ",".join(missing)
+                        + "; mismatched=" + ",".join(errors))
+    picogk_budget_cost(manifest, instance["dph_total"], instance["inet_up_cost_usd_per_gb"],
+                      instance["inet_down_cost_usd_per_gb"])
+    return instance
+
+
+def picogk_smoke_valid(output: str) -> bool:
+    try:
+        report = json.loads(output)
+    except (ValueError, UnicodeError):
+        return False
+    error = finite_number(report.get("relative_volume_error")) if isinstance(report, dict) else None
+    return (isinstance(report, dict) and report.get("status") == "PASS"
+            and report.get("architecture") == "X64"
+            and report.get("scope") == "software_geometry_witness_only"
+            and type(report.get("triangles")) is int and report["triangles"] > 0
+            and type(report.get("stl_roundtrip_triangles")) is int
+            and report["stl_roundtrip_triangles"] == report["triangles"]
+            and error is not None and 0 <= error <= 0.10
+            and report.get("manufacturing_validated") is False
+            and report.get("engine_validated") is False)
+
+
+def picogk_remote_ready_command() -> str:
+    # Runtime is .NET-only. Read exactly the fixed non-secret witness files;
+    # parse its bounded JSON locally and never print remote raw streams.
+    return (
+        "test -f /workspace/PICOGK_READY && test ! -L /workspace/PICOGK_READY "
+        "&& test \"$(wc -c </workspace/PICOGK_READY)\" -le 128 "
+        "&& test \"$(cat /workspace/PICOGK_READY)\" = PICOGK_M64_READY "
+        "&& test -f /workspace/picogk-smoke/report.json "
+        "&& test ! -L /workspace/picogk-smoke/report.json "
+        "&& test \"$(wc -c </workspace/picogk-smoke/report.json)\" -le 65536 "
+        "&& head -c 65536 /workspace/picogk-smoke/report.json"
+    )
+
+
+def picogk_direct_ssh_endpoint(raw: dict, instance_id: int) -> dict | None:
+    ports = raw.get("ports")
+    if ports is None or (isinstance(ports, dict) and "22/tcp" not in ports):
+        return None
+    endpoint = m64_ssh_endpoint(raw, instance_id)
+    if endpoint is not None and endpoint.get("kind") != "direct":
+        raise SafeError("PicoGK SSH requires the published direct endpoint")
+    return endpoint
+
+
+def picogk_ssh_failure_category(stderr: str) -> str | None:
+    lowered = stderr.lower()
+    for marker, category in (("remote host identification has changed", "host_key_changed"),
+                             ("host key verification failed", "host_key_verification_failed"),
+                             ("load key", "local_key_load_failed"),
+                             ("permission denied", "authentication_denied")):
+        if marker in lowered:
+            return category
+    return None
+
+
+def picogk_ssh_ready(api_key: str, instance_id: int, manifest: dict, offer: dict) -> dict:
+    public_key = read_local_ssh_public_key()
+    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+        result = vast_request(api_key, f"/api/v0/instances/{instance_id}/ssh/", method="POST",
+                              payload={"ssh_key": public_key})
+        if result.get("success") is not True:
+            raise SafeError("PicoGK exact instance SSH attachment was not confirmed")
+        for attempt in range(3):
+            if instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+                break
+            if attempt == 2:
+                raise SafeError("PicoGK approved SSH key is not listed by the provider")
+            time.sleep(5)
+    known_hosts = prepare_component_factory_f41_known_hosts(instance_id)
+    alias = component_factory_f41_host_key_alias(instance_id)
+    deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
+    metadata_deadline = min(time.time() + 120, deadline)
+    last_diagnostic = None
+    pinned_endpoint = None
+    while time.time() < deadline:
+        result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+        raw = result.get("instances")
+        if not isinstance(raw, dict):
+            raise SafeError("PicoGK instance metadata is invalid")
+        # Loading may expose partial resource metadata; never spend past the
+        # bounded READY clock and never accept a known identity mismatch.
+        safe, missing, errors = picogk_contract_findings(raw, instance_id, manifest, offer)
+        signature = (tuple(safe["provider_states"].values()), tuple(missing), tuple(errors))
+        if signature != last_diagnostic:
+            picogk_emit_contract_diagnostic(raw, instance_id, manifest, offer, "startup_snapshot")
+            last_diagnostic = signature
+        for field, expected in (("id", instance_id), ("label", manifest["attempt_label"]),
+                                ("image", manifest["image_ref"])):
+            if safe[field] is not None and safe[field] != expected:
+                raise SafeError("PicoGK loading identity changed")
+        # Missing metadata is not acceptance. Known mismatches remain fatal,
+        # except a startup state that is explicitly corroborated by provider
+        # state fields; no terminal state is relabelled as loading/running.
+        hard_errors = [field for field in errors if field != "status"]
+        if hard_errors:
+            picogk_contract(raw, instance_id, manifest, offer)
+        pending = picogk_startup_pending(raw)
+        if pending and (safe["status"] in {"created", "loading"} or time.time() < metadata_deadline):
+            time.sleep(min(15, max(0, deadline - time.time())))
+            continue
+        if safe["status"] == "running" and missing and time.time() < metadata_deadline:
+            time.sleep(min(15, max(0, metadata_deadline - time.time())))
+            continue
+        instance = picogk_contract(raw, instance_id, manifest, offer)
+        endpoint = picogk_direct_ssh_endpoint(raw, instance_id)
+        if endpoint is None:
+            time.sleep(min(15, max(0, deadline - time.time())))
+            continue
+        if time.time() >= deadline:
+            break
+        endpoint_identity = (endpoint["host"], endpoint["port"])
+        if pinned_endpoint is not None and endpoint_identity != pinned_endpoint:
+            raise SafeError("PicoGK direct SSH endpoint changed after the first probe; host trust not reused")
+        pinned_endpoint = endpoint_identity
+        endpoint_diagnostic = {"instance_id": instance_id, "endpoint_kind": "direct",
+                               "port": endpoint["port"],
+                               "host_sha256": hashlib.sha256(endpoint["host"].encode("ascii")).hexdigest()}
+        print("OPENBAO_VASTAI_PICOGK_SSH " + json.dumps(
+            {**endpoint_diagnostic, "stage": "before_probe"}, sort_keys=True), file=sys.stderr, flush=True)
+        options = {"BatchMode": "yes", "IdentitiesOnly": "yes", "ForwardAgent": "no",
+                   "ClearAllForwardings": "yes", "PermitLocalCommand": "no",
+                   "PasswordAuthentication": "no", "KbdInteractiveAuthentication": "no",
+                   "ConnectionAttempts": "1", "ConnectTimeout": "5",
+                   "StrictHostKeyChecking": "accept-new", "UpdateHostKeys": "no",
+                   "GlobalKnownHostsFile": "/dev/null", "HashKnownHosts": "no",
+                   "HostKeyAlias": alias, "UserKnownHostsFile": str(known_hosts), "LogLevel": "ERROR"}
+        command = ["ssh", "-F", "/dev/null", "-T", "-i", str(SSH_PRIVATE_KEY_FILE)]
+        for key, value in options.items():
+            command.extend(["-o", key + "=" + value])
+        command += ["-p", str(endpoint["port"]), "root@" + endpoint["host"],
+                    picogk_remote_ready_command()]
+        try:
+            completed = run_component_factory_f41_ssh_probe(command, {
+                "LC_ALL": "C", "PATH": os.environ.get("PATH", os.defpath)})
+        except ComponentFactoryF41ProbeTimeout:
+            time.sleep(min(15, max(0, deadline - time.time())))
+            continue
+        if (completed.returncode == 0 and picogk_smoke_valid(completed.stdout)
+            and not completed.stderr.strip()):
+            validate_component_factory_f41_known_hosts(known_hosts, instance_id)
+            picogk_singleton(api_key, instance_id, manifest)
+            return {"instance": instance, "ssh_endpoint": endpoint,
+                    "known_hosts_path": str(known_hosts), "host_key_alias": alias}
+        failure_category = picogk_ssh_failure_category(completed.stderr)
+        print("OPENBAO_VASTAI_PICOGK_SSH " + json.dumps(
+            {**endpoint_diagnostic, "stage": "probe_not_ready", "return_code": completed.returncode,
+             "failure_category": failure_category or "unclassified_not_ready"}, sort_keys=True),
+            file=sys.stderr, flush=True)
+        if failure_category is not None:
+            raise SafeError("PicoGK SSH failed: " + failure_category + "; private streams withheld")
+        time.sleep(min(15, max(0, deadline - time.time())))
+    raise SafeError("PicoGK SSH and geometry witness did not become ready within fifteen minutes")
+
+
+def picogk_reconcile(api_key: str, manifest: dict) -> int:
+    for _ in range(6):
+        matches = [item for item in strict_instance_inventory(api_key)
+                   if item.get("label") == manifest["attempt_label"]]
+        if matches:
+            if len(matches) != 1:
+                raise SafeError("PicoGK uncertain launch has ambiguous ownership; no automatic deletion")
+            instance_id = matches[0]["id"]
+            destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"],
+                                      expected_image=manifest["image_ref"])
+            return instance_id
+        time.sleep(5)
+    raise SafeError("PicoGK launch remains uncertain; do not retry before reconciling its exact label")
+
+
+def launch_picogk_m64(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
+    with simready_launch_lock():
+        picogk_singleton(api_key, None, manifest)
+        funds = picogk_account_balance(api_key)
+        if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
+            raise SafeError("PicoGK available credit does not cover the run and account reserve")
+        ensure_local_ssh_registered(api_key)
+        offers = [item for item in get_picogk_offers(api_key, offer_id) if item["id"] == offer_id]
+        if len(offers) != 1:
+            raise SafeError("PicoGK offer is unavailable or outside the fixed resource and price limits")
+        offer = offers[0]
+        ceiling = picogk_budget_cost(manifest, offer["dph_total"], offer["inet_up_cost"], offer["inet_down_cost"])
+        if not manifest["created_epoch"] <= time.time() < manifest["deadline_epoch"] - 300:
+            raise SafeError("PicoGK deadline leaves insufficient startup and cleanup time")
+        picogk_verify_armed_guard(manifest, manifest_sha256)
+        picogk_consume_attempt(manifest, manifest_sha256, offer_id)
+        print("OPENBAO_VASTAI_PICOGK_ATTEMPT " + json.dumps({"label": manifest["attempt_label"],
+              "manifest_sha256": manifest_sha256, "image_ref": manifest["image_ref"],
+              "deadline_epoch": manifest["deadline_epoch"], "worst_case_planned_usd": ceiling}),
+              file=sys.stderr, flush=True)
+        instance_id = None
+        try:
+            result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
+                "image": manifest["image_ref"], "label": manifest["attempt_label"],
+                "disk": PICOGK_DISK_GB, "runtype": "ssh_direct", "env": {},
+                "onstart": "picogk-vast-onstart --deadline-epoch " + str(manifest["deadline_epoch"]),
+                "cancel_unavail": True})
+            returned = result.get("new_contract")
+            if type(returned) is not int or returned <= 0:
+                raise SafeError("Vast.ai did not return an exact PicoGK instance ID")
+            instance_id = returned
+            verified = picogk_ssh_ready(api_key, instance_id, manifest, offer)
+        except BaseException:
+            try:
+                if instance_id is None:
+                    instance_id = picogk_reconcile(api_key, manifest)
+                else:
+                    destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"],
+                                              expected_image=manifest["image_ref"])
+                print("OPENBAO_VASTAI_PICOGK_CLEANUP " + json.dumps({"instance_id": instance_id,
+                    "verified_absent": True, "label": manifest["attempt_label"]}), file=sys.stderr, flush=True)
+            except BaseException:
+                print("OPENBAO_VASTAI_PICOGK_BILLING_RISK " + manifest["attempt_label"], file=sys.stderr, flush=True)
+                raise
+            raise
+        print_json({"profile": PICOGK_PROFILE, "instance_id": instance_id,
+                    "label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
+                    "manifest_sha256": manifest_sha256, "deadline_epoch": manifest["deadline_epoch"],
+                    "budget_usd": manifest["budget_usd"], "planned_cost_with_reserve_usd": ceiling,
+                    "balance_before": funds, "approved_public_private_pair_verified": True,
+                    "approved_instance_key_verified": True, "ssh_batch_mode_verified": True,
+                    "runtime_smoke_verified": True, "external_destroy_watchdog_armed": True,
+                    "manufacturing_validated": False, "engine_validated": False, **verified})
+        return 0
+
+
+def picogk_consume_attempt(manifest: dict, manifest_sha256: str, offer_id: int) -> Path:
+    """Durably consume one paid attempt before PUT; uncertainty never permits replay."""
+    path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + ".paid-attempt.json")
+    m64_no_symlink_path(path.parent)
+    try:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    except FileExistsError:
+        raise SafeError("PicoGK paid attempt is already consumed; reconcile this manifest instead of replaying PUT") from None
+    receipt = {"label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
+               "manifest_sha256": manifest_sha256, "offer_id": offer_id,
+               "created_epoch": int(time.time()), "paid_outcome": "unknown_until_provider_receipt"}
+    with os.fdopen(fd, "w") as stream:
+        json.dump(receipt, stream, sort_keys=True)
+        stream.flush()
+        os.fsync(stream.fileno())
+    directory = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+    return path
+
+
+def picogk_verify_armed_guard(manifest: dict, manifest_sha256: str) -> None:
+    try:
+        ready = json.loads(m64_read_file(Path(manifest["guard_ready_path"]), 4096))
+    except (ValueError, UnicodeError):
+        raise SafeError("PicoGK guard readiness is not valid JSON") from None
+    if (not isinstance(ready, dict) or ready.get("armed") is not True
+        or ready.get("manifest_sha256") != manifest_sha256
+        or ready.get("deadline_epoch") != manifest["deadline_epoch"]
+        or ready.get("label") != manifest["attempt_label"]
+        or ready.get("image_ref") != manifest["image_ref"]
+        or ready.get("wrapper_sha256") != hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
+        or type(ready.get("pid")) is not int or ready["pid"] <= 0):
+        raise SafeError("PicoGK external destruction guard is not armed for this exact run")
+    try:
+        os.kill(ready["pid"], 0)
+    except OSError:
+        raise SafeError("PicoGK external destruction guard is not alive") from None
+
+
+def research_execution_mode(manifest: dict) -> str:
+    mode = manifest.get("execution_mode", "qwen-server-v1")
+    if mode not in ("qwen-server-v1", RESEARCH_CAD_MODE):
+        raise SafeError("research execution mode is not approved")
+    return mode
+
+
+def research_hardware(manifest: dict | None = None) -> tuple[tuple, tuple]:
+    if research_execution_mode(manifest or {}) == RESEARCH_CAD_MODE:
+        return RESEARCH_CAD_GPUS, (23000, 8, 32000, 100)
+    return RESEARCH_GPUS, (45000, 12, 64000, 100)
+
+
+def research_offer_eligible(offer: dict) -> bool:
+    return _research_offer_eligible(offer, {})
+
+
+def cad_specialist_offer_eligible(offer: dict) -> bool:
+    return _research_offer_eligible(offer, {"execution_mode": RESEARCH_CAD_MODE})
+
+
+def _research_offer_eligible(offer: dict, manifest: dict) -> bool:
+    # gpu_frac is offer GPUs / host GPUs, not a fractional accelerator.
+    # https://docs.vast.ai/cli/reference/search-instances
+    gpus, minimums = research_hardware(manifest)
+    floors = tuple(zip(("gpu_ram", "cpu_cores_effective", "cpu_ram", "disk_space"), minimums))
+    return (type(offer.get("id")) is int and offer["id"] > 0
+        and offer.get("gpu_name") in gpus
+        and finite_number(offer.get("num_gpus")) == 1
+        and (fraction := finite_number(offer.get("gpu_frac"))) is not None and 0 < fraction <= 1
+        and all((value := finite_number(offer.get(key))) is not None and value >= floor for key, floor in floors)
+        and (price := finite_number(offer.get("dph_total"))) is not None and 0 < price <= 0.85
+        and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None and reliability >= 0.99
+        and (offer.get("verified") is True or offer.get("verification") == "verified")
+        and offer.get("rentable") in (True, 1) and offer.get("rented") in (False, 0)
+        and (offer.get("rentable_type") or offer.get("rental_type") or offer.get("type")) in (None, "on-demand", "ondemand")
+        and all((value := finite_number(offer.get(key))) is not None and 0 <= value <= 0.01
+                for key in ("inet_up_cost", "inet_down_cost")))
+
+
+def get_research_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    return _get_research_offers(api_key, offer_id, {})
+
+
+def get_cad_specialist_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+    return _get_research_offers(api_key, offer_id, {"execution_mode": RESEARCH_CAD_MODE})
+
+
+def _get_research_offers(api_key: str, offer_id: int | None, manifest: dict) -> list[dict]:
+    gpus, minimums = research_hardware(manifest)
+    # Keep the specialist listing and selected-ID refresh query scope identical.
+    limit = 100 if research_execution_mode(manifest) == RESEARCH_CAD_MODE or offer_id is None else 1000
+    query = {"allocated_storage": 100, "num_gpus": {"eq": 1}, "gpu_frac": {"gt": 0, "lte": 1},
+             "gpu_name": {"in": list(gpus)},
+             "gpu_ram": {"gte": minimums[0]}, "cpu_cores_effective": {"gte": minimums[1]}, "cpu_ram": {"gte": minimums[2]},
+             "disk_space": {"gte": 100}, "dph_total": {"lte": 0.85}, "reliability": {"gte": 0.99},
+             "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
+             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": limit}
+    result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
+    if not isinstance(result.get("offers"), list):
+        raise SafeError("Vast.ai research offer response is invalid")
+    eligible = sorted((item for item in result["offers"] if isinstance(item, dict)
+                       and _research_offer_eligible(item, manifest)), key=lambda item: item["dph_total"])
+    if offer_id is not None and research_execution_mode(manifest) == RESEARCH_CAD_MODE:
+        # Read-only evidence for provider listing/refresh mismatches. Never emit
+        # raw offer objects, provider strings, authentication fields or payloads.
+        raw_ids = [item["id"] for item in result["offers"] if isinstance(item, dict)
+                   and type(item.get("id")) is int and item["id"] > 0]
+        diagnostic = {"execution_mode": RESEARCH_CAD_MODE, "selected_offer_id": offer_id,
+                      "query_sha256": hashlib.sha256(json.dumps(query, sort_keys=True).encode()).hexdigest(),
+                      "query_limit": limit, "raw_count": len(result["offers"]),
+                      "raw_offer_ids": raw_ids[:100], "eligible_count": len(eligible),
+                      "eligible_offer_ids": [item["id"] for item in eligible[:100]],
+                      "raw_exact_matches": raw_ids.count(offer_id),
+                      "eligible_exact_matches": sum(item["id"] == offer_id for item in eligible)}
+        print("OPENBAO_VASTAI_CAD_OFFERS " + json.dumps(diagnostic, sort_keys=True), file=sys.stderr, flush=True)
+    return [item for item in eligible if offer_id is None or item["id"] == offer_id]
+
+
+def research_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
+    data = m64_read_file(path, 65536)
+    try:
+        manifest = json.loads(data)
+    except (ValueError, UnicodeError):
+        raise SafeError("research manifest is not JSON") from None
+    fields = {"schema_version", "profile", "job_id", "attempt_label", "image_ref", "model", "model_revision",
+              "created_epoch", "deadline_epoch", "budget_usd", "download_budget_gb", "upload_budget_gb",
+              "qualification_path", "qualification_sha256", "guard_path", "guard_sha256", "guard_ready_path"}
+    if not isinstance(manifest, dict) or set(manifest) not in (fields, fields | {"execution_mode"}):
+        raise SafeError("research manifest fields differ from the fixed contract")
+    research_execution_mode(manifest)
+    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != RESEARCH_PROFILE
+        or manifest["image_ref"] != RESEARCH_IMAGE or manifest["model"] != RESEARCH_MODEL
+        or manifest["model_revision"] != RESEARCH_REVISION
+        or not isinstance(manifest["job_id"], str) or not re.fullmatch(r"research-qwen-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"])
+        or not isinstance(manifest["attempt_label"], str) or not re.fullmatch(re.escape(RESEARCH_LABEL) + r"-[0-9a-f]{20}", manifest["attempt_label"])):
+        raise SafeError("research identity, official image digest or model revision is not approved")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if (type(created) is not int or type(deadline) is not int or created > time.time()
+        or not 600 <= deadline - created <= 7200 or (require_active and time.time() >= deadline - 300)):
+        raise SafeError("research deadline must include setup and cleanup within two hours")
+    for field, lower, cap in (("budget_usd", 1, 4), ("download_budget_gb", 0, 60), ("upload_budget_gb", 0, 1)):
+        value = finite_number(manifest[field])
+        if value is None or not lower < value <= cap:
+            raise SafeError("research budget or transfer allocation exceeds its fixed cap")
+    for field in ("qualification_path", "guard_path", "guard_ready_path"):
+        if not isinstance(manifest[field], str) or not Path(manifest[field]).is_absolute():
+            raise SafeError("research paths must be absolute")
+    if (Path(manifest["guard_ready_path"]).parent != path.parent
+        or Path(manifest["guard_ready_path"]).name != manifest["job_id"] + ".guard-ready.json"):
+        raise SafeError("research guard receipt must be the exact sibling job receipt")
+    if (manifest["guard_sha256"] != RESEARCH_GUARD_SHA256
+        or hashlib.sha256(m64_read_file(Path(manifest["guard_path"]), 65536)).hexdigest() != RESEARCH_GUARD_SHA256):
+        raise SafeError("research guard source fingerprint differs from the approved helper")
+    proof_data = m64_read_file(Path(manifest["qualification_path"]), 65536)
+    if hashlib.sha256(proof_data).hexdigest() != manifest["qualification_sha256"]:
+        raise SafeError("research qualification fingerprint mismatch")
+    try:
+        proof = json.loads(proof_data)
+    except (ValueError, UnicodeError):
+        raise SafeError("research qualification is not JSON") from None
+    expected = {"image_ref": RESEARCH_IMAGE, "image_tag": IMAGE, "platform": "linux/amd64",
+                "anonymous_registry_verified": True, "model": RESEARCH_MODEL,
+                "model_revision": RESEARCH_REVISION, "public_weights_verified": True}
+    if not isinstance(proof, dict) or any(type(proof.get(key)) is not type(value) or proof[key] != value for key, value in expected.items()):
+        raise SafeError("research public image or public weights are not qualified")
+    sizes = [proof.get(field) for field in ("image_download_bytes", "model_download_bytes")]
+    if any(type(value) is not int or value <= 0 for value in sizes) or sum(sizes) + 1024 ** 3 > manifest["download_budget_gb"] * 10 ** 9:
+        raise SafeError("research measured downloads plus input reserve exceed allocation")
+    return manifest, hashlib.sha256(data).hexdigest()
+
+
+def research_budget_cost(manifest: dict, price: object, up: object, down: object) -> float:
+    price, up, down = [finite_number(value) for value in (price, up, down)]
+    if price is None or not 0 < price <= 0.85 or any(value is None or not 0 <= value <= 0.01 for value in (up, down)):
+        raise SafeError("research price metadata is missing or exceeds its cap")
+    cost = price * (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
+    cost += down * manifest["download_budget_gb"] + up * manifest["upload_budget_gb"] + 1
+    if cost > manifest["budget_usd"]:
+        raise SafeError("research planned cost including cleanup reserve exceeds budget")
+    return cost
+
+
+def research_verify_guard(manifest: dict, manifest_sha256: str) -> None:
+    picogk_verify_armed_guard(manifest, manifest_sha256)
+    ready = json.loads(m64_read_file(Path(manifest["guard_ready_path"]), 4096))
+    result = subprocess.run(["/bin/ps", "-ww", "-p", str(ready["pid"]), "-o", "command="],
+                            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                            text=True, timeout=5, check=False)
+    try:
+        argv = shlex.split(result.stdout.strip())
+    except ValueError:
+        raise SafeError("research guard process identity is invalid") from None
+    # Bind the live PID to this immutable helper and the manifest whose bytes
+    # were hashed in its receipt, not merely to an unrelated live process.
+    if result.returncode or len(argv) < 3 or argv[-2:] != [manifest["guard_path"], manifest["_manifest_path"]]:
+        raise SafeError("research guard PID is not executing this exact helper and manifest")
+
+
+def research_onstart(manifest: dict) -> str:
+    mode = research_execution_mode(manifest)
+    # Compute only on the controlling Mac: a provider wall clock may be hours
+    # ahead or behind. Reserve image startup (900s), cleanup (300s), and 60s
+    # for dispatch/termination tolerance, including timeout's 30s kill grace.
+    duration = int(manifest["deadline_epoch"] - time.time()) - 900 - 300 - 60
+    if duration < 60:
+        raise SafeError("research deadline cannot cover startup, cleanup, tolerance and a sixty-second server run")
+    if mode == RESEARCH_CAD_MODE:
+        # The fixed idle command neither downloads weights nor opens an API.
+        # Its relative TTL bounds this process, not later SSH jobs: the unchanged
+        # independent destruction guard remains responsible for paid lifetime.
+        return ("set -eu; test \"$(id -u)\" = 0; unset HF_TOKEN HUGGING_FACE_HUB_TOKEN; "
+                "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; "
+                f"nohup timeout --signal=TERM --kill-after=30 {duration} sleep {duration} "
+                ">/workspace/research-cad-idle.log 2>&1 </dev/null &")
+    command = shlex.join(["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", RESEARCH_MODEL,
+                         "--revision", RESEARCH_REVISION, "--host", "127.0.0.1", "--port", "8000",
+                         "--max-model-len", "16384", "--max-num-seqs", "4", "--enforce-eager"])
+    return ("set -eu; test \"$(id -u)\" = 0; unset HF_TOKEN HUGGING_FACE_HUB_TOKEN; "
+            "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; "
+            f"nohup timeout --signal=TERM --kill-after=30 {duration} {command} "
+            ">/workspace/research-vllm.log 2>&1 </dev/null &")
+
+
+def research_contract(raw: dict, instance_id: int, manifest: dict, offer: dict) -> dict:
+    gpus, minimums = research_hardware(manifest)
+    instance = picogk_safe_instance(raw)
+    if (type(instance.get("id")) is not int or instance["id"] != instance_id
+        or instance.get("label") != manifest["attempt_label"] or instance.get("image") != RESEARCH_IMAGE
+        or instance.get("machine_verification") != "verified" or instance.get("gpu") != offer["gpu_name"]
+        or instance.get("gpu") not in gpus or instance.get("status") not in {"created", "loading", "running"}
+        or finite_number(instance.get("num_gpus")) != 1
+        or (fraction := finite_number(instance.get("gpu_fraction"))) is None or not 0 < fraction <= 1
+        or fraction != finite_number(offer.get("gpu_frac"))
+        or finite_number(instance.get("dph_total")) != finite_number(offer["dph_total"])
+        or not isinstance(raw.get("ports"), dict) or any(port != "22/tcp" and mapping for port, mapping in raw["ports"].items())):
+        raise SafeError("research instance identity, hardware, state or published ports violate the contract")
+    for field, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), minimums):
+        value = finite_number(instance.get(field))
+        if value is None or value < floor:
+            raise SafeError("research instance resource metadata violates the contract: " + field)
+    research_budget_cost(manifest, instance["dph_total"], instance["inet_up_cost_usd_per_gb"], instance["inet_down_cost_usd_per_gb"])
+    return instance
+
+
+def research_metadata_pending(raw: dict, offer: dict, manifest: dict | None = None) -> bool:
+    """Metadata may lag observed running; known violations never may wait."""
+    _, minimums = research_hardware(manifest)
+    instance = picogk_safe_instance(raw)
+    if not picogk_startup_pending(raw) and instance["status"] != "running":
+        return False
+    for key, expected in (("machine_verification", "verified"), ("gpu", offer["gpu_name"]),
+                          ("num_gpus", 1), ("gpu_fraction", offer["gpu_frac"]), ("dph_total", offer["dph_total"])):
+        if instance.get(key) is not None and instance[key] != expected:
+            return False
+    for key, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), minimums):
+        value = instance.get(key)
+        if value is not None and (finite_number(value) is None or value < floor):
+            return False
+    for key in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+        value = instance.get(key)
+        if value is not None and (finite_number(value) is None or not 0 <= value <= 0.01):
+            return False
+    ports = raw.get("ports")
+    return ports is None or isinstance(ports, dict) and not any(port != "22/tcp" and mapping for port, mapping in ports.items())
+
+
+def research_reconcile(api_key: str, manifest: dict, manifest_sha256: str, *, expected_instance_id: int | None = None) -> dict:
+    receipt_path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + ".paid-attempt.json")
+    try:
+        receipt = json.loads(m64_read_file(receipt_path, 4096))
+    except (ValueError, UnicodeError):
+        raise SafeError("research paid-attempt receipt is invalid") from None
+    if (not isinstance(receipt, dict) or receipt.get("label") != manifest["attempt_label"]
+        or receipt.get("image_ref") != RESEARCH_IMAGE or receipt.get("manifest_sha256") != manifest_sha256):
+        raise SafeError("research reconciliation requires the exact consumed paid attempt")
+    absent, instance_id = 0, expected_instance_id
+    for _ in range(12):
+        inventory = strict_instance_inventory(api_key)
+        matches = [item for item in inventory if item.get("label") == manifest["attempt_label"]]
+        if len(matches) > 1:
+            raise SafeError("research creation ownership is ambiguous; external guard remains required")
+        if instance_id is not None and any(item.get("id") == instance_id and item.get("label") != manifest["attempt_label"] for item in inventory):
+            raise SafeError("research observed instance label changed; absence is not proven")
+        if matches:
+            if ((instance_id is not None and matches[0]["id"] != instance_id)
+                or safe_instance(matches[0]).get("image") != RESEARCH_IMAGE):
+                raise SafeError("research observed instance identity changed; no automatic deletion")
+            instance_id, absent = matches[0]["id"], 0
+            try:
+                destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"], expected_image=RESEARCH_IMAGE)
+                return {"instance_id": instance_id, "verified_absent": True, "destroyed": True}
+            except SafeError:
+                # Lost DELETE acknowledgement is reconciled through inventory.
+                pass
+        else:
+            absent += 1
+            # Unknown PUT outcomes can surface later: keep the external guard
+            # responsible until the deadline, even after stable present absence.
+            if absent >= 5 and (instance_id is not None or time.time() >= manifest["deadline_epoch"]):
+                return {"instance_id": instance_id, "verified_absent": True, "destroyed": instance_id is not None}
+        time.sleep(5)
+    raise SafeError("research creation remains uncertain; never replay PUT; keep the external guard alive")
+
+
+def research_write_receipt(manifest: dict, suffix: str, receipt: dict) -> Path:
+    if suffix not in {"provider-created", "cleanup"}:
+        raise SafeError("research receipt kind is not allowed")
+    path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + "." + suffix + ".json")
+    m64_no_symlink_path(path.parent)
+    try:
+        fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+    except FileExistsError:
+        raise SafeError("research receipt already exists; refusing to overwrite evidence") from None
+    with os.fdopen(fd, "w") as stream:
+        json.dump(receipt, stream, sort_keys=True)
+        stream.flush()
+        os.fsync(stream.fileno())
+    directory = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory)
+    finally:
+        os.close(directory)
+    return path
+
+
+def research_contract_diagnostic(raw: object, instance_id: int | None, manifest: dict, offer: dict, stage: str) -> dict:
+    """Explicit field allowlist: never print raw provider messages or mappings."""
+    gpus, minimums = research_hardware(manifest)
+    raw = raw if isinstance(raw, dict) else {}
+    instance = picogk_safe_instance(raw)
+    observed = {key: finite_number(instance.get(key)) for key in (
+        "num_gpus", "gpu_fraction", "gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb",
+        "dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")}
+    ports = raw.get("ports")
+    observed.update(id=raw.get("id") if type(raw.get("id")) is int else None,
+                    gpu=instance["gpu"] if instance.get("gpu") in gpus else "missing_or_unrecognized",
+                    machine_verification=instance["machine_verification"] if instance.get("machine_verification") in
+                        {"verified", "unverified", "deverified"} else "missing_or_unrecognized",
+                    status=instance["status"], provider_states=instance["provider_states"],
+                    ports_metadata_present=isinstance(ports, dict),
+                    port_names=sorted({key if re.fullmatch(r"[0-9]{1,5}/(?:tcp|udp)", str(key)) else "unrecognized"
+                                       for key in ports}) if isinstance(ports, dict) else [],
+                    published_port_names=sorted({key if re.fullmatch(r"[0-9]{1,5}/(?:tcp|udp)", str(key)) else "unrecognized"
+                                                for key, mapping in ports.items() if mapping}) if isinstance(ports, dict) else [])
+    return {"stage": stage, "instance_id": instance_id,
+            "label_matches": instance.get("label") == manifest["attempt_label"],
+            "image_matches": instance.get("image") == RESEARCH_IMAGE,
+            "expected": {"id": instance_id, "gpu": offer["gpu_name"], "num_gpus": 1,
+                         "gpu_fraction": offer["gpu_frac"], "gpu_ram_mb_min": minimums[0],
+                         "cpu_cores_effective_min": minimums[1], "cpu_ram_mb_min": minimums[2], "disk_space_gb_min": minimums[3],
+                         "machine_verification": "verified", "dph_total": offer["dph_total"],
+                         "inet_up_cost_usd_per_gb_max": 0.01, "inet_down_cost_usd_per_gb_max": 0.01,
+                         "allowed_statuses": ["created", "loading", "running"], "allowed_published_port_names": ["22/tcp"]},
+            "observed": observed}
+
+
+def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
+    mode = research_execution_mode(manifest)
+    with simready_launch_lock():
+        public_key = read_local_ssh_public_key()  # Includes cryptographic pair verification.
+        ensure_local_ssh_registered(api_key)
+        picogk_singleton(api_key, None, manifest)
+        funds = picogk_account_balance(api_key)
+        if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
+            raise SafeError("research credit does not cover run and account reserve")
+        offers = (get_cad_specialist_offers(api_key, offer_id) if mode == RESEARCH_CAD_MODE
+                  else get_research_offers(api_key, offer_id))
+        if len(offers) != 1:
+            raise SafeError("research selected offer is unavailable or outside fixed limits")
+        offer = offers[0]
+        ceiling = research_budget_cost(manifest, offer["dph_total"], offer["inet_up_cost"], offer["inet_down_cost"])
+        research_verify_guard(manifest, manifest_sha256)
+        if time.time() >= manifest["deadline_epoch"] - 300:
+            raise SafeError("research deadline leaves no setup and cleanup allowance")
+        picogk_singleton(api_key, None, manifest)
+        onstart = research_onstart(manifest)  # Refuse insufficient TTL before consuming an attempt or issuing PUT.
+        picogk_consume_attempt(manifest, manifest_sha256, offer_id)
+        instance_id, raw, stage = None, None, "provider_create"
+        try:
+            result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
+                "image": RESEARCH_IMAGE, "label": manifest["attempt_label"], "disk": 100,
+                "runtype": "ssh_direct", "env": {}, "onstart": onstart, "cancel_unavail": True})
+            returned = result.get("new_contract")
+            if type(returned) is not int or returned <= 0:
+                raise SafeError("research creation returned no exact instance ID")
+            instance_id = returned
+            stage = "provider_receipt"
+            created = {"instance_id": instance_id, "offer_id": offer_id, "label": manifest["attempt_label"],
+                       "execution_mode": mode,
+                       "image_ref": RESEARCH_IMAGE, "manifest_sha256": manifest_sha256,
+                       "created_epoch": int(time.time()), "provider_create_acknowledged": True,
+                       "instance_identity_checked": False}
+            print("OPENBAO_VASTAI_RESEARCH_CREATED " + json.dumps(created, sort_keys=True), file=sys.stderr, flush=True)
+            research_write_receipt(manifest, "provider-created", created)
+            # Public image loading can exceed two minutes; its full elapsed
+            # time remains inside the paid global deadline and budget.
+            metadata_deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
+            while True:
+                stage = "instance_lookup"
+                raw = vast_request(api_key, f"/api/v0/instances/{instance_id}/").get("instances")
+                if not isinstance(raw, dict) or raw.get("id") != instance_id or raw.get("label") != manifest["attempt_label"] or raw.get("image_uuid") != RESEARCH_IMAGE:
+                    raise SafeError("research created instance cannot be correlated")
+                try:
+                    stage = "contract"
+                    instance = research_contract(raw, instance_id, manifest, offer)
+                    stage = "instance_ssh_key"
+                    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+                        raise SafeError("research approved instance SSH key is missing")
+                    stage = "singleton"
+                    picogk_singleton(api_key, instance_id, manifest)
+                    break
+                except SafeError:
+                    if not research_metadata_pending(raw, offer, manifest) or time.time() >= metadata_deadline:
+                        raise
+                    time.sleep(5)
+        except BaseException:
+            try:
+                diagnostic = research_contract_diagnostic(raw, instance_id, manifest, offer, stage)
+                print("OPENBAO_VASTAI_RESEARCH_CONTRACT " + json.dumps(diagnostic, sort_keys=True), file=sys.stderr, flush=True)
+            except (OSError, ValueError, TypeError):
+                pass  # Diagnostic output failure must never prevent cleanup.
+            cleanup = {"instance_id": instance_id, "label": manifest["attempt_label"], "image_ref": RESEARCH_IMAGE,
+                       "manifest_sha256": manifest_sha256, "verified_absent": False, "destroyed": False}
+            try:
+                proof = research_reconcile(api_key, manifest, manifest_sha256, expected_instance_id=instance_id)
+                cleanup.update({key: proof.get(key) for key in ("instance_id", "verified_absent", "destroyed")})
+            except BaseException:
+                print("OPENBAO_VASTAI_RESEARCH_BILLING_RISK " + manifest["attempt_label"], file=sys.stderr, flush=True)
+            cleanup["recorded_epoch"] = int(time.time())
+            try:
+                research_write_receipt(manifest, "cleanup", cleanup)
+                cleanup["receipt_persisted"] = True
+            except (SafeError, OSError):
+                cleanup["receipt_persisted"] = False
+            print("OPENBAO_VASTAI_RESEARCH_CLEANUP " + json.dumps(cleanup, sort_keys=True), file=sys.stderr, flush=True)
+            raise
+        print_json({"profile": RESEARCH_PROFILE, "instance_id": instance_id, "instance": instance,
+                    "execution_mode": mode, "image_ref": RESEARCH_IMAGE,
+                    "model": None if mode == RESEARCH_CAD_MODE else RESEARCH_MODEL,
+                    "model_revision": None if mode == RESEARCH_CAD_MODE else RESEARCH_REVISION,
+                    "base_profile_model": RESEARCH_MODEL, "base_profile_model_revision": RESEARCH_REVISION,
+                    "label": manifest["attempt_label"], "deadline_epoch": manifest["deadline_epoch"],
+                    "planned_cost_with_reserve_usd": ceiling, "manifest_sha256": manifest_sha256,
+                    "approved_public_private_pair_verified": True, "approved_instance_key_verified": True,
+                    "external_destroy_watchdog_armed": True, "ssh_batch_mode_verified": False,
+                    "model_ready_verified": False, "specialist_weights_verified": False,
+                    "api_bind": None if mode == RESEARCH_CAD_MODE else "127.0.0.1:8000"})
+        return 0
+
+
 def run(operation: list[str]) -> int:
+    if operation and operation[0] == "cad-specialist-offers" and len(operation) == 2:
+        positive_id(operation[1], "CAD specialist offer id")
+    research_bundle = None
+    if operation and operation[0] in {"launch-research", "reconcile-research"}:
+        if len(operation) != (3 if operation[0] == "launch-research" else 2):
+            raise SafeError("research operation requires its exact local manifest")
+        if operation[0] == "launch-research":
+            positive_id(operation[1], "research offer id")
+        research_bundle = research_load_manifest(Path(operation[-1]), require_active=operation[0] == "launch-research")
+    picogk_bundle = None
+    if operation and operation[0] in {"launch-picogk-m64", "reconcile-picogk-m64"}:
+        if len(operation) != (2 if operation[0] == "reconcile-picogk-m64" else 3):
+            raise SafeError("PicoGK requires its exact local manifest")
+        if operation[0] != "reconcile-picogk-m64":
+            positive_id(operation[1], "PicoGK offer id")
+        picogk_bundle = picogk_load_manifest(Path(operation[-1]), require_active=operation[0] == "launch-picogk-m64")
+    m64_bundle = None
+    if operation and operation[0].startswith("m64-"):
+        name = operation[0]
+        if name not in {"m64-transfer", "m64-phase", "m64-collect"} or len(operation) != (3 if name == "m64-transfer" else 4):
+            raise SafeError("M64 supports only transfer, one named phase, or private collect")
+        if name == "m64-phase" and operation[3] not in M64_PHASES:
+            raise SafeError("M64 phase is not in the immutable registry")
+        if name == "m64-collect":
+            destination = Path(operation[3])
+            m64_no_symlink_path(destination.parent)
+            if destination.exists() or destination.is_symlink():
+                raise SafeError("M64 collection requires a new private directory")
+        m64_bundle = m64_load_bundle(Path(operation[2]), positive_id(operation[1], "M64 instance id"))
     token = login()
     try:
         api_key = read_vast_key(token)
+        if operation == ["research-offers"]:
+            print_json([safe_offer(item) for item in get_research_offers(api_key)[:20]])
+            return 0
+        if operation == ["cad-specialist-offers"]:
+            print_json([safe_offer(item) for item in get_cad_specialist_offers(api_key)[:20]])
+            return 0
+        if len(operation) == 2 and operation[0] == "cad-specialist-offers":
+            print_json([safe_offer(item) for item in get_cad_specialist_offers(api_key, int(operation[1]))[:20]])
+            return 0
+        if research_bundle is not None:
+            manifest, manifest_sha256 = research_bundle
+            if operation[0] == "launch-research":
+                return launch_research(api_key, int(operation[1]), {**manifest, "_manifest_path": operation[-1]}, manifest_sha256)
+            print_json({**research_reconcile(api_key, manifest, manifest_sha256), "label": manifest["attempt_label"]})
+            return 0
+        if operation == ["account-balance"]:
+            print_json(picogk_account_balance(api_key))
+            return 0
+        if operation == ["picogk-offers"]:
+            print_json([safe_offer(item) for item in get_picogk_offers(api_key)[:20]])
+            return 0
+        if picogk_bundle is not None:
+            manifest, manifest_sha256 = picogk_bundle
+            if operation[0] == "launch-picogk-m64":
+                return launch_picogk_m64(api_key, int(operation[1]), manifest, manifest_sha256)
+            instance_id = picogk_reconcile(api_key, manifest)
+            print_json({"instance_id": instance_id, "verified_absent": True,
+                        "label": manifest["attempt_label"]})
+            return 0
+        if m64_bundle is not None:
+            return m64_operation(api_key, operation, m64_bundle)
         if operation == ["--auth-check"]:
             list_instances(api_key)
             print("OpenBao Vast.ai reader auth check OK")
@@ -4111,7 +5913,7 @@ def run(operation: list[str]) -> int:
             return 0
         if operation == ["instances"]:
             items = list_instances(api_key)
-            print_json([safe_instance(item) for item in items if isinstance(item, dict)])
+            print_json([picogk_or_legacy_safe_instance(item) for item in items if isinstance(item, dict)])
             return 0
         if len(operation) == 2 and operation[0] == "show":
             instance_id = positive_id(operation[1], "instance id")
@@ -4119,7 +5921,7 @@ def run(operation: list[str]) -> int:
             instance = result.get("instances")
             if not isinstance(instance, dict):
                 raise SafeError("Vast.ai instance lookup returned an invalid result")
-            print_json(safe_instance(instance))
+            print_json(picogk_or_legacy_safe_instance(instance))
             return 0
         if len(operation) == 2 and operation[0] == "ssh-keys":
             instance_id = positive_id(operation[1], "instance id")
@@ -4356,6 +6158,7 @@ def run(operation: list[str]) -> int:
             and operation[0] in {
                 "launch-simready-heavy",
                 "launch-simready-validation-only",
+                "launch-m64-heavy",
             }
         ):
             offer_id = positive_id(operation[1], "offer id")
@@ -4380,15 +6183,19 @@ def run(operation: list[str]) -> int:
                 enforce_singleton=True,
                 attempt_label=supervised_attempt_label,
                 validation_only=operation[0] == "launch-simready-validation-only",
+                **({"profile": M64_PROFILE} if operation[0] == "launch-m64-heavy" else {}),
             )
-        if len(operation) == 2 and operation[0] == "reconcile-simready-attempt":
+        if len(operation) == 2 and operation[0] in {"reconcile-simready-attempt", "reconcile-m64-attempt"}:
             attempt_label = operation[1]
             if not is_simready_attempt_label(attempt_label):
                 raise SafeError("SimReady attempt label is invalid")
             instance_id = reconcile_uncertain_simready_launch(
                 api_key, attempt_label
             )
-            emit_simready_cleanup_attestation(instance_id, attempt_label)
+            emit_simready_cleanup_attestation(
+                instance_id, attempt_label,
+                **({"profile": M64_PROFILE} if operation[0] == "reconcile-m64-attempt" else {}),
+            )
             return 0
         if len(operation) == 3 and operation[0] == "reconcile-f46-attempt":
             attempt_label = operation[1]
@@ -4440,15 +6247,22 @@ def run(operation: list[str]) -> int:
             print_json({"instance_id": instance_id, "destroyed": True, "verified_absent": True})
             return 0
         raise SafeError(
-            "usage: openbao-vastai --check|--auth-check|offers|heavy-offers|f46-offers|wave-offers|"
+            "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
+            "research-offers|cad-specialist-offers [offer_id]|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
+            "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"
+            "offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
+            "m64-transfer <id> <absolute-manifest>|m64-phase <id> <absolute-manifest> <phase>|"
+            "m64-collect <id> <absolute-manifest> <new-private-directory>|"
             "show <id>|ssh-keys <id>|ssh-endpoints <id>|attach-local-ssh <id>|refresh-local-ssh <id>|ensure-local-ssh|probe <id>|logs <id>|daemon-logs <id>|"
             "launch <offer_id>|launch-mesh <offer_id>|launch-wave-f39 <offer_id>|"
             "launch-component-factory-f41 <offer_id> [--attempt-label <label>]|"
             "launch-f46 <offer_id> <image@digest> <deadline_epoch> [--attempt-label <label>]|"
             "launch-simready-heavy <offer_id> [--attempt-label <label>]|"
             "launch-simready-validation-only <offer_id> [--attempt-label <label>]|"
+            "launch-m64-heavy <offer_id> [--attempt-label <label>]|"
             "reconcile-simready-attempt <label>|"
+            "reconcile-m64-attempt <label>|"
             "reconcile-f46-attempt <label> <image@digest>|launch-best-eu|"
             "start <id>|stop <id>|"
             "destroy <id> --confirm"

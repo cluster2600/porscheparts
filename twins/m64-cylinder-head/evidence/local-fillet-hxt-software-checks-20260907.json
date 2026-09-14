@@ -1,0 +1,50 @@
+{
+  "schema": "m64-local-fillet-hxt-software-checks/v1",
+  "status": "software_checks_passed_NOT_part_validation",
+  "make_check": {
+    "exit_code": 0,
+    "main_discovery_tests_run": 2144,
+    "main_discovery_skipped": 79,
+    "main_discovery_elapsed_seconds": 177.854,
+    "additional_Make_targets_completed": true,
+    "private_log_sha256": "3657e396e3a17795ec1750aa0c1c6263df5207518cdc87aff626be10bd675b59"
+  },
+  "qualified_native_targeted_suites": {
+    "fillet_and_render": {
+      "tests": 9,
+      "skipped": 0,
+      "exit_code": 0,
+      "unittest_elapsed_seconds": 0.603,
+      "private_log_sha256": "c4c15aa6a98d8ce30b72b987e78b302b1d73b9031b4a0f2c48b9d6dedb8dbb05"
+    },
+    "mesh": {
+      "tests": 21,
+      "skipped": 0,
+      "exit_code": 0,
+      "unittest_elapsed_seconds": 0.003,
+      "private_log_sha256": "35e7173de3007270ca55f4498d391c2a2603f1e84cbad4e199b6249a6817bcb7"
+    }
+  },
+  "source_sha256": {
+    "mesh_native_ported_head.py": "7171d7b1da250d63086b7fac1e5e1617190ec26f45f2928e729d60582a1d1c04",
+    "build_local_port_junction_fillet.py": "7a41d593e4ef030615e59b613bfa0cba2b1eea38feb66804b56ef96975c1841b",
+    "audit_local_port_junction_fillet.py": "81e2a625cc5858b79ffb74251f751f481d792462a815eb9032d9d295bed4f76f",
+    "render_local_port_junction.py": "a58b509fbb2cea63973e1c71483a7f8334ebb956978e65e1d5a4f312fcf04963"
+  },
+  "test_sha256": {
+    "test_m64_native_ported_mesh.py": "99359ef41079fc6f812a8460bf39926c4b8b21cde41a938678dee9d543b526d9",
+    "test_local_port_junction_fillet.py": "712cf24ee96170fb4ae11d25faa55fced2d77a9d7df1e4411ce6fa5c40ea0482",
+    "test_local_port_junction_render.py": "2bf2a5e7c589b16cae582c71ee5e764acea13da8d699952aa34f5f4fb81489cd"
+  },
+  "independent_review_finding": {
+    "renderer_could_relabel_old_face": true,
+    "actual_image_selected_correct_faces": true,
+    "guard_and_four_tests_added": true,
+    "real_renderer_reexecuted_after_guard": true,
+    "image_sha256_unchanged": true
+  },
+  "CAD_or_mesh_rejections_overridden": false,
+  "thermal_mechanical_or_LPBF_head_validation": false,
+  "manufacturing_authorized": false,
+  "new_Vast_spend": false
+}

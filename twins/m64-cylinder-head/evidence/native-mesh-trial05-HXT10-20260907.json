@@ -1,0 +1,160 @@
+{
+  "schema": "m64-native-mesh-volume-algorithm-counter-experiment/v1",
+  "date_utc": "2026-09-07",
+  "status": "HXT10_generated_but_rejected_quality_and_strict_surface_preservation",
+  "purpose": "Comparaison diagnostique de générateurs tétraédriques, sans CFD, CHT ni qualification de fabrication.",
+  "native_BRep_sha256": "3e3cc1631612fb9b7c36a34ceb157888ce66fdf3efb95f3ddad8578f74950ec5",
+  "native_baseline_sha256": "c5b3ea701dd55eeedcbd26973a74c08ae3bf52613e496f0b81733a82ffa5998e",
+  "preserved_skin_evidence_sha256": "21650160410a967cf85ee16f54ded5dad25610e07c67022d602fea8c27174a98",
+  "executed_helper_sha256": "7171d7b1da250d63086b7fac1e5e1617190ec26f45f2928e729d60582a1d1c04",
+  "tests_sha256": "99359ef41079fc6f812a8460bf39926c4b8b21cde41a938678dee9d543b526d9",
+  "local_python314_tests_passed": 21,
+  "length_units": "unverified_scan_units_no_scaling",
+  "witness": {
+    "scope": "Cube synthétique avec algorithmes de surface 6 et 1 ; aucune géométrie de culasse.",
+    "status": "quality_rejected_for_both_generators",
+    "API_observed": true,
+    "API_observations": [
+      "HXT_executed",
+      "exact_oriented_surface_geometry_preserved_before_and_after_3D",
+      "identical_pre3D_surfaces_between_generators",
+      "MSH_reread_completed",
+      "positive_reread_Jacobians"
+    ],
+    "Delaunay1_tetrahedra": 693,
+    "HXT10_tetrahedra": 634,
+    "Delaunay1_minimum_minSICN": 0.07036753671650794,
+    "HXT10_minimum_minSICN": 0.07036753671650835,
+    "tetrahedra_below_0p1_each": 1,
+    "unchanged_minimum_minSICN_limit": 0.1,
+    "exit_code": 2,
+    "elapsed_seconds": 0.14916656585410237,
+    "report_sha256": "47611d1d51a9b7f7e0b6b1bfcc31812d2ad365774bea6d1af4033e0886cd44bd",
+    "source_sha256": "99a7306dde75d783c9fcd85650551389e75dec875146eb09ca030d81e8495df9",
+    "process_state_sha256": "1ce9e71a3caca0045a01e3e739fdd5730376c50014048bf9d7e099d9194dd1dc",
+    "runtime_qualified_by_witness": false
+  },
+  "decision_after_witness": {
+    "source": "explicit_parent_agent_instruction_after_review",
+    "scope": "Un seul calcul diagnostique sur le corps, autorisé après distinction entre API observée et qualité du témoin rejetée.",
+    "authorization_receipt_sha256": "322d8d8be36e6c560797c23d9eb18e7e48a2b5e6379ac3c9e79cbe74feb39373",
+    "witness_status_modified": false,
+    "quality_threshold_lowered": false,
+    "head_gates_removed_or_relaxed": false,
+    "additional_head_generations": 0
+  },
+  "runtime": {
+    "host": "authorized_private_x86_Kali",
+    "gmsh_version": "4.15.2",
+    "image_id": "sha256:27bb1cabdb66a34d0f3812adb4930f9f43814cb0d4331fd16f30b5771b2764d4",
+    "Hxt_and_OpenMP_compiled": true,
+    "CPU_limit": 2,
+    "memory_bytes": 4294967296,
+    "memory_swap_bytes": 4294967296,
+    "wall_timeout_seconds": 295,
+    "read_only_rootfs": true,
+    "network": "none",
+    "exit_code": 2,
+    "OOMKilled": false,
+    "elapsed_seconds": 24.491760070901364,
+    "container_removed_and_absence_checked": true,
+    "Vast_rental": false,
+    "process_state_sha256": "e3c605b312e2c071f9729e993102b5db39db5e1392de7ed6542f49644ec31042",
+    "runtime_receipt_sha256": "9aca9d6509e6fb2e55e750d0f4f1e1ccc4af1254360b5359bf400e2d524464ab",
+    "launcher_receipt_sha256": "f1fcdcabc0995e5623eb8b975af4c2136b31e9859ea469771c069af87070f127",
+    "launcher_source_sha256": "2f787f863b95c3a1bfe9b41eedb0abf6bef2c01ecaac8affe47dae10a6b9bd01"
+  },
+  "controlled_settings": {
+    "only_changed_explicit_Gmsh_option": {"Mesh.Algorithm3D": {"before": 1, "after": 10}},
+    "Mesh.Optimize": 0,
+    "Mesh.OptimizeNetgen": 0,
+    "same_three_local_MeshAdapt_assignments": true,
+    "same_import_counts_volume_and_area": true,
+    "same_native_baseline": true,
+    "mesh_size_min": 1.0,
+    "mesh_size_max": 6.0,
+    "note": "Les mêmes réglages de surface ne prouvent pas les mêmes triangulations ; les comparaisons ci-dessous restent bloquantes."
+  },
+  "comparison_from_both_exported_MSH_rereads": {
+    "Delaunay1_reference": {
+      "report_sha256": "4eef968488bdd81b0f44d7a7887f34e79cbd6583a63e3ecd2d7a3bd72c95d8c4",
+      "mesh_sha256": "8ba9dc1f98c439759b414c7e807ad9bb5acf889a8fb3eb02d0253afd14941122",
+      "tetrahedra": 259699,
+      "minimum_minSICN": 0.000006627388775856417,
+      "tetrahedra_below_0p1": 4744,
+      "tetrahedra_below_1e_6": 0,
+      "nonpositive_Jacobians": 0,
+      "status": "rejected_quality"
+    },
+    "HXT10": {
+      "report_sha256": "62ed715cc58390acb83e1dc2050f68a38915d38808f3b03ed8a4c7f2738f29c2",
+      "mesh_sha256": "c6e246910df053486f0136c77d645837e2b7692077edde7f9c2fe2bdfefa1f2c",
+      "nodes": 74949,
+      "tetrahedra": 340571,
+      "minimum_minSICN": -2.0705168069491944e-14,
+      "tetrahedra_below_0p1": 7530,
+      "tetrahedra_below_1e_6": 181,
+      "minimum_Jacobian_determinant": -1.2358170042858774e-14,
+      "nonpositive_Jacobians": 21,
+      "weak_tetrahedron_count_fraction": 0.022109927151753965,
+      "weak_tetrahedron_absolute_volume_fraction": 0.004741257027927838,
+      "reread_quality_gate_passed": false
+    },
+    "same_summary_values_each": {
+      "surface_faces": 4892,
+      "surface_triangles": 88366,
+      "triangles_below_0p1": 799,
+      "signed_tetra_volume_scan_units_cubed": 1167568.1059154014,
+      "volume_relative_error": 0.0028204631031933936
+    },
+    "differential_report_sha256": "12ff8f9cc47f05e557b88cad1692510ba69227a8a77c9052047ef939a659eaf3",
+    "differential_source_sha256": "2d2bd641839e439c1ec9a987819a4e2ed83a3777c0deafdebaecd1f8651e0cd3",
+    "all_compared_mesh_and_report_hashes_unchanged": true
+  },
+  "surface_preservation": {
+    "HXT_pre3D_to_post3D": {
+      "faces": 4892,
+      "changed_triangle_count_faces": 0,
+      "changed_exact_unoriented_signature_faces": 0,
+      "changed_exact_oriented_signature_faces": 1,
+      "strict_gate_passed": false,
+      "before_snapshot_sha256": "6b7a6a7e1eace861433481cee73a2c393311cb4b3d9c7a0298b7388ffce84d0b",
+      "after_snapshot_sha256": "623e8d988dfb01bc557603543178c30351d7eb2a02247bfb42ddaf054be255f5"
+    },
+    "Delaunay_MSH_to_HXT_MSH": {
+      "changed_exact_unoriented_signature_faces": 1,
+      "changed_exact_oriented_signature_faces": 9,
+      "changed_rounded12_unoriented_signature_faces": 1,
+      "numerically_exact_unoriented_changed_faces_after_signed_zero_normalization": 1,
+      "numerically_exact_oriented_changed_faces_after_signed_zero_normalization": 9,
+      "strictly_identical_boundary_established": false,
+      "signed_zero_diagnostic_sha256": "cd6e50b4e2225ce301a5d8450ddf6bb10b0ba1256b3f90de4e5622141e5f83b6",
+      "signed_zero_diagnostic_source_sha256": "337a15ae17ab9e43e853ac83b992c5cf8cdb7c83aeefd5d6efed48f2e0cc4c79"
+    },
+    "signature_scope": "Face par face, coordonnées float.hex exactes ; ordre des triangles et tags ignorés. La signature orientée conserve le winding modulo rotations cycliques. Arrondi12 présenté séparément, sans équivalence exacte.",
+    "old_Delaunay_pre3D_snapshot_available": false,
+    "causal_attribution_to_volume_algorithm_alone_established": false
+  },
+  "HXT_other_observations": {
+    "connected_tetra_regions": 1,
+    "complete_boundary": true,
+    "all_native_CAD_faces_meshed": true,
+    "native_CAD_unchanged_after_meshing": true,
+    "native_input_baseline_and_code_hashes_unchanged": true,
+    "pre_export_nonpositive_Jacobians": 1,
+    "pre_export_zero_signed_volume_tetrahedra": 1,
+    "maximum_MSH_coordinate_roundtrip_difference_scan_units": 5.739584601870544e-14,
+    "small_coordinate_difference_does_not_override_failed_Jacobians": true
+  },
+  "conclusion": "HXT10 rejeté : qualité plus mauvaise observée, Jacobiennes non positives et préservation orientée des surfaces non satisfaite. Le témoin reste rejeté. Aucun autre essai, aucun déplacement ou retrait de CAO, aucun lissage correctif ni relâchement des seuils.",
+  "geometry_modified": false,
+  "raw_scan_or_private_coordinates_published": false,
+  "old_receipts_modified": false,
+  "CFD_or_CHT_performed": false,
+  "CAE_authorized": false,
+  "manufacturing_authorized": false,
+  "primary_references": [
+    "https://gmsh.info/doc/texinfo/#Choosing-the-right-unstructured-algorithm",
+    "https://github.com/live-clones/gmsh/blob/gmsh_4_15_2/src/mesh/meshGRegionHxt.cpp"
+  ]
+}

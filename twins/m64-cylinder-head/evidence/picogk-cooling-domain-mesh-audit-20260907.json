@@ -1,0 +1,240 @@
+{
+  "schema": "m64-picogk-cooling-domain-independent-mesh-audit-v1",
+  "date": "2026-09-07",
+  "status": "bounded_surface_mesh_quality_verified_not_physical_validation",
+  "source_execution_receipt": "twins/m64-cylinder-head/evidence/picogk-domains-20260907.json",
+  "input_master_STL_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+  "private_geometry_included": false,
+  "private_paths_or_coordinates_or_face_indices_included": false,
+  "length_unit": "scan_unit_under_unverified_1_mm_hypothesis",
+  "software": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "trimesh": "5.1.0"
+  },
+  "source_sha256": {
+    "twins/m64-cylinder-head/source/picogk/export_master.py": "34bb2dcd591e92b1ae6f0e8a75f2f858448319b4db4dada6eb364f3c0a1242be",
+    "twins/m64-cylinder-head/source/picogk/compare_meshes.py": "9705175973404bf598587ad2d9f45bf80281b8bff554f882842b23bf01b6f5ff",
+    "twins/m64-cylinder-head/source/picogk/audit_cooling_domains.py": "38d9eb05e8e59388f6e519eb21e8d6a562dcd31e32113e9b88739803bd0400a9",
+    "twins/m64-cylinder-head/source/picogk/filter_exact_degenerates.py": "2c2e5ac54c0990004e1153beb7b602e4db77835a1452b449a4c1a9a960ee8e7e",
+    "tests/test_m64_picogk_mesh.py": "fe25c83360842467d0c0539e08afebe7f15efad88d967af1b48716eda4d49f52"
+  },
+  "software_tests": {
+    "command": "python -m unittest discover -s tests -p test_m64_picogk_mesh.py -v",
+    "passed": 9,
+    "skipped": 0,
+    "physical_validation": false,
+    "witnesses": [
+      "closed_tetrahedron_open_edges_flipped_winding_disconnected_shells",
+      "hollow_cube_two_oriented_surface_shells_not_two_fluid_volumes",
+      "exact_zero_area_record_removal_with_retained_50_byte_records_unchanged",
+      "nonzero_1e-20_triangle_preserved_without_tolerance_cleanup",
+      "three_resolution_synthetic_cube_provenance_and_wrong_master_rejection",
+      "area_sampled_triangle_distance_and_normal_chord_screen"
+    ]
+  },
+  "filter_method": "Remove only triangles whose cross product is exactly zero in binary64; retain the exact 50-byte binary STL record for every other triangle. No coordinate movement, tolerance repair, welding, smoothing, or winding alteration.",
+  "original_STL_VDB_and_master_preserved": true,
+  "private_removed_face_indices_recorded": true,
+  "boundary_shell_counts_are_not_connected_fluid_volume_counts": true,
+  "runs": [
+    {
+      "voxel_scan_units": 0.6,
+      "private_filter_audit_sha256": "12cd640a7d1c4dec186e8754dc729bd49eb3f654ca079f91b01f3c0a4de4ed0d",
+      "private_native_manifest_sha256": "5cb186c863a921747f1e81b37731fd688ec0e8823ae44a510d0d77d6001f52f0",
+      "all_derived_edge_topology_and_geometry_gates_passed": true,
+      "records": [
+        {
+          "filename": "unclassified-void-complement.stl",
+          "original_sha256": "a0fd734c22d817266ad93df52e589e386740795a0063e59a0b1611741717ec21",
+          "derived_sha256": "7d6daaf77c141fa20265cc7e5d6e161c096a1fafb5ce288df7fe27ee12adce4c",
+          "original_triangles": 1809204,
+          "derived_triangles": 1809200,
+          "removed_count": 4,
+          "bounds_identical": true,
+          "signed_volume_relative_change": 0,
+          "closed_oriented_surface_and_unchanged_geometry_gate_passed": true,
+          "before": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 3,
+            "zero_area_triangles": 4,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": false,
+            "winding_consistent_on_two_face_edges": false
+          },
+          "after": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "derived_surface_shell_count": 2
+        },
+        {
+          "filename": "geometric-clearance-core-1p5mm.stl",
+          "original_sha256": "90998b39a411efbd8306ed6f6c16e20c62a2989ae532240be6ce4ec731018ab1",
+          "derived_sha256": "90998b39a411efbd8306ed6f6c16e20c62a2989ae532240be6ce4ec731018ab1",
+          "original_triangles": 788524,
+          "derived_triangles": 788524,
+          "removed_count": 0,
+          "bounds_identical": true,
+          "signed_volume_relative_change": 0,
+          "closed_oriented_surface_and_unchanged_geometry_gate_passed": true,
+          "before": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "after": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "derived_surface_shell_count": 1
+        },
+        {
+          "filename": "geometric-protected-skin-1p5mm.stl",
+          "original_sha256": "c851a17ff4cc5244f19280fd09986b1e7dd8aedad1be98d44e4af9472baf1fb2",
+          "derived_sha256": "4781b0ff91e5ad60aa6431823c5ad53f1f48159f41591fb782d095cd5b276ffa",
+          "original_triangles": 1616900,
+          "derived_triangles": 1616896,
+          "removed_count": 4,
+          "bounds_identical": true,
+          "signed_volume_relative_change": 1.6471705273479772e-16,
+          "closed_oriented_surface_and_unchanged_geometry_gate_passed": true,
+          "before": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 3,
+            "zero_area_triangles": 4,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": false,
+            "winding_consistent_on_two_face_edges": false
+          },
+          "after": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "derived_surface_shell_count": 2
+        }
+      ]
+    },
+    {
+      "voxel_scan_units": 0.3,
+      "private_filter_audit_sha256": "64f2bf714859f2b8b4c6e6100620219b9f072b547abd77a36cb6e123ac247ef3",
+      "private_native_manifest_sha256": "e906d9270f937c7dd50fef3a0c07b6be12513b106ef48d94485ecb398e869ff7",
+      "all_derived_edge_topology_and_geometry_gates_passed": true,
+      "records": [
+        {
+          "filename": "unclassified-void-complement.stl",
+          "original_sha256": "985ac652aa01942abc99e1918ddf4215b687937bce1c758cae1f8e52cf0fc0c9",
+          "derived_sha256": "985ac652aa01942abc99e1918ddf4215b687937bce1c758cae1f8e52cf0fc0c9",
+          "original_triangles": 7320096,
+          "derived_triangles": 7320096,
+          "removed_count": 0,
+          "bounds_identical": true,
+          "signed_volume_relative_change": 0,
+          "closed_oriented_surface_and_unchanged_geometry_gate_passed": true,
+          "before": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "after": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "derived_surface_shell_count": 2
+        },
+        {
+          "filename": "geometric-clearance-core-1p5mm.stl",
+          "original_sha256": "519ac2691d3aeeec665bbcc6ec37bf30f6fc2c27a4bbebaef363d724668be379",
+          "derived_sha256": "519ac2691d3aeeec665bbcc6ec37bf30f6fc2c27a4bbebaef363d724668be379",
+          "original_triangles": 3193868,
+          "derived_triangles": 3193868,
+          "removed_count": 0,
+          "bounds_identical": true,
+          "signed_volume_relative_change": 0,
+          "closed_oriented_surface_and_unchanged_geometry_gate_passed": true,
+          "before": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "after": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "derived_surface_shell_count": 1
+        },
+        {
+          "filename": "geometric-protected-skin-1p5mm.stl",
+          "original_sha256": "2c851faefdf617726ce46719ef098de0dfbf6c365d63163ac17e4416fc6dc7c7",
+          "derived_sha256": "2c851faefdf617726ce46719ef098de0dfbf6c365d63163ac17e4416fc6dc7c7",
+          "original_triangles": 6585756,
+          "derived_triangles": 6585756,
+          "removed_count": 0,
+          "bounds_identical": true,
+          "signed_volume_relative_change": 0,
+          "closed_oriented_surface_and_unchanged_geometry_gate_passed": true,
+          "before": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "after": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "zero_area_triangles": 0,
+            "duplicate_triangles_ignoring_winding": 0,
+            "edge_manifold_closed": true,
+            "winding_consistent_on_two_face_edges": true
+          },
+          "derived_surface_shell_count": 3
+        }
+      ]
+    }
+  ],
+  "self_intersections_or_shell_nesting_certified": false,
+  "grid_independence_or_interface_preservation_certified": false,
+  "thermal_validation": false,
+  "structural_validation": false,
+  "LPBF_validation": false,
+  "manufacturing_authorized": false,
+  "retained_warning": {
+    "voxel_scan_units": 0.3,
+    "domain": "geometric-protected-skin-1p5mm.stl",
+    "additional_negative_surface_shell_triangles": 12,
+    "removed": false,
+    "interpretation": "Tiny additional inward-oriented boundary shell retained for investigation; not proof of physical material porosity or connected fluid regions.",
+    "physical_porosity_proved": false
+  }
+}

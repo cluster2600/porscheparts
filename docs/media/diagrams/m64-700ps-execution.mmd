@@ -1,0 +1,13 @@
+flowchart TD
+    A["Cible 700 PS au vilebrequin et cycle de service"] --> B["Bilan 0D : couple, BMEP, air, carburant, PR"]
+    B --> C["Cartes turbo et échangeur de suralimentation"]
+    B --> D["Conduits 2V / 4V et distribution complète"]
+    C --> E["Cycle moteur : pression et chaleur selon angle vilebrequin"]
+    D --> E
+    E --> F["CHT : gaz, culasse, ailettes, huile, carénage et ventilateur"]
+    F --> G["Dilatations, contact sièges / guides, contraintes et fatigue"]
+    G --> H["LPBF : matériau, orientation, supports, distorsion et usinage"]
+    H --> I["Coupons, prototype, CND et essais moteur instrumentés"]
+    I --> J{"Critères prouvés sur le même produit ?"}
+    J -- Non --> L["Corriger puis relancer les contrôles concernés"]
+    J -- Oui --> K["Revue professionnelle et dossier de fabrication"]

@@ -1,0 +1,224 @@
+{
+  "schema": "m64-private-physicsnemo-cross-adapter/v1",
+  "process_completed": true,
+  "CFD_authorized": false,
+  "manufacturing_authorized": false,
+  "absolute_scale_certified": false,
+  "length_unit": "scan_unit",
+  "upstream_monkeypatched": false,
+  "quality_metrics_computed": false,
+  "library_sha256": "cdbd5ef49ace8bd45edd037cf87757d5480e2cdafcb2e285401626e936799782",
+  "external_hard_timeout_required": true,
+  "adapter_sha256": "2f94c3ea3d987f62168a699937640db9b84f5d9343ac18f526c2b00fb22a7e75",
+  "upstream_source_pins": {
+    "mesh/mesh.py": "90d5cd8a6182066ee4f90aca38432090a861bc81e476be8db86963f067f1fbba",
+    "mesh/geometry/_cell_areas.py": "4f164c2db7b566fb8a3473f3293903b91876d977c5f974d5a698476cd44c2d53",
+    "mesh/geometry/_cell_normals.py": "8204b60f801e924a2c50fb18f9510a6f7b089699d1db60a5c89fe0ec9ce462c5",
+    "mesh/geometry/_angles.py": "ec4eefb2c7b7d1b02f4167024c6a2024cb1c72babc20ac371094a2684189bdb1",
+    "mesh/validation/quality.py": "e2403ba1e7f282b63d92034bdc9cbc5569a2a4ee8893b7826012c1c6fc10f781"
+  },
+  "upstream_wheel_sha256": "c447771384d92f5c31547e293f65b70e0947f8829981f34c7e8300daf1b8d2eb",
+  "versions": {
+    "torch": "2.10.0+cu128",
+    "numpy": "2.4.6",
+    "nvidia-physicsnemo": "2.2.2"
+  },
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "cuda": {
+    "bundle_cross_area_normal": {
+      "warmup_seconds": 0.03608107700711116,
+      "repetitions_seconds": [
+        0.0004090879810974002,
+        0.0002831550082191825,
+        0.00024897800176404417,
+        0.00025346901384182274,
+        0.0002469730097800493
+      ],
+      "median_seconds": 0.00025346901384182274,
+      "fresh_mesh_each_call": true
+    },
+    "output_transfer_seconds": 0.0014388780109584332,
+    "metrics": {
+      "areas": {
+        "nonfinite": 0,
+        "min": 3.172335587070063e-06,
+        "max": 1246.8777901462709,
+        "mean": 0.42652893235517775
+      },
+      "unit_normals": {
+        "nonfinite": 0,
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.010460820740517289
+      }
+    },
+    "peak_allocated_bytes": 52796416,
+    "peak_reserved_bytes": 65011712,
+    "positive_skinny_and_small_witnesses": {
+      "areas": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 0.0,
+        "rtol": 1e-10,
+        "atol": 0,
+        "positive_reference_but_zero_area": 0,
+        "max_relative_area_error": 0.0,
+        "relative_error_over_finite_positive_reference_pairs": true
+      },
+      "unit_normals": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 0.0,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      }
+    }
+  },
+  "input_pins": {
+    "mesh": "ab6f41b8802e96c5be1c159b47116e4a9818d91fe57b38139e277f3275e49d66",
+    "reference": "c99fcfc54d519fa4eb2d75e1d8dd7f6377eed2710e07df8bfc870fa1444e289b",
+    "reference_report": "1624f39a009d190adb0c9e99fb11b08c8985e4f4ec177e268e04bd1ffe29d7b4"
+  },
+  "points": 146648,
+  "triangles": 293308,
+  "array_sha256": {
+    "points": "def61d0a9b970f8d2ba6dcb2ebbd0c7878331fd5974b90738c0079d63a680466",
+    "ordered_triangles": "23a1f30eec01d51b1cf30be3cf3ff13ec11b764c25c0346ddd9bef22e4c91814"
+  },
+  "input_transfers_seconds": {
+    "numpy_to_cpu_copy": 0.0039094600069802254,
+    "host_to_device": 0.002063008985714987
+  },
+  "cpu": {
+    "bundle_cross_area_normal": {
+      "warmup_seconds": 0.020699162007076666,
+      "repetitions_seconds": [
+        0.015293142991140485,
+        0.01143526699161157,
+        0.007564858999103308,
+        0.008554807980544865,
+        0.007566615997347981
+      ],
+      "median_seconds": 0.008554807980544865,
+      "fresh_mesh_each_call": true
+    },
+    "output_transfer_seconds": 6.8904017098248e-05,
+    "metrics": {
+      "areas": {
+        "nonfinite": 0,
+        "min": 3.172335587070063e-06,
+        "max": 1246.8777901462709,
+        "mean": 0.42652893235517775
+      },
+      "unit_normals": {
+        "nonfinite": 0,
+        "min": -1.0,
+        "max": 1.0,
+        "mean": 0.010460820740517289
+      }
+    },
+    "positive_skinny_and_small_witnesses": {
+      "areas": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 0.0,
+        "rtol": 1e-10,
+        "atol": 0,
+        "positive_reference_but_zero_area": 0,
+        "max_relative_area_error": 0.0,
+        "relative_error_over_finite_positive_reference_pairs": true
+      },
+      "unit_normals": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 0.0,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      }
+    }
+  },
+  "comparisons": {
+    "cpu_vs_numpy": {
+      "areas": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 1.4210854715202004e-14,
+        "rtol": 1e-10,
+        "atol": 0,
+        "positive_reference_but_zero_area": 0,
+        "max_relative_area_error": 3.1048450473242666e-16,
+        "relative_error_over_finite_positive_reference_pairs": true
+      },
+      "unit_normals": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 3.3306690738754696e-16,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      }
+    },
+    "cuda_vs_numpy": {
+      "areas": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 7.105427357601002e-15,
+        "rtol": 1e-10,
+        "atol": 0,
+        "positive_reference_but_zero_area": 0,
+        "max_relative_area_error": 2.920489359230934e-16,
+        "relative_error_over_finite_positive_reference_pairs": true
+      },
+      "unit_normals": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 3.3306690738754696e-16,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      }
+    },
+    "cpu_vs_cuda": {
+      "areas": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 1.4210854715202004e-14,
+        "rtol": 1e-10,
+        "atol": 0,
+        "positive_reference_but_zero_area": 0,
+        "max_relative_area_error": 2.7771414421664404e-16,
+        "relative_error_over_finite_positive_reference_pairs": true
+      },
+      "unit_normals": {
+        "passed": true,
+        "failed_values": 0,
+        "failed_cells": 0,
+        "nonfinite_values": 0,
+        "max_abs_error": 2.220446049250313e-16,
+        "rtol": 1e-10,
+        "atol": 1e-12
+      }
+    }
+  },
+  "witnesses_passed": true,
+  "numerical_comparison_passed": true,
+  "inputs_unchanged": true,
+  "ordered_triangle_equivalence_verified": true,
+  "elapsed_seconds": 5.776867240987485
+}

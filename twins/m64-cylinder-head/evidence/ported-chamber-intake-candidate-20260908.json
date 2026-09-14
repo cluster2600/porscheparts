@@ -1,0 +1,187 @@
+{
+  "schema": "m64-ported-chamber-candidate-public-evidence/v1",
+  "date": "2026-09-08",
+  "scope_fr": "Une seule soustraction du négatif d'admission natif intake06 inchangé au corps déjà pourvu de la chambre candidate. Ni récepteur de banc, ni prolongement de joint de tige utilisé comme outil de coupe. Géométrie et rapports détaillés conservés privés.",
+  "status": "rejected_housing_contact_loss_requires_design_review",
+  "interpretation_fr": "Le corps CAO natif est valide, mais la longueur de support des guides d'admission doit être justifiée. Une extrémité de guide exposée au conduit n'est pas à elle seule une impossibilité mécanique ; aucune exigence constructeur de perte de contact nulle n'est postulée.",
+  "units": "scan_units_under_unverified_1_unit_per_mm_hypothesis",
+  "provenance": {
+    "private_report": {
+      "name": "ported-chamber-report.json",
+      "sha256": "7b17eb69636c963e215f34e0756cb8ba0802553b1d5adf0904425fb152390180"
+    },
+    "inputs_sha256": {
+      "body": "ba5701be9381c686d6840cc8a0630f38be1ef56fd278d8d9cb0bbcccab3e9e67",
+      "module": "fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76",
+      "build": "7b501ab6ba49b3d8d8cbd2905e6759d38cb8ec2baa1c69f1490d9e87d62ad36e",
+      "registration": "ca2d8656f343f5e61d124d511e6a446190b24fb010ef484ce3c8bc5fb8bb3eb2",
+      "intake": "72e0a786a601b96250380d16296004de9e6746caa3888ee470b6cd218f2d0251",
+      "chamber": "8643968ccf678fde1a4ba68ff7866fc468ec8faadbf79a53cc055e50c0010dc8",
+      "chamber_report": "cc7d10e2b34cf3c2f786b0fbf6452f52d1a8f23f7ab59c1c711ec1fb58e36830",
+      "intake_report": "53beca98c5d152f2cb59d530934fc3fe8481fb7b4e49f541b97ed200ad430e8c"
+    },
+    "source": "../source/flowbench-intake/build_ported_chamber_candidate.py",
+    "executed_main_source_sha256": "19cebbea6183fcc46f1baa9a83240302b9c4e9f01b9508cb7317c6e6b2543da9",
+    "executed_main_source_archived_privately_as": "builder-source.py",
+    "final_source_sha256": "0d80007a5e52cc2fc6f2e42417da963d400b3ed8784631a899166245f9d062ee",
+    "source_evolution_fr": "Après la coupe unique, ajout de diagnostics en lecture seule de la longueur de contact et de la première sortie des rayons. Le contrôle actuel n'accepte que la première intersection positive ; le rejeu confirme que les 24 rayons du calcul initial satisfont déjà ce contrôle. Aucune nouvelle coupe ni réécriture du rapport initial.",
+    "dependencies_sha256": {
+      "inspection": "c80344db67a53df4ffc24a7158adbaad5e5c9f85fe19b5df3e9eb75a591f5242",
+      "skin": "b241f33dd0637e10a50d9b5e3754afee8eb6fa6dca50cdf187499c9f0086b6b6",
+      "routing": "11ebd8ebd406758d2535182bd61685256e9d61aaf506bd0feb5756ec9c302e68",
+      "design": "4604b5fbc74e02c7029481cdf269a3ee93d208229d87379bc6545db46bdb3d1c"
+    },
+    "master_modified": false,
+    "inputs_unchanged": true,
+    "body_registration_reapplied": false,
+    "intake_registration_reapplied": false,
+    "module_only_registered_once": true,
+    "native_tolerances_modified": false,
+    "Boolean_fuzzy_value": 0.0
+  },
+  "execution": {
+    "runtime_image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "OCP_version": "7.9.3.1",
+    "cpus_limit": 2,
+    "memory_limit_GiB": 4,
+    "timeout_seconds_per_job": 300,
+    "network": "none",
+    "paid_compute_used": false,
+    "body_cut_runs": 1,
+    "main": {
+      "elapsed_seconds": 75.93877240410075,
+      "process_exit_code": 3,
+      "process_exit_verified": true,
+      "process_evidence": "exec_command/write_stdin observed termination, session 3727",
+      "interpretation": "completed_geometry_and_diagnostics_but_design_gate_rejected"
+    },
+    "read_only_guide_retention": {
+      "elapsed_seconds": 2.8241298110224307,
+      "process_exit_code": 0,
+      "process_exit_verified": true,
+      "process_evidence": "exec_command/write_stdin observed termination, session 23080"
+    },
+    "read_only_material_ray_replay": {
+      "elapsed_seconds": 5.7993054818362,
+      "process_exit_code": 0,
+      "process_exit_verified": true,
+      "process_evidence": "exec_command/write_stdin observed termination, session 77118"
+    },
+    "exit_status_is_not_inferred_from_report_stage": true,
+    "exact_containers_removed_and_absence_verified": true
+  },
+  "geometry": {
+    "original_body_volume": 1417497.7564031922,
+    "cutting_tool_volume": 190297.93728422033,
+    "candidate_volume": 1244303.585578462,
+    "actual_removed_material_volume": 173194.17024891128,
+    "volume_partition_error": 0.0005758187908213586,
+    "relative_quadrature_estimates_not_error_bounds": {
+      "original_body": 5.552383990085706e-14,
+      "candidate": 3.158067279350625e-8,
+      "actual_removed_material": 2.6599515433890367e-9
+    },
+    "bbox_max_delta": 0.0,
+    "candidate_solids": 1,
+    "candidate_BRep_valid_exact": true,
+    "native_roundtrip_BRep_valid_exact": true,
+    "full_body_BOP_checked": false,
+    "intake_tool_BOP_has_faulty": false,
+    "intake_tool_BOP_has_errors": false,
+    "native_export": {
+      "name": "ported-chamber-candidate.brep",
+      "sha256": "33375e12be214a0840b432a3315fc85ce25980359c563142de7967d10fae613f"
+    },
+    "removed_material_export": {
+      "name": "removed-intake-material.brep",
+      "sha256": "03a4445143a7a81d9d8f0a99e9cb2eb8510597369114ca9ab75db88d5bf7cb89"
+    },
+    "rejected_STEP_derivative": {
+      "name": "ported-chamber-candidate.step",
+      "sha256": "23755c6c5ea97fc001feb0178dcd2c2850b8e827c921bcf869c57bfb892e22e7",
+      "roundtrip_BRep_valid_exact": false,
+      "roundtrip_solids": 1,
+      "BOP_qualified": false,
+      "use_for_meshing_or_rendering": false
+    }
+  },
+  "housing_contacts": {
+    "method_fr": "Intersection surfacique des cylindres extérieurs nominaux des inserts réels avec le corps avant et après coupe. Aires de contact géométrique, sans pression d'emmanchement ni conductance thermique qualifiée.",
+    "units": "scan_units_squared",
+    "paired_results": [
+      {"components": ["intake_1_seat", "intake_2_seat"], "reference_contact_area_each": 742.9866625739978, "candidate_contact_area_each": 742.9866625739978, "lost_contact_area_each": 0.0},
+      {"components": ["exhaust_1_seat", "exhaust_2_seat"], "reference_contact_area_each": 622.0353454106769, "candidate_contact_area_each": 622.0353454106769, "lost_contact_area_each": 0.0},
+      {"components": ["intake_1_guide", "intake_2_guide"], "reference_contact_area_each": 1209.513171631981, "candidate_contact_area_each": 794.8229413581507, "lost_contact_area_each": 414.69023027383037},
+      {"components": ["exhaust_1_guide", "exhaust_2_guide"], "reference_contact_area_each": 1209.5131716319906, "candidate_contact_area_each": 1209.5131716319906, "lost_contact_area_each": 0.0}
+    ],
+    "intake_guide_retention_read_only": {
+      "report_name": "guide-retention-report.json",
+      "report_sha256": "9d6d5ca5a8cadc30e84ad15fbdd2b29626863bfe2fc3e20678e1744317e6474b",
+      "executed_source_sha256": "29834469d2c0a17200b6fa092e8b11adbe3a3993d6983068e6ebea52d38567df",
+      "nominal_guide_length_each": 35.0,
+      "retained_contact_length_each": 22.999999999999886,
+      "retained_contact_area_each": 794.8229413581516,
+      "one_complete_cylindrical_patch_each": true,
+      "angular_parameter_span_each_radians": 6.28318530717959,
+      "contact_BRep_sha256": ["e718913c7e9f559e0842ddcdf3a5acab631dc94ca22073a88056d4bc1d83fc06", "b86258fa9b811c26802301a84b1d2e001ddb2c7c5ee1ca7dd05960d5a0ebe12f"],
+      "geometry_modified": false,
+      "support_pressure_temperature_and_required_retention_length_qualified": false
+    }
+  },
+  "boundary_opening_screen": {
+    "raw_scope": "all_old_boundary_faces_including_internal_voids_not_only_exterior",
+    "raw_face_count": 182,
+    "raw_area_scan_units_squared": 5128.838887150069,
+    "raw_contacts_BRep_sha256": "2ae773818665a2b236ec547090498aa90994c58a92bfdf9a60a82ff8199f8913",
+    "residual_outside_diagnostic_masks_face_count": 0,
+    "residual_outside_diagnostic_masks_area_scan_units_squared": 0,
+    "residual_BRep_sha256": "fdc75bfe05a54932b6580d63f4b6c2252e66e24302a5c754eeeb1b59d04840bc",
+    "masks": ["independent_ruled_recorded_intake_sections", "actual_two_plane_chamber_tool", "actual_original_housing_cylinder_extents"],
+    "only_expected_exterior_openings_proven": false,
+    "caveat_fr": "Le résidu nul hors masques ne prouve pas que seules des fenêtres extérieures légitimes sont ouvertes : le test inclut aussi les parois de vides antérieurs et les masques peuvent recouvrir ces poches. La boîte englobante inchangée ne suffit pas non plus à démontrer la fidélité de toute la silhouette."
+  },
+  "material_wall_screen": {
+    "method_fr": "Rayons orientés depuis les nouvelles parois du conduit à travers la matière du corps découpé, avec classification intérieure et vérification de la première sortie native ; pas une distance à l'ancien corps.",
+    "new_wall_faces": 11,
+    "sampled_faces": 8,
+    "unsampled_faces": 3,
+    "samples": 24,
+    "resolved": 24,
+    "unresolved_generated_rays": 0,
+    "unresolved_count_excludes_faces_without_valid_sample_point": true,
+    "minimum_resolved_material_segment": 1.999999999999979,
+    "screening_limit_scan_units": 1.5,
+    "resolved_below_screening_limit": 0,
+    "global_minimum_verified": false,
+    "sampling_is_not_surface_area_fraction_or_manufacturing_qualification": true,
+    "read_only_replay": {
+      "report_name": "material-ray-replay.json",
+      "report_sha256": "764560d84df2e792f3846ef4d42e151e9e489d3e1966e5eca1549e774b1fabaa",
+      "executed_source_sha256": "5906a4742a17c64357386f25cde6c4c7653a234867ee34fc3d40af48877b16d4",
+      "same_saved_origins_and_directions": true,
+      "all_saved_resolved_rays_verified": true,
+      "geometry_modified": false,
+      "body_cut_repeated": false
+    }
+  },
+  "private_visual_inspection": {
+    "image_name": "render-02/corps-admission-coupe.png",
+    "image_sha256": "404fca921e36acbbba692e5812401dac3f84ab5c3408a0a33b247675e9cc48c1",
+    "receipt_name": "render-02/corps-admission-coupe.json",
+    "receipt_sha256": "521e5d5707b46d9c5fc4d6a6aa332bf3161288dd05c2bd9d3c95fe79b8a2c720",
+    "native_body_sha256": "33375e12be214a0840b432a3315fc85ce25980359c563142de7967d10fae613f",
+    "rendered_from_native_BRep_not_rejected_STEP": true,
+    "image_published_in_repository": false,
+    "shows_CFD_fields": false,
+    "scope_fr": "Vue et coupe issues de la CAO : corps gris, admission bleue et module. La seconde image corrige seulement l'étiquette du maintien des guides en 'à vérifier' ; la géométrie tessellée est inchangée. Ce rendu n'est ni une simulation thermique ni une preuve de fonctionnement."
+  },
+  "qualification": {
+    "M64_engine_interfaces_certified": false,
+    "material_selected": false,
+    "CFD_executed_on_this_body": false,
+    "thermal_or_strength_validation_performed": false,
+    "printing_simulation_executed_on_this_body": false,
+    "manufacturing_authorized": false,
+    "next_geometry_decision_fr": "Justifier ou redessiner le support restant des deux guides d'admission à partir des longueurs et surfaces désormais mesurées ; terminer l'examen des ouvertures et l'épaisseur globale. Aucun récepteur de banc ni joint idéalisé ne doit devenir de la matière dans la pièce."
+  }
+}

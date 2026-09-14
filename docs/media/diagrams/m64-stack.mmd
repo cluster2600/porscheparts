@@ -1,0 +1,19 @@
+graph TD
+    A["Scan, photos et dimensions sourcées"] --> B["Open3D, Trimesh<br/>PyMeshLab, MeshFix"]
+    B --> C["B-Rep et interfaces<br/>OCP, build123d, CadQuery, FreeCAD"]
+    C --> D["Variantes locales<br/>PicoGK, ShapeKernel"]
+    D --> E["Maillages et transferts<br/>Gmsh, meshio"]
+    E --> F["Écoulements et CHT<br/>OpenFOAM, ICengines, engineFoam<br/>FluidX3D sur cas comparable"]
+    E --> G["Thermique et résistance<br/>CalculiX + Code_Aster ou Elmer"]
+    E --> H["Procédé LPBF et distorsion<br/>AdditiveFOAM + modèle global"]
+    I["Combustion<br/>Cantera + Wiebe"] --> F
+    F --> G
+    F --> J["Résultats et incertitudes<br/>ParaView, PyVista, Blender"]
+    G --> J
+    H --> J
+    J --> K["Modèles d'exploration<br/>PhysicsNeMo, PyTorch"]
+    K -. "propositions à recalculer" .-> D
+    J --> L["Assemblage et restitution<br/>OpenUSD, Omniverse, SimReady, OVRTX<br/>Material et Physics Agents à qualifier"]
+    M["Exécution et traçabilité<br/>Docker, CI, GHCR, Vast, OpenBao<br/>Qwen et vLLM : assistance"] -. "orchestration" .-> D
+    M -. "orchestration" .-> F
+    M -. "orchestration" .-> H

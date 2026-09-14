@@ -138,7 +138,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             yield clock
 
     def timed_instance(self, status):
-        return {"instances": {"id": 12345, "actual_status": status, "ssh_host": "ssh.example.invalid", "ssh_port": 22001}}
+        return {"instances": {"id": 12345, "actual_status": status, "image_uuid": self.wrapper.SIMREADY_IMAGE, "ssh_host": "ssh.example.invalid", "ssh_port": 22001}}
 
     def test_simready_loading_35_minutes_then_running_is_allowed(self):
         with self.fake_simready_clock(lambda clock: self.timed_instance("loading" if clock["now"] < 35 * 60 else "running")) as clock:
@@ -411,6 +411,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
     def test_simready_direct_string_hostport_reaches_ssh_probe_with_same_auth_checks(self):
         instance = {
             "id": 12345, "actual_status": "running", "ssh_host": "ssh.example.invalid",
+            "image_uuid": self.wrapper.SIMREADY_IMAGE,
             "public_ipaddr": "203.0.113.8", "ports": {"22/tcp": [{"HostPort": "32001"}]},
         }
         known_hosts = Path("/tmp/test-only-known-hosts")
@@ -477,6 +478,131 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             with self.subTest(raw=raw), self.assertRaises(self.wrapper.SafeError):
                 self.wrapper.safe_ssh_endpoints(raw, 12345)
 
+    def test_m64_endpoint_prefers_direct_without_changing_legacy(self):
+        for port in (32001, "32001"):
+            raw = {"id": 12345, "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                   "public_ipaddr": "1.1.1.1", "ports": {"22/tcp": [{"HostPort": port}]}}
+            with self.subTest(port=port):
+                self.assertEqual(self.wrapper.m64_ssh_endpoint(raw, 12345), {
+                    "kind": "direct", "host": "1.1.1.1", "port": 32001,
+                    "source": "public_ipaddr+ports[22/tcp][0].HostPort"})
+                self.assertEqual(self.wrapper.safe_instance(raw)["ssh_host"], "ssh.example.invalid")
+
+    def test_m64_direct_endpoint_requires_global_unicast_ip(self):
+        # Globally classified addresses are metadata fixtures only; no sockets.
+        for host in ("1.1.1.1", "2606:4700:4700::1111"):
+            raw = {"id": 12345, "public_ipaddr": host, "ports": {"22/tcp": [{"HostPort": "32001"}]}}
+            with self.subTest(host=host):
+                self.assertEqual(self.wrapper.m64_ssh_endpoint(raw, 12345)["host"], host)
+        for host in ("127.0.0.1", "10.1.2.3", "172.16.0.1", "192.168.2.3",
+                     "169.254.169.254", "0.0.0.0", "224.0.0.1", "240.0.0.1",
+                     "255.255.255.255", "100.64.0.1", "203.0.113.8",
+                     "::", "::1", "fc00::1", "fe80::1", "ff02::1", "2001:db8::1",
+                     "::ffff:127.0.0.1", "2606:4700:4700::1111%lo0"):
+            raw = {"id": 12345, "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                   "public_ipaddr": host, "ports": {"22/tcp": [{"HostPort": "32001"}]}}
+            with self.subTest(host=host), self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(raw, 12345)
+            self.assertEqual(self.wrapper.safe_instance(raw)["ssh_host"], "ssh.example.invalid")
+
+    def test_m64_direct_ports_keep_strict_decimal_and_boolean_rejection(self):
+        for port in (True, False, " 32001", "+32001", "3.2001e4", "32001.0", "32001\n", "１２３", float("nan"), float("inf")):
+            raw = {"id": 12345, "public_ipaddr": "1.1.1.1", "ports": {"22/tcp": [{"HostPort": port}]}}
+            with self.subTest(port=port), self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(raw, 12345)
+
+    def test_m64_endpoint_proxy_only_without_a_direct_mapping(self):
+        raw = {"id": 12345, "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+               "public_ipaddr": "203.0.113.8", "ports": {"8000/tcp": [{"HostPort": "30001"}]}}
+        self.assertEqual(self.wrapper.m64_ssh_endpoint(raw, 12345), {
+            "kind": "proxy", "host": "ssh.example.invalid", "port": 22001,
+            "source": "ssh_host+ssh_port"})
+        self.assertIsNone(self.wrapper.m64_ssh_endpoint({"id": 12345}, 12345))
+
+    def test_m64_endpoint_malformed_direct_never_silently_uses_proxy(self):
+        base = {"id": 12345, "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                "public_ipaddr": "203.0.113.8"}
+        bad_mappings = ({}, [None], [{}], [{"HostPort": True}],
+                        [{"HostPort": "32001;id"}], [{"HostPort": "32001.0"}],
+                        [{"HostPort": float("nan")}], [{"HostPort": 0}],
+                        [{"HostPort": 65536}], [{"HostPort": 32001}, {"HostPort": 32002}])
+        for mapping in bad_mappings:
+            with self.subTest(mapping=mapping), self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(dict(base, ports={"22/tcp": mapping}), 12345)
+        for ip in (None, "", "not-an-ip", "203.0.113.8;id", True):
+            with self.subTest(ip=ip), self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(dict(base, public_ipaddr=ip, ports={"22/tcp": [{"HostPort": "32001"}]}), 12345)
+        for extra in ({"id": True}, {"id": 2}, {"ports": []}, {"ssh_host": "-bad"}, {"ssh_port": True}):
+            with self.subTest(extra=extra), self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(dict(base, **extra), 12345)
+
+    def test_m64_direct_selects_matching_ipv4_or_ipv6_family_not_first_mapping(self):
+        bindings = [{"HostIp": "::", "HostPort": "32002"}, {"HostIp": "0.0.0.0", "HostPort": "32001"}]
+        for host, expected_port in (("1.1.1.1", 32001), ("2606:4700:4700::1111", 32002)):
+            for rows in (bindings, list(reversed(bindings))):
+                with self.subTest(host=host, rows=rows):
+                    raw = {"id": 12345, "public_ipaddr": host, "ports": {"22/tcp": rows}}
+                    result = self.wrapper.m64_ssh_endpoint(raw, 12345)
+                    self.assertEqual(result["port"], expected_port)
+                    selected = next(i for i,row in enumerate(rows) if int(row["HostPort"]) == expected_port)
+                    self.assertEqual(result["source"], f"public_ipaddr+ports[22/tcp][{selected}].HostPort")
+
+    def test_m64_direct_deduplicates_identical_normalized_bindings(self):
+        for rows in (
+            [{"HostIp": "0.0.0.0", "HostPort": "32001"}, {"HostIp": "0.0.0.0", "HostPort": 32001}],
+            [{"HostPort": "32001"}, {"HostPort": 32001}],
+        ):
+            with self.subTest(rows=rows):
+                result = self.wrapper.m64_ssh_endpoint({"id": 12345, "public_ipaddr": "1.1.1.1", "ports": {"22/tcp": rows}}, 12345)
+                self.assertEqual(result["port"], 32001)
+                self.assertEqual(result["source"], "public_ipaddr+ports[22/tcp][0].HostPort+ports[22/tcp][1].HostPort")
+
+    def test_m64_direct_rejects_ambiguous_or_malformed_bindings_with_safe_diagnostic(self):
+        cases = (
+            [{"HostIp": "0.0.0.0", "HostPort": "32001"}, {"HostIp": "0.0.0.0", "HostPort": "32002"}],
+            [{"HostIp": "::", "HostPort": "32002"}],
+            [{"HostPort": "32001"}, {"HostIp": "0.0.0.0", "HostPort": "32001"}],
+            [{"HostIp": "synthetic-secret", "HostPort": "32001"}],
+        )
+        for rows in cases:
+            raw = {"id": 12345, "public_ipaddr": "1.1.1.1", "ssh_host": "ssh.example.invalid", "ssh_port": 22001,
+                   "ports": {"22/tcp": rows}, "env": {"TOKEN": "synthetic-secret"}}
+            with self.subTest(rows=rows), mock.patch("sys.stderr", io.StringIO()) as output, self.assertRaises(self.wrapper.SafeError):
+                self.wrapper.m64_ssh_endpoint(raw, 12345)
+            text = output.getvalue()
+            self.assertTrue(text.startswith("OPENBAO_VASTAI_M64_ENDPOINT_DIAGNOSTIC "))
+            report = json.loads(text.split(" ", 1)[1])
+            self.assertEqual(report["mapping_count"], len(rows))
+            self.assertEqual(report["mapping_summaries"][0]["port"], 32001 if len(rows)!=1 or rows[0].get("HostIp")!="::" else 32002)
+            self.assertNotIn("synthetic-secret", text)
+            self.assertNotIn("TOKEN", text)
+            self.assertFalse(report["ssh_connection_tested"])
+
+    def test_m64_unallocated_direct_mappings_wait_without_proxy(self):
+        for mappings in (None, []):
+            raw = self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", public_ipaddr="1.1.1.1",
+                                        ssh_host="ssh.example.invalid", ssh_port=22001, ports={"22/tcp": mappings})
+            receipt = {}
+            with self.subTest(mappings=mappings), self.fake_simready_clock(lambda clock: {"instances": raw}) as clock, mock.patch("sys.stderr", io.StringIO()) as output, mock.patch.object(self.wrapper, "SIMREADY_TOTAL_READY_TIMEOUT_SECONDS", 45), mock.patch.object(self.wrapper, "SIMREADY_SSH_READY_TIMEOUT_SECONDS", 30), self.assertRaisesRegex(self.wrapper.SafeError, "did not pass in time"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+            self.assertEqual(clock["probe_calls"], 0)
+            self.assertEqual(clock["now"], 30)
+            self.assertEqual(receipt, {})
+            self.assertIn('"reason": "direct_mapping_not_allocated"', output.getvalue())
+
+    def test_m64_direct_allocation_arrives_within_original_deadline(self):
+        def metadata(clock):
+            mappings = None if clock["metadata_calls"] == 1 else [{"HostIp": "::", "HostPort": "32002"}, {"HostIp": "0.0.0.0", "HostPort": "32001"}]
+            return {"instances": self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", public_ipaddr="1.1.1.1",
+                    ssh_host="ssh.example.invalid", ssh_port=22001, ports={"22/tcp": mappings})}
+        receipt = {}
+        with self.fake_simready_clock(metadata) as clock, mock.patch("sys.stderr", io.StringIO()):
+            self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+        self.assertEqual(clock["now"], 15)
+        self.assertEqual(clock["probe_calls"], 1)
+        self.assertEqual(receipt["port"], 32001)
+        self.assertEqual(receipt["source"], "public_ipaddr+ports[22/tcp][1].HostPort")
+
     def test_ssh_endpoints_command_only_reads_one_instance(self):
         output = io.StringIO()
         with (
@@ -512,6 +638,8 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
             "cpu_cores_effective": 24,
             "cpu_ram": 128000,
             "disk_space": 500,
+            "inet_down_cost": 0.01,
+            "inet_up_cost": 0.01,
             "dph_total": 2.0,
             "reliability": 0.999,
             "verified": True,
@@ -602,6 +730,10 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertEqual(self.wrapper.HEAVY_GPU_NAME, "RTX PRO 6000 WS")
         self.assertEqual(query["allocated_storage"], 500)
         self.assertEqual(query["gpu_frac"], {"eq": 1})
+        self.assertEqual(query["gpu_name"], {"eq": self.wrapper.HEAVY_GPU_NAME})
+        self.assertEqual(query["dph_total"], {"lte": 2.5})
+        self.assertEqual(query["inet_down_cost"], {"lte": 0.05})
+        self.assertEqual(query["inet_up_cost"], {"lte": 0.05})
         self.assertTrue(self.wrapper.heavy_offer_eligible(self.eligible_offer()))
         self.assertFalse(
             self.wrapper.heavy_offer_eligible(
@@ -611,6 +743,88 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertFalse(
             self.wrapper.heavy_offer_eligible(self.eligible_offer(gpu_frac=0.5))
         )
+
+    def test_heavy_transfer_costs_are_rechecked_before_spend(self):
+        for field in ("inet_down_cost", "inet_up_cost"):
+            for bad in (None, -0.01, 0.050001, float('inf'), True):
+                self.assertFalse(self.wrapper.heavy_offer_eligible(self.eligible_offer(**{field: bad})))
+        self.assertTrue(self.wrapper.heavy_offer_eligible(
+            self.eligible_offer(inet_down_cost=0.05, inet_up_cost=0.05)))
+
+    def simready_instance(self, **overrides):
+        instance = self.eligible_offer(
+            id=12345, label=self.simready_attempt_label(),
+            actual_status="loading", verification="verified",
+            image_uuid=self.wrapper.SIMREADY_IMAGE,
+        )
+        instance.update(overrides)
+        return instance
+
+    def test_simready_post_launch_transfer_costs_reject_invalid_values(self):
+        for field in ("inet_down_cost", "inet_up_cost"):
+            for bad in (True, False, float("nan"), float("inf"), -0.001, 0.050001, "0.01"):
+                instance = self.simready_instance(**{field: bad})
+                with (
+                    self.subTest(field=field, value=bad),
+                    mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}) as request,
+                    mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                    self.assertRaisesRegex(self.wrapper.SafeError, field),
+                ):
+                    self.wrapper.verify_simready_contract("unused", 12345, instance["label"])
+                request.assert_called_once_with("unused", "/api/v0/instances/12345/")
+                sleep.assert_not_called()
+
+    def test_simready_post_launch_transfer_costs_missing_metadata_is_bounded(self):
+        for field in ("inet_down_cost", "inet_up_cost"):
+            for missing in (False, True):
+                instance = self.simready_instance(**{field: None})
+                if missing:
+                    instance.pop(field)
+                with (
+                    self.subTest(field=field, missing=missing),
+                    mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}) as request,
+                    mock.patch.object(self.wrapper.time, "sleep") as sleep,
+                    self.assertRaisesRegex(self.wrapper.SafeError, "complete post-launch contract metadata"),
+                ):
+                    self.wrapper.verify_simready_contract("unused", 12345, instance["label"])
+                self.assertEqual(request.call_count, 30)
+                self.assertEqual(sleep.call_args_list, [mock.call(1)] * 30)
+
+    def test_simready_post_launch_transfer_costs_accept_zero_and_exact_cap(self):
+        for rate in (0, 0.05):
+            instance = self.simready_instance(inet_down_cost=rate, inet_up_cost=rate)
+            with (
+                mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}) as request,
+                mock.patch.object(self.wrapper.time, "sleep") as sleep,
+            ):
+                self.wrapper.verify_simready_contract("unused", 12345, instance["label"])
+            request.assert_called_once_with("unused", "/api/v0/instances/12345/")
+            sleep.assert_not_called()
+
+    def test_simready_post_launch_transfer_costs_mismatch_rolls_back_before_ssh(self):
+        instance = self.simready_instance(inet_down_cost=0.050001)
+        with (
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(self.wrapper, "vast_request", side_effect=[{"new_contract": 12345}, {"instances": instance}]),
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key") as instance_key,
+            mock.patch.object(self.wrapper, "verify_simready_ssh_ready") as ssh,
+            mock.patch.object(self.wrapper, "reconcile_uncertain_simready_launch", return_value=12345) as reconcile,
+            mock.patch.object(self.wrapper, "remove_simready_known_hosts_after_destroy") as remove_known_hosts,
+            mock.patch("sys.stdout", io.StringIO()),
+            mock.patch("sys.stderr", io.StringIO()),
+            self.assertRaisesRegex(self.wrapper.SafeError, "inet_down_cost"),
+        ):
+            self.wrapper.launch_simready_offer(
+                "unused", self.eligible_offer(), disk_gb=500,
+                enforce_singleton=True, attempt_label=instance["label"],
+            )
+        instance_key.assert_not_called()
+        ssh.assert_not_called()
+        reconcile.assert_called_once_with("unused", instance["label"])
+        remove_known_hosts.assert_called_once_with(12345)
 
     def test_wave_contract_is_cpu_only_bounded_and_prices_300_gb(self):
         query = self.wrapper.wave_offer_query()
@@ -1291,6 +1505,206 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertFalse(payload["target_1600_ch_validated"])
         self.assertEqual(payload["label"], attempt_label)
 
+    def test_simready_profile_images_preserve_legacy_and_reject_arbitrary_selection(self):
+        self.assertEqual(self.wrapper.SIMREADY_IMAGE, "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699")
+        self.assertEqual(self.wrapper.M64_SIMREADY_IMAGE, "ghcr.io/cluster2600/3dprinting993-simready-m64-runtime@sha256:a07ee46d5dbfe73193cfd0d3829c0dc3e69aed95ab82841a89c18828cea85f44")
+        with mock.patch.object(self.wrapper, "vast_request") as request:
+            for profile in (None, True, "m64", "image:latest", self.wrapper.M64_SIMREADY_IMAGE):
+                with self.subTest(profile=profile), self.assertRaisesRegex(self.wrapper.SafeError, "profile"):
+                    self.wrapper.launch_simready_offer("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, profile=profile)
+            request.assert_not_called()
+
+    def test_simready_contract_rejects_other_profile_image(self):
+        for profile, image, other in (("legacy", self.wrapper.SIMREADY_IMAGE, self.wrapper.M64_SIMREADY_IMAGE), (self.wrapper.M64_PROFILE, self.wrapper.M64_SIMREADY_IMAGE, self.wrapper.SIMREADY_IMAGE)):
+            instance = self.simready_instance(image_uuid=image)
+            with mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}):
+                self.wrapper.verify_simready_contract("unused", 12345, instance["label"], profile=profile)
+            instance["image_uuid"] = other
+            with mock.patch.object(self.wrapper, "vast_request", return_value={"instances": instance}), self.assertRaisesRegex(self.wrapper.SafeError, "image digest"):
+                self.wrapper.verify_simready_contract("unused", 12345, instance["label"], profile=profile)
+
+    def test_simready_ssh_checks_profile_image_before_any_probe(self):
+        for profile, image, other in (("legacy", self.wrapper.SIMREADY_IMAGE, self.wrapper.M64_SIMREADY_IMAGE), (self.wrapper.M64_PROFILE, self.wrapper.M64_SIMREADY_IMAGE, self.wrapper.SIMREADY_IMAGE)):
+            instance = self.simready_instance(image_uuid=image, actual_status="running", ssh_host="ssh.example.invalid", ssh_port=22001)
+            with self.fake_simready_clock(lambda clock: {"instances": instance}) as clock:
+                self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=profile)
+                self.assertEqual(clock["probe_calls"], 1)
+            instance["image_uuid"] = other
+            with self.fake_simready_clock(lambda clock: {"instances": instance}) as clock, self.assertRaisesRegex(self.wrapper.SafeError, "profile image digest"):
+                self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=profile)
+            self.assertEqual(clock["probe_calls"], 0)
+
+    def test_m64_ready_probes_direct_while_legacy_probes_proxy(self):
+        for profile, image, expected_host, expected_port in (
+            (self.wrapper.M64_PROFILE, self.wrapper.M64_SIMREADY_IMAGE, "1.1.1.1", "32001"),
+            ("legacy", self.wrapper.SIMREADY_IMAGE, "ssh.example.invalid", "22001"),
+        ):
+            raw = self.simready_instance(image_uuid=image, actual_status="running", ssh_host="ssh.example.invalid", ssh_port=22001,
+                                        public_ipaddr="1.1.1.1", ports={"22/tcp": [{"HostPort": "32001"}]})
+            receipt = {}
+            with self.fake_simready_clock(lambda clock: {"instances": raw}), mock.patch.object(
+                self.wrapper, "run_component_factory_f41_ssh_probe",
+                return_value=self.wrapper.subprocess.CompletedProcess([], 0, "SIMREADY_REMOTE_READY\n", ""),
+            ) as probe:
+                self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=profile, verified_endpoint=receipt)
+            command = probe.call_args.args[0]
+            self.assertIn("root@" + expected_host, command)
+            self.assertEqual(command[command.index("-p") + 1], expected_port)
+            self.assertIn("HostKeyAlias=simready-12345", command)
+            self.assertIn("StrictHostKeyChecking=accept-new", command)
+            if profile == self.wrapper.M64_PROFILE:
+                self.assertEqual(receipt, {"kind": "direct", "host": expected_host, "port": int(expected_port), "source": "public_ipaddr+ports[22/tcp][0].HostPort"})
+            else:
+                self.assertEqual(receipt, {})
+
+    def test_m64_ready_receipt_uses_successful_probe_not_later_metadata(self):
+        receipt = {}
+        def metadata(clock):
+            return {"instances": self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", public_ipaddr="1.1.1.1",
+                    ports={"22/tcp": [{"HostPort": 32000 + clock["metadata_calls"]}]})}
+        def probe(clock):
+            self.assertEqual(receipt, {})
+            return self.wrapper.subprocess.CompletedProcess([], 0 if clock["probe_calls"] == 2 else 255,
+                    "SIMREADY_REMOTE_READY\n" if clock["probe_calls"] == 2 else "", "Connection timed out" if clock["probe_calls"] == 1 else "")
+        with self.fake_simready_clock(metadata, probe) as clock:
+            self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+        self.assertEqual(clock["metadata_calls"], 2)
+        self.assertEqual(receipt["port"], 32002)
+
+    def test_m64_malformed_mapping_blocks_before_probe_and_receipt(self):
+        raw = self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", ssh_host="ssh.example.invalid", ssh_port=22001,
+                                    public_ipaddr="203.0.113.8", ports={"22/tcp": [{"HostPort": True}]})
+        receipt = {}
+        with self.fake_simready_clock(lambda clock: {"instances": raw}) as clock, self.assertRaisesRegex(self.wrapper.SafeError, "direct SSH endpoint is malformed"):
+            self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+        self.assertEqual(clock["probe_calls"], 0)
+        self.assertEqual(receipt, {})
+
+    def test_m64_direct_auth_failure_never_falls_back_or_emits_ready_receipt(self):
+        raw = self.simready_instance(image_uuid=self.wrapper.M64_SIMREADY_IMAGE, actual_status="running", ssh_host="ssh.example.invalid", ssh_port=22001,
+                                    public_ipaddr="1.1.1.1", ports={"22/tcp": [{"HostPort": "32001"}]})
+        receipt = {}
+        def failure(clock):
+            return self.wrapper.subprocess.CompletedProcess([], 255, "", "Permission denied (publickey).")
+        with self.fake_simready_clock(lambda clock: {"instances": raw}, failure) as clock, mock.patch.object(self.wrapper, "emit_simready_ssh_failure_diagnostic") as diagnostic, self.assertRaisesRegex(self.wrapper.SafeError, "ssh_authentication_failed"):
+            self.wrapper.verify_simready_ssh_ready("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=receipt)
+        self.assertEqual(clock["probe_calls"], 1)
+        self.assertEqual(diagnostic.call_args.args[1:3], ("1.1.1.1", 32001))
+        self.assertEqual(receipt, {})
+
+    def test_fixed_m64_and_legacy_dispatch_routes_do_not_accept_image_arguments(self):
+        label = self.simready_attempt_label()
+        for route, profile_options in (("launch-m64-heavy", {"profile": self.wrapper.M64_PROFILE}), ("launch-simready-heavy", {})):
+            with (
+                mock.patch.object(self.wrapper, "login", return_value="session"),
+                mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+                mock.patch.object(self.wrapper, "revoke_token"),
+                mock.patch.object(self.wrapper, "get_heavy_offers", return_value=[self.eligible_offer()]),
+                mock.patch.object(self.wrapper, "launch_simready_offer", return_value=0) as launch,
+            ):
+                self.assertEqual(self.wrapper.run([route, "7", "--attempt-label", label]), 0)
+                launch.assert_called_once_with("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, attempt_label=label, validation_only=False, **profile_options)
+                launch.reset_mock()
+                with self.assertRaises(self.wrapper.SafeError):
+                    self.wrapper.run([route, "7", "--image", self.wrapper.M64_SIMREADY_IMAGE])
+                launch.assert_not_called()
+
+    def test_m64_launch_propagates_fixed_profile_and_full_runtime(self):
+        label = self.simready_attempt_label()
+        output = io.StringIO()
+        endpoint = {"kind": "direct", "host": "1.1.1.1", "port": 32001, "source": "public_ipaddr+ports[22/tcp][0].HostPort"}
+        def verified(*args, **kwargs):
+            kwargs["verified_endpoint"].update(endpoint)
+            return Path("/tmp/synthetic-known-hosts")
+        with (
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance") as singleton,
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(self.wrapper, "vast_request", return_value={"new_contract": 12345}) as request,
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "verify_simready_contract") as contract,
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key"),
+            mock.patch.object(self.wrapper, "verify_simready_ssh_ready", side_effect=verified) as ssh,
+            mock.patch("sys.stdout", output), mock.patch("sys.stderr", io.StringIO()),
+        ):
+            self.wrapper.launch_simready_offer("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, attempt_label=label, profile=self.wrapper.M64_PROFILE)
+        singleton.assert_called_once_with("unused")
+        payload = request.call_args.kwargs["payload"]
+        self.assertEqual(payload["image"], self.wrapper.M64_SIMREADY_IMAGE)
+        self.assertEqual(payload["onstart"], self.wrapper.simready_full_onstart_command())
+        self.assertEqual(payload["disk"], 500)
+        self.assertEqual(payload["env"], {})
+        contract.assert_called_once_with("unused", 12345, label, profile=self.wrapper.M64_PROFILE)
+        ssh.assert_called_once_with("unused", 12345, profile=self.wrapper.M64_PROFILE, verified_endpoint=endpoint)
+        result = json.loads(output.getvalue())
+        self.assertEqual(result["image"], self.wrapper.M64_SIMREADY_IMAGE)
+        self.assertEqual(result["verified_ssh_endpoint"], endpoint)
+        self.assertFalse(result["ssh_host_identity_verified_out_of_band"])
+        self.assertEqual(request.call_count, 1)  # Do not claim an endpoint from a new API read.
+
+    def test_m64_wrong_image_rolls_back_with_correct_profile_receipt(self):
+        instance = self.simready_instance()  # Legacy image cannot satisfy M64.
+        stderr = io.StringIO()
+        with (
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(self.wrapper, "vast_request", side_effect=[{"new_contract": 12345}, {"instances": instance}]),
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key") as key,
+            mock.patch.object(self.wrapper, "verify_simready_ssh_ready") as ssh,
+            mock.patch.object(self.wrapper, "reconcile_uncertain_simready_launch", return_value=12345) as reconcile,
+            mock.patch.object(self.wrapper, "remove_simready_known_hosts_after_destroy"),
+            mock.patch("sys.stderr", stderr),
+            self.assertRaisesRegex(self.wrapper.SafeError, "image digest"),
+        ):
+            self.wrapper.launch_simready_offer("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, attempt_label=instance["label"], profile=self.wrapper.M64_PROFILE)
+        key.assert_not_called(); ssh.assert_not_called()
+        reconcile.assert_called_once_with("unused", instance["label"])
+        line = next(line for line in stderr.getvalue().splitlines() if line.startswith(self.wrapper.SIMREADY_CLEANUP_PREFIX))
+        self.assertEqual(json.loads(line[len(self.wrapper.SIMREADY_CLEANUP_PREFIX):])["requested_image"], self.wrapper.M64_SIMREADY_IMAGE)
+
+    def test_m64_launch_without_successful_endpoint_receipt_rolls_back(self):
+        label = self.simready_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "simready_launch_lock", return_value=nullcontext()),
+            mock.patch.object(self.wrapper, "require_no_simready_instance"),
+            mock.patch.object(self.wrapper, "ensure_local_ssh_registered"),
+            mock.patch.object(self.wrapper, "vast_request", return_value={"new_contract": 12345}),
+            mock.patch.object(self.wrapper, "verify_single_simready_instance"),
+            mock.patch.object(self.wrapper, "verify_simready_contract"),
+            mock.patch.object(self.wrapper, "ensure_simready_instance_ssh_key"),
+            mock.patch.object(self.wrapper, "verify_simready_ssh_ready", return_value=Path("/tmp/synthetic-known-hosts")),
+            mock.patch.object(self.wrapper, "reconcile_uncertain_simready_launch", return_value=12345) as reconcile,
+            mock.patch.object(self.wrapper, "remove_simready_known_hosts_after_destroy"),
+            mock.patch("sys.stderr", io.StringIO()), mock.patch("sys.stdout", io.StringIO()) as output,
+            self.assertRaisesRegex(self.wrapper.SafeError, "verified endpoint receipt"),
+        ):
+            self.wrapper.launch_simready_offer("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, attempt_label=label, profile=self.wrapper.M64_PROFILE)
+        reconcile.assert_called_once_with("unused", label)
+        self.assertEqual(output.getvalue(), "")
+
+    def test_m64_reconciliation_receipt_has_fixed_m64_image(self):
+        label = self.simready_attempt_label()
+        with (
+            mock.patch.object(self.wrapper, "login", return_value="session"),
+            mock.patch.object(self.wrapper, "read_vast_key", return_value="unused"),
+            mock.patch.object(self.wrapper, "revoke_token"),
+            mock.patch.object(self.wrapper, "reconcile_uncertain_simready_launch", return_value=12345) as reconcile,
+            mock.patch.object(self.wrapper, "emit_simready_cleanup_attestation") as receipt,
+        ):
+            self.assertEqual(self.wrapper.run(["reconcile-m64-attempt", label]), 0)
+        reconcile.assert_called_once_with("unused", label)
+        receipt.assert_called_once_with(12345, label, profile=self.wrapper.M64_PROFILE)
+
+    def test_m64_revoked_image_or_reduced_runtime_blocks_before_spend(self):
+        with mock.patch.object(self.wrapper, "simready_launch_lock") as lock:
+            with mock.patch.object(self.wrapper, "M64_SIMREADY_IMAGE", self.wrapper.SIMREADY_REVOKED_IMAGE_E04), self.assertRaisesRegex(self.wrapper.SafeError, "revoked"):
+                self.wrapper.launch_simready_offer("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, profile=self.wrapper.M64_PROFILE)
+            with self.assertRaisesRegex(self.wrapper.SafeError, "full Content Agents"):
+                self.wrapper.launch_simready_offer("unused", self.eligible_offer(), disk_gb=500, enforce_singleton=True, profile=self.wrapper.M64_PROFILE, validation_only=True)
+        lock.assert_not_called()
+
     def test_validation_only_launch_skips_content_agents_and_uses_exact_ready(self):
         output = io.StringIO()
         attempt_label = self.simready_attempt_label()
@@ -1492,6 +1906,7 @@ class OpenBaoVastAiWrapperTests(unittest.TestCase):
         self.assertEqual(self.wrapper.SIMREADY_SSH_READY_TIMEOUT_SECONDS, 30 * 60)
         instance = {
             "id": 12345,
+            "image_uuid": self.wrapper.SIMREADY_IMAGE,
             "actual_status": "running",
             "ssh_host": "ssh.example.invalid",
             "ssh_port": 22022,

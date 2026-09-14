@@ -1,0 +1,680 @@
+{
+  "schema": "m64-picogk-roundtrip-recovery-evidence/v1",
+  "status": "audit_complete_geometry_rejections_preserved",
+  "date_utc": "2026-09-07",
+  "scope": "Private 935-scan-derived reconstruction, M64 964/993 turbo design target; not certified M64 fitment",
+  "private_report_sha256": "039ce42cdcdc4bb73b7ed93e8cabe54950f7bca7af528581d7b5c450898b2f5e",
+  "checkpoint_report_replaces_failed_attempt": true,
+  "failed_attempt_retained_as_history": "picogk-three-resolution-audit-20260907.json",
+  "geometry_or_coordinates_published": false,
+  "runtime": {
+    "python": "3.11.2",
+    "numpy": "2.3.5",
+    "trimesh": "5.1.0",
+    "scipy": "1.16.3",
+    "rtree": "1.4.1"
+  },
+  "image_qualification": "picogk-python-image-qualification-20260907.json",
+  "audit": {
+    "schema": "m64-picogk-private-roundtrip-audit/v2",
+    "audit_complete": true,
+    "checkpoint_context_sha256": "713345b09b2f07096f7bd4372923d24a3760784132f708a961b6b62f442232ed",
+    "audit_source_sha256": "f2d21b5996c9e7a435d2e067e364720fd750935d9e9d748cc22e0c4b9c65b694",
+    "master_export_report_sha256": "60804e33d35176bb35b83a1367a5d8a83210f4282eec7184c155632049638ce0",
+    "master_STL_sha256": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+    "master_STEP_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "trimesh_version": "5.1.0",
+    "audit_settings": {
+      "samples": 4096,
+      "chord_samples": 512,
+      "seed": 917,
+      "query_chunk_size": 32,
+      "render": false
+    },
+    "length_unit": "scan_unit",
+    "millimetres_per_scan_unit_working_hypothesis": 1.0,
+    "absolute_scale_certified": false,
+    "master_mesh": {
+      "triangles": 293308,
+      "exact_welded_vertices": 146648,
+      "exact_welded_edges": 439962,
+      "connected_vertex_components": 1,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "edge_manifold_closed": true,
+      "winding_consistent_on_two_face_edges": true,
+      "zero_area_triangles": 0,
+      "duplicate_triangles_ignoring_winding": 0,
+      "euler_characteristic": -6,
+      "triangle_quality_equilateral_1": {
+        "minimum": 3.6753909383664857e-06,
+        "p01": 0.00022744343265337802,
+        "p50": 0.15510118781560156
+      },
+      "signed_volume_scan_units_cubed": 1427135.4740145102,
+      "area_scan_units_squared": 125104.34809123247,
+      "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+      "self_intersections_tested": false
+    },
+    "normal_chord_screen_master": {
+      "status": "sampled_mesh_normal_chords_only",
+      "seed": 917,
+      "sample_count": 512,
+      "sampling": "area_weighted_random_triangle_points",
+      "ray_origin_offset_scan_units": 2.0550032806396483e-05,
+      "inside_test": {
+        "policy": "trimesh_bidirectional_parity_single_locally_seeded_fallback",
+        "fallback_seed": 917,
+        "fallback_rng": "numpy_default_rng",
+        "fallback_direction": null,
+        "fallback_samples": 0,
+        "samples_still_ambiguous_after_fallback_rejected": 0
+      },
+      "origins_confirmed_inside": 512,
+      "resolved_exit_chords": 512,
+      "unresolved_or_rejected_samples": 0,
+      "chord_scan_units": {
+        "count": 512,
+        "minimum": 0.672513229346134,
+        "p05": 3.057396789989277,
+        "p50": 54.6830530131601,
+        "p95": 124.71076027675856,
+        "maximum": 205.29589134457285
+      },
+      "screening_threshold_scan_units": 1.5,
+      "below_threshold_samples": 7,
+      "below_threshold_fraction_of_all_samples": 0.013671875,
+      "below_threshold_fraction_of_resolved_samples": 0.013671875,
+      "mesh_smoothness_and_ray_direction_can_bias_results": true,
+      "adjacent_face_hits_not_classified_as_material_webs": true,
+      "minimum_wall_thickness_proved": false,
+      "fraction_is_not_exact_CAD_area_fraction": true,
+      "manufacturing_acceptance_criterion": false
+    },
+    "worker_execution": {
+      "elapsed_seconds": 19.49140338599682,
+      "peak_resident_memory_bytes": 472494080,
+      "query_batch_limit": 32,
+      "mesh_and_spatial_index_memory_not_hard_capped": true
+    },
+    "runs": [
+      {
+        "voxel_size_scan_units": 0.6,
+        "candidate_sha256": "ab285bf63a02b0aac35df18057882a50f484c436c0309ff27a4d6bee04524c13",
+        "candidate_run_receipt_sha256": "e577e166c9bc7c246f0e03c0d447484b739e43a75295ce4c2591cd372993a4d7",
+        "run_input_frame_resolution_output_verified": true,
+        "mesh": {
+          "triangles": 828376,
+          "exact_welded_vertices": 414180,
+          "exact_welded_edges": 1242560,
+          "connected_vertex_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 3,
+          "edge_manifold_closed": false,
+          "winding_consistent_on_two_face_edges": false,
+          "zero_area_triangles": 4,
+          "duplicate_triangles_ignoring_winding": 0,
+          "euler_characteristic": -4,
+          "triangle_quality_equilateral_1": {
+            "minimum": 0.0,
+            "p01": 0.431121761358121,
+            "p50": 0.8653610164296002
+          },
+          "signed_volume_scan_units_cubed": 1428971.4104678414,
+          "area_scan_units_squared": 118234.8042863798,
+          "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+          "self_intersections_tested": false
+        },
+        "bbox_max_absolute_delta_scan_units": 0.23491287231445312,
+        "relative_signed_volume_error": 0.0012864486145564506,
+        "relative_area_error": -0.05491051198191008,
+        "master_to_candidate": {
+          "sampling": "area_weighted_random_triangle_points",
+          "seed": 917,
+          "target_distance": "nearest_point_on_target_triangles_not_nearest_vertex",
+          "distance_scan_units": {
+            "count": 4096,
+            "minimum": 0.0,
+            "p05": 0.0,
+            "p50": 0.005978343682820663,
+            "p95": 0.2400997559942725,
+            "maximum": 2.142979229809629
+          },
+          "continuous_Hausdorff_bound": false
+        },
+        "candidate_to_master": {
+          "sampling": "area_weighted_random_triangle_points",
+          "seed": 918,
+          "target_distance": "nearest_point_on_target_triangles_not_nearest_vertex",
+          "distance_scan_units": {
+            "count": 4096,
+            "minimum": 0.0,
+            "p05": 8.881784197001252e-16,
+            "p50": 0.004082731501307493,
+            "p95": 0.14128391531228632,
+            "maximum": 0.5117467629222163
+          },
+          "continuous_Hausdorff_bound": false
+        },
+        "normal_chord_screen": {
+          "status": "not_run_invalid_oriented_closed_mesh",
+          "minimum_wall_thickness_proved": false
+        },
+        "same_euler_characteristic_as_master": false,
+        "same_component_count_as_master": true,
+        "worker_execution": {
+          "elapsed_seconds": 52.38206973101478,
+          "peak_resident_memory_bytes": 629460992,
+          "query_batch_limit": 32,
+          "mesh_and_spatial_index_memory_not_hard_capped": true
+        }
+      },
+      {
+        "voxel_size_scan_units": 0.3,
+        "candidate_sha256": "3c06acb8810278c07de17e1e8bc712c70e3d3d1258848e1dc54db84e3fd5b073",
+        "candidate_run_receipt_sha256": "a41e023ce1c9101b35ea4871dd412e6dcdcafb8a18bc00e15c209653f2ce7fde",
+        "run_input_frame_resolution_output_verified": true,
+        "mesh": {
+          "triangles": 3391888,
+          "exact_welded_vertices": 1695940,
+          "exact_welded_edges": 5087832,
+          "connected_vertex_components": 2,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "edge_manifold_closed": true,
+          "winding_consistent_on_two_face_edges": true,
+          "zero_area_triangles": 0,
+          "duplicate_triangles_ignoring_winding": 0,
+          "euler_characteristic": -4,
+          "triangle_quality_equilateral_1": {
+            "minimum": 5.478081712020919e-07,
+            "p01": 0.44585414931329315,
+            "p50": 0.8656091012045024
+          },
+          "signed_volume_scan_units_cubed": 1427572.71101847,
+          "area_scan_units_squared": 121893.8535131629,
+          "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+          "self_intersections_tested": false
+        },
+        "bbox_max_absolute_delta_scan_units": 0.11444854736328125,
+        "relative_signed_volume_error": 0.0003063738600301023,
+        "relative_area_error": -0.025662533933099706,
+        "master_to_candidate": {
+          "sampling": "area_weighted_random_triangle_points",
+          "seed": 917,
+          "target_distance": "nearest_point_on_target_triangles_not_nearest_vertex",
+          "distance_scan_units": {
+            "count": 4096,
+            "minimum": 0.0,
+            "p05": 0.0,
+            "p50": 0.00042053882152986294,
+            "p95": 0.056511725912429006,
+            "maximum": 0.8795049555928917
+          },
+          "continuous_Hausdorff_bound": false
+        },
+        "candidate_to_master": {
+          "sampling": "area_weighted_random_triangle_points",
+          "seed": 918,
+          "target_distance": "nearest_point_on_target_triangles_not_nearest_vertex",
+          "distance_scan_units": {
+            "count": 4096,
+            "minimum": 0.0,
+            "p05": 0.0,
+            "p50": 0.00030504743015471775,
+            "p95": 0.04137122384021181,
+            "maximum": 0.2707773736431201
+          },
+          "continuous_Hausdorff_bound": false
+        },
+        "normal_chord_screen": {
+          "status": "sampled_mesh_normal_chords_only",
+          "seed": 917,
+          "sample_count": 512,
+          "sampling": "area_weighted_random_triangle_points",
+          "ray_origin_offset_scan_units": 2.0549922943115233e-05,
+          "inside_test": {
+            "policy": "trimesh_bidirectional_parity_single_locally_seeded_fallback",
+            "fallback_seed": 917,
+            "fallback_rng": "numpy_default_rng",
+            "fallback_direction": null,
+            "fallback_samples": 0,
+            "samples_still_ambiguous_after_fallback_rejected": 0
+          },
+          "origins_confirmed_inside": 512,
+          "resolved_exit_chords": 512,
+          "unresolved_or_rejected_samples": 0,
+          "chord_scan_units": {
+            "count": 512,
+            "minimum": 0.39580948806187405,
+            "p05": 3.3329206715749002,
+            "p50": 61.04131104774741,
+            "p95": 173.9772645794534,
+            "maximum": 208.5648830741748
+          },
+          "screening_threshold_scan_units": 1.5,
+          "below_threshold_samples": 10,
+          "below_threshold_fraction_of_all_samples": 0.01953125,
+          "below_threshold_fraction_of_resolved_samples": 0.01953125,
+          "mesh_smoothness_and_ray_direction_can_bias_results": true,
+          "adjacent_face_hits_not_classified_as_material_webs": true,
+          "minimum_wall_thickness_proved": false,
+          "fraction_is_not_exact_CAD_area_fraction": true,
+          "manufacturing_acceptance_criterion": false
+        },
+        "same_euler_characteristic_as_master": false,
+        "same_component_count_as_master": false,
+        "worker_execution": {
+          "elapsed_seconds": 309.6521334440913,
+          "peak_resident_memory_bytes": 3722567680,
+          "query_batch_limit": 32,
+          "mesh_and_spatial_index_memory_not_hard_capped": true
+        }
+      },
+      {
+        "voxel_size_scan_units": 0.15,
+        "candidate_sha256": "375556af4ba5a27e97de042e1595bb044a26c145151b5e08af3886d1de16312c",
+        "candidate_run_receipt_sha256": "b66f2a3d2e7fdbc375515cd7438fe73014f9570fa88fa14ed82dbea768a4e754",
+        "run_input_frame_resolution_output_verified": true,
+        "mesh": {
+          "triangles": 13672392,
+          "exact_welded_vertices": 6836196,
+          "exact_welded_edges": 20508588,
+          "connected_vertex_components": 4,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "edge_manifold_closed": true,
+          "winding_consistent_on_two_face_edges": true,
+          "zero_area_triangles": 0,
+          "duplicate_triangles_ignoring_winding": 0,
+          "euler_characteristic": 0,
+          "triangle_quality_equilateral_1": {
+            "minimum": 9.776649366588598e-07,
+            "p01": 0.45897578262535227,
+            "p50": 0.8656842856687884
+          },
+          "signed_volume_scan_units_cubed": 1427243.2153373023,
+          "area_scan_units_squared": 123584.31246010948,
+          "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+          "self_intersections_tested": false
+        },
+        "bbox_max_absolute_delta_scan_units": 0.0326995849609375,
+        "relative_signed_volume_error": 7.54948109354783e-05,
+        "relative_area_error": -0.012150142295729893,
+        "master_to_candidate": {
+          "sampling": "area_weighted_random_triangle_points",
+          "seed": 917,
+          "target_distance": "nearest_point_on_target_triangles_not_nearest_vertex",
+          "distance_scan_units": {
+            "count": 4096,
+            "minimum": 0.0,
+            "p05": 0.0,
+            "p50": 2.9442438921980436e-06,
+            "p95": 0.01057501322583785,
+            "maximum": 0.3984927341802221
+          },
+          "continuous_Hausdorff_bound": false
+        },
+        "candidate_to_master": {
+          "sampling": "area_weighted_random_triangle_points",
+          "seed": 918,
+          "target_distance": "nearest_point_on_target_triangles_not_nearest_vertex",
+          "distance_scan_units": {
+            "count": 4096,
+            "minimum": 0.0,
+            "p05": 4.440892098500626e-16,
+            "p50": 2.1094394832247422e-06,
+            "p95": 0.008276626680998891,
+            "maximum": 0.11073423079481866
+          },
+          "continuous_Hausdorff_bound": false
+        },
+        "normal_chord_screen": {
+          "status": "sampled_mesh_normal_chords_only",
+          "seed": 917,
+          "sample_count": 512,
+          "sampling": "area_weighted_random_triangle_points",
+          "ray_origin_offset_scan_units": 2.0549977111816405e-05,
+          "inside_test": {
+            "policy": "trimesh_bidirectional_parity_single_locally_seeded_fallback",
+            "fallback_seed": 917,
+            "fallback_rng": "numpy_default_rng",
+            "fallback_direction": null,
+            "fallback_samples": 0,
+            "samples_still_ambiguous_after_fallback_rejected": 0
+          },
+          "origins_confirmed_inside": 512,
+          "resolved_exit_chords": 512,
+          "unresolved_or_rejected_samples": 0,
+          "chord_scan_units": {
+            "count": 512,
+            "minimum": 0.39029623940572655,
+            "p05": 3.8711563222178613,
+            "p50": 58.399524609498584,
+            "p95": 128.2012843520696,
+            "maximum": 206.18104572615428
+          },
+          "screening_threshold_scan_units": 1.5,
+          "below_threshold_samples": 3,
+          "below_threshold_fraction_of_all_samples": 0.005859375,
+          "below_threshold_fraction_of_resolved_samples": 0.005859375,
+          "mesh_smoothness_and_ray_direction_can_bias_results": true,
+          "adjacent_face_hits_not_classified_as_material_webs": true,
+          "minimum_wall_thickness_proved": false,
+          "fraction_is_not_exact_CAD_area_fraction": true,
+          "manufacturing_acceptance_criterion": false
+        },
+        "same_euler_characteristic_as_master": false,
+        "same_component_count_as_master": false,
+        "worker_execution": {
+          "elapsed_seconds": 1294.449000417022,
+          "peak_resident_memory_bytes": 13865525248,
+          "query_batch_limit": 32,
+          "mesh_and_spatial_index_memory_not_hard_capped": true
+        }
+      }
+    ],
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false,
+    "no_global_smoothing_or_new_design_features_requested": true,
+    "surface_distances_are_to_triangulated_master_not_exact_STEP": true,
+    "convergence_screen": {
+      "resolution_order": "coarse_to_fine",
+      "sampled_bidirectional_maximum_distances": [
+        2.142979229809629,
+        0.8795049555928917,
+        0.3984927341802221
+      ],
+      "absolute_relative_volume_errors": [
+        0.0012864486145564506,
+        0.0003063738600301023,
+        7.54948109354783e-05
+      ],
+      "sampled_maximum_distance_monotone_nonincreasing": true,
+      "volume_error_monotone_nonincreasing": true,
+      "numerical_order_or_grid_independence_established": false,
+      "functional_interface_preservation_certified": false
+    },
+    "master_unchanged_after_audit": true
+  },
+  "oriented_shell_diagnostics": [
+    {
+      "schema": "m64-private-roundtrip-oriented-shell-audit/v1",
+      "source_sha256": {
+        "audit_roundtrip_shells.py": "be3f776d25711c85fd0f82f4ac0bc2009377d3d518649c7b6bd2c15f9788360e",
+        "audit_cooling_domains.py": "38d9eb05e8e59388f6e519eb21e8d6a562dcd31e32113e9b88739803bd0400a9",
+        "compare_meshes.py": "f2d21b5996c9e7a435d2e067e364720fd750935d9e9d748cc22e0c4b9c65b694",
+        "export_master.py": "34bb2dcd591e92b1ae6f0e8a75f2f858448319b4db4dada6eb364f3c0a1242be"
+      },
+      "candidate_filename": "head-roundtrip.stl",
+      "candidate_STL_sha256": "3c06acb8810278c07de17e1e8bc712c70e3d3d1258848e1dc54db84e3fd5b073",
+      "run_receipt_sha256": "a41e023ce1c9101b35ea4871dd412e6dcdcafb8a18bc00e15c209653f2ce7fde",
+      "master_STL_sha256_from_verified_run": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "voxel_size_scan_units": 0.3,
+      "triangles": 3391888,
+      "length_unit": "scan_unit_under_unverified_1_mm_hypothesis",
+      "numpy_version": "2.3.5",
+      "trimesh_version": "5.1.0",
+      "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+      "boundary_shell_connectivity": "faces_connected_by_shared_edges",
+      "boundary_shell_count": 2,
+      "boundary_shells": [
+        {
+          "boundary_shell_index": 0,
+          "triangles": 3391876,
+          "signed_volume_scan_units_cubed": 1427572.712760944,
+          "orientation_sign": "positive"
+        },
+        {
+          "boundary_shell_index": 1,
+          "triangles": 12,
+          "signed_volume_scan_units_cubed": -0.0017424731939330584,
+          "orientation_sign": "negative"
+        }
+      ],
+      "positive_oriented_shells": 1,
+      "negative_oriented_shells": 1,
+      "zero_signed_volume_shells": 0,
+      "trimesh_watertight": true,
+      "trimesh_winding_consistent": true,
+      "whole_mesh_signed_volume_scan_units_cubed": 1427572.7110184703,
+      "oriented_shell_volume_sum_scan_units_cubed": 1427572.7110184708,
+      "shell_volume_sum_relative_difference": 3.2619094194895577e-16,
+      "numerical_volume_comparison_relative_tolerance": 1e-08,
+      "shell_triangle_counts_match_whole_mesh": true,
+      "oriented_volume_crosscheck_passed": true,
+      "boundary_shell_counts_are_not_connected_fluid_volume_counts": true,
+      "negative_shell_is_not_proof_of_material_porosity": true,
+      "shell_nesting_or_self_intersections_tested": false,
+      "master_geometry_reaudited": false,
+      "repair_or_small_shell_removal_performed": false,
+      "absolute_scale_certified": false,
+      "thermal_or_structural_simulation": false,
+      "manufacturing_authorized": false,
+      "engine_operation_authorized": false,
+      "source_files_unchanged_after_read_only_audit": true,
+      "private_report_sha256": "9ba333189e38c8d20417613154ba7053867ab57066c8fe2d874bdd1b1c464842"
+    },
+    {
+      "schema": "m64-private-roundtrip-oriented-shell-audit/v1",
+      "source_sha256": {
+        "audit_roundtrip_shells.py": "be3f776d25711c85fd0f82f4ac0bc2009377d3d518649c7b6bd2c15f9788360e",
+        "audit_cooling_domains.py": "38d9eb05e8e59388f6e519eb21e8d6a562dcd31e32113e9b88739803bd0400a9",
+        "compare_meshes.py": "f2d21b5996c9e7a435d2e067e364720fd750935d9e9d748cc22e0c4b9c65b694",
+        "export_master.py": "34bb2dcd591e92b1ae6f0e8a75f2f858448319b4db4dada6eb364f3c0a1242be"
+      },
+      "candidate_filename": "head-roundtrip.stl",
+      "candidate_STL_sha256": "375556af4ba5a27e97de042e1595bb044a26c145151b5e08af3886d1de16312c",
+      "run_receipt_sha256": "b66f2a3d2e7fdbc375515cd7438fe73014f9570fa88fa14ed82dbea768a4e754",
+      "master_STL_sha256_from_verified_run": "e006e1484da1352538fdaf7c23ed66f53ebcee7346d8ce94608b6c4f52a29ce1",
+      "voxel_size_scan_units": 0.15,
+      "triangles": 13672392,
+      "length_unit": "scan_unit_under_unverified_1_mm_hypothesis",
+      "numpy_version": "2.3.5",
+      "trimesh_version": "5.1.0",
+      "coordinate_welding": "identical_float_values_only_no_tolerance_repair",
+      "boundary_shell_connectivity": "faces_connected_by_shared_edges",
+      "boundary_shell_count": 4,
+      "boundary_shells": [
+        {
+          "boundary_shell_index": 0,
+          "triangles": 13672356,
+          "signed_volume_scan_units_cubed": 1427243.2160621246,
+          "orientation_sign": "positive"
+        },
+        {
+          "boundary_shell_index": 1,
+          "triangles": 12,
+          "signed_volume_scan_units_cubed": -0.00022794436597139978,
+          "orientation_sign": "negative"
+        },
+        {
+          "boundary_shell_index": 2,
+          "triangles": 12,
+          "signed_volume_scan_units_cubed": -0.0002482872285786142,
+          "orientation_sign": "negative"
+        },
+        {
+          "boundary_shell_index": 3,
+          "triangles": 12,
+          "signed_volume_scan_units_cubed": -0.00024859115655573305,
+          "orientation_sign": "negative"
+        }
+      ],
+      "positive_oriented_shells": 1,
+      "negative_oriented_shells": 3,
+      "zero_signed_volume_shells": 0,
+      "trimesh_watertight": true,
+      "trimesh_winding_consistent": true,
+      "whole_mesh_signed_volume_scan_units_cubed": 1427243.2153373007,
+      "oriented_shell_volume_sum_scan_units_cubed": 1427243.2153373018,
+      "shell_volume_sum_relative_difference": 8.156656172958044e-16,
+      "numerical_volume_comparison_relative_tolerance": 1e-08,
+      "shell_triangle_counts_match_whole_mesh": true,
+      "oriented_volume_crosscheck_passed": true,
+      "boundary_shell_counts_are_not_connected_fluid_volume_counts": true,
+      "negative_shell_is_not_proof_of_material_porosity": true,
+      "shell_nesting_or_self_intersections_tested": false,
+      "master_geometry_reaudited": false,
+      "repair_or_small_shell_removal_performed": false,
+      "absolute_scale_certified": false,
+      "thermal_or_structural_simulation": false,
+      "manufacturing_authorized": false,
+      "engine_operation_authorized": false,
+      "source_files_unchanged_after_read_only_audit": true,
+      "private_report_sha256": "95a04663291e7defa427161d96be7fb6a475ff4ca635d6bb00f9184de5b444c5"
+    }
+  ],
+  "micro_shell_0p3_vs_supplied_STEP": {
+    "schema": "m64-private-shell-STEP-boolean-audit/v1",
+    "OCP_version": "7.9.3.1",
+    "audit_source_sha256": "2feb3203df1cb5f88283f4f5943a4cfd0aaa1767ed3ba358f64772c6f0ec28a1",
+    "master_STEP_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "master_export_report_sha256": "60804e33d35176bb35b83a1367a5d8a83210f4282eec7184c155632049638ce0",
+    "candidate_STL_sha256": "3c06acb8810278c07de17e1e8bc712c70e3d3d1258848e1dc54db84e3fd5b073",
+    "shell_location_sha256": "e5692f35929d12af0298aff5c16585586fddc76d0178b32a5513646b81a57327",
+    "shell_triangles_sha256": "2f6aa6b2ff1327c0989f6644cf94f7cf6fb08e68da8fdcea7104382bff8d3d71",
+    "boundary_shell_index": 1,
+    "triangles": 12,
+    "original_shell_signed_volume": -0.0017424731939330584,
+    "diagnostic_operand_oriented_outward_only": true,
+    "diagnostic_operand_volume_relative_difference": 1.767105617796451e-14,
+    "OCCT_sewing_tolerance_scan_units": 1e-07,
+    "boolean_fuzzy_value": 0.0,
+    "master_exact_BRep_check_valid": true,
+    "diagnostic_operand_exact_BRep_check_valid": true,
+    "boolean_partition": {
+      "region_minus_master": {
+        "is_done": true,
+        "exact_BRep_check_valid": true,
+        "topology_counts": {
+          "solids": 0,
+          "shells": 0,
+          "faces": 0,
+          "edges": 0,
+          "vertices": 0
+        },
+        "signed_volume": 0.0
+      },
+      "region_intersect_master": {
+        "is_done": true,
+        "exact_BRep_check_valid": true,
+        "topology_counts": {
+          "solids": 1,
+          "shells": 1,
+          "faces": 12,
+          "edges": 18,
+          "vertices": 8
+        },
+        "signed_volume": 0.0017424731939330892
+      },
+      "diagnostic_region_volume": 0.0017424731939330892,
+      "partition_relative_volume_error": 0.0,
+      "partition_volume_crosscheck_passed": true,
+      "volume_crosscheck_tolerance": 1e-08,
+      "region_minus_master_topologically_empty": true,
+      "full_region_inside_master_supported_under_OCCT_tolerances": true,
+      "geometrically_exact_or_physical_containment_certified": false
+    },
+    "point_sampling_used_as_containment_proof": false,
+    "source_geometry_modified": false,
+    "physical_porosity_identified": false,
+    "manufacturing_authorized": false,
+    "cavity_removal_authorized_by_this_diagnostic": false,
+    "source_files_unchanged": true,
+    "private_report_sha256": "ca806c9e0896dde36340076182a9b4aa4cb8db014335891698ed5352cce4d617",
+    "interpretation": "Negative shell encloses material present in supplied CAD under stated OCCT tolerances; not physical porosity. No removal performed."
+  },
+  "coarse_void_connectivity_receipt": "picogk-connectivity-20260907.json",
+  "actual_preview": {
+    "private_image_sha256": "b60c661f3f941f64979a905885c85ee875e710f01ee4cabbcbdfee8a6bb2fd67",
+    "private_receipt_sha256": "9041c5149d5c3ed9633c6a565192f5ef27eaffc15f7d893f5d162557f39086b0",
+    "source_triangle_counts": [
+      293308,
+      3391888
+    ],
+    "all_triangles_rendered": true,
+    "geometry_decimated_or_smoothed": false,
+    "real_seat_guide_axis_section": true,
+    "thermal_field": false,
+    "public_image_included": false
+  },
+  "rental": {
+    "instance_id": 50193671,
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+    "effective_cpu_threads_advertised": 88,
+    "ram_mb_advertised": 257773,
+    "ram_GiB_seen_by_OS": 251,
+    "gpu": "RTX 3060 12 GB",
+    "disk_gb": 100,
+    "gpu_acceleration_used_for_geometry_audits": false,
+    "price_usd_per_hour_observed": 0.2814814814814815,
+    "transfer_usd_per_GB_each_direction": 0.005208333333333333,
+    "budget_ceiling_usd": 4,
+    "deadline_allocation_hours": 3,
+    "job_manifest_sha256": "226f2498c52d33997cd712575db025e668140f6d3437f04718b976dce6799503",
+    "wrapper_sha256": "a88f40dda53d76f4318654c572f4e2ba03158f6ac455ef11c6d76d0cfb2577df",
+    "approved_OpenBao_wrapper_used": true,
+    "SSH_key_pair_cryptographically_verified": true,
+    "expected_instance_key_association_verified": true,
+    "direct_SSH_verified": true,
+    "native_and_python_image_smoke_verified": true,
+    "external_deadline_guard_armed_before_launch": true,
+    "audit_timeout_seconds": 7200,
+    "audit_address_space_cap_bytes": 214748364800,
+    "audit_elapsed_seconds": 1682.17,
+    "audit_peak_resident_bytes": 13865525248,
+    "audit_exit_code": 0,
+    "shell_diagnostics_exit_code": 0,
+    "preview_exit_code": 0,
+    "separate_code_uploaded_software_image_unchanged": true,
+    "collection_proof_sha256": "2d844d23b6a7498aa59a2c7f641169388361022dc1a511b5abc7077b29bd4267",
+    "all_report_and_preview_hashes_verified_before_deletion": true,
+    "destroyed_before_deadline_after_collection": true,
+    "approved_reconcile_verified_absent": true,
+    "independent_inventory_count_after_destruction": 0,
+    "guard_exit_status": 0,
+    "guard_reason": "already_destroyed",
+    "guard_independently_verified_absent": true,
+    "cleanup_observed_utc": "2026-09-07T20:03:21Z",
+    "credit_before_usd": 44.11424434105015,
+    "credit_after_usd": 43.93609346085019,
+    "observed_credit_decrease_usd": 0.17815088019996494,
+    "automatic_recharge_requested": false,
+    "final_invoice_verified": false,
+    "cost_limit": "Snapshot delta only; delayed storage, compute or transfer billing may remain."
+  },
+  "software_checks": {
+    "make_check_exit_code": 0,
+    "main_unittest_cases_reported": 2076,
+    "main_unittest_cases_skipped": 61,
+    "make_check_includes_additional_post_unittest_checks": true,
+    "private_make_check_log_sha256": "c4c36a3c3c973c88cd2c8d467805f41b60c670c2eaf36fff3487ee42020b9dcd",
+    "optional_general_Mac_SciPy_native_import_unavailable": true,
+    "SciPy_reference_test_passed_separately_in_qualified_QA_runtime": true,
+    "reference_QA_runtime": {"python": "3.14.7", "numpy": "2.5.3", "scipy": "1.18.1", "trimesh": "5.1.0"},
+    "mesh_and_checkpoint_tests_native_linux_passed": 16,
+    "shell_tests_native_linux_passed": 5,
+    "checkpoint_failure_resume_corruption_and_rng_fallback_tested": true,
+    "sampled_contains_fallback_locally_seeded": true,
+    "shell_vs_STEP_tests_with_OCP_passed": 2,
+    "coarse_connectivity_tests_passed": 12,
+    "independent_SciPy_connectivity_reference_random_cases": 80,
+    "700PS_balance_tests_passed": 14,
+    "tests_are_not_engine_or_manufacturing_qualification": true
+  },
+  "decision": {
+    "0p6_raw_surface_rejected": true,
+    "0p6_failure": "Four exactly degenerate triangles, three nonmanifold edges; normal-chord screen refused.",
+    "0p3_and_0p15_closed_oriented_surface_checks_passed": true,
+    "topology_equal_to_master": false,
+    "all_resolutions_ready_for_CFD_or_manufacturing": false,
+    "microscopic_negative_shells_removed": false,
+    "surface_distance_measured_to_exact_STEP": false,
+    "minimum_wall_thickness_certified": false,
+    "physical_scale_or_M64_interfaces_certified": false,
+    "new_engine_thermal_structural_or_CFD_simulation_in_this_geometry_batch": false,
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false
+  }
+}
