@@ -1,0 +1,520 @@
+{
+ "status": "catalogue_screening_not_qualification",
+ "criteria": {
+  "margin_rpm": 8000.0,
+  "required_margin": 1.25,
+  "bind_reserve_mm": 1.0,
+  "sdof_rpm": 7500.0,
+  "max_separation_mm": 0.05,
+  "stress_limit_MPa": null,
+  "stress_limit_source": "aucune : aucun fournisseur ne publie le diamètre de fil, la contrainte n'est calculée pour aucun candidat"
+ },
+ "housing_parameters": {
+  "installed_height_mm": {
+   "value": null,
+   "unit": "mm",
+   "status": "assumed",
+   "justification": "Logement non conçu : on monte chaque ressort à la hauteur de sa fiche (calage supposé possible)."
+  },
+  "max_outer_diameter_mm": {
+   "value": 30.0,
+   "unit": "mm",
+   "status": "assumed",
+   "justification": "Ø maxi de lamage supposé, entraxe soupapes 4V non conçu ; à remplacer par la CAO."
+  },
+  "spring_mass_kg": {
+   "value": 0.045,
+   "unit": "kg",
+   "status": "assumed",
+   "justification": "Masse ressort non publiée ; estimation ressort double acier."
+  }
+ },
+ "ranking": [
+  {
+   "id": "GSC5092",
+   "supplier": "GSC Power-Division",
+   "type": "conical",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 52.00997580919969,
+    "rate_source": "derived_seat_open",
+    "seat_N": 502.6490425244365,
+    "force_at_max_lift_N": 1100.7637643302328,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.3622945052921431,
+    "limit_rpm_margin_1_25": 8351.615333033349,
+    "separation_7500_mm": 0.04155394318499045,
+    "bind_reserve_mm": 4.32,
+    "bind_reserve_plus20pct_lift_mm": 2.02,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": true,
+     "stress": "not_computable",
+     "housing_od": "unknown_od",
+     "within_published_max_lift": true
+    },
+    "passes_hard": true,
+    "n_hard_pass": 3,
+    "passes_all_known": true
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 52.00997580919969,
+    "rate_source": "derived_seat_open",
+    "seat_N": 502.6490425244365,
+    "force_at_max_lift_N": 1001.9448102927535,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.5555266022295118,
+    "limit_rpm_margin_1_25": 8924.290561952306,
+    "separation_7500_mm": 0.035032370084241655,
+    "bind_reserve_mm": 6.219999999999999,
+    "bind_reserve_plus20pct_lift_mm": 4.299999999999999,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": true,
+     "stress": "not_computable",
+     "housing_od": "unknown_od",
+     "within_published_max_lift": true
+    },
+    "passes_hard": true,
+    "n_hard_pass": 3,
+    "passes_all_known": true
+   },
+   "rank": 1
+  },
+  {
+   "id": "PAC-1276X",
+   "supplier": "PAC Racing Springs",
+   "type": "beehive",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 71.64279623719489,
+    "rate_source": "derived_seat_open",
+    "seat_N": 667.233242289075,
+    "force_at_max_lift_N": 1491.1253990168161,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.8427541755186772,
+    "limit_rpm_margin_1_25": 9713.342050322139,
+    "separation_7500_mm": 0.014154307666879144,
+    "bind_reserve_mm": 7.041999999999998,
+    "bind_reserve_plus20pct_lift_mm": 4.741999999999997,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": true,
+     "stress": "not_computable",
+     "housing_od": false,
+     "within_published_max_lift": true
+    },
+    "passes_hard": true,
+    "n_hard_pass": 3,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 71.64279623719489,
+    "rate_source": "derived_seat_open",
+    "seat_N": 667.233242289075,
+    "force_at_max_lift_N": 1355.004086166146,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 2.1007353524558936,
+    "limit_rpm_margin_1_25": 10371.00043610749,
+    "separation_7500_mm": 0.009241376449590171,
+    "bind_reserve_mm": 8.941999999999997,
+    "bind_reserve_plus20pct_lift_mm": 7.021999999999997,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": true,
+     "stress": "not_computable",
+     "housing_od": false,
+     "within_published_max_lift": true
+    },
+    "passes_hard": true,
+    "n_hard_pass": 3,
+    "passes_all_known": false
+   },
+   "rank": 2
+  },
+  {
+   "id": "S10122",
+   "supplier": "Ferrea",
+   "type": "dual",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 60.298115229086775,
+    "rate_source": "derived_seat_open",
+    "seat_N": 435.92571829552895,
+    "force_at_max_lift_N": 1129.3540434300269,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.381791211134307,
+    "limit_rpm_margin_1_25": 8411.165793757516,
+    "separation_7500_mm": 0.05877043494829058,
+    "bind_reserve_mm": 2.0,
+    "bind_reserve_plus20pct_lift_mm": -0.30000000000000027,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": false
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 60.298115229086775,
+    "rate_source": "derived_seat_open",
+    "seat_N": 435.92571829552895,
+    "force_at_max_lift_N": 1014.787624494762,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.5579574195205583,
+    "limit_rpm_margin_1_25": 8931.260822496037,
+    "separation_7500_mm": 0.051133505296240805,
+    "bind_reserve_mm": 3.8999999999999986,
+    "bind_reserve_plus20pct_lift_mm": 1.9799999999999986,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "rank": 3
+  },
+  {
+   "id": "SPR-H1021D",
+   "supplier": "Supertech",
+   "type": "dual",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 61.53373234443691,
+    "rate_source": "derived_seat_open",
+    "seat_N": 422.58105344974746,
+    "force_at_max_lift_N": 1130.218975410772,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.3800262418895761,
+    "limit_rpm_margin_1_25": 8405.792263953845,
+    "separation_7500_mm": 0.06297191404876132,
+    "bind_reserve_mm": 6.2,
+    "bind_reserve_plus20pct_lift_mm": 3.9,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 61.53373234443691,
+    "rate_source": "derived_seat_open",
+    "seat_N": 422.58105344974746,
+    "force_at_max_lift_N": 1013.3048839563419,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.5525250171844929,
+    "limit_rpm_margin_1_25": 8915.676131390488,
+    "separation_7500_mm": 0.05503786890608659,
+    "bind_reserve_mm": 8.099999999999998,
+    "bind_reserve_plus20pct_lift_mm": 6.179999999999998,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "rank": 4
+  },
+  {
+   "id": "SPR-TS1015",
+   "supplier": "Supertech",
+   "type": "dual",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 53.82348154465205,
+    "rate_source": "published_unit_inferred",
+    "seat_N": 404.7881669887055,
+    "force_at_max_lift_N": 1023.758204752204,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.2545612002895674,
+    "limit_rpm_margin_1_25": 8014.582550253373,
+    "separation_7500_mm": 0.07014452891604438,
+    "bind_reserve_mm": 1.4000000000000021,
+    "bind_reserve_plus20pct_lift_mm": -0.8999999999999981,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 53.82348154465205,
+    "rate_source": "published_unit_inferred",
+    "seat_N": 404.7881669887055,
+    "force_at_max_lift_N": 921.4935898173651,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.4169251324568057,
+    "limit_rpm_margin_1_25": 8517.427239594621,
+    "separation_7500_mm": 0.061540326783342744,
+    "bind_reserve_mm": 3.3000000000000007,
+    "bind_reserve_plus20pct_lift_mm": 1.3800000000000008,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "rank": 5
+  },
+  {
+   "id": "SPR-HM1007BE",
+   "supplier": "Supertech",
+   "type": "beehive",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 56.9372366753344,
+    "rate_source": "derived_seat_open",
+    "seat_N": 338.06484275979795,
+    "force_at_max_lift_N": 992.8430645261435,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.2053013168323237,
+    "limit_rpm_margin_1_25": 7855.66212497807,
+    "separation_7500_mm": 0.10249944858492745,
+    "bind_reserve_mm": 1.6999999999999993,
+    "bind_reserve_plus20pct_lift_mm": -0.600000000000001,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 56.9372366753344,
+    "rate_source": "derived_seat_open",
+    "seat_N": 338.06484275979795,
+    "force_at_max_lift_N": 884.6623148430081,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.3447099168215988,
+    "limit_rpm_margin_1_25": 8297.538655605398,
+    "separation_7500_mm": 0.08798870449023388,
+    "bind_reserve_mm": 3.599999999999998,
+    "bind_reserve_plus20pct_lift_mm": 1.679999999999998,
+    "checks": {
+     "margin_8000": true,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 2,
+    "passes_all_known": false
+   },
+   "rank": 6
+  },
+  {
+   "id": "SPR-2521-2",
+   "supplier": "Supertech",
+   "type": "dual",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 46.2615047987092,
+    "rate_source": "derived_seat_open",
+    "seat_N": 364.75417245136094,
+    "force_at_max_lift_N": 896.7614776365167,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.100995716383639,
+    "limit_rpm_margin_1_25": 7508.061046558047,
+    "separation_7500_mm": 0.08760309685422701,
+    "bind_reserve_mm": 5.0,
+    "bind_reserve_plus20pct_lift_mm": 2.6999999999999997,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 46.2615047987092,
+    "rate_source": "derived_seat_open",
+    "seat_N": 364.75417245136094,
+    "force_at_max_lift_N": 808.8646185189692,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.246042864122988,
+    "limit_rpm_margin_1_25": 7987.327127587612,
+    "separation_7500_mm": 0.07753200827926059,
+    "bind_reserve_mm": 6.899999999999999,
+    "bind_reserve_plus20pct_lift_mm": 4.979999999999999,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "rank": 7
+  },
+  {
+   "id": "KVS264",
+   "supplier": "Kelford Cams",
+   "type": "beehive",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 36.32714319129408,
+    "rate_source": "derived_seat_open",
+    "seat_N": 444.82216152604997,
+    "force_at_max_lift_N": 862.5843082259319,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.0771060536899713,
+    "limit_rpm_margin_1_25": 7426.158492041934,
+    "separation_7500_mm": 0.05842633534747932,
+    "bind_reserve_mm": 1.5,
+    "bind_reserve_plus20pct_lift_mm": -0.8000000000000003,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": "unknown_od",
+     "within_published_max_lift": "not_published"
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 36.32714319129408,
+    "rate_source": "derived_seat_open",
+    "seat_N": 444.82216152604997,
+    "force_at_max_lift_N": 793.5627361624731,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.2425611302010477,
+    "limit_rpm_margin_1_25": 7976.160095327428,
+    "separation_7500_mm": 0.050456797350721734,
+    "bind_reserve_mm": 3.3999999999999986,
+    "bind_reserve_plus20pct_lift_mm": 1.4799999999999986,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": "unknown_od",
+     "within_published_max_lift": "not_published"
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "rank": 8
+  },
+  {
+   "id": "BC1310",
+   "supplier": "Brian Crower",
+   "type": "dual",
+   "intake": {
+    "kind": "intake",
+    "rate_N_mm": 42.90607463538671,
+    "rate_source": "derived_seat_open",
+    "seat_N": 364.75417245136094,
+    "force_at_max_lift_N": 858.1740307583082,
+    "effective_mass_kg": 0.111,
+    "margin_8000": 1.0567608030334916,
+    "limit_rpm_margin_1_25": 7355.688486832131,
+    "separation_7500_mm": 0.11968743738203208,
+    "bind_reserve_mm": 3.6129999999999995,
+    "bind_reserve_plus20pct_lift_mm": 1.3129999999999993,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "exhaust": {
+    "kind": "exhaust",
+    "rate_N_mm": 42.90607463538671,
+    "rate_source": "derived_seat_open",
+    "seat_N": 364.75417245136094,
+    "force_at_max_lift_N": 776.6524889510733,
+    "effective_mass_kg": 0.103,
+    "margin_8000": 1.1999115735105539,
+    "limit_rpm_margin_1_25": 7838.078371880467,
+    "separation_7500_mm": 0.07793047848582592,
+    "bind_reserve_mm": 5.512999999999998,
+    "bind_reserve_plus20pct_lift_mm": 3.592999999999998,
+    "checks": {
+     "margin_8000": false,
+     "bind_reserve": true,
+     "separation_7500": false,
+     "stress": "not_computable",
+     "housing_od": true,
+     "within_published_max_lift": true
+    },
+    "passes_hard": false,
+    "n_hard_pass": 1,
+    "passes_all_known": false
+   },
+   "rank": 9
+  }
+ ]
+}
