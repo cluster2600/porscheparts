@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "artifact": "m64_g1_parametric_skeleton",
+  "master_geometry": false,
+  "manufacturing_authorized": false,
+  "brep_check_valid": true,
+  "volume_mm3": 1074651.814,
+  "section": "plan XZ à y = valve_y_offset, vue depuis +Y",
+  "unsourced_parameters": [
+    "cam_axis_height_z",
+    "cam_axis_x_offset",
+    "cam_bore_diameter",
+    "chamber_depth",
+    "cylinder_register_depth",
+    "cylinder_register_diameter",
+    "guide_bore_diameter",
+    "head_block_height_z",
+    "head_block_length_x",
+    "head_block_width_y",
+    "main_stud_circle_x",
+    "main_stud_circle_y",
+    "main_stud_hole_diameter",
+    "sealing_face_outer_diameter",
+    "seat_counterbore_depth",
+    "spark_plug_bore_diameter",
+    "valve_inclination_deg",
+    "valve_x_offset",
+    "valve_y_offset"
+  ],
+  "unsourced_count": 19,
+  "sourced_parameters": {
+    "chamber_reference_diameter": {
+      "value": 100.0,
+      "contract_path": "documented_reference_dimensions.cylinder_bore.nominal",
+      "source": "P3",
+      "source_locator": "Technical data"
+    },
+    "intake_valve_head_diameter": {
+      "value": 40.0,
+      "contract_path": "documented_reference_dimensions.swindon_intake_valve_diameter.nominal",
+      "source": "S2",
+      "source_locator": "PDF page 4"
+    },
+    "exhaust_valve_head_diameter": {
+      "value": 33.0,
+      "contract_path": "documented_reference_dimensions.swindon_exhaust_valve_diameter.nominal",
+      "source": "S2",
+      "source_locator": "PDF page 4"
+    }
+  },
+  "sha256": {
+    "step": "a58cff0d3547e85bbce68bd65c36c19b3426749f80f6aa47d8678f2bc1d529da",
+    "section_svg": "fa97ce7160f6b4ba91a36396660996986a7c6fb39a62ffa793e2d125ad0c1d1d",
+    "parameters": "f95132f1eae9bdf4e174bc14926f027b4461c0905d80eb31399c3f28488ccee8",
+    "contract": "0c9e72e078423ce7ad288b9b430f2ecce035689071fe626e4dc2d528a0ead939",
+    "generator": "b3a4c30630c1dc3b3847b62022d63037386ed32f25683add24375c33748d0267"
+  },
+  "limits": "Volumes fonctionnels schématiques ; toutes les positions de goujons, registre, axes et sièges sont des placeholders non sourcés."
+}

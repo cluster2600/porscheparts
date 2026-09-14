@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "status": "g1_functional_skeleton_not_master_geometry",
+  "contract": "twins/m64-cylinder-head/interface-contract.json",
+  "frame": "Origine au centre du cylindre sur le plan d'étanchéité ; Z vers le haut (côté arbres) ; X admission négative, échappement positive ; Y le long du banc.",
+  "parameters": {
+    "chamber_reference_diameter": {"value": 100.0, "unit": "mm", "provenance": "sourced", "contract_path": "documented_reference_dimensions.cylinder_bore.nominal", "note": "alésage historique P3 utilisé comme diamètre de la chambre ; rôle de référence, pas registre"},
+    "intake_valve_head_diameter": {"value": 40.0, "unit": "mm", "provenance": "sourced", "contract_path": "documented_reference_dimensions.swindon_intake_valve_diameter.nominal", "note": "benchmark Swindon, pas choix de conception"},
+    "exhaust_valve_head_diameter": {"value": 33.0, "unit": "mm", "provenance": "sourced", "contract_path": "documented_reference_dimensions.swindon_exhaust_valve_diameter.nominal", "note": "benchmark Swindon, pas choix de conception"},
+    "chamber_depth": {"value": 8.0, "unit": "mm", "provenance": "unsourced"},
+    "head_block_length_x": {"value": 150.0, "unit": "mm", "provenance": "unsourced"},
+    "head_block_width_y": {"value": 130.0, "unit": "mm", "provenance": "unsourced"},
+    "head_block_height_z": {"value": 70.0, "unit": "mm", "provenance": "unsourced"},
+    "cylinder_register_diameter": {"value": 118.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "cylinder_register_diameter"},
+    "cylinder_register_depth": {"value": 4.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "cylinder_register_depth"},
+    "sealing_face_outer_diameter": {"value": 128.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "sealing_surface_definition"},
+    "main_stud_circle_x": {"value": 58.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "main_stud_axes"},
+    "main_stud_circle_y": {"value": 52.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "main_stud_axes"},
+    "main_stud_hole_diameter": {"value": 11.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "main_stud_axes"},
+    "valve_x_offset": {"value": 20.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "seat_guide_and_spark_plug_interfaces"},
+    "valve_y_offset": {"value": 19.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "seat_guide_and_spark_plug_interfaces"},
+    "valve_inclination_deg": {"value": 14.0, "unit": "deg", "provenance": "unsourced", "contract_interface": "seat_guide_and_spark_plug_interfaces"},
+    "seat_counterbore_depth": {"value": 7.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "seat_guide_and_spark_plug_interfaces"},
+    "guide_bore_diameter": {"value": 12.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "seat_guide_and_spark_plug_interfaces"},
+    "spark_plug_bore_diameter": {"value": 14.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "seat_guide_and_spark_plug_interfaces", "note": "M14 × 1,25 est un fait partiel du contrat (993 Carrera, table non relue) ; perçage lisse de squelette, pas filetage sourcé"},
+    "cam_axis_height_z": {"value": 52.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "cam_carrier_axes"},
+    "cam_axis_x_offset": {"value": 30.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "cam_carrier_axes"},
+    "cam_bore_diameter": {"value": 28.0, "unit": "mm", "provenance": "unsourced", "contract_interface": "cam_carrier_axes"}
+  }
+}

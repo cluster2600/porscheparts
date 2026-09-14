@@ -37,6 +37,47 @@ def manufacturing_blockers(contract):
     return blockers
 
 
+INTERFACE_STATUSES = ('absent', 'partial', 'found')
+FACT_FIELDS = ('fact', 'value_text', 'source', 'source_locator', 'confidence',
+               'applies_to', 'interpretation')
+
+
+def validate_critical_interfaces(contract):
+    """Schéma v2 : aucune cote sans source/localisateur ; faits partiels jamais promus."""
+    if contract.get('schema_version', 1) < 2:
+        return
+    sources = contract.get('sources', {})
+    interfaces = contract.get('critical_interfaces', {})
+    for name in REQUIRED_INTERFACES:
+        if name not in interfaces:
+            raise ValueError(f'{name}: critical interface missing')
+        item = interfaces[name]
+        status = item.get('status')
+        if status not in INTERFACE_STATUSES:
+            raise ValueError(f'{name}: unknown status {status!r}')
+        has_value = item.get('nominal') is not None or item.get('tolerance') is not None
+        if has_value:
+            if item.get('source') not in sources:
+                raise ValueError(f'{name}: nominal or tolerance without registered source')
+            if not item.get('source_locator') or not item.get('confidence'):
+                raise ValueError(f'{name}: nominal without source_locator or confidence')
+        if status == 'found' and (item.get('nominal') is None or item.get('tolerance') is None):
+            raise ValueError(f'{name}: found requires nominal and tolerance')
+        if status != 'found' and item.get('nominal') is not None and status == 'absent':
+            raise ValueError(f'{name}: absent interface cannot carry a nominal')
+        facts = item.get('documented_partial_facts', [])
+        if status == 'partial' and not facts:
+            raise ValueError(f'{name}: partial status requires documented facts')
+        for fact in facts:
+            for field in FACT_FIELDS:
+                if not fact.get(field):
+                    raise ValueError(f'{name}: partial fact missing {field}')
+            if fact['source'] not in sources:
+                raise ValueError(f'{name}: partial fact has unregistered source')
+            if fact.get('promoted_to_nominal') is not False:
+                raise ValueError(f'{name}: partial fact cannot be promoted to nominal')
+
+
 def validate(contract):
     """Refuse une affirmation de fabrication ; autorise un dossier incomplet honnête."""
     blockers = manufacturing_blockers(contract)
@@ -44,6 +85,7 @@ def validate(contract):
         if blockers:
             raise ValueError('Manufacturing claim rejected: ' + '; '.join(blockers))
         raise ValueError('This documentary validator cannot grant manufacturing release')
+    validate_critical_interfaces(contract)
     references = contract.get('documented_reference_dimensions', {})
     if not references:
         raise ValueError('Documented references are missing')
