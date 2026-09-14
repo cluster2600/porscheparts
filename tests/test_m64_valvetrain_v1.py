@@ -14,7 +14,11 @@ import sys
 import unittest
 
 import numpy as np
-from scipy.integrate import cumulative_trapezoid
+
+
+def cumulative_trapezoid(y, x, initial=0):
+    """Integrale cumulee par trapezes, equivalente a scipy avec initial=0."""
+    return np.concatenate(([initial], np.cumsum(0.5 * (y[1:] + y[:-1]) * np.diff(x))))
 
 ROOT = Path(__file__).resolve().parents[1]
 MODULE = ROOT / "twins/m64-cylinder-head/source/valvetrain/valvetrain.py"

@@ -89,7 +89,7 @@ def default_parameters() -> dict:
     }
 
 
-MANUAL_G15 = "catalog/manual/993-workshop-manual-group15-cylinder-head.json"
+MANUAL_G15 = "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json"
 
 
 def stock_993_manual_parameters() -> dict:

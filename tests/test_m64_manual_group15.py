@@ -6,7 +6,7 @@ import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-REG = ROOT / "catalog/manual/993-workshop-manual-group15-cylinder-head.json"
+REG = ROOT / "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json"
 spec = importlib.util.spec_from_file_location("m64_vt_g15", ROOT / "twins/m64-cylinder-head/source/valvetrain/valvetrain.py")
 vt = importlib.util.module_from_spec(spec)
 sys.modules[spec.name] = vt
