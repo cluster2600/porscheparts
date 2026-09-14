@@ -49,6 +49,38 @@ class M64InterfaceContractTests(unittest.TestCase):
         self.assertEqual(leads['confidence'], 'ocr_unreviewed_at_record_level')
         self.assertIsNone(self.contract['critical_interfaces']['seat_guide_and_spark_plug_interfaces']['nominal'])
 
+    def test_g0_statuses_and_partial_facts_are_valid(self):
+        interfaces = self.contract['critical_interfaces']
+        self.assertEqual(interfaces['cylinder_register_diameter']['status'], 'absent')
+        self.assertEqual(interfaces['seat_guide_and_spark_plug_interfaces']['status'], 'partial')
+        for item in interfaces.values():
+            self.assertIsNone(item['nominal'])
+            self.assertNotEqual(item['status'], 'found')
+
+    def test_nominal_without_source_is_rejected(self):
+        item = self.contract['critical_interfaces']['main_stud_axes']
+        item['nominal'] = 50.0
+        with self.assertRaisesRegex(ValueError, 'without registered source'):
+            module.validate(self.contract)
+        item['source'] = 'P1'
+        with self.assertRaisesRegex(ValueError, 'source_locator or confidence'):
+            module.validate(self.contract)
+
+    def test_partial_fact_promotion_or_unregistered_source_is_rejected(self):
+        fact = self.contract['critical_interfaces']['sealing_surface_definition']['documented_partial_facts'][1]
+        fact['promoted_to_nominal'] = True
+        with self.assertRaisesRegex(ValueError, 'cannot be promoted'):
+            module.validate(self.contract)
+        fact['promoted_to_nominal'] = False
+        fact['source'] = 'invented'
+        with self.assertRaisesRegex(ValueError, 'unregistered source'):
+            module.validate(self.contract)
+
+    def test_found_requires_nominal_and_tolerance(self):
+        self.contract['critical_interfaces']['cam_carrier_axes']['status'] = 'found'
+        with self.assertRaisesRegex(ValueError, 'found requires'):
+            module.validate(self.contract)
+
 
 if __name__ == '__main__':
     unittest.main()
