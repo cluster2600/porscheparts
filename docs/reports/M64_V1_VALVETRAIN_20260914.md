@@ -108,7 +108,7 @@ le jerk. Son amplitude dépend des raideurs et de l'amortissement supposés.
 
 ## G0 — manuel d'atelier 993, groupe 15 (ajout du 2026-09-14)
 
-Registre : [993-workshop-manual-group15-cylinder-head.json](../../catalog/manual/993-workshop-manual-group15-cylinder-head.json),
+Registre : [993-workshop-manual-group15-cylinder-head.json](../../catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json),
 chaque valeur relue sur l'image de la page (`page_checked`). **Applicabilité : 993 Carrera
 2 soupapes ; références d'origine, pas des cotes du 4 soupapes visé.**
 
