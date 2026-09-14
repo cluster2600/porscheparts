@@ -35,6 +35,10 @@
     "T1": {
       "url": "https://www.design911.co.uk/uploads/pdfs/964_Cylinder_TSB.pdf",
       "title": "Porsche Cars North America bulletin 9404, groupe 1, 1570, 08.02.1994"
+    },
+    "WM993": {
+      "url": "https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM",
+      "title": "Porsche 911 (993) Workshop Manual WKD 483 121, local copy not redistributed; see catalog/manual/993-workshop-manual-group15-cylinder-head.json"
     }
   },
   "documented_reference_dimensions": {
@@ -83,6 +87,143 @@
         "Swindon M64 24V kit"
       ],
       "role": "benchmark_not_selected_design"
+    },
+    "stock_2v_valve_guide_bore_g": {
+      "nominal": 8.0,
+      "unit": "mm",
+      "tolerance": {
+        "lower": 0.0,
+        "upper": 0.015
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 153, 15 75 56, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_valve_guide_press_fit": {
+      "nominal": 0.06,
+      "unit": "mm",
+      "tolerance": {
+        "lower": 0.0,
+        "upper": 0.02
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 153, page_checked; range 0.06-0.08",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_valve_guide_od_standard": {
+      "nominal": 13.06,
+      "unit": "mm",
+      "tolerance": null,
+      "source": "WM993",
+      "source_locator": "PDF page 154, page_checked; head bore 13.000-13.018",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_valve_guide_protrusion": {
+      "nominal": 16.5,
+      "unit": "mm",
+      "tolerance": {
+        "lower": -0.3,
+        "upper": 0.0
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 154 drawing, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_intake_valve_head_diameter": {
+      "nominal": 49.0,
+      "unit": "mm",
+      "tolerance": {
+        "lower": -0.1,
+        "upper": 0.1
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 155, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_exhaust_valve_head_diameter": {
+      "nominal": 42.5,
+      "unit": "mm",
+      "tolerance": {
+        "lower": -0.1,
+        "upper": 0.1
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 155, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_intake_valve_stem_diameter": {
+      "nominal": 7.97,
+      "unit": "mm",
+      "tolerance": {
+        "lower": -0.012,
+        "upper": 0.0
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 155, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_intake_spring_installed_length": {
+      "nominal": 36.7,
+      "unit": "mm",
+      "tolerance": {
+        "lower": 0.0,
+        "upper": 0.3
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 157, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_exhaust_spring_installed_length": {
+      "nominal": 35.7,
+      "unit": "mm",
+      "tolerance": {
+        "lower": 0.0,
+        "upper": 0.3
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 157, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
+    },
+    "stock_2v_head_stud_protrusion_M8x22": {
+      "nominal": 23.0,
+      "unit": "mm",
+      "tolerance": {
+        "lower": -0.5,
+        "upper": 0.0
+      },
+      "source": "WM993",
+      "source_locator": "PDF page 148, page_checked",
+      "applies_to": [
+        "993 Carrera M64/05/06/07/08 (2 valves per cylinder)"
+      ],
+      "role": "stock_993_carrera_2v_reference_not_4v_design"
     }
   },
   "documented_component_designations": [
@@ -147,7 +288,9 @@
         "unit": "mm",
         "interpretation": "intake dimension A; adjacent variant value 37.2 + 0.3, not yet assigned"
       }
-    ]
+    ],
+    "page_checked_registry": "catalog/manual/993-workshop-manual-group15-cylinder-head.json",
+    "page_checked_note": "Pages 148, 153, 155, 157 reviewed on images 2026-09-14; values promoted only as stock 2V references, never as 4V design dimensions."
   },
   "critical_interfaces": {
     "main_stud_axes": {
@@ -373,5 +516,18 @@
     "approved_validation_plan": null,
     "material_process_qualification": null,
     "physical_correlation": null
+  },
+  "stock_2v_timing_1mm_lift_deg": {
+    "source": "WM993",
+    "source_locator": "PDF page 16, page_checked",
+    "applies_to": [
+      "911 Carrera (993)"
+    ],
+    "inlet_opens_BTDC": 1,
+    "inlet_closes_ABDC": 60,
+    "exhaust_opens_BBDC": 45,
+    "exhaust_closes_ATDC": 6,
+    "conflict": "PDF page 175 prints exhaust closes 2 deg ATDC for M64/05/06; unresolved",
+    "role": "stock_993_carrera_2v_reference_not_4v_design"
   }
 }

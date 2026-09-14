@@ -105,3 +105,24 @@ le jerk. Son amplitude dépend des raideurs et de l'amortissement supposés.
 - Cas limite harmonique et conservation de l'énergie du RK4.
 - Suivi de la cinématique à bas régime, décollement d'un ressort faible.
 - Contrôle de provenance et vérification des empreintes.
+
+## G0 — manuel d'atelier 993, groupe 15 (ajout du 2026-09-14)
+
+Registre : [993-workshop-manual-group15-cylinder-head.json](../../catalog/manual/993-workshop-manual-group15-cylinder-head.json),
+chaque valeur relue sur l'image de la page (`page_checked`). **Applicabilité : 993 Carrera
+2 soupapes ; références d'origine, pas des cotes du 4 soupapes visé.**
+
+| Donnée | Valeur | Page PDF |
+|---|---|---|
+| Calage à 1 mm de levée, jeu nul | AO 1° av. PMH, AF 60° ap. PMB, EO 45° av. PMB, EF 6° ap. PMH | 16 |
+| Tableau 15 05 M64/05/06 (imprimé) | 1° / 240° / 225° / **2°** — conflit EF 6° contre 2° non résolu | 175 |
+| Jeu | hydraulique ; course poussoir 0,2–1,85 (adm) / 0,6–2,25 mm (éch) | 16, 151 |
+| Soupapes adm / éch | Ø 49 ±0,1 / 42,5 ±0,1 ; tige 7,970 −0,012 (éch conique 7,950→7,970) ; L 110,1 / 109 ; 45° | 155 |
+| Guides | alésage 8,00–8,015 ; serrage 0,06–0,08 ; Ø ext. 13,060 (alésage culasse 13,000–13,018) ; dépassement 16,5 −0,3 ; basculement max 0,80 | 152–154 |
+| Ressorts | doubles ; longueur montée A 36,7 +0,3 / 35,7 +0,3 (RS : 37,2 / 35,8) | 148, 157 |
+| Culasse | écrous 20 Nm + 90° ±2° ; goujons M8×22 dépassement 23 −0,5 | 148, 150 |
+
+Absents du manuel : angle/largeur des sièges, longueur libre et efforts ressorts, levée
+max, jeux d'arbre à cames, planéité/rectification, centrage cylindre, toute donnée M64/60.
+Le jeu `stock_993_manual_parameters()` remplace seulement centres de levée (119,5° / 610,5°)
+et jeu (0, hydraulique) ; les défauts restent inchangés. Il n'est pas utilisé par `run_study.py`.
