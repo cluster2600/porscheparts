@@ -178,7 +178,7 @@ EXPOSE 22
 
 LABEL org.opencontainers.image.title="3dprinting993-recon" \
       org.opencontainers.image.description="Headless photogrammetry and mesh toolchain (COLMAP, GLOMAP, Blender, Open3D) for Porsche 993 part reconstruction" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

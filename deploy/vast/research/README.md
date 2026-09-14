@@ -2,7 +2,7 @@
 
 Ce profil exécute un LLM public pour analyser un corpus documentaire fourni.
 Il ne lance ni CAO, ni solveur, ni fabrication ; les réponses ne sont jamais
-publiées automatiquement. Voir le [dossier d'exécution](../../../docs/M64_RESEARCH_EXECUTION_20260912.md).
+publiées automatiquement. Voir le [dossier d'exécution](../../../docs/reports/M64_RESEARCH_EXECUTION_20260912.md).
 
 ## Profil borné
 
@@ -104,4 +104,4 @@ conservent une provision de téléchargement prudente. Le reçu spécialiste
 indique `model: null`, `api_bind: null` et `specialist_weights_verified: false`.
 Il faut donc vérifier séparément les révisions et l'inférence effectives de
 cadrille et CAD-Recode, puis exécuter leur code généré dans un bac à sable
-indépendant. Voir le [compte rendu spécialisé](../../../docs/M64_CAD_SPECIALISTS_20260912.md).
+indépendant. Voir le [compte rendu spécialisé](../../../docs/reports/M64_CAD_SPECIALISTS_20260912.md).

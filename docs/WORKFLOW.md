@@ -40,7 +40,7 @@ Sortie : aucune donnée d’origine inconnue dans le modèle publiable.
 
 Choisir le moyen minimal donnant la précision nécessaire : pied à coulisse,
 micromètre, jauge, gabarit, photogrammétrie ou scan structuré. Utiliser le modèle
-de `templates/measurement-plan.md` pour préparer la séance.
+de `catalog/templates/measurement-plan.md` pour préparer la séance.
 
 Enregistrer ensuite le résultat sous forme vérifiable, dans
 `catalog/measurements/`. Quand l’instrument a une sortie données, capturer
@@ -111,6 +111,13 @@ vie. Adapter les surfaces, rayons, épaisseurs, évacuations de poudre, supports
 surépaisseurs d’usinage.
 
 Sortie : modèle et demande de fabrication revus.
+
+Pour toute pièce proposant `LPBF` ou `DMLS`, appliquer obligatoirement le
+[pipeline impression métal et Omniverse](AM_VALIDATION_PIPELINE.md) : tranchage
+de toutes les couches, carte matière-machine-procédé, thermique locale,
+thermomécanique pleine construction, recoater, SimReady, assemblage fonctionnel
+et corrélation physique. Le registre est contrôlé par
+`scripts/validate_am_pipeline.py`.
 
 ## 8. Fabrication et post-traitement
 

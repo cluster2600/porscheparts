@@ -28,7 +28,7 @@ WORKDIR /workspace
 
 LABEL org.opencontainers.image.title="3dprinting993-cae-integrated-f33" \
       org.opencontainers.image.description="Native Gmsh, CalculiX and OpenFOAM runtime for the F33 scan-bounded virtual campaign" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="MIT"
 
 ENTRYPOINT ["python3"]

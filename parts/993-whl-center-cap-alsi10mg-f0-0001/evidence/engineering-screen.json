@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-WHL-CENTER-CAP-ALSI10MG-F0-0001",
+  "status": "f0_published_envelope_clean_sheet_math_screen_only",
+  "geometry_authority": {
+    "published": [
+      "commercial outer diameter 76 mm",
+      "commercial inner diameter 60 mm",
+      "commercial overall height 46 mm",
+      "commercial original material plastic"
+    ],
+    "catalogue_identity": [
+      "99336130307"
+    ],
+    "hypotheses": [
+      "blank 2 mm front face without Porsche marks",
+      "outer skirt and separate centering ring",
+      "four integral cantilever tabs and retention beads",
+      "tab position, interference and wheel interface"
+    ],
+    "not_claimed": "No OEM face, emblem, clip or wheel-fit geometry is claimed."
+  },
+  "synthetic_cases": {
+    "insertion_deflection_mm": 0.4,
+    "friction_coefficient": 0.3,
+    "vehicle_speed_kmh": 250.0,
+    "tire_rolling_radius_mm": 315.0,
+    "axial_acceleration_g": 20.0,
+    "thermal_delta_t_k": 120.0,
+    "authority": "regression inputs only; wheel bore, interference, friction, speed and road shock are not measured requirements"
+  },
+  "material_screen": {
+    "candidate": "AlSi10Mg LPBF, room-temperature comparison only",
+    "commercial_part_material": "plastic",
+    "density_g_cm3": 2.67,
+    "elastic_modulus_mpa": 70000.0,
+    "poisson_ratio": 0.33,
+    "comparison_yield_strength_mpa": 245.0,
+    "thermal_expansion_per_k": 2.1e-05,
+    "scope": "generic screening values; the change from plastic to metal is not an equivalence claim"
+  },
+  "results": {
+    "analytic_volume_mm3": 28197.519912952204,
+    "screening_mass_each_g": 75.28737816758239,
+    "screening_mass_set_of_four_g": 301.14951267032956,
+    "tab_section_area_mm2": 16.0,
+    "tab_second_moment_mm4": 5.333333333333333,
+    "insertion_force_each_tab_n": 16.59259259259259,
+    "insertion_root_stress_mpa": 93.33333333333334,
+    "ambient_yield_ratio": 2.6249999999999996,
+    "friction_retention_capacity_n": 19.911111111111108,
+    "synthetic_axial_inertial_demand_n": 14.766339342142437,
+    "friction_retention_ratio": 1.3484121317925921,
+    "wheel_angular_speed_rad_s": 220.4585537918871,
+    "tab_centrifugal_force_each_n": 1.8920068027210881,
+    "tab_centrifugal_root_stress_mpa": 5.321269132653061,
+    "tab_centrifugal_tip_deflection_mm": 0.017104079354956267,
+    "centering_ring_hoop_stress_mpa": 0.12270306463634835,
+    "aluminium_minus_steel_diametral_growth_mm": 0.06479999999999998
+  },
+  "equations": {
+    "volume": "sum of annular cylinders and rectangular tabs/beads minus explicit overlaps",
+    "mass": "m=rho*V",
+    "tab_section": "A=b*t; I=b*t^3/12",
+    "cantilever_insertion": "F=3*E*I*delta/L^3; sigma=F*L*c/I",
+    "friction_retention": "F_ret=n*mu*F_tab",
+    "axial_inertia": "F=m*a_g*g",
+    "wheel_speed": "omega=v/R_tire",
+    "tab_centrifugal_force": "F=m_tab*omega^2*r_tab",
+    "distributed_cantilever": "M_root=w*L^2/2; delta_tip=w*L^4/(8*E*I)",
+    "rotating_thin_ring": "sigma_theta=rho*omega^2*r_mean^2",
+    "differential_expansion": "delta_D=(alpha_Al-alpha_steel)*D*delta_T"
+  },
+  "dfam_screen": {
+    "part_consolidation": "face, skirt, centering ring and four undercut retention tabs in one BREP",
+    "open_internal_volume": true,
+    "trapped_powder_volume": false,
+    "minimum_nominal_wall_mm": 2.0,
+    "machining_allowance_defined": false,
+    "orientation_selected": false,
+    "process_comparison_required": [
+      "MJF or SLS polymer",
+      "injection molding",
+      "LPBF AlSi10Mg",
+      "CNC plus separate clips"
+    ]
+  },
+  "interpretation": {
+    "retention": "linear four-tab friction screen only; real insertion curve, relaxation, wear and wheel geometry are absent",
+    "rotation": "centrifugal screen covers tab and centering-ring expansion, not imbalance or axial ejection",
+    "thermal": "uniform differential expansion versus hypothetical steel only; wheel alloy and gradients are unknown",
+    "material_change": "metal may be heavier and less compliant than the declared plastic original; polymer AM may remain preferable",
+    "physicsnemo": "deferred until spin, insertion and thermal datasets exist",
+    "simready": "deferred until the wheel interface and retention law are measured"
+  },
+  "release_blockers": [
+    "No measured wheel bore, cap section, clips, insertion direction, datums or tolerances.",
+    "The published dimensions are commercial envelope values, not a production drawing.",
+    "PorscheFanatics records historical PET status, not present fitment or availability.",
+    "No measured insertion force, pull-off force, friction, relaxation, wear or corrosion stack.",
+    "No qualified LPBF machine, orientation, heat treatment, surface state or fatigue curve.",
+    "No wheel-speed, road-shock, imbalance, thermal-cycle or environmental requirement.",
+    "No trademarked crest or Porsche face geometry is included or licensed.",
+    "No dimensional inspection, spin bench, pull-off, impact, thermal-cycle or road test.",
+    "No professional review of retention and external-object risk."
+  ],
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "volume_mm3": 28197.519912948246,
+    "envelope_mm": [
+      76.0,
+      76.0,
+      46.0
+    ],
+    "maximum_volume_delta_mm3": 0.05,
+    "maximum_envelope_delta_mm": 0.01
+  }
+}

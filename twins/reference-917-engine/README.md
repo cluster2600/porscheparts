@@ -96,11 +96,11 @@ flowchart LR
 
 Les livrables versionnés sont :
 
-- [programme et niveaux de preuve](../../docs/917_REENGINEERING_PROGRAM.md) ;
-- [métrologie conditionnelle du scan](../../docs/917_SCAN_METROLOGY_F13.md) ;
-- [master paramétrique carter–cylindre–culasse](../../docs/917_PARAMETRIC_INTERFACE_F13.md) ;
-- [registre des douze cas solveurs classiques](../../docs/917_CLASSICAL_SOLVER_CASES_F13.md) ;
-- [stratégie de fabrication et qualification](../../docs/917_MANUFACTURING_VALIDATION_F13.md).
+- [programme et niveaux de preuve](../../archive/917/docs/917_REENGINEERING_PROGRAM.md) ;
+- [métrologie conditionnelle du scan](../../archive/917/docs/917_SCAN_METROLOGY_F13.md) ;
+- [master paramétrique carter–cylindre–culasse](../../archive/917/docs/917_PARAMETRIC_INTERFACE_F13.md) ;
+- [registre des douze cas solveurs classiques](../../archive/917/docs/917_CLASSICAL_SOLVER_CASES_F13.md) ;
+- [stratégie de fabrication et qualification](../../archive/917/docs/917_MANUFACTURING_VALIDATION_F13.md).
 
 Le STEP F13 contient 25 solides de repérage et reste sous `work/`, hors Git. Il
 sert uniquement à superposer et contrôler l'implantation des douze ouvertures.
@@ -117,7 +117,7 @@ les figures et les rapports SHA-256 sont consultables dans le
 [paquet de preuves F29](evidence/f29/README.md). La méthode, les équations de
 criblage, les choix provisoires de matière et de distribution ainsi que les
 limites sont détaillés dans la
-[documentation F29](../../docs/917_CLEAN_SHEET_HEAD_F29.md).
+[documentation F29](../../archive/917/docs/917_CLEAN_SHEET_HEAD_F29.md).
 
 ```bash
 make 917-clean-sheet-head-f29
@@ -140,7 +140,7 @@ F31 fait franchir à la comparaison 2V/4V un niveau supplémentaire : douze
 maillages Gmsh et trente-six résolutions CalculiX séparent pression, dilatation
 thermique et cas combiné. Les résultats, convergence et bilans sont publiés
 dans le [paquet de preuves F31](evidence/f31/README.md), avec la
-[méthode complète](../../docs/917_HEAD_REFERENCE_CAE_F31.md).
+[méthode complète](../../archive/917/docs/917_HEAD_REFERENCE_CAE_F31.md).
 
 La version 4V garde le gain d'aire effective de F29 et réduit légèrement le
 déplacement du deck dans ce modèle, mais augmente la contrainte P95 de 9,0 % en
@@ -478,7 +478,7 @@ ni inerties, ni contacts, ni fonctionnement, ni 1 600 HP.
 
 Le programme complet, sa boucle de corrélation et la frontière entre solveurs
 de référence, PhysicsNeMo et Omniverse sont décrits dans
-[`docs/917_REENGINEERING_PROGRAM.md`](../../docs/917_REENGINEERING_PROGRAM.md).
+[`archive/917/docs/917_REENGINEERING_PROGRAM.md`](../../archive/917/docs/917_REENGINEERING_PROGRAM.md).
 
 F11 recentre le travail sur les douze culasses individuelles du moteur 917. Le
 scan disponible couvre le carter et les cylindres vus de l'extérieur ; il ne
@@ -544,13 +544,13 @@ Les itérations F14 à F16 remplacent progressivement les hypothèses visuelles 
 des contrats reproductibles, sans promouvoir le moteur au-delà de l'intégrité
 de sa source :
 
-- [F14](../../docs/917_DIMENSIONAL_SKELETON_F14.md) limite la géométrie aux
+- [F14](../../archive/917/docs/917_DIMENSIONAL_SKELETON_F14.md) limite la géométrie aux
   guides dimensionnels sourcés et aux occurrences non placées ;
-- [F15 scan](../../docs/917_SCAN_SEGMENTATION_F15.md) exécute l'inventaire du
-  binaire canonique dans une [image CPU immuable](../../docs/917_OBJ_METROLOGY_CONTAINER_F15.md) ;
-- [F15 mécanique](../../docs/917_MECHANICAL_CYCLE_CLOSURE_F15.md) ferme seulement
+- [F15 scan](../../archive/917/docs/917_SCAN_SEGMENTATION_F15.md) exécute l'inventaire du
+  binaire canonique dans une [image CPU immuable](../../archive/917/docs/917_OBJ_METROLOGY_CONTAINER_F15.md) ;
+- [F15 mécanique](../../archive/917/docs/917_MECHANICAL_CYCLE_CLOSURE_F15.md) ferme seulement
   les identités algébriques puissance–travail–couple–BMEP ;
-- [F16-001](../../docs/917_KINEMATIC_INTERFACE_READINESS_F16.md) construit le
+- [F16-001](../../archive/917/docs/917_KINEMATIC_INTERFACE_READINESS_F16.md) construit le
   registre du carter, du vilebrequin, des huit paliers, des douze cylindres,
   bielles, axes et pistons, sans inventer leurs coordonnées.
 
@@ -578,7 +578,7 @@ extérieur incomplet en moteur prétendument fonctionnel ou imprimable.
 ## Réseau de stations F38
 
 Le premier bilan admission–moteur–échappement bi-variante est documenté dans
-[`docs/917_GAS_PATH_NETWORK_F38.md`](../../docs/917_GAS_PATH_NETWORK_F38.md).
+[`archive/917/docs/917_GAS_PATH_NETWORK_F38.md`](../../archive/917/docs/917_GAS_PATH_NETWORK_F38.md).
 F38 relit hors réseau l'identité de masse F33, calcule le devoir thermique requis
 à partir d'états prescrits et ferme l'identité d'arbre turbo par bissection. Il
 publie séparément la perte mécanique turbo sans lui inventer de destination
@@ -599,7 +599,7 @@ par digest avant de considérer l'image exploitable sur Vast.
 ## Réseau instationnaire 0D/1D F39
 
 La suite est cadrée dans
-[`docs/917_UNSTEADY_NETWORK_F39.md`](../../docs/917_UNSTEADY_NETWORK_F39.md).
+[`archive/917/docs/917_UNSTEADY_NETWORK_F39.md`](../../archive/917/docs/917_UNSTEADY_NETWORK_F39.md).
 F39 sépare les capacités 0D des cylindres, plénums et collecteurs des conduits
 1D compressibles. L'incrément F39 exécute avec Aeolus1D 0.3.3 un cas NA
 `motored` de 720° : 12 cylindres 0D, 27 conduits 1D, 3 jonctions, 48 soupapes
@@ -647,10 +647,10 @@ de conception jusqu'à corrélation indépendante sur banc instrumenté.
 F42 publie deux paquets de preuves complémentaires, sans confondre leurs
 portées :
 
-- le [DOE AdditiveFOAM exécuté sur deux hôtes indépendants](../../docs/917_F42_2_ADDITIVEFOAM_LIVE.md)
+- le [DOE AdditiveFOAM exécuté sur deux hôtes indépendants](../../archive/917/docs/917_F42_2_ADDITIVEFOAM_LIVE.md)
   compare 33 cas par hôte et conserve les métriques de reproductibilité du
   solveur ;
-- le [contrôle Omniverse/OVRTX](../../docs/917_F42_OMNIVERSE_VALIDATION.md)
+- le [contrôle Omniverse/OVRTX](../../archive/917/docs/917_F42_OMNIVERSE_VALIDATION.md)
   valide l'ouverture, la topologie fermée et le rendu natif de l'USD exact,
   avec [image et turntable publiés](evidence/f42-omniverse-validation/README.md).
 
@@ -701,7 +701,7 @@ géométrique du canal avec les deux alésages, les deux demi-coussinets et la
 bague, ainsi que sa sortie au-delà du rayon extérieur du demi-coussinet
 inférieur. Toutes ses cotes restent des hypothèses de conception non mesurées. La
 note complète est
-`docs/917_CONNECTING_ROD_CAD_F44.md`.
+`archive/917/docs/917_CONNECTING_ROD_CAD_F44.md`.
 
 Le montage côte à côte reste volontairement bloqué : deux bielles de 22 mm et
 le jeu visuel F35 occupent 45,32 mm sur un maneton déclaré à 26 mm. F44 ne

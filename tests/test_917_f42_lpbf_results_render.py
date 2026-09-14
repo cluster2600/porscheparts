@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+from _deps import require_modules
+require_modules("matplotlib")
+
 import importlib.util
 from pathlib import Path
 import tempfile

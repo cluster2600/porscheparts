@@ -49,14 +49,14 @@ jobs:
           sha256sum \
             .github/workflows/openfoam-engine-f35-image.yml \
             Makefile \
-            benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json \
-            benchmarks/openfoam-poiseuille-f25/generate_cases.py \
+            outils/benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json \
+            outils/benchmarks/openfoam-poiseuille-f25/generate_cases.py \
             containers/openfoam-engine-f35-smoke.sh \
             containers/openfoam-engine-f35.Dockerfile \
             containers/openfoam-engine-f35.Dockerfile.dockerignore \
             containers/openfoam-engine-f35.lock.json \
-            docs/917_INTEL_CPU_NODE_F35.md \
-            docs/917_OPENFOAM_ENGINE_F35.md \
+            archive/917/docs/917_INTEL_CPU_NODE_F35.md \
+            archive/917/docs/917_OPENFOAM_ENGINE_F35.md \
             tests/test_openfoam_engine_f35_image.py \
             tests/test_openfoam_engine_f35_lock.py \
             > openfoam-engine-f35-source-inputs.sha256

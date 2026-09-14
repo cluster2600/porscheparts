@@ -4,6 +4,28 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Support d'intercooler 993 Turbo/GT2 Ti-6Al-4V F0, 8 septembre 2026 :
+
+- création d'une fiche de jumeau F1 limitée à l'enveloppe fournisseur et aux
+  identités PorscheFanatics/PET ;
+- exécution de trois maillages quadratiques Gmsh/CalculiX sur le STEP exact,
+  avec convergence de régression obtenue sur le p95 et la flèche ;
+- conversion OpenUSD et validation minimale par le workflow NVIDIA verrouillé,
+  sans attribution physique, GPU ni PhysicsNeMo ;
+- choix LPBF ramené à un candidat conditionnel face aux voies CNC et tôlerie,
+  toutes les portes de fabrication et de montage restant fermées.
+
+Sous-ensemble de refroidissement moteur 993 F0, 8 septembre 2026 :
+
+- composition du carter et de la turbine F0 dans un jumeau d'interface dédié ;
+- calcul de jeu froid et libre à chaud, contrôle exact d'intersection BRep et
+  rejet explicite de la collision de 40 388,378651 mm³ ;
+- conversion des deux STEP et composition de l'assemblage en OpenUSD minimal
+  sous Linux AMD64, avec préflight NVIDIA et validations minimales réussies
+  sans GPU ;
+- propriétés SimReady, PhysicsNeMo, fabrication, rotation et démarrage moteur
+  maintenus fermés.
+
 Culasse 917-inspired F34 quatre soupapes refroidie par air, 2 septembre 2026 :
 
 - CAO paramétrique et STEP de procédé générés localement à partir des seules

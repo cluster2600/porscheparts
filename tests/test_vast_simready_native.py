@@ -209,7 +209,7 @@ class PhasesNativesSimReadyTests(unittest.TestCase):
         self.assertTrue((CONTROLLER / "check-instance.sh").stat().st_mode & stat.S_IXUSR)
 
     def test_runbook_lance_via_le_wrapper_ghcr(self):
-        runbook = (ROOT / "docs/917_VAST_SIMREADY_NATIVE.md").read_text(encoding="utf-8")
+        runbook = (ROOT / "archive/917/docs/917_VAST_SIMREADY_NATIVE.md").read_text(encoding="utf-8")
         self.assertIn('"${OPENBAO_GHCR_BIN}" launch-vast-simready-heavy "${OFFER_ID}"', runbook)
         self.assertNotIn('"${OPENBAO_VASTAI_BIN}" launch-simready-heavy', runbook)
         self.assertIn('--known-hosts "${CONTROL_ROOT}/known_hosts"', runbook)

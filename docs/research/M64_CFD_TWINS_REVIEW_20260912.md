@@ -7,7 +7,7 @@ ni une culasse M64 quatre soupapes de 700 hp, ni un solveur universel combinant
 combustion, distribution mobile et refroidissement air/huile. Les accélérations
 publiées restent propres à leurs problèmes et matériels.
 
-La [référence locale](../M64_700CH_ENGINE_RESEARCH.md) conserve **700 PS au
+La [référence locale](../reports/M64_700CH_ENGINE_RESEARCH.md) conserve **700 PS au
 vilebrequin = 514,849 kW**. Une sensibilité à **700 hp mécaniques = 521,990 kW**
 ajoute 1,387 %. Cette ambiguïté d'unité ne modifie pas le contrat existant.
 Régime, carburant, cylindrée réelle, durée à pleine charge et conditions de banc
@@ -76,7 +76,7 @@ ou critères d'acceptation pour obtenir un code de sortie nul.
 ## Plan d'exécution proposé
 
 1. **Contrat et géométrie.** Reprendre les interfaces et le
-   [checkpoint multiphysique](../M64_MULTIPHYSICS_EXECUTION.md), puis construire
+   [checkpoint multiphysique](../reports/M64_MULTIPHYSICS_EXECUTION.md), puis construire
    des domaines séparés gaz, solide, air et éventuellement huile. Fixer les
    normales, unités, contacts et surfaces d'échange. Le rejet de maillage
    documenté reste un blocage avant étiquetage CFD ; la recherche ne le lève pas.
@@ -95,7 +95,7 @@ ou critères d'acceptation pour obtenir un code de sortie nul.
    combine mouvement, changement de maillage et couplage non conforme ; elle
    n'établit pas que notre assemblage CHT complet est déjà disponible.
 4. **Chimie et charges.** Conserver le
-   [calcul Cantera existant](../M64_700PS_VARIABLE_THERMO_20260908.md) comme témoin
+   [calcul Cantera existant](../reports/M64_700PS_VARIABLE_THERMO_20260908.md) comme témoin
    thermodynamique à combustion prescrite. Choisir ensuite un substitut et un
    mécanisme documentés pour le carburant, tester délais d'auto-inflammation et
    vitesses de flamme, puis intégrer la fermeture turbulence/chimie compatible.
@@ -149,7 +149,7 @@ changement de nom d'image.
 
 Le LLM intervient sur préparation, diagnostic et rapports compacts ; scripts
 déterministes et contrôles physiques pilotent les calculs. Le
-[coupon plafonné à 3 300 K](../M64_QUADRATURE_EXECUTION_20260912.md) est exclu
+[coupon plafonné à 3 300 K](../reports/M64_QUADRATURE_EXECUTION_20260912.md) est exclu
 des vérités d'entraînement. Aucun calcul, entraînement ou achat de ressources
 n'est réalisé par cette revue.
 

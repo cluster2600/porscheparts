@@ -13,6 +13,7 @@ ARG TARGETARCH=amd64
 ARG CONTENT_AGENTS_COMMIT=36dbf3f274f8e256637230a05a085853f65cc175
 ARG SIMREADY_FOUNDATION_COMMIT=0ed0dfbc539c9de99289771bd6848effe3ef5779
 ARG USD_CONVERT_CAD_VERSION=0.2.0
+ARG USD_VALIDATION_NVIDIA_VERSION=1.21.0
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONDONTWRITEBYTECODE=1 \
@@ -149,7 +150,10 @@ RUN python3.12 -m venv /opt/physics-agent \
 RUN python3.12 -m venv /opt/simready-validation \
     && /opt/simready-validation/bin/pip install --no-cache-dir --upgrade "pip>=26.1" uv \
     && /opt/simready-validation/bin/uv pip install --python /opt/simready-validation/bin/python \
-       -r /opt/simready-foundation/requirements.txt "numpy>=1.24,<3" "pillow>=11,<13" \
+       -r /opt/simready-foundation/requirements.txt \
+       "numpy>=1.24,<3" "pillow>=11,<13" \
+       "usd-validation-nvidia==${USD_VALIDATION_NVIDIA_VERSION}" \
+    && test -x /opt/simready-validation/bin/nvidia_usd_validate \
     && test -x /opt/simready-validation/bin/simready-validate \
     && test ! -e /usr/local/bin/simready-validate \
     && test ! -L /usr/local/bin/simready-validate \
@@ -214,7 +218,7 @@ EXPOSE 8001 8100 8200 22
 
 LABEL org.opencontainers.image.title="3dprinting993-simready" \
       org.opencontainers.image.description="Single-container NVIDIA OVRTX, Material Agent, Physics Agent, USD conversion and SimReady validation runtime" \
-      org.opencontainers.image.source="https://github.com/cluster2600/3dprinting993" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
       org.opencontainers.image.licenses="Apache-2.0 AND LicenseRef-NVIDIA-Omniverse"
 
 ENTRYPOINT ["tini", "-g", "--", "/usr/local/bin/entrypoint.sh"]

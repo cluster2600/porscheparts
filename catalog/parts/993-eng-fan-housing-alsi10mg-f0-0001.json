@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+  "name": "Carter fixe de ventilateur moteur, concept AlSi10Mg F0",
+  "description": "Concept indépendant d'un carter annulaire 993 réunissant coque, bride frontale, support d'alternateur et six rayons. Les sources établissent la référence, une enveloppe commerciale, deux masses cohérentes et une déclaration revendeur aluminium, mais aucune géométrie d'interface ; le F0 ne reproduit pas la pièce Porsche.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_air_cooled_fitment_to_confirm"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": ["99310666703", "99310666701"]
+  },
+  "classification": {
+    "category": "engine_cooling_fan_housing",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage F0 de CAO ouverte, valeur DfAM, débit, perte de charge, flexion, modal, thermique et masse ; aucune fabrication, installation, rotation du ventilateur ou mise en route moteur autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/derived/fan_housing_alsi10mg_f0.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration, surface Porsche/PorscheFanatics/FVD/Centre Porsche Roissy/CarParts/EOS ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "PorscheFanatics - carter et flux du ventilateur moteur 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Établit le rôle du carter dans la distribution de l'air et le contexte 993, sans géométrie ni matière. Voir SRC-PORSCHEFANATICS-993-FAN-HOUSING-CANDIDATE."
+      },
+      {
+        "title": "FVD Brombacher - carter 993 106 667 03",
+        "url": "https://www.fvd.net/en-us/shop/fan-housing-993-99310666703~p248872",
+        "source_type": "community",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie 300 x 300 x 170 mm et 1,9 kg comme données produit ; aucune interface ni matière. Voir SRC-FVD-993-FAN-HOUSING-DIMENSIONS."
+      },
+      {
+        "title": "Centre Porsche Roissy - boîtier de soufflerie 993 106 667 03",
+        "url": "https://www.boutiqueporscheroissy.fr/produit/99310666703-boitier-de-la-soufflerie-porsche/",
+        "source_type": "manufacturer",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Relie 993 106 667 03/01 et publie 1,86 kg, sans protocole. Voir SRC-PORSCHE-ROISSY-993-FAN-HOUSING-MASS."
+      },
+      {
+        "title": "CarParts - carter 993 déclaré aluminium",
+        "url": "https://www.carparts.com/details/fan-shroud/genuine-porsche/gxl99310666703",
+        "source_type": "community",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare aluminium sans nuance, procédé ou certificat ; ne prouve pas AlSi10Mg. Voir SRC-CARPARTS-993-FAN-HOUSING-ALUMINIUM."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Route T6 et matériau candidat ; valeurs numériques maintenues comme comparaisons génériques. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "casting", "CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "alliage aluminium-silicium-magnésium candidat LPBF",
+      "grade": "EOS Aluminium AlSi10Mg T6 de comparaison ; remplacement commercial déclaré seulement aluminium non spécifié",
+      "standard": "DIN EN 1706 EN AC-43000 et ASTM F3318 pour le candidat ; spécification de refroidissement, fatigue et confinement propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation et supports de l'anneau de 300 x 300 x 170 mm à qualifier",
+      "détensionnement puis T6 avec trempe et distorsion suivies",
+      "HIP à décider sur fatigue, étanchéité air et résultats de tomographie",
+      "usinage de l'alésage ventilateur, portée alternateur, fixation, joint et datums",
+      "ébavurage, dépoudrage ouvert et finition du conduit sans particules",
+      "traitement anticorrosion compatible températures, fixations et compartiment moteur",
+      "contrôle final des jeux avant toute rotation"
+    ],
+    "supplier_requirements": [
+      "machine grand plateau, paramètres, orientation, supports, poudre et lot traçables",
+      "coupons orientés avec traction, fatigue, fluage et corrosion à chaud",
+      "témoins de distorsion annulaire et d'état de surface du conduit",
+      "CT intégral, FPI et métallographie avec critères de défauts zonés",
+      "métrologie alésage, concentricité, alternateur, fixations, joint et enveloppe",
+      "preuve d'écoulement, vibration, survitesse/confinement, cyclage thermique et endurance moteur"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier AlSi10Mg contre alternateur, roulements, boulonnerie, moteur et tôlerie ; traiter corrosion, fretting et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-fan-housing-candidate.json",
+      "catalog/sources/src-fvd-993-fan-housing-dimensions.json",
+      "catalog/sources/src-porsche-roissy-993-fan-housing-mass.json",
+      "catalog/sources/src-carparts-993-fan-housing-aluminium.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Les 300 x 300 x 170 mm sont une enveloppe commerciale, pas un dessin de définition.",
+      "Les masses 1,86/1,9 kg sont des déclarations commerciales sans protocole ni frontière de pesée.",
+      "La matière aluminium ne comporte ni nuance, ni procédé, ni certificat ; AlSi10Mg reste un candidat.",
+      "Le diamètre 252 mm, la coque 3 mm, la bride 4 mm, le moyeu, les six rayons et fixations sont synthétiques.",
+      "Les cas de débit, perte, charge, vitesse, nombre de pales et température sont des régressions sans autorité 993.",
+      "L'écran thermique contraint échoue ; fatigue, confinement et refroidissement restent non calculables.",
+      "Aucun CFD/CHT, FEA convergée, modal corrélé, survitesse, vibration ou endurance n'est démontré.",
+      "Le STEP prouve seulement un BREP relisible ; aucune fabrication, rotation ou mise en route n'est autorisée."
+    ]
+  }
+}

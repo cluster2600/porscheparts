@@ -80,7 +80,7 @@ est la voie licite à privilégier pour les dessins historiques.
 
 ## Réutilisation
 
-Les [conditions du Porsche Newsroom](https://newsroom.porsche.com/de/bilder-videos/porsche-newsroom-nutzungshinweise.html)
+Les [conditions du Porsche Newsroom](https://newsroom.porsche.com/de/bilder-media/videos/porsche-newsroom-nutzungshinweise.html)
 réservent les textes, images, vidéos et autres médias à des usages encadrés. Les
 autres éditeurs consultés n'affichent pas de licence ouverte pour leur contenu.
 Le dépôt conserve donc uniquement des fiches de provenance et des faits

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+  "classification": "executed_omniverse_lpbf_build_setup_screen_not_recoater_or_process_validation",
+  "input_simready_usd": {
+    "sha256": "8e1fe7e6f49b653f492b263f0daf3b0eec91a9e861cb6d3dd229fa816baba3fb"
+  },
+  "build_scene": {
+    "orientation": "roll_y_45",
+    "machine_envelope_mm": {
+      "diameter": 315.0,
+      "height": 400.0
+    },
+    "piston_world_bounds_mm": {
+      "min": [-59.75052301026327, -49.49999999999999, -2.7755575615628914e-14],
+      "max": [59.750523010263265, 49.49999999999999, 119.50104602052652],
+      "size": [119.50104602052654, 98.99999999999999, 119.50104602052654]
+    },
+    "candidate_grounded_on_plate": true,
+    "bare_part_inside_nominal_machine_envelope": true,
+    "usd_sha256": "42ebf0ec707ee826b9583efd2137d81e67e084cf06a52b5c8346d62c8129e7d6"
+  },
+  "validators": {
+    "minimum_openusd": "PASS",
+    "nvidia_asset_validator": "PASS",
+    "geometry_category": "PASS",
+    "physics_category": "PASS"
+  },
+  "render": {
+    "status": "PASS",
+    "flattened_for_render_only": true,
+    "visually_inspected": true,
+    "image": {
+      "path": "piston-lpbf-build-screen.png",
+      "sha256": "2666a9a93bed719dffd42ebbe19e6988e71d4ef703c352d3f2a7d8f838647fc8",
+      "width_px": 1024,
+      "height_px": 1024
+    }
+  },
+  "audit_report_sha256": {
+    "scene_authoring": "cac55b6ec7a0ba25df4e0deb6cc60fbb124a4e641ed044dd2991f1e193d4553e",
+    "minimum_openusd": "2d1b1c5bf43040a5e5cb02c93f71e6fa92c4473d31b32c436ba70e0b73a7ca53",
+    "nvidia_asset_validator": "93d02ec3bcf68c20344d6fdba28aeefaf28a5d0edd39f6237e48e6eca1a63de0",
+    "geometry_category": "a0cd6698e08531f0916a0ec46d91f89987e54af506d18c4746e5cb6f34dcbf0e",
+    "physics_category": "c4df02704f37ef0d9ad82ca6ca3da293ec36cd2fa8823adc15de02989414a46d",
+    "render": "6cc5539e498a0e53d03dba7a8eb628f1c7ca755bdcf6c2c26bf0ecc97b78bc71"
+  },
+  "gates": {
+    "candidate_orientation_engineering_reviewed": false,
+    "supplier_support_geometry_loaded": false,
+    "distortion_field_applied": false,
+    "recoater_collision_validated": false,
+    "omniverse_assembly_function_tested": false,
+    "metal_print_authorized": false
+  },
+  "limitations": [
+    "Le plateau, l'enveloppe machine et le recoater sont des guides de préparation, pas un projet fournisseur.",
+    "Aucun champ de distorsion thermomécanique CP1 calibré n'est appliqué.",
+    "Le mouvement du recoater est animé pour inspection visuelle mais aucune collision sur forme déformée n'est calculée.",
+    "Le rendu aplati est un artefact de visualisation ; la scène USD source composée est celle qui a été validée."
+  ]
+}

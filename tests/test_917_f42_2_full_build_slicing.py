@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+from _deps import require_modules
+require_modules("numpy")
+
 import csv
 import hashlib
 import importlib.util

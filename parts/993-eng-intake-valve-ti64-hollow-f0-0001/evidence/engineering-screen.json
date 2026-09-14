@@ -1,0 +1,182 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
+  "status": "f0_published_envelope_clean_sheet_hollow_ti64_screen_only",
+  "geometry_authority": {
+    "published": {
+      "porsche_part_number": "99310540902",
+      "head_diameter_mm": 49.0,
+      "stem_diameter_mm": 8.0,
+      "product_envelope_mm": [
+        50.0,
+        110.0,
+        50.0
+      ],
+      "product_mass_g": 120.0,
+      "porschefanatics_titanium_valve_context": "Swindon 24-valve kit candidate; grade, individual geometry and two-valve compatibility not published"
+    },
+    "interpretations": [
+      "the 50 x 110 x 50 mm listing is treated only as a product envelope",
+      "109 mm is a provisional F0 length constrained below the published 110 mm envelope",
+      "Ti-6Al-4V is a separate LPBF candidate; the listed 993 valve material is not published"
+    ],
+    "hypotheses": [
+      "3 mm flat head and 7 mm conical transition to a 12 mm neck",
+      "5 mm axial bore open at the stem tip for powder evacuation",
+      "16 mm radius head cavity with 2.2 mm minimum bottom ligament",
+      "four radial 1.2 mm internal webs intersecting the head cavity",
+      "no keeper groove, seat cone, margin, tip pad, coating or final bore closure"
+    ],
+    "not_claimed": "No Porsche, FVD, Swindon or production valve surface, seat, keeper, stem finish, hollow architecture, fitment, material or dynamic capability is claimed."
+  },
+  "synthetic_load_case": {
+    "engine_speed_rpm": 6720.0,
+    "valve_lift_mm": 12.0,
+    "event_duration_crank_deg": 240.0,
+    "spring_seat_force_n": 520.0,
+    "spring_rate_n_mm": 40.0,
+    "pressure_differential_mpa": 0.2,
+    "thermal_delta_t_k": 400.0,
+    "duty_hours": 100.0,
+    "authority": "regression inputs only; no target cam law, spring, pressure trace, valve temperature, guide condition or duty cycle was measured"
+  },
+  "material_screen": {
+    "candidate": "EOS Titanium Ti64 Grade 5 LPBF, study only",
+    "density_g_cm3": 4.42,
+    "elastic_modulus_mpa": 110000.0,
+    "poisson_ratio": 0.34,
+    "comparison_yield_strength_mpa": 980.0,
+    "comparison_ultimate_strength_mpa": 1080.0,
+    "thermal_conductivity_w_mk": 6.7,
+    "thermal_expansion_per_k": 9e-06,
+    "specific_heat_j_kg_k": 580.0,
+    "scope": "room-temperature comparison values from EOS/TIMET references; no hot polished-stem, seat-impact, wear, creep, oxidation or defect allowable"
+  },
+  "results": {
+    "cad_volume_mm3": 12545.86377584913,
+    "cad_mass_g": 55.45271788925315,
+    "solid_reference_volume_mm3": 16375.028108061197,
+    "solid_reference_mass_g": 72.3776242376305,
+    "f0_mass_reduction_ratio_vs_same_outer_solid": 0.2338416952290313,
+    "cad_minus_published_product_mass_g": -64.54728211074685,
+    "engine_angular_speed_rad_s": 703.7167544041137,
+    "cam_angular_speed_rad_s": 351.85837720205683,
+    "simple_harmonic_event_duration_s": 0.005952380952380952,
+    "simple_harmonic_peak_velocity_m_s": 6.333450789637023,
+    "simple_harmonic_peak_acceleration_m_s2": 6685.433150792306,
+    "load_mass_basis_g": 55.45271788925315,
+    "synthetic_peak_inertia_force_n": 370.7254384783466,
+    "maximum_spring_force_n": 1000.0,
+    "head_projected_area_mm2": 1885.7409903172734,
+    "differential_pressure_force_n": 377.1481980634547,
+    "conservative_axial_force_n": 1747.8736365418013,
+    "hollow_stem_area_mm2": 30.630528372500482,
+    "solid_stem_area_mm2": 50.26548245743669,
+    "nominal_hollow_stem_axial_stress_mpa": 57.063123929360934,
+    "ambient_yield_to_axial_stress_ratio": 17.173963367535798,
+    "hollow_stem_second_moment_mm4": 170.38231407203395,
+    "euler_buckling_load_n": 20496.02925779999,
+    "euler_to_axial_force_ratio": 11.726264890837157,
+    "head_plate_factor": 0.4175,
+    "head_plate_bending_stress_screen_mpa": 6.227995867768595,
+    "head_plate_rigidity_n_mm": 110364.84245439473,
+    "head_center_deflection_screen_mm": 0.0036900621243425983,
+    "ambient_yield_to_head_plate_stress_ratio": 157.35399008078028,
+    "stem_mass_screen_kg": 0.012861758863612951,
+    "head_equivalent_mass_screen_kg": 0.042590959025640196,
+    "effective_modal_mass_kg": 0.04562633411745285,
+    "cantilever_bending_stiffness_n_m": 65579.42982215623,
+    "first_bending_frequency_screen_hz": 190.80781644467797,
+    "valve_event_frequency_hz": 56.0,
+    "bending_frequency_to_event_frequency_ratio": 3.4072824365121064,
+    "peak_kinetic_energy_j": 1.1121763154350395,
+    "spring_energy_over_lift_j": 9.12,
+    "free_total_length_growth_mm": 0.3924,
+    "fully_constrained_elastic_thermal_stress_mpa": 396.0,
+    "ambient_yield_to_constrained_thermal_ratio": 2.474747474747475,
+    "one_dimensional_stem_conduction_w": 1.3681636006383548,
+    "valve_events_at_duty": 20160000.0,
+    "lumped_heat_capacity_j_k": 32.162576375766825
+  },
+  "equations": {
+    "mass": "m=rho*Vcad",
+    "simple_harmonic_event": "T=theta_cam/omega_cam; vmax=pi*L/T; amax=2*pi^2*L/T^2",
+    "spring_force": "Fmax=Fseat+k*L",
+    "pressure_force": "Fp=delta_p*pi*Dhead^2/4",
+    "axial_stress": "sigma=(Fspring+Finertia+Fp)/(pi*(Do^2-Di^2)/4)",
+    "annular_second_moment": "I=pi*(Do^4-Di^4)/64",
+    "euler_buckling": "Pcr=pi^2*E*I/L^2",
+    "clamped_head_plate": "sigma=((3+nu)/8)*p*a^2/t^2; w=p*a^4/(64*D)",
+    "first_bending_mode": "f1=sqrt((3*E*I/L^3)/(mhead+0.236*mstem))/(2*pi)",
+    "kinetic_energy": "Ek=m*vmax^2/2",
+    "spring_energy": "Es=Fseat*L+k*L^2/2",
+    "thermal_expansion": "delta_L=alpha*L*delta_T",
+    "fully_constrained_thermal": "sigma=E*alpha*delta_T",
+    "one_dimensional_conduction": "Q=k*A*delta_T/L",
+    "load_cycles": "n=N/120*t_seconds"
+  },
+  "dfam_screen": {
+    "additive_value": "hollow head and stem plus internal radial webs can be made as one load-shaped body before a separately qualified tip closure",
+    "open_powder_path_present": true,
+    "powder_path_minimum_diameter_mm": 5.0,
+    "internal_radial_web_count": 4,
+    "minimum_internal_web_mm": 1.2,
+    "trapped_powder_volume_claimed": false,
+    "tip_closure_defined": false,
+    "orientation_selected": false,
+    "critical_surfaces_require_machining": true,
+    "process_comparison_required": [
+      "forged and fully machined solid titanium valve",
+      "conventionally fabricated or friction-welded hollow valve",
+      "LPBF hollow Ti64 body with qualified depowdering and tip closure"
+    ]
+  },
+  "interpretation": {
+    "mass": "the reduction compares hollow and solid F0 bodies with the same invented exterior; it is not a reduction from an OEM valve",
+    "dynamics": "the simple-harmonic cam law and spring are regression inputs, not a measured M64 valvetrain model",
+    "mechanics": "annular stem, Euler and circular-plate equations omit seat contact, guide side load, keeper groove, impact, defects and multiaxial fatigue",
+    "thermal": "one-dimensional conduction and free/fully-constrained bounds omit gas convection, seat/guide contact, cyclic gradients, oxidation and coatings",
+    "fatigue": "the event count is reported without life because no qualified hot HCF/LCF, impact or wear card exists",
+    "physicsnemo": "deferred until correlated valvetrain multibody, thermal and structural cases define train, holdout and OOD sets",
+    "simready": "deferred until head, seat, guide, spring, retainer, keeper, cam/follower and piston-clearance interfaces are measured"
+  },
+  "release_blockers": [
+    "No measured 993 intake valve, scan, CAD surface, full length, seat, margin, neck, tip, keeper groove or mass distribution.",
+    "The published 50 x 110 x 50 mm is a commercial envelope and does not define functional length or datums.",
+    "No evidence that Porsche part 99310540902 is titanium, hollow, LPBF or compatible with the Swindon four-valve system.",
+    "No measured cam law, lift, lash, follower ratio, spring curve, retainer, keeper, guide or seat geometry.",
+    "No cylinder/manifold pressure trace, gas force history, overspeed, float, bounce, impact or piston-clearance case.",
+    "No measured head, stem, seat, guide, port or gas temperatures and no transient heat-transfer coefficients.",
+    "No nonlinear contact FEA, multibody valvetrain solution, modal correlation, mesh convergence or fatigue analysis.",
+    "No Ti64 hot strength, HCF/LCF, creep, oxidation, impact, fretting, galling, wear or coating card for the exact route.",
+    "No qualified stem-axis orientation, supports, distortion compensation, heat treatment, HIP decision or alpha-case control.",
+    "No demonstrated powder evacuation through the 5 mm by roughly 100 mm bore and no qualified internal cleanliness criterion.",
+    "No tip closure design, joining route, proof test, CT acceptance, leakage criterion or retained-fragment analysis.",
+    "No definition or machining capability for stem finish, straightness, seat runout, keeper groove, tip hardness and mass matching.",
+    "No full-valve CT, metallography, dimensional inspection, hot spin/impact, rig fatigue, motored-head or fired-engine validation.",
+    "No professional engine/valvetrain review, approved validation plan, dyno authorization or vehicle release."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "hollow_intake_valve_body_with_open_tip_bore"
+    ],
+    "volume_mm3": 12545.86377584913,
+    "solid_reference_volume_mm3": 16375.028108061197,
+    "envelope_mm": [
+      49.0,
+      49.0,
+      109.0
+    ],
+    "open_powder_port_count": 1,
+    "open_powder_port_diameter_mm": 5.0,
+    "internal_radial_web_count": 4,
+    "minimum_head_ligament_mm": 2.2,
+    "maximum_volume_delta_mm3": 0.05
+  }
+}

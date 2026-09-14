@@ -27,7 +27,7 @@ SMOKE = IMAGE_ROOT / "image_smoke.py"
 ONSTART = IMAGE_ROOT / "vast_onstart.sh"
 ENTRYPOINT = IMAGE_ROOT / "entrypoint.sh"
 WORKFLOW = ROOT / ".github/workflows/917-engine-wave-f40-vast-image.yml"
-DOC = ROOT / "docs/917_VAST_WAVE_IMAGE_F40.md"
+DOC = ROOT / "archive/917/docs/917_VAST_WAVE_IMAGE_F40.md"
 
 F39_BASE = (
     "ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:"

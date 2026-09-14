@@ -18,7 +18,18 @@ SOURCE_ID_PATTERN = re.compile(r"^SRC-[A-Z0-9][A-Z0-9._-]{2,63}$")
 SOURCE_TYPES = {"official", "manufacturer", "measured", "community", "marketplace", "dataset", "academic", "estimated"}
 CONTENT_TYPES = {"technical_data", "parts_catalogue", "manual", "drawing", "photograph", "scan", "cad", "mesh", "measurement", "simulation", "material_data"}
 ACCESS_STATUSES = {"available", "access_blocked", "robots_excluded", "paywalled", "purchase_required", "unavailable", "not_checked"}
-ACCESS_METHODS = {"direct_download", "browser_page_read", "manual_reference", "not_accessed"}
+# local_copy_read : document lu sur copie locale, sans URL publique (manuel d'atelier).
+# photograph_supplied_by_project_owner : preuve fournie par le proprietaire du projet.
+ACCESS_METHODS = {"direct_download", "browser_page_read", "manual_reference", "not_accessed",
+                  "local_copy_read", "photograph_supplied_by_project_owner"}
+# Methodes d'acces qui ne passent pas par le web : une URL publique n'existe pas.
+OFFLINE_METHODS = {"local_copy_read", "photograph_supplied_by_project_owner", "not_accessed"}
+# Generations couvertes. Le depot est ne 993 puis s'est etendu a la 964 et aux 911 anterieures.
+GENERATIONS = {"993", "964", "911", "911_pre_964", "generic_automotive", "other_porsche"}
+# declared_with_tolerance : le document publie une tolerance, ce qui est plus fort que declared.
+# not_applicable : la source ne porte aucune dimension (procede, cartographie de corrosion).
+DIMENSIONAL_ACCURACY = {"measured", "declared", "declared_with_tolerance", "visual_only",
+                        "unknown", "not_applicable"}
 REDISTRIBUTION = {"allowed", "attribution_required", "noncommercial_only", "prohibited", "unknown"}
 
 REQUIRED_KEYS = {"schema_version", "source_id", "title", "url", "publisher", "source_type", "content_types", "coverage", "access", "rights", "quality", "notes"}
@@ -69,7 +80,12 @@ def validate_source(record: Any) -> list[str]:
     for field in ("title", "publisher"):
         if not _text(record.get(field)):
             errors.append(f"{field}: expected a non-empty string")
-    if not _url(record.get("url")):
+    # Une source hors web n'a pas d'URL publique : url null y est licite, et seulement la.
+    offline = isinstance(record.get("access"), dict) and record["access"].get("method") in OFFLINE_METHODS
+    if record.get("url") is None:
+        if not offline:
+            errors.append(f"url: null is only allowed when access.method is one of {sorted(OFFLINE_METHODS)}")
+    elif not _url(record.get("url")):
         errors.append("url: expected an http(s) URL")
     if record.get("source_type") not in SOURCE_TYPES:
         errors.append(f"source_type: expected one of {sorted(SOURCE_TYPES)}")
@@ -83,8 +99,8 @@ def validate_source(record: Any) -> list[str]:
     if not isinstance(coverage, dict):
         errors.append("coverage: expected an object")
     else:
-        if coverage.get("generation") not in {"993", "generic_automotive", "other_porsche"}:
-            errors.append("coverage.generation: expected 993, generic_automotive, or other_porsche")
+        if coverage.get("generation") not in GENERATIONS:
+            errors.append(f"coverage.generation: expected one of {sorted(GENERATIONS)}")
         for field in ("variants", "parts"):
             if not _strings(coverage.get(field)):
                 errors.append(f"coverage.{field}: expected a string array")
@@ -126,8 +142,8 @@ def validate_source(record: Any) -> list[str]:
     else:
         if quality.get("evidence_level") not in {"A", "B", "C", "D", "E", "unrated"}:
             errors.append("quality.evidence_level: expected A-E or unrated")
-        if quality.get("dimensional_accuracy") not in {"measured", "declared", "visual_only", "unknown"}:
-            errors.append("quality.dimensional_accuracy: unknown value")
+        if quality.get("dimensional_accuracy") not in DIMENSIONAL_ACCURACY:
+            errors.append(f"quality.dimensional_accuracy: expected one of {sorted(DIMENSIONAL_ACCURACY)}")
         if not _strings(quality.get("verified_against")):
             errors.append("quality.verified_against: expected a string array")
 

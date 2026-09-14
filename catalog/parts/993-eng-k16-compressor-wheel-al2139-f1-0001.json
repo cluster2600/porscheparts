@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+  "name": "Roue de compresseur K16, itération Al2139 AM F1",
+  "description": "Itération du F0 AlSi10Mg rejeté, avec Al2139 AM et pales à épaisseur racine-pointe variable. Les diamètres 40,6/60,5 mm et le compte 6+6 restent les seuls faits géométriques publiés ; le F1 passe trois criblages algébriques ambiants sans devenir une roue fonctionnelle.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo",
+      "K16_right_research",
+      "M64_60_research"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "turbocharger_compressor_wheel_iteration",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Boucle F0-F1 de choix matière et épaisseur, CAO, thermodynamique, disque tournant, traction centrifuge, sur-vitesse, dilatation et balourd ; aucune fabrication, rotation, installation ou mise en route autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-k16-compressor-wheel-al2139-f1-0001/source/compressor_wheel_f1.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-k16-compressor-wheel-al2139-f1-0001/derived/compressor_wheel_al2139_f1.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface Porsche/BorgWarner/EOS ou géométrie commerciale redistribuée",
+    "sources": [
+      {
+        "title": "Invasion Auto Products - données internes déclarées du K16 993 Turbo droit",
+        "url": "https://www.invasionautoproducts.com/94pocark16tu.html",
+        "source_type": "community",
+        "license": "commercial-product-page-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare roue 53241232006, inducer 40,6 mm, exducer 60,5 mm et 6+6 pales. Aucun profil, tolérance, matière ou procédé. Voir SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA."
+      },
+      {
+        "title": "PorscheFanatics - contexte des turbocompresseurs et roues 993",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Situe le système biturbo et des roues d'upgrade, mais ne fournit aucune roue K16 additive ni géométrie. Voir SRC-PORSCHEFANATICS-993-K16-COMPRESSOR-WHEEL-CANDIDATE."
+      },
+      {
+        "title": "EOS Aluminium Al2139 AM pour EOS M 290, 60 micromètres",
+        "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-al2139-am-eos-m-290-60um",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Publie TRL 3, paroi minimale 0,4 mm, densité >=2,84 g/cm3, défauts moyens 0,2-0,3 % et propriétés T4 ambiantes 460/520 MPa verticales. Voir SRC-EOS-AL2139-AM-M290-60UM."
+      },
+      {
+        "title": "Roue K16 AlSi10Mg F0 du projet",
+        "url": "https://github.com/cluster2600/porscheparts/blob/main/docs/993_K16_COMPRESSOR_WHEEL_ALSI10MG_F0.md",
+        "source_type": "estimated",
+        "license": "MIT-project-artifact",
+        "accessed_on": "2026-09-08",
+        "notes": "Le F0 a produit 390,9 MPa au pied de pale à 1,2x et un rapport ambiant 0,627 face à 245 MPa ; il constitue le prédécesseur rejeté, pas une preuve physique."
+      },
+      {
+        "title": "TurboMaster - principes de lecture d'une carte compresseur",
+        "url": "https://www.turbomaster.info/eng/turbocharger-map.php",
+        "source_type": "community",
+        "license": "site-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Méthodologie seulement ; aucune carte K16 exploitable. Voir SRC-TURBOMAP-COMPRESSOR-MAP-METHODOLOGY."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "CNC",
+      "casting"
+    ],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "alliage aluminium haute résistance conçu pour fabrication additive",
+      "grade": "EOS Aluminium Al2139 AM, M290 60 µm, état traité thermiquement de comparaison",
+      "standard": "composition modifiée de l'Aluminium Association Teal Sheet Al2139 ; spécification rotor propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "orientation, supports de pales et stratégie recoater à qualifier",
+      "traitement thermique mono-étape EOS à contractualiser avec machine, paramètres et coupons",
+      "HIP à décider sur défauts, ténacité, HCF et résultats de sur-vitesse",
+      "usinage de l'alésage, du dos, du nez, des faces et références d'équilibrage",
+      "profilage final et finition aérodynamique contrôlée de chaque pale et congé",
+      "équilibrage individuel puis ensemble rotor, spin proof et sur-vitesse confinée"
+    ],
+    "supplier_requirements": [
+      "jeu matière Al2139AM_060_CoreM291_110, machine, logiciel, paramètres, poudre et lot traçables",
+      "coupons orientés avec traction, HCF, ténacité, propagation et défauts à la température rotor",
+      "témoins de distorsion et capabilité des pointes 0,8 mm après finition",
+      "CT intégral avant/après usinage avec critères de défauts par zone et métallographie",
+      "métrologie des profils, épaisseurs, congés, alésage, battements et masse polaire",
+      "équilibrage haute vitesse, spin proof, sur-vitesse, burst et confinement avant banc turbo"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Qualifier l'interface Al2139 avec arbre, écrou et backplate, ainsi que fretting, corrosion, condensats et dilatations différentielles."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-invasionautoproducts-993-k16-internal-data.json",
+      "catalog/sources/src-porschefanatics-993-k16-compressor-wheel-candidate.json",
+      "catalog/sources/src-eos-al2139-am-m290-60um.json",
+      "catalog/sources/src-turbomap-compressor-map-methodology.json",
+      "parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Les diamètres 40,6/60,5 mm, le compte 6+6 et les références restent les seuls faits géométriques publiés.",
+      "Les épaisseurs 3,0->0,8 et 2,4->0,8 mm sont synthétiques ; la CAO les approxime par quatre tronçons radiaux.",
+      "La masse CAO 38,49 g dépend entièrement du F1 et de la densité EOS, sans comparaison à une roue K16 réelle.",
+      "Le ratio racine ambiant 1,986 est une amélioration algébrique face au F0 0,627, pas une marge de rotor certifiée.",
+      "Le critère 1,5, Mach 0,9, sur-vitesse 1,2x et toutes les conditions aérothermiques restent des entrées de régression.",
+      "La valeur 460 MPa concerne des éprouvettes T4 ambiantes d'un procédé TRL 3, pas la HCF ou l'éclatement à chaud.",
+      "Les pales à tronçons radiaux ne sont pas aérodynamiques ; aucune carte, CFD tournante ou interface de carter n'est disponible.",
+      "Le STEP prouve seulement un BREP relisible ; il n'est autorisé ni pour fabrication, ni pour rotation, ni pour turbo ou moteur."
+    ]
+  }
+}

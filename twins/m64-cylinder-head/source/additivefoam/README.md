@@ -25,7 +25,7 @@ contexte ambigu ; ne pas remplacer un binaire historique en place.
 Recompiler ensuite le solveur dans un répertoire de sortie séparé et
 enregistrer les empreintes des sources, bibliothèques et exécutable.
 
-Le [témoin natif ancien/nouveau](../../../../docs/M64_F58_PREDICTOR_CONTRACT_20260908.md)
+Le [témoin natif ancien/nouveau](../../../../docs/reports/M64_F58_PREDICTOR_CONTRACT_20260908.md)
 vérifie la conservation de la traction et l'étape native `adjustPhi`.
 Une réussite de ce témoin ne suffit pas à accepter un coupon LPBF : ses
 bilans, son couplage, sa convergence et sa calibration physique restent

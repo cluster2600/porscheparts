@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
+  "name": "Collecteur d'échappement trois-en-un 993 Turbo, concept IN625 F0",
+  "description": "Concept indépendant de noyau d'écoulement trois-en-un en IN625 pour cribler une fabrication LPBF sans soudures internes au collecteur. Kline et PorscheFanatics publient une offre IN625 de 2,9 kg par côté avec échangeur ; le PET identifie les pièces gauche et droite. Aucune géométrie publique n'est utilisée.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo", "M64_60_research"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "exhaust_manifold_flow_core",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Criblage CAO, DfAM, débit, pression, acoustique et thermique ; aucune fabrication, installation, mise en route ou fonction chauffage autorisée"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": ["parts/993-eng-exhaust-manifold-in625-f0-0001/derived/exhaust_manifold_in625_f0.step"]
+  },
+  "provenance": {
+    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration PET ou géométrie Kline/Porsche redistribuée",
+    "sources": [
+      {
+        "title": "Kline Innovation - Porsche 993 Turbo exhaust",
+        "url": "https://www.kline-innovation.com/exhaust-collection/porsche/993-2/porsche-993-turbo/",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Déclare IN625 et 2,9 kg par collecteur avec échangeur ; aucune cote ou méthode de fabrication. Voir SRC-KLINE-993-TURBO-IN625-MANIFOLDS."
+      },
+      {
+        "title": "PorscheFanatics - collecteurs IN625 avec échangeur pour 993 Turbo",
+        "url": "https://porschefanatics.com/parts/c/exhaust/",
+        "source_type": "community",
+        "license": "site-content-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Recoupe l'offre Kline et le précédent 3-en-1 Fabspeed, sans géométrie ni transfert de topologie entre produits. Voir SRC-PORSCHEFANATICS-993-TURBO-IN625-MANIFOLDS."
+      },
+      {
+        "title": "Porsche PET 993 - échappement et échangeurs Turbo 202-10",
+        "url": "https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifie les échangeurs gauche 993 211 039 55 et droit 993 211 040 55 et les interfaces à mesurer, sans cotes. Voir SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10."
+      },
+      {
+        "title": "EOS NickelAlloy IN625 material data sheet",
+        "url": "https://www.eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_NickelAlloy_IN625/Material_DataSheet_EOS_NickelAlloy_IN625_en.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Référence LPBF M 290 de criblage, dépendante de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+      },
+      {
+        "title": "Special Metals - INCONEL alloy 625",
+        "url": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Propriétés thermiques corroyées de référence, non équivalentes à une carte admissible LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "DMLS", "sheet_metal"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "superalliage nickel LPBF candidat",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625 de criblage",
+      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 et spécification échappement propre au programme à contractualiser"
+    },
+    "post_processing": [
+      "évacuation complète de la poudre par trois entrées et une sortie ouvertes",
+      "détensionnement, traitement thermique et éventuel HIP qualifiés sur témoins représentatifs",
+      "découpe du plateau et retrait des supports sans support interne",
+      "usinage des brides et interfaces après ajout de surépaisseurs mesurées",
+      "finition interne avec rugosité et épaisseur résiduelle contrôlées",
+      "nettoyage particulaire, ressuage, CT et épreuve d'étanchéité avant essai thermique"
+    ],
+    "supplier_requirements": [
+      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
+      "capabilité démontrée sur paroi chaude de 1,2 mm et collecteur interne sans support",
+      "simulation de supports, recoater et distorsion avant lancement",
+      "coupons dans les orientations critiques avec propriétés à chaud, fatigue, fluage et oxydation",
+      "CT de la jonction trois-en-un et métrologie des parois, ports, brides et futures fixations",
+      "comparaison au collecteur cintré/soudé sur coût, masse, perte, durée de vie, réparabilité et inspection"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Compatibilité du IN625 avec culasse, goujons, joints, échangeur, turbine et protections thermiques à qualifier après identification des matériaux réels."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-kline-993-turbo-in625-manifolds.json",
+      "catalog/sources/src-porschefanatics-993-turbo-in625-manifolds.json",
+      "catalog/sources/src-porsche-pet-993-turbo-heat-exchanger-202-10.json",
+      "catalog/sources/src-eos-in625-material-data.json",
+      "catalog/sources/src-special-metals-inconel-625.json",
+      "parts/993-eng-exhaust-manifold-in625-f0-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Seules l'identité 993 Turbo, la matière IN625 et la masse de 2,9 kg avec échangeur sont publiées.",
+      "Les diamètres, épaisseur, entraxes, trajectoires, longueur et jonction trois-en-un sont entièrement synthétiques.",
+      "Le STEP omet brides, turbine, échangeur de chauffage, supports, joints et environnement installé.",
+      "La masse calculée de 509,97 g pour le noyau ne peut pas être comparée comme équivalent à l'ensemble commercial de 2,9 kg.",
+      "Le débit 1D suppose 3,6 L, 5 750 tr/min, rendement volumétrique 0,95, gaz à 900 K et partage égal entre cylindres.",
+      "La perte, les contraintes, la dilatation, le rayonnement et l'acoustique sont des écrans analytiques, pas des résultats CFD/FEA/CHT.",
+      "Le STEP prouve seulement un BREP unique avec volume interne connecté et n'est pas autorisé pour fabrication ou moteur."
+    ]
+  }
+}

@@ -121,7 +121,7 @@ validation sémantique complète. Une relecture du pilote montre notamment :
 - un résumé ou une notice sans résultat ne fournit aucune propriété à chaud.
 
 Ces limites confirment l'usage comme **aide au tri documentaire**. Les décisions
-restent celles du [dossier scientifique sourcé](../M64_RESEARCH_EXECUTION_20260912.md),
+restent celles du [dossier scientifique sourcé](../reports/M64_RESEARCH_EXECUTION_20260912.md),
 avec tests et inconnues explicites. Aucun rapport LLM n'a modifié automatiquement
 la CAO, les cartes matériau, les charges ou les autorisations de fabrication.
 
