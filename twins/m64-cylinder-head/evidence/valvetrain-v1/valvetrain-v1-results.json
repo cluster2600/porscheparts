@@ -1,0 +1,903 @@
+{
+ "schema_version": 1,
+ "study": "M64 V1 distribution — cinématique/dynamique simplifiée",
+ "status": "sensitivity_study_not_qualification",
+ "m64_cam_data_used": false,
+ "bench_correlation": false,
+ "manufacturing_authorized": false,
+ "valves_per_cylinder": 4,
+ "valve_instances": {
+  "I1": "intake",
+  "I2": "intake",
+  "E1": "exhaust",
+  "E2": "exhaust"
+ },
+ "valve_instances_note": "Les deux soupapes d'un même côté partagent loi et paramètres (pas de déphasage modélisé).",
+ "valves": {
+  "intake": {
+   "effective_mass_kg": 0.11035740892844056,
+   "spring": {
+    "rate_N_m": 38822.14613072878,
+    "mass_kg": 0.0430722267853217,
+    "solid_length_m": 0.0266,
+    "installed_length_m": 0.04,
+    "preload_N": 300.0,
+    "preload_deflection_m": 0.0077275480595479454,
+    "free_length_m": 0.047727548059547945,
+    "compressed_length_at_max_lift_m": 0.0285,
+    "coil_bind_clearance_m": 0.0019000000000000024,
+    "coil_bind_ok": true,
+    "force_at_max_lift_N": 746.454680503381,
+    "spring_index": 5.789473684210526,
+    "wahl_factor": 1.2628206793206795,
+    "shear_stress_preload_MPa": 386.7897396491731,
+    "shear_stress_max_lift_MPa": 962.4033717726979,
+    "surge_frequency_Hz": 561.66211334414
+   },
+   "kinematics_at_target": {
+    "rpm": 6500.0,
+    "max_lift_mm": 11.5,
+    "max_velocity_m_s": 6.410325798441424,
+    "max_positive_acceleration_m_s2": 7842.053725868784,
+    "max_negative_acceleration_m_s2": -4503.827171453065,
+    "max_abs_jerk_m_s3": 40963064.99999994,
+    "max_inertia_force_N": 865.4287298645023
+   },
+   "lash_events_cold": {
+    "lash_within_ramp": true,
+    "opening_crank_deg": 681.3652006496794,
+    "closing_crank_deg": 248.63479935032066,
+    "opening_velocity_m_s": 0.5128066732241803,
+    "seating_velocity_m_s": -0.5128066732241803
+   },
+   "lash_events_hot": {
+    "lash_within_ramp": true,
+    "opening_crank_deg": 678.9526261478675,
+    "closing_crank_deg": 251.04737385213255,
+    "opening_velocity_m_s": 0.45273801471956165,
+    "seating_velocity_m_s": -0.45273801471956165
+   },
+   "margin_at_target": {
+    "min_margin": 1.3952130141045387,
+    "crank_deg": 70.3,
+    "lift_mm": 9.768331903829562
+   },
+   "float_rpm_quasistatic_margin_1": 7677.743799184548,
+   "limit_rpm_required_margin": 6867.182819521658,
+   "margin_sweep": [
+    {
+     "rpm": 3000,
+     "min_margin": 6.54974998287964
+    },
+    {
+     "rpm": 3500,
+     "min_margin": 4.812061211911574
+    },
+    {
+     "rpm": 4000,
+     "min_margin": 3.6842343653697984
+    },
+    {
+     "rpm": 4500,
+     "min_margin": 2.9109999923909506
+    },
+    {
+     "rpm": 5000,
+     "min_margin": 2.3579099938366705
+    },
+    {
+     "rpm": 5500,
+     "min_margin": 1.9486859453195633
+    },
+    {
+     "rpm": 6000,
+     "min_margin": 1.63743749571991
+    },
+    {
+     "rpm": 6500,
+     "min_margin": 1.3952130141045387
+    },
+    {
+     "rpm": 7000,
+     "min_margin": 1.2030153029778936
+    },
+    {
+     "rpm": 7500,
+     "min_margin": 1.0479599972607425
+    },
+    {
+     "rpm": 8000,
+     "min_margin": 0.9210585913424496
+    },
+    {
+     "rpm": 8500,
+     "min_margin": 0.8158858110161491
+    },
+    {
+     "rpm": 9000,
+     "min_margin": 0.7277499980977377
+    },
+    {
+     "rpm": 9500,
+     "min_margin": 0.6531606631126513
+    }
+   ],
+   "piston_interference_cold_hot_timing_sweep": [
+    {
+     "lash": "cold",
+     "advance_deg": -10,
+     "min_gap_mm": 5.786951290825052,
+     "crank_deg": 0.6000000000000001,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": -5,
+     "min_gap_mm": 5.680010382688133,
+     "crank_deg": 2.4000000000000004,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": 0,
+     "min_gap_mm": 5.405650048867132,
+     "crank_deg": 4.9,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": 5,
+     "min_gap_mm": 4.945194476564565,
+     "crank_deg": 7.2,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": 10,
+     "min_gap_mm": 4.331724313051337,
+     "crank_deg": 9.0,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": -10,
+     "min_gap_mm": 5.757243248762806,
+     "crank_deg": 0.6000000000000001,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": -5,
+     "min_gap_mm": 5.6503023406258865,
+     "crank_deg": 2.4000000000000004,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": 0,
+     "min_gap_mm": 5.375942006804885,
+     "crank_deg": 4.9,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": 5,
+     "min_gap_mm": 4.915486434502317,
+     "crank_deg": 7.2,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": 10,
+     "min_gap_mm": 4.30201627098909,
+     "crank_deg": 9.0,
+     "contact": false,
+     "below_required": false
+    }
+   ],
+   "sdof_sweep_hot_lash": [
+    {
+     "rpm": 4000,
+     "max_separation_mm": 0.0,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.0
+    },
+    {
+     "rpm": 4250,
+     "max_separation_mm": 0.00042548927590613695,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.004106776180698152
+    },
+    {
+     "rpm": 4500,
+     "max_separation_mm": 0.0030028414549657873,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.010609171800136893
+    },
+    {
+     "rpm": 4750,
+     "max_separation_mm": 0.006217216069238956,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.016084873374401096
+    },
+    {
+     "rpm": 5000,
+     "max_separation_mm": 0.010238369947099382,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.022245037645448322
+    },
+    {
+     "rpm": 5250,
+     "max_separation_mm": 0.01529246992279496,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.029089664613278575
+    },
+    {
+     "rpm": 5500,
+     "max_separation_mm": 0.02170011496571014,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.03730321697467488
+    },
+    {
+     "rpm": 5750,
+     "max_separation_mm": 0.029847649923781784,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.05817932922655715
+    },
+    {
+     "rpm": 6000,
+     "max_separation_mm": 0.040041400610722915,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.07802874743326489
+    },
+    {
+     "rpm": 6250,
+     "max_separation_mm": 0.05226448294007416,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.11430527036276524
+    },
+    {
+     "rpm": 6500,
+     "max_separation_mm": 0.06600480206262252,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.17077344284736481
+    },
+    {
+     "rpm": 6750,
+     "max_separation_mm": 0.08052559219607605,
+     "max_bounce_mm": 0.010835933764703001,
+     "contact_loss_fraction_of_open": 0.3138261464750171
+    },
+    {
+     "rpm": 7000,
+     "max_separation_mm": 0.095666599717735,
+     "max_bounce_mm": 0.02126575008032278,
+     "contact_loss_fraction_of_open": 0.45550992470910334
+    },
+    {
+     "rpm": 7250,
+     "max_separation_mm": 0.1834135105405355,
+     "max_bounce_mm": 0.10338100310455949,
+     "contact_loss_fraction_of_open": 0.5242984257357974
+    },
+    {
+     "rpm": 7500,
+     "max_separation_mm": 0.17165167780493729,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.5359342915811088
+    },
+    {
+     "rpm": 7750,
+     "max_separation_mm": 0.30478483584356,
+     "max_bounce_mm": 0.29763602857883353,
+     "contact_loss_fraction_of_open": 0.6249144421629022
+    },
+    {
+     "rpm": 8000,
+     "max_separation_mm": 1.3438679618760996,
+     "max_bounce_mm": 1.344567333658125,
+     "contact_loss_fraction_of_open": 0.7566735112936345
+    },
+    {
+     "rpm": 8250,
+     "max_separation_mm": 2.9148074716611347,
+     "max_bounce_mm": 4.268472284822584,
+     "contact_loss_fraction_of_open": 0.7727583846680356
+    },
+    {
+     "rpm": 8500,
+     "max_separation_mm": 3.9155573734150306,
+     "max_bounce_mm": 4.886321987640128,
+     "contact_loss_fraction_of_open": 0.7744695414099931
+    },
+    {
+     "rpm": 8750,
+     "max_separation_mm": 4.996122800043036,
+     "max_bounce_mm": 4.6735717385544655,
+     "contact_loss_fraction_of_open": 0.7727583846680356
+    },
+    {
+     "rpm": 9000,
+     "max_separation_mm": 5.847931622900541,
+     "max_bounce_mm": 4.200682695125543,
+     "contact_loss_fraction_of_open": 0.7724161533196441
+    },
+    {
+     "rpm": 9250,
+     "max_separation_mm": 6.3908421799393755,
+     "max_bounce_mm": 3.7512663471029057,
+     "contact_loss_fraction_of_open": 0.78507871321013
+    },
+    {
+     "rpm": 9500,
+     "max_separation_mm": 6.4411904886162095,
+     "max_bounce_mm": 3.507495915194335,
+     "contact_loss_fraction_of_open": 0.797056810403833
+    },
+    {
+     "rpm": 9750,
+     "max_separation_mm": 5.436598240654947,
+     "max_bounce_mm": 3.3448109411106413,
+     "contact_loss_fraction_of_open": 0.8295687885010267
+    }
+   ],
+   "sdof_onset_rpm_threshold": 6250,
+   "sdof_gross_float_rpm": 8000
+  },
+  "exhaust": {
+   "effective_mass_kg": 0.10235740892844056,
+   "spring": {
+    "rate_N_m": 38822.14613072878,
+    "mass_kg": 0.0430722267853217,
+    "solid_length_m": 0.0266,
+    "installed_length_m": 0.04,
+    "preload_N": 280.0,
+    "preload_deflection_m": 0.007212378188911416,
+    "free_length_m": 0.047212378188911414,
+    "compressed_length_at_max_lift_m": 0.030400000000000003,
+    "coil_bind_clearance_m": 0.0038000000000000048,
+    "coil_bind_ok": true,
+    "force_at_max_lift_N": 652.6926028549963,
+    "spring_index": 5.789473684210526,
+    "wahl_factor": 1.2628206793206795,
+    "shear_stress_preload_MPa": 361.00375700589484,
+    "shear_stress_max_lift_MPa": 841.5160064307504,
+    "surge_frequency_Hz": 561.66211334414
+   },
+   "kinematics_at_target": {
+    "rpm": 6500.0,
+    "max_lift_mm": 9.6,
+    "max_velocity_m_s": 5.451715889112962,
+    "max_positive_acceleration_m_s2": 6782.374751236626,
+    "max_negative_acceleration_m_s2": -3895.235811894909,
+    "max_abs_jerk_m_s3": 36028279.71701092,
+    "max_inertia_force_N": 694.2263059182577
+   },
+   "lash_events_cold": {
+    "lash_within_ramp": true,
+    "opening_crank_deg": 474.00000000000006,
+    "closing_crank_deg": 30.0,
+    "opening_velocity_m_s": 0.5484375000000001,
+    "seating_velocity_m_s": -0.5484375000000001
+   },
+   "lash_events_hot": {
+    "lash_within_ramp": true,
+    "opening_crank_deg": 470.36520064967937,
+    "closing_crank_deg": 33.63479935032058,
+    "opening_velocity_m_s": 0.5128066732241812,
+    "seating_velocity_m_s": -0.5128066732241812
+   },
+   "margin_at_target": {
+    "min_margin": 1.527283912754679,
+    "crank_deg": 578.3000000000001,
+    "lift_mm": 8.187714860125425
+   },
+   "float_rpm_quasistatic_margin_1": 8032.916364178405,
+   "limit_rpm_required_margin": 7184.858819149346,
+   "margin_sweep": [
+    {
+     "rpm": 3000,
+     "min_margin": 7.169749479320576
+    },
+    {
+     "rpm": 3500,
+     "min_margin": 5.2675710460314455
+    },
+    {
+     "rpm": 4000,
+     "min_margin": 4.032984082117824
+    },
+    {
+     "rpm": 4500,
+     "min_margin": 3.186555324142478
+    },
+    {
+     "rpm": 5000,
+     "min_margin": 2.5811098125554075
+    },
+    {
+     "rpm": 5500,
+     "min_margin": 2.133148605417693
+    },
+    {
+     "rpm": 6000,
+     "min_margin": 1.792437369830144
+    },
+    {
+     "rpm": 6500,
+     "min_margin": 1.527283912754679
+    },
+    {
+     "rpm": 7000,
+     "min_margin": 1.3168927615078614
+    },
+    {
+     "rpm": 7500,
+     "min_margin": 1.147159916691292
+    },
+    {
+     "rpm": 8000,
+     "min_margin": 1.008246020529456
+    },
+    {
+     "rpm": 8500,
+     "min_margin": 0.893117582199103
+    },
+    {
+     "rpm": 9000,
+     "min_margin": 0.7966388310356195
+    },
+    {
+     "rpm": 9500,
+     "min_margin": 0.7149888677438803
+    }
+   ],
+   "piston_interference_cold_hot_timing_sweep": [
+    {
+     "lash": "cold",
+     "advance_deg": -10,
+     "min_gap_mm": 5.647644848800236,
+     "crank_deg": 714.1,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": -5,
+     "min_gap_mm": 6.024292333604366,
+     "crank_deg": 716.0,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": 0,
+     "min_gap_mm": 6.249207838047125,
+     "crank_deg": 718.0,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": 5,
+     "min_gap_mm": 6.338584770529014,
+     "crank_deg": 719.5,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "cold",
+     "advance_deg": 10,
+     "min_gap_mm": 6.351459789688765,
+     "crank_deg": 0.0,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": -10,
+     "min_gap_mm": 5.598131445363158,
+     "crank_deg": 714.1,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": -5,
+     "min_gap_mm": 5.974778930167288,
+     "crank_deg": 716.0,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": 0,
+     "min_gap_mm": 6.199694434610047,
+     "crank_deg": 718.0,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": 5,
+     "min_gap_mm": 6.289071367091936,
+     "crank_deg": 719.5,
+     "contact": false,
+     "below_required": false
+    },
+    {
+     "lash": "hot",
+     "advance_deg": 10,
+     "min_gap_mm": 6.301946386251686,
+     "crank_deg": 0.0,
+     "contact": false,
+     "below_required": false
+    }
+   ],
+   "sdof_sweep_hot_lash": [
+    {
+     "rpm": 4000,
+     "max_separation_mm": 0.0014011603250159812,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.0067043048694424845
+    },
+    {
+     "rpm": 4250,
+     "max_separation_mm": 0.004056920137474301,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.011644318983768526
+    },
+    {
+     "rpm": 4500,
+     "max_separation_mm": 0.007318453754287996,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.016584333098094567
+    },
+    {
+     "rpm": 4750,
+     "max_separation_mm": 0.011321128042512502,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.022230063514467185
+    },
+    {
+     "rpm": 5000,
+     "max_separation_mm": 0.016257783912263055,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.02893436838390967
+    },
+    {
+     "rpm": 5250,
+     "max_separation_mm": 0.02234713439532718,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.03599153140437544
+    },
+    {
+     "rpm": 5500,
+     "max_separation_mm": 0.029851852088076593,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.043754410726887794
+    },
+    {
+     "rpm": 5750,
+     "max_separation_mm": 0.038946363111530796,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.05081157374735357
+    },
+    {
+     "rpm": 6000,
+     "max_separation_mm": 0.04960778090662394,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.0748059280169372
+    },
+    {
+     "rpm": 6250,
+     "max_separation_mm": 0.06150380427504649,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.1182074805928017
+    },
+    {
+     "rpm": 6500,
+     "max_separation_mm": 0.07408136288019647,
+     "max_bounce_mm": 0.0,
+     "contact_loss_fraction_of_open": 0.17784050811573748
+    },
+    {
+     "rpm": 6750,
+     "max_separation_mm": 0.08676210658219093,
+     "max_bounce_mm": 0.0014042412132324997,
+     "contact_loss_fraction_of_open": 0.3009880028228652
+    },
+    {
+     "rpm": 7000,
+     "max_separation_mm": 0.09894241058894004,
+     "max_bounce_mm": 0.02154317713048403,
+     "contact_loss_fraction_of_open": 0.41213832039520115
+    },
+    {
+     "rpm": 7250,
+     "max_separation_mm": 0.11025432474498026,
+     "max_bounce_mm": 0.08082400684187277,
+     "contact_loss_fraction_of_open": 0.47388849682427664
+    },
+    {
+     "rpm": 7500,
+     "max_separation_mm": 0.1513720565068231,
+     "max_bounce_mm": 0.14889166728455666,
+     "contact_loss_fraction_of_open": 0.5197600564573042
+    },
+    {
+     "rpm": 7750,
+     "max_separation_mm": 0.20376902632658536,
+     "max_bounce_mm": 0.009615676862803934,
+     "contact_loss_fraction_of_open": 0.5603387438249824
+    },
+    {
+     "rpm": 8000,
+     "max_separation_mm": 0.4497809802974321,
+     "max_bounce_mm": 0.11209296863409805,
+     "contact_loss_fraction_of_open": 0.5723359209597741
+    },
+    {
+     "rpm": 8250,
+     "max_separation_mm": 1.0738462071399648,
+     "max_bounce_mm": 0.8311163260161911,
+     "contact_loss_fraction_of_open": 0.7593507410021172
+    },
+    {
+     "rpm": 8500,
+     "max_separation_mm": 2.39677198384697,
+     "max_bounce_mm": 3.4128329540853164,
+     "contact_loss_fraction_of_open": 0.7734650670430487
+    },
+    {
+     "rpm": 8750,
+     "max_separation_mm": 3.0154591635095658,
+     "max_bounce_mm": 3.9093674637942675,
+     "contact_loss_fraction_of_open": 0.7759350741002117
+    },
+    {
+     "rpm": 9000,
+     "max_separation_mm": 3.7745629186091856,
+     "max_bounce_mm": 3.959353169679425,
+     "contact_loss_fraction_of_open": 0.7745236414961185
+    },
+    {
+     "rpm": 9250,
+     "max_separation_mm": 4.3202400299056904,
+     "max_bounce_mm": 3.6308196815369658,
+     "contact_loss_fraction_of_open": 0.7734650670430487
+    },
+    {
+     "rpm": 9500,
+     "max_separation_mm": 4.548679707074548,
+     "max_bounce_mm": 3.2377153374689343,
+     "contact_loss_fraction_of_open": 0.7741707833450953
+    },
+    {
+     "rpm": 9750,
+     "max_separation_mm": 4.126054511252054,
+     "max_bounce_mm": 3.079142524653696,
+     "contact_loss_fraction_of_open": 0.776287932251235
+    }
+   ],
+   "sdof_onset_rpm_threshold": 6250,
+   "sdof_gross_float_rpm": 8250
+  }
+ },
+ "sensitivity_float_rpm_pm20pct": {
+  "intake": [
+   {
+    "parameter": "valve_mass_kg",
+    "factor": 0.8,
+    "float_rpm": 8116.139817161344,
+    "delta_pct": 5.7099589338127865,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "valve_mass_kg",
+    "factor": 1.2,
+    "float_rpm": 7303.487142795433,
+    "delta_pct": -4.874565577831147,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "follower_equivalent_mass_kg",
+    "factor": 0.8,
+    "float_rpm": 7857.815416048184,
+    "delta_pct": 2.3453715254572627,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "follower_equivalent_mass_kg",
+    "factor": 1.2,
+    "float_rpm": 7509.510297602763,
+    "delta_pct": -2.191184102804433,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_preload_N",
+    "factor": 0.8,
+    "float_rpm": 7330.123506056952,
+    "delta_pct": -4.527636011565239,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_preload_N",
+    "factor": 1.2,
+    "float_rpm": 8009.045148372502,
+    "delta_pct": 4.315087320615474,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_wire_diameter_mm",
+    "factor": 0.8,
+    "float_rpm": 6428.338646139186,
+    "delta_pct": -16.27307690545837,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_wire_diameter_mm",
+    "factor": 1.2,
+    "float_rpm": 8316.247475510607,
+    "delta_pct": 8.316293080707826,
+    "coil_bind_ok": false
+   },
+   {
+    "parameter": "max_lift_mm",
+    "factor": 0.8,
+    "float_rpm": 8109.067431941215,
+    "delta_pct": 5.617843523281896,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "max_lift_mm",
+    "factor": 1.2,
+    "float_rpm": 7377.227010439676,
+    "delta_pct": -3.9141288978252975,
+    "coil_bind_ok": false
+   },
+   {
+    "parameter": "main_event_duration_crank_deg",
+    "factor": 0.8,
+    "float_rpm": 6142.195086695638,
+    "delta_pct": -19.99999938330842,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "main_event_duration_crank_deg",
+    "factor": 1.2,
+    "float_rpm": 8448.56632877326,
+    "delta_pct": 10.039701112071242,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "profile_fullness_c",
+    "factor": 0.8,
+    "float_rpm": 7608.382085175259,
+    "delta_pct": -0.9034127189377683,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "profile_fullness_c",
+    "factor": 1.2,
+    "float_rpm": 7528.338064151919,
+    "delta_pct": -1.9459588511992032,
+    "coil_bind_ok": true
+   }
+  ],
+  "exhaust": [
+   {
+    "parameter": "valve_mass_kg",
+    "factor": 0.8,
+    "float_rpm": 8456.623913801812,
+    "delta_pct": 5.274641617244602,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "valve_mass_kg",
+    "factor": 1.2,
+    "float_rpm": 7667.115918960933,
+    "delta_pct": -4.553768875880548,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "follower_equivalent_mass_kg",
+    "factor": 0.8,
+    "float_rpm": 8236.607738393725,
+    "delta_pct": 2.5357088880403555,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "follower_equivalent_mass_kg",
+    "factor": 1.2,
+    "float_rpm": 7843.625982235526,
+    "delta_pct": -2.35643411883375,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_preload_N",
+    "factor": 0.8,
+    "float_rpm": 7577.430600522466,
+    "delta_pct": -5.670241578601642,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_preload_N",
+    "factor": 1.2,
+    "float_rpm": 8400.176518252812,
+    "delta_pct": 4.571940468746183,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_wire_diameter_mm",
+    "factor": 0.8,
+    "float_rpm": 6818.187411553423,
+    "delta_pct": -15.121892193996755,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "spring_wire_diameter_mm",
+    "factor": 1.2,
+    "float_rpm": 8281.198075706468,
+    "delta_pct": 3.0908041397672115,
+    "coil_bind_ok": false
+   },
+   {
+    "parameter": "max_lift_mm",
+    "factor": 0.8,
+    "float_rpm": 8453.192362586306,
+    "delta_pct": 5.231922994767602,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "max_lift_mm",
+    "factor": 1.2,
+    "float_rpm": 7701.205233269564,
+    "delta_pct": -4.1293985380957965,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "main_event_duration_crank_deg",
+    "factor": 0.8,
+    "float_rpm": 6426.332053116645,
+    "delta_pct": -20.00001292464695,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "main_event_duration_crank_deg",
+    "factor": 1.2,
+    "float_rpm": 8453.192362586307,
+    "delta_pct": 5.231922994767624,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "profile_fullness_c",
+    "factor": 0.8,
+    "float_rpm": 7950.2020343703425,
+    "delta_pct": -1.0296924063210144,
+    "coil_bind_ok": true
+   },
+   {
+    "parameter": "profile_fullness_c",
+    "factor": 1.2,
+    "float_rpm": 7882.201601959297,
+    "delta_pct": -1.8762147567127574,
+    "coil_bind_ok": true
+   }
+  ]
+ },
+ "fingerprints_sha256": {
+  "valvetrain.py": "793d4d7b33ccbe1bac31f9ebb6c99ed4f4ebc201b4e4f91f7df0584933730a90",
+  "run_study.py": "8d000cf74525c9e82033542cfc582b3ed811575a8fb54d8919374be8e6084b7b",
+  "valvetrain-v1-parameters.json": "8f00235e435297ead67497df3a1f04c303d68422db9eee5760bbd7d08737ca64"
+ }
+}
