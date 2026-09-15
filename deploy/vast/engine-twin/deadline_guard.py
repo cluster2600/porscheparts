@@ -33,6 +33,15 @@ MAX_TRANSFER_RATE = 0.01
 MAX_SECONDS = 6 * 60 * 60
 MAX_BUDGET_USD = 30.0
 LABEL_RE = re.compile(r"3dprinting993-engine-twin-(llm|compute)-([0-9a-f]{20})")
+FLASHNEXT_VARIANT = "qwen38-flash-next"
+FLASHNEXT = {
+    "image": "ghcr.io/cluster2600/qwen38-flash-next-vast@sha256:6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34",
+    "model": "orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4",
+    "revision": "c1209bda15a6bbc4c68b585e93d40c0d85f50306",
+    "max_dph": 4.20,
+    "download_cap_gb": 250,
+    "api_port_allowed": True,
+}
 interrupted = False
 
 
@@ -69,11 +78,23 @@ def sibling_label(label):
     return f"3dprinting993-engine-twin-{other}-{match.group(2)}"
 
 
+def spec(manifest):
+    """Same fixed contract as the wrapper: default image per role, or the approved llm variant."""
+    role, variant = manifest.get("role"), manifest.get("variant")
+    if variant is None and role in IMAGES:
+        return {"image": IMAGES[role], "model": MODEL, "revision": REVISION, "max_dph": MAX_DPH,
+                "download_cap_gb": 80, "api_port_allowed": role == "compute"}
+    if role == "llm" and variant == FLASHNEXT_VARIANT:
+        return FLASHNEXT
+    raise engine.GuardError("engine-twin variant is not approved for this role")
+
+
 def validate_manifest(manifest):
     match = LABEL_RE.fullmatch(str(manifest.get("attempt_label"))) if isinstance(manifest, dict) else None
+    contract = spec(manifest) if match is not None else None
     if (match is None or manifest.get("profile") != PROFILE or manifest.get("role") != match.group(1)
-        or manifest.get("image_ref") != IMAGES[match.group(1)]
-        or manifest.get("model") != MODEL or manifest.get("model_revision") != REVISION
+        or manifest.get("image_ref") != contract["image"]
+        or manifest.get("model") != contract["model"] or manifest.get("model_revision") != contract["revision"]
         or manifest.get("sibling_label") != sibling_label(manifest["attempt_label"])
         or type(manifest.get("created_epoch")) is not int
         or type(manifest.get("deadline_epoch")) is not int
@@ -81,7 +102,7 @@ def validate_manifest(manifest):
         or not 600 <= manifest["deadline_epoch"] - manifest["created_epoch"] <= MAX_SECONDS
         or not engine.finite(manifest.get("budget_usd")) or not 1 < manifest["budget_usd"] <= MAX_BUDGET_USD):
         raise engine.GuardError("invalid bounded engine-twin manifest")
-    for field, cap in (("download_budget_gb", 80), ("upload_budget_gb", 20)):
+    for field, cap in (("download_budget_gb", contract["download_cap_gb"]), ("upload_budget_gb", 20)):
         if not engine.finite(manifest.get(field)) or not 0 < manifest[field] <= cap:
             raise engine.GuardError("invalid engine-twin transfer allocation")
     if (Path(manifest["guard_path"]) != Path(__file__).absolute()
@@ -92,15 +113,15 @@ def validate_manifest(manifest):
 
 
 def api_port_forbidden(instance):
-    """The compute image publishes its declared, idle service ports; the llm role never may."""
-    return instance.get("api_port") is not None and _manifest.get("role") != "compute"
+    """Images that declare idle service ports (compute, Flash Next) may publish them; the default llm never may."""
+    return instance.get("api_port") is not None and not spec(_manifest)["api_port_allowed"]
 
 
 def cost_valid(instance, manifest, first_price=None):
     price = instance.get("dph_total")
     up, down = instance.get("inet_up_cost_usd_per_gb"), instance.get("inet_down_cost_usd_per_gb")
     if (interrupted or api_port_forbidden(instance)
-        or not engine.finite(price) or not 0 < price <= MAX_DPH
+        or not engine.finite(price) or not 0 < price <= spec(manifest)["max_dph"]
         or (first_price is not None and first_price != price)
         or not all(engine.finite(value) and 0 <= value <= MAX_TRANSFER_RATE for value in (up, down))):
         return False
@@ -112,7 +133,7 @@ def only_cost_metadata_missing(instance, first_price):
     if interrupted or api_port_forbidden(instance):
         return False
     missing = False
-    for field, cap in (("dph_total", MAX_DPH), ("inet_up_cost_usd_per_gb", MAX_TRANSFER_RATE),
+    for field, cap in (("dph_total", spec(_manifest)["max_dph"]), ("inet_up_cost_usd_per_gb", MAX_TRANSFER_RATE),
                        ("inet_down_cost_usd_per_gb", MAX_TRANSFER_RATE)):
         value = instance.get(field)
         if value is None:
