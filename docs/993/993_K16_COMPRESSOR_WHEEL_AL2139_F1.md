@@ -92,3 +92,24 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 PhysicsNeMo attend les séries corrélées CFD-structure-rotordynamique avec train,
 holdout et hors-distribution. Le F1 n'est autorisé ni pour fabrication, ni pour
 rotation, ni pour turbo ou moteur.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `60 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 873 |
+| hauteur de construction | 52,33 mm |
+| couches avec region non soutenue | 21 |
+| proxy de supports | 22,17 mm³ |
+| epaisseur locale p01 | 0,183 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->

@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+  "stage_id": "04_material_machine_process_card",
+  "status": "blocked_missing_input",
+  "classification": "confrontation_of_published_cards_not_a_qualified_process_route",
+  "safety_class": "functional",
+  "route": {
+    "material": "EOS Aluminium AlSi10Mg",
+    "material_designations": [
+      "DIN EN 1706 EN AC-43000",
+      "ASTM F3318-18"
+    ],
+    "machine": "EOS M 290",
+    "material_set": "AlSi10Mg_FlexM291 2.01",
+    "inert_gas": "Argon",
+    "build_platform_temperature_c": 35.0,
+    "minimum_wall_thickness_mm": 0.4,
+    "heat_treatment": "",
+    "orientation": "roll_y_45"
+  },
+  "derived": {
+    "screened_layer_thickness_mm": 0.03,
+    "qualified_layer_thickness_mm": 0.03,
+    "layers_at_screened_thickness": 425,
+    "layers_at_qualified_thickness": 425,
+    "build_height_mm": 12.727922061357855,
+    "orientation": "roll_y_45",
+    "support_proxy_volume_mm3": 3.059999999999999,
+    "deposited_volume_mm3": 884.06,
+    "exposure_time_hours_at_published_rate": 0.048151416122004354,
+    "exposure_time_scope": "volume divise par le debit publie : ni recouvrement, ni chauffe, ni inertage, ni changement de plateau ne sont comptes",
+    "screening_mass_g": 2.35227
+  },
+  "gates": [
+    {
+      "gate": "machine_identity_consistent",
+      "pass": true,
+      "statement": "Le criblage geometrique, la carte machine et la carte procede nomment la meme machine."
+    },
+    {
+      "gate": "material_identity_consistent",
+      "pass": true,
+      "statement": "L'alliage cible du criblage est celui de la carte procede."
+    },
+    {
+      "gate": "layer_thickness_consistent",
+      "pass": true,
+      "statement": "Le tranchage a 30 um est celui de la route qualifiee."
+    },
+    {
+      "gate": "screened_wall_above_process_minimum",
+      "pass": true,
+      "statement": "Le premier centile d'epaisseur locale, 1.000 mm, reste au-dessus du minimum procede de 0.40 mm."
+    },
+    {
+      "gate": "bare_part_fits_machine_envelope",
+      "pass": true,
+      "statement": "La piece nue tient dans l'enveloppe nominale de la machine."
+    },
+    {
+      "gate": "orientation_engineering_reviewed",
+      "pass": false,
+      "statement": "L'orientation retenue est revue par un ingenieur.",
+      "blocker": "L'orientation vient d'une regle de criblage automatique, pas d'une revue DfAM."
+    },
+    {
+      "gate": "temperature_dependent_constitutive_card_available",
+      "pass": false,
+      "statement": "La carte matiere-procede est complete et calibree en temperature.",
+      "blocker": "La carte procede se declare elle-meme incomplete : exact laser path, hatch, contour and exposure schedule exported for this build ; powder optical properties and temperature-dependent liquid/solid thermal card ; temperature- and orientation-dependent elastic-plastic constitutive card."
+    },
+    {
+      "gate": "heat_treatment_route_defined",
+      "pass": false,
+      "statement": "Le traitement thermique appartient a la route publiee.",
+      "blocker": "La carte procede ne publie aucun traitement thermique : detente, revenu et etat metallurgique de livraison restent a contractualiser."
+    },
+    {
+      "gate": "machining_stock_defined",
+      "pass": false,
+      "statement": "Les surepaisseurs d'usinage sont definies.",
+      "blocker": "Aucune surepaisseur d'usinage n'est definie, donc aucune surface fonctionnelle n'est garantie a la tolerance."
+    },
+    {
+      "gate": "part_allowables_derived_from_coupons",
+      "pass": false,
+      "statement": "Des admissibles de piece existent.",
+      "blocker": "Les valeurs publiees sont des coupons EOS as-manufactured (Rp0,2 vertical 233 MPa, fatigue 110 MPa a 20 millions de cycles) : ce ne sont pas des admissibles de cette piece, dans cette orientation, a cet etat de surface."
+    },
+    {
+      "gate": "powder_lot_traceability_contracted",
+      "pass": false,
+      "statement": "La tracabilite du lot de poudre est contractualisee.",
+      "blocker": "Ni lot, ni nombre de reemplois, ni certificat matiere ne sont engages avec un fournisseur."
+    }
+  ],
+  "blocking_gate_count": 6,
+  "metal_print_authorized": false,
+  "authorization_note": "Aucune porte de fabrication n'est ouverte par ce fichier. Une route coherente sur le papier ne remplace ni coupon, ni fichier machine signe, ni revue d'ingenierie."
+}

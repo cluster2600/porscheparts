@@ -143,12 +143,14 @@
           "blocker": "Les 425 couches et le proxy de supports sont calculés, mais l'orientation, les supports et le dépoudrage n'ont pas été revus dans un projet EOSPRINT fournisseur."
         },
         "04_material_machine_process_card": {
-          "status": "completed_screening",
+          "status": "blocked_missing_input",
           "evidence": [
-            "catalog/sources/src-eos-alsi10mg-m290-30um.json",
-            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+            "catalog/manufacturing/machines/eos-m290.json",
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/route-f0/993-elec-headlamp-spring-hook-f0-0001-process-route-card.json",
+            "twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/route-f0/993-elec-headlamp-spring-hook-f0-0001-supplier-rfq.md"
           ],
-          "blocker": "La route EOS M 290 / AlSi10Mg / 30 µm est cohérente pour le criblage, mais les trajectoires, supports, propriétés chaudes et calibrations de lot manquent."
+          "blocker": "Six portes sur onze restent fermees. La machine, l'alliage, l'epaisseur de couche de 30 um, la paroi minimale et l'enveloppe sont coherents entre criblage et carte procede. Manquent la revue DfAM de l'orientation, une carte constitutive calibree en temperature, le traitement thermique, les surepaisseurs d'usinage, des admissibles de piece et la tracabilite du lot de poudre."
         },
         "05_local_melt_pool_thermal": {
           "status": "blocked_missing_input",
@@ -229,12 +231,14 @@
           "blocker": "Les 2 664 couches et le proxy de supports sont calculés, mais l'orientation, les supports et le dépoudrage ne sont pas revus dans un projet EOSPRINT fournisseur."
         },
         "04_material_machine_process_card": {
-          "status": "completed_screening",
+          "status": "blocked_missing_input",
           "evidence": [
-            "catalog/sources/src-eos-alsi10mg-m290-30um.json",
-            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+            "catalog/manufacturing/machines/eos-m290.json",
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/route-f0/993-int-door-opener-lever-f0-0001-process-route-card.json",
+            "twins/993-door-opener-lever-alsi10mg-f0/evidence/route-f0/993-int-door-opener-lever-f0-0001-supplier-rfq.md"
           ],
-          "blocker": "La route EOS M 290 / AlSi10Mg / 30 µm est cohérente pour le criblage, mais les trajectoires, supports, propriétés chaudes, état de surface et calibrations de lot manquent."
+          "blocker": "Six portes sur onze restent fermees. La machine, l'alliage, l'epaisseur de couche de 30 um, la paroi minimale et l'enveloppe sont coherents entre criblage et carte procede. Manquent la revue DfAM de l'orientation, une carte constitutive calibree en temperature, le traitement thermique, les surepaisseurs d'usinage, des admissibles de piece et la tracabilite du lot de poudre."
         },
         "05_local_melt_pool_thermal": {
           "status": "blocked_missing_input",
@@ -397,12 +401,13 @@
           "blocker": "Les 3 702 couches sont tranchées, mais l'orientation, les supports et l'évacuation de poudre n'ont pas été revus dans un projet fournisseur EOSPRINT."
         },
         "04_material_machine_process_card": {
-          "status": "completed_screening",
+          "status": "blocked_missing_input",
           "evidence": [
             "catalog/manufacturing/machines/eos-m290.json",
-            "catalog/manufacturing/processes/eos-m290-in625-40um.json"
+            "catalog/manufacturing/processes/eos-m290-in625-40um.json",
+            "scripts/build_process_route_card.py"
           ],
-          "blocker": "La route EOS M 290 / IN625 / 40 micromètres est liée aux données publiques, mais les trajectoires laser, supports, propriétés à chaud et calibrations de lot restent absents."
+          "blocker": "Le generateur de carte de route echoue a porte fermee : la carte procede EOS M 290 / IN625 / 40 micrometres ne publie aucun bloc de proprietes de coupons, donc aucune carte de route ni demande de devis ne peut etre ecrite. Trajectoires laser, supports, proprietes a chaud et calibrations de lot restent aussi absents."
         },
         "05_local_melt_pool_thermal": {
           "status": "blocked_missing_input",

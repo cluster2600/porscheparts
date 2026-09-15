@@ -57,3 +57,11 @@ les soupapes et les réflexions ne sont pas modélisés.
 PhysicsNeMo attendra un ensemble de cas CFD/CHT/structure corrélés et des gates
 d'incertitude. SimReady attendra les interfaces mesurées et la carte matière.
 Le STEP F0 n'est pas autorisé pour fabrication ou mise en route moteur.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+La simulation a ete lancee et a **echoue a porte fermee** : `failed_memory_cap` conteneur tue au plafond 10g. Aucun resultat n'est donc publie pour cette piece, et aucune image n'est fabriquee a sa place.
+
+<!-- print-screen:end -->

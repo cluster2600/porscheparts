@@ -103,3 +103,24 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 PhysicsNeMo reste différé jusqu'à l'existence de séries CFD/CHT/structure
 corrélées avec holdout et cas hors distribution. Toutes les autorisations de
 fabrication, huile, turbo, moteur et véhicule restent fermées.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_x`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 3 500 |
+| hauteur de construction | 140,00 mm |
+| couches avec region non soutenue | 942 |
+| proxy de supports | 43 851,08 mm³ |
+| epaisseur locale p01 | 1,180 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-eng-turbo-oil-return-line-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-oil-return-line-in625-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->

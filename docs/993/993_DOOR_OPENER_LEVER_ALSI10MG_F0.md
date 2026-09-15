@@ -50,6 +50,26 @@ du p95 froid et `0,276 %` du p95 chaud, sous le seuil numérique de criblage de
 froid atteint `174,657 MPa` et le maximum chaud `185,636 MPa` près des appuis
 idéalisés ; ni ces pics ni le p95 ne valent marge de sécurité de la pièce.
 
+## Étape 04 : carte matière-machine-procédé
+
+`make route-lever-hook` confronte le criblage LPBF à la carte machine EOS M 290
+et à la carte procédé AlSi10Mg `30 µm`, puis écrit une carte de route et un
+dossier de demande de devis liés au STEP et au STL par SHA-256.
+
+Cinq portes de cohérence passent : même machine, même alliage, tranchage à la
+couche qualifiée de `30 µm` (`2 664` couches), paroi p01 `2,000 mm` au-dessus du
+minimum procédé `0,40 mm`, pièce nue dans l'enveloppe. Le volume déposé proxy
+vaut `29 538,68 mm³`, soit environ `1,61 h` d'exposition au débit publié, hors
+recouvrement, chauffe et inertage.
+
+Six portes restent fermées et ne s'ouvrent pas par le calcul : revue DfAM de
+l'orientation, carte constitutive calibrée en température, traitement
+thermique, surépaisseurs d'usinage, admissibles de pièce issus de coupons et
+traçabilité du lot de poudre. Le dossier fournisseur est une demande de devis,
+pas un ordre de fabrication.
+
+Preuves : [`route-f0/`](../../twins/993-door-opener-lever-alsi10mg-f0/evidence/route-f0/).
+
 ## Pourquoi aucune impression n'est autorisée
 
 - aucune mesure du levier OEM, des axes, portées, fixations, butées ou jeux ;

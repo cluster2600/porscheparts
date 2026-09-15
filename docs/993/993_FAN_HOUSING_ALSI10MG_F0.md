@@ -78,3 +78,11 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 PhysicsNeMo reste différé jusqu'à l'existence de jeux CFD/CHT/structure/modal
 corrélés, avec entraînement, validation, holdout et hors distribution séparés.
 Le F0 est interdit de fabrication, rotation, installation et mise en route.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+La simulation a ete lancee et a **echoue a porte fermee** : aucune des orientations candidates ne tient dans l'enveloppe EOS M 290 (250 x 250 x 325 mm). Aucun resultat n'est donc publie pour cette piece, et aucune image n'est fabriquee a sa place.
+
+<!-- print-screen:end -->

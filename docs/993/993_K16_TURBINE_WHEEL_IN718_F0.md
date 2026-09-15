@@ -127,3 +127,24 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 PhysicsNeMo reste différé : il faut d'abord des séries CFD/CHT/structure
 corrélées avec jeux d'entraînement, de validation, de holdout et hors
 distribution. Le F0 est interdit de fabrication, rotation, turbo et moteur.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 1 183 |
+| hauteur de construction | 47,32 mm |
+| couches avec region non soutenue | 10 |
+| proxy de supports | 59,60 mm³ |
+| epaisseur locale p01 | 0,133 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-eng-k16-turbine-wheel-in718-f0-0001/evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->

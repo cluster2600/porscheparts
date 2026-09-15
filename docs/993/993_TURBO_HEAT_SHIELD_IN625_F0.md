@@ -55,3 +55,24 @@ devront autoriser la dilatation. Ce n'est pas une prédiction véhicule.
 PhysicsNeMo attendra un jeu de cas CAE ou d'essais corrélés. Le passage
 SimReady est différé jusqu'aux interfaces mesurées et aux propriétés chaudes
 qualifiées ; le STEP F0 n'est pas une pièce fabricable pour montage.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_x`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 4 000 |
+| hauteur de construction | 160,00 mm |
+| couches avec region non soutenue | 177 |
+| proxy de supports | 6 092,64 mm³ |
+| epaisseur locale p01 | 0,800 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-heat-shield-in625-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->
