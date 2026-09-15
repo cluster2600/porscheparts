@@ -1,0 +1,1678 @@
+{
+ "schema_version": 1,
+ "master_geometry": false,
+ "manufacturing_authorized": false,
+ "rule": "plus petit alésage qui passe préféré ; bande > documented_upper = exploratory_beyond_sources ; goujons libres seulement si le motif 935 échoue",
+ "cylinders": 6,
+ "stroke_mm": 76.4,
+ "documented_upper": 102.7,
+ "budget_per_search": {
+  "grid_samples": 80,
+  "local_evaluations": 200,
+  "search_sweep_step_deg": 2.0,
+  "final_sweep_step_deg": 1.0
+ },
+ "seed": 935,
+ "total_trials": 5535,
+ "minimal_passing_bore_stud_935": {
+  "bore_diameter": 99.0,
+  "first_failing_bore": 98.0,
+  "limiting_check": "valve_piston_exhaust",
+  "min_slack": -0.127
+ },
+ "maximal_passing_bore_stud_935": {
+  "bore_diameter": 102.7,
+  "first_failing_bore": 103.0,
+  "limiting_check": "liner_od_vs_stud_holes",
+  "min_slack": -0.169
+ },
+ "minimal_passing_bore_any": {
+  "bore_diameter": 99.0,
+  "first_failing_bore": 98.0,
+  "limiting_check": "valve_piston_exhaust",
+  "min_slack": -0.13
+ },
+ "maximal_passing_bore_any": {
+  "bore_diameter": 105.0,
+  "first_failing_bore": 106.0,
+  "limiting_check": "register_vs_required_liner_od",
+  "min_slack": -0.777
+ },
+ "inter_cylinder_bridge": "not_computable",
+ "rows": [
+  {
+   "bore_diameter": 95.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3249.2,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -0.35,
+    "limiting_check": "valve_heads_within_bore",
+    "blocking_failed": [
+     "valve_heads_within_bore",
+     "ligament_plug_1_to_seats",
+     "ligament_plug_2_to_seats",
+     "piston_pockets_within_crown",
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 282,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 30.8707,
+     "intake_valve_x": -17.9329,
+     "exhaust_valve_x": 26.1529,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 33.9247,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 18.8223,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 8.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 5.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø95"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 103.2,
+      "relation": ">=",
+      "slack": 10.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 103.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 103.2,
+      "relation": ">=",
+      "slack": 7.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 8.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": false,
+    "min_slack": -0.523,
+    "limiting_check": "valve_heads_within_bore",
+    "blocking_failed": [
+     "valve_heads_within_bore",
+     "ligament_plug_1_to_seats",
+     "ligament_plug_2_to_seats",
+     "piston_pockets_within_crown",
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 267,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 30.8707,
+     "intake_valve_x": -18.2454,
+     "exhaust_valve_x": 26.1529,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 33.9247,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 18.8223,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 85.824,
+     "stud_span_y": 86.581
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 8.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 5.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø95"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 103.2,
+      "relation": ">=",
+      "slack": 10.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 103.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 103.2,
+      "relation": ">=",
+      "slack": 7.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 8.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 96.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3318.0,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -0.196,
+    "limiting_check": "valve_piston_exhaust",
+    "blocking_failed": [
+     "valve_heads_within_bore",
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 282,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 30.8707,
+     "intake_valve_x": -18.2454,
+     "exhaust_valve_x": 26.1529,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 3.8159,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 24.4473,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 7.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 4.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø96"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 104.2,
+      "relation": ">=",
+      "slack": 9.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 104.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 104.2,
+      "relation": ">=",
+      "slack": 6.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 7.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": false,
+    "min_slack": -0.379,
+    "limiting_check": "valve_heads_within_bore",
+    "blocking_failed": [
+     "valve_heads_within_bore",
+     "piston_pockets_within_crown",
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 200,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 30.8707,
+     "intake_valve_x": -18.8704,
+     "exhaust_valve_x": 26.1529,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 85.824,
+     "stud_span_y": 86.581
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 7.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 4.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø96"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 104.2,
+      "relation": ">=",
+      "slack": 9.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 104.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 104.2,
+      "relation": ">=",
+      "slack": 6.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 7.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 97.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3387.5,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -0.13,
+    "limiting_check": "valve_piston_exhaust",
+    "blocking_failed": [
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 270,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 34.0,
+     "intake_valve_x": -18.8704,
+     "exhaust_valve_x": 26.1529,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 5.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 7.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 4.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø97"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 105.2,
+      "relation": ">=",
+      "slack": 8.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 105.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 105.2,
+      "relation": ">=",
+      "slack": 5.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 7.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": false,
+    "min_slack": -0.137,
+    "limiting_check": "valve_piston_exhaust",
+    "blocking_failed": [
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 276,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 34.0,
+     "intake_valve_x": -18.8704,
+     "exhaust_valve_x": 26.1529,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 4.4762,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 85.824,
+     "stud_span_y": 86.581
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 7.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 4.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø97"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 105.2,
+      "relation": ">=",
+      "slack": 8.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 105.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 105.2,
+      "relation": ">=",
+      "slack": 5.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 7.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 98.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3457.7,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -0.127,
+    "limiting_check": "valve_piston_exhaust",
+    "blocking_failed": [
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 269,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 34.0,
+     "intake_valve_x": -18.8704,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 6.9762,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 6.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 3.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø98"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 106.2,
+      "relation": ">=",
+      "slack": 7.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 106.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 106.2,
+      "relation": ">=",
+      "slack": 4.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 6.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": false,
+    "min_slack": -0.13,
+    "limiting_check": "valve_piston_exhaust",
+    "blocking_failed": [
+     "valve_piston_exhaust"
+    ],
+    "trials": 283,
+    "best_trial": 275,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 34.0,
+     "intake_valve_x": -18.8704,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.0,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 5.7262,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 85.824,
+     "stud_span_y": 86.581
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 6.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 3.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø98"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 106.2,
+      "relation": ">=",
+      "slack": 7.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 106.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 106.2,
+      "relation": ">=",
+      "slack": 4.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 6.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 99.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3528.6,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": true,
+    "min_slack": 0.188,
+    "limiting_check": "ligament_intake_intake",
+    "blocking_failed": [],
+    "trials": 265,
+    "best_trial": 84,
+    "design": {
+     "intake_axis_angle": 33.375,
+     "exhaust_axis_angle": 29.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.1875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 6.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 3.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø99"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 107.2,
+      "relation": ">=",
+      "slack": 6.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 107.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 107.2,
+      "relation": ">=",
+      "slack": 3.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 6.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   }
+  },
+  {
+   "bore_diameter": 100.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3600.3,
+   "provenance": "sourced_m64",
+   "stud_pattern_935": {
+    "accepted": true,
+    "min_slack": 0.188,
+    "limiting_check": "ligament_intake_intake",
+    "blocking_failed": [],
+    "trials": 240,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 33.375,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.1875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 5.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 2.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø100"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 108.2,
+      "relation": ">=",
+      "slack": 5.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 108.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 108.2,
+      "relation": ">=",
+      "slack": 2.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 5.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   }
+  },
+  {
+   "bore_diameter": 101.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3672.6,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": true,
+    "min_slack": 0.188,
+    "limiting_check": "ligament_intake_intake",
+    "blocking_failed": [],
+    "trials": 240,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 33.375,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.1875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 5.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 2.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø101"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 109.2,
+      "relation": ">=",
+      "slack": 4.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 109.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 109.2,
+      "relation": ">=",
+      "slack": 1.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 5.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   }
+  },
+  {
+   "bore_diameter": 102.0,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3745.7,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": true,
+    "min_slack": 0.188,
+    "limiting_check": "ligament_intake_intake",
+    "blocking_failed": [],
+    "trials": 240,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 33.375,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.1875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 4.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø102"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 110.2,
+      "relation": ">=",
+      "slack": 3.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 110.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 110.2,
+      "relation": ">=",
+      "slack": 0.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 4.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   }
+  },
+  {
+   "bore_diameter": 102.7,
+   "bore_band": "documented_swindon",
+   "displacement_cc": 3797.3,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": true,
+    "min_slack": 0.131,
+    "limiting_check": "liner_od_vs_stud_holes",
+    "blocking_failed": [],
+    "trials": 240,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 33.375,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.1875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 4.165,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.165,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø102.7"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 110.9,
+      "relation": ">=",
+      "slack": 2.523,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 110.90"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 110.9,
+      "relation": ">=",
+      "slack": 0.131,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 4.17"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   }
+  },
+  {
+   "bore_diameter": 103.0,
+   "bore_band": "exploratory_beyond_sources",
+   "displacement_cc": 3819.5,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -0.169,
+    "limiting_check": "liner_od_vs_stud_holes",
+    "blocking_failed": [
+     "liner_od_vs_stud_holes"
+    ],
+    "trials": 240,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 33.375,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 0.1875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -5.7145,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 4.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø103"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 111.2,
+      "relation": ">=",
+      "slack": 2.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 111.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 111.2,
+      "relation": ">=",
+      "slack": -0.169,
+      "passed": false,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 4.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": true,
+    "min_slack": 0.323,
+    "limiting_check": "valve_piston_intake",
+    "blocking_failed": [],
+    "trials": 283,
+    "best_trial": 120,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 1.6875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -10.0,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 85.824,
+     "stud_span_y": 94.081
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 6.733,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 3.733,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø103"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 111.2,
+      "relation": ">=",
+      "slack": 2.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 111.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 116.467,
+      "limit": 111.2,
+      "relation": ">=",
+      "slack": 5.267,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 63.67 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 6.73"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 104.0,
+   "bore_band": "exploratory_beyond_sources",
+   "displacement_cc": 3894.0,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -1.169,
+    "limiting_check": "liner_od_vs_stud_holes",
+    "blocking_failed": [
+     "stud_vs_ports",
+     "liner_od_vs_stud_holes"
+    ],
+    "trials": 228,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 1.6875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -10.0,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 3.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø104"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 112.2,
+      "relation": ">=",
+      "slack": 1.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 112.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 112.2,
+      "relation": ">=",
+      "slack": -1.169,
+      "passed": false,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 3.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": true,
+    "min_slack": 0.323,
+    "limiting_check": "valve_piston_intake",
+    "blocking_failed": [],
+    "trials": 278,
+    "best_trial": 105,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 1.6875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -10.0,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 93.324,
+     "stud_span_y": 94.081
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 8.819,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 5.819,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø104"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 112.2,
+      "relation": ">=",
+      "slack": 1.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 112.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 121.637,
+      "limit": 112.2,
+      "relation": ">=",
+      "slack": 9.437,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 66.26 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 8.82"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 105.0,
+   "bore_band": "exploratory_beyond_sources",
+   "displacement_cc": 3969.3,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -2.169,
+    "limiting_check": "liner_od_vs_stud_holes",
+    "blocking_failed": [
+     "stud_vs_ports",
+     "liner_od_vs_stud_holes"
+    ],
+    "trials": 228,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 1.6875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -10.0,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 3.015,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.015,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø105"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 113.2,
+      "relation": ">=",
+      "slack": 0.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 113.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 113.2,
+      "relation": ">=",
+      "slack": -2.169,
+      "passed": false,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 3.02"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": true,
+    "min_slack": 0.223,
+    "limiting_check": "register_vs_required_liner_od",
+    "blocking_failed": [],
+    "trials": 278,
+    "best_trial": 105,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 1.6875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -10.0,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369,
+     "stud_span_x": 93.324,
+     "stud_span_y": 94.081
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 8.319,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 5.319,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø105"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 113.2,
+      "relation": ">=",
+      "slack": 0.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 113.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 121.637,
+      "limit": 113.2,
+      "relation": ">=",
+      "slack": 8.437,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 66.26 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 8.32"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  },
+  {
+   "bore_diameter": 106.0,
+   "bore_band": "exploratory_beyond_sources",
+   "displacement_cc": 4045.3,
+   "provenance": "derived_by_iteration",
+   "stud_pattern_935": {
+    "accepted": false,
+    "min_slack": -3.169,
+    "limiting_check": "liner_od_vs_stud_holes",
+    "blocking_failed": [
+     "stud_wall_to_chamber",
+     "stud_vs_ports",
+     "register_vs_required_liner_od",
+     "liner_od_vs_stud_holes"
+    ],
+    "trials": 228,
+    "best_trial": 2,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 24.6207,
+     "intake_valve_x": -20.1204,
+     "exhaust_valve_x": 27.4029,
+     "valve_y_extra": 1.6875,
+     "plug_1_px": 2.8784,
+     "plug_1_py": 32.4872,
+     "plug_1_tilt": 6.8853,
+     "plug_1_azimuth": 30.0723,
+     "piston_pocket_depth": 3.918,
+     "intake_cam_advance": -10.0,
+     "exhaust_cam_advance": 0.7262,
+     "valve_length_delta": 7.4369
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 2.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": -0.485,
+      "passed": false,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø106"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 114.2,
+      "relation": ">=",
+      "slack": -0.777,
+      "passed": false,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 114.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 114.2,
+      "relation": ">=",
+      "slack": -3.169,
+      "passed": false,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 2.52"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": null
+   },
+   "stud_pattern_free": {
+    "accepted": false,
+    "min_slack": -0.777,
+    "limiting_check": "register_vs_required_liner_od",
+    "blocking_failed": [
+     "register_vs_required_liner_od",
+     "valve_piston_intake"
+    ],
+    "trials": 283,
+    "best_trial": 93,
+    "design": {
+     "intake_axis_angle": 34.0,
+     "exhaust_axis_angle": 31.8916,
+     "intake_valve_x": -24.1332,
+     "exhaust_valve_x": 21.8546,
+     "valve_y_extra": 2.5951,
+     "plug_1_px": -0.3966,
+     "plug_1_py": 43.1313,
+     "plug_1_tilt": 11.234,
+     "plug_1_azimuth": -25.2157,
+     "piston_pocket_depth": 0.5995,
+     "intake_cam_advance": 6.7821,
+     "exhaust_cam_advance": -2.8527,
+     "valve_length_delta": 12.5409,
+     "stud_span_x": 99.9131,
+     "stud_span_y": 99.2601
+    },
+    "liner_and_stud_checks": {
+     "stud_wall_to_chamber": {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 11.979,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 8.979,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø106"
+     },
+     "register_vs_required_liner_od": {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 114.2,
+      "relation": ">=",
+      "slack": -0.777,
+      "passed": false,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 114.20"
+     },
+     "liner_od_vs_stud_holes": {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 129.958,
+      "limit": 114.2,
+      "relation": ">=",
+      "slack": 15.758,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 70.42 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 11.98"
+     },
+     "inter_cylinder_bridge": {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+     }
+    },
+    "consequence": "motif de goujons changé : carter et cylindres non compatibles M64"
+   }
+  }
+ ],
+ "sha256": {
+  "generator": "66a687ae8fefe7a159737c978b0d85fa073ab7317d580e91b906cbb50ddf9a6d",
+  "design_space": "2c8b44d3a5485618f035b79172d0b1ccbf5e29a2f160f9568054c74c2963a9cc"
+ },
+ "warm_start_from": "evidence/g1-four-valve-20260914/manifest.json (essai 385)",
+ "summary_recomputed_note": "résumé min/max recalculé depuis les lignes enregistrées après correction de edges() (lecture du résultat du bon motif) ; lignes et essais inchangés"
+}

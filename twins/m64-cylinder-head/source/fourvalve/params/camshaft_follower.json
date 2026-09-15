@@ -1,0 +1,12 @@
+{
+  "component": "camshaft_follower",
+  "description": "Arbres à cames et commande simplifiés. Loi de levée : CamLaw du modèle V1 (valvetrain.py), levée max Swindon. Commande par culbuteur (architecture 993 : poussoir hydraulique dans le culbuteur, manuel p.16) ramenée à un empilement axial ; le poussoir à coupelle est seulement contrôlé à titre indicatif.",
+  "parameters": {
+    "intake_cam_advance": {"value": 0.0, "unit": "deg", "provenance": "unsourced", "hypothesis": "avance came admission par rapport au centre V1 supposé (105°) ; variable d'itération, bornes ±10° du balayage V1"},
+    "exhaust_cam_advance": {"value": 0.0, "unit": "deg", "provenance": "unsourced", "hypothesis": "avance came échappement par rapport au centre V1 supposé (612°)"},
+    "cam_base_circle_radius": {"value": 15.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "rayon de base de came"},
+    "follower_stack_axial": {"value": 22.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "culbuteur + rattrapage ramené le long de l'axe de soupape, de la queue au cercle de base"},
+    "cam_lobe_width": {"value": 14.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "largeur de came (CAO)"},
+    "bucket_contact_margin": {"value": 1.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "marge du point de contact dans un poussoir à coupelle (contrôle indicatif)"}
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "component": "valve",
+  "description": "Soupapes : 2 admission, 2 échappement. Ø et levées Swindon ; longueurs 993 2V comme témoin.",
+  "parameters": {
+    "intake_valve_head_diameter": {"value": 40.0, "unit": "mm", "provenance": "supplier_swindon", "quote": "admission 40 mm", "contract_path": "documented_reference_dimensions.swindon_intake_valve_diameter.nominal"},
+    "exhaust_valve_head_diameter": {"value": 33.0, "unit": "mm", "provenance": "supplier_swindon", "quote": "échappement 33 mm", "contract_path": "documented_reference_dimensions.swindon_exhaust_valve_diameter.nominal"},
+    "intake_max_lift": {"value": 11.5, "unit": "mm", "provenance": "supplier_swindon", "quote": "levée 11,5 mm"},
+    "exhaust_max_lift": {"value": 9.6, "unit": "mm", "provenance": "supplier_swindon", "quote": "levée 9,6 mm"},
+    "intake_valve_length_993": {"value": 110.1, "unit": "mm", "provenance": "stock_993_2v_manual", "record": "valve_intake_dims", "key": "c_length"},
+    "exhaust_valve_length_993": {"value": 109.0, "unit": "mm", "provenance": "stock_993_2v_manual", "record": "valve_exhaust_dims", "key": "c_length"},
+    "valve_seat_face_angle": {"value": 45.0, "unit": "deg", "provenance": "stock_993_2v_manual", "record": "valve_intake_dims", "key": "alpha_deg"},
+    "valve_head_thickness": {"value": 6.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "épaisseur de tête (cylindre plein) pour les contrôles d'interférence"},
+    "valve_length_delta": {"value": 0.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "écart de longueur 4V par rapport au témoin 993 ; variable d'itération"},
+    "valve_tip_allowance": {"value": 10.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "coupelle + demi-lunes + queue au-dessus du ressort monté"},
+    "intake_spring_seat_axial": {"unit": "mm", "provenance": "derived", "formula": "intake_valve_length_993 + valve_length_delta - spring_installed_height - valve_tip_allowance", "inputs": ["intake_valve_length_993", "valve_length_delta", "spring_installed_height", "valve_tip_allowance"]},
+    "exhaust_spring_seat_axial": {"unit": "mm", "provenance": "derived", "formula": "exhaust_valve_length_993 + valve_length_delta - spring_installed_height - valve_tip_allowance", "inputs": ["exhaust_valve_length_993", "valve_length_delta", "spring_installed_height", "valve_tip_allowance"]}
+  }
+}
