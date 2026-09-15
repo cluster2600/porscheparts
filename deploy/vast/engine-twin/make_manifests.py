@@ -34,11 +34,12 @@ def write_private(path: Path, data: bytes) -> None:
         os.fsync(stream.fileno())
 
 
-def build(directory: Path, hours: float, budget: float, suffix: str, now: int) -> dict:
+def build(directory: Path, hours: float, budget: float, suffix: str, now: int,
+          roles=("llm", "compute"), attempt: int = 1) -> dict:
     manifests = {}
-    for role in ("llm", "compute"):
+    for role in roles:
         other = "compute" if role == "llm" else "llm"
-        job = f"engine-twin-{role}-20260915-{suffix[:8]}"
+        job = f"engine-twin-{role}-20260915-{suffix[:8]}" + (f"-a{attempt}" if attempt > 1 else "")
         qualification = directory / f"{role}-qualification.json"
         manifests[role] = {
             "schema_version": "1.0.0", "profile": "engine-twin-v1", "role": role, "job_id": job,
@@ -61,7 +62,17 @@ def main() -> int:
     ap.add_argument("--hours", type=float, default=6.0)
     ap.add_argument("--budget-usd", type=float, default=30.0, help="par role")
     ap.add_argument("--wrapper", default=str(Path.home() / ".local/bin/openbao-vastai"))
+    ap.add_argument("--suffix", help="rejoindre une session existante : suffixe hexadecimal de 20 caracteres de la soeur en marche")
+    ap.add_argument("--role", choices=["llm", "compute"], help="avec --suffix : un seul role")
+    ap.add_argument("--attempt", type=int, default=1, help="nouvelle tentative apres un reçu consomme (job_id distinct)")
     args = ap.parse_args()
+    import re
+    if (args.suffix is None) != (args.role is None):
+        sys.exit("--suffix et --role vont ensemble")
+    if args.suffix is not None and not re.fullmatch(r"[0-9a-f]{20}", args.suffix):
+        sys.exit("suffixe hexadecimal de 20 caracteres requis")
+    if not 1 <= args.attempt <= 9:
+        sys.exit("attempt dans [1, 9]")
     directory = args.directory
     if not directory.is_absolute() or directory.is_symlink() or not directory.is_dir():
         sys.exit("dossier prive absolu, existant et sans lien symbolique requis")
@@ -69,7 +80,9 @@ def main() -> int:
         sys.exit("le dossier doit etre en 0700")
     if not 600 / 3600 <= args.hours <= 6 or not 1 < args.budget_usd <= 30:
         sys.exit("hours dans [1/6, 6] et budget par role dans ]1, 30]")
-    manifests = build(directory, args.hours, args.budget_usd, secrets.token_hex(10), int(time.time()))
+    roles = (args.role,) if args.role else ("llm", "compute")
+    manifests = build(directory, args.hours, args.budget_usd, args.suffix or secrets.token_hex(10), int(time.time()),
+                      roles, args.attempt)
 
     # Relecture par le chargeur du wrapper installe : meme contrat que le lancement.
     from importlib.machinery import SourceFileLoader
@@ -84,7 +97,7 @@ def main() -> int:
         write_private(path, json.dumps(manifest, indent=2, sort_keys=True).encode() + b"\n")
         wrapper.engine_twin_load_manifest(path)
         paths[role] = str(path)
-    print(json.dumps({"manifests": paths, "deadline_epoch": manifests["llm"]["deadline_epoch"],
+    print(json.dumps({"manifests": paths, "deadline_epoch": next(iter(manifests.values()))["deadline_epoch"],
                       "attempt_labels": {r: m["attempt_label"] for r, m in manifests.items()}}, indent=2))
     return 0
 
