@@ -12,7 +12,12 @@
       "from": 1996,
       "to": 1997
     },
-    "porsche_part_numbers": []
+    "porsche_part_numbers": [
+      "993 107 125 53",
+      "993 107 126 53",
+      "993 107 338 53",
+      "993 107 339 53"
+    ]
   },
   "classification": {
     "category": "turbocharger_oil_return_line",
@@ -63,6 +68,14 @@
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
         "notes": "Référence thermique corroyée utilisée seulement au F0, non équivalente au LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+      },
+      {
+        "title": "Catalogue d'usine 993, planche 202-16 Turbocharger",
+        "url": "https://porschefanatics.com/oem/993/202-16/",
+        "source_type": "official",
+        "license": "catalogue-usine-reference-seulement",
+        "accessed_on": "2026-09-11",
+        "notes": "Identifie quatre references oil pipe en deux positions, trois vent line, deux oil collection container et deux bracket sur la meme planche. N'etablit ni l'attribution alimentation/retour, ni les dimensions, ni la matiere. Voir SRC-PET-993-202-16-TURBO-OIL-CIRCUIT."
       }
     ]
   },
@@ -119,6 +132,7 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
+      "Le nom de cette fiche dit « retour » ; la planche 202-16 ne l'établit pas. Elle porte quatre références `oil pipe` en deux positions, sans distinguer l'alimentation du retour. L'attribution reste à faire.",
       "Les sources confirment seulement la fonction, le jeu gauche/droit, 1996-1997 et l'ajustement final ; aucune dimension n'est publiée.",
       "La ligne gauche F0, sa spline, ses diamètres, sa paroi et ses brides sont entièrement synthétiques ; le côté droit est absent.",
       "La masse théorique dépend du volume F0 et de la densité IN625, sans comparaison avec la pièce commerciale.",
@@ -126,7 +140,9 @@
       "L'hydraulique monophasique ne représente pas l'huile aérée, le drainage diphasique, les pulsations ou la pompe de balayage.",
       "L'écran thermique totalement contraint échoue ; la souplesse réelle et les mouvements moteur-turbo sont inconnus.",
       "Le besoin d'ajustement final annoncé par le fournisseur est incompatible avec un tube LPBF rigide sans métrologie véhicule.",
-      "Le STEP prouve seulement un BREP creux relisible et n'est autorisé ni pour fabrication, ni pour huile, ni pour turbo ou moteur."
+      "Le STEP prouve seulement un BREP creux relisible et n'est autorisé ni pour fabrication, ni pour huile, ni pour turbo ou moteur.",
+      "Le circuit compte onze pièces de fluide ou de maintien sur la même planche : c'est là qu'est le gain additif, et il n'est pas instruit.",
+      "Les raccords d'une conduite d'huile sont démontés en entretien. La grille de TITANIUM.md écarte explicitement le titane sur filetage répété exposé au grippage : même sans la question de l'incendie, ce n'est pas une pièce en titane."
     ]
   }
 }

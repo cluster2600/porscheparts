@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-CHAIN-CASE-0001",
+  "name": "Carter de chaîne de distribution 993 et ses couvercles",
+  "description": "Cible d'instruction : le carter de chaîne de la planche d'usine 103-05, ses trois couvercles, ses ponts d'huile et son tendeur. La fiche établit l'identité et le raisonnement matière ; elle ne constitue ni une géométrie de remplacement, ni une autorisation de fabrication. Retenue parce que le triage du catalogue d'usine en fait un cas de consolidation sérieux — et parce que la grille titane le refuse trois fois.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_tous_modeles_a_confirmer_par_variante"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "993 105 093 05",
+      "964 105 094 04",
+      "993 105 022 01",
+      "964 105 107 01",
+      "964 105 108 01",
+      "993 107 087 51",
+      "993 107 088 52",
+      "993 107 088 00"
+    ]
+  },
+  "classification": {
+    "category": "engine_timing_chain_case",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Instruction documentaire et comparaison de procédés ; aucune fabrication, aucun montage, aucune mise en route"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT pour la fiche ; aucune géométrie tierce redistribuée",
+    "sources": [
+      {
+        "title": "Catalogue d'usine 993, planche 103-05 Chain case",
+        "url": "https://porschefanatics.com/oem/993/103-05/",
+        "source_type": "official",
+        "license": "catalogue-usine-reference-seulement",
+        "accessed_on": "2026-09-11",
+        "notes": "Identifie deux `chain case`, trois `lid`, deux `chain adjuster`, un `bearing`, une `heat protection plate` et trois `bridge` dont deux sont aussi décrits `oil gallery`. N'établit ni dimension, ni matière, ni interface. Voir SRC-PET-993-103-05-CHAIN-CASE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "casting",
+      "LPBF",
+      "CNC"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "aluminium, par cohérence avec le carter moteur",
+      "grade": "non identifié ; l'origine est une pièce de fonderie dont la nuance n'est pas publiée",
+      "standard": ""
+    },
+    "post_processing": [],
+    "supplier_requirements": []
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Sans objet : le titane est écarté. C'est précisément l'un des motifs — un carter de titane boulonné sur un carter moteur en aluminium crée un couple galvanique que la grille de TITANIUM.md refuse."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-pet-993-103-05-chain-case.json",
+      "docs/993/993_CACHE_DE_CHAINE_103-05.md"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Aucune dimension, aucune matière et aucune interface ne sont établies : le catalogue identifie, il ne cote pas.",
+      "La nuance du carter d'origine n'est pas publiée ; « aluminium » est une déduction de cohérence avec le carter moteur, pas une identification.",
+      "Le carter porte la distribution et de l'huile sous pression : sa rupture peut coûter le moteur, et l'huile a des voisins chauds sur cette planche, qui porte une tôle de protection thermique.",
+      "Le titane est écarté par trois contre-indications indépendantes de la grille : dilatation différentielle avec le carter aluminium, filetages repris à chaque dépose, couple galvanique avec l'aluminium.",
+      "Le gain additif réel — consolidation du carter, des ponts et des galeries d'huile — n'est pas instruit et ne le sera pas sans mesure d'un exemplaire."
+    ]
+  }
+}

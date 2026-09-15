@@ -100,6 +100,8 @@ La colonne « statut » est celle de la fiche, pas une intention : une pièce
 | pièce | matière candidate | procédé | statut |
 |---|---|---|---|
 | [Berceau moteur Turbo (Motortraeger)](catalog/parts/993-eng-carrier-0001.json) | nuance inconnue | CNC | **critique pour la sécurité** |
+| [Carter de chaîne de distribution 993 et ses c…](catalog/parts/993-eng-chain-case-0001.json) | non identifié | à décider | **interdit en l'état** |
+| [Couvercle gauche de carter de chaîne 964 105…](catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json) | Ti-6Al-4V Grade 5, plaque — choix assumé | CNC | fonctionnel |
 | [Bielle 993/993 Turbo](catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json) | Ti-6Al-4V Grade 5 LPBF de criblage | LPBF | **interdit en l'état** |
 | [Turbine de refroidissement moteur](catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
 | [Collecteur d'échappement trois-en-un 993 Turbo](catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | **interdit en l'état** |
@@ -130,6 +132,7 @@ La colonne « statut » est celle de la fiche, pas une intention : une pièce
 | pièce | matière candidate | procédé | statut |
 |---|---|---|---|
 | [Embout d'échappement ovale 993](catalog/parts/993-exh-oval-tip-in625-f0-0001.json) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | fonctionnel |
+| [Embout d'échappement ovale](catalog/parts/993-exh-oval-tip-ti-f1-0001.json) | Ti-6Al-4V si la température réelle le p… | LPBF | fonctionnel |
 
 **Carrosserie**
 
@@ -147,7 +150,7 @@ La colonne « statut » est celle de la fiche, pas une intention : une pièce
 | [Poignee de tirage de porte interieure](catalog/parts/993-int-door-pull-0001.json) | a_determiner_apres_essai_de_charge | à décider | fonctionnel |
 | [Cache de glissiere de siege](catalog/parts/993-int-seat-rail-cover-0001.json) | a_determiner_apres_essai_de_montage | FFF | non critique |
 | [Cache d'emplacement d'interrupteur](catalog/parts/993-int-switch-blank-0001.json) | a_determiner_apres_essai_de_montage | FFF | non critique |
-| [Bague aluminium de finition de commutateur](catalog/parts/993-int-switch-trim-ring-f1-0001.json) | original inconnu | à décider | non critique |
+| [Bague aluminium de finition de commutateur](catalog/parts/993-int-switch-trim-ring-f1-0001.json) | EN AW-6063 T6 retenu pour l'anodisation… | CNC | non critique |
 
 **Éclairage**
 
@@ -161,7 +164,7 @@ La colonne « statut » est celle de la fiche, pas une intention : une pièce
 |---|---|---|---|
 | [Cache-moyeu 993](catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json) | AlSi10Mg de criblage | à décider | fonctionnel |
 
-*31 fiches, dont 17 interdites en l'état et aucune libérée. Les dossiers de conception correspondants sont dans [`docs/993/`](docs/993/). Tableau engendré par `scripts/render_parts_table.py`, vérifié par `make check`.*
+*34 fiches, dont 18 interdites en l'état et aucune libérée. Les dossiers de conception correspondants sont dans [`docs/993/`](docs/993/). Tableau engendré par `scripts/render_parts_table.py`, vérifié par `make check`.*
 
 <!-- pieces:fin -->
 

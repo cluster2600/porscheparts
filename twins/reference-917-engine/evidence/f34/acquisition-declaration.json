@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "$comment": "Declaration d'acquisition enregistree APRES coup, volontairement hors du contrat F34. Le contrat est lie par SHA-256 depuis la phase F41 : le modifier casse l'attestation en aval, et une declaration orale ne justifie pas de casser une chaine d'attestation. Ce fichier est donc un ajout, pas une retouche.",
+  "phase": "F34",
+  "record_kind": "declaration_not_evidence",
+  "declared_on": "2026-09-11",
+  "declared_by": "operateur du depot",
+  "declared_method": "structured_light_or_laser_scanner_calibrated",
+  "declared_units": "millimetres",
+  "evidence_level": "D",
+  "why_it_would_matter": "Un scanner a lumiere structuree ou laser calibre porte son echelle dans l'instrument : la reconstruction n'est pas libre en taille. La photogrammetrie, elle, est sans echelle et doit etre ancree par une longueur de reference. Si la declaration se confirme, l'echelle absolue cesse d'etre une hypothese et la bande de sensibilite 0,985 / 1,0 / 1,015 du contrat peut se reduire a 1,0.",
+  "what_is_still_missing": [
+    "L'identite de l'instrument : marque, modele, volume de mesure.",
+    "Sa reference de calibration : etalon, date, ecart constate. C'est la condition que la declaration pose elle-meme.",
+    "Le perimetre : les deux scans, carter moteur et culasse 935, ou un seul ?"
+  ],
+  "gate_effect": "aucun",
+  "gates_unchanged": {
+    "scan_absolute_scale_confirmed": false,
+    "porsche_917_head_identity_confirmed": false
+  },
+  "why_no_gate_moves": "Une declaration n'est pas une piece justificative. Un test verifie par ailleurs que toutes les portes de liberation de F34 sont fermees, et il doit continuer a passer.",
+  "independent_of_scale": "La porte porsche_917_head_identity_confirmed reste fermee quelle que soit l'echelle : le scan de culasse est une 935 Xtreme et le contrat interdit d'en tirer une identite ou un ajustement 917. L'echelle et l'identite sont deux questions distinctes."
+}

@@ -95,5 +95,94 @@ python3 scripts/run_metal_am_geometry_screen.py \
   --machine-card catalog/manufacturing/machines/eos-m290.json \
   --material "EOS AlSi10Mg" \
   --expected-envelope-mm 30.5 30.5 10.5 \
-  --output twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1
+  --output twins/993-switch-trim-ring-f1/evidence/lpbf-f1
+```
+
+## Étape 04 du pipeline AM — 2026-09-10
+
+Les étapes 02 et 03 disaient qu'une géométrie est tranchable. Elles ne disaient
+pas qu'il existe une **route** : un alliage, une poudre, une machine, une
+orientation, une épaisseur de couche, des traitements et des propriétés
+dépendantes de la température qui appartiennent au même procédé qualifié.
+L'étape 04 confronte le rapport géométrique aux deux cartes du catalogue —
+[`machines/eos-m290.json`](../../catalog/manufacturing/machines/eos-m290.json) et
+[`processes/eos-m290-alsi10mg-30um.json`](../../catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json)
+— et échoue à porte fermée sur chaque écart.
+
+**Statut : `blocked_missing_input`. Sept portes sur onze restent fermées.**
+
+| porte | résultat |
+|---|---|
+| identité machine cohérente | ouverte |
+| identité alliage cohérente | ouverte |
+| épaisseur de couche cohérente | **fermée** |
+| paroi criblée au-dessus du minimum procédé | ouverte |
+| pièce nue dans l'enveloppe machine | ouverte |
+| orientation revue par un ingénieur | fermée |
+| carte constitutive calibrée en température | fermée |
+| traitement thermique défini | fermée |
+| surépaisseurs d'usinage définies | fermée |
+| admissibles de pièce dérivés des coupons | fermée |
+| traçabilité du lot de poudre contractualisée | fermée |
+
+**La porte la plus utile est une incohérence interne au dépôt.** L'étape 03 a
+tranché la bague à **50 µm**, alors que la seule route AlSi10Mg publiée sur
+cette machine est à **30 µm**. Les 580 couches de l'étape 03 en deviendraient
+**967** sur la route qualifiée, et surtout les propriétés coupon publiées ne se
+transposent pas d'une épaisseur à l'autre. Le criblage géométrique était juste ;
+c'est sa liaison à une route réelle qui manquait, et c'est exactement ce que
+l'étape 04 est censée trouver.
+
+Le reste tient au fournisseur, pas au calcul : la carte procédé ne publie ni
+traitement thermique, ni surépaisseur d'usinage, ni admissibles de pièce, et
+aucun lot de poudre n'est engagé.
+
+Ce que l'étape produit de concret est un **dossier de demande de devis**
+signable par empreinte — [`supplier-rfq.md`](../../twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md)
+— qui liste ce qui est fourni, la route candidate, les sept questions au
+fournisseur et les livrables attendus avec le prix. Il demande aussi la
+comparaison chiffrée avec le tournage CNC de la même géométrie, parce que la
+forme est axisymétrique et que rien ne prouve encore l'intérêt du LPBF ici.
+
+Ordres de grandeur du dossier, tous de criblage : hauteur de construction
+29,0 mm, masse 6,12 g, temps d'exposition 0,13 h au débit publié de 5,1 mm³/s —
+sans recouvrement, chauffe, inertage ni changement de plateau.
+
+**Reproduction et garde :**
+
+```bash
+make route-trim-ring        # écrit la carte et le dossier de devis
+make route-trim-ring-check  # échoue si les fichiers publiés ont vieilli
+python3 -m unittest tests.test_993_switch_trim_ring_route_f1
+```
+
+Le test échoue si une porte s'ouvrait sans coupon, sans traitement thermique et
+sans lot de poudre, et si l'incohérence d'épaisseur de couche était lissée.
+
+## Changement de voie — 11 septembre 2026
+
+L'étape 04 avait confronté la pièce à une route LPBF réelle. La question
+suivante — « est-on sûr que c'est la bonne matière ? » — a montré que non :
+l'AlSi10Mg n'avait jamais été choisi, il était la seule nuance documentée du
+dépôt. Voir [décision 0005](../decisions/0005-alsi10mg-nest-pas-un-choix.md) et
+[décision 0006](../decisions/0006-bague-tournee-6063-t6.md).
+
+La pièce est désormais **tournée en EN AW-6063 T6**, anodisée brillant. Son
+`preferred_process` est `CNC`. Les étapes 02, 03 et 04 LPBF restent publiées :
+elles disent ce qu'un criblage additif sait et ne sait pas dire, et elles ont
+servi à trouver l'incohérence d'épaisseur de couche.
+
+La route tournage compte cinq portes fermées contre sept, mais **les deux qui
+comptent n'ont pas bougé** : le Ø30,5 mm n'est toujours pas tolérancé et vient
+d'une page de vente, et le maître est toujours à arêtes vives. Changer de
+procédé ne mesure pas le logement.
+
+La sortie proposée est une série de trois bagues nues à Ø30,40, Ø30,50 et
+Ø30,60 mm : sur une pièce tournée, les deux suivantes coûtent une fraction de la
+première.
+
+```bash
+make turning-trim-ring
+make turning-trim-ring-check
+python3 -m unittest tests.test_993_switch_trim_ring_turning_f1
 ```

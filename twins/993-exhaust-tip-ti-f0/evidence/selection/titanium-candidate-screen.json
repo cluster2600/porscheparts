@@ -1,0 +1,978 @@
+{
+  "schema_version": "1.0.0",
+  "screen_id": "TITANIUM-AM-CANDIDATE-SCREEN",
+  "authority": "repository_judgement_not_measurement",
+  "grid_source": "docs/TITANIUM.md",
+  "parts_screened": 34,
+  "eligible_count": 1,
+  "selected": "993-EXH-OVAL-TIP-TI-F1-0001",
+  "selection_is_contested": false,
+  "selection_rule": "score = criteres de pertinence titane + familles additives - contre-indications non levees, apres elimination par la classe de securite, l'absence de famille additive, la temperature, les deux impossibilites physiques et toute condition laissee sans parade",
+  "scope_warning": "Ce classement porte sur les fiches de catalog/parts, pas sur la voiture. Le catalogue d'usine 993 compte 6 259 references distinctes ; les fiches en couvrent une fraction de pourcent. Une piece absente d'ici n'a pas ete jugee, elle n'a pas ete vue. Le balayage large est le triage PET, pas ce criblage.",
+  "ranking": [
+    {
+      "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+      "safety_class": "functional",
+      "score": 6,
+      "relevance_count": 4,
+      "counter_count": 0,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 427.0,
+      "temperature_basis": "surface d'embout de 700 K declaree par le criblage F0 de la piece (parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json), cas synthetique et non mesure",
+      "interfaces_to_measure": 1,
+      "eligible": false,
+      "disqualifiers": [
+        "une variante titane de la meme geometrie est fichee separement et concourt a sa place"
+      ],
+      "alloy_note": "427 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "Double paroi ventilee et huit attaches integrees : consolidation et cavite interne inusinables. La rupture est benigne et une seule interface est a mesurer, le diametre de sortie. La corrosion n'est pas retenue : l'embout d'origine est en inox et la traite deja. La temperature declaree par la fiche, 427 C, depasse le plafond de fluage du Ti-6Al-4V et deplace la question vers une nuance quasi-alpha.",
+      "incumbent_material": {
+        "titanium_improves_on_it": true,
+        "reason": "origine inox, candidat nickel a 8,44 g/cm3 : le titane divise la masse par deux et tient mieux la corrosion d'echappement"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+      "safety_class": "functional",
+      "score": 6,
+      "relevance_count": 4,
+      "counter_count": 0,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 427.0,
+      "temperature_basis": "surface d'embout de 700 K declaree par le criblage F0 de la piece (parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json), cas synthetique et non mesure",
+      "interfaces_to_measure": 1,
+      "eligible": true,
+      "disqualifiers": [],
+      "alloy_note": "427 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "Variante titane de la meme geometrie, issue de ce criblage. Consolidation du conduit, de la coque et des huit nervures, cavite annulaire inusinable, rupture benigne, une seule interface a mesurer. La temperature declaree de 427 C reste le seul arbitre entre Ti-6Al-4V et Ti-6242.",
+      "incumbent_material": {
+        "titanium_improves_on_it": true,
+        "reason": "origine inox, candidat nickel a 8,44 g/cm3 : le titane divise la masse par deux et tient mieux la corrosion d'echappement"
+      },
+      "variant_of": "993-EXH-OVAL-TIP-IN625-F0-0001"
+    },
+    {
+      "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 7,
+      "relevance_count": 5,
+      "counter_count": 0,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 900.0,
+      "temperature_basis": "collecteur turbo",
+      "interfaces_to_measure": 8,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "900 C depasse meme le plafond quasi-alpha de 550 C : cas nickel, pas titane",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "900 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "Excellent candidat AM, mais 900 C interdit tout titane : c'est un cas nickel.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 7,
+      "relevance_count": 5,
+      "counter_count": 0,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 400.0,
+      "temperature_basis": "retour d'huile turbo",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Excellent cas AM. Mais huile sous le cote chaud : une fuite met de l'huile sur l'echappement. Interdit en l'etat, et 400 C est deja la limite du Ti-6Al-4V.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
+      "safety_class": "functional",
+      "score": 6,
+      "relevance_count": 4,
+      "counter_count": 1,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [
+        {
+          "condition": "uncontrolled_galvanic_couple",
+          "mitigation": "Plan de joint sur culasse aluminium : joint isolant et visserie revetue, parade courante et verifiable au montage."
+        }
+      ],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 80.0,
+      "temperature_basis": "admission",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "le titane n'ameliore pas la matiere d'origine (origine aluminium a 80 C : le titane est plus dense et plus cher, sans apport thermique ni tenue a la corrosion utile)"
+      ],
+      "alloy_note": "",
+      "reason": "Vrai cas AM et piece functional. Le titane n'y apporte rien : l'admission ne corrode pas, ne chauffe pas, et l'aluminium est deux fois moins cher.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "origine aluminium a 80 C : le titane est plus dense et plus cher, sans apport thermique ni tenue a la corrosion utile"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001",
+      "safety_class": "functional",
+      "score": 5,
+      "relevance_count": 4,
+      "counter_count": 0,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 700.0,
+      "temperature_basis": "bouclier thermique turbo",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "700 C depasse meme le plafond quasi-alpha de 550 C : cas nickel, pas titane",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "700 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "700 C : cas nickel, pas titane.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-CHAIN-CASE-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 5,
+      "relevance_count": 4,
+      "counter_count": 3,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [
+        {
+          "condition": "galling_or_repeated_threads",
+          "mitigation": "Inserts acier dans les portees de goujons : parade connue et verifiable."
+        },
+        {
+          "condition": "uncontrolled_galvanic_couple",
+          "mitigation": "Revetement et mastic d'etancheite au plan de joint : parade connue."
+        }
+      ],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 130.0,
+      "temperature_basis": "huile moteur et voisinage de culasse sur moteur refroidi par air, ordre de grandeur declare",
+      "interfaces_to_measure": 6,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "dilatation differentielle avec la piece sur laquelle celle-ci se boulonne, tant que la conception du plan de joint ne la reprend pas",
+        "le titane n'ameliore pas la matiere d'origine (origine aluminium de fonderie, boulonnee sur un carter aluminium : le titane perd sur la dilatation, le couple galvanique et le prix)"
+      ],
+      "alloy_note": "",
+      "reason": "Carter, trois couvercles, ponts et galeries d'huile sur une meme planche : la consolidation y est reelle et les passages d'huile ne se noyautent pas facilement. Mais le titane y bute trois fois. Il se dilate deux fois moins que le carter moteur en aluminium sur lequel il se boulonne, ce qui deforme un plan de joint etendu a chaud. Il grippe sur des filetages repris a chaque depose. Et il est fortement cathodique vis-a-vis de l'aluminium, ce que la grille refuse explicitement. Bon candidat additif, en aluminium.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "origine aluminium de fonderie, boulonnee sur un carter aluminium : le titane perd sur la dilatation, le couple galvanique et le prix"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-INTERCOOLER-END-TANK-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 4,
+      "relevance_count": 4,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 150.0,
+      "temperature_basis": "air de suralimentation",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Bon candidat AM, mais boite a eau de refroidisseur : l'aluminium reste la matiere juste, et le couple galvanique avec le faisceau serait a maitriser.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 4,
+      "relevance_count": 5,
+      "counter_count": 3,
+      "unresolved_counter_count": 3,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 900.0,
+      "temperature_basis": "turbocompresseur complet",
+      "interfaces_to_measure": 12,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "900 C depasse meme le plafond quasi-alpha de 550 C : cas nickel, pas titane",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "900 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "Cible de recherche, pas une piece a fabriquer.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 3,
+      "relevance_count": 3,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes"
+      ],
+      "peak_service_temperature_c": 300.0,
+      "temperature_basis": "soupape d'admission",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Le titane creux est pertinent sur le principe, mais c'est un composant moteur fortement charge : interdit en l'etat.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 3,
+      "relevance_count": 3,
+      "counter_count": 0,
+      "unresolved_counter_count": 0,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 900.0,
+      "temperature_basis": "cote chaud turbo",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "900 C depasse meme le plafond quasi-alpha de 550 C : cas nickel, pas titane",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "900 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "Rotor chaud : temperature et vitesse excluent le titane et interdisent la piece en l'etat.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 3,
+      "relevance_count": 4,
+      "counter_count": 3,
+      "unresolved_counter_count": 3,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 130.0,
+      "temperature_basis": "huile moteur",
+      "interfaces_to_measure": 5,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Deux galeries non colineaires : vrai cas AM. Mais filetages repetes exposes au grippage, et le titane conduit mal la chaleur d'un circuit d'huile.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+      "safety_class": "functional",
+      "score": 2,
+      "relevance_count": 2,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 90.0,
+      "temperature_basis": "compartiment de phare",
+      "interfaces_to_measure": 2,
+      "eligible": false,
+      "disqualifiers": [
+        "le titane n'ameliore pas la matiere d'origine (piece de reparation collee, sans charge ni temperature : l'aluminium ou l'acier font le meme travail pour moins cher)"
+      ],
+      "alloy_note": "",
+      "reason": "Petite piece de reparation ; le titane n'apporte rien qu'un aluminium ou un acier ne donne, et le collage est deja le point faible.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "piece de reparation collee, sans charge ni temperature : l'aluminium ou l'acier font le meme travail pour moins cher"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 2,
+      "relevance_count": 3,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 100.0,
+      "temperature_basis": "air de refroidissement",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Turbine tournante ; l'aluminium est plus leger a raideur egale sur ce diametre et la piece n'a pas de passage interne.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 2,
+      "relevance_count": 3,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 100.0,
+      "temperature_basis": "air de refroidissement",
+      "interfaces_to_measure": 5,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Carter de soufflante : l'aluminium est la bonne matiere, le titane n'ajoute que du cout.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 2,
+      "relevance_count": 3,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [
+        "passages_internes"
+      ],
+      "peak_service_temperature_c": 350.0,
+      "temperature_basis": "chambre de combustion",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Galerie fermee : cas AM exemplaire, mais piston : conductivite indispensable, grippage, et interne moteur interdit en l'etat.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+      "safety_class": "functional",
+      "score": 2,
+      "relevance_count": 2,
+      "counter_count": 2,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [
+        {
+          "condition": "galling_or_repeated_threads",
+          "mitigation": "L'axe de chape est le seul contact glissant : une bague bronze ou acier le supprime, sans toucher au reste de la piece."
+        }
+      ],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "habitacle",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "le titane n'ameliore pas la matiere d'origine (levier d'habitacle : rien a gagner en masse, ni en corrosion, ni en temperature)"
+      ],
+      "alloy_note": "",
+      "reason": "Levier et chape : forme simple, axe glissant non traite, aucun gain de titane.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "levier d'habitacle : rien a gagner en masse, ni en corrosion, ni en temperature"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-WHL-CENTER-CAP-ALSI10MG-F0-0001",
+      "safety_class": "functional",
+      "score": 2,
+      "relevance_count": 2,
+      "counter_count": 2,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [
+        {
+          "condition": "uncontrolled_galvanic_couple",
+          "mitigation": "Contact avec une jante aluminium : anodisation dure ou revetement sur les quatre languettes, isolation verifiable."
+        }
+      ],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 80.0,
+      "temperature_basis": "moyeu de roue",
+      "interfaces_to_measure": 2,
+      "eligible": false,
+      "disqualifiers": [
+        "le titane n'ameliore pas la matiere d'origine (l'original est en plastique : le titane est une regression de masse, pas un progres)"
+      ],
+      "alloy_note": "",
+      "reason": "Cache-moyeu dont l'original est en plastique : quatre languettes, forme simple, et piece tournante dont la perte est un projectile.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "l'original est en plastique : le titane est une regression de masse, pas un progres"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 1,
+      "relevance_count": 2,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 200.0,
+      "temperature_basis": "cote froid turbo",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Roue tournante a grande vitesse : interdite en l'etat, et l'aluminium y est la matiere de reference.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 1,
+      "relevance_count": 2,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 200.0,
+      "temperature_basis": "cote froid turbo",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Idem, iteration precedente.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 1,
+      "relevance_count": 3,
+      "counter_count": 3,
+      "unresolved_counter_count": 3,
+      "carried_requirements": [],
+      "additive_families": [
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 130.0,
+      "temperature_basis": "couvre-culasse",
+      "interfaces_to_measure": 6,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "la fonction demande de conduire la chaleur, ce que le titane fait mal",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Consolidation reelle des tours d'allumage, mais aluminium moteur, plan de joint etendu et filetages repetes.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 0,
+      "relevance_count": 2,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "structure avant, ambiante",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "la flexion doit rester celle d'une piece acier",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Absorbeur de choc : sa raideur et son ecrasement doivent rester ceux de l'origine, et le titane change les deux.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-CARRIER-0001",
+      "safety_class": "safety_critical",
+      "score": 0,
+      "relevance_count": 2,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 80.0,
+      "temperature_basis": "berceau moteur",
+      "interfaces_to_measure": 6,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite safety_critical : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "la flexion doit rester celle d'une piece acier",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Presume critique. Le depot a deja conclu : lame monobloc, sans canal interne ni sous-ensemble a consolider.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-CONNECTING-ROD-TI64-F0-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 0,
+      "relevance_count": 2,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 150.0,
+      "temperature_basis": "interieur moteur, huile",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "la flexion doit rester celle d'une piece acier",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Bielle : interne moteur fortement charge, grippage de pied et de tete, fatigue a vie infinie. Interdit en l'etat.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-EXHAUST-VALVE-F1-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 700.0,
+      "temperature_basis": "soupape d'echappement",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "700 C depasse meme le plafond quasi-alpha de 550 C : cas nickel, pas titane",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "700 C depasse le plafond de fluage du Ti-6Al-4V (400 C) ; une nuance quasi-alpha serait necessaire",
+      "reason": "Proxy de comparaison, non fonctionnel, et la temperature exclut le titane.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-INTAKE-VALVE-F1-0001",
+      "safety_class": "prohibited_pending_engineering",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 300.0,
+      "temperature_basis": "soupape d'admission",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "classe de securite prohibited_pending_engineering : hors de portee d'un premier tirage metal non qualifie",
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "contact glissant ou filetage repris a chaque depose : le titane grippe tant qu'aucun traitement de surface, insert acier ou bague n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Proxy de comparaison, non fonctionnel.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+      "safety_class": "functional",
+      "score": 0,
+      "relevance_count": 2,
+      "counter_count": 2,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 120.0,
+      "temperature_basis": "compartiment moteur",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Support a deux rails : exactement la bride simple facilement usinable que la grille exclut. Le depot a deja prefere CNC et tolerie.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-INT-DASHBOARD-TRIM-0001",
+      "safety_class": "functional",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "habitacle",
+      "interfaces_to_measure": 6,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Habillage : composite ou polymere, aucun interet metal.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-INT-DOOR-PULL-0001",
+      "safety_class": "functional",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "habitacle",
+      "interfaces_to_measure": 3,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Poignee organique : polymere, acquise par photogrammetrie.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-INT-SEAT-RAIL-COVER-0001",
+      "safety_class": "non_critical",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "habitacle",
+      "interfaces_to_measure": 2,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Cache d'habillage : polymere.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-INT-SWITCH-BLANK-0001",
+      "safety_class": "non_critical",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "habitacle",
+      "interfaces_to_measure": 2,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Obturateur a faces planes : polymere.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+      "safety_class": "non_critical",
+      "score": 0,
+      "relevance_count": 1,
+      "counter_count": 1,
+      "unresolved_counter_count": 1,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "habitacle",
+      "interfaces_to_measure": 1,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Anneau axisymetrique : tournage. Voir decision 0006.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
+      "safety_class": "functional",
+      "score": 0,
+      "relevance_count": 2,
+      "counter_count": 4,
+      "unresolved_counter_count": 2,
+      "carried_requirements": [
+        {
+          "condition": "galling_or_repeated_threads",
+          "mitigation": "Visserie acier d'origine conservee avec pate anti-grippage ; aucun filetage taille dans le titane."
+        },
+        {
+          "condition": "differential_expansion_with_alloy_mate",
+          "mitigation": "Portee courte : l'ecart relatif au percage le plus eloigne vaut 0,072 mm sur une portee de 100 mm a 100 K, contre 0,300 mm de jeu dans un percage M6 moyen, soit 24 % du jeu. C'est ce qui distingue le couvercle du carter entier."
+        }
+      ],
+      "additive_families": [],
+      "peak_service_temperature_c": 130.0,
+      "temperature_basis": "huile moteur, ordre de grandeur declare",
+      "interfaces_to_measure": 4,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu"
+      ],
+      "alloy_note": "",
+      "reason": "Couvercle plan boulonne. Aucune des trois familles additives : il se fraise. La piece d'origine est en magnesium coule et se corrode : c'est le critere de corrosion de TITANIUM.md, et c'est le seul vrai argument du titane ici. Mais le carter d'en face est lui aussi en magnesium, et le couple galvanique reste sans parade.",
+      "incumbent_material": {
+        "titanium_improves_on_it": true,
+        "reason": "la piece d'origine est en magnesium coule dont le mode de defaillance est la corrosion des portees ; le titane ne se pique pas. Il n'ameliore en revanche ni la masse ni la raideur : contre le magnesium il perd les deux indices de flexion de plaque."
+      },
+      "variant_of": null
+    },
+    {
+      "part_id": "993-BODY-FRONT-LID-0001",
+      "safety_class": "functional",
+      "score": -2,
+      "relevance_count": 1,
+      "counter_count": 3,
+      "unresolved_counter_count": 3,
+      "carried_requirements": [],
+      "additive_families": [],
+      "peak_service_temperature_c": 60.0,
+      "temperature_basis": "panneau exterieur, ambiante",
+      "interfaces_to_measure": 6,
+      "eligible": false,
+      "disqualifiers": [
+        "n'appartient a aucune des trois familles ou l'additif gagne",
+        "la flexion doit rester celle d'une piece acier",
+        "couple galvanique avec l'aluminium ou le magnesium, tant qu'aucune isolation, aucun revetement ni aucun mastic n'est prevu",
+        "le titane n'ameliore pas la matiere d'origine (comparaison a la matiere d'origine non instruite)"
+      ],
+      "alloy_note": "",
+      "reason": "Panneau de peau : tolerie ou composite, aucun volume interne, aucune consolidation.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite"
+      },
+      "variant_of": null
+    }
+  ]
+}
