@@ -173,6 +173,21 @@ RESEARCH_GUARD_SHA256 = "9ff35f524c1aaf5ebab9b0373b25f1d36f93b6f2781392431104aa7
 RESEARCH_GPUS = ("L40S", "RTX 6000Ada")
 RESEARCH_CAD_MODE = "cad-specialists-v1"
 RESEARCH_CAD_GPUS = ("RTX 3090", "RTX 4090", "RTX A5000", "RTX 5880Ada", *RESEARCH_GPUS)
+# Session jumeau moteur : deux locations appariees (llm, compute), une garde par role.
+ENGINE_TWIN_PROFILE = "engine-twin-v1"
+ENGINE_TWIN_LABEL_RE = re.compile(r"3dprinting993-engine-twin-(llm|compute)-([0-9a-f]{20})")
+ENGINE_TWIN_IMAGES = {"llm": RESEARCH_IMAGE, "compute": SIMREADY_IMAGE}
+ENGINE_TWIN_GUARD_SHA256 = "099aa937cccc2d0752d5a228053101285c97e11b4124cd172a61cc2cfdfe2580"
+ENGINE_TWIN_MAX_DPH = 2.60
+ENGINE_TWIN_MAX_TRANSFER_RATE = 0.01
+ENGINE_TWIN_MAX_SECONDS = 6 * 60 * 60
+ENGINE_TWIN_MAX_BUDGET_USD = 30.0
+ENGINE_TWIN_MIN_RELIABILITY = 0.99
+# (GPU admis, gpu_ram MB, coeurs effectifs, RAM MB, disque GB)
+ENGINE_TWIN_HARDWARE = {
+    "llm": (("H100 SXM4", "H100 NVL", "H100", "RTX PRO 6000 WS"), 80000, 16, 64000, 150),
+    "compute": (("RTX PRO 6000 WS", "RTX PRO 6000 Blackwell Max-Q", "RTX A6000", "L40S"), 48000, 64, 256000, 500),
+}
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
 LAUNCH_LOCK_FILE = Path.home() / ".cache" / "openbao-vastai" / "simready-launch.lock"
@@ -5820,7 +5835,331 @@ def launch_research(api_key: str, offer_id: int, manifest: dict, manifest_sha256
         return 0
 
 
+def engine_twin_role(value: object) -> str:
+    if value not in ENGINE_TWIN_HARDWARE:
+        raise SafeError("engine-twin role must be llm or compute")
+    return value
+
+
+def engine_twin_offer_eligible(offer: dict, role: str) -> bool:
+    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(role)]
+    floors = (("gpu_ram", gpu_ram), ("cpu_cores_effective", cores), ("cpu_ram", ram), ("disk_space", disk))
+    return (type(offer.get("id")) is int and offer["id"] > 0
+        and offer.get("gpu_name") in gpus
+        and finite_number(offer.get("num_gpus")) == 1
+        and (fraction := finite_number(offer.get("gpu_frac"))) is not None and 0 < fraction <= 1
+        and all((value := finite_number(offer.get(key))) is not None and value >= floor for key, floor in floors)
+        and (price := finite_number(offer.get("dph_total"))) is not None and 0 < price <= ENGINE_TWIN_MAX_DPH
+        and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None
+        and reliability >= ENGINE_TWIN_MIN_RELIABILITY
+        and (offer.get("verified") is True or offer.get("verification") == "verified")
+        and offer.get("rentable") in (True, 1) and offer.get("rented") in (False, 0)
+        and (offer.get("rentable_type") or offer.get("rental_type") or offer.get("type")) in (None, "on-demand", "ondemand")
+        and all((value := finite_number(offer.get(key))) is not None and 0 <= value <= ENGINE_TWIN_MAX_TRANSFER_RATE
+                for key in ("inet_up_cost", "inet_down_cost")))
+
+
+def get_engine_twin_offers(api_key: str, role: str, offer_id: int | None = None) -> list[dict]:
+    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(role)]
+    query = {"allocated_storage": disk, "num_gpus": {"eq": 1}, "gpu_frac": {"gt": 0, "lte": 1},
+             "gpu_name": {"in": list(gpus)}, "gpu_ram": {"gte": gpu_ram},
+             "cpu_cores_effective": {"gte": cores}, "cpu_ram": {"gte": ram}, "disk_space": {"gte": disk},
+             "dph_total": {"lte": ENGINE_TWIN_MAX_DPH}, "reliability": {"gte": ENGINE_TWIN_MIN_RELIABILITY},
+             "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
+             "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 1000 if offer_id is not None else 100}
+    result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
+    if not isinstance(result.get("offers"), list):
+        raise SafeError("Vast.ai engine-twin offer response is invalid")
+    eligible = sorted((item for item in result["offers"] if isinstance(item, dict)
+                       and engine_twin_offer_eligible(item, role)), key=lambda item: item["dph_total"])
+    return [item for item in eligible if offer_id is None or item["id"] == offer_id]
+
+
+def engine_twin_sibling_label(label: str) -> str:
+    match = ENGINE_TWIN_LABEL_RE.fullmatch(label)
+    if match is None:
+        raise SafeError("engine-twin label is invalid")
+    other = "compute" if match.group(1) == "llm" else "llm"
+    return f"3dprinting993-engine-twin-{other}-{match.group(2)}"
+
+
+def engine_twin_load_manifest(path: Path, *, require_active: bool = True) -> tuple[dict, str]:
+    data = m64_read_file(path, 65536)
+    try:
+        manifest = json.loads(data)
+    except (ValueError, UnicodeError):
+        raise SafeError("engine-twin manifest is not JSON") from None
+    fields = {"schema_version", "profile", "role", "job_id", "attempt_label", "sibling_label", "image_ref",
+              "model", "model_revision", "created_epoch", "deadline_epoch", "budget_usd",
+              "download_budget_gb", "upload_budget_gb", "qualification_path", "qualification_sha256",
+              "guard_path", "guard_sha256", "guard_ready_path"}
+    if not isinstance(manifest, dict) or set(manifest) != fields:
+        raise SafeError("engine-twin manifest fields differ from the fixed contract")
+    role = engine_twin_role(manifest["role"])
+    label = manifest["attempt_label"]
+    match = ENGINE_TWIN_LABEL_RE.fullmatch(label) if isinstance(label, str) else None
+    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != ENGINE_TWIN_PROFILE
+        or match is None or match.group(1) != role
+        or manifest["sibling_label"] != engine_twin_sibling_label(label)
+        or manifest["image_ref"] != ENGINE_TWIN_IMAGES[role]
+        or manifest["model"] != RESEARCH_MODEL or manifest["model_revision"] != RESEARCH_REVISION
+        or not isinstance(manifest["job_id"], str)
+        or not re.fullmatch(rf"engine-twin-{role}-[a-z0-9][a-z0-9-]{{0,63}}", manifest["job_id"])):
+        raise SafeError("engine-twin identity, role, image digest or model revision is not approved")
+    created, deadline = manifest["created_epoch"], manifest["deadline_epoch"]
+    if (type(created) is not int or type(deadline) is not int or created > time.time()
+        or not 600 <= deadline - created <= ENGINE_TWIN_MAX_SECONDS
+        or (require_active and time.time() >= deadline - 300)):
+        raise SafeError("engine-twin deadline must include setup and cleanup within six hours")
+    for field, lower, cap in (("budget_usd", 1, ENGINE_TWIN_MAX_BUDGET_USD),
+                              ("download_budget_gb", 0, 80), ("upload_budget_gb", 0, 20)):
+        value = finite_number(manifest[field])
+        if value is None or not lower < value <= cap:
+            raise SafeError("engine-twin budget or transfer allocation exceeds its fixed cap")
+    for field in ("qualification_path", "guard_path", "guard_ready_path"):
+        if not isinstance(manifest[field], str) or not Path(manifest[field]).is_absolute():
+            raise SafeError("engine-twin paths must be absolute")
+    if (Path(manifest["guard_ready_path"]).parent != path.parent
+        or Path(manifest["guard_ready_path"]).name != manifest["job_id"] + ".guard-ready.json"):
+        raise SafeError("engine-twin guard receipt must be the exact sibling job receipt")
+    if (manifest["guard_sha256"] != ENGINE_TWIN_GUARD_SHA256
+        or hashlib.sha256(m64_read_file(Path(manifest["guard_path"]), 65536)).hexdigest() != ENGINE_TWIN_GUARD_SHA256):
+        raise SafeError("engine-twin guard source fingerprint differs from the approved helper")
+    proof_data = m64_read_file(Path(manifest["qualification_path"]), 65536)
+    if hashlib.sha256(proof_data).hexdigest() != manifest["qualification_sha256"]:
+        raise SafeError("engine-twin qualification fingerprint mismatch")
+    try:
+        proof = json.loads(proof_data)
+    except (ValueError, UnicodeError):
+        raise SafeError("engine-twin qualification is not JSON") from None
+    expected = {"image_ref": manifest["image_ref"], "platform": "linux/amd64", "anonymous_registry_verified": True}
+    if role == "llm":
+        expected.update(model=RESEARCH_MODEL, model_revision=RESEARCH_REVISION, public_weights_verified=True)
+    if not isinstance(proof, dict) or any(type(proof.get(key)) is not type(value) or proof[key] != value
+                                          for key, value in expected.items()):
+        raise SafeError("engine-twin public image or public weights are not qualified")
+    size_fields = ("image_download_bytes", "model_download_bytes") if role == "llm" else ("image_download_bytes",)
+    sizes = [proof.get(field) for field in size_fields]
+    if any(type(value) is not int or value <= 0 for value in sizes) or sum(sizes) + 1024 ** 3 > manifest["download_budget_gb"] * 10 ** 9:
+        raise SafeError("engine-twin measured downloads plus input reserve exceed allocation")
+    return manifest, hashlib.sha256(data).hexdigest()
+
+
+def engine_twin_budget_cost(manifest: dict, price: object, up: object, down: object) -> float:
+    price, up, down = [finite_number(value) for value in (price, up, down)]
+    if (price is None or not 0 < price <= ENGINE_TWIN_MAX_DPH
+        or any(value is None or not 0 <= value <= ENGINE_TWIN_MAX_TRANSFER_RATE for value in (up, down))):
+        raise SafeError("engine-twin price metadata is missing or exceeds its cap")
+    cost = price * (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
+    cost += down * manifest["download_budget_gb"] + up * manifest["upload_budget_gb"] + 1
+    if cost > manifest["budget_usd"]:
+        raise SafeError("engine-twin planned cost including cleanup reserve exceeds budget")
+    return cost
+
+
+def engine_twin_singleton(api_key: str, instance_id: int | None, manifest: dict) -> None:
+    """Only this attempt and, at most, its exact sibling may exist on the account."""
+    inventory = strict_instance_inventory(api_key)
+    others = [item for item in inventory if item.get("label") != manifest["sibling_label"]]
+    if len(inventory) - len(others) > 1:
+        raise SafeError("engine-twin sibling ownership is ambiguous")
+    if instance_id is None:
+        if others:
+            raise SafeError("engine-twin rental requires an inventory holding at most its sibling")
+    elif (len(others) != 1 or others[0].get("id") != instance_id
+          or others[0].get("label") != manifest["attempt_label"]):
+        raise SafeError("engine-twin instance is not the unique expected rental for its role")
+
+
+def engine_twin_onstart(manifest: dict) -> str:
+    # Same clock policy as research: 900s startup, 300s cleanup, 60s tolerance.
+    duration = int(manifest["deadline_epoch"] - time.time()) - 900 - 300 - 60
+    if duration < 60:
+        raise SafeError("engine-twin deadline cannot cover startup, cleanup, tolerance and a sixty-second run")
+    prefix = ("set -eu; test \"$(id -u)\" = 0; unset HF_TOKEN HUGGING_FACE_HUB_TOKEN; "
+              "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; ")
+    if engine_twin_role(manifest["role"]) == "compute":
+        # Jobs arrive later over SSH; the independent guard bounds paid lifetime.
+        return prefix + (f"nohup timeout --signal=TERM --kill-after=30 {duration} sleep {duration} "
+                         ">/workspace/engine-twin-compute-idle.log 2>&1 </dev/null &")
+    command = shlex.join(["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", RESEARCH_MODEL,
+                         "--revision", RESEARCH_REVISION, "--served-model-name", RESEARCH_MODEL,
+                         "--host", "127.0.0.1", "--port", "8000", "--max-model-len", "65536",
+                         "--max-num-seqs", "64", "--gpu-memory-utilization", "0.92", "--enable-prefix-caching"])
+    return prefix + (f"nohup timeout --signal=TERM --kill-after=30 {duration} {command} "
+                     ">/workspace/engine-twin-vllm.log 2>&1 </dev/null &")
+
+
+def engine_twin_contract(raw: dict, instance_id: int, manifest: dict, offer: dict) -> dict:
+    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
+    instance = picogk_safe_instance(raw)
+    if (type(instance.get("id")) is not int or instance["id"] != instance_id
+        or instance.get("label") != manifest["attempt_label"] or instance.get("image") != manifest["image_ref"]
+        or instance.get("machine_verification") != "verified" or instance.get("gpu") != offer["gpu_name"]
+        or instance.get("gpu") not in gpus or instance.get("status") not in {"created", "loading", "running"}
+        or finite_number(instance.get("num_gpus")) != 1
+        or (fraction := finite_number(instance.get("gpu_fraction"))) is None or not 0 < fraction <= 1
+        or fraction != finite_number(offer.get("gpu_frac"))
+        or finite_number(instance.get("dph_total")) != finite_number(offer["dph_total"])
+        or not isinstance(raw.get("ports"), dict) or any(port != "22/tcp" and mapping for port, mapping in raw["ports"].items())):
+        raise SafeError("engine-twin instance identity, hardware, state or published ports violate the contract")
+    for field, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), (gpu_ram, cores, ram, disk)):
+        value = finite_number(instance.get(field))
+        if value is None or value < floor:
+            raise SafeError("engine-twin instance resource metadata violates the contract: " + field)
+    engine_twin_budget_cost(manifest, instance["dph_total"], instance["inet_up_cost_usd_per_gb"], instance["inet_down_cost_usd_per_gb"])
+    return instance
+
+
+def engine_twin_metadata_pending(raw: dict, offer: dict, manifest: dict) -> bool:
+    """Metadata may lag observed running; known violations never may wait."""
+    _, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
+    instance = picogk_safe_instance(raw)
+    if not picogk_startup_pending(raw) and instance["status"] != "running":
+        return False
+    for key, expected in (("machine_verification", "verified"), ("gpu", offer["gpu_name"]),
+                          ("num_gpus", 1), ("gpu_fraction", offer["gpu_frac"]), ("dph_total", offer["dph_total"])):
+        if instance.get(key) is not None and instance[key] != expected:
+            return False
+    for key, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), (gpu_ram, cores, ram, disk)):
+        value = instance.get(key)
+        if value is not None and (finite_number(value) is None or value < floor):
+            return False
+    for key in ("inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb"):
+        value = instance.get(key)
+        if value is not None and (finite_number(value) is None or not 0 <= value <= ENGINE_TWIN_MAX_TRANSFER_RATE):
+            return False
+    ports = raw.get("ports")
+    return ports is None or isinstance(ports, dict) and not any(port != "22/tcp" and mapping for port, mapping in ports.items())
+
+
+def engine_twin_reconcile(api_key: str, manifest: dict, manifest_sha256: str, *, expected_instance_id: int | None = None) -> dict:
+    receipt_path = Path(manifest["guard_ready_path"]).parent / (manifest["job_id"] + ".paid-attempt.json")
+    try:
+        receipt = json.loads(m64_read_file(receipt_path, 4096))
+    except (ValueError, UnicodeError):
+        raise SafeError("engine-twin paid-attempt receipt is invalid") from None
+    if (not isinstance(receipt, dict) or receipt.get("label") != manifest["attempt_label"]
+        or receipt.get("image_ref") != manifest["image_ref"] or receipt.get("manifest_sha256") != manifest_sha256):
+        raise SafeError("engine-twin reconciliation requires the exact consumed paid attempt")
+    absent, instance_id = 0, expected_instance_id
+    for _ in range(12):
+        inventory = strict_instance_inventory(api_key)
+        matches = [item for item in inventory if item.get("label") == manifest["attempt_label"]]
+        if len(matches) > 1:
+            raise SafeError("engine-twin creation ownership is ambiguous; external guard remains required")
+        if instance_id is not None and any(item.get("id") == instance_id and item.get("label") != manifest["attempt_label"] for item in inventory):
+            raise SafeError("engine-twin observed instance label changed; absence is not proven")
+        if matches:
+            if ((instance_id is not None and matches[0]["id"] != instance_id)
+                or safe_instance(matches[0]).get("image") != manifest["image_ref"]):
+                raise SafeError("engine-twin observed instance identity changed; no automatic deletion")
+            instance_id, absent = matches[0]["id"], 0
+            try:
+                destroy_instance_verified(api_key, instance_id, expected_label=manifest["attempt_label"],
+                                          expected_image=manifest["image_ref"])
+                return {"instance_id": instance_id, "verified_absent": True, "destroyed": True}
+            except SafeError:
+                pass  # Lost DELETE acknowledgement is reconciled through inventory.
+        else:
+            absent += 1
+            if absent >= 5 and (instance_id is not None or time.time() >= manifest["deadline_epoch"]):
+                return {"instance_id": instance_id, "verified_absent": True, "destroyed": instance_id is not None}
+        time.sleep(5)
+    raise SafeError("engine-twin creation remains uncertain; never replay PUT; keep the external guard alive")
+
+
+def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
+    role = engine_twin_role(manifest["role"])
+    with simready_launch_lock():
+        public_key = read_local_ssh_public_key()  # Includes cryptographic pair verification.
+        ensure_local_ssh_registered(api_key)
+        engine_twin_singleton(api_key, None, manifest)
+        funds = picogk_account_balance(api_key)
+        if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
+            raise SafeError("engine-twin credit does not cover this role and account reserve")
+        offers = get_engine_twin_offers(api_key, role, offer_id)
+        if len(offers) != 1:
+            raise SafeError("engine-twin selected offer is unavailable or outside fixed limits")
+        offer = offers[0]
+        ceiling = engine_twin_budget_cost(manifest, offer["dph_total"], offer["inet_up_cost"], offer["inet_down_cost"])
+        research_verify_guard(manifest, manifest_sha256)
+        if time.time() >= manifest["deadline_epoch"] - 300:
+            raise SafeError("engine-twin deadline leaves no setup and cleanup allowance")
+        engine_twin_singleton(api_key, None, manifest)
+        onstart = engine_twin_onstart(manifest)  # Refuse insufficient TTL before consuming the attempt.
+        picogk_consume_attempt(manifest, manifest_sha256, offer_id)
+        instance_id, raw = None, None
+        try:
+            result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
+                "image": manifest["image_ref"], "label": manifest["attempt_label"],
+                "disk": ENGINE_TWIN_HARDWARE[role][4], "runtype": "ssh_direct", "env": {},
+                "onstart": onstart, "cancel_unavail": True})
+            returned = result.get("new_contract")
+            if type(returned) is not int or returned <= 0:
+                raise SafeError("engine-twin creation returned no exact instance ID")
+            instance_id = returned
+            created = {"instance_id": instance_id, "offer_id": offer_id, "label": manifest["attempt_label"],
+                       "role": role, "image_ref": manifest["image_ref"], "manifest_sha256": manifest_sha256,
+                       "created_epoch": int(time.time()), "provider_create_acknowledged": True,
+                       "instance_identity_checked": False}
+            print("OPENBAO_VASTAI_ENGINE_TWIN_CREATED " + json.dumps(created, sort_keys=True), file=sys.stderr, flush=True)
+            research_write_receipt(manifest, "provider-created", created)
+            metadata_deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
+            while True:
+                raw = vast_request(api_key, f"/api/v0/instances/{instance_id}/").get("instances")
+                if (not isinstance(raw, dict) or raw.get("id") != instance_id
+                    or raw.get("label") != manifest["attempt_label"] or raw.get("image_uuid") != manifest["image_ref"]):
+                    raise SafeError("engine-twin created instance cannot be correlated")
+                try:
+                    instance = engine_twin_contract(raw, instance_id, manifest, offer)
+                    if not instance_lists_approved_ssh_key(api_key, instance_id, public_key):
+                        raise SafeError("engine-twin approved instance SSH key is missing")
+                    engine_twin_singleton(api_key, instance_id, manifest)
+                    break
+                except SafeError:
+                    if not engine_twin_metadata_pending(raw, offer, manifest) or time.time() >= metadata_deadline:
+                        raise
+                    time.sleep(5)
+        except BaseException:
+            cleanup = {"instance_id": instance_id, "label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
+                       "manifest_sha256": manifest_sha256, "verified_absent": False, "destroyed": False}
+            try:
+                proof = engine_twin_reconcile(api_key, manifest, manifest_sha256, expected_instance_id=instance_id)
+                cleanup.update({key: proof.get(key) for key in ("instance_id", "verified_absent", "destroyed")})
+            except BaseException:
+                print("OPENBAO_VASTAI_ENGINE_TWIN_BILLING_RISK " + manifest["attempt_label"], file=sys.stderr, flush=True)
+            cleanup["recorded_epoch"] = int(time.time())
+            try:
+                research_write_receipt(manifest, "cleanup", cleanup)
+                cleanup["receipt_persisted"] = True
+            except (SafeError, OSError):
+                cleanup["receipt_persisted"] = False
+            print("OPENBAO_VASTAI_ENGINE_TWIN_CLEANUP " + json.dumps(cleanup, sort_keys=True), file=sys.stderr, flush=True)
+            raise
+        print_json({"profile": ENGINE_TWIN_PROFILE, "role": role, "instance_id": instance_id, "instance": instance,
+                    "image_ref": manifest["image_ref"], "label": manifest["attempt_label"],
+                    "sibling_label": manifest["sibling_label"], "deadline_epoch": manifest["deadline_epoch"],
+                    "planned_cost_with_reserve_usd": ceiling, "manifest_sha256": manifest_sha256,
+                    "external_destroy_watchdog_armed": True, "model_ready_verified": False,
+                    "api_bind": "127.0.0.1:8000" if role == "llm" else None})
+        return 0
+
+
 def run(operation: list[str]) -> int:
+    engine_twin_bundle = None
+    if operation and operation[0] in {"launch-engine-twin", "reconcile-engine-twin"}:
+        if len(operation) != (3 if operation[0] == "launch-engine-twin" else 2):
+            raise SafeError("engine-twin operation requires its exact local manifest")
+        if operation[0] == "launch-engine-twin":
+            positive_id(operation[1], "engine-twin offer id")
+        engine_twin_bundle = engine_twin_load_manifest(Path(operation[-1]), require_active=operation[0] == "launch-engine-twin")
+    if operation and operation[0] == "engine-twin-offers":
+        if len(operation) not in (2, 3):
+            raise SafeError("engine-twin-offers requires a role and an optional offer id")
+        engine_twin_role(operation[1])
+        if len(operation) == 3:
+            positive_id(operation[2], "engine-twin offer id")
     if operation and operation[0] == "cad-specialist-offers" and len(operation) == 2:
         positive_id(operation[1], "CAD specialist offer id")
     research_bundle = None
@@ -5853,6 +6192,16 @@ def run(operation: list[str]) -> int:
     token = login()
     try:
         api_key = read_vast_key(token)
+        if operation and operation[0] == "engine-twin-offers":
+            offer_id = int(operation[2]) if len(operation) == 3 else None
+            print_json([safe_offer(item) for item in get_engine_twin_offers(api_key, operation[1], offer_id)[:20]])
+            return 0
+        if engine_twin_bundle is not None:
+            manifest, manifest_sha256 = engine_twin_bundle
+            if operation[0] == "launch-engine-twin":
+                return launch_engine_twin(api_key, int(operation[1]), {**manifest, "_manifest_path": operation[-1]}, manifest_sha256)
+            print_json({**engine_twin_reconcile(api_key, manifest, manifest_sha256), "label": manifest["attempt_label"]})
+            return 0
         if operation == ["research-offers"]:
             print_json([safe_offer(item) for item in get_research_offers(api_key)[:20]])
             return 0
@@ -6249,6 +6598,7 @@ def run(operation: list[str]) -> int:
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
             "research-offers|cad-specialist-offers [offer_id]|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
+            "engine-twin-offers <llm|compute> [offer_id]|launch-engine-twin <offer_id> <absolute-manifest>|reconcile-engine-twin <absolute-manifest>|"
             "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"
             "offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
