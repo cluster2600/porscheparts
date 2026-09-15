@@ -1,0 +1,12 @@
+{
+  "component": "gasket_studs",
+  "description": "Joint (gorge dans le cylindre, T1) et goujons de culasse (motif 935).",
+  "parameters": {
+    "gasket_thickness": {"value": 0.5, "unit": "mm", "provenance": "unsourced", "hypothesis": "anneau de joint acier logé dans la gorge du cylindre (CAO)"},
+    "gasket_radial_width": {"value": 3.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "largeur radiale de l'anneau (CAO)"},
+    "stud_span_x": {"value": 85.824, "unit": "mm", "provenance": "candidate_935_scan_C", "scan_paths": ["head_studs.pattern.value.span_y"], "reduce": "single", "note": "span_y du scan = X culasse"},
+    "stud_span_y": {"value": 86.581, "unit": "mm", "provenance": "candidate_935_scan_C", "scan_paths": ["head_studs.pattern.value.span_x"], "reduce": "single"},
+    "stud_hole_diameter": {"value": 10.879, "unit": "mm", "provenance": "candidate_935_scan_C", "scan_paths": ["head_studs.holes.0.diameter.value", "head_studs.holes.1.diameter.value", "head_studs.holes.2.diameter.value", "head_studs.holes.3.diameter.value"], "reduce": "max"},
+    "stud_rod_diameter": {"value": 10.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "tige de goujon ; désignations BM 8 × 20 / 8 × 50 (P1) non transposées"}
+  }
+}
