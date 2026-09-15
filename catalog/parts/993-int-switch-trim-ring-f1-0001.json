@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
   "name": "Bague aluminium de finition de commutateur, reconstruction F1",
-  "description": "Premier pilote métallique 993 : reconstruction paramétrique de l'enveloppe publiée de la bague aftermarket EQ850101. Le modèle sert à valider la chaîne CAO et les calculs géométriques ; il n'est pas une géométrie OEM ni une pièce autorisée au montage.",
+  "description": "Bague de finition de commutateur, reconstruction F1. Le pilote a servi à valider la chaîne CAO, le criblage LPBF et la confrontation à une route réelle ; cette dernière a conclu que la pièce doit être tournée dans une nuance 6xxx et non frittée. Ce n'est ni une géométrie OEM ni une pièce autorisée au montage.",
   "vehicle": {
     "generation": "993",
     "variants": [
@@ -56,23 +56,23 @@
       "LPBF",
       "CNC"
     ],
-    "preferred_process": "undecided",
+    "preferred_process": "CNC",
     "material": {
-      "family": "aluminium déclaré par le fournisseur",
-      "grade": "original inconnu ; AlSi10Mg seulement candidat LPBF",
-      "standard": "ASTM F3318-18 à contractualiser si AlSi10Mg PBF-LB est retenu"
+      "family": "aluminium corroyé série 6000",
+      "grade": "EN AW-6063 T6 retenu pour l'anodisation brillante ; EN AW-6061 T6 en repli si le tourneur refuse",
+      "standard": "EN 755-2 pour la barre ; nuance d'origine toujours non identifiée"
     },
     "post_processing": [
-      "détourage et retrait des supports si LPBF",
-      "finition des arêtes après mesure d'un exemplaire",
-      "microbillage ou polissage selon aspect cible",
-      "anodisation à qualifier après contrôle dimensionnel"
+      "tournage de finition, Ra cible 0,8 µm sur les faces visibles",
+      "chanfreins ou rayons d'arête à décider puis à porter au modèle",
+      "anodisation sulfurique décorative incolore, croissance de couche à retrancher de la cote d'ajustement"
     ],
     "supplier_requirements": [
-      "Certificat matière et traçabilité du lot",
-      "Plan de fabrication et orientation documentés pour LPBF",
-      "Contrôle dimensionnel des quatre cotes et du profil axial",
-      "Comparaison coût, état de surface et répétabilité avec tournage CNC"
+      "Certificat matière et état métallurgique de la barre",
+      "Tolérance réellement tenue sur le diamètre extérieur",
+      "Épaisseur d'anodisation obtenue et sa dispersion",
+      "Chiffrage du 6061 T6 en regard, avec ce que l'aspect y perd",
+      "Contrôle dimensionnel des quatre cotes et du profil axial"
     ]
   },
   "titanium": {
@@ -89,17 +89,18 @@
     "vehicle_tested": [],
     "evidence": [
       "catalog/sources/src-oldtimer-ersatzteile24-993-switch-ring-dimensions.json",
-      "parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json"
+      "parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json",
+      "twins/993-switch-trim-ring-f1/evidence/turning-f1/993-int-switch-trim-ring-f1-0001-turning-route-card.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
       "Le profil intérieur conique continu est une hypothèse F1 à remplacer par une mesure.",
-      "Aucune tolérance, aucun rayon d'arête et aucune spécification de finition ne sont publiés.",
-      "L'ouverture OEM et la condition de jeu ou serrage ne sont pas mesurées.",
-      "Le grade d'aluminium du produit commercial est inconnu.",
+      "Le maître porte des arêtes vives et aucune tolérance ; les deux restent à décider.",
+      "L'ouverture OEM et la condition de jeu ou serrage ne sont pas mesurées : le diamètre extérieur est repris d'une page de vente.",
+      "Le grade d'aluminium du produit original est inconnu ; le 6063 T6 est un choix du dépôt, pas une identification.",
       "Le modèle STEP n'est ni dimensionnellement revu, ni ajusté, ni testé sur véhicule.",
-      "La géométrie axisymétrique favorise probablement le tournage CNC ; l'intérêt LPBF reste à démontrer par coût ou personnalisation."
+      "Le LPBF reste un candidat screené et documenté, mais il n'est plus le procédé préféré : voir docs/decisions/0005-alsi10mg-nest-pas-un-choix.md."
     ]
   }
 }

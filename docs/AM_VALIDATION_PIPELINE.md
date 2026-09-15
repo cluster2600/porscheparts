@@ -253,6 +253,24 @@ python3 scripts/run_metal_am_geometry_screen.py \
   --output work/piston-lpbf
 ```
 
+## Première étape 04 : la bague de commodo
+
+La bague `993-INT-SWITCH-TRIM-RING-F1-0001` est la première pièce du dépôt
+menée à l'étape 04. Le générateur `scripts/build_process_route_card.py` est
+générique : il prend une fiche de pièce, un rapport de criblage géométrique,
+une carte machine et une carte procédé, et il écrit une carte de route plus un
+dossier de demande de devis lié aux fichiers par SHA-256.
+
+Il a immédiatement trouvé une incohérence interne : le criblage de l'étape 03
+tranche à 50 µm quand la seule route AlSi10Mg publiée sur EOS M 290 est à
+30 µm. Détail complet dans
+[`docs/993/993_SWITCH_TRIM_RING_F1.md`](993/993_SWITCH_TRIM_RING_F1.md).
+
+```bash
+make route-trim-ring
+make route-trim-ring-check
+```
+
 Le contrôle universel, sans dépendance CAE, s'exécute partout :
 
 ```bash

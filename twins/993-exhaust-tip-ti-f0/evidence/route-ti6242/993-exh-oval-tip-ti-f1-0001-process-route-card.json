@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+  "stage_id": "04_material_machine_process_card",
+  "status": "blocked_missing_input",
+  "classification": "confrontation_of_published_cards_not_a_qualified_process_route",
+  "safety_class": "functional",
+  "route": {
+    "material": "Ti-6Al-2Sn-4Zr-2Mo (Ti-6242)",
+    "material_designations": [
+      "AMS 4975",
+      "AMS 4976"
+    ],
+    "machine": "EOS M 290",
+    "material_set": "",
+    "inert_gas": "Argon",
+    "build_platform_temperature_c": null,
+    "minimum_wall_thickness_mm": null,
+    "heat_treatment": "non fixe ; la litterature LPBF decrit un etat martensitique brut et un durcissement par vieillissement direct au prix de la ductilite",
+    "orientation": "roll_y_25"
+  },
+  "derived": {
+    "screened_layer_thickness_mm": 0.03,
+    "qualified_layer_thickness_mm": null,
+    "layers_at_screened_thickness": 4936,
+    "layers_at_qualified_thickness": null,
+    "build_height_mm": 148.06025867292448,
+    "orientation": "roll_y_25",
+    "support_proxy_volume_mm3": 7244.482499999994,
+    "deposited_volume_mm3": 55167.59347492009,
+    "exposure_time_scope": "volume divise par le debit publie : ni recouvrement, ni chauffe, ni inertage, ni changement de plateau ne sont comptes",
+    "screening_mass_g": 217.57092382613726
+  },
+  "gates": [
+    {
+      "gate": "machine_identity_consistent",
+      "pass": false,
+      "statement": "Le criblage geometrique, la carte machine et la carte procede nomment la meme machine.",
+      "blocker": "Le criblage geometrique et la carte procede ne portent pas sur la meme machine."
+    },
+    {
+      "gate": "material_identity_consistent",
+      "pass": false,
+      "statement": "L'alliage cible du criblage est celui de la carte procede.",
+      "blocker": "L'alliage cible du criblage n'est pas celui de la carte procede."
+    },
+    {
+      "gate": "layer_thickness_consistent",
+      "pass": false,
+      "statement": "Le tranchage a 30 um est celui de la route qualifiee.",
+      "blocker": "La carte procede ne publie aucune epaisseur de couche : il n'y a rien a quoi confronter le tranchage."
+    },
+    {
+      "gate": "screened_wall_above_process_minimum",
+      "pass": false,
+      "statement": "",
+      "blocker": "La carte procede ne publie aucune paroi minimale : la finesse de la piece ne peut etre confrontee a rien."
+    },
+    {
+      "gate": "bare_part_fits_machine_envelope",
+      "pass": true,
+      "statement": "La piece nue tient dans l'enveloppe nominale de la machine."
+    },
+    {
+      "gate": "orientation_engineering_reviewed",
+      "pass": false,
+      "statement": "L'orientation retenue est revue par un ingenieur.",
+      "blocker": "L'orientation vient d'une regle de criblage automatique, pas d'une revue DfAM."
+    },
+    {
+      "gate": "temperature_dependent_constitutive_card_available",
+      "pass": false,
+      "statement": "La carte matiere-procede est complete et calibree en temperature.",
+      "blocker": "La carte procede se declare elle-meme incomplete : fournisseur, machine et jeu de parametres qualifies ; poudre et sa tracabilite ; epaisseur de couche, debit et paroi minimale de la route retenue."
+    },
+    {
+      "gate": "heat_treatment_route_defined",
+      "pass": true,
+      "statement": "Le traitement thermique appartient a la route publiee."
+    },
+    {
+      "gate": "machining_stock_defined",
+      "pass": false,
+      "statement": "Les surepaisseurs d'usinage sont definies.",
+      "blocker": "Aucune surepaisseur d'usinage n'est definie, donc aucune surface fonctionnelle n'est garantie a la tolerance."
+    },
+    {
+      "gate": "part_allowables_derived_from_coupons",
+      "pass": false,
+      "statement": "Des admissibles de piece existent.",
+      "blocker": "Les valeurs publiees sont des coupons EOS as-manufactured (Rp0,2 vertical 0 MPa, aucune donnee de fatigue publiee) : ce ne sont pas des admissibles de cette piece, dans cette orientation, a cet etat de surface."
+    },
+    {
+      "gate": "powder_lot_traceability_contracted",
+      "pass": false,
+      "statement": "La tracabilite du lot de poudre est contractualisee.",
+      "blocker": "Ni lot, ni nombre de reemplois, ni certificat matiere ne sont engages avec un fournisseur."
+    },
+    {
+      "gate": "alloy_ceiling_above_declared_service_temperature",
+      "pass": true,
+      "statement": "Le plafond de l'alliage, 550 °C, couvre la temperature declaree de 427 °C avec +123 °C de marge."
+    },
+    {
+      "gate": "route_available_from_a_service_supplier",
+      "pass": false,
+      "statement": "La route se commande chez un atelier de service.",
+      "blocker": "Le Ti-6242 en LPBF est un sujet de recherche : premiere mise en oeuvre publiee en 2020, densite 99,5 % et microstructure sans fissure. Aucun atelier de service a devis instantane ne le propose au catalogue. Retenir cette route signifie chercher un prestataire specialise et faire qualifier une poudre."
+    }
+  ],
+  "blocking_gate_count": 10,
+  "metal_print_authorized": false,
+  "authorization_note": "Aucune porte de fabrication n'est ouverte par ce fichier. Une route coherente sur le papier ne remplace ni coupon, ni fichier machine signe, ni revue d'ingenierie."
+}

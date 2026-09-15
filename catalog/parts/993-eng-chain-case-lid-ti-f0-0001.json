@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
+  "name": "Couvercle gauche de carter de chaîne 964 105 107 01, variante Ti-6Al-4V",
+  "description": "Couvercle gauche boulonné étanche à l'huile du carter de chaîne, planche d'usine 103-05 position 15, apparié au joint 964 105 181 01. Refabrication en Ti-6Al-4V fraisé demandée explicitement. La pièce d'origine est en **magnésium coulé**, dont le mode de défaillance est la corrosion des portées d'étanchéité : c'est là, et non sur la masse, que le titane apporte quelque chose. Contre le magnésium le titane est 2,45 fois plus dense et perd les deux arbitrages de flexion de plaque, résistance comprise. Reste un obstacle sérieux : le couple galvanique titane/magnésium est le plus défavorable de la grille.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_repartition_par_variante_a_confirmer"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "964 105 107 01",
+      "964 105 181 01"
+    ]
+  },
+  "classification": {
+    "category": "engine_timing_chain_case_lid",
+    "safety_class": "functional",
+    "intended_use": "Criblage paramétrique et préparation de mesure ; aucune fabrication ni montage autorisés avant relevé d'un exemplaire"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "MIT pour la fiche et le script ; aucune géométrie tierce redistribuée",
+    "sources": [
+      {
+        "title": "Catalogue d'usine 993, planche 103-05 Chain case",
+        "url": "https://porschefanatics.com/oem/993/103-05/",
+        "source_type": "official",
+        "license": "catalogue-usine-reference-seulement",
+        "accessed_on": "2026-09-11",
+        "notes": "Position 15 `lid` 964 105 107 01, appariée au joint position 16 `gasket` 964 105 181 01. Le catalogue identifie, il ne cote pas. Voir SRC-PET-993-103-05-CHAIN-CASE."
+      },
+      {
+        "title": "Reproducteurs commerciaux du couvercle : LN Engineering et Auto-Service Schefter",
+        "url": "https://lnengineering.com/porsche-964-993-chain-box-covers.html",
+        "source_type": "manufacturer",
+        "license": "pages-commerciales-reference-seulement",
+        "accessed_on": "2026-09-11",
+        "notes": "Confirme que 964 105 107 01 est le couvercle gauche, apparie au joint 964 105 181 01, et que la piece se reproduit par usinage dans la masse. Les deux reproducteurs emploient l'aluminium. Aucun ne publie de cote. Voir SRC-REPRODUCTEURS-COUVERCLE-CARTER-CHAINE-964-993."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "CNC"
+    ],
+    "preferred_process": "CNC",
+    "material": {
+      "family": "titane",
+      "grade": "Ti-6Al-4V Grade 5, plaque — choix assumé ; l'aluminium 6061 billet est la réponse du marché",
+      "standard": "ASTM B265 pour la plaque, à contractualiser"
+    },
+    "post_processing": [
+      "surfaçage du plan de joint, planéité à définir après relevé",
+      "cassage d'arêtes",
+      "microbillage ou anodisation titane selon l'aspect visé",
+      "pâte anti-grippage sur la visserie, rondelles isolantes si contact métal direct"
+    ],
+    "supplier_requirements": [
+      "Certificat matière de la plaque",
+      "Planéité et état de surface tenus sur le plan de joint",
+      "Contrôle dimensionnel du contour, des entraxes et des perçages"
+    ]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V Grade 5",
+    "heat_treatment": "aucun : pièce fraisée dans une plaque livrée à l'état recuit",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [
+      "plan de joint",
+      "perçages de fixation",
+      "contour"
+    ],
+    "inspection": [
+      "planéité du plan de joint",
+      "entraxes de perçage",
+      "épaisseur"
+    ],
+    "galvanic_isolation": "Le couvercle se boulonne sur un carter lui aussi en magnésium. Le magnésium est le plus anodique des métaux de structure et le titane l'un des plus cathodiques : c'est le couple que TITANIUM.md nomme explicitement. Le joint 964 105 181 01 isole les portées, pas la visserie ni les chemins d'humidité. Un couvercle titane pourrait protéger sa propre portée tout en aggravant l'attaque du carter en face. Non résolu."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "parts/993-eng-chain-case-lid-ti-f0-0001/evidence/parametric-screen.json",
+      "catalog/sources/src-pet-993-103-05-chain-case.json",
+      "docs/993/993_COUVERCLE_CARTER_CHAINE_TI.md",
+      "catalog/sources/src-couvercle-carter-chaine-964-993-magnesium.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "La pièce d'origine est en magnésium coulé, pas en aluminium : toute comparaison de masse menée contre l'aluminium comparait au produit de rechange, pas à l'origine.",
+      "Contre le magnésium, le titane perd les deux indices de flexion de plaque, résistance comprise : il ne sera pas plus léger, quelle que soit l'épaisseur retenue.",
+      "Aucune cote n'est mesurée : contour, épaisseur, entraxes, perçages, portée de joint et centrage sont inconnus.",
+      "Aucun des deux reproducteurs commerciaux ne publie de cote : les dimensions ne sont pas trouvables en ligne, elles s'obtiennent en achetant la pièce ou son joint.",
+      "La marge de dilatation calculée, +0,056 mm, repose sur un entraxe extrême de 100 mm et un perçage de 8,4 mm pour vis M8, tous deux hypothétiques.",
+      "Le jeu intérieur vis-à-vis de la chaîne et du tendeur n'est pas relevé.",
+      "Le titane alourdit la pièce de 64 % à géométrie égale ; c'est un choix de matière assumé, pas un gain.",
+      "La pièce retient de l'huile : une fuite sur un moteur refroidi par air a des voisins chauds, d'où la classe `functional` et non `non_critical`.",
+      "Aucun essai d'étanchéité, de cyclage thermique ni de dépose-repose répétée.",
+      "Le couple de serrage du manuel, 9,7 Nm, situe la visserie en M6 : la marge de dilatation calculée sur une hypothèse M8 est à refaire une fois le perçage connu.",
+      "Le couple galvanique titane/magnésium n'est pas résolu et pourrait déplacer la corrosion du couvercle vers le carter."
+    ]
+  }
+}

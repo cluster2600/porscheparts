@@ -89,6 +89,7 @@
   "tracked_part_ids": [
     "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
     "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+    "993-ENG-CHAIN-CASE-0001",
     "993-ENG-CONNECTING-ROD-TI64-F0-0001",
     "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
     "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
@@ -108,6 +109,7 @@
     "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001",
     "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
     "993-EXH-OVAL-TIP-IN625-F0-0001",
+    "993-EXH-OVAL-TIP-TI-F1-0001",
     "993-INT-DOOR-OPENER-LEVER-F0-0001",
     "993-INT-SWITCH-TRIM-RING-F1-0001",
     "993-TURBOCHARGER-K16-PAIR-0001",
@@ -467,17 +469,79 @@
           "evidence": [
             "parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step",
             "parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.stl",
-            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
-            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-manifest.json"
+            "twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
+            "twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-manifest.json"
           ]
         },
         "03_full_layer_slicing_and_supports": {
           "status": "completed_screening",
           "evidence": [
-            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
-            "twins/993-switch-trim-ring-alsi10mg-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-layer-metrics.csv"
+            "twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
+            "twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-layer-metrics.csv"
           ],
           "blocker": "Les 580 couches sont reellement tranchees a 0,05 mm et le criblage ne trouve aucun nouvel ilot, 0,079 mm2 d'aire non soutenue au pire et aucun volume piege. Mais l'orientation retenue n'est pas revue par un ingenieur, les supports fournisseur n'existent pas, et le criblage recoater reste ferme faute de champ de distorsion et de jeu de lame."
+        },
+        "04_material_machine_process_card": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/manufacturing/machines/eos-m290.json",
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+            "twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-process-route-card.json",
+            "twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md"
+          ],
+          "blocker": "Sept portes sur onze restent fermees. La plus nette est une incoherence interne du depot : l'etape 03 a tranche a 50 um alors que la seule route AlSi10Mg publiee sur cette machine est a 30 um. S'y ajoutent l'absence de traitement thermique, de surepaisseurs d'usinage, d'admissibles de piece, de tracabilite de lot, de carte constitutive calibree en temperature et de revue DfAM de l'orientation."
+        }
+      }
+    },
+    "993-EXH-OVAL-TIP-TI-F1-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "completed_screening",
+          "evidence": [
+            "catalog/parts/993-exh-oval-tip-ti-f1-0001.json",
+            "twins/993-exhaust-tip-ti-f0/evidence/selection/titanium-candidate-screen.json",
+            "parts/993-exh-oval-tip-in625-f0-0001/source/oval_exhaust_tip.py"
+          ],
+          "blocker": "Seule l'enveloppe de sortie 120 x 85 mm est publiee. Longueur, interface d'entree, profondeur d'emmanchement et epaisseurs sont des hypotheses F0 sans autorite de mesure."
+        },
+        "02_cad_brep_and_mesh_integrity": {
+          "status": "passed",
+          "evidence": [
+            "parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.step",
+            "parts/993-exh-oval-tip-ti-f1-0001/derived/oval_exhaust_tip_ti_f1.stl",
+            "twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-report.json"
+          ]
+        },
+        "03_full_layer_slicing_and_supports": {
+          "status": "completed_screening",
+          "evidence": [
+            "twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-report.json",
+            "twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-layer-metrics.csv"
+          ],
+          "blocker": "Les 4 936 couches sont reellement tranchees a 30 um. Le criblage trouve deux nouveaux ilots, 1 044 couches a aire non soutenue et 0,603 mm2 au pire, pour 7,24 cm3 d'enveloppe de supports. Mais l'orientation n'est pas revue, les supports fournisseur n'existent pas, et surtout le depoudrage du canal annulaire de 2,7 mm n'est verifie qu'au voxel de 1 mm, resolution insuffisante pour conclure : il faut une endoscopie ou une tomographie."
+        },
+        "04_material_machine_process_card": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json",
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json",
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti64/993-exh-oval-tip-ti-f1-0001-process-route-card.json",
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti6242/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
+          ],
+          "blocker": "Deux routes criblees, et elles s'excluent. Le Ti-6Al-4V ouvre cinq portes, dont l'epaisseur de couche, la paroi minimale et le traitement thermique, mais sa seule porte fermee propre a l'alliage est redhibitoire : 427 C declares contre un plafond de fluage de 400 C. Le Ti-6242 passe la temperature avec 123 C de marge et perd tout le reste, faute de machine, d'epaisseur de couche et de fournisseur. La temperature de 427 C est une entree synthetique jamais mesuree : c'est elle qui decide, et c'est elle qu'il faut aller chercher."
+        }
+      }
+    },
+    "993-ENG-CHAIN-CASE-0001": {
+      "stages": {
+        "01_source_and_geometry_authority": {
+          "status": "blocked_missing_input",
+          "evidence": [
+            "catalog/parts/993-eng-chain-case-0001.json",
+            "catalog/sources/src-pet-993-103-05-chain-case.json",
+            "docs/993/993_CACHE_DE_CHAINE_103-05.md"
+          ],
+          "blocker": "L'identite des huit references est etablie par la planche 103-05, mais le catalogue identifie sans coter : aucune dimension, aucune matiere, aucune interface. Rien ne peut etre dessine."
         }
       }
     }

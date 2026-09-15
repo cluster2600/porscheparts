@@ -4,6 +4,296 @@ Toutes les évolutions notables du projet sont consignées dans ce fichier.
 
 ## Non publié
 
+Décision 0008, le magnésium moderne bat le titane, 11 septembre 2026 :
+
+- le couvercle de 1995 ne pourrit pas parce qu'il est en magnésium, mais parce
+  qu'il est en magnésium **de 1995** : pureté standard et chromatation hexavalente ;
+- ce qui a changé — la corrosion du magnésium est pilotée par trois impuretés
+  internes, fer, nickel et cuivre ; les limites ASTM de l'AZ91D les plafonnent à
+  0,004 / 0,001 / 0,015 %, et la haute pureté est donnée **jusqu'à 100×** plus
+  résistante au brouillard salin, davantage que l'aluminium 380 moulé ou l'acier
+  laminé à froid ; le PEO remplace la chromatation, sans chrome hexavalent ;
+- comparaison finale : le magnésium moderne gagne **les deux** indices de flexion
+  de plaque (1,965 et 6,988), supprime le couple galvanique puisqu'il est de même
+  nature que le carter, annule la dilatation différentielle et traite le mode de
+  défaillance à sa racine ;
+- le titane est écarté sur ces chiffres : plus lourd, moins raide, et porteur du
+  pire couple galvanique de la grille contre un carter magnésium ;
+- leçon enregistrée : trois fois dans ce projet la bonne réponse a été la matière
+  d'origine faite correctement — la question à poser en premier n'est pas « par
+  quoi la remplacer » mais « que sait-on faire aujourd'hui qu'on ne savait pas
+  faire alors » ;
+- obstacles non instruits : atelier capable d'usiner le magnésium, épaisseur PEO
+  de 5 à 40 µm sur un plan de joint, et disponibilité en plaque AZ31B plutôt
+  qu'en AZ91E de fonderie.
+
+La pièce d'origine est en magnésium, pas en aluminium, 11 septembre 2026 :
+
+- correction majeure : les couvercles de carter de chaîne 964/993 montés en usine
+  sont en **magnésium coulé**, et leur mode de défaillance est la corrosion des
+  portées d'étanchéité — c'est la raison d'être du marché du couvercle billet ;
+- toute comparaison de masse menée jusqu'ici opposait le titane à de
+  l'aluminium, donc **au produit de rechange et non à la pièce d'origine** ;
+- refait contre le magnésium à 1,81 g/cm³ : le titane est 2,45× plus dense et
+  perd **les deux** indices de flexion de plaque, résistance comprise, 6,503
+  contre 6,988 — « plus résistant donc plus léger » ne tient pas ici ;
+- en revanche le critère de corrosion de `TITANIUM.md` s'applique désormais
+  pleinement, et c'est un argument plus fort que celui de la masse ;
+- obstacle nouveau et non résolu : le carter d'en face est aussi en magnésium, et
+  le couple titane/magnésium est le plus défavorable de la grille — un couvercle
+  titane pourrait déplacer la corrosion sur la pièce qu'on ne peut pas remplacer ;
+- bug corrigé dans le criblage : une parade dont le texte s'avouait « non résolu »
+  comptait comme une parade ; le script lève désormais une erreur.
+
+Indices de performance en flexion de plaque, 11 septembre 2026 :
+
+- l'arbitrage masse est reformulé avec les indices d'Ashby : à raideur imposée
+  `E^⅓/ρ` donne 1,526 pour l'aluminium contre 1,095 pour le titane, l'aluminium
+  gagne ; à résistance imposée `σ_y^½/ρ` donne 4,969 contre 6,503, le titane
+  gagne de 31 % ;
+- « le titane est plus résistant donc moins épais donc plus léger » est donc
+  exact, à la condition que ce soit la résistance qui dimensionne ;
+- note ajoutée : en traction pure `E/ρ` vaut 25,9 et 25,7, les deux matériaux
+  sont équivalents ; c'est l'exposant ⅓ de la flexion de plaque qui fait la
+  différence ;
+- pour ce couvercle, quatre observations convergent vers « ni raideur ni
+  résistance ne dimensionnent » — 9,7 Nm de serrage, visserie M6 donc entraxes
+  probablement courts avec une flèche en `L⁴`, pression de carter négligeable, et
+  pièce de fonderie ; dans ce cas le titane fraisé mince est plus léger.
+
+Marge de dilatation du couvercle refaite, 11 septembre 2026 :
+
+- deux erreurs corrigées d'un coup. La formule comparait la dilatation d'une
+  portée entière à un jeu **radial**, ce qui surestimait le problème d'un facteur
+  deux ; ce qui doit tenir dans le jeu est l'écart au perçage le plus éloigné du
+  point fixe, donc `δ = r · Δα · ΔT`. Et la visserie était supposée M8 alors que
+  le manuel serre ce couvercle à 9,7 Nm, soit du M6 ;
+- résultat : **0,072 mm d'écart contre 0,300 mm de jeu** en M6 moyen, le jeu
+  n'étant utilisé qu'à **24 %** au lieu des 72 % annoncés ;
+- sensibilité publiée sur six combinaisons de perçage et de point fixe : toutes
+  passent, la plus tendue — centrage par douille et perçage fin — utilisant 72 % ;
+- option `--datum dowel` ajoutée : la planche 103-05 porte une douille de
+  centrage `993 105 175 00`, et si elle tient le couvercle le rayon défavorable
+  double ;
+- hypothèse de montage déclarée : vis centrées dans leurs perçages à froid, sans
+  quoi la moitié de la marge est une tolérance de montage et non une réserve ;
+- seuil de masse rendu décidable : le titane usiné à la raideur strictement
+  nécessaire bat la fonte dès que celle-ci porte **39 % d'épaisseur de plus que
+  son exigence de raideur**, et le couvercle billet 6061 de LN Engineering, sans
+  contrainte de fonderie, mesure ce gras directement ;
+- le couple de 9,7 Nm sur M6 pointe dans le même sens : faible serrage, faible
+  réaction de joint, pièce qui ne travaille quasiment pas ;
+- correction propagée au carter d'arbre à cames, où le motif décisif est requalifié :
+  ce n'est pas le jeu de perçage qui gouverne mais l'alignement des portées
+  d'arbre à cames, qui n'a aucun jeu à consommer.
+
+Acquisition des cotes sans accès aux pièces, 11 septembre 2026 :
+
+- recherche des cotes du couvercle `964 105 107 01` en ligne : **aucune n'est
+  publiée**, mais la recherche établit autre chose — deux reproducteurs
+  indépendants, LN Engineering en aluminium 6061 et Auto-Service Schefter en CNC,
+  confirment que la référence est le couvercle **gauche**, qu'elle est appariée
+  au joint `964 105 181 01`, et que la pièce se fabrique **par usinage dans la
+  masse**, ce qui n'était jusqu'ici qu'un raisonnement ;
+- les deux reproducteurs emploient l'aluminium : le titane est un écart assumé ;
+- le manuel d'atelier donne « Chain housing cover : 9,7 Nm », ce qui situe la
+  visserie en **M6** et non en M8 — la marge de dilatation calculée sur une
+  hypothèse M8 est à refaire ;
+- stratégie enregistrée : la bonne question n'est pas où trouver les cotes mais
+  quel est l'objet le moins cher qui les porte — le joint à 13 $ donne contour et
+  entraxes, un couvercle d'occasion donne tout, et ni l'un ni l'autre ne demande
+  d'accéder à une voiture.
+
+Tout le catalogue d'usine disposé, 11 septembre 2026 :
+
+- `scripts/dispose_pet_catalogue.py` donne une catégorie et une raison aux
+  **1 026 désignations** : plus une seule perte silencieuse, là où 956 tombaient
+  sans motif ;
+- 373 désignations instruites à la main, contre 72 avant ; il ne reste **zéro**
+  désignation sans verdict ;
+- `muffler`, 12 références, remonte du lot : le triage lexical l'avait manqué
+  parce que son nom ne contenait aucun terme du vocabulaire, et c'est avec
+  l'embout le meilleur candidat titane de la voiture ; `y-piece` le rejoint ;
+- le verdict porte désormais sur tout ce qui est jugé et non sur les seules
+  70 désignations que le vocabulaire reconnaissait — le gisement passe de 7 à 9 ;
+- limite comptée plutôt que masquée : **50 désignations génériques, 751
+  références**, où le mot ne nomme pas une fonction — `support` en couvre 142 —
+  et qui demandent un travail référence par référence, non fait.
+
+Couvercle de carter de chaîne 964 105 107 01 en Ti-6Al-4V, 11 septembre 2026 :
+
+- pièce demandée explicitement ; à géométrie égale le titane alourdit de 64 %,
+  mais l'épaisseur n'a aucune raison de rester égale, et l'affirmation inverse
+  était une erreur ;
+- équivalence d'épaisseur calculée sur trois critères : à raideur en flexion
+  égale le titane fait 85 % de l'épaisseur et reste 1,39 fois plus lourd ; à
+  résistance égale il fait 46,6 % et devient 24 % plus léger ; à masse égale il
+  fait 60,9 % et ne conserve que 37 % de la raideur ;
+- troisième cas enregistré, le plus probable sur une pièce de fonderie :
+  l'épaisseur d'origine est dictée par la fonderie — paroi minimale, dépouille,
+  remplissage — et une pièce fraisée n'a aucune de ces contraintes, donc peut
+  être plus mince tout en restant assez raide ; c'est `D03` et l'œil qui
+  trancheront, pas le calcul ;
+- criblage paramétrique : la dilatation différentielle contre le carter
+  aluminium vaut 0,144 mm sur un entraxe de 100 mm à 100 K, et tient dans les
+  0,200 mm de jeu d'un perçage Ø8,4 pour vis M8, marge +0,056 mm ;
+- c'est ce qui distingue le couvercle du carter entier, refusé pour ce motif :
+  au-delà d'environ 139 mm d'entraxe au même jeu, la marge disparaît ;
+- le couple galvanique est déjà traité par la nomenclature : le joint
+  964 105 181 01 sépare les deux métaux sur tout le plan de joint ;
+- route retenue : **fraisage** dans une plaque Ti-6Al-4V, pas impression —
+  aucune des trois familles additives ;
+- plan de mesure publié, treize cotes dont deux décident : les entraxes et le
+  jeu intérieur vis-à-vis de la chaîne.
+
+Interroger le criblage sur une référence précise, 11 septembre 2026 :
+
+- `scripts/explain_pet_reference.py` et la cible `pet-explain` répondent pièce
+  par pièce : désignation, planches, score du triage, motifs, et jugement ;
+- il dit explicitement quand une désignation n'a **jamais été jugée**, au lieu de
+  laisser croire à un refus — une désignation écartée par le vocabulaire
+  disparaissait jusqu'ici en silence ;
+- `993 102 050 01`, poulie de vilebrequin, instruite en réponse à une question :
+  écartée, sur quatre motifs indépendants.
+
+Les 70 désignations du catalogue d'usine instruites, 11 septembre 2026 :
+
+- `catalog/manufacturing/pet-candidate-judgements.json` juge les 70 désignations
+  retenues par le triage : matière d'origine présumée, apport réel du titane,
+  classe présumée, familles additives ;
+- `scripts/screen_pet_candidates.py` **dérive** le verdict de ces entrées et
+  refuse de tourner si un verdict écrit ne découle plus de ses raisons — la
+  garde qui manquait aux criblages précédents ;
+- **sept désignations méritent une fiche**, couvrant 40 références, dont six
+  nouvelles ; elles forment une seule famille, le circuit d'air chaud et d'air
+  secondaire autour des échangeurs d'échappement ;
+- ce gisement passe parce qu'il est chaud sans être à la température des gaz, en
+  tôle d'acier et non en aluminium, mince et consolidable, et bénin à la rupture ;
+- les 63 refus sont motivés mécaniquement : le titane n'améliore pas la matière
+  d'origine, domaine présumé critique, aucune famille additive, ou impossibilité
+  physique pour un échangeur dont la fonction est de conduire la chaleur ;
+- `docs/993/993_BACKLOG_TITANE.md` publie les trois dénominateurs côte à côte
+  pour qu'ils cessent d'être cités l'un pour l'autre.
+
+SAFETY.md réécrit et carter de chaîne instruit, 11 septembre 2026 :
+
+- `SAFETY.md` réécrit : classes, domaines présumés critiques, règle de
+  déclassement et signalement conservés à l'identique, et ajout de ce que le
+  projet a appris — le mode de rupture prime sur le domaine et l'incendie en est
+  le cas oublié, un criblage n'autorise rien, la température de service se
+  confronte au plafond de l'alliage, le démontage fait partie de la vie de la
+  pièce, le procédé et la matière sont deux jugements séparés, et relever une
+  classe demande six preuves nommées quand l'abaisser n'en demande aucune ;
+- carter de chaîne de la planche 103-05 instruit : huit références établies,
+  dont trois ponts dont deux aussi désignés galeries d'huile ;
+- verdict : vrai cas de consolidation additive, mais titane refusé trois fois —
+  dilatation différentielle avec le carter aluminium, grippage sur filetages
+  repris, couple galvanique ; la réponse est l'aluminium ;
+- deux corrections du criblage, dont la première était mauvaise : rendre les
+  cinq contre-indications rédhibitoires supprimait les mots « non traité » et
+  « non maîtrisé » que la grille contient ;
+- modèle corrigé : une contre-indication est une **condition à lever**, qui
+  bloque sans parade déclarée et devient une exigence portée à la route quand une
+  parade est déclarée ; seules restent absolues les deux impossibilités
+  physiques, conduire la chaleur et garder la raideur de l'acier ;
+- critère manquant ajouté, et c'est lui qui décidait : **le titane améliore-t-il
+  la matière d'origine ?** La grille le demandait déjà — « corrosion
+  problématique avec la matière d'origine » — et sans lui le criblage classait
+  premier un collecteur d'admission en aluminium tiède ;
+- le rapport porte désormais son propre dénominateur : 33 fiches, pas 6 259
+  références, et il le dit dans `scope_warning`.
+
+Circuit d'huile de turbo instruit et écarté, 11 septembre 2026 :
+
+- identité établie depuis la planche d'usine 202-16 : quatre `oil pipe` en deux
+  positions, trois `vent line`, deux `oil collection container`, deux `bracket` ;
+- quatre références Porsche inscrites sur la fiche du dépôt, qui n'en portait
+  aucune ;
+- correction enregistrée : la fiche s'annonce « retour » sans que la planche
+  l'établisse, l'attribution alimentation/retour reste à faire ;
+- refus motivé deux fois — le mode de rupture est l'incendie au sens de
+  `SAFETY.md`, et la grille de `TITANIUM.md` écarte le titane sur filetage
+  répété exposé au grippage ;
+- conclusion : le meilleur candidat additif du triage n'est pas un candidat
+  titane, les deux questions ne se confondent pas.
+
+Triages titane du catalogue d'usine, 11 septembre 2026 :
+
+- constat que le criblage titane portait sur 32 fiches, soit 0,51 % des 6 259
+  références distinctes du catalogue 993 : « appliqué au catalogue » était une
+  surestimation du périmètre, corrigée en addendum de la décision 0007 ;
+- `screen_pet_zones_for_titanium.py` trie les 239 illustrations du squelette
+  avec les seules données du dépôt, 23 zones retenues sur 1 538 références ;
+- `screen_pet_parts_for_titanium.py` trie 1 026 désignations depuis un relevé
+  tenu hors du dépôt, 70 retenues, en ne publiant que la liste courte ;
+- l'embout d'échappement ressort dans les quatre premiers du triage élargi, les
+  deux désignations qui le devancent tombant sur la température d'échappement ;
+- règle d'exclusion par planche corrigée : elle ne joue que si toutes les
+  planches d'une désignation sont critiques, faute de quoi `oil pipe`
+  disparaissait à tort.
+
+Décision 0007, première pièce titane sélectionnée par grille, 11 septembre 2026 :
+
+- `scripts/screen_titanium_candidates.py` applique la grille de `TITANIUM.md`
+  et les trois familles additives aux 32 fiches, en refusant de tourner si une
+  fiche n'est pas jugée ; cinq pièces seulement sont éligibles ;
+- `993-EXH-OVAL-TIP-TI-F1-0001` retenue à +6, le collecteur d'échappement étant
+  écarté malgré son +7 parce que 900 °C est un cas nickel ;
+- générateur d'embout paramétré par `--material`, une géométrie et trois cartes
+  matière, avec export STL et verdict de température ;
+- étape 02 `passed`, étape 03 `completed_screening` à 4 936 couches de 30 µm ;
+- deux cartes de route titane mutuellement exclusives : le Ti-6Al-4V est
+  disponible partout et bloqué par une marge de −27 °C, le Ti-6242 passe la
+  température et n'a ni machine, ni épaisseur de couche, ni fournisseur ;
+- porte de température générique ajoutée à `build_process_route_card.py` ;
+- constat : la décision tient à 427 °C jamais mesurés, et un thermomètre
+  infrarouge tranche ce que douze mille lignes de calcul ne trancheront pas.
+
+Décision 0006, la bague sera tournée en 6063 T6, 11 septembre 2026 :
+
+- carte de route tournage `cnc-turning-6063-t6-bright-anodised.json`, nuance
+  choisie sur l'aspect avec le 6061 T6 en repli et le 6262 écarté pour son plomb ;
+- générateur `scripts/build_turning_route_card.py` et devis tournage associé,
+  cibles `turning-trim-ring` et `turning-trim-ring-check` ;
+- `preferred_process` de la bague passé de `undecided` à `CNC`, le LPBF restant
+  un candidat screené ;
+- jumeau renommé `twins/993-switch-trim-ring-f1`, le nom de dossier n'affirmant
+  plus une matière que le dépôt a écartée ;
+- constat enregistré : changer de procédé n'a fermé aucune des deux portes qui
+  comptent, la cote d'ajustement non tolérancée et les arêtes non définies.
+
+Décision 0005, la matière de la bague n'a jamais été choisie, 11 septembre 2026 :
+
+- constat que l'AlSi10Mg est hérité de la seule carte procédé du dépôt, et que
+  la bague est le seul candidat LPBF `non_critical` du catalogue ;
+- deux sources sur l'anodisation : l'AlSi10Mg s'anodise gris-brun du fait de ses
+  9 à 11 % de silicium, quand le 6063 T6 est excellent en anodisation brillante ;
+- conséquence enregistrée : pour cette pièce la question matière et la question
+  procédé n'en font qu'une, et la réponse probable est une barre 6xxx tournée.
+
+Première passe de sourcing LPBF en Chine, 10 septembre 2026 :
+
+- quatre fiches de sources qualifiées pour Unionfab, JLC3DP et Eplus3D ;
+- Unionfab retenu comme unique candidat, JLC3DP écarté faute d'AlSi10Mg
+  au catalogue métal ;
+- trois contradictions enregistrées et non lissées : trois épaisseurs de
+  couche pour le même sujet dont deux chez le même fournisseur, une carte
+  matière prestataire très inférieure aux coupons EOS, et une règle de paroi
+  minimale que la bague passe chez l'un et pas chez l'autre.
+
+Carte matière-machine-procédé de la bague de commodo, étape 04, 10 septembre 2026 :
+
+- ajout de `scripts/build_process_route_card.py`, générateur générique d'une
+  carte de route et d'un dossier de demande de devis lié aux fichiers par
+  SHA-256, avec onze portes évaluées et un mode `--check` ;
+- première étape 04 du pipeline AM, sur `993-INT-SWITCH-TRIM-RING-F1-0001`,
+  conclue `blocked_missing_input` avec sept portes fermées ;
+- mise au jour d'une incohérence interne : le criblage de l'étape 03 tranche à
+  50 µm quand la seule route AlSi10Mg publiée sur EOS M 290 est à 30 µm ;
+- cibles `route-trim-ring` et `route-trim-ring-check`, et garde
+  `tests/test_993_switch_trim_ring_route_f1.py` qui échoue si une porte
+  s'ouvrait sans coupon, traitement thermique ni lot de poudre.
+
 Support d'intercooler 993 Turbo/GT2 Ti-6Al-4V F0, 8 septembre 2026 :
 
 - création d'une fiche de jumeau F1 limitée à l'enveloppe fournisseur et aux
