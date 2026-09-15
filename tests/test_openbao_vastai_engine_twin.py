@@ -174,6 +174,26 @@ class EngineTwinTests(unittest.TestCase):
         self.assertTrue(self.g.cost_valid(instance, m))
         self.assertFalse(self.g.cost_valid({**instance, "dph_total": 2.61}, m))
 
+    def test_guard_waits_for_state_less_listing_but_not_terminal_states(self):
+        self.assertTrue(self.g.startup_pending({"status": None, "provider_states": None}))
+        self.assertTrue(self.g.startup_pending({"status": None, "provider_states": {
+            "actual_status": None, "cur_state": None, "next_state": None, "intended_status": None}}))
+        self.assertTrue(self.g.startup_pending({"status": "loading", "provider_states": {
+            "actual_status": "loading", "cur_state": None, "next_state": None, "intended_status": None}}))
+        for states in ({"actual_status": "exited", "cur_state": None, "next_state": None, "intended_status": None},
+                       {"actual_status": None, "cur_state": None, "next_state": None, "intended_status": "stopped"}):
+            with self.subTest(states=states):
+                self.assertFalse(self.g.startup_pending({"status": states["actual_status"], "provider_states": states}))
+        self.assertIs(self.g.engine.startup_pending, self.g.startup_pending)
+
+    def test_lookup_waits_only_for_identity_less_records(self):
+        for raw in (None, {}, [], {"id": None, "label": "", "image_uuid": None, "ports": None}):
+            with self.subTest(raw=raw):
+                self.assertTrue(self.w.engine_twin_lookup_not_yet_visible(raw))
+        for raw in ({"id": 5}, {"label": "other"}, {"image_uuid": "x"}):
+            with self.subTest(raw=raw):
+                self.assertFalse(self.w.engine_twin_lookup_not_yet_visible(raw))
+
     def test_cli_rejects_bad_arguments_before_login(self):
         with mock.patch.object(self.w, "login", side_effect=AssertionError("login must not run")):
             for operation in (["engine-twin-offers"], ["engine-twin-offers", "gpu"], ["engine-twin-offers", "llm", "x"],

@@ -118,6 +118,25 @@ def only_cost_metadata_missing(instance, first_price):
     return missing
 
 
+initial_startup_pending = engine.startup_pending
+
+
+def startup_pending(instance):
+    """A just-created rental can be listed before Vast reports any state.
+
+    The engine only waits inside its bounded metadata window (120 s); an
+    explicit terminal or stopped state still triggers cleanup at once.
+    """
+    if interrupted:
+        return False
+    states = instance.get("provider_states")
+    if instance.get("status") is None and (states is None or (
+            isinstance(states, dict) and all(states.get(key) is None for key in
+                                             ("actual_status", "cur_state", "next_state", "intended_status")))):
+        return True
+    return initial_startup_pending(instance)
+
+
 initial_wrapper_call = engine.wrapper_call
 
 
@@ -173,6 +192,7 @@ engine.validate_manifest = validate_manifest
 engine.cost_valid = cost_valid
 engine.only_cost_metadata_missing = only_cost_metadata_missing
 engine.wrapper_call = wrapper_call
+engine.startup_pending = startup_pending
 engine.guard = guard
 
 
