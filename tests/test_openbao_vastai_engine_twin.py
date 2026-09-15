@@ -147,7 +147,8 @@ class EngineTwinTests(unittest.TestCase):
         self.assertIn("--host 127.0.0.1", serve)
         self.assertIn("unset HF_TOKEN HUGGING_FACE_HUB_TOKEN", serve)
         self.assertIn("sleep 20340", idle)
-        for forbidden in ("vllm", "8000", "curl ", "pip "):
+        self.assertIn("UNEXPECTED_LISTENER", idle)
+        for forbidden in ("vllm", "--port", "curl ", "pip "):
             self.assertNotIn(forbidden, idle)
         with mock.patch.object(self.w.time, "time", return_value=2_000_021_000):
             with self.assertRaises(self.w.SafeError):
@@ -185,6 +186,35 @@ class EngineTwinTests(unittest.TestCase):
             with self.subTest(states=states):
                 self.assertFalse(self.g.startup_pending({"status": states["actual_status"], "provider_states": states}))
         self.assertIs(self.g.engine.startup_pending, self.g.startup_pending)
+
+    def test_published_ports_are_role_specific(self):
+        self.assertEqual(self.w.ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS["llm"], {"22/tcp"})
+        offer = self.offer("compute", gpu_frac=0.5)
+        m = self.manifests["compute"]
+        raw = {"id": 7, "label": m["attempt_label"], "image_uuid": m["image_ref"], "actual_status": "running",
+               "gpu_name": offer["gpu_name"], "num_gpus": 1, "gpu_frac": 0.5, "gpu_ram": 97887,
+               "cpu_cores_effective": 128, "cpu_ram": 1031835, "disk_space": 500, "dph_total": 2.0,
+               "inet_up_cost": 0.001, "inet_down_cost": 0.001, "verification": "verified",
+               "ports": {p: [{"HostPort": "1"}] for p in ("22/tcp", "8000/tcp", "8001/tcp", "8100/tcp", "8200/tcp")}}
+        self.w.engine_twin_contract(raw, 7, m, offer)
+        self.assertTrue(self.w.engine_twin_metadata_pending(raw, offer, m))
+        for extra in ("9000/tcp", "8000/udp"):
+            with self.subTest(extra=extra):
+                bad = {**raw, "ports": {**raw["ports"], extra: [{"HostPort": "2"}]}}
+                with self.assertRaises(self.w.SafeError):
+                    self.w.engine_twin_contract(bad, 7, m, offer)
+                self.assertFalse(self.w.engine_twin_metadata_pending(bad, offer, m))
+        llm = {**self.manifests["llm"]}
+        llm_raw = {**raw, "label": llm["attempt_label"], "image_uuid": llm["image_ref"]}
+        with self.assertRaises(self.w.SafeError):
+            self.w.engine_twin_contract(llm_raw, 7, llm, offer)
+
+    def test_guard_api_port_allowed_for_compute_only(self):
+        instance = {"dph_total": 2.0, "inet_up_cost_usd_per_gb": 0.001, "inet_down_cost_usd_per_gb": 0.001, "api_port": "33000"}
+        self.g.validate_manifest(self.manifests["llm"])
+        self.assertFalse(self.g.cost_valid(instance, self.manifests["llm"]))
+        self.g.validate_manifest(self.manifests["compute"])
+        self.assertTrue(self.g.cost_valid(instance, self.manifests["compute"]))
 
     def test_lookup_waits_only_for_identity_less_records(self):
         for raw in (None, {}, [], {"id": None, "label": "", "image_uuid": None, "ports": None}):

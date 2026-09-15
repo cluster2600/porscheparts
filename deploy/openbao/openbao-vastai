@@ -177,12 +177,18 @@ RESEARCH_CAD_GPUS = ("RTX 3090", "RTX 4090", "RTX A5000", "RTX 5880Ada", *RESEAR
 ENGINE_TWIN_PROFILE = "engine-twin-v1"
 ENGINE_TWIN_LABEL_RE = re.compile(r"3dprinting993-engine-twin-(llm|compute)-([0-9a-f]{20})")
 ENGINE_TWIN_IMAGES = {"llm": RESEARCH_IMAGE, "compute": SIMREADY_IMAGE}
-ENGINE_TWIN_GUARD_SHA256 = "2a17a34c753fe6b7bea5f472f4ba837d64642bde21b6db71868d52eb3588d318"
+ENGINE_TWIN_GUARD_SHA256 = "8c6df894203434436646420e5db94aabd9980ba1396b5c768f1cc31f9bcff371"
 ENGINE_TWIN_MAX_DPH = 2.60
 ENGINE_TWIN_MAX_TRANSFER_RATE = 0.01
 ENGINE_TWIN_MAX_SECONDS = 6 * 60 * 60
 ENGINE_TWIN_MAX_BUDGET_USD = 30.0
 ENGINE_TWIN_MIN_RELIABILITY = 0.99
+# simready-local-ai declares EXPOSE 8000/8001/8100/8200 and Vast publishes them.
+# ssh_direct replaces the entrypoint, so no service starts; onstart records any listener.
+ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS = {
+    "llm": frozenset({"22/tcp"}),
+    "compute": frozenset({"22/tcp", "8000/tcp", "8001/tcp", "8100/tcp", "8200/tcp"}),
+}
 # (GPU admis, gpu_ram MB, coeurs effectifs, RAM MB, disque GB)
 ENGINE_TWIN_HARDWARE = {
     "llm": (("H100 SXM4", "H100 NVL", "H100", "RTX PRO 6000 WS"), 80000, 16, 64000, 150),
@@ -5980,7 +5986,11 @@ def engine_twin_onstart(manifest: dict) -> str:
               "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; ")
     if engine_twin_role(manifest["role"]) == "compute":
         # Jobs arrive later over SSH; the independent guard bounds paid lifetime.
-        return prefix + (f"nohup timeout --signal=TERM --kill-after=30 {duration} sleep {duration} "
+        # Published-but-idle ports must stay idle: record any unexpected listener.
+        probe = ("python3 -c 'import socket,sys;"
+                 "o=[p for p in (8000,8001,8100,8200) if socket.socket().connect_ex((\"127.0.0.1\",p))==0];"
+                 "sys.exit(1 if o else 0)' || touch /workspace/UNEXPECTED_LISTENER; ")
+        return prefix + probe + (f"nohup timeout --signal=TERM --kill-after=30 {duration} sleep {duration} "
                          ">/workspace/engine-twin-compute-idle.log 2>&1 </dev/null &")
     command = shlex.join(["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", RESEARCH_MODEL,
                          "--revision", RESEARCH_REVISION, "--served-model-name", RESEARCH_MODEL,
@@ -6001,7 +6011,9 @@ def engine_twin_contract(raw: dict, instance_id: int, manifest: dict, offer: dic
         or (fraction := finite_number(instance.get("gpu_fraction"))) is None or not 0 < fraction <= 1
         or fraction != finite_number(offer.get("gpu_frac"))
         or finite_number(instance.get("dph_total")) != finite_number(offer["dph_total"])
-        or not isinstance(raw.get("ports"), dict) or any(port != "22/tcp" and mapping for port, mapping in raw["ports"].items())):
+        or not isinstance(raw.get("ports"), dict)
+        or any(mapping and port not in ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[manifest["role"]]
+               for port, mapping in raw["ports"].items())):
         raise SafeError("engine-twin instance identity, hardware, state or published ports violate the contract")
     for field, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), (gpu_ram, cores, ram, disk)):
         value = finite_number(instance.get(field))
@@ -6030,7 +6042,8 @@ def engine_twin_metadata_pending(raw: dict, offer: dict, manifest: dict) -> bool
         if value is not None and (finite_number(value) is None or not 0 <= value <= ENGINE_TWIN_MAX_TRANSFER_RATE):
             return False
     ports = raw.get("ports")
-    return ports is None or isinstance(ports, dict) and not any(port != "22/tcp" and mapping for port, mapping in ports.items())
+    allowed = ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[manifest["role"]]
+    return ports is None or isinstance(ports, dict) and not any(mapping and port not in allowed for port, mapping in ports.items())
 
 
 def engine_twin_reconcile(api_key: str, manifest: dict, manifest_sha256: str, *, expected_instance_id: int | None = None) -> dict:
@@ -6098,7 +6111,8 @@ def engine_twin_contract_diagnostic(raw: object, instance_id: int | None, manife
             "expected": {"gpu": offer["gpu_name"], "num_gpus": 1, "gpu_fraction": offer.get("gpu_frac"),
                          "gpu_ram_mb_min": gpu_ram, "cpu_cores_effective_min": cores, "cpu_ram_mb_min": ram,
                          "disk_space_gb_min": disk, "dph_total": offer["dph_total"],
-                         "allowed_statuses": ["created", "loading", "running"], "allowed_published_port_names": ["22/tcp"]},
+                         "allowed_statuses": ["created", "loading", "running"],
+                         "allowed_published_port_names": sorted(ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[manifest["role"]])},
             "observed": observed}
 
 

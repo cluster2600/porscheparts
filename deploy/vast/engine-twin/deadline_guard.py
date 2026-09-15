@@ -91,10 +91,15 @@ def validate_manifest(manifest):
     _manifest.update(manifest)
 
 
+def api_port_forbidden(instance):
+    """The compute image publishes its declared, idle service ports; the llm role never may."""
+    return instance.get("api_port") is not None and _manifest.get("role") != "compute"
+
+
 def cost_valid(instance, manifest, first_price=None):
     price = instance.get("dph_total")
     up, down = instance.get("inet_up_cost_usd_per_gb"), instance.get("inet_down_cost_usd_per_gb")
-    if (interrupted or instance.get("api_port") is not None
+    if (interrupted or api_port_forbidden(instance)
         or not engine.finite(price) or not 0 < price <= MAX_DPH
         or (first_price is not None and first_price != price)
         or not all(engine.finite(value) and 0 <= value <= MAX_TRANSFER_RATE for value in (up, down))):
@@ -104,7 +109,7 @@ def cost_valid(instance, manifest, first_price=None):
 
 
 def only_cost_metadata_missing(instance, first_price):
-    if interrupted or instance.get("api_port") is not None:
+    if interrupted or api_port_forbidden(instance):
         return False
     missing = False
     for field, cap in (("dph_total", MAX_DPH), ("inet_up_cost_usd_per_gb", MAX_TRANSFER_RATE),
