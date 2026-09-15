@@ -65,3 +65,24 @@ PhysicsNeMo ne pourra servir de substitut qu'après constitution d'un ensemble d
 cas explicites corrélés, avec incertitude et rejet hors domaine. SimReady attend
 les interfaces, contacts et cartes matière. Fabrication, montage et roulage sont
 interdits au stade F0.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 4 349 |
+| hauteur de construction | 130,46 mm |
+| couches avec region non soutenue | 22 |
+| proxy de supports | 6 202,46 mm³ |
+| epaisseur locale p01 | 0,800 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-body-front-impact-support-alsi10mg-f0-0001/evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->

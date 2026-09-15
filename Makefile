@@ -28,8 +28,8 @@
 	titanium-screen-check tip-routes tip-routes-check pet-zone-triage \
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
-	route-trim-ring-check parts-table \
-	parts-table-check container-recon container-cadsim container-mesh-cfd \
+	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
+	print-screens print-screen-sections-check parts-table-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -204,7 +204,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	turbo-cold-side-check turbo-variants-check turbo-dyno-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
-	parts-table-check help-check
+	route-lever-hook-check print-screen-sections-check parts-table-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1289,6 +1289,42 @@ turbo-dyno:
 #> 993 | Verifier ces references
 turbo-dyno-check:
 	python3 scripts/model_turbo_dyno_0d.py --check
+
+#> 993 | Cartes etape 04 du levier de porte et du crochet de phare
+route-lever-hook:
+	python3 scripts/build_process_route_card.py \
+	  --catalog-part catalog/parts/993-int-door-opener-lever-f0-0001.json \
+	  --geometry-report twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-report.json \
+	  --machine-card catalog/manufacturing/machines/eos-m290.json \
+	  --process-card catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json \
+	  --master parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.step \
+	  --surface parts/993-int-door-opener-lever-f0-0001/derived/door_opener_lever_f0.stl \
+	  --part-screen parts/993-int-door-opener-lever-f0-0001/evidence/engineering-screen.json \
+	  --output twins/993-door-opener-lever-alsi10mg-f0/evidence/route-f0 $(ROUTE_CHECK)
+	python3 scripts/build_process_route_card.py \
+	  --catalog-part catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json \
+	  --geometry-report twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json \
+	  --machine-card catalog/manufacturing/machines/eos-m290.json \
+	  --process-card catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json \
+	  --master parts/993-elec-headlamp-spring-hook-f0-0001/derived/headlamp_spring_hook_f0.step \
+	  --surface parts/993-elec-headlamp-spring-hook-f0-0001/derived/headlamp_spring_hook_f0.stl \
+	  --part-screen parts/993-elec-headlamp-spring-hook-f0-0001/evidence/engineering-screen.json \
+	  --output twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/route-f0 $(ROUTE_CHECK)
+
+#> 993 | Verifier ces deux cartes
+route-lever-hook-check:
+	$(MAKE) route-lever-hook ROUTE_CHECK=--check
+
+#> 993 | Simulation d'impression LPBF de chaque piece, une a la fois, memoire plafonnee
+print-screens:
+	@test -n "$(PYLIB)" || { echo "PYLIB=<dossier shapely+rtree+networkx> requis"; exit 2; }
+	nice -n 10 python3 scripts/run_993_print_screens.py --pylib $(PYLIB) \
+	  --status docs/993/print-screen-status.json
+	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json
+
+#> 993 | Verifier que les fiches suivent les simulations publiees
+print-screen-sections-check:
+	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json --check
 
 #> catalogue | Reecrire le tableau des pieces du README
 parts-table:

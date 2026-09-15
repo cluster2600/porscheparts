@@ -5,8 +5,13 @@
   "description": "Poignee saisie a la main pour fermer la porte depuis l'interieur. Forme ergonomique non descriptible au pied a coulisse seul, retenue comme pilote de la categorie organique de la phase 2, a acquerir par photogrammetrie.",
   "vehicle": {
     "generation": "993",
-    "variants": ["a_confirmer_sur_vehicule"],
-    "model_years": { "from": 1994, "to": 1998 },
+    "variants": [
+      "a_confirmer_sur_vehicule"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
     "porsche_part_numbers": []
   },
   "classification": {
@@ -15,12 +20,14 @@
     "intended_use": "Fermeture de la porte depuis l'interieur, sollicitation manuelle repetee"
   },
   "geometry": {
-    "source_type": "scan",
-    "master_format": "none",
-    "master_file": "",
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "scripts/build_993_concept_f0.py",
     "units": "mm",
     "accuracy_mm": null,
-    "derived_files": []
+    "derived_files": [
+      "parts/993-int-door-pull-0001/derived/door_pull_concept_f0.step"
+    ]
   },
   "provenance": {
     "record_license": "MIT for the record, geometry not yet produced",
@@ -44,14 +51,21 @@
     ]
   },
   "manufacturing": {
-    "candidate_processes": ["SLS", "MJF", "FFF"],
+    "candidate_processes": [
+      "SLS",
+      "MJF",
+      "FFF"
+    ],
     "preferred_process": "undecided",
     "material": {
       "family": "polymere",
       "grade": "a_determiner_apres_essai_de_charge",
       "standard": "aucune"
     },
-    "post_processing": ["lissage de surface", "essai de prehension"],
+    "post_processing": [
+      "lissage de surface",
+      "essai de prehension"
+    ],
     "supplier_requirements": []
   },
   "titanium": {
