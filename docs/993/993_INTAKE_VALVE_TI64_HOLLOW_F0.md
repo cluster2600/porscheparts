@@ -85,3 +85,24 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 PhysicsNeMo attend des séries corrélées multibody-thermique-structure avec
 train, holdout et hors-distribution. SimReady attend l'assemblage mesuré. Ce
 STEP F0 n'est autorisé ni pour fabrication, ni pour montage, ni pour moteur.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 3 241 |
+| hauteur de construction | 97,23 mm |
+| couches avec region non soutenue | 254 |
+| proxy de supports | 1 002,61 mm³ |
+| epaisseur locale p01 | 1,200 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->

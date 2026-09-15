@@ -118,3 +118,24 @@ conformes ; aucune preuve de procédé complet, d'installation ou d'endurance.
    fuite, vibration, acoustique et cycles thermiques avant tout véhicule.
 
 Le STEP F0 n'est autorisé ni pour fabrication, ni pour montage.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_25`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 3 702 |
+| hauteur de construction | 148,06 mm |
+| couches avec region non soutenue | 784 |
+| proxy de supports | 7 183,26 mm³ |
+| epaisseur locale p01 | 0,674 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->

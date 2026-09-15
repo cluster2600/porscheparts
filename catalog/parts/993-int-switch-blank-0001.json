@@ -5,8 +5,13 @@
   "description": "Obturateur d'un emplacement d'interrupteur non équipé du tableau de bord. Pièce d'habillage à faces planes et clips, mesurable au pied à coulisse, retenue comme pilote de la catégorie geometrique simple de la phase 2.",
   "vehicle": {
     "generation": "993",
-    "variants": ["a_confirmer_sur_vehicule"],
-    "model_years": { "from": 1994, "to": 1998 },
+    "variants": [
+      "a_confirmer_sur_vehicule"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
     "porsche_part_numbers": []
   },
   "classification": {
@@ -15,12 +20,14 @@
     "intended_use": "Obturer un emplacement vide du tableau de bord, sans fonction electrique ni structurelle"
   },
   "geometry": {
-    "source_type": "measured",
+    "source_type": "estimated",
     "master_format": "build123d",
     "master_file": "parts/993-int-switch-blank-0001/source/switch_blank.py",
     "units": "mm",
     "accuracy_mm": null,
-    "derived_files": []
+    "derived_files": [
+      "parts/993-int-switch-blank-0001/derived/switch_blank_concept_f0.step"
+    ]
   },
   "provenance": {
     "record_license": "MIT for the record, geometry not yet produced",
@@ -44,14 +51,21 @@
     ]
   },
   "manufacturing": {
-    "candidate_processes": ["FFF", "SLA", "MJF"],
+    "candidate_processes": [
+      "FFF",
+      "SLA",
+      "MJF"
+    ],
     "preferred_process": "FFF",
     "material": {
       "family": "polymere",
       "grade": "a_determiner_apres_essai_de_montage",
       "standard": "aucune"
     },
-    "post_processing": ["ebavurage", "essai de clipsage a sec"],
+    "post_processing": [
+      "ebavurage",
+      "essai de clipsage a sec"
+    ],
     "supplier_requirements": []
   },
   "titanium": {

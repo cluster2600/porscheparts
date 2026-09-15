@@ -70,3 +70,11 @@ PhysicsNeMo reste différé jusqu'à disposer d'un ensemble FEA/fatigue corrél�
 avec jeux train, holdout et hors-distribution. SimReady attend les interfaces
 mesurées de l'assemblage. Ce STEP F0 n'est autorisé ni pour fabrication, ni
 pour montage, ni pour mise en route moteur.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+La simulation a ete lancee et a **echoue a porte fermee** : le maitre STEP n'est pas un corps unique ; le tranchage refuse une surface en plusieurs morceaux. Aucun resultat n'est donc publie pour cette piece, et aucune image n'est fabriquee a sa place.
+
+<!-- print-screen:end -->

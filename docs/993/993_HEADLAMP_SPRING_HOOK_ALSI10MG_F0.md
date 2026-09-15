@@ -61,3 +61,24 @@ conception défavorable à investiguer, jamais une preuve de rupture ni de tenue
 
 Les preuves et leurs SHA-256 sont regroupées dans
 [`twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/`](../../twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/).
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 425 |
+| hauteur de construction | 12,73 mm |
+| couches avec region non soutenue | 1 |
+| proxy de supports | 3,06 mm³ |
+| epaisseur locale p01 | 1,000 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-elec-headlamp-spring-hook-f0-0001/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->
