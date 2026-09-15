@@ -177,7 +177,7 @@ RESEARCH_CAD_GPUS = ("RTX 3090", "RTX 4090", "RTX A5000", "RTX 5880Ada", *RESEAR
 ENGINE_TWIN_PROFILE = "engine-twin-v1"
 ENGINE_TWIN_LABEL_RE = re.compile(r"3dprinting993-engine-twin-(llm|compute)-([0-9a-f]{20})")
 ENGINE_TWIN_IMAGES = {"llm": RESEARCH_IMAGE, "compute": SIMREADY_IMAGE}
-ENGINE_TWIN_GUARD_SHA256 = "099aa937cccc2d0752d5a228053101285c97e11b4124cd172a61cc2cfdfe2580"
+ENGINE_TWIN_GUARD_SHA256 = "2a17a34c753fe6b7bea5f472f4ba837d64642bde21b6db71868d52eb3588d318"
 ENGINE_TWIN_MAX_DPH = 2.60
 ENGINE_TWIN_MAX_TRANSFER_RATE = 0.01
 ENGINE_TWIN_MAX_SECONDS = 6 * 60 * 60
@@ -6069,6 +6069,11 @@ def engine_twin_reconcile(api_key: str, manifest: dict, manifest_sha256: str, *,
     raise SafeError("engine-twin creation remains uncertain; never replay PUT; keep the external guard alive")
 
 
+def engine_twin_lookup_not_yet_visible(raw: object) -> bool:
+    """True only for an empty or identity-less record; any present identity must match exactly."""
+    return not isinstance(raw, dict) or all(raw.get(key) in (None, "") for key in ("id", "label", "image_uuid"))
+
+
 def engine_twin_contract_diagnostic(raw: object, instance_id: int | None, manifest: dict, offer: dict) -> dict:
     """Explicit field allowlist: never print raw provider messages, addresses or mappings."""
     gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
@@ -6136,8 +6141,14 @@ def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha
             metadata_deadline = min(time.time() + 900, manifest["deadline_epoch"] - 300)
             while True:
                 raw = vast_request(api_key, f"/api/v0/instances/{instance_id}/").get("instances")
-                if (not isinstance(raw, dict) or raw.get("id") != instance_id
-                    or raw.get("label") != manifest["attempt_label"] or raw.get("image_uuid") != manifest["image_ref"]):
+                if engine_twin_lookup_not_yet_visible(raw):
+                    # Vast can return an empty record just after PUT: wait, never correlate on absence.
+                    if time.time() >= metadata_deadline:
+                        raise SafeError("engine-twin created instance never became visible")
+                    time.sleep(5)
+                    continue
+                if (raw.get("id") != instance_id or raw.get("label") != manifest["attempt_label"]
+                    or raw.get("image_uuid") != manifest["image_ref"]):
                     raise SafeError("engine-twin created instance cannot be correlated")
                 try:
                     instance = engine_twin_contract(raw, instance_id, manifest, offer)
