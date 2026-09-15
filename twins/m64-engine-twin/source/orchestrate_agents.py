@@ -26,6 +26,9 @@ d'un moteur Porsche M64 flat-six 4 soupapes. Jumeau de conception uniquement :
 aucune fabrication, aucune validation. Regles :
 - definir build(p) qui renvoie un cq.Workplane ou un cq.Shape en millimetres ;
 - imports permis : cadquery as cq, math, numpy ; aucun fichier, reseau ni systeme ;
+- p est un dict PLAT : cle pointee (str) -> nombre, ex. p["bore.nominal_mm"] ;
+  jamais de sous-dictionnaire ; utiliser p.get(cle, DEFAUT) ;
+- partir d'un solide (box, cylinder, extrude) avant tout cut, fillet ou hole ;
 - lire les cotes dans p ; toute cote absente de p est un parametre nomme en tete
   du module, en MAJUSCULES, commente '# hypothese' ;
 - respecter l'enveloppe fournie ; solides fermes et BRep valide ;
@@ -61,11 +64,23 @@ def levels(session):
     return out
 
 
+def flat_params(p, prefix="", out=None):
+    """Feuilles numeriques a cles pointees : les agents de la passe 1 lisaient mal le JSON imbrique."""
+    out = {} if out is None else out
+    if isinstance(p, dict):
+        for key, value in p.items():
+            flat_params(value, f"{prefix}.{key}" if prefix else str(key), out)
+    elif isinstance(p, (int, float)) and not isinstance(p, bool):
+        out[prefix] = p
+    return out
+
+
 def extract_code(text):
     m = re.search(r"```python\n(.*?)```", text, re.S)
     code = m.group(1) if m else ""
     if "def build(" not in code:
-        return None, "no_build_function"
+        return None, ("no_build_function : aucun bloc ```python complet contenant def build(p) ; "
+                      "reponse probablement tronquee, ecris un module plus court et ferme le bloc")
     if FORBIDDEN.search(code):
         return None, "forbidden_construct"
     return code, None
@@ -88,7 +103,7 @@ class LLM:
         self.url, self.model, self.timeout = base_url.rstrip("/") + "/chat/completions", model, timeout
 
     def __call__(self, messages):
-        body = json.dumps({"model": self.model, "messages": messages, "temperature": 0.2, "max_tokens": 6000}).encode()
+        body = json.dumps({"model": self.model, "messages": messages, "temperature": 0.2, "max_tokens": 16000}).encode()
         req = urllib.request.Request(self.url, body, {"Content-Type": "application/json"})
         with urllib.request.urlopen(req, timeout=self.timeout) as r:
             return json.load(r)["choices"][0]["message"]["content"]
@@ -189,9 +204,14 @@ class Orchestrator:
         self.log(component=cid, final=status)
         return res
 
-    def run(self, concurrency):
+    def run(self, concurrency, only=None, previous=None):
+        """only : ne relancer que ces composants ; previous : resultats deja acceptes d'une passe anterieure."""
         self.out.mkdir(parents=True, exist_ok=True)
+        for cid, res in (previous or {}).items():
+            if only is None or cid not in only:
+                self.results[cid] = res
         for level in levels(self.session):
+            level = [c for c in level if only is None or c["id"] in only]
             ready = [c for c in level if all(self.results[d]["status"] == "accepted_unreviewed"
                                              for d in c.get("depends_on", []) if d in self.results)]
             for c in level:
@@ -214,6 +234,8 @@ def main():
     ap.add_argument("--concurrency", type=int, default=32)
     ap.add_argument("--cad-image", help="remplace l'image CAO du manifeste (ex. image locale de repetition)")
     ap.add_argument("--cad-python", help="interpreteur dans cette image")
+    ap.add_argument("--only", help="liste de composants a relancer, separes par des virgules")
+    ap.add_argument("--previous-summary", help="summary.json d'une passe anterieure (dependances acceptees)")
     ap.add_argument("--executor", choices=["docker", "local"], default="docker",
                     help="local sur une instance Vast, qui n'offre pas Docker")
     args = ap.parse_args()
@@ -226,8 +248,10 @@ def main():
         executor = DockerExecutor(args.cad_image or compute["images"]["cad"], args.cad_python or compute["cad_python"],
                                   policy["executor_memory"], policy["executor_timeout_seconds"])
     orch = Orchestrator(session, LLM(args.llm_base_url, llm_node["model"]), executor,
-                        args.out, args.deadline_epoch, json.loads(Path(args.params).read_text(encoding="utf-8")))
-    results = orch.run(args.concurrency)
+                        args.out, args.deadline_epoch, flat_params(json.loads(Path(args.params).read_text(encoding="utf-8"))))
+    only = set(args.only.split(",")) if args.only else None
+    previous = json.loads(Path(args.previous_summary).read_text(encoding="utf-8")) if args.previous_summary else None
+    results = orch.run(args.concurrency, only, previous)
     counts = {}
     for r in results.values():
         counts[r["status"]] = counts.get(r["status"], 0) + 1

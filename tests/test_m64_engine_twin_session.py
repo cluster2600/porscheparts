@@ -44,7 +44,29 @@ class SessionTests(unittest.TestCase):
     def test_code_filter(self):
         self.assertIsNotNone(orch.extract_code(GOOD)[0])
         self.assertEqual(orch.extract_code(BAD)[1], "forbidden_construct")
-        self.assertEqual(orch.extract_code("pas de code")[1], "no_build_function")
+        self.assertTrue(orch.extract_code("pas de code")[1].startswith("no_build_function"))
+        self.assertIn("tronquee", orch.extract_code("```python\nimport cadquery as cq\n")[1])
+
+    def test_flat_params_keeps_numeric_leaves_only(self):
+        flat = orch.flat_params({"bore": {"nominal": 100.0, "source": "P3"}, "ok": True, "n": 6, "l": [1, 2]})
+        self.assertEqual(flat, {"bore.nominal": 100.0, "n": 6})
+
+    def test_only_reruns_selected_and_keeps_previous_acceptances(self):
+        previous = {"crankshaft": {"status": "accepted_unreviewed", "iterations": 2, "report": {"bbox_mm": [1, 1, 1]}, "job": "x"},
+                    "connecting_rod": {"status": "failed_closed", "iterations": 6, "report": None, "job": None}}
+        seen = []
+
+        def llm(messages):
+            seen.append(json.loads(messages[1]["content"].split("\n")[1])["id"])
+            return GOOD
+
+        executor = lambda job: {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 1.0, "bbox_mm": [10, 10, 10]}
+        with tempfile.TemporaryDirectory() as tmp:
+            results = orch.Orchestrator(self.session, llm, executor, tmp, time.time() + 86400, {}).run(
+                2, only={"connecting_rod"}, previous=previous)
+        self.assertEqual(seen, ["connecting_rod"])
+        self.assertEqual(results["connecting_rod"]["status"], "accepted_unreviewed")
+        self.assertEqual(results["crankshaft"]["iterations"], 2)
 
     def test_envelope_rejects_oversize(self):
         report = {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 1.0, "bbox_mm": [10, 900, 10]}
