@@ -67,7 +67,7 @@ class SessionTests(unittest.TestCase):
             seen.append(json.loads(messages[1]["content"].split("\n")[1])["id"])
             return GOOD
 
-        executor = lambda job: {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 1.0, "bbox_mm": [10, 10, 10]}
+        executor = lambda job: {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 1.0, "bbox_mm": [10, 10, 10], "face_count": 100}
         with tempfile.TemporaryDirectory() as tmp:
             results = orch.Orchestrator(self.session, llm, executor, tmp, time.time() + 86400, {}).run(
                 2, only={"connecting_rod"}, previous=previous)
@@ -92,7 +92,7 @@ class SessionTests(unittest.TestCase):
             return BAD if answers[cid] == 1 else GOOD
 
         def executor(job):
-            return {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 1000.0, "bbox_mm": [10, 10, 10]}
+            return {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 1000.0, "bbox_mm": [10, 10, 10], "face_count": 100}
 
         with tempfile.TemporaryDirectory() as tmp:
             o = orch.Orchestrator(self.session, llm, executor, tmp, time.time() + 86400, {})
