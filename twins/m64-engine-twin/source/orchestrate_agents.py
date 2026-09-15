@@ -29,6 +29,9 @@ aucune fabrication, aucune validation. Regles :
 - p est un dict PLAT : cle pointee (str) -> nombre, ex. p["bore.nominal_mm"] ;
   jamais de sous-dictionnaire ; utiliser p.get(cle, DEFAUT) ;
 - partir d'un solide (box, cylinder, extrude) avant tout cut, fillet ou hole ;
+- forme FONCTIONNELLE : modeliser les elements de la fiche (tourillons, manetons,
+  bras, alesages, nervures...) ; un simple cylindre ou une boite est refuse ;
+  la fiche donne min_faces, le nombre minimal de faces BRep exige ;
 - lire les cotes dans p ; toute cote absente de p est un parametre nomme en tete
   du module, en MAJUSCULES, commente '# hypothese' ;
 - respecter l'enveloppe fournie ; solides fermes et BRep valide ;
@@ -86,13 +89,17 @@ def extract_code(text):
     return code, None
 
 
-def check_report(report, envelope):
+def check_report(report, envelope, min_faces=0):
     if not report.get("ok"):
         return report.get("error", "executor_failed")
     if not report["brep_valid"]:
         return "brep_invalid"
     if report["solid_count"] < 1 or report["volume_mm3"] <= 0:
         return "no_closed_solid"
+    # Passe 1 : un cylindre plein de 3 faces a ete accepte comme vilebrequin.
+    if report.get("face_count", 0) < min_faces:
+        return (f"too_simple_{report.get('face_count', 0)}_faces_min_{min_faces} : forme simplifiee refusee, "
+                "modeliser les elements fonctionnels decrits dans la fiche")
     if envelope and any(a > b + 1e-6 for a, b in zip(sorted(report["bbox_mm"]), sorted(envelope))):
         return f"bbox_{[round(x, 1) for x in report['bbox_mm']]}_exceeds_envelope_{envelope}"
     return None
@@ -171,6 +178,7 @@ class Orchestrator:
     def run_component(self, comp):
         cid = comp["id"]
         brief = {k: comp[k] for k in ("id", "count", "brief", "envelope_mm", "depends_on") if k in comp}
+        brief["min_faces"] = comp.get("min_faces", self.policy.get("min_faces_default", 0))
         brief["accepted_dependencies"] = {d: self.results.get(d, {}).get("report") for d in comp.get("depends_on", [])}
         messages = [{"role": "system", "content": SYSTEM},
                     {"role": "user", "content": "Fiche composant :\n" + json.dumps(brief, ensure_ascii=False)
@@ -188,7 +196,8 @@ class Orchestrator:
                 (job / "part.py").write_text(code, encoding="utf-8")
                 (job / "params.json").write_text(json.dumps(self.params), encoding="utf-8")
                 report = self.executor(job)
-                err = check_report(report, comp.get("envelope_mm"))
+                err = check_report(report, comp.get("envelope_mm"),
+                                   comp.get("min_faces", self.policy.get("min_faces_default", 0)))
             self.log(component=cid, iteration=it, error=err, report=report,
                      code_sha256=hashlib.sha256(code.encode()).hexdigest() if code else None)
             if err is None:

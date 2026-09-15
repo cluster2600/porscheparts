@@ -47,6 +47,13 @@ class SessionTests(unittest.TestCase):
         self.assertTrue(orch.extract_code("pas de code")[1].startswith("no_build_function"))
         self.assertIn("tronquee", orch.extract_code("```python\nimport cadquery as cq\n")[1])
 
+    def test_trivial_shapes_are_refused(self):
+        report = {"ok": True, "brep_valid": True, "solid_count": 1, "volume_mm3": 5.6e6, "bbox_mm": [108, 108, 620], "face_count": 3}
+        crank = next(c for c in self.session["components"] if c["id"] == "crankshaft")
+        self.assertIn("too_simple_3_faces", orch.check_report(report, crank["envelope_mm"], crank["min_faces"]))
+        self.assertIsNone(orch.check_report({**report, "face_count": 90}, crank["envelope_mm"], crank["min_faces"]))
+        self.assertGreaterEqual(self.session["agent_policy"]["min_faces_default"], 12)
+
     def test_flat_params_keeps_numeric_leaves_only(self):
         flat = orch.flat_params({"bore": {"nominal": 100.0, "source": "P3"}, "ok": True, "n": 6, "l": [1, 2]})
         self.assertEqual(flat, {"bore.nominal": 100.0, "n": 6})
