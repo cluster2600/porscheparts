@@ -6069,6 +6069,34 @@ def engine_twin_reconcile(api_key: str, manifest: dict, manifest_sha256: str, *,
     raise SafeError("engine-twin creation remains uncertain; never replay PUT; keep the external guard alive")
 
 
+def engine_twin_contract_diagnostic(raw: object, instance_id: int | None, manifest: dict, offer: dict) -> dict:
+    """Explicit field allowlist: never print raw provider messages, addresses or mappings."""
+    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
+    raw = raw if isinstance(raw, dict) else {}
+    instance = picogk_safe_instance(raw)
+    ports = raw.get("ports")
+    port_name = lambda key: key if re.fullmatch(r"[0-9]{1,5}/(?:tcp|udp)", str(key)) else "unrecognized"
+    observed = {key: finite_number(instance.get(key)) for key in (
+        "num_gpus", "gpu_fraction", "gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb",
+        "dph_total", "inet_up_cost_usd_per_gb", "inet_down_cost_usd_per_gb")}
+    observed.update(
+        gpu=instance["gpu"] if instance.get("gpu") in gpus else "missing_or_unrecognized",
+        machine_verification=instance["machine_verification"] if instance.get("machine_verification") in
+            {"verified", "unverified", "deverified"} else "missing_or_unrecognized",
+        status=instance["status"], provider_states=instance["provider_states"],
+        ports_metadata_present=isinstance(ports, dict),
+        port_names=sorted({port_name(key) for key in ports}) if isinstance(ports, dict) else [],
+        published_port_names=sorted({port_name(key) for key, mapping in ports.items() if mapping}) if isinstance(ports, dict) else [])
+    return {"role": manifest["role"], "instance_id": instance_id,
+            "label_matches": instance.get("label") == manifest["attempt_label"],
+            "image_matches": instance.get("image") == manifest["image_ref"],
+            "expected": {"gpu": offer["gpu_name"], "num_gpus": 1, "gpu_fraction": offer.get("gpu_frac"),
+                         "gpu_ram_mb_min": gpu_ram, "cpu_cores_effective_min": cores, "cpu_ram_mb_min": ram,
+                         "disk_space_gb_min": disk, "dph_total": offer["dph_total"],
+                         "allowed_statuses": ["created", "loading", "running"], "allowed_published_port_names": ["22/tcp"]},
+            "observed": observed}
+
+
 def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha256: str) -> int:
     role = engine_twin_role(manifest["role"])
     with simready_launch_lock():
@@ -6122,6 +6150,11 @@ def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha
                         raise
                     time.sleep(5)
         except BaseException:
+            try:
+                diagnostic = engine_twin_contract_diagnostic(raw, instance_id, manifest, offer)
+                print("OPENBAO_VASTAI_ENGINE_TWIN_CONTRACT " + json.dumps(diagnostic, sort_keys=True), file=sys.stderr, flush=True)
+            except (OSError, ValueError, TypeError, KeyError):
+                pass  # Diagnostic output failure must never prevent cleanup.
             cleanup = {"instance_id": instance_id, "label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
                        "manifest_sha256": manifest_sha256, "verified_absent": False, "destroyed": False}
             try:
