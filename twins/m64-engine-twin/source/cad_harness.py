@@ -32,6 +32,7 @@ def main(module_path, params_path, out_dir):
     report = {
         "brep_valid": bool(BRepCheck_Analyzer(shape.wrapped).IsValid()),
         "solid_count": len(solids),
+        "face_count": len(shape.Faces()),
         "volume_mm3": float(sum(s.Volume() for s in solids)),
         "bbox_mm": [bb.xlen, bb.ylen, bb.zlen],
     }
