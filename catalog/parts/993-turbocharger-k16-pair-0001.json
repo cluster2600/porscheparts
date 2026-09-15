@@ -5,8 +5,13 @@
   "description": "Cible de recherche du jumeau numerique : deux turbocompresseurs K16 montes en parallele sur la 993 Turbo. Cette fiche etablit l'identite fonctionnelle et les donnees publiques disponibles ; elle ne constitue ni une geometrie de remplacement ni une autorisation de fabrication.",
   "vehicle": {
     "generation": "993",
-    "variants": ["993_Turbo"],
-    "model_years": {"from": 1995, "to": 1998},
+    "variants": [
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
     "porsche_part_numbers": [
       "993 123 013 51",
       "993 123 013 52",
@@ -21,11 +26,13 @@
   },
   "geometry": {
     "source_type": "estimated",
-    "master_format": "none",
-    "master_file": "",
+    "master_format": "build123d",
+    "master_file": "scripts/build_993_concept_f0.py",
     "units": "mm",
     "accuracy_mm": null,
-    "derived_files": []
+    "derived_files": [
+      "parts/993-turbocharger-k16-pair-0001/derived/k16_pair_concept_f0.step"
+    ]
   },
   "provenance": {
     "record_license": "MIT for the record, no third-party geometry redistributed",
@@ -97,7 +104,11 @@
     ]
   },
   "manufacturing": {
-    "candidate_processes": ["LPBF", "CNC", "casting"],
+    "candidate_processes": [
+      "LPBF",
+      "CNC",
+      "casting"
+    ],
     "preferred_process": "undecided",
     "material": {
       "family": "inconnue par sous-ensemble ; a identifier sur pieces et documentation fabricant",

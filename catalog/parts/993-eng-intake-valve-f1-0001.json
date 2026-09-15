@@ -5,9 +5,18 @@
   "description": "Proxy parametrique non fonctionnel pour comparer l'encombrement et la masse d'une soupape d'admission 993 de tete 49 mm et queue 8 mm, avec variante Ti-6Al-4V explicitement limitee a la simulation.",
   "vehicle": {
     "generation": "993",
-    "variants": ["993_C2", "993_C4", "993_Turbo"],
-    "model_years": {"from": 1994, "to": 1998},
-    "porsche_part_numbers": ["99310540902"]
+    "variants": [
+      "993_C2",
+      "993_C4",
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "99310540902"
+    ]
   },
   "classification": {
     "category": "engine_valvetrain",
@@ -20,7 +29,9 @@
     "master_file": "twins/reference-935-cylinder-head/source/build_valve_variants.py",
     "units": "mm",
     "accuracy_mm": null,
-    "derived_files": []
+    "derived_files": [
+      "parts/993-eng-intake-valve-f1-0001/derived/993-intake-49-f1.step"
+    ]
   },
   "provenance": {
     "record_license": "MIT for code and record; no third-party geometry redistributed",
@@ -44,27 +55,66 @@
     ]
   },
   "manufacturing": {
-    "candidate_processes": ["CNC", "LPBF", "DMLS"],
+    "candidate_processes": [
+      "CNC",
+      "LPBF",
+      "DMLS"
+    ],
     "preferred_process": "DMLS",
-    "material": {"family": "titanium comparison", "grade": "Ti-6Al-4V Grade 5", "standard": "ASTM F2924 chemistry reference"},
-    "post_processing": ["heat treatment qualified for the exact process", "HIP decision by fatigue qualification", "finish machining of stem, tip, groove and seat", "surface treatment and polishing to be engineered"],
-    "supplier_requirements": ["lot traceability", "process qualification", "CT and metallography", "dimensional report", "fatigue and hot-valvetrain validation", "professional engineering release"]
+    "material": {
+      "family": "titanium comparison",
+      "grade": "Ti-6Al-4V Grade 5",
+      "standard": "ASTM F2924 chemistry reference"
+    },
+    "post_processing": [
+      "heat treatment qualified for the exact process",
+      "HIP decision by fatigue qualification",
+      "finish machining of stem, tip, groove and seat",
+      "surface treatment and polishing to be engineered"
+    ],
+    "supplier_requirements": [
+      "lot traceability",
+      "process qualification",
+      "CT and metallography",
+      "dimensional report",
+      "fatigue and hot-valvetrain validation",
+      "professional engineering release"
+    ]
   },
   "titanium": {
     "applicable": true,
     "alloy": "Ti-6Al-4V Grade 5 candidate for intake study only",
     "heat_treatment": "to be tied to machine and parameter set; EOS reference recommends stress relief/ductility treatment",
     "hip_required": "to_be_determined",
-    "machined_surfaces": ["stem", "seat face", "tip", "keeper groove"],
-    "inspection": ["CT", "density", "metallography", "surface roughness", "dimensional inspection", "high-cycle fatigue"],
+    "machined_surfaces": [
+      "stem",
+      "seat face",
+      "tip",
+      "keeper groove"
+    ],
+    "inspection": [
+      "CT",
+      "density",
+      "metallography",
+      "surface roughness",
+      "dimensional inspection",
+      "high-cycle fatigue"
+    ],
     "galvanic_isolation": "compatibility with guide, seat, retainer and coatings must be reviewed"
   },
   "validation": {
     "status": "concept",
     "vehicle_tested": [],
-    "evidence": ["SRC-FVD-993-INLET-VALVE-DIMENSIONS", "SRC-EOS-TI64-GRADE5"],
+    "evidence": [
+      "SRC-FVD-993-INLET-VALVE-DIMENSIONS",
+      "SRC-EOS-TI64-GRADE5"
+    ],
     "reviewed_by": "",
     "reviewed_on": null,
-    "known_limits": ["Overall length is a 109 mm hypothesis derived from a 110 mm product envelope.", "Keeper groove, seat, margin, neck radius, coating, tolerances and cam/spring dynamics are not defined.", "The generated STL is fit-check-only and must never be installed in an engine."]
+    "known_limits": [
+      "Overall length is a 109 mm hypothesis derived from a 110 mm product envelope.",
+      "Keeper groove, seat, margin, neck radius, coating, tolerances and cam/spring dynamics are not defined.",
+      "The generated STL is fit-check-only and must never be installed in an engine."
+    ]
   }
 }

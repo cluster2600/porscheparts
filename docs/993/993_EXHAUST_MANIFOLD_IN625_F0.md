@@ -71,3 +71,24 @@ PhysicsNeMo attendra un dataset CFD/CHT/structure convergé, puis des jeux train
 holdout et hors-distribution. SimReady attendra les interfaces et l'environnement
 installé mesurés. Le STEP F0 n'est autorisé ni pour fabrication, ni pour moteur,
 ni pour chauffage habitacle.
+
+<!-- print-screen:begin -->
+
+## Simulation d'impression LPBF
+
+Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_z`.
+
+| grandeur | valeur |
+|---|---:|
+| couches | 5 375 |
+| hauteur de construction | 215,00 mm |
+| couches avec region non soutenue | 1 |
+| proxy de supports | 15 425,04 mm³ |
+| epaisseur locale p01 | 1,098 mm |
+| poudre piegee a 1,00 mm | 0,00 mm³ |
+
+![Simulation d'impression LPBF](../../parts/993-eng-exhaust-manifold-in625-f0-0001/evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-screen.png)
+
+Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+
+<!-- print-screen:end -->
