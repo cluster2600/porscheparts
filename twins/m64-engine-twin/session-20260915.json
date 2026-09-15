@@ -47,7 +47,7 @@
   },
   "agent_policy": {
     "max_iterations_per_component": 6,
-    "executor_timeout_seconds": 180,
+    "executor_timeout_seconds": 600,
     "executor_memory": "6g",
     "executor_network": "none",
     "stop_new_work_before_deadline_seconds": 3600,
@@ -81,7 +81,7 @@
     {"id": "oil_filter_console", "wave": 3, "count": 1, "status": "existing", "source": "catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.json"},
 
     {"id": "cooling_fan_system", "wave": 4, "count": 1, "status": "existing", "source": "twins/993-engine-cooling-fan-system-f0"},
-    {"id": "fan_pulley_belt", "wave": 4, "count": 1, "depends_on": ["crankshaft", "cooling_fan_system"], "envelope_mm": [260, 400, 80], "brief": "Poulie de vilebrequin, courroie, poulie de ventilateur."},
+    {"id": "fan_pulley_belt", "wave": 4, "count": 1, "depends_on": ["crankshaft", "cooling_fan_system"], "envelope_mm": [260, 400, 170], "envelope_note": "releve de 80 a 170 mm apres la passe 1 : hypothese de conception, non mesuree", "brief": "Poulie de vilebrequin, courroie, poulie de ventilateur."},
     {"id": "cylinder_barrels", "wave": 4, "count": 6, "depends_on": ["cylinder_liner", "head_4v"], "envelope_mm": [150, 150, 130], "brief": "Cylindres ailettes autour des chemises, ailettes radiales."},
 
     {"id": "intake_plenum_runners", "wave": 5, "count": 1, "depends_on": ["head_4v"], "envelope_mm": [600, 400, 200], "brief": "Plenum et six pipes vers les conduits d'admission 4 soupapes."},
@@ -89,7 +89,7 @@
     {"id": "exhaust_manifolds", "wave": 5, "count": 2, "status": "existing_concept", "source": "catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json"},
     {"id": "turbo_k16_pair", "wave": 5, "count": 2, "status": "existing_concept", "source": "catalog/parts/993-turbocharger-k16-pair-0001.json"},
     {"id": "intercooler", "wave": 5, "count": 1, "depends_on": ["turbo_k16_pair"], "envelope_mm": [600, 350, 120], "brief": "Echangeur air-air, boites a eau existantes en reference."},
-    {"id": "fuel_rails_injectors", "wave": 5, "count": 2, "depends_on": ["intake_plenum_runners"], "envelope_mm": [400, 60, 80], "brief": "Rampes et injecteurs."},
+    {"id": "fuel_rails_injectors", "wave": 5, "count": 2, "depends_on": ["intake_plenum_runners"], "envelope_mm": [420, 60, 95], "envelope_note": "releve de 400x60x80 a 420x60x95 apres la passe 1 : hypothese de conception, non mesuree", "brief": "Rampes et injecteurs."},
 
     {"id": "twin_plug_ignition", "wave": 6, "count": 1, "depends_on": ["head_4v"], "envelope_mm": [600, 400, 200], "brief": "Double allumage : bougies, bobines, faisceau simplifie."},
     {"id": "alternator", "wave": 6, "count": 1, "depends_on": ["fan_pulley_belt"], "envelope_mm": [180, 180, 200], "brief": "Alternateur dans le carenage de ventilation."},
