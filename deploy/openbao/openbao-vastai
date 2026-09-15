@@ -177,7 +177,7 @@ RESEARCH_CAD_GPUS = ("RTX 3090", "RTX 4090", "RTX A5000", "RTX 5880Ada", *RESEAR
 ENGINE_TWIN_PROFILE = "engine-twin-v1"
 ENGINE_TWIN_LABEL_RE = re.compile(r"3dprinting993-engine-twin-(llm|compute)-([0-9a-f]{20})")
 ENGINE_TWIN_IMAGES = {"llm": RESEARCH_IMAGE, "compute": SIMREADY_IMAGE}
-ENGINE_TWIN_GUARD_SHA256 = "8c6df894203434436646420e5db94aabd9980ba1396b5c768f1cc31f9bcff371"
+ENGINE_TWIN_GUARD_SHA256 = "ecc1021eecca65af2787d171694c649f36197a4ffe57447fbd24ad7b2a11bab9"
 ENGINE_TWIN_MAX_DPH = 2.60
 ENGINE_TWIN_MAX_TRANSFER_RATE = 0.01
 ENGINE_TWIN_MAX_SECONDS = 6 * 60 * 60
@@ -193,6 +193,20 @@ ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS = {
 ENGINE_TWIN_HARDWARE = {
     "llm": (("H100 SXM4", "H100 NVL", "H100", "RTX PRO 6000 WS"), 80000, 16, 64000, 150),
     "compute": (("RTX PRO 6000 WS", "RTX PRO 6000 Blackwell Max-Q", "RTX A6000", "L40S"), 48000, 64, 256000, 500),
+}
+# Variante llm : Qwen3.8 Flash Next NVFP4, tenseur parallele sur deux Blackwell (SM120+).
+# Poids gated : l'onstart reste a vide ; le telechargement avec jeton se fait ensuite par SSH.
+ENGINE_TWIN_FLASHNEXT_VARIANT = "qwen38-flash-next"
+ENGINE_TWIN_FLASHNEXT = {
+    "image": "ghcr.io/cluster2600/qwen38-flash-next-vast@sha256:6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34",
+    "model": "orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4",
+    "revision": "c1209bda15a6bbc4c68b585e93d40c0d85f50306",
+    "hardware": (("RTX PRO 6000 WS", "RTX PRO 6000 Blackwell Max-Q", "RTX PRO 6000 S"), 95000, 32, 128000, 400),
+    "num_gpus": 2,
+    "max_dph": 4.20,
+    "download_cap_gb": 250,
+    "ports": frozenset({"22/tcp", "8000/tcp"}),
+    "weights_access": "gated",
 }
 SSH_PRIVATE_KEY_FILE = Path.home() / ".ssh" / "id_vastai"
 SSH_PUBLIC_KEY_FILE = Path.home() / ".ssh" / "id_vastai.pub"
@@ -5847,15 +5861,41 @@ def engine_twin_role(value: object) -> str:
     return value
 
 
-def engine_twin_offer_eligible(offer: dict, role: str) -> bool:
-    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(role)]
+def engine_twin_spec(role: object, variant: object = None) -> dict:
+    """Fixed image, model, hardware, price and port contract for one role and optional llm variant."""
+    role = engine_twin_role(role)
+    if variant is None:
+        return {"image": ENGINE_TWIN_IMAGES[role], "model": RESEARCH_MODEL, "revision": RESEARCH_REVISION,
+                "hardware": ENGINE_TWIN_HARDWARE[role], "num_gpus": 1, "max_dph": ENGINE_TWIN_MAX_DPH,
+                "download_cap_gb": 80, "ports": ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[role], "weights_access": "public"}
+    if role != "llm" or variant != ENGINE_TWIN_FLASHNEXT_VARIANT:
+        raise SafeError("engine-twin variant is not approved for this role")
+    return ENGINE_TWIN_FLASHNEXT
+
+
+def engine_twin_manifest_spec(manifest: dict) -> dict:
+    return engine_twin_spec(manifest["role"], manifest.get("variant"))
+
+
+def engine_twin_role_token(token: object) -> tuple[str, str | None]:
+    """CLI role token: llm, compute or llm+<variant>."""
+    if not isinstance(token, str):
+        raise SafeError("engine-twin role must be llm, compute or llm+variant")
+    role, _, variant = token.partition("+")
+    engine_twin_spec(role, variant or None)
+    return role, variant or None
+
+
+def engine_twin_offer_eligible(offer: dict, role: str, variant: str | None = None) -> bool:
+    spec = engine_twin_spec(role, variant)
+    gpus, gpu_ram, cores, ram, disk = spec["hardware"]
     floors = (("gpu_ram", gpu_ram), ("cpu_cores_effective", cores), ("cpu_ram", ram), ("disk_space", disk))
     return (type(offer.get("id")) is int and offer["id"] > 0
         and offer.get("gpu_name") in gpus
-        and finite_number(offer.get("num_gpus")) == 1
+        and finite_number(offer.get("num_gpus")) == spec["num_gpus"]
         and (fraction := finite_number(offer.get("gpu_frac"))) is not None and 0 < fraction <= 1
         and all((value := finite_number(offer.get(key))) is not None and value >= floor for key, floor in floors)
-        and (price := finite_number(offer.get("dph_total"))) is not None and 0 < price <= ENGINE_TWIN_MAX_DPH
+        and (price := finite_number(offer.get("dph_total"))) is not None and 0 < price <= spec["max_dph"]
         and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None
         and reliability >= ENGINE_TWIN_MIN_RELIABILITY
         and (offer.get("verified") is True or offer.get("verification") == "verified")
@@ -5865,19 +5905,20 @@ def engine_twin_offer_eligible(offer: dict, role: str) -> bool:
                 for key in ("inet_up_cost", "inet_down_cost")))
 
 
-def get_engine_twin_offers(api_key: str, role: str, offer_id: int | None = None) -> list[dict]:
-    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(role)]
-    query = {"allocated_storage": disk, "num_gpus": {"eq": 1}, "gpu_frac": {"gt": 0, "lte": 1},
+def get_engine_twin_offers(api_key: str, role: str, offer_id: int | None = None, variant: str | None = None) -> list[dict]:
+    spec = engine_twin_spec(role, variant)
+    gpus, gpu_ram, cores, ram, disk = spec["hardware"]
+    query = {"allocated_storage": disk, "num_gpus": {"eq": spec["num_gpus"]}, "gpu_frac": {"gt": 0, "lte": 1},
              "gpu_name": {"in": list(gpus)}, "gpu_ram": {"gte": gpu_ram},
              "cpu_cores_effective": {"gte": cores}, "cpu_ram": {"gte": ram}, "disk_space": {"gte": disk},
-             "dph_total": {"lte": ENGINE_TWIN_MAX_DPH}, "reliability": {"gte": ENGINE_TWIN_MIN_RELIABILITY},
+             "dph_total": {"lte": spec["max_dph"]}, "reliability": {"gte": ENGINE_TWIN_MIN_RELIABILITY},
              "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
              "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 1000 if offer_id is not None else 100}
     result = vast_request(api_key, "/api/v0/bundles", method="POST", payload=query)
     if not isinstance(result.get("offers"), list):
         raise SafeError("Vast.ai engine-twin offer response is invalid")
     eligible = sorted((item for item in result["offers"] if isinstance(item, dict)
-                       and engine_twin_offer_eligible(item, role)), key=lambda item: item["dph_total"])
+                       and engine_twin_offer_eligible(item, role, variant)), key=lambda item: item["dph_total"])
     return [item for item in eligible if offer_id is None or item["id"] == offer_id]
 
 
@@ -5899,16 +5940,17 @@ def engine_twin_load_manifest(path: Path, *, require_active: bool = True) -> tup
               "model", "model_revision", "created_epoch", "deadline_epoch", "budget_usd",
               "download_budget_gb", "upload_budget_gb", "qualification_path", "qualification_sha256",
               "guard_path", "guard_sha256", "guard_ready_path"}
-    if not isinstance(manifest, dict) or set(manifest) != fields:
+    if not isinstance(manifest, dict) or set(manifest) not in (fields, fields | {"variant"}):
         raise SafeError("engine-twin manifest fields differ from the fixed contract")
     role = engine_twin_role(manifest["role"])
+    spec = engine_twin_manifest_spec(manifest)
     label = manifest["attempt_label"]
     match = ENGINE_TWIN_LABEL_RE.fullmatch(label) if isinstance(label, str) else None
     if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != ENGINE_TWIN_PROFILE
         or match is None or match.group(1) != role
         or manifest["sibling_label"] != engine_twin_sibling_label(label)
-        or manifest["image_ref"] != ENGINE_TWIN_IMAGES[role]
-        or manifest["model"] != RESEARCH_MODEL or manifest["model_revision"] != RESEARCH_REVISION
+        or manifest["image_ref"] != spec["image"]
+        or manifest["model"] != spec["model"] or manifest["model_revision"] != spec["revision"]
         or not isinstance(manifest["job_id"], str)
         or not re.fullmatch(rf"engine-twin-{role}-[a-z0-9][a-z0-9-]{{0,63}}", manifest["job_id"])):
         raise SafeError("engine-twin identity, role, image digest or model revision is not approved")
@@ -5918,7 +5960,7 @@ def engine_twin_load_manifest(path: Path, *, require_active: bool = True) -> tup
         or (require_active and time.time() >= deadline - 300)):
         raise SafeError("engine-twin deadline must include setup and cleanup within six hours")
     for field, lower, cap in (("budget_usd", 1, ENGINE_TWIN_MAX_BUDGET_USD),
-                              ("download_budget_gb", 0, 80), ("upload_budget_gb", 0, 20)):
+                              ("download_budget_gb", 0, spec["download_cap_gb"]), ("upload_budget_gb", 0, 20)):
         value = finite_number(manifest[field])
         if value is None or not lower < value <= cap:
             raise SafeError("engine-twin budget or transfer allocation exceeds its fixed cap")
@@ -5940,7 +5982,9 @@ def engine_twin_load_manifest(path: Path, *, require_active: bool = True) -> tup
         raise SafeError("engine-twin qualification is not JSON") from None
     expected = {"image_ref": manifest["image_ref"], "platform": "linux/amd64", "anonymous_registry_verified": True}
     if role == "llm":
-        expected.update(model=RESEARCH_MODEL, model_revision=RESEARCH_REVISION, public_weights_verified=True)
+        expected.update(model=spec["model"], model_revision=spec["revision"])
+        # Gated weights: read access proven by the approved OpenBao HF wrapper, never anonymous.
+        expected["public_weights_verified" if spec["weights_access"] == "public" else "gated_read_access_verified"] = True
     if not isinstance(proof, dict) or any(type(proof.get(key)) is not type(value) or proof[key] != value
                                           for key, value in expected.items()):
         raise SafeError("engine-twin public image or public weights are not qualified")
@@ -5953,7 +5997,7 @@ def engine_twin_load_manifest(path: Path, *, require_active: bool = True) -> tup
 
 def engine_twin_budget_cost(manifest: dict, price: object, up: object, down: object) -> float:
     price, up, down = [finite_number(value) for value in (price, up, down)]
-    if (price is None or not 0 < price <= ENGINE_TWIN_MAX_DPH
+    if (price is None or not 0 < price <= engine_twin_manifest_spec(manifest)["max_dph"]
         or any(value is None or not 0 <= value <= ENGINE_TWIN_MAX_TRANSFER_RATE for value in (up, down))):
         raise SafeError("engine-twin price metadata is missing or exceeds its cap")
     cost = price * (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
@@ -5984,14 +6028,15 @@ def engine_twin_onstart(manifest: dict) -> str:
         raise SafeError("engine-twin deadline cannot cover startup, cleanup, tolerance and a sixty-second run")
     prefix = ("set -eu; test \"$(id -u)\" = 0; unset HF_TOKEN HUGGING_FACE_HUB_TOKEN; "
               "mkdir -p /workspace; export HF_HOME=/workspace/hf; export HF_HUB_DISABLE_IMPLICIT_TOKEN=1; ")
-    if engine_twin_role(manifest["role"]) == "compute":
-        # Jobs arrive later over SSH; the independent guard bounds paid lifetime.
-        # Published-but-idle ports must stay idle: record any unexpected listener.
+    if engine_twin_role(manifest["role"]) == "compute" or manifest.get("variant") is not None:
+        # Jobs (or the gated-weight download and loopback server) arrive later over SSH;
+        # the independent guard bounds paid lifetime. Published-but-idle ports must stay
+        # idle: record any unexpected listener.
         probe = ("python3 -c 'import socket,sys;"
                  "o=[p for p in (8000,8001,8100,8200) if socket.socket().connect_ex((\"127.0.0.1\",p))==0];"
                  "sys.exit(1 if o else 0)' || touch /workspace/UNEXPECTED_LISTENER; ")
         return prefix + probe + (f"nohup timeout --signal=TERM --kill-after=30 {duration} sleep {duration} "
-                         ">/workspace/engine-twin-compute-idle.log 2>&1 </dev/null &")
+                         f">/workspace/engine-twin-{manifest['role']}-idle.log 2>&1 </dev/null &")
     command = shlex.join(["python3", "-m", "vllm.entrypoints.openai.api_server", "--model", RESEARCH_MODEL,
                          "--revision", RESEARCH_REVISION, "--served-model-name", RESEARCH_MODEL,
                          "--host", "127.0.0.1", "--port", "8000", "--max-model-len", "65536",
@@ -6001,19 +6046,19 @@ def engine_twin_onstart(manifest: dict) -> str:
 
 
 def engine_twin_contract(raw: dict, instance_id: int, manifest: dict, offer: dict) -> dict:
-    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
+    spec = engine_twin_manifest_spec(manifest)
+    gpus, gpu_ram, cores, ram, disk = spec["hardware"]
     instance = picogk_safe_instance(raw)
     if (type(instance.get("id")) is not int or instance["id"] != instance_id
         or instance.get("label") != manifest["attempt_label"] or instance.get("image") != manifest["image_ref"]
         or instance.get("machine_verification") != "verified" or instance.get("gpu") != offer["gpu_name"]
         or instance.get("gpu") not in gpus or instance.get("status") not in {"created", "loading", "running"}
-        or finite_number(instance.get("num_gpus")) != 1
+        or finite_number(instance.get("num_gpus")) != spec["num_gpus"]
         or (fraction := finite_number(instance.get("gpu_fraction"))) is None or not 0 < fraction <= 1
         or fraction != finite_number(offer.get("gpu_frac"))
         or finite_number(instance.get("dph_total")) != finite_number(offer["dph_total"])
         or not isinstance(raw.get("ports"), dict)
-        or any(mapping and port not in ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[manifest["role"]]
-               for port, mapping in raw["ports"].items())):
+        or any(mapping and port not in spec["ports"] for port, mapping in raw["ports"].items())):
         raise SafeError("engine-twin instance identity, hardware, state or published ports violate the contract")
     for field, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), (gpu_ram, cores, ram, disk)):
         value = finite_number(instance.get(field))
@@ -6025,12 +6070,13 @@ def engine_twin_contract(raw: dict, instance_id: int, manifest: dict, offer: dic
 
 def engine_twin_metadata_pending(raw: dict, offer: dict, manifest: dict) -> bool:
     """Metadata may lag observed running; known violations never may wait."""
-    _, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
+    spec = engine_twin_manifest_spec(manifest)
+    _, gpu_ram, cores, ram, disk = spec["hardware"]
     instance = picogk_safe_instance(raw)
     if not picogk_startup_pending(raw) and instance["status"] != "running":
         return False
     for key, expected in (("machine_verification", "verified"), ("gpu", offer["gpu_name"]),
-                          ("num_gpus", 1), ("gpu_fraction", offer["gpu_frac"]), ("dph_total", offer["dph_total"])):
+                          ("num_gpus", spec["num_gpus"]), ("gpu_fraction", offer["gpu_frac"]), ("dph_total", offer["dph_total"])):
         if instance.get(key) is not None and instance[key] != expected:
             return False
     for key, floor in zip(("gpu_ram_mb", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb"), (gpu_ram, cores, ram, disk)):
@@ -6042,7 +6088,7 @@ def engine_twin_metadata_pending(raw: dict, offer: dict, manifest: dict) -> bool
         if value is not None and (finite_number(value) is None or not 0 <= value <= ENGINE_TWIN_MAX_TRANSFER_RATE):
             return False
     ports = raw.get("ports")
-    allowed = ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[manifest["role"]]
+    allowed = spec["ports"]
     return ports is None or isinstance(ports, dict) and not any(mapping and port not in allowed for port, mapping in ports.items())
 
 
@@ -6089,7 +6135,8 @@ def engine_twin_lookup_not_yet_visible(raw: object) -> bool:
 
 def engine_twin_contract_diagnostic(raw: object, instance_id: int | None, manifest: dict, offer: dict) -> dict:
     """Explicit field allowlist: never print raw provider messages, addresses or mappings."""
-    gpus, gpu_ram, cores, ram, disk = ENGINE_TWIN_HARDWARE[engine_twin_role(manifest["role"])]
+    spec = engine_twin_manifest_spec(manifest)
+    gpus, gpu_ram, cores, ram, disk = spec["hardware"]
     raw = raw if isinstance(raw, dict) else {}
     instance = picogk_safe_instance(raw)
     ports = raw.get("ports")
@@ -6108,11 +6155,11 @@ def engine_twin_contract_diagnostic(raw: object, instance_id: int | None, manife
     return {"role": manifest["role"], "instance_id": instance_id,
             "label_matches": instance.get("label") == manifest["attempt_label"],
             "image_matches": instance.get("image") == manifest["image_ref"],
-            "expected": {"gpu": offer["gpu_name"], "num_gpus": 1, "gpu_fraction": offer.get("gpu_frac"),
+            "expected": {"gpu": offer["gpu_name"], "num_gpus": spec["num_gpus"], "gpu_fraction": offer.get("gpu_frac"),
                          "gpu_ram_mb_min": gpu_ram, "cpu_cores_effective_min": cores, "cpu_ram_mb_min": ram,
                          "disk_space_gb_min": disk, "dph_total": offer["dph_total"],
                          "allowed_statuses": ["created", "loading", "running"],
-                         "allowed_published_port_names": sorted(ENGINE_TWIN_ALLOWED_PUBLISHED_PORTS[manifest["role"]])},
+                         "allowed_published_port_names": sorted(spec["ports"])},
             "observed": observed}
 
 
@@ -6125,7 +6172,7 @@ def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha
         funds = picogk_account_balance(api_key)
         if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
             raise SafeError("engine-twin credit does not cover this role and account reserve")
-        offers = get_engine_twin_offers(api_key, role, offer_id)
+        offers = get_engine_twin_offers(api_key, role, offer_id, manifest.get("variant"))
         if len(offers) != 1:
             raise SafeError("engine-twin selected offer is unavailable or outside fixed limits")
         offer = offers[0]
@@ -6140,7 +6187,7 @@ def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha
         try:
             result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
                 "image": manifest["image_ref"], "label": manifest["attempt_label"],
-                "disk": ENGINE_TWIN_HARDWARE[role][4], "runtype": "ssh_direct", "env": {},
+                "disk": engine_twin_manifest_spec(manifest)["hardware"][4], "runtype": "ssh_direct", "env": {},
                 "onstart": onstart, "cancel_unavail": True})
             returned = result.get("new_contract")
             if type(returned) is not int or returned <= 0:
@@ -6215,7 +6262,7 @@ def run(operation: list[str]) -> int:
     if operation and operation[0] == "engine-twin-offers":
         if len(operation) not in (2, 3):
             raise SafeError("engine-twin-offers requires a role and an optional offer id")
-        engine_twin_role(operation[1])
+        engine_twin_role_token(operation[1])
         if len(operation) == 3:
             positive_id(operation[2], "engine-twin offer id")
     if operation and operation[0] == "cad-specialist-offers" and len(operation) == 2:
@@ -6252,7 +6299,8 @@ def run(operation: list[str]) -> int:
         api_key = read_vast_key(token)
         if operation and operation[0] == "engine-twin-offers":
             offer_id = int(operation[2]) if len(operation) == 3 else None
-            print_json([safe_offer(item) for item in get_engine_twin_offers(api_key, operation[1], offer_id)[:20]])
+            role, variant = engine_twin_role_token(operation[1])
+            print_json([safe_offer(item) for item in get_engine_twin_offers(api_key, role, offer_id, variant)[:20]])
             return 0
         if engine_twin_bundle is not None:
             manifest, manifest_sha256 = engine_twin_bundle
@@ -6656,7 +6704,7 @@ def run(operation: list[str]) -> int:
         raise SafeError(
             "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
             "research-offers|cad-specialist-offers [offer_id]|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
-            "engine-twin-offers <llm|compute> [offer_id]|launch-engine-twin <offer_id> <absolute-manifest>|reconcile-engine-twin <absolute-manifest>|"
+            "engine-twin-offers <llm|compute|llm+qwen38-flash-next> [offer_id]|launch-engine-twin <offer_id> <absolute-manifest>|reconcile-engine-twin <absolute-manifest>|"
             "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"
             "offers|heavy-offers|f46-offers|wave-offers|"
             "component-factory-f41-offers|mesh-offers|instances|"
