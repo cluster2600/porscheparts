@@ -29,6 +29,31 @@ def displacement_cc(bore_mm, stroke_mm, cylinders=6):
     return cylinders * math.pi / 4 * bore_mm ** 2 * stroke_mm / 1000.0
 
 
+def chamber_volume_mm3(p, n=361):
+    """Volume mort approché au PMH : intégration du toit sur le disque d'alésage + bol du piston.
+
+    Proxy numpy pour l'itération (sans CAO) : il ignore les faces de soupape et les sièges qui
+    ferment les ouvertures du toit. Le rapport CAO garde le volume BRep comme valeur de référence.
+    """
+    R = p['bore_diameter'] / 2
+    crown = float(kin.piston_crown_z(p, np.array([0.0]))[0])
+    grid = np.linspace(-R, R, n)
+    X, Y = np.meshgrid(grid, grid)
+    inside = X ** 2 + Y ** 2 <= R ** 2
+    zi = p['roof_ridge_height'] + X * math.tan(math.radians(p['intake_axis_angle']))
+    ze = p['roof_ridge_height'] - X * math.tan(math.radians(p['exhaust_axis_angle']))
+    roof = np.maximum(np.minimum(zi, ze), p['register_depth'])
+    cell = (2 * R / (n - 1)) ** 2
+    volume = float(np.sum(np.maximum(roof - crown, 0.0)[inside]) * cell)
+    return volume + math.pi * (p['piston_bowl_diameter'] / 2) ** 2 * p['piston_bowl_depth']
+
+
+def compression_ratio(p):
+    vc = chamber_volume_mm3(p)
+    vs = math.pi * (p['bore_diameter'] / 2) ** 2 * p['crank_stroke']
+    return (vs + vc) / vc if vc > 0 else math.inf
+
+
 def _ellgap(A, B):
     return float(np.min(np.linalg.norm(A[:, None, :] - B[None, :, :], axis=2)))
 
@@ -89,6 +114,23 @@ def static_checks(p):
         g_ = gap(f'pocket_{side}_p', f'pocket_{side}_m')
         out.append(_c(f'spring_pocket_{side}_pair', g_, wall, '>=', f'paroi entre les 2 logements {side}'))
     worst('pocket_', 'port_', 'spring_pocket_vs_ports', 'paroi fond de logement / conduits')
+    if 'compression_ratio_min' in p:  # G2 seulement : G1 n'avait aucun critère de compression
+        cr = compression_ratio(p)
+        detail = (f'PROXY, non bloquant : volume mort approché {chamber_volume_mm3(p) / 1000:.1f} cm³ (toit + bol) ; '
+                  f'il ignore logements de sièges, gorges et conduits, et sous-estime le volume BRep d\'environ 30 % '
+                  f'sur la configuration G1 ; arête de toit {p["roof_ridge_height"]:.1f} mm, angles '
+                  f'{p["intake_axis_angle"]:.1f}/{p["exhaust_axis_angle"]:.1f}°. Le juge est le taux BRep du rapport CAO.')
+        out.append(_c('compression_ratio_proxy_min', cr, p['compression_ratio_min'], '>=', detail,
+                      blocking=False, family='combustion'))
+        out.append(_c('compression_ratio_proxy_max', cr, p['compression_ratio_max'], '<=', detail,
+                      blocking=False, family='combustion'))
+    if 'oil_gallery' in cyl:  # G2 seulement
+        for other, name in (('pocket_', 'spring_pockets'), ('guide_', 'guides'), ('plug_', 'plugs'),
+                            ('stud_', 'studs'), ('port_', 'ports')):
+            worst('oil_', other, f'oil_gallery_vs_{name}', f'paroi galerie d\'huile / {name}', family='oil')
+        a, b, r = cyl['oil_gallery']
+        out.append(_c('oil_gallery_below_carrier_face', p['carrier_face_height'] - a[2] - r, wall, '>=',
+                      'paroi entre galerie d\'huile et face porte-arbre', family='oil'))
     seat_z = max(head_centre(p, s, sy)[2] + axis_up(p, s)[2] * p[f'{s}_spring_seat_axial'] for s, sy in VALVES)
     out.append(_c('spring_seat_below_carrier_face', seat_z, p['carrier_face_height'], '<=',
                   'fond de logement sous la face porte-arbre 935'))

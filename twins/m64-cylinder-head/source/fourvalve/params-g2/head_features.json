@@ -1,0 +1,108 @@
+{
+  "component": "head_features_g2",
+  "description": "G2 : conduits courbes, galerie d'huile et ailettes. Toutes hypothèses de conception : aucune n'est mesurée sur une culasse M64 ni tirée d'un plan Porsche.",
+  "parameters": {
+    "port_bezier_segments": {
+      "value": 10,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "discrétisation du conduit courbe en capsules, contrôles et CAO partagés"
+    },
+    "port_flange_y_offset": {
+      "value": 0.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "les deux conduits d'un côté se rejoignent au centre de la bride (conduit siamois) ; la bride 935 ne montre qu'un orifice par côté"
+    },
+    "intake_port_start_tangent": {
+      "value": 4.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "longueur de départ le long de l'axe de soupape avant le coude ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "intake_port_end_tangent": {
+      "value": 15.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "longueur d'arrivée perpendiculaire à la bride d'admission ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "exhaust_port_start_tangent": {
+      "value": 8.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "idem échappement ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "exhaust_port_end_tangent": {
+      "value": 25.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "idem échappement ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "oil_gallery_diameter": {
+      "value": 8.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "galerie de lubrification du porte-arbre ; débit et pression de pompe M64 non sourcés"
+    },
+    "oil_gallery_x": {
+      "value": -18.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "position à choisir par balayage des parois ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "oil_gallery_z": {
+      "value": 66.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "sous la face porte-arbre 935 ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "fin_count": {
+      "value": 5,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "ailettes de refroidissement par air ; nombre, pas et profondeur M64 non mesurés"
+    },
+    "fin_pitch": {
+      "value": 12.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "pas vertical des ailettes"
+    },
+    "fin_thickness": {
+      "value": 3.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "épaisseur fonderie usuelle"
+    },
+    "fin_depth": {
+      "value": 14.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "saillie des ailettes ; interférence avec la culasse voisine non calculable sans entraxe des cylindres"
+    },
+    "fin_z_start": {
+      "value": 22.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "première ailette au-dessus des brides basses"
+    },
+    "fin_x_margin": {
+      "value": 18.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "retrait des ailettes des faces de bride"
+    },
+    "compression_ratio_min": {
+      "value": 8.0,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "plage de taux volumétrique visée pour un M64 turbo ; aucune valeur M64 sourcée dans le dépôt, la chambre n'est pas arrêtée"
+    },
+    "compression_ratio_max": {
+      "value": 9.0,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "borne haute de la même plage ; au-delà, cliquetis en suralimentation (non calculé ici)"
+    }
+  }
+}
