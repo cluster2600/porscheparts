@@ -145,14 +145,17 @@ class LocalExecutor:
         import resource
 
         def limits():
-            resource.setrlimit(resource.RLIMIT_AS, (self.memory_bytes, self.memory_bytes))
+            # Pas de RLIMIT_AS : sur 256 coeurs, OCCT/TBB reserve beaucoup d'espace virtuel par
+            # thread ; sous 6 Go la creation de threads echouait et le harnais restait bloque en
+            # futex jusqu'au delai (passe 2). RLIMIT_DATA borne la memoire reellement allouee.
+            resource.setrlimit(resource.RLIMIT_DATA, (self.memory_bytes, self.memory_bytes))
             os.setsid()
 
         cmd = [self.python, str(HARNESS), "part.py", "params.json", "out"]
+        threads = {k: "2" for k in ("OMP_NUM_THREADS", "TBB_NUM_THREADS", "MKL_NUM_THREADS", "OPENBLAS_NUM_THREADS")}
         try:
             proc = subprocess.run(cmd, cwd=work_dir, capture_output=True, text=True, timeout=self.timeout,
-                                  preexec_fn=limits, env={"PATH": "/usr/bin:/bin", "HOME": str(work_dir),
-                                                          "OMP_NUM_THREADS": "1"})
+                                  preexec_fn=limits, env={"PATH": "/usr/bin:/bin", "HOME": str(work_dir), **threads})
         except subprocess.TimeoutExpired:
             return {"ok": False, "error": "executor_timeout"}
         lines = [l for l in proc.stdout.splitlines() if l.startswith("{")]

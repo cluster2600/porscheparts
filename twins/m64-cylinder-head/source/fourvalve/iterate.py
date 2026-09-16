@@ -16,6 +16,24 @@ PENALTY = {'bore_diameter': lambda v: 0.5 * abs(v - 100.0),
            'exhaust_valve_head_diameter': lambda v: 1.0 * (33.0 - v)}
 
 
+def compression_record(p):
+    """Terme de combustion d'un essai, ou ``None`` hors G2.
+
+    Le proxy calibré n'est pas le juge : il oriente la recherche vers la plage, la mesure BRep
+    tranche ensuite sur le front accepté (``tune_compression.py``). ``score_penalty`` est tenu à
+    part du score géométrique, que G1 journalise déjà : le journal G1 reste reproductible à
+    l'octet près et, en G2, la part géométrique et la part combustion restent lisibles séparément.
+    """
+    if 'compression_ratio_min' not in p:
+        return None
+    proxy = chk.compression_proxy(p)  # une seule intégration par essai : la boucle est chaude
+    gap = proxy['band_gap']
+    return {'proxy_ratio_calibrated': round(proxy['ratio'], 3),
+            'proxy_clearance_cc': round(proxy['clearance_mm3'] / 1000, 2),
+            'band_gap': round(gap, 3), 'in_band': bool(gap <= 0.0),
+            'score_penalty': round(p['compression_score_weight'] * gap, 3)}
+
+
 def bore_band(bore, space):
     var = [v for v in space['variables'] if v['name'] == 'bore_diameter'][0]
     return 'documented_swindon' if bore <= var['documented_upper'] + 1e-9 else 'exploratory_beyond_sources'
@@ -54,6 +72,7 @@ class Search:
         checks, summ = chk.evaluate(p, self.step)
         penalty = sum(PENALTY[k](v) for k, v in design.items() if k in PENALTY)
         score = summ['min_slack'] - penalty
+        comp = compression_record(p)  # G2 seulement : absent du journal G1, qui reste reproductible
         rec = {'trial': len(self.history), 'stage': stage, 'phase': phase, 'design': design,
                'fixed': self.fixed, 'bore_diameter': round(p['bore_diameter'], 3),
                'bore_band': bore_band(p['bore_diameter'], self.space),
@@ -62,12 +81,24 @@ class Search:
                'penalty': round(penalty, 3), 'score': round(score, 3), 'limiting_check': summ['limiting_check'],
                'blocking_failed': summ['blocking_failed'],
                'slacks': {c['check']: c['slack'] for c in checks if c['blocking']}}
+        if comp:
+            rec['compression'] = comp
         self.history.append(rec)
         return rec
 
     @staticmethod
     def rank(rec):
-        return (rec['accepted'], rec['cycle_evaluated'], rec['score'])
+        """Géométrie d'abord, combustion ensuite : le critère G2 ne classe que des essais acceptés.
+
+        Tant que les contrôles bloquants échouent, la compression est ignorée — sinon la recherche
+        locale poursuit la plage en abandonnant la géométrie (essai constaté : dans la plage, six
+        contrôles en échec, marge −4,1 mm). Sans paramètres G2, les deux termes sont neutres et le
+        classement G1 est inchangé.
+        """
+        comp = rec.get('compression') or {}
+        if not rec['accepted']:  # ``score`` reste le score géométrique : valeur G1 inchangée
+            return (False, rec['cycle_evaluated'], True, rec['score'])
+        return (True, rec['cycle_evaluated'], comp.get('in_band', True), rec['score'] - comp.get('score_penalty', 0.0))
 
     def run(self, max_stage=3, seed_designs=()):
         rng = np.random.default_rng(self.space['seed'])
@@ -124,5 +155,7 @@ class Search:
 def pareto_front(history, top=8):
     """Meilleurs essais, classés par (accepté, marge), avec la contrainte limitante."""
     rows = sorted(history, key=Search.rank, reverse=True)
-    return [{k: r[k] for k in ('trial', 'stage', 'phase', 'accepted', 'min_slack', 'score', 'limiting_check',
-                               'blocking_failed', 'bore_band', 'design')} for r in rows[:top]]
+    keys = ('trial', 'stage', 'phase', 'accepted', 'min_slack', 'score', 'limiting_check',
+            'blocking_failed', 'bore_band', 'design')
+    return [{**{k: r[k] for k in keys}, **({'compression': r['compression']} if 'compression' in r else {})}
+            for r in rows[:top]]

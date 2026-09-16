@@ -168,4 +168,7 @@ def cylinders(p):
         o, d = plug_opening(p, k)
         s_top = max((top + 5 - o[2]) / max(d[2], 0.2), 1.0)
         cyl[f'plug_{k}'] = (o - d * 1.0, o + d * s_top, p['spark_plug_bore_diameter'] / 2)
+    if int(p.get('port_bezier_segments', 0)) > 0:
+        import features  # G2 seulement : G1 garde ses conduits droits et ses preuves
+        cyl = features.feature_cylinders(p, cyl)
     return cyl

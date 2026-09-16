@@ -1,0 +1,1251 @@
+{
+ "intake_cam_advance": {
+  "value": -10.0,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "unsourced",
+  "start_value": 0.0
+ },
+ "exhaust_cam_advance": {
+  "value": 0.7262,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "unsourced",
+  "start_value": 0.0
+ },
+ "cam_base_circle_radius": {
+  "value": 15.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "rayon de base de came",
+   "provenance": "unsourced"
+  }
+ },
+ "follower_stack_axial": {
+  "value": 22.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "culbuteur + rattrapage ramené le long de l'axe de soupape, de la queue au cercle de base",
+   "provenance": "unsourced"
+  }
+ },
+ "cam_lobe_width": {
+  "value": 14.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "largeur de came (CAO)",
+   "provenance": "unsourced"
+  }
+ },
+ "bucket_contact_margin": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "marge du point de contact dans un poussoir à coupelle (contrôle indicatif)",
+   "provenance": "unsourced"
+  }
+ },
+ "min_ligament": {
+  "value": 3.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "pont minimal entre bords de têtes projetés (sièges rapportés), et vers les puits de bougie ; ordre de grandeur 4V usuel, non sourcé",
+   "provenance": "unsourced"
+  }
+ },
+ "min_bore_edge_margin": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "retrait minimal du bord de tête ou du puits de bougie sous l'alésage",
+   "provenance": "unsourced"
+  }
+ },
+ "min_valve_clearance": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "jeu minimal soupape–soupape sur le cycle",
+   "provenance": "unsourced"
+  }
+ },
+ "min_wall": {
+  "value": 3.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "paroi minimale fonderie/usinage entre goujon, conduit, logement, guide, puits de bougie",
+   "provenance": "unsourced"
+  }
+ },
+ "min_roof_edge_height": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "bord extérieur de tête au-dessus du fond de centrage",
+   "provenance": "unsourced"
+  }
+ },
+ "intake_piston_clearance": {
+  "value": 1.5,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "jeu piston–soupape minimal, valeur supposée du modèle V1 (required_piston_clearance_mm)",
+   "provenance": "unsourced"
+  }
+ },
+ "exhaust_piston_clearance": {
+  "value": 2.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "idem V1, échappement",
+   "provenance": "unsourced"
+  }
+ },
+ "coil_bind_min_reserve": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "réserve à spires jointives, valeur supposée V1 (coil_bind_min_clearance_mm)",
+   "provenance": "unsourced"
+  }
+ },
+ "bore_diameter": {
+  "value": 100.0,
+  "unit": "mm",
+  "provenance": "sourced_m64",
+  "trace": {
+   "contract_path": "documented_reference_dimensions.cylinder_bore.nominal",
+   "source": "P3",
+   "source_locator": "Technical data",
+   "provenance": "sourced_m64"
+  }
+ },
+ "crank_stroke": {
+  "value": 76.4,
+  "unit": "mm",
+  "provenance": "sourced_m64",
+  "trace": {
+   "contract_path": "documented_reference_dimensions.crank_stroke.nominal",
+   "source": "P3",
+   "source_locator": "Technical data",
+   "provenance": "sourced_m64"
+  }
+ },
+ "conrod_length": {
+  "value": 127.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "longueur de bielle supposée du modèle V1 (conrod_length_mm, assumed)",
+   "provenance": "unsourced"
+  }
+ },
+ "liner_min_spigot_wall": {
+  "value": 4.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "paroi radiale minimale de chemise (épaulement et fût vers les goujons) : Ø ext requis = alésage + 2 × paroi ; Ø ext chemise M64 non sourcé",
+   "provenance": "unsourced"
+  }
+ },
+ "liner_spigot_radial_clearance": {
+  "value": 0.1,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "jeu radial épaulement / centrage",
+   "provenance": "unsourced"
+  }
+ },
+ "liner_length": {
+  "value": 90.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "longueur de chemise pour la CAO seulement",
+   "provenance": "unsourced"
+  }
+ },
+ "gasket_thickness": {
+  "value": 0.5,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "anneau de joint acier logé dans la gorge du cylindre (CAO)",
+   "provenance": "unsourced"
+  }
+ },
+ "gasket_radial_width": {
+  "value": 3.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "largeur radiale de l'anneau (CAO)",
+   "provenance": "unsourced"
+  }
+ },
+ "stud_span_x": {
+  "value": 85.824,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "head_studs.pattern.value.span_y"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "stud_span_y": {
+  "value": 86.581,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "head_studs.pattern.value.span_x"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "stud_hole_diameter": {
+  "value": 10.879,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "head_studs.holes.0.diameter.value",
+    "head_studs.holes.1.diameter.value",
+    "head_studs.holes.2.diameter.value",
+    "head_studs.holes.3.diameter.value"
+   ],
+   "reduce": "max",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "stud_rod_diameter": {
+  "value": 10.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "tige de goujon ; désignations BM 8 × 20 / 8 × 50 (P1) non transposées",
+   "provenance": "unsourced"
+  }
+ },
+ "guide_head_bore_diameter": {
+  "value": 13.0,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "guide_od_and_head_bore",
+   "pdf_page": 154,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "guide_outer_diameter": {
+  "value": 13.06,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "guide_od_and_head_bore",
+   "pdf_page": 154,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "guide_bore_diameter": {
+  "value": 8.0,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "guide_bore_g",
+   "pdf_page": 153,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "guide_protrusion": {
+  "value": 16.5,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "guide_protrusion",
+   "pdf_page": 154,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "intake_guide_length": {
+  "value": 55.4,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "guide_lengths",
+   "pdf_page": 154,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "exhaust_guide_length": {
+  "value": 56.4,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "guide_lengths",
+   "pdf_page": 154,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "seat_insert_radial_wall": {
+  "value": 2.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "paroi radiale du siège rapporté au-delà du Ø de tête (CAO)",
+   "provenance": "unsourced"
+  }
+ },
+ "seat_insert_height": {
+  "value": 7.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "hauteur du siège rapporté (CAO)",
+   "provenance": "unsourced"
+  }
+ },
+ "retainer_diameter": {
+  "value": 26.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "coupelle titane GSC, Ø non publié",
+   "provenance": "unsourced"
+  }
+ },
+ "retainer_thickness": {
+  "value": 5.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "coupelle + demi-lunes (CAO)",
+   "provenance": "unsourced"
+  }
+ },
+ "register_diameter": {
+  "value": 113.423,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "register_wall.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "register_depth": {
+  "value": 2.21,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "register_depth.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "carrier_face_height": {
+  "value": 86.461,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "cam_carrier.carrier_face_plane.value.height_from_seal_plane"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "scan_valve_1_axis_angle": {
+  "value": 26.576,
+  "unit": "deg",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "valves.valves.0.axis_angle_to_seal_normal_deg.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "scan_valve_2_axis_angle": {
+  "value": 29.162,
+  "unit": "deg",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "valves.valves.1.axis_angle_to_seal_normal_deg.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "exhaust_flange_x": {
+  "value": 82.5325,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "flanges.low_B.stud_positions_local.0.1",
+    "flanges.low_B.stud_positions_local.1.1",
+    "flanges.low_B.stud_positions_local.2.1",
+    "flanges.low_B.stud_positions_local.3.1"
+   ],
+   "reduce": "mean",
+   "transform": "negate",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "exhaust_port_z": {
+  "value": 35.544,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "flanges.low_B.port_circle_at_B_minus_245.centre_local.2"
+   ],
+   "reduce": "single",
+   "transform": "negate",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "exhaust_flange_port_diameter": {
+  "value": 39.993,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "flanges.low_B.port_circle_at_B_minus_245.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "intake_flange_x": {
+  "value": -107.217,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "flanges.high_B.stud_positions_local.0.1",
+    "flanges.high_B.stud_positions_local.1.1"
+   ],
+   "reduce": "mean",
+   "transform": "negate",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "intake_port_z": {
+  "value": 47.5255,
+  "unit": "mm",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "flanges.high_B.stud_positions_local.0.2",
+    "flanges.high_B.stud_positions_local.1.2"
+   ],
+   "reduce": "mean",
+   "transform": "negate",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_1_px": {
+  "value": 2.8784,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "candidate_935_scan_C",
+  "start_value": 15.938
+ },
+ "plug_1_py": {
+  "value": 38.2372,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "candidate_935_scan_C",
+  "start_value": 20.272
+ },
+ "plug_1_angle_to_plane": {
+  "value": 61.684,
+  "unit": "deg",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.0.axis_angle_to_seal_plane_deg.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_1_scan_ux": {
+  "value": -0.2042,
+  "unit": "-",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.0.axis_unit_local.0"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_1_scan_uy": {
+  "value": 0.4282,
+  "unit": "-",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.0.axis_unit_local.1"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_1_scan_uz": {
+  "value": -0.8803,
+  "unit": "-",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.0.axis_unit_local.2"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_2_px": {
+  "value": 2.8784,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "candidate_935_scan_C",
+  "start_value": -8.663
+ },
+ "plug_2_py": {
+  "value": -38.2372,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "candidate_935_scan_C",
+  "start_value": -20.382
+ },
+ "plug_2_angle_to_plane": {
+  "value": 60.263,
+  "unit": "deg",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.1.axis_angle_to_seal_plane_deg.value"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_2_scan_ux": {
+  "value": -0.1982,
+  "unit": "-",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.1.axis_unit_local.0"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_2_scan_uy": {
+  "value": 0.4547,
+  "unit": "-",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.1.axis_unit_local.1"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "plug_2_scan_uz": {
+  "value": 0.8683,
+  "unit": "-",
+  "provenance": "candidate_935_scan_C",
+  "trace": {
+   "scan_paths": [
+    "spark_plugs.plugs.1.axis_unit_local.2"
+   ],
+   "reduce": "single",
+   "transform": "identity",
+   "status": "measured_on_935_scan_evidence_C",
+   "provenance": "candidate_935_scan_C"
+  }
+ },
+ "head_block_width_y": {
+  "value": 130.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "entraxe des cylindres M64 non sourcé ; bloc mono-cylindre arbitraire",
+   "provenance": "unsourced"
+  }
+ },
+ "spark_plug_bore_diameter": {
+  "value": 14.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "perçage Ø14 ≥ M14 × 1,25 (fait partiel du contrat, 993 Carrera) ; l'alésage lisse apparent 935 (11,2–11,4) est plus petit que le mineur M14",
+   "provenance": "unsourced"
+  }
+ },
+ "throat_ratio": {
+  "value": 0.85,
+  "unit": "-",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "Ø gorge / Ø tête usuel",
+   "provenance": "unsourced"
+  }
+ },
+ "throat_axial_offset": {
+  "value": 8.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "départ du conduit simplifié le long de l'axe au-dessus de la face de tête",
+   "provenance": "unsourced"
+  }
+ },
+ "valve_y_extra": {
+  "value": 0.1875,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "unsourced",
+  "start_value": 0.0
+ },
+ "intake_axis_angle": {
+  "value": 26.7,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": 26.576
+ },
+ "exhaust_axis_angle": {
+  "value": 19.6966,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": 29.162
+ },
+ "intake_valve_y": {
+  "value": 21.5938,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "intake_valve_head_diameter/2 + min_ligament/2 + valve_y_extra/2",
+  "inputs": [
+   "intake_valve_head_diameter",
+   "min_ligament",
+   "valve_y_extra"
+  ]
+ },
+ "exhaust_valve_y": {
+  "value": 18.0938,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "exhaust_valve_head_diameter/2 + min_ligament/2 + valve_y_extra/2",
+  "inputs": [
+   "exhaust_valve_head_diameter",
+   "min_ligament",
+   "valve_y_extra"
+  ]
+ },
+ "intake_valve_x": {
+  "value": -19.4954,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": -19.3868
+ },
+ "exhaust_valve_x": {
+  "value": 27.4029,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": 15.9085
+ },
+ "roof_ridge_height": {
+  "value": 22.0015,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "register_depth + min_roof_edge_height + max_côtés((|x| + D/2·cosθ)·tanθ)",
+  "inputs": [
+   "register_depth",
+   "min_roof_edge_height",
+   "intake_valve_x",
+   "exhaust_valve_x",
+   "intake_valve_head_diameter",
+   "exhaust_valve_head_diameter",
+   "intake_axis_angle",
+   "exhaust_axis_angle"
+  ]
+ },
+ "intake_throat_diameter": {
+  "value": 34.0,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "throat_ratio · intake_valve_head_diameter",
+  "inputs": [
+   "throat_ratio",
+   "intake_valve_head_diameter"
+  ]
+ },
+ "exhaust_throat_diameter": {
+  "value": 28.05,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "throat_ratio · exhaust_valve_head_diameter",
+  "inputs": [
+   "throat_ratio",
+   "exhaust_valve_head_diameter"
+  ]
+ },
+ "plug_1_tilt": {
+  "value": 6.8853,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": 28.316
+ },
+ "plug_1_azimuth": {
+  "value": 30.0723,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": 154.5045
+ },
+ "plug_2_tilt": {
+  "value": 6.8853,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": 29.737
+ },
+ "plug_2_azimuth": {
+  "value": -30.0723,
+  "unit": "deg",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "derived",
+  "start_value": -23.552
+ },
+ "deck_clearance": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "calotte du piston sous le haut de chemise au PMH",
+   "provenance": "unsourced"
+  }
+ },
+ "piston_pocket_depth": {
+  "value": 0.0,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "unsourced",
+  "start_value": 0.0
+ },
+ "piston_pocket_radial_clearance": {
+  "value": 1.5,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "rayon de poche = Ø tête/2 + jeu",
+   "provenance": "unsourced"
+  }
+ },
+ "piston_max_pocket_depth": {
+  "value": 5.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "profondeur de poche maximale admissible par l'épaisseur de calotte",
+   "provenance": "unsourced"
+  }
+ },
+ "piston_ring_land_margin": {
+  "value": 3.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "bord de poche en retrait de l'alésage (cordon)",
+   "provenance": "unsourced"
+  }
+ },
+ "piston_bowl_diameter": {
+  "value": 50.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "bol central (CAO et contrôle)",
+   "provenance": "unsourced"
+  }
+ },
+ "piston_bowl_depth": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "profondeur du bol central",
+   "provenance": "unsourced"
+  }
+ },
+ "piston_compression_height": {
+  "value": 38.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "hauteur de piston pour la CAO",
+   "provenance": "unsourced"
+  }
+ },
+ "spring_installed_height": {
+  "value": 40.0,
+  "unit": "mm",
+  "provenance": "supplier_gsc5092",
+  "trace": {
+   "field": "installed_height_mm",
+   "url": "https://www.power-division.com/gsc-power-division-conical-spring-set-with-titanium-retainer-and-chromoly-seat-for-the-porsche-991-992-gt3-and-gt3-cup.html",
+   "provenance": "supplier_gsc5092"
+  }
+ },
+ "spring_max_lift_published": {
+  "value": 14.25,
+  "unit": "mm",
+  "provenance": "supplier_gsc5092",
+  "trace": {
+   "field": "max_lift_published_mm",
+   "url": "https://www.power-division.com/gsc-power-division-conical-spring-set-with-titanium-retainer-and-chromoly-seat-for-the-porsche-991-992-gt3-and-gt3-cup.html",
+   "provenance": "supplier_gsc5092"
+  }
+ },
+ "spring_coil_bind_length": {
+  "value": 24.18,
+  "unit": "mm",
+  "provenance": "supplier_gsc5092",
+  "trace": {
+   "field": "coil_bind_mm",
+   "url": "https://www.power-division.com/gsc-power-division-conical-spring-set-with-titanium-retainer-and-chromoly-seat-for-the-porsche-991-992-gt3-and-gt3-cup.html",
+   "provenance": "supplier_gsc5092"
+  }
+ },
+ "spring_outer_diameter": {
+  "value": 30.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "Ø ext GSC5092 non publié ; borne supposée du criblage ressorts",
+   "provenance": "unsourced"
+  }
+ },
+ "spring_pocket_radial_clearance": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "jeu radial ressort / logement",
+   "provenance": "unsourced"
+  }
+ },
+ "spring_pocket_diameter": {
+  "value": 32.0,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "spring_outer_diameter + 2·spring_pocket_radial_clearance",
+  "inputs": [
+   "spring_outer_diameter",
+   "spring_pocket_radial_clearance"
+  ]
+ },
+ "intake_valve_head_diameter": {
+  "value": 40.0,
+  "unit": "mm",
+  "provenance": "supplier_swindon",
+  "trace": {
+   "source_id": "SRC-SWINDON-M64-24V-HEAD-KIT",
+   "quote": "admission 40 mm",
+   "contract_path": "documented_reference_dimensions.swindon_intake_valve_diameter.nominal",
+   "source": "S2",
+   "source_locator": "PDF page 4",
+   "provenance": "supplier_swindon"
+  }
+ },
+ "exhaust_valve_head_diameter": {
+  "value": 33.0,
+  "unit": "mm",
+  "provenance": "supplier_swindon",
+  "trace": {
+   "source_id": "SRC-SWINDON-M64-24V-HEAD-KIT",
+   "quote": "échappement 33 mm",
+   "contract_path": "documented_reference_dimensions.swindon_exhaust_valve_diameter.nominal",
+   "source": "S2",
+   "source_locator": "PDF page 4",
+   "provenance": "supplier_swindon"
+  }
+ },
+ "intake_max_lift": {
+  "value": 11.5,
+  "unit": "mm",
+  "provenance": "supplier_swindon",
+  "trace": {
+   "source_id": "SRC-SWINDON-M64-24V-HEAD-KIT",
+   "quote": "levée 11,5 mm",
+   "provenance": "supplier_swindon"
+  }
+ },
+ "exhaust_max_lift": {
+  "value": 9.6,
+  "unit": "mm",
+  "provenance": "supplier_swindon",
+  "trace": {
+   "source_id": "SRC-SWINDON-M64-24V-HEAD-KIT",
+   "quote": "levée 9,6 mm",
+   "provenance": "supplier_swindon"
+  }
+ },
+ "intake_valve_length_993": {
+  "value": 110.1,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "valve_intake_dims",
+   "pdf_page": 155,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "exhaust_valve_length_993": {
+  "value": 109.0,
+  "unit": "mm",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "valve_exhaust_dims",
+   "pdf_page": 155,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "valve_seat_face_angle": {
+  "value": 45.0,
+  "unit": "deg",
+  "provenance": "stock_993_2v_manual",
+  "trace": {
+   "record": "valve_intake_dims",
+   "pdf_page": 155,
+   "applicability": "993 Carrera 2V, témoin",
+   "provenance": "stock_993_2v_manual"
+  }
+ },
+ "valve_head_thickness": {
+  "value": 6.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "épaisseur de tête (cylindre plein) pour les contrôles d'interférence",
+   "provenance": "unsourced"
+  }
+ },
+ "valve_length_delta": {
+  "value": 17.4369,
+  "unit": "mm",
+  "provenance": "derived_by_iteration",
+  "trial": "compression_tuning:compression-tuning.json",
+  "replaces_provenance": "unsourced",
+  "start_value": 0.0
+ },
+ "valve_tip_allowance": {
+  "value": 10.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "coupelle + demi-lunes + queue au-dessus du ressort monté",
+   "provenance": "unsourced"
+  }
+ },
+ "intake_spring_seat_axial": {
+  "value": 77.5369,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "intake_valve_length_993 + valve_length_delta - spring_installed_height - valve_tip_allowance",
+  "inputs": [
+   "intake_valve_length_993",
+   "valve_length_delta",
+   "spring_installed_height",
+   "valve_tip_allowance"
+  ]
+ },
+ "exhaust_spring_seat_axial": {
+  "value": 76.4369,
+  "unit": "mm",
+  "provenance": "derived",
+  "formula": "exhaust_valve_length_993 + valve_length_delta - spring_installed_height - valve_tip_allowance",
+  "inputs": [
+   "exhaust_valve_length_993",
+   "valve_length_delta",
+   "spring_installed_height",
+   "valve_tip_allowance"
+  ]
+ },
+ "port_bezier_segments": {
+  "value": 10.0,
+  "unit": "-",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "discrétisation du conduit courbe en capsules, contrôles et CAO partagés",
+   "provenance": "unsourced"
+  }
+ },
+ "port_flange_y_offset": {
+  "value": 0.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "les deux conduits d'un côté se rejoignent au centre de la bride (conduit siamois) ; la bride 935 ne montre qu'un orifice par côté",
+   "provenance": "unsourced"
+  }
+ },
+ "intake_port_start_tangent": {
+  "value": 4.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "longueur de départ le long de l'axe de soupape avant le coude ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure",
+   "provenance": "unsourced"
+  }
+ },
+ "intake_port_end_tangent": {
+  "value": 15.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "longueur d'arrivée perpendiculaire à la bride d'admission ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure",
+   "provenance": "unsourced"
+  }
+ },
+ "exhaust_port_start_tangent": {
+  "value": 8.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "idem échappement ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure",
+   "provenance": "unsourced"
+  }
+ },
+ "exhaust_port_end_tangent": {
+  "value": 25.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "idem échappement ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure",
+   "provenance": "unsourced"
+  }
+ },
+ "oil_gallery_diameter": {
+  "value": 8.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "galerie de lubrification du porte-arbre ; débit et pression de pompe M64 non sourcés",
+   "provenance": "unsourced"
+  }
+ },
+ "oil_gallery_x": {
+  "value": -18.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "position à choisir par balayage des parois ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure",
+   "provenance": "unsourced"
+  }
+ },
+ "oil_gallery_z": {
+  "value": 66.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "sous la face porte-arbre 935 ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure",
+   "provenance": "unsourced"
+  }
+ },
+ "fin_count": {
+  "value": 5.0,
+  "unit": "-",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "ailettes de refroidissement par air ; nombre, pas et profondeur M64 non mesurés",
+   "provenance": "unsourced"
+  }
+ },
+ "fin_pitch": {
+  "value": 12.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "pas vertical des ailettes",
+   "provenance": "unsourced"
+  }
+ },
+ "fin_thickness": {
+  "value": 3.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "épaisseur fonderie usuelle",
+   "provenance": "unsourced"
+  }
+ },
+ "fin_depth": {
+  "value": 14.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "saillie des ailettes ; interférence avec la culasse voisine non calculable sans entraxe des cylindres",
+   "provenance": "unsourced"
+  }
+ },
+ "fin_z_start": {
+  "value": 22.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "première ailette au-dessus des brides basses",
+   "provenance": "unsourced"
+  }
+ },
+ "fin_x_margin": {
+  "value": 18.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "retrait des ailettes des faces de bride",
+   "provenance": "unsourced"
+  }
+ },
+ "compression_ratio_min": {
+  "value": 8.0,
+  "unit": "-",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "plage de taux volumétrique visée pour un M64 turbo ; aucune valeur M64 sourcée dans le dépôt, la chambre n'est pas arrêtée",
+   "provenance": "unsourced"
+  }
+ },
+ "compression_ratio_max": {
+  "value": 9.0,
+  "unit": "-",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "borne haute de la même plage ; au-delà, cliquetis en suralimentation (non calculé ici)",
+   "provenance": "unsourced"
+  }
+ },
+ "chamber_proxy_calibration": {
+  "value": 1.075,
+  "unit": null,
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "biais résiduel du proxy numpy (logements de sièges, gorges et conduits débouchants), mesuré en BRep le 2026-09-16 au voisinage de la plage visée : angles 16°/16°, arête 14,67 mm, proxy 77,15 cm³ contre 82,94 cm³ BRep. Ce facteur n'est PAS constant : il croît avec l'arête de toit (×1,209 à 18,80 mm, ×1,325 à 22,79 mm) et vaut 1,409 sur la configuration G2 retenue (arête 21,6 mm). Aux grands angles le proxy calibré surestime donc le taux d'environ 1,4 point (6,91 annoncé contre 5,51 mesuré). C'est assumé : le proxy n'est qu'un filtre de recherche, le taux BRep est le juge, et run.py publie observed_calibration à chaque exécution pour rendre l'écart visible.",
+   "provenance": "unsourced"
+  }
+ },
+ "compression_proxy_band_tolerance": {
+  "value": 0.6,
+  "unit": null,
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "élargissement de la plage appliqué au seul proxy pendant la recherche, en points de taux : il couvre la dérive de chamber_proxy_calibration sur les arêtes voisines de la plage. Le proxy ne juge pas ; il ne doit pas écarter un candidat que la mesure BRep aurait retenu.",
+   "provenance": "unsourced"
+  }
+ },
+ "compression_score_weight": {
+  "value": 1.0,
+  "unit": "mm",
+  "provenance": "unsourced",
+  "trace": {
+   "hypothesis": "poids du critère de combustion dans le score de recherche : millimètres de marge géométrique échangés contre un point de taux hors plage. Il oriente la recherche ; l'acceptation reste décidée par les contrôles bloquants et par le taux BRep.",
+   "provenance": "unsourced"
+  }
+ }
+}

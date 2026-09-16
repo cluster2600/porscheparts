@@ -216,6 +216,78 @@ class EngineTwinTests(unittest.TestCase):
         self.g.validate_manifest(self.manifests["compute"])
         self.assertTrue(self.g.cost_valid(instance, self.manifests["compute"]))
 
+    def flashnext_manifest(self):
+        spec = self.w.ENGINE_TWIN_FLASHNEXT
+        proof = {"image_ref": spec["image"], "platform": "linux/amd64", "anonymous_registry_verified": True,
+                 "model": spec["model"], "model_revision": spec["revision"], "gated_read_access_verified": True,
+                 "image_download_bytes": 8_634_500_849, "model_download_bytes": 236_000_000_000}
+        proof_path = self.root / "llm-flashnext-qualification.json"
+        proof_path.write_text(json.dumps(proof))
+        m = {**self.manifests["llm"], "image_ref": spec["image"], "model": spec["model"],
+             "model_revision": spec["revision"], "variant": "qwen38-flash-next", "download_budget_gb": 248,
+             "qualification_path": str(proof_path),
+             "qualification_sha256": hashlib.sha256(proof_path.read_bytes()).hexdigest()}
+        return m
+
+    def test_flashnext_variant_manifest_guard_and_limits(self):
+        m = self.flashnext_manifest()
+        loaded, _ = self.w.engine_twin_load_manifest(self.save(m))
+        self.assertEqual(loaded["variant"], "qwen38-flash-next")
+        self.g.validate_manifest(m)
+        self.assertEqual(self.g.FLASHNEXT["image"], self.w.ENGINE_TWIN_FLASHNEXT["image"])
+        self.assertEqual(self.g.FLASHNEXT["max_dph"], self.w.ENGINE_TWIN_FLASHNEXT["max_dph"])
+        self.assertEqual(self.g.FLASHNEXT["download_cap_gb"], self.w.ENGINE_TWIN_FLASHNEXT["download_cap_gb"])
+        spec = self.w.ENGINE_TWIN_FLASHNEXT
+        self.assertLessEqual(spec["max_dph"] * 6 + spec["download_cap_gb"] * 0.01 + 20 * 0.01 + 1, 30)
+        for key, value in (("variant", "other"), ("image_ref", self.w.RESEARCH_IMAGE), ("download_budget_gb", 251),
+                           ("model_revision", self.w.RESEARCH_REVISION)):
+            with self.subTest(key=key):
+                with self.assertRaises(self.w.SafeError):
+                    self.w.engine_twin_load_manifest(self.save({**m, key: value}))
+        public = json.loads(Path(m["qualification_path"]).read_text())
+        public.pop("gated_read_access_verified")
+        Path(m["qualification_path"]).write_text(json.dumps({**public, "public_weights_verified": True}))
+        with self.assertRaises(self.w.SafeError):
+            self.w.engine_twin_load_manifest(self.save({**m, "qualification_sha256": hashlib.sha256(Path(m["qualification_path"]).read_bytes()).hexdigest()}))
+        with self.assertRaises(self.w.SafeError):
+            self.w.engine_twin_spec("compute", "qwen38-flash-next")
+        with self.assertRaises(self.g.engine.GuardError):
+            self.g.validate_manifest({**self.manifests["compute"], "variant": "qwen38-flash-next"})
+
+    def test_flashnext_offers_contract_ports_and_idle_onstart(self):
+        m = self.flashnext_manifest()
+        offer = self.offer("llm", gpu_name="RTX PRO 6000 WS", num_gpus=2, gpu_ram=97887, cpu_cores_effective=48,
+                           cpu_ram=256000, disk_space=400, dph_total=3.9)
+        self.assertTrue(self.w.engine_twin_offer_eligible(offer, "llm", "qwen38-flash-next"))
+        self.assertFalse(self.w.engine_twin_offer_eligible(offer, "llm"))
+        self.assertFalse(self.w.engine_twin_offer_eligible({**offer, "num_gpus": 1}, "llm", "qwen38-flash-next"))
+        self.assertFalse(self.w.engine_twin_offer_eligible({**offer, "dph_total": 4.21}, "llm", "qwen38-flash-next"))
+        self.assertEqual(self.w.engine_twin_role_token("llm+qwen38-flash-next"), ("llm", "qwen38-flash-next"))
+        for token in ("compute+qwen38-flash-next", "llm+x", "gpu"):
+            with self.assertRaises(self.w.SafeError):
+                self.w.engine_twin_role_token(token)
+        with mock.patch.object(self.w, "vast_request", return_value={"offers": [offer]}) as call:
+            self.assertEqual(len(self.w.get_engine_twin_offers("synthetic", "llm", 123, "qwen38-flash-next")), 1)
+        self.assertEqual(call.call_args.kwargs["payload"]["num_gpus"], {"eq": 2})
+        self.assertEqual(call.call_args.kwargs["payload"]["dph_total"], {"lte": 4.20})
+        raw = {"id": 7, "label": m["attempt_label"], "image_uuid": m["image_ref"], "actual_status": "running",
+               "gpu_name": offer["gpu_name"], "num_gpus": 2, "gpu_frac": 1, "gpu_ram": 97887,
+               "cpu_cores_effective": 48, "cpu_ram": 256000, "disk_space": 400, "dph_total": 3.9,
+               "inet_up_cost": 0.001, "inet_down_cost": 0.001, "verification": "verified",
+               "ports": {p: [{"HostPort": "1"}] for p in ("22/tcp", "8000/tcp")}}
+        self.w.engine_twin_contract(raw, 7, m, offer)
+        with self.assertRaises(self.w.SafeError):
+            self.w.engine_twin_contract({**raw, "ports": {**raw["ports"], "8001/tcp": [{"HostPort": "2"}]}}, 7, m, offer)
+        with mock.patch.object(self.w.time, "time", return_value=m["created_epoch"]):
+            idle = self.w.engine_twin_onstart(m)
+        self.assertIn("UNEXPECTED_LISTENER", idle)
+        for forbidden in ("vllm", "HF_TOKEN=", "start.sh", "--port"):
+            self.assertNotIn(forbidden, idle)
+        self.g.validate_manifest(m)
+        instance = {"dph_total": 3.9, "inet_up_cost_usd_per_gb": 0.001, "inet_down_cost_usd_per_gb": 0.001, "api_port": "4000"}
+        self.assertTrue(self.g.cost_valid(instance, m))
+        self.assertFalse(self.g.cost_valid({**instance, "dph_total": 4.3}, m))
+
     def test_lookup_waits_only_for_identity_less_records(self):
         for raw in (None, {}, [], {"id": None, "label": "", "image_uuid": None, "ports": None}):
             with self.subTest(raw=raw):

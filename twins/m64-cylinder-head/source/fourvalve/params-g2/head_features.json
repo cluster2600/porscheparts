@@ -1,0 +1,126 @@
+{
+  "component": "head_features_g2",
+  "description": "G2 : conduits courbes, galerie d'huile et ailettes. Toutes hypothèses de conception : aucune n'est mesurée sur une culasse M64 ni tirée d'un plan Porsche.",
+  "parameters": {
+    "port_bezier_segments": {
+      "value": 10,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "discrétisation du conduit courbe en capsules, contrôles et CAO partagés"
+    },
+    "port_flange_y_offset": {
+      "value": 0.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "les deux conduits d'un côté se rejoignent au centre de la bride (conduit siamois) ; la bride 935 ne montre qu'un orifice par côté"
+    },
+    "intake_port_start_tangent": {
+      "value": 4.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "longueur de départ le long de l'axe de soupape avant le coude ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "intake_port_end_tangent": {
+      "value": 15.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "longueur d'arrivée perpendiculaire à la bride d'admission ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "exhaust_port_start_tangent": {
+      "value": 8.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "idem échappement ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "exhaust_port_end_tangent": {
+      "value": 25.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "idem échappement ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "oil_gallery_diameter": {
+      "value": 8.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "galerie de lubrification du porte-arbre ; débit et pression de pompe M64 non sourcés"
+    },
+    "oil_gallery_x": {
+      "value": -18.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "position à choisir par balayage des parois ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "oil_gallery_z": {
+      "value": 66.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "sous la face porte-arbre 935 ; retenu par balayage G2 du 2026-09-15 (144 essais tangentes, 322 positions de galerie) sur la configuration G1 acceptée ; aucune mesure"
+    },
+    "fin_count": {
+      "value": 5,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "ailettes de refroidissement par air ; nombre, pas et profondeur M64 non mesurés"
+    },
+    "fin_pitch": {
+      "value": 12.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "pas vertical des ailettes"
+    },
+    "fin_thickness": {
+      "value": 3.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "épaisseur fonderie usuelle"
+    },
+    "fin_depth": {
+      "value": 14.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "saillie des ailettes ; interférence avec la culasse voisine non calculable sans entraxe des cylindres"
+    },
+    "fin_z_start": {
+      "value": 22.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "première ailette au-dessus des brides basses"
+    },
+    "fin_x_margin": {
+      "value": 18.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "retrait des ailettes des faces de bride"
+    },
+    "compression_ratio_min": {
+      "value": 8.0,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "plage de taux volumétrique visée pour un M64 turbo ; aucune valeur M64 sourcée dans le dépôt, la chambre n'est pas arrêtée"
+    },
+    "compression_ratio_max": {
+      "value": 9.0,
+      "unit": "-",
+      "provenance": "unsourced",
+      "hypothesis": "borne haute de la même plage ; au-delà, cliquetis en suralimentation (non calculé ici)"
+    },
+    "chamber_proxy_calibration": {
+      "value": 1.075,
+      "unit": null,
+      "provenance": "unsourced",
+      "hypothesis": "biais résiduel du proxy numpy (logements de sièges, gorges et conduits débouchants), mesuré en BRep le 2026-09-16 au voisinage de la plage visée : angles 16°/16°, arête 14,67 mm, proxy 77,15 cm³ contre 82,94 cm³ BRep. Ce facteur n'est PAS constant : il croît avec l'arête de toit (×1,209 à 18,80 mm, ×1,325 à 22,79 mm) et vaut 1,409 sur la configuration G2 retenue (arête 21,6 mm). Aux grands angles le proxy calibré surestime donc le taux d'environ 1,4 point (6,91 annoncé contre 5,51 mesuré). C'est assumé : le proxy n'est qu'un filtre de recherche, le taux BRep est le juge, et run.py publie observed_calibration à chaque exécution pour rendre l'écart visible."
+    },
+    "compression_proxy_band_tolerance": {
+      "value": 0.6,
+      "unit": null,
+      "provenance": "unsourced",
+      "hypothesis": "élargissement de la plage appliqué au seul proxy pendant la recherche, en points de taux : il couvre la dérive de chamber_proxy_calibration sur les arêtes voisines de la plage. Le proxy ne juge pas ; il ne doit pas écarter un candidat que la mesure BRep aurait retenu."
+    },
+    "compression_score_weight": {
+      "value": 1.0,
+      "unit": "mm",
+      "provenance": "unsourced",
+      "hypothesis": "poids du critère de combustion dans le score de recherche : millimètres de marge géométrique échangés contre un point de taux hors plage. Il oriente la recherche ; l'acceptation reste décidée par les contrôles bloquants et par le taux BRep."
+    }
+  }
+}

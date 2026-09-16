@@ -204,7 +204,8 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	turbo-cold-side-check turbo-variants-check turbo-dyno-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
-	route-lever-hook-check print-screen-sections-check parts-table-check help-check
+	route-lever-hook-check print-screen-sections-check parts-table-check \
+	part-pages-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1333,6 +1334,14 @@ parts-table:
 #> catalogue | Verifier que ce tableau suit les fiches
 parts-table-check:
 	python3 scripts/render_parts_table.py --check
+
+#> catalogue | Engendrer une page de description par piece
+part-pages:
+	python3 scripts/render_part_pages.py --write
+
+#> catalogue | Verifier que ces pages suivent les fiches
+part-pages-check:
+	python3 scripts/render_part_pages.py --check
 
 #> conteneurs | Image de reconstruction photogrammetrique
 container-recon:
