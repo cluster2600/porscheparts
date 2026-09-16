@@ -84,7 +84,9 @@ def lignes() -> list[str]:
                 "|---|---|---|---|"]
         for chemin, d in groupe:
             nom = court(d["name"].split(",")[0], 46)
-            rel = chemin.relative_to(ROOT).as_posix()
+            # Le lien ouvre la page de description, pas la fiche JSON : la page
+            # cite la fiche, ses sources, ses preuves et ses images.
+            rel = f"docs/pieces/{d['part_id'].lower()}.md"
             proc = d["manufacturing"]["preferred_process"]
             out.append(f"| [{nom}]({rel}) | {matiere(d)} | "
                        f"{PROCEDES.get(proc, proc)} | "
@@ -97,7 +99,9 @@ def lignes() -> list[str]:
         if d["classification"]["safety_class"] == "prohibited_pending_engineering"
     )
     out += [f"*{compte} fiches, dont {interdites} interdites en l'état et aucune "
-            "libérée. Les dossiers de conception correspondants sont dans "
+            "libérée. Chaque lien ouvre la page de description de la pièce dans "
+            "[`docs/pieces/`](docs/pieces/), engendrée depuis sa fiche "
+            "`catalog/parts/*.json` ; les dossiers de conception sont dans "
             "[`docs/993/`](docs/993/). Tableau engendré par "
             "`scripts/render_parts_table.py`, vérifié par `make check`.*",
             "", FIN]
