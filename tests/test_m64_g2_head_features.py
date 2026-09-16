@@ -160,22 +160,23 @@ class G2CompressionCriterionTests(unittest.TestCase):
         self.assertEqual(g1['score'], round(g1['min_slack'], 3))
 
     def test_compression_ranks_only_accepted_trials(self):
-        def rec(accepted, in_band, slack, score):
-            return {'accepted': accepted, 'cycle_evaluated': True, 'min_slack': slack, 'penalty': 0.0,
-                    'score': score, 'compression': {'in_band': in_band}}
+        def rec(accepted, in_band, score, penalty=0.0):
+            # ``score`` est le score géométrique, comme en G1 ; la combustion est tenue à part.
+            return {'accepted': accepted, 'cycle_evaluated': True, 'min_slack': score, 'penalty': 0.0,
+                    'score': score, 'compression': {'in_band': in_band, 'score_penalty': penalty}}
 
         # Entre deux configurations acceptées, celle qui est dans la plage l'emporte.
-        self.assertGreater(it.Search.rank(rec(True, True, 0.2, 0.2)), it.Search.rank(rec(True, False, 9.0, 9.0)))
+        self.assertGreater(it.Search.rank(rec(True, True, 0.2)), it.Search.rank(rec(True, False, 9.0)))
         # Un refus reste un refus, même dans la plage.
-        self.assertGreater(it.Search.rank(rec(True, False, 9.0, 9.0)), it.Search.rank(rec(False, True, 9.0, 9.0)))
+        self.assertGreater(it.Search.rank(rec(True, False, 9.0)), it.Search.rank(rec(False, True, 9.0)))
         # Entre deux refus, seule la géométrie classe : sinon la recherche locale poursuit la plage
         # en abandonnant les contrôles (constaté : dans la plage, 6 échecs, marge -4,1 mm).
-        far_but_closer = rec(False, False, -0.5, -0.5)
-        in_band_but_broken = rec(False, True, -4.1, -4.1)
-        self.assertGreater(it.Search.rank(far_but_closer), it.Search.rank(in_band_but_broken))
-        # La pénalité de compression ne fausse pas non plus le classement des refus.
-        penalised = {**rec(False, False, -0.5, -2.3), 'penalty': 0.0}
-        self.assertEqual(it.Search.rank(penalised)[3], -0.5)
+        self.assertGreater(it.Search.rank(rec(False, False, -0.5)), it.Search.rank(rec(False, True, -4.1)))
+        # La pénalité de combustion ne touche pas le classement d'un refus...
+        self.assertEqual(it.Search.rank(rec(False, False, -0.5, penalty=1.8))[3], -0.5)
+        # ... mais départage bien deux acceptés également hors plage.
+        self.assertGreater(it.Search.rank(rec(True, False, 0.5, penalty=0.2))[3],
+                           it.Search.rank(rec(True, False, 0.5, penalty=1.8))[3])
 
     @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
     def test_calibrated_proxy_tracks_brep_near_the_band(self):

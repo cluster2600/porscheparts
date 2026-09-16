@@ -108,7 +108,7 @@
       "value": 1.075,
       "unit": null,
       "provenance": "unsourced",
-      "hypothesis": "biais résiduel du proxy numpy (logements de sièges, gorges et conduits débouchants) mesuré en BRep le 2026-09-16 au voisinage de la plage visée : angles 16°/16°, arête 14,67 mm, proxy 77,15 cm³ contre 82,94 cm³ BRep. Le biais croît avec l'arête (×1,209 à 18,80 mm, ×1,325 à 22,79 mm, ×1,287 sur la configuration G1 asymétrique) : cette valeur ne vaut que près de la plage, d'où compression_proxy_band_tolerance. Le rapport CAO publie le facteur observé à chaque exécution, ce qui rend la dérive visible."
+      "hypothesis": "biais résiduel du proxy numpy (logements de sièges, gorges et conduits débouchants), mesuré en BRep le 2026-09-16 au voisinage de la plage visée : angles 16°/16°, arête 14,67 mm, proxy 77,15 cm³ contre 82,94 cm³ BRep. Ce facteur n'est PAS constant : il croît avec l'arête de toit (×1,209 à 18,80 mm, ×1,325 à 22,79 mm) et vaut 1,409 sur la configuration G2 retenue (arête 21,6 mm). Aux grands angles le proxy calibré surestime donc le taux d'environ 1,4 point (6,91 annoncé contre 5,51 mesuré). C'est assumé : le proxy n'est qu'un filtre de recherche, le taux BRep est le juge, et run.py publie observed_calibration à chaque exécution pour rendre l'écart visible."
     },
     "compression_proxy_band_tolerance": {
       "value": 0.6,
