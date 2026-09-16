@@ -13,6 +13,7 @@ sys.path[:0] = [str(FV), str(FV / 'cad')]
 
 import checks as chk  # noqa: E402
 import features as ft  # noqa: E402
+import iterate as it  # noqa: E402
 import layout  # noqa: E402
 import provenance as pv  # noqa: E402
 import run as fv_run  # noqa: E402
@@ -116,6 +117,77 @@ class G2FeatureTests(unittest.TestCase):
         self.assertGreater(proxy, 0.5 * cr['clearance_volume_cc'])
         self.assertAlmostEqual(cr['swept_volume_cc'],
                                math.pi * (p['bore_diameter'] / 2) ** 2 * p['crank_stroke'] / 1000, places=1)
+
+
+class G2CompressionCriterionTests(unittest.TestCase):
+    """Le critère de combustion : proxy calibré pour la recherche, BRep pour le juge."""
+
+    def setUp(self):
+        self.p = layout.derive(G2_BASE, G1_DESIGN)
+
+    def test_proxy_counts_piston_pockets(self):
+        """Les poches manquaient au proxy : 4 poches de 3,9 mm valent une quinzaine de cm³."""
+        self.assertGreater(self.p['piston_pocket_depth'], 0.0)
+        without = chk.chamber_volume_mm3(dict(self.p, piston_pocket_depth=0.0))
+        self.assertGreater(chk.chamber_volume_mm3(self.p) - without, 10_000.0)
+
+    def test_calibration_is_applied_and_declared(self):
+        raw, cal = chk.chamber_volume_mm3(self.p), chk.calibrated_chamber_volume_mm3(self.p)
+        self.assertAlmostEqual(cal / raw, G2_BASE['chamber_proxy_calibration'], places=9)
+        self.assertLess(chk.calibrated_compression_ratio(self.p), chk.compression_ratio(self.p))
+        # Hors G2 la calibration n'existe pas : le taux brut est rendu tel quel.
+        p1 = layout.derive(G1_BASE, G1_DESIGN)
+        self.assertNotIn('chamber_proxy_calibration', p1)
+        self.assertAlmostEqual(chk.calibrated_chamber_volume_mm3(p1), chk.chamber_volume_mm3(p1), places=9)
+
+    def test_band_gap_is_zero_inside_the_widened_band_and_positive_outside(self):
+        tol = G2_BASE['compression_proxy_band_tolerance']
+        self.assertEqual(chk.compression_band_gap(layout.derive(G1_BASE, G1_DESIGN)), 0.0)  # hors G2
+        self.assertGreater(chk.compression_band_gap(self.p), 0.0)  # G1 : taux 4,5, très en dessous
+        for angle in (14.0, 16.0):  # voisinage de la plage, mesuré en BRep le 2026-09-16
+            d = {k: v for k, v in G1_DESIGN.items() if not k.endswith('_valve_x')}
+            p = layout.derive(G2_BASE, dict(d, intake_axis_angle=angle, exhaust_axis_angle=angle))
+            self.assertEqual(chk.compression_band_gap(p), 0.0, angle)
+            self.assertLessEqual(chk.calibrated_compression_ratio(p), p['compression_ratio_max'] + tol + 1e-9)
+
+    def test_search_record_carries_compression_only_in_g2(self):
+        space = pv.load_design_space()
+        g2 = it.Search(G2_SPEC, space, G2_BASE).trial(dict(G1_DESIGN), 1, 'test')
+        self.assertIn('compression', g2)
+        self.assertFalse(g2['compression']['in_band'])
+        g1 = it.Search(G1_SPEC, space, G1_BASE).trial(dict(G1_DESIGN), 1, 'test')
+        self.assertNotIn('compression', g1)  # journal G1 inchangé, reproductible à l'octet près
+        self.assertEqual(g1['score'], round(g1['min_slack'], 3))
+
+    def test_compression_ranks_only_accepted_trials(self):
+        def rec(accepted, in_band, slack, score):
+            return {'accepted': accepted, 'cycle_evaluated': True, 'min_slack': slack, 'penalty': 0.0,
+                    'score': score, 'compression': {'in_band': in_band}}
+
+        # Entre deux configurations acceptées, celle qui est dans la plage l'emporte.
+        self.assertGreater(it.Search.rank(rec(True, True, 0.2, 0.2)), it.Search.rank(rec(True, False, 9.0, 9.0)))
+        # Un refus reste un refus, même dans la plage.
+        self.assertGreater(it.Search.rank(rec(True, False, 9.0, 9.0)), it.Search.rank(rec(False, True, 9.0, 9.0)))
+        # Entre deux refus, seule la géométrie classe : sinon la recherche locale poursuit la plage
+        # en abandonnant les contrôles (constaté : dans la plage, 6 échecs, marge -4,1 mm).
+        far_but_closer = rec(False, False, -0.5, -0.5)
+        in_band_but_broken = rec(False, True, -4.1, -4.1)
+        self.assertGreater(it.Search.rank(far_but_closer), it.Search.rank(in_band_but_broken))
+        # La pénalité de compression ne fausse pas non plus le classement des refus.
+        penalised = {**rec(False, False, -0.5, -2.3), 'penalty': 0.0}
+        self.assertEqual(it.Search.rank(penalised)[3], -0.5)
+
+    @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
+    def test_calibrated_proxy_tracks_brep_near_the_band(self):
+        """La calibration ne vaut qu'au voisinage de la plage : c'est là qu'elle doit être juste."""
+        import assembly
+        d = {k: v for k, v in G1_DESIGN.items() if not k.endswith('_valve_x')}
+        p = layout.derive(G2_BASE, dict(d, intake_axis_angle=16.0, exhaust_axis_angle=16.0))
+        brep = assembly.compression_ratio(p)
+        self.assertLess(abs(chk.calibrated_compression_ratio(p) - brep['compression_ratio']), 0.3)
+        # Loin de la plage, elle dérive : le proxy n'est donc jamais le juge.
+        far = layout.derive(G2_BASE, dict(d, intake_axis_angle=28.0, exhaust_axis_angle=28.0))
+        self.assertGreater(chk.calibrated_compression_ratio(far), assembly.compression_ratio(far)['compression_ratio'])
 
 
 if __name__ == '__main__':

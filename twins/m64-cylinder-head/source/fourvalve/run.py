@@ -67,7 +67,7 @@ def run(out_dir, cad=True, external_dir=None, space=None, extra_params=None, fix
             raise ValueError('réglage sans configuration retenue')
         best = {'design': selected['design'], 'trial': f'compression_tuning:{Path(fixed_design).name}',
                 'stage': 'g2_compression_tuning'}
-        search.history = tuning.get('measured', [])
+        search.history = tuning.get('search_history') or tuning.get('measured', [])
     else:
         best = search.run()
     design = it.mirror(best['design'], space)
@@ -97,11 +97,18 @@ def run(out_dir, cad=True, external_dir=None, space=None, extra_params=None, fix
         if 'compression' in cad_result:  # G2 : le taux BRep juge, le proxy numpy n'était qu'indicatif
             cr = cad_result['compression']['compression_ratio']
             band = [p['compression_ratio_min'], p['compression_ratio_max']]
+            raw_cc = chk.chamber_volume_mm3(p) / 1000
             cad_result['compression'].update(
                 band=band, in_band=bool(band[0] <= cr <= band[1]),
                 proxy_compression_ratio=round(chk.compression_ratio(p), 3),
-                proxy_clearance_volume_cc=round(chk.chamber_volume_mm3(p) / 1000, 2),
-                proxy_note='proxy numpy sans CAO : toit et bol seulement, sous-estime le volume mort')
+                proxy_clearance_volume_cc=round(raw_cc, 2),
+                proxy_calibrated_compression_ratio=round(chk.calibrated_compression_ratio(p), 3),
+                proxy_calibrated_clearance_volume_cc=round(chk.calibrated_chamber_volume_mm3(p) / 1000, 2),
+                assumed_calibration=p['chamber_proxy_calibration'],
+                observed_calibration=round(cad_result['compression']['clearance_volume_cc'] / raw_cc, 4),
+                proxy_note='proxy numpy sans CAO : toit, poches et bol ; il ignore logements de sièges, gorges et '
+                           'conduits. observed_calibration est le facteur mesuré sur cette configuration : un écart '
+                           'à assumed_calibration signale que la calibration a dérivé hors de son voisinage.')
             brep_ok = brep_ok and cad_result['compression']['in_band']
         accepted = accepted and brep_ok
     inputs = sorted(Path(HERE / 'params').glob('*.json')) + [Path(e).resolve() for e in extra_params or []]

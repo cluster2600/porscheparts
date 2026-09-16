@@ -30,10 +30,13 @@ def displacement_cc(bore_mm, stroke_mm, cylinders=6):
 
 
 def chamber_volume_mm3(p, n=361):
-    """Volume mort approché au PMH : intégration du toit sur le disque d'alésage + bol du piston.
+    """Volume mort approché au PMH : toit moins calotte, intégré sur le disque d'alésage.
 
-    Proxy numpy pour l'itération (sans CAO) : il ignore les faces de soupape et les sièges qui
-    ferment les ouvertures du toit. Le rapport CAO garde le volume BRep comme valeur de référence.
+    Proxy numpy pour l'itération (sans CAO). La calotte reprend ``crown_depression`` : poches et
+    bol comptent donc exactement comme en cinématique, recouvrements compris. Restent ignorés les
+    logements de sièges, les gorges et les conduits qui débouchent dans la chambre : c'est le biais
+    résiduel que corrige ``chamber_proxy_calibration``. Le rapport CAO garde le volume BRep comme
+    valeur de référence.
     """
     R = p['bore_diameter'] / 2
     crown = float(kin.piston_crown_z(p, np.array([0.0]))[0])
@@ -43,15 +46,49 @@ def chamber_volume_mm3(p, n=361):
     zi = p['roof_ridge_height'] + X * math.tan(math.radians(p['intake_axis_angle']))
     ze = p['roof_ridge_height'] - X * math.tan(math.radians(p['exhaust_axis_angle']))
     roof = np.maximum(np.minimum(zi, ze), p['register_depth'])
+    floor = crown - kin.crown_depression(p, np.stack((X, Y), axis=-1))
     cell = (2 * R / (n - 1)) ** 2
-    volume = float(np.sum(np.maximum(roof - crown, 0.0)[inside]) * cell)
-    return volume + math.pi * (p['piston_bowl_diameter'] / 2) ** 2 * p['piston_bowl_depth']
+    return float(np.sum(np.maximum(roof - floor, 0.0)[inside]) * cell)
+
+
+def calibrated_chamber_volume_mm3(p, n=361):
+    """Proxy corrigé du biais résiduel mesuré en BRep (sièges, gorges, conduits)."""
+    return chamber_volume_mm3(p, n) * p.get('chamber_proxy_calibration', 1.0)
+
+
+def _ratio(vc, p):
+    vs = math.pi * (p['bore_diameter'] / 2) ** 2 * p['crank_stroke']
+    return (vs + vc) / vc if vc > 0 else math.inf
 
 
 def compression_ratio(p):
-    vc = chamber_volume_mm3(p)
-    vs = math.pi * (p['bore_diameter'] / 2) ** 2 * p['crank_stroke']
-    return (vs + vc) / vc if vc > 0 else math.inf
+    return _ratio(chamber_volume_mm3(p), p)
+
+
+def calibrated_compression_ratio(p):
+    return _ratio(calibrated_chamber_volume_mm3(p), p)
+
+
+def compression_proxy(p, tolerance=None):
+    """Volume mort calibré, taux et écart à la plage, en une seule intégration.
+
+    L'itération appelle ce point d'entrée à chaque essai : la boucle est chaude et l'intégration
+    sur le disque d'alésage est la partie coûteuse. ``tolerance`` élargit la plage ; le proxy n'est
+    pas le juge et ne doit pas écarter un candidat que la mesure BRep aurait retenu. Hors G2,
+    l'écart est nul : aucun critère de combustion n'existe.
+    """
+    vc = calibrated_chamber_volume_mm3(p)
+    cr = _ratio(vc, p)
+    if 'compression_ratio_min' not in p:
+        return {'clearance_mm3': vc, 'ratio': cr, 'band_gap': 0.0}
+    tol = p.get('compression_proxy_band_tolerance', 0.0) if tolerance is None else tolerance
+    gap = max(p['compression_ratio_min'] - tol - cr, cr - p['compression_ratio_max'] - tol, 0.0)
+    return {'clearance_mm3': vc, 'ratio': cr, 'band_gap': float(gap)}
+
+
+def compression_band_gap(p, tolerance=None):
+    """Écart, en points de taux, entre le taux calibré et la plage visée ; 0 dans la plage."""
+    return compression_proxy(p, tolerance)['band_gap']
 
 
 def _ellgap(A, B):
@@ -115,11 +152,13 @@ def static_checks(p):
         out.append(_c(f'spring_pocket_{side}_pair', g_, wall, '>=', f'paroi entre les 2 logements {side}'))
     worst('pocket_', 'port_', 'spring_pocket_vs_ports', 'paroi fond de logement / conduits')
     if 'compression_ratio_min' in p:  # G2 seulement : G1 n'avait aucun critère de compression
-        cr = compression_ratio(p)
-        detail = (f'PROXY, non bloquant : volume mort approché {chamber_volume_mm3(p) / 1000:.1f} cm³ (toit + bol) ; '
-                  f'il ignore logements de sièges, gorges et conduits, et sous-estime le volume BRep d\'environ 30 % '
-                  f'sur la configuration G1 ; arête de toit {p["roof_ridge_height"]:.1f} mm, angles '
-                  f'{p["intake_axis_angle"]:.1f}/{p["exhaust_axis_angle"]:.1f}°. Le juge est le taux BRep du rapport CAO.')
+        raw, cal = chamber_volume_mm3(p), calibrated_chamber_volume_mm3(p)
+        cr = _ratio(cal, p)
+        detail = (f'PROXY, non bloquant : volume mort brut {raw / 1000:.1f} cm³ (toit, poches et bol), calibré '
+                  f'×{p.get("chamber_proxy_calibration", 1.0):.3f} = {cal / 1000:.1f} cm³ pour les sièges, gorges et '
+                  f'conduits qu\'il ignore ; taux brut {_ratio(raw, p):.2f}. Arête de toit {p["roof_ridge_height"]:.1f} mm, '
+                  f'angles {p["intake_axis_angle"]:.1f}/{p["exhaust_axis_angle"]:.1f}°. '
+                  f'Le juge est le taux BRep du rapport CAO.')
         out.append(_c('compression_ratio_proxy_min', cr, p['compression_ratio_min'], '>=', detail,
                       blocking=False, family='combustion'))
         out.append(_c('compression_ratio_proxy_max', cr, p['compression_ratio_max'], '<=', detail,
