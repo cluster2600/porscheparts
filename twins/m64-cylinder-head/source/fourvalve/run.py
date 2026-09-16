@@ -41,14 +41,35 @@ def resolved_table(spec, base, traces, p, design, best_trial):
     return rows
 
 
-def run(out_dir, cad=True, external_dir=None, space=None):
+def load_extra(spec, extra_params):
+    """Ajoute un jeu de paramètres hors de params/ (G2) ; un nom déjà défini est refusé."""
+    for extra in extra_params or []:
+        data = json.loads(Path(extra).read_text())
+        for name, item in data['parameters'].items():
+            if name in spec['parameters']:
+                raise ValueError(f'{name}: defined in two component files')
+            spec['parameters'][name] = item
+        spec['components'][data['component']] = list(data['parameters'])
+    return spec
+
+
+def run(out_dir, cad=True, external_dir=None, space=None, extra_params=None, fixed_design=None):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    spec = pv.load_spec()
+    spec = load_extra(pv.load_spec(), extra_params)
     space = space or pv.load_design_space()
     base, traces = pv.resolve_base(spec)
     search = it.Search(spec, space, base)
-    best = search.run()
+    if fixed_design:  # G2 : configuration issue du réglage de compression, sans relancer la recherche
+        tuning = json.loads(Path(fixed_design).read_text())
+        selected = tuning['selected']
+        if not selected:
+            raise ValueError('réglage sans configuration retenue')
+        best = {'design': selected['design'], 'trial': f'compression_tuning:{Path(fixed_design).name}',
+                'stage': 'g2_compression_tuning'}
+        search.history = tuning.get('search_history') or tuning.get('measured', [])
+    else:
+        best = search.run()
     design = it.mirror(best['design'], space)
     p = derive(base, design)
     step = space['budget']['final_sweep_step_deg']
@@ -73,8 +94,24 @@ def run(out_dir, cad=True, external_dir=None, space=None):
         cad_result = assembly.export_all(p, out, final_checks, 0.0, external_dir)
         brep_ok = cad_result['all_brep_valid'] and cad_result['head_solid_count'] == 1 and \
             all(r['passed'] for r in cad_result['brep_cross_check'])
+        if 'compression' in cad_result:  # G2 : le taux BRep juge, le proxy numpy n'était qu'indicatif
+            cr = cad_result['compression']['compression_ratio']
+            band = [p['compression_ratio_min'], p['compression_ratio_max']]
+            raw_cc = chk.chamber_volume_mm3(p) / 1000
+            cad_result['compression'].update(
+                band=band, in_band=bool(band[0] <= cr <= band[1]),
+                proxy_compression_ratio=round(chk.compression_ratio(p), 3),
+                proxy_clearance_volume_cc=round(raw_cc, 2),
+                proxy_calibrated_compression_ratio=round(chk.calibrated_compression_ratio(p), 3),
+                proxy_calibrated_clearance_volume_cc=round(chk.calibrated_chamber_volume_mm3(p) / 1000, 2),
+                assumed_calibration=p['chamber_proxy_calibration'],
+                observed_calibration=round(cad_result['compression']['clearance_volume_cc'] / raw_cc, 4),
+                proxy_note='proxy numpy sans CAO : toit, poches et bol ; il ignore logements de sièges, gorges et '
+                           'conduits. observed_calibration est le facteur mesuré sur cette configuration : un écart '
+                           'à assumed_calibration signale que la calibration a dérivé hors de son voisinage.')
+            brep_ok = brep_ok and cad_result['compression']['in_band']
         accepted = accepted and brep_ok
-    inputs = sorted(Path(HERE / 'params').glob('*.json'))
+    inputs = sorted(Path(HERE / 'params').glob('*.json')) + [Path(e).resolve() for e in extra_params or []]
     manifest = {
         'schema_version': 1,
         'artifact': 'm64_g1_four_valve_twin_plug_assembly',
@@ -83,7 +120,7 @@ def run(out_dir, cad=True, external_dir=None, space=None):
         'geometry_origin': 'synthétique paramétrique ; aucun maillage de scan importé',
         'accepted': accepted,
         'provenance_counts': counts,
-        'iteration': {'trials': len(search.history), 'accepted_trials': sum(r['accepted'] for r in search.history),
+        'iteration': {'trials': len(search.history), 'accepted_trials': sum(bool(r.get('accepted')) for r in search.history),
                       'best_trial': best['trial'], 'best_stage': best['stage'], 'design_variables': best['design'],
                       'sourced_values_modified': sorted(k for k in design if spec['parameters'][k]['provenance'] in pv.SOURCED
                                                         and spec['parameters'][k]['provenance'] != 'candidate_935_scan_C')},
@@ -110,7 +147,10 @@ if __name__ == '__main__':
     ap.add_argument('out_dir')
     ap.add_argument('--no-cad', action='store_true')
     ap.add_argument('--external-dir')
+    ap.add_argument('--extra-params', action='append', help='jeu de paramètres supplémentaire (ex. params-g2/head_features.json)')
+    ap.add_argument('--fixed-design', help='sortie de tune_compression.py : fige la configuration au lieu de chercher')
     args = ap.parse_args()
-    m = run(args.out_dir, cad=not args.no_cad, external_dir=args.external_dir)
+    m = run(args.out_dir, cad=not args.no_cad, external_dir=args.external_dir, extra_params=args.extra_params,
+            fixed_design=args.fixed_design)
     print(json.dumps({k: m[k] for k in ('accepted', 'provenance_counts', 'final_summary')}, ensure_ascii=False))
     sys.exit(0 if m['accepted'] else 2)

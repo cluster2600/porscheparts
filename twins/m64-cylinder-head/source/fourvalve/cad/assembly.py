@@ -79,6 +79,27 @@ def brep_cross_check(p, final_checks, angles_per_side=4):
     return rows
 
 
+def compression_ratio(p):
+    """Volume mort BRep au PMH d'allumage : cylindre d'alésage moins culasse, sièges, soupapes fermées et piston.
+
+    Hypothèses : pièces disjointes (contacts de siège négligés) ; le jeu radial piston/chemise de 0,2 mm n'est
+    compté que sur la profondeur du bol. Un taux calculé sur un jumeau synthétique n'est pas le taux M64.
+    """
+    R = p['bore_diameter'] / 2
+    crown = float(kin.piston_crown_z(p, np.array([0.0]))[0])
+    z0, z1 = crown - p['piston_bowl_depth'], p['roof_ridge_height'] + 2.0
+    probe = cq.Solid.makeCylinder(R, z1 - z0, cq.Vector(0, 0, z0))
+    solids = [comp.head(p), comp.piston(p, 0.0)]
+    for side, sy in (('intake', 1), ('intake', -1), ('exhaust', 1), ('exhaust', -1)):
+        solids += [comp.valve(p, side, sy, 0.0), comp.seat_insert(p, side, sy)]
+    occupied = sum(probe.intersect(s).Volume() for s in solids)
+    vc = probe.Volume() - occupied
+    vs = float(np.pi) * R ** 2 * p['crank_stroke']
+    return {'clearance_volume_cc': round(vc / 1000, 2), 'swept_volume_cc': round(vs / 1000, 1),
+            'compression_ratio': round((vs + vc) / vc, 2), 'crown_tdc_z_mm': round(crown, 3),
+            'status': 'synthetic_twin_estimate_not_m64_value'}
+
+
 def export_all(p, out_dir, final_checks, phi_deg=0.0, external_dir=None):
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -106,7 +127,18 @@ def export_all(p, out_dir, final_checks, phi_deg=0.0, external_dir=None):
     cq.exporters.export(cq.Workplane().add(head.cut(keep)), str(section),
                         opt={'projectionDir': (0, 1, 0), 'showHidden': False})
     files[section.name] = section.stat().st_size
-    return {'brep_valid': validity, 'all_brep_valid': all(validity.values()), 'head_solid_count': head_solids,
+    extra = {}
+    if int(p.get('port_bezier_segments', 0)) > 0:  # G2 : coupes des conduits et taux de compression
+        cuts = {
+            'head-section-yz-intake.svg': (cq.Solid.makeBox(1000, 1000, 1000, cq.Vector(p['intake_valve_x'], -500, -500)), (1, 0, 0)),
+            'head-section-xy-ports.svg': (cq.Solid.makeBox(1000, 1000, 1000, cq.Vector(-500, -500, p['exhaust_port_z'])), (0, 0, 1)),
+        }
+        for name, (block, direction) in cuts.items():
+            cq.exporters.export(cq.Workplane().add(head.cut(block)), str(out / name),
+                                opt={'projectionDir': direction, 'showHidden': False})
+            files[name] = (out / name).stat().st_size
+        extra = {'compression': compression_ratio(p), 'head_face_count': len(head.Faces())}
+    return {**extra,'brep_valid': validity, 'all_brep_valid': all(validity.values()), 'head_solid_count': head_solids,
             'head_volume_mm3': round(head.Volume(), 1), 'files_bytes': files, 'moved_out_of_repo': moved,
             'brep_cross_check': brep_cross_check(p, final_checks), 'assembly_phi_deg': phi_deg,
             'sha256': {n: hashlib.sha256((out / n).read_bytes()).hexdigest() for n in files if (out / n).exists()}}

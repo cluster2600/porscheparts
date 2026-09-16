@@ -24,6 +24,16 @@ IMAGES = {
 }
 DOWNLOAD_GB = {"llm": 45, "compute": 40}
 UPLOAD_GB = {"llm": 1, "compute": 15}
+VARIANTS = {
+    "qwen38-flash-next": {
+        "image": "ghcr.io/cluster2600/qwen38-flash-next-vast@sha256:6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34",
+        "model": "orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4",
+        "revision": "c1209bda15a6bbc4c68b585e93d40c0d85f50306",
+        # Mesure du 2026-09-15 : image 8 634 500 849 + poids 183 535 695 549 octets, + 1 Go de reserve.
+        "download_gb": 200,
+        "qualification": "llm-flashnext-qualification.json",
+    },
+}
 
 
 def write_private(path: Path, data: bytes) -> None:
@@ -35,24 +45,28 @@ def write_private(path: Path, data: bytes) -> None:
 
 
 def build(directory: Path, hours: float, budget: float, suffix: str, now: int,
-          roles=("llm", "compute"), attempt: int = 1) -> dict:
+          roles=("llm", "compute"), attempt: int = 1, variant: str | None = None) -> dict:
     manifests = {}
     for role in roles:
         other = "compute" if role == "llm" else "llm"
         job = f"engine-twin-{role}-20260915-{suffix[:8]}" + (f"-a{attempt}" if attempt > 1 else "")
-        qualification = directory / f"{role}-qualification.json"
+        v = VARIANTS[variant] if (variant and role == "llm") else None
+        qualification = directory / (v["qualification"] if v else f"{role}-qualification.json")
         manifests[role] = {
             "schema_version": "1.0.0", "profile": "engine-twin-v1", "role": role, "job_id": job,
             "attempt_label": f"3dprinting993-engine-twin-{role}-{suffix}",
             "sibling_label": f"3dprinting993-engine-twin-{other}-{suffix}",
-            "image_ref": IMAGES[role], "model": MODEL, "model_revision": REVISION,
+            "image_ref": v["image"] if v else IMAGES[role], "model": v["model"] if v else MODEL,
+            "model_revision": v["revision"] if v else REVISION,
             "created_epoch": now, "deadline_epoch": now + int(hours * 3600), "budget_usd": budget,
-            "download_budget_gb": DOWNLOAD_GB[role], "upload_budget_gb": UPLOAD_GB[role],
+            "download_budget_gb": v["download_gb"] if v else DOWNLOAD_GB[role], "upload_budget_gb": UPLOAD_GB[role],
             "qualification_path": str(qualification),
             "qualification_sha256": hashlib.sha256(qualification.read_bytes()).hexdigest(),
             "guard_path": str(GUARD), "guard_sha256": hashlib.sha256(GUARD.read_bytes()).hexdigest(),
             "guard_ready_path": str(directory / f"{job}.guard-ready.json"),
         }
+        if v:
+            manifests[role]["variant"] = variant
     return manifests
 
 
@@ -65,6 +79,7 @@ def main() -> int:
     ap.add_argument("--suffix", help="rejoindre une session existante : suffixe hexadecimal de 20 caracteres de la soeur en marche")
     ap.add_argument("--role", choices=["llm", "compute"], help="avec --suffix : un seul role")
     ap.add_argument("--attempt", type=int, default=1, help="nouvelle tentative apres un reçu consomme (job_id distinct)")
+    ap.add_argument("--variant", choices=sorted(VARIANTS), help="variante du role llm (ex. qwen38-flash-next)")
     args = ap.parse_args()
     import re
     if (args.suffix is None) != (args.role is None):
@@ -82,7 +97,7 @@ def main() -> int:
         sys.exit("hours dans [1/6, 6] et budget par role dans ]1, 30]")
     roles = (args.role,) if args.role else ("llm", "compute")
     manifests = build(directory, args.hours, args.budget_usd, args.suffix or secrets.token_hex(10), int(time.time()),
-                      roles, args.attempt)
+                      roles, args.attempt, args.variant)
 
     # Relecture par le chargeur du wrapper installe : meme contrat que le lancement.
     from importlib.machinery import SourceFileLoader
