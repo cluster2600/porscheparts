@@ -5,11 +5,12 @@ from pathlib import Path
 import cadquery as cq
 import numpy as np
 from OCP.BRepCheck import BRepCheck_Analyzer
+from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut, BRepAlgoAPI_Fuse
 from OCP.BRepExtrema import BRepExtrema_DistShapeShape
 
 import components as comp
 import kinematics as kin
-from layout import VALVES
+from layout import PLUGS, VALVES
 
 STEP_LIMIT = 1_000_000
 
@@ -29,6 +30,8 @@ def parts(p, phi_deg=0.0):
     k = int(np.argmin(np.abs(phi - (phi_deg % 720))))
     out = {'head': comp.head(p), 'liner': comp.liner(p), 'gasket': comp.gasket(p), 'studs': comp.studs(p),
            'piston': comp.piston(p, phi_deg)}
+    if 'plug_thread_reach' in p:
+        out.update({f'spark_plug_{k}': comp.spark_plug(p, k) for k in PLUGS})
     for side in ('intake', 'exhaust'):
         out[f'camshaft_{side}'] = comp.camshaft(p, side, phi_deg)
     for side, sy in VALVES:
@@ -86,7 +89,18 @@ def chamber_volume(probe, occupied, seed, z0, z1):
     Un vide atteignant une limite axiale artificielle ne définit pas un volume mort fermé.
     Les parois radiales de la sonde représentent l'alésage ; elles ne sont pas des fuites.
     """
-    void = probe.cut(*occupied)
+    # Les sièges et soupapes se recouvrent dans ce modèle simplifié ; construire d'abord
+    # l'union évite les faces coïncidentes invalides d'une différence multi-outils.
+    # Ne pas modifier les tolérances des entrées partagées lors du balayage de fenêtres.
+    # Exécution sérielle pour rendre cette mesure (petite, hors boucle d'optimisation) répétable.
+    union_op, cut_op = BRepAlgoAPI_Fuse(), BRepAlgoAPI_Cut()
+    union_op.SetNonDestructive(True)
+    cut_op.SetNonDestructive(True)
+    solid = occupied[0]._bool_op(occupied[:1], occupied[1:], union_op, parallel=False) \
+        if len(occupied) > 1 else occupied[0]
+    if not brep_valid(solid):
+        return {'clearance_volume_cc': None, 'status': 'blocked_invalid_occupied_brep'}
+    void = probe._bool_op([probe], [solid], cut_op, parallel=False)
     result = {'clearance_volume_cc': None, 'status': 'blocked_invalid_chamber_brep'}
     if not brep_valid(void):
         return result
@@ -112,7 +126,7 @@ def chamber_volume(probe, occupied, seed, z0, z1):
                 status='synthetic_twin_estimate_not_m64_value')
 
 
-def compression_ratio(p):
+def compression_ratio(p, top_margin=2.0):
     """Volume mort connecté au PMH, jamais la somme de tous les vides d'un cylindre.
 
     Les pièces présentes doivent fermer la chambre (y compris les bougies). Le jeu radial
@@ -122,19 +136,28 @@ def compression_ratio(p):
     R = p['bore_diameter'] / 2
     crown = float(kin.piston_crown_z(p, np.array([0.0]))[0])
     z0 = crown - max(p['piston_bowl_depth'], p['piston_pocket_depth']) - 1.0
-    z1 = p['roof_ridge_height'] + 2.0
+    if not np.isfinite(top_margin) or top_margin <= 0:
+        raise ValueError('top_margin must be finite and positive')
+    # Englober la culasse entière, pas seulement son toit nominal : les logements de
+    # sièges débordent au-dessus du toit et ne doivent pas être tronqués par la sonde.
+    z1 = max(p['roof_ridge_height'], p['carrier_face_height']) + top_margin
     # Même rayon que le piston sous la calotte : on exclut la crevasse non définie.
     probe = cq.Solid.makeCylinder(R, z1 - crown, cq.Vector(0, 0, crown)).fuse(
         cq.Solid.makeCylinder(R - 0.2, crown - z0, cq.Vector(0, 0, z0))).clean()
     solids = [comp.head(p), comp.piston(p, 0.0)]
     for side, sy in (('intake', 1), ('intake', -1), ('exhaust', 1), ('exhaust', -1)):
         solids += [comp.valve(p, side, sy, 0.0), comp.seat_insert(p, side, sy)]
+    if 'plug_thread_reach' in p:
+        solids.extend(comp.spark_plug(p, k) for k in PLUGS)
     result = chamber_volume(probe, solids, cq.Vector(0, 0, crown + 0.5), z0, z1)
     vc = result['clearance_volume_cc']
     vs = float(np.pi) * R ** 2 * p['crank_stroke']
     return dict(result, swept_volume_cc=round(vs / 1000, 1),
                 compression_ratio=1.0 + vs / (vc * 1000) if vc is not None else None,
                 crown_tdc_z_mm=round(crown, 3), radial_crevice_included=False,
+                probe_top_z_mm=z1,
+                spark_plug_model='solid_packaging_envelope_no_thread_or_nose_crevices'
+                if 'plug_thread_reach' in p else 'absent',
                 method='connected_brep_void_with_axial_closure_check')
 
 
@@ -146,7 +169,10 @@ def export_all(p, out_dir, final_checks, phi_deg=0.0, external_dir=None):
     validity = {name: brep_valid(s) for name, s in shapes.items()}
     head_solids = len(head.Solids())
     files = {}
-    for twin, names in COMPONENT_TWINS.items():
+    twins = dict(COMPONENT_TWINS)
+    if 'plug_thread_reach' in p:
+        twins['spark_plug_envelopes'] = [f'spark_plug_{k}' for k in PLUGS]
+    for twin, names in twins.items():
         path = out / f'twin-{twin}.step'
         size = _export([shapes[n] for n in names], path)
         files[path.name] = size

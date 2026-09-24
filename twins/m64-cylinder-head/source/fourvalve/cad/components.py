@@ -7,3 +7,4 @@ from liner import liner  # noqa: F401
 from gasket import gasket  # noqa: F401
 from piston import piston  # noqa: F401
 from studs import studs  # noqa: F401
+from spark_plug import spark_plug  # noqa: F401

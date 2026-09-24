@@ -218,5 +218,64 @@ class G2CompressionCriterionTests(unittest.TestCase):
             self.assertFalse(without_cad['accepted'])
 
 
+class SparkPlugEnvelopeTests(unittest.TestCase):
+    def setUp(self):
+        resolved = ROOT / 'twins/m64-cylinder-head/evidence/g2-head-features-20260916/parameters-resolved.json'
+        self.p = {k: row['value'] for k, row in json.loads(resolved.read_text()).items()}
+        extra = json.loads((FV / 'params-plugs/spark_plug_envelope.json').read_text())
+        for name, row in extra['parameters'].items():
+            pv.verify_provenance(name, row, SRC)
+            self.p[name] = row['value']
+
+    def test_socket_uses_shared_geometry_checks_and_rejects_invalid_dimensions(self):
+        p = self.p
+        for k in layout.PLUGS:
+            a, b, r = layout.cylinders(p)[f'plug_{k}_socket']
+            o, d = layout.plug_opening(p, k)
+            np.testing.assert_allclose(a, o + d * p['plug_thread_reach'])
+            self.assertEqual(r, p['plug_socket_diameter'] / 2)
+        names = {q['check']: q for q in chk.static_checks(p)}
+        self.assertTrue(names['plug_vs_ports']['passed'])
+        self.assertTrue(names['plug_vs_swept_valves']['passed'])
+        colliding = {q['check']: q for q in chk.static_checks(dict(p, plug_tip_projection=50))}
+        self.assertFalse(colliding['plug_vs_piston_tdc']['passed'])
+        self.assertTrue(colliding['plug_vs_piston_tdc']['blocking'])
+        for key, value in [('plug_thread_reach', -1), ('plug_thread_reach', 1000),
+                           ('plug_tip_projection', math.nan), ('plug_socket_diameter', 18),
+                           ('plug_seal_diameter', 12)]:
+            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                layout.cylinders(dict(p, **{key: value}))
+
+    @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
+    def test_candidate_is_closed_window_invariant_but_missing_plug_is_rejected(self):
+        import assembly
+        import components as comp
+        p = self.p
+        head = comp.head(p)
+        self.assertTrue(assembly.brep_valid(head))
+        self.assertEqual(len(head.Solids()), 1)
+        for k in layout.PLUGS:
+            plug = comp.spark_plug(p, k)
+            self.assertTrue(assembly.brep_valid(plug))
+            self.assertEqual(len(plug.Solids()), 1)
+            self.assertLess(abs(plug.intersect(head).Volume()), 1e-6)
+            self.assertGreater(assembly.brep_distance(plug, comp.piston(p, 0)), p['min_wall'])
+        values = [assembly.compression_ratio(p, margin) for margin in (2, 10)]
+        for row in values:
+            self.assertEqual(row['status'], 'synthetic_twin_estimate_not_m64_value')
+            self.assertFalse(row['artificial_boundaries_reached'])
+            self.assertFalse(row['radial_crevice_included'])
+        self.assertAlmostEqual(values[0]['clearance_volume_cc'], values[1]['clearance_volume_cc'], places=6)
+        self.assertAlmostEqual(values[0]['compression_ratio'], 7.35744, places=4)
+        real_plug = comp.spark_plug
+        def missing_second(p, k):
+            s = real_plug(p, k)
+            return s.translate((200, 0, 0)) if k == 2 else s
+        with patch.object(comp, 'spark_plug', side_effect=missing_second):
+            opened = assembly.compression_ratio(p)
+        self.assertEqual(opened['status'], 'blocked_unsealed_chamber')
+        self.assertIsNone(opened['compression_ratio'])
+
+
 if __name__ == '__main__':
     unittest.main()

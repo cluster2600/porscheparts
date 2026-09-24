@@ -1,0 +1,671 @@
+{
+  "artifact": "m64_g2_spark_plug_packaging_audit",
+  "manufacturing_authorized": false,
+  "status": "candidate_packaging_only_not_released",
+  "outer_shape_changed": false,
+  "geometry_changes": [
+    "two_stepped_socket_wells",
+    "two_solid_spark_plug_envelopes"
+  ],
+  "head_valid": true,
+  "head_solids": 1,
+  "head_faces": 403,
+  "plugs_valid": [
+    true,
+    true
+  ],
+  "plug_head_intersection_mm3": [
+    0.0,
+    0.0
+  ],
+  "plug_piston_tdc_distance_mm": [
+    15.6668474608359,
+    15.6668474608359
+  ],
+  "compression_window_sweep": [
+    {
+      "top_margin_above_carrier_mm": 2.0,
+      "clearance_volume_cc": 94.38456660960004,
+      "status": "synthetic_twin_estimate_not_m64_value",
+      "connected_void_cc": 94.384567,
+      "excluded_disconnected_void_cc": 150.20638,
+      "artificial_boundaries_reached": [],
+      "swept_volume_cc": 600.0,
+      "compression_ratio": 7.357439763617232,
+      "crown_tdc_z_mm": 1.21,
+      "radial_crevice_included": false,
+      "probe_top_z_mm": 88.461,
+      "spark_plug_model": "solid_packaging_envelope_no_thread_or_nose_crevices",
+      "method": "connected_brep_void_with_axial_closure_check"
+    },
+    {
+      "top_margin_above_carrier_mm": 5.0,
+      "clearance_volume_cc": 94.38456660960004,
+      "status": "synthetic_twin_estimate_not_m64_value",
+      "connected_void_cc": 94.384567,
+      "excluded_disconnected_void_cc": 173.768325,
+      "artificial_boundaries_reached": [],
+      "swept_volume_cc": 600.0,
+      "compression_ratio": 7.357439763617232,
+      "crown_tdc_z_mm": 1.21,
+      "radial_crevice_included": false,
+      "probe_top_z_mm": 91.461,
+      "spark_plug_model": "solid_packaging_envelope_no_thread_or_nose_crevices",
+      "method": "connected_brep_void_with_axial_closure_check"
+    },
+    {
+      "top_margin_above_carrier_mm": 10.0,
+      "clearance_volume_cc": 94.38456660960004,
+      "status": "synthetic_twin_estimate_not_m64_value",
+      "connected_void_cc": 94.384567,
+      "excluded_disconnected_void_cc": 213.038234,
+      "artificial_boundaries_reached": [],
+      "swept_volume_cc": 600.0,
+      "compression_ratio": 7.357439763617232,
+      "crown_tdc_z_mm": 1.21,
+      "radial_crevice_included": false,
+      "probe_top_z_mm": 96.461,
+      "spark_plug_model": "solid_packaging_envelope_no_thread_or_nose_crevices",
+      "method": "connected_brep_void_with_axial_closure_check"
+    }
+  ],
+  "missing_second_plug_negative_control": {
+    "clearance_volume_cc": null,
+    "status": "blocked_unsealed_chamber",
+    "connected_void_cc": 188.323753,
+    "excluded_disconnected_void_cc": 64.355025,
+    "artificial_boundaries_reached": [
+      "upper_probe_boundary"
+    ],
+    "swept_volume_cc": 600.0,
+    "compression_ratio": null,
+    "crown_tdc_z_mm": 1.21,
+    "radial_crevice_included": false,
+    "probe_top_z_mm": 88.461,
+    "spark_plug_model": "solid_packaging_envelope_no_thread_or_nose_crevices",
+    "method": "connected_brep_void_with_axial_closure_check"
+  },
+  "window_spread_cc": 0.0,
+  "uncalibrated_numpy_proxy_cc": 94.46337567956633,
+  "proxy_relative_difference_percent": 0.08349783528938115,
+  "hypothesis_band": [
+    8.0,
+    9.0
+  ],
+  "geometry_checks": [
+    {
+      "check": "valve_heads_within_bore",
+      "family": "geometry",
+      "value": 1.317,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 0.317,
+      "passed": true,
+      "blocking": true,
+      "detail": "retrait du bord de tête projeté sous l'alésage Ø100"
+    },
+    {
+      "check": "ligament_intake_intake",
+      "family": "geometry",
+      "value": 3.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont adm/adm projeté"
+    },
+    {
+      "check": "ligament_exhaust_exhaust",
+      "family": "geometry",
+      "value": 3.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont éch/éch projeté"
+    },
+    {
+      "check": "ligament_intake_exhaust",
+      "family": "geometry",
+      "value": 13.614,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 10.614,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont adm/éch projeté (4 paires)"
+    },
+    {
+      "check": "valve_face_on_own_roof_plane",
+      "family": "geometry",
+      "value": 1.628,
+      "limit": 0.0,
+      "relation": ">=",
+      "slack": 1.628,
+      "passed": true,
+      "blocking": true,
+      "detail": "tête entièrement de son côté de l'arête du toit"
+    },
+    {
+      "check": "spark_plugs_within_bore",
+      "family": "geometry",
+      "value": 3.174,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 2.174,
+      "passed": true,
+      "blocking": true,
+      "detail": "empreinte des 2 puits de bougie sous l'alésage"
+    },
+    {
+      "check": "ligament_plug_1_to_seats",
+      "family": "geometry",
+      "value": 4.695,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.695,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont projeté bougie 1 / bords de têtes"
+    },
+    {
+      "check": "ligament_plug_2_to_seats",
+      "family": "geometry",
+      "value": 4.695,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.695,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont projeté bougie 2 / bords de têtes"
+    },
+    {
+      "check": "ligament_plug_plug",
+      "family": "geometry",
+      "value": 64.819,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 61.819,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont projeté bougie 1 / bougie 2"
+    },
+    {
+      "check": "plug_plug_wall",
+      "family": "geometry",
+      "value": 59.203,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 56.203,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits 1 / puits 2 (capsules) ; pire paire plug_1_socket / plug_2_socket"
+    },
+    {
+      "check": "plug_vs_ports",
+      "family": "geometry",
+      "value": 9.163,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 6.163,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / conduits ; pire paire plug_1 / port_intake_p_00"
+    },
+    {
+      "check": "plug_vs_studs",
+      "family": "geometry",
+      "value": 14.04,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 11.04,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / goujons ; pire paire plug_1_socket / stud_+1+1"
+    },
+    {
+      "check": "plug_vs_spring_pockets",
+      "family": "geometry",
+      "value": 21.484,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 18.484,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / logements de ressort ; pire paire plug_1_socket / pocket_exhaust_p"
+    },
+    {
+      "check": "plug_vs_guides",
+      "family": "geometry",
+      "value": 21.814,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 18.814,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / guides ; pire paire guide_exhaust_m / plug_2_socket"
+    },
+    {
+      "check": "plug_vs_swept_valves",
+      "family": "kinematics",
+      "value": 4.118,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 3.118,
+      "passed": true,
+      "blocking": true,
+      "detail": "capsules conservatives couvrant toute la course froide des têtes et tiges ; sans déformation"
+    },
+    {
+      "check": "plug_vs_piston_tdc",
+      "family": "kinematics",
+      "value": 12.005,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 11.005,
+      "passed": true,
+      "blocking": true,
+      "detail": "borne conservative face au plan de calotte au PMH, bol ignoré"
+    },
+    {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 5.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 2.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø100"
+    },
+    {
+      "check": "stud_vs_ports",
+      "family": "geometry",
+      "value": 3.88,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.88,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi goujon / conduits ; pire paire port_intake_m_02 / stud_-1-1"
+    },
+    {
+      "check": "stud_vs_spring_pockets",
+      "family": "geometry",
+      "value": 3.08,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.08,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi goujon / logements de ressort ; pire paire pocket_intake_m / stud_-1-1"
+    },
+    {
+      "check": "spring_pocket_intake_vs_exhaust",
+      "family": "geometry",
+      "value": 75.59,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 72.59,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi logements adm / éch ; pire paire pocket_exhaust_m / pocket_intake_m"
+    },
+    {
+      "check": "spring_pocket_intake_pair",
+      "family": "geometry",
+      "value": 11.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 8.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi entre les 2 logements intake"
+    },
+    {
+      "check": "spring_pocket_exhaust_pair",
+      "family": "geometry",
+      "value": 4.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi entre les 2 logements exhaust"
+    },
+    {
+      "check": "spring_pocket_vs_ports",
+      "family": "geometry",
+      "value": 14.869,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 11.869,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi fond de logement / conduits ; pire paire pocket_intake_m / port_intake_m_05"
+    },
+    {
+      "check": "compression_ratio_proxy_min",
+      "family": "combustion",
+      "value": 6.909,
+      "limit": 8.0,
+      "relation": ">=",
+      "slack": -1.091,
+      "passed": false,
+      "blocking": false,
+      "detail": "PROXY, non bloquant : volume mort brut 94.5 cm³ (toit, poches et bol), calibré ×1.075 = 101.5 cm³ pour les sièges, gorges et conduits qu'il ignore ; taux brut 7.35. Arête de toit 22.0 mm, angles 26.7/19.7°. Le juge est le taux BRep du rapport CAO."
+    },
+    {
+      "check": "compression_ratio_proxy_max",
+      "family": "combustion",
+      "value": 6.909,
+      "limit": 9.0,
+      "relation": "<=",
+      "slack": 2.091,
+      "passed": true,
+      "blocking": false,
+      "detail": "PROXY, non bloquant : volume mort brut 94.5 cm³ (toit, poches et bol), calibré ×1.075 = 101.5 cm³ pour les sièges, gorges et conduits qu'il ignore ; taux brut 7.35. Arête de toit 22.0 mm, angles 26.7/19.7°. Le juge est le taux BRep du rapport CAO."
+    },
+    {
+      "check": "oil_gallery_vs_spring_pockets",
+      "family": "oil",
+      "value": 19.489,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 16.489,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / spring_pockets ; pire paire oil_gallery / pocket_intake_m"
+    },
+    {
+      "check": "oil_gallery_vs_guides",
+      "family": "oil",
+      "value": 15.011,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 12.011,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / guides ; pire paire guide_intake_m / oil_gallery"
+    },
+    {
+      "check": "oil_gallery_vs_plugs",
+      "family": "oil",
+      "value": 12.625,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 9.625,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / plugs ; pire paire oil_gallery / plug_1_socket"
+    },
+    {
+      "check": "oil_gallery_vs_studs",
+      "family": "oil",
+      "value": 15.473,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 12.473,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / studs ; pire paire oil_gallery / stud_-1+1"
+    },
+    {
+      "check": "oil_gallery_vs_ports",
+      "family": "oil",
+      "value": 23.142,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 20.142,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / ports ; pire paire oil_gallery / port_intake_m_02"
+    },
+    {
+      "check": "oil_gallery_below_carrier_face",
+      "family": "oil",
+      "value": 16.461,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 13.461,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi entre galerie d'huile et face porte-arbre"
+    },
+    {
+      "check": "spring_seat_below_carrier_face",
+      "family": "geometry",
+      "value": 84.156,
+      "limit": 86.461,
+      "relation": "<=",
+      "slack": 2.305,
+      "passed": true,
+      "blocking": true,
+      "detail": "fond de logement sous la face porte-arbre 935"
+    },
+    {
+      "check": "lift_within_gsc5092_published",
+      "family": "spring",
+      "value": 11.5,
+      "limit": 14.25,
+      "relation": "<=",
+      "slack": 2.75,
+      "passed": true,
+      "blocking": true,
+      "detail": "levée Swindon vs levée max publiée GSC5092"
+    },
+    {
+      "check": "spring_coil_bind_reserve",
+      "family": "spring",
+      "value": 4.32,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 3.32,
+      "passed": true,
+      "blocking": true,
+      "detail": "hauteur montée − levée − longueur jointive (GSC5092 publiées)"
+    },
+    {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 108.2,
+      "relation": ">=",
+      "slack": 5.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 108.20"
+    },
+    {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 108.2,
+      "relation": ">=",
+      "slack": 2.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 5.52"
+    },
+    {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+    },
+    {
+      "check": "piston_pockets_within_crown",
+      "family": "piston",
+      "value": 50.0,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 47.0,
+      "passed": true,
+      "blocking": true,
+      "detail": "bord de poche en retrait de l'alésage (sans objet si profondeur nulle)"
+    },
+    {
+      "check": "piston_pocket_depth_admissible",
+      "family": "piston",
+      "value": 0.0,
+      "limit": 5.0,
+      "relation": "<=",
+      "slack": 5.0,
+      "passed": true,
+      "blocking": true,
+      "detail": "profondeur de poche"
+    },
+    {
+      "check": "cam_lobe_clearance",
+      "family": "cam",
+      "value": 124.947,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 121.947,
+      "passed": true,
+      "blocking": true,
+      "detail": "entraxe des arbres − rayons de came max"
+    },
+    {
+      "check": "cam_lobes_above_carrier_face",
+      "family": "cam",
+      "value": 132.689,
+      "limit": 86.461,
+      "relation": ">=",
+      "slack": 46.228,
+      "passed": true,
+      "blocking": true,
+      "detail": "point bas des cames au-dessus de la face porte-arbre"
+    },
+    {
+      "check": "bucket_follower_contact_within_pocket",
+      "family": "cam",
+      "value": 15.0,
+      "limit": 18.835,
+      "relation": ">=",
+      "slack": -3.835,
+      "passed": false,
+      "blocking": false,
+      "detail": "indicatif : un poussoir à coupelle exigerait un rayon ≥ 18.8 + marge (commande retenue : culbuteur)"
+    },
+    {
+      "check": "valve_valve_clearance_cycle",
+      "family": "kinematics",
+      "value": 10.708,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 9.708,
+      "passed": true,
+      "blocking": true,
+      "detail": "min sur 720° pas 0.5° ; pire φ=76° (levées 9.31 / 0.00 mm)"
+    },
+    {
+      "check": "valve_piston_intake",
+      "family": "kinematics",
+      "value": 1.808,
+      "limit": 1.5,
+      "relation": ">=",
+      "slack": 0.308,
+      "passed": true,
+      "blocking": true,
+      "detail": "jeu vertical face de tête / calotte (poches 0.00 mm) ; pire φ=0.5°"
+    },
+    {
+      "check": "valve_piston_exhaust",
+      "family": "kinematics",
+      "value": 5.203,
+      "limit": 2.0,
+      "relation": ">=",
+      "slack": 3.203,
+      "passed": true,
+      "blocking": true,
+      "detail": "jeu vertical face de tête / calotte (poches 0.00 mm) ; pire φ=718.5°"
+    },
+    {
+      "check": "valve_head_vs_liner_at_full_lift",
+      "family": "kinematics",
+      "value": 3.29,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 2.29,
+      "passed": true,
+      "blocking": true,
+      "detail": "rayon max des points de tête sous le haut de chemise, pleine levée"
+    },
+    {
+      "check": "valve_valve_both_full_lift_envelope",
+      "family": "kinematics",
+      "value": 5.746,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 4.746,
+      "passed": true,
+      "blocking": false,
+      "detail": "enveloppe pessimiste hors cinématique (11,5 et 9,6 simultanées)"
+    }
+  ],
+  "geometry_summary": {
+    "passed": 44,
+    "failed": 2,
+    "not_computable": [
+      "inter_cylinder_bridge"
+    ],
+    "blocking_failed": [],
+    "min_slack": 0.08,
+    "limiting_check": "stud_vs_spring_pockets",
+    "cycle_evaluated": true,
+    "accepted": true
+  },
+  "limitations": [
+    "candidate dimensions not qualified for M64",
+    "ideal sealed threaded envelope",
+    "no thread or plug nose crevice volume",
+    "no ring-pack crevice volume",
+    "simplified intersecting valve and seat solids, not physical contact",
+    "no hot clearance, thermal, combustion, endurance or printing validation"
+  ],
+  "parameters_sha256": "501a885f5020225c403ab0f5f30731b382b24935145f5c6f2c110f4498bfac7d",
+  "candidate_parameters_sha256": "58476935ee13bf5babc3b05e3ccdddd58c715206f16dfb94e18c74ba375f3874",
+  "source_sha256": {
+    "audit_compression.py": "a461a46806696730edd14cff1afb4067886ac37cb5fdc5e99cb35905399a6694",
+    "audit_spark_plugs.py": "e8ac7e2945429173430369e275f494f1ec495537a2a4926cae3e22c117355159",
+    "bore_sweep.py": "66a687ae8fefe7a159737c978b0d85fa073ab7317d580e91b906cbb50ddf9a6d",
+    "cad/assembly.py": "da7f3fecb15314e6dcdc83432290073815ff8a72e60e7dbd8f17e171c306bc5f",
+    "cad/cadcommon.py": "eb8b3f9ecd6a14d022501100e4132da634369078b91fb5c09afdc1285c6267aa",
+    "cad/camshaft.py": "31d86c9bc3378c87a5deb0cdd2f6bb0cc04fb831b83e8ee7833059d29a8e981b",
+    "cad/components.py": "f5bac34b721d3a219aa5c8e4ce455ae0859a7f450272cd8cfe583fe98269233b",
+    "cad/gasket.py": "ef73fead4753060006aa1262fb1cb619e131dc0999cbc0d5710a83dac2cafb36",
+    "cad/head.py": "012b078966fbf24e851718336f4a531c35cb0df71fff39b45f86df664bcde802",
+    "cad/liner.py": "c25e5c6ee0ab4772c9e14fe3536d693c3bf00459f0e6579d3b9999a306322e34",
+    "cad/piston.py": "449745ab20bac15fc1ae2cebee4ea1b56f2592ad2bf12e6055a8f935e1adc04b",
+    "cad/spark_plug.py": "2632868bb63504ae06e8fa3a2ebd8b098594351c9ec62e4d0c0a8ab73d9e072e",
+    "cad/spring.py": "17d6ac41d29ae2a220e685edc36d7bcf409d0c26e7cc48e5d736821f58ccfc93",
+    "cad/studs.py": "0a1b44739fca525328fd18364d3051dfc810c3dc18bc328a70c047da9314e6ef",
+    "cad/valve.py": "06c720efa6bf1833043b53ee4a2d52e2a64a91ff911a808f747388b0ce636e28",
+    "checks.py": "34c5a346cd60d1169a42623d323b2b23a346af591cace7f307837fbcd8155356",
+    "features.py": "4ea0d516544e9fd70c2016b668376747a8f085f7754ec8766a43ec32ad956a6f",
+    "iterate.py": "45509b3f68fae4d0ff038eb8fdbf64b9cdb7fcef51b0bf91464c87f6b79095a0",
+    "kinematics.py": "b7e45b0a9d72f4da3b07201429df20bdd7dabc524bb9b6a8ac2a0474d7a969a1",
+    "layout.py": "e6813561644367734105a609b444099c3aec91e483050f6c065e38bcb94cbb99",
+    "provenance.py": "39bf0f1c90688a4f0a9c48ec3637d35685579f783aaca6d896d86c0fc6093e64",
+    "run.py": "e9c65c67a2fb81823b111413ad75bea6e0adf4a6ea8bd0176ae70f89b38a48e1",
+    "tune_compression.py": "33ee3c7eedcd7a82f8be55efca1c117340173d8f9cf37645d1e0991ea4a4e2bc"
+  },
+  "files_sha256": {
+    "plug-section.svg": "3aac45c89596a9d40398d90d5673271d2218437cc7de6b2293e7feeaec80cc90",
+    "spark-plug-envelopes.step": "35d4915533d87addd0969e984286fff24c630f83eb873ef1bb9a01f7d72fc19c"
+  },
+  "environment": {
+    "python": "3.12.11",
+    "cadquery": "2.6.1",
+    "numpy": "2.5.3"
+  }
+}

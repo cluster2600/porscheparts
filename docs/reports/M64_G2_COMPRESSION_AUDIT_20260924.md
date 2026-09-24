@@ -86,6 +86,9 @@ La présente correction ne modifie ni ce rapport historique ni son contrat.
 
 ## Suite technique
 
+Reprise effectuée : [bougies candidates, puits étagés et nouvelle mesure de chambre](M64_G2_SPARK_PLUG_PACKAGING_20260924.md).
+Les résultats de cette première correction ci-dessus restent ceux du commit `f4cfddb`, sans bougies.
+
 1. Modéliser les bougies et leurs portées, puis vérifier la fermeture des sièges avec les soupapes
    fermées. Ne pas ajouter des bouchons numériques pour faire passer le contrôle.
 2. Définir le volume sous les segments et vérifier l'indépendance du volume connecté vis-à-vis de
