@@ -115,6 +115,19 @@ tableau de sommets dont l'empreinte differe du rapport ; un autre environnement
 peut necessiter une nouvelle attestation de recalage, sans ecraser celle-ci.
 Sorties locales : `scan-plan.png`, `visible-sections.png`, `tunnel-visibility.json`.
 
+## Vue annotee et fiche de releve des interfaces — 2026-09-25
+
+Le [plan de mesure](interface-measurement-plan.md) et la
+[fiche CSV](derived/interface-measurements-20260925.csv) couvrent les **18 identites**
+du registre documentaire, dont neuf absentes du contrat XY initial. Le
+[rapport de generation](derived/interface-review-20260925.json) lie les entrees
+et les sorties numeriques par SHA-256. Les vues 3D et en plan restent locales.
+
+Sept paires sont projetees comme **hypotheses XY**, pas comme ancrages reconnus.
+Les hauteurs restent inconnues (`null`, pas zero) ; le plan graphique et les pointilles ne sont pas
+de la geometrie de piece. P6, P21 et les identites sans XY restent visibles dans
+la fiche. Aucun point XYZ n'est valide, aucune CAO de fixation n'est creee.
+
 ## Entrees
 
 | Entree | Nature | Role |
