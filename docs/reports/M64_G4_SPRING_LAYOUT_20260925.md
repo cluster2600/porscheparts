@@ -1,5 +1,8 @@
 # M64 G4 — fonds de ressorts et débouchés corrigés
 
+Suite : [G5 — culbuteurs articulés et profils de came vérifiés](M64_G5_ARTICULATED_ROCKERS_20260925.md).
+G5 conserve les observations G4 et remplace en option la commande axiale simplifiée.
+
 La [PR #73](https://github.com/cluster2600/porscheparts/pull/73) est fusionnée depuis le
 25 septembre 2026, commit `522cf32224bcca8f98d32112dc5332a3eb897744`.
 G4 corrige deux défauts géométriques et retient une nouvelle implantation interne candidate.

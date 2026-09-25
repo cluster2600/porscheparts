@@ -144,6 +144,11 @@ def seat_contact(p, side):
 
 
 def cam_axis_point(p, side):
+    if 'rocker_valve_arm' in p:
+        import rocker_geometry
+        centre = rocker_geometry.frame(p, side, 1)[1]
+        centre[1] = 0.0
+        return centre
     c = head_centre(p, side, 1)
     c[1] = 0.0
     return c + axis_up(p, side) * (valve_length(p, side) + p['follower_stack_axial'] + p['cam_base_circle_radius'])
