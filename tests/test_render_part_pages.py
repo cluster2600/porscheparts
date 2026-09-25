@@ -33,7 +33,14 @@ class PartPageTests(unittest.TestCase):
             self.assertIn(f"docs/pieces/{fiche['part_id'].lower()}.md", texte)
             tete = texte.split("## What it is")[0]
             self.assertIn("[!CAUTION]", tete)
-            if (dossier / "print" / "print.json").exists():
+            genre = (json.loads((dossier / "print" / "print.json").read_text(encoding="utf-8")).get("kind")
+                     if (dossier / "print" / "print.json").exists() else None)
+            if genre == "mockup":
+                # a mock-up of a prohibited part is announced as never for use
+                self.assertIn("never for use", tete)
+                self.assertIn("decision 0011", tete)
+                self.assertIn("Prohibited", tete)
+            elif genre:
                 # a printable design says so, and still says it is not validated
                 self.assertIn("ready to print", tete)
                 self.assertIn("not validated", tete)
