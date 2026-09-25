@@ -6,12 +6,15 @@
 
 **`993-INT-SWITCH-BLANK-0001`** · Porsche 993 · 1994–1998
 
-![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: non-critical](https://img.shields.io/badge/safety-non--critical-informational) ![candidate process: FFF](https://img.shields.io/badge/candidate%20process-FFF-lightgrey)
+![status: concept, fit-test kit ready](https://img.shields.io/badge/status-concept,%20fit--test%20kit%20ready-success) ![safety: non-critical](https://img.shields.io/badge/safety-non--critical-informational) ![candidate process: FFF](https://img.shields.io/badge/candidate%20process-FFF-lightgrey)
 
 </div>
 
+> [!TIP]
+> **A fit-test kit is ready to print** — [`print/`](print/README.md): 3 sizes on one plate (18.6 × 30.6, 19.0 × 31.0, 19.4 × 31.4 mm), a PrusaSlicer project and instructions. It is a measurement instrument, not the finished part ([decision 0009](../../docs/decisions/0009-first-fit-test-print-switch-blank.md)).
+
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> **The part itself is not validated, and not a copy of the original.** The model shown here is a
 > concept block for studying the part in software:
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
@@ -26,9 +29,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://www.9xxteile.com/en/pet/">9xxteile - Porsche parts diagrams (PET exploded views)</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Switch blank, dashboard" width="340"><br>
-<sub>Concept CAD block, 21.0 × 33.0 × 12.5 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<b>What you can print today</b><br><br>
+<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit, three sizes" width="360"></a><br>
+<sub>The fit-test kit: three sizes that bracket the declared opening. A measurement instrument — <b>not</b> the finished part, not a copy of the original.</sub>
 </td>
 </tr></table>
 
@@ -86,6 +89,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Screens and evidence images
+
+![plate](print/plate.png)
+
+*`print/plate.png` — a screening output, not a validation.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
@@ -93,7 +102,8 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/switch_blank.py`](source/switch_blank.py) |
+| `print/` | **ready-to-print fit-test kit** (decision 0009): 3MF project, STL, STEP and instructions | [`print/kit.json`](print/kit.json), [`print/plate.png`](print/plate.png), [`print/switch_blank_fit_1.stl`](print/switch_blank_fit_1.stl), [`print/switch_blank_fit_2.stl`](print/switch_blank_fit_2.stl), [`print/switch_blank_fit_3.stl`](print/switch_blank_fit_3.stl), [`print/switch_blank_fit_plate.3mf`](print/switch_blank_fit_plate.3mf), [`print/switch_blank_fit_plate.step`](print/switch_blank_fit_plate.step), [`print/switch_blank_fit_plate.stl`](print/switch_blank_fit_plate.stl) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
 
 ## Read more
 
