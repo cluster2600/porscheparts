@@ -77,8 +77,11 @@ nul, rendement incertain.
   des plans de reference — mais confirme que le repere est sain.
 - **Un bug de repere corrige.** `wheel_fits.npy` etait en coordonnees scan et
   incombinable avec `verts_vehicle.npy`. Voir `source/wheels_vehicle.py`.
-- **Le soubassement est plat.** Voir `source/tunnel_probe.py` et l'etude
-  composite : pas de tunnel central sur la 964.
+- **Correction du 2026-09-25 : le relief visible ne decrit pas le tunnel cache.**
+  `source/tunnel_probe.py` mesure des bandes de surface vues de dessous ; il ne
+  peut conclure ni a l'absence d'un tunnel, ni a celle d'un arbre longitudinal,
+  ni a un passage libre. Voir la reprise dans le README du jumeau et
+  `SRC-PORSCHE-964-993-ALL-WHEEL-DRIVE-HISTORY` pour la transmission C4.
 
 ### Reste a faire, non fait ici
 

@@ -30,7 +30,7 @@ reprise. Ses calculs de treillis et de cuisson sont des etudes F1, pas des
 validations de coque composite. Ses conventions d'axes doivent etre rapprochees
 avant toute superposition avec ce jumeau (X vers l'arriere contre X vers l'avant ici).
 
-Prochaine etape : recuperer le scan brut et sa provenance, puis identifier des
+Le scan brut a depuis ete recupere (voir ci-dessous). Prochaine etape : identifier des
 datums avec XYZ, reperes et incertitudes, et relever les interfaces arriere et
 les enveloppes de transmission C2/C4 (tringlerie, arbre, debattements, acces).
 Les ecarts 964/993 doivent etre qualifies par variante. Ni un scan de dessous,
@@ -43,6 +43,77 @@ Verification du contrat :
 (cd twins/964-chassis/source && python3 monocoque_interface.py)
 python3 -m unittest discover -s tests -p 'test_964_monocoque_interface.py'
 ```
+
+## Scan recupere et diagnostic du tunnel — 2026-09-25
+
+Le fichier utilisateur `964widebodyunderside2poin13.obj` est conserve localement,
+en lecture seule, hors Git : 210 972 101 octets, 2 400 031 sommets et
+4 684 929 triangles. SHA-256 :
+`f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5`.
+L'audit d'entree retrouve 118 411 aretes ouvertes. Les comptages concordent avec
+l'etude historique ; ils ne certifient ni l'identite du vehicule, ni la variante,
+ni la precision du scanner. Les droits de redistribution restent non confirmes.
+
+Les scripts existants de symetrie, recalage, transformation et sensibilite des
+roues ont ete reexecutes sur cet original. Le
+[rapport de recalage](derived/scan-recalage-20260925.json) lie le scan, les scripts,
+les versions et les tableaux produits par SHA-256. Resultats de cette execution :
+
+- lacet −2,236 deg, roulis −0,451 deg, residu de symetrie tronque 7,54 mm ;
+- empattement par ajustement des roues : 2277,9 mm, contre 2272 mm documentaire ;
+  sensibilite au diametre suppose : 2270,4 a 2278,8 mm ;
+- dispersion du sol deduit des pneus : 55,1 mm ;
+- coherence numerique transformation/tableau : erreur maximale 0,000128 mm sur
+  200 000 sommets. **Ce dernier chiffre n'est pas la precision physique du scan.**
+
+Le [diagnostic de visibilite](derived/tunnel-visibility-20260925.json) couvre huit
+stations, dont **six** dans la plage habitacle X = −1400 a −400 mm. Leur relief
+median centre/flancs va de −3,123 a −0,696 mm. Les coupes et la vue en plan sont
+produites localement, sans rebouchage ni reconstruction de surfaces cachees.
+
+**L'ancienne conclusion « pas de tunnel, pas d'arbre longitudinal » est retiree.**
+Ces bandes ne montrent que la peau visible. Elles ne disent pas ce qui passe
+au-dessus, derriere un carenage, ni quels jeux restent disponibles. Le diagnostic
+ne reconnait pas C2/C4. La
+[source Porsche allemande](../../catalog/sources/src-porsche-964-993-all-wheel-drive-history.json)
+confirme l'architecture de transmission C4, mais n'en fournit aucune cote.
+
+| Zone a integrer | Donnee encore necessaire, separement pour 964 et 993 |
+|---|---|
+| Tringlerie C2/C4 | axes, articulations, supports, enveloppe balayee sur tous les rapports |
+| Tube/arbre vers l'avant C4 | axe XYZ, diametre exterieur, brides, supports et mouvements du groupe |
+| Interfaces boite / differentiel avant | plans et points d'ancrage, volumes reels, tolerances |
+| Tunnel de coque et entretien | deux faces de paroi, epaisseurs, passages voisins, volumes de depose |
+
+Il faut notamment un releve de l'habitacle/tunnel et du soubassement avec les
+organes et carenages identifies. Un vide dans le nuage n'est jamais traite comme
+un volume libre. Le recalage des datums structurels et la compatibilite C2/C4/993
+restent non valides ; aucun moule ni drapage n'est libere.
+
+### Rejouer
+
+L'execution locale utilise Python 3.10.11, NumPy 2.2.6, SciPy 1.14.1 et
+trimesh 5.1.0 ; Matplotlib sert aux figures. SciPy 1.15.3 ne se chargeait pas
+sur cet hote macOS ; le remplacement est reste dans un environnement isole.
+Verifier d'abord le SHA-256 de l'original ci-dessus. Dans un repertoire de
+travail prive, creer `raw/964widebodyunderside2poin13.obj` comme lien vers cet
+original, puis executer avec cet environnement, dans cet ordre :
+
+```sh
+python /chemin/du/depot/twins/964-chassis/source/symmetry.py
+python /chemin/du/depot/twins/964-chassis/source/align.py
+python /chemin/du/depot/twins/964-chassis/source/vehicle_transform.py
+python /chemin/du/depot/twins/964-chassis/source/wheelbase_robust.py
+python /chemin/du/depot/twins/964-chassis/source/tunnel_probe.py \
+  --vertices verts_vehicle.npy --scan raw/964widebodyunderside2poin13.obj \
+  --registration-report /chemin/du/depot/twins/964-chassis/derived/scan-recalage-20260925.json \
+  --output tunnel
+```
+
+Le dossier de sortie doit etre nouveau. Le diagnostic refuse un scan ou un
+tableau de sommets dont l'empreinte differe du rapport ; un autre environnement
+peut necessiter une nouvelle attestation de recalage, sans ecraser celle-ci.
+Sorties locales : `scan-plan.png`, `visible-sections.png`, `tunnel-visibility.json`.
 
 ## Entrees
 

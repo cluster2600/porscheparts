@@ -1,0 +1,71 @@
+{
+  "source_sha256": "f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5",
+  "versions": {
+    "python": "3.10.11",
+    "numpy": "2.2.6",
+    "scipy": "1.14.1",
+    "trimesh": "5.1.0"
+  },
+  "steps": [
+    {
+      "script": "twins/964-chassis/source/symmetry.py",
+      "sha256": "8ea61744007d385e713dc01c1aebd66d7d23e2391f738e6179cd5ac83dbbbd06",
+      "exit_code": 0
+    },
+    {
+      "script": "twins/964-chassis/source/align.py",
+      "sha256": "899509ee427120c0d2edce8e2da6cb3340daa2bf47f07d7e05928fae23b544b8",
+      "exit_code": 0
+    },
+    {
+      "script": "twins/964-chassis/source/vehicle_transform.py",
+      "sha256": "554fa9e938a5356cd02506a839f3ef27a4b20c741b2c160bfeea178e1730f4b8",
+      "exit_code": 0
+    },
+    {
+      "script": "twins/964-chassis/source/wheelbase_robust.py",
+      "sha256": "dd0965e28d052d2dd9607f3cb28028cbdc7ae07be58fa51c06c16a6b1d7ac761",
+      "exit_code": 0
+    }
+  ],
+  "source_unchanged": true,
+  "outputs": {
+    "frame_params.npy": "49bf45136f4a4c77ffa0ec908dd5a1b378fd9a30a8183bdac634f1601fed265a",
+    "faces.npy": "271c4f04717be91babfebeb809de485c940dc909ec981acd857693969563b484",
+    "verts_vehicle.npy": "201787314680bcd60fb5f9b8910e28b0025d60c380dc77fa458a41bb17942bc9",
+    "sym_plane.npy": "5d263edbdcd772949010f8c47efe9b98f06aeff615bfd0464a50626ab603af10"
+  },
+  "symmetry_parameters_yaw_rad_x0_roll_rad": [
+    -0.03902462277501892,
+    112.04616621691795,
+    -0.00787010642488648
+  ],
+  "frame_parameters_yaw_x0_roll_front_axle_ground": [
+    -0.03902462277501892,
+    112.04616621691795,
+    -0.00787010642488648,
+    1241.8100952724662,
+    -412.0580662591884
+  ],
+  "vehicle_transform": [
+    0.039015,
+    0.999239,
+    0.0,
+    -1246.181545,
+    -0.999208,
+    0.039014,
+    -0.00787,
+    111.957391,
+    -0.007864,
+    0.000307,
+    0.999969,
+    412.939201,
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "fidelity": "F1_envelope",
+  "structural_datums_registered": false,
+  "manufacturing_released": false
+}

@@ -136,24 +136,25 @@ cloisons mais du **tunnel central**, qui a lui seul fait passer la raideur de
 3147 a 5371 N.m/deg, soit +71 %. Une poutre longitudinale fermee sur toute la
 longueur vaut plus que deux cloisons en bout.
 
-**Et ce tunnel n'existe pas sur la 964.** Ce parametre etant le plus influent de
-tout le dossier, il ne pouvait pas rester `ASSUMED` : il a ete cherche sur le
-scan (`source/tunnel_probe.py`). Le relief central du plancher d'habitacle, pris
-comme l'ecart entre le Z median a |Y| < 60 mm et celui des flancs a
-250 < |Y| < 400 mm, vaut entre **-0,7 et -3,1 mm** sur huit stations couvrant
-1000 mm de long. C'est sous le residu de symetrie du scan, qui est de 7,54 mm
-RMS : le relief n'est meme pas distinguable du bruit. Le soubassement est plat,
-ce qui est coherent avec un moteur arriere et l'absence d'arbre de transmission
-longitudinal. En avant de X = -200 mm un creux apparait, mais c'est la zone de
-traverse et de train avant, pas un tunnel.
+**Correction du 2026-09-25 : ce scan ne permet pas de conclure a l'absence de
+tunnel.** L'ancien `source/tunnel_probe.py` mesurait le relief median de surfaces
+visibles depuis le dessous, puis en deduisait a tort l'absence d'arbre
+longitudinal. Un carenage ou une peau inferieure peut masquer les organes ; le
+residu de symetrie n'est pas une incertitude instrumentale. Le script corrige
+conserve les stations manquantes et se limite desormais a un diagnostic de
+couverture et de relief visible.
 
-Le cas « tunnel » mesure donc **ce que la 964 n'a pas**, non ce qu'elle a. Cela
-ne l'invalide pas, cela le requalifie : c'est le chiffrage d'une modification
-architecturale possible, et c'est la conclusion la plus actionnable de l'etude.
-**Ajouter une poutre longitudinale fermee rapporte plus que passer au carbone**,
-+71 % contre +25 %, et pour une masse bien moindre que le passage au composite de
-toute la caisse. Un monocoque de type ZESAD, lui, obtient cette poutre gratuitement
-par construction : c'est precisement cela, un gain architectural.
+Porsche decrit un arbre transaxle vers l'avant sur la 964 Carrera 4 et le
+changement de systeme sur la 993 Carrera 4 ; la suppression du tube est situee
+a la generation 996. Voir
+[la source constructeur allemande](https://newsroom.porsche.com/de/historie/porsche-allradantrieb-meilensteine-lohner-porsche-cisitalia-rennwagen-carrera-4-visco-kupplung-porsche-traction-management-ptm-911-turbo-15045.html),
+enregistree sous `SRC-PORSCHE-964-993-ALL-WHEEL-DRIVE-HISTORY`.
+
+Le cas FEA « tunnel » reste une **section hypothetique**, ni reconstruction
+d'un tunnel d'origine, ni preuve de son absence. Le gain de +71 % porte sur ce
+modele seulement. Son integration exige encore les volumes reels de tringlerie,
+du tube/arbre C4, des ancrages, des debattements et des acces d'entretien ;
+aucune de ces cotes ne peut etre deduite d'un dessous plat.
 
 Deux controles de coherence entre les deux etudes. A masse egale, le carbone
 donne x 1,25 ; a raideur egale, il donnait 0,82x la masse, soit 1/0,82 = 1,22.
