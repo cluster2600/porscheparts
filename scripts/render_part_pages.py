@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from render_parts_table import ECHELLE, PROCEDES, STATUTS  # noqa: E402
+from render_parts_table import ECHELLE, PROCEDES, STATUTS, nom  # noqa: E402
 
 FICHES = ROOT / "catalog" / "parts"
 PAGES = ROOT / "docs" / "pieces"
@@ -127,7 +127,7 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
     statut = STATUTS.get(classification.get("safety_class"), classification.get("safety_class", "unknown"))
     procede = fabrication.get("preferred_process", "unknown")
 
-    out = [ENTETE, "", f"# {fiche['name']}", "",
+    out = [ENTETE, "", f"# {nom(fiche)}", "",
            f"**Status: {statut}. No part is released; see [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).**", "",
            fiche.get("description", "").strip(), ""]
     out += echelle(validation.get("status", "concept"), classification.get("safety_class"))
@@ -212,10 +212,170 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
     return "\n".join(out)
 
 
+PARTS = ROOT / "parts"
+TWINS = ROOT / "catalog" / "twins"
+
+# Callout per safety class, with SAFETY.md's own definition and publication rule.
+ALERTES = {
+    "prohibited_pending_engineering": ("CAUTION", "**Prohibited pending engineering** — risk, or "
+                                       "insufficient data. Never published as a released part."),
+    "safety_critical": ("WARNING", "**Safety-critical** — failure could cause loss of control, fire or "
+                        "injury. Published only after formal engineering review."),
+    "functional": ("NOTE", "**Functional** — loaded part whose failure can immobilize or damage the "
+                   "vehicle. Published only after documented functional testing."),
+    "non_critical": ("NOTE", "**Non-critical** — trim, or a part whose failure creates no immediate "
+                     "hazard. Published only after dimensional and fit validation."),
+}
+
+DOSSIERS_ROLE = {
+    "source": "parametric source — the editable master that generates the geometry",
+    "derived": "CAD exports generated from the source (STEP for CAD tools, STL for meshing)",
+    "evidence": "screens, reports and manifests — **pinned by SHA-256, never edited by hand**",
+    "media": "product views rendered from the CAD by `scripts/render_part_previews.py`",
+}
+
+
+def lisible(x) -> str:
+    """A snake_case placeholder is shown as code, not as if it were prose."""
+    texte = valeur(x)
+    parts = [f"`{p}`" if "_" in p and " " not in p.strip() else p for p in texte.split(", ")]
+    return ", ".join(parts)
+
+
+def badge(label: str, value: str, color: str) -> str:
+    esc = lambda s: str(s).replace("-", "--").replace("_", "__").replace(" ", "%20")
+    return f"![{label}: {value}](https://img.shields.io/badge/{esc(label)}-{esc(value)}-{color})"
+
+
+def fichiers_du_dossier(dossier: Path) -> list[Path]:
+    """Tracked or addable files of a part folder: what a clone of the repository shows."""
+    import subprocess
+    sortie = subprocess.run(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "--", str(dossier)],
+        cwd=ROOT, capture_output=True, text=True, check=True).stdout.split("\n")
+    return sorted(ROOT / f for f in sortie if f and not f.endswith("/README.md") and (ROOT / f).exists())
+
+
+def jumeaux_lies(part_id: str) -> list[Path]:
+    return [p for p in sorted(TWINS.glob("*.json")) if part_id in p.read_text(encoding="utf-8")]
+
+
+def presentation(fiche: dict, chemin_fiche: Path) -> str:
+    """The README GitHub shows when a part folder is opened: a product page."""
+    part_id = fiche["part_id"]
+    dossier = PARTS / part_id.lower()
+    page = dossier / "README.md"
+    classification = fiche.get("classification", {})
+    classe = classification.get("safety_class", "unknown")
+    fabrication = fiche.get("manufacturing", {})
+    matiere = fabrication.get("material", {})
+    validation = fiche.get("validation", {})
+    niveau = validation.get("status", "concept")
+    vehicule = fiche.get("vehicle", {})
+    annees = vehicule.get("model_years", {})
+    procede = fabrication.get("preferred_process", "undecided")
+    geometrie = fiche.get("geometry", {})
+
+    apercu = dossier / "media" / "preview.png"
+    vues = dossier / "media" / "views.png"
+    infos = dossier / "media" / "preview.json"
+    boite = json.loads(infos.read_text(encoding="utf-8")).get("bounding_box_mm") if infos.exists() else None
+
+    couleur = {"prohibited_pending_engineering": "critical", "safety_critical": "orange",
+               "functional": "yellow", "non_critical": "informational"}.get(classe, "lightgrey")
+    out = [ENTETE, "", '<div align="center">', "", f"# {nom(fiche)}", "",
+           f"**`{part_id}`** · Porsche {vehicule.get('generation', '?')}"
+           + (f" · {annees.get('from')}–{annees.get('to')}" if annees else ""), "",
+           " ".join([badge("status", niveau, "lightgrey"),
+                     badge("safety", STATUTS.get(classe, classe).strip("*"), couleur),
+                     badge("process", PROCEDES.get(procede, procede), "blue")]), ""]
+    if apercu.exists():
+        taille = f" — bounding box {boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
+        out += [f'<img src="media/preview.png" alt="CAD view of {nom(fiche)}" width="720">', "",
+                f"<sub>CAD view of the concept geometry{taille}. Not a photograph, not a manufactured "
+                "part, not evidence of fit or function.</sub>", ""]
+    out += ["</div>", ""]
+
+    type_alerte, texte_alerte = ALERTES.get(classe, ("NOTE", f"Safety class `{classe}`."))
+    out += [f"> [!{type_alerte}]", f"> {texte_alerte} No part in this repository is released — "
+            f"read [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).", ""]
+
+    out += ["## What it is", "", fiche.get("description", "").strip() or "*No description recorded.*", ""]
+    if classification.get("intended_use"):
+        out += ["## What it does on the car", "", classification["intended_use"].strip(), ""]
+
+    grade = matiere.get("grade") or matiere.get("family") or "undetermined"
+    out += ["## At a glance", "", "| | |", "|---|---|",
+            f"| Porsche part numbers | {valeur(vehicule.get('porsche_part_numbers'))} |",
+            f"| variants | {lisible(vehicule.get('variants'))} |",
+            f"| candidate material | {grade.split(';')[0].strip()} |",
+            f"| preferred process | {PROCEDES.get(procede, procede)} |",
+            f"| safety class | `{classe}` |",
+            f"| validation status | `{niveau}` |",
+            f"| geometry | {valeur(geometrie.get('source_type'))}, master {valeur(geometrie.get('master_format'))}"
+            + (f", accuracy {geometrie.get('accuracy_mm')} mm" if geometrie.get("accuracy_mm") is not None else "")
+            + " |", ""]
+
+    out += ["## Where it stands", ""] + echelle(niveau, classe)
+
+    if vues.exists():
+        out += ["## Views", "", "![Front, side and top orthographic views](media/views.png)", "",
+                "*Orthographic views of the same CAD, with its bounding dimensions.*", ""]
+
+    autres = [f for f in fichiers_du_dossier(dossier)
+              if f.suffix.lower() in (".png", ".svg", ".gif") and "media" not in f.relative_to(dossier).parts]
+    if autres:
+        out += ["## Screens and evidence images", ""]
+        for img in autres[:4]:
+            rel = img.relative_to(dossier).as_posix()
+            out += [f"![{img.stem}]({rel})", "",
+                    f"*`{rel}` — a screening output, not a validation.*", ""]
+
+    fichiers = fichiers_du_dossier(dossier)
+    if fichiers:
+        out += ["## What's in this folder", "", "| folder | what it holds | files |", "|---|---|---|"]
+        groupes: dict[str, list[Path]] = {}
+        for f in fichiers:
+            rel = f.relative_to(dossier)
+            groupes.setdefault(rel.parts[0] if len(rel.parts) > 1 else ".", []).append(f)
+        for sous in sorted(groupes, key=lambda n: (n == ".", n)):
+            role = DOSSIERS_ROLE.get(sous, "files of this part")
+            liens = ", ".join(f"[`{f.relative_to(dossier).as_posix()}`]({f.relative_to(dossier).as_posix()})"
+                              for f in groupes[sous][:8])
+            if len(groupes[sous]) > 8:
+                liens += f", … ({len(groupes[sous])} files)"
+            out.append(f"| `{sous}/` | {role} | {liens} |" if sous != "." else f"| (here) | {role} | {liens} |")
+        out.append("")
+
+    out += ["## Read more", "",
+            f"- **Full description page**, with sources and evidence: "
+            f"[docs/pieces/{part_id.lower()}.md]({lien(PAGES / f'{part_id.lower()}.md', page)})",
+            f"- **Catalogue record** (source of truth): [`{chemin_fiche.relative_to(ROOT).as_posix()}`]"
+            f"({lien(chemin_fiche, page)})"]
+    for d in [p for p in sorted(DOSSIERS.glob("*.md"))
+              if part_id.lower() in p.read_text(encoding="utf-8", errors="replace").lower()]:
+        out.append(f"- **Design dossier**: [{d.stem}]({lien(d, page)})")
+    for j in jumeaux_lies(part_id):
+        out.append(f"- **Digital twin record**: [`{j.name}`]({lien(j, page)}) — "
+                   f"see [twins/README.md]({lien(ROOT / 'twins' / 'README.md', page)})")
+    out += [f"- **Safety rules**: [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)})", "",
+            "---", "",
+            "*This page is generated from the catalogue record by `scripts/render_part_pages.py` "
+            "and checked by `make check`. Edit the record, not this page.*", ""]
+    return "\n".join(out)
+
+
 def attendues() -> dict[Path, str]:
-    return {PAGES / f"{json.loads(c.read_text(encoding='utf-8'))['part_id'].lower()}.md":
-            page_markdown(json.loads(c.read_text(encoding="utf-8")), c)
-            for c in sorted(FICHES.glob("*.json"))}
+    """Description pages in docs/pieces/, then one README per part folder."""
+    pages = {}
+    for c in sorted(FICHES.glob("*.json")):
+        fiche = json.loads(c.read_text(encoding="utf-8"))
+        pages[PAGES / f"{fiche['part_id'].lower()}.md"] = page_markdown(fiche, c)
+    for c in sorted(FICHES.glob("*.json")):
+        fiche = json.loads(c.read_text(encoding="utf-8"))
+        if (PARTS / fiche["part_id"].lower()).is_dir():
+            pages[PARTS / fiche["part_id"].lower() / "README.md"] = presentation(fiche, c)
+    return pages
 
 
 def main() -> int:
@@ -237,7 +397,8 @@ def main() -> int:
             if orpheline not in pages:
                 orpheline.unlink()
                 print(f"orphan page removed: {orpheline.relative_to(ROOT)}")
-        print(f"docs/pieces  {len(pages)} pages, {ecrites} rewritten")
+        n_readme = sum(1 for c in pages if c.name == "README.md")
+        print(f"docs/pieces + parts/*/README.md  {len(pages) - n_readme} + {n_readme} pages, {ecrites} rewritten")
         return 0
 
     manquantes = [c for c in pages if not c.exists()]
@@ -252,7 +413,8 @@ def main() -> int:
             print(f"FAIL   page without a record: {chemin.relative_to(ROOT)}", file=sys.stderr)
         print("       rerun: python3 scripts/render_part_pages.py --write", file=sys.stderr)
         return 1
-    print(f"OK   docs/pieces, {len(pages)} pages match the catalogue records")
+    n_readme = sum(1 for c in pages if c.name == "README.md")
+    print(f"OK   docs/pieces and parts/*/README.md, {len(pages) - n_readme} + {n_readme} pages match the catalogue records")
     return 0
 
 

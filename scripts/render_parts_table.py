@@ -46,6 +46,21 @@ STATUTS = {
 
 PROCEDES = {"undecided": "undecided"}
 
+# Four records keep a French `name` because pinned supplier RFQ files under
+# evidence/ embed it verbatim (see docs/TRANSLATION.md). Pages show an English
+# display name instead; the record itself is not touched.
+NOMS_AFFICHES = {
+    "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001": "Headlamp spring hook repair, F0 aluminum concept",
+    "993-EXH-OVAL-TIP-TI-F1-0001": "Oval exhaust tip, F1 titanium variant",
+    "993-INT-DOOR-OPENER-LEVER-F0-0001": "993 interior door opener lever, F0 aluminum concept",
+    "993-INT-SWITCH-TRIM-RING-F1-0001": "Aluminum switch trim ring, F1 reconstruction",
+}
+
+
+def nom(fiche: dict) -> str:
+    return NOMS_AFFICHES.get(fiche["part_id"], fiche["name"])
+
+
 # The validation ladder of catalog/schemas/part.schema.json, in order.
 ECHELLE = ["concept", "dimensionally_reviewed", "prototype_fitted",
            "functionally_tested", "engineering_reviewed", "released"]
@@ -53,6 +68,28 @@ ECHELLE = ["concept", "dimensionally_reviewed", "prototype_fitted",
 # Pie slices in a fixed order, so the chart does not reshuffle between records.
 ORDRE_STATUTS = ["prohibited_pending_engineering", "safety_critical",
                  "functional", "non_critical"]
+
+
+def grille(fiches: list, par_ligne: int = 6) -> list[str]:
+    """Thumbnail grid of every part with a CAD view; each tile opens the part's folder."""
+    tuiles = []
+    for _, d in fiches:
+        dossier = f"parts/{d['part_id'].lower()}"
+        if (ROOT / dossier / "media" / "preview.png").exists():
+            libelle = court(nom(d).split(",")[0], 34)
+            tuiles.append(f'<td align="center" width="16%"><a href="{dossier}/">'
+                          f'<img src="{dossier}/media/preview.png" alt="{libelle}" width="130"><br>'
+                          f"<sub>{libelle}</sub></a></td>")
+    if not tuiles:
+        return []
+    out = ["<table>"]
+    for i in range(0, len(tuiles), par_ligne):
+        out += ["<tr>"] + tuiles[i:i + par_ligne] + ["</tr>"]
+    out += ["</table>", "",
+            "*CAD views of the concept geometry, rendered from each part's own CAD by "
+            "`scripts/render_part_previews.py` — not photographs, not manufactured parts. "
+            "Click a part to open its page.*", ""]
+    return out
 
 
 def graphiques(fiches: list) -> list[str]:
@@ -106,7 +143,7 @@ def lignes() -> list[str]:
             f"system(s) without a heading in SYSTEMES: {', '.join(inconnus)}"
         )
 
-    out = [DEBUT, ""] + graphiques(fiches)
+    out = [DEBUT, ""] + grille(fiches) + graphiques(fiches)
     for cle, intitule in SYSTEMES:
         groupe = [(c, d) for c, d in fiches if d["part_id"].split("-")[1] == cle]
         if not groupe:
@@ -115,12 +152,12 @@ def lignes() -> list[str]:
                 "| part | candidate material | process | status |",
                 "|---|---|---|---|"]
         for chemin, d in groupe:
-            nom = court(d["name"].split(",")[0], 46)
+            libelle = court(nom(d).split(",")[0], 46)
             # The link opens the description page, not the JSON record: the page
             # cites the record, its sources, its evidence and its images.
             rel = f"docs/pieces/{d['part_id'].lower()}.md"
             proc = d["manufacturing"]["preferred_process"]
-            out.append(f"| [{nom}]({rel}) | {matiere(d)} | "
+            out.append(f"| [{libelle}]({rel}) | {matiere(d)} | "
                        f"{PROCEDES.get(proc, proc)} | "
                        f"{STATUTS[d['classification']['safety_class']]} |")
         out.append("")

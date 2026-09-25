@@ -16,9 +16,24 @@ FICHES = sorted((ROOT / "catalog" / "parts").glob("*.json"))
 class PartPageTests(unittest.TestCase):
     def test_one_page_per_catalogue_record(self):
         attendues = pages.attendues()
-        self.assertEqual(len(attendues), len(FICHES))
+        descriptions = [c for c in attendues if c.parent.name == "pieces"]
+        self.assertEqual(len(descriptions), len(FICHES))
         for chemin in attendues:
             self.assertTrue(chemin.exists(), f"missing page: {chemin.relative_to(ROOT)}")
+
+    def test_each_part_folder_has_a_presentation_page(self):
+        for chemin in FICHES:
+            fiche = json.loads(chemin.read_text(encoding="utf-8"))
+            dossier = ROOT / "parts" / fiche["part_id"].lower()
+            if not dossier.is_dir():
+                continue
+            texte = (dossier / "README.md").read_text(encoding="utf-8")
+            self.assertIn(fiche["part_id"], texte)
+            self.assertIn("SAFETY.md", texte)
+            self.assertIn(f"docs/pieces/{fiche['part_id'].lower()}.md", texte)
+            if (dossier / "media" / "preview.png").exists():
+                self.assertIn("media/preview.png", texte)
+                self.assertIn("Not a photograph", texte)
 
     def test_check_passes_on_the_committed_pages(self):
         argv = sys.argv
