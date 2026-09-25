@@ -187,9 +187,12 @@ def static_checks(p):
         a, b, r = cyl['oil_gallery']
         out.append(_c('oil_gallery_below_carrier_face', p['carrier_face_height'] - a[2] - r, wall, '>=',
                       'paroi entre galerie d\'huile et face porte-arbre', family='oil'))
-    seat_z = max(head_centre(p, s, sy)[2] + axis_up(p, s)[2] * p[f'{s}_spring_seat_axial'] for s, sy in VALVES)
+    # Le centre sous la face ne suffit pas : le disque de fond est incliné.
+    # Borne exacte en z du bord circulaire, sans tolérances ni épaisseur de plancher qualifiée.
+    seat_z = max(head_centre(p, s, sy)[2] + axis_up(p, s)[2] * p[f'{s}_spring_seat_axial']
+                 + p['spring_pocket_diameter'] / 2 * math.hypot(*axis_up(p, s)[:2]) for s, sy in VALVES)
     out.append(_c('spring_seat_below_carrier_face', seat_z, p['carrier_face_height'], '<=',
-                  'fond de logement sous la face porte-arbre 935'))
+                  'bord supérieur du disque de fond de logement sous la face porte-arbre candidate 935'))
     # ressort
     lift = max(p['intake_max_lift'], p['exhaust_max_lift'])
     out.append(_c('lift_within_gsc5092_published', lift, p['spring_max_lift_published'], '<=',

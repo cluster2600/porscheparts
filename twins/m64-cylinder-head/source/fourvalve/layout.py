@@ -181,8 +181,10 @@ def cylinders(p):
         tag = f'{side}_{"p" if sy > 0 else "m"}'
         c, u = head_centre(p, side, sy), axis_up(p, side)
         seat = p[f'{side}_spring_seat_axial']
-        axial_top = max(seat + 1.0, (top + 5 - c[2]) / u[2])
-        cyl[f'pocket_{tag}'] = (c + u * seat, c + u * axial_top, p['spring_pocket_diameter'] / 2)
+        radius = p['spring_pocket_diameter'] / 2
+        # Tout le disque terminal doit dépasser la face, pas seulement son centre.
+        axial_top = max(seat + 1.0, (top + 5 + radius * math.hypot(*u[:2]) - c[2]) / u[2])
+        cyl[f'pocket_{tag}'] = (c + u * seat, c + u * axial_top, radius)
         g_top = seat + p['guide_protrusion']
         cyl[f'guide_{tag}'] = (c + u * (g_top - p[f'{side}_guide_length']), c + u * seat,
                                p['guide_head_bore_diameter'] / 2)
