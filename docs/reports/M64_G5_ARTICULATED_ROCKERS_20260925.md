@@ -1,19 +1,36 @@
-# M64 G5 — culbuteurs articulés et cames conjuguées à leur mouvement
+# M64 G5 — articulated rockers and cams conjugate to their motion
 
-G5 remplace en option les poussoirs axiaux fictifs de G4 par quatre culbuteurs sur deux axes,
-quatre galets, leurs axes et deux arbres à cames calculés pour ce mécanisme.
-**Cela termine ce modèle cinématique, pas le projet de culasse : porte-arbres/paliers,
-transmission, lubrification, charges et fabrication restent non qualifiés.**
-Le corps synthétique G4 n'est pas transformé en géométrie M64 certifiée.
+G5 optionally replaces G4's fictitious axial tappets with four rockers on two shafts,
+four rollers, their pins and two camshafts computed for this mechanism.
+**This completes this kinematic model, not the cylinder-head project: cam carrier/bearings,
+drive, lubrication, loads and manufacturing remain unqualified.**
+The synthetic G4 body is not turned into certified M64 geometry.
 
-## Une came qui commande le mécanisme
+```mermaid
+flowchart LR
+    A["V1 law and<br/>explicit lash"] --> B["Articulated rocker"]
+    B --> C["Inverted roller-cam profile"]
+    C --> D["Contact solved independently"]
+    D --> E["Convergence 2, then 1,<br/>then 0.5 degree"]
+    E --> F["BRep checks of contacts<br/>and collisions"]
+    F --> G["Bearings, fastening, oiling<br/>and dynamics to qualify"]
+    F --> H["No authorization to<br/>manufacture or start the engine"]
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class F ok;
+    class G open;
+    class H stop;
+```
 
-La méthode d'inversion et le décalage normal du profil par le rayon du galet suivent
+## A cam that drives the mechanism
+
+The inversion method and the normal offset of the profile by the roller radius follow
 [CMU, *Introduction to Mechanisms*, §6.5.2–6.5.3](https://www.cs.cmu.edu/~rapidproto/mechanisms/chpt6.html).
-Les équations ci-dessous sont celles de notre implantation ; les dimensions ne viennent pas de Porsche.
+The equations below are those of our implementation; the dimensions do not come from Porsche.
 
-Soient `a` le bras côté soupape, `b` le bras côté galet, `s(phi)` le déplacement brut de la loi
-V1, `j` son jeu mécanique et `theta = phi / 2` l'angle de came. Dans le repère du culbuteur :
+Let `a` be the valve-side arm, `b` the roller-side arm, `s(phi)` the raw displacement of the
+V1 law, `j` its mechanical lash and `theta = phi / 2` the cam angle. In the rocker frame:
 
 ```text
 beta = asin(s / a)
@@ -23,79 +40,75 @@ q(theta) = rotation(-theta) [centre_galet - centre_came]
 profil_came = q - rayon_galet × normale_exterieure(q)
 ```
 
-Le contact d'un patin sphérique avec le bout plan de tige permet le déplacement latéral
-`a × (1 - cos(beta))`. La marge au bord de la tige est contrôlée. La came ne résulte plus
-de l'addition directe de la levée soupape au rayon de base.
+(`levee_soupape` = valve lift, `centre_galet` = roller center, `centre_came` = cam center,
+`profil_came` = cam profile, `rayon_galet` = roller radius, `normale_exterieure` = outward normal;
+the identifiers are kept as in the code.)
 
-Le contre-calcul **ne reçoit pas la levée demandée à l'angle testé** : il tourne le polygone
-de came et résout le contact galet/came par bissection pour retrouver l'angle du culbuteur,
-puis la levée. Il utilise des angles décalés des sommets ayant construit le profil.
-L'assemblage a aussi été corrigé pour ne plus arrondir la levée au degré de vilebrequin entier.
+The contact of a spherical pad against the flat stem tip allows the lateral displacement
+`a × (1 - cos(beta))`. The margin to the edge of the stem is checked. The cam no longer
+results from directly adding the valve lift to the base radius.
 
-## Implantations rejetées et retenue
+The cross-calculation **is not given the requested lift at the tested angle**: it rotates the
+cam polygon and solves the roller/cam contact by bisection to recover the rocker angle,
+then the lift. It uses angles offset from the vertices that built the profile.
+The assembly was also corrected so it no longer rounds the lift to the whole crank degree.
 
-Le premier couple de bras 35/21 mm passait le test à pleine levée mais rencontrait la came
-ailleurs dans le cycle. Une fourche de 16 mm avec des joues de 3 mm laissait également
-seulement 10 mm pour une came large de 14 mm. Ces défauts sont corrigés, pas tolérés.
+## Layouts rejected and retained
 
-Six couples de bras ont été comparés. Le couple **45/24 mm**, une fourche de **24 mm**
-avec 18 mm entre joues et un galet de **16 mm** sont retenus pour ce modèle candidat.
-La came conserve sa largeur de 14 mm et son rayon de base de 15 mm. Une traverse relie
-les deux joues au patin : chaque culbuteur forme un seul solide CAO.
+The first 35/21 mm arm pair passed the full-lift test but struck the cam
+elsewhere in the cycle. A 16 mm fork with 3 mm cheeks likewise left
+only 10 mm for a 14 mm wide cam. These defects are corrected, not tolerated.
 
-| Contrôle sur le modèle candidat | Admission | Échappement |
+Six arm pairs were compared. The **45/24 mm** pair, a **24 mm** fork
+with 18 mm between cheeks and a **16 mm** roller are retained for this candidate model.
+The cam keeps its 14 mm width and its 15 mm base radius. A crossbar joins
+the two cheeks to the pad: each rocker forms a single CAD solid.
+
+| Check on the candidate model | Intake | Exhaust |
 |---|---:|---:|
-| Oscillation maximale | 14,938° | 12,513° |
-| Déplacement latéral maximal sur la tige | 1,521 mm | 1,069 mm |
-| Angle de pression maximal | 29,224° | 25,741° |
-| Dégagement came/bossage de pivot, calcul plan | 2,042 mm | 3,035 mm |
-| Dégagement came/patin et traverse, calcul plan majorant | 2,228 mm | 3,170 mm |
-| Dégagement axial came/joues | 2,000 mm | 2,000 mm |
-| Erreur maximale de levée retrouvée, profil au pas 0,5° vilebrequin | 0,0001051 mm | 0,0000927 mm |
+| Maximum oscillation | 14.938° | 12.513° |
+| Maximum lateral displacement on the stem | 1.521 mm | 1.069 mm |
+| Maximum pressure angle | 29.224° | 25.741° |
+| Cam/pivot boss clearance, planar calculation | 2.042 mm | 3.035 mm |
+| Cam/pad and crossbar clearance, conservative planar calculation | 2.228 mm | 3.170 mm |
+| Cam/cheek axial clearance | 2.000 mm | 2.000 mm |
+| Maximum recovered-lift error, profile at 0.5° crank steps | 0.0001051 mm | 0.0000927 mm |
 
-Les trois résolutions 2°, 1° et 0,5° donnent des erreurs de levée décroissantes.
-La résolution fine contient 1 440 sommets par came. **Ces erreurs numériques ne sont ni
-des tolérances d'usinage, ni une précision réalisable de la distribution à chaud.**
-Le seuil de pression de 35° et les dégagements minimaux de 1 mm restent des hypothèses de
-présélection, pas des critères de durée de vie qualifiés. Le journal conserve les six couples,
-dont ceux qui échouent ; il ne s'agit pas d'un optimum global.
+The three resolutions 2°, 1° and 0.5° give decreasing lift errors.
+The fine resolution has 1,440 vertices per cam. **These numerical errors are neither
+machining tolerances nor an achievable accuracy of the valvetrain when hot.**
+The 35° pressure threshold and the 1 mm minimum clearances remain pre-screening
+assumptions, not qualified service-life criteria. The log keeps all six pairs,
+including the failing ones; this is not a global optimum.
 
-```mermaid
-flowchart LR
-    A[Loi V1 et jeu explicite] --> B[Culbuteur articule]
-    B --> C[Profil inverse de came a galet]
-    C --> D[Contact resolu independamment]
-    D --> E[Convergence 2 puis 1 puis 0.5 degre]
-    E --> F[Controles BRep des contacts et collisions]
-    F --> G[Paliers fixation graissage et dynamique a qualifier]
-```
+## Deliverables and verification
 
-## Livrables et vérification
+The native audit passes **44 contact/collision cases**, spread over 11 angles and the four
+valves. The **43 components** of the assembly have a valid BRep. The full export
+is run separately: one-piece body, nine valve/piston or valve/valve clearances
+meeting the candidate thresholds, dead volume of 86.519086 cm³ and ratio of 7.935397:1
+unchanged from G4. The full STEP weighs 29,835,029 bytes; it stays in
+`work/m64-g5-complete-export/`, outside Git, like the other STEP files over 1 MB.
+The small STEP below contains the rockers, rollers and pins; the complete cams
+can be rebuilt from the sources and their CSV profiles.
 
-L'audit natif passe **44 cas de contact/collision**, répartis sur 11 angles et les quatre
-soupapes. Les **43 composants** de l'assemblage ont une BRep valide. L'export complet
-est exécuté séparément : corps monobloc, neuf jeux soupape/piston ou soupape/soupape
-conformes aux seuils candidats, volume mort de 86,519086 cm³ et taux de 7,935397:1
-inchangés par rapport à G4. Le STEP complet pèse 29 835 029 octets ; il reste dans
-`work/m64-g5-complete-export/`, hors Git, comme les autres STEP dépassant 1 Mo.
-Le petit STEP ci-dessous contient les culbuteurs, galets et axes ; les cames complètes
-sont reconstructibles depuis les sources et leurs profils CSV.
+The **47 targeted G1 to G5 tests pass with CadQuery 2.6.1**, with no test skipped
+(21 G1, 15 G2, 3 G3, 3 G4, 5 G5). The digests of the audit, the V1 law,
+the parameters and the deliverables were re-verified after the export.
 
-Les **47 tests ciblés G1 à G5 passent avec CadQuery 2.6.1**, sans test ignoré
-(21 G1, 15 G2, 3 G3, 3 G4, 5 G5). Les empreintes de l'audit, de la loi V1,
-des paramètres et des livrables ont été revérifiées après l'export.
+[Full audit and digests](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/audit.json) ·
+[Reproducible parameters](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/candidate.json) ·
+[STEP of rockers, rollers and pins](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/rockers-rollers-and-shafts.step).
+The [intake](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/cam-profile-intake.csv)
+and [exhaust](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/cam-profile-exhaust.csv)
+profiles are in local x/z coordinates, millimeters and cam degrees.
 
-[Audit complet et empreintes](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/audit.json) ·
-[Paramètres reproductibles](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/candidate.json) ·
-[STEP culbuteurs, galets et axes](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/rockers-rollers-and-shafts.step).
-Les [profils admission](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/cam-profile-intake.csv)
-et [échappement](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/cam-profile-exhaust.csv)
-sont en coordonnées locales x/z, millimètres et degrés de came.
+![Section through the candidate valvetrain: rockers on their shafts, rollers on the cams, pads on the valve stem tips; cam carrier and bearings absent](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/rocker-train-section.svg)
 
-![Coupe du mécanisme candidat, porte-arbres et paliers absents](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/rocker-train-section.svg)
+*Section of the candidate mechanism, with cam carrier and bearings absent; not a part ready to assemble or print.*
 
-Le plan de coupe passe par l'admission positive en y ; l'échappement est projeté derrière.
-L'image montre le mécanisme calculé, pas une pièce prête à monter ou à imprimer.
+The section plane passes through the positive-y intake; the exhaust is projected behind it.
+The image shows the computed mechanism, not a part ready to assemble or to print.
 
 ```sh
 uv run --python 3.12 --no-project --with cadquery==2.6.1 python \
@@ -106,25 +119,25 @@ uv run --python 3.12 --no-project --with cadquery==2.6.1 python tests/test_m64_g
 make check
 ```
 
-## Réparation de la vérification globale
+## Repairing the global check
 
-Le rapport F46 historique attendait l'ancienne empreinte de `deploy/openbao/openbao-vastai`.
-Le wrapper avait évolué, notamment pour le rôle Qwen Flash Next. Une comparaison hors ligne
-montre que **seule cette entrée** diffère ; budgets, classification et verrous sont identiques.
-Une [nouvelle attestation](../../twins/reference-917-engine/evidence/f46-vast-controller-20260925/preparation-report.json)
-est générée et la cible active du Makefile la contrôle. L'ancien rapport reste intact.
-Aucun accès secret, appel Vast, achat ou lancement n'a été effectué par cette préparation.
-Deux cibles existantes manquantes dans `.PHONY` sont également déclarées ; aucun contrôle n'est supprimé.
+The historical F46 report expected the old digest of `deploy/openbao/openbao-vastai`.
+The wrapper had evolved, notably for the Qwen Flash Next role. An offline comparison
+shows that **only this entry** differs; budgets, classification and locks are identical.
+A [new attestation](../../twins/reference-917-engine/evidence/f46-vast-controller-20260925/preparation-report.json)
+is generated and the active Makefile target checks it. The old report stays intact.
+No secret access, Vast call, purchase or launch was performed by this preparation.
+Two existing targets missing from `.PHONY` are also declared; no check is removed.
 
-## Limite de livraison
+## Delivery limit
 
-La cinématique rigide ne démontre pas le maintien du contact sous inertie, la pression de
-Hertz, la fatigue, l'usure ou les dilatations. Le jeu mécanique V1 n'est pas un rattrapage
-hydraulique M64 validé. La commande et le sens physique des deux arbres, les paliers,
-leurs appuis, les fixations accessibles et l'alimentation d'huile doivent encore être conçus.
-Les collisions CAO sont des échantillons du cycle, pas une détection continue certifiée.
+Rigid kinematics does not demonstrate that contact is maintained under inertia, nor Hertz
+pressure, fatigue, wear or thermal expansion. The V1 mechanical lash is not a validated M64
+hydraulic adjuster. The drive and physical direction of the two shafts, the bearings,
+their supports, the accessible fasteners and the oil supply still have to be designed.
+The CAD collisions are samples of the cycle, not certified continuous detection.
 
-Le taux G4 reste sous 8 et la puissance de 700 hp n'est pas validée. Il manque aussi les
-interfaces M64 exactes, les données matériau à chaud, une chaîne CFD/CHT corrélée, la
-résistance/fatigue et la qualification du procédé d'impression. **Ni une CI verte ni ces
-contacts géométriques n'autorisent la fabrication ou le démarrage du moteur.**
+The G4 ratio remains below 8 and the 700 hp output is not validated. Also missing are the
+exact M64 interfaces, hot material data, a correlated CFD/CHT chain,
+strength/fatigue and qualification of the printing process. **Neither a green CI nor these
+geometric contacts authorize manufacturing or starting the engine.**
