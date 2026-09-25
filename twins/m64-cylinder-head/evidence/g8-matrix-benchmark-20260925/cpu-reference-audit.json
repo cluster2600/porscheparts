@@ -1,0 +1,71 @@
+{
+  "backend": "cpu",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.14.1"
+  },
+  "iterations": 4674,
+  "info": 0,
+  "setup_seconds": 0.02204820799670415,
+  "solve_seconds": 45.57982483299929,
+  "setup_and_solve_seconds": 45.601873040996,
+  "dtype": "float64",
+  "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+  "accepted": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "reactions_and_stresses_recomputed": false,
+  "nodes": 59333,
+  "free_dofs": 171621,
+  "matrix_nnz": 12744767,
+  "relative_residual": 9.856788540725016e-11,
+  "max_nodal_difference_over_max_reference_U": 0.042893134677145645,
+  "host": "arm64",
+  "original_reference": {
+    "max_nodal_difference_over_max_reference_U": 0.042893134677145645,
+    "printed_dat_relative_residual": 30.686266678497056,
+    "printed_dat_rounding_residual_bound": 0.03305593592930357
+  },
+  "additional_comparisons": [
+    {
+      "file": "x.dat",
+      "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+      "max_nodal_difference_over_max_reference_U": 1.9266601030227305e-07,
+      "printed_dat_relative_residual": 0.0014203200576719446,
+      "printed_dat_rounding_residual_bound": 0.03319634135916032
+    },
+    {
+      "file": "kali-one.dat",
+      "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+      "max_nodal_difference_over_max_reference_U": 1.9266601030227305e-07,
+      "printed_dat_relative_residual": 0.0014203200576719446,
+      "printed_dat_rounding_residual_bound": 0.03319634135916032
+    },
+    {
+      "file": "kali-four.dat",
+      "sha256": "0758db86b5c61232485b5ad85c03c9c876ebbba950834193c6a7893be2200645",
+      "max_nodal_difference_over_max_reference_U": 1.9266601030227305e-07,
+      "printed_dat_relative_residual": 0.0014203200576719446,
+      "printed_dat_rounding_residual_bound": 0.03319634135916032
+    },
+    {
+      "file": "kali-python-four.dat",
+      "sha256": "1496c9080028712a05fff35fdcae26d548330d9b852fa7c06b01f0a2e5f06779",
+      "max_nodal_difference_over_max_reference_U": 1.9266601030227305e-07,
+      "printed_dat_relative_residual": 0.0014203200576719446,
+      "printed_dat_rounding_residual_bound": 0.03319634135916032
+    }
+  ],
+  "thresholds": {
+    "relative_residual": 1e-08,
+    "max_nodal_difference_over_max_reference_U": 0.0001
+  },
+  "hashes": {
+    "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+    "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+    "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+    "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+    "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+    "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+  }
+}
