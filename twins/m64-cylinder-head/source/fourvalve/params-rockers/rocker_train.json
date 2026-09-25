@@ -1,0 +1,20 @@
+{
+  "component": "rocker_train_candidate",
+  "description": "Mécanisme G5 candidat, non issu d'un plan Porsche. Jeu mécanique de la loi V1, pas un rattrapage hydraulique qualifié. Dimensions à qualifier en résistance, tribologie et encombrement moteur.",
+  "parameters": {
+    "rocker_valve_arm": {"value": 45.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "bras allongé après rejet du couple 35/21 mm : collision came/bossage et came/patin sur le cycle"},
+    "rocker_cam_arm": {"value": 24.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "distance pivot/centre du galet ; couple 45/24 mm retenu par balayage borné des dégagements, sans qualification dynamique"},
+    "rocker_pad_radius": {"value": 6.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "patin sphérique idéal sur le bout plan de la tige ; pression de Hertz et usure non qualifiées"},
+    "rocker_roller_radius": {"value": 5.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "galet cylindrique idéal ; roulement réel non sélectionné"},
+    "rocker_roller_width": {"value": 16.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "galet dépassant la came de 14 mm de 1 mm à chaque bord, tenue du contact non qualifiée"},
+    "rocker_width": {"value": 24.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "fourche élargie pour dégager la came : intervalle entre joues de 18 mm, galet de 16 mm"},
+    "rocker_plate_thickness": {"value": 3.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "épaisseur de chacune des deux joues"},
+    "rocker_plate_height": {"value": 8.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "hauteur de joue ; résistance et rayons de raccord non qualifiés"},
+    "rocker_pivot_radius": {"value": 5.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "axe de culbuteur Ø10 candidat"},
+    "rocker_boss_radius": {"value": 8.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "bossage extérieur de pivot"},
+    "rocker_pin_radius": {"value": 2.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "axe du galet Ø4 candidat"},
+    "rocker_radial_clearance": {"value": 0.05, "unit": "mm", "provenance": "unsourced", "hypothesis": "jeu radial de modélisation, pas une tolérance d'usinage sélectionnée"},
+    "rocker_tip_edge_margin": {"value": 1.0, "unit": "mm", "provenance": "unsourced", "hypothesis": "retrait minimal candidat du point de contact au bord de la tige"},
+    "rocker_pressure_angle_limit": {"value": 35.0, "unit": "deg", "provenance": "unsourced", "hypothesis": "seuil de présélection géométrique, pas un critère constructeur de durée de vie"}
+  }
+}
