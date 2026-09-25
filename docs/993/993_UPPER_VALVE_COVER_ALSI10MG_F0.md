@@ -10,6 +10,24 @@ aluminum, with a commercial envelope of `400 × 150 × 200 mm` and a mass of
 `3.32 kg`. Protomotive confirms an upper pair for the 993 Carrera/Turbo
 machined from `6061-T6`. None of these figures defines an individual part.
 
+```mermaid
+flowchart LR
+  S["Published: FVD kit of four<br/>3.32 kg; 6061-T6 upper pair"] --> G["Own F0 master<br/>shell, six fins, three COP towers<br/>483.65 g"]
+  G --> Pr["Roof pressure<br/>ratio 72.59: passes"]
+  G --> T["Three thermal screens<br/>0.926, 0.047, 0.524: fail"]
+  G --> P["LPBF print screen<br/>build_x, 30 µm"]
+  T --> V["Process undecided<br/>prohibited from manufacturing,<br/>sealing, installation, engine"]
+  P --> V
+  class S ok
+  class Pr,P open
+  class T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## F0 geometry
 
 The build123d master is therefore entirely our own: an open upper cover of

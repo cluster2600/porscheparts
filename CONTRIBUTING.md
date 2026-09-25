@@ -1,5 +1,19 @@
 # Contributing
 
+```mermaid
+flowchart TD
+    I["Open a New part issue"] --> C["Confirm the part is not<br/>already in catalog/parts/"]
+    C --> P["Describe data provenance<br/>and intended license"]
+    P --> S["Choose the most conservative<br/>safety class"]
+    S --> T["Copy the part-record template;<br/>create source/, derived/, evidence/"]
+    T --> PR["Pull request: changes, sources and licenses,<br/>safety class, validations done and missing"]
+    PR --> M["make check<br/>result stated in the PR"]:::ok
+    V["A file presented as validated<br/>before a documented test"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## Before you start
 
 1. Open a "New part" issue.

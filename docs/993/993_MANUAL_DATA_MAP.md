@@ -5,6 +5,23 @@ reverse-engineering catalogue. We have neither a vehicle nor a donor part. The
 numbers below are therefore specifications published in the workshop manual,
 not measurements taken by this project and not CAD dimensions.
 
+```mermaid
+flowchart TD
+  M["993 workshop manual<br/>published specifications,<br/>not project measurements"] --> I["Public index<br/>235 procedures, 111 technical<br/>data, 195 torque rows"]
+  M --> R["Register<br/>2,496 records"]
+  R --> V["Checked values: vehicle,<br/>engine internals, valve timing,<br/>transmission, brakes"]
+  V --> U["Allowed now: identify variants,<br/>plan measurements, check a future scan"]
+  V --> B["Brakes: data kept,<br/>manufacturing blocked"]
+  class U ok
+  class I,R open
+  class B stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: how this page is organized, restated from its sections. It adds no value to the tables below, and nothing in it is a measurement of a part.*
+
 ## Access and provenance
 
 - [993 procedure index](https://porschefanatics.com/993/manual/): 235

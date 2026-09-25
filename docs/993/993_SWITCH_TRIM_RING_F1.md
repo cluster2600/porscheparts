@@ -11,6 +11,24 @@ interpretation, not a measurement. The tolerances, radii, dashboard opening,
 surface finish and aluminum grade remain unknown. The STEP must therefore not
 be sent to manufacturing or installed on a vehicle.
 
+```mermaid
+flowchart LR
+  S["Commercial listing<br/>Ø30.5 × 10.5 mm,<br/>bore 23 → 28 mm"] --> G["F1 build123d ring<br/>conical bore is an interpretation"]
+  G --> S2["Step 02 BREP and mesh<br/>passed"]
+  S2 --> S3["Step 03 slicing<br/>completed_screening, 580 layers"]
+  S3 --> S4["Step 04 route<br/>blocked_missing_input,<br/>7 of 11 gates closed"]
+  S4 --> T["Change of route<br/>turned EN AW-6063 T6, CNC"]
+  T --> V["Ø30.5 still not toleranced<br/>not for manufacturing<br/>or a vehicle"]
+  class S2 ok
+  class S3,T open
+  class S4,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Calculations run
 
 - front radial wall: `(30.5 - 23) / 2`;
@@ -77,6 +95,10 @@ closed for lack of a distortion field and blade clearance. The report's process
 gates are all closed, and a test checks this explicitly:
 `tests/test_993_switch_trim_ring_lpbf_f1.py` fails if any of them opened
 without a coupon or a machine file.
+
+![LPBF geometric slicing screen of the F1 switch trim ring: section per layer, newly unsupported region and support envelope against build height, with the roll_y_45 summary](../../twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-screen.png)
+
+*Step 03 slicing screen at 50 µm, 580 layers (labels in French). It shows the geometry layer by layer; it is not a machine file, and the ring has since moved to a turned route.*
 
 **Reproduction** — the chain requires `numpy`, `matplotlib`, `trimesh`, `shapely`
 and `rtree`:

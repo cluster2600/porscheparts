@@ -121,8 +121,8 @@ so that the search is not repeated.
 - Restomod builders: search done on Tuthill, no published figure found.
 - ~~**Extend the shell model** to the roof, the B-pillars, the wheel arches and
   the windshield frame.~~ **Done.** See `twins/964-chassis/fea/README.md`,
-  sections "Du plancher a la cellule fermee" (from the floor pan to the closed
-  cell) and "Ce que ce classement dit" (what this ranking says). From the bare
+  sections "From the floor pan to the closed cell" and "What this ranking says,
+  and what it does not say". From the bare
   floor pan to the closed cell, K x 3.7 for mass x 2.3. The useful result is
   not that factor but the ranking: the windshield frame, 1.1 kg, returns two
   orders of magnitude more per kilogram than the roof, 10.5 kg, because it

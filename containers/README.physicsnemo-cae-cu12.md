@@ -1,33 +1,33 @@
-# Image PhysicsNeMo CAE CUDA 12
+# PhysicsNeMo CAE CUDA 12 image
 
-Cette image est le module GPU de **surrogate learning** du jumeau numérique.
-Elle installe PhysicsNeMo 2.2.1 sur Python 3.12, PyTorch 2.10 et CUDA 12.8.
-Elle vérifie les imports publics de `DoMINO`, `GeoTransolver` et
-`MeshGraphNet` observés dans le tag NVIDIA `v2.2.1`.
+This image is the GPU **surrogate learning** module of the digital twin. It
+installs PhysicsNeMo 2.2.1 on Python 3.12, PyTorch 2.10 and CUDA 12.8. It
+checks the public imports of `DoMINO`, `GeoTransolver` and `MeshGraphNet`
+observed in the NVIDIA tag `v2.2.1`.
 
-L'extra amont `gnns` n'est pas demandé directement : ses métadonnées 2.2.1
-référencent un paquet PyPI inexistant nommé `stl`. Les dépendances PyTorch
-Geometric réellement nécessaires au smoke test sont donc installées et
-épinglées explicitement avant PhysicsNeMo. Le méta-extra `cu12` n'est pas non
-plus nécessaire aux trois modèles : il ajouterait notamment RAPIDS, cuML et
-DALI à cette image. CUDA 12.8 est fourni par la base et les wheels PyTorch ; les
-outils de préparation de données accélérés resteront dans une image séparée si
-un cas d'usage les exige.
+The upstream `gnns` extra is not requested directly: its 2.2.1 metadata
+references a nonexistent PyPI package named `stl`. The PyTorch Geometric
+dependencies actually needed by the smoke test are therefore installed and
+pinned explicitly before PhysicsNeMo. The `cu12` meta-extra is not needed by
+the three models either: it would add, among others, RAPIDS, cuML and DALI to
+this image. CUDA 12.8 is provided by the base and the PyTorch wheels; the
+accelerated data-preparation tools will stay in a separate image if a use case
+requires them.
 
-`hydra-core`, dépendance de base, exige `antlr4-python3-runtime` 4.9.x, dont
-PyPI ne publie qu'une archive source. Cette archive est la seule exception à
-`--only-binary` : son SHA-256 est épinglé et vérifié, puis elle est convertie en
-wheel sans isolation réseau avant installation. Le smoke test d'image reste la
-preuve que les imports publics attendus sont effectivement résolus.
+`hydra-core`, a base dependency, requires `antlr4-python3-runtime` 4.9.x, for
+which PyPI publishes only a source archive. This archive is the only exception
+to `--only-binary`: its SHA-256 is pinned and verified, then it is converted to
+a wheel without build isolation (`--no-build-isolation`) before installation. The image smoke test
+remains the evidence that the expected public imports actually resolve.
 
-Elle n'embarque volontairement aucun scan, dataset, poids de modèle, fichier
-Porsche, solveur CFD/EF, outil CAO, Omniverse, serveur SSH ou client d'API.
-Les entrées et sorties sont montées à l'exécution.
+It deliberately embeds no scan, dataset, model weights, Porsche file, CFD/FE
+solver, CAD tool, Omniverse, SSH server or API client. Inputs and outputs are
+mounted at run time.
 
-## Construction et vérifications
+## Build and checks
 
-La cible est volontairement `linux/amd64`, qui correspond aux machines Vast.ai
-et aux roues PyTorch Geometric épinglées :
+The target is deliberately `linux/amd64`, which matches the Vast.ai machines and
+the pinned PyTorch Geometric wheels:
 
 ```bash
 docker buildx build \
@@ -38,16 +38,16 @@ docker buildx build \
   .
 ```
 
-Le smoke test par défaut fonctionne sans GPU et sans réseau. Il vérifie Python,
-les versions installées, `pip check` et les trois imports, mais n'interroge pas
-CUDA :
+The default smoke test works without a GPU and without network. It checks
+Python, the installed versions, `pip check` and the three imports, but does not
+query CUDA:
 
 ```bash
 docker run --rm --network none \
   3dprinting993-physicsnemo-cae-cu12:2.2.1
 ```
 
-Le prévol d'une location GPU doit être explicite :
+The preflight of a GPU rental must be explicit:
 
 ```bash
 docker run --rm --network none --gpus all \
@@ -55,11 +55,11 @@ docker run --rm --network none --gpus all \
   physicsnemo-cae-smoke --require-gpu
 ```
 
-Ce second test ajoute la visibilité du GPU et un petit calcul tensoriel CUDA.
-Il ne prouve toujours aucune simulation moteur.
+This second test adds GPU visibility and a small CUDA tensor computation. It
+still proves no engine simulation.
 
-Un job monte son code, ses données de solveur et sa sortie au lieu de les
-copier dans l'image :
+A job mounts its code, its solver data and its output instead of copying them
+into the image:
 
 ```bash
 docker run --rm --gpus all --network none \
@@ -70,103 +70,113 @@ docker run --rm --gpus all --network none \
   python /workspace/jobs/train_surrogate.py
 ```
 
-Avant toute dépense Vast.ai, l'image doit être reconstruite en CI pour
-`linux/amd64`, son smoke test GPU doit passer, elle doit être publiée sur GHCR,
-et la location doit utiliser son **digest immuable**, pas le tag. La liste
-exacte des dépendances résolues est conservée dans
-`/opt/physicsnemo/environment.freeze.txt`.
+Before any Vast.ai spend, the image must be rebuilt in CI for `linux/amd64`,
+its GPU smoke test must pass, it must be published on GHCR, and the rental must
+use its **immutable digest**, not the tag. The exact list of resolved
+dependencies is kept in `/opt/physicsnemo/environment.freeze.txt`.
 
-## Artefact CI verrouillé
+```mermaid
+flowchart LR
+    A["CI rebuild<br/>linux/amd64"] --> B{"GPU smoke<br/>passes?"}
+    B -- no --> X["no Vast.ai spend"]:::stop
+    B -- yes --> C["published on GHCR"]
+    C --> D{"rental uses the<br/>immutable digest?"}
+    D -- "tag only" --> X
+    D -- yes --> E["Vast.ai job"]:::ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+```
 
-Le workflow GitHub Actions no 6 est vert et a publié un manifeste OCI simple
-`linux/amd64`. Le digest, les tailles, les versions, les hashes des recettes et
-les gates fail-closed sont enregistrés dans
+## Locked CI artifact
+
+GitHub Actions workflow run no. 6 is green and published a single-platform
+`linux/amd64` OCI manifest. The digest, sizes, versions, recipe hashes and
+fail-closed gates are recorded in
 [`physicsnemo-cae-cu12.lock.json`](physicsnemo-cae-cu12.lock.json).
 
 ```text
 ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a
 ```
 
-La [preuve CI](https://github.com/cluster2600/porscheparts/actions/runs/33567830241)
-confirme le pull public anonyme du digest et le smoke hors GPU. Elle ne contient
-aucun scan, dataset ou poids. Le runtime GPU, le transport SSH d'une future
-location, les solveurs moteur, l'entraînement et la corrélation au banc restent
-explicitement non vérifiés ; le lock interdit donc encore un job Vast long.
-L'image ne porte pas encore de label de révision OCI, de provenance attestée ni
-de SBOM : l'association au commit repose donc sur l'artefact du workflow, et une
-diffusion externe qualifiée exige encore ces trois éléments.
+The [CI evidence](https://github.com/cluster2600/porscheparts/actions/runs/33567830241)
+confirms the anonymous public pull of the digest and the non-GPU smoke test. It
+contains no scan, dataset or weights. The GPU runtime, the SSH transport of a
+future rental, the engine solvers, training and bench correlation remain
+explicitly unverified; the lock therefore still prohibits a long Vast job. The
+image does not yet carry an OCI revision label, attested provenance or an SBOM:
+the link to the commit therefore rests on the workflow artifact, and a qualified
+external distribution still requires those three elements.
 
-## Frontière solveur / surrogate
+## Solver / surrogate boundary
 
-PhysicsNeMo n'est pas le solveur physique de référence. Le flux admissible est :
+PhysicsNeMo is not the reference physics solver. The admissible flow is:
 
 ```mermaid
 flowchart LR
-    CAD[CAO paramétrique mesurée] --> SOLVER[Solveurs CFD / thermique / EF validés]
-    SOLVER --> DATA[Dataset versionné avec maillage, BC et résidus]
-    TEST[Banc et métrologie] --> CORR[Corrélation physique]
-    DATA --> TRAIN[PhysicsNeMo : entraînement surrogate]
+    CAD[Measured parametric CAD] --> SOLVER[Validated CFD / thermal / FE solvers]
+    SOLVER --> DATA[Versioned dataset with mesh, BCs and residuals]
+    TEST[Bench and metrology] --> CORR[Physical correlation]
+    DATA --> TRAIN[PhysicsNeMo: surrogate training]
     CORR --> TRAIN
-    TRAIN --> HOLDOUT[Validation tenue à l'écart + incertitude / OOD]
-    HOLDOUT -->|gates passées| TWIN[Jumeau accéléré]
-    HOLDOUT -->|hors domaine| SOLVER
+    TRAIN --> HOLDOUT[Held-out validation + uncertainty / OOD]
+    HOLDOUT -->|gates passed| TWIN[Accelerated twin]
+    HOLDOUT -->|out of domain| SOLVER
 ```
 
-- `DoMINO`, `GeoTransolver` et `MeshGraphNet` sont des familles candidates,
-  pas une sélection finale ni des modèles pré-entraînés.
-- Les résultats CFD, thermiques, EF et multibody doivent d'abord provenir de
-  solveurs classiques avec conditions aux limites, convergence et études de
-  maillage documentées.
-- L'entraînement est bloqué tant que ces références et une corrélation physique
-  tenue à l'écart ne sont pas disponibles.
-- Une prédiction PhysicsNeMo ne rend pas une pièce fonctionnelle, sûre ou
-  imprimable. Tolérances, matériaux, fatigue, coupons, CT, usinage, étanchéité,
-  équilibrage et essais banc restent des gates séparées.
+- `DoMINO`, `GeoTransolver` and `MeshGraphNet` are candidate families, not a
+  final selection and not pretrained models.
+- CFD, thermal, FE and multibody results must first come from classical solvers
+  with documented boundary conditions, convergence and mesh studies.
+- Training is blocked as long as these references and a held-out
+  physical correlation are not available.
+- A PhysicsNeMo prediction does not make a part functional, safe or
+  printable. Tolerances, materials, fatigue, coupons, CT, machining, sealing,
+  balancing and bench tests remain separate gates.
 
-## Pourquoi CUDA 12 et pas NGC/CUDA 13
+## Why CUDA 12 and not NGC/CUDA 13
 
-La voie retenue est PhysicsNeMo core avec les extras de maillage nécessaires,
-PyTorch CUDA 12.8 et une image de base CUDA épinglée par digest. Le méta-extra
-`cu12` de PhysicsNeMo est réservé à une éventuelle image data-pipeline parce
-qu'il installe des bibliothèques sans rapport avec les trois imports testés ici.
-La voie CUDA 13 et l'image NGC ne sont pas utilisées tant qu'un prévol du pilote
-de la machine cible n'a pas été archivé. Ce choix évite de confondre
-compatibilité supposée et preuve d'exécution.
+The chosen path is PhysicsNeMo core with the necessary meshing extras, PyTorch
+CUDA 12.8 and a CUDA base image pinned by digest. The PhysicsNeMo `cu12`
+meta-extra is reserved for a possible data-pipeline image because it installs
+libraries unrelated to the three imports tested here. The CUDA 13 path and the
+NGC image are not used until a driver preflight of the target machine has been
+archived. This choice avoids confusing assumed compatibility with evidence of
+execution.
 
-## Licences et provenance logicielle
+## Licenses and software provenance
 
-| Composant | Licence ou condition principale |
+| Component | Main license or condition |
 |---|---|
 | PhysicsNeMo | Apache-2.0 |
 | PyTorch / torchvision | BSD-3-Clause |
-| PyTorch Geometric et extensions | MIT |
+| PyTorch Geometric and extensions | MIT |
 | ANTLR4 Python runtime | BSD-3-Clause |
-| Image de base NVIDIA CUDA/cuDNN | NVIDIA Deep Learning Container License et NVIDIA CUDA Toolkit EULA |
-| Scripts de ce dépôt | licence du dépôt |
+| NVIDIA CUDA/cuDNN base image | NVIDIA Deep Learning Container License and NVIDIA CUDA Toolkit EULA |
+| Scripts in this repository | repository license |
 
-La construction ne transfère aucune licence sur les scans, plans, données
-Porsche ou datasets montés à l'exécution. Un SBOM et les notices générées pour
-l'image publiée restent nécessaires avant diffusion externe, notamment pour
-inventorier les dépendances Python et paquets Ubuntu transitifs.
+The build transfers no license over the scans, drawings, Porsche data or
+datasets mounted at run time. An SBOM and generated notices for the published
+image are still required before external distribution, notably to inventory the
+transitive Python dependencies and Ubuntu packages.
 
-Sources de version : tag officiel
+Version sources: official tag
 [`NVIDIA/physicsnemo v2.2.1`](https://github.com/NVIDIA/physicsnemo/tree/v2.2.1)
-et métadonnées du paquet
+and package metadata
 [`nvidia-physicsnemo 2.2.1`](https://pypi.org/project/nvidia-physicsnemo/2.2.1/).
 
-## Limites actuelles
+## Current limits
 
-- Cette image n'intègre pas les exemples d'entraînement NVIDIA ni un dataset
-  moteur ; les imports seuls ne constituent pas un entraînement.
-- Les roues GNN épinglées rendent cette variante `linux/amd64` uniquement.
-- Les dépendances de premier niveau sont épinglées ; les transitives sont
-  capturées au build, puis figées opérationnellement par le digest de l'image.
-- Les quelques paquets système Ubuntu suivent les correctifs de sécurité
-  disponibles au jour du build ; le digest GHCR et le SBOM, et non une
-  reconstruction ultérieure du même Dockerfile, définissent l'artefact publié.
-- Aucun prévol de pilote NVIDIA ou smoke GPU n'est possible sur un Mac sans GPU
-  NVIDIA. Ces preuves doivent être produites en CI GPU ou sur une location
-  courte avant le job long.
-- Cette image ne comporte ni serveur SSH ni contrôleur Vast.ai ; l'accès et la
-  récupération des artefacts restent la responsabilité du wrapper de
-  déploiement approuvé.
+- This image does not include the NVIDIA training examples or an engine
+  dataset; imports alone do not constitute training.
+- The pinned GNN wheels make this variant `linux/amd64` only.
+- First-level dependencies are pinned; transitive ones are captured at build
+  time, then frozen operationally by the image digest.
+- The few Ubuntu system packages follow the security fixes available on the
+  build date; the GHCR digest and the SBOM, not a later rebuild of the same
+  Dockerfile, define the published artifact.
+- No NVIDIA driver preflight or GPU smoke test is possible on a Mac without an
+  NVIDIA GPU. That evidence must be produced in GPU CI or on a short rental
+  before the long job.
+- This image has neither an SSH server nor a Vast.ai controller; access and
+  artifact retrieval remain the responsibility of the approved deployment
+  wrapper.

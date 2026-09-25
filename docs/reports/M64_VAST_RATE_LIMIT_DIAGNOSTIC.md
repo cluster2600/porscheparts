@@ -1,72 +1,73 @@
-# M64 — gestion bornée des HTTP 429 Vast
+# M64 — bounded handling of Vast HTTP 429
 
-Date : 2026-09-07. Vérification **hors ligne** du correctif, puis déploiement
-du même diff sur le wrapper installé, vérifié identique par `cmp`.
-Les permissions, identités et chemins OpenBao ne sont pas modifiés. Aucune
-location ni requête fournisseur n'a été effectuée par les tests unitaires.
-L'essai réel ultérieur est documenté séparément dans
-`M64_VAST_EXECUTION_20260907.md`.
+Date: 2026-09-07. **Offline** verification of the fix, then deployment of the
+same diff to the installed wrapper, verified identical with `cmp`.
+OpenBao permissions, identities and paths are not modified. No rental or
+provider request was made by the unit tests. The later real attempt is
+documented separately in `M64_VAST_EXECUTION_20260907.md`.
 
-## Diagnostic et correction
+## Diagnosis and fix
 
-Avant correction, `vast_request` propageait immédiatement tout `SafeHttpError`,
-y compris une limitation temporaire HTTP 429 sur une lecture GET. Le scénario
-est reproduit par un mock levant cette exception : pas par un nouvel appel
-payant ou une récupération de secret.
+Before the fix, `vast_request` immediately propagated any `SafeHttpError`,
+including a temporary HTTP 429 rate limit on a GET read. The scenario is
+reproduced by a mock raising this exception: not by a new paid call or a
+secret retrieval.
 
-Le wrapper retente désormais uniquement les **GET Vast avec HTTP 429** : trois
-attentes de 20, 40 et 60 secondes, soit quatre tentatives au maximum. Les
-messages indiquent uniquement le service, le numéro de tentative et le délai :
-ni clé, ni URL, ni corps d'erreur fournisseur. Après épuisement, une erreur 429
-reste levée ; aucune réponse artificiellement vide ni succès n'est retourné.
+The wrapper now retries only **Vast GETs with HTTP 429**: three waits of 20,
+40 and 60 seconds, i.e. four attempts at most. The messages state only the
+service, the attempt number and the delay: no key, no URL, no provider error
+body. After exhaustion, a 429 error is still raised; no artificially empty
+response or success is returned.
 
-POST, PUT, DELETE, PATCH, autres statuts HTTP et indisponibilité réseau ne sont
-pas rejoués. La connexion OpenBao et la lecture du secret restent hors de cette
-boucle, dans leurs fonctions existantes.
+POST, PUT, DELETE, PATCH, other HTTP statuses and network unavailability are
+not replayed. The OpenBao connection and the secret read stay outside this
+loop, in their existing functions.
 
-Le polling de disponibilité SSH/READY de **SimReady seulement** passe de 2 à
-15 secondes, toujours borné par son délai restant. La constante des autres
-workflows reste à 2 secondes. Les vérifications d'image, coût, unicité et
-nettoyage ne sont pas assouplies.
+The SSH/READY availability polling of **SimReady only** goes from 2 to 15
+seconds, still bounded by its remaining delay. The constant of the other
+workflows stays at 2 seconds. Image, cost, uniqueness and cleanup checks are
+not relaxed.
 
-Une lecture fortement limitée peut prendre jusqu'à 120 secondes d'attente
-supplémentaire, en plus des timeouts réseau existants. Un délai externe vérifié
-entre deux appels peut donc être dépassé pendant l'appel bloquant : cette
-correction ne constitue pas une nouvelle garantie de deadline temps réel.
+A heavily rate-limited read can take up to 120 seconds of additional waiting,
+on top of the existing network timeouts. A verified external delay between two
+calls can therefore be exceeded during the blocking call: this fix is not a
+new real-time deadline guarantee.
 
-## Vérifications
+## Checks
 
-Commande :
+Command:
 
 ```sh
 python3 -m unittest discover -s tests -p test_openbao_vastai_wrapper.py -q
 ```
 
-Résultat : **87 tests réussis**, dont cinq nouveaux tests couvrant la reprise
-GET, l'épuisement fail-closed, l'absence de rejeu des mutations, les autres
-erreurs/offline et la séparation de cadence SimReady. Les attentes des nouveaux
-tests sont mockées : aucun sommeil réel ni accès réseau. Les logs de location
-affichés par d'autres tests de cette suite sont des fixtures synthétiques.
+Result: **87 tests passed**, including five new tests covering GET retry,
+fail-closed exhaustion, no replay of mutations, other errors/offline and the
+separation of the SimReady cadence. The waits of the new tests are mocked: no
+real sleep or network access. The rental logs displayed by other tests of this
+suite are synthetic fixtures.
 
-Ce correctif ne démontre ni la disponibilité actuelle d'une offre Vast, ni le
-succès d'une location, ni l'état d'Omniverse, ni une simulation de culasse.
+This fix demonstrates neither the current availability of a Vast offer, nor
+the success of a rental, nor the state of Omniverse, nor a cylinder head
+simulation.
 
-## Diagnostic complémentaire : appariement SSH
+## Additional diagnosis: SSH pairing
 
-Après signalement d'un échec `ssh_authentication_failed`, une lecture hors
-ligne du code révèle un autre défaut : `safe_instance` conservait `ssh_host`
-(potentiellement proxy), mais prenait le port direct `ports[22/tcp].HostPort`
-si `ssh_port` était absent. Une paire hybride pouvait donc être transmise à
+After an `ssh_authentication_failed` failure was reported, an offline reading
+of the code reveals another defect: `safe_instance` kept `ssh_host`
+(potentially a proxy), but took the direct port `ports[22/tcp].HostPort` if
+`ssh_port` was absent. A hybrid pair could therefore be passed to
 `verify_simready_ssh_ready`.
 
-Correction dans le dépôt, puis déployée identiquement (`cmp`) : conserver la paire proxy complète si elle
-existe ; sinon utiliser ensemble `public_ipaddr` et le port direct mappé ; sinon
-laisser les deux valeurs absentes. Les contrôles de format/port et d'identité
-SSH existants restent actifs. Aucun basculement automatique après échec
-d'authentification, aucune clé supplémentaire, aucun relâchement de host key.
+Fix in the repository, then deployed identically (`cmp`): keep the complete
+proxy pair if it exists; otherwise use `public_ipaddr` and the mapped direct
+port together; otherwise leave both values absent. The existing format/port
+and SSH identity checks stay active. No automatic fallback after an
+authentication failure, no additional key, no host key relaxation.
 
-Trois tests supplémentaires couvrent paire proxy complète, port proxy absent
-ou null, et paires incomplètes. **90 tests wrapper réussis** après correction.
-Le snapshot normalisé de l'essai échoué ne conserve pas la provenance du port :
-ce défaut est reproduit synthétiquement, mais **n'est pas établi comme cause de
-l'échec payé**. Aucun nouvel appel live ni location pendant ce diagnostic.
+Three additional tests cover the complete proxy pair, an absent or null proxy
+port, and incomplete pairs. **90 wrapper tests passed** after the fix.
+The normalized snapshot of the failed attempt does not keep the provenance of
+the port: this defect is reproduced synthetically, but **is not established as
+the cause of the paid failure**. No new live call or rental during this
+diagnosis.

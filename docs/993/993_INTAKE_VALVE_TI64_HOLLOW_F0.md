@@ -11,6 +11,24 @@ The F0 therefore uses only the published diameters. Its `109 mm` length, its
 `3 mm` flat head, its conical transition, its cavity, its `5 mm` axial bore and
 its four `1.2 mm` ribs are independent hypotheses.
 
+```mermaid
+flowchart LR
+  S["Published: FVD 49 mm head,<br/>8 mm stem, 120 g"] --> H["Hypotheses: 109 mm length,<br/>cavity, 5 mm bore, four ribs"]
+  H --> G["F0 BREP valid<br/>55.45 g, hollow -23.38 %"]
+  G --> M["Mathematical screens<br/>first mode 190.8 Hz:<br/>not an acceptable separation"]
+  G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
+  M --> V["Not authorized for manufacture,<br/>fitting or an engine"]
+  P --> V
+  class S ok
+  class H,P open
+  class M,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why study additive
 
 The LPBF interest is not to reproduce a solid valve, better obtained by forging

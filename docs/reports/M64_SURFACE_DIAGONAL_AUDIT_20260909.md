@@ -1,118 +1,116 @@
-# M64 — bascules de diagonales et contacts voisins
+# M64 — diagonal flips and neighboring contacts
 
-**Aucune bascule appliquée.** La première proposition améliore certains
-indicateurs, mais échoue au critère local des normales et introduit deux intersections
-avec une face voisine. L'examen des 27 diagonales intérieures voisines ne trouve
-aucune bascule unique strictement améliorante respectant tous les critères.
+**No flip applied.** The first proposal improves some indicators, but fails the
+local normal criterion and introduces two intersections with a neighboring
+face. Examining the 27 neighboring interior diagonals finds no single strictly
+improving flip that meets all the criteria.
 
-Ce calcul suit le [lissage isolé refusé](M64_SURFACE_RELOCATION_20260909.md).
-Il porte sur la même surface MeshAdapt `7af7f207…`, face native 37 :
-2 299 triangles, 22 obstructions au repère de borne SICN de 0,1.
-Ce repère n'est pas un seuil universel CFD. Les coordonnées restent celles
-du scan, sans qualification de l'échelle ou des interfaces M64.
+This computation follows the [rejected isolated smoothing](M64_SURFACE_RELOCATION_20260909.md).
+It concerns the same MeshAdapt surface `7af7f207…`, native face 37: 2,299
+triangles, 22 obstructions at the SICN bound marker of 0.1. This marker is not
+a universal CFD threshold. The coordinates remain those of the scan, with no
+qualification of the scale or of the M64 interfaces.
 
-## Première proposition : gain apparent, refus géométrique
+## First proposal: apparent gain, geometric rejection
 
-Deux connexions de triangles sont remplacées **uniquement en mémoire**,
-avec les mêmes quatre sommets. Les identifiants, coordonnées, raccordements
-orientés et données hors cible restent identiques.
+Two triangle connections are replaced **in memory only**, with the same four
+vertices. The identifiers, coordinates, oriented connections and non-target
+data remain identical.
 
-| Indicateur sur la face 37 | Source | Proposition non appliquée |
+| Indicator on face 37 | Source | Proposal not applied |
 |---|---:|---:|
 | Obstructions | 22 | 21 |
-| Borne minimale | 0,0032268884 | 0,0032268884 |
-| Angle minimal, degrés | 0,085767353 | 0,087457014 |
+| Minimum bound | 0.0032268884 | 0.0032268884 |
+| Minimum angle, degrees | 0.085767353 | 0.087457014 |
 
-La nouvelle petite facette a un produit scalaire exact négatif avec chacune
-des deux anciennes normales. Une contrelecture mathématique distincte confirme
-ce résultat. Une amélioration de forme n'autorise donc pas cette bascule.
+The new small facet has a negative exact dot product with each of the two old
+normals. A separate mathematical cross-reading confirms this result. A shape
+improvement therefore does not authorize this flip.
 
-L'audit d'intersection filtre tous les éléments surfaciques par boîtes
-englobantes fermées, puis contrôle **95 paires**, dont les deux paires internes
-avant/après. Toutes les candidates sont des triangles ; aucun quadrilatère
-ou élément inférieur orphelin ne reste à résoudre dans cette zone.
+The intersection audit filters all surface elements by closed bounding boxes,
+then checks **95 pairs**, including the two internal before/after pairs. All
+candidates are triangles; no quadrilateral or orphan lower-dimensional element
+remains to be resolved in this zone.
 
-Les contacts admissibles sont limités au sommet ou à l'arête partagés par leurs
-identifiants. Le calcul utilise des fractions exactes des coordonnées binary64,
-sans marge géométrique ajoutée. Il trouve **zéro contact non conforme pour
-les anciens triangles et deux nouveaux contacts non conformes avec la face 36**.
-Les points témoins supplémentaires n'appartiennent à aucun des deux anciens
-triangles : les contacts sont introduits par la proposition.
+The admissible contacts are limited to the vertex or edge shared by their
+identifiers. The computation uses exact fractions of the binary64 coordinates,
+with no added geometric margin. It finds **zero non-conforming contacts for the
+old triangles and two new non-conforming contacts with face 36**. The
+additional witness points belong to neither of the two old triangles: the
+contacts are introduced by the proposal.
 
-C'est une preuve sur ces facettes linéaires, pas une mesure de contact physique,
-une preuve de couverture CAO continue ou un audit de toutes les paires du
-maillage. Aucun raccordement CAD n'est redessiné.
+This is a proof on these linear facets, not a measurement of physical contact,
+a proof of continuous CAD coverage or an audit of all pairs of the mesh. No
+CAD blend is redrawn.
 
-## Énumération déterministe autour des 22 obstructions
+## Deterministic enumeration around the 22 obstructions
 
-Les 22 triangles touchent 46 arêtes uniques : 19 arêtes de frontière exclues,
-**27 arêtes intérieures testées une fois**. Chaque proposition conserve les
-sommets et remplace la diagonale de deux triangles de la même face.
+The 22 triangles touch 46 unique edges: 19 boundary edges excluded, **27
+interior edges tested once**. Each proposal keeps the vertices and replaces the
+diagonal of two triangles of the same face.
 
-Les gardes vérifient le contour orienté, l'absence d'une diagonale déjà utilisée,
-les quatre produits de normales avant/après, puis les trois indicateurs
-globaux : compteur non croissant, borne minimale non décroissante et angle
-minimal non décroissant. Il faut au moins un gain strict. Les comparaisons de
-qualité sont rationnelles ; les degrés et décimales servent à l'affichage.
+The guards verify the oriented contour, the absence of an already used
+diagonal, the four before/after normal products, then the three global
+indicators: non-increasing counter, non-decreasing minimum bound and
+non-decreasing minimum angle. At least one strict gain is required. The
+quality comparisons are rational; the degrees and decimals are for display.
 
-| Motif de refus | Nombre de propositions concernées |
+| Rejection reason | Number of proposals concerned |
 |---|---:|
-| Normale locale hors critère | 14 |
-| Nouvelle diagonale déjà présente | 4 |
-| Aucun gain strict des trois indicateurs | 8 |
-| Borne minimale dégradée | 3 |
-| Angle minimal dégradé | 4 |
-| Compteur aggravé | 1 |
+| Local normal outside the criterion | 14 |
+| New diagonal already present | 4 |
+| No strict gain in the three indicators | 8 |
+| Minimum bound degraded | 3 |
+| Minimum angle degraded | 4 |
+| Counter worsened | 1 |
 
-Les motifs ne sont **pas exclusifs** ; leur somme n'est pas le nombre d'essais.
-Aucune proposition ne passe. Les séquences de plusieurs bascules ou avec une
-étape intermédiaire neutre ne sont pas explorées : aucune impossibilité générale
-d'améliorer le maillage n'est déduite de ces 27 essais.
-Les huit propositions neutres n'ont pas atteint les contrôles finaux de
-topologie ; leurs UV et contacts ne sont pas vérifiés. Elles ne sont donc pas
-déclarées admissibles pour une future séquence.
-
-## Conséquence pratique et preuves conservées
-
-La prochaine piste choisie est la discrétisation des arêtes avec remaillage
-conjoint des faces raccordées. Le périmètre proposé est l'arête 82 et les
-faces 30/37 ; l'arête 93, la face 36 et les 72 faces à quadrilatères restent
-protégées. Un profil à 64 nœuds avec progression vers le petit segment voisin
-est un paramètre d'essai numérique, pas une nouvelle cote de pièce. Il reste
-à produire et contrôler. Une simple subdivision d'un long côté peut
-transférer le triangle mince à côté ; elle ne suffit pas à elle seule.
-Les courbes CAO et le contour Porsche restent fixes.
-
-Le code Gmsh 4.15.2 inspecté montre que `generate(1)` efface les faces déjà
-maillées. La future génération 1D doit donc précéder la réinjection du maillage
-de référence ou utiliser un modèle temporaire séparé. Aucun appel 1D n'est
-exécuté dans ce lot.
-
-Les 21 tests logiciels distincts passent : sept pour le premier diagnostic,
-quatre pour l'énumération et dix pour les contacts exacts. La commande générale
-`make check` se termine avec le code 0 ; certains contrôles optionnels sont
-signalés comme ignorés par leur environnement. Ce résultat vérifie le dépôt,
-pas les performances physiques de la culasse. Les calculs purs
-durent respectivement 2,292 s, 1,083 s et 0,867 s. Un travailleur de requête UV
-native a été préparé mais **n'a pas été exécuté**, faute de candidat retenu.
-Aucun nouvel export MSH/CAO, aucun calcul CFD/thermique/LPBF ni nouvelle
-dépense Vast dans ce lot.
-
-Les programmes, tests et reçus sont épinglés dans le
-[registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_surface_diagonal_audit`. Les données géométriques et témoins
-d'intersection détaillés restent privés. La surface de référence et le cœur
-volumique diagnostique restent inchangés ; aucune aptitude à la fabrication
-ou puissance moteur obtenue n'est déclarée.
+The reasons are **not exclusive**; their sum is not the number of trials. No
+proposal passes. Sequences of several flips or with a neutral intermediate
+step are not explored: no general impossibility of improving the mesh is
+inferred from these 27 trials. The eight neutral proposals did not reach the
+final topology checks; their UVs and contacts are not verified. They are
+therefore not declared admissible for a future sequence.
 
 ```mermaid
 flowchart LR
-    A["Surface source : 22 obstructions"] --> B["Première bascule : gain apparent"]
-    B --> C["Normales hors critère et deux intersections introduites"]
-    C --> D["Proposition refusée"]
-    A --> E["27 diagonales voisines testées"]
-    E --> F["Aucun gain strict admissible"]
-    D --> G["Aucune application ni modification du contour"]
+    A["Source surface: 22 obstructions"] --> B["First flip: apparent gain"]
+    B --> C["Normals outside criterion and two intersections introduced"]
+    C --> D["Proposal rejected"]
+    A --> E["27 neighboring diagonals tested"]
+    E --> F["No admissible strict gain"]
+    D --> G["Nothing applied, contour unchanged"]
     F --> G
-    G --> H["Examiner la discrétisation des arêtes avec les faces voisines"]
+    G --> H["Examine edge discretization with the neighboring faces"]
 ```
+
+## Practical consequence and evidence kept
+
+The next avenue chosen is the discretization of the edges with a joint remesh
+of the connected faces. The proposed perimeter is edge 82 and faces 30/37;
+edge 93, face 36 and the 72 faces with quadrilaterals remain protected. A
+64-node profile with a progression toward the small neighboring segment is a
+numerical trial parameter, not a new part dimension. It remains to be produced
+and checked. A simple subdivision of a long side can move the thin triangle
+next to it; it is not enough on its own. The CAD curves and the Porsche
+contour remain fixed.
+
+The inspected Gmsh 4.15.2 code shows that `generate(1)` erases faces already
+meshed. The future 1D generation must therefore precede the reinjection of the
+reference mesh or use a separate temporary model. No 1D call is executed in
+this batch.
+
+The 21 distinct software tests pass: seven for the first diagnostic, four for
+the enumeration and ten for the exact contacts. The general command
+`make check` ends with code 0; some optional checks are reported as skipped by
+their environment. This result verifies the repository, not the physical
+performance of the cylinder head. The pure computations last respectively
+2.292 s, 1.083 s and 0.867 s. A native UV query worker was prepared but **was
+not executed**, for lack of a retained candidate. No new MSH/CAD export, no
+CFD/thermal/LPBF computation and no new Vast spending in this batch.
+
+The programs, tests and receipts are pinned in the
+[evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_surface_diagonal_audit`. The geometric data and detailed
+intersection witnesses remain private. The reference surface and the
+diagnostic volume core remain unchanged; no manufacturing suitability or
+engine power obtained is declared.

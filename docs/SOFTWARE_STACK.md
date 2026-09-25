@@ -55,6 +55,23 @@ the `linux/amd64` CPU containers. Vast.ai is rented only for CUDA/RTX,
 PhysicsNeMo, dense photogrammetry, Content Agents or OVRTX, after the image,
 the inputs, the cost and the teardown mechanism are locked.
 
+Where each part of the chain runs, and what a green run can and cannot say:
+
+```mermaid
+flowchart LR
+    MAC["Mac<br/>controller, catalog,<br/>tests, review, documentation"] --> X1["X1 / Kali<br/>linux/amd64 CPU containers"]
+    MAC --> G{"Gates before paid GPU:<br/>image by digest, GPU smoke,<br/>frozen inputs, cost, teardown"}
+    G --> VAST["Vast.ai, rented only for<br/>CUDA/RTX, PhysicsNeMo, dense photogrammetry,<br/>Content Agents or OVRTX"]
+    X1 --> OUT["Green output"]
+    VAST --> OUT
+    OUT --> NO["Validates the software chain, never part<br/>accuracy, engine physics or a<br/>manufacturing authorization"]:::stop
+    SUP["Supplier machine preparation<br/>blocked until the route is qualified"]:::open
+    LAB["Correlation in lab or at supplier<br/>not started for the F0 parts"]:::open
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## Foundation
 
 | Layer | Stack | Role |

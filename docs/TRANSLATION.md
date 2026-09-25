@@ -98,11 +98,43 @@ h=$(sha256sum FILE | cut -c1-64); git grep -F "$h" && echo "PINNED — do not ed
 | échappement | exhaust |
 | moteur, admission et refroidissement | engine, intake and cooling |
 
+## Diagrams and images
+
+Readers understand a pipeline faster from a picture than from a paragraph. Every
+translated page should earn at least one visual when its content has a shape — a
+flow, a hierarchy, a sequence of gates, a timeline, a comparison.
+
+- **Mermaid first.** GitHub renders ```` ```mermaid ```` blocks natively, in both
+  light and dark themes. Use `flowchart` for pipelines and dependencies,
+  `stateDiagram-v2` for status and gate progressions, `timeline` or `gantt` for
+  dated sequences, `pie` for shares, `xychart-beta` for small numeric series,
+  `mindmap` for inventories.
+- **Only what the page already says.** A diagram restates sourced content; it
+  never adds a claim, a number or a relationship that the text does not carry.
+  Numbers in a chart must be copied from the page or from a record.
+- **Show the stop signs.** Where a flow ends in "prohibited", "failed closed" or
+  "not validated", draw that end explicitly. Suggested classes:
+  `classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;`
+  `classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;`
+  `classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;`
+  Never name a class `root` (it collides with Mermaid internals).
+- **Keep diagrams small**: about 12 nodes at most; split rather than cram. Put
+  `<br/>` in labels instead of long lines, and quote labels containing
+  punctuation: `A["Ti-6Al-4V (LPBF)"]`.
+- **Images: existing files only.** Embed PNG/SVG/GIF already in the repository
+  (renders, screens, figures under `evidence/` may be *linked or embedded*, never
+  edited), with a relative path, a descriptive alt text and a one-line italic
+  caption saying what it shows and what it does not prove. Never generate an
+  image that looks like a photograph or a rendering of a real part.
+- Check the page still renders: balanced code fences, and each Mermaid block
+  parses (if `npx -y @mermaid-js/mermaid-cli` is available, render it once).
+
 ## Phases
 
 | phase | scope | state |
 |---|---|---|
 | 1 | README, top-level documents, generators (parts table, part pages, `make help`), catalogue part names and descriptions, core `docs/*.md`, README figures | done |
 | 2 | remaining `docs/*.md`, `docs/993/` (with the generated print-screen sections), `docs/research/`, `docs/decisions/`, `docs/media/`, catalogue READMEs and templates, CHANGELOG | done |
-| 3 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | open |
-| 4 | `docs/reports/`, twin READMEs outside `evidence/`, file renames with redirects | open |
+| 3 | `docs/reports/`, twin, container, deploy and simulation READMEs outside `evidence/`, catalogue twin records; diagrams and images across the docs | done |
+| 4 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | open |
+| 5 | file and directory renames, with redirects | open |

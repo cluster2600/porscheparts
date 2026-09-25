@@ -16,6 +16,22 @@ References:
 [Roadster-Fashion commercial hook](https://shop.roadster-fashion.de/de/reparaturteil-federhaken-am-scheinwerfer.html) and
 [official EOS M 290 / AlSi10Mg / 30 µm route](https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alsi10mg-eos-m-290-30um).
 
+```mermaid
+flowchart LR
+  S["No public dimension<br/>of the hook"] --> G["Independent F0 hypothesis<br/>16 × 8 × 15 mm"]
+  G --> R["Screens run: analytical,<br/>LPBF slicing, CalculiX,<br/>OpenUSD, rigid bodies"]
+  R --> B["Blocked: scan, spring load,<br/>headlamp temperatures,<br/>hot card, first article"]
+  B --> V["Not to be printed for fitting,<br/>bonded or installed"]
+  class S,B open
+  class R open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Material and process chosen for the screening
 
 The candidate route is `EOS Aluminium AlSi10Mg`, material set

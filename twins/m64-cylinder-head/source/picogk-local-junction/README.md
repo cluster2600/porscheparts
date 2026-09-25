@@ -1,54 +1,64 @@
-# Raccord local PicoGK — témoin avant toute culasse
+# PicoGK local junction — witness before any cylinder head
 
-Ce module teste une **fermeture morphologique locale** de rayon exploratoire
-1 unité, via `voxFillet(1)` (offset +1 puis −1). Il ne crée ni congé B-Rep
-exact, ni preuve G1, ni corps M64, ni validation thermique ou de fabrication.
-Le masque conserve le volume de gaz initial et n'autorise qu'un ajout local.
-Il ne suffit pas à établir la protection : les occupations sont comparées
-après tous les booléens. Correction de lecture du runtime : `RebuildGrid` est
-appelée mais désactivée par un `return` inconditionnel dans la révision
-épinglée ; aucune reconstruction effective ne doit lui être attribuée.
+This module tests a **local morphological closing** of exploratory radius
+1 unit, via `voxFillet(1)` (offset +1 then −1). It creates no exact B-Rep
+fillet, no G1 proof, no M64 body, and no thermal or manufacturing validation.
+The mask keeps the initial gas volume and allows only a local addition. It is
+not enough to establish the protection: the occupancies are compared after all
+the Booleans. Runtime reading correction: `RebuildGrid` is called but disabled
+by an unconditional `return` in the pinned revision; no effective
+reconstruction must be attributed to it.
 
-`criteria.json` fixe les écrans avant exécution : zéro changement hors ROI et
-aux interfaces protégées, zéro perte du gaz initial et zéro contact de l'ajout
-avec le bord du masque, pour les deux conventions `<0` et `<=0`. Le contrôle
-porte sur tous les nœuds de la grille native englobante, pas sur une surface
-continue entre ces nœuds. La comparaison de résolutions 0,2/0,1 serait un écran
-de stabilité, pas une preuve de convergence asymptotique.
+`criteria.json` fixes the screens before execution: zero change outside the ROI
+and at the protected interfaces, zero loss of the initial gas and zero contact of
+the addition with the mask boundary, for both conventions `<0` and `<=0`. The
+check covers all nodes of the enclosing native grid, not a continuous surface
+between these nodes. The 0.2/0.1 resolution comparison would be a stability
+screen, not a proof of asymptotic convergence.
 
-## Résultat du 8 septembre 2026
+## Result of September 8, 2026
 
-Le témoin constitué de deux cylindres coaxiaux étagés a été exécuté à 0,2,
-sur le runtime x86 épinglé, 2 CPU / 4 Gio et timeout 300 s. Il a terminé en
-6,233 s avec un pic processus de 129 445 888 octets. Sur 1 157 625 nœuds,
-828 passent de l'extérieur au gaz ; les quatre compteurs de protection
-restent nuls pour les deux conventions de zéro.
+The witness, made of two stepped coaxial cylinders, was run at 0.2, on the pinned
+x86 runtime, 2 CPUs / 4 GiB and a 300 s timeout. It finished in 6.233 s with a
+process peak of 129,445,888 bytes. Of 1,157,625 nodes, 828 change from outside to
+gas; the four protection counters stay at zero for both zero conventions.
 
-**Le lot est néanmoins arrêté au témoin**, avant 0,1 et avant la géométrie
-privée. Le contre-contrôle des STL bruts trouve 496 triangles d'aire exactement
-nulle dans le candidat et 8 dans l'ajout ; ces maillages ne sont pas des
-2-variétés fermées. Il n'y a pas d'arête d'incidence un, mais des incidences
-supérieures à deux : cela ne prouve donc pas la présence de trous physiques.
-Les nombreuses composantes contenant ces triangles dégénérés ne sont pas
-interprétées comme des cavités. Aucun triangle n'est supprimé par l'auditeur.
+**The batch is nevertheless stopped at the witness**, before 0.1 and before the
+private geometry. The counter-check of the raw STLs finds 496 triangles of
+exactly zero area in the candidate and 8 in the addition; these meshes are not
+closed 2-manifolds. There is no edge of incidence one, but there are incidences
+greater than two: this therefore does not prove the presence of physical holes.
+The many components containing these degenerate triangles are not interpreted as
+cavities. No triangle is deleted by the auditor.
 
-Le résidu entre différence des volumes globaux et volume de l'ajout booléen
-est 0,860474131 unité³, non expliqué. Les volumes sont intégrés depuis les
-triangles orientés, non repris de `CalculateProperties` qui remaille le champ.
-Les STL et les reçus sont préservés ; les champs intermédiaires de cette passe
-n'ont pas été sérialisés en VDB. Une reprise exigerait une nouvelle exécution
-tracée, pas une prétendue réutilisation de champs inexistants.
+```mermaid
+flowchart TD
+    A["Witness: two stepped cylinders<br/>step 0.2, voxFillet(1)"] --> B["Four protection counters<br/>zero for &lt;0 and &lt;=0"]:::ok
+    B --> C{"Raw STL audit"}
+    C --> D["496 + 8 zero-area triangles<br/>not closed 2-manifolds"]:::stop
+    D --> E["Stopped at the witness:<br/>no step 0.1, no private geometry"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-## Fichiers et exécution
+The residual between the difference of the global volumes and the volume of the
+Boolean addition is 0.860474131 unit³, unexplained. The volumes are integrated
+from the oriented triangles, not taken from `CalculateProperties`, which remeshes
+the field. The STLs and receipts are preserved; the intermediate fields of this
+pass were not serialized to VDB. A resumption would require a new traced run,
+not a supposed reuse of nonexistent fields.
 
-- `Program.cs` accepte uniquement `--witness` tant que ce garde est en échec.
-- `criteria.json` : critères et source de la future admission, non utilisée.
-- `audit_mesh.py` : indexe uniquement les coordonnées de sommets exactement
-  identiques puis contrôle les triangles originaux, sans arrondi ou réparation.
-- `tests/test_picogk_local_junction.py` : contrats préenregistrés et régression
-  de l'auditeur avec un triangle nul et une orientation inversée.
+## Files and execution
 
-Dans l'image existante (pas de téléchargement ni nouvelle location) :
+- `Program.cs` accepts only `--witness` as long as this guard is failing.
+- `criteria.json`: criteria and source of the future intake, not used.
+- `audit_mesh.py`: indexes only exactly identical vertex coordinates, then
+  checks the original triangles, without rounding or repair.
+- `tests/test_picogk_local_junction.py`: preregistered contracts and a
+  regression of the auditor with a zero triangle and an inverted orientation.
+
+In the existing image (no download or new rental):
 
 ```sh
 dotnet build LocalJunction.csproj -c Release -o bin \
@@ -57,28 +67,28 @@ timeout --signal=TERM --kill-after=10 300 \
   dotnet bin/LocalJunction.dll --witness criteria.json NOUVEAU_DOSSIER 0.2
 ```
 
-Le réseau était désactivé. La compilation a réussi avec un avertissement
-NU1900 : la consultation des vulnérabilités NuGet était indisponible, pas les
-packages déjà présents. Un exit 0 natif signifie uniquement que les compteurs
-d'occupation passent. L'audit indépendant retourne 3 et bloque la suite.
+The network was disabled. The build succeeded with a NU1900 warning: the NuGet
+vulnerability lookup was unavailable, not the packages already present. A
+native exit 0 means only that the occupancy counters pass. The independent
+audit returns 3 and blocks the rest.
 
-## Compléments indépendants sans écraser les reçus initiaux
+## Independent complements, without overwriting the initial receipts
 
-`audit_surface_topology.py` contrôle la connexité par toutes les incidences,
-les liens de sommets et la collinéarité par arithmétique dyadique entière,
-sans réparation. Les trois STL forment chacun une seule composante ; le
-candidat reste rejeté avec 552 liens invalides. Les anciens nombres de groupes
-issus de `Trimesh.split` ne sont pas un inventaire de cavités.
+`audit_surface_topology.py` checks connectedness through all incidences, the
+vertex links and collinearity by exact dyadic integer arithmetic, without
+repair. The three STLs each form a single component; the candidate stays
+rejected with 552 invalid links. The old group counts from `Trimesh.split` are
+not an inventory of cavities.
 
-`exact_zero_countertrial.py` retire seulement les produits vectoriels float64
-nuls dans une copie en mémoire, sans écrire de STL. Il reste 340 arêtes
-non-manifold sur le candidat : ce contre-essai est lui aussi rejeté.
+`exact_zero_countertrial.py` removes only the float64 cross products that are
+zero, in an in-memory copy, without writing any STL. 340 non-manifold edges
+remain on the candidate: this counter-trial is rejected as well.
 
-Le libellé historique `raw_native_SDF_units="voxel_units_sign_only"` est
-incorrect. Pour ce témoin, `GetZSlice` recopie les valeurs dans les unités
-géométriques du callback, sans conversion. Les compteurs de signes restent
-valides ; aucun résultat de distance continue n'était établi par ce reçu.
-Le programme et ses reçus d'exécution restent inchangés pour traçabilité.
+The historical label `raw_native_SDF_units="voxel_units_sign_only"` is
+incorrect. For this witness, `GetZSlice` copies the values in the geometric
+units of the callback, without conversion. The sign counters remain valid; no
+continuous distance result was established by this receipt. The program and its
+execution receipts remain unchanged for traceability.
 
-Références épinglées : [PicoGK, opération de fermeture](https://github.com/leap71/PicoGK/blob/0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3/Base/Voxels.cs#L613-L643)
-et [kernel, booléens, slices et reconstruction désactivée](https://github.com/leap71/PicoGKRuntime/blob/0f26321c18ed878a7820ef769c38fd5d49d39242/Source/PicoGKVdbVoxels.h).
+Pinned references: [PicoGK, closing operation](https://github.com/leap71/PicoGK/blob/0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3/Base/Voxels.cs#L613-L643)
+and [kernel, Booleans, slices and disabled reconstruction](https://github.com/leap71/PicoGKRuntime/blob/0f26321c18ed878a7820ef769c38fd5d49d39242/Source/PicoGKVdbVoxels.h).

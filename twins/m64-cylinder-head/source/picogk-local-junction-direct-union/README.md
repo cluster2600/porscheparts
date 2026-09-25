@@ -1,82 +1,94 @@
-# Témoin local — union directe, état rejeté
+# Local witness — direct union, rejected state
 
-Cette variante conserve les sources et résultats de la première formulation.
-Elle construit `A ∪ (C ∩ R)`, avec `C = fermeture(A)` et un rayon exploratoire
-de 1 unité. L'identité avec `A ∪ ((C \ A) ∩ R)` vaut pour tous les ensembles,
-sans supposer `C ⊇ A`. Elle n'implique pas que leurs champs discrets, ni leurs
-maillages extraits, soient identiques. L'ajout `(C \ A) ∩ R` est conservé comme
-diagnostic : il ne participe plus à la construction du candidat.
+This variant keeps the sources and results of the first formulation. It builds
+`A ∪ (C ∩ R)`, with `C = closing(A)` and an exploratory radius of 1 unit. The
+identity with `A ∪ ((C \ A) ∩ R)` holds for all sets, without assuming
+`C ⊇ A`. It does not imply that their discrete fields, or their extracted
+meshes, are identical. The addition `(C \ A) ∩ R` is kept as a diagnostic: it no
+longer takes part in building the candidate.
 
-Seul le témoin synthétique de deux cylindres étagés a été exécuté au pas 0,2,
-sur Kali, avec 2 CPU / 4 Gio et une limite de 300 s. Ni culasse privée,
-ni second pas 0,1, ni nouveau B-Rep n'ont été traités.
+Only the synthetic witness of two stepped cylinders was run, at step 0.2, on
+Kali, with 2 CPUs / 4 GiB and a 300 s limit. No private cylinder head, no second
+step of 0.1 and no new B-Rep were processed.
 
-## Résultat conservé
+## Kept result
 
-Le calcul natif a terminé en 4,737 s ; pic mémoire processus : 179 163 136
-octets. Sur 1 157 625 nœuds natifs comparables, les compteurs de changement
-d'occupation hors ROI, aux protections, de perte du gaz initial et de contact
-de l'ajout avec le bord du masque sont tous nuls, pour `<0` et `<=0`.
-Les nœuds modifiés sont respectivement 1 944 et 828. Ce sont des résultats
-de grille, pas une preuve d'invariance d'une surface continue.
+The native calculation finished in 4.737 s; process memory peak: 179,163,136
+bytes. Of 1,157,625 comparable native nodes, the occupancy change counters
+outside the ROI, at the protections, for loss of the initial gas and for contact
+of the addition with the mask boundary are all zero, for `<0` and `<=0`. The
+modified nodes number 1,944 and 828 respectively. These are grid results, not a
+proof of invariance of a continuous surface.
 
-L'audit des valeurs du champ détecte **72 changements hors ROI**, de maximum
-brut **0,0012884736061096191 unité de longueur native**. Aucun changement de
-valeur n'est détecté aux protections échantillonnées. L'invariance du champ
-hors ROI n'est donc pas établie, malgré les signes inchangés.
+The audit of the field values detects **72 changes outside the ROI**, with a raw
+maximum of **0.0012884736061096191 native length unit**. No value change is
+detected at the sampled protections. The invariance of the field outside the ROI
+is therefore not established, despite the unchanged signs.
 
-| Maillage brut | Triangles | Aire exactement nulle | Arêtes d'incidence > 2 |
+| Raw mesh | Triangles | Exactly zero area | Edges of incidence > 2 |
 |---|---:|---:|---:|
-| Avant | 89 708 | 0 | 0 |
-| Après | 90 028 | 16 | 16 |
-| Ajout diagnostique | 4 464 | 8 | 8 |
+| Before | 89,708 | 0 | 0 |
+| After | 90,028 | 16 | 16 |
+| Diagnostic addition | 4,464 | 8 | 8 |
 
-**Le témoin reste rejeté avant toute culasse.** L'auditeur réindexe uniquement
-les coordonnées exactement identiques, conserve toutes les faces et désactive
-explicitement la réparation lors de la recherche de composantes
-(`repair=False`). Ces composantes ne sont pas interprétées comme des cavités.
-Aucune arête d'incidence un ne permet ici de conclure à des trous physiques.
-Le résidu entre différence des volumes triangulaires globaux et volume de
-l'ajout diagnostique est **3,618739229847031 unité³**, non expliqué. Les trois
-isosurfaces sont discrétisées séparément ; ce résidu reste visible et n'est
-pas utilisé comme preuve de conservation.
+**The witness stays rejected before any cylinder head.** The auditor reindexes
+only exactly identical coordinates, keeps all faces and explicitly disables
+repair when searching for components (`repair=False`). These components are not
+interpreted as cavities. No edge of incidence one allows concluding here that
+there are physical holes. The residual between the difference of the global
+triangle volumes and the volume of the diagnostic addition is
+**3.618739229847031 unit³**, unexplained. The three isosurfaces are discretized
+separately; this residual stays visible and is not used as proof of
+conservation.
 
-## Erratum obligatoire pour lire le reçu
+```mermaid
+flowchart TD
+    A["A ∪ (C ∩ R), step 0.2<br/>synthetic witness only"] --> B["Occupancy counters<br/>zero for &lt;0 and &lt;=0"]:::ok
+    A --> C["Field values: 72 changes outside<br/>the ROI, invariance not established"]:::stop
+    A --> D["Raw meshes: 16 and 8<br/>zero-area triangles"]:::stop
+    D --> E["rejected_raw_mesh_screen<br/>audit exit 3"]:::stop
+    E --> F["No cylinder head,<br/>no step 0.1"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Le [fichier d'erratum](interpretation-erratum.json) est lié aux empreintes
-exactes du programme exécuté et de ses reçus, qui ne sont pas réécrits.
-Les champs nommés `native_voxel_units` et les conversions `times_h` du reçu
-initial sont mal libellés. Dans ce runtime, `RenderImplicit` reçoit les
-coordonnées monde via `vecToMM`, stocke les distances du callback sans division
-par le pas, puis `GetZSlice` copie les valeurs directement. L'ABI C et le mode
-C# `SignedDistance` n'ajoutent aucune conversion. **Il ne faut pas multiplier
-le delta par 0,2.** Pour ce témoin synthétique, ces longueurs sont les unités
-monde nommées MM par PicoGK ; cela ne certifie pas l'échelle du scan privé.
-Ce delta de champ n'est pas une borne de déplacement de la surface.
+## Mandatory erratum for reading the receipt
 
-Une autre correction concerne l'explication du runtime : les booléens
-appellent `RebuildGrid`, mais la version épinglée retourne immédiatement
-aux lignes 773–776. Elle n'exécute donc pas sa reconstruction. Cette dernière
-ne peut pas être présentée comme la cause démontrée des défauts observés.
-Les [sources exactes et lignes contrôlées](interpretation-erratum.json)
-permettent de vérifier ces deux corrections.
+The [erratum file](interpretation-erratum.json) is bound to the exact digests of
+the executed program and of its receipts, which are not rewritten. The fields
+named `native_voxel_units` and the `times_h` conversions of the initial receipt
+are mislabeled. In this runtime, `RenderImplicit` receives the world coordinates
+via `vecToMM`, stores the callback distances without dividing by the step, then
+`GetZSlice` copies the values directly. The C ABI and the C# `SignedDistance`
+mode add no conversion. **The delta must not be multiplied by 0.2.** For this
+synthetic witness, these lengths are the world units named MM by PicoGK; this
+does not certify the scale of the private scan. This field delta is not a bound
+on the surface displacement.
 
-## Champs et reproductibilité
+Another correction concerns the explanation of the runtime: the Booleans call
+`RebuildGrid`, but the pinned version returns immediately at lines 773–776. It
+therefore does not run its reconstruction. That reconstruction cannot be
+presented as the demonstrated cause of the observed defects. The
+[exact sources and checked lines](interpretation-erratum.json) allow both
+corrections to be verified.
 
-Six champs natifs sont enregistrés dans `native-fields.vdb` : `original_A`,
+## Fields and reproducibility
+
+Six native fields are recorded in `native-fields.vdb`: `original_A`,
 `closing_C`, `ROI_R`, `C_intersect_R`, `direct_candidate`, `diagnostic_added`.
-La relecture vérifie les noms, le nombre, l'échelle de métadonnées et l'accès
-à des champs non vides. **L'identité des valeurs avant/après sérialisation
-n'a pas été contrôlée.**
+The rereading verifies the names, the count, the metadata scale and access to
+non-empty fields. **The identity of the values before/after serialization was
+not checked.**
 
-`Program.cs` est figé dans sa version exécutée pour assurer la provenance ;
-ses anciennes étiquettes d'unités exigent l'erratum. `criteria.json` contient
-les gardes préenregistrés, `audit_mesh.py` l'audit brut, et
-`tests/test_picogk_direct_union_junction.py` les tests de contrat et d'identité
-ensembliste. Un exit 0 natif signifie uniquement réussite des gardes
-d'occupation, avec SDF et maillage encore à examiner. L'audit indépendant
-a retourné 3 (`rejected_raw_mesh_screen`).
+`Program.cs` is frozen in its executed version to ensure provenance; its old
+unit labels require the erratum. `criteria.json` contains the preregistered
+guards, `audit_mesh.py` the raw audit, and
+`tests/test_picogk_direct_union_junction.py` the contract and set-identity
+tests. A native exit 0 means only that the occupancy guards passed, with the SDF
+and the mesh still to be examined. The independent audit returned 3
+(`rejected_raw_mesh_screen`).
 
-Ce témoin ne prouve ni raccord G1, ni performance fluidique/thermique,
-ni imprimabilité. Toute extraction nettoyée éventuelle doit rester un
-contre-essai séparé, sans effacer le rejet du maillage brut.
+This witness proves no G1 junction, no fluid/thermal performance and no
+printability. Any eventual cleaned extraction must remain a separate
+counter-trial, without erasing the rejection of the raw mesh.

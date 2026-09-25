@@ -1,156 +1,158 @@
-# M64 — correction ciblée des transitions hexaèdre/pyramide
+# M64 — targeted correction of the hexahedron/pyramid transitions
 
-Le [diagnostic précédent](M64_DEFECT_LOCALISATION_20260909.md) a isolé
-190 transitions à faible poids d'interpolation. **189 sont maintenant corrigées,
-avec 25 cellules à faible déterminant et 66 faces trop non orthogonales en moins,
-sans nouvel identifiant défectueux dans les ensembles comparés. Les cinq familles
-de qualité restent toutefois refusées.** Ce sont
-des cellules du domaine d'air, pas une modification de la culasse métallique.
-La CAO, le contour Porsche et les interfaces moteur ne changent pas dans ce lot.
+The [previous diagnostic](M64_DEFECT_LOCALISATION_20260909.md) isolated
+190 transitions with a low interpolation weight. **189 are now corrected,
+with 25 fewer low-determinant cells and 66 fewer excessively non-orthogonal faces,
+and no new defective identifier in the compared sets. The five quality
+families nevertheless remain refused.** These are
+cells of the air domain, not a change to the metal cylinder head.
+The CAD, the Porsche contour and the engine interfaces do not change in this batch.
 
-## Mesure effectivement exécutée
+## Measurement actually executed
 
-Un lecteur C++ est compilé et exécuté avec **OpenFOAM Foundation
-14-7b05503f98a8**, sur le cas original de 785 883 cellules. Il lit les centres
-de faces/cellules, aires orientées, volumes et poids d'interpolation natifs.
-Il ne déplace aucun point, ne recolle pas le maillage, ne convertit pas la
-géométrie et ne lance aucun solveur. Le cas source est monté en lecture seule.
+A C++ reader is compiled and run with **OpenFOAM Foundation
+14-7b05503f98a8**, on the original case of 785,883 cells. It reads the native
+face/cell centers, oriented areas, volumes and interpolation weights.
+It moves no point, does not re-stitch the mesh, does not convert the
+geometry and launches no solver. The source case is mounted read-only.
 
-Les 190 faces correspondent exactement à 190 hexas, 190 pyramides et
-190 sommets de pyramides distincts. Ces sommets sont tous internes au domaine ;
-leurs étoiles comprennent **1 142 tétraèdres**, sans tétra partagé entre étoiles.
-Les 99 470 faces externes sont recensées séparément.
+The 190 faces correspond exactly to 190 hexes, 190 pyramids and
+190 distinct pyramid apexes. These apexes are all internal to the domain;
+their stars comprise **1,142 tetrahedra**, with no tet shared between stars.
+The 99,470 external faces are counted separately.
 
-| Mesure | Résultat sur les 190 interfaces |
+| Measurement | Result over the 190 interfaces |
 |---|---|
-| Poids d'interpolation minimal des deux côtés | 0,041395602449 à 0,041395602756 ; seuil natif 0,05 |
-| Distance normale centre hexa / face | Environ 1,0000 × 10⁻⁴ |
-| Distance normale centre pyramide / face | Environ 4,3183 × 10⁻⁶ |
-| Hauteur normale du sommet de pyramide | Environ 1,7273 × 10⁻⁵ |
-| Épaisseur normale de l'hexa | Environ 2,0000 × 10⁻⁴ |
-| Rapport volume hexa / pyramide | Environ 34,736 |
+| Minimum interpolation weight on both sides | 0.041395602449 to 0.041395602756; native threshold 0.05 |
+| Normal distance hex center / face | About 1.0000 × 10⁻⁴ |
+| Normal distance pyramid center / face | About 4.3183 × 10⁻⁶ |
+| Normal height of the pyramid apex | About 1.7273 × 10⁻⁵ |
+| Normal thickness of the hex | About 2.0000 × 10⁻⁴ |
+| Hex / pyramid volume ratio | About 34.736 |
 
-Les longueurs sont celles du **repère numérique déjà mis à l'échelle** ;
-elles ne sont pas des cotes physiques certifiées. Toutes les projections
-signées de centres sont positives. Le défaut n'est donc pas expliqué ici
-par des centres situés du mauvais côté de la face.
+The lengths are those of the **already scaled numerical frame**;
+they are not certified physical dimensions. All signed projections
+of centers are positive. The defect is therefore not explained here
+by centers lying on the wrong side of the face.
 
-La compilation et la mesure prennent respectivement 1,781 s et 1,618 s ;
-le processus complet, nettoyage compris, **4,314 s**. Les 29 fichiers du cas
-source restent identiques. Pas de timeout, d'OOM ni d'avertissement natif.
-Le conteneur exact est supprimé et son absence revérifiée. Kali suffit à
-ce diagnostic ; aucune nouvelle location ou dépense Vast dans ce lot.
+Compilation and measurement take 1.781 s and 1.618 s respectively;
+the whole process, cleanup included, **4.314 s**. The 29 files of the source
+case remain identical. No timeout, OOM or native warning.
+The exact container is deleted and its absence re-verified. Kali is enough for
+this diagnostic; no new Vast rental or spending in this batch.
 
-## Contre-calcul indépendant
+## Independent cross-calculation
 
-Le second calcul relit le `polyMesh` et applique les formules du commit
-épinglé : [centres/aires des faces](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/meshShapes/face/faceTemplates.C#L72-L138),
-[centres/volumes des cellules](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCellCentresAndVols.C#L65-L144)
-et [poids de contrôle](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/polyMeshCheck/polyMeshCheck.C#L163-L214).
-Il ne substitue pas une moyenne de sommets au centre natif d'un polyèdre.
+The second calculation re-reads the `polyMesh` and applies the formulas of the
+pinned commit: [face centers/areas](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/meshShapes/face/faceTemplates.C#L72-L138),
+[cell centers/volumes](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCellCentresAndVols.C#L65-L144)
+and [check weights](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/polyMeshCheck/polyMeshCheck.C#L163-L214).
+It does not substitute a vertex average for the native center of a polyhedron.
 
-Sur les 190 interfaces, centres, aires, volumes, distances signées et
-hauteurs concordent **bit à bit** avec le C++. L'écart maximal des poids
-est 1,249 × 10⁻¹⁶. Cela vérifie une implémentation numérique sur les mêmes
-données ; ce n'est pas une validation indépendante de la physique moteur.
-Le calcul pur prend 7,865 s et retrouve 1 142 demi-espaces tétraédriques
-strictement positifs avec une arithmétique rationnelle des coordonnées stockées.
+Over the 190 interfaces, centers, areas, volumes, signed distances and
+heights agree **bit for bit** with the C++. The maximum deviation of the weights
+is 1.249 × 10⁻¹⁶. This verifies a numerical implementation on the same
+data; it is not an independent validation of the engine physics.
+The pure calculation takes 7.865 s and finds 1,142 strictly positive tetrahedral
+half-spaces with rational arithmetic on the stored coordinates.
 
-## Premier candidat : gain réel, mais une régression détectée
+## First candidate: real gain, but a regression detected
 
-Un candidat déplace les 190 sommets vers un poids recalculé de 0,055.
-La génération prend 13,418 s. Après sérialisation à 17 chiffres et relecture,
-les 1 142 inégalités tétraédriques restent strictement positives ; les volumes
-exacts des 190 étoiles sont conservés. Les autres lignes du fichier de points
-restent inchangées. Les coordonnées externes et la connectivité sont conservées.
+A candidate moves the 190 apexes toward a recomputed weight of 0.055.
+Generation takes 13.418 s. After serialization at 17 digits and re-reading,
+the 1,142 tetrahedral inequalities remain strictly positive; the exact
+volumes of the 190 stars are preserved. The other lines of the points file
+remain unchanged. External coordinates and connectivity are preserved.
 
-Le `checkMesh` global est réellement relancé sur une copie, en 11,097 s
-(13,764 s avec préparation et nettoyage). Il retire les 190 défauts de poids,
-25 cellules à faible déterminant et 67 faces trop non orthogonales, **mais ajoute
-une nouvelle face trop non orthogonale**. Le bilan net de cette dernière famille
-est donc −66, et non une disparition sans régression. Le candidat de 190
-déplacements n'est pas retenu tel quel. Les cinq familles qualité restent refusées.
+The global `checkMesh` is actually rerun on a copy, in 11.097 s
+(13.764 s with preparation and cleanup). It removes the 190 weight defects,
+25 low-determinant cells and 67 excessively non-orthogonal faces, **but adds
+one new excessively non-orthogonal face**. The net balance for this last family
+is therefore −66, not a disappearance without regression. The 190-move
+candidate is not retained as is. The five quality families remain refused.
 
-Cette régression concerne une seule étoile : la nouvelle face est partagée
-par deux tétras de cette même étoile. Un second candidat conservateur a
-rétabli ce sommet exactement à sa position source et conservé les 189 autres
-déplacements, avant de repasser le contrôle global. Cette opération a été exécutée
-en 5,931 s et contre-vérifiée indépendamment en 2,051 s. Les deux candidats et leurs
-journaux sont conservés : le premier résultat n'est pas écrasé.
+This regression concerns a single star: the new face is shared
+by two tets of that same star. A second, conservative candidate
+restored that apex exactly to its source position and kept the other 189
+moves, before rerunning the global check. This operation was executed
+in 5.931 s and independently cross-checked in 2.051 s. Both candidates and their
+logs are kept: the first result is not overwritten.
 
-## Second candidat exécuté : 189 corrections conservées
+## Second candidate executed: 189 corrections kept
 
-![Comptes natifs avant/après, sans représentation géométrique ni thermique](../images/m64-mesh-apex-quality-20260909.png)
+![Native before/after counts, with no geometric or thermal representation](../images/m64-mesh-apex-quality-20260909.png)
 
-Le second `checkMesh` prend **10,947 s**, soit **13,557 s** pour le processus
-complet. Il vérifie le fichier de points réellement produit, pas une position
-cible seulement calculée. Les cinq autres fichiers `polyMesh` sont identiques
-au cas source, de même que les coordonnées des 99 470 faces externes.
+*Native checkMesh defect counts before and after the second candidate; it shows counts only, not geometry, and proves no admission of the mesh.*
 
-| Ensemble natif | Avant | Second candidat | Nouveaux IDs |
+The second `checkMesh` takes **10.947 s**, i.e. **13.557 s** for the whole
+process. It checks the points file actually produced, not a merely computed
+target position. The five other `polyMesh` files are identical
+to the source case, as are the coordinates of the 99,470 external faces.
+
+| Native set | Before | Second candidate | New IDs |
 |---|---:|---:|---:|
-| Faible poids d'interpolation | 1 491 | **1 302** | 0 |
-| Faible déterminant cellulaire | 2 305 | **2 280** | 0 |
-| Non-orthogonalité > 70° | 3 545 | **3 479** | 0 |
-| Allongement excessif | 10 | 10 | 0 |
-| Skewness excessive | 18 | 18 | 0 |
-| Faible rapport de volumes | 137 | 137 | 0 |
-| Points signalés pour arêtes courtes | 5 | 5 | 0 |
+| Low interpolation weight | 1,491 | **1,302** | 0 |
+| Low cell determinant | 2,305 | **2,280** | 0 |
+| Non-orthogonality > 70° | 3,545 | **3,479** | 0 |
+| Excessive aspect ratio | 10 | 10 | 0 |
+| Excessive skewness | 18 | 18 | 0 |
+| Low volume ratio | 137 | 137 | 0 |
+| Points flagged for short edges | 5 | 5 | 0 |
 
-Les deux ensembles de cellules ayant une/deux faces internes conservent aussi
-leurs fichiers exacts : respectivement 2 et 465 cellules. Les groupes se
-chevauchent ; ils ne s'additionnent pas en un nombre de cellules défectueuses.
-Les volumes extrêmes et total restent identiques à la précision du journal.
-La moyenne de non-orthogonalité s'améliore de 21,555279° à 21,555015° ; en revanche,
-les moyennes de poids et de rapport de volumes diminuent légèrement
-(0,434790 → 0,434744 et 0,787716 → 0,787637). **Ce n'est donc pas une amélioration
-de toute métrique partout**, malgré l'absence de nouveaux franchissements
-des seuils dans les ensembles comparés.
+The two sets of cells with one/two internal faces also keep
+their exact files: 2 and 465 cells respectively. The groups
+overlap; they do not add up to a number of defective cells.
+The extreme and total volumes remain identical to the precision of the log.
+The mean non-orthogonality improves from 21.555279° to 21.555015°; on the other hand,
+the mean weight and mean volume ratio decrease slightly
+(0.434790 → 0.434744 and 0.787716 → 0.787637). **This is therefore not an improvement
+of every metric everywhere**, despite the absence of new threshold
+crossings in the compared sets.
 
-Cette version est une amélioration partielle retenue pour poursuivre les
-contrôles de maillage. Elle ne reçoit **aucune admission CFD** : il reste
-1 transition hexa/pyramide à faible poids, 1 301 autres faces à faible poids
-entre tétras, ainsi que les autres défauts du tableau. Le prochain travail
-doit traiter ce raccord restant et les défauts du cœur/paroi, en conservant
-les critères natifs et les contrôles de voisinage. Aucun solveur thermique,
-structurel ou LPBF n'est lancé sur ce maillage encore refusé.
+This version is a partial improvement retained to continue the
+mesh checks. It receives **no CFD admission**: there remain
+1 low-weight hex/pyramid transition, 1,301 other low-weight faces
+between tets, as well as the other defects in the table. The next piece of work
+must treat this remaining junction and the core/wall defects, keeping
+the native criteria and the neighborhood checks. No thermal,
+structural or LPBF solver is launched on this still-refused mesh.
 
-## Critère de correction
+## Correction criterion
 
-La cible locale est un poids de **0,055**, avec le seuil d'acceptation natif
-inchangé à 0,05. Seuls les sommets internes identifiés peuvent se déplacer,
-le long de la normale à leur base. Toutes les autres coordonnées et toute
-la connectivité doivent rester exactes. Les faces latérales internes des
-pyramides changent donc conformément des deux côtés : elles ne peuvent plus
-être déclarées identiques aux anciennes interfaces géométriques.
+The local target is a weight of **0.055**, with the native acceptance threshold
+unchanged at 0.05. Only the identified internal apexes may move,
+along the normal to their base. All other coordinates and all
+connectivity must remain exact. The internal lateral faces of the
+pyramids therefore change consistently on both sides: they can no longer
+be declared identical to the old geometric interfaces.
 
-Les contrôles locaux doivent porter sur les coordonnées réellement réécrites,
-les pyramides et les 1 142 tétras voisins, pas seulement sur le poids ciblé.
-Un second `checkMesh` global doit ensuite comparer les identifiants des
-défauts avant/après, afin de détecter de nouveaux défauts ailleurs dans les
-étoiles. Une réussite du programme n'est pas une acceptation du maillage.
+The local checks must cover the coordinates actually rewritten,
+the pyramids and the 1,142 neighboring tets, not only the targeted weight.
+A second global `checkMesh` must then compare the defect identifiers
+before/after, in order to detect new defects elsewhere in the
+stars. A successful program run is not an acceptance of the mesh.
 
 ```mermaid
 flowchart TD
-    A["190 transitions localisées"] --> B["Centres et volumes natifs OpenFOAM"]
-    A --> C["Contre-calcul polyédrique indépendant"]
-    B --> D["Poids 0,0414 : pyramides trop plates"]
+    A["190 localized transitions"] --> B["Native OpenFOAM centers and volumes"]
+    A --> C["Independent polyhedral cross-calculation"]
+    B --> D["Weight 0.0414: pyramids too flat"]
     C --> D
-    D --> E["Redistribution des seuls sommets internes"]
-    E --> F["Frontière fixe et étoiles locales contrôlées"]
-    F --> G["checkMesh global et différences des ensembles de défauts"]
-    G --> H["Accepter ou refuser le candidat numérique"]
-    H --> I["CFD/CHT, résistance et LPBF restent à démontrer"]
+    D --> E["Redistribution of internal apexes only"]
+    E --> F["Fixed boundary and local stars checked"]
+    F --> G["Global checkMesh and defect-set differences"]
+    G --> H["Accept or refuse the numerical candidate"]
+    H --> I["CFD/CHT, strength and LPBF remain to be demonstrated"]
 ```
 
-**Aucune validation de puissance, de refroidissement, de résistance ou
-d'impression n'est déduite de ces contrôles de maillage.** Les données et
-empreintes détaillées restent traçables ; les maillages, coordonnées et dérivés
-géométriques restent privés suivant les règles du dépôt. Les essais logiciels
-ciblés passent (inventaire 9, mesure/supervision 19, contre-calcul 8,
-comparateur 2, candidat 13, contrôle global 20, retrait conservateur 7 ;
-les 20 tests du contrôle sont aussi relancés pour V2).
-`make check` termine avec le code 0 ; certains tests natifs optionnels restent
-ignorés selon les dépendances présentes. Les empreintes et comptes sont dans
-le [registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_hybrid_apex_correction`.
+**No power, cooling, strength or printing validation
+is inferred from these mesh checks.** The detailed data and
+digests remain traceable; the meshes, coordinates and geometric
+derivatives remain private under the repository's rules. The targeted software
+tests pass (inventory 9, measurement/supervision 19, cross-calculation 8,
+comparator 2, candidate 13, global check 20, conservative rollback 7;
+the 20 check tests are also rerun for V2).
+`make check` finishes with exit code 0; some optional native tests remain
+skipped depending on the dependencies present. The digests and counts are in
+the [evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_hybrid_apex_correction`.

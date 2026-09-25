@@ -1,5 +1,23 @@
 # Part workflow
 
+```mermaid
+flowchart TD
+    S0["0 · Candidate selection<br/>a list to sort, not a decision"] --> S1["1 · Need qualification<br/>accepted or rejected, justified"]
+    S1 --> S2["2 · Provenance<br/>URL, date, license per source"]
+    S2 --> S3["3 · Measurement and acquisition<br/>record passes make check"]
+    S3 --> S4["4 · Reconstruction<br/>dimensionally_reviewed at most"]
+    S4 --> S5["5 · Polymer prototype<br/>prototype_fitted only with evidence"]
+    S5 --> S6["6 · Final process choice<br/>selection matrix, quotes"]
+    S6 --> S7["7 · Analysis and DfAM<br/>reviewed model, manufacturing request"]
+    S7 -. "LPBF or DMLS" .-> AM["AM pipeline mandatory<br/>validate_am_pipeline.py"]:::open
+    S7 --> S8["8 · Manufacturing and post-processing<br/>part linked to a CAD version"]
+    S8 --> S9["9 · Inspection and testing"]
+    S9 --> S10["10 · Publication<br/>make check and human review"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## 0. Candidate selection
 
 Reproducing a part costs time and money; buying them all to find out which ones
@@ -67,6 +85,18 @@ Not every method serves the same part. The criterion is the presence of
 | Photogrammetry | external shape, to scale if a reference is present | organic shape with no critical dimension | low |
 | Structured-light or laser scan | dense external shape, a few tens of µm | complex part with no interior | medium |
 | **CT scanning** | **external and internal shape**, material included | hollow part, casting, internal passage, porosity | high |
+
+```mermaid
+flowchart TD
+    Q{"Internal geometry?"} -- "hollow part, casting,<br/>internal passage, porosity" --> CT["CT scanning<br/>external and internal shape<br/>cost: high"]
+    Q -- no --> K{"What kind of part?"}
+    K -- "a few dimensions" --> CAL["Caliper, micrometer<br/>cost: negligible"]
+    K -- "organic, no critical dimension" --> PH["Photogrammetry<br/>to scale if a reference is present<br/>cost: low"]
+    K -- "complex, no interior" --> SL["Structured-light or laser scan<br/>cost: medium"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
 CT scanning is the reference method of reverse engineering because it sees the
 inside. That is also what makes it **needlessly expensive on a solid part**: a

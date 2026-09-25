@@ -10,6 +10,25 @@ Every claim below is backed by a source record in `catalog/sources/`. A
 commercial page is a level B source: the supplier is talking about itself, and
 nothing is verified.
 
+```mermaid
+flowchart TD
+  Q["Who can print the switch trim ring<br/>in AlSi10Mg?"] --> MB["Machine builders and<br/>powder makers<br/>BLT, Farsoon, Eplus3D, HBD"]
+  Q --> SB["Service bureaus with<br/>online quotation"]
+  SB --> U["Unionfab<br/>candidate no. 1"]
+  SB --> J["JLC3DP<br/>no AlSi10Mg: set aside"]
+  MB --> N["Not the counterpart<br/>for a one-off part"]
+  U --> C["Three contradictions<br/>for the quotation:<br/>layer, material card, wall"]
+  C --> R["Request for one part,<br/>no gate opened, nothing installed"]
+  class U ok
+  class C,R open
+  class J,N stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the page's own sort of candidates, restated from the text below. It recommends no provider and verifies nothing that the suppliers publish.*
+
 ## The sort that matters: service bureau or machine vendor
 
 The search turns up two families that must not be confused.

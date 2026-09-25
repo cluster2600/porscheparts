@@ -1,364 +1,361 @@
-# PicoGK — exploitation du corps réel M64/4V
+# PicoGK — working on the real M64/4V body
 
-## Dernière reprise : audit complet et location arrêtée
+## Latest resumption: full audit, rental stopped
 
-La reprise du 7 septembre a terminé **les trois audits à 0,6 / 0,3 / 0,15**,
-avec rapports récupérés, empreintes concordantes et sortie processus zéro.
-Le [reçu complet](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json)
-conserve aussi les défauts : « audit terminé » ne signifie pas « pièce acceptée ».
-Le STEP et les trois sorties PicoGK d'entrée n'ont pas été modifiés.
+The September 7 resumption completed **all three audits at 0.6 / 0.3 / 0.15**,
+with reports retrieved, matching digests and a zero process exit.
+The [full receipt](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json)
+also keeps the defects: "audit completed" does not mean "part accepted".
+The STEP and the three input PicoGK outputs were not modified.
 
-| Pas voxel, unité du scan | Écart relatif d'intégrale volumique | Distance maître → sortie, p95 | Maximum échantillonné dans les deux sens |
+| Voxel pitch, scan units | Relative volume-integral deviation | Master → output distance, p95 | Maximum sampled in both directions |
 |---|---:|---:|---:|
-| 0,6 | +0,128645 % | 0,240100 | 2,142979 |
-| 0,3 | +0,030637 % | 0,056512 | 0,879505 |
-| 0,15 | +0,007549 % | 0,010575 | 0,398493 |
+| 0.6 | +0.128645 % | 0.240100 | 2.142979 |
+| 0.3 | +0.030637 % | 0.056512 | 0.879505 |
+| 0.15 | +0.007549 % | 0.010575 | 0.398493 |
 
-Les distances utilisent 4 096 points pondérés par aire dans chaque sens, vers
-les **triangles**, pas vers les seuls sommets. Le p95 maître → sortie repose
-sur le même échantillonnage du maître. Ce ne sont ni des distances au STEP
-exact, ni une borne continue de Hausdorff, ni une tolérance d'usinage.
-L'échelle absolue reste hypothétique. Les écarts diminuent, sans établir une
-indépendance au maillage ou la conservation des interfaces fonctionnelles.
-L'intégrale volumique du cas 0,6 est seulement diagnostique : son maillage
-échoue aux contrôles ci-dessous.
+The distances use 4,096 area-weighted points in each direction, measured to the
+**triangles**, not only to the vertices. The master → output p95 relies on the
+same sampling of the master. These are not distances to the exact STEP, nor a
+continuous Hausdorff bound, nor a machining tolerance.
+The absolute scale remains a hypothesis. The deviations shrink, without
+establishing mesh independence or the preservation of functional interfaces.
+The volume integral of the 0.6 case is diagnostic only: its mesh fails the
+checks below.
 
-### Défauts conservés, pas masqués par les petits écarts globaux
+### Defects kept, not hidden by small global deviations
 
-- **0,6 brut rejeté** : quatre triangles exactement dégénérés, trois arêtes
-  non-manifold et orientation incohérente. Le calcul de cordes normales a
-  refusé ce cas ; aucun résultat d'épaisseur n'y est inventé.
-- **0,3 et 0,15 fermés et orientés**, sans ces défauts d'arêtes, mais avec
-  respectivement une et trois micro-coques négatives supplémentaires. La
-  topologie n'est donc pas celle du maître. Toutes restent conservées.
-- À 0,3, la micro-coque de 12 triangles a été localisée en privé. Son volume
-  géométrique, environ 0,00174247 unité³, a été comparé au STEP par opérations
-  booléennes OCCT : région moins maître topologiquement vide, intersection
-  égale à la région, erreur de partition nulle aux tolérances déclarées.
-  La coque négative enferme donc une région occupée par de la matière dans
-  le STEP fourni. Son imbrication dans la coque principale du candidat reste
-  à tester ; ce défaut numérique n'est pas une porosité physique mesurée.
-  Cette preuve concerne **ce cas seulement** ;
-  les trois micro-coques à 0,15 n'ont pas subi ce contre-test STEP.
-- Les cordes normales à 0,3 et 0,15 donnent respectivement 10/512 et 3/512
-  valeurs sous 1,5 unité. Ce ne sont **pas des pourcentages exacts de parois
-  trop fines**, ni une amélioration mécanique : points, normales et biais de
-  mesure changent avec la triangulation. Aucune épaisseur minimale n'est prouvée.
+- **Raw 0.6 rejected**: four exactly degenerate triangles, three non-manifold
+  edges and inconsistent orientation. The normal-chord computation refused this
+  case; no thickness result is invented for it.
+- **0.3 and 0.15 closed and oriented**, without those edge defects, but with
+  one and three additional negative micro-shells respectively. Their topology
+  is therefore not that of the master. All are kept.
+- At 0.3, the 12-triangle micro-shell was located privately. Its geometric
+  volume, about 0.00174247 unit³, was compared with the STEP by OCCT Boolean
+  operations: region minus master topologically empty, intersection equal to
+  the region, zero partition error at the declared tolerances.
+  The negative shell therefore encloses a region occupied by material in the
+  supplied STEP. Its nesting inside the candidate's main shell remains to be
+  tested; this numerical defect is not a measured physical porosity.
+  This evidence covers **this case only**;
+  the three micro-shells at 0.15 did not undergo this STEP counter-test.
+- The normal chords at 0.3 and 0.15 give 10/512 and 3/512 values below
+  1.5 units respectively. These are **not exact percentages of walls that are
+  too thin**, nor a mechanical improvement: points, normals and measurement
+  bias change with the triangulation. No minimum thickness is proven.
 
-La surface triangulée à 0,15 reste inférieure d'environ 1,215 % à celle du
-maître. Aucun gain de refroidissement n'est déduit du seul raffinement.
-Le script [`audit_shell_against_step.py`](../../twins/m64-cylinder-head/source/picogk/audit_shell_against_step.py)
-sépare l'extraction exacte des triangles et le contre-test OCCT ; aucun
-point intérieur isolé n'est utilisé comme preuve de toute une région.
+The triangulated surface at 0.15 remains about 1.215 % smaller than the
+master's. No cooling gain is inferred from refinement alone.
+The script [`audit_shell_against_step.py`](../../twins/m64-cylinder-head/source/picogk/audit_shell_against_step.py)
+separates the exact triangle extraction from the OCCT counter-test; no
+isolated interior point is used as evidence for a whole region.
 
-### Connectivité, rendu et calcul distant
+### Connectivity, rendering and remote compute
 
-Le [contrôle de connectivité](../../twins/m64-cylinder-head/source/picogk-connectivity/README.md)
-a été exécuté sur Kali : 2 719 728 points, pas 1,2 et phase 0,371, sur les
-champs VDB natifs de 0,3. Tous les points vides sont reliés aux faces du bord
-en 6 et 26 voisins. **Aucune cavité isolée détectée sur cette grille** ne veut
-pas dire absence de cavité dans la pièce : les micro-coques précédentes
-illustrent précisément sa limite de résolution. Les deux conventions des
-points exactement sur la frontière sont explicites et testées ; aucune
-tolérance n'a été augmentée pour faire passer un recouvrement.
+The [connectivity check](../../twins/m64-cylinder-head/source/picogk-connectivity/README.md)
+was run on Kali: 2,719,728 points, pitch 1.2 and phase 0.371, on the native
+0.3 VDB fields. Every void point is connected to the boundary faces with both
+6 and 26 neighbors. **No isolated cavity detected on this grid** does not mean
+no cavity in the part: the earlier micro-shells illustrate precisely its
+resolution limit. The two conventions for points lying exactly on the boundary
+are explicit and tested; no tolerance was raised to make an overlap pass.
 
-Un nouveau rendu VTK du maître et de la sortie 0,3, avec coupe dans les axes
-des logements de sièges et guides, a été calculé et montré dans le fil.
-Tous les 293 308 / 3 391 888 triangles sont affichés, sans décimation ni
-lissage des coordonnées. Ce n'est pas une carte thermique ou une photo d'une
-culasse fabriquée. Le corps demeure incomplet, notamment pour les conduits et
-la distribution ; les sources géométriques restent privées.
+A new VTK rendering of the master and the 0.3 output, with a section through the
+axes of the seat and guide bores, was computed and shown in the thread.
+All 293,308 / 3,391,888 triangles are displayed, without decimation or
+coordinate smoothing. It is not a thermal map or a photo of a manufactured
+cylinder head. The body remains incomplete, notably for the ports and the
+valvetrain; the geometric sources remain private.
 
-La nouvelle image qualifiée inclut le runtime Python d'audit :
+The new qualified image includes the Python audit runtime:
 
 ```text
 ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd
 ```
 
-[Construction et témoin réussis](https://github.com/cluster2600/porscheparts/actions/runs/34154864350) ;
-[qualification indépendante](../../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
-Les scripts d'audit sont transférés séparément et identifiés par leur SHA.
-Chaque résolution s'exécute dans un processus séparé ; les checkpoints sont
-atomiques et liés aux entrées, au code, aux versions et aux paramètres. Une
-reprise incompatible est refusée. Les requêtes sont limitées à 32 points par
-lot, sans prétendre que cela plafonne toute la mémoire du maillage.
+[Successful build and smoke test](https://github.com/cluster2600/porscheparts/actions/runs/34154864350);
+[independent qualification](../../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
+The audit scripts are transferred separately and identified by their SHA.
+Each resolution runs in a separate process; the checkpoints are atomic and
+bound to the inputs, code, versions and parameters. An incompatible resumption
+is refused. Queries are limited to 32 points per batch, without claiming that
+this caps all of the mesh memory.
 
-L'instance **50193671** offrait 88 threads CPU, 257 773 Mo de RAM annoncés
-(251 Gio visibles par l'OS), RTX 3060 12 Go et 100 Go de disque, pour environ
-**0,2815 USD/h**. Les audits géométriques ont utilisé le CPU. Durée du contrôle
-principal : **28 min 02 s**, mémoire résidente maximale environ **12,91 Gio**.
-Ces mesures n'incluent pas toute la durée de location ni les autres processus.
+Instance **50193671** offered 88 CPU threads, 257,773 MB of advertised RAM
+(251 GiB visible to the OS), an RTX 3060 12 GB and 100 GB of disk, for about
+**0.2815 USD/h**. The geometric audits used the CPU. Duration of the main check:
+**28 min 02 s**, maximum resident memory about **12.91 GiB**.
+These measurements do not include the full rental duration or other processes.
 
-Budget de lot plafonné à **4 USD**, garde externe armé avant location, durée
-maximale de trois heures. Clés SSH vérifiées cryptographiquement, association
-à l'instance et connexion directe contrôlées avant le travail. Après collecte,
-la location a été détruite sans attendre l'échéance ; le wrapper, le garde et
-un inventaire indépendant ont confirmé son absence. Crédit observé :
-**44,114244 → 43,936093 USD**, soit environ **0,1782 USD** de baisse. Ce relevé
-n'est pas une facture définitive et n'exclut pas une comptabilisation retardée.
-Aucune recharge automatique ni autre location n'a été lancée dans ce lot.
+Batch budget capped at **4 USD**, external guard armed before the rental, maximum
+duration three hours. SSH keys verified cryptographically, binding to the
+instance and direct connection checked before the work. After collection, the
+rental was destroyed without waiting for the deadline; the wrapper, the guard
+and an independent inventory confirmed its absence. Observed credit:
+**44.114244 → 43.936093 USD**, a drop of about **0.1782 USD**. This reading
+is not a final invoice and does not rule out delayed accounting.
+No automatic top-up and no other rental was started in this batch.
 
-`make check` complet a terminé avec le code zéro : 2 076 tests recensés dans
-la suite principale, 61 ignorés pour dépendances optionnelles, puis contrôles
-complémentaires. Les 16 tests maillage/checkpoint et les cinq tests de coques
-ont réellement passé dans l'image Linux ; les deux témoins STEP ont passé
-avec OCP. Le contrôle de connectivité dispose de 12 tests et d'un contre-test
-SciPy sur 80 configurations synthétiques. Ce dernier est exécuté dans le
-runtime QA dédié : le Python général du Mac possède une extension SciPy
-qui ne se charge pas, signalée comme dépendance optionnelle indisponible et
-non comme un test scientifique réussi. Le modèle cible 700 PS a 14 tests.
-Ces contrôles logiciels ne prouvent ni résistance moteur ni fabricabilité.
+The full `make check` finished with exit code zero: 2,076 tests collected in
+the main suite, 61 skipped for optional dependencies, then additional checks.
+The 16 mesh/checkpoint tests and the five shell tests actually passed in the
+Linux image; the two STEP smoke tests passed with OCP. The connectivity check
+has 12 tests and a SciPy counter-test on 80 synthetic configurations. The
+latter runs in the dedicated QA runtime: the Mac's general Python has a SciPy
+extension that does not load, reported as an unavailable optional dependency
+and not as a passed scientific test. The 700 PS target model has 14 tests.
+These software checks prove neither engine strength nor manufacturability.
 
-Les recherches parallèles livrent aussi le
-[dimensionnement cible 700 PS](M64_700CH_ENGINE_RESEARCH.md) et la
-[campagne matériau/air/huile/LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
-Le témoin AdditiveFOAM laser éteint et le nouveau pas de 25 ns ont réellement
-été exécutés, **sur un coupon AlSi10Mg, pas sur cette culasse**. Le cas actif
-reste plafonné et non qualifié ; son bilan n'autorise aucune impression moteur.
+The parallel research also delivers the
+[700 PS target sizing](M64_700CH_ENGINE_RESEARCH.md) and the
+[material/air/oil/LPBF campaign](M64_700CH_MATERIAL_COOLING_LPBF.md).
+The laser-off AdditiveFOAM smoke test and the new 25 ns step were actually
+run, **on an AlSi10Mg coupon, not on this cylinder head**. The active case
+remains capped and unqualified; its outcome authorizes no engine print.
 
-## Historique : premier lot du 7 septembre, avant cette reprise
+## History: first batch of September 7, before this resumption
 
-L'image Docker publique a été construite et utilisée sur une instance Vast.
-Le corps réel et trois domaines volumiques ont été calculés à 0,6 unité,
-récupérés et vérifiés par SHA-256. Le STL du corps et les trois STL de domaines
-sont identiques octet pour octet aux sorties correspondantes sur Kali.
-La location est détruite et l'inventaire Vast indépendant est vide.
+The public Docker image was built and used on a Vast instance.
+The real body and three volume domains were computed at 0.6 units,
+retrieved and verified by SHA-256. The body STL and the three domain STLs
+are byte-for-byte identical to the corresponding outputs on Kali.
+The rental is destroyed and the independent Vast inventory is empty.
 
-Sur Kali, les voxelisations à 0,6 / 0,3 / 0,15 unité ont terminé. La campagne
-d'audit indépendante a traité les deux premières résolutions, puis a été
-interrompue avec le code 137 pendant la résolution 0,15, avant l'écriture du
-rapport global. Seuls deux résumés de progression ont été récupérés, pas les
-rapports détaillés de distances et de cordes. La cause exacte n'est pas établie :
-un pic mémoire est une hypothèse, pas un diagnostic prouvé. Les trois calculs
-restent disponibles, mais l'audit intégral n'est pas livré ni déclaré réussi.
+On Kali, the voxelizations at 0.6 / 0.3 / 0.15 units completed. The
+independent audit campaign processed the first two resolutions, then was
+interrupted with code 137 during the 0.15 resolution, before the overall
+report was written. Only two progress summaries were retrieved, not the
+detailed distance and chord reports. The exact cause is not established:
+a memory spike is a hypothesis, not a proven diagnosis. The three computations
+remain available, but the full audit is neither delivered nor declared passed.
 
-**Ce lot livre une chaîne géométrique reproductible et ses preuves, pas une
-nouvelle culasse validée thermiquement, mécaniquement ou pour l'impression.**
+**This batch delivers a reproducible geometric chain and its evidence, not a
+new cylinder head validated thermally, mechanically or for printing.**
 
-## Périmètre
+## Scope
 
-Le corps étudié est la reconstruction privée issue du scan de référence 935,
-avec quatre logements de sièges et guides. La cible projet est le M64 turbo
-964/993 ; cette origine documentaire ne prouve pas l'interchangeabilité M64.
-Le STEP maître reste intact. L'hypothèse d'échelle `1 unité = 1 mm` n'est pas
-une certification métrologique. Aucun nouvel ovale ni contour extérieur libre
-n'est introduit.
+The body studied is the private reconstruction from the 935 reference scan,
+with four seat and guide bores. The project target is the 964/993 M64 turbo;
+this documentary origin does not prove M64 interchangeability.
+The master STEP remains intact. The scale hypothesis `1 unit = 1 mm` is not
+a metrological certification. No new oval or free exterior contour is
+introduced.
 
-## Image de calcul du premier lot
+## Compute image of the first batch
 
-Image logicielle publique, sans scan, STEP ni géométrie privée :
+Public software image, with no scan, STEP or private geometry:
 
 ```text
 ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:131d29d42635b1c691649edb04fa716d8fddd7751f3ebc6011efb9be8a1b0414
 ```
 
-[Construction GitHub Actions réussie](https://github.com/cluster2600/porscheparts/actions/runs/34147345040).
-Plateforme `linux/amd64`, téléchargement anonyme du digest exact et témoin
-natif hors réseau répétés sur Kali. Les sources amont sont épinglées ; .NET 9
-et le runtime PicoGK 26.2 sont inclus. Les dépendances de paquets ne constituent
-pas encore une reconstruction garantie bit-à-bit.
+[Successful GitHub Actions build](https://github.com/cluster2600/porscheparts/actions/runs/34147345040).
+Platform `linux/amd64`; anonymous pull of the exact digest and offline native
+smoke test repeated on Kali. The upstream sources are pinned; .NET 9 and the
+PicoGK 26.2 runtime are included. The package dependencies do not yet
+constitute a guaranteed bit-for-bit rebuild.
 
-Le témoin synthétique contrôle le logiciel, pas la culasse. Les objets natifs
-maillages/voxels sont libérés avant la bibliothèque qui les possède.
+The synthetic smoke test checks the software, not the cylinder head. The
+native mesh/voxel objects are released before the library that owns them.
 
-## Capacités réellement utilisées
+## Capabilities actually used
 
-| Opération | Utilité pour la conception | Limite de preuve |
+| Operation | Use for design | Evidence limit |
 |---|---|---|
-| STL → voxels → STL à plusieurs résolutions | Quantifier les écarts au maître | Ne remplace pas les portées exactes du B-Rep |
-| Érosion/dilatation et différence | Localiser les détails sensibles | Ce n'est pas une mesure certifiée d'épaisseur |
-| Boîte analytique à distance signée − corps | Préparer les volumes non solides | Air extérieur, logements et cavités non encore classés |
-| Érosion de 1,5 unité et intersection | Construire une réserve géométrique exploratoire | Ni zone autorisée à retirer, ni épaisseur mécanique admissible |
-| Corps − réserve | Conserver une enveloppe géométrique de protection | Les surfaces fonctionnelles exigent des masques spécifiques |
-| Champs OpenVDB nommés et relecture | Réutiliser les domaines volumiques sans tout reconstruire | Champs à bande étroite, pas distance exacte partout |
+| STL → voxels → STL at several resolutions | Quantify deviations from the master | Does not replace the exact B-Rep bearing faces |
+| Erosion/dilation and difference | Locate sensitive details | Not a certified thickness measurement |
+| Analytic signed-distance box − body | Prepare the non-solid volumes | Outside air, bores and cavities not yet classified |
+| 1.5-unit erosion and intersection | Build an exploratory geometric reserve | Neither a zone allowed for removal nor an admissible mechanical thickness |
+| Body − reserve | Keep a protective geometric envelope | Functional surfaces require specific masks |
+| Named OpenVDB fields and read-back | Reuse the volume domains without rebuilding everything | Narrow-band fields, not an exact distance everywhere |
 
-Les modules sont dans [`source/picogk`](../../twins/m64-cylinder-head/source/picogk/README.md)
-et [`source/picogk-cooling`](../../twins/m64-cylinder-head/source/picogk-cooling/README.md).
-Le second se compile avec le SDK de l'image déjà qualifiée ; son binaire et sa
-bibliothèque native sont identifiés dans chaque reçu.
+The modules are in [`source/picogk`](../../twins/m64-cylinder-head/source/picogk/README.md)
+and [`source/picogk-cooling`](../../twins/m64-cylinder-head/source/picogk-cooling/README.md).
+The second one compiles with the SDK of the already qualified image; its binary
+and native library are identified in each receipt.
 
-## Contrôles indépendants
+## Independent checks
 
-- Contrôle du STEP, triangulation déclarée et SHA de l'entrée avant/après.
-- Fermeture, orientation, connectivité de surface et volumes de maillage.
-- Outil de distances échantillonnées dans les deux sens vers les triangles du
-  maître, pas seulement vers leurs sommets. La première campagne n'avait pas
-  persisté son rapport détaillé ; la reprise décrite en tête livre maintenant
-  les distributions et ses défauts. Ce ne sont pas des bornes de Hausdorff.
-- Partitions corps/complément et réserve/enveloppe vérifiées séparément.
-- Témoin de cube creux pour distinguer volume matériel et enveloppe externe.
-- Relecture des champs VDB par nom et contrôle de leurs volumes reconstruits.
-- Aperçu VTK opaque de tous les triangles et coupe réelle passant par les
-  axes de deux logements, sans lissage des coordonnées ni image générée par IA.
+- STEP check, declared triangulation and input SHA before/after.
+- Closure, orientation, surface connectivity and mesh volumes.
+- Tool for sampled distances in both directions to the master's triangles,
+  not only to their vertices. The first campaign had not persisted its
+  detailed report; the resumption described at the top now delivers the
+  distributions and their defects. These are not Hausdorff bounds.
+- Body/complement and reserve/envelope partitions verified separately.
+- Hollow-cube smoke test to distinguish material volume from outer envelope.
+- Read-back of the VDB fields by name and check of their reconstructed volumes.
+- Opaque VTK preview of all triangles and a real section through the axes
+  of two bores, without coordinate smoothing or AI-generated imagery.
 
-Un défaut important a été observé dans la mesure native `CalculateProperties`
-sur les domaines creux : son passage intermédiaire maillage → voxels peut
-donner le volume de l'enveloppe pleine. Les valeurs natives sont conservées
-avec l'avertissement ; une intégration orientée indépendante du maillage sert
-au contre-contrôle. Le seuil de contrôle n'a pas été augmenté pour masquer
-l'écart. La validité du volume intégré reste subordonnée à la fermeture et à
-l'orientation du maillage.
+A significant defect was observed in the native `CalculateProperties`
+measurement on hollow domains: its intermediate mesh → voxels pass can
+return the volume of the solid envelope. The native values are kept with the
+warning; an oriented integration independent of the mesh serves as the
+counter-check. The check threshold was not raised to hide the deviation.
+The validity of the integrated volume remains conditional on the mesh being
+closed and oriented.
 
-Un second défaut a été reproduit dans l'appel C# d'appartenance `bIsInside`
-sous Linux x86 : le retour booléen natif pouvait être mal interprété. Le
-module utilise un adaptateur local à retour sur un octet, testé sur des points
-dans la matière, dans une cavité et à l'extérieur. La bibliothèque native et
-l'image restent inchangées ; le correctif est isolé et documenté avec le
-module, sans prétendre que toutes les API amont sont qualifiées.
+A second defect was reproduced in the C# membership call `bIsInside` under
+Linux x86: the native Boolean return value could be misread. The module
+uses a local adapter returning one byte, tested on points in the material,
+in a cavity and outside. The native library and the image remain unchanged;
+the fix is isolated and documented with the module, without claiming that all
+upstream APIs are qualified.
 
-Sur les exports de domaines à 0,6 unité, l'audit indépendant a aussi détecté
-quatre triangles exactement dégénérés et trois arêtes non-manifold dans le
-complément et la peau. La concordance des volumes ne supprime pas ce défaut :
-les sorties originales restent conservées et ne sont pas déclarées maillages
-CFD prêts à l'emploi. Des copies distinctes filtrant uniquement ces triangles
-d'aire exactement nulle passent le contrôle de fermeture/orientation, sans
-déplacer de sommet ni modifier les octets des triangles conservés. Le noyau
-érodé ne nécessite aucun retrait.
+On the domain exports at 0.6 units, the independent audit also detected four
+exactly degenerate triangles and three non-manifold edges in the complement
+and the skin. Matching volumes do not remove this defect: the original
+outputs remain kept and are not declared ready-to-use CFD meshes. Separate
+copies that filter only those triangles of exactly zero area pass the
+closure/orientation check, without moving any vertex or altering the bytes of
+the kept triangles. The eroded core needs no removal.
 
-À 0,3 unité, les trois exports bruts passent ces mêmes contrôles sans aucun
-retrait. La peau contient cependant une petite coque négative de 12 triangles,
-conservée et signalée pour investigation : ni suppression arbitraire ni
-interprétation comme porosité du matériau. Ces contrôles ne classent toujours
-pas la connectivité des volumes fluides.
+At 0.3 units, the three raw exports pass the same checks without any removal.
+The skin does, however, contain a small 12-triangle negative shell, kept and
+flagged for investigation: neither arbitrarily deleted nor interpreted as
+material porosity. These checks still do not classify the connectivity of the
+fluid volumes.
 
-Deux coques de surface ne prouvent pas deux cavités volumiques. Le premier
-contrôle de propagation décrit en tête ne qualifie pas encore le complément
-comme « domaine CFD de refroidissement » : résolution, accès et fonctions
-des volumes doivent encore être établis.
+Two surface shells do not prove two volume cavities. The first propagation
+check described at the top does not yet qualify the complement as a "cooling
+CFD domain": resolution, access and the functions of the volumes must still
+be established.
 
-## Historique Vast du premier lot, incidents et arrêt
+## Vast history of the first batch, incidents and shutdown
 
 ```mermaid
 graph TD
-    A["Image amd64 épinglée<br/>test natif et accès anonyme"] --> B["Clés SSH vérifiées<br/>budget et garde d'arrêt armé"]
-    B --> C["Location bornée"]
-    C --> D{"SSH direct et<br/>témoin natif réussis ?"}
-    D -- "non" --> H["Suppression de l'instance"]
-    D -- "oui" --> E["Calcul du corps réel<br/>et domaines géométriques"]
-    E --> F["Collecte privée des sorties<br/>comparaison des SHA-256"]
+    A["Pinned amd64 image<br/>native test and anonymous access"] --> B["SSH keys verified<br/>budget and stop guard armed"]
+    B --> C["Bounded rental"]
+    C --> D{"Direct SSH and<br/>native smoke test passed?"}
+    D -- "no" --> H["Instance deleted"]
+    D -- "yes" --> E["Real body computation<br/>and geometric domains"]
+    E --> F["Private collection of outputs<br/>SHA-256 comparison"]
     F --> H
-    B -. "échéance, même en cas d'échec" .-> H
-    H --> I["Vérification indépendante<br/>inventaire Vast vide"]
-    I --> J["GitHub : code et reçus assainis<br/>aucune géométrie privée ni secret"]
+    B -. "deadline, even on failure" .-> H
+    H --> I["Independent verification<br/>empty Vast inventory"]
+    I --> J["GitHub: sanitized code and receipts<br/>no private geometry or secret"]
 ```
 
-[Source Mermaid](../media/diagrams/m64-vast-run.mmd) ·
+[Mermaid source](../media/diagrams/m64-vast-run.mmd) ·
 [SVG](../media/diagrams/m64-vast-run.svg) · [PNG](../media/diagrams/m64-vast-run.png) ·
-[Scène éditable](../media/diagrams/m64-vast-run.excalidraw).
+[Editable scene](../media/diagrams/m64-vast-run.excalidraw).
 
-Le [reçu Vast](../../twins/m64-cylinder-head/evidence/picogk-vast-execution-20260907.json)
-trace l'instance `50187676`, le digest, les empreintes, les contrôles SSH et
-la suppression vérifiée. Ressources annoncées : 80 threads CPU, 257 776 Mo de
-RAM, RTX 3060 de 12 Go et 100 Go de disque, à environ 0,280 USD/h. Ces
-opérations PicoGK n'ont pas utilisé d'accélération GPU. Ce n'est pas un test
-de performance GPU, ni une justification pour louer des B200.
+The [Vast receipt](../../twins/m64-cylinder-head/evidence/picogk-vast-execution-20260907.json)
+traces instance `50187676`, the digest, the hashes, the SSH checks and the
+verified deletion. Advertised resources: 80 CPU threads, 257,776 MB of RAM,
+an RTX 3060 with 12 GB and 100 GB of disk, at about 0.280 USD/h. These
+PicoGK operations did not use GPU acceleration. This is not a GPU performance
+test, nor a justification for renting B200s.
 
-| Calcul à 0,6 unité | Durée interne du rapport | Mémoire maximale du processus |
+| Computation at 0.6 units | Internal duration from the report | Maximum process memory |
 |---|---:|---:|
-| Corps et différence morphologique | 3,063 s | 861 216 768 octets |
-| Complément, noyau, peau et VDB | 12,324 s | 1 293 873 152 octets |
+| Body and morphological difference | 3.063 s | 861,216,768 bytes |
+| Complement, core, skin and VDB | 12.324 s | 1,293,873,152 bytes |
 
-Ces durées excluent le démarrage, le téléchargement de l'image, la compilation
-du second module et les transferts. Elles ne constituent pas un benchmark
-normalisé face à Kali. Le module de domaines a été compilé avec le SDK de
-l'image qualifiée ; son assembly a une empreinte différente de celui compilé
-sur Kali. La bibliothèque native est identique et les trois STL concordent.
-Les fichiers VDB ont des SHA différents ; leur identité binaire n'est pas
-affirmée. La relecture des quatre champs nommés passe sur chaque hôte.
+These durations exclude startup, the image download, the compilation of the
+second module and the transfers. They are not a normalized benchmark against
+Kali. The domain module was compiled with the SDK of the qualified image; its
+assembly has a different digest from the one compiled on Kali. The native
+library is identical and the three STLs match. The VDB files have different
+SHAs; their binary identity is not claimed. The read-back of the four named
+fields passes on each host.
 
-Trois tentatives payantes antérieures sont conservées comme échecs, avec
-annulation et absence vérifiée :
+Three earlier paid attempts are kept as failures, with cancellation and
+verified absence:
 
-- `50185391` : rejet du contrat d'état ; le diagnostic initial ne conserve pas
-  la cause exacte.
-- `50186579` : `actual_status` absent malgré `cur_state=running`. Le contrôleur
-  accepte maintenant cet état observé de repli, jamais l'état simplement désiré.
-- `50186920` : échec de validation SSH dont la catégorie exacte n'était pas
-  conservée. Le contrôleur attend désormais le port direct, fixe cet endpoint
-  pour la connexion et classe les erreurs. Un changement proxy/direct est une
-  hypothèse de l'ancien échec, pas une cause démontrée.
+- `50185391`: state-contract rejection; the initial diagnosis does not keep
+  the exact cause.
+- `50186579`: `actual_status` missing despite `cur_state=running`. The
+  controller now accepts this observed fallback state, never the merely
+  desired state.
+- `50186920`: SSH validation failure whose exact category was not kept. The
+  controller now waits for the direct port, pins that endpoint for the
+  connection and classifies errors. A proxy/direct switch is a hypothesis for
+  the old failure, not a demonstrated cause.
 
-La quatrième tentative a passé SSH, le témoin natif puis les calculs réels.
-L'accès utilise uniquement le wrapper OpenBao approuvé ; aucune valeur de
-secret n'est enregistrée dans les reçus publics. Le garde d'échéance avait
-été armé avant la location ; il a supprimé l'instance à l'entrée de sa réserve
-de nettoyage, puis une lecture indépendante a confirmé un inventaire vide.
-Les résultats récupérés sont conservés en privé, avec leurs empreintes.
+The fourth attempt passed SSH, the native smoke test and then the real
+computations. Access uses only the approved OpenBao wrapper; no secret value
+is recorded in the public receipts. The deadline guard had been armed before
+the rental; it deleted the instance on entering its cleanup reserve, then an
+independent read confirmed an empty inventory.
+The retrieved results are kept privately, with their digests.
 
-La diminution de crédit observée sur les quatre tentatives est d'environ
-0,053 USD au relevé après arrêt. **Ce n'est pas une facture définitive** :
-la comptabilisation du calcul, du stockage ou des transferts peut être retardée.
-Aucune recharge automatique n'a été demandée.
+The credit drop observed across the four attempts is about 0.053 USD on the
+reading after shutdown. **This is not a final invoice**: accounting for
+compute, storage or transfers may be delayed.
+No automatic top-up was requested.
 
-## Vérification logicielle du premier lot
+## Software verification of the first batch
 
-`make check` a terminé avec le code 0 : suite principale de 2 032 tests,
-46 ignorés, puis contrôles complémentaires. Les tests de contrat ne prouvent
-pas la physique de la pièce. Les exécutions natives et audits de géométrie
-sont documentés séparément ; l'audit fin interrompu n'est pas masqué par la
-réussite des tests logiciels.
+`make check` finished with code 0: main suite of 2,032 tests, 46 skipped,
+then additional checks. The contract tests do not prove the physics of the
+part. The native executions and geometry audits are documented separately;
+the interrupted fine audit is not hidden by the passing software tests.
 
-## Passage vers une amélioration de pièce
+## Moving toward a part improvement
 
-La [chaîne complète et ses validations](M64_MULTIPHYSICS_EXECUTION.md)
-définit les rôles de tous les logiciels demandés et les preuves encore absentes.
+The [full chain and its validations](M64_MULTIPHYSICS_EXECUTION.md)
+defines the roles of all the requested software and the evidence still missing.
 
-1. Identifier les interfaces, portées, filetages et zones à ne pas modifier.
-2. Classer les espaces vides et fixer les entrées/sorties des circuits envisagés.
-3. Générer uniquement dans les volumes autorisés des variantes locales de
-   canaux et raccordements. Une ligne centrale de canal de rayon `r` requiert
-   une réserve de `1,5 + r`, plus marge numérique, et non simplement 1,5.
-4. Comparer débit, pertes de charge, températures, contraintes et accès de
-   dépoudrage ; conserver une modification seulement sur bénéfice démontré.
+1. Identify the interfaces, bearing faces, threads and zones not to be modified.
+2. Classify the void spaces and fix the inlets/outlets of the envisaged circuits.
+3. Generate local variants of channels and connections only in the authorized
+   volumes. A channel centerline of radius `r` requires a reserve of `1.5 + r`,
+   plus a numerical margin, and not simply 1.5.
+4. Compare flow rate, pressure drop, temperatures, stresses and depowdering
+   access; keep a modification only on demonstrated benefit.
 
-Les valeurs 1,5 et 20 unités utilisées ici sont des paramètres exploratoires,
-pas des critères moteur ou LPBF qualifiés. PicoGK prépare la géométrie ; il ne
-remplace ni OpenFOAM/CHT, ni la résistance/fatigue, ni les cartes matériau à
-chaud, ni l'étude du procédé d'impression.
+The values 1.5 and 20 units used here are exploratory parameters, not qualified
+engine or LPBF criteria. PicoGK prepares the geometry; it does not replace
+OpenFOAM/CHT, strength/fatigue, hot material data, or the study of the
+printing process.
 
-## Photos, IA et PhysicsNeMo
+## Photos, AI and PhysicsNeMo
 
-Les photos documentaires peuvent aider à identifier les fonctions, comparer
-des architectures et contrôler visuellement la reconstruction. Elles doivent
-être regroupées par référence exacte (930, 935, M64 ou kit aftermarket), avec
-source et droits. Leur abondance n'en fait pas des vues calibrées de la même
-pièce : aucune cote cachée n'est déclarée mesurée sur cette base.
+Documentary photos can help identify functions, compare architectures and
+visually check the reconstruction. They must be grouped by exact reference
+(930, 935, M64 or aftermarket kit), with source and rights. Their abundance
+does not make them calibrated views of the same part: no hidden dimension is
+declared measured on that basis.
 
-Une IA de vision peut proposer des correspondances ; PicoGK exécute les règles
-géométriques codées. [PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/overview.html)
-est un framework pour entraîner et utiliser des modèles physiques, pas un
-ingénieur culasse préentraîné qui déduit toute la physique de photographies.
-Deux voies sont possibles : modèle réduit appris sur des calculs de référence,
-ou modèle informé par les équations (PINN), qui exige lui aussi géométrie,
-paramètres matière, chargements et conditions limites définis.
+A vision AI can propose correspondences; PicoGK executes the coded geometric
+rules. [PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/overview.html)
+is a framework for training and using physics models, not a pretrained
+cylinder-head engineer that infers all the physics from photographs.
+Two routes are possible: a reduced-order model learned from reference
+computations, or an equation-informed model (PINN), which also requires
+defined geometry, material parameters, loads and boundary conditions.
 
-Pour ce projet, les résultats de CFD/CHT et de structure seront les données de
-référence d'un éventuel accélérateur d'exploration. Séparer les géométries et
-points de fonctionnement d'entraînement de ceux de test ; mesurer les erreurs
-sur températures, débits, pertes de charge et contraintes ; refaire un calcul
-indépendant de chaque variante retenue. Un modèle qui reproduit ses données
-d'entraînement ne démontre pas une amélioration moteur ni la tenue en service.
+For this project, the CFD/CHT and structural results will be the reference
+data of any exploration accelerator. Separate the training geometries and
+operating points from the test ones; measure the errors on temperatures, flow
+rates, pressure drops and stresses; redo an independent computation for each
+retained variant. A model that reproduces its training data demonstrates
+neither an engine improvement nor durability in service.
 
-Aucun corpus de « 1 000 photos », modèle PhysicsNeMo spécialisé ou campagne
-d'apprentissage de culasse n'est déclaré constitué ou exécuté dans ce lot.
+No corpus of "1,000 photos", specialized PhysicsNeMo model or cylinder-head
+training campaign is declared assembled or executed in this batch.
 
-## Reçus publiables et fichiers privés
+## Publishable receipts and private files
 
-- [Reprise complète des audits, micro-coques, coût et arrêt](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json).
-- [Qualification de la nouvelle image Python/PicoGK](../../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
-- [Connectivité échantillonnée des vides](../../twins/m64-cylinder-head/evidence/picogk-connectivity-20260907.json).
-- [Qualification de l'image](../../twins/m64-cylinder-head/evidence/picogk-image-qualification-20260907.json).
-- [Trois exécutions de voxelisation sur Kali](../../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
-- [Audits indépendants des trois résolutions, avec état partiel](../../twins/m64-cylinder-head/evidence/picogk-three-resolution-audit-20260907.json).
-- [Domaines volumiques à deux résolutions](../../twins/m64-cylinder-head/evidence/picogk-domains-20260907.json).
-- [Contre-audit topologique et filtre exact](../../twins/m64-cylinder-head/evidence/picogk-cooling-domain-mesh-audit-20260907.json).
-- [Calculs réels sur Vast, collecte et arrêt vérifié](../../twins/m64-cylinder-head/evidence/picogk-vast-execution-20260907.json).
+- [Full resumption of the audits, micro-shells, cost and shutdown](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json).
+- [Qualification of the new Python/PicoGK image](../../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
+- [Sampled connectivity of the voids](../../twins/m64-cylinder-head/evidence/picogk-connectivity-20260907.json).
+- [Image qualification](../../twins/m64-cylinder-head/evidence/picogk-image-qualification-20260907.json).
+- [Three voxelization runs on Kali](../../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
+- [Independent audits of the three resolutions, with partial state](../../twins/m64-cylinder-head/evidence/picogk-three-resolution-audit-20260907.json).
+- [Volume domains at two resolutions](../../twins/m64-cylinder-head/evidence/picogk-domains-20260907.json).
+- [Topological counter-audit and exact filter](../../twins/m64-cylinder-head/evidence/picogk-cooling-domain-mesh-audit-20260907.json).
+- [Real computations on Vast, collection and verified shutdown](../../twins/m64-cylinder-head/evidence/picogk-vast-execution-20260907.json).
 
-Les reçus incluent les empreintes des entrées, sorties, rapports privés,
-programmes et bibliothèques. Les STL, STEP, VDB et rendus privés ne sont pas
-embarqués dans le dépôt public. Le script de rendu est versionné et les images
-ont été montrées dans le fil de travail ; les couleurs n'y représentent
-aucune température ou contrainte calculée.
+The receipts include the digests of the inputs, outputs, private reports,
+programs and libraries. The STL, STEP, VDB and private renders are not
+embedded in the public repository. The rendering script is versioned and the
+images were shown in the work thread; their colors represent no computed
+temperature or stress.
 
-**Statut : préparation géométrique contrôlée, pas culasse validée ni autorisée
-à fabriquer ou à faire fonctionner.**
+**Status: controlled geometric preparation, not a validated cylinder head, nor
+one authorized for manufacture or operation.**

@@ -1,223 +1,225 @@
-# M64 — surfaces lisses, contacts d'inserts et maillage natif
+# M64 — smooth surfaces, insert contacts and native mesh
 
-Ce lot poursuit l'[essai de conduits 05](M64_PORTS_AND_CONTINUOUS_MOTION_20260907.md).
-Les résultats sont attachés à une géométrie exacte par empreinte, jamais
-transférés automatiquement à une nouvelle version de la pièce. Le maître
-reste privé et inchangé ; l'échelle et les interfaces M64 ne sont pas certifiées.
+This batch continues the [port trial 05](M64_PORTS_AND_CONTINUOUS_MOTION_20260907.md).
+The results are attached to an exact geometry by digest, never transferred
+automatically to a new version of the part. The master remains private and
+unchanged; the scale and the M64 interfaces are not certified.
 
-## Contacts nominaux réellement calculés sur l'essai 05
+## Nominal contacts actually computed on trial 05
 
-Le [reçu des contacts](../../twins/m64-cylinder-head/evidence/insert-OD-contacts-trial05-20260907.json)
-concerne le B-Rep natif `3e3cc163…`, pas son STEP non qualifié. Les huit inserts
-du module STEP sont identifiés par correspondance géométrique unique, puis
-recalés une seule fois. Leur intersection volumique avec le corps, **avant et
-après découpe**, est nulle dans les booléens exécutés. Le second contrôle a été
-ajouté après revue indépendante puis le calcul réel a été relancé : 21,54 s,
-entrées inchangées et mêmes fractions d'aire.
+The [contact receipt](../../twins/m64-cylinder-head/evidence/insert-OD-contacts-trial05-20260907.json)
+concerns the native B-Rep `3e3cc163…`, not its non-qualified STEP. The eight
+inserts of the STEP module are identified by unique geometric matching, then
+re-registered once. Their volumetric intersection with the body, **before and
+after cutting**, is zero in the booleans run. The second check was added after
+an independent review, and the real computation was then rerun: 21.54 s,
+inputs unchanged and same area fractions.
 
-L'intersection entre la face cylindrique extérieure de chaque insert et le
-corps donne les surfaces nominales suivantes, après création des conduits :
+The intersection between the external cylindrical face of each insert and the
+body gives the following nominal surfaces, after creating the ports:
 
-| Insert | Fraction de la surface cylindrique nominale en contact |
+| Insert | Fraction of the nominal cylindrical surface in contact |
 |---|---:|
-| Quatre sièges | 100 % chacun |
-| Deux guides d'admission | 65,714 % chacun |
-| Guide d'échappement 1 | 67,612 % |
-| Guide d'échappement 2 | 67,592 % |
+| Four seats | 100% each |
+| Two intake guides | 65.714% each |
+| Exhaust guide 1 | 67.612% |
+| Exhaust guide 2 | 67.592% |
 
-La référence non percée de conduits couvre 100 % de ces huit faces. La
-diminution sur les guides provient donc de l'ouverture des passages de gaz.
-Le pourcentage décrit une aire ; il ne garantit pas une longueur de portée
-uniforme sur tout le pourtour. Une surface de contact n'établit **ni serrage,
-ni pression de contact, ni conductance thermique, ni tenue à chaud**.
-Le jeu/interférence d'assemblage, la dilatation, les propriétés des matériaux,
-les rugosités et les efforts restent à définir et à calculer.
+The reference without drilled ports covers 100% of these eight faces. The
+decrease on the guides therefore comes from opening the gas passages.
+The percentage describes an area; it does not guarantee a uniform bearing
+length around the whole circumference. A contact surface establishes **neither
+clamping, nor contact pressure, nor thermal conductance, nor hot retention**.
+The assembly clearance/interference, thermal expansion, material properties,
+roughness and loads remain to be defined and computed.
 
-Les épaulements, faces intérieures et bandes d'étanchéité soupape/siège sont
-explicitement exclus de ce calcul. Les surfaces natives de contact et leurs
-empreintes sont conservées dans le dossier privé. Les deux quadratures
-adaptatives demandent ε = 10⁻⁹ et 10⁻¹¹ ; leurs estimateurs ne sont pas des
-bornes mathématiques rigoureuses.
+The shoulders, inner faces and valve/seat sealing bands are explicitly excluded
+from this calculation. The native contact surfaces and their digests are kept
+in the private folder. The two adaptive quadratures request ε = 10⁻⁹ and
+10⁻¹¹; their estimators are not rigorous mathematical bounds.
 
-La coïncidence reste celle du noyau OCCT, à ses tolérances natives : jusqu'à
-10⁻⁷ unité sur la référence et les inserts ; sur le candidat, jusqu'à
-5 × 10⁻⁶ sur les arêtes, 5,100001 × 10⁻⁶ sur les sommets et 10⁻⁷ sur les faces.
-Le paramètre booléen de tolérance additionnelle reste nul. Un témoin montre
-qu'un jeu radial réel de 5 × 10⁻⁸ unité peut encore être classé en coïncidence,
-alors qu'un jeu de 10⁻⁶ ne l'est plus. Ce n'est donc **pas une preuve de jeu nul**.
-Le contrôle de pénétration volumique est un écran numérique au seuil absolu
-10⁻⁷ unité³, pas une borne certifiée sur une interférence physique.
+The coincidence remains that of the OCCT kernel, at its native tolerances: up
+to 10⁻⁷ unit on the reference and the inserts; on the candidate, up to
+5 × 10⁻⁶ on the edges, 5.100001 × 10⁻⁶ on the vertices and 10⁻⁷ on the faces.
+The additional boolean tolerance parameter remains zero. A witness shows that
+a real radial clearance of 5 × 10⁻⁸ unit can still be classified as
+coincident, while a clearance of 10⁻⁶ no longer is. This is therefore **not
+proof of zero clearance**.
+The volumetric penetration check is a numerical screen at the absolute
+threshold of 10⁻⁷ unit³, not a certified bound on a physical interference.
 
 ```mermaid
 flowchart TD
-    A["Module STEP : 4 sièges et 4 guides"] --> B["Identité géométrique et recalage unique"]
-    R["Référence avant conduits"] --> C["Intersection avec les faces cylindriques des inserts"]
+    A["STEP module: 4 seats and 4 guides"] --> B["Geometric identity and single re-registration"]
+    R["Reference before ports"] --> C["Intersection with the cylindrical faces of the inserts"]
     B --> C
-    P["Candidat natif exact après conduits"] --> C
-    C --> D["Aires nominales avant/après et surfaces privées"]
-    D --> E["Géométrie de contact pour les futurs calculs"]
-    M["Matériaux à chaud, ajustements, rugosités, efforts"] --> F["Pression de contact et conductance à calculer"]
+    P["Exact native candidate after ports"] --> C
+    C --> D["Nominal areas before/after and private surfaces"]
+    D --> E["Contact geometry for future calculations"]
+    M["Hot materials, fits, roughness, loads"] --> F["Contact pressure and conductance to compute"]
     E --> F
-    F --> G["Vérification thermique et maintien à chaud — non exécutés"]
+    F --> G["Thermal check and hot retention — not run"]
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class G open;
 ```
 
-Les [témoins logiciels](../../tests/test_m64_insert_contacts.py) couvrent un contact
-complet, un guide exposé sur la moitié de sa longueur, un jeu radial positif,
-le rejet d'une mauvaise face cylindrique, d'un insert enfoui dans un bloc
-sans alésage et d'un gain de contact présenté à tort comme un enlèvement de
-matière. Un cinquième test documente le cas du jeu inférieur à la tolérance. Le
+The [software witnesses](../../tests/test_m64_insert_contacts.py) cover a full
+contact, a guide exposed over half its length, a positive radial clearance, the
+rejection of a wrong cylindrical face, of an insert buried in a block with no
+bore and of a contact gain wrongly presented as material removal. A fifth test
+documents the case of a clearance below the tolerance. The
 [script](../../twins/m64-cylinder-head/source/audit_insert_contact_surfaces.py)
-ne modifie aucune géométrie d'entrée.
+modifies no input geometry.
 
-## Limite du lot
+## Limit of the batch
 
-Ces surfaces préparent les [entrées CHT](M64_CHT_HEAD_INPUT_AUDIT.md). Elles ne
-constituent pas encore une partition complète gaz/solide/air/huile, ni des
-conditions aux limites physiques. Une face non identifiée ne devient pas
-adiabatique par défaut. Aucun résultat de température, résistance, fatigue,
-puissance moteur ou simulation LPBF de la culasse n'est déduit de ces contacts.
+These surfaces prepare the [CHT inputs](M64_CHT_HEAD_INPUT_AUDIT.md). They do
+not yet constitute a complete gas/solid/air/oil partition, nor physical
+boundary conditions. An unidentified face does not become adiabatic by
+default. No result on temperature, strength, fatigue, engine power or LPBF
+simulation of the cylinder head is deduced from these contacts.
 
-## Troncs C1 bornés, construits et réimportés
+## Bounded C1 trunks, built and re-imported
 
-L'essai 05 utilisait un tronc réglé, seulement C0 entre sections. Le nouveau
-[générateur C1](../../twins/m64-cylinder-head/source/build_bounded_c1_trunk.py)
-conserve toutes les sections circulaires, sans loft global ni ajustement d'un
-nuage rééchantillonné. Les pentes d'une interpolation Hermite cubique locale
-sont limitées conjointement sur les centres, rayons et limites `centre ± rayon`.
-Les contrôles de Bernstein restent dans les bornes des stations voisines.
-Le calcul rationnel exact vérifie cette propriété, puis contrôle séparément
-les pôles flottants réellement transmis au noyau CAO.
+Trial 05 used a ruled trunk, only C0 between sections. The new
+[C1 generator](../../twins/m64-cylinder-head/source/build_bounded_c1_trunk.py)
+keeps all circular sections, without a global loft or fitting of a resampled
+point cloud. The slopes of a local cubic Hermite interpolation are limited
+jointly on the centers, radii and `center ± radius` limits.
+The Bernstein control points remain within the bounds of the neighboring
+stations. The exact rational calculation verifies this property, then
+separately checks the floating-point poles actually passed to the CAD kernel.
 
-Cette construction donne quatre faces rationnelles par tronc, avec une base
-B-spline axiale C1. Les sections sont conservées à la précision numérique ;
-elle ne prétend pas reconstruire les surfaces intérieures Porsche mesurées.
-Les tangentes communes ne garantissent pas C2 et la fusion ultérieure avec les
-branches des soupapes ne devient pas automatiquement C1.
+This construction gives four rational faces per trunk, with a C1 axial B-spline
+basis. The sections are preserved to numerical precision; it does not claim to
+reconstruct the measured Porsche inner surfaces.
+The common tangents do not guarantee C2 and the later fusion with the valve
+branches does not automatically become C1.
 
-Les [deux troncs exécutés](../../twins/m64-cylinder-head/evidence/bounded-C1-trunks-20260907.json)
-ont chacun un solide valide, zéro défaut BOP signalé avant/après réimport
-B-Rep et après réimport STEP, sans modifier les réglages du traducteur ou
-les tolérances natives. Le dépassement global calculé sur les pôles stockés
-est nul pour ces deux objets. Le contrôle de volume utilise l'intégrale
-polynomiale du rayon au carré, multipliée par π, comparée à une intégration
-native adaptative : écart relatif 3,16 × 10⁻¹⁰ à l'admission et 2,39 × 10⁻¹²
-à l'échappement. Ces contrôles concernent les troncs seuls, pas toute la culasse.
+The [two trunks run](../../twins/m64-cylinder-head/evidence/bounded-C1-trunks-20260907.json)
+each have a valid solid, zero BOP defects reported before/after B-Rep re-import
+and after STEP re-import, without modifying the translator settings or the
+native tolerances. The global overshoot computed on the stored poles is zero
+for these two objects. The volume check uses the polynomial integral of the
+squared radius, multiplied by π, compared with a native adaptive integration:
+relative gap 3.16 × 10⁻¹⁰ at intake and 2.39 × 10⁻¹² at exhaust. These checks
+concern the trunks alone, not the whole cylinder head.
 
-Les formules de pentes de départ suivent la méthode décrite dans la
-[documentation primaire PCHIP de SciPy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html).
-La limitation conjointe et la conversion exacte sont vérifiées par le code
-du projet ; la documentation SciPy ne certifie pas ces développements locaux.
+The starting slope formulas follow the method described in the
+[primary SciPy PCHIP documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html).
+The joint limiting and the exact conversion are verified by the project's
+code; the SciPy documentation does not certify these local developments.
 
-Onze [tests dédiés](../../tests/test_bounded_c1_trunk.py) couvrent les stations,
-bords et dérivées, la conversion exacte, les entrées refusées et les vrais
-solides natifs dans les deux sens axiaux. La
-[revue indépendante](../../twins/m64-cylinder-head/evidence/bounded-C1-independent-checks-20260907.json)
-ajoute 286 contrôles rationnels sur huit modèles synthétiques, 16 mutations
-invalides rejetées et deux relectures des pôles natifs après couture. Elle
-ne requalifie ni les raccords aux branches ni l'essai intégré rejeté. Le sélecteur
-`--trunk-interpolation bounded-c1` est ajouté au générateur de conduits,
-avec empreinte du nouveau code dans les entrées. Les modes historiques restent
-disponibles pour reproduire les essais rejetés ; ils ne sont pas remplacés.
+Eleven [dedicated tests](../../tests/test_bounded_c1_trunk.py) cover the
+stations, edges and derivatives, the exact conversion, the refused inputs and
+the real native solids in both axial directions. The
+[independent review](../../twins/m64-cylinder-head/evidence/bounded-C1-independent-checks-20260907.json)
+adds 286 rational checks on eight synthetic models, 16 invalid mutations
+rejected and two re-reads of the native poles after sewing. It does not
+requalify the junctions to the branches or the rejected integrated trial. The
+`--trunk-interpolation bounded-c1` selector is added to the port generator,
+with the digest of the new code in the inputs. The historical modes remain
+available to reproduce the rejected trials; they are not replaced.
 
-### Essai complet 06 : candidat non retenu
+### Full trial 06: candidate not retained
 
-Le [nouvel essai intégré](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-06-bounded-C1-20260907.json)
-a réellement reconstruit les deux banques et découpé le corps en 380,55 s.
-Les noyaux gaz natifs sont chacun monoblocs et passent les contrôles BOP
-exécutés. Après découpe, le corps reste un solide BRepCheck valide, mais
-**deux défauts `GeomAbs_C0` sont signalés** ; ils persistent à la relecture
-B-Rep. L'essai est donc rejeté, sans promotion en maître ni en géométrie de calcul.
+The [new integrated trial](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-06-bounded-C1-20260907.json)
+actually rebuilt both banks and cut the body in 380.55 s.
+The native gas cores are each single-piece and pass the BOP checks run. After
+cutting, the body remains a valid BRepCheck solid, but **two `GeomAbs_C0`
+defects are reported**; they persist on B-Rep re-read. The trial is therefore
+rejected, with no promotion to master or to computation geometry.
 
-Son STEP ajoute 67 défauts de courbes sur surface et présente une différence
-de volume intégré de 12,834 unités³ par rapport au natif. Les troncs isolés
-passaient le contrôle d'échange, mais cela ne suffit pas pour leurs raccords
-booléens ni pour le corps découpé. La continuité et les représentations
-d'intersection doivent être reprises localement. Les inputs et le maître
-original restent inchangés.
+Its STEP adds 67 curve-on-surface defects and shows an integrated volume
+difference of 12.834 units³ relative to the native one. The isolated trunks
+passed the exchange check, but this is not enough for their boolean junctions
+or for the cut body. The continuity and the intersection representations must
+be reworked locally. The inputs and the original master remain unchanged.
 
-## Diagnostic STEP de l'essai 05 : réparation non acquise
+## STEP diagnosis of trial 05: repair not achieved
 
-Le diagnostic a localisé 26 couples arête/face, concernant 21 arêtes. Il
-retrouve à la fois une baisse des tolérances locales à l'import et une
-dégradation de certaines courbes paramétriques sur surface. Une correction
-`SameParameter` ciblée laisse 24 défauts ; une suppression/reprojection
-ciblée suivie de `SameParameter` en laisse 23. **Les deux essais sont rejetés**,
-sans nouveau maître ni STEP qualifié. Les entrées originales restent inchangées.
+The diagnosis located 26 edge/face pairs, involving 21 edges. It finds both a
+drop in local tolerances on import and a degradation of some parametric curves
+on surface. A targeted `SameParameter` fix leaves 24 defects; a targeted
+removal/reprojection followed by `SameParameter` leaves 23. **Both trials are
+rejected**, with no new master or qualified STEP. The original inputs remain
+unchanged.
 
-Le [reçu dédié](../../twins/m64-cylinder-head/evidence/trial05-STEP-repair-counterchecks-20260907.json)
-conserve leurs empreintes. Ces échecs ne sont pas masqués en augmentant
-globalement les tolérances. Ils ne remettent pas automatiquement en cause
-le B-Rep natif, mais maintiennent fermé le jalon d'échange STEP.
+The [dedicated receipt](../../twins/m64-cylinder-head/evidence/trial05-STEP-repair-counterchecks-20260907.json)
+keeps their digests. These failures are not masked by globally increasing the
+tolerances. They do not automatically call the native B-Rep into question, but
+keep the STEP exchange milestone closed.
 
-## Maillage réel de l'essai 05 et échecs conservés
+## Real mesh of trial 05 and failures kept on record
 
-Le [générateur de maillage natif](../../twins/m64-cylinder-head/source/mesh_native_ported_head.py)
-importe directement le B-Rep `3e3cc163…` dans Gmsh 4.15.2 sur Kali x86.
-Il ne passe pas par le STEP rejeté et n'applique ni réparation, couture,
-fermeture, simplification, ni changement d'échelle. La comparaison d'aire et
-de centroïde donne une bijection des 4 892 faces, sans perte observée ; ce
-contrôle par descripteurs n'est pas une preuve exhaustive d'équivalence.
+The [native mesh generator](../../twins/m64-cylinder-head/source/mesh_native_ported_head.py)
+imports the B-Rep `3e3cc163…` directly into Gmsh 4.15.2 on Kali x86.
+It does not go through the rejected STEP and applies no repair, sewing,
+closing, simplification or scale change. The area and centroid comparison
+gives a bijection of the 4,892 faces, with no observed loss; this
+descriptor-based check is not exhaustive proof of equivalence.
 
-Un vrai maillage est généré, exporté puis relu : **261 564 tétraèdres,
-63 530 nœuds et 88 312 triangles de frontière**, une région connectée et
-frontière complète. Le volume discrétisé dépasse le volume natif de 0,282 %.
-Mais 4 902 tétras ont un indice de qualité minSICN inférieur au seuil projet
-0,1, dont sept quasi dégénérés sous 10⁻⁶. Le minimum vaut environ 7,52 × 10⁻¹⁷.
-Les Jacobiens étaient positifs en mémoire. Un contrôle ultérieur du MSH relu
-trouve un Jacobien non positif, ce qui renforce son rejet ; voir la
-[correction locale et le contrôle après export](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md).
-**Ce maillage est rejeté avant calcul thermique ou mécanique.**
+A real mesh is generated, exported then re-read: **261,564 tetrahedra, 63,530
+nodes and 88,312 boundary triangles**, one connected region and a complete
+boundary. The discretized volume exceeds the native volume by 0.282%.
+But 4,902 tets have a minSICN quality index below the project threshold of
+0.1, including seven quasi-degenerate ones below 10⁻⁶. The minimum is about
+7.52 × 10⁻¹⁷. The Jacobians were positive in memory. A later check of the
+re-read MSH finds a non-positive Jacobian, which reinforces its rejection; see
+the [local correction and post-export check](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md).
+**This mesh is rejected before any thermal or mechanical computation.**
 
-Le premier contre-essai conserve géométrie, tailles 1 à 6 unités et génération,
-puis ajoute une optimisation tétraédrique Netgen. Le maillage initial est
-reproduit, mais l'optimiseur termine avec code 139, sans dépassement mémoire.
-Aucun maillage optimisé n'est accepté. Le crash logiciel ne prouve pas que
-le B-Rep est invalide. Les deux essais sont limités à deux CPU, 4 Gio et
-295 s, réseau désactivé ; les conteneurs ont été supprimés après collecte.
-Aucune location Vast n'a été nécessaire.
+The first counter-trial keeps the geometry, sizes 1 to 6 units and the
+generation, then adds a Netgen tetrahedral optimization. The initial mesh is
+reproduced, but the optimizer ends with code 139, without exceeding memory.
+No optimized mesh is accepted. The software crash does not prove that the
+B-Rep is invalid. Both trials are limited to two CPUs, 4 GiB and 295 s,
+network disabled; the containers were deleted after collection.
+No Vast rental was needed.
 
-Un diagnostic distinct relit le même MSH : 869 triangles de surface sont
-également sous 0,1. Les sept tétras quasi plats ont tous leurs quatre nœuds
-sur une même face CAD. Le problème n'est donc pas uniquement intérieur :
-la discrétisation de frontière doit aussi être examinée avant de relancer
-une optimisation volumique. Les coordonnées et identifiants restent privés.
-Les [reçus des deux essais et du diagnostic](../../twins/m64-cylinder-head/evidence/native-mesh-trial05-counterchecks-20260907.json)
-les distinguent du nouveau corps C1 de l'essai 06, auquel ils ne sont pas transférés.
+A separate diagnosis re-reads the same MSH: 869 surface triangles are also
+below 0.1. The seven quasi-flat tets all have their four nodes on the same CAD
+face. The problem is therefore not only interior: the boundary discretization
+must also be examined before rerunning a volume optimization. The coordinates
+and identifiers remain private.
+The [receipts of the two trials and of the diagnosis](../../twins/m64-cylinder-head/evidence/native-mesh-trial05-counterchecks-20260907.json)
+distinguish them from the new C1 body of trial 06, to which they are not
+transferred.
 
-Un contre-contrôle géométrique indépendant retrouve les trois faces concernées
-dans le maître avant découpe : aire commune complète avec leurs faces sources,
-différences surfaciques nulles dans les deux sens, et aucune aire commune avec
-les deux négatifs gaz. Elles sont donc héritées de la peau conservée, selon
-ces opérations à tolérances natives. **Inférence pour la prochaine étape :**
-modifier les seuls troncs de conduits ne devrait pas résoudre ces mauvais
-éléments ; il faut tester une correction locale de discrétisation de cette peau.
-Ce [contre-essai local a ensuite été exécuté](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md) :
-il supprime les sept tétras quasi plats sans modifier la CAO, mais ne satisfait
-pas encore le seuil global de qualité.
+An independent geometric counter-check finds the three faces concerned in the
+master before cutting: full common area with their source faces, zero surface
+differences in both directions, and no common area with the two gas negatives.
+They are therefore inherited from the preserved skin, according to these
+operations at native tolerances. **Inference for the next step:** modifying
+only the port trunks should not resolve these bad elements; a local
+discretization correction of this skin must be tested.
+This [local counter-trial was then run](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md):
+it removes the seven quasi-flat tets without modifying the CAD, but does not
+yet satisfy the global quality threshold.
 
-## Vues de l'essai 06
+## Views of trial 06
 
-Les vues privées représentent les 71 302 triangles de tessellation du corps
-actuel, sans lissage ni décimation. La demi-vue et la coupe utilisent la même
-géométrie et affichent **rejet natif : 2 défauts ; STEP rejeté : 69 défauts**.
-Le bleu/orange identifie admission/échappement, sans champ thermique ou
-résultat CFD. Les coupes servent à l'inspection ; elles ne modifient pas la CAO.
+The private views represent the 71,302 tessellation triangles of the current
+body, without smoothing or decimation. The half view and the section use the
+same geometry and display **native rejection: 2 defects; STEP rejected: 69
+defects**. Blue/orange identifies intake/exhaust, with no thermal field or CFD
+result. The sections serve for inspection; they do not modify the CAD.
 
-Le reçu de l'essai 06 contient les empreintes des images et du rendu, sans
-publier la géométrie ou les coordonnées issues du scan privé.
+The trial 06 receipt contains the digests of the images and of the render,
+without publishing the geometry or the coordinates from the private scan.
 
-## Tests du lot
+## Tests of the batch
 
-`make check` termine avec sortie 0 : sa découverte principale exécute
-**2 119 tests, dont 76 ignorés explicitement** dans le runtime par défaut,
-puis les cibles complémentaires terminent. Les suites ciblées sont également
-exécutées dans le runtime OCP qualifié : **43 tests réussis, aucun ignoré**
-(11 C1, 13 routage, 5 contacts, 5 maillage, 7 mouvement continu, 2 peau).
-Le [reçu logiciel](../../twins/m64-cylinder-head/evidence/C1-contact-mesh-software-checks-20260907.json)
-conserve les empreintes des journaux et des sources. Une suite logicielle
-réussie ne renverse ni le rejet CAO de l'essai 06, ni le rejet de qualité du
-maillage 05, ni les jalons physiques encore ouverts.
+`make check` finishes with exit 0: its main discovery runs **2,119 tests,
+including 76 explicitly skipped** in the default runtime, then the
+complementary targets finish. The targeted suites are also run in the
+qualified OCP runtime: **43 tests passed, none skipped** (11 C1, 13 routing,
+5 contacts, 5 mesh, 7 continuous motion, 2 skin).
+The [software receipt](../../twins/m64-cylinder-head/evidence/C1-contact-mesh-software-checks-20260907.json)
+keeps the digests of the logs and sources. A passing software suite reverses
+neither the CAD rejection of trial 06, nor the quality rejection of mesh 05,
+nor the physical milestones still open.
 
-Les compétences de tests et de documentation ont servi à ajouter les
-contre-exemples de tolérance/contact et de bornes C1, ainsi qu'à conserver
-séparément les preuves et leurs limites.
+The testing and documentation skills were used to add the tolerance/contact
+and C1 bound counterexamples, and to keep the evidence and its limits
+separate.

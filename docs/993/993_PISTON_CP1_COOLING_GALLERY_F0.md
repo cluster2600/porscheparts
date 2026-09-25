@@ -19,6 +19,26 @@ pin–connecting rod, chamber–valves and oil jet–gallery. They all remain
 `missing_data`: this status is deliberate and prevents confusing an F0 envelope
 with a fitted M64/60 piston.
 
+```mermaid
+flowchart LR
+  S["Documented engine:<br/>100 mm bore, 76.4 mm stroke,<br/>6,720 rpm; no piston drawing"] --> G["F0 BREP, own geometry<br/>closed-ring gallery, CP1<br/>681.32 g"]
+  G --> A["Analytical plate<br/>ratio 1.07"]
+  G --> C["CalculiX hot p95<br/>297 / 323.46 = 0.918:<br/>F0 rejected in this case"]
+  G --> K["PicoGK sweep<br/>no variant reaches 1.50,<br/>no design selected"]
+  G --> P["LPBF slicing and<br/>SimReady prop"]
+  C --> V["Five interfaces missing_data<br/>not authorized for manufacturing,<br/>installation or engine start-up"]
+  K --> V
+  P --> V
+  class S ok
+  class A,P open
+  class C,K,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why additive makes sense here
 
 The gallery under the crown is the function that conventional machining cannot
@@ -172,6 +192,21 @@ in the validation gates.
 See [the pipeline and the detailed verdict](../AM_VALIDATION_PIPELINE.md),
 [the LPBF results](../../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/)
 and [the Omniverse summary](../../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
+
+<table>
+<tr>
+<td width="33%"><img src="../../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-screen.png" alt="LPBF geometric slicing screen of the F0 piston: section per layer, newly unsupported region and support envelope against build height"></td>
+<td width="33%"><img src="../../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/piston-lpbf-build-screen.png" alt="Render of the F0 piston tilted in roll_y_45 on a nominal build plate"></td>
+<td width="33%"><img src="../../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/piston-cp1-gallery-f0-ovrtx.png" alt="OVRTX render of the isolated F0 piston SimReady prop"></td>
+</tr>
+<tr>
+<td><em>Slicing screen, <code>roll_y_45</code>, 50 µm (labels in French).</em></td>
+<td><em>LPBF preparation scene on a nominal Sapphire plate.</em></td>
+<td><em>OVRTX render of the isolated inspection prop.</em></td>
+</tr>
+</table>
+
+*These three images show the F0 geometry as sliced and rendered. None carries a distortion, a supplier support, a recoater collision or an engine interface, and none is evidence of how a printed piston would behave.*
 
 ## Software reproduction
 

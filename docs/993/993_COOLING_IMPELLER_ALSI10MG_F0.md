@@ -6,6 +6,26 @@ FVD publishes a product envelope of `300 × 300 × 150 mm` and `0.94 kg`; the
 Centre Service Porsche Poitiers publishes `0.948 kg`. Partworks states
 aluminum, without grade or process.
 
+```mermaid
+flowchart LR
+  S["Published: impeller 964 106 015 31<br/>FVD 300 × 300 × 150 mm, 0.94 kg"] --> G["F0 build123d master<br/>280 mm, twelve blades<br/>990.39 g"]
+  G --> A["Housing throat 252 mm<br/>radial clearance -14 mm:<br/>incompatible"]
+  G --> O["Overspeed and modal screens<br/>pass, with stated limits"]
+  G --> T["Restrained thermal, 150 °C<br/>ratio 1.282: failure"]
+  G --> P["LPBF print screen<br/>failed closed:<br/>does not fit EOS M 290"]
+  A --> V["Overall result red<br/>prohibited from manufacture,<br/>rotation, installation, start-up"]
+  T --> V
+  P --> V
+  class S ok
+  class O open
+  class A,T,P,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## F0 geometry and integration
 
 The build123d master is independent: diameter `280 mm`, depth `30 mm`, annular

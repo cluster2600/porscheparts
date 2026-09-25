@@ -1,187 +1,207 @@
-# M64 G2 — conduits, refroidissement, galerie et taux de compression
+# M64 G2 — ports, cooling, gallery and compression ratio
 
-> **Rectification du 24 septembre :** le taux BRep de 5,51 et les calibrations de cette étude
-> comptaient des cavités séparées et une chambre non fermée. Ils ne permettent pas de conclure
-> que la cible 8–9 est inaccessible. Voir l'[audit reproductible](M64_G2_COMPRESSION_AUDIT_20260924.md).
-> Les résultats géométriques ci-dessous restent historiques ; les fichiers de preuve du 16 septembre
-> sont conservés sans modification.
+> **Correction of September 24:** the BRep ratio of 5.51 and the calibrations of this study
+> counted separate cavities and an unclosed chamber. They do not support the conclusion
+> that the 8–9 target is unreachable. See the [reproducible audit](M64_G2_COMPRESSION_AUDIT_20260924.md).
+> The geometric results below remain historical; the evidence files of September 16
+> are kept unmodified.
 
-**Statut : jumeau de conception, non revu. Fabrication et démarrage moteur non autorisés.**
-Aucune cote de cette page n'est mesurée sur une culasse M64 : les formes ajoutées ici sont des
-hypothèses de conception, déclarées `unsourced` dans `params-g2/head_features.json`.
+**Status: design twin, not reviewed. Manufacturing and engine start-up not authorized.**
+No dimension on this page is measured on an M64 cylinder head: the shapes added here are
+design assumptions, declared `unsourced` in `params-g2/head_features.json`.
 
-## Pourquoi un G2
+```mermaid
+flowchart LR
+    A["Step 1.00<br/>BRep 4.55"] --> B["0.95<br/>BRep 4.74"]
+    B --> C["0.90<br/>BRep 5.28"]
+    C --> D["0.85<br/>BRep 5.43"]
+    D --> E["0.80: best accepted<br/>BRep 5.51"]
+    E --> F["0.75: heads outside bore<br/>margin −0.052"]
+    E --> G["Manifest accepted: false<br/>compression ratio outside 8–9"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class F,G stop
+    class E open
+```
 
-Le jalon G1 (`docs/reports/M64_G1_FOUR_VALVE_SKELETON_20260914.md`) livrait un squelette : chambre
-en toit, sièges, guides, logements de ressort, puits de bougie, goujons — mais des **conduits
-droits**, **ni ailettes**, **ni galerie d'huile**, et **aucun critère de combustion**. Le lot G1
-défini dans `docs/reports/M64_RESEARCH_EXECUTION_20260912.md` demandait pourtant conduits, huile et
-plans. G2 comble la part réalisable sans mesure nouvelle.
+*Historical angle-continuation ladder of September 16, as reported below; the September 24 audit withdraws the conclusion drawn from the 5.51 ratio.*
 
-G2 s'active par `--extra-params` : sans ce fichier, `layout.cylinders`, la CAO et les contrôles sont
-identiques à G1, dont les preuves restent reproductibles à l'octet près.
+## Why a G2
 
-## Ce que G2 ajoute
+The G1 milestone (`docs/reports/M64_G1_FOUR_VALVE_SKELETON_20260914.md`) delivered a skeleton: pent-roof
+chamber, seats, guides, spring pockets, spark-plug wells, studs — but **straight
+ports**, **no fins**, **no oil gallery**, and **no combustion criterion**. The G1 batch
+defined in `docs/reports/M64_RESEARCH_EXECUTION_20260912.md` did ask for ports, oil and
+drawings. G2 fills the part that is achievable without new measurements.
 
-| Élément | Forme | Contrôles |
+G2 is enabled with `--extra-params`: without this file, `layout.cylinders`, the CAD and the checks are
+identical to G1, whose evidence remains byte-for-byte reproducible.
+
+## What G2 adds
+
+| Item | Shape | Checks |
 |---|---|---|
-| Conduits | Bézier cubique de la gorge (tangent à l'axe de soupape) à la bride (perpendiculaire), en segments partagés entre numpy et CAO ; les deux conduits d'un côté se rejoignent au centre de la bride | parois conduit/goujon, conduit/puits de bougie, conduit/logement de ressort |
-| Galerie d'huile | perçage traversant en y, sous la face porte-arbre | parois vers logements, guides, bougies, goujons, conduits ; distance à la face porte-arbre |
-| Ailettes | plaques horizontales sur les faces ±y, entre les brides | hauteur sous la face porte-arbre ; interférence avec la culasse voisine **non calculable** (entraxe des cylindres non sourcé) |
-| Taux de compression | volume mort BRep au PMH d'allumage : cylindre d'alésage moins culasse, sièges, soupapes fermées et piston | plage cible en hypothèse, **bloquant** pour l'acceptation ; proxy numpy calibré non bloquant, utilisé comme filtre de recherche |
+| Ports | Cubic Bézier from the throat (tangent to the valve axis) to the flange (perpendicular), in segments shared between numpy and CAD; the two ports on one side join at the center of the flange | port/stud, port/spark-plug well, port/spring pocket walls |
+| Oil gallery | through drilling along y, below the cam-carrier face | walls toward pockets, guides, spark plugs, studs, ports; distance to the cam-carrier face |
+| Fins | horizontal plates on the ±y faces, between the flanges | height below the cam-carrier face; interference with the neighboring cylinder head **not computable** (cylinder spacing unsourced) |
+| Compression ratio | BRep dead volume at firing TDC: bore cylinder minus cylinder head, seats, closed valves and piston | target range as an assumption, **blocking** for acceptance; calibrated numpy proxy non-blocking, used as a search filter |
 
-## Découverte principale : la chambre G1 est trop volumineuse
+![Section through the G2 cylinder head at the port plane](../../twins/m64-cylinder-head/evidence/g2-head-features-20260916/head-section-xy-ports.svg)
 
-Mesuré en BRep sur la configuration G1 acceptée (alésage 100, course 76,4) :
+*XY section of the G2 CAD at the ports (evidence of September 16); a design-twin drawing, not a measured M64 part and not a flow or thermal result.*
 
-| Grandeur | Valeur |
+## Main finding: the G1 chamber is too large
+
+Measured in BRep on the accepted G1 configuration (bore 100, stroke 76.4):
+
+| Quantity | Value |
 |---|---|
-| Angles de soupape retenus en G1 | 33,4° admission, 24,6° échappement (58° inclus) |
-| Hauteur d'arête du toit | 27,5 mm |
-| Volume mort | 171,8 cm³ |
-| Volume balayé | 600,0 cm³ |
-| **Taux de compression** | **4,49** |
+| Valve angles adopted in G1 | 33.4° intake, 24.6° exhaust (58° included) |
+| Roof ridge height | 27.5 mm |
+| Dead volume | 171.8 cm³ |
+| Swept volume | 600.0 cm³ |
+| **Compression ratio** | **4.49** |
 
-Un moteur turbo se situe usuellement vers 8:1 ; aucune valeur M64 n'est sourcée dans le dépôt, la
-plage 8 à 9 retenue ici est donc une hypothèse. La cause est claire : **l'itération G1 n'avait aucun
-critère de combustion** et maximisait les jeux, ce qui pousse les angles vers le haut de leur borne.
+A turbo engine usually sits around 8:1; no M64 value is sourced in the repository, so the
+8 to 9 range adopted here is an assumption. The cause is clear: **the G1 iteration had no
+combustion criterion** and maximized clearances, which pushes the angles toward the top of their bound.
 
-## Deux calculs du volume mort, un seul juge
+## Two dead-volume computations, one judge
 
-Le proxy numpy intègre le toit sur le disque d'alésage, moins la calotte du piston. Deux défauts
-distincts le séparaient du BRep ; ils ne se traitent pas de la même façon.
+The numpy proxy integrates the roof over the bore disk, minus the piston crown. Two distinct
+defects separated it from the BRep; they are not handled the same way.
 
-**Une omission, corrigée.** Il ne comptait ni les poches de soupape ni le bol autrement que par un
-cylindre : il ajoutait le bol et ignorait les poches. Il reprend désormais `crown_depression`, la
-même fonction que la cinématique, recouvrements et débordements d'alésage compris. Sur la
-configuration G1 (poches de 3,92 mm) cela vaut **16,8 cm³** : 116,7 cm³ avant, 133,5 après.
+**An omission, corrected.** It counted neither the valve pockets nor the bowl other than as a
+cylinder: it added the bowl and ignored the pockets. It now reuses `crown_depression`, the
+same function as the kinematics, overlaps and bore overflows included. On the
+G1 configuration (pockets of 3.92 mm) this is worth **16.8 cm³**: 116.7 cm³ before, 133.5 after.
 
-**Un biais résiduel, assumé et borné.** Restent les logements de sièges, les gorges et les conduits
-qui débouchent dans la chambre. Mesuré en BRep sur quatre configurations, ce biais n'est ni un
-facteur constant ni un décalage constant : il croît avec l'arête du toit.
+**A residual bias, accepted and bounded.** What remains are the seat pockets, throats and ports
+opening into the chamber. Measured in BRep on four configurations, this bias is neither a
+constant factor nor a constant offset: it grows with the roof ridge.
 
-| Angles | Arête | Proxy brut | BRep | Facteur |
+| Angles | Ridge | Raw proxy | BRep | Factor |
 |---|---:|---:|---:|---:|
-| 16° / 16° | 14,67 | 77,15 cm³ | 82,94 cm³ | 1,075 |
-| 22° / 22° | 18,80 | 89,79 | 108,52 | 1,209 |
-| 28° / 28° | 22,79 | 99,70 | 132,13 | 1,325 |
-| 33,4° / 24,6° (G1) | 27,47 | 133,50 | 171,81 | 1,287 |
+| 16° / 16° | 14.67 | 77.15 cm³ | 82.94 cm³ | 1.075 |
+| 22° / 22° | 18.80 | 89.79 | 108.52 | 1.209 |
+| 28° / 28° | 22.79 | 99.70 | 132.13 | 1.325 |
+| 33.4° / 24.6° (G1) | 27.47 | 133.50 | 171.81 | 1.287 |
 
-`chamber_proxy_calibration` retient **1,075**, la valeur mesurée *au voisinage de la plage visée* —
-c'est là que le filtre doit être juste, et il l'est : à 16° le proxy calibré donne 8,24 contre 8,23
-en BRep. Ailleurs il dérive, et la dérive est publiée : sur la configuration retenue ici,
-`observed_calibration` vaut 1,409 contre 1,075 supposé, soit un proxy annonçant 6,91 pour un taux
-BRep réel de 5,51. C'est assumé : le proxy n'est qu'un filtre de recherche.
-**Le taux BRep est le juge** : `run.py` refuse l'acceptation si le taux BRep sort de la plage, et
-`compression_proxy_band_tolerance` (0,6 point) élargit la plage côté proxy pour qu'il n'écarte pas
-un candidat que la mesure aurait retenu.
+`chamber_proxy_calibration` keeps **1.075**, the value measured *near the targeted range* —
+that is where the filter has to be right, and it is: at 16° the calibrated proxy gives 8.24 against 8.23
+in BRep. Elsewhere it drifts, and the drift is published: on the configuration adopted here,
+`observed_calibration` is 1.409 against 1.075 assumed, i.e. a proxy announcing 6.91 for an actual BRep
+ratio of 5.51. This is accepted: the proxy is only a search filter.
+**The BRep ratio is the judge**: `run.py` refuses acceptance if the BRep ratio falls outside the range, and
+`compression_proxy_band_tolerance` (0.6 point) widens the range on the proxy side so that it does not discard
+a candidate that the measurement would have kept.
 
-## Validité BRep des conduits : trois essais
+## BRep validity of the ports: three trials
 
-La découpe d'un conduit courbe est la partie fragile. Mesures sur la configuration G1 :
+Cutting a curved port is the fragile part. Measurements on the G1 configuration:
 
-| Construction | BRep valide | Solides | Remarque |
+| Construction | Valid BRep | Solids | Remark |
 |---|---|---|---|
-| Capsules découpées une par une | non | 10 | la culasse se fragmente |
-| Loft de cercles normaux à la courbe | non | 14 | volume négatif : orientation inversée |
-| Capsules fusionnées, sphères aux jonctions | oui | 3 | deux éclats parasites (129 mm³ et 0) |
-| **Tronçons allongés d'un rayon, fusionnés en un outil, une seule découpe** | **oui** | **1** | retenu |
+| Capsules cut one by one | no | 10 | the cylinder head fragments |
+| Loft of circles normal to the curve | no | 14 | negative volume: inverted orientation |
+| Fused capsules, spheres at the junctions | yes | 3 | two spurious slivers (129 mm³ and 0) |
+| **Segments extended by one radius, fused into one tool, a single cut** | **yes** | **1** | adopted |
 
-Les ailettes seules et la galerie seule restent valides et d'un seul solide.
+The fins alone and the gallery alone remain valid and a single solid.
 
-## Le réglage des angles : trois essais, trois causes distinctes
+## Tuning the angles: three trials, three distinct causes
 
-**Essai 1 — balayage des deux seuls angles : 0 candidat.** Les quinze autres variables de G1
-(bougies, poches de piston, calage, longueur de soupape) avaient été optimisées *pour* les angles de
-G1 ; les déplacer seuls casse les ponts vers les puits de bougie. Le critère de combustion est donc
-descendu dans la recherche elle-même (`iterate.compression_record`), qui replace toutes les
-variables ensemble.
+**Trial 1 — sweep of the two angles only: 0 candidates.** The fifteen other G1 variables
+(spark plugs, piston pockets, timing, valve length) had been optimized *for* the G1
+angles; moving the angles alone breaks the bridges toward the spark-plug wells. The combustion criterion was therefore
+moved into the search itself (`iterate.compression_record`), which repositions all
+variables together.
 
-**Essai 2 — recherche complète : 1 070 essais, 0 accepté.** Deux fautes, pas une. D'abord le départ
-chaud retirait les positions de tête de soupape pour les laisser se redériver, ce qui jetait dès le
-premier essai le seul point admissible connu — or la configuration G1 passe bel et bien les
-contrôles G2, conduits et galerie compris, avec une marge de 0,188 mm. Ensuite le classement laissait
-« dans la plage » primer sur des essais **refusés** : la recherche locale a couru après la
-compression en abandonnant la géométrie et s'est arrêtée sur un essai dans la plage mais avec six
-contrôles en échec et une marge de −4,11 mm. Le critère ne départage désormais que des essais déjà
-acceptés, et le départ conserve la configuration G1 entière.
+**Trial 2 — full search: 1,070 trials, 0 accepted.** Two faults, not one. First, the warm
+start removed the valve-head positions so that they would be re-derived, which threw away from the
+first trial the only known admissible point — yet the G1 configuration does pass
+the G2 checks, ports and gallery included, with a margin of 0.188 mm. Second, the ranking let
+"within the range" take precedence over **refused** trials: the local search chased
+compression while abandoning the geometry and stopped on a trial within the range but with six
+failed checks and a margin of −4.11 mm. The criterion now only breaks ties between trials already
+accepted, and the start keeps the whole G1 configuration.
 
-**Essai 3 — recherche complète corrigée : accepté, mais bloquée à 6,17 côté proxy.** Partie de G1
-(4,5), la descente par coordonnées remonte le taux puis ne trouve plus de voisin meilleur : aller
-vers la plage coûte d'abord de la marge géométrique avant d'en rendre. D'où la méthode retenue, une
-**continuation** : les deux angles sont figés à chaque palier, les quinze autres variables se
-replacent librement, et chaque palier démarre à chaud du précédent — exactement ce que
-`bore_sweep.py` fait pour l'alésage.
+**Trial 3 — corrected full search: accepted, but stuck at 6.17 on the proxy side.** Starting from G1
+(4.5), coordinate descent raises the ratio and then finds no better neighbor: moving
+toward the range first costs geometric margin before giving any back. Hence the method adopted, a
+**continuation**: the two angles are frozen at each step, the fifteen other variables
+reposition freely, and each step warm-starts from the previous one — exactly what
+`bore_sweep.py` does for the bore.
 
-## Résultat : la plage 8–9 est hors d'atteinte, et on sait pourquoi
+## Result: the 8–9 range is out of reach, and we know why
 
-2 249 essais, 360 acceptés, 5 mesures BRep sur l'échelle des paliers (un candidat par palier) :
+2,249 trials, 360 accepted, 5 BRep measurements along the ladder of steps (one candidate per step):
 
-| Palier | Angles adm./éch. | Accepté | Marge | Proxy calibré | **BRep** | Contrainte limitante |
+| Step | Int./exh. angles | Accepted | Margin | Calibrated proxy | **BRep** | Limiting constraint |
 |---|---|---|---:|---:|---:|---|
-| 1,00 | 33,4 / 24,6 | oui | 0,188 | 5,79 | 4,55 | pont adm/adm |
-| 0,95 | 31,7 / 23,4 | oui | 0,315 | 6,00 | 4,74 | soupape–piston |
-| 0,90 | 30,0 / 22,2 | oui | 0,306 | 6,81 | 5,28 | tête hors arête |
-| 0,85 | 28,4 / 20,9 | oui | 0,313 | 6,92 | 5,43 | soupape–piston |
-| **0,80** | **26,7 / 19,7** | **oui** | **0,080** | 6,91 | **5,51** | paroi goujon/logement |
-| 0,75 | 25,0 / 18,5 | non | **−0,052** | 6,94 | — | **têtes hors alésage** |
-| 0,70 | 23,4 / 17,2 | non | −0,560 | 7,13 | — | têtes hors alésage |
-| 0,60 | 20,0 / 14,8 | non | −1,605 | 7,65 | — | têtes hors alésage |
-| 0,55 | 18,4 / 14,0 | non | −2,138 | 8,03 | — | têtes hors alésage |
+| 1.00 | 33.4 / 24.6 | yes | 0.188 | 5.79 | 4.55 | int/int bridge |
+| 0.95 | 31.7 / 23.4 | yes | 0.315 | 6.00 | 4.74 | valve–piston |
+| 0.90 | 30.0 / 22.2 | yes | 0.306 | 6.81 | 5.28 | head beyond ridge |
+| 0.85 | 28.4 / 20.9 | yes | 0.313 | 6.92 | 5.43 | valve–piston |
+| **0.80** | **26.7 / 19.7** | **yes** | **0.080** | 6.91 | **5.51** | stud/pocket wall |
+| 0.75 | 25.0 / 18.5 | no | **−0.052** | 6.94 | — | **heads outside bore** |
+| 0.70 | 23.4 / 17.2 | no | −0.560 | 7.13 | — | heads outside bore |
+| 0.60 | 20.0 / 14.8 | no | −1.605 | 7.65 | — | heads outside bore |
+| 0.55 | 18.4 / 14.0 | no | −2.138 | 8.03 | — | heads outside bore |
 
-La descente **bute sur `valve_heads_within_bore`**, et le mécanisme est géométrique : l'empreinte
-projetée d'une tête a pour demi-axe en x le produit `d/2 · cos θ`. Aplatir les soupapes élargit donc
-leur empreinte, et deux têtes de 40 mm plus deux de 33 finissent par déborder d'un alésage de 100.
-Le mur tombe entre 26,7° et 25,0° : le palier 0,75 échoue de **0,052 mm** sur une marge exigée de
-1,0 mm.
+The descent **runs into `valve_heads_within_bore`**, and the mechanism is geometric: the projected
+footprint of a head has an x semi-axis equal to the product `d/2 · cos θ`. Flattening the valves therefore widens
+their footprint, and two 40 mm heads plus two 33 mm heads eventually overflow a 100 bore.
+The wall falls between 26.7° and 25.0°: step 0.75 fails by **0.052 mm** on a required margin of
+1.0 mm.
 
-Conséquence : dans les bornes de l'étape 1 — alésage M64 sourcé à 100, têtes Swindon sourcées à
-40 et 33 — **le taux de 8:1 n'est pas atteignable**. Le meilleur taux BRep accepté est **5,51**
-(volume mort 133,07 cm³), contre 4,49 pour G1 : +23 %, et toujours hors plage. Les seuls leviers
-restants sortent de l'étape 1 et touchent des valeurs sourcées : réduire les diamètres de tête
-(étape 3, pénalisée), agrandir l'alésage (étape 2), ou réviser des hypothèses non sourcées qui ne
-sont pas des variables — jeu au plat de culasse (1,0 mm), jeux soupape–piston (1,5 / 2,0 mm).
-Ce choix demande une décision, pas un calcul : il n'est pas pris ici.
+Consequence: within the bounds of step 1 — M64 bore sourced at 100, Swindon heads sourced at
+40 and 33 — **the 8:1 ratio is not achievable**. The best accepted BRep ratio is **5.51**
+(dead volume 133.07 cm³), against 4.49 for G1: +23 %, and still outside the range. The only remaining
+levers leave step 1 and touch sourced values: reduce the head diameters
+(step 3, penalized), enlarge the bore (step 2), or revise unsourced assumptions that are
+not variables — deck clearance (1.0 mm), valve–piston clearances (1.5 / 2.0 mm).
+This choice calls for a decision, not a computation: it is not made here.
 
-Les preuves de `g2-head-features-20260916` sont donc produites sur la configuration du palier 0,80,
-retenue par `--select-best-accepted` : la CAO est complète et valide, mais le manifeste porte
-`accepted: false`, refusé **sur le seul taux de compression**. Les 44 contrôles géométriques passent
-(marge minimale 0,080 mm), la culasse est un solide unique valide de 399 faces, et les neuf
-contre-contrôles BRep de distance passent.
+The evidence of `g2-head-features-20260916` is therefore produced on the configuration of step 0.80,
+selected by `--select-best-accepted`: the CAD is complete and valid, but the manifest carries
+`accepted: false`, refused **on the compression ratio alone**. The 44 geometric checks pass
+(minimum margin 0.080 mm), the cylinder head is a single valid solid of 399 faces, and the nine
+BRep distance cross-checks pass.
 
-Conséquence d'exploitation : **un seul calcul lourd à la fois**. Un client `docker` tué laisse le
-conteneur vivant : deux exécutions ont ainsi écrit dans le même fichier de sortie, et le code 137
-observé venait du client, pas du conteneur (`OOMKilled=false`).
+Operational consequence: **only one heavy computation at a time**. A killed `docker` client leaves the
+container alive: two runs thus wrote into the same output file, and the code 137
+observed came from the client, not from the container (`OOMKilled=false`).
 
-## Reproduire
+## Reproduce
 
 ```sh
 FV=twins/m64-cylinder-head/source/fourvalve
-# descente d'angle par paliers, puis mesure BRep d'un candidat par palier
+# step-by-step angle descent, then BRep measurement of one candidate per step
 python3 $FV/tune_compression.py work/m64-g2/compression-tuning.json \
   --method continuation --select-best-accepted --top 12
-# refaire le choix et les mesures BRep sans relancer la recherche
+# redo the selection and the BRep measurements without rerunning the search
 python3 $FV/tune_compression.py work/m64-g2/compression-tuning.json \
   --reselect work/m64-g2/compression-tuning-ladder.json --select-best-accepted
-# exécution complète avec la configuration retenue
+# full run with the adopted configuration
 python3 $FV/run.py twins/m64-cylinder-head/evidence/g2-head-features-20260916 \
   --extra-params $FV/params-g2/head_features.json \
   --fixed-design work/m64-g2/compression-tuning.json --external-dir work/m64-g2-external
 ```
 
-`tune_compression.py` et `run.py` rendent 2 tant que le taux BRep reste hors de la plage : c'est le
-cas aujourd'hui.
+`tune_compression.py` and `run.py` return 2 as long as the BRep ratio stays outside the range: that is
+the case today.
 
-Tests : `tests/test_m64_g2_head_features.py` (conduits, galerie, ailettes, CAO et taux) et la
-non-régression `tests/test_m64_g1_four_valve_twins.py`.
+Tests: `tests/test_m64_g2_head_features.py` (ports, gallery, fins, CAD and ratio) and the
+non-regression `tests/test_m64_g1_four_valve_twins.py`.
 
-## Ce que G2 ne fait pas
+## What G2 does not do
 
-- **Interfaces manquantes du contrat** (centrage, passage d'huile) et **entraxe des cylindres** :
-  aucune donnée M64 dans le dépôt, donc ni pont entre cylindres, ni interférence d'ailettes.
-- **Débit** : la forme des conduits n'est pas validée par un banc de flux ; aucune section, aucun
-  rapport de gorge n'est justifié par un calcul de débit.
-- **Refroidissement** : ailettes et galerie sont des formes, pas un bilan thermique. Ni débit de
-  pompe, ni débit de ventilateur, ni propriété matériau à chaud ne sont sourcés.
-- **Contradictions ouvertes** entre rapports (commande des soupapes, calage d'échappement, jeu
-  piston, ressorts) : elles restent à trancher avec des sources.
+- **Missing contract interfaces** (centering, oil passage) and **cylinder spacing**:
+  no M64 data in the repository, hence neither a bridge between cylinders nor fin interference.
+- **Flow**: the port shape is not validated by a flow bench; no section and no
+  throat ratio is justified by a flow computation.
+- **Cooling**: fins and gallery are shapes, not a thermal balance. Neither pump
+  flow, nor fan flow, nor hot material properties are sourced.
+- **Open contradictions** between reports (valve actuation, exhaust timing, piston
+  clearance, springs): they remain to be settled with sources.

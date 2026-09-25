@@ -112,8 +112,8 @@ def screen(slug: str, material: str, memory: str, cpus: str, pitch: float) -> di
                "output": output, "stdout": result.stdout[-400:]}
     status["returncode"] = result.returncode
     if result.returncode == 137:
-        # le conteneur a atteint son plafond memoire : ce n'est pas un verdict geometrique
-        return status | {"status": "failed_memory_cap", "error": f"conteneur tue au plafond {memory}"}
+        # the container hit its memory cap: this is not a geometric verdict
+        return status | {"status": "failed_memory_cap", "error": f"container killed at the {memory} memory cap"}
     if result.returncode != 0:
         return status | {"status": "failed_closed", "error": (result.stderr or result.stdout)[-600:]}
     return status | {"status": "screened"}

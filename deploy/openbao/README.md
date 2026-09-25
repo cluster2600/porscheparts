@@ -1,40 +1,55 @@
-# Wrappers OpenBao pour GHCR et Vast.ai
+# OpenBao wrappers for GHCR and Vast.ai
 
-L'accès Hugging Face de Flash Next est désormais
-[vérifié via le wrapper externe installé et sa procédure courante](HUGGINGFACE.md).
-Le prototype HF de ce dossier est historique : ne pas le réinstaller par-dessus
-le lanceur opérationnel. Les identités GitHub, NVIDIA et Vast restent séparées.
+Hugging Face access for Flash Next is now
+[verified through the installed external wrapper and its routine procedure](HUGGINGFACE.md).
+The HF prototype in this folder is historical: do not reinstall it over the
+operational launcher. The GitHub, NVIDIA and Vast identities stay separate.
 
-Ce dossier versionne les wrappers Vast.ai et GHCR utilisés pour l'image
-SimReady locale. Il ne contient aucun secret. `openbao-vastai` garde la
-location, l'unicité et la destruction ; `openbao-ghcr` vérifie l'accès au
-digest puis délègue uniquement l'offre explicitement relue. Le chemin F39
-utilise directement l'image publique immuable et ne transmet aucun identifiant
-GHCR à Vast.ai.
+This folder versions the Vast.ai and GHCR wrappers used for the local SimReady
+image. It contains no secret. `openbao-vastai` owns the rental, uniqueness and
+destruction; `openbao-ghcr` checks access to the digest and then delegates only
+the explicitly reviewed offer. The F39 path uses the immutable public image
+directly and passes no GHCR credential to Vast.ai.
 
-Le wrapper est volontairement borné à :
+The wrapper is deliberately limited to:
 
-- la lecture du secret existant `secrets/github` via une AppRole dédiée ;
-- l'identité GHCR `cluster2600` ;
-- l'image `cluster2600/3dprinting993-simready-local-ai` ;
-- le digest OCI déclaré dans `openbao-ghcr` ;
-- une opération de lancement SimReady explicite du wrapper `openbao-vastai`.
-- l'image F39 publique
-  `ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3` ;
-- une offre F39 relue par identifiant, à 1,25 USD/h maximum, avec au moins
-  64 threads CPU effectifs, 256 000 MB de RAM et 300 GB de disque ;
-- une machine vérifiée, de fiabilité minimale 0,985, louable et non déjà louée.
+- reading the existing secret `secrets/github` through a dedicated AppRole;
+- the GHCR identity `cluster2600`;
+- the image `cluster2600/3dprinting993-simready-local-ai`;
+- the OCI digest declared in `openbao-ghcr`;
+- an explicit SimReady launch operation of the `openbao-vastai` wrapper;
+- the public F39 image
+  `ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3`;
+- an F39 offer reviewed by identifier, at 1.25 USD/h maximum, with at least
+  64 effective CPU threads, 256,000 MB of RAM and 300 GB of disk;
+- a verified machine, with minimum reliability 0.985, rentable and not already
+  rented.
 
-Il accepte un token stocké sous l'un des champs `GITHUB_TOKEN`, `GH_TOKEN`,
-`github_token` ou `token`. Sa valeur n'est jamais imprimée. Le wrapper vérifie
-l'accès au manifeste épinglé localement, puis lance l'image publique sans
-transmettre le token à Vast.ai.
+It accepts a token stored under one of the fields `GITHUB_TOKEN`, `GH_TOKEN`,
+`github_token` or `token`. Its value is never printed. The wrapper checks access
+to the pinned manifest locally, then launches the public image without passing
+the token to Vast.ai.
 
-## Installation courante
+```mermaid
+sequenceDiagram
+    participant W as openbao-ghcr / openbao-vastai
+    participant B as OpenBao (AppRole)
+    participant G as GHCR
+    participant V as Vast.ai
+    W->>B: AppRole login, read secrets/github
+    B-->>W: token (never printed)
+    W->>G: check access to the pinned manifest
+    G-->>W: digest confirmed
+    W->>B: revoke the OpenBao session token
+    W->>V: launch the public image by digest
+    Note over W,V: the GitHub token is never passed to Vast.ai
+```
 
-Le secret GitHub et les deux AppRoles dédiées doivent déjà exister. La voie
-courante installe uniquement les sources versionnées, sans opération
-administrative OpenBao :
+## Routine installation
+
+The GitHub secret and the two dedicated AppRoles must already exist. The routine
+path installs only the versioned sources, with no OpenBao administrative
+operation:
 
 ```zsh
 cd /Users/maxime/projects/3dprinting993
@@ -47,14 +62,15 @@ openbao-ghcr --check
 openbao-ghcr --auth-check
 ```
 
-`--check` ne lit pas le secret. `--auth-check` lit temporairement le token via
-l'AppRole, vérifie le manifeste GHCR, puis révoque le jeton de session OpenBao.
+`--check` does not read the secret. `--auth-check` reads the token temporarily
+through the AppRole, checks the GHCR manifest, then revokes the OpenBao session
+token.
 
-Le script `provision-openbao-ghcr.sh` est réservé à l'initialisation
-administrative ponctuelle d'une AppRole absente. Il est hors de la procédure
-courante et ne doit pas être relancé lorsque l'identité dédiée existe déjà.
+The script `provision-openbao-ghcr.sh` is reserved for the one-off
+administrative initialization of a missing AppRole. It is outside the routine
+procedure and must not be re-run when the dedicated identity already exists.
 
-Le lancement reste séparé de l'installation :
+Launching stays separate from installation:
 
 ```zsh
 openbao-vastai heavy-offers
@@ -64,52 +80,68 @@ openbao-vastai wave-offers
 openbao-vastai launch-wave-f39 OFFER_ID
 ```
 
-L'identifiant reste obligatoire : l'offre doit être relue avant location. Pour
-SimReady, le wrapper Vast refuse un second contrat portant le label du projet
-et contrôle l'unicité après création.
+The identifier is mandatory: the offer must be reviewed before rental. For
+SimReady, the Vast wrapper refuses a second contract carrying the project label
+and checks uniqueness after creation.
 
-Pour F39, `wave-offers` demande le prix total avec 300 GB de stockage puis
-réapplique localement chaque seuil. `launch-wave-f39` refait la correspondance
-exacte sur l'identifiant et revalide l'offre immédiatement avant l'appel payant.
-Le conteneur utilise `ssh_direct`; son `onstart` exécute
-`/opt/917-engine-wave-f39/smoke.py`. Il supprime d'abord tout ancien
-`/workspace/READY`, puis ne recrée ce marqueur que si le smoke termine sans
-sortie d'erreur.
+For F39, `wave-offers` requests the total price with 300 GB of storage and then
+reapplies each threshold locally. `launch-wave-f39` redoes the exact match on
+the identifier and revalidates the offer immediately before the paid call. The
+container uses `ssh_direct`; its `onstart` runs
+`/opt/917-engine-wave-f39/smoke.py`. It first deletes any old
+`/workspace/READY`, then recreates this marker only if the smoke test finishes
+with no error output.
 
-Ce `onstart` est obligatoire : la documentation officielle Vast.ai précise
-que les modes SSH/Jupyter remplacent l'`ENTRYPOINT` de l'image par celui de
-Vast, puis exécutent `onstart` après cette initialisation. Voir
+This `onstart` is mandatory: the official Vast.ai documentation states that the
+SSH/Jupyter modes replace the image's `ENTRYPOINT` with Vast's own, then run
+`onstart` after that initialization. See
 [Creating Instances with the API](https://docs.vast.ai/api-reference/creating-instances-with-api).
-Le wrapper effectue aussi un prévol d'unicité sous verrou local et refuse de
-louer si une instance portant déjà le label F39 existe. Après création, il
-relit la liste complète et exige que l'identifiant retourné soit l'unique
-instance portant ce label. Il relit ensuite le contrat Vast et exige le digest
-immuable, le label, un état final `running`, au moins 64 threads CPU effectifs,
-256 000 MB de RAM, 300 GB de disque, un prix total au plus égal à 1,25 USD/h et
-une machine vérifiée. Le succès n'est annoncé qu'après une connexion OpenSSH
-en `BatchMode`, avec la clé privée approuvée `~/.ssh/id_vastai` explicitement
-sélectionnée, puis lecture et validation de `/workspace/READY`, du JSON smoke
-et de l'absence de sortie d'erreur. La clé n'a donc pas besoin d'être chargée
-dans `ssh-agent`; son contenu privé n'est jamais lu ni affiché par le wrapper.
+The wrapper also runs a uniqueness preflight under a local lock and refuses to
+rent if an instance already carrying the F39 label exists. After creation, it
+rereads the complete list and requires the returned identifier to be the only
+instance carrying that label. It then rereads the Vast contract and requires the
+immutable digest, the label, a final `running` state, at least 64 effective CPU
+threads, 256,000 MB of RAM, 300 GB of disk, a total price of at most 1.25 USD/h
+and a verified machine. Success is announced only after an OpenSSH connection in
+`BatchMode`, with the approved private key `~/.ssh/id_vastai` explicitly
+selected, followed by reading and validating `/workspace/READY`, the smoke JSON
+and the absence of error output. The key therefore does not need to be loaded
+into `ssh-agent`; its private content is never read or displayed by the wrapper.
 
-Toute erreur de cette vérification post-création détruit exactement
-l'identifiant retourné et exige que sa disparition soit confirmée dans la liste
-paginée. Après un résultat de création incertain (erreur réseau, erreur sûre du
-wrapper ou HTTP 5xx), le wrapper réconcilie le label F39 : il détruit et vérifie
-absente l'unique instance correspondante. Il ne détruit rien automatiquement si
-plusieurs identifiants portent ce label, et une réponse HTTP 4xx certaine ne
-déclenche aucun nettoyage destructif. L'appel de création payant n'est jamais
-retenté automatiquement : aucune branche ne peut créer implicitement une
-seconde instance.
+Any error in this post-creation check destroys exactly the returned identifier
+and requires its disappearance to be confirmed in the paginated list. After an
+uncertain creation result (network error, safe wrapper error or HTTP 5xx), the
+wrapper reconciles the F39 label: it destroys the single matching instance and
+verifies it is absent. It destroys nothing automatically if several identifiers
+carry that label, and a certain HTTP 4xx response triggers no destructive
+cleanup. The paid creation call is never retried automatically: no branch can
+implicitly create a second instance.
 
-Si aucune instance n'est observable avant l'expiration de la fenêtre de
-réconciliation d'un lancement incertain, le wrapper échoue explicitement et
-interdit toute relance automatique : il faut d'abord inspecter la liste des
-instances. De même, `stop ID` exige à la fois l'accusé de réception de Vast.ai
-et la relecture de l'état final `stopped` avant d'annoncer le succès.
+If no instance is observable before the reconciliation window of an uncertain
+launch expires, the wrapper fails explicitly and prohibits any automatic
+relaunch: the instance list must be inspected first. Likewise, `stop ID`
+requires both the Vast.ai acknowledgment and a reread of the final `stopped`
+state before announcing success.
 
-L'offre `#49655039` est uniquement un candidat communiqué par l'utilisateur le
-2 septembre 2026. Sa présence dans les tests est une fixture : elle ne garantit
-ni sa disponibilité actuelle, ni son prix futur, et n'atteste aucune location.
-Il faut impérativement la revoir dans la sortie courante de `wave-offers` avant
-de lancer la commande avec cet identifiant ou tout autre identifiant conforme.
+```mermaid
+flowchart TD
+    A["launch-wave-f39 OFFER_ID"] --> B{"offer revalidated and<br/>no F39-labelled instance?"}
+    B -- no --> S1["refuses to rent"]:::stop
+    B -- yes --> C["paid creation call<br/>(never retried)"]
+    C -->|"uncertain: network, safe error, 5xx"| R{"exactly one<br/>F39-labelled instance?"}
+    R -- "one" --> D1["destroy it, confirm absent"]:::stop
+    R -- "several" --> S2["no automatic destruction"]:::stop
+    R -- "none within the window" --> S3["fails, automatic<br/>relaunch prohibited"]:::stop
+    C -->|"certain 4xx"| S4["no destructive cleanup"]:::stop
+    C -->|created| E{"unique label, digest, running,<br/>resources, price, SSH, READY, smoke JSON?"}
+    E -- no --> D2["destroy the returned ID,<br/>confirm absent in the list"]:::stop
+    E -- yes --> OK["success announced"]:::ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+```
+
+The offer `#49655039` is only a candidate communicated by the user on
+September 2, 2026. Its presence in the tests is a fixture: it guarantees neither
+its current availability nor its future price, and attests no rental. It must
+be reviewed in the current output of `wave-offers` before launching the command
+with this identifier or any other compliant identifier.

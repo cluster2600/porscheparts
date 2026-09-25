@@ -1,20 +1,42 @@
-# Images de calcul
+# Compute images
 
-Sept images reproductibles pour le travail qui ne tient pas sur un poste
-ordinaire. Elles ne sont pas nécessaires pour contribuer au catalogue.
+Seven reproducible images for the work that does not fit on an ordinary
+workstation. They are not needed to contribute to the catalogue.
 
-| Fichier | Image | Besoin |
+| File | Image | Requirement |
 |---|---|---|
-| `recon.Dockerfile` | `3dprinting993-recon` | GPU CUDA : photos vers maillage |
-| `cadsim.Dockerfile` | `3dprinting993-cadsim` | Processeurs : CAO, maillage, EF, CFD, découpe |
-| `mesh-cfd.Dockerfile` | `3dprinting993-mesh-cfd` | Processeurs et mémoire : scans, segmentation et CFD |
-| `physicsml.Dockerfile` | `3dprinting993-physicsml` | GPU CUDA : CAO, EF différentiables et Physics ML |
-| `simready.Dockerfile` | `3dprinting993-simready` | GPU RTX : OVRTX, Material/Physics Agents et validation USD |
-| `simready-workflow.Dockerfile` | `3dprinting993-simready-workflow` | GPU RTX : image SimReady, prévol CAD et démarrage Vast.ai vérifié |
-| `simready-local-ai.Dockerfile` | `3dprinting993-simready-local-ai` | GPU 48–80 Go : SimReady, Qwen VLM local et PhysicsNeMo sans API d'inférence |
+| `recon.Dockerfile` | `3dprinting993-recon` | CUDA GPU: photos to mesh |
+| `cadsim.Dockerfile` | `3dprinting993-cadsim` | CPUs: CAD, meshing, FE, CFD, slicing |
+| `mesh-cfd.Dockerfile` | `3dprinting993-mesh-cfd` | CPUs and memory: scans, segmentation and CFD |
+| `physicsml.Dockerfile` | `3dprinting993-physicsml` | CUDA GPU: CAD, differentiable FE and Physics ML |
+| `simready.Dockerfile` | `3dprinting993-simready` | RTX GPU: OVRTX, Material/Physics Agents and USD validation |
+| `simready-workflow.Dockerfile` | `3dprinting993-simready-workflow` | RTX GPU: SimReady image, CAD preflight and verified Vast.ai startup |
+| `simready-local-ai.Dockerfile` | `3dprinting993-simready-local-ai` | 48–80 GB GPU: SimReady, local Qwen VLM and PhysicsNeMo with no inference API |
 
-Tous les outils embarqués s’exécutent sans interface graphique, afin qu’un script
-puisse rejouer une chaîne complète à l’identique.
+```mermaid
+flowchart LR
+  subgraph CPU["CPU hosts"]
+    cadsim["3dprinting993-cadsim"]
+    meshcfd["3dprinting993-mesh-cfd"]
+  end
+  subgraph GPU["GPU hosts"]
+    recon["3dprinting993-recon"]
+    physicsml["3dprinting993-physicsml"]
+    simready["3dprinting993-simready"]
+    workflow["3dprinting993-simready-workflow"]
+    localai["3dprinting993-simready-local-ai"]
+  end
+  cadsim --> W1["CAD, meshing, FE,<br/>CFD, slicing"]
+  meshcfd --> W2["scans, segmentation, CFD"]
+  recon --> W3["photos to mesh"]
+  physicsml --> W4["differentiable FE,<br/>Physics ML"]
+  simready --> W5["OVRTX, Material/Physics<br/>Agents, USD validation"]
+  workflow --> W6["CAD preflight,<br/>verified Vast.ai startup"]
+  localai --> W7["local Qwen VLM,<br/>PhysicsNeMo, no inference API"]
+```
+
+Every embedded tool runs without a graphical interface, so that a script can
+replay a complete chain identically.
 
 ```bash
 make container-cadsim
@@ -29,59 +51,68 @@ make container-smoke-simready-workflow
 make container-smoke-simready-local-ai
 ```
 
-`simready` est volontairement mono-conteneur. Vast.ai exécute déjà l'image
-dans un conteneur non privilégié et n'autorise pas Docker-in-Docker. OVRTX,
-Material Agent et Physics Agent sont donc installés dans des environnements
-Python séparés et lancés directement par Supervisor. Aucun secret n'est inclus
-dans l'image : `simready-services start` refuse de démarrer avant l'installation
-de `/workspace/secrets/nvidia.env` par le wrapper OpenBao. Il exécute ensuite
-`simready-nvidia-auth-check` : un appel minimal au modèle configuré doit réussir
-avant de lancer OVRTX et les agents, afin de ne pas payer un rendu voué à finir
-sur une erreur d'autorisation.
+`simready` is deliberately a single container. Vast.ai already runs the image
+in an unprivileged container and does not allow Docker-in-Docker. OVRTX,
+Material Agent and Physics Agent are therefore installed in separate Python
+environments and launched directly by Supervisor. No secret is included in the
+image: `simready-services start` refuses to start before the OpenBao wrapper has
+installed `/workspace/secrets/nvidia.env`. It then runs
+`simready-nvidia-auth-check`: a minimal call to the configured model must
+succeed before OVRTX and the agents are launched, so as not to pay for a render
+bound to end on an authorization error.
 
-L'image `simready-workflow` embarque `simready-vast-onstart`. Ce script corrige
-les droits du fichier `authorized_keys` injecté par Vast.ai, vérifie le GPU et
-le runtime SimReady, puis crée `/workspace/READY`. Le wrapper OpenBao peut donc
-appeler ce script sans recopier une séquence shell susceptible de diverger.
+```mermaid
+flowchart TD
+  A["simready-services start"] --> B{"/workspace/secrets/nvidia.env<br/>installed by the OpenBao wrapper?"}
+  B -- no --> X["refuses to start"]:::stop
+  B -- yes --> C{"simready-nvidia-auth-check:<br/>minimal model call succeeds?"}
+  C -- no --> Y["no render launched"]:::stop
+  C -- yes --> D["OVRTX, Material Agent,<br/>Physics Agent under Supervisor"]:::ok
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+```
 
-L'environnement de validation inclut Pillow : les rendus OVRTX peuvent ainsi
-échouer automatiquement lorsqu'un PNG est vide ou uniforme, au lieu de valider
-seulement la présence d'un fichier. Le smoke test bloque la publication si cette
-inspection de pixels n'est pas disponible.
+The `simready-workflow` image embeds `simready-vast-onstart`. This script fixes
+the permissions of the `authorized_keys` file injected by Vast.ai, checks the
+GPU and the SimReady runtime, then creates `/workspace/READY`. The OpenBao
+wrapper can therefore call this script instead of copying a shell sequence that
+could drift.
 
-`simready-profile-validate <asset.usd> --profile <nom> --version <version>`
-ajoute les chemins des règles, fonctions et profils SimReady installés dans
-l'image. Cette enveloppe évite qu'un profil présent soit signalé à tort comme
-non enregistré.
+The validation environment includes Pillow: OVRTX renders can thus fail
+automatically when a PNG is empty or uniform, instead of only validating that a
+file exists. The smoke test blocks publication if this pixel inspection is not
+available.
 
-`simready-local-ai` embarque le runtime vLLM, PhysicsNeMo 2.2.0 et un snapshot
-immuable de `Qwen/Qwen2.5-VL-7B-Instruct`. Material Agent et Physics Agent
-utilisent tous deux `http://127.0.0.1:8000/v1` : aucune clé NVIDIA ni API
-d'inférence distante n'est nécessaire. Les poids ajoutent environ 16,6 Go à
-l'image ; cette variante est donc réservée aux locations avec 500 Go de disque
-et au moins 48 Go de VRAM, 80 Go étant préférables pour laisser OVRTX et les
-solveurs cohabiter.
+`simready-profile-validate <asset.usd> --profile <name> --version <version>`
+adds the paths of the SimReady rules, functions and profiles installed in the
+image. This wrapper prevents a profile that is present from being wrongly
+reported as unregistered.
 
-Cette image combine des composants sous licences distinctes. Le convertisseur
-CAD NVIDIA reste soumis à sa propre licence Omniverse et ne doit pas être
-présenté comme un composant libre, même si l'orchestration du dépôt l'est.
+`simready-local-ai` embeds the vLLM runtime, PhysicsNeMo 2.2.0 and an immutable
+snapshot of `Qwen/Qwen2.5-VL-7B-Instruct`. Material Agent and Physics Agent both
+use `http://127.0.0.1:8000/v1`: no NVIDIA key and no remote inference API is
+needed. The weights add about 16.6 GB to the image; this variant is therefore
+reserved for rentals with 500 GB of disk and at least 48 GB of VRAM, 80 GB being
+preferable so that OVRTX and the solvers can coexist.
 
-`physicsml` regroupe JAX-FEM, PhysicsNeMo et DeepXDE avec les outils de
-géométrie/maillage/EF de `cadsim`. L’extra GNN de PhysicsNeMo est désactivé par
-défaut pour garder une construction reproductible sur plusieurs architectures ;
-activez-le avec `--build-arg PHYSICSNEMO_EXTRAS=cu12,sym,mesh-extras,model-extras,gnns`.
+This image combines components under distinct licenses. The NVIDIA CAD
+converter remains subject to its own Omniverse license and must not be presented
+as a free component, even though the repository's orchestration is.
 
-`examples/cad_to_fea.py` fait tourner la chaîne complète — solide paramétrique,
-STEP, maillage tétraédrique, calcul CalculiX — sans une seule interaction
-graphique. C’est la vérification utile : un outil qui répond `--version` ne
-prouve rien.
+`physicsml` bundles JAX-FEM, PhysicsNeMo and DeepXDE with the
+geometry/meshing/FE tools of `cadsim`. The PhysicsNeMo GNN extra is disabled by
+default to keep a build reproducible across several architectures; enable it
+with `--build-arg PHYSICSNEMO_EXTRAS=cu12,sym,mesh-extras,model-extras,gnns`.
 
-`smoke-test.sh` échoue si un outil annoncé ne répond pas ; `entrypoint.sh` rend
-l’environnement du conteneur visible dans les sessions injectées par un
-hébergeur ; `provision-vastai.sh` installe à la demande ce qui est trop lourd
-pour l’image.
+`examples/cad_to_fea.py` runs the complete chain — parametric solid, STEP,
+tetrahedral mesh, CalculiX analysis — without a single graphical interaction.
+That is the useful check: a tool that answers `--version` proves nothing.
 
-Déploiement, coûts et hygiène des données :
+`smoke-test.sh` fails if an announced tool does not respond; `entrypoint.sh`
+makes the container environment visible in sessions injected by a host;
+`provision-vastai.sh` installs on demand what is too heavy for the image.
+
+Deployment, costs and data hygiene:
 [../docs/COMPUTE_ENVIRONMENT.md](../docs/COMPUTE_ENVIRONMENT.md).
-Justification des choix logiciels :
+Rationale for the software choices:
 [../docs/decisions/0002-scriptable-toolchain.md](../docs/decisions/0002-scriptable-toolchain.md).

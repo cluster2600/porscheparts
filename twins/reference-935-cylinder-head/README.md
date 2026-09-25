@@ -1,44 +1,69 @@
-# Jumeau de référence de la culasse 935 Wolfe Classics
+# Wolfe Classics 935 cylinder-head reference twin
 
-## Portée actuelle
+> **Archived line.** The 935 scan is kept as a reference morphology, alongside
+> the retired 917 work, and is not pursued as a product. See
+> [ARCHIVE.md](../../ARCHIVE.md).
 
-Ce dossier contient la chaîne reproductible qui transforme le scan acheté en
-artefacts de travail. Le fichier OBJ, les maillages dérivés et les résultats de
-calcul restent hors Git. Le code et la méthode sont versionnés.
+## Current scope
 
-Le jumeau est actuellement un `F1_interface_proxy` : il permet la revue de
-géométrie, la mesure provisoire, le contrôle de collision et la validation de la
-chaîne de maillage CFD. Il ne représente pas encore une culasse 993 compatible,
-fonctionnelle ou prête à fabriquer.
+This directory holds the reproducible chain that turns the purchased scan into
+working artifacts. The OBJ file, the derived meshes and the computation results
+stay outside Git. The code and the method are versioned.
 
-## Artefacts produits
+The twin is currently an `F1_interface_proxy`: it allows geometry review,
+provisional measurement, collision checking and validation of the CFD meshing
+chain. It does not yet represent a 993-compatible, functional or
+ready-to-manufacture cylinder head.
 
-| Artefact | Usage | Limite |
+## Artifacts produced
+
+| Artifact | Use | Limit |
 |---|---|---|
-| copie OBJ immuable | traçabilité du scan acheté | hors Git |
-| maillage 300 000 triangles | segmentation et mesure | écart p95 de simplification 0,059 unité OBJ |
-| enveloppe sans éléments externes | inspection de la culasse | coupes non fermées, classification moyenne |
-| rapport des interfaces | registre, chambre, goujons et ouvertures | échelle OBJ non confirmée |
-| STEP paramétrique F1 | datum CAO et contrôle d'encombrement | enveloppe simplifiée |
-| STL `fit-check-only` | maquette polymère non fonctionnelle | interdit dans un moteur |
-| deux domaines CFD étanches | validation Gmsh et études locales | seulement les tronçons proches des brides |
-| trois proxies de soupapes STEP/STL | masse, collision et préparation de la dynamique | profils sous tête et gorges non mesurés ; STL `fit-check-only` |
+| immutable OBJ copy | traceability of the purchased scan | outside Git |
+| 300,000-triangle mesh | segmentation and measurement | p95 simplification deviation 0.059 OBJ units |
+| envelope without external elements | cylinder-head inspection | open sections, average classification |
+| interface report | register, chamber, studs and openings | OBJ scale not confirmed |
+| F1 parametric STEP | CAD datum and packaging check | simplified envelope |
+| `fit-check-only` STL | non-functional polymer mock-up | prohibited in an engine |
+| two watertight CFD domains | Gmsh validation and local studies | only the sections close to the flanges |
+| three STEP/STL valve proxies | mass, collision and preparation of the dynamics | under-head profiles and grooves not measured; STL `fit-check-only` |
 
-## Soupapes et variante titane
+```mermaid
+flowchart LR
+  OBJ["purchased scan<br/>(outside Git)"] --> M["300,000-triangle mesh<br/>p95 0.059 OBJ units"]
+  M --> I["interface report<br/>OBJ units"]
+  M --> STEP["F1 parametric STEP"]
+  M --> CFD["two watertight<br/>CFD domains"]
+  STEP --> STL["fit-check-only STL"]
+  I --> SC["scale in mm<br/>not confirmed"]
+  STL --> X["engine use<br/>prohibited"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class M,STEP,CFD ok;
+  class I,SC open;
+  class X stop;
+```
 
-Le pipeline génère maintenant trois géométries paramétriques F1 : admission
-993 de 49 mm, échappement Carrera de 42,5 mm et échappement Turbo de 43,5 mm,
-toutes avec une queue déclarée de 8 mm. Les valeurs publiques sont conservées
-avec leur niveau de preuve ; la longueur de l'admission reste une hypothèse de
-109 mm dérivée d'un encombrement produit de 110 mm.
+The 100,000-triangle version is rejected for metrology: its measured p95
+deviation reaches about 6.15 OBJ units. It can only serve as a very coarse
+preview.
 
-Le modèle compare la masse du même volume avec une densité d'acier générique,
-du Ti-6Al-4V et, pour l'échappement, de l'INCONEL 751. La documentation Special
-Metals décrit précisément le 751 comme un alliage destiné aux soupapes
-d'échappement, fourni en barre et traité par précipitation. Elle ne valide pas
-une route LPBF. La variante titane est donc prioritaire pour l'étude de
-l'admission ; côté échappement elle reste un cas comparatif à challenger par les
-températures, l'oxydation, l'usure et la fatigue à chaud.
+## Valves and titanium variant
+
+The pipeline now generates three F1 parametric geometries: 993 intake of 49 mm,
+Carrera exhaust of 42.5 mm and Turbo exhaust of 43.5 mm, all with a declared
+8 mm stem. The public values are kept with their evidence level; the intake
+length remains an assumption of 109 mm derived from a product envelope of
+110 mm.
+
+The model compares the mass of the same volume with a generic steel density,
+Ti-6Al-4V and, for the exhaust, INCONEL 751. The Special Metals documentation
+describes 751 precisely as an alloy intended for exhaust valves, supplied as bar
+and precipitation-treated. It does not validate an LPBF route. The titanium
+variant is therefore the priority for the intake study; on the exhaust side it
+remains a comparative case, to be challenged by temperatures, oxidation, wear
+and hot fatigue.
 
 ```bash
 docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python \
@@ -48,34 +73,30 @@ docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python \
   work/valve-variants-f1
 ```
 
-Les STEP sont des masters de simulation éditables. Les STL portent la mention
-`fit-check-only` et ne doivent jamais être montés dans un moteur. Une soupape
-fonctionnelle exige au minimum la gorge de clavette, le rayon sous tête, la
-marge, l'angle et la largeur de siège, les jeux de guide, le profil de came, les
-courbes de ressort, les masses mobiles, le traitement, la finition et une
-validation dynamique et thermomécanique.
+The STEP files are editable simulation masters. The STLs carry the
+`fit-check-only` notice and must never be fitted in an engine. A functional
+valve requires at least the keeper groove, the under-head radius, the margin,
+the seat angle and width, the guide clearances, the cam profile, the spring
+curves, the moving masses, the treatment, the finish, and a dynamic and
+thermomechanical validation.
 
-La version à 100 000 triangles est rejetée pour la métrologie : son écart p95
-mesuré atteint environ 6,15 unités OBJ. Elle ne peut servir qu'à un aperçu très
-grossier.
+## Local run
 
-## Exécution locale
-
-L'environnement Python doit fournir `trimesh`, `pymeshlab`, `scikit-image`,
-`build123d`, `gmsh`, `numpy` et `scipy`.
+The Python environment must provide `trimesh`, `pymeshlab`, `scikit-image`,
+`build123d`, `gmsh`, `numpy` and `scipy`.
 
 ```bash
-PYTHON=/chemin/vers/python \
+PYTHON=/path/to/python \
   twins/reference-935-cylinder-head/run_pipeline.sh \
   raw-scans/wolfe-classics-935-cylinder-head/original/935-xtreme-cylinder-head.obj \
   work/wolfe-classics-935-cylinder-head/pipeline
 ```
 
-L'image `3dprinting993-mesh-cfd` ajoute Blender, Gmsh et OpenFOAM 13 pour les
-calculs distants. Aucun scan n'est inclus dans l'image.
+The `3dprinting993-mesh-cfd` image adds Blender, Gmsh and OpenFOAM 13 for remote
+computations. No scan is included in the image.
 
-Une fois les volumes Gmsh générés, leur conversion et leur contrôle OpenFOAM
-s'exécutent séparément :
+Once the Gmsh volumes are generated, their conversion and OpenFOAM check run
+separately:
 
 ```bash
 twins/reference-935-cylinder-head/source/check_openfoam_mesh.sh \
@@ -83,44 +104,44 @@ twins/reference-935-cylinder-head/source/check_openfoam_mesh.sh \
   work/wolfe-classics-935-cylinder-head/pipeline/openfoam/high_B
 ```
 
-Ce contrôle vérifie la topologie et la géométrie du maillage. Il ne constitue
-pas encore une solution CFD et n'invente aucune condition aux limites.
+This check verifies the topology and geometry of the mesh. It is not yet a CFD
+solution and invents no boundary condition.
 
-## Interfaces provisoires
+## Provisional interfaces
 
-Les valeurs suivantes sont exprimées en unités OBJ ; les millimètres ne sont
-pas encore établis :
+The following values are expressed in OBJ units; millimeters are not yet
+established:
 
-- registre extérieur visible : diamètre 113,53 ;
-- épaulement de chambre à la coupe retenue : diamètre 90,81 ;
-- motif des quatre passages de goujons : environ 86,74 × 85,92 ;
-- diamètre moyen visible des passages : 10,74 ;
-- ouverture du conduit côté B bas : environ 40 à 45,6 ;
-- ouverture du conduit côté B haut : environ 41,4 à 42,6.
+- visible outer register: diameter 113.53;
+- chamber shoulder at the chosen section: diameter 90.81;
+- pattern of the four stud passages: about 86.74 × 85.92;
+- mean visible diameter of the passages: 10.74;
+- port opening, side B low: about 40 to 45.6;
+- port opening, side B high: about 41.4 to 42.6.
 
-Ces ajustements décrivent le maillage visible. Les résidus d'ajustement ne sont
-pas une incertitude métrologique complète. Une cote physique est nécessaire
-pour valider l'échelle et un scan ne révèle pas automatiquement les galeries
-d'huile, filetages, sièges ou alésages de guides.
+These fits describe the visible mesh. The fit residuals are not a complete
+metrological uncertainty. A physical dimension is needed to validate the scale,
+and a scan does not automatically reveal the oil galleries, threads, seats or
+guide bores.
 
-## Comparaison 993
+## 993 comparison
 
-Le dépôt ne contient encore aucune géométrie 993 vérifiée pour le motif des
-goujons, les registres de cylindre, les brides ou les conduits. La valeur de
-100 pour l'alésage 993 provient d'une transcription OCR encore non vérifiée et
-ne correspond pas au même élément que le registre de 113,53 ou l'épaulement de
-90,81. Aucune compatibilité ne peut donc être conclue.
+The repository does not yet contain any verified 993 geometry for the stud
+pattern, the cylinder registers, the flanges or the ports. The value of 100 for
+the 993 bore comes from an OCR transcription not yet verified and does not
+correspond to the same feature as the 113.53 register or the 90.81 shoulder. No
+compatibility can therefore be concluded.
 
-## Verrous de sécurité
+## Safety locks
 
-- Ne jamais fabriquer une version moteur depuis le STL de contrôle.
-- Ne jamais extrapoler les galeries internes à partir de la surface externe.
-- Exiger une revue d'ingénierie professionnelle avant toute culasse chargée.
-- Associer toute version métal à une matière, un procédé, un traitement, une
-  orientation, un usinage, un plan de contrôle et une traçabilité matière.
-- Conserver le maillage brut et tous ses dérivés hors Git conformément à
-  l'instruction du propriétaire, même si celui-ci confirme une licence ouverte
-  et réutilisable dont l'identifiant standardisé reste à archiver.
-- Ne pas libérer une soupape métal depuis les proxies F1 ; exiger une définition
-  complète, une qualification matière/procédé et des essais de distribution à
-  chaud sous revue d'ingénierie professionnelle.
+- Never manufacture an engine version from the check STL.
+- Never extrapolate the internal galleries from the external surface.
+- Require a professional engineering review before any loaded cylinder head.
+- Associate any metal version with a material, a process, a treatment, an
+  orientation, machining, an inspection plan and material traceability.
+- Keep the raw mesh and all its derivatives outside Git as instructed by the
+  owner, even though the owner confirms an open, reusable license whose
+  standardized identifier remains to be archived.
+- Do not release a metal valve from the F1 proxies; require a complete
+  definition, a material/process qualification and hot valvetrain tests under
+  professional engineering review.

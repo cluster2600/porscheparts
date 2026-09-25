@@ -10,6 +10,27 @@
 An explicit request. This document says what can be computed without the part,
 what can be measured in an hour, and what has to be sent to the machinist.
 
+```mermaid
+flowchart TD
+  L["Lid 964 105 107 01<br/>plate 103-05, position 15<br/>bolted, oil-tight"] --> P{"Process"}
+  L --> M{"Material vs the original<br/>cast magnesium"}
+  L --> E{"Differential expansion"}
+  P -->|"no additive family"| MI["Milling from plate,<br/>not a part to print"]
+  M -->|"mass"| H["Heavier than the original,<br/>whatever the thickness"]
+  M -->|"corrosion"| C["Titanium does not pit:<br/>the real argument"]
+  M -->|"Mg crankcase opposite"| G["Galvanic couple:<br/>unresolved, blocking"]
+  E -->|"0.072 mm offset"| X["Passes: 24 % of the<br/>M6 clearance, worst case 72 %"]
+  G --> S["Status functional<br/>no fitting before a recorded specimen,<br/>leak test and inner clearance"]
+  class MI,C,X ok
+  class H open
+  class G,S stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the separate judgments of this page, restated from the text below. The missing dimensions `D03`, `D08` and `D13` still decide; the diagram adds no result and proves nothing about the physical lid.*
+
 ## Identity
 
 Factory plate `103-05 Chain case`, **position 15**, designation `lid`. Three

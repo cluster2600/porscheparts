@@ -6,6 +6,32 @@
 
 Investigation target: the chain case from factory plate 103-05, its three lids, its oil bridges and its tensioner. The record establishes identity and material reasoning; it is neither a replacement geometry nor a manufacturing authorization. Selected because the factory catalogue triage makes it a serious consolidation case — and because the titanium grid rejects it three times.
 
+```mermaid
+flowchart LR
+    L0["concept"]
+    L1["dimensionally_reviewed"]
+    L2["prototype_fitted"]
+    L3["functionally_tested"]
+    L4["engineering_reviewed"]
+    L5["released"]
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5
+    X["⛔ prohibited pending engineering"]
+    L0 -. blocked .-> X
+    classDef here fill:#fff4d6,stroke:#b7791f,color:#1a1a1a,stroke-width:3px;
+    classDef done fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef todo fill:#f4f4f4,stroke:#9e9e9e,color:#6b6b6b;
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class L0 here
+    class L1 todo
+    class L2 todo
+    class L3 todo
+    class L4 todo
+    class L5 todo
+    class X stop
+```
+
+*Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
+
 Catalogue record: [`catalog/parts/993-eng-chain-case-0001.json`](../../catalog/parts/993-eng-chain-case-0001.json)
 
 ## Identity

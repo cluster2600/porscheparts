@@ -1,112 +1,125 @@
-# M64 — préparation de la thermique de culasse complète
+# M64 — preparing the full cylinder-head thermal analysis
 
-Audit du 7 septembre 2026. **Aucun calcul thermique de culasse M64 abouti.**
-Le prochain calcul doit contenir le solide réel et ses interfaces thermiques,
-pas seulement un écoulement dans les conduits ou un disque de contrôle.
+Audit of September 7, 2026. **No M64 cylinder-head thermal computation completed.**
+The next computation must contain the real solid and its thermal interfaces,
+not just a flow in the ports or a control disk.
 
-## État courant — actualisation du 7 septembre 2026
+```mermaid
+flowchart LR
+    A["1. Assign real faces"] --> B["2. Air volume and shroud<br/>coupled to the solid"]
+    B --> C["3. Traceable turbo<br/>M64 scenario"]
+    C --> D["4. Thermal laws<br/>and contacts"]
+    D --> E["5. Solve and check<br/>balances, refine"]
+    S["Current state: 0 faces assigned,<br/>no approved volume mesh"] -.-> A
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class S stop
+    class A,B,C,D,E open
+```
 
-Le maître privé courant est `four-seat-candidate.step`, **5 130 faces**, SHA-256
+## Current state — update of September 7, 2026
+
+The current private master is `four-seat-candidate.step`, **5,130 faces**, SHA-256
 `92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f`.
-Il reprend l'enveloppe F43 avec les quatre contre-alésages et guides V2 ; cette
-reconstruction n'établit pas encore les interfaces d'une culasse M64 fonctionnelle.
-**Aucune affectation thermique approuvée ni maillage volumique de calcul n'est
-disponible pour ce corps courant.** Les indices de faces, propositions de groupes
-et maillages F53/F54 ne lui sont pas transférables.
+It takes over the F43 envelope with the four counterbores and V2 guides; this
+reconstruction does not yet establish the interfaces of a functional M64 cylinder head.
+**No approved thermal assignment and no computational volume mesh is
+available for this current body.** The face indices, group proposals
+and F53/F54 meshes cannot be transferred to it.
 
-Une [suite CAO et maillage natif](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md)
-a depuis calculé les surfaces nominales de contact des huit inserts sur le
-candidat à conduits 05 et généré un maillage tétraédrique de ce candidat.
-Le maillage est **rejeté pour qualité**, sans calcul thermique. Les contacts
-restent géométriques à tolérance native, sans conductance ni serrage à chaud.
-Le candidat intégré C1 06 est lui aussi rejeté par son contrôle BOP ; aucun
-de ces essais ne remplace le maître ou ne ferme les entrées physiques ci-dessous.
+A [native CAD and meshing sequence](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md)
+has since computed the nominal contact surfaces of the eight inserts on the
+port-05 candidate and generated a tetrahedral mesh of that candidate.
+The mesh is **rejected for quality**, with no thermal computation. The contacts
+remain geometric at native tolerance, with no conductance or hot interference fit.
+The integrated candidate C1 06 is also rejected by its BOP check; none
+of these trials replaces the master or closes the physical inputs below.
 
-L'audit F53 ci-dessous et sa commande sont conservés comme **historique de cette
-autre géométrie**, non comme prétraitement du maître courant. Le prochain calcul
-stationnaire sous hypothèses doit attendre la CAO fonctionnelle, ses groupes de
-frontières et son maillage vérifiés. L'objectif de 700 PS au vilebrequin ne fixe
-pas le flux thermique entrant dans la culasse.
+The F53 audit below and its command are kept as **history of that
+other geometry**, not as preprocessing of the current master. The next
+steady-state computation under assumptions must wait for the functional CAD, its verified
+boundary groups and its mesh. The 700 PS crankshaft target does not set
+the heat flux entering the cylinder head.
 
-## Travail exécuté sur la géométrie disponible
+## Work executed on the available geometry
 
-Le script `twins/m64-cylinder-head/inventory_thermal_boundaries.py` a été
-exécuté sur Kali avec OCP 7.9.3.1, sur le STEP privé F53 quatre soupapes :
+The script `twins/m64-cylinder-head/inventory_thermal_boundaries.py` was
+run on Kali with OCP 7.9.3.1, on the private four-valve F53 STEP:
 SHA-256 `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`.
-Il s'agit toujours d'une référence dérivée du scan 935, **pas d'une culasse
-M64 ajustée ou d'une nouvelle forme de substitution**.
+This is still a reference derived from the 935 scan, **not a fitted
+M64 cylinder head or a new substitute shape**.
 
-- 4 929 faces : 3 051 B-Splines, 1 845 plans et 33 cylindres.
-- Aire totale 144 617,7772 unités du scan au carré ; pas une aire physique
-  certifiée en m². L'erreur relative entre somme par face et intégrale globale
-  est de 3,82 × 10⁻¹⁵.
-- Aire, centre, boîte englobante et voisinage topologique consignés pour
-  chaque face ; aucune géométrie n'est modifiée ni réparée par cet inventaire.
-- **0 face affectée thermiquement** à ce stade. Une face sans affectation
-  reste inconnue ; elle ne devient pas automatiquement adiabatique.
+- 4,929 faces: 3,051 B-Splines, 1,845 planes and 33 cylinders.
+- Total area 144,617.7772 square scan units; not a certified physical
+  area in m². The relative error between the per-face sum and the global integral
+  is 3.82 × 10⁻¹⁵.
+- Area, center, bounding box and topological neighborhood recorded for
+  each face; no geometry is modified or repaired by this inventory.
+- **0 faces thermally assigned** at this stage. A face without an assignment
+  remains unknown; it does not automatically become adiabatic.
 
-Les coordonnées restent privées sous
-`/tmp/917-f50/out/m64-thermal-boundary-inventory-20260907c/` sur Kali.
-L'inventaire utilise les indices de faces OCCT à partir de 1, liés au hash
-du STEP et à la version d'import. Il refuse les affectations provenant d'une
-autre empreinte/version, les doubles affectations, les faces inexistantes et
-les rôles sans référence de revue. Les 12 tests ciblés sont réussis.
+The coordinates remain private under
+`/tmp/917-f50/out/m64-thermal-boundary-inventory-20260907c/` on Kali.
+The inventory uses OCCT face indices starting at 1, tied to the hash
+of the STEP and to the import version. It refuses assignments coming from
+another digest/version, double assignments, nonexistent faces and
+roles without a review reference. The 12 targeted tests pass.
 
-L'intégration d'aire utilise les surfaces B-Rep, non les triangles de rendu.
-Cette opération suit l'API [OCCT BRepGProp](https://occt3d.com/dev/doc/refman/html/class_b_rep_g_prop.html).
-Elle ne certifie ni la topologie ni l'épaisseur ; les défauts F54 restent
-ouverts. Un inventaire complet n'est pas un cas CHT complet.
+The area integration uses the B-Rep surfaces, not the render triangles.
+This operation follows the [OCCT BRepGProp](https://occt3d.com/dev/doc/refman/html/class_b_rep_g_prop.html) API.
+It certifies neither the topology nor the thickness; the F54 defects remain
+open. A complete inventory is not a complete CHT case.
 
-## Ce que le dépôt peut réellement fournir
+## What the repository can actually provide
 
-| Entrée | Disponible | Limite pour le prochain calcul |
+| Input | Available | Limit for the next computation |
 | --- | --- | --- |
-| Solide de référence F53 | STEP privé, hash, 4 929 faces inventoriées | Pas encore les interfaces M64 ; parois faibles connues |
-| Régions gaz F48/F50 | Patchs `intake`, `exhaust`, `valve`, `chamber`, `deck`, `bore`, `walls` | Domaine fluide distinct ; noms non transférables aux faces F53 |
-| Runtime CHT OpenFOAM 14 | Tutoriel gaz/solide exécuté, énergie résolue sur 2 000 + 800 cellules | Ni culasse ni convergence globale ; ne pas relancer ce témoin comme résultat de pièce |
-| Pression/flux F46/F50 | Traces historiques du projet 917 | Non applicables au M64 turbo sans cas moteur explicitement redéfini |
-| Matériau CP1 | Données fabricant de référence et traitement 400 °C / 4 h | Pas de carte complète k(T), Cp(T), dilatation et mécanique à chaud |
+| F53 reference solid | Private STEP, hash, 4,929 faces inventoried | Not yet the M64 interfaces; known weak walls |
+| F48/F50 gas regions | Patches `intake`, `exhaust`, `valve`, `chamber`, `deck`, `bore`, `walls` | Separate fluid domain; names not transferable to F53 faces |
+| OpenFOAM 14 CHT runtime | Gas/solid tutorial run, energy solved on 2,000 + 800 cells | Neither a cylinder head nor global convergence; do not rerun this witness case as a part result |
+| F46/F50 pressure/flux | Historical traces from the 917 project | Not applicable to the turbo M64 without an explicitly redefined engine case |
+| CP1 material | Manufacturer reference data and 400 °C / 4 h treatment | No complete map of k(T), Cp(T), expansion and hot mechanical properties |
 
-La fiche [Constellium CP1, page 2](https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf)
-fournit notamment 187 W/(m·K) et des essais de traction à 25 °C pour son état
-400 °C / 4 h. La stabilité annoncée à 250–300 °C n'est pas une loi de traction
-ou de conductivité à chaud. La fiche
-[ECKART A20X, page 5](https://www.eckart.net/en/download/document/view/id/519)
-contient des points de traction jusqu'à 250 °C ; elle ne complète pas la carte
-thermique CP1 et son traitement est spécifique. Ces sources ont été relues,
-mais **aucune propriété n'est assignée au M64 par cet audit**.
+The [Constellium CP1 sheet, page 2](https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf)
+provides in particular 187 W/(m·K) and tensile tests at 25 °C for its
+400 °C / 4 h condition. The stability announced at 250–300 °C is not a hot tensile
+or conductivity law. The
+[ECKART A20X sheet, page 5](https://www.eckart.net/en/download/document/view/id/519)
+contains tensile points up to 250 °C; it does not complete the CP1 thermal
+map and its treatment is specific. These sources were reviewed,
+but **no property is assigned to the M64 by this audit**.
 
-## Minimum à préparer avant le premier cas CHT de pièce
+## Minimum to prepare before the first part CHT case
 
-1. Affecter les faces réelles : chambre/admission/échappement, ailettes et
-   extérieur exposés à l'air, sièges/guides/bougie, portée cylindre,
-   porte-arbres et fixations. L'héritage de F43 ne signifie pas à lui seul
-   « refroidi par air » : il contient aussi des surfaces fonctionnelles.
-2. Construire le volume d'air et son carénage, définir les ouvertures, puis
-   raccorder ses frontières aux faces du solide. Vérifier couverture et
-   continuité géométrique des interfaces ; ne pas appairer par simple nom.
-3. Définir un scénario M64 turbo traçable : régime/charge, carburant,
-   suralimentation, entrée d'air de refroidissement et pertes de charge.
-   Pour une première étude stationnaire, des charges moyennées déclarées
-   comme hypothèses sont possibles ; elles ne deviennent pas des mesures.
-4. Fournir les lois thermiques sur la plage calculée et les contacts thermiques.
-   Ajouter les propriétés mécaniques à chaud, précharges et serrages pour le
-   calcul de résistance. Une bibliothèque de rendu n'est pas cette carte.
-5. Résoudre puis vérifier énergie entrante/sortante, flux d'interface opposés,
-   températures finies, résidus et stabilité des grandeurs d'intérêt ; ensuite
-   raffiner l'espace/le temps et comparer air seul contre air + huile à charges
-   identiques. Le circuit huile reste une variante de conception, non un
-   refroidissement disponible implicitement.
+1. Assign the real faces: chamber/intake/exhaust, fins and
+   exterior exposed to air, seats/guides/spark plug, cylinder seating face,
+   cam carriers and fasteners. Inheritance from F43 does not by itself mean
+   "air-cooled": it also contains functional surfaces.
+2. Build the air volume and its shroud, define the openings, then
+   connect its boundaries to the faces of the solid. Check coverage and
+   geometric continuity of the interfaces; do not pair by name alone.
+3. Define a traceable turbo M64 scenario: speed/load, fuel,
+   forced induction, cooling-air inlet and pressure losses.
+   For a first steady-state study, averaged loads declared
+   as assumptions are possible; they do not become measurements.
+4. Provide the thermal laws over the computed range and the thermal contacts.
+   Add hot mechanical properties, preloads and interference fits for the
+   strength computation. A rendering library is not this map.
+5. Solve then check incoming/outgoing energy, opposite interface fluxes,
+   finite temperatures, residuals and stability of the quantities of interest; then
+   refine space/time and compare air only against air + oil at identical
+   loads. The oil circuit remains a design variant, not a cooling
+   implicitly available.
 
-OpenFOAM distingue modèles thermodynamiques, transport et équation d'état dans
-`physicalProperties` ; le choix doit correspondre au fluide/solide et à la
-plage thermique. Voir [guide OpenFOAM 14, modèles thermophysiques](https://doc.cfd.direct/openfoam/user-guide-v14/thermophysical).
-Le script d'inventaire ne génère aucun dictionnaire incomplet prêt à lancer :
-il fournit les identifiants et contrôles nécessaires à son affectation.
+OpenFOAM distinguishes thermodynamic models, transport and equation of state in
+`physicalProperties`; the choice must match the fluid/solid and the
+thermal range. See [OpenFOAM 14 guide, thermophysical models](https://doc.cfd.direct/openfoam/user-guide-v14/thermophysical).
+The inventory script generates no incomplete dictionary ready to run:
+it provides the identifiers and checks needed for its assignment.
 
-## Reproduction du prétraitement
+## Reproducing the preprocessing
 
-Depuis le conteneur privé disposant d'OCP et des helpers existants :
+From the private container that has OCP and the existing helpers:
 
 ```sh
 python inventory_thermal_boundaries.py \
@@ -115,7 +128,7 @@ python inventory_thermal_boundaries.py \
   --helpers /f50 --output /f50/out/new-private-boundary-inventory
 ```
 
-Le répertoire de sortie doit être neuf. Le JSON d'affectation optionnel contient
-`source_sha256`, `ocp_version` et une liste `assignments` ; chaque groupe porte
-`role`, `face_ids` et `evidence`. Un découpage complet des faces ne prouve ni la
-validité physique de ses conditions aux limites ni la fabricabilité.
+The output directory must be new. The optional assignment JSON contains
+`source_sha256`, `ocp_version` and an `assignments` list; each group carries
+`role`, `face_ids` and `evidence`. A complete partition of the faces proves neither the
+physical validity of its boundary conditions nor manufacturability.

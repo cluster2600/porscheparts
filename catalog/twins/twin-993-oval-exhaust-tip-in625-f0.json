@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "twin_id": "TWIN-993-OVAL-EXHAUST-TIP-IN625-F0",
-  "name": "Embout d'échappement ovale 993 en IN625, jumeau F0",
+  "name": "993 oval exhaust tip in IN625, F0 twin",
   "vehicle": {
     "generation": "993",
     "variants": ["993_C2", "993_C4", "993_RS_narrow_body"],
@@ -14,8 +14,8 @@
   "fidelity": "F1_envelope",
   "coordinate_system": {
     "frame": "local",
-    "origin": "centre de l'entrée hypothétique F0",
-    "axes": "X largeur, Y hauteur, Z direction de l'écoulement vers la sortie",
+    "origin": "center of the hypothetical F0 inlet",
+    "axes": "X width, Y height, Z flow direction toward the outlet",
     "units": "mm",
     "vehicle_transform": null
   },
@@ -41,7 +41,7 @@
       "kind": "contact",
       "components": ["OVAL_EXHAUST_TIP_IN625_F0", "EXHAUST_CLAMP_AND_BUMPER_CONTEXT"],
       "required_measurements": ["INLET_DIAMETER", "INSERTION_LENGTH", "CLAMP_GEOMETRY", "SEALING_DATUMS", "TOLERANCES"],
-      "acceptance_rule": "L'emmanchement, le serrage et l'étanchéité mesurés respectent les tolérances approuvées sans contrainte parasite.",
+      "acceptance_rule": "The measured slip fit, clamping and sealing meet the approved tolerances without parasitic stress.",
       "status": "missing_data"
     },
     {
@@ -49,7 +49,7 @@
       "kind": "contact",
       "components": ["OVAL_EXHAUST_TIP_IN625_F0", "EXHAUST_CLAMP_AND_BUMPER_CONTEXT"],
       "required_measurements": ["MASS_FLOW_MAP", "PULSE_SPECTRUM", "TEMPERATURE_FIELD", "BACKPRESSURE_LIMIT", "GAS_PROPERTIES"],
-      "acceptance_rule": "Une CFD compressible pulsee, correlee aux mesures, respecte la contre-pression et les criteres thermiques approuves.",
+      "acceptance_rule": "A pulsed compressible CFD, correlated with measurements, meets the approved back-pressure and thermal criteria.",
       "status": "missing_data"
     },
     {
@@ -57,7 +57,7 @@
       "kind": "clearance",
       "components": ["OVAL_EXHAUST_TIP_IN625_F0", "EXHAUST_CLAMP_AND_BUMPER_CONTEXT"],
       "required_measurements": ["BUMPER_CLEARANCE_ENVELOPE", "BUMPER_TEMPERATURE_LIMIT", "EXHAUST_MOTION_ENVELOPE", "VIBRATION_PSD", "ACOUSTIC_TARGET"],
-      "acceptance_rule": "Les jeux a chaud, temperatures, vibrations et emissions acoustiques restent dans les criteres approuves sur le cycle de vie.",
+      "acceptance_rule": "Hot clearances, temperatures, vibration and acoustic emissions stay within the approved criteria over the life cycle.",
       "status": "missing_data"
     }
   ],
@@ -77,13 +77,13 @@
       "twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/simready-validation-summary.json"
     ],
     "known_limits": [
-      "Seule l'enveloppe de sortie 120 x 85 mm est publiee ; entree, longueur, doubles parois, attaches et interfaces sont des hypotheses F0.",
-      "La CFD RANS stationnaire emploie un debit et des proprietes synthetiques ; la convergence de perte de charge entre les deux maillages les plus fins manque le seuil projet de 10 %.",
-      "Les controles de maillage etendus conservent des cellules a faible determinant, sans volume negatif ni echec standard checkMesh.",
-      "Le tranchage pleine piece trouve une orientation calculable et des proxies de supports, mais aucune carte procede complete, simulation de distorsion ou collision recoater n'est disponible.",
-      "Le USD passe les validateurs SimReady comme prop rigide isole ; ni l'assemblage echappement-jupe, ni la thermique, ni la vibration vehicule ne sont testes.",
-      "Le smoke test PhysicsNeMo prouve seulement le runtime CUDA ; aucun surrogate n'est entraine ou utilise comme preuve physique.",
-      "Aucune fabrication, installation ou utilisation vehicule n'est autorisee."
+      "Only the 120 x 85 mm outlet envelope is published; inlet, length, double walls, attachments and interfaces are F0 assumptions.",
+      "The steady RANS CFD uses a synthetic flow rate and synthetic properties; the pressure-loss convergence between the two finest meshes misses the project threshold of 10%.",
+      "The extended mesh checks still show low-determinant cells, with no negative volume and no standard checkMesh failure.",
+      "The full-part slicing finds a computable orientation and support proxies, but no complete process map, distortion simulation or recoater collision check is available.",
+      "The USD passes the SimReady validators as an isolated rigid prop; neither the exhaust-to-valance assembly, nor thermal behavior, nor vehicle vibration is tested.",
+      "The PhysicsNeMo smoke test proves only the CUDA runtime; no surrogate model is trained or used as physical evidence.",
+      "No manufacturing, installation or vehicle use is authorized."
     ]
   }
 }

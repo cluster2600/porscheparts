@@ -1,14 +1,14 @@
-# M64 — données matière relues sur les PDF fabricants
+# M64 — material data re-read from the manufacturer PDFs
 
-7 septembre 2026. Le skill PDF a imposé une vérification **visuelle** des
-tableaux et notes : ECKART pages PDF 4–5, Constellium pages 1–2. Les quatre
-pages ont été rendues localement ; ni PDF ni rendus propriétaires ne sont
-ajoutés au dépôt. Empreintes, localisateurs et chiffres :
+September 7, 2026. The PDF skill required a **visual** check of the
+tables and notes: ECKART PDF pages 4–5, Constellium pages 1–2. The four
+pages were rendered locally; neither the PDFs nor proprietary renders are
+added to the repository. Digests, locators and figures:
 `twins/m64-cylinder-head/documentary-material-points-20260907.json`.
 
-## Points A20X en fonction de la température
+## A20X points as a function of temperature
 
-| T d'essai (°C) | Résistance à la traction (MPa) | Limite d'élasticité publiée (MPa) | Allongement (%) |
+| Test T (°C) | Tensile strength (MPa) | Published yield strength (MPa) | Elongation (%) |
 | ---: | ---: | ---: | ---: |
 | 20 | 511 | 445 | 11 |
 | 100 | 423 | 375 | 10 |
@@ -16,47 +16,47 @@ ajoutés au dépôt. Empreintes, localisateurs et chiffres :
 | 200 | 331 | 311 | 15 |
 | 250 | 224 | 215 | 12 |
 
-Source : [ECKART, page PDF 5, tableau inférieur](https://www.eckart.net/en/download/document/view/id/519).
-Ce tableau ne précise pas directement traitement, orientation, effectif,
-temps de maintien ni méthode d'essai à chaud. **Il n'est pas automatiquement
-étiqueté T7.** Le tableau supérieur donne E = 74/77/79 GPa à température
-ambiante pour brut/détensionné/traité T7, respectivement. Le détensionnement
-est 300 °C, 2 h, sur plateau ; la recette T7 est propriétaire.
+Source: [ECKART, PDF page 5, lower table](https://www.eckart.net/en/download/document/view/id/519).
+This table does not directly state treatment, orientation, sample count,
+hold time or hot test method. **It is not automatically
+labeled T7.** The upper table gives E = 74/77/79 GPa at room
+temperature for as-built/stress-relieved/T7-treated, respectively. Stress relief
+is 300 °C, 2 h, on the build plate; the T7 recipe is proprietary.
 
-Anomalie conservée : 445 MPa à 20 °C dans le tableau inférieur, contre une
-plage 390–440 MPa dans la colonne T7 supérieure. Ne pas fusionner ces jeux
-ni corriger le chiffre sans clarification du fabricant. Les libellés ne
-précisent pas l'offset Rp0,2 ; le relevé conserve « yield strength ».
+Anomaly kept: 445 MPa at 20 °C in the lower table, against a
+390–440 MPa range in the upper T7 column. Do not merge these data sets
+nor correct the figure without clarification from the manufacturer. The labels do not
+specify the Rp0.2 offset; the transcription keeps "yield strength".
 
-## CP1 : traitement à 400 °C, mais traction à 25 °C
+## CP1: treatment at 400 °C, but tensile test at 25 °C
 
-| Traitement à 400 °C | Traction à 25 °C (MPa) | Limite publiée à 25 °C (MPa) | Allongement (%) | k publié (W/m·K) |
+| Treatment at 400 °C | Tensile at 25 °C (MPa) | Published yield at 25 °C (MPa) | Elongation (%) | Published k (W/m·K) |
 | ---: | ---: | ---: | ---: | ---: |
-| 1 h | 340 | 321 | 14,2 | 182 |
-| 4 h | 342 | 323 | 12,8 | 187 |
-| 7 h | 332 | 313 | 16,8 | 189 |
+| 1 h | 340 | 321 | 14.2 | 182 |
+| 4 h | 342 | 323 | 12.8 | 187 |
+| 7 h | 332 | 313 | 16.8 | 189 |
 
-Source : [Constellium CP1, novembre 2021, page 2](https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf).
-L'orientation verticale et les 25 °C concernent la traction. **La température
-de mesure de k n'est pas explicitée dans son en-tête adjacent** : elle reste
-nulle dans le relevé. Les trois lignes font varier la durée du traitement,
-pas la température de fonctionnement. Aucun point de traction à chaud n'est
-fourni. La stabilité annoncée à 250–300 °C durant plusieurs milliers d'heures
-ne constitue ni une courbe k(T) ni une résistance admissible à chaud.
+Source: [Constellium CP1, November 2021, page 2](https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf).
+The vertical orientation and the 25 °C apply to the tensile test. **The measurement
+temperature of k is not stated in its adjacent header**: it remains
+null in the transcription. The three rows vary the treatment duration,
+not the operating temperature. No hot tensile point is
+provided. The announced stability at 250–300 °C for several thousand hours
+constitutes neither a k(T) curve nor a hot allowable strength.
 
-## Données encore nécessaires pour simuler la pièce
+## Data still needed to simulate the part
 
-| Propriété | A20X, pages examinées | CP1, pages examinées |
+| Property | A20X, pages examined | CP1, pages examined |
 | --- | --- | --- |
-| Limite/rupture en fonction de T | 5 points publiés, conditions incomplètes | Aucun point à chaud |
-| Module E(T) | Seulement E ambiant selon état | Non publié |
-| Conductivité k(T) | Non publiée | 3 valeurs selon traitement, pas selon T |
-| Capacité thermique Cp(T) | Non publiée | Non publiée |
-| Dilatation α(T), coefficient de Poisson | Non publiés | Non publiés |
-| Plasticité complète, fluage, relaxation, fatigue/TMF | Pas de lois utilisables dans ces pages | Pas de lois utilisables dans ces pages |
+| Yield/ultimate as a function of T | 5 published points, incomplete conditions | No hot point |
+| Modulus E(T) | Only room-temperature E by condition | Not published |
+| Conductivity k(T) | Not published | 3 values by treatment, not by T |
+| Heat capacity Cp(T) | Not published | Not published |
+| Expansion α(T), Poisson's ratio | Not published | Not published |
+| Full plasticity, creep, relaxation, fatigue/TMF | No usable laws in these pages | No usable laws in these pages |
 
-Ce relevé améliore les points de départ documentaires mais ne fournit pas
-une carte constitutive complète. Il ne choisit pas de matériau gagnant,
-n'interpole aucune courbe et n'attribue aucun admissible à la culasse M64.
-Les charges, le procédé exact et la plage de température doivent être
-définis avant de comparer les marges mécaniques et thermiques.
+This transcription improves the documentary starting points but does not provide
+a complete constitutive map. It does not choose a winning material,
+interpolates no curve and assigns no allowable to the M64 cylinder head.
+The loads, the exact process and the temperature range must be
+defined before comparing the mechanical and thermal margins.

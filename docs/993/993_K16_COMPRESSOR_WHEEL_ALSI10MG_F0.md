@@ -10,6 +10,25 @@ The F0 therefore keeps only the two diameters and the blade count. Its `3 mm`
 disc, its `18 mm` height, its `6 mm` bore, its hub and its straight `1.2 mm`
 blades are independent assumptions.
 
+```mermaid
+flowchart LR
+  S["Published: wheel 53241232006<br/>inducer 40.6 mm, exducer 60.5 mm,<br/>6 + 6 blades"] --> H["Assumptions: 3 mm disc,<br/>18 mm height, straight 1.2 mm blades"]
+  H --> G["F0 BREP valid<br/>32.70 g"]
+  G --> A["Synthetic aerodynamic point<br/>not a K16 map"]
+  G --> M["Blade at overspeed 390.9 MPa<br/>ratio 0.627: F0 rejected"]
+  G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
+  M --> V["Not authorized for manufacturing,<br/>rotation, turbo or engine"]
+  P --> V
+  class S ok
+  class H,A,P open
+  class M,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why study additive
 
 Twelve blades, their fillets and the hub can be produced and iterated without

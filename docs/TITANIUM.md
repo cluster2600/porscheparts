@@ -23,6 +23,23 @@ powder designation.
 - Untreated sliding contact or repeated threading exposed to galling
 - Environment creating an uncontrolled galvanic couple with aluminum or magnesium
 
+The two lists and the release gate below, as one decision:
+
+```mermaid
+flowchart TD
+    C["Candidate metal part"] --> N{"A when it is not<br/>case applies?"}
+    NL["Simple plate, shaft, spacer or bracket<br/>Thermal conductivity need<br/>Bending identical to a steel part<br/>Untreated sliding contact or repeated threading<br/>Uncontrolled galvanic couple with Al or Mg"] -.- N
+    N -- yes --> X["Titanium not relevant"]:::stop
+    N -- no --> R{"A when it is relevant<br/>case applies?"}
+    RL["Mass reduction on a complex metal part<br/>Problematic corrosion of the original material<br/>Consolidation · internal ducts<br/>Small series dominated by tooling cost"] -.- R
+    R -- no --> X
+    R -- yes --> G["Release gate, 8 conditions:<br/>fitted prototype · titanium justification · DfAM review ·<br/>traceability · dimensional inspection ·<br/>risk-suited inspection · documented test · usage limits"]:::open
+    G --> REL["released"]:::ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## The criterion applies beyond titanium
 
 The same grid decides the use of additive manufacturing in general. It wins in
@@ -68,6 +85,14 @@ provider supplying complete documentation, CT scans and post-processing
 certificates.
 
 This is exactly the order of phases 2 and 3 of this project.
+
+```mermaid
+flowchart LR
+    A["Polymer<br/>jigs, interface checks"] --> B["Printed foundry cores<br/>known process"] --> C["Metal<br/>provider with full documentation,<br/>CT scans, post-processing certificates"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
 ## Minimum manufacturer dossier
 

@@ -46,6 +46,38 @@ STATUTS = {
 
 PROCEDES = {"undecided": "undecided"}
 
+# The validation ladder of catalog/schemas/part.schema.json, in order.
+ECHELLE = ["concept", "dimensionally_reviewed", "prototype_fitted",
+           "functionally_tested", "engineering_reviewed", "released"]
+
+# Pie slices in a fixed order, so the chart does not reshuffle between records.
+ORDRE_STATUTS = ["prohibited_pending_engineering", "safety_critical",
+                 "functional", "non_critical"]
+
+
+def graphiques(fiches: list) -> list[str]:
+    """Two Mermaid charts computed from the records: never typed by hand."""
+    classes = [d["classification"]["safety_class"] for _, d in fiches]
+    niveaux = [d.get("validation", {}).get("status", "concept") for _, d in fiches]
+    out = ["```mermaid", f"pie showData title {len(fiches)} part records by safety class"]
+    for cle in ORDRE_STATUTS:
+        if classes.count(cle):
+            libelle = STATUTS[cle].strip("*")
+            out.append(f'    "{libelle}" : {classes.count(cle)}')
+    out += ["```", "", "```mermaid", "flowchart LR"]
+    for i, niveau in enumerate(ECHELLE):
+        out.append(f'    L{i}["{niveau}<br/><b>{niveaux.count(niveau)}</b> records"]')
+    out.append("    " + " --> ".join(f"L{i}" for i in range(len(ECHELLE))))
+    out += ["    classDef here fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;",
+            "    classDef empty fill:#f4f4f4,stroke:#9e9e9e,color:#6b6b6b;"]
+    for i, niveau in enumerate(ECHELLE):
+        out.append(f"    class L{i} {'here' if niveaux.count(niveau) else 'empty'}")
+    out += ["```", "",
+            "*The validation ladder of `catalog/schemas/part.schema.json`, with the number "
+            "of records whose `validation.status` names each step. Both charts are computed "
+            "from the records.*", ""]
+    return out
+
 
 def court(texte: str, limite: int) -> str:
     """Cut without lying: a visible truncation beats a paraphrase."""
@@ -74,7 +106,7 @@ def lignes() -> list[str]:
             f"system(s) without a heading in SYSTEMES: {', '.join(inconnus)}"
         )
 
-    out = [DEBUT, ""]
+    out = [DEBUT, ""] + graphiques(fiches)
     for cle, intitule in SYSTEMES:
         groupe = [(c, d) for c, d in fiches if d["part_id"].split("-")[1] == cle]
         if not groupe:

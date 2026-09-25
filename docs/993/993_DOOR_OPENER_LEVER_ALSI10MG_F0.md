@@ -14,6 +14,23 @@ without grade. These data describe neither the OEM surfaces, nor the pivot, nor
 the fixings, nor the linkage. The F0 is therefore an independent concept within
 that envelope only, not a fittable copy.
 
+```mermaid
+flowchart LR
+  S["Published: PET 993 555 851/852 00<br/>FVD envelope 108 × 45 × 27 mm"] --> G["F0 concept inside the envelope<br/>single BREP, 71.621 g"]
+  G --> R["Screens run: analytical,<br/>LPBF slicing, CalculiX,<br/>OpenUSD, PhysX"]
+  R --> C["Step 04 route card<br/>5 gates pass, 6 stay closed"]
+  C --> Q["Request for quotation,<br/>not a manufacturing order"]
+  Q --> V["No print authorized"]
+  class S ok
+  class R,C,Q open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Screening material route
 
 The coherent route chosen is `EOS Aluminium AlSi10Mg`, EOS M 290,
@@ -48,6 +65,10 @@ Comparing the two finest meshes gives a `1.143 %` variation of the cold p95 and
 only indicates the stability of this model. The local cold maximum reaches
 `174.657 MPa` and the hot maximum `185.636 MPa` near the idealized supports;
 neither these peaks nor the p95 are a safety margin for the part.
+
+![LPBF geometric slicing screen of the F0 door opener lever: section per layer, newly unsupported region and conservative support envelope against build height, with the roll_y_45 summary](../../twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png)
+
+*Geometric slicing of the F0 in `roll_y_45` (2,664 layers, labels in French). It shows a real section at every layer and a proxy support envelope; it is not a laser toolpath, a machine file or a distortion result, and proves nothing about a printed lever.*
 
 ## Step 04: material-machine-process card
 

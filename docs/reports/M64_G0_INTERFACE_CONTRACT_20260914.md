@@ -1,70 +1,83 @@
-# M64 — G0, contrat d'interfaces critiques
+# M64 — G0, critical interface contract
 
-14 septembre 2026. Portée : les huit `critical_interfaces` du
-[contrat M64](../../twins/m64-cylinder-head/interface-contract.json), passé en
-`schema_version` 2. Recherche limitée aux sources déjà présentes ou citées dans le
-dépôt. Scan 935 privé, SSH et Vast indisponibles.
+September 14, 2026. Scope: the eight `critical_interfaces` of the
+[M64 contract](../../twins/m64-cylinder-head/interface-contract.json), moved to
+`schema_version` 2. Search limited to sources already present or cited in the
+repository. Scan 935 private, SSH and Vast unavailable.
 
-**Résultat : 0 interface trouvée, 5 partielles, 3 absentes. Aucune valeur
-nominale ni tolérance n'est renseignée.** Les faits partiels sont enregistrés dans
-`documented_partial_facts`, avec `promoted_to_nominal: false`.
+**Result: 0 interfaces found, 5 partial, 3 absent. No nominal value
+or tolerance is filled in.** The partial facts are recorded in
+`documented_partial_facts`, with `promoted_to_nominal: false`.
 
-## Extension du schéma et du validateur
+```mermaid
+flowchart LR
+    A["8 critical_interfaces"] --> F["found: 0"]
+    A --> P["partial: 5<br/>facts recorded, not promoted"]
+    A --> X["absent: 3"]
+    P --> N["No nominal value, no tolerance"]
+    X --> N
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class X,N stop;
+    class P open;
+```
 
-Chaque interface porte maintenant `status` (`absent` / `partial` / `found`),
-`source_locator`, `confidence` et `documented_partial_facts`. En schéma v2,
-`validate_interface_contract.py` refuse :
+## Schema and validator extension
 
-- une valeur nominale ou une tolérance sans source enregistrée, localisateur et niveau de confiance ;
-- `found` sans valeur nominale **et** tolérance ;
-- `partial` sans fait documenté ;
-- un fait partiel incomplet, à source non enregistrée ou promu en valeur nominale.
+Each interface now carries `status` (`absent` / `partial` / `found`),
+`source_locator`, `confidence` and `documented_partial_facts`. In schema v2,
+`validate_interface_contract.py` rejects:
 
-Deux sources ont été enregistrées : M1 (manuel 993 Carrera, registre local) et T1
-(bulletin PCNA 9404). Les blocages de fabrication restent inchangés.
+- a nominal value or tolerance without a recorded source, locator and confidence level;
+- `found` without a nominal value **and** a tolerance;
+- `partial` without a documented fact;
+- an incomplete partial fact, one with an unrecorded source, or one promoted to a nominal value.
 
-## Tableau par interface
+Two sources were recorded: M1 (993 Carrera manual, local register) and T1
+(PCNA bulletin 9404). The manufacturing blockers remain unchanged.
 
-Légende de confiance : *table* = table structurée issue du manuel, page non relue ;
-*OCR* = occurrence OCR non relue ; *TSB* = bulletin relu visuellement le 7 septembre.
+## Table by interface
 
-| Interface | Statut | Ce que disent les sources | Source et localisateur | Applicabilité |
+Confidence legend: *table* = structured table taken from the manual, page not reread;
+*OCR* = OCR occurrence not reread; *TSB* = bulletin reread visually on September 7.
+
+| Interface | Status | What the sources say | Source and locator | Applicability |
 |---|---|---|---|---|
-| main_stud_axes | partiel | Goujons BM 8 × 20 / BM 8 × 50 ; serrage de culasse 20 Nm puis 90° | P1 p.58 pl. 103-00 rep. 5–6 ; M1 couples p.60 (*table*) | 964 M64.01/02/03 ; 993 Carrera. **Aucune coordonnée d'axe** |
-| cylinder_register_diameter | absent | — L'alésage de 100 mm (P3) ne définit pas le registre ; la surface de 145 mm (T1) est une cote de réparation | — | — |
+| main_stud_axes | partial | Studs BM 8 × 20 / BM 8 × 50; cylinder head tightening 20 Nm then 90° | P1 p.58 plate 103-00 items 5–6; M1 torques p.60 (*table*) | 964 M64.01/02/03; 993 Carrera. **No axis coordinates** |
+| cylinder_register_diameter | absent | — The 100 mm bore (P3) does not define the register; the 145 mm surface (T1) is a repair dimension | — | — |
 | cylinder_register_depth | absent | — | — | — |
-| sealing_surface_definition | partiel | Joint acier 96410411520 placé dans la gorge du **cylindre** ; après réparation : Ø 145 mm, enlèvement de 0,10 ± 0,02 mm (0,20 mm au maximum), 32 µin | T1 p.1, 3 et 4 fig. 4 (*TSB*) | Réparation Carrera 2/4 1989–1991 uniquement ; ne constitue pas la définition de la portée neuve |
-| cam_carrier_axes | partiel | Porte-arbres / culasse en M8, 23 Nm ; pignon d'arbre M12 × 1,5, 120 Nm | M1 couples p.60 (*table*) | 993 Carrera 2V ; **aucun axe de palier ni hauteur** |
-| oil_feed_and_return_interfaces | absent | Seule piste : une bride vissée M24 × 1,5, côté **carter** et non culasse | — | — |
-| intake_and_exhaust_flange_interfaces | partiel | Fixation échangeur / culasse à 28 Nm, filetage non indiqué | M1 couples p.61 (*table*) | 993 Carrera ; ni motif de fixation ni bride |
-| seat_guide_and_spark_plug_interfaces | partiel | Bougie M14 × 1,25, 30 Nm ; cote « g » de guide 8,00–8,015 mm ; benchmark de soupapes 40 / 33 mm | M1 couples p.60 (*table*) ; M1 p.153 l.17 (*OCR*) ; S2 p.4 | 993 Carrera 2V ; kit Swindon 4V (tiers). Ni axes, ni inclinaisons, ni serrages |
+| sealing_surface_definition | partial | Steel gasket 96410411520 placed in the groove of the **cylinder**; after repair: Ø 145 mm, removal of 0.10 ± 0.02 mm (0.20 mm maximum), 32 µin | T1 p.1, 3 and 4 fig. 4 (*TSB*) | Carrera 2/4 1989–1991 repair only; does not constitute the definition of the new sealing face |
+| cam_carrier_axes | partial | Cam carriers / cylinder head in M8, 23 Nm; camshaft sprocket M12 × 1.5, 120 Nm | M1 torques p.60 (*table*) | 993 Carrera 2V; **no bearing axis or height** |
+| oil_feed_and_return_interfaces | absent | Only lead: a screwed flange M24 × 1.5, on the **case** side and not the cylinder head | — | — |
+| intake_and_exhaust_flange_interfaces | partial | Heat exchanger / cylinder head fastening at 28 Nm, thread not stated | M1 torques p.61 (*table*) | 993 Carrera; neither fastening pattern nor flange |
+| seat_guide_and_spark_plug_interfaces | partial | Spark plug M14 × 1.25, 30 Nm; guide dimension "g" 8.00–8.015 mm; valve benchmark 40 / 33 mm | M1 torques p.60 (*table*); M1 p.153 l.17 (*OCR*); S2 p.4 | 993 Carrera 2V; Swindon 4V kit (third party). Neither axes, nor inclinations, nor interference fits |
 
-Pistes non retenues : le [registre MAHLE](../../twins/m64-cylinder-head/valve-module-documentary-references-20260907.json)
-(soupapes 2V Carrera et tables génériques de serrage des sièges) ne cote aucune
-interface de culasse M64 Turbo. Les pages 152–157 du manuel restent non relues
-(exemplaire introuvable, voir le [registre](M64_INTERFACE_SOURCE_REGISTER.md)).
+Leads not retained: the [MAHLE register](../../twins/m64-cylinder-head/valve-module-documentary-references-20260907.json)
+(Carrera 2V valves and generic seat interference tables) dimensions no
+M64 Turbo cylinder head interface. Pages 152–157 of the manual remain unread
+(copy not found, see the [register](M64_INTERFACE_SOURCE_REGISTER.md)).
 
-## Mesures physiques à prendre sur une vraie culasse
+## Physical measurements to take on a real cylinder head
 
-Référentiel proposé : **A** = plan d'étanchéité culasse–cylindre (3 points de
-palpage), **B** = axe du registre/centrage du cylindre considéré, **C** = axe du
-goujon avant côté chaîne. Mesures sur MMT à 20 ± 1 °C, pièce stabilisée 4 h,
-variante (numéro moteur, M64.50/60) et état (neuve/rectifiée) enregistrés,
-3 répétitions. Les incertitudes visées (k = 2) sont des **objectifs de
-métrologie** et non des tolérances de conception.
+Proposed datum system: **A** = cylinder head–cylinder sealing plane (3 probing
+points), **B** = axis of the register/spigot of the cylinder considered, **C** = axis of the
+front stud on the chain side. Measurements on a CMM at 20 ± 1 °C, part stabilized 4 h,
+variant (engine number, M64.50/60) and condition (new/refaced) recorded,
+3 repetitions. The target uncertainties (k = 2) are **metrology
+objectives** and not design tolerances.
 
-| Interface | Grandeurs | Instrument | Référence | Incertitude visée |
+| Interface | Quantities | Instrument | Datum | Target uncertainty |
 |---|---|---|---|---|
-| main_stud_axes | Position XY de chaque trou de goujon, diamètre, perpendicularité à A, entraxes cylindre à cylindre | MMT palpeur ; tampons lisses | A, B, C | ±0,02 mm position ; ±0,01 mm Ø |
-| cylinder_register_diameter | Ø du centrage (moyen, circularité, 4 hauteurs) | MMT, ou alésomètre à 3 touches étalonné | A, B | ±0,005 mm |
-| cylinder_register_depth | Profondeur du centrage par rapport à A ; rayon ou chanfrein de fond | MMT ; comparateur sur marbre | A | ±0,01 mm |
-| sealing_surface_definition | Ø intérieur/extérieur de portée, planéité, Ra/Rz, relief éventuel de gorge côté culasse ; gorge du cylindre en complément | MMT ; rugosimètre à palpeur (Lc 0,8 mm) ; règle et cales | A | Planéité ±0,005 mm ; Ra ±10 % ; Ø ±0,02 mm |
-| cam_carrier_axes | Plan d'appui du porte-arbres (hauteur et parallélisme à A), trous M8 (position), axe de palier projeté par rapport à B | MMT ; montage de porte-arbres réel pour l'axe | A, B, C | ±0,02 mm hauteur ; ±0,02 mm axe |
-| oil_feed_and_return_interfaces | Position, Ø et profondeur des passages d'alimentation et de retour ; joints | MMT ; jauges ; endoscope ; CT si accessible | A, C | ±0,05 mm position ; ±0,05 mm Ø |
-| intake_and_exhaust_flange_interfaces | Plans de bride (orientation par rapport à A), motif des goujons, contour des conduits à la face | MMT ; pige de filetage ; scan structuré calé sur A/B/C pour le contour | A, B, C | ±0,03 mm plan et goujons ; ±0,1 mm contour |
-| seat_guide_and_spark_plug_interfaces | Axes et inclinaisons des soupapes et de la bougie, Ø logement de siège et de guide (serrage), hauteur de siège, profondeur et portée de la bougie | MMT avec piges dans les guides ; alésomètre ; calibre M14 × 1,25 et jauge de profondeur | A, B | ±0,05° angle ; ±0,005 mm Ø logements ; ±0,02 mm hauteurs |
+| main_stud_axes | XY position of each stud hole, diameter, perpendicularity to A, cylinder-to-cylinder center distances | CMM probe; plain plug gauges | A, B, C | ±0.02 mm position; ±0.01 mm Ø |
+| cylinder_register_diameter | Ø of the spigot (mean, roundness, 4 heights) | CMM, or calibrated 3-point bore gauge | A, B | ±0.005 mm |
+| cylinder_register_depth | Depth of the spigot relative to A; bottom radius or chamfer | CMM; dial indicator on surface plate | A | ±0.01 mm |
+| sealing_surface_definition | Inner/outer Ø of the sealing face, flatness, Ra/Rz, any groove relief on the cylinder head side; cylinder groove as a complement | CMM; stylus profilometer (Lc 0.8 mm); straightedge and feeler gauges | A | Flatness ±0.005 mm; Ra ±10 %; Ø ±0.02 mm |
+| cam_carrier_axes | Cam carrier seating plane (height and parallelism to A), M8 holes (position), projected bearing axis relative to B | CMM; real cam carrier fixture for the axis | A, B, C | ±0.02 mm height; ±0.02 mm axis |
+| oil_feed_and_return_interfaces | Position, Ø and depth of the feed and return passages; seals | CMM; gauges; borescope; CT if accessible | A, C | ±0.05 mm position; ±0.05 mm Ø |
+| intake_and_exhaust_flange_interfaces | Flange planes (orientation relative to A), stud pattern, port contour at the face | CMM; thread gauge pin; structured-light scan aligned on A/B/C for the contour | A, B, C | ±0.03 mm plane and studs; ±0.1 mm contour |
+| seat_guide_and_spark_plug_interfaces | Axes and inclinations of the valves and the spark plug, seat and guide bore Ø (interference), seat height, spark plug depth and reach | CMM with pins in the guides; bore gauge; M14 × 1.25 gauge and depth gauge | A, B | ±0.05° angle; ±0.005 mm bore Ø; ±0.02 mm heights |
 
-Chaque mesure devra entrer au registre avec instrument, étalonnage et
-échantillons, conformément aux [portes qualité](../QUALITY_GATES.md). Une mesure
-d'une culasse 2V de série renseigne une interface de montage, **pas** la
-géométrie interne de la nouvelle culasse 4V.
+Each measurement will have to enter the register with instrument, calibration and
+samples, in accordance with the [quality gates](../QUALITY_GATES.md). A measurement
+of a production 2V cylinder head informs a mounting interface, **not** the
+internal geometry of the new 4V cylinder head.

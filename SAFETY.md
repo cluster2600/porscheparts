@@ -17,6 +17,27 @@ One sentence sums it up: **a calculation never authorizes manufacturing.**
 
 These four values are the ones in the record schema. They are not paraphrased.
 
+The same classes as a decision, read with the failure-mode rule below and the
+downgrading rule of section 5:
+
+```mermaid
+flowchart TD
+    D{"Doubt, risk<br/>or insufficient data?"}
+    D -- yes --> P["prohibited_pending_engineering"]:::stop
+    P --> PX["Never as a released part"]:::stop
+    D -- no --> Q{"What happens<br/>when it breaks?"}
+    Q -- "no immediate hazard" --> NC["non_critical"]
+    NC --> NCa["Publish after dimensional<br/>and fit validation"]:::open
+    Q -- "can immobilize or<br/>damage the vehicle" --> F["functional"]
+    F --> Fa["Publish after documented<br/>functional testing"]:::open
+    Q -- "loss of control,<br/>fire or injury" --> SC["safety_critical"]
+    SC --> SCa["Publish only after formal<br/>engineering review"]:::open
+    S["A calculation or a screening"] --> SX["Never authorizes manufacturing"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ### Presumed-critical domains
 
 The following are presumed critical: braking, steering, suspension, wheels,
@@ -120,6 +141,19 @@ engineering review covering a specific, explicitly bounded revision.
 
 None of these steps can be inferred from another. A class change is justified in
 the record, not in a commit message.
+
+```mermaid
+flowchart TD
+    DN["Lowering: doubt is enough"] --> PP["prohibited_pending_engineering<br/>until clarified"]:::stop
+    R1["1 · Identity established<br/>by a level-A source"] --> R2["2 · Measurement of<br/>a physical specimen"]
+    R2 --> R3["3 · Real, non-synthetic<br/>load case"]
+    R3 --> R4["4 · Qualified material card<br/>for the chosen process"]
+    R4 --> R5["5 · Tests for the<br/>target class"]
+    R5 --> R6["6 · safety_critical only:<br/>signed engineering review of a<br/>specific, bounded revision"]:::open
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
 ## 6. What the repository will not do
 
