@@ -2,14 +2,14 @@
 
 # Execution and audit reports
 
-97 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+98 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 5]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 6]
 ```
 
 ## September 25, 2026
@@ -21,6 +21,7 @@ xychart-beta
 | M64 G5 — articulated rockers and cams conjugate to their motion | [`M64_G5_ARTICULATED_ROCKERS_20260925.md`](M64_G5_ARTICULATED_ROCKERS_20260925.md) |
 | M64 G6 — supported CAD, hot-load screens and virtual build preparation | [`M64_G6_CARRIER_THERMAL_AM_20260925.md`](M64_G6_CARRIER_THERMAL_AM_20260925.md) |
 | M64 G7 — local supports and finite-air cooling | [`M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md`](M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md) |
+| M64 G8 — isolated carrier compliance and resource pilot | [`M64_G8_CARRIER_FEA_PILOT_20260925.md`](M64_G8_CARRIER_FEA_PILOT_20260925.md) |
 
 ## September 24, 2026
 
