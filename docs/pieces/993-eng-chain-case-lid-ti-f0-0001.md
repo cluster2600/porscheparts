@@ -89,7 +89,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../..
 
 | field | value |
 |---|---|
-| record license | MIT for the record and the script; no third-party geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the record and the script; no third-party geometry redistributed |
 
 **Sources**
 

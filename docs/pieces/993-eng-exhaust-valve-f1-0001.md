@@ -103,7 +103,7 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-valve-f1-0001.json`](../../cat
 
 | field | value |
 |---|---|
-| record license | MIT for code and record; no third-party geometry redistributed |
+| record license | All rights reserved (see LICENSE) for code and record; no third-party geometry redistributed |
 
 **Sources**
 

@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, trademark, illustration or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, trademark, illustration or commercial geometry redistributed |
 
 **Sources**
 

@@ -90,7 +90,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-0001.json`](../../catalog/p
 
 | field | value |
 |---|---|
-| record license | MIT for the record; no third-party geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the record; no third-party geometry redistributed |
 
 **Sources**
 

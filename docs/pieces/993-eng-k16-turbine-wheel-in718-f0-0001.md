@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json`]
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, Porsche illustration, BorgWarner/Kinugawa surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, Porsche illustration, BorgWarner/Kinugawa surface or commercial geometry redistributed |
 
 **Sources**
 

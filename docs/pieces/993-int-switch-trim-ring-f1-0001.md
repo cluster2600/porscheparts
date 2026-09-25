@@ -88,7 +88,7 @@ Catalogue record: [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../
 
 | field | value |
 |---|---|
-| record license | MIT for the script and the record; no third-party media or model redistributed |
+| record license | All rights reserved (see LICENSE) for the script and the record; no third-party media or model redistributed |
 
 **Sources**
 

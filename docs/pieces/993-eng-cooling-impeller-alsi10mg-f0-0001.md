@@ -90,7 +90,7 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, illustration, Porsche/PorscheFanatics/FVD/Porsche Poitiers/Partworks/EOS surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, illustration, Porsche/PorscheFanatics/FVD/Porsche Poitiers/Partworks/EOS surface or commercial geometry redistributed |
 
 **Sources**
 

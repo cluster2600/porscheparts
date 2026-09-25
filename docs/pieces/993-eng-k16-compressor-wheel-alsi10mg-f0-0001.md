@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no Porsche/BorgWarner/supplier photograph, surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no Porsche/BorgWarner/supplier photograph, surface or commercial geometry redistributed |
 
 **Sources**
 

@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no Porsche/FVD/Protomotive/BBi/EOS photograph, surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no Porsche/FVD/Protomotive/BBi/EOS photograph, surface or commercial geometry redistributed |
 
 **Sources**
 

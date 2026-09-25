@@ -70,10 +70,10 @@ def frame(xyz, faces, par_tri, K, azim, clim):
 
     fig.text(0.045, 0.80, "porscheparts", color=FG, fontsize=26,
              fontweight="bold", ha="left", va="top")
-    fig.text(0.045, 0.645, "Open reverse engineering\nPorsche 911 964 and 993",
+    fig.text(0.045, 0.645, "Reverse engineering\nPorsche 911 964 and 993",
              color=FG, fontsize=13, ha="left", va="top", linespacing=1.5)
     fig.text(0.045, 0.46, f"Full 964 cell, von Mises\n"
-             f"under torsional torque\nK = {K:.0f} N.m/deg, S6 shells",
+             f"under torsional torque\nK = {K:.0f} N.m/deg, linear S3 shells",
              color=MUTED, fontsize=10.5, ha="left", va="top", linespacing=1.6)
     # Horizontal color bar in the text column: without a scale, a stress map
     # is just a colored picture.

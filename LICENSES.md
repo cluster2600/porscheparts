@@ -2,9 +2,15 @@
 
 ## Original content
 
-Scripts, documents, schemas and models created specifically for this project
-are under the MIT license, unless the file or the part record explicitly states
-otherwise.
+Scripts, documents, schemas, records, CAD and print files, renders and data
+created for this project are **© 2026 Maxime Grenu, all rights reserved**, under
+the custom [porscheparts Proprietary License](LICENSE): viewing only; copying,
+modifying, printing, manufacturing, redistributing, commercial use and AI
+training all need prior written permission.
+
+Revisions published before 2026-09-25 were distributed under the MIT License;
+copies obtained under those terms before that date keep them. Pinned evidence
+files that mention MIT are historical records and are not edited.
 
 ## Third-party content
 
