@@ -91,7 +91,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-in625-f0-0001.json`](../../ca
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, trademark, PET illustration or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, trademark, PET illustration or commercial geometry redistributed |
 
 **Sources**
 

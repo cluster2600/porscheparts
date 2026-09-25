@@ -87,7 +87,7 @@ Catalogue record: [`catalog/parts/993-int-door-pull-0001.json`](../../catalog/pa
 
 | field | value |
 |---|---|
-| record license | MIT for the record, geometry not yet produced |
+| record license | All rights reserved (see LICENSE) for the record, geometry not yet produced |
 
 **Sources**
 

@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.js
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, Porsche/PorscheFanatics/OEMVWShop/MAHLE/Islandworks/EOS surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, Porsche/PorscheFanatics/OEMVWShop/MAHLE/Islandworks/EOS surface or commercial geometry redistributed |
 
 **Sources**
 
