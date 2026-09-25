@@ -1,0 +1,91 @@
+{
+  "classification": "G9_native_x86_CUDA_campaign_execution_not_head_qualification",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assembled_stiffness_qualified": false,
+  "instance": {
+    "id": 52645941,
+    "gpu": "NVIDIA A100-SXM4-40GB",
+    "gpu_reported_MiB": 39936,
+    "driver": "595.58.03",
+    "cpu": "Intel Xeon E5-2640 v3 @ 2.60GHz",
+    "allocated_logical_cpus": 32,
+    "ram_reported_MB": 128803,
+    "disk_GB": 100,
+    "region": "Alberta, Canada",
+    "hourly_total_USD": 0.668888888888889
+  },
+  "runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+    "ccx_source_image": "sha256:22e5ea95954ede922b9666b74e0db1c7fdc34667abc2254ab37002ed4d90996b",
+    "ccx_version": "2.21",
+    "ccx_binary_sha256": "6adaabf5bf0382fc2bfd692b984320ed375dba777f7dc8297562f818043faa1b",
+    "ccx_bundle_preflight_beam_passed_on_Kali": true,
+    "gmsh": "4.12.1",
+    "cupy": "13.6.0",
+    "numpy": "2.2.6",
+    "scipy": "1.14.1",
+    "reported_cuda_runtime": 12090,
+    "system_packages": {
+      "libglu1-mesa": "9.0.2-1.1",
+      "libxft2": "2.3.6-1"
+    },
+    "initial_failure": "missing libXft.so.2 after eleven passing cases; no failed calculation accepted",
+    "recovery": "installed libxft2, checked import and preserved/hash-checked eleven-case checkpoint before fine-mesh continuation"
+  },
+  "telemetry": {
+    "interval_seconds": 2,
+    "samples": 707,
+    "peak_sampled_gpu_utilization_percent": 88,
+    "peak_sampled_GPU_memory_MiB": 2443,
+    "peak_sampled_board_power_W": 300.53,
+    "qualifies_full_pipeline_speedup": false
+  },
+  "lifecycle": {
+    "external_guard_armed_before_rental": true,
+    "manifest_sha256": "2a2ce474ced2507196041183a2ee6edb649327aa237689a71023a7cc86be5894",
+    "created_epoch": 1790368000,
+    "deadline_epoch": 1790378800,
+    "run_budget_USD": 4,
+    "planned_with_cleanup_reserve_USD": 3.030104166666667,
+    "automatic_recharge_requested": false,
+    "input_allocation_GB": 2,
+    "output_allocation_GB": 2,
+    "image_download_allocation_GB": 4,
+    "observed_credit_decrease_USD": 0.39751833019994365,
+    "account_balances_retained_privately": true,
+    "cost_is_final_invoice": false,
+    "required_numerical_evidence_collected_and_hash_verified_before_deletion": true,
+    "provider_destroyed": true,
+    "provider_verified_absent": true,
+    "external_guard_verified_absent": true,
+    "inventory_empty_after_cleanup": true
+  },
+  "archive_exclusions": ["unused exported mass matrices", "FRD files", "CalculiX internal 12d files"],
+  "private_archives": {
+    "input": {
+      "sha256": "8b36e9448b23d71b181a6481fea5f8edd0cb443dccfab0e03f2862ad6b2f8308"
+    },
+    "helpers": {
+      "sha256": "1c952fa8f91848c700373f13e3ea98e893e572aa2f1dc870cd322b3f68102c37"
+    },
+    "ccx_runtime": {
+      "sha256": "2052b67d2497ed65ef19243d27f126c4ffe9f8fad96eec0fad8f284630a17fab"
+    },
+    "first_results": {
+      "bytes": 816078608,
+      "sha256": "8792544bd08da797b8d67b8d103dc65d4fa7be8b10c083cefc52f51bbd3fe095"
+    },
+    "final_results": {
+      "bytes": 679158949,
+      "sha256": "bca666d8f500c8dcb028c32d54b202e7d92be2c1fc73c318723fcb47c7f61c89"
+    }
+  },
+  "sources": {
+    "campaign_sha256": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "continuation_sha256": "296def014444b8cb5ff0ce078f525232a0c94aa6258520c0da478282be87ccd4",
+    "job_sha256": "270e999451061ffa04fbd5a4904045c795b932900efb0960bfc60aeae93e8149",
+    "continuation_shell_sha256": "1d312b7aac3686ecfde7ac77a745a42c2b44fe81ac679d30abae4f910a818ad3",
+    "mesh_summary_sha256": "299757b15530e5516ddcaf625ebb940de6ff4591058989038a61d98d48bd062c"
+  }
+}

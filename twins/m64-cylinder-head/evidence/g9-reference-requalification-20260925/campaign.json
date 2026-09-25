@@ -1,0 +1,809 @@
+{
+  "classification": "G9_isolated_components_reference_requalification",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assembled_stiffness_qualified": false,
+  "hot_material_qualified": false,
+  "source_sha256": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+  "cases": [
+    {
+      "case": "witness-2.0",
+      "direction": "x",
+      "nodes": 4387,
+      "free_dofs": 12702,
+      "matrix_nnz": 907376,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 0.9672508069779724,
+      "relative_residual": 1.097213004704547e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 842,
+        "info": 0,
+        "setup_seconds": 2.168416555970907,
+        "solve_seconds": 1.290160630014725,
+        "setup_and_solve_seconds": 3.4585771859856322,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.3117591198602306e-07,
+        "printed_dat_relative_residual": 0.005268240053246955,
+        "printed_dat_rounding_residual_bound": 0.13535979632457093
+      },
+      "historical_comparison": {
+        "dat_sha256": "a86d362fc3133b08d4ebd2fa50ba1e9ea5f02c6c2be4562cbc8af20236cc143b",
+        "max_nodal_difference_over_max_reference_U": 1.3117591198602306e-07,
+        "printed_dat_relative_residual": 0.005268240053246955,
+        "printed_dat_rounding_residual_bound": 0.13535979632457093
+      },
+      "mechanics": {
+        "force_balance_relative_error": 1.1281850530016593e-07,
+        "moment_balance_F_times_100mm_error": 1.1964472609859651e-08,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.38180510577716686,
+        "von_Mises_p95_MPa": 177.66590802586688,
+        "von_Mises_max_MPa": 251.34348336845682,
+        "journal_weighted_displacement_mm": {
+          "exhaust": [
+            0.3752539008814061,
+            1.8948530382792555e-05,
+            -0.0018772153395026144
+          ]
+        },
+        "beam_plus_shear_reference_mm": 0.3839542857142857,
+        "beam_reference_relative_error": 0.022633872488772355
+      },
+      "hashes": {
+        "x.inp": "abc6b250a9b968926ae04eba32fc48382afc63f7f86b31c95f3492f33bfad6bd",
+        "x.dat": "7907171cac48a3470f6d245e18fd2fb7cc19a82d0c1347b4a3499b9de3f9b234",
+        "matrix.inp": "3279f7d0fe4a9850250fb1c707d10120a30fe08972fdbc5ecb665939bfddccac",
+        "matrix.sti": "72fbcdbadebdeb7a81cee45294e03c52699980b61b042620d2bd1b4f441f9899",
+        "matrix.dof": "08391f337dbf7acb202ef46e69b4c47bddb8056fff9a9d69e49328b2aeddd7dd"
+      }
+    },
+    {
+      "case": "central_diaphragm-3.0",
+      "direction": "x",
+      "nodes": 24246,
+      "free_dofs": 70701,
+      "matrix_nnz": 5126027,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 4.575868682004511,
+      "relative_residual": 1.0086043237140305e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 2637,
+        "info": 0,
+        "setup_seconds": 0.05896778905298561,
+        "solve_seconds": 1.2389855399960652,
+        "setup_and_solve_seconds": 1.2979533290490508,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 7.367496090983793e-08,
+        "printed_dat_relative_residual": 0.00040982434941614287,
+        "printed_dat_rounding_residual_bound": 0.016014204465808334
+      },
+      "historical_comparison": {
+        "dat_sha256": "5f78ef526114acb208501413d2c7630777a54435957c2477141ce168baab9b08",
+        "max_nodal_difference_over_max_reference_U": 7.367496090983793e-08,
+        "printed_dat_relative_residual": 0.0004098243497175254,
+        "printed_dat_rounding_residual_bound": 0.016014204465808334
+      },
+      "mechanics": {
+        "force_balance_relative_error": 2.148949404691402e-08,
+        "moment_balance_F_times_100mm_error": 1.458267892422798e-08,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.09492074744714497,
+        "von_Mises_p95_MPa": 61.56435038303706,
+        "von_Mises_max_MPa": 167.59158675967004,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.07186019352229049,
+            0.00016200356483381714,
+            0.023334483641210373
+          ],
+          "exhaust": [
+            0.06683738113321815,
+            -0.00017459905109901334,
+            -0.021025583685607797
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "7ed1dac271d5a69eb8b2e6644bc3a68f6ab9bfb80f8c76a873dbbb809c762fe8",
+        "x.dat": "793e4b2e5e268ae10dc7f30f8e5d91b4605b0a934a0abce9b8bd10df7065e593",
+        "matrix.inp": "552d0b2849b54e929e33ad61ec40005947ac0cde08d95c7ddc34b6fcaea18287",
+        "matrix.sti": "7d346474fa3e64a4795b615e351cb6a56424c9c3a43b25dc4b8f168484125b65",
+        "matrix.dof": "9e9dce6620fac8a3e7a175d44a9d0d15f8d35213d76c5c2878f472575e2d4cdd"
+      }
+    },
+    {
+      "case": "central_diaphragm-3.0",
+      "direction": "minus_z",
+      "nodes": 24246,
+      "free_dofs": 70701,
+      "matrix_nnz": 5126027,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 4.575868682004511,
+      "relative_residual": 9.851541426815483e-11,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 2642,
+        "info": 0,
+        "setup_seconds": 0.021001946064643562,
+        "solve_seconds": 1.2451678549405187,
+        "setup_and_solve_seconds": 1.2661698010051623,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.5055747549541538e-07,
+        "printed_dat_relative_residual": 0.00020340251502614273,
+        "printed_dat_rounding_residual_bound": 0.0042333127791660445
+      },
+      "historical_comparison": {
+        "dat_sha256": "9b03b24069d23180391b9b046ad2b55e60929c923ffc44529d6e716565b8bc18",
+        "max_nodal_difference_over_max_reference_U": 1.5055747549541538e-07,
+        "printed_dat_relative_residual": 0.00020340251502614273,
+        "printed_dat_rounding_residual_bound": 0.0042333127791660445
+      },
+      "mechanics": {
+        "force_balance_relative_error": 1.422331433205604e-09,
+        "moment_balance_F_times_100mm_error": 1.3698921365723564e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.04624037751354468,
+        "von_Mises_p95_MPa": 40.74430277593763,
+        "von_Mises_max_MPa": 221.90608206652087,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.0099202062248151,
+            6.224524542335667e-05,
+            -0.02699760678350551
+          ],
+          "exhaust": [
+            0.007253322117552884,
+            4.617006488019577e-05,
+            -0.023591294497214317
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "262fc27ff16356eb3bb0323066d1ba0a8b94bb67d7f481bab69c13e813f41296",
+        "minus_z.dat": "fb6bbfe01b84279f85bb11da1325b8eeaa7b0fb84c9b3d2ff3db8d59a556830f",
+        "matrix.inp": "552d0b2849b54e929e33ad61ec40005947ac0cde08d95c7ddc34b6fcaea18287",
+        "matrix.sti": "7d346474fa3e64a4795b615e351cb6a56424c9c3a43b25dc4b8f168484125b65",
+        "matrix.dof": "9e9dce6620fac8a3e7a175d44a9d0d15f8d35213d76c5c2878f472575e2d4cdd"
+      }
+    },
+    {
+      "case": "central_diaphragm-2.0",
+      "direction": "x",
+      "nodes": 65054,
+      "free_dofs": 191049,
+      "matrix_nnz": 14463807,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 12.847418511053547,
+      "relative_residual": 1.0089142293525841e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 3753,
+        "info": 0,
+        "setup_seconds": 0.09902750700712204,
+        "solve_seconds": 1.769414852024056,
+        "setup_and_solve_seconds": 1.868442359031178,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 7.28466391684221e-08,
+        "printed_dat_relative_residual": 0.0006965614632034804,
+        "printed_dat_rounding_residual_bound": 0.02741198590450448
+      },
+      "historical_comparison": {
+        "dat_sha256": "665687b9b30ef70b48d9f30cb7bbac4c01ca1053983f77de3e7a14fc080573bf",
+        "max_nodal_difference_over_max_reference_U": 7.28466391684221e-08,
+        "printed_dat_relative_residual": 0.0006965614625240536,
+        "printed_dat_rounding_residual_bound": 0.02741198590450448
+      },
+      "mechanics": {
+        "force_balance_relative_error": 8.942539664020598e-09,
+        "moment_balance_F_times_100mm_error": 9.234121752796537e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.09670466538470664,
+        "von_Mises_p95_MPa": 58.751278350054946,
+        "von_Mises_max_MPa": 172.80024363622934,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.07295151826713588,
+            2.764143100310131e-05,
+            0.02354548464349077
+          ],
+          "exhaust": [
+            0.06776958993667605,
+            2.350400593115701e-05,
+            -0.02118845293483633
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "9b50a62d2867bb6ea827a5394b10b311fdbd725bd0eaec71c77a613847c94b24",
+        "x.dat": "ced46a1c69d93f3bc6b44c442d9c85347b19924cee9c2e0c1dadd8d9f1c18b7e",
+        "matrix.inp": "da391eb00393aeee511221848f8340f500c577865f2074e493bc6d7416336a96",
+        "matrix.sti": "8c9534b3d566f10213482591709dde3575bf31cebae7eeb03329a62036591f13",
+        "matrix.dof": "a6d223070c0f7cd1f4f70b600b15c9f021da96092c350e9cba95a19cdf3a30f5"
+      }
+    },
+    {
+      "case": "central_diaphragm-2.0",
+      "direction": "minus_z",
+      "nodes": 65054,
+      "free_dofs": 191049,
+      "matrix_nnz": 14463807,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 12.847418511053547,
+      "relative_residual": 9.692631948836174e-11,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 3738,
+        "info": 0,
+        "setup_seconds": 0.040835386025719345,
+        "solve_seconds": 1.7752346919151023,
+        "setup_and_solve_seconds": 1.8160700779408216,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.4818127205182105e-07,
+        "printed_dat_relative_residual": 0.0003444102097879847,
+        "printed_dat_rounding_residual_bound": 0.0071560927134254404
+      },
+      "historical_comparison": {
+        "dat_sha256": "7fb50c6037c2ec9163f25f322e36676c5b8d51fe6b0e54e928bd0decd082a3a2",
+        "max_nodal_difference_over_max_reference_U": 1.4818127205182105e-07,
+        "printed_dat_relative_residual": 0.0003444102097879847,
+        "printed_dat_rounding_residual_bound": 0.0071560927134254404
+      },
+      "mechanics": {
+        "force_balance_relative_error": 2.6071108682585603e-09,
+        "moment_balance_F_times_100mm_error": 1.1215907104360147e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.047197425245843534,
+        "von_Mises_p95_MPa": 37.814594785582855,
+        "von_Mises_max_MPa": 237.98594117688674,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.01014733624533604,
+            2.0051209011131866e-05,
+            -0.02728688786886717
+          ],
+          "exhaust": [
+            0.007432750609754376,
+            -1.1551850108394613e-05,
+            -0.023824178016779236
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "12cca888d1db241b241592a7f33266a2de4e899c4d634e3e1f98296321b9bd55",
+        "minus_z.dat": "eacbe6a36244a2df9a95ac2f7f77f8e828d6fd7785adb0586c044e4c0a92a882",
+        "matrix.inp": "da391eb00393aeee511221848f8340f500c577865f2074e493bc6d7416336a96",
+        "matrix.sti": "8c9534b3d566f10213482591709dde3575bf31cebae7eeb03329a62036591f13",
+        "matrix.dof": "a6d223070c0f7cd1f4f70b600b15c9f021da96092c350e9cba95a19cdf3a30f5"
+      }
+    },
+    {
+      "case": "central_diaphragm-1.5",
+      "direction": "x",
+      "nodes": 137975,
+      "free_dofs": 406830,
+      "matrix_nnz": 31583010,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 28.134483946021646,
+      "relative_residual": 1.0806798448506305e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 4857,
+        "info": 0,
+        "setup_seconds": 0.3035225810017437,
+        "solve_seconds": 2.9241269039921463,
+        "setup_and_solve_seconds": 3.22764948499389,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 7.212845267796135e-08,
+        "printed_dat_relative_residual": 0.0010534681747322902,
+        "printed_dat_rounding_residual_bound": 0.041862575508013235
+      },
+      "historical_comparison": {
+        "dat_sha256": "86b30da556fc3a96ed83d397062de6af63a8a2d61deaae57253febb132e07645",
+        "max_nodal_difference_over_max_reference_U": 7.212845267796135e-08,
+        "printed_dat_relative_residual": 0.0010534682537503926,
+        "printed_dat_rounding_residual_bound": 0.041862575508013485
+      },
+      "mechanics": {
+        "force_balance_relative_error": 4.389116440207361e-09,
+        "moment_balance_F_times_100mm_error": 5.330452092429882e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.097577861612087,
+        "von_Mises_p95_MPa": 57.65288483587165,
+        "von_Mises_max_MPa": 172.58717946609596,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.0733962818742776,
+            -4.523290672208931e-06,
+            0.023675405266076352
+          ],
+          "exhaust": [
+            0.06814341064458691,
+            -9.517692975805274e-07,
+            -0.021258456309622562
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "f7100581adb8247a527ccf51c9927f92b0d7a24d8d4b4d81dae9d3622f179479",
+        "x.dat": "6927f765728f00a639ae9d8d06e9567ba66c7bc27d62f896d862180f0ed88cfd",
+        "matrix.inp": "66fa67ff9c87c44d312329bc75c330309b51a8d2fcdf9d21405d2658fb91a956",
+        "matrix.sti": "22eda4fffb6b0b811a25596fb8a73e382835be877989c66f027d97d2aed90a37",
+        "matrix.dof": "3f17d7455e70e6315d540ab0153fb0b343641d1fb1fccde0042a64d491e7178f"
+      }
+    },
+    {
+      "case": "central_diaphragm-1.5",
+      "direction": "minus_z",
+      "nodes": 137975,
+      "free_dofs": 406830,
+      "matrix_nnz": 31583010,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 28.134483946021646,
+      "relative_residual": 9.980536584139326e-11,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 4885,
+        "info": 0,
+        "setup_seconds": 0.08668602397665381,
+        "solve_seconds": 2.924966869992204,
+        "setup_and_solve_seconds": 3.011652893968858,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.4685315798833746e-07,
+        "printed_dat_relative_residual": 0.0005191973713773776,
+        "printed_dat_rounding_residual_bound": 0.010888766397740387
+      },
+      "historical_comparison": {
+        "dat_sha256": "afb322c1e6eb80573a5b4e17f495bfa258be0dd98b619c73faf3711cd07ef077",
+        "max_nodal_difference_over_max_reference_U": 1.4685315798833746e-07,
+        "printed_dat_relative_residual": 0.0005191973824620656,
+        "printed_dat_rounding_residual_bound": 0.01088876639774041
+      },
+      "mechanics": {
+        "force_balance_relative_error": 1.871401820267615e-09,
+        "moment_balance_F_times_100mm_error": 5.8940159704574585e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.04791759843225748,
+        "von_Mises_p95_MPa": 36.87999899613367,
+        "von_Mises_max_MPa": 241.40409211852216,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.010284265347007661,
+            7.570129912974198e-06,
+            -0.0274629494282471
+          ],
+          "exhaust": [
+            0.007509949401392045,
+            2.9173260838306004e-06,
+            -0.023930850426034787
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "c65d6159697c5a7c241029a7d4634e2e28c56eece8abedd81361859b7fcbf837",
+        "minus_z.dat": "6863074ecd14fcdf997b4e2788b632da1c1dab49ab344f0eb87c6768192baeb2",
+        "matrix.inp": "66fa67ff9c87c44d312329bc75c330309b51a8d2fcdf9d21405d2658fb91a956",
+        "matrix.sti": "22eda4fffb6b0b811a25596fb8a73e382835be877989c66f027d97d2aed90a37",
+        "matrix.dof": "3f17d7455e70e6315d540ab0153fb0b343641d1fb1fccde0042a64d491e7178f"
+      }
+    },
+    {
+      "case": "carrier_base_p-3.0",
+      "direction": "x",
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744297,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 11.494248655973934,
+      "relative_residual": 1.0303376263797686e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 4665,
+        "info": 0,
+        "setup_seconds": 0.0370844790013507,
+        "solve_seconds": 2.1788409089203924,
+        "setup_and_solve_seconds": 2.215925387921743,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.926637432745946e-07,
+        "printed_dat_relative_residual": 0.0014203200584516416,
+        "printed_dat_rounding_residual_bound": 0.03319634135916033
+      },
+      "historical_comparison": {
+        "dat_sha256": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "max_nodal_difference_over_max_reference_U": 0.04289313467593948,
+        "printed_dat_relative_residual": 30.68626667849679,
+        "printed_dat_rounding_residual_bound": 0.03305593592930359
+      },
+      "mechanics": {
+        "force_balance_relative_error": 9.291445393974029e-09,
+        "moment_balance_F_times_100mm_error": 1.3238788771023907e-08,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.2604817907797443,
+        "von_Mises_p95_MPa": 46.56129278756768,
+        "von_Mises_max_MPa": 359.21418191970594,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.16016061797819625,
+            0.011374139265944438,
+            -0.005976879977798277
+          ],
+          "exhaust": [
+            0.13912228613663835,
+            -0.012602140023462756,
+            0.0034552026608706344
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "x.dat": "1ee0819e4770d75098312968a40b6abbeda4c519a935f54c11899fc510b4fe1c",
+        "matrix.inp": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "matrix.sti": "34b9fb9fc0434d401f174d9312c6318091cd00c4b22ba62e0c5db5922455bff5",
+        "matrix.dof": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "case": "carrier_base_p-3.0",
+      "direction": "minus_z",
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744297,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 11.494248655973934,
+      "relative_residual": 1.0936783952295181e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 4566,
+        "info": 0,
+        "setup_seconds": 0.037671532947570086,
+        "solve_seconds": 2.1392481320071965,
+        "setup_and_solve_seconds": 2.1769196649547666,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 3.7825649390252344e-07,
+        "printed_dat_relative_residual": 0.0011172112855775188,
+        "printed_dat_rounding_residual_bound": 0.04827387512737716
+      },
+      "historical_comparison": {
+        "dat_sha256": "0a548531e1fb4615f1d5e5f2f4a61e5558fe61288daef18433e09dc23b917880",
+        "max_nodal_difference_over_max_reference_U": 3.7825649390252344e-07,
+        "printed_dat_relative_residual": 0.0011172112855775188,
+        "printed_dat_rounding_residual_bound": 0.04827387512737716
+      },
+      "mechanics": {
+        "force_balance_relative_error": 1.1445364252612455e-08,
+        "moment_balance_F_times_100mm_error": 7.432229669672863e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.13204988009526936,
+        "von_Mises_p95_MPa": 28.202626829943792,
+        "von_Mises_max_MPa": 133.62419127687377,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.005976831567429051,
+            -0.0814902034073918,
+            -0.05345961050048149
+          ],
+          "exhaust": [
+            -0.003455143218343153,
+            -0.07858356099244047,
+            -0.05743856297353836
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "ef2c94072faed0d2620c352486435c14777cca98351a9476ce8ded091db8d069",
+        "minus_z.dat": "e02acf1da77a6da01bee110401973f2d51d90c381c9f3c424193c4e0f2a9419e",
+        "matrix.inp": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "matrix.sti": "34b9fb9fc0434d401f174d9312c6318091cd00c4b22ba62e0c5db5922455bff5",
+        "matrix.dof": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "case": "carrier_base_p-2.0",
+      "direction": "x",
+      "nodes": 162415,
+      "free_dofs": 473712,
+      "matrix_nnz": 36773146,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 32.89967595296912,
+      "relative_residual": 1.1676660588002737e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 7149,
+        "info": 0,
+        "setup_seconds": 0.3354999489383772,
+        "solve_seconds": 4.6500030000461265,
+        "setup_and_solve_seconds": 4.985502948984504,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.8607260274600774e-07,
+        "printed_dat_relative_residual": 0.0022909571210899585,
+        "printed_dat_rounding_residual_bound": 0.05391383192460096
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 5.46296665547019e-09,
+        "moment_balance_F_times_100mm_error": 6.137273470787831e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.26968991854203617,
+        "von_Mises_p95_MPa": 41.14374610140814,
+        "von_Mises_max_MPa": 357.97978802277504,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.16515145262713032,
+            0.011364949396783603,
+            -0.006085726436866558
+          ],
+          "exhaust": [
+            0.14308374151595596,
+            -0.012621762495712952,
+            0.0035334228769871236
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "863b5a52ae73a5e5d53d3d0bd207016438aaa5043496cd56993aa35ae25d8cbb",
+        "x.dat": "7516af363c5d3fc5cb57e70cd6b4f67c2d05dd9977ddb7e379fa514d99d34650",
+        "matrix.inp": "c7591c56fcfbfd9c1ace1d0a68a4839556aa56e2beda55c12226c2815527640b",
+        "matrix.sti": "0dcbb19e03dddb75bb1e0d8d107d7dc117fa9a7ce17b9e0d3d4d0f0939f83743",
+        "matrix.dof": "cccc6c316bae32ebdb59114dfa5527fedd2e7fb59d9b5a148cb65c839e690e0b"
+      }
+    },
+    {
+      "case": "carrier_base_p-2.0",
+      "direction": "minus_z",
+      "nodes": 162415,
+      "free_dofs": 473712,
+      "matrix_nnz": 36773146,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 32.89967595296912,
+      "relative_residual": 1.2983285776646532e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 7334,
+        "info": 0,
+        "setup_seconds": 0.10150172398425639,
+        "solve_seconds": 4.753451625001617,
+        "setup_and_solve_seconds": 4.854953348985873,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 3.734090377442294e-07,
+        "printed_dat_relative_residual": 0.0018352226852985344,
+        "printed_dat_rounding_residual_bound": 0.07521178187608799
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 8.726253000336238e-09,
+        "moment_balance_F_times_100mm_error": 1.914545306041518e-08,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.13381816582333964,
+        "von_Mises_p95_MPa": 26.74178281098607,
+        "von_Mises_max_MPa": 145.74321999061652,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.006085687180320878,
+            -0.08208649477669033,
+            -0.05419967652363304
+          ],
+          "exhaust": [
+            -0.0035333750887316033,
+            -0.07922856063405322,
+            -0.05822906247093289
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "c7732de63e4533aaafe8d1009cf2fffd4228ca3df5afcd9aafadb78c37eb6447",
+        "minus_z.dat": "0fdf0251466d565eb9ea67ad369992222caa3592ac520bf72d196f24aea60b09",
+        "matrix.inp": "c7591c56fcfbfd9c1ace1d0a68a4839556aa56e2beda55c12226c2815527640b",
+        "matrix.sti": "0dcbb19e03dddb75bb1e0d8d107d7dc117fa9a7ce17b9e0d3d4d0f0939f83743",
+        "matrix.dof": "cccc6c316bae32ebdb59114dfa5527fedd2e7fb59d9b5a148cb65c839e690e0b"
+      }
+    },
+    {
+      "case": "carrier_base_p-1.5",
+      "direction": "x",
+      "nodes": 351392,
+      "free_dofs": 1031364,
+      "matrix_nnz": 82037014,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 73.21243603900075,
+      "relative_residual": 1.437195628598223e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 8426,
+        "info": 0,
+        "setup_seconds": 1.5503428269876167,
+        "solve_seconds": 9.430797729990445,
+        "setup_and_solve_seconds": 10.981140556978062,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.833518507471216e-07,
+        "printed_dat_relative_residual": 0.003513775349054229,
+        "printed_dat_rounding_residual_bound": 0.0834113470684022
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 5.741342890534324e-09,
+        "moment_balance_F_times_100mm_error": 5.146338186519836e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.2739479402722503,
+        "von_Mises_p95_MPa": 40.10686015260551,
+        "von_Mises_max_MPa": 400.2371444704512,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.16757163522803828,
+            0.011451215112548813,
+            -0.006098981331640663
+          ],
+          "exhaust": [
+            0.14495669654542387,
+            -0.012553078652407462,
+            0.0035681808202668525
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "d2cfd7ca07f98aad7707e7fd274d23a391fa3352b7b495e138a363bbaccac097",
+        "x.dat": "e4949575721f64bd3507109e1536eb5b7ee9257bdd311c2d9f12bc2d378f781a",
+        "matrix.inp": "e66666ebef6795ea82ceb23df4efacd7a334dbe40de34c9d73aded7722aecb22",
+        "matrix.sti": "da2adf885c790398fab4632a57bdbb12c08577d49111995e3fcf73c66526106a",
+        "matrix.dof": "2436f02b83e88d5ea99b4cc888b1c83abbb34c0d65a41df3be6402b02375626f"
+      }
+    },
+    {
+      "case": "carrier_base_p-1.5",
+      "direction": "minus_z",
+      "nodes": 351392,
+      "free_dofs": 1031364,
+      "matrix_nnz": 82037014,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 73.21243603900075,
+      "relative_residual": 1.757109041814463e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA A100-SXM4-40GB",
+          "gpu_total_memory_bytes": 41358196736
+        },
+        "iterations": 8764,
+        "info": 0,
+        "setup_seconds": 0.24011552007868886,
+        "solve_seconds": 10.046884084003977,
+        "setup_and_solve_seconds": 10.286999604082666,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 3.724612070552427e-07,
+        "printed_dat_relative_residual": 0.0027946377970278218,
+        "printed_dat_rounding_residual_bound": 0.11438270555212662
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 2.5652647556533867e-09,
+        "moment_balance_F_times_100mm_error": 8.237482016540774e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.13490096707559027,
+        "von_Mises_p95_MPa": 26.52200608821601,
+        "von_Mises_max_MPa": 149.44629287905283,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.006098945297423504,
+            -0.08244837775179922,
+            -0.054675076446080315
+          ],
+          "exhaust": [
+            -0.0035681364689597846,
+            -0.07950906836321381,
+            -0.058680404800957056
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "cf3553fc3a970fd01590282b5c403dace3d99a50f296b61c8dc521e5d8463978",
+        "minus_z.dat": "36f813d3fee3180c77e5e0365d4fb3c2bbde38d0596dd977ced36399a2917d91",
+        "matrix.inp": "e66666ebef6795ea82ceb23df4efacd7a334dbe40de34c9d73aded7722aecb22",
+        "matrix.sti": "da2adf885c790398fab4632a57bdbb12c08577d49111995e3fcf73c66526106a",
+        "matrix.dof": "2436f02b83e88d5ea99b4cc888b1c83abbb34c0d65a41df3be6402b02375626f"
+      }
+    }
+  ],
+  "complete": true,
+  "checkpoint_sha256": "9a229356282df1cfd2e79f34902c06bc89eb605cdd5431ef926c0adafb460860",
+  "resume_source_sha256": "296def014444b8cb5ff0ce078f525232a0c94aa6258520c0da478282be87ccd4"
+}
