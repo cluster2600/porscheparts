@@ -1,251 +1,251 @@
-# Pipeline obligatoire d'impression métal et Omniverse
+# Mandatory metal printing and Omniverse pipeline
 
-## Règle du dépôt
+## Repository rule
 
-Toute fiche de `catalog/parts/*.json` qui propose `LPBF` ou `DMLS` doit être
-suivie par
+Every record in `catalog/parts/*.json` that proposes `LPBF` or `DMLS` must be
+tracked by
 [`am-validation-policy.json`](../catalog/manufacturing/am-validation-policy.json).
-Le contrôle est automatique : ajouter une nouvelle pièce additive sans
-l'inscrire dans le registre fait échouer `make validate` et `make check`.
+The check is automatic: adding a new additive part without registering it makes
+`make validate` and `make check` fail.
 
-Une pièce ne peut atteindre `released` que si toutes les étapes obligatoires
-sont `passed`. `completed_screening` signifie qu'un calcul numérique a été
-exécuté, mais qu'il manque encore une entrée, une corrélation ou une revue pour
-en faire une preuve de fabrication.
+A part can only reach `released` if every mandatory step is `passed`.
+`completed_screening` means that a numerical computation was run, but that an
+input, a correlation or a review is still missing to make it manufacturing
+evidence.
 
 ```mermaid
 flowchart LR
-    A[Sources et mesures] --> B[CAO BREP et maillage]
-    B --> C[Tranchage intégral et supports]
-    C --> D[Carte matière-machine-procédé]
-    D --> E[Bain de fusion local]
-    E --> F[Thermomécanique pleine construction]
-    F --> G[Recoater et retrait supports]
-    G --> H[Asset Omniverse SimReady]
-    H --> I[Assemblage fonctionnel Omniverse]
-    I --> J[Coupons, CT, métrologie et essais]
-    J --> K[Revue d'ingénierie signée]
+    A[Sources and measurements] --> B[BREP CAD and meshing]
+    B --> C[Full slicing and supports]
+    C --> D[Material-machine-process map]
+    D --> E[Local melt pool]
+    E --> F[Full-build thermomechanics]
+    F --> G[Recoater and support removal]
+    G --> H[Omniverse SimReady asset]
+    H --> I[Omniverse functional assembly]
+    I --> J[Coupons, CT, metrology and tests]
+    J --> K[Signed engineering review]
 ```
 
-## Les onze étapes
+## The eleven steps
 
-| Étape | Calcul ou preuve | Porte de sortie |
+| Step | Computation or evidence | Exit gate |
 |---|---|---|
-| 01 | provenance, variante, mesures, hypothèses et SHA-256 | autorité géométrique approuvée |
-| 02 | master éditable, STEP/BREP, maillage étanche et échelle | intégrité géométrique |
-| 03 | section de chaque couche, îlots, overhangs, supports et dépoudrage | projet géométriquement imprimable |
-| 04 | alliage, poudre, machine, orientation, paramètres, traitements et propriétés `f(T)` | route procédé cohérente |
-| 05 | AdditiveFOAM ou solveur équivalent, convergence espace/temps, coupons | bain de fusion corrélé |
-| 06 | activation des couches, plaque, supports, plasticité, détente et distorsion | forme déformée convergée |
-| 07 | collision recoater et accès au retrait des supports | construction mécaniquement praticable |
-| 08 | OpenUSD, `nvidia_usd_validate`, Geometry, Physics, profil SimReady et rendu OVRTX | asset Omniverse conforme |
-| 09 | interfaces, tolérances, contacts, mouvement, charges et défauts dans l'assemblage | fonction numérique vérifiée |
-| 10 | coupons, première pièce, CT/CND, métrologie, fatigue et corrélation | modèle relié au réel |
-| 11 | revue professionnelle signée sur une révision précise | autorisation explicitement bornée |
+| 01 | provenance, variant, measurements, assumptions and SHA-256 | geometric authority approved |
+| 02 | editable master, STEP/BREP, watertight mesh and scale | geometric integrity |
+| 03 | cross-section of every layer, islands, overhangs, supports and depowdering | geometrically printable design |
+| 04 | alloy, powder, machine, orientation, parameters, treatments and properties `f(T)` | consistent process route |
+| 05 | AdditiveFOAM or equivalent solver, space/time convergence, coupons | correlated melt pool |
+| 06 | layer activation, build plate, supports, plasticity, stress relief and distortion | converged deformed shape |
+| 07 | recoater collision and access for support removal | mechanically feasible build |
+| 08 | OpenUSD, `nvidia_usd_validate`, Geometry, Physics, SimReady profile and OVRTX render | compliant Omniverse asset |
+| 09 | interfaces, tolerances, contacts, motion, loads and defects in the assembly | digital function verified |
+| 10 | coupons, first article, CT/NDT, metrology, fatigue and correlation | model tied to reality |
+| 11 | signed professional review of a specific revision | explicitly bounded authorization |
 
-PhysicsNeMo intervient seulement après constitution de jeux de calculs de
-référence convergés et corrélés. C'est un surrogate accélérateur, pas une étape
-capable d'autoriser une pièce par elle-même. Les Material et Physics Agents
-peuvent proposer des métadonnées USD ; chaque propriété physique doit rester
-sourcée ou être supprimée avant validation.
+PhysicsNeMo only comes in after converged and correlated sets of reference
+computations have been built. It is an accelerating surrogate, not a step
+able to authorize a part on its own. The Material and Physics Agents
+may propose USD metadata; every physical property must stay
+sourced or be removed before validation.
 
-## Premier passage : piston CP1 F0
+## First pass: CP1 F0 piston
 
-Le piston synthétique est le premier objet 993 traité avec cette chaîne. Le
-maillage dérivé du STEP contient `136 988` sommets et `273 988` triangles ; il
-est étanche, monocomposant et conserve l'enveloppe `99 × 99 × 70 mm`.
+The synthetic piston is the first 993 object run through this chain. The
+mesh derived from the STEP has `136,988` vertices and `273,988` triangles; it
+is watertight, single-body and keeps the `99 × 99 × 70 mm` envelope.
 
-Le criblage pleine pièce a réellement intersecté le maillage à chaque couche de
-`50 µm`. L'orientation candidate `roll_y_45` donne :
+The full-part screening actually intersected the mesh at every `50 µm`
+layer. The candidate orientation `roll_y_45` gives:
 
-| Résultat | Valeur |
+| Result | Value |
 |---|---:|
-| hauteur de construction | 119,500 mm |
-| couches calculées | 2 390 |
-| couches internes vides | 0 |
-| nouveaux îlots | 4 |
-| couches avec région non soutenue | 759 |
-| région non soutenue maximale | 4,898 mm² |
-| enveloppe conservative de supports | 8,365 cm³ |
-| épaisseur locale p01, écran 2 000 points | 0,420 mm |
-| fraction des points sous 1,5 mm | 6,25 % |
-| vide piégé détecté au voxel de 1 mm | 0 mm³ |
+| build height | 119.500 mm |
+| computed layers | 2,390 |
+| empty internal layers | 0 |
+| new islands | 4 |
+| layers with an unsupported region | 759 |
+| maximum unsupported region | 4.898 mm² |
+| conservative support envelope | 8.365 cm³ |
+| local thickness p01, 2,000-point screen | 0.420 mm |
+| fraction of points under 1.5 mm | 6.25% |
+| trapped void detected at 1 mm voxel | 0 mm³ |
 
-La pièce nue tient dans l'enveloppe nominale de la Sapphire standard. Cette
-orientation n'est pas encore une décision DfAM : les supports Velo3D Flow, les
-surépaisseurs d'usinage, le retrait, le CT et le fichier machine ne sont pas
-disponibles. Le résultat détaillé et les métriques de chaque couche sont dans
+The bare part fits in the nominal envelope of the standard Sapphire. This
+orientation is not yet a DfAM decision: Velo3D Flow supports, machining
+allowances, shrinkage, CT and the machine file are not available. The detailed
+result and the per-layer metrics are in
 [`evidence/lpbf-f0`](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/).
 
-![Simulation géométrique LPBF du piston](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-screen.png)
+![LPBF geometric simulation of the piston](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/993-eng-piston-cp1-gallery-f0-0001-lpbf-geometry-screen.png)
 
-Le même STEP passe séparément NVIDIA Asset Validator, Geometry, Physics et le
-profil `Prop-Robotics-Neutral 1.0.0`. Les coefficients de frottement,
-restitution et la gravité proposés sans source par le Physics Agent ont été
-retirés avant le passage final. Le dossier public est
+The same STEP separately passes NVIDIA Asset Validator, Geometry, Physics and
+the `Prop-Robotics-Neutral 1.0.0` profile. The friction and restitution
+coefficients and the gravity proposed without a source by the Physics Agent
+were removed before the final pass. The public folder is
 [`evidence/simready-f0`](../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
 
-Une seconde scène Omniverse exécute la préparation de construction : elle
-place le piston en `roll_y_45`, le met au contact du plateau et contrôle son
-enveloppe par rapport au volume nominal `Ø315 × 400 mm`. Cette scène passe
-OpenUSD minimum, NVIDIA Asset Validator, Geometry et Physics ; son rendu a été
-inspecté. Le recoater animé reste un guide sans collision calculée, car aucune
-forme déformée CP1 calibrée ni géométrie de supports fournisseur n'est encore
-disponible.
+A second Omniverse scene runs the build preparation: it places the piston in
+`roll_y_45`, brings it into contact with the build plate and checks its
+envelope against the nominal `Ø315 × 400 mm` volume. This scene passes
+OpenUSD minimum, NVIDIA Asset Validator, Geometry and Physics; its render was
+inspected. The animated recoater remains a guide with no computed collision,
+because no calibrated CP1 deformed shape nor supplier support geometry is
+available yet.
 
-![Préparation LPBF Omniverse](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/piston-lpbf-build-screen.png)
+![Omniverse LPBF preparation](../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/piston-lpbf-build-screen.png)
 
-### Gate d'optimisation générative du piston
+### Piston generative optimization gate
 
-PicoGK 2.3.0 a réellement généré six variantes F0. Le balayage cherche une
-masse faible et une galerie plus favorable au refroidissement, mais impose une
-marge de plaque ambiante provisoire de `1,50`. Le meilleur allègement brut est
-`1,60 %`; aucune variante ne passe la marge. L'audit aval trouve en outre des
-arêtes non-manifold dans chaque STL PicoGK.
+PicoGK 2.3.0 actually generated six F0 variants. The sweep looks for a low
+mass and a gallery more favorable to cooling, but imposes a provisional
+room-temperature plate margin of `1.50`. The best gross weight reduction is
+`1.60%`; no variant passes the margin. The downstream audit also finds
+non-manifold edges in every PicoGK STL.
 
-Ce sous-gate relie les étapes 01, 02, 04 et 09 : objectifs et keep-outs sourcés,
-géométrie manifold, carte CP1 chaude et fonction moteur. Il ne crée pas une
-douzième étape et ne change pas le master BREP actuellement validé. Les sorties
-PicoGK restent en quarantaine jusqu'à reconstruction BREP, FEA/CHT/CFD et
-nouveau passage complet LPBF/Omniverse.
+This sub-gate links steps 01, 02, 04 and 09: sourced objectives and keep-outs,
+manifold geometry, hot CP1 map and engine function. It does not create a
+twelfth step and does not change the currently validated BREP master. The
+PicoGK outputs stay quarantined until BREP reconstruction, FEA/CHT/CFD and a
+new full LPBF/Omniverse pass.
 
-### Gate thermomécanique du master piston
+### Piston master thermomechanical gate
 
-Le master BREP sain a maintenant subi six résolutions CalculiX 2.21 : statique
-froide et température–déplacement séquentiel sur trois maillages C3D10. À
-`2,5 mm`, le modèle compte `139 924` nœuds et `81 861` éléments. Les p95 froid
-et chaud valent respectivement `112,17` et `323,46 MPa`; la température maximale
-du cas chaud vaut `187,04 °C`. Les variations fin/précédent restent sous `3 %`.
+The sound BREP master has now gone through six CalculiX 2.21 solves: cold
+static and sequential temperature–displacement on three C3D10 meshes. At
+`2.5 mm`, the model has `139,924` nodes and `81,861` elements. The cold and hot
+p95 are `112.17` and `323.46 MPa` respectively; the maximum temperature of the
+hot case is `187.04 °C`. The fine/previous variations stay under `3%`.
 
-Le cas impose `5 kW` à la calotte, des puits idéaux de `120 °C` dans la galerie
-et `160 °C` sur la jupe, ainsi que la charge axiale synthétique. Il est donc un
-écran comparatif conservateur, pas une CHT moteur. Son ratio p95 chaud sur la
-référence CP1 ambiante est défavorable (`0,918`) et bloque le F0. Les variantes
-PicoGK ne sont pas simulées tant que leurs maillages ne sont pas manifold.
+The case imposes `5 kW` on the crown, ideal sinks of `120 °C` in the gallery
+and `160 °C` on the skirt, plus the synthetic axial load. It is therefore a
+conservative comparative screen, not an engine CHT. Its hot p95 ratio against
+the room-temperature CP1 reference is unfavorable (`0.918`) and blocks the F0.
+The PicoGK variants are not simulated as long as their meshes are not manifold.
 
-La preuve est dans
+The evidence is in
 [`evidence/calculix-f0`](../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
 
-## Pourquoi la simulation thermique du procédé CP1 reste bloquée
+## Why the CP1 process thermal simulation stays blocked
 
-La fiche Velo3D documente la route Sapphire `50 µm`, la densité et des
-propriétés mécaniques ambiantes après `400 °C / 4 h`. Elle ne publie pas la
-carte thermophysique et constitutive dépendante de la température ni la
-stratégie laser nécessaires à un calcul AdditiveFOAM représentatif. La page
-officielle EOS fournit maintenant deux routes CP1 `60 µm` de TRL 3 et quelques
-propriétés supplémentaires, mais précise que le procédé doit être demandé à
-EOS ; ce n'est pas la route Sapphire du piston et cela ne fournit toujours pas
-une carte de solveur complète.
+The Velo3D datasheet documents the Sapphire `50 µm` route, the density and
+room-temperature mechanical properties after `400 °C / 4 h`. It does not
+publish the temperature-dependent thermophysical and constitutive map nor the
+laser strategy needed for a representative AdditiveFOAM computation. The
+official EOS page now provides two TRL 3 CP1 `60 µm` routes and a few
+additional properties, but states that the process must be requested from
+EOS; it is not the piston's Sapphire route and it still does not provide a
+complete solver map.
 
-Par conséquent :
+Consequently:
 
-- aucun calcul AlSi10Mg n'est transféré au CP1 ;
-- le champ thermique F0 de pièce est publié seulement comme enveloppe
-  synthétique explicitement non corrélée ;
-- la thermomécanique pleine construction et le recoater restent
-  `blocked_missing_input` ;
-- l'impression métal et l'usage moteur restent interdits.
+- no AlSi10Mg computation is transferred to CP1;
+- the F0 part thermal field is published only as an explicitly uncorrelated
+  synthetic envelope;
+- full-build thermomechanics and the recoater stay
+  `blocked_missing_input`;
+- metal printing and engine use remain prohibited.
 
-Références primaires : [Velo3D CP1 / Sapphire 50 et 100 µm](https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf),
+Primary references: [Velo3D CP1 / Sapphire 50 et 100 µm](https://velo3d.com/wp-content/uploads/2025/04/Velo3D-Material-Datasheet-Aluminum-CP1.pdf),
 [EOS Aluminium Constellium CP1](https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-constellium-cp1).
 
-## Deuxième passage : embout ovale IN625 F0
+## Second pass: F0 IN625 oval nozzle
 
-Le second objet est un embout rond-vers-ovale double paroi. Seule sa sortie
-commerciale `120 × 85 mm` est publiée ; la longueur, l'entrée, les parois et
-les attaches restent synthétiques. Le STEP forme un BREP monocomposant de
-`48 149,34 mm³`, soit `406,38 g` avec la densité IN625 retenue.
+The second object is a double-wall round-to-oval exhaust tip. Only its
+commercial `120 × 85 mm` outlet is published; the length, the inlet, the walls
+and the fasteners stay synthetic. The STEP forms a single-body BREP of
+`48,149.34 mm³`, i.e. `406.38 g` with the selected IN625 density.
 
-L'orientation `roll_y_25` a été sectionnée sur `3 702` couches de `40 µm` :
-zéro couche interne vide, un nouvel îlot, `784` couches avec surface non
-soutenue, `0,843 mm²` au maximum et `7,194 cm³` de supports conservatifs. Le
-contrôle d'épaisseur trouve `0,636 mm` au centile 1 et les 2 000 sondes sous
-`1,5 mm`; ce résultat est cohérent avec la double paroi nominale très mince et
-reste un avertissement de capabilité.
+The `roll_y_25` orientation was sliced into `3,702` layers of `40 µm`:
+zero empty internal layers, one new island, `784` layers with an unsupported
+area, `0.843 mm²` at most and `7.194 cm³` of conservative supports. The
+thickness check finds `0.636 mm` at the 1st percentile and all 2,000 probes
+under `1.5 mm`; this result is consistent with the very thin nominal double
+wall and remains a capability warning.
 
-La scène Omniverse place la pièce sur l'enveloppe nominale EOS M 290
-`250 × 250 × 325 mm`. La scène et l'asset isolé passent OpenUSD minimum,
-NVIDIA Asset Validator, Geometry et Physics ; l'asset passe aussi le profil
-`Prop-Robotics-Neutral 1.0.0`. Les frottements, la restitution, la gravité et
-l'identité inox proposés sans source par les agents ont été supprimés.
+The Omniverse scene places the part in the nominal EOS M 290 envelope
+`250 × 250 × 325 mm`. The scene and the isolated asset pass OpenUSD minimum,
+NVIDIA Asset Validator, Geometry and Physics; the asset also passes the
+`Prop-Robotics-Neutral 1.0.0` profile. The friction, restitution, gravity and
+stainless-steel identity proposed without a source by the agents were removed.
 
-![Embout IN625 SimReady](../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
+![SimReady IN625 nozzle](../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
 
-![Préparation LPBF EOS M 290](../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
+![EOS M 290 LPBF preparation](../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
 
-La CFD OpenFOAM est seulement diagnostique : les trois cas stationnaires sont
-convergés en résidus, mais la perte de pression varie encore de `11,17 %`
-entre les deux maillages les plus fins et les contrôles étendus conservent des
-cellules à faible déterminant. Aucun calcul de bain de fusion, de distorsion,
-de collision recoater, d'assemblage véhicule ou de fatigue thermique ne passe.
-PhysicsNeMo n'a exécuté qu'un smoke CUDA, sans surrogate entraîné.
+The OpenFOAM CFD is diagnostic only: the three steady cases are converged in
+residuals, but the pressure loss still varies by `11.17%` between the two
+finest meshes and the extended checks keep low-determinant cells. No melt pool,
+distortion, recoater collision, vehicle assembly or thermal fatigue
+computation passes. PhysicsNeMo only ran a CUDA smoke, with no trained
+surrogate.
 
-## Troisième passage : crochet de ressort de phare AlSi10Mg F0
+## Third pass: F0 AlSi10Mg headlamp spring hook
 
-Le troisième objet est un petit crochet de réparation. L'offre commerciale
-confirme que cette fonction est déjà réalisée par impression 3D métal, mais ne
-publie aucune cote. Le F0 `16 × 8 × 15 mm` est donc un concept indépendant de
-`881 mm³`, soit `2,352 g` avec la densité EOS AlSi10Mg retenue.
+The third object is a small repair hook. The commercial offer confirms that
+this function is already made by metal 3D printing, but publishes no
+dimension. The `16 × 8 × 15 mm` F0 is therefore an independent concept of
+`881 mm³`, i.e. `2.352 g` with the selected EOS AlSi10Mg density.
 
-L'orientation `roll_y_45` est sectionnée sur `425` couches de `30 µm`. Le
-maillage est étanche et monocomposant; le proxy conservatif de supports vaut
-`3,06 mm³`. Une seule couche contient une région non soutenue, de
-`0,446 mm²`. Aucune poche fermée n'est détectée au voxel de `0,25 mm`.
+The `roll_y_45` orientation is sliced into `425` layers of `30 µm`. The
+mesh is watertight and single-body; the conservative support proxy is
+`3.06 mm³`. Only one layer contains an unsupported region, of
+`0.446 mm²`. No closed pocket is detected at the `0.25 mm` voxel.
 
-Six calculs CalculiX 2.21 ont réellement été exécutés : froid et
-thermo-mécanique stationnaire sur trois maillages C3D10. Sur le maillage fin de
-`22 415` nœuds, le p95 vaut `10,786 MPa` à froid et `141,898 MPa` pour le champ
-synthétique `80–180 °C`. Le maximum chaud de `303,467 MPa` et l'absence de
-résistance chaude de pièce interdisent toute conclusion favorable.
+Six CalculiX 2.21 computations were actually run: cold and steady
+thermomechanical on three C3D10 meshes. On the fine mesh of `22,415` nodes,
+the p95 is `10.786 MPa` cold and `141.898 MPa` for the synthetic
+`80–180 °C` field. The hot maximum of `303.467 MPa` and the absence of a hot
+part strength prohibit any favorable conclusion.
 
-Le STEP est ensuite converti par `usd-convert-cad 0.2.0`. L'asset binaire et la
-scène rigide passent `nvidia_usd_validate 1.21.0` sans règle en échec. Enfin,
-`ovstage 0.1.1.355824` et `ovphysx 0.5.11` exécutent `240` pas CPU : une sphère
-témoin tombe de `22` à `17 mm` et se stabilise sur le crochet. Ce contact
-synthétique vérifie l'intégration logicielle seulement; le ressort, le phare et
-l'adhésif réels sont absents.
+The STEP is then converted by `usd-convert-cad 0.2.0`. The binary asset and the
+rigid scene pass `nvidia_usd_validate 1.21.0` with no failing rule. Finally,
+`ovstage 0.1.1.355824` and `ovphysx 0.5.11` run `240` CPU steps: a test sphere
+drops from `22` to `17 mm` and settles on the hook. This synthetic contact only
+verifies software integration; the real spring, headlamp and adhesive are
+absent.
 
-L'étape 08 reste donc `completed_screening`, pas `passed` : le profil SimReady
-complet et le rendu OVRTX de cette révision manquent. Les étapes 05 à 07, 09 à
-11 restent bloquées. Voir
-[le dossier technique du crochet](993/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md).
+Step 08 therefore stays `completed_screening`, not `passed`: the full SimReady
+profile and the OVRTX render of this revision are missing. Steps 05 to 07 and
+09 to 11 stay blocked. See
+[the hook technical dossier](993/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md).
 
-## Quatrième passage : levier intérieur de porte AlSi10Mg F0
+## Fourth pass: F0 AlSi10Mg interior door lever
 
-Le levier est retenu comme petit candidat LPBF car le concept consolide une
-plaque ajourée, un pont et une chape. PorscheFanatics fournit les références PET
-et FVD seulement une enveloppe `108 × 45 × 27 mm` et une masse de paire
-`180 g` : toutes les interfaces restent donc hypothétiques.
+The lever is selected as a small LPBF candidate because the concept
+consolidates a perforated plate, a bridge and a clevis. PorscheFanatics
+provides the PET references and FVD only a `108 × 45 × 27 mm` envelope and a
+pair mass of `180 g`: all interfaces therefore stay hypothetical.
 
-Le STEP normalisé reproductible et son STL étanche sont liés par empreinte.
-L'orientation candidate `roll_y_45` est sectionnée sur `2 664` couches de
-`30 µm`; le proxy de supports vaut `2 714,4975 mm³`, l'épaisseur p01 `2 mm` et
-aucun vide piégé n'est détecté au voxel `0,75 mm`.
+The reproducible normalized STEP and its watertight STL are linked by digest.
+The candidate orientation `roll_y_45` is sliced into `2,664` layers of
+`30 µm`; the support proxy is `2,714.4975 mm³`, the p01 thickness `2 mm` and
+no trapped void is detected at the `0.75 mm` voxel.
 
-CalculiX 2.21 exécute six cas froids/chauds sur trois maillages C3D10. Au
-maillage fin de `31 666` nœuds, le p95 vaut `45,227 MPa` à froid et
-`46,546 MPa` dans le champ synthétique `20–80 °C`. La variation p95 entre les
-deux derniers maillages est `1,143 %` et `0,276 %`. Le proxy Goodman ne produit
-aucune durée de vie et ne transfère pas les coupons EOS à la poignée.
+CalculiX 2.21 runs six cold/hot cases on three C3D10 meshes. On the fine mesh
+of `31,666` nodes, the p95 is `45.227 MPa` cold and `46.546 MPa` in the
+synthetic `20–80 °C` field. The p95 variation between the last two meshes is
+`1.143%` and `0.276%`. The Goodman proxy produces no fatigue life and does not
+transfer the EOS coupons to the handle.
 
-Le préflight CAD-to-SimReady arrête l'assignation Material/Physics faute
-d'instance active. Séparément, l'asset et la scène passent la validation USD
-minimale ; `ovstage`/`ovphysx` exécutent `240` pas et stabilisent le témoin de
-`35` à `29 mm`. L'étape 08 reste `completed_screening`, tandis que les étapes
-05 à 07 et 09 à 11 restent bloquées. Voir
-[le dossier technique du levier](993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md).
+The CAD-to-SimReady preflight stops the Material/Physics assignment for lack
+of an active instance. Separately, the asset and the scene pass minimal USD
+validation; `ovstage`/`ovphysx` run `240` steps and settle the test body from
+`35` to `29 mm`. Step 08 stays `completed_screening`, while steps
+05 to 07 and 09 to 11 stay blocked. See
+[the lever technical dossier](993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md).
 
 ## Reproduction
 
-Le programme générique peut être appliqué à toute pièce après génération d'un
-maillage de calcul étanche :
+The generic program can be applied to any part once a watertight computation
+mesh has been generated:
 
 ```bash
 python3 scripts/run_metal_am_geometry_screen.py \
   --part-id 993-ENG-PISTON-CP1-GALLERY-F0-0001 \
   --master parts/993-eng-piston-cp1-gallery-f0-0001/derived/piston_cp1_gallery_f0.step \
   --master-sha256 <sha256-step> \
-  --surface <maillage-stl-prive-ou-derive> \
+  --surface <private-or-derived-stl-mesh> \
   --surface-sha256 <sha256-stl> \
   --machine-card catalog/manufacturing/machines/velo3d-sapphire-standard.json \
   --material "Aheadd CP1 / Sapphire 50 um candidate" \
@@ -253,17 +253,17 @@ python3 scripts/run_metal_am_geometry_screen.py \
   --output work/piston-lpbf
 ```
 
-## Première étape 04 : la bague de commodo
+## First step 04: the switch trim ring
 
-La bague `993-INT-SWITCH-TRIM-RING-F1-0001` est la première pièce du dépôt
-menée à l'étape 04. Le générateur `scripts/build_process_route_card.py` est
-générique : il prend une fiche de pièce, un rapport de criblage géométrique,
-une carte machine et une carte procédé, et il écrit une carte de route plus un
-dossier de demande de devis lié aux fichiers par SHA-256.
+The ring `993-INT-SWITCH-TRIM-RING-F1-0001` is the first part in the
+repository taken to step 04. The generator `scripts/build_process_route_card.py`
+is generic: it takes a part record, a geometric screening report, a machine
+card and a process card, and it writes a route card plus a request-for-quote
+package linked to the files by SHA-256.
 
-Il a immédiatement trouvé une incohérence interne : le criblage de l'étape 03
-tranche à 50 µm quand la seule route AlSi10Mg publiée sur EOS M 290 est à
-30 µm. Détail complet dans
+It immediately found an internal inconsistency: the step 03 screening slices
+at 50 µm while the only published AlSi10Mg route on the EOS M 290 is at
+30 µm. Full details in
 [`docs/993/993_SWITCH_TRIM_RING_F1.md`](993/993_SWITCH_TRIM_RING_F1.md).
 
 ```bash
@@ -271,12 +271,12 @@ make route-trim-ring
 make route-trim-ring-check
 ```
 
-Le contrôle universel, sans dépendance CAE, s'exécute partout :
+The universal check, with no CAE dependency, runs anywhere:
 
 ```bash
 python3 scripts/validate_am_pipeline.py
 ```
 
-Au 8 septembre 2026, il suit automatiquement `25` pièces candidates
-LPBF/DMLS. Une réussite virtuelle ne remplace jamais la corrélation physique ni
-la revue d'ingénierie.
+As of September 8, 2026, it automatically tracks `25` LPBF/DMLS candidate
+parts. A virtual success never replaces physical correlation nor
+engineering review.

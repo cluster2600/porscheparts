@@ -1,94 +1,91 @@
-# Collecteur d'échappement 993 Turbo — concept IN625 F0
+# 993 Turbo exhaust manifold — IN625 F0 concept
 
-Kline publie un collecteur 993 Turbo en **Inconel 625** à **2,9 kg par côté,
-échangeur de chaleur inclus**. PorscheFanatics recoupe cette offre et documente
-séparément un collecteur inox 3-en-1 pour la même famille de véhicule. Le PET
-202-10 identifie les échangeurs gauche `993 211 039 55` et droit
-`993 211 040 55`. Aucune de ces sources ne publie diamètre, épaisseur,
-trajectoire, bride ou tolérance.
+Kline publishes a 993 Turbo manifold in **Inconel 625** at **2.9 kg per side,
+heat exchanger included**. PorscheFanatics corroborates this offer and
+separately documents a 3-into-1 stainless manifold for the same vehicle family.
+PET 202-10 identifies the heat exchangers left `993 211 039 55` and right
+`993 211 040 55`. None of these sources publishes a diameter, thickness, path,
+flange or tolerance.
 
-Le F0 est donc un noyau d'écoulement propre au projet : trois conduits ouverts
-de `34 mm` convergent vers un collecteur ouvert de `56 mm`, avec paroi nominale
-de `1,2 mm` et longueur axiale de `215 mm`. Toutes ces cotes sont synthétiques.
-Le STEP omet les brides, la turbine, les supports et l'échangeur de chauffage.
+The F0 is therefore the project's own flow core: three open `34 mm` runners
+converge into an open `56 mm` collector, with a nominal wall of `1.2 mm` and an
+axial length of `215 mm`. All these dimensions are synthetic. The STEP omits the
+flanges, the turbine, the brackets and the heating exchanger.
 
-## Pourquoi l'additif a du sens ici
+## Why additive makes sense here
 
-Le LPBF peut produire en une pièce la jonction interne trois-en-un, sans cordon
-de soudure dans le chemin de gaz, tout en laissant trois entrées et une sortie
-pour évacuer la poudre. Ce bénéfice doit encore être comparé à des tubes IN625
-ou inox cintrés et soudés sur coût, rugosité, masse, réparabilité, distorsion,
-inspection et durée de vie.
+LPBF can produce the internal three-into-one junction in one piece, with no weld
+bead in the gas path, while leaving three inlets and one outlet to evacuate the
+powder. This benefit still has to be compared with bent and welded IN625 or
+stainless tubes on cost, roughness, mass, repairability, distortion, inspection
+and life.
 
-Le BREP OCCT et sa relecture STEP sont valides : un solide matière, un volume
-interne connecté, trois entrées et une sortie. L'enveloppe F0 est
-`146,4 × 66,4 × 215,0 mm` et la masse théorique du noyau est `509,97 g` avec
-`rho = 8,44 g/cm³`. Cette masse ne se compare pas directement aux `2,9 kg`
-publiés, qui incluent l'échangeur complet.
+The OCCT BREP and its STEP re-read are valid: one material solid, one connected
+internal volume, three inlets and one outlet. The F0 envelope is
+`146.4 × 66.4 × 215.0 mm` and the theoretical mass of the core is `509.97 g`
+with `rho = 8.44 g/cm³`. This mass does not compare directly with the published
+`2.9 kg`, which include the complete exchanger.
 
-## Criblages exécutés
+## Screenings run
 
-Le cas synthétique prend un moteur `3,6 L`, `5 750 tr/min`, rendement
-volumétrique `0,95`, gaz à `900 K`, pression relative `50 kPa` et coefficient
-de jonction `K=0,2`. Il recalcule :
+The synthetic case takes a `3.6 L` engine, `5,750 rpm`, volumetric efficiency
+`0.95`, gas at `900 K`, gauge pressure `50 kPa` and junction coefficient
+`K=0.2`. It recomputes:
 
-- débit quatre-temps et correction idéale de volume chaud ;
-- continuité, Reynolds, Mach et perte singulière de jonction ;
-- pression de membrane et effort axial ;
-- dilatation libre, borne élastique totalement contrainte, conduction et
-  rayonnement ;
-- fréquence des impulsions d'un banc et quart d'onde du chemin F0 ;
-- masse par volume CAO et propriétés IN625 de criblage ;
-- validité BREP, continuité du volume gazeux et relecture STEP.
+- four-stroke flow and ideal hot-volume correction;
+- continuity, Reynolds, Mach and junction minor loss;
+- membrane pressure and axial force;
+- free expansion, fully restrained elastic bound, conduction and radiation;
+- pulse frequency of one bank and quarter wave of the F0 path;
+- mass from CAD volume and screening IN625 properties;
+- BREP validity, continuity of the gas volume and STEP re-read.
 
-Le résultat donne `90,25 m/s` dans chaque primaire, `99,80 m/s` dans le
-collecteur, Reynolds `28 736` et `52 340`, Mach `0,170`, et une perte de
-criblage de `391,78 Pa`, soit `96,30 W` par banc. Ce n'est pas une CFD : les
-ondes, la vidange des cylindres, la rugosité, les courbures réelles, la turbine
-et les échanges thermiques sont absents.
+The result gives `90.25 m/s` in each primary, `99.80 m/s` in the collector,
+Reynolds `28,736` and `52,340`, Mach `0.170`, and a screening loss of
+`391.78 Pa`, i.e. `96.30 W` per bank. This is not CFD: waves, cylinder
+blowdown, roughness, real bends, the turbine and heat exchange are absent.
 
-La dilatation libre atteint `1,79 mm`. La borne totalement bloquée donne
-`1 696 MPa`, au-dessus de la comparaison ambiante de `640 MPa` : elle démontre
-qu'une hypothèse de blocage élastique est inadmissible et qu'il faut modéliser
-les interfaces, la plasticité, le fluage et les cycles, pas que la pièce casse à
-cette valeur.
+Free expansion reaches `1.79 mm`. The fully blocked bound gives `1,696 MPa`,
+above the room-temperature comparison of `640 MPa`: it demonstrates that an
+elastic blocking hypothesis is inadmissible and that interfaces, plasticity,
+creep and cycles must be modeled, not that the part breaks at that value.
 
-## Gates suivants
+## Next gates
 
-1. Scanner un ensemble gauche/droit et mesurer ports, brides, trajectoires,
-   épaisseurs, supports, turbine, échangeur, jeux et tolérances.
-2. Mesurer pressions et températures pulsées, lambda, allumage, débit, spectre
-   vibratoire, cartographie turbine et cycles d'usage du M64/60 retenu.
-3. Refaire la CAO avec surfaces mesurées, surépaisseurs, brides, supports et
-   échangeur étanche au monoxyde de carbone.
-4. Comparer LPBF et tubes cintrés/soudés par CFD compressible transitoire, CHT,
-   FEA coque/contact/modal, fluage et fatigue thermomécanique convergés.
-5. Qualifier orientation, poudre, paramètres, témoins, traitement thermique,
-   rugosité, distorsion, CT, ressuage, fuite et pression.
-6. Corréler banc pulsé, cycles thermiques, shaker et dyno avant véhicule.
+1. Scan a left/right set and measure ports, flanges, paths, thicknesses,
+   brackets, turbine, exchanger, clearances and tolerances.
+2. Measure pulsed pressures and temperatures, lambda, ignition, flow, vibration
+   spectrum, turbine map and duty cycles of the chosen M64/60.
+3. Redo the CAD with measured surfaces, allowances, flanges, brackets and an
+   exchanger sealed against carbon monoxide.
+4. Compare LPBF and bent/welded tubes by converged transient compressible CFD,
+   CHT, shell/contact/modal FEA, creep and thermomechanical fatigue.
+5. Qualify orientation, powder, parameters, witness coupons, heat treatment,
+   roughness, distortion, CT, dye penetrant, leak and pressure.
+6. Correlate pulsed rig, thermal cycles, shaker and dyno before the vehicle.
 
-PhysicsNeMo attendra un dataset CFD/CHT/structure convergé, puis des jeux train,
-holdout et hors-distribution. SimReady attendra les interfaces et l'environnement
-installé mesurés. Le STEP F0 n'est autorisé ni pour fabrication, ni pour moteur,
-ni pour chauffage habitacle.
+PhysicsNeMo will wait for a converged CFD/CHT/structure dataset, then for
+training, holdout and out-of-distribution splits. SimReady will wait for the
+measured interfaces and installed environment. The F0 STEP is authorized
+neither for manufacture, nor for an engine, nor for interior heating.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_z`.
+The STEP was tessellated, then sliced over its full height at `40 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `build_z`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 5 375 |
-| hauteur de construction | 215,00 mm |
-| couches avec region non soutenue | 1 |
-| proxy de supports | 15 425,04 mm³ |
-| epaisseur locale p01 | 1,098 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 5,375 |
+| build height | 215.00 mm |
+| layers with an unsupported region | 1 |
+| support proxy | 15,425.04 mm³ |
+| local thickness p01 | 1.098 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-exhaust-manifold-in625-f0-0001/evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-exhaust-manifold-in625-f0-0001/evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

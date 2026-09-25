@@ -1,182 +1,181 @@
-# Piston M64/60 à galerie de refroidissement — concept CP1 F0
+# M64/60 piston with cooling gallery — CP1 F0 concept
 
-Le M64/60 est documenté avec un alésage de `100 mm`, une course de `76,4 mm`
-et un limiteur de `6 720 ± 20 tr/min`. Ces valeurs définissent le moteur, pas la
-géométrie du piston. PorscheFanatics recoupe les ensembles pistons/cylindres de
-la famille 993 et le précédent additif Porsche, sans fournir de plan de piston
-993.
+The M64/60 is documented with a `100 mm` bore, a `76.4 mm` stroke and a
+`6,720 ± 20 rpm` rev limiter. These values define the engine, not the piston
+geometry. PorscheFanatics cross-references the piston/cylinder sets of the 993
+family and the Porsche additive precedent, without providing a 993 piston
+drawing.
 
-Porsche, MAHLE et TRUMPF ont produit pour une 911 GT2 RS moderne un piston par
-fusion laser, annoncé `10 %` plus léger que la pièce forgée, optimisé suivant
-les charges et doté d'une galerie fermée sous calotte impossible à obtenir par
-les méthodes conventionnelles retenues. Porsche annonce aussi `200 h` d'essai
-moteur. C'est un précédent de méthode, pas une validation transférable au 993.
+Porsche, MAHLE and TRUMPF produced a laser-fused piston for a modern 911 GT2 RS,
+announced as `10 %` lighter than the forged part, optimized for the loads and
+fitted with a closed gallery under the crown that the conventional methods
+considered could not produce. Porsche also announces `200 h` of engine testing.
+This is a precedent of method, not a validation transferable to the 993.
 
-Le registre
+The record
 [`TWIN-993-M64-60-PISTON-GALLERY-F0`](../../catalog/twins/twin-993-m64-60-piston-gallery-f0.json)
-relie maintenant la CAO aux cinq interfaces indispensables : cylindre, segments,
-axe–bielle, chambre–soupapes et jet d'huile–galerie. Elles restent toutes
-`missing_data` : ce statut est volontaire et empêche de confondre enveloppe F0
-et piston M64/60 ajusté.
+now links the CAD to the five indispensable interfaces: cylinder, rings,
+pin–connecting rod, chamber–valves and oil jet–gallery. They all remain
+`missing_data`: this status is deliberate and prevents confusing an F0 envelope
+with a fitted M64/60 piston.
 
-## Pourquoi l'additif a du sens ici
+## Why additive makes sense here
 
-La galerie sous calotte est la fonction que l'usinage conventionnel ne peut pas
-réaliser directement. Le F0 emploie un anneau torique de rayon moyen `34 mm` et
-diamètre hydraulique `7 mm`. Deux ports radiaux temporaires assurent le
-dépoudrage ; un processus ultérieur devrait les fermer, puis vérifier la
-galerie par CT et épreuve. Le choix doit rester comparé à un piston forgé et à
-une solution avec galerie moulée ou percée.
+The gallery under the crown is the function that conventional machining cannot
+produce directly. The F0 uses a toroidal ring with a `34 mm` mean radius and a
+`7 mm` hydraulic diameter. Two temporary radial ports provide depowdering; a
+later process would have to close them, then verify the gallery by CT and proof
+test. The choice must stay compared with a forged piston and with a solution
+using a cast or drilled gallery.
 
-La matière candidate est Aheadd CP1 sur route Velo3D Sapphire `50 µm`, suivie
-de `400 °C pendant 4 h`. La fiche publie `2,67 g/cm³`, un minimum vertical usiné
-de `297 MPa` en limite d'élasticité et `331 MPa` en traction. Constellium publie
-`187 W/(m·K)` à l'ambiante et une stabilité qualitative vers `250–300 °C`.
-Ces valeurs ne forment pas une carte piston à chaud ou en fatigue.
+The candidate material is Aheadd CP1 on the Velo3D Sapphire `50 µm` route,
+followed by `400 °C for 4 h`. The data sheet publishes `2.67 g/cm³`, a machined
+vertical minimum of `297 MPa` yield strength and `331 MPa` tensile strength.
+Constellium publishes `187 W/(m·K)` at room temperature and qualitative
+stability toward `250–300 °C`. These values do not form a hot or fatigue piston
+map.
 
-Le STEP relu contient un solide BREP valide dans une enveloppe synthétique de
-`99 × 99 × 70 mm`. Son volume vaut `255 175,45 mm³` et sa masse théorique
-`681,32 g`. Diamètre, hauteur, jupe, cavité, bol, axe, bossages, gorges et galerie
-sont entièrement propres au F0 ; aucune surface Porsche ou MAHLE n'est copiée.
+The re-read STEP contains a valid BREP solid in a synthetic envelope of
+`99 × 99 × 70 mm`. Its volume is `255,175.45 mm³` and its theoretical mass
+`681.32 g`. Diameter, height, skirt, cavity, bowl, pin, bosses, grooves and
+gallery are entirely specific to the F0; no Porsche or MAHLE surface is copied.
 
-## Criblages exécutés
+## Screenings run
 
-Le cas de régression utilise une pression cylindre synthétique de `12 MPa`, une
-bielle de `127 mm`, `140 g` d'axe et segments, `2 l/min` d'huile, `5 kW` retirés
-par la galerie, `+200 K` et `100 h` à `6 720 tr/min`.
+The regression case uses a synthetic cylinder pressure of `12 MPa`, a `127 mm`
+connecting rod, `140 g` of pin and rings, `2 l/min` of oil, `5 kW` removed by
+the gallery, `+200 K` and `100 h` at `6,720 rpm`.
 
-Avec la masse CAO, les équations donnent `94,25 kN` de force gaz, `20,21 kN`
-d'inertie et une borne d'effort d'axe de `114,46 kN`. Le modèle de plaque
-circulaire encastrée donne `277,57 MPa` et `0,486 mm` au centre pour un ligament
-analytique de `5,5 mm`. Le rapport entre le minimum CP1 ambiant et cette
-contrainte n'est que `1,07` : le F0 n'a pas de marge démontrée à chaud.
+With the CAD mass, the equations give `94.25 kN` of gas force, `20.21 kN` of
+inertia and a pin load bound of `114.46 kN`. The clamped circular plate model
+gives `277.57 MPa` and `0.486 mm` at the center for an analytical ligament of
+`5.5 mm`. The ratio between the room-temperature CP1 minimum and this stress is
+only `1.07`: the F0 has no demonstrated margin when hot.
 
-À `6 720 tr/min`, la course publiée donne une vitesse moyenne de piston de
-`17,1136 m/s`, une accélération synthétique au PMH de `2 509,25 g` et un rapport
-bielle/manivelle hypothétique de `3,3246`. L'alésage et la course documentaires
-restituent `600,044 cm³` par cylindre et `3 600,265 cm³` pour six cylindres ;
-ce contrôle de cohérence ne fournit aucune cote de piston.
+At `6,720 rpm`, the published stroke gives a mean piston speed of
+`17.1136 m/s`, a synthetic TDC acceleration of `2,509.25 g` and a hypothetical
+rod/crank ratio of `3.3246`. The documentary bore and stroke return
+`600.044 cm³` per cylinder and `3,600.265 cm³` for six cylinders; this
+consistency check provides no piston dimension.
 
-La pression projetée d'axe vaut `124,41 MPa`. Le modèle laminaire de galerie
-donne Reynolds `515`, `0,866 m/s` et `1,21 kPa` de perte linéaire. À `5 kW`, le
-débit hypothétique prendrait `88,24 K`. La conduction 1D fournit une borne haute
-de `35,91 kW`, la dilatation libre du diamètre `0,455 mm` et le cycle de `100 h`
-`40,32 millions` de tours, soit `20,16 millions` de combustions par cylindre pour
-un quatre-temps. `200 h` au régime maximal correspondraient mathématiquement à
-`80,64 millions` de tours ; ce n'est pas le profil du banc Porsche, non publié.
+The projected pin pressure is `124.41 MPa`. The laminar gallery model gives
+Reynolds `515`, `0.866 m/s` and `1.21 kPa` of linear loss. At `5 kW`, the
+hypothetical flow would rise `88.24 K`. 1D conduction provides an upper bound
+of `35.91 kW`, the free expansion of the diameter `0.455 mm` and the `100 h`
+cycle `40.32 million` revolutions, i.e. `20.16 million` combustions per cylinder
+for a four-stroke. `200 h` at maximum speed would mathematically correspond to
+`80.64 million` revolutions; this is not the Porsche bench profile, which is
+unpublished.
 
-Ces nombres sont des contrôles mathématiques reproductibles, pas une FEA, une
-CHT, une CFD multiphasique ni une prédiction de durée de vie.
+These numbers are reproducible mathematical checks, not an FEA, a CHT, a
+multiphase CFD or a life prediction.
 
-## Criblage CalculiX thermomécanique exécuté
+## CalculiX thermomechanical screening run
 
-Le master STEP sain, et non les STL PicoGK non-manifold, a été maillé en
-tétraèdres quadratiques C3D10 à `5`, `3,5` et `2,5 mm`. CalculiX 2.21 a exécuté
-pour chaque maille une statique froide et une analyse stationnaire séquentielle
-température–déplacement, soit six résolutions réelles sur le X1.
+The sound STEP master, and not the non-manifold PicoGK STLs, was meshed in
+C3D10 quadratic tetrahedra at `5`, `3.5` and `2.5 mm`. CalculiX 2.21 ran, for
+each mesh, a cold static analysis and a sequential steady-state
+temperature–displacement analysis, i.e. six real solves on the X1.
 
-Le cas chaud applique l'enveloppe axiale synthétique pression plus inertie, un
-total de `5 kW` réparti sur les nœuds extérieurs de calotte, une galerie idéale
-à `120 °C` et la jupe à `160 °C`. L'alésage d'axe est totalement fixé : cette
-borne surcontraint volontairement la dilatation. Elle ne remplace ni le contact
-axe–bossages, ni la CHT combustion, ni le jet d'huile.
+The hot case applies the synthetic axial pressure-plus-inertia envelope, a
+total of `5 kW` distributed over the outer crown nodes, an ideal gallery at
+`120 °C` and the skirt at `160 °C`. The pin bore is fully fixed: this bound
+deliberately over-constrains expansion. It replaces neither pin–boss contact,
+nor combustion CHT, nor the oil jet.
 
-| Maille | Nœuds | C3D10 | Froid p95 | Chaud p95 | Tmax chaud |
+| Mesh | Nodes | C3D10 | Cold p95 | Hot p95 | Hot Tmax |
 |---:|---:|---:|---:|---:|---:|
-| 5,0 mm | 28 208 | 14 469 | 116,88 MPa | 333,87 MPa | 193,77 °C |
-| 3,5 mm | 61 975 | 33 836 | 110,73 MPa | 326,31 MPa | 192,41 °C |
-| 2,5 mm | 139 924 | 81 861 | 112,17 MPa | 323,46 MPa | 187,04 °C |
+| 5.0 mm | 28,208 | 14,469 | 116.88 MPa | 333.87 MPa | 193.77 °C |
+| 3.5 mm | 61,975 | 33,836 | 110.73 MPa | 326.31 MPa | 192.41 °C |
+| 2.5 mm | 139,924 | 81,861 | 112.17 MPa | 323.46 MPa | 187.04 °C |
 
-Entre les deux maillages les plus fins, le p95 froid varie de `1,28 %`, le p95
-chaud de `0,88 %` et la température maximale de `2,87 %`. Le déplacement chaud
-maximal fin vaut `0,262 mm`. Les maxima bruts de contrainte atteignent
-`379,11 MPa` à froid et `685,97 MPa` à chaud ; ils restent dominés par la
-fixation idéale et sont conservés, pas masqués.
+Between the two finest meshes, the cold p95 varies by `1.28 %`, the hot p95 by
+`0.88 %` and the maximum temperature by `2.87 %`. The maximum hot displacement
+on the fine mesh is `0.262 mm`. The raw stress maxima reach `379.11 MPa` cold
+and `685.97 MPa` hot; they remain dominated by the ideal fixation and are kept,
+not masked.
 
-Même le p95 chaud donne seulement `297 / 323,46 = 0,918` face à la limite CP1
-publiée à l'ambiante. Comme cette limite n'est pas un admissible chaud, elle ne
-peut pas valider le dessin ; le dépassement suffit en revanche à rejeter ce F0
-dans ce cas conservateur. Les `20,16 millions` de combustions par cylindre sur
-`100 h` sont comptées, mais aucune durée de vie n'est calculée sans courbe S-N
-CP1 chaude qualifiée.
+Even the hot p95 gives only `297 / 323.46 = 0.918` against the published
+room-temperature CP1 limit. Since this limit is not a hot allowable, it cannot
+validate the design; the exceedance is, however, enough to reject this F0 in
+this conservative case. The `20.16 million` combustions per cylinder over
+`100 h` are counted, but no life is calculated without a qualified hot CP1 S-N
+curve.
 
-Le rapport, les hashes des sorties brutes et son vérificateur indépendant sont
-dans [`evidence/calculix-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
+The report, the hashes of the raw outputs and its independent verifier are in
+[`evidence/calculix-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
 
-## Criblage d'optimisation PicoGK exécuté
+## PicoGK optimization screening run
 
-L'objectif demandé est désormais formalisé ainsi : minimiser la masse et la
-température de calotte, sous contraintes de résistance statique à chaud,
-fatigue, rigidité, dilatation, débit d'huile, dépoudrage et usinage. « Très
-solide » est une contrainte éliminatoire ; une variante plus légère ne gagne
-pas si elle l'affaiblit.
+The requested objective is now formalized as follows: minimize mass and crown
+temperature, under constraints of hot static strength, fatigue, stiffness,
+expansion, oil flow, depowdering and machining. "Very strong" is an
+eliminating constraint; a lighter variant does not win if it weakens it.
 
-Les photographies Porsche montrent une matière dense conservée autour des
-gorges, du bord de calotte et de l'axe, avec une structure interne ouverte
-orientée par les chemins d'effort. Les coupes IAV fournies séparément montrent
-un treillis triangulé jupe–calotte et des circuits distincts près du bol et de
-la première gorge. Elles concernent un piston diesel lourd d'environ `130 mm`,
-avec d'autres matériaux et des canaux partiellement remplis de sodium : seule
-l'architecture du treillis inspire les variables PicoGK, jamais ses cotes ou
-ses limites thermiques.
+The Porsche photographs show dense material kept around the grooves, the crown
+edge and the pin, with an open internal structure oriented along the load
+paths. The IAV sections provided separately show a triangulated skirt–crown
+lattice and distinct circuits near the bowl and the first groove. They concern
+a heavy diesel piston of about `130 mm`, with other materials and channels
+partially filled with sodium: only the lattice architecture inspires the PicoGK
+variables, never its dimensions or its thermal limits.
 
-Un premier balayage réel a été exécuté hors réseau sur le X1 avec PicoGK 2.3.0
-et le runtime natif `picogk.26.2`, à voxels de `0,5 mm`. Six variantes
-géométriques F0 combinent poches de jupe ouvertes, galerie de `7 à 9 mm` et
-treillis triangulé jupe–calotte et renforts d'axe. PicoGK a servi de noyau
-voxel/booleen et de générateur de
-maillages ; il n'a exécuté ni calcul de structure ni calcul thermique.
+A first real sweep was run offline on the X1 with PicoGK 2.3.0 and the native
+runtime `picogk.26.2`, with `0.5 mm` voxels. Six F0 geometric variants combine
+open skirt pockets, a `7 to 9 mm` gallery and a triangulated skirt–crown
+lattice with pin reinforcements. PicoGK served as a voxel/Boolean kernel and
+mesh generator; it ran neither a structural nor a thermal calculation.
 
-| Variante | Masse voxel CP1 | Écart à la masse BREP | Surface mouillée relative | Perte laminaire relative | Marge plaque ambiante |
+| Variant | CP1 voxel mass | Deviation from BREP mass | Relative wetted area | Relative laminar loss | Room-temperature plate margin |
 |---|---:|---:|---:|---:|---:|
-| P0 référence voxelisée | 687,37 g | +0,89 % | 1,000 | 1,000 | 1,070 |
-| P1 six poches | 683,37 g | +0,30 % | 1,000 | 1,000 | 1,070 |
-| P2 huit poches | 680,96 g | -0,05 % | 1,000 | 1,000 | 1,070 |
-| P3 galerie 8 mm + treillis | 683,39 g | +0,30 % | 1,143 | 0,586 | 0,884 |
-| P4 galerie 8,5 mm + treillis | 681,21 g | -0,02 % | 1,214 | 0,460 | 0,798 |
-| P5 allègement maximal du balayage | 670,44 g | -1,60 % | 1,286 | 0,366 | 0,716 |
+| P0 voxelized reference | 687.37 g | +0.89 % | 1.000 | 1.000 | 1.070 |
+| P1 six pockets | 683.37 g | +0.30 % | 1.000 | 1.000 | 1.070 |
+| P2 eight pockets | 680.96 g | -0.05 % | 1.000 | 1.000 | 1.070 |
+| P3 8 mm gallery + lattice | 683.39 g | +0.30 % | 1.143 | 0.586 | 0.884 |
+| P4 8.5 mm gallery + lattice | 681.21 g | -0.02 % | 1.214 | 0.460 | 0.798 |
+| P5 maximum lightening of the sweep | 670.44 g | -1.60 % | 1.286 | 0.366 | 0.716 |
 
-La marge provisoire exigée était `1,50`; aucune variante ne la passe. Les
-renforts PicoGK ne sont volontairement pas crédités par l'équation de plaque :
-seule une FEA 3D thermomécanique peut quantifier leur apport. Le contrôle aval
-révèle en outre des arêtes non-manifold dans les six STL PicoGK, malgré zéro
-arête ouverte. Ces sorties brutes restent donc en quarantaine : aucune n'est
-reconstruite en BREP, envoyée au tranchage LPBF ou promue dans Omniverse.
+The provisional required margin was `1.50`; no variant passes it. The PicoGK
+reinforcements are deliberately not credited by the plate equation: only a 3D
+thermomechanical FEA can quantify their contribution. The downstream check
+also reveals non-manifold edges in all six PicoGK STLs, despite zero open
+edges. These raw outputs therefore stay in quarantine: none is rebuilt as
+BREP, sent to LPBF slicing or promoted into Omniverse.
 
-Le résultat est un **criblage PicoGK exécuté sans dessin sélectionné**, pas une
-optimisation validée. Le meilleur allègement brut observé, `1,60 %`, est un candidat de
-recherche qui échoue le critère mécanique et le gate d'intégrité maillage.
-Voir [`evidence/picogk-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
+The result is a **PicoGK screening run with no design selected**, not a
+validated optimization. The best raw lightening observed, `1.60 %`, is a
+research candidate that fails the mechanical criterion and the mesh integrity
+gate. See [`evidence/picogk-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
 
-## Simulation d'impression et Omniverse exécutées
+## Print simulation and Omniverse run
 
-Le STEP a été maillé en `273 988` triangles étanches puis réellement sectionné
-sur les `2 390` couches de `50 µm` de l'orientation candidate `roll_y_45`.
-L'écran trouve quatre nouveaux îlots, `759` couches avec une région non
-soutenue, un maximum de `4,898 mm²` et une enveloppe conservative de supports
-de `8,365 cm³`. Aucun vide piégé n'est détecté au pas voxel de `1 mm`, ce qui ne
-remplace pas un CT. L'épaisseur locale p01 vaut `0,420 mm` sur 2 000 sondes et
-`6,25 %` des sondes sont sous `1,5 mm` : le dessin doit donc encore être revu.
+The STEP was meshed into `273,988` watertight triangles, then actually sliced
+over the `2,390` layers of `50 µm` of the candidate orientation `roll_y_45`.
+The screen finds four new islands, `759` layers with an unsupported region, a
+maximum of `4.898 mm²` and a conservative support envelope of `8.365 cm³`. No
+trapped void is detected at the `1 mm` voxel pitch, which does not replace a
+CT. The local p01 thickness is `0.420 mm` over 2,000 probes and `6.25 %` of the
+probes are below `1.5 mm`: the design must therefore still be reviewed.
 
-Le même master passe OpenUSD minimum, NVIDIA Asset Validator, Geometry,
-Physics et le profil SimReady `Prop-Robotics-Neutral 1.0.0`. Le rendu OVRTX est
-visible dans le dossier de preuves. Il s'agit d'un prop d'inspection isolé ; les
-interfaces du moteur sont absentes.
+The same master passes OpenUSD minimum, NVIDIA Asset Validator, Geometry,
+Physics and the SimReady profile `Prop-Robotics-Neutral 1.0.0`. The OVRTX
+render is visible in the evidence folder. It is an isolated inspection prop;
+the engine interfaces are absent.
 
-Une scène de préparation LPBF séparée place le piston dans l'orientation
-`roll_y_45` sur un plateau nominal Sapphire `Ø315 mm`, contrôle l'enveloppe et
-passe OpenUSD minimum, NVIDIA Asset Validator, Geometry et Physics. Le piston
-est présent dans le rendu aplati inspecté. Le recoater animé n'est qu'un guide :
-la distorsion, les supports fournisseur et la collision recoater restent faux
-dans les portes de validation.
+A separate LPBF preparation scene places the piston in the `roll_y_45`
+orientation on a nominal Sapphire `Ø315 mm` build plate, checks the envelope
+and passes OpenUSD minimum, NVIDIA Asset Validator, Geometry and Physics. The
+piston is present in the inspected flattened render. The animated recoater is
+only a guide: distortion, supplier supports and recoater collision stay false
+in the validation gates.
 
-Voir [le pipeline et le verdict détaillé](../AM_VALIDATION_PIPELINE.md),
-[les résultats LPBF](../../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/)
-et [le résumé Omniverse](../../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
+See [the pipeline and the detailed verdict](../AM_VALIDATION_PIPELINE.md),
+[the LPBF results](../../twins/993-m64-60-piston-gallery-f0/evidence/lpbf-f0/)
+and [the Omniverse summary](../../twins/993-m64-60-piston-gallery-f0/evidence/simready-f0/).
 
-## Reproduction logicielle
+## Software reproduction
 
-Le master build123d est exécuté dans l'image CAO `linux/amd64` fixée par digest :
+The build123d master is run in the `linux/amd64` CAD image pinned by digest:
 
 ```bash
 docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
@@ -186,29 +185,31 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-piston-cp1-gallery-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Remplacer les charges F0 par un domaine virtuel approuvé avec enveloppes
-   conservatrices, puis fixer des admissibles CP1 à chaud et un objectif de
-   température de calotte ; aucune donnée supplémentaire n'est inventée.
-2. Mesurer piston, axe, segments, cylindre, bielle et jeux du M64/60 exact ;
-   relever profil de jupe, ovalisation, conicité, compression height et masses.
-3. Mesurer pression cylindre transitoire, températures, flux, jet d'huile,
-   capture, drainage, blow-by, cliquetis, survitesse et cycle d'usage.
-4. Reconstruire les surfaces et tolérances, puis dimensionner calotte, bossages,
-   gorges, jupe, galerie et ports avec keep-outs d'usinage.
-5. Relancer PicoGK dans le seul domaine de conception autorisé, reconstruire
-   chaque candidat retenu en BREP et exiger un maillage manifold convergé.
-6. Remplacer le criblage linéaire séquentiel acquis par une FEA 3D non linéaire
-   avec contacts et champs transitoires, puis corréler multibody,
-   fatigue/fluage et CFD/VOF de l'huile sous accélération du piston.
-7. Qualifier CP1 à chaud, orientation, supports, distorsion, traitement, HIP,
-   fermeture des ports, CT, usinage, revêtement et coupons.
-8. Effectuer preuve, cycles thermiques, fatigue grandeur réelle puis `200 h`
-   moteur instrumentées avant toute décision véhicule.
+1. Replace the F0 loads with an approved virtual domain with conservative
+   envelopes, then set hot CP1 allowables and a crown temperature target; no
+   additional data is invented.
+2. Measure the piston, pin, rings, cylinder, connecting rod and clearances of
+   the exact M64/60; record skirt profile, ovality, taper, compression height
+   and masses.
+3. Measure transient cylinder pressure, temperatures, fluxes, oil jet,
+   capture, drainage, blow-by, knock, overspeed and duty cycle.
+4. Rebuild the surfaces and tolerances, then size crown, bosses, grooves,
+   skirt, gallery and ports with machining keep-outs.
+5. Rerun PicoGK only within the authorized design domain, rebuild each
+   retained candidate as BREP and require a converged manifold mesh.
+6. Replace the acquired sequential linear screening with a nonlinear 3D FEA
+   with contacts and transient fields, then correlate multibody,
+   fatigue/creep and CFD/VOF of the oil under piston acceleration.
+7. Qualify hot CP1, orientation, supports, distortion, heat treatment, HIP,
+   port closure, CT, machining, coating and coupons.
+8. Perform proof test, thermal cycles, full-scale fatigue, then `200 h` of
+   instrumented engine running before any vehicle decision.
 
-PhysicsNeMo attend un dataset corrélé avec train, holdout et cas
-hors-distribution. Le niveau asset SimReady est acquis, mais le test fonctionnel
-Omniverse attend toujours les interfaces piston–segments–axe–bielle–cylindre–
-soupapes mesurées. Ce STEP F0 n'est autorisé ni pour fabrication, ni pour
-montage, ni pour mise en route moteur.
+PhysicsNeMo awaits a correlated dataset with train, holdout and
+out-of-distribution cases. The SimReady asset level is achieved, but the
+Omniverse functional test still awaits the measured
+piston–rings–pin–connecting rod–cylinder–valves interfaces. This F0 STEP is
+authorized neither for manufacturing, nor for installation, nor for engine
+start-up.

@@ -1,21 +1,21 @@
-# Registre des spécifications documentaires
+# Register of documentary specifications
 
-Ce registre conserve les valeurs publiées dans des sources documentaires :
-dimensions générales, capacités, rapports de transmission, couples et angles de
-serrage. Il reste distinct de `catalog/measurements/`, qui est réservé aux
-séances instrumentées avec lectures brutes et incertitudes.
+This register keeps the values published in documentary sources: general
+dimensions, capacities, gear ratios, tightening torques and angles. It stays
+separate from `catalog/measurements/`, which is reserved for instrumented
+sessions with raw readings and uncertainties.
 
-Une transcription OCR n'est pas une mesure validée. Les enregistrements importés
-depuis PorscheFanatics conservent donc la chaîne source, la page et l'unité
-brutes, avec l'état `ocr_transcription_unverified`. Ils peuvent guider un modèle
-documentaire, mais ne doivent pas piloter une géométrie de fabrication avant
-contrôle dans la source primaire ou mesure physique.
+An OCR transcription is not a validated measurement. Records imported from
+PorscheFanatics therefore keep the raw source string, page and unit, with the
+state `ocr_transcription_unverified`. They can guide a documentary model, but
+must not drive manufacturing geometry before being checked against the primary
+source or a physical measurement.
 
-Régénérer les deux instantanés depuis un checkout PorscheFanatics :
+Regenerate both snapshots from a PorscheFanatics checkout:
 
 ```bash
 python3 scripts/import_porschefanatics_specs.py \
-  --technical-data /chemin/data/993-manual/technical-data.json \
-  --torques /chemin/data/993-manual/torque-specs.json
+  --technical-data /path/data/993-manual/technical-data.json \
+  --torques /path/data/993-manual/torque-specs.json
 ```
 

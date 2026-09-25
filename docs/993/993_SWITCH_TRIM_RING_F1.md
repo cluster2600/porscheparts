@@ -1,29 +1,29 @@
-# Bague de commutateur 993 — jumeau F1
+# 993 switch trim ring — F1 twin
 
-Cette bague aluminium non critique est le premier pilote métallique du flux
-993. La fiche commerciale fournit quatre cotes : Ø extérieur 30,5 mm,
-profondeur 10,5 mm, Ø intérieur avant 23 mm et arrière 28 mm. Le maître
-`build123d` reconstruit un anneau à alésage conique et confronte son volume OCCT
-au volume analytique d'un cylindre moins un tronc de cône.
+This non-critical aluminum ring is the first metal pilot of the 993 flow. The
+commercial listing provides four dimensions: outer Ø 30.5 mm, depth 10.5 mm,
+front inner Ø 23 mm and rear inner Ø 28 mm. The `build123d` master rebuilds a
+ring with a conical bore and compares its OCCT volume with the analytical
+volume of a cylinder minus a truncated cone.
 
-Le résultat est volontairement au niveau **F1 / concept**. Le cône intérieur est
-une interprétation, pas une mesure. Les tolérances, rayons, ouverture du tableau
-de bord, état de surface et nuance d'aluminium restent inconnus. Le STEP ne doit
-donc pas être envoyé en fabrication ni monté sur un véhicule.
+The result is deliberately at the **F1 / concept** level. The inner cone is an
+interpretation, not a measurement. The tolerances, radii, dashboard opening,
+surface finish and aluminum grade remain unknown. The STEP must therefore not
+be sent to manufacturing or installed on a vehicle.
 
-## Calculs exécutés
+## Calculations run
 
-- paroi radiale avant : `(30,5 - 23) / 2` ;
-- paroi radiale arrière : `(30,5 - 28) / 2` ;
-- volume : cylindre extérieur moins tronc de cône intérieur ;
-- masse indicative : volume multiplié par 2,67 g/cm³, densité de criblage
-  AlSi10Mg explicitement non attribuée à la pièce d'origine ;
-- croissance thermique et pression de serrage laissées bloquées jusqu'à la
-  mesure de l'ouverture OEM et à la sélection d'une carte matière qualifiée.
+- front radial wall: `(30.5 - 23) / 2`;
+- rear radial wall: `(30.5 - 28) / 2`;
+- volume: outer cylinder minus inner truncated cone;
+- indicative mass: volume multiplied by 2.67 g/cm³, an AlSi10Mg screening
+  density explicitly not attributed to the original part;
+- thermal growth and clamping pressure left blocked until the OEM opening is
+  measured and a qualified material map is selected.
 
-La géométrie est imprimable en LPBF en première lecture, mais sa forme
-axisymétrique rend le tournage CNC probablement plus rationnel. Le pilote sert à
-valider la chaîne numérique ; le choix industriel reste ouvert.
+On first reading the geometry is printable by LPBF, but its axisymmetric shape
+probably makes CNC turning more rational. The pilot serves to validate the
+digital chain; the industrial choice stays open.
 
 ## Reproduction
 
@@ -32,55 +32,54 @@ python3 parts/993-int-switch-trim-ring-f1-0001/source/switch_trim_ring.py \
   --report parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json
 ```
 
-L'export STEP exige l'image CAO verrouillée du dépôt. PhysicsNeMo et un GPU Vast
-ne sont pas requis ici : il n'existe ni champ complexe ni données d'entraînement
-justifiant un surrogate. Les formules déterministes et OCCT sont l'autorité de
-ce premier contrôle.
+The STEP export requires the repository's locked CAD image. PhysicsNeMo and a
+Vast GPU are not required here: there is neither a complex field nor training
+data justifying a surrogate model. The deterministic formulas and OCCT are the
+authority for this first check.
 
-## Étapes 02 et 03 du pipeline AM — 2026-09-09
+## Steps 02 and 03 of the AM pipeline — 2026-09-09
 
-La bague est la première des 21 pièces suivies par
+The ring is the first of the 21 parts tracked by
 [`am-validation-policy.json`](../../catalog/manufacturing/am-validation-policy.json)
-dont aucune étape n'était renseignée à être menée au criblage géométrique. Elle a
-été choisie parce qu'elle est la seule `non_critical` du lot, et qu'elle possède
-déjà un master paramétrique et un STEP relu.
+with no step filled in to be carried through geometric screening. It was
+chosen because it is the only `non_critical` part of the batch, and because it
+already has a parametric master and a re-read STEP.
 
-**Étape 02 — intégrité BREP et maillage : `passed`.** Le master exporte
-désormais aussi une surface d'analyse STL, à tolérance de corde déclarée de
-0,03 mm et tolérance angulaire de 0,08 rad. Le maillage est **étanche**, en une
-seule composante, 2 054 triangles. Son volume vaut 2 294,6 mm³ contre
-2 291,9 mm³ au BREP, soit 0,12 % — l'écart attendu d'une facettisation de
-surfaces courbes à cette tolérance. Master, STEP et STL sont liés par SHA-256
-dans le rapport.
+**Step 02 — BREP and mesh integrity: `passed`.** The master now also exports
+an STL analysis surface, with a declared chord tolerance of 0.03 mm and an
+angular tolerance of 0.08 rad. The mesh is **watertight**, a single component,
+2,054 triangles. Its volume is 2,294.6 mm³ against 2,291.9 mm³ for the BREP,
+i.e. 0.12 % — the expected deviation from faceting curved surfaces at this
+tolerance. Master, STEP and STL are linked by SHA-256 in the report.
 
-**Étape 03 — tranchage intégral et supports : `completed_screening`.**
+**Step 03 — full slicing and supports: `completed_screening`.**
 
-| grandeur | valeur |
+| quantity | value |
 |---|---|
-| orientation retenue | `roll_y_45` |
-| couches réellement tranchées | **580** à 0,05 mm |
-| hauteur de construction | 29,0 mm |
-| couches vides internes | 0 |
-| nouveaux îlots | **0** |
-| couches à aire non soutenue | 10 |
-| aire non soutenue maximale | **0,079 mm²** |
-| volume de poudre piégé | aucun détecté au pas du criblage |
-| épaisseur médiane de paroi | 2,06 mm |
+| selected orientation | `roll_y_45` |
+| layers actually sliced | **580** at 0.05 mm |
+| build height | 29.0 mm |
+| empty internal layers | 0 |
+| new islands | **0** |
+| layers with unsupported area | 10 |
+| maximum unsupported area | **0.079 mm²** |
+| trapped powder volume | none detected at the screening pitch |
+| median wall thickness | 2.06 mm |
 
-Zéro nouvel îlot signifie qu'aucune couche ne fait apparaître de matière
-détachée du reste : à cette orientation, la pièce se construit sans support
-interne. Les 0,079 mm² d'aire non soutenue au pire sont un ordre de grandeur en
-dessous de ce qu'un support devrait reprendre.
+Zero new islands means that no layer shows material detached from the rest: in
+this orientation, the part builds without internal support. The worst-case
+0.079 mm² of unsupported area is an order of magnitude below what a support
+would have to carry.
 
-**Pourquoi ce n'est pas `passed`.** L'orientation n'est pas revue par un
-ingénieur, les supports fournisseur n'existent pas, et le criblage recoater reste
-fermé faute de champ de distorsion et de jeu de lame. Les portes de procédé du
-rapport sont toutes fermées, et un test le vérifie explicitement :
-`tests/test_993_switch_trim_ring_lpbf_f1.py` échoue si l'une d'elles s'ouvrait
-sans coupon ni fichier machine.
+**Why this is not `passed`.** The orientation has not been reviewed by an
+engineer, the supplier supports do not exist, and the recoater screening stays
+closed for lack of a distortion field and blade clearance. The report's process
+gates are all closed, and a test checks this explicitly:
+`tests/test_993_switch_trim_ring_lpbf_f1.py` fails if any of them opened
+without a coupon or a machine file.
 
-**Reproduction** — la chaîne demande `numpy`, `matplotlib`, `trimesh`, `shapely`
-et `rtree` :
+**Reproduction** — the chain requires `numpy`, `matplotlib`, `trimesh`, `shapely`
+and `rtree`:
 
 ```bash
 python3 parts/993-int-switch-trim-ring-f1-0001/source/switch_trim_ring.py \
@@ -98,88 +97,89 @@ python3 scripts/run_metal_am_geometry_screen.py \
   --output twins/993-switch-trim-ring-f1/evidence/lpbf-f1
 ```
 
-## Étape 04 du pipeline AM — 2026-09-10
+## Step 04 of the AM pipeline — 2026-09-10
 
-Les étapes 02 et 03 disaient qu'une géométrie est tranchable. Elles ne disaient
-pas qu'il existe une **route** : un alliage, une poudre, une machine, une
-orientation, une épaisseur de couche, des traitements et des propriétés
-dépendantes de la température qui appartiennent au même procédé qualifié.
-L'étape 04 confronte le rapport géométrique aux deux cartes du catalogue —
-[`machines/eos-m290.json`](../../catalog/manufacturing/machines/eos-m290.json) et
+Steps 02 and 03 said that a geometry can be sliced. They did not say that a
+**route** exists: an alloy, a powder, a machine, an orientation, a layer
+thickness, treatments and temperature-dependent properties that belong to the
+same qualified process. Step 04 compares the geometric report with the two
+catalogue cards —
+[`machines/eos-m290.json`](../../catalog/manufacturing/machines/eos-m290.json) and
 [`processes/eos-m290-alsi10mg-30um.json`](../../catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json)
-— et échoue à porte fermée sur chaque écart.
+— and fails closed on each discrepancy.
 
-**Statut : `blocked_missing_input`. Sept portes sur onze restent fermées.**
+**Status: `blocked_missing_input`. Seven gates out of eleven stay closed.**
 
-| porte | résultat |
+| gate | result |
 |---|---|
-| identité machine cohérente | ouverte |
-| identité alliage cohérente | ouverte |
-| épaisseur de couche cohérente | **fermée** |
-| paroi criblée au-dessus du minimum procédé | ouverte |
-| pièce nue dans l'enveloppe machine | ouverte |
-| orientation revue par un ingénieur | fermée |
-| carte constitutive calibrée en température | fermée |
-| traitement thermique défini | fermée |
-| surépaisseurs d'usinage définies | fermée |
-| admissibles de pièce dérivés des coupons | fermée |
-| traçabilité du lot de poudre contractualisée | fermée |
+| consistent machine identity | open |
+| consistent alloy identity | open |
+| consistent layer thickness | **closed** |
+| screened wall above the process minimum | open |
+| bare part within the machine envelope | open |
+| orientation reviewed by an engineer | closed |
+| temperature-calibrated constitutive map | closed |
+| heat treatment defined | closed |
+| machining allowances defined | closed |
+| part allowables derived from coupons | closed |
+| powder lot traceability contracted | closed |
 
-**La porte la plus utile est une incohérence interne au dépôt.** L'étape 03 a
-tranché la bague à **50 µm**, alors que la seule route AlSi10Mg publiée sur
-cette machine est à **30 µm**. Les 580 couches de l'étape 03 en deviendraient
-**967** sur la route qualifiée, et surtout les propriétés coupon publiées ne se
-transposent pas d'une épaisseur à l'autre. Le criblage géométrique était juste ;
-c'est sa liaison à une route réelle qui manquait, et c'est exactement ce que
-l'étape 04 est censée trouver.
+**The most useful gate is an inconsistency internal to the repository.** Step
+03 sliced the ring at **50 µm**, whereas the only AlSi10Mg route published on
+this machine is at **30 µm**. The 580 layers of step 03 would become **967** on
+the qualified route, and above all the published coupon properties do not
+carry over from one thickness to the other. The geometric screening was right;
+what was missing was its link to a real route, and that is exactly what step
+04 is meant to find.
 
-Le reste tient au fournisseur, pas au calcul : la carte procédé ne publie ni
-traitement thermique, ni surépaisseur d'usinage, ni admissibles de pièce, et
-aucun lot de poudre n'est engagé.
+The rest depends on the supplier, not on calculation: the process card
+publishes no heat treatment, no machining allowance and no part allowables,
+and no powder lot is committed.
 
-Ce que l'étape produit de concret est un **dossier de demande de devis**
-signable par empreinte — [`supplier-rfq.md`](../../twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md)
-— qui liste ce qui est fourni, la route candidate, les sept questions au
-fournisseur et les livrables attendus avec le prix. Il demande aussi la
-comparaison chiffrée avec le tournage CNC de la même géométrie, parce que la
-forme est axisymétrique et que rien ne prouve encore l'intérêt du LPBF ici.
+What the step produces concretely is a **request-for-quotation dossier** that
+can be signed by digest —
+[`supplier-rfq.md`](../../twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md)
+— listing what is supplied, the candidate route, the seven questions to the
+supplier and the deliverables expected with the price. It also asks for the
+costed comparison with CNC turning of the same geometry, because the shape is
+axisymmetric and nothing yet proves the benefit of LPBF here.
 
-Ordres de grandeur du dossier, tous de criblage : hauteur de construction
-29,0 mm, masse 6,12 g, temps d'exposition 0,13 h au débit publié de 5,1 mm³/s —
-sans recouvrement, chauffe, inertage ni changement de plateau.
+Orders of magnitude in the dossier, all from screening: build height 29.0 mm,
+mass 6.12 g, exposure time 0.13 h at the published rate of 5.1 mm³/s —
+without recoating, heating, inerting or build plate change.
 
-**Reproduction et garde :**
+**Reproduction and guard:**
 
 ```bash
-make route-trim-ring        # écrit la carte et le dossier de devis
-make route-trim-ring-check  # échoue si les fichiers publiés ont vieilli
+make route-trim-ring        # writes the card and the quotation dossier
+make route-trim-ring-check  # fails if the published files have gone stale
 python3 -m unittest tests.test_993_switch_trim_ring_route_f1
 ```
 
-Le test échoue si une porte s'ouvrait sans coupon, sans traitement thermique et
-sans lot de poudre, et si l'incohérence d'épaisseur de couche était lissée.
+The test fails if a gate opened without a coupon, without heat treatment and
+without a powder lot, and if the layer thickness inconsistency were smoothed
+over.
 
-## Changement de voie — 11 septembre 2026
+## Change of route — September 11, 2026
 
-L'étape 04 avait confronté la pièce à une route LPBF réelle. La question
-suivante — « est-on sûr que c'est la bonne matière ? » — a montré que non :
-l'AlSi10Mg n'avait jamais été choisi, il était la seule nuance documentée du
-dépôt. Voir [décision 0005](../decisions/0005-alsi10mg-nest-pas-un-choix.md) et
-[décision 0006](../decisions/0006-bague-tournee-6063-t6.md).
+Step 04 had compared the part with a real LPBF route. The next question — "are
+we sure it is the right material?" — showed that we were not: AlSi10Mg had
+never been chosen, it was the only grade documented in the repository. See
+[decision 0005](../decisions/0005-alsi10mg-nest-pas-un-choix.md) and
+[decision 0006](../decisions/0006-bague-tournee-6063-t6.md).
 
-La pièce est désormais **tournée en EN AW-6063 T6**, anodisée brillant. Son
-`preferred_process` est `CNC`. Les étapes 02, 03 et 04 LPBF restent publiées :
-elles disent ce qu'un criblage additif sait et ne sait pas dire, et elles ont
-servi à trouver l'incohérence d'épaisseur de couche.
+The part is now **turned in EN AW-6063 T6**, bright anodized. Its
+`preferred_process` is `CNC`. LPBF steps 02, 03 and 04 stay published: they
+state what an additive screening can and cannot say, and they served to find
+the layer thickness inconsistency.
 
-La route tournage compte cinq portes fermées contre sept, mais **les deux qui
-comptent n'ont pas bougé** : le Ø30,5 mm n'est toujours pas tolérancé et vient
-d'une page de vente, et le maître est toujours à arêtes vives. Changer de
-procédé ne mesure pas le logement.
+The turning route has five closed gates instead of seven, but **the two that
+matter have not moved**: the Ø30.5 mm is still not toleranced and comes from a
+sales page, and the master still has sharp edges. Changing process does not
+measure the housing.
 
-La sortie proposée est une série de trois bagues nues à Ø30,40, Ø30,50 et
-Ø30,60 mm : sur une pièce tournée, les deux suivantes coûtent une fraction de la
-première.
+The proposed way out is a series of three bare rings at Ø30.40, Ø30.50 and
+Ø30.60 mm: on a turned part, the next two cost a fraction of the first.
 
 ```bash
 make turning-trim-ring

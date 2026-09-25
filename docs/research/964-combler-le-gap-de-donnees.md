@@ -1,146 +1,150 @@
-# Combler le gap de donnees du jumeau 964 : etat des pistes au 2026-09-04
+# Closing the 964 twin's data gap: state of the leads as of 2026-09-04
 
-Deux verrous bloquent le dossier. Ce document dit ce qui a ete essaye, ce qui est
-ferme, et ce qui reste a faire — en distinguant ce qui depend de nous de ce qui
-depend d'un tiers.
+Two blockers hold up the dossier. This document says what has been tried, what
+is closed and what remains to be done — distinguishing what depends on us from
+what depends on a third party.
 
-## Verrou A : le calage longitudinal du reseau de datums
+## Blocker A: longitudinal registration of the datum network
 
-### Le diagnostic a change
+### The diagnosis has changed
 
-La recherche du point 17 sur le scan a echoue, et le README du jumeau en conclut
-qu'il faut « localiser un point de datum publie ». C'est vrai, mais la formulation
-masque le vrai probleme : **ce n'est pas un trou qu'il faut, c'est une cote**.
+The search for point 17 on the scan failed, and the twin's README concludes
+from it that "a published datum point must be located". That is true, but the
+wording hides the real problem: **what is needed is not a hole, it is a
+dimension**.
 
-Les entites les mieux localisees du scan ne sont pas les percages — le scan ne les
-resout pas, resultat negatif solidement etabli — ce sont les **centres de roue**,
-reproductibles a +/- 7 mm et robustes au rayon de pneu. Ce qui manque n'est donc
-pas une feature, c'est **une seule cote longitudinale publiee entre un point de
-datum et une ligne d'essieu**. Le volume IV a ete relu ligne a ligne le
-2026-09-04 : il ne la donne pas. Il donne des hauteurs au sol, pas des stations.
+The best-located features of the scan are not the drilled holes — the scan does
+not resolve them, a firmly established negative result — they are the **wheel
+centers**, reproducible to +/- 7 mm and robust to the tire radius. What is
+missing is therefore not a feature, it is **a single published longitudinal
+dimension between a datum point and an axle line**. Volume IV was reread line
+by line on 2026-09-04: it does not give one. It gives ride heights, not
+stations.
 
-### Une piste dormante, deja dans le depot
+### A dormant lead, already in the repository
 
-`SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` signale trois pieces jointes non obtenues,
-dont un « Porsche 993 body measurement PDF » annonce comme un **tableau de points
-en millimetres**. C'est exactement l'objet manquant, et il concerne la 993.
+`SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` reports three attachments not obtained,
+including a "Porsche 993 body measurement PDF" announced as a **table of points
+in millimeters**. That is exactly the missing object, and it concerns the 993.
 
-Or un recoupement fait le 2026-09-04 rend cette piste bien meilleure qu'elle n'en
-avait l'air. `SRC-RENNLIST-993-JACKING-POINT-DISCREPANCY` rapporte, pour une 993,
-une distance avant-arriere entre points de levage de **1245 mm**. C'est, au
-millimetre pres, la cote **R du manuel 964**, publiee a 1245 +/- 2 mm entre P17 et
-P18. Une source independante et non-Porsche reproduit donc la transcription du
-volume V, et surtout **964 et 993 partagent l'entraxe longitudinal des points de
-levage**. Un tableau de points 993 serait donc, au moins en partie,
-transferable — et le depot est deja oriente 993.
+A cross-check made on 2026-09-04 makes this lead much better than it looked.
+`SRC-RENNLIST-993-JACKING-POINT-DISCREPANCY` reports, for a 993, a front-to-rear
+distance between jacking points of **1245 mm**. That is, to the millimeter,
+**dimension R of the 964 manual**, published at 1245 +/- 2 mm between P17 and
+P18. An independent, non-Porsche source therefore reproduces the transcription
+from volume V, and above all **964 and 993 share the longitudinal spacing of
+the jacking points**. A 993 point table would therefore be at least partly
+transferable — and the repository is already 993-oriented.
 
-C'est la piste la moins couteuse du dossier et elle n'a jamais ete poussee.
+It is the cheapest lead in the dossier and it has never been pushed.
 
-### Editeurs de donnees de marbre
+### Frame bench data publishers
 
-| editeur | statut | remarque |
+| publisher | status | remark |
 |---|---|---|
-| Celette | ferme | jeu 564.320 specifique 964, 42 points, documentation sous authentification |
-| Car-O-Data | identifie | jamais sollicite |
-| **Autorobot** | **nouveau, 2026-09-04** | voir `SRC-AUTOROBOT-MEASURING-DATA-SERVICE` |
-| Spanesi, Josam, Globaljig, Blackhawk, Chief | non essayes | |
+| Celette | closed | 964-specific set 564.320, 42 points, documentation behind authentication |
+| Car-O-Data | identified | never approached |
+| **Autorobot** | **new, 2026-09-04** | see `SRC-AUTOROBOT-MEASURING-DATA-SERVICE` |
+| Spanesi, Josam, Globaljig, Blackhawk, Chief | not tried | |
 
-Autorobot est le meilleur des trois connus pour une raison precise : ses fiches
-contiennent des **photographies des points de mesure**. L'echec du recalage vient
-de l'impossibilite d'associer un point de datum publie a une entite physique du
-scan ; une photographie leve exactement cette ambiguite. Autorobot decrit aussi sa
-methode — relevé sur vehicules non accidentes bridés sur banc — et diffuse des
-fiches unitaires en PDF et en format ADF, donc **une fiche est un objet qui se
-demande**. Acces par abonnement, pas de base publique, couverture des millesimes
-1989-1994 non annoncee. Contact usine publie.
+Autorobot is the best of the three known for a specific reason: its data
+sheets contain **photographs of the measuring points**. The registration failed
+because a published datum point could not be associated with a physical
+feature of the scan; a photograph removes exactly that ambiguity. Autorobot
+also describes its method — measured on undamaged vehicles clamped on a bench —
+and distributes single sheets as PDF and in ADF format, so **a sheet is an
+object that can be requested**. Access by subscription, no public database,
+coverage of model years 1989-1994 not announced. Factory contact published.
 
-**La voie realiste, pour les trois editeurs, est la meme : un atelier abonne, ou
-une demande de fiche unitaire au titre d'un projet de documentation. Pas un
-abonnement.**
+**The realistic route, for all three publishers, is the same: a subscribing
+shop, or a request for a single sheet on behalf of a documentation project. Not
+a subscription.**
 
-### Homologation FIA
+### FIA homologation
 
-Piste neuve et gratuite : la 964 Cup et la Carrera RS ont ete homologuees, la RS
-N/GT au 2 mars 1992. La base `historicdb.fia.com` porte une entree
-`porsche-carrera-rs`. **Elle renvoie 403 a toute lecture automatisee** : elle doit
-etre ouverte dans un navigateur. Reserve a poser d'emblee : une fiche
-d'homologation donne des cotes d'encombrement, un empattement, des voies et parfois
-un plan cote, mais **rarement des coordonnees de points de caisse**. Piste a cout
-nul, rendement incertain.
+A new, free lead: the 964 Cup and the Carrera RS were homologated, the RS
+N/GT as of March 2, 1992. The `historicdb.fia.com` database has a
+`porsche-carrera-rs` entry. **It returns 403 to any automated read**: it must
+be opened in a browser. A caveat to state up front: a homologation form gives
+overall dimensions, a wheelbase, track widths and sometimes a dimensioned
+drawing, but **rarely coordinates of body shell points**. Zero-cost lead,
+uncertain yield.
 
-### Ce qui a ete verifie et acquis le 2026-09-04
+### What was verified and acquired on 2026-09-04
 
-- **Troisieme controle d'echelle, independant.** Longueur hors-tout du scan dans
-  le repere vehicule : **4282,4 mm** contre **4275 mm** au catalogue 964, soit
-  **+7,4 mm ou +0,17 %**. Meme signe et meme ordre que l'ecart d'empattement de
-  +0,27 %. Ne cale rien en X — les extremites sont des peaux de pare-chocs et non
-  des plans de reference — mais confirme que le repere est sain.
-- **Un bug de repere corrige.** `wheel_fits.npy` etait en coordonnees scan et
-  incombinable avec `verts_vehicle.npy`. Voir `source/wheels_vehicle.py`.
-- **Le soubassement est plat.** Voir `source/tunnel_probe.py` et l'etude
-  composite : pas de tunnel central sur la 964.
+- **Third, independent scale check.** Overall length of the scan in the
+  vehicle frame: **4282.4 mm** against **4275 mm** in the 964 catalog, i.e.
+  **+7.4 mm or +0.17%**. Same sign and same order as the +0.27% wheelbase
+  discrepancy. It registers nothing in X — the extremities are bumper skins and
+  not reference planes — but it confirms that the frame is sound.
+- **A reference-frame bug fixed.** `wheel_fits.npy` was in scan coordinates and
+  could not be combined with `verts_vehicle.npy`. See
+  `source/wheels_vehicle.py`.
+- **The underbody is flat.** See `source/tunnel_probe.py` and the composite
+  study: no center tunnel on the 964.
 
-### Reste a faire, non fait ici
+### Still to do, not done here
 
-- **Un second scan, carrosserie de serie.** Le scan actuel est une carrosserie
-  large probablement modifiee, qui masque les bas de caisse d'origine. Depend d'un
-  contributeur.
-- **Le relevé de marbre.** Depend d'un tiers. C'est l'item le plus decisif.
+- **A second scan, of a production body.** The current scan is a probably
+  modified wide body, which hides the original rocker panels. Depends on a
+  contributor.
+- **The frame bench survey.** Depends on a third party. It is the most decisive
+  item.
 
-## Verrou B : la raideur en torsion d'une caisse 964 complete
+## Blocker B: torsional stiffness of a complete 964 body shell
 
-### Ce verrou a ete contourne, pas ouvert
+### This blocker was bypassed, not opened
 
-La bonne nouvelle est qu'il **n'a plus a etre ouvert pour l'essentiel**.
-L'affirmation a tester — « le levier d'un monocoque est architectural » — est
-relative, donc elle se mesure sans aucun denominateur exterieur. C'est fait :
-voir `docs/research/964-chassis-carbone-kevlar.md`. Un fil germanophone consulte
-le meme jour fait d'ailleurs remarquer que les constructeurs eux-memes ne
-publient que du relatif, faute de protocole normalise.
+The good news is that it **no longer has to be opened for the essentials**. The
+claim to test — "the leverage of a monocoque is architectural" — is relative,
+so it can be measured without any external denominator. That is done: see
+`docs/research/964-chassis-carbone-kevlar.md`. A German-language thread
+consulted the same day also points out that the manufacturers themselves
+publish only relative figures, for lack of a standardized protocol.
 
-### Ce que la recherche du 2026-09-04 a donne
+### What the 2026-09-04 search produced
 
-Recherche germanophone ciblee sur `Verwindungssteifigkeit` et
-`Torsionssteifigkeit`, non couverte par la campagne du 2026-09-03 : **aucune
-valeur d'usine**. Le fil PFF « Karosseriesteifigkeit » n'en donne aucune et
-explique pourquoi.
+Targeted German-language search on `Verwindungssteifigkeit` and
+`Torsionssteifigkeit`, not covered by the 2026-09-03 campaign: **no factory
+value**. The PFF thread "Karosseriesteifigkeit" gives none and explains why.
 
-Un seul chiffre a emerge, et il est mauvais : **964 Carrera coupe environ 11 563
-N.m/deg**, 993 environ 13 876. Voir `SRC-RENNLIST-911-TORSIONAL-RIGIDITY-LIST`.
-L'auteur les presente lui-meme comme des valeurs « qui circulent en ligne », sans
-source primaire, sans protocole, et sans dire s'il s'agit de caisse en blanc ou de
-vehicule complet. **A ne pas utiliser comme reference.** Consigne uniquement pour
-que la recherche ne soit pas refaite.
+Only one figure emerged, and it is bad: **964 Carrera coupe about 11,563
+N.m/deg**, 993 about 13,876. See `SRC-RENNLIST-911-TORSIONAL-RIGIDITY-LIST`.
+The author himself presents them as values "that circulate online", with no
+primary source, no protocol, and without saying whether they are body-in-white
+or complete vehicle figures. **Not to be used as a reference.** Recorded only
+so that the search is not repeated.
 
-### Reste a faire, non fait ici
+### Still to do, not done here
 
-- Dossier de presse Porsche de 1988 et litterature SAE de benchmarking de caisses.
-- Preparateurs restomod : recherche faite sur Tuthill, aucun chiffre publie trouve.
-- ~~**Etendre le modele coque** au pavillon, aux pieds milieu, aux passages de
-  roue et au cadre de pare-brise.~~ **Fait.** Voir `twins/964-chassis/fea/README.md`,
-  sections « Du plancher a la cellule fermee » et « Ce que ce classement dit ».
-  Du plancher nu a la cellule fermee, K x 3,7 pour une masse x 2,3. Le resultat
-  utile n'est pas ce facteur mais le classement : le cadre de pare-brise, 1,1 kg,
-  rapporte deux ordres de grandeur de plus au kilo que le pavillon, 10,5 kg,
-  parce qu'il ferme l'anneau superieur. Verifie a trois finesses de maillage.
-  L'extension a aussi fait apparaitre, par un controle de connexite, qu'une
-  traverse du modele flottait depuis l'origine : 5,7 % de masse morte, raideur
-  nulle, et toutes les raideurs specifiques publiees minorees d'autant.
+- Porsche 1988 press kit and SAE body-shell benchmarking literature.
+- Restomod builders: search done on Tuthill, no published figure found.
+- ~~**Extend the shell model** to the roof, the B-pillars, the wheel arches and
+  the windshield frame.~~ **Done.** See `twins/964-chassis/fea/README.md`,
+  sections "Du plancher a la cellule fermee" (from the floor pan to the closed
+  cell) and "Ce que ce classement dit" (what this ranking says). From the bare
+  floor pan to the closed cell, K x 3.7 for mass x 2.3. The useful result is
+  not that factor but the ranking: the windshield frame, 1.1 kg, returns two
+  orders of magnitude more per kilogram than the roof, 10.5 kg, because it
+  closes the upper ring. Verified at three mesh densities. The extension also
+  revealed, through a connectivity check, that a cross member of the model had
+  been floating from the start: 5.7% dead mass, zero stiffness, and every
+  published specific stiffness understated accordingly.
 
-## Priorites
+## Priorities
 
-1. **Le tableau de points 993 de Rennlist.** Gratuit, deja identifie dans le
-   depot, et le recoupement a 1245 mm le rend transferable a la 964.
-2. **Une demande de fiche unitaire a Autorobot**, en invoquant les photographies
-   de points de mesure. Gratuit a demander.
-3. **La base FIA**, a ouvrir dans un navigateur.
-4. ~~**Etendre le modele coque.**~~ Fait, voir ci-dessus. Ce qui reste de
-   comparable — vitrage colle, ouvertures de panneaux, portes — affinerait le
-   modele sans changer le classement qu'il produit, et pese donc moins que les
-   items suivants.
-5. Le relevé de marbre et le scan de serie, qui dependent de tiers et restent les
-   deux items decisifs.
+1. **The Rennlist 993 point table.** Free, already identified in the
+   repository, and the 1245 mm cross-check makes it transferable to the 964.
+2. **A request for a single sheet from Autorobot**, citing the photographs of
+   measuring points. Free to ask.
+3. **The FIA database**, to be opened in a browser.
+4. ~~**Extend the shell model.**~~ Done, see above. What remains of comparable
+   weight — bonded glazing, panel openings, doors — would refine the model
+   without changing the ranking it produces, and therefore weighs less than the
+   following items.
+5. The frame bench survey and the production scan, which depend on third
+   parties and remain the two decisive items.
 
-Il n'y a donc plus, dans ce dossier, de piste a la fois decisive et entierement
-sous notre controle. Les trois premieres priorites sont des demandes a formuler
-ou une page a ouvrir dans un navigateur ; elles n'ont besoin d'aucun calcul.
+There is therefore no longer, in this dossier, any lead that is both decisive
+and entirely under our control. The first three priorities are requests to
+make or a page to open in a browser; they need no computation.

@@ -1,89 +1,90 @@
-# Embout d'échappement titane — première pièce titane du dépôt
+# Titanium exhaust tip — the repository's first titanium part
 
-Sélectionnée par [décision 0007](../decisions/0007-premier-titane-embout-echappement.md).
+Selected by [decision 0007](../decisions/0007-premier-titane-embout-echappement.md).
 
-## La sélection, pas le choix
+## The selection, not the choice
 
-La grille de [`TITANIUM.md`](../TITANIUM.md) et les trois familles où l'additif
-gagne ont été appliquées aux **32 fiches** du catalogue par
-`scripts/screen_titanium_candidates.py`. Cinq pièces seulement ressortent
-éligibles ; vingt-sept tombent sur la classe de sécurité, l'absence de famille
-additive, la température, le besoin de conduire la chaleur ou l'obligation de
-garder une raideur acier.
+The grid in [`TITANIUM.md`](../TITANIUM.md) and the three families where
+additive wins were applied to the **32 records** of the catalogue by
+`scripts/screen_titanium_candidates.py`. Only five parts come out eligible;
+twenty-seven fall on the safety class, the absence of an additive family,
+temperature, the need to conduct heat or the obligation to keep a steel
+stiffness.
 
-Le criblage est **fail-closed** : ajouter une fiche au catalogue sans la juger
-le fait échouer. Un test le vérifie.
+The screening **fails closed**: adding a record to the catalogue without judging
+it makes it fail. A test checks this.
 
-Le collecteur d'échappement obtient le meilleur score du lot, **+7**, et se fait
-écarter à 900 °C : c'est un cas nickel. L'embout suit à +6 et gagne parce que
-tout converge — consolidation du conduit, de la coque et des huit nervures en un
-seul corps, cavité annulaire qu'aucun usinage ne produit, petite série, rupture
-bénigne, et une seule interface à mesurer.
+The exhaust manifold gets the best score of the batch, **+7**, and is ruled out
+at 900 °C: it is a nickel case. The tip follows at +6 and wins because
+everything converges — consolidation of the duct, the shell and the eight ribs
+into a single body, an annular cavity no machining produces, small series,
+benign failure, and a single interface to measure.
 
-## Ce que la géométrie donne
+## What the geometry gives
 
-Étape 02 **`passed`** : maillage étanche, monocomposant, 13 820 triangles, lié au
-STEP par SHA-256.
+Step 02 **`passed`**: watertight, single-component mesh, 13,820 triangles,
+linked to the STEP by SHA-256.
 
-Étape 03 `completed_screening`, orientation `roll_y_25`, **4 936 couches
-réellement tranchées à 30 µm** :
+Step 03 `completed_screening`, orientation `roll_y_25`, **4,936 layers actually
+sliced at 30 µm**:
 
-| grandeur | valeur |
+| quantity | value |
 |---|---|
-| hauteur de construction | 148,1 mm |
-| nouveaux îlots | 2 |
-| couches à aire non soutenue | 1 044 |
-| aire non soutenue maximale | 0,603 mm² |
-| enveloppe conservative de supports | 7,24 cm³ |
-| épaisseur locale, premier centile | 0,600 mm |
-| épaisseur locale minimale | 0,460 mm |
-| volume de poudre piégé au voxel de 1 mm | aucun détecté |
+| build height | 148.1 mm |
+| new islands | 2 |
+| layers with unsupported area | 1,044 |
+| maximum unsupported area | 0.603 mm² |
+| conservative support envelope | 7.24 cm³ |
+| local thickness, first percentile | 0.600 mm |
+| minimum local thickness | 0.460 mm |
+| trapped powder volume at the 1 mm voxel | none detected |
 
-La paroi minimale de 0,460 mm passe le minimum procédé EOS de 0,3 à 0,4 mm, mais
-sans confort. Et **le dépoudrage n'est pas démontré** : un canal annulaire de
-2,7 mm sur 120 mm de long ne se juge pas à un criblage voxel de 1 mm. Endoscopie
-ou tomographie exigées.
+The 0.460 mm minimum wall passes the EOS process minimum of 0.3 to 0.4 mm, but
+without comfort. And **depowdering is not demonstrated**: a 2.7 mm annular
+channel over 120 mm of length cannot be judged by a 1 mm voxel screening.
+Endoscopy or tomography required.
 
-## Les deux alliages, et le chiffre qui les sépare
+## The two alloys, and the figure that separates them
 
 | | Ti-6Al-4V | Ti-6242 |
 |---|---|---|
-| masse de criblage | **212,3 g** — contre 406,4 g en IN625, soit **−47,7 %** | 217,6 g |
-| plafond de fluage | 400 °C | 550 °C |
-| marge à 427 °C | **−27 °C** | +123 °C |
-| épaisseur de couche publiée | 30 µm | aucune |
-| paroi minimale publiée | 0,3 à 0,4 mm | aucune |
-| traitement thermique publié | 800 °C 2 h argon | aucun |
-| atelier de service | **partout** | **nulle part** |
-| portes fermées, étape 04 | 6 | 10 |
+| screening mass | **212.3 g** — against 406.4 g in IN625, i.e. **−47.7 %** | 217.6 g |
+| creep ceiling | 400 °C | 550 °C |
+| margin at 427 °C | **−27 °C** | +123 °C |
+| published layer thickness | 30 µm | none |
+| published minimum wall | 0.3 to 0.4 mm | none |
+| published heat treatment | 800 °C 2 h argon | none |
+| service bureau | **everywhere** | **nowhere** |
+| closed gates, step 04 | 6 | 10 |
 
-Les deux routes s'excluent proprement. Le Ti-6Al-4V est disponible, documenté,
-et bloqué par **un seul chiffre**. Le Ti-6242 règle ce chiffre et perd tout le
-reste : première mise en œuvre LPBF publiée en 2020, c'est un sujet de recherche.
+The two routes exclude each other cleanly. Ti-6Al-4V is available, documented,
+and blocked by **a single figure**. Ti-6242 fixes that figure and loses
+everything else: first published LPBF processing in 2020, it is a research
+topic.
 
-## Ce qu'il faut aller chercher
+## What has to be gone and fetched
 
-Les 427 °C viennent d'un cas synthétique du criblage F0 — gaz à 850 K, moteur
-3,8 L à 6 500 tr/min, deux sorties — **jamais mesuré sur un véhicule**. Un
-embout réel, en aval du silencieux, peut fonctionner cent degrés plus bas.
+The 427 °C come from a synthetic case of the F0 screening — gas at 850 K, a
+3.8 L engine at 6,500 rpm, two outlets — **never measured on a vehicle**. A real
+tip, downstream of the muffler, may run a hundred degrees lower.
 
-Un thermomètre infrarouge sur la sortie après roulage tranche la question. À
-350 °C ou moins, le Ti-6Al-4V passe et la pièce se commande chez n'importe quel
-atelier titane. À 427 °C confirmés, le titane sort du jeu à coût raisonnable et
-la réponse redevient l'IN625, deux fois plus lourd mais achetable.
+An infrared thermometer on the outlet after a drive settles the question. At
+350 °C or less, Ti-6Al-4V passes and the part can be ordered from any titanium
+shop. At a confirmed 427 °C, titanium drops out at reasonable cost and the
+answer goes back to IN625, twice as heavy but purchasable.
 
-Aucun calcul de ce dépôt ne remplacera cette mesure.
+No calculation in this repository will replace that measurement.
 
 ## Reproduction
 
 ```bash
-make titanium-screen        # criblage des 32 fiches
-make tip-routes             # les deux cartes de route, étape 04
+make titanium-screen        # screening of the 32 records
+make tip-routes             # the two route cards, step 04
 make titanium-screen-check tip-routes-check
 python3 -m unittest tests.test_993_exhaust_tip_titanium_f1
 ```
 
-La géométrie et le criblage LPBF demandent l'image verrouillée du dépôt :
+The geometry and the LPBF screening need the repository's locked image:
 
 ```bash
 docker run --rm -v "$PWD":/w -w /w ghcr.io/cluster2600/3dprinting993-mesh-cfd \
@@ -94,5 +95,5 @@ docker run --rm -v "$PWD":/w -w /w ghcr.io/cluster2600/3dprinting993-mesh-cfd \
   --report parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json
 ```
 
-Le maître est partagé avec la variante IN625 : **une seule géométrie, plusieurs
-métaux**. C'est `--material` qui change la carte, pas le dessin.
+The master is shared with the IN625 variant: **one geometry, several
+metals**. It is `--material` that changes the card, not the drawing.

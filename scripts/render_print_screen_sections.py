@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Ecrit dans chaque fiche 993 la section de simulation d'impression LPBF.
+"""Write the LPBF print simulation section into each 993 design dossier.
 
-La section est delimitee par deux marqueurs et reecrite a chaque passage : elle
-suit le rapport publie, jamais l'inverse. `--check` echoue si une fiche differe.
+The section sits between two markers and is rewritten on every pass: it follows
+the published report, never the reverse. `--check` fails if a dossier differs.
 """
 from __future__ import annotations
 
@@ -39,51 +39,51 @@ SHEETS = {
 }
 
 REASONS = {
-    "no_orientation_fits_bare_machine_envelope": "aucune des orientations candidates ne tient dans l'enveloppe EOS M 290 (250 x 250 x 325 mm)",
-    "surface_mesh_not_single_component": "le maitre STEP n'est pas un corps unique ; le tranchage refuse une surface en plusieurs morceaux",
+    "no_orientation_fits_bare_machine_envelope": "none of the candidate orientations fits the EOS M 290 envelope (250 x 250 x 325 mm)",
+    "surface_mesh_not_single_component": "the STEP master is not a single body; slicing refuses a surface in several pieces",
 }
 
 
 def fr(value: float, digits: int = 2) -> str:
-    return f"{value:,.{digits}f}".replace(",", " ").replace(".", ",")
+    return f"{value:,.{digits}f}"
 
 
 def section(slug: str, sheet: Path, status: dict) -> str:
     folder = ROOT / f"parts/{slug}/evidence/lpbf-f0"
     reports = sorted(folder.glob("*-lpbf-geometry-report.json"))
-    lines = [BEGIN, "", "## Simulation d'impression LPBF", ""]
+    lines = [BEGIN, "", "## LPBF print simulation", ""]
     if reports:
         report = json.loads(reports[0].read_text(encoding="utf-8"))
         image = reports[0].with_name(reports[0].name.replace("-report.json", "-screen.png"))
         link = os.path.relpath(image, sheet.parent)
         s, t, p = report["full_build_slicing"], report["thickness_screen"], report["powder_escape_screen"]
         lines += [
-            f"Le STEP a ete tessele puis tranche sur toute sa hauteur a `{fr(s['layer_thickness_mm'] * 1000, 0)} µm`, "
-            f"route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : "
+            f"The STEP was tessellated, then sliced over its full height at `{fr(s['layer_thickness_mm'] * 1000, 0)} µm`, "
+            f"on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: "
             f"`{report['selected_candidate_orientation']}`.",
             "",
-            "| grandeur | valeur |",
+            "| quantity | value |",
             "|---|---:|",
-            f"| couches | {s['layer_count']:,} |".replace(",", " "),
-            f"| hauteur de construction | {fr(s['build_height_mm'])} mm |",
-            f"| couches avec region non soutenue | {s['layers_with_unsupported_area']} |",
-            f"| proxy de supports | {fr(s['support_proxy_volume_mm3'])} mm³ |",
-            f"| epaisseur locale p01 | {fr(t['p01_mm'], 3)} mm |",
-            f"| poudre piegee a {fr(p['pitch_mm'])} mm | {fr(p['trapped_void_volume_mm3'])} mm³ |",
+            f"| layers | {s['layer_count']:,} |",
+            f"| build height | {fr(s['build_height_mm'])} mm |",
+            f"| layers with an unsupported region | {s['layers_with_unsupported_area']} |",
+            f"| support proxy | {fr(s['support_proxy_volume_mm3'])} mm³ |",
+            f"| local thickness p01 | {fr(t['p01_mm'], 3)} mm |",
+            f"| trapped powder at {fr(p['pitch_mm'])} mm | {fr(p['trapped_void_volume_mm3'])} mm³ |",
             "",
-            f"![Simulation d'impression LPBF]({link})",
+            f"![LPBF print simulation]({link})",
             "",
-            "Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un "
-            "controle du recoater. **L'impression reste interdite.**",
+            "This screening is neither an EOSPRINT project, nor a distortion calculation, nor a "
+            "recoater check. **Printing remains prohibited.**",
         ]
     else:
         row = status.get(slug, {})
         error = (row.get("error") or "").strip().splitlines()[-1:] or [""]
         code = error[0].replace("METAL AM FAIL-CLOSED: ", "")
-        reason = REASONS.get(code, f"`{row.get('status', 'non execute')}` {code}".strip())
+        reason = REASONS.get(code, f"`{row.get('status', 'not run')}` {code}".strip())
         lines += [
-            f"La simulation a ete lancee et a **echoue a porte fermee** : {reason}. "
-            "Aucun resultat n'est donc publie pour cette piece, et aucune image n'est fabriquee a sa place.",
+            f"The simulation was run and **failed closed**: {reason}. "
+            "No result is therefore published for this part, and no image is made up in its place.",
         ]
     lines += ["", END]
     return "\n".join(lines)

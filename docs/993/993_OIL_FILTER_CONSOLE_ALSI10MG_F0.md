@@ -1,79 +1,80 @@
-# Console de filtre à huile moteur 993 — AlSi10Mg F0
+# 993 engine oil filter console — AlSi10Mg F0
 
-Ce vingtième candidat est une console moteur à deux galeries d'huile intégrées.
-L'intérêt de la fabrication additive est précis : créer deux trajets non
-colinéaires, le socle du filtre et les ports dans un seul corps, sans bouchons
-de perçage transversal. Une fonderie ou un usinage 6061-T6 avec bouchons reste
-cependant une solution concurrente à comparer.
+This twentieth candidate is an engine console with two integrated oil
+galleries. The benefit of additive manufacturing is specific: creating two
+non-collinear paths, the filter base and the ports in a single body, without
+cross-drilling plugs. A casting or 6061-T6 machining with plugs nevertheless
+remains a competing solution to compare.
 
-PorscheFanatics identifie `993 107 057 00` et `993 107 057 01` comme consoles à
-la position 44 du groupe `101-10`, puis le filtre moteur `993 107 203 03` et sa
-réponse MAHLE `OC 229` à la position 48. OEMVWShop déclare `0,78 kg` pour la
-console `...01`, sans protocole. La fiche OC 229 donne `Ø76 × 101 mm`,
-`M20×1,5`; les données distributeur ajoutent `Ø72/62 mm`, `20 Nm` et `333 g`.
-Ces valeurs définissent le composant accouplé, pas la console.
+PorscheFanatics identifies `993 107 057 00` and `993 107 057 01` as consoles at
+position 44 of group `101-10`, then the engine filter `993 107 203 03` and its
+MAHLE equivalent `OC 229` at position 48. OEMVWShop declares `0.78 kg` for the
+console `...01`, without a protocol. The OC 229 data sheet gives
+`Ø76 × 101 mm`, `M20×1.5`; distributor data add `Ø72/62 mm`, `20 Nm` and
+`333 g`. These values define the mating component, not the console.
 
-## Géométrie F0
+## F0 geometry
 
-Le maître build123d est entièrement indépendant : corps `130 × 90 × 20 mm`,
-socle de filtre `Ø82 mm`, bossage non fileté `Ø20 mm`, quatre perçages
-synthétiques et deux ports `Ø16 mm`. Deux galeries inclinées et décalées relient
-les ports à une entrée annulaire et à une sortie centrale `Ø12 mm`.
+The build123d master is entirely independent: `130 × 90 × 20 mm` body, `Ø82 mm`
+filter base, unthreaded `Ø20 mm` boss, four synthetic holes and two `Ø16 mm`
+ports. Two inclined, offset galleries connect the ports to an annular inlet and
+to a central `Ø12 mm` outlet.
 
-Le STEP relu dans l'image CAO verrouillée contient un solide BREP valide de
-`144 × 90 × 50 mm`, deux galeries, quatre ouvertures fonctionnelles et aucun
-volume de poudre fermé. Son volume vaut `314 735,40 mm³` et sa masse théorique
-AlSi10Mg `840,34 g`. Le parallélépipède enveloppe pèserait `1 730,16 g`, soit
-un rapport brut/F0 de `2,06`.
+The STEP re-read in the locked CAD image contains a valid BREP solid of
+`144 × 90 × 50 mm`, two galleries, four functional openings and no closed
+powder volume. Its volume is `314,735.40 mm³` and its theoretical AlSi10Mg mass
+`840.34 g`. The envelope box would weigh `1,730.16 g`, i.e. a stock/F0 ratio
+of `2.06`.
 
-La masse F0 vaut `1,073 ×` les `780 g` commerciaux, mais cette proximité ne
-valide rien : ni frontière de pesée, ni surface, ni matière OEM ne sont connues.
+The F0 mass is `1.073 ×` the commercial `780 g`, but this proximity validates
+nothing: neither the weighing boundary, nor the surface, nor the OEM material
+is known.
 
-## Hydraulique chaud/froid
+## Hot/cold hydraulics
 
-Le scénario de régression impose `30 L/min`, huile à `850 kg/m³`, rugosité
-effective `0,05 mm` et trois tronçons `16/12/16 mm`. Il utilise :
+The regression scenario imposes `30 L/min`, oil at `850 kg/m³`, an effective
+roughness of `0.05 mm` and three segments `16/12/16 mm`. It uses:
 
 `v = Q/A`, `Re = ρvd/μ`
 
-`f = 64/Re` en laminaire, sinon l'approximation de Haaland,
+`f = 64/Re` when laminar, otherwise the Haaland approximation,
 
 `Δp = Σ[(fL/d + K)ρv²/2]`
 
-L'occurrence OCR du manuel indique environ `6,5 bar` à `5 000 tr/min` et
-`90 °C`, sans vérification visuelle. Le seuil de régression est arbitrairement
-fixé à 5 %, soit `32,5 kPa`.
+The OCR occurrence from the manual indicates about `6.5 bar` at `5,000 rpm`
+and `90 °C`, without visual verification. The regression threshold is
+arbitrarily set at 5 %, i.e. `32.5 kPa`.
 
-- chaud, `μ = 0,012 Pa·s` : `28,82 kPa`, rapport `1,128` — **passe** ;
-- froid, `μ = 0,25 Pa·s` : `44,65 kPa`, rapport `0,728` — **échoue**.
+- hot, `μ = 0.012 Pa·s`: `28.82 kPa`, ratio `1.128` — **passes**;
+- cold, `μ = 0.25 Pa·s`: `44.65 kPa`, ratio `0.728` — **fails**.
 
-Le calcul omet le média filtrant, la soupape de dérivation, les vraies pertes
-locales, les raccords et le circuit moteur. Il ne prédit donc pas la pression
-d'huile du véhicule.
+The calculation omits the filter medium, the bypass valve, the real local
+losses, the fittings and the engine circuit. It therefore does not predict the
+vehicle's oil pressure.
 
-## Pression, filtre et thermique
+## Pressure, filter and thermal
 
-À une épreuve synthétique de `12 bar`, l'écran membrane
-`σ = pd/(2t)` avec `d = 16 mm` et `t = 4 mm` donne `2,4 MPa`, soit un rapport
-ambiant à la limite de `102,08`.
+At a synthetic proof pressure of `12 bar`, the membrane screen
+`σ = pd/(2t)` with `d = 16 mm` and `t = 4 mm` gives `2.4 MPa`, i.e. a
+room-temperature ratio to the limit of `102.08`.
 
-Le couple publié du filtre est traité par `F = T/(Kd)` avec `K = 0,20`, donc
-`5 000 N`. Sur un anneau synthétique `Ø72/62`, la pression moyenne vaut
-`4,751 MPa`. Un engagement supposé de `12 mm` donne `22,97 MPa` de Von Mises
-sur le filet simplifié et un rapport `10,67`. Ces deux écrans passent, mais ne
-valident ni le filet réel ni le joint.
+The published filter torque is handled by `F = T/(Kd)` with `K = 0.20`, hence
+`5,000 N`. On a synthetic `Ø72/62` ring, the mean pressure is `4.751 MPa`. An
+assumed `12 mm` engagement gives `22.97 MPa` von Mises on the simplified thread
+and a ratio of `10.67`. Both screens pass, but validate neither the real
+thread nor the seal.
 
-À `150 °C` depuis `20 °C`, la croissance libre sur `144 mm` vaut `0,393 mm`.
-Totalement contrainte, `σ = EαΔT` atteint `191,1 MPa`, soit un rapport `1,282`
-contre le seuil `1,5` — **échec**.
+At `150 °C` from `20 °C`, the free growth over `144 mm` is `0.393 mm`. Fully
+constrained, `σ = EαΔT` reaches `191.1 MPa`, i.e. a ratio of `1.282` against
+the `1.5` threshold — **fail**.
 
-## Décision F0
+## F0 decision
 
-La consolidation des galeries justifie l'étude LPBF, mais l'écran hydraulique
-à froid et l'écran thermique échouent. Le procédé reste indécis entre fonderie,
-CNC 6061-T6 avec bouchons qualifiés et LPBF AlSi10Mg. La propreté interne est
-un gate majeur : absence de poudre prisonnière ne signifie pas dépoudrage ou
-propreté moteur validés.
+The consolidation of the galleries justifies the LPBF study, but the cold
+hydraulic screen and the thermal screen fail. The process stays undecided
+between casting, CNC 6061-T6 with qualified plugs and LPBF AlSi10Mg. Internal
+cleanliness is a major gate: absence of trapped powder does not mean validated
+depowdering or engine cleanliness.
 
 ## Reproduction
 
@@ -85,38 +86,38 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-oil-filter-console-alsi10mg-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner la console, le carter, le filtre, les joints, capteurs et conduites.
-2. Contrôler visuellement dans le manuel les pressions et conditions exactes.
-3. Mesurer débit, viscosité, pression pulsée, températures et contamination.
-4. Reconstruire les galeries et interfaces sur datums et tolérances mesurés.
-5. Exécuter CFD/CHT, cavitation, pression pulsée, contact, modal et fatigue.
-6. Comparer fonderie, CNC+bouchons et LPBF sur coût, masse, fuite et propreté.
-7. Qualifier orientation, T6/HIP, usinage, CT, FPI, épreuve, fuite et rinçage.
-8. Passer un banc hydraulique chaud/froid, puis endurance moteur et dyno.
+1. Scan the console, case, filter, seals, sensors and lines.
+2. Visually check the exact pressures and conditions in the manual.
+3. Measure flow, viscosity, pulsed pressure, temperatures and contamination.
+4. Rebuild the galleries and interfaces on measured datums and tolerances.
+5. Run CFD/CHT, cavitation, pulsed pressure, contact, modal and fatigue.
+6. Compare casting, CNC+plugs and LPBF on cost, mass, leakage and cleanliness.
+7. Qualify orientation, T6/HIP, machining, CT, FPI, proof test, leak and flushing.
+8. Pass a hot/cold hydraulic bench, then engine endurance and dyno.
 
-PhysicsNeMo reste différé jusqu'à l'existence de séries CFD/CHT/structure/fuite
-corrélées et séparées en entraînement, validation, holdout et hors distribution.
-Le F0 est interdit de fabrication, circulation d'huile, montage et moteur.
+PhysicsNeMo stays deferred until correlated CFD/CHT/structure/leak series exist,
+split into training, validation, holdout and out-of-distribution. The F0 is
+prohibited from manufacturing, oil circulation, installation and engine use.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 3 960 |
-| hauteur de construction | 118,79 mm |
-| couches avec region non soutenue | 624 |
-| proxy de supports | 5 546,77 mm³ |
-| epaisseur locale p01 | 0,914 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 3,960 |
+| build height | 118.79 mm |
+| layers with an unsupported region | 624 |
+| support proxy | 5,546.77 mm³ |
+| local thickness p01 | 0.914 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-oil-filter-console-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-oil-filter-console-alsi10mg-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-oil-filter-console-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-oil-filter-console-alsi10mg-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

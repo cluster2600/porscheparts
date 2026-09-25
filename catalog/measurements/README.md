@@ -1,43 +1,43 @@
-# Registre des mesures
+# Measurement register
 
-Une fiche JSON peut enregistrer soit une séance de mesure physique, soit une
-spécification quantitative publiée par un document de référence. Une séance
-physique contient sujet, repères, instruments, lectures brutes et incertitude.
-Une spécification documentaire contient sa source, sa page, son texte de valeur
-et son statut d'extraction ; elle ne remplace pas une séance instrumentée.
+A JSON record can hold either a physical measurement session or a quantitative
+specification published by a reference document. A physical session contains
+the subject, datums, instruments, raw readings and uncertainty. A documentary
+specification contains its source, its page, its value text and its extraction
+status; it does not replace an instrumented session.
 
-Le registre ne remplace pas le plan de mesure
-(`catalog/templates/measurement-plan.md`), elle en conserve le résultat sous une forme
-vérifiable par machine.
+The register does not replace the measurement plan
+(`catalog/templates/measurement-plan.md`); it keeps the plan's result in a
+machine-checkable form.
 
-Le validateur refuse notamment une valeur qui ne correspond pas à ses propres
-échantillons, une incertitude plus fine que la résolution de l’instrument, une
-lecture attribuée à un instrument non déclaré, et un niveau de preuve `A` sans
-répétitions ni état d’étalonnage connu.
+Among other things, the validator rejects a value that does not match its own
+samples, an uncertainty finer than the instrument's resolution, a reading
+attributed to an undeclared instrument, and an evidence level `A` without
+repeats or known calibration state.
 
-Créer une fiche depuis `catalog/templates/measurement-record.json`, ou la remplir
-directement depuis l’instrument :
+Create a record from `catalog/templates/measurement-record.json`, or fill it
+directly from the instrument:
 
 ```bash
-python3 scripts/capture_caliper.py --record catalog/measurements/meas-<pièce>.json \
-    --dimension D01 --description "Alésage de l'œil" --port /dev/ttyUSB0 --repeats 3
+python3 scripts/capture_caliper.py --record catalog/measurements/meas-<part>.json \
+    --dimension D01 --description "Eye bore" --port /dev/ttyUSB0 --repeats 3
 ```
 
-Une valeur tapée à la main reste enregistrée comme telle : `manual_entry`, jamais
+A value typed by hand stays recorded as such: `manual_entry`, never
 `instrument_stream`.
 
-Le registre documentaire issu du manuel Porsche 993 est
-[`MEAS-MANUAL-993-ALL.json`](MEAS-MANUAL-993-ALL.json). Il reprend 2 496 valeurs
-avec page et provenance. Les valeurs `ocr_unreviewed` doivent être vérifiées
-dans l'exemplaire autorisé avant de servir à une CAO ou une fabrication.
+The documentary register drawn from the Porsche 993 manual is
+[`MEAS-MANUAL-993-ALL.json`](MEAS-MANUAL-993-ALL.json). It carries 2,496 values
+with page and provenance. The `ocr_unreviewed` values must be verified in the
+authorized copy before they are used for CAD or manufacturing.
 
-La campagne physique prête à être exécutée et son ordre de priorité sont décrits dans
-[`docs/MEASUREMENT_CAMPAIGN.md`](../../docs/MEASUREMENT_CAMPAIGN.md). Tant qu'un
-contributeur n'a pas fourni une pièce, un véhicule et les lectures brutes, le
-registre des séances physiques reste vide : il vaut mieux zéro mesure
-instrumentée vérifiable qu'une cote inventée.
+The physical campaign, ready to run, and its priority order are described in
+[`docs/MEASUREMENT_CAMPAIGN.md`](../../docs/MEASUREMENT_CAMPAIGN.md). Until a
+contributor has provided a part, a vehicle and the raw readings, the register
+of physical sessions stays empty: zero verifiable instrumented measurements are
+better than an invented dimension.
 
-Régénérer la fiche documentaire après une mise à jour du registre du manuel :
+Regenerate the documentary record after an update of the manual register:
 
 ```bash
 python3 scripts/import_manual_measurements.py

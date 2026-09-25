@@ -1,94 +1,94 @@
-# Recherche germanophone — caisse de Porsche 964
+# German-language research — Porsche 964 body shell
 
-Date d'accès : 3 septembre 2026. Requêtes en allemand : `Blechstärke`,
+Date accessed: September 3, 2026. Queries in German: `Blechstärke`,
 `Blechdicke`, `Torsionssteifigkeit`, `Richtmaße`, `Karosservermessung`,
 `Aufnahmebohrung`, `Wagenheberaufnahme`, `feuerverzinkt`, `hochfester Stahl`,
-`Schwachstellen`, `Rost`, sur presse technique, forums (PFF, 911er.de,
-Elferspot) et fournisseurs de données de marbre.
+`Schwachstellen`, `Rost`, across the technical press, forums (PFF, 911er.de,
+Elferspot) and frame bench data suppliers.
 
-**Le résultat principal est négatif, et c'est une information.** Sur les cinq
-questions posées, deux sont fermées par une source primaire, trois reviennent
-sans aucune donnée chiffrée publiée.
+**The main result is negative, and that is information.** Of the five questions
+asked, two are closed by a primary source, three come back with no published
+numerical data at all.
 
-## Ce qui est acquis
+## What is established
 
-**La caisse est en tôle d'acier galvanisée à chaud sur les deux faces.** Source
-primaire Porsche : la 911 est la première voiture de série à recevoir une caisse
-feuerverzinkt sur les deux faces, pièces porteuses depuis le millésime 1976,
-caisse en blanc entière depuis le millésime 1981. Auto Zeitung le confirme pour
-la 964. La garantie anticorrosion suit 6 ans (1976), 7 ans (MY1981), 10 ans
-(MY1986) : c'est le terme de dix ans qui court sur toute la 964.
+**The body shell is made of sheet steel hot-dip galvanized on both sides.**
+Primary Porsche source: the 911 is the first production car to receive a body
+shell feuerverzinkt (hot-dip galvanized) on both sides, load-bearing parts from
+model year 1976, the entire body-in-white from model year 1981. Auto Zeitung
+confirms it for the 964. The anti-corrosion warranty goes 6 years (1976), 7
+years (MY1981), 10 years (MY1986): the ten-year term is the one that runs across
+the whole 964.
 
-Cela **appuie** l'hypothèse formulée avant la recherche — zinc, apprêt, peinture
-et cire expliqueraient l'écart entre 0,8 mm annoncé et 1,0 mm mesuré — sans la
-**quantifier**, faute de masse de zinc publiée. Un praticien ajoute un point
-utile : la peau extérieure est poncée après soudage, donc une mesure sur panneau
-extérieur n'est pas comparable à une mesure sur plancher.
+This **supports** the hypothesis stated before the research — zinc, primer,
+paint and wax would explain the gap between the announced 0.8 mm and the
+measured 1.0 mm — without **quantifying** it, since no zinc mass is published.
+A practitioner adds a useful point: the outer skin is sanded after welding, so a
+measurement on an outer panel is not comparable to a measurement on the floor
+pan.
 
-## Ce qui n'existe pas publiquement
+## What does not exist publicly
 
-| Question | Résultat |
+| Question | Result |
 |---|---|
-| Épaisseur de tôle en mm | **aucune source** |
-| Masse de zinc, épaisseur de couche | **aucune source** |
-| Nuance des six panneaux HS de la planche 50-013 | **aucune source** |
-| Raideur en torsion, N·m/deg, toutes variantes | **aucune source** |
-| Position longitudinale absolue du point 17 | **aucune source publique** |
+| Sheet thickness in mm | **no source** |
+| Zinc mass, coating thickness | **no source** |
+| Grade of the six HS panels on plate 50-013 | **no source** |
+| Torsional stiffness, N·m/deg, all variants | **no source** |
+| Absolute longitudinal position of point 17 | **no public source** |
 
-L'article Wikipédia allemand a été vérifié sur son wikitexte brut, 46 715
-octets : zéro occurrence de `Blechstärke`, `Blechdicke`, `feuerverzinkt`,
-`hochfest`, `Torsion`, `Wagenheberaufnahme`, `Richtmaß`, et aucune chaîne
-numérique en mm. Les seuls chiffres de revêtement rencontrés — environ 270 g/m²,
-bain à 500 °C — sont des messages de forum sans source primaire et **ne doivent
-pas être portés comme spécification**.
+The German Wikipedia article was checked on its raw wikitext, 46,715 bytes:
+zero occurrences of `Blechstärke`, `Blechdicke`, `feuerverzinkt`, `hochfest`,
+`Torsion`, `Wagenheberaufnahme`, `Richtmaß`, and no numerical string in mm. The
+only coating figures encountered — about 270 g/m², bath at 500 °C — are forum
+posts without a primary source and **must not be carried as a specification**.
 
-## Le calage longitudinal : piste identifiée, et fermée
+## Longitudinal registration: lead identified, and closed
 
-Celette vend sous la référence **564.320** un jeu de ferrures spécifique au type
-964, annoncé à **42 points de contrôle et 25 ferrures**. Relevé du 3 septembre :
-la page répond, et la totalité de son contenu technique se réduit à ces deux
-comptages plus du colisage. Aucune coordonnée dans le source. La documentation
-est derrière `Please register or login`.
+Celette sells under reference **564.320** a set of brackets specific to the
+964 type, announced at **42 control points and 25 brackets**. Survey of
+September 3: the page responds, and its entire technical content comes down to
+these two counts plus packaging details. No coordinates in the page source. The
+documentation is behind `Please register or login`.
 
-C'est cohérent avec ce que le dépôt savait déjà : ni Celette ni Car-O-Liner
-n'exposent de feuille de cotes. **La voie réaliste pour caler la chaîne passe
-par un carrossier abonné à Car-O-Data ou équipé Celette, pas par une source
-publique.**
+This is consistent with what the repository already knew: neither Celette nor
+Car-O-Liner exposes a dimension sheet. **The realistic route to register the
+chain goes through a body shop subscribed to Car-O-Data or equipped with
+Celette, not through a public source.**
 
-Réserve : les fichiers protégés pourraient n'être qu'une notice de montage
-associant numéro de ferrure et point, pas une table de coordonnées.
+Caveat: the protected files might be only an assembly notice associating
+bracket number and point, not a coordinate table.
 
-## Points faibles : corrosion oui, structure non
+## Weak points: corrosion yes, structure no
 
-Les guides d'achat allemands convergent sur les mêmes foyers : cadres de
-pare-brise avant et arrière, bas de caisse **aux prises de cric**, bas de portes,
-passages de roue, bacs à batterie.
+The German buying guides converge on the same hot spots: front and rear
+windshield frames, rocker panels **at the jacking points**, door bottoms, wheel
+arches, battery trays.
 
-Deux réserves. Ces sources établissent un foyer de **corrosion**, pas une
-faiblesse structurelle ; et Elferspot précise que la rouille n'est pas un
-problème de conception sur la 964, elle suit généralement un accident ou une
-réparation de vitrage ayant percé le zinc.
+Two caveats. These sources establish a **corrosion** hot spot, not a structural
+weakness; and Elferspot specifies that rust is not a design problem on the 964,
+it generally follows an accident or a glazing repair that pierced the zinc.
 
-**Aucune source, à aucun niveau de qualité, ne documente de fissuration, de
-flexion excessive ni de fatigue des longerons ou des ancrages de suspension.**
-C'est une absence de preuve et non une preuve d'absence : les fils de forum sur
-la réparation après choc et les rapports TÜV/DEKRA n'ont pas été dépouillés.
+**No source, at any quality level, documents cracking, excessive flexing or
+fatigue of the side rails or suspension mounts.** This is an absence of
+evidence and not evidence of absence: the forum threads on post-crash repair
+and the TÜV/DEKRA reports have not been combed through.
 
-Il reste une observation défendable, sur la conséquence et non sur la fréquence :
-le calcul place le chemin d'effort en torsion dans le longeron, la planche 50-013
-y met de l'acier haute résistance, et la prise de cric est un foyer de corrosion
-reconnu. **À corrosion égale, une attaque à cet endroit pèse donc plus
-structurellement qu'ailleurs sur le plancher.**
+One defensible observation remains, about the consequence and not the
+frequency: the computation places the torsional load path in the side rail,
+plate 50-013 puts high-strength steel there, and the jacking point is a
+recognized corrosion hot spot. **For equal corrosion, an attack at that spot
+therefore weighs more structurally than elsewhere on the floor pan.**
 
-## Variantes
+## Variants
 
-Seule différence de caisse retrouvée avec source : la **RS Basis/Lightweight
-(M003)** est livrée sans protection de dessous de caisse, d'où une garantie
-anticorrosion ramenée à trois ans, alors que la **RS Touring (M002)** conserve
-protection et garantie de dix ans — soit environ 1 910 voitures sur 2 276.
+The only body shell difference found with a source: the **RS Basis/Lightweight
+(M003)** is delivered without underbody protection, hence an anti-corrosion
+warranty cut to three years, whereas the **RS Touring (M002)** keeps the
+protection and the ten-year warranty — i.e., about 1,910 cars out of 2,276.
 
-L'affirmation selon laquelle la RS utiliserait une tôle d'épaisseur réduite a été
-**réfutée** en vérification croisée : la question reste ouverte.
+The claim that the RS used thinner sheet metal was **refuted** in
+cross-checking: the question remains open.
 
-À écarter : le chiffre des « 87 % de pièces revues », très repris, porte sur la
-voiture entière et non sur la caisse en blanc. Il ne prouve rien ici.
+To be discarded: the widely repeated figure of "87% of parts revised" applies
+to the whole car and not to the body-in-white. It proves nothing here.

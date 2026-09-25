@@ -1,16 +1,17 @@
-# Wrapper GitHub borné par OpenBao
+# OpenBao-bounded GitHub wrapper
 
-`deploy/openbao/openbao-github` pousse uniquement la branche `codex/*` courante
-du dépôt `cluster2600/3dprinting993` et déclenche uniquement les deux workflows
-Vast F40/F41 explicitement autorisés. Il réutilise l'AppRole déjà provisionnée
-pour `openbao-ghcr`; aucun jeton n'est ajouté au dépôt ou à la ligne de commande.
+`deploy/openbao/openbao-github` only pushes the current `codex/*` branch
+of the `cluster2600/3dprinting993` repository and only triggers the two
+explicitly allowed Vast F40/F41 workflows. It reuses the AppRole already
+provisioned for `openbao-ghcr`; no token is added to the repository or to the
+command line.
 
-Le wrapper désactive le helper Git du trousseau macOS pour son sous-processus.
-Il transmet l'en-tête HTTP d'authentification à Git par configuration
-d'environnement éphémère, sans URL contenant un secret, masque défensivement
-la valeur avant toute erreur et révoque toujours le jeton de session OpenBao.
+The wrapper disables the macOS keychain Git helper for its subprocess.
+It passes the HTTP authentication header to Git through ephemeral environment
+configuration, with no URL containing a secret, defensively masks the value
+before any error and always revokes the OpenBao session token.
 
-## Installation et contrôles
+## Installation and checks
 
 ```zsh
 cd /Users/maxime/projects/3dprinting993
@@ -21,19 +22,19 @@ openbao-github --check
 openbao-github --auth-check
 ```
 
-`--check` ne lit aucun secret. `--auth-check` vérifie uniquement le dépôt fixe et
-exige que l'identité GitHub renvoie l'autorisation `push`.
+`--check` reads no secret. `--auth-check` only checks the fixed repository and
+requires the GitHub identity to return the `push` permission.
 
-## Opérations autorisées
+## Allowed operations
 
-Le worktree doit être propre avant un push :
+The worktree must be clean before a push:
 
 ```zsh
 openbao-github push-current
 ```
 
-Après publication de la branche, un workflow peut être déclenché par son nom
-exact et la même branche :
+Once the branch is published, a workflow can be triggered by its exact name
+and the same branch:
 
 ```zsh
 openbao-github dispatch 917-engine-wave-f40-vast-image.yml \
@@ -42,20 +43,21 @@ openbao-github dispatch 917-engine-wave-f40-vast-image.yml \
 openbao-github runs 917-engine-wave-f40-vast-image.yml \
   codex/917-f40-vast-runtime-hardening
 
-# Reconstruire et publier uniquement la grande image SimReady locale.
-# Le wrapper fixe les inputs image=simready-local-ai et push=true.
+# Rebuild and publish only the large local SimReady image.
+# The wrapper fixes the inputs image=simready-local-ai and push=true.
 openbao-github publish-simready-local-ai \
   codex/917-f40-vast-runtime-hardening
 ```
 
-Le second workflow autorisé est
-`917-component-factory-f41-vast-image.yml`. Aucun workflow arbitraire, branche
-`main`, fork, autre dépôt, création de PR ou fusion n'est exposé par ce wrapper.
+The second allowed workflow is
+`917-component-factory-f41-vast-image.yml`. No arbitrary workflow, `main`
+branch, fork, other repository, PR creation or merge is exposed by this
+wrapper.
 
-## Frontière de confiance
+## Trust boundary
 
-Un push réussi ne prouve ni que GitHub Actions est vert, ni qu'un digest GHCR
-est public, ni que Vast peut établir une session SSH. Ces états sont vérifiés
-séparément avant toute location. Le wrapper n'envoie aucun scan, manuel,
-identifiant de véhicule ou donnée privée : seuls les objets Git déjà committés
-sur une branche `codex/*` peuvent être poussés.
+A successful push proves neither that GitHub Actions is green, nor that a GHCR
+digest is public, nor that Vast can establish an SSH session. These states are
+checked separately before any rental. The wrapper sends no scan, manual,
+vehicle identifier or private data: only Git objects already committed
+on a `codex/*` branch can be pushed.

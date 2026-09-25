@@ -1,60 +1,60 @@
-# Phase 2 — Recherche germanophone sur le freinage
+# Phase 2 — German-language research on braking
 
-Date de consultation : 29 août 2026.
+Date consulted: August 29, 2026.
 
-## Décision
+## Decision
 
-Aucun composant de freinage n'entre encore dans `catalog/components/`.
-Les documents constructeur permettent d'identifier plusieurs disques, leur
-application, leur position et leurs dimensions. Ils ne donnent cependant pas
-de masse nette et ne décrivent pas une nuance matière complète. Ajouter une
-masse issue d'un vendeur violerait la règle d'admission du jumeau.
+No braking component enters `catalog/components/` yet. The manufacturer
+documents identify several discs, their application, their position and their
+dimensions. They do not, however, give a net mass and do not describe a
+complete material grade. Adding a mass taken from a retailer would violate the
+twin's admission rule.
 
-Cette décision ne remet pas en cause la compatibilité commerciale déclarée par
-les fabricants. Elle signifie seulement que les quatre champs obligatoires du
-projet — taille, masse, matière et application 993 — ne sont pas tous sourcés.
+This decision does not call into question the commercial compatibility declared
+by the manufacturers. It only means that the project's four mandatory fields —
+size, mass, material and 993 application — are not all sourced.
 
-## Références qualifiées mais incomplètes
+## Qualified but incomplete references
 
-| Position | Référence fabricant | Référence Porsche recoupée | Dimensions déclarées | Matière déclarée | Champ bloquant |
+| Position | Manufacturer reference | Cross-checked Porsche part number | Declared dimensions | Declared material | Blocking field |
 |---|---|---|---|---|---|
-| avant gauche | Brembo `09.8420.11` | à recouper avant admission | Ø 304 x 32 mm, hauteur 72 mm, centrage 103 mm, 5 trous, minimum 30 mm | haut carbone, ventilé | masse nette, nuance complète et référence Porsche directe |
-| avant droite | Brembo `09.8421.11` | à recouper avant admission | Ø 304 x 32 mm, hauteur 72 mm, centrage 103 mm, 5 trous, minimum 30 mm | haut carbone, ventilé | masse nette, nuance complète et référence Porsche directe |
-| arrière, quantité 2 | Brembo `09.C085.11` | à recouper dans PET avant admission | Ø 299 x 24 mm, hauteur 65 mm, centrage 103 mm, 5 trous, minimum 22 mm | haut carbone, ventilé | masse nette, nuance complète et référence Porsche |
-| avant | ATE `24.0132-0142.1` | `993 351 043 01` | Ø 304 x 32 mm, hauteur 72 mm, centrage 103 mm, 5 trous, minimum 30 mm | haut carbone, allié, ventilé | masse nette et famille/nuance complète |
-| avant | ATE `24.0132-0143.1` | `993 351 044 01` | Ø 304 x 32 mm, hauteur 72 mm, centrage 103 mm, 5 trous, minimum 30 mm | haut carbone, allié, ventilé | masse nette et famille/nuance complète |
+| front left | Brembo `09.8420.11` | to be cross-checked before admission | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, vented | net mass, complete grade and direct Porsche part number |
+| front right | Brembo `09.8421.11` | to be cross-checked before admission | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, vented | net mass, complete grade and direct Porsche part number |
+| rear, quantity 2 | Brembo `09.C085.11` | to be cross-checked in the PET before admission | Ø 299 x 24 mm, height 65 mm, centering 103 mm, 5 holes, minimum 22 mm | high carbon, vented | net mass, complete grade and Porsche part number |
+| front | ATE `24.0132-0142.1` | `993 351 043 01` | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, alloyed, vented | net mass and complete family/grade |
+| front | ATE `24.0132-0143.1` | `993 351 044 01` | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, alloyed, vented | net mass and complete family/grade |
 
-Le catalogue ATE contient une colonne dimensionnelle `I`. La valeur `15,4`
-des deux lignes 993 est une cote du dessin de disque, pas un poids. Elle ne doit
-pas alimenter `physical.mass`.
+The ATE catalog contains a dimensional column `I`. The value `15,4` (15.4) on
+the two 993 lines is a dimension of the disc drawing, not a weight. It must not
+feed `physical.mass`.
 
-## Sources retenues
+## Sources retained
 
-- [Catalogue Brembo du 993 Carrera 3.8](https://www.bremboparts.com/europe/de/catalogue/porsche-911-993-3-8-carrera/000004674-1),
-  source fabricant pour l'application et les dimensions des trois références ;
-- [fiche Brembo `09.8421.11`](https://www.bremboparts.com/europe/de/catalogue/disc/09-8421-11),
-  source fabricant pour le côté droit, les dimensions et la désignation haut
-  carbone ;
-- [catalogue ATE Classic Porsche](https://www.ate.de/media/2826/atec3classic_2014-porsche.pdf),
-  source fabricant pour les références Porsche, le schéma des cotes et le
-  recoupement des dimensions avant.
+- [Brembo catalog for the 993 Carrera 3.8](https://www.bremboparts.com/europe/de/catalogue/porsche-911-993-3-8-carrera/000004674-1),
+  manufacturer source for the application and dimensions of the three
+  references;
+- [Brembo `09.8421.11` data sheet](https://www.bremboparts.com/europe/de/catalogue/disc/09-8421-11),
+  manufacturer source for the right side, the dimensions and the high-carbon
+  designation;
+- [ATE Classic Porsche catalog](https://www.ate.de/media/2826/atec3classic_2014-porsche.pdf),
+  manufacturer source for the Porsche part numbers, the dimension diagram and
+  the cross-check of the front dimensions.
 
-Les valeurs de poids affichées par différentes boutiques n'ont pas été
-retenues : elles ne sont ni publiées par le fabricant ni accompagnées d'un
-protocole de pesée, et elles peuvent désigner poids net, poids emballé ou poids
-d'expédition.
+The weight values shown by various shops were not retained: they are neither
+published by the manufacturer nor accompanied by a weighing protocol, and they
+may denote net weight, packaged weight or shipping weight.
 
-## Porte de sortie
+## Exit gate
 
-Une référence pourra être admise après obtention de l'un des éléments suivants :
+A reference may be admitted after obtaining one of the following:
 
-1. fiche fabricant ou TecDoc traçable donnant la masse nette unitaire et la
-   matière ;
-2. pesée documentée de la référence exacte, avec instrument et incertitude,
-   complétée par une déclaration matière fabricant ;
-3. mesure d'un disque OEM identifié sans ambiguïté, avec référence Porsche et
-   état d'usure enregistrés.
+1. a traceable manufacturer or TecDoc data sheet giving the net unit mass and
+   the material;
+2. a documented weighing of the exact reference, with instrument and
+   uncertainty, supplemented by a manufacturer material declaration;
+3. a measurement of an unambiguously identified OEM disc, with the Porsche part
+   number and wear condition recorded.
 
-Le freinage reste une classe critique : même admis dans l'inventaire numérique,
-un composant ne serait ni déclaré fabricable ni libéré sans revue d'ingénierie
-professionnelle et plan de validation approuvé.
+Braking remains a safety-critical class: even if admitted into the digital
+inventory, a component would be neither declared manufacturable nor released
+without a professional engineering review and an approved validation plan.

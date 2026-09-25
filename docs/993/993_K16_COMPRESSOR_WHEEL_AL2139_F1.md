@@ -1,72 +1,75 @@
-# Roue de compresseur K16 — itération Al2139 AM F1
+# K16 compressor wheel — Al2139 AM F1 iteration
 
-Le F0 AlSi10Mg a rempli son rôle : il a échoué. À Mach périphérique `0,9` et
-sur-vitesse `1,2×`, sa pale principale droite atteignait `390,9 MPa` face à une
-comparaison ambiante de `245 MPa`, soit un rapport de `0,627`.
+The AlSi10Mg F0 did its job: it failed. At tip Mach `0.9` and `1.2×`
+overspeed, its straight main blade reached `390.9 MPa` against a
+room-temperature comparison value of `245 MPa`, i.e. a ratio of `0.627`.
 
-Le F1 conserve exactement les seuls faits géométriques publiés pour la roue
-K16 droite `53241232006` : inducer `40,6 mm`, exducer `60,5 mm`, six pales
-principales et six séparatrices. Le changement porte sur la matière candidate
-et la distribution d'épaisseur, pas sur une prétendue reconstruction OEM.
+The F1 keeps exactly the only geometric facts published for the right-hand K16
+wheel `53241232006`: inducer `40.6 mm`, exducer `60.5 mm`, six main blades and
+six splitters. The change concerns the candidate material and the thickness
+distribution, not a supposed OEM reconstruction.
 
-## Modification d'ingénierie
+## Engineering change
 
-La pale principale passe de `1,2 mm` uniforme à une loi linéaire
-`3,0 → 0,8 mm`. La séparatrice passe à `2,4 → 0,8 mm`. La CAO verrouillée
-approxime chaque loi par quatre tronçons radiaux chevauchants ; le calcul de
-force utilise l'intégrale continue exacte de l'épaisseur.
+The main blade goes from a uniform `1.2 mm` to a linear law `3.0 → 0.8 mm`.
+The splitter goes to `2.4 → 0.8 mm`. The locked CAD approximates each law with
+four overlapping radial segments; the force calculation uses the exact
+continuous integral of the thickness.
 
-L'AlSi10Mg est remplacé comme candidat par EOS Aluminium Al2139 AM sur M 290,
-`60 µm`, traité thermiquement. EOS publie pour cette route TRL `3`, une paroi
-minimale de `0,4 mm`, une densité moyenne d'au moins `2,84 g/cm³`, `0,2–0,3 %`
-de défauts moyens, Rp0,2 `460 MPa`, Rm vertical `520 MPa` et allongement
-vertical `4 %` à l'ambiante. Ces valeurs ne sont pas des admissibles rotor.
+AlSi10Mg is replaced as candidate by EOS Aluminium Al2139 AM on the M 290,
+`60 µm`, heat treated. For this route EOS publishes TRL `3`, a minimum wall of
+`0.4 mm`, an average density of at least `2.84 g/cm³`, `0.2–0.3 %` average
+defects, Rp0.2 `460 MPa`, vertical Rm `520 MPa` and vertical elongation `4 %`
+at room temperature. These values are not rotor allowables.
 
-## Résultat CAO
+## CAD result
 
-Le STEP relu contient un solide BREP valide de `60,5 × 60,5 × 18 mm`, douze
-pales et un alésage traversant. Son volume vaut `13 554,48 mm³` et sa masse
-théorique `38,49 g`. Un cylindre enveloppe Al2139 pèserait `146,96 g`, soit un
-rapport théorique `3,82`. Ce n'est ni un brut industriel ni un calcul de coût.
+The re-read STEP contains a valid BREP solid of `60.5 × 60.5 × 18 mm`, twelve
+blades and a through bore. Its volume is `13,554.48 mm³` and its theoretical
+mass `38.49 g`. An Al2139 envelope cylinder would weigh `146.96 g`, i.e. a
+theoretical ratio of `3.82`. This is neither an industrial stock size nor a
+cost calculation.
 
-## Calcul de pale effilée
+## Tapered blade calculation
 
-Pour une épaisseur linéaire `t(r)`, le volume de pale emploie :
+For a linear thickness `t(r)`, the blade volume uses:
 
 `V = h × L × (t_racine + t_pointe) / 2`
 
-La force centrifuge utilise le premier moment radial exact :
+The centrifugal force uses the exact first radial moment:
 
 `F = ρ × h × ω² × ∫ r × t(r) dr`
 
-Puis la contrainte de racine est criblée par :
+Then the root stress is screened by:
 
-`σ = Kt × F / (t_racine × h)` et `σ_survitesse = σ × 1,2²`.
+`σ = Kt × F / (t_racine × h)` and `σ_survitesse = σ × 1.2²`.
 
-La pale principale F1 pèse analytiquement `1,380 g`, avec rayon moyen
-`16,382 mm`. Elle produit `2,654 kN`, `160,84 MPa` nominal et `231,61 MPa` à la
-sur-vitesse. La séparatrice atteint `200,10 MPa` à la sur-vitesse.
+(`racine` = root, `pointe` = tip, `survitesse` = overspeed.)
 
-Le ratio gouvernant Al2139/contrainte vaut donc `1,986`, contre `0,627` au F0,
-soit `40,75 %` de contrainte en moins malgré la densité plus élevée. Le disque
-donne un ratio `2,516` et la borne thermique totalement contrainte `1,905`.
-Les trois dépassent le seuil de régression `1,5`.
+The F1 main blade weighs analytically `1.380 g`, with a mean radius of
+`16.382 mm`. It produces `2.654 kN`, `160.84 MPa` nominal and `231.61 MPa` at
+overspeed. The splitter reaches `200.10 MPa` at overspeed.
 
-**Cela signifie uniquement que le F1 passe trois équations ambiantes.** La
-limite `460 MPa` vient d'éprouvettes T4, le module et la dilatation restent
-provisoires, et aucune HCF à chaud n'est disponible. Il n'existe toujours ni
-profil aérodynamique, ni carte K16, ni rotor complet.
+The governing Al2139/stress ratio is therefore `1.986`, against `0.627` for the
+F0, i.e. `40.75 %` less stress despite the higher density. The disc gives a
+ratio of `2.516` and the fully constrained thermal bound `1.905`. All three
+exceed the regression threshold of `1.5`.
 
-## Point aérothermique inchangé
+**This only means that the F1 passes three room-temperature equations.** The
+`460 MPa` limit comes from T4 specimens, the modulus and expansion remain
+provisional, and no hot HCF is available. There is still no aerodynamic
+profile, no K16 map and no complete rotor.
 
-Le point synthétique reste `103 464 tr/min`, `0,08194 m³/s` par banc, Mach axial
-`0,190`, rapport de pression `1,8`, rendement `0,72`, sortie `413,8 K` et
-puissance `13,11 kW`. Il sert uniquement à comparer F0 et F1 sur une même base.
+## Aerothermal point unchanged
 
-La croissance centrifuge plus thermique vaut `0,159 mm`, alors que le jeu réel
-est inconnu. L'énergie de rotation approximative monte à `1 034 J`; dix mg·mm
-de balourd produisent `1,17 N`. Ces valeurs renforcent l'exigence d'un spin rig
-confiné et ne prouvent aucune tenue.
+The synthetic point remains `103,464 rpm`, `0.08194 m³/s` per bank, axial Mach
+`0.190`, pressure ratio `1.8`, efficiency `0.72`, outlet `413.8 K` and power
+`13.11 kW`. It serves only to compare F0 and F1 on the same basis.
+
+Centrifugal plus thermal growth is `0.159 mm`, whereas the actual clearance is
+unknown. The approximate rotational energy rises to `1,034 J`; ten mg·mm of
+imbalance produce `1.17 N`. These values reinforce the requirement for a
+contained spin rig and prove no strength.
 
 ## Reproduction
 
@@ -78,38 +81,38 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Mesurer/CT la roue K16 et tout l'ensemble arbre-écrou-backplate-carter.
-2. Construire de vraies surfaces de pales depuis métrologie et aéro inverse.
-3. Obtenir carte, vitesses, températures, jeux, balourd et cycle de service.
-4. Exécuter CFD tournante, FSI, FEA centrifuge-thermique, rotor dynamique,
-   Campbell, HCF et analyse probabiliste d'éclatement avec convergence.
-5. Qualifier Al2139, orientation, supports, traitement, défauts, finition,
-   usinage, CT et équilibrage.
-6. Passer spin proof, sur-vitesse et éclatement confinés avant tout banc turbo.
+1. Measure/CT the K16 wheel and the whole shaft-nut-backplate-housing assembly.
+2. Build real blade surfaces from metrology and inverse aerodynamic design.
+3. Obtain the map, speeds, temperatures, clearances, imbalance and duty cycle.
+4. Run converged rotating CFD, FSI, centrifugal-thermal FEA, rotordynamics,
+   Campbell, HCF and probabilistic burst analysis.
+5. Qualify Al2139, orientation, supports, heat treatment, defects, finish,
+   machining, CT and balancing.
+6. Pass contained spin proof, overspeed and burst tests before any turbo bench.
 
-PhysicsNeMo attend les séries corrélées CFD-structure-rotordynamique avec train,
-holdout et hors-distribution. Le F1 n'est autorisé ni pour fabrication, ni pour
-rotation, ni pour turbo ou moteur.
+PhysicsNeMo awaits correlated CFD-structure-rotordynamics series with train,
+holdout and out-of-distribution sets. The F1 is authorized neither for
+manufacturing, nor for rotation, nor for turbo or engine use.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `60 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `60 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 873 |
-| hauteur de construction | 52,33 mm |
-| couches avec region non soutenue | 21 |
-| proxy de supports | 22,17 mm³ |
-| epaisseur locale p01 | 0,183 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 873 |
+| build height | 52.33 mm |
+| layers with an unsupported region | 21 |
+| support proxy | 22.17 mm³ |
+| local thickness p01 | 0.183 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->
