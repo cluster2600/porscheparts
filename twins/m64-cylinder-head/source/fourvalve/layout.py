@@ -110,6 +110,20 @@ def plug_open_radius(p, k):
     return p['spark_plug_bore_diameter'] / 2 / max(math.cos(math.radians(p[f'plug_{k}_tilt'])), 0.2)
 
 
+def plug_envelope_cylinders(p, k):
+    """Enveloppes communes CAO/contrôles ; l'hexagone est majoré par son cercle circonscrit."""
+    o, d = plug_opening(p, k)
+    reach = p['plug_thread_reach']
+    seal_top = reach + p['plug_seal_height']
+    hex_top = seal_top + p['plug_hex_height']
+    spans = {'thread': (0, reach, p['spark_plug_bore_diameter']),
+             'seal': (reach, seal_top, p['plug_seal_diameter']),
+             'hex': (seal_top, hex_top, p['plug_hex_across_flats'] / math.cos(math.pi / 6)),
+             'insulator': (hex_top, hex_top + p['plug_insulator_height'], p['plug_insulator_diameter']),
+             'tip': (-p['plug_tip_projection'], 0, p['plug_tip_diameter'])}
+    return {name: (o + d * a, o + d * b, dia / 2) for name, (a, b, dia) in spans.items()}
+
+
 def valve_length(p, side):
     return p[f'{side}_valve_length_993'] + p['valve_length_delta']
 
@@ -168,6 +182,18 @@ def cylinders(p):
         o, d = plug_opening(p, k)
         s_top = max((top + 5 - o[2]) / max(d[2], 0.2), 1.0)
         cyl[f'plug_{k}'] = (o - d * 1.0, o + d * s_top, p['spark_plug_bore_diameter'] / 2)
+        if 'plug_thread_reach' in p:
+            dimensions = [v for name, v in p.items() if name.startswith('plug_') and
+                          name.split('_')[1] in ('thread', 'hex', 'seal', 'insulator', 'tip', 'socket')]
+            if any(not math.isfinite(v) or v <= 0 for v in dimensions):
+                raise ValueError('spark plug envelope dimensions must be finite and positive')
+            if p['plug_thread_reach'] >= s_top or p['plug_seal_diameter'] <= p['spark_plug_bore_diameter']:
+                raise ValueError('spark plug seat must lie within the well and surround its thread')
+            if p['plug_socket_diameter'] <= max(p['plug_seal_diameter'], p['plug_insulator_diameter'],
+                                                p['plug_hex_across_flats'] / math.cos(math.pi / 6)):
+                raise ValueError('spark plug socket must clear the seal, hex corners and insulator')
+            cyl[f'plug_{k}_socket'] = (o + d * p['plug_thread_reach'], o + d * s_top,
+                                      p['plug_socket_diameter'] / 2)
     if int(p.get('port_bezier_segments', 0)) > 0:
         import features  # G2 seulement : G1 garde ses conduits droits et ses preuves
         cyl = features.feature_cylinders(p, cyl)

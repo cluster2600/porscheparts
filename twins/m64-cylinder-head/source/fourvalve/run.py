@@ -87,7 +87,7 @@ def run(out_dir, cad=True, external_dir=None, space=None, extra_params=None, fix
     (out / 'iteration-history.json').write_text(json.dumps({
         'seed': space['seed'], 'budget': space['budget'], 'plug_mode': space['plug_mode'],
         'trials': search.history, 'front': it.pareto_front(search.history)}, ensure_ascii=False, separators=(',', ':')) + '\n')
-    accepted = final_summary['accepted']
+    accepted = final_summary['accepted'] and (cad or 'compression_ratio_min' not in p)
     cad_result = None
     if cad:
         import assembly
@@ -98,17 +98,19 @@ def run(out_dir, cad=True, external_dir=None, space=None, extra_params=None, fix
             cr = cad_result['compression']['compression_ratio']
             band = [p['compression_ratio_min'], p['compression_ratio_max']]
             raw_cc = chk.chamber_volume_mm3(p) / 1000
+            measured_cc = cad_result['compression']['clearance_volume_cc']
             cad_result['compression'].update(
-                band=band, in_band=bool(band[0] <= cr <= band[1]),
+                band=band, in_band=bool(cr is not None and np.isfinite(cr) and band[0] <= cr <= band[1]),
                 proxy_compression_ratio=round(chk.compression_ratio(p), 3),
                 proxy_clearance_volume_cc=round(raw_cc, 2),
                 proxy_calibrated_compression_ratio=round(chk.calibrated_compression_ratio(p), 3),
                 proxy_calibrated_clearance_volume_cc=round(chk.calibrated_chamber_volume_mm3(p) / 1000, 2),
                 assumed_calibration=p['chamber_proxy_calibration'],
-                observed_calibration=round(cad_result['compression']['clearance_volume_cc'] / raw_cc, 4),
+                observed_calibration=round(measured_cc / raw_cc, 4) if measured_cc is not None else None,
                 proxy_note='proxy numpy sans CAO : toit, poches et bol ; il ignore logements de sièges, gorges et '
-                           'conduits. observed_calibration est le facteur mesuré sur cette configuration : un écart '
-                           'à assumed_calibration signale que la calibration a dérivé hors de son voisinage.')
+                           'conduits. La calibration historique G2 provient d\'une mesure non fermée ; elle '
+                           'reste un classement heuristique, sans valeur de validation. Un volume BRep '
+                           'non fermé ne fournit ni taux ni calibration observée.')
             brep_ok = brep_ok and cad_result['compression']['in_band']
         accepted = accepted and brep_ok
     inputs = sorted(Path(HERE / 'params').glob('*.json')) + [Path(e).resolve() for e in extra_params or []]

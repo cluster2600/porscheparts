@@ -43,9 +43,9 @@ def head(p):
     body = body.cut(_cyl([x1 - 15, 0, p['exhaust_port_z']], [x1 + 5, 0, p['exhaust_port_z']], p['exhaust_flange_port_diameter'] / 2))
     body = body.cut(_cyl([x0 + 15, 0, p['intake_port_z']], [x0 - 5, 0, p['intake_port_z']], p['intake_throat_diameter'] / 2))
     del ex
-    for k in PLUGS:
-        a, b, r = cyl[f'plug_{k}']
-        body = body.cut(_cyl(a, b, r))
+    for name, (a, b, r) in cyl.items():
+        if name.startswith('plug_'):
+            body = body.cut(_cyl(a, b, r))
     for name, (a, b, r) in cyl.items():
         if name.startswith('stud_'):
             body = body.cut(_cyl(a, b, r))

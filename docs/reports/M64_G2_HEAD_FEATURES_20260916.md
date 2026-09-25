@@ -1,5 +1,11 @@
 # M64 G2 — conduits, refroidissement, galerie et taux de compression
 
+> **Rectification du 24 septembre :** le taux BRep de 5,51 et les calibrations de cette étude
+> comptaient des cavités séparées et une chambre non fermée. Ils ne permettent pas de conclure
+> que la cible 8–9 est inaccessible. Voir l'[audit reproductible](M64_G2_COMPRESSION_AUDIT_20260924.md).
+> Les résultats géométriques ci-dessous restent historiques ; les fichiers de preuve du 16 septembre
+> sont conservés sans modification.
+
 **Statut : jumeau de conception, non revu. Fabrication et démarrage moteur non autorisés.**
 Aucune cote de cette page n'est mesurée sur une culasse M64 : les formes ajoutées ici sont des
 hypothèses de conception, déclarées `unsourced` dans `params-g2/head_features.json`.
