@@ -77,6 +77,12 @@ relationships for each component.
 
 ### Physical prototypes — suspended
 
+> **One exception, 2026-09-25:** a fit-test kit for the switch blank is published
+> as the repository's first printable file — see
+> [decision 0009](docs/decisions/0009-first-fit-test-print-switch-blank.md) and
+> [`parts/993-int-switch-blank-0001/print/`](parts/993-int-switch-blank-0001/print/README.md).
+> Every other part stays unprinted.
+
 Three non-critical parts selected, records created at status `concept`:
 
 | Category | Part | Record |
