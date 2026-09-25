@@ -99,6 +99,10 @@ Le rapport F46 et son contrat ne sont pas modifiés ; la PR reste en brouillon.
 
 ## Suite
 
+Suite exécutée le 25 septembre : [portées concordantes et test de fuite par conduit](M64_G3_SEAT_CONTACT_20260925.md).
+Cette reprise corrige aussi la troncature latérale de la sonde ; les chiffres ci-dessus restent
+ceux de la preuve historique du 24 septembre, non réécrite.
+
 Reprendre le profil de chambre pour la plage de compression choisie, sans toucher arbitrairement
 à l'extérieur, et remplacer les sièges/soupapes simplifiés par des portées cohérentes. Ensuite seulement,
 recaler le proxy sur plusieurs géométries fermées et préparer les maillages thermiques/conjugués.

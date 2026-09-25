@@ -266,7 +266,8 @@ class SparkPlugEnvelopeTests(unittest.TestCase):
             self.assertFalse(row['artificial_boundaries_reached'])
             self.assertFalse(row['radial_crevice_included'])
         self.assertAlmostEqual(values[0]['clearance_volume_cc'], values[1]['clearance_volume_cc'], places=6)
-        self.assertAlmostEqual(values[0]['compression_ratio'], 7.35744, places=4)
+        # La boîte extérieure inclut désormais les petites cavités débordant de l'alésage.
+        self.assertAlmostEqual(values[0]['compression_ratio'], 7.356946, places=4)
         real_plug = comp.spark_plug
         def missing_second(p, k):
             s = real_plug(p, k)

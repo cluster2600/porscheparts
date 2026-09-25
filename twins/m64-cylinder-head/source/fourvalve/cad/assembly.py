@@ -87,7 +87,8 @@ def chamber_volume(probe, occupied, seed, z0, z1):
 
     La différence booléenne évite de compter deux fois les intersections siège/soupape.
     Un vide atteignant une limite axiale artificielle ne définit pas un volume mort fermé.
-    Les parois radiales de la sonde représentent l'alésage ; elles ne sont pas des fuites.
+    Le demandeur borne l'alésage dans la chemise et doit inclure l'extérieur au-dessus,
+    pour ne pas transformer une sortie latérale de conduit en paroi artificielle.
     """
     # Les sièges et soupapes se recouvrent dans ce modèle simplifié ; construire d'abord
     # l'union évite les faces coïncidentes invalides d'une différence multi-outils.
@@ -131,7 +132,9 @@ def compression_ratio(p, top_margin=2.0):
 
     Les pièces présentes doivent fermer la chambre (y compris les bougies). Le jeu radial
     piston/chemise sous la calotte est exclu : position des segments et volume de crevasse inconnus.
-    Toute ouverture vers les limites axiales de la sonde bloque le taux, sans bouchon inventé.
+    Au-dessus de la chemise, la sonde englobe aussi les sorties de conduits : un cylindre
+    limité à l'alésage fermerait artificiellement un conduit ouvert sur sa frontière latérale.
+    ``top_margin`` agrandit aussi la boîte extérieure latéralement.
     """
     R = p['bore_diameter'] / 2
     crown = float(kin.piston_crown_z(p, np.array([0.0]))[0])
@@ -141,10 +144,18 @@ def compression_ratio(p, top_margin=2.0):
     # Englober la culasse entière, pas seulement son toit nominal : les logements de
     # sièges débordent au-dessus du toit et ne doivent pas être tronqués par la sonde.
     z1 = max(p['roof_ridge_height'], p['carrier_face_height']) + top_margin
-    # Même rayon que le piston sous la calotte : on exclut la crevasse non définie.
-    probe = cq.Solid.makeCylinder(R, z1 - crown, cq.Vector(0, 0, crown)).fuse(
+    head = comp.head(p)
+    box = head.BoundingBox()
+    shoulder = p['register_depth']
+    if crown >= shoulder:
+        raise ValueError('compression probe requires positive deck clearance below the liner top')
+    # L'alésage ne borne le gaz que dans la chemise. Au-dessus, une boîte dépassant la
+    # culasse relie toute fuite par les brides à l'extérieur et à la borne supérieure.
+    probe = cq.Solid.makeBox(box.xlen + 2 * top_margin, box.ylen + 2 * top_margin, z1 - shoulder,
+                            cq.Vector(box.xmin - top_margin, box.ymin - top_margin, shoulder)).fuse(
+        cq.Solid.makeCylinder(R, shoulder - crown, cq.Vector(0, 0, crown)),
         cq.Solid.makeCylinder(R - 0.2, crown - z0, cq.Vector(0, 0, z0))).clean()
-    solids = [comp.head(p), comp.piston(p, 0.0)]
+    solids = [head, comp.piston(p, 0.0)]
     for side, sy in (('intake', 1), ('intake', -1), ('exhaust', 1), ('exhaust', -1)):
         solids += [comp.valve(p, side, sy, 0.0), comp.seat_insert(p, side, sy)]
     if 'plug_thread_reach' in p:
@@ -158,7 +169,8 @@ def compression_ratio(p, top_margin=2.0):
                 probe_top_z_mm=z1,
                 spark_plug_model='solid_packaging_envelope_no_thread_or_nose_crevices'
                 if 'plug_thread_reach' in p else 'absent',
-                method='connected_brep_void_with_axial_closure_check')
+                valve_seat_model='concordant_ideal_faces' if 'seat_face_angle' in p else 'legacy_overlapping_solids',
+                method='connected_brep_void_with_full_head_exterior_check')
 
 
 def export_all(p, out_dir, final_checks, phi_deg=0.0, external_dir=None):
