@@ -6,13 +6,16 @@
 
 **`993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001`** · Porsche 993 · 1995–1998
 
-![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
+![status: concept, display mock-up printable](https://img.shields.io/badge/status-concept,%20display%20mock--up%20printable-orange) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
+> [!WARNING]
+> **A 1:1 display mock-up is printable — never for use.** [`print/`](print/README.md): the design, unchanged except for MOCK-UP / NOT FOR USE engraved in it, sliced in 1h 45m 17s (9.95 cm³). The part itself stays prohibited ([decision 0011](../../docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
+
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** The model shown here is a
-> concept block for studying the part in software:
+> **Prohibited, not validated, and not a copy of the original.** The mock-up is a display piece; the model shown here is a
+> design whose fit has not been checked against the car:
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
@@ -28,9 +31,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://www.kinugawaturbo.com/products/kinugawa-turbo-turbine-wheel-for-posche-911-996-kkk-k16-49mm-55-mm-12-blades">Kinugawa - replacement K16 wheel</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for K16 turbine wheel, IN718 F0 concept" width="340"><br>
-<sub>Concept CAD block, 55.0 × 55.0 × 20.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<b>What you can print: a display mock-up</b><br><br>
+<a href="print/README.md"><img src="print/mockup.png" alt="Engraved display mock-up of K16 turbine wheel, IN718 F0 concept" width="360"></a><br>
+<sub>1:1 display mock-up with MOCK-UP / NOT FOR USE engraved in it. <b>Never</b> for an engine; not the original part.</sub>
 </td>
 </tr></table>
 
@@ -97,6 +100,10 @@ flowchart LR
 
 *`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
+![mockup](print/mockup.png)
+
+*`print/mockup.png` — a screening output, not a validation.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
@@ -104,6 +111,7 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/turbine_wheel_in718_f0.step`](derived/turbine_wheel_in718_f0.step), [`derived/turbine_wheel_in718_f0.stl`](derived/turbine_wheel_in718_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/k16_turbine_wheel_mockup.stl`](print/k16_turbine_wheel_mockup.stl), [`print/mockup.png`](print/mockup.png), [`print/print.json`](print/print.json) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/turbine_wheel.py`](source/turbine_wheel.py) |
 
 ## Read more
