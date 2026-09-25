@@ -1,0 +1,47 @@
+{
+  "classification": "candidate_design_and_sensitivity_inputs_not_Porsche_dimensions_or_allowables",
+  "geometry_assumptions_mm": {
+    "carrier_wall_thickness": 20.0,
+    "carrier_end_y": 55.0,
+    "carrier_foot_height": 10.0,
+    "carrier_centre_window_halfwidth": 32.0,
+    "carrier_journal_radial_clearance": 0.04,
+    "carrier_oil_radius": 2.0,
+    "carrier_return_radius": 4.0,
+    "carrier_mount_x": 25.0,
+    "carrier_mount_depth": 12.0
+  },
+  "geometry_notes": [
+    "Plain split cam housings and unsplit rocker-shaft bores; no selected bearing alloy or fit.",
+    "M6-like base and M5-like cap bolt envelopes, blind pilot bores; no manufactured threads or torque specification.",
+    "Four external oil-feed drillings with branches to the journals; pump, restrictors and oil-film performance unknown.",
+    "Two oblique returns join the existing head gallery; no sealed rocker cover, gasket, hose or oil cooler selected.",
+    "Head mounting bores and returns are new design features; engine interfaces remain unverified."
+  ],
+  "load_sensitivity": {
+    "target_mechanical_hp": 700.0,
+    "cylinders": 6,
+    "rpm": [6000, 7000, 8000],
+    "brake_efficiency": [0.28, 0.34, 0.4],
+    "fuel_heat_fraction_to_heads": [0.08, 0.12, 0.16],
+    "effective_valve_mass_kg": [0.09, 0.13, 0.18],
+    "spring_force_factor": [0.8, 1.0],
+    "adverse_opening_gas_force_N": [0, 200],
+    "shaft_axis_deflection_screen_mm": 0.04,
+    "note": "Independent hypothetical cases, not a measured duty cycle, hot spring law or combustion solution."
+  },
+  "thermal_sensitivity": {
+    "head_temperature_limit_C": 250,
+    "air_inlet_C": 40,
+    "oil_inlet_C": 110,
+    "air_h_W_m2K": [80, 160, 300],
+    "constant_k_hypotheses_W_mK": [100, 150, 187],
+    "oil_h_hypothesis_W_m2K": 1000,
+    "oil_density_hypothesis_kg_m3": 850,
+    "oil_cp_hypothesis_J_kgK": 2000,
+    "oil_dynamic_viscosity_hypothesis_Pa_s": 0.012,
+    "oil_flow_per_head_L_min": [0.5, 1.0, 2.0],
+    "oil_rise_limit_K": 30,
+    "note": "250 C is a screening ceiling, not an allowable. h, oil data and constant k are assumed. No published k(T) is assigned."
+  }
+}
