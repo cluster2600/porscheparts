@@ -3,6 +3,40 @@
 Niveau atteint : **`F1_envelope`** (ADR 0003). Enveloppe a l'echelle et repere
 documente. Ni `F2_interface`, ni geometrie de piece liberable.
 
+## Reprise d'execution et acces aux cotes — 2026-09-25
+
+Docker est joignable sur le Mac (29.8.0) et Kali (28.5.2+dfsg4, amd64).
+Le controle Docker `make 917-manufacturing-f37-lpbf-audit-check` repasse :
+15 tests OK. Ce controle appartient au programme moteur 917 ; il ne valide
+ni une coque composite ni son procede de fabrication.
+
+Le controle global reste non vert. `make 917-f46-vast-controller-check`
+reproduit un ecart de rapport de preparation : **seul** l'artefact
+`deploy/openbao/openbao-vastai` differe entre le rapport historique et une
+generation hors ligne actuelle. Son empreinte est passee de
+`a0f22c4d1d729681dc45b1d1642fd9cf05fefcbc9fb4128bde108f62846836d3`
+(280 757 octets) a
+`42fe39ebcf7fc81e8f6c4a85e38fa9da03fd4637bb93a37b3a422c315e8a5aa4`
+(311 414 octets). Le rapport courant a ete genere dans `work/`, sans appel
+Vast/GHCR ni depense. La preuve historique, le connecteur et le comparateur
+restent inchanges ; aucune nouvelle attestation de ce connecteur n'est approuvee
+par cette investigation. Aucun lancement cloud n'en decoule.
+
+La piste [Rennlist 993](../../catalog/sources/src-rennlist-993-body-dimensions-pdf.json)
+a ete precisee : le fil est lisible, mais sa piece jointe
+`Porsche 993 body dimensions small.pdf` exige une connexion. Le contenu n'est
+toujours pas obtenu et sa couverture des ancrages n'est pas verifiee. L'apercu
+public [CarGeometry 964](https://cargeometry.org/porsche/105-porsche-911-carrera-964-1989-1994-body-dimensions.html)
+ne fournit pas de nouvelle cote utilisable ici ; aucune archive payante achetee.
+
+**Prochaine entree bloquante :** un releve de caisse reference ou une planche
+lisible de points de controle, a examiner avant toute CAO d'interface. Il faut
+aussi confirmer C2/C4, millesime et modifications du vehicule scanne, puis obtenir
+le releve habitacle/tunnel decrit dans le [plan de mesure](interface-measurement-plan.md).
+Un document 993 ne valide pas les interfaces 964. La coque, ses moules, son
+drapage et l'aptitude route/circuit ne sont pas prets ; aucun de ces etats ne peut
+etre deduit du bon fonctionnement de Docker.
+
 ## Reprise monocoque — 2026-09-25
 
 Le contrat [monocoque-interface.json](derived/monocoque-interface.json) reprend
