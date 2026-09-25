@@ -6,16 +6,36 @@
 
 **`993-TURBOCHARGER-K16-PAIR-0001`** · Porsche 993 · 1995–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of Pair of K16 turbochargers of the 993 Turbo" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 280.0 × 890.0 × 210.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://newsroom.porsche.com/christophorus/fr/2020/394/turbo-engines.html">Porsche Christophorus - Technical data of the 911 Turbo (993)</a><br>
+↗ <a href="https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf">BorgWarner - Performance Turbocharger Catalog</a><br>
+↗ <a href="https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094">FVD Brombacher - envelope and mass of the 993 K16s</a><br>
+↗ <a href="https://www.invasionautoproducts.com/94pocark16tu.html">Invasion Auto Products - internal catalog data of the right-hand K16</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for Pair of K16 turbochargers of the 993 Turbo" width="340"><br>
+<sub>Concept CAD block, 280.0 × 890.0 × 210.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +52,7 @@ Research, identification, simulation and dimensional reconstruction under engine
 | Porsche part numbers | 993 123 013 51, 993 123 013 52, 993 123 014 51, 993 123 014 52 |
 | variants | `993_Turbo` |
 | candidate material | undetermined |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -69,7 +89,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -77,7 +97,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/k16_pair_concept_f0.step`](derived/k16_pair_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 
 ## Read more
 

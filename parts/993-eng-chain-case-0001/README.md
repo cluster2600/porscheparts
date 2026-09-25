@@ -6,16 +6,33 @@
 
 **`993-ENG-CHAIN-CASE-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of 993 timing chain case and its lids" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 180.0 × 120.0 × 60.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://porschefanatics.com/oem/993/103-05/">993 factory catalogue, plate 103-05 Chain case</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 timing chain case and its lids" width="340"><br>
+<sub>Concept CAD block, 180.0 × 120.0 × 60.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +49,7 @@ Documentary investigation and process comparison; no manufacturing, no fitting, 
 | Porsche part numbers | 993 105 093 05, 964 105 094 04, 993 105 022 01, 964 105 107 01, 964 105 108 01, 993 107 087 51, 993 107 088 52, 993 107 088 00 |
 | variants | `993_all_models_to_confirm_by_variant` |
 | candidate material | unidentified |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -69,7 +86,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -77,7 +94,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/chain_case_concept_f0.step`](derived/chain_case_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 
 ## Read more
 

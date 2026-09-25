@@ -6,16 +6,34 @@
 
 **`993-ENG-EXHAUST-VALVE-F1-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: CNC](https://img.shields.io/badge/process-CNC-blue)
-
-<img src="media/preview.png" alt="CAD view of 993 exhaust valves - F1 proxies" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 43.5 × 43.5 × 109.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: CNC](https://img.shields.io/badge/candidate%20process-CNC-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://partworks.de/Porsche/993-Ersatzteile_s2">partworks - Stated dimensions of 993 exhaust valves</a><br>
+↗ <a href="https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf">Special Metals - INCONEL alloy 751</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 exhaust valves - F1 proxies" width="340"><br>
+<sub>Concept CAD block, 43.5 × 43.5 × 109.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +50,7 @@ Preliminary thermal and dynamic simulation, comparative mass and packaging check
 | Porsche part numbers | 99310541901, 99310541984, 99310541952, 99310541953 |
 | variants | `993_Carrera`, `993_Turbo` |
 | candidate material | INCONEL 751 / UNS N07751 candidate |
-| preferred process | CNC |
+| candidate process | CNC |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -69,14 +87,14 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-carrera-exhaust-42_5-f1.step`](derived/993-carrera-exhaust-42_5-f1.step), [`derived/993-turbo-exhaust-43_5-f1.step`](derived/993-turbo-exhaust-43_5-f1.step) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 
 ## Read more
 
