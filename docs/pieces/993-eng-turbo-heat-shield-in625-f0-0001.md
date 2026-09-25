@@ -79,6 +79,14 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 
 *parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-heat-shield-in625-f0-0001-lpbf-geometry-screen.png*
 
+![preview](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png)
+
+*parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png*
+
+![views](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/views.png)
+
+*parts/993-eng-turbo-heat-shield-in625-f0-0001/media/views.png*
+
 ## Provenance and sources
 
 | field | value |

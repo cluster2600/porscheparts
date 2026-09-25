@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -205,7 +205,8 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
-	part-pages-check reports-index-check docs-links-check help-check
+	part-pages-check reports-index-check docs-links-check part-previews-check \
+	help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1342,6 +1343,18 @@ reports-index-check:
 #> check | Check relative links and #anchors in Markdown
 docs-links-check:
 	python3 scripts/check_doc_links.py --strict
+
+#> catalogue | Render each part's product views from its CAD, one part at a time, memory-capped
+part-previews:
+	for id in $$(python3 scripts/render_part_previews.py --write --list 2>/dev/null || docker run --rm --user $$(id -u):$$(id -g) -e HOME=/tmp -v $(CURDIR):/repo:ro -w /repo 3dprinting993-cadsim:dev python3 scripts/render_part_previews.py --write --list); do \
+	  docker run --rm --memory=6g --memory-swap=6g --cpus=4 --user $$(id -u):$$(id -g) -e HOME=/tmp \
+	    -v $(CURDIR):/repo -w /repo 3dprinting993-cadsim:dev \
+	    python3 scripts/render_part_previews.py --write --only $$id || exit 1; \
+	done
+
+#> catalogue | Check that every part's product views match its current CAD
+part-previews-check:
+	python3 scripts/render_part_previews.py --check
 
 #> catalogue | Rewrite the README parts table
 parts-table:

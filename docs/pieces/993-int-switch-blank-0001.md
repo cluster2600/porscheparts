@@ -73,6 +73,16 @@ Catalogue record: [`catalog/parts/993-int-switch-blank-0001.json`](../../catalog
 
 - [`parts/993-int-switch-blank-0001/derived/switch_blank_concept_f0.step`](../../parts/993-int-switch-blank-0001/derived/switch_blank_concept_f0.step)
 
+## Images
+
+![preview](../../parts/993-int-switch-blank-0001/media/preview.png)
+
+*parts/993-int-switch-blank-0001/media/preview.png*
+
+![views](../../parts/993-int-switch-blank-0001/media/views.png)
+
+*parts/993-int-switch-blank-0001/media/views.png*
+
 ## Provenance and sources
 
 | field | value |
