@@ -233,6 +233,7 @@ DOSSIERS_ROLE = {
     "source": "parametric source — the editable master that generates the geometry",
     "derived": "CAD exports generated from the source (STEP for CAD tools, STL for meshing)",
     "evidence": "screens, reports and manifests — **pinned by SHA-256, never edited by hand**",
+    "print": "**ready-to-print fit-test kit** (decision 0009): 3MF project, STL, STEP and instructions",
     "media": "concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original",
 }
 
@@ -289,12 +290,15 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     infos = dossier / "media" / "preview.json"
     boite = json.loads(infos.read_text(encoding="utf-8")).get("bounding_box_mm") if infos.exists() else None
 
+    kit_json = dossier / "print" / "kit.json"
+    kit = json.loads(kit_json.read_text(encoding="utf-8")) if kit_json.exists() else None
     couleur = {"prohibited_pending_engineering": "critical", "safety_critical": "orange",
                "functional": "yellow", "non_critical": "informational"}.get(classe, "lightgrey")
     out = [ENTETE, "", '<div align="center">', "", f"# {nom(fiche)}", "",
            f"**`{part_id}`** · Porsche {vehicule.get('generation', '?')}"
            + (f" · {annees.get('from')}–{annees.get('to')}" if annees else ""), "",
-           " ".join([badge("status", f"{niveau}, not a print file", "critical"),
+           " ".join([badge("status", f"{niveau}, fit-test kit ready" if kit else f"{niveau}, not a print file",
+                           "success" if kit else "critical"),
                      badge("safety", STATUTS.get(classe, classe).strip("*"), couleur),
                      badge("candidate process", PROCEDES.get(procede, procede), "lightgrey")]), "",
            "</div>", ""]
@@ -310,8 +314,18 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                           else "partly sourced, partly assumed")
                        + ", not measured on the original part")
     raisons.append(f"safety class `{classe}`")
+    if kit:
+        tailles = ", ".join(f"{v['insert_mm'][0]} × {v['insert_mm'][1]}" for v in kit["variants"])
+        out += ["> [!TIP]",
+                "> **A fit-test kit is ready to print** — [`print/`](print/README.md): "
+                f"{len(kit['variants'])} sizes on one plate ({tailles} mm), a PrusaSlicer project and "
+                "instructions. It is a measurement instrument, not the finished part "
+                f"([decision 0009]({lien(ROOT / 'docs' / 'decisions' / '0009-first-fit-test-print-switch-blank.md', page)})).",
+                ""]
     out += ["> [!CAUTION]",
-            "> **Not ready to print, and not a copy of the original part.** The model shown here is a",
+            ("> **The part itself is not validated, and not a copy of the original.** The model shown "
+             "here is a" if kit else
+             "> **Not ready to print, and not a copy of the original part.** The model shown here is a"),
             "> concept block for studying the part in software:",
             *[f"> - {r};" for r in raisons],
             f"> - no part in this repository is released — read [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).",
@@ -327,8 +341,17 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
         gauche += [f'↗ <a href="{s["url"]}">{s.get("title", s["url"])}</a><br>' for s in originaux[:4]]
     else:
         gauche.append("<i>No public picture of the original part is recorded yet.</i>")
-    droite = ["<b>This repository's concept model</b><br><br>"]
-    if apercu.exists():
+    plaque = dossier / "print" / "plate.png"
+    if kit and plaque.exists():
+        droite = ["<b>What you can print today</b><br><br>",
+                  f'<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit, three sizes" width="360"></a><br>',
+                  "<sub>The fit-test kit: three sizes that bracket the declared opening. A measurement "
+                  "instrument — <b>not</b> the finished part, not a copy of the original.</sub>"]
+    else:
+        droite = ["<b>This repository's concept model</b><br><br>"]
+    if kit and plaque.exists():
+        pass
+    elif apercu.exists():
         taille = f"{boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
         droite += [f'<img src="media/preview.png" alt="Concept CAD block for {nom(fiche)}" width="340"><br>',
                    f"<sub>Concept CAD block{', ' + taille if taille else ''} — <b>not</b> the original "

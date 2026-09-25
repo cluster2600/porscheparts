@@ -83,6 +83,10 @@ Catalogue record: [`catalog/parts/993-int-switch-blank-0001.json`](../../catalog
 
 *`parts/993-int-switch-blank-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![plate](../../parts/993-int-switch-blank-0001/print/plate.png)
+
+*`parts/993-int-switch-blank-0001/print/plate.png` — a screening output, not a validation.*
+
 ## Provenance and sources
 
 | field | value |

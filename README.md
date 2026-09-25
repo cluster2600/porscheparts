@@ -31,9 +31,15 @@ anyone can rerun — and **withdrawn when it no longer holds**. The repository h
 withdrawn several, listed [further down this page](#what-the-repository-withdrew-from-its-own-results).
 
 > [!IMPORTANT]
-> **The active phase manufactures nothing.** No part is declared printable or
-> validated. All 34 part records are at status `concept`, 18 of them
-> `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
+> **No part is validated.** All 34 part records are at status `concept`, 18 of
+> them `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
+
+> [!TIP]
+> **One thing is printable today:** a [fit-test kit for the dashboard switch
+> blank](parts/993-int-switch-blank-0001/print/README.md) — three sizes on one
+> plate, about an hour of PETG or ASA. It is a measurement instrument for a
+> non-critical trim part, not a finished part
+> ([decision 0009](docs/decisions/0009-first-fit-test-print-switch-blank.md)).
 
 > [!NOTE]
 > The project was written in French. Its documentation is now in English; code
@@ -78,6 +84,7 @@ flowchart LR
 
 | I want to… | go to |
 |---|---|
+| print something today | [the switch blank fit-test kit](parts/993-int-switch-blank-0001/print/README.md) |
 | see which 993 parts exist and their status | [the parts table](#2-993-parts-for-additive-manufacturing) → one page per part in [`docs/pieces/`](docs/pieces/) |
 | understand the 964 structural model and its results | [section 1](#1-structural-analysis-of-the-964-body-shell) → [`twins/964-chassis/fea/`](twins/964-chassis/fea/) |
 | know what may and may not be built | [SAFETY.md](SAFETY.md) · [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md) |
@@ -396,7 +403,8 @@ left a trace in an error output.
 
 - **No absolute stiffness value is a 964 stiffness.** The model's sections are
   `ASSUMED` and the mesh is not converged; only ratios and rankings are usable.
-- **No part is declared printable or validated.** All 34 records are at status
+- **No part is validated.** The one printable file is a fit-test kit, not a
+  part (decision 0009). All 34 records are at status
   `concept`, 18 of them `prohibited_pending_engineering`. No twin reaches the
   `F2_interface` level.
 - **No physical measurement is recorded yet.** The three records in
@@ -480,7 +488,7 @@ containers/ deploy/ reproducible compute images and deployment
 |---|---|
 | 0 — foundation | ✅ done |
 | 1 — source inventory | 🟡 past its quantitative threshold; cross-qualification and direct measurements still open |
-| 2 — physical inventory and twin assembly | 🟡 run in digital mode; physical prototypes deliberately suspended |
+| 2 — physical inventory and twin assembly | 🟡 run in digital mode; physical prototypes suspended, except one fit-test kit (decision 0009) |
 | 3 — titanium engineering twin, no manufacturing | ⬜ open: candidate `993-ENG-CARRIER-0001` under study |
 | 4 — public catalog | ⬜ open: only parts that clear their quality gates will be published |
 
