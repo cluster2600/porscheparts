@@ -2,14 +2,14 @@
 
 # Execution and audit reports
 
-93 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+95 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 1]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 3]
 ```
 
 ## September 25, 2026
@@ -17,6 +17,8 @@ xychart-beta
 | report | file |
 |---|---|
 | M64 G3 — concordant seats and detection of lateral leaks | [`M64_G3_SEAT_CONTACT_20260925.md`](M64_G3_SEAT_CONTACT_20260925.md) |
+| M64 G4 — spring pockets and outlets corrected | [`M64_G4_SPRING_LAYOUT_20260925.md`](M64_G4_SPRING_LAYOUT_20260925.md) |
+| M64 G5 — articulated rockers and cams conjugate to their motion | [`M64_G5_ARTICULATED_ROCKERS_20260925.md`](M64_G5_ARTICULATED_ROCKERS_20260925.md) |
 
 ## September 24, 2026
 
