@@ -48,23 +48,23 @@ class TurboOilCircuitTests(unittest.TestCase):
 
     def test_the_feed_return_attribution_is_declared_unestablished(self) -> None:
         limits = " ".join(load(PART)["validation"]["known_limits"])
-        self.assertIn("attribution reste à faire", limits)
+        self.assertIn("attribution remains to be done", limits)
 
     def test_the_fire_failure_mode_is_the_stated_reason(self) -> None:
         doc = DOC.read_text(encoding="utf-8")
         self.assertIn("incendie", doc)
         # Le depot definit lui-meme safety_critical par l'incendie.
-        self.assertIn("incendie", SAFETY.read_text(encoding="utf-8"))
+        self.assertRegex(SAFETY.read_text(encoding="utf-8"), r"\bfire\b")
 
     def test_titanium_is_excluded_by_the_repository_own_grid(self) -> None:
         grid = GRID.read_text(encoding="utf-8")
-        self.assertIn("grippage", grid)
+        self.assertIn("galling", grid)
         limits = " ".join(load(PART)["validation"]["known_limits"])
-        self.assertIn("grippage", limits)
+        self.assertIn("galling", limits)
 
     def test_the_consolidation_case_is_recorded_not_denied(self) -> None:
         limits = " ".join(load(PART)["validation"]["known_limits"])
-        self.assertIn("onze pièces", limits)
+        self.assertIn("eleven fluid or retention parts", limits)
 
 
 if __name__ == "__main__":

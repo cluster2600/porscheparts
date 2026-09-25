@@ -1,13 +1,13 @@
-# Contribuer
+# Contributing
 
-## Avant de commencer
+## Before you start
 
-1. Ouvrir une issue « Nouvelle pièce ».
-2. Confirmer que la pièce n’existe pas déjà dans `catalog/parts/`.
-3. Décrire la provenance des données et la licence envisagée.
-4. Choisir la classe de sécurité la plus prudente.
+1. Open a "New part" issue.
+2. Confirm that the part does not already exist in `catalog/parts/`.
+3. Describe the provenance of the data and the intended license.
+4. Choose the most conservative safety class.
 
-## Ajouter une pièce
+## Adding a part
 
 ```bash
 cp catalog/templates/part-record.json catalog/parts/993-xxx-0001.json
@@ -15,24 +15,24 @@ mkdir -p parts/993-xxx-0001/{source,derived,evidence}
 make check
 ```
 
-Règles :
+Rules:
 
-- Le nom de dossier doit correspondre à `part_id` en minuscules.
-- Les sources modifiables vont dans `source/`.
-- Les exports STEP, 3MF ou STL vont dans `derived/`.
-- Les rapports, mesures et photographies autorisées vont dans `evidence/`.
-- Aucun fichier ne doit être présenté comme validé avant essai documenté.
-- Ne pas ajouter de gros binaire sans discussion préalable dans l’issue.
+- The directory name must match `part_id` in lowercase.
+- Editable sources go in `source/`.
+- STEP, 3MF or STL exports go in `derived/`.
+- Reports, measurements and authorized photographs go in `evidence/`.
+- No file may be presented as validated before a documented test.
+- Do not add a large binary without prior discussion in the issue.
 
 ## Pull request
 
-La PR doit indiquer :
+The PR must state:
 
-- ce qui est ajouté ou modifié ;
-- les sources et licences ;
-- la classe de sécurité ;
-- les validations réellement effectuées ;
-- les validations encore manquantes ;
-- le résultat de `make check`.
+- what is added or changed;
+- sources and licenses;
+- the safety class;
+- the validations actually performed;
+- the validations still missing;
+- the result of `make check`.
 
-Le maintien d’un statut prudent est préférable à une affirmation non vérifiée.
+Keeping a conservative status is better than an unverified claim.

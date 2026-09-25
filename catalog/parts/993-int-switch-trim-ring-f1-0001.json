@@ -2,11 +2,11 @@
   "schema_version": "1.0.0",
   "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
   "name": "Bague aluminium de finition de commutateur, reconstruction F1",
-  "description": "Bague de finition de commutateur, reconstruction F1. Le pilote a servi à valider la chaîne CAO, le criblage LPBF et la confrontation à une route réelle ; cette dernière a conclu que la pièce doit être tournée dans une nuance 6xxx et non frittée. Ce n'est ni une géométrie OEM ni une pièce autorisée au montage.",
+  "description": "Switch trim ring, F1 reconstruction. The pilot served to validate the CAD chain, the LPBF screening and the confrontation with a real route; the latter concluded that the part must be turned in a 6xxx grade and not sintered. It is neither an OEM geometry nor a part authorized for fitting.",
   "vehicle": {
     "generation": "993",
     "variants": [
-      "993_tous_modeles_selon_fournisseur_a_confirmer"
+      "993_all_models_per_supplier_to_confirm"
     ],
     "model_years": {
       "from": 1994,
@@ -17,7 +17,7 @@
   "classification": {
     "category": "interior_trim",
     "safety_class": "non_critical",
-    "intended_use": "Pilote de reconstruction et de comparaison LPBF/CNC, sans montage véhicule à ce stade"
+    "intended_use": "Reconstruction and LPBF/CNC comparison pilot, with no vehicle fitting at this stage"
   },
   "geometry": {
     "source_type": "estimated",
@@ -31,15 +31,15 @@
     ]
   },
   "provenance": {
-    "record_license": "MIT pour le script et la fiche ; aucun média ou modèle tiers redistribué",
+    "record_license": "MIT for the script and the record; no third-party media or model redistributed",
     "sources": [
       {
-        "title": "Oldtimer-Ersatzteile24 - Bague de finition de commutateur 911/964/993",
+        "title": "Oldtimer-Ersatzteile24 - Switch trim ring 911/964/993",
         "url": "https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101",
         "source_type": "community",
         "license": "commercial-product-page-site-terms-reference-only",
         "accessed_on": "2026-08-30",
-        "notes": "Dimensions déclarées : diamètre extérieur 30,5 mm, profondeur 10,5 mm, diamètre intérieur avant 23 mm et arrière 28 mm. Matière déclarée : aluminium. Aucun plan, datum, tolérance ou contrôle indépendant. Voir SRC-OLDTIMER-ERSATZTEILE24-993-SWITCH-RING-DIMENSIONS."
+        "notes": "Stated dimensions: outer diameter 30.5 mm, depth 10.5 mm, inner diameter 23 mm at the front and 28 mm at the rear. Stated material: aluminum. No drawing, datum, tolerance or independent check. See SRC-OLDTIMER-ERSATZTEILE24-993-SWITCH-RING-DIMENSIONS."
       },
       {
         "title": "EOS Aluminium AlSi10Mg material data sheet",
@@ -47,7 +47,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-04",
-        "notes": "AlSi10Mg sert uniquement d'alliage candidat pour le criblage LPBF ; rien ne prouve que le produit commercial emploie cet alliage. Voir SRC-EOS-ALSI10MG-MATERIAL-DATA."
+        "notes": "AlSi10Mg serves only as a candidate alloy for LPBF screening; nothing proves that the commercial product uses this alloy. See SRC-EOS-ALSI10MG-MATERIAL-DATA."
       }
     ]
   },
@@ -58,21 +58,21 @@
     ],
     "preferred_process": "CNC",
     "material": {
-      "family": "aluminium corroyé série 6000",
-      "grade": "EN AW-6063 T6 retenu pour l'anodisation brillante ; EN AW-6061 T6 en repli si le tourneur refuse",
-      "standard": "EN 755-2 pour la barre ; nuance d'origine toujours non identifiée"
+      "family": "6000-series wrought aluminum",
+      "grade": "EN AW-6063 T6 retained for bright anodizing; EN AW-6061 T6 as fallback if the turner refuses",
+      "standard": "EN 755-2 for the bar; original grade still unidentified"
     },
     "post_processing": [
-      "tournage de finition, Ra cible 0,8 µm sur les faces visibles",
-      "chanfreins ou rayons d'arête à décider puis à porter au modèle",
-      "anodisation sulfurique décorative incolore, croissance de couche à retrancher de la cote d'ajustement"
+      "finish turning, target Ra 0.8 µm on visible faces",
+      "edge chamfers or radii to be decided, then added to the model",
+      "clear decorative sulfuric anodizing, layer growth to be subtracted from the fit dimension"
     ],
     "supplier_requirements": [
-      "Certificat matière et état métallurgique de la barre",
-      "Tolérance réellement tenue sur le diamètre extérieur",
-      "Épaisseur d'anodisation obtenue et sa dispersion",
-      "Chiffrage du 6061 T6 en regard, avec ce que l'aspect y perd",
-      "Contrôle dimensionnel des quatre cotes et du profil axial"
+      "Material certificate and metallurgical temper of the bar",
+      "Tolerance actually held on the outer diameter",
+      "Anodizing thickness obtained and its scatter",
+      "Quote for 6061 T6 alongside, with what the appearance loses",
+      "Dimensional inspection of the four dimensions and the axial profile"
     ]
   },
   "titanium": {
@@ -82,7 +82,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Sans objet pour le candidat aluminium ; à réévaluer si la matière change."
+    "galvanic_isolation": "Not applicable for the aluminum candidate; to be reassessed if the material changes."
   },
   "validation": {
     "status": "concept",
@@ -95,12 +95,12 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Le profil intérieur conique continu est une hypothèse F1 à remplacer par une mesure.",
-      "Le maître porte des arêtes vives et aucune tolérance ; les deux restent à décider.",
-      "L'ouverture OEM et la condition de jeu ou serrage ne sont pas mesurées : le diamètre extérieur est repris d'une page de vente.",
-      "Le grade d'aluminium du produit original est inconnu ; le 6063 T6 est un choix du dépôt, pas une identification.",
-      "Le modèle STEP n'est ni dimensionnellement revu, ni ajusté, ni testé sur véhicule.",
-      "Le LPBF reste un candidat screené et documenté, mais il n'est plus le procédé préféré : voir docs/decisions/0005-alsi10mg-nest-pas-un-choix.md."
+      "The continuous conical inner profile is an F1 hypothesis to be replaced by a measurement.",
+      "The master carries sharp edges and no tolerance; both remain to be decided.",
+      "The OEM opening and the clearance or interference condition are not measured: the outer diameter is taken from a sales page.",
+      "The aluminum grade of the original product is unknown; 6063 T6 is a choice of the repository, not an identification.",
+      "The STEP model is neither dimensionally reviewed, nor fitted, nor tested on a vehicle.",
+      "LPBF remains a screened and documented candidate, but it is no longer the preferred process: see docs/decisions/0005-alsi10mg-nest-pas-un-choix.md."
     ]
   }
 }

@@ -1,53 +1,51 @@
-# ADR 0004 — Jumeau numérique fédéré par zones fonctionnelles
+# ADR 0004 — Digital twin federated by functional zones
 
-## Statut
+## Status
 
-Accepté le 29 août 2026.
+Accepted on August 29, 2026.
 
-## Contexte
+## Context
 
-Le projet doit tester numériquement les pièces dans leur environnement avant
-impression. Un maillage complet de voiture, même visuellement convaincant, ne
-donne ni les interfaces, ni les jeux, ni l'incertitude nécessaires à un contrôle
-de montage.
+The project must test parts numerically in their environment before printing. A
+complete mesh of the car, however visually convincing, provides neither the
+interfaces, nor the clearances, nor the uncertainty needed for a fit check.
 
-## Décision
+## Decision
 
-Le jumeau 993 sera une fédération de sous-jumeaux fonctionnels. Chaque zone
-contient la pièce candidate, la géométrie hôte, les pièces voisines utiles et
-des règles d'acceptation calculables.
+The 993 twin will be a federation of functional sub-twins. Each zone contains
+the candidate part, the host geometry, the relevant neighboring parts and
+computable acceptance rules.
 
-Les niveaux de fidélité sont cumulatifs :
+The fidelity levels are cumulative:
 
-| Niveau | Contenu | Usage autorisé |
+| Level | Content | Authorized use |
 |---|---|---|
-| `F0_reference` | forme visuelle, échelle ou provenance incomplète | orientation seulement |
-| `F1_envelope` | enveloppe à l'échelle et repère documenté | encombrement grossier |
-| `F2_interface` | interfaces mesurées, tolérances et incertitudes | montage, jeu, collision |
-| `F3_engineering` | matériaux, contacts, charges et conditions aux limites | FEA/CFD exploratoire |
-| `F4_correlated` | résultats corrélés à des mesures ou essais physiques | décision documentée dans le domaine validé |
+| `F0_reference` | visual shape, incomplete scale or provenance | orientation only |
+| `F1_envelope` | scaled envelope and documented reference frame | rough packaging |
+| `F2_interface` | measured interfaces, tolerances and uncertainties | fit, clearance, collision |
+| `F3_engineering` | materials, contacts, loads and boundary conditions | exploratory FEA/CFD |
+| `F4_correlated` | results correlated with physical measurements or tests | documented decision within the validated domain |
 
-Le repère véhicule global suit la convention du projet : origine sur le plan de
-symétrie, à la verticale du centre d'essieu avant sur le plan de sol nominal ;
-`X` vers l'avant, `Y` vers la gauche et `Z` vers le haut. Un sous-jumeau peut
-avoir un repère local, mais sa transformation vers le repère véhicule doit être
-documentée avant intégration au jumeau global.
+The global vehicle frame follows the project convention: origin on the plane of
+symmetry, vertically below the front axle center on the nominal ground plane;
+`X` forward, `Y` to the left and `Z` up. A sub-twin may have a local frame, but
+its transform to the vehicle frame must be documented before integration into
+the global twin.
 
-La géométrie dimensionnelle maîtresse reste en CAO solide ouverte et révisable :
-scripts build123d/CadQuery, FreeCAD et STEP. FreeCAD Assembly sert à la revue des
-contraintes et des mouvements. Une scène OpenUSD pourra fédérer les zones pour
-la navigation et les variantes ; elle n'est jamais la source des cotes.
+The master dimensional geometry stays in open, revisable solid CAD:
+build123d/CadQuery scripts, FreeCAD and STEP. FreeCAD Assembly is used to review
+constraints and motion. An OpenUSD scene may federate the zones for navigation
+and variants; it is never the source of dimensions.
 
-Chaque test utilise une marge au pire cas incluant les incertitudes de mesure.
-Un sous-jumeau ne peut atteindre `digitally_checked` si une interface requise est
-absente ou si la précision de sa géométrie est inconnue.
+Every test uses a worst-case margin that includes measurement uncertainties. A
+sub-twin cannot reach `digitally_checked` if a required interface is missing or
+if the accuracy of its geometry is unknown.
 
-## Conséquences
+## Consequences
 
-- La première cible est le logement de cache d'interrupteur du tableau de bord.
-- Le véhicule complet se construit progressivement à partir des zones utiles.
-- Un scan public sans échelle peut habiller la scène au niveau `F0`, jamais
-  qualifier une pièce.
-- Neural Concept reste une couche ultérieure de substitution FEA/CFD ; il faut
-  d'abord un corpus de géométries, paramètres et résultats cohérents.
-
+- The first target is the switch blank housing in the dashboard.
+- The complete vehicle is built progressively from the useful zones.
+- A public scan without scale can dress the scene at level `F0`, never qualify a
+  part.
+- Neural Concept remains a later FEA/CFD surrogate-model layer; it first needs a
+  corpus of consistent geometries, parameters and results.

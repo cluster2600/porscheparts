@@ -1,88 +1,86 @@
-# 0008 — Pour le couvercle de carter de chaîne, le magnésium moderne bat le titane
+# 0008 — For the chain case cover, modern magnesium beats titanium
 
-Date : 2026-09-11
+Date: 2026-09-11
 
-## Décision
+## Decision
 
-Retenir comme meilleure voie pour `964 105 107 01` un **couvercle en magnésium
-moderne** — alliage haute pureté, usiné, traité PEO — et non un couvercle en
-titane, ni le couvercle billet aluminium du marché.
+Retain as the best route for `964 105 107 01` a **modern magnesium cover** —
+high-purity alloy, machined, PEO-treated — and not a titanium cover, nor the
+aftermarket billet aluminum cover.
 
-La demande initiale portait sur le titane. Elle est écartée sur des chiffres, pas
-sur une préférence.
+The initial request was for titanium. It is set aside on numbers, not on a
+preference.
 
-## Le renversement, en deux temps
+## The reversal, in two steps
 
-**Premier temps : la pièce d'origine n'est pas en aluminium, elle est en
-magnésium.** Toutes les comparaisons de masse menées avant cette découverte
-opposaient le titane au *produit de rechange*, pas à la pièce d'origine.
+**First step: the original part is not aluminum, it is magnesium.** Every mass
+comparison made before this discovery set titanium against the *aftermarket
+replacement*, not against the original part.
 
-**Second temps : le magnésium de 1995 n'est pas le magnésium d'aujourd'hui.** Ce
-n'est pas le matériau qui était mauvais, c'est son époque.
+**Second step: the magnesium of 1995 is not the magnesium of today.** It was not
+the material that was bad; it was its era.
 
-| | 1995 | aujourd'hui |
+| | 1995 | today |
 |---|---|---|
-| technologie de surface | chromatation, chrome hexavalent | **PEO / MAO**, couche céramique |
-| écologie | toxique, cancérigène | conforme REACH |
-| mécanisme | barrière passive | revêtements actifs, sol-gel |
-| alliage | pureté standard | **haute pureté**, Fe/Ni/Cu plafonnés |
+| surface technology | chromate conversion, hexavalent chromium | **PEO / MAO**, ceramic layer |
+| environmental profile | toxic, carcinogenic | REACH-compliant |
+| mechanism | passive barrier | active coatings, sol-gel |
+| alloy | standard purity | **high purity**, Fe/Ni/Cu capped |
 
-La ligne décisive est la dernière. La corrosion du magnésium est pilotée par
-trois impuretés — fer, nickel, cuivre — qui forment des sites cathodiques
-**internes**. Les limites ASTM de l'AZ91D les plafonnent à 0,004 %, 0,001 % et
-0,015 %, et les alliages haute pureté sont donnés **jusqu'à cent fois** plus
-résistants que les alliages standard au brouillard salin, plus résistants même
-que l'aluminium 380 de fonderie ou l'acier laminé à froid.
+The decisive line is the last one. Magnesium corrosion is driven by three
+impurities — iron, nickel, copper — that form **internal** cathodic sites. The
+ASTM limits for AZ91D cap them at 0.004%, 0.001% and 0.015%, and high-purity
+alloys are reported to be **up to a hundred times** more resistant than standard
+alloys in salt spray, more resistant even than cast 380 aluminum or cold-rolled
+steel.
 
-Le couvercle de 1995 ne pourrit pas parce qu'il est en magnésium. Il pourrit
-parce qu'il est en magnésium **de 1995**.
+The 1995 cover does not rot because it is magnesium. It rots because it is
+magnesium **from 1995**.
 
-## Le tableau qui tranche
+## The table that settles it
 
-| route | densité | raideur `E^⅓/ρ` | résistance `σ^½/ρ` | couple avec le carter Mg |
+| route | density | stiffness `E^⅓/ρ` | strength `σ^½/ρ` | couple with the Mg case |
 |---|---:|---:|---:|---|
-| **magnésium moderne** | **1,81** | **1,965** | **6,988** | **aucun — même métal** |
-| aluminium billet (le marché) | 2,70 | 1,526 | 4,969 | doux |
-| Ti-6Al-4V | 4,43 | 1,095 | 6,503 | **le pire de la grille** |
+| **modern magnesium** | **1.81** | **1.965** | **6.988** | **none — same metal** |
+| billet aluminum (the market) | 2.70 | 1.526 | 4.969 | mild |
+| Ti-6Al-4V | 4.43 | 1.095 | 6.503 | **the worst in the grid** |
 
-Le magnésium gagne **les deux** indices, et de loin. Il supprime le couple
-galvanique parce qu'il est de même nature que le carter sur lequel il se boulonne.
-Il annule la dilatation différentielle, qui tombe à zéro au lieu des 0,072 mm du
-titane. Et il traite le mode de défaillance **à sa racine** au lieu de le
-contourner.
+Magnesium wins **both** indices, by a wide margin. It removes the galvanic
+couple because it is of the same nature as the case it bolts onto. It cancels
+differential expansion, which drops to zero instead of titanium's 0.072 mm. And
+it addresses the failure mode **at its root** instead of working around it.
 
-Le titane, lui, protégeait sa propre portée tout en risquant d'aggraver l'attaque
-du carter d'en face — c'est-à-dire de déplacer le problème sur la pièce qu'on ne
-peut pas remplacer.
+Titanium, for its part, protected its own seat while risking aggravated attack
+on the case opposite — that is, moving the problem onto the part that cannot be
+replaced.
 
-## Ce que cela dit au-delà de cette pièce
+## What this says beyond this part
 
-Trois fois dans ce projet, la bonne réponse a été **la matière d'origine, faite
-correctement**, et non une matière plus noble :
+Three times in this project, the right answer has been **the original material,
+done properly**, and not a nobler material:
 
-- la bague de commutateur : 6063 tourné, pas d'AlSi10Mg fritté ;
-- le carter de chaîne et le carter d'arbre à cames : aluminium, pas titane ;
-- ce couvercle : magnésium, pas titane.
+- the switch trim ring: turned 6063, not sintered AlSi10Mg;
+- the chain case and the camshaft housing: aluminum, not titanium;
+- this cover: magnesium, not titanium.
 
-La leçon mérite d'être écrite. Une pièce ancienne qui échoue n'accuse pas
-toujours son matériau — souvent elle accuse l'**état de l'art de son époque**. La
-question à poser en premier n'est donc pas « par quoi la remplacer », mais
-**« que sait-on faire aujourd'hui que l'on ne savait pas faire alors »**.
+The lesson deserves to be written down. An old part that fails does not always
+indict its material — often it indicts the **state of the art of its era**. The
+first question to ask is therefore not "what should replace it", but **"what can
+we do today that we could not do then"**.
 
-## Les obstacles réels, non instruits
+## The real obstacles, not investigated
 
-- **L'usinage du magnésium demande un atelier équipé** : les copeaux fins sont
-  inflammables, et tous les ateliers ne le prennent pas. C'est la contrainte
-  fournisseur dominante.
-- **Le PEO dépose 5 à 40 µm.** Sur un plan de joint, cela se masque ou se reprend
-  après traitement.
-- **La plaque corroyée courante est en AZ31B**, pas en AZ91E de fonderie :
-  l'alliage disponible en barre n'est pas celui d'origine, et sa tenue avec PEO
-  reste à établir pour cet usage.
-- Aucune de ces trois questions n'est instruite ici.
+- **Machining magnesium requires an equipped shop**: fine chips are flammable,
+  and not every shop takes the work. This is the dominant supplier constraint.
+- **PEO deposits 5 to 40 µm.** On a joint face, this is masked or re-machined
+  after treatment.
+- **Common wrought plate is AZ31B**, not cast AZ91E: the alloy available as bar
+  stock is not the original one, and its performance with PEO remains to be
+  established for this use.
+- None of these three questions is investigated here.
 
-## Crédit
+## Credit
 
-Le renversement vient de l'utilisateur, qui a posé la question du traitement
-moderne après que ce dépôt eut conclu à une comparaison de matériaux. Le dépôt
-avait raison sur les chiffres et tort sur la question.
+The reversal came from the user, who raised the question of modern treatment
+after this repository had concluded on a materials comparison. The repository
+was right on the numbers and wrong on the question.

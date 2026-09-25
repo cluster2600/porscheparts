@@ -1,54 +1,53 @@
-# Inventaire des composants physiques du jumeau
+# Inventory of the twin's physical components
 
-## Règle d'admission
+## Admission rule
 
-Un composant entre dans `catalog/components/` seulement si les quatre éléments
-suivants sont sourcés : taille, masse, matière et application au 993. Une source
-doit aussi identifier la pièce sans ambiguïté.
+A component enters `catalog/components/` only if the following four items are
+sourced: size, mass, material and application to the 993. A source must also
+identify the part unambiguously.
 
-La géométrie est classée séparément :
+Geometry is classified separately:
 
-- `interface_proxy` : seuls les paramètres nominaux connus sont représentés ;
-- `envelope` : l'encombrement extérieur est documenté ;
-- `detailed_solid` : la forme est assez complète pour des contrôles locaux ;
-- `scan` : géométrie acquise, avec échelle et précision déclarées.
+- `interface_proxy`: only the known nominal parameters are represented;
+- `envelope`: the external envelope is documented;
+- `detailed_solid`: the shape is complete enough for local checks;
+- `scan`: acquired geometry, with declared scale and accuracy.
 
-Un composant complet peut rejoindre un assemblage `logical` même si ses
-transformations 3D sont inconnues. Il ne peut participer à un contrôle spatial
-que si ses interfaces et leur précision sont connues.
+A complete component can join a `logical` assembly even if its 3D transforms are
+unknown. It can take part in a spatial check only if its interfaces and their
+accuracy are known.
 
-## Premier lot admis
+## First admitted batch
 
-| Composant | Taille | Masse | Matière | Géométrie | Assemblage |
+| Component | Size | Mass | Material | Geometry | Assembly |
 |---|---|---:|---|---|---|
-| `COMP-FUCHS-37024.013` | 7J x 17 ET55, 5x130, alésage 71,58 mm | 7,50 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
-| `COMP-FUCHS-37026.013` | 9J x 17 ET55, 5x130, alésage 71,5 mm | 7,95 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
-| `COMP-FUCHS-37027.011` | 8J x 18 ET52, 5x130, alésage 71,5 mm | 8,20 kg | aluminium forgé | proxy d'interface | essieu avant, quantité 2 |
-| `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, alésage 71,5 mm | 8,80 kg | aluminium forgé | proxy d'interface | essieu arrière, quantité 2 |
+| `COMP-FUCHS-37024.013` | 7J x 17 ET55, 5x130, bore 71.58 mm | 7.50 kg | forged aluminum | interface proxy | front axle, quantity 2 |
+| `COMP-FUCHS-37026.013` | 9J x 17 ET55, 5x130, bore 71.5 mm | 7.95 kg | forged aluminum | interface proxy | rear axle, quantity 2 |
+| `COMP-FUCHS-37027.011` | 8J x 18 ET52, 5x130, bore 71.5 mm | 8.20 kg | forged aluminum | interface proxy | front axle, quantity 2 |
+| `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, bore 71.5 mm | 8.80 kg | forged aluminum | interface proxy | rear axle, quantity 2 |
 
-Source primaire : documentation publique du fabricant Otto Fuchs. Il s'agit de
-roues compatibles, pas de fichiers CAO Porsche ni d'une affirmation qu'elles
-étaient montées d'origine sur toutes les variantes.
+Primary source: public documentation from the manufacturer Otto Fuchs. These are
+compatible wheels, not Porsche CAD files, nor a claim that they were fitted at
+the factory on every variant.
 
-Assemblages admis : jeu 17 pouces de 30,90 kg et jeu 18 pouces Carrera de
-34,00 kg. Les montages Turbo avec entretoises restent séparés et incomplets.
+Admitted assemblies: a 30.90 kg 17-inch set and a 34.00 kg 18-inch Carrera set.
+The Turbo fitments with spacers remain separate and incomplete.
 
-Les Michelin Pilot Sport PS2 N3 17 pouces sont des candidats bien identifiés par
-Porsche et Michelin. Ils ne sont pas encore admis : les masses disponibles
-proviennent de vendeurs et varient, et la construction matière exacte de ces
-références n'est pas fournie dans les documents fabricant retenus.
+The 17-inch Michelin Pilot Sport PS2 N3 tires are candidates well identified by
+Porsche and Michelin. They are not admitted yet: the available masses come from
+sellers and vary, and the exact material construction of these references is not
+given in the manufacturer documents retained.
 
-Le premier lot freinage est également qualifié mais non admis. Brembo et ATE
-recoupent les dimensions des disques avant Carrera ; ATE donne les références
-Porsche associées et Brembo documente aussi le disque arrière. Aucun des
-documents constructeur retenus ne publie toutefois la masse nette unitaire ni
-une nuance matière complète. Les
-détails et la porte de sortie sont consignés dans
-[la recherche germanophone sur le freinage](research/phase-2-freinage-allemand.md).
+The first braking batch is also qualified but not admitted. Brembo and ATE
+cross-check the dimensions of the Carrera front discs; ATE gives the associated
+Porsche part numbers, and Brembo also documents the rear disc. None of the
+retained manufacturer documents, however, publishes the net unit mass or a
+complete material grade. The details and the exit gate are recorded in
+[the German-language braking research](research/phase-2-freinage-allemand.md).
 
-## File d'acquisition
+## Acquisition queue
 
-Les prochains lots sont recherchés par sous-ensemble : roues et pneumatiques,
-freinage, roulements et joints standardisés, transmission, moteur, carrosserie,
-habitacle. Une fiche incomplète reste dans le registre de sources ou dans une
-issue de recherche ; elle ne reçoit pas de faux poids ou matériau par défaut.
+The next batches are researched by subassembly: wheels and tires, braking,
+standardized bearings and seals, drivetrain, engine, body, interior. An
+incomplete record stays in the source register or in a research issue; it does
+not receive a fake default weight or material.

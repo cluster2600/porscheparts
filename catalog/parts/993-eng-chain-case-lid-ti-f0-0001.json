@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-CHAIN-CASE-LID-TI-F0-0001",
-  "name": "Couvercle gauche de carter de chaîne 964 105 107 01, variante Ti-6Al-4V",
-  "description": "Couvercle gauche boulonné étanche à l'huile du carter de chaîne, planche d'usine 103-05 position 15, apparié au joint 964 105 181 01. Refabrication en Ti-6Al-4V fraisé demandée explicitement. La pièce d'origine est en **magnésium coulé**, dont le mode de défaillance est la corrosion des portées d'étanchéité : c'est là, et non sur la masse, que le titane apporte quelque chose. Contre le magnésium le titane est 2,45 fois plus dense et perd les deux arbitrages de flexion de plaque, résistance comprise. Reste un obstacle sérieux : le couple galvanique titane/magnésium est le plus défavorable de la grille.",
+  "name": "Left chain case lid 964 105 107 01, Ti-6Al-4V variant",
+  "description": "Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favorable in the grid.",
   "vehicle": {
     "generation": "993",
     "variants": [
-      "993_repartition_par_variante_a_confirmer"
+      "993_split_by_variant_to_confirm"
     ],
     "model_years": {
       "from": 1994,
@@ -20,7 +20,7 @@
   "classification": {
     "category": "engine_timing_chain_case_lid",
     "safety_class": "functional",
-    "intended_use": "Criblage paramétrique et préparation de mesure ; aucune fabrication ni montage autorisés avant relevé d'un exemplaire"
+    "intended_use": "Parametric screening and measurement preparation; no manufacturing or fitting authorized before a specimen is measured"
   },
   "geometry": {
     "source_type": "estimated",
@@ -31,23 +31,23 @@
     "derived_files": []
   },
   "provenance": {
-    "record_license": "MIT pour la fiche et le script ; aucune géométrie tierce redistribuée",
+    "record_license": "MIT for the record and the script; no third-party geometry redistributed",
     "sources": [
       {
-        "title": "Catalogue d'usine 993, planche 103-05 Chain case",
+        "title": "993 factory catalogue, plate 103-05 Chain case",
         "url": "https://porschefanatics.com/oem/993/103-05/",
         "source_type": "official",
         "license": "catalogue-usine-reference-seulement",
         "accessed_on": "2026-09-11",
-        "notes": "Position 15 `lid` 964 105 107 01, appariée au joint position 16 `gasket` 964 105 181 01. Le catalogue identifie, il ne cote pas. Voir SRC-PET-993-103-05-CHAIN-CASE."
+        "notes": "Position 15 `lid` 964 105 107 01, paired with the position 16 `gasket` 964 105 181 01. The catalogue identifies; it does not dimension. See SRC-PET-993-103-05-CHAIN-CASE."
       },
       {
-        "title": "Reproducteurs commerciaux du couvercle : LN Engineering et Auto-Service Schefter",
+        "title": "Commercial reproducers of the lid: LN Engineering and Auto-Service Schefter",
         "url": "https://lnengineering.com/porsche-964-993-chain-box-covers.html",
         "source_type": "manufacturer",
         "license": "pages-commerciales-reference-seulement",
         "accessed_on": "2026-09-11",
-        "notes": "Confirme que 964 105 107 01 est le couvercle gauche, apparie au joint 964 105 181 01, et que la piece se reproduit par usinage dans la masse. Les deux reproducteurs emploient l'aluminium. Aucun ne publie de cote. Voir SRC-REPRODUCTEURS-COUVERCLE-CARTER-CHAINE-964-993."
+        "notes": "Confirms that 964 105 107 01 is the left lid, paired with gasket 964 105 181 01, and that the part is reproduced by machining from solid. Both reproducers use aluminum. Neither publishes a dimension. See SRC-REPRODUCTEURS-COUVERCLE-CARTER-CHAINE-964-993."
       }
     ]
   },
@@ -57,38 +57,38 @@
     ],
     "preferred_process": "CNC",
     "material": {
-      "family": "titane",
-      "grade": "Ti-6Al-4V Grade 5, plaque — choix assumé ; l'aluminium 6061 billet est la réponse du marché",
-      "standard": "ASTM B265 pour la plaque, à contractualiser"
+      "family": "titanium",
+      "grade": "Ti-6Al-4V Grade 5, plate — deliberate choice; 6061 billet aluminum is the market's answer",
+      "standard": "ASTM B265 for the plate, to be contracted"
     },
     "post_processing": [
-      "surfaçage du plan de joint, planéité à définir après relevé",
-      "cassage d'arêtes",
-      "microbillage ou anodisation titane selon l'aspect visé",
-      "pâte anti-grippage sur la visserie, rondelles isolantes si contact métal direct"
+      "facing of the gasket plane, flatness to be defined after measurement",
+      "edge breaking",
+      "bead blasting or titanium anodizing depending on the intended finish",
+      "anti-seize paste on fasteners, insulating washers if direct metal contact"
     ],
     "supplier_requirements": [
-      "Certificat matière de la plaque",
-      "Planéité et état de surface tenus sur le plan de joint",
-      "Contrôle dimensionnel du contour, des entraxes et des perçages"
+      "Material certificate for the plate",
+      "Flatness and surface finish held on the gasket plane",
+      "Dimensional inspection of the outline, hole spacings and holes"
     ]
   },
   "titanium": {
     "applicable": true,
     "alloy": "Ti-6Al-4V Grade 5",
-    "heat_treatment": "aucun : pièce fraisée dans une plaque livrée à l'état recuit",
+    "heat_treatment": "none: part machined from plate supplied in the annealed condition",
     "hip_required": "not_applicable",
     "machined_surfaces": [
-      "plan de joint",
-      "perçages de fixation",
-      "contour"
+      "gasket plane",
+      "fastening holes",
+      "outline"
     ],
     "inspection": [
-      "planéité du plan de joint",
-      "entraxes de perçage",
-      "épaisseur"
+      "gasket plane flatness",
+      "hole spacings",
+      "thickness"
     ],
-    "galvanic_isolation": "Le couvercle se boulonne sur un carter lui aussi en magnésium. Le magnésium est le plus anodique des métaux de structure et le titane l'un des plus cathodiques : c'est le couple que TITANIUM.md nomme explicitement. Le joint 964 105 181 01 isole les portées, pas la visserie ni les chemins d'humidité. Un couvercle titane pourrait protéger sa propre portée tout en aggravant l'attaque du carter en face. Non résolu."
+    "galvanic_isolation": "The lid bolts onto a case that is also magnesium. Magnesium is the most anodic of structural metals and titanium one of the most cathodic: this is the couple TITANIUM.md names explicitly. Gasket 964 105 181 01 isolates the sealing faces, not the fasteners or the moisture paths. A titanium lid could protect its own sealing face while worsening the attack on the case opposite. Unresolved."
   },
   "validation": {
     "status": "concept",
@@ -102,17 +102,17 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "La pièce d'origine est en magnésium coulé, pas en aluminium : toute comparaison de masse menée contre l'aluminium comparait au produit de rechange, pas à l'origine.",
-      "Contre le magnésium, le titane perd les deux indices de flexion de plaque, résistance comprise : il ne sera pas plus léger, quelle que soit l'épaisseur retenue.",
-      "Aucune cote n'est mesurée : contour, épaisseur, entraxes, perçages, portée de joint et centrage sont inconnus.",
-      "Aucun des deux reproducteurs commerciaux ne publie de cote : les dimensions ne sont pas trouvables en ligne, elles s'obtiennent en achetant la pièce ou son joint.",
-      "La marge de dilatation calculée, +0,056 mm, repose sur un entraxe extrême de 100 mm et un perçage de 8,4 mm pour vis M8, tous deux hypothétiques.",
-      "Le jeu intérieur vis-à-vis de la chaîne et du tendeur n'est pas relevé.",
-      "Le titane alourdit la pièce de 64 % à géométrie égale ; c'est un choix de matière assumé, pas un gain.",
-      "La pièce retient de l'huile : une fuite sur un moteur refroidi par air a des voisins chauds, d'où la classe `functional` et non `non_critical`.",
-      "Aucun essai d'étanchéité, de cyclage thermique ni de dépose-repose répétée.",
-      "Le couple de serrage du manuel, 9,7 Nm, situe la visserie en M6 : la marge de dilatation calculée sur une hypothèse M8 est à refaire une fois le perçage connu.",
-      "Le couple galvanique titane/magnésium n'est pas résolu et pourrait déplacer la corrosion du couvercle vers le carter."
+      "The original part is cast magnesium, not aluminum: any mass comparison made against aluminum was comparing with the replacement product, not the original.",
+      "Against magnesium, titanium loses both plate-bending indices, strength included: it will not be lighter, whatever thickness is chosen.",
+      "No dimension is measured: outline, thickness, hole spacings, holes, gasket face and centering are unknown.",
+      "Neither commercial reproducer publishes a dimension: the dimensions cannot be found online; they are obtained by buying the part or its gasket.",
+      "The computed expansion margin, +0.056 mm, rests on an extreme hole spacing of 100 mm and an 8.4 mm hole for M8 screws, both hypothetical.",
+      "The internal clearance to the chain and tensioner is not measured.",
+      "Titanium makes the part 64% heavier at equal geometry; it is a deliberate material choice, not a gain.",
+      "The part retains oil: a leak on an air-cooled engine has hot neighbors, hence the `functional` class and not `non_critical`.",
+      "No leak test, thermal cycling or repeated removal-refitting.",
+      "The manual's tightening torque, 9.7 Nm, places the fasteners at M6: the expansion margin computed on an M8 assumption must be redone once the hole is known.",
+      "The titanium/magnesium galvanic couple is not resolved and could shift corrosion from the lid to the case."
     ]
   }
 }

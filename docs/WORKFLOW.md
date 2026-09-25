@@ -1,138 +1,135 @@
-# Workflow d’une pièce
+# Part workflow
 
-## 0. Sélection du candidat
+## 0. Candidate selection
 
-Reproduire une pièce coûte du temps et de l'argent ; les acheter toutes pour
-savoir lesquelles valent l'effort ne passe pas à l'échelle. Lire le catalogue,
-si.
+Reproducing a part costs time and money; buying them all to find out which ones
+are worth the effort does not scale. Reading the catalogue does.
 
-`scripts/select_candidates.py` réduit une génération entière à une liste courte
-en écartant deux populations : les domaines que `SAFETY.md` présume critiques,
-et la visserie standard, qui s'achète et ne se reproduit pas.
+`scripts/select_candidates.py` reduces an entire generation to a short list by
+setting aside two populations: the domains that `SAFETY.md` presumes critical,
+and standard fasteners, which are bought, not reproduced.
 
 ```bash
 python3 scripts/select_candidates.py --listing <atlas>/oem-listed.json \
     --generation 993 --limit 40
 ```
 
-Sur les 12 864 lignes du catalogue 993 : 22 % relèvent de domaines écartés,
-39 % sont de la quincaillerie, 11 % ressortent comme candidats — soit environ
-219 formes distinctes à examiner au lieu de douze mille.
+Of the 12,864 lines of the 993 catalogue: 22% belong to excluded domains, 39%
+are hardware, 11% come out as candidates — about 219 distinct shapes to examine
+instead of twelve thousand.
 
-La sortie est une liste à trier, pas une décision. Une description de catalogue
-ne dit pas si une pièce est chargée, étanche, chauffée ou seulement décorative.
+The output is a list to sort, not a decision. A catalogue description does not
+say whether a part is loaded, sealed, heated or merely decorative.
 
-## 1. Qualification du besoin
+## 1. Need qualification
 
-Créer une issue et préciser : référence, fonction, variantes, disponibilité,
-symptôme de défaillance, environnement, prix ou difficulté d’approvisionnement.
+Open an issue and state: part number, function, variants, availability, failure
+symptom, environment, price or sourcing difficulty.
 
-Sortie : candidat accepté ou refusé avec justification.
+Output: candidate accepted or rejected, with justification.
 
 ## 2. Provenance
 
-Recenser les documents officiels, mesures directes, photographies et modèles
-tiers. Toute source reçoit une URL, une date et une licence.
+List the official documents, direct measurements, photographs and third-party
+models. Every source gets a URL, a date and a license.
 
-Sortie : aucune donnée d’origine inconnue dans le modèle publiable.
+Output: no data of unknown origin in the publishable model.
 
-## 3. Mesure et acquisition
+## 3. Measurement and acquisition
 
-Choisir le moyen minimal donnant la précision nécessaire : pied à coulisse,
-micromètre, jauge, gabarit, photogrammétrie ou scan structuré. Utiliser le modèle
-de `catalog/templates/measurement-plan.md` pour préparer la séance.
+Choose the minimal means that gives the required accuracy: caliper, micrometer,
+gauge, jig, photogrammetry or structured-light scan. Use the template in
+`catalog/templates/measurement-plan.md` to prepare the session.
 
-Enregistrer ensuite le résultat sous forme vérifiable, dans
-`catalog/measurements/`. Quand l’instrument a une sortie données, capturer
-directement plutôt que recopier :
+Then record the result in verifiable form, in `catalog/measurements/`. When the
+instrument has a data output, capture directly rather than copying by hand:
 
 ```bash
 python3 scripts/capture_caliper.py --record catalog/measurements/meas-<pièce>.json \
     --dimension D01 --description "Alésage de l'œil" --port /dev/ttyUSB0 --repeats 3
 ```
 
-Pour un jeu photogrammétrique, `scripts/capture_photoset.py` écrit un manifeste
-et exige la référence d’échelle : sans elle, la reconstruction reste une forme,
-pas une mesure.
+For a photogrammetry set, `scripts/capture_photoset.py` writes a manifest and
+requires the scale reference: without it, the reconstruction remains a shape,
+not a measurement.
 
-Sortie : repères, unités, incertitudes et mesures critiques documentés, et une
-fiche de mesure qui passe `make check`.
+Output: reference frames, units, uncertainties and critical measurements
+documented, and a measurement record that passes `make check`.
 
-### Choisir la méthode d'acquisition
+### Choosing the acquisition method
 
-Toutes les méthodes ne servent pas la même pièce. Le critère est la présence de
-géométrie **interne**.
+Not every method serves the same part. The criterion is the presence of
+**internal** geometry.
 
-| Méthode | Ce qu'elle capture | Quand la choisir | Ordre de coût |
+| Method | What it captures | When to choose it | Cost order |
 |---|---|---|---|
-| Pied à coulisse, micromètre | cotes d'interface | pièce descriptible par quelques cotes | négligeable |
-| Photogrammétrie | forme externe, à l'échelle si référence présente | forme organique sans cote critique | faible |
-| Scan lumière structurée ou laser | forme externe dense, quelques dizaines de µm | pièce complexe sans intérieur | moyen |
-| **Tomographie** | **forme externe et interne**, matière comprise | pièce creuse, fonderie, passage interne, porosité | élevé |
+| Caliper, micrometer | interface dimensions | part describable by a few dimensions | negligible |
+| Photogrammetry | external shape, to scale if a reference is present | organic shape with no critical dimension | low |
+| Structured-light or laser scan | dense external shape, a few tens of µm | complex part with no interior | medium |
+| **CT scanning** | **external and internal shape**, material included | hollow part, casting, internal passage, porosity | high |
 
-La tomographie est la méthode de référence de la rétroconception parce qu'elle
-voit l'intérieur. C'est aussi ce qui la rend **inutilement chère sur une pièce
-pleine** : un bras massif sans canal interne se relève aussi bien au scan de
-surface.
+CT scanning is the reference method of reverse engineering because it sees the
+inside. That is also what makes it **needlessly expensive on a solid part**: a
+massive arm with no internal channel is captured just as well by a surface scan.
 
-Elle reste en revanche le seul moyen de contrôler une pièce métallique imprimée,
-où l'enjeu est la porosité interne — c'est l'usage qu'en fait Porsche à Weissach,
-et celui que la phase 3 devra prévoir.
+It remains, however, the only way to inspect a printed metal part, where the
+issue is internal porosity — that is how Porsche uses it at Weissach, and what
+phase 3 will have to plan for.
 
 ## 4. Reconstruction
 
-- Importer le scan comme référence, jamais comme vérité absolue.
-- Reconstruire plans, axes, cylindres, trous et interfaces en CAO paramétrique.
-- Séparer les dimensions mesurées des dimensions supposées.
-- Exporter un STEP et un 3MF de prototype.
+- Import the scan as a reference, never as absolute truth.
+- Rebuild planes, axes, cylinders, holes and interfaces in parametric CAD.
+- Separate measured dimensions from assumed dimensions.
+- Export a STEP and a prototype 3MF.
 
-Sortie : modèle maître éditable et fiche au statut `dimensionally_reviewed` au
-maximum.
+Output: editable master model and a record at status `dimensionally_reviewed`
+at most.
 
-## 5. Prototype polymère
+## 5. Polymer prototype
 
-Imprimer rapidement, contrôler le montage, noter les jeux et photographier les
-interfaces. Corriger le modèle maître plutôt que le maillage exporté.
+Print quickly, check the fit, note the clearances and photograph the interfaces.
+Correct the master model rather than the exported mesh.
 
-Sortie : statut `prototype_fitted` seulement si la preuve est enregistrée.
+Output: status `prototype_fitted` only if the evidence is recorded.
 
-## 6. Choix du procédé final
+## 6. Choice of the final process
 
-Comparer au minimum : polymère final, CNC, tôle, fonderie et fabrication additive
-métal. Le titane est retenu seulement si masse, corrosion, géométrie ou petite
-série justifient son coût.
+Compare at least: final polymer, CNC, sheet metal, casting and metal additive
+manufacturing. Titanium is chosen only if mass, corrosion, geometry or small
+series justify its cost.
 
-Sortie : matrice de choix et devis comparables.
+Output: selection matrix and comparable quotes.
 
-## 7. Calcul et DfAM
+## 7. Analysis and DfAM
 
-Définir cas de charge, contacts, précharges, température, vibration et durée de
-vie. Adapter les surfaces, rayons, épaisseurs, évacuations de poudre, supports et
-surépaisseurs d’usinage.
+Define load cases, contacts, preloads, temperature, vibration and service life.
+Adapt surfaces, radii, thicknesses, powder evacuation, supports and machining
+allowances.
 
-Sortie : modèle et demande de fabrication revus.
+Output: reviewed model and manufacturing request.
 
-Pour toute pièce proposant `LPBF` ou `DMLS`, appliquer obligatoirement le
-[pipeline impression métal et Omniverse](AM_VALIDATION_PIPELINE.md) : tranchage
-de toutes les couches, carte matière-machine-procédé, thermique locale,
-thermomécanique pleine construction, recoater, SimReady, assemblage fonctionnel
-et corrélation physique. Le registre est contrôlé par
+For any part proposing `LPBF` or `DMLS`, the
+[metal printing and Omniverse pipeline](AM_VALIDATION_PIPELINE.md) is mandatory:
+slicing of every layer, material-machine-process map, local thermal analysis,
+full-build thermomechanics, recoater, SimReady, functional assembly and
+physical correlation. The register is checked by
 `scripts/validate_am_pipeline.py`.
 
-## 8. Fabrication et post-traitement
+## 8. Manufacturing and post-processing
 
-Conserver certificats, lot matière, traitement thermique, HIP éventuel, retrait
-des supports, usinage et finition.
+Keep certificates, material lot, heat treatment, any HIP, support removal,
+machining and finishing.
 
-Sortie : pièce identifiée et reliée à une version précise de la CAO.
+Output: an identified part linked to a precise CAD version.
 
-## 9. Contrôle et essais
+## 9. Inspection and testing
 
-Contrôle dimensionnel, inspection non destructive si nécessaire, montage statique,
-essai progressif puis surveillance. Un essai réussi sur un véhicule ne prouve pas
-la compatibilité universelle.
+Dimensional inspection, non-destructive inspection if needed, static fit,
+progressive testing, then monitoring. A successful test on one vehicle does not
+prove universal compatibility.
 
 ## 10. Publication
 
-Mettre à jour la fiche, les limites connues et les preuves. La PR doit passer
-`make check` et une revue humaine.
+Update the record, the known limits and the evidence. The PR must pass
+`make check` and a human review.

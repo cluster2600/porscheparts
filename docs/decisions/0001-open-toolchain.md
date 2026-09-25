@@ -1,22 +1,22 @@
-# 0001 — Chaîne locale ouverte
+# 0001 — Open local toolchain
 
-Date : 2026-08-28
+Date: 2026-08-28
 
-## Décision
+## Decision
 
-Utiliser FreeCAD comme CAO paramétrique principale, complété par OpenSCAD,
-Blender, MeshLab, CloudCompare, Gmsh, CalculiX, ParaView et des slicers open source.
+Use FreeCAD as the main parametric CAD, complemented by OpenSCAD, Blender,
+MeshLab, CloudCompare, Gmsh, CalculiX, ParaView and open-source slicers.
 
-## Raisons
+## Reasons
 
-- Formats maîtres accessibles sans abonnement
-- Travail possible sur macOS, Linux et Windows
-- Automatisation et reproductibilité
-- Réduction du verrouillage fournisseur
-- Cohérence avec un catalogue public et modifiable
+- Master formats accessible without a subscription
+- Work possible on macOS, Linux and Windows
+- Automation and reproducibility
+- Less vendor lock-in
+- Consistency with a public, editable catalogue
 
-## Limite acceptée
+## Accepted limitation
 
-La préparation machine LPBF restera généralement propriétaire chez le fabricant.
-Le projet maîtrise les entrées, exigences et preuves, sans prétendre contrôler le
-logiciel interne de production.
+LPBF machine preparation will generally remain proprietary at the manufacturer.
+The project controls the inputs, requirements and evidence, without claiming to
+control the manufacturer's in-house production software.
