@@ -6,16 +6,33 @@
 
 **`993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![process: LPBF](https://img.shields.io/badge/process-LPBF-blue)
-
-<img src="media/preview.png" alt="CAD view of Headlamp spring hook repair, F0 aluminum concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 16.0 × 8.0 × 15.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
 
 </div>
 
+> [!CAUTION]
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `functional`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://shop.roadster-fashion.de/de/reparaturteil-federhaken-am-scheinwerfer.html">Roadster-Fashion - printed headlamp spring hook for 993</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for Headlamp spring hook repair, F0 aluminum concept" width="340"><br>
+<sub>Concept CAD block, 16.0 × 8.0 × 15.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
 > [!NOTE]
-> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing.
 
 ## What it is
 
@@ -32,7 +49,7 @@ CAD, LPBF and mechanical screening of a repair concept; no fitting and no lamp r
 | Porsche part numbers | not recorded |
 | variants | `993_headlamp_application_declared_by_vendor_to_confirm` |
 | candidate material | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM291 2.01 / 30 µm, screening candidate not attributed to the commercial part |
-| preferred process | LPBF |
+| candidate process | LPBF |
 | safety class | `functional` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -66,7 +83,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## Screens and evidence images
 
@@ -80,7 +97,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/headlamp_spring_hook_f0.step`](derived/headlamp_spring_hook_f0.step), [`derived/headlamp_spring_hook_f0.stl`](derived/headlamp_spring_hook_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-screen.png) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/headlamp_spring_hook.py`](source/headlamp_spring_hook.py) |
 
 ## Read more

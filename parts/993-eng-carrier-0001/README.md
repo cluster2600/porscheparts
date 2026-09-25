@@ -6,16 +6,36 @@
 
 **`993-ENG-CARRIER-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: safety-critical](https://img.shields.io/badge/safety-safety--critical-orange) ![process: CNC](https://img.shields.io/badge/process-CNC-blue)
-
-<img src="media/preview.png" alt="CAD view of Turbo engine carrier (Motortraeger)" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 580.0 × 45.0 × 45.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: safety-critical](https://img.shields.io/badge/safety-safety--critical-orange) ![candidate process: CNC](https://img.shields.io/badge/candidate%20process-CNC-lightgrey)
 
 </div>
 
+> [!CAUTION]
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `safety_critical`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/">Porsche Classic Genuine Parts Catalogue - 911 (993)</a><br>
+↗ <a href="https://teile.com/de/porsche-ersatzteile-onlineshop/modell-911-993/2/Motor-Kuehlung/109-Motoraufhaengung/5/109-00-Motoraufhaengung/Motortraeger/1503">teile.com - Motortraeger 911 993, group 109-00 Motoraufhaengung</a><br>
+↗ <a href="https://www.rennline.com/tubular-engine-carrier-sku-m19/">Rennline - tubular engine carrier for 964/993 non turbo</a><br>
+↗ <a href="https://www.elferspot.com/en/magazine/porsche-993-portrait/">Elferspot - Porsche 993 portrait, facts and specifications</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for Turbo engine carrier (Motortraeger)" width="340"><br>
+<sub>Concept CAD block, 580.0 × 45.0 × 45.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
 > [!WARNING]
-> **Safety-critical** — failure could cause loss of control, fire or injury. Published only after formal engineering review. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Safety-critical** — failure could cause loss of control, fire or injury. Published only after formal engineering review.
 
 ## What it is
 
@@ -32,7 +52,7 @@ Supports the powertrain and transmits its loads to the body shell
 | Porsche part numbers | 993 115 021 53 |
 | variants | `993_Turbo` |
 | candidate material | unknown grade |
-| preferred process | CNC |
+| candidate process | CNC |
 | safety class | `safety_critical` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -66,7 +86,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -74,7 +94,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/engine_carrier_concept_f0.step`](derived/engine_carrier_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/load-cases.md`](evidence/load-cases.md), [`evidence/material-options.md`](evidence/material-options.md), [`evidence/measurement-plan.md`](evidence/measurement-plan.md), [`evidence/measurement-request.md`](evidence/measurement-request.md), [`evidence/public-data-study.md`](evidence/public-data-study.md) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/material_tradeoff.py`](source/material_tradeoff.py) |
 
 ## Read more

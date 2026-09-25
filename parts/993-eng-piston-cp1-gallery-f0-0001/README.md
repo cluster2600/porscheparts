@@ -6,16 +6,36 @@
 
 **`993-ENG-PISTON-CP1-GALLERY-F0-0001`** · Porsche 993 · 1995–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: LPBF](https://img.shields.io/badge/process-LPBF-blue)
-
-<img src="media/preview.png" alt="CAD view of M64/60 piston with cooling gallery, CP1 F0 concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 99.0 × 99.0 × 70.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://porschefanatics.com/parts/c/engine-internals/">PorscheFanatics - additive piston precedent and 993 pistons</a><br>
+↗ <a href="https://newsroom.porsche.com/en/2020/technology/porsche-cooperation-mahle-trumpf-pistons-3d-printer-power-efficiency-911-gt2-rs-21462.html">Porsche Newsroom - laser-fused pistons</a><br>
+↗ <a href="https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php">elferclassic - German technical data of the 993 Turbo</a><br>
+↗ <a href="https://events.esd.org/wp-content/uploads/2018/07/3D-Printed-Piston-for-Heavy-Duty-Diesel-Engines.pdf">IAV / GVSETS 2018 - additive diesel piston</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for M64/60 piston with cooling gallery, CP1 F0 concept" width="340"><br>
+<sub>Concept CAD block, 99.0 × 99.0 × 70.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +52,7 @@ CAD, DfAM, plate mechanics, inertia, pin pressure, conduction and gallery hydrau
 | Porsche part numbers | not recorded |
 | variants | `993_Turbo`, `M64_60_research` |
 | candidate material | Constellium Aheadd CP1, Velo3D Sapphire 50 µm route for screening only |
-| preferred process | LPBF |
+| candidate process | LPBF |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | mixed, master build123d |
@@ -69,7 +89,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -77,7 +97,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/piston_cp1_gallery_f0.step`](derived/piston_cp1_gallery_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/piston.py`](source/piston.py) |
 
 ## Read more

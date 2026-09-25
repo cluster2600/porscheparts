@@ -6,16 +6,36 @@
 
 **`993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of Upper valve cover with COP towers, F0 AlSi10Mg concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 220.0 × 95.0 × 45.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://porschefanatics.com/engine/993/">PorscheFanatics - 993 valve covers and coil-on-plug integration</a><br>
+↗ <a href="https://www.fvd.net/en-us/shop/complete-upper-and-lower-valve-cover-set-993-carrera-rs-billet-aluminum-made-in-germany-fvd105993cset~p312212">FVD - complete set of 993 billet valve covers</a><br>
+↗ <a href="https://www.protomotive.com/wp422/product/993-turbo-and-carrera-upper-valve-covers/">Protomotive - 993 upper valve covers in 6061-T6</a><br>
+↗ <a href="https://porschefanatics.com/993/torques/">PorscheFanatics - 993 tightening torques</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for Upper valve cover with COP towers, F0 AlSi10Mg concept" width="340"><br>
+<sub>Concept CAD block, 220.0 × 95.0 × 45.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +52,7 @@ F0 screening of open CAD, COP consolidation, crankcase pressure, clamping, flatn
 | Porsche part numbers | not recorded |
 | variants | `993_Carrera`, `993_Turbo` |
 | candidate material | EOS Aluminium AlSi10Mg T6, for comparison |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -69,7 +89,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## Screens and evidence images
 
@@ -83,7 +103,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/upper_valve_cover_alsi10mg_f0.step`](derived/upper_valve_cover_alsi10mg_f0.step), [`derived/upper_valve_cover_alsi10mg_f0.stl`](derived/upper_valve_cover_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-screen.png) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/upper_valve_cover.py`](source/upper_valve_cover.py) |
 
 ## Read more
