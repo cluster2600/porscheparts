@@ -159,7 +159,7 @@ lecture 3 en premier, qui est juridique et peu couteuse.
 | indetermine | debloque par |
 |---|---|
 | positions d'interface suspension et moteur | relevé de marbre (M1) |
-| entraxe P5 -> P12, cote gouvernante | relevé de marbre (M1) |
+| ecart P5 -> P12, supports de traverse avant -> traverse de boite (pas l'empattement) | relevé de marbre (M1) |
 | cible de raideur en valeur absolue | essai de torsion caisse donneur (M2) |
 | chemin d'effort panneau par panneau, pour zoner le drapage | modele a sections reelles, non disponible |
 | efforts d'introduction aux points durs | modele de chargement vehicule, non commence |

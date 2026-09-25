@@ -3,6 +3,47 @@
 Niveau atteint : **`F1_envelope`** (ADR 0003). Enveloppe a l'echelle et repere
 documente. Ni `F2_interface`, ni geometrie de piece liberable.
 
+## Reprise monocoque — 2026-09-25
+
+Le contrat [monocoque-interface.json](derived/monocoque-interface.json) reprend
+maintenant les noms et les neuf ecartements transversaux du
+[registre documentaire](../../catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json),
+avec les identifiants de chaque valeur. Corrections de l'audit :
+
+- **P12 est un support de traverse de boite**, pas une fixation d'essieu arriere.
+  L'ecart de travail P5–P12 (1724,3 mm, derive et non verifie) ne definit donc
+  pas l'empattement. Les ancrages de suspension arriere restent a relever.
+- **P6 est un support de traverse interieure d'essieu avant**. Il reste dans le
+  rapport avec X `null`, statut `MANQUANT`, au lieu d'etre omis.
+- Les tolerances documentaires portent sur les **ecartements de paires**.
+  Les demi-ecartements supposent la symetrie ; ils ne certifient pas la
+  tolerance de chaque coordonnee Y. P21 reste `INVALIDE`.
+
+Ces corrections ne recalculent ni la CAO ni les anciens resultats FEA.
+L'etiquette historique `rear_axle_crossmember` de `floor_assembly.py` designe
+encore sa traverse a P12 ; elle ne prouve pas une interface d'essieu arriere.
+Le contrat couvre les paires cotees du manuel, pas tous les ancrages du vehicule.
+
+La [feuille de route monocoque](https://github.com/cluster2600/porscheparts/blob/135dcc8ef6e71ac483e1ed3036217536562c80a1/twins/993-carbon-safety-cell/roadmap-to-release.md)
+reste sur une branche distincte, non fusionnee a la base `7fe668b` de cette
+reprise. Ses calculs de treillis et de cuisson sont des etudes F1, pas des
+validations de coque composite. Ses conventions d'axes doivent etre rapprochees
+avant toute superposition avec ce jumeau (X vers l'arriere contre X vers l'avant ici).
+
+Prochaine etape : recuperer le scan brut et sa provenance, puis identifier des
+datums avec XYZ, reperes et incertitudes, et relever les interfaces arriere et
+les enveloppes de transmission C2/C4 (tringlerie, arbre, debattements, acces).
+Les ecarts 964/993 doivent etre qualifies par variante. Ni un scan de dessous,
+ni les cotes documentaires seules ne permettent de figer les moules ou de
+declarer la coque apte a la route, au circuit ou homologuee.
+
+Verification du contrat :
+
+```sh
+(cd twins/964-chassis/source && python3 monocoque_interface.py)
+python3 -m unittest discover -s tests -p 'test_964_monocoque_interface.py'
+```
+
 ## Entrees
 
 | Entree | Nature | Role |
@@ -183,16 +224,17 @@ et une ligne d'essieu**. Le volume IV ne la donne pas, il donne des hauteurs au
 sol. L'etat complet des pistes, avec leurs priorites, est dans
 `docs/research/964-combler-le-gap-de-donnees.md`.
 
-La piste la moins couteuse dort dans le depot : `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF`
-signale un tableau de points en millimetres, non obtenu. Et un recoupement le
-rend transferable : un fil 993 rapporte 1245 mm entre points de levage, soit la
-cote R du manuel 964 au millimetre pres. Les deux generations partagent
-l'entraxe longitudinal des points de levage.
+La piste documentaire `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` signale un tableau
+de points en millimetres, non obtenu. Un fil 993 rapporte 1245 mm entre points
+de levage, comme la cote R du manuel 964 : c'est une piste de recoupement,
+pas une preuve de transferabilite des interfaces entre generations.
 
-Formulation d'origine, toujours valable : localiser **un seul** point de datum publie sur un vehicule ou un scan de
-serie, a mieux que sa tolerance, suffirait a caler la chaine longitudinale et a
-faire passer ce jumeau en `F2_interface`. Le point 17, trou de reprise du cric
-avant, est le meilleur candidat : il est publie a +/- 1 mm et visible de dessous.
+Localiser un point de datum pourrait ancrer longitudinalement le sous-reseau
+dont les distances relatives sont etablies. **Cela ne suffit pas a atteindre
+`F2_interface`** : les X derives restent a verifier, P6 manque, P21 est invalide,
+les Z et les incertitudes de recalage restent a qualifier. P17 est un candidat,
+mais la tolerance publiee de +/- 1 mm porte sur l'ecartement de sa paire, pas
+sur sa position absolue par rapport a l'essieu.
 
 La quatrieme priorite du dossier, etendre le modele coque, est faite : voir
 « Ce que la caisse ajoute au plancher » ci-dessous. Il ne reste donc plus, dans
