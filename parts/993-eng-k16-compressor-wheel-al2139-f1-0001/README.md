@@ -6,13 +6,16 @@
 
 **`993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001`** · Porsche 993 · 1995–1998
 
-![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
+![status: concept, display mock-up printable](https://img.shields.io/badge/status-concept,%20display%20mock--up%20printable-orange) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
 
 </div>
 
+> [!WARNING]
+> **A 1:1 display mock-up is printable — never for use.** [`print/`](print/README.md): the design, unchanged except for MOCK-UP / NOT FOR USE engraved in it, sliced in 9h 29m 16s (60.3 cm³). The part itself stays prohibited ([decision 0011](../../docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
+
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** The model shown here is a
-> concept block for studying the part in software:
+> **Prohibited, not validated, and not a copy of the original.** The mock-up is a display piece; the model shown here is a
+> design whose fit has not been checked against the car:
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
@@ -28,9 +31,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://www.turbomaster.info/eng/turbocharger-map.php">TurboMaster - principles for reading a compressor map</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for K16 compressor wheel, Al2139 AM F1 iteration" width="340"><br>
-<sub>Concept CAD block, 60.5 × 60.5 × 18.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<b>What you can print: a display mock-up</b><br><br>
+<a href="print/README.md"><img src="print/mockup.png" alt="Engraved display mock-up of K16 compressor wheel, Al2139 AM F1 iteration" width="360"></a><br>
+<sub>1:1 display mock-up with MOCK-UP / NOT FOR USE engraved in it. <b>Never</b> for an engine; not the original part.</sub>
 </td>
 </tr></table>
 
@@ -97,6 +100,14 @@ flowchart LR
 
 *`evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
+![display](print/display.png)
+
+*`print/display.png` — a screening output, not a validation.*
+
+![mockup](print/mockup.png)
+
+*`print/mockup.png` — a screening output, not a validation.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
@@ -104,7 +115,8 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/compressor_wheel_al2139_f1.step`](derived/compressor_wheel_al2139_f1.step), [`derived/compressor_wheel_al2139_f1.stl`](derived/compressor_wheel_al2139_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/compressor_wheel_f1.py`](source/compressor_wheel_f1.py) |
+| `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/display.png`](print/display.png), [`print/k16_compressor_wheel_mockup.stl`](print/k16_compressor_wheel_mockup.stl), [`print/k16_display_pair_plate.3mf`](print/k16_display_pair_plate.3mf), [`print/k16_display_pair_plate.step`](print/k16_display_pair_plate.step), [`print/k16_display_pair_plate.stl`](print/k16_display_pair_plate.stl), [`print/k16_display_stand.stl`](print/k16_display_stand.stl), [`print/mockup.png`](print/mockup.png), [`print/print.json`](print/print.json) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/compressor_wheel_f1.py`](source/compressor_wheel_f1.py), [`source/k16_display_pair.py`](source/k16_display_pair.py), [`source/render_k16_display.py`](source/render_k16_display.py) |
 
 ## Read more
 
