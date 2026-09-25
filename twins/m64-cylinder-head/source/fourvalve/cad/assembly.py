@@ -26,23 +26,29 @@ def brep_distance(a, b):
 
 
 def parts(p, phi_deg=0.0):
-    phi, lifts = kin.lift_table(p, 1.0)
-    k = int(np.argmin(np.abs(phi - (phi_deg % 720))))
+    laws, _ = kin.cam_laws(p)
+    lifts = {side: float(law.valve_lift(np.radians(phi_deg))[0]) * 1e3 for side, law in laws.items()}
     out = {'head': comp.head(p), 'liner': comp.liner(p), 'gasket': comp.gasket(p), 'studs': comp.studs(p),
            'piston': comp.piston(p, phi_deg)}
     if 'plug_thread_reach' in p:
         out.update({f'spark_plug_{k}': comp.spark_plug(p, k) for k in PLUGS})
-    for side in ('intake', 'exhaust'):
-        out[f'camshaft_{side}'] = comp.camshaft(p, side, phi_deg)
+    articulated = 'rocker_valve_arm' in p
+    if articulated:
+        import rocker_train
+        out.update(rocker_train.parts(p, phi_deg))
+    else:
+        for side in ('intake', 'exhaust'):
+            out[f'camshaft_{side}'] = comp.camshaft(p, side, phi_deg)
     for side, sy in VALVES:
         tag = f'{side}_{"p" if sy > 0 else "m"}'
-        lift = float(lifts[side][k])
+        lift = lifts[side]
         out[f'valve_{tag}'] = comp.valve(p, side, sy, lift)
         out[f'guide_{tag}'] = comp.guide(p, side, sy)
         out[f'seat_{tag}'] = comp.seat_insert(p, side, sy)
         out[f'retainer_{tag}'] = comp.retainer(p, side, sy, lift)
         out[f'spring_{tag}'] = comp.spring(p, side, sy, lift)
-        out[f'follower_{tag}'] = comp.follower(p, side, sy, lift)
+        if not articulated:
+            out[f'follower_{tag}'] = comp.follower(p, side, sy, lift)
     return out
 
 
@@ -182,6 +188,9 @@ def export_all(p, out_dir, final_checks, phi_deg=0.0, external_dir=None):
     head_solids = len(head.Solids())
     files = {}
     twins = dict(COMPONENT_TWINS)
+    if 'rocker_valve_arm' in p:
+        del twins['camshaft_follower']
+        twins['articulated_rocker_train'] = [n for n in shapes if n.startswith(('camshaft_', 'rocker_', 'roller_'))]
     if 'plug_thread_reach' in p:
         twins['spark_plug_envelopes'] = [f'spark_plug_{k}' for k in PLUGS]
     for twin, names in twins.items():

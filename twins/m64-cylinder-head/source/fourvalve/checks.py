@@ -226,12 +226,27 @@ def static_checks(p):
                   'entraxe des arbres − rayons de came max', family='cam'))
     out.append(_c('cam_lobes_above_carrier_face', min(ci[2] - reach['intake'], ce[2] - reach['exhaust']),
                   p['carrier_face_height'], '>=', 'point bas des cames au-dessus de la face porte-arbre', family='cam'))
-    laws, _ = kin.cam_laws(p)
-    ph = np.radians(np.arange(0, 720, 0.5))
-    e_max = max(2e3 * float(np.max(np.abs(laws[s].cam_derivatives(ph, 1)))) for s in SIDES)
-    out.append(_c('bucket_follower_contact_within_pocket', p['spring_pocket_diameter'] / 2 - p['bucket_contact_margin'],
-                  e_max, '>=', f'indicatif : un poussoir à coupelle exigerait un rayon ≥ {e_max:.1f} + marge '
-                  '(commande retenue : culbuteur)', blocking=False, family='cam'))
+    if 'rocker_valve_arm' in p:
+        import rocker_geometry
+        for side in SIDES:
+            profile = rocker_geometry.profile(p, side)
+            margin = p['guide_bore_diameter'] / 2 - .02 - float(profile['state']['tip_walk_mm'].max())
+            out.append(_c(f'rocker_{side}_tip_edge_margin', margin, p['rocker_tip_edge_margin'], '>=',
+                          'point de contact sphère/tige, sans empreinte élastique de Hertz', family='cam'))
+            out.append(_c(f'rocker_{side}_pressure_angle', float(profile['pressure_deg'].max()),
+                          p['rocker_pressure_angle_limit'], '<=', 'présélection géométrique, pas une durée de vie', family='cam'))
+            for name, distance in rocker_geometry.cam_body_clearances(p, profile).items():
+                out.append(_c(f'rocker_{side}_cam_clearance_{name}', distance, p['min_valve_clearance'], '>=',
+                              'dégagement du corps de culbuteur face au contour complet de came, pas 0,5°', family='cam'))
+        out.append(not_computable('rocker_carrier_loaded_support', 'porte-arbres, paliers, fixation et graissage non définis ; '
+                                  'le mécanisme articulé ne qualifie pas leur tenue'))
+    else:
+        laws, _ = kin.cam_laws(p)
+        ph = np.radians(np.arange(0, 720, 0.5))
+        e_max = max(2e3 * float(np.max(np.abs(laws[s].cam_derivatives(ph, 1)))) for s in SIDES)
+        out.append(_c('bucket_follower_contact_within_pocket', p['spring_pocket_diameter'] / 2 - p['bucket_contact_margin'],
+                      e_max, '>=', f'indicatif : un poussoir à coupelle exigerait un rayon ≥ {e_max:.1f} + marge '
+                      '(commande retenue : culbuteur)', blocking=False, family='cam'))
     return out
 
 

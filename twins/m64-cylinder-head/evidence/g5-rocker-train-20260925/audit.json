@@ -1,0 +1,1758 @@
+{
+  "artifact": "m64_g5_articulated_rocker_audit",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "master_geometry": false,
+  "status": "kinematic_candidate_not_dynamic_validation",
+  "geometry_checks": [
+    {
+      "check": "valve_heads_within_bore",
+      "family": "geometry",
+      "value": 2.771,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.771,
+      "passed": true,
+      "blocking": true,
+      "detail": "retrait du bord de tête projeté sous l'alésage Ø100"
+    },
+    {
+      "check": "ligament_intake_intake",
+      "family": "geometry",
+      "value": 3.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont adm/adm projeté"
+    },
+    {
+      "check": "ligament_exhaust_exhaust",
+      "family": "geometry",
+      "value": 3.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont éch/éch projeté"
+    },
+    {
+      "check": "ligament_intake_exhaust",
+      "family": "geometry",
+      "value": 8.882,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 5.882,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont adm/éch projeté (4 paires)"
+    },
+    {
+      "check": "valve_face_on_own_roof_plane",
+      "family": "geometry",
+      "value": 0.614,
+      "limit": 0.0,
+      "relation": ">=",
+      "slack": 0.614,
+      "passed": true,
+      "blocking": true,
+      "detail": "tête entièrement de son côté de l'arête du toit"
+    },
+    {
+      "check": "spark_plugs_within_bore",
+      "family": "geometry",
+      "value": 3.15,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 2.15,
+      "passed": true,
+      "blocking": true,
+      "detail": "empreinte des 2 puits de bougie sous l'alésage"
+    },
+    {
+      "check": "ligament_plug_1_to_seats",
+      "family": "geometry",
+      "value": 3.813,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.813,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont projeté bougie 1 / bords de têtes"
+    },
+    {
+      "check": "ligament_plug_2_to_seats",
+      "family": "geometry",
+      "value": 3.813,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.813,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont projeté bougie 2 / bords de têtes"
+    },
+    {
+      "check": "ligament_plug_plug",
+      "family": "geometry",
+      "value": 64.86,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 61.86,
+      "passed": true,
+      "blocking": true,
+      "detail": "pont projeté bougie 1 / bougie 2"
+    },
+    {
+      "check": "plug_plug_wall",
+      "family": "geometry",
+      "value": 59.245,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 56.245,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits 1 / puits 2 (capsules) ; pire paire plug_1_socket / plug_2_socket"
+    },
+    {
+      "check": "plug_vs_ports",
+      "family": "geometry",
+      "value": 8.265,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 5.265,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / conduits ; pire paire plug_1 / port_intake_p_00"
+    },
+    {
+      "check": "plug_vs_studs",
+      "family": "geometry",
+      "value": 14.04,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 11.04,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / goujons ; pire paire plug_1_socket / stud_+1+1"
+    },
+    {
+      "check": "plug_vs_spring_pockets",
+      "family": "geometry",
+      "value": 25.036,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 22.036,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / logements de ressort ; pire paire plug_1_socket / pocket_exhaust_p"
+    },
+    {
+      "check": "plug_vs_guides",
+      "family": "geometry",
+      "value": 20.931,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 17.931,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi puits de bougie / guides ; pire paire guide_exhaust_m / plug_2_socket"
+    },
+    {
+      "check": "plug_vs_swept_valves",
+      "family": "kinematics",
+      "value": 2.771,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.771,
+      "passed": true,
+      "blocking": true,
+      "detail": "capsules conservatives couvrant toute la course froide des têtes et tiges ; sans déformation"
+    },
+    {
+      "check": "plug_vs_piston_tdc",
+      "family": "kinematics",
+      "value": 12.344,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 11.344,
+      "passed": true,
+      "blocking": true,
+      "detail": "borne conservative face au plan de calotte au PMH, bol ignoré"
+    },
+    {
+      "check": "stud_wall_to_chamber",
+      "family": "geometry",
+      "value": 5.515,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 2.515,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi trou de goujon / alésage Ø100"
+    },
+    {
+      "check": "stud_vs_ports",
+      "family": "geometry",
+      "value": 4.125,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.125,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi goujon / conduits ; pire paire port_intake_m_02 / stud_-1-1"
+    },
+    {
+      "check": "stud_vs_spring_pockets",
+      "family": "geometry",
+      "value": 3.206,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 0.206,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi goujon / logements de ressort ; pire paire pocket_intake_m / stud_-1-1"
+    },
+    {
+      "check": "spring_pocket_intake_vs_exhaust",
+      "family": "geometry",
+      "value": 79.41,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 76.41,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi logements adm / éch ; pire paire pocket_exhaust_m / pocket_intake_m"
+    },
+    {
+      "check": "spring_pocket_intake_pair",
+      "family": "geometry",
+      "value": 11.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 8.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi entre les 2 logements intake"
+    },
+    {
+      "check": "spring_pocket_exhaust_pair",
+      "family": "geometry",
+      "value": 4.188,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 1.188,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi entre les 2 logements exhaust"
+    },
+    {
+      "check": "spring_pocket_vs_ports",
+      "family": "geometry",
+      "value": 10.807,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 7.807,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi fond de logement / conduits ; pire paire pocket_exhaust_m / port_exhaust_m_07"
+    },
+    {
+      "check": "compression_ratio_proxy_min",
+      "family": "combustion",
+      "value": 7.929,
+      "limit": 8.0,
+      "relation": ">=",
+      "slack": -0.071,
+      "passed": false,
+      "blocking": false,
+      "detail": "PROXY, non bloquant : volume mort brut 86.6 cm³ (toit, poches et bol), calibré ×1.000 = 86.6 cm³ pour les sièges, gorges et conduits qu'il ignore ; taux brut 7.93. Arête de toit 23.2 mm, angles 29.4/27.6°. Le juge est le taux BRep du rapport CAO."
+    },
+    {
+      "check": "compression_ratio_proxy_max",
+      "family": "combustion",
+      "value": 7.929,
+      "limit": 9.0,
+      "relation": "<=",
+      "slack": 1.071,
+      "passed": true,
+      "blocking": false,
+      "detail": "PROXY, non bloquant : volume mort brut 86.6 cm³ (toit, poches et bol), calibré ×1.000 = 86.6 cm³ pour les sièges, gorges et conduits qu'il ignore ; taux brut 7.93. Arête de toit 23.2 mm, angles 29.4/27.6°. Le juge est le taux BRep du rapport CAO."
+    },
+    {
+      "check": "oil_gallery_vs_spring_pockets",
+      "family": "oil",
+      "value": 18.509,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 15.509,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / spring_pockets ; pire paire oil_gallery / pocket_intake_m"
+    },
+    {
+      "check": "oil_gallery_vs_guides",
+      "family": "oil",
+      "value": 15.525,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 12.525,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / guides ; pire paire guide_intake_m / oil_gallery"
+    },
+    {
+      "check": "oil_gallery_vs_plugs",
+      "family": "oil",
+      "value": 12.625,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 9.625,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / plugs ; pire paire oil_gallery / plug_1_socket"
+    },
+    {
+      "check": "oil_gallery_vs_studs",
+      "family": "oil",
+      "value": 15.473,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 12.473,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / studs ; pire paire oil_gallery / stud_-1+1"
+    },
+    {
+      "check": "oil_gallery_vs_ports",
+      "family": "oil",
+      "value": 22.337,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 19.337,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi galerie d'huile / ports ; pire paire oil_gallery / port_intake_m_02"
+    },
+    {
+      "check": "oil_gallery_below_carrier_face",
+      "family": "oil",
+      "value": 16.461,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 13.461,
+      "passed": true,
+      "blocking": true,
+      "detail": "paroi entre galerie d'huile et face porte-arbre"
+    },
+    {
+      "check": "spring_seat_below_carrier_face",
+      "family": "geometry",
+      "value": 85.816,
+      "limit": 86.461,
+      "relation": "<=",
+      "slack": 0.645,
+      "passed": true,
+      "blocking": true,
+      "detail": "bord supérieur du disque de fond de logement sous la face porte-arbre candidate 935"
+    },
+    {
+      "check": "lift_within_gsc5092_published",
+      "family": "spring",
+      "value": 11.5,
+      "limit": 14.25,
+      "relation": "<=",
+      "slack": 2.75,
+      "passed": true,
+      "blocking": true,
+      "detail": "levée Swindon vs levée max publiée GSC5092"
+    },
+    {
+      "check": "spring_coil_bind_reserve",
+      "family": "spring",
+      "value": 4.32,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 3.32,
+      "passed": true,
+      "blocking": true,
+      "detail": "hauteur montée − levée − longueur jointive (GSC5092 publiées)"
+    },
+    {
+      "check": "register_vs_required_liner_od",
+      "family": "geometry",
+      "value": 113.423,
+      "limit": 108.2,
+      "relation": ">=",
+      "slack": 5.223,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø centrage culasse (candidat 935) vs Ø ext chemise requis = alésage + 2·paroi 4 + 2·jeu 0.1 = 108.20"
+    },
+    {
+      "check": "liner_od_vs_stud_holes",
+      "family": "geometry",
+      "value": 111.031,
+      "limit": 108.2,
+      "relation": ">=",
+      "slack": 2.831,
+      "passed": true,
+      "blocking": true,
+      "detail": "Ø libre entre trous de goujon = 2·(distance axe goujon–axe cylindre 60.95 − rayon trou 5.44) vs Ø ext chemise requis ; paroi chemise vers goujons = 5.52"
+    },
+    {
+      "check": "inter_cylinder_bridge",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "entraxe des cylindres M64 non sourcé dans le dépôt (seul un entraxe 917/Type 912 de 118 mm, niveau C, existe : non transférable) ; pont entre cylindres voisins non calculable"
+    },
+    {
+      "check": "piston_pockets_within_crown",
+      "family": "piston",
+      "value": 50.0,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 47.0,
+      "passed": true,
+      "blocking": true,
+      "detail": "bord de poche en retrait de l'alésage (sans objet si profondeur nulle)"
+    },
+    {
+      "check": "piston_pocket_depth_admissible",
+      "family": "piston",
+      "value": 0.0,
+      "limit": 5.0,
+      "relation": "<=",
+      "slack": 5.0,
+      "passed": true,
+      "blocking": true,
+      "detail": "profondeur de poche"
+    },
+    {
+      "check": "cam_lobe_clearance",
+      "family": "cam",
+      "value": 95.885,
+      "limit": 3.0,
+      "relation": ">=",
+      "slack": 92.885,
+      "passed": true,
+      "blocking": true,
+      "detail": "entraxe des arbres − rayons de came max"
+    },
+    {
+      "check": "cam_lobes_above_carrier_face",
+      "family": "cam",
+      "value": 128.084,
+      "limit": 86.461,
+      "relation": ">=",
+      "slack": 41.623,
+      "passed": true,
+      "blocking": true,
+      "detail": "point bas des cames au-dessus de la face porte-arbre"
+    },
+    {
+      "check": "rocker_intake_tip_edge_margin",
+      "family": "cam",
+      "value": 2.459,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.459,
+      "passed": true,
+      "blocking": true,
+      "detail": "point de contact sphère/tige, sans empreinte élastique de Hertz"
+    },
+    {
+      "check": "rocker_intake_pressure_angle",
+      "family": "cam",
+      "value": 29.224,
+      "limit": 35.0,
+      "relation": "<=",
+      "slack": 5.776,
+      "passed": true,
+      "blocking": true,
+      "detail": "présélection géométrique, pas une durée de vie"
+    },
+    {
+      "check": "rocker_intake_cam_clearance_pivot_boss_mm",
+      "family": "cam",
+      "value": 2.042,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.042,
+      "passed": true,
+      "blocking": true,
+      "detail": "dégagement du corps de culbuteur face au contour complet de came, pas 0,5°"
+    },
+    {
+      "check": "rocker_intake_cam_clearance_pad_and_crossbar_mm",
+      "family": "cam",
+      "value": 2.228,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.228,
+      "passed": true,
+      "blocking": true,
+      "detail": "dégagement du corps de culbuteur face au contour complet de came, pas 0,5°"
+    },
+    {
+      "check": "rocker_intake_cam_clearance_fork_axial_mm",
+      "family": "cam",
+      "value": 2.0,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.0,
+      "passed": true,
+      "blocking": true,
+      "detail": "dégagement du corps de culbuteur face au contour complet de came, pas 0,5°"
+    },
+    {
+      "check": "rocker_exhaust_tip_edge_margin",
+      "family": "cam",
+      "value": 2.911,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.911,
+      "passed": true,
+      "blocking": true,
+      "detail": "point de contact sphère/tige, sans empreinte élastique de Hertz"
+    },
+    {
+      "check": "rocker_exhaust_pressure_angle",
+      "family": "cam",
+      "value": 25.741,
+      "limit": 35.0,
+      "relation": "<=",
+      "slack": 9.259,
+      "passed": true,
+      "blocking": true,
+      "detail": "présélection géométrique, pas une durée de vie"
+    },
+    {
+      "check": "rocker_exhaust_cam_clearance_pivot_boss_mm",
+      "family": "cam",
+      "value": 3.035,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 2.035,
+      "passed": true,
+      "blocking": true,
+      "detail": "dégagement du corps de culbuteur face au contour complet de came, pas 0,5°"
+    },
+    {
+      "check": "rocker_exhaust_cam_clearance_pad_and_crossbar_mm",
+      "family": "cam",
+      "value": 3.17,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 2.17,
+      "passed": true,
+      "blocking": true,
+      "detail": "dégagement du corps de culbuteur face au contour complet de came, pas 0,5°"
+    },
+    {
+      "check": "rocker_exhaust_cam_clearance_fork_axial_mm",
+      "family": "cam",
+      "value": 2.0,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 1.0,
+      "passed": true,
+      "blocking": true,
+      "detail": "dégagement du corps de culbuteur face au contour complet de came, pas 0,5°"
+    },
+    {
+      "check": "rocker_carrier_loaded_support",
+      "family": "geometry",
+      "value": null,
+      "limit": null,
+      "relation": null,
+      "slack": null,
+      "passed": null,
+      "blocking": false,
+      "status": "not_computable",
+      "detail": "porte-arbres, paliers, fixation et graissage non définis ; le mécanisme articulé ne qualifie pas leur tenue"
+    },
+    {
+      "check": "valve_valve_clearance_cycle",
+      "family": "kinematics",
+      "value": 5.89,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 4.89,
+      "passed": true,
+      "blocking": true,
+      "detail": "min sur 720° pas 0.5° ; pire φ=65° (levées 7.91 / 0.00 mm)"
+    },
+    {
+      "check": "valve_piston_intake",
+      "family": "kinematics",
+      "value": 1.813,
+      "limit": 1.5,
+      "relation": ">=",
+      "slack": 0.313,
+      "passed": true,
+      "blocking": true,
+      "detail": "jeu vertical face de tête / calotte (poches 0.00 mm) ; pire φ=0.5°"
+    },
+    {
+      "check": "valve_piston_exhaust",
+      "family": "kinematics",
+      "value": 2.247,
+      "limit": 2.0,
+      "relation": ">=",
+      "slack": 0.247,
+      "passed": true,
+      "blocking": true,
+      "detail": "jeu vertical face de tête / calotte (poches 0.00 mm) ; pire φ=718.5°"
+    },
+    {
+      "check": "valve_head_vs_liner_at_full_lift",
+      "family": "kinematics",
+      "value": 4.805,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 3.805,
+      "passed": true,
+      "blocking": true,
+      "detail": "rayon max des points de tête sous le haut de chemise, pleine levée"
+    },
+    {
+      "check": "valve_valve_both_full_lift_envelope",
+      "family": "kinematics",
+      "value": 1.978,
+      "limit": 1.0,
+      "relation": ">=",
+      "slack": 0.978,
+      "passed": true,
+      "blocking": false,
+      "detail": "enveloppe pessimiste hors cinématique (11,5 et 9,6 simultanées)"
+    }
+  ],
+  "geometry_summary": {
+    "passed": 54,
+    "failed": 1,
+    "not_computable": [
+      "inter_cylinder_bridge",
+      "rocker_carrier_loaded_support"
+    ],
+    "blocking_failed": [],
+    "min_slack": 0.188,
+    "limiting_check": "ligament_intake_intake",
+    "cycle_evaluated": true,
+    "accepted": true
+  },
+  "numerics": {
+    "intake": {
+      "convergence": [
+        {
+          "crank_step_deg": 2.0,
+          "vertices": 360,
+          "maximum_recovered_lift_error_mm": 0.0020358555407380408,
+          "maximum_global_contact_error_mm": 0.0009938459077991624
+        },
+        {
+          "crank_step_deg": 1.0,
+          "vertices": 720,
+          "maximum_recovered_lift_error_mm": 0.000572734190598112,
+          "maximum_global_contact_error_mm": 0.0002810756095774636
+        },
+        {
+          "crank_step_deg": 0.5,
+          "vertices": 1440,
+          "maximum_recovered_lift_error_mm": 0.00010510603742375224,
+          "maximum_global_contact_error_mm": 5.12508589753935e-05
+        }
+      ],
+      "maximum_pressure_angle_deg": 29.223825605917995,
+      "maximum_swing_deg": 14.938244097977504,
+      "maximum_tip_walk_mm": 1.5208095751542305,
+      "minimum_convex_pitch_radius_mm": 13.531939482041224,
+      "tip_radius_mm": 3.98,
+      "cam_body_clearances": {
+        "pivot_boss_mm": 2.041836263392671,
+        "pad_and_crossbar_mm": 2.2276121822376,
+        "fork_axial_mm": 2.0
+      }
+    },
+    "exhaust": {
+      "convergence": [
+        {
+          "crank_step_deg": 2.0,
+          "vertices": 360,
+          "maximum_recovered_lift_error_mm": 0.0017969438999658749,
+          "maximum_global_contact_error_mm": 0.0008998179345418578
+        },
+        {
+          "crank_step_deg": 1.0,
+          "vertices": 720,
+          "maximum_recovered_lift_error_mm": 0.000506929088505359,
+          "maximum_global_contact_error_mm": 0.0002544658202801031
+        },
+        {
+          "crank_step_deg": 0.5,
+          "vertices": 1440,
+          "maximum_recovered_lift_error_mm": 9.265646932288263e-05,
+          "maximum_global_contact_error_mm": 4.631377501418399e-05
+        }
+      ],
+      "maximum_pressure_angle_deg": 25.74122441850177,
+      "maximum_swing_deg": 12.513243840478525,
+      "maximum_tip_walk_mm": 1.068932190587149,
+      "minimum_convex_pitch_radius_mm": 13.857757964888348,
+      "tip_radius_mm": 3.98,
+      "cam_body_clearances": {
+        "pivot_boss_mm": 3.034613851362698,
+        "pad_and_crossbar_mm": 3.170392082878175,
+        "fork_axial_mm": 2.0
+      }
+    }
+  },
+  "native_checks": [
+    {
+      "phi_deg": 0.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 1.4210854715202004e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 0.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 1.4210854715202004e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 0.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 1.0862878251543481e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 0.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 1.0862878251543481e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 51.5,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 2.842170943040401e-14,
+      "rocker_valve_gap_mm": 3.1776437161565096e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 51.5,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 2.842170943040401e-14,
+      "rocker_valve_gap_mm": 3.1776437161565096e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 51.5,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 51.5,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 90.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 2.929642751054232e-14,
+      "rocker_valve_gap_mm": 1.4210854715202004e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 90.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 2.929642751054232e-14,
+      "rocker_valve_gap_mm": 1.4210854715202004e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 90.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 90.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 115.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 7.105427357601002e-15,
+      "rocker_valve_gap_mm": 3.1776437161565096e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 115.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 7.105427357601002e-15,
+      "rocker_valve_gap_mm": 3.1776437161565096e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 115.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 115.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 180.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 3.1776437161565096e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 180.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 3.1776437161565096e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 180.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 180.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 360.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 360.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 360.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 360.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 0.15000000000000027,
+      "expected_lash_gap_mm": 0.15,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 540.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 540.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 540.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 1.1780516829410314e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 540.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 1.1780516829410314e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 549.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 549.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 549.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 4.93137296700546e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 549.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 4.93137296700546e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 611.2738,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.52659709838486e-05,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 611.2738,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.5265970984839226e-05,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 611.2738,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 6.632038851678298e-05,
+      "rocker_valve_gap_mm": 2.1362251575209468e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 611.2738,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 6.632038850911605e-05,
+      "rocker_valve_gap_mm": 2.1362251575209468e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 630.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 630.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 1.4210854715202004e-14,
+      "rocker_valve_gap_mm": 0.10000000000004254,
+      "expected_lash_gap_mm": 0.1,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 630.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 5.001391686566959e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 630.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 3.1776437161565096e-14,
+      "rocker_valve_gap_mm": 5.001391686566959e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 719.0,
+      "side": "intake",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 2.0097183471152322e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 719.0,
+      "side": "intake",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 2.0097183471152322e-14,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 0.0
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 719.0,
+      "side": "exhaust",
+      "sy": 1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 4.2746924842054075e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 1.6773104019519837e-07
+      },
+      "passed": true
+    },
+    {
+      "phi_deg": 719.0,
+      "side": "exhaust",
+      "sy": -1,
+      "brep_valid": true,
+      "cam_roller_gap_mm": 0.0,
+      "rocker_valve_gap_mm": 4.2746924842054075e-10,
+      "expected_lash_gap_mm": 0,
+      "overlap_mm3": {
+        "rocker/head": 0.0,
+        "rocker/cam": 0.0,
+        "rocker/roller": 0.0,
+        "rocker/valve": 0.0,
+        "rocker/spring": 0.0,
+        "rocker/retainer": 0.0,
+        "roller/cam": 1.6773104019519837e-07
+      },
+      "passed": true
+    }
+  ],
+  "bounded_arm_screen_not_global_optimum": [
+    {
+      "valve_arm_mm": 35,
+      "cam_arm_mm": 21,
+      "clearances": {
+        "intake": {
+          "pivot_boss_mm": -0.9859873178837395,
+          "pad_and_crossbar_mm": -2.1419264219026397,
+          "fork_axial_mm": 2.0
+        },
+        "exhaust": {
+          "pivot_boss_mm": 0.1366933134975028,
+          "pad_and_crossbar_mm": -1.2570276149156765,
+          "fork_axial_mm": 2.0
+        }
+      }
+    },
+    {
+      "valve_arm_mm": 35,
+      "cam_arm_mm": 23,
+      "clearances": {
+        "intake": {
+          "pivot_boss_mm": -0.1738982258011621,
+          "pad_and_crossbar_mm": -3.1612710301142775,
+          "fork_axial_mm": 2.0
+        },
+        "exhaust": {
+          "pivot_boss_mm": 1.0567175456308195,
+          "pad_and_crossbar_mm": -2.3219098835829066,
+          "fork_axial_mm": 2.0
+        }
+      }
+    },
+    {
+      "valve_arm_mm": 40,
+      "cam_arm_mm": 23,
+      "clearances": {
+        "intake": {
+          "pivot_boss_mm": 0.7913078777742282,
+          "pad_and_crossbar_mm": -0.6015374185218416,
+          "fork_axial_mm": 2.0
+        },
+        "exhaust": {
+          "pivot_boss_mm": 1.8639017672813516,
+          "pad_and_crossbar_mm": 0.3455574298118096,
+          "fork_axial_mm": 2.0
+        }
+      }
+    },
+    {
+      "valve_arm_mm": 40,
+      "cam_arm_mm": 24,
+      "clearances": {
+        "intake": {
+          "pivot_boss_mm": 1.2612786077667408,
+          "pad_and_crossbar_mm": -1.3443955956860636,
+          "fork_axial_mm": 2.0
+        },
+        "exhaust": {
+          "pivot_boss_mm": 2.3809339395614515,
+          "pad_and_crossbar_mm": -0.38710324434962384,
+          "fork_axial_mm": 2.0
+        }
+      }
+    },
+    {
+      "valve_arm_mm": 40,
+      "cam_arm_mm": 25,
+      "clearances": {
+        "intake": {
+          "pivot_boss_mm": 1.7445251462950875,
+          "pad_and_crossbar_mm": -2.0176245336859036,
+          "fork_axial_mm": 2.0
+        },
+        "exhaust": {
+          "pivot_boss_mm": 2.9110285545900023,
+          "pad_and_crossbar_mm": -1.0603216372676414,
+          "fork_axial_mm": 2.0
+        }
+      }
+    },
+    {
+      "valve_arm_mm": 45,
+      "cam_arm_mm": 24,
+      "clearances": {
+        "intake": {
+          "pivot_boss_mm": 2.041836263392671,
+          "pad_and_crossbar_mm": 2.2276121822376,
+          "fork_axial_mm": 2.0
+        },
+        "exhaust": {
+          "pivot_boss_mm": 3.034613851362698,
+          "pad_and_crossbar_mm": 3.170392082878175,
+          "fork_axial_mm": 2.0
+        }
+      }
+    }
+  ],
+  "all_native_contact_samples_passed": true,
+  "assembly_brep_validity": {
+    "head": true,
+    "liner": true,
+    "gasket": true,
+    "studs": true,
+    "piston": true,
+    "spark_plug_1": true,
+    "spark_plug_2": true,
+    "camshaft_intake": true,
+    "rocker_shaft_intake": true,
+    "rocker_intake_p": true,
+    "roller_intake_p": true,
+    "roller_pin_intake_p": true,
+    "rocker_intake_m": true,
+    "roller_intake_m": true,
+    "roller_pin_intake_m": true,
+    "camshaft_exhaust": true,
+    "rocker_shaft_exhaust": true,
+    "rocker_exhaust_p": true,
+    "roller_exhaust_p": true,
+    "roller_pin_exhaust_p": true,
+    "rocker_exhaust_m": true,
+    "roller_exhaust_m": true,
+    "roller_pin_exhaust_m": true,
+    "valve_intake_p": true,
+    "guide_intake_p": true,
+    "seat_intake_p": true,
+    "retainer_intake_p": true,
+    "spring_intake_p": true,
+    "valve_intake_m": true,
+    "guide_intake_m": true,
+    "seat_intake_m": true,
+    "retainer_intake_m": true,
+    "spring_intake_m": true,
+    "valve_exhaust_p": true,
+    "guide_exhaust_p": true,
+    "seat_exhaust_p": true,
+    "retainer_exhaust_p": true,
+    "spring_exhaust_p": true,
+    "valve_exhaust_m": true,
+    "guide_exhaust_m": true,
+    "seat_exhaust_m": true,
+    "retainer_exhaust_m": true,
+    "spring_exhaust_m": true
+  },
+  "numerical_tolerances": {
+    "distance_mm": 0.001,
+    "overlap_volume_mm3": 0.001,
+    "manufacturing_tolerances": false
+  },
+  "candidate_sha256": "2429517412f8403b6b6265d19f3dc985f55a66fad58320db0d5e754fd7216699",
+  "rocker_parameters_sha256": "f69eb32272d0d9969a2071cd5f432a0928fbac56ea919c532d899d301466fca6",
+  "valvetrain_law_sha256": "793d4d7b33ccbe1bac31f9ebb6c99ed4f4ebc201b4e4f91f7df0584933730a90",
+  "source_sha256": {
+    "audit_compression.py": "a461a46806696730edd14cff1afb4067886ac37cb5fdc5e99cb35905399a6694",
+    "audit_rocker_train.py": "04ea8c0ef7c25033f83b7df4d1cfb0d6502320aef1469c7ba39cdc28a1613306",
+    "audit_seat_contact.py": "e045667040ef167ebf9ee6e9fc542017c3862507d69d3f6adc711534ed027b72",
+    "audit_spark_plugs.py": "e8ac7e2945429173430369e275f494f1ec495537a2a4926cae3e22c117355159",
+    "audit_spring_layout.py": "9f48cf0963fcf3ffb166d43c28cb078bda2b725932ff91f34e29a8580894aaf7",
+    "bore_sweep.py": "66a687ae8fefe7a159737c978b0d85fa073ab7317d580e91b906cbb50ddf9a6d",
+    "cad/assembly.py": "298dc2d4a72497e71eac564da4ffb81ab2ce2596634dc6580ec14c5ba1a66344",
+    "cad/cadcommon.py": "eb8b3f9ecd6a14d022501100e4132da634369078b91fb5c09afdc1285c6267aa",
+    "cad/camshaft.py": "31d86c9bc3378c87a5deb0cdd2f6bb0cc04fb831b83e8ee7833059d29a8e981b",
+    "cad/components.py": "f5bac34b721d3a219aa5c8e4ce455ae0859a7f450272cd8cfe583fe98269233b",
+    "cad/gasket.py": "ef73fead4753060006aa1262fb1cb619e131dc0999cbc0d5710a83dac2cafb36",
+    "cad/head.py": "012b078966fbf24e851718336f4a531c35cb0df71fff39b45f86df664bcde802",
+    "cad/liner.py": "c25e5c6ee0ab4772c9e14fe3536d693c3bf00459f0e6579d3b9999a306322e34",
+    "cad/piston.py": "449745ab20bac15fc1ae2cebee4ea1b56f2592ad2bf12e6055a8f935e1adc04b",
+    "cad/rocker_train.py": "9db98e4c9e2a158d0be5dd4693cb17b161d6ca5b78358f0ab1e1e645871b295e",
+    "cad/spark_plug.py": "2632868bb63504ae06e8fa3a2ebd8b098594351c9ec62e4d0c0a8ab73d9e072e",
+    "cad/spring.py": "17d6ac41d29ae2a220e685edc36d7bcf409d0c26e7cc48e5d736821f58ccfc93",
+    "cad/studs.py": "0a1b44739fca525328fd18364d3051dfc810c3dc18bc328a70c047da9314e6ef",
+    "cad/valve.py": "99e7ec759a4b886d253cb8aec18696d551944b96277b3a08442805f111d4282c",
+    "checks.py": "77863621f73c9c3d3b6f195fce73f453956918a9283579a36156483ab3bcc72f",
+    "features.py": "4ea0d516544e9fd70c2016b668376747a8f085f7754ec8766a43ec32ad956a6f",
+    "iterate.py": "45509b3f68fae4d0ff038eb8fdbf64b9cdb7fcef51b0bf91464c87f6b79095a0",
+    "kinematics.py": "b7e45b0a9d72f4da3b07201429df20bdd7dabc524bb9b6a8ac2a0474d7a969a1",
+    "layout.py": "c2ff3afe910b338cce4c888942285e0da3b09a96eb75457939faf092e577d549",
+    "provenance.py": "39bf0f1c90688a4f0a9c48ec3637d35685579f783aaca6d896d86c0fc6093e64",
+    "rocker_geometry.py": "33d059bbc12bae0fed98b436d634b1f6f176e32bab4e53988205640b53ef63e6",
+    "run.py": "e9c65c67a2fb81823b111413ad75bea6e0adf4a6ea8bd0176ae70f89b38a48e1",
+    "tune_compression.py": "33ee3c7eedcd7a82f8be55efca1c117340173d8f9cf37645d1e0991ea4a4e2bc"
+  },
+  "files_sha256": {
+    "cam-profile-exhaust.csv": "c56b50a5cd30d1addd85aa46ffbe5effa9ec8759b98afbbf4eb5c5d99527e916",
+    "cam-profile-intake.csv": "3a675f54481d6175d26ac120c6270a72511fbffc9270d612379dd0915df1d18b",
+    "candidate.json": "d71dff44cf9438e90ef78b493e7dda3159c166b3a0039bf60a153da766dba00a",
+    "rocker-train-section.svg": "d5f85f05cf38d68eb699f74c49acf11f8223031e79d5a4a13092281ac9f6932b",
+    "rockers-rollers-and-shafts.step": "bfc65f4cfdee0654b23fd5316ded2ed8b13ecb815bb9b808b89a7d2df8831249"
+  },
+  "environment": {
+    "python": "3.12.11",
+    "cadquery": "2.6.1",
+    "numpy": "2.5.3"
+  },
+  "method_source": "https://www.cs.cmu.edu/~rapidproto/mechanisms/chpt6.html",
+  "limitations": [
+    "rigid kinematics with assumed cold lash, not a hydraulic lash adjuster",
+    "carrier, bearings, fastener access and lubrication not designed",
+    "no inertia, spring surge, Hertz stress, wear or fatigue qualification",
+    "native collision checks are discrete samples, not continuous collision detection",
+    "head remains a synthetic candidate, not certified M64 geometry",
+    "no CFD/CHT, hot material card or qualified additive manufacturing process"
+  ]
+}
