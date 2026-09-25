@@ -6,12 +6,33 @@
 
 **`993-ENG-CHAIN-CASE-LID-TI-F0-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![process: CNC](https://img.shields.io/badge/process-CNC-blue)
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![candidate process: CNC](https://img.shields.io/badge/candidate%20process-CNC-lightgrey)
 
 </div>
 
+> [!CAUTION]
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `functional`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://porschefanatics.com/oem/993/103-05/">993 factory catalogue, plate 103-05 Chain case</a><br>
+↗ <a href="https://lnengineering.com/porsche-964-993-chain-box-covers.html">Commercial reproducers of the lid: LN Engineering and Auto-Service Schefter</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<i>No CAD geometry to show.</i>
+</td>
+</tr></table>
+
 > [!NOTE]
-> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing.
 
 ## What it is
 
@@ -28,7 +49,7 @@ Parametric screening and measurement preparation; no manufacturing or fitting au
 | Porsche part numbers | 964 105 107 01, 964 105 181 01 |
 | variants | `993_split_by_variant_to_confirm` |
 | candidate material | Ti-6Al-4V Grade 5, plate — deliberate choice |
-| preferred process | CNC |
+| candidate process | CNC |
 | safety class | `functional` |
 | validation status | `concept` |
 | geometry | estimated, master none |

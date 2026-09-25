@@ -33,7 +33,9 @@ class PartPageTests(unittest.TestCase):
             self.assertIn(f"docs/pieces/{fiche['part_id'].lower()}.md", texte)
             if (dossier / "media" / "preview.png").exists():
                 self.assertIn("media/preview.png", texte)
-                self.assertIn("Not a photograph", texte)
+                self.assertIn("not a print file", texte)
+            self.assertIn("Not ready to print", texte)
+            self.assertIn("[!CAUTION]", texte.split("## What it is")[0])
 
     def test_check_passes_on_the_committed_pages(self):
         argv = sys.argv

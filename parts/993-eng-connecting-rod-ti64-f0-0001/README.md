@@ -6,16 +6,35 @@
 
 **`993-ENG-CONNECTING-ROD-TI64-F0-0001`** · Porsche 993 · 1993–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: LPBF](https://img.shields.io/badge/process-LPBF-blue)
-
-<img src="media/preview.png" alt="CAD view of 993/993 Turbo connecting rod, Ti64 F0 topology concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 186.0 × 84.0 × 19.6 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://www.tzr-motorsport.de/993-230-580-1270F">TZR Motorsport - manufacturer dimensions of the PAUTER 993/993 Turbo connecting rod</a><br>
+↗ <a href="https://porschefanatics.com/engine/993/">PorscheFanatics - titanium connecting rods for the 993 engine</a><br>
+↗ <a href="https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php">elferclassic - 993 Turbo technical data</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993/993 Turbo connecting rod, Ti64 F0 topology concept" width="340"><br>
+<sub>Concept CAD block, 186.0 × 84.0 × 19.6 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +51,7 @@ CAD, DfAM, mass, synthetic loads, nominal stresses and buckling screening only; 
 | Porsche part numbers | not recorded |
 | variants | 993, `993_Turbo`, `M64_60_research` |
 | candidate material | Ti-6Al-4V Grade 5 LPBF for screening |
-| preferred process | LPBF |
+| candidate process | LPBF |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | mixed, master build123d |
@@ -69,7 +88,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -77,7 +96,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/connecting_rod_ti64_f0.step`](derived/connecting_rod_ti64_f0.step), [`derived/connecting_rod_ti64_f0.stl`](derived/connecting_rod_ti64_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/connecting_rod.py`](source/connecting_rod.py) |
 
 ## Read more
