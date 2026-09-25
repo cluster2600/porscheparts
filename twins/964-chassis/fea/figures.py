@@ -151,7 +151,7 @@ def fig_modele():
                               linewidth=0.15, rasterized=True)
         ax.add_collection3d(pc)
         _pose(ax, xyz, zoom=1.05)
-        ax.set_title(f"{legende}\nK = {K} N.m/deg", color=FG, fontsize=8.5, y=1.0)
+        ax.set_title(f"{legende}\nK = {K} N.m/deg, linear S3 shells", color=FG, fontsize=8.5, y=1.0)
     fig.suptitle("What the computation contains. It is not a 964.",
                  color=FG, fontsize=10.5, x=0.012, ha="left")
     fig.text(0.012, 0.015,

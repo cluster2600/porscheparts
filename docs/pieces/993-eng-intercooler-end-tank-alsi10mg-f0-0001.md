@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, TA Technix/Albert/Porsche surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, TA Technix/Albert/Porsche surface or commercial geometry redistributed |
 
 **Sources**
 

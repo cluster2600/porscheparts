@@ -106,7 +106,7 @@ Catalogue record: [`catalog/parts/993-eng-intake-valve-ti64-hollow-f0-0001.json`
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no Porsche/FVD/Swindon photograph, surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no Porsche/FVD/Swindon photograph, surface or commercial geometry redistributed |
 
 **Sources**
 

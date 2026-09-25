@@ -4,11 +4,11 @@
 
 # porscheparts
 
-**Open reverse engineering for the Porsche 911 964 and 993**<br>
+**Reverse engineering for the Porsche 911 964 and 993**<br>
 *Sourced data, falsifiable calculations, no part manufactured.*
 
 [![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
-[![MIT license](https://img.shields.io/badge/license-MIT-informational)](LICENSE)
+[![License: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
@@ -527,6 +527,9 @@ independent and not affiliated with Porsche AG.
 
 ## License
 
-The repository's original contributions are under the MIT license unless a
-part's record says otherwise. Third-party sources and models keep their own
-license. See [LICENSES.md](LICENSES.md).
+**© 2026 Maxime Grenu. All rights reserved.** The repository is under a custom
+[proprietary license](LICENSE): you may view it, but copying, modifying,
+printing or manufacturing parts, redistributing, commercial use and AI training
+all need prior written permission — ask by opening an issue. Third-party
+sources and models keep their own license; see [LICENSES.md](LICENSES.md).
+Revisions published before 2026-09-25 were under the MIT License.
