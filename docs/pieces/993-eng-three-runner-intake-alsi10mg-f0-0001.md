@@ -73,6 +73,16 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 
 - [`parts/993-eng-three-runner-intake-alsi10mg-f0-0001/derived/three_runner_intake_alsi10mg_f0.step`](../../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/derived/three_runner_intake_alsi10mg_f0.step)
 
+## Images
+
+![preview](../../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png)
+
+*parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png*
+
+![views](../../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/views.png)
+
+*parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/views.png*
+
 ## Provenance and sources
 
 | field | value |
