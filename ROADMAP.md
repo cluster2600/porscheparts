@@ -83,7 +83,8 @@ relationships for each component.
 > [`parts/993-int-switch-blank-0001/print/`](parts/993-int-switch-blank-0001/print/README.md).
 > The F1 switch trim ring followed as a printable part
 > ([decision 0010](docs/decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
-> The F0 connecting rod is published as an engraved display mock-up only
+> The F0 connecting rod and the K16 wheel pair are published as engraved display
+> mock-ups only
 > ([decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
 > Every other part stays unprinted.
 
