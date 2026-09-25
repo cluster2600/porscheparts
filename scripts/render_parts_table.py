@@ -82,13 +82,20 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
                           f"<sub>{libelle}</sub></a></td>")
     if not tuiles:
         return []
-    out = ["<table>"]
+    niveaux = {d.get("validation", {}).get("status") for _, d in fiches}
+    mesurees = sum(1 for _, d in fiches if d.get("geometry", {}).get("source_type") in ("measured", "scan"))
+    etat = (f"{len(fiches)} of {len(fiches)} records are at `concept`" if niveaux == {"concept"}
+            else "see each record's validation status")
+    etat += f", and {mesurees} of {len(fiches)} have measured geometry"
+    out = ["> [!CAUTION]",
+           "> These are concept models for studying parts in software. None is ready to print.",
+           "", "<table>"]
     for i in range(0, len(tuiles), par_ligne):
         out += ["<tr>"] + tuiles[i:i + par_ligne] + ["</tr>"]
     out += ["</table>", "",
-            "*CAD views of the concept geometry, rendered from each part's own CAD by "
-            "`scripts/render_part_previews.py` — not photographs, not manufactured parts. "
-            "Click a part to open its page.*", ""]
+            "*Concept CAD blocks rendered from each part's own CAD by "
+            "`scripts/render_part_previews.py`. **None of these is the original part, and none "
+            f"is a print file**: {etat}. Click a part to see it next to the original.*", ""]
     return out
 
 

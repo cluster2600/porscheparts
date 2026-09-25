@@ -6,16 +6,36 @@
 
 **`993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001`** · Porsche 993 · 1995–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of 993 Turbo three-into-one exhaust manifold, IN625 F0 concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 146.4 × 66.4 × 215.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://www.kline-innovation.com/exhaust-collection/porsche/993-2/porsche-993-turbo/">Kline Innovation - Porsche 993 Turbo exhaust</a><br>
+↗ <a href="https://porschefanatics.com/parts/c/exhaust/">PorscheFanatics - IN625 manifolds with heat exchanger for 993 Turbo</a><br>
+↗ <a href="https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG">Porsche PET 993 - Turbo exhaust and heat exchangers 202-10</a><br>
+↗ <a href="https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf">Special Metals - INCONEL alloy 625</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 Turbo three-into-one exhaust manifold, IN625 F0 concept" width="340"><br>
+<sub>Concept CAD block, 146.4 × 66.4 × 215.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +52,7 @@ CAD, DfAM, flow, pressure, acoustic and thermal screening; no manufacturing, ins
 | Porsche part numbers | not recorded |
 | variants | `993_Turbo`, `M64_60_research` |
 | candidate material | EOS NickelAlloy IN625 / UNS N06625 for screening |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | mixed, master build123d |
@@ -69,7 +89,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## Screens and evidence images
 
@@ -83,7 +103,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/exhaust_manifold_in625_f0.step`](derived/exhaust_manifold_in625_f0.step), [`derived/exhaust_manifold_in625_f0.stl`](derived/exhaust_manifold_in625_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-exhaust-manifold-in625-f0-0001-lpbf-geometry-screen.png) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/exhaust_manifold.py`](source/exhaust_manifold.py) |
 
 ## Read more

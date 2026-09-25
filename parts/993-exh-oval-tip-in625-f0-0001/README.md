@@ -6,16 +6,35 @@
 
 **`993-EXH-OVAL-TIP-IN625-F0-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of 993 oval exhaust tip, IN625 double-wall F0 concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 120.0 × 85.0 × 120.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
+> [!CAUTION]
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
+> - safety class `functional`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html">FVD - 993 narrow-body oval stainless tips</a><br>
+↗ <a href="https://porschefanatics.com/materials/">PorscheFanatics - register of declared materials</a><br>
+↗ <a href="https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-625.pdf">Special Metals - INCONEL alloy 625</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 oval exhaust tip, IN625 double-wall F0 concept" width="340"><br>
+<sub>Concept CAD block, 120.0 × 85.0 × 120.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
 > [!NOTE]
-> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing.
 
 ## What it is
 
@@ -32,7 +51,7 @@ CAD, DfAM, flow, thermal, pressure and modal screening; no manufacturing for fit
 | Porsche part numbers | not recorded |
 | variants | `993_C2`, `993_C4`, `993_RS_narrow_body` |
 | candidate material | EOS NickelAlloy IN625 / UNS N06625 for screening |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `functional` |
 | validation status | `concept` |
 | geometry | mixed, master build123d |
@@ -66,7 +85,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## Screens and evidence images
 
@@ -80,7 +99,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/oval_exhaust_tip_in625_f0.step`](derived/oval_exhaust_tip_in625_f0.step), [`derived/oval_exhaust_tip_in625_f0.stl`](derived/oval_exhaust_tip_in625_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png), [`evidence/openfoam-flow-screen.json`](evidence/openfoam-flow-screen.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/oval_exhaust_tip.py`](source/oval_exhaust_tip.py) |
 
 ## Read more

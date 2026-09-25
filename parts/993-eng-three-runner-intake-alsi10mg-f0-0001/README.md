@@ -6,16 +6,34 @@
 
 **`993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of 993 three-runner intake manifold, AlSi10Mg F0 concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 180.0 × 70.0 × 100.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
+> [!CAUTION]
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
+> - safety class `functional`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://porschefanatics.com/parts/g/964/">PorscheFanatics - PMO 46 mm manifold for 964/993 engine</a><br>
+↗ <a href="https://patrickmotorsports.com/collections/all-engine/products/fuepmo9150">Patrick Motorsports - PMO FUE PMO 9150</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 three-runner intake manifold, AlSi10Mg F0 concept" width="340"><br>
+<sub>Concept CAD block, 180.0 × 70.0 × 100.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
 > [!NOTE]
-> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing.
 
 ## What it is
 
@@ -32,7 +50,7 @@ CAD, DfAM, flow, acoustic, pressure and thermal screening; no manufacturing, ins
 | Porsche part numbers | not recorded |
 | variants | `993_3.6L_conversion`, `993_3.8L_conversion`, `964_shared_engine_conversion` |
 | candidate material | generic AlSi10Mg for screening |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `functional` |
 | validation status | `concept` |
 | geometry | mixed, master build123d |
@@ -66,7 +84,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -74,7 +92,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/three_runner_intake_alsi10mg_f0.step`](derived/three_runner_intake_alsi10mg_f0.step), [`derived/three_runner_intake_alsi10mg_f0.stl`](derived/three_runner_intake_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/three_runner_intake.py`](source/three_runner_intake.py) |
 
 ## Read more

@@ -92,11 +92,11 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 
 ![preview](../../parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png)
 
-*parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png*
+*`parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
 
 ![views](../../parts/993-eng-connecting-rod-ti64-f0-0001/media/views.png)
 
-*parts/993-eng-connecting-rod-ti64-f0-0001/media/views.png*
+*`parts/993-eng-connecting-rod-ti64-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
 ## Provenance and sources
 

@@ -75,7 +75,9 @@ def images(part_id: str, page: Path) -> list[str]:
     out = ["## Images", ""]
     for img in trouvees[:6]:
         rel = img.relative_to(ROOT).as_posix()
-        out += [f"![{img.stem}]({lien(img, page)})", "", f"*{rel}*", ""]
+        legende = (" — concept CAD block, **not** the original part, not a print file"
+                   if "media" in img.relative_to(ROOT).parts else " — a screening output, not a validation")
+        out += [f"![{img.stem}]({lien(img, page)})", "", f"*`{rel}`{legende}.*", ""]
     return out
 
 
@@ -231,8 +233,14 @@ DOSSIERS_ROLE = {
     "source": "parametric source — the editable master that generates the geometry",
     "derived": "CAD exports generated from the source (STEP for CAD tools, STL for meshing)",
     "evidence": "screens, reports and manifests — **pinned by SHA-256, never edited by hand**",
-    "media": "product views rendered from the CAD by `scripts/render_part_previews.py`",
+    "media": "concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original",
 }
+
+
+# Sources that describe a material or a process, not the original part itself.
+EXCLUS_ORIGINAL = ("data sheet", "datasheet", "pds-", "/data-sheets/", "material data",
+                   "astm", "iso ", "standard", "process parameter", "eos.info",
+                   "product sheet", "product_sheet")
 
 
 def lisible(x) -> str:
@@ -261,7 +269,7 @@ def jumeaux_lies(part_id: str) -> list[Path]:
 
 
 def presentation(fiche: dict, chemin_fiche: Path) -> str:
-    """The README GitHub shows when a part folder is opened: a product page."""
+    """The README GitHub shows when a part folder is opened: the concept next to the original."""
     part_id = fiche["part_id"]
     dossier = PARTS / part_id.lower()
     page = dossier / "README.md"
@@ -286,19 +294,52 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     out = [ENTETE, "", '<div align="center">', "", f"# {nom(fiche)}", "",
            f"**`{part_id}`** · Porsche {vehicule.get('generation', '?')}"
            + (f" · {annees.get('from')}–{annees.get('to')}" if annees else ""), "",
-           " ".join([badge("status", niveau, "lightgrey"),
+           " ".join([badge("status", f"{niveau}, not a print file", "critical"),
                      badge("safety", STATUTS.get(classe, classe).strip("*"), couleur),
-                     badge("process", PROCEDES.get(procede, procede), "blue")]), ""]
+                     badge("candidate process", PROCEDES.get(procede, procede), "lightgrey")]), "",
+           "</div>", ""]
+
+    # The first thing a reader sees is what this is NOT, from the record's own fields.
+    source_geo = geometrie.get("source_type", "unknown")
+    mesure = {"measured": "measured", "scan": "scanned"}.get(source_geo)
+    raisons = [f"validation status `{niveau}`: nothing has been checked against a real part"
+               if niveau == "concept" else f"validation status `{niveau}`"]
+    if not mesure:
+        raisons.append(f"geometry `{source_geo}`: its dimensions are "
+                       + ("estimated design variables" if source_geo == "estimated"
+                          else "partly sourced, partly assumed")
+                       + ", not measured on the original part")
+    raisons.append(f"safety class `{classe}`")
+    out += ["> [!CAUTION]",
+            "> **Not ready to print, and not a copy of the original part.** The model shown here is a",
+            "> concept block for studying the part in software:",
+            *[f"> - {r};" for r in raisons],
+            f"> - no part in this repository is released — read [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).",
+            ""]
+
+    originaux = [s for s in fiche.get("provenance", {}).get("sources", []) if s.get("url") and
+                 not any(k in f"{s.get('title', '')} {s.get('url', '')}".lower() for k in EXCLUS_ORIGINAL)]
+    gauche = ["<b>Original part</b><br><br>"]
+    if originaux:
+        gauche.append("The original part is documented — pictures, catalogue entries or "
+                      "published data — on these pages. They are copyrighted, so they are "
+                      "linked here, not copied:<br><br>")
+        gauche += [f'↗ <a href="{s["url"]}">{s.get("title", s["url"])}</a><br>' for s in originaux[:4]]
+    else:
+        gauche.append("<i>No public picture of the original part is recorded yet.</i>")
+    droite = ["<b>This repository's concept model</b><br><br>"]
     if apercu.exists():
-        taille = f" — bounding box {boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
-        out += [f'<img src="media/preview.png" alt="CAD view of {nom(fiche)}" width="720">', "",
-                f"<sub>CAD view of the concept geometry{taille}. Not a photograph, not a manufactured "
-                "part, not evidence of fit or function.</sub>", ""]
-    out += ["</div>", ""]
+        taille = f"{boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
+        droite += [f'<img src="media/preview.png" alt="Concept CAD block for {nom(fiche)}" width="340"><br>',
+                   f"<sub>Concept CAD block{', ' + taille if taille else ''} — <b>not</b> the original "
+                   "part, not a print file, not evidence of fit.</sub>"]
+    else:
+        droite.append("<i>No CAD geometry to show.</i>")
+    out += ['<table><tr>', '<td width="50%" valign="top">', *gauche, "</td>",
+            '<td width="50%" valign="top" align="center">', *droite, "</td>", "</tr></table>", ""]
 
     type_alerte, texte_alerte = ALERTES.get(classe, ("NOTE", f"Safety class `{classe}`."))
-    out += [f"> [!{type_alerte}]", f"> {texte_alerte} No part in this repository is released — "
-            f"read [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).", ""]
+    out += [f"> [!{type_alerte}]", f"> {texte_alerte}", ""]
 
     out += ["## What it is", "", fiche.get("description", "").strip() or "*No description recorded.*", ""]
     if classification.get("intended_use"):
@@ -309,7 +350,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
             f"| Porsche part numbers | {valeur(vehicule.get('porsche_part_numbers'))} |",
             f"| variants | {lisible(vehicule.get('variants'))} |",
             f"| candidate material | {grade.split(';')[0].strip()} |",
-            f"| preferred process | {PROCEDES.get(procede, procede)} |",
+            f"| candidate process | {PROCEDES.get(procede, procede)} |",
             f"| safety class | `{classe}` |",
             f"| validation status | `{niveau}` |",
             f"| geometry | {valeur(geometrie.get('source_type'))}, master {valeur(geometrie.get('master_format'))}"
@@ -320,7 +361,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
 
     if vues.exists():
         out += ["## Views", "", "![Front, side and top orthographic views](media/views.png)", "",
-                "*Orthographic views of the same CAD, with its bounding dimensions.*", ""]
+                "*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*", ""]
 
     autres = [f for f in fichiers_du_dossier(dossier)
               if f.suffix.lower() in (".png", ".svg", ".gif") and "media" not in f.relative_to(dossier).parts]

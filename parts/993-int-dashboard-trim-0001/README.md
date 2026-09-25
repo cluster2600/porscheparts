@@ -6,16 +6,34 @@
 
 **`993-INT-DASHBOARD-TRIM-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of Dashboard trim, composite" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 1350.0 × 120.0 × 60.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: functional](https://img.shields.io/badge/safety-functional-yellow) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
+> [!CAUTION]
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
+> - safety class `functional`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf">Porsche PET - 911 1994-1998 Type 993, parts catalogue revision Kat 017</a><br>
+↗ <a href="http://www.federleichte-elfer.de/dp93/innen.html">Federleichte Elfer - mass table, 993 interior</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for Dashboard trim, composite" width="340"><br>
+<sub>Concept CAD block, 1350.0 × 120.0 × 60.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
 > [!NOTE]
-> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Functional** — loaded part whose failure can immobilize or damage the vehicle. Published only after documented functional testing.
 
 ## What it is
 
@@ -32,7 +50,7 @@ Visible trim of the dashboard cross member on a vehicle without a passenger airb
 | Porsche part numbers | 993 552 055 00, 993 552 056 00, 993 552 055 70, 993 552 056 70 |
 | variants | M564 without airbag, Carrera RS M002, Carrera RS Clubsport M003 |
 | candidate material | fiber and resin to be determined |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `functional` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -66,7 +84,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -74,7 +92,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/dashboard_trim_concept_f0.step`](derived/dashboard_trim_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 
 ## Read more
 
