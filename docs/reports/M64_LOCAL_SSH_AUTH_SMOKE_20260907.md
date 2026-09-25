@@ -1,54 +1,54 @@
-# Authentification SSH locale réelle — 7 septembre 2026
+# Real local SSH authentication — September 7, 2026
 
-**Résultat : réussi**, sur Kali x86 dans l'image parent exacte déjà présente :
+**Result: passed**, on Kali x86 in the exact parent image already present:
 `ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126`.
-Le wrapper sshd embarqué a le même SHA256 que le script du dépôt.
+The embedded sshd wrapper has the same SHA256 as the repository script.
 
-Contrairement au précédent test `sshd -T`, celui-ci lance réellement sshd et
-effectue des connexions SSH en BatchMode avec vérification stricte de clé
-d'hôte. Deux paires de clés **synthétiques et éphémères** sont générées dans
-le conteneur ; aucune clé utilisateur, aucun secret OpenBao ou Keychain n'y
-est utilisé. Le transport SSH habituel vers Kali reste extérieur au test.
+Unlike the earlier `sshd -T` test, this one actually starts sshd and makes SSH
+connections in BatchMode with strict host key checking. Two **synthetic and
+ephemeral** key pairs are generated in the container; no user key, no OpenBao
+or Keychain secret is used. The usual SSH transport to Kali remains outside
+the test.
 
-## Vérifications obtenues
+## Checks obtained
 
-- Sans `authorized_keys`, la clé est refusée.
-- Après injection du fichier en root:root/0600 et du répertoire en 0700,
-  **la même clé réussit, sans redémarrage de sshd**.
-- Une autre identité est refusée.
-- Le passage de `authorized_keys` à 0666 entraîne un refus, avec diagnostic
-  serveur de permissions incorrectes.
-- Les opérations chown/chmod équivalentes au bloc SSH du onstart rétablissent
-  l'authentification ; le onstart complet et ses services GPU ne sont pas lancés.
-- Une mauvaise clé d'hôte dans le fichier connu est refusée.
+- Without `authorized_keys`, the key is refused.
+- After injecting the file as root:root/0600 and the directory as 0700,
+  **the same key succeeds, without restarting sshd**.
+- Another identity is refused.
+- Switching `authorized_keys` to 0666 leads to a refusal, with a server
+  diagnostic of incorrect permissions.
+- The chown/chmod operations equivalent to the SSH block of the onstart restore
+  authentication; the full onstart and its GPU services are not launched.
+- A wrong host key in the known-hosts file is refused.
 
-Le mécanisme d'un refus transitoire avant injection/correction des permissions
-est donc **reproduit localement**. Cela ne prouve pas que ce mécanisme s'est
-produit sur Vast, ni l'ordre réel de son lanceur, ni le comportement de son
-proxy. L'image complète local-ai n'est pas exécutée ici : son parent SSH est
-testé. Aucun script de production n'a été modifié.
+The mechanism of a transient refusal before injection/permission correction is
+therefore **reproduced locally**. This does not prove that this mechanism
+occurred on Vast, nor the real order of its launcher, nor the behavior of its
+proxy. The full local-ai image is not run here: its SSH parent is tested. No
+production script was modified.
 
-## Corrections à étudier, non appliquées
+## Fixes to study, not applied
 
-1. Préparer les permissions de `.ssh` et de la clé injectée avant l'ouverture
-   du listener, lorsque l'ordre du lanceur le permet.
-2. Traiter explicitement les modes `sshd -T` / `-t` : le onstart invoque déjà
-   `sshd -T` avant son bloc de permissions. Ajouter naïvement une attente de
-   clé à toute invocation du wrapper pourrait introduire un blocage circulaire.
-3. Prévoir une courte attente bornée du fichier injecté dans le onstart,
-   sans fabriquer de clé ni remplacer l'identité attendue.
-4. Examiner une grâce d'authentification initiale strictement bornée, en
-   conservant l'identité, les contrôles de clé d'hôte et le délai total.
+1. Prepare the permissions of `.ssh` and of the injected key before the
+   listener opens, when the launcher order allows it.
+2. Handle the `sshd -T` / `-t` modes explicitly: the onstart already invokes
+   `sshd -T` before its permissions block. Naively adding a wait for the key to
+   every invocation of the wrapper could introduce a circular deadlock.
+3. Provide a short bounded wait for the injected file in the onstart, without
+   fabricating a key or replacing the expected identity.
+4. Examine a strictly bounded initial authentication grace period, keeping the
+   identity, the host key checks and the total timeout.
 
-Ces pistes doivent être testées isolément et reliées à des observations de
-l'ordre réel de Vast avant de conclure à la cause ou de modifier la production.
+These avenues must be tested in isolation and tied to observations of Vast's
+real order before concluding on the cause or modifying production.
 
-## Reproduction, uniquement dans un conteneur jetable
+## Reproduction, only in a disposable container
 
-Ne jamais exécuter le script directement sur une station. Il crée un fichier
-`/root/.ssh/authorized_keys` synthétique dans le conteneur jetable.
+Never run the script directly on a workstation. It creates a synthetic
+`/root/.ssh/authorized_keys` file in the disposable container.
 
-Depuis une copie du dépôt sur un hôte Docker x86 :
+From a copy of the repository on an x86 Docker host:
 
 ```sh
 timeout 90 docker run --rm -i --network none --cpus 1 --memory 1g \
@@ -58,8 +58,8 @@ timeout 90 docker run --rm -i --network none --cpus 1 --memory 1g \
   - < tests/manual/simready_ssh_auth_smoke.py
 ```
 
-Le listener est exclusivement `127.0.0.1:22222` dans le conteneur sans réseau ;
-aucun port LAN/public n'est publié. Le processus et les clés temporaires ont
-été supprimés ; l'inventaire Docker filtré sur l'image est vide après le test.
-Le reçu se trouve dans
+The listener is exclusively `127.0.0.1:22222` in the container without
+network; no LAN/public port is published. The process and the temporary keys
+were deleted; the Docker inventory filtered on the image is empty after the
+test. The receipt is in
 `twins/m64-cylinder-head/evidence/ssh-auth-smoke-20260907.json`.

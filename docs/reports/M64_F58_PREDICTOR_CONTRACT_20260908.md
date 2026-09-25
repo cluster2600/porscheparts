@@ -1,99 +1,97 @@
-# M64 — contrat du prédicteur Marangoni : témoin natif réussi
+# M64 — Marangoni predictor contract: native control case passed
 
-**Ce document conserve le checkpoint du témoin.** La suite a depuis été
-exécutée sur une copie neuve : [nouveau binaire et coupon corrigé, incomplet
-après 109,55 µs](M64_F58_CORRECTED_COUPON_20260908.md). Elle ne requalifie
-aucune des tentatives historiques ci-dessous.
+**This document keeps the checkpoint of the control case.** The follow-up has
+since been run on a fresh copy: [new binary and corrected coupon, incomplete
+after 109.55 µs](M64_F58_CORRECTED_COUPON_20260908.md). It requalifies none of
+the historical attempts below.
 
-**À ce checkpoint, le correctif passe seulement sur un témoin natif de 32 cellules.**
-L'ancien exécutable reproduit le refus `adjustPhi` ; le nouveau franchit ce
-même garde, tout en conservant les 48 tractions tangentielles comparées.
-Le [coupon couplé interrompu](M64_F58_COUPLED_FLOW_20260908.md) reste refusé :
-son binaire n'a été ni modifié ni relancé. [Capsule et empreintes](../../twins/m64-cylinder-head/evidence/f58-predictor-contract-20260908.json).
+**At this checkpoint, the fix passes only on a native control case of 32 cells.**
+The old executable reproduces the `adjustPhi` rejection; the new one clears
+the same guard, while keeping the 48 compared tangential tractions.
+The [interrupted coupled coupon](M64_F58_COUPLED_FLOW_20260908.md) remains
+rejected: its binary was neither modified nor rerun. [Capsule and digests](../../twins/m64-cylinder-head/evidence/f58-predictor-contract-20260908.json).
 
-## Défaut de contrat isolé
+## Isolated contract defect
 
-La condition Marangoni projette la vitesse sur le plan tangent, mais hérite
-`assignable()=true`. Le champ `UEqn.H()` possède des frontières extrapolées ;
-`constrainHbyA` ne réapplique la valeur de U que pour une condition non
-assignable. La composante normale de ce prédicteur peut donc échapper à la
-contrainte, alors que le U final est correctement projeté.
+The Marangoni condition projects the velocity onto the tangent plane, but
+inherits `assignable()=true`. The field `UEqn.H()` has extrapolated
+boundaries; `constrainHbyA` reapplies the value of U only for a non-assignable
+condition. The normal component of this predictor can therefore escape the
+constraint, while the final U is correctly projected.
 
-Le changement testé est une seule méthode du header Marangoni :
-`assignable() const { return false; }`, comme pour la condition `slip` native.
-Le [patch et ses empreintes](../../twins/m64-cylinder-head/source/additivefoam/README.md)
-sont publiés pour appliquer le même changement à une copie des sources épinglées.
-Les fonctions de traction `snGrad` et de projection `evaluate`, les conditions
-`noSlip` et `fixedFluxPressure`, ainsi que `adjustPhi`, restent inchangées.
-Le prédicteur du pas fatal F58 n'a pas été sauvegardé : ce témoin isole le
-défaut de contrat, mais ne reconstitue pas quantitativement ce pas du coupon.
+The tested change is a single method of the Marangoni header:
+`assignable() const { return false; }`, as for the native `slip` condition.
+The [patch and its digests](../../twins/m64-cylinder-head/source/additivefoam/README.md)
+are published to apply the same change to a copy of the pinned sources. The
+traction function `snGrad` and projection function `evaluate`, the `noSlip`
+and `fixedFluxPressure` conditions, and `adjustPhi`, remain unchanged. The
+predictor of the fatal F58 step was not saved: this control case isolates the
+contract defect, but does not quantitatively reconstruct that step of the
+coupon.
 
 ```mermaid
 flowchart LR
-    A[BC Marangoni native] --> B[Deux binaires : contrat seul différent]
-    B --> C[Tractions et flux prédicteur]
-    C --> D[adjustPhi natif conservé]
-    D --> E[Témoin accepté]
-    E --> F[Coupon complet : correction et essai encore à faire]
+    A[Native Marangoni BC] --> B[Two binaries: only the contract differs]
+    B --> C[Tractions and predictor flux]
+    C --> D[Native adjustPhi kept]
+    D --> E[Control case accepted]
+    E --> F[Full coupon: fix and trial still to do]
 ```
 
-## Historique conservé
+## History kept
 
-| Tentative | Résultat réel | Interprétation |
+| Attempt | Actual result | Interpretation |
 |---|---|---|
-| v1 | Compilation refusée, sortie 2, 7,130 s | `fvCFD.H` absent ; aucun témoin exécuté. |
-| v2 | Compilation et `Mesh OK`, sortie 134, 58,850 s | Ancien garde refusé comme attendu ; nouveau arrêté avant `adjustPhi` par l'oracle « zéro exact ». Le lecteur attendait aussi à tort des booléens numériques. |
-| v3 | Paire native réussie, sortie 0, 23,927 s | Ancien `adjustPhi` : sortie 1 attendue ; nouveau : sortie 0, domaine reconnu fermé. |
+| v1 | Compilation rejected, exit 2, 7.130 s | `fvCFD.H` missing; no control case run. |
+| v2 | Compilation and `Mesh OK`, exit 134, 58.850 s | Old guard rejected as expected; new one stopped before `adjustPhi` by the "exact zero" oracle. The reader also wrongly expected numeric booleans. |
+| v3 | Native pair passed, exit 0, 23.927 s | Old `adjustPhi`: expected exit 1; new: exit 0, domain recognized as closed. |
 
-La v3 corrige l'oracle et le lecteur, sans accepter rétrospectivement la v2.
-Elle reprend le budget de vitesse normale **déjà fixé à 10⁻¹⁴ m/s** par le
-témoin BC antérieur. Chaque patch doit respecter
-`sum(abs(phiHbyA)) ≤ 10⁻¹⁴ × sum(magSf)`, avec aire calculée nativement.
-Les valeurs doivent être finies, les normes non négatives ; `ddtCorr` reste
-exigé exactement nul aux frontières non couplées. Aucun flux n'est écrasé
-manuellement et le garde natif n'est ni retiré ni intercepté.
+v3 corrects the oracle and the reader, without retroactively accepting v2. It
+reuses the normal velocity budget **already set at 10⁻¹⁴ m/s** by the earlier
+BC control case. Each patch must satisfy
+`sum(abs(phiHbyA)) ≤ 10⁻¹⁴ × sum(magSf)`, with the area computed natively. The
+values must be finite, the norms nonnegative; `ddtCorr` is still required to
+be exactly zero on uncoupled boundaries. No flux is overwritten by hand and
+the native guard is neither removed nor intercepted.
 
-| Mesure du prédicteur avant `adjustPhi` | Ancien | Nouveau |
+| Predictor measurement before `adjustPhi` | Old | New |
 |---|---:|---:|
-| Maximum de vitesse normale, m/s | 0,10004623 | 6,16298×10⁻³² |
-| Somme des modules des flux frontières, m³/s | 9,99901×10⁻¹⁰ | 9,75752×10⁻⁴¹ |
+| Maximum normal velocity, m/s | 0.10004623 | 6.16298×10⁻³² |
+| Sum of boundary flux magnitudes, m³/s | 9.99901×10⁻¹⁰ | 9.75752×10⁻⁴¹ |
 
-Le résultat nouveau est **dans le budget**, pas mathématiquement égal à zéro.
-Les trois gradients de température testés couvrent traction tangentielle,
-gradient normal et inversion du gradient. Les 48 vecteurs de traction natifs
-sont identiques entre les deux exécutables ; ce n'est pas une comparaison
-entre deux modèles physiques indépendants.
+The new result is **within budget**, not mathematically equal to zero. The
+three temperature gradients tested cover tangential traction, normal gradient
+and gradient reversal. The 48 native traction vectors are identical between
+the two executables; this is not a comparison between two independent
+physical models.
 
-## Périmètre et preuves
+## Scope and evidence
 
-Le maillage est immobile ; l'état fabriqué représente une phase entièrement
-liquide : matrice Euler,
-convection upwind et diffusion natives, puis `HbyA`, `ddtCorr` et `adjustPhi`.
-Aucune équation PDE n'est résolue, aucun laser n'est exécuté. Cette preuve
-isole un défaut d'implémentation, sans valider l'écoulement complet du coupon.
+The mesh is stationary; the fabricated state represents a fully liquid phase:
+Euler matrix, native upwind convection and diffusion, then `HbyA`, `ddtCorr`
+and `adjustPhi`. No PDE is solved, no laser is run. This evidence isolates an
+implementation defect, without validating the full flow of the coupon.
 
-OpenFOAM 14, commit `7b05503f98a85be88af930df48623b4d152bfc35` :
-[contrat de transform](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/fields/fvPatchFields/basic/transform/transformFvPatchField.H#L100),
-[contrat de slip](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/fields/fvPatchFields/derived/slip/slipFvPatchField.H#L112),
+OpenFOAM 14, commit `7b05503f98a85be88af930df48623b4d152bfc35`:
+[transform contract](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/fields/fvPatchFields/basic/transform/transformFvPatchField.H#L100),
+[slip contract](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/fields/fvPatchFields/derived/slip/slipFvPatchField.H#L112),
 [constrainHbyA](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/cfdTools/general/constrainHbyA/constrainHbyA.C#L39),
-[ddtCorr aux frontières](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/finiteVolume/ddtSchemes/ddtScheme/ddtScheme.C#L166),
-[garde adjustPhi](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/cfdTools/general/adjustPhi/adjustPhi.C#L82).
+[ddtCorr on boundaries](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/finiteVolume/ddtSchemes/ddtScheme/ddtScheme.C#L166),
+[adjustPhi guard](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/finiteVolume/cfdTools/general/adjustPhi/adjustPhi.C#L82).
 
-Les 25 tests du lecteur passent, dont les lignes réelles v2, NaN/Inf, signes,
-booléens, bornes falsifiées et dépassements de débit ou de vitesse. La capsule
-lie leurs sources et les journaux natifs. Les 19 entrées et six sorties du
-retour v3 ont été re-hachées ; les preuves d'intégrité du backend sont conservées.
-Une contre-lecture indépendante, sans importer le lanceur, confirme les
-empreintes, les bornes et les comparaisons par lecture directe avec Decimal.
-L'erreur maximale de traction observée est 5,10640×10⁻¹² Pa, sous l'oracle
-de 10⁻⁹ Pa ; cela ne constitue pas une validation physique indépendante.
-Le conteneur Kali a été supprimé, sans OOM ni timeout : limites 2 CPU,
-2 Gio mémoire et mémoire+swap combinées, 180 s, réseau désactivé. Aucune
-nouvelle location Vast n'a été utilisée.
+The 25 reader tests pass, including the real v2 lines, NaN/Inf, signs,
+booleans, falsified bounds and flow or velocity exceedances. The capsule binds
+their sources and the native logs. The 19 inputs and six outputs of the v3
+return were rehashed; the backend integrity evidence is kept. An independent
+cross-reading, without importing the launcher, confirms the digests, the
+bounds and the comparisons by direct reading with Decimal. The maximum
+traction error observed is 5.10640×10⁻¹² Pa, under the oracle of 10⁻⁹ Pa; this
+is not an independent physical validation. The Kali container was deleted,
+with no OOM and no timeout: limits of 2 CPUs, 2 GiB memory and combined
+memory+swap, 180 s, network disabled. No new Vast rental was used.
 
-**Suite prévue à ce checkpoint, exécutée ensuite dans le document lié en tête :**
-appliquer uniquement ce correctif à une nouvelle
-copie des sources F58, compiler un nouveau binaire épinglé, puis revoir un
-essai couplé borné avec tous les gardes conservés. Le plafond de 3 300 K et
-les questions de validation LPBF restent ouverts ; aucune culasse n'est
-validée ni autorisée à fabriquer par ce témoin.
+**Next step planned at this checkpoint, since executed in the document linked
+at the top:** apply only this fix to a new copy of the F58 sources, compile a
+new pinned binary, then review a bounded coupled trial with all guards kept.
+The 3,300 K cap and the LPBF validation questions remain open; no cylinder
+head is validated or authorized for manufacturing by this control case.

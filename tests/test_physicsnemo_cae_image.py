@@ -164,14 +164,14 @@ class PhysicsNeMoCaeImageTests(unittest.TestCase):
     def test_documentation_separe_solveur_surrogate_et_fabrication(self):
         readme = README.read_text(encoding="utf-8")
         for fragment in (
-            "Frontière solveur / surrogate",
-            "PhysicsNeMo n'est pas le solveur physique de référence",
-            "corrélation physique",
-            "ne rend pas une pièce fonctionnelle, sûre ou",
+            "Solver / surrogate boundary",
+            "PhysicsNeMo is not the reference physics solver",
+            "physical correlation",
+            "does not make a part functional, safe or",
             "Apache-2.0",
             "NVIDIA CUDA Toolkit EULA",
-            "aucun scan, dataset, poids de modèle",
-            "digest immuable",
+            "no scan, dataset, model weights",
+            "immutable digest",
             "linux/amd64",
         ):
             self.assertIn(fragment, readme)

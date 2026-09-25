@@ -1,168 +1,166 @@
-# 0007 — Le premier titane sera l'embout d'échappement, et une mesure décide de l'alliage
+# 0007 — The first titanium part will be the exhaust tip, and a measurement decides the alloy
 
-Date : 2026-09-11
+Date: 2026-09-11
 
-## Décision
+## Decision
 
-Retenir `993-EXH-OVAL-TIP-TI-F1-0001` comme première pièce titane du dépôt.
-**Ne pas fixer l'alliage.** Le Ti-6Al-4V et le Ti-6242 sont tous deux criblés ;
-ce qui les sépare est une température de 427 °C qui n'a jamais été mesurée.
+Retain `993-EXH-OVAL-TIP-TI-F1-0001` as the repository's first titanium part.
+**Do not fix the alloy.** Ti-6Al-4V and Ti-6242 are both screened; what
+separates them is a temperature of 427 °C that has never been measured.
 
-## Comment la pièce a été choisie
+## How the part was chosen
 
-Pas par élimination — c'est l'erreur que [0005](0005-alsi10mg-nest-pas-un-choix.md)
-a corrigée. La grille écrite de [`TITANIUM.md`](../TITANIUM.md) et les trois
-familles où l'additif gagne ont été appliquées **aux 32 fiches du catalogue** par
-`scripts/screen_titanium_candidates.py`. Les jugements d'entrée sont déclarés
-comme tels dans `catalog/manufacturing/titanium-am-screen-inputs.json` :
-contredire une case change le rang, et c'est voulu.
+Not by elimination — that is the mistake [0005](0005-alsi10mg-nest-pas-un-choix.md)
+corrected. The written grid of [`TITANIUM.md`](../TITANIUM.md) and the three
+families where additive manufacturing wins were applied **to the catalogue's 32
+records** by `scripts/screen_titanium_candidates.py`. The input judgements are
+declared as such in `catalog/manufacturing/titanium-am-screen-inputs.json`:
+contradicting a cell changes the rank, and that is intended.
 
-| rang | pièce | score | verdict |
+| rank | part | score | verdict |
 |---|---|---:|---|
-| 1 | **embout ovale, variante titane** | **+6** | retenue |
-| 2 | collecteur d'admission trois conduits | +5 | l'aluminium y reste la bonne matière |
-| — | collecteur d'échappement | +7 | meilleur score du lot, **900 °C : cas nickel** |
+| 1 | **oval tip, titanium variant** | **+6** | retained |
+| 2 | three-runner intake manifold | +5 | aluminum remains the right material there |
+| — | exhaust manifold | +7 | best score of the batch, **900 °C: a nickel case** |
 
-Cinq pièces seulement sont éligibles sur trente-deux. Vingt-sept tombent sur la
-classe de sécurité, l'absence de famille additive, la température, le besoin de
-conduire la chaleur ou l'obligation de garder une raideur acier.
+Only five parts out of thirty-two are eligible. Twenty-seven fall on the safety
+class, the absence of an additive family, temperature, the need to conduct heat
+or the obligation to keep steel stiffness.
 
-L'embout gagne parce que tout converge : consolidation du conduit, de la coque
-et des huit nervures en un seul corps, cavité annulaire qu'aucun usinage ne
-produit, petite série, rupture bénigne, et **une seule interface à mesurer** —
-le diamètre de la sortie. Le précédent existe au plus haut niveau : APWorks
-imprime en titane la sortie d'échappement de la Bugatti Chiron Pur Sport.
+The tip wins because everything converges: consolidation of the duct, the shell
+and the eight ribs into a single body, an annular cavity that no machining can
+produce, small series, benign failure, and **a single interface to measure** —
+the outlet diameter. The precedent exists at the highest level: APWorks prints
+the exhaust outlet of the Bugatti Chiron Pur Sport in titanium.
 
-## Ce que le criblage a trouvé et que personne n'aurait deviné
+## What the screening found that nobody would have guessed
 
-Ma première estimation de température était 300 °C. La fiche F0 de la pièce
-déclare une surface à **700 K, soit 427 °C**. C'est le chiffre du dépôt qui a
-été retenu, pas le mien — et il renverse la réponse.
+My first temperature estimate was 300 °C. The part's F0 record declares a
+surface at **700 K, i.e. 427 °C**. The repository's figure is the one that was
+retained, not mine — and it overturns the answer.
 
 | | Ti-6Al-4V | Ti-6242 |
 |---|---|---|
-| masse de criblage | **212,3 g** contre 406,4 g en IN625, soit **−47,7 %** | 217,6 g |
-| plafond de fluage | 400 °C | 550 °C |
-| marge à 427 °C | **−27 °C** | +123 °C |
-| épaisseur de couche publiée | 30 µm | aucune |
-| paroi minimale publiée | 0,3 à 0,4 mm | aucune |
-| traitement thermique publié | 800 °C 2 h sous argon | aucun |
-| disponible chez un atelier de service | **oui, partout** | **non** |
-| portes fermées à l'étape 04 | 6 | 10 |
+| screening mass | **212.3 g** versus 406.4 g in IN625, i.e. **−47.7%** | 217.6 g |
+| creep ceiling | 400 °C | 550 °C |
+| margin at 427 °C | **−27 °C** | +123 °C |
+| published layer thickness | 30 µm | none |
+| published minimum wall | 0.3 to 0.4 mm | none |
+| published heat treatment | 800 °C 2 h under argon | none |
+| available at a service bureau | **yes, everywhere** | **no** |
+| closed gates at step 04 | 6 | 10 |
 
-Les deux routes s'excluent proprement. Le Ti-6Al-4V est une route réelle,
-disponible, documentée, bloquée par **un seul chiffre**. Le Ti-6242 règle ce
-chiffre et perd tout le reste : pas de machine, pas d'épaisseur de couche, pas
-de fournisseur. Sa première mise en œuvre LPBF publiée date de 2020 ; c'est un
-sujet de recherche, pas un article de catalogue.
+The two routes exclude each other cleanly. Ti-6Al-4V is a real route, available,
+documented, blocked by **a single figure**. Ti-6242 settles that figure and loses
+everything else: no machine, no layer thickness, no supplier. Its first published
+LPBF implementation dates from 2020; it is a research topic, not a catalogue
+item.
 
-## Ce qui décide donc
+## So what decides
 
-Un thermomètre infrarouge sur la sortie d'échappement, après roulage.
+An infrared thermometer on the exhaust outlet, after a drive.
 
-Les 427 °C viennent d'un cas synthétique : gaz à 850 K, moteur 3,8 L à
-6 500 tr/min, deux sorties, aucune mesure. Un embout réel, en aval du
-silencieux, peut très bien fonctionner cent degrés plus bas. Si la mesure donne
-350 °C ou moins, le Ti-6Al-4V passe et la pièce devient commandable chez
-n'importe quel atelier titane. Si elle confirme 427 °C, la pièce n'est pas
-imprimable en titane à un coût raisonnable, et la réponse redevient l'IN625 —
-deux fois plus lourd, mais achetable.
+The 427 °C comes from a synthetic case: gas at 850 K, 3.8 L engine at
+6,500 rpm, two outlets, no measurement. A real tip, downstream of the muffler,
+may well run a hundred degrees lower. If the measurement gives 350 °C or less,
+Ti-6Al-4V passes and the part becomes orderable from any titanium shop. If it
+confirms 427 °C, the part cannot be printed in titanium at a reasonable cost,
+and the answer goes back to IN625 — twice as heavy, but purchasable.
 
-Aucun calcul de ce dépôt ne remplacera cette mesure.
+No calculation in this repository will replace that measurement.
 
-## Où en est la chaîne
+## Where the chain stands
 
-| étape | statut |
+| step | status |
 |---|---|
-| 01 — autorité géométrique | `completed_screening` |
-| 02 — BREP et maillage | **`passed`** — étanche, monocomposant, 13 820 triangles |
-| 03 — tranchage et supports | `completed_screening` — 4 936 couches à 30 µm |
-| 04 — carte matière-machine-procédé | `blocked_missing_input` |
+| 01 — geometric authority | `completed_screening` |
+| 02 — BREP and mesh | **`passed`** — watertight, single-component, 13,820 triangles |
+| 03 — slicing and supports | `completed_screening` — 4,936 layers at 30 µm |
+| 04 — material-machine-process map | `blocked_missing_input` |
 
-## Limites acceptées
+## Accepted limitations
 
-- La température qui décide n'est pas mesurée.
-- Seule l'enveloppe de sortie 120 × 85 mm est publiée ; longueur, interface
-  d'entrée et profondeur d'emmanchement sont des hypothèses F0.
-- Le dépoudrage du canal annulaire de 2,7 mm n'est vérifié qu'au criblage voxel
-  de 1 mm. Cette résolution ne conclut pas : il faut une endoscopie ou une
-  tomographie.
-- Deux nouveaux îlots et 1 044 couches à aire non soutenue appellent des
-  supports, dont aucun n'est dessiné.
-- Le couple galvanique titane/inox à la fixation reste à traiter.
+- The deciding temperature is not measured.
+- Only the 120 × 85 mm outlet envelope is published; length, inlet interface and
+  insertion depth are F0 assumptions.
+- Depowdering of the 2.7 mm annular channel is checked only by the 1 mm voxel
+  screening. That resolution is not conclusive: an endoscopy or a CT scan is
+  needed.
+- Two new islands and 1,044 layers with unsupported area call for supports,
+  none of which is drawn.
+- The titanium/stainless galvanic couple at the fastening remains to be
+  addressed.
 
 ---
 
-## Addendum du 11 septembre 2026 — le périmètre était faux
+## Addendum of September 11, 2026 — the scope was wrong
 
-La décision ci-dessus dit « les 32 fiches du catalogue ». C'est exact, et c'est
-insuffisant : le catalogue d'usine 993 compte **6 259 références distinctes**.
-Les fiches du dépôt en couvrent **0,51 %**. Écrire « appliquée au catalogue »
-laissait croire à une exhaustivité qui n'existait pas.
+The decision above says "the catalogue's 32 records". That is accurate, and it
+is not enough: the 993 factory catalogue lists **6,259 distinct part numbers**.
+The repository's records cover **0.51%** of them. Writing "applied to the
+catalogue" suggested an exhaustiveness that did not exist.
 
-Deux triages ont été ajoutés pour réparer cela.
+Two triages were added to fix this.
 
-**Triage de zones** — `scripts/screen_pet_zones_for_titanium.py`, sur les seules
-données du dépôt : 239 illustrations, 499 libellés, 23 zones retenues couvrant
-1 538 références. Tourne partout, y compris en intégration.
+**Zone triage** — `scripts/screen_pet_zones_for_titanium.py`, on the
+repository's own data only: 239 illustrations, 499 labels, 23 zones retained
+covering 1,538 part numbers. Runs anywhere, including in CI.
 
-**Triage pièce à pièce** — `scripts/screen_pet_parts_for_titanium.py`, sur le
-relevé de désignations tenu **hors du dépôt**, comme `twin_structure.py` :
-1 026 désignations distinctes, 70 retenues, couvrant 439 références. Seules les
-conclusions agrégées et une liste courte sont publiées ; les lignes du catalogue
-restent chez leur détenteur.
+**Part-by-part triage** — `scripts/screen_pet_parts_for_titanium.py`, on the
+transcription of designations kept **outside the repository**, like
+`twin_structure.py`: 1,026 distinct designations, 70 retained, covering 439 part
+numbers. Only the aggregate conclusions and a short list are published; the
+catalogue lines stay with their holder.
 
-### Ce que le triage élargi trouve
+### What the wider triage finds
 
-| score | réf. | désignation | lecture |
+| score | part nos. | designation | reading |
 |---:|---:|---|---|
-| +5 | 12 | `heat exchanger` | échangeur de chauffage 993 — **température d'échappement, cas nickel** |
-| +5 | 5 | `hot-air manifold` | air chaud, pas gaz ; l'aluminium suffit |
-| +4 | **21** | **`tail pipe`** | **la pièce retenue, reconfirmée indépendamment** |
-| +4 | 4 | `turbocharger` | interdit en l'état |
-| +2 | 21 | `oil pipe` | conduites d'huile de turbo, vrai cas additif, mais fuite d'huile sur échappement |
+| +5 | 12 | `heat exchanger` | 993 heater heat exchanger — **exhaust temperature, a nickel case** |
+| +5 | 5 | `hot-air manifold` | hot air, not gas; aluminum is enough |
+| +4 | **21** | **`tail pipe`** | **the retained part, independently reconfirmed** |
+| +4 | 4 | `turbocharger` | prohibited pending engineering |
+| +2 | 21 | `oil pipe` | turbo oil lines, a genuine additive case, but an oil leak onto the exhaust |
 
-**La conclusion ne change pas, mais elle est maintenant défendable.** L'embout
-sort dans les quatre premiers d'un triage portant sur toute la voiture, et non
-plus d'un panier de trente-deux fiches choisies. Les deux désignations qui le
-devancent tombent sur la même barrière que le collecteur : la température
-d'échappement est un domaine nickel, pas titane.
+**The conclusion does not change, but it is now defensible.** The tip comes out
+in the top four of a triage covering the whole car, and no longer from a basket
+of thirty-two hand-picked records. The two designations ahead of it fall on the
+same barrier as the manifold: exhaust temperature is nickel territory, not
+titanium.
 
-### Ce que ces triages ne sont pas
+### What these triages are not
 
-Un triage lexical retient des mots, pas des fonctions. Une désignation de trois
-mots ne dit ni la matière, ni la masse, ni la température. Une entrée retenue
-n'est pas une pièce choisie : c'est une pièce **à aller regarder**, en ouvrant
-la ligne PET, puis en la faisant passer par `screen_titanium_candidates.py` avec
-un jugement déclaré.
+A lexical triage retains words, not functions. A three-word designation states
+neither material, nor mass, nor temperature. A retained entry is not a chosen
+part: it is a part **to go and look at**, by opening the PET line, then running
+it through `screen_titanium_candidates.py` with a declared judgement.
 
-La règle de correction du groupe mérite d'être notée. La première version
-excluait une désignation dès qu'une seule de ses planches touchait un organe
-présumé critique ; `oil pipe`, qui apparaît une fois sur une planche de carter,
-disparaissait ainsi alors que c'est un des meilleurs candidats du lot. Le groupe
-n'exclut désormais que s'il accuse **toutes** les planches de la désignation.
+The group correction rule is worth noting. The first version excluded a
+designation as soon as a single one of its plates touched a component presumed
+critical; `oil pipe`, which appears once on a crankcase plate, thus disappeared
+even though it is one of the best candidates of the batch. The group now
+excludes only if it flags **all** of the designation's plates.
 
 ---
 
-## Addendum du 11 septembre 2026 (2) — la grille était appliquée trop mollement
+## Addendum of September 11, 2026 (2) — the grid was applied too softly
 
-L'instruction du carter de chaîne a montré que le criblage ne traitait que deux
-des cinq contre-indications de `TITANIUM.md` comme des refus. Les trois autres —
-forme simple usinable, grippage sur filetage repris, couple galvanique — n'étaient
-que des malus au score. « Quand le titane n'est pas pertinent » énonce pourtant
-des refus.
+The chain case investigation showed that the screening treated only two of the
+five contraindications of `TITANIUM.md` as refusals. The other three — simple
+machinable shape, galling on re-used threads, galvanic couple — were only score
+penalties. Yet "When it is not" (relevant) states refusals.
 
-Les cinq sont désormais rédhibitoires, et le classement change de nature :
+All five are now disqualifying, and the ranking changes in nature:
 
-| | avant | après |
+| | before | after |
 |---|---:|---:|
-| pièces éligibles sur 33 | 5 | **1** |
+| eligible parts out of 33 | 5 | **1** |
 
-L'embout d'échappement n'est plus le meilleur d'un lot. Il est **le seul candidat
-titane du catalogue**. Le collecteur d'admission tombe sur le couple galvanique
-avec l'aluminium, le crochet de phare et le levier de porte sur la forme simple,
-le cache-moyeu sur les deux.
+The exhaust tip is no longer the best of a batch. It is **the only titanium
+candidate in the catalogue**. The intake manifold falls on the galvanic couple
+with aluminum, the headlight hook and the door lever on the simple shape, the
+hub cap on both.
 
-Cela renforce la décision plutôt que de la fragiliser, mais il faut le dire dans
-ce sens : ce n'est pas que l'embout ait gagné, c'est que tous les autres
-perdaient déjà et que le criblage ne le disait pas.
+This strengthens the decision rather than weakening it, but it must be said in
+that direction: it is not that the tip won; it is that all the others were
+already losing and the screening did not say so.

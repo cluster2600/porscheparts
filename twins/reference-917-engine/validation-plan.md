@@ -1,51 +1,78 @@
-# Plan de validation du jumeau 917
+# 917 twin validation plan
 
-## Niveaux
+> **Archived line.** The 917 twin is retired as a product and kept as a
+> numerical regression; this plan is no longer being pursued. See
+> [ARCHIVE.md](../../ARCHIVE.md).
 
-| Niveau | Contenu | Passage requis |
+## Levels
+
+| Level | Content | Required to pass |
 |---|---|---|
-| F0 | scan brut et empreinte | provenance, licence et identité documentées |
-| F1 | surfaces, enveloppe et interfaces visibles | unité et trois cotes physiques confirmées |
-| F2 | assemblage sémantique | chaque sous-ensemble identifié et recalé |
-| F3 | volumes internes | CT, démontage ou métrologie directe |
-| F4 | thermique, structure et écoulement | matières, contacts et conditions mesurées |
-| F5 | corrélation | essai physique instrumenté et incertitude publiée |
+| F0 | raw scan and digest | provenance, license and identity documented |
+| F1 | surfaces, envelope and visible interfaces | unit and three physical dimensions confirmed |
+| F2 | semantic assembly | each subassembly identified and registered |
+| F3 | internal volumes | CT, disassembly or direct metrology |
+| F4 | thermal, structure and flow | materials, contacts and conditions measured |
+| F5 | correlation | instrumented physical test and published uncertainty |
 
-Le projet actuel s'arrête à `F1_exterior_reference`. Le STL d'exposition est un
-produit dérivé du F1 et ne fait pas progresser la fidélité moteur.
+The current project stops at `F1_exterior_reference`. The display STL is a
+product derived from F1 and does not advance engine fidelity.
 
-## Impression de maquette
+```mermaid
+stateDiagram-v2
+  direction LR
+  F0: F0 raw scan, digest
+  F1: F1 exterior reference
+  F2: F2 semantic assembly
+  F3: F3 internal volumes
+  F4: F4 thermal, structure, flow
+  F5: F5 correlation
+  [*] --> F0
+  F0 --> F1: provenance, license, identity
+  F1 --> F2: unit + 3 physical dimensions
+  F2 --> F3: subassemblies identified
+  F3 --> F4: CT, disassembly, metrology
+  F4 --> F5: materials, contacts, conditions
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class F0,F1 ok
+  class F2,F3,F4,F5 stop
+```
 
-1. contrôler la cote physique qui fixe l'échelle ;
-2. comparer visuellement le STL fermé au scan de référence ;
-3. mesurer les détails minimaux après mise à l'échelle ;
-4. simuler supports, temps, matière et collisions dans le slicer réel ;
-5. imprimer un secteur test comportant ailettes, alésage et goujons ;
-6. corriger le modèle avant l'impression complète.
+*Green: where the project stops, `F1_exterior_reference`. Red: levels not
+reached.*
 
-Pour un modèle métal d'exposition, ajouter la poudre prisonnière, les supports,
-la distorsion, la découpe du plateau, le grenaillage et l'usinage éventuel. Cela
-ne transforme pas le scan en conception de moteur fonctionnelle.
+## Display-model printing
 
-## CFD de refroidissement externe
+1. check the physical dimension that sets the scale;
+2. visually compare the closed STL with the reference scan;
+3. measure the minimum details after scaling;
+4. simulate supports, time, material and collisions in the real slicer;
+5. print a test sector with fins, bore and studs;
+6. correct the model before the full print.
 
-Le premier cas sert uniquement à qualifier la chaîne de maillage. Avant un
-solveur :
+For a metal display model, add trapped powder, supports, distortion, plate
+removal, shot peening and possible machining. That does not turn the scan into a
+functional engine design.
 
-1. réparer les faces dupliquées et les connexions de surface ambiguës ;
-2. raffiner localement les ailettes et passages d'air importants ;
-3. obtenir `checkMesh` sans échec ;
-4. confirmer l'échelle, l'orientation et la direction réelle du flux ;
-5. définir les débits, pressions et températures avec leurs sources ;
-6. ajouter le solide et les matières pour un calcul thermique conjugué ;
-7. corréler pression, débit et température sur un essai physique.
+## External cooling CFD
 
-## Données bloquantes
+The first case serves only to qualify the meshing chain. Before a solver:
 
-- texte exact de la licence Wolfe Classics, droit de redistribution et rapport
-  indépendant sur la précision déclarée de 0,5 mm ;
-- variante exacte du 917 représentée et signification de `0.5mm` ;
-- unité du scan et au moins trois dimensions de contrôle ;
-- nomenclature des deux composants détachés ;
-- géométrie interne, matières, masses et contacts ;
-- conditions aérodynamiques et thermiques mesurées.
+1. repair the duplicate faces and the ambiguous surface connections;
+2. locally refine the fins and the important air passages;
+3. get `checkMesh` without failure;
+4. confirm the scale, the orientation and the real flow direction;
+5. define the flow rates, pressures and temperatures with their sources;
+6. add the solid and the materials for a conjugate heat-transfer computation;
+7. correlate pressure, flow and temperature on a physical test.
+
+## Blocking data
+
+- exact text of the Wolfe Classics license, redistribution right and an
+  independent report on the declared accuracy of 0.5 mm;
+- exact 917 variant represented and meaning of `0.5mm`;
+- unit of the scan and at least three control dimensions;
+- bill of materials of the two detached components;
+- internal geometry, materials, masses and contacts;
+- measured aerodynamic and thermal conditions.

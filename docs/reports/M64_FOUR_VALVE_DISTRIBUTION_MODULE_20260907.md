@@ -1,210 +1,225 @@
-# Distribution 4V : sous-assemblage CAO indépendant construit
+# 4V valvetrain: independent CAD sub-assembly built
 
-![STEP du sous-assemblage V2 et coupes natives](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/four-valve-design-assembly-and-sections.png)
+![STEP of the V2 sub-assembly and native sections](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/four-valve-design-assembly-and-sections.png)
 
-**Douze solides ont été construits et exportés en STEP d'assemblage nommé :**
-quatre soupapes à portée conique, quatre sièges annulaires correspondants et
-quatre guides. Les STEP fermé et à levées maximales sont valides après
-réimport. Sept configurations passent les contrôles géométriques décrits
-ci-dessous. Ce n'est pas une culasse terminée, intégrée au moteur ou autorisée
-à fabriquer.
+*The V2 sub-assembly rendered from the reimported STEP, with native CAD sections; it does not show a cylinder head body and proves no engine fit.*
 
-Le module possède son propre repère de conception, **en millimètres**.
-Il ne lit ni le scan 935 ni F53 et ne change aucune enveloppe extérieure.
-Ses coordonnées ne sont pas des interfaces Porsche mesurées. L'alésage
-100 mm est une base de travail provisoire, pas un contrat de montage M64.
+**Twelve solids were built and exported as a named-assembly STEP:**
+four valves with conical seat faces, four matching annular seats and
+four guides. The closed STEP and the maximum-lift STEP are valid after
+reimport. Seven configurations pass the geometric checks described
+below. This is not a finished cylinder head, integrated into the engine or
+released for manufacture.
 
-## V2 : meilleur pire cas, avec un compromis explicite
-
-Le placement **V2** est retenu comme candidat d'encombrement : il translate
-tous les composants de `+1,5 mm` selon X. Aucun diamètre, profil de composant,
-inclinaison ou levée ne change. V1 reste intégralement disponible comme
-témoin. Le seuil géométrique des enveloppes de sièges est porté à **2 mm**
-pour le contrôle de V2 ; ce seuil est respecté.
-
-| Distance minimale native | V1 | V2 |
-|---|---:|---:|
-| Soupape/alésage, pire cas des sept états | 0,308483 mm | **1,048589 mm** |
-| Soupape/soupape, pire cas des sept états | 2,175732 mm | 2,175732 mm |
-| Enveloppe de siège/enveloppe de siège | 2,000000 mm | 2,000000 mm |
-| Soupape/alésage, admission seule à levée maximale | **1,323201 mm** | **1,048589 mm** |
-
-L'amélioration du pire cas global vaut **0,740106 mm**. V2 n'améliore donc
-**pas chaque état ni chaque soupape individuellement** : en rapprochant
-l'échappement du cylindre, il améliore la zone d'admission initialement
-limitante. Le cas admission seule ouverte perd `0,274612 mm` de marge.
-Cette sélection se fonde sur le pire cas global, pas sur une dominance
-sans compromis. Le [comparatif complet](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/placement-comparison.json)
-publie les sept états et les quatre soupapes par état. Aucune V3 n'est
-construite dans ce lot.
-
-Le millimètre environ restant à froid **n'est toujours pas une validation
-à chaud, sous flexion, avec le piston réel ou avec les tolérances de montage**.
-
-## Paramètres et provenance
-
-| Paramètre | Admission | Échappement | Statut |
-|---|---:|---:|---|
-| Diamètre de tête | 40 mm | 33 mm | Comparaison documentaire Swindon |
-| Levée maximale testée | 11,5 mm | 9,6 mm | Comparaison documentaire Swindon |
-| Position X des axes au plan de référence V1 → V2 | −19,5 → −18 mm | +22 → +23,5 mm | Choix de conception |
-| Position Y des deux axes | ±22,5 mm | ±22,5 mm | Choix de conception V1 |
-| Inclinaison d'axe | −8° | +8° | Choix de conception, angle inclus 16° |
-| Angle de portée par rapport au plan transversal | 45° | 45° | Choix de conception, pas angle d'axe |
-| Largeur radiale de bande de contact | 1 mm | 1 mm | Choix de conception, non qualifié |
-| Diamètre extérieur du siège | 43 mm | 36 mm | Choix de conception |
-| Diamètre de tige | 6 mm | 6 mm | Choix de conception |
-| Alésage du guide | 6,030 mm | 6,040 mm | Choix diamétral à froid |
-| Diamètre extérieur / longueur du guide | 11 / 35 mm | 11 / 35 mm | Choix de conception |
-
-Les diamètres et levées sont publiés dans la
-[fiche primaire Swindon](https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf).
-Cela n'établit ni la géométrie interne du kit, ni sa transposition au moteur
-turbo du projet. Les autres valeurs sont les choix explicites du module.
-
-Le [catalogue primaire MAHLE](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
-documente des portées 45° pour certaines soupapes M64 **2V Carrera**, ainsi
-qu'une table générale de jeux tige/guide. Cette dernière ne précise pas
-littéralement si ses jeux sont radiaux ou diamétraux : les jeux diamétraux
-0,030 / 0,040 mm du présent module sont **choisis**, pas automatiquement
-dérivés ou validés par cette table. Voir la
-[revue documentaire](M64_VALVE_MODULE_PRIMARY_REFERENCES_20260907.md).
-
-Les pièces ne sont pas encore des références d'achat. Les alliages, états
-métallurgiques, traitements, serrages des sièges et guides dans le corps,
-lubrification et valeurs à chaud restent à sélectionner et qualifier.
-
-## Géométrie réelle des contacts et du mouvement
-
-Le siège et la soupape utilisent le même cône sur la bande de contact.
-Pour une portée 45°, une variation radiale de 1 mm correspond à une
-variation axiale de 1 mm et une largeur mesurée sur la pente de √2 mm.
-Le modèle distingue cette bande conique de l'alésage cylindrique du guide.
-Les pièces sont des solides de révolution, pas des disques simplement
-superposés. Le col de soupape est encore défini par des tronçons coniques :
-ses raccordements de fatigue et les détails d'extrémité/verrouillage de
-tige ne sont pas finalisés.
-
-L'axe local positif va vers l'extrémité de tige. Les tiges s'écartent vers
-l'extérieur du module ; une levée positive applique la translation
-**opposée à cet axe**, vers la chambre et le piston. Les positions des
-sièges et guides restent fixes. La tige couvre encore toute la longueur
-du guide à la levée maximale candidate.
-
-Il n'y a **aucun ressort factice**, arbre à cames, culbuteur, piston ou corps
-de culasse ajouté pour combler les éléments non définis. Les configurations
-simultanées constituent une exploration d'encombrement, pas une loi de
-came ni un cycle moteur calculé.
-
-## Vérifications exécutées
-
-| Contrôle natif OCCT | Résultat V1 |
-|---|---:|
-| Solides par STEP après réimport | 12 |
-| BRepCheck des composants et deux assemblages réimportés | Valide |
-| Séparation minimale entre enveloppes cylindriques pleines des sièges | **2,000 mm** |
-| Seuil géométrique de conception choisi pour cette séparation | 1,5 mm |
-| Séparation minimale entre siège et guide voisin | 21,755 mm |
-| Erreur maximale des points de bande commune sur les deux solides | `2,04e-14` mm |
-| Tests de placement de bande | 72 distances natives par soupape |
-| Intersection volumique siège/soupape au fermé | Sous `1e-7` mm³ |
-| Jeu radial natif tige/guide, minimum des quatre | 0,015 mm |
-| Distance soupape/soupape minimale parmi les états testés | **2,176 mm** |
-| Distance soupape/alésage minimale parmi les états testés | **0,308 mm** |
-| Coupes STEP après réimport, fermé / levée max | 65 / 64 arêtes, BRepCheck valide |
-
-Un dernier audit **en lecture seule** a activé explicitement
-`BRepCheck_Analyzer.SetExactMethod(True)` sur les quatre STEP d'assemblage
-V1/V2, puis sur chacun de leurs solides réimportés : tous passent. L'unité
-`SI_UNIT(.MILLI.,.METRE.)` est également présente dans les STEP. Les
-[reçus V1](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/exact-integrity-report.json)
-et [V2](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/exact-integrity-report.json)
-portent leurs hashes exacts. Aucune géométrie n'a été reconstruite pour ce
-contrôle supplémentaire.
-
-**La marge de 0,308 mm au cylindre est faible.** Le fait qu'elle soit positive
-à froid ne démontre pas l'absence de contact avec dilatation, tolérances,
-flexion, guidage réel ou dépôts. Elle n'est pas présentée comme suffisante
-pour un moteur. De même, 2 mm entre enveloppes de sièges représente l'espace
-géométrique disponible pour un pont de matière, pas un pont dont la
-résistance ou le refroidissement aurait été calculé.
-
-Les sept états sont : fermé, levées simultanées à 25 / 50 / 75 / 100 %,
-admission seule au maximum et échappement seul au maximum. Pour chacun :
-six couples soupape/soupape, 32 couples soupape/composant fixe et quatre
-soupapes face à l'alésage de travail ont été contrôlés. Les tangences
-indésirables sont rejetées même si leur volume commun est nul ; le contact
-intentionnel de la portée propre est distingué des contacts voisins.
-
-Les surfaces de sièges ont aussi été remplacées **pour le seul contrôle
-d'encombrement** par leurs cylindres extérieurs pleins. Cela évite de
-confondre absence de collision des anneaux et présence d'un espace entre
-enveloppes. Aucun corps de culasse n'est implicitement créé par ce contrôle.
-
-Les collisions sont calculées par distance et opérations booléennes
-volumiques sur les solides natifs ; le cylindre de contrôle contient toute
-la hauteur des soupapes dans les états considérés. Ces sept configurations
-seules ne prouvent pas une absence de collision continue, ni une absence de
-contact avec un piston absent. L'audit complémentaire suivant traite uniquement
-les six couples soupape/soupape sur toute leur levée.
-
-## Audit continu complémentaire : couples soupape/soupape V2
-
-Le [rapport natif complémentaire](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/continuous-valve-pair-report.json)
-provient de **862 distances OCCT** calculées sur les quatre solides soupapes
-réimportés du STEP V2. Ils sont identifiés par équivalence volumique unique
-avec les profils paramétriques ; l'ordre des solides du STEP n'est pas supposé.
-L'exécution sur Kali s'est terminée avec code 0, dans le runtime OCP existant
-`sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696`.
-
-Chaque soupape est translatée sur son axe, indépendamment des autres, entre
-zéro et sa levée maximale. Pour deux solides rigides, la distance ne peut
-diminuer de plus que la somme de leurs déplacements. Sur une grille couvrant
-entièrement ces deux intervalles, cela donne :
-
-```text
-distance continue >= minimum des distances échantillonnées
-                     - rayon de couverture de la première grille
-                     - rayon de couverture de la seconde grille
-                     - réserve numérique supposée
+```mermaid
+flowchart LR
+    A["12 solids<br/>4 valves, 4 seats, 4 guides"] --> B["STEP reimport<br/>BRepCheck valid"]
+    B --> C["7 states checked<br/>V1 and V2"]
+    C --> D["V2 retained<br/>worst case 1.048589 mm"]
+    D --> E["Continuous valve/valve audit<br/>lowest bound 1.216556 mm"]
+    E --> F["Not an engine validation:<br/>hot, flexing, piston, tolerances"]
+    class F stop
+    class D ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
 ```
 
-Avec un pas maximal de 1 mm, les six bornes restent positives. La plus faible
-vaut **1,216556 mm**, après déduction des deux rayons de couverture et d'une
-réserve numérique de `1e-5 mm`. Le minimum natif échantillonné est
-`2,175732 mm`. Il ne faut pas confondre la borne conservatrice et le minimum
-géométrique réellement atteint.
+The module has its own design frame, **in millimeters**.
+It reads neither the 935 scan nor F53 and changes no outer envelope.
+Its coordinates are not measured Porsche interfaces. The 100 mm bore is a
+provisional working basis, not an M64 fitting contract.
 
-**La réserve numérique OCCT est une hypothèse, pas une borne d'erreur
-certifiée par arithmétique d'intervalles.** Cette conclusion conditionnelle
-concerne les seuls couples de soupapes rigides de ce module froid. Elle ne
-couvre ni piston, composants fixes, flexion, dilatation, dépôts, jeux de
-guidage réels, ni loi de came. Ce n'est toujours pas une validation moteur.
-Le [script indépendant](../../twins/m64-cylinder-head/source/audit_continuous_valve_clearance.py)
-conserve tous les échantillons et SHA256 ; il ne modifie ni STEP ni scan.
+## V2: better worst case, with an explicit trade-off
 
-## Artefacts et reproduction
+Placement **V2** is retained as the packaging candidate: it translates
+all components by `+1.5 mm` along X. No diameter, component profile,
+inclination or lift changes. V1 remains fully available as a
+control. The geometric threshold between seat envelopes is raised to **2 mm**
+for the V2 check; that threshold is met.
 
-- [Source paramétrique](../../twins/m64-cylinder-head/source/build_four_valve_distribution.py).
-- [Paramètres V2](../../twins/m64-cylinder-head/source/four-valve-distribution-v2.parameters.json).
-- [STEP V2 fermé](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/closed.step).
-- [STEP V2 aux levées maximales simultanées](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/simultaneous_100pct.step).
-- [Coupe STEP V2 fermée](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/closed-section.step).
-- [Coupe STEP V2 aux levées maximales](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/simultaneous_100pct-section.step).
-- [Construction V2](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/build-report.json), [audit V2](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/audit-report.json), [coupes V2](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/sections-report.json), [rendu V2](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/render-report.json).
-- Témoin V1 conservé : [STEP fermé](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/closed.step), [construction](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/build-report.json), [audit complet](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/audit-report.json).
+| Native minimum distance | V1 | V2 |
+|---|---:|---:|
+| Valve/bore, worst case of the seven states | 0.308483 mm | **1.048589 mm** |
+| Valve/valve, worst case of the seven states | 2.175732 mm | 2.175732 mm |
+| Seat envelope/seat envelope | 2.000000 mm | 2.000000 mm |
+| Valve/bore, intake only at maximum lift | **1.323201 mm** | **1.048589 mm** |
 
-Ces STEP proviennent exclusivement de la nouvelle définition paramétrique,
-pas d'un scan privé. Le rendu d'ensemble est réalisé sur le STEP réimporté ;
-les coupes de la figure sont des intersections CAO natives. Aucune image
-générative n'est utilisée. Le skill `create-viz` a guidé les couleurs par
-composant, les axes en millimètres et les avertissements visibles.
-Dans la figure V2, les pointillés correspondent à l'intersection du cylindre
-avec le plan `Y = 22,5 mm`, soit `X = ±√(50² − 22,5²) mm`. Ils remplacent
-les limites projetées `X = ±50 mm` du premier rendu V1, sans changer les
-calculs natifs de distance au cylindre.
+The improvement in the overall worst case is **0.740106 mm**. V2 therefore does
+**not improve every state or every valve individually**: by moving the
+exhaust closer to the cylinder, it improves the intake zone that was initially
+limiting. The intake-only-open case loses `0.274612 mm` of margin.
+This selection rests on the overall worst case, not on a dominance
+without trade-off. The [full comparison](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/placement-comparison.json)
+publishes the seven states and the four valves per state. No V3 is
+built in this batch.
 
-Sur le runtime Linux OCP préparé :
+The roughly one millimeter left cold **is still not a validation
+hot, under flexing, with the real piston or with assembly tolerances**.
+
+## Parameters and provenance
+
+| Parameter | Intake | Exhaust | Status |
+|---|---:|---:|---|
+| Head diameter | 40 mm | 33 mm | Documentary comparison, Swindon |
+| Maximum lift tested | 11.5 mm | 9.6 mm | Documentary comparison, Swindon |
+| X position of the axes at the reference plane V1 → V2 | −19.5 → −18 mm | +22 → +23.5 mm | Design choice |
+| Y position of both axes | ±22.5 mm | ±22.5 mm | V1 design choice |
+| Axis inclination | −8° | +8° | Design choice, included angle 16° |
+| Seat face angle relative to the transverse plane | 45° | 45° | Design choice, not the axis angle |
+| Radial width of the contact band | 1 mm | 1 mm | Design choice, not qualified |
+| Seat outer diameter | 43 mm | 36 mm | Design choice |
+| Stem diameter | 6 mm | 6 mm | Design choice |
+| Guide bore | 6.030 mm | 6.040 mm | Cold diametral choice |
+| Guide outer diameter / length | 11 / 35 mm | 11 / 35 mm | Design choice |
+
+The diameters and lifts are published in the
+[Swindon primary product sheet](https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf).
+That establishes neither the internal geometry of the kit, nor its transposition
+to the project's turbo engine. The other values are the module's explicit choices.
+
+The [MAHLE primary catalogue](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
+documents 45° seat faces for some M64 **2V Carrera** valves, as well as
+a general stem/guide clearance table. That table does not state
+literally whether its clearances are radial or diametral: the diametral
+clearances of 0.030 / 0.040 mm in this module are **chosen**, not automatically
+derived from or validated by that table. See the
+[documentary review](M64_VALVE_MODULE_PRIMARY_REFERENCES_20260907.md).
+
+The parts are not yet purchase references. Alloys, metallurgical
+condition, treatments, interference fits of seats and guides in the body,
+lubrication and hot values remain to be selected and qualified.
+
+## Actual geometry of the contacts and of the motion
+
+The seat and the valve use the same cone over the contact band.
+For a 45° seat face, a radial change of 1 mm corresponds to an
+axial change of 1 mm and a width measured along the slope of √2 mm.
+The model distinguishes this conical band from the cylindrical bore of the guide.
+The parts are solids of revolution, not simply stacked
+disks. The valve neck is still defined by conical segments:
+its fatigue fillets and the stem end/retainer details
+are not finalized.
+
+The positive local axis points toward the stem end. The stems splay
+outward from the module; a positive lift applies the translation
+**opposite to that axis**, toward the chamber and the piston. The positions of the
+seats and guides stay fixed. The stem still covers the full length
+of the guide at the candidate maximum lift.
+
+There is **no dummy spring**, camshaft, rocker, piston or cylinder
+head body added to fill in the undefined elements. The simultaneous
+configurations are a packaging exploration, not a cam
+law or a computed engine cycle.
+
+## Checks executed
+
+| Native OCCT check | V1 result |
+|---|---:|
+| Solids per STEP after reimport | 12 |
+| BRepCheck of the components and the two reimported assemblies | Valid |
+| Minimum separation between the full cylindrical seat envelopes | **2.000 mm** |
+| Geometric design threshold chosen for this separation | 1.5 mm |
+| Minimum separation between a seat and the neighboring guide | 21.755 mm |
+| Maximum error of the shared band points on the two solids | `2.04e-14` mm |
+| Band placement tests | 72 native distances per valve |
+| Seat/valve volumetric intersection when closed | Below `1e-7` mm³ |
+| Native radial stem/guide clearance, minimum of the four | 0.015 mm |
+| Minimum valve/valve distance among the tested states | **2.176 mm** |
+| Minimum valve/bore distance among the tested states | **0.308 mm** |
+| STEP sections after reimport, closed / max lift | 65 / 64 edges, BRepCheck valid |
+
+A final **read-only** audit explicitly enabled
+`BRepCheck_Analyzer.SetExactMethod(True)` on the four V1/V2 assembly
+STEP files, then on each of their reimported solids: all pass. The unit
+`SI_UNIT(.MILLI.,.METRE.)` is also present in the STEP files. The
+[V1](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/exact-integrity-report.json)
+and [V2](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/exact-integrity-report.json)
+receipts carry their exact hashes. No geometry was rebuilt for this
+additional check.
+
+**The 0.308 mm margin to the cylinder is small.** Being positive
+cold does not show the absence of contact with expansion, tolerances,
+flexing, real guiding or deposits. It is not presented as sufficient
+for an engine. Likewise, 2 mm between seat envelopes is the
+geometric space available for a material bridge, not a bridge whose
+strength or cooling has been computed.
+
+The seven states are: closed, simultaneous lifts at 25 / 50 / 75 / 100%,
+intake only at maximum and exhaust only at maximum. For each:
+six valve/valve pairs, 32 valve/fixed-component pairs and four
+valves against the working bore were checked. Unwanted
+tangencies are rejected even when their common volume is zero; the
+intentional contact of a valve's own seat face is distinguished from neighboring contacts.
+
+The seat surfaces were also replaced, **for the packaging check
+only**, by their full outer cylinders. This avoids
+confusing the absence of ring collisions with the presence of space between
+envelopes. No cylinder head body is implicitly created by this check.
+
+Collisions are computed by distance and volumetric Boolean
+operations on the native solids; the check cylinder contains the full
+height of the valves in the states considered. These seven configurations
+alone do not prove the absence of continuous collision, nor the absence of
+contact with a missing piston. The following complementary audit covers only
+the six valve/valve pairs over their full lift.
+
+## Complementary continuous audit: V2 valve/valve pairs
+
+The [complementary native report](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/continuous-valve-pair-report.json)
+comes from **862 OCCT distances** computed on the four valve solids
+reimported from the V2 STEP. They are identified by unique volume equivalence
+with the parametric profiles; the order of the solids in the STEP is not assumed.
+The run on Kali finished with exit code 0, in the existing OCP runtime
+`sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696`.
+
+Each valve is translated along its axis, independently of the others, between
+zero and its maximum lift. For two rigid solids, the distance cannot
+decrease by more than the sum of their displacements. On a grid fully covering
+both intervals, this gives:
+
+```text
+continuous distance >= minimum of the sampled distances
+                       - coverage radius of the first grid
+                       - coverage radius of the second grid
+                       - assumed numerical reserve
+```
+
+With a maximum step of 1 mm, the six bounds stay positive. The lowest
+is **1.216556 mm**, after deducting both coverage radii and a
+numerical reserve of `1e-5 mm`. The native sampled minimum is
+`2.175732 mm`. The conservative bound must not be confused with the
+geometric minimum actually reached.
+
+**The OCCT numerical reserve is an assumption, not an error bound
+certified by interval arithmetic.** This conditional conclusion
+concerns only the rigid valve pairs of this cold module. It does not
+cover the piston, fixed components, flexing, expansion, deposits, real guide
+clearances or a cam law. It is still not an engine validation.
+The [independent script](../../twins/m64-cylinder-head/source/audit_continuous_valve_clearance.py)
+keeps all samples and SHA256 digests; it modifies neither STEP nor scan.
+
+## Artifacts and reproduction
+
+- [Parametric source](../../twins/m64-cylinder-head/source/build_four_valve_distribution.py).
+- [V2 parameters](../../twins/m64-cylinder-head/source/four-valve-distribution-v2.parameters.json).
+- [V2 closed STEP](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/closed.step).
+- [V2 STEP at simultaneous maximum lifts](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/simultaneous_100pct.step).
+- [V2 closed section STEP](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/closed-section.step).
+- [V2 section STEP at maximum lifts](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/simultaneous_100pct-section.step).
+- [V2 build](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/build-report.json), [V2 audit](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/audit-report.json), [V2 sections](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/sections-report.json), [V2 render](../../twins/m64-cylinder-head/evidence/four-valve-design-v2-20260907/render-report.json).
+- V1 control kept: [closed STEP](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/closed.step), [build](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/build-report.json), [full audit](../../twins/m64-cylinder-head/evidence/four-valve-design-20260907/audit-report.json).
+
+These STEP files come exclusively from the new parametric definition,
+not from a private scan. The overall render is made from the reimported STEP;
+the sections in the figure are native CAD intersections. No generative
+image is used. The `create-viz` skill guided the per-component colors,
+the millimeter axes and the visible warnings.
+In the V2 figure, the dashed lines are the intersection of the cylinder
+with the plane `Y = 22.5 mm`, that is `X = ±√(50² − 22.5²) mm`. They replace
+the projected limits `X = ±50 mm` of the first V1 render, without changing the
+native distance-to-cylinder calculations.
+
+On the prepared Linux OCP runtime:
 
 ```sh
 timeout 300 /opt/venv/bin/python build_four_valve_distribution.py --stage build --output /chemin/nouveau/module
@@ -214,33 +229,33 @@ timeout 300 /opt/venv/bin/python build_four_valve_distribution.py --stage render
 timeout 300 /opt/venv/bin/python build_four_valve_distribution.py --stage integrity --output /chemin/nouveau/module
 ```
 
-Chaque étape native se limite à deux CPU et 4 Gio. `--parameters` accepte
-un JSON de paramètres de conception ; les champs omis reprennent les
-valeurs de la classe `Parameters`. Les sorties préexistantes sont protégées.
-Pour V2, passer `--parameters four-valve-distribution-v2.parameters.json`
-aux cinq étapes. `--stage compare --baseline /chemin/V1 --output /chemin/V2`
-reproduit le comparatif des rapports natifs sans reconstruire la CAO.
-Les contrôles Python locaux couvrent paramètres, orientation, contact
-conique, jeux, états sélectionnés et absence de promotion en validation
-moteur ; ils ne remplacent pas les exécutions natives enregistrées.
+Each native stage is limited to two CPUs and 4 GiB. `--parameters` accepts
+a JSON of design parameters; omitted fields take the
+values of the `Parameters` class. Pre-existing outputs are protected.
+For V2, pass `--parameters four-valve-distribution-v2.parameters.json`
+to all five stages. `--stage compare --baseline /chemin/V1 --output /chemin/V2`
+reproduces the comparison of the native reports without rebuilding the CAD.
+The local Python checks cover parameters, orientation, conical
+contact, clearances, selected states and the absence of promotion to engine
+validation; they do not replace the recorded native runs.
 
-Le module reste à intégrer à des interfaces M64 démontrées, puis à compléter
-par le corps, les conduits, les portées de fixation, la distribution et ses
-ressorts sélectionnés. La thermique, la charge turbo, les pressions de
-contact, les jeux à chaud, la fatigue et le procédé de fabrication ne sont
-pas validés par ce sous-assemblage.
+The module still has to be integrated with demonstrated M64 interfaces, then completed
+with the body, the ports, the mounting faces, the valvetrain and its
+selected springs. Thermal behavior, turbo load, contact
+pressures, hot clearances, fatigue and the manufacturing process are
+not validated by this sub-assembly.
 
-### Interfaces siège/corps et guide/corps : premier écran exécuté
+### Seat/body and guide/body interfaces: first screen executed
 
-Un [écran analytique reproductible](../../twins/m64-cylinder-head/seat-guide-thermal-screen/README.md)
-compare maintenant les **interfaces siège/corps et guide/corps**, avec
-plages documentaires et hypothèses de dilatation explicitement séparées.
-Il montre des pertes possibles d'interférence dans certaines hypothèses,
-sans permettre de sélectionner un serrage ou un matériau de fabrication.
-Les deux diamètres extérieurs de sièges et les axes sont désormais des
-entrées CAO reproductibles ; un calcul local de contact peut ensuite
-contraindre l'épaisseur et le transfert thermique autour d'eux. Cette
-interface est prioritaire à des ressorts choisis sans loi de came, masses
-mobiles qualifiées et accélérations réelles. Elle ne nécessite pas de
-substituer une nouvelle enveloppe au scan. Le corps et ses logements ne sont
-pas encore construits dans ce module.
+A [reproducible analytical screen](../../twins/m64-cylinder-head/seat-guide-thermal-screen/README.md)
+now compares the **seat/body and guide/body interfaces**, with
+documentary ranges and expansion assumptions kept explicitly separate.
+It shows possible losses of interference under some assumptions,
+without allowing an interference fit or a manufacturing material to be selected.
+The two seat outer diameters and the axes are now reproducible
+CAD inputs; a local contact calculation can then
+constrain the thickness and the heat transfer around them. This
+interface takes priority over springs chosen without a cam law, qualified moving
+masses and real accelerations. It does not require
+substituting a new envelope for the scan. The body and its pockets are
+not yet built in this module.

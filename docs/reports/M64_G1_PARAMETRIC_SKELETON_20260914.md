@@ -1,54 +1,58 @@
-# M64 — G1, squelette paramétrique CadQuery
+# M64 — G1, CadQuery parametric skeleton
 
-14 septembre 2026. Code : [`m64_head_skeleton.py`](../../twins/m64-cylinder-head/source/parametric/m64_head_skeleton.py),
-paramètres : [`parameters.json`](../../twins/m64-cylinder-head/source/parametric/parameters.json),
-preuves : [`evidence/g1-parametric-20260914/`](../../twins/m64-cylinder-head/evidence/g1-parametric-20260914/manifest.json).
+September 14, 2026. Code: [`m64_head_skeleton.py`](../../twins/m64-cylinder-head/source/parametric/m64_head_skeleton.py),
+parameters: [`parameters.json`](../../twins/m64-cylinder-head/source/parametric/parameters.json),
+evidence: [`evidence/g1-parametric-20260914/`](../../twins/m64-cylinder-head/evidence/g1-parametric-20260914/manifest.json).
 
-**Ce n'est ni une géométrie maître ni une autorisation de fabrication**
+**This is neither a master geometry nor a manufacturing authorization**
 (`master_geometry: false`, `manufacturing_authorized: false`).
 
-## Contenu
+![XZ section of the G1 parametric cylinder head skeleton at y = valve_y_offset](../../twins/m64-cylinder-head/evidence/g1-parametric-20260914/m64-head-skeleton-section-xz.svg)
 
-Un cylindre. On y trouve le bloc, le centrage sous le plan d'étanchéité et un
-dégagement de portée. La chambre est un volume simplifié. S'y ajoutent quatre
-lamages de siège et quatre alésages de guide inclinés (2 admission, 2
-échappement), le puits de bougie central, quatre trous de goujons et deux
-alésages porte-arbres. Le repère est décrit dans `parameters.json`.
+*Generated XZ section of the skeleton; it shows the placeholder layout, not sourced M64 dimensions or a manufacturable head.*
 
-## Règle de provenance (fail-closed)
+## Contents
 
-- `sourced` : le paramètre doit citer un `contract_path` non nul, porté par une
-  entrée à source enregistrée et localisateur, avec la même unité et une valeur
-  identique. Un chemin vers `critical_interfaces` exige le statut `found`.
-- `unsourced` : il s'agit d'un placeholder. Il ne peut citer aucun chemin, et il
-  est refusé dès que le contrat source l'interface correspondante (`found`).
-- Toute autre provenance, valeur modifiée ou source retirée est refusée.
+One cylinder. It contains the block, the spigot below the sealing plane and a
+land relief. The chamber is a simplified volume. Added to these are four
+seat counterbores and four inclined guide bores (2 intake, 2
+exhaust), the central spark plug well, four stud holes and two
+camshaft bearing bores. The reference frame is described in `parameters.json`.
 
-## Résultat de génération
+## Provenance rule (fails closed)
 
-| Élément | Valeur |
+- `sourced`: the parameter must cite a non-null `contract_path`, carried by an
+  entry with a registered source and locator, with the same unit and an identical
+  value. A path to `critical_interfaces` requires the status `found`.
+- `unsourced`: this is a placeholder. It may cite no path, and it
+  is rejected as soon as the contract sources the corresponding interface (`found`).
+- Any other provenance, modified value or withdrawn source is rejected.
+
+## Generation result
+
+| Item | Value |
 |---|---|
-| Paramètres sourcés | 3 : Ø de chambre = alésage de 100 mm (P3, référence historique) ; soupapes de 40 / 33 mm (S2, benchmark Swindon) |
-| Paramètres non sourcés | **19**, listés dans le manifeste, dont registre, portée, goujons, axes et inclinaisons des soupapes, guides, bougie et arbres |
-| BRepCheck_Analyzer | valide |
-| Volume | 1 074 651,8 mm³, **sans signification physique** (dimensions du bloc non sourcées) |
-| Sorties | STEP (368 Ko), coupe SVG XZ à y = `valve_y_offset`, manifeste avec SHA-256 (STEP, coupe, paramètres, contrat, générateur) |
+| Sourced parameters | 3: chamber Ø = 100 mm bore (P3, historical reference); valves 40 / 33 mm (S2, Swindon benchmark) |
+| Unsourced parameters | **19**, listed in the manifest, including register, land, studs, valve axes and inclinations, guides, spark plug and camshafts |
+| BRepCheck_Analyzer | valid |
+| Volume | 1,074,651.8 mm³, **without physical meaning** (block dimensions unsourced) |
+| Outputs | STEP (368 KB), SVG XZ section at y = `valve_y_offset`, manifest with SHA-256 (STEP, section, parameters, contract, generator) |
 
-L'en-tête STEP contient un horodatage : l'empreinte change à chaque régénération.
-Le manifeste renvoie à l'exemplaire versé.
+The STEP header contains a timestamp: the digest changes on every regeneration.
+The manifest points to the committed copy.
 
-Le diamètre de 14 mm du puits de bougie reste **non sourcé**. Le filetage M14 × 1,25
-n'est qu'un fait partiel du contrat : 993 Carrera, table non relue.
+The 14 mm diameter of the spark plug well remains **unsourced**. The M14 × 1.25 thread
+is only a partial fact of the contract: 993 Carrera, table not re-read.
 
 ## Tests
 
-`tests/test_m64_g1_parametric_skeleton.py` couvre la génération valide et non
-maître, le refus d'une valeur sourcée modifiée, le refus d'une source retirée du
-contrat, le refus d'un placeholder présenté comme sourcé et la cohérence de la liste
-des paramètres non sourcés.
+`tests/test_m64_g1_parametric_skeleton.py` covers valid, non-master
+generation, rejection of a modified sourced value, rejection of a source withdrawn from the
+contract, rejection of a placeholder presented as sourced and consistency of the list
+of unsourced parameters.
 
-## Suite
+## Next steps
 
-Remplacer les placeholders à mesure que les mesures de la
-[liste G0](M64_G0_INTERFACE_CONTRACT_20260914.md) entrent au contrat. Le recalage
-sur le scan reste à faire quand il sera disponible.
+Replace the placeholders as the measurements from the
+[G0 list](M64_G0_INTERFACE_CONTRACT_20260914.md) enter the contract. Registration
+against the scan remains to be done when it becomes available.

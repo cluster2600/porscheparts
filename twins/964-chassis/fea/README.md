@@ -1,478 +1,524 @@
-# Essai numerique de resistance — plancher 964 en torsion
+# Numerical strength test — 964 floor pan in torsion
 
-Chaine : gmsh 4.15.2 (maillage coque) -> CalculiX 2.21 (elements S3).
-Acier E = 210 000 MPa, nu = 0,3. Unites mm, N, MPa.
+Chain: gmsh 4.15.2 (shell mesh) -> CalculiX 2.21 (S3 elements).
+Steel E = 210,000 MPa, nu = 0.3. Units mm, N, MPa.
 
-Cas de charge : arriere encastre, couple de 1290 N.m applique en pointes de
-longeron a l'avant (1000 N vers le haut a gauche, 1000 N vers le bas a droite,
-bras de levier 1290 mm).
+Load case: rear clamped, torque of 1290 N.m applied at the front side-rail tips
+(1000 N upward on the left, 1000 N downward on the right, lever arm 1290 mm).
 
-## Epaisseur de tole
+![The shell model: bare floor pan with side rails and cross members, K = 2442 N.m/deg, next to the full cell, K = 9093 N.m/deg](../../../docs/media/diagrams/964-modele-coque.svg)
 
-Donnee apportee par le proprietaire du projet : **0,8 mm annonce par Porsche,
-1,0 mm mesure**. Les deux valeurs sont conservees, non moyennees.
+*What the computation contains, from the bare floor pan to the full cell, in
+linear S3 shells. It is not a 964, and neither stiffness is a 964 stiffness.*
 
-| epaisseur | rotation | raideur en torsion | vM max |
+## Sheet thickness
+
+Data supplied by the project owner: **0.8 mm announced by Porsche, 1.0 mm
+measured**. Both values are kept, not averaged.
+
+| thickness | rotation | torsional stiffness | vM max |
 |---|---|---|---|
-| 0,8 mm (annonce) | 0,5283 deg | **2442 N.m/deg** | 86,1 MPa |
-| 1,0 mm (mesure)  | 0,4222 deg | **3056 N.m/deg** | 68,8 MPa |
+| 0.8 mm (announced) | 0.5283 deg | **2442 N.m/deg** | 86.1 MPa |
+| 1.0 mm (measured)  | 0.4222 deg | **3056 N.m/deg** | 68.8 MPa |
 
-Rapport de raideur 1,251 pour un rapport d'epaisseur 1,250. **La raideur suit
-l'epaisseur lineairement, pas au cube.** La structure travaille en cisaillement
-de membrane, comme un caisson ferme, et non en flexion de plaque. L'ecart entre
-0,8 et 1,0 vaut donc 25 % de raideur et 25 % de contrainte : ce n'est pas un
-detail de modelisation.
+Stiffness ratio 1.251 for a thickness ratio of 1.250. **Stiffness follows
+thickness linearly, not cubically.** The structure works in membrane shear, like
+a closed box section, and not in plate bending. The gap between 0.8 and 1.0 is
+therefore worth 25 % of stiffness and 25 % of stress: it is not a modeling
+detail.
 
-Les 0,2 mm d'ecart demandent une explication avant d'etre utilises. La caisse
-964 est galvanisee a chaud ; zinc, appret, peinture et cire de corps creux
-s'ajoutent a la tole. Une mesure au pied a coulisse sur panneau en place mesure
-l'empilement, pas l'acier. **Pour le calcul, c'est l'epaisseur d'acier qui
-porte**, donc 0,8 mm tant que la mesure n'est pas refaite sur tole decapee ou au
-mesureur a ultrasons. Retenir 1,0 mm surestimerait la raideur de 25 %.
+The 0.2 mm gap needs an explanation before it is used. The 964 body shell is
+hot-dip galvanized; zinc, primer, paint and cavity wax add to the sheet. A
+caliper measurement on a panel in place measures the stack, not the steel.
+**For the computation, it is the steel thickness that carries load**, so 0.8 mm
+until the measurement is redone on stripped sheet or with an ultrasonic gauge.
+Taking 1.0 mm would overestimate stiffness by 25 %.
 
-## Ou ca travaille
+## Where it works
 
-Valeurs recalculees apres le retrait de la traverse inerte decrit plus bas. Un
-noeud est classe par sa position : longeron si |y| >= 600, traverse s'il est
-sous le plancher ou dans l'emprise d'une traverse, plancher sinon.
+Values recomputed after removing the inert cross member described below. A node
+is classified by its position: side rail if |y| >= 600, cross member if it is
+under the floor pan or within the footprint of a cross member, floor pan
+otherwise.
 
-| zone | contrainte moyenne | p95 | max |
+| zone | mean stress | p95 | max |
 |---|---|---|---|
-| longeron (caisson ferme) | 25,5 MPa | 62,3 | 86,1 |
-| traverse | 19,6 MPa | 30,0 | 45,7 |
-| plancher | 10,6 MPa | 26,5 | 34,1 |
+| side rail (closed box section) | 25.5 MPa | 62.3 | 86.1 |
+| cross member | 19.6 MPa | 30.0 | 45.7 |
+| floor pan | 10.6 MPa | 26.5 | 34.1 |
 
-**Le longeron porte la torsion.** Les 1 % de noeuds les plus charges sont a
-100 % dans le longeron, et le restent apres exclusion de 300 mm en avant de
-l'encastrement : le resultat n'est pas un artefact de condition aux limites.
-Environ 22 % du pic brut l'etait toutefois — 86,1 MPa tombent a 66,8 MPa une
-fois la zone d'encastrement ecartee. Le rapport longeron/plancher est de 2,41.
+**The side rail carries the torsion.** The 1 % most loaded nodes are 100 % in
+the side rail, and remain so after excluding 300 mm ahead of the clamp: the
+result is not a boundary-condition artifact. About 22 % of the raw peak was one,
+though — 86.1 MPa drops to 66.8 MPa once the clamp zone is set aside. The side
+rail/floor pan ratio is 2.41.
 
-Ce resultat converge avec le manuel : la planche 50-013 designe le *inner side
-member* comme panneau en acier haute resistance. Porsche a mis l'acier HS la ou
-le calcul place le chemin d'effort.
+This result converges with the manual: plate 50-013 designates the *inner side
+member* as a high-strength steel panel. Porsche put HS steel where the
+computation places the load path.
 
-## Ce que ces chiffres ne sont pas
+![von Mises stress on the bare floor pan under torsion: the side rails carry the load, not the floor pan](../../../docs/media/diagrams/964-chemin-effort.svg)
 
-**2442 N.m/deg n'est pas la raideur d'une 964.** Ce modele-ci ne contient que
-plancher, deux longerons et deux traverses : ni tablier, ni cloison arriere, ni
-tunnel, ni passages de roue, ni pavillon, ni pieds milieu, ni cadre de
-pare-brise, qui portent l'essentiel de la torsion d'une caisse complete. Les
-sections suivantes les ajoutent une a une — et montrent qu'ensemble elles valent
-un facteur 3,7 — mais aucune de ces variantes n'est davantage une raideur de 964.
+*The load path on the bare floor pan, 0.8 mm steel. It shows where the stress
+goes; the absolute stress values are not robust (see below).*
 
-De plus la section de longeron 90 x 120 mm et la section de traverse 80 x 70 mm
-restent `ASSUMED` : le volume V ne les publie pas. La position longitudinale des
-traverses depend de la chaine de datums, elle-meme non calee (voir le README du
-jumeau).
+![Plan and side views of the node stresses under 1290 N.m torsion at 0.8 mm, with the rear cross member detached at the left](../evidence/stress.png)
 
-Sont robustes, parce qu'ils ne dependent pas de ces inconnues :
-- la loi d'echelle lineaire en epaisseur, qui est un resultat de mecanique ;
-- le fait que le longeron, et non le plancher, porte la torsion ;
-- le classement des elements de caisse par leur apport en torsion, verifie a
-  trois finesses de maillage.
+*An earlier stress plot, kept as evidence. The unloaded group of nodes at
+x ≈ -1703 is the rear cross member that was later found to carry nothing (see
+"A cross member that carried nothing"); the plot predates its removal.*
 
-Ne sont pas robustes : toutes les valeurs absolues de raideur et de contrainte.
-Le modele n'est d'ailleurs pas converge en maillage — la raideur baisse encore
-de 4 % au dernier raffinement essaye, les elements S3 convergeant par le haut.
+## What these figures are not
 
-## Rejouer
+**2442 N.m/deg is not the stiffness of a 964.** This model contains only the
+floor pan, two side rails and two cross members: no front bulkhead, no rear
+bulkhead, no tunnel, no wheel arches, no roof, no B-pillars, no windshield frame,
+which carry most of the torsion of a complete body shell. The following sections
+add them one by one — and show that together they are worth a factor of 3.7 —
+but none of these variants is a 964 stiffness either.
+
+In addition, the side-rail section 90 x 120 mm and the cross-member section
+80 x 70 mm remain `ASSUMED`: volume V does not publish them. The longitudinal
+position of the cross members depends on the datum chain, itself uncalibrated
+(see the twin's README).
+
+Robust, because they do not depend on these unknowns:
+- the linear scaling law in thickness, which is a mechanics result;
+- the fact that the side rail, not the floor pan, carries the torsion;
+- the ranking of body-shell members by their torsion contribution, verified at
+  three mesh densities.
+
+Not robust: all absolute values of stiffness and stress. The model is not
+mesh-converged either — stiffness still drops by 4 % at the last refinement
+tried, S3 elements converging from above.
+
+## Replay
 
     source ../source/env.sh
     pycad build_shell.py 0.8 1.0 && pycad run_fea.py 0.8 t08
     pycad build_shell.py 1.0 1.0 && pycad run_fea.py 1.0 t10
 
-## Cisaillement ou flexion ? La reponse etait fausse
+## Shear or bending? The answer was wrong
 
-Ce README affirmait, et l'etude composite avec lui, que « la structure travaille
-en cisaillement de membrane, comme un caisson ferme ». **C'est faux pour le
-modele sur lequel l'affirmation a ete faite.**
+This README claimed, and the composite study with it, that "the structure works
+in membrane shear, like a closed box section". **That is false for the model on
+which the claim was made.**
 
-Elle reposait sur deux observations dont aucune ne la demontre. La raideur suit
-lineairement l'epaisseur : cela ecarte la flexion de **plaque**, mais pas celle
-d'une **poutre a paroi mince**, dont l'inertie varie aussi lineairement avec
-l'epaisseur. Et la prediction iso-raideur d'un changement de materiau tombait a
-6,9 % : mais tous les materiaux compares etaient isotropes, ou `G` est
-proportionnel a `E`, si bien que ce controle ne peut pas, par construction,
-distinguer l'un de l'autre.
+It rested on two observations, neither of which demonstrates it. Stiffness
+follows thickness linearly: that rules out **plate** bending, but not the bending
+of a **thin-walled beam**, whose second moment of area also varies linearly with
+thickness. And the iso-stiffness prediction for a material change landed at
+6.9 %: but all the materials compared were isotropic, where `G` is proportional
+to `E`, so that this control cannot, by construction, tell one from the other.
 
-`dominance_study.py` tranche en faisant varier `E` et `G` **separement**, avec un
-materiau orthotrope fictif ou les deux sont decouples. Non physique, et c'est
-voulu : c'est un instrument de mesure, pas un materiau.
+`dominance_study.py` settles it by varying `E` and `G` **separately**, with a
+fictitious orthotropic material in which the two are decoupled. Non-physical,
+and on purpose: it is a measuring instrument, not a material.
 
-| architecture | doubler E | doubler G | mecanisme reel |
+| architecture | double E | double G | actual mechanism |
 |---|---|---|---|
-| plancher, longerons, traverses | **+93,8 %** | +2,1 % | flexion, quasi pure |
-| cellule fermee | +37,7 % | **+56,9 %** | cisaillement dominant, mais mixte |
+| floor pan, side rails, cross members | **+93.8 %** | +2.1 % | bending, nearly pure |
+| closed cell | +37.7 % | **+56.9 %** | shear-dominated, but mixed |
 
-En torsion, les deux longerons du plancher nu flechissent en sens opposes : ce
-sont deux consoles. Le cisaillement n'apparait qu'une fois les anneaux fermes, et
-il ne devient jamais exclusif.
+In torsion, the two side rails of the bare floor pan bend in opposite
+directions: they are two cantilevers. Shear only appears once the rings are
+closed, and it never becomes exclusive.
 
-C'est la decouverte des anneaux vue par l'autre bout : **fermer un anneau ne fait
-pas qu'ajouter de la raideur, cela change le mecanisme qui la porte.**
+This is the discovery of the rings seen from the other end: **closing a ring does
+not just add stiffness, it changes the mechanism that carries it.**
 
-Ce qui reste vrai : la loi d'echelle lineaire en epaisseur, le fait que le
-longeron porte l'effort, et tous les rapports mesures entre architectures. Ce qui
-tombe : l'interpretation `G/rho` comme critere de materiau du plancher. Pour le
-plancher seul le critere est `E/rho`. Le classement carbone > aramide n'en est
-pas affecte, le carbone dominant sur les deux.
+What remains true: the linear scaling law in thickness, the fact that the side
+rail carries the load, and all the ratios measured between architectures. What
+falls: the `G/rho` interpretation as the material criterion for the floor pan.
+For the floor pan alone the criterion is `E/rho`. The ranking carbon > aramid is
+not affected, carbon dominating on both.
 
     pycad dominance_study.py f
     pycad dominance_study.py fbtaprw
 
-## Stratifies reels : coques composites multicouches
+![Share of shear in stiffness, d ln K / d ln G, by architecture, for the S3 and S6 corpora of 3,000 cases](../../../docs/media/diagrams/964-mecanisme-architecture.svg)
 
-`run_fea_laminate.py` resout un vrai empilement — `*SHELL SECTION, COMPOSITE`,
-un pli par couche, une `*ORIENTATION` par angle et par famille de panneaux.
+*The mechanism changes along the architecture ladder, from near-pure bending on
+the floor pan toward shear on the closed cell. It shows a sensitivity, not a 964
+stiffness.*
 
-Trois contraintes de CalculiX ont du etre levees, et elles ne sont pas dans la
-documentation courante :
+## Real laminates: multilayer composite shells
 
-- `COMPOSITE` n'accepte **que des coques quadratiques S6 ou S8R**. D'ou l'ordre
-  de maillage optionnel de `build_body.py` ;
-- le 4e champ d'une couche est un **nom d'orientation**, pas un angle. Un pli a
-  45 degres se materialise par une `*ORIENTATION` tournee de 45 degres autour de
-  la normale du panneau ;
-- `OUTPUT=2D` est ignore : le `.frd` porte le modele 3D etendu et non les noeuds
-  d'origine. Les noeuds de mesure sont donc repris **par leur geometrie**, ce qui
-  ne depend d'aucune correspondance de numerotation.
+`run_fea_laminate.py` solves a real stack — `*SHELL SECTION, COMPOSITE`, one ply
+per layer, one `*ORIENTATION` per angle and per panel family.
 
-La chaine est validee sur un cas analytique avant d'etre utilisee : traction
-uniaxiale sur pli unidirectionnel, qui doit rendre E1 a 0 degre et E2 a 90.
+Three CalculiX constraints had to be lifted, and they are not in the usual
+documentation:
 
-| angle | E_x calcule | E_x attendu |
+- `COMPOSITE` accepts **only S6 or S8R quadratic shells**. Hence the optional
+  mesh order of `build_body.py`;
+- the 4th field of a layer is an **orientation name**, not an angle. A 45-degree
+  ply is materialized by an `*ORIENTATION` rotated 45 degrees about the panel
+  normal;
+- `OUTPUT=2D` is ignored: the `.frd` carries the expanded 3D model and not the
+  original nodes. The measurement nodes are therefore taken back **by their
+  geometry**, which depends on no numbering correspondence.
+
+The chain is validated on an analytical case before being used: uniaxial tension
+on a unidirectional ply, which must return E1 at 0 degrees and E2 at 90.
+
+| angle | computed E_x | expected E_x |
 |---|---|---|
-| 0 | 130 516 | 135 000 |
-| 90 | 9 909 | 10 000 |
-| 45 | 13 080 | 13 200 |
+| 0 | 130,516 | 135,000 |
+| 90 | 9,909 | 10,000 |
+| 45 | 13,080 | 13,200 |
 
-Resultat, huit plis de 0,4 mm, meme masse, memes conditions aux limites :
+Result, eight plies of 0.4 mm, same mass, same boundary conditions:
 
-| empilement | plancher seul | cellule fermee |
+| stack | floor pan alone | closed cell |
 |---|---|---|
-| quasi-isotrope | 1586 | 6311 |
-| +/-45 | 696 (0,44x) | **6849 (1,09x)** |
-| 0/90 | **1910 (1,20x)** | 4043 (0,64x) |
+| quasi-isotropic | 1586 | 6311 |
+| +/-45 | 696 (0.44x) | **6849 (1.09x)** |
+| 0/90 | **1910 (1.20x)** | 4043 (0.64x) |
 
-**Le classement s'inverse avec l'architecture**, exactement comme la sensibilite
-`E`/`G` le prevoit. Il n'existe donc pas d'empilement universellement bon pour
-cette caisse, et le quasi-isotrope est un compromis defendable et non le mauvais
-reglage. Une premiere analyse annoncait x 1,75 pour le +/-45 : c'etait une
-prediction analytique valable pour du cisaillement pur, transportee a tort sur
-une structure qui n'en fait pas.
+**The ranking reverses with the architecture**, exactly as the `E`/`G`
+sensitivity predicts. There is therefore no universally good stack for this body
+shell, and quasi-isotropic is a defensible compromise, not the wrong setting. A
+first analysis announced x 1.75 for +/-45: that was an analytical prediction
+valid for pure shear, wrongly carried over to a structure that does not work
+that way.
 
     pycad build_body.py 0.8 fbtaprw 1.0 2 && pycad run_fea_laminate.py PM45 cell_PM45
 
-## Variante composite
+## Composite variant
 
-`run_fea.py` accepte desormais deux arguments optionnels, `E` et `nu`, qui
-valent par defaut ceux de l'acier : les appels a deux arguments ci-dessus sont
-inchanges. `laminate.py` calcule les proprietes quasi-isotropes d'un stratifie
-carbone, aramide ou hybride depuis les constantes de pli, et `composite_study.py`
-rejoue l'essai de torsion a raideur egale pour chacun.
+`run_fea.py` now accepts two optional arguments, `E` and `nu`, which default to
+those of steel: the two-argument calls above are unchanged. `laminate.py`
+computes the quasi-isotropic properties of a carbon, aramid or hybrid laminate
+from the ply constants, and `composite_study.py` replays the torsion test at
+equal stiffness for each.
 
-Resultat court : a iso-raideur, le carbone monolithique ne gagne que **18 %** de
-masse surfacique et l'aramide en **perd 30 %**, parce que ce caisson travaille en
-cisaillement de membrane et que le critere est `G/rho`, non `E/rho`. L'analyse
-complete et ses reserves sont dans `docs/research/964-chassis-carbone-kevlar.md`.
+Short result: at iso-stiffness, monolithic carbon saves only **18 %** of areal
+mass and aramid **loses 30 %**, because this box section works in membrane shear
+and the criterion is `G/rho`, not `E/rho`. The full analysis and its caveats are
+in `docs/research/964-chassis-carbone-kevlar.md`.
 
     pycad build_shell.py 0.8 1.0 && pycad composite_study.py
 
-## Architecture contre materiau
+## Architecture versus material
 
-`build_body.py` etend le modele coque aux elements qui **ferment** le caisson —
-tablier avant, cloison arriere, tunnel central — et `architecture_study.py`
-rejoue l'essai sur trois architectures et deux materiaux a masse egale. Le cas
-`f`, plancher seul, redonne le maillage et la valeur de `build_shell.py`.
+`build_body.py` extends the shell model to the members that **close** the box —
+front bulkhead, rear bulkhead, center tunnel — and `architecture_study.py`
+replays the test on three architectures and two materials at equal mass. Case
+`f`, floor pan alone, gives back the mesh and the value of `build_shell.py`.
 
-A masse egale, fermer la caisse vaut **x 1,51** en raideur specifique, passer au
-carbone **x 1,25**, et les deux se multiplient (1,86 mesure pour 1,89 attendu) :
-les leviers sont separables et ne se substituent pas. Le tunnel central seul
-apporte +71 %, plus que les deux cloisons. Sections et hauteurs de cloison sont
-`ASSUMED` ; seuls les rapports sont exploitables.
+At equal mass, closing the body shell is worth **x 1.51** in specific stiffness,
+moving to carbon **x 1.25**, and the two multiply (1.86 measured for 1.89
+expected): the levers are separable and do not substitute for each other. The
+center tunnel alone adds +71 %, more than the two bulkheads. Sections and
+bulkhead heights are `ASSUMED`; only the ratios are usable.
 
     pycad architecture_study.py
 
-## Une traverse qui ne portait rien
+## A cross member that carried nothing
 
-Un controle de connexite ajoute a `build_body.py` a montre que le modele
-comportait **deux composantes** et non une. La traverse arriere du reseau de
-datums, `trans` a x = -1703, tombe derriere le bord arriere du plancher
-modelise, x = -1500 : elle n'etait rattachee a rien. Elle a donc toujours
-compte dans l'aire et dans la masse — 0,264 m2 et 1,66 kg, soit **5,7 % de la
-masse du modele** — sans porter le moindre effort.
+A connectivity check added to `build_body.py` showed that the model had **two
+components**, not one. The rear cross member of the datum network, `trans` at
+x = -1703, falls behind the rear edge of the modeled floor pan, x = -1500: it
+was attached to nothing. It therefore always counted in area and in mass —
+0.264 m2 and 1.66 kg, i.e. **5.7 % of the model's mass** — without carrying the
+slightest load.
 
-La verification est nette : a geometrie d'origine, retirer cette traverse rend
-**exactement 2442 N.m/deg**, la valeur publiee au chiffre pres. Les raideurs
-deja publiees etaient donc justes ; ce sont les **masses, et donc toutes les
-raideurs specifiques K/m**, qui etaient minorees d'autant.
+The check is clean: at original geometry, removing this cross member gives
+**exactly 2442 N.m/deg**, the published value to the digit. The stiffnesses
+already published were therefore right; it is the **masses, and hence all the
+specific stiffnesses K/m**, that were understated accordingly.
 
-Elle n'a pas ete rattachee mais **retiree**, parce qu'elle est situee derriere
-la section encastree de l'essai : meme reliee, elle ne pourrait rien porter. La
-consequence sur les chiffres publies est limitee a l'etude d'architecture, dont
-les rapports passent de x 1,61 a **x 1,51** pour la fermeture du caisson et de
-x 1,98 a **x 1,86** pour les deux leviers. La conclusion, elle, ne bouge pas.
+It was not attached but **removed**, because it sits behind the clamped section
+of the test: even connected, it could carry nothing. The consequence on the
+published figures is limited to the architecture study, whose ratios go from
+x 1.61 to **x 1.51** for closing the box and from x 1.98 to **x 1.86** for the
+two levers. The conclusion does not move.
 
-Le modele CAO `source/floor_assembly.py` n'est pas concerne : il produit un
-assemblage de solides distincts, ou une traverse posee sur un point de datum
-non cale est un etat documente et non un defaut.
+The CAD model `source/floor_assembly.py` is not affected: it produces an
+assembly of distinct solids, where a cross member placed on an uncalibrated
+datum point is a documented state, not a defect.
 
-Deux garde-fous sont en place pour que cela ne se reproduise pas en silence :
-`build_body.py` echoue si le maillage n'est pas connexe, et `run_fea.py` lit les
-bornes du modele **dans le maillage** au lieu de les recopier du script de
-construction, ou elles pouvaient diverger.
+Two guard rails are in place so that this does not happen again silently:
+`build_body.py` fails if the mesh is not connected, and `run_fea.py` reads the
+model bounds **from the mesh** instead of copying them from the build script,
+where they could diverge.
 
-## Un troisieme garde-fou, sur les fichiers de travail
+## A third guard rail, on working files
 
-`run_fea.py` efface desormais les sorties du tag — `.frd`, `.dat`, `.sta`,
-`.cvg`, `.12d` — **avant** d'appeler le solveur. Ce n'est pas du menage.
+`run_fea.py` now deletes the tag's outputs — `.frd`, `.dat`, `.sta`, `.cvg`,
+`.12d` — **before** calling the solver. This is not housekeeping.
 
-Deux resultats faux ont ete produits pendant cette campagne par des fichiers de
-travail laisses en place : un depouillement rendait la solution du run precedent
-apres un echec du solveur, et un fichier de travail `.12d` issu d'un maillage
-anterieur donnait 2445 N.m/deg et 70,0 MPa au lieu de 2442 et 69,6 sur un
-maillage identique. Les ecarts sont petits, ce qui est precisement le probleme :
-ils ne se voient pas. Un cas plus visible a aussi ete rencontre, un p99 de
-contrainte a 265,8 MPa au lieu de 69,6.
+Two wrong results were produced during this campaign by working files left in
+place: a post-processing step returned the previous run's solution after a
+solver failure, and a `.12d` working file from an earlier mesh gave
+2445 N.m/deg and 70.0 MPa instead of 2442 and 69.6 on an identical mesh. The
+deviations are small, which is precisely the problem: they do not show. A more
+visible case was also met, a stress p99 of 265.8 MPa instead of 69.6.
 
-Aucun de ces trois incidents n'a laisse de trace dans une sortie d'erreur.
+None of these three incidents left a trace in an error output.
 
-Le depouillement lui-meme a ete rendu **fail-closed** pour la meme raison : il
-moyennait les deplacements sur les seuls noeuds qu'il trouvait dans le `.frd`,
-en ignorant silencieusement les manquants. Il verifie maintenant que le fichier
-de resultats couvre tout le maillage et que tous les noeuds charges y sont, et
-s'arrete sinon.
+The post-processing itself was made to **fail closed** for the same reason: it
+averaged the displacements over only the nodes it found in the `.frd`, silently
+ignoring the missing ones. It now checks that the result file covers the whole
+mesh and that all the loaded nodes are in it, and stops otherwise.
 
-**Ce que vaut la reproductibilite apres ces corrections.** Cinq executions
-consecutives de `body_study.py` rendent des valeurs identiques au chiffre pres,
-et `ring_study.py` est stable de meme. Une variation isolee de 0,9 % a toutefois
-ete observee sur un cas apres correction, sans etre reproduite depuis. On retient
-donc un plancher de resolution de l'ordre du **pour cent** : un increment plus
-petit que cela n'est pas une mesure. C'est exactement le cas de la ligne des
-pieds milieu ci-dessous, et cela ne concerne aucune autre ligne du tableau.
+**What reproducibility is worth after these corrections.** Five consecutive runs
+of `body_study.py` return values identical to the digit, and `ring_study.py` is
+likewise stable. An isolated variation of 0.9 % was nevertheless observed on one
+case after correction, not reproduced since. A resolution floor of about **one
+percent** is therefore retained: an increment smaller than that is not a
+measurement. That is exactly the case of the B-pillar row below, and it concerns
+no other row of the table.
 
-## Du plancher a la cellule fermee
+## From the floor pan to the closed cell
 
-`body_study.py` prolonge l'echelle des architectures jusqu'a une cellule
-complete. C'est la seule piste du dossier qui ne depende d'aucune donnee
-exterieure : elle ne demande que des sections `ASSUMED` de plus.
+`body_study.py` extends the architecture ladder up to a complete cell. It is the
+only lead in the dossier that depends on no external data: it only needs more
+`ASSUMED` sections.
 
-Acier 0,8 mm, meme essai de torsion, meme chargement. Le couple s'applique et la
-rotation se mesure desormais sur la **seule section de longeron** : sans cette
-borne, le jeu de noeuds charges grossissait avec l'architecture et deux cas ne se
-comparaient plus sous le meme chargement.
+Steel 0.8 mm, same torsion test, same loading. The torque is now applied and the
+rotation measured on the **side-rail section alone**: without this bound, the
+set of loaded nodes grew with the architecture and two cases were no longer
+compared under the same loading.
 
-| architecture | masse | K (N.m/deg) | K/m | dK | dK par kg ajoute |
+| architecture | mass | K (N.m/deg) | K/m | dK | dK per added kg |
 |---|---|---|---|---|---|
-| plancher, longerons, traverses | 27,7 kg | 2442 | 88 | — | — |
-| + tablier et cloison arriere | 35,2 kg | 3147 | 89 | +705 | +94 |
-| + tunnel central | 40,2 kg | 5371 | 134 | +2224 | +444 |
-| + passages de roue | 45,0 kg | 6866 | 153 | +1495 | +315 |
-| + pieds milieu et brancards | 52,4 kg | 6859 | 131 | **0** (-7) | **0** |
-| + pavillon | 63,0 kg | 6925 | 110 | +66 | +6 |
-| + cadre de pare-brise | 64,1 kg | 9093 | 142 | +2167 | **+1961** |
+| floor pan, side rails, cross members | 27.7 kg | 2442 | 88 | — | — |
+| + front bulkhead and rear bulkhead | 35.2 kg | 3147 | 89 | +705 | +94 |
+| + center tunnel | 40.2 kg | 5371 | 134 | +2224 | +444 |
+| + wheel arches | 45.0 kg | 6866 | 153 | +1495 | +315 |
+| + B-pillars and roof rails | 52.4 kg | 6859 | 131 | **0** (-7) | **0** |
+| + roof | 63.0 kg | 6925 | 110 | +66 | +6 |
+| + windshield frame | 64.1 kg | 9093 | 142 | +2167 | **+1961** |
 
-Du plancher nu a la cellule fermee : **K x 3,7 pour une masse x 2,3**.
+From the bare floor pan to the closed cell: **K x 3.7 for mass x 2.3**.
 
     pycad body_study.py
 
-## Ce que ce classement dit, et ce qu'il ne dit pas
+![The full 964 cell model rotating, colored by von Mises stress under the torsion load](../../../docs/media/diagrams/964-hero.gif)
 
-Deux lignes sortent de l'ordinaire et ne se lisent pas comme les autres.
+*The closed cell of the last row, rendered from a mesh and result snapshot. It
+shows the modeled geometry and its stress field; it is not a 964 and its values
+are not a 964 stiffness.*
 
-**Les pieds milieu et les brancards n'apportent rien** — l'increment brut vaut
--7 N.m/deg a cette finesse, +3 et +11 aux deux autres. Un increment negatif
-etant mecaniquement impossible, ces trois valeurs disent seulement que l'apport
-est **nul a la resolution du calcul**, laquelle est de l'ordre du pour cent,
-soit environ 70 N.m/deg ici. Ce n'est pas un defaut du modele : seuls, ces
-elements forment un cadre **ouvert a l'avant**, une console encastree sur la
-cloison arriere. Ils ajoutent 7,5 kg et aucun chemin d'effort ferme.
+## What this ranking says, and what it does not say
 
-**Le cadre de pare-brise apporte le plus gros increment de l'echelle pour
-1,1 kg**, le meilleur rendement au kilo de tout le dossier. Il est aussi le
-seul element a fermer un anneau : tablier, montants A, traverse haute,
-brancards, pieds milieu, montant arriere.
+Two rows stand out and do not read like the others.
 
-Cette phrase-la est fausse, et la section « L'ordre d'element » plus bas dit
-pourquoi : en coques quadratiques, le meilleur rendement au kilo est celui du
-tunnel central, pas celui du cadre de baie. Ce qui reste vrai du paragraphe est
-le reste : l'anneau ferme, et le pavillon seul ne paie pas.
+**The B-pillars and roof rails bring nothing** — the raw increment is
+-7 N.m/deg at this density, +3 and +11 at the other two. A negative increment
+being mechanically impossible, these three values only say that the
+contribution is **zero at the resolution of the computation**, which is of the
+order of one percent, about 70 N.m/deg here. It is not a model defect: alone,
+these members form a frame **open at the front**, a cantilever clamped on the
+rear bulkhead. They add 7.5 kg and no closed load path.
 
-Cette lecture est une hypothese topologique, donc elle se refute.
-`ring_study.py` ajoute pavillon et cadre de pare-brise **separement** a la meme
-cage ouverte, a trois finesses de maillage :
+**The windshield frame brings the largest increment of the ladder for 1.1 kg**,
+the best per-kilogram yield of the whole dossier. It is also the only member that
+closes a ring: front bulkhead, A-pillars, upper cross member, roof rails,
+B-pillars, rear pillar.
 
-| finesse | cage | + pavillon | + pare-brise | pavillon /kg | pare-brise /kg | rapport |
+That sentence is false, and the section "Element order" below says why: in
+quadratic shells, the best per-kilogram yield is that of the center tunnel, not
+that of the windshield frame. What remains true in the paragraph is the rest:
+the ring closes, and the roof alone does not pay.
+
+This reading is a topological hypothesis, so it can be refuted. `ring_study.py`
+adds the roof and the windshield frame **separately** to the same open cage, at
+three mesh densities:
+
+| density | cage | + roof | + windshield | roof /kg | windshield /kg | ratio |
 |---|---|---|---|---|---|---|
-| 1,0 | 6859 | 6925 | 8180 | +6 | +1195 | 191x |
-| 0,7 | 6333 | 6382 | 7220 | +5 | +803 | 172x |
-| 0,5 | 6086 | 6123 | 6823 | +3 | +667 | 191x |
+| 1.0 | 6859 | 6925 | 8180 | +6 | +1195 | 191x |
+| 0.7 | 6333 | 6382 | 7220 | +5 | +803 | 172x |
+| 0.5 | 6086 | 6123 | 6823 | +3 | +667 | 191x |
 
-Le rapport reste de **deux ordres de grandeur** aux trois finesses, alors que la
-raideur absolue derive de 11 % : c'est un resultat de topologie, pas de
-discretisation. Et les deux elements ensemble rendent **1,6 fois** la somme de
-leurs apports separes — le pavillon ne travaille qu'une fois l'anneau ferme.
+The ratio stays at **two orders of magnitude** at all three densities, while the
+absolute stiffness drifts by 11 %: it is a topology result, not a discretization
+one. And the two members together return **1.6 times** the sum of their separate
+contributions — the roof only works once the ring is closed.
 
     pycad ring_study.py
 
-**Ce que ce n'est pas.** Aucun de ces chiffres n'est une raideur de 964, et
-9093 N.m/deg encore moins que les autres : les sections de montant, de brancard
-et de pied milieu sont toutes `ASSUMED`, la hauteur de pavillon aussi, et le
-modele n'a ni vitrage colle, ni portes, ni ouvertures dans les panneaux — or
-c'est precisement une baie vitree qui fait qu'un anneau de caisse reel est moins
-ferme que celui-ci. Le modele n'est pas non plus converge en maillage : la
-raideur absolue baisse encore de 4 % au dernier raffinement. Ce qui est
-exploitable est le **classement** et les rapports, pas les valeurs.
+**What it is not.** None of these figures is a 964 stiffness, and 9093 N.m/deg
+even less than the others: the pillar, roof-rail and B-pillar sections are all
+`ASSUMED`, the roof height too, and the model has no bonded glazing, no doors,
+no openings in the panels — and it is precisely a glazed opening that makes a
+real body-shell ring less closed than this one. The model is not mesh-converged
+either: the absolute stiffness still drops by 4 % at the last refinement. What is
+usable is the **ranking** and the ratios, not the values.
 
-## L'ordre d'element change les conclusions, pas seulement les valeurs
+## Element order changes the conclusions, not just the values
 
-Tout ce qui precede est calcule en triangles **lineaires S3**. Les stratifies
-composites, eux, ont ete calcules en **S6 quadratiques**, parce que CalculiX
-l'exige pour `*SHELL SECTION, COMPOSITE`. Les deux moities du dossier n'etaient
-donc pas comparables, et personne ne l'avait verifie.
+Everything above is computed in **linear S3** triangles. The composite
+laminates, however, were computed in **quadratic S6**, because CalculiX requires
+it for `*SHELL SECTION, COMPOSITE`. The two halves of the dossier were therefore
+not comparable, and nobody had checked.
 
-`run_fea.py` lit desormais l'ordre dans le maillage et ecrit des elements S6
-quand le maillage est quadratique. La meme geometrie, le meme chargement et le
-meme depouillement peuvent enfin etre passes dans les deux ordres.
+`run_fea.py` now reads the order from the mesh and writes S6 elements when the
+mesh is quadratic. The same geometry, the same loading and the same
+post-processing can at last be run in both orders.
 
-| architecture | masse | S3 | S6 | ecart |
+| architecture | mass | S3 | S6 | deviation |
 |---|---|---|---|---|
-| plancher, longerons, traverses | 27,7 kg | 2442 | **1436** | -41 % |
-| + tablier et cloison arriere | 35,2 kg | 3147 | 1550 | -51 % |
-| + tunnel central | 40,2 kg | 5371 | 3857 | -28 % |
-| + passages de roue | 45,0 kg | 6866 | 5227 | -24 % |
-| + pieds milieu et brancards | 52,4 kg | 6859 | 5240 | -24 % |
-| + pavillon | 63,0 kg | 6925 | 5264 | -24 % |
-| + cadre de pare-brise | 64,1 kg | 9093 | 5415 | -40 % |
+| floor pan, side rails, cross members | 27.7 kg | 2442 | **1436** | -41 % |
+| + front bulkhead and rear bulkhead | 35.2 kg | 3147 | 1550 | -51 % |
+| + center tunnel | 40.2 kg | 5371 | 3857 | -28 % |
+| + wheel arches | 45.0 kg | 6866 | 5227 | -24 % |
+| + B-pillars and roof rails | 52.4 kg | 6859 | 5240 | -24 % |
+| + roof | 63.0 kg | 6925 | 5264 | -24 % |
+| + windshield frame | 64.1 kg | 9093 | 5415 | -40 % |
 
-Les S3 sont trop raides, et **ils le sont inegalement**. La ou la flexion domine
-— le plancher nu — ils surestiment de 70 %. La ou le cisaillement domine, l'ecart
-tombe. Ce n'est pas un defaut de finesse de maillage : raffiner en S3 fait
-descendre K de 2442 a 1750 sans converger, tandis que le S6 rend 1436 des la
-finesse la plus grossiere. **C'est l'ordre de l'element, pas le pas du maillage.**
+S3 elements are too stiff, and **unevenly so**. Where bending dominates — the
+bare floor pan — they overestimate by 70 %. Where shear dominates, the gap
+narrows. It is not a mesh-density defect: refining in S3 brings K down from 2442
+to 1750 without converging, whereas S6 returns 1436 from the coarsest density.
+**It is the element order, not the mesh size.**
 
-Une reserve sur la comparaison elle-meme. `dominance_study.py` ecrit son propre
-jeu de donnees et depouille le modele **etendu en 3D** par CalculiX, alors que
-`run_fea.py` demande `OUTPUT=2D` et mesure sur la surface moyenne. Les deux ne
-prennent donc pas tout a fait les memes noeuds : sur la cellule fermee en S6,
-5733 N.m/deg d'un cote et 5415 de l'autre, soit 5,5 %. Les **rapports** ne s'en
-ressentent pas, chaque etude comparant ses propres cas entre eux, et c'est
-verifiable : `run_fea.py` en S6 rend +93,5 % et +2,3 % la ou `dominance_study.py`
-rend +93,8 % et +2,1 %. Les valeurs S6 du tableau ci-dessus sont toutes prises
-avec `run_fea.py`, donc sur la meme base que les valeurs S3.
+![Torsional stiffness by architecture in linear S3 and quadratic S6 shells, with the per-architecture deviation](../../../docs/media/diagrams/964-echelle-architectures.svg)
 
-### Ce que cela detruit
+*The architecture ladder in both element orders. It shows that linear triangles
+overestimate stiffness, and unevenly; neither series is a 964 stiffness.*
 
-`dominance_study.py` etait deja en S6, et c'est ce qui a permis de voir le
-probleme : sur le plancher nu il mesure +2,1 % en doublant G, la ou le meme
-modele en S3 en mesure +36,6 %. Verifie avec `run_fea.py`, qui redonne bien
-+2,3 % en S6 et +93,5 % en doublant E. **Les S3 attribuent au cisaillement une
-part de la raideur qui revient a la flexion**, precisement sur les architectures
-ouvertes.
+A caveat on the comparison itself. `dominance_study.py` writes its own input deck
+and post-processes the model **expanded in 3D** by CalculiX, whereas
+`run_fea.py` requests `OUTPUT=2D` and measures on the mid-surface. The two
+therefore do not take quite the same nodes: on the closed cell in S6,
+5733 N.m/deg on one side and 5415 on the other, i.e. 5.5 %. The **ratios** are
+not affected, each study comparing its own cases with each other, and this is
+verifiable: `run_fea.py` in S6 returns +93.5 % and +2.3 % where
+`dominance_study.py` returns +93.8 % and +2.1 %. The S6 values in the table above
+are all taken with `run_fea.py`, hence on the same basis as the S3 values.
 
-Tombe donc, en plus de la phrase corrigee plus haut : le **rendement au kilo du
-cadre de pare-brise**. En S6, l'echelle cumulee donne +151 N.m/deg pour 1,11 kg,
-soit +136 par kg, contre +2307 pour 5,01 kg au tunnel central, soit **+460 par
-kg**. Le meilleur rendement au kilo du dossier est celui du tunnel, dans les deux
-ordres pour ce qui est de l'absolu, et en S6 aussi pour ce qui est du kilo.
+### What this destroys
 
-### Une exactitude qui etait celle de l'element
+`dominance_study.py` was already in S6, and that is what made the problem
+visible: on the bare floor pan it measures +2.1 % when doubling G, where the same
+model in S3 measures +36.6 %. Checked with `run_fea.py`, which does return
++2.3 % in S6 and +93.5 % when doubling E. **S3 elements attribute to shear a
+share of stiffness that belongs to bending**, precisely on the open
+architectures.
 
-Le dossier tient depuis le debut que « la raideur suit l'epaisseur lineairement,
-pas au cube », et le chiffre etait net : rapport 1,251 pour un rapport
-d'epaisseur 1,250. En S6, la meme mesure sur cinq epaisseurs de 0,6 a 2,0 mm
-donne un exposant de **1,10**, sur le plancher nu comme sur la cellule fermee.
+What falls, then, in addition to the sentence corrected above: the
+**per-kilogram yield of the windshield frame**. In S6, the cumulative ladder
+gives +151 N.m/deg for 1.11 kg, i.e. +136 per kg, against +2307 for 5.01 kg at
+the center tunnel, i.e. **+460 per kg**. The best per-kilogram yield of the
+dossier is that of the tunnel, in both orders as far as the absolute is
+concerned, and in S6 also per kilogram.
 
-| epaisseur | plancher nu S3 | plancher nu S6 | cellule S3 | cellule S6 |
+### An exactness that belonged to the element
+
+The dossier has held from the start that "stiffness follows thickness linearly,
+not cubically", and the figure was clean: ratio 1.251 for a thickness ratio of
+1.250. In S6, the same measurement over five thicknesses from 0.6 to 2.0 mm
+gives an exponent of **1.10**, on the bare floor pan as on the closed cell.
+
+| thickness | bare floor pan S3 | bare floor pan S6 | cell S3 | cell S6 |
 |---|---|---|---|---|
-| 0,6 mm | 1830 | 1049 | 6813 | 3969 |
-| 0,8 mm | 2442 | 1436 | 9093 | 5415 |
-| 1,0 mm | 3056 | 1829 | 11378 | 6904 |
-| 1,5 mm | 4596 | 2846 | 16831 | 10822 |
-| 2,0 mm | 6151 | 3915 | 22923 | 14987 |
-| **exposant** | **1,01** | **1,10** | **1,01** | **1,11** |
+| 0.6 mm | 1830 | 1049 | 6813 | 3969 |
+| 0.8 mm | 2442 | 1436 | 9093 | 5415 |
+| 1.0 mm | 3056 | 1829 | 11378 | 6904 |
+| 1.5 mm | 4596 | 2846 | 16831 | 10822 |
+| 2.0 mm | 6151 | 3915 | 22923 | 14987 |
+| **exponent** | **1.01** | **1.10** | **1.01** | **1.11** |
 
-La conclusion mecanique ne bouge pas : 1,10 est tres loin de 3, la structure ne
-travaille pas en flexion de plaque. Ce qui tombe est l'**exactitude** — les
-elements lineaires rendaient un exposant de 1,00 parce qu'ils representent mal la
-flexion des panneaux, pas parce que la structure serait exactement lineaire. Le
-terme en t^3 existe, il est simplement faible.
+The mechanical conclusion does not move: 1.10 is very far from 3, the structure
+does not work in plate bending. What falls is the **exactness** — linear elements
+returned an exponent of 1.00 because they represent panel bending poorly, not
+because the structure would be exactly linear. The t^3 term exists, it is simply
+small.
 
-Consequence pratique sur la seule mesure du dossier qui vienne du proprietaire :
-l'ecart entre 0,8 mm annonce et 1,0 mm mesure vaut **27 %** de raideur en S6, et
-non 25 %.
+Practical consequence on the only measurement in the dossier that comes from the
+owner: the gap between 0.8 mm announced and 1.0 mm measured is worth **27 %** of
+stiffness in S6, not 25 %.
 
-### Ce que cela laisse debout
+### What this leaves standing
 
-Les trois conclusions de topologie tiennent, et l'une d'elles au chiffre pres.
+The three topology conclusions hold, and one of them to the digit.
 
-| resultat | S3 | S6 |
+| result | S3 | S6 |
 |---|---|---|
-| pavillon seul ajoute a la cage ouverte | +66 (+6/kg) | +24 (**+2/kg**) |
-| cadre de baie seul ajoute a la meme cage | +1321 (+1190/kg) | +83 (**+75/kg**) |
-| rapport des rendements au kilo | 191x | **33x** |
-| les deux ensemble / somme des deux seuls | 1,6x | **1,63x** |
+| roof alone added to the open cage | +66 (+6/kg) | +24 (**+2/kg**) |
+| windshield frame alone added to the same cage | +1321 (+1190/kg) | +83 (**+75/kg**) |
+| ratio of per-kilogram yields | 191x | **33x** |
+| both together / sum of the two alone | 1.6x | **1.63x** |
 
-Le pavillon seul ne paie pas, le cadre de baie paie beaucoup plus, et les deux
-ensemble valent plus que leur somme parce que le pavillon ne travaille qu'une
-fois l'anneau ferme. La synergie de 1,6 se retrouve a la troisieme decimale dans
-un ordre d'element ou tout le reste a bouge de 25 a 50 % : c'est bien un
-resultat de topologie.
+The roof alone does not pay, the windshield frame pays much more, and the two
+together are worth more than their sum because the roof only works once the ring
+is closed. The synergy of 1.6 is found again to the third decimal in an element
+order where everything else moved by 25 to 50 %: it is indeed a topology result.
 
-Tient aussi le rapport d'ensemble du plancher nu a la cellule fermee : x 3,7 en
-S3, **x 3,77 en S6**.
+The overall ratio from bare floor pan to closed cell also holds: x 3.7 in S3,
+**x 3.77 in S6**.
 
-### Ce qu'il faut en retenir pour la suite
+```mermaid
+flowchart LR
+  C["S3 → S6<br/>same geometry, load,<br/>post-processing"]
+  C --> T1["roof alone does not pay<br/>+2/kg in S6"]
+  C --> T2["ring synergy<br/>1.6x → 1.63x"]
+  C --> T3["floor pan → cell<br/>x 3.7 → x 3.77"]
+  C --> F1["windshield frame as<br/>best per-kg yield"]
+  C --> F2["thickness exponent<br/>exactly 1.00"]
+  C --> F3["absolute stiffness<br/>values"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class T1,T2,T3 ok;
+  class F1,F2,F3 stop;
+```
 
-Aucune valeur absolue du dossier n'etait exploitable, et cela etait deja ecrit.
-Ce qui est nouveau est qu'un **classement** — celui des rendements au kilo — ne
-l'etait pas non plus. Les rapports qui survivent au changement d'ordre sont ceux
-qui portent sur la topologie ; ceux qui portent sur la repartition flexion /
-cisaillement ne survivent pas.
+*Green: topology results that survive the change of element order. Red: what
+does not.*
+
+### What to retain for what follows
+
+No absolute value in the dossier was usable, and that was already written. What
+is new is that a **ranking** — that of per-kilogram yields — was not usable
+either. The ratios that survive the change of order are those about topology;
+those about the bending / shear split do not survive.
 
     pycad build_body.py 0.8 f 1.0 2 && pycad run_fea.py 0.8 s6
 
-## Un quatrieme garde-fou, et un repli de solveur
+## A fourth guard rail, and a solver fallback
 
-Deux defauts trouves en auditant le corpus du plan d'experiences, tous deux du
-meme genre que les precedents : ils produisaient un resultat au lieu d'une erreur.
+Two defects found while auditing the design-of-experiments corpus, both of the
+same kind as the previous ones: they produced a result instead of an error.
 
-**SPOOLES echoue sur certaines geometries, et son message ne sortait pas.**
-Onze cas du corpus etaient perdus « sans message », ce qui avait ete lu comme la
-signature d'un systeme quasi singulier. C'en est une autre : le solveur direct
-meurt dans son partitionnement de graphe avec `fatal error in GPart_makeYCmap /
-bad input`, message qu'il ecrit sur `stderr` — que `run_fea.py` n'affichait pas.
-C'est deterministe, insensible au nombre de fils, et le solveur iteratif de
-CalculiX passe sur ces memes cas. `run_fea.py` bascule donc sur lui en repli,
-sans jamais s'en servir par defaut. Controles : le cas de reference rend toujours
-2442 N.m/deg, et la ou SPOOLES aboutit les deux solveurs s'accordent a 0,04 %.
+**SPOOLES fails on certain geometries, and its message did not come out.**
+Eleven cases of the corpus were lost "without a message", which had been read as
+the signature of a near-singular system. It is the signature of something else:
+the direct solver dies in its graph partitioning with `fatal error in
+GPart_makeYCmap / bad input`, a message it writes to `stderr` — which
+`run_fea.py` did not display. It is deterministic, insensitive to the number of
+threads, and the CalculiX iterative solver passes on these same cases.
+`run_fea.py` therefore switches to it as a fallback, never using it by default.
+Controls: the reference case still returns 2442 N.m/deg, and where SPOOLES
+succeeds the two solvers agree to within 0.04 %.
 
-**Deux campagnes lancees en parallele se partageaient `mesh.npz`.** Elles se
-seraient contaminees en silence, et une mesure de cette session l'a effectivement
-ete avant que l'on comprenne pourquoi : un rejeu de cas lisait le maillage d'une
-autre campagne en cours. `build_body.py` et `run_fea.py` acceptent desormais un
-repertoire de travail par la variable `FEA_WORK`, et `doe_corpus.py` en cree un
-par campagne. Sans surcharge, rien ne change.
+**Two campaigns launched in parallel shared `mesh.npz`.** They would have
+contaminated each other silently, and one measurement of this session actually
+was, before the reason was understood: a case replay was reading the mesh of
+another campaign in progress. `build_body.py` and `run_fea.py` now accept a
+working directory through the `FEA_WORK` variable, and `doe_corpus.py` creates
+one per campaign. Without an override, nothing changes.
 
-**Le solveur se trompe parfois, et se trompe en silence.** Sur 65 cas du corpus
-rejoues a l'identique, 63 redonnent le chiffre stocke a la decimale et deux non :
-l'un a 2,4 %, l'autre d'un facteur 9. Le champ de deplacement stocke est
-parfaitement coherent avec la raideur stockee dans les deux cas, parce que les
-deux viennent du meme solve rate : **aucun controle interne ne peut les voir**.
-Seule la repetition les trouve. `corpus_repair.py` rejoue le corpus cas par cas
-et ne remplace une valeur que si deux calculs independants s'accordent contre
-elle.
+**The solver is sometimes wrong, and wrong silently.** Out of 65 corpus cases
+replayed identically, 63 return the stored figure to the decimal and two do not:
+one by 2.4 %, the other by a factor of 9. The stored displacement field is
+perfectly consistent with the stored stiffness in both cases, because both come
+from the same failed solve: **no internal check can see them**. Only repetition
+finds them. `corpus_repair.py` replays the corpus case by case and replaces a
+value only if two independent computations agree against it.
 
-**Ou ces erreurs se trouvent en dit plus que combien il y en a.** Le corpus S6 a
-ete rejoue en entier : 2992 cas confirmes au chiffre pres, **8 remplaces**, aucun
-ambigu. Les huit sont dans les **360 premiers cas** — ceux calcules pendant que
-d'autres essais tournaient sur la meme machine. Les 2640 cas suivants, calcules
-par une campagne qui avait la machine pour elle seule, sont tous confirmes.
+**Where these errors are says more than how many there are.** The S6 corpus was
+replayed in full: 2,992 cases confirmed to the digit, **8 replaced**, none
+ambiguous. All eight are in the **first 360 cases** — those computed while other
+tests were running on the same machine. The 2,640 following cases, computed by a
+campaign that had the machine to itself, are all confirmed.
 
-La correlation ne vaut pas demonstration, elle ne porte que sur un episode. Mais
-la conclusion pratique ne demande pas mieux : **une campagne ne partage pas la
-machine**, et une campagne qui l'a fait se verifie par rejeu avant d'etre
-utilisee. C'est la troisieme fois dans ce dossier qu'un calcul faux vient d'un
-partage de ressource — apres les fichiers de travail laissés en place et le
-`mesh.npz` commun a deux campagnes.
+The correlation is not a demonstration; it rests on a single episode. But the
+practical conclusion needs no more: **a campaign does not share the machine**,
+and a campaign that did is verified by replay before being used. It is the third
+time in this dossier that a wrong computation comes from a shared resource —
+after the working files left in place and the `mesh.npz` common to two
+campaigns.

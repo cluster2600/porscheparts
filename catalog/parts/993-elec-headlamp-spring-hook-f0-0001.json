@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
   "name": "Crochet de réparation du ressort de lampe, concept F0 aluminium",
-  "description": "Concept indépendant de crochet creux destiné à étudier une réparation additive du support de ressort de lampe d'un phare 993. Une offre commerciale prouve l'usage réel de l'impression métal pour cette fonction, mais aucune cote publique n'autorise à présenter ce F0 comme sa copie ou comme une pièce ajustée.",
+  "description": "Independent hollow hook concept for studying an additive repair of the lamp spring mount of a 993 headlamp. A commercial offer proves that metal printing is really used for this function, but no public dimension allows this F0 to be presented as its copy or as a fitted part.",
   "vehicle": {
     "generation": "993",
     "variants": ["993_headlamp_application_declared_by_vendor_to_confirm"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "lighting_repair",
     "safety_class": "functional",
-    "intended_use": "Criblage CAO, LPBF et mécanique d'un concept de réparation ; aucun montage ni maintien de lampe autorisé"
+    "intended_use": "CAD, LPBF and mechanical screening of a repair concept; no fitting and no lamp retention authorized"
   },
   "geometry": {
     "source_type": "estimated",
@@ -25,15 +25,15 @@
     ]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photo ni géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photo and no commercial geometry redistributed",
     "sources": [
       {
-        "title": "Roadster-Fashion - Crochet imprimé de ressort de phare pour 993",
+        "title": "Roadster-Fashion - printed headlamp spring hook for 993",
         "url": "https://shop.roadster-fashion.de/de/reparaturteil-federhaken-am-scheinwerfer.html",
         "source_type": "manufacturer",
         "license": "commercial-product-page-site-terms-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Le fabricant déclare une fabrication 3D en aluminium ou inox, un montage sur le reste du crochet par collage haute température et une possibilité M3 si la base est cassée. Les images servent uniquement à comprendre la fonction ; aucune cote ni géométrie n'est copiée. Voir SRC-ROADSTER-FASHION-993-HEADLAMP-HOOK."
+        "notes": "The manufacturer claims 3D manufacture in aluminum or stainless steel, fitting onto the remaining hook by high-temperature bonding, and an M3 option if the base is broken. The images serve only to understand the function; no dimension or geometry is copied. See SRC-ROADSTER-FASHION-993-HEADLAMP-HOOK."
       },
       {
         "title": "EOS Aluminium AlSi10Mg for EOS M 290 - 30 micrometre process data sheet",
@@ -41,7 +41,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Route publique TRL 9 AlSi10Mg_FlexM291 2.01 / EOS M 290 / 30 µm et propriétés de coupons bruts. Les trajectoires, supports, admissibles pièce et carte chaude complète restent absents. Voir SRC-EOS-ALSI10MG-M290-30UM."
+        "notes": "Public TRL 9 route AlSi10Mg_FlexM291 2.01 / EOS M 290 / 30 µm and as-built coupon properties. Scan paths, supports, part allowables and a full hot-property card remain absent. See SRC-EOS-ALSI10MG-M290-30UM."
       }
     ]
   },
@@ -49,22 +49,22 @@
     "candidate_processes": ["LPBF", "CNC"],
     "preferred_process": "LPBF",
     "material": {
-      "family": "aluminium LPBF",
-      "grade": "EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM291 2.01 / 30 µm, candidat de criblage non attribué à la pièce commerciale",
-      "standard": "DIN EN 1706 EN AC-43000 et ASTM F3318-18 selon la fiche EOS ; spécification fournisseur à contractualiser"
+      "family": "LPBF aluminum",
+      "grade": "EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM291 2.01 / 30 µm, screening candidate not attributed to the commercial part",
+      "standard": "DIN EN 1706 EN AC-43000 and ASTM F3318-18 per the EOS data sheet; supplier specification to be contracted"
     },
     "post_processing": [
-      "retrait des supports hors cavité",
-      "ébavurage contrôlé de la gorge de ressort",
-      "traitement thermique lié à la machine et au jeu de paramètres",
-      "finition de la surface de collage sans arrondir les datums futurs"
+      "removal of supports outside the cavity",
+      "controlled deburring of the spring groove",
+      "heat treatment tied to the machine and the parameter set",
+      "finishing of the bonding surface without rounding the future datums"
     ],
     "supplier_requirements": [
-      "poudre, machine, orientation et lot traçables",
-      "coupon témoin dans l'orientation critique du bras",
-      "CT ou radiographie de la racine et contrôle dimensionnel",
-      "rapport de rugosité dans la gorge",
-      "essais thermiques, vibratoires et de maintien avant véhicule"
+      "traceable powder, machine, orientation and batch",
+      "witness coupon in the critical orientation of the arm",
+      "CT or radiography of the root and dimensional inspection",
+      "roughness report inside the groove",
+      "thermal, vibration and retention tests before any vehicle use"
     ]
   },
   "titanium": {
@@ -74,7 +74,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "À étudier entre aluminium imprimé, support de phare et fixation seulement après identification des matériaux réels."
+    "galvanic_isolation": "To be studied between printed aluminum, headlamp mount and fastener only after the real materials are identified."
   },
   "validation": {
     "status": "concept",
@@ -92,13 +92,13 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Toutes les cotes du F0 sont des variables de conception indépendantes et non des mesures du produit ou du phare.",
-      "Le cas à 30 N et 100 K est synthétique et ne représente pas une charge ou température 993 mesurée.",
-      "La vérification élastique utilise une carte AlSi10Mg ambiante et ignore défauts LPBF, entailles, fatigue et température.",
-      "Le p95 thermique CalculiX fin de 141,90 MPa est un résultat sur un gradient et un encastrement synthétiques ; le maximum local de 303,47 MPa et l'absence de résistance chaude bloquent toute conclusion.",
-      "Le témoin ovphysx prouve le chargement et le contact rigide du maillage USD, pas la fonction du ressort ou l'assemblage du phare.",
-      "La liaison collée n'a aucune résistance admissible tant que colle, préparation, jeu et cycle thermique ne sont pas qualifiés.",
-      "Le STEP prouve seulement une géométrie calculable ; il ne doit être ni imprimé pour montage ni installé dans un phare."
+      "All F0 dimensions are independent design variables, not measurements of the product or of the headlamp.",
+      "The 30 N and 100 K case is synthetic and does not represent a measured 993 load or temperature.",
+      "The elastic check uses a room-temperature AlSi10Mg card and ignores LPBF defects, notches, fatigue and temperature.",
+      "The fine CalculiX thermal p95 of 141.90 MPa is a result on a synthetic gradient and fixed support; the local maximum of 303.47 MPa and the lack of hot strength data block any conclusion.",
+      "The ovphysx witness proves the loading and rigid contact of the USD mesh, not the spring function or the headlamp assembly.",
+      "The bonded joint has no allowable strength until adhesive, preparation, clearance and thermal cycle are qualified.",
+      "The STEP proves only a computable geometry; it must be neither printed for fitting nor installed in a headlamp."
     ]
   }
 }

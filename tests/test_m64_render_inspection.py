@@ -132,13 +132,13 @@ class RenderInspectionTests(unittest.TestCase):
 
     def test_readme_places_inspection_before_conformance_and_keeps_warning(self):
         text = README.read_text()
-        order = text.split("Ordre d'exécution :", 1)[1].split("Chaque appel", 1)[0]
+        order = text.split("Execution order:", 1)[1].split("Each call", 1)[0]
         names = re.findall(r"`([^`]+)`", order)
         self.assertLess(names.index("physics"), names.index("profile-initial"))
         self.assertLess(names.index("profile-initial"), names.index("render"))
         self.assertLess(names.index("render"), names.index("conform"))
-        self.assertIn("n'est pas le rendu final d'un USD conforme", text)
-        self.assertIn("ne remplace\naucune validation", text)
+        self.assertIn("is not the final render of a conformant USD", text)
+        self.assertIn("does not replace\nany validation", text)
 
 
 if __name__ == "__main__":

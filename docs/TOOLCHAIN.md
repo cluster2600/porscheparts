@@ -1,110 +1,110 @@
-# Chaîne d’outils
+# Toolchain
 
-La sélection privilégie les logiciels gratuits, open source, multiplateformes et
-les formats ouverts. Un outil propriétaire n’est accepté que lorsqu’il est imposé
-par une machine industrielle ou un prestataire, et ne doit pas devenir la seule
-source éditable du projet.
+The selection favors free, open-source, cross-platform software and open
+formats. A proprietary tool is accepted only when an industrial machine or a
+service provider imposes it, and it must not become the project's only editable
+source.
 
-À qualité égale, l’outil retenu est celui qui s’exécute sans interface
-graphique : voir [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md).
-Les tableaux ci-dessous indiquent donc la commande ou l’API utilisée, pas
-seulement le nom du logiciel. Les images conteneurs correspondantes sont
-décrites dans [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md).
+At equal quality, the tool chosen is the one that runs without a graphical
+interface: see [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md).
+The tables below therefore give the command or API used, not just the software
+name. The corresponding container images are described in
+[COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md).
 
-## Acquisition et reconstruction
+## Acquisition and reconstruction
 
-| Besoin | Outil privilégié | Pilotage | Format de sortie |
+| Need | Preferred tool | Driven by | Output format |
 |---|---|---|---|
-| Pose des caméras | COLMAP puis GLOMAP | CLI | Base SQLite, poses |
-| Reconstruction dense | COLMAP `patch_match_stereo` | CLI, CUDA requis | PLY dense |
-| Nettoyage de maillage | pymeshlab | API Python | PLY, OBJ, STL |
-| Nuages de points | Open3D | API Python | PLY, PCD |
-| Formes organiques | Blender `--background --python` | Script Python | BLEND, OBJ, PLY |
-| Second avis photogrammétrie | Meshroom `meshroom_batch` | CLI, installé à la demande | OBJ, nuage |
+| Camera poses | COLMAP then GLOMAP | CLI | SQLite database, poses |
+| Dense reconstruction | COLMAP `patch_match_stereo` | CLI, CUDA required | Dense PLY |
+| Mesh cleanup | pymeshlab | Python API | PLY, OBJ, STL |
+| Point clouds | Open3D | Python API | PLY, PCD |
+| Organic shapes | Blender `--background --python` | Python script | BLEND, OBJ, PLY |
+| Photogrammetry second opinion | Meshroom `meshroom_batch` | CLI, installed on demand | OBJ, point cloud |
 
-| Capture d’instrument | `scripts/capture_caliper.py` | CLI, pyserial | Fiche de mesure JSON |
-| Prise de vue pilotée | `scripts/capture_photoset.py` | CLI, gphoto2 | Images et manifeste |
+| Instrument capture | `scripts/capture_caliper.py` | CLI, pyserial | JSON measurement record |
+| Driven photo capture | `scripts/capture_photoset.py` | CLI, gphoto2 | Images and manifest |
 
-Un scanner commercial peut fournir les données, mais les exports doivent rester
-accessibles dans un format documenté.
+A commercial scanner may supply the data, but the exports must stay accessible
+in a documented format.
 
-Une mesure recopiée à la main n’est pas traçable. Quand l’instrument sait
-transmettre sa lecture, la fiche enregistre l’horodatage machine et l’instrument
-utilisé ; sinon elle porte explicitement la mention `manual_entry`.
+A measurement copied by hand is not traceable. When the instrument can transmit
+its reading, the record stores the machine timestamp and the instrument used;
+otherwise it explicitly carries the `manual_entry` flag.
 
-## CAO
+## CAD
 
-| Besoin | Outil privilégié | Usage |
+| Need | Preferred tool | Use |
 |---|---|---|
-| Pièces mécaniques | build123d ou CadQuery | CAO écrite en Python sur noyau OCCT, export STEP |
-| Géométrie générative simple | OpenSCAD | Modèles reproductibles sous forme de code |
-| Surfaces organiques | Blender puis reconstruction solide | Référence maillée puis solide paramétrique |
-| Revue humaine et FEM interactif | FreeCAD | Inspection STEP, vérification visuelle |
-| Assemblages fonctionnels | FreeCAD Assembly | Contraintes, mouvements et revue des interfaces |
+| Mechanical parts | build123d or CadQuery | CAD written in Python on the OCCT kernel, STEP export |
+| Simple generative geometry | OpenSCAD | Models reproducible as code |
+| Organic surfaces | Blender then solid reconstruction | Mesh reference, then parametric solid |
+| Human review and interactive FEM | FreeCAD | STEP inspection, visual check |
+| Functional assemblies | FreeCAD Assembly | Constraints, motion and interface review |
 
-Une pièce peut donc avoir pour source maîtresse un script Python versionné qui
-régénère son STEP. Le fichier `.FCStd` reste accepté ; il est simplement moins
-facile à relire en revue.
+A part can therefore have as its master source a versioned Python script that
+regenerates its STEP. A `.FCStd` file is still accepted; it is simply harder to
+read in review.
 
-Pour le jumeau global, STEP/FreeCAD restent la vérité dimensionnelle. OpenUSD
-peut servir de scène fédérée pour charger les zones, variantes et habillages
-visuels sans fusionner tous les fichiers dans un modèle monolithique. Une scène
-USD ne porte jamais seule une cote de fabrication.
+For the global twin, STEP/FreeCAD remain the dimensional truth. OpenUSD can
+serve as a federated scene to load zones, variants and visual trim without
+merging every file into a monolithic model. A USD scene never carries a
+manufacturing dimension on its own.
 
-Ordre des formats maîtres : script `build123d`, `.FCStd` ou `.scad`, puis
-`.step`. Les formats `.3mf` et `.stl` sont des dérivés de fabrication.
+Order of master formats: `build123d` script, `.FCStd` or `.scad`, then `.step`.
+The `.3mf` and `.stl` formats are manufacturing derivatives.
 
-## Simulation et inspection numérique
+## Simulation and numerical inspection
 
-| Besoin | Outil privilégié | Pilotage |
+| Need | Preferred tool | Driven by |
 |---|---|---|
-| Maillage éléments finis | Gmsh | API Python |
-| Calcul mécanique | CalculiX `ccx` | Jeu de données texte |
-| Conversion de résultats | `ccx2paraview`, meshio | CLI et Python |
-| Post-traitement | PyVista, ParaView | Script Python |
-| CFD exploratoire | OpenFOAM + foamlib | CLI et Python |
-| Bain de fusion LPBF local | ORNL AdditiveFOAM 2.0.0 sur OpenFOAM 14 | CLI/MPI, coupons corrélés requis |
-| Surrogate physique | NVIDIA PhysicsNeMo | Python/PyTorch après calculs convergés et corrélés |
-| CAD vers scène | `usd-convert-cad 0.2.0` | CLI, STEP vers OpenUSD binaire |
-| Validation USD | `nvidia_usd_validate 1.21.0` | CLI et rapport JSON |
-| État de scène partagé | `ovstage 0.1.1.355824` | API Python/C |
-| Corps rigides | `ovphysx 0.5.11` | API Python/C, CPU ou GPU |
-| Rendu et capteurs | OVRTX | API Python/C, GPU RTX |
+| Finite-element meshing | Gmsh | Python API |
+| Mechanical analysis | CalculiX `ccx` | Text input deck |
+| Result conversion | `ccx2paraview`, meshio | CLI and Python |
+| Post-processing | PyVista, ParaView | Python script |
+| Exploratory CFD | OpenFOAM + foamlib | CLI and Python |
+| Local LPBF melt pool | ORNL AdditiveFOAM 2.0.0 on OpenFOAM 14 | CLI/MPI, correlated coupons required |
+| Physics surrogate | NVIDIA PhysicsNeMo | Python/PyTorch after converged, correlated runs |
+| CAD to scene | `usd-convert-cad 0.2.0` | CLI, STEP to binary OpenUSD |
+| USD validation | `nvidia_usd_validate 1.21.0` | CLI and JSON report |
+| Shared scene state | `ovstage 0.1.1.355824` | Python/C API |
+| Rigid bodies | `ovphysx 0.5.11` | Python/C API, CPU or GPU |
+| Rendering and sensors | OVRTX | Python/C API, RTX GPU |
 
-Ces outils permettent une étude initiale. Pour une pièce critique, le modèle, les
-cas de charge, les propriétés du lot imprimé et les résultats doivent être revus
-par une personne compétente.
+These tools allow an initial study. For a critical part, the model, the load
+cases, the properties of the printed lot and the results must be reviewed by a
+competent person.
 
-CalculiX/OpenFOAM restent les solveurs de contrainte, thermique et fluide.
-`ovphysx` vérifie mouvement, contact et assemblage rigide ; OVRTX produit les
-images et capteurs. Un rendu Omniverse ne remplace donc jamais une FEA, et
-PhysicsNeMo ne devient utile qu'après constitution d'un jeu de référence.
+CalculiX/OpenFOAM remain the stress, thermal and fluid solvers. `ovphysx`
+checks motion, contact and rigid assembly; OVRTX produces the images and
+sensors. An Omniverse rendering therefore never replaces an FEA, and PhysicsNeMo
+becomes useful only after a reference dataset has been built.
 
-## Impression polymère
+## Polymer printing
 
-- PrusaSlicer en ligne de commande pour la découpe en lot, OrcaSlicer pour le
-  réglage interactif d’une machine
-- UVtools pour inspection de travaux résine, si nécessaire
-- 3MF comme format de travail lorsque possible
+- PrusaSlicer on the command line for batch slicing, OrcaSlicer for interactive
+  machine tuning
+- UVtools for inspecting resin jobs, if needed
+- 3MF as the working format whenever possible
 
-## Fabrication titane
+## Titanium manufacturing
 
-La préparation de construction LPBF dépend généralement du logiciel propriétaire
-de la machine. Le projet fournit au fabricant :
+LPBF build preparation generally depends on the machine's proprietary software.
+The project provides the manufacturer with:
 
-- STEP et plan coté ;
-- matière et norme ;
-- surfaces à usiner ;
-- exigences de traitement et contrôle ;
-- version et empreinte des fichiers.
+- STEP and dimensioned drawing;
+- material and standard;
+- surfaces to machine;
+- treatment and inspection requirements;
+- file version and digest.
 
-Le fabricant reste responsable de l’orientation finale, des supports et des
-paramètres qualifiés. Le projet conserve leurs rapports sans publier les secrets
-industriels du prestataire.
+The manufacturer remains responsible for the final orientation, the supports and
+the qualified parameters. The project keeps their reports without publishing the
+service provider's trade secrets.
 
-## Gestion du projet
+## Project management
 
-- Git et GitHub pour versions, issues et revues
-- Markdown et JSON comme sources portables
-- Python standard library pour les contrôles locaux
-- GitHub Actions pour exécuter `make check` sur le dépôt public
+- Git and GitHub for versions, issues and reviews
+- Markdown and JSON as portable sources
+- Python standard library for local checks
+- GitHub Actions to run `make check` on the public repository

@@ -1,36 +1,48 @@
-# Jumeau numérique de la Porsche 993
+# Porsche 993 digital twin
 
-## Objectif
+## Purpose
 
-Le jumeau sert d'abord à inventorier, représenter et assembler ce qui est connu.
-La phase active ne prévoit aucune impression. Lorsque les preuves le permettent,
-il pourra ensuite éliminer des erreurs de montage et étudier le comportement
-mécanique ou thermique. Il ne prétend pas être une copie certifiée de toutes les
-993.
+The twin serves first to inventory, represent and assemble what is known. The
+active phase plans no printing. When the evidence allows it, the twin may later
+eliminate fitting errors and study mechanical or thermal behavior. It does not
+claim to be a certified copy of every 993.
 
-Un composant n'entre dans le graphe actif que si taille, masse, matière et
-application sont sourcées. Un assemblage logique affirme que des pièces vont
-ensemble ; un assemblage positionné exige en plus leurs repères et
-transformations 3D.
+A component enters the active graph only if its size, mass, material and
+application are sourced. A logical assembly asserts that parts go together; a
+positioned assembly additionally requires their reference frames and 3D
+transforms.
 
-Le modèle est construit par zones : tableau de bord, porte, siège, baie moteur,
-train roulant et carrosserie. La précision est déclarée par composant et par
-interface, car une même zone peut combiner un habillage visuel `F0` et des
-fixations mesurées `F2`.
+The model is built zone by zone: dashboard, door, seat, engine bay, running gear
+and body. Accuracy is declared per component and per interface, because a single
+zone can combine visual trim at `F0` and measured fasteners at `F2`.
 
-## Première tranche géométrique — tableau de bord, en attente
+```mermaid
+flowchart LR
+    subgraph acc["Accuracy, per component and per interface"]
+        F0["F0<br/>visual trim"] --> F1["F1_envelope<br/>interface proxies"] --> F2["F2_interface<br/>measured fasteners, mounting face,<br/>centering, tolerances, transforms"]
+    end
+    subgraph tst["What tested in the twin means"]
+        GR["geometry_ready<br/>required geometry and<br/>uncertainties exist"] --> DC["digitally_checked<br/>declared rules executed,<br/>report versioned"] --> PC["physically_correlated<br/>real fit compared with predictions<br/>future level"]:::open
+    end
+    W["Wheels and hubs zone<br/>F1_envelope proxies<br/>twin status concept"]:::open --> F1
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Le MVP assemble :
+## First geometric slice — dashboard, pending
 
-1. le cache d'interrupteur candidat ;
-2. l'ouverture et l'épaisseur du panneau qui le reçoit ;
-3. le volume libre derrière le panneau ;
-4. les marges minimales d'insertion, de recouvrement, de clipsage et de recul.
+The MVP assembles:
 
-Le script
-`twins/993-cabin-dashboard-switch-0001/source/check_fit.py` lit une fiche de
-mesure et refuse de calculer si une cote manque. Il produit un rapport JSON avec
-la marge nominale et la marge garantie au pire cas, incertitudes comprises.
+1. the candidate switch blank;
+2. the opening and the thickness of the panel that receives it;
+3. the free volume behind the panel;
+4. the minimum insertion, overlap, clip-in and setback margins.
+
+The script `twins/993-cabin-dashboard-switch-0001/source/check_fit.py` reads a
+measurement record and refuses to compute if a dimension is missing. It produces
+a JSON report with the nominal margin and the worst-case guaranteed margin,
+uncertainties included.
 
 ```bash
 python3 twins/993-cabin-dashboard-switch-0001/source/check_fit.py \
@@ -38,50 +50,53 @@ python3 twins/993-cabin-dashboard-switch-0001/source/check_fit.py \
   --out twins/993-cabin-dashboard-switch-0001/derived/fit-report.json
 ```
 
-## Première intégration géométrique — roues et moyeux
+## First geometric integration — wheels and hubs
 
-Le registre contient maintenant une seconde zone active :
-`TWIN-993-WHEEL-HUB-INTERFACES-0001`. Elle référence quatre solides STEP
-reproductibles à partir du même maître build123d :
+The register now holds a second active zone:
+`TWIN-993-WHEEL-HUB-INTERFACES-0001`. It references four STEP solids
+reproducible from the same build123d master:
 
-- Fuchs 7J × 17 ET55, avant ;
-- Fuchs 9J × 17 ET55, arrière ;
-- Fuchs 8J × 18 ET52, avant ;
-- Fuchs 10J × 18 ET65, arrière.
+- Fuchs 7J × 17 ET55, front;
+- Fuchs 9J × 17 ET55, rear;
+- Fuchs 8J × 18 ET52, front;
+- Fuchs 10J × 18 ET65, rear.
 
-Ces objets sont des proxys d'interface `F1_envelope` : cylindre nominal,
-largeur nominale et alésage central. Ils rendent les composants visibles et
-assemblables dans FreeCAD, mais ne reproduisent ni les branches, ni le profil
-réel de jante, ni les sièges de boulons. Les deux moyeux restent des repères
-logiques sans géométrie. Le twin est donc au statut `concept`, et non
-`digitally_checked`.
+These objects are `F1_envelope` interface proxies: nominal cylinder, nominal
+width and center bore. They make the components visible and assemblable in
+FreeCAD, but reproduce neither the spokes, nor the actual rim profile, nor the
+bolt seats. The two hubs remain logical reference frames with no geometry. The
+twin is therefore at status `concept`, not `digitally_checked`.
 
-Pour passer à `F2_interface`, il faut mesurer ou sourcer la face d'appui, le
-centrage du moyeu, le type de siège des fixations, l'enveloppe du frein, les
-tolérances et les transformations dans le repère véhicule. Alors seulement un
-calcul de collision ou de marge pourra devenir une preuve numérique.
+![Register of the sourced 993 twin state: 17- and 18-inch Fuchs wheel sets with masses and known interfaces, Carrera brakes not admitted, 3D positioning still unknown](media/diagrams/digital-twin-993-etat.svg)
 
-## Ordre de construction
+*The sourced state as a register: wheel sets, masses and known interfaces, logically assembled; the brakes are not admitted and the global 3D transforms are unknown. It shows what is recorded, not a positioned or validated assembly.*
 
-| Tranche | Zone | Premier test |
+Moving to `F2_interface` requires measuring or sourcing the mounting face, the
+hub centering, the fastener seat type, the brake envelope, the tolerances and
+the transforms in the vehicle frame. Only then can a collision or margin
+calculation become numerical evidence.
+
+## Build order
+
+| Slice | Zone | First test |
 |---|---|---|
-| DT-01 | Tableau de bord | insertion et clipsage du cache d'interrupteur |
-| DT-02 | Porte | montage et débattement de la poignée |
-| DT-03 | Glissière de siège | symétrie, collision et accès aux fixations |
-| DT-04 | Baie moteur | interfaces du berceau, sans validation structurelle |
-| DT-05 | Repère caisse | rattachement des zones aux points de référence carrosserie |
+| DT-01 | Dashboard | insertion and clip-in of the switch blank |
+| DT-02 | Door | fitting and travel of the door pull |
+| DT-03 | Seat rail | symmetry, collision and access to the fasteners |
+| DT-04 | Engine bay | carrier interfaces, without structural validation |
+| DT-05 | Body-shell frame | tying the zones to the body reference points |
 
-La carrosserie complète et les scans visuels viennent ensuite comme contexte.
-Cette séquence permet de tester une première pièce sans attendre plusieurs mois
-de reconstruction de la voiture entière.
+The complete body and the visual scans come afterwards, as context. This
+sequence makes it possible to test a first part without waiting months for a
+reconstruction of the whole car.
 
-## Ce que signifie « testé dans le jumeau »
+## What "tested in the twin" means
 
-- `geometry_ready` : toutes les géométries et incertitudes requises existent ;
-- `digitally_checked` : toutes les règles déclarées ont été exécutées et le
-  rapport est versionné ;
-- `physically_correlated` : un montage réel a été comparé aux prédictions.
+- `geometry_ready`: all required geometry and uncertainties exist;
+- `digitally_checked`: all declared rules have been executed and the report is
+  versioned;
+- `physically_correlated`: a real fit has been compared with the predictions.
 
-La corrélation physique reste un niveau futur. Pour une pièce critique, un
-succès numérique ne remplacera ni la revue d'ingénierie ni les essais matière et
-fatigue si une fabrication est un jour décidée.
+Physical correlation remains a future level. For a critical part, a numerical
+success will replace neither the engineering review nor the material and fatigue
+tests if manufacturing is ever decided.

@@ -1,196 +1,198 @@
-# M64 — raffinement spatial du témoin AdditiveFOAM F58
+# M64 — spatial refinement of the AdditiveFOAM F58 control case
 
-Ce travail porte exclusivement sur le **coupon logiciel AlSi10Mg F58**,
-pas sur une culasse, CP1, une recette fournisseur qualifiée ou une simulation
-de déformation de construction entière. La
-[campagne matériau/procédé](M64_700CH_MATERIAL_COOLING_LPBF.md) reste ouverte.
+This work concerns only the **AlSi10Mg F58 software coupon**,
+not a cylinder head, CP1, a qualified supplier recipe or a whole-build
+distortion simulation. The
+[material/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md) remains open.
 
-**Résultat : le calcul h/2 atteint 120 µs, mais le plafond subsiste.** Le
-limiteur retire encore 9,3093 % de l'énergie laser absorbée. Le raffinement
-spatial seul ne résout donc pas le défaut physique du modèle. Le code natif
-termine sans erreur ; le refus strict d'intégrité du lanceur est conservé et
-expliqué séparément ci-dessous.
-
-## Question testée
-
-Après les trois pas temporels 100/50/25 ns, le plafond de 3 300 K et son puits
-artificiel subsistent. Cet essai isole une nouvelle variable : **diviser
-chaque dimension des cellules par deux**, à pas de temps 25 ns inchangé.
-Deux niveaux spatiaux ne permettent pas d'affirmer un ordre de convergence,
-et des maxima tous écrêtés ne démontrent pas une convergence physique.
-
-| Paramètre | Référence 25 ns | Essai spatial h/2 |
-|---|---:|---:|
-| Grille | 120 × 20 × 24 | 240 × 40 × 48 |
-| Cellules | 57 600 | 460 800 |
-| Dimensions des cellules, µm | 25 × 25 × 12,5 | 12,5 × 12,5 × 6,25 |
-| Durée physique | 120 µs | 120 µs |
-| Pas de temps | 25 ns | 25 ns |
-| Laser incident | 380 W | 380 W |
-| Énergie incidente nominale | 45,60 mJ | 45,60 mJ |
-| Plafond numérique | 3 300 K | 3 300 K |
-
-Le binaire instrumenté, les bibliothèques, la carte AlSi10Mg, la source
-SuperGaussian/Kelly, la trajectoire et les conditions initiales/limites sont
-identiques. Ce modèle reste thermique : `nOuterCorrectors=0` ne résout pas
-la convection complète du bain. Aucun changement d'absorption ou de plafond
-n'est utilisé pour améliorer artificiellement le verdict.
-
-## Préparation et contre-audit réellement exécutés
-
-Le maillage est régénéré ; l'ancienne liste de poudre à 57 600 valeurs n'est
-pas réutilisée sur 460 800 cellules. Une initialisation uniforme provisoire
-est suivie du `setFields` natif inchangé, puis contrôlée indépendamment.
-
-- OpenFOAM : **Mesh OK**, 460 800 hexaèdres, une région, non-orthogonalité nulle,
-  rapport d'aspect 2 ; préparation en 11,288 s, sortie 0, sans OOM.
-- Audit indépendant : bijections complètes des points/cellules sur la grille,
-  six faces quadrangulaires orientées par cellule, frontières vérifiées.
-- Volume recalculé : `4,4999999999999974e−10 m³`, contre `4,5e−10 m³` nominal.
-- Poudre vérifiée **cellule par cellule** : 76 800 cellules dans les huit
-  couches supérieures, 384 000 dans le substrat. L'interface à −50 µm ne
-  traverse aucune cellule, à l'arrondi des coordonnées près.
-- Un témoin échangeant poudre/substrat tout en gardant le même comptage
-  global est refusé par l'auditeur.
-
-Le pas de temps est aussi présélectionné par une borne de diffusion
-conservative sur cette grille orthogonale : `alpha ≤ 169,8/(2670×900)` et
-`Di ≤ 3 alpha dt Σ(1/h_i²) = 0,203506 < 1`. Elle inclut le coefficient
-de frontière Dirichlet doublé ; elle dépend des limites de propriétés du
-modèle actuel et n'est pas une preuve de stabilité de toute physique ajoutée.
-
-## Exécution bornée et critères de lecture
-
-Kali x86, série, plafond 4 CPU/4 Gio et 1 500 s. Racine du conteneur en lecture
-seule, réseau désactivé, espace temporaire borné et journaux Docker limités.
-L'autorisation de lancer le laser est séparée du reçu d'acceptation du
-maillage. Aucun GPU ni location Vast n'est employé dans ce sous-lot.
-
-Le bilan demandé comprend stockage sensible, latent, frontières, advection,
-laser absorbé et limiteur artificiel. Il faut contrôler tous les 4 800 pas,
-les puissances du journal et les intégrales avec un second parseur indépendant.
-La fermeture d'un bilan **incluant une suppression artificielle d'énergie**
-ne valide pas l'impression.
-
-## Résultat effectivement exécuté
-
-Le calcul natif a tourné le 8 septembre 2026 de 09:37:25 à 09:58:47 UTC :
-**1 282,135 s**, sortie 0, sans timeout ni OOM. L'état final Docker est
-conservé ; le conteneur est supprimé et son absence vérifiée. Les deux
-journaux contiennent les 4 800 pas de 25 ns, jusqu'à 120 µs.
-
-| Grandeur sur 120 µs | Référence h | Maillage h/2 |
-|---|---:|---:|
-| Stockage sensible, mJ | 28,346910 | 28,948196 |
-| Stockage latent, mJ | 3,692608 | 3,752034 |
-| Frontières, apport net, mJ | 3,806254 | 3,824625 |
-| Laser absorbé, mJ | 31,562272 | 31,839641 |
-| Advection sortante, mJ | 0 | 0 |
-| Limiteur artificiel, mJ | 3,329043 | 2,964055 |
-| Limiteur / laser absorbé | 10,54754 % | 9,30932 % |
-| Intégrale du résidu absolu / laser absorbé | 1,52258×10⁻⁶ | 5,84385×10⁻⁷ |
-| Plafond atteint | 3 300 K | 3 300 K |
-
-Les intégrales changent de 2,12 % pour le sensible et de 10,96 % pour le
-limiteur, en valeur absolue **normalisée par la référence h**. Cette dernière
-baisse ne constitue ni un gain de rendement de culasse ni une convergence
-spatiale établie. Le laser absorbé reste inférieur aux 45,60 mJ incidents ;
-aucun des 4 800 pas ne dépasse 380 W absorbés, selon les journaux instrumentés.
-
-Les sorties natives d'isothermes ont aussi été relues indépendamment :
-4 801 instants par fichier, état initial inclus. À 870 K et 120 µs :
-
-| Dimension calculée, µm | h | h/2 | Variation par rapport à h |
-|---|---:|---:|---:|
-| Longueur | 234,85825 | 234,14363 | −0,3043 % |
-| Largeur | 174,82490 | 181,47350 | +3,8030 % |
-| Profondeur | 167,34914 | 177,21333 | +5,8944 % |
-
-La profondeur à 850 K change aussi de +5,8097 %. Il s'agit des dimensions
-renvoyées par les objets de post-traitement du modèle plafonné, **pas de
-mesures de bain ni d'une validation indépendante de la géométrie fondue**.
-
-### Refus strict du lanceur : préservé, pas contourné
-
-Le solveur crée quatre fichiers de métadonnées dans `constant/polyMesh` :
-`cellLevel`, `pointLevel`, `level0Edge` et `refinementHistory`. Le lanceur
-figé exigeait une liste de fichiers exactement identique avant/après :
-il termine donc en **refus, sortie 1**, avec `case_inputs_unchanged=false`,
-malgré la sortie 0 du solveur. Son code et ce reçu ne sont pas réécrits.
-
-L'examen primaire et un contre-audit indépendant retrouvent les 24 fichiers
-préexistants bit-à-bit inchangés et uniquement ces quatre ajouts. Les niveaux des cellules
-et points sont nuls ; `level0Edge=6,25e−6 m`, aucun historique de division
-n'est actif. Les 4 799 enregistrements de sélection de raffinement et de
-points de division sont tous nuls. Les anciennes sources et entrées restent
-également inchangées. Cette classification permet de lire le diagnostic
-énergétique sans déclarer que le contrat strict du lanceur a réussi.
-Reçu indépendant final :
-`bfe6e903bc81fd9a8bcabda1a9f1d119fefdfb0f68c77608f44f46d59f1ddd84`.
-
-**Deux parseurs indépendants ne constituent pas deux physiques indépendantes** :
-ils contre-vérifient les mêmes journaux et les six termes du même modèle
-instrumenté. Ils ne remplacent ni un autre solveur qualifié ni une mesure.
-
-## Décision et suite
-
-Ne pas louer une machine plus grosse pour répéter ce seul raffinement en
-espérant supprimer le plafond. Les deux niveaux mesurent une sensibilité
-spatiale ; ils ne permettent pas d'estimer un ordre ou une erreur extrapolée.
-La priorité suivante est de vérifier le domaine de validité de la source,
-des propriétés poudre/solide et du modèle de bain, puis de qualifier toute
-physique ajoutée sur un témoin et une calibration indépendante. Le plafond
-ne sera pas relevé et l'absorption ne sera pas ajustée pour obtenir un
-verdict favorable. La distorsion de la culasse entière n'a pas été calculée.
+**Result: the h/2 run reaches 120 µs, but the cap remains.** The
+limiter still removes 9.3093 % of the absorbed laser energy. Spatial
+refinement alone therefore does not resolve the model's physical defect. The native code
+finishes without error; the launcher's strict integrity rejection is kept and
+explained separately below.
 
 ```mermaid
 flowchart TD
-    A["F58 témoin AlSi10Mg, 25 ns"] --> B["Même physique, grille h/2"]
+    A["F58 AlSi10Mg control case, 25 ns"] --> B["Same physics, h/2 grid"]
     B --> C["blockMesh, setFields, checkMesh"]
-    C --> D["Audit indépendant : cellules, poudre, frontières, empreintes"]
-    D --> E["Calcul laser borné à 120 microsecondes"]
-    E --> F["Comparer les bilans avec deux parseurs"]
-    F --> G["Distinguer erreur numérique et physique manquante"]
-    G --> H["Recette calibrée puis déformation de la pièce entière : encore à réaliser"]
+    C --> D["Independent audit: cells,<br/>powder, boundaries, digests"]
+    D --> E["Laser run bounded<br/>to 120 microseconds"]
+    E --> F["Compare balances<br/>with two parsers"]
+    F --> G["Separate numerical error<br/>from missing physics"]
+    G --> H["Calibrated recipe, then whole-part<br/>distortion: still to be done"]
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class H open;
 ```
 
-## Traçabilité de préparation
+## Question tested
 
-Le [reçu public agrégé](../../twins/m64-cylinder-head/evidence/f58-spatial-refinement-20260908.json)
-relie les journaux, l'état natif, l'observation de sortie du lanceur, la
-comparaison primaire et le contre-calcul Decimal. Les journaux et champs
-bruts restent privés. Les clés nulles/non vérifiées des parseurs ne sont
-pas remplacées par les statuts du processus : ces preuves sont distinctes.
+After the three time steps 100/50/25 ns, the 3,300 K cap and its artificial
+sink remain. This run isolates a new variable: **halving
+every cell dimension**, with the 25 ns time step unchanged.
+Two spatial levels do not allow a convergence order to be claimed,
+and maxima that are all clipped do not demonstrate physical convergence.
 
-| Artefact privé | SHA-256 |
+| Parameter | 25 ns reference | h/2 spatial run |
+|---|---:|---:|
+| Grid | 120 × 20 × 24 | 240 × 40 × 48 |
+| Cells | 57,600 | 460,800 |
+| Cell dimensions, µm | 25 × 25 × 12.5 | 12.5 × 12.5 × 6.25 |
+| Physical duration | 120 µs | 120 µs |
+| Time step | 25 ns | 25 ns |
+| Incident laser | 380 W | 380 W |
+| Nominal incident energy | 45.60 mJ | 45.60 mJ |
+| Numerical cap | 3,300 K | 3,300 K |
+
+The instrumented binary, the libraries, the AlSi10Mg card, the
+SuperGaussian/Kelly source, the path and the initial/boundary conditions are
+identical. This model remains thermal: `nOuterCorrectors=0` does not solve
+the full melt-pool convection. No change of absorptivity or cap
+is used to artificially improve the verdict.
+
+## Preparation and cross-audit actually executed
+
+The mesh is regenerated; the old 57,600-value powder list is
+not reused on 460,800 cells. A provisional uniform initialization
+is followed by the unchanged native `setFields`, then checked independently.
+
+- OpenFOAM: **Mesh OK**, 460,800 hexahedra, one region, zero non-orthogonality,
+  aspect ratio 2; preparation in 11.288 s, exit 0, no OOM.
+- Independent audit: complete bijections of points/cells onto the grid,
+  six oriented quadrilateral faces per cell, boundaries verified.
+- Recomputed volume: `4.4999999999999974e−10 m³`, against `4.5e−10 m³` nominal.
+- Powder verified **cell by cell**: 76,800 cells in the eight
+  top layers, 384,000 in the substrate. The interface at −50 µm does not
+  cross any cell, up to coordinate rounding.
+- A control case swapping powder/substrate while keeping the same global
+  count is rejected by the auditor.
+
+The time step is also preselected by a conservative diffusion bound
+on this orthogonal grid: `alpha ≤ 169.8/(2670×900)` and
+`Di ≤ 3 alpha dt Σ(1/h_i²) = 0.203506 < 1`. It includes the doubled
+Dirichlet boundary coefficient; it depends on the property limits of the
+current model and is not a proof of stability for any added physics.
+
+## Bounded execution and reading criteria
+
+Kali x86, serial, cap of 4 CPUs/4 GiB and 1,500 s. Container root read-only,
+network disabled, bounded temporary space and limited Docker logs.
+The authorization to fire the laser is separate from the mesh acceptance
+receipt. No GPU and no Vast rental are used in this sub-batch.
+
+The requested balance includes sensible storage, latent, boundaries, advection,
+absorbed laser and artificial limiter. All 4,800 steps must be checked,
+along with the log powers and the integrals, with a second independent parser.
+Closing a balance **that includes an artificial removal of energy**
+does not validate printing.
+
+## Result actually executed
+
+The native run ran on September 8, 2026 from 09:37:25 to 09:58:47 UTC:
+**1,282.135 s**, exit 0, no timeout and no OOM. The final Docker state is
+kept; the container is removed and its absence verified. The two
+logs contain the 4,800 steps of 25 ns, up to 120 µs.
+
+| Quantity over 120 µs | Reference h | Mesh h/2 |
+|---|---:|---:|
+| Sensible storage, mJ | 28.346910 | 28.948196 |
+| Latent storage, mJ | 3.692608 | 3.752034 |
+| Boundaries, net input, mJ | 3.806254 | 3.824625 |
+| Absorbed laser, mJ | 31.562272 | 31.839641 |
+| Outgoing advection, mJ | 0 | 0 |
+| Artificial limiter, mJ | 3.329043 | 2.964055 |
+| Limiter / absorbed laser | 10.54754 % | 9.30932 % |
+| Integral of absolute residual / absorbed laser | 1.52258×10⁻⁶ | 5.84385×10⁻⁷ |
+| Cap reached | 3,300 K | 3,300 K |
+
+The integrals change by 2.12 % for the sensible term and by 10.96 % for the
+limiter, in absolute value **normalized by the h reference**. This last
+decrease is neither a cylinder head efficiency gain nor an established spatial
+convergence. The absorbed laser remains below the 45.60 mJ incident;
+none of the 4,800 steps exceeds 380 W absorbed, according to the instrumented logs.
+
+The native isotherm outputs were also re-read independently:
+4,801 instants per file, initial state included. At 870 K and 120 µs:
+
+| Computed dimension, µm | h | h/2 | Change relative to h |
+|---|---:|---:|---:|
+| Length | 234.85825 | 234.14363 | −0.3043 % |
+| Width | 174.82490 | 181.47350 | +3.8030 % |
+| Depth | 167.34914 | 177.21333 | +5.8944 % |
+
+The depth at 850 K also changes by +5.8097 %. These are the dimensions
+returned by the post-processing objects of the capped model, **not
+melt-pool measurements nor an independent validation of the molten geometry**.
+
+### Strict launcher rejection: preserved, not bypassed
+
+The solver creates four metadata files in `constant/polyMesh`:
+`cellLevel`, `pointLevel`, `level0Edge` and `refinementHistory`. The frozen
+launcher required an exactly identical file list before/after:
+it therefore ends in **rejection, exit 1**, with `case_inputs_unchanged=false`,
+despite the solver's exit 0. Its code and this receipt are not rewritten.
+
+The primary review and an independent cross-audit find the 24
+pre-existing files bit-for-bit unchanged and only these four additions. The cell
+and point levels are zero; `level0Edge=6.25e−6 m`, no split history
+is active. The 4,799 records of refinement selection and
+split points are all zero. The old sources and inputs also remain
+unchanged. This classification allows the energy diagnostic to be read
+without declaring that the launcher's strict contract succeeded.
+Final independent receipt:
+`bfe6e903bc81fd9a8bcabda1a9f1d119fefdfb0f68c77608f44f46d59f1ddd84`.
+
+**Two independent parsers are not two independent physics**:
+they cross-check the same logs and the six terms of the same instrumented
+model. They replace neither another qualified solver nor a measurement.
+
+## Decision and next steps
+
+Do not rent a bigger machine to repeat this refinement alone in the
+hope of removing the cap. The two levels measure a spatial
+sensitivity; they do not allow an order or an extrapolated error to be estimated.
+The next priority is to check the validity domain of the source,
+of the powder/solid properties and of the melt-pool model, then to qualify any
+added physics on a control case and an independent calibration. The cap
+will not be raised and the absorptivity will not be tuned to obtain a
+favorable verdict. The distortion of the whole cylinder head has not been computed.
+
+## Preparation traceability
+
+The [aggregated public receipt](../../twins/m64-cylinder-head/evidence/f58-spatial-refinement-20260908.json)
+links the logs, the native state, the launcher exit observation, the
+primary comparison and the Decimal cross-computation. The raw logs and fields
+remain private. The parsers' null/unverified keys are
+not replaced by the process statuses: these pieces of evidence are distinct.
+
+| Private artifact | SHA-256 |
 |---|---|
-| Lanceur effectivement exécuté | `936409570698397bb50beb0bedfa97de4ee792efdc6d164b82ea58dcb7543eb2` |
-| Préparation | `7448656ae19242c05e47761117df488e9b4594c12f73b62c020912d68aea75da` |
-| Checkpoint du maillage | `50b3c36c1154e2f4e0dfa7ece85f339d435aa7359f9814bac1dfd17b0cd11791` |
-| Contre-audit du maillage | `833e6efab6c9439185b814d484649caa393d53375ab1c9fb939861c7f16a8b93` |
-| Observation runtime recoupée | `8a00c6a7e37b57cc0cccda4685abf6e8e63aa166b8fdec005b8f1b1be1f8d7cb` |
-| Binaire F58 | `b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d` |
-| Carte AlSi10Mg | `65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea` |
+| Launcher actually executed | `936409570698397bb50beb0bedfa97de4ee792efdc6d164b82ea58dcb7543eb2` |
+| Preparation | `7448656ae19242c05e47761117df488e9b4594c12f73b62c020912d68aea75da` |
+| Mesh checkpoint | `50b3c36c1154e2f4e0dfa7ece85f339d435aa7359f9814bac1dfd17b0cd11791` |
+| Mesh cross-audit | `833e6efab6c9439185b814d484649caa393d53375ab1c9fb939861c7f16a8b93` |
+| Cross-checked runtime observation | `8a00c6a7e37b57cc0cccda4685abf6e8e63aa166b8fdec005b8f1b1be1f8d7cb` |
+| F58 binary | `b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d` |
+| AlSi10Mg card | `65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea` |
 
-## Vérification logicielle et budget
+## Software verification and budget
 
-La préparation et le comparateur privés totalisent 22 tests uniques réussis
-(12 préparation/lanceur, 10 comparateur) ; quatre helpers ont en outre été
-réexécutés contre le comparateur v2. Le parseur Decimal possède sept témoins
-synthétiques réussis. Ces tests sont distincts de l'exécution native et de
-l'audit du maillage effectivement produit.
+The private preparation and comparator total 22 unique passing tests
+(12 preparation/launcher, 10 comparator); four helpers were also
+re-run against comparator v2. The Decimal parser has seven passing
+synthetic control cases. These tests are distinct from the native execution and from the
+audit of the mesh actually produced.
 
-Le `make check` complet du lot termine avec sortie observée 0 : la suite
-principale contient 2 431 tests, dont 108 ignorés pour dépendances optionnelles.
-Les autres cibles terminent également sans échec. Journal privé :
+The full `make check` of the batch ends with observed exit 0: the main
+suite contains 2,431 tests, 108 of which are skipped for optional dependencies.
+The other targets also finish without failure. Private log:
 `eed2b2a1aad81089b05d87dde8b5e6e7843a43554bd77737aa607d96f3b2e510`.
-Les sources Mermaid sont relues ; aucun rendu exécuté de ces nouveaux
-diagrammes n'est revendiqué. La stratégie de test sépare régression,
-contre-lecture et physique ; la documentation conserve les refus.
+The Mermaid sources are reviewed; no executed rendering of these new
+diagrams is claimed. The test strategy separates regression,
+cross-reading and physics; the documentation keeps the rejections.
 
-Le plafond utilisateur est 44 USD, sans recharge. **Aucune nouvelle location
-Vast pour ce sous-lot** : le témoin est exécuté sur la machine Kali existante.
-Un crédit annoncé n'est pas un solde garanti ni une preuve de calcul achevé.
+The user cap is 44 USD, with no top-up. **No new Vast rental
+for this sub-batch**: the control case is run on the existing Kali machine.
+An announced credit is not a guaranteed balance nor proof of a completed computation.
 
-Les sources privées et les cas antérieurs sont conservés. Ces diagnostics
-ne donnent **aucune autorisation d'impression ou de démarrage moteur**.
+The private sources and earlier cases are kept. These diagnostics
+give **no authorization to print or to start an engine**.

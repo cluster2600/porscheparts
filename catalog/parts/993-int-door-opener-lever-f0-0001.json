@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
   "name": "Levier intérieur d'ouverture de porte 993, concept F0 aluminium",
-  "description": "Concept indépendant de levier et chape intégrés pour étudier une refabrication LPBF à faible volume. PorscheFanatics établit les références PET gauche et droite ; FVD publie l'enveloppe et la masse d'une paire aftermarket, mais aucune géométrie d'interface ne permet un montage.",
+  "description": "Independent concept of an integrated lever and clevis for studying a low-volume LPBF remanufacture. PorscheFanatics establishes the left and right PET part numbers; FVD publishes the envelope and mass of an aftermarket pair, but no interface geometry allows fitment.",
   "vehicle": {
     "generation": "993",
     "variants": [
@@ -20,7 +20,7 @@
   "classification": {
     "category": "interior_door_release",
     "safety_class": "functional",
-    "intended_use": "Criblage CAO, DfAM et mécanique d'un levier ouvrant ; aucun montage ou usage d'évacuation autorisé"
+    "intended_use": "CAD, DfAM and mechanical screening of an opening lever; no fitment and no egress use authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -34,23 +34,23 @@
     ]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie ou géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph or commercial geometry redistributed",
     "sources": [
       {
-        "title": "PorscheFanatics - références PET des ouvre-portes intérieurs 993",
+        "title": "PorscheFanatics - PET part numbers of the 993 interior door openers",
         "url": "https://porschefanatics.com/oem/",
         "source_type": "community",
         "license": "site-du-proprietaire-du-projet-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Le dataset au commit 4192f9699f1176bcfe8b8ec7cbcc7c05dc7ee296 identifie 993 555 851 00 et 993 555 852 00 comme door opener aux positions PET 807-10/807-11. Voir SRC-PORSCHEFANATICS-993-DOOR-OPENER-PET. Il n'apporte aucune cote."
+        "notes": "The dataset at commit 4192f9699f1176bcfe8b8ec7cbcc7c05dc7ee296 identifies 993 555 851 00 and 993 555 852 00 as door opener at PET positions 807-10/807-11. See SRC-PORSCHEFANATICS-993-DOOR-OPENER-PET. It provides no dimension."
       },
       {
-        "title": "FVD - jeu d'ouvre-portes aluminium FVD55599301B",
+        "title": "FVD - aluminum door opener set FVD55599301B",
         "url": "https://www.fvd.net/de/shop/tueroeffnersatz-2-stk-aluminium-schwarz-993-fvd55599301b~p310555",
         "source_type": "manufacturer",
         "license": "commercial-retailer-page-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "FVD déclare 108 x 45 x 27 mm, 0,18 kg la paire, aluminium haute résistance anodisé ou thermolaqué et fixations d'origine. Ces valeurs sont une enveloppe produit, pas une définition OEM. Voir SRC-FVD-993-DOOR-HANDLE-DIMENSIONS."
+        "notes": "FVD declares 108 x 45 x 27 mm, 0.18 kg per pair, anodized or powder-coated high-strength aluminum and original fasteners. These values are a product envelope, not an OEM definition. See SRC-FVD-993-DOOR-HANDLE-DIMENSIONS."
       },
       {
         "title": "EOS Aluminium AlSi10Mg material data sheet",
@@ -58,7 +58,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-04",
-        "notes": "Carte ambiante de criblage seulement ; le grade du produit FVD est inconnu et aucune équivalence n'est revendiquée. Voir SRC-EOS-ALSI10MG-MATERIAL-DATA."
+        "notes": "Ambient screening map only; the grade of the FVD product is unknown and no equivalence is claimed. See SRC-EOS-ALSI10MG-MATERIAL-DATA."
       }
     ]
   },
@@ -69,24 +69,24 @@
     ],
     "preferred_process": "LPBF",
     "material": {
-      "family": "aluminium LPBF candidat",
-      "grade": "AlSi10Mg de criblage ; matériau OEM et grade du produit commercial inconnus",
-      "standard": "ASTM F3318-18 à contractualiser si le concept progresse"
+      "family": "candidate LPBF aluminum",
+      "grade": "AlSi10Mg, screening; OEM material and grade of the commercial product unknown",
+      "standard": "ASTM F3318-18 to be contracted if the concept progresses"
     },
     "post_processing": [
-      "retrait des supports avec accès conservé aux poches",
-      "traitement thermique qualifié pour la machine et l'orientation",
-      "alésage et finition du pivot après définition du jeu",
-      "usinage des portées de fixation avec surépaisseur future",
-      "anodisation ou thermolaquage après contrôle dimensionnel"
+      "support removal while keeping access to the pockets",
+      "heat treatment qualified for the machine and orientation",
+      "boring and finishing of the pivot after the clearance is defined",
+      "machining of the mounting faces with a future machining allowance",
+      "anodizing or powder coating after dimensional inspection"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation et lot traçables",
-      "coupon témoin dans l'orientation critique du levier",
-      "contrôle dimensionnel de l'enveloppe, du pivot, des portées et des butées",
-      "CT ou radiographie de la chape et ressuage après usinage",
-      "rugosité et arrondis contrôlés dans les zones de préhension",
-      "essais statiques et cycliques instrumentés avant tout montage"
+      "traceable powder, machine, parameters, orientation and lot",
+      "witness coupon in the critical orientation of the lever",
+      "dimensional inspection of the envelope, pivot, mounting faces and stops",
+      "CT or radiography of the clevis and penetrant testing after machining",
+      "controlled roughness and radii in the grip areas",
+      "instrumented static and cyclic tests before any fitment"
     ]
   },
   "titanium": {
@@ -96,7 +96,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "À étudier entre aluminium imprimé, axe, fixations et mécanisme OEM après identification des matériaux réels."
+    "galvanic_isolation": "To be studied between printed aluminum, pin, fasteners and OEM mechanism after identification of the real materials."
   },
   "validation": {
     "status": "concept",
@@ -115,14 +115,14 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seule l'enveloppe 108 x 45 x 27 mm vient de la fiche commerciale ; la plaque, les poches, la chape et les alésages sont des hypothèses F0.",
-      "La masse publiée de 0,18 kg concerne la paire commerciale complète et ne valide pas la masse du concept.",
-      "Le cas de 150 N et +60 K est synthétique ; aucune charge, direction, butée ou température 993 n'a été mesurée.",
-      "Le calcul nominal ignore contact réel, défauts LPBF, jeu d'axe, précharge, revêtement, corrosion et vieillissement.",
-      "Le criblage CalculiX utilise six cas synthétiques et une comparaison Goodman de coupons ; il ne calcule aucune durée de vie de pièce.",
-      "Le tranchage géométrique n'est ni un projet EOSPRINT, ni un calcul de bain de fusion, distorsion ou recoater.",
-      "L'asset et la scène passent la validation USD minimale et un témoin ovphysx ; les Content Agents, le profil SimReady complet, OVRTX et l'assemblage de porte n'ont pas été exécutés.",
-      "Le STEP prouve seulement un BREP calculable dans l'enveloppe ; il ne doit être ni imprimé pour montage ni installé dans une porte."
+      "Only the 108 x 45 x 27 mm envelope comes from the commercial product page; the plate, pockets, clevis and bores are F0 hypotheses.",
+      "The published mass of 0.18 kg concerns the complete commercial pair and does not validate the mass of the concept.",
+      "The 150 N and +60 K case is synthetic; no 993 load, direction, stop or temperature has been measured.",
+      "The nominal calculation ignores real contact, LPBF defects, pin clearance, preload, coating, corrosion and aging.",
+      "The CalculiX screen uses six synthetic cases and a Goodman comparison of coupons; it computes no part life.",
+      "The geometric slicing is neither an EOSPRINT job nor a melt-pool, distortion or recoater calculation.",
+      "The asset and the scene pass minimal USD validation and an ovphysx smoke test; the Content Agents, the full SimReady profile, OVRTX and the door assembly have not been run.",
+      "The STEP proves only a computable BREP within the envelope; it must be neither printed for fitment nor installed in a door."
     ]
   }
 }

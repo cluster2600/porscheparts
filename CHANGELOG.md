@@ -1,387 +1,392 @@
-# Journal des versions
+# Changelog
 
-Toutes les évolutions notables du projet sont consignées dans ce fichier.
+All notable changes to the project are recorded in this file.
 
-## Non publié
+## Unreleased
 
-Décision 0008, le magnésium moderne bat le titane, 11 septembre 2026 :
+Decision 0008, modern magnesium beats titanium, September 11, 2026:
 
-- le couvercle de 1995 ne pourrit pas parce qu'il est en magnésium, mais parce
-  qu'il est en magnésium **de 1995** : pureté standard et chromatation hexavalente ;
-- ce qui a changé — la corrosion du magnésium est pilotée par trois impuretés
-  internes, fer, nickel et cuivre ; les limites ASTM de l'AZ91D les plafonnent à
-  0,004 / 0,001 / 0,015 %, et la haute pureté est donnée **jusqu'à 100×** plus
-  résistante au brouillard salin, davantage que l'aluminium 380 moulé ou l'acier
-  laminé à froid ; le PEO remplace la chromatation, sans chrome hexavalent ;
-- comparaison finale : le magnésium moderne gagne **les deux** indices de flexion
-  de plaque (1,965 et 6,988), supprime le couple galvanique puisqu'il est de même
-  nature que le carter, annule la dilatation différentielle et traite le mode de
-  défaillance à sa racine ;
-- le titane est écarté sur ces chiffres : plus lourd, moins raide, et porteur du
-  pire couple galvanique de la grille contre un carter magnésium ;
-- leçon enregistrée : trois fois dans ce projet la bonne réponse a été la matière
-  d'origine faite correctement — la question à poser en premier n'est pas « par
-  quoi la remplacer » mais « que sait-on faire aujourd'hui qu'on ne savait pas
-  faire alors » ;
-- obstacles non instruits : atelier capable d'usiner le magnésium, épaisseur PEO
-  de 5 à 40 µm sur un plan de joint, et disponibilité en plaque AZ31B plutôt
-  qu'en AZ91E de fonderie.
+- the 1995 cover does not rot because it is magnesium, but because it is
+  magnesium **from 1995**: standard purity and hexavalent chromate conversion;
+- what has changed — magnesium corrosion is driven by three internal
+  impurities, iron, nickel and copper; the ASTM limits for AZ91D cap them at
+  0.004 / 0.001 / 0.015 %, and high purity is given as **up to 100×** more
+  resistant to salt spray, more than cast 380 aluminum or cold-rolled steel;
+  PEO replaces chromate conversion, without hexavalent chromium;
+- final comparison: modern magnesium wins **both** plate-bending indices
+  (1.965 and 6.988), removes the galvanic couple since it is the same material
+  as the case, cancels differential expansion and addresses the failure mode at
+  its root;
+- titanium is ruled out on these numbers: heavier, less stiff, and carrying the
+  worst galvanic couple in the grid against a magnesium case;
+- lesson recorded: three times in this project the right answer has been the
+  original material done properly — the question to ask first is not "what to
+  replace it with" but "what can we do today that we could not do then";
+- obstacles not investigated: a shop able to machine magnesium, a PEO thickness
+  of 5 to 40 µm on a sealing face, and availability as AZ31B plate rather than
+  cast AZ91E.
 
-La pièce d'origine est en magnésium, pas en aluminium, 11 septembre 2026 :
+The original part is magnesium, not aluminum, September 11, 2026:
 
-- correction majeure : les couvercles de carter de chaîne 964/993 montés en usine
-  sont en **magnésium coulé**, et leur mode de défaillance est la corrosion des
-  portées d'étanchéité — c'est la raison d'être du marché du couvercle billet ;
-- toute comparaison de masse menée jusqu'ici opposait le titane à de
-  l'aluminium, donc **au produit de rechange et non à la pièce d'origine** ;
-- refait contre le magnésium à 1,81 g/cm³ : le titane est 2,45× plus dense et
-  perd **les deux** indices de flexion de plaque, résistance comprise, 6,503
-  contre 6,988 — « plus résistant donc plus léger » ne tient pas ici ;
-- en revanche le critère de corrosion de `TITANIUM.md` s'applique désormais
-  pleinement, et c'est un argument plus fort que celui de la masse ;
-- obstacle nouveau et non résolu : le carter d'en face est aussi en magnésium, et
-  le couple titane/magnésium est le plus défavorable de la grille — un couvercle
-  titane pourrait déplacer la corrosion sur la pièce qu'on ne peut pas remplacer ;
-- bug corrigé dans le criblage : une parade dont le texte s'avouait « non résolu »
-  comptait comme une parade ; le script lève désormais une erreur.
+- major correction: the factory-fitted 964/993 chain housing covers are **cast
+  magnesium**, and their failure mode is corrosion of the sealing faces — that
+  is the reason the billet cover market exists;
+- every mass comparison run so far set titanium against aluminum, hence
+  **against the aftermarket product and not the original part**;
+- redone against magnesium at 1.81 g/cm³: titanium is 2.45× denser and loses
+  **both** plate-bending indices, strength included, 6.503 versus 6.988 —
+  "stronger, therefore lighter" does not hold here;
+- on the other hand, the corrosion criterion of `TITANIUM.md` now applies in
+  full, and it is a stronger argument than mass;
+- new, unresolved obstacle: the mating case is also magnesium, and the
+  titanium/magnesium couple is the least favorable in the grid — a titanium
+  cover could shift corrosion onto the part that cannot be replaced;
+- bug fixed in the screening: a mitigation whose text admitted it was
+  "unresolved" counted as a mitigation; the script now raises an error.
 
-Indices de performance en flexion de plaque, 11 septembre 2026 :
+Plate-bending performance indices, September 11, 2026:
 
-- l'arbitrage masse est reformulé avec les indices d'Ashby : à raideur imposée
-  `E^⅓/ρ` donne 1,526 pour l'aluminium contre 1,095 pour le titane, l'aluminium
-  gagne ; à résistance imposée `σ_y^½/ρ` donne 4,969 contre 6,503, le titane
-  gagne de 31 % ;
-- « le titane est plus résistant donc moins épais donc plus léger » est donc
-  exact, à la condition que ce soit la résistance qui dimensionne ;
-- note ajoutée : en traction pure `E/ρ` vaut 25,9 et 25,7, les deux matériaux
-  sont équivalents ; c'est l'exposant ⅓ de la flexion de plaque qui fait la
-  différence ;
-- pour ce couvercle, quatre observations convergent vers « ni raideur ni
-  résistance ne dimensionnent » — 9,7 Nm de serrage, visserie M6 donc entraxes
-  probablement courts avec une flèche en `L⁴`, pression de carter négligeable, et
-  pièce de fonderie ; dans ce cas le titane fraisé mince est plus léger.
+- the mass trade-off is restated with Ashby indices: at imposed stiffness
+  `E^⅓/ρ` gives 1.526 for aluminum versus 1.095 for titanium, aluminum wins;
+  at imposed strength `σ_y^½/ρ` gives 4.969 versus 6.503, titanium wins by
+  31 %;
+- "titanium is stronger, therefore thinner, therefore lighter" is thus
+  correct, on the condition that strength is what sizes the part;
+- note added: in pure tension `E/ρ` is 25.9 and 25.7, the two materials are
+  equivalent; it is the ⅓ exponent of plate bending that makes the difference;
+- for this cover, four observations converge on "neither stiffness nor
+  strength sizes it" — 9.7 Nm tightening torque, M6 fasteners hence probably
+  short bolt spacings with a deflection in `L⁴`, negligible case pressure, and
+  a cast part; in that case thin machined titanium is lighter.
 
-Marge de dilatation du couvercle refaite, 11 septembre 2026 :
+Cover expansion margin redone, September 11, 2026:
 
-- deux erreurs corrigées d'un coup. La formule comparait la dilatation d'une
-  portée entière à un jeu **radial**, ce qui surestimait le problème d'un facteur
-  deux ; ce qui doit tenir dans le jeu est l'écart au perçage le plus éloigné du
-  point fixe, donc `δ = r · Δα · ΔT`. Et la visserie était supposée M8 alors que
-  le manuel serre ce couvercle à 9,7 Nm, soit du M6 ;
-- résultat : **0,072 mm d'écart contre 0,300 mm de jeu** en M6 moyen, le jeu
-  n'étant utilisé qu'à **24 %** au lieu des 72 % annoncés ;
-- sensibilité publiée sur six combinaisons de perçage et de point fixe : toutes
-  passent, la plus tendue — centrage par douille et perçage fin — utilisant 72 % ;
-- option `--datum dowel` ajoutée : la planche 103-05 porte une douille de
-  centrage `993 105 175 00`, et si elle tient le couvercle le rayon défavorable
-  double ;
-- hypothèse de montage déclarée : vis centrées dans leurs perçages à froid, sans
-  quoi la moitié de la marge est une tolérance de montage et non une réserve ;
-- seuil de masse rendu décidable : le titane usiné à la raideur strictement
-  nécessaire bat la fonte dès que celle-ci porte **39 % d'épaisseur de plus que
-  son exigence de raideur**, et le couvercle billet 6061 de LN Engineering, sans
-  contrainte de fonderie, mesure ce gras directement ;
-- le couple de 9,7 Nm sur M6 pointe dans le même sens : faible serrage, faible
-  réaction de joint, pièce qui ne travaille quasiment pas ;
-- correction propagée au carter d'arbre à cames, où le motif décisif est requalifié :
-  ce n'est pas le jeu de perçage qui gouverne mais l'alignement des portées
-  d'arbre à cames, qui n'a aucun jeu à consommer.
+- two errors corrected at once. The formula compared the expansion of an
+  entire face to a **radial** clearance, which overstated the problem by a
+  factor of two; what must fit within the clearance is the offset at the hole
+  farthest from the fixed point, hence `δ = r · Δα · ΔT`. And the fasteners
+  were assumed to be M8 while the manual tightens this cover to 9.7 Nm, i.e.
+  M6;
+- result: **0.072 mm of offset versus 0.300 mm of clearance** in medium-fit
+  M6, with only **24 %** of the clearance used instead of the 72 % announced;
+- sensitivity published over six combinations of hole and fixed point: all
+  pass, the tightest — dowel location and close-fit hole — using 72 %;
+- `--datum dowel` option added: plate 103-05 shows a locating dowel
+  `993 105 175 00`, and if it holds the cover the unfavorable radius doubles;
+- installation assumption declared: bolts centered in their holes when cold,
+  otherwise half the margin is an assembly tolerance and not a reserve;
+- mass threshold made decidable: titanium machined to the strictly necessary
+  stiffness beats the casting as soon as the casting carries **39 % more
+  thickness than its stiffness requirement**, and LN Engineering's 6061
+  billet cover, free of casting constraints, measures that excess directly;
+- the 9.7 Nm torque on M6 points the same way: low clamping, low gasket
+  reaction, a part that carries almost no load;
+- correction propagated to the camshaft housing, where the decisive reason is
+  requalified: it is not hole clearance that governs but the alignment of the
+  camshaft bearing faces, which has no clearance to consume.
 
-Acquisition des cotes sans accès aux pièces, 11 septembre 2026 :
+Acquiring dimensions without access to parts, September 11, 2026:
 
-- recherche des cotes du couvercle `964 105 107 01` en ligne : **aucune n'est
-  publiée**, mais la recherche établit autre chose — deux reproducteurs
-  indépendants, LN Engineering en aluminium 6061 et Auto-Service Schefter en CNC,
-  confirment que la référence est le couvercle **gauche**, qu'elle est appariée
-  au joint `964 105 181 01`, et que la pièce se fabrique **par usinage dans la
-  masse**, ce qui n'était jusqu'ici qu'un raisonnement ;
-- les deux reproducteurs emploient l'aluminium : le titane est un écart assumé ;
-- le manuel d'atelier donne « Chain housing cover : 9,7 Nm », ce qui situe la
-  visserie en **M6** et non en M8 — la marge de dilatation calculée sur une
-  hypothèse M8 est à refaire ;
-- stratégie enregistrée : la bonne question n'est pas où trouver les cotes mais
-  quel est l'objet le moins cher qui les porte — le joint à 13 $ donne contour et
-  entraxes, un couvercle d'occasion donne tout, et ni l'un ni l'autre ne demande
-  d'accéder à une voiture.
+- online search for the dimensions of cover `964 105 107 01`: **none are
+  published**, but the search establishes something else — two independent
+  reproducers, LN Engineering in 6061 aluminum and Auto-Service Schefter in
+  CNC, confirm that the part number is the **left** cover, that it is paired
+  with gasket `964 105 181 01`, and that the part is made **by machining from
+  solid**, which until now was only reasoning;
+- both reproducers use aluminum: titanium is a deliberate departure;
+- the workshop manual gives "Chain housing cover : 9,7 Nm" (9.7 Nm), which
+  puts the fasteners at **M6** and not M8 — the expansion margin computed on an
+  M8 assumption must be redone;
+- strategy recorded: the right question is not where to find the dimensions
+  but what is the cheapest object that carries them — the $13 gasket gives
+  outline and bolt spacings, a used cover gives everything, and neither
+  requires access to a car.
 
-Tout le catalogue d'usine disposé, 11 septembre 2026 :
+The whole factory catalog dispositioned, September 11, 2026:
 
-- `scripts/dispose_pet_catalogue.py` donne une catégorie et une raison aux
-  **1 026 désignations** : plus une seule perte silencieuse, là où 956 tombaient
-  sans motif ;
-- 373 désignations instruites à la main, contre 72 avant ; il ne reste **zéro**
-  désignation sans verdict ;
-- `muffler`, 12 références, remonte du lot : le triage lexical l'avait manqué
-  parce que son nom ne contenait aucun terme du vocabulaire, et c'est avec
-  l'embout le meilleur candidat titane de la voiture ; `y-piece` le rejoint ;
-- le verdict porte désormais sur tout ce qui est jugé et non sur les seules
-  70 désignations que le vocabulaire reconnaissait — le gisement passe de 7 à 9 ;
-- limite comptée plutôt que masquée : **50 désignations génériques, 751
-  références**, où le mot ne nomme pas une fonction — `support` en couvre 142 —
-  et qui demandent un travail référence par référence, non fait.
+- `scripts/dispose_pet_catalogue.py` gives a category and a reason to the
+  **1,026 designations**: not a single silent loss anymore, where 956 used to
+  drop out without a reason;
+- 373 designations investigated by hand, versus 72 before; **zero**
+  designations remain without a verdict;
+- `muffler`, 12 part numbers, rises out of the batch: the lexical triage had
+  missed it because its name contained no vocabulary term, and together with
+  the tip it is the best titanium candidate on the car; `y-piece` joins it;
+- the verdict now covers everything judged and not only the 70 designations
+  the vocabulary recognized — the pool grows from 7 to 9;
+- limitation counted rather than hidden: **50 generic designations, 751 part
+  numbers**, where the word does not name a function — `support` covers 142 of
+  them — and which require part-number-by-part-number work, not done.
 
-Couvercle de carter de chaîne 964 105 107 01 en Ti-6Al-4V, 11 septembre 2026 :
+Chain housing cover 964 105 107 01 in Ti-6Al-4V, September 11, 2026:
 
-- pièce demandée explicitement ; à géométrie égale le titane alourdit de 64 %,
-  mais l'épaisseur n'a aucune raison de rester égale, et l'affirmation inverse
-  était une erreur ;
-- équivalence d'épaisseur calculée sur trois critères : à raideur en flexion
-  égale le titane fait 85 % de l'épaisseur et reste 1,39 fois plus lourd ; à
-  résistance égale il fait 46,6 % et devient 24 % plus léger ; à masse égale il
-  fait 60,9 % et ne conserve que 37 % de la raideur ;
-- troisième cas enregistré, le plus probable sur une pièce de fonderie :
-  l'épaisseur d'origine est dictée par la fonderie — paroi minimale, dépouille,
-  remplissage — et une pièce fraisée n'a aucune de ces contraintes, donc peut
-  être plus mince tout en restant assez raide ; c'est `D03` et l'œil qui
-  trancheront, pas le calcul ;
-- criblage paramétrique : la dilatation différentielle contre le carter
-  aluminium vaut 0,144 mm sur un entraxe de 100 mm à 100 K, et tient dans les
-  0,200 mm de jeu d'un perçage Ø8,4 pour vis M8, marge +0,056 mm ;
-- c'est ce qui distingue le couvercle du carter entier, refusé pour ce motif :
-  au-delà d'environ 139 mm d'entraxe au même jeu, la marge disparaît ;
-- le couple galvanique est déjà traité par la nomenclature : le joint
-  964 105 181 01 sépare les deux métaux sur tout le plan de joint ;
-- route retenue : **fraisage** dans une plaque Ti-6Al-4V, pas impression —
-  aucune des trois familles additives ;
-- plan de mesure publié, treize cotes dont deux décident : les entraxes et le
-  jeu intérieur vis-à-vis de la chaîne.
+- part explicitly requested; at equal geometry titanium adds 64 % of mass, but
+  there is no reason for the thickness to stay equal, and the opposite claim
+  was an error;
+- thickness equivalence computed on three criteria: at equal bending
+  stiffness titanium is 85 % of the thickness and stays 1.39 times heavier; at
+  equal strength it is 46.6 % and becomes 24 % lighter; at equal mass it is
+  60.9 % and keeps only 37 % of the stiffness;
+- third case recorded, the most likely for a cast part: the original thickness
+  is dictated by the foundry — minimum wall, draft, filling — and a machined
+  part has none of these constraints, so it can be thinner while staying stiff
+  enough; `D03` and the eye will decide, not the calculation;
+- parametric screening: differential expansion against the aluminum case is
+  0.144 mm over a 100 mm bolt spacing at 100 K, and fits within the 0.200 mm
+  clearance of a Ø8.4 hole for M8 bolts, margin +0.056 mm;
+- that is what separates the cover from the whole case, rejected on these
+  grounds: beyond a bolt spacing of about 139 mm at the same clearance, the
+  margin disappears;
+- the galvanic couple is already handled by the bill of materials: gasket
+  964 105 181 01 separates the two metals over the whole sealing face;
+- route chosen: **milling** from Ti-6Al-4V plate, not printing — none of the
+  three additive families;
+- measurement plan published, thirteen dimensions of which two decide: the
+  bolt spacings and the internal clearance to the chain.
 
-Interroger le criblage sur une référence précise, 11 septembre 2026 :
+Querying the screening on a specific part number, September 11, 2026:
 
-- `scripts/explain_pet_reference.py` et la cible `pet-explain` répondent pièce
-  par pièce : désignation, planches, score du triage, motifs, et jugement ;
-- il dit explicitement quand une désignation n'a **jamais été jugée**, au lieu de
-  laisser croire à un refus — une désignation écartée par le vocabulaire
-  disparaissait jusqu'ici en silence ;
-- `993 102 050 01`, poulie de vilebrequin, instruite en réponse à une question :
-  écartée, sur quatre motifs indépendants.
+- `scripts/explain_pet_reference.py` and the `pet-explain` target answer part
+  by part: designation, plates, triage score, reasons, and judgment;
+- it says explicitly when a designation has **never been judged**, instead of
+  implying a rejection — a designation dropped by the vocabulary used to
+  disappear silently;
+- `993 102 050 01`, crankshaft pulley, investigated in answer to a question:
+  ruled out, on four independent grounds.
 
-Les 70 désignations du catalogue d'usine instruites, 11 septembre 2026 :
+The 70 factory-catalog designations investigated, September 11, 2026:
 
-- `catalog/manufacturing/pet-candidate-judgements.json` juge les 70 désignations
-  retenues par le triage : matière d'origine présumée, apport réel du titane,
-  classe présumée, familles additives ;
-- `scripts/screen_pet_candidates.py` **dérive** le verdict de ces entrées et
-  refuse de tourner si un verdict écrit ne découle plus de ses raisons — la
-  garde qui manquait aux criblages précédents ;
-- **sept désignations méritent une fiche**, couvrant 40 références, dont six
-  nouvelles ; elles forment une seule famille, le circuit d'air chaud et d'air
-  secondaire autour des échangeurs d'échappement ;
-- ce gisement passe parce qu'il est chaud sans être à la température des gaz, en
-  tôle d'acier et non en aluminium, mince et consolidable, et bénin à la rupture ;
-- les 63 refus sont motivés mécaniquement : le titane n'améliore pas la matière
-  d'origine, domaine présumé critique, aucune famille additive, ou impossibilité
-  physique pour un échangeur dont la fonction est de conduire la chaleur ;
-- `docs/993/993_BACKLOG_TITANE.md` publie les trois dénominateurs côte à côte
-  pour qu'ils cessent d'être cités l'un pour l'autre.
+- `catalog/manufacturing/pet-candidate-judgements.json` judges the 70
+  designations kept by the triage: presumed original material, actual benefit
+  of titanium, presumed class, additive families;
+- `scripts/screen_pet_candidates.py` **derives** the verdict from these
+  entries and refuses to run if a written verdict no longer follows from its
+  reasons — the guard that previous screenings lacked;
+- **seven designations deserve a record**, covering 40 part numbers, six of
+  them new; they form a single family, the hot-air and secondary-air circuit
+  around the exhaust heat exchangers;
+- this pool passes because it is hot without being at gas temperature, made
+  of sheet steel and not aluminum, thin and consolidatable, and benign in
+  failure;
+- the 63 rejections are mechanically justified: titanium does not improve on
+  the original material, presumed-critical domain, no additive family, or
+  physical impossibility for a heat exchanger whose function is to conduct
+  heat;
+- `docs/993/993_BACKLOG_TITANE.md` publishes the three denominators side by
+  side so they stop being quoted for one another.
 
-SAFETY.md réécrit et carter de chaîne instruit, 11 septembre 2026 :
+SAFETY.md rewritten and chain housing investigated, September 11, 2026:
 
-- `SAFETY.md` réécrit : classes, domaines présumés critiques, règle de
-  déclassement et signalement conservés à l'identique, et ajout de ce que le
-  projet a appris — le mode de rupture prime sur le domaine et l'incendie en est
-  le cas oublié, un criblage n'autorise rien, la température de service se
-  confronte au plafond de l'alliage, le démontage fait partie de la vie de la
-  pièce, le procédé et la matière sont deux jugements séparés, et relever une
-  classe demande six preuves nommées quand l'abaisser n'en demande aucune ;
-- carter de chaîne de la planche 103-05 instruit : huit références établies,
-  dont trois ponts dont deux aussi désignés galeries d'huile ;
-- verdict : vrai cas de consolidation additive, mais titane refusé trois fois —
-  dilatation différentielle avec le carter aluminium, grippage sur filetages
-  repris, couple galvanique ; la réponse est l'aluminium ;
-- deux corrections du criblage, dont la première était mauvaise : rendre les
-  cinq contre-indications rédhibitoires supprimait les mots « non traité » et
-  « non maîtrisé » que la grille contient ;
-- modèle corrigé : une contre-indication est une **condition à lever**, qui
-  bloque sans parade déclarée et devient une exigence portée à la route quand une
-  parade est déclarée ; seules restent absolues les deux impossibilités
-  physiques, conduire la chaleur et garder la raideur de l'acier ;
-- critère manquant ajouté, et c'est lui qui décidait : **le titane améliore-t-il
-  la matière d'origine ?** La grille le demandait déjà — « corrosion
-  problématique avec la matière d'origine » — et sans lui le criblage classait
-  premier un collecteur d'admission en aluminium tiède ;
-- le rapport porte désormais son propre dénominateur : 33 fiches, pas 6 259
-  références, et il le dit dans `scope_warning`.
+- `SAFETY.md` rewritten: classes, presumed-critical domains, downgrade rule
+  and reporting kept identical, with the addition of what the project has
+  learned — failure mode outranks domain and fire is its forgotten case, a
+  screening authorizes nothing, service temperature is checked against the
+  alloy's ceiling, disassembly is part of the part's life, process and
+  material are two separate judgments, and raising a class requires six named
+  pieces of evidence while lowering it requires none;
+- chain housing of plate 103-05 investigated: eight part numbers established,
+  including three bridges, two of which are also designated oil galleries;
+- verdict: a genuine case for additive consolidation, but titanium rejected
+  three times — differential expansion with the aluminum case, galling on
+  re-cut threads, galvanic couple; the answer is aluminum;
+- two corrections to the screening, the first of which was wrong: making the
+  five contraindications disqualifying removed the words "not addressed" and
+  "not controlled" that the grid contains;
+- corrected model: a contraindication is a **condition to be lifted**, which
+  blocks without a declared mitigation and becomes a requirement carried into
+  the route when a mitigation is declared; only the two physical
+  impossibilities remain absolute, conducting heat and keeping the stiffness
+  of steel;
+- missing criterion added, and it was the deciding one: **does titanium
+  improve on the original material?** The grid already asked it — "corrosion
+  problematic with the original material" — and without it the screening
+  ranked a lukewarm aluminum intake manifold first;
+- the report now carries its own denominator: 33 records, not 6,259 part
+  numbers, and says so in `scope_warning`.
 
-Circuit d'huile de turbo instruit et écarté, 11 septembre 2026 :
+Turbo oil circuit investigated and ruled out, September 11, 2026:
 
-- identité établie depuis la planche d'usine 202-16 : quatre `oil pipe` en deux
-  positions, trois `vent line`, deux `oil collection container`, deux `bracket` ;
-- quatre références Porsche inscrites sur la fiche du dépôt, qui n'en portait
-  aucune ;
-- correction enregistrée : la fiche s'annonce « retour » sans que la planche
-  l'établisse, l'attribution alimentation/retour reste à faire ;
-- refus motivé deux fois — le mode de rupture est l'incendie au sens de
-  `SAFETY.md`, et la grille de `TITANIUM.md` écarte le titane sur filetage
-  répété exposé au grippage ;
-- conclusion : le meilleur candidat additif du triage n'est pas un candidat
-  titane, les deux questions ne se confondent pas.
+- identity established from factory plate 202-16: four `oil pipe` in two
+  positions, three `vent line`, two `oil collection container`, two `bracket`;
+- four Porsche part numbers entered in the repository record, which carried
+  none;
+- correction recorded: the record calls itself "return" without the plate
+  establishing it; the feed/return assignment remains to be done;
+- rejection justified twice — the failure mode is fire in the sense of
+  `SAFETY.md`, and the `TITANIUM.md` grid rules out titanium on repeated
+  threading exposed to galling;
+- conclusion: the best additive candidate in the triage is not a titanium
+  candidate; the two questions are not the same.
 
-Triages titane du catalogue d'usine, 11 septembre 2026 :
+Titanium triages of the factory catalog, September 11, 2026:
 
-- constat que le criblage titane portait sur 32 fiches, soit 0,51 % des 6 259
-  références distinctes du catalogue 993 : « appliqué au catalogue » était une
-  surestimation du périmètre, corrigée en addendum de la décision 0007 ;
-- `screen_pet_zones_for_titanium.py` trie les 239 illustrations du squelette
-  avec les seules données du dépôt, 23 zones retenues sur 1 538 références ;
-- `screen_pet_parts_for_titanium.py` trie 1 026 désignations depuis un relevé
-  tenu hors du dépôt, 70 retenues, en ne publiant que la liste courte ;
-- l'embout d'échappement ressort dans les quatre premiers du triage élargi, les
-  deux désignations qui le devancent tombant sur la température d'échappement ;
-- règle d'exclusion par planche corrigée : elle ne joue que si toutes les
-  planches d'une désignation sont critiques, faute de quoi `oil pipe`
-  disparaissait à tort.
+- finding that the titanium screening covered 32 records, i.e. 0.51 % of the
+  6,259 distinct part numbers in the 993 catalog: "applied to the catalog" was
+  an overstatement of scope, corrected in an addendum to decision 0007;
+- `screen_pet_zones_for_titanium.py` triages the 239 illustrations of the
+  skeleton using only repository data, 23 zones kept out of 1,538 part
+  numbers;
+- `screen_pet_parts_for_titanium.py` triages 1,026 designations from a
+  transcription kept outside the repository, 70 kept, publishing only the
+  short list;
+- the exhaust tip comes out in the top four of the broadened triage, the two
+  designations ahead of it falling on exhaust temperature;
+- per-plate exclusion rule corrected: it applies only if all the plates of a
+  designation are critical, otherwise `oil pipe` wrongly disappeared.
 
-Décision 0007, première pièce titane sélectionnée par grille, 11 septembre 2026 :
+Decision 0007, first titanium part selected by grid, September 11, 2026:
 
-- `scripts/screen_titanium_candidates.py` applique la grille de `TITANIUM.md`
-  et les trois familles additives aux 32 fiches, en refusant de tourner si une
-  fiche n'est pas jugée ; cinq pièces seulement sont éligibles ;
-- `993-EXH-OVAL-TIP-TI-F1-0001` retenue à +6, le collecteur d'échappement étant
-  écarté malgré son +7 parce que 900 °C est un cas nickel ;
-- générateur d'embout paramétré par `--material`, une géométrie et trois cartes
-  matière, avec export STL et verdict de température ;
-- étape 02 `passed`, étape 03 `completed_screening` à 4 936 couches de 30 µm ;
-- deux cartes de route titane mutuellement exclusives : le Ti-6Al-4V est
-  disponible partout et bloqué par une marge de −27 °C, le Ti-6242 passe la
-  température et n'a ni machine, ni épaisseur de couche, ni fournisseur ;
-- porte de température générique ajoutée à `build_process_route_card.py` ;
-- constat : la décision tient à 427 °C jamais mesurés, et un thermomètre
-  infrarouge tranche ce que douze mille lignes de calcul ne trancheront pas.
+- `scripts/screen_titanium_candidates.py` applies the `TITANIUM.md` grid and
+  the three additive families to the 32 records, refusing to run if a record
+  is not judged; only five parts are eligible;
+- `993-EXH-OVAL-TIP-TI-F1-0001` chosen at +6, the exhaust manifold being ruled
+  out despite its +7 because 900 °C is a nickel case;
+- tip generator parameterized by `--material`, one geometry and three material
+  cards, with STL export and temperature verdict;
+- step 02 `passed`, step 03 `completed_screening` at 4,936 layers of 30 µm;
+- two mutually exclusive titanium route cards: Ti-6Al-4V is available
+  everywhere and blocked by a −27 °C margin, Ti-6242 passes the temperature
+  and has no machine, no layer thickness and no supplier;
+- generic temperature gate added to `build_process_route_card.py`;
+- finding: the decision hinges on 427 °C never measured, and an infrared
+  thermometer settles what twelve thousand lines of calculation will not.
 
-Décision 0006, la bague sera tournée en 6063 T6, 11 septembre 2026 :
+Decision 0006, the ring will be turned in 6063 T6, September 11, 2026:
 
-- carte de route tournage `cnc-turning-6063-t6-bright-anodised.json`, nuance
-  choisie sur l'aspect avec le 6061 T6 en repli et le 6262 écarté pour son plomb ;
-- générateur `scripts/build_turning_route_card.py` et devis tournage associé,
-  cibles `turning-trim-ring` et `turning-trim-ring-check` ;
-- `preferred_process` de la bague passé de `undecided` à `CNC`, le LPBF restant
-  un candidat screené ;
-- jumeau renommé `twins/993-switch-trim-ring-f1`, le nom de dossier n'affirmant
-  plus une matière que le dépôt a écartée ;
-- constat enregistré : changer de procédé n'a fermé aucune des deux portes qui
-  comptent, la cote d'ajustement non tolérancée et les arêtes non définies.
+- turning route card `cnc-turning-6063-t6-bright-anodised.json`, grade chosen
+  on appearance with 6061 T6 as fallback and 6262 ruled out for its lead;
+- generator `scripts/build_turning_route_card.py` and associated turning
+  quote, targets `turning-trim-ring` and `turning-trim-ring-check`;
+- the ring's `preferred_process` changed from `undecided` to `CNC`, LPBF
+  remaining a screened candidate;
+- twin renamed `twins/993-switch-trim-ring-f1`, the directory name no longer
+  asserting a material the repository has ruled out;
+- finding recorded: changing process closed neither of the two gates that
+  matter, the untoleranced fit dimension and the undefined edges.
 
-Décision 0005, la matière de la bague n'a jamais été choisie, 11 septembre 2026 :
+Decision 0005, the ring's material was never chosen, September 11, 2026:
 
-- constat que l'AlSi10Mg est hérité de la seule carte procédé du dépôt, et que
-  la bague est le seul candidat LPBF `non_critical` du catalogue ;
-- deux sources sur l'anodisation : l'AlSi10Mg s'anodise gris-brun du fait de ses
-  9 à 11 % de silicium, quand le 6063 T6 est excellent en anodisation brillante ;
-- conséquence enregistrée : pour cette pièce la question matière et la question
-  procédé n'en font qu'une, et la réponse probable est une barre 6xxx tournée.
+- finding that AlSi10Mg is inherited from the repository's only process card,
+  and that the ring is the only `non_critical` LPBF candidate in the catalog;
+- two sources on anodizing: AlSi10Mg anodizes gray-brown because of its 9 to
+  11 % silicon, while 6063 T6 is excellent for bright anodizing;
+- consequence recorded: for this part the material question and the process
+  question are one and the same, and the likely answer is turned 6xxx bar.
 
-Première passe de sourcing LPBF en Chine, 10 septembre 2026 :
+First LPBF sourcing pass in China, September 10, 2026:
 
-- quatre fiches de sources qualifiées pour Unionfab, JLC3DP et Eplus3D ;
-- Unionfab retenu comme unique candidat, JLC3DP écarté faute d'AlSi10Mg
-  au catalogue métal ;
-- trois contradictions enregistrées et non lissées : trois épaisseurs de
-  couche pour le même sujet dont deux chez le même fournisseur, une carte
-  matière prestataire très inférieure aux coupons EOS, et une règle de paroi
-  minimale que la bague passe chez l'un et pas chez l'autre.
+- four source records qualified for Unionfab, JLC3DP and Eplus3D;
+- Unionfab kept as the only candidate, JLC3DP ruled out for lack of AlSi10Mg
+  in its metal catalog;
+- three contradictions recorded and not smoothed over: three layer
+  thicknesses for the same subject, two of them from the same supplier, a
+  provider material card far below the EOS coupons, and a minimum-wall rule
+  the ring passes with one supplier and not the other.
 
-Carte matière-machine-procédé de la bague de commodo, étape 04, 10 septembre 2026 :
+Material-machine-process card for the switch trim ring, step 04, September 10,
+2026:
 
-- ajout de `scripts/build_process_route_card.py`, générateur générique d'une
-  carte de route et d'un dossier de demande de devis lié aux fichiers par
-  SHA-256, avec onze portes évaluées et un mode `--check` ;
-- première étape 04 du pipeline AM, sur `993-INT-SWITCH-TRIM-RING-F1-0001`,
-  conclue `blocked_missing_input` avec sept portes fermées ;
-- mise au jour d'une incohérence interne : le criblage de l'étape 03 tranche à
-  50 µm quand la seule route AlSi10Mg publiée sur EOS M 290 est à 30 µm ;
-- cibles `route-trim-ring` et `route-trim-ring-check`, et garde
-  `tests/test_993_switch_trim_ring_route_f1.py` qui échoue si une porte
-  s'ouvrait sans coupon, traitement thermique ni lot de poudre.
+- added `scripts/build_process_route_card.py`, a generic generator of a route
+  card and a quote-request package linked to the files by SHA-256, with eleven
+  gates evaluated and a `--check` mode;
+- first step 04 of the AM pipeline, on `993-INT-SWITCH-TRIM-RING-F1-0001`,
+  concluded `blocked_missing_input` with seven gates closed;
+- internal inconsistency uncovered: the step 03 screening settles on 50 µm
+  when the only published AlSi10Mg route on the EOS M 290 is at 30 µm;
+- targets `route-trim-ring` and `route-trim-ring-check`, and guard
+  `tests/test_993_switch_trim_ring_route_f1.py`, which fails if a gate opened
+  without a coupon, heat treatment or powder lot.
 
-Support d'intercooler 993 Turbo/GT2 Ti-6Al-4V F0, 8 septembre 2026 :
+993 Turbo/GT2 intercooler bracket Ti-6Al-4V F0, September 8, 2026:
 
-- création d'une fiche de jumeau F1 limitée à l'enveloppe fournisseur et aux
-  identités PorscheFanatics/PET ;
-- exécution de trois maillages quadratiques Gmsh/CalculiX sur le STEP exact,
-  avec convergence de régression obtenue sur le p95 et la flèche ;
-- conversion OpenUSD et validation minimale par le workflow NVIDIA verrouillé,
-  sans attribution physique, GPU ni PhysicsNeMo ;
-- choix LPBF ramené à un candidat conditionnel face aux voies CNC et tôlerie,
-  toutes les portes de fabrication et de montage restant fermées.
+- creation of an F1 twin record limited to the supplier envelope and the
+  PorscheFanatics/PET identities;
+- three quadratic Gmsh/CalculiX meshes run on the exact STEP, with regression
+  convergence obtained on the p95 and the deflection;
+- OpenUSD conversion and minimal validation through the locked NVIDIA
+  workflow, without physics attribution, GPU or PhysicsNeMo;
+- LPBF choice reduced to a conditional candidate against the CNC and sheet
+  metal routes, all manufacturing and fitting gates remaining closed.
 
-Sous-ensemble de refroidissement moteur 993 F0, 8 septembre 2026 :
+993 engine cooling subassembly F0, September 8, 2026:
 
-- composition du carter et de la turbine F0 dans un jumeau d'interface dédié ;
-- calcul de jeu froid et libre à chaud, contrôle exact d'intersection BRep et
-  rejet explicite de la collision de 40 388,378651 mm³ ;
-- conversion des deux STEP et composition de l'assemblage en OpenUSD minimal
-  sous Linux AMD64, avec préflight NVIDIA et validations minimales réussies
-  sans GPU ;
-- propriétés SimReady, PhysicsNeMo, fabrication, rotation et démarrage moteur
-  maintenus fermés.
+- composition of the F0 housing and fan in a dedicated interface twin;
+- cold clearance and free-when-hot calculation, exact BRep intersection check
+  and explicit rejection of the 40,388.378651 mm³ collision;
+- conversion of the two STEP files and composition of the assembly into
+  minimal OpenUSD on Linux AMD64, with NVIDIA preflight and minimal
+  validations passing without a GPU;
+- SimReady properties, PhysicsNeMo, manufacturing, rotation and engine
+  start-up kept closed.
 
-Culasse 917-inspired F34 quatre soupapes refroidie par air, 2 septembre 2026 :
+917-inspired F34 four-valve air-cooled cylinder head, September 2, 2026:
 
-- CAO paramétrique et STEP de procédé générés localement à partir des seules
-  interfaces observables dans les deux scans, sans republier les scans bruts ;
-- refroidissement externe calculé séparément par OpenFOAM 14 (volumes finis)
-  et FluidX3D (LBM), cycle recoupé par Cantera et Wiebe, puis séquence de trois
-  maillages CalculiX ;
-- images `linux/amd64` de la chaîne CAE et de FluidX3D construites et testées ;
-- toutes les portes d'impression métallique et de démarrage moteur restent
-  fermées, notamment pour l'échelle, la matière à chaud, la convergence,
-  la fatigue/TMF et l'absence de corrélation physique.
+- parametric CAD and process STEP generated locally from only the interfaces
+  observable in the two scans, without republishing the raw scans;
+- external cooling computed separately with OpenFOAM 14 (finite volumes) and
+  FluidX3D (LBM), cycle cross-checked with Cantera and Wiebe, then a sequence
+  of three CalculiX meshes;
+- `linux/amd64` images of the CAE chain and of FluidX3D built and tested;
+- all metal printing and engine start-up gates remain closed, in particular
+  for scale, hot material properties, convergence, fatigue/TMF and the absence
+  of physical correlation.
 
-Phase 1, lot 1 — catalogues officiels, manuels accessibles et mesures :
+Phase 1, batch 1 — official catalogs, accessible manuals and measurements:
 
-- treize nouvelles fiches de sources vérifiées une à une le 28 août 2026 ;
-- statuts d’accès réels consignés, y compris les refus, paywalls et URL mortes ;
-- journal d’inventaire et liste motivée des sources écartées.
+- thirteen new source records verified one by one on August 28, 2026;
+- actual access statuses recorded, including refusals, paywalls and dead URLs;
+- inventory log and justified list of rejected sources.
 
-Phase 1, lots 2 et 5 — recherche allemande, scans et passation de mesure,
-30 août 2026 :
+Phase 1, batches 2 and 5 — German research, scans and measurement handoff,
+August 30, 2026:
 
-- registre porté à 225 fiches de sources valides, avec fabricants, forums,
-  mesures déclarées et pistes CAO/CT/LiDAR évalués séparément ;
-- aucun scan 993 étalonné et librement réutilisable ajouté, et aucun fichier
-  tiers copié sans licence établie ;
-- ajout de deux pistes allemandes distinctes : supports de pare-chocs 964/993
-  avec cotes commerciales déclarées, et réparation amateur du déflecteur de toit
-  ouvrant avec référence de pièce ;
-- campagne de mesure priorisée pour les trois pilotes polymères, avec procédure
-  de passation, règles de confidentialité et brief CT optionnel.
+- register brought to 225 valid source records, with manufacturers, forums,
+  declared measurements and CAD/CT/LiDAR leads assessed separately;
+- no calibrated, freely reusable 993 scan added, and no third-party file
+  copied without an established license;
+- two distinct German leads added: 964/993 bumper brackets with declared
+  commercial dimensions, and an amateur repair of the sunroof deflector with a
+  part number;
+- prioritized measurement campaign for the three polymer pilots, with handoff
+  procedure, confidentiality rules and an optional CT brief.
 
-Environnement de calcul :
+Compute environment:
 
-- deux images conteneurs, `recon` (CUDA) et `cadsim` (CPU), avec test de fumée ;
-- chaîne d’outils réorientée vers des commandes et API scriptables (ADR 0002) ;
-- procédure de déploiement sur machine GPU louée et règles d’hygiène des données.
+- two container images, `recon` (CUDA) and `cadsim` (CPU), with a smoke test;
+- toolchain redirected toward scriptable commands and APIs (ADR 0002);
+- deployment procedure on a rented GPU machine and data hygiene rules.
 
-Phase 1, lot 7 — manuel et données Porsche Fanatics, 30 août 2026 :
+Phase 1, batch 7 — Porsche Fanatics manual and data, August 30, 2026:
 
-- pont de provenance vers l’index public Porsche Fanatics : 235 procédures,
-  195 couples de serrage et 111 données techniques ;
-- cartographie française des pages et valeurs du manuel, avec séparation des
-  variantes ROW/USA, Carrera/Carrera 4/Carrera 4S et Carrera RS ;
-- ajout d’une piste Printables pour la patte d’interrupteur de console 964/993,
-  sans copie du fichier et avec licence encore non vérifiée ;
-- registre quantitatif exhaustif ajouté : 111 données techniques, 195 couples et
-  2 190 occurrences OCR avec page, contexte court et statut de contrôle.
-- import de ces 2 496 spécifications dans `catalog/measurements/` comme fiche
-  documentaire séparée ; aucune séance physique n'est créée sans pièce,
-  instrument et lectures brutes.
+- provenance bridge to the public Porsche Fanatics index: 235 procedures,
+  195 tightening torques and 111 technical data entries;
+- French mapping of the manual's pages and values, with separation of the
+  ROW/USA, Carrera/Carrera 4/Carrera 4S and Carrera RS variants;
+- Printables lead added for the 964/993 console switch bracket, without
+  copying the file and with the license not yet verified;
+- exhaustive quantitative register added: 111 technical data entries, 195
+  torques and 2,190 OCR occurrences with page, short context and review
+  status.
+- import of these 2,496 specifications into `catalog/measurements/` as a
+  separate documentary record; no physical session is created without a part,
+  an instrument and raw readings.
 
-Traçabilité des mesures :
+Measurement traceability:
 
-- schéma, validateur et registre des séances de mesure ;
-- capture directe depuis un instrument à sortie données, ou saisie manuelle
-  explicitement marquée comme telle ;
-- prise de vue photogrammétrique avec manifeste et référence d’échelle obligatoire.
+- schema, validator and register of measurement sessions;
+- direct capture from an instrument with data output, or manual entry
+  explicitly marked as such;
+- photogrammetric capture with a manifest and a mandatory scale reference.
 
 ## 0.1.0 — 2026-08-28
 
-Première fondation publique du projet :
+First public foundation of the project:
 
-- charte, feuille de route, règles de sécurité et portes qualité ;
-- chaîne d’outils gratuite et open source ;
-- schémas et modèles pour les pièces, sources, mesures et fabrications titane ;
-- validateurs locaux, tests automatisés et intégration continue GitHub ;
-- registre initial de cinq sources et workflow de contribution.
+- charter, roadmap, safety rules and quality gates;
+- free and open-source toolchain;
+- schemas and templates for parts, sources, measurements and titanium
+  manufacturing;
+- local validators, automated tests and GitHub continuous integration;
+- initial register of five sources and contribution workflow.
 
-Aucune pièce n’est déclarée imprimable, ajustée ou validée dans cette version.
+No part is declared printable, fitted or validated in this version.

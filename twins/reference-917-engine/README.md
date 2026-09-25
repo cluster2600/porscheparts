@@ -1,123 +1,128 @@
-# Jumeau de référence du moteur Porsche 917
+# Porsche 917 engine reference twin
 
-## Portée actuelle
+> **Archived line.** The 917 work is retired as a product and kept as a
+> numerical regression: it can be used to replay the calculations, reuse the
+> test cases and read what was attempted, not to make a part. See
+> [ARCHIVE.md](../../ARCHIVE.md). Metal printing and engine start remain
+> prohibited.
 
-Ce dossier transforme le scan local du carter avec cylindres en un jumeau
-extérieur reproductible. Le fichier OBJ et tous les maillages dérivés restent
-hors Git. Seuls le code, la méthode et les résultats textuels vérifiables sont
-versionnés.
+## Current scope
 
-Deux familles de sortie sont prévues :
+This directory turns the local scan of the case with cylinders into a
+reproducible exterior twin. The OBJ file and all derived meshes stay outside
+Git. Only the code, the method and the verifiable text results are versioned.
 
-- un modèle `F1_exterior_reference` qui conserve les surfaces mesurables du
-  scan et les interfaces répétées détectées ;
-- un modèle `display_print` fermé et simplifié pour fabriquer une maquette
-  non fonctionnelle.
+Two families of output are planned:
 
-Le porteur du projet confirme que le fichier est sous licence ouverte et
-réutilisable, mais l'identifiant standardisé de cette licence n'est pas encore
-archivé. Indépendamment de ce droit, son instruction est de conserver le scan
-et tous ses dérivés géométriques hors Git. Ni l'identification exacte ni
-l'échelle en millimètres ne sont confirmées. Aucun artefact ne doit être présenté comme
-une pièce moteur fonctionnelle, compatible 993 ou prête pour un essai.
+- an `F1_exterior_reference` model that keeps the measurable surfaces of the
+  scan and the detected repeated interfaces;
+- a closed, simplified `display_print` model to make a non-functional display
+  model.
 
-## Exécution
+The project owner confirms that the file is under an open, reusable license, but
+the standardized identifier of that license is not yet archived. Independently
+of that right, the owner's instruction is to keep the scan and all its geometric
+derivatives outside Git. Neither the exact identification nor the scale in
+millimeters is confirmed. No artifact may be presented as a functional engine
+part, compatible with the 993 or ready for a test.
+
+## Running
 
 ```bash
-PYTHON=/chemin/vers/python \
+PYTHON=/path/to/python \
   twins/reference-917-engine/run_pipeline.sh \
   raw-scans/917-engine/original/917-engine-case-with-cylinders.obj \
   work/917-engine/pipeline
 ```
 
-La sortie lourde reste sous `work/`. Le pipeline refuse un fichier source dont
-l'empreinte ne correspond pas au scan inspecté.
+The heavy output stays under `work/`. The pipeline rejects a source file whose
+digest does not match the inspected scan.
 
-Le brut est rangé sans modification sous
-`raw-scans/917-engine/original/917-engine-case-with-cylinders.obj`. Une copie
-USD sans instanciation, adaptée au rendu et aux étapes de simulation, est
-produite hors Git sous `work/simready-results/917/`. La conversion contrôlée
-contient un maillage de 7 397 573 points et 2 465 877 faces, en axe Z avec
-`metersPerUnit = 0.001`; son enveloppe est de 1002,175 × 768,275 × 739,765
-unités de scène. Ces métadonnées ne suffisent toujours pas à confirmer l'échelle
-physique du scan.
+The raw scan is stored unmodified under
+`raw-scans/917-engine/original/917-engine-case-with-cylinders.obj`. A USD copy
+without instancing, suited to rendering and simulation steps, is produced
+outside Git under `work/simready-results/917/`. The controlled conversion
+contains a mesh of 7,397,573 points and 2,465,877 faces, Z-up with
+`metersPerUnit = 0.001`; its bounding box is 1002.175 × 768.275 × 739.765 scene
+units. These metadata are still not enough to confirm the physical scale of the
+scan.
 
-Un rendu OVRTX 768 × 768 a été obtenu dans le conteneur SimReady. L'assignation
-automatique de matière par le Material Agent reste bloquée par un refus 403 de
-l'endpoint NVIDIA et ne doit pas être présentée comme validée. Le maillage brut,
-les USD et les images restent hors Git en attendant la clarification des droits.
+A 768 × 768 OVRTX render was obtained in the SimReady container. Automatic
+material assignment by the Material Agent remains blocked by a 403 refusal from
+the NVIDIA endpoint and must not be presented as validated. The raw mesh, the
+USD files and the images stay outside Git pending clarification of the rights.
 
-## Livrables visés
+## Target deliverables
 
-| Livrable | Usage | Limite |
+| Deliverable | Use | Limit |
 |---|---|---|
-| copie OBJ vérifiée | traçabilité | stockage local uniquement sur instruction du propriétaire |
-| maillages allégés | inspection et mesures | unité OBJ non confirmée |
-| composants séparés | revue carter/cylindres/éléments isolés | classification à valider visuellement |
-| rapport d'interfaces | axes, diamètre et pas des cylindres | dépend de la qualité des ouvertures visibles |
-| proxy STEP | assemblage et encombrement | géométrie simplifiée |
-| STL étanche | maquette d'exposition | interdit pour un usage moteur |
-| domaines CFD locaux | développement de la chaîne numérique | pas de conditions moteur inventées |
+| verified OBJ copy | traceability | local storage only, on the owner's instruction |
+| decimated meshes | inspection and measurements | OBJ unit not confirmed |
+| separated components | case/cylinders/isolated elements review | classification to be validated visually |
+| interface report | cylinder axes, diameter and pitch | depends on the quality of the visible openings |
+| STEP proxy | assembly and packaging | simplified geometry |
+| watertight STL | display model | prohibited for engine use |
+| local CFD domains | development of the numerical chain | no invented engine conditions |
 
-## Résultats F1 actuels
+## Current F1 results
 
-Le maillage de travail à 600 000 triangles conserve le scan avec un écart p95
-de 0,107 unité OBJ sur 50 000 points échantillonnés. La version à 250 000
-triangles atteint 0,244 unité p95 et reste réservée à la visualisation.
+The 600,000-triangle working mesh preserves the scan with a p95 deviation of
+0.107 OBJ units over 50,000 sampled points. The 250,000-triangle version reaches
+0.244 units p95 and is reserved for visualization.
 
-La détection par projection, transformée de Hough et ajustement RANSAC retrouve
-deux rangées de six ouvertures :
+Detection by projection, Hough transform and RANSAC fitting finds two rows of
+six openings:
 
-- diamètre visible moyen : 86,63 unités OBJ, plage 85,20 à 87,76 ;
-- pas longitudinal régulier : 118,03 sur la rangée positive et 117,87 sur la
-  rangée négative ;
-- coupure centrale après le troisième cylindre : 172,84 et 173,89 ;
-- décalage longitudinal médian entre rangées : 36,94.
+- mean visible diameter: 86.63 OBJ units, range 85.20 to 87.76;
+- regular longitudinal pitch: 118.03 on the positive row and 117.87 on the
+  negative row;
+- central gap after the third cylinder: 172.84 and 173.89;
+- median longitudinal offset between rows: 36.94.
 
-Ces valeurs décrivent les ouvertures visibles du scan. Elles ne prouvent ni le
-diamètre d'alésage, ni la variante du moteur, ni une unité millimétrique.
+These values describe the visible openings of the scan. They prove neither the
+bore diameter, nor the engine variant, nor a millimeter unit.
 
-## Réingénierie mesurée F11–F13
+## Measured re-engineering F11–F13
 
-Le programme de réingénierie sépare maintenant explicitement la référence
-visuelle, la CAO, la physique et la fabrication :
+The re-engineering program now explicitly separates the visual reference, CAD,
+physics and manufacturing:
 
 ```mermaid
 flowchart LR
-    F0[Scan F0<br/>hash vérifié] --> M[F13 métrologie<br/>hypothèses seulement]
-    M --> C[F13 master CAO<br/>repères quarantainés]
-    C --> P[Métrologie physique + CT<br/>CAO fonctionnelle future]
-    P --> S[12 solveurs classiques<br/>convergence + corrélation]
+    F0[F0 scan<br/>hash verified] --> M[F13 metrology<br/>assumptions only]
+    M --> C[F13 CAD master<br/>quarantined marks]
+    C --> P[Physical metrology + CT<br/>future functional CAD]
+    P --> S[12 classical solvers<br/>convergence + correlation]
     S --> N[PhysicsNeMo<br/>surrogate + UQ/OOD]
-    P --> Q[Qualification fabrication<br/>coupons + CT/NDT + essais]
+    P --> Q[Manufacturing qualification<br/>coupons + CT/NDT + tests]
     N --> O[USD / Omniverse]
-    Q --> B[Banc moteur]
+    Q --> B[Engine test bench]
 ```
 
-Les livrables versionnés sont :
+The versioned deliverables are:
 
-- [programme et niveaux de preuve](../../archive/917/docs/917_REENGINEERING_PROGRAM.md) ;
-- [métrologie conditionnelle du scan](../../archive/917/docs/917_SCAN_METROLOGY_F13.md) ;
-- [master paramétrique carter–cylindre–culasse](../../archive/917/docs/917_PARAMETRIC_INTERFACE_F13.md) ;
-- [registre des douze cas solveurs classiques](../../archive/917/docs/917_CLASSICAL_SOLVER_CASES_F13.md) ;
-- [stratégie de fabrication et qualification](../../archive/917/docs/917_MANUFACTURING_VALIDATION_F13.md).
+- [program and evidence levels](../../archive/917/docs/917_REENGINEERING_PROGRAM.md);
+- [conditional scan metrology](../../archive/917/docs/917_SCAN_METROLOGY_F13.md);
+- [parametric case–cylinder–cylinder-head master](../../archive/917/docs/917_PARAMETRIC_INTERFACE_F13.md);
+- [register of the twelve classical solver cases](../../archive/917/docs/917_CLASSICAL_SOLVER_CASES_F13.md);
+- [manufacturing and qualification strategy](../../archive/917/docs/917_MANUFACTURING_VALIDATION_F13.md).
 
-Le STEP F13 contient 25 solides de repérage et reste sous `work/`, hors Git. Il
-sert uniquement à superposer et contrôler l'implantation des douze ouvertures.
-Il n'est ni une pièce, ni une CAO de définition. Le niveau vérifié du moteur
-reste F0 tant que l'identité, l'échelle et les datums n'ont pas été confirmés
-sur du matériel physique identifié.
+The F13 STEP contains 25 reference-mark solids and stays under `work/`, outside
+Git. It serves only to overlay and check the layout of the twelve openings. It
+is neither a part nor a definition CAD. The verified level of the engine stays
+F0 until identity, scale and datums have been confirmed on identified physical
+hardware.
 
-## Criblage de culasse 2V/4V F29
+## 2V/4V cylinder-head screening F29
 
-F29 publie une étude de concept indépendante du scan : quatre solides de
-culasse issus d'une feuille blanche couvrent les scénarios 5,0 l atmosphérique
-et 5,374 l turbo, chacun en architecture 2V et 4V. Les STEP canonisés, les STL,
-les figures et les rapports SHA-256 sont consultables dans le
-[paquet de preuves F29](evidence/f29/README.md). La méthode, les équations de
-criblage, les choix provisoires de matière et de distribution ainsi que les
-limites sont détaillés dans la
-[documentation F29](../../archive/917/docs/917_CLEAN_SHEET_HEAD_F29.md).
+F29 publishes a concept study independent of the scan: four clean-sheet
+cylinder-head solids cover the 5.0 l naturally aspirated and 5.374 l turbo
+scenarios, each in 2V and 4V architecture. The canonicalized STEP files, the
+STLs, the figures and the SHA-256 reports can be consulted in the
+[F29 evidence package](evidence/f29/README.md). The method, the screening
+equations, the provisional material and valvetrain choices and the limits are
+detailed in the
+[F29 documentation](../../archive/917/docs/917_CLEAN_SHEET_HEAD_F29.md).
 
 ```bash
 make 917-clean-sheet-head-f29
@@ -125,282 +130,287 @@ make 917-clean-sheet-head-f29-check
 make 917-clean-sheet-head-f29-figures
 ```
 
-La branche 4V obtient le meilleur score de criblage dans les deux scénarios,
-avec une aire effective moyenne estimée supérieure, mais aussi des pénalités de
-masse de soupapes, de contrainte de plaque et de température. Ces résultats
-sont des indicateurs analytiques simplifiés : ils ne constituent ni un
-rendement moteur, ni une CFD, ni une FEA, ni une corrélation banc. Le
-[rapport consolidé](evidence/f29/validation-report.json) maintient donc à
-`false` la validation du jumeau, la fabrication et le démarrage moteur. Les
-deux images publiées sont des aperçus CAD, pas des rendus Omniverse.
+The 4V branch gets the best screening score in both scenarios, with a higher
+estimated mean effective area, but also penalties for valve mass, deck stress
+and temperature. These results are simplified analytical indicators: they are
+neither an engine efficiency, nor a CFD, nor an FEA, nor a bench correlation.
+The [consolidated report](evidence/f29/validation-report.json) therefore keeps
+twin validation, manufacturing and engine start at `false`. The two published
+images are CAD previews, not Omniverse renders.
 
-## Calcul EF de référence du deck F31
+![F29 conceptual cylinder heads: 2V and 4V, 5.0 l naturally aspirated and 5.374 l turbo, as four CAD previews](evidence/f29/figures/cad-comparison-2v-4v.png)
 
-F31 fait franchir à la comparaison 2V/4V un niveau supplémentaire : douze
-maillages Gmsh et trente-six résolutions CalculiX séparent pression, dilatation
-thermique et cas combiné. Les résultats, convergence et bilans sont publiés
-dans le [paquet de preuves F31](evidence/f31/README.md), avec la
-[méthode complète](../../archive/917/docs/917_HEAD_REFERENCE_CAE_F31.md).
+*The four F29 clean-sheet solids reopened in OCCT. A conceptual CAD preview, as
+its own banner says: not a CFD, FEA or Omniverse result, and engine fit and
+manufacturing are not authorized.*
 
-La version 4V garde le gain d'aire effective de F29 et réduit légèrement le
-déplacement du deck dans ce modèle, mais augmente la contrainte P95 de 9,0 % en
-atmosphérique et de 14,5 % en turbo. Elle reste donc la branche de performance
-à développer, sous condition de renforcer les chemins de charge et de refaire
-le calcul sur une culasse fonctionnelle mesurée.
+## Reference FE computation of the F31 deck
 
-Le modèle EF est volontairement défeaturé parce que les STEP/STL complets F29
-ne produisent pas encore un volume Gmsh raffiné robuste. Il ne contient ni les
-ailettes, ni les vrais conduits, sièges, guides, précharges ou contacts. Une
-FEA convergée de ce coupon est une preuve de chaîne solveur et de comparaison,
-pas une validation de fabrication ou de démarrage moteur.
+F31 takes the 2V/4V comparison one level further: twelve Gmsh meshes and
+thirty-six CalculiX solves separate pressure, thermal expansion and the combined
+case. The results, convergence and balances are published in the
+[F31 evidence package](evidence/f31/README.md), with the
+[complete method](../../archive/917/docs/917_HEAD_REFERENCE_CAE_F31.md).
 
-## Assemblage fonctionnel complet F1
+The 4V version keeps the F29 effective-area gain and slightly reduces deck
+displacement in this model, but increases P95 stress by 9.0 % naturally
+aspirated and by 14.5 % turbo. It therefore remains the performance branch to
+develop, on condition of reinforcing the load paths and redoing the computation
+on a measured functional cylinder head.
 
-Une nomenclature paramétrique distincte du scan reconstruit les familles
-fonctionnelles identifiables du moteur Type 912. Elle comprend 31 prototypes
-STEP et STL d'inspection, instanciés 275 fois dans un stage OpenUSD : carters,
-vilebrequin et huit paliers, pistons, axes, segments, bielles, cylindres,
-culasses individuelles, soupapes et ressorts, quatre arbres à cames et leur
-entraînement central, admission, double allumage, lubrification à carter sec,
-refroidissement, échappement et accessoires. La variante `917_30_turbo` active
-en plus deux turbocompresseurs et deux plénums ; la variante par défaut
-`type_912_4_5_na` les masque.
+The FE model is deliberately defeatured because the complete F29 STEP/STL files
+do not yet produce a robust refined Gmsh volume. It contains neither the fins,
+nor the real ports, seats, guides, preloads or contacts. A converged FEA of this
+coupon is evidence of a solver and comparison chain, not a validation of
+manufacturing or engine start.
+
+![F31 FE screening of the 2V/4V architectures: P95 von Mises stress in the combined case and maximum deck displacement, for NA and turbo](evidence/f31/figures/reference-fea-2v-4v.png)
+
+*CalculiX results on the defeatured conceptual deck, uncorrelated. They compare
+the two architectures under the same model; they validate neither a cylinder
+head nor its manufacture.*
+
+## Complete functional assembly F1
+
+A parametric bill of materials, separate from the scan, reconstructs the
+identifiable functional families of the Type 912 engine. It comprises 31 STEP
+and STL inspection prototypes, instanced 275 times in an OpenUSD stage: cases,
+crankshaft and eight main bearings, pistons, pins, rings, connecting rods,
+cylinders, individual cylinder heads, valves and springs, four camshafts and
+their central drive, intake, twin ignition, dry-sump lubrication, cooling,
+exhaust and accessories. The `917_30_turbo` variant additionally activates two
+turbochargers and two plenums; the default variant `type_912_4_5_na` hides
+them.
 
 ```bash
 make 917-complete-assembly
 ```
 
-La chaîne utilise l'image immuable
+The chain uses the immutable image
 `ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:41965aa48548481473a63f4d0277599b93cf4870d2e1f833099dd4e8e146d2f3`.
-Elle exige d'abord un prévol SimReady vert, génère les géométries avec
-Build123d, convertit chaque prototype STEP en USDC, compose le stage instancié,
-puis contrôle les deux variantes. Les sorties restent localement sous
-`work/917-complete-engine/`; aucun scan, STEP, STL ou USD n'est versionné.
+It first requires a green SimReady preflight, generates the geometries with
+Build123d, converts each STEP prototype to USDC, composes the instanced stage,
+then checks both variants. The outputs stay locally under
+`work/917-complete-engine/`; no scan, STEP, STL or USD is versioned.
 
-Le résultat est un assemblage d'encombrement et de topologie, pas une CAO
-constructeur. Les dimensions sourcées sont séparées des hypothèses de placement
-(longueur de bielle, longueur des arbres, enveloppe des turbos, notamment).
-L'affectation de matériaux, les joints physiques et PhysicsNeMo sont
-intentionnellement absents tant que les interfaces, masses, alliages, profils de
-came, jeux et cas de charge ne sont pas mesurés. Il est interdit d'utiliser ces
-proxies pour fabriquer ou faire tourner un moteur.
+The result is a packaging and topology assembly, not manufacturer CAD. Sourced
+dimensions are separated from placement assumptions (connecting-rod length,
+shaft lengths, turbo envelope, in particular). Material assignment, physical
+joints and PhysicsNeMo are intentionally absent as long as the interfaces,
+masses, alloys, cam profiles, clearances and load cases are not measured. Using
+these proxies to manufacture or run an engine is prohibited.
 
-Les principales sources de recoupement sont l'analyse moteur
+The main cross-check sources are the engine analysis by
 [auto motor und sport](https://www.auto-motor-und-sport.de/oldtimer/porsche-917-motor-kraftwerk-ohne-gleichen/),
-les [détails techniques Stuttcars](https://www.stuttcars.com/porsche-917-technical-details/),
-la synthèse secondaire [kfz-tech](https://www.kfz-tech.de/Buchprojekte/Porsche/917Teil2.htm)
-et la fiche officielle du
+the [Stuttcars technical details](https://www.stuttcars.com/porsche-917-technical-details/),
+the secondary summary [kfz-tech](https://www.kfz-tech.de/Buchprojekte/Porsche/917Teil2.htm)
+and the official record of the
 [Porsche 917/30 Spyder](https://newsroom.porsche.com/de/pressemappen/Porsche-Museum/Porsche-917-30-Spyder.html).
 
-## Cinématique Omniverse F2
+## Omniverse kinematics F2
 
-La couche F2 ajoute une timeline de 240 images à 24 images/s au-dessus d'un USD
-existant. Elle anime le vilebrequin, les quatre arbres à cames, les douze
-pistons et bielles ainsi que la distribution. Le calcul bielle-manivelle utilise
-la course sourcée de 66 mm ; la longueur de bielle, la numérotation des bancs et
-les levées de soupapes restent des hypothèses de visualisation déclarées dans
-`kinematics-f2.json`.
-
-```bash
-make 917-kinematics-f2 F2_INPUT=/chemin/vers/moteur-enrichi.usd
-```
-
-La scène d'essai utilise une gravité nulle et des corps mobiles cinématiques.
-Elle sert à contrôler la hiérarchie, la timeline et les déplacements dans
-Omniverse. Elle ne simule ni combustion, ni puissance, ni contacts chargés et
-ne valide aucune pièce pour la fabrication.
-
-## Détail systèmes F3
-
-La couche F3 complète l'assemblage F2 avec 13 familles et 30 instances
-supplémentaires : entraînement du ventilateur, paire conique, pompe d'injection
-à douze pistons, douze conduites, filtre, thermostat et refroidisseur d'huile,
-arbre intermédiaire de distribution, puis roues, arbres, wastegates et dérivations
-des deux turbocompresseurs de la variante `917_30_turbo`.
+The F2 layer adds a timeline of 240 frames at 24 frames/s on top of an existing
+USD. It animates the crankshaft, the four camshafts, the twelve pistons and
+connecting rods, and the valvetrain. The crank-slider computation uses the
+sourced stroke of 66 mm; the connecting-rod length, the bank numbering and the
+valve lifts remain visualization assumptions declared in `kinematics-f2.json`.
 
 ```bash
-make 917-detail-f3 F2_INPUT=/chemin/vers/moteur-f2.usd
+make 917-kinematics-f2 F2_INPUT=/path/to/enriched-engine.usd
 ```
 
-Les prototypes STEP sont éditables et les actifs USDC restent instanciés dans
-une couche non destructive. Les formes, dimensions et routages non documentés
-sont explicitement des hypothèses d'encombrement. Cette couche ne permet ni
-fabrication, ni calcul de lubrification ou d'injection, ni validation de
-jeux, de débit ou de rotordynamique turbo.
+The test scene uses zero gravity and kinematic moving bodies. It serves to check
+the hierarchy, the timeline and the motions in Omniverse. It simulates neither
+combustion, nor power, nor loaded contacts, and validates no part for
+manufacturing.
 
-## Fluides, électricité et banc virtuel F4
+## Systems detail F3
 
-Le contrat `systems-f4.json` décrit quatre domaines séparés : refroidissement
-externe, admission, échappement et huile à carter sec. Il décrit aussi un réseau
-électrique fonctionnel allant du bus batterie à l'alternateur, au démarreur, aux
-deux distributeurs et aux 24 bougies. Les routes sont des topologies et des
-proxies de visualisation ; les conduits internes, sections, longueurs, pertes de
-charge, caractéristiques électriques et conditions aux limites ne sont pas
-connus. `PhysicsNeMo` est donc réservé à un futur surrogate entraîné après une
-référence OpenFOAM contrôlée et des mesures physiques.
+The F3 layer completes the F2 assembly with 13 families and 30 additional
+instances: fan drive, bevel gear pair, twelve-plunger injection pump, twelve
+lines, filter, thermostat and oil cooler, intermediate timing shaft, then the
+wheels, shafts, wastegates and bypasses of the two turbochargers of the
+`917_30_turbo` variant.
 
-Le banc virtuel ajoute une plaque, quatre supports hypothétiques, un
-dynamomètre désactivé, un accouplement cinématique, une batterie, une alimentation
-carburant, un réservoir d'huile et un arrêt d'urgence. Le prévol autorise
-uniquement la visualisation d'un entraînement externe à 120 tr/min, sans
-carburant ni allumage :
+```bash
+make 917-detail-f3 F2_INPUT=/path/to/engine-f2.usd
+```
+
+The STEP prototypes are editable and the USDC assets stay instanced in a
+non-destructive layer. Undocumented shapes, dimensions and routings are
+explicitly packaging assumptions. This layer allows neither manufacturing, nor
+lubrication or injection computation, nor validation of clearances, flow or
+turbo rotordynamics.
+
+## Fluids, electrics and virtual test bench F4
+
+The `systems-f4.json` contract describes four separate domains: external
+cooling, intake, exhaust and dry-sump oil. It also describes a functional
+electrical network from the battery bus to the alternator, the starter, the two
+distributors and the 24 spark plugs. The routes are topologies and visualization
+proxies; the internal passages, sections, lengths, pressure losses, electrical
+characteristics and boundary conditions are not known. `PhysicsNeMo` is
+therefore reserved for a future surrogate model trained after a controlled
+OpenFOAM reference and physical measurements.
+
+The virtual bench adds a plate, four hypothetical mounts, a disabled
+dynamometer, a kinematic coupling, a battery, a fuel supply, an oil tank and an
+emergency stop. The preflight only authorizes the visualization of an external
+drive at 120 rpm, without fuel or ignition:
 
 ```bash
 make 917-virtual-test-bench
 
 make 917-test-bench-usd \
-  F3_INPUT=/chemin/vers/917-engine-detail-f3.usda
+  F3_INPUT=/path/to/917-engine-detail-f3.usda
 ```
 
-Le rapport s'arrête volontairement avant tout démarrage avec combustion. Il
-énumère les interfaces et données manquantes : supports et accouplement,
-démarreur et couronne, batterie et protections, bobines et ordre d'allumage,
-alimentation carburant, circuit d'huile, profils de came, inerties et
-frottements, combustion, refroidissement, échappement et instrumentation. Ce
-fail-closed est le résultat attendu tant que ces éléments ne sont pas mesurés.
+The report deliberately stops before any start with combustion. It lists the
+missing interfaces and data: mounts and coupling, starter and ring gear, battery
+and protections, coils and firing order, fuel supply, oil circuit, cam profiles,
+inertias and friction, combustion, cooling, exhaust and instrumentation. This
+fail-closed outcome is the expected result as long as these elements are not
+measured.
 
-## Démarreur, liaison dynamométrique et amorçage d'huile F5
+## Starter, dynamometer link and oil priming F5
 
-La couche F5 ajoute les enveloppes fonctionnelles encore absentes du banc :
-démarreur, pignon, couronne, flasque de sortie, adaptateur dynamométrique,
-protection d'accouplement, câbles batterie et masse, alimentation et retour du
-réservoir d'huile, puis quatre capteurs d'huile. Elle complète la topologie sans
-inventer la denture, les fixations, les sections, les capacités ou les courbes
-de pompe.
+The F5 layer adds the functional envelopes still missing from the bench:
+starter, pinion, ring gear, output flange, dynamometer adapter, coupling guard,
+battery and ground cables, oil tank supply and return, then four oil sensors. It
+completes the topology without inventing the gear teeth, the fasteners, the
+sections, the capacities or the pump curves.
 
 ```bash
 make 917-start-support-f5 \
-  F4_INPUT=/chemin/vers/917-engine-test-bench-systems.usda
+  F4_INPUT=/path/to/917-engine-test-bench-systems.usda
 
 make 917-virtual-test-bench
 ```
 
-Un passage F5 signifie uniquement que chaque fonction possède un objet ou une
-route nommée dans USD. L'amorçage reste bloqué tant que la qualité d'huile, les
-débits, les pertes de charge, les soupapes de décharge, les jeux de paliers et
-les seuils des capteurs ne sont pas mesurés. Le démarreur et le dynamomètre
-restent également désactivés tant que les interfaces et limites de couple ne
-sont pas validées.
+An F5 pass means only that each function has a named object or route in USD.
+Priming remains blocked as long as the oil grade, the flow rates, the pressure
+losses, the relief valves, the bearing clearances and the sensor thresholds are
+not measured. The starter and the dynamometer also stay disabled as long as the
+interfaces and torque limits are not validated.
 
-## Préparation du modèle d'amorçage d'huile F6
+## Preparing the oil-priming model F6
 
-Le cas F6 transforme les inconnues de lubrification en entrées explicites d'un
-futur réseau hydraulique 0D. Il refuse les valeurs moteur génériques et ne
-produit donc actuellement aucune pression fictive :
+The F6 case turns the lubrication unknowns into explicit inputs of a future 0D
+hydraulic network. It rejects generic engine values and therefore currently
+produces no fictitious pressure:
 
 ```bash
 make 917-oil-prime-f6
 ```
 
-Le rapport d'audit énumère les mesures encore nécessaires, notamment la
-viscosité en fonction de la température, les courbes des sept pompes, les
-sections et longueurs, les pertes du filtre et du refroidisseur, les jeux de
-paliers et les seuils d'arrêt. OpenFOAM restera réservé aux passages internes
-reconstruits ; PhysicsNeMo ne pourra apprendre qu'après corrélation du réseau
-0D, de la CFD et d'essais instrumentés.
+The audit report lists the measurements still needed, in particular viscosity
+as a function of temperature, the curves of the seven pumps, the sections and
+lengths, the filter and cooler losses, the bearing clearances and the shutdown
+thresholds. OpenFOAM will stay reserved for the reconstructed internal passages;
+PhysicsNeMo can only learn after correlation of the 0D network, the CFD and
+instrumented tests.
 
-## Vidéo d'inspection cinématique F7
+## Kinematic inspection video F7
 
-La sortie F7 prépare deux couches caméra sur les 241 images de la timeline :
-une vue extérieure, puis une vue ouverte masquant les enveloppes qui cachent le
-vilebrequin, les pistons, les bielles et la distribution. Le service OVRTX rend
-les images sur une RTX et `ffmpeg` les assemble en MP4 720p à 24 i/s :
+The F7 output prepares two camera layers over the 241 frames of the timeline: an
+exterior view, then an open view hiding the envelopes that conceal the
+crankshaft, the pistons, the connecting rods and the valvetrain. The OVRTX
+service renders the frames on an RTX and `ffmpeg` assembles them into a 720p
+MP4 at 24 fps:
 
 ```bash
 make 917-motion-video-stages-f7 \
-  F5_INPUT=/chemin/vers/917-engine-start-support-f5.usda
+  F5_INPUT=/path/to/917-engine-start-support-f5.usda
 
 make 917-motion-video-render-f7
 ```
 
-La vidéo porte une mention incrustée indiquant qu'il s'agit d'un entraînement
-cinématique à sec, sans combustion, charge ni pression calculée. Elle reste sans
-audio afin de ne pas suggérer un régime moteur physiquement simulé. Les 31
-familles reçoivent aussi un matériau `UsdPreviewSurface` déterministe pour le
-rendu. Ces couleurs sont des hypothèses visuelles ; elles ne constituent ni une
-identification historique d'alliage, ni des propriétés physiques de calcul.
+The video carries a burned-in notice stating that it is a dry kinematic drive,
+without combustion, load or computed pressure. It has no audio so as not to
+suggest a physically simulated engine speed. The 31 families also receive a
+deterministic `UsdPreviewSurface` material for rendering. These colors are
+visual assumptions; they are neither a historical alloy identification nor
+physical properties for computation.
 
-## Liaisons, étanchéités et conduits F8
+## Joints, seals and passages F8
 
-La couche F8 transforme les connexions encore implicites en quatre contrats
-mesurables et contrôlés localement :
+The F8 layer turns the still-implicit connections into four measurable,
+locally checked contracts:
 
-- `mechanical-connections-f8.json` inventorie 18 groupes et 119 instances de
-  liaisons fixes, guidées, tournantes, engrenées ou montées sur le banc ;
-- `sealing-interfaces-f8.json` inventorie 29 groupes et 194 interfaces
-  d'étanchéité, y compris les joints feu, huile, admission, échappement et turbo ;
-- `ducts-f8.json` inventorie 21 groupes et 106 conduits, en signalant notamment
-  l'absence actuelle du domaine carburant F4, de la distribution du plénum, des
-  conduites d'huile turbo et du reniflard ;
-- `external-interfaces-f8.json` ferme le registre à 6 interfaces externes
-  nommées, toutes sans géométrie ni condition aux limites libérée.
+- `mechanical-connections-f8.json` inventories 18 groups and 119 instances of
+  fixed, guided, rotating, geared or bench-mounted joints;
+- `sealing-interfaces-f8.json` inventories 29 groups and 194 sealing
+  interfaces, including fire, oil, intake, exhaust and turbo seals;
+- `ducts-f8.json` inventories 21 groups and 106 passages, flagging in
+  particular the current absence of the F4 fuel domain, of the plenum
+  distribution, of the turbo oil lines and of the breather;
+- `external-interfaces-f8.json` closes the register at 6 named external
+  interfaces, all without released geometry or boundary condition.
 
-La correction topologique F8.1 sépare les guides des 12 soupapes d'admission et
-des 12 soupapes d'échappement, distingue l'admission atmosphérique de l'entrée
-des deux compresseurs, relie les deux sorties de turbine à l'extraction du banc
-et explicite les raccords de la chaîne carburant banc-pompe-conduites-injecteurs.
-Ces liaisons décrivent uniquement une connectivité requise ; leurs dimensions,
-technologies de joint et conditions de fonctionnement restent à mesurer.
+The F8.1 topological correction separates the guides of the 12 intake valves
+and the 12 exhaust valves, distinguishes the naturally aspirated intake from the
+inlet of the two compressors, links the two turbine outlets to the bench
+extraction and makes explicit the fittings of the bench–pump–lines–injectors
+fuel chain. These joints describe only a required connectivity; their
+dimensions, seal technologies and operating conditions remain to be measured.
 
-Les nombres décrivent la topologie attendue, pas une nomenclature déclarée
-exhaustive. Aucun repère de liaison, jeu, précharge, technologie de joint,
-section interne, perte de charge ou condition aux limites n'est inventé. Les
-champs de mesure sont donc vides, aucune articulation Physics n'est activée et
-aucune frontière de pression n'est libérée.
+The numbers describe the expected topology, not a bill of materials declared
+exhaustive. No joint frame, clearance, preload, seal technology, internal
+section, pressure loss or boundary condition is invented. The measurement
+fields are therefore empty, no Physics articulation is activated and no pressure
+boundary is released.
 
 ```bash
 make 917-interfaces-f8-check
 make 917-interfaces-f8-preflight
 ```
 
-Le premier contrôle vérifie les références vers les familles F1/F3, les
-éléments du banc F4/F5, le registre fermé des interfaces externes, les comptes,
-les variantes et les sources. Le second
-écrit `work/917-interfaces-f8/input-audit.json` avec la liste déterministe des
-mesures manquantes. Même si toutes les entrées sont renseignées, le prévol ne
-crée ni joint physique, ni calcul de contact, ni solveur de débit : une revue
-d'ingénierie et une étape d'authoring distincte restent obligatoires. F8 ne
-contient volontairement aucun objectif de puissance ou modèle de combustion.
+The first check verifies the references to the F1/F3 families, the F4/F5 bench
+elements, the closed register of external interfaces, the counts, the variants
+and the sources. The second writes `work/917-interfaces-f8/input-audit.json`
+with the deterministic list of missing measurements. Even if all inputs are
+filled in, the preflight creates no physical joint, no contact computation and
+no flow solver: an engineering review and a separate authoring step remain
+mandatory. F8 deliberately contains no power target or combustion model.
 
-## Recoupement documentaire Stuttcars
+## Stuttcars documentary cross-check
 
-La page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
-transmise par le porteur du projet confirme comme piste secondaire un flat-12
-refroidi par air, deux arbres à cames par banc, une prise de puissance centrale,
-un vilebrequin annoncé à 757 mm et des bielles forgées en titane. Elle distingue
-notamment 85 × 66 mm pour la première définition et 86 × 70,2 mm pour la version
-4 907 cm³. Ces données aident à nommer et paramétrer les futurs organes 917,
-mais elles ne donnent ni contour de piston, ni entraxe de bielle, ni profil de
-came, ni géométrie des deux turbos du 917/30. Elles ne calibrent donc pas à elles
-seules le scan.
+The page [Porsche 917 Technical Details](https://www.stuttcars.com/porsche-917-technical-details/)
+passed on by the project owner confirms, as a secondary lead, an air-cooled
+flat-12, two camshafts per bank, a central power take-off, a crankshaft
+announced at 757 mm and forged titanium connecting rods. It notably
+distinguishes 85 × 66 mm for the first definition and 86 × 70.2 mm for the
+4,907 cm³ version. These data help to name and parameterize future 917
+components, but they give neither a piston contour, nor a connecting-rod center
+distance, nor a cam profile, nor the geometry of the two turbos of the 917/30.
+They therefore do not, on their own, calibrate the scan.
 
-## Modèles d'impression
+## Print models
 
-Les deux STL sont reconstruits directement à leur échelle cible avec un voxel
-de 0,8 mm, puis nettoyés pour ne conserver qu'un volume principal. Sous
-l'hypothèse encore non confirmée `1 unité OBJ = 1 mm` :
+Both STLs are reconstructed directly at their target scale with a 0.8 mm voxel,
+then cleaned to keep only one main volume. Under the still unconfirmed
+assumption `1 OBJ unit = 1 mm`:
 
-| Échelle | Enveloppe candidate | Triangles | Gates géométriques |
+| Scale | Candidate envelope | Triangles | Geometric gates |
 |---|---:|---:|---|
-| 1:4 | 223,18 × 123,27 × 107,22 mm | 497 738 | étanche, manifold, un seul volume |
-| 1:8 | 115,53 × 61,14 × 53,51 mm | 123 324 | étanche, manifold, un seul volume |
+| 1:4 | 223.18 × 123.27 × 107.22 mm | 497,738 | watertight, manifold, single volume |
+| 1:8 | 115.53 × 61.14 × 53.51 mm | 123,324 | watertight, manifold, single volume |
 
-`Géométriquement imprimable` ne veut pas dire `prêt à lancer`. Les ailettes,
-passages et détails fins exigent encore une revue dans le slicer, une stratégie
-de supports et, en résine, un plan intentionnel d'évidement et de drainage.
-Les fichiers restent des maquettes statiques non fonctionnelles.
+`Geometrically printable` does not mean `ready to launch`. The fins, passages
+and fine details still require a review in the slicer, a support strategy and,
+in resin, an intentional hollowing and drainage plan. The files remain static,
+non-functional display models.
 
-## CFD externe
+## External CFD
 
-La peau externe fermée est alignée dans le repère moteur, convertie
-provisoirement en mètres et allégée à 300 000 triangles. Le cas OpenFOAM
-`snappyHexMesh` construit 130 208 cellules autour de cette peau, dont 118 304
-hexaèdres. `checkMesh` bloque toutefois le solveur avec deux contrôles en échec :
-21 faces dupliquées, 170 faces à sommets partagés non consécutifs, 76 faces très
-asymétriques et 6 111 cellules concaves. Aucune solution d'écoulement n'est donc
-produite ou revendiquée.
+The closed outer skin is aligned in the engine frame, provisionally converted to
+meters and decimated to 300,000 triangles. The OpenFOAM `snappyHexMesh` case
+builds 130,208 cells around this skin, of which 118,304 are hexahedra.
+`checkMesh` nevertheless blocks the solver with two failing checks: 21 duplicate
+faces, 170 faces with non-consecutive shared vertices, 76 highly skewed faces
+and 6,111 concave cells. No flow solution is therefore produced or claimed.
 
-Le contrôle distant s'exécute séparément :
+The remote check runs separately:
 
 ```bash
 twins/reference-917-engine/source/check_external_cfd.sh \
@@ -411,212 +421,224 @@ python twins/reference-917-engine/source/summarize_openfoam.py \
   work/917-engine/pipeline/cfd/external-cooling/cfd-validation.json
 ```
 
-## Critères avant impression
+## Criteria before printing
 
-1. confirmer une dimension physique et l'unité du scan ;
-2. choisir une échelle d'impression explicite ;
-3. vérifier l'épaisseur minimale, le drainage et le volume de matière ;
-4. trancher le STL avec le profil réel de la machine et du matériau ;
-5. conserver la mention `display-only` sur chaque export.
+1. confirm one physical dimension and the unit of the scan;
+2. choose an explicit print scale;
+3. check the minimum thickness, the drainage and the material volume;
+4. slice the STL with the real machine and material profile;
+5. keep the `display-only` notice on every export.
 
-## Comparaison 993
+## 993 comparison
 
-Ce scan sert à éprouver les méthodes de gros assemblage, de répétition des
-cylindres, de refroidissement externe et d'impression de maquette. Il ne fournit
-aucune interface de montage 993. La comparaison dimensionnelle reste bloquée
-jusqu'à disposer d'un moteur 993 nommé, de ses entraxes et registres mesurés,
-ainsi que d'une échelle confirmée pour les deux jeux de données.
+This scan serves to test the methods for large assemblies, cylinder repetition,
+external cooling and display-model printing. It provides no 993 mounting
+interface. The dimensional comparison stays blocked until a named 993 engine is
+available, with its measured center distances and registers, and a confirmed
+scale for both data sets.
 
-## Branches de géométrie et de cinématique F10
+## Geometry and kinematics branches F10
 
-F10 corrige une ambiguïté des scènes F1 à F3 : masquer les turbos ne transforme
-pas un moteur 85 × 66 mm en 917/30. Le contrat
-`variant-configurations-f10.json` crée donc deux branches sans `engineVariant`
-partagé :
+F10 corrects an ambiguity of the F1 to F3 scenes: hiding the turbos does not turn
+an 85 × 66 mm engine into a 917/30. The `variant-configurations-f10.json`
+contract therefore creates two branches without a shared `engineVariant`:
 
-- `type_912_4_5_na`, avec alésage/course 85 × 66 mm et cylindrée calculée de
-  4 494,205 cm³, recoupés par les sources secondaires AMS, kfz-tech et
-  Stuttcars ;
-- `917_30_turbo_5374`, avec 90 × 70,4 mm et 5 374,385 cm³ calculés. Les
-  5 374 cm³ sont documentés par Porsche ; les 90 × 70,4 mm viennent de la
-  source secondaire AMS.
+- `type_912_4_5_na`, with bore/stroke 85 × 66 mm and a computed displacement of
+  4,494.205 cm³, cross-checked by the secondary sources AMS, kfz-tech and
+  Stuttcars;
+- `917_30_turbo_5374`, with 90 × 70.4 mm and 5,374.385 cm³ computed. The
+  5,374 cm³ are documented by Porsche; the 90 × 70.4 mm come from the secondary
+  source AMS.
 
-Chaque branche reconstruit ses propres proxies de piston et de cylindre à
-partir de l'alésage, possède sa propre course cinématique et produit ses propres
-stages géométrie, cinématique puis détail F3 sous
-`work/917-variant-geometry-f10/`. La branche atmosphérique exclut réellement les
-familles turbo et plénum ; la branche 917/30 les compose avec les organes F3 de
-suralimentation. Il ne s'agit plus d'un simple commutateur de visibilité.
+Each branch rebuilds its own piston and cylinder proxies from the bore, has its
+own kinematic stroke and produces its own geometry, kinematics and then F3
+detail stages under `work/917-variant-geometry-f10/`. The naturally aspirated
+branch actually excludes the turbo and plenum families; the 917/30 branch
+composes them with the F3 forced-induction components. It is no longer a simple
+visibility switch.
 
 ```bash
 make 917-variant-geometry-f10-check
 make 917-variant-geometry-f10
 ```
 
-La deuxième commande exige un prévol de conversion SimReady vert, puis utilise
-les images Docker immuables existantes pour Build123d, STEP, USDC et OpenUSD.
-Les STEP, STL, USD et rapports générés restent hors Git sous `work/`.
+The second command requires a green SimReady conversion preflight, then uses the
+existing immutable Docker images for Build123d, STEP, USDC and OpenUSD. The
+generated STEP, STL, USD and reports stay outside Git under `work/`.
 
-La portée dimensionnelle reste volontairement étroite. F10 ne change réellement
-que le diamètre visuel des pistons/cylindres dérivé de l'alésage et la course de
-l'animation. Le corps, les manetons et les contrepoids du vilebrequin restent le
-même proxy visuel ; une course de 70,4 mm dans la timeline ne constitue pas la
-reconstruction dimensionnelle d'un vilebrequin de 917/30. La longueur de bielle
-de 132 mm, le profil de piston, les chambres, les cames, les routages et les
-jeux restent des hypothèses explicitement non sourcées. Les source IDs F1 sont
-conservés avec les sources propres à l'alésage/course afin de ne pas perdre la
-provenance de la topologie, des familles et du scan.
+The dimensional scope remains deliberately narrow. F10 really changes only the
+visual piston/cylinder diameter derived from the bore and the stroke of the
+animation. The body, crankpins and counterweights of the crankshaft remain the
+same visual proxy; a stroke of 70.4 mm in the timeline is not the dimensional
+reconstruction of a 917/30 crankshaft. The connecting-rod length of 132 mm, the
+piston profile, the chambers, the cams, the routings and the clearances remain
+explicitly unsourced assumptions. The F1 source IDs are kept alongside the
+bore/stroke sources so as not to lose the provenance of the topology, the
+families and the scan.
 
-Les validateurs refusent les chemins de stage partagés, une cote sans source,
-un retour au variant-set de visibilité, une course différente du contrat, une
-branche atmosphérique contenant des organes turbo ou tout gate physique,
-fabrication, combustion ou puissance passé prématurément à vrai. F10 est une
-séparation de visualisation et de cinématique ; il ne prouve ni jeux, ni masses,
-ni inerties, ni contacts, ni fonctionnement, ni 1 600 HP.
+The validators reject shared stage paths, an unsourced dimension, a return to
+the visibility variant set, a stroke different from the contract, a naturally
+aspirated branch containing turbo components, and any physics, manufacturing,
+combustion or power gate switched to true prematurely. F10 is a separation of
+visualization and kinematics; it proves neither clearances, nor masses, nor
+inertias, nor contacts, nor operation, nor 1,600 HP.
 
-## Réingénierie physique et comparaison 2V/4V F11
+## Physical re-engineering and 2V/4V comparison F11
 
-Le programme complet, sa boucle de corrélation et la frontière entre solveurs
-de référence, PhysicsNeMo et Omniverse sont décrits dans
+The complete program, its correlation loop and the boundary between reference
+solvers, PhysicsNeMo and Omniverse are described in
 [`archive/917/docs/917_REENGINEERING_PROGRAM.md`](../../archive/917/docs/917_REENGINEERING_PROGRAM.md).
 
-F11 recentre le travail sur les douze culasses individuelles du moteur 917. Le
-scan disponible couvre le carter et les cylindres vus de l'extérieur ; il ne
-contient pas une géométrie mesurée des chambres, conduits, sièges, guides ou
-culasses. La culasse scannée de 935 et les proxies de soupapes 993 sont donc
-explicitement exclus comme géométrie 917. Ils peuvent seulement servir à
-éprouver une méthode hors du modèle 917.
+F11 refocuses the work on the twelve individual cylinder heads of the 917
+engine. The available scan covers the case and cylinders seen from the outside;
+it contains no measured geometry of chambers, ports, seats, guides or cylinder
+heads. The scanned 935 cylinder head and the 993 valve proxies are therefore
+explicitly excluded as 917 geometry. They can only serve to test a method
+outside the 917 model.
 
-Le contrat `reengineering-contract-f11.json` maintient deux variantes moteur :
+The `reengineering-contract-f11.json` contract maintains two engine variants:
 
-- le Type 912 4,5 L atmosphérique ;
-- le 917/30 5,374 L biturbo, dont les 1 600 hp restent une exigence documentaire
-  à démontrer, et non un résultat de simulation.
+- the Type 912 4.5 L naturally aspirated;
+- the 917/30 5.374 L twin-turbo, whose 1,600 hp remain a documentary
+  requirement to be demonstrated, not a simulation result.
 
-Pour chacune, la branche `917_2v_baseline` décrit 2 soupapes par cylindre,
-soit 24 soupapes moteur. La branche `917_4v_concept` décrit 2 admissions et
-2 échappements par cylindre, soit 48 soupapes, mais n'invente ni diamètre, ni
-angle, ni levée, ni commande. Elle exige une CAO paramétrique indépendante et
-sera comparée à la 2V avec les mêmes conditions aux limites.
+For each, the `917_2v_baseline` branch describes 2 valves per cylinder, i.e. 24
+engine valves. The `917_4v_concept` branch describes 2 intakes and 2 exhausts
+per cylinder, i.e. 48 valves, but invents neither diameter, nor angle, nor lift,
+nor actuation. It requires an independent parametric CAD and will be compared
+with the 2V under the same boundary conditions.
 
-La présélection matière retient seulement deux candidats de culasse LPBF à
-caractériser, AlSi10Mg et AlF357. Aucun gagnant n'est déclaré avant calculs
-thermiques et thermomécaniques corrélés et coupons produits avec la machine,
-l'orientation et le traitement finaux. Les soupapes et ressorts ne sont pas des
-pièces à imprimer : admission titane et échappement INCONEL 751 restent des
-candidats fournisseur, tandis que le ressort reste une famille acier
-chrome-silicium spécialisée à dimensionner depuis les profils de came, masses,
-pressions gaz, températures et régimes mesurés.
+The material shortlist keeps only two LPBF cylinder-head candidates to
+characterize, AlSi10Mg and AlF357. No winner is declared before correlated
+thermal and thermomechanical computations and coupons produced with the final
+machine, orientation and treatment. The valves and springs are not parts to be
+printed: titanium intake and INCONEL 751 exhaust remain supplier candidates,
+while the spring remains a specialized chrome-silicon steel family to be sized
+from measured cam profiles, masses, gas pressures, temperatures and speeds.
 
-L'audit est lancé par :
+The audit is launched by:
 
 ```bash
 make 917-reengineering-f11
 ```
 
-Il écrit `work/917-reengineering-f11/readiness.json`. Avec le manifeste local
-d'intégrité livré dans le dépôt et sans autre preuve d'ingénierie, le résultat
-attendu est `F0_source_integrity` : le hash du scan brut local est recalculé et
-les scènes F10 sont reconnues comme hypothèses
-visuelles séparées, mais le maillage CFD externe reste bloqué, aucune physique
-de culasse n'est calculée, aucun matériau n'est sélectionné et aucune impression
-métal, mise en route ou revendication de puissance n'est autorisée.
-
-Le passage aux niveaux suivants demande successivement l'identité et l'échelle,
-un scan ou CT des vraies culasses 917, les géométries 2V et 4V, les profils de
-came et courbes de ressorts, les chargements NA et turbo, des solveurs classiques
-convergés, une corrélation physique, puis la qualification LPBF et les essais
-instrumentés. PhysicsNeMo peut ensuite accélérer les calculs comme surrogate ;
-il ne remplace ni la CFD/FEA de référence, ni le banc de flux, ni le banc moteur.
-
-Chaque preuve F11 pointe vers un manifeste JSON typé qui lie un claim, un actif,
-une variante, des artefacts re-hashés, une méthode et des critères d'acceptation.
-La réutilisation d'un même manifeste ou artefact entre claims incompatibles est
-refusée. Ce contrôle empêche les passages accidentels mais ne constitue pas une
-chaîne de confiance : même un dossier F6 auto-déclaré garde fabrication,
-impression métal, démarrage, 1 600 hp et entraînement PhysicsNeMo à `false` tant
-que les signatures, parseurs solveur/banc et autorités externes ne sont pas
-qualifiés.
-
-## Inventaire canonique et train mobile F14–F16
-
-Les itérations F14 à F16 remplacent progressivement les hypothèses visuelles par
-des contrats reproductibles, sans promouvoir le moteur au-delà de l'intégrité
-de sa source :
-
-- [F14](../../archive/917/docs/917_DIMENSIONAL_SKELETON_F14.md) limite la géométrie aux
-  guides dimensionnels sourcés et aux occurrences non placées ;
-- [F15 scan](../../archive/917/docs/917_SCAN_SEGMENTATION_F15.md) exécute l'inventaire du
-  binaire canonique dans une [image CPU immuable](../../archive/917/docs/917_OBJ_METROLOGY_CONTAINER_F15.md) ;
-- [F15 mécanique](../../archive/917/docs/917_MECHANICAL_CYCLE_CLOSURE_F15.md) ferme seulement
-  les identités algébriques puissance–travail–couple–BMEP ;
-- [F16-001](../../archive/917/docs/917_KINEMATIC_INTERFACE_READINESS_F16.md) construit le
-  registre du carter, du vilebrequin, des huit paliers, des douze cylindres,
-  bielles, axes et pistons, sans inventer leurs coordonnées.
+It writes `work/917-reengineering-f11/readiness.json`. With the local integrity
+manifest shipped in the repository and no other engineering evidence, the
+expected result is `F0_source_integrity`: the hash of the local raw scan is
+recomputed and the F10 scenes are recognized as separate visual assumptions, but
+the external CFD mesh stays blocked, no cylinder-head physics is computed, no
+material is selected, and no metal printing, start-up or power claim is
+authorized.
 
 ```mermaid
 flowchart LR
-    IMG[Image F15 immuable<br/>CPU linux/amd64] --> SCAN[Scan canonique<br/>3 composantes, 944 frontières]
-    SCAN --> REVIEW[Revue sémantique<br/>identité, échelle, datums]
-    FACTS[Faits F13–F15<br/>candidats et dérivations] --> F16[F16-001<br/>58 instances, 68 relations]
-    REVIEW --> METRO[14 exigences<br/>CMM, CT, démontage]
-    F16 --> METRO
-    METRO --> CAD[Future CAO paramétrique<br/>interfaces et tolérances]
-    CAD --> REF[Future physique classique<br/>MBD, CFD, thermique, FEA]
-    REF --> NEMO[Future PhysicsNeMo<br/>surrogate validé + UQ/OOD]
-    NEMO --> OMNI[USD / Omniverse<br/>champs dans le domaine validé]
+  A["make 917-reengineering-f11"] --> R["F0_source_integrity"]
+  R --> H["raw scan hash<br/>recomputed"]
+  R --> V["F10 scenes: separate<br/>visual assumptions"]
+  R --> X1["external CFD mesh<br/>blocked"]
+  R --> X2["cylinder-head physics,<br/>material: none"]
+  R --> X3["metal printing, start-up,<br/>power claim: prohibited"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class R,H,V ok;
+  class X1,X2,X3 stop;
 ```
 
-L'exécution F15 confirme 1 282 880 sommets, 2 465 879 triangles, trois
-composantes de surface et 101 809 arêtes ouvertes. L'OBJ ne contient aucun
-objet, groupe ou matériau nommé ; sa segmentation mécanique ne peut donc pas
-être déduite de métadonnées. F16 génère 58 instances sémantiques et 68 relations
-inactives, mais zéro coordonnée, solide, joint, animation ou échantillon
-PhysicsNeMo. Cette frontière empêche de transformer silencieusement un scan
-extérieur incomplet en moteur prétendument fonctionnel ou imprimable.
+Moving to the next levels requires, in succession, identity and scale, a scan or
+CT of real 917 cylinder heads, the 2V and 4V geometries, cam profiles and spring
+curves, the NA and turbo loads, converged classical solvers, a physical
+correlation, then LPBF qualification and instrumented tests. PhysicsNeMo can
+then accelerate the computations as a surrogate model; it replaces neither the
+reference CFD/FEA, nor the flow bench, nor the engine test bench.
 
-## Réseau de stations F38
+Each F11 piece of evidence points to a typed JSON manifest that links a claim,
+an asset, a variant, re-hashed artifacts, a method and acceptance criteria.
+Reusing the same manifest or artifact between incompatible claims is refused.
+This check prevents accidental passes but does not constitute a chain of trust:
+even a self-declared F6 dossier keeps manufacturing, metal printing, start-up,
+1,600 hp and PhysicsNeMo training at `false` as long as the signatures, the
+solver/bench parsers and the external authorities are not qualified.
 
-Le premier bilan admission–moteur–échappement bi-variante est documenté dans
+## Canonical inventory and moving train F14–F16
+
+Iterations F14 to F16 progressively replace the visual assumptions with
+reproducible contracts, without promoting the engine beyond the integrity of its
+source:
+
+- [F14](../../archive/917/docs/917_DIMENSIONAL_SKELETON_F14.md) limits the
+  geometry to sourced dimensional guides and to unplaced occurrences;
+- [F15 scan](../../archive/917/docs/917_SCAN_SEGMENTATION_F15.md) runs the
+  inventory of the canonical binary in an
+  [immutable CPU image](../../archive/917/docs/917_OBJ_METROLOGY_CONTAINER_F15.md);
+- [F15 mechanics](../../archive/917/docs/917_MECHANICAL_CYCLE_CLOSURE_F15.md)
+  closes only the algebraic power–work–torque–BMEP identities;
+- [F16-001](../../archive/917/docs/917_KINEMATIC_INTERFACE_READINESS_F16.md)
+  builds the register of the case, the crankshaft, the eight main bearings, the
+  twelve cylinders, connecting rods, pins and pistons, without inventing their
+  coordinates.
+
+```mermaid
+flowchart LR
+    IMG[Immutable F15 image<br/>CPU linux/amd64] --> SCAN[Canonical scan<br/>3 components, 944 boundaries]
+    SCAN --> REVIEW[Semantic review<br/>identity, scale, datums]
+    FACTS[F13–F15 facts<br/>candidates and derivations] --> F16[F16-001<br/>58 instances, 68 relations]
+    REVIEW --> METRO[14 requirements<br/>CMM, CT, disassembly]
+    F16 --> METRO
+    METRO --> CAD[Future parametric CAD<br/>interfaces and tolerances]
+    CAD --> REF[Future classical physics<br/>MBD, CFD, thermal, FEA]
+    REF --> NEMO[Future PhysicsNeMo<br/>validated surrogate + UQ/OOD]
+    NEMO --> OMNI[USD / Omniverse<br/>fields within the validated domain]
+```
+
+The F15 run confirms 1,282,880 vertices, 2,465,879 triangles, three surface
+components and 101,809 open edges. The OBJ contains no named object, group or
+material; its mechanical segmentation therefore cannot be inferred from
+metadata. F16 generates 58 semantic instances and 68 inactive relations, but
+zero coordinates, solids, joints, animations or PhysicsNeMo samples. This
+boundary prevents an incomplete exterior scan from being silently turned into a
+supposedly functional or printable engine.
+
+## Station network F38
+
+The first two-variant intake–engine–exhaust balance is documented in
 [`archive/917/docs/917_GAS_PATH_NETWORK_F38.md`](../../archive/917/docs/917_GAS_PATH_NETWORK_F38.md).
-F38 relit hors réseau l'identité de masse F33, calcule le devoir thermique requis
-à partir d'états prescrits et ferme l'identité d'arbre turbo par bissection. Il
-publie séparément la perte mécanique turbo sans lui inventer de destination
-thermique. L'absence d'entrée directe de la cible dans F38 est vérifiée, mais
-F34 conserve une ascendance indirecte et un seed de dimensionnement inverse :
-l'indépendance complète reste fausse. La cible est exprimée en hp mécaniques,
-distincts des PS/ch métriques. F38 lie aussi la décision F34a de conserver un
-cœur strictement air/huile et refuse toute équivalence géométrique entre le
-4,5 L F35 et le candidat NA 5,374 L F33. Les maps turbo, la dynamique 1D, la
-corrélation banc, le démarrage, la fabrication et toute preuve de puissance
-restent explicitement bloqués.
+F38 rereads offline the F33 mass identity, computes the required heat duty from
+prescribed states and closes the turbo shaft identity by bisection. It publishes
+the turbo mechanical loss separately without inventing a thermal destination for
+it. The absence of a direct input of the target in F38 is verified, but F34
+keeps an indirect ancestry and an inverse-sizing seed: full independence remains
+false. The target is expressed in mechanical hp, distinct from metric PS/ch. F38
+also binds the F34a decision to keep a strictly air/oil core and refuses any
+geometric equivalence between the F35 4.5 L and the F33 NA 5.374 L candidate.
+The turbo maps, the 1D dynamics, the bench correlation, the start, the
+manufacturing and any evidence of power remain explicitly blocked.
 
-Une image CPU F38 minimale, standard-library et sans clé API accompagne ce
-réseau. Son smoke est reproductible sur Docker Desktop et sur un nœud Intel
-Linux natif ; la recette GHCR vérifie en plus provenance, SBOM et accès anonyme
-par digest avant de considérer l'image exploitable sur Vast.
+A minimal F38 CPU image, standard-library and without API key, accompanies this
+network. Its smoke test is reproducible on Docker Desktop and on a native Intel
+Linux node; the GHCR recipe additionally verifies provenance, SBOM and anonymous
+access by digest before considering the image usable on Vast.
 
-## Réseau instationnaire 0D/1D F39
+## Unsteady 0D/1D network F39
 
-La suite est cadrée dans
+The follow-up is framed in
 [`archive/917/docs/917_UNSTEADY_NETWORK_F39.md`](../../archive/917/docs/917_UNSTEADY_NETWORK_F39.md).
-F39 sépare les capacités 0D des cylindres, plénums et collecteurs des conduits
-1D compressibles. L'incrément F39 exécute avec Aeolus1D 0.3.3 un cas NA
-`motored` de 720° : 12 cylindres 0D, 27 conduits 1D, 3 jonctions, 48 soupapes
-physiques issues de la tête clean-sheet F29 4V et 24 ports équivalents.
-Injection et combustion sont désactivées ; aucun couple ni aucune puissance
-n'est calculé. La branche biturbo, ses arbres et ses wastegates restent une
-topologie future. Le rapport stationnaire F38 peut servir de comparaison ou
-d'amorce ; il n'est pas une solution instationnaire ni une mesure de banc.
+F39 separates the 0D capacities of the cylinders, plenums and manifolds from the
+compressible 1D passages. The F39 increment runs with Aeolus1D 0.3.3 an NA
+`motored` case over 720°: 12 0D cylinders, 27 1D passages, 3 junctions, 48
+physical valves taken from the F29 4V clean-sheet head and 24 equivalent ports.
+Injection and combustion are disabled; no torque and no power is computed. The
+twin-turbo branch, its shafts and its wastegates remain a future topology. The
+F38 steady-state report can serve as a comparison or as a starting point; it is
+neither an unsteady solution nor a bench measurement.
 
-La première exécution reste un `screening_proxy`. Les longueurs, sections et
-volumes internes de F8 ne sont pas mesurés, les profils complets de came et
-tables `CdA` manquent, et aucune carte compresseur/turbine, inertie rotor ou loi
-wastegate n'est intégrée. Le F35 atmosphérique 4,5 L à 85 × 66 mm ne doit pas
-être confondu avec le candidat F33 NA à 90 × 70,4 mm ; le F33 turbo moderne à
-rapport 9,5 reste également distinct du 917/30 historique à rapport 6,5.
+The first run remains a `screening_proxy`. The F8 lengths, sections and internal
+volumes are not measured, the complete cam profiles and `CdA` tables are
+missing, and no compressor/turbine map, rotor inertia or wastegate law is
+integrated. The naturally aspirated F35 4.5 L at 85 × 66 mm must not be confused
+with the F33 NA candidate at 90 × 70.4 mm; the modern F33 turbo at ratio 9.5
+also remains distinct from the historical 917/30 at ratio 6.5.
 
-L'interface prévue est :
+The planned interface is:
 
 ```bash
 make 917-unsteady-network-f39-test
@@ -624,90 +646,92 @@ make 917-unsteady-network-f39
 make 917-wave-action-f39-image
 ```
 
-Le contrat est `twins/reference-917-engine/unsteady-network-f39.json`, le
-runner `twins/reference-917-engine/source/run_unsteady_network_f39.py` et les
-sorties restent sous `work/917-unsteady-network-f39/`. Le solveur est destiné
-au CPU et peut tourner sur le nœud Intel sans GPU ni clé API NVIDIA. L'image
-est verrouillée à
+The contract is `twins/reference-917-engine/unsteady-network-f39.json`, the
+runner `twins/reference-917-engine/source/run_unsteady_network_f39.py`, and the
+outputs stay under `work/917-unsteady-network-f39/`. The solver is intended for
+the CPU and can run on the Intel node without a GPU or NVIDIA API key. The image
+is locked to
 `ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3`.
-Son workflow `linux/amd64` a validé le smoke hors réseau, la provenance, le
-SBOM et l'accès anonyme au manifeste. Cela rend le runtime reproductible sur
-Intel ou Vast, sans valider le modèle moteur qu'il exécutera.
+Its `linux/amd64` workflow validated the offline smoke test, the provenance, the
+SBOM and anonymous access to the manifest. This makes the runtime reproducible on
+Intel or Vast, without validating the engine model it will run.
 
-Aeolus1D est un projet MIT récent encore alpha : le smoke du tube à choc de Sod
-prouve seulement son runtime CPU `amd64`, pas le modèle 917. Le JSON demeure
-l'autorité numérique. Un overlay USD aval peut exposer dans
-Omniverse les stations, séries temporelles et classes de provenance sans créer
-de géométrie, collision ou physique PhysX. Une animation USD ne prouve ni le
-fonctionnement du moteur ni les 1 600 hp ; cette puissance reste une exigence
-de conception jusqu'à corrélation indépendante sur banc instrumenté.
+Aeolus1D is a recent MIT project, still alpha: the Sod shock-tube smoke test
+only proves its `amd64` CPU runtime, not the 917 model. The JSON remains the
+numerical authority. A downstream USD overlay can expose the stations, time
+series and provenance classes in Omniverse without creating geometry, collision
+or PhysX physics. A USD animation proves neither the operation of the engine nor
+the 1,600 hp; that power remains a design requirement until independent
+correlation on an instrumented bench.
 
-## Contrôles LPBF et Omniverse F42
+## LPBF and Omniverse checks F42
 
-F42 publie deux paquets de preuves complémentaires, sans confondre leurs
-portées :
+F42 publishes two complementary evidence packages, without conflating their
+scopes:
 
-- le [DOE AdditiveFOAM exécuté sur deux hôtes indépendants](../../archive/917/docs/917_F42_2_ADDITIVEFOAM_LIVE.md)
-  compare 33 cas par hôte et conserve les métriques de reproductibilité du
-  solveur ;
-- le [contrôle Omniverse/OVRTX](../../archive/917/docs/917_F42_OMNIVERSE_VALIDATION.md)
-  valide l'ouverture, la topologie fermée et le rendu natif de l'USD exact,
-  avec [image et turntable publiés](evidence/f42-omniverse-validation/README.md).
+- the [AdditiveFOAM DOE run on two independent hosts](../../archive/917/docs/917_F42_2_ADDITIVEFOAM_LIVE.md)
+  compares 33 cases per host and keeps the solver's reproducibility metrics;
+- the [Omniverse/OVRTX check](../../archive/917/docs/917_F42_OMNIVERSE_VALIDATION.md)
+  validates the opening, the closed topology and the native rendering of the
+  exact USD, with [published image and turntable](evidence/f42-omniverse-validation/README.md).
 
-Le rendu OVRTX conserve exactement les coordonnées du STL soudé : 34 313
-points, 68 678 triangles, zéro arête de bord et zéro arête non-manifold. Cette
-preuve visuelle et de schéma n'est ni une CFD, ni une FEA, ni une simulation de
-distorsion LPBF. Le routeur CAD officiel, le profil SimReady, le B-Rep
-fabricable, les propriétés matière à chaud, les supports fournisseur et la
-qualification physique restent bloquants ; aucune impression ni mise en route
-n'est autorisée.
+The OVRTX render keeps exactly the coordinates of the welded STL: 34,313 points,
+68,678 triangles, zero boundary edges and zero non-manifold edges. This visual
+and schema evidence is neither a CFD, nor an FEA, nor an LPBF distortion
+simulation. The official CAD router, the SimReady profile, the manufacturable
+B-Rep, the hot material properties, the supplier supports and the physical
+qualification remain blocking; no printing or start-up is authorized.
 
-## Autorité des variantes produit 2026 F43
+![OVRTX render of the welded F41 cylinder-head mesh from the exact USD](evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-preview.png)
 
-Le contrat `variant-authority-f43.json` supprime l'ambiguïté de cylindrée entre
-les branches historiques et les deux produits 2026 :
+*A native OVRTX render of the welded STL, converted to USD. It shows that the
+USD opens and renders with a closed topology; it is not a photograph of a part
+and proves neither CFD, FEA, LPBF distortion nor manufacturability.*
 
-- `917_2026_flat12_na_candidate` désigne désormais exclusivement le flat-12
-  atmosphérique 5,0 L, soit 12 cylindres, 86,8 × 70,4 mm et 4 999 cm³ publiés ;
-- `917_2026_flat12_twin_turbo_1600hp_target` désigne le flat-12 biturbo
-  5,374 L, soit 12 cylindres, 90 × 70,4 mm et 5 374 cm³ publiés.
+## 2026 product variant authority F43
 
-La branche F10 `type_912_4_5_na` à 85 × 66 mm reste un historique visuel et ne
-peut plus fournir silencieusement l'identité, les dimensions, la géométrie ou
-les entrées solveur du produit atmosphérique 2026. F43 enregistre également les
-snapshots F33, F37, F38 et F39 incohérents : leurs résultats ne sont pas des
-preuves produit F43 et doivent être régénérés après liaison au contrat par
-chemin et SHA-256.
+The `variant-authority-f43.json` contract removes the displacement ambiguity
+between the historical branches and the two 2026 products:
 
-Cette autorité reste documentaire. Elle ne libère aucune géométrie, simulation,
-puissance, mise en route ou fabrication. Aucune puissance atmosphérique n'est
-inventée ; les 1 600 hp biturbo restent une exigence utilisateur non mesurée,
-non simulée et non prouvée.
+- `917_2026_flat12_na_candidate` now designates exclusively the 5.0 L naturally
+  aspirated flat-12, i.e. 12 cylinders, 86.8 × 70.4 mm and 4,999 cm³ published;
+- `917_2026_flat12_twin_turbo_1600hp_target` designates the 5.374 L twin-turbo
+  flat-12, i.e. 12 cylinders, 90 × 70.4 mm and 5,374 cm³ published.
+
+The F10 branch `type_912_4_5_na` at 85 × 66 mm remains a visual history and can
+no longer silently supply the identity, dimensions, geometry or solver inputs of
+the 2026 naturally aspirated product. F43 also records the inconsistent F33,
+F37, F38 and F39 snapshots: their results are not F43 product evidence and must
+be regenerated after being bound to the contract by path and SHA-256.
+
+This authority remains documentary. It releases no geometry, simulation, power,
+start-up or manufacturing. No naturally aspirated power is invented; the 1,600 hp
+twin-turbo remains a user requirement, not measured, not simulated and not
+proven.
 
 ```bash
 make 917-variant-authority-f43-check
 ```
 
-## Bielle détaillée de démonstration F44
+## Detailed demonstration connecting rod F44
 
-F44 ajoute une bielle unique de revue visuelle avec corps et chapeau séparés,
-deux perçages dans des oreilles à vrais lamages paramétrés et deux vis
-identifiables, deux demi-coussinets, une bague de pied et un canal d'huile
-soustractif continu. Les marges d'oreille, le dégagement radial et la profondeur
-des lamages sont des paramètres explicites du contrat. Un audit BRep interdit
-les trous absents, le percement du logement de coussinet et toute interférence
-volumique vis/bielle; il vérifie aussi les quatre lamages et la connexion
-géométrique du canal avec les deux alésages, les deux demi-coussinets et la
-bague, ainsi que sa sortie au-delà du rayon extérieur du demi-coussinet
-inférieur. Toutes ses cotes restent des hypothèses de conception non mesurées. La
-note complète est
+F44 adds a single connecting rod for visual review, with separate body and cap,
+two holes in lugs with real parameterized counterbores and two identifiable
+bolts, two bearing half-shells, a small-end bush and a continuous subtractive oil
+channel. The lug margins, the radial clearance and the counterbore depth are
+explicit parameters of the contract. A BRep audit forbids missing holes,
+breaking through the bearing housing and any bolt/rod volume interference; it
+also checks the four counterbores and the geometric connection of the channel
+with the two bores, the two half-shells and the bush, as well as its exit beyond
+the outer radius of the lower half-shell. All its dimensions remain unmeasured
+design assumptions. The full note is
 `archive/917/docs/917_CONNECTING_ROD_CAD_F44.md`.
 
-Le montage côte à côte reste volontairement bloqué : deux bielles de 22 mm et
-le jeu visuel F35 occupent 45,32 mm sur un maneton déclaré à 26 mm. F44 ne
-modifie aucune de ces valeurs et n'exporte qu'une bielle. Il ne constitue ni
-une simulation physique, ni une validation de lubrification ou de fatigue, ni
-une autorisation de fabrication ou une preuve de 1 600 hp.
+Side-by-side mounting remains deliberately blocked: two 22 mm connecting rods
+and the F35 visual clearance take up 45.32 mm on a crankpin declared at 26 mm.
+F44 changes none of these values and exports only one connecting rod. It is
+neither a physical simulation, nor a validation of lubrication or fatigue, nor
+a manufacturing authorization or evidence of 1,600 hp.
 
 ```bash
 make 917-connecting-rod-cad-f44-check

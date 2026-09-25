@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "twin_id": "TWIN-993-M64-60-PISTON-GALLERY-F0",
-  "name": "Piston M64/60 CP1 à galerie fermée, jumeau F0",
+  "name": "M64/60 CP1 piston with closed cooling gallery, F0 twin",
   "vehicle": {
     "generation": "993",
     "variants": ["993_Turbo", "M64_60_research"],
@@ -14,8 +14,8 @@
   "fidelity": "F1_envelope",
   "coordinate_system": {
     "frame": "local",
-    "origin": "centre géométrique de l'enveloppe cylindrique F0 du piston",
-    "axes": "Z suivant l'axe du cylindre vers la chambre, X suivant l'axe de piston, Y complète le repère direct",
+    "origin": "geometric center of the piston's cylindrical F0 envelope",
+    "axes": "Z along the cylinder axis toward the chamber, X along the piston pin axis, Y completes the right-handed frame",
     "units": "mm",
     "vehicle_transform": null
   },
@@ -62,7 +62,7 @@
       "kind": "clearance",
       "components": ["PISTON_CP1_GALLERY_F0", "M64_60_CYLINDER_CONTEXT"],
       "required_measurements": ["CYLINDER_BORE_GRADE_MAP", "PISTON_GAUGE_DIAMETER", "GAUGE_HEIGHT", "SKIRT_PROFILE", "OVALITY", "HOT_DIAMETER_MAP", "OIL_FILM_TARGET"],
-      "acceptance_rule": "Le jeu diamétral mesuré reste dans la carte approuvée à froid, à chaud et sous basculement, sans serrage ni rupture du film d'huile.",
+      "acceptance_rule": "The measured diametral clearance stays within the approved map cold, hot and under piston tilt, with no seizure or oil-film breakdown.",
       "status": "missing_data"
     },
     {
@@ -70,7 +70,7 @@
       "kind": "contact",
       "components": ["PISTON_CP1_GALLERY_F0", "PIN_RING_ROD_CONTEXT"],
       "required_measurements": ["RING_COUNT", "RING_SECTIONS", "GROOVE_PROFILES", "LAND_HEIGHTS", "SIDE_CLEARANCES", "END_GAPS", "COATINGS", "BLOW_BY_LIMIT"],
-      "acceptance_rule": "Les gorges usinées, jeux, contacts et revêtements respectent la définition du segment et les limites approuvées de flottement, usure, température et blow-by.",
+      "acceptance_rule": "The machined grooves, clearances, contacts and coatings meet the ring definition and the approved limits for flutter, wear, temperature and blow-by.",
       "status": "missing_data"
     },
     {
@@ -78,7 +78,7 @@
       "kind": "contact",
       "components": ["PISTON_CP1_GALLERY_F0", "PIN_RING_ROD_CONTEXT"],
       "required_measurements": ["PIN_DIAMETER", "PIN_LENGTH", "PIN_WALL", "BOSS_SPACING", "BORE_CLASS", "RETENTION", "SMALL_END_WIDTH", "BUSHING_CLEARANCE", "LOAD_HISTORY"],
-      "acceptance_rule": "La pression de contact, la déformation, la fatigue et l'arrachement des bossages restent sous les admissibles qualifiés sur toute l'histoire de charge.",
+      "acceptance_rule": "Contact pressure, deformation, fatigue and pin-boss pull-out stay below the qualified allowables over the whole load history.",
       "status": "missing_data"
     },
     {
@@ -86,7 +86,7 @@
       "kind": "motion",
       "components": ["PISTON_CP1_GALLERY_F0", "CHAMBER_VALVE_CONTEXT"],
       "required_measurements": ["COMPRESSION_HEIGHT", "DECK_HEIGHT", "CROWN_PROFILE", "CHAMBER_SURFACE", "VALVE_LIFT_CURVES", "CAM_TIMING", "ROD_LENGTH", "CRANK_THROW", "HOT_CLEARANCE_LIMIT"],
-      "acceptance_rule": "L'enveloppe cinématique et thermomécanique conserve les jeux piston-culasse et piston-soupapes approuvés sur tolérances et survitesse.",
+      "acceptance_rule": "The kinematic and thermomechanical envelope keeps the approved piston-to-head and piston-to-valve clearances across tolerances and overspeed.",
       "status": "missing_data"
     },
     {
@@ -94,7 +94,7 @@
       "kind": "contact",
       "components": ["PISTON_CP1_GALLERY_F0", "OIL_JET_CONTEXT"],
       "required_measurements": ["JET_ORIGIN", "JET_DIRECTION", "SUPPLY_PRESSURE_MAP", "FLOW_MAP", "OIL_TEMPERATURE", "CAPTURE_FRACTION", "AERATION", "DRAINAGE", "GALLERY_PROOF_PRESSURE"],
-      "acceptance_rule": "La galerie dépoudrée et obturée capte le jet, évacue l'huile et respecte les limites de température et de pression démontrées par CFD corrélée, CT et épreuve.",
+      "acceptance_rule": "The depowdered and sealed gallery captures the jet, drains the oil and meets the temperature and pressure limits demonstrated by correlated CFD, CT and proof testing.",
       "status": "missing_data"
     }
   ],
@@ -116,14 +116,14 @@
       "catalog/sources/src-porsche-additive-piston-validation.json"
     ],
     "known_limits": [
-      "L'enveloppe de piston, la jupe, la calotte, les bossages, les gorges et la galerie sont des hypothèses F0 indépendantes, non des surfaces Porsche ou MAHLE.",
-      "Le diamètre moteur publié de 100 mm ne définit ni le diamètre fini du cylindre, ni le diamètre de jauge du piston, ni le jeu de fonctionnement.",
-      "Les quatre contextes d'interface restent sans géométrie tant que les pièces exactes et leurs tolérances ne sont pas établies.",
-      "Les calculs incluent désormais un tranchage LPBF pleine pièce, un asset SimReady isolé et six cas CalculiX linéaires/séquentiels sur le master sain ; aucune FEA non linéaire avec contacts, CFD/VOF, fatigue à chaud, simulation d'assemblage Omniverse ou corrélation PhysicsNeMo n'est achevée.",
-      "Le cas CalculiX chaud à 2,5 mm donne 323,46 MPa au p95 et un ratio de 0,918 contre la référence CP1 ambiante ; cette comparaison défavorable rejette le F0 sans constituer un admissible à chaud.",
-      "Le criblage PicoGK a bien été exécuté sur six variantes F0, mais il ne sélectionne aucun dessin : la marge mécanique cible et l'intégrité manifold échouent.",
-      "Le précédent Porsche/Mahle/Trumpf définit une méthode de développement moderne, pas une validation transférable au M64/60.",
-      "Aucune fabrication, installation ou mise en route moteur n'est autorisée."
+      "The piston envelope, skirt, crown, pin bosses, grooves and gallery are independent F0 assumptions, not Porsche or MAHLE surfaces.",
+      "The published 100 mm engine bore defines neither the finished cylinder diameter, nor the piston gauge diameter, nor the running clearance.",
+      "The four interface contexts remain without geometry until the exact parts and their tolerances are established.",
+      "The analyses now include a full-part LPBF slicing, an isolated SimReady asset and six linear/sequential CalculiX cases on the sound master; no nonlinear FEA with contacts, CFD/VOF, hot fatigue, Omniverse assembly simulation or PhysicsNeMo correlation is complete.",
+      "The hot CalculiX case at 2.5 mm gives 323.46 MPa at p95 and a ratio of 0.918 against the room-temperature CP1 reference; this unfavorable comparison rejects the F0 without constituting a hot allowable.",
+      "The PicoGK screening was indeed run on six F0 variants, but it selects no design: the target mechanical margin and manifold integrity fail.",
+      "The Porsche/Mahle/Trumpf precedent defines a modern development method, not a validation transferable to the M64/60.",
+      "No manufacturing, installation or engine start-up is authorized."
     ]
   }
 }

@@ -1,162 +1,173 @@
-# M64 — registre initial des interfaces et sources
+# M64 — initial register of interfaces and sources
 
-État : recherche documentaire, 6 septembre 2026. Cible utilisateur : famille
-M64 964/993, développement turbo quatre soupapes avec comparaison deux soupapes.
-Ce registre ne fige ni une variante ni une compatibilité de montage.
+Status: documentary research, 6 September 2026. User target: M64 family
+964/993, four-valve turbo development with a two-valve comparison.
+This register freezes neither a variant nor a fitment compatibility.
 
-## Résultat exploitable
+```mermaid
+flowchart LR
+  P["Primary sources<br/>P0–P4 (Porsche)"] --> N["Sourced nominal data<br/>bore, stroke, studs, shims"]
+  S["Supplier benchmark<br/>S1–S2 (Swindon)"] --> N
+  L["Local manual records<br/>OCR unreviewed"] --> N
+  N --> C["Machine-readable contract"]
+  C --> U["Critical interfaces<br/>remain null"]
+  class U stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+```
 
-Les catalogues Porsche officiels allemands sont accessibles : les anciennes URL
-`D_964_KATALOG.pdf` / `D_993_KATALOG.pdf` ne doivent plus servir de point d'entrée.
-Le catalogue courant fournit références, restrictions et quelques dimensions de
-composants ; ce n'est pas un plan coté de culasse. Les sources trouvées permettent
-de poursuivre sans inventer une grille de goujons ni demander immédiatement un
-nouveau scan. Elles ne suffisent pas encore à contraindre tous les axes en CAO.
+## Usable result
 
-## Sources primaires vérifiées
+The official German Porsche catalogues are accessible: the old URLs
+`D_964_KATALOG.pdf` / `D_993_KATALOG.pdf` must no longer be used as entry points.
+The current catalogue provides part numbers, restrictions and a few component
+dimensions; it is not a dimensioned cylinder-head drawing. The sources found make
+it possible to continue without inventing a stud pattern or immediately requesting a
+new scan. They are not yet sufficient to constrain every axis in CAD.
 
-| ID | Source et accès | Usage |
+## Verified primary sources
+
+| ID | Source and access | Use |
 | --- | --- | --- |
-| P0 | [Porsche Classic Originalteile Katalog, allemand](https://www.porsche.com/germany/accessoriesandservice/classic/originalpartscatalogue/) | Point d'entrée officiel, liens 964 et 993 ouverts |
-| P1 | [PET 964, Kat. 013, édition 24.07.2017](https://files.porsche.com/f/332100/b26b3c7233/kat013-d-911-94-katalog.pdf) | 794 pages ; pages PDF 55–59, planches 102/103, examinées pour cylindre/culasse |
-| P2 | [PET 993, Kat. 017](https://files.porsche.com/f/332100/db8e7dba1c/kat017-d-911-98-katalog.pdf) | 674 pages, accès initial confirmé ; extraction détaillée des interfaces à poursuivre, appels de lecture ultérieurs en erreur |
-| P3 | [Porsche : White giants](https://newsroom.porsche.com/en/history/porsche-history-white-giants-991-turbo-964-turbo-3-6-993-turbo-s-13863.html) | Dimensions moteur des Turbo 3.6 et Turbo S, pas dessin d'interface |
-| P4 | [Porsche : Die 911 Turbo Generationen](https://newsroom.porsche.com/de/pressemappen/50-Jahre-Porsche-Turbo-36122/Die-911-Turbo-Generationen.html) | Contexte officiel allemand des générations |
-| S1 | [Swindon, produit M64 24 soupapes](https://swindonpowertrain.com/products/24-valve-porsche-911-m64-cylinder-head-kit/) | Compatibilité déclarée fabricant, pas validation de notre conception |
-| S2 | [Swindon, fiche produit, 6 pages](https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf) | Pages PDF 3–4 : composition et données techniques |
+| P0 | [Porsche Classic Originalteile Katalog, German](https://www.porsche.com/germany/accessoriesandservice/classic/originalpartscatalogue/) | Official entry point, 964 and 993 links open |
+| P1 | [PET 964, Kat. 013, edition 24.07.2017](https://files.porsche.com/f/332100/b26b3c7233/kat013-d-911-94-katalog.pdf) | 794 pages; PDF pages 55–59, plates 102/103, examined for cylinder/cylinder head |
+| P2 | [PET 993, Kat. 017](https://files.porsche.com/f/332100/db8e7dba1c/kat017-d-911-98-katalog.pdf) | 674 pages, initial access confirmed; detailed interface extraction still to do, later read calls errored |
+| P3 | [Porsche: White giants](https://newsroom.porsche.com/en/history/porsche-history-white-giants-991-turbo-964-turbo-3-6-993-turbo-s-13863.html) | Engine dimensions of the Turbo 3.6 and Turbo S, not an interface drawing |
+| P4 | [Porsche: Die 911 Turbo Generationen](https://newsroom.porsche.com/de/pressemappen/50-Jahre-Porsche-Turbo-36122/Die-911-Turbo-Generationen.html) | Official German context of the generations |
+| S1 | [Swindon, M64 24-valve product](https://swindonpowertrain.com/products/24-valve-porsche-911-m64-cylinder-head-kit/) | Manufacturer-declared compatibility, not validation of our design |
+| S2 | [Swindon, product sheet, 6 pages](https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf) | PDF pages 3–4: contents and technical data |
 
-Les PDF restent chez leurs éditeurs ; aucun manuel ni illustration propriétaire
-n'est ajouté au dépôt. Les numéros de page ci-dessous sont ceux du PDF, base 1.
+The PDFs remain with their publishers; no manual or proprietary illustration
+is added to the repository. The page numbers below are PDF pages, base 1.
 
-## Données nominales réellement sourcées
+## Nominal data actually sourced
 
-| Donnée | Valeur publiée | Périmètre/source | Limite |
+| Data | Published value | Scope/source | Limit |
 | --- | --- | --- | --- |
-| Alésage × course | 100 × 76,4 mm | 964 Turbo 3.6 et 993 Turbo S, P3 | Ni diamètre du registre ni tolérance |
-| Rapport volumétrique | 7,5:1 / 8,0:1 | Respectivement ces deux modèles, P3 | Références historiques, pas consignes de notre projet |
-| Goujon, repère 5 | BM 8 × 20 ; 99906200602 | P1 p.58, 103-00 | Position/engagement non cotés |
-| Goujon, repère 6 | BM 8 × 50 ; 99906204102 | P1 p.58 | Position/engagement non cotés |
-| Goujon, repère 7 | BM 8 × 22 / BM 8 × 30 | M64.01/02/03 / M64.50 ; P1 p.58 | Différence de variante explicite |
-| Goujon, repère 8 | BM 6 × 30 / BM 8 × 120 | M64.01/02/03 / M64.50 ; P1 p.58 | Ne pas fusionner ces nomenclatures |
-| Cales de soupapes | 0,25 ; 0,5 ; 1,5 mm | P1 p.59 | Pas une hauteur montée de ressort |
-| Soupapes Swindon admission/échappement | 40 / 33 mm | S2 p.4 | Benchmark 4V, non OEM |
-| Levées maximales Swindon | 11,5 / 9,6 mm | S2 p.4 | Pas une loi de came complète |
-| Durées à 1 mm | 255° / 245° | S2 p.4 | Calage des événements non défini ici |
-| Plage d'alésage Swindon | 95–102,7 mm | S2 p.4 | Ne définit pas notre registre |
-| Volume indiqué de culasse | 16,6 cm³ | S2 p.4 | Pas le volume mort assemblé piston compris |
+| Bore × stroke | 100 × 76.4 mm | 964 Turbo 3.6 and 993 Turbo S, P3 | Neither register diameter nor tolerance |
+| Compression ratio | 7.5:1 / 8.0:1 | Respectively these two models, P3 | Historical references, not targets for our project |
+| Stud, item 5 | BM 8 × 20; 99906200602 | P1 p.58, 103-00 | Position/engagement not dimensioned |
+| Stud, item 6 | BM 8 × 50; 99906204102 | P1 p.58 | Position/engagement not dimensioned |
+| Stud, item 7 | BM 8 × 22 / BM 8 × 30 | M64.01/02/03 / M64.50; P1 p.58 | Explicit variant difference |
+| Stud, item 8 | BM 6 × 30 / BM 8 × 120 | M64.01/02/03 / M64.50; P1 p.58 | Do not merge these bills of materials |
+| Valve shims | 0.25; 0.5; 1.5 mm | P1 p.59 | Not an installed spring height |
+| Swindon intake/exhaust valves | 40 / 33 mm | S2 p.4 | 4V benchmark, non-OEM |
+| Swindon maximum lifts | 11.5 / 9.6 mm | S2 p.4 | Not a complete cam profile |
+| Durations at 1 mm | 255° / 245° | S2 p.4 | Event timing not defined here |
+| Swindon bore range | 95–102.7 mm | S2 p.4 | Does not define our register |
+| Stated cylinder-head volume | 16.6 cm³ | S2 p.4 | Not the assembled clearance volume including the piston |
 
-## Différences à conserver
+## Differences to keep
 
-P1 distingue M64.01/02/03, M64.50 et M30.69. Il répertorie des écrous de culasse
-distincts (96410438201 / 96410438220) et une évolution d'étanchéité dès 1991 avec
-renvoi TI groupe 1, document 1570 (02/00). Référence d'étanchéité : 96410411520.
-La TI doit être consultée avant de reconstruire la portée. Les éclatés ne sont
-pas des dessins dimensionnels contractuels.
+P1 distinguishes M64.01/02/03, M64.50 and M30.69. It lists distinct
+cylinder-head nuts (96410438201 / 96410438220) and a sealing change from 1991 with
+a reference to TI group 1, document 1570 (02/00). Sealing part number: 96410411520.
+The TI must be consulted before reconstructing the sealing face. Exploded views are
+not contractual dimensional drawings.
 
-P3 distingue la 964 Turbo 3.3 (M30) de la Turbo 3.6 (M64). Notre référence commune
-M64 n'inclut donc pas automatiquement toutes les 964 Turbo.
+P3 distinguishes the 964 Turbo 3.3 (M30) from the Turbo 3.6 (M64). Our common M64
+reference therefore does not automatically include every 964 Turbo.
 
-Swindon déclare réutiliser lubrification, cylindres, carters, entraînement par
-chaînes/couvercles et échappement M64 (S1). S2 précise « standard 993 » dans le
-paragraphe d'installation : cette nuance appelle une vérification 964/993, pas
-une équivalence supposée. L'admission 997 GT3 et les bobines 718 sont des
-compatibilités annoncées du kit, non de notre culasse. Le kit comprend aussi
-porte-arbres, arbres, linguets/axes et retours d'huile : quatre soupapes ne sont
-pas une simple modification des trous d'une culasse deux soupapes.
+Swindon states that it reuses the M64 lubrication, cylinders, cases, chain
+drive/covers and exhaust (S1). S2 specifies "standard 993" in the installation
+paragraph: this nuance calls for a 964/993 check, not an assumed
+equivalence. The 997 GT3 intake and the 718 coils are announced compatibilities
+of the kit, not of our cylinder head. The kit also includes cam carriers,
+camshafts, rocker fingers/shafts and oil returns: four valves are not a simple
+modification of the holes of a two-valve cylinder head.
 
-Les rapports nominaux 11,5–12:1 du kit sont associés aux pistons Swindon (S2).
-Ils ne constituent pas une recommandation de compression turbo. Le régime
-annoncé de 12 000 tr/min n'est pas notre régime validé.
+The kit's nominal 11.5–12:1 ratios are associated with the Swindon pistons (S2).
+They are not a turbo compression recommendation. The announced speed of
+12,000 rpm is not our validated speed.
 
-## Interfaces encore non cotées dans ce registre
+## Interfaces still not dimensioned in this register
 
-| Interface | Preuve encore nécessaire | Travail suivant autorisé |
+| Interface | Evidence still required | Next authorized work |
 | --- | --- | --- |
-| Grille des goujons principaux, pions | Coordonnées, axes, tolérances, plans de référence | PET puis manuel/TI ou dessin fournisseur traçable |
-| Registre et portée cylindre/culasse | Diamètres, profondeurs, gorge, planéité et état de surface par version | Lire TI 1570 et recouper références cylindre/joint |
-| Distribution et porte-arbres | Axes/paliers, hauteur, entrée de chaîne, jeux, entraînement accessoires | Séparer 964 et 993 ; définir le nouvel ensemble 4V |
-| Admission/échappement | Implantation, brides, passages, fixations et tolérances | Rapprocher PET, joints et dessins fournisseur |
-| Lubrification | Positions et sections des alimentations/retours, joints et débit disponible | Ne pas dimensionner un refroidissement huile depuis une photo |
-| Sièges/guides et bougie | Axes, serrages, longueurs, matériaux, jeux à chaud | Données fournisseur sélectionné et conception contrôlée |
+| Main stud pattern, dowels | Coordinates, axes, tolerances, datum planes | PET then manual/TI or traceable supplier drawing |
+| Cylinder/cylinder-head register and sealing face | Diameters, depths, groove, flatness and surface finish per version | Read TI 1570 and cross-check cylinder/gasket part numbers |
+| Valve train and cam carriers | Axes/bearings, height, chain entry, clearances, accessory drive | Separate 964 and 993; define the new 4V assembly |
+| Intake/exhaust | Layout, flanges, passages, fasteners and tolerances | Reconcile PET, gaskets and supplier drawings |
+| Lubrication | Positions and cross-sections of feeds/returns, seals and available flow | Do not size oil cooling from a photo |
+| Seats/guides and spark plug | Axes, interference fits, lengths, materials, hot clearances | Data from the selected supplier and controlled design |
 
-Une référence commune de pièce ne prouve pas à elle seule l'identité de toutes
-les interfaces. Aucune cote n'est mesurée sur une perspective photographique.
-La dimension 90 mm de l'ancien modèle 917 n'est pas transférée au M64 ; passer
-à 100 mm ne signifie pas mettre uniformément tout le scan à l'échelle.
+A shared part number does not by itself prove that all interfaces are
+identical. No dimension is measured from a photographic perspective.
+The 90 mm dimension of the old 917 model is not transferred to the M64; moving
+to 100 mm does not mean scaling the whole scan uniformly.
 
-## Prochaine étape bornée
+## Bounded next step
 
-Extraire la planche culasse du PET 993, comparer les nomenclatures aux planches
-964 ci-dessus, puis obtenir les données de service relatives à la portée.
-Publier ensuite un contrat machine-readable où chaque cote comporte variante,
-source/page, nominal, tolérance et statut. Les inconnues restent nulles ; elles
-ne deviennent ni valeurs par défaut de CAO ni paramètres de simulation validés.
+Extract the cylinder-head plate from the 993 PET, compare the bills of materials with
+the 964 plates above, then obtain the service data relating to the sealing face.
+Then publish a machine-readable contract where each dimension carries variant,
+source/page, nominal, tolerance and status. Unknowns remain null; they
+become neither CAD defaults nor validated simulation parameters.
 
-## Recherche ciblée dans les données locales déjà présentes
+## Targeted search in local data already present
 
-Le registre `catalog/manual/993-workshop-manual-measurements.json` contient
-2 496 enregistrements (111 données techniques, 195 couples et 2 190 occurrences).
-La source `catalog/sources/src-porsche-workshop-manual-993.json` identifie un
-manuel **993 Carrera**, sans volume Turbo ; les droits interdisent la
-redistribution du manuel. Les faits et leurs localisateurs peuvent être suivis
-sans recopier les pages.
+The register `catalog/manual/993-workshop-manual-measurements.json` contains
+2,496 records (111 technical data, 195 torques and 2,190 occurrences).
+The source `catalog/sources/src-porsche-workshop-manual-993.json` identifies a
+**993 Carrera** manual, without a Turbo volume; the rights prohibit
+redistribution of the manual. The facts and their locators can be tracked
+without copying the pages.
 
-| Piste retrouvée | Localisateur interne | Confiance et décision |
+| Lead found | Internal locator | Confidence and decision |
 | --- | --- | --- |
-| Goujon M8 × 22 | PDF 148, ligne 46 | OCR non revu ; pas d'implantation |
-| Dimension « g » 8,00–8,015 mm | PDF 153, ligne 17 | Passage relatif aux guides ; feature/procédure à relire |
-| Valeur guides 0,06–0,08 mm | PDF 153, ligne 56 | Ne pas la qualifier de jeu de marche ou de serrage sans contexte complet |
-| Dimensions soupapes, notamment « b » 7,970 − 0,012 mm | PDF 155, ligne 22 | Colonnes Carrera/RS mélangées par OCR ; pas de promotion CAO |
-| Dimension admission « A » 36,7 + 0,3 mm et 37,2 + 0,3 mm | PDF 157, ligne 35 | Affectation des variantes et définition de A non résolues |
-| Culasse : 20 Nm puis 90° ; porte-arbres : M8, 23 Nm | Table structurée PDF 60 | Couples/procédure, pas entraxes ni effort de précharge directement calculable |
+| Stud M8 × 22 | PDF 148, line 46 | OCR not reviewed; no layout |
+| Dimension "g" 8.00–8.015 mm | PDF 153, line 17 | Passage relating to guides; feature/procedure to reread |
+| Guide value 0.06–0.08 mm | PDF 153, line 56 | Do not call it a running clearance or interference fit without full context |
+| Valve dimensions, notably "b" 7.970 − 0.012 mm | PDF 155, line 22 | Carrera/RS columns mixed by OCR; no promotion to CAD |
+| Intake dimension "A" 36.7 + 0.3 mm and 37.2 + 0.3 mm | PDF 157, line 35 | Variant assignment and definition of A unresolved |
+| Cylinder head: 20 Nm then 90°; cam carriers: M8, 23 Nm | Structured table PDF 60 | Torques/procedure, not center distances nor a directly computable preload force |
 
-Les pages 152–157 figurent dans la liste globale `manually_checked_pages`, mais
-les occurrences conservent individuellement `ocr_unreviewed`. Cette liste ne
-suffit pas à réétiqueter chaque cote comme vérifiée. La cote OCR 0,80 mm p.152
-ne doit notamment pas devenir un jeu nominal de guide sans lire la procédure
-de contrôle d'usure.
+Pages 152–157 appear in the global list `manually_checked_pages`, but
+the occurrences individually keep `ocr_unreviewed`. That list is not
+sufficient to relabel each dimension as verified. In particular, the OCR dimension 0.80 mm p.152
+must not become a nominal guide clearance without reading the wear-check
+procedure.
 
-`catalog/specifications/porschefanatics-993-technical-data.json` retrouve
-l'alésage 100 et la course 76,4, mais avec unités OCR corrompues et statut
-`ocr_transcription_unverified`. Ce sont des transcriptions apparentées au même
-manuel, pas un contre-contrôle indépendant. P3 reste la source retenue pour
-les valeurs historiques turbo. Le contrat contient maintenant ces pistes
-locales en section séparée ; toutes les interfaces critiques demeurent nulles.
+`catalog/specifications/porschefanatics-993-technical-data.json` finds
+bore 100 and stroke 76.4, but with corrupted OCR units and status
+`ocr_transcription_unverified`. These are transcriptions related to the same
+manual, not an independent cross-check. P3 remains the retained source for
+the historical turbo values. The contract now holds these local
+leads in a separate section; all critical interfaces remain null.
 
-### Vérification des localisateurs de pages, 7 septembre 2026
+### Verification of page locators, 7 September 2026
 
-Le script local PorscheFanatics `scripts/ingest-993-manual.mjs` désigne
-`docs/993 Workshop Manual.pdf`, `/tmp/manual-ocr.pdf` puis
-`data/raw/993-manual/layout.txt` comme chaîne d'extraction. Le PDF du checkout
-PorscheFanatics courant et le PDF temporaire sont absents ; le répertoire brut
-n'a pas été retrouvé dans les checkouts courant et iCloud identifiés. Aucun
-rendu de pages 152–157 n'a été localisé par ces chemins ciblés. Le registre
-source ne contient pas d'autre localisateur de l'exemplaire.
+The local PorscheFanatics script `scripts/ingest-993-manual.mjs` names
+`docs/993 Workshop Manual.pdf`, `/tmp/manual-ocr.pdf` then
+`data/raw/993-manual/layout.txt` as the extraction chain. The PDF of the current
+PorscheFanatics checkout and the temporary PDF are absent; the raw directory
+was not found in the identified current and iCloud checkouts. No
+render of pages 152–157 was located through these targeted paths. The source
+register contains no other locator for the copy.
 
-Il n'y a donc eu **aucune nouvelle lecture visuelle** de ces pages, ni
-requalification de cote. Une référence commerciale de manuel et une précédente
-mention de consultation ne prouvent pas que l'exemplaire est accessible
-aujourd'hui. Le prochain apport utile est le fichier exact ou ses rendus de
-pages issus d'un exemplaire dont l'accès est autorisé, pas une seconde lecture
-du même OCR. Cela ne suspend pas la recherche des catalogues officiels ni les
-travaux indépendants de ces interfaces.
+There was therefore **no new visual reading** of these pages, and no
+requalification of any dimension. A commercial manual reference and an earlier
+mention of consultation do not prove that the copy is accessible
+today. The next useful input is the exact file or its page renders
+from a copy whose access is authorized, not a second reading
+of the same OCR. This does not suspend the search of the official catalogues nor the
+independent work on these interfaces.
 
-Un candidat local supplémentaire nommé `Porsche PDF.pdf` a été identifié par
-ses métadonnées et sa première page rendue, selon le skill PDF : document de
-158 pages attribué à Dennis Adler, couverture « Porsche — The Classic Era »
-avec habillage Bookey. Ce n'est pas le manuel d'atelier 993 de 1 481 pages.
-Ses pages 152–157 ne sont donc pas utilisées comme substitut. Aucun contenu
-du document ni rendu de couverture n'est ajouté au dépôt.
+An additional local candidate named `Porsche PDF.pdf` was identified by
+its metadata and its first rendered page, per the PDF skill: a
+158-page document attributed to Dennis Adler, cover "Porsche — The Classic Era"
+with Bookey branding. It is not the 1,481-page 993 workshop manual.
+Its pages 152–157 are therefore not used as a substitute. No content
+of the document and no cover render is added to the repository.
 
-### Bulletin de réparation retrouvé, distinct de la TI recherchée
+### Repair bulletin found, distinct from the TI sought
 
-Le [bulletin Porsche Cars North America 9404 du 8 février 1994](https://www.design911.co.uk/uploads/pdfs/964_Cylinder_TSB.pdf),
-identifiant 1570, est désormais consultable et ses figures ont été revues.
-Il décrit une reprise du plan d'accostage pour certaines Carrera M64.01/02
-de 1989–1991 : enlèvement 0,10 ± 0,02 mm, maximum 0,20 mm et diamètre de
-surface usinée 145 mm (p.4, figure 4). Ce sont des données de **réparation**,
-pas une définition dimensionnelle de notre culasse neuve.
+The [Porsche Cars North America bulletin 9404 of 8 February 1994](https://www.design911.co.uk/uploads/pdfs/964_Cylinder_TSB.pdf),
+identifier 1570, can now be consulted and its figures have been reviewed.
+It describes a rework of the mating face for certain Carrera M64.01/02
+of 1989–1991: removal 0.10 ± 0.02 mm, maximum 0.20 mm and machined
+surface diameter 145 mm (p.4, figure 4). These are **repair** data,
+not a dimensional definition of our new cylinder head.
 
-L'identité avec la TI « 1570 (02/00) » et l'applicabilité aux M64 turbo ne
-sont pas établies. Le contrat CAO garde donc ses interfaces inconnues.
-[Provenance, conditions et limites du bulletin](M64_TI1570_ACCESS_AND_REPAIR_SCOPE_20260907.md).
+Identity with the TI "1570 (02/00)" and applicability to the turbo M64 are
+not established. The CAD contract therefore keeps its interfaces unknown.
+[Provenance, conditions and limits of the bulletin](M64_TI1570_ACCESS_AND_REPAIR_SCOPE_20260907.md).

@@ -1,84 +1,103 @@
-# Conduite de retour d'huile turbo — concept IN625 F0
+# Turbo oil return line — IN625 F0 concept
 
-Cette pièce est un bon candidat de présélection additive : une conduite courbe
-de faible série peut réunir tube et brides, supprimer des soudures et être
-adaptée à un espace moteur mesuré. Elle est aussi un bon exemple de cas où
-l'impression 3D ne doit pas être choisie trop tôt.
+This part is a good additive preselection candidate: a low-volume curved line
+can combine tube and flanges, eliminate welds and be adapted to a measured
+engine bay. It is also a good example of a case where 3D printing must not be
+chosen too early.
 
-Patrick Motorsports vend un jeu gauche/droit pour 993 Turbo `1996–1997`, entre
-pompe à huile et réservoir, avec une forme annoncée contre le retour d'huile.
-Le fabricant demande de monter côté carter puis d'ajuster la ligne vers le
-turbo. PorscheFanatics classe ce circuit parmi les points à améliorer.
+Patrick Motorsports sells a left/right set for the 993 Turbo `1996–1997`,
+between oil pump and tank, with a shape announced to counter oil backflow.
+The manufacturer asks for installation on the case side first, then for the
+line to be adjusted toward the turbo. PorscheFanatics lists this circuit among
+the points to improve.
 
-Aucune source ne publie dimensions, matière, paroi, pression, température ou
-débit. Le F0 représente donc un seul côté entièrement synthétique ; la référence
-commerciale `TUR 993 107 338 53 PMS` n'est pas traitée comme un numéro Porsche.
+No source publishes dimensions, material, wall, pressure, temperature or flow.
+The F0 therefore represents a single, entirely synthetic side; the commercial
+reference `TUR 993 107 338 53 PMS` is not treated as a Porsche part number.
 
-## Géométrie F0
+```mermaid
+flowchart LR
+  S["Published: Patrick Motorsports set<br/>no dimension, material or pressure"] --> G["Synthetic single side<br/>12.7 mm tube, two flanges<br/>101.16 g IN625"]
+  G --> Hy["Hydraulics<br/>ratio 3.734: passes"]
+  G --> Pr["Pressure and bending<br/>ratio 23.35: passes"]
+  G --> T["Blocked thermal<br/>ratio 0.395: fail"]
+  G --> P["LPBF print screen<br/>build_x, 40 µm"]
+  T --> V["Process undecided<br/>all manufacturing, oil, turbo,<br/>engine, vehicle authorizations closed"]
+  P --> V
+  class S open
+  class Hy,Pr,P open
+  class T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Le maître build123d crée un tube balayé de `12,7 mm` extérieur, `1,2 mm` de
-paroi, `10,3 mm` intérieur, sur une ligne centrale supposée de `175 mm`. Deux
-brides circulaires `30 × 4 mm` et quatre perçages sont intégrés.
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
 
-Le STEP relu contient un seul solide BREP valide avec un passage interne
-continu. Son enveloppe vaut `140 × 60 × 94 mm`, son volume `11 985,86 mm³` et
-sa masse IN625 théorique `101,16 g`. Ces valeurs décrivent le concept, pas la
-pièce commerciale.
+## F0 geometry
 
-## Hydraulique
+The build123d master creates a swept tube of `12.7 mm` outer diameter,
+`1.2 mm` wall, `10.3 mm` inner diameter, on an assumed `175 mm` centerline.
+Two circular `30 × 4 mm` flanges and four holes are integrated.
 
-Le point synthétique utilise `2 L/min` d'huile à `120 °C`, densité
-`850 kg/m³`, viscosité dynamique `0,015 Pa·s`, une remontée de `90 mm` et un
-coefficient de pertes singulières `K = 4`.
+The re-read STEP contains a single valid BREP solid with a continuous internal
+passage. Its envelope is `140 × 60 × 94 mm`, its volume `11,985.86 mm³` and
+its theoretical IN625 mass `101.16 g`. These values describe the concept, not
+the commercial part.
 
-`v = Q/A`, `Re = ρvD/μ`, puis, puisque `Re = 233`, `f = 64/Re`.
+## Hydraulics
 
-La perte est calculée par :
+The synthetic point uses `2 L/min` of oil at `120 °C`, density `850 kg/m³`,
+dynamic viscosity `0.015 Pa·s`, a `90 mm` rise and a minor loss coefficient
+`K = 4`.
+
+`v = Q/A`, `Re = ρvD/μ`, then, since `Re = 233`, `f = 64/Re`.
+
+The loss is calculated by:
 
 `Δp = f(L/D)ρv²/2 + Kρv²/2 + ρgΔz`
 
-Le résultat vaut `1,339 kPa`, soit un rapport `3,734` face au seuil synthétique
-de `5 kPa / 1,5`. Cet écran passe, mais il est monophasique : l'huile aérée,
-les pulsations, la pompe de balayage et le retour diphasique sont absents.
+The result is `1.339 kPa`, i.e. a ratio of `3.734` against the synthetic
+threshold of `5 kPa / 1.5`. This screen passes, but it is single-phase:
+aerated oil, pulsations, the scavenge pump and two-phase return are absent.
 
-## Pression et flexion
+## Pressure and bending
 
-À `0,3 MPa`, les formules de paroi mince donnent `1,288 MPa` en circonférentiel,
-`0,644 MPa` en axial et `1,115 MPa` de von Mises. Avec un effort transversal
-synthétique de `100 N` sur `120 mm`, la contrainte combinée vaut `27,41 MPa`.
-Le rapport à Rp0,2 ambiant `640 MPa` vaut `23,35` : cet écran passe largement.
+At `0.3 MPa`, the thin-wall formulas give `1.288 MPa` hoop, `0.644 MPa` axial
+and `1.115 MPa` von Mises. With a synthetic transverse load of `100 N` over
+`120 mm`, the combined stress is `27.41 MPa`. The ratio to room-temperature
+Rp0.2 `640 MPa` is `23.35`: this screen passes by a wide margin.
 
-Il ne couvre ni coude, ni pied de bride, ni défaut LPBF, ni contrainte
-résiduelle, ni vibration. La pression d'éclatement algébrique n'est donc pas
-une pression autorisée.
+It covers neither the bend, nor the flange root, nor LPBF defects, nor residual
+stress, nor vibration. The algebraic burst pressure is therefore not an
+authorized pressure.
 
-## Thermique et souplesse
+## Thermal and compliance
 
-EOS IN625 M 290 `40 µm` fournit la comparaison mécanique. La densité et les
-constantes thermiques proviennent du bulletin IN625 corroyé Special Metals et
-ne sont pas une carte admissible LPBF à chaud.
+EOS IN625 M 290 `40 µm` provides the mechanical comparison. The density and
+thermal constants come from the Special Metals wrought IN625 bulletin and are
+not a hot LPBF allowable map.
 
-Entre `20` et `600 °C`, la dilatation libre de la ligne serait `1,391 mm`.
-Totalement bloquée, la borne `σ = EαΔT` atteint `1 620,98 MPa`, soit un rapport
-de seulement `0,395` : **échec**. Pour conserver le seuil `1,5`, le modèle
-indique que la fraction effective de blocage axial devrait rester sous `0,263`.
+Between `20` and `600 °C`, the free expansion of the line would be `1.391 mm`.
+Fully blocked, the bound `σ = EαΔT` reaches `1,620.98 MPa`, i.e. a ratio of
+only `0.395`: **fail**. To keep the `1.5` threshold, the model indicates that
+the effective axial restraint fraction would have to stay below `0.263`.
 
-La puissance de conduction pure par la paroi atteint une borne irréaliste de
-`39,6 kW` parce que les résistances convectives huile/gaz sont omises. Elle
-prouve seulement qu'une CHT avec cokéfaction et vraie température de peau est
-nécessaire.
+Pure conduction power through the wall reaches an unrealistic bound of
+`39.6 kW` because the oil/gas convective resistances are omitted. It only
+proves that a CHT with coking and the true skin temperature is necessary.
 
-## Décision F0
+## F0 decision
 
-La conduite passe les écrans hydrauliques et de membrane, mais échoue si elle
-est thermiquement contrainte. Surtout, le produit existant doit être ajusté au
-montage : une ligne LPBF rigide n'a aucun sens avant la mesure des deux voitures
-types, des mouvements moteur-turbo et des interfaces.
+The line passes the hydraulic and membrane screens, but fails if it is
+thermally constrained. Above all, the existing product must be adjusted at
+installation: a rigid LPBF line makes no sense before the two reference cars,
+the engine-turbo movements and the interfaces have been measured.
 
-Le procédé de référence reste donc **indécis** entre tube formé/soudé et LPBF
-IN625. L'AM n'est intéressante que si la consolidation, l'encombrement mesuré,
-la propreté interne et la répétabilité compensent réellement le coût et la
-perte d'ajustabilité.
+The reference process therefore stays **undecided** between formed/welded tube
+and LPBF IN625. AM is only worthwhile if consolidation, the measured packaging,
+internal cleanliness and repeatability actually offset the cost and the loss of
+adjustability.
 
 ## Reproduction
 
@@ -90,37 +109,37 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-turbo-oil-return-line-in625-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner les deux lignes et leurs interfaces dans plusieurs positions moteur.
-2. Mesurer débit, huile aérée, pression, température, drainage et retour.
-3. Mesurer mouvements relatifs, température de peau, flux et vibration.
-4. Construire CFD diphasique, CHT et FEA flexible avec corrélation banc.
-5. Comparer tube formé/soudé et LPBF sur masse, coût, fatigue et ajustabilité.
-6. Qualifier paroi, supports, dé-poudrage, traitement, usinage et propreté.
-7. Passer CT, pression, fuite, éclatement, débit, cyclage et vibration.
+1. Scan both lines and their interfaces in several engine positions.
+2. Measure flow, aerated oil, pressure, temperature, drainage and return.
+3. Measure relative movements, skin temperature, fluxes and vibration.
+4. Build two-phase CFD, CHT and flexible FEA with bench correlation.
+5. Compare formed/welded tube and LPBF on mass, cost, fatigue and adjustability.
+6. Qualify wall, supports, depowdering, heat treatment, machining and cleanliness.
+7. Pass CT, pressure, leak, burst, flow, cycling and vibration tests.
 
-PhysicsNeMo reste différé jusqu'à l'existence de séries CFD/CHT/structure
-corrélées avec holdout et cas hors distribution. Toutes les autorisations de
-fabrication, huile, turbo, moteur et véhicule restent fermées.
+PhysicsNeMo stays deferred until correlated CFD/CHT/structure series exist with
+holdout and out-of-distribution cases. All manufacturing, oil, turbo, engine
+and vehicle authorizations stay closed.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_x`.
+The STEP was tessellated, then sliced over its full height at `40 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `build_x`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 3 500 |
-| hauteur de construction | 140,00 mm |
-| couches avec region non soutenue | 942 |
-| proxy de supports | 43 851,08 mm³ |
-| epaisseur locale p01 | 1,180 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 3,500 |
+| build height | 140.00 mm |
+| layers with an unsupported region | 942 |
+| support proxy | 43,851.08 mm³ |
+| local thickness p01 | 1.180 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-turbo-oil-return-line-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-oil-return-line-in625-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-turbo-oil-return-line-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-oil-return-line-in625-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

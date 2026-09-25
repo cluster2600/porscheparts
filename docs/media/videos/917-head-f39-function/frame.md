@@ -1,35 +1,35 @@
-# Direction visuelle — F39
+# Visual direction — F39
 
-Concept : une revue de conception mécanique nocturne. La géométrie occupe le cadre; les fluides et la chaleur se déplacent uniquement sur des chemins explicitement représentés.
+Concept: a nighttime mechanical design review. The geometry fills the frame; fluids and heat move only along explicitly drawn paths.
 
 ## Palette
 
-- Fond graphite : `#0b1116`
-- Panneaux : `#111b22`
-- Texte : `#eef4f6`
-- Texte secondaire : `#a8b6bd`
-- Aluminium : `#c79b45`
-- Arêtes : `#f2d28a`
-- Air/admission : `#59c7ff`
-- Huile : `#41e0c2`
-- Chaleur/échappement : `#ff7a45`
-- Preuve numérique : `#64d98b`
-- Conditionnel : `#f0b44d`
-- Porte fermée : `#ff6b6b`
-- Grille/bordures : `#34424b`
+- Graphite background: `#0b1116`
+- Panels: `#111b22`
+- Text: `#eef4f6`
+- Secondary text: `#a8b6bd`
+- Aluminum: `#c79b45`
+- Edges: `#f2d28a`
+- Air/intake: `#59c7ff`
+- Oil: `#41e0c2`
+- Heat/exhaust: `#ff7a45`
+- Numerical evidence: `#64d98b`
+- Conditional: `#f0b44d`
+- Closed gate: `#ff6b6b`
+- Grid/borders: `#34424b`
 
-## Typographie
+## Typography
 
-- Titres : EB Garamond 700, 60–72 px.
-- Données et légendes : JetBrains Mono 400/700, 18–34 px.
+- Titles: EB Garamond 700, 60–72 px.
+- Data and captions: JetBrains Mono 400/700, 18–34 px.
 
-## Forme et mouvement
+## Shape and motion
 
-- Coins presque carrés, rayon maximal 12 px.
-- Grille de 64 px et profondeur par ombre légère uniquement sur la pièce.
-- Entrées mécaniques, tracés de flux progressifs et caméra lente.
-- Aucun effet décoratif sans rapport avec la géométrie, le cycle ou les résultats.
+- Nearly square corners, 12 px maximum radius.
+- 64 px grid and depth from a light shadow on the part only.
+- Mechanical entrances, progressive flow traces and a slow camera.
+- No decorative effect unrelated to the geometry, the cycle or the results.
 
-## Règle de sûreté
+## Safety rule
 
-Le bandeau inférieur reste visible dans chaque scène : animation explicative et fabrication moteur non autorisée.
+The bottom banner stays visible in every scene: explanatory animation, engine manufacturing not authorized.

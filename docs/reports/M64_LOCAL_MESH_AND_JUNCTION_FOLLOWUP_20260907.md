@@ -1,116 +1,116 @@
-# M64 — correction locale du maillage et raccords encore à reprendre
+# M64 — local mesh correction and blends still to be reworked
 
-Suite du [lot CAO, contacts et maillage](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md).
-Deux essais distincts progressent : la discrétisation de la peau sur le corps
-05 et la représentation topologique du corps 06. **Aucun des deux ne constitue
-une culasse validée ni une autorisation d'impression.** Les géométries ne sont
-pas interchangeables ; leurs empreintes lient chaque résultat à son objet.
+Follow-up to the [CAD, contacts and mesh batch](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md).
+Two separate trials progress: the discretization of the skin on body 05 and
+the topological representation of body 06. **Neither constitutes a validated
+cylinder head nor a print authorization.** The geometries are not
+interchangeable; their digests bind each result to its object.
 
-## Maillage 05 : amélioration réelle sans modification de la CAO
+## Mesh 05: real improvement without modifying the CAD
 
-Le [contre-essai MeshAdapt](../../twins/m64-cylinder-head/evidence/native-mesh-trial05-local-MeshAdapt-20260907.json)
-ne change que l'algorithme de maillage de trois faces dont la provenance dans
-la peau d'origine a été contrôlée. Toutes les tailles, l'algorithme volumique
-et les autres options restent identiques. Le choix est testé sur Kali x86,
-dans le même conteneur limité à deux CPU et 4 Gio, sans nouvelle location Vast.
-La génération réelle dure 23,71 s ; les entrées restent inchangées.
+The [MeshAdapt counter-trial](../../twins/m64-cylinder-head/evidence/native-mesh-trial05-local-MeshAdapt-20260907.json)
+changes only the meshing algorithm of three faces whose provenance in the
+original skin was checked. All sizes, the volume algorithm and the other
+options remain identical. The choice is tested on Kali x86, in the same
+container limited to two CPUs and 4 GiB, without a new Vast rental. The actual
+generation lasts 23.71 s; the inputs remain unchanged.
 
-| Mesure sur les fichiers MSH relus | Avant | Après correction locale |
+| Measurement on the reread MSH files | Before | After local correction |
 |---|---:|---:|
-| Tétraèdres | 261 564 | 259 699 |
-| Tétraèdres de qualité minSICN < 0,1 | 4 902 | 4 744 |
-| Tétraèdres quasi plats, minSICN < 10⁻⁶ | 7 | 0 |
-| Jacobiens non positifs | 1 | 0 |
-| Triangles de frontière minSICN < 0,1 | 869 | 799 |
-| Écart de volume discrétisé par rapport au natif | +0,281956 % | +0,282046 % |
+| Tetrahedra | 261,564 | 259,699 |
+| Tetrahedra with quality minSICN < 0.1 | 4,902 | 4,744 |
+| Near-flat tetrahedra, minSICN < 10⁻⁶ | 7 | 0 |
+| Non-positive Jacobians | 1 | 0 |
+| Boundary triangles minSICN < 0.1 | 869 | 799 |
+| Discretized volume gap relative to native | +0.281956% | +0.282046% |
 
-Sur les trois faces ciblées, les minima de qualité passent respectivement
-de 0,00515 / 0,02452 / 0,00180 à 0,30998 / 0,37297 / 0,17985. Les 4 889 autres
-faces présentent la même signature de triangulation, calculée à partir des
-coordonnées arrondies à douze décimales. Ce contrôle n'est pas une identité
-bit à bit ni une preuve exhaustive d'équivalence géométrique.
+On the three targeted faces, the quality minima go respectively from
+0.00515 / 0.02452 / 0.00180 to 0.30998 / 0.37297 / 0.17985. The 4,889 other
+faces show the same triangulation signature, computed from coordinates rounded
+to twelve decimals. This check is neither a bit-for-bit identity nor an
+exhaustive proof of geometric equivalence.
 
-Le fichier conserve une région connectée, toutes les faces CAO maillées et
-une frontière complète. Les sept éléments presque plats disparaissent par
-remaillage, pas par suppression manuelle. Mais **4 744 éléments restent sous
-le seuil projet 0,1 : le maillage global est toujours refusé**. La face ayant
-la plus grande erreur d'aire parmi les trois ciblées conserve environ 1,71 %
-d'écart ; la convergence géométrique n'est donc pas démontrée non plus.
+The file keeps one connected region, all CAD faces meshed and a complete
+boundary. The seven near-flat elements disappear through remeshing, not
+through manual deletion. But **4,744 elements remain under the project
+threshold of 0.1: the global mesh is still rejected**. The face with the
+largest area error among the three targeted keeps a gap of about 1.71%;
+geometric convergence is therefore not demonstrated either.
 
-### Le contrôle après export est désormais obligatoire
+### The post-export check is now mandatory
 
-La comparaison ultérieure des MSH a trouvé un Jacobien non positif dans le
-fichier initial, alors que les Jacobiens étaient tous positifs en mémoire.
-Les coordonnées ne variaient que très peu : un contrôle de déplacement maximal
-à 10⁻¹⁰ unité ne suffisait pas pour ces éléments presque dégénérés.
+The later comparison of the MSH files found a non-positive Jacobian in the
+initial file, while the Jacobians were all positive in memory. The coordinates
+varied only very slightly: a maximum displacement check at 10⁻¹⁰ unit was not
+enough for these nearly degenerate elements.
 
-Le [helper](../../twins/m64-cylinder-head/source/mesh_native_ported_head.py)
-recalcule maintenant **minSICN et minDetJac après relecture**, impose le même
-nombre de tétraèdres, des Jacobiens strictement positifs et le seuil minSICN
-inchangé. Les [tests dédiés](../../tests/test_m64_native_ported_mesh.py) incluent
-une inversion malgré un déplacement inférieur à 10⁻¹⁰. Le reçu conserve le
-vrai code exécuté pour le contre-essai (`540d168f…`), distinct du helper renforcé
-ultérieurement (`3b412b00…`). Aucun ancien rapport n'a été réécrit en succès.
+The [helper](../../twins/m64-cylinder-head/source/mesh_native_ported_head.py)
+now recomputes **minSICN and minDetJac after rereading**, enforces the same
+number of tetrahedra, strictly positive Jacobians and the unchanged minSICN
+threshold. The [dedicated tests](../../tests/test_m64_native_ported_mesh.py)
+include an inversion despite a displacement below 10⁻¹⁰. The receipt keeps the
+real code executed for the counter-trial (`540d168f…`), distinct from the
+later hardened helper (`3b412b00…`). No earlier report was rewritten as a
+success.
 
-## Corps 06 : représentation corrigée, épaulements inchangés
+## Body 06: corrected representation, shoulders unchanged
 
-Le [fractionnement topologique](../../twins/m64-cylinder-head/evidence/trial06-topological-edge-split-20260907.json)
-remplace deux courbes C0 par cinq segments à leurs nœuds existants. Il ne
-lisse ni n'ajuste les courbes et n'augmente pas leurs tolérances. Le candidat
-natif conserve un solide, une coque et 4 889 faces ; le contrôle BOP complet
-en mémoire ne signale plus de défaut. Le B-Rep sauvegardé et relu passe
-BRepCheck et le contrôle de continuité. **Le BOP complet n'a pas été répété
-après relecture, et aucun nouveau STEP n'a été exporté ou qualifié.**
+The [topological split](../../twins/m64-cylinder-head/evidence/trial06-topological-edge-split-20260907.json)
+replaces two C0 curves with five segments at their existing knots. It neither
+smooths nor refits the curves and does not increase their tolerances. The
+native candidate keeps one solid, one shell and 4,889 faces; the full
+in-memory BOP check no longer reports a defect. The saved and reread B-Rep
+passes BRepCheck and the continuity check. **The full BOP was not repeated
+after rereading, and no new STEP was exported or qualified.**
 
-La table des courbes paramétriques sur surface est identique octet pour octet.
-Les supports B-splines restent inchangés ; quelques coefficients analytiques
-varient d'au plus 2,22 × 10⁻¹⁶ à la sérialisation. Les intervalles des courbes
-sont couverts une fois, avec les orientations de leurs occurrences conservées.
-Ce sont des contrôles de représentation, pas une preuve de lissage fonctionnel.
+The table of parametric curves on surface is identical byte for byte. The
+B-spline supports remain unchanged; a few analytic coefficients vary by at
+most 2.22 × 10⁻¹⁶ at serialization. The curve intervals are covered once, with
+the orientations of their occurrences kept. These are representation checks,
+not evidence of functional smoothing.
 
-L'écart de volume calculé sans intégration adaptative n'était pas fiable pour
-comparer ces deux représentations. Le contre-calcul adaptatif donne environ
-−1,53 × 10⁻⁷ unité³ d'écart ; son estimateur d'erreur relatif reste autour de
-3,03 × 10⁻⁸. Ne pas confondre la précision demandée avec une borne atteinte.
+The volume gap computed without adaptive integration was not reliable for
+comparing these two representations. The adaptive cross-computation gives a
+gap of about −1.53 × 10⁻⁷ unit³; its relative error estimator stays around
+3.03 × 10⁻⁸. Do not confuse the requested precision with a bound reached.
 
-Le défaut de forme interne est toujours présent : les branches débouchent
-sur des portions résiduelles de calotte plane, avec des angles entre plans
-tangents proches de 90°. Le fractionnement n'élimine pas ces épaulements et
-ne démontre aucun gain de débit. Le prochain prototype doit créer un raccord
-progressif, en préservant les sections de référence et les portées d'inserts.
+The internal shape defect is still present: the branches open onto residual
+portions of a flat dome, with angles between tangent planes close to 90°. The
+split does not remove these shoulders and demonstrates no flow gain. The next
+prototype must create a progressive blend, preserving the reference sections
+and the insert seats.
 
 ```mermaid
 flowchart TD
-    A["Corps 05 : peau héritée de la référence"] --> B["MeshAdapt local sur trois faces identifiées"]
-    B --> C["7 tétras quasi plats supprimés par remaillage"]
-    C --> D["4 744 éléments encore sous le seuil : maillage refusé"]
-    E["Corps 06 : deux courbes C0"] --> F["Fractionnement aux nœuds, sans lissage"]
-    F --> G["BOP natif en mémoire sans défaut"]
-    G --> H["Épaulements proches de 90° toujours présents"]
-    H --> I["Prototype de raccord progressif contraint"]
-    I --> J["Nouvelle géométrie complète à contrôler et mailler"]
+    A["Body 05: skin inherited from the reference"] --> B["Local MeshAdapt on three identified faces"]
+    B --> C["7 near-flat tets removed by remeshing"]
+    C --> D["4,744 elements still under the threshold: mesh rejected"]
+    E["Body 06: two C0 curves"] --> F["Split at knots, no smoothing"]
+    F --> G["Native in-memory BOP without defect"]
+    G --> H["Shoulders close to 90° still present"]
+    H --> I["Constrained progressive blend prototype"]
+    I --> J["New full geometry to check and mesh"]
     D --> J
-    J --> K["CHT et résistance seulement après qualification des entrées"]
+    J --> K["CHT and strength only after the inputs are qualified"]
 ```
 
-Les résultats de maillage du corps 05 ne sont pas transférés au corps 06.
-La suite reste géométrique : raccord progressif, peau correctement discrétisée,
-puis conditions physiques explicites et convergence. Aucun champ de chaleur,
-contrainte, fatigue ou résultat LPBF de culasse n'est ajouté par ce lot.
+The mesh results of body 05 are not transferred to body 06. The next steps
+remain geometric: progressive blend, correctly discretized skin, then explicit
+physical conditions and convergence. No heat field, stress, fatigue or LPBF
+result for the cylinder head is added by this batch.
 
-## Vérification logicielle et traçabilité
+## Software verification and traceability
 
-Le [reçu logiciel séparé](../../twins/m64-cylinder-head/evidence/local-mesh-followup-software-checks-20260907.json)
-consigne un nouveau `make check` terminé avec sortie 0 : 2 131 tests dans
-la découverte principale, dont 76 ignorés explicitement, puis les cibles
-complémentaires. Les 17 tests ciblés du maillage passent également sans
-test ignoré. Une revue indépendante en lecture seule n'a pas trouvé de
-faux succès dans les critères ajoutés et a vérifié les chiffres contre les
-preuves privées. Elle n'a exécuté aucun nouveau maillage.
+The [separate software receipt](../../twins/m64-cylinder-head/evidence/local-mesh-followup-software-checks-20260907.json)
+records a new `make check` ended with exit 0: 2,131 tests in the main
+discovery, 76 of them explicitly skipped, then the additional targets. The 17
+targeted mesh tests also pass with no test skipped. An independent read-only
+review found no false success in the added criteria and checked the figures
+against the private evidence. It ran no new mesh.
 
-Les compétences de tests et de documentation ont conduit à conserver le
-contre-exemple d'inversion après export, les résultats rejetés et les
-empreintes du code réellement exécuté, sans les confondre avec le code futur.
+The testing and documentation skills led to keeping the counterexample of
+inversion after export, the rejected results and the digests of the code
+actually executed, without confusing them with future code.
 
-La [suite des prototypes de raccord et du maillage](M64_LOCAL_FILLET_AND_HXT_COUNTERTRIALS_20260907.md)
-conserve les nouveaux essais et leurs rejets séparément.
+The [follow-up on the blend prototypes and the mesh](M64_LOCAL_FILLET_AND_HXT_COUNTERTRIALS_20260907.md)
+keeps the new trials and their rejections separately.

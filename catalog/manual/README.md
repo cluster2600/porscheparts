@@ -1,39 +1,38 @@
-# Registre quantitatif du manuel 993
+# Quantitative register of the 993 manual
 
-`993-workshop-manual-measurements.json` regroupe les valeurs quantitatives
-trouvées dans le manuel d'atelier Porsche 993 :
+`993-workshop-manual-measurements.json` collects the quantitative values found
+in the Porsche 993 workshop manual:
 
-- les fiches `technical_data` déjà structurées par Porsche Fanatics ;
-- les `torque_spec` des tableaux de couples ;
-- les occurrences de cotes, jeux, limites, pressions, masses, angles et
-  dimensions de filetage rencontrées dans les procédures OCR.
+- the `technical_data` records already structured by Porsche Fanatics;
+- the `torque_spec` entries from the torque tables;
+- occurrences of dimensions, clearances, limits, pressures, masses, angles and
+  thread sizes found in the OCR'd procedures.
 
-Le registre contient actuellement 2 496 enregistrements : 111 données
-techniques, 195 couples et 2 190 occurrences quantitatives issues des 1 481
-pages. Les occurrences peuvent se répéter lorsqu'une même valeur apparaît dans
-une procédure ou dans plusieurs variantes ; elles portent toujours la page et
-le contexte court qui permettent de revenir à la source.
+The register currently holds 2,496 records: 111 technical data entries, 195
+torques and 2,190 quantitative occurrences drawn from the 1,481 pages.
+Occurrences can repeat when the same value appears in one procedure or in
+several variants; each always carries the page and the short context needed to
+go back to the source.
 
-Les pages 15, 19, 98, 108, 121, 137, 152–157, 177, 258 et 725–728 ont été
-contrôlées visuellement dans le PDF local ; le reste est conservé comme
-occurrence OCR à vérifier au moment où il sera utilisé.
+Pages 15, 19, 98, 108, 121, 137, 152–157, 177, 258 and 725–728 were checked
+visually in the local PDF; the rest is kept as OCR occurrences to be verified
+when they are used.
 
-Chaque ligne porte la page PDF. Les tableaux structurés sont des faits dérivés
-et les occurrences OCR portent `ocr_unreviewed` : elles doivent être contrôlées
-visuellement dans l'exemplaire autorisé avant d'être utilisées pour une CAO ou
-une fabrication. Le registre n'est pas une copie du PDF et ne contient aucune
-image ni le texte complet des procédures.
+Each row carries the PDF page. The structured tables are derived facts, and the
+OCR occurrences carry `ocr_unreviewed`: they must be checked visually in the
+authorized copy before being used for CAD or manufacturing. The register is not
+a copy of the PDF and contains no image and no full procedure text.
 
-Régénérer depuis les données du projet Porsche Fanatics :
+Regenerate from the Porsche Fanatics project data:
 
 ```bash
 python3 scripts/extract_manual_measurements.py \
-  --raw "/chemin/vers/porschefanatic.com/data/raw/993-manual/layout.txt" \
-  --technical-data "/chemin/vers/porschefanatic.com/data/993-manual/technical-data.json" \
-  --torque-specs "/chemin/vers/porschefanatic.com/data/993-manual/torque-specs.json" \
+  --raw "/path/to/porschefanatic.com/data/raw/993-manual/layout.txt" \
+  --technical-data "/path/to/porschefanatic.com/data/993-manual/technical-data.json" \
+  --torque-specs "/path/to/porschefanatic.com/data/993-manual/torque-specs.json" \
   --output catalog/manual/993-workshop-manual-measurements.json
 ```
 
-La source de provenance est `SRC-PORSCHE-WORKSHOP-MANUAL-993`. Les valeurs du
-manuel ne sont pas des mesures directes du projet : elles servent de références
-constructeur et de critères pour une future campagne métrologique.
+The provenance source is `SRC-PORSCHE-WORKSHOP-MANUAL-993`. The manual values
+are not direct measurements by this project: they serve as manufacturer
+references and as criteria for a future metrology campaign.

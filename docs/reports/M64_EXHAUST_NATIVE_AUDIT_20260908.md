@@ -1,162 +1,166 @@
-# M64 — passage d’échappement natif : candidat conservé, non validé
+# M64 — native exhaust passage: candidate kept, not validated
 
-**Checkpoint historique conservé.** Le [contrôle distinct de matière et des
-logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md) a depuis exécuté le
-`Common` sur les entrées sauvegardées ; il ne requalifie ni cette découpe,
-ni les contacts des guides, ni les deux arêtes C0.
+**Historical checkpoint kept.** The [separate check of material and
+pockets](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md) has since run the
+`Common` on the saved inputs; it requalifies neither this cut,
+nor the guide contacts, nor the two C0 edges.
 
-Le corps avec admission et échappement a été exporté, mais **reste refusé** :
-le contrôle bit à bit des tolérances après sérialisation échoue et un audit
-BOP indépendant signale deux `BOPAlgo_GeomAbs_C0`, désormais **localisés mais
-non corrigés** par un contrôle ultérieur limité à la continuité.
-Aucune dérogation, qualification fonctionnelle ou autorisation de fabrication
-n’est accordée. La [capsule de preuves](../../twins/m64-cylinder-head/evidence/exhaust-native-audit-20260908.json)
-relie les trois étapes initiales et ce complément aux reçus privés, sans
-publier la géométrie.
+The body with intake and exhaust was exported, but **remains rejected**:
+the bit-for-bit check of tolerances after serialization fails and an independent
+BOP audit reports two `BOPAlgo_GeomAbs_C0`, since **located but
+not corrected** by a later check limited to continuity.
+No waiver, functional qualification or manufacturing authorization
+is granted. The [evidence capsule](../../twins/m64-cylinder-head/evidence/exhaust-native-audit-20260908.json)
+links the three initial steps and this supplement to the private receipts, without
+publishing the geometry.
 
-## Trois étapes initiales et un complément distinct
+## Three initial steps and a separate supplement
 
-| Étape réellement exécutée | Observation | Décision conservée |
+| Step actually run | Observation | Decision kept |
 |---|---|---|
-| Essai 01 | Appel d’API `HasErrors` indisponible sur l’objet `BRepAlgoAPI_Cut` ; arrêt avant export | Erreur du programme, pas preuve d’invalidité de la pièce |
-| Essai 02 | Export natif `21c9c40b…`, un solide, une coque, 4 900 faces ; BRepCheck exact valide avant/après relecture | Refus `rejected_native_tolerance_integrity` |
-| Audit indépendant | Relecture du même export, cinq modes BOP activés ensemble ; deux signalements C0 | Refus maintenu, incidence non qualifiée |
-| Localisation ultérieure | Continuité seule ; les deux arêtes et trois nœuds internes sont identifiés | Localisées, non corrigées ; aucun refus levé |
+| Trial 01 | API call `HasErrors` unavailable on the `BRepAlgoAPI_Cut` object; stop before export | Program error, not evidence that the part is invalid |
+| Trial 02 | Native export `21c9c40b…`, one solid, one shell, 4,900 faces; exact BRepCheck valid before/after reread | Rejection `rejected_native_tolerance_integrity` |
+| Independent audit | Reread of the same export, five BOP modes enabled together; two C0 reports | Rejection maintained, impact not qualified |
+| Later localization | Continuity only; the two edges and three internal knots are identified | Located, not corrected; no rejection lifted |
 
-L’essai 01 termine avec un code travailleur 1 et un code conteneur 2, en
-7,514 s murales supervisées. L’essai 02 termine avec le code 2 en 12,569 s.
-Son calcul natif dure 11,554 s ; son intervalle conteneur est
-11:20:12,499–11:20:24,905 UTC, le 8 septembre 2026.
+Trial 01 ends with worker code 1 and container code 2, in
+7.514 s supervised wall time. Trial 02 ends with code 2 in 12.569 s.
+Its native computation takes 11.554 s; its container interval is
+11:20:12.499–11:20:24.905 UTC, on 8 September 2026.
 
-Le corps d’entrée `33375e12…` et l’outil d’échappement `9e1ab8b3…` sont
-épinglés. Aucun changement de repère supplémentaire n’est appliqué, aucun
-STEP n’est utilisé et les originaux restent intacts. Le refus préalable
-relatif au maintien des guides n’est pas effacé par cette nouvelle découpe.
-La référence reste issue du scan 935 ; `1 unité = 1 mm` demeure une hypothèse,
-pas une échelle ni une compatibilité d’interfaces M64 certifiées.
+The input body `33375e12…` and the exhaust tool `9e1ab8b3…` are
+pinned. No additional frame change is applied, no
+STEP is used and the originals remain intact. The earlier rejection
+relating to guide retention is not erased by this new cut.
+The reference still comes from the 935 scan; `1 unit = 1 mm` remains an assumption,
+not a certified scale nor a certified M64 interface compatibility.
 
-## Ce que le diagnostic de sérialisation démontre — et ne démontre pas
+## What the serialization diagnosis demonstrates — and does not demonstrate
 
-Les listes enregistrées présentent 89 différences parmi 5 176 tolérances de
-sommets. L’écart absolu maximal est `4,235164736271502e−21` unité de scan.
-Les 10 075 tolérances d’arêtes et les 4 900 tolérances de faces sont identiques ;
-les extrema et les tolérances des entrées sont inchangés. Le volume adaptatif
-calculé avant et après relecture est égal, sans constituer une preuve globale
-d’identité géométrique.
+The recorded lists show 89 differences among 5,176 vertex
+tolerances. The maximum absolute deviation is `4.235164736271502e−21` scan unit.
+The 10,075 edge tolerances and the 4,900 face tolerances are identical;
+the extrema and the input tolerances are unchanged. The adaptive volume
+computed before and after reread is equal, without constituting global evidence
+of geometric identity.
 
-Sur ces listes ordonnées, `float(format(avant, '.15g')) == relecture`
-reproduit exactement les 5 176 valeurs, dont les 89 différentes. Les témoins
-à 16 et 17 chiffres ne reproduisent aucune des 89 différences. Ce reçu
-arithmétique seul ne vérifiait pas le code de sérialisation et n’établit
-**aucune correspondance géométrique indépendante de tous les sommets**.
+On these ordered lists, `float(format(before, '.15g')) == reread`
+reproduces exactly the 5,176 values, including the 89 that differ. The controls
+at 16 and 17 digits reproduce none of the 89 differences. This arithmetic
+receipt alone did not verify the serialization code and establishes
+**no independent geometric correspondence of all vertices**.
 
-La lecture primaire ultérieure d’OCCT 7.9.3 montre que
+The later primary reading of OCCT 7.9.3 shows that
 [`TopTools_ShapeSet::Write`](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/TopTools/TopTools_ShapeSet.cxx#L427-L515)
-fixe la précision à 15 chiffres, appelle l’écriture de la géométrie puis
-restaure la précision. La
-[routine des sommets](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepTools/BRepTools_ShapeSet.cxx#L497-L508)
-écrit leur tolérance dans ce flux. C’est cohérent avec l’arrondi observé,
-pas une déformation mécanique mesurée ni une preuve complète d’invariance.
-Le refus historique demeure, sans dérogation générale ni tolérance de
-fabrication déduite ; les deux C0 restent un obstacle distinct.
+sets the precision to 15 digits, calls the geometry writer then
+restores the precision. The
+[vertex routine](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepTools/BRepTools_ShapeSet.cxx#L497-L508)
+writes their tolerance into this stream. This is consistent with the observed rounding,
+not a measured mechanical deformation nor complete evidence of invariance.
+The historical rejection stands, with no general waiver and no derived
+manufacturing tolerance; the two C0 remain a separate obstacle.
 
-## Audit BOP séparé, en lecture seule
+## Separate BOP audit, read-only
 
-Le reçu indépendant `09dfd5e6…` est lié au candidat sauvegardé. BRepCheck
-exact est valide ; BOP signale `HasFaulty=true`, `HasErrors=false` et
-`HasWarnings=false`, avec **deux `BOPAlgo_GeomAbs_C0` au total**.
-Les modes `SelfInterMode`, `SmallEdgeMode`, `RebuildFaceMode`,
-`ContinuityMode` et `CurveOnSurfaceMode` sont activés dans ce même audit,
-avec fuzzy nul, sans arrêt au premier défaut.
+The independent receipt `09dfd5e6…` is bound to the saved candidate. Exact
+BRepCheck is valid; BOP reports `HasFaulty=true`, `HasErrors=false` and
+`HasWarnings=false`, with **two `BOPAlgo_GeomAbs_C0` in total**.
+The modes `SelfInterMode`, `SmallEdgeMode`, `RebuildFaceMode`,
+`ContinuityMode` and `CurveOnSurfaceMode` are enabled in this same audit,
+with zero fuzzy, without stopping at the first defect.
 
-Ce contrôle dure 174,308 s pour BOP, 177,111 s au niveau du wrapper, et
-retourne 2. Les tolérances et toutes les entrées restent inchangées ; aucun
-B-Rep/STEP n’est écrit ou réparé. Les deux signalements ne sont **pas des
-fissures physiques démontrées**. Dans ce snapshot, leurs entités ne sont pas
-localisées et leur incidence fonctionnelle n'est pas qualifiée. Ce reçu reste
-inchangé ; le complément ci-dessous ne transforme aucun refus en succès.
+This check takes 174.308 s for BOP, 177.111 s at wrapper level, and
+returns 2. Tolerances and all inputs remain unchanged; no
+B-Rep/STEP is written or repaired. The two reports are **not demonstrated physical
+cracks**. In this snapshot, their entities are not
+located and their functional impact is not qualified. This receipt remains
+unchanged; the supplement below turns no rejection into a success.
 
-## Complément : localisation native, sans correction
+## Supplement: native localization, without correction
 
-Le reçu `18dba811…` concerne exactement le même candidat `21c9c40b…`. Seul
-`ContinuityMode` est activé ; les huit autres modes sont explicitement
-désactivés. Ce contrôle ne répète ni le BOP complet, ni BRepCheck, ni une
-découpe. Le corps d'entrée et l'outil seuls donnent chacun zéro alerte de
-continuité ; le candidat conserve exactement les deux alertes attendues.
+Receipt `18dba811…` concerns exactly the same candidate `21c9c40b…`. Only
+`ContinuityMode` is enabled; the other eight modes are explicitly
+disabled. This check repeats neither the full BOP, nor BRepCheck, nor a
+cut. The input body and the tool alone each give zero continuity
+alerts; the candidate keeps exactly the two expected alerts.
 
-Les sous-formes signalées sont les arêtes natives **1603 et 1606 de ce
-candidat exact**. Elles sont chacune incidentes à la face 678, dont le support
-B-spline global complet correspond à celui de la face 1 de l'outil
-d'échappement. Leurs autres faces incidentes sont respectivement 881 et 884,
-dont les supports correspondent aux faces 4408 et 4194 du corps avant coupe.
-Ces associations utilisent l'adjacence native et les représentations complètes
-binary64 des supports : degrés, pôles, poids, nœuds, multiplicités et
-périodicité. Elles ne reposent pas sur d'anciens IDs réutilisés et ne prouvent
-pas l'identité des faces tronquées.
+The reported sub-shapes are native edges **1603 and 1606 of this
+exact candidate**. Each is incident to face 678, whose complete global
+B-spline support matches that of face 1 of the exhaust
+tool. Their other incident faces are 881 and 884 respectively,
+whose supports match faces 4408 and 4194 of the body before the cut.
+These associations use native adjacency and the complete binary64
+representations of the supports: degrees, poles, weights, knots, multiplicities and
+periodicity. They do not rely on reused old IDs and do not prove
+the identity of the trimmed faces.
 
-Aux **trois nœuds internes examinés**, les évaluations natives unilatérales
-donnent chacune un saut de position numérique nul. Les angles entre tangentes
-sont respectivement **0,03993974°, 0,01033415° et 0,25917866°**. Ces observations
-ponctuelles ne prouvent ni l'absence globale de jeu ou de défaut géométrique,
-ni la continuité des dérivées, ni l'intégrité mécanique. Les supports complets
-des deux courbes n'ont pas de représentation identique retrouvée dans les
-entrées ; une absence de correspondance ne démontre pas une géométrie nouvelle.
+At the **three internal knots examined**, the one-sided native evaluations
+each give a numerical position jump of zero. The angles between tangents
+are respectively **0.03993974°, 0.01033415° and 0.25917866°**. These point
+observations prove neither the global absence of gap or geometric defect,
+nor continuity of derivatives, nor mechanical integrity. The complete supports
+of the two curves have no identical representation found in the
+inputs; an absence of correspondence does not demonstrate new geometry.
 
-La localisation termine avec le code 0 en **1,043 s** pour le lecteur et
-**1,477 s** pour le wrapper, nettoyage compris. Entrées locales et distantes,
-sources et empreintes des tolérances natives restent inchangées. Quinze tests
-sans OCP passent, dont le refus d'un compte d'alertes différent, d'un résultat
-vide, d'une forme absente ou d'un avertissement natif. Leur réussite ne vaut
-pas qualification de la CAO. Aucune géométrie n'est écrite ou réparée ; les
-coordonnées, paramètres de coupe et pôles restent privés.
+The localization ends with code 0 in **1.043 s** for the reader and
+**1.477 s** for the wrapper, cleanup included. Local and remote inputs,
+sources and digests of the native tolerances remain unchanged. Fifteen tests
+without OCP pass, including rejection of a different alert count, an empty
+result, a missing shape or a native warning. Their success does not amount
+to CAD qualification. No geometry is written or repaired; the
+coordinates, cut parameters and poles remain private.
 
 ```mermaid
 flowchart TD
-    A["Essai 01 : erreur API, aucun export"] --> B["Essai 02 : export natif du corps"]
-    B --> C["Tolérances bit à bit : refus conservé"]
-    C --> D["Audit séparé : deux C0 non localisés"]
-    D --> E["Complément continuité seule : deux arêtes localisées"]
-    E --> F["Correction bornée à préparer et à contre-vérifier"]
-    F --> G["Contrôles fonctionnels, CFD et fabrication toujours non autorisés"]
+    A["Trial 01: API error, no export"] --> B["Trial 02: native export of the body"]
+    B --> C["Bit-for-bit tolerances:<br/>rejection kept"]
+    C --> D["Separate audit:<br/>two C0 not located"]
+    D --> E["Continuity-only supplement:<br/>two edges located"]
+    E --> F["Bounded correction to prepare<br/>and cross-check"]
+    F --> G["Functional checks, CFD and manufacturing<br/>still not authorized"]
+    class C,G stop
+    class F open
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
 ```
 
-## Ce qui reste absent
+## What is still missing
 
-Le `Common` du matériau réellement retiré et le BOP final du producteur
-n’ont pas été exécutés : ils sont situés après le garde de sérialisation.
-L’audit séparé ne remplace pas ce `Common` ni les contrôles fonctionnels 6–12 :
-continuité du gaz complet quatre soupapes, maintien des sièges/guides,
-parois après les deux conduits et bandes d’interfaces protégées.
-Thermique, résistance, LPBF et validation d’impression ne sont pas exécutés
-sur ce candidat. Voir le [dossier matériau/refroidissement/LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md)
-pour leurs exigences distinctes.
+The `Common` of the material actually removed and the producer's final BOP
+were not run: they sit after the serialization guard.
+The separate audit replaces neither this `Common` nor functional checks 6–12:
+continuity of the complete four-valve gas path, retention of seats/guides,
+walls after both ports and protected interface bands.
+Thermal, strength, LPBF and print validation are not run
+on this candidate. See the [material/cooling/LPBF dossier](M64_700CH_MATERIAL_COOLING_LPBF.md)
+for their separate requirements.
 
-Une image **privée** est réellement rendue à partir du seul corps exporté :
-4 900 faces, 92 118 triangles, déflexions linéaire 0,18 et angulaire 0,25 rad.
-Elle montre une vue externe opaque et une demi-coupe d’affichage non bouchée,
-sans transformation supplémentaire, lissage, décimation ni génération IA.
-Aucun ancien assemblage de douze composants ni aucune ancienne affectation
-fonctionnelle de couleurs n’est réutilisé. Le gris n’est pas un choix de
-matériau. Image, maillage dérivé et coordonnées restent privés.
+A **private** image is actually rendered from the exported body alone:
+4,900 faces, 92,118 triangles, linear deflection 0.18 and angular deflection 0.25 rad.
+It shows an opaque external view and an uncapped display half-section,
+without additional transformation, smoothing, decimation or AI generation.
+No old twelve-component assembly and no old functional
+color assignment is reused. The gray is not a material
+choice. Image, derived mesh and coordinates remain private.
 
-## Ressources et portée
+## Resources and scope
 
-Pour les étapes initiales sur Kali x86 : deux CPU, 4 Gio de mémoire et swap
-combinés, limite 300 s par exécution native, réseau coupé et entrées montées
-en lecture seule. L’essai
-02 est lié à la commande du wrapper figé ; l’inspection HostConfig en direct
-a manqué ce conteneur déjà terminé. Pour l’audit indépendant, les limites
-ont aussi été constatées sur le conteneur vivant. Les conteneurs sont
-supprimés, absence vérifiée ; aucun OOM ni timeout n’est signalé.
+For the initial steps on Kali x86: two CPUs, 4 GiB of combined memory and swap,
+a 300 s limit per native run, network disabled and inputs mounted
+read-only. Trial
+02 is bound to the frozen wrapper command; the live HostConfig inspection
+missed this already finished container. For the independent audit, the limits
+were also observed on the live container. The containers are
+removed, absence verified; no OOM or timeout is reported.
 
-La localisation ultérieure utilise la même image et OCP 7.9.3.1, mais une
-borne distincte de **30 s CPU et murales, deux CPU et 2 Gio mémoire+swap au
-total**. Ses limites sont liées à la commande du wrapper figé ; aucune capture
-HostConfig en direct de ce court passage n'est revendiquée. Le conteneur exact
-est supprimé et son absence est revérifiée indépendamment. Aucune OOM ni
-expiration n'est observée.
+The later localization uses the same image and OCP 7.9.3.1, but a
+separate bound of **30 s CPU and wall time, two CPUs and 2 GiB memory+swap in
+total**. Its limits are bound to the frozen wrapper command; no live HostConfig
+capture of this short pass is claimed. The exact container
+is removed and its absence is independently rechecked. No OOM or
+timeout is observed.
 
-Le rendu local dure 3,834 s d’extraction puis 5,220 s de rendu, sans timeout.
-Aucune nouvelle location ni dépense Vast pour ce lot. Le plafond autorisé de
-44 USD est un budget, pas une mesure du solde du compte. Cette documentation
-ne vaut ni validation de la culasse complète ni autorisation de fabrication.
+The local render takes 3.834 s of extraction then 5.220 s of rendering, without timeout.
+No new rental and no Vast spend for this batch. The authorized ceiling of
+44 USD is a budget, not a measurement of the account balance. This documentation
+is neither validation of the complete cylinder head nor manufacturing authorization.

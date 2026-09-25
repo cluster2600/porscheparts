@@ -1,63 +1,84 @@
-# Roue de turbine K16 — concept IN718 F0
+# K16 turbine wheel — IN718 F0 concept
 
-Cette seizième pièce métallique distincte du programme est le premier modèle du
-rotor chaud K16. L'intérêt additif est réel pour une pièce de rechange complexe
-et produite en faible volume : douze pales peuvent être itérées sans recréer un
-outillage de fonderie. Cela ne rend pas automatiquement le LPBF préférable. Une
-roue nickel moulée et qualifiée reste la référence industrielle à battre.
+This sixteenth distinct metal part of the program is the first model of the
+hot K16 rotor. The additive benefit is real for a complex spare part produced
+in low volume: twelve blades can be iterated without recreating foundry
+tooling. That does not automatically make LPBF preferable. A qualified cast
+nickel wheel remains the industrial reference to beat.
 
-Le résultat F0 est un **rejet**, ce qui est utile : le modèle passe le disque
-centrifuge mais échoue au pied de pale, au gradient thermique et à l'enveloppe
-de température retenue. Rien dans ce dossier n'autorise une fabrication ou une
-rotation.
+The F0 result is a **rejection**, which is useful: the model passes the
+centrifugal disc check but fails at the blade root, at the thermal gradient and
+at the selected temperature envelope. Nothing in this dossier authorizes
+manufacturing or rotation.
 
-## Faits et hypothèses
+```mermaid
+flowchart LR
+  S["Published: 54.96/48.97 mm,<br/>twelve blades, 8.42 mm shaft"] --> H["Assumptions: 20 mm envelope,<br/>disc, hub, 2.4 → 0.8 mm blades"]
+  H --> G["F0 BREP valid<br/>IN718, 139.17 g"]
+  G --> D["Disc at overspeed<br/>ratio 2.022: passes"]
+  G --> B["Blade root<br/>ratio 1.233: fail"]
+  G --> T["Thermal bound<br/>ratio 0.566: fail"]
+  G --> P["LPBF print screen<br/>roll_y_45, 40 µm"]
+  B --> V["F0 rejected<br/>prohibited from manufacturing,<br/>rotation, turbo and engine use"]
+  T --> V
+  P --> V
+  class S ok
+  class H,D,P open
+  class B,T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-TurboMaster relie le K16 droit `5316-988-6735` de la 993 Turbo à la roue/arbre
-`5316-120-5000`. Le relevé fournisseur Invasion déclare `54,96 mm` à l'inducer,
-`48,97 mm` à l'exducer et douze pales. Une roue de remplacement Kinugawa pour
-la même référence annonce `49/55 mm`, une hauteur de pointe de `9,4 mm` et un
-arbre de `8,42 mm`.
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
 
-Ce sont les seuls faits géométriques utilisés. L'enveloppe axiale `20 mm`, le
-disque, le moyeu et les pales droites `2,4 → 0,8 mm` sont des hypothèses propres
-au projet. Chaque effilement continu est représenté en CAO par quatre paliers.
-L'arbre complet, sa liaison, les profils, le vrillage, les congés, les jeux et
-les corrections d'équilibrage sont absents.
+## Facts and assumptions
 
-PorscheFanatics confirme le contexte biturbo 993 et l'intérêt des upgrades de
-la ligne chaude, mais ne catalogue aucune roue additive ni géométrie K16
-réutilisable.
+TurboMaster links the right-hand K16 `5316-988-6735` of the 993 Turbo to the
+wheel/shaft `5316-120-5000`. The Invasion supplier listing declares `54.96 mm`
+at the inducer, `48.97 mm` at the exducer and twelve blades. A Kinugawa
+replacement wheel for the same reference announces `49/55 mm`, a tip height of
+`9.4 mm` and an `8.42 mm` shaft.
 
-## Matière candidate
+These are the only geometric facts used. The `20 mm` axial envelope, the disc,
+the hub and the straight `2.4 → 0.8 mm` blades are the project's own
+assumptions. Each continuous taper is represented in CAD by four steps. The
+complete shaft, its joint, the profiles, the twist, the fillets, the
+clearances and the balancing corrections are absent.
 
-Le criblage emploie EOS NickelAlloy IN718 API sur M 290, couche `40 µm`, après
-traitement thermique. EOS publie TRL `9`, une paroi minimale typique
-`0,3–0,4 mm`, une densité `8,15 g/cm³`, `0,03 %` de défauts moyens et, à
-l'ambiante en vertical, Rp0,2 `865 MPa`, Rm `1 236 MPa`, allongement `28 %`.
+PorscheFanatics confirms the 993 twin-turbo context and the interest in hot-side
+upgrades, but catalogues no additive wheel and no reusable K16 geometry.
 
-Ces résultats sont des coupons liés au procédé API. Ils ne donnent ni HCF, ni
-LCF, ni fluage, ni propagation, ni admissible d'éclatement pour ce rotor. EOS
-présente génériquement l'IN718 pour des usages jusqu'à `700 °C`. Le catalogue
-BorgWarner donne un contexte T3 de `950 °C` continu pour la ligne d'upgrade,
-mais T3 est une température de gaz, pas une température métal K16 mesurée. Le
-dépassement de `250 °C` est donc un signal d'arrêt, pas une preuve de fusion.
+## Candidate material
 
-## CAO calculable
+The screening uses EOS NickelAlloy IN718 API on the M 290, `40 µm` layer, after
+heat treatment. EOS publishes TRL `9`, a typical minimum wall of
+`0.3–0.4 mm`, a density of `8.15 g/cm³`, `0.03 %` average defects and, at room
+temperature in the vertical direction, Rp0.2 `865 MPa`, Rm `1,236 MPa`,
+elongation `28 %`.
 
-Le STEP relu dans l'image verrouillée contient un solide BREP valide de
-`54,96 × 54,96 × 20,00 mm`, douze pales et un marqueur d'interface arbre de
-`8,42 mm`. Le volume vaut `17 076,46 mm³` et la masse IN718 théorique
-`139,17 g`. Un cylindre enveloppe pèserait `386,70 g`, soit un ratio brut/pièce
-de `2,779`. L'arbre complet n'est pas modélisé.
+These results are coupons tied to the API process. They give no HCF, no LCF,
+no creep, no crack growth and no burst allowable for this rotor. EOS presents
+IN718 generically for uses up to `700 °C`. The BorgWarner catalogue gives a T3
+context of `950 °C` continuous for the upgrade line, but T3 is a gas
+temperature, not a measured K16 metal temperature. The `250 °C` exceedance is
+therefore a stop signal, not proof of melting.
 
-## Rotation et sur-vitesse
+## Computable CAD
 
-Faute de trace de vitesse K16, le rotor partage uniquement le point de
-régression du compresseur F1 : Mach périphérique compresseur `0,9`, donnant
-`103 464 tr/min`. La pointe turbine atteint alors `297,74 m/s`.
+The STEP re-read in the locked image contains a valid BREP solid of
+`54.96 × 54.96 × 20.00 mm`, twelve blades and a shaft interface marker of
+`8.42 mm`. The volume is `17,076.46 mm³` and the theoretical IN718 mass
+`139.17 g`. An envelope cylinder would weigh `386.70 g`, i.e. a stock-to-part
+ratio of `2.779`. The complete shaft is not modeled.
 
-Pour une pale d'épaisseur linéaire `t(r)` :
+## Rotation and overspeed
+
+Lacking a K16 speed trace, the rotor only shares the regression point of the
+F1 compressor: compressor tip Mach `0.9`, giving `103,464 rpm`. The turbine tip
+then reaches `297.74 m/s`.
+
+For a blade of linear thickness `t(r)`:
 
 `V = h × L × (t_racine + t_pointe) / 2`
 
@@ -65,42 +86,43 @@ Pour une pale d'épaisseur linéaire `t(r)` :
 
 `σ_racine = Kt × F / (t_racine × h)`
 
-Avec `Kt = 2,5` et la sur-vitesse `1,2×`, la contrainte atteint
-`701,50 MPa`. Le rapport Rp0,2 ambiant/contrainte vaut `1,233`, sous le seuil
-de régression `1,5` : **échec**.
+(`racine` = root, `pointe` = tip, `moyen` = mean.)
 
-Le disque tournant est criblé par
-`σ = (3 + ν) / 8 × ρ × ω² × r²`. À la sur-vitesse il atteint `427,85 MPa`,
-soit un rapport ambiant `2,022` : cet écran seul passe.
+With `Kt = 2.5` and the `1.2×` overspeed, the stress reaches `701.50 MPa`. The
+room-temperature Rp0.2/stress ratio is `1.233`, below the regression threshold
+of `1.5`: **fail**.
 
-## Thermique
+The rotating disc is screened by
+`σ = (3 + ν) / 8 × ρ × ω² × r²`. At overspeed it reaches `427.85 MPa`, i.e. a
+room-temperature ratio of `2.022`: this screen alone passes.
 
-La borne totalement contrainte emploie
-`σ_th = E × α × ΔT / (1 − ν)` avec un gradient synthétique `350 K`. Elle donne
-`1 528,17 MPa`, donc un rapport ambiant `0,566` : **échec**. Le module et le
-coefficient de Poisson sont provisoires ; appliquer une limite ambiante à ce
-cas chaud ne constitue pas un calcul de durée de vie.
+## Thermal
 
-En extrapolant le coefficient EOS à `700 °C` jusqu'au contexte gaz `950 °C`,
-la croissance radiale libre serait `0,396 mm`. Le jeu réel n'est pas connu et
-la température métal ne peut pas être assimilée à T3. La valeur sert seulement
-à montrer que le couplage thermique-carter est indispensable.
+The fully constrained bound uses
+`σ_th = E × α × ΔT / (1 − ν)` with a synthetic `350 K` gradient. It gives
+`1,528.17 MPa`, hence a room-temperature ratio of `0.566`: **fail**. The
+modulus and Poisson's ratio are provisional; applying a room-temperature limit
+to this hot case does not constitute a life calculation.
 
-## Bilan de puissance à un point
+Extrapolating the EOS coefficient at `700 °C` up to the `950 °C` gas context,
+the free radial growth would be `0.396 mm`. The actual clearance is not known
+and the metal temperature cannot be equated with T3. The value only serves to
+show that thermal–housing coupling is indispensable.
 
-Le même point compresseur demande `13,11 kW`. Avec un rendement mécanique
-supposé `0,95`, la turbine doit fournir `13,81 kW`, soit `1,274 N·m`. Pour un
-AFR synthétique `12`, un rendement turbine `0,70` et une sortie `110 kPa`, le
-bilan parfait-gaz exige un rapport d'expansion `1,419`.
+## Single-point power balance
 
-Ce résultat n'est ni une carte turbine, ni une preuve de débit. Il ignore la
-volute, les aubages réels, les pulsations, la wastegate, les fuites et les
-pertes de palier.
+The same compressor point requires `13.11 kW`. With an assumed mechanical
+efficiency of `0.95`, the turbine must deliver `13.81 kW`, i.e. `1.274 N·m`.
+For a synthetic AFR of `12`, a turbine efficiency of `0.70` and an outlet at
+`110 kPa`, the ideal-gas balance requires an expansion ratio of `1.419`.
 
-L'énergie de rotation approximative du solide F0 vaut `3,08 kJ`. Un balourd de
-`10 mg·mm` produit `1,17 N`. En `100 h`, le modèle cumule `620,8 millions` de
-tours et `7,45 milliards` de passages de pale. Sans courbes HCF/LCF à chaud,
-le calcul de vie reste explicitement non calculable.
+This result is neither a turbine map nor proof of flow. It ignores the
+volute, the real blading, pulsations, the wastegate, leaks and bearing losses.
+
+The approximate rotational energy of the F0 solid is `3.08 kJ`. An imbalance
+of `10 mg·mm` produces `1.17 N`. In `100 h`, the model accumulates
+`620.8 million` revolutions and `7.45 billion` blade passes. Without hot
+HCF/LCF curves, the life calculation stays explicitly not computable.
 
 ## Reproduction
 
@@ -112,39 +134,39 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-k16-turbine-wheel-in718-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner par CT la roue `5316-120-5000`, l'arbre et la liaison.
-2. Reconstruire les profils, congés, surfaces de moyeu et interfaces mesurés.
-3. Mesurer vitesse, T3, température métal, pressions, débit, wastegate et cycle.
-4. Comparer fonderie qualifiée, usinage et LPBF avec une vraie route roue-arbre.
-5. Exécuter CFD tournante, CHT, FSI, FEA centrifuge-thermique, Campbell,
-   rotor-dynamique, fluage, HCF/LCF et éclatement probabiliste convergés.
-6. Qualifier poudre, paramètres, orientation, supports, traitement, HIP,
-   usinage, polissage, liaison, CT, FPI, métallurgie et équilibrage.
-7. Passer spin proof, sur-vitesse et éclatement confinés avant tout banc turbo.
+1. CT-scan the wheel `5316-120-5000`, the shaft and the joint.
+2. Rebuild the measured profiles, fillets, hub surfaces and interfaces.
+3. Measure speed, T3, metal temperature, pressures, flow, wastegate and cycle.
+4. Compare qualified casting, machining and LPBF with a real wheel-shaft route.
+5. Run converged rotating CFD, CHT, FSI, centrifugal-thermal FEA, Campbell,
+   rotordynamics, creep, HCF/LCF and probabilistic burst.
+6. Qualify powder, parameters, orientation, supports, heat treatment, HIP,
+   machining, polishing, joint, CT, FPI, metallurgy and balancing.
+7. Pass contained spin proof, overspeed and burst tests before any turbo bench.
 
-PhysicsNeMo reste différé : il faut d'abord des séries CFD/CHT/structure
-corrélées avec jeux d'entraînement, de validation, de holdout et hors
-distribution. Le F0 est interdit de fabrication, rotation, turbo et moteur.
+PhysicsNeMo stays deferred: correlated CFD/CHT/structural series with training,
+validation, holdout and out-of-distribution sets are needed first. The F0 is
+prohibited from manufacturing, rotation, turbo and engine use.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `40 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 1 183 |
-| hauteur de construction | 47,32 mm |
-| couches avec region non soutenue | 10 |
-| proxy de supports | 59,60 mm³ |
-| epaisseur locale p01 | 0,133 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 1,183 |
+| build height | 47.32 mm |
+| layers with an unsupported region | 10 |
+| support proxy | 59.60 mm³ |
+| local thickness p01 | 0.133 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-k16-turbine-wheel-in718-f0-0001/evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-k16-turbine-wheel-in718-f0-0001/evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

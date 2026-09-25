@@ -1,260 +1,258 @@
-# M64 — correction conservatrice des groupes mixtes
+# M64 — conservative correction of mixed groups
 
-**533 groupes mixtes ont été fusionnés nativement sur copie, dont les
-34 antérieurs préservés. Le bilan initial 34 est conservé ci-dessous et
-l'extension est documentée en fin de page. Le maillage
-reste refusé sur cinq familles de qualité. La conservation géométrique
-déclarée passe ; ni la thermique, ni la résistance, ni la fabrication de la
-culasse ne sont validées.**
+**533 mixed groups were merged natively on a copy, including the 34 earlier
+ones, preserved. The initial 34 summary is kept below and the extension is
+documented at the end of the page. The mesh remains refused on five quality
+families. The declared geometric conservation passes; neither the thermal
+behavior, nor the strength, nor the manufacturing of the cylinder head is
+validated.**
 
-Source unique : le primal issu de la
-[contraction locale contrôlée](M64_SHORT_EDGE_CORRECTION_20260909.md),
-rapport `3aaf796baaa41664b9926322d7098976cd88ca5876230708dda2c7cf9cc3e8e7`.
-Le [dual rejeté](M64_GLOBAL_DUAL_REJECTION_20260909.md) n'est pas repris.
-Aucune nouvelle échelle n'est appliquée, aucun contour CAO n'est modifié.
+Single source: the primal from the
+[controlled local contraction](M64_SHORT_EDGE_CORRECTION_20260909.md),
+report `3aaf796baaa41664b9926322d7098976cd88ca5876230708dda2c7cf9cc3e8e7`.
+The [rejected dual](M64_GLOBAL_DUAL_REJECTION_20260909.md) is not reused.
+No new scale is applied, no CAD contour is modified.
 
-## Localisation effectivement exécutée
+## Localization actually run
 
-Lecture indépendante des six fichiers de maillage et des neuf ensembles
-OpenFOAM, avec contrôle de leurs empreintes avant/après. Les ensembles sont
-ceux du calcul natif précédent : cette lecture n'est pas un nouveau calcul
-de qualité ni une transformation de géométrie.
+Independent reading of the six mesh files and the nine OpenFOAM sets, with a
+check of their digests before/after. The sets are those of the previous native
+computation: this reading is not a new quality computation or a geometry
+transformation.
 
-| Défaut natif | Attribution sur le primal conservé |
+| Native defect | Attribution on the preserved primal |
 |---|---|
-| 1 961 cellules à faible déterminant | Toutes tétraédriques ; 396 voisines directes d'hexas ou pyramides |
-| 9 cellules à fort allongement | Toutes tétraédriques |
-| 1 229 faces à faible poids | 1 228 interfaces tétra/tétra, une hexa/pyramide |
-| 135 faces à faible rapport de volumes | Toutes tétra/tétra |
-| 3 447 faces non orthogonales | 3 034 tétra/tétra, 390 pyramide/tétra, 23 poly/tétra |
-| 18 faces très déformées | Toutes sur `walls`, avec un tétra comme cellule propriétaire |
+| 1,961 cells with low determinant | All tetrahedral; 396 direct neighbors of hexes or pyramids |
+| 9 cells with high aspect ratio | All tetrahedral |
+| 1,229 faces with low weight | 1,228 tet/tet interfaces, one hex/pyramid |
+| 135 faces with low volume ratio | All tet/tet |
+| 3,447 non-orthogonal faces | 3,034 tet/tet, 390 pyramid/tet, 23 poly/tet |
+| 18 highly skewed faces | All on `walls`, with a tet as owner cell |
 
-Les 2 cellules à une seule face interne et les 208 à deux faces internes sont
-des tétras sans voisin direct hexa/pyramide. L'ensemble `shortEdges` contient
-**quatre identifiants de points**, pas quatre arêtes.
+The 2 cells with a single internal face and the 208 with two internal faces
+are tets with no direct hex/pyramid neighbor. The `shortEdges` set contains
+**four point identifiers**, not four edges.
 
-Le domaine contient 785 472 cellules : 717 579 tétras, 67 200 hexas,
-384 pyramides et 309 autres polyèdres. La liste privée comprend 5 914 cellules
-affectées ou parentes des défauts, dont 1 428 voisinages mixtes. Cette liste
-n'autorise aucune fusion par elle-même.
+The domain contains 785,472 cells: 717,579 tets, 67,200 hexes, 384 pyramids and
+309 other polyhedra. The private list comprises 5,914 cells affected by or
+parents of the defects, including 1,428 mixed neighborhoods. This list does
+not authorize any merge by itself.
 
-Exécution de classification : 8,690 s de durée, 8,658 s CPU et pic mémoire
-1 161 347 072 octets ; six tests ciblés passent. Aucun solveur lancé.
-Rapport : `577e46e47d3e7485f41ed452c5a64f1d50d812628c745bb15c96e15aefc20a91`.
-Les coordonnées et identifiants détaillés restent privés.
+Classification run: 8.690 s duration, 8.658 s CPU and peak memory
+1,161,347,072 bytes; six targeted tests pass. No solver launched.
+Report: `577e46e47d3e7485f41ed452c5a64f1d50d812628c745bb15c96e15aefc20a91`.
+The detailed coordinates and identifiers remain private.
 
-## Extension et contrôles
+## Extension and checks
 
-L'utilitaire précédent traitait uniquement des parents tétraédriques.
-L'extension examine des groupes connexes de **deux à huit cellules**, avec
-faces parentes triangulaires ou quadrangulaires. Elle ne déplace ni ne supprime
-de point, conserve chaque face retenue et les patches, et ne supprime que les
-faces internes à une union et les cellules fusionnées.
+The previous utility handled only tetrahedral parents.
+The extension examines connected groups of **two to eight cells**, with
+triangular or quadrangular parent faces. It neither moves nor deletes any
+point, keeps each retained face and the patches, and deletes only the faces
+internal to a union and the merged cells.
 
-Deux représentations sont explicitement séparées :
+Two representations are explicitly separated:
 
-- La prédiction de qualité utilise les centres et volumes de type OpenFOAM :
-  centres de faces pondérés par les aires projetées et centres de cellules
-  calculés par pyramides.
-- La contre-vérification géométrique utilise un éventail de triangles fixé
-  sur le premier sommet de chaque face source, avec coordonnées binaires
-  converties en rationnels exacts. Elle vérifie la conservation du volume
-  de cette représentation et la convexité de chaque union. Une rotation de
-  sérialisation ne doit pas changer silencieusement la diagonale d'un quad.
+- The quality prediction uses OpenFOAM-style centers and volumes: face centers
+  weighted by projected areas and cell centers computed by pyramids.
+- The geometric cross-check uses a triangle fan fixed on the first vertex of
+  each source face, with binary coordinates converted to exact rationals. It
+  checks the volume conservation of this representation and the convexity of
+  each union. A serialization rotation must not silently change the diagonal
+  of a quad.
 
-La conservation du volume de cet éventail n'est pas déclarée identique au
-volume natif à éventail centré sur la face. Aucune preuve globale d'absence
-d'intersection du scan ou de conformité continue à la CAO n'en est déduite.
+The volume conservation of this fan is not declared identical to the native
+volume with a face-centered fan. No global proof of absence of intersection of
+the scan or of continuous conformity to the CAD is deduced from it.
 
-Les critères de qualité ne sont pas abaissés : déterminant ≥ 0,001,
-allongement ≤ 1 000, poids ≥ 0,05, rapport de volumes ≥ 0,01, skewness ≤ 4.
-La non-orthogonalité au-delà de 70° ne doit pas empirer. Le test natif de
-concavité reste applicable, y compris aux faces conservées coplanaires.
-Les faces voisines sont recalculées après choix conjoint des groupes.
+The quality criteria are not lowered: determinant ≥ 0.001, aspect ratio
+≤ 1,000, weight ≥ 0.05, volume ratio ≥ 0.01, skewness ≤ 4.
+Non-orthogonality beyond 70° must not get worse. The native concavity test
+remains applicable, including to kept coplanar faces.
+The neighboring faces are recomputed after the joint choice of groups.
 
 ```mermaid
 flowchart TD
-    A["Primal conservé : cinq familles refusées"] --> B["Défauts natifs classés"]
-    B --> C["Recherche bornée de groupes mixtes"]
-    C --> D["Témoins : succès et refus attendus"]
-    D --> E["Fusion native sur copie privée"]
-    E --> F["Contre-audit des maps, surfaces et volume PL"]
-    F --> G["checkMesh complet et comparaison des défauts"]
-    G -->|"Qualité insuffisante"| H["Conserver le refus, poursuivre la correction"]
-    G -->|"Tous critères satisfaits"| I["Préparer les cas physiques, pas une autorisation de fabrication"]
+    A["Preserved primal: five families refused"] --> B["Native defects classified"]
+    B --> C["Bounded search for mixed groups"]
+    C --> D["Witnesses: expected successes and refusals"]
+    D --> E["Native merge on private copy"]
+    E --> F["Counter-audit of maps, surfaces and PL volume"]
+    F --> G["Full checkMesh and comparison of defects"]
+    G -->|"Insufficient quality"| H["Keep the refusal, continue the correction"]
+    G -->|"All criteria met"| I["Prepare the physical cases, not a manufacturing authorization"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class H stop;
 ```
 
-## Place de la stack photographiée
+## Place of the photographed stack
 
-Les sources officielles revérifiées confirment les rôles, pas un couplage
-automatique : [Elmer](https://github.com/ElmerCSC/elmerfem) peut calculer la
-thermique et la mécanique ; [PhysicsNeMo](https://developer.nvidia.com/physicsnemo)
-permet de construire et d'évaluer des modèles IA physiques.
-[Ditto](https://eclipse.dev/ditto/intro-overview.html) représente l'état d'un
-équipement et [Mosquitto](https://mosquitto.org/) transporte les messages MQTT.
-Ces deux derniers services ne remplacent pas les solveurs et ne produisent
-pas de mesures de banc absentes. Le
-[plan multiphysique et son diagramme](M64_MULTIPHYSICS_EXECUTION.md#précision-du-9-septembre--calcul-ia-et-banc-séparés)
-reste la référence : aucun service de télémétrie ni modèle IA supplémentaire
-n'est présenté comme exécuté par ce pilote.
+The official sources, rechecked, confirm the roles, not an automatic coupling:
+[Elmer](https://github.com/ElmerCSC/elmerfem) can compute thermal and
+mechanical behavior; [PhysicsNeMo](https://developer.nvidia.com/physicsnemo)
+makes it possible to build and evaluate physical AI models.
+[Ditto](https://eclipse.dev/ditto/intro-overview.html) represents the state of
+a piece of equipment and [Mosquitto](https://mosquitto.org/) carries MQTT
+messages. These last two services do not replace the solvers and do not
+produce missing bench measurements. The
+[multiphysics plan and its diagram](M64_MULTIPHYSICS_EXECUTION.md#clarification-of-september-9-computation-ai-and-bench-kept-separate)
+remains the reference: no telemetry service or additional AI model is
+presented as run by this pilot.
 
-La stratégie de tests sépare témoins purs, témoins natifs, vérification du
-maillage réel et qualification physique. Aucune nouvelle dépense Vast pour
-ce lot, exécuté sur la machine Kali existante.
+The test strategy separates pure witnesses, native witnesses, verification of
+the real mesh and physical qualification. No new Vast spending for this batch,
+run on the existing Kali machine.
 
-## Essai natif effectivement exécuté
+## Native trial actually run
 
-La recherche s'arrête au plafond de 40 000 évaluations, après 759 des 13 782
-faces de départ, en 8,960 s : elle n'est pas exhaustive. Sur 38 groupes
-admissibles individuellement, 34 groupes disjoints sont retenus :
-22 unions pyramide/tétra et 12 unions pyramide/trois tétras. Les 238 faces
-externes des groupes sont recontrôlées conjointement.
+The search stops at the ceiling of 40,000 evaluations, after 759 of the 13,782
+starting faces, in 8.960 s: it is not exhaustive. Out of 38 individually
+admissible groups, 34 disjoint groups are retained: 22 pyramid/tet unions and
+12 pyramid/three-tet unions. The 238 external faces of the groups are
+rechecked jointly.
 
-Le programme C++ est compilé dans l'image OpenFOAM 14 `linux/amd64` figée.
-Le témoin pyramide/tétra passe l'audit, avec volume PL exact `5/3`, six points
-et sept faces conservés. Les quatre refus attendus sont observés : sélection
-de frontière, face interne cyclique omise, point orphelin et neuf parents.
-Chaque refus laisse le petit maillage intact et n'écrit aucune map.
+The C++ program is compiled in the frozen OpenFOAM 14 `linux/amd64` image.
+The pyramid/tet witness passes the audit, with exact PL volume `5/3`, six
+points and seven faces preserved. The four expected refusals are observed:
+boundary selection, omitted cyclic internal face, orphan point and nine
+parents. Each refusal leaves the small mesh intact and writes no map.
 
-Sur le domaine réel, les 92 parents deviennent 34 cellules ; 82 faces
-strictement internes sont supprimées. Résultat : **785 414 cellules,
-1 688 340 faces, 223 154 points**. La contre-vérification confirme les quatre
-maps, tous les points bit à bit, toutes les faces orientées retenues et leurs
-patches, et la conservation du volume PL par partition. Les 34 quads externes
-des groupes ne sont pas exactement plans, mais leur éventail déclaré passe
-la convexité ; cela n'est pas une certification physique du scan.
+On the real domain, the 92 parents become 34 cells; 82 strictly internal faces
+are deleted. Result: **785,414 cells, 1,688,340 faces, 223,154 points**. The
+cross-check confirms the four maps, all points bit for bit, all retained
+oriented faces and their patches, and the conservation of PL volume by
+partition. The 34 external quads of the groups are not exactly planar, but
+their declared fan passes the convexity check; this is not a physical
+certification of the scan.
 
-| Contrôle natif | Avant | Après |
+| Native check | Before | After |
 |---|---:|---:|
-| Cellules à faible déterminant | 1 961 | 1 955 |
-| Faces non orthogonales > 70° | 3 447 | 3 411 |
-| Faces à faible poids | 1 229 | 1 229 |
-| Faces à faible rapport de volumes | 135 | 135 |
-| Faces très déformées | 18 | 18 |
-| Cellules à fort allongement | 9 | 9 |
-| Familles de contrôles refusées | 5 | 5 |
+| Cells with low determinant | 1,961 | 1,955 |
+| Non-orthogonal faces > 70° | 3,447 | 3,411 |
+| Faces with low weight | 1,229 | 1,229 |
+| Faces with low volume ratio | 135 | 135 |
+| Highly skewed faces | 18 | 18 |
+| Cells with high aspect ratio | 9 | 9 |
+| Refused check families | 5 | 5 |
 
-Ces valeurs proviennent du journal `checkMesh`, pas du prédicteur. Celui-ci
-annonçait seulement 24 faces non orthogonales supprimées. La comparaison
-indépendante des ensembles explique les 36 de moins : **24 faces internes
-supprimées et 12 faces conservées désormais sous le seuil**. Les six défauts
-de déterminant disparaissent dans six unions ; ce ne sont pas six cellules
-inchangées réparées. Aucun nouvel identifiant défectueux après correspondance
-n'est observé dans les neuf ensembles, ni nouvelle famille de contrôle refusée.
-Cette non-régression locale n'est pas une acceptation globale du maillage.
+These values come from the `checkMesh` log, not from the predictor. The latter
+announced only 24 non-orthogonal faces removed. The independent comparison of
+the sets explains the 36 fewer: **24 internal faces deleted and 12 kept faces
+now below the threshold**. The six determinant defects disappear into six
+unions; these are not six unchanged cells repaired. No new defective
+identifier after mapping is observed in the nine sets, nor a new refused check
+family. This local non-regression is not a global acceptance of the mesh.
 
-### Incident de collecte, distinct du calcul
+### Collection incident, separate from the computation
 
-Compilation, lot des cinq témoins, fusion, audit et `checkMesh` terminent
-avec code zéro ; les quatre cas négatifs sortent comme prévu avec code un.
-Le travailleur échoue ensuite en classant l'annonce
-`cells with two non-boundary faces` comme un ensemble de faces. Ce défaut
-de lecteur interrompt la collecte, **pas le contrôle natif déjà terminé**.
-Le reçu initial reste inchangé et conserve son statut incomplet ; il ne doit
-pas être réécrit en succès. La reprise se limite à relire les fichiers
-existants, sans nouveau calcul ni modification du maillage.
+Compilation, the batch of five witnesses, merge, audit and `checkMesh` finish
+with exit code zero; the four negative cases exit as planned with code one.
+The worker then fails by classifying the announcement
+`cells with two non-boundary faces` as a set of faces. This reader defect
+interrupts the collection, **not the native check already finished**.
+The initial receipt remains unchanged and keeps its incomplete status; it must
+not be rewritten as a success. The follow-up is limited to re-reading the
+existing files, without new computation or mesh modification.
 
-Cette récupération est effectivement exécutée en 4,032 s, avec contrôle des
-empreintes avant/après : source, manifeste, six fichiers géométriques, quatre
-maps, cinq journaux, audit et témoins. Le premier nom d'entité dans l'annonce
-détermine la classe attendue ; l'en-tête, le nombre, l'unicité et la plage des
-identifiants de chaque fichier sont ensuite vérifiés. Les neuf ensembles
-sont présents et cohérents. Le rapport de récupération séparé conserve
-`process_completed=false` pour le travailleur initial et déclare explicitement
-`native_executed=false` pour cette relecture.
+This recovery is actually run in 4.032 s, with a check of the digests
+before/after: source, manifest, six geometric files, four maps, five logs,
+audit and witnesses. The first entity name in the announcement determines the
+expected class; the header, count, uniqueness and range of the identifiers of
+each file are then checked. The nine sets are present and consistent. The
+separate recovery report keeps `process_completed=false` for the initial worker
+and explicitly declares `native_executed=false` for this re-read.
 
-Le contre-calcul séparé s'exécute ensuite en 2,199 s. Il reconstitue les
-correspondances entre cellules parentes et unions, faces et points, vérifie
-les fichiers réellement écrits et les annonces natives. Résultat : zéro
-nouveau défaut dans les neuf ensembles, aucun ensemble non résolu et les
-mêmes cinq familles refusées. Les deux relectures ont une supervision murale
-de 60 s ; aucune relance OpenFOAM n'est effectuée.
+The separate cross-calculation then runs in 2.199 s. It reconstructs the
+mappings between parent cells and unions, faces and points, checks the files
+actually written and the native announcements. Result: zero new defects in the
+nine sets, no unresolved set and the same five refused families. Both re-reads
+have a 60 s wall-clock supervision; no OpenFOAM rerun is performed.
 
-Les **95 tests purs ciblés** passent : classification 6, sélection 10,
-producteur/travailleur 29, audit 15, nettoyage 5, récupération 15 et
-comparaison 15. Ils s'ajoutent au lot de cinq témoins natifs et au contrôle
-du domaine réel ; aucun ne constitue un essai moteur. `make check` passe,
-avec les vérifications natives optionnelles absentes signalées comme ignorées.
+The **95 targeted pure tests** pass: classification 6, selection 10,
+producer/worker 29, audit 15, cleanup 5, recovery 15 and comparison 15. They
+add to the batch of five native witnesses and the check of the real domain;
+none constitutes an engine test. `make check` passes, with the absent optional
+native checks reported as skipped.
 
-Le conteneur privé est supprimé et son absence est revérifiée indépendamment.
-Durée totale avec nettoyage : 32,298 s ; aucune limite mémoire/temps atteinte.
-Limites imposées : quatre CPU, 4 Gio, 220 s pour le travailleur et 300 s au
-total. Une alerte de compilation de comparaison signé/non signé est conservée
-dans le journal ; aucune erreur de compilation.
+The private container is deleted and its absence is rechecked independently.
+Total duration with cleanup: 32.298 s; no memory/time limit reached.
+Limits imposed: four CPUs, 4 GiB, 220 s for the worker and 300 s in total. A
+signed/unsigned comparison compilation warning is kept in the log; no
+compilation error.
 
-Reçus initiaux conservés :
+Initial receipts kept:
 
-- Paquet : `d5100738ff52c136a4a755861536ba98b11fda6342d192c9105956beffb4ee70`.
-- Travailleur : `c9080392eb2a03361317db3084e398bfe7ffe8acd8ffe3cc7d2c6b41bf43a8ad`.
-- Supervision : `0a280fd48eec692fad7f65080b0f81ff486f88d2c9c1ab46dfd3efd4d191f46d`.
-- Audit des unions : `6ad743a2a6b35f486a027e37621944547082a18d9c9dd1e7d703f90c2a65bd34`.
-- Journal `checkMesh` : `2052fa445aab3713a0a040d1394f77607908ae662fd2d76c2332df145ca16ac5`.
+- Package: `d5100738ff52c136a4a755861536ba98b11fda6342d192c9105956beffb4ee70`.
+- Worker: `c9080392eb2a03361317db3084e398bfe7ffe8acd8ffe3cc7d2c6b41bf43a8ad`.
+- Supervision: `0a280fd48eec692fad7f65080b0f81ff486f88d2c9c1ab46dfd3efd4d191f46d`.
+- Union audit: `6ad743a2a6b35f486a027e37621944547082a18d9c9dd1e7d703f90c2a65bd34`.
+- `checkMesh` log: `2052fa445aab3713a0a040d1394f77607908ae662fd2d76c2332df145ca16ac5`.
 
-Reçus complémentaires, sans réécriture des précédents :
+Supplementary receipts, without rewriting the previous ones:
 
-- Récupération : `d317023924d85bef240bd2169a5d02760d060626c7a59cce99bd515834b199a7`.
-- Code de récupération : `c42d70200961174f769658d895354c9b554ce82c25a1eee2d585283f43ef8e56`.
-- Comparaison indépendante : `f4151214d8e530009f94821560a5f8b5cb1a4c38414b22c3d2291cfaf3cbb2c9`.
-- Code de comparaison : `b94f4f3f3dac8d6b1ab2a1f078d210c039282a882002cc78274f1774dc39fd03`.
+- Recovery: `d317023924d85bef240bd2169a5d02760d060626c7a59cce99bd515834b199a7`.
+- Recovery code: `c42d70200961174f769658d895354c9b554ce82c25a1eee2d585283f43ef8e56`.
+- Independent comparison: `f4151214d8e530009f94821560a5f8b5cb1a4c38414b22c3d2291cfaf3cbb2c9`.
+- Comparison code: `b94f4f3f3dac8d6b1ab2a1f078d210c039282a882002cc78274f1774dc39fd03`.
 
-Les empreintes ne constituent pas une preuve de qualité par elles-mêmes :
-elles identifient les fichiers lus, les tests exécutés et les refus conservés.
+The digests are not proof of quality by themselves: they identify the files
+read, the tests run and the refusals kept.
 
-## Extension : 533 groupes, contre-vérifiés le 12 septembre
+## Extension: 533 groups, cross-checked on September 12
 
-Le lot natif du 9 septembre est repris par ses fichiers sauvegardés ; aucun
-nouveau calcul OpenFOAM n'est nécessaire pour cette publication. La recherche
-pure examine les 13 462 paires restantes et engage 12 523 recherches à largeur
-limitée : 572 013 évaluations en 50,743 s, pic mémoire environ 1,27 Go.
-Les 957 groupes individuellement admissibles donnent 533 groupes disjoints
-retenus : **34 inchangés et 499 nouveaux**, 1 330 cellules parentes et 990
-faces internes à retirer. Les 3 292 faces externes sont contrôlées conjointement.
-Toutes les graines sont visitées, mais la recherche reste **non exhaustive**
-(largeur trois, quatre extensions, huit parents maximum, sélection gloutonne).
+The native batch of September 9 is taken up from its saved files; no new
+OpenFOAM computation is needed for this publication. The pure search examines
+the 13,462 remaining pairs and engages 12,523 width-limited searches: 572,013
+evaluations in 50.743 s, peak memory about 1.27 GB.
+The 957 individually admissible groups give 533 retained disjoint groups:
+**34 unchanged and 499 new**, 1,330 parent cells and 990 internal faces to
+remove. The 3,292 external faces are checked jointly.
+All seeds are visited, but the search remains **non-exhaustive** (width three,
+four extensions, eight parents maximum, greedy selection).
 
-Compilation, témoins, fusion native, audit indépendant et `checkMesh`
-terminent avec code zéro en 31,842 s sur Kali, sous plafonds quatre CPU/4 Gio.
-Le défaut de classification du premier nom d'entité est corrigé dans une copie
-du travailleur ; les reçus de l'ancien échec ne sont pas réécrits. Les entrées
-sont conservées, le conteneur supprimé et son absence revérifiée le 12 septembre.
-Résultat : **784 675 cellules, 1 687 432 faces, 223 154 points**.
+Compilation, witnesses, native merge, independent audit and `checkMesh` finish
+with exit code zero in 31.842 s on Kali, under ceilings of four CPUs/4 GiB.
+The classification defect of the first entity name is fixed in a copy of the
+worker; the receipts of the old failure are not rewritten. The inputs are
+preserved, the container deleted and its absence rechecked on September 12.
+Result: **784,675 cells, 1,687,432 faces, 223,154 points**.
 
-| Ensemble natif | Lot 34 | Lot 533 |
+| Native set | Batch 34 | Batch 533 |
 |---|---:|---:|
-| Faible déterminant | 1 955 | 1 886 |
-| Non-orthogonalité > 70° | 3 411 | 2 910 |
-| Faible poids | 1 229 | 1 223 |
-| Faible rapport de volumes | 135 | 134 |
-| Fort allongement | 9 | 9 |
+| Low determinant | 1,955 | 1,886 |
+| Non-orthogonality > 70° | 3,411 | 2,910 |
+| Low weight | 1,229 | 1,223 |
+| Low volume ratio | 135 | 134 |
+| High aspect ratio | 9 | 9 |
 | Skewness | 18 | 18 |
-| `shortEdges` : points signalés | 4 | 4 |
-| Une face interne | 2 | 2 |
-| Deux faces internes | 208 | 207 |
+| `shortEdges`: flagged points | 4 | 4 |
+| One internal face | 2 | 2 |
+| Two internal faces | 208 | 207 |
 
-La contre-lecture du 12 septembre dure 4,075 s (4,360 s avec supervision),
-sous plafond 60 s. Elle compare les fichiers exportés au **lot 34**, avec
-correspondances composées via le primal commun et tous les parents, pas
-seulement les représentants. Les 34 composantes restent identiques ; les
-499 ajouts sont disjoints. Aucun nouvel identifiant défectueux, ensemble
-inconnu ou nouvelle famille refusée n'est observé.
+The September 12 read-back takes 4.075 s (4.360 s with supervision), under a
+60 s ceiling. It compares the exported files with **batch 34**, with mappings
+composed via the common primal and all parents, not only the representatives.
+The 34 components remain identical; the 499 additions are disjoint. No new
+defective identifier, unknown set or new refused family is observed.
 
-Les 501 défauts de non-orthogonalité en moins comprennent 175 faces supprimées
-et 326 faces conservées désormais sous le seuil. La baisse de 69 faibles
-déterminants comprend deux coalescences d'images et 67 images désormais non
-signalées : **pas 69 cellules inchangées réparées**. Les pires extrema restent
-insuffisants, et la moyenne du rapport de volumes baisse légèrement. Cette
-non-régression des ensembles n'affirme donc pas une amélioration de tout scalaire.
-Les cinq familles restent en échec : ni CFD, ni thermique/résistance, ni
-fabrication ne sont autorisées par ce lot. Aucune dépense Vast pour ces essais.
+The 501 fewer non-orthogonality defects comprise 175 deleted faces and 326 kept
+faces now below the threshold. The drop of 69 low determinants comprises two
+image coalescences and 67 images no longer flagged: **not 69 unchanged cells
+repaired**. The worst extrema remain insufficient, and the mean volume ratio
+drops slightly. This non-regression of the sets therefore does not claim an
+improvement of every scalar.
+The five families remain failing: neither CFD, nor thermal/strength, nor
+manufacturing is authorized by this batch. No Vast spending for these trials.
 
-Identités des preuves privées, sans coordonnées ni identifiants géométriques :
+Identities of the private evidence, without coordinates or geometric identifiers:
 
-- Sélection pure : `b7d263f3f2c1c243b939caca04ca21ffcc84453ea01eb58d0cb6f8fc8b1f90cc`.
-- Manifeste natif : `c8215d4dc88aad6513f2685908e90425dd7bbc92ce0b2996d173d0412c0af421`.
-- Rapport natif : `8b5b48f416a96fe054304fe11e0d94b7b978a54d4d66bb682158571dd0d17998`.
-- Audit des unions : `ed53bc2348df6ff4887acd92a2e9322326eb55d32b400dfc49b7f0230913b157`.
-- `checkMesh` : `5782126619c81596d508b5c2d0b12e2faacb0a67ad88ae0bd7dcedfabf5040cb`.
-- Comparaison indépendante : `9fd4feb771388affbe8759f6f4f770163014153b8a606edc3456a58e64add614`.
+- Pure selection: `b7d263f3f2c1c243b939caca04ca21ffcc84453ea01eb58d0cb6f8fc8b1f90cc`.
+- Native manifest: `c8215d4dc88aad6513f2685908e90425dd7bbc92ce0b2996d173d0412c0af421`.
+- Native report: `8b5b48f416a96fe054304fe11e0d94b7b978a54d4d66bb682158571dd0d17998`.
+- Union audit: `ed53bc2348df6ff4887acd92a2e9322326eb55d32b400dfc49b7f0230913b157`.
+- `checkMesh`: `5782126619c81596d508b5c2d0b12e2faacb0a67ad88ae0bd7dcedfabf5040cb`.
+- Independent comparison: `9fd4feb771388affbe8759f6f4f770163014153b8a606edc3456a58e64add614`.
 
-Le [mode batch](M64_LOW_TOKEN_CAMPAIGN_20260912.md) réutilise ces reçus épinglés
-et s'arrête automatiquement sur le refus qualité, sans relancer ce lot.
+The [batch mode](M64_LOW_TOKEN_CAMPAIGN_20260912.md) reuses these pinned
+receipts and stops automatically on the quality refusal, without rerunning
+this batch.

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
-  "name": "Collecteur d'échappement trois-en-un 993 Turbo, concept IN625 F0",
-  "description": "Concept indépendant de noyau d'écoulement trois-en-un en IN625 pour cribler une fabrication LPBF sans soudures internes au collecteur. Kline et PorscheFanatics publient une offre IN625 de 2,9 kg par côté avec échangeur ; le PET identifie les pièces gauche et droite. Aucune géométrie publique n'est utilisée.",
+  "name": "993 Turbo three-into-one exhaust manifold, IN625 F0 concept",
+  "description": "Independent concept of an IN625 three-into-one flow core to screen LPBF manufacturing without internal welds in the manifold. Kline and PorscheFanatics publish an IN625 offer at 2.9 kg per side with heat exchanger; the PET identifies the left and right parts. No public geometry is used.",
   "vehicle": {
     "generation": "993",
     "variants": ["993_Turbo", "M64_60_research"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "exhaust_manifold_flow_core",
     "safety_class": "prohibited_pending_engineering",
-    "intended_use": "Criblage CAO, DfAM, débit, pression, acoustique et thermique ; aucune fabrication, installation, mise en route ou fonction chauffage autorisée"
+    "intended_use": "CAD, DfAM, flow, pressure, acoustic and thermal screening; no manufacturing, installation, engine start or heating function authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -23,7 +23,7 @@
     "derived_files": ["parts/993-eng-exhaust-manifold-in625-f0-0001/derived/exhaust_manifold_in625_f0.step"]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration PET ou géométrie Kline/Porsche redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, PET illustration or Kline/Porsche geometry redistributed",
     "sources": [
       {
         "title": "Kline Innovation - Porsche 993 Turbo exhaust",
@@ -31,23 +31,23 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Déclare IN625 et 2,9 kg par collecteur avec échangeur ; aucune cote ou méthode de fabrication. Voir SRC-KLINE-993-TURBO-IN625-MANIFOLDS."
+        "notes": "States IN625 and 2.9 kg per manifold with heat exchanger; no dimension or manufacturing method. See SRC-KLINE-993-TURBO-IN625-MANIFOLDS."
       },
       {
-        "title": "PorscheFanatics - collecteurs IN625 avec échangeur pour 993 Turbo",
+        "title": "PorscheFanatics - IN625 manifolds with heat exchanger for 993 Turbo",
         "url": "https://porschefanatics.com/parts/c/exhaust/",
         "source_type": "community",
         "license": "site-content-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Recoupe l'offre Kline et le précédent 3-en-1 Fabspeed, sans géométrie ni transfert de topologie entre produits. Voir SRC-PORSCHEFANATICS-993-TURBO-IN625-MANIFOLDS."
+        "notes": "Cross-checks the Kline offer and the Fabspeed 3-into-1 precedent, without geometry or topology transfer between products. See SRC-PORSCHEFANATICS-993-TURBO-IN625-MANIFOLDS."
       },
       {
-        "title": "Porsche PET 993 - échappement et échangeurs Turbo 202-10",
+        "title": "Porsche PET 993 - Turbo exhaust and heat exchangers 202-10",
         "url": "https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG",
         "source_type": "official",
         "license": "porsche-ag-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Identifie les échangeurs gauche 993 211 039 55 et droit 993 211 040 55 et les interfaces à mesurer, sans cotes. Voir SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10."
+        "notes": "Identifies the left 993 211 039 55 and right 993 211 040 55 heat exchangers and the interfaces to measure, without dimensions. See SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10."
       },
       {
         "title": "EOS NickelAlloy IN625 material data sheet",
@@ -55,7 +55,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Référence LPBF M 290 de criblage, dépendante de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+        "notes": "LPBF M 290 screening reference, dependent on orientation and post-processing. See SRC-EOS-IN625-MATERIAL-DATA."
       },
       {
         "title": "Special Metals - INCONEL alloy 625",
@@ -63,7 +63,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Propriétés thermiques corroyées de référence, non équivalentes à une carte admissible LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+        "notes": "Reference wrought thermal properties, not equivalent to an LPBF allowables map. See SRC-SPECIAL-METALS-INCONEL-625."
       }
     ]
   },
@@ -71,25 +71,25 @@
     "candidate_processes": ["LPBF", "DMLS", "sheet_metal"],
     "preferred_process": "undecided",
     "material": {
-      "family": "superalliage nickel LPBF candidat",
-      "grade": "EOS NickelAlloy IN625 / UNS N06625 de criblage",
-      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 et spécification échappement propre au programme à contractualiser"
+      "family": "candidate LPBF nickel superalloy",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625 for screening",
+      "standard": "ASTM F3055, AMS 7000 or AMS 7001 and a program-specific exhaust specification to be contracted"
     },
     "post_processing": [
-      "évacuation complète de la poudre par trois entrées et une sortie ouvertes",
-      "détensionnement, traitement thermique et éventuel HIP qualifiés sur témoins représentatifs",
-      "découpe du plateau et retrait des supports sans support interne",
-      "usinage des brides et interfaces après ajout de surépaisseurs mesurées",
-      "finition interne avec rugosité et épaisseur résiduelle contrôlées",
-      "nettoyage particulaire, ressuage, CT et épreuve d'étanchéité avant essai thermique"
+      "complete powder removal through three open inlets and one open outlet",
+      "stress relief, heat treatment and possible HIP qualified on representative witness coupons",
+      "build plate cut-off and support removal with no internal support",
+      "machining of flanges and interfaces after adding measured machining allowances",
+      "internal finishing with controlled roughness and residual wall thickness",
+      "particulate cleaning, dye penetrant, CT and leak proof test before thermal testing"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
-      "capabilité démontrée sur paroi chaude de 1,2 mm et collecteur interne sans support",
-      "simulation de supports, recoater et distorsion avant lancement",
-      "coupons dans les orientations critiques avec propriétés à chaud, fatigue, fluage et oxydation",
-      "CT de la jonction trois-en-un et métrologie des parois, ports, brides et futures fixations",
-      "comparaison au collecteur cintré/soudé sur coût, masse, perte, durée de vie, réparabilité et inspection"
+      "traceable powder, machine, parameters, orientation, lot and recycling",
+      "demonstrated capability on a 1.2 mm hot wall and an unsupported internal manifold",
+      "support, recoater and distortion simulation before build",
+      "coupons in critical orientations with hot, fatigue, creep and oxidation properties",
+      "CT of the three-into-one junction and metrology of walls, ports, flanges and future fastenings",
+      "comparison with the bent/welded manifold on cost, mass, loss, service life, repairability and inspection"
     ]
   },
   "titanium": {
@@ -99,7 +99,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Compatibilité du IN625 avec culasse, goujons, joints, échangeur, turbine et protections thermiques à qualifier après identification des matériaux réels."
+    "galvanic_isolation": "Compatibility of IN625 with cylinder head, studs, gaskets, heat exchanger, turbine and heat shields to be qualified after the actual materials are identified."
   },
   "validation": {
     "status": "concept",
@@ -115,13 +115,13 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seules l'identité 993 Turbo, la matière IN625 et la masse de 2,9 kg avec échangeur sont publiées.",
-      "Les diamètres, épaisseur, entraxes, trajectoires, longueur et jonction trois-en-un sont entièrement synthétiques.",
-      "Le STEP omet brides, turbine, échangeur de chauffage, supports, joints et environnement installé.",
-      "La masse calculée de 509,97 g pour le noyau ne peut pas être comparée comme équivalent à l'ensemble commercial de 2,9 kg.",
-      "Le débit 1D suppose 3,6 L, 5 750 tr/min, rendement volumétrique 0,95, gaz à 900 K et partage égal entre cylindres.",
-      "La perte, les contraintes, la dilatation, le rayonnement et l'acoustique sont des écrans analytiques, pas des résultats CFD/FEA/CHT.",
-      "Le STEP prouve seulement un BREP unique avec volume interne connecté et n'est pas autorisé pour fabrication ou moteur."
+      "Only the 993 Turbo identity, the IN625 material and the 2.9 kg mass with heat exchanger are published.",
+      "The diameters, thickness, spacings, paths, length and three-into-one junction are entirely synthetic.",
+      "The STEP omits flanges, turbine, heating heat exchanger, brackets, gaskets and installed environment.",
+      "The computed core mass of 509.97 g cannot be compared as an equivalent to the 2.9 kg commercial assembly.",
+      "The 1D flow assumes 3.6 L, 5,750 rpm, volumetric efficiency 0.95, gas at 900 K and equal sharing between cylinders.",
+      "Loss, stresses, expansion, radiation and acoustics are analytical screens, not CFD/FEA/CHT results.",
+      "The STEP proves only a single BREP with a connected internal volume and is not authorized for manufacturing or engine use."
     ]
   }
 }

@@ -1,253 +1,249 @@
-# Donnees de calcul d'ecoulement du 993 Turbo
+# 993 Turbo airflow calculation data
 
-Collecte etat au 30 aout 2026. Ce document prepare une simulation du circuit
-d'air du 993 Turbo. Il ne declare ni une geometrie K16 exacte, ni une
-performance mesuree, ni une piece fabricable.
+Collection status as of August 30, 2026. This document prepares a simulation of
+the 993 Turbo air circuit. It declares neither an exact K16 geometry, nor a
+measured performance, nor a manufacturable part.
 
-## Conclusion de la collecte
+## Conclusion of the collection
 
-Le dossier est suffisant pour lancer une etude exploratoire du debit moteur et
-des pertes de charge d'un conduit cote froid. Il n'est pas suffisant pour
-simuler fidelement la roue K16, calculer sa vitesse, predire le rendement ou
-concevoir une roue de remplacement.
+The dossier is sufficient to launch an exploratory study of engine mass flow
+and of the pressure losses of a cold-side duct. It is not sufficient to
+faithfully simulate the K16 wheel, calculate its speed, predict efficiency or
+design a replacement wheel.
 
-La lacune principale reste la meme apres la recherche en allemand et la
-consultation de Porsche Fanatics : aucune carte compresseur/turbine K16
-publique exploitable, aucun profil d'aube, aucun jeu interne, aucune courbe de
-rendement et aucune mesure de perte de charge de l'echangeur n'ont ete trouves.
+The main gap remains the same after the German-language search and the
+Porsche Fanatics consultation: no usable public K16 compressor/turbine map, no
+blade profile, no internal clearance, no efficiency curve and no intercooler
+pressure-loss measurement were found.
 
-## Hierarchie des preuves
+## Evidence hierarchy
 
-| Niveau | Source | Ce qu'elle permet d'affirmer | Ce qu'elle ne permet pas d'affirmer |
+| Level | Source | What it allows us to claim | What it does not allow us to claim |
 | --- | --- | --- | --- |
-| A | [Porsche Christophorus](https://newsroom.porsche.com/christophorus/fr/2020/394/turbo-engines.html) | Architecture biturbo parallele, 3 600 cm3, 0,8 bar, 408 ch, 540 Nm | Carte K16, CAO, materiaux, pertes |
-| A | [Porsche Austria PET, planche 107-45](https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf) | References, quantites, joints, colliers et interfaces a rechercher | Cotes de passage, tolerances, epaisseurs, CAO |
-| B | [BorgWarner Performance Catalog](https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf) | Association K16-6735 + K16-6736, puissance catalogue et limites commerciales | Limite admissible d'une piece additive, carte aero |
-| C | [FVD](https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094), [Invasion Auto Products](https://www.invasionautoproducts.com/94pocark16tu.html), [TurboMaster](https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6735/) | References, dimensions et diametres declares par vendeurs | Mesure independante, profil de roue, tolerance |
-| C | [elferclassic](https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php) | Points moteur et regime de reference | Debit d'admission reel et courbe de boost |
-| derive | Calculs de ce document | Enveloppes de debit avec hypotheses explicites | Donnee Porsche mesuree |
+| A | [Porsche Christophorus](https://newsroom.porsche.com/christophorus/fr/2020/394/turbo-engines.html) | Parallel twin-turbo architecture, 3,600 cm3, 0.8 bar, 408 PS, 540 Nm | K16 map, CAD, materials, losses |
+| A | [Porsche Austria PET, plate 107-45](https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf) | Part numbers, quantities, seals, clamps and interfaces to look for | Flow dimensions, tolerances, thicknesses, CAD |
+| B | [BorgWarner Performance Catalog](https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf) | K16-6735 + K16-6736 pairing, catalogue power and commercial limits | Allowable limit of an additive part, aero map |
+| C | [FVD](https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094), [Invasion Auto Products](https://www.invasionautoproducts.com/94pocark16tu.html), [TurboMaster](https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6735/) | Part numbers, dimensions and diameters declared by vendors | Independent measurement, wheel profile, tolerance |
+| C | [elferclassic](https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php) | Engine operating points and reference speed | Actual intake mass flow and boost curve |
+| derived | Calculations in this document | Mass-flow envelopes with explicit assumptions | Measured Porsche data |
 
-Les fiches detaillees sont dans `catalog/sources/`. Les valeurs de masse et
-d'encombrement retenues sont dans
-`catalog/reference/993-declared-part-data.json` avec le statut `declared`.
+The detailed records are in `catalog/sources/`. The mass and envelope values
+retained are in `catalog/reference/993-declared-part-data.json` with status
+`declared`.
 
-## Identification du systeme
+## System identification
 
-### Turbocompresseurs
+### Turbochargers
 
-- Porsche decrit deux petits turbocompresseurs en parallele, chacun alimentant
-  un banc de cylindres, avec deux echangeurs air-air.
-- Le catalogue BorgWarner identifie la paire d'origine comme **K16-6735 +
-  K16-6736** pour le 911 Turbo 993 3.6. Il annonce 408 hp d'origine et une
-  limite commerciale de turbo d'origine de 500 hp. La ligne d'upgrade annonce
-  les K24 5324 988 7003/7004 et 555 hp.
-- La documentation publique retrouvee identifie la famille **KKK / BorgWarner
-  / 3K-Schwitzer**. Garrett n'est pas confirme par les sources consultees ; il
-  ne faut pas renommer le turbo Garrett sans plaque signaletique ou source
-  primaire.
-- Une fiche fournisseur identifie le K16 droit comme BorgWarner
-  `5316-988-6735`, Porsche `993 123 014 51/52`, CHRA `5316-710-0520` et modele
-  `K16-2467GGA/8.88`. L'attribution gauche/droite du `6736` reste a confirmer
-  sur une piece.
+- Porsche describes two small turbochargers in parallel, each feeding one
+  cylinder bank, with two air-to-air intercoolers.
+- The BorgWarner catalogue identifies the original pair as **K16-6735 +
+  K16-6736** for the 911 Turbo 993 3.6. It states 408 hp stock and a commercial
+  limit of 500 hp for the stock turbo. The upgrade line lists the K24
+  5324 988 7003/7004 and 555 hp.
+- The public documentation found identifies the **KKK / BorgWarner /
+  3K-Schwitzer** family. Garrett is not confirmed by the sources consulted; the
+  turbo must not be renamed Garrett without an identification plate or a
+  primary source.
+- A supplier record identifies the right-hand K16 as BorgWarner
+  `5316-988-6735`, Porsche `993 123 014 51/52`, CHRA `5316-710-0520` and model
+  `K16-2467GGA/8.88`. The left/right attribution of the `6736` remains to be
+  confirmed on a part.
 
-### Nomenclature de sous-ensembles recueillie
+### Subassembly bill of materials collected
 
-La page TurboMaster du `5316-988-6735` fournit des identifiants de catalogue
-pour le CHRA et les sous-ensembles :
+The TurboMaster page for the `5316-988-6735` provides catalogue identifiers
+for the CHRA and the subassemblies:
 
-| Sous-ensemble | Reference publique |
+| Subassembly | Public part number |
 | --- | --- |
 | CHRA | `5316-710-0520` |
-| Carter de palier | `5316-151-0002` |
+| Bearing housing | `5316-151-0002` |
 | Back plate | `5314-151-5702` |
-| Ecran thermique | `5316-165-2000` |
-| Collier de poussee | `5314-127-0400` |
-| Entretoise | `5314-127-0500` |
-| Carter compresseur | `5324-101-5320` |
-| Carter turbine | `5316-100-9050` |
-| Roue turbine | `5316-120-5000` |
-| Roue compresseur | `5324-123-2006` |
-| Actionneur | `5825-110-4006` |
-| A/R turbine declare | `8.00` |
+| Heat shield | `5316-165-2000` |
+| Thrust collar | `5314-127-0400` |
+| Spacer | `5314-127-0500` |
+| Compressor housing | `5324-101-5320` |
+| Turbine housing | `5316-100-9050` |
+| Turbine wheel | `5316-120-5000` |
+| Compressor wheel | `5324-123-2006` |
+| Actuator | `5825-110-4006` |
+| Declared turbine A/R | `8.00` |
 
-Invasion Auto Products declare pour le K16 droit :
+Invasion Auto Products declares for the right-hand K16:
 
-| Element | Valeur declaree | Limite |
+| Item | Declared value | Limitation |
 | --- | ---: | --- |
-| Roue turbine, inducer | 54,96 mm | Diametre fournisseur, profil inconnu |
-| Roue turbine, exducer | 48,97 mm | Diametre fournisseur, profil inconnu |
-| Roue turbine, trim | 6,45 | Convention fournisseur a confirmer |
-| Roue turbine | 12 pales | Profil, epaisseur et angle inconnus |
-| Roue compresseur, inducer | 40,6 mm | Diametre fournisseur, profil inconnu |
-| Roue compresseur, exducer | 60,5 mm | Diametre fournisseur, profil inconnu |
-| Roue compresseur | 6 + 6 pales, billet | Materiau et profil non documentes |
-| Carter compresseur, angle alpha | 307,5 deg | Reference fournisseur seulement |
-| Carter turbine, angle beta | 70 deg | Reference fournisseur seulement |
-| Wastegate | 0,50 bar | Regime de reglage declare, pas loi de commande |
-| Levee de tige | 4,20 mm | Mesure/protocole non fournis |
+| Turbine wheel, inducer | 54.96 mm | Supplier diameter, profile unknown |
+| Turbine wheel, exducer | 48.97 mm | Supplier diameter, profile unknown |
+| Turbine wheel, trim | 6.45 | Supplier convention to be confirmed |
+| Turbine wheel | 12 blades | Profile, thickness and angle unknown |
+| Compressor wheel, inducer | 40.6 mm | Supplier diameter, profile unknown |
+| Compressor wheel, exducer | 60.5 mm | Supplier diameter, profile unknown |
+| Compressor wheel | 6 + 6 blades, billet | Material and profile not documented |
+| Compressor housing, alpha angle | 307.5 deg | Supplier reference only |
+| Turbine housing, beta angle | 70 deg | Supplier reference only |
+| Wastegate | 0.50 bar | Declared setting, not a control law |
+| Rod lift | 4.20 mm | Measurement/protocol not provided |
 
-Ces nombres ne definissent pas une roue parametrique : une roue necessite les
-surfaces completes, les angles locaux, les epaisseurs, le moyeu, les rayons,
-les jeux et la loi de fabrication.
+These numbers do not define a parametric wheel: a wheel requires the complete
+surfaces, the local angles, the thicknesses, the hub, the radii, the clearances
+and the manufacturing law.
 
-## Circuit d'air et interfaces OEM
+## Air circuit and OEM interfaces
 
-Le chemin a modeliser en premier est :
+The path to model first is:
 
 ```text
-filtre / debitmetre HFM -> separation des bancs
-    -> K16 gauche -> durite -> echangeur gauche ->
-                                                     reunion -> papillon
-    -> K16 droit  -> durite -> echangeur droit  ->     -> collecteur plastique
+filter / HFM mass airflow sensor -> bank split
+    -> left K16  -> hose -> left intercooler  ->
+                                                  merge -> throttle
+    -> right K16 -> hose -> right intercooler ->      -> plastic manifold
 ```
 
-Le PET Porsche de la planche 107-45 confirme les references suivantes pour le
-circuit de charge :
+The Porsche PET for plate 107-45 confirms the following part numbers for the
+charge circuit:
 
-- echangeur : `993 110 330 53` ;
-- conduits d'air : `993 110 340 53` et `993 110 340 54` ;
-- supports : `993 110 110 50` et `993 110 110 52` ;
-- sonde de temperature : `993 606 114 00` ;
-- durite gauche : `993 110 633 56` ;
-- durite droite : `993 110 632 56` ;
-- O-rings : `30 x 3 mm`, reference `999 707 326 40` ;
-- colliers : `60-80/12`, reference `999 512 648 02`, et `40-60/9`, reference
-  `999 512 647 02` ;
-- silentblocs : `930 113 430 00` ; douilles `993 110 111 50` ;
-- vis et rondelles a retrouver avant toute CAO d'interface.
+- intercooler: `993 110 330 53`;
+- air ducts: `993 110 340 53` and `993 110 340 54`;
+- brackets: `993 110 110 50` and `993 110 110 52`;
+- temperature sensor: `993 606 114 00`;
+- left hose: `993 110 633 56`;
+- right hose: `993 110 632 56`;
+- O-rings: `30 x 3 mm`, part number `999 707 326 40`;
+- clamps: `60-80/12`, part number `999 512 648 02`, and `40-60/9`, part number
+  `999 512 647 02`;
+- rubber mounts: `930 113 430 00`; bushings `993 110 111 50`;
+- screws and washers to be identified before any interface CAD.
 
-Le PET est la meilleure preuve de nomenclature, mais il ne donne pas le
-diametre interieur, le rayon de courbure, l'epaisseur, la section de noyau ou
-les entraxes complets. Les dimensions ci-dessous restent donc des enveloppes
-de produits et des bornes de packaging.
+The PET is the best bill-of-materials evidence, but it does not give the inside
+diameter, the bend radius, the thickness, the core section or the complete
+center distances. The dimensions below therefore remain product envelopes and
+packaging bounds.
 
-## Dimensions et masses disponibles
+## Available dimensions and masses
 
-| Objet | Dimensions / masse | Statut pour le jumeau |
+| Object | Dimensions / mass | Status for the twin |
 | --- | --- | --- |
-| K16 gauche complet, FVD | `280 x 190 x 210 mm`, `5,76 kg` | Declaration fournisseur, enveloppe seulement |
-| K16 droit complet, FVD | `280 x 190 x 210 mm`, `5,60 kg` | Declaration fournisseur, enveloppe seulement |
-| Durite pression droite FVD | `430 x 70 x 90 mm`, `0,42 kg` | Remplacement aftermarket |
-| Durite pression gauche FVD | `430 x 70 x 115 mm`, `0,42 kg` | Remplacement aftermarket |
-| Kit durites renforce FVD | raccord annonce `43/57 mm x 410 mm`; enveloppe `440 x 160 x 100 mm`, `1,08 kg` | Borne de raccordement, pression d'essai non fournie |
-| Conduit d'air FVD `993 110 340 54` | `600 x 280 x 50 mm`, `0,9 kg` | Developpement FVD, pas geometrie OEM |
-| Support renforce FVD | `255 x 80 x 23 mm`, `0,2 kg` | Upgrade aftermarket, pas qualification structurale |
-| Noyau AKS DASIS `177020T` pour `993 110 330 53` | faisceau `260 x 270 x 60 mm`, `7,06 kg` | Noyau aftermarket, pas ensemble complet |
-| Module TA Technix `05PO002` | deux modules de faisceau `260 x 260 x 100 mm`; raccords annonces 66 mm exterieur / 68 mm interieur; largeur max 860 mm, hauteur max 240 mm, entraxe 690 mm | Aftermarket, donnees heterogenes a ne pas assembler sans plan |
-| Echangeur Motorsport FVD `FVD110330` | `870 x 410 x 190 mm`, `10,1 kg` | Upgrade avec modifications d'installation |
-| Ecran thermique gauche FVD | `160 x 110 x 105 mm`, `0,23 kg` | Enveloppe produit, fixations inconnues |
-| Sonde `993 606 114 00` FVD | `75 x 35 x 20 mm`, `0,02 kg` | Enveloppe produit, courbe electrique absente |
+| Complete left K16, FVD | `280 x 190 x 210 mm`, `5.76 kg` | Supplier declaration, envelope only |
+| Complete right K16, FVD | `280 x 190 x 210 mm`, `5.60 kg` | Supplier declaration, envelope only |
+| FVD right pressure hose | `430 x 70 x 90 mm`, `0.42 kg` | Aftermarket replacement |
+| FVD left pressure hose | `430 x 70 x 115 mm`, `0.42 kg` | Aftermarket replacement |
+| FVD reinforced hose kit | stated fitting `43/57 mm x 410 mm`; envelope `440 x 160 x 100 mm`, `1.08 kg` | Connection bound, test pressure not provided |
+| FVD air duct `993 110 340 54` | `600 x 280 x 50 mm`, `0.9 kg` | FVD development, not OEM geometry |
+| FVD reinforced bracket | `255 x 80 x 23 mm`, `0.2 kg` | Aftermarket upgrade, not structural qualification |
+| AKS DASIS core `177020T` for `993 110 330 53` | core `260 x 270 x 60 mm`, `7.06 kg` | Aftermarket core, not complete assembly |
+| TA Technix module `05PO002` | two core modules `260 x 260 x 100 mm`; stated fittings 66 mm outside / 68 mm inside; max width 860 mm, max height 240 mm, center distance 690 mm | Aftermarket, heterogeneous data not to be combined without a drawing |
+| FVD Motorsport intercooler `FVD110330` | `870 x 410 x 190 mm`, `10.1 kg` | Upgrade with installation modifications |
+| FVD left heat shield | `160 x 110 x 105 mm`, `0.23 kg` | Product envelope, fasteners unknown |
+| FVD sensor `993 606 114 00` | `75 x 35 x 20 mm`, `0.02 kg` | Product envelope, electrical curve absent |
 
-La masse d'un remplacement, d'un kit ou d'un noyau ne doit jamais etre
-additionnee comme masse OEM. Les references source et la qualification sont
-conservees dans le registre JSON.
+The mass of a replacement, a kit or a core must never be added up as OEM mass.
+The source references and the qualification are kept in the JSON register.
 
-## Forums germanophones
+## German-language forums
 
-Les forums ont ete recherches separement des sources constructeur. Ils sont
-utiles pour trouver des configurations, des pannes recurrentes et des donnees
-a demander a un proprietaire, mais leurs messages ne sont pas des mesures
-metrologiques par defaut.
+The forums were searched separately from manufacturer sources. They are useful
+for finding configurations, recurring failures and data to request from an
+owner, but their posts are not metrological measurements by default.
 
-| Forum | Information utile | Decision de modelisation |
+| Forum | Useful information | Modeling decision |
 | --- | --- | --- |
-| [PFF, 408/430/450 ch](https://www.pff.de/thread/2651537-993-biturbo-408-430-450-ps-unterschiede/) | Retours indiquant K16 sur 408/430 et K24 sur 450/WLS II, avec modifications ECU/refroidissement | Recoupement de variante uniquement ; ne remplace pas la plaque du turbo ou le VIN |
-| [Carpassion, pression affichee](https://www.carpassion.com/forum/thema/26748-ladedruckanzeige/) | Le combiné serait plafonne a 0,8 bar ; des voitures modifiees sont rapportees a 1,3-1,4 bar ; durites et colliers peuvent poser probleme | Le plafond est traite comme une limite d'affichage ; les pressions modifiees sont exclues du cas stock |
-| [Motor-Talk, compilation 993 Turbo](https://www.motor-talk.de/forum/993-turbo-fragen-zum-kauf-t1226876.html) | Pistes sur WLS, K16/K24, limites supposees du refroidisseur et du debitmetre | Pistes d'achat/inspection, pas conditions aux limites |
+| [PFF, 408/430/450 PS](https://www.pff.de/thread/2651537-993-biturbo-408-430-450-ps-unterschiede/) | Reports indicating K16 on 408/430 and K24 on 450/WLS II, with ECU/cooling modifications | Variant cross-check only; does not replace the turbo plate or the VIN |
+| [Carpassion, displayed pressure](https://www.carpassion.com/forum/thema/26748-ladedruckanzeige/) | The instrument cluster reportedly caps at 0.8 bar; modified cars are reported at 1.3-1.4 bar; hoses and clamps can cause problems | The cap is treated as a display limit; modified pressures are excluded from the stock case |
+| [Motor-Talk, 993 Turbo compilation](https://www.motor-talk.de/forum/993-turbo-fragen-zum-kauf-t1226876.html) | Leads on WLS, K16/K24, supposed limits of the intercooler and the mass airflow sensor | Purchase/inspection leads, not boundary conditions |
 
-Le signal commun le plus utile est la maintenance du circuit : verifier le
-siege des durites, les colliers, les raccords et les fuites avant d'interpreter
-une pression faible. Les forums ne fournissent toutefois ni section interne,
-ni profil de raccord, ni carte K16, ni debit massique HFM reproductible. Les
-valeurs de pression et de puissance de vehicules prepares ne doivent pas etre
-injectees dans le jumeau stock.
+The most useful common signal is circuit maintenance: check hose seating,
+clamps, fittings and leaks before interpreting a low pressure. The forums,
+however, provide no internal section, no fitting profile, no K16 map and no
+reproducible HFM mass flow. Pressure and power values from modified vehicles
+must not be injected into the stock twin.
 
-## Preparateurs et fabricants de turbos
+## Tuners and turbo manufacturers
 
-Les preparateurs publient parfois plus de details que les forums, mais il s'agit
-de configurations proprietaires et de promesses de performance. Leur valeur
-pour le jumeau est de montrer quelles variables ont effectivement ete modifiees
-et quelles informations il faut demander.
+Tuners sometimes publish more detail than forums, but these are proprietary
+configurations and performance promises. Their value for the twin is to show
+which variables were actually modified and which information must be
+requested.
 
-| Preparateur | Configuration publiee | Donnee utile | Limite |
+| Tuner | Published configuration | Useful data | Limitation |
 | --- | --- | --- | --- |
-| [FVD](https://www.fvd.net/fr/shop/turbocompr-sport-k16-24-g-pour-993-fvd123013~p262679) | Hybride K16/24 | Inducer compresseur annonce 47,5 mm, carter CNC, backing plate modifie, turbine et palier renforces, equilibriage, adaptateurs d'huile/DME | 555 hp est une cible de kit ; pas de carte ni de profil complet |
-| [Cargraphic](https://www.cargraphic.de/en/your-vehicle/for-porsche/for-911/for-993/for-turbo-turbo-s-36l/engine-upgrade-kits-porsche-993-turbo-s-36l/power-kit-2-for-porsche-993-turbo-36l/lkp93t300s2/) | K16/24 special + ECU + echappement + huile | 475 PS / 632 Nm annonces, essais revendiques sur banc RS-Tuning | Feuille de banc, boost, IAT et debit absents |
-| [TTP](https://t-t-p.de/motortuning-porsche/) | K16 450 PS, K16 modifie 500 PS, K24 550 PS | Echangeur eau-air integre, refroidissement d'huile, ECU programmable, niveaux 450/580, 500/620 et 550/640 | Chiffres de preparation, sans carte ni protocole de banc |
-| [Elferwelt](https://www.elferwelt.de/leistungen/porsche-993-turbo-gt2/) | K16/8055011W, kit 520-540 PS | Partie tournante allegee, optimisation des jeux, equilibriage statique/dynamique, injecteurs matches, DME CC460/OTP | La mention `80er CNC Druckseite` n'est pas une cote definie |
-| [TTH](https://www.turbo-technik-hamburg.de/shop/porsche/911/993/436/porsche-911-993-gt2-wls-i-ii-turbo-s-3-6-t-k24-750ps) | K24 avec carter chaud 10 | Extended Tip, carter CNC, turbine retouchee, paliers/capsules renforces, equilibriage annonce jusqu'a 0,05 g | Offre K24 jusqu'a 750 PS avec moteur et logiciel adaptes ; pas K16 stock |
-| [9ff](https://www.9ff.com/en/pages/993-konfigurator) | F64 twin turbo 550 avec 2x K24-24.80 | 550 hp / 700 Nm, echangeur eau, grosses conduites, injecteurs, pompe et carter renforces | Conversion complete ; aucune carte ou geometrie de roue |
+| [FVD](https://www.fvd.net/fr/shop/turbocompr-sport-k16-24-g-pour-993-fvd123013~p262679) | K16/24 hybrid | Stated compressor inducer 47.5 mm, CNC housing, modified backing plate, reinforced turbine and bearing, balancing, oil/DME adapters | 555 hp is a kit target; no map or complete profile |
+| [Cargraphic](https://www.cargraphic.de/en/your-vehicle/for-porsche/for-911/for-993/for-turbo-turbo-s-36l/engine-upgrade-kits-porsche-993-turbo-s-36l/power-kit-2-for-porsche-993-turbo-36l/lkp93t300s2/) | Special K16/24 + ECU + exhaust + oil | 475 PS / 632 Nm stated, tests claimed on an RS-Tuning dyno | Dyno sheet, boost, IAT and mass flow absent |
+| [TTP](https://t-t-p.de/motortuning-porsche/) | K16 450 PS, modified K16 500 PS, K24 550 PS | Integrated water-to-air intercooler, oil cooling, programmable ECU, levels 450/580, 500/620 and 550/640 | Tuning figures, with no map or dyno protocol |
+| [Elferwelt](https://www.elferwelt.de/leistungen/porsche-993-turbo-gt2/) | K16/8055011W, 520-540 PS kit | Lightened rotating assembly, clearance optimization, static/dynamic balancing, matched injectors, DME CC460/OTP | The mention `80er CNC Druckseite` is not a defined dimension |
+| [TTH](https://www.turbo-technik-hamburg.de/shop/porsche/911/993/436/porsche-911-993-gt2-wls-i-ii-turbo-s-3-6-t-k24-750ps) | K24 with hot-side housing 10 | Extended Tip, CNC housing, reworked turbine, reinforced bearings/capsules, balancing stated down to 0.05 g | K24 offer up to 750 PS with adapted engine and software; not stock K16 |
+| [9ff](https://www.9ff.com/en/pages/993-konfigurator) | F64 twin turbo 550 with 2x K24-24.80 | 550 hp / 700 Nm, water intercooler, large ducting, injectors, reinforced pump and case | Complete conversion; no map or wheel geometry |
 
-Deux enseignements sont directement utiles :
+Two lessons are directly useful:
 
-1. Les hybrides K16/24 cherchent le compromis reponse bas regime / debit haut
-   regime. Ils ne doivent pas etre utilises comme geometrie du K16 d'origine.
-2. A partir des niveaux eleves, les preparateurs modifient simultanement
-   turbo, echangeur, carburant, ECU, echappement et bas moteur. Il est donc
-   impossible d'attribuer un gain de debit ou de temperature au turbo seul.
+1. K16/24 hybrids seek the compromise between low-rpm response and high-rpm
+   flow. They must not be used as the geometry of the original K16.
+2. At high power levels, tuners simultaneously modify turbo, intercooler, fuel,
+   ECU, exhaust and bottom end. It is therefore impossible to attribute a flow
+   or temperature gain to the turbo alone.
 
-Les pages de preparateurs ne publient pas les donnees dont nous avons besoin
-pour un modele aero : carte compresseur et turbine avec debit corrige, rapports
-de pression et ilots de rendement, vitesse d'arbre, T1/T3, pertes de charge,
-jeux et profils d'aubes. Une demande technique a leur adresser doit exiger ces
-valeurs, les conditions d'essai, l'incertitude et l'autorisation d'utilisation
-des donnees.
+Tuner pages do not publish the data we need for an aero model: compressor and
+turbine maps with corrected flow, pressure ratios and efficiency islands, shaft
+speed, T1/T3, pressure losses, clearances and blade profiles. A technical
+request addressed to them must demand these values, the test conditions, the
+uncertainty and permission to use the data.
 
-## Donnees publiques de banc
+## Public dyno data
 
-La recherche a trouve quelques points de banc, mais aucun dossier complet de
-calibration. Le registre [`dyno-reference.json`](../simulation/993-turbo-dyno/dyno-reference.json)
-conserve les valeurs publiees et leur contexte :
+The search found a few dyno points, but no complete calibration dossier. The
+register [`dyno-reference.json`](../simulation/993-turbo-dyno/dyno-reference.json)
+keeps the published values and their context:
 
-| Cas | Donnees rapportees | Usage retenu |
+| Case | Reported data | Use retained |
 | --- | --- | --- |
-| RUF Turbo R a base K16 | Couple en lb-ft de 2 000 a 6 000 tr/min ; pics annonces 506 hp a 5 500 et 460 hp a 6 000 | Courbe d'ancrage incomplete ; controle de coherence couple/puissance |
-| Comparatif RS-Tuning/UMW | K24RS a 522 PS DIN contre K16 Stage 3 a 471 hp sur le meme moteur | Comparaison de niveau, sans points de courbe exploitables |
-| Powerhaus K24 | 500 whp et 525 lb-ft a 5 000 tr/min, environ 1 bar rapporte | Point d'ancrage châssis ; puissance aux roues, pas vilebrequin |
-| K16 reconstruits / DME Turbo S | 324 whp a 6 000 tr/min et 329 lb-ft a 4 600 tr/min, trois tirets rapportes | Ancrage châssis modifie, sans conversion vilebrequin |
-| Cargraphic K16/24 | 475 PS a 6 090 tr/min et 632 Nm a 4 550 tr/min | Cible fabricant, feuille de banc absente |
-| AP Car Design K26 | 610 PS et 920 Nm a 4 200 tr/min sur une conversion complete | Borne contextuelle hors K16/K24 |
+| RUF Turbo R on K16 base | Torque in lb-ft from 2,000 to 6,000 rpm; stated peaks 506 hp at 5,500 and 460 hp at 6,000 | Incomplete anchor curve; torque/power consistency check |
+| RS-Tuning/UMW comparison | K24RS at 522 PS DIN versus K16 Stage 3 at 471 hp on the same engine | Level comparison, with no usable curve points |
+| Powerhaus K24 | 500 whp and 525 lb-ft at 5,000 rpm, about 1 bar reported | Chassis anchor point; power at the wheels, not the crankshaft |
+| Rebuilt K16 / Turbo S DME | 324 whp at 6,000 rpm and 329 lb-ft at 4,600 rpm, three pulls reported | Modified chassis anchor, with no crankshaft conversion |
+| Cargraphic K16/24 | 475 PS at 6,090 rpm and 632 Nm at 4,550 rpm | Manufacturer target, dyno sheet absent |
+| AP Car Design K26 | 610 PS and 920 Nm at 4,200 rpm on a complete conversion | Contextual bound outside K16/K24 |
 
-Le script `scripts/model_turbo_dyno_0d.py` derive pour chaque point la puissance
-du couple, le BMEP et une enveloppe de debit par turbo. Il compare aussi les
-valeurs puissance/couple publiees au meme regime et signale les discordances.
-La sortie est dans `simulation/993-turbo-dyno/derived-dyno-curves.json` et
-reste au statut `reference_only` : elle ne fabrique ni carte compresseur ni
-calibration CFD.
+The script `scripts/model_turbo_dyno_0d.py` derives for each point the power
+from torque, the BMEP and a per-turbo mass-flow envelope. It also compares the
+published power/torque values at the same speed and flags discrepancies. The
+output is in `simulation/993-turbo-dyno/derived-dyno-curves.json` and stays at
+status `reference_only`: it fabricates neither a compressor map nor a CFD
+calibration.
 
-## Conditions moteur disponibles
+## Available engine conditions
 
-| Parametre | Valeur | Nature |
+| Parameter | Value | Nature |
 | --- | ---: | --- |
-| Cylindres | 6 | Donnee technique secondaire recoupee |
-| Cylindree | 3 600 cm3 | Porsche / source technique |
-| Alesage x course | `100 x 76,4 mm` | Compilation technique secondaire |
-| Rapport volumetrique | `8,0:1` | Compilation technique secondaire |
-| Puissance | `408 ch` a `5 750 tr/min` | Porsche |
-| Couple | `540 Nm` a `4 500 tr/min` | Porsche |
-| Limiteur | `6 720 +/- 20 tr/min` | Compilation technique secondaire |
-| Suralimentation maximale publique | `0,8 bar` | Porsche ; pression et lieu de mesure a preciser |
-| Mesure de charge | HFM / debitmetre massique | Identification fonctionnelle, calibration absente |
-| Ventilateur | `1 210 l/s` a 5 750 tr/min | Refroidissement moteur, **pas debit d'admission** |
+| Cylinders | 6 | Cross-checked secondary technical data |
+| Displacement | 3,600 cm3 | Porsche / technical source |
+| Bore x stroke | `100 x 76.4 mm` | Secondary technical compilation |
+| Compression ratio | `8.0:1` | Secondary technical compilation |
+| Power | `408 PS` at `5,750 rpm` | Porsche |
+| Torque | `540 Nm` at `4,500 rpm` | Porsche |
+| Rev limiter | `6,720 +/- 20 rpm` | Secondary technical compilation |
+| Maximum public boost | `0.8 bar` | Porsche; pressure and measurement location to be specified |
+| Load measurement | HFM / mass airflow sensor | Functional identification, calibration absent |
+| Fan | `1,210 l/s` at 5,750 rpm | Engine cooling, **not intake flow** |
 
-Le debit du ventilateur de refroidissement est explicitement exclu comme
-condition d'entree du turbo. Il concerne l'air de refroidissement du moteur.
+The cooling fan flow is explicitly excluded as a turbo inlet condition. It
+concerns the engine cooling air.
 
-## Premiere enveloppe de debit calculee
+## First calculated mass-flow envelope
 
-Cette section est une derivee reproductible, pas une mesure. Hypotheses du
-premier balayage :
+This section is a reproducible derivation, not a measurement. Assumptions of
+the first sweep:
 
-- moteur quatre temps de `0,0036 m3` ;
-- pression ambiante et entree compresseur : `1,013 bar abs` ;
-- pression au collecteur : `0,8 bar` de boost, soit `1,813 bar abs` ;
-- temperature apres echangeur : `50 degres C` ;
-- rendement volumetrique balaye : `0,85` a `1,00` ;
-- partage egal entre les deux bancs ;
-- gaz parfait, `R = 287,05 J/(kg K)` ;
-- aucune fuite et regime permanent.
+- four-stroke engine of `0.0036 m3`;
+- ambient and compressor inlet pressure: `1.013 bar abs`;
+- manifold pressure: `0.8 bar` of boost, i.e. `1.813 bar abs`;
+- post-intercooler temperature: `50 degrees C`;
+- volumetric efficiency swept: `0.85` to `1.00`;
+- equal split between the two banks;
+- ideal gas, `R = 287.05 J/(kg K)`;
+- no leakage and steady state.
 
-La formule est :
+The formula is:
 
 ```text
 Vdot = Vd * N / (2 * 60)
@@ -256,108 +252,106 @@ mdot_total = rho * Vdot * VE
 mdot_banc = mdot_total / 2
 ```
 
-Avec ces hypotheses, `rho = 1,9545 kg/m3`. Les valeurs obtenues sont :
+With these assumptions, `rho = 1.9545 kg/m3`. The values obtained are:
 
-| Regime | Debit volumique moteur | Debit total, VE 0,85-1,00 | Debit par K16, kg/s | Debit par K16, lb/min |
+| Speed | Engine volumetric flow | Total mass flow, VE 0.85-1.00 | Mass flow per K16, kg/s | Mass flow per K16, lb/min |
 | ---: | ---: | ---: | ---: | ---: |
-| 4 500 tr/min | `0,1350 m3/s` | `0,224-0,264 kg/s` | `0,112-0,132` | `14,8-17,5` |
-| 5 750 tr/min | `0,1725 m3/s` | `0,287-0,337 kg/s` | `0,143-0,169` | `19,0-22,3` |
-| 6 720 tr/min | `0,2016 m3/s` | `0,335-0,394 kg/s` | `0,168-0,197` | `22,2-26,1` |
+| 4,500 rpm | `0.1350 m3/s` | `0.224-0.264 kg/s` | `0.112-0.132` | `14.8-17.5` |
+| 5,750 rpm | `0.1725 m3/s` | `0.287-0.337 kg/s` | `0.143-0.169` | `19.0-22.3` |
+| 6,720 rpm | `0.2016 m3/s` | `0.335-0.394 kg/s` | `0.168-0.197` | `22.2-26.1` |
 
-Le debit massique est conserve dans le circuit, mais le debit volumique et la
-density changent avant et apres le compresseur. La repartition 50/50 est une
-hypothese de demarrage : les longueurs, pertes, wastegates et rendements gauche
-et droit peuvent la rendre fausse.
+Mass flow is conserved through the circuit, but volumetric flow and density
+change before and after the compressor. The 50/50 split is a starting
+assumption: left and right lengths, losses, wastegates and efficiencies can
+make it wrong.
 
-Pour une premiere estimation du rapport de pression :
+For a first estimate of the pressure ratio:
 
-- sans perte entre compresseur et collecteur : `PR = 1,813 / 1,013 = 1,79` ;
-- avec une perte provisoire de `0,05-0,20 bar` dans le circuit de charge :
-  `PR` devient environ `1,84-1,99`.
+- with no loss between compressor and manifold: `PR = 1.813 / 1.013 = 1.79`;
+- with a provisional loss of `0.05-0.20 bar` in the charge circuit: `PR`
+  becomes about `1.84-1.99`.
 
-La perte `0,05-0,20 bar` est une plage de sensibilite, pas une mesure Porsche.
-Avec `T1 = 20 degres C`, un rendement compresseur suppose de `0,65-0,75` et
-`gamma = 1,4`, la temperature de sortie compresseur calculee est environ
-`91-117 degres C`. Avec une efficacite d'echangeur supposee de `0,60-0,75`, la
-temperature apres echangeur serait environ `38-59 degres C`. Ces nombres ne
-doivent pas remplacer une sonde avant/apres echangeur.
+The `0.05-0.20 bar` loss is a sensitivity range, not a Porsche measurement.
+With `T1 = 20 degrees C`, an assumed compressor efficiency of `0.65-0.75` and
+`gamma = 1.4`, the calculated compressor outlet temperature is about
+`91-117 degrees C`. With an assumed intercooler effectiveness of `0.60-0.75`,
+the post-intercooler temperature would be about `38-59 degrees C`. These
+numbers must not replace a sensor before/after the intercooler.
 
-## Rapport avec le cas OpenFOAM actuel
+## Relation to the current OpenFOAM case
 
-Le cas
-`simulation/993-k16-cold-side-baseline/` est un harnais de regression :
+The case
+`simulation/993-k16-cold-side-baseline/` is a regression harness:
 
-- diffuseur rectangulaire equivalent `50 -> 68 mm` sur `90 mm` ;
-- densite imposee `1,2 kg/m3` ;
-- vitesse imposee `40 m/s` ;
-- debit derive `0,09425 kg/s` ;
-- pas de roue, CHRA, wastegate, echangeur reel ou geometrie K16.
+- equivalent rectangular diffuser `50 -> 68 mm` over `90 mm`;
+- imposed density `1.2 kg/m3`;
+- imposed velocity `40 m/s`;
+- derived mass flow `0.09425 kg/s`;
+- no wheel, CHRA, wastegate, real intercooler or K16 geometry.
 
-Ce debit est volontairement synthetique et se situe sous l'enveloppe
-calculee par K16 dans les hypotheses ci-dessus. Il ne faut pas le remplacer
-silencieusement : il sert a verifier la chaine OpenFOAM et les comparaisons
-relatives. Le prochain cas physique devra imposer un debit par banc justifie et
-une geometrie dont les sections sont connues.
+This mass flow is deliberately synthetic and sits below the per-K16 envelope
+calculated under the assumptions above. It must not be replaced silently: it
+serves to verify the OpenFOAM chain and the relative comparisons. The next
+physical case will have to impose a justified per-bank mass flow and a geometry
+whose sections are known.
 
-Trois variantes de sensibilite sont maintenant materialisees dans
-`simulation/993-turbo-variants/` : `K16-OEM`, `K16-24-HYBRID` et
-`K24-REFERENCE`. Elles utilisent le meme debit derive de `0,156 kg/s` par
-turbo, a densite constante, afin de comparer uniquement des enveloppes froides
-synthetiques. Les vitesses d'entree changent avec la section. Le manifeste
-attache les sources FVD, Cargraphic, TTP, TTH, Elferwelt et 9ff, mais les
-objectifs de puissance des preparateurs restent des declarations hors solveur.
-Les fichiers sont regenerables avec `make turbo-variants` et controles par
-`make turbo-variants-check`.
+Three sensitivity variants are now materialized in
+`simulation/993-turbo-variants/`: `K16-OEM`, `K16-24-HYBRID` and
+`K24-REFERENCE`. They use the same derived mass flow of `0.156 kg/s` per turbo,
+at constant density, so as to compare only synthetic cold envelopes. Inlet
+velocities change with the section. The manifest attaches the FVD, Cargraphic,
+TTP, TTH, Elferwelt and 9ff sources, but the tuners' power targets remain
+declarations outside the solver. The files can be regenerated with
+`make turbo-variants` and are checked by `make turbo-variants-check`.
 
-## Ce qui manque avant un CFD calibre
+## What is missing before a calibrated CFD
 
-### Geometrie
+### Geometry
 
-- scan ou CAO licencie du turbo droit et gauche ;
-- plans de brides, axes, entraxes et datums communs ;
-- diametres interieurs et rayons des durites OEM ;
-- geometrie des boitiers d'echangeur, ailettes, densite de faisceau et volumes
-  morts ;
-- papillon, collecteur, repartiteur et sections d'admission ;
-- profils complets des roues et diffuseurs.
+- licensed scan or CAD of the right and left turbo;
+- flange drawings, axes, center distances and common datums;
+- inside diameters and radii of the OEM hoses;
+- geometry of the intercooler housings, fins, core density and dead volumes;
+- throttle, manifold, plenum and intake sections;
+- complete profiles of the wheels and diffusers.
 
-### Fonctionnement
+### Operation
 
-- courbe boost/regime et pression avant/apres chaque echangeur ;
-- debit massique HFM et sa calibration ;
-- temperature ambiante, temperature apres compresseur et apres echangeur ;
-- efficacite compresseur/turbine et vitesse d'arbre ;
-- pression d'entree turbine, temperature T3, contre-pression ;
-- loi d'ouverture de wastegate et comportement transitoire ;
-- limites surge/choke et donnees de fatigue.
+- boost/speed curve and pressure before/after each intercooler;
+- HFM mass flow and its calibration;
+- ambient temperature, post-compressor and post-intercooler temperature;
+- compressor/turbine efficiency and shaft speed;
+- turbine inlet pressure, T3 temperature, back pressure;
+- wastegate opening law and transient behavior;
+- surge/choke limits and fatigue data.
 
 ### Validation
 
-Le banc minimal devra mesurer simultanement debit massique, pression et
-temperature avant/apres chaque K16 et chaque echangeur. Les points doivent etre
-repetes, les instruments et incertitudes enregistres, puis compares au reseau
-0D et au CFD 3D. Une photo, un eclate PET ou une fiche vendeur ne remplace pas
-ce banc.
+The minimum test bench will have to measure simultaneously mass flow, pressure
+and temperature before/after each K16 and each intercooler. The points must be
+repeated, the instruments and uncertainties recorded, then compared with the 0D
+network and the 3D CFD. A photo, a PET exploded view or a vendor sheet does not
+replace this bench.
 
-## Strategie de simulation
+## Simulation strategy
 
-1. **Reseau 0D/1D** : balayer regime, VE, boost, temperature, rendement et
-   perte de charge. Le [BorgWarner MatchBot](https://www.borgwarner.com/aftermarket/boosting-technologies/performance-turbochargers/matchbot)
-   sert de reference pour les variables d'entree/sortie, mais ne fournit pas
-   la carte K16 manquante.
-2. **CFD cote froid** : calculer d'abord un conduit, un coude, un raccord ou un
-   echangeur dont la geometrie est accessible et licenciee. Comparer perte de
-   pression, uniformite de vitesse et separation.
-3. **Thermique** : ajouter l'echangeur et son environnement avec des
-   temperatures/coefficients mesures ou explicitement balayes.
-4. **K16 complet** : seulement apres obtention d'une carte ou de points d'essai
-   et d'une geometrie de roue autorisee. Une simulation sans carte produira une
-   image ou une extrapolation, pas une prediction credible.
-5. **Fabrication** : le turbo, la roue, l'arbre, le CHRA et le carter chaud
-   restent bloques par la classe de securite du catalogue. Le premier objet
-   doit rester un conduit ou adaptateur froid, non rotatif et non structurel.
+1. **0D/1D network**: sweep speed, VE, boost, temperature, efficiency and
+   pressure loss. The [BorgWarner MatchBot](https://www.borgwarner.com/aftermarket/boosting-technologies/performance-turbochargers/matchbot)
+   serves as a reference for the input/output variables, but does not provide
+   the missing K16 map.
+2. **Cold-side CFD**: first calculate a duct, an elbow, a fitting or an
+   intercooler whose geometry is accessible and licensed. Compare pressure
+   loss, velocity uniformity and separation.
+3. **Thermal**: add the intercooler and its surroundings with measured or
+   explicitly swept temperatures/coefficients.
+4. **Complete K16**: only after obtaining a map or test points and an
+   authorized wheel geometry. A simulation without a map will produce an image
+   or an extrapolation, not a credible prediction.
+5. **Manufacturing**: the turbo, the wheel, the shaft, the CHRA and the hot-side
+   housing remain blocked by the catalogue safety class. The first object must
+   remain a cold duct or adapter, non-rotating and non-structural.
 
-## Sources enregistrees
+## Recorded sources
 
 - `SRC-PORSCHE-CHRISTOPHORUS-993-TURBO-DATA`
 - `SRC-PORSCHE-AUSTRIA-993-107-45-PET`
@@ -385,4 +379,4 @@ ce banc.
 - `SRC-RENNLIST-993-POWERHAUS-K24-DYNO`
 - `SRC-RENNLIST-993-K16-CHASSIS-DYNO`
 - `SRC-AP-CAR-DESIGN-993-K26-DYNO-REPORT`
-- sources FVD, AKS DASIS et TA Technix des pieces adjacentes.
+- FVD, AKS DASIS and TA Technix sources for the adjacent parts.

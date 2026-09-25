@@ -1,61 +1,72 @@
-# M64 — deux coupons LPBF exécutés et contre-vérifiés
+# M64 — two LPBF coupons executed and cross-checked
 
-**Résultat :** la variation de quadrature ne supprime pas le plafond numérique
-de 3 300 K. Deux calculs thermiques natifs ont terminé sur Kali en **67,140 s**,
-nettoyage compris. Aucun nouveau coût Vast. Ce coupon n'est ni la culasse
-entière ni une simulation de fonctionnement moteur.
+**Result:** varying the quadrature does not remove the numerical cap
+of 3,300 K. Two native thermal computations finished on Kali in **67.140 s**,
+cleanup included. No new Vast cost. This coupon is neither the whole
+cylinder head nor a simulation of engine operation.
 
-[Reçu public chiffré et empreintes](../../twins/m64-cylinder-head/evidence/quadrature-native-and-mesh-bridge-20260912.json).
-Les [préparatifs](M64_JOBS_234_20260912.md) restent un historique distinct.
+[Public receipt with figures and digests](../../twins/m64-cylinder-head/evidence/quadrature-native-and-mesh-bridge-20260912.json).
+The [preparations](M64_JOBS_234_20260912.md) remain a separate history.
 
-## Expérience effectivement réalisée
+```mermaid
+flowchart LR
+    A["Same 57,600-cell mesh<br/>380 W, 1,600 steps"] --> B["q10: nPoints=(10,10,10)"]
+    A --> C["q20: nPoints=(20,20,20)"]
+    B --> D["Limiter still active<br/>≈3,300 K on both"]
+    C --> D
+    D --> E["Cap not removed;<br/>no convergence order"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class D,E stop;
+```
 
-Même maillage de 57 600 cellules, AlSi10Mg témoin, laser de 380 W,
-pas fixe de 25 ns, fenêtre de 40 µs, soit 1 600 pas par cas. Seule différence
-entre les entrées : quadrature `nPoints=(10,10,10)` puis `(20,20,20)`.
-Énergie incidente commune : 0,0152 J. Ni limiteur, ni matériau, ni pression,
-ni vitesse, ni maillage n'ont été ajustés pour obtenir un succès.
+## Experiment actually performed
 
-| Grandeur intégrée ou observée | q10 | q20 |
+Same 57,600-cell mesh, control-case AlSi10Mg, 380 W laser,
+fixed step of 25 ns, 40 µs window, i.e. 1,600 steps per case. The only difference
+between the inputs: quadrature `nPoints=(10,10,10)` then `(20,20,20)`.
+Common incident energy: 0.0152 J. Neither limiter, nor material, nor pressure,
+nor velocity, nor mesh was adjusted to obtain a success.
+
+| Integrated or observed quantity | q10 | q20 |
 |---|---:|---:|
-| Énergie laser absorbée | 8,923918 mJ | 8,929018 mJ |
-| Énergie sensible stockée | 9,526165 mJ | 9,601713 mJ |
-| Énergie latente stockée | 1,045571 mJ | 1,059072 mJ |
-| Diffusion entrante aux frontières | 2,523533 mJ | 2,523533 mJ |
-| Énergie retirée par le limiteur | 0,875733 mJ | 0,791783 mJ |
-| Limiteur / énergie absorbée | 9,8133 % | 8,8675 % |
-| Première atteinte du seuil de censure à 3 299 K | 10,500 µs | 10,625 µs |
-| Température maximale, limitée | ≈3 300 K | ≈3 300 K |
+| Absorbed laser energy | 8.923918 mJ | 8.929018 mJ |
+| Stored sensible energy | 9.526165 mJ | 9.601713 mJ |
+| Stored latent energy | 1.045571 mJ | 1.059072 mJ |
+| Incoming diffusion at the boundaries | 2.523533 mJ | 2.523533 mJ |
+| Energy removed by the limiter | 0.875733 mJ | 0.791783 mJ |
+| Limiter / absorbed energy | 9.8133 % | 8.8675 % |
+| First reaching of the 3,299 K censoring threshold | 10.500 µs | 10.625 µs |
+| Maximum temperature, limited | ≈3,300 K | ≈3,300 K |
 
-Écart relatif à q20 : **0,0571155 %** sur l'énergie laser absorbée, mais
-**10,6026 %** sur le puits artificiel du limiteur. La différence maximale des
-températures appariées est 33,9288 K ; elle porte sur des séries censurées.
-Deux niveaux ne suffisent pas à établir un ordre de convergence. La faible
-variation de l'énergie totale ne prouve pas la convergence locale du flux.
+Relative deviation from q20: **0.0571155 %** on the absorbed laser energy, but
+**10.6026 %** on the artificial sink of the limiter. The maximum difference of the
+paired temperatures is 33.9288 K; it concerns censored series.
+Two levels are not enough to establish an order of convergence. The small
+variation of the total energy does not prove local convergence of the flux.
 
-Le bilan vérifié est
-`sensible + latent - diffusion entrante - laser + advection sortante + limiteur`.
-L'advection est nulle dans cette expérience thermique seule. Les résidus
-intégrés sont respectivement 1,6753×10⁻⁸ J et 1,5973×10⁻⁸ J.
-Un petit résidu comptable ne prouve pas la validité du modèle physique.
+The verified balance is
+`sensible + latent - incoming diffusion - laser + outgoing advection + limiter`.
+Advection is zero in this thermal-only experiment. The integrated
+residuals are 1.6753×10⁻⁸ J and 1.5973×10⁻⁸ J respectively.
+A small bookkeeping residual does not prove the validity of the physical model.
 
-Le [lecteur 40 µs](../../twins/m64-cylinder-head/source/compare_f58_quadrature_40us.py)
-reparse les six termes en Decimal à 80 chiffres. Une relecture indépendante
-a recalculé les intégrales depuis les deux logs et contrôlé leurs SHA.
-C'est un contre-calcul du bilan, **pas un second solveur physique**.
-Le lecteur conserve son statut « sorties natives non vérifiées » : il
-n'exécute rien lui-même. Les preuves de sorties natives sont dans le reçu
-distinct, relié aux mêmes empreintes de journaux.
+The [40 µs reader](../../twins/m64-cylinder-head/source/compare_f58_quadrature_40us.py)
+reparses the six terms in 80-digit Decimal. An independent reread
+recomputed the integrals from the two logs and checked their SHAs.
+This is a cross-check of the balance, **not a second physical solver**.
+The reader keeps its "native outputs not verified" status: it
+executes nothing itself. The evidence of native outputs is in the separate
+receipt, linked to the same log digests.
 
-## Exécution reproductible et limites
+## Reproducible execution and limits
 
-Sources versionnées : [superviseur](../../twins/m64-cylinder-head/source/f58-quadrature/run_quadrature.py),
+Versioned sources: [supervisor](../../twins/m64-cylinder-head/source/f58-quadrature/run_quadrature.py),
 [worker](../../twins/m64-cylinder-head/source/f58-quadrature/quadrature_worker.py).
-Le paquet privé contient ces deux scripts, `manifest.json`,
-`preparation-report.json`, `q10/` et `q20/`. Il doit être neuf sous
-`/var/tmp/m64-f58-quad.<suffixe>`. Le manifeste épingle scripts, six fichiers
-backend, 91 sources régulières et 67 alias `lnInclude` strictement internes.
-Les dictionnaires privés proviennent du préparateur déjà versionné.
+The private packet contains these two scripts, `manifest.json`,
+`preparation-report.json`, `q10/` and `q20/`. It must be fresh under
+`/var/tmp/m64-f58-quad.<suffix>`. The manifest pins the scripts, six backend
+files, 91 regular sources and 67 strictly internal `lnInclude` aliases.
+The private dictionaries come from the already versioned preparer.
 
 ```sh
 python3 /var/tmp/m64-f58-quad.SUFFIX/run_quadrature.py \
@@ -63,69 +74,71 @@ python3 /var/tmp/m64-f58-quad.SUFFIX/run_quadrature.py \
   --manifest-sha256 SHA256_DU_MANIFESTE_REEL --execute
 ```
 
-Deux CPU, 4 Gio de mémoire, aucun swap, réseau coupé, utilisateur non root,
-racine en lecture seule, capacités supprimées. Maximum 600 s dont 30 s de
-nettoyage ; 250 s par cas. `checkMesh` et les deux solveurs terminent avec
-code zéro ; OOM faux ; 1 600 bilans ordonnés par cas ; toutes les entrées
-restent identiques ; conteneur exact vérifié absent après suppression.
+(`SHA256_DU_MANIFESTE_REEL` is a placeholder for the SHA-256 of the actual manifest.)
 
-Les sorties natives étaient dans un tmpfs de 1 Gio, compris dans les 4 Gio.
-**Les champs temporaires ont été supprimés avec le conteneur** ; seuls leurs
-SHA, les logs bruts et reçus ont été conservés. Les champs nécessiteraient une
-nouvelle exécution pour être consultés. Les écrivains de résultats sont bornés
-à 260 Mio au total ; le dossier hôte n'est pas protégé par un quota disque
-noyau. Aucun réessai automatique.
+Two CPUs, 4 GiB of memory, no swap, network cut, non-root user,
+read-only root filesystem, capabilities dropped. Maximum 600 s including 30 s of
+cleanup; 250 s per case. `checkMesh` and both solvers finish with
+exit code zero; OOM false; 1,600 ordered balances per case; all inputs
+remain identical; exact container verified absent after removal.
 
-Un premier prévol a été refusé sans création de conteneur : six fichiers
-`Make/files` et `Make/options` de sous-bibliothèques manquaient à l'inventaire.
-Aucune source n'avait changé. Leur inventaire a été complété avant une
-nouvelle tentative explicite dans un autre dossier ; l'échec est conservé.
+The native outputs were in a 1 GiB tmpfs, included in the 4 GiB.
+**The temporary fields were deleted with the container**; only their
+SHAs, the raw logs and receipts were kept. The fields would require a
+new run to be consulted. The result writers are capped
+at 260 MiB in total; the host directory is not protected by a kernel disk
+quota. No automatic retry.
 
-Vérification logicielle : 33 tests ciblés quadrature passent, dont neuf du
-nouveau superviseur. `make check` complet termine avec code zéro ; les tests
-natifs optionnels dont les runtimes sont absents restent signalés ignorés.
-Ce contrôle du dépôt ne remplace pas les preuves natives exposées ci-dessus.
+A first preflight was refused without creating a container: six
+`Make/files` and `Make/options` files of sub-libraries were missing from the inventory.
+No source had changed. Their inventory was completed before a
+new explicit attempt in another directory; the failure is kept.
 
-## Géométrie : progression indépendante du coupon
+Software verification: 33 targeted quadrature tests pass, nine of them for the
+new supervisor. The full `make check` finishes with exit code zero; the optional
+native tests whose runtimes are absent remain reported as skipped.
+This repository check does not replace the native evidence set out above.
 
-Un prototype privé a classé 716 383 tétraèdres parmi 784 675 cellules.
-Parmi les sommets incidents aux défauts `lowD`, 47 sont potentiellement
-mobiles sous les contraintes retenues, dans 129 tétraèdres concernés.
-La première région de 1 000 tétraèdres contient 305 points, dont 251 fixes,
-54 libres et trois libres incidents à des défauts ciblés. Elle a été refusée
-pour 18 arêtes orientées de coque non conformes. Ces 18 occurrences ne sont
-pas nécessairement 18 arêtes géométriques distinctes.
+## Geometry: progress independent of the coupon
 
-Cinq tests synthétiques du pont passent ; aucune importation native MFEM,
-écriture inverse polyMesh, optimisation de points ou qualification de la
-culasse n'en découle. Le maître et son contour sont inchangés.
+A private prototype classified 716,383 tetrahedra among 784,675 cells.
+Among the vertices incident to the `lowD` defects, 47 are potentially
+movable under the retained constraints, in 129 affected tetrahedra.
+The first region of 1,000 tetrahedra contains 305 points, of which 251 fixed,
+54 free and three free ones incident to targeted defects. It was rejected
+for 18 non-conforming oriented shell edges. These 18 occurrences are
+not necessarily 18 distinct geometric edges.
 
-Une tentative complémentaire de fermeture par tétraèdres adjacents a retrouvé
-trois étoiles d'arêtes disjointes, avec cellules non tétraèdriques à l'interface.
-Aucun chemin composé seulement de tétraèdres n'a relié ces composantes.
-La région reste à 1 000 cellules, sans ajout ni déplacement ; aucun export
-MFEM réel admis. Il faut revoir la sélection locale ou un adaptateur mixte,
-pas louer un GPU pour cette région refusée.
+Five synthetic bridge tests pass; no native MFEM import,
+reverse polyMesh write, point optimization or qualification of the
+cylinder head follows from them. The master and its outline are unchanged.
 
-## Suite et LLM
+An additional attempt at closure by adjacent tetrahedra found
+three disjoint edge stars, with non-tetrahedral cells at the interface.
+No path made only of tetrahedra connected these components.
+The region stays at 1,000 cells, with no addition or displacement; no real
+MFEM export admitted. The local selection or a mixed adapter must be revisited,
+not a GPU rented for this rejected region.
 
-La suite LPBF doit séparer l'erreur de distribution spatiale de source,
-les conditions thermiques imposées et la validité du domaine matériau à
-haute température. Ne pas simplement relever le plafond. Un coupon limité
-ne constitue pas un jeu de vérité pour entraîner PhysicsNeMo.
+## Next steps and LLM
 
-L'[étude Neural Concept](M64_NEURAL_CONCEPT_20260912.md) retient apprentissage
-actif, interfaces fixes et recalcul des finalistes ; aucun entraînement lancé.
+The LPBF follow-up must separate the error in the spatial distribution of the source,
+the imposed thermal conditions and the validity of the material domain at
+high temperature. Do not simply raise the cap. A limited coupon
+does not constitute a ground-truth set for training PhysicsNeMo.
 
-L'image existante `ghcr.io/cluster2600/qwen38-flash-next-vast` au digest
+The [Neural Concept study](M64_NEURAL_CONCEPT_20260912.md) retains active
+learning, fixed interfaces and recomputation of the finalists; no training launched.
+
+The existing image `ghcr.io/cluster2600/qwen38-flash-next-vast` at digest
 `6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34`
-est accessible ; son manifeste `linux/amd64` a été revérifié. Le modèle
-`orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` reste gated (`auto`) lors du
-contrôle public, révision `c1209bda15a6bbc4c68b585e93d40c0d85f50306`.
-Les lanceurs installés examinés sur Mac/Kali n'ont pas établi de chemin
-OpenBao approuvé pour cet accès Hugging Face. Aucun secret récupéré, aucune
-image reconstruite et aucune machine LLM louée. Le budget utilisateur reste
-38 USD ; une image publiée n'est pas un endpoint prêt à servir.
+is accessible; its `linux/amd64` manifest was rechecked. The model
+`orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` remains gated (`auto`) at the
+public check, revision `c1209bda15a6bbc4c68b585e93d40c0d85f50306`.
+The installed launchers examined on Mac/Kali did not establish an approved
+OpenBao path for this Hugging Face access. No secret retrieved, no
+image rebuilt and no LLM machine rented. The user budget remains
+38 USD; a published image is not an endpoint ready to serve.
 
-**Fabrication et démarrage moteur non autorisés.** Matériau/procédé à qualifier,
-interfaces M64, domaine complet et corrélation physique restent nécessaires.
+**Manufacturing and engine start-up not authorized.** Material/process to be qualified,
+M64 interfaces, the complete domain and physical correlation remain necessary.

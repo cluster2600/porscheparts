@@ -1,90 +1,109 @@
-# Plan de validation et d'amélioration
+# Validation and improvement plan
 
-## Objectif
+> **Archived line.** The 935 scan is kept as a reference morphology and this
+> plan is no longer being pursued. See [ARCHIVE.md](../../ARCHIVE.md).
 
-Construire un jumeau numérique capable de comparer des variantes sans confondre
-une simulation avec une preuve de fonctionnement. Chaque résultat doit être
-recalé par une mesure physique avant de servir à une décision de fabrication.
+## Objective
 
-## Niveaux du jumeau
+Build a digital twin able to compare variants without confusing a simulation
+with evidence of operation. Every result must be registered against a physical
+measurement before it serves a manufacturing decision.
 
-| Niveau | Modèle | Critère de passage |
+## Twin levels
+
+| Level | Model | Pass criterion |
 |---|---|---|
-| F0 | scan de référence | provenance et empreinte vérifiées |
-| F1 | enveloppe et interfaces | échelle, datums et cotes physiques contrôlés |
-| F2 | conduits et volumes internes | CT ou mesure destructive, domaines étanches |
-| F3 | thermique et structure | matière, contacts et cas de charge justifiés |
-| F4 | corrélation physique | banc de flux, pression et température corrélés |
-| F5 | prototype métal | procédé qualifié, usinage et contrôles NDT réussis |
-| F6 | essai moteur | protocole instrumenté et revue professionnelle |
+| F0 | reference scan | provenance and digest verified |
+| F1 | envelope and interfaces | scale, datums and physical dimensions checked |
+| F2 | ports and internal volumes | CT or destructive measurement, watertight domains |
+| F3 | thermal and structure | material, contacts and load cases justified |
+| F4 | physical correlation | flow bench, pressure and temperature correlated |
+| F5 | metal prototype | qualified process, machining and NDT inspections passed |
+| F6 | engine test | instrumented protocol and professional review |
 
-## Batterie d'essais numériques
+## Battery of numerical tests
 
-1. **Géométrie et métrologie** — carte d'écart scan/CAO, planéité, coaxialité,
-   entraxes, épaisseurs minimales, collisions et tolérances d'assemblage.
-2. **CFD froide** — perte de charge, coefficient de débit, uniformité de vitesse,
-   séparation, swirl/tumble et sensibilité aux levées de soupapes.
-3. **CFD compressible** — pression et température transitoires côté turbo ; ce
-   cas exige les vraies lois de soupapes et conditions moteur, absentes à ce jour.
-4. **Thermique conjuguée** — gaz, métal, sièges, guides, cylindre et refroidissement
-   par air ; recherche des points chauds et gradients.
-5. **Structure non linéaire** — serrage des goujons, contacts, pression cylindre,
-   dilatation, déformation des sièges et plans de joint.
-6. **Fatigue et fluage** — cycles thermomécaniques, fatigue haute et basse
-   fréquence, maintien à chaud et marges sur défauts de fabrication.
-7. **Modal et vibrations** — modes propres, excitation moteur et tenue des
-   ailettes ou éléments minces.
-8. **Fabrication additive** — orientation, supports, surépaisseurs d'usinage,
-   retrait, distorsion, contraintes résiduelles, porosité et accessibilité des
-   poudres prisonnières.
-9. **Dynamique de soupape** — loi de levée mesurée, vitesse et accélération,
-   contact came/linguet, marge avant flottement, rebond au siège, contraintes de
-   gorge et de tête, sensibilité aux masses Ti-6Al-4V, acier et alliage nickel.
-10. **Tribologie et gaz chauds** — jeu guide/queue, lubrification, frottement,
-    usure de siège, oxydation et fatigue thermomécanique. Le Ti-6Al-4V ne passe
-    côté échappement qu'après mesure des températures et essais dédiés.
+1. **Geometry and metrology** — scan/CAD deviation map, flatness, coaxiality,
+   center distances, minimum thicknesses, collisions and assembly tolerances.
+2. **Cold CFD** — pressure loss, discharge coefficient, velocity uniformity,
+   separation, swirl/tumble and sensitivity to valve lifts.
+3. **Compressible CFD** — transient pressure and temperature on the turbo side;
+   this case requires the real valve laws and engine conditions, absent to date.
+4. **Conjugate heat transfer** — gas, metal, seats, guides, cylinder and air
+   cooling; search for hot spots and gradients.
+5. **Nonlinear structure** — stud tightening, contacts, cylinder pressure,
+   expansion, deformation of the seats and gasket faces.
+6. **Fatigue and creep** — thermomechanical cycles, high- and low-cycle
+   fatigue, hot dwell and margins on manufacturing defects.
+7. **Modal and vibration** — natural modes, engine excitation and strength of
+   the fins or thin elements.
+8. **Additive manufacturing** — orientation, supports, machining allowances,
+   shrinkage, distortion, residual stresses, porosity and accessibility of
+   trapped powder.
+9. **Valve dynamics** — measured lift law, velocity and acceleration,
+   cam/finger-follower contact, margin before float, seat bounce, groove and
+   head stresses, sensitivity to Ti-6Al-4V, steel and nickel-alloy masses.
+10. **Tribology and hot gases** — guide/stem clearance, lubrication, friction,
+    seat wear, oxidation and thermomechanical fatigue. Ti-6Al-4V passes on the
+    exhaust side only after temperature measurements and dedicated tests.
 
-## Boucle d'amélioration
+## Improvement loop
 
-Les variables de conception admises seront limitées aux zones dont la géométrie
-est prouvée : évolution de section, rayon de court-circuit du conduit, transition
-vers le siège, bossage de guide, ailettes et masses locales. Les objectifs seront
-multi-critères : réduire la perte de charge et les points chauds sans dégrader la
-vitesse utile, la combustion, la rigidité, la fatigue, l'usinabilité ou la masse.
+The admitted design variables will be limited to the zones whose geometry is
+proven: section evolution, short-side radius of the port, transition to the
+seat, guide boss, fins and local masses. The objectives will be multi-criteria:
+reduce pressure loss and hot spots without degrading useful velocity,
+combustion, stiffness, fatigue, machinability or mass.
 
-Une variante n'est retenue que si elle améliore un front de Pareto et respecte
-les contraintes. Une simple hausse du débit maximal n'est pas une optimisation
-de culasse.
+A variant is retained only if it improves a Pareto front and respects the
+constraints. A simple increase in peak flow is not a cylinder-head
+optimization.
 
-## Matières à comparer
+## Materials to compare
 
-L'aluminium doit rester la référence thermique tant que la matière d'origine
-n'est pas identifiée. Le Ti-6Al-4V et l'Inconel 718 peuvent être modélisés comme
-comparatifs, mais leur conductivité thermique beaucoup plus faible rend une
-culasse complète susceptible de conserver davantage de chaleur. L'Inconel est
-plus naturellement candidat près des gaz d'échappement très chauds ; le titane
-peut être pertinent pour certains inserts ou éléments allégés. Aucun des deux ne
-doit être choisi par défaut sans simulation conjuguée, architecture de siège et
-stratégie de refroidissement.
+Aluminum must remain the thermal reference as long as the original material is
+not identified. Ti-6Al-4V and Inconel 718 can be modeled as comparisons, but
+their much lower thermal conductivity makes a complete cylinder head likely to
+retain more heat. Inconel is more naturally a candidate near very hot exhaust
+gases; titanium can be relevant for some inserts or lightened elements. Neither
+may be chosen by default without a conjugate simulation, a seat architecture and
+a cooling strategy.
 
-## Validation physique avant essai moteur
+## Physical validation before an engine test
 
-1. scan CT de la pièce ou d'une culasse de référence pour les vides internes ;
-2. maquette polymère pour assemblage et accessibilité, jamais pour fonctionnement ;
-3. coupon matière imprimé avec la même machine, orientation et traitement ;
-4. mesure dimensionnelle, densité, métallographie et éprouvettes mécaniques ;
-5. inspection CT, ressuage et contrôle des filetages après usinage ;
-6. épreuve de pression, étanchéité, cycles thermiques et banc de flux ;
-7. essai sur banc moteur instrumenté, avec arrêt automatique et revue ingénieur.
+1. CT scan of the part or of a reference cylinder head for internal voids;
+2. polymer mock-up for assembly and accessibility, never for operation;
+3. material coupon printed with the same machine, orientation and treatment;
+4. dimensional measurement, density, metallography and mechanical test pieces;
+5. CT inspection, dye-penetrant testing and thread inspection after machining;
+6. pressure proof test, leak tightness, thermal cycles and flow bench;
+7. test on an instrumented engine test bench, with automatic shutdown and
+   engineering review.
 
-## Données bloquantes
+```mermaid
+flowchart LR
+  CT["1 CT scan"] --> PM["2 polymer mock-up<br/>never for operation"]
+  PM --> CO["3 material coupon<br/>same machine, orientation"]
+  CO --> ME["4 dimensions, density,<br/>metallography"]
+  ME --> NDT["5 CT, dye penetrant,<br/>threads"]
+  NDT --> PR["6 pressure, leak,<br/>thermal cycles, flow bench"]
+  PR --> EB["7 instrumented engine bench<br/>engineering review"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class CT,PM,CO,ME,NDT,PR,EB open;
+```
 
-- variante exacte de moteur 993 cible et géométrie de référence ;
-- unité du scan et au moins trois dimensions physiques de contrôle ;
-- géométrie interne CT, sièges, guides, filetages et galeries ;
-- matière originale, masse, état métallurgique et températures mesurées ;
-- profils de cames, levées, régimes, débits, pressions et températures ;
-- géométrie complète des soupapes, masses des coupelles/clavettes/ressorts,
-  courbes force-course, jeux de guides et températures tête/queue ;
-- pression cylindre résolue en angle vilebrequin et précharge des goujons ;
-- capabilité réelle de la machine métal, traitements et usinages disponibles.
+*The seven physical steps, in the order the plan requires them before any engine
+test. The diagram records a sequence, not progress.*
+
+## Blocking data
+
+- exact target 993 engine variant and reference geometry;
+- unit of the scan and at least three physical control dimensions;
+- CT internal geometry, seats, guides, threads and galleries;
+- original material, mass, metallurgical state and measured temperatures;
+- cam profiles, lifts, speeds, flow rates, pressures and temperatures;
+- complete valve geometry, masses of retainers/keepers/springs, force–stroke
+  curves, guide clearances and head/stem temperatures;
+- cylinder pressure resolved in crank angle and stud preload;
+- real capability of the metal machine, treatments and machining available.

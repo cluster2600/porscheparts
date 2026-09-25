@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-INT-DASHBOARD-TRIM-0001",
-  "name": "Habillage de planche de bord, composite",
-  "description": "Habillage de planche de bord du 993 reproduit en composite, **pour les seuls vehicules sans airbag passager**. La piece n'est pas la planche de bord : celle-ci, 993 502 027 02, est une tole de caisse. C'est l'habillage qui la recouvre, pose sur ecrous a griffes et vis autotaraudeuses. Retenue parce qu'aucun fabricant ne la propose en carbone, contrairement aux panneaux de carrosserie.",
+  "name": "Dashboard trim, composite",
+  "description": "993 dashboard trim reproduced in composite, **for vehicles without a passenger airbag only**. The part is not the dashboard itself: that one, 993 502 027 02, is a body shell panel. This is the trim that covers it, fitted on clip nuts and self-tapping screws. Selected because no manufacturer offers it in carbon, unlike body panels.",
   "vehicle": {
     "generation": "993",
     "variants": [
-      "M564 sans airbag",
+      "M564 without airbag",
       "Carrera RS M002",
       "Carrera RS Clubsport M003"
     ],
@@ -24,7 +24,7 @@
   "classification": {
     "category": "interior_trim",
     "safety_class": "functional",
-    "intended_use": "Habillage visible de la traverse de planche de bord sur vehicule sans airbag passager, portant les aerateurs et la casquette d'instruments, et recevant la baguette de protection des genoux qui reste d'origine"
+    "intended_use": "Visible trim of the dashboard cross member on a vehicle without a passenger airbag, carrying the air vents and the instrument hood, and receiving the knee protection strip, which stays original"
   },
   "geometry": {
     "source_type": "estimated",
@@ -40,20 +40,20 @@
     "record_license": "MIT for the record, geometry not yet produced",
     "sources": [
       {
-        "title": "Porsche PET - 911 1994-1998 Type 993, catalogue de pieces revision Kat 017",
+        "title": "Porsche PET - 911 1994-1998 Type 993, parts catalogue revision Kat 017",
         "url": "https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf",
         "source_type": "official",
         "license": "porsche-ag-copyright-reference-only",
         "accessed_on": "2026-09-09",
-        "notes": "Illustration 809-00, « Dashboard, for cars with Airbag, Passenger's side » : habillage 993 552 055 00 /LL et 993 552 056 00 /RL en similicuir, decline par code de couleur. L'illustration du Carrera RS porte au contraire « Dashboard, Knee protection strip, for cars without Airbag, Passenger's side » et ajoute la variante M003 993 552 055 70. Les codes d'option du meme catalogue separent M561 airbag conducteur, M562 conducteur et passager, M564 sans airbag. Le groupe 502 designe une piece distincte et homonyme, 993 502 027 02 « Dashboard », qui est la tole de caisse et non un habillage."
+        "notes": "Illustration 809-00, \"Dashboard, for cars with Airbag, Passenger's side\": trim 993 552 055 00 /LL and 993 552 056 00 /RL in leatherette, available per color code. The Carrera RS illustration instead reads \"Dashboard, Knee protection strip, for cars without Airbag, Passenger's side\" and adds the M003 variant 993 552 055 70. The option codes of the same catalogue separate M561 driver airbag, M562 driver and passenger, M564 without airbag. Group 502 designates a distinct part with the same name, 993 502 027 02 \"Dashboard\", which is the body shell panel and not a trim."
       },
       {
-        "title": "Federleichte Elfer - table des masses, interieur 993",
+        "title": "Federleichte Elfer - mass table, 993 interior",
         "url": "http://www.federleichte-elfer.de/dp93/innen.html",
         "source_type": "community",
         "license": "site-copyright-reference-only",
         "accessed_on": "2026-08-28",
-        "notes": "Planche de bord annoncee a 2,1 kg d'origine contre 0,95 kg en carbone, soit environ 1,15 kg de gain. Masse declaree par un preparateur, non pesee par ce projet."
+        "notes": "Dashboard stated at 2.1 kg original versus 0.95 kg in carbon, a gain of about 1.15 kg. Mass declared by a tuner, not weighed by this project."
       }
     ]
   },
@@ -63,15 +63,15 @@
     ],
     "preferred_process": "undecided",
     "material": {
-      "family": "composite a matrice organique",
-      "grade": "fibre et resine a determiner ; le rendu visible impose un tissu et un etat de surface, ce que ne fait aucun panneau cache",
-      "standard": "aucune"
+      "family": "organic matrix composite",
+      "grade": "fiber and resin to be determined; the visible finish requires a fabric and a surface finish, which no hidden panel does",
+      "standard": "none"
     },
     "post_processing": [
-      "detourage des ouvertures d'aerateurs et d'instruments",
-      "pose des inserts et des points d'accrochage",
-      "finition de surface visible, vernis et tenue UV",
-      "controle de jeu avec casquette, console centrale et montants"
+      "trimming of the air vent and instrument openings",
+      "fitting of inserts and attachment points",
+      "visible surface finish, clear coat and UV resistance",
+      "clearance check with instrument hood, center console and pillars"
     ],
     "supplier_requirements": []
   },
@@ -82,7 +82,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "sans objet, piece composite"
+    "galvanic_isolation": "not applicable, composite part"
   },
   "validation": {
     "status": "concept",
@@ -91,14 +91,14 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "PERIMETRE, ET C'EST UNE EXCLUSION PAS UNE PRECAUTION. Cette piece ne vaut que pour un vehicule M564, ou un Carrera RS dont l'illustration du catalogue porte « for cars without Airbag, Passenger's side ». Sur un vehicule M561 ou M562 l'habillage porte le volet de deploiement de l'airbag passager, dont la ligne de rupture est une piece de retenue des occupants : la monter la serait un remplacement d'organe de securite, et c'est interdit ici. Le code d'option se releve sur l'etiquette du vehicule, avant toute mesure.",
-      "Le fait d'ecarter l'airbag ne rend pas la piece anodine. Une planche de bord d'origine est une surface souple dans la zone de heurt des occupants ; un stratifie carbone y est rigide et casse en eclats coupants la ou une mousse s'ecrase. C'est pourquoi la classe retenue est functional et non non_critical. Les reglements d'amenagement interieur, ECE R21 en Europe et FMVSS 201 aux Etats-Unis, traitent precisement des saillies et de l'absorption d'energie de cette zone : leur applicabilite au cas d'un vehicule de collection modifie n'a pas ete etudiee et doit l'etre avant toute pose.",
-      "La baguette de protection des genoux est une PIECE SEPAREE — 964 552 053 00 /LL et 993 552 054 00 /RL en serie, 964 552 077 70 et 964 552 078 70 sur RS M003 — et elle reste d'origine. L'habillage composite doit conserver ses points de fixation a l'identique. Une reproduction qui supprimerait ou deplacerait ces points supprimerait une protection.",
-      "Ce n'est pas un projet de masse. Le gain annonce est de 1,15 kg, contre 9,9 kg pour un capot avant. La raison de faire cette piece est qu'elle n'existe pas au catalogue des preparateurs.",
-      "Aucune geometrie. Une planche de bord est une surface libre a interfaces multiples : aerateurs, casquette d'instruments, colonne de direction, boite a gants, jonction de console, montants et pied de pare-brise. Elle ne se releve pas au pied a coulisse ; il faut un scan ou une photogrammetrie a l'echelle. Les deux pistes CAO deja qualifiees par le depot sont ecartees : SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL est un modele reduit au 1/8, SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS decrit une garniture aftermarket.",
-      "Le vieillissement de l'original fausse le moule, et sa depose aussi. Une planche de bord de trente ans est fissuree et gauchie par la chaleur ; elle est en outre contrainte par ses fixations, donc elle peut se detendre en sortant du vehicule. La forme doit etre relevee montee ET deposee, et l'ecart entre les deux etats consigne.",
-      "Tenue en temperature et UV non evaluees : c'est la surface de l'habitacle la plus exposee au soleil.",
-      "Reflexion. Une surface carbone vernie sous pare-brise renvoie la lumiere dans le champ de vision du conducteur, ce qu'un similicuir grene ne fait pas. A traiter comme une exigence, pas comme une finition."
+      "SCOPE, AND THIS IS AN EXCLUSION, NOT A PRECAUTION. This part applies only to an M564 vehicle, or a Carrera RS whose catalogue illustration reads \"for cars without Airbag, Passenger's side\". On an M561 or M562 vehicle the trim carries the passenger airbag deployment flap, whose tear line is an occupant restraint part: fitting this part there would be a replacement of a safety component, and that is prohibited here. The option code is read from the vehicle label, before any measurement.",
+      "Ruling out the airbag does not make the part harmless. An original dashboard is a soft surface in the occupant impact zone; a carbon laminate is rigid there and breaks into sharp shards where a foam crushes. That is why the selected class is functional and not non_critical. The interior fittings regulations, ECE R21 in Europe and FMVSS 201 in the United States, deal precisely with projections and energy absorption in this zone: their applicability to a modified classic vehicle has not been studied and must be before any fitting.",
+      "The knee protection strip is a SEPARATE PART — 964 552 053 00 /LL and 993 552 054 00 /RL in series production, 964 552 077 70 and 964 552 078 70 on RS M003 — and it stays original. The composite trim must keep its attachment points identical. A reproduction that removed or moved these points would remove a protection.",
+      "This is not a mass project. The stated gain is 1.15 kg, versus 9.9 kg for a front lid. The reason to make this part is that it does not exist in tuners' catalogues.",
+      "No geometry. A dashboard is a freeform surface with multiple interfaces: air vents, instrument hood, steering column, glovebox, console junction, pillars and windshield base. It cannot be measured with calipers; it needs a scan or scaled photogrammetry. The two CAD leads already qualified by the repository are ruled out: SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL is a 1/8 scale model, SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS describes an aftermarket trim.",
+      "The aging of the original distorts the mold, and so does its removal. A thirty-year-old dashboard is cracked and warped by heat; it is also constrained by its fasteners, so it can relax when it comes out of the vehicle. The shape must be captured fitted AND removed, and the difference between the two states recorded.",
+      "Temperature and UV resistance not evaluated: this is the interior surface most exposed to the sun.",
+      "Reflection. A clear-coated carbon surface under the windshield sends light back into the driver's field of view, which a grained leatherette does not. To be treated as a requirement, not as a finish."
     ]
   }
 }

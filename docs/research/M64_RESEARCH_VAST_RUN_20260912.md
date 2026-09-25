@@ -1,154 +1,154 @@
-# Exécution des lecteurs M64 — 12 septembre 2026
+# M64 reader run — September 12, 2026
 
-## Portée
+## Scope
 
-À la demande de l'utilisateur, le travail de lecture est organisé en **24 missions
-indépendantes, quatre simultanées sur un seul serveur LLM Vast**. Les catégories
-sont CAO/scan, CFD/thermique, matériau/huile/LPBF et vérification/mathématiques/IA.
-GitHub est le dossier public de synthèse ; les corpus et réponses brutes restent
-privés, sans réplication dans Obsidian.
+At the user's request, the reading work is organized into **24 independent
+missions, four concurrent on a single Vast LLM server**. The categories are
+CAD/scan, CFD/thermal, material/oil/LPBF and verification/mathematics/AI.
+GitHub is the public synthesis folder; the corpora and raw answers stay
+private, with no replication into Obsidian.
 
-Ces lecteurs travaillent sur des extraits fournis : ils ne naviguent pas de façon
-autonome, n'exécutent aucun code proposé par une publication et ne disposent
-d'aucun secret. Les propositions sont revues avant de devenir des décisions.
-Une lecture, un test logiciel et une validation physique ont des statuts séparés.
+These readers work on supplied excerpts: they do not browse autonomously,
+execute no code proposed by a publication and hold no secret. Proposals are
+reviewed before they become decisions. A reading, a software test and a
+physical validation have separate statuses.
 
-## Entrées et reproduction
+## Inputs and reproduction
 
-- [24 missions versionnées](m64-research-missions-20260912.json).
-- 42 sources collectées : 28 extraits de documents/pages, cinq résumés, neuf
-  notices éditeur seulement ; ce n'est pas la lecture intégrale de 42 articles.
-- SHA-256 du corpus privé :
+- [24 versioned missions](m64-research-missions-20260912.json).
+- 42 sources collected: 28 excerpts of documents/pages, five abstracts, nine
+  publisher notices only; this is not a full reading of 42 articles.
+- SHA-256 of the private corpus:
   `b98f050a44eb8ad0c74ffb94595038e0a4ca19312f5e35702dd1df52b6e53446`.
-- SHA-256 du registre privé de récupération :
+- SHA-256 of the private retrieval register:
   `f8ab7fa9c104a58a4b7d982e39bc93f4e9013e4538c2fa8e612b57041cbdf884`.
-- Chaque entrée conserve URL, URL finale, date de récupération, empreinte du
-  téléchargement et du texte, niveau de lecture et limitation d'accès.
-- Le répartiteur transmet au plus 8 000 caractères par source, trois sources par
-  mission ; la troncature et les empreintes des extraits sont conservées.
-- Pilote : `cad_01`, `cfd_01`, `am_01`, `vv_01` ; les vingt autres missions sont
-  dans une file distincte pour éviter de refaire les quatre premières.
+- Each entry keeps the URL, final URL, retrieval date, digest of the download
+  and of the text, reading level and access limitation.
+- The dispatcher sends at most 8,000 characters per source, three sources per
+  mission; the truncation and the digests of the excerpts are kept.
+- Pilot: `cad_01`, `cfd_01`, `am_01`, `vv_01`; the other twenty missions are in
+  a separate queue to avoid redoing the first four.
 
-Pour l'installation, les contrôles SSH, le format du corpus et les commandes,
-voir le [mode d'emploi](../../deploy/vast/research/README.md).
+For installation, SSH checks, the corpus format and the commands, see the
+[operating guide](../../deploy/vast/research/README.md).
 
-## Qualification avant location
+## Qualification before rental
 
-Image publique `vllm/vllm-openai:v0.19.0`, manifeste `linux/amd64` vérifié :
+Public image `vllm/vllm-openai:v0.19.0`, `linux/amd64` manifest verified:
 `sha256:7a0f0fdd2771464b6976625c2b2d5dd46f566aa00fbc53eceab86ef50883da90`.
-Les 27 couches compressées représentent **9 577 304 117 octets** ; aucune image
-complète n'a été téléchargée sur le Mac.
+The 27 compressed layers amount to **9,577,304,117 bytes**; no complete image
+was downloaded to the Mac.
 
-Modèle public non restreint `Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8`, révision
-`dcaee4d4dfc5ee71ad501f01f530e5652438fde0` ; tous les fichiers du dépôt représentent
-**31 195 132 826 octets**. Ce n'est pas Flash Next. La recette limite le contexte
-à 16 384 tokens et la concurrence à quatre ; cette configuration doit être
-confirmée par une réponse réelle, pas déduite de la taille de la VRAM.
+Public, unrestricted model `Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8`, revision
+`dcaee4d4dfc5ee71ad501f01f530e5652438fde0`; all the files of the repository
+amount to **31,195,132,826 bytes**. This is not Flash Next. The recipe limits
+the context to 16,384 tokens and concurrency to four; this configuration must
+be confirmed by a real response, not inferred from the VRAM size.
 
-L'offre L40S finlandaise `27979081` indique un GPU 46 068 MB, 16 CPU effectifs,
-128 965 MB de RAM attribuée et 100 GB de stockage demandé : **0,779630 USD/h**
-stockage compris. Les champs RAM d'une réponse d'instance peuvent désigner
-l'hôte entier : ne pas annoncer son téraoctet comme RAM attribuée au conteneur.
+The Finnish L40S offer `27979081` lists a 46,068 MB GPU, 16 effective CPUs,
+128,965 MB of allocated RAM and 100 GB of requested storage: **0.779630 USD/h**
+including storage. The RAM fields of an instance response can refer to the
+whole host: do not announce its terabyte as RAM allocated to the container.
 
-Crédit initial relu : **38,275118 USD**. Le budget visé pour l'ensemble du pilote
-et des corrections de démarrage reste **4 USD**, sans recharge ; les dernières
-tentatives sont chacune bornées à 2 USD incluant une réserve de nettoyage.
-Les contrôles de coût ne garantissent pas une limite bancaire en cas de panne
-du fournisseur ou de perte durable du poste de supervision.
+Initial credit read back: **38.275118 USD**. The target budget for the whole
+pilot and the startup fixes remains **4 USD**, with no top-up; the last
+attempts are each capped at 2 USD including a cleanup reserve. The cost
+controls do not guarantee a banking limit in the event of a provider outage or
+a lasting loss of the supervising workstation.
 
-## Vérification logicielle et incidents corrigés
+## Software verification and fixed incidents
 
-- Le filtre `gpu_frac=1` exigeait tout le serveur : corrigé uniquement pour ce
-  profil, avec un GPU complet et sa VRAM vérifiés séparément.
-- Vast peut indiquer `cur_state=running` avant l'apparition des ports SSH.
-  L'absence transitoire attend ; les violations déjà connues restent refusées.
-- Le chargement réel de l'image dépasse deux minutes. La fenêtre de démarrage
-  est désormais `min(maintenant + 900 s, échéance globale − 300 s)`, coût inclus.
-- L'horloge de l'hôte est en avance de **11 480 secondes** sur le Mac : le
-  lancement comparant leurs epochs expirait avant toute inférence. Après
-  vérification SSH, absence de serveur existant et temps restant côté Mac,
-  le serveur a été lancé avec un délai relatif de 1 800 secondes. La garde
-  externe conserve son échéance Mac ; aucune horloge système n'a été modifiée.
-- Le correctif versionné calcule désormais le délai sur le contrôleur, réserve
-  900 secondes de démarrage, 300 de nettoyage et 60 de tolérance. Un délai
-  d'inférence inférieur à 60 secondes bloque la création avant l'appel payant.
-  Ce correctif n'a pas été substitué au wrapper actif pendant sa garde ; il a
-  été installé après destruction et a passé le contrôle local du wrapper.
-  Son chemin de lancement automatique corrigé reste testé hors ligne, pas
-  présenté comme le chemin ayant exécuté cette instance.
-- Un reçu de création durable enregistre l'ID avant le premier contrôle ; un
-  diagnostic limité aux métadonnées permises précède tout nettoyage.
-- Les instances de mise au point sont supprimées et leur absence vérifiée.
-  Une offre turque encore listée a été refusée par Vast avec `no_such_ask` :
-  cet appel n'a pas été rejoué.
+- The `gpu_frac=1` filter required the whole server: fixed for this profile
+  only, with a full GPU and its VRAM verified separately.
+- Vast can report `cur_state=running` before the SSH ports appear. A transient
+  absence waits; already known violations stay refused.
+- Actually loading the image takes more than two minutes. The startup window is
+  now `min(now + 900 s, global deadline − 300 s)`, cost included.
+- The host clock is **11,480 seconds** ahead of the Mac: the launch that
+  compared their epochs expired before any inference. After SSH verification,
+  confirming no existing server and the time remaining on the Mac side, the
+  server was launched with a relative timeout of 1,800 seconds. The external
+  guard keeps its Mac deadline; no system clock was modified.
+- The versioned fix now computes the timeout on the controller, reserving 900
+  seconds for startup, 300 for cleanup and 60 of tolerance. An inference
+  timeout below 60 seconds blocks creation before the paid call. This fix was
+  not substituted for the active wrapper during its guard; it was installed
+  after destruction and passed the local wrapper check. Its fixed automatic
+  launch path remains tested offline, not presented as the path that ran this
+  instance.
+- A durable creation receipt records the ID before the first check; a
+  diagnostic limited to the permitted metadata precedes any cleanup.
+- The debugging instances are deleted and their absence verified. A Turkish
+  offer that was still listed was refused by Vast with `no_such_ask`: that call
+  was not replayed.
 
-**245 tests ciblés hors réseau passent** : 233 sur les profils Vast, dont 29
-pour la recherche, et 12 sur le répartiteur. Le contrôle global `make check` rencontre une dérive du
-fingerprint du rapport historique F46, car le wrapper commun a changé. Ce rapport
-n'est pas régénéré pour transformer les anciens essais en nouvelles preuves.
+**245 targeted offline tests pass**: 233 on the Vast profiles, 29 of them for
+research, and 12 on the dispatcher. The global `make check` hits a fingerprint
+drift of the historical F46 report, because the shared wrapper changed. That
+report is not regenerated to turn old runs into new evidence.
 
-## Résultats du pilote
+## Pilot results
 
-L'instance de travail `50780391` a passé les contrôles d'identité, association de
-clé et connexion SSH. Versions lues : vLLM 0.19.0, PyTorch 2.10.0+cu129, pilote
-560.35.03 ; un calcul CUDA réel retourne le résultat attendu sur L40S. Le serveur
-est configuré sur `127.0.0.1:8000` et son tunnel local sur `127.0.0.1:18000`.
+Work instance `50780391` passed the identity, key association and SSH
+connection checks. Versions read: vLLM 0.19.0, PyTorch 2.10.0+cu129, driver
+560.35.03; a real CUDA computation returns the expected result on the L40S. The
+server is configured on `127.0.0.1:8000` and its local tunnel on
+`127.0.0.1:18000`.
 
-**Les 24 missions ont été exécutées**, avec quatre lectures simultanées au plus.
-Le [registre public des résultats](m64-research-run-summary-20260912.json)
-contient leurs états, durées et empreintes, sans reproduire les textes sources.
+**All 24 missions were run**, with at most four concurrent readings. The
+[public results register](m64-research-run-summary-20260912.json) contains
+their states, durations and digests, without reproducing the source texts.
 
-| Lot | Requêtes | Citations conformes à ce passage | Temps de lot |
+| Batch | Requests | Citations compliant on this pass | Batch time |
 |---|---:|---:|---:|
-| Pilote initial | 4 | 1 | 44,597 s |
-| Reprise unique des trois refusés | 3 | 2 | 36,455 s |
-| Vingt missions restantes | 20 | 15 | 130,690 s |
+| Initial pilot | 4 | 1 | 44.597 s |
+| Single retry of the three refused | 3 | 2 | 36.455 s |
+| Twenty remaining missions | 20 | 15 | 130.690 s |
 
-Après remplacement des trois premiers rapports par leur reprise, **18 missions
-sur 24 passent le contrôle des citations**. Les six autres restent refusées :
-`cad_02`, `cfd_01`, `cfd_04`, `cfd_06`, `am_05`, `vv_06`. Cinq contiennent un
-extrait absent du texte transmis ; `am_05` cite une URL hors liste fournie
-(cela ne prouve pas que cette URL est inexistante). Il n'y a pas eu de relance
-automatique ni d'affaiblissement du contrôle.
+After replacing the first three reports with their retry, **18 missions out of
+24 pass the citation check**. The other six stay refused: `cad_02`, `cfd_01`,
+`cfd_04`, `cfd_06`, `am_05`, `vv_06`. Five contain an excerpt absent from the
+text sent; `am_05` cites a URL outside the supplied list (which does not prove
+that this URL does not exist). There was no automatic rerun and no weakening of
+the check.
 
-La reprise a seulement renforcé la consigne de copie littérale. Les rapports
-conformes ont le statut **unreviewed** : correspondance d'URL/extrait, pas
-validation sémantique complète. Une relecture du pilote montre notamment :
+The retry only strengthened the verbatim-copy instruction. The compliant
+reports have the status **unreviewed**: URL/excerpt match, not full semantic
+validation. A review of the pilot shows in particular:
 
-- une conformité de composition chimique ne qualifie pas la culasse entière ;
-- l'absence de preuve M64 dans un extrait ne prouve pas qu'une méthode CAO n'a
-  jamais été évaluée sur aucune donnée réelle ;
-- un résumé ou une notice sans résultat ne fournit aucune propriété à chaud.
+- a chemical composition compliance does not qualify the whole cylinder head;
+- the absence of M64 evidence in an excerpt does not prove that a CAD method
+  was never evaluated on any real data;
+- an abstract or notice without results provides no hot property.
 
-Ces limites confirment l'usage comme **aide au tri documentaire**. Les décisions
-restent celles du [dossier scientifique sourcé](../reports/M64_RESEARCH_EXECUTION_20260912.md),
-avec tests et inconnues explicites. Aucun rapport LLM n'a modifié automatiquement
-la CAO, les cartes matériau, les charges ou les autorisations de fabrication.
+These limits confirm the use as a **document triage aid**. The decisions remain
+those of the [sourced scientific dossier](../reports/M64_RESEARCH_EXECUTION_20260912.md),
+with explicit tests and unknowns. No LLM report automatically modified the
+CAD, the material cards, the loads or the manufacturing authorizations.
 
-Les 27 requêtes ont consommé **85 907 tokens d'entrée + 19 400 de sortie =
-105 307 tokens sur le modèle Vast**. Les temps des trois lots totalisent
-211,742 secondes, hors préparation, chargement et revue. Aucun taux d'économie
-OpenAI n'est calculé : ce n'est pas une comparaison de coût de bout en bout à
-qualité égale et la mise au point a nécessité du travail sur le contrôleur.
+The 27 requests consumed **85,907 input tokens + 19,400 output = 105,307 tokens
+on the Vast model**. The times of the three batches total 211.742 seconds,
+excluding preparation, loading and review. No OpenAI savings rate is computed:
+this is not an end-to-end cost comparison at equal quality, and the debugging
+required work on the controller.
 
-## Arrêt, coût et conservation
+## Shutdown, cost and retention
 
-L'instance `50780391` a été **détruite**, puis son absence a été vérifiée par le
-wrapper, la garde externe et un nouvel inventaire vide. Le tunnel s'est fermé.
-Le modèle et son cache distant ont été supprimés avec l'instance ; les journaux
-et réponses utiles ont été rapatriés avant sa disparition.
+Instance `50780391` was **destroyed**, then its absence was verified by the
+wrapper, the external guard and a new, empty inventory. The tunnel closed. The
+model and its remote cache were deleted with the instance; the useful logs and
+responses were brought back before it disappeared.
 
-Le crédit affiché après nettoyage est **38,051516 USD**, contre 38,275118 avant :
-**diminution observée de 0,223602 USD**. Ce relevé peut précéder la facture
-définitive ; le tarif de l'instance était 0,779630 USD/h, stockage compris.
-Aucune recharge, instance laissée allumée ou nouveau compte payant.
+The credit shown after cleanup is **38.051516 USD**, against 38.275118 before:
+**observed decrease of 0.223602 USD**. This reading may precede the final
+invoice; the instance rate was 0.779630 USD/h, storage included. No top-up, no
+instance left running and no new paid account.
 
-Une archive privée persistante conserve corpus, métadonnées, journaux,
-manifestes et 27 réponses (y compris refusées), à l'extérieur des fichiers
-suivis par Git. SHA-256 :
+A persistent private archive keeps the corpus, metadata, logs, manifests and 27
+responses (including refused ones), outside the files tracked by Git. SHA-256:
 `8be8d4067eba90c166ea25d95a39407ffdcf93829260b78d78f3324f64fdac59`.
-Le registre public contient l'empreinte du dernier rapport de chaque mission.
-Ni textes intégraux sous droits ni réponses brutes non relues ne sont publiés.
+The public register contains the digest of the last report of each mission.
+Neither copyrighted full texts nor unreviewed raw responses are published.
 
-**Bilan : lecteur GPU opérationnel et documenté ; aucun calcul de résistance,
-de combustion, de refroidissement ou d'impression de culasse exécuté par ce lot.**
+**Outcome: GPU reader operational and documented; no strength, combustion,
+cooling or cylinder head printing computation was run by this batch.**

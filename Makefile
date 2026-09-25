@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -170,19 +170,19 @@ F40_CAD ?= twins/reference-917-engine/evidence/f38-valvetrain-package/cad
 HAS_NUMPY := $(shell python3 -c 'import numpy' 2>/dev/null && echo oui)
 HAS_MATPLOTLIB := $(shell python3 -c 'import matplotlib' 2>/dev/null && echo oui)
 
-#> verifier | Cette liste
+#> check | This list
 help:
 	@python3 scripts/make_help.py
 
-#> verifier | Les cibles de la ligne 917/935, archivee
+#> check | Targets of the archived 917/935 line
 help-917:
 	@grep -hoE '^917-[a-zA-Z0-9_.-]+:' $(MAKEFILE_LIST) | tr -d ':' | sort -u | sed 's/^/  /'
 
-#> verifier | Verifier que chaque cible active est annotee
+#> check | Check that every active target is annotated
 help-check:
 	@python3 scripts/make_help.py --check
 
-#> verifier | Tout verifier : schemas, tests, generateurs et empreintes
+#> check | Check everything: schemas, tests, generators and digests
 check: validate test 917-clean-sheet-2026-f32-check \
 	917-air-oil-controls-f34a-check 917-doe-f34-check \
 	917-air-oil-seeds-f34b-check 917-aircooled-4v-f34-check \
@@ -205,7 +205,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
-	part-pages-check help-check
+	part-pages-check reports-index-check docs-links-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -294,7 +294,7 @@ endif
 917-f50-cfd-recovery-check:
 	python3 tests/test_917_f50_cfd_recovery.py -v
 
-#> verifier | Valider les fiches du catalogue contre leurs schemas
+#> check | Validate catalogue records against their schemas
 validate:
 	python3 scripts/validate_catalog.py
 	python3 scripts/validate_am_pipeline.py
@@ -310,27 +310,27 @@ validate:
 	python3 twins/reference-917-engine/source/validate_interfaces_f8.py --project-root .
 	python3 twins/reference-917-engine/source/prepare_variant_configs_f10.py --manifest twins/reference-917-engine/variant-configurations-f10.json --project-root . --check
 
-#> verifier | Derouler la suite de tests seule
+#> check | Run the test suite alone
 test:
 	python3 -m unittest discover -s tests -v
 
-#> catalogue | Couverture des jumeaux numeriques par zone
+#> catalogue | Digital twin coverage by zone
 twin:
 	python3 scripts/twin_coverage.py
 
-#> catalogue | Valider les fiches de jumeau
+#> catalogue | Validate twin records
 twin-validate:
 	python3 scripts/validate_twin.py
 
-#> archive | Contrats de simulation moteur (ligne 917)
+#> archive | Engine simulation contracts (917 line)
 engine-contracts:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/engine-simulation-contracts/source/refine_segmentation.py --project-root /workspace --config /workspace/twins/engine-simulation-contracts/segmentation-f1.json --output /workspace/work/engine-segmentation-f1
 
-#> archive | Verifier ces contrats
+#> archive | Check these contracts
 engine-contracts-check:
 	python3 scripts/validate_engine_sim_contracts.py
 
-#> archive | Composants moteur derives des contrats
+#> archive | Engine components derived from the contracts
 engine-components:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/engine-simulation-contracts/source/build_engine_components.py /workspace/work/engine-components-f1
 
@@ -1158,78 +1158,78 @@ engine-components:
 		--image work/917-aircooled-4v-f34/product-aircooled-4v-f34-v2.png \
 		--output work/917-aircooled-4v-f34-publication
 
-#> archive | Variantes de soupape depuis le scan 935
+#> archive | Valve variants from the 935 scan
 valve-variants:
 	docker run --rm --platform linux/amd64 --entrypoint /opt/venv/bin/python -v "$(CURDIR):/workspace" -w /workspace $(VALVE_IMAGE) twins/reference-935-cylinder-head/source/build_valve_variants.py work/valve-variants-f1
 
-#> archive | Chaine d'assemblage Omniverse
+#> archive | Omniverse assembly chain
 omniverse-assembly:
 	twins/omniverse-engine-assembly/run_pipeline.sh
 
-#> 993 | Engendrer le cas OpenFOAM cote froid K16
+#> 993 | Generate the K16 cold-side OpenFOAM case
 turbo-cold-side:
 	python3 scripts/generate_cold_side_case.py --write
 
-#> 993 | Verifier ce cas
+#> 993 | Check this case
 turbo-cold-side-check:
 	python3 scripts/generate_cold_side_case.py --check
 
-#> 993 | Engendrer les trois variantes de turbo
+#> 993 | Generate the three turbo variants
 turbo-variants:
 	python3 scripts/generate_turbo_variants.py --write
 
-#> 993 | Verifier ces variantes
+#> 993 | Check these variants
 turbo-variants-check:
 	python3 scripts/generate_turbo_variants.py --check
 
-#> 993 | Criblage titane de tout le catalogue
+#> 993 | Titanium screening of the whole catalogue
 titanium-screen:
 	python3 scripts/screen_titanium_candidates.py \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/titanium-candidate-screen.json $(ROUTE_CHECK)
 
-#> 993 | Verifier ce criblage
+#> 993 | Check this screening
 titanium-screen-check:
 	$(MAKE) titanium-screen ROUTE_CHECK=--check
 
-#> 993 | Ce que le criblage dit d'une reference : REF=... PET_LISTING=...
+#> 993 | What the screening says about one reference: REF=... PET_LISTING=...
 pet-explain:
 	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis"; exit 2; }
 	@test -n "$(REF)" || { echo "REF='993 102 050 01' requis"; exit 2; }
 	python3 scripts/explain_pet_reference.py --listing $(PET_LISTING) --reference "$(REF)"
 
-#> 993 | Disposition de TOUTES les designations du PET, releve hors depot requis
+#> 993 | Disposition of ALL PET designations, requires an out-of-repo PET listing
 pet-disposition:
 	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis ; le releve reste hors du depot"; exit 2; }
 	python3 scripts/dispose_pet_catalogue.py \
 	  --listing $(PET_LISTING) \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-full-disposition.json
 
-#> 993 | Verdict sur les designations retenues, et fiches a ouvrir
+#> 993 | Verdict on the retained designations, and records to open
 pet-verdict:
 	python3 scripts/screen_pet_candidates.py \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-candidate-verdict.json $(ROUTE_CHECK)
 
-#> 993 | Verifier ce verdict
+#> 993 | Check this verdict
 pet-verdict-check:
 	$(MAKE) pet-verdict ROUTE_CHECK=--check
 
-#> 993 | Triage titane des 239 zones du squelette d'usine
+#> 993 | Titanium triage of the 239 zones of the factory skeleton
 pet-zone-triage:
 	python3 scripts/screen_pet_zones_for_titanium.py \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-zone-titanium-triage.json $(ROUTE_CHECK)
 
-#> 993 | Verifier ce triage de zones
+#> 993 | Check this zone triage
 pet-zone-triage-check:
 	$(MAKE) pet-zone-triage ROUTE_CHECK=--check
 
-#> 993 | Triage titane piece a piece, releve PET hors depot requis
+#> 993 | Part-by-part titanium triage, requires an out-of-repo PET listing
 pet-part-triage:
 	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis ; le releve reste hors du depot"; exit 2; }
 	python3 scripts/screen_pet_parts_for_titanium.py \
 	  --listing $(PET_LISTING) --shortlist 70 \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-part-titanium-triage.json
 
-#> 993 | Les deux routes titane de l'embout, etape 04
+#> 993 | The two titanium routes of the exhaust tip, stage 04
 tip-routes:
 	python3 scripts/build_process_route_card.py \
 	  --catalog-part catalog/parts/993-exh-oval-tip-ti-f1-0001.json \
@@ -1250,11 +1250,11 @@ tip-routes:
 	  --part-screen parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti6242.json \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/route-ti6242 $(ROUTE_CHECK)
 
-#> 993 | Verifier ces deux routes
+#> 993 | Check these two routes
 tip-routes-check:
 	$(MAKE) tip-routes ROUTE_CHECK=--check
 
-#> 993 | Route tournage 6063 de la bague, et son devis
+#> 993 | 6063 turning route of the trim ring, and its quote
 turning-trim-ring:
 	python3 scripts/build_turning_route_card.py \
 	  --catalog-part catalog/parts/993-int-switch-trim-ring-f1-0001.json \
@@ -1263,11 +1263,11 @@ turning-trim-ring:
 	  --master parts/993-int-switch-trim-ring-f1-0001/derived/switch_trim_ring_f1.step \
 	  --output twins/993-switch-trim-ring-f1/evidence/turning-f1 $(ROUTE_CHECK)
 
-#> 993 | Verifier cette route et ce devis
+#> 993 | Check this route and quote
 turning-trim-ring-check:
 	$(MAKE) turning-trim-ring ROUTE_CHECK=--check
 
-#> 993 | Carte matiere-machine-procede de la bague, etape 04
+#> 993 | Material-machine-process map of the trim ring, stage 04
 route-trim-ring:
 	python3 scripts/build_process_route_card.py \
 	  --catalog-part catalog/parts/993-int-switch-trim-ring-f1-0001.json \
@@ -1279,19 +1279,19 @@ route-trim-ring:
 	  --part-screen parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json \
 	  --output twins/993-switch-trim-ring-f1/evidence/route-f1 $(ROUTE_CHECK)
 
-#> 993 | Verifier cette carte et le dossier de devis
+#> 993 | Check this map and the quote dossier
 route-trim-ring-check:
 	$(MAKE) route-trim-ring ROUTE_CHECK=--check
 
-#> 993 | Modele 0D de banc, references de couple
+#> 993 | 0D bench model, torque references
 turbo-dyno:
 	python3 scripts/model_turbo_dyno_0d.py --write
 
-#> 993 | Verifier ces references
+#> 993 | Check these references
 turbo-dyno-check:
 	python3 scripts/model_turbo_dyno_0d.py --check
 
-#> 993 | Cartes etape 04 du levier de porte et du crochet de phare
+#> 993 | Stage 04 maps of the door lever and the headlamp hook
 route-lever-hook:
 	python3 scripts/build_process_route_card.py \
 	  --catalog-part catalog/parts/993-int-door-opener-lever-f0-0001.json \
@@ -1312,115 +1312,131 @@ route-lever-hook:
 	  --part-screen parts/993-elec-headlamp-spring-hook-f0-0001/evidence/engineering-screen.json \
 	  --output twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/route-f0 $(ROUTE_CHECK)
 
-#> 993 | Verifier ces deux cartes
+#> 993 | Check these two maps
 route-lever-hook-check:
 	$(MAKE) route-lever-hook ROUTE_CHECK=--check
 
-#> 993 | Simulation d'impression LPBF de chaque piece, une a la fois, memoire plafonnee
+#> 993 | LPBF print simulation of each part, one at a time, memory-capped
 print-screens:
 	@test -n "$(PYLIB)" || { echo "PYLIB=<dossier shapely+rtree+networkx> requis"; exit 2; }
 	nice -n 10 python3 scripts/run_993_print_screens.py --pylib $(PYLIB) \
 	  --status docs/993/print-screen-status.json
 	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json
 
-#> 993 | Verifier que les fiches suivent les simulations publiees
+#> 993 | Check that records follow the published simulations
 print-screen-sections-check:
 	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json --check
 
-#> catalogue | Reecrire le tableau des pieces du README
+#> check | How much Markdown is still in French (see docs/TRANSLATION.md)
+translation-status:
+	python3 scripts/translation_status.py --list
+
+#> catalogue | Regenerate the dated index of docs/reports/
+reports-index:
+	python3 scripts/render_reports_index.py --write
+
+#> catalogue | Check that this index follows docs/reports/
+reports-index-check:
+	python3 scripts/render_reports_index.py --check
+
+#> check | Check relative links and #anchors in Markdown
+docs-links-check:
+	python3 scripts/check_doc_links.py --strict
+
+#> catalogue | Rewrite the README parts table
 parts-table:
 	python3 scripts/render_parts_table.py --write
 
-#> catalogue | Verifier que ce tableau suit les fiches
+#> catalogue | Check that this table follows the records
 parts-table-check:
 	python3 scripts/render_parts_table.py --check
 
-#> catalogue | Engendrer une page de description par piece
+#> catalogue | Generate one description page per part
 part-pages:
 	python3 scripts/render_part_pages.py --write
 
-#> catalogue | Verifier que ces pages suivent les fiches
+#> catalogue | Check that these pages follow the records
 part-pages-check:
 	python3 scripts/render_part_pages.py --check
 
-#> conteneurs | Image de reconstruction photogrammetrique
+#> containers | Photogrammetry reconstruction image
 container-recon:
 	docker build -f containers/recon.Dockerfile -t 3dprinting993-recon:$(IMAGE_TAG) .
 
-#> conteneurs | Image CAO et simulation
+#> containers | CAD and simulation image
 container-cadsim:
 	docker build -f containers/cadsim.Dockerfile -t 3dprinting993-cadsim:$(IMAGE_TAG) .
 
-#> conteneurs | Image maillage et CFD
+#> containers | Meshing and CFD image
 container-mesh-cfd:
 	docker build -f containers/mesh-cfd.Dockerfile -t 3dprinting993-mesh-cfd:$(IMAGE_TAG) .
 
-#> conteneurs | Image apprentissage physique
+#> containers | Physics ML image
 container-physicsml:
 	docker build --build-arg PHYSICSNEMO_EXTRAS=$(PHYSICSNEMO_EXTRAS) -f containers/physicsml.Dockerfile -t 3dprinting993-physicsml:$(IMAGE_TAG) .
 
-#> conteneurs | Image SimReady
+#> containers | SimReady image
 container-simready:
 	docker build --platform linux/amd64 -f containers/simready.Dockerfile -t 3dprinting993-simready:$(IMAGE_TAG) .
 
-#> conteneurs | Image du flux SimReady
+#> containers | SimReady flow image
 container-simready-workflow:
 	docker build --platform linux/amd64 -f containers/simready-workflow.Dockerfile -t 3dprinting993-simready-workflow:$(IMAGE_TAG) .
 
-#> conteneurs | Image SimReady locale
+#> containers | Local SimReady image
 container-simready-local-ai:
 	docker build --platform linux/amd64 -f containers/simready-local-ai.Dockerfile -t 3dprinting993-simready-local-ai:$(IMAGE_TAG) .
 
-#> conteneurs | Image bibliotheques Omniverse CPU
+#> containers | Omniverse CPU libraries image
 container-ov-libraries-cpu:
 	docker build --platform linux/amd64 -f containers/ov-libraries-cpu.Dockerfile -t 3dprinting993-ov-libraries-cpu:$(IMAGE_TAG) .
 
-#> conteneurs | Fumee d'une image
+#> containers | Smoke-test one image
 container-smoke:
 	docker run --rm 3dprinting993-recon:$(IMAGE_TAG) smoke-test.sh recon
 	docker run --rm 3dprinting993-cadsim:$(IMAGE_TAG) smoke-test.sh cadsim
 	docker run --rm 3dprinting993-mesh-cfd:$(IMAGE_TAG) smoke-test.sh mesh-cfd
 
-#> conteneurs | Pousser mesh-cfd
+#> containers | Push mesh-cfd
 container-push-mesh-cfd:
 	docker tag 3dprinting993-mesh-cfd:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-mesh-cfd:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-mesh-cfd:$(IMAGE_TAG)
 
-#> conteneurs | Fumee physicsml
+#> containers | Smoke-test physicsml
 container-smoke-physicsml:
 	docker run --rm 3dprinting993-physicsml:$(IMAGE_TAG) smoke-test.sh physicsml
 
-#> conteneurs | Fumee simready
+#> containers | Smoke-test simready
 container-smoke-simready:
 	docker run --rm --platform linux/amd64 3dprinting993-simready:$(IMAGE_TAG) smoke-test.sh simready
 
-#> conteneurs | Fumee du flux simready
+#> containers | Smoke-test the simready flow
 container-smoke-simready-workflow:
 	docker run --rm --platform linux/amd64 3dprinting993-simready-workflow:$(IMAGE_TAG) smoke-test.sh simready-workflow
 
-#> conteneurs | Fumee simready locale
+#> containers | Smoke-test local simready
 container-smoke-simready-local-ai:
 	docker run --rm --platform linux/amd64 3dprinting993-simready-local-ai:$(IMAGE_TAG) smoke-test.sh simready-local-ai
 
-#> conteneurs | Toutes les fumees d'un coup
+#> containers | All smoke tests at once
 container-smoke-all: container-smoke container-smoke-physicsml container-smoke-simready container-smoke-simready-workflow
 
-#> conteneurs | Pousser simready
+#> containers | Push simready
 container-push-simready:
 	docker tag 3dprinting993-simready:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready:$(IMAGE_TAG)
 
-#> conteneurs | Pousser le flux simready
+#> containers | Push the simready flow
 container-push-simready-workflow:
 	docker tag 3dprinting993-simready-workflow:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready-workflow:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready-workflow:$(IMAGE_TAG)
 
-#> conteneurs | Pousser simready locale
+#> containers | Push local simready
 container-push-simready-local-ai:
 	docker tag 3dprinting993-simready-local-ai:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-simready-local-ai:$(IMAGE_TAG)
 	docker push $(REGISTRY)/3dprinting993-simready-local-ai:$(IMAGE_TAG)
 
-#> conteneurs | Pousser les images au registre
+#> containers | Push the images to the registry
 container-push:
 	docker tag 3dprinting993-recon:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-recon:$(IMAGE_TAG)
 	docker tag 3dprinting993-cadsim:$(IMAGE_TAG) $(REGISTRY)/3dprinting993-cadsim:$(IMAGE_TAG)

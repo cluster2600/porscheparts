@@ -1,102 +1,116 @@
-# Campagne de mesure — phase 2
+# Measurement campaign — phase 2
 
-## État
+## State
 
-Les trois pilotes polymères sont préparés, mais aucune séance de mesure
-physique n'est encore enregistrée dans `catalog/measurements/`. Le registre
-contient maintenant une fiche séparée de spécifications documentaires du manuel
-Porsche, qui ne remplace pas une campagne instrumentée. Le dépôt n'a pas accès à une
-993, à une pièce déposée ni à un instrument : ce document est donc un dossier
-de passation pour un contributeur extérieur. Il ne contient aucune cote
-inventée.
+The three polymer pilots are prepared, but no physical measurement session is
+recorded in `catalog/measurements/` yet. The register now contains a separate
+record of documentary specifications from the Porsche manual, which does not
+replace an instrumented campaign. The repository has no access to a 993, to a
+removed part or to an instrument: this document is therefore a handover dossier
+for an outside contributor. It contains no invented dimension.
 
-## Ordre de travail
+## Work order
 
-| Priorité | Pièce | Méthode minimale | Livrable attendu |
+| Priority | Part | Minimal method | Expected deliverable |
 |---:|---|---|---|
-| 1 | `993-INT-SWITCH-BLANK-0001` | Pied à coulisse et jauge de rayon | Sept dimensions D01–D07, trois répétitions, photo des repères, fiche JSON |
-| 2 | `993-INT-SEAT-RAIL-COVER-0001` | Pied à coulisse, jauge de profondeur | Dimensions D01–D05 sur les deux côtés, contrôle de l'hypothèse de symétrie, fiche JSON |
-| 3 | `993-INT-DOOR-PULL-0001` | Pied à coulisse et photogrammétrie à l'échelle | Cinq dimensions d'interface, photos avec barre d'échelle, manifeste et fiche JSON |
-| 4 | `993-INT-DASHBOARD-TRIM-0001` | Relevé du code d'option, puis photogrammétrie à l'échelle et pied à coulisse | Preuve d'absence d'airbag passager, quatorze cotes en place **et** déposé, trois pesées, maillage et manifeste |
+| 1 | `993-INT-SWITCH-BLANK-0001` | Caliper and radius gauge | Seven dimensions D01–D07, three repeats, photo of the reference marks, JSON record |
+| 2 | `993-INT-SEAT-RAIL-COVER-0001` | Caliper, depth gauge | Dimensions D01–D05 on both sides, check of the symmetry assumption, JSON record |
+| 3 | `993-INT-DOOR-PULL-0001` | Caliper and scaled photogrammetry | Five interface dimensions, photos with a scale bar, manifest and JSON record |
+| 4 | `993-INT-DASHBOARD-TRIM-0001` | Reading of the option code, then scaled photogrammetry and caliper | Evidence that no passenger airbag is fitted, fourteen dimensions in place **and** removed, three weighings, mesh and manifest |
 
-Les plans détaillés se trouvent dans le répertoire `parts/<part_id>/evidence/`.
-La priorité 1 est le meilleur premier essai : la pièce est non critique et sa
-géométrie maîtresse existe déjà dans
-`parts/993-int-switch-blank-0001/source/switch_blank.py`.
+The detailed plans are in the `parts/<part_id>/evidence/` directory. Priority 1
+is the best first trial: the part is non-critical and its master geometry
+already exists in `parts/993-int-switch-blank-0001/source/switch_blank.py`.
 
-La priorité 4 est d'une autre nature que les trois premières : c'est une surface
-libre de 1,4 m, et surtout la seule dont la mesure commence par une **porte
-d'entrée qui peut tout arrêter**. L'habillage de planche de bord ne se relève que
-sur un véhicule sans airbag passager ; sur une voiture M562 il porte le volet de
-déploiement, donc une pièce de retenue des occupants. Le plan fait lire
-l'étiquette d'options avant de sortir un instrument.
+Priority 4 is of a different nature from the first three: it is a 1.4 m
+freeform surface, and above all the only one whose measurement starts with an
+**entry gate that can stop everything**. The dashboard trim can be measured only
+on a vehicle without a passenger airbag; on an M562 car it carries the
+deployment flap, and is therefore an occupant-restraint part. The plan has the
+contributor read the option label before taking out an instrument.
 
-## Pré-requis du contributeur
+## Contributor prerequisites
 
-- Identifier la variante, le millésime et l'équipement du véhicule sans relever
-  de numéro de châssis, de plaque ni de donnée personnelle.
-- Photographier la pièce et son environnement avant la dépose, puis identifier
-  les surfaces et axes avec les mêmes repères que dans la fiche de mesure.
-- Déclarer le modèle, la résolution, l'interface et l'état d'étalonnage de
-  chaque instrument.
-- Utiliser au moins trois lectures par dimension critique. Une valeur saisie
-  à la main reste `manual_entry`; elle ne doit jamais être présentée comme un
-  flux instrumenté.
-- Conserver les images brutes et les nuages de points hors du dépôt lorsqu'ils
-  contiennent un identifiant de véhicule ou une donnée dont les droits ne sont
-  pas établis. Ne déposer qu'une preuve autorisée et anonymisée.
+- Identify the vehicle's variant, model year and equipment without recording a
+  chassis number, a license plate or any personal data.
+- Photograph the part and its surroundings before removal, then identify the
+  surfaces and axes with the same reference marks as in the measurement record.
+- Declare the model, resolution, interface and calibration state of each
+  instrument.
+- Use at least three readings per critical dimension. A value typed in by hand
+  stays `manual_entry`; it must never be presented as an instrumented stream.
+- Keep raw images and point clouds out of the repository when they contain a
+  vehicle identifier or data whose rights are not established. Submit only
+  authorized, anonymized evidence.
 
-## Procédure de séance
+## Session procedure
 
-1. Copier `catalog/templates/measurement-record.json` vers
-   `catalog/measurements/MEAS-<PART>-<DATE>.json` et renseigner le sujet avant
-   toute lecture.
-2. Contrôler le zéro et l'instrument sur une cale, une pige ou une référence
-   connue; enregistrer le statut réel, pas un statut supposé.
-3. Définir l'origine, les axes et les plans de référence. Les repères doivent
-   rester identifiables sur les photos et dans la CAO.
-4. Mesurer les interfaces avant les surfaces décoratives. Répéter chaque cote
-   sans chercher à faire converger artificiellement les valeurs.
-5. Photographier les fixations, jeux, surfaces d'appui et contradictions. Pour
-   la poignée, placer une barre d'échelle certifiée dans chaque prise de vue.
-6. Reporter les lectures brutes, calculer la valeur depuis leurs échantillons,
-   puis consigner l'incertitude et sa base (`repeatability`, `instrument_resolution`
-   ou `combined`).
-7. Exécuter `make check`. Si une mesure ne passe pas le validateur, corriger la
-   transcription ou la méthode; ne pas ajuster la valeur pour faire passer le
-   contrôle.
+1. Copy `catalog/templates/measurement-record.json` to
+   `catalog/measurements/MEAS-<PART>-<DATE>.json` and fill in the subject before
+   any reading.
+2. Check the zero and the instrument on a gauge block, a pin gauge or a known
+   reference; record the actual status, not an assumed one.
+3. Define the origin, the axes and the reference planes. The reference marks
+   must stay identifiable in the photos and in the CAD.
+4. Measure the interfaces before the decorative surfaces. Repeat each dimension
+   without trying to make the values converge artificially.
+5. Photograph the fasteners, clearances, bearing surfaces and contradictions.
+   For the door pull, place a certified scale bar in every shot.
+6. Enter the raw readings, compute the value from their samples, then record
+   the uncertainty and its basis (`repeatability`, `instrument_resolution` or
+   `combined`).
+7. Run `make check`. If a measurement does not pass the validator, correct the
+   transcription or the method; do not adjust the value to make the check pass.
 
-## Porte de décision
+```mermaid
+flowchart TD
+    G{"Priority 4 only:<br/>passenger airbag fitted (M562)?"}
+    G -- yes --> GX["Dashboard trim cannot be measured:<br/>occupant-restraint part"]:::stop
+    G -- no --> S1
+    S1["1 · Copy the measurement template,<br/>fill in the subject"] --> S2["2 · Check zero on a gauge block<br/>or known reference"]
+    S2 --> S3["3 · Define origin, axes<br/>and reference planes"]
+    S3 --> S4["4 · Interfaces before decorative<br/>surfaces; repeat each dimension"]
+    S4 --> S5["5 · Photograph fasteners, clearances,<br/>bearing surfaces, contradictions"]
+    S5 --> S6["6 · Raw readings → value from samples<br/>→ uncertainty and its basis"]
+    S6 --> S7{"7 · make check"}
+    S7 -- fails --> FIX["Correct the transcription or method,<br/>never the value"]:::open
+    FIX --> S6
+    S7 -- passes --> R["Record stays concept until the<br/>session is complete and reviewed"]:::open
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Une fiche de pièce reste `concept` tant que la séance n'est pas complète et
-revue. Le passage à `dimensionally_reviewed` demande les dimensions critiques,
-les fichiers de preuve, la variante et une revue CAO. Le montage d'un prototype
-est une étape séparée : il faudra alors consigner les jeux, les photos et les
-écarts avant tout statut `prototype_fitted`.
+## Decision gate
 
-Les trois pilotes sont des pièces d'habillage, mais la poignée reçoit des
-efforts manuels répétés. Aucun matériau, réglage ou géométrie ne doit être
-qualifié de sûr ou durable sur la seule base d'un bon ajustement statique.
+A part record stays `concept` until the session is complete and reviewed.
+Moving to `dimensionally_reviewed` requires the critical dimensions, the
+evidence files, the variant and a CAD review. Fitting a prototype is a separate
+step: the clearances, photos and deviations will then have to be recorded before
+any `prototype_fitted` status.
 
-## Brief CT optionnel
+The three pilots are trim parts, but the door pull takes repeated manual loads.
+No material, setting or geometry may be called safe or durable on the sole basis
+of a good static fit.
 
-La CT n'est pas nécessaire pour le cache d'interrupteur. Elle peut être étudiée
-pour la poignée si les interfaces cachées ne sont pas accessibles après dépose,
-ou pour une pièce polymère présentant des canaux internes. Les fiches
-`SRC-HACHTEL-BASIC-CT-SCAN`, `SRC-BMB-GERMANY-CT-RE` et
-`SRC-VISION-METRIC-CT-DIGITIZATION` sont des pistes de prestation, pas des
-mesures 993 existantes.
+## Optional CT brief
 
-Toute demande doit exiger :
+CT is not needed for the switch blank. It may be considered for the door pull if
+the hidden interfaces are not accessible after removal, or for a polymer part
+with internal channels. The records `SRC-HACHTEL-BASIC-CT-SCAN`,
+`SRC-BMB-GERMANY-CT-RE` and `SRC-VISION-METRIC-CT-DIGITIZATION` are service
+leads, not existing 993 measurements.
 
-- variante et référence de pièce;
-- volume couvert, résolution/voxel et incertitude annoncée;
-- repères, échelle, orientation et traitement des surfaces cachées;
-- volume brut ou format livré, segmentation, maillage et éventuel STEP;
-- comparaison entre au moins trois dimensions d'interface et le relevé manuel;
-- droits d'utilisation et de redistribution des fichiers livrés;
-- interdiction de conclure à la précision d'une pièce de sécurité à partir du
-  seul scan.
+Any request must require:
 
-Une commande CT ou un achat de pièce nécessite une validation séparée du
-mainteneur. Aucune dépense ni acquisition externe n'est présumée par ce dépôt.
+- variant and part number;
+- covered volume, resolution/voxel size and stated uncertainty;
+- reference marks, scale, orientation and handling of hidden surfaces;
+- raw volume or delivered format, segmentation, mesh and optional STEP;
+- comparison between at least three interface dimensions and the manual
+  measurement;
+- rights to use and redistribute the delivered files;
+- a prohibition on concluding the accuracy of a safety part from the scan alone.
+
+A CT order or a part purchase requires separate approval by the maintainer. No
+external spending or acquisition is presumed by this repository.

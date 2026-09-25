@@ -1,140 +1,144 @@
-# M64 — correction de la représentation C0 et essais de reprise
+# M64 — correcting the C0 representation and repair trials
 
-## Avancée vérifiée
+## Verified progress
 
-Le nouveau candidat natif du **domaine gazeux**, `7fc114c1…`, passe le
-contrôle B-Rep exact après relecture ainsi que les cinq modes BOP employés :
-auto-intersections, petites arêtes, reconstruction de faces, continuité et
-cohérence des courbes sur surfaces. Le domaine précédent `3f20f4c5…`
-conservait une anomalie de continuité C0.
+The new native candidate of the **gas domain**, `7fc114c1…`, passes the
+exact B-Rep check after re-reading as well as the five BOP modes used:
+self-intersections, small edges, face rebuild, continuity and
+curve-on-surface consistency. The previous domain `3f20f4c5…`
+kept a C0 continuity anomaly.
 
-Le [script reproductible](../../twins/m64-cylinder-head/source/flowbench-intake/split_gas_c0_edge.py)
-recrée **le même fichier natif, empreinte SHA-256 identique**, en 9,39 s.
-Le [reçu agrégé](../../twins/m64-cylinder-head/evidence/native-gas-c0-segmentation-20260908.json)
-relie ce résultat aux entrées, aux étapes intermédiaires et aux contrôles.
+The [reproducible script](../../twins/m64-cylinder-head/source/flowbench-intake/split_gas_c0_edge.py)
+recreates **the same native file, identical SHA-256 digest**, in 9.39 s.
+The [aggregated receipt](../../twins/m64-cylinder-head/evidence/native-gas-c0-segmentation-20260908.json)
+ties this result to the inputs, the intermediate steps and the checks.
 
-Il s'agit d'une correction de représentation CAO, pas d'une nouvelle forme
-de culasse. La cible reste M64 biturbo quatre soupapes, 700 PS au vilebrequin
-comme objectif non atteint. L'échelle du scan et les interfaces M64 restent
-non certifiées. Aucun calcul de débit, thermique, résistance ou LPBF n'est
-validé par ce résultat.
+This is a CAD representation fix, not a new cylinder-head
+shape. The target remains the M64 twin-turbo four-valve, with 700 PS at the crankshaft
+as an unmet objective. The scan scale and the M64 interfaces remain
+uncertified. No flow, thermal, strength or LPBF computation is
+validated by this result.
 
-## Ce qui a changé
+## What changed
 
-L'arête native 97 portait trois cassures de tangente au sein d'une même
-B-spline. Le candidat représente ces quatre tronçons par quatre arêtes.
-Les cassures restent des jonctions : leur disparition du diagnostic de
-continuité *interne à chaque arête* ne signifie pas qu'elles ont été lissées.
+Native edge 97 carried three tangent breaks within a single
+B-spline. The candidate represents these four segments as four edges.
+The breaks remain junctions: their disappearance from the continuity diagnosis
+*internal to each edge* does not mean they were smoothed.
 
-Le [mécanisme OCCT](https://dev.opencascade.org/doc/refman/html/class_shape_upgrade___shape_divide_continuity.html)
-peut soit simplifier des nœuds, soit découper une courbe. La première
-expérience avec la tolérance native de 5×10⁻⁶ avait simplifié un nœud : elle
-n'est pas retenue. Le candidat suivant demande une tolérance de suppression
-nulle et conserve les trois coupures. Ce réglage seul n'est toutefois pas
-une preuve d'équivalence géométrique ; les représentations doivent être
-comparées indépendamment.
+The [OCCT mechanism](https://dev.opencascade.org/doc/refman/html/class_shape_upgrade___shape_divide_continuity.html)
+can either simplify knots or split a curve. The first
+experiment with the native tolerance of 5×10⁻⁶ had simplified a knot: it
+is not kept. The next candidate requests a zero removal tolerance
+and keeps the three cuts. This setting alone is, however, not
+a proof of geometric equivalence; the representations must be
+compared independently.
 
-Après le découpage, quatre drapeaux `SameRange` restaient faux, alors que
-les plages enregistrées des courbes 3D et des courbes sur les deux faces
-adjacentes étaient déjà égales. Le recalcul local par `BRepLib.SameRange`
-rétablit leur cohérence. Aucun drapeau n'est forcé directement, aucune
-tolérance d'arête n'est augmentée et aucun appel `SameParameter` n'est
-effectué dans cette correction.
+After the split, four `SameRange` flags remained false, although
+the recorded ranges of the 3D curves and of the curves on the two adjacent
+faces were already equal. The local recomputation by `BRepLib.SameRange`
+restores their consistency. No flag is forced directly, no
+edge tolerance is increased and no `SameParameter` call is
+made in this fix.
 
-| État | Faces | Arêtes | Sommets | B-Rep exact |
+| State | Faces | Edges | Vertices | Exact B-Rep |
 | --- | ---: | ---: | ---: | --- |
-| Domaine d'origine | 88 | 192 | 117 | Valide, anomalie C0 au BOP |
-| Découpage avant cohérence des paramètres | 88 | 195 | 120 | Rejeté |
-| Candidat après cohérence locale | 88 | 195 | 120 | Valide après relecture |
+| Original domain | 88 | 192 | 117 | Valid, C0 anomaly in BOP |
+| Split before parameter consistency | 88 | 195 | 120 | Rejected |
+| Candidate after local consistency | 88 | 195 | 120 | Valid after re-reading |
 
-La tolérance de 5×10⁻⁶ est une tolérance **numérique en unités de scan**,
-pas une tolérance de fabrication certifiée. Les fichiers natifs d'origine
-restent inchangés. Les candidats intermédiaires rejetés sont conservés.
+The 5×10⁻⁶ tolerance is a **numerical tolerance in scan units**,
+not a certified manufacturing tolerance. The original native files
+remain unchanged. The rejected intermediate candidates are kept.
 
-## Contre-vérification indépendante
+## Independent cross-check
 
-Un second programme compare les représentations natives, sans réutiliser
-le générateur. Les degrés, pôles, poids, nœuds et multiplicités des quatre
-B-splines sont identiques à ceux de quatre copies de la courbe originale
-segmentées aux mêmes bornes. Les 117 sommets existants gardent leurs
-coordonnées et tolérances ; trois sommets partagés matérialisent les coupures.
+A second program compares the native representations, without reusing
+the generator. The degrees, poles, weights, knots and multiplicities of the four
+B-splines are identical to those of four copies of the original curve
+segmented at the same bounds. The 117 existing vertices keep their
+coordinates and tolerances; three shared vertices materialize the cuts.
 
-L'audit examine les surfaces des 88 faces, 388 courbes paramétriques et les
-191 autres arêtes. Aucune incompatibilité n'est détectée. Quelques
-descripteurs d'axes présentent des écarts d'arrondi, ce qui interdit de
-qualifier tous les descripteurs de strictement identiques. Les orientations,
-occurrences d'arêtes et graphes de sommets des contours sont conservés.
-Cette comparaison dépasse un simple échantillonnage de points sur les
-surfaces, sans devenir une preuve métrologique ou physique.
+The audit examines the surfaces of the 88 faces, 388 parametric curves and the
+191 other edges. No incompatibility is detected. A few
+axis descriptors show rounding differences, which rules out
+describing all descriptors as strictly identical. The orientations,
+edge occurrences and vertex graphs of the wires are preserved.
+This comparison goes beyond simple point sampling on the
+surfaces, without becoming a metrological or physical proof.
 
-Le journal indépendant, lié dans le reçu, termine en 0,42 s. Les essais
-préparatoires incomplets sont conservés ; un parcours `WireExplorer` ne
-couvrant pas toutes les occurrences n'a pas été présenté comme exhaustif.
+The independent log, linked in the receipt, finishes in 0.42 s. The incomplete
+preparatory trials are kept; a `WireExplorer` traversal that did not
+cover all occurrences was not presented as exhaustive.
 
-## Limites et prochaine utilisation
+## Limits and next use
 
-La [passe de remaillage suivante](M64_REMAILLAGE_NATIF_20260908.md)
-est maintenant exécutée sur ce candidat : nouveau volume de 469 985
-tétraèdres, contre-audits de frontière et contrôle OpenFOAM. L'intégrité
-du volume passe, mais six familles de qualité restent rejetées ; aucune
-autorisation CFD n'en découle.
+The [next remeshing pass](M64_REMAILLAGE_NATIF_20260908.md)
+has now been run on this candidate: new volume of 469,985
+tetrahedra, boundary counter-audits and OpenFOAM check. Volume
+integrity passes, but six quality families remain rejected; no
+CFD authorization follows from it.
 
-Le candidat peut maintenant servir de base à une **nouvelle tentative de
-maillage diagnostique**, avec ses propres contrôles de frontières et de
-qualité. Cela ne dispense pas des gardes du programme de maillage.
+The candidate can now serve as the basis for a **new diagnostic meshing
+attempt**, with its own boundary and quality checks. This does not
+waive the guards of the meshing program.
 
-Le précédent maillage de 481 189 tétraèdres appartient au domaine
-`3f20f4c5…`, **pas** au candidat `7fc114c1…`. Ses six rejets OpenFOAM restent
-dans le [lot précédent](M64_VOLUME_REEL_CONTROLES_20260908.md). Ils ne sont
-ni effacés, ni automatiquement résolus par les nouveaux contrôles CAO.
+The earlier mesh of 481,189 tetrahedra belongs to domain
+`3f20f4c5…`, **not** to candidate `7fc114c1…`. Its six OpenFOAM rejections remain
+in the [previous batch](M64_VOLUME_REEL_CONTROLES_20260908.md). They are
+neither erased nor automatically resolved by the new CAD checks.
 
-Le [contre-contrôle Netgen/OpenFOAM](M64_NETGEN_CONTRECONTROLE_20260908.md)
-mesure séparément une optimisation de ce maillage historique : génération
-récupérée avec intégrité conservée, mais six familles de qualité toujours
-rejetées. Aucun résultat de cet ancien domaine n'est attribué au candidat C0.
+The [Netgen/OpenFOAM counter-check](M64_NETGEN_CONTRECONTROLE_20260908.md)
+separately measures an optimization of this historical mesh: generation
+recovered with integrity preserved, but six quality families still
+rejected. No result from this old domain is attributed to the C0 candidate.
 
 ```mermaid
 flowchart TD
-    A["Domaine natif original : une arête C0"] --> B["Quatre tronçons, mêmes cassures conservées"]
-    B --> C["Recalcul local SameRange sur quatre arêtes"]
-    C --> D["B-Rep et cinq modes BOP sans anomalie détectée"]
-    D --> E["Revue indépendante des courbes et contours terminée"]
-    E --> F["Nouveau maillage lié au nouveau candidat"]
-    F --> G["Qualité OpenFOAM et convergence à démontrer"]
-    G --> H["Débit, thermique, résistance et procédé LPBF"]
-    H --> I["Qualification matière, fabrication, contrôles et essais physiques"]
+    A["Original native domain: one C0 edge"] --> B["Four segments,<br/>same breaks preserved"]
+    B --> C["Local SameRange recomputation<br/>on four edges"]
+    C --> D["B-Rep and five BOP modes<br/>no anomaly detected"]
+    D --> E["Independent review of curves<br/>and wires complete"]
+    E --> F["New mesh tied to the new candidate"]
+    F --> G["OpenFOAM quality and convergence<br/>to be demonstrated"]
+    G --> H["Flow, thermal, strength<br/>and LPBF process"]
+    H --> I["Material qualification, manufacturing,<br/>inspection and physical tests"]
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class A,B,C,D,E ok;
+    class F,G,H,I open;
 ```
 
-## Vérification logicielle et ressources
+## Software verification and resources
 
-Le `make check` termine avec le code 0 : 2 293 cas dans la suite principale,
-dont 108 ignorés, aucun échec ; les cibles complémentaires terminent aussi.
-Le journal complet porte l'empreinte
+`make check` ends with code 0: 2,293 cases in the main suite,
+of which 108 skipped, no failure; the complementary targets also finish.
+The full log carries the digest
 `498cbac74a1eec13839aaee3c65c5e198ffdf423fcd3a7500f9b78d899d86239`.
-Les deux nouveaux tests vérifient notamment les partitions de paramètres
-incomplètes et le refus du candidat intermédiaire invalide. Le témoin
-d'arrondi utilise une valeur synthétique, sans paramètre extrait du scan.
+The two new tests check in particular incomplete parameter partitions
+and the refusal of the invalid intermediate candidate. The rounding
+witness uses a synthetic value, with no parameter extracted from the scan.
 
-Ces calculs CAO ont tourné sur le Mac avec des limites CPU explicites. Aucune
-dépense Vast dans ce lot ; le contrôle des instances retourne une liste vide.
+These CAD computations ran on the Mac with explicit CPU limits. No
+Vast spending in this batch; the instance check returns an empty list.
 
-## Corps métallique : deux reprises STEP rejetées
+## Metal body: two STEP repairs rejected
 
-Le corps métallique est distinct de ce domaine gazeux. Les
-[deux expériences STEP](../../twins/m64-cylinder-head/evidence/ported-body-step-repair-attempts-20260908.json)
-n'ont pas réparé son échange :
+The metal body is distinct from this gas domain. The
+[two STEP experiments](../../twins/m64-cylinder-head/evidence/ported-body-step-repair-attempts-20260908.json)
+did not repair its exchange:
 
-- `FixSameParameter` sur les huit arêtes concernées retourne un succès,
-  mais le B-Rep avant/après est strictement identique. Il reste 23 faces
-  et huit arêtes fautives ; après un nouvel échange STEP, les comptes
-  deviennent 25 et neuf. Cette version est rejetée.
-- La suppression puis reprojection explicite d'une seule courbe paramétrique
-  garde un écart numérique d'environ 1,3946×10⁻⁵ unité, supérieur au budget
-  natif de 5×10⁻⁶. Aucune tolérance n'est relevée, aucune extension aux
-  autres arêtes ni nouveau STEP n'est lancée depuis ce candidat rejeté.
+- `FixSameParameter` on the eight edges concerned returns success,
+  but the B-Rep before/after is strictly identical. 23 faulty faces
+  and eight faulty edges remain; after a new STEP exchange, the counts
+  become 25 and nine. This version is rejected.
+- Removing and then explicitly reprojecting a single parametric curve
+  leaves a numerical gap of about 1.3946×10⁻⁵ unit, above the native
+  budget of 5×10⁻⁶. No tolerance is raised, and no extension to the
+  other edges nor new STEP is launched from this rejected candidate.
 
-Les fichiers d'origine sont inchangés. Ces échecs excluent de présenter
-un retour logiciel `true` comme une réparation effective ; il reste à
-expliquer la dégradation de représentation pendant l'échange STEP.
+The original files are unchanged. These failures rule out presenting
+a software `true` return as an effective repair; the degradation of the
+representation during the STEP exchange remains to be explained.
 
-**La culasse n'est pas encore autorisée à imprimer pour un usage moteur.**
+**The cylinder head is not yet authorized to be printed for engine use.**

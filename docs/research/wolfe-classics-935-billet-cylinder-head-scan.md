@@ -1,99 +1,99 @@
-# Scan de culasse billet Wolfe Classics pour Porsche 935
+# Wolfe Classics billet cylinder head scan for the Porsche 935
 
-## Statut
+## Status
 
-- Niveau actuel : `F0_reference`.
-- Acquisition : OBJ acheté et téléchargé le 31 août 2026.
-- Usage : référence géométrique locale pour rétroconception et préparation de
-  simulations.
-- Compatibilité 993 : non démontrée.
-- Publication du maillage brut : bloquée tant que le droit de redistribution
-  n'est pas documenté explicitement.
+- Current level: `F0_reference`.
+- Acquisition: OBJ purchased and downloaded on August 31, 2026.
+- Use: local geometric reference for reverse engineering and simulation
+  preparation.
+- 993 compatibility: not demonstrated.
+- Publication of the raw mesh: blocked until the redistribution right is
+  explicitly documented.
 
-Le vendeur présente la culasse comme conçue spécifiquement pour une Porsche 935
-de compétition et comme potentiellement adaptable à d'autres 911 des années
-1970 ou 1980. Cette description ne couvre pas la 993 et ne remplace pas une
-comparaison des interfaces.
+The seller presents the cylinder head as designed specifically for a racing
+Porsche 935 and as potentially adaptable to other 911s of the 1970s or 1980s.
+That description does not cover the 993 and does not replace a comparison of
+the interfaces.
 
-## Actif local
+## Local asset
 
-Le fichier original reste hors Git conformément à la politique du dépôt :
+The original file stays outside Git in accordance with the repository policy:
 
 ```text
 raw-scans/wolfe-classics-935-cylinder-head/original/935-xtreme-cylinder-head.obj
 ```
 
-Empreinte de contrôle :
+Check digest:
 
 ```text
 SHA-256 4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486
 ```
 
-Cette empreinte doit rester identique pour toute analyse du fichier source. Une
-copie nettoyée, recalée ou simplifiée doit recevoir une nouvelle empreinte et ne
-doit jamais remplacer l'original.
+This digest must stay identical for any analysis of the source file. A cleaned,
+re-registered or simplified copy must receive a new digest and must never
+replace the original.
 
-## Inspection initiale
+## Initial inspection
 
-| Propriété | Résultat |
+| Property | Result |
 |---|---:|
-| Sommets | 1 281 608 |
-| Triangles | 2 466 040 |
-| Enveloppe X | 197,899 unités OBJ |
-| Enveloppe Y | 198,796 unités OBJ |
-| Enveloppe Z | 227,098 unités OBJ |
-| Arêtes uniques | 3 748 998 |
-| Arêtes ouvertes | 99 876 |
-| Arêtes non-manifold | 0 |
-| Faces dupliquées | 0 |
-| Triangles de surface nulle | 8 |
-| Groupes, matériaux, normales, UV | absents |
+| Vertices | 1,281,608 |
+| Triangles | 2,466,040 |
+| X envelope | 197.899 OBJ units |
+| Y envelope | 198.796 OBJ units |
+| Z envelope | 227.098 OBJ units |
+| Unique edges | 3,748,998 |
+| Open edges | 99,876 |
+| Non-manifold edges | 0 |
+| Duplicate faces | 0 |
+| Zero-area triangles | 8 |
+| Groups, materials, normals, UV | absent |
 
-Les dimensions sont cohérentes avec des millimètres, mais le format OBJ ne
-déclare aucune unité. Le maillage n'est pas étanche ; son volume signé ne doit
-donc pas être interprété comme une mesure de volume ou de masse.
+The dimensions are consistent with millimeters, but the OBJ format declares no
+unit. The mesh is not watertight; its signed volume must therefore not be
+interpreted as a volume or mass measurement.
 
-## Valeur pour le jumeau
+## Value for the twin
 
-Le scan apporte une enveloppe détaillée des ailettes, des bossages, des
-ouvertures et des goujons visibles. Il peut servir à :
+The scan provides a detailed envelope of the fins, bosses, openings and visible
+studs. It can be used to:
 
-1. repérer les interfaces à mesurer sur une culasse réelle ;
-2. construire des plans de coupe et des enveloppes de collision ;
-3. préparer la segmentation admission, échappement et chambre ;
-4. comparer des architectures de conduits ;
-5. produire un solide paramétrique indépendant après contrôle des cotes.
+1. locate the interfaces to be measured on a real cylinder head;
+2. build section planes and collision envelopes;
+3. prepare the intake, exhaust and chamber segmentation;
+4. compare port architectures;
+5. produce an independent parametric solid after the dimensions are checked.
 
-Il ne permet pas encore de calcul CFD fiable. Une simulation de flux exige des
-surfaces internes complètes, un domaine fluide fermé, des conditions aux limites
-et une géométrie représentative de la culasse étudiée. Les trous du maillage ne
-doivent pas être rebouchés automatiquement sans distinguer une ouverture
-fonctionnelle d'un défaut de scan.
+It does not yet allow a reliable CFD computation. A flow simulation requires
+complete internal surfaces, a closed fluid domain, boundary conditions and a
+geometry representative of the cylinder head studied. The holes in the mesh
+must not be filled automatically without distinguishing a functional opening
+from a scan defect.
 
-## Conditions de passage au niveau suivant
+## Conditions for moving to the next level
 
-Pour atteindre `F1_envelope` :
+To reach `F1_envelope`:
 
-- confirmer l'unité au moyen d'au moins une cote physique connue ;
-- définir un repère et une orientation stables ;
-- séparer les goujons et éléments rapportés de la culasse ;
-- produire un proxy allégé sans déplacer les interfaces visibles ;
-- documenter l'incertitude ou une carte d'écart du scan.
+- confirm the unit using at least one known physical dimension;
+- define a stable reference frame and orientation;
+- separate the studs and add-on elements from the cylinder head;
+- produce a lightweight proxy without moving the visible interfaces;
+- document the uncertainty or a deviation map of the scan.
 
-Pour étudier une interface avec une 993 :
+To study an interface with a 993:
 
-- mesurer l'alésage et la chambre ;
-- mesurer le motif, le diamètre et la hauteur utile des goujons ;
-- mesurer les plans de joint et entraxes admission/échappement ;
-- caractériser les conduits, sièges, guides et angles de soupapes ;
-- identifier la matière et la masse de la culasse ;
-- comparer ces valeurs à une culasse 993 de variante moteur connue.
+- measure the bore and the chamber;
+- measure the pattern, diameter and usable height of the studs;
+- measure the gasket planes and intake/exhaust center distances;
+- characterize the ports, seats, guides and valve angles;
+- identify the material and mass of the cylinder head;
+- compare these values with a 993 cylinder head of a known engine variant.
 
-Tant que ces contrôles manquent, le scan reste une référence 935 et ne rejoint
-pas le graphe actif des composants 993.
+As long as these checks are missing, the scan remains a 935 reference and does
+not join the active graph of 993 components.
 
 ## Provenance
 
-- [Page produit Wolfe Classics](https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan)
-- Fiche structurée :
+- [Wolfe Classics product page](https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan)
+- Structured record:
   `catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json`

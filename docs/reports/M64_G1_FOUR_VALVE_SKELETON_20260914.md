@@ -1,275 +1,291 @@
-# M64 — G1, jumeaux 4 soupapes / double allumage, assemblage et itération
+# M64 — G1, 4-valve / twin-spark twins, assembly and iteration
 
-14 septembre 2026. Code : [`fourvalve/`](../../twins/m64-cylinder-head/source/fourvalve/run.py) ;
-paramètres par composant : [`params/`](../../twins/m64-cylinder-head/source/fourvalve/params/design_space.json) ;
-preuves : [`evidence/g1-four-valve-20260914/`](../../twins/m64-cylinder-head/evidence/g1-four-valve-20260914/manifest.json) ;
-tests : [`test_m64_g1_four_valve_twins.py`](../../tests/test_m64_g1_four_valve_twins.py).
+September 14, 2026. Code: [`fourvalve/`](../../twins/m64-cylinder-head/source/fourvalve/run.py);
+parameters per component: [`params/`](../../twins/m64-cylinder-head/source/fourvalve/params/design_space.json);
+evidence: [`evidence/g1-four-valve-20260914/`](../../twins/m64-cylinder-head/evidence/g1-four-valve-20260914/manifest.json);
+tests: [`test_m64_g1_four_valve_twins.py`](../../tests/test_m64_g1_four_valve_twins.py).
 
-**Ce n'est ni une géométrie maître ni une autorisation de fabrication**
-(`master_geometry: false`, `manufacturing_authorized: false`). La géométrie est
-synthétique : aucun maillage de scan n'est importé. Les cotes 935 sont des nombres
-du JSON d'interfaces (niveau C, unités ≈ mm non étalonnées). Le squelette G1
-précédent (`parametric/`) reste en place, inchangé. Ce travail le prolonge sans le
-remplacer.
+**This is neither a master geometry nor a manufacturing authorization**
+(`master_geometry: false`, `manufacturing_authorized: false`). The geometry is
+synthetic: no scan mesh is imported. The 935 dimensions are numbers from the
+interfaces JSON (level C, uncalibrated units ≈ mm). The previous G1 skeleton
+(`parametric/`) stays in place, unchanged. This work extends it without
+replacing it.
 
-## Ce qui est construit
+```mermaid
+flowchart LR
+  A["935 starting position"] --> B["Refused:<br/>7 blocking failures"]
+  A --> C["Stage 1 iteration<br/>402 trials"]
+  C --> D["Trial 385 retained<br/>min margin 0.19 mm"]
+  D --> E["Bore sweep:<br/>99 to 102.7 mm pass<br/>with 935 studs"]
+  D --> F["Not a master geometry<br/>manufacturing_authorized: false"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class B,F stop;
+  class D ok;
+```
 
-Il y a dix jumeaux de composants. Chacun a son fichier de paramètres typés, son
-module CAO (`cad/<composant>.py`) et son STEP :
+![XZ section of the synthetic G1 four-valve cylinder head](../../twins/m64-cylinder-head/evidence/g1-four-valve-20260914/head-section-xz.svg)
 
-- culasse ;
-- soupapes d'admission ×2 et d'échappement ×2 ;
-- guides, sièges rapportés, coupelles et demi-lunes ;
-- ressort GSC5092 (enveloppe) ;
-- arbres à cames et commande ;
-- chemise ;
-- piston à bol et 4 poches ;
-- joint ;
-- goujons.
+*XZ section generated from the G1 CAD of the retained configuration; a synthetic model, not a fitted M64 cylinder head or a printable part.*
 
-Le repère commun est le plan d'étanchéité : Z vers les arbres, X admission < 0.
-Il est lié au repère du scan par x = −y_scan, y = −x_scan, z = −z_scan. Le côté 1
-du scan (axe 26,6°, bride haute, gorge 45,7) est **attribué** à l'admission : c'est
-un choix de modèle.
+## What is built
 
-Le calcul (`provenance`, `layout`, `kinematics`, `checks`, `iterate`) ne dépend que
-de numpy et tourne dans la CI. La CAO et le contre-contrôle BRep demandent
+There are ten component twins. Each has its typed parameter file, its CAD
+module (`cad/<component>.py`) and its STEP:
+
+- cylinder head;
+- intake valves ×2 and exhaust valves ×2;
+- guides, inserted seats, retainers and collets;
+- GSC5092 spring (envelope);
+- camshafts and actuation;
+- liner;
+- piston with bowl and 4 pockets;
+- gasket;
+- studs.
+
+The common frame is the sealing plane: Z toward the shafts, X intake < 0.
+It is linked to the scan frame by x = −y_scan, y = −x_scan, z = −z_scan. Side 1
+of the scan (axis 26.6°, high flange, throat 45.7) is **assigned** to intake:
+this is a modeling choice.
+
+The computation (`provenance`, `layout`, `kinematics`, `checks`, `iterate`)
+depends only on numpy and runs in CI. The CAD and the BRep counter-check require
 CadQuery.
 
-## Provenance (fail-closed)
+## Provenance (fails closed)
 
-Chaque valeur est revérifiée contre sa source à chaque exécution :
+Each value is rechecked against its source on every run:
 
-- `sourced_m64` : chemin dans le contrat ;
-- `candidate_935_scan_C` : chemin JSON, réduction et changement de signe explicites, statut C ;
-- `stock_993_2v_manual` : fiche `page_checked` ;
-- `supplier_swindon` : citation présente dans la fiche et contenant la valeur ;
-- `supplier_gsc5092` : champ de `spring_candidates.json`.
+- `sourced_m64`: path in the contract;
+- `candidate_935_scan_C`: JSON path, explicit reduction and sign change, status C;
+- `stock_993_2v_manual`: `page_checked` record;
+- `supplier_swindon`: quotation present in the record and containing the value;
+- `supplier_gsc5092`: field of `spring_candidates.json`.
 
-Une valeur modifiée ou une source retirée entraîne un refus. Un `unsourced` doit
-porter une hypothèse et ne peut citer aucune source. Un `derived` porte une formule
-et ses entrées, mais pas de valeur. Seule l'itération peut produire
-`derived_by_iteration`, avec le numéro de l'essai.
+A modified value or a removed source causes a refusal. An `unsourced` value
+must carry a hypothesis and may cite no source. A `derived` value carries a
+formula and its inputs, but no value. Only the iteration can produce
+`derived_by_iteration`, with the trial number.
 
-| Provenance | Nombre | Paramètres |
+| Provenance | Count | Parameters |
 |---|---:|---|
-| `sourced_m64` | 2 | alésage 100 ; course 76,4 (P3) |
-| `candidate_935_scan_C` | 21 | centrage Ø113,423 × 2,21 ; goujons 85,824 × 86,581, trou Ø10,879 (max) ; angles 935 26,576 / 29,162 ; face porte-arbre 86,461 ; brides x −107,217 / +82,533, hauteurs 47,53 / 35,54, conduit éch. Ø39,99 ; bougies : angles 61,68 / 60,26 et vecteurs d'axe |
-| `stock_993_2v_manual` | 9 | guides (alésage culasse 13,0, Ø ext 13,06, alésage 8, dépassement 16,5, longueurs E 55,4 / A 56,4) ; longueurs soupapes 110,1 / 109 ; portée 45° — **témoins 2V** |
-| `supplier_swindon` | 4 | têtes 40 / 33 ; levées 11,5 / 9,6 |
-| `supplier_gsc5092` | 3 | hauteur montée 40 ; levée max publiée 14,25 ; longueur jointive 24,18 |
-| `derived` | 8 | entraxes y des paires, hauteur d'arête du toit, gorges (0,85·Ø), Ø logement ressort, appuis ressort sur l'axe |
-| `derived_by_iteration` | 17 | voir « Configuration retenue » |
-| `unsourced` | 38 | marges de conception (pont 3, paroi 3, retrait 1, jeux piston 1,5 / 2, réserve spires 1), Ø ext ressort 30, bielle 127 (V1), puits de bougie Ø14, épaisseur de tête 6, bloc, came, piston, joint, tige de goujon Ø10 |
+| `sourced_m64` | 2 | bore 100; stroke 76.4 (P3) |
+| `candidate_935_scan_C` | 21 | spigot Ø113.423 × 2.21; studs 85.824 × 86.581, hole Ø10.879 (max); 935 angles 26.576 / 29.162; cam carrier face 86.461; flanges x −107.217 / +82.533, heights 47.53 / 35.54, exhaust port Ø39.99; spark plugs: angles 61.68 / 60.26 and axis vectors |
+| `stock_993_2v_manual` | 9 | guides (head bore 13.0, OD 13.06, bore 8, protrusion 16.5, lengths E 55.4 / I 56.4); valve lengths 110.1 / 109; 45° seat — **2V witnesses** |
+| `supplier_swindon` | 4 | heads 40 / 33; lifts 11.5 / 9.6 |
+| `supplier_gsc5092` | 3 | installed height 40; max published lift 14.25; coil-bound length 24.18 |
+| `derived` | 8 | y spacing of the pairs, roof ridge height, throats (0.85·Ø), spring pocket Ø, spring seats on the axis |
+| `derived_by_iteration` | 17 | see "Retained configuration" |
+| `unsourced` | 38 | design margins (bridge 3, wall 3, recess 1, piston clearances 1.5 / 2, coil reserve 1), spring OD 30, connecting rod 127 (V1), spark plug well Ø14, head thickness 6, block, cam, piston, gasket, stud shank Ø10 |
 
-Le Ø14 des puits de bougie est un perçage lisse. Il suppose M14 × 1,25, fait
-partiel du contrat pour la 993 Carrera. L'alésage apparent de la 935 (11,2–11,4)
-est plus petit que le mineur M14.
+The Ø14 of the spark plug wells is a plain bore. It assumes M14 × 1.25, a
+partial fact of the contract for the 993 Carrera. The apparent bore of the 935
+(11.2–11.4) is smaller than the M14 minor diameter.
 
-## Centrage et chemise
+## Spigot and liner
 
-Avec le centrage 935 (Ø113,42) et l'alésage M64 (100), il reste une paroi
-d'épaulement de 6,71 mm. Les trous de goujon 935 empiètent de 1,2 mm sur le
-centrage : le Ø utile tombe à 111,03. Il reste alors 5,42 mm de paroi, jeu 0,1
-déduit, au-dessus de l'hypothèse de 4 mm. C'est **compatible sous hypothèse**. Le
-Ø extérieur réel d'une chemise M64 n'est pas sourcé. Le lamage 935 (arête Ø94,3)
-correspond à un alésage d'environ 95. Avec 100, sa portée intérieure n'existe plus
-dans ce modèle.
+With the 935 spigot (Ø113.42) and the M64 bore (100), a shoulder wall of
+6.71 mm remains. The 935 stud holes encroach 1.2 mm on the spigot: the usable Ø
+drops to 111.03. A wall of 5.42 mm then remains, 0.1 clearance deducted, above
+the 4 mm hypothesis. It is **compatible under hypothesis**. The real OD of an
+M64 liner is not sourced. The 935 counterbore (edge Ø94.3) corresponds to a
+bore of about 95. With 100, its inner seat no longer exists in this model.
 
-## Contrôles
+## Checks
 
-Il y a 36 contrôles, dont 34 bloquants. Les distances piston et soupape–soupape
-sont calculées sur 720° : pas de 2° pendant la recherche, 1° pour le résultat.
-Chaque échec est rapporté tel quel : la position de départ 935 est évaluée sans
-retouche. Les poches de goujon, de conduit, de logement, de guide et de puits sont
-des capsules, ce qui est conservatif pour des cylindres finis. Les ponts sont
-calculés en projection sur le plan d'étanchéité. Le jeu piston–soupape est vertical
-et prend en compte bol et poches. La loi de levée est la `CamLaw` du modèle V1, avec
-la levée Swindon et les centres V1 supposés (105° / 612°).
+There are 36 checks, 34 of them blocking. The piston and valve–valve distances
+are computed over 720°: 2° step during the search, 1° for the result.
+Each failure is reported as is: the 935 starting position is evaluated without
+touch-up. The stud, port, pocket, guide and well recesses are capsules, which is
+conservative for finite cylinders. The bridges are computed in projection on
+the sealing plane. The piston–valve clearance is vertical and takes bowl and
+pockets into account. The lift law is the V1 model's `CamLaw`, with the Swindon
+lift and the assumed V1 centers (105° / 612°).
 
-| Contrôle | Seuil | Départ 935 | Retenu | Marge |
+| Check | Threshold | 935 start | Retained | Margin |
 |---|---|---:|---:|---:|
-| têtes dans l'alésage (retrait) | ≥ 1,0 | 1,90 | 1,66 | 0,66 |
-| pont adm/adm · éch/éch | ≥ 3,0 | 3,00 · 3,00 | 3,19 · 3,19 | **0,19** |
-| pont adm/éch | ≥ 3,0 | 3,14 | 15,93 | 12,9 |
-| tête de son côté de l'arête | ≥ 0 | 1,50 | 3,42 | 3,4 |
-| puits de bougie dans l'alésage | ≥ 1,0 | 16,59 | 8,51 | 7,5 |
-| pont bougie 1 / sièges | ≥ 3,0 | **−3,67 échec** | 4,14 | 1,14 |
-| pont bougie 2 / sièges | ≥ 3,0 | **−7,36 échec** | 4,14 | 1,14 |
-| pont bougie / bougie · paroi des puits | ≥ 3,0 | 33,7 · 35,5 | 53,9 · 53,9 | 50,9 |
-| puits / conduits | ≥ 3,0 | **−7,10 échec** | 8,50 | 5,5 |
-| puits / goujons | ≥ 3,0 | **−8,24 échec** | 18,49 | 15,5 |
-| puits / logements de ressort | ≥ 3,0 | **2,38 échec** | 25,09 | 22,1 |
-| puits / guides | ≥ 3,0 | 5,94 | 22,11 | 19,1 |
-| goujon / alésage | ≥ 3,0 | 5,52 | 5,52 | 2,5 |
-| goujon / conduits | ≥ 3,0 | 3,61 | 3,20 | **0,20** |
-| goujon / logements de ressort | ≥ 3,0 | **0,61 échec** | 4,58 | 1,58 |
-| logements éch/éch · adm/adm · adm/éch | ≥ 3,0 | 4,0 · 11,0 · 59,0 | 4,19 · 11,19 · 80,5 | 1,19 |
-| fond de logement / conduits | ≥ 3,0 | 4,79 | 5,93 | 2,9 |
-| appui ressort sous la face porte-arbre | ≤ 86,46 | 65,9 | 75,3 | 11,2 |
-| levée ≤ levée publiée GSC5092 | ≤ 14,25 | 11,5 | 11,5 | 2,75 |
-| réserve à spires jointives (40 − 11,5 − 24,18) | ≥ 1,0 | 4,32 | 4,32 | 3,3 |
-| épaulement de chemise · Ø utile goujons | ≥ 4,0 | 6,71 · 5,42 | idem | 1,42 |
-| poches dans la calotte · profondeur ≤ 5 | ≥ 3,0 | sans objet | 4,01 · 3,92 | 1,01 |
-| cames : écart entre lobes · au-dessus de la face | ≥ 3 · ≥ 86,46 | 121 · 116 | 146 · 117 | 30 |
-| soupape–soupape sur le cycle | ≥ 1,0 | 2,68 | 11,48 (φ = 111°) | 10,5 |
-| soupape adm.–piston | ≥ 1,5 | **1,48 échec** | 1,76 (φ = 2°) | **0,26** |
-| soupape éch.–piston | ≥ 2,0 | 3,51 | 6,62 | 4,6 |
-| tête / haut de chemise à pleine levée | ≥ 1,0 | 3,42 | 4,04 | 3,0 |
-| *indicatif* : 11,5 et 9,6 simultanées | ≥ 1,0 | 0 (contact) | 6,23 | — |
-| *indicatif* : contact dans un poussoir à coupelle | rayon ≥ 18,8 | 15 échec | 15 échec | −3,8 |
+| heads within the bore (recess) | ≥ 1.0 | 1.90 | 1.66 | 0.66 |
+| bridge int/int · exh/exh | ≥ 3.0 | 3.00 · 3.00 | 3.19 · 3.19 | **0.19** |
+| bridge int/exh | ≥ 3.0 | 3.14 | 15.93 | 12.9 |
+| head on its side of the ridge | ≥ 0 | 1.50 | 3.42 | 3.4 |
+| spark plug well within the bore | ≥ 1.0 | 16.59 | 8.51 | 7.5 |
+| bridge plug 1 / seats | ≥ 3.0 | **−3.67 fail** | 4.14 | 1.14 |
+| bridge plug 2 / seats | ≥ 3.0 | **−7.36 fail** | 4.14 | 1.14 |
+| bridge plug / plug · well wall | ≥ 3.0 | 33.7 · 35.5 | 53.9 · 53.9 | 50.9 |
+| wells / ports | ≥ 3.0 | **−7.10 fail** | 8.50 | 5.5 |
+| wells / studs | ≥ 3.0 | **−8.24 fail** | 18.49 | 15.5 |
+| wells / spring pockets | ≥ 3.0 | **2.38 fail** | 25.09 | 22.1 |
+| wells / guides | ≥ 3.0 | 5.94 | 22.11 | 19.1 |
+| stud / bore | ≥ 3.0 | 5.52 | 5.52 | 2.5 |
+| stud / ports | ≥ 3.0 | 3.61 | 3.20 | **0.20** |
+| stud / spring pockets | ≥ 3.0 | **0.61 fail** | 4.58 | 1.58 |
+| pockets exh/exh · int/int · int/exh | ≥ 3.0 | 4.0 · 11.0 · 59.0 | 4.19 · 11.19 · 80.5 | 1.19 |
+| pocket floor / ports | ≥ 3.0 | 4.79 | 5.93 | 2.9 |
+| spring seat below the cam carrier face | ≤ 86.46 | 65.9 | 75.3 | 11.2 |
+| lift ≤ GSC5092 published lift | ≤ 14.25 | 11.5 | 11.5 | 2.75 |
+| coil-bound reserve (40 − 11.5 − 24.18) | ≥ 1.0 | 4.32 | 4.32 | 3.3 |
+| liner shoulder · usable Ø at studs | ≥ 4.0 | 6.71 · 5.42 | same | 1.42 |
+| pockets in the crown · depth ≤ 5 | ≥ 3.0 | not applicable | 4.01 · 3.92 | 1.01 |
+| cams: gap between lobes · above the face | ≥ 3 · ≥ 86.46 | 121 · 116 | 146 · 117 | 30 |
+| valve–valve over the cycle | ≥ 1.0 | 2.68 | 11.48 (φ = 111°) | 10.5 |
+| intake valve–piston | ≥ 1.5 | **1.48 fail** | 1.76 (φ = 2°) | **0.26** |
+| exhaust valve–piston | ≥ 2.0 | 3.51 | 6.62 | 4.6 |
+| head / top of liner at full lift | ≥ 1.0 | 3.42 | 4.04 | 3.0 |
+| *indicative*: 11.5 and 9.6 simultaneous | ≥ 1.0 | 0 (contact) | 6.23 | — |
+| *indicative*: contact in a bucket tappet | radius ≥ 18.8 | 15 fail | 15 fail | −3.8 |
 
-**Départ 935 : refusé**, avec 7 échecs bloquants. Les bougies 935 viennent d'une
-culasse 2 soupapes : elles tombent sur les sièges d'une implantation 4 soupapes
-(pont jusqu'à −7,4 mm) et traversent conduits et goujons. Le logement de ressort
-d'admission passe à 0,6 mm du goujon. Le jeu piston d'admission est de 1,48 mm.
+**935 start: refused**, with 7 blocking failures. The 935 spark plugs come from
+a 2-valve cylinder head: they land on the seats of a 4-valve layout (bridge down
+to −7.4 mm) and cut through ports and studs. The intake spring pocket passes
+0.6 mm from the stud. The intake piston clearance is 1.48 mm.
 
-**Contre-contrôle BRep** (`BRepExtrema_DistShapeShape`) aux pires angles, sur la
-configuration retenue :
+**BRep counter-check** (`BRepExtrema_DistShapeShape`) at the worst angles, on
+the retained configuration:
 
-- soupape adm.–piston : 1,755 / 1,757 / 1,765 / 1,770, identiques au calcul analytique ;
-- soupape éch.–piston : 6,616 à 6,629, identiques ;
-- soupape–soupape à φ = 111° : BRep 11,424 contre 11,478 analytique.
+- intake valve–piston: 1.755 / 1.757 / 1.765 / 1.770, identical to the analytic calculation;
+- exhaust valve–piston: 6.616 to 6.629, identical;
+- valve–valve at φ = 111°: BRep 11.424 against 11.478 analytic.
 
-L'échantillonnage surestime donc la distance d'environ 0,05 mm ; la BRep fait foi et
-reste bloquante. `BRepCheck_Analyzer` valide les 31 pièces. La culasse est un solide
-unique de 1 651 403 mm³, sans signification physique puisque le bloc n'est pas
-sourcé.
+The sampling therefore overestimates the distance by about 0.05 mm; the BRep is
+authoritative and remains blocking. `BRepCheck_Analyzer` validates the 31
+parts. The cylinder head is a single solid of 1,651,403 mm³, with no physical
+meaning since the block is not sourced.
 
-## Itération
+## Iteration
 
-La recherche est déterministe. La graine 935 fixe 160 tirages dans les bornes, puis
-240 évaluations de recherche par coordonnées avec pas divisé par deux. Les 402
-essais sont journalisés dans `iteration-history.json`. Deux exécutions donnent le
-même historique.
+The search is deterministic. The 935 seed fixes 160 draws within the bounds,
+then 240 coordinate-search evaluations with the step halved. The 402 trials are
+logged in `iteration-history.json`. Two runs give the same history.
 
-L'étape 1 n'utilise que des variables non sourcées : angles et entraxes des
-soupapes, position et inclinaison des bougies (miroir en y), profondeur des poches,
-calage des cames ±10°, longueur de soupape. **L'étape 1 a suffi** : 104 essais
-acceptés, le premier à l'essai 260. L'alésage (étape 2) et les diamètres de
-soupape (étape 3) n'ont pas été ouverts. Aucune valeur M64, manuel ou fournisseur
-n'a été modifiée.
+Stage 1 uses only unsourced variables: valve angles and spacings, position and
+tilt of the spark plugs (mirrored in y), pocket depth, cam timing ±10°, valve
+length. **Stage 1 was enough**: 104 trials accepted, the first at trial 260.
+The bore (stage 2) and the valve diameters (stage 3) were not opened. No M64,
+manual or supplier value was modified.
 
-Les contraintes limitantes les plus fréquentes parmi les essais refusés sont :
+The most frequent limiting constraints among the refused trials are:
 
-- pont bougie–sièges (64) ;
-- puits–conduits (48) ;
-- paroi entre puits (26) ;
-- goujon–conduits (26) ;
-- bougies ou têtes hors alésage (23 chacun).
+- plug–seats bridge (64);
+- wells–ports (48);
+- wall between wells (26);
+- stud–ports (26);
+- spark plugs or heads outside the bore (23 each).
 
-### Configuration retenue (essai 385, marge minimale 0,19 mm)
+### Retained configuration (trial 385, minimum margin 0.19 mm)
 
-| Variable | Départ | Retenu |
+| Variable | Start | Retained |
 |---|---:|---:|
-| angle axe admission | 26,58° (935) | 33,38° |
-| angle axe échappement | 29,16° (935) | 24,62° |
-| x centre tête adm. / éch. | −19,39 / +15,91 | −20,12 / +27,40 |
-| écart supplémentaire dans une paire | 0 | 0,19 |
-| bougies au plan (x, ±y) | (15,94 ; 20,27) et (−8,66 ; −20,38) | (2,88 ; ±32,49) |
-| inclinaison / azimut des bougies | 28,3° / 154,5° et 29,7° / −23,6° | 6,9° / ±30,1° |
-| profondeur des poches piston | 0 | 3,92 |
-| avance came adm. / éch. | 0 / 0 | −5,71° (retard) / +0,73° |
-| écart de longueur de soupape vs 993 | 0 | +7,44 |
+| intake axis angle | 26.58° (935) | 33.38° |
+| exhaust axis angle | 29.16° (935) | 24.62° |
+| x of intake / exhaust head center | −19.39 / +15.91 | −20.12 / +27.40 |
+| additional spacing within a pair | 0 | 0.19 |
+| spark plugs at the plane (x, ±y) | (15.94; 20.27) and (−8.66; −20.38) | (2.88; ±32.49) |
+| spark plug tilt / azimuth | 28.3° / 154.5° and 29.7° / −23.6° | 6.9° / ±30.1° |
+| piston pocket depth | 0 | 3.92 |
+| intake / exhaust cam advance | 0 / 0 | −5.71° (retard) / +0.73° |
+| valve length difference vs 993 | 0 | +7.44 |
 
-Les deux bougies sont presque verticales, près de l'arête du toit, entre les têtes
-de chaque paire, à y = ±32,5. L'échappement a été écarté vers l'extérieur.
+The two spark plugs are almost vertical, near the roof ridge, between the heads
+of each pair, at y = ±32.5. The exhaust was moved outward.
 
-## Balayage d'alésage (« il faut un alésage plus grand »)
+## Bore sweep ("a larger bore is needed")
 
 [`bore_sweep.py`](../../twins/m64-cylinder-head/source/fourvalve/bore_sweep.py) →
 [`bore-sweep.json`](../../twins/m64-cylinder-head/evidence/g1-four-valve-20260914/bore-sweep.json).
-Le balayage couvre 13 alésages de 95 à 106 mm, avec 5 535 essais journalisés.
+The sweep covers 13 bores from 95 to 106 mm, with 5,535 trials logged.
 
-Pour chaque alésage, la recherche d'étape 1 est relancée : 80 tirages et 200
-évaluations locales, alésage fixé, démarrage à chaud depuis le voisin accepté.
-Le motif de goujons 935 est essayé d'abord. Si l'alésage échoue, l'entraxe des
-goujons est libéré (`derived_by_iteration`). Conséquence signalée : **carter et
-cylindres non compatibles M64**.
+For each bore, the stage 1 search is rerun: 80 draws and 200 local
+evaluations, bore fixed, warm start from the accepted neighbor.
+The 935 stud pattern is tried first. If the bore fails, the stud spacing is
+freed (`derived_by_iteration`). Reported consequence: **case and cylinders not
+M64-compatible**.
 
-La bande 95–102,7 est la plage documentée du kit Swindon. Au-delà, jusqu'à 106,
-chaque essai est marqué `exploratory_beyond_sources`. La cylindrée se calcule sur
-6 cylindres avec la course de 76,4 (P3).
+The 95–102.7 band is the documented range of the Swindon kit. Beyond it, up to
+106, each trial is marked `exploratory_beyond_sources`. The displacement is
+computed over 6 cylinders with the stroke of 76.4 (P3).
 
-De nouveaux contrôles deviennent limitants avec un grand alésage :
+New checks become limiting with a large bore:
 
-- **Ø centrage vs Ø extérieur de chemise requis** : Ø centrage 113,42 (candidat 935)
-  ≥ alésage + 2 × 4 (paroi supposée) + 2 × 0,1.
-- **Ø extérieur de chemise requis vs trous de goujon** : le Ø libre entre les trous
-  de goujon est 2 × (60,95 − 5,44) = 111,03 avec le motif 935.
-- **Pont entre cylindres voisins** : `not_computable`. Aucun entraxe de cylindres
-  M64 n'est sourcé ; le seul entraxe du dépôt est 917/Type 912 à 118 mm, niveau C,
-  non transférable.
+- **Spigot Ø vs required liner OD**: spigot Ø 113.42 (935 candidate)
+  ≥ bore + 2 × 4 (assumed wall) + 2 × 0.1.
+- **Required liner OD vs stud holes**: the free Ø between the stud holes is
+  2 × (60.95 − 5.44) = 111.03 with the 935 pattern.
+- **Bridge between neighboring cylinders**: `not_computable`. No M64 cylinder
+  spacing is sourced; the only spacing in the repository is 917/Type 912 at
+  118 mm, level C, not transferable.
 
-| Alésage | Bande | Cylindrée cm³ | Goujons 935 | Marge / contrainte limitante | Goujons libres (non M64) |
+| Bore | Band | Displacement cm³ | 935 studs | Margin / limiting constraint | Free studs (not M64) |
 |---:|---|---:|---|---|---|
-| 95 | doc. | 3 249 | refus | −0,35 têtes hors alésage | refus −0,52 têtes hors alésage |
-| 96 | doc. | 3 318 | refus | −0,20 jeu soupape éch.–piston | refus −0,38 |
-| 97 | doc. | 3 388 | refus | −0,13 jeu soupape éch.–piston | refus −0,14 |
-| 98 | doc. | 3 458 | refus | −0,13 jeu soupape éch.–piston | refus −0,13 |
-| **99** | doc. | 3 529 | **passe** | +0,19 pont adm/adm | — |
-| 100 | doc. (M64) | 3 600 | passe | +0,19 pont adm/adm | — |
-| 101 | doc. | 3 673 | passe | +0,19 pont adm/adm | — |
-| 102 | doc. | 3 746 | passe | +0,19 pont adm/adm | — |
-| **102,7** | doc. | 3 797 | **passe** | +0,13 chemise / trous de goujon | — |
-| 103 | **exploratoire** | 3 820 | refus | −0,17 chemise / trous de goujon | passe +0,32 (goujons 85,8 × 94,1) |
-| 104 | **exploratoire** | 3 894 | refus | −1,17 chemise / trous de goujon | passe +0,32 (93,3 × 94,1) |
-| **105** | **exploratoire** | 3 969 | refus | −2,17 chemise / trous de goujon | **passe** +0,22 (93,3 × 94,1) |
-| 106 | **exploratoire** | 4 045 | refus | −3,17 chemise / trous de goujon | refus −0,78 Ø centrage < Ø chemise requis |
+| 95 | doc. | 3,249 | refused | −0.35 heads outside bore | refused −0.52 heads outside bore |
+| 96 | doc. | 3,318 | refused | −0.20 exhaust valve–piston clearance | refused −0.38 |
+| 97 | doc. | 3,388 | refused | −0.13 exhaust valve–piston clearance | refused −0.14 |
+| 98 | doc. | 3,458 | refused | −0.13 exhaust valve–piston clearance | refused −0.13 |
+| **99** | doc. | 3,529 | **passes** | +0.19 int/int bridge | — |
+| 100 | doc. (M64) | 3,600 | passes | +0.19 int/int bridge | — |
+| 101 | doc. | 3,673 | passes | +0.19 int/int bridge | — |
+| 102 | doc. | 3,746 | passes | +0.19 int/int bridge | — |
+| **102.7** | doc. | 3,797 | **passes** | +0.13 liner / stud holes | — |
+| 103 | **exploratory** | 3,820 | refused | −0.17 liner / stud holes | passes +0.32 (studs 85.8 × 94.1) |
+| 104 | **exploratory** | 3,894 | refused | −1.17 liner / stud holes | passes +0.32 (93.3 × 94.1) |
+| **105** | **exploratory** | 3,969 | refused | −2.17 liner / stud holes | **passes** +0.22 (93.3 × 94.1) |
+| 106 | **exploratory** | 4,045 | refused | −3.17 liner / stud holes | refused −0.78 spigot Ø < required liner Ø |
 
-**Plages d'alésage qui passent :**
+**Bore ranges that pass:**
 
-- **Motif de goujons 935** : de **99 à 102,7 mm**, soit 3 529 à 3 797 cm³.
-  - Côté bas : premier refus à 98 mm, limité par le jeu soupape d'échappement–piston
-    (−0,13). À 95 mm, ce sont les têtes hors alésage.
-  - Côté haut : premier refus à 103 mm, limité par la paroi de chemise vers les trous
-    de goujon (−0,17). Limite analytique : alésage ≤ 111,03 − 8,2 = 102,83.
-- **Goujons écartés** (hors M64, exploratoire) : jusqu'à **105 mm**, soit 3 969 cm³.
-  - À 106 mm, le centrage 935 de Ø113,42 devient plus petit que la chemise requise
-    (114,2).
-  - Aller au-delà impose aussi d'abandonner le centrage candidat 935.
+- **935 stud pattern**: from **99 to 102.7 mm**, i.e. 3,529 to 3,797 cm³.
+  - Low side: first refusal at 98 mm, limited by the exhaust valve–piston
+    clearance (−0.13). At 95 mm, it is the heads outside the bore.
+  - High side: first refusal at 103 mm, limited by the liner wall toward the
+    stud holes (−0.17). Analytic limit: bore ≤ 111.03 − 8.2 = 102.83.
+- **Spread studs** (outside M64, exploratory): up to **105 mm**, i.e. 3,969 cm³.
+  - At 106 mm, the Ø113.42 935 spigot becomes smaller than the required liner
+    (114.2).
+  - Going beyond also requires abandoning the 935 candidate spigot.
 
-Le plus petit alésage qui passe est **99 mm**. Le plus grand qui reste dans la bande
-documentée et le motif 935 est **102,7 mm**, soit 3 797 cm³ (+5,5 % sur 100). La
-marge de 0,13 mm y repose sur les hypothèses de paroi 4 mm et de jeu 0,1. Le pont
-entre cylindres reste non calculable faute d'entraxe M64 sourcé ; c'est **le
-contrôle qui manque pour valider un grand alésage sur un vrai bloc**.
+The smallest bore that passes is **99 mm**. The largest that stays within the
+documented band and the 935 pattern is **102.7 mm**, i.e. 3,797 cm³ (+5.5% over
+100). The 0.13 mm margin there rests on the hypotheses of a 4 mm wall and a
+0.1 clearance. The bridge between cylinders remains not computable for lack of
+a sourced M64 spacing; it is **the check that is missing to validate a large
+bore on a real block**.
 
-## Ce qui est bloquant ou reste hypothétique
+## What is blocking or remains hypothetical
 
-1. **Les marges retenues sont minces et reposent sur des hypothèses.** Pont 3,0
-   entre sièges (marge 0,19), paroi goujon–conduit 3,0 (marge 0,20), jeu piston
-   1,5 (marge 0,26) : tous `unsourced`. Réévaluée sans nouvelle itération, la
-   configuration passe encore avec un pont de 3,25 mm (marge 0,10). À 3,5 mm, elle
-   échoue sur la paroi goujon–conduit (−0,007), car les paires s'écartent.
-2. Le Ø extérieur du GSC5092 n'est pas publié (30 supposé). Il fixe le Ø des
-   logements, donc les parois goujon/logement (1,58) et éch./éch. (1,19).
-3. La commande est un **culbuteur** ramené à un empilement axial. Un poussoir à
-   coupelle demanderait Ø ≥ 39,7 pour la loi V1 (valeur cohérente avec le Ø39,2 du
-   935). Il n'est pas logeable ici entre les goujons et dans la paire
-   d'échappement.
-4. La loi et le calage V1 sont supposés (durées, centres, rampes). Le calage
-   retenu retarde l'admission de 5,7° pour gagner du jeu au piston.
-5. Plusieurs cotes ne sont que des candidats C d'une 935 2 soupapes, non
-   transférables à une M64 : goujons, centrage, face porte-arbre, brides. Entraxe
-   des cylindres, bloc, passages d'huile, sortie latérale des puits de bougie et
-   refroidissement ne sont pas modélisés.
-6. Les ponts sont projetés et les conduits sont des cylindres droits. Le taux de
-   compression, les efforts et la thermique ne sont pas calculés.
+1. **The retained margins are thin and rest on hypotheses.** Bridge of 3.0
+   between seats (margin 0.19), stud–port wall 3.0 (margin 0.20), piston
+   clearance 1.5 (margin 0.26): all `unsourced`. Reassessed without a new
+   iteration, the configuration still passes with a 3.25 mm bridge (margin
+   0.10). At 3.5 mm, it fails on the stud–port wall (−0.007), because the pairs
+   move apart.
+2. The OD of the GSC5092 is not published (30 assumed). It sets the Ø of the
+   pockets, hence the stud/pocket (1.58) and exh/exh (1.19) walls.
+3. The actuation is a **rocker** reduced to an axial stack. A bucket tappet
+   would require Ø ≥ 39.7 for the V1 law (a value consistent with the Ø39.2 of
+   the 935). It cannot be fitted here between the studs and within the exhaust
+   pair.
+4. The V1 law and timing are assumed (durations, centers, ramps). The retained
+   timing retards the intake by 5.7° to gain piston clearance.
+5. Several dimensions are only C candidates from a 2-valve 935, not
+   transferable to an M64: studs, spigot, cam carrier face, flanges. Cylinder
+   spacing, block, oil passages, lateral exit of the spark plug wells and
+   cooling are not modeled.
+6. The bridges are projected and the ports are straight cylinders. The
+   compression ratio, the loads and the thermal behavior are not computed.
 
-## Sorties
+## Outputs
 
-STEP de moins de 1 Mo versés dans le dépôt : culasse (640 Ko), soupapes, guides,
-sièges et coupelles, ressorts, chemise, piston, joint, goujons. S'y ajoutent une
-coupe XZ en SVG, les paramètres résolus, les contrôles, l'historique et le
-manifeste avec SHA-256 (entrées, sources, générateurs, sorties).
+STEPs under 1 MB committed to the repository: cylinder head (640 KB), valves,
+guides, seats and retainers, springs, liner, piston, gasket, studs. Added to
+these are an XZ section as SVG, the resolved parameters, the checks, the
+history and the manifest with SHA-256 digests (inputs, sources, generators,
+outputs).
 
-Deux fichiers dépassent 1 Mo et restent **hors dépôt**, dans
-`/home/maxime/m64-local-artifacts/g1-four-valve-20260914/` : arbres à cames (1,01 Mo)
-et assemblage à φ = 0 (2,0 Mo). Leurs empreintes figurent dans le manifeste. Les
-en-têtes STEP sont horodatés, donc les empreintes STEP changent à chaque
-régénération.
+Two files exceed 1 MB and stay **outside the repository**, in
+`/home/maxime/m64-local-artifacts/g1-four-valve-20260914/`: camshafts (1.01 MB)
+and assembly at φ = 0 (2.0 MB). Their digests are in the manifest. The STEP
+headers are timestamped, so the STEP digests change on every regeneration.
 
-Reproduction :
-`uv run --no-project --with cadquery --with numpy python twins/m64-cylinder-head/source/fourvalve/run.py twins/m64-cylinder-head/evidence/g1-four-valve-20260914 --external-dir <hors dépôt>`
-(code de sortie 2 si la configuration est refusée ; `--no-cad` pour le calcul seul).
+Reproduction:
+`uv run --no-project --with cadquery --with numpy python twins/m64-cylinder-head/source/fourvalve/run.py twins/m64-cylinder-head/evidence/g1-four-valve-20260914 --external-dir <outside-repository>`
+(exit code 2 if the configuration is refused; `--no-cad` for the computation only).

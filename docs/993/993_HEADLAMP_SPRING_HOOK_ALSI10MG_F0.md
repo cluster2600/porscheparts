@@ -1,84 +1,99 @@
-# Crochet de ressort de phare 993 AlSi10Mg — jumeau F0
+# 993 headlamp spring hook, AlSi10Mg — F0 twin
 
-## Décision
+## Decision
 
-Le crochet est un bon premier candidat métal additif : petite série de
-réparation, géométrie creuse, masse très faible et précédent commercial imprimé
-en aluminium ou inox. Contrairement à une vis standard, la fabrication additive
-peut avoir du sens pour restaurer une fonction devenue difficile à approvisionner.
+The hook is a good first metal additive candidate: a small repair series, hollow
+geometry, very low mass and a commercial precedent printed in aluminum or
+stainless. Unlike a standard bolt, additive manufacturing can make sense for
+restoring a function that has become hard to source.
 
-Le F0 n'est toutefois pas une copie de la pièce commerciale ou Porsche. Aucune
-cote publique du crochet ni de son interface avec le phare n'a été trouvée. La
-CAO `16 × 8 × 15 mm` est donc une hypothèse indépendante destinée à éprouver la
-chaîne logicielle. Elle ne doit être ni imprimée pour montage, ni collée, ni
-installée.
+The F0 is, however, not a copy of the commercial or Porsche part. No public
+dimension of the hook or of its interface with the headlamp has been found. The
+`16 × 8 × 15 mm` CAD is therefore an independent hypothesis meant to exercise
+the software chain. It must not be printed for fitting, bonded, or installed.
 
-Références :
-[crochet commercial Roadster-Fashion](https://shop.roadster-fashion.de/de/reparaturteil-federhaken-am-scheinwerfer.html) et
-[route officielle EOS M 290 / AlSi10Mg / 30 µm](https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alsi10mg-eos-m-290-30um).
+References:
+[Roadster-Fashion commercial hook](https://shop.roadster-fashion.de/de/reparaturteil-federhaken-am-scheinwerfer.html) and
+[official EOS M 290 / AlSi10Mg / 30 µm route](https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alsi10mg-eos-m-290-30um).
 
-## Matière et procédé retenus pour le criblage
+```mermaid
+flowchart LR
+  S["No public dimension<br/>of the hook"] --> G["Independent F0 hypothesis<br/>16 × 8 × 15 mm"]
+  G --> R["Screens run: analytical,<br/>LPBF slicing, CalculiX,<br/>OpenUSD, rigid bodies"]
+  R --> B["Blocked: scan, spring load,<br/>headlamp temperatures,<br/>hot card, first article"]
+  B --> V["Not to be printed for fitting,<br/>bonded or installed"]
+  class S,B open
+  class R open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-La route candidate est `EOS Aluminium AlSi10Mg`, jeu matière
-`AlSi10Mg_FlexM291 2.01`, EOS M 290, couches de `30 µm`, état brut de
-fabrication. La fiche EOS publie notamment une densité minimale de
-`2,67 g/cm³`, une limite d'élasticité verticale de coupon de `233 MPa`, une
-résistance ultime minimale de `461 MPa`, une conductivité verticale de
-`100 W/(m·K)` et une paroi minimale indicative de `0,4 mm`.
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
 
-Ces valeurs sont des propriétés de coupons, pas des admissibles de pièce. La
-résistance dépendante de la température, la surface brute, les entailles, le
-lot de poudre et l'orientation réelle doivent être qualifiés.
+## Material and process chosen for the screening
 
-## Résultats exécutés
+The candidate route is `EOS Aluminium AlSi10Mg`, material set
+`AlSi10Mg_FlexM291 2.01`, EOS M 290, `30 µm` layers, as-built condition. The EOS
+sheet publishes in particular a minimum density of `2.67 g/cm³`, a vertical
+coupon yield strength of `233 MPa`, a minimum ultimate strength of `461 MPa`, a
+vertical conductivity of `100 W/(m·K)` and an indicative minimum wall of
+`0.4 mm`.
 
-| Domaine | Exécution | Résultat utile | Autorité |
+These values are coupon properties, not part allowables. Temperature-dependent
+strength, the as-built surface, notches, the powder batch and the real
+orientation must be qualified.
+
+## Results run
+
+| Domain | Execution | Useful result | Authority |
 |---|---|---|---|
-| Équations analytiques | flexion, cisaillement, Von Mises, flèche, collage moyen, dilatation | masse `2,352 g`; Von Mises `15,348 MPa`; croissance libre `0,0352 mm` | régression synthétique |
-| Géométrie LPBF | 4 000 sondes et section de chaque couche | `425` couches; orientation `roll_y_45`; supports proxy `3,06 mm³`; pas de poudre piégée à `0,25 mm` | criblage, pas EOSPRINT |
-| CalculiX | six calculs C3D10, froid et chaud, trois maillages | p95 fin `10,786 MPa` froid et `141,898 MPa` chaud; variation p95 fin/précédent `0,47 %` et `2,84 %` | cas de charge synthétique |
-| OpenUSD | conversion STEP avec `usd-convert-cad 0.2.0` | asset binaire Z-up en millimètres | conformité d'échange |
-| Validation NVIDIA | `nvidia_usd_validate 1.21.0` | asset et scène rigide sans règle en échec | schéma/qualité USD |
-| Corps rigides | `ovstage 0.1.1.355824` + `ovphysx 0.5.11` CPU | témoin stabilisé de `22` à `17 mm` en `240` pas | intégration logicielle seulement |
-| PhysicsNeMo | non exécuté | six cas non corrélés sont insuffisants pour entraîner un surrogate | bloqué |
-| OVRTX | non exécuté pour ce F0 | GPU RTX non nécessaire avant géométrie réelle | bloqué |
+| Analytical equations | bending, shear, von Mises, deflection, mean bond, expansion | mass `2.352 g`; von Mises `15.348 MPa`; free growth `0.0352 mm` | synthetic regression |
+| LPBF geometry | 4,000 probes and section of every layer | `425` layers; orientation `roll_y_45`; proxy supports `3.06 mm³`; no trapped powder at `0.25 mm` | screening, not EOSPRINT |
+| CalculiX | six C3D10 runs, cold and hot, three meshes | fine p95 `10.786 MPa` cold and `141.898 MPa` hot; p95 variation fine/previous `0.47 %` and `2.84 %` | synthetic load case |
+| OpenUSD | STEP conversion with `usd-convert-cad 0.2.0` | binary Z-up asset in millimeters | exchange compliance |
+| NVIDIA validation | `nvidia_usd_validate 1.21.0` | asset and rigid scene with no failing rule | USD schema/quality |
+| Rigid bodies | `ovstage 0.1.1.355824` + `ovphysx 0.5.11` CPU | witness settled from `22` to `17 mm` in `240` steps | software integration only |
+| PhysicsNeMo | not run | six uncorrelated cases are insufficient to train a surrogate | blocked |
+| OVRTX | not run for this F0 | RTX GPU not needed before real geometry | blocked |
 
-Le maximum local chaud CalculiX vaut `303,467 MPa`, supérieur à la limite
-d'élasticité ambiante de coupon. Il se situe près de l'encastrement thermique
-rigide et ne converge pas comme le p95 : c'est un signal de singularité ou de
-conception défavorable à investiguer, jamais une preuve de rupture ni de tenue.
+The CalculiX hot local maximum is `303.467 MPa`, above the room-temperature
+coupon yield strength. It sits near the rigid thermal clamp and does not
+converge like the p95: it is a signal of a singularity or of an unfavorable
+design to investigate, never a proof of failure or of integrity.
 
-## Ce qui bloque l'impression
+## What blocks printing
 
-- scan ou métrologie du crochet cassé, du logement et du ressort ;
-- force, direction, course, contact et nombre de cycles du ressort ;
-- température, rayonnement et spectre vibratoire mesurés dans le phare ;
-- colle, préparation, jeu, cisaillement et pelage à chaud ;
-- carte matière chaude et traitement de la route EOS retenue ;
-- supports, orientation et fichier machine fournisseur ;
-- première pièce, CT/CND, métrologie, essai de rétention, réglage du faisceau et
-  revue d'ingénierie signée.
+- scan or metrology of the broken hook, the seat and the spring;
+- force, direction, travel, contact and number of cycles of the spring;
+- temperature, radiation and vibration spectrum measured in the headlamp;
+- adhesive, preparation, gap, shear and peel when hot;
+- hot material card and heat treatment of the chosen EOS route;
+- supports, orientation and supplier machine file;
+- first article, CT/NDT, metrology, retention test, beam aim and a signed
+  engineering review.
 
-Les preuves et leurs SHA-256 sont regroupées dans
+The evidence and its SHA-256 digests are gathered in
 [`twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/`](../../twins/993-headlamp-spring-hook-alsi10mg-f0/evidence/).
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 425 |
-| hauteur de construction | 12,73 mm |
-| couches avec region non soutenue | 1 |
-| proxy de supports | 3,06 mm³ |
-| epaisseur locale p01 | 1,000 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 425 |
+| build height | 12.73 mm |
+| layers with an unsupported region | 1 |
+| support proxy | 3.06 mm³ |
+| local thickness p01 | 1.000 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-elec-headlamp-spring-hook-f0-0001/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-elec-headlamp-spring-hook-f0-0001/evidence/lpbf-f0/993-elec-headlamp-spring-hook-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

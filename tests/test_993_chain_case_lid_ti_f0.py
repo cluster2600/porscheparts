@@ -127,7 +127,7 @@ class ChainCaseLidTitaniumTests(unittest.TestCase):
         part = load(PART)
         self.assertEqual(part["classification"]["safety_class"], "functional")
         limits = " ".join(part["validation"]["known_limits"])
-        self.assertIn("retient de l'huile", limits)
+        self.assertIn("retains oil", limits)
 
     def test_the_route_is_milling_not_printing(self) -> None:
         part = load(PART)

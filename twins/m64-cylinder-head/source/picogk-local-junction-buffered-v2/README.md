@@ -1,113 +1,128 @@
-# Témoin fin à masque monde fixe — comparaison rejetée
+# Fine witness with a fixed world mask — comparison rejected
 
-Cette version séparée conserve le programme, les critères et les reçus du
-témoin 0,2 précédent. Le témoin 0,1 utilise les mêmes cylindres, le même rayon
-de fermeture 1 et les mêmes régions monde : région autorisée
-`[-8,-3,-8] → [8,3,8]`, masque `[-7.4,-2.4,-7.4] → [7.4,2.4,7.4]`.
-Le recul est fixé à **0,6 unité**, soit 3h au pas 0,2 et 6h au pas 0,1.
-L'alternative 3h au pas 0,1 aurait changé le masque à 0,3 unité ; elle n'a
-pas été exécutée. La comparaison vise donc une même géométrie monde, mais
-ne démontre pas une convergence asymptotique à partir de deux extractions.
+This separate version keeps the program, criteria and receipts of the previous
+0.2 witness. The 0.1 witness uses the same cylinders, the same closing radius 1
+and the same world regions: allowed region `[-8,-3,-8] → [8,3,8]`, mask
+`[-7.4,-2.4,-7.4] → [7.4,2.4,7.4]`. The setback is fixed at **0.6 unit**, i.e.
+3h at step 0.2 and 6h at step 0.1. The alternative of 3h at step 0.1 would have
+changed the mask to 0.3 unit; it was not run. The comparison therefore targets
+the same world geometry, but does not demonstrate asymptotic convergence from
+two extractions.
 
-La politique séparée `criteria-0p1-fixed-margin.json` a été enregistrée avant
-exécution. Elle fixe les critères 5 % sur le volume effectivement ajouté
-`Vaprès−Vavant` (dénominateur : volume ajouté au pas fin) et 0,2 unité sur les
-distances bidirectionnelles échantillonnées. L'ajout booléen diagnostique
-n'est pas confondu avec cette différence de volumes globaux.
+The separate policy `criteria-0p1-fixed-margin.json` was recorded before
+execution. It fixes the criteria of 5% on the volume actually added
+`Vaprès−Vavant` (after − before; denominator: volume added at the fine step) and
+0.2 unit on the sampled bidirectional distances. The diagnostic Boolean addition
+is not confused with this difference of global volumes.
 
-## Garde renforcé, sans écraser le reçu précédent
+## Strengthened guard, without overwriting the previous receipt
 
-`audit_buffered_surface.py` v2 exige explicitement les compteurs et deltas SDF
-nuls hors ROI et aux protections, **zéro paire indisponible**, les six noms
-de champs VDB exacts avec comparaisons bit à bit réussies et non vides, les
-gardes d'occupation des deux conventions de zéro, la topologie normalisée
-et le support de tous les triangles modifiés dans la ROI. L'audit v1
-affichait les différences SDF mais ne les incluait pas dans sa décision.
+`audit_buffered_surface.py` v2 explicitly requires zero SDF counters and deltas
+outside the ROI and at the protections, **zero unavailable pairs**, the exact six
+VDB field names with successful and non-empty bit-for-bit comparisons, the
+occupancy guards of both zero conventions, the normalized topology and the
+support of all modified triangles within the ROI. The v1 audit displayed the SDF
+differences but did not include them in its decision.
 
-Le reçu 0,2 exact a été relu avec cette décision v2 dans un **nouveau**
-rapport, sans recalcul natif ni modification des anciens reçus : il passe.
-Les tests numériques couvrent chaque échec SDF/VDB/occupation, les ensembles
-de surfaces vides, le seuil volumique et un témoin de distance triangle-plan.
-Ils complètent les contrats de politique et la revue indépendante du code.
+The exact 0.2 receipt was reread with this v2 decision in a **new** report,
+without native recalculation or modification of the old receipts: it passes.
+The numerical tests cover each SDF/VDB/occupancy failure, empty surface sets,
+the volume threshold and a triangle-plane distance witness. They complement the
+policy contracts and the independent code review.
 
-## Résultats du 8 septembre 2026
+## Results of September 8, 2026
 
-Au pas **0,1**, 8 615 125 nœuds ont été comparés. Les valeurs de six champs
-VDB relus sont bit à bit identiques dans leurs boîtes natives ; l'extérieur
-de ces boîtes n'est pas inclus dans cette preuve. Aucun signe ni valeur SDF
-n'a changé hors de la ROI autorisée. En revanche, **24 points protégés** sont
-passés de zéro à strictement négatifs : changement pour `<0`, pas pour `<=0`.
-Le maximum de différence SDF protégée est **0,0017724712379276752 unité monde**.
-Cette différence n'est pas une borne du déplacement de l'isosurface.
+At step **0.1**, 8,615,125 nodes were compared. The values of the six reread VDB
+fields are bit-for-bit identical within their native boxes; the outside of these
+boxes is not included in this proof. No SDF sign or value changed outside the
+allowed ROI. On the other hand, **24 protected points** went from zero to
+strictly negative: a change for `<0`, not for `<=0`. The maximum protected SDF
+difference is **0.0017724712379276752 world unit**. This difference is not a
+bound on the displacement of the isosurface.
 
-| Contrôle | Pas 0,2 | Pas 0,1 |
+| Check | Step 0.2 | Step 0.1 |
 |---|---:|---:|
-| Volume réellement ajouté, unité³ | 9,4851540221 | 8,1763984723 |
-| Volume de l'ajout diagnostique, unité³ | 5,8665534947 | 7,0556823288 |
-| Résidu entre les deux, unité³ | 3,6186005274 | 1,1207161435 |
-| Points protégés modifiés, convention `<0` | 0 | 24 |
-| Triangles bruts exactement nuls, candidat | 16 | 0 |
-| Triangles bruts exactement nuls, ajout diagnostique | 8 | 40 |
+| Volume actually added, unit³ | 9.4851540221 | 8.1763984723 |
+| Volume of the diagnostic addition, unit³ | 5.8665534947 | 7.0556823288 |
+| Residual between the two, unit³ | 3.6186005274 | 1.1207161435 |
+| Protected points modified, `<0` convention | 0 | 24 |
+| Exactly zero raw triangles, candidate | 16 | 0 |
+| Exactly zero raw triangles, diagnostic addition | 8 | 40 |
 
-Au pas fin, les surfaces avant et après passent l'écran combinatoire brut.
-L'ajout diagnostique brut reste rejeté à cause de ses 40 triangles nuls.
-Après la seule suppression exacte de ces triangles dans une copie en mémoire,
-chacune des trois surfaces forme une composante fermée orientée combinatoire.
-Cela ne vérifie pas les auto-intersections géométriques ni la physique.
+At the fine step, the before and after surfaces pass the raw combinatorial
+screen. The raw diagnostic addition stays rejected because of its 40 zero
+triangles. After only the exact deletion of these triangles in an in-memory copy,
+each of the three surfaces forms one combinatorially closed oriented component.
+This checks neither geometric self-intersections nor the physics.
 
-Les 19 846 faces retirées et 20 678 ajoutées au pas fin sont toutes contenues
-dans la région autorisée. **Cela ne protège pas une interface située à
-l'intérieur de cette région** : le garde des 24 points reste en échec.
+The 19,846 faces removed and 20,678 added at the fine step are all contained in
+the allowed region. **This does not protect an interface located inside that
+region**: the guard on the 24 points stays failing.
 
-L'écart relatif des volumes réellement ajoutés est **16,006504 % > 5 %**.
-Les maxima des distances bidirectionnelles échantillonnées sont :
+The relative deviation of the volumes actually added is **16.006504% > 5%**.
+The maxima of the sampled bidirectional distances are:
 
-- Avant : **0,09240311** unité.
-- Après : **0,10105891** unité.
-- Ajout diagnostique : **0,36516039** unité, au-delà de **0,2**.
+- Before: **0.09240311** unit.
+- After: **0.10105891** unit.
+- Diagnostic addition: **0.36516039** unit, beyond **0.2**.
 
-Les distances sont calculées vers toutes les faces de la surface cible, à
-partir d'au plus 20 000 sommets/centroïdes déterministes par direction.
-Ce ne sont pas des bornes de Hausdorff continues. Le résidu volumique reste
-inexpliqué et n'est pas supprimé du rapport.
+The distances are computed to all faces of the target surface, from at most
+20,000 deterministic vertices/centroids per direction. They are not continuous
+Hausdorff bounds. The volume residual remains unexplained and is not removed
+from the report.
 
-## Cause géométrique du garde : masque et protection se recouvrent
+```mermaid
+flowchart TD
+    A["Step 0.1, fixed 0.6-unit<br/>world mask"] --> B["Outside ROI: SDF unchanged<br/>VDB bit-for-bit"]:::ok
+    A --> C["24 protected points<br/>zero to negative"]:::stop
+    A --> D["Added volume deviation<br/>16.006504% &gt; 5%"]:::stop
+    A --> E["Diagnostic addition distance<br/>0.36516039 &gt; 0.2"]:::stop
+    C --> F["Rejection maintained<br/>no private intake"]:::stop
+    D --> F
+    E --> F
+    C -.-> G["Cause: mask XZ corner radius<br/>10.46518036 &gt; ring R=10"]:::open
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-`diagnose_protected_points.py` utilise uniquement le reçu existant, sans
-recalcul de champ. Les 24 points sont tous dans le masque intérieur et dans
-la bande protégée autour de l'anneau `R=10, Y=0`. Le rayon du coin XZ du masque
-vaut **10,46518036**, supérieur à 10 : une boîte reculée axialement ne suffit
-pas à exclure une couronne radiale.
+## Geometric cause of the guard: mask and protection overlap
 
-Les coordonnées synthétiques sont les symétries et permutations X/Z des
-paires `(6,7000003 ; 7,3)`, `(6,8 ; 7,2000003)` et `(6,9 ; 7,1)`, à Y=0.
-Leur distance à l'anneau est comprise entre **0,09141766 et 0,09949496 unité**.
-Le diagnostic conserve les 24 coordonnées et valeurs exactes du reçu.
-Le recouvrement est démontré ; l'origine algorithmique exacte des variations
-SDF n'est pas identifiée par ce seul contrôle.
+`diagnose_protected_points.py` uses only the existing receipt, without any field
+recalculation. The 24 points all lie in the inner mask and in the protected band
+around the ring `R=10, Y=0`. The radius of the mask's XZ corner is
+**10.46518036**, greater than 10: an axially set-back box is not enough to
+exclude a radial crown.
 
-La correction future justifiable est un masque explicitement disjoint des
-protections radiales, à tester séparément. Aucun nouveau masque, aucune passe
-supplémentaire et aucun epsilon de tolérance n'ont été appliqués dans ce lot.
+The synthetic coordinates are the X/Z symmetries and permutations of the pairs
+`(6.7000003; 7.3)`, `(6.8; 7.2000003)` and `(6.9; 7.1)`, at Y=0. Their distance
+to the ring lies between **0.09141766 and 0.09949496 unit**. The diagnostic keeps
+the exact 24 coordinates and values of the receipt. The overlap is demonstrated;
+the exact algorithmic origin of the SDF variations is not identified by this
+check alone.
 
-## Ressources et arrêt
+The justifiable future correction is a mask explicitly disjoint from the radial
+protections, to be tested separately. No new mask, no additional pass and no
+tolerance epsilon were applied in this batch.
 
-Tout a utilisé Kali, réseau désactivé, 2 CPU / 4 Gio, délai maximal 300 s par
-étape. Pour les 363 228 triangles du candidat fin, l'audit a reçu un opt-in
-**ressources seulement** de 500 000 faces / 1 500 000 sommets. Les helpers
-historiques restent inchangés sur disque, avec leurs limites de 150 000 faces.
-Les prédicats exacts et seuils géométriques n'ont pas changé.
+## Resources and stop
 
-- Natif : 31,27 s ; pic processus 283 234 304 octets.
-- Audit : 60,52 s ; RSS maximal GNU time 705 204 KiB.
-- Comparaison : 7,53 s ; RSS maximal GNU time 296 092 KiB.
+Everything used Kali, network disabled, 2 CPUs / 4 GiB, maximum 300 s per step.
+For the 363,228 triangles of the fine candidate, the audit received a
+**resources-only** opt-in of 500,000 faces / 1,500,000 vertices. The historical
+helpers remain unchanged on disk, with their limits of 150,000 faces. The exact
+predicates and geometric thresholds did not change.
 
-**Rejet maintenu, aucune application à l'admission privée.** Aucun achat Vast,
-aucune modification du maître, aucune qualification CFD ou impression.
+- Native: 31.27 s; process peak 283,234,304 bytes.
+- Audit: 60.52 s; GNU time maximum RSS 705,204 KiB.
+- Comparison: 7.53 s; GNU time maximum RSS 296,092 KiB.
 
-Empreintes des reçus privés :
+**Rejection maintained, no application to the private intake.** No Vast
+purchase, no modification of the master, no CFD or printing qualification.
 
-- Natif fin : `7a088f495b8b4b5007e78f2c2d181fdf4e0eeb5fdc66003fab9c917570617ac3`.
-- Audit fin v2 : `164093fc8077cd6cf61c977e7ec99bd273970d3e1cf995baf8af64b5862ed344`.
-- Comparaison : `5b2db9a7db2234832c4a0c9c58f3248148c15938453bea6ab7fbc6aa179106dc`.
-- Diagnostic des protections : `eaa8254fa1624e8fe0d807196671c2a8fb9df00611192c2037c0e45ac630d7e8`.
+Digests of the private receipts:
+
+- Fine native: `7a088f495b8b4b5007e78f2c2d181fdf4e0eeb5fdc66003fab9c917570617ac3`.
+- Fine audit v2: `164093fc8077cd6cf61c977e7ec99bd273970d3e1cf995baf8af64b5862ed344`.
+- Comparison: `5b2db9a7db2234832c4a0c9c58f3248148c15938453bea6ab7fbc6aa179106dc`.
+- Protection diagnostic: `eaa8254fa1624e8fe0d807196671c2a8fb9df00611192c2037c0e45ac630d7e8`.

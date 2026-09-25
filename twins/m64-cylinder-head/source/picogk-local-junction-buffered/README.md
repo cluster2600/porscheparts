@@ -1,85 +1,96 @@
-# Raccord local — témoin avec masque intérieur
+# Local junction — witness with an inner mask
 
-Le témoin reste constitué des mêmes deux cylindres étagés, sans culasse
-privée. Rayon de fermeture : 1 unité. Pas : 0,2. La région autorisée reste
-`[-8,-3,-8] → [8,3,8]`. Le masque de construction est reculé de `3h`, soit
-0,6 unité, sur ses six côtés. Ce recul est une hypothèse préenregistrée dans
-`criteria.json`, pas une garantie mathématique de l'extraction.
+The witness is still made of the same two stepped cylinders, with no private
+cylinder head. Closing radius: 1 unit. Step: 0.2. The allowed region remains
+`[-8,-3,-8] → [8,3,8]`. The construction mask is set back by `3h`, i.e.
+0.6 unit, on its six sides. This setback is an assumption preregistered in
+`criteria.json`, not a mathematical guarantee of the extraction.
 
-La construction est `A ∪ (C ∩ Rintérieur)`, avec `C = fermeture(A)`.
-L'ajout `(C \ A) ∩ Rintérieur` reste diagnostique, sans intervenir dans cette
-construction. Les contrôles utilisent toujours la région autorisée extérieure.
-Le runtime épinglé appelle `RebuildGrid`, mais cette méthode est un no-op :
-aucune reconstruction effective ne lui est attribuée.
+The construction is `A ∪ (C ∩ Rintérieur)` (`Rintérieur` = inner region), with
+`C = closing(A)`. The addition `(C \ A) ∩ Rintérieur` stays diagnostic, without
+taking part in this construction. The checks always use the outer allowed
+region. The pinned runtime calls `RebuildGrid`, but this method is a no-op: no
+effective reconstruction is attributed to it.
 
-## Résultat du 8 septembre 2026
+## Result of September 8, 2026
 
-Le natif s'est terminé en **5,278 s**, pic processus **185 507 840 octets**,
-sur Kali avec 2 CPU / 4 Gio, réseau désactivé, limite 300 s. La compilation
-a réussi avec NU1900 : consultation des vulnérabilités NuGet indisponible
-hors réseau, packages requis déjà présents.
+The native run finished in **5.278 s**, process peak **185,507,840 bytes**, on
+Kali with 2 CPUs / 4 GiB, network disabled, 300 s limit. The build succeeded with
+NU1900: NuGet vulnerability lookup unavailable offline, required packages
+already present.
 
-Sur **1 157 625 nœuds** comparables, les deux conventions de zéro (`<0`,
-`<=0`) donnent zéro changement hors ROI ou aux interfaces protégées, zéro
-perte de gaz et zéro contact de l'ajout avec le bord autorisé. Respectivement
-1 944 et 828 nœuds changent à l'intérieur. Les **valeurs SDF** comparées sont
-aussi inchangées hors ROI et aux protections : maximum des différences nul.
-Les longueurs sont déjà les unités monde, nommées MM par PicoGK pour ce témoin
-synthétique ; aucune multiplication supplémentaire par le pas n'est appliquée.
+Of **1,157,625** comparable nodes, both zero conventions (`<0`, `<=0`) give zero
+change outside the ROI or at the protected interfaces, zero gas loss and zero
+contact of the addition with the allowed boundary. Respectively 1,944 and 828
+nodes change inside. The compared **SDF values** are also unchanged outside the
+ROI and at the protections: maximum of the differences is zero. The lengths are
+already world units, named MM by PicoGK for this synthetic witness; no
+additional multiplication by the step is applied.
 
-Les six champs sauvegardés en VDB ont été relus et leurs valeurs float
-comparées **bit à bit sur chacune de leurs boîtes natives englobantes** :
-aucune différence. Les valeurs au-delà de ces boîtes n'ont pas été comparées.
-Cette preuve de sérialisation n'est ni une preuve de qualité de la distance
-signée, ni une validation physique.
+The six fields saved to VDB were reread and their float values compared
+**bit for bit on each of their enclosing native boxes**: no difference. Values
+beyond these boxes were not compared. This serialization proof is neither a
+proof of the quality of the signed distance nor a physical validation.
 
-| Surface | Faces brutes | Faces exactement nulles retirées dans la copie | Résultat normalisé |
+| Surface | Raw faces | Exactly zero faces removed in the copy | Normalized result |
 |---|---:|---:|---|
-| Avant | 89 708 | 0 | Une composante fermée orientée combinatoire |
-| Après | 90 028 | 16 | Une composante fermée orientée combinatoire |
-| Ajout diagnostique | 4 464 | 8 | Une composante fermée orientée combinatoire |
+| Before | 89,708 | 0 | One combinatorially closed oriented component |
+| After | 90,028 | 16 | One combinatorially closed oriented component |
+| Diagnostic addition | 4,464 | 8 | One combinatorially closed oriented component |
 
-**Le rejet brut reste conservé.** La normalisation est une étape distincte :
-suppression en mémoire des seuls triangles d'aire exactement nulle selon un
-prédicat entier dyadique, sans déplacement, suppression de triangle non nul,
-remplissage, retriangulation, réparation de normale ou composante écartée.
-L'audit combinatoire inclut les liens de sommets, les incidences d'arêtes,
-les faces dupliquées et les orientations.
+**The raw rejection stays kept.** Normalization is a distinct step: in-memory
+deletion of only the triangles of exactly zero area according to a dyadic
+integer predicate, without displacement, deletion of a non-zero triangle,
+filling, retriangulation, normal repair or discarded component. The
+combinatorial audit includes the vertex links, the edge incidences, duplicate
+faces and orientations.
 
-Le multiensemble des triangles orientés normalisés trouve 5 804 faces retirées
-et 6 108 ajoutées : **aucune n'a son support hors de la ROI autorisée**.
-La ROI étant convexe, le contrôle de ses trois sommets contient le triangle
-entier. C'est une preuve sur les deux surfaces triangulées données, pas sur
-un B-Rep ou un champ continu sous-jacent. L'auto-intersection géométrique et
-l'imbrication des coques ne sont pas qualifiées par cet audit combinatoire.
+The multiset of normalized oriented triangles finds 5,804 faces removed and
+6,108 added: **none has its support outside the allowed ROI**. Since the ROI is
+convex, checking its three vertices contains the whole triangle. This is a proof
+on the two given triangulated surfaces, not on an underlying B-Rep or continuous
+field. Geometric self-intersection and shell nesting are not qualified by this
+combinatorial audit.
 
-Le résidu `Vaprès − Vavant − Vajout` vaut **3,6186005274230206 unité³**.
-Il reste inexpliqué et n'est pas masqué par le succès des gardes déclarés.
-Les trois isosurfaces sont extraites séparément ; ce résidu n'est pas un
-critère nul préenregistré de cette expérience.
+The residual `Vaprès − Vavant − Vajout` (after − before − addition) equals
+**3.6186005274230206 unit³**. It remains unexplained and is not hidden by the
+success of the declared guards. The three isosurfaces are extracted separately;
+this residual is not a preregistered zero criterion of this experiment.
 
-## Stratégie de tests et portée
+```mermaid
+flowchart TD
+    A["A ∪ (C ∩ R inner), step 0.2<br/>mask set back 0.6 unit"] --> B["Occupancy and SDF values<br/>unchanged outside ROI and protections"]:::ok
+    B --> C["Six VDB fields<br/>bit-for-bit on native boxes"]:::ok
+    C --> D["Raw meshes: 16 and 8<br/>zero-area triangles, rejection kept"]:::stop
+    C --> E["Normalized copy: one closed<br/>oriented component each"]:::ok
+    E --> F["declared_exploratory_screen_pass<br/>normalized chain only"]:::open
+    F --> G["No step 0.1, no private<br/>intake run or authorized"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-- Contrats rapides : région autorisée constante, marge 3h, rayon/pas figés,
-  distinction masque/contrôle et arrêt avant toute géométrie privée.
-- Intégration native : double convention d'occupation, comparaison des valeurs
-  du champ et aller-retour VDB bit à bit sur les boîtes natives.
-- Contre-calcul : réutilisation de `audit_surface_topology.py` et
-  `audit_direct_union_surface.py`, avec empreintes des helpers dans le reçu.
-- Régressions de décision : chaque garde d'occupation, de relecture VDB,
-  de topologie normalisée ou de support hors ROI doit empêcher le succès.
+## Test strategy and scope
 
-Le statut obtenu est **`declared_exploratory_screen_pass` pour la chaîne
-normalisée uniquement**. Aucune comparaison au pas 0,1 ni application à
-l'admission privée n'a été exécutée ou autorisée automatiquement. Le témoin
-ne prouve pas un raccord G1, un bénéfice CFD, une tenue mécanique/thermique
-ou une imprimabilité.
+- Fast contracts: constant allowed region, 3h margin, fixed radius/step,
+  mask/check distinction and stop before any private geometry.
+- Native integration: double occupancy convention, comparison of the field
+  values and bit-for-bit VDB round trip on the native boxes.
+- Counter-calculation: reuse of `audit_surface_topology.py` and
+  `audit_direct_union_surface.py`, with the helpers' digests in the receipt.
+- Decision regressions: each occupancy, VDB-reread, normalized-topology or
+  outside-ROI-support guard must prevent success.
 
-Empreintes des reçus privés conservés :
+The status obtained is **`declared_exploratory_screen_pass` for the normalized
+chain only**. No comparison at step 0.1 and no application to the private intake
+was run or automatically authorized. The witness proves no G1 junction, no CFD
+benefit, no mechanical/thermal strength and no printability.
 
-- Natif `run-report.json` : `d883eb4796a733d1e05235608f898adb3d67c488e46d38bc00a7979df4de7504`.
-- Audit `buffered-surface-audit.json` : `24efb04cfc3049300f97a95bf52f99993a61211fcd397812cd9756e032cb74f1`.
-- VDB : `d724db69d3f92f511f06f8842f4597559448ac6c4128c7a0e028247f04ec9c61`.
+Digests of the kept private receipts:
 
-Les originaux et sorties précédentes restent intacts. Aucun financement Vast
-n'a été utilisé pour ce témoin.
+- Native `run-report.json`: `d883eb4796a733d1e05235608f898adb3d67c488e46d38bc00a7979df4de7504`.
+- Audit `buffered-surface-audit.json`: `24efb04cfc3049300f97a95bf52f99993a61211fcd397812cd9756e032cb74f1`.
+- VDB: `d724db69d3f92f511f06f8842f4597559448ac6c4128c7a0e028247f04ec9c61`.
+
+The originals and previous outputs remain intact. No Vast funding was used for
+this witness.

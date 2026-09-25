@@ -1,255 +1,252 @@
-# M64 — remaillage du domaine natif à continuité segmentée
+# M64 — remeshing the native domain with segmented continuity
 
-## Résultat actuel
+## Current result
 
-Suite : [localisation des rejets, essai HXT et fusion native ciblée](M64_LOCALISATION_ET_HXT_20260908.md).
-Cette nouvelle correction ne modifie pas rétroactivement les résultats du
-maillage décrit ici et ne constitue pas une validation physique.
+Follow-up: [localization of the rejections, HXT trial and targeted native merge](M64_LOCALISATION_ET_HXT_20260908.md).
+This new correction does not retroactively change the results of the mesh
+described here and does not constitute a physical validation.
 
-Le domaine gazeux corrigé **`7fc114c1…` dispose maintenant d'un nouveau
-maillage volumique de 469 985 tétraèdres**, calculé avec Gmsh 4.15.2 en
-42,018 s. Ses onze gardes d'intégrité passent après relecture, mais
-**OpenFOAM rejette sa qualité sur six familles de contrôles**. En amont,
-1 343 éléments ont un SICN inférieur à 0,1, dont cinq sous 10⁻⁶.
-Aucun solveur CFD n'a été lancé.
+The corrected gas domain **`7fc114c1…` now has a new volume mesh of 469,985
+tetrahedra**, computed with Gmsh 4.15.2 in 42.018 s. Its eleven integrity
+guards pass after read-back, but **OpenFOAM rejects its quality on six
+families of checks**. Upstream, 1,343 elements have an SICN below 0.1, five
+of them below 10⁻⁶. No CFD solver has been launched.
 
-Une première passe de surface seule avait produit 191 958 triangles,
-95 979 nœuds et 88 faces CAO en 8,365 s. La passe volumique a généré une
-**autre surface**, comportant 191 956 triangles. Les contre-audits de la
-première surface ne sont donc pas transférés à la seconde.
+A first surface-only pass had produced 191,958 triangles, 95,979 nodes and
+88 CAD faces in 8.365 s. The volume pass generated **another surface**, with
+191,956 triangles. The counter-audits of the first surface are therefore not
+transferred to the second.
 
-Les incidences d'arêtes forment une surface fermée : aucun bord ouvert,
-arête surincidente, doublon de triangle ou orientation incohérente détecté.
-Le contrôle des enveloppes radiales des huit portions guide–tige passe.
-**Cela ne prouve pas encore l'absence de toutes les intersections ni la
-conformité complète des triangles à la CAO.** Les contre-audits de
-croisements, de la face 38 et des sommets/arêtes segmentés de la première
-surface sont terminés dans leur portée bornée, décrite ci-dessous.
-Les contrôles de croisements, de face 38 et des sommets segmentés ont été
-répétés sur la surface de la passe volumique. La conservation de sa
-frontière avant/après 3D est confirmée indépendamment. La revue autorisait
-uniquement conversion et `checkMesh` ; elle n'a pas autorisé de solveur
-et le résultat de qualité est maintenant rejeté.
+The edge incidences form a closed surface: no open boundary, over-incident
+edge, duplicate triangle or inconsistent orientation detected.
+The check of the radial envelopes of the eight guide–stem portions passes.
+**This does not yet prove the absence of all intersections or the complete
+conformity of the triangles to the CAD.** The counter-audits of crossings, of
+face 38 and of the segmented vertices/edges of the first surface are complete
+within their bounded scope, described below.
+The crossing, face 38 and segmented-vertex checks were repeated on the
+surface of the volume pass. Conservation of its boundary before/after 3D is
+independently confirmed. The review authorized only conversion and
+`checkMesh`; it did not authorize a solver, and the quality result is now
+rejected.
 
-Le [reçu agrégé](../../twins/m64-cylinder-head/evidence/segmented-native-remesh-20260908.json)
-conserve les empreintes exactes des entrées, programmes et résultats.
-Les géométries, coordonnées et rapports détaillés restent privés.
+The [aggregate receipt](../../twins/m64-cylinder-head/evidence/segmented-native-remesh-20260908.json)
+keeps the exact digests of the inputs, programs and results.
+The geometries, coordinates and detailed reports remain private.
 
-## Un nouveau paquet, pas les résultats de l'ancien domaine
+## A new package, not the results of the old domain
 
-La [correction native](M64_CORRECTIONS_NATIVES_20260908.md) a remplacé une
-arête portant trois cassures de tangente par quatre tronçons conservant
-ces cassures. Elle n'a ni lissé le conduit ni redessiné la culasse.
-Le paquet `7fc114c1…` contient un solide, 88 faces, 195 arêtes et
-120 sommets. Son B-Rep exact et les cinq modes BOP employés passent.
-La cible reste une culasse M64 biturbo quatre soupapes ; **700 PS au
-vilebrequin est un objectif, pas un résultat atteint ou simulé ici**.
+The [native correction](M64_CORRECTIONS_NATIVES_20260908.md) replaced an edge
+carrying three tangent breaks with four segments that keep those breaks. It
+neither smoothed the port nor redrew the cylinder head.
+Package `7fc114c1…` contains one solid, 88 faces, 195 edges and 120 vertices.
+Its exact B-Rep and the five BOP modes used pass.
+The target remains a four-valve twin-turbo M64 cylinder head; **700 PS at the
+crankshaft is an objective, not a result achieved or simulated here**.
 
-Les 88 faces sont réexportées depuis ce candidat. Leurs rôles sont
-transférés par la correspondance indépendante des surfaces et contours,
-et non par une simple réutilisation des numéros de faces. Le manifeste
-préparatoire garde les contrôles locaux manquants à `null` ; seul le
-manifeste final, lié aux nouvelles preuves, est admis par le profil natif.
+The 88 faces are re-exported from this candidate. Their roles are transferred
+through the independent matching of surfaces and contours, not by simply
+reusing face numbers. The preparatory manifest keeps the missing local checks
+at `null`; only the final manifest, tied to the new evidence, is admitted by
+the native profile.
 
-Les deux cols d'admission ont été **réellement recalculés** : un solide
-local valide chacun, BOP sans défaut détecté, sections d'extrémité
-positives, absence de recouvrement avec l'autre siège et exclusion
-géométrique du tronc. Le prédicat original est satisfait pour les deux ;
-aucune exception C0 ni relaxation des seuils n'est employée.
+The two intake throats were **actually recomputed**: each has a valid local
+solid, BOP with no defect detected, positive end sections, no overlap with the
+other seat and geometric exclusion of the trunk. The original predicate is
+satisfied for both; no C0 exception or threshold relaxation is used.
 
-La communication des prolongements annulaires de guides est une preuve
-**héritée explicitement** de leur intersection avec le négatif d'admission
-original, conservée par l'équivalence des surfaces et contours. Ce n'est
-pas une nouvelle intersection calculée sur le gaz final. Les deux
-fermetures `fixture_stem_seals` restent des joints idéalisés de banc,
-sans qualification de fuite ou de joint réel.
+The communication of the annular guide extensions is evidence **explicitly
+inherited** from their intersection with the original intake negative,
+preserved by the equivalence of surfaces and contours. It is not a new
+intersection computed on the final gas. The two `fixture_stem_seals`
+closures remain idealized bench seals, with no qualification of leakage or of
+a real seal.
 
-Le [contre-contrôle Netgen antérieur](M64_NETGEN_CONTRECONTROLE_20260908.md)
-concerne uniquement `3f20f4c5…`. Ses six familles de rejets OpenFOAM
-restent rejetées ; aucune de ses acceptations partielles n'est attribuée
-au nouveau candidat.
+The [earlier Netgen cross-check](M64_NETGEN_CONTRECONTROLE_20260908.md)
+concerns `3f20f4c5…` only. Its six families of OpenFOAM rejections remain
+rejected; none of its partial acceptances is attributed to the new candidate.
 
-## Import et contrôles préalables
+## Import and preliminary checks
 
-L'import natif Gmsh, exécuté séparément avant le maillage, conserve les
-120 sommets, 195 arêtes, 88 faces et un volume. L'appariement des
-88 descripteurs de faces est bijectif ; l'écart relatif d'aire globale
-vaut environ 1,11×10⁻¹⁵. Aucun ajustement, changement d'échelle ou
-traitement de réparation implicite n'est appliqué.
+The native Gmsh import, run separately before meshing, preserves the
+120 vertices, 195 edges, 88 faces and one volume. The matching of the
+88 face descriptors is bijective; the relative deviation of the global area
+is about 1.11×10⁻¹⁵. No adjustment, change of scale or implicit repair
+treatment is applied.
 
-Le contrôle de volume compare des intégrations cohérentes :
+The volume check compares consistent integrations:
 
-| Intégration du nouveau domaine | Volume en unités de scan³ |
+| Integration of the new domain | Volume in scan units³ |
 | --- | ---: |
-| OCCT adaptative | 995 964,587087459 |
-| OCCT non adaptative | 995 961,7063198228 |
-| Import Gmsh observé | 995 961,706319823 |
+| OCCT adaptive | 995,964.587087459 |
+| OCCT non-adaptive | 995,961.7063198228 |
+| Observed Gmsh import | 995,961.706319823 |
 
-La tolérance relative d'import reste **10⁻⁶**. L'écart entre intégrateurs
-est conservé dans les reçus, pas présenté comme une déformation de la CAO.
-L'ancienne référence non adaptative de `3f20f4c5…` n'est pas réutilisée.
-Ces volumes ne sont pas des mm³ certifiés : l'échelle du scan reste une
-hypothèse non vérifiée.
+The relative import tolerance remains **10⁻⁶**. The deviation between
+integrators is kept in the receipts, not presented as a deformation of the
+CAD. The old non-adaptive reference of `3f20f4c5…` is not reused.
+These volumes are not certified mm³: the scan scale remains an unverified
+assumption.
 
-L'inventaire natif indépendant examine les 88 faces et 33 surfaces
-cylindriques. Pour les sources guide–tige concernées, il couvre
-14 fragments : huit portions annulaires sélectionnées et six portions
-de tige hors bande, conservées dans l'inventaire avec exclusion explicite.
-Ce reçu n'est pas une acceptation de maillage. Le prévol vérifie
-90 fichiers d'entrée et retrouve les huit portions via l'appariement
-réel Gmsh, avant tout test de leurs triangles.
+The independent native inventory examines the 88 faces and 33 cylindrical
+surfaces. For the guide–stem sources concerned, it covers 14 fragments: eight
+selected annular portions and six out-of-band stem portions, kept in the
+inventory with explicit exclusion.
+This receipt is not a mesh acceptance. The preflight verifies 90 input files
+and recovers the eight portions through the actual Gmsh matching, before any
+test of their triangles.
 
-## Chaîne de preuve et prochain verrou
+## Chain of evidence and next lock
 
 ```mermaid
 flowchart TD
-    A["Domaine corrigé 7fc114 : B-Rep et BOP contrôlés"] --> B["88 faces et rôles transférés par revue géométrique"]
-    B --> C["Deux cols recalculés + transfert guides explicite"]
-    C --> D["Manifeste final natif, STEP non testé"]
-    D --> E["Inventaire des guides + quadrature + import Gmsh"]
-    E --> F["Nouvelle surface : 191 958 triangles"]
-    F --> G["Incidences fermées et enveloppes radiales : contrôles réussis"]
-    G --> H["Contre-audits bornés CAO, croisements et sommets segmentés"]
-    H --> I["Volume : 469 985 tétraèdres, nouvelle surface à contre-vérifier"]
-    I --> J["Contre-audits liés à cette nouvelle surface"]
-    J --> K["OpenFOAM : six familles rejetées, aucun solveur"]
-    K --> L["Localiser les défauts puis corriger le maillage sans assouplir les seuils"]
+    A["Corrected domain 7fc114: B-Rep and BOP checked"] --> B["88 faces and roles transferred by geometric review"]
+    B --> C["Two throats recomputed + explicit guide transfer"]
+    C --> D["Final native manifest, STEP not tested"]
+    D --> E["Guide inventory + quadrature + Gmsh import"]
+    E --> F["New surface: 191,958 triangles"]
+    F --> G["Closed incidences and radial envelopes: checks passed"]
+    G --> H["Bounded counter-audits: CAD, crossings and segmented vertices"]
+    H --> I["Volume: 469,985 tetrahedra, new surface to cross-check"]
+    I --> J["Counter-audits tied to this new surface"]
+    J --> K["OpenFOAM: six families rejected, no solver"]
+    K --> L["Localize the defects, then fix the mesh without relaxing thresholds"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class K stop;
+    class L open;
 ```
 
-Le mode `--segmented-native-only` du
-[mailleur](../../twins/m64-cylinder-head/source/flowbench-intake/mesh_gas_domain.py)
-admet uniquement le paquet et l'inventaire nouveaux vérifiés. Il refuse
-l'ancien avis C0 et les anciens reçus de maillage. Le registre ne contient
-pas l'empreinte de son propre inventaire : les dépendances de preuve
-restent acycliques. L'ancienne voie et ses gardes sont conservées.
+The `--segmented-native-only` mode of the
+[mesher](../../twins/m64-cylinder-head/source/flowbench-intake/mesh_gas_domain.py)
+admits only the new verified package and inventory. It refuses the old C0
+opinion and the old mesh receipts. The register does not contain the digest
+of its own inventory: the evidence dependencies remain acyclic. The old path
+and its guards are kept.
 
-La passe emploie `--face38-size 0.15 --guide-size 0.20 --stop-after-surface`.
-Ces tailles locales sont des réglages numériques en unités de scan,
-pas des tolérances de fabrication ni des garanties de taille effective.
-Le programme mesure les enveloppes des triangles réellement produits,
-sans transformer un réglage de taille en résultat de conformité.
+The pass uses `--face38-size 0.15 --guide-size 0.20 --stop-after-surface`.
+These local sizes are numerical settings in scan units, not manufacturing
+tolerances nor guarantees of effective size.
+The program measures the envelopes of the triangles actually produced,
+without turning a size setting into a conformity result.
 
-## Contre-audits de la première surface
+## Counter-audits of the first surface
 
-Les trois résultats ci-dessous sont liés exclusivement à la surface
-`53753e6c…`, et non à la surface `006ffd46…` de la passe volumique.
+The three results below are tied exclusively to surface `53753e6c…`, not to
+surface `006ffd46…` of the volume pass.
 
-Le filtre de croisements examine 992 211 paires candidates et ne confirme
-aucun croisement traversant, en 26,447 s. Les cas coplanaires, à sommets
-partagés et les contacts sur frontières ne sont pas classifiés par cette
-méthode : ce zéro n'est **pas une preuve exhaustive de non-intersection**.
+The crossing filter examines 992,211 candidate pairs and confirms no
+through-crossing, in 26.447 s. Coplanar cases, shared-vertex cases and
+contacts on boundaries are not classified by this method: this zero is **not
+an exhaustive proof of non-intersection**.
 
-Sur la face 38, les 523 triangles sont sondés à leur barycentre et aux
-trois milieux d'arêtes ; les 525 nœuds sont également examinés. Aucune
-aire nulle, aire UV négative ou normale opposée n'est détectée aux sondes.
-La distance maximale mesurée des sondes à la face CAO vaut
-2,767×10⁻⁴ unité de scan, et l'aire triangulée est supérieure de 0,733 %.
-Cependant le produit scalaire minimal des normales vaut **0,01446** :
-un écart d'orientation important demeure à certaines sondes. Il ne faut
-donc pas qualifier globalement la qualité de cette face comme acquise.
-Sonder chaque triangle ne borne pas l'erreur sur sa facette entière.
-Ce contrôle termine en 2,876 s, sans changement de géométrie ni de seuil.
+On face 38, the 523 triangles are probed at their barycenter and at the
+three edge midpoints; the 525 nodes are also examined. No zero area, negative
+UV area or opposite normal is detected at the probes.
+The maximum measured distance from the probes to the CAD face is
+2.767×10⁻⁴ scan unit, and the triangulated area is 0.733% larger.
+However, the minimum dot product of the normals is **0.01446**: a large
+orientation deviation remains at some probes. The quality of this face must
+therefore not be described as globally established.
+Probing each triangle does not bound the error over its entire facet.
+This check finishes in 2.876 s, with no change of geometry or threshold.
 
-L'audit des cassures retrouve les trois nouveaux sommets et leurs deux
-extrémités : cinq ancres distinctes, appariées de manière unique avec
-une distance mesurée nulle. Quatre chaînes de 12, 2, 2 et 2 segments
-partitionnent exactement les 18 arêtes communes aux deux faces natives
-adjacentes, sans omission ni double compte. L'ordre des paramètres natifs
-est conservé. Ces faces sont distinctes de la face 38 analysée ci-dessus.
-Ce contrôle d'incidence termine en 0,990 s ; il ne démontre ni la
-classification native 1D des éléments Gmsh, ni la fidélité continue de
-chaque corde à la courbe CAO. Il n'est pas une validation CFD.
+The break audit recovers the three new vertices and their two endpoints: five
+distinct anchors, matched uniquely with a measured distance of zero. Four
+chains of 12, 2, 2 and 2 segments exactly partition the 18 edges shared by
+the two adjacent native faces, with no omission or double count. The order of
+the native parameters is preserved. These faces are distinct from face 38
+analyzed above.
+This incidence check finishes in 0.990 s; it demonstrates neither the native
+1D classification of the Gmsh elements nor the continuous fidelity of each
+chord to the CAD curve. It is not a CFD validation.
 
-## Volume obtenu et qualité OpenFOAM rejetée
+## Volume obtained and OpenFOAM quality rejected
 
-Le nouveau fichier volumique `7774e94e…` contient un seul domaine
-tétraédrique connexe. Aucun tétraèdre à volume direct négatif ou nul,
-aucun Jacobien Gmsh non positif, ni triangle de frontière manquant ou
-surajouté n'est détecté. La connectivité, les étiquettes et les comptes
-d'éléments sont conservés après relecture MSH 2.2.
+The new volume file `7774e94e…` contains a single connected tetrahedral
+domain. No tetrahedron with negative or zero direct volume, no non-positive
+Gmsh Jacobian, and no missing or extra boundary triangle is detected. The
+connectivity, tags and element counts are preserved after MSH 2.2 read-back.
 
-Son volume discrétisé présente un écart relatif d'environ **0,1012 %**
-à l'intégration adaptative de la CAO, dans la garde grossière de 1 %
-préexistante. Il ne faut pas confondre cette garde de discrétisation avec
-la tolérance d'import CAO de 10⁻⁶. Le SICN minimal après relecture vaut
-2,5073×10⁻⁷ : les cinq éléments sous 10⁻⁶ restent consignés. Les onze
-gardes réussies sont des gardes d'intégrité, pas une acceptation CFD.
+Its discretized volume shows a relative deviation of about **0.1012%** from
+the adaptive integration of the CAD, within the pre-existing coarse 1% guard.
+This discretization guard must not be confused with the CAD import tolerance
+of 10⁻⁶. The minimum SICN after read-back is 2.5073×10⁻⁷: the five elements
+below 10⁻⁶ remain on record. The eleven passed guards are integrity guards,
+not a CFD acceptance.
 
-La seconde surface, `006ffd46…`, compte 191 956 triangles et 95 978
-nœuds. Son nouveau contrôle de croisements examine 992 198 paires
-candidates et ne confirme aucun croisement traversant, avec les mêmes
-exclusions méthodologiques. L'audit répété de ses 523 triangles de la
-face 38 retrouve les mêmes métriques numériques que sur la première
-surface, notamment l'écart important des normales. Ces deux nouveaux
-reçus sont liés au fichier exact de la seconde passe. L'audit des sommets
-segmentés est également répété sur cette surface et passe dans sa portée
-d'incidence, sans preuve supplémentaire de fidélité continue des cordes.
+The second surface, `006ffd46…`, has 191,956 triangles and 95,978 nodes. Its
+new crossing check examines 992,198 candidate pairs and confirms no
+through-crossing, with the same methodological exclusions. The repeated audit
+of its 523 face-38 triangles finds the same numerical metrics as on the first
+surface, notably the large deviation of the normals. These two new receipts
+are tied to the exact file of the second pass. The audit of the segmented
+vertices is also repeated on this surface and passes within its incidence
+scope, with no additional proof of continuous chord fidelity.
 
-Le contre-audit avant/après 3D confirme exactement **95 978 nœuds et
-191 956 triangles orientés, avec leurs groupes physiques et leurs
-étiquettes de face**. Les identifiants de 191 472 triangles ont été
-réaffectés et 484 sont conservés : cette permutation n'est pas une
-modification des coordonnées ou de la connectivité géométrique. La
-bijection compare aussi les valeurs ASCII, sans arrondir les coordonnées.
-La revue liée au volume `7774e94e…` autorise uniquement la conversion et
-`checkMesh`. Elle refuse explicitement toute autorisation de solveur CFD.
+The before/after-3D counter-audit confirms exactly **95,978 nodes and 191,956
+oriented triangles, with their physical groups and face tags**. The
+identifiers of 191,472 triangles were reassigned and 484 are kept: this
+permutation is not a modification of the coordinates or of the geometric
+connectivity. The bijection also compares the ASCII values, without rounding
+the coordinates.
+The review tied to volume `7774e94e…` authorizes only conversion and
+`checkMesh`. It explicitly refuses any CFD solver authorization.
 
-Le contrôle OpenFOAM du même fichier volumique est terminé. Les quatre
-commandes `gmshToFoam`, `transformPoints`, `createPatch` et `checkMesh`
-retournent chacune le code 0, mais le journal indique **six contrôles
-échoués** et ne contient pas `Mesh OK`. Le superviseur termine donc avec
-le code 2 ; un code de commande nul ne transforme pas ce rejet en succès.
+The OpenFOAM check of the same volume file is complete. The four commands
+`gmshToFoam`, `transformPoints`, `createPatch` and `checkMesh` each return
+code 0, but the log reports **six failed checks** and does not contain
+`Mesh OK`. The supervisor therefore finishes with code 2; a zero command code
+does not turn this rejection into a success.
 
-| Famille rejetée | Nombre | Détail conservé |
+| Rejected family | Count | Recorded detail |
 | --- | ---: | --- |
-| Cellules à rapport d'aspect élevé | 130 | Maximum : 23 937,1304 |
-| Faces à forte distorsion (*skewness*) | 73 | Maximum : 346,4805 |
-| Cellules à petit déterminant | 4 579 | Déterminant < 0,001 |
-| Cellules concaves | 23 | Test par plans des faces |
-| Faces à faible poids d'interpolation | 1 146 | Poids < 0,05 |
-| Faces à faible rapport de volumes | 540 | Rapport < 0,01 |
+| High aspect ratio cells | 130 | Maximum: 23,937.1304 |
+| Highly skewed faces (*skewness*) | 73 | Maximum: 346.4805 |
+| Small determinant cells | 4,579 | Determinant < 0.001 |
+| Concave cells | 23 | Test by face planes |
+| Low interpolation weight faces | 1,146 | Weight < 0.05 |
+| Low volume ratio faces | 540 | Ratio < 0.01 |
 
-Les 238 212 faces à non-orthogonalité supérieure à 70° constituent un
-avertissement distinct : le contrôle correspondant reste marqué `OK`
-dans ce journal, ce n'est pas une septième famille rejetée. Cinq arêtes
-trop petites sont également signalées. Ces mesures ne constituent pas
-une amélioration globale démontrée par rapport aux anciens maillages.
+The 238,212 faces with non-orthogonality above 70° are a separate warning:
+the corresponding check remains marked `OK` in this log; it is not a seventh
+rejected family. Five edges that are too small are also flagged. These
+measurements do not constitute a demonstrated global improvement over the old
+meshes.
 
-La conversion applique une seule fois le facteur de 0,001 m par unité
-de scan, sous hypothèse non certifiée. Le changement de type du groupe
-de paroi ne modifie pas sa géométrie ; les entrées originales restent
-inchangées. Aucun solveur n'est exécuté.
+The conversion applies the factor of 0.001 m per scan unit once, under an
+uncertified assumption. The type change of the wall group does not modify its
+geometry; the original inputs remain unchanged. No solver is run.
 
-## Vérification et limites
+## Verification and limits
 
-Les trois suites ciblées passent : **37 tests, zéro échec et zéro skip**.
-Elles vérifient notamment les mélanges de domaines/empreintes, la
-réutilisation d'un ancien reçu, les gardes manquantes et les assertions
-STEP injustifiées. Le `make check` de ce nouveau lot termine avec le code
-0 : 2 315 cas dans la suite principale, dont 108 ignorés, en 177,282 s.
-Les cibles complémentaires terminent aussi. Le journal complet porte
-l'empreinte `402e7a2df743be78765233354a5f0af2a058b3635db2b3f79fdd6e63fc8dd296`.
-Ces succès logiciels ne sont pas une validation physique.
+The three targeted suites pass: **37 tests, zero failures and zero skips**.
+They verify in particular mixing of domains/digests, reuse of an old receipt,
+missing guards and unjustified STEP assertions. The `make check` of this new
+batch finishes with code 0: 2,315 cases in the main suite, 108 of them
+skipped, in 177.282 s. The complementary targets also finish. The complete
+log has the digest
+`402e7a2df743be78765233354a5f0af2a058b3635db2b3f79fdd6e63fc8dd296`.
+These software successes are not a physical validation.
 
-Le calcul utilise Kali ; aucune nouvelle location ou dépense Vast dans
-ce lot. Les conteneurs de génération et de contrôle OpenFOAM sont terminés
-et leur absence a été contrôlée par l'opérateur des calculs. Aucun solde
-de compte n'est publié.
+The computation uses Kali; no new Vast rental or spending in this batch. The
+generation and OpenFOAM check containers are terminated and their absence was
+checked by the compute operator. No account balance is published.
 
-Les défauts ont ensuite été exportés sur une copie isolée du cas : dix
-fichiers VTK et dix ensembles natifs de labels, en 18 s. Les six lignes
-de rejet restent identiques et les fichiers géométriques de l'original
-et de la copie sont inchangés. Les VTK servent à la localisation visuelle
-en précision `float` ; les labels natifs, et non ces vues, font autorité
-pour identifier les cellules et faces. Aucun solveur n'est exécuté.
+The defects were then exported on an isolated copy of the case: ten VTK files
+and ten native label sets, in 18 s. The six rejection lines remain identical
+and the geometry files of the original and of the copy are unchanged. The VTK
+files serve visual localization in `float` precision; the native labels, not
+these views, are authoritative for identifying the cells and faces. No solver
+is run.
 
-La prochaine action est de **relier ces défauts aux surfaces fonctionnelles**,
-puis modifier le maillage local ou volumique en fonction de cette analyse.
-Chaque nouvel artefact devra conserver ses propres contrôles de frontières
-et repasser les critères OpenFOAM. Cela n'autorise ni une modification
-arbitraire de l'enveloppe de la pièce ni un relâchement des seuils.
+The next action is to **relate these defects to the functional surfaces**,
+then modify the local or volume mesh according to that analysis.
+Each new artifact will have to keep its own boundary checks and pass the
+OpenFOAM criteria again. This authorizes neither an arbitrary modification of
+the part's envelope nor a relaxation of the thresholds.
 
-**Le volume existe ; aucun calcul CFD, validation thermique/mécanique
-ou qualification LPBF n'est acquis par cette passe.**
-STEP n'a pas été testé pour ce candidat natif. L'ajustement moteur, les
-interfaces et l'autorisation de fabrication restent non validés.
+**The volume exists; no CFD computation, thermal/mechanical validation or
+LPBF qualification is established by this pass.**
+STEP was not tested for this native candidate. Engine fit, interfaces and
+manufacturing authorization remain not validated.

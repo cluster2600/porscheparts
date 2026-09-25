@@ -1,46 +1,61 @@
-# Portes qualité
+# Quality gates
 
-| Statut | Preuves requises | Ce que le statut ne signifie pas |
+| Status | Required evidence | What the status does not mean |
 |---|---|---|
-| `concept` | Besoin et sources initiales | Dimensions correctes |
-| `dimensionally_reviewed` | Mesures critiques et revue CAO | Montage confirmé |
-| `prototype_fitted` | Prototype monté avec preuve | Tenue en service |
-| `functionally_tested` | Protocole et résultats d’essai | Homologation universelle |
-| `engineering_reviewed` | Calculs et revue signée | Fabrication de série validée |
-| `released` | Dossier complet selon classe de risque | Garantie ou approbation Porsche |
+| `concept` | Need and initial sources | Correct dimensions |
+| `dimensionally_reviewed` | Critical measurements and CAD review | Confirmed fit |
+| `prototype_fitted` | Prototype fitted, with evidence | Durability in service |
+| `functionally_tested` | Test protocol and results | Universal type approval |
+| `engineering_reviewed` | Calculations and signed review | Validated series production |
+| `released` | Complete dossier for the risk class | Porsche warranty or approval |
 
-## Règles automatiques
+```mermaid
+stateDiagram-v2
+    [*] --> concept: need and initial sources
+    concept --> dimensionally_reviewed: critical measurements and CAD review
+    dimensionally_reviewed --> prototype_fitted: prototype fitted, with evidence
+    prototype_fitted --> functionally_tested: test protocol and results
+    functionally_tested --> engineering_reviewed: calculations and signed review
+    engineering_reviewed --> released: complete dossier for the risk class
+    note right of released
+        Additive part: all eleven AM steps passed.
+        completed_screening never counts as passed.
+        Not a Porsche warranty or approval.
+    end note
+```
 
-Le validateur bloque notamment :
+## Automated rules
 
-- une fiche sans source ni licence ;
-- une génération autre que 993 ;
-- un identifiant ou un statut inconnu ;
-- une pièce titane sans exigences de traitement, contrôle et isolation ;
-- une pièce critique libérée sans reviewer, preuve et inspection ;
-- une nouvelle pièce candidate LPBF/DMLS absente du registre AM obligatoire ;
-- une pièce additive déclarée `released` sans les onze étapes AM au statut
-  `passed`, dont le tranchage pleine pièce, le procédé, Omniverse et la
-  corrélation physique ;
-- une mesure dont la valeur ne correspond pas à ses propres échantillons ;
-- une incertitude plus fine que la moitié de la résolution de l’instrument ;
-- une lecture déclarée issue d’un instrument alors qu’elle a été saisie à la main ;
-- un niveau de preuve `A` sans répétitions ni état d’étalonnage connu.
+Among other things, the validator blocks:
 
-Ces contrôles assurent la cohérence documentaire. Ils ne réalisent aucune analyse
-mécanique.
+- a record with no source or no license;
+- a generation other than 993;
+- an unknown identifier or status;
+- a titanium part without treatment, inspection and isolation requirements;
+- a released critical part without a reviewer, evidence and inspection;
+- a new LPBF/DMLS candidate part missing from the mandatory AM register;
+- an additive part declared `released` without all eleven AM steps at status
+  `passed`, including full-part slicing, the process, Omniverse and physical
+  correlation;
+- a measurement whose value does not match its own samples;
+- an uncertainty finer than half the instrument's resolution;
+- a reading declared as coming from an instrument when it was typed in by hand;
+- an evidence level `A` without repeats or a known calibration state.
 
-Le contrat complet des pièces additives est décrit dans
+These checks ensure documentary consistency. They perform no mechanical
+analysis.
+
+The full contract for additive parts is described in
 [AM_VALIDATION_PIPELINE.md](AM_VALIDATION_PIPELINE.md). `completed_screening`
-ne vaut jamais `passed` et ne peut pas ouvrir une autorisation de fabrication.
+never counts as `passed` and cannot open a manufacturing authorization.
 
-## Revue humaine
+## Human review
 
-Le reviewer vérifie :
+The reviewer checks:
 
-- correspondance entre géométrie et mesures ;
-- variantes réellement couvertes ;
-- licences et attributions ;
-- cohérence matière-procédé-environnement ;
-- limites et hypothèses visibles ;
-- absence d’affirmation dépassant les preuves.
+- agreement between geometry and measurements;
+- variants actually covered;
+- licenses and attributions;
+- material-process-environment consistency;
+- visible limits and assumptions;
+- no claim that goes beyond the evidence.

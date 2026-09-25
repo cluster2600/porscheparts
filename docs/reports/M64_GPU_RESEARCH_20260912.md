@@ -1,74 +1,87 @@
-# M64 — recherche GPU au 12 septembre 2026
+# M64 — GPU research as of September 12, 2026
 
-**CPU pour les références et petits cas ; GPU après témoin compatible et gain
-bout-en-bout mesuré.** Trois revues bornées ont étudié géométrie, thermique/
-résistance et LPBF. Recherche ciblée, pas revue systématique exhaustive.
-Application : [jobs 2–3–4](M64_JOBS_234_20260912.md).
+**CPU for references and small cases; GPU after a compatible witness case and a
+measured end-to-end gain.** Three bounded reviews studied geometry, thermal/
+strength and LPBF. Targeted research, not an exhaustive systematic review.
+Application: [jobs 2–3–4](M64_JOBS_234_20260912.md).
 
-## Sources primaires et décisions
+```mermaid
+flowchart LR
+    A["Candidate GPU code"] --> B{"Same problem and precision<br/>on a witness case?"}
+    B -->|no| C["Stay on CPU"]
+    B -->|yes| D{"Full cost and time<br/>win end to end?"}
+    D -->|no| C
+    D -->|yes| E["GPU for that case"]
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class C stop
+    class E ok
+```
 
-| Publication / code | Apport, limite et décision M64 |
+## Primary sources and decisions
+
+| Publication / code | Contribution, limit and M64 decision |
 |---|---|
-| [PaMO, auteurs, PG2025](https://github.com/SarahWeiii/pamo) | Remeshing/projection de surfaces sur GPU, AGPL-3.0. Ne garantit ni conservation des interfaces ni polyMesh hybride. **Pas de remplacement du contour maître.** |
-| [MFEM 4.10, 1 septembre 2026](https://mfem.org/news/), [TMOP officiel](https://docs.mfem.org/4.10/mesh-optimizer_8cpp_source.html) | Version logicielle, pas preuve d'une culasse réparée. TMOP offre CUDA et frontière fixée ; hr reste CPU. Le writer à 14 chiffres et l'absence de pont polyMesh exigent une conversion/contre-vérification explicite. BSD-3-Clause. **Candidat pour petite région tétra intérieure**, pas pour déplacer les ailettes. |
-| [OpenFOAM Modern C++ proof-of-concept, juillet 2025](https://arxiv.org/abs/2507.18268) | Offload de `laplacianFoam` via C++ parallèle. **Faisabilité sur témoin**, pas disponibilité d'une combustion/CHT moteur sur GPU. |
-| [SPUMA, décembre 2025, texte intégral](https://arxiv.org/html/2512.22215v1), [CPC 321, 2026](https://doi.org/10.1016/j.cpc.2025.110009) | Port GPU NVIDIA/AMD au-delà des matrices. La conclusion exclut encore compressible, interfaces de domaines, multiphase et transfert thermique. Les résultats DrivAer à environ 8–10 millions de cellules/GPU ne prédisent pas notre domaine de 784 675 cellules. **Exclu de la CHT/combustion dans cette version** ; code/licence à épingler pour un éventuel témoin froid. |
-| [OpenCFD, infrastructure v2606, juin 2026](https://www.openfoam.com/news/main-news/openfoam-v2606/infrastructure) | Branche pilote `std::execution`, mémoire UMPIRE, opérations de champs et solveurs ; intégration principale annoncée pour v2612 après essais communautaires. Routines sérielles et nombreux patches peuvent pénaliser le calcul ; réductions non déterministes. **Qualification CHT exacte nécessaire**, pas remplacement automatique de Foundation14. |
-| [Adamantine 1.0, JOSS, octobre 2024](https://joss.theoj.org/papers/10.21105/joss.07017), [code épinglé](https://github.com/adamantine-sim/adamantine/tree/3990489a10902912889617856f6e2e097d52a412) | Thermomécanique AM, Apache-2.0 avec exception LLVM. Le papier décrit l'opérateur thermique GPU, mécanique CPU. Le code actuel utilise conditionnellement Tpetra `MemorySpace::Default` avec deal.II≥9.7, puis rapatriement et contraintes Host ([source](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/MechanicalPhysics.cc#L503)). **Premier candidat pour la distorsion globale**, sans promesse de mécanique entièrement GPU. |
-| [GO-MELT, Additive Manufacturing 109, 2025](https://doi.org/10.1016/j.addma.2025.104897), [code MIT épinglé](https://github.com/JLnorthwestern/GO-MELT/tree/7dafdd8593711cf8ac6ccb18a1f475744610ea3d) | Thermique LPBF multi-échelles JAX, mise à jour explicite matrix-free et sous-cyclage. L'aperçu annonce 350 millions de pas en 7,3 jours sur un GPU : pas une culasse qualifiée en une nuit. Dépendances anciennes à isoler ; pas de distorsion mécanique établie dans ce code thermique. **Contre-calcul thermique potentiel.** |
-| [HERMES, CMAME 452, 2026](https://doi.org/10.1016/j.cma.2025.118673), [code MIT épinglé](https://github.com/aydinalperen7/hermes-gpu-heat/tree/bfa017b5266fda2c0c576135dc8397b458cd5fe5) | Grilles thermiques imbriquées mobiles, CuPy/Numba. Constantes de type 316L dans le code, pas notre AlSi10Mg témoin. **Alternative thermique seulement**, ni contraintes ni débridage démontrés par ces noyaux. Sans rapport avec un assistant LLM homonyme. |
+| [PaMO, authors, PG2025](https://github.com/SarahWeiii/pamo) | Surface remeshing/projection on GPU, AGPL-3.0. Guarantees neither preservation of interfaces nor a hybrid polyMesh. **No replacement of the master outline.** |
+| [MFEM 4.10, September 1, 2026](https://mfem.org/news/), [official TMOP](https://docs.mfem.org/4.10/mesh-optimizer_8cpp_source.html) | Software release, not evidence of a repaired cylinder head. TMOP offers CUDA and a fixed boundary; hr remains CPU. The 14-digit writer and the lack of a polyMesh bridge require an explicit conversion/cross-check. BSD-3-Clause. **Candidate for a small interior tet region**, not for moving the fins. |
+| [OpenFOAM Modern C++ proof-of-concept, July 2025](https://arxiv.org/abs/2507.18268) | Offload of `laplacianFoam` via parallel C++. **Feasibility on a witness case**, not availability of engine combustion/CHT on GPU. |
+| [SPUMA, December 2025, full text](https://arxiv.org/html/2512.22215v1), [CPC 321, 2026](https://doi.org/10.1016/j.cpc.2025.110009) | NVIDIA/AMD GPU port beyond the matrices. The conclusion still excludes compressible flow, domain interfaces, multiphase and heat transfer. The DrivAer results at about 8–10 million cells/GPU do not predict our domain of 784,675 cells. **Excluded from CHT/combustion in this version**; code/license to be pinned for a possible cold witness case. |
+| [OpenCFD, v2606 infrastructure, June 2026](https://www.openfoam.com/news/main-news/openfoam-v2606/infrastructure) | Pilot `std::execution` branch, UMPIRE memory, field operations and solvers; main integration announced for v2612 after community testing. Serial routines and many patches can penalize the computation; non-deterministic reductions. **Exact CHT qualification needed**, not an automatic replacement of Foundation14. |
+| [Adamantine 1.0, JOSS, October 2024](https://joss.theoj.org/papers/10.21105/joss.07017), [pinned code](https://github.com/adamantine-sim/adamantine/tree/3990489a10902912889617856f6e2e097d52a412) | AM thermomechanics, Apache-2.0 with LLVM exception. The paper describes the thermal operator on GPU, mechanics on CPU. The current code conditionally uses Tpetra `MemorySpace::Default` with deal.II≥9.7, then copies back and applies Host constraints ([source](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/MechanicalPhysics.cc#L503)). **First candidate for global distortion**, with no promise of fully GPU mechanics. |
+| [GO-MELT, Additive Manufacturing 109, 2025](https://doi.org/10.1016/j.addma.2025.104897), [pinned MIT code](https://github.com/JLnorthwestern/GO-MELT/tree/7dafdd8593711cf8ac6ccb18a1f475744610ea3d) | Multi-scale LPBF thermal in JAX, explicit matrix-free update and sub-cycling. The abstract announces 350 million steps in 7.3 days on one GPU: not a cylinder head qualified overnight. Old dependencies to isolate; no mechanical distortion established in this thermal code. **Potential thermal cross-computation.** |
+| [HERMES, CMAME 452, 2026](https://doi.org/10.1016/j.cma.2025.118673), [pinned MIT code](https://github.com/aydinalperen7/hermes-gpu-heat/tree/bfa017b5266fda2c0c576135dc8397b458cd5fe5) | Moving nested thermal grids, CuPy/Numba. 316L-type constants in the code, not our AlSi10Mg witness. **Thermal alternative only**, neither stresses nor unclamping demonstrated by these kernels. Unrelated to an LLM assistant of the same name. |
 
-SPUMA et le papier court JOSS ont été lus intégralement. Pour GO-MELT/HERMES,
-aperçu primaire et code accessibles, mais pas texte intégral éditeur : détails
-de validation non audités. Les versions de logiciels ne sont pas présentées
-comme des articles. Le contenu OpenCFD a été consulté via l'index primaire
-lorsque l'ouverture directe répondait 403. Aucun téléchargement/compilation
-de solveur ou installation GPU effectué dans ce lot.
+SPUMA and the short JOSS paper were read in full. For GO-MELT/HERMES,
+primary abstract and code accessible, but not the publisher's full text: validation
+details not audited. Software releases are not presented
+as articles. The OpenCFD content was consulted via the primary index
+when direct access returned 403. No solver download/compilation
+or GPU installation was performed in this batch.
 
-## Benchmark admissible
+## Admissible benchmark
 
-- Même problème et précision : géométrie, unités, BC, lois matériau, second
-  membre, discrétisation et tolérances. FP64 d'abord ; précision mixte séparée.
-- Chronométrer lecture, conversion, transferts H2D/D2H, assemblage/setup,
-  résolution et sauvegarde ; distinguer bootstrap/JIT et répétitions chaudes.
-  Mesurer RAM/VRAM maximale et migrations. Énergie = intégrale de puissance
-  mesurée si disponible, pas temps × TDP.
-- Résidu vrai et quantités physiques comparables, pas identité binaire de
-  champs après réductions parallèles. Le contour protégé, lui, reste exact.
-- Si le coût et le temps complets ne gagnent pas, garder CPU. Aucune raison
-  établie de louer plusieurs GPU pour le domaine actuel de 0,8 million de cellules.
+- Same problem and precision: geometry, units, BCs, material laws, right-hand
+  side, discretization and tolerances. FP64 first; mixed precision separately.
+- Time reading, conversion, H2D/D2H transfers, assembly/setup,
+  solve and save; distinguish bootstrap/JIT from warm repetitions.
+  Measure peak RAM/VRAM and migrations. Energy = integral of measured
+  power if available, not time × TDP.
+- True residual and comparable physical quantities, not binary identity of
+  fields after parallel reductions. The protected outline, however, stays exact.
+- If full cost and time do not win, keep CPU. No established reason
+  to rent several GPUs for the current domain of 0.8 million cells.
 
-[PETSc PCAMGX](https://petsc.org/release/manualpages/PC/PCAMGX/) avertit des
-transferts récurrents quand le KSP reste CPU. AmgX ne porte pas l'assemblage
-ou la physique d'OpenFOAM automatiquement. Un témoin doit extraire **A et b**,
-pas utiliser un second membre par défaut. L'adaptateur Foundation14 reste à qualifier.
+[PETSc PCAMGX](https://petsc.org/release/manualpages/PC/PCAMGX/) warns of
+recurring transfers when the KSP stays on CPU. AmgX does not carry OpenFOAM's assembly
+or physics automatically. A witness case must extract **A and b**,
+not use a default right-hand side. The Foundation14 adapter remains to be qualified.
 
-L'[exemple MFEM ex2p](https://raw.githubusercontent.com/mfem/mfem/v4.10/examples/ex2p.cpp)
-accepte `-d cpu|cuda` avec chaîne assemblée/Hypre à vérifier ; ses exports à huit
-chiffres ne suffisent pas à une comparaison FP64 serrée.
+The [MFEM ex2p example](https://raw.githubusercontent.com/mfem/mfem/v4.10/examples/ex2p.cpp)
+accepts `-d cpu|cuda` with an assembled/Hypre chain to be verified; its eight-digit
+exports are not enough for a tight FP64 comparison.
 [ex16p](https://raw.githubusercontent.com/mfem/mfem/v4.10/examples/ex16p.cpp)
-n'offre pas cette CLI CUDA. Ces témoins ne remplacent pas contacts, plasticité
-et fatigue de la culasse. CalculiX reste la référence envisagée pour ces modèles.
+does not offer this CUDA CLI. These witness cases do not replace the contacts, plasticity
+and fatigue of the cylinder head. CalculiX remains the reference considered for those models.
 
-Le [pilote PhysicsNeMo-Mesh exécuté](M64_PHYSICSNEMO_MESH_PILOT_20260912.md)
-mesure des opérations sur une surface de référence quatre sièges, pas la
-dernière culasse M64 complète. L'adaptateur de produit vectoriel ne répare pas
-le polyMesh. Un futur modèle réduit PhysicsNeMo exigera des cas de référence
-acceptés, des régimes/géométries exclus de l'entraînement et un contrôle hors
-domaine ; les photos et températures censurées ne sont pas une vérité physique.
+The [executed PhysicsNeMo-Mesh pilot](M64_PHYSICSNEMO_MESH_PILOT_20260912.md)
+measures operations on a four-seat reference surface, not the
+latest complete M64 cylinder head. The cross-product adapter does not repair
+the polyMesh. A future PhysicsNeMo reduced model will require accepted
+reference cases, regimes/geometries excluded from training and an out-of-domain
+check; photos and censored temperatures are not physical truth.
 
-## Piston et soupapes : sources pour la prochaine intégration
+## Piston and valves: sources for the next integration
 
-Foundation14 possède un [tutoriel moteur mobile](https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-14/master/tutorials/XiFluid/engine2Valve2D/constant/dynamicMeshDict)
-avec bielle-manivelle, levées et remapping périodiques sur 720°.
+Foundation14 has a [moving-engine tutorial](https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-14/master/tutorials/XiFluid/engine2Valve2D/constant/dynamicMeshDict)
+with crank-slider, lifts and periodic remapping over 720°.
 [multiValveEngine](https://cpp.openfoam.org/v14/classFoam_1_1fvMeshMovers_1_1multiValveEngine.html)
-**impose** le mouvement, sans résoudre ressorts, affolement ou rebond. Fermeture
-et interfaces non conformes exigent conservation de masse/énergie et volumes
-positifs. Ce tutoriel deux soupapes n'est pas un cas M64 quatre soupapes prêt.
+**imposes** the motion, without solving springs, valve float or bounce. Closure
+and non-conformal interfaces require mass/energy conservation and positive
+volumes. This two-valve tutorial is not a ready four-valve M64 case.
 
-Dans l'[exemple Cantera 3.2](https://cantera.org/3.2/examples/python/reactors/ic_engine.html),
-les soupapes sont des connecteurs de débit et la vitesse du piston est imposée.
-L'exemple diesel ne définit pas notre essence turbo. Séparer cycle réduit,
-CFD mobile et dynamique mécanique, puis contre-vérifier leurs échanges.
-Omniverse montrera mouvements et champs issus des solveurs ; le rendu ne
-constitue pas une validation physique indépendante.
+In the [Cantera 3.2 example](https://cantera.org/3.2/examples/python/reactors/ic_engine.html),
+the valves are flow connectors and the piston speed is imposed.
+The diesel example does not define our turbo gasoline engine. Separate the reduced cycle,
+moving-mesh CFD and mechanical dynamics, then cross-check their exchanges.
+Omniverse will show motions and fields coming from the solvers; the render does not
+constitute an independent physical validation.

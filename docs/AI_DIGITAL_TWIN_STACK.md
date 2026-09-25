@@ -1,85 +1,85 @@
-# Suite libre pour construire le jumeau numérique
+# Open-source suite for building the digital twin
 
-## Décision
+## Decision
 
-Le projet retient une chaîne ouverte où le LLM assiste l'ingénieur mais ne
-produit jamais une cote faisant autorité. La géométrie de fabrication reste un
-solide paramétrique versionné ; les scans et les réponses du modèle sont des
-entrées à vérifier.
+The project selects an open chain where the LLM assists the engineer but never
+produces an authoritative dimension. The manufacturing geometry remains a
+versioned parametric solid; scans and model answers are inputs to be verified.
 
-| Fonction | Choix principal | Rôle dans le projet |
+| Function | Main choice | Role in the project |
 |---|---|---|
-| Agent CAO/code | Qwen3-Coder-30B-A3B-Instruct + Qwen Code | écrire et corriger les maîtres build123d, tests et fiches JSON |
-| Lecture multimodale | Qwen3-VL-8B-Instruct | classer photos et plans, relever des candidats à vérifier |
-| Serveur LLM | vLLM | API locale compatible OpenAI sur la machine GPU |
-| CAO paramétrique | build123d + FreeCAD | solides BREP, STEP et assemblage contraint |
-| Reconstruction | COLMAP/GLOMAP + Open3D | photos vers nuage/maillage, recalage et écarts |
-| Maillage calcul | Gmsh | maillage volumique reproductible |
-| Structure/thermique | CalculiX | EF linéaire, non linéaire, statique et thermique |
-| Fluide/thermique | OpenFOAM | écoulement, convection et transferts thermiques |
-| Visualisation | FreeCAD, Blender, ParaView | inspection CAO, contexte visuel et résultats de calcul |
-| Données | Git + JSON + STEP | provenance, versions, interfaces et règles d'acceptation |
+| CAD/code agent | Qwen3-Coder-30B-A3B-Instruct + Qwen Code | write and fix the build123d masters, tests and JSON records |
+| Multimodal reading | Qwen3-VL-8B-Instruct | sort photos and drawings, pick out candidates to verify |
+| LLM server | vLLM | local OpenAI-compatible API on the GPU machine |
+| Parametric CAD | build123d + FreeCAD | BREP solids, STEP and constrained assembly |
+| Reconstruction | COLMAP/GLOMAP + Open3D | photos to point cloud/mesh, registration and deviations |
+| Computation meshing | Gmsh | reproducible volume meshing |
+| Structural/thermal | CalculiX | linear, nonlinear, static and thermal FE |
+| Fluid/thermal | OpenFOAM | flow, convection and heat transfer |
+| Visualization | FreeCAD, Blender, ParaView | CAD inspection, visual context and computation results |
+| Data | Git + JSON + STEP | provenance, versions, interfaces and acceptance rules |
 
-Les modèles Qwen sont publiés sous Apache-2.0. Le modèle Coder est un MoE de
-30,5 milliards de paramètres, dont environ 3,3 milliards actifs par jeton, et
-sa fiche officielle fournit directement une commande `vllm serve`. FreeCAD
-utilise Open CASCADE, comprend un atelier Assembly intégré et importe/exporte
-STEP. build123d sait construire des arbres d'assemblage et exporter l'ensemble
-en STEP.
+The Qwen models are published under Apache-2.0. The Coder model is a MoE of
+30.5 billion parameters, of which about 3.3 billion are active per token, and
+its official model card directly provides a `vllm serve` command. FreeCAD
+uses Open CASCADE, includes a built-in Assembly workbench and imports/exports
+STEP. build123d can build assembly trees and export the whole assembly
+to STEP.
 
-Sources primaires :
+Primary sources:
 [Qwen3-Coder](https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct),
 [Qwen3-VL](https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct),
 [FreeCAD](https://www.freecad.org/features.php),
-[assemblages build123d](https://build123d.readthedocs.io/en/latest/assemblies.html),
+[build123d assemblies](https://build123d.readthedocs.io/en/latest/assemblies.html),
 [COLMAP](https://colmap.github.io/tutorial.html),
 [Gmsh](https://gmsh.info/),
-[CalculiX](https://www.calculix.de/) et
+[CalculiX](https://www.calculix.de/) and
 [OpenFOAM](https://openfoam.org/version/13/).
 
-## Ce que fait chaque LLM
+## What each LLM does
 
-`Qwen3-Coder-30B-A3B-Instruct` est le modèle principal. Il peut transformer une
-fiche de mesures validée en script build123d, proposer les contraintes
-d'assemblage et écrire les tests. Son résultat doit passer `make check`, être
-ouvert dans FreeCAD et être comparé aux sources.
+`Qwen3-Coder-30B-A3B-Instruct` is the main model. It can turn a validated
+measurement record into a build123d script, propose the assembly constraints
+and write the tests. Its output must pass `make check`, be opened in FreeCAD
+and be compared to the sources.
 
-`Qwen3-VL-8B-Instruct` sert au tri initial de photos, captures et dessins. Il
-peut repérer une référence, un tableau ou une vue utile, mais une cote lue par
-vision reste `candidate` jusqu'à une lecture humaine et une seconde preuve.
+`Qwen3-VL-8B-Instruct` serves for the initial sorting of photos, screenshots
+and drawings. It can spot a reference, a table or a useful view, but a
+dimension read by vision stays `candidate` until a human reading and a second
+piece of evidence.
 
-Neural Concept n'entre pas dans le socle initial : c'est un produit commercial
-de modèle de substitution, utile seulement après constitution d'un ensemble de
-simulations ou d'essais corrélés. Avant ce stade, il ajoute du coût sans résoudre
-le manque de géométrie et de conditions limites.
+Neural Concept is not part of the initial foundation: it is a commercial
+surrogate-model product, useful only once a set of correlated simulations or
+tests has been built. Before that stage, it adds cost without solving the
+lack of geometry and boundary conditions.
 
-## Dimensionnement Vast.ai
+## Vast.ai sizing
 
-Les tailles ci-dessous sont des cibles pratiques à confirmer avec le format de
-poids et la longueur de contexte au moment de la location.
+The sizes below are practical targets to be confirmed with the weight format
+and context length at rental time.
 
-| Offre | Usage recommandé | Limite |
+| Offer | Recommended use | Limit |
 |---|---|---|
-| RTX 4090, 24 Go | Qwen3-VL-8B, COLMAP ; Coder 30B quantifié lancé seul | contexte et cache KV à limiter |
-| RTX A6000 / RTX 6000 Ada, 48 Go | choix de base : Coder 30B quantifié ou FP8, puis VL/reconstruction séparément | éviter deux gros modèles simultanés |
-| A100/H100, 80 Go ou 2 × 48 Go | grands contextes et modèles plus lourds | coût rarement justifié pour la première zone |
+| RTX 4090, 24 GB | Qwen3-VL-8B, COLMAP; quantized Coder 30B run alone | context and KV cache to be limited |
+| RTX A6000 / RTX 6000 Ada, 48 GB | baseline choice: quantized or FP8 Coder 30B, then VL/reconstruction separately | avoid two large models at the same time |
+| A100/H100, 80 GB or 2 × 48 GB | long contexts and heavier models | cost rarely justified for the first zone |
 
-Le meilleur premier choix est donc **une carte de 48 Go**, 16 vCPU, 64 Go de
-RAM et 150 à 250 Go de disque. La photogrammétrie et le LLM sont exécutés l'un
-après l'autre. La CAO/EF peut ensuite tourner avec
-`3dprinting993-cadsim` sur une offre CPU moins chère.
+The best first choice is therefore **a 48 GB card**, 16 vCPUs, 64 GB of
+RAM and 150 to 250 GB of disk. Photogrammetry and the LLM are run one after
+the other. CAD/FE can then run with
+`3dprinting993-cadsim` on a cheaper CPU offer.
 
-Vast exécute les instances comme des conteneurs Docker Linux et réserve la
-taille disque à la création. Ses volumes persistants restent liés à la machine
-physique et ne constituent donc pas une sauvegarde portable. Voir la
-[documentation Docker](https://docs.vast.ai/guides/instances/docker-environment)
-et la [documentation des volumes](https://docs.vast.ai/guides/instances/storage/volumes).
+Vast runs instances as Linux Docker containers and reserves the disk size at
+creation. Its persistent volumes stay tied to the physical machine and are
+therefore not a portable backup. See the
+[Docker documentation](https://docs.vast.ai/guides/instances/docker-environment)
+and the [volumes documentation](https://docs.vast.ai/guides/instances/storage/volumes).
 
-## Lancement du LLM sur Vast.ai
+## Launching the LLM on Vast.ai
 
-La location est payante : ces commandes sont un modèle de lancement, pas une
-autorisation de créer l'instance. Après sélection d'une offre 48 Go et création
-d'un volume, lancer l'image officielle vLLM avec le port 8000 exposé :
+Rental is paid: these commands are a launch template, not an authorization to
+create the instance. After selecting a 48 GB offer and creating a volume,
+start the official vLLM image with port 8000 exposed:
 
 ```bash
 vastai create instance <offer_id> \
@@ -88,7 +88,7 @@ vastai create instance <offer_id> \
   --env '-p 8000:8000 -v <volume_name>:/data'
 ```
 
-Dans l'instance :
+In the instance:
 
 ```bash
 vllm serve Qwen/Qwen3-Coder-30B-A3B-Instruct \
@@ -96,36 +96,36 @@ vllm serve Qwen/Qwen3-Coder-30B-A3B-Instruct \
   --enable-auto-tool-choice --tool-call-parser hermes
 ```
 
-Pour une exécution reproductible, remplacer `latest` par la version d'image
-testée avant la première location. Ne jamais placer de jeton dans la commande,
-le dépôt ou l'historique shell ; utiliser le mécanisme de secret propre à
-l'instance.
+For a reproducible run, replace `latest` with the image version tested before
+the first rental. Never put a token in the command, the repository or the
+shell history; use the instance's own secret mechanism.
 
-## Flux de construction du twin
+## Twin build flow
 
-1. Enregistrer la source, ses droits et ce qu'elle prouve.
-2. Extraire des **cotes candidates** avec Qwen3-VL, puis les vérifier.
-3. Produire le maître build123d/FreeCAD et exporter STEP.
-4. Recaler scans et solide dans Open3D, avec une référence métrique connue.
-5. Définir repères, joints, contacts et jeux dans le registre du twin.
-6. Assembler dans FreeCAD et reproduire l'assemblage par script build123d.
-7. Exécuter collisions et règles d'acceptation avec les incertitudes.
-8. Mailler avec Gmsh puis simuler avec CalculiX ou OpenFOAM si nécessaire.
-9. Corréler à des mesures physiques avant toute déclaration de validation.
+1. Record the source, its rights and what it proves.
+2. Extract **candidate dimensions** with Qwen3-VL, then verify them.
+3. Produce the build123d/FreeCAD master and export STEP.
+4. Register scans and solid in Open3D, with a known metric reference.
+5. Define datums, joints, contacts and clearances in the twin registry.
+6. Assemble in FreeCAD and reproduce the assembly with a build123d script.
+7. Run collisions and acceptance rules with the uncertainties.
+8. Mesh with Gmsh then simulate with CalculiX or OpenFOAM if needed.
+9. Correlate against physical measurements before any validation statement.
 
-Le premier lot géométrique est
-`TWIN-993-WHEEL-HUB-INTERFACES-0001`. Il contient quatre proxys STEP de roues,
-mais attend encore les géométries de moyeu et de frein avant le premier contrôle
-spatial réel.
+The first geometric batch is
+`TWIN-993-WHEEL-HUB-INTERFACES-0001`. It contains four STEP wheel proxies,
+but still awaits the hub and brake geometries before the first real spatial
+check.
 
-## Données et sécurité
+## Data and security
 
-- Les photos et scans bruts restent dans `/data` ou un stockage objet privé,
-  jamais dans Git.
-- Un volume Vast est temporaire et lié à son hôte ; synchroniser les résultats
-  à chaque fin de session.
-- STEP et les rapports dérivés n'entrent dans le dépôt que si leur licence et
-  leur provenance autorisent la redistribution.
-- Le LLM ne valide ni ajustement, ni matière, ni sécurité d'une pièce.
-- Les pièces de roue, freinage, direction et suspension restent bloquées pour
-  fabrication sans revue d'ingénierie professionnelle.
+- Raw photos and scans stay in `/data` or private object storage,
+  never in Git.
+- A Vast volume is temporary and tied to its host; sync the results
+  at the end of every session.
+- STEP files and derived reports only enter the repository if their license
+  and provenance allow redistribution.
+- The LLM validates neither the fit, nor the material, nor the safety of a
+  part.
+- Wheel, braking, steering and suspension parts stay blocked for
+  manufacturing without a professional engineering review.
