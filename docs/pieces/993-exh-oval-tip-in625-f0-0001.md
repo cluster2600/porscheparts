@@ -77,15 +77,15 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-in625-f0-0001.json`](../../ca
 
 ![993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen](../../parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png)
 
-*parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png*
+*`parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
 ![preview](../../parts/993-exh-oval-tip-in625-f0-0001/media/preview.png)
 
-*parts/993-exh-oval-tip-in625-f0-0001/media/preview.png*
+*`parts/993-exh-oval-tip-in625-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
 
 ![views](../../parts/993-exh-oval-tip-in625-f0-0001/media/views.png)
 
-*parts/993-exh-oval-tip-in625-f0-0001/media/views.png*
+*`parts/993-exh-oval-tip-in625-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
 ## Provenance and sources
 

@@ -6,16 +6,36 @@
 
 **`993-ENG-FAN-HOUSING-ALSI10MG-F0-0001`** · Porsche 993 · 1994–1998
 
-![status: concept](https://img.shields.io/badge/status-concept-lightgrey) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![process: undecided](https://img.shields.io/badge/process-undecided-blue)
-
-<img src="media/preview.png" alt="CAD view of Stationary engine fan housing, AlSi10Mg F0 concept" width="720">
-
-<sub>CAD view of the concept geometry — bounding box 300.0 × 300.0 × 170.0 mm. Not a photograph, not a manufactured part, not evidence of fit or function.</sub>
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
 > [!CAUTION]
-> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part. No part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** The model shown here is a
+> concept block for studying the part in software:
+> - validation status `concept`: nothing has been checked against a real part;
+> - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
+> - safety class `prohibited_pending_engineering`;
+> - no part in this repository is released — read [SAFETY.md](../../SAFETY.md).
+
+<table><tr>
+<td width="50%" valign="top">
+<b>Original part</b><br><br>
+The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://porschefanatics.com/engine/993/">PorscheFanatics - 993 engine fan housing and airflow</a><br>
+↗ <a href="https://www.fvd.net/en-us/shop/fan-housing-993-99310666703~p248872">FVD Brombacher - housing 993 106 667 03</a><br>
+↗ <a href="https://www.boutiqueporscheroissy.fr/produit/99310666703-boitier-de-la-soufflerie-porsche/">Centre Porsche Roissy - blower housing 993 106 667 03</a><br>
+↗ <a href="https://www.carparts.com/details/fan-shroud/genuine-porsche/gxl99310666703">CarParts - 993 housing declared aluminum</a><br>
+</td>
+<td width="50%" valign="top" align="center">
+<b>This repository's concept model</b><br><br>
+<img src="media/preview.png" alt="Concept CAD block for Stationary engine fan housing, AlSi10Mg F0 concept" width="340"><br>
+<sub>Concept CAD block, 300.0 × 300.0 × 170.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+</td>
+</tr></table>
+
+> [!CAUTION]
+> **Prohibited pending engineering** — risk, or insufficient data. Never published as a released part.
 
 ## What it is
 
@@ -32,7 +52,7 @@ F0 screening of open CAD, DfAM value, flow, pressure loss, bending, modal, therm
 | Porsche part numbers | 99310666703, 99310666701 |
 | variants | `993_air_cooled_fitment_to_confirm` |
 | candidate material | EOS Aluminium AlSi10Mg T6 for comparison |
-| preferred process | undecided |
+| candidate process | undecided |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |
 | geometry | mixed, master build123d |
@@ -69,7 +89,7 @@ flowchart LR
 
 ![Front, side and top orthographic views](media/views.png)
 
-*Orthographic views of the same CAD, with its bounding dimensions.*
+*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
 ## What's in this folder
 
@@ -77,7 +97,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_housing_alsi10mg_f0.step`](derived/fan_housing_alsi10mg_f0.step), [`derived/fan_housing_alsi10mg_f0.stl`](derived/fan_housing_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | product views rendered from the CAD by `scripts/render_part_previews.py` | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/fan_housing.py`](source/fan_housing.py) |
 
 ## Read more
