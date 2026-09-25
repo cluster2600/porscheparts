@@ -128,6 +128,21 @@ def valve_length(p, side):
     return p[f'{side}_valve_length_993'] + p['valve_length_delta']
 
 
+def seat_contact(p, side):
+    """Rayons et positions axiales communs aux deux faces concordantes, sans ajustement caché."""
+    angle, z0 = p['seat_face_angle'], p['valve_margin_height']
+    w, relief = p[f'{side}_seat_contact_radial_width'], p['seat_entry_radial_relief']
+    if not all(math.isfinite(v) for v in (angle, z0, w, relief)) or not 0 < angle < 90 or min(z0, w, relief) <= 0:
+        raise ValueError('seat contact dimensions must be finite and positive, angle strictly between 0 and 90')
+    r0 = p[f'{side}_valve_head_diameter'] / 2
+    r1, z1 = r0 - w, z0 + w * math.tan(math.radians(angle))
+    if (z1 >= min(p['seat_insert_height'], p['valve_head_thickness']) or
+            r1 <= max(p[f'{side}_throat_diameter'] / 2, p['guide_bore_diameter'] / 2 + 1.5) or
+            relief >= p['seat_insert_radial_wall']):
+        raise ValueError('seat contact exceeds the head, throat or insert envelope')
+    return r0, r1, z0, z1
+
+
 def cam_axis_point(p, side):
     c = head_centre(p, side, 1)
     c[1] = 0.0
