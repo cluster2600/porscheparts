@@ -90,6 +90,14 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-al2139-f1-0001.js
 
 *`parts/993-eng-k16-compressor-wheel-al2139-f1-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![display](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/display.png)
+
+*`parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/display.png` — a screening output, not a validation.*
+
+![mockup](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/mockup.png)
+
+*`parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/mockup.png` — a screening output, not a validation.*
+
 ## Provenance and sources
 
 | field | value |

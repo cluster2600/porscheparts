@@ -46,6 +46,10 @@ withdrawn several, listed [further down this page](#what-the-repository-withdrew
 >   the most complex design, rod and cap that bolt together, about 5 hours; "MOCK-UP / NOT FOR USE"
 >   is engraved in it, and the rod itself stays prohibited ([decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
 >
+> - 🧩 a **[K16 wheel pair on a display stand](parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/README.md)** —
+>   the compressor and turbine wheel designs side by side on an engraved stand, about 9.5 hours; both
+>   wheels stay prohibited and carry "MOCK-UP / NOT FOR USE" on their backs.
+>
 > None of them is validated.
 
 > [!NOTE]
@@ -188,9 +192,9 @@ engineering** stays so until an engineering review lifts it.
 <tr>
 <td align="center" width="16%"><a href="parts/993-eng-intercooler-bracket-ti-f0-0001/"><img src="parts/993-eng-intercooler-bracket-ti-f0-0001/media/preview.png" alt="993 Turbo/GT2 intercooler bracket" width="130"><br><sub>993 Turbo/GT2 intercooler bracket</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/"><img src="parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/media/preview.png" alt="993 Turbo intercooler end tank" width="130"><br><sub>993 Turbo intercooler end tank</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-k16-compressor-wheel-al2139-f1-0001/"><img src="parts/993-eng-k16-compressor-wheel-al2139-f1-0001/media/preview.png" alt="K16 compressor wheel" width="130"><br><sub>K16 compressor wheel</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-k16-compressor-wheel-al2139-f1-0001/"><img src="parts/993-eng-k16-compressor-wheel-al2139-f1-0001/media/preview.png" alt="🧩 K16 compressor wheel" width="130"><br><sub>🧩 K16 compressor wheel</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/"><img src="parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/media/preview.png" alt="993 K16 compressor wheel" width="130"><br><sub>993 K16 compressor wheel</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="K16 turbine wheel" width="130"><br><sub>K16 turbine wheel</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="🧩 K16 turbine wheel" width="130"><br><sub>🧩 K16 turbine wheel</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/"><img src="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/preview.png" alt="Engine oil filter console with in…" width="130"><br><sub>Engine oil filter console with in…</sub></a></td>
 </tr>
 <tr>
@@ -216,7 +220,7 @@ engineering** stays so until an engineering review lifts it.
 </tr>
 </table>
 
-*Concept CAD blocks rendered from each part's own CAD by `scripts/render_part_previews.py`. **None of these is the original part, and none is validated**: 34 of 34 records are at `concept`, and 0 of 34 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod. Click a part to see it next to the original.*
+*Concept CAD blocks rendered from each part's own CAD by `scripts/render_part_previews.py`. **None of these is the original part, and none is validated**: 34 of 34 records are at `concept`, and 0 of 34 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
 
 ```mermaid
 pie showData title 34 part records by safety class
