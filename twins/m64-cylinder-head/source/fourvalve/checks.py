@@ -5,7 +5,7 @@ import numpy as np
 
 import kinematics as kin
 from layout import (PLUGS, SIDES, VALVES, axis_up, cam_axis_point, cylinders, head_centre, head_projection,
-                    plug_open_radius, plug_opening, segment_distance)
+                    plug_envelope_cylinders, plug_open_radius, plug_opening, segment_distance, valve_length)
 
 
 def _c(name, value, limit, relation, detail, blocking=True, family='geometry'):
@@ -139,6 +139,23 @@ def static_checks(p):
     worst('plug_', 'stud_', 'plug_vs_studs', 'paroi puits de bougie / goujons')
     worst('plug_', 'pocket_', 'plug_vs_spring_pockets', 'paroi puits de bougie / logements de ressort')
     worst('plug_', 'guide_', 'plug_vs_guides', 'paroi puits de bougie / guides')
+    if 'plug_thread_reach' in p:
+        envelopes = [row for k in PLUGS for row in plug_envelope_cylinders(p, k).values()]
+        swept = []
+        for side, sy in VALVES:
+            c, u = head_centre(p, side, sy), axis_up(p, side)
+            lift, t = p[f'{side}_max_lift'], p['valve_head_thickness']
+            swept.extend([(c - u * lift, c + u * t, p[f'{side}_valve_head_diameter'] / 2),
+                          (c + u * (t - 0.5 - lift), c + u * valve_length(p, side), p['guide_bore_diameter'] / 2)])
+        clearance = min(segment_distance(a, b, c, d) - r - s
+                        for a, b, r in envelopes for c, d, s in swept)
+        out.append(_c('plug_vs_swept_valves', clearance, p['min_valve_clearance'], '>=',
+                      'capsules conservatives couvrant toute la course froide des têtes et tiges ; sans déformation',
+                      family='kinematics'))
+        lowest = min(min(a[2], b[2]) - r for a, b, r in envelopes)
+        crown = float(kin.piston_crown_z(p, np.array([0]))[0])
+        out.append(_c('plug_vs_piston_tdc', lowest - crown, p['min_valve_clearance'], '>=',
+                      'borne conservative face au plan de calotte au PMH, bol ignoré', family='kinematics'))
     # goujons
     r_stud = p['stud_hole_diameter'] / 2
     stud_r = math.hypot(p['stud_span_x'] / 2, p['stud_span_y'] / 2)

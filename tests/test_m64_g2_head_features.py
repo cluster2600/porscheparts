@@ -2,8 +2,10 @@
 import json
 import math
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 
@@ -95,26 +97,22 @@ class G2FeatureTests(unittest.TestCase):
             self.assertGreater(dx, 0)
 
     @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
-    def test_head_single_solid_and_compression_ratio_is_plausible(self):
+    def test_head_single_solid_does_not_prove_a_closed_chamber(self):
         import assembly
         import components as comp
-        p = layout.derive(G2_BASE, G1_DESIGN)
+        resolved = ROOT / 'twins/m64-cylinder-head/evidence/g2-head-features-20260916/parameters-resolved.json'
+        p = {k: row['value'] for k, row in json.loads(resolved.read_text()).items()}
         head = comp.head(p)
         self.assertTrue(assembly.brep_valid(head))
         self.assertEqual(len(head.Solids()), 1)
         g1_faces = len(comp.head(layout.derive(G1_BASE, G1_DESIGN)).Faces())
         self.assertGreater(len(head.Faces()), g1_faces)
         cr = assembly.compression_ratio(p)
-        # Bornes larges : la chambre n'est pas arrêtée. Le taux mesuré sur la configuration G1
-        # (grands angles de soupape, piston plat à bol) reste très inférieur aux 8:1 usuels en turbo.
-        self.assertTrue(math.isfinite(cr['compression_ratio']))
-        self.assertGreater(cr['compression_ratio'], 2.0)
-        self.assertLess(cr['compression_ratio'], 16.0)
-        self.assertGreater(cr['clearance_volume_cc'], 0.0)
-        # Le proxy numpy ignore sièges, gorges et conduits : il sous-estime, mais reste du même ordre.
-        proxy = chk.chamber_volume_mm3(p) / 1000
-        self.assertLess(proxy, cr['clearance_volume_cc'])
-        self.assertGreater(proxy, 0.5 * cr['clearance_volume_cc'])
+        # Les puits de bougie restent ouverts : une BRep de culasse valide ne ferme pas le gaz.
+        self.assertEqual(cr['status'], 'blocked_unsealed_chamber')
+        self.assertIsNone(cr['compression_ratio'])
+        self.assertIsNone(cr['clearance_volume_cc'])
+        self.assertIn('upper_probe_boundary', cr['artificial_boundaries_reached'])
         self.assertAlmostEqual(cr['swept_volume_cc'],
                                math.pi * (p['bore_diameter'] / 2) ** 2 * p['crank_stroke'] / 1000, places=1)
 
@@ -179,16 +177,104 @@ class G2CompressionCriterionTests(unittest.TestCase):
                            it.Search.rank(rec(True, False, 0.5, penalty=1.8))[3])
 
     @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
-    def test_calibrated_proxy_tracks_brep_near_the_band(self):
-        """La calibration ne vaut qu'au voisinage de la plage : c'est là qu'elle doit être juste."""
+    def test_connected_volume_excludes_other_voids_and_handles_overlapping_solids(self):
+        """Volumes analytiques : 16 mm³ fermés, 1 mm³ séparé, pièces occupantes recouvrantes."""
         import assembly
-        d = {k: v for k, v in G1_DESIGN.items() if not k.endswith('_valve_x')}
-        p = layout.derive(G2_BASE, dict(d, intake_axis_angle=16.0, exhaust_axis_angle=16.0))
-        brep = assembly.compression_ratio(p)
-        self.assertLess(abs(chk.calibrated_compression_ratio(p) - brep['compression_ratio']), 0.3)
-        # Loin de la plage, elle dérive : le proxy n'est donc jamais le juge.
-        far = layout.derive(G2_BASE, dict(d, intake_axis_angle=28.0, exhaust_axis_angle=28.0))
-        self.assertGreater(chk.calibrated_compression_ratio(far), assembly.compression_ratio(far)['compression_ratio'])
+        import cadquery as cq
+        V = cq.Vector
+        cavity = cq.Solid.makeBox(2, 2, 4, V(1, 1, 1))
+        separate = cq.Solid.makeBox(1, 1, 1, V(6, 6, 1))
+        seed = V(2, 2, 2)
+        for top in (8, 12):
+            probe = cq.Solid.makeBox(10, 10, top)
+            housing = probe.cut(cavity, separate)
+            duplicate = cq.Solid.makeBox(1, 1, 1, V(8, 8, 1))
+            measured = assembly.chamber_volume(probe, [housing, duplicate], seed, 0, top)
+            self.assertAlmostEqual(measured['clearance_volume_cc'], 0.016, places=9)
+            self.assertAlmostEqual(measured['excluded_disconnected_void_cc'], 0.001, places=9)
+            # Même cavité ouverte vers la limite artificielle : aucun taux admissible.
+            leak = cq.Solid.makeBox(0.5, 0.5, top, V(1.5, 1.5, 4))
+            opened = assembly.chamber_volume(probe, [housing.cut(leak)], seed, 0, top)
+            self.assertEqual(opened['status'], 'blocked_unsealed_chamber')
+            self.assertIsNone(opened['clearance_volume_cc'])
+            missing = assembly.chamber_volume(probe, [housing], V(9, 9, 2), 0, top)
+            self.assertEqual(missing['status'], 'blocked_chamber_seed_not_unique')
+
+    @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
+    def test_run_rejects_unmeasurable_compression_without_crashing(self):
+        import assembly
+        cad_result = {'all_brep_valid': True, 'head_solid_count': 1, 'brep_cross_check': [],
+                      'compression': {'compression_ratio': None, 'clearance_volume_cc': None,
+                                      'status': 'blocked_unsealed_chamber'}}
+        with tempfile.TemporaryDirectory() as tmp:
+            design = Path(tmp) / 'design.json'
+            design.write_text(json.dumps({'selected': {'design': G1_DESIGN}}))
+            with patch.object(assembly, 'export_all', return_value=cad_result):
+                result = fv_run.run(Path(tmp) / 'out', extra_params=[EXTRA], fixed_design=design)
+            self.assertFalse(result['accepted'])
+            self.assertFalse(result['cad']['compression']['in_band'])
+            self.assertIsNone(result['cad']['compression']['observed_calibration'])
+            without_cad = fv_run.run(Path(tmp) / 'no-cad', cad=False, extra_params=[EXTRA], fixed_design=design)
+            self.assertFalse(without_cad['accepted'])
+
+
+class SparkPlugEnvelopeTests(unittest.TestCase):
+    def setUp(self):
+        resolved = ROOT / 'twins/m64-cylinder-head/evidence/g2-head-features-20260916/parameters-resolved.json'
+        self.p = {k: row['value'] for k, row in json.loads(resolved.read_text()).items()}
+        extra = json.loads((FV / 'params-plugs/spark_plug_envelope.json').read_text())
+        for name, row in extra['parameters'].items():
+            pv.verify_provenance(name, row, SRC)
+            self.p[name] = row['value']
+
+    def test_socket_uses_shared_geometry_checks_and_rejects_invalid_dimensions(self):
+        p = self.p
+        for k in layout.PLUGS:
+            a, b, r = layout.cylinders(p)[f'plug_{k}_socket']
+            o, d = layout.plug_opening(p, k)
+            np.testing.assert_allclose(a, o + d * p['plug_thread_reach'])
+            self.assertEqual(r, p['plug_socket_diameter'] / 2)
+        names = {q['check']: q for q in chk.static_checks(p)}
+        self.assertTrue(names['plug_vs_ports']['passed'])
+        self.assertTrue(names['plug_vs_swept_valves']['passed'])
+        colliding = {q['check']: q for q in chk.static_checks(dict(p, plug_tip_projection=50))}
+        self.assertFalse(colliding['plug_vs_piston_tdc']['passed'])
+        self.assertTrue(colliding['plug_vs_piston_tdc']['blocking'])
+        for key, value in [('plug_thread_reach', -1), ('plug_thread_reach', 1000),
+                           ('plug_tip_projection', math.nan), ('plug_socket_diameter', 18),
+                           ('plug_seal_diameter', 12)]:
+            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                layout.cylinders(dict(p, **{key: value}))
+
+    @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
+    def test_candidate_is_closed_window_invariant_but_missing_plug_is_rejected(self):
+        import assembly
+        import components as comp
+        p = self.p
+        head = comp.head(p)
+        self.assertTrue(assembly.brep_valid(head))
+        self.assertEqual(len(head.Solids()), 1)
+        for k in layout.PLUGS:
+            plug = comp.spark_plug(p, k)
+            self.assertTrue(assembly.brep_valid(plug))
+            self.assertEqual(len(plug.Solids()), 1)
+            self.assertLess(abs(plug.intersect(head).Volume()), 1e-6)
+            self.assertGreater(assembly.brep_distance(plug, comp.piston(p, 0)), p['min_wall'])
+        values = [assembly.compression_ratio(p, margin) for margin in (2, 10)]
+        for row in values:
+            self.assertEqual(row['status'], 'synthetic_twin_estimate_not_m64_value')
+            self.assertFalse(row['artificial_boundaries_reached'])
+            self.assertFalse(row['radial_crevice_included'])
+        self.assertAlmostEqual(values[0]['clearance_volume_cc'], values[1]['clearance_volume_cc'], places=6)
+        self.assertAlmostEqual(values[0]['compression_ratio'], 7.35744, places=4)
+        real_plug = comp.spark_plug
+        def missing_second(p, k):
+            s = real_plug(p, k)
+            return s.translate((200, 0, 0)) if k == 2 else s
+        with patch.object(comp, 'spark_plug', side_effect=missing_second):
+            opened = assembly.compression_ratio(p)
+        self.assertEqual(opened['status'], 'blocked_unsealed_chamber')
+        self.assertIsNone(opened['compression_ratio'])
 
 
 if __name__ == '__main__':

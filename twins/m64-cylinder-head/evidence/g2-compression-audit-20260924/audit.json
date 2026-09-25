@@ -1,0 +1,81 @@
+{
+  "artifact": "m64_g2_compression_audit",
+  "manufacturing_authorized": false,
+  "geometry_modified": false,
+  "head_valid": true,
+  "head_solids": 1,
+  "head_faces": 399,
+  "legacy_measurement_sensitivity": [
+    {
+      "top_margin_mm": 2.0,
+      "legacy_all_voids_cc": 133.06848200266617,
+      "legacy_ratio_not_accepted": 5.509288659531173,
+      "boolean_void_cc": 133.86292097071703,
+      "boolean_valid": true,
+      "void_components": 7,
+      "connected_chamber_cc_diagnostic_only": 95.77817099302463
+    },
+    {
+      "top_margin_mm": 5.0,
+      "legacy_all_voids_cc": 147.00415618226026,
+      "legacy_ratio_not_accepted": 5.081817905146147,
+      "boolean_void_cc": 147.79867597106403,
+      "boolean_valid": true,
+      "void_components": 5,
+      "connected_chamber_cc_diagnostic_only": 96.7215417326955
+    },
+    {
+      "top_margin_mm": 10.0,
+      "legacy_all_voids_cc": 168.67676899674603,
+      "legacy_ratio_not_accepted": 4.557361220543809,
+      "boolean_void_cc": 169.47186083634256,
+      "boolean_valid": true,
+      "void_components": 3,
+      "connected_chamber_cc_diagnostic_only": 98.27210458730089
+    }
+  ],
+  "corrected_measurement": {
+    "clearance_volume_cc": null,
+    "status": "blocked_unsealed_chamber",
+    "connected_void_cc": 95.715465,
+    "excluded_disconnected_void_cc": 38.084752,
+    "artificial_boundaries_reached": [
+      "upper_probe_boundary"
+    ],
+    "swept_volume_cc": 600.0,
+    "compression_ratio": null,
+    "crown_tdc_z_mm": 1.21,
+    "radial_crevice_included": false,
+    "method": "connected_brep_void_with_axial_closure_check"
+  },
+  "parameters_sha256": "501a885f5020225c403ab0f5f30731b382b24935145f5c6f2c110f4498bfac7d",
+  "source_sha256": {
+    "audit_compression.py": "a461a46806696730edd14cff1afb4067886ac37cb5fdc5e99cb35905399a6694",
+    "bore_sweep.py": "66a687ae8fefe7a159737c978b0d85fa073ab7317d580e91b906cbb50ddf9a6d",
+    "cad/assembly.py": "dad5a9f0a6aa7eeebcb68de5bf7459cb921ff9a0903aebcd178c2450d0bb2dd2",
+    "cad/cadcommon.py": "eb8b3f9ecd6a14d022501100e4132da634369078b91fb5c09afdc1285c6267aa",
+    "cad/camshaft.py": "31d86c9bc3378c87a5deb0cdd2f6bb0cc04fb831b83e8ee7833059d29a8e981b",
+    "cad/components.py": "4ea8d8ebaf3d7f17d8753ceb6a9e99faab3def4ca5cfa563aa0a962077cedbd5",
+    "cad/gasket.py": "ef73fead4753060006aa1262fb1cb619e131dc0999cbc0d5710a83dac2cafb36",
+    "cad/head.py": "bab5c410643e64ea43781d99b9bc9bec573bb05f5d172b63b5f4f88890122e9c",
+    "cad/liner.py": "c25e5c6ee0ab4772c9e14fe3536d693c3bf00459f0e6579d3b9999a306322e34",
+    "cad/piston.py": "449745ab20bac15fc1ae2cebee4ea1b56f2592ad2bf12e6055a8f935e1adc04b",
+    "cad/spring.py": "17d6ac41d29ae2a220e685edc36d7bcf409d0c26e7cc48e5d736821f58ccfc93",
+    "cad/studs.py": "0a1b44739fca525328fd18364d3051dfc810c3dc18bc328a70c047da9314e6ef",
+    "cad/valve.py": "06c720efa6bf1833043b53ee4a2d52e2a64a91ff911a808f747388b0ce636e28",
+    "checks.py": "3fdf305b551b0be21d7ce5d0c802ef0e4680b3b680a4622944849256f3a7535a",
+    "features.py": "4ea0d516544e9fd70c2016b668376747a8f085f7754ec8766a43ec32ad956a6f",
+    "iterate.py": "45509b3f68fae4d0ff038eb8fdbf64b9cdb7fcef51b0bf91464c87f6b79095a0",
+    "kinematics.py": "b7e45b0a9d72f4da3b07201429df20bdd7dabc524bb9b6a8ac2a0474d7a969a1",
+    "layout.py": "307729089086e61c50de755ce897a23997db5652825aa456b8ae5aaf1188c988",
+    "provenance.py": "39bf0f1c90688a4f0a9c48ec3637d35685579f783aaca6d896d86c0fc6093e64",
+    "run.py": "e9c65c67a2fb81823b111413ad75bea6e0adf4a6ea8bd0176ae70f89b38a48e1",
+    "tune_compression.py": "33ee3c7eedcd7a82f8be55efca1c117340173d8f9cf37645d1e0991ea4a4e2bc"
+  },
+  "section_sha256": "ddad61b587ca89a7f4524fb8435c9ff58aad231bc9472c0f0a4430d7b1d9099d",
+  "environment": {
+    "python": "3.12.11",
+    "cadquery": "2.6.1",
+    "numpy": "2.5.3"
+  }
+}
