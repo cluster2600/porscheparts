@@ -81,6 +81,8 @@ relationships for each component.
 > as the repository's first printable file — see
 > [decision 0009](docs/decisions/0009-first-fit-test-print-switch-blank.md) and
 > [`parts/993-int-switch-blank-0001/print/`](parts/993-int-switch-blank-0001/print/README.md).
+> The F1 switch trim ring followed as a printable part
+> ([decision 0010](docs/decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
 > Every other part stays unprinted.
 
 Three non-critical parts selected, records created at status `concept`:

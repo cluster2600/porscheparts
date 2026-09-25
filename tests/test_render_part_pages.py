@@ -33,7 +33,13 @@ class PartPageTests(unittest.TestCase):
             self.assertIn(f"docs/pieces/{fiche['part_id'].lower()}.md", texte)
             tete = texte.split("## What it is")[0]
             self.assertIn("[!CAUTION]", tete)
-            if (dossier / "print" / "kit.json").exists():
+            if (dossier / "print" / "print.json").exists():
+                # a printable design says so, and still says it is not validated
+                self.assertIn("ready to print", tete)
+                self.assertIn("not validated", tete)
+                self.assertIn("decision 0010", tete)
+                self.assertNotIn("not a print file", tete)
+            elif (dossier / "print" / "kit.json").exists():
                 # a fit-test kit is announced as such, and the part is still said unvalidated
                 self.assertIn("fit-test kit is ready to print", tete)
                 self.assertIn("not validated", tete)

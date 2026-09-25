@@ -6,13 +6,16 @@
 
 **`993-INT-SWITCH-TRIM-RING-F1-0001`** · Porsche 993 · 1994–1998
 
-![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: non-critical](https://img.shields.io/badge/safety-non--critical-informational) ![candidate process: CNC](https://img.shields.io/badge/candidate%20process-CNC-lightgrey)
+![status: concept, printable](https://img.shields.io/badge/status-concept,%20printable-success) ![safety: non-critical](https://img.shields.io/badge/safety-non--critical-informational) ![candidate process: CNC](https://img.shields.io/badge/candidate%20process-CNC-lightgrey)
 
 </div>
 
+> [!TIP]
+> **This part is ready to print** — [`print/`](print/README.md): the repository's own design, unchanged, sliced in 17m 12s (2.28 cm³), with a PrusaSlicer project and settings. Its fit on the car is not checked yet ([decision 0010](../../docs/decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
+
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** The model shown here is a
-> concept block for studying the part in software:
+> **Printable, but not validated, and not a copy of the original.** The model shown here is a
+> design whose fit has not been checked against the car:
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `estimated`: its dimensions are estimated design variables, not measured on the original part;
 > - safety class `non_critical`;
@@ -25,9 +28,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101">Oldtimer-Ersatzteile24 - Switch trim ring 911/964/993</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Aluminum switch trim ring, F1 reconstruction" width="340"><br>
-<sub>Concept CAD block, 30.5 × 30.5 × 10.5 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<b>This repository's design — what prints</b><br><br>
+<a href="print/README.md"><img src="media/preview.png" alt="Printable design of Aluminum switch trim ring, F1 reconstruction" width="340"></a><br>
+<sub>The repository's own design, rendered from the file that prints. <b>Not</b> the original part; fit on the car not checked.</sub>
 </td>
 </tr></table>
 
@@ -92,7 +95,8 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_trim_ring_f1.step`](derived/switch_trim_ring_f1.step), [`derived/switch_trim_ring_f1.stl`](derived/switch_trim_ring_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/geometry-screen.json`](evidence/geometry-screen.json) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/switch_trim_ring.py`](source/switch_trim_ring.py) |
+| `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/print.json`](print/print.json), [`print/switch_trim_ring_f1.3mf`](print/switch_trim_ring_f1.3mf), [`print/switch_trim_ring_f1_print.stl`](print/switch_trim_ring_f1_print.stl) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/export_print.py`](source/export_print.py), [`source/switch_trim_ring.py`](source/switch_trim_ring.py) |
 
 ## Read more
 
