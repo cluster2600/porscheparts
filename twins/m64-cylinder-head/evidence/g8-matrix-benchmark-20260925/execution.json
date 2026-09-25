@@ -1,0 +1,83 @@
+{
+  "schema": "m64-g8-cpu-gpu-execution/v1",
+  "date_utc": "2026-09-25",
+  "scope": "coarse_carrier_x_reduced_linear_system_only",
+  "native_matrix_comparison": {
+    "arm64_sti_sha256": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+    "x86_sti_sha256": "34b9fb9fc0434d401f174d9312c6318091cd00c4b22ba62e0c5db5922455bff5",
+    "shared_dof_sha256": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775",
+    "relative_frobenius_difference": 3.353264554710486e-14,
+    "max_entry_difference": 0.0000014994293451309204
+  },
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "driver": "595.71.05",
+    "reported_cuda_runtime": 12090,
+    "cpu": "AMD Ryzen 9 7945HX",
+    "contract_cpu_logical": 32,
+    "contract_ram_mb": 64011,
+    "contract_vram_mb": 24564,
+    "blas_threads": 1
+  },
+  "software": {
+    "numpy": "2.2.6",
+    "scipy": "1.14.1",
+    "cupy": "13.6.0",
+    "cuda_wheels": "12.8 family; resolved CUDA runtime reported 12.9",
+    "full_toolchain_reproducibility_claimed": false
+  },
+  "lifecycle": {
+    "instance_id": 52639109,
+    "offer_id": 40764560,
+    "profile": "picogk-m64-v1",
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+    "user_budget_usd": 5,
+    "run_budget_usd": 3,
+    "deadline_duration_seconds": 5400,
+    "dph_total_usd": 0.5725925925925925,
+    "transfer_usd_per_GB": 0.0037760416666666667,
+    "planned_with_cleanup_reserve_usd": 1.8798459201388888,
+    "external_guard_armed_before_rental": true,
+    "approved_ssh_key_verified": true,
+    "public_registry_manifest_refreshed": true,
+    "image_compressed_layer_bytes": 1099287405,
+    "declared_image_and_bootstrap_download_GB": 4,
+    "declared_input_GB": 1.5,
+    "declared_output_GB": 0.05,
+    "provider_destroyed": true,
+    "provider_verified_absent": true,
+    "external_guard_verified_absent": true,
+    "inventory_empty_after_cleanup": true,
+    "balance_before_usd": 27.777649649450282,
+    "balance_after_usd": 27.726338275550262,
+    "observed_credit_decrease_usd": 0.051311373900020385,
+    "credit_delta_is_not_final_itemized_invoice": true,
+    "first_offer_rejected_before_paid_creation": true,
+    "automatic_recharge_requested": false
+  },
+  "telemetry": {
+    "samples": 106,
+    "sample_period_seconds": 1,
+    "max_gpu_utilization_percent": 90,
+    "max_gpu_memory_MiB": 578,
+    "max_board_power_W": 252.24,
+    "peaks_are_sampled_not_continuous": true
+  },
+  "hashes": {
+    "wrapper": "42fe39ebcf7fc81e8f6c4a85e38fa9da03fd4637bb93a37b3a422c315e8a5aa4",
+    "guard": "c1d82cfaf5c8f178b5eaeb32ca5d98774b3dd60502087310f10a2966e53ff3f4",
+    "manifest": "f7d02577243594fef4e418f081e35dd7ca0f94c7e85a68614bc42611108abee1",
+    "job_script": "6eb7263e41481b9fe8e228e475afc89854b3c98584652dc4517086167eca9e4a",
+    "input_archive": "93444eb7948c819efe46e823cc1603861bb6a4d00e471f20e58d7c6957cd4388",
+    "result_archive": "2598bf65d6b6a6370e5bbec80eae1c39b20078bd5f2f58dcf3a7554067a71a4e",
+    "gpu_telemetry": "875b2a7c2e328fdf368036b610c3e9e770a2b7166b1756af62fcbbbf454eb4a8",
+    "environment": "b719c226cce6bdc4251f580a633cac53180a7893c60fbe828e7d1e0b178dceb4",
+    "job_log": "25393788fc23266d9a1cf814da297c2e1febf6bab5b55938a9840f45fe2f256c"
+  },
+  "input_and_output_archives_remote_local_hashes_match": true,
+  "original_reference_accepted": false,
+  "root_cause_of_archived_result_discrepancy_established": false,
+  "full_G8_campaign_revalidated": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}

@@ -1,5 +1,15 @@
 # M64 G8 — isolated carrier compliance and resource pilot
 
+> **Subsequent reproducibility warning (2026-09-25):** the archived coarse
+> carrier +x displacement/stress result does not reproduce from its own pinned
+> input. Four fresh direct runs and an independent matrix solve agree with
+> each other, but differ from the archived displacement field by 4.289% of its
+> maximum displacement. Global reaction balance alone did not detect this.
+> Do not use the archived carrier result as a solver reference or a strength
+> result. See the [matrix audit](M64_G8_CPU_GPU_MATRIX_BENCHMARK_20260925.md).
+> Original receipts below are preserved, not silently replaced. Other G8
+> cases have not yet undergone this independent matrix check.
+
 ## Scope
 
 This is a native x86 Gmsh/CalculiX calculation of the **unchanged G7 central
