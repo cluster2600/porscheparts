@@ -1,141 +1,138 @@
-# Ce qui reste à instruire — les 70 désignations du catalogue d'usine
+# What remains to be examined — the 70 designations of the factory catalogue
 
-Réponse à une objection juste : « une seule pièce en titane sur toute la
-voiture ? ». Non. Ce chiffre portait sur les fiches du dépôt, pas sur
-l'automobile. Voici le balayage large, et son résultat.
+An answer to a fair objection: "a single titanium part on the whole car?" No.
+That figure counted the records in the repository, not the automobile. Here is
+the wide sweep, and its result.
 
-## Tout le catalogue est disposé — plus une seule perte silencieuse
+## The whole catalogue is disposed of — not one silent loss left
 
-Les criblages publiaient ce qu'ils retenaient, et **956 désignations sur 1 026
-tombaient sans motif**. C'est ainsi que `oil pipe`, puis `pulley`, puis `muffler`
-se sont perdus. Chaque désignation repart désormais avec une catégorie et une
-raison écrite.
+The screenings published what they kept, and **956 of 1,026 designations fell
+away without a reason**. That is how `oil pipe`, then `pulley`, then `muffler`
+got lost. Every designation now leaves with a category and a written reason.
 
-| catégorie | désignations | références |
+| category | designations | references |
 |---|---:|---:|
-| visserie, étanchéité, matière souple | 394 | 3 126 |
-| **instruites, avec un verdict** | **373** | **1 245** |
-| domaine présumé critique | 139 | 598 |
-| ni métal ni pièce à refabriquer | 70 | 539 |
-| **désignation générique** — voir plus bas | **50** | **751** |
-| reste à instruire | **0** | 0 |
+| fasteners, sealing, soft material | 394 | 3,126 |
+| **examined, with a verdict** | **373** | **1,245** |
+| domain presumed critical | 139 | 598 |
+| neither metal nor a part to remanufacture | 70 | 539 |
+| **generic designation** — see below | **50** | **751** |
+| still to examine | **0** | 0 |
 
-| étage | porte sur | retient |
+| stage | covers | keeps |
 |---|---:|---:|
-| disposition du catalogue d'usine | 1 026 désignations, 6 259 références | 373 instruites |
-| verdict sur les désignations instruites | 373 | **9 méritent une fiche** |
-| criblage des fiches écrites | 34 fiches | 1 éligible aujourd'hui |
+| disposition of the factory catalogue | 1,026 designations, 6,259 references | 373 examined |
+| verdict on the examined designations | 373 | **9 deserve a record** |
+| screening of the written records | 34 records | 1 eligible today |
 
-Les trois ne disent pas la même chose et ne doivent jamais être cités l'un pour
-l'autre. Le premier balaie la voiture. Le dernier mesure l'état du dépôt.
+The three do not say the same thing and must never be quoted one for the other.
+The first sweeps the car. The last measures the state of the repository.
 
-## Ce qui reste ouvert, et qu'il ne faut pas maquiller
+## What remains open, and must not be dressed up
 
-**50 désignations, 751 références, sont « génériques ».** `support` couvre
-142 références, `cover` 118, `lid` 69. Ce ne sont pas des pièces, ce sont des
-mots : les juger à ce niveau serait un faux, parce qu'ils recouvrent des pièces
-qui n'ont rien à voir entre elles.
+**50 designations, 751 references, are "generic".** `support` covers
+142 references, `cover` 118, `lid` 69. These are not parts, they are words:
+judging them at that level would be a fake, because they cover parts that have
+nothing to do with one another.
 
-Pour celles-là, l'unité de jugement n'est pas la désignation mais **la
-référence**, et il y en a 6 259. C'est un travail d'un autre ordre, qui n'est pas
-fait. Il est compté ici plutôt que masqué.
+For those, the unit of judgment is not the designation but **the reference**,
+and there are 6,259 of them. That is work of another order, and it is not done.
+It is counted here rather than hidden.
 
-## Les sept désignations à instruire
+## The seven designations to examine
 
-| réf. | désignation | planche | matière présumée |
+| ref. | designation | plate | presumed material |
 |---:|---|---|---|
-| 21 | `tail pipe` | 202-00, 202-15 | acier inoxydable — **fiche ouverte** |
-| 12 | `muffler` | 202-00, 202-15 | acier inoxydable |
-| 5 | `hot-air manifold` | 108-10 | tôle d'acier |
-| 4 | `air tube` | 108-05, 108-07 | tôle d'acier |
-| 4 | `heating tube` | 202-05, 202-10, 202-20 | tôle d'acier |
-| 3 | `distributor housing` | 108-05, 302-05 | tôle d'acier |
-| 2 | `heat control box` | 202-20 | tôle d'acier |
-| 2 | `y-piece` | 108-07, 107-14 | tôle d'acier |
-| 1 | `air distributor tube` | 202-05 | tôle d'acier |
+| 21 | `tail pipe` | 202-00, 202-15 | stainless steel — **record opened** |
+| 12 | `muffler` | 202-00, 202-15 | stainless steel |
+| 5 | `hot-air manifold` | 108-10 | sheet steel |
+| 4 | `air tube` | 108-05, 108-07 | sheet steel |
+| 4 | `heating tube` | 202-05, 202-10, 202-20 | sheet steel |
+| 3 | `distributor housing` | 108-05, 302-05 | sheet steel |
+| 2 | `heat control box` | 202-20 | sheet steel |
+| 2 | `y-piece` | 108-07, 107-14 | sheet steel |
+| 1 | `air distributor tube` | 202-05 | sheet steel |
 
-**Elles forment une seule famille.** Sept des neuf sont des pièces de tôle du
-circuit d'air chaud et d'air secondaire autour des échangeurs d'échappement ;
-les deux autres, l'embout et le silencieux, sont la sortie d'échappement.
-Toutes partagent le même profil, et c'est ce profil qui les fait passer :
+**They form a single family.** Seven of the nine are sheet-metal parts of the
+hot-air and secondary-air circuit around the exhaust heat exchangers; the other
+two, the tip and the muffler, are the exhaust outlet. All share the same
+profile, and that profile is what gets them through:
 
-- **chaudes, mais pas à la température des gaz** — l'air chauffé par les
-  échangeurs reste sous le plafond de fluage du titane, là où l'échangeur
-  lui-même, à 900 °C, est un cas nickel ;
-- **en tôle d'acier aujourd'hui** — le titane y gagne vraiment, en masse et en
-  tenue à la corrosion de condensat, ce qu'il ne gagne jamais contre de
-  l'aluminium ;
-- **minces et consolidables** — tubes, collecteurs, boîtiers à volets ;
-- **bénignes à la rupture** — on perd du chauffage ou une conformité
-  d'émissions, pas le contrôle du véhicule.
+- **hot, but not at gas temperature** — the air heated by the exchangers stays
+  under titanium's creep ceiling, whereas the exchanger itself, at 900 °C, is a
+  nickel case;
+- **in sheet steel today** — titanium genuinely wins there, in mass and in
+  resistance to condensate corrosion, which it never wins against aluminum;
+- **thin and consolidable** — tubes, manifolds, flap boxes;
+- **benign on failure** — you lose heating or emissions compliance, not control
+  of the vehicle.
 
-C'est le premier gisement titane cohérent que ce dépôt ait trouvé, et il ne
-ressemble pas à ce qu'on aurait deviné : ni le moteur, ni le train, ni la
-carrosserie. Le chauffage.
+It is the first coherent titanium seam this repository has found, and it does
+not look like what one would have guessed: not the engine, not the running
+gear, not the body. The heating.
 
-## Pourquoi les 63 autres tombent
+## Why the other 63 fall
 
-Les motifs sont mécaniques, dérivés et non déclarés — le script recalcule chaque
-verdict et **refuse de tourner si un verdict écrit ne découle plus de ses
-raisons**. C'est la garde qui manquait aux criblages précédents.
+The reasons are mechanical, derived and not declared — the script recomputes
+every verdict and **refuses to run if a written verdict no longer follows from
+its reasons**. That is the guard the earlier screenings lacked.
 
-| motif | exemples |
+| reason | examples |
 |---|---|
-| le titane n'améliore pas la matière d'origine | admission et refroidisseurs en aluminium, habillages en polymère |
-| domaine présumé critique | conduites de frein, d'embrayage, de carburant, tubes d'absorption de pare-chocs |
-| aucune des trois familles additives | écrans thermiques plans, supports, guides |
-| impossibilité physique | radiateur d'huile et dissipateur électronique : leur fonction est de conduire la chaleur |
+| titanium does not improve on the original material | intake and coolers in aluminum, polymer trim |
+| domain presumed critical | brake, clutch and fuel lines, bumper absorber tubes |
+| none of the three additive families | flat heat shields, brackets, guides |
+| physical impossibility | oil cooler and electronics heat sink: their function is to conduct heat |
 
-Le cas le plus instructif reste `heat exchanger`, meilleur score brut du triage :
-il tombe sur la température. Et `oil pipe`, deuxième meilleur cas de
-consolidation de la voiture, tombe sur l'incendie et sur le grippage des
-raccords — instruit séparément dans
+The most instructive case remains `heat exchanger`, the best raw score of the
+triage: it falls on temperature. And `oil pipe`, the second-best consolidation
+case on the car, falls on fire and on fitting galling — examined separately in
 [`993_CIRCUIT_HUILE_TURBO_202-16.md`](993_CIRCUIT_HUILE_TURBO_202-16.md).
 
-## Ce que ce document n'est pas
+## What this document is not
 
-Un verdict `open_a_fiche` ne dit pas qu'une pièce est bonne. Il dit qu'elle
-mérite une fiche, et que la fiche tranchera — avec des mesures, une matière
-identifiée et un cas de charge. Tout ce qui précède est déduit d'une désignation
-de trois mots et de sa planche.
+An `open_a_fiche` verdict does not say that a part is good. It says the part
+deserves a record, and that the record will decide — with measurements, an
+identified material and a load case. Everything above is deduced from a
+three-word designation and its plate.
 
-Huit fiches à écrire, donc. C'est le prochain chantier, et il est borné.
+Eight records to write, then. That is the next job, and it is bounded.
 
-Le silencieux mérite une mention : il n'était pas dans les 70 du triage lexical,
-parce que le mot `muffler` ne contenait aucun terme de mon vocabulaire. Il a
-fallu la disposition complète pour le voir. C'est pourtant, avec l'embout, le
-meilleur candidat titane de la voiture — chambres internes, aval du moteur,
-rupture bénigne, et un produit de série chez les équipementiers.
+The muffler deserves a mention: it was not among the 70 of the lexical triage,
+because the word `muffler` contained none of the terms in my vocabulary. It
+took the complete disposition to see it. Yet it is, with the tip, the best
+titanium candidate on the car — internal chambers, downstream of the engine,
+benign failure, and a series product at the aftermarket suppliers.
 
 ## Reproduction
 
 ```bash
-make pet-part-triage PET_LISTING=<chemin>/oem-listed.json
-make pet-disposition PET_LISTING=<chemin>/oem-listed.json
+make pet-part-triage PET_LISTING=<path>/oem-listed.json
+make pet-disposition PET_LISTING=<path>/oem-listed.json
 make pet-verdict
 make pet-verdict-check
-make pet-explain PET_LISTING=<chemin>/oem-listed.json REF="993 105 011 05"
+make pet-explain PET_LISTING=<path>/oem-listed.json REF="993 105 011 05"
 ```
 
-## Sans accès aux pièces : d'où viennent les cotes
+## Without access to the parts: where the dimensions come from
 
-Le dépôt demande partout « mesurer un exemplaire ». Sans accès aux pièces, la
-question devient : que peut-on obtenir autrement ?
+The repository asks everywhere to "measure a specimen". Without access to the
+parts, the question becomes: what can be obtained otherwise?
 
-| candidat | cotes disponibles ? | d'où |
+| candidate | dimensions available? | from where |
 |---|---|---|
-| bague de commutateur | **oui, complètes** | fiche fournisseur : Ø30,5 × 10,5, alésage 23 → 28 |
-| embout d'échappement | **partielles** | FVD publie l'enveloppe de sortie 120 × 85 mm ; le reste est hypothèse F0 |
-| couvercle de carter de chaîne | **non** | deux reproducteurs le fabriquent, aucun ne publie de cote |
-| silencieux | **non vérifié** | les équipementiers publient des références, pas des plans |
-| tôlerie d'air chaud | **non** | aucune source identifiée |
+| switch trim ring | **yes, complete** | supplier sheet: Ø30.5 × 10.5, bore 23 → 28 |
+| exhaust tip | **partial** | FVD publishes the 120 × 85 mm outlet envelope; the rest is an F0 hypothesis |
+| chain case lid | **no** | two reproducers make it, neither publishes a dimension |
+| muffler | **not verified** | aftermarket suppliers publish part numbers, not drawings |
+| hot-air sheet metal | **no** | no source identified |
 
-**La leçon générale :** ce qui met une cote en ligne, ce n'est pas le
-constructeur, c'est **un vendeur qui doit convaincre l'acheteur que sa pièce
-rentre**. C'est exactement ainsi que la bague a ses quatre cotes et l'embout son
-enveloppe. Quand personne n'a besoin de convaincre, personne ne publie.
+**The general lesson:** what puts a dimension online is not the manufacturer,
+it is **a seller who has to convince the buyer that the part fits**. That is
+exactly how the ring got its four dimensions and the tip its envelope. When
+nobody needs to convince, nobody publishes.
 
-**La conséquence pratique :** la bonne question n'est pas « où trouver les
-cotes » mais **« quel est l'objet le moins cher qui les porte »**. Pour le
-couvercle, c'est son joint, à 13 $. Pour la plupart des autres, c'est la pièce
-d'occasion. Dans les deux cas c'est du courrier, pas un accès véhicule.
+**The practical consequence:** the right question is not "where to find the
+dimensions" but **"what is the cheapest object that carries them"**. For the
+lid, it is its gasket, at $13. For most of the others, it is the used part. In
+both cases it is mail, not vehicle access.

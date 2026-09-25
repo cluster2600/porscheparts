@@ -1,59 +1,59 @@
-# Carter fixe de ventilateur moteur 993 — AlSi10Mg F0
+# 993 engine fixed fan housing — AlSi10Mg F0
 
-Ce candidat vise la partie **stationnaire** du refroidissement, jamais la
-turbine tournante. PorscheFanatics rappelle que le carter distribue l'air à
-l'ensemble du moteur : son ajustement et son étanchéité sont fonctionnels.
+This candidate targets the **stationary** part of the cooling system, never the
+rotating impeller. PorscheFanatics points out that the housing distributes air
+to the whole engine: its fit and its sealing are functional.
 
-FVD publie la référence `993 106 667 03`, une enveloppe produit
-`300 × 300 × 170 mm` et `1,9 kg`. Le Centre Porsche Roissy publie `1,86 kg` et
-relie aussi `993 106 667 01`. Un revendeur décrit la pièce comme aluminium,
-sans nuance, procédé ni certificat. Ces éléments suffisent à borner un F0, pas
-à reconstruire une pièce ajustable.
+FVD publishes the reference `993 106 667 03`, a product envelope of
+`300 × 300 × 170 mm` and `1.9 kg`. Centre Porsche Roissy publishes `1.86 kg` and
+also links `993 106 667 01`. A reseller describes the part as aluminum, without
+grade, process or certificate. These elements are enough to bound an F0, not to
+rebuild a fittable part.
 
-## Géométrie et valeur additive
+## Geometry and additive value
 
-Le maître build123d conserve l'enveloppe publiée, puis emploie des interfaces
-entièrement synthétiques : gorge `252 mm`, coque `3 mm`, bride `4 mm`, support
-annulaire `90/70 mm`, six rayons `81 × 12 × 12 mm` et six trous `6,6 mm`.
+The build123d master keeps the published envelope, then uses entirely synthetic
+interfaces: throat `252 mm`, shell `3 mm`, flange `4 mm`, annular support
+`90/70 mm`, six spokes `81 × 12 × 12 mm` and six `6.6 mm` holes.
 
-Le STEP relu contient un solide BREP valide, sans turbine, et une voie d'air
-ouverte. Son volume est `668 006,23 mm³`, soit `1 783,58 g` en AlSi10Mg. La
-proximité des `1,86–1,90 kg` commerciaux n'est pas une validation : plusieurs
-géométries très différentes peuvent avoir la même masse.
+The re-read STEP contains one valid BREP solid, without impeller, and an open
+air path. Its volume is `668,006.23 mm³`, that is `1,783.58 g` in AlSi10Mg.
+Being close to the commercial `1.86–1.90 kg` is not a validation: several very
+different geometries can have the same mass.
 
-Un brut parallélépipédique plein pèserait `40,851 kg`, soit `22,90` fois le F0.
-L'AM peut donc se défendre pour une restauration à faible volume, en consolidant
-coque, bride, support et rayons. Une fonderie aluminium/magnésium qualifiée reste
-toutefois la référence à battre en coût, fatigue, état de surface et cadence.
+A solid rectangular billet would weigh `40.851 kg`, `22.90` times the F0. AM can
+therefore make its case for a low-volume restoration, by consolidating shell,
+flange, support and spokes. A qualified aluminum/magnesium casting nonetheless
+remains the reference to beat on cost, fatigue, surface finish and rate.
 
-## Criblage d'écoulement
+## Flow screening
 
-Avec le cas synthétique `Q = 1,25 m³/s`, la section annulaire vaut :
+With the synthetic case `Q = 1.25 m³/s`, the annular section is:
 
-`A = π(D² - d²)/4 = 0,043514 m²`, puis `v = Q/A = 28,73 m/s`.
+`A = π(D² - d²)/4 = 0.043514 m²`, then `v = Q/A = 28.73 m/s`.
 
-Pour `ρ = 1,05 kg/m³` et `K = 0,8`, le modèle concentré donne :
+For `ρ = 1.05 kg/m³` and `K = 0.8`, the lumped model gives:
 
-`Δp = Kρv²/2 = 346,58 Pa`, puis `P = ΔpQ = 433,23 W`.
+`Δp = Kρv²/2 = 346.58 Pa`, then `P = ΔpQ = 433.23 W`.
 
-L'écran passe sous une limite arbitraire de `500 Pa`, rapport `1,443`. Ce n'est
-ni une courbe de ventilateur, ni la répartition du débit vers les cylindres.
+The screen passes under an arbitrary limit of `500 Pa`, ratio `1.443`. It is
+neither a fan curve nor the flow distribution to the cylinders.
 
-## Structure, modal et thermique
+## Structure, modal and thermal
 
-Une charge radiale synthétique de `2 kN` est répartie également sur six rayons.
-Le modèle de poutre donne `I = bt³/12 = 1 728 mm⁴`, `93,75 MPa` et
-`0,488 mm` en bout. Le rapport à `245 MPa` vaut `2,61` : l'écran statique passe
-de justesse sur la flèche maximale `0,50 mm`.
+A synthetic radial load of `2 kN` is spread equally over six spokes. The beam
+model gives `I = bt³/12 = 1,728 mm⁴`, `93.75 MPa` and `0.488 mm` at the tip. The
+ratio to `245 MPa` is `2.61`: the static screen passes narrowly on the maximum
+deflection of `0.50 mm`.
 
-Le premier mode de rayon encastré simplifié vaut `1 512,8 Hz`. Une excitation
-synthétique à onze pales et `6 000 tr/min` vaut `1 100 Hz`; séparation `37,5 %`,
-au-dessus de la cible `20 %`. Cet écran ne remplace pas un modèle modal du
-carter assemblé.
+The first mode of the simplified cantilevered spoke is `1,512.8 Hz`. A
+synthetic excitation at eleven blades and `6,000 rpm` is `1,100 Hz`; separation
+`37.5 %`, above the `20 %` target. This screen does not replace a modal model of
+the assembled housing.
 
-À `150 °C` depuis `20 °C`, la gorge croît librement de `0,688 mm`. Totalement
-contrainte, `σ = EαΔT` atteint `191,1 MPa`; le rapport `245/191,1 = 1,282` est
-inférieur à `1,5` : **échec thermique**. Le F0 global échoue donc volontairement.
+At `150 °C` from `20 °C`, the throat grows freely by `0.688 mm`. Fully
+restrained, `σ = EαΔT` reaches `191.1 MPa`; the ratio `245/191.1 = 1.282` is
+below `1.5`: **thermal failure**. The overall F0 therefore fails, deliberately.
 
 ## Reproduction
 
@@ -65,24 +65,25 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner carter, turbine, moyeu, alternateur, tôlerie et joints assemblés.
-2. Mesurer alésage, concentricité, datums, jeux de pale et tolérances thermiques.
-3. Instrumenter débit, pression, fuite, températures, régime, vibrations et belt load.
-4. Reconstruire les conduits et exécuter CFD/CHT avec courbe ventilateur mesurée.
-5. Exécuter FEA assemblée, modal/harmonique, fatigue et confinement de pale.
-6. Comparer fonderie, fabrication usinée et LPBF avec coût/qualité complets.
-7. Qualifier orientation, supports, T6, HIP, usinage, CT, FPI et endurance.
+1. Scan the assembled housing, impeller, hub, alternator, sheet metal and seals.
+2. Measure bore, concentricity, datums, blade clearances and thermal tolerances.
+3. Instrument flow, pressure, leakage, temperatures, speed, vibration and belt
+   load.
+4. Rebuild the ducts and run CFD/CHT with a measured fan curve.
+5. Run assembled FEA, modal/harmonic, fatigue and blade containment.
+6. Compare casting, machined fabrication and LPBF with complete cost/quality.
+7. Qualify orientation, supports, T6, HIP, machining, CT, FPI and endurance.
 
-PhysicsNeMo reste différé jusqu'à l'existence de jeux CFD/CHT/structure/modal
-corrélés, avec entraînement, validation, holdout et hors distribution séparés.
-Le F0 est interdit de fabrication, rotation, installation et mise en route.
+PhysicsNeMo stays deferred until correlated CFD/CHT/structure/modal sets exist,
+with separate training, validation, holdout and out-of-distribution splits.
+The F0 is prohibited from manufacture, rotation, installation and start-up.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-La simulation a ete lancee et a **echoue a porte fermee** : aucune des orientations candidates ne tient dans l'enveloppe EOS M 290 (250 x 250 x 325 mm). Aucun resultat n'est donc publie pour cette piece, et aucune image n'est fabriquee a sa place.
+The simulation was run and **failed closed**: none of the candidate orientations fits the EOS M 290 envelope (250 x 250 x 325 mm). No result is therefore published for this part, and no image is made up in its place.
 
 <!-- print-screen:end -->

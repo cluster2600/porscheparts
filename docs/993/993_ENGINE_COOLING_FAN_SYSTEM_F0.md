@@ -1,73 +1,71 @@
-# Sous-ensemble carter–turbine de refroidissement 993 F0
+# 993 cooling fan housing–impeller subassembly F0
 
-## Résultat
+## Result
 
-Le carter fixe `993-ENG-FAN-HOUSING-ALSI10MG-F0-0001` et la turbine tournante
-`993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001` ont été réunis dans le premier
-jumeau de sous-ensemble moteur 993. Le verdict est un **échec d'intégration
-utile** : les deux concepts F0 ne peuvent pas fonctionner ensemble dans leur
-état actuel.
+The fixed housing `993-ENG-FAN-HOUSING-ALSI10MG-F0-0001` and the rotating
+impeller `993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001` have been brought together
+in the first 993 engine subassembly twin. The verdict is a **useful integration
+failure**: the two F0 concepts cannot work together in their current state.
 
-| Contrôle | Résultat | Verdict |
+| Check | Result | Verdict |
 |---|---:|---|
-| Gorge synthétique du carter | 252 mm | hypothèse F0 |
-| Diamètre synthétique de turbine | 280 mm | hypothèse F0 |
-| Jeu radial froid | **−14 mm** | échec |
-| Jeu radial libre à chaud | **−14,03822 mm** | échec |
-| Gorge requise pour 2 mm de jeu radial | 284 mm | déficit de 32 mm |
-| Intersection BRep exacte | **40 388,378651 mm³**, 2 solides | collision |
-| Cibles de débit séparées | 1,25 contre 1,01 m³/s | incohérentes |
-| Fréquences de passage supposées | 1 100 contre 2 000 Hz | incohérentes |
+| Synthetic housing throat | 252 mm | F0 hypothesis |
+| Synthetic impeller diameter | 280 mm | F0 hypothesis |
+| Cold radial clearance | **−14 mm** | failure |
+| Free hot radial clearance | **−14.03822 mm** | failure |
+| Throat required for 2 mm radial clearance | 284 mm | 32 mm short |
+| Exact BRep intersection | **40,388.378651 mm³**, 2 solids | collision |
+| Separate flow targets | 1.25 against 1.01 m³/s | inconsistent |
+| Assumed passing frequencies | 1,100 against 2,000 Hz | inconsistent |
 
-Le test BRep emploie les deux STEP relus par OpenCascade, alignés sur une
-hypothèse explicite : axes coaxiaux et même plan avant `Z=0`. Il complète le
-calcul analytique de jeu, mais ne transforme pas cet alignement synthétique en
-position Porsche mesurée.
+The BRep test uses the two STEP files re-read by OpenCascade, aligned on an
+explicit hypothesis: coaxial axes and the same front plane `Z=0`. It complements
+the analytical clearance calculation, but does not turn this synthetic alignment
+into a measured Porsche position.
 
-Le registre du jumeau est
+The twin's register is
 [`catalog/twins/twin-993-engine-cooling-fan-system-f0.json`](../../catalog/twins/twin-993-engine-cooling-fan-system-f0.json).
-Le calcul reproductible est dans
+The reproducible calculation is in
 [`evaluate_integration.py`](../../twins/993-engine-cooling-fan-system-f0/source/evaluate_integration.py)
-et sa preuve dans
+and its evidence in
 [`integration-screen.json`](../../twins/993-engine-cooling-fan-system-f0/evidence/integration-screen.json).
 
-## Passage OpenUSD
+## OpenUSD pass
 
-Le préflight natif a correctement bloqué le Mac ARM : le Python actif ne
-contenait ni le wheel `usd-convert-cad`, ni OpenUSD, ni Asset Validator, et
-`usd-exchange 2.3.0` n'offre pas de wheel macOS ARM. Le même préflight a ensuite
-réussi dans l'image Linux AMD64 immuable :
+The native preflight correctly blocked the ARM Mac: the active Python contained
+neither the `usd-convert-cad` wheel, nor OpenUSD, nor Asset Validator, and
+`usd-exchange 2.3.0` offers no macOS ARM wheel. The same preflight then
+succeeded in the immutable Linux AMD64 image:
 
 `ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126`
 
-Cette exécution est restée CPU, sans GPU, sans réseau pendant les conversions et
-avec `property_assignment_intent=skip`. Elle a utilisé le convertisseur officiel
-`usd-convert-cad 0.2.0`, puis le validateur minimal du workflow NVIDIA :
+This run stayed on CPU, without GPU, without network during the conversions and
+with `property_assignment_intent=skip`. It used the official converter
+`usd-convert-cad 0.2.0`, then the minimal validator of the NVIDIA workflow:
 
-- carter : 1 maillage, `300 × 300 × 170 mm`, validation minimale réussie ;
-- turbine : 1 maillage, `280 × 280 × 30 mm`, validation minimale réussie ;
-- assemblage : 2 références, 2 maillages, `Z-up`, `metersPerUnit=0,001`,
-  validation minimale réussie ;
-- aucun rigid body, collider ou joint n'a été ajouté.
+- housing: 1 mesh, `300 × 300 × 170 mm`, minimal validation passed;
+- impeller: 1 mesh, `280 × 280 × 30 mm`, minimal validation passed;
+- assembly: 2 references, 2 meshes, `Z-up`, `metersPerUnit=0.001`, minimal
+  validation passed;
+- no rigid body, collider or joint was added.
 
-Les USD sont des dérivés rejouables et restent hors Git. Leurs SHA-256, tailles,
-métadonnées et verdicts assainis sont publiés dans
+The USD files are replayable derivatives and stay out of Git. Their SHA-256
+digests, sizes, metadata and sanitized verdicts are published in
 [`simready-conversion-summary.json`](../../twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json).
-Le script de composition est
+The composition script is
 [`build_usd_assembly.py`](../../twins/993-engine-cooling-fan-system-f0/source/build_usd_assembly.py).
 
-## Frontière de validité
+## Validity boundary
 
-« Validation USD minimale réussie » signifie seulement que les fichiers
-s'ouvrent, ont un `defaultPrim`, des unités, un axe et une composition résolue.
-Cela ne prouve ni la géométrie Porsche, ni le jeu réel, ni le refroidissement,
-ni la survitesse, ni la fatigue, ni le confinement. Ce sous-ensemble n'est pas
-SimReady, n'a reçu aucune propriété Physics, n'a exécuté aucun modèle
-PhysicsNeMo et n'autorise ni fabrication, ni rotation, ni démarrage moteur.
+"Minimal USD validation passed" only means that the files open, have a
+`defaultPrim`, units, an axis and a resolved composition. It proves neither the
+Porsche geometry, nor the real clearance, nor the cooling, nor the overspeed,
+nor the fatigue, nor the containment. This subassembly is not SimReady, has
+received no Physics property, has run no PhysicsNeMo model and authorizes
+neither manufacture, nor rotation, nor engine start.
 
-Le prochain passage ne doit pas corriger silencieusement les valeurs F0 pour
-faire disparaître la collision. Il faut d'abord acquérir le diamètre de gorge,
-le diamètre de turbine, la position axiale, le faux-rond, le montage
-axe–roulements–alternateur–poulie et le jeu froid réel. Ces mesures permettront
-un jumeau `F2_interface`; une carte ventilateur et une courbe réseau mesurées
-seront ensuite nécessaires avant CFD/CHT ou PhysicsNeMo.
+The next pass must not silently correct the F0 values to make the collision
+disappear. First the throat diameter, impeller diameter, axial position, runout,
+shaft–bearings–alternator–pulley mounting and real cold clearance have to be
+acquired. These measurements will allow an `F2_interface` twin; a measured fan
+map and system curve will then be needed before CFD/CHT or PhysicsNeMo.

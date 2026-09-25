@@ -1,51 +1,51 @@
-# Plan de mesure — PART_ID
+# Measurement plan — PART_ID
 
-## Objet
+## Purpose
 
-- Pièce :
-- Référence Porsche :
-- Variante et année :
-- Véhicule ou pièce mesurée :
-- Responsable :
-- Date :
+- Part:
+- Porsche part number:
+- Variant and year:
+- Vehicle or part measured:
+- Owner:
+- Date:
 
 ## Instruments
 
-| Instrument | Plage | Résolution | Étalonnage connu |
+| Instrument | Range | Resolution | Known calibration |
 |---|---:|---:|---|
-| Pied à coulisse | | | |
+| Caliper | | | |
 
-## Repères
+## Datums
 
-Définir l’origine, les axes et les plans de référence. Ajouter une photographie ou
-un schéma portant les mêmes identifiants que les mesures.
+Define the origin, the axes and the reference planes. Add a photograph or a
+diagram carrying the same identifiers as the measurements.
 
-## Dimensions critiques
+## Critical dimensions
 
-| ID | Description | Valeur mm | Incertitude mm | Méthode | Répétitions |
+| ID | Description | Value mm | Uncertainty mm | Method | Repeats |
 |---|---|---:|---:|---|---:|
 | D01 | | | | | 3 |
 
 ## Interfaces
 
-- Trous, axes et filetages :
-- Plans de contact :
-- Jeux fonctionnels :
-- Pièces voisines :
-- Mouvement ou débattement :
+- Holes, axes and threads:
+- Contact planes:
+- Functional clearances:
+- Neighboring parts:
+- Motion or travel:
 
-## Acquisition 3D
+## 3D acquisition
 
-- Méthode :
-- Échelle ou barres de référence :
-- Conditions de lumière et surface :
-- Format brut :
-- Alignement et nettoyage :
-- Écart scan/mesures critiques :
+- Method:
+- Scale or reference bars:
+- Lighting and surface conditions:
+- Raw format:
+- Alignment and cleanup:
+- Scan vs. critical measurement deviation:
 
-## Résultat
+## Result
 
-- Mesures acceptées : oui / non
-- Contradictions :
-- Mesures manquantes :
-- Fichiers de preuve :
+- Measurements accepted: yes / no
+- Contradictions:
+- Missing measurements:
+- Evidence files:

@@ -102,7 +102,7 @@ h=$(sha256sum FILE | cut -c1-64); git grep -F "$h" && echo "PINNED — do not ed
 
 | phase | scope | state |
 |---|---|---|
-| 1 | README, top-level documents, generators (parts table, part pages, `make help`), catalogue part names and descriptions, core `docs/*.md`, README figures | in progress |
-| 2 | remaining `docs/*.md`, `docs/993/`, `docs/research/`, `docs/decisions/` | open |
+| 1 | README, top-level documents, generators (parts table, part pages, `make help`), catalogue part names and descriptions, core `docs/*.md`, README figures | done |
+| 2 | remaining `docs/*.md`, `docs/993/` (with the generated print-screen sections), `docs/research/`, `docs/decisions/`, `docs/media/`, catalogue READMEs and templates, CHANGELOG | done |
 | 3 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | open |
 | 4 | `docs/reports/`, twin READMEs outside `evidence/`, file renames with redirects | open |

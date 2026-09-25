@@ -1,12 +1,12 @@
-# Phase 1 — Recherche allemande, lot 1
+# Phase 1 — German research, batch 1
 
-Date d’accès : 29 août 2026.
+Date accessed: August 29, 2026.
 
-## Périmètre
+## Scope
 
-Cette première vague vise les sources techniques officielles du marché allemand
-et les géométries publiques attribuées à la Porsche 993. Les requêtes ont été
-formulées en allemand, notamment :
+This first wave targets the official technical sources of the German market and
+the public geometry attributed to the Porsche 993. The queries were phrased in
+German, in particular:
 
 - `Porsche 993 Ersatzteilkatalog technische Dokumentation`
 - `Porsche 993 3D Scan CAD Modell STL Lizenz`
@@ -14,103 +14,100 @@ formulées en allemand, notamment :
 - `Porsche 993 Maße Toleranzen Reparaturleitfaden`
 - `Porsche 993 3D Druck Ersatzteile`
 
-Les fichiers tiers n’ont pas été téléchargés dans le dépôt. Une licence déclarée
-par un index secondaire reste à confirmer sur la publication originale.
+Third-party files were not downloaded into the repository. A license declared
+by a secondary index remains to be confirmed on the original publication.
 
-## Résultats directs
+## Direct results
 
-1. Le [PET officiel 993](../../catalog/sources/src-porsche-pet-993.json) est un
-   PDF de 674 pages couvrant Carrera, Carrera S, Carrera 4/4S, Carrera RS,
-   Cabriolet, Targa et Turbo. Il fournit références, variantes et éclatés, mais
-   aucune géométrie cotée de fabrication.
-2. Le [catalogue allemand de littérature](../../catalog/sources/src-porsche-literature-catalogue-de.json)
-   confirme les références des guides de réparation et OBD-II allemands pour
-   Carrera et Turbo. Il ne contient pas les guides eux-mêmes.
-3. La [boutique de littérature technique](../../catalog/sources/src-porsche-technical-literature-de.json)
-   propose notamment des ouvrages de types, dimensions et tolérances. Les
-   publications sous droits ou payantes restent hors du dépôt.
-4. Le [Parts Finder allemand](../../catalog/sources/src-porsche-classic-partsfinder-de.json)
-   sert à dater prix et disponibilité. Une absence de résultat ne prouve pas
-   qu’une pièce est abandonnée.
-5. Neuf assets 993 communautaires ont été retrouvés avec auteur, licence
-   déclarée, nombre de fichiers et dimensions déclarées. Aucun n’a encore une
-   vérification dimensionnelle indépendante.
+1. The [official 993 PET](../../catalog/sources/src-porsche-pet-993.json) is a
+   674-page PDF covering Carrera, Carrera S, Carrera 4/4S, Carrera RS,
+   Cabriolet, Targa and Turbo. It provides part numbers, variants and exploded
+   views, but no dimensioned manufacturing geometry.
+2. The [German literature catalog](../../catalog/sources/src-porsche-literature-catalogue-de.json)
+   confirms the part numbers of the German repair guides and OBD-II guides for
+   Carrera and Turbo. It does not contain the guides themselves.
+3. The [technical literature shop](../../catalog/sources/src-porsche-technical-literature-de.json)
+   offers, among others, books on types, dimensions and tolerances.
+   Copyrighted or paid publications stay out of the repository.
+4. The [German Parts Finder](../../catalog/sources/src-porsche-classic-partsfinder-de.json)
+   is used to date price and availability. A lack of results does not prove
+   that a part is discontinued.
+5. Nine community 993 assets were found with author, declared license, number
+   of files and declared dimensions. None has yet had an independent
+   dimensional check.
 
-La recherche n’a pas trouvé de scan complet de 993, librement redistribuable et
-accompagné d’une précision métrologique démontrée. Les modèles commerciaux de
-carrosserie trouvés sont principalement des maillages de visualisation ; ils ne
-remplacent pas une mesure de pièce.
+The search found no complete 993 scan that is freely redistributable and comes
+with demonstrated metrological accuracy. The commercial body models found are
+mainly visualization meshes; they do not replace measuring a part.
 
-## Vague ciblée : marbre et manuel d’atelier
+## Targeted wave: frame bench and workshop manual
 
-Une seconde vague a repris les requêtes `frame data`, `body dimensions`,
-`Celette`, `Group 5`, `Running Gear`, `KATALOG_993` et leurs équivalents
-allemands `Karosseriemaße`, `Richtbankdaten`, `Richtsatz` et
-`Reparaturleitfaden`.
+A second wave reran the queries `frame data`, `body dimensions`, `Celette`,
+`Group 5`, `Running Gear`, `KATALOG_993` and their German equivalents
+`Karosseriemaße`, `Richtbankdaten`, `Richtsatz` and `Reparaturleitfaden`.
 
-- Le volume V du [manuel d’atelier officiel](../../catalog/sources/src-porsche-workshop-manual-993.json)
-  contient les dimensions de construction, les dimensions de réparation de
-  caisse et les dimensions du plancher. Le volume IV couvre le train roulant.
-- Les copies intégrales repérées sur Cannell, PDFCoffee, Scribd et par échanges
-  privés de forums n’ont pas de droit de diffusion démontré. Elles ne sont ni
-  téléchargées ni référencées comme sources exploitables.
-- Un [jeu de marbre Celette MZx 964/993](../../catalog/sources/src-celette-mzx-964-993-jigs.json)
-  est confirmé par le fabricant. Il est destiné au maintien et à la mesure,
-  sans opération de tirage, mais sa fiche publique ne révèle aucune coordonnée.
-- [Car-O-Data](../../catalog/sources/src-car-o-liner-car-o-data.json) contient des
-  fiches professionnelles de mesure supérieure et inférieure de caisse. La
-  présence d’une fiche 993 n’est pas confirmée publiquement.
-- La requête `site:porsche.com "KATALOG_993" filetype:pdf` n’a pas retrouvé un
-  meilleur PET que le Kat 017 officiel déjà enregistré.
+- Volume V of the [official workshop manual](../../catalog/sources/src-porsche-workshop-manual-993.json)
+  contains the construction dimensions, the body shell repair dimensions and
+  the floor pan dimensions. Volume IV covers the running gear.
+- The complete copies spotted on Cannell, PDFCoffee, Scribd and through private
+  forum exchanges have no demonstrated distribution right. They are neither
+  downloaded nor referenced as usable sources.
+- A [Celette MZx 964/993 bench jig set](../../catalog/sources/src-celette-mzx-964-993-jigs.json)
+  is confirmed by the manufacturer. It is intended for holding and measuring,
+  without pulling operations, but its public listing reveals no coordinates.
+- [Car-O-Data](../../catalog/sources/src-car-o-liner-car-o-data.json) contains
+  professional upper and lower body shell measurement sheets. The existence of
+  a 993 sheet is not publicly confirmed.
+- The query `site:porsche.com "KATALOG_993" filetype:pdf` did not find a better
+  PET than the official Kat 017 already recorded.
 
-Conclusion : le chemin le plus crédible vers la géométrie de caisse est le
-volume V officiel ou l’accès encadré à une base de marbre professionnelle. Une
-copie PDF trouvée par Google n’est pas, à elle seule, une source légalement
-réutilisable.
+Conclusion: the most credible path to the body shell geometry is the official
+volume V or supervised access to a professional frame bench database. A PDF
+copy found through Google is not, by itself, a legally reusable source.
 
-## Matrice des vingt candidats
+## Matrix of the twenty candidates
 
-`D` signifie ici référence communautaire ou visuelle sans précision démontrée.
-`PET` signifie que seule l’identité de la pièce est confirmée : la géométrie doit
-être mesurée ou reconstruite légalement.
+`D` here means a community or visual reference without demonstrated accuracy.
+`PET` means that only the identity of the part is confirmed: the geometry must
+be measured or legally reconstructed.
 
-| # | Candidat | Origine | Preuve actuelle | Lacune avant CAO ou prototype | Priorité |
+| # | Candidate | Origin | Current evidence | Gap before CAD or prototype | Priority |
 |---:|---|---|---|---|---|
-| 1 | Languette de couvercle de filtre à pollen | [Asset](../../catalog/sources/src-renn3d-pollen-filter-cover-tabs.json) | 4 STL, photos, CC-BY déclarée, niveau D | Licence exacte, mesure et montage 993 | Haute |
-| 2 | Languette de cache d’interrupteurs de console | [Asset](../../catalog/sources/src-renn3d-console-switch-tab-repair.json) | 1 STL, photo, CC-BY déclarée, niveau D | Licence exacte et montage 993 | Haute |
-| 3 | Porte-gobelets de console | [Asset](../../catalog/sources/src-renn3d-center-console-cup-holder.json) | 1 STL, photo montée, domaine public déclaré, niveau D | Confirmer droits, variante et interférences | Haute |
-| 4 | Support de téléphone sur compteur 82 mm | [Asset](../../catalog/sources/src-renn3d-gauge-ring-phone-mount.json) | 1 STL, CC-BY déclarée, niveau D | Risque de marque sur cerclage et stabilité | Moyenne |
-| 5 | Cadres d’adaptation haut-parleur 4x6 | [Asset](../../catalog/sources/src-renn3d-hifi-speaker-adapter-frames.json) | 2 STL, domaine public déclaré, niveau D | Échelle publiée manifestement incohérente | Bloquée |
-| 6 | Barre de grille arrière custom | [Asset](../../catalog/sources/src-renn3d-custom-split-grille-bar.json) | 3 STL, CC-BY-NC-SA déclarée, niveau D | Non OEM, non commercial, montage à confirmer | Basse |
-| 7 | Outil de pose du joint spi arrière | [Asset](../../catalog/sources/src-renn3d-rear-main-seal-tool.json) | 4 STL, CC-BY-SA déclarée, niveau D | Cotes fonctionnelles et procédure atelier | Moyenne |
-| 8 | Bouton de déverrouillage de dossier de siège | [Asset](../../catalog/sources/src-renn3d-seat-back-release-button.json) | 1 STL, références OEM déclarées, niveau D | Revue sécurité siège et compatibilité | Bloquée |
-| 9 | Support de purge d’embrayage déportée | [Asset](../../catalog/sources/src-renn3d-remote-clutch-bleeder-bracket.json) | 2 STL, CC-BY-NC déclarée, niveau D | Proximité système d’embrayage, revue sécurité | Bloquée |
-| 10 | Cache de capteur intérieur, `993 659 147 00` | PET, planche 813-40 | Référence officielle, 1996 et après | Original mesurable, clips et matière | Haute |
-| 11 | Bouton HVAC, `993 659 146 00` | PET, planche 813-40 | Référence officielle | Original mesurable, indexation et matière | Haute |
-| 12 | Bouton HVAC, `993 659 145 00` | PET, planche 813-40 | Référence officielle | Original mesurable, indexation et matière | Haute |
-| 13 | Bouton HVAC, `944 653 205 00` | PET, planche 813-40 | Référence officielle, quantité 2 | Compatibilité partagée et original mesurable | Haute |
-| 14 | Bouton d’éclairage, `993 613 055 00` | PET, planche 903-06 | Référence officielle | Interface avec commande, symbole séparé | Haute |
-| 15 | Cabochon d’éclairage, `993 613 250 00` | PET, planche 903-06 | Référence officielle | Géométrie, pictogramme et tenue thermique | Moyenne |
-| 16 | Cabochon dégivrage, `993 613 253 00` | PET, planche 903-06 | Référence officielle | Géométrie, pictogramme et translucide | Moyenne |
-| 17 | Cabochon antibrouillard avant, `993 613 251 00` | PET, planche 903-06 | Référence officielle | Géométrie, pictogramme et translucide | Moyenne |
-| 18 | Cabochon antibrouillard arrière, `993 613 252 00` | PET, planche 903-06 | Référence officielle | Géométrie, pictogramme et translucide | Moyenne |
-| 19 | Cache de colonne, `993 552 277 00` | PET, planche 903-10 | Référence officielle | Variante, fixations et jeu avec commandes | Moyenne |
-| 20 | Grille de haut-parleur M490, `993 555 777 00` | PET, planche 911-05 | Référence officielle, quantité 2 | Original, acoustique, texture et montage | Moyenne |
+| 1 | Pollen filter cover tab | [Asset](../../catalog/sources/src-renn3d-pollen-filter-cover-tabs.json) | 4 STL, photos, CC-BY declared, level D | Exact license, measurement and 993 fit | High |
+| 2 | Console switch cover tab | [Asset](../../catalog/sources/src-renn3d-console-switch-tab-repair.json) | 1 STL, photo, CC-BY declared, level D | Exact license and 993 fit | High |
+| 3 | Console cup holder | [Asset](../../catalog/sources/src-renn3d-center-console-cup-holder.json) | 1 STL, fitted photo, public domain declared, level D | Confirm rights, variant and interferences | High |
+| 4 | Phone mount on 82 mm gauge | [Asset](../../catalog/sources/src-renn3d-gauge-ring-phone-mount.json) | 1 STL, CC-BY declared, level D | Trademark risk on the bezel, and stability | Medium |
+| 5 | 4x6 speaker adapter frames | [Asset](../../catalog/sources/src-renn3d-hifi-speaker-adapter-frames.json) | 2 STL, public domain declared, level D | Published scale obviously inconsistent | Blocked |
+| 6 | Custom rear grille bar | [Asset](../../catalog/sources/src-renn3d-custom-split-grille-bar.json) | 3 STL, CC-BY-NC-SA declared, level D | Not OEM, non-commercial, fit to be confirmed | Low |
+| 7 | Rear main seal installation tool | [Asset](../../catalog/sources/src-renn3d-rear-main-seal-tool.json) | 4 STL, CC-BY-SA declared, level D | Functional dimensions and workshop procedure | Medium |
+| 8 | Seat back release button | [Asset](../../catalog/sources/src-renn3d-seat-back-release-button.json) | 1 STL, OEM part numbers declared, level D | Seat safety review and compatibility | Blocked |
+| 9 | Remote clutch bleeder bracket | [Asset](../../catalog/sources/src-renn3d-remote-clutch-bleeder-bracket.json) | 2 STL, CC-BY-NC declared, level D | Proximity to the clutch system, safety review | Blocked |
+| 10 | Interior sensor cover, `993 659 147 00` | PET, plate 813-40 | Official part number, 1996 and later | Measurable original, clips and material | High |
+| 11 | HVAC knob, `993 659 146 00` | PET, plate 813-40 | Official part number | Measurable original, indexing and material | High |
+| 12 | HVAC knob, `993 659 145 00` | PET, plate 813-40 | Official part number | Measurable original, indexing and material | High |
+| 13 | HVAC knob, `944 653 205 00` | PET, plate 813-40 | Official part number, quantity 2 | Shared compatibility and measurable original | High |
+| 14 | Lighting knob, `993 613 055 00` | PET, plate 903-06 | Official part number | Interface with the switch, separate symbol | High |
+| 15 | Lighting cap, `993 613 250 00` | PET, plate 903-06 | Official part number | Geometry, pictogram and thermal resistance | Medium |
+| 16 | Defrost cap, `993 613 253 00` | PET, plate 903-06 | Official part number | Geometry, pictogram and translucency | Medium |
+| 17 | Front fog light cap, `993 613 251 00` | PET, plate 903-06 | Official part number | Geometry, pictogram and translucency | Medium |
+| 18 | Rear fog light cap, `993 613 252 00` | PET, plate 903-06 | Official part number | Geometry, pictogram and translucency | Medium |
+| 19 | Steering column cover, `993 552 277 00` | PET, plate 903-10 | Official part number | Variant, fasteners and clearance with the controls | Medium |
+| 20 | M490 speaker grille, `993 555 777 00` | PET, plate 911-05 | Official part number, quantity 2 | Original, acoustics, texture and fitting | Medium |
 
-## Écarts et décisions
+## Gaps and decisions
 
-| Question | État | Décision de projet |
+| Question | State | Project decision |
 |---|---|---|
-| Scan complet 993 ouvert et métrologique | Non trouvé | Ne pas construire le jumeau à partir d’un maillage artistique |
-| Licence exacte des assets communautaires | Souvent déclarée par un index secondaire | Vérifier la page originale avant tout import |
-| Dimensions des candidats PET | Absentes des éclatés | Mesurer un original ou son environnement |
-| Disponibilité commerciale actuelle | Non auditée pièce par pièce | Utiliser le Parts Finder avec date et conserver `inconnu` sinon |
-| Première pièce titane | Hors de cette vague | Attendre besoins mécaniques, charges et bénéfice matière démontré |
+| Open, metrological complete 993 scan | Not found | Do not build the twin from an artistic mesh |
+| Exact license of the community assets | Often declared by a secondary index | Check the original page before any import |
+| Dimensions of the PET candidates | Absent from the exploded views | Measure an original or its surroundings |
+| Current commercial availability | Not audited part by part | Use the Parts Finder with a date and otherwise keep `unknown` |
+| First titanium part | Outside this wave | Wait for mechanical needs, loads and a demonstrated material benefit |
 
-## Prochaine porte
+## Next gate
 
-Pour les trois candidats de priorité haute issus d’assets, la prochaine action
-est de vérifier la publication originale, puis de créer une fiche pièce seulement
-après obtention d’un exemplaire ou de mesures reproductibles. Pour les candidats
-PET, il faut photographier et mesurer la pièce ou son logement avec le modèle de
-mesure du dépôt.
+For the three high-priority candidates derived from assets, the next action is
+to check the original publication, then to create a part record only after
+obtaining a specimen or reproducible measurements. For the PET candidates, the
+part or its housing must be photographed and measured with the repository's
+measurement template.

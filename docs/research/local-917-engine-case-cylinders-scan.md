@@ -1,83 +1,81 @@
-# Scan local d'un moteur Porsche 917 avec cylindres
+# Local scan of a Porsche 917 engine with cylinders
 
-## Statut
+## Status
 
-- Niveau : `F0_reference`.
-- Provenance : produit commercial « Porsche 917 Engine Case Scan » de Wolfe
-  Classics, recoupé avec le nom du fichier et son empreinte locale.
-- Identification : le vendeur déclare un carter de moteur 917 avec cylindres,
-  mais la variante exacte reste inconnue.
-- Licence : réutilisation ouverte confirmée par le porteur du projet, texte
-  exact non archivé ; droit de redistribution non affiché et publication du
-  brut bloquée.
-- Compatibilité 993 ou 935 : non démontrée.
+- Level: `F0_reference`.
+- Provenance: commercial product "Porsche 917 Engine Case Scan" from Wolfe
+  Classics, cross-checked against the file name and its local digest.
+- Identification: the seller declares a 917 engine case with cylinders, but
+  the exact variant remains unknown.
+- License: open reuse confirmed by the project owner, exact text not archived;
+  redistribution right not displayed and publication of the raw file blocked.
+- 993 or 935 compatibility: not demonstrated.
 
-Le fichier trouvé dans iCloud Drive correspond à la
-[fiche Wolfe Classics](https://www.wolfeclassics.com/shop/p/porsche-917-engine-case-scan),
-qui le décrit comme un scan précis à 0,5 mm d'un carter de moteur 917 avec les
-cylindres montés, acquis pendant une réfection d'étanchéité. Le nom local est
-`917+engine+case+w+cyl+0.5mm.obj` et son empreinte est celle enregistrée
-ci-dessous. Cette correspondance établit la provenance commerciale, pas la
-variante exacte, l'unité OBJ, la précision métrologique indépendante ni les
-géométries internes.
+The file found in iCloud Drive matches the
+[Wolfe Classics listing](https://www.wolfeclassics.com/shop/p/porsche-917-engine-case-scan),
+which describes it as a scan accurate to 0.5 mm of a 917 engine case with the
+cylinders fitted, acquired during a reseal. The local name is
+`917+engine+case+w+cyl+0.5mm.obj` and its digest is the one recorded below.
+This match establishes the commercial provenance, not the exact variant, the
+OBJ unit, independent metrological accuracy or the internal geometry.
 
-## Empreinte et inspection
+## Digest and inspection
 
 ```text
 SHA-256 428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae
 ```
 
-| Propriété | Résultat |
+| Property | Result |
 |---|---:|
-| Taille | 107 128 223 octets |
-| Sommets | 1 282 880 |
-| Triangles | 2 465 879 |
-| Composants topologiques | 3 |
-| Enveloppe | 1002,175 × 768,275 × 739,765 unités OBJ |
-| Arêtes ouvertes | 101 809 |
-| Arêtes non-manifold | 0 |
-| Faces de surface nulle | 2 |
-| Étanche | non |
+| Size | 107,128,223 bytes |
+| Vertices | 1,282,880 |
+| Triangles | 2,465,879 |
+| Topological components | 3 |
+| Envelope | 1002.175 × 768.275 × 739.765 OBJ units |
+| Open edges | 101,809 |
+| Non-manifold edges | 0 |
+| Zero-area faces | 2 |
+| Watertight | no |
 
-Les trois composants contiennent respectivement environ 2 320 604, 141 542 et
-3 747 triangles. Le premier regroupe l'essentiel du carter et des cylindres ;
-les deux autres devront être identifiés visuellement avant toute suppression.
+The three components contain about 2,320,604, 141,542 and 3,747 triangles
+respectively. The first groups most of the case and the cylinders; the other
+two will have to be identified visually before any deletion.
 
-## Apport possible au projet
+## Possible contribution to the project
 
-Ce scan peut aider à développer et vérifier les méthodes génériques de :
+This scan can help develop and verify the generic methods for:
 
-- segmentation d'un grand ensemble moteur ;
-- détection répétée des axes et entraxes de cylindres ;
-- recalage de rangées de cylindres et plans de joint ;
-- construction d'enveloppes de collision ;
-- comparaison d'architectures de refroidissement par air.
+- segmentation of a large engine assembly;
+- repeated detection of cylinder axes and center distances;
+- registration of cylinder banks and gasket planes;
+- construction of collision envelopes;
+- comparison of air-cooling architectures.
 
-Il ne doit pas servir directement à fabriquer une pièce de 993. Les interfaces,
-matériaux et charges d'un moteur 917 diffèrent et aucune équivalence n'est
-actuellement démontrée.
+It must not be used directly to manufacture a 993 part. The interfaces,
+materials and loads of a 917 engine differ, and no equivalence is currently
+demonstrated.
 
-## Résultats dérivés
+## Derived results
 
-La chaîne F0/F1 sous `twins/reference-917-engine/` a maintenant produit :
+The F0/F1 chain under `twins/reference-917-engine/` has now produced:
 
-- un maillage de travail à 600 000 triangles, écart p95 0,107 unité OBJ ;
-- deux rangées de six ouvertures visibles, diamètre moyen 86,63 unités ;
-- un pas régulier voisin de 118 et une coupure centrale voisine de 173 ;
-- un STEP paramétrique d'encombrement à douze cylindres ;
-- deux STL d'exposition étanches aux échelles candidates 1:4 et 1:8 ;
-- une peau CFD externe et un cas OpenFOAM dont le solveur reste bloqué par
-  deux contrôles de qualité de maillage en échec.
+- a 600,000-triangle working mesh, p95 deviation 0.107 OBJ unit;
+- two banks of six visible openings, mean diameter 86.63 units;
+- a regular pitch close to 118 and a central gap close to 173;
+- a parametric twelve-cylinder envelope STEP;
+- two watertight display STLs at the candidate scales 1:4 and 1:8;
+- an external CFD skin and an OpenFOAM case whose solver remains blocked by two
+  failing mesh quality checks.
 
-Tous ces résultats conservent l'identité et l'échelle au statut non confirmé.
+All these results keep identity and scale at unconfirmed status.
 
-## Données à retrouver
+## Data to recover
 
-1. texte exact de la licence et droit de redistribution ;
-2. rapport de métrologie qui démontre la précision déclarée de 0,5 mm ;
-3. unité native de l'OBJ ;
-4. variante du moteur 917 et configuration du scan ;
-5. trois cotes physiques indépendantes sur les mêmes surfaces du scan.
+1. exact license text and redistribution right;
+2. metrology report demonstrating the declared 0.5 mm accuracy;
+3. native unit of the OBJ;
+4. 917 engine variant and scan configuration;
+5. three independent physical dimensions on the same surfaces of the scan.
 
-La fiche structurée associée est
+The associated structured record is
 `catalog/sources/src-local-917-engine-case-cylinders-scan.json`.

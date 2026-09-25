@@ -1,94 +1,92 @@
-# Sourcing LPBF en Chine — première passe
+# LPBF sourcing in China — first pass
 
-Objet : trouver qui peut réellement imprimer
-[`993-INT-SWITCH-TRIM-RING-F1-0001`](993_SWITCH_TRIM_RING_F1.md) en AlSi10Mg, et
-répondre aux sept portes fermées de l'étape 04. Ce document ne recommande aucun
-prestataire. Il enregistre ce que chacun **publie**, ce qu'il ne publie pas, et
-les contradictions à lever avant de payer quoi que ce soit.
+Purpose: find who can actually print
+[`993-INT-SWITCH-TRIM-RING-F1-0001`](993_SWITCH_TRIM_RING_F1.md) in AlSi10Mg,
+and answer the seven closed gates of step 04. This document recommends no
+provider. It records what each one **publishes**, what it does not publish,
+and the contradictions to resolve before paying for anything.
 
-Toutes les affirmations ci-dessous sont adossées à une fiche de source dans
-`catalog/sources/`. Une page commerciale est une source de niveau B : le
-fournisseur parle de lui-même, et rien n'est vérifié.
+Every claim below is backed by a source record in `catalog/sources/`. A
+commercial page is a level B source: the supplier is talking about itself, and
+nothing is verified.
 
-## Le tri qui compte : atelier de service ou vendeur de machines
+## The sort that matters: service bureau or machine vendor
 
-La recherche remonte deux familles qu'il ne faut pas confondre.
+The search turns up two families that must not be confused.
 
-**Constructeurs et poudriers** — BLT (Xi'an Bright Laser Technologies), Farsoon,
-Eplus3D, HBD. Ils vendent des machines et de la poudre. BLT et Farsoon équipent
-les ateliers, Falcontech exploite une usine de machines Farsoon. Ils publient des
-cartes matière utiles en comparaison, mais ne sont pas les interlocuteurs d'une
-pièce unique de 6 g.
+**Machine builders and powder makers** — BLT (Xi'an Bright Laser Technologies),
+Farsoon, Eplus3D, HBD. They sell machines and powder. BLT and Farsoon equip the
+bureaus, Falcontech operates a factory of Farsoon machines. They publish
+material cards useful for comparison, but they are not the counterparts for a
+single 6 g part.
 
-**Ateliers de service à devis en ligne** — Unionfab, JLC3DP, et les nombreux
-intermédiaires du même modèle. C'est là que se traite une pièce unitaire.
+**Service bureaus with online quotation** — Unionfab, JLC3DP, and the many
+intermediaries following the same model. This is where a one-off part is
+handled.
 
-## Candidats retenus et écartés
+## Candidates retained and set aside
 
-| prestataire | AlSi10Mg | statut | raison |
+| provider | AlSi10Mg | status | reason |
 |---|---|---|---|
-| Unionfab | oui | **candidat n°1** | seul du lot à publier parc machine, tolérances, paroi minimale, délai et certifications |
-| JLC3DP | **non** | écarté pour cette pièce | catalogue métal limité à TC4, 316L et BJ-316L |
-| Eplus3D | oui (poudre) | non applicable | constructeur de machines, pas atelier de service identifié |
-| BLT, Farsoon, Falcontech | oui | non sollicités | échelle industrielle, sans intérêt pour une pièce unitaire |
+| Unionfab | yes | **candidate no. 1** | the only one in the batch to publish machine fleet, tolerances, minimum wall, lead time and certifications |
+| JLC3DP | **no** | set aside for this part | metal catalogue limited to TC4, 316L and BJ-316L |
+| Eplus3D | yes (powder) | not applicable | machine builder, no identified service bureau |
+| BLT, Farsoon, Falcontech | yes | not approached | industrial scale, no point for a one-off part |
 
-### Unionfab — ce qui est publié
+### Unionfab — what is published
 
-Parc de plus de cent machines BLT, Farsoon, EOS et UnionTech, systèmes SLM à
-quatre et six lasers. Volume jusqu'à 800 × 800 × 700 mm. Paroi minimale
-**0,5 mm**. Tolérance ±0,2 mm sous 100 mm. Délai SLM **5 à 7 jours ouvrés**.
-**Aucun minimum de commande**. ISO 9001, ISO 14001, ISO 13485 et IATF 16949.
-Usinage CNC, polissage, traitement thermique et anodisation en post-traitement.
-Contrôle par MMT et scanner 3D.
+A fleet of more than a hundred BLT, Farsoon, EOS and UnionTech machines, SLM
+systems with four and six lasers. Build volume up to 800 × 800 × 700 mm.
+Minimum wall **0.5 mm**. Tolerance ±0.2 mm below 100 mm. SLM lead time **5 to
+7 working days**. **No minimum order**. ISO 9001, ISO 14001, ISO 13485 and
+IATF 16949. CNC machining, polishing, heat treatment and anodizing as
+post-processing. Inspection by CMM and 3D scanner.
 
-Sur sa fiche AlSi10Mg : Rp0,2 180 MPa, Rm 300 MPa, A ≥ 8 %, 2,67 g/cm³,
-Brinell 120, Ra 12 à 25 µm, minimum de commande 1 pièce.
+On its AlSi10Mg sheet: Rp0.2 180 MPa, Rm 300 MPa, A ≥ 8 %, 2.67 g/cm³,
+Brinell 120, Ra 12 to 25 µm, minimum order 1 part.
 
-### Trois contradictions à porter au devis
+### Three contradictions to take to the quotation
 
-**1. L'épaisseur de couche, encore.** L'étape 04 avait déjà trouvé que le
-criblage tranchait à 50 µm une route publiée à 30 µm. Unionfab en ajoute deux :
-sa page de service annonce **0,035 mm**, et sa propre fiche AlSi10Mg annonce
-**0,15 mm**. Cette dernière n'est pas une épaisseur LPBF plausible pour cet
-alliage. Trois valeurs sur le même sujet, dont deux chez le même fournisseur :
-la première question du devis est donc « à quelle épaisseur, sur quelle
-machine ».
+**1. Layer thickness, again.** Step 04 had already found that the screening
+sliced at 50 µm a route published at 30 µm. Unionfab adds two more: its service
+page announces **0.035 mm**, and its own AlSi10Mg sheet announces **0.15 mm**.
+The latter is not a plausible LPBF thickness for this alloy. Three values on
+the same subject, two of them from the same supplier: the first question of
+the quotation is therefore "at what thickness, on which machine".
 
-**2. La carte matière change avec le prestataire.** Rp0,2 180 MPa chez Unionfab
-contre 233 MPa vertical sur les coupons EOS de la carte du dépôt, Rm 300 contre
-461 MPa minimal. Ce n'est pas une erreur de l'un ou de l'autre : ce sont deux
-routes différentes. C'est exactement ce que la porte 04 affirme, et la carte
-procédé du dépôt devra être remplacée par celle du prestataire retenu, pas
-complétée par elle.
+**2. The material card changes with the provider.** Rp0.2 180 MPa at Unionfab
+against 233 MPa vertical on the EOS coupons of the repository's card, Rm 300
+against a 461 MPa minimum. This is not an error by one or the other: these are
+two different routes. That is exactly what gate 04 asserts, and the
+repository's process card will have to be replaced by that of the retained
+provider, not supplemented by it.
 
-**3. La paroi.** Unionfab annonce 0,5 mm de paroi minimale, JLC3DP recommande
-1,5 mm pour le SLM. La bague a un premier centile d'épaisseur locale à
-**0,833 mm**, et **11,45 %** de ses points de criblage sous 1,5 mm. Elle passe
-la règle du premier, pas la recommandation du second. La question au fournisseur
-est donc de savoir si sa paroi minimale est une limite de procédé ou une limite
-de garantie dimensionnelle.
+**3. The wall.** Unionfab announces a 0.5 mm minimum wall, JLC3DP recommends
+1.5 mm for SLM. The ring has a first percentile of local thickness of
+**0.833 mm**, and **11.45 %** of its screening points below 1.5 mm. It passes
+the rule of the former, not the recommendation of the latter. The question to
+the supplier is therefore whether its minimum wall is a process limit or a
+dimensional guarantee limit.
 
-### Ce qu'aucun ne publie
+### What none of them publishes
 
-Aucun des quatre ne publie de spécification de traitement thermique, de
-tomographie, de contenu de certificat matière, de traçabilité du lot de poudre
-ni de surépaisseur d'usinage. Ce sont cinq des sept portes fermées de l'étape
-04 : la recherche documentaire ne les ouvrira pas, seul un échange contractuel
-le fera.
+None of the four publishes a heat treatment specification, CT scanning,
+material certificate content, powder lot traceability or machining allowance.
+These are five of the seven closed gates of step 04: desk research will not
+open them, only a contractual exchange will.
 
-## Prochain pas concret
+## Concrete next step
 
-Envoyer le dossier
+Send the dossier
 [`supplier-rfq.md`](../../twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md)
-et le STEP à Unionfab, en ajoutant les trois contradictions ci-dessus comme
-questions. Le devis attendu porte sur **une** pièce ; son intérêt n'est pas la
-bague, c'est de savoir ce qu'un prestataire chinois accepte de mettre par écrit
-quand on le lui demande. C'est cette réponse qui décidera si la même chaîne peut
-porter des pièces plus sérieuses.
+and the STEP to Unionfab, adding the three contradictions above as questions.
+The expected quotation covers **one** part; its value is not the ring, it is
+learning what a Chinese provider agrees to put in writing when asked. That
+answer will decide whether the same chain can carry more serious parts.
 
-Rappel de cadre : la pièce est classée `non_critical`, aucune porte de
-fabrication n'est ouverte, et rien de ce qui sortirait de ce devis ne doit être
-monté sur un véhicule avant mesure d'un exemplaire d'origine et du logement.
+Framing reminder: the part is classified `non_critical`, no manufacturing gate
+is open, and nothing that would come out of this quotation may be installed on
+a vehicle before an original part and its housing have been measured.
 
 ## Sources
 

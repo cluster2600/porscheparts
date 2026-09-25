@@ -1,74 +1,72 @@
-# Cache-moyeu 993 — concept AlSi10Mg F0
+# 993 wheel center cap — AlSi10Mg F0 concept
 
-PorscheFanatics identifie `993 361 303 07` comme cache-moyeu et conserve son
-statut PET historique `U`, supprimé sans remplacement, tout en indiquant que sa
-disponibilité actuelle est inconnue. Partworks vend actuellement une variante
-originale et déclare : plastique, diamètre extérieur `76 mm`, diamètre intérieur
-`60 mm` et hauteur `46 mm`.
+PorscheFanatics identifies `993 361 303 07` as a wheel center cap and keeps its
+historical PET status `U`, discontinued without replacement, while stating
+that its current availability is unknown. Partworks currently sells an
+original variant and declares: plastic, outer diameter `76 mm`, inner diameter
+`60 mm` and height `46 mm`.
 
-Le F0 conserve uniquement ces trois dimensions. Sa face est volontairement
-neutre : aucun blason, logo ou dessin Porsche n'est reproduit. La jupe, la bague
-de centrage et les quatre languettes avec bourrelets sont des hypothèses propres
-au projet.
+The F0 keeps only these three dimensions. Its face is deliberately neutral: no
+Porsche crest, logo or design is reproduced. The skirt, the centering ring and
+the four tabs with beads are the project's own assumptions.
 
-## Pourquoi tester l'AM métal
+## Why test metal AM
 
-Le LPBF consolide dans un seul solide une face, deux bagues et quatre languettes
-avec contre-dépouilles. Cela peut avoir un intérêt pour une petite série ou une
-variante personnalisée. L'original étant en plastique, MJF, SLS et injection
-restent toutefois des concurrents probablement plus légers et plus souples.
-Le procédé reste donc `undecided`.
+LPBF consolidates into a single solid a face, two rings and four tabs with
+undercuts. This may be of interest for a small series or a customized variant.
+Since the original is plastic, however, MJF, SLS and injection molding remain
+competitors that are probably lighter and more flexible. The process therefore
+stays `undecided`.
 
-## Criblage exécuté
+## Screening run
 
-Pour des hypothèses de flèche de clipsage `0,4 mm`, frottement `0,30`, vitesse
-`250 km/h`, rayon roulant `315 mm`, choc axial `20 g` et écart thermique
-`120 K`, le rapport recalcule :
+For assumptions of `0.4 mm` snap-fit deflection, `0.30` friction, `250 km/h`
+speed, `315 mm` rolling radius, `20 g` axial shock and a `120 K` thermal
+difference, the report recalculates:
 
-- volume exact des cylindres annulaires et languettes, puis masse `rho V` ;
-- `I=b t³/12`, effort de console `3 E I delta/L³` et contrainte en racine ;
-- capacité de rétention par frottement et demande inertielle axiale ;
-- vitesse de roue `omega=v/R`, charge centrifuge des languettes et contrainte
-  circonférentielle de la bague ;
-- dilatation différentielle aluminium/acier ;
-- BREP OCCT unique et relecture du STEP.
+- exact volume of the annular cylinders and tabs, then mass `rho V`;
+- `I=b t³/12`, cantilever force `3 E I delta/L³` and root stress;
+- friction retention capacity and axial inertial demand;
+- wheel speed `omega=v/R`, centrifugal load on the tabs and hoop stress in the
+  ring;
+- aluminum/steel differential expansion;
+- single OCCT BREP and STEP re-read.
 
-Le concept donne `75,29 g`, `16,59 N` par languette, `93,33 MPa` en racine et
-un ratio synthétique rétention/demande de `1,35`. Ce ratio n'est pas un facteur
-de sécurité : géométrie de roue, frottement, fatigue, usure et choc réels sont
-absents.
+The concept gives `75.29 g`, `16.59 N` per tab, `93.33 MPa` at the root and a
+synthetic retention/demand ratio of `1.35`. This ratio is not a safety factor:
+real wheel geometry, friction, fatigue, wear and shock are absent.
 
-## Gates avant prototype routier
+## Gates before a road prototype
 
-1. Mesurer une roue identifiée et un cache réel : alésage, clips, insertion,
-   arrachement et tolérances.
-2. Comparer objectivement AlSi10Mg, polymère MJF/SLS et injection.
-3. Ajouter congés, orientation, traitement thermique et état de surface.
-4. Contrôler CT et dimensionnellement, puis tester insertion/arrachement,
-   rotation, choc, corrosion et cycles thermiques sur banc.
-5. Obtenir une revue professionnelle du risque de détachement avant route.
+1. Measure an identified wheel and a real cap: bore, clips, insertion,
+   pull-out and tolerances.
+2. Objectively compare AlSi10Mg, MJF/SLS polymer and injection molding.
+3. Add fillets, orientation, heat treatment and surface finish.
+4. Inspect by CT and dimensionally, then bench-test insertion/pull-out,
+   rotation, shock, corrosion and thermal cycles.
+5. Obtain a professional review of the detachment risk before road use.
 
-PhysicsNeMo attendra des courbes d'insertion, des essais de rotation et des
-cycles thermiques. SimReady reste différé tant que l'interface de roue et la
-loi de rétention ne sont pas mesurées.
+PhysicsNeMo will wait for insertion curves, rotation tests and thermal cycles.
+SimReady stays deferred as long as the wheel interface and the retention law
+are not measured.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 2 723 |
-| hauteur de construction | 81,67 mm |
-| couches avec region non soutenue | 28 |
-| proxy de supports | 742,45 mm³ |
-| epaisseur locale p01 | 1,000 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 2,723 |
+| build height | 81.67 mm |
+| layers with an unsupported region | 28 |
+| support proxy | 742.45 mm³ |
+| local thickness p01 | 1.000 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-whl-center-cap-alsi10mg-f0-0001/evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-whl-center-cap-alsi10mg-f0-0001/evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

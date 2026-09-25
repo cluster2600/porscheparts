@@ -1,57 +1,57 @@
-# Données de référence déclarées
+# Declared reference data
 
-Masses, encombrements et matières relevés **chez des tiers**. Rien ici n'a été
-mesuré par ce projet, et le fichier le dit à chaque ligne.
+Masses, envelopes and materials transcribed **from third parties**. Nothing
+here was measured by this project, and the file says so on every line.
 
-Deux garde-fous automatiques :
+Two automatic safeguards:
 
-- chaque entrée porte le `source_id` de la fiche qui l'atteste, et le validateur
-  refuse une entrée dont la source n'existe pas au registre ;
-- le champ `caveat` signale les cas où la version allégée n'est **pas** un
-  remplacement équivalent mais une suppression de fonction ou de sécurité —
-  portes de course sans barre anti-intrusion, volant sans airbag, dépose du
-  chauffage, panneau soudé structural.
+- each entry carries the `source_id` of the record that attests it, and the
+  validator rejects an entry whose source does not exist in the register;
+- the `caveat` field flags the cases where the lightweight version is **not**
+  an equivalent replacement but a removal of function or safety — race doors
+  without an intrusion bar, a steering wheel without an airbag, heater removal,
+  a structural welded panel.
 
-Une masse sans source est une rumeur. C'est exactement ce que ce dossier existe
-pour empêcher.
+A mass without a source is a rumor. That is exactly what this directory exists
+to prevent.
 
-## Squelette d'assemblage
+## Assembly skeleton
 
-`993-assembly-skeleton.json` porte l'autre moitié du jumeau : **où se trouve
-chaque pièce**. Dix systèmes, 239 illustrations, 12 864 références dénombrées,
-dérivés d'un catalogue d'usine tenu hors de ce dépôt.
+`993-assembly-skeleton.json` carries the other half of the twin: **where each
+part is**. Ten systems, 239 illustrations, 12,864 counted references, derived
+from a factory catalog kept outside this repository.
 
-C'est un **agrégat**, et le validateur le maintient tel : une illustration ne
-peut porter que son numéro, son dénombrement et ses libellés. Toute clé
-supplémentaire — une référence de pièce, par exemple — fait échouer `make check`.
+It is an **aggregate**, and the validator keeps it that way: an illustration can
+carry only its number, its count and its labels. Any extra key — a part number,
+for example — makes `make check` fail.
 
-Compter des pièces est un fait ; recopier les lignes d'un catalogue est une
-copie. La règle est donc appliquée par le validateur, pas par la bonne volonté.
+Counting parts is a fact; copying a catalog's rows is a copy. The rule is
+therefore enforced by the validator, not by good will.
 
-Régénérer : `python3 scripts/twin_structure.py --listing <atlas>/oem-listed.json --out catalog/reference/993-assembly-skeleton.json`
+Regenerate: `python3 scripts/twin_structure.py --listing <atlas>/oem-listed.json --out catalog/reference/993-assembly-skeleton.json`
 
-## Remplir le jumeau : ce qui marche et ce qui ne marche pas
+## Filling the twin: what works and what does not
 
-Recherche menée le 28 août 2026 pour trouver les masses des gros ensembles.
+Research carried out on August 28, 2026 to find the masses of the major
+assemblies.
 
-**Ne donne rien.** Les forums, allemands compris, pèsent des pièces d'allègement,
-jamais des ensembles. Aucune masse publiée pour la boîte de vitesses, les trains,
-la caisse nue, le réservoir vide ou le système de freinage. Ce n'est pas une
-lacune de recherche : ces valeurs ne sont pas publiées.
+**Yields nothing.** Forums, German ones included, weigh lightweight parts,
+never assemblies. No published mass for the gearbox, the axles, the bare body
+shell, the empty fuel tank or the brake system. This is not a research gap:
+these values are not published.
 
-**Donne quelque chose, mais pas automatiquement.** Les fiches produit de
-revendeurs portent une masse par référence, et l'un d'eux structure son
-catalogue par schémas PET, donc dans le même repère que le squelette
-d'assemblage : `SRC-ROSEPASSION-993-PARTS`.
+**Yields something, but not automatically.** Vendor product pages carry a mass
+per part number, and one of them organizes its catalog by PET diagrams, hence
+in the same frame as the assembly skeleton: `SRC-ROSEPASSION-993-PARTS`.
 
-**Correction du 28 août 2026.** Ce document affirmait que ce revendeur « répond
-à la récupération automatisée ». C'était faux : son `robots.txt` ferme
-l'intégralité du site aux agents Claude, nommément et en premier. Le fait qu'un
-serveur renvoie une page ne vaut pas autorisation. Voir
+**Correction of August 28, 2026.** This document claimed that this vendor
+"responds to automated retrieval." That was false: its `robots.txt` closes the
+entire site to Claude agents, by name and first. A server returning a page is
+not permission. See
 [decisions/0003-no-vendor-harvesting.md](../../docs/decisions/0003-no-vendor-harvesting.md).
 
-**Conséquence de méthode.** Le jumeau se remplit **référence par référence**, en
-ciblant celles qui pèsent : le squelette dit où elles sont, le sélecteur dit
-lesquelles comptent. Mais la masse se relève **à la main, dans un navigateur**,
-ou s'obtient par autorisation écrite. Aucun outil de ce dépôt n'ira la chercher
-tout seul.
+**Consequence for method.** The twin is filled **part number by part number**,
+targeting the ones that weigh the most: the skeleton says where they are, the
+selector says which ones matter. But the mass is transcribed **by hand, in a
+browser**, or obtained by written permission. No tool in this repository will
+fetch it on its own.

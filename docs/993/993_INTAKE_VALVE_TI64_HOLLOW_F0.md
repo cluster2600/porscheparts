@@ -1,63 +1,63 @@
-# Soupape d'admission 993 creuse — concept Ti64 LPBF F0
+# 993 hollow intake valve — Ti64 LPBF F0 concept
 
-FVD publie pour la référence `99310540902` une tête de `49 mm`, une queue de
-`8 mm`, une masse de `120 g` et un encombrement commercial de
-`50 × 110 × 50 mm`. La fiche ne fournit ni longueur fonctionnelle, ni profil,
-ni siège, ni gorge, ni matière, ni tolérance. PorscheFanatics identifie des
-soupapes titane dans le kit Swindon quatre soupapes, sans établir la nuance ou
-la compatibilité avec la culasse M64 deux soupapes.
+For the reference `99310540902`, FVD publishes a `49 mm` head, an `8 mm` stem,
+a mass of `120 g` and a commercial package size of `50 × 110 × 50 mm`. The
+sheet provides no functional length, profile, seat, groove, material or
+tolerance. PorscheFanatics identifies titanium valves in the Swindon
+four-valve kit, without establishing the grade or the compatibility with the
+two-valve M64 cylinder head.
 
-Le F0 utilise donc seulement les diamètres publiés. Sa longueur de `109 mm`, sa
-tête plate de `3 mm`, son raccord conique, sa cavité, son alésage axial de
-`5 mm` et ses quatre nervures de `1,2 mm` sont des hypothèses indépendantes.
+The F0 therefore uses only the published diameters. Its `109 mm` length, its
+`3 mm` flat head, its conical transition, its cavity, its `5 mm` axial bore and
+its four `1.2 mm` ribs are independent hypotheses.
 
-## Pourquoi étudier l'additif
+## Why study additive
 
-L'intérêt LPBF n'est pas de reproduire une soupape pleine, mieux obtenue par
-forge et usinage. Il est de fabriquer dans un seul corps une tête et une queue
-creuses, avec des nervures internes distribuées selon les charges. L'alésage
-reste ouvert à la pointe pour tenter le dépoudrage ; sa fermeture, son contrôle
-et sa rétention ne sont pas définis. La comparaison obligatoire reste :
+The LPBF interest is not to reproduce a solid valve, better obtained by forging
+and machining. It is to make a hollow head and stem in a single body, with
+internal ribs distributed according to the loads. The bore stays open at the
+tip to attempt depowdering; its closure, inspection and retention are not
+defined. The mandatory comparison remains:
 
-1. soupape titane pleine forgée et usinée ;
-2. soupape creuse conventionnelle ou soudée par friction ;
-3. corps creux Ti-6Al-4V LPBF avec fermeture qualifiée.
+1. solid forged and machined titanium valve;
+2. conventional or friction-welded hollow valve;
+3. hollow LPBF Ti-6Al-4V body with qualified closure.
 
-## Géométrie obtenue
+## Geometry obtained
 
-Le STEP relu contient un solide BREP valide de `49 × 49 × 109 mm`. Son volume
-est `12 545,86 mm³` et sa masse théorique `55,45 g` à `4,42 g/cm³`. Une forme
-pleine partageant exactement le même extérieur synthétique pèserait `72,38 g` :
-le creux enlève `23,38 %`. La différence de `64,55 g` face aux `120 g` publiés
-n'est pas un gain OEM, car la fiche commerciale et le F0 ne définissent pas la
-même géométrie.
+The re-read STEP contains one valid BREP solid of `49 × 49 × 109 mm`. Its volume
+is `12,545.86 mm³` and its theoretical mass `55.45 g` at `4.42 g/cm³`. A solid
+shape sharing exactly the same synthetic exterior would weigh `72.38 g`: the
+hollow removes `23.38 %`. The `64.55 g` difference against the published
+`120 g` is not an OEM saving, because the commercial sheet and the F0 do not
+define the same geometry.
 
-## Criblages mathématiques
+## Mathematical screenings
 
-Le cas de régression prend `6 720 tr/min`, `12 mm` de levée sur `240°`
-vilebrequin, un ressort de `520 N + 40 N/mm`, `0,20 MPa` de différentiel,
-`+400 K` et `100 h`. Une loi harmonique simple donne une durée d'événement de
-`5,95 ms`, une vitesse maximale de `6,33 m/s` et une accélération de
-`6 685 m/s²`. Avec la masse CAO, l'inertie vaut `371 N` et l'effort axial de
-criblage, ressort et pression inclus, `1,75 kN`.
+The regression case takes `6,720 rpm`, `12 mm` of lift over `240°` of
+crankshaft, a `520 N + 40 N/mm` spring, a `0.20 MPa` differential, `+400 K` and
+`100 h`. A simple harmonic law gives an event duration of `5.95 ms`, a maximum
+velocity of `6.33 m/s` and an acceleration of `6,685 m/s²`. With the CAD mass,
+the inertia is `371 N` and the axial screening force, spring and pressure
+included, `1.75 kN`.
 
-La section annulaire de queue donne `57,1 MPa` en traction/compression nominale
-et Euler `20,5 kN`. La plaque circulaire idéalisée de tête donne `6,23 MPa` et
-`0,0037 mm`. Ces marges ambiantes ne couvrent ni le siège, ni le guide, ni les
-clavettes, ni l'impact, ni les défauts LPBF.
+The annular stem section gives `57.1 MPa` in nominal tension/compression and
+Euler `20.5 kN`. The idealized circular head plate gives `6.23 MPa` and
+`0.0037 mm`. These room-temperature margins cover neither the seat, nor the
+guide, nor the keepers, nor impact, nor LPBF defects.
 
-Le premier mode de poutre encastrée vaut seulement `190,8 Hz`, soit `3,41` fois
-la fréquence d'événement de `56 Hz` : ce résultat impose une analyse modale du
-système complet et ne constitue pas une séparation fréquentielle acceptable.
-Sur `100 h`, le décompte atteint `20,16 millions` d'événements sans prédire de
-durée de vie.
+The first cantilevered-beam mode is only `190.8 Hz`, i.e. `3.41` times the
+event frequency of `56 Hz`: this result calls for a modal analysis of the
+complete system and does not constitute an acceptable frequency separation.
+Over `100 h`, the count reaches `20.16 million` events without predicting a
+life.
 
-La dilatation libre vaut `0,392 mm`. La borne totalement contrainte vaut
-`396 MPa`, tandis que la conduction axiale 1D n'est que `1,37 W` avec les
-propriétés de comparaison Ti64. Il faut donc mesurer les températures et
-résoudre les contacts thermiques siège-guide avant toute conclusion.
+Free expansion is `0.392 mm`. The fully restrained bound is `396 MPa`, while the
+1D axial conduction is only `1.37 W` with the Ti64 comparison properties.
+Temperatures must therefore be measured and the seat-guide thermal contacts
+resolved before any conclusion.
 
-## Reproduction logicielle
+## Software reproduction
 
 ```bash
 docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
@@ -67,42 +67,43 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Mesurer une soupape déposée, son siège, guide, clavettes, coupelle, ressort,
-   came, basculeur et jeux piston-soupape.
-2. Instrumenter loi de levée, pression, température, impact, flottement,
-   rebond, lubrification et cycle de service.
-3. Reconstruire les interfaces avec tolérances, état de surface, revêtements,
-   duretés, surépaisseurs et fermeture réelle.
-4. Résoudre multibody puis FEA contact/modal/thermique/HCF-LCF avec convergence,
-   défauts et propriétés Ti64 orientées à chaud.
-5. Qualifier orientation, supports, dépoudrage, traitement, HIP, usinage,
-   couche alpha, CT, propreté, fermeture et équilibrage.
-6. Tester à chaud la soupape grandeur réelle, puis une culasse entraînée et un
-   moteur au banc sous revue professionnelle.
+1. Measure a removed valve, its seat, guide, keepers, retainer, spring, cam,
+   rocker and piston-to-valve clearances.
+2. Instrument lift law, pressure, temperature, impact, float, bounce,
+   lubrication and duty cycle.
+3. Rebuild the interfaces with tolerances, surface finish, coatings, hardness,
+   allowances and real closure.
+4. Solve multibody then contact/modal/thermal/HCF-LCF FEA with convergence,
+   defects and oriented hot Ti64 properties.
+5. Qualify orientation, supports, depowdering, heat treatment, HIP, machining,
+   alpha case, CT, cleanliness, closure and balancing.
+6. Hot-test the full-scale valve, then a motored cylinder head and an engine on
+   the dyno under professional review.
 
-PhysicsNeMo attend des séries corrélées multibody-thermique-structure avec
-train, holdout et hors-distribution. SimReady attend l'assemblage mesuré. Ce
-STEP F0 n'est autorisé ni pour fabrication, ni pour montage, ni pour moteur.
+PhysicsNeMo waits for correlated multibody-thermal-structure series with
+training, holdout and out-of-distribution splits. SimReady waits for the
+measured assembly. This F0 STEP is authorized neither for manufacture, nor for
+fitting, nor for an engine.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 3 241 |
-| hauteur de construction | 97,23 mm |
-| couches avec region non soutenue | 254 |
-| proxy de supports | 1 002,61 mm³ |
-| epaisseur locale p01 | 1,200 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 3,241 |
+| build height | 97.23 mm |
+| layers with an unsupported region | 254 |
+| support proxy | 1,002.61 mm³ |
+| local thickness p01 | 1.200 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

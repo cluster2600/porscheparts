@@ -1,78 +1,77 @@
-# Couvercle thermique gauche de turbo 993 — concept IN625 F0
+# 993 left turbo heat shield — IN625 F0 concept
 
-Le catalogue PorscheFanatics confirme `993 123 113 51` dans le groupe turbo
-`202-16`. FVD publie pour cette pièce une enveloppe de **160 × 110 × 105 mm**,
-une masse de **0,23 kg** et une application 993 Turbo/GT2. Aucune surface,
-épaisseur, fixation, tolérance, température ou matière n'est publiée.
+The PorscheFanatics catalogue confirms `993 123 113 51` in turbo group
+`202-16`. FVD publishes for this part an envelope of **160 × 110 × 105 mm**, a
+mass of **0.23 kg** and a 993 Turbo/GT2 application. No surface, thickness,
+fastener, tolerance, temperature or material is published.
 
-Le modèle conserve uniquement cette enveloppe. Sa voûte trapézoïdale ouverte,
-sa paroi nominale de `0,8 mm`, ses trois bossages et leurs alésages sont une
-topologie indépendante. Le volume reste entièrement ouvert, donc sans poudre
-prisonnière.
+The model keeps only this envelope. Its open trapezoidal vault, its nominal
+`0.8 mm` wall, its three bosses and their bores are an independent topology.
+The volume stays fully open, hence no trapped powder.
 
-## Intérêt AM et concurrence tôle
+## AM benefit and sheet-metal competition
 
-Le LPBF IN625 permettrait une coque conformée avec bossages et raidisseurs
-locaux intégrés, utile pour une petite série et une géométrie thermique complexe.
-Mais la tôle emboutie ou assemblée reste le procédé de référence à battre.
+LPBF IN625 would allow a conformal shell with integrated bosses and local
+stiffeners, useful for a small series and a complex thermal geometry. But
+stamped or assembled sheet metal remains the reference process to beat.
 
-Le F0 pèse théoriquement `325,58 g`, soit `41,6 %` de plus que les `230 g`
-publiés par FVD. La matière du produit commercial étant inconnue, ce résultat
-n'est pas une validation par masse ; il empêche surtout de déclarer l'AM
-gagnante sans nouvelle optimisation et comparaison de coûts.
+The F0 weighs theoretically `325.58 g`, i.e. `41.6 %` more than the `230 g`
+published by FVD. Since the material of the commercial product is unknown,
+this result is not a validation by mass; above all, it prevents declaring AM
+the winner without further optimization and cost comparison.
 
-## Criblages exécutés
+## Screenings run
 
-Le rapport recalcule :
+The report recalculates:
 
-- volume polygonal et masse `rho V` ;
-- flexion d'une bande locale par `I=b t³/12`, `M=F L/4`, `sigma=M c/I` et
-  `delta=F L³/(48 E I)` sous `50 N` synthétiques ;
-- matage moyen des trois bossages ;
-- dilatation libre `alpha L delta_T` ;
-- borne entièrement contrainte `E alpha delta_T` ;
-- rayonnement `epsilon sigma A (T1⁴-T2⁴)` avec températures, émissivité et
-  facteur de vue hypothétiques ;
-- résistance conductrice surfacique `t/k` et capacité thermique `m c_p` ;
-- BREP OCCT unique, volume analytique et relecture du STEP.
+- polygonal volume and mass `rho V`;
+- bending of a local strip by `I=b t³/12`, `M=F L/4`, `sigma=M c/I` and
+  `delta=F L³/(48 E I)` under a synthetic `50 N`;
+- mean bearing pressure of the three bosses;
+- free expansion `alpha L delta_T`;
+- fully constrained bound `E alpha delta_T`;
+- radiation `epsilon sigma A (T1⁴-T2⁴)` with hypothetical temperatures,
+  emissivity and view factor;
+- areal conductive resistance `t/k` and thermal capacity `m c_p`;
+- single OCCT BREP, analytical volume and STEP re-read.
 
-La coque donne `175,78 MPa` en flexion nominale, `0,646 mm` de flèche et
-`0,783 mm` de dilatation libre. La borne entièrement contrainte atteint
-`997,74 MPa`, au-dessus des `640 MPa` ambiants de comparaison : les fixations
-devront autoriser la dilatation. Ce n'est pas une prédiction véhicule.
+The shell gives `175.78 MPa` in nominal bending, `0.646 mm` of deflection and
+`0.783 mm` of free expansion. The fully constrained bound reaches
+`997.74 MPa`, above the `640 MPa` room-temperature comparison value: the
+fasteners will have to allow expansion. This is not a vehicle prediction.
 
-## Gates suivants
+## Next gates
 
-1. Scanner la pièce et relever surfaces chaude/froide, fixations et jeux.
-2. Mesurer températures, flux, émissivité, airflow et limite des composants
-   protégés.
-3. Définir vibration, précharges et cycles thermiques.
-4. Comparer tôle et LPBF sur masse, coût, distorsion, finition et endurance.
-5. Exécuter coque non linéaire, modal, transfert thermique conjugué, oxydation,
-   fluage et fatigue thermique avec carte IN625 qualifiée.
-6. Contrôler puis tester sur banc thermique et vibratoire avant véhicule.
+1. Scan the part and record hot/cold surfaces, fasteners and clearances.
+2. Measure temperatures, fluxes, emissivity, airflow and the limit of the
+   protected components.
+3. Define vibration, preloads and thermal cycles.
+4. Compare sheet metal and LPBF on mass, cost, distortion, finish and endurance.
+5. Run nonlinear shell, modal, conjugate heat transfer, oxidation, creep and
+   thermal fatigue with a qualified IN625 map.
+6. Inspect, then test on a thermal and vibration bench before the vehicle.
 
-PhysicsNeMo attendra un jeu de cas CAE ou d'essais corrélés. Le passage
-SimReady est différé jusqu'aux interfaces mesurées et aux propriétés chaudes
-qualifiées ; le STEP F0 n'est pas une pièce fabricable pour montage.
+PhysicsNeMo will wait for a set of correlated CAE cases or tests. The SimReady
+step is deferred until measured interfaces and qualified hot properties exist;
+the F0 STEP is not a manufacturable part for installation.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_x`.
+The STEP was tessellated, then sliced over its full height at `40 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `build_x`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 4 000 |
-| hauteur de construction | 160,00 mm |
-| couches avec region non soutenue | 177 |
-| proxy de supports | 6 092,64 mm³ |
-| epaisseur locale p01 | 0,800 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 4,000 |
+| build height | 160.00 mm |
+| layers with an unsupported region | 177 |
+| support proxy | 6,092.64 mm³ |
+| local thickness p01 | 0.800 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-heat-shield-in625-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-heat-shield-in625-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

@@ -1,243 +1,241 @@
-# Chassis carbone/kevlar pour 964 : ce que le calcul dit du remplacement de l'acier
+# Carbon/Kevlar chassis for the 964: what the computation says about replacing steel
 
-Statut : **etude de materiau, classe `prohibited_pending_engineering`**. Aucune
-geometrie de piece, aucune sequence de drapage liberable. Voir `SAFETY.md` : une
-structure autoportante porte la retenue des occupants, elle ne se publie qu'apres
-revue d'ingenierie formelle.
+Status: **material study, class `prohibited_pending_engineering`**. No part
+geometry and no layup sequence can be released. See `SAFETY.md`: a
+self-supporting structure carries occupant restraint, and it is published only
+after a formal engineering review.
 
-## Point de depart
+## Starting point
 
-`SRC-ZESAD-CARBON-MONOCOQUE-964-993` etablit qu'un monocoque carbone de
-remplacement pour 964 et 993 existe commercialement, de 129 990 a 219 990 EUR, en
-preimpregne cuit en autoclave. La fiche ne publie **ni masse, ni raideur en
-torsion, ni essai de choc, ni homologation, ni sequencement de drapage, ni
-materiau d'ame**. Il n'y a donc rien a reproduire ni a confronter : la seule
-chose faisable ici est de poser la question par le calcul, sur le modele qu'on a.
+`SRC-ZESAD-CARBON-MONOCOQUE-964-993` establishes that a replacement carbon
+monocoque for the 964 and 993 exists commercially, from EUR 129,990 to 219,990,
+in autoclave-cured prepreg. The record publishes **no mass, no torsional
+stiffness, no crash test, no homologation, no layup sequence and no core
+material**. There is therefore nothing to reproduce or to compare against: the
+only thing that can be done here is to ask the question by computation, on the
+model we have.
 
-## Methode
+## Method
 
-L'essai est celui, deja en place, du plancher 964 en torsion (`fea/README.md`) :
-arriere encastre, couple de 1290 N.m en pointes de longeron, coques S3, CalculiX.
-**Ni la geometrie, ni le chargement, ni les conditions aux limites ne changent.**
-Seuls le materiau et l'epaisseur changent. La reference est l'acier a 0,8 mm,
-2442 N.m/deg — valeur reproduite a l'identique avant toute modification.
+The test is the existing torsion test of the 964 floor pan (`fea/README.md`):
+rear clamped, a 1290 N.m torque at the side rail tips, S3 shells, CalculiX.
+**Neither the geometry, nor the loading, nor the boundary conditions change.**
+Only the material and the thickness change. The reference is steel at 0.8 mm,
+2442 N.m/deg — a value reproduced identically before any modification.
 
-Les proprietes de stratifie ne sont pas affirmees, elles sont **calculees**
-depuis les constantes de pli unidirectionnel par les invariants de stratifie
-(`fea/laminate.py`). Un empilement quasi-isotrope a une matrice de raideur
-membranaire A isotrope, ce qui autorise a garder la coque isotrope dans le calcul
-et reduit les entrees aux seules constantes de pli. Le module verifie sa propre
-algebre : l'empilement QI d'un pli isotrope doit redonner ce meme materiau.
+The laminate properties are not asserted, they are **computed** from the
+unidirectional ply constants through the lamination invariants
+(`fea/laminate.py`). A quasi-isotropic stack has an isotropic membrane stiffness
+matrix A, which allows the shell to be kept isotropic in the computation and
+reduces the inputs to the ply constants alone. The module checks its own
+algebra: the QI stack of an isotropic ply must return that same material.
 
-Le carbone QI ressort a **E = 52 401 MPa**, ce qui est la valeur de manuel pour
-un T300/epoxy quasi-isotrope. L'hybride carbone/aramide est obtenu par melange
-des Q au prorata des plis, ce qui est exact pour A.
+QI carbon comes out at **E = 52,401 MPa**, the textbook value for a
+quasi-isotropic T300/epoxy. The carbon/aramid hybrid is obtained by mixing the
+Q matrices in proportion to the plies, which is exact for A.
 
-## Resultat, a raideur en torsion egale
+## Result, at equal torsional stiffness
 
-| materiau | E (MPa) | G (MPa) | epaisseur iso-raideur | plis | K calcule | vM p99 | kg/m2 | vs acier |
+| material | E (MPa) | G (MPa) | iso-stiffness thickness | plies | computed K | vM p99 | kg/m2 | vs steel |
 |---|---|---|---|---|---|---|---|---|
-| acier 0,8 mm (reference) | 210 000 | 80 769 | 0,80 mm | — | 2442 | 69,6 | 6,28 | 1,00x |
-| carbone QI | 52 401 | 19 992 | 3,23 mm | 16 | 2503 | 17,0 | 5,17 | **0,82x** |
-| hybride carbone/aramide 50/50 QI | 40 669 | 15 447 | 4,18 mm | 20 | 2538 | 13,0 | 6,23 | **0,99x** |
-| aramide QI | 28 931 | 10 902 | 5,93 mm | 24 | 2611 | 9,0 | 8,18 | **1,30x** |
+| steel 0.8 mm (reference) | 210,000 | 80,769 | 0.80 mm | — | 2442 | 69.6 | 6.28 | 1.00x |
+| QI carbon | 52,401 | 19,992 | 3.23 mm | 16 | 2503 | 17.0 | 5.17 | **0.82x** |
+| QI carbon/aramid 50/50 hybrid | 40,669 | 15,447 | 4.18 mm | 20 | 2538 | 13.0 | 6.23 | **0.99x** |
+| QI aramid | 28,931 | 10,902 | 5.93 mm | 24 | 2611 | 9.0 | 8.18 | **1.30x** |
 
-Epaisseur de pli cuit prise a 0,25 mm, valeur de travail `ASSUMED`, nombre de
-plis arrondi au multiple de 4 qu'exige un empilement QI symetrique.
+Cured ply thickness taken as 0.25 mm, an `ASSUMED` working value; ply count
+rounded to the multiple of 4 that a symmetric QI stack requires.
 
-## Ce qu'il faut en retenir
+## What to take away
 
-**Le kevlar est le mauvais materiau pour cette fonction.** A raideur en torsion
-egale, un stratifie aramide quasi-isotrope est **30 % plus lourd que l'acier**.
-Ce n'est pas une surprise une fois le calcul pose : l'aramide a un module
-specifique mediocre. Son interet reel est la tolerance aux dommages, la
-resistance a la penetration et le comportement en absorption, pas la raideur.
-S'il a une place dans un chassis, c'est en peau sacrificielle locale ou en
-couche anti-eclat, **pas dans le chemin d'effort en torsion**.
+**Kevlar is the wrong material for this function.** At equal torsional
+stiffness, a quasi-isotropic aramid laminate is **30 % heavier than steel**.
+This is no surprise once the computation is set up: aramid has a mediocre
+specific modulus. Its real value is damage tolerance, penetration resistance and
+energy-absorption behavior, not stiffness. If it has a place in a chassis, it is
+as a local sacrificial skin or an anti-shatter layer, **not in the torsional
+load path**.
 
-**Le gain du carbone monolithique est modeste : 18 %.** C'est tres loin de ce que
-le mot « carbone » laisse attendre. La raison est mecanique et deja etablie par
-ce depot : ce caisson travaille en **cisaillement de membrane**, donc la raideur
-suit `G x t` et non `G x t^3`. Le critere qui compte n'est pas le module
-specifique `E/rho` mais `G/rho`, et l'ecart y est bien plus faible qu'en flexion.
-L'ecart maximal entre l'epaisseur predite par cette loi et le calcul complet est
-de 6,9 %, ce qui confirme la loi d'echelle en materiau comme elle l'etait en
-epaisseur.
+**The gain from monolithic carbon is modest: 18 %.** That is very far from what
+the word "carbon" leads one to expect. The reason is mechanical and already
+established by this repository: this box works in **membrane shear**, so the
+stiffness follows `G x t` and not `G x t^3`. The criterion that matters is not
+the specific modulus `E/rho` but `G/rho`, and the gap there is much smaller than
+in bending. The maximum gap between the thickness predicted by this law and the
+full computation is 6.9 %, which confirms the scaling law in material as it was
+confirmed in thickness.
 
-**Une ame en nid d'abeille ne rattrape pas ce resultat en torsion.** Pour un
-caisson ferme, la formule de Bredt donne une raideur proportionnelle a `G x t`,
-a l'aire enclose au carre et a l'inverse du perimetre : le flux de cisaillement
-est porte par les peaux, et separer les peaux par une ame n'augmente pas le
-produit `G x t` disponible. Le sandwich achete de la raideur de **flexion de
-panneau** et de la tenue au **flambement local**, qui sont des criteres reels et
-dimensionnants ailleurs, mais il ne multiplie pas la raideur en torsion du
-caisson.
+**A honeycomb core does not recover this result in torsion.** For a closed box,
+Bredt's formula gives a stiffness proportional to `G x t`, to the square of the
+enclosed area and to the inverse of the perimeter: the shear flow is carried by
+the skins, and separating the skins with a core does not increase the available
+`G x t` product. A sandwich buys **panel bending** stiffness and **local
+buckling** resistance, which are real criteria and sizing elsewhere, but it does
+not multiply the torsional stiffness of the box.
 
-**Le vrai levier n'est pas le materiau, c'est l'architecture.** Les colonnes
-`vM p99` le montrent : l'acier de reference plafonne a 86 MPa au pic pour une
-limite d'elasticite d'au moins 200 MPa meme en acier doux, et les stratifies
-iso-raideur descendent a 9-19 MPa. **Le plancher n'est pas dimensionne par la
-contrainte en torsion.** Son epaisseur vient de la raideur, de l'emboutissage, de
-la tenue au choc local et de la corrosion. Un echange de materiau a iso-raideur
-ne convertit donc aucune marge en masse.
+**The real lever is not the material, it is the architecture.** The `vM p99`
+columns show it: the reference steel tops out at 86 MPa at peak against a yield
+strength of at least 200 MPa even for mild steel, and the iso-stiffness
+laminates drop to 9-19 MPa. **The floor pan is not sized by torsional stress.**
+Its thickness comes from stiffness, stamping, local impact resistance and
+corrosion. A material swap at iso-stiffness therefore converts no margin into
+mass.
 
-Ce qu'un monocoque de type ZESAD gagne vient d'ailleurs : une coque fermee unique
-au lieu d'un assemblage soude par points, une aire enclose plus grande, la
-suppression des recouvrements et des joints, et la liberte de mettre la matiere
-ou le chemin d'effort passe au lieu de la mettre ou l'emboutissage l'autorise.
-**Rien de cela ne se demontre sur un plancher seul** : il y faudrait le tablier,
-la cloison arriere, le tunnel, les passages de roue, les pieds milieu et le cadre
-de pare-brise, qui portent l'essentiel de la torsion d'une caisse complete et
-qu'aucune source du dossier ne cote.
+What a ZESAD-type monocoque gains comes from elsewhere: a single closed shell
+instead of a spot-welded assembly, a larger enclosed area, the removal of
+overlaps and joints, and the freedom to put material where the load path goes
+instead of where stamping allows it. **None of this can be demonstrated on a
+floor pan alone**: it would take the front bulkhead, the rear bulkhead, the
+tunnel, the wheel arches, the B-pillars and the windshield frame, which carry
+most of the torsion of a complete body shell and which no source in the dossier
+dimensions.
 
-## Architecture contre materiau : la question est tranchee
+## Architecture versus material: the question is settled
 
-L'affirmation « le levier est architectural » etait, dans la premiere version de
-ce document, un raisonnement. Elle est maintenant mesuree. L'astuce est qu'elle
-est **relative** : elle ne demande donc aucune raideur de caisse 964 publiee, ce
-qui tombe bien puisqu'il n'en existe pas.
+The claim "the lever is architectural" was, in the first version of this
+document, an argument. It is now measured. The trick is that it is
+**relative**: it therefore requires no published 964 body-shell stiffness, which
+is convenient since none exists.
 
-Meme essai de torsion, trois architectures de plus en plus fermees, deux
-materiaux **a masse egale** — le stratifie carbone est mis a 3,92 mm pour peser
-exactement ce que pese l'acier a 0,8 mm. La grandeur comparee est la raideur
-specifique `K/m`.
+Same torsion test, three increasingly closed architectures, two materials **at
+equal mass** — the carbon laminate is set to 3.92 mm so that it weighs exactly
+what steel at 0.8 mm weighs. The quantity compared is the specific stiffness
+`K/m`.
 
-| architecture | materiau | aire | masse | K (N.m/deg) | K/m |
+| architecture | material | area | mass | K (N.m/deg) | K/m |
 |---|---|---|---|---|---|
-| plancher seul | acier 0,8 mm | 4,40 m2 | 27,7 kg | 2442 | 88,3 |
-| plancher seul | carbone QI 3,92 mm | 4,40 m2 | 27,7 kg | 3062 | 110,7 |
-| + cloisons | acier 0,8 mm | 5,60 m2 | 35,2 kg | 3147 | 89,4 |
-| + cloisons | carbone QI 3,92 mm | 5,60 m2 | 35,2 kg | 3914 | 111,2 |
-| + cloisons + tunnel | acier 0,8 mm | 6,40 m2 | 40,2 kg | 5371 | 133,6 |
-| + cloisons + tunnel | carbone QI 3,92 mm | 6,40 m2 | 40,2 kg | 6620 | 164,7 |
+| floor pan alone | steel 0.8 mm | 4.40 m2 | 27.7 kg | 2442 | 88.3 |
+| floor pan alone | QI carbon 3.92 mm | 4.40 m2 | 27.7 kg | 3062 | 110.7 |
+| + bulkheads | steel 0.8 mm | 5.60 m2 | 35.2 kg | 3147 | 89.4 |
+| + bulkheads | QI carbon 3.92 mm | 5.60 m2 | 35.2 kg | 3914 | 111.2 |
+| + bulkheads + tunnel | steel 0.8 mm | 6.40 m2 | 40.2 kg | 5371 | 133.6 |
+| + bulkheads + tunnel | QI carbon 3.92 mm | 6.40 m2 | 40.2 kg | 6620 | 164.7 |
 
-Ces masses ont ete corrigees le 2026-09-04. Une traverse du modele, placee
-derriere le bord arriere du plancher par la chaine de datums non calee, y
-flottait : elle comptait 1,66 kg sans porter aucun effort, et minorait donc
-toutes les raideurs specifiques. Les raideurs, elles, etaient justes. Voir
-`twins/964-chassis/fea/README.md`.
+These masses were corrected on 2026-09-04. A cross member in the model, placed
+behind the rear edge of the floor pan by the unanchored datum chain, was
+floating there: it counted 1.66 kg without carrying any load, and therefore
+understated every specific stiffness. The stiffnesses themselves were correct.
+See `twins/964-chassis/fea/README.md`.
 
-Les deux leviers, a masse egale :
+The two levers, at equal mass:
 
-| levier | gain en K/m |
+| lever | gain in K/m |
 |---|---|
-| **fermer la caisse**, a acier constant | **x 1,51** |
-| **passer au carbone**, a plancher seul | **x 1,25** |
-| les deux ensemble | x 1,86 |
+| **close the body shell**, at constant steel | **x 1.51** |
+| **switch to carbon**, floor pan alone | **x 1.25** |
+| both together | x 1.86 |
 
-**L'architecture rapporte donc environ 20 % de plus que le materiau**, et surtout
-les deux leviers **se multiplient presque exactement** : 1,51 x 1,25 = 1,89
-contre 1,86 mesure. Ils sont separables, ce qui veut dire qu'ils ne se
-substituent pas l'un a l'autre. Choisir le carbone ne dispense pas de fermer la
-caisse, et fermer la caisse ne rend pas le carbone inutile.
+**Architecture therefore yields about 20 % more than material**, and above all
+the two levers **multiply almost exactly**: 1.51 x 1.25 = 1.89 against 1.86
+measured. They are separable, which means that neither substitutes for the
+other. Choosing carbon does not exempt you from closing the body shell, and
+closing the body shell does not make carbon useless.
 
-Le detail est instructif : l'essentiel du gain architectural ne vient pas des
-cloisons mais du **tunnel central**, qui a lui seul fait passer la raideur de
-3147 a 5371 N.m/deg, soit +71 %. Une poutre longitudinale fermee sur toute la
-longueur vaut plus que deux cloisons en bout.
+The detail is instructive: most of the architectural gain comes not from the
+bulkheads but from the **center tunnel**, which on its own takes the stiffness
+from 3147 to 5371 N.m/deg, i.e. +71 %. A longitudinal beam closed over the full
+length is worth more than two bulkheads at the ends.
 
-**Et ce tunnel n'existe pas sur la 964.** Ce parametre etant le plus influent de
-tout le dossier, il ne pouvait pas rester `ASSUMED` : il a ete cherche sur le
-scan (`source/tunnel_probe.py`). Le relief central du plancher d'habitacle, pris
-comme l'ecart entre le Z median a |Y| < 60 mm et celui des flancs a
-250 < |Y| < 400 mm, vaut entre **-0,7 et -3,1 mm** sur huit stations couvrant
-1000 mm de long. C'est sous le residu de symetrie du scan, qui est de 7,54 mm
-RMS : le relief n'est meme pas distinguable du bruit. Le soubassement est plat,
-ce qui est coherent avec un moteur arriere et l'absence d'arbre de transmission
-longitudinal. En avant de X = -200 mm un creux apparait, mais c'est la zone de
-traverse et de train avant, pas un tunnel.
+**And this tunnel does not exist on the 964.** Since this parameter is the most
+influential in the whole dossier, it could not remain `ASSUMED`: it was searched
+for on the scan (`source/tunnel_probe.py`). The central relief of the interior
+floor pan, taken as the difference between the median Z at |Y| < 60 mm and that
+of the flanks at 250 < |Y| < 400 mm, is between **-0.7 and -3.1 mm** across eight
+stations covering 1000 mm of length. That is below the scan's symmetry residual,
+which is 7.54 mm RMS: the relief cannot even be distinguished from noise. The
+underbody is flat, which is consistent with a rear engine and the absence of a
+longitudinal driveshaft. Forward of X = -200 mm a hollow appears, but that is
+the cross member and front suspension zone, not a tunnel.
 
-Le cas « tunnel » mesure donc **ce que la 964 n'a pas**, non ce qu'elle a. Cela
-ne l'invalide pas, cela le requalifie : c'est le chiffrage d'une modification
-architecturale possible, et c'est la conclusion la plus actionnable de l'etude.
-**Ajouter une poutre longitudinale fermee rapporte plus que passer au carbone**,
-+71 % contre +25 %, et pour une masse bien moindre que le passage au composite de
-toute la caisse. Un monocoque de type ZESAD, lui, obtient cette poutre gratuitement
-par construction : c'est precisement cela, un gain architectural.
+The "tunnel" case therefore measures **what the 964 does not have**, not what it
+has. That does not invalidate it, it requalifies it: it is the costing of a
+possible architectural modification, and it is the most actionable conclusion
+of the study. **Adding a closed longitudinal beam yields more than switching to
+carbon**, +71 % against +25 %, and for much less mass than converting the whole
+body shell to composite. A ZESAD-type monocoque gets this beam for free by
+construction: that is precisely what an architectural gain is.
 
-Deux controles de coherence entre les deux etudes. A masse egale, le carbone
-donne x 1,25 ; a raideur egale, il donnait 0,82x la masse, soit 1/0,82 = 1,22.
-Les deux lectures concordent. Et le cas « plancher seul, acier » redonne 2442
-N.m/deg, la valeur d'origine : la refonte du script de geometrie est fidele.
+Two consistency checks between the two studies. At equal mass, carbon gives
+x 1.25; at equal stiffness, it gave 0.82x the mass, i.e. 1/0.82 = 1.22. The two
+readings agree. And the "floor pan alone, steel" case returns 2442 N.m/deg, the
+original value: the rewrite of the geometry script is faithful.
 
-**Reserve majeure.** Les cloisons, leur hauteur de 500 mm et la section de
-tunnel 180 x 120 mm sont `ASSUMED` : aucune n'est publiee. Les valeurs absolues
-du tableau ne sont donc pas des raideurs de 964. **Seuls les rapports comptent**,
-et ce sont eux qui repondent a la question posee.
+**Major caveat.** The bulkheads, their 500 mm height and the 180 x 120 mm tunnel
+section are `ASSUMED`: none is published. The absolute values in the table are
+therefore not 964 stiffnesses. **Only the ratios count**, and they are what
+answers the question asked.
 
-Le pavillon, les pieds milieu, les passages de roue et le cadre de pare-brise
-manquaient egalement a cette etude. Ils ont depuis ete ajoutes au modele, et le
-resultat renforce la conclusion de cette page plutot qu'il ne la nuance : du
-plancher nu a une cellule fermee, la raideur est multipliee par 3,7, et ce qui
-porte ce gain n'est pas la quantite de matiere ajoutee mais la fermeture des
-anneaux. Le cadre de pare-brise, 1,1 kg, rapporte deux ordres de grandeur de
-plus au kilo que le pavillon, 10,5 kg. Voir
-`twins/964-chassis/fea/README.md`.
+The roof, the B-pillars, the wheel arches and the windshield frame were also
+missing from this study. They have since been added to the model, and the result
+reinforces this page's conclusion rather than qualifying it: from the bare floor
+pan to a closed cell, stiffness is multiplied by 3.7, and what carries this gain
+is not the amount of material added but the closing of the rings. The
+windshield frame, 1.1 kg, yields two orders of magnitude more per kilogram than
+the roof, 10.5 kg. See `twins/964-chassis/fea/README.md`.
 
-## Correction du 2026-09-04 : le critere n'est pas `G/rho` pour le plancher
+## Correction of 2026-09-04: the criterion for the floor pan is not `G/rho`
 
-Cette page conclut a plusieurs reprises que « ce caisson travaille en
-cisaillement de membrane, donc le critere est `G/rho` et non `E/rho` ». **Cette
-lecture mecanique est fausse et elle est corrigee ici.**
+This page concludes several times that "this box works in membrane shear, so the
+criterion is `G/rho` and not `E/rho`". **This mechanical reading is wrong and it
+is corrected here.**
 
-Elle s'appuyait sur deux observations dont aucune ne la demontre : la raideur
-suit lineairement l'epaisseur, ce qui ecarte la flexion de plaque mais pas celle
-d'une poutre a paroi mince ; et la prediction iso-raideur tombe a 6,9 %, mais
-tous les materiaux compares sont isotropes, ou `G` est proportionnel a `E`, si
-bien que ce controle ne peut pas distinguer l'un de l'autre.
+It rested on two observations, neither of which demonstrates it: stiffness
+follows thickness linearly, which rules out plate bending but not the bending of
+a thin-walled beam; and the iso-stiffness prediction lands within 6.9 %, but all
+the materials compared are isotropic, where `G` is proportional to `E`, so this
+check cannot distinguish one from the other.
 
-En faisant varier `E` et `G` separement (`fea/dominance_study.py`), on mesure
-que doubler `E` rend **+93,8 %** sur le plancher seul quand doubler `G` ne rend
-que **+2,1 %** : cette architecture-la travaille en **flexion**. Le cisaillement
-ne devient dominant qu'une fois les anneaux fermes, ou la cellule complete donne
-+37,7 % et +56,9 %.
+By varying `E` and `G` separately (`fea/dominance_study.py`), one measures that
+doubling `E` yields **+93.8 %** on the floor pan alone while doubling `G` yields
+only **+2.1 %**: this particular architecture works in **bending**. Shear only
+becomes dominant once the rings are closed, where the full cell gives +37.7 %
+and +56.9 %.
 
-**Ce qui reste valide dans cette page :** tous les chiffres. Ils portent sur des
-materiaux isotropes, calcules a iso-raideur par un calcul complet, et le
-mecanisme sous-jacent ne change pas leur valeur. Le classement carbone devant
-aramide est inchange, le carbone dominant sur les deux criteres.
+**What remains valid in this page:** all the numbers. They concern isotropic
+materials, computed at iso-stiffness by a full computation, and the underlying
+mechanism does not change their value. The ranking of carbon ahead of aramid is
+unchanged, carbon dominating on both criteria.
 
-**Ce qui tombe :** la justification par `G/rho`, et avec elle l'idee qu'un
-drapage oriente cisaillement serait le bon reglage par defaut. Le calcul
-stratifie complet, desormais possible, montre que le classement des empilements
-**s'inverse selon l'architecture**. Voir `docs/MONOCOQUE_964_993_ARCHITECTURE.md`.
+**What falls:** the `G/rho` justification, and with it the idea that a
+shear-oriented layup would be the right default setting. The full laminate
+computation, now possible, shows that the ranking of stacks **reverses with the
+architecture**. See `docs/MONOCOQUE_964_993_ARCHITECTURE.md`.
 
-## Ce que cette etude n'est pas
+## What this study is not
 
-- **Ce ne sont pas des raideurs de caisse 964.** Le modele est un plancher, deux
-  longerons, deux traverses. 2442 N.m/deg n'est pas une valeur de vehicule et
-  n'a jamais pu etre confronte a une valeur d'usine : aucune n'est publiee.
-- **Seule la raideur est traitee.** Rien ici ne dit quoi que ce soit de la
-  resistance du stratifie, du delaminage, des assemblages colles — qui sont le
-  point faible reel d'un monocoque composite —, du flambement, de la tenue au
-  choc, du comportement au feu, de la fatigue ni du vieillissement. Un critere de
-  rupture composite n'est pas une contrainte de von Mises.
-- **Les constantes de pli sont de classe manuel, niveau de preuve D.** Elles ne
-  sont certifiees par aucun fournisseur. Une fraction volumique de fibres reelle,
-  un taux de porosite et un cycle de cuisson les deplaceraient.
-- **La geometrie reste non calee.** Le calage longitudinal du reseau de datums du
-  jumeau 964 n'est pas resolu, les sections de longeron et de traverse sont
-  `ASSUMED`. Aucune piece composite ne peut en sortir.
-- **Aucun controle physique.** Conformement a la charte du depot, rien n'a ete
-  pese ni mesure sur un vehicule.
+- **These are not 964 body-shell stiffnesses.** The model is a floor pan, two
+  side rails and two cross members. 2442 N.m/deg is not a vehicle value and has
+  never been compared with a factory value: none is published.
+- **Only stiffness is addressed.** Nothing here says anything about laminate
+  strength, delamination, bonded joints — which are the real weak point of a
+  composite monocoque —, buckling, crash behavior, fire behavior, fatigue or
+  aging. A composite failure criterion is not a von Mises stress.
+- **The ply constants are textbook-class, evidence level D.** They are certified
+  by no supplier. A real fiber volume fraction, a porosity rate and a cure cycle
+  would shift them.
+- **The geometry remains unanchored.** The longitudinal anchoring of the 964
+  twin's datum network is not resolved, and the side rail and cross member
+  sections are `ASSUMED`. No composite part can come out of it.
+- **No physical check.** In line with the repository charter, nothing was
+  weighed or measured on a vehicle.
 
-## Prochaine donnee utile
+## Next useful data point
 
-Inchangee, et c'est le meme verrou que pour le reste du jumeau : **localiser un
-seul point de datum publie** a mieux que sa tolerance calerait la chaine
-longitudinale. Sans cela, l'etude de materiau ci-dessus reste ce qu'elle est —
-une comparaison correcte sur une geometrie approximative.
+Unchanged, and it is the same lock as for the rest of the twin: **locating a
+single published datum point** to better than its tolerance would anchor the
+longitudinal chain. Without that, the material study above remains what it is —
+a correct comparison on an approximate geometry.
 
-Pour l'axe composite specifiquement, la donnee qui manque est une **raideur en
-torsion de caisse 964 complete**, mesuree ou publiee. Elle donnerait enfin un
-denominateur : sans elle, on sait comparer des materiaux entre eux, mais pas dire
-ce qu'un monocoque apporterait a la voiture.
+For the composite axis specifically, the missing data point is a **torsional
+stiffness of a complete 964 body shell**, measured or published. It would
+finally give a denominator: without it, we can compare materials with each
+other, but not say what a monocoque would bring to the car.
 
-## Reproduire
+## Reproduce
 
     source twins/964-chassis/source/env.sh
     cd twins/964-chassis/fea
-    pycad laminate.py                          # proprietes QI et auto-verification
+    pycad laminate.py                          # QI properties and self-check
     pycad build_shell.py 0.8 1.0
-    pycad composite_study.py                   # tableau iso-raideur ci-dessus
-    pycad architecture_study.py                # ablation architecture / materiau
+    pycad composite_study.py                   # iso-stiffness table above
+    pycad architecture_study.py                # architecture / material ablation

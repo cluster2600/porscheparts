@@ -1,36 +1,36 @@
-## Objet
+## Purpose
 
-Décrire la pièce, la documentation ou l’outil ajouté.
+Describe the part, documentation or tool being added.
 
-## Provenance et licence
+## Provenance and license
 
-- Sources :
-- Licence des données et géométries :
-- Contenu tiers commité : oui / non
+- Sources:
+- License of data and geometry:
+- Third-party content committed: yes / no
 
-## Sécurité
+## Safety
 
-- Classe :
-- Usage prévu :
-- Risques et limites :
+- Class:
+- Intended use:
+- Risks and limitations:
 
-## Validation réellement effectuée
+## Validation actually performed
 
-- [ ] Mesures revues
-- [ ] Prototype imprimé
-- [ ] Montage vérifié
-- [ ] Essai fonctionnel
-- [ ] Revue d’ingénierie
-- [ ] Fabrication métal contrôlée
-- [ ] Sans objet, documentation uniquement
+- [ ] Measurements reviewed
+- [ ] Prototype printed
+- [ ] Fit checked
+- [ ] Functional test
+- [ ] Engineering review
+- [ ] Metal manufacturing inspected
+- [ ] Not applicable, documentation only
 
-Joindre les preuves ou expliquer ce qui reste à faire. Ne pas cocher une étape sur
-la seule base d’une affirmation externe.
+Attach the evidence or explain what remains to be done. Do not tick a step on the
+sole basis of an external claim.
 
-## Contrôles
+## Checks
 
-- [ ] `make check` réussit
-- [ ] Les fichiers maîtres sont modifiables
-- [ ] Les dérivés correspondent à la même révision
-- [ ] Les variantes non vérifiées sont explicitement inconnues
-- [ ] Aucun secret, document propriétaire ou donnée personnelle n’est inclus
+- [ ] `make check` passes
+- [ ] Master files are editable
+- [ ] Derived files match the same revision
+- [ ] Unverified variants are explicitly unknown
+- [ ] No secret, proprietary document or personal data is included

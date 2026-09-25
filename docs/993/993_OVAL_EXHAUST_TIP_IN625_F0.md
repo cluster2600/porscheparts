@@ -1,141 +1,142 @@
-# Embout d'échappement ovale 993 — concept IN625 F0
+# 993 oval exhaust tip — IN625 F0 concept
 
-FVD publie pour son jeu d'embouts inox `FVD11199300` une sortie de
-**120 × 85 mm** destinée aux 993 étroites C2, C4 et RS. La fiche ne donne ni
-diamètre d'entrée, ni longueur, ni angle, ni épaisseur, ni datum, ni tolérance.
-PorscheFanatics recense séparément plusieurs échappements de 993 Turbo dont le
-fabricant déclare l'IN625. Ce second fait justifie seulement l'étude matière ;
-il ne transfère ni géométrie ni compatibilité à cet embout.
+FVD publishes, for its stainless tip set `FVD11199300`, an outlet of
+**120 × 85 mm** intended for the narrow-body 993 C2, C4 and RS. The listing
+gives no inlet diameter, length, angle, thickness, datum or tolerance.
+PorscheFanatics separately lists several 993 Turbo exhausts whose manufacturer
+declares IN625. This second fact only justifies the material study; it
+transfers neither geometry nor compatibility to this tip.
 
-Le F0 est une transition indépendante ronde-vers-ovale de `120 mm`, avec un
-conduit interne, une enveloppe externe de `0,8 mm` et huit attaches radiales.
-L'entrefer reste ouvert aux deux extrémités, donc sans volume de poudre captif.
-La sortie publiée est la seule dimension commerciale conservée ; l'entrée et
-toute la construction interne sont des hypothèses révisables.
+The F0 is an independent round-to-oval transition of `120 mm`, with an inner
+duct, an outer `0.8 mm` shell and eight radial ties. The air gap stays open at
+both ends, hence no captive powder volume. The published outlet is the only
+commercial dimension kept; the inlet and the whole internal construction are
+revisable assumptions.
 
-## Pourquoi l'AM est testée
+## Why AM is being tested
 
-Le LPBF permettrait de réunir le chemin de gaz, l'écran extérieur, les attaches
-et une lame d'air ouverte dans un seul BREP. Cet intérêt de consolidation doit
-encore battre un embout inox hydroformé ou soudé sur coût, masse, rugosité,
-distorsion et endurance.
+LPBF would allow the gas path, the outer screen, the ties and an open air gap
+to be combined into a single BREP. This consolidation benefit must still beat
+a hydroformed or welded stainless tip on cost, mass, roughness, distortion and
+endurance.
 
-Le STEP pèse théoriquement `406,38 g` en IN625. Sans masse publiée du produit
-FVD, cette valeur ne valide rien ; elle montre déjà que la double paroi IN625
-n'est pas automatiquement une solution légère.
+The STEP weighs theoretically `406.38 g` in IN625. Without a published mass for
+the FVD product, this value validates nothing; it already shows that the
+double-wall IN625 is not automatically a lightweight solution.
 
-## Criblage analytique
+## Analytical screening
 
-Le rapport recalcule le volume des coques, le débit quatre-temps, la continuité,
-Reynolds, une borne Borda-Carnot, la membrane mince, la dilatation, le
-rayonnement, la capacité thermique et un premier mode de bande.
+The report recalculates the shell volume, the four-stroke flow, continuity,
+Reynolds, a Borda–Carnot bound, the thin membrane, expansion, radiation,
+thermal capacity and a first strip mode.
 
-Le cas synthétique donne `107,05 m/s` à l'entrée, une borne d'expansion brusque
-de `845,43 Pa` et `234,20 W`. Le vrai loft est progressif : ces valeurs ne sont
-pas sa perte CFD. La dilatation libre atteint `0,669 mm`; la borne entièrement
-bloquée atteint `1 137,48 MPa`, au-dessus des `640 MPa` ambiants de comparaison.
-Le mode de bande vaut `44,12 Hz`, mais ne représente pas un mode de coque ou
-une excitation véhicule.
+The synthetic case gives `107.05 m/s` at the inlet, a sudden-expansion bound of
+`845.43 Pa` and `234.20 W`. The real loft is progressive: these values are not
+its CFD loss. Free expansion reaches `0.669 mm`; the fully blocked bound
+reaches `1,137.48 MPa`, above the `640 MPa` room-temperature comparison value.
+The strip mode is `44.12 Hz`, but does not represent a shell mode or a vehicle
+excitation.
 
-## CFD OpenFOAM du conduit F0
+## OpenFOAM CFD of the F0 duct
 
-Un calcul RANS stationnaire incompressible `k-epsilon` a été exécuté sous
-OpenFOAM 13 sur le X1 Linux amd64 avec l'image conteneur verrouillée. Il reprend
-le débit volumique chaud synthétique de `0,277017 m³/s`, une densité de
-`0,416471 kg/m³` et une viscosité dynamique de `4e-5 Pa·s`. La pression totale
-est un proxy calculé avec les vitesses moyennes de section.
+A steady incompressible `k-epsilon` RANS calculation was run under OpenFOAM 13
+on the X1 Linux amd64 with the locked container image. It takes the synthetic
+hot volumetric flow of `0.277017 m³/s`, a density of `0.416471 kg/m³` and a
+dynamic viscosity of `4e-5 Pa·s`. Total pressure is a proxy computed with the
+section-averaged velocities.
 
-| Maille | Tétraèdres | Perte totale proxy | Puissance de débit | Vitesse moyenne sortie |
+| Mesh | Tetrahedra | Total loss proxy | Flow power | Mean outlet velocity |
 |---:|---:|---:|---:|---:|
-| 6,0 mm | 12 622 | 330,65 Pa | 91,60 W | 43,401 m/s |
-| 4,0 mm | 40 186 | 446,70 Pa | 123,74 W | 43,813 m/s |
-| 3,0 mm | 91 086 | 502,87 Pa | 139,30 W | 43,807 m/s |
+| 6.0 mm | 12,622 | 330.65 Pa | 91.60 W | 43.401 m/s |
+| 4.0 mm | 40,186 | 446.70 Pa | 123.74 W | 43.813 m/s |
+| 3.0 mm | 91,086 | 502.87 Pa | 139.30 W | 43.807 m/s |
 
-Tous les solveurs satisfont les limites de résidus explicites et les maillages
-passent `checkMesh` standard. La variation de perte entre 4 et 3 mm reste de
-`11,17 %`, au-dessus du seuil de `10 %`, et le contrôle étendu conserve 83,
-124 et 163 cellules à déterminant inférieur à `0,001`. La CFD reste donc
-diagnostique. Compressibilité, pulsations, rugosité, courbures amont,
-propriétés à chaud et transfert thermique conjugué sont absents.
+All solvers satisfy the explicit residual limits and the meshes pass standard
+`checkMesh`. The loss variation between 4 and 3 mm remains `11.17 %`, above the
+`10 %` threshold, and the extended check keeps 83, 124 and 163 cells with a
+determinant below `0.001`. The CFD therefore stays diagnostic.
+Compressibility, pulsations, roughness, upstream bends, hot properties and
+conjugate heat transfer are absent.
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a été maillé en `469 950` triangles étanches puis réellement sectionné
-sur les `3 702` couches de `40 µm` de l'orientation candidate `roll_y_25`.
-L'écran trouve un nouvel îlot, `784` couches avec une région non soutenue, un
-maximum de `0,843 mm²` et une enveloppe conservative de supports de
-`7,194 cm³`. Aucun vide piégé n'est détecté au pas voxel de `0,5 mm`.
+The STEP was meshed into `469,950` watertight triangles, then actually sliced
+over the `3,702` layers of `40 µm` of the candidate orientation `roll_y_25`.
+The screen finds one new island, `784` layers with an unsupported region, a
+maximum of `0.843 mm²` and a conservative support envelope of `7.194 cm³`. No
+trapped void is detected at the `0.5 mm` voxel pitch.
 
-L'épaisseur locale minimale vaut `0,245 mm`, le centile 1 `0,636 mm`, et les
-2 000 sondes sont sous `1,5 mm`. Cela ne prouve pas une paroi IN625 capable : la
-capabilité `0,8 mm`, la rugosité, la distorsion et l'ovalisation demandent une
-revue fournisseur.
+The minimum local thickness is `0.245 mm`, the 1st percentile `0.636 mm`, and
+all 2,000 probes are below `1.5 mm`. This does not prove a capable IN625 wall:
+the `0.8 mm` capability, roughness, distortion and ovality require a supplier
+review.
 
-La scène Omniverse dédiée place la pièce sur le plateau nominal EOS M 290
-`250 × 250 × 325 mm`, dans `roll_y_25`. Elle passe OpenUSD minimum, NVIDIA
-Asset Validator, Geometry et Physics. Le recoater animé est un guide : aucune
-collision sur forme déformée, trajectoire EOSPRINT ou géométrie de supports
-fournisseur n'est disponible.
+The dedicated Omniverse scene places the part on the nominal EOS M 290 build
+plate `250 × 250 × 325 mm`, in `roll_y_25`. It passes OpenUSD minimum, NVIDIA
+Asset Validator, Geometry and Physics. The animated recoater is a guide: no
+collision on a deformed shape, no EOSPRINT toolpath and no supplier support
+geometry is available.
 
-![Préparation LPBF EOS M 290](../../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
+![EOS M 290 LPBF preparation](../../twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/oval-tip-lpbf-build-screen.png)
 
-## Asset Omniverse SimReady
+## Omniverse SimReady asset
 
-L'asset isolé passe OpenUSD minimum, NVIDIA Asset Validator, Geometry, Physics
-et `Prop-Robotics-Neutral 1.0.0`. Il porte la masse CAO `0,40638 kg`, une
-densité IN625 de criblage `8 440 kg/m³` et un collider `convexHull` uniquement
-pour inspection isolée. Les coefficients de frottement, restitution, la
-gravité et l'identité inox proposés sans source par les agents ont été retirés.
+The isolated asset passes OpenUSD minimum, NVIDIA Asset Validator, Geometry,
+Physics and `Prop-Robotics-Neutral 1.0.0`. It carries the CAD mass
+`0.40638 kg`, a screening IN625 density of `8,440 kg/m³` and a `convexHull`
+collider for isolated inspection only. The friction and restitution
+coefficients, the gravity and the stainless identity proposed without a source
+by the agents have been removed.
 
-L'annotation de préhension a été revue visuellement ; ce n'est pas une
-validation de pince. Aucune interface échappement–collier–jupe arrière n'est
-présente et aucun test fonctionnel d'assemblage n'a été exécuté.
+The grasp annotation was reviewed visually; it is not a gripper validation.
+No exhaust–clamp–rear valance interface is present and no functional assembly
+test has been run.
 
-![Asset SimReady de l'embout](../../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
+![SimReady asset of the tip](../../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
 
-PhysicsNeMo 2.2.0 a seulement passé un smoke CUDA sur le worker GPU. Aucun
-surrogate n'est entraîné : trois maillages CFD non corrélés ne constituent pas
-un dataset admissible.
+PhysicsNeMo 2.2.0 only passed a CUDA smoke test on the GPU worker. No surrogate
+model is trained: three uncorrelated CFD meshes do not constitute an
+admissible dataset.
 
-## Verdict des onze étapes
+## Verdict of the eleven steps
 
-Les étapes 02 et 08 passent pour le **F0 courant**. Les étapes 01 et 03 ne sont
-que des criblages. Les étapes 04 à 07, 09 à 11 restent bloquées ou non
-démarrées. Cela signifie : CAO calculable, tranchage intégral et asset isolé
-conformes ; aucune preuve de procédé complet, d'installation ou d'endurance.
+Steps 02 and 08 pass for the **current F0**. Steps 01 and 03 are only
+screenings. Steps 04 to 07 and 09 to 11 stay blocked or not started. This
+means: computable CAD, full slicing and isolated asset compliant; no proof of a
+complete process, installation or endurance.
 
-## Gates suivants
+## Next gates
 
-1. Définir virtuellement une enveloppe d'interface conservatrice pour
-   emmanchement, longueur, angle, collier et jeu avec la jupe arrière.
-2. Encadrer débit, température, pression et spectre pulsatoire par des cas
-   minimum/nominal/maximal explicitement hypothétiques.
-3. Comparer inox formé/soudé, IN625 simple paroi et IN625 double paroi.
-4. Converger CFD transitoire, CHT, coque/contact, modal et fatigue thermique.
-5. Importer supports, trajectoires et carte IN625 de la route fournisseur ;
-   calculer distorsion, retrait et collision recoater.
-6. Tester l'assemblage complet dans Omniverse, puis corréler métrologie, CT,
-   fuite, vibration, acoustique et cycles thermiques avant tout véhicule.
+1. Virtually define a conservative interface envelope for slip fit, length,
+   angle, clamp and clearance with the rear valance.
+2. Bracket flow, temperature, pressure and pulsation spectrum with explicitly
+   hypothetical minimum/nominal/maximum cases.
+3. Compare formed/welded stainless, single-wall IN625 and double-wall IN625.
+4. Converge transient CFD, CHT, shell/contact, modal and thermal fatigue.
+5. Import supports, toolpaths and IN625 map from the supplier route;
+   calculate distortion, shrinkage and recoater collision.
+6. Test the complete assembly in Omniverse, then correlate metrology, CT,
+   leak, vibration, acoustics and thermal cycles before any vehicle.
 
-Le STEP F0 n'est autorisé ni pour fabrication, ni pour montage.
+The F0 STEP is authorized neither for manufacturing nor for installation.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `40 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_25`.
+The STEP was tessellated, then sliced over its full height at `40 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_25`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 3 702 |
-| hauteur de construction | 148,06 mm |
-| couches avec region non soutenue | 784 |
-| proxy de supports | 7 183,26 mm³ |
-| epaisseur locale p01 | 0,674 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 3,702 |
+| build height | 148.06 mm |
+| layers with an unsupported region | 784 |
+| support proxy | 7,183.26 mm³ |
+| local thickness p01 | 0.674 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

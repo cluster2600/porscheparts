@@ -1,80 +1,80 @@
-# Bielle 993/993 Turbo — concept topologique Ti64 F0
+# 993/993 Turbo connecting rod — Ti64 F0 topology concept
 
-TZR/PAUTER publie pour sa bielle 993/993 Turbo un entraxe de `127,00 mm`, un
-axe de `23,01 mm`, un logement de tête de `58,01 ± 0,003 mm`, des largeurs de
-`18,75 mm` et `19,58 mm`, ainsi qu'une masse acier de `535 g`. La fiche annonce
-une option titane sur demande avec `33 %` de gain par bielle, sans publier
-l'alliage, le procédé ou la masse absolue. PorscheFanatics recoupe les bielles
-titane comme candidat moteur 993, mais n'apporte aucune cote.
+TZR/PAUTER publishes for its 993/993 Turbo connecting rod a center distance of
+`127.00 mm`, a pin of `23.01 mm`, a big-end bore of `58.01 ± 0.003 mm`, widths
+of `18.75 mm` and `19.58 mm`, and a steel mass of `535 g`. The sheet announces a
+titanium option on request with a `33 %` saving per rod, without publishing the
+alloy, the process or the absolute mass. PorscheFanatics corroborates titanium
+rods as a 993 engine candidate, but brings no dimension.
 
-Le F0 conserve seulement ces cotes publiées. Les diamètres extérieurs
-`78/40 mm`, les deux membrures ouvertes `10 × 14 mm`, la séparation visuelle du
-chapeau de `0,4 mm` et deux passages de `8,4 mm` sont des hypothèses propres au
-projet. Vis, filets, coussinets, bague de pied, canal d'huile, congés qualifiés,
-jeux et distribution de masse sont absents.
+The F0 keeps only these published dimensions. The outer diameters `78/40 mm`,
+the two open flanges `10 × 14 mm`, the visual cap split of `0.4 mm` and two
+`8.4 mm` passages are the project's own hypotheses. Bolts, threads, bearing
+shells, small-end bushing, oil channel, qualified fillets, clearances and mass
+distribution are absent.
 
-## Pourquoi étudier l'additif
+## Why study additive
 
-Une topologie LPBF ouverte peut être remodelée à partir de champs de charge,
-avec matière concentrée dans les chemins mécaniques et sans poche de poudre
-fermée. Il faut cependant la comparer à une bielle acier 4340 forgée/usinée et
-à une bielle titane conventionnelle. L'étude de Cecchel et al. sur une bielle
-Ti-6Al-4V optimisée et fabriquée par SLM inclut FEA et fatigue grandeur réelle,
-mais rapporte une tenue inférieure à la référence conventionnelle : une belle
-topologie et une marge statique ne constituent donc pas une validation fatigue.
+An open LPBF topology can be reshaped from load fields, with material
+concentrated in the mechanical paths and no closed powder pocket. It must,
+however, be compared to a forged/machined 4340 steel rod and to a conventional
+titanium rod. The study by Cecchel et al. on an optimized Ti-6Al-4V connecting
+rod made by SLM includes FEA and full-scale fatigue, but reports lower endurance
+than the conventional reference: a fine topology and a static margin therefore
+do not constitute a fatigue validation.
 
-Le BREP OCCT et sa relecture STEP sont valides avec deux solides, corps et
-chapeau. L'enveloppe F0 vaut `186,0 × 84,0 × 19,58 mm`, le volume
-`77 154,68 mm³` et la masse théorique `341,02 g` à `4,42 g/cm³`. Cette masse est
-`17,43 g`, soit environ `4,9 %`, sous la cible théorique de `358,45 g` obtenue
-par application des `33 %` aux `535 g`. Elle ne valide ni l'offre PAUTER
-titane, ni l'équilibrage, ni la résistance du F0.
+The OCCT BREP and its STEP re-read are valid with two solids, body and cap. The
+F0 envelope is `186.0 × 84.0 × 19.58 mm`, the volume `77,154.68 mm³` and the
+theoretical mass `341.02 g` at `4.42 g/cm³`. This mass is `17.43 g`, about
+`4.9 %`, under the theoretical target of `358.45 g` obtained by applying the
+`33 %` to the `535 g`. It validates neither the PAUTER titanium offer, nor the
+balancing, nor the strength of the F0.
 
-## Criblages exécutés
+## Screenings run
 
-Le cas de régression prend l'alésage documentaire de `100 mm`, la course de
-`76,4 mm` et `6 720 tr/min`, puis ajoute des hypothèses synthétiques : pression
-cylindre `12 MPa`, ensemble piston/axe `600 g`, tiers de masse de bielle en
-translation, facteur de concentration `1,5` et cycle de `100 h`.
+The regression case takes the documented bore of `100 mm`, the stroke of
+`76.4 mm` and `6,720 rpm`, then adds synthetic hypotheses: cylinder pressure
+`12 MPa`, piston/pin assembly `600 g`, a third of the rod mass in translation,
+concentration factor `1.5` and a `100 h` cycle.
 
-Les équations donnent, avec la masse CAO, `94,25 kN` de force gaz,
-`17,56 kN` d'inertie et une borne de compression de `111,81 kN`. Les deux
-membrures idéalisées conduisent à `598,98 MPa` de contrainte locale de
-compression et un rapport limite EOS ambiante/contrainte de `1,64`. Le rapport
-Euler/charge vaut `5,47`. Les pressions projetées valent `102,80 MPa` en tête
-et `248,17 MPa` au pied, le cycle de `100 h` représente `40,32 millions` de
-tours et la dilatation libre sur `+100 K` vaut `0,114 mm`.
+With the CAD mass, the equations give `94.25 kN` of gas force, `17.56 kN` of
+inertia and a compression bound of `111.81 kN`. The two idealized flanges lead
+to `598.98 MPa` of local compressive stress and an EOS room-temperature
+limit/stress ratio of `1.64`. The Euler/load ratio is `5.47`. The projected
+pressures are `102.80 MPa` at the big end and `248.17 MPa` at the small end, the
+`100 h` cycle represents `40.32 million` revolutions and the free expansion over
+`+100 K` is `0.114 mm`.
 
-Ces nombres sont des contrôles mathématiques reproductibles, pas une FEA ni une
-prédiction de durée de vie. Ils ignorent notamment contact, précharge des vis,
-film d'huile, flexion hors plan, défauts LPBF, état de surface, température et
-fatigue multiaxiale.
+These numbers are reproducible mathematical checks, not an FEA nor a life
+prediction. They ignore in particular contact, bolt preload, oil film,
+out-of-plane bending, LPBF defects, surface finish, temperature and multiaxial
+fatigue.
 
-## Gates suivants
+## Next gates
 
-1. Mesurer ou scanner une bielle, son chapeau, ses vis, coussinets, axe et
-   interfaces vilebrequin/piston ; relever masse et équilibrage bout à bout.
-2. Geler variante M64, enveloppe de pression cylindre, masses mobiles,
-   survitesse, cliquetis, température, spectre et durée d'usage.
-3. Reconstruire plans de joint, alésages, congés, lubrification, précharge,
-   frottement, jeux et tolérances à partir des mesures.
-4. Comparer acier, titane conventionnel et Ti64 LPBF par multibody puis FEA 3D
-   non linéaire de contact, flambement, modal et fatigue convergés.
-5. Optimiser la topologie avec keep-outs, orientations, surépaisseurs et
-   contraintes de fabrication, puis qualifier poudre, traitement, HIP, CT,
-   rugosité, ressuage et coupons.
-6. Réaliser preuve statique et fatigue grandeur réelle avec les vis et paliers
-   retenus, puis corréler sur banc et dyno sous revue d'ingénierie moteur.
+1. Measure or scan a connecting rod, its cap, bolts, bearing shells, pin and
+   crankshaft/piston interfaces; record mass and end-to-end balance.
+2. Freeze the M64 variant, cylinder pressure envelope, moving masses,
+   overspeed, knock, temperature, spectrum and service duration.
+3. Rebuild joint faces, bores, fillets, lubrication, preload, friction,
+   clearances and tolerances from the measurements.
+4. Compare steel, conventional titanium and LPBF Ti64 by multibody then
+   converged nonlinear 3D FEA of contact, buckling, modal and fatigue.
+5. Optimize the topology with keep-outs, orientations, machining allowances and
+   manufacturing constraints, then qualify powder, heat treatment, HIP, CT,
+   roughness, dye penetrant and coupons.
+6. Carry out full-scale static and fatigue proof with the chosen bolts and
+   bearings, then correlate on rig and dyno under engine engineering review.
 
-PhysicsNeMo reste différé jusqu'à disposer d'un ensemble FEA/fatigue corrélé
-avec jeux train, holdout et hors-distribution. SimReady attend les interfaces
-mesurées de l'assemblage. Ce STEP F0 n'est autorisé ni pour fabrication, ni
-pour montage, ni pour mise en route moteur.
+PhysicsNeMo stays deferred until a correlated FEA/fatigue set with training,
+holdout and out-of-distribution splits is available. SimReady waits for the
+measured interfaces of the assembly. This F0 STEP is authorized neither for
+manufacture, nor for fitting, nor for engine start-up.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-La simulation a ete lancee et a **echoue a porte fermee** : le maitre STEP n'est pas un corps unique ; le tranchage refuse une surface en plusieurs morceaux. Aucun resultat n'est donc publie pour cette piece, et aucune image n'est fabriquee a sa place.
+The simulation was run and **failed closed**: the STEP master is not a single body; slicing refuses a surface in several pieces. No result is therefore published for this part, and no image is made up in its place.
 
 <!-- print-screen:end -->

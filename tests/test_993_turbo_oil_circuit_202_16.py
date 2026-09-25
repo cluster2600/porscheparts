@@ -52,7 +52,7 @@ class TurboOilCircuitTests(unittest.TestCase):
 
     def test_the_fire_failure_mode_is_the_stated_reason(self) -> None:
         doc = DOC.read_text(encoding="utf-8")
-        self.assertIn("incendie", doc)
+        self.assertIn("fire", doc)
         # Le depot definit lui-meme safety_critical par l'incendie.
         self.assertRegex(SAFETY.read_text(encoding="utf-8"), r"\bfire\b")
 

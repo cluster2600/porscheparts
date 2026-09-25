@@ -1,7 +1,7 @@
-# Catalogue des pièces
+# Parts catalog
 
-Ce dossier contient une fiche JSON par pièce. Une fiche n’est pas une preuve de
-compatibilité : son champ `validation.status` indique le niveau réellement atteint.
+This directory contains one JSON record per part. A record is not evidence of
+compatibility: its `validation.status` field states the level actually reached.
 
-Créer une fiche depuis `catalog/templates/part-record.json`, utiliser un nom de fichier en
-minuscules correspondant à `part_id`, puis exécuter `make check`.
+Create a record from `catalog/templates/part-record.json`, use a lowercase
+filename matching `part_id`, then run `make check`.

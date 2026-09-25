@@ -1,314 +1,315 @@
-# Chaine de calcul du monocoque : qui fait quoi, et ou il faut autre chose
+# Monocoque calculation chain: who does what, and where something else is needed
 
-Question posee : faut-il un autre logiciel pour calculer notre alternative ?
-Reponse courte : **non pour la raideur et le drapage, oui pour le choc.**
+Question asked: do we need other software to calculate our alternative?
+Short answer: **no for stiffness and layup, yes for crash.**
 
-## 1. Ce que CalculiX fait, et c'est desormais prouve
+## 1. What CalculiX does, and it is now proven
 
-CalculiX 2.21 est le solveur de reference du dossier. Sa capacite sur composite
-n'etait pas acquise : elle a ete etablie et validee le 2026-09-04.
+CalculiX 2.21 is the dossier's reference solver. Its composite capability was
+not a given: it was established and validated on 2026-09-04.
 
-- stratifie multicouche reel, `*SHELL SECTION, COMPOSITE`, un pli par couche ;
-- orientation materiau par pli et par famille de panneaux ;
-- materiau orthotrope, `*ELASTIC, TYPE=ENGINEERING CONSTANTS` ;
-- validation sur cas analytique : traction uniaxiale sur pli UD, E1 a 0 degre et
-  E2 a 90 degres retrouves **a 3 % pres**.
+- real multilayer laminate, `*SHELL SECTION, COMPOSITE`, one ply per layer;
+- material orientation per ply and per panel family;
+- orthotropic material, `*ELASTIC, TYPE=ENGINEERING CONSTANTS`;
+- validation on an analytical case: uniaxial tension on a UD ply, E1 at
+  0 degrees and E2 at 90 degrees recovered **to within 3 %**.
 
-Trois contraintes non evidentes, consignees parce qu'elles couteraient une
-journee a qui les redecouvrirait : `COMPOSITE` exige des coques **quadratiques**
-S6 ou S8R ; le 4e champ d'une couche est un **nom d'orientation** et non un
-angle ; `OUTPUT=2D` est **ignore**, le `.frd` portant le modele 3D etendu.
+Three non-obvious constraints, recorded because they would cost a day to anyone
+rediscovering them: `COMPOSITE` requires **quadratic** S6 or S8R shells; the 4th
+field of a layer is an **orientation name** and not an angle; `OUTPUT=2D` is
+**ignored**, the `.frd` carrying the expanded 3D model.
 
-Couvre donc, sans autre logiciel : raideur en torsion et en flexion, drapage,
-comparaison d'architectures, modes propres, thermique, non-lineaire materiau et
-geometrique. C'est tout le programme jusqu'a M6.
+So it covers, without other software: torsional and bending stiffness, layup,
+architecture comparison, natural modes, thermal, material and geometric
+nonlinearity. That is the whole programme up to M6.
 
-## 2. Ce que CalculiX ne fait pas, et qui exige autre chose
+## 2. What CalculiX does not do, and what requires something else
 
-| besoin | pourquoi CalculiX ne suffit pas | outil |
+| need | why CalculiX is not enough | tool |
 |---|---|---|
-| **choc, absorption, integrite cellule** | solveur implicite ; le choc est un probleme explicite a grandes deformations, contact generalise et rupture | **OpenRadioss** (open source, Altair, 2022) ; a defaut LS-DYNA ou Abaqus/Explicit |
-| **rupture et delaminage du stratifie** | aucun critere composite integre : ni Hashin, ni Puck, ni zone cohesive | post-traitement des contraintes par pli, a ecrire ; ou solveur dedie |
-| **drapabilite** | question de fabrication, pas de mecanique : une nappe ne se pose pas sur une double courbure quelconque | outil de drapage dedie, tous commerciaux |
-| **exploration a grande dimension** | chaque calcul coute ; il en faudrait des milliers | modele de substitution, voir section 3 |
+| **crash, energy absorption, cell integrity** | implicit solver; crash is an explicit problem with large deformations, general contact and failure | **OpenRadioss** (open source, Altair, 2022); failing that LS-DYNA or Abaqus/Explicit |
+| **laminate failure and delamination** | no built-in composite criterion: no Hashin, no Puck, no cohesive zone | per-ply stress post-processing, to be written; or a dedicated solver |
+| **drapability** | a manufacturing question, not a mechanics one: a ply does not lie on an arbitrary double curvature | dedicated draping tool, all commercial |
+| **high-dimensional exploration** | every calculation costs; thousands would be needed | surrogate model, see section 3 |
 
-**Le choc est le seul verrou logiciel reel du programme**, et il tombe
-exactement sur la classe `prohibited_pending_engineering`.
+**Crash is the only real software lock in the programme**, and it falls exactly
+on the `prohibited_pending_engineering` class.
 
-### Ce qui existe reellement en open source pour le choc
+### What actually exists in open source for crash
 
-Verifie le 2026-09-04.
+Verified on 2026-09-04.
 
-| projet | licence | statut |
+| project | license | status |
 |---|---|---|
-| **[OpenRadioss](https://github.com/OpenRadioss/OpenRadioss)** | **AGPL-3.0** | solveur explicite **industriel**, ouvert par Altair en septembre 2022. C'est le meme code que le Radioss commercial employe en crash automobile par des constructeurs. **La reponse.** |
-| FrontISTR | ouvert | explicite present, bien moins mature en crash |
-| Code_Aster, Elmer | ouverts | riches, mais ce ne sont pas des codes de crash |
-| CalculiX | ouvert | implicite ; hors sujet pour le choc |
+| **[OpenRadioss](https://github.com/OpenRadioss/OpenRadioss)** | **AGPL-3.0** | **industrial** explicit solver, opened by Altair in September 2022. It is the same code as the commercial Radioss used in automotive crash by manufacturers. **The answer.** |
+| FrontISTR | open | explicit present, much less mature in crash |
+| Code_Aster, Elmer | open | rich, but they are not crash codes |
+| CalculiX | open | implicit; off-topic for crash |
 
-OpenRadioss lit son format natif `.rad`, **le format LS-DYNA `.k`/`.key`
-nativement**, et l'Abaqus `.inp` par convertisseur. L'interoperabilite n'est donc
-pas un obstacle, et les modeles de corps humain publics sont utilisables.
+OpenRadioss reads its native `.rad` format, **the LS-DYNA `.k`/`.key` format
+natively**, and Abaqus `.inp` through a converter. Interoperability is therefore
+not an obstacle, and public human body models are usable.
 
-**La reserve porte sur le composite, et elle est serieuse.** Le depot OpenRadioss
-annonce les materiaux legers et composites comme un axe d'amelioration, ce qui
-veut dire que ce n'est pas son point fort etabli, et le suivi du projet porte une
-question ouverte sur le crash composite. Or le comportement en choc d'un
-stratifie carbone — ecrasement progressif, delaminage, rupture de fibre — est
-**le probleme le plus difficile de toute la simulation de crash**, y compris dans
-les codes commerciaux. Il ne se predit pas sans calibration sur essais de
-coupons et de tubes d'ecrasement.
+**The caveat concerns composites, and it is serious.** The OpenRadioss
+repository lists lightweight and composite materials as an area for
+improvement, which means it is not its established strength, and the project's
+issue tracker carries an open question on composite crash. Yet the crash
+behavior of a carbon laminate — progressive crushing, delamination, fiber
+failure — is **the hardest problem in all of crash simulation**, including in
+commercial codes. It cannot be predicted without calibration on coupon tests
+and crush-tube tests.
 
-Conclusion a tenir : OpenRadioss permet de **concevoir** les zones d'absorption
-et de comparer des architectures. Il ne permet **a personne**, ni a nous ni a un
-editeur commercial, de revendiquer une tenue au choc sans essais physiques.
+Conclusion to hold to: OpenRadioss makes it possible to **design** the
+energy-absorption zones and compare architectures. It allows **no one**, neither
+us nor a commercial vendor, to claim crashworthiness without physical tests.
 
-## 3. PhysicsNeMo : ou il sert reellement, et pourquoi pas encore
+## 3. PhysicsNeMo: where it really helps, and why not yet
 
-PhysicsNeMo **n'est pas un solveur de structure**. C'est un cadre d'apprentissage
-physique : il produit des modeles de substitution entraines sur des calculs
-existants. Il ne remplace pas CalculiX, il l'amortit.
+PhysicsNeMo **is not a structural solver**. It is a physics-ML framework: it
+produces surrogate models trained on existing calculations. It does not replace
+CalculiX, it amortizes it.
 
-Usage legitime dans ce programme : une fois le drapage zone parametre, l'espace
-de conception a des dizaines de dimensions — angles par zone, nombre de plis,
-sections, hauteurs d'anneau. L'explorer par calcul direct est hors de portee ; un
-substitut entraine sur quelques centaines de cas CalculiX le rend praticable.
+Legitimate use in this programme: once the zoned layup is parameterized, the
+design space has tens of dimensions — angles per zone, number of plies,
+sections, ring heights. Exploring it by direct calculation is out of reach; a
+surrogate trained on a few hundred CalculiX cases makes it practical.
 
-**Et NVIDIA publie exactement ce cas d'usage.** PhysicsNeMo porte un exemple
-`structural_mechanics/crash` : un substitut de crash entraine sur des
-simulations LS-DYNA existantes, lues depuis les `d3plot` par PhysicsNeMo-Curator,
-avec plusieurs architectures — GeoTransolver, Transolver, MeshGraphNet,
-FIGConvUNet, GeoFlare — sur des cas de caisse en blanc, d'absorbeur et de poutre
-de pare-chocs.
+**And NVIDIA publishes exactly this use case.** PhysicsNeMo ships a
+`structural_mechanics/crash` example: a crash surrogate trained on existing
+LS-DYNA simulations, read from `d3plot` files by PhysicsNeMo-Curator, with
+several architectures — GeoTransolver, Transolver, MeshGraphNet, FIGConvUNet,
+GeoFlare — on body-in-white, crash-absorber and bumper-beam cases.
 
-Deux enseignements, et ils confirment le role assigne ici :
+Two lessons, and they confirm the role assigned here:
 
-- **c'est un substitut, pas un solveur.** Il apprend d'un code de crash ; il ne
-  le remplace pas. La chaine reste solveur -> corpus -> substitut ;
-- **les tailles d'echantillon sont modestes** — de l'ordre de 121 cas
-  d'entrainement pour la poutre de pare-chocs. C'est de l'exploration de
-  conception, pas de la certification. L'exemple porte d'ailleurs ses propres
-  limites declarees : normalisation incomplete, `batch_size=1`.
+- **it is a surrogate, not a solver.** It learns from a crash code; it does not
+  replace it. The chain remains solver -> corpus -> surrogate;
+- **sample sizes are modest** — on the order of 121 training cases for the
+  bumper beam. This is design exploration, not certification. The example
+  carries its own declared limitations, moreover: incomplete normalization,
+  `batch_size=1`.
 
-Piste a verifier : l'exemple ingere du `d3plot` LS-DYNA. Savoir si la sortie
-d'OpenRadioss s'y raccorde directement, ou demande une conversion, decide du cout
-de cette branche. A instruire avant de l'engager.
+Lead to verify: the example ingests LS-DYNA `d3plot`. Whether OpenRadioss output
+connects to it directly, or needs a conversion, decides the cost of this
+branch. To be investigated before committing to it.
 
-**Trois conditions, aucune remplie aujourd'hui :**
+**Three conditions, none met today:**
 
-1. **Un corpus coherent.** Le dossier compte aujourd'hui une quinzaine de cas,
-   dont plusieurs a geometrie changeante. Ce n'est pas un ensemble
-   d'apprentissage, c'est une serie d'essais. Il en faut des centaines, sur une
-   parametrisation figee.
-2. **La regle du depot.** `ROADMAP.md` classe hors perimetre un « modele IA de
-   substitution avant l'existence d'un corpus FEA/CFD coherent ». La condition 1
-   n'est pas une preference, c'est une regle ecrite.
-3. **Le conteneur.** `archive/917/docs/917_MODULAR_COMPUTE_STACK.md` indique que
-   `physicsnemo-cae-cu12` a un lock OCI verifie mais que **son smoke GPU et son
-   transport SSH restent faux** : il n'est pas autorise pour un job long.
+1. **A coherent corpus.** The dossier currently holds about fifteen cases,
+   several with changing geometry. That is not a training set, it is a series
+   of trials. Hundreds are needed, on a frozen parameterization.
+2. **The repository rule.** `ROADMAP.md` puts "AI surrogate model before a
+   coherent FEA/CFD corpus exists" out of scope. Condition 1 is not a
+   preference, it is a written rule.
+3. **The container.** `archive/917/docs/917_MODULAR_COMPUTE_STACK.md` states
+   that `physicsnemo-cae-cu12` has a verified OCI lock but that **its GPU smoke
+   test and its SSH transport are still false**: it is not authorized for a long
+   job.
 
-S'y ajoute un fait materiel : **il n'y a pas de GPU sur cette machine**
-(`nvidia-smi` absent). Tout entrainement passe par une location Vast.ai, ce que
-`containers/provision-vastai.sh` prevoit deja.
+Add a hardware fact: **there is no GPU on this machine** (`nvidia-smi` absent).
+All training goes through a Vast.ai rental, which
+`containers/provision-vastai.sh` already provides for.
 
-Consequence d'ordonnancement : PhysicsNeMo vient **apres** la generation du
-corpus, laquelle ne demande aucun GPU — un plan d'experiences CalculiX est du
-calcul CPU, massivement parallele et exécutable sur n'importe quelle machine.
+Sequencing consequence: PhysicsNeMo comes **after** corpus generation, which
+needs no GPU — a CalculiX design of experiments is CPU computation, massively
+parallel and runnable on any machine.
 
-## 3bis. Ce qui est deja pret pour PhysicsNeMo, sans GPU ni SSH
+## 3bis. What is already ready for PhysicsNeMo, with no GPU or SSH
 
-Prepare le 2026-09-04, precisement parce que la condition bloquante — le corpus —
-ne demande aucun materiel particulier.
+Prepared on 2026-09-04, precisely because the blocking condition — the corpus —
+requires no particular hardware.
 
-`fea/doe_corpus.py` produit le corpus par plan d'experiences CalculiX :
+`fea/doe_corpus.py` produces the corpus by a CalculiX design of experiments:
 
-- **espace fige** : sept architectures, huit sections `ASSUMED` balayees en
-  hypercube latin, epaisseur de peau et module. Le plan explore donc autant
-  l'incertitude du modele que la conception ;
-- **cible en champ, pas en scalaire.** Chaque cas conserve le champ nodal de
-  deplacement sur son maillage. C'est ce qui justifie PhysicsNeMo : une raideur
-  scalaire fonction de huit parametres se regresserait sans lui ;
-- **reproductible** : tirage deterministe par graine, parametres portes par
-  chaque cas, empreintes des scripts dans le manifeste ;
-- **reprenable** : relancer complete un corpus au lieu de le refaire ;
-- **debit mesure : 2,3 s par cas** en ordre 1. Mille cas tiennent en 40 minutes
-  de CPU, sur cette machine, sans rien louer.
+- **frozen space**: seven architectures, eight `ASSUMED` sections swept by Latin
+  hypercube, skin thickness and modulus. The plan therefore explores the
+  model's uncertainty as much as the design;
+- **field target, not scalar.** Each case keeps the nodal displacement field on
+  its mesh. That is what justifies PhysicsNeMo: a scalar stiffness as a function
+  of eight parameters could be regressed without it;
+- **reproducible**: deterministic seeded sampling, parameters carried by each
+  case, script digests in the manifest;
+- **resumable**: rerunning completes a corpus instead of redoing it;
+- **measured throughput: 2.3 s per case** at order 1. A thousand cases fit in
+  40 minutes of CPU, on this machine, without renting anything.
 
-Pour lancer, plus tard ou maintenant :
+To launch, later or now:
 
-    python3 doe_corpus.py --smoke          # 4 cas, verifie la chaine
-    python3 doe_corpus.py --n 1000         # corpus d'entrainement
+    python3 doe_corpus.py --smoke          # 4 cases, checks the chain
+    python3 doe_corpus.py --n 1000         # training corpus
 
-### Corpus genere le 2026-09-07
+### Corpus generated on 2026-09-07
 
-Premier corpus complet, graine 0, elements d'ordre 1.
+First complete corpus, seed 0, order-1 elements.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---|
-| cas demandes / ecrits | 1000 / **998** |
-| duree | 35 min, un seul coeur de machine de bureau |
-| taille | 126 Mo |
-| raideur K | 365 a 26 637 N.m/deg, mediane 5535 |
-| masse | 21,3 a 164,2 kg |
-| noeuds par cas | 2 389 a 7 461 |
-| champs non finis, K nul ou negatif | **aucun** |
+| cases requested / written | 1000 / **998** |
+| duration | 35 min, a single core of a desktop machine |
+| size | 126 MB |
+| stiffness K | 365 to 26,637 N.m/deg, median 5535 |
+| mass | 21.3 to 164.2 kg |
+| nodes per case | 2,389 to 7,461 |
+| non-finite fields, zero or negative K | **none** |
 
-Repartition par architecture entre 122 et 156 cas sur sept familles : le plan
-n'est pas biaise. L'amplitude de K est d'un facteur 73 entre le cas le plus
-souple et le plus raide, ce qui donne au substitut de quoi apprendre autre chose
-que du bruit.
+Distribution per architecture between 122 and 156 cases across seven families:
+the plan is not biased. K spans a factor of 73 between the most compliant and
+the stiffest case, which gives the surrogate something to learn other than
+noise.
 
-**Les deux cas perdus sont instructifs.** Tous deux sont des `fbtap` — la cage
-ouverte : pieds milieu et brancards sans cadre de baie ni pavillon pour fermer a
-l'avant. CalculiX s'y interrompt en pleine factorisation, sans message, ce qui a
-d'abord ete lu comme la signature d'un systeme quasi singulier — un
-quasi-mecanisme qui se calcule mal parce qu'il est un quasi-mecanisme.
+**The two lost cases are instructive.** Both are `fbtap` — the open cage:
+B-pillars and sills with no windshield frame or roof to close the front.
+CalculiX stops in the middle of factorization, with no message, which was first
+read as the signature of a near-singular system — a near-mechanism that
+computes badly because it is a near-mechanism.
 
-**Cette lecture etait fausse**, et le corpus elargi l'a montre : sur 3000 cas,
-onze echecs, tous `fbtap` a nouveau. Le message existait, mais partait sur
-`stderr`, que `run_fea.py` n'affichait pas. Il dit `fatal error in
-GPart_makeYCmap / bad input` : c'est le **partitionneur de graphe de SPOOLES**
-qui echoue, pas le systeme qui est singulier. C'est deterministe, insensible au
-nombre de fils, et le solveur iteratif de CalculiX resout ces memes cas en une
-dizaine de secondes — ce qu'il ne ferait pas d'un systeme reellement singulier.
-Reste vrai que l'architecture, elle, n'est pas tiree au hasard : c'est bien la
-topologie de la cage ouverte qui met le partitionneur en defaut.
+**That reading was wrong**, and the enlarged corpus showed it: out of 3000
+cases, eleven failures, all `fbtap` again. The message existed, but went to
+`stderr`, which `run_fea.py` did not display. It says `fatal error in
+GPart_makeYCmap / bad input`: it is **SPOOLES's graph partitioner** that fails,
+not the system that is singular. It is deterministic, insensitive to the number
+of threads, and CalculiX's iterative solver solves these same cases in about ten
+seconds — which it would not do for a genuinely singular system. It remains true
+that the architecture is not drawn at random: it is indeed the topology of the
+open cage that trips the partitioner.
 
-Avec le repli de solveur, le corpus est complet : **3000 cas ecrits, zero echec**.
+With the solver fallback, the corpus is complete: **3000 cases written, zero
+failures**.
 
-**Point pour la passe d'entrainement :** le nombre de noeuds varie d'un cas a
-l'autre, de 2 389 a 7 461. C'est precisement pourquoi l'exemple crash de
-PhysicsNeMo travaille a `batch_size=1`. Il faudra soit accepter cette contrainte,
-soit uniformiser le maillage, ce qui appauvrirait le corpus.
+**Point for the training pass:** the number of nodes varies from case to case,
+from 2,389 to 7,461. That is precisely why PhysicsNeMo's crash example works at
+`batch_size=1`. Either that constraint must be accepted, or the mesh made
+uniform, which would impoverish the corpus.
 
-Les sections `ASSUMED` de `build_body.py` sont desormais surchargeables par
-l'environnement (`BODY_SILL_H`, `BODY_TUN_W`...). Sans surcharge, les valeurs
-publiees sont inchangees : le cas de reference redonne bien 2442 N.m/deg.
+The `ASSUMED` sections of `build_body.py` can now be overridden through the
+environment (`BODY_SILL_H`, `BODY_TUN_W`...). Without override, the published
+values are unchanged: the reference case does give back 2442 N.m/deg.
 
-### Corpus elargi du 2026-09-07, et ce que son audit a trouve
+### Enlarged corpus of 2026-09-07, and what its audit found
 
-Le corpus a ete refait a 3000 cas apres que le plan d'experiences eut ete corrige
-sur deux points (decouplage de G, refus d'une reprise incoherente). Il a ensuite
-ete **audite avant tout entrainement**, par `fea/corpus_audit.py`, et l'audit a
-coute moins d'une minute de CPU pour ce qu'il a rapporte.
+The corpus was redone at 3000 cases after the design of experiments was
+corrected on two points (decoupling of G, refusal of an inconsistent resume). It
+was then **audited before any training**, by `fea/corpus_audit.py`, and the
+audit cost less than one minute of CPU for what it reported.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---|
-| cas demandes / ecrits | 3000 / **3000**, zero echec |
-| duree | 1 h 48, quatre coeurs de machine de bureau |
-| raideur K | 376 a 44 242 N.m/deg, mediane 5826 |
-| noeuds par cas | 2 402 a 7 530 |
-| repartition sur sept architectures | 394 a 442 cas, aucun ecart > 2 sigma |
+| cases requested / written | 3000 / **3000**, zero failures |
+| duration | 1 h 48, four cores of a desktop machine |
+| stiffness K | 376 to 44,242 N.m/deg, median 5826 |
+| nodes per case | 2,402 to 7,530 |
+| distribution across seven architectures | 394 to 442 cases, no deviation > 2 sigma |
 
-**Trois controles passent.** L'exposant `d ln K / d ln t` vaut 1,00 sur les sept
-architectures : la loi d'echelle lineaire en epaisseur est bien dans le corpus.
-La somme `d ln K / d ln E + d ln K / d ln G` vaut 1,000 partout, comme l'exige
-l'homogeneite de degre 1 de l'elasticite lineaire — un controle, pas un
-ajustement. Et l'exposant de G monte de 0,364 sur le plancher nu a 0,631 sur la
-cellule fermee : le changement de mecanisme est present.
+**Three checks pass.** The exponent `d ln K / d ln t` is 1.00 on all seven
+architectures: the scaling law linear in thickness is indeed in the corpus. The
+sum `d ln K / d ln E + d ln K / d ln G` is 1.000 everywhere, as degree-1
+homogeneity of linear elasticity requires — a check, not a fit. And the G
+exponent rises from 0.364 on the bare floor pan to 0.631 on the closed cell:
+the change of mechanism is present.
 
-**Un controle rate, et c'est le plus important.** Cette montee de l'exposant de G
-devrait partir de **zero** sur le plancher nu, puisque `dominance_study.py` y
-mesure +2,1 % en doublant G. Elle part de 0,364. La cause n'est pas le corpus
-mais l'element : le corpus est en **S3 lineaires**, `dominance_study.py` en **S6
-quadratiques**, et les S3 attribuent au cisaillement une part de la raideur qui
-revient a la flexion. Le README du dossier FEA chiffre l'ecart architecture par
-architecture. Un substitut entraine sur ce corpus apprendrait donc, sur les
-architectures ouvertes, une repartition flexion / cisaillement fausse — celle-la
-meme que le decouplage de G avait pour but de lui enseigner.
+**One check fails, and it is the most important.** That rise in the G exponent
+should start from **zero** on the bare floor pan, since `dominance_study.py`
+measures +2.1 % there when doubling G. It starts from 0.364. The cause is not
+the corpus but the element: the corpus is in **linear S3**, `dominance_study.py`
+in **quadratic S6**, and S3 elements attribute to shear a share of the stiffness
+that belongs to bending. The FEA dossier README quantifies the gap architecture
+by architecture. A surrogate trained on this corpus would therefore learn, on the
+open architectures, a wrong bending / shear split — the very one that decoupling
+G was meant to teach it.
 
-**Le corpus contient aussi des valeurs simplement fausses.** L'ajustement
-log-lineaire a signale un cas aberrant ; rejoue, il rend 4422 N.m/deg au lieu des
-39 269 stockes. Sur 65 cas rejoues au total, deux divergent — l'un d'un facteur
-9, l'autre de 2,4 %. Le champ de deplacement stocke est coherent avec la raideur
-stockee dans les deux cas : ils viennent du meme solve rate, et **aucun controle
-interne ne peut les voir**. `fea/corpus_repair.py` rejoue le corpus et ne
-remplace une valeur que si deux calculs independants s'accordent contre elle.
+**The corpus also contains values that are simply wrong.** The log-linear fit
+flagged an outlier; rerun, it gives 4422 N.m/deg instead of the 39,269 stored.
+Of 65 cases rerun in total, two diverge — one by a factor of 9, the other by
+2.4 %. The stored displacement field is consistent with the stored stiffness in
+both cases: they come from the same failed solve, and **no internal check can
+see them**. `fea/corpus_repair.py` reruns the corpus and replaces a value only
+if two independent calculations agree against it.
 
-**Le lot de validation est gele** (`corpus/split.json`, 450 cas sur 3000,
-stratifie par architecture, graine 20260907). Il a ete tire avant qu'aucun
-substitut n'existe, ce qui est le seul moment ou cela veut dire quelque chose :
-un lot de test choisi apres coup est une note qu'on se donne a soi-meme.
+**The validation set is frozen** (`corpus/split.json`, 450 cases out of 3000,
+stratified by architecture, seed 20260907). It was drawn before any surrogate
+existed, which is the only moment when that means anything: a test set chosen
+after the fact is a grade you give yourself.
 
-### Corpus S6, celui qui servira a l'entrainement
+### S6 corpus, the one that will be used for training
 
-Meme graine et meme plan que le corpus S3, donc comparable cas par cas.
+Same seed and same plan as the S3 corpus, hence comparable case by case.
 
-| grandeur | corpus S3 | corpus S6 |
+| quantity | S3 corpus | S6 corpus |
 |---|---|---|
-| cas ecrits | 3000 / 3000 | **3000 / 3000** |
-| element | S3 lineaire | **S6 quadratique** |
-| duree | 1 h 48 | 2 h 05, en douze tranches |
-| taille | 126 Mo | 1,1 Go |
-| noeuds par cas | 2 402 a 7 530 | 9 703 a 31 098 |
-| K | 376 a 44 242, mediane 5826 | 133 a 33 455, mediane 3983 |
-| exposant de G, plancher nu | 0,364 | **0,051** |
-| exposant de G, cellule fermee | 0,631 | 0,593 |
-| exposant d'epaisseur | 1,00 | 1,14 a 1,22 |
+| cases written | 3000 / 3000 | **3000 / 3000** |
+| element | linear S3 | **quadratic S6** |
+| duration | 1 h 48 | 2 h 05, in twelve slices |
+| size | 126 MB | 1.1 GB |
+| nodes per case | 2,402 to 7,530 | 9,703 to 31,098 |
+| K | 376 to 44,242, median 5826 | 133 to 33,455, median 3983 |
+| G exponent, bare floor pan | 0.364 | **0.051** |
+| G exponent, closed cell | 0.631 | 0.593 |
+| thickness exponent | 1.00 | 1.14 to 1.22 |
 
-**Le controle qui avait disqualifie le corpus S3 passe.** L'exposant de G sur le
-plancher nu vaut 0,051 pour 0,03 attendu de `dominance_study.py`, contre 0,364 en
-S3. La repartition flexion / cisaillement est correcte, et le substitut peut
-maintenant l'apprendre.
+**The check that disqualified the S3 corpus passes.** The G exponent on the
+bare floor pan is 0.051 against 0.03 expected from `dominance_study.py`, versus
+0.364 in S3. The bending / shear split is correct, and the surrogate can now
+learn it.
 
-**Un controle nouveau est a lire avec soin.** L'exposant d'epaisseur, exactement
-1,00 en S3, vaut 1,10 mesure hors corpus sur cinq epaisseurs, et 1,14 a 1,22 dans
-l'ajustement multivarie du corpus. La structure ne travaille pas en flexion de
-plaque — 1,10 reste tres loin de 3 — mais l'exactitude de la loi lineaire etait
-une propriete de l'element lineaire, pas de la structure. Le README du dossier
-FEA porte le detail et la consequence sur la question 0,8 / 1,0 mm.
+**A new check must be read carefully.** The thickness exponent, exactly 1.00 in
+S3, is 1.10 measured outside the corpus over five thicknesses, and 1.14 to 1.22
+in the corpus's multivariate fit. The structure does not work in plate bending
+— 1.10 is still very far from 3 — but the exactness of the linear law was a
+property of the linear element, not of the structure. The FEA dossier README
+carries the detail and the consequence for the 0.8 / 1.0 mm question.
 
-Le corpus S3 reste comme terme de comparaison sur l'effet de l'ordre d'element,
-et pour rien d'autre.
+The S3 corpus remains as a point of comparison for the effect of element order,
+and for nothing else.
 
-**Le corpus S6 a ete rejoue en entier** par `fea/corpus_repair.py` : 2992 cas
-confirmes au chiffre pres, 8 remplaces, aucun ambigu, aucun echec. Les huit sont
-tous dans les 360 premiers cas, ceux calcules pendant que d'autres essais
-occupaient la machine ; les 2640 suivants sont tous confirmes. Le manifeste porte
-la liste des cas remplaces.
+**The S6 corpus was rerun in full** by `fea/corpus_repair.py`: 2992 cases
+confirmed to the digit, 8 replaced, none ambiguous, no failures. All eight are
+among the first 360 cases, those computed while other tests were occupying the
+machine; the following 2640 are all confirmed. The manifest carries the list of
+replaced cases.
 
-**Le lot de validation est gele** : `corpus_s6/split.json`, 450 cas sur 3000,
-stratifie par architecture, graine 20260907. Il designe exactement les memes cas
-que celui du corpus S3 — le tirage ne depend que des numeros de cas et de leur
-architecture, identiques d'un corpus a l'autre — donc les deux corpus se
-comparent sur le meme lot tenu hors apprentissage.
+**The validation set is frozen**: `corpus_s6/split.json`, 450 cases out of
+3000, stratified by architecture, seed 20260907. It designates exactly the same
+cases as the S3 corpus's set — the draw depends only on the case numbers and
+their architecture, identical from one corpus to the other — so the two corpora
+are compared on the same held-out set.
 
-**Reste a faire quand l'acces GPU sera la** — et rien de tout cela n'est bloquant
-aujourd'hui : conversion du corpus vers VTP ou Zarr par PhysicsNeMo-Curator,
-choix d'architecture, entrainement, et surtout **validation du substitut contre
-des cas CalculiX tenus hors apprentissage**. Un substitut non valide n'a pas plus
-de valeur qu'une image de rendu.
+**Remaining work once GPU access is available** — and none of it is blocking
+today: conversion of the corpus to VTP or Zarr by PhysicsNeMo-Curator, choice
+of architecture, training, and above all **validation of the surrogate against
+CalculiX cases held out of training**. An unvalidated surrogate is worth no more
+than a rendered image.
 
-## 4. Omniverse : visualisation et assemblage, pas physique
+## 4. Omniverse: visualization and assembly, not physics
 
-Omniverse et la chaine SimReady servent au contexte visuel, a l'assemblage USD et
-au rendu. **Ils ne demontrent aucun comportement physique.** Le dossier 917 porte
-deja cette regle mot pour mot : « un rendu OVRTX, une photo ou un film ne demontre
-ni comportement physique, ni puissance, ni tenue thermique, ni aptitude a la
-fabrication ».
+Omniverse and the SimReady chain serve for visual context, USD assembly and
+rendering. **They demonstrate no physical behavior.** The 917 dossier already
+states this rule word for word: « un rendu OVRTX, une photo ou un film ne
+demontre ni comportement physique, ni puissance, ni tenue thermique, ni aptitude
+a la fabrication » ("an OVRTX render, a photo or a film demonstrates neither
+physical behavior, nor power, nor thermal performance, nor manufacturability").
 
-Elle vaut a l'identique ici, et davantage : une belle image de monocoque est
-exactement le genre de preuve que ZESAD ne fournit pas, et que nous avons choisi
-de ne pas opposer. Statut des images : les quatre images `simready-*` ne sont pas
-autorisees tant que leurs smoke tests ne sont pas verts.
+It applies identically here, and more so: a beautiful image of a monocoque is
+exactly the kind of evidence ZESAD does not provide, and that we have chosen not
+to put up against it. Status of the images: the four `simready-*` images are not
+authorized as long as their smoke tests are not green.
 
-Usage utile et honnete : montrer le reseau de datums cale sur le scan, visualiser
-les chemins d'effort issus de CalculiX, presenter l'assemblage. Jamais comme
-argument structurel.
+Useful and honest use: showing the registered datum network on the scan,
+visualizing the load paths from CalculiX, presenting the assembly. Never as a
+structural argument.
 
-## 5. Ordonnancement
+## 5. Sequencing
 
-| etape | outil | GPU | bloque par |
+| step | tool | GPU | blocked by |
 |---|---|---|---|
-| raideur, drapage, architecture | CalculiX | non | rien — **disponible maintenant** |
-| plan d'experiences, corpus | CalculiX en parallele | non | parametrisation figee |
-| **generation du corpus** | **CalculiX, CPU** | **non** | **fait le 2026-09-07 : 3000 cas S3 audites, corpus S6 en cours** |
-| substitut de conception | PhysicsNeMo | oui, Vast.ai | corpus + smoke GPU du conteneur |
-| choc | OpenRadioss | non | geometrie, donc M1 |
-| correlation choc | essais physiques | — | rien ne les remplace |
-| visualisation, assemblage | Omniverse / USD | oui | smoke tests des images |
+| stiffness, layup, architecture | CalculiX | no | nothing — **available now** |
+| design of experiments, corpus | CalculiX in parallel | no | frozen parameterization |
+| **corpus generation** | **CalculiX, CPU** | **no** | **done on 2026-09-07: 3000 audited S3 cases, S6 corpus in progress** |
+| design surrogate | PhysicsNeMo | yes, Vast.ai | corpus + container GPU smoke test |
+| crash | OpenRadioss | no | geometry, hence M1 |
+| crash correlation | physical tests | — | nothing replaces them |
+| visualization, assembly | Omniverse / USD | yes | image smoke tests |
 
-**Rien dans cette chaine n'est actuellement bloque par un manque de logiciel, sauf
-le choc.** Ce qui bloque est ailleurs : le reseau de datums, et l'absence de
-denominateur mesure. Ajouter des solveurs maintenant n'avancerait pas le
-programme d'une journee.
+**Nothing in this chain is currently blocked by missing software, except
+crash.** What blocks is elsewhere: the datum network, and the absence of a
+measured denominator. Adding solvers now would not advance the programme by a
+single day.

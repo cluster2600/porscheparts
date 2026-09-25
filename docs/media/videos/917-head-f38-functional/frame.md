@@ -1,29 +1,29 @@
-# Direction visuelle — F38
+# Visual direction — F38
 
-Concept : une revue de conception allemande nocturne où la culasse elle-même reste le héros, chaque mouvement de caméra révélant une preuve d'ingénierie et non un effet décoratif.
+Concept: a nighttime German design review where the cylinder head itself stays the hero, each camera move revealing a piece of engineering evidence, not a decorative effect.
 
-## Système visuel
+## Visual system
 
-- Format : 1920 × 1080, 24 secondes, sans voix ni musique.
-- Fond : graphite `#0b1116` avec quadrillage technique très discret.
-- Pièce : aluminium chaud `#c79b45`, arêtes `#f2d28a`, enveloppe du scan `#65717a`.
-- Fluides : air `#59c7ff`, huile `#41e0c2`, température `#ff7a45`.
-- États : preuve numérique `#64d98b`, conditionnel `#f0b44d`, porte physique fermée `#ff6b6b`.
-- Titre : League Gothic ou équivalent condensé; données et légendes : IBM Plex Mono.
-- Mouvement : rotation lente et contrôlée, une seule caméra virtuelle par scène, arrêts suffisamment longs pour lire les métriques.
-- Aucune valeur n'est saisie en dur si un rapport F38 la fournit; les scènes sont régénérées depuis le paquet de données vidéo.
+- Format: 1920 × 1080, 24 seconds, no voice or music.
+- Background: graphite `#0b1116` with a very faint technical grid.
+- Part: warm aluminum `#c79b45`, edges `#f2d28a`, scan envelope `#65717a`.
+- Fluids: air `#59c7ff`, oil `#41e0c2`, temperature `#ff7a45`.
+- States: numerical evidence `#64d98b`, conditional `#f0b44d`, physical gate closed `#ff6b6b`.
+- Title: League Gothic or a condensed equivalent; data and captions: IBM Plex Mono.
+- Motion: slow, controlled rotation, a single virtual camera per scene, holds long enough to read the metrics.
+- No value is hard-coded if an F38 report provides it; the scenes are regenerated from the video data package.
 
-## Hiérarchie
+## Hierarchy
 
-1. Géométrie ou coupe plein cadre.
-2. Une phrase courte en haut à gauche.
-3. Deux à quatre métriques au maximum, alignées sur une grille.
-4. Bandeau bas constant : `SIMULATION NUMÉRIQUE — COMPATIBILITÉ 917 ET QUALIFICATION PHYSIQUE NON CERTIFIÉES`.
+1. Full-frame geometry or cutaway.
+2. One short sentence at the top left.
+3. Two to four metrics at most, aligned on a grid.
+4. Constant bottom banner: `SIMULATION NUMÉRIQUE — COMPATIBILITÉ 917 ET QUALIFICATION PHYSIQUE NON CERTIFIÉES` (the video is in French; "NUMERICAL SIMULATION — 917 COMPATIBILITY AND PHYSICAL QUALIFICATION NOT CERTIFIED").
 
-## Règles de composition
+## Composition rules
 
-- Les détails critiques restent à plus de 96 px des bords.
-- La pièce occupe 55 à 70 % du cadre; aucun panneau ne la masque.
-- Les écoulements suivent des courbes attachées aux ailettes ou galeries réelles.
-- Les graphiques utilisent une seule couleur d'accent par famille de résultat.
-- Chaque scène finit sur une image nette et lisible pour la revue dans Studio.
+- Critical details stay more than 96 px from the edges.
+- The part fills 55 to 70% of the frame; no panel covers it.
+- Flows follow curves attached to the real fins or galleries.
+- Charts use a single accent color per result family.
+- Every scene ends on a sharp, readable image for review in Studio.
