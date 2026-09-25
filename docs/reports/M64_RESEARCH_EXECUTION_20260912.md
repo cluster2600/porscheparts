@@ -1,155 +1,155 @@
-# M64 turbo : recherche, décisions et préparation des essais
+# M64 turbo: research, decisions and test preparation
 
-Suite exécutée : [pilote de propositions CAO Qwen/Vast et contrôles natifs](M64_CAD_AGENT_PILOT_20260912.md).
+Follow-up executed: [Qwen/Vast CAD proposal pilot and native checks](M64_CAD_AGENT_PILOT_20260912.md).
 
-Comparaison suivante exécutée : [cadrille et CAD-Recode sur une même découpe du scan](M64_CAD_SPECIALISTS_20260912.md).
-Les deux reconstructions produisent un solide valide, mais omettent des perçages
-et s'écartent du scan ; aucune n'est intégrée au modèle maître.
+Next comparison executed: [cadrille and CAD-Recode on the same crop of the scan](M64_CAD_SPECIALISTS_20260912.md).
+Both reconstructions produce a valid solid, but omit bores and deviate from
+the scan; neither is integrated into the master model.
 
-**Décision recommandée :** poursuivre la culasse quatre soupapes à enveloppe Porsche conservée, comparer air forcé seul et huile ciblée, puis sélectionner ensemble géométrie, matériau et procédé. La préparation rassemble quatre revues documentées, un répartiteur testé et une file de 24 missions de recherche. **Aucune nouvelle CAO, simulation moteur ou impression n'est réalisée par ces lecteurs documentaires.** L'exécution Vast est consignée séparément dans le [journal de recherche](../research/M64_RESEARCH_VAST_RUN_20260912.md).
+**Recommended decision:** continue the four-valve cylinder head with the Porsche envelope kept, compare forced air alone and targeted oil, then select geometry, material and process together. The preparation brings together four documented reviews, a tested dispatcher and a queue of 24 research missions. **No new CAD, engine simulation or print is produced by these document readers.** The Vast execution is recorded separately in the [research log](../research/M64_RESEARCH_VAST_RUN_20260912.md).
 
-La cible nouvellement exprimée est **700hp**. Le dépôt conserve sa référence historique **700 PS au vilebrequin = 514,849 kW**. L'interprétation provisoire de 700 hp mécaniques donne **521,990 kW**, soit +1,387 %. Les deux conventions sont conservées ; ce n'est pas une puissance obtenue. Régime maximal, carburant, variante exacte, durée à pleine charge et norme de correction ne sont pas confirmés. Les scénarios 3,6 L/6 500 tr/min du dépôt restent des hypothèses, pas de nouvelles mesures.
+The newly expressed target is **700hp**. The repository keeps its historical reference **700 PS at the crankshaft = 514.849 kW**. The provisional interpretation as 700 mechanical hp gives **521.990 kW**, i.e. +1.387%. Both conventions are kept; this is not a power obtained. Maximum engine speed, fuel, exact variant, duration at full load and correction standard are not confirmed. The repository's 3.6 L / 6,500 rpm scenarios remain assumptions, not new measurements.
 
-## Dossier scientifique et portée
+## Scientific dossier and scope
 
-| Sujet | Livrable et usage immédiat |
+| Subject | Deliverable and immediate use |
 |---|---|
-| CAO, DAO, scan, LLM et vérificateurs | [Revue de dix publications](../research/M64_CAD_LLM_REVIEW_20260912.md) : reconstruction locale éditable, conservation des interfaces, contrôle des cotes et coût des agents |
-| CFD, thermique, fonctionnement et jumeaux | [Revue de dix publications](../research/M64_CFD_TWINS_REVIEW_20260912.md) : cas mobiles, CHT, incertitudes, opérateurs appris et limites de généralisation |
-| Procédé LPBF, huile et durabilité | [Revue de neuf publications](../research/M64_LPBF_OIL_REVIEW_20260912.md) : bain local, distorsion globale, galeries, propreté et dépôts |
-| Matériaux et transfert thermique | [Complément matériaux](../research/M64_MATERIAL_REVIEW_20260912.md) : trois articles analysés, une piste 2026 non accessible, fiches et essais à obtenir |
-| Travaux délégués | [24 missions JSON](../research/m64-research-missions-20260912.json), exécutées par lots de quatre au plus ; [18 contrôles de citations réussis, six rapports refusés](../research/M64_RESEARCH_VAST_RUN_20260912.md) |
+| CAD, drafting, scan, LLMs and checkers | [Review of ten publications](../research/M64_CAD_LLM_REVIEW_20260912.md): editable local reconstruction, preservation of interfaces, dimension checks and cost of agents |
+| CFD, thermal, operation and twins | [Review of ten publications](../research/M64_CFD_TWINS_REVIEW_20260912.md): moving cases, CHT, uncertainties, learned operators and limits of generalization |
+| LPBF process, oil and durability | [Review of nine publications](../research/M64_LPBF_OIL_REVIEW_20260912.md): local melt pool, global distortion, galleries, cleanliness and deposits |
+| Materials and heat transfer | [Materials complement](../research/M64_MATERIAL_REVIEW_20260912.md): three articles analyzed, one 2026 lead not accessible, datasheets and tests to obtain |
+| Delegated work | [24 JSON missions](../research/m64-research-missions-20260912.json), executed in batches of at most four; [18 citation checks passed, six reports refused](../research/M64_RESEARCH_VAST_RUN_20260912.md) |
 
-Il s'agit d'une **revue ciblée**, principalement 2023–2026, arrêtée au 12 septembre 2026, complétée par les fondations et fiches utiles. Ce n'est pas une lecture exhaustive de tous les articles mondiaux. Chaque annexe distingue texte intégral, sections, résumé, notice et prépublication ; les gains publiés ne sont pas des gains mesurés sur M64. Les publications antérieures déjà traitées dans la [revue Neural Concept](M64_NEURAL_CONCEPT_20260912.md) sont réemployées, pas présentées comme une découverte nouvelle.
+This is a **targeted review**, mainly 2023–2026, closed on September 12, 2026, complemented by the useful foundations and datasheets. It is not an exhaustive reading of all the world's articles. Each appendix distinguishes full text, sections, abstract, catalog record and preprint; published gains are not gains measured on the M64. The earlier publications already covered in the [Neural Concept review](M64_NEURAL_CONCEPT_20260912.md) are reused, not presented as a new discovery.
 
-## Ce qui change réellement dans la stratégie
+## What actually changes in the strategy
 
-- **CAO :** essayer cadrille ou CAD-Recode sur une sous-zone documentée, contre un ajustement déterministe. Le succès d'un programme et sa ressemblance visuelle ne garantissent ni les cotes ni les tolérances. La boucle LLM décide d'opérations bornées ; le noyau CAO mesure et accepte ou refuse.
-- **CFD/IA :** DoMINO/GINO servent à sélectionner des variantes après acquisition de données pertinentes. Un bon résultat intégré peut masquer une erreur locale importante : les températures aux ponts et contacts restent des sorties obligatoires. Les cas plafonnés, maillages refusés et résultats hors domaine ne sont pas des vérités d'entraînement.
-- **Matériau :** garder CP1 pour la conduction, HT1 pour la résistance à chaud, AlSi10Mg comme témoin ; A20X demeure une alternative conditionnelle. Comparer les états de traitement réels et leurs courbes à chaud, pas seulement les valeurs ambiantes des brochures.
-- **Fabrication :** distinguer bain local et distorsion de la pièce entière. La pluralité des lasers demande des essais de recouvrement/gaz ; elle ne qualifie pas automatiquement la pièce. Ne pas ajouter ExaCA/ExaConstit sans données permettant d'en exploiter les sorties.
+- **CAD:** try cadrille or CAD-Recode on a documented subzone, against a deterministic fit. A program's success and its visual resemblance guarantee neither dimensions nor tolerances. The LLM loop decides bounded operations; the CAD kernel measures and accepts or refuses.
+- **CFD/AI:** DoMINO/GINO serve to select variants after relevant data have been acquired. A good integrated result can hide a significant local error: the temperatures at the bridges and contacts remain mandatory outputs. Capped cases, rejected meshes and out-of-domain results are not training truths.
+- **Material:** keep CP1 for conduction, HT1 for hot strength, AlSi10Mg as the control; A20X remains a conditional alternative. Compare the real heat-treatment states and their hot curves, not only the room-temperature values of the brochures.
+- **Manufacturing:** distinguish the local melt pool from the distortion of the whole part. Multiple lasers call for overlap/gas trials; they do not automatically qualify the part. Do not add ExaCA/ExaConstit without data to exploit their outputs.
 
-Ces décisions sont des recommandations d'ingénierie issues des annexes, pas une déclaration que toutes les briques logicielles sont déjà intégrées.
+These decisions are engineering recommendations drawn from the appendices, not a statement that all the software building blocks are already integrated.
 
-## Air et huile : trois variantes, une même enveloppe
+## Air and oil: three variants, one envelope
 
-Le précédent Porsche ne démontre pas une impossibilité mathématique du quatre-soupapes à air. Swindon documente un kit M64 à air ; la puissance turbo et le procédé LPBF recherchés ne sont pas qualifiés par sa seule existence. La Porsche 935/78 employait déjà des culasses quatre soupapes **refroidies par eau** sur cylindres à air, selon Porsche. Le Singer DLS Turbo Road est aussi à culasses refroidies par eau. L'affirmation précise d'un échec Porsche dans les années 1960 n'est pas retenue sans source primaire correspondante.[^1][^2][^3]
+The Porsche precedent does not demonstrate a mathematical impossibility of an air-cooled four-valve head. Swindon documents an air-cooled M64 kit; the turbo power and the LPBF process sought are not qualified by its mere existence. The Porsche 935/78 already used **water-cooled** four-valve cylinder heads on air-cooled cylinders, according to Porsche. The Singer DLS Turbo Road also has water-cooled cylinder heads. The precise claim of a Porsche failure in the 1960s is not retained without a matching primary source.[^1][^2][^3]
 
-| Variante proposée | Intervention | Compromis à calculer |
+| Proposed variant | Intervention | Trade-off to compute |
 |---|---|---|
-| A — air | Ailettes et carénages de référence ; distribution d'air contrôlée | Débit réel de turbine, recirculation, température des ponts, puissance absorbée |
-| B — air + huile accessible | Poche ou jet ciblé vers les zones chaudes, accès de nettoyage et retour drainable | Débit disponible sans pénaliser la lubrification, échange, rétention d'huile, étanchéité |
-| C — air + galeries LPBF | Quelques branches courtes en parallèle, collecteurs accessibles, sections fabricables selon orientation | Paroi résiduelle, déséquilibre des débits, rugosité, pression, dépoudrage et dépôts à chaud |
+| A — air | Reference fins and shrouds; controlled air distribution | Real fan flow, recirculation, bridge temperature, absorbed power |
+| B — air + accessible oil | Pocket or jet aimed at the hot zones, cleaning access and drainable return | Flow available without penalizing lubrication, heat exchange, oil retention, sealing |
+| C — air + LPBF galleries | A few short parallel branches, accessible manifolds, sections manufacturable depending on orientation | Residual wall, flow imbalance, roughness, pressure, depowdering and hot deposits |
 
-L'huile transporte la chaleur vers un échangeur ; elle ne la fait pas disparaître. Les trois variantes seront comparées avec **le même budget de puissance auxiliaire et les courbes réellement disponibles de ventilateur/pompe**, puis à conditions limites identiques pour isoler l'effet de géométrie. Les surfaces externes et interfaces restent verrouillées ; une modification n'est admise qu'avec bénéfice quantifié et preuve de compatibilité. Aucun contour ovale de substitution.
+Oil carries heat to a heat exchanger; it does not make it disappear. The three variants will be compared with **the same auxiliary power budget and the fan/pump curves actually available**, then under identical boundary conditions to isolate the effect of geometry. The external surfaces and interfaces remain locked; a change is admitted only with a quantified benefit and evidence of compatibility. No substitute oval contour.
 
-Le calcul doit inclure les ponts d'échappement et de bougie, chemins siège/guide–corps–ailettes, contacts thermiques et échauffement de l'air entre culasses. Éviter, au premier lot, les microcanaux et réseaux internes très tortueux : leur accessibilité et leur sensibilité hydraulique doivent être démontrées. Une galerie fermée sans évacuation de poudre est refusée.
+The computation must include the exhaust and spark plug bridges, the seat/guide–body–fin paths, the thermal contacts and the heating of the air between cylinder heads. In the first batch, avoid microchannels and very tortuous internal networks: their accessibility and their hydraulic sensitivity must be demonstrated. A closed gallery without powder evacuation is refused.
 
-### Contre-calcul élémentaire, explicitement hypothétique
+### Elementary cross-computation, explicitly hypothetical
 
 \[
-\dot Q_{huile}=\dot m\int_{T_e}^{T_s}c_p(T)\,dT,
-\qquad P_{pompe}=\frac{\Delta p\,\dot V}{\eta}.
+\dot Q_{oil}=\dot m\int_{T_e}^{T_s}c_p(T)\,dT,
+\qquad P_{pump}=\frac{\Delta p\,\dot V}{\eta}.
 \]
 
-Avec des **hypothèses illustratives**, 5 kW extraits par culasse, Cp constant 2 000 J/(kg·K), élévation d'huile 25 K et densité 850 kg/m³ : il faut 0,1 kg/s, soit **7,06 L/min par culasse**, ou **42,35 L/min pour six**. À 2 bar de perte de charge totale et rendement 0,6, la puissance de pompe correspondante serait **235 W**, hors autres consommateurs. Ces nombres ne sont ni le besoin thermique M64 calculé, ni la capacité de sa pompe, ni une consigne de montage. Ils rendent visible le besoin de vérifier le circuit complet et l'échangeur avant de dessiner des galeries.
+With **illustrative assumptions**, 5 kW extracted per cylinder head, constant Cp of 2,000 J/(kg·K), oil temperature rise of 25 K and density of 850 kg/m³: 0.1 kg/s is needed, i.e. **7.06 L/min per cylinder head**, or **42.35 L/min for six**. At a total pressure loss of 2 bar and an efficiency of 0.6, the corresponding pump power would be **235 W**, excluding other consumers. These numbers are neither the computed M64 thermal need, nor the capacity of its pump, nor an installation instruction. They make visible the need to verify the full circuit and the heat exchanger before drawing galleries.
 
-De même, 700 hp mécaniques à 6 500 tr/min impliqueraient **766,9 N·m** et **26,77 bar de pression moyenne effective** pour un quatre-temps de 3,6 L. Cette dernière n'est **pas** la pression maximale cylindre. Les [bilans moteur existants](M64_700CH_ENGINE_RESEARCH.md) et le [cycle Cantera](M64_700PS_VARIABLE_THERMO_20260908.md) restent les témoins de départ ; aucune charge locale ne se déduit de la seule puissance.
+Likewise, 700 mechanical hp at 6,500 rpm would imply **766.9 N·m** and **26.77 bar of brake mean effective pressure** for a 3.6 L four-stroke. The latter is **not** the peak cylinder pressure. The [existing engine balances](M64_700CH_ENGINE_RESEARCH.md) and the [Cantera cycle](M64_700PS_VARIABLE_THERMO_20260908.md) remain the starting controls; no local load can be inferred from power alone.
 
-## Plan opérationnel avec portes d'admission
+## Operational plan with entry gates
 
 ```mermaid
 flowchart TD
-    R[Sources et inconnues traçables] --> G[CAO fonctionnelle et interfaces]
-    G --> M{Domaines et maillages admissibles ?}
-    M -->|non| D[Correction locale et nouvelle vérification]
+    R[Traceable sources and unknowns] --> G[Functional CAD and interfaces]
+    G --> M{Admissible domains and meshes?}
+    M -->|no| D[Local correction and new verification]
     D --> G
-    M -->|oui| V[Monocylindre entraîné et dynamique soupapes]
-    V --> C[Cycle turbo et charges locales]
-    C --> H[CHT air / huile / solide]
-    H --> S[Contacts et résistance à chaud]
+    M -->|yes| V[Motored single cylinder and valve dynamics]
+    V --> C[Turbo cycle and local loads]
+    C --> H[CHT air / oil / solid]
+    H --> S[Contacts and hot strength]
     S --> V
-    G --> P[Supports et construction LPBF globale]
-    Q[Coupons matériau et procédé] --> P
+    G --> P[Supports and global LPBF build]
+    Q[Material and process coupons] --> P
     Q --> S
-    S --> I[Revue prototype et bancs corrélés]
+    S --> I[Prototype review and correlated benches]
     P --> I
-    H --> U[USD / Omniverse : champs et mouvements traçables]
+    H --> U[USD / Omniverse: traceable fields and motions]
     S --> U
-    I --> F{Preuves suffisantes pour libérer ?}
+    I --> F{Enough evidence to release?}
 ```
 
-| Lot | Travail préparé | Sorties exigées avant le suivant |
+| Batch | Work prepared | Outputs required before the next one |
 |---|---|---|
-| G0 — contrat | Identifier variante, repères, unités ; inventaire scan/photos/cotes avec incertitudes | Tableau des interfaces et zones inconnues ; aucune cote absente inventée ; autorité du [contrat M64](../../twins/m64-cylinder-head/interface-contract.json) inchangée |
-| G1 — CAO/DAO | Surfaces fonctionnelles, chambre, quatre conduits/sièges/guides, bougie, porte-arbres, huile, fixations et usinage | Source éditable + STEP, coupe, plans à références fonctionnelles, nomenclature, écarts au scan, épaisseurs après usinage, accès outils/poudre/supports |
-| V1 — distribution | Piston, quatre soupapes, ressorts, coupelles, demi-lunes, commande et contacts | Jeux à froid/chaud sur 720°, accélérations/efforts, compression maximale des ressorts, rebond/affolement, tenue siège/guide ; une levée imposée seule ne suffit pas |
-| F1 — écoulement | Banc de flux à levées définies, puis cycle entraîné mobile | Débit/Cd, pression totale, structures d'écoulement, conservation au remaillage, fermeture des soupapes, périodicité ; comparer 2V/4V aux mêmes conditions |
-| C1 — cycle turbo | Carburant et mécanisme documentés, admission/contre-pression, allumage et scénarios | p(angle), travail, résiduels, dégagement de chaleur et flux ; pression crête et cliquetis restent non établis sans modèle et corrélation adaptés |
-| H1 — chauffe | Conduction/CHT et variantes A/B/C, air chaud, huile froide/chaude, transitoires et arrêt à chaud | Bilans gaz/solide/air/huile, températures et gradients locaux, débits/pression, puissance auxiliaire, températures de film ; sensibilité aux contacts et à la rugosité |
-| S1 — résistance | Matériau à chaud, précharges goujons, frettage inserts, pression et champs thermiques | Équilibre efforts/moments, déformation/étanchéité, plasticité, relaxation/fluage, fatigue selon données ; cartes des points critiques, pas seulement p95 |
-| P1/P2 — impression | Corriger le coupon puis activation des couches, supports, bridage, refroidissement, traitement, découpe et usinage | Aucun limiteur artificiel actif sur le domaine déclaré valide ; distorsion, contraintes résiduelles, accessibilité, nettoyage et épaisseurs finales ; recette machine identifiable |
-| E1 — essais physiques | Coupons, secteur de galerie/siège, prototype et montée en charge instrumentée | Courbes débit–pression, CT/CND selon sensibilité, déformation, étanchéité, températures, pression cylindre, démontage et revue professionnelle |
+| G0 — contract | Identify variant, frames, units; inventory of scan/photos/dimensions with uncertainties | Table of interfaces and unknown zones; no missing dimension invented; authority of the [M64 contract](../../twins/m64-cylinder-head/interface-contract.json) unchanged |
+| G1 — CAD/drafting | Functional surfaces, chamber, four ports/seats/guides, spark plug, camshaft carrier, oil, fasteners and machining | Editable source + STEP, section, drawings with functional datums, bill of materials, deviations from the scan, thicknesses after machining, tool/powder/support access |
+| V1 — valvetrain | Piston, four valves, springs, retainers, collets, actuation and contacts | Cold/hot clearances over 720°, accelerations/forces, maximum spring compression, bounce/float, seat/guide holding; an imposed lift alone is not enough |
+| F1 — flow | Flow bench at defined lifts, then moving motored cycle | Flow/Cd, total pressure, flow structures, conservation under remeshing, valve closure, periodicity; compare 2V/4V under the same conditions |
+| C1 — turbo cycle | Documented fuel and mechanism, intake/back pressure, ignition and scenarios | p(angle), work, residuals, heat release and fluxes; peak pressure and knock remain unestablished without a suitable model and correlation |
+| H1 — heating | Conduction/CHT and variants A/B/C, hot air, cold/hot oil, transients and hot soak | Gas/solid/air/oil balances, local temperatures and gradients, flows/pressure, auxiliary power, film temperatures; sensitivity to contacts and roughness |
+| S1 — strength | Hot material, stud preloads, insert interference fits, pressure and thermal fields | Force/moment equilibrium, deformation/sealing, plasticity, relaxation/creep, fatigue per data; maps of the critical points, not only p95 |
+| P1/P2 — printing | Correct the coupon, then layer activation, supports, clamping, cooling, treatment, cutting and machining | No artificial limiter active on the domain declared valid; distortion, residual stresses, accessibility, cleaning and final thicknesses; identifiable machine recipe |
+| E1 — physical tests | Coupons, gallery/seat sector, prototype and instrumented load ramp-up | Flow–pressure curves, CT/NDT depending on sensitivity, deformation, sealing, temperatures, cylinder pressure, teardown and professional review |
 
-Les sièges, guides, soupapes, ressorts et fixations sont des pièces d'assemblage avec matériaux/processus propres ; ils ne deviennent pas automatiquement des éléments imprimés en une pièce avec le corps. Le palier de puissance visé reste conditionnel aux limites de température, pression, vibration, lubrification et fuites définies avant essai. Une rampe au banc ne doit pas progresser simplement parce que le moteur tourne encore.
+The seats, guides, valves, springs and fasteners are assembly parts with their own materials/processes; they do not automatically become elements printed in one piece with the body. The targeted power step remains conditional on the temperature, pressure, vibration, lubrication and leak limits defined before testing. A ramp on the bench must not progress simply because the engine is still running.
 
-### Vérification et contre-calculs
+### Verification and cross-computations
 
-Chaque cas recevra un budget d'erreur avant exécution. Pour les premiers témoins, des cibles **proposées**, non des normes de libération, sont un résidu de conservation inférieur à 1 % et une variation des grandeurs utiles inférieure à 5 % sous raffinement. Trois niveaux cohérents espace/temps, ordre observé lorsque pertinent et statistiques de cycles seront conservés. Les critères F50 historiques ne sont pas transférés automatiquement au corps M64.
+Each case will receive an error budget before execution. For the first control cases, **proposed** targets, not release standards, are a conservation residual below 1% and a variation of the useful quantities below 5% under refinement. Three consistent space/time levels, observed order where relevant and cycle statistics will be kept. The historical F50 criteria are not transferred automatically to the M64 body.
 
-Le contre-calcul de conduction peut être analytique puis FEM ; le bilan cycle indépendant doit contrôler énergie et travail ; le problème structural doit posséder un témoin analytique ou un second solveur sur un sous-problème identique. Deux solveurs partageant une mauvaise charge peuvent être d'accord. Un modèle appris sur le premier solveur n'est pas une méthode physique indépendante. Une preuve symbolique d'équation ne prouve pas que la pièce réelle respecte les hypothèses.
+The conduction cross-computation can be analytical then FEM; the independent cycle balance must check energy and work; the structural problem must have an analytical control or a second solver on an identical subproblem. Two solvers sharing a wrong load can agree. A model trained on the first solver is not an independent physical method. A symbolic proof of an equation does not prove that the real part meets the assumptions.
 
-Omniverse recevra géométries, unités, mouvement, températures et contraintes **issus des solveurs**, avec empreintes et repères. Les étiquettes distingueront animation prescrite, solution numérique, modèle appris et données physiques. Le rendu ou une propriété de matériau USD ne valent pas calcul de résistance.
+Omniverse will receive geometries, units, motion, temperatures and stresses **coming from the solvers**, with digests and frames. The labels will distinguish prescribed animation, numerical solution, learned model and physical data. A render or a USD material property is not a strength computation.
 
-## Point de départ réel : ne pas refaire les échecs identiques
+## Real starting point: do not repeat identical failures
 
-Le [lot q10/q20 du 12 septembre](M64_QUADRATURE_EXECUTION_20260912.md) a exécuté deux coupons à 40 µs. L'énergie retirée par le limiteur représente encore **9,8133 % / 8,8675 %** du laser absorbé ; les deux températures maximales sont censurées à 3 300 K. Cette paire ne prouve donc pas la convergence physique. Elle est distincte du coupon du 8 septembre à 109,55 µs. Corriger/calibrer source, propriétés et conditions physiques ; augmenter le plafond seul n'est pas une correction démontrée.
+The [q10/q20 batch of September 12](M64_QUADRATURE_EXECUTION_20260912.md) ran two coupons to 40 µs. The energy removed by the limiter still represents **9.8133% / 8.8675%** of the absorbed laser energy; both maximum temperatures are censored at 3,300 K. This pair therefore does not prove physical convergence. It is distinct from the September 8 coupon at 109.55 µs. Correct/calibrate source, properties and physical conditions; raising the cap alone is not a demonstrated correction.
 
-Le volume gazeux hybride et son pont vers un optimiseur tétraédrique restent refusés. La priorité CAO/maillage est la zone frontière et ses raccords, pas une nouvelle répétition de HXT ou un déplacement de points sur un sous-maillage incompatible. Les domaines solide, air externe et huile ne se déduisent pas de ce seul gaz d'admission.
+The hybrid gas volume and its bridge to a tetrahedral optimizer remain refused. The CAD/mesh priority is the boundary zone and its blends, not another repeat of HXT or a displacement of points on an incompatible submesh. The solid, external air and oil domains cannot be inferred from this intake gas alone.
 
-Les [jobs 2–3–4 existants](M64_JOBS_234_20260912.md) restent la base de préparation. Leur paquet est générable localement mais n'admet pas les jobs complets à l'exécution. Les notes anciennes divergent entre MOOSE/MALAMUTE et Adamantine : un **seul témoin de distorsion commun** décidera du chemin retenu après vérification des fonctions et du coût, sans intégrer deux nouvelles chaînes complètes simultanément.
+The [existing jobs 2–3–4](M64_JOBS_234_20260912.md) remain the preparation basis. Their package can be generated locally but does not admit the full jobs for execution. Older notes diverge between MOOSE/MALAMUTE and Adamantine: a **single common distortion control case** will decide the path retained after verifying functions and cost, without integrating two new full chains simultaneously.
 
-## Délégation des recherches et budget
+## Delegation of research and budget
 
-Le pilote est terminé : 105 307 tokens traités sur Qwen/Vast, instance détruite,
-baisse de crédit affichée de 0,224 USD (facture définitive non confirmée).
-Les [résultats et limites du lot](../research/M64_RESEARCH_VAST_RUN_20260912.md)
-ne constituent pas une validation physique ni une mesure d'économie OpenAI.
+The pilot is finished: 105,307 tokens processed on Qwen/Vast, instance destroyed,
+displayed credit decrease of 0.224 USD (final invoice not confirmed).
+The [results and limits of the batch](../research/M64_RESEARCH_VAST_RUN_20260912.md)
+constitute neither a physical validation nor a measurement of OpenAI savings.
 
-Le dossier de référence est **GitHub** : `docs/research/`. Les rapports bruts des agents restent privés jusqu'à contrôle des citations, droits, informations sensibles et contradictions. Aucun token GitHub ou OpenBao n'est donné aux agents Vast ; publication depuis le poste autorisé. Le [manifeste](../research/m64-research-missions-20260912.json) est consommé par un [répartiteur implémenté et testé](../../twins/m64-cylinder-head/source/run_research_readers.py). Il exécute des missions indépendantes de lecture sur corpus fourni, pas des navigateurs autonomes parcourant tout le Web.
+The reference dossier is **GitHub**: `docs/research/`. The agents' raw reports remain private until citations, rights, sensitive information and contradictions are checked. No GitHub or OpenBao token is given to the Vast agents; publication happens from the authorized workstation. The [manifest](../research/m64-research-missions-20260912.json) is consumed by an [implemented and tested dispatcher](../../twins/m64-cylinder-head/source/run_research_readers.py). It executes independent reading missions on a supplied corpus, not autonomous browsers roaming the whole Web.
 
 ```mermaid
 flowchart LR
-    A[24 missions et sources primaires] --> B[Collecte autorisée : URL / date / texte / SHA]
-    B --> C[Serveur LLM Vast partagé]
-    C --> D[4 missions concurrentes au maximum]
-    D --> E[Rapports courts et références vérifiables]
-    E --> F[Contrôle des citations et revue des contradictions]
-    F --> G[Documentation GitHub]
-    G --> H[Décisions CAO / essais avec preuves requises]
+    A[24 missions and primary sources] --> B[Authorized collection: URL / date / text / SHA]
+    B --> C[Shared Vast LLM server]
+    C --> D[At most 4 concurrent missions]
+    D --> E[Short reports and verifiable references]
+    E --> F[Citation check and contradiction review]
+    F --> G[GitHub documentation]
+    G --> H[CAD / test decisions with required evidence]
 ```
 
-Le crédit initial relu via le wrapper OpenBao le 12 septembre est **38,2751 USD**, inventaire d'instances vide. Le plafond de campagne retenu reste 38 USD, pas 38 USD par agent. Proposition d'allocation, non un mécanisme de facturation : **8 USD maximum recherche**, **20 USD premiers pilotes CAE**, **6 USD réserve**, **4 USD non affectés** ; réduire ces montants si d'autres tâches consomment le compte. Un limiteur existant plus strict n'est pas contourné.
+The initial credit reread through the OpenBao wrapper on September 12 is **38.2751 USD**, empty instance inventory. The campaign cap retained remains 38 USD, not 38 USD per agent. Proposed allocation, not a billing mechanism: **8 USD maximum for research**, **20 USD for the first CAE pilots**, **6 USD reserve**, **4 USD unallocated**; reduce these amounts if other tasks consume the account. An existing stricter limiter is not bypassed.
 
-L'image Flash Next par digest `6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34` a été relue dans GHCR : variante `linux/amd64` présente. Son profil documenté exige deux Blackwell 96 Go, au moins 128 Go de RAM et 300 Go de disque, pour environ 189 Go de poids. Cela n'établit ni son coût de chargement sur une offre actuelle ni le gain économique de 24 lecteurs. Un modèle public plus petit peut être comparé pour l'extraction documentaire, sans être présenté comme Flash Next ni comme son équivalent validé.
+The Flash Next image by digest `6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34` was reread in GHCR: `linux/amd64` variant present. Its documented profile requires two 96 GB Blackwell cards, at least 128 GB of RAM and 300 GB of disk, for about 189 GB of weights. This establishes neither its loading cost on a current offer nor the economic gain of 24 readers. A smaller public model can be compared for document extraction, without being presented as Flash Next nor as its validated equivalent.
 
-**Profil de recherche retenu :** Qwen3-Coder-30B-A3B-Instruct-FP8 public, sur une L40S, avec image vLLM et révision des poids épinglées. Il évite le transfert d'un secret HF. Le [profil borné](../../deploy/vast/research/README.md) expose `research-offers`, `launch-research` et `reconcile-research` ; il ne modifie pas les anciens profils. Le collecteur a constitué 42 sources privées, dont neuf notices sans texte technique : le niveau d'accès et les SHA sont conservés. Ni le succès des tests hors ligne ni l'allocation d'une machine n'établissent que le modèle répond ; consulter le journal pour l'état réellement atteint.
+**Research profile retained:** public Qwen3-Coder-30B-A3B-Instruct-FP8, on an L40S, with the vLLM image and the weights revision pinned. It avoids transferring an HF secret. The [bounded profile](../../deploy/vast/research/README.md) exposes `research-offers`, `launch-research` and `reconcile-research`; it does not modify the older profiles. The collector assembled 42 private sources, nine of them catalog records without technical text: the access level and the SHAs are kept. Neither the success of the offline tests nor the allocation of a machine establishes that the model answers; see the log for the state actually reached.
 
-Flash Next n'est pas présenté comme utilisé : le wrapper n'expose pas encore sa route dédiée et son lanceur exige un token même avec cache. L'[accès HF local vérifié](../../deploy/openbao/HUGGINGFACE.md) n'établit pas un transfert sûr vers cette charge distante. L'ancien lancement avec API publique n'est pas utilisé.
+Flash Next is not presented as used: the wrapper does not yet expose its dedicated route and its launcher requires a token even with a cache. The [verified local HF access](../../deploy/openbao/HUGGINGFACE.md) does not establish a safe transfer to this remote workload. The old launch with a public API is not used.
 
-Avant toute création : recette de lancement étroite, image et révision des poids épinglées, paire et association SSH vérifiées, API loopback/tunnel, bilan mémoire et coût stockage/transfert, plafond wall-clock et destruction externe vérifiée. Premier essai de **quatre missions**, puis les vingt restantes seulement si les sorties sont exploitables. Une mission rapporte au plus 800 mots, avec source, date, section, limites et application au M64. Les tokens réellement consommés sont mesurés ; aucun pourcentage d'économie OpenAI n'est inventé.
+Before any creation: narrow launch recipe, pinned image and weights revision, SSH pair and association verified, loopback/tunnel API, memory budget and storage/transfer cost, wall-clock cap and verified external destruction. First trial of **four missions**, then the remaining twenty only if the outputs are usable. A mission reports at most 800 words, with source, date, section, limits and application to the M64. The tokens actually consumed are measured; no OpenAI savings percentage is invented.
 
-## Séquence courte et définition de « terminé »
+## Short sequence and definition of "done"
 
-1. **Recherche préparée :** conserver les revues, le corpus privé et la file de missions ; exploiter le pilote LLM seulement après ses contrôles réels ; figer les hypothèses et les références de la prochaine petite correction CAO.
-2. **Premier lot de travail borné :** quatre agents lecteurs, une sous-zone CAO contrôlée et un diagnostic du coupon. Chaque tentative produit succès ou refus traçable ; le nombre de tentatives est limité, sans relance payante automatique.
-3. **Après admission :** banc de flux, cycle entraîné puis combustion/CHT, contacts/résistance et construction LPBF globale. Le temps est estimé après un pilote sur le vrai cas ; aucune durée de calcul complète n'est garantie avant ces mesures.
-4. **Clôture industrielle :** dossier editable et plans, gamme d'impression/traitements/usinage, matériau/processus qualifiés, pièces contrôlées et essais physiques corrélés avec revue professionnelle. Les moyens de calcul seuls ne remplacent pas ces éléments.
+1. **Research prepared:** keep the reviews, the private corpus and the mission queue; use the LLM pilot only after its real checks; freeze the assumptions and references of the next small CAD correction.
+2. **First bounded work batch:** four reader agents, one checked CAD subzone and one coupon diagnostic. Each attempt produces a traceable success or refusal; the number of attempts is limited, with no automatic paid rerun.
+3. **After admission:** flow bench, motored cycle then combustion/CHT, contacts/strength and global LPBF build. The time is estimated after a pilot on the real case; no full computation duration is guaranteed before these measurements.
+4. **Industrial closure:** editable dossier and drawings, printing/treatment/machining routing, qualified material/process, inspected parts and correlated physical tests with professional review. Computing resources alone do not replace these elements.
 
-Avec le scan seul, les régions visibles peuvent être reconstruites et les inconnues encadrées pour les études. Les interfaces invisibles, la tenue réelle, la propreté interne et la qualification du lot ne peuvent pas être certifiées par multiplication de photos ou d'agents. Le statut actuel reste **préparation de recherche et d'essais, fabrication moteur non autorisée**.
+With the scan alone, the visible regions can be reconstructed and the unknowns bracketed for the studies. The invisible interfaces, the real holding, the internal cleanliness and the qualification of the batch cannot be certified by multiplying photos or agents. The current status remains **research and test preparation, engine manufacturing not authorized**.
 
-## Sources constructeur et historique
+## Manufacturer and historical sources
 
-[^1]: Porsche, [Porsche Heritage Moments : les variantes de la 935](https://newsroom.porsche.com/en/2026/history/porsche-heritage-moments-935-norbert-singer-timo-bernhard-42018.html), **30 mars 2026**, section 935/78. Source constructeur historique consultée, pas essai comparatif M64.
-[^2]: Swindon Powertrain, [M64 24V Cylinder Head Kit](https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf), fiche constructeur ; portée et date détaillées dans la revue LPBF/huile.
-[^3]: Singer Vehicle Design, [DLS Turbo Services — Road](https://singervehicledesign.com/singer-in-the-world/featured-restoration-3/), section Engine, consultée le 12 septembre 2026. 710 HP SAE net annoncés avec culasses à eau ; ne valide pas notre architecture air/huile.
+[^1]: Porsche, [Porsche Heritage Moments: the variants of the 935](https://newsroom.porsche.com/en/2026/history/porsche-heritage-moments-935-norbert-singer-timo-bernhard-42018.html), **March 30, 2026**, section 935/78. Historical manufacturer source consulted, not an M64 comparative test.
+[^2]: Swindon Powertrain, [M64 24V Cylinder Head Kit](https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf), manufacturer datasheet; scope and date detailed in the LPBF/oil review.
+[^3]: Singer Vehicle Design, [DLS Turbo Services — Road](https://singervehicledesign.com/singer-in-the-world/featured-restoration-3/), Engine section, consulted on September 12, 2026. 710 HP SAE net announced with water-cooled cylinder heads; does not validate our air/oil architecture.

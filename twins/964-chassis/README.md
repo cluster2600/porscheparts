@@ -1,248 +1,291 @@
-# Jumeau numerique du chassis de Porsche 911 (964)
+# Digital twin of the Porsche 911 (964) chassis
 
-Niveau atteint : **`F1_envelope`** (ADR 0003). Enveloppe a l'echelle et repere
-documente. Ni `F2_interface`, ni geometrie de piece liberable.
+Level reached: **`F1_envelope`** (ADR 0003). An envelope at scale and a
+documented frame. Neither `F2_interface` nor any releasable part geometry.
 
-## Entrees
+```mermaid
+flowchart LR
+  S["underside scan<br/>(.obj)"] --> SC["scale verified<br/>wheelbase +0.27 %"]
+  S --> FR["vehicle frame<br/>symmetry plane"]
+  M["workshop manual<br/>volume V"] --> DS["dimensioning scheme<br/>decoded (M = 1787.8 mm)"]
+  SC --> F1["F1_envelope<br/>reached"]
+  FR --> F1
+  DS --> F1
+  F1 --> LC["longitudinal datum<br/>calibration"]
+  LC --> F2["F2_interface<br/>not reached"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class SC,FR,DS,F1 ok;
+  class LC open;
+  class F2 stop;
+```
 
-| Entree | Nature | Role |
+## Inputs
+
+| Input | Nature | Role |
 |---|---|---|
-| `964widebodyunderside2poin13.obj` | scan de dessous, 2 400 031 sommets, 4 684 929 triangles, 210 Mo | enveloppe et repere |
-| Manuel d'atelier 964, volume V « Body » | planches 50-02, 50-03, 50-05, 50-05a, 50-013 | cotes de controle et matiere |
+| `964widebodyunderside2poin13.obj` | underside scan, 2,400,031 vertices, 4,684,929 triangles, 210 MB | envelope and frame |
+| 964 workshop manual, volume V "Body" | plates 50-02, 50-03, 50-05, 50-05a, 50-013 | control dimensions and material |
 
-Le scan n'est pas verse au depot : `raw-scans/` est ignore par git et sa
-provenance n'est pas documentee. Le manuel non plus, conformement au precedent
-de `SRC-PORSCHE-WORKSHOP-MANUAL-993`. Seules les valeurs sont reportees.
+The scan is not committed to the repository: `raw-scans/` is ignored by git and
+its provenance is not documented. Nor is the manual, following the precedent of
+`SRC-PORSCHE-WORKSHOP-MANUAL-993`. Only the values are carried over.
 
-## Ce qui est etabli
+## What is established
 
-**L'echelle du scan est verifiee.** Les quatre pneus ont ete isoles comme
-composants connexes puis ajustes par cercle robuste dans le plan YZ, ce qui donne
-les centres d'essieu. L'empattement mesure vaut **2278.1 mm** contre **2272 mm**
-d'usine, soit **+0.27 %**. Le maillage est donc en millimetres a l'echelle 1:1.
+**The scale of the scan is verified.** The four tires were isolated as connected
+components, then fitted with a robust circle in the YZ plane, which gives the
+axle centers. The measured wheelbase is **2278.1 mm** against **2272 mm** from
+the factory, i.e. **+0.27 %**. The mesh is therefore in millimeters at 1:1
+scale.
 
-Ce resultat a ete mis a l'epreuve. Les composants de roue sont couverts sur
-360 degres et non sur un arc partiel, et en imposant au rayon des valeurs allant
-de 560 a 680 mm de diametre, l'empattement deduit reste entre **2270,4 et
-2278,9 mm**. La verification d'echelle ne depend donc pas de l'estimation du
-rayon des pneus, qui est elle instable d'un pneu a l'autre.
+This result was put to the test. The wheel components are covered over 360
+degrees, not over a partial arc, and when the radius is forced to values from
+560 to 680 mm in diameter, the derived wheelbase stays between **2270.4 and
+2278.9 mm**. The scale check therefore does not depend on the tire radius
+estimate, which is itself unstable from one tire to the next.
 
-**Le repere vehicule est etabli.** Le plan de symetrie a ete ajuste sur 250 000
-points du soubassement par miroir et plus proche voisin, avec perte tronquee a
-85 % pour absorber la couverture asymetrique du scan. Il en sort un **lacet de
--2.236 deg**, un **roulis de -0.451 deg** et un axe median a **X_scan +112.0 mm**.
+**The vehicle frame is established.** The symmetry plane was fitted on 250,000
+underbody points by mirroring and nearest neighbor, with a loss trimmed at 85 %
+to absorb the asymmetric coverage of the scan. It yields a **yaw of
+-2.236 deg**, a **roll of -0.451 deg** and a center axis at **X_scan +112.0 mm**.
 
-Ce resultat se verifie tout seul : les roues n'entrent pas dans l'ajustement,
-pourtant apres correction leur ecart gauche/droite tombe de **66.7 a 12.7 mm** a
-l'avant et de **51.1 a 5.3 mm** a l'arriere.
+This result checks itself: the wheels do not enter the fit, yet after
+correction their left/right offset drops from **66.7 to 12.7 mm** at the front
+and from **51.1 to 5.3 mm** at the rear.
 
-**Le schema de cotation du manuel est decode.** Les cotes A a I sont des
-ecartements gauche-droite, K a S des diagonales ou des longitudinales. La
-diagonale M se recalcule depuis trois cotes publiees independantes :
+![Underside of the 964 scan in the vehicle frame, colored by height above ground, with the front and rear axle lines](evidence/plan_aligned.png)
+
+*The scan after symmetry correction, in the vehicle frame (X = 0 front axle,
+Z = 0 ground). It shows the frame and the wide body; it does not locate any
+datum point.*
+
+**The manual's dimensioning scheme is decoded.** Dimensions A to I are
+left-right spacings, K to S diagonals or longitudinals. Diagonal M can be
+recomputed from three independent published dimensions:
 
     M = hypot(R, E/2 + F/2) = hypot(1245, 665 + 618) = 1787.8 mm
 
-contre **1788 +/- 3 mm** au manuel, soit **0.2 mm d'ecart**. M relie donc le
-point 17 gauche au point 18 droit. Cette verification est purement documentaire
-et ne depend pas du scan.
+against **1788 +/- 3 mm** in the manual, i.e. a **0.2 mm deviation**. M therefore
+links left point 17 to right point 18. This check is purely documentary and
+does not depend on the scan.
 
-## Le repere est desormais exploitable par machine
+## The frame is now machine-usable
 
-La fiche de jumeau ne decrivait le passage scan -> vehicule qu'en prose. Il porte
-maintenant la **matrice homogene 4x4** correspondante, dans
-`coordinate_system.vehicle_transform`, composee par `source/vehicle_transform.py`
-depuis `frame_params.npy` : recentrage lateral, annulation du lacet, annulation du
-roulis, puis permutation d'axes et mise a l'origine.
+The twin record described the scan -> vehicle transformation in prose only. It
+now carries the corresponding **4x4 homogeneous matrix**, in
+`coordinate_system.vehicle_transform`, composed by `source/vehicle_transform.py`
+from `frame_params.npy`: lateral recentering, yaw cancellation, roll
+cancellation, then axis permutation and move to the origin.
 
-Elle est verifiee, et pas seulement relue. Sa partie rotation est orthonormee a
-2,5e-18 pres pour un determinant de 1,000000000, et appliquee a **200 000 sommets
-tires au hasard dans le scan** elle reproduit `verts_vehicle.npy` a **1,3e-4 mm**
-au maximum. La verification n'est pas cosmetique : la chaine enchaine une
-translation, deux rotations et une permutation d'axes, ou une convention de signe
-ou un ordre de composition se trompent facilement.
+It is verified, not just reread. Its rotation part is orthonormal to within
+2.5e-18 for a determinant of 1.000000000, and applied to **200,000 vertices drawn
+at random from the scan** it reproduces `verts_vehicle.npy` to within
+**1.3e-4 mm** at most. The check is not cosmetic: the chain combines a
+translation, two rotations and an axis permutation, where a sign convention or a
+composition order is easily wrong.
 
-La prose d'origine est conservee dans `vehicle_transform_note`.
+The original prose is kept in `vehicle_transform_note`.
 
-## Ce qui n'est pas etabli
+## What is not established
 
-**Le calage longitudinal du reseau de datums est non resolu.** Un recalage du
-reseau sur le scan donnait 16 points sur 16 a moins de 2.8 mm de structure, ce
-qui semblait excellent. Un controle l'a invalide : **68 % de points tires au
-hasard** sous la voiture tombent eux aussi a moins de 2.8 mm de structure, la
-mediane aleatoire etant de 1.7 mm contre 1.0 mm pour les datums. L'empreinte du
-plancher couvre presque tout le plan, donc « tomber sur de la structure » ne
-prouve a peu pres rien.
+**The longitudinal calibration of the datum network is unresolved.** A fit of
+the network to the scan put 16 points out of 16 within 2.8 mm of structure,
+which looked excellent. A control invalidated it: **68 % of points drawn at
+random** under the car also fall within 2.8 mm of structure, the random median
+being 1.7 mm against 1.0 mm for the datums. The footprint of the floor pan
+covers almost the whole plane, so "landing on structure" proves next to nothing.
 
-La consequence se voit sur `evidence/overlay.png` : place selon la diagonale O,
-le point **P21, palier moteur, tombe a X = -3112 mm**, dans la zone du
-pare-chocs arriere, alors que le scan montre la structure moteur entre -2300 et
--2800 mm. L'autre appariement possible le place plus en arriere encore. **Aucun
-des deux ne tient.**
+The consequence shows on `evidence/overlay.png`: placed according to diagonal O,
+point **P21, engine mount, falls at X = -3112 mm**, in the rear bumper area,
+whereas the scan shows the engine structure between -2300 and -2800 mm. The
+other possible pairing places it even further back. **Neither holds.**
 
-Seuls les X de **P17, P18 et P19** viennent d'une cote publiee en vue de cote
-(R = 1245 +/- 2 et S = 1328 +/- 2). Les X de P20, P3, P5, P12 et P21 sont
-derives sous une hypothese de diagonale croisee qui n'est verifiee que pour M.
+![Manual datum points plotted on the aligned scan: published X in cyan, X derived from diagonals in orange, CAD floor and sills in green](evidence/overlay.png)
 
-**Le scan est une carrosserie large.** Voie arriere mesuree autour de 1459 mm
-contre 1374 mm d'usine ; voie avant 1388 mm contre 1380 mm, donc proche de
-l'origine. Les ailes et bas de caisse elargis ne sont pas de la geometrie 964 de
-serie. Seuls le plancher et la structure centrale servent de reference.
+*The datum network placed on the scan. It shows P21 landing in the rear bumper
+area; it does not prove any datum position, published (cyan) or derived
+(orange).*
 
-**Le plan de sol est le datum le plus faible.** Deduit du contact des quatre
-pneus, il presente une dispersion de 55 mm. Toute cote en Z porte cette
-incertitude.
+Only the X values of **P17, P18 and P19** come from a dimension published in side
+view (R = 1245 +/- 2 and S = 1328 +/- 2). The X values of P20, P3, P5, P12 and
+P21 are derived under a crossed-diagonal assumption that is verified only for M.
 
-## Ce que le volume IV ajoute
+**The scan is a wide body.** Rear track measured around 1459 mm against 1374 mm
+from the factory; front track 1388 mm against 1380 mm, so close to original. The
+widened fenders and sills are not production 964 geometry. Only the floor pan
+and the central structure serve as reference.
 
-Le volume IV « Chassis » couvre le train roulant, pas la caisse, mais il porte
-deux cotes qui interessent directement le repere du jumeau, parce qu'elles sont
-prises **du sol jusqu'a un point de caisse** :
+**The ground plane is the weakest datum.** Derived from the contact of the four
+tires, it shows a scatter of 55 mm. Every Z dimension carries that uncertainty.
 
-| cote | Carrera 2/4 | RS | definition |
+## What volume IV adds
+
+Volume IV "Chassis" covers the running gear, not the body shell, but it carries
+two dimensions that directly concern the twin's frame, because they are taken
+**from the ground up to a body-shell point**:
+
+| dimension | Carrera 2/4 | RS | definition |
 |---|---|---|---|
-| hauteur avant | **165 +/- 10 mm** | 125 +/- 5 | du contact roue-sol au boulon exterieur « Crossmember to body » |
-| hauteur arriere | **270 +/- 5 mm** | 235 +/- 5 | du contact roue-sol a la fixation exterieure de bras, cote caisse |
+| front height | **165 +/- 10 mm** | 125 +/- 5 | from the wheel-ground contact to the outer bolt "Crossmember to body" |
+| rear height | **270 +/- 5 mm** | 235 +/- 5 | from the wheel-ground contact to the outer arm mount, body side |
 
-Le point avant est le **P5 du volume V**, « Mount - outer cross member FA »,
-d'ecartement transversal 770 +/- 2 mm. Le volume IV lui donne donc une cote en
-Z rattachee au plan de sol, la ou le volume V ne donnait qu'un ecartement.
-C'est la premiere cote verticale de datum du dossier.
+The front point is **P5 of volume V**, "Mount - outer cross member FA", with a
+transverse spacing of 770 +/- 2 mm. Volume IV therefore gives it a Z dimension
+tied to the ground plane, where volume V only gave a spacing. It is the first
+vertical datum dimension in the dossier.
 
-Elle n'est pas encore exploitee. Le faire suppose de localiser cette fixation
-sur le maillage, et de savoir a quelle hauteur de caisse roule le vehicule
-scanne : ces valeurs valent au poids a vide DIN 70020, suspension chargee, et le
-scan est une carrosserie large probablement modifiee. Un ecart mesure
-indiquerait un rabaissement, pas une erreur de repere.
+It is not used yet. Doing so requires locating that mount on the mesh, and
+knowing at what ride height the scanned vehicle sits: these values hold at DIN
+70020 curb weight, suspension loaded, and the scan is a wide body, probably
+modified. A measured deviation would indicate lowering, not a frame error.
 
-Geometrie utile par ailleurs : carrossage arriere -40' +/- 10' et pincement
-+10' par roue. Le plan de roue n'est donc pas parallele au plan YZ du vehicule,
-ce qui explique une part de la dispersion des ajustements de cercle sur les
-pneus.
+Useful geometry otherwise: rear camber -40' +/- 10' and toe +10' per wheel. The
+wheel plane is therefore not parallel to the vehicle YZ plane, which explains
+part of the scatter of the circle fits on the tires.
 
-## Matiere
+## Material
 
-La planche 50-013 nomme les six panneaux en **acier haute resistance (HS)** :
-logement de roue avant, longeron interieur, traverse de plancher avant, assise de
-siege, traverse d'essieu arriere, traverse avec palier moteur. La planche 50-014
-ajoute que le soudage ne fait pas perdre de resistance, mais qu'un panneau
-fortement deforme ne se redresse pas et se remplace.
+Plate 50-013 names the six panels in **high-strength steel (HS)**: front wheel
+housing, inner side rail, front floor cross member, seat base, rear axle cross
+member, cross member with engine mount. Plate 50-014 adds that welding does not
+cost strength, but that a heavily deformed panel is not straightened, it is
+replaced.
 
-Le volume V **ne publie ni nuance ni epaisseur**. Le modele porte donc une
-epaisseur de travail de 1.0 mm declaree `ASSUMED`, et la masse de 36.8 kg ne vaut
-que pour les solides modelises : ce n'est pas une masse de caisse 964.
+Volume V **publishes neither grade nor thickness**. The model therefore carries
+a working thickness of 1.0 mm declared `ASSUMED`, and the mass of 36.8 kg holds
+only for the modeled solids: it is not a 964 body-shell mass.
 
-## Reproduire
+## Reproduce
 
     source twins/964-chassis/source/env.sh
-    pymesh source/symmetry.py      # ajuste le plan de symetrie
-    pymesh source/align.py         # passe dans le repere vehicule
-    pymesh source/wheels.py        # empattement et diametres
-    pymesh source/datum_solve.py   # resout la chaine de datums
-    pymesh source/control.py       # controle de significativite du recalage
-    pycad  source/floor_assembly.py  # modele acier -> STEP
+    pymesh source/symmetry.py      # fits the symmetry plane
+    pymesh source/align.py         # moves into the vehicle frame
+    pymesh source/wheels.py        # wheelbase and diameters
+    pymesh source/datum_solve.py   # solves the datum chain
+    pymesh source/control.py       # significance control of the fit
+    pycad  source/floor_assembly.py  # steel model -> STEP
 
-## Recherche du point 17 sur le scan : resultat negatif
+## Searching for point 17 on the scan: negative result
 
-Le point 17 a ete cherche comme il doit l'etre : un trou de reprise est une
-boucle de bord dans le maillage. Les 118 411 aretes de bord du scan donnent
-1 521 boucles, dont 248 ressemblent a un trou (8 points ou plus, diametre 10 a
-80 mm, circularite inferieure a 0,25).
+Point 17 was searched for the way it should be: a jacking hole is a boundary
+loop in the mesh. The 118,411 boundary edges of the scan give 1,521 loops, of
+which 248 look like a hole (8 points or more, diameter 10 to 80 mm, circularity
+below 0.25).
 
-Une paire de datums doit satisfaire quatre criteres simultanement : meme station
-longitudinale, meme hauteur, meme diametre, et un ecartement egal a la cote
-publiee. Le filtrage successif donne :
+A pair of datums must satisfy four criteria at once: same longitudinal station,
+same height, same diameter, and a spacing equal to the published dimension.
+Successive filtering gives:
 
-| critere cumule | paires |
+| cumulative criterion | pairs |
 |---|---|
-| meme X a 25 mm, ecartement a 4 mm d'une cote publiee | 14 |
-| + meme hauteur, dZ < 20 mm | 1 |
-| + meme diametre, a 8 mm | 0 |
-| + ecartement a 1 mm, tolerance publiee | **0** |
+| same X within 25 mm, spacing within 4 mm of a published dimension | 14 |
+| + same height, dZ < 20 mm | 1 |
+| + same diameter, within 8 mm | 0 |
+| + spacing within 1 mm, published tolerance | **0** |
 
-Les 14 premieres correspondances ne valent rien : le tirage aleatoire en prevoit
-**17,1**. Il y a donc moins de correspondances que le hasard n'en produit.
+The first 14 matches are worthless: random draws predict **17.1**. There are
+therefore fewer matches than chance produces.
 
-Aucune paire d'ecartement voisin de 1330 mm ne tient : toutes sont soit a des
-stations longitudinales sans rapport, jusqu'a 3478 mm d'ecart, soit a des
-hauteurs differentes. La moins mauvaise, ecartement 1324,7 mm a dX = -23 mm,
-manque la cote de 5,3 mm sur une tolerance de +/- 1 mm, et se trouve en avant de
-l'essieu avant, ou le cric avant ne peut pas etre.
+No pair with a spacing near 1330 mm holds: all are either at unrelated
+longitudinal stations, up to 3478 mm apart, or at different heights. The least
+bad, spacing 1324.7 mm at dX = -23 mm, misses the dimension by 5.3 mm against a
+tolerance of +/- 1 mm, and sits ahead of the front axle, where the front jack
+point cannot be.
 
-Les boucles de bord du scan sont des trous d'occlusion, pas des percages. Le
-scan ne resout pas les trous de reprise, et la carrosserie large masque
-probablement les bas de caisse d'origine. **La chaine longitudinale reste non
-calee.**
+The boundary loops of the scan are occlusion holes, not drilled holes. The scan
+does not resolve the jacking holes, and the wide body probably hides the
+original sills. **The longitudinal chain remains uncalibrated.**
 
-## Prochaine donnee utile
+```mermaid
+flowchart TD
+  A["248 hole-like loops"] --> B["same X, spacing ≈ published<br/>14 pairs (chance: 17.1)"]
+  B --> C["+ same height<br/>1 pair"]
+  C --> D["+ same diameter<br/>0 pairs"]
+  D --> E["+ spacing within tolerance<br/>0 pairs"]
+  E --> F["longitudinal chain<br/>uncalibrated"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class B,C open;
+  class D,E,F stop;
+```
 
-Le diagnostic a evolue le 2026-09-04. Ce qui manque n'est pas une entite a
-trouver sur le scan mais **une cote a trouver dans une publication** : le scan ne
-resout pas les percages, alors qu'il localise les centres de roue a +/- 7 mm. Il
-suffirait donc d'**une seule cote longitudinale publiee entre un point de datum
-et une ligne d'essieu**. Le volume IV ne la donne pas, il donne des hauteurs au
-sol. L'etat complet des pistes, avec leurs priorites, est dans
+## Next useful data
+
+The diagnosis changed on 2026-09-04. What is missing is not a feature to find on
+the scan but **a dimension to find in a publication**: the scan does not resolve
+drilled holes, whereas it locates the wheel centers to +/- 7 mm. A **single
+published longitudinal dimension between a datum point and an axle line** would
+therefore suffice. Volume IV does not give it; it gives heights above ground.
+The full state of the leads, with their priorities, is in
 `docs/research/964-combler-le-gap-de-donnees.md`.
 
-La piste la moins couteuse dort dans le depot : `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF`
-signale un tableau de points en millimetres, non obtenu. Et un recoupement le
-rend transferable : un fil 993 rapporte 1245 mm entre points de levage, soit la
-cote R du manuel 964 au millimetre pres. Les deux generations partagent
-l'entraxe longitudinal des points de levage.
+The cheapest lead sleeps in the repository: `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF`
+reports a table of points in millimeters, not obtained. And a cross-check makes
+it transferable: a 993 thread reports 1245 mm between lifting points, i.e.
+dimension R of the 964 manual to the millimeter. The two generations share the
+longitudinal spacing of the lifting points.
 
-Formulation d'origine, toujours valable : localiser **un seul** point de datum publie sur un vehicule ou un scan de
-serie, a mieux que sa tolerance, suffirait a caler la chaine longitudinale et a
-faire passer ce jumeau en `F2_interface`. Le point 17, trou de reprise du cric
-avant, est le meilleur candidat : il est publie a +/- 1 mm et visible de dessous.
+Original wording, still valid: locating **a single** published datum point on a
+production vehicle or scan, better than its tolerance, would suffice to
+calibrate the longitudinal chain and move this twin to `F2_interface`. Point 17,
+the front jacking hole, is the best candidate: it is published to +/- 1 mm and
+visible from below.
 
-La quatrieme priorite du dossier, etendre le modele coque, est faite : voir
-« Ce que la caisse ajoute au plancher » ci-dessous. Il ne reste donc plus, dans
-les pistes qui dependent de nous seuls, que des travaux de second rang. Les
-items decisifs — un releve de marbre, un scan de carrosserie de serie, un
-tableau de points publie — dependent tous d'un tiers.
+The fourth priority of the dossier, extending the shell model, is done: see
+"What the body shell adds to the floor pan" below. Among the leads that depend
+on us alone, only second-rank work remains. The decisive items — a jig-bench
+transcription, a scan of a production body shell, a published table of points —
+all depend on a third party.
 
-## Piste composite
+## Composite lead
 
-Une etude de materiau a ete menee sur l'essai de torsion existant, sans en
-changer ni la geometrie ni le chargement, pour repondre a la question du
-monocoque carbone de type ZESAD. A raideur en torsion egale, le carbone
-quasi-isotrope monolithique ne gagne que 18 % de masse surfacique et l'aramide
-en perd 30 % : ce caisson travaille en cisaillement de membrane, donc le critere
-est `G/rho` et non `E/rho`, et une ame de sandwich n'y change rien. Le levier
-d'un monocoque est architectural, pas materiel, et ne se demontre pas sur un
-plancher seul.
+A material study was run on the existing torsion test, without changing either
+its geometry or its loading, to answer the question of a ZESAD-type carbon
+monocoque. At equal torsional stiffness, monolithic quasi-isotropic carbon saves
+only 18 % of areal mass and aramid loses 30 %: this box section works in
+membrane shear, so the criterion is `G/rho` and not `E/rho`, and a sandwich core
+changes nothing. The leverage of a monocoque is architectural, not material, and
+cannot be demonstrated on a floor pan alone.
 
-Voir `docs/research/964-chassis-carbone-kevlar.md`. Cette piste ne produit
-aucune geometrie liberable : une structure autoportante porte la retenue des
-occupants et reste `prohibited_pending_engineering`.
+See `docs/research/964-chassis-carbone-kevlar.md`. This lead produces no
+releasable geometry: a self-supporting structure carries occupant restraint and
+stays `prohibited_pending_engineering`.
 
-## Ce que la caisse ajoute au plancher
+## What the body shell adds to the floor pan
 
-Le modele coque a ete prolonge du plancher seul jusqu'a une cellule fermee —
-passages de roue, pieds milieu, brancards, pavillon, cadre de pare-brise. C'etait
-la seule piste du dossier a ne dependre d'aucune donnee exterieure : elle ne
-demande que des sections `ASSUMED` de plus.
+The shell model was extended from the floor pan alone to a closed cell — wheel
+arches, B-pillars, roof rails, roof, windshield frame. It was the only lead in
+the dossier that depended on no external data: it only needs more `ASSUMED`
+sections.
 
-Deux resultats en sortent, tous deux relatifs et donc exploitables malgre les
-sections supposees.
+Two results come out of it, both relative and therefore usable despite the
+assumed sections.
 
-**Le classement des elements ne suit pas leur masse.** Du plancher nu a la
-cellule fermee, la raideur en torsion est multipliee par 3,7 pour une masse
-multipliee par 2,3. Mais le pavillon, 10,5 kg, n'apporte que +1 % ; le cadre de
-pare-brise, 1,1 kg, apporte le plus gros increment de toute l'echelle. Le
-rapport de rendement au kilo entre les deux est de **deux ordres de grandeur**,
-et il tient a trois finesses de maillage alors que la raideur absolue, elle,
-derive de 11 %. Ce qui compte en haut de caisse n'est pas la matiere, c'est la
-**fermeture de l'anneau** : pieds milieu et brancards ajoutes seuls, sans rien
-pour fermer a l'avant, apportent exactement zero pour 7,5 kg.
+**The ranking of members does not follow their mass.** From the bare floor pan
+to the closed cell, torsional stiffness is multiplied by 3.7 for a mass
+multiplied by 2.3. But the roof, 10.5 kg, adds only +1%; the windshield frame,
+1.1 kg, adds the largest increment of the whole ladder. The per-kilogram yield
+ratio between the two is **two orders of magnitude**, and it holds at three mesh
+densities while the absolute stiffness drifts by 11 %. What counts in the upper
+body shell is not material, it is **closing the ring**: B-pillars and roof rails
+added alone, with nothing to close at the front, bring exactly zero for 7.5 kg.
 
-**Une traverse du modele ne portait rien.** Un controle de connexite ajoute au
-constructeur a montre que la traverse arriere, placee a x = -1703 par la chaine
-de datums, tombait derriere le bord du plancher modelise : elle comptait pour
-5,7 % de la masse et pour rien dans la raideur. Les raideurs deja publiees
-etaient justes — retirer cette traverse redonne exactement les 2442 N.m/deg
-publies — mais les masses, donc les raideurs specifiques, etaient minorees.
-Detail et consequences dans `fea/README.md`.
+> [!WARNING]
+> **Withdrawn for quadratic shells.** The windshield-frame ranking above was
+> computed with linear S3 elements. In quadratic S6 shells the best return per
+> kilogram is the **center tunnel** — see [fea/README.md](fea/README.md) and the
+> withdrawn-claims table of the [README](../../README.md#what-the-repository-withdrew-from-its-own-results).
 
-Aucun de ces chiffres n'est une raideur de 964, et le fait que le modele ignore
-vitrage colle, portes et ouvertures de panneaux joue precisement dans le sens
-qui flatte l'anneau ferme.
+**A cross member of the model carried nothing.** A connectivity check added to
+the builder showed that the rear cross member, placed at x = -1703 by the datum
+chain, fell behind the edge of the modeled floor pan: it counted for 5.7 % of
+the mass and for nothing in stiffness. The stiffness values already published
+were right — removing this cross member gives back exactly the published
+2442 N.m/deg — but the masses, hence the specific stiffnesses, were understated.
+Details and consequences in `fea/README.md`.
+
+None of these figures is a 964 stiffness, and the fact that the model ignores
+bonded glazing, doors and panel openings works precisely in the direction that
+flatters the closed ring.

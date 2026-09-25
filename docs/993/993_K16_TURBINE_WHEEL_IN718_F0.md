@@ -11,6 +11,27 @@ centrifugal disc check but fails at the blade root, at the thermal gradient and
 at the selected temperature envelope. Nothing in this dossier authorizes
 manufacturing or rotation.
 
+```mermaid
+flowchart LR
+  S["Published: 54.96/48.97 mm,<br/>twelve blades, 8.42 mm shaft"] --> H["Assumptions: 20 mm envelope,<br/>disc, hub, 2.4 → 0.8 mm blades"]
+  H --> G["F0 BREP valid<br/>IN718, 139.17 g"]
+  G --> D["Disc at overspeed<br/>ratio 2.022: passes"]
+  G --> B["Blade root<br/>ratio 1.233: fail"]
+  G --> T["Thermal bound<br/>ratio 0.566: fail"]
+  G --> P["LPBF print screen<br/>roll_y_45, 40 µm"]
+  B --> V["F0 rejected<br/>prohibited from manufacturing,<br/>rotation, turbo and engine use"]
+  T --> V
+  P --> V
+  class S ok
+  class H,D,P open
+  class B,T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Facts and assumptions
 
 TurboMaster links the right-hand K16 `5316-988-6735` of the 993 Turbo to the

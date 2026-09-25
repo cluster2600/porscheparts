@@ -1,157 +1,154 @@
-# M64 — conversion duale globale exécutée, puis rejetée
+# M64 — global dual conversion executed, then rejected
 
-**La conversion duale du dernier maillage gaz aggrave sa qualité : dix
-contrôles OpenFOAM échouent contre cinq avant conversion. Une cellule a un
-volume négatif. Le candidat est rejeté, sans solveur physique exécuté.**
-La [source précédente](M64_SHORT_EDGE_CORRECTION_20260909.md) est conservée
-inchangée ; elle reste elle-même non admissible à la CFD. Aucun changement
-de forme de culasse, gain thermique, puissance ou aptitude LPBF n'est acquis.
+**The dual conversion of the latest gas mesh worsens its quality: ten
+OpenFOAM checks fail versus five before conversion. One cell has a negative
+volume. The candidate is rejected, with no physical solver run.**
+The [previous source](M64_SHORT_EDGE_CORRECTION_20260909.md) is kept
+unchanged; it itself remains inadmissible for CFD. No change of cylinder head
+shape, thermal gain, power or LPBF suitability is established.
 
-## Essai et environnement réels
+## Actual trial and environment
 
-Un seul essai global utilise `polyDualMesh` de **Foundation 14,
-commit `7b05503f98a85be88af930df48623b4d152bfc35`**, avec angle de détection
-des plis de frontière de 0°. Ce n'est pas l'ancien témoin rectangulaire de
-1 768 tétraèdres testé à 60°, ni une répétition de la contraction locale.
-Toute la discrétisation hybride est transformée, pas seulement ses tétraèdres.
+A single global trial uses `polyDualMesh` from **Foundation 14,
+commit `7b05503f98a85be88af930df48623b4d152bfc35`**, with a boundary feature
+detection angle of 0°. This is not the old rectangular control case of 1,768
+tetrahedra tested at 60°, nor a repeat of the local contraction. The whole
+hybrid discretization is transformed, not only its tetrahedra.
 
-Le [code primaire de polyDualMesh](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/applications/utilities/mesh/manipulation/polyDualMesh/polyDualMesh.C)
-utilise cet angle pour détecter les arêtes de frontière. **0° ne garantit
-ni déplacement nul ni préservation exacte du domaine discret.** Les options
-`splitAllFaces` et `concaveMultiCells` ne sont pas activées. La première
-changerait notamment la multiplicité des faces entre cellules ; elle n'est
-pas une correction automatique aux critères de qualité.
+The [primary polyDualMesh code](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/applications/utilities/mesh/manipulation/polyDualMesh/polyDualMesh.C)
+uses this angle to detect boundary edges. **0° guarantees neither zero
+displacement nor exact preservation of the discrete domain.** The options
+`splitAllFaces` and `concaveMultiCells` are not enabled. The first would in
+particular change the multiplicity of faces between cells; it is not an
+automatic fix for the quality criteria.
 
-Commandes effectivement exécutées, exclusivement sur une copie privée :
+Commands actually executed, exclusively on a private copy:
 
 ```sh
 polyDualMesh -case /output/case-01 -noFunctionObjects 0
 checkMesh -case /output/case-01 -constant -noFunctionObjects -allTopology -allGeometry -writeSets
 ```
 
-Le maillage sauvegardé dans `constant/polyMesh` est relu à précision 17.
-Les fonctions de post-traitement sont désactivées ; aucun faux champ de
-pression ou de température n'est créé pour faire passer le diagnostic.
+The mesh saved in `constant/polyMesh` is reread at precision 17. The
+post-processing functions are disabled; no fake pressure or temperature field
+is created to make the diagnostic pass.
 
-La zone homogène `air` est vérifiée puis archivée sur la copie avant la
-conversion. Après conversion, sa liste complète est reconstruite depuis
-`owner` **et** `neighbour` : labels non négatifs, ordre des voisins, couverture
-exacte de `0…N−1`, compte de faces cohérent. Aucun identifiant de cellule
-primaire n'est réutilisé comme identifiant dual. Cette reconstruction de
-métadonnées ne modifie pas les cinq fichiers de géométrie/connectivité.
+The homogeneous `air` zone is verified then archived on the copy before the
+conversion. After conversion, its full list is rebuilt from `owner` **and**
+`neighbour`: nonnegative labels, neighbor order, exact coverage of `0…N−1`,
+consistent face count. No primal cell identifier is reused as a dual
+identifier. This metadata reconstruction does not modify the five
+geometry/connectivity files.
 
-Kali existante ; image linux/amd64 `a233511b…` ; plafonds **4 CPU, 4 GiB,
-270 s actives / 300 s totales**. Réseau désactivé, source et scripts montés
-en lecture seule. Exécution et nettoyage : **15,653 s**, sans OOM ni timeout.
-Conteneur supprimé, absence contrôlée séparément. Empreintes des neuf fichiers
-source et du paquet inchangées. **Aucune nouvelle location ni dépense Vast
-pour cet essai** ; ce constat n'est pas un relevé du solde du compte.
+Existing Kali; linux/amd64 image `a233511b…`; caps of **4 CPUs, 4 GiB, 270 s
+active / 300 s total**. Network disabled, source and scripts mounted
+read-only. Execution and cleanup: **15.653 s**, with no OOM and no timeout.
+Container deleted, absence checked separately. Digests of the nine source
+files and of the package unchanged. **No new Vast rental or spending for this
+trial**; this observation is not a reading of the account balance.
 
-## Résultat natif : rejet, même si les processus terminent avec le code 0
+## Native result: rejection, even though the processes end with code 0
 
-| Contrôle | Source conservée | Candidat dual rejeté |
+| Check | Kept source | Rejected dual candidate |
 |---|---:|---:|
-| Cellules | 785 472 | 223 154 |
-| Points | 223 154 | 1 148 120 |
-| Faces | 1 688 422 | 1 486 723 |
-| Familles de contrôles en échec | 5 | 10 |
-| Cellules à volume nul ou négatif | 0 | 1 |
-| Cellules concaves | 0 | 120 190 |
-| Faces distinctes mal orientées, ensemble natif | 0 | 136 326 |
-| Faces à décomposition tétraédrique refusée, ensemble natif | 0 | 171 982 |
-| Faible déterminant | 1 961 | 214 |
-| Faible poids d'interpolation | 1 229 | 172 |
-| Faces trop obliques | 18 | 435 |
-| Non-orthogonalité maximale | 89,953° | 131,986° |
+| Cells | 785,472 | 223,154 |
+| Points | 223,154 | 1,148,120 |
+| Faces | 1,688,422 | 1,486,723 |
+| Failed check families | 5 | 10 |
+| Cells with zero or negative volume | 0 | 1 |
+| Concave cells | 0 | 120,190 |
+| Distinct wrongly oriented faces, native set | 0 | 136,326 |
+| Faces with rejected tetrahedral decomposition, native set | 0 | 171,982 |
+| Low determinant | 1,961 | 214 |
+| Low interpolation weight | 1,229 | 172 |
+| Faces too skewed | 18 | 435 |
+| Maximum non-orthogonality | 89.953° | 131.986° |
 
-Le volume négatif minimal vaut `−2.5433742853495796e−12` unité maillée³.
-L'échelle reste non certifiée. Les champs génériques de volume du lecteur
-historique restent `unknown` pour cette branche de journal ; ils ne sont
-pas remplacés par zéro. La valeur négative est lue explicitement dans le
-journal natif épinglé.
+The minimum negative volume is `−2.5433742853495796e−12` mesh unit³. The
+scale remains uncertified. The generic volume fields of the historical reader
+remain `unknown` for this log branch; they are not replaced by zero. The
+negative value is read explicitly in the pinned native log.
 
-Le journal compte 136 329 occurrences d'erreur de pyramide de face, mais
-écrit **136 326 faces distinctes** dans l'ensemble. De même, 343 108
-occurrences de décomposition refusée donnent **171 982 faces distinctes**.
-Les tableaux utilisent les tailles des ensembles, sans confondre occurrences,
-faces et tétraèdres. Les 15 entrées `shortEdges` sont des **points**, pas
-un nombre d'arêtes.
+The log counts 136,329 occurrences of the face pyramid error, but writes
+**136,326 distinct faces** in the set. Likewise, 343,108 occurrences of
+rejected decomposition give **171,982 distinct faces**. The tables use the
+set sizes, without confusing occurrences, faces and tetrahedra. The 15
+`shortEdges` entries are **points**, not a number of edges.
 
-Les compteurs avant/après ne reposent pas sur une correspondance individuelle
-des cellules entre les deux discrétisations. Les gains isolés de déterminant
-ou de poids ne compensent pas les volumes négatifs et les défauts nouveaux.
-Une région connectée et des noms de patches conservés ne prouvent pas
-l'équivalence géométrique du domaine.
+The before/after counters do not rest on an individual cell correspondence
+between the two discretizations. The isolated gains in determinant or weight
+do not offset the negative volumes and the new defects. A connected region
+and kept patch names do not prove the geometric equivalence of the domain.
 
-## Contre-vérification et décision
+## Cross-check and decision
 
-L'auditeur indépendant relit effectivement les deux frontières : **143,209 s
-murales, 142,067 s CPU, pic mémoire 879,9 Mo**, entrées inchangées. Il retrouve
-la fermeture orientée des arêtes et les liens des sommets, ainsi que les
-noms, types et métadonnées des trois patches. Cependant, le candidat comporte
-**375 polygones non convexes dans la projection contrôlée et 271 éventails
-de triangulation invalides**.
+The independent auditor actually rereads both boundaries: **143.209 s wall
+clock, 142.067 s CPU, peak memory 879.9 MB**, inputs unchanged. It finds the
+oriented closure of the edges and the vertex links, as well as the names,
+types and metadata of the three patches. However, the candidate has **375
+non-convex polygons in the checked projection and 271 invalid triangulation
+fans**.
 
-La comparaison exacte des coordonnées retrouve 82 400 des 83 526 anciens
-points uniques de frontière : 1 126 sont absents et 280 248 sont nouveaux.
-Ces nombres décrivent une nouvelle discrétisation ; ils ne constituent pas
-à eux seuls une preuve de différence, ni d'identité, du domaine continu.
+The exact comparison of coordinates finds 82,400 of the 83,526 former unique
+boundary points: 1,126 are missing and 280,248 are new. These numbers describe
+a new discretization; they do not by themselves constitute evidence of a
+difference, or of identity, of the continuous domain.
 
-Le résidu maximal de planéité vaut `0.0024871448012475667` unité maillée sur
-le candidat, contre `1.3099984372445823e−13` sur la source. Le test exact
-signale aussi 50 239 polygones non strictement plans dans la source : ce
-diagnostic des nombres sérialisés n'est **pas un seuil d'acceptation CFD**
-ni une raison de modifier la CAO. La projection et l'éventail depuis le
-premier sommet sont des conventions déclarées de mesure.
+The maximum planarity residual is `0.0024871448012475667` mesh unit on the
+candidate, versus `1.3099984372445823e−13` on the source. The exact test also
+reports 50,239 non-strictly-planar polygons in the source: this diagnostic of
+serialized numbers is **not a CFD acceptance threshold** nor a reason to
+modify the CAD. The projection and the fan from the first vertex are declared
+measurement conventions.
 
-Le delta de volume calculé par cet éventail est très petit
-(`−2.168404344971009e−19` unité maillée³), mais ne prouve ni équivalence
-géométrique ni positivité des volumes natifs. Aucune distance échantillonnée,
-borne Hausdorff ou correspondance volumique des cellules n'est revendiquée.
-Les dix échecs natifs restent bloquants indépendamment de cet audit.
+The volume delta computed by this fan is very small
+(`−2.168404344971009e−19` mesh unit³), but proves neither geometric
+equivalence nor positivity of the native volumes. No sampled distance,
+Hausdorff bound or cell volume correspondence is claimed. The ten native
+failures remain blocking independently of this audit.
 
-Le premier audit s'était arrêté sur une variante ASCII multiligne des grandes
-faces produites par OpenFOAM. Ce refus et son reçu sont conservés. Une
-correction limitée au lecteur, avec cinq tests de régression supplémentaires,
-permet le second audit sans modifier les prédicats géométriques. Les **31
-tests purs ciblés** passent : neuf contrôles du worker, cinq de nettoyage
-et dix-sept de l'auditeur. Ce sont des vérifications logicielles, pas des
-essais physiques. Le reçu natif figé garde son champ « audit en attente »
-historique ; le reçu indépendant postérieur est lié séparément.
+The first audit had stopped on a multiline ASCII variant of the large faces
+produced by OpenFOAM. That rejection and its receipt are kept. A fix limited
+to the reader, with five additional regression tests, enables the second
+audit without modifying the geometric predicates. The **31 targeted pure
+tests** pass: nine worker checks, five cleanup checks and seventeen auditor
+checks. These are software verifications, not physical tests. The frozen
+native receipt keeps its historical "audit pending" field; the later
+independent receipt is linked separately.
 
-`make check` complet termine avec le code 0. Les vérifications natives
-optionnelles sautées faute de runtime ne sont pas comptées comme réussies.
-Ce résultat vérifie le dépôt ; il ne change pas le rejet du maillage réel.
+A full `make check` ends with code 0. The optional native verifications
+skipped for lack of runtime are not counted as passed. This result verifies
+the repository; it does not change the rejection of the real mesh.
 
 ```mermaid
 flowchart TD
-    A["Source gaz figée : cinq contrôles refusés"] --> B["Copie privée et conversion duale globale à 0°"]
-    B --> C["Reconstruction contrôlée de la zone air"]
-    C --> D["checkMesh : dix contrôles refusés, un volume négatif"]
-    B --> E["Audit indépendant de la frontière"]
-    D --> F["Candidat rejeté : aucune promotion"]
+    A["Frozen gas source: five checks rejected"] --> B["Private copy and global dual conversion at 0°"]
+    B --> C["Checked reconstruction of the air zone"]
+    C --> D["checkMesh: ten checks rejected, one negative volume"]
+    B --> E["Independent boundary audit"]
+    D --> F["Candidate rejected: no promotion"]
     E --> F
-    F --> G["Source précédente conservée, toujours non admissible"]
+    F --> G["Previous source kept, still inadmissible"]
 ```
 
-Le [registre des preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-clé `gas_global_dual_rejection`, lie le manifeste, les scripts, les journaux,
-les empreintes des deux maillages et le nettoyage. Les géométries et les
-ensembles d'identifiants privés ne sont pas publiés.
+The [evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+key `gas_global_dual_rejection`, binds the manifest, the scripts, the logs,
+the digests of both meshes and the cleanup. The geometries and the private
+identifier sets are not published.
 
-La prochaine piste retenue est une **agglomération conservatrice du maillage
-primal, pilotée par la qualité**, sans nouveau dual ni abaissement des seuils.
-Elle doit examiner des groupes voisins disjoints, y compris les transitions
-pyramides/tétraèdres que l'utilitaire tétraédrique actuel ne traite pas.
-Préconditions avant un nouveau lot natif : unions admissibles, coordonnées
-et facettes externes conservées, bilan de volumes contrôlé, puis qualité de
-toutes les faces voisines et correspondance des ensembles de défauts.
-**Cette extension n'est pas encore exécutée** ; les précédentes fusions
-tétra/tétra ne prouvent pas qu'elle résoudra tous les défauts.
+The next avenue retained is a **conservative, quality-driven agglomeration of
+the primal mesh**, with no new dual and no lowering of thresholds. It must
+examine disjoint neighboring groups, including the pyramid/tetrahedron
+transitions that the current tetrahedral utility does not handle.
+Preconditions before a new native batch: admissible unions, external
+coordinates and facets kept, checked volume balance, then quality of all
+neighboring faces and correspondence of the defect sets. **This extension is
+not yet executed**; the earlier tet/tet merges do not prove that it will
+resolve all defects.
 
-La stack de la photo conserve les rôles du
-[plan multiphysique](M64_MULTIPHYSICS_EXECUTION.md#précision-du-9-septembre--calcul-ia-et-banc-séparés) :
-OpenFOAM pour les fluides/CHT selon modèle, Elmer comme candidat thermique et
-mécanique indépendant, PhysicsNeMo après calculs admissibles et évaluation,
-Ditto/Mosquitto pour l'état et la télémétrie d'un futur banc. Ce pilote
-n'exécute aucun couplage nouveau entre ces logiciels.
+The stack in the photo keeps the roles of the
+[multiphysics plan](M64_MULTIPHYSICS_EXECUTION.md#précision-du-9-septembre--calcul-ia-et-banc-séparés):
+OpenFOAM for fluids/CHT depending on the model, Elmer as an independent
+thermal and mechanical candidate, PhysicsNeMo after admissible computations
+and evaluation, Ditto/Mosquitto for the state and telemetry of a future
+bench. This pilot runs no new coupling between these programs.

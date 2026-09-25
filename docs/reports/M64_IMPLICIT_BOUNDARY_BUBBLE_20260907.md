@@ -1,167 +1,178 @@
-# Audit d'une déformation à bords conservés — 7 septembre 2026
+# Audit of a boundary-preserving deformation — September 7, 2026
 
-## Résultat : champ initial rejeté, localisation numérique prometteuse
+```mermaid
+flowchart LR
+  A["Field with all<br/>exponents = 2"] --> B["Max 3.285 > limit 1"]
+  B --> R["Rejected before CAD"]
+  A --> C["Localized search<br/>14,641 combinations, 60 s"]
+  C --> D["(6, 2, 7, 12)<br/>sampled max 0.850141"]
+  D --> E["Mathematical candidate only<br/>field_accepted = false"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class R stop;
+  class E open;
+```
 
-Le premier champ à exposants tous égaux à 2 est rejeté. Une recherche
-numérique distincte, ensuite autorisée et limitée à 60 secondes, trouve un
-champ localisé dont le maximum échantillonné vaut **0,850141**, inférieur
-à la limite 1. Il reste un **candidat mathématique**, pas une CAO acceptée :
-ni le corridor continu ni un solide modifié ne sont encore contrôlés.
+## Result: initial field rejected, promising numerical localization
 
-**Suite de cet audit :** le champ 12 × 23 a été construit puis rejeté ;
-un candidat de moindre degré 10 × 11 a ensuite franchi les contrôles CAO
-locaux. Voir le [dossier consolidé de réparation Bernstein](M64_LOCAL_BERNSTEIN_REPAIR_20260907.md).
-Le présent document conserve les résultats et limites de l'étape numérique
-initiale.
+The first field, with all exponents equal to 2, is rejected. A separate
+numerical search, then authorized and limited to 60 seconds, finds a localized
+field whose sampled maximum is **0.850141**, below the limit of 1. It remains
+a **mathematical candidate**, not accepted CAD: neither the continuous corridor
+nor a modified solid is checked yet.
 
-## Premier champ rejeté avant construction CAO
+**Follow-up to this audit:** the 12 × 23 field was built and then rejected;
+a lower-degree 10 × 11 candidate then passed the local CAD checks. See the
+[consolidated Bernstein repair dossier](M64_LOCAL_BERNSTEIN_REPAIR_20260907.md).
+The present document keeps the results and limits of the initial numerical
+step.
 
-L'audit exploite la **vraie face bilinéaire du STEP privé F53** et sa surface
-voisine cylindrique. Il ne crée pas de géométrie de substitution. Le champ
-testé peut conserver les cinq limites de manière analytique, mais il atteint
-**3,285 unités du scan** à l'intérieur de la face découpée, alors que la
-limite imposée pour cet essai est **1 unité**. Il est donc rejeté : aucun
-nouveau patch, solide, STEP ou résultat physique n'est produit par cet audit.
+## First field rejected before CAD construction
 
-La provenance reste une reconstruction de recherche issue du scan 935,
-pas une culasse M64 dimensionnellement validée. Les unités du scan ne sont
-pas assimilées à des millimètres certifiés.
+The audit uses the **real bilinear face of the private F53 STEP** and its
+neighboring cylindrical surface. It creates no substitute geometry. The tested
+field can preserve the five boundaries analytically, but it reaches **3.285
+scan units** inside the trimmed face, while the limit imposed for this trial is
+**1 unit**. It is therefore rejected: no new patch, solid, STEP or physical
+result is produced by this audit.
 
-## Hypothèse mathématique vérifiée sur la source
+The provenance remains a research reconstruction from the 935 scan, not a
+dimensionally validated M64 cylinder head. Scan units are not treated as
+certified millimeters.
 
-Quatre limites sont isoparamétriques. La cinquième, non isoparamétrique,
-est partagée avec une **surface cylindrique analytique OCCT**, identifiée
-par l'arête topologique commune ; il ne s'agit pas d'un cylindre ajusté à
-une image. Les coordonnées, indices de faces et paramètres restent privés.
+## Mathematical hypothesis verified on the source
 
-Pour la surface source bilinéaire `S0(u,v)`, avec `u,v` normalisés :
+Four boundaries are isoparametric. The fifth, non-isoparametric, is shared
+with an **OCCT analytic cylindrical surface**, identified by the common
+topological edge; it is not a cylinder fitted to an image. The coordinates,
+face indices and parameters remain private.
+
+For the bilinear source surface `S0(u,v)`, with `u,v` normalized:
 
 ```text
-F(X) = distance(X, axe du cylindre)^2 / rayon^2 - 1
+F(X) = distance(X, cylinder axis)^2 / radius^2 - 1
 E(u,v) = u(1-u)v(1-v)
 D(u,v) = C E(u,v)^2 F(S0(u,v))^2
 S1(u,v) = S0(u,v) + D(u,v) n
 ```
 
-`n` est la direction du déplacement précédemment testé vers le passage
-d'air. `C` impose `D = 0,85` au même point cible. Le polynôme a un bidegré
-au plus `8 × 8` : aucune interpolation `BRepFill` n'est utilisée.
+`n` is the direction of the previously tested displacement toward the air
+passage. `C` imposes `D = 0.85` at the same target point. The polynomial has a
+bidegree of at most `8 × 8`: no `BRepFill` interpolation is used.
 
-Les facteurs carrés imposent, en arithmétique exacte, une valeur et un
-gradient nuls sur les quatre bords iso et sur `F = 0`. Cela conserverait la
-surface et ses dérivées **le long de ces limites de la surface source** ;
-ce n'est pas une affirmation de continuité G1 initiale de tout l'assemblage.
-Les courbes OCCT sont évaluées numériquement, donc les résidus sont mesurés
-séparément, sans les déclarer exactement nuls.
+The squared factors impose, in exact arithmetic, zero value and zero gradient
+on the four iso edges and on `F = 0`. This would preserve the surface and its
+derivatives **along these boundaries of the source surface**; it is not a
+claim of initial G1 continuity of the whole assembly. The OCCT curves are
+evaluated numerically, so the residuals are measured separately, without
+declaring them exactly zero.
 
-## Contrôles effectivement exécutés
+## Checks actually run
 
-- Projection du point cible sur la surface source : erreur `7,11e-15` unité.
-- Au point cible : `F = 7,25825`, `E²F² = 0,0845102`, `C = 10,0580`.
-  La normalisation n'est donc pas proche du seuil de singularité `1e-20`.
-- Sur **121 points de la découpe cylindrique** : `|F|max = 1,63e-9`,
-  `|D|max = 1,28e-18` unité ; dérivées normalisées maximales
-  `1,66e-11` en U et `4,04e-11` en V.
-- Sur **121 points de chacun des quatre bords iso** : `|D|max ≤ 8,42e-13`,
-  dérivées normalisées maximales `7,67e-12`.
+- Projection of the target point onto the source surface: error `7.11e-15` unit.
+- At the target point: `F = 7.25825`, `E²F² = 0.0845102`, `C = 10.0580`.
+  The normalization is therefore not close to the singularity threshold `1e-20`.
+- On **121 points of the cylindrical trim**: `|F|max = 1.63e-9`,
+  `|D|max = 1.28e-18` unit; maximum normalized derivatives
+  `1.66e-11` in U and `4.04e-11` in V.
+- On **121 points of each of the four iso edges**: `|D|max ≤ 8.42e-13`,
+  maximum normalized derivatives `7.67e-12`.
 
-La sélection du domaine de la face utilise `BRepClass_FaceClassifier` sur
-les paramètres de la surface originale, en conservant les états `IN/ON`.
-Les points hors de la découpe ne contribuent pas aux maxima ci-dessous.
+The selection of the face domain uses `BRepClass_FaceClassifier` on the
+parameters of the original surface, keeping the `IN/ON` states.
+Points outside the trim do not contribute to the maxima below.
 
-| Grille du domaine paramétrique | Points retenus dans la face | `max(abs(D))`, unités du scan | `max(abs(∂D/∂u))` | `max(abs(∂D/∂v))` |
+| Parametric domain grid | Points kept in the face | `max(abs(D))`, scan units | `max(abs(∂D/∂u))` | `max(abs(∂D/∂v))` |
 |---|---:|---:|---:|---:|
-| 41 × 41 | 1 597 | 3,27694 | 13,5117 | 18,6932 |
-| 81 × 81 | 6 250 | 3,28468 | 13,5881 | 18,6938 |
+| 41 × 41 | 1,597 | 3.27694 | 13.5117 | 18.6932 |
+| 81 × 81 | 6,250 | 3.28468 | 13.5881 | 18.6938 |
 
-Les dérivées sont par unité de paramètre normalisé, pas des pentes
-dimensionnelles. Le rapport de projection du produit vectoriel des
-dérivées déformées sur celui de la source reste positif aux points testés
-(minimum `0,825486`). **Cela n'est pas un contrôle global d'auto-intersection**
-et ne compense pas le dépassement d'amplitude.
+The derivatives are per unit of normalized parameter, not dimensional slopes.
+The projection ratio of the cross product of the deformed derivatives onto
+that of the source remains positive at the tested points (minimum `0.825486`).
+**This is not a global self-intersection check** and does not compensate for
+the amplitude overshoot.
 
-La conversion des coefficients en base de Bernstein donne `11,9944`
-comme maximum absolu de coefficients sur le rectangle paramétrique entier.
-Cette borne flottante n'est pas arrondie par intervalles et concerne aussi
-la partie non retenue par le rognage : elle n'est pas présentée comme une
-borne certifiée du maximum sur la face. Les deux grilles ne constituent
-pas non plus une démonstration de convergence ou un maximum global.
-**Un seul point intérieur au-delà de 1 suffit néanmoins à rejeter ce champ.**
+Converting the coefficients to the Bernstein basis gives `11.9944` as the
+absolute maximum of the coefficients over the entire parametric rectangle.
+This floating-point bound is not rounded by intervals and also concerns the
+part not kept by the trimming: it is not presented as a certified bound of the
+maximum on the face. The two grids are not a demonstration of convergence or a
+global maximum either. **A single interior point beyond 1 is nevertheless
+enough to reject this field.**
 
-## Reproductibilité et intégrité
+## Reproducibility and integrity
 
-Script : `twins/m64-cylinder-head/audit_transition_implicit_constraint.py`.
-Quatre tests unitaires vérifient le produit et la dérivation polynomiale,
-l'annulation d'un facteur de bord, l'élévation linéaire vers Bernstein et
-la normalisation/recherche bornée sur un champ symétrique synthétique.
-Ils ne remplacent pas l'audit natif de la CAO.
+Script: `twins/m64-cylinder-head/audit_transition_implicit_constraint.py`.
+Four unit tests check the polynomial product and derivation, the vanishing of
+an edge factor, the linear elevation to Bernstein and the normalization/bounded
+search on a synthetic symmetric field. They do not replace the native CAD audit.
 
-Exécution réelle dans OCP sur Kali, limitée à deux CPU, 4 Gio et 300 s.
-Rapport privé :
+Real run in OCP on Kali, limited to two CPUs, 4 GiB and 300 s.
+Private report:
 
 ```text
 /tmp/917-f50/out/m64-implicit-bubble-audit-20260907.json
 SHA-256 55548191758d4bd9279d2057a80f787e1892a0114df01331fa43dbd7f12fecda
 ```
 
-Le maître reste inchangé :
+The master remains unchanged:
 `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`.
-Le rapport est laissé intact ; la protection contre la division par zéro
-du script a ensuite été déplacée avant le calcul de `C`, sans changement
-de la formule ni du résultat non singulier consigné ici.
+The report is left intact; the script's division-by-zero protection was later
+moved before the computation of `C`, without changing the formula or the
+non-singular result recorded here.
 
-## Recherche numérique de localisation, sans construction CAO
+## Numerical localization search, without CAD construction
 
-L'option `--localized-search` remplace le facteur de bord par
-`u^p (1-u)^q v^r (1-v)^s`, toujours multiplié par `F²`, avec chaque exposant
-entier entre 2 et 12. Les **14 641 combinaisons** sont comparées sur les
-6 250 points retenus de la grille 81 × 81. La normalisation au point cible
-reste fixée à 0,85 ; le critère maximal reste 1. Il n'y a ni relaxation du
-seuil, ni déplacement du point, ni nouveau cylindre ajusté.
+The `--localized-search` option replaces the edge factor with
+`u^p (1-u)^q v^r (1-v)^s`, still multiplied by `F²`, with each integer
+exponent between 2 and 12. The **14,641 combinations** are compared on the
+6,250 kept points of the 81 × 81 grid. The normalization at the target point
+stays fixed at 0.85; the maximum criterion stays 1. There is no relaxation of
+the threshold, no displacement of the point, no new fitted cylinder.
 
-La meilleure combinaison sur cette grille est **(6, 2, 7, 12)**.
-Son maximum est ensuite contrôlé sur une grille plus fine de la même face :
+The best combination on this grid is **(6, 2, 7, 12)**.
+Its maximum is then checked on a finer grid of the same face:
 
-| Grille | Points retenus | `max(abs(D))` | Rapport d'orientation minimal |
+| Grid | Points kept | `max(abs(D))` | Minimum orientation ratio |
 |---|---:|---:|---:|
-| 81 × 81 | 6 250 | 0,849251 | 0,982683 |
-| 161 × 161 | 24 732 | 0,850141 | 0,982592 |
+| 81 × 81 | 6,250 | 0.849251 | 0.982683 |
+| 161 × 161 | 24,732 | 0.850141 | 0.982592 |
 
-Le point cible a exactement la valeur prescrite dans la formule, même
-lorsqu'il n'appartient pas à la grille ; le maximum grossier inférieur
-à 0,85 n'est donc pas une borne globale. Les maxima des dérivées sur la
-grille fine valent 6,81980 en U et 4,99246 en V. Aucun renversement local
-d'orientation n'est observé aux points échantillonnés. Ce contrôle n'exclut
-ni un maximum entre les points, ni une collision avec une autre face.
+The target point has exactly the value prescribed in the formula, even when it
+does not belong to the grid; the coarse maximum below 0.85 is therefore not a
+global bound. The maxima of the derivatives on the fine grid are 6.81980 in U
+and 4.99246 in V. No local orientation reversal is observed at the sampled
+points. This check excludes neither a maximum between the points nor a
+collision with another face.
 
-Le bidegré polynomial nécessaire est au plus **12 × 23**. Le facteur au
-point cible vaut `1,70801e-6`, donc `C = 497 654,8`. Ce grand coefficient est
-une mise à l'échelle, pas une mesure suffisante du conditionnement numérique.
-La recherche évalue des facteurs positifs normalisés ; elle ne développe
-pas ce polynôme de degré 23 en base de puissances. Une éventuelle conversion
-vers des pôles Bernstein doit encore être contrôlée numériquement. Les
-composantes de `∇log(D)` au point cible valent `(0,0117811 ; 0,262300)` ;
-le point n'est pas un maximum stationnaire exactement imposé.
+The required polynomial bidegree is at most **12 × 23**. The factor at the
+target point is `1.70801e-6`, so `C = 497,654.8`. This large coefficient is a
+scaling, not a sufficient measure of numerical conditioning.
+The search evaluates normalized positive factors; it does not expand this
+degree-23 polynomial in the power basis. Any conversion to Bernstein poles
+must still be checked numerically. The components of `∇log(D)` at the target
+point are `(0.0117811; 0.262300)`; the point is not an exactly imposed
+stationary maximum.
 
-Les exposants tous supérieurs ou égaux à 2 conservent la propriété
-analytique de valeur et gradient nuls aux bords. Les résidus de courbes
-mesurés plus haut concernent le premier champ ; aucun nouveau contrôle
-surfaces/arêtes d'un patch CAO localisé n'est prétendu.
+Exponents all greater than or equal to 2 preserve the analytic property of
+zero value and gradient at the edges. The curve residuals measured above
+concern the first field; no new surface/edge check of a localized CAD patch is
+claimed.
 
-Exécution native bornée à deux CPU et **60 secondes**, terminée avec
-`exit 0`, sans STEP généré. Rapport privé distinct, premier rapport conservé :
+Native run bounded to two CPUs and **60 seconds**, finished with `exit 0`,
+with no STEP generated. Separate private report, first report kept:
 
 ```text
 /tmp/917-f50/out/m64-localized-implicit-bubble-audit-20260907.json
 SHA-256 458cac4e13d5f5569c324f5ed98cb65c50c634dc6c386cc407eab60e8cf87977
 ```
 
-Le SHA du maître a de nouveau été vérifié inchangé après la recherche.
-`field_accepted` et `cad_construction_authorized` restent faux dans le
-rapport. La localisation passe seulement les critères **échantillonnés**
-d'amplitude et d'orientation ; elle doit encore franchir les contrôles de
-corridor, de conversion et de noyau CAO, puis les rayons appariés.
+The master's SHA was again verified unchanged after the search.
+`field_accepted` and `cad_construction_authorized` remain false in the report.
+The localization passes only the **sampled** amplitude and orientation
+criteria; it must still pass the corridor, conversion and CAD kernel checks,
+then the matched radii.
 
-Aucune simulation thermique, calcul de résistance ou qualification LPBF
-n'est prétendu par cette étape. La fabrication et le montage moteur restent
-interdits.
+No thermal simulation, strength calculation or LPBF qualification is claimed
+by this step. Manufacturing and engine installation remain prohibited.

@@ -1,235 +1,227 @@
-# M64 — volume d'air et exécution OpenFOAM
+# M64 — air volume and OpenFOAM execution
 
-Suite documentée : [corps réellement évidé et raffinement local du maillage](M64_CORPS_ADMISSION_MAILLAGE_20260908.md).
-Les diagnostics historiques de normales CAO ci-dessous ne sont pas une
-preuve retenue : une erreur d'appariement de projection a été corrigée et
-explicitement retracée dans le nouveau reçu. Les résultats d'aire et de
-distance obtenus indépendamment de cet appariement restent distincts.
+Documented follow-up: [actually hollowed body and local mesh refinement](M64_CORPS_ADMISSION_MAILLAGE_20260908.md).
+The historical CAD normal diagnostics below are not retained evidence: a
+projection matching error was corrected and explicitly traced in the new
+receipt. The area and distance results obtained independently of this
+matching remain separate.
 
-## Ce qui fonctionne effectivement
+## What actually works
 
-La chaîne **Gmsh → OpenFOAM Foundation 14 → solveur compressible `fluid`**
-a exécuté 20 itérations sur un conduit rectangulaire témoin. L'import, la
-conversion d'unités, les trois frontières et `checkMesh -allTopology
--allGeometry` passent sur ses 325 hexaèdres. Chaque commande s'est terminée
-avec un code de sortie observé de 0.
+The chain **Gmsh → OpenFOAM Foundation 14 → compressible solver `fluid`**
+ran 20 iterations on a rectangular control duct. The import, the unit
+conversion, the three boundaries and `checkMesh -allTopology -allGeometry`
+pass on its 325 hexahedra. Each command ended with an observed exit code of 0.
 
-**Ce témoin n'est pas la culasse.** Il vérifie les interfaces logicielles et
-les conditions de banc préparées, pas le débit de la pièce. Le débit évolue
-encore à l'arrêt ; aucune convergence n'est revendiquée. Les 20 itérations
-stationnaires ne représentent pas 20 secondes de fonctionnement moteur.
-Le [reçu d'exécution](../../twins/m64-cylinder-head/evidence/intake-openfoam-runtime-smoke-20260908.json)
-conserve les empreintes des sources, des journaux et les essais rejetés.
+**This control case is not the cylinder head.** It verifies the software
+interfaces and the prepared bench conditions, not the flow rate of the part.
+The flow rate is still changing at the stop; no convergence is claimed. The 20
+steady iterations do not represent 20 seconds of engine operation.
+The [execution receipt](../../twins/m64-cylinder-head/evidence/intake-openfoam-runtime-smoke-20260908.json)
+keeps the digests of the sources, of the logs and the rejected trials.
 
-Les conditions sont celles du [pilote d'admission](M64_ADMISSION_CHAMBRE_20260908.md) :
-pression totale d'entrée 101 325 Pa, température totale 293,15 K et pression
-statique de sortie 94 350,51052 Pa. Le gaz est parfait, le calcul résout
-l'énergie et utilise k–ω SST. L'intensité turbulente de 5 % et la longueur
-de mélange de 3 mm sont des hypothèses à étudier, pas des mesures. Les parois
-adiabatiques de ce banc froid **ne calculent pas la dissipation thermique
-de la culasse**.
+The conditions are those of the [intake pilot](M64_ADMISSION_CHAMBRE_20260908.md):
+total inlet pressure 101,325 Pa, total temperature 293.15 K and static outlet
+pressure 94,350.51052 Pa. The gas is ideal, the computation solves energy and
+uses k–ω SST. The turbulence intensity of 5% and the mixing length of 3 mm are
+assumptions to be studied, not measurements. The adiabatic walls of this cold
+bench **do not compute the heat rejection of the cylinder head**.
 
-## Pourquoi le premier maillage tétraédrique n'a pas été accepté
+## Why the first tetrahedral mesh was not accepted
 
-Les 1 768 tétraèdres du premier témoin avaient des volumes positifs, une seule
-composante et des frontières orientées complètes. Néanmoins, OpenFOAM a
-signalé 92 cellules de mauvais déterminant pour ses opérateurs volumes finis.
-Un Jacobien de tétraèdre et ce contrôle de stencil volumes finis ne mesurent
-pas la même qualité. Le code de sortie 0 de `checkMesh` ne suffit pas : le
-pilote exige explicitement `Mesh OK.` et l'absence de contrôle échoué.
+The 1,768 tetrahedra of the first control case had positive volumes, a single
+component and complete oriented boundaries. Nevertheless, OpenFOAM reported 92
+cells with a bad determinant for its finite-volume operators. A tetrahedron
+Jacobian and this finite-volume stencil check do not measure the same quality.
+The exit code 0 of `checkMesh` is not enough: the pilot explicitly requires
+`Mesh OK.` and the absence of any failed check.
 
-La conversion duale a été essayée puis rejetée : une mauvaise décomposition
-de face et 139 cellules concaves subsistent. Aucun seuil n'a été desserré pour
-faire passer ce test. Le témoin hexaédrique qualifie l'exécution du logiciel,
-**pas une méthode de maillage prête pour les passages réels de la culasse**.
+The dual conversion was tried and then rejected: one bad face decomposition
+and 139 concave cells remain. No threshold was loosened to make this test
+pass. The hexahedral control case qualifies the execution of the software,
+**not a meshing method ready for the real passages of the cylinder head**.
 
-Deux incompatibilités de la version 14 ont aussi été corrigées et testées :
-le type du groupe de parois importé (`patch` vers `wall`, sans toucher les
-coordonnées ni la connectivité), et les objets de suivi natifs
-`volFieldValue` à la place de `fieldMinMax` absent de cette image.
+Two incompatibilities of version 14 were also corrected and tested: the type
+of the imported wall group (`patch` to `wall`, without touching coordinates or
+connectivity), and the native `volFieldValue` monitoring objects in place of
+`fieldMinMax`, which is absent from this image.
 
-## Domaine réel : opérations et preuve attendue
+## Real domain: operations and expected evidence
 
-Le domaine gazeux doit réunir les conduits, la chambre et le récepteur,
-puis exclure les **douze vrais composants** du module : soupapes, sièges et
-guides. Le récepteur Ø100 × 100 est un montage de banc supposé, pas le piston.
-La transformation du module est appliquée une seule fois ; l'hypothèse
-`1 unité de scan = 1 mm` ne certifie toujours pas les interfaces M64.
+The gas domain must join the ports, the chamber and the receiver, then
+exclude the **twelve real components** of the module: valves, seats and
+guides. The Ø100 × 100 receiver is an assumed bench fixture, not the piston.
+The module transformation is applied only once; the assumption
+`1 scan unit = 1 mm` still does not certify the M64 interfaces.
 
-L'inspection indépendante des composants a identifié les deux portées
-d'échappement fermées et les jeux guide/tige. Chaque annulaire de guide
-d'admission possède un jeu radial de 0,015 unité sur 35 unités. Une partie
-seulement est incluse dans le conduit brut : tronquer ce passage à sa sortie
-du conduit créerait une paroi fictive. L'extension complète est donc conservée.
-Sa fermeture haute sera une **condition de banc idéalisée**, identifiée dans
-les frontières, pas une nouvelle pièce ni un joint physique qualifié.
+The independent inspection of the components identified the two closed
+exhaust seat contacts and the guide/stem clearances. Each intake guide annulus
+has a radial clearance of 0.015 unit over 35 units. Only part of it is
+included in the raw port: truncating this passage where it leaves the port
+would create a fictitious wall. The full extension is therefore kept. Its top
+closure will be an **idealized bench condition**, identified in the
+boundaries, not a new part nor a qualified physical seal.
 
-La version `gas-domain-04` est rejetée : le volume avant soustraction est
-un solide valide ; après soustraction, il contient une micro-coque partageant
-des faces avec sa frontière principale. Le défaut natif est
-`BRepCheck_InvalidImbricationOfShells`, sans défaut individuel de face,
-d'arête ou de fil. Ce résultat n'est pas une cavité physique démontrée.
-Le diagnostic des constituants avant fusion ne retrouve aucune intersection
-volumique avec les sièges. Le défaut est ainsi localisé dans l'assemblage
-booléen, pas justifié comme une nouvelle forme mécanique.
+Version `gas-domain-04` is rejected: the volume before subtraction is a valid
+solid; after subtraction, it contains a micro-shell sharing faces with its
+main boundary. The native defect is `BRepCheck_InvalidImbricationOfShells`,
+with no individual face, edge or wire defect. This result is not a
+demonstrated physical cavity. The diagnostic of the constituents before
+fusion finds no volume intersection with the seats. The defect is thus
+located in the Boolean assembly, not justified as a new mechanical shape.
 
-La correction `gas-domain-05` utilise l'identité ensembliste
-`(union Ai) moins B = union (Ai moins B)` : soustraire les mêmes composants
-aux constituants avant leur union. Elle ne justifie ni d'omettre un siège,
-ni d'effacer une coque manuellement, ni de modifier une cote. Elle a rétabli
-un solide B-Rep valide, y compris après relecture native et STEP, en 45,81 s.
-Le [reçu de construction](../../twins/m64-cylinder-head/evidence/gas-domain-construction-20260908.json)
-conserve les versions rejetées et les résultats séparés. Les quatre faces
-coplanaires ont été attribuées aux sièges réels, dont elles recouvrent
-intégralement les surfaces ; le négatif de chambre n'est pas un matériau.
+The `gas-domain-05` correction uses the set identity
+`(union Ai) minus B = union (Ai minus B)`: subtract the same components from
+the constituents before their union. It does not justify omitting a seat,
+deleting a shell by hand, or changing a dimension. It restored a valid B-Rep
+solid, including after native and STEP rereading, in 45.81 s.
+The [construction receipt](../../twins/m64-cylinder-head/evidence/gas-domain-construction-20260908.json)
+keeps the rejected versions and the separate results. The four coplanar faces
+were attributed to the real seats, whose surfaces they cover completely; the
+chamber negative is not a material.
 
-Le contrôle BOP natif signale encore une arête B-spline C0 : trois positions
-sont continues, avec des angles tangents de 0,622°, 6,964° et 16,764°. Il ne
-s'agit pas seulement d'un angle entre deux faces. Deux petits tronçons ont
-des longueurs numériques de 0,000239 et 0,000049 unité, très inférieures à
-la taille minimale de maille de ce pilote. Ils ne sont ni supprimés ni lissés.
-Leur représentation par le maillage doit être mesurée sans imposer une
-précision nanométrique injustifiée à un scan non étalonné.
+The native BOP check still reports a C0 B-spline edge: three positions are
+continuous, with tangent angles of 0.622°, 6.964° and 16.764°. This is not
+only an angle between two faces. Two small segments have numerical lengths of
+0.000239 and 0.000049 unit, far below the minimum mesh size of this pilot.
+They are neither removed nor smoothed. Their representation by the mesh must
+be measured without imposing an unjustified nanometric precision on an
+uncalibrated scan.
 
-Le STEP ajoute 31 anomalies `InvalidCurveOnSurface` au contrôle BOP, bien que
-sa topologie B-Rep passe. **Ce STEP n'est pas qualifié pour calcul.** Une
-éventuelle tentative de maillage utilisera le B-Rep natif exact, avec une
-revue C0 explicite, et ne transformera pas les anciens contrôles faux en
-contrôles réussis. La revue indépendante `advisory-audit-02`, terminée en
-8,07 s, autorise uniquement cette tentative diagnostique : positions continues,
-sièges entièrement couvrants et normales opposées. Son reçu privé porte
-l'empreinte `936846c6a1d5f3b0765eb30b75e6cf1003fa6052cb5717487292dde7c3fec8cd`.
+The STEP adds 31 `InvalidCurveOnSurface` anomalies to the BOP check, although
+its B-Rep topology passes. **This STEP is not qualified for computation.** Any
+meshing attempt will use the exact native B-Rep, with an explicit C0 review,
+and will not turn the earlier false checks into passed checks. The independent
+review `advisory-audit-02`, completed in 8.07 s, authorizes only this
+diagnostic attempt: continuous positions, fully covering seats and opposite
+normals. Its private receipt carries the digest
+`936846c6a1d5f3b0765eb30b75e6cf1003fa6052cb5717487292dde7c3fec8cd`.
 
 ```mermaid
 flowchart TD
-    A["Conduit et chambre natifs + douze composants"] --> B["Construction du gaz et frontières réelles"]
-    B --> C{"B-Rep valide, un domaine et passages locaux ouverts ?"}
-    C -- non --> D["Localiser le défaut et corriger l'opération CAO"]
+    A["Native port and chamber + twelve components"] --> B["Gas construction and real boundaries"]
+    B --> C{"Valid B-Rep, one domain and local passages open?"}
+    C -- no --> D["Locate the defect and correct the CAD operation"]
     D --> B
-    C -- oui --> E["Maillage réel : provenance, volumes et frontières"]
-    E --> F{"Contrôles OpenFOAM acceptés ?"}
-    F -- non --> G["Corriger le maillage sans supprimer de passages"]
+    C -- yes --> E["Real mesh: provenance, volumes and boundaries"]
+    E --> F{"OpenFOAM checks accepted?"}
+    F -- no --> G["Correct the mesh without removing passages"]
     G --> E
-    F -- oui --> H["Pilote réel, bilans et convergence"]
-    T["Témoin hexaédrique : exécution logicielle vérifiée"] -. "ne remplace pas E ou F" .-> H
-    H --> I["Comparaisons 2V/4V puis cycle, thermique et résistance"]
+    F -- yes --> H["Real pilot, balances and convergence"]
+    T["Hexahedral control case: software execution verified"] -. "does not replace E or F" .-> H
+    H --> I["2V/4V comparisons, then cycle, thermal and strength"]
 ```
 
-## Prévol d'import : comparaison des mêmes intégrateurs
+## Import preflight: comparing the same integrators
 
-Le premier prévol réel `pilot-01` s'est arrêté **avant de générer un seul
-élément**. Les 88 faces, leurs aires et leurs centres étaient conservés,
-mais le contrôle comparait deux intégrateurs de volume différents :
+The first real preflight `pilot-01` stopped **before generating a single
+element**. The 88 faces, their areas and their centers were preserved, but
+the check compared two different volume integrators:
 
-| Appel sur le même B-Rep natif | Volume numérique, unités³ |
+| Call on the same native B-Rep | Numerical volume, units³ |
 | --- | ---: |
-| OCCT non adaptatif | 995 961,8505977857 |
-| Gmsh `getMass` observé | 995 961,8505977859 |
-| OCCT adaptatif, epsilon 1e−9 | 995 964,5870880088 |
+| OCCT non-adaptive | 995,961.8505977857 |
+| Gmsh `getMass` observed | 995,961.8505977859 |
+| OCCT adaptive, epsilon 1e−9 | 995,964.5870880088 |
 
-Le [contre-calcul](../../twins/m64-cylinder-head/evidence/gas-domain05-volume-integrators-20260908.json)
-explique ainsi l'écart qui avait dépassé le garde d'import. Le contrôle doit
-comparer le résultat Gmsh à l'appel OCCT **non adaptatif correspondant**,
-en gardant le seuil relatif de 1e−6. La valeur adaptative reste distincte
-et l'écart d'intégration est conservé. Cela ne modifie ni les surfaces,
-ni les tolérances CAO, ni les seuils de qualité des éléments. Ce prévol
-rejeté n'est donc pas présenté comme un échec d'un maillage déjà produit.
-La [lecture de la source officielle Gmsh 4.15.2](../../twins/m64-cylinder-head/evidence/gas-domain05-gmsh-mass-source-20260908.json)
-confirme également l'appel non adaptatif utilisé pour `getMass` en dimension 3.
+The [cross-computation](../../twins/m64-cylinder-head/evidence/gas-domain05-volume-integrators-20260908.json)
+thus explains the gap that had exceeded the import guard. The check must
+compare the Gmsh result with the **corresponding non-adaptive** OCCT call,
+keeping the relative threshold of 1e−6. The adaptive value remains separate
+and the integration gap is kept. This changes neither the surfaces, nor the
+CAD tolerances, nor the element quality thresholds. This rejected preflight is
+therefore not presented as a failure of an already produced mesh.
+The [reading of the official Gmsh 4.15.2 source](../../twins/m64-cylinder-head/evidence/gas-domain05-gmsh-mass-source-20260908.json)
+also confirms the non-adaptive call used for `getMass` in dimension 3.
 
-## Première génération effective : rejet local conservé
+## First actual generation: local rejection kept
 
-Avec cette correction de comparaison, l'import passe : un volume, 88 faces
-et écart relatif de volume de 2,22e−16 entre intégrateurs correspondants.
-Gmsh produit **44 774 triangles de surface et 22 387 nœuds**, puis rejette
-la reconstruction du volume. Le journal désigne deux facettes de la même
-face 38, classée `walls_port` et issue de `raw_intake_face_8`, avec un angle
-de 0,0324048° comparé à son critère de 0,1°.
+With this comparison fix, the import passes: one volume, 88 faces and a
+relative volume gap of 2.22e−16 between corresponding integrators. Gmsh
+produces **44,774 surface triangles and 22,387 nodes**, then rejects the
+volume reconstruction. The log points to two facets of the same face 38,
+classified `walls_port` and coming from `raw_intake_face_8`, with an angle of
+0.0324048° compared with its criterion of 0.1°.
 
-Ce rejet concerne la triangulation : il **ne démontre pas à lui seul une
-auto-intersection de la CAO**. Le critère d'angle n'a pas été abaissé. Aucun
-maillage volumique n'a été exporté ou qualifié et aucun calcul de débit n'a
-été lancé. Le run a duré deux secondes sur le CPU local, sans manque de
-mémoire ; louer plus gros ne corrigerait pas cette condition géométrique.
+This rejection concerns the triangulation: it **does not by itself
+demonstrate a self-intersection of the CAD**. The angle criterion was not
+lowered. No volume mesh was exported or qualified and no flow computation was
+launched. The run lasted two seconds on the local CPU, without running out of
+memory; renting a bigger machine would not fix this geometric condition.
 
-Les trois nœuds C0 examinés sont à 0,000428–0,000563 unité du nœud de
-frontière le plus proche. Ces distances sont enregistrées comme diagnostics,
-pas comme une preuve de conformité de toute la frontière. Le journal privé
-du run conserve les deux triplets de facettes fautives. Le premier helper
-ne sauvegardait le MSH qu'après la génération 3D ; cette surface historique
-n'a donc pas été conservée et ne peut pas être reconstruite à l'identique
-sur la seule base de son journal.
+The three C0 nodes examined are 0.000428–0.000563 unit from the nearest
+boundary node. These distances are recorded as diagnostics, not as evidence
+that the whole boundary conforms. The private run log keeps the two triplets
+of faulty facets. The first helper saved the MSH only after 3D generation;
+this historical surface was therefore not kept and cannot be rebuilt
+identically from its log alone.
 
-## Surface sauvegardée et diagnostic local
+## Saved surface and local diagnostic
 
-Le helper conserve désormais la surface avant toute tentative 3D. Une
-exécution limitée à la 2D a sauvegardé **44 776 triangles, 22 388 nœuds et
-88 faces**, sans tétraèdre ni nouvelle génération volumique. La relecture
-MSH préserve les triangles orientés et les groupes de frontières ; l'écart
-maximal de coordonnées est de 5,70e−14 unité. Les incidences d'arêtes sont
-fermées et cohérentes, sans triangle dupliqué. Ces contrôles topologiques
-ne prouvent ni l'absence d'intersection ni la conformité à la surface CAO.
+The helper now keeps the surface before any 3D attempt. A 2D-only run saved
+**44,776 triangles, 22,388 nodes and 88 faces**, without tetrahedra or a new
+volume generation. The MSH rereading preserves the oriented triangles and the
+boundary groups; the maximum coordinate gap is 5.70e−14 unit. The edge
+incidences are closed and consistent, with no duplicated triangle. These
+topological checks prove neither the absence of intersection nor conformity
+with the CAD surface.
 
-Cette exécution a duré 1,42 s. Malgré les mêmes options explicites, elle
-contient deux triangles et un nœud de plus que la surface historique : ce
-n'est **pas une reproduction bit à bit** du précédent rejet. Les deux
-triplets de nœuds signalés existent sur la face 38 actuelle. Leurs normales
-orientées font 179,9676° entre elles et sont presque orthogonales aux normales
-CAO évaluées aux barycentres projetés. Les distances barycentre–CAO sont
-0,02824 et 0,04973 unité. Cela fournit une cible de diagnostic local, sans
-démontrer une intersection réelle, une inversion globale ou l'identité
-géométrique avec l'ancienne paire.
+This run lasted 1.42 s. Despite the same explicit options, it contains two
+triangles and one node more than the historical surface: it is **not a
+bit-for-bit reproduction** of the previous rejection. The two reported node
+triplets exist on the current face 38. Their oriented normals are 179.9676°
+apart and are nearly orthogonal to the CAD normals evaluated at the projected
+barycenters. The barycenter–CAD distances are 0.02824 and 0.04973 unit. This
+gives a local diagnostic target, without demonstrating a real intersection, a
+global inversion or geometric identity with the earlier pair.
 
-Le [reçu du maillage](../../twins/m64-cylinder-head/evidence/native-gas-mesh-pilot-20260908.json)
-relie les trois exécutions, les paramètres inchangés et leurs empreintes.
-Les coordonnées, normales complètes et connectivités restent privées.
-La prochaine action est de corriger et contrôler la triangulation de cette
-face de conduit, puis de retenter le volume et les contrôles OpenFOAM.
-Aucun changement de forme de culasse ni abaissement du seuil de rejet
-n'est justifié par ce seul diagnostic.
+The [mesh receipt](../../twins/m64-cylinder-head/evidence/native-gas-mesh-pilot-20260908.json)
+links the three runs, the unchanged parameters and their digests. The
+coordinates, full normals and connectivities remain private. The next action
+is to correct and check the triangulation of this port face, then retry the
+volume and the OpenFOAM checks. No change to the cylinder head shape and no
+lowering of the rejection threshold is justified by this diagnostic alone.
 
-## Relancer sans perdre la traçabilité
+## Rerunning without losing traceability
 
-Les [sources du pilote](../../twins/m64-cylinder-head/source/flowbench-intake/prepare_openfoam_case.py)
-créent un répertoire neuf et un manifeste des fichiers. Le
-[lanceur](../../twins/m64-cylinder-head/source/flowbench-intake/run_openfoam_pilot.py)
-vérifie ces empreintes, refuse de réimporter ou redimensionner un cas déjà
-exécuté, et conserve les codes de sortie et journaux de chaque étape. Pour
-`head_pilot`, il exige une revue indépendante liée au domaine natif et à
-l'empreinte exacte du maillage. La préparation seule ne constitue pas une
-exécution. Les gros fichiers et les géométries privées ne sont pas publiés.
+The [pilot sources](../../twins/m64-cylinder-head/source/flowbench-intake/prepare_openfoam_case.py)
+create a fresh directory and a file manifest. The
+[launcher](../../twins/m64-cylinder-head/source/flowbench-intake/run_openfoam_pilot.py)
+verifies these digests, refuses to reimport or rescale a case that has already
+run, and keeps the exit codes and logs of each step. For `head_pilot`, it
+requires an independent review bound to the native domain and to the exact
+digest of the mesh. Preparation alone is not an execution. Large files and
+private geometries are not published.
 
-La séquence fonctionne sur le runtime x86 local existant. Aucune location
-Vast n'a été engagée pour ces témoins. Le plafond utilisateur reste 44 USD,
-sans recharge automatique. La relecture du wrapper approuvé le 8 septembre
-retourne 43,9166429608502 USD de crédit disponible et aucune instance ; c'est
-un état observé, pas une garantie sur un solde futur. L'image locale OpenFOAM
-n'a pas encore de digest de registre qualifié
-pour ce nouveau lot : il faut vérifier ce point, le job, la paire SSH et
-l'association de clé avant une location.
+The sequence runs on the existing local x86 runtime. No Vast rental was
+committed for these control cases. The user cap remains 44 USD, with no
+automatic top-up. Rereading the wrapper approved on September 8 returns
+43.9166429608502 USD of available credit and no instance; this is an observed
+state, not a guarantee of a future balance. The local OpenFOAM image does not
+yet have a qualified registry digest for this new batch: this point, the job,
+the SSH pair and the key association must be verified before a rental.
 
-Références primaires pour la configuration :
-[modules OpenFOAM 14](https://doc.cfd.direct/openfoam/user-guide-v14/solvers-modules),
-[conditions aux limites](https://doc.cfd.direct/openfoam/user-guide-v14/derived-boundary-conditions).
-Les commandes et dictionnaires ont également été vérifiés dans les sources
-et les tutoriels de l'image effectivement exécutée.
+Primary references for the configuration:
+[OpenFOAM 14 modules](https://doc.cfd.direct/openfoam/user-guide-v14/solvers-modules),
+[boundary conditions](https://doc.cfd.direct/openfoam/user-guide-v14/derived-boundary-conditions).
+The commands and dictionaries were also verified in the sources and tutorials
+of the image actually executed.
 
-Le guide de documentation a structuré cette note autour des résultats
-observés, des rejets et d'une procédure reproductible. Ni ces contrôles
-logiciels, ni le futur calcul de banc froid ne libèrent la culasse pour
-fabrication ou démarrage ; le [plan multiphysique](M64_MULTIPHYSICS_EXECUTION.md)
-reste applicable.
+The documentation guide structured this note around observed results,
+rejections and a reproducible procedure. Neither these software checks nor the
+future cold-bench computation release the cylinder head for manufacturing or
+starting; the [multiphysics plan](M64_MULTIPHYSICS_EXECUTION.md) still applies.
 
-## Vérification logicielle du lot publié
+## Software verification of the published batch
 
-Sur les sources finales du lot, `make check` s'est terminé avec une sortie
-observée de 0. La suite principale compte 2 253 tests en 177,854 s, dont
-102 ignorés ; les cibles supplémentaires se terminent aussi, avec un autre
-test OCP ignoré. Le journal global privé porte l'empreinte
+On the final sources of the batch, `make check` ended with an observed exit
+code of 0. The main suite counts 2,253 tests in 177.854 s, of which 102 were
+skipped; the additional targets also complete, with one more OCP test
+skipped. The private global log carries the digest
 `abd35d512c8d131cff05e099ee7c6d4a1335f73597b8604fcc17455d0ce18905`.
 
-Les **42 tests ciblés** des constructeurs, des diagnostics, du maillage et du
-pilote OpenFOAM passent séparément dans le runtime contenant OCP, sans test
-ignoré. Le maillage de surface, le maillage volumique, l'exécution du solveur
-et la convergence restent quatre résultats distincts : un test logiciel
-réussi ne fait pas réussir un calcul physique rejeté.
+The **42 targeted tests** of the builders, the diagnostics, the mesh and the
+OpenFOAM pilot pass separately in the runtime containing OCP, with no test
+skipped. The surface mesh, the volume mesh, the solver execution and
+convergence remain four separate results: a passed software test does not
+make a rejected physical computation pass.

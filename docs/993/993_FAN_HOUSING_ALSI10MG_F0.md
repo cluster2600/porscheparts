@@ -10,6 +10,25 @@ also links `993 106 667 01`. A reseller describes the part as aluminum, without
 grade, process or certificate. These elements are enough to bound an F0, not to
 rebuild a fittable part.
 
+```mermaid
+flowchart LR
+  S["Published: 993 106 667 03<br/>300 × 300 × 170 mm, 1.9 kg"] --> G["F0 master, synthetic interfaces<br/>throat 252 mm, 1,783.58 g"]
+  G --> F["Flow screen<br/>346.58 Pa: passes"]
+  G --> St["Spoke static and modal<br/>pass"]
+  G --> T["Restrained thermal<br/>ratio 1.282: failure"]
+  G --> P["LPBF print screen<br/>failed closed:<br/>does not fit EOS M 290"]
+  T --> V["F0 fails, deliberately<br/>prohibited from manufacture,<br/>rotation, installation, start-up"]
+  P --> V
+  class S ok
+  class F,St open
+  class T,P,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Geometry and additive value
 
 The build123d master keeps the published envelope, then uses entirely synthetic

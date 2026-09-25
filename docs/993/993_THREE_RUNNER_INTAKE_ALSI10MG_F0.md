@@ -10,6 +10,24 @@ diameters, and `100 mm` as the height. It joins three `2 mm` conical runners,
 slightly splayed in space, between two common flanges. The center distances
 and the flanges are synthetic; the three-bolt pattern is deliberately absent.
 
+```mermaid
+flowchart LR
+  S["Published: PMO FUE PMO 9150<br/>46 × 42 × 100 mm, three bolts"] --> H["F0 interpretation<br/>46/42 mm diameters, 100 mm height;<br/>bolt pattern absent"]
+  H --> G["F0 BREP<br/>three open runners<br/>461.03 g per bank"]
+  G --> A["Flow and tuning screens<br/>not intake tuning"]
+  G --> P["LPBF print screen<br/>failed closed:<br/>memory cap"]
+  A --> V["Not authorized for manufacturing<br/>or engine start-up"]
+  P --> V
+  class S ok
+  class H,A open
+  class P,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why AM is being tested
 
 LPBF would allow the three axes, sections and lengths to be customized
@@ -64,6 +82,6 @@ start-up.
 
 ## LPBF print simulation
 
-The simulation was run and **failed closed**: `failed_memory_cap` conteneur tue au plafond 10g. No result is therefore published for this part, and no image is made up in its place.
+The simulation was run and **failed closed**: `failed_memory_cap` container killed at the 10g memory cap. No result is therefore published for this part, and no image is made up in its place.
 
 <!-- print-screen:end -->

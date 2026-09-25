@@ -62,6 +62,25 @@ contributor read the option label before taking out an instrument.
 7. Run `make check`. If a measurement does not pass the validator, correct the
    transcription or the method; do not adjust the value to make the check pass.
 
+```mermaid
+flowchart TD
+    G{"Priority 4 only:<br/>passenger airbag fitted (M562)?"}
+    G -- yes --> GX["Dashboard trim cannot be measured:<br/>occupant-restraint part"]:::stop
+    G -- no --> S1
+    S1["1 · Copy the measurement template,<br/>fill in the subject"] --> S2["2 · Check zero on a gauge block<br/>or known reference"]
+    S2 --> S3["3 · Define origin, axes<br/>and reference planes"]
+    S3 --> S4["4 · Interfaces before decorative<br/>surfaces; repeat each dimension"]
+    S4 --> S5["5 · Photograph fasteners, clearances,<br/>bearing surfaces, contradictions"]
+    S5 --> S6["6 · Raw readings → value from samples<br/>→ uncertainty and its basis"]
+    S6 --> S7{"7 · make check"}
+    S7 -- fails --> FIX["Correct the transcription or method,<br/>never the value"]:::open
+    FIX --> S6
+    S7 -- passes --> R["Record stays concept until the<br/>session is complete and reviewed"]:::open
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## Decision gate
 
 A part record stays `concept` until the session is complete and reviewed.

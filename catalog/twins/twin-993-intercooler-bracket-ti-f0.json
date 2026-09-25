@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "twin_id": "TWIN-993-INTERCOOLER-BRACKET-TI-F0",
-  "name": "Support d'intercooler 993 Turbo/GT2 en titane, jumeau F0",
+  "name": "993 Turbo/GT2 intercooler bracket in titanium, F0 twin",
   "vehicle": {
     "generation": "993",
     "variants": [
@@ -24,8 +24,8 @@
   "fidelity": "F1_envelope",
   "coordinate_system": {
     "frame": "local",
-    "origin": "coin inferieur gauche de l'enveloppe F0 du support",
-    "axes": "X suivant la longueur du support, Y suivant sa largeur et Z suivant son epaisseur et la charge de criblage",
+    "origin": "lower left corner of the bracket's F0 envelope",
+    "axes": "X along the bracket length, Y along its width and Z along its thickness and the screening load",
     "units": "mm",
     "vehicle_transform": null
   },
@@ -60,7 +60,7 @@
         "FASTENER_PRELOADS",
         "MATING_SURFACE_DATUMS"
       ],
-      "acceptance_rule": "Les deux interfaces mesurees, leurs tolerances et leurs precharges reproduisent le montage approuve sans contrainte parasite.",
+      "acceptance_rule": "The two measured interfaces, their tolerances and their preloads reproduce the approved mounting without parasitic stress.",
       "status": "missing_data"
     },
     {
@@ -77,7 +77,7 @@
         "HOSE_REACTION_LOADS",
         "VIBRATION_PSD"
       ],
-      "acceptance_rule": "La CAE avec charges mesurees, contacts et precharges respecte les limites statiques, modales et de fatigue approuvees.",
+      "acceptance_rule": "CAE with measured loads, contacts and preloads meets the approved static, modal and fatigue limits.",
       "status": "missing_data"
     },
     {
@@ -93,7 +93,7 @@
         "THERMAL_CONSTRAINTS",
         "GALVANIC_ISOLATION_STACK"
       ],
-      "acceptance_rule": "La dilatation, les contraintes thermiques et l'isolation galvanique restent dans les criteres approuves sur le cycle de vie.",
+      "acceptance_rule": "Thermal expansion, thermal stresses and galvanic isolation stay within the approved criteria over the life cycle.",
       "status": "missing_data"
     }
   ],
@@ -112,11 +112,11 @@
       "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/simready-conversion-summary.json"
     ],
     "known_limits": [
-      "Seules l'enveloppe 255 x 80 x 23 mm et la masse commerciale de 200 g sont publiees ; la topologie et les interfaces sont des hypotheses F0.",
-      "La CAE emploie une charge statique synthétique de 400 N, des appuis idealises et une carte elastique de comparaison.",
-      "Le maximum local augmente encore avec le raffinement ; seul le p95 et la fleche satisfont le seuil numerique de convergence retenu.",
-      "Le USD passe le controle minimum, mais aucune affectation physique ou validation SimReady complete n'a ete executee.",
-      "Aucune fabrication, installation ou utilisation vehicule n'est autorisee."
+      "Only the 255 x 80 x 23 mm envelope and the 200 g commercial mass are published; the topology and the interfaces are F0 assumptions.",
+      "The CAE uses a synthetic 400 N static load, idealized supports and an elastic comparison property map.",
+      "The local maximum still rises with refinement; only the p95 and the deflection meet the chosen numerical convergence threshold.",
+      "The USD passes the minimum check, but no physics assignment or full SimReady validation has been run.",
+      "No manufacturing, installation or vehicle use is authorized."
     ]
   }
 }

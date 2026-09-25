@@ -1,206 +1,222 @@
-# M64 4V — passages de gaz et enveloppes de mouvement
+# M64 4V — gas passages and motion envelopes
 
-Ce lot travaille les **fonctions de la pièce**, à partir du corps privé à
-quatre logements. Il ne remplace pas la silhouette par une nouvelle enveloppe.
-La référence reste issue d'un scan 935 ; le recalage vers le module 4V est
-une hypothèse de conception, pas une interface M64 certifiée.
+This batch works on the **functions of the part**, starting from the private
+body with four pockets. It does not replace the silhouette with a new
+envelope. The reference still comes from a 935 scan; the registration to the
+4V module is a design assumption, not a certified M64 interface.
 
-La [suite du lot — troncs C1, contacts et maillage natif](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md)
-conserve les nouveaux essais, dont le rejet du corps intégré 06. Les résultats
-de l'essai 05 ci-dessous ne sont pas transférés à cette nouvelle géométrie.
+The [continuation of the batch — C1 trunks, contacts and native mesh](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md)
+keeps the new trials, including the rejection of integrated body 06. The
+results of trial 05 below are not transferred to this new geometry.
 
-**Résultat du premier candidat découpé : non retenu.** Le B-Rep natif est
-monobloc et passe les cinq contrôles BOP exécutés, mais l'interpolation du
-tronc admission crée une excroissance réelle et son STEP présente 55 défauts
-de p-curves après lecture. Le maître de départ n'est ni remplacé ni modifié.
-Le [reçu de l'essai 04](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-04-20260907.json)
-conserve les empreintes et distingue ces contrôles de la validation moteur.
+**Result of the first cut candidate: not retained.** The native B-Rep is a
+single piece and passes the five BOP checks executed, but the interpolation of
+the intake trunk creates a real bulge and its STEP shows 55 p-curve defects
+after reading. The starting master is neither replaced nor modified. The
+[trial 04 receipt](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-04-20260907.json)
+keeps the digests and distinguishes these checks from engine validation.
 
-**Dernière exécution : essai 05, tronc à interpolation réglée.** La correction
-a été réellement reconstruite et découpée, en 374 s sur processeur local.
-Le [reçu de l'essai 05](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-05-ruled-20260907.json)
-confirme un seul solide natif, aucun défaut BOP signalé dans les cinq modes
-exécutés et une relecture `.brep` cohérente. Le STEP présente encore **26 défauts
-de p-curves** et reste rejeté. Ce candidat privé n'est pas promu en maître ni
-en fichier de fabrication ; le contrôle des ouvertures est distinct.
+**Latest run: trial 05, trunk with ruled interpolation.** The correction was
+actually rebuilt and cut, in 374 s on the local processor. The
+[trial 05 receipt](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-trial-05-ruled-20260907.json)
+confirms a single native solid, no BOP defect reported in the five modes
+executed and a consistent `.brep` rereading. The STEP still shows **26 p-curve
+defects** and remains rejected. This private candidate is not promoted to
+master nor to manufacturing file; the check of the openings is separate.
 
-Ce contrôle a ensuite été exécuté sur l'essai 05, sans réutiliser les contacts
-de l'ancienne géométrie : **zéro portion de face et zéro aire hors des
-enveloppes définies**, côté admission comme échappement. Les partitions d'aire
-passent sans changer les seuils. L'enveloppe réglée est cette fois identique
-au nouveau tronc : ce résultat reste relatif à ces régions et ne prouve ni
-la conformité OEM des bouches ni l'absence d'une poche à l'intérieur d'une
-région autorisée. Tous les contacts bruts restent conservés.
+That check was then run on trial 05, without reusing the contacts of the old
+geometry: **zero face portions and zero area outside the defined envelopes**,
+on the intake as on the exhaust side. The area partitions pass without
+changing the thresholds. This time the ruled envelope is identical to the new
+trunk: this result remains relative to these regions and proves neither the
+OEM conformity of the port mouths nor the absence of a pocket inside an
+authorized region. All raw contacts remain kept.
 
-## Course complète des quatre soupapes
+```mermaid
+flowchart TD
+    A["Trial 04: smooth trunk"] --> B["Native B-Rep: 5 BOP modes pass"]
+    B --> C["Intake bulge + 55 STEP p-curve defects"]
+    C --> D["Not retained"]
+    D --> E["Trial 05: ruled trunk, rebuilt in 374 s"]
+    E --> F["Native solid: no BOP defect"]
+    E --> G["STEP: 26 p-curve defects, rejected"]
+    F --> H["Openings: zero area outside envelopes"]
+    H --> I["Not promoted to master or manufacturing file"]
+    class B,F,H ok
+    class C,D,G,I stop
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+```
 
-Les quatre volumes d'exclusion natifs couvrent toutes les positions entre
-fermé et levée maximale, pas seulement quelques images d'une animation.
-Leur intersection avec le corps de départ est topologiquement vide : aucun
-solide, aucune coque, face, arête ou sommet commun dans les booléens exécutés.
-Le [reçu public](../../twins/m64-cylinder-head/evidence/continuous-valve-envelopes-20260907.json)
-lie le maître, le module, les quatre enveloppes et le code par SHA-256.
+## Full stroke of the four valves
 
-La preuve exploite le profil réellement utilisé : rayon positif, non croissant
-avec Z, et **base cylindrique initiale de hauteur positive**. Pour une course
-axiale rigide L vers la chambre, prolonger cette base de L couvre l'union de
-toutes les positions. Le volume ajouté vaut `π R² L`. Sept tests natifs couvrent
-notamment un obstacle rencontré au milieu de course alors que les extrémités
-sont libres, et le rejet d'un profil conique initial auquel cet algorithme ne
-s'applique pas. Ce dernier cas a été ajouté après relecture indépendante.
+The four native exclusion volumes cover all positions between closed and
+maximum lift, not only a few frames of an animation. Their intersection with
+the starting body is topologically empty: no solid, no shell, face, edge or
+vertex in common in the Booleans executed. The
+[public receipt](../../twins/m64-cylinder-head/evidence/continuous-valve-envelopes-20260907.json)
+binds the master, the module, the four envelopes and the code by SHA-256.
 
-Les levées sont les candidats V2 : 11,5 admission / 9,6 échappement, sous
-l'hypothèse de recalage 1 unité du scan par mm. Le corps n'est pas transformé
-une seconde fois. Ces volumes n'ajoutent **aucune marge de dilatation, flexion
-ou guidage**, et ne contiennent ni piston, ni ressort, ni came. L'absence de
-collision nominale n'établit pas un jeu positif suffisant à chaud.
+The proof exploits the profile actually used: positive radius, non-increasing
+with Z, and an **initial cylindrical base of positive height**. For a rigid
+axial stroke L toward the chamber, extending this base by L covers the union
+of all positions. The added volume is `π R² L`. Seven native tests cover,
+among other things, an obstacle met at mid-stroke while the ends are free, and
+the rejection of an initially conical profile to which this algorithm does not
+apply. This last case was added after independent review.
 
-## Raccordements issus des sections du scan
+The lifts are the V2 candidates: 11.5 intake / 9.6 exhaust, under the
+registration assumption of 1 scan unit per mm. The body is not transformed a
+second time. These volumes add **no margin for thermal expansion, bending or
+guiding**, and contain no piston, spring or cam. The absence of nominal
+collision does not establish a sufficient positive clearance when hot.
 
-Le corps de départ comporte seulement les quatre logements étagés siège/guide :
-ses anciens conduits ont été comblés lors de la reconstruction de peau.
-Dix sections circulaires ajustées au scan ont été retrouvées : trois côté
-`low_B`, sept côté `high_B`. Elles servent de contraintes de construction,
-**pas de surfaces intérieures intégralement mesurées ni de brides usinées**.
-Les résidus d'ajustement ne sont pas une incertitude métrologique totale.
+## Blends from the scan sections
 
-Le nouveau modèle relie deux gorges par banque à un conduit commun, puis aux
-sections correspondantes. Les axes et diamètres sont liés au même module V2,
-au reçu d'intégration, à sa correction locale et au SHA du corps final.
-Les choix de courbure et de protection des guides restent exploratoires.
+The starting body has only the four stepped seat/guide pockets: its former
+ports were filled in during the skin reconstruction. Ten circular sections
+fitted to the scan were found: three on the `low_B` side, seven on the
+`high_B` side. They serve as construction constraints, **not as fully measured
+inner surfaces nor machined flanges**. The fitting residuals are not a total
+metrological uncertainty.
 
-L'affectation `admission → high_B`, `échappement → low_B` suit la banque V2
-actuelle. Elle est **nouvelle, non OEM et opposée aux noms du vieux builder
-F36**. Il ne faut pas transférer silencieusement ce dernier comme preuve.
+The new model connects two throats per bank to a common port, then to the
+corresponding sections. The axes and diameters are bound to the same V2
+module, to the integration receipt, to its local correction and to the SHA of
+the final body. The curvature choices and the guide protection remain
+exploratory.
 
-Les bouches ne sont pas élargies pour obtenir artificiellement un résultat
-favorable. L'aire minimale des cercles de la branche admission représente
-environ 67,6 % de la somme des deux gorges ; côté échappement, environ 98,0 %.
-C'est un écran géométrique, sans tige, bossage ni coefficient de débit : il
-signale un étranglement potentiel à examiner, pas une performance calculée.
+The assignment `intake → high_B`, `exhaust → low_B` follows the current V2
+bank. It is **new, non-OEM and opposite to the names of the old F36
+builder**. The latter must not be silently transferred as evidence.
 
-## Essais rejetés et correction de la jonction
+The port mouths are not widened to artificially obtain a favorable result.
+The minimum area of the circles of the intake branch represents about 67.6% of
+the sum of the two throats; on the exhaust side, about 98.0%. This is a
+geometric screen, without stem, boss or discharge coefficient: it flags a
+potential restriction to examine, not a computed performance.
 
-Les premières branches aboutissaient au même cercle terminal. Une fusion
-échappement a produit quatre solides et un volume inférieur à celui d'un
-opérande : cet essai a été rejeté avant toute découpe du corps. Un simple
-chevauchement axial n'a pas suffi. Le code vérifie désormais la monotonie
-volumique des unions, différences et intersections, en plus du BRepCheck.
+## Rejected trials and correction of the junction
 
-La correction géométrique conserve le rayon de gorge dans chaque branche.
-Les deux extrémités sont distinctes et entièrement enfouies dans le tronc :
-elles ne partagent plus trois bouchons coplanaires presque confondus.
-Chaque banque native passe alors les cinq modes BOP contrôlés. Les résultats
-STEP doivent rester séparés de ces résultats natifs.
+The first branches ended on the same terminal circle. An exhaust fusion
+produced four solids and a volume smaller than that of one operand: this trial
+was rejected before any cut of the body. A simple axial overlap was not
+enough. The code now verifies the volume monotonicity of unions, differences
+and intersections, in addition to BRepCheck.
 
-## B-Rep natif et export STEP : autorités différentes
+The geometric correction keeps the throat radius in each branch. The two ends
+are distinct and fully buried in the trunk: they no longer share three nearly
+coincident coplanar caps. Each native bank then passes the five BOP modes
+checked. The STEP results must remain separate from these native results.
 
-Les noyaux natifs et leurs réimports `.brep` sont conservés. Leur export STEP
-signale encore des p-curves incohérentes après lecture. Les essais documentés
-avec ou sans p-curves, préférence pour les courbes 3D et export de la tolérance
-native maximale n'ont pas éliminé les défauts des deux noyaux de diagnostic.
-Les réglages essayés sont ceux du
-[traducteur STEP OCCT](https://occt3d.com/dev/doc/overview/html/occt_user_guides__step.html).
+## Native B-Rep and STEP export: different authorities
 
-Sur ces noyaux de diagnostic, le maximum **échantillonné** de l'écart 3D/2D
-reste de l'ordre de 2 × 10⁻⁶ unité. Le lecteur réduit certaines tolérances
-locales natives de 5 × 10⁻⁶ sous cet écart. Cette observation explique les
-signalements sans démontrer une borne continue ; elle n'autorise pas à
-masquer le défaut en augmentant globalement les tolérances.
+The native cores and their `.brep` reimports are kept. Their STEP export still
+reports inconsistent p-curves after reading. The documented trials with or
+without p-curves, with preference for 3D curves and with export of the maximum
+native tolerance did not remove the defects of the two diagnostic cores. The
+settings tried are those of the
+[OCCT STEP translator](https://occt3d.com/dev/doc/overview/html/occt_user_guides__step.html).
 
-La découpe exploratoire utilise donc les B-Rep natifs, pas les STEP rejetés.
-Un export rejeté reste archivé pour diagnostic, jamais présenté comme fichier
-de fabrication. La géométrie source du corps et les mesures du scan restent
-inchangées et privées.
+On these diagnostic cores, the **sampled** maximum of the 3D/2D gap stays on
+the order of 2 × 10⁻⁶ unit. The reader reduces some native local tolerances of
+5 × 10⁻⁶ below this gap. This observation explains the reports without
+demonstrating a continuous bound; it does not authorize masking the defect by
+globally increasing the tolerances.
 
-## Dépassement détecté par contre-contrôle
+The exploratory cut therefore uses the native B-Reps, not the rejected STEP
+files. A rejected export stays archived for diagnostics, never presented as a
+manufacturing file. The source geometry of the body and the scan measurements
+remain unchanged and private.
 
-Le premier écran de peau autorisait le même loft que celui utilisé pour le
-conduit commun. Il rendait zéro contact hors de cette enveloppe, mais ne
-pouvait pas détecter un défaut partagé par les deux constructions.
+## Overrun detected by cross-check
 
-Le contre-contrôle remplace seulement l'enveloppe d'autorisation par une
-interpolation **réglée entre les mêmes cercles**, sans agrandir leurs rayons.
-Il révèle côté admission 130 portions de faces, totalisant environ
-690,82 unités², hors de cette enveloppe indépendante. La reconstruction séparée
-localise l'excroissance dans le tronc, pas dans les deux branches ; des sections
-natives confirment que ce n'est pas uniquement une boîte englobante conservative.
-Le résultat échappement de ce contre-contrôle reste indéterminé après échec
-de conservation d'aire ; le seuil n'est pas relâché pour obtenir un succès.
-Les [reçus du contre-contrôle et du rendu](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-counterchecks-20260907.json)
-conservent résultats, échecs et empreintes, sans les coordonnées privées.
+The first skin screen authorized the same loft as the one used for the common
+port. It returned zero contacts outside this envelope, but could not detect a
+defect shared by both constructions.
 
-Une reprise limitée sur les trois mêmes surfaces échappement utilise une
-quadrature adaptative explicite. Les écarts de partition passent alors sous
-le seuil inchangé pour ε = 10⁻⁷, 10⁻⁹ et 10⁻¹¹. Cependant, certaines aires
-varient encore entre les deux derniers réglages. Les estimateurs internes ne
-sont pas des bornes rigoureuses : cette reprise explique la sensibilité
-numérique, sans remplacer le verdict initial par une conformité des ouvertures.
+The cross-check replaces only the authorization envelope with a **ruled
+interpolation between the same circles**, without enlarging their radii. On
+the intake side it reveals 130 face portions, totaling about 690.82 units²,
+outside this independent envelope. The separate reconstruction locates the
+bulge in the trunk, not in the two branches; native sections confirm that this
+is not only a conservative bounding box. The exhaust result of this cross-check
+remains undetermined after an area preservation failure; the threshold is not
+relaxed to obtain a success. The
+[cross-check and render receipts](../../twins/m64-cylinder-head/evidence/scan-seeded-ports-counterchecks-20260907.json)
+keep results, failures and digests, without the private coordinates.
 
-La correction suivante porte donc sur l'interpolation du tronc uniquement.
-Les raccordements réglés constituent un témoin géométrique borné, pas une
-validation de pertes de charge ni des rayons de raccordement finaux.
+A limited rerun on the same three exhaust surfaces uses an explicit adaptive
+quadrature. The partition gaps then pass under the unchanged threshold for
+ε = 10⁻⁷, 10⁻⁹ and 10⁻¹¹. However, some areas still vary between the last two
+settings. The internal estimators are not rigorous bounds: this rerun explains
+the numerical sensitivity, without replacing the initial verdict with a
+conformity of the openings.
 
-Le générateur propose `--trunk-interpolation ruled` pour cet essai contrôlé ;
-le mode `smooth` reste disponible pour reproduire l'essai rejeté. Le choix est
-enregistré dans le contexte et le rapport. Les branches gardent leur loft
-lisse ; aucune section du scan, aucun rayon et aucune tolérance ne changent.
-Les jonctions du tronc réglé sont seulement C0. Elles ne constituent pas les
-surfaces fluidiques définitives.
+The next correction therefore concerns the trunk interpolation only. The ruled
+blends are a bounded geometric control, not a validation of pressure losses
+nor of the final blend radii.
 
-Sur la tessellation réelle de l'essai 05, la borne latérale positive du
-négatif admission diminue de 31,50 unités de scan : l'excroissance signalée
-dans l'essai 04 n'est plus présente. Cette comparaison locale ne prouve pas
-la bonne implantation de toutes les ouvertures ni l'épaisseur des parois.
+The generator offers `--trunk-interpolation ruled` for this controlled trial;
+the `smooth` mode remains available to reproduce the rejected trial. The
+choice is recorded in the context and the report. The branches keep their
+smooth loft; no scan section, radius or tolerance changes. The junctions of
+the ruled trunk are only C0. They are not the final fluid surfaces.
 
-## Contrôles restant à fermer sur la pièce
+On the real tessellation of trial 05, the positive lateral bound of the intake
+negative decreases by 31.50 scan units: the bulge reported in trial 04 is no
+longer present. This local comparison proves neither the correct placement of
+all openings nor the wall thickness.
 
-- Ouvertures de peau : inventorier toutes les faces touchées, puis les portions
-  hors des zones de bouches et logements explicitement examinées. Une boîte
-  englobante identique ne prouve pas la conservation de la peau.
-- Communication entre volumes, inserts de sièges et guides, ligaments et
-  épaisseurs : des noyaux disjoints ne prouvent pas l'absence de liaison
-  indirecte dans l'assemblage complet.
-- Chambre finale, distribution et huile, matériaux et interfaces moteur :
-  toujours à compléter ou qualifier.
-- Débit, thermique, résistance, fatigue et LPBF : aucun gain ni imprimabilité
-  ne sont déduits de ce seul lot de géométrie.
+## Checks still to close on the part
 
-Les [entrées CHT](M64_CHT_HEAD_INPUT_AUDIT.md) ont été actualisées pour ne plus
-laisser croire que l'ancien inventaire F53 ou ses maillages s'appliquent au
-corps courant. La [carte Mermaid d'exécution](../media/diagrams/m64-700ps-execution.mmd)
-situe ce lot dans la préparation CAO, avant les calculs de pièce.
+- Skin openings: inventory all touched faces, then the portions outside the
+  explicitly examined port mouth and pocket zones. An identical bounding box
+  does not prove the preservation of the skin.
+- Communication between volumes, seat and guide inserts, ligaments and
+  thicknesses: disjoint cores do not prove the absence of an indirect link in
+  the full assembly.
+- Final chamber, valvetrain and oil, materials and engine interfaces: still to
+  complete or qualify.
+- Flow, thermal behavior, strength, fatigue and LPBF: no gain and no
+  printability are inferred from this geometry batch alone.
 
-## Exécution et accès
+The [CHT inputs](M64_CHT_HEAD_INPUT_AUDIT.md) were updated so as no longer to
+suggest that the old F53 inventory or its meshes apply to the current body.
+The [Mermaid execution map](../media/diagrams/m64-700ps-execution.mmd) places
+this batch in the CAD preparation, before the part computations.
 
-- [Générateur des enveloppes continues](../../twins/m64-cylinder-head/source/build_continuous_valve_envelopes.py).
-- [Générateur de conduits sous hypothèses](../../twins/m64-cylinder-head/source/build_scan_seeded_ports.py).
-- [Contre-contrôle des ouvertures](../../twins/m64-cylinder-head/source/audit_port_skin_openings.py),
-  avec conservation des contacts bruts et contre-exemple de poche cachée.
-- [Tests des enveloppes](../../tests/test_continuous_valve_envelopes.py) et
-  [tests des raccordements](../../tests/test_m64_scan_seeded_ports.py), complétés
-  par les [témoins de contrôle de peau](../../tests/test_m64_port_skin_openings.py).
+## Execution and access
 
-Toutes les géométries liées au scan, coupes et images de ce lot restent privées.
-Seuls code, hypothèses et reçus sans coordonnées privées sont publiables.
-Aucune autorisation de fabrication ou de fonctionnement moteur n'est acquise.
+- [Continuous envelope generator](../../twins/m64-cylinder-head/source/build_continuous_valve_envelopes.py).
+- [Port generator under assumptions](../../twins/m64-cylinder-head/source/build_scan_seeded_ports.py).
+- [Openings cross-check](../../twins/m64-cylinder-head/source/audit_port_skin_openings.py),
+  with preservation of the raw contacts and a hidden-pocket counterexample.
+- [Envelope tests](../../tests/test_continuous_valve_envelopes.py) and
+  [blend tests](../../tests/test_m64_scan_seeded_ports.py), complemented by the
+  [skin check control cases](../../tests/test_m64_port_skin_openings.py).
 
-Les premières vues privées proviennent des 4 837 faces de l'essai 04, toutes
-tessellées, sans lissage ou décimation : extérieur, demi-vue avec noyaux
-colorés et coupe plane. Le bleu/orange distingue les conduits, **pas des
-températures ou vitesses calculées**. Le [script de rendu](../../twins/m64-cylinder-head/source/render_scan_seeded_ports.py)
-lie les maillages, images et avertissements au reçu de calcul.
+All geometries tied to the scan, sections and images of this batch remain
+private. Only code, assumptions and receipts without private coordinates are
+publishable. No authorization for manufacturing or engine operation is
+obtained.
 
-Les vues actualisées de l'essai 05 représentent ses **4 892 faces et 70 386
-triangles**, avec le même cadrage et les mêmes avertissements. Leurs empreintes
-et celles de la coupe sont liées au B-Rep exact dans le reçu de l'essai 05.
+The first private views come from the 4,837 faces of trial 04, all
+tessellated, without smoothing or decimation: exterior, half view with colored
+cores and planar section. Blue/orange distinguishes the ports, **not computed
+temperatures or velocities**. The [render script](../../twins/m64-cylinder-head/source/render_scan_seeded_ports.py)
+binds the meshes, images and warnings to the computation receipt.
 
-## Vérifications logicielles de ce lot
+The updated views of trial 05 represent its **4,892 faces and 70,386
+triangles**, with the same framing and the same warnings. Their digests and
+those of the section are bound to the exact B-Rep in the trial 05 receipt.
 
-`make check` termine avec sortie 0 ; sa découverte principale exécute
-2 095 tests, dont 68 explicitement ignorés dans le runtime par défaut.
-Les trois suites ciblées sont aussi exécutées dans le runtime OCP qualifié :
-7 tests d'enveloppes continues, 10 de raccordement et 2 de contrôle de peau,
-tous réussis, aucun ignoré. Le [reçu des vérifications](../../twins/m64-cylinder-head/evidence/port-geometry-software-checks-20260907.json)
-conserve l'empreinte du journal. Ces tests de logiciel et de géométrie ne sont
-pas des essais physiques de la culasse.
+## Software verifications of this batch
+
+`make check` ends with exit 0; its main discovery runs 2,095 tests, 68 of them
+explicitly skipped in the default runtime. The three targeted suites are also
+run in the qualified OCP runtime: 7 continuous envelope tests, 10 blend tests
+and 2 skin check tests, all passed, none skipped. The
+[verification receipt](../../twins/m64-cylinder-head/evidence/port-geometry-software-checks-20260907.json)
+keeps the digest of the log. These software and geometry tests are not
+physical tests of the cylinder head.

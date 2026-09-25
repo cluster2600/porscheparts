@@ -27,6 +27,24 @@ flowchart LR
     J --> K[Signed engineering review]
 ```
 
+How the step statuses gate release (fail-closed):
+
+```mermaid
+flowchart TD
+    N["Record proposes LPBF or DMLS"] --> RG{"Tracked by<br/>am-validation-policy.json?"}
+    RG -- no --> RF["make validate and<br/>make check fail"]:::stop
+    RG -- yes --> S["Eleven mandatory steps,<br/>01 to 11"]
+    S --> Q{"Every step passed?"}
+    Q -- "a step is completed_screening" --> CS["Computation run; input, correlation<br/>or review still missing:<br/>never counts as passed"]:::open
+    Q -- "a step is blocked_missing_input" --> BL["Blocked: missing input"]:::stop
+    CS --> NR["Cannot reach released"]:::stop
+    BL --> NR
+    Q -- "all eleven passed" --> OK["released possible: step 11,<br/>signed review of a specific revision,<br/>explicitly bounded authorization"]:::ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## The eleven steps
 
 | Step | Computation or evidence | Exit gate |
@@ -221,6 +239,10 @@ The reproducible normalized STEP and its watertight STL are linked by digest.
 The candidate orientation `roll_y_45` is sliced into `2,664` layers of
 `30 µm`; the support proxy is `2,714.4975 mm³`, the p01 thickness `2 mm` and
 no trapped void is detected at the `0.75 mm` voxel.
+
+![LPBF geometric screening of the F0 door lever: section per layer, newly unsupported region, conservative support envelope, 2,664 layers](../twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png)
+
+*Step 03 screening of the lever in `roll_y_45`: real cross-section at every layer and a proxy support envelope. It has no laser path, machine file, CT or supplier correlation, and does not authorize metal printing.*
 
 CalculiX 2.21 runs six cold/hot cases on three C3D10 meshes. On the fine mesh
 of `31,666` nodes, the p95 is `45.227 MPa` cold and `46.546 MPa` in the

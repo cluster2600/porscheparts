@@ -1,114 +1,127 @@
-# Essai local C2 : surface construite, renfort rejeté
+# Local C2 trial: surface built, reinforcement rejected
 
-Le renfort essayé sur le trajet isolé le plus mince restant a été **rejeté
-avant toute construction de face ou de solide**. L'amplitude et les bords
-sont respectés, mais la déformation forme une zone beaucoup trop pointue
-pour ce contrôle géométrique exploratoire. Aucun nouveau calcul thermique,
-mécanique, LPBF ou de rayons dans un solide n'a été lancé.
+The reinforcement tried on the thinnest remaining isolated path was **rejected
+before any face or solid was built**. The amplitude and the edges
+are respected, but the deformation forms a zone far too sharp
+for this exploratory geometric check. No new thermal,
+mechanical, LPBF or in-solid ray computation was launched.
 
-La source est toujours la reconstruction F53 issue du scan de référence
-935, **pas une culasse M64 validée**. Toutes les longueurs ci-dessous sont
-des unités du scan, dont l'échelle absolue n'est pas certifiée. L'essai est
-séparé du [candidat Bernstein 10 × 11](M64_LOCAL_BERNSTEIN_REPAIR_20260907.md)
-qui avait passé ses contrôles locaux. Les deux fichiers maîtres sont intacts.
+The source is still the F53 reconstruction derived from reference scan
+935, **not a validated M64 cylinder head**. All lengths below are
+scan units, whose absolute scale is not certified. The trial is
+separate from the [10 × 11 Bernstein candidate](M64_LOCAL_BERNSTEIN_REPAIR_20260907.md)
+that had passed its local checks. Both master files are intact.
 
-## Construction effectivement exécutée
+```mermaid
+flowchart LR
+    A["C2 surface built<br/>degree 6 × 6"] --> B["Amplitude and edges<br/>respected"]
+    B --> C["Positive orientation"]
+    C --> D["Tangent gradient ≤ 1?<br/>max 5.418716"]
+    D --> E["rejected_surface_quality"]
+    E --> F["No face, no solid,<br/>no ray check"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    class A,B,C ok;
+    class D,E,F stop;
+```
 
-Le trajet initial vaut `1,0524179419`. Le point d'entrée de la surface a été
-déplacé de `0,5475820581` suivant la direction opposée au rayon mesuré, avec
-un objectif exploratoire de trajet `1,60`. **Cet objectif n'est pas un
-nouveau résultat d'intersection d'un solide**, puisque l'essai s'arrête
-avant cette étape.
+## Construction actually executed
 
-Le support choisi est le plus grand rectangle UV centré sur le point cible
-et contenu dans la face bilinéaire existante. Sur chaque direction locale,
-le facteur est `b(t) = 64 t³(1−t)³`, et le déplacement est
-`D = δ b(s) b(t)` à l'intérieur, nul à l'extérieur. La valeur et les deux
-premières dérivées s'annulent aux frontières du support. OCCT a construit
-une surface de degré 6 × 6 ; la suppression des multiplicités excédentaires
-des nœuds intérieurs a réussi à `1e-12`, donnant une multiplicité 4, donc
-une continuité paramétrique C2 de cette surface.
+The initial path is `1.0524179419`. The entry point of the surface was
+moved by `0.5475820581` in the direction opposite to the measured ray, with
+an exploratory path target of `1.60`. **This target is not a
+new solid intersection result**, since the trial stops
+before that step.
 
-Le facteur de Bernstein `B₃⁶` atteint au plus `5/16` ; le produit atteint
-au plus `25/256`. Le coefficient scalaire flottant enregistré, interprété
-comme rationnel exact, donne donc la borne continue :
+The chosen support is the largest UV rectangle centered on the target point
+and contained in the existing bilinear face. In each local direction,
+the factor is `b(t) = 64 t³(1−t)³`, and the displacement is
+`D = δ b(s) b(t)` inside, zero outside. The value and the first two
+derivatives vanish at the boundaries of the support. OCCT built
+a degree 6 × 6 surface; removing the excess multiplicities
+of the interior knots succeeded at `1e-12`, giving multiplicity 4, hence
+C2 parametric continuity of this surface.
+
+The Bernstein factor `B₃⁶` reaches at most `5/16`; the product reaches
+at most `25/256`. The recorded floating-point scalar coefficient, interpreted
+as an exact rational, therefore gives the continuous bound:
 
 ```text
 |D| ≤ 2466090352735025 / 4503599627370496
-    = 0,5475820580824797 < 1 unité du scan
+    = 0.5475820580824797 < 1 scan unit
 ```
 
-Cette borne concerne le **champ scalaire avant la suppression native des
-nœuds**, pas une borne globale des erreurs d'arrondi OCCT. L'accord entre
-formule et surface native est vérifié séparément par échantillonnage.
+This bound concerns the **scalar field before the native knot
+removal**, not a global bound on OCCT rounding errors. The agreement between
+the formula and the native surface is verified separately by sampling.
 
-## Résultats et arrêt
+## Results and stop
 
-| Contrôle | Résultat |
+| Check | Result |
 |---|---:|
-| Points d'évaluation natifs sur la surface | 14 641 |
-| Écart maximal formule / OCCT | `7,45e-14` unité |
-| Erreur du point cible déplacé | `1,59e-14` unité |
-| Écart maximal des quatre courbes / surface, 121 points par courbe | `3,70e-12` unité |
-| Déplacement natif maximal échantillonné | `0,5475820581` unité |
-| Rapport d'orientation minimal échantillonné | `0,997802` — positif |
-| Norme maximale du gradient tangent de déplacement | **`5,418716`** |
-| Rotation maximale de la normale | **`79,5427°`** |
-| Plus petit rayon principal échantillonné | **`0,0082114` unité** |
-| Courbure principale absolue maximale, source / essai | `0,012124` / `121,781924` unité⁻¹ |
+| Native evaluation points on the surface | 14,641 |
+| Maximum formula / OCCT deviation | `7.45e-14` unit |
+| Error of the moved target point | `1.59e-14` unit |
+| Maximum deviation of the four curves / surface, 121 points per curve | `3.70e-12` unit |
+| Maximum sampled native displacement | `0.5475820581` unit |
+| Minimum sampled orientation ratio | `0.997802` — positive |
+| Maximum norm of the tangent displacement gradient | **`5.418716`** |
+| Maximum rotation of the normal | **`79.5427°`** |
+| Smallest sampled principal radius | **`0.0082114` unit** |
+| Maximum absolute principal curvature, source / trial | `0.012124` / `121.781924` unit⁻¹ |
 
-Le filtre de pente choisi **avant le résultat** est une norme du gradient
-tangent au plus égale à 1. C'est un filtre géométrique exploratoire destiné
-à exclure une pointe, **pas une limite matériau, une norme LPBF ou une preuve
-de défaillance mécanique**. Lui seul échoue dans cette exécution. Les
-rotations et courbures quantifient la dégradation ; leurs extrema sont
-échantillonnés et ne constituent pas des bornes continues.
+The slope filter chosen **before the result** is a tangent gradient norm
+of at most 1. It is an exploratory geometric filter intended
+to exclude a spike, **not a material limit, an LPBF standard or proof
+of mechanical failure**. It alone fails in this run. The
+rotations and curvatures quantify the degradation; their extrema are
+sampled and do not constitute continuous bounds.
 
-La réussite de C2 signifie continuité des dérivées ; elle ne garantit pas
-une faible courbure. De même, une amplitude bornée et une orientation
-positive ne suffisent pas à rendre ce renfort acceptable. Le candidat est
-conservé comme diagnostic, sans couture, export STEP de solide, BOP ou
-nouveau contrôle des 42 rayons.
+Passing C2 means continuity of derivatives; it does not guarantee
+low curvature. Likewise, a bounded amplitude and a positive
+orientation are not enough to make this reinforcement acceptable. The candidate is
+kept as a diagnostic, without sewing, solid STEP export, BOP or
+new check of the 42 rays.
 
-## Les quatre bords ne sont pas quatre interfaces moteur démontrées
+## The four edges are not four demonstrated engine interfaces
 
-L'audit existant identifie quatre **limites isoparamétriques d'une face de
-reconstruction**. Il ne leur attribue pas de fonction mécanique. Le
-[générateur F43](../../twins/reference-917-engine/source/build_scan_contour_patch_reconstruction_f43.py)
-forme la peau externe par sections réglées entre contours polygonaux :
-ce procédé introduit des limites de faces numériques. Les données lues ne
-permettent pas de classer individuellement les quatre bords du présent
-essai en interface physique, bord d'ailette ou simple couture.
+The existing audit identifies four **isoparametric boundaries of a
+reconstruction face**. It does not assign them a mechanical function. The
+[F43 generator](../../twins/reference-917-engine/source/build_scan_contour_patch_reconstruction_f43.py)
+forms the outer skin by ruled sections between polygonal contours:
+this process introduces numerical face boundaries. The data read do not
+allow the four edges of the present trial to be individually classified
+as a physical interface, a fin edge or a mere seam.
 
-Leur immobilisation était donc une **contrainte conservatrice de cet
-essai**, pas une exigence Porsche établie. Le rejet n'établit ni
-l'impossibilité d'épaissir la zone, ni la nécessité d'une pointe. Avant une
-autre stratégie, il faut attribuer les frontières et les faces voisines
-réelles ; on ne doit pas transformer une couture artificielle en frontière
-physique intangible. Cette attribution supplémentaire n'a pas été exécutée
-pendant la clôture de cet essai.
+Holding them fixed was therefore a **conservative constraint of this
+trial**, not an established Porsche requirement. The rejection establishes neither
+the impossibility of thickening the zone, nor the necessity of a spike. Before
+another strategy, the real boundaries and neighboring faces must be
+attributed; an artificial seam must not be turned into an untouchable physical
+boundary. This additional attribution was not executed
+during the closure of this trial.
 
-## Reproductibilité et intégrité
+## Reproducibility and integrity
 
-Script : [trial_isolated_transition_c2.py](../../twins/m64-cylinder-head/trial_isolated_transition_c2.py).
-Exécution native terminée avec code 0, statut `rejected_surface_quality`,
-sur Kali, deux CPU, 4 Gio et plafond de 300 secondes. Code 0 signifie ici
-que le diagnostic a terminé, **pas que le candidat est accepté**. L'essai
-refuse un répertoire de sortie existant et ne modifie aucun STEP d'entrée.
+Script: [trial_isolated_transition_c2.py](../../twins/m64-cylinder-head/trial_isolated_transition_c2.py).
+Native run finished with exit code 0, status `rejected_surface_quality`,
+on Kali, two CPUs, 4 GiB and a 300-second limit. Exit code 0 means here
+that the diagnostic finished, **not that the candidate is accepted**. The trial
+refuses an existing output directory and modifies no input STEP.
 
-Artefacts privés dans
-`/tmp/917-f50/out/m64-isolated-transition-C2-1743-20260907/` :
+Private artifacts in
+`/tmp/917-f50/out/m64-isolated-transition-C2-1743-20260907/`:
 
-- `surface-report.json`, SHA `db2f18928be6cb4e8760990848e1c44369b199f17baeb4f619c314b09765a306` ;
+- `surface-report.json`, SHA `db2f18928be6cb4e8760990848e1c44369b199f17baeb4f619c314b09765a306`;
 - `private-C2-surface.npz`, SHA `8704820f4f82411dbe3591628ff5f80b1be4a677981760ad545c22584cba46a3`.
 
-Les hashes ont été revérifiés après l'essai : F53 reste
+The hashes were rechecked after the trial: F53 remains
 `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`,
-et le solide Bernstein 10 × 11 reste
+and the 10 × 11 Bernstein solid remains
 `42057011e25ecc48b215a58e979a0d9bcf4769f2f96f9690b751a81a7bde2cd8`.
-Les coordonnées, pôles, fichiers STEP et NPZ demeurent privés.
+The coordinates, poles, STEP and NPZ files remain private.
 
-Le [résumé expurgé](../../twins/m64-cylinder-head/evidence/isolated-c2-surface-rejection-20260907.json)
-conserve les seuls agrégats et les références de preuve. Le skill
-`engineering:documentation` a guidé la présentation du résultat avant les
-étapes et la séparation entre contrôles exécutés et étapes non réalisées.
+The [redacted summary](../../twins/m64-cylinder-head/evidence/isolated-c2-surface-rejection-20260907.json)
+keeps only the aggregates and the evidence references. The
+`engineering:documentation` skill guided presenting the result before the
+steps and separating executed checks from steps not performed.

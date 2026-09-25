@@ -1,45 +1,58 @@
-# M64 — profil du contrôle strict et réconciliation volumique (14/09/2026)
+# M64 — strict check profile and volume reconciliation (09/14/2026)
 
-Suite du [pilote CAD agent](M64_CAD_AGENT_PILOT_20260912.md) : R0,1 en
-`strict-approximation-v1` a atteint la limite de 300 s (sortie 137) après
-l'écriture du BRep, alors que `default` passait en ~5,5 s.
+Follow-up of the [CAD agent pilot](M64_CAD_AGENT_PILOT_20260912.md): R0.1 in
+`strict-approximation-v1` hit the 300 s limit (exit 137) after the BRep was
+written, while `default` passed in ~5.5 s.
 
-## Conclusion courte
+```mermaid
+flowchart LR
+  A["Strict R0.1 hit 300 s<br/>(exit 137, pilot)"] --> B["Phase-by-phase profile<br/>on public witnesses"]
+  B --> C["No phase above 1 s<br/>slow phase not reproduced"]
+  C --> D["Non-exact BRepCheck<br/>substitution"]
+  D --> E["Rejected:<br/>different result"]
+  C --> F["To run on Kali with<br/>private negative"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class E stop;
+  class F open;
+```
 
-**La phase lente n'est pas reproduite sans la géométrie privée.** Sur les
-témoins publics, aucune phase du contrôle ne dépasse 1 s de calcul. Aucune
-option plus rapide n'est proposée. La seule substitution candidate
-(BRepCheck non exact) est **rejetée** : elle ne rend pas le même résultat.
-Rien n'est promu. Le contour maître et `build_local_port_junction_fillet.py`
-sont inchangés.
+## Short conclusion
 
-## Machine et limites
+**The slow phase is not reproduced without the private geometry.** On the
+public witnesses, no phase of the check exceeds 1 s of computation. No faster
+option is proposed. The only candidate substitution (non-exact BRepCheck) is
+**rejected**: it does not return the same result.
+Nothing is promoted. The master contour and `build_local_port_junction_fillet.py`
+are unchanged.
 
-Mesures sur **machine locale WSL2** : i7-1260P, 16 cœurs logiques, 15 GiB,
-OCP 7.9.3.1, Python 3.14.7 via `uv`. **Ce n'est pas Kali** : pas de SSH, pas
-de conteneur 2 CPU / 4 GiB. Les temps ne sont pas comparables à ceux du pilote.
-Le négatif d'admission privé et le scan étaient indisponibles.
+## Machine and limits
 
-## Outil
+Measurements on a **local WSL2 machine**: i7-1260P, 16 logical cores, 15 GiB,
+OCP 7.9.3.1, Python 3.14.7 via `uv`. **This is not Kali**: no SSH, no
+2 CPU / 4 GiB container. The times are not comparable to those of the pilot.
+The private intake negative and the scan were unavailable.
 
-`twins/m64-cylinder-head/source/profile_strict_check.py` rejoue une à une
-les phases qui suivent la construction dans `run()`. Chaque phase tourne dans
-un sous-processus séparé, avec délai externe et `RLIMIT_CPU`, sans proxy dans
-l'environnement. Chaque sous-processus relit la forme : `read_seconds` est
-mesuré à part de `phase_seconds`. La sortie est un JSON.
+## Tool
 
-Phases : `read`, `brepcheck_exact` (identique à `CAD.valid`),
+`twins/m64-cylinder-head/source/profile_strict_check.py` replays one by one
+the phases that follow construction in `run()`. Each phase runs in a separate
+subprocess, with an external timeout and `RLIMIT_CPU`, with no proxy in the
+environment. Each subprocess re-reads the shape: `read_seconds` is measured
+separately from `phase_seconds`. The output is JSON.
+
+Phases: `read`, `brepcheck_exact` (identical to `CAD.valid`),
 `brepcheck_default`, `tolerances` (BRep_Tool + ShapeAnalysis),
-`bop_full` (identique à `ports.bop_check`), `bop_only_<option>` pour chacune
-des 5 options, `bop_none`, `write_reread`, `bbox_optimal`,
-`volume_adaptive_1e-11` (identique à `adaptive_volume`), `volume_adaptive_1e-9`
-et `volume_gauss_default`.
+`bop_full` (identical to `ports.bop_check`), `bop_only_<option>` for each of
+the 5 options, `bop_none`, `write_reread`, `bbox_optimal`,
+`volume_adaptive_1e-11` (identical to `adaptive_volume`), `volume_adaptive_1e-9`
+and `volume_gauss_default`.
 
-Un délai dépassé ou une phase manquante donne `incomplete`, jamais `pass`.
-L'échantillonnage de tangence n'est pas rejoué : il demande l'historique
-`maker.Generated`, absent d'un BRep relu.
+An exceeded timeout or a missing phase gives `incomplete`, never `pass`.
+The tangency sampling is not replayed: it requires the `maker.Generated`
+history, absent from a re-read BRep.
 
-À lancer sur Kali avec le négatif et le candidat strict privés :
+To run on Kali with the private negative and strict candidate:
 
 ```sh
 python3 twins/m64-cylinder-head/source/profile_strict_check.py \
@@ -48,89 +61,90 @@ python3 twins/m64-cylinder-head/source/profile_strict_check.py \
   --timeout 300 --scratch /prive/scratch --output /prive/profil.json
 ```
 
-## Mesures (temps de calcul de la phase, hors relecture)
+## Measurements (phase computation time, excluding re-read)
 
-| Témoin | BRepCheck exact | BOP complet | dont SelfInter | Volume 1e-11 | Relecture + volume |
+| Witness | Exact BRepCheck | Full BOP | of which SelfInter | Volume 1e-11 | Re-read + volume |
 |---|---:|---:|---:|---:|---:|
-| Analytique R0,1 default | 0,002 s | 0,006 s | 0,004 s | 0,007 s | 0,006 s |
-| Analytique R0,1 strict | 0,002 s | 0,004 s | 0,004 s | 0,005 s | 0,006 s |
-| NURBS R0,1 source | 0,014 s | 0,149 s | 0,141 s | 0,007 s | 0,008 s |
-| NURBS R0,1 default | 0,030 s | 0,899 s | 0,837 s | 0,224 s | 0,229 s |
-| NURBS R0,1 strict | 0,083 s | 0,861 s | 0,947 s | 0,150 s | 0,159 s |
-| STEP v1 `closed` | 0,021 s | 0,858 s | 1,015 s | 0,056 s | 0,061 s |
-| STEP v2 `closed` | 0,026 s | 0,888 s | 0,841 s | 0,063 s | 0,054 s |
-| STEP v2 `simultaneous_100pct` | 0,020 s | 0,658 s | 0,644 s | 0,052 s | 0,060 s |
+| Analytic R0.1 default | 0.002 s | 0.006 s | 0.004 s | 0.007 s | 0.006 s |
+| Analytic R0.1 strict | 0.002 s | 0.004 s | 0.004 s | 0.005 s | 0.006 s |
+| NURBS R0.1 source | 0.014 s | 0.149 s | 0.141 s | 0.007 s | 0.008 s |
+| NURBS R0.1 default | 0.030 s | 0.899 s | 0.837 s | 0.224 s | 0.229 s |
+| NURBS R0.1 strict | 0.083 s | 0.861 s | 0.947 s | 0.150 s | 0.159 s |
+| STEP v1 `closed` | 0.021 s | 0.858 s | 1.015 s | 0.056 s | 0.061 s |
+| STEP v2 `closed` | 0.026 s | 0.888 s | 0.841 s | 0.063 s | 0.054 s |
+| STEP v2 `simultaneous_100pct` | 0.020 s | 0.658 s | 0.644 s | 0.052 s | 0.060 s |
 
-La relecture STEP ou BRep coûte environ 0,5 à 0,9 s par sous-processus, dont
-l'import d'OCP. Les quatre autres options BOP restent sous 0,08 s. Le temps de
-construction du congé est de 0,001 s sur le témoin analytique, 0,017 s en
-default et 0,027 s en strict sur le témoin NURBS.
+Re-reading STEP or BRep costs about 0.5 to 0.9 s per subprocess, including the
+OCP import. The four other BOP options remain below 0.08 s. The fillet
+construction time is 0.001 s on the analytic witness, 0.017 s in default and
+0.027 s in strict on the NURBS witness.
 
-Sur le témoin NURBS, le mode strict coûte 2,8 fois plus en BRepCheck exact
-(0,083 s contre 0,030 s). Le volume adaptatif, lui, est plus rapide
-(0,150 s contre 0,224 s). Il est plausible que ces écarts croissent avec la
-complexité du vrai négatif, mais ce n'est **pas mesuré**. Les phases candidates
-à surveiller sur Kali sont `bop_only_SelfInterMode`, `brepcheck_exact` et
+On the NURBS witness, strict mode costs 2.8 times more in exact BRepCheck
+(0.083 s against 0.030 s). The adaptive volume, on the other hand, is faster
+(0.150 s against 0.224 s). It is plausible that these gaps grow with the
+complexity of the real negative, but this is **not measured**. The candidate
+phases to watch on Kali are `bop_only_SelfInterMode`, `brepcheck_exact` and
 `volume_adaptive_1e-11`.
 
-## Réconciliation volumique
+## Volume reconciliation
 
-| Forme | Volume adaptatif 1e-11 | Candidat − source | Relu − mémoire | Gauss par défaut |
+| Shape | Adaptive volume 1e-11 | Candidate − source | Re-read − memory | Default Gauss |
 |---|---:|---:|---:|---:|
-| Analytique source | 3926,990817 | 0 | 0 | 3926,990817 |
-| Analytique default / strict | 3927,058537 | +0,067720 | 0 | 3927,058537 |
-| NURBS source | 3926,990825 | 0 | 0 | **3934,283687** |
-| NURBS default | 3927,058546 | +0,067721 | 0 | 3934,149045 |
-| NURBS strict | 3927,058545 | +0,067720 | 0 | 3934,149039 |
-| STEP v1/v2 `closed` (12 solides) | 45492,212291 | — | 7,3e-12 | 45492,212291 |
-| STEP v2 `simultaneous_100pct` | 45492,212291 | — | 1,5e-11 | 45492,212292 |
+| Analytic source | 3926.990817 | 0 | 0 | 3926.990817 |
+| Analytic default / strict | 3927.058537 | +0.067720 | 0 | 3927.058537 |
+| NURBS source | 3926.990825 | 0 | 0 | **3934.283687** |
+| NURBS default | 3927.058546 | +0.067721 | 0 | 3934.149045 |
+| NURBS strict | 3927.058545 | +0.067720 | 0 | 3934.149039 |
+| STEP v1/v2 `closed` (12 solids) | 45492.212291 | — | 7.3e-12 | 45492.212291 |
+| STEP v2 `simultaneous_100pct` | 45492.212291 | — | 1.5e-11 | 45492.212292 |
 
-Explication des écarts :
+Explanation of the gaps:
 
-- **Congé.** Le candidat gagne +0,0677 unité³. Ce signe est attendu : le congé
-  est concave sur un négatif de gaz, il ajoute de la matière au domaine.
-  Default et strict diffèrent de 4,6e-7 sur NURBS, et de 0 sur le témoin
-  analytique, où le mode strict n'a aucun effet.
-- **Relecture.** La relecture BRep est exacte (0) sur les témoins. Sur les STEP,
-  l'écart est de l'ordre de 1e-11, au niveau de l'arrondi flottant.
-- **Méthode d'intégration.** Le volume GProp sans `eps` (Gauss d'ordre fixe) se
-  trompe de **+7,29 unité³ (0,19 %)** dès qu'une face est B-spline. Il n'est
-  exact que sur les surfaces analytiques. Ne jamais comparer une valeur Gauss à
-  une valeur adaptative : c'est une cause possible de l'« incohérence de
-  volume » du pilote, **non vérifiée** sur les rapports privés.
-- **Orientation.** Aucun solide n'a de volume négatif ; toutes les orientations
-  sont FORWARD.
-- **Solides multiples.** Chaque STEP public contient 12 solides disjoints (des
-  paires de volumes identiques). Le volume du composé est leur somme.
-  Le contrôle mono-solide les rejette, comme attendu. `closed` porte en plus
-  20 `BOPAlgo_SelfIntersect` entre solides ; `simultaneous_100pct` n'en a aucun.
+- **Fillet.** The candidate gains +0.0677 unit³. This sign is expected: the
+  fillet is concave on a gas negative, so it adds material to the domain.
+  Default and strict differ by 4.6e-7 on NURBS, and by 0 on the analytic
+  witness, where strict mode has no effect.
+- **Re-read.** The BRep re-read is exact (0) on the witnesses. On the STEPs,
+  the gap is of the order of 1e-11, at the level of floating-point rounding.
+- **Integration method.** The GProp volume without `eps` (fixed-order Gauss) is
+  off by **+7.29 unit³ (0.19%)** as soon as a face is a B-spline. It is exact
+  only on analytic surfaces. Never compare a Gauss value with an adaptive
+  value: this is a possible cause of the pilot's "volume inconsistency",
+  **not verified** on the private reports.
+- **Orientation.** No solid has a negative volume; all orientations are
+  FORWARD.
+- **Multiple solids.** Each public STEP contains 12 disjoint solids (pairs of
+  identical volumes). The volume of the compound is their sum.
+  The single-solid check rejects them, as expected. `closed` additionally
+  carries 20 `BOPAlgo_SelfIntersect` between solids; `simultaneous_100pct`
+  has none.
 
-## Substitution rapide : rejetée
+## Fast substitution: rejected
 
-Rien n'étant lent, la seule option testée est BRepCheck sans méthode exacte.
-Sur le candidat NURBS default, **exact = invalide** et **non exact = valide**.
-Le verdict global reste identique ici, parce que le BOP rejette déjà
-(`GeomAbs_C0` ×2, `InvalidCurveOnSurface` ×1). Mais le résultat n'est pas le
-même : la substitution **affaiblirait** le contrôle. Elle n'est donc pas
-proposée.
+Since nothing is slow, the only option tested is BRepCheck without the exact
+method. On the NURBS default candidate, **exact = invalid** and **non-exact =
+valid**. The overall verdict stays identical here, because the BOP already
+rejects (`GeomAbs_C0` ×2, `InvalidCurveOnSurface` ×1). But the result is not
+the same: the substitution **would weaken** the check. It is therefore not
+proposed.
 
-Sur le candidat NURBS strict, le BOP compte `GeomAbs_C0` ×5 et
-`SelfIntersect` ×1. Ce témoin est synthétique et hors conception : ce n'est
-pas un jugement sur le mode strict de la culasse.
+On the NURBS strict candidate, the BOP counts `GeomAbs_C0` ×5 and
+`SelfIntersect` ×1. This witness is synthetic and outside the design: it is
+not a judgment on the strict mode of the cylinder head.
 
 ## Tests
 
-`tests/test_m64_strict_check_profile.py` contient 10 tests :
+`tests/test_m64_strict_check_profile.py` contains 10 tests:
 
-- verdict fail-closed sur délai dépassé ou phase manquante, y compris un vrai
-  délai de 0,05 s sur un STEP ;
-- calculs de réconciliation ;
-- verdict identique sur les témoins analytique, NURBS et STEP ;
-- non-équivalence du BRepCheck non exact, verrouillée par un test ;
-- écart supérieur à 0,1 % du volume Gauss.
+- fail-closed verdict on exceeded timeout or missing phase, including a real
+  0.05 s timeout on a STEP;
+- reconciliation calculations;
+- identical verdict on the analytic, NURBS and STEP witnesses;
+- non-equivalence of the non-exact BRepCheck, locked by a test;
+- Gauss volume gap above 0.1%.
 
-Avec les 5 tests existants de `test_local_port_junction_fillet.py`, **15 tests
-passent** en local :
+With the 5 existing tests of `test_local_port_junction_fillet.py`, **15 tests
+pass** locally:
 
 ```sh
 uv run --no-project --with cadquery --with pytest python -m unittest \

@@ -1,246 +1,245 @@
-# M64 — corps évidé et maillage d'admission
+# M64 — hollowed body and intake meshing
 
-## Résultat et périmètre
+## Result and scope
 
-**Suite publiée :** le [lot suivant](M64_VOLUME_REEL_CONTROLES_20260908.md)
-couvre les huit portions guide–tige et obtient un volume de 481 189
-tétraèdres. OpenFOAM rejette encore sa qualité. Le présent document conserve
-la chronologie des essais précédents, sans transformer leurs contrôles locaux
-en validation du résultat suivant.
+**Published follow-up:** the [next batch](M64_VOLUME_REEL_CONTROLES_20260908.md)
+covers the eight guide–stem portions and obtains a volume mesh of 481,189
+tetrahedra. OpenFOAM still rejects its quality. This document keeps the
+chronology of the earlier trials, without turning their local checks into a
+validation of the later result.
 
-Les conduits d'admission sont désormais **réellement soustraits au corps déjà
-pourvu de la chambre candidate**. Le nouvel export natif est un solide B-Rep
-valide ; son dérivé STEP est rejeté. En parallèle, un raffinement local améliore
-la représentation d'une face du domaine d'air, sans constituer encore un
-maillage volumique accepté ni un résultat CFD.
+The intake ports are now **actually subtracted from the body that already
+carries the candidate chamber**. The new native export is a valid B-Rep
+solid; its STEP derivative is rejected. In parallel, a local refinement improves
+the representation of one face of the air domain, without yet constituting an
+accepted volume mesh or a CFD result.
 
-La cible reste une culasse quatre soupapes **M64 biturbo de 700 PS au vilebrequin**,
-pas une puissance démontrée. L'enveloppe est issue de la
-[référence scannée 935 reconstruite](M64_FOUR_SEAT_BODY_CAD_AUDIT.md), avec
-l'hypothèse non étalonnée `1 unité de scan = 1 mm`. Ni les interfaces M64,
-ni les charges thermiques ne découlent de cette hypothèse ou des 700 PS.
-Les maîtres antérieurs sont préservés ; aucun changement de silhouette
-n'est justifié par la seule réussite d'une opération CAO.
+The target remains a four-valve cylinder head for a **twin-turbo M64 at 700 PS
+at the crankshaft**, not a demonstrated power output. The envelope comes from the
+[reconstructed 935 scanned reference](M64_FOUR_SEAT_BODY_CAD_AUDIT.md), with
+the uncalibrated hypothesis `1 scan unit = 1 mm`. Neither the M64 interfaces
+nor the thermal loads follow from this hypothesis or from the 700 PS.
+The earlier masters are preserved; no change of silhouette is justified by
+the mere success of a CAD operation.
 
-## Corps : une coupe effective, deux contrôles en lecture seule
+## Body: one effective cut, two read-only checks
 
-Le [constructeur](../../twins/m64-cylinder-head/source/flowbench-intake/build_ported_chamber_candidate.py)
-soustrait uniquement le négatif natif `intake06` inchangé. Corps et conduit
-étaient déjà dans le même repère : aucun second recalage, aucun récepteur
-de banc et aucun prolongement de joint de tige ne sont utilisés comme outil.
-Le [reçu du corps](../../twins/m64-cylinder-head/evidence/ported-chamber-intake-candidate-20260908.json)
-conserve les empreintes d'entrée, de source réellement exécutée et de résultats.
+The [builder](../../twins/m64-cylinder-head/source/flowbench-intake/build_ported_chamber_candidate.py)
+subtracts only the unchanged native negative `intake06`. Body and port were
+already in the same frame: no second registration, no flow-bench receiver and
+no valve-stem-seal extension is used as a tool.
+The [body receipt](../../twins/m64-cylinder-head/evidence/ported-chamber-intake-candidate-20260908.json)
+keeps the digests of the input, of the source actually executed and of the results.
 
-| Contrôle | Constat |
+| Check | Finding |
 | --- | --- |
-| Matière réellement retirée | 173 194,170 unités³ ; distincte du volume de l'outil |
-| Corps natif obtenu | 1 solide, volume 1 244 303,586 unités³ ; B-Rep valide avant et après relecture native |
-| Échange STEP | Relecture B-Rep invalide : dérivé rejeté, non utilisé pour le rendu |
-| Boîte englobante | Écart maximal nul ; ce n'est pas une preuve complète de silhouette préservée |
-| Sièges et guides d'échappement | Aires de contact cylindrique nominales conservées |
-| Deux guides d'admission | Chacun conserve **23 unités sur 35**, sur une couronne cylindrique complète à 360° |
-| Paroi du nouveau conduit | 24 rayons résolus sur **8 des 11** nouvelles faces ; minimum échantillonné **2 unités**, aucun sous le seuil exploratoire de 1,5 |
+| Material actually removed | 173,194.170 units³; distinct from the tool volume |
+| Native body obtained | 1 solid, volume 1,244,303.586 units³; valid B-Rep before and after native read-back |
+| STEP exchange | Invalid B-Rep read-back: derivative rejected, not used for rendering |
+| Bounding box | Zero maximum deviation; this is not complete proof of a preserved silhouette |
+| Exhaust seats and guides | Nominal cylindrical contact areas kept |
+| Two intake guides | Each keeps **23 units out of 35**, on a complete 360° cylindrical band |
+| New port wall | 24 rays resolved on **8 of the 11** new faces; sampled minimum **2 units**, none below the exploratory threshold of 1.5 |
 
-L'extrémité d'un guide exposée au conduit n'est pas automatiquement un défaut
-mécanique. Les 23 unités restantes exigent toutefois une justification du
-maintien, des charges et du transfert thermique : les surfaces mesurées ne
-sont ni une pression d'emmanchement ni une tenue à chaud. Le statut conservé
-est donc « revue du support des guides requise », sans exiger arbitrairement
-zéro perte de contact comme règle constructeur.
+The end of a guide exposed to the port is not automatically a mechanical
+defect. The remaining 23 units do, however, require a justification of
+retention, loads and heat transfer: the measured surfaces are neither an
+interference-fit pressure nor hot strength. The status kept is therefore
+"guide support review required", without arbitrarily demanding zero loss of
+contact as a manufacturer rule.
 
-Les rayons traversent la matière du **nouveau** corps jusqu'à sa première
-sortie native, vérifiée par un rejeu en lecture seule. Trois faces ne sont
-pas échantillonnées : ni minimum global, ni fraction de surface trop mince,
-ni qualification d'impression ne sont établis. De même, les 182 contacts
-avec l'ancienne peau incluent des parois de vides internes ; le résidu nul
-hors masques admission/chambre/logements ne prouve pas à lui seul l'absence
-de toute ouverture extérieure indésirable. Le BOP du nouveau corps
-n'avait pas été exécuté à ce stade ; le complément ci-dessous le documente.
+The rays cross the material of the **new** body up to its first native exit,
+verified by a read-only replay. Three faces are not sampled: neither a global
+minimum, nor a fraction of too-thin surface, nor a print qualification is
+established. Likewise, the 182 contacts with the old skin include walls of
+internal voids; the zero residual outside the intake/chamber/bore masks does
+not by itself prove the absence of any unwanted opening to the outside. The
+BOP check of the new body had not been run at this stage; the supplement below
+documents it.
 
-La coupe unique a terminé en 75,94 s, sortie 3 correspondant au statut de
-revue de conception ; les deux diagnostics ont terminé avec une sortie 0.
-Exécution native limitée à 2 CPU/4 Gio/300 s, sans réseau ni location.
-Les [trois tests ciblés](../../tests/test_m64_ported_chamber_candidate.py)
-contrôlent les règles logicielles ; ils ne remplacent pas ces constats CAO.
+The single cut finished in 75.94 s, exit 3 corresponding to the design-review
+status; both diagnostics finished with exit 0.
+Native execution limited to 2 CPU/4 GiB/300 s, without network or rental.
+The [three targeted tests](../../tests/test_m64_ported_chamber_candidate.py)
+check the software rules; they do not replace these CAD findings.
 
-Le rendu privé `render-02/corps-admission-coupe.png` montre le corps gris,
-le conduit bleu et une coupe du module. Son empreinte et celle du reçu de
-rendu sont liées dans le reçu du corps. Il provient du B-Rep natif
-`33375e12…`, pas du STEP rejeté ; ce n'est ni une photographie de fabrication
-ni un champ de température. La seconde version corrige seulement le libellé
-du maintien des guides en « à vérifier », sans modifier la géométrie.
+The private render `render-02/corps-admission-coupe.png` shows the body in gray,
+the port in blue and a section of the module. Its digest and that of the
+render receipt are linked in the body receipt. It comes from the native B-Rep
+`33375e12…`, not from the rejected STEP; it is neither a manufacturing
+photograph nor a temperature field. The second version only corrects the
+wording of guide retention to "to be verified", without modifying the geometry.
 
-### Complément : contrôle BOP indépendant du même corps
+### Supplement: independent BOP check of the same body
 
-Le B-Rep `33375e12…` a ensuite été relu **sans refaire la coupe**. Le
-[nouveau reçu géométrique](../../twins/m64-cylinder-head/evidence/ported-chamber-native-bop-20260908.json)
-confirme un solide et une coque, 5 056 faces, BRepCheck exact valide.
-Les cinq modes mono-corps du projet — auto-intersections, petites arêtes,
-reconstruction des faces, continuité et courbes sur surfaces — terminent
-sans défaut, erreur ni avertissement. Aucun arrêt au premier défaut.
+The B-Rep `33375e12…` was then read back **without redoing the cut**. The
+[new geometric receipt](../../twins/m64-cylinder-head/evidence/ported-chamber-native-bop-20260908.json)
+confirms one solid and one shell, 5,056 faces, exact BRepCheck valid.
+The project's five single-body modes — self-intersections, small edges,
+face rebuilding, continuity and curves on surfaces — finish without defect,
+error or warning. No stop at the first defect.
 
-Le BOP prend 107,69 s ; le processus supervisé termine en 113,58 s, sortie 0,
-pic mémoire 2 691 440 Kio, processus absent après fin. Les tolérances ordonnées
-et les empreintes d'entrée sont identiques avant/après. Un premier prévol,
-arrêté sur une incompatibilité de l'API Python de hachage avant lecture CAO,
-est conservé séparément ; la reprise remplace seulement ce hachage.
+The BOP takes 107.69 s; the supervised process finishes in 113.58 s, exit 0,
+peak memory 2,691,440 KiB, process absent after completion. The ordered
+tolerances and the input digests are identical before/after. A first
+preflight, stopped on an incompatibility of the Python hashing API before any
+CAD read, is kept separately; the resumption only replaces that hashing.
 
-**Ce PASS ne lève pas la revue mécanique des guides 23/35.** Il ne répare
-pas le STEP, ne crée pas les conduits d'échappement et ne qualifie ni les
-épaisseurs, ni les interfaces, ni la CHT. Aucun rayon, contour, repère,
-logement ou matériau n'est modifié. C'est désormais une preuve de propreté
-géométrique native du corps chambre + admission, pas une culasse libérée.
+**This PASS does not lift the mechanical review of the 23/35 guides.** It does
+not repair the STEP, does not create the exhaust ports and qualifies neither
+thicknesses, nor interfaces, nor CHT. No radius, contour, frame, bore or
+material is modified. It is now evidence of native geometric cleanliness of
+the chamber + intake body, not a released cylinder head.
 
-## Maillage : amélioration locale mesurée, pas acceptation globale
+## Meshing: measured local improvement, not global acceptance
 
-Ce travail porte sur le **domaine gazeux distinct** `gas-domain-05`, B-Rep
-`3f20f4c5…`, comprenant chambre, composants et récepteur de banc. Il ne s'agit
-pas d'un maillage de conduction du nouveau corps solide. La première
-[tentative volumique](../../twins/m64-cylinder-head/evidence/native-gas-mesh-pilot-20260908.json)
-a été rejetée sur des facettes de la face 38 (`walls_port`) ; aucun volume
-exploitable n'en est issu.
+This work concerns the **separate gas domain** `gas-domain-05`, B-Rep
+`3f20f4c5…`, comprising the chamber, components and flow-bench receiver. It is
+not a conduction mesh of the new solid body. The first
+[volume attempt](../../twins/m64-cylinder-head/evidence/native-gas-mesh-pilot-20260908.json)
+was rejected on facets of face 38 (`walls_port`); no usable volume came out of it.
 
-Les [essais d'algorithmes 1 et 5](../../twins/m64-cylinder-head/evidence/native-gas-face38-algorithm-comparison-20260908.json)
-à tailles inchangées reproduisent les mêmes 25 triangles de cette face, sans
-amélioration. Le choix 5 et le choix initial 6 se replient vers MeshAdapt :
-ce ne sont pas trois méthodes finales indépendantes. Les sorties 0 de ces
-essais signifient seulement que les surfaces diagnostiques ont été sauvegardées.
+The [trials of algorithms 1 and 5](../../twins/m64-cylinder-head/evidence/native-gas-face38-algorithm-comparison-20260908.json)
+at unchanged sizes reproduce the same 25 triangles on this face, without
+improvement. Choice 5 and the initial choice 6 fall back to MeshAdapt:
+they are not three independent final methods. The exit 0 of these trials
+only means that the diagnostic surfaces were saved.
 
-Un raffinement local à `h = 0,15 unité`, sans changement de CAO ni de tolérance,
-produit 523 triangles sur cette face. Le
-[contre-audit de conformité CAO](../../twins/m64-cylinder-head/evidence/independent-surface-cad-conformity-20260908.json)
-mesure l'amélioration suivante :
+A local refinement at `h = 0.15 units`, with no change of CAD or tolerance,
+produces 523 triangles on this face. The
+[CAD conformity counter-audit](../../twins/m64-cylinder-head/evidence/independent-surface-cad-conformity-20260908.json)
+measures the following improvement:
 
-| Mesure sur la face 38 | Surface initiale et essais 1/5 | Raffinement h = 0,15 |
+| Measurement on face 38 | Initial surface and trials 1/5 | Refinement h = 0.15 |
 | --- | ---: | ---: |
-| Écart relatif de somme des aires à l'aire CAO native | +493,818 % | +0,733 % |
-| Distance maximale **sondée** de points des triangles à la face native, unités | 0,0745316 | 0,000173771 |
+| Relative deviation of the sum of areas from the native CAD area | +493.818 % | +0.733 % |
+| Maximum **probed** distance from triangle points to the native face, units | 0.0745316 | 0.000173771 |
 
-L'aire porte sur tous les triangles de la face. Le second audit de distance
-porte sur 96 des 523 triangles, avec quatre points par triangle : ce n'est
-ni une recherche du pire cas ni une borne de Hausdorff. Il reste une languette
-quasi coïncidente, avec des normales échantillonnées parfois presque
-orthogonales ; l'amélioration ne qualifie pas les 88 faces du domaine.
+The area covers all the triangles of the face. The second distance audit
+covers 96 of the 523 triangles, with four points per triangle: it is neither a
+worst-case search nor a Hausdorff bound. A nearly coincident sliver remains,
+with sampled normals sometimes nearly orthogonal; the improvement does not
+qualify the 88 faces of the domain.
 
-**Les conclusions de normales/UV de l'auditeur v1 sont révoquées.** Son filtre
-pouvait attribuer à un point proche d'un bord la normale d'un coin distant.
-L'audit corrigé v2 rattache la normale au support natif effectivement le plus
-proche ; il ne retrouve aucune normale opposée dans l'échantillon raffiné.
-Les anciens rapports restent archivés, sans être utilisés comme preuve
-d'inversion. Cette correction du contrôleur n'a changé ni la CAO ni ses tolérances.
+**The normal/UV conclusions of auditor v1 are revoked.** Its filter could
+assign to a point near an edge the normal of a distant corner. The corrected
+audit v2 attaches the normal to the native support that is actually nearest;
+it finds no opposite normal in the refined sample.
+The old reports remain archived, without being used as evidence of
+inversion. This correction of the checker changed neither the CAD nor its tolerances.
 
-## Essai volumique
+## Volume trial
 
-La [tentative volumique après raffinement h = 0,15](../../twins/m64-cylinder-head/evidence/native-gas-h015-volume-attempt-20260908.json)
-a réellement été exécutée : **2,267 s, 4 CPU/4 Gio, sortie 2**. Les
-50 526 triangles et 25 263 nœuds de surface sont conservés, mais la récupération
-de la frontière PLC échoue avec le diagnostic
-`A segment and a facet intersect at point`. Aucun MSH volumique n'est produit
-et aucun calcul CFD n'est lancé. Le B-Rep natif reste inchangé.
+The [volume attempt after the h = 0.15 refinement](../../twins/m64-cylinder-head/evidence/native-gas-h015-volume-attempt-20260908.json)
+was actually run: **2.267 s, 4 CPU/4 GiB, exit 2**. The
+50,526 triangles and 25,263 surface nodes are kept, but recovery of the PLC
+boundary fails with the diagnostic
+`A segment and a facet intersect at point`. No volume MSH is produced
+and no CFD computation is started. The native B-Rep remains unchanged.
 
-L'empreinte du MSH de surface de cette tentative (`0e04f190…`) diffère de
-celle de l'essai de surface h = 0,15 seul (`7dc65967…`), malgré les mêmes
-comptages. L'identité bit à bit n'est donc pas établie : les diagnostics
-de conformité précédents ne deviennent pas automatiquement un audit de
-chaque facette de cette nouvelle sauvegarde.
+The digest of the surface MSH of this attempt (`0e04f190…`) differs from
+that of the standalone h = 0.15 surface trial (`7dc65967…`), despite the same
+counts. Bit-for-bit identity is therefore not established: the earlier
+conformity diagnostics do not automatically become an audit of every facet of
+this new save.
 
-Le [diagnostic suivant](../../twins/m64-cylinder-head/evidence/native-gas-guide-chord-diagnostic-20260908.json)
-a localisé **16 croisements stricts**, confirmés en arithmétique rationnelle
-exacte sur les coordonnées du MSH : quatre entre les faces guide/tige 55/63,
-douze entre 58/62. Ce sont les croisements trouvés par le diagnostic, pas
-un dénombrement exhaustif. Aucun de ces seize ne concerne la face 38 ; le
-journal ne précise pas lequel a déclenché son premier rejet.
+The [next diagnostic](../../twins/m64-cylinder-head/evidence/native-gas-guide-chord-diagnostic-20260908.json)
+located **16 strict crossings**, confirmed in exact rational arithmetic on
+the MSH coordinates: four between guide/stem faces 55/63, twelve between
+58/62. These are the crossings found by the diagnostic, not an exhaustive
+count. None of these sixteen involves face 38; the log does not say which one
+triggered its first rejection.
 
-Les nœuds sont bien sur les cylindres natifs, de rayons 3,015 et 3 unités.
-Mais les cordes des guides s'enfoncent de 0,0181 à 0,0208 unité : davantage
-que leur jeu radial de 0,015. Ce constat motive un raffinement **numérique**
-à h = 0,20 sur ces quatre cylindres, sans changer les diamètres ni leur jeu.
-Le champ `Min` combine cette taille avec le h = 0,15 de la face 38 ; les
-frontières communes participent au raffinement. La
-[documentation Gmsh](https://gmsh.info/doc/texinfo/) décrit les champs de
-taille utilisés (`MathEval`, `Restrict`, `Min`). La taille cible n'est pas un
-plafond garanti : une corde transverse produite atteint effectivement 0,2471.
+The nodes do lie on the native cylinders, of radii 3.015 and 3 units.
+But the guide chords sink in by 0.0181 to 0.0208 units: more than their radial
+clearance of 0.015. This finding motivates a **numerical** refinement at
+h = 0.20 on these four cylinders, without changing the diameters or their
+clearance. The `Min` field combines this size with the h = 0.15 of face 38;
+the shared boundaries take part in the refinement. The
+[Gmsh documentation](https://gmsh.info/doc/texinfo/) describes the size fields
+used (`MathEval`, `Restrict`, `Min`). The target size is not a guaranteed
+ceiling: one transverse chord produced actually reaches 0.2471.
 
-Une surface de 129 322 triangles passe ensuite un contrôle conservateur de
-**toute l'aire de chaque facette projetée radialement**, et non seulement de
-ses arêtes. La somme des erreurs des deux cylindres et des repères doit rester
-sous 0,0075 unité, la moitié du jeu. Ce contrôle est recalculé sur la surface
-réellement utilisée juste avant la nouvelle tentative 3D : les marges
-radiales restantes sont au moins 0,01038 et 0,009934 unité, numériquement.
+A surface of 129,322 triangles then passes a conservative check of **the whole
+area of each radially projected facet**, and not only of its edges. The sum of
+the errors of both cylinders and the frames must stay below 0.0075 units, half
+the clearance. This check is recomputed on the surface actually used just
+before the new 3D attempt: the remaining radial margins are at least 0.01038
+and 0.009934 units, numerically.
 
-**La nouvelle tentative volumique est néanmoins rejetée**, en 7,289 s,
-avec le même message PLC segment–facette. Sa surface `891eba2a…` est
-conservée ; aucun MSH volumique ni résultat CFD n'est produit. Le contrôle
-radial local est réussi, pas le maillage global. Le reçu de tentative conserve
-les deux exécutions et les empreintes différentes.
+**The new volume attempt is nevertheless rejected**, in 7.289 s,
+with the same PLC segment–facet message. Its surface `891eba2a…` is kept;
+no volume MSH and no CFD result is produced. The local radial check passed,
+not the global mesh. The attempt receipt keeps both runs and the differing
+digests.
 
-L'examen exact du dernier MSH a ensuite retrouvé **56 croisements stricts**
-sur les autres portions cylindriques des mêmes jeux : faces 56/64 (quatre)
-et 57/61 (cinquante-deux). Aucun de ces croisements n'implique les quatre
-faces déjà affinées. Le périmètre de correction était donc incomplet :
-les opérations booléennes ont divisé chaque surface fonctionnelle en
-plusieurs faces. La prochaine modification doit inventorier et couvrir
-**les huit portions cylindriques**, avec le même contrôle radial sur le
-maillage effectivement produit, sans changer les diamètres ni les tolérances.
+Exact examination of the last MSH then found **56 strict crossings** on the
+other cylindrical portions of the same clearances: faces 56/64 (four) and
+57/61 (fifty-two). None of these crossings involves the four faces already
+refined. The scope of the correction was therefore incomplete: the Boolean
+operations had split each functional surface into several faces. The next
+modification must inventory and cover **all eight cylindrical portions**, with
+the same radial check on the mesh actually produced, without changing the
+diameters or the tolerances.
 
 ```mermaid
 flowchart TD
-    A["Référence 935 reconstruite + module 4V et chambre candidate"] --> B["Coupe réelle par intake06 inchangé"]
-    B --> C["Corps natif : 1 solide B-Rep valide"]
-    B --> R["Dérivé STEP rejeté"]
-    C --> D["Maintien guides 23/35, ouvertures et épaisseur globale à justifier"]
-    A --> G["Domaine gazeux 05 distinct, avec récepteur de banc"]
-    G --> H["Premier volume rejeté ; algorithmes 1/5 sans amélioration"]
-    H --> I["Raffinement local h 0,15 : conformité sondée améliorée"]
-    I --> J["Volume rejeté : intersection segment-facette PLC"]
-    J --> Q["16 croisements guide-tige confirmés exactement"]
-    Q --> S["Raffinement local : jeu radial conservé sur les facettes"]
-    S --> V["56 croisements sur les autres portions des mêmes jeux"]
-    V --> P["À faire : couvrir les huit portions cylindriques"]
-    P --> K["Après maillage accepté : OpenFOAM, débit, bilans et convergence"]
-    D --> L["À faire : thermique, résistance, procédé et essais physiques"]
+    A["Reconstructed 935 reference<br/>+ 4V module and candidate chamber"] --> B["Real cut by unchanged intake06"]
+    B --> C["Native body: 1 valid B-Rep solid"]
+    B --> R["STEP derivative rejected"]
+    C --> D["Guide retention 23/35, openings<br/>and global thickness to justify"]
+    A --> G["Separate gas domain 05,<br/>with flow-bench receiver"]
+    G --> H["First volume rejected;<br/>algorithms 1/5 no improvement"]
+    H --> I["Local refinement h 0.15:<br/>probed conformity improved"]
+    I --> J["Volume rejected: PLC<br/>segment-facet intersection"]
+    J --> Q["16 guide-stem crossings<br/>confirmed exactly"]
+    Q --> S["Local refinement: radial<br/>clearance kept on facets"]
+    S --> V["56 crossings on the other<br/>portions of the same clearances"]
+    V --> P["To do: cover the eight<br/>cylindrical portions"]
+    P --> K["After an accepted mesh: OpenFOAM,<br/>flow rate, balances and convergence"]
+    D --> L["To do: thermal, strength,<br/>process and physical tests"]
     K --> L
 ```
 
-## Frontière de validation
+## Validation boundary
 
-Le nouvel [auditeur des historiques OpenFOAM](../../twins/m64-cylinder-head/evidence/intake-openfoam-flow-audit-20260908.json)
-a été exécuté en lecture seule sur le témoin existant : ses 20 itérations ne
-satisfont pas les deux fenêtres de 100 itérations prévues. Il ne valide donc
-ni bilan stabilisé ni convergence, même si le dernier bilan paraît équilibré.
-Il vérifie aussi le flux nul aux parois fixes ; deux moyennes identiques ne
-suffisent pas à qualifier un signal oscillant. Aucun nouveau calcul témoin
-n'a été lancé pour fabriquer un résultat de débit.
+The new [OpenFOAM history auditor](../../twins/m64-cylinder-head/evidence/intake-openfoam-flow-audit-20260908.json)
+was run read-only on the existing smoke test: its 20 iterations do not satisfy
+the two planned 100-iteration windows. It therefore validates neither a
+stabilized balance nor convergence, even if the last balance looks balanced.
+It also checks zero flux at the fixed walls; two identical averages are not
+enough to qualify an oscillating signal. No new smoke-test computation was
+started to manufacture a flow-rate result.
 
-Aucun calcul physique n'a encore été exécuté sur ce nouveau corps ni sur ce
-domaine gazeux réel. Le [témoin OpenFOAM](M64_DOMAINE_GAZ_OPENFOAM_20260908.md)
-vérifie une chaîne logicielle sur un conduit distinct, pas le débit de culasse.
-Les objectifs 700 PS, dissipation, fatigue et impression restent à démontrer
-avec les chargements et le [matériau/procédé à sélectionner](M64_700CH_MATERIAL_COOLING_LPBF.md).
-**Aucune autorisation de fabrication ou de démarrage moteur.**
+No physical computation has yet been run on this new body or on this real gas
+domain. The [OpenFOAM smoke test](M64_DOMAINE_GAZ_OPENFOAM_20260908.md)
+checks a software chain on a separate port, not the cylinder-head flow rate.
+The 700 PS, heat-rejection, fatigue and printing objectives remain to be
+demonstrated with the loads and the [material/process to be selected](M64_700CH_MATERIAL_COOLING_LPBF.md).
+**No authorization for manufacture or engine start.**
 
-## Calcul et budget
+## Compute and budget
 
-Le plafond utilisateur est **44 USD, sans recharge**. La lecture du wrapper
-OpenBao approuvé pendant ce lot retourne **43,9166429608502 USD de crédit
-disponible et aucune instance**. C'est un état observé, non un solde garanti
-pour une date ultérieure. Aucune location Vast n'a été engagée dans ce lot :
-les jobs courts ont utilisé les runtimes natifs existants. Une location exige
-encore un job utile, son image `linux/amd64` qualifiée par digest, l'identité
-SSH vérifiée et les garde-fous de budget et d'arrêt.
+The user ceiling is **44 USD, with no top-up**. The reading of the approved
+OpenBao wrapper during this batch returns **43.9166429608502 USD of available
+credit and no instance**. This is an observed state, not a guaranteed balance
+for a later date. No Vast rental was committed in this batch: the short jobs
+used the existing native runtimes. A rental still requires a useful job, its
+`linux/amd64` image qualified by digest, the verified SSH identity and the
+budget and shutdown safeguards.
 
-## Vérification logicielle de ce lot
+## Software verification of this batch
 
-`make check` est terminé avec une sortie observée de 0. La suite principale
-compte 2 283 cas, dont 108 ignorés faute de dépendances optionnelles ; les
-autres contrôles de la cible terminent également sans échec. Le journal privé
-porte l'empreinte `0642264d19613b176344214a300d941d361c85a3829c1fd05e59db75e5a9334c`.
-Les tests ciblés ont aussi été lancés dans le runtime OCP natif : **42 réussis,
-aucun ignoré** (16 maillage, 8 conformité CAO, 5 cordes/intersections,
-10 bilans OpenFOAM, 3 corps évidé). Le diagramme Mermaid est relu dans sa
-source ; aucun rendu Mermaid exécuté n'est revendiqué.
+`make check` completed with an observed exit of 0. The main suite counts
+2,283 cases, 108 of them skipped for lack of optional dependencies; the target's
+other checks also finish without failure. The private log carries the digest
+`0642264d19613b176344214a300d941d361c85a3829c1fd05e59db75e5a9334c`.
+The targeted tests were also run in the native OCP runtime: **42 passed,
+none skipped** (16 meshing, 8 CAD conformity, 5 chords/intersections,
+10 OpenFOAM balances, 3 hollowed body). The Mermaid diagram is reviewed in its
+source; no executed Mermaid rendering is claimed.
 
-La stratégie de test sépare les régressions logicielles des exécutions sur
-la géométrie privée. La documentation conserve les essais rejetés et relie
-les empreintes ; les couleurs du rendu identifient les pièces et non une
-performance physique calculée.
+The test strategy separates software regressions from runs on the private
+geometry. The documentation keeps the rejected trials and links the digests;
+the colors of the render identify the parts and not a computed physical
+performance.

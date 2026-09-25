@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check translation-status container-recon container-cadsim container-mesh-cfd \
+	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -205,7 +205,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	route-trim-ring-check turning-trim-ring-check titanium-screen-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
-	part-pages-check help-check
+	part-pages-check reports-index-check docs-links-check help-check
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .
@@ -1330,6 +1330,18 @@ print-screen-sections-check:
 #> check | How much Markdown is still in French (see docs/TRANSLATION.md)
 translation-status:
 	python3 scripts/translation_status.py --list
+
+#> catalogue | Regenerate the dated index of docs/reports/
+reports-index:
+	python3 scripts/render_reports_index.py --write
+
+#> catalogue | Check that this index follows docs/reports/
+reports-index-check:
+	python3 scripts/render_reports_index.py --check
+
+#> check | Check relative links and #anchors in Markdown
+docs-links-check:
+	python3 scripts/check_doc_links.py --strict
 
 #> catalogue | Rewrite the README parts table
 parts-table:

@@ -86,3 +86,25 @@ What the repository can deliver on its own is still substantial: a register of
 verified sources, candidate selection from a factory catalogue, quantified
 material and process trade-offs, calculations, and a reproducible computing
 environment.
+
+```mermaid
+flowchart LR
+    subgraph inScope["Delivered by the repository on its own"]
+        I1["Register of verified sources"]
+        I2["Candidate selection from<br/>a factory catalogue"]
+        I3["Material and process trade-offs,<br/>calculations"]
+        I4["Reproducible computing environment"]
+        I5["Measurement plans, record formats,<br/>capture and validation tools"]
+    end
+    subgraph outScope["Outside the working frame"]
+        O1["Weighing, measuring, printing,<br/>fitting or testing in-house"]:::stop
+        O2["A record produced here<br/>above status concept"]:::stop
+        O3["released read as road type approval<br/>or a universal guarantee"]:::stop
+        O4["Every part printed in titanium"]:::stop
+    end
+    P23["Phases 2 and 3 exit criteria:<br/>conditional on an outside contributor"]:::open
+    I5 --> P23
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```

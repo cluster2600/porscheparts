@@ -1,79 +1,81 @@
-# Essai ciblé de cadrille et CAD-Recode — 12 septembre 2026
+# Targeted trial of cadrille and CAD-Recode — September 12, 2026
 
-**Les deux modèles ont réellement généré une CAO, puis été contrôlés séparément.
-Les deux candidats sont écartés du modèle maître : détails manquants et écarts au scan.**
+**Both models actually generated CAD, which was then checked separately.
+Both candidates are excluded from the master model: missing details and deviations from the scan.**
 
-## But et limites
+## Purpose and limits
 
-Comparer deux modèles spécialisés sur **la même entrée**, avant correction de la culasse.
-Ce pilote ne simule ni thermique, ni résistance, ni impression et ne qualifie aucun moteur 700 hp.
-Un modèle génératif propose une hypothèse ; il ne justifie pas seul une modification du contour Porsche.
+Compare two specialized models on **the same input**, before correcting the cylinder head.
+This pilot simulates neither thermal behavior, nor strength, nor printing, and qualifies no 700 hp engine.
+A generative model proposes a hypothesis; it does not by itself justify a change to the Porsche outline.
 
 ```mermaid
 flowchart LR
-    A[Scan 935 privé original] --> B[Découpe locale non réparée]
-    B --> C[256 points communs normalisés]
-    C --> D[cadrille - Apple MPS]
-    C --> E[CAD-Recode - Apple MPS]
-    D --> F[Code généré conservé comme donnée]
+    A["Original private 935 scan"] --> B["Unrepaired local crop"]
+    B --> C["256 shared normalized points"]
+    C --> D["cadrille - Apple MPS"]
+    C --> E["CAD-Recode - Apple MPS"]
+    D --> F["Generated code kept as data"]
     E --> F
-    F --> G[Contrôle AST puis bac à sable isolé]
-    G --> H[B-Rep et comparaison indépendante au scan]
-    H --> I{Preuves suffisantes ?}
-    I -->|Non| J[Rejet ou candidat non qualifié]
-    I -->|Oui| K[Revue locale avant intégration]
+    F --> G["AST check then isolated sandbox"]
+    G --> H["B-Rep and independent comparison with the scan"]
+    H --> I{"Sufficient evidence?"}
+    I -->|No| J["Rejection or unqualified candidate"]
+    I -->|Yes| K["Local review before integration"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class J stop
 ```
 
-## Entrée réellement préparée
+## Input actually prepared
 
-- Source : scan fourni de référence **935**, non M64 certifié ; bouche de conduit et bride locale `low_B`.
-- 90 185 triangles originaux retenus, 46 844 sommets uniques exacts ; aucune
-  surface inventée, réparation ou fermeture ajoutée.
-- Découpe ouverte : 3 651 arêtes de frontière, 2 arêtes non-manifold et 2 triangles
-  d’aire nulle. Une fermeture produite par un modèle sera donc une hypothèse.
-- Entrée principale : 256 points `float32`, forme `(256, 3)`, FPS float32 depuis
-  8 192 points de surface pondérés par aire, graine PCG64 `20260912`, départ 0.
-  Cette stratégie suit les auteurs, sans identité bit à bit revendiquée avec leur
-  générateur aléatoire ou noyau PyTorch3D. L’entrée uniforme initiale est conservée.
-- Normalisation par centre de boîte et demi-plus-grande dimension ; transformation
-  inverse enregistrée en privé. L’échelle absolue en millimètres n’est pas attestée.
-- Références de contrôle distinctes : 32 768 points, graines `20260913` et `20260914`.
+- Source: supplied **935** reference scan, not a certified M64; port mouth and local flange `low_B`.
+- 90,185 original triangles kept, 46,844 exact unique vertices; no
+  invented surface, repair or closure added.
+- Open crop: 3,651 boundary edges, 2 non-manifold edges and 2 zero-area
+  triangles. A closure produced by a model will therefore be a hypothesis.
+- Main input: 256 `float32` points, shape `(256, 3)`, float32 FPS from
+  8,192 area-weighted surface points, PCG64 seed `20260912`, start 0.
+  This strategy follows the authors, with no bit-for-bit identity claimed with their
+  random generator or PyTorch3D kernel. The initial uniform input is kept.
+- Normalization by box center and half of the largest dimension; inverse
+  transformation recorded privately. The absolute scale in millimeters is not attested.
+- Separate check references: 32,768 points, seeds `20260913` and `20260914`.
 
-SHA-256 de l’entrée FPS principale `points.npy` :
+SHA-256 of the main FPS input `points.npy`:
 `e2791955d76a2f2e27c39b4db61d71ff252c1953de9ac3a849f37111a20abd9c`.
-Les données géométriques restent privées ; 256 points ne préservent pas nécessairement chaque détail.
+The geometric data remain private; 256 points do not necessarily preserve every detail.
 
-## Modèles et provenance figés
+## Frozen models and provenance
 
-| Élément | cadrille | CAD-Recode v1.5 |
+| Item | cadrille | CAD-Recode v1.5 |
 | --- | --- | --- |
-| Poids | `maksimko123/cadrille` | `filapro/cad-recode-v1.5` |
-| Révision des poids | `2f422d1169e4362e2288b0e0f54bb3a2b504e0f9` | `765e8cc315a1a77bd8c69ccd0b403bad20ce35e8` |
-| Dépôt du code | `col14m/cadrille` | `filaPro/cad-recode` |
-| Révision du code | `d72acc687273d31d62afe62eb9ded8b66b835321` | `03e3262119b38939feaa44b8368ad8db99243d47` |
+| Weights | `maksimko123/cadrille` | `filapro/cad-recode-v1.5` |
+| Weights revision | `2f422d1169e4362e2288b0e0f54bb3a2b504e0f9` | `765e8cc315a1a77bd8c69ccd0b403bad20ce35e8` |
+| Code repository | `col14m/cadrille` | `filaPro/cad-recode` |
+| Code revision | `d72acc687273d31d62afe62eb9ded8b66b835321` | `03e3262119b38939feaa44b8368ad8db99243d47` |
 
-Le chargeur vérifie le SHA officiel avant import. CAD-Recode : seules les deux classes
-du premier bloc du notebook sont extraites ; démos, rendus et `exec` sont exclus.
-Les révisions des processeurs/tokenizers sont également figées.
+The loader verifies the official SHA before import. CAD-Recode: only the two classes
+from the first notebook cell are extracted; demos, renders and `exec` are excluded.
+The processor/tokenizer revisions are also frozen.
 
-Les **poids des deux modèles sont CC-BY-NC-4.0** : essai de recherche non commercial
-uniquement, sans autorisation commerciale déduite de cet essai. Le code cadrille
-Apache-2.0 ne supprime pas la restriction des poids. Sources :
-[cadrille, fiche officielle](https://huggingface.co/maksimko123/cadrille),
-[CAD-Recode v1.5, fiche officielle](https://huggingface.co/filapro/cad-recode-v1.5),
-[code cadrille](https://github.com/col14m/cadrille),
-[code CAD-Recode](https://github.com/filaPro/cad-recode).
+The **weights of both models are CC-BY-NC-4.0**: non-commercial research trial
+only, with no commercial authorization inferred from this trial. The Apache-2.0
+cadrille code does not lift the restriction on the weights. Sources:
+[cadrille, official model card](https://huggingface.co/maksimko123/cadrille),
+[CAD-Recode v1.5, official model card](https://huggingface.co/filapro/cad-recode-v1.5),
+[cadrille code](https://github.com/col14m/cadrille),
+[CAD-Recode code](https://github.com/filaPro/cad-recode).
 
-## Exécution bornée et reproductibilité
+## Bounded execution and reproducibility
 
-Le [chargeur](../../twins/m64-cylinder-head/source/run_cad_specialist_inference.py) utilise
-Transformers, Safetensors et SDPA, sans `trust_remote_code` ni jeton implicite.
-Exécution réelle locale Apple MPS : PyTorch 2.5.1, torchvision 0.20.1, Transformers 4.50.3,
-paramètres float32, huit threads CPU, cast des embeddings adapté et tracé, sans repli CPU silencieux.
-La première tentative MPS a échoué sur les seuils mémoire, pas sur la géométrie.
-Les deux réussites utilisent haut/bas 0,5/0,4 ; le chargeur contrôle désormais leur ordre avant téléchargement.
-Vast `50801707` : image non chargée en 15 min, instance supprimée et absence vérifiée ; aucune inférence distante.
-Débit de crédit observé : **0,0073427022 USD**, provisoire, sans garantie de facturation finale.
+The [loader](../../twins/m64-cylinder-head/source/run_cad_specialist_inference.py) uses
+Transformers, Safetensors and SDPA, without `trust_remote_code` or an implicit token.
+Real local run on Apple MPS: PyTorch 2.5.1, torchvision 0.20.1, Transformers 4.50.3,
+float32 parameters, eight CPU threads, embedding cast adapted and traced, no silent CPU fallback.
+The first MPS attempt failed on the memory thresholds, not on the geometry.
+Both successes use high/low 0.5/0.4; the loader now checks their order before download.
+Vast `50801707`: image not loaded in 15 min, instance deleted and absence verified; no remote inference.
+Observed credit debit: **0.0073427022 USD**, provisional, with no guarantee on final billing.
 
 ```bash
 python run_cad_specialist_inference.py --model cadrille --device mps \
@@ -81,65 +83,65 @@ python run_cad_specialist_inference.py --model cadrille --device mps \
   --seed 42 --max-tokens 1536 --generation-seconds 120 --timeout-seconds 900
 ```
 
-Répéter avec `--model cad-recode` et un nouveau dossier. Les deux exécutions séquentielles
-emploient une génération gloutonne, graine 42, plafond réel 1 536 tokens, limite souple
-120 s et superviseur 900 s. Pas de garantie bit à bit entre architectures GPU.
+Repeat with `--model cad-recode` and a new folder. The two sequential runs
+use greedy generation, seed 42, a real cap of 1,536 tokens, a soft limit of
+120 s and a 900 s supervisor. No bit-for-bit guarantee across GPU architectures.
 
-Sorties privées : code inerte, `generation.json`, `supervision.json`, journaux et audits.
-Le contrôle séparé applique ×0,01 aux coordonnées CAO, sans recalage ICP ni ajustement d’échelle.
-Driver CAD-Recode archivé et hashé ; hash du driver cadrille-v2 indisponible, non reconstruit a posteriori.
+Private outputs: inert code, `generation.json`, `supervision.json`, logs and audits.
+The separate check applies ×0.01 to the CAD coordinates, without ICP registration or scale fitting.
+CAD-Recode driver archived and hashed; cadrille-v2 driver hash unavailable, not reconstructed after the fact.
 
-Le code généré a été lu avant exécution : les deux sorties ne contiennent que des
-constructions CadQuery simples. Exécution puis audit natif dans **deux conteneurs
-distincts** sur Kali : réseau coupé, utilisateur non privilégié, racine en lecture
-seule, deux CPU, 4 GiB, 128 processus et 120 s par étape. L'analyse AST n'est pas
-une frontière de sécurité. **Limite restante :** le volume cumulé du répertoire
-de sortie et les journaux hôte ne sont pas plafonnés ; la limite par fichier ne
-suffit pas. Ce pilote supervisé n'autorise donc pas un service autonome exécutant
-du code LLM arbitraire. Il faudra des sorties à quota et des journaux bornés.
+The generated code was read before execution: both outputs contain only
+simple CadQuery constructions. Execution and then native audit in **two separate
+containers** on Kali: network cut, unprivileged user, read-only root,
+two CPUs, 4 GiB, 128 processes and 120 s per step. AST analysis is not
+a security boundary. **Remaining limit:** the cumulative volume of the output
+directory and the host logs are not capped; the per-file limit is not
+enough. This supervised pilot therefore does not authorize an autonomous service running
+arbitrary LLM code. Quota-bound outputs and bounded logs will be needed.
 
-Le [reçu public expurgé](../../twins/m64-cylinder-head/evidence/cad-specialists-20260912.json)
-conserve identités, empreintes, durées, résultats et limites. Scan, code généré,
-B-Rep et images comparatives dérivées restent privés tant que les droits de
-redistribution du scan ne sont pas établis.
+The [redacted public receipt](../../twins/m64-cylinder-head/evidence/cad-specialists-20260912.json)
+keeps identities, digests, durations, results and limits. Scan, generated code,
+B-Rep and derived comparison images remain private as long as the redistribution
+rights of the scan are not established.
 
-## Vérifications et résultats
+## Checks and results
 
-Les [10 tests du chargeur](../../tests/test_m64_cad_specialist_inference.py) passent ;
-les résultats ci-dessous viennent des exécutions et audits, pas de ces tests logiciels.
-Au total, **77 tests ciblés passent, aucun ignoré** : 50 contrôles du profil de
-location/recherche, 10 du chargeur et 17 de géométrie/confinement. Les comparaisons
-ont été rejouées avec vérification SHA des deux tableaux de référence réellement
-consommés. Les deux exécutions natives ont aussi été rejouées avec preuve positive
-d'absence des conteneurs ; B-Rep et distances sont identiques aux premiers essais.
+The [10 loader tests](../../tests/test_m64_cad_specialist_inference.py) pass;
+the results below come from the runs and audits, not from these software tests.
+In total, **77 targeted tests pass, none skipped**: 50 checks of the
+rental/search profile, 10 of the loader and 17 of geometry/containment. The comparisons
+were replayed with SHA verification of the two reference arrays actually
+consumed. Both native runs were also replayed with positive evidence
+that the containers were gone; B-Rep and distances are identical to the first trials.
 
-`make check` a été lancé : il s'arrête sur le rapport de préparation historique
-F46 différent des sources. Le même échec a été reproduit sur la branche publiée
-avant ce lot, commit `3c00c0f08a96b9fca07e1b86f6483c78c357be9e`.
-Ce rapport n'a pas été régénéré pour masquer l'écart ; la suite globale n'est pas
-présentée comme verte et aucune fusion vers la branche principale n'est proposée.
+`make check` was run: it stops on the historical F46 preparation report,
+which differs from its sources. The same failure was reproduced on the branch published
+before this batch, commit `3c00c0f08a96b9fca07e1b86f6483c78c357be9e`.
+This report was not regenerated to hide the discrepancy; the global suite is not
+presented as green and no merge into the main branch is proposed.
 
-| Mesure observée | cadrille | CAD-Recode v1.5 |
+| Observed measurement | cadrille | CAD-Recode v1.5 |
 | --- | --- | --- |
-| Génération seule | 32,279 s | 33,795 s |
-| Nouveaux tokens / fin EOS | 185 / oui | 257 / oui |
-| Chargement mesuré, caches différents | 5,078 s | 68,441 s |
-| Mémoire MPS courante / pilote, Go décimaux, pas des pics | 8,879 / 9,757 | 6,209 / 7,776 |
-| Audit CadQuery 2.8.0 / OCP 7.9.3.1 | 1 solide valide, 19 faces | 1 solide valide, 26 faces |
-| Distance p95 scan → candidat, normalisée | 0,326215 | 0,352646 |
-| Distance p95 candidat → scan, normalisée | 0,123551 | 0,197387 |
+| Generation only | 32.279 s | 33.795 s |
+| New tokens / EOS end | 185 / yes | 257 / yes |
+| Measured loading, different caches | 5.078 s | 68.441 s |
+| Current MPS / driver memory, decimal GB, not peaks | 8.879 / 9.757 | 6.209 / 7.776 |
+| CadQuery 2.8.0 / OCP 7.9.3.1 audit | 1 valid solid, 19 faces | 1 valid solid, 26 faces |
+| p95 distance scan → candidate, normalized | 0.326215 | 0.352646 |
+| p95 distance candidate → scan, normalized | 0.123551 | 0.197387 |
 
-Distances entre deux échantillons de 32 768 points, pas des distances exactes aux
-surfaces ni une borne de Hausdorff. Rééchantillonnage du scan seul : p95 **0,012359**,
-repère de comparaison, pas tolérance d’acceptation prédéfinie. La plus grande dimension vaut 2.
-Les deux reconstructions omettent quatre petits perçages ; leurs fermetures ne sont
-pas observées dans le crop ouvert. Validité B-Rep seule ≠ auto-intersections indépendamment vérifiées.
-Cadrille a de plus petits p95 sur **cet unique crop** : aucun classement général n’en découle.
+Distances between two samples of 32,768 points, not exact distances to the
+surfaces nor a Hausdorff bound. Resampling of the scan alone: p95 **0.012359**,
+a comparison benchmark, not a predefined acceptance tolerance. The largest dimension is 2.
+Both reconstructions omit four small drillings; their closures are
+not observed in the open crop. B-Rep validity alone ≠ independently verified self-intersections.
+Cadrille has smaller p95 values on **this single crop**: no general ranking follows from it.
 
-## Suite retenue
+## Next step adopted
 
-Ne pas intégrer ces reconstructions génératives. Reprendre une reconstruction
-paramétrique guidée par le scan : perçages et contours observés, provenance des
-surfaces reconstruites, comparaison locale puis contrôle des interfaces connues.
-N’inventer ni cotes M64 ni géométrie cachée. Aucune validation matériau, thermique,
-pression, fatigue, fonctionnement moteur ou LPBF n’est apportée par ce pilote.
+Do not integrate these generative reconstructions. Resume a scan-guided
+parametric reconstruction: observed drillings and outlines, provenance of the
+reconstructed surfaces, local comparison, then a check of the known interfaces.
+Invent neither M64 dimensions nor hidden geometry. No material, thermal,
+pressure, fatigue, engine operation or LPBF validation is provided by this pilot.

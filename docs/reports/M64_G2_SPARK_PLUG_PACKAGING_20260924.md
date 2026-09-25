@@ -1,80 +1,84 @@
-# M64 G2 — bougies candidates et chambre fermée numériquement
+# M64 G2 — candidate spark plugs and a digitally closed chamber
 
-**Deux enveloppes de bougie et leurs puits étagés sont ajoutés en option à la G2.**
-La forme extérieure, les positions de soupapes et les interfaces de la G2 ne changent pas.
-Ce modèle reste synthétique : **ni culasse M64 ajustée, ni pièce autorisée à imprimer**.
-Aucune location Vast n'a été nécessaire.
+**Two spark plug envelopes and their stepped wells are added as an option to the G2.**
+The external shape, the valve positions and the interfaces of the G2 do not change.
+This model remains synthetic: **neither a fitted M64 cylinder head, nor a part authorized for printing**.
+No Vast rental was needed.
 
-## Résultats
+## Results
 
-| Contrôle | Résultat sur cette configuration |
+| Check | Result on this configuration |
 |---|---:|
-| Culasse | 1 solide BRep valide, 403 faces |
-| Bougies candidates | 2 solides valides ; intersection volumique avec la culasse nulle |
-| Volume connecté au PMH | 94,384567 cm³ |
-| Taux géométrique conditionnel | 7,35744:1, sous l'hypothèse cible 8–9 |
-| Variation du volume sur trois fenêtres | 0 à la précision rapportée |
-| Borne conservative bougies / soupapes, toute course froide | 4,118 mm pour un seuil de conception de 1 mm |
-| Borne conservative bougies / calotte au PMH | 12,005 mm pour ce même seuil |
-| Une bougie retirée : témoin négatif | chambre ouverte, volume exploitable et taux absents |
+| Cylinder head | 1 valid BRep solid, 403 faces |
+| Candidate spark plugs | 2 valid solids; zero volumetric intersection with the head |
+| Connected volume at TDC | 94.384567 cm³ |
+| Conditional geometric ratio | 7.35744:1, below the 8–9 target hypothesis |
+| Volume variation over three windows | 0 at the reported precision |
+| Conservative plug / valve bound, full cold stroke | 4.118 mm for a 1 mm design threshold |
+| Conservative plug / crown bound at TDC | 12.005 mm for the same threshold |
+| One plug removed: negative control | chamber open, usable volume and ratio absent |
 
-Le calcul indépendant par intégration du toit et du piston donne **94,463376 cm³**,
-soit environ **+0,0835 %**. Ce proxy ignore les détails des sièges et des bougies : sa proximité
-sur un seul point n'est ni une validation physique ni une calibration transférable.
-La calibration historique ×1,075 n'a pas été modifiée ni utilisée pour annoncer le taux ci-dessus.
+The independent calculation by integrating the roof and the piston gives **94.463376 cm³**,
+i.e. about **+0.0835%**. This proxy ignores the details of the seats and spark plugs: its closeness
+on a single point is neither a physical validation nor a transferable calibration.
+The historical ×1.075 calibration was neither modified nor used to announce the ratio above.
 
-Les contrôles géométriques rapportent 44 réussites, deux échecs indicatifs non bloquants et
-un entraxe inter-cylindres non calculable. Leur `accepted` ne concerne que ces critères :
-la compression demeure hors cible et aucune qualification moteur n'en découle.
-La marge géométrique existante goujon/logement de ressort reste très faible : **0,08 mm au-delà
-du seuil choisi**, sans tolérances de fabrication ni dilatation. Elle n'est pas une marge industrielle.
+The geometric checks report 44 passes, two non-blocking indicative failures and one
+inter-cylinder spacing that cannot be computed. Their `accepted` concerns only these criteria:
+the compression remains off target and no engine qualification follows from it.
+The existing geometric margin between stud and spring pocket remains very small: **0.08 mm beyond
+the chosen threshold**, without manufacturing tolerances or thermal expansion. It is not an industrial margin.
 
-## Géométrie et hypothèses
+## Geometry and hypotheses
 
-La famille candidate [NGK BKR EIX-P](https://ngk-sparkplugs.jp/ngk/sparkplugs/products/max/)
-publie un diamètre de filetage de 14 mm, une longueur filetée de 19 mm et un hexagone de 16 mm
-(table « 品番ラインアップ », consultée le 24 septembre 2026). Cela ne sélectionne **aucun indice
-thermique pour 700 hp**, ni une application Porsche approuvée.
+The candidate family [NGK BKR EIX-P](https://ngk-sparkplugs.jp/ngk/sparkplugs/products/max/)
+publishes a thread diameter of 14 mm, a thread length of 19 mm and a 16 mm hex
+(table "品番ラインアップ" — "part number lineup", consulted on September 24, 2026). This selects **no heat
+range for 700 hp**, nor an approved Porsche application.
 
-Le diamètre de portée de 20 mm, sa hauteur de 1,5 mm, le puits de clé de 22 mm et les dimensions
-du nez et de l'isolant sont des **hypothèses explicites** dans
-[le jeu de paramètres optionnel](../../twins/m64-cylinder-head/source/fourvalve/params-plugs/spark_plug_envelope.json).
-Le puits élargi commence à la portée, 19 mm au-dessus de l'intersection axe/toit ; il crée
-l'épaulement plan sans agrandir le trou côté chambre. Les filetages restent des cylindres lisses.
-Le contrôle des puits utilise les mêmes primitives que la CAO ; les collisions soupapes/bougies
-utilisent des capsules majorant les solides et toute leur course, sans supposer un seul angle moteur.
+The 20 mm seat diameter, its 1.5 mm height, the 22 mm wrench well and the dimensions of the nose
+and insulator are **explicit hypotheses** in
+[the optional parameter set](../../twins/m64-cylinder-head/source/fourvalve/params-plugs/spark_plug_envelope.json).
+The widened well starts at the seat, 19 mm above the axis/roof intersection; it creates the flat
+shoulder without enlarging the hole on the chamber side. The threads remain smooth cylinders.
+The well check uses the same primitives as the CAD; the valve/plug collisions use capsules
+bounding the solids and their whole stroke, without assuming a single crank angle.
 
-La bougie est une enveloppe pleine d'assemblage, **pas une CAO fournisseur** : crevasses du nez,
-filets, jeu des segments, compression du joint et contacts thermiques manquent. Les soupapes et
-sièges restent des solides simplifiés recouvrants, pas un contact mécanique qualifié.
-L'absence de fuite topologique du modèle ne prouve pas l'étanchéité physique.
+The spark plug is a solid assembly envelope, **not supplier CAD**: nose crevices, threads, ring
+clearance, gasket compression and thermal contacts are missing. The valves and seats remain
+simplified overlapping solids, not a qualified mechanical contact.
+The absence of a topological leak in the model does not prove physical sealing.
 
-## Mesure et reproductibilité
+## Measurement and reproducibility
 
-La sonde englobe désormais la hauteur entière de la culasse, puis ajoute 2, 5 ou 10 mm.
-Limiter la sonde au toit +2 mm tronquait certains logements de sièges : ce n'était pas une
-fenêtre suffisante, même avec les bougies. Les trois nouvelles bornes supérieures sont
-88,461, 91,461 et 96,461 mm.
+The probe now encloses the entire height of the cylinder head, then adds 2, 5 or 10 mm.
+Limiting the probe to the roof +2 mm truncated some seat pockets: it was not a sufficient
+window, even with the spark plugs. The three new upper bounds are
+88.461, 91.461 and 96.461 mm.
 
-Une différence multi-outils a aussi produit une BRep invalide lors d'un essai. La mesure fusionne
-d'abord les occupants, puis soustrait cette union, avec des opérations sérielles non destructives
-pour ne pas modifier les entrées partagées. Tout résultat invalide reste refusé ; aucune réparation
-automatique ni tolérance élargie n'est utilisée pour accepter un volume.
+A multi-tool difference also produced an invalid BRep during one trial. The measurement first
+fuses the occupants, then subtracts this union, with serial non-destructive operations so as not
+to modify shared inputs. Any invalid result remains refused; no automatic repair or widened
+tolerance is used to accept a volume.
 
 ```mermaid
 flowchart LR
-    A[G2 figee] --> B[Bougies et portees candidates]
-    B --> C[Union des occupants puis vide connecte]
-    C --> D[3 fenetres et temoin sans bougie]
-    D --> E[Taux conditionnel 7.36 - cible non atteinte]
-    E --> F[Chambre et contacts a reprendre avant thermique]
+    A[Frozen G2] --> B[Candidate plugs and seats]
+    B --> C[Union of occupants then connected void]
+    C --> D[3 windows and control without plug]
+    D --> E[Conditional ratio 7.36 - target not reached]
+    E --> F[Chamber and contacts to rework before thermal]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class E stop;
 ```
 
-[Audit, contrôles et empreintes](../../twins/m64-cylinder-head/evidence/g2-spark-plug-packaging-20260924/audit.json)
-et [STEP des deux enveloppes](../../twins/m64-cylinder-head/evidence/g2-spark-plug-packaging-20260924/spark-plug-envelopes.step).
-Coupe CAO dans le plan des axes de bougie, piston à gauche et bougies à droite ; ce n'est pas une photo :
+[Audit, checks and digests](../../twins/m64-cylinder-head/evidence/g2-spark-plug-packaging-20260924/audit.json)
+and [STEP of the two envelopes](../../twins/m64-cylinder-head/evidence/g2-spark-plug-packaging-20260924/spark-plug-envelopes.step).
+CAD section in the plane of the spark plug axes, piston on the left and spark plugs on the right; this is not a photo:
 
-![Coupe CAO des deux bougies candidates](../../twins/m64-cylinder-head/evidence/g2-spark-plug-packaging-20260924/plug-section.svg)
+![CAD section of the two candidate spark plugs](../../twins/m64-cylinder-head/evidence/g2-spark-plug-packaging-20260924/plug-section.svg)
+
+*CAD section of the synthetic plug envelopes; it does not prove physical sealing or supplier fit.*
 
 ```sh
 uv run --python 3.12 --no-project --with cadquery==2.6.1 python \
@@ -86,25 +90,25 @@ uv run --python 3.12 --no-project --with cadquery==2.6.1 python tests/test_m64_g
 make check
 ```
 
-Le script refuse d'écraser une preuve existante. Les preuves G1/G2 précédentes restent inchangées.
-La modification de fenêtre rend les anciens volumes **diagnostiques ouverts** non comparables
-directement ; l'ancien audit est reproductible avec son code au commit `f4cfddb`.
+The script refuses to overwrite existing evidence. The previous G1/G2 evidence remains unchanged.
+The window change makes the old **open diagnostic** volumes not directly comparable; the old audit
+is reproducible with its code at commit `f4cfddb`.
 
-Vérifications : **15 tests G2 et 21 tests G1 réussis sous CadQuery 2.6.1**, sans tests CAO ignorés.
-Les SHA-256 du code, des paramètres et des exports de cet audit ont été revérifiés.
-`make check` exécute 3 032 tests avec succès (120 ignorés dans son environnement par défaut),
-puis échoue sur le rapport F46 périmé, déjà en échec sur
-[le `main` de départ](https://github.com/cluster2600/porscheparts/actions/runs/35085578047).
-Le rapport F46 et son contrat ne sont pas modifiés ; la PR reste en brouillon.
+Checks: **15 G2 tests and 21 G1 tests passed under CadQuery 2.6.1**, with no CAD tests skipped.
+The SHA-256 digests of the code, parameters and exports of this audit were rechecked.
+`make check` runs 3,032 tests successfully (120 skipped in its default environment),
+then fails on the stale F46 report, already failing on
+[the starting `main`](https://github.com/cluster2600/porscheparts/actions/runs/35085578047).
+The F46 report and its contract are not modified; the PR remains a draft.
 
-## Suite
+## Next steps
 
-Suite exécutée le 25 septembre : [portées concordantes et test de fuite par conduit](M64_G3_SEAT_CONTACT_20260925.md).
-Cette reprise corrige aussi la troncature latérale de la sonde ; les chiffres ci-dessus restent
-ceux de la preuve historique du 24 septembre, non réécrite.
+Follow-up run on September 25: [concordant seats and per-port leak test](M64_G3_SEAT_CONTACT_20260925.md).
+That follow-up also fixes the lateral truncation of the probe; the figures above remain
+those of the historical evidence of September 24, not rewritten.
 
-Reprendre le profil de chambre pour la plage de compression choisie, sans toucher arbitrairement
-à l'extérieur, et remplacer les sièges/soupapes simplifiés par des portées cohérentes. Ensuite seulement,
-recaler le proxy sur plusieurs géométries fermées et préparer les maillages thermiques/conjugués.
-Plan fournisseur des bougies, contacts à chaud, matériaux, interfaces M64 et qualification LPBF restent
-des exigences distinctes : ce travail ne les remplace pas.
+Rework the chamber profile for the chosen compression range, without arbitrarily touching the
+exterior, and replace the simplified seats/valves with consistent seats. Only then recalibrate
+the proxy on several closed geometries and prepare the thermal/conjugate meshes.
+Supplier drawing of the spark plugs, hot contacts, materials, M64 interfaces and LPBF qualification
+remain separate requirements: this work does not replace them.

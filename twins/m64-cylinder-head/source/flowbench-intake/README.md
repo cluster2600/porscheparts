@@ -1,119 +1,127 @@
-# Admission 6 mm et chambre candidate à deux pans
+# 6 mm intake and two-facet candidate chamber
 
-Ce lot apporte une **vraie modification CAO privée**, pas encore un domaine de
-banc de débit ou une culasse validée. Le maître quatre logements `92640fd2…`
-reste intact. Les scripts et le [reçu agrégé](../../evidence/intake-chamber-candidate-20260908.json) sont
-publicables ; les B-Rep, STEP, coupes et coordonnées du scan restent privés.
+This batch delivers a **real private CAD modification**, not yet a flow-bench
+domain or a validated cylinder head. The four-bore master `92640fd2…` remains
+intact. The scripts and the [aggregate receipt](../../evidence/intake-chamber-candidate-20260908.json) are
+publishable; the B-Reps, STEPs, sections and scan coordinates remain private.
 
-## Résultat natif du 8 septembre 2026
+## Native result of September 8, 2026
 
-`inspect_pilot.py` a relu les pièces exactes : les soupapes réellement importées
-du module V2 sont ouvertes de 6 mm le long de leurs axes inclinés, puis le
-recalage du module est appliqué une seule fois. Les sièges et guides restent
-fixes. Les deux colliers de contrôle gorge/conduit (rayon 17,8 ; longueur 0,01)
-sont entièrement recouverts à la précision d'intégration rapportée. Ce contrôle
-local ne prouve pas l'étanchéité d'un assemblage.
+`inspect_pilot.py` reread the exact parts: the valves actually imported from the
+V2 module are opened by 6 mm along their inclined axes, then the module
+registration is applied once only. The seats and guides stay fixed. The two
+throat/port check collars (radius 17.8; length 0.01) are fully covered to the
+reported integration precision. This local check does not prove that an
+assembly is sealed.
 
-Le négatif d'admission brut inclut encore environ 735,415 unités³ de chacune
-des soupapes ouvertes et 797,705 unités³ de chacun des guides : ces solides
-doivent être soustraits du futur domaine gaz. Les six composants d'admission
-contrôlés ont une intersection volumique nulle avec le maître quatre logements.
-Le fond original est plan et son centre plein : aucune chambre M64 n'y était
-définie. La part de surface plane observée sous le disque de contrôle ne constitue
-**pas** un taux d'étanchéité.
+The raw intake negative still includes about 735.415 units³ of each open valve
+and 797.705 units³ of each guide: these solids must be subtracted from the
+future gas domain. The six checked intake components have zero volumetric
+intersection with the four-bore master. The original floor is flat and its
+center solid: no M64 chamber was defined there. The share of flat surface
+observed under the check disk is **not** a sealing ratio.
 
-`build_candidate_chamber.py` construit un outil de coupe à deux pans, chacun
-passant par la lèvre inférieure réelle des sièges correspondants (position
-axiale locale 0,5). Leur inclinaison vient des axes existants ; leur intersection
-détermine la profondeur, sans introduire un volume cible arbitraire. La partie
-positive entre ce toit et le fond est bornée au cylindre de travail Ø100,
-**hypothèse de conception non certifiée**. L'axe de bougie central est réservé
-dans le contrat du prototype, mais aucun logement, filetage ou isolant fictif
-n'a été ajouté. L'arête de toit n'est pas raccordée et la bougie n'est pas choisie.
+`build_candidate_chamber.py` builds a two-facet cutting tool, each facet passing
+through the real lower lip of the corresponding seats (local axial position
+0.5). Their inclination comes from the existing axes; their intersection sets
+the depth, without introducing an arbitrary target volume. The positive part
+between this roof and the floor is bounded by the Ø100 working cylinder, a
+**non-certified design assumption**. The central spark plug axis is reserved in
+the prototype contract, but no pocket, thread or fictitious insulator has been
+added. The roof edge is not blended and the spark plug is not chosen.
 
-| Grandeur distincte | Résultat en unités du scan³ |
+| Distinct quantity | Result in scan units³ |
 |---|---:|
-| Volume de l'outil de découpe à deux pans | 27 001,825308 |
-| Matière effectivement retirée du maître (`common`) | 9 578,631048 |
-| Volume gaz de la chambre assemblée, soupapes fermées | Non calculé |
+| Volume of the two-facet cutting tool | 27,001.825308 |
+| Material actually removed from the master (`common`) | 9,578.631048 |
+| Gas volume of the assembled chamber, valves closed | Not calculated |
 
-Ces volumes ne donnent **aucun rapport volumétrique** : ni piston, ni hauteur
-de deck, ni jeu au PMH ne sont définis. L'échelle reste une hypothèse de 1 unité
-du scan pour 1 mm, non une mesure certifiée.
+These volumes give **no compression ratio**: neither piston, deck height nor
+TDC clearance is defined. The scale remains an assumption of 1 scan unit per
+1 mm, not a certified measurement.
 
-## Contrôles réellement exécutés
+## Checks actually run
 
-- Outil de chambre : un solide connecté, B-Rep valide et analyse BOP exécutée
-  sans faute, erreur ou avertissement.
-- Corps modifié : un solide ; B-Rep valide avant export et après relecture STEP.
-  **L'analyse BOP complète du corps n'a pas été exécutée.** La validité B-Rep
-  ne doit pas être rebaptisée BOP réussi.
-- Les huit inserts réels (quatre sièges et quatre guides) ont chacun une
-  intersection volumique nulle avec l'outil : aucune amputation géométrique.
-- Volume de l'outil hors cylindre Ø100 : zéro. Surface du fond initial située
-  hors de ce cylindre perdue : zéro. Cela conserve la surface géométrique testée,
-  sans identifier ni qualifier une portée de joint Porsche.
-- Écart maximal de boîte englobante : `2,22e-14` unité ; défaut de partition
-  volumique : `−1,60e-6` unité³ pour un seuil déclaré `1e-3`.
+- Chamber tool: one connected solid, valid B-Rep, and BOP analysis run with no
+  fault, error or warning.
+- Modified body: one solid; valid B-Rep before export and after STEP rereading.
+  **The full BOP analysis of the body was not run.** B-Rep validity must not be
+  relabeled as a passed BOP.
+- The eight real inserts (four seats and four guides) each have zero volumetric
+  intersection with the tool: no geometric amputation.
+- Tool volume outside the Ø100 cylinder: zero. Area of the initial floor lying
+  outside that cylinder that is lost: zero. This preserves the tested geometric
+  surface, without identifying or qualifying a Porsche gasket seating face.
+- Maximum bounding-box deviation: `2.22e-14` unit; volumetric partition defect:
+  `−1.60e-6` unit³ for a declared threshold of `1e-3`.
 
-L'export STEP du **seul volume de matière retirée** présente une différence
-de volume de `+0,011580338` unité³ à la relecture (environ `1,209e-6` relatif).
-Cet écart reste à expliquer ; il n'est pas masqué par un seuil choisi après coup.
-Le corps candidat STEP présente pour sa part un écart de `−1,39e-7` unité³.
-Les contrôles de validité et de nombre de solides des exports ne constituent
-donc pas une qualification métrologique de leur volume.
+The STEP export of the **removed-material volume alone** shows a volume
+difference of `+0.011580338` unit³ on rereading (about `1.209e-6` relative).
+This deviation remains to be explained; it is not hidden by a threshold chosen
+after the fact. The candidate body STEP shows, for its part, a deviation of
+`−1.39e-7` unit³. The validity and solid-count checks of the exports therefore
+do not constitute a metrological qualification of their volume.
 
-Les grands diamètres extérieurs des sièges dépassent légèrement le disque
-Ø100 en projection. Ce n'est pas automatiquement une collision : une partie
-de l'insert peut être portée au-delà de l'alésage. Il faudra néanmoins vérifier
-le support, la portée cylindre/culasse et la liaison thermique correspondante,
-sans assimiler le disque de travail à une zone mécanique libre.
+The large outer diameters of the seats slightly exceed the Ø100 disk in
+projection. This is not automatically a collision: part of the insert can be
+carried beyond the bore. The support, the cylinder/cylinder head seating and the
+corresponding thermal path will nevertheless have to be checked, without
+treating the working disk as a free mechanical zone.
 
-## Exécution et coupes
+```mermaid
+flowchart TD
+    A["inspect_pilot.py<br/>V2 valves opened 6 mm"]:::ok --> B["build_candidate_chamber.py<br/>two-facet tool: BOP clean"]:::ok
+    B --> C["Modified body: B-Rep valid<br/>full BOP not run"]:::open
+    C --> D["Still to do: seat interiors, remove valves<br/>and guides, close outlets, bench receiver"]:::open
+    D --> E["No full domain, flow,<br/>Cd or 700 PS result claimed"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-L'image CPU amd64 existante, OCCT/OCP 7.9.3.1, a été utilisée sans location,
-installation ou simulation. Chaque conteneur est limité à deux CPU, 4 Gio,
-128 processus et 300 secondes, sans réseau. Les sorties processus ont été
-observées séparément des JSON géométriques ; les conteneurs ont été supprimés
-et leur absence vérifiée.
+## Execution and sections
 
-| Étape | Durée du programme | Sortie SSH/Docker observée |
+The existing amd64 CPU image, OCCT/OCP 7.9.3.1, was used without rental,
+installation or simulation. Each container is limited to two CPUs, 4 GiB,
+128 processes and 300 seconds, with no network. The process outputs were
+observed separately from the geometric JSON; the containers were deleted and
+their absence verified.
+
+| Step | Program duration | Observed SSH/Docker exit |
 |---|---:|---:|
-| Inspection des sources | 11,29 s | 0 |
-| Extraction des coupes originales | 9,63 s | 0 |
-| Prototype deux pans et contrôles | 14,78 s | 0 |
-| Extraction des coupes du prototype | 12,30 s | 0 |
-| Tessellation native des 13 solides pour la vue 3D | 4,04 s | 0 |
+| Source inspection | 11.29 s | 0 |
+| Extraction of the original sections | 9.63 s | 0 |
+| Two-facet prototype and checks | 14.78 s | 0 |
+| Extraction of the prototype sections | 12.30 s | 0 |
+| Native tessellation of the 13 solids for the 3D view | 4.04 s | 0 |
 
-`render_sections.py` extrait par OCCT les intersections des **solides natifs**,
-puis produit les images de coupe. Le bleu pointillé est explicitement le
-négatif d'admission brut superposé : les conduits ne sont pas découpés dans ce
-prototype de corps. La coupe centrale rend visible le nouvel évidement sous
-les sièges. Les deux images et leurs sources privées sont identifiées par SHA
-dans le reçu. Elles ne contiennent aucun champ CFD ou thermique inventé.
+`render_sections.py` extracts, through OCCT, the intersections of the **native
+solids**, then produces the section images. The dotted blue is explicitly the
+raw intake negative overlaid: the ports are not cut into this body prototype.
+The central section shows the new recess under the seats. The two images and
+their private sources are identified by SHA in the receipt. They contain no
+invented CFD or thermal field.
 
-`render_underside.py` ajoute une vue par-dessous et une coupe centrale en encart.
-Le rendu final privé utilise le vrai tampon de profondeur de VTK/PyVista,
-sans lissage de géométrie, avec les 113 910 triangles du corps et les douze
-composants du module. Les brouillons Matplotlib 3D sont supplantés : leur tri
-approché des profondeurs masquait incorrectement des soupapes. Le gris final
-est illustratif, pas une sélection d'alliage. Aucun PNG privé n'est ajouté au
-dépôt automatiquement.
+`render_underside.py` adds an underside view and a central section as an inset.
+The final private render uses the real VTK/PyVista depth buffer, without
+geometry smoothing, with the body's 113,910 triangles and the module's twelve
+components. The Matplotlib 3D drafts are superseded: their approximate depth
+sorting wrongly hid valves. The final gray is illustrative, not an alloy
+selection. No private PNG is added to the repository automatically.
 
-Tests ciblés :
+Targeted tests:
 
 ```sh
 python3 -m unittest discover -s tests -p test_m64_flowbench_intake_inspection.py -v
 python3 -m unittest discover -s tests -p test_m64_flowbench_candidate_roof.py -v
 ```
 
-Les six tests passent. Les trois tests de toit vérifient l'incidence des plans
-sur les lèvres, la continuité de leur arête et le rejet d'une inclinaison nulle ;
-ils ne sont pas des essais moteur.
+The six tests pass. The three roof tests check the incidence of the planes on
+the lips, the continuity of their edge and the rejection of a zero inclination;
+they are not engine tests.
 
-La suite doit encore assembler les intérieurs des sièges, retirer les soupapes
-et guides du gaz, fermer explicitement les sorties parasites et les
-échappements, puis construire le récepteur de banc et les groupes de frontières.
-Le `ported-candidate06` rejeté BOP n'a pas été utilisé comme corps de cette
-étape. Aucun domaine complet, débit, coefficient de décharge ou résultat 700 PS
-n'est revendiqué.
+The next stage must still assemble the seat interiors, remove the valves and
+guides from the gas, explicitly close the parasitic outlets and the exhausts,
+then build the bench receiver and the boundary groups. The BOP-rejected
+`ported-candidate06` was not used as the body for this step. No complete domain,
+flow rate, discharge coefficient or 700 PS result is claimed.

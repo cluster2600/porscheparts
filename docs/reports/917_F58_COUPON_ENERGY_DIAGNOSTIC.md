@@ -1,181 +1,190 @@
-# F58 — bilan d'énergie du coupon AdditiveFOAM
+# F58 — energy balance of the AdditiveFOAM coupon
 
-## Résultat du 7 septembre 2026
+```mermaid
+flowchart LR
+  A["Two real runs on Kali<br/>100 ns and 50 ns, 120 µs"] --> B["Discrete balance closes<br/>residual 3.77e-7 / 7.67e-7"]
+  B --> C["Limiter removes<br/>10.58% / 10.56% of laser energy"]
+  C --> D["Still capped at 3,300 K<br/>not a process correction"]
+  D --> E["Printing not authorized"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  class D,E stop;
+```
 
-Deux exécutions réelles sur Kali atteignent 120 µs, avec retours solveur zéro :
-1 200 pas de 100 ns (59 s murales) et 2 400 pas de 50 ns (90 s murales).
-Le maximum spatial de température est enregistré à **chaque pas**. Les deux
-cas restent plafonnés à 3 300 K : ce diagnostic n'est pas une correction
-physique du procédé ni une autorisation d'impression.
+## Result of September 7, 2026
 
-Le [reçu public F58 en JSON](../../twins/reference-917-engine/evidence/f58-energy-diagnostic/energy-summary.json)
-contient les deux pas temporels, les énergies et résidus recalculés, les
-empreintes de provenance et les limites du diagnostic. Il reprend exactement
-les résultats du reçu privé de contre-vérification ; aucun chemin privé,
-maillage, coordonnée ni journal brut n'y figure.
+Two real runs on Kali reach 120 µs, with solver returns of zero:
+1,200 steps of 100 ns (59 s wall time) and 2,400 steps of 50 ns (90 s wall
+time). The spatial maximum of temperature is recorded at **every step**. Both
+cases remain capped at 3,300 K: this diagnostic is not a physical correction
+of the process nor an authorization to print.
 
-| Énergie cumulée sur 120 µs | Pas 100 ns (mJ) | Pas 50 ns (mJ) |
+The [public F58 receipt in JSON](../../twins/reference-917-engine/evidence/f58-energy-diagnostic/energy-summary.json)
+contains the two time steps, the recomputed energies and residuals, the
+provenance digests and the limits of the diagnostic. It reproduces exactly the
+results of the private cross-check receipt; no private path, mesh, coordinate
+or raw log appears in it.
+
+| Cumulative energy over 120 µs | 100 ns step (mJ) | 50 ns step (mJ) |
 |---|---:|---:|
-| Apport laser absorbé | 31,55219 | 31,55755 |
-| Stockage sensible discret | 28,33106 | 28,34062 |
-| Stockage latent de fusion | 3,69231 | 3,69240 |
-| Flux thermique net entrant aux frontières | 3,80816 | 3,80693 |
-| Transport advectif sortant | 0 | 0 |
-| Puits artificiel du limiteur | 3,33700 | 3,33147 |
+| Absorbed laser input | 31.55219 | 31.55755 |
+| Discrete sensible storage | 28.33106 | 28.34062 |
+| Latent storage of melting | 3.69231 | 3.69240 |
+| Net heat flux entering at boundaries | 3.80816 | 3.80693 |
+| Outgoing advective transport | 0 | 0 |
+| Artificial sink of the limiter | 3.33700 | 3.33147 |
 
-L'intégrale de la valeur absolue du résidu, divisée par l'énergie laser,
-vaut respectivement `3,77e-7` et `7,67e-7`. Elle ne permet pas aux erreurs de
-signes opposés de s'annuler. Les écarts entre pas sont de 0,034 % sur le
-stockage sensible, 0,0025 % sur le latent et 0,166 % sur le puits numérique.
-Deux pas ne déterminent pas un ordre de convergence ni une convergence
-spatiale. Les pics écrêtés ne constituent pas une preuve de convergence de T.
+The integral of the absolute value of the residual, divided by the laser
+energy, is `3.77e-7` and `7.67e-7` respectively. It does not allow errors of
+opposite signs to cancel out. The gaps between steps are 0.034% on sensible
+storage, 0.0025% on latent and 0.166% on the numerical sink.
+Two steps determine neither an order of convergence nor spatial convergence.
+The clipped peaks are not proof of convergence of T.
 
-Le limiteur retire **10,58 % / 10,56 %** de l'énergie laser absorbée. Il reste
-donc une intervention énergétique non physique importante dans ce calcul,
-même lorsque l'équation discrète se ferme très précisément. Diminuer le pas
-temporel ne supprime pas cette intervention.
+The limiter removes **10.58% / 10.56%** of the absorbed laser energy. A large
+non-physical energy intervention therefore remains in this computation, even
+when the discrete equation closes very precisely. Reducing the time step does
+not remove this intervention.
 
-Une seconde lecture indépendante des deux journaux recalcule désormais le
-résidu par `fsum(sensible, latent, -diffusion, -laser, advection, limiteur)`.
-La colonne résiduelle du solveur est seulement comparée à ce résultat ; elle
-n'alimente plus les intégrales. Pour les 16 chiffres significatifs du journal,
-la tolérance de cohérence d'écriture est explicitement
-`1e-12 W + 5e-15 * somme(abs(termes en W))`. Ce n'est pas un seuil physique
-d'acceptation. Une incohérence supérieure entraîne un refus du rapport.
-Sur les 1 200 / 2 400 lignes réelles, les écarts maximaux valent
-`1,58e-13 W` / `1,71e-13 W` : toutes les lignes sont cohérentes. Les chiffres
-arrondis du tableau et du résidu restent inchangés après réintégration.
+A second independent reading of the two logs now recomputes the residual as
+`fsum(sensible, latent, -diffusion, -laser, advection, limiter)`.
+The solver's residual column is only compared with this result; it no longer
+feeds the integrals. For the 16 significant digits of the log, the write
+consistency tolerance is explicitly
+`1e-12 W + 5e-15 * sum(abs(terms in W))`. This is not a physical acceptance
+threshold. A larger inconsistency causes the report to be refused.
+On the 1,200 / 2,400 real lines, the maximum gaps are
+`1.58e-13 W` / `1.71e-13 W`: all lines are consistent. The rounded figures of
+the table and of the residual remain unchanged after reintegration.
 
-## Ce qui est réellement intégré
+## What is actually integrated
 
-Le solveur copié conserve l'équation Euler explicite du commit ORNL
-`9c05c5eb54db03faa342b14b0806efe740de8c44`. Le diagnostic intègre ses termes
-avant/après chaque résolution :
+The copied solver keeps the explicit Euler equation of ORNL commit
+`9c05c5eb54db03faa342b14b0806efe740de8c44`. The diagnostic integrates its terms
+before/after each solve:
 
-`stockage_sensible + stockage_latent = diffusion_frontières + laser - advection - limiteur`.
+`sensible_storage + latent_storage = boundary_diffusion + laser - advection - limiter`.
 
-- sensible : somme de `rho * Cp_ancien * (T_nouveau - T_ancien) * V / dt` ;
-- latent : somme de `-rho * Lf * (alpha_solide_nouveau - alpha_solide_ancien) * V / dt` ;
-- diffusion : intégrale volumique du **même opérateur conservatif**
-  `fvc::laplacian(kappa,T)` que le solveur ; son intégrale donne le flux net
-  aux frontières, avec les conditions thermiques existantes ;
-- laser : intégrale du champ source réel `sources.qDot()` ;
-- advection : intégrale de `rho*Cp*fvc::div(phi,T)` ;
-- limiteur : intégrale du terme implicite `A*(T-Tmax)/dt` de la dernière
-  correction thermique, séparée des pertes physiques.
+- sensible: sum of `rho * Cp_old * (T_new - T_old) * V / dt`;
+- latent: sum of `-rho * Lf * (alpha_solid_new - alpha_solid_old) * V / dt`;
+- diffusion: volume integral of the **same conservative operator**
+  `fvc::laplacian(kappa,T)` as the solver; its integral gives the net flux at
+  the boundaries, with the existing thermal conditions;
+- laser: integral of the real source field `sources.qDot()`;
+- advection: integral of `rho*Cp*fvc::div(phi,T)`;
+- limiter: integral of the implicit term `A*(T-Tmax)/dt` of the last thermal
+  correction, separated from the physical losses.
 
-Le stockage sensible est un terme de l'équation discrétisée utilisant le Cp
-retardé du solveur. Ce n'est **ni** la pseudo-enthalpie `rho*Cp*T`, **ni** une
-nouvelle loi calorique étalonnée. La fermeture mesurée est donc celle de
-l'équation effectivement résolue, pas une validation thermodynamique externe.
-Le flux net aux frontières est ici positif. Le champ initial est à 293,15 K
-alors que les températures de référence aux frontières sont à 300 K ; ces
-entrées héritées ont été conservées, pas harmonisées silencieusement.
+The sensible storage is a term of the discretized equation using the solver's
+lagged Cp. It is **neither** the pseudo-enthalpy `rho*Cp*T`, **nor** a new
+calibrated caloric law. The measured closure is therefore that of the equation
+actually solved, not an external thermodynamic validation.
+The net boundary flux is positive here. The initial field is at 293.15 K while
+the boundary reference temperatures are at 300 K; these inherited inputs were
+kept, not silently harmonized.
 
-Sources primaires vérifiées :
-[assemblage thermique ORNL](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/thermoScheme.H),
-[fusion et pénalisation ORNL](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/TEqn.H),
-[mise à jour des propriétés ORNL](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/updateProperties.H).
+Primary sources verified:
+[ORNL thermal assembly](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/thermoScheme.H),
+[ORNL melting and penalization](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/TEqn.H),
+[ORNL property update](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/updateProperties.H).
 
-Contrôle direct des fichiers effectivement compilés : `additiveFoam.C` appelle
-`updateProperties.H` à la ligne 97, puis inclut `TEqn.H` à la ligne 136,
-avant le calcul du stockage ligne 141. Dans `updateProperties.H`, les lignes
-22–24 affectent Cp. La lecture complète de `TEqn.H` et de ses deux inclusions
-`thermoScheme.H` et `thermoSource.H` montre que Cp est seulement lu : les
-corrections modifient T, la fraction solide, dFdT et T0, pas Cp. Le correcteur
-de frontière `mixedTemperature::updateCoeffs` (lignes 149–175) lit kappa et
-actualise les coefficients de T, sans modifier Cp. Le stockage après TEqn
-utilise donc bien le même Cp que son assemblage ; aucune copie corrective
-de Cp et aucun nouveau calcul n'étaient nécessaires pour ces journaux.
-Les empreintes de `thermoSource.H` et `updateProperties.H` sont désormais
-ajoutées aux verrous du préparateur, respectivement
-`efab43bb4cd3f05b29eb326a2b2ead2508de43ff705bdf546ab7d58295a57b4f` et
+Direct check of the files actually compiled: `additiveFoam.C` calls
+`updateProperties.H` at line 97, then includes `TEqn.H` at line 136, before
+the storage computation at line 141. In `updateProperties.H`, lines 22–24
+assign Cp. A complete reading of `TEqn.H` and its two includes
+`thermoScheme.H` and `thermoSource.H` shows that Cp is only read: the
+corrections modify T, the solid fraction, dFdT and T0, not Cp. The boundary
+corrector `mixedTemperature::updateCoeffs` (lines 149–175) reads kappa and
+updates the coefficients of T, without modifying Cp. The storage after TEqn
+therefore does use the same Cp as its assembly; no corrective copy of Cp and
+no new computation were needed for these logs.
+The digests of `thermoSource.H` and `updateProperties.H` are now added to the
+preparer's locks, respectively
+`efab43bb4cd3f05b29eb326a2b2ead2508de43ff705bdf546ab7d58295a57b4f` and
 `98e6e85e1a8cd2c10ee385864280a88ff6649d45e51148eeee47fd55b136da2a`.
 
-## Périmètre et fidélité de la paire
+## Scope and fidelity of the pair
 
-Le cas source est la couche 0 plafonnée du diagnostic F55. Il s'agit du
-coupon rectangulaire AlSi10Mg dérivé de F50, **pas du STEP d'une culasse**,
-pas de l'ancien ovale, pas du nouveau module M64 et pas d'une carte CP1.
-Le maillage compte 57 600 cellules et ne change pas pendant les deux calculs.
-Le modèle Kelly, le faisceau, la carte matériau, les frontières, le maillage,
-`nOuterCorrectors=0` et `Tmax=3300` restent inchangés. Le `controlDict` source
-F55 contient bien `adjustTimeStep yes` (ligne 48) et `deltaT 1e-07` (ligne 28).
-Son SHA-256 `339fc71cc01b94df5ff746cf5082ea6a80eae06cc6c6b14de53f18bcc4e57c05`
-correspond au manifeste établi avant les calculs. F58 remplace ce pas adaptatif
-par `adjustTimeStep no` dans les deux membres de la comparaison.
-Entre eux, seule la valeur `deltaT` diffère dans `system/controlDict`.
+The source case is the capped layer 0 of the F55 diagnostic. It is the
+rectangular AlSi10Mg coupon derived from F50, **not the STEP of a cylinder
+head**, not the old oval, not the new M64 module and not a CP1 map.
+The mesh has 57,600 cells and does not change during the two computations.
+The Kelly model, the beam, the material map, the boundaries, the mesh,
+`nOuterCorrectors=0` and `Tmax=3300` remain unchanged. The F55 source
+`controlDict` does contain `adjustTimeStep yes` (line 48) and `deltaT 1e-07`
+(line 28). Its SHA-256 `339fc71cc01b94df5ff746cf5082ea6a80eae06cc6c6b14de53f18bcc4e57c05`
+matches the manifest established before the computations. F58 replaces this
+adaptive step with `adjustTimeStep no` in both members of the comparison.
+Between them, only the `deltaT` value differs in `system/controlDict`.
 
-Le moteur diagnostique refuse un maillage changeant, un schéma implicite ou
-un pas adaptatif. Il mesure le latent mais n'ajoute aucun modèle de
-vaporisation, de recul de vapeur ni de convection du bain fondu. Aucun résultat
-de fatigue, de résistance de culasse ou de distorsion de construction complète
-ne découle de cette paire.
+The diagnostic engine refuses a changing mesh, an implicit scheme or an
+adaptive step. It measures the latent term but adds no model of vaporization,
+vapor recoil or melt pool convection. No result on fatigue, cylinder head
+strength or distortion of a complete build follows from this pair.
 
-## Reproductibilité et conservation
+## Reproducibility and preservation
 
-Le nouveau préparateur `additive_energy_diagnostic_f58.py` vérifie les cinq
-empreintes des sources du solveur, copie dans un nouveau dossier privé et
-crée les variantes `dt` et `dt_half`. Il refuse d'écraser un dossier existant.
-Les sources originales et les anciens résultats F55 ne sont pas modifiés.
-Le premier essai de compilation a échoué avant tout calcul sur l'appel de
-précision du journal ; il reste conservé. Le second a compilé et exécuté les
-deux calculs. Chacun avait un arrêt externe à 300 s ; tous les conteneurs
-diagnostiques sont maintenant arrêtés et supprimés. Aucune location Vast.
+The new preparer `additive_energy_diagnostic_f58.py` checks the five digests
+of the solver sources, copies into a new private folder and creates the `dt`
+and `dt_half` variants. It refuses to overwrite an existing folder.
+The original sources and the old F55 results are not modified.
+The first compilation attempt failed before any computation on the log
+precision call; it is kept on record. The second compiled and ran both
+computations. Each had an external stop at 300 s; all diagnostic containers
+are now stopped and deleted. No Vast rental.
 
-- image locale : `a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17` ;
-- binaire instrumenté : `b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d` ;
-- carte AlSi10Mg : `65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea` ;
-- rapport privé : `afabeb547951c603cfed34bf6f92e17c08bf2a67a73572aedcbe4dc30962ea6a` ;
-- reçu privé de contre-vérification, distinct sans écraser le premier :
-  `d8bbb8fd72db1f6e191614ed325e71cd6bd2f7ebf0dd6efe32463df25a4caf1d` ;
-- journal pas 100 ns : `fd95a18b51c3e252f4e92d2625e62fe21b82b5ac66abbf6abc14877a5cf1a44c` ;
-- journal pas 50 ns : `27f3733c41e8e4d448c94b6e3979a776164f43c7b01732f7bfc449b125d8f1bf`.
+- local image: `a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17`;
+- instrumented binary: `b13dacc72146e8df5ded9d20c4b20e7a21051dd21244f9598d441e81c871364d`;
+- AlSi10Mg map: `65d464489b95dd60bffa61a30caee53e1ec951c4bd53dfed0d7d1ea0d435e3ea`;
+- private report: `afabeb547951c603cfed34bf6f92e17c08bf2a67a73572aedcbe4dc30962ea6a`;
+- private cross-check receipt, separate, without overwriting the first:
+  `d8bbb8fd72db1f6e191614ed325e71cd6bd2f7ebf0dd6efe32463df25a4caf1d`;
+- 100 ns step log: `fd95a18b51c3e252f4e92d2625e62fe21b82b5ac66abbf6abc14877a5cf1a44c`;
+- 50 ns step log: `27f3733c41e8e4d448c94b6e3979a776164f43c7b01732f7bfc449b125d8f1bf`.
 
-Le rapport complet, les entrées, champs et journaux restent privés. Les tests
-ciblés vérifient les termes énergétiques, les échantillons manquants/non finis,
-le contrat dt/2, l'absence d'écrasement et l'identité des entrées physiques.
-Le reçu de contre-vérification distingue `time_series_complete` du code de
-sortie : la seule lecture d'un journal ne vérifie pas un retour processus.
-Ses champs `solver_exit_code=null` et `solver_exit_status_verified=false`
-ne remplacent pas les retours zéro observés lors des deux exécutions initiales.
-Le reçu public conserve cette distinction : il n'invente pas de code de sortie
-dans les champs issus du parseur et indique que les observations d'exécution
-proviennent d'une preuve séparée. Il ne contient pas de reçu machine autonome
-des retours processus. Les métadonnées ajoutées sont des empreintes vérifiées,
-les pas verrouillés de la paire et les rapports d'énergie calculés à partir
-des valeurs sources, sans nouvelle simulation.
+The complete report, inputs, fields and logs remain private. The targeted tests
+check the energy terms, missing/non-finite samples, the dt/2 contract, the
+absence of overwriting and the identity of the physical inputs.
+The cross-check receipt distinguishes `time_series_complete` from the exit
+code: reading a log alone does not verify a process return.
+Its fields `solver_exit_code=null` and `solver_exit_status_verified=false` do
+not replace the zero returns observed during the two initial runs.
+The public receipt keeps this distinction: it does not invent an exit code in
+the fields coming from the parser and states that the execution observations
+come from separate evidence. It contains no standalone machine receipt of the
+process returns. The added metadata are verified digests, the locked steps of
+the pair and the energy ratios computed from the source values, with no new
+simulation.
 
 ```sh
 python3 -m unittest discover -s tests -p test_917_additive_energy_diagnostic_f58.py -v
 ```
 
-## Décision suivante
+## Next decision
 
-Une contre-vérification algébrique supplémentaire des mêmes 3 600 pas ne
-montre pas de création d'énergie par la source laser : l'incident vaut
-`380 W × 120 µs = 45,60 mJ`, et les intégrales absorbées représentent
-69,1934 % / 69,2051 % de cet incident. Aucune puissance absorbée enregistrée
-ne dépasse 380 W. Le recalcul de Kelly depuis les profondeurs de référence
-des journaux reproduit les puissances intégrées à 1,47e-8 W près au maximum.
-Le diamètre D4σ de ce profil vaut 72,51699 µm ; `etaMin=0,35` est un plancher,
-pas une absorption constante. L'absorption finale calculée est d'environ 0,772.
-La profondeur utilisée est celle d'une isotherme simulée : cet accord ne
-calibre pas l'absorption physique ou le capillaire laser.
+An additional algebraic cross-check of the same 3,600 steps shows no creation
+of energy by the laser source: the incident energy is
+`380 W × 120 µs = 45.60 mJ`, and the absorbed integrals represent
+69.1934% / 69.2051% of this incident energy. No recorded absorbed power exceeds
+380 W. Recomputing Kelly from the reference depths of the logs reproduces the
+integrated powers to within 1.47e-8 W at most.
+The D4σ diameter of this profile is 72.51699 µm; `etaMin=0.35` is a floor,
+not a constant absorption. The final computed absorption is about 0.772.
+The depth used is that of a simulated isotherm: this agreement does not
+calibrate the physical absorption or the laser keyhole.
 
-La trajectoire exacte F55/F58 fait 2 mm à 1,3 m/s ; la fenêtre analysée couvre
-seulement ses 120 premières µs, soit 0,156 mm nominal. Ne pas lui substituer la
-trace de 0,4 mm de la campagne F50 générale. Aucun solveur n'a été relancé
-pour cette vérification. Le script algébrique privé porte le SHA256
+The exact F55/F58 trajectory is 2 mm at 1.3 m/s; the analyzed window covers
+only its first 120 µs, i.e. 0.156 mm nominal. Do not substitute for it the
+0.4 mm track of the general F50 campaign. No solver was rerun for this check.
+The private algebraic script has SHA256
 `202815577b43b4fe7edece86b2ee6807773fb366f96089e5858bdf8f5554efa7`
-et le rapport privé détaillé
+and the detailed private report
 `b0152123aa55a296ad468601c4e3b4dca9c5c7f157ba3730b38fba54ab4934a5`.
 
-Le diagnostic ne justifie pas une nouvelle location pour balayer aveuglément
-puissance et absorption. Il faut maintenant examiner le modèle d'absorption,
-le profil/profondeur de source et les pertes physiques du coupon avec données
-de calibration cohérentes ; F55 avait déjà montré la sensibilité à l'absorption.
-Ne pas sélectionner 0,35 comme vérité et ne pas supprimer le plafond pour
-obtenir une gate verte. Toute future correction devra conserver ce bilan,
-les pics à chaque pas et la comparaison temporelle, puis vérifier la
-convergence spatiale. Fabrication et démarrage restent non autorisés.
+The diagnostic does not justify a new rental to blindly sweep power and
+absorption. The absorption model, the source profile/depth and the physical
+losses of the coupon must now be examined with consistent calibration data;
+F55 had already shown the sensitivity to absorption.
+Do not select 0.35 as the truth and do not remove the cap to get a green gate.
+Any future correction must keep this balance, the peaks at every step and the
+time comparison, then verify spatial convergence. Manufacturing and startup
+remain unauthorized.

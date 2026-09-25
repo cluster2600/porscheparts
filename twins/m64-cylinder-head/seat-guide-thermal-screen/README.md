@@ -1,57 +1,63 @@
-# Serrages siège/corps et guide/corps — écran thermique M64 4V V2
+# Seat/body and guide/body interference fits — M64 4V V2 thermal screen
 
-**Résultat : aucun serrage de fabrication ne peut encore être retenu.** Les
-calculs montrent une sensibilité suffisante à la dilatation différentielle pour
-perdre l'interférence dans certaines hypothèses. Ils ne démontrent ni la perte
-réelle d'un siège, ni sa rétention moteur. Aucun matériau n'est sélectionné.
+**Result: no manufacturing interference fit can be retained yet.** The
+calculations show enough sensitivity to differential expansion to lose the
+interference under some assumptions. They demonstrate neither the real loss of
+a seat nor its retention in the engine. No material is selected.
 
-Le [rapport reproductible](report.json) comporte 48 lignes de sensibilité aux
-extrémités documentées de température, trois cas de températures différentes
-insert/corps et 12 cas d'anneaux normalisés. **Aucune CAO n'a été modifiée.**
+The [reproducible report](report.json) contains 48 sensitivity rows at the
+documented temperature extremes, three cases of different insert/body
+temperatures and 12 normalized ring cases. **No CAD was modified.**
 
-## Données réelles et hypothèses
+![V2 four-valve sub-assembly: 3D view of the 12 STEP solids, closed and lifted CAD sections, and the 45° conical seat contact band](../evidence/four-valve-design-v2-20260907/four-valve-design-assembly-and-sections.png)
 
-Les diamètres viennent des profils du [module V2 indépendant](../source/build_four_valve_distribution.py)
-et sont en **mm de conception**, pas en unités du scan. Le STEP fermé est lié
-par SHA-256 `fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76`.
+*The V2 module whose seat and guide profiles supply the diameters below (labels
+in French). It shows cold CAD geometry only; the receiving body is absent, and
+the image proves no fit, retention or thermal behavior.*
 
-| Pièce, deux exemplaires par culasse 4V | Ø extérieur | Référence de serrage diamétral à froid |
+## Real data and assumptions
+
+The diameters come from the profiles of the [independent V2 module](../source/build_four_valve_distribution.py)
+and are in **design mm**, not in scan units. The closed STEP is bound by SHA-256
+`fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76`.
+
+| Part, two per 4V cylinder head | Outer Ø | Cold diametral interference reference |
 |---|---:|---:|
-| Siège admission | 43 mm | 0,060–0,100 mm, référence MAHLE générique |
-| Siège échappement | 36 mm | 0,050–0,090 mm, référence MAHLE générique |
-| Guide admission / échappement | 11 mm | **Inconnue** |
+| Intake seat | 43 mm | 0.060–0.100 mm, generic MAHLE reference |
+| Exhaust seat | 36 mm | 0.050–0.090 mm, generic MAHLE reference |
+| Intake / exhaust guide | 11 mm | **Unknown** |
 
-La page PDF 30 / imprimée 28 de [MAHLE, Valve Train Components](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
-a été relue visuellement : les plages concernent le diamètre extérieur du siège
-et son logement dans une culasse aluminium. MAHLE avertit du risque de
-déformation et de fissuration entre sièges si le serrage est excessif. Ce ne sont
-pas des spécifications M64 4V turbo ou LPBF. Le montage est décrit à température
-ambiante, sans valeur exacte de température. **Les jeux diamétraux tige/guide
-CAO de 0,030/0,040 mm ne sont pas des serrages guide/corps.**
+PDF page 30 / printed page 28 of [MAHLE, Valve Train Components](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
+was reread visually: the ranges concern the outer diameter of the seat and its
+bore in an aluminum cylinder head. MAHLE warns of the risk of distortion and of
+cracking between seats if the interference is excessive. These are not M64 4V
+turbo or LPBF specifications. Assembly is described at room temperature, with
+no exact temperature value. **The CAD stem/guide diametral clearances of
+0.030/0.040 mm are not guide/body interference fits.**
 
-Les [coefficients CP1 déjà sourcés](../cp1-hot-points-supplement-20260907.json)
-sont uniquement des coefficients moyens sur des intervalles. Les états de
-traitement, l'orientation et les incertitudes associés aux coefficients ne sont
-pas précisés. Deux jeux documentaires restent séparés :
+The [already-sourced CP1 coefficients](../cp1-hot-points-supplement-20260907.json)
+are only mean coefficients over intervals. The treatment states, orientation and
+uncertainties associated with the coefficients are not specified. Two
+documentary sets are kept separate:
 
-- Constellium Formnext 2021 : 25,19 × 10⁻⁶/K sur 20–200 °C.
-- EOS : 19, 21 et 22 × 10⁻⁶/K sur 25–100, 25–200 et 25–300 °C.
+- Constellium Formnext 2021: 25.19 × 10⁻⁶/K over 20–200 °C.
+- EOS: 19, 21 and 22 × 10⁻⁶/K over 25–100, 25–200 and 25–300 °C.
 
-Aucune interpolation, extrapolation ou fusion n'est faite. Chaque cas suppose
-que ses dimensions à froid sont référencées à son propre T₀ (20 ou 25 °C),
-sans transformer une même pièce entre ces références. Ni CP1 ni sa fiche
-récente ne deviennent un matériau qualifié par cet écran.
+No interpolation, extrapolation or merging is done. Each case assumes that its
+cold dimensions are referenced to its own T₀ (20 or 25 °C), without transforming
+the same part between these references. Neither CP1 nor its recent record
+becomes a qualified material through this screen.
 
-**Hypothèses de sensibilité, pas propriétés de matériaux :** coefficient moyen
-de l'insert égal à 10, 15 ou 20 × 10⁻⁶/K. Cette grille ne constitue pas une borne
-physique sur les aciers ou bronzes. Les températures choisies ne proviennent
-pas d'une simulation CHT ni d'une mesure moteur.
+**Sensitivity assumptions, not material properties:** mean insert coefficient
+equal to 10, 15 or 20 × 10⁻⁶/K. This grid is not a physical bound on steels or
+bronzes. The chosen temperatures come neither from a CHT simulation nor from an
+engine measurement.
 
-## Calcul des diamètres libres
+## Free-diameter calculation
 
-À la même référence T₀, on définit `I₀ = D_insert,0 − D_logement,0`.
-Une valeur positive désigne une interférence **diamétrale**. Avec les
-déformations thermiques libres d'ingénierie `εi` et `εh` :
+At the same reference T₀, define `I₀ = D_insert,0 − D_logement,0`
+(`logement` = bore). A positive value denotes a **diametral** interference. With
+the engineering free thermal strains `εi` and `εh`:
 
 ```text
 I(Ti, Th) = D_insert,0 (1 + εi) − (D_insert,0 − I₀) (1 + εh)
@@ -59,42 +65,42 @@ I(Ti, Th) = D_insert,0 (1 + εi) − (D_insert,0 − I₀) (1 + εh)
 I₀,contact_nul = D_insert,0 (εh − εi) / (1 + εh)
 ```
 
-Pour un coefficient **moyen sur l'intervalle exact**, `ε = α_moyen (T − T₀)`.
-Ce n'est pas l'intégration d'un coefficient instantané `α(T)`. `Ti` et `Th`
-sont indépendants. `I < 0` signifie un jeu libre dans ce modèle ; `I = 0`
-donne une pression de contact nulle dans l'anneau idéal, **pas une marge de
-rétention acceptable**. Les tolérances se propagent aux coins des intervalles
-indépendants : la fonction est multi-affine. Ce calcul utilise des flottants,
-pas une arithmétique d'intervalles à arrondi dirigé.
+For a coefficient **averaged over the exact interval**, `ε = α_moyen (T − T₀)`.
+This is not the integration of an instantaneous coefficient `α(T)`. `Ti` and
+`Th` are independent. `I < 0` means a free clearance in this model; `I = 0` gives
+zero contact pressure in the ideal ring, **not an acceptable retention margin**.
+Tolerances propagate to the corners of the independent intervals: the function
+is multi-affine. This calculation uses floating point, not interval arithmetic
+with directed rounding.
 
-Exemple à **Ti = Th = 200 °C**, insert hypothétique à 15 × 10⁻⁶/K :
+Example at **Ti = Th = 200 °C**, hypothetical insert at 15 × 10⁻⁶/K:
 
-| Référence corps utilisée séparément | Siège Ø43, I₀ = 0,060–0,100 | Siège Ø36, I₀ = 0,050–0,090 |
+| Body reference used separately | Seat Ø43, I₀ = 0.060–0.100 | Seat Ø36, I₀ = 0.050–0.090 |
 |---|---:|---:|
-| Formnext, T₀ = 20 °C | **−0,01860 à +0,02158 mm** | **−0,01580 à +0,02438 mm** |
-| EOS, T₀ = 25 °C | +0,01507 à +0,05522 mm | +0,01238 à +0,05253 mm |
+| Formnext, T₀ = 20 °C | **−0.01860 to +0.02158 mm** | **−0.01580 to +0.02438 mm** |
+| EOS, T₀ = 25 °C | +0.01507 to +0.05522 mm | +0.01238 to +0.05253 mm |
 
-Les différences de résultat ne justifient pas de choisir le jeu documentaire
-le plus favorable. Elles justifient d'obtenir les dilatations du **même couple
-matériau/processus/traitement** avant de dimensionner le serrage.
+The differences in result do not justify choosing the most favorable
+documentary set. They justify obtaining the expansions of the **same
+material/process/treatment pair** before sizing the interference.
 
-Dans le cas Formnext et insert hypothétique ci-dessus, le seuil de contact
-nul vaut **0,07851 mm** pour le siège admission, **0,06573 mm** pour celui
-d'échappement et **0,02009 mm** pour un guide Ø11. Ces valeurs ne sont **pas
-des serrages recommandés**. Avec le corps à 200 °C et l'insert à 150/200/250 °C,
-le seuil du siège admission devient respectivement 0,11062 / 0,07851 /
-0,04641 mm : il faut les deux températures de contact, pas une température
-unique attribuée à toute la culasse.
+In the Formnext case with the hypothetical insert above, the zero-contact
+threshold is **0.07851 mm** for the intake seat, **0.06573 mm** for the exhaust
+seat and **0.02009 mm** for a Ø11 guide. These values are **not recommended
+interference fits**. With the body at 200 °C and the insert at 150/200/250 °C,
+the intake-seat threshold becomes 0.11062 / 0.07851 / 0.04641 mm respectively:
+both contact temperatures are needed, not a single temperature assigned to the
+whole cylinder head.
 
-## Lamé : test local normalisé, pas calcul de résistance de la culasse
+## Lamé: a normalized local test, not a strength calculation of the cylinder head
 
-Le calcul utilise deux anneaux concentriques élastiques isotropes, de rayons
-`a < b < c`, interface nominale `b`, bord externe **libre** `c`, contact sans
-frottement, petits déplacements et **contrainte axiale nulle**. Les relations
-d'équilibre radial et de Hooke sont contrôlées à partir des
-[notes MIT, sections 2 et 4](https://ocw.mit.edu/courses/22-312-engineering-of-nuclear-reactors-fall-2015/eb49bc4f3e701be60ca651c5a109312f_MIT22_312F15_note_L4.pdf).
-La compliance ci-dessous est dérivée pour `σz = 0` ; elle ne copie pas la
-solution en déformation plane de la section 4.
+The calculation uses two concentric isotropic elastic rings, of radii
+`a < b < c`, nominal interface `b`, **free** outer edge `c`, frictionless
+contact, small displacements and **zero axial stress**. The radial equilibrium
+and Hooke relations are checked against the
+[MIT notes, sections 2 and 4](https://ocw.mit.edu/courses/22-312-engineering-of-nuclear-reactors-fall-2015/eb49bc4f3e701be60ca651c5a109312f_MIT22_312F15_note_L4.pdf).
+The compliance below is derived for `σz = 0`; it does not copy the plane-strain
+solution of section 4.
 
 ```text
 Ki = (b² + a²)/(b² − a²) − νi
@@ -102,58 +108,70 @@ Kh = (c² + b²)/(c² − b²) + νh
 p  = max(0, I) / [2b (Ki/Ei + Kh/Eh)]
 ```
 
-Le test indépendant reconstitue `σr = A − B/r²`, `σθ = A + B/r²`, puis les
-déplacements par Hooke et vérifie `2(u_corps − u_insert) = I` : le facteur
-radial/diamétral est ainsi contrôlé. Le rapport donne uniquement `p/Eh` et
-des contraintes normalisées. Les véritables `E(T)`, `ν(T)` et rayons extérieurs
-de logement manquent ; **pression et contrainte de culasse en MPa restent nulles
-dans le rapport, au sens « non calculées », pas zéro**.
+The independent test reconstructs `σr = A − B/r²`, `σθ = A + B/r²`, then the
+displacements by Hooke, and checks `2(u_corps − u_insert) = I`
+(`corps` = body): the radial/diametral factor is thus checked. The report gives
+only `p/Eh` and normalized stresses. The real `E(T)`, `ν(T)` and outer bore
+radii are missing; **cylinder head pressure and stress in MPa remain null in the
+report, in the sense of "not calculated", not zero**.
 
-Pour un anneau inspiré du seul Ø intérieur minimal du siège admission,
-`a/b = 35,6/43`, et les hypothèses sans matériau `Ei/Eh = 3`, `νi = νh = 0,3` :
+For a ring based only on the minimum inner Ø of the intake seat,
+`a/b = 35.6/43`, and the material-free assumptions `Ei/Eh = 3`, `νi = νh = 0.3`:
 
-| c/b hypothétique | Gain `(p/Eh)/(I/D)` |
+| Hypothetical c/b | Gain `(p/Eh)/(I/D)` |
 |---|---:|
-| 1,1 | 0,07994 |
-| 1,5 | 0,21806 |
-| 2,0 | 0,27378 |
+| 1.1 | 0.07994 |
+| 1.5 | 0.21806 |
+| 2.0 | 0.27378 |
 
-Les sièges coniques et leur faible longueur ne sont pas des anneaux uniformes.
-Pour les guides, ce modèle ne prédit pas encore la réduction du diamètre
-intérieur après emmanchement ni son effet sur le jeu tige/guide.
+Conical seats and their short length are not uniform rings. For the guides,
+this model does not yet predict the reduction of the inner diameter after
+pressing in, nor its effect on the stem/guide clearance.
 
-## Deux soupapes contre quatre : limite essentielle du pont de 2 mm
+## Two valves versus four: the essential limit of the 2 mm bridge
 
-V2 comprend quatre sièges et quatre guides. L'écart minimal de **2 mm entre
-enveloppes extérieures de sièges** est contrôlé sur la CAO froide. Le corps
-receveur n'existe pas encore dans ce module : ce n'est donc pas la preuve d'un
-ligament de matière final de 2 mm. Le futur pont entre logements inclinés
-subit les interactions de plusieurs frettages et les gradients thermiques.
-**Il n'est pas axisymétrique ; on ne remplace pas ce pont par `c = b + 1 mm`.**
+V2 comprises four seats and four guides. The minimum gap of **2 mm between
+outer envelopes of the seats** is checked on the cold CAD. The receiving body
+does not yet exist in this module: this is therefore not proof of a final 2 mm
+material ligament. The future bridge between inclined bores undergoes the
+interactions of several shrink fits and the thermal gradients.
+**It is not axisymmetric; this bridge is not replaced by `c = b + 1 mm`.**
 
-Pour la référence 2V, les diamètres de têtes de soupapes MAHLE ne fournissent
-ni les Ø extérieurs des sièges, ni les logements. Aucune supériorité 4V/2V
-en résistance ou dissipation n'est calculée avec ces données. Il faudra un
-modèle 3D de contact couplé sur chaque architecture, à charges comparables.
+For the 2V reference, the MAHLE valve head diameters provide neither the outer
+Ø of the seats nor the bores. No 4V/2V superiority in strength or heat
+dissipation is calculated with these data. A coupled 3D contact model of each
+architecture, under comparable loads, will be needed.
 
-## Prochaine décision et reproduction
+## Next decision and reproduction
 
-Il faut maintenant les références/alloys des sièges et guides, les
-dilatations et propriétés mécaniques à chaud du même état de fabrication,
-les logements/tolérances à T₀ explicite, le serrage guide/corps, puis les
-températures CHT de part et d'autre. Ensuite seulement : contact 3D avec
-plasticité/relaxation, maintien sous pression/impact soupape et essais de
-rétention/thermiques sur coupons. Augmenter simplement le serrage peut
-aggraver la fissuration du pont. **Aucune autorisation d'impression ou moteur.**
+What is needed now: the seat and guide references/alloys, the hot expansions and
+mechanical properties of the same manufacturing state, the bores/tolerances at
+an explicit T₀, the guide/body interference, then the CHT temperatures on either
+side. Only then: 3D contact with plasticity/relaxation, retention under pressure
+and valve impact, and retention/thermal tests on coupons. Simply increasing the
+interference can worsen cracking of the bridge. **No print or engine
+authorization.**
 
-Depuis la racine du dépôt, sans OCP, GPU, Kali ni service payant :
+```mermaid
+flowchart TD
+    A["Seat and guide alloys<br/>same-state hot expansion and properties"]:::open --> B["Bores and tolerances at explicit T₀<br/>guide/body interference"]:::open
+    B --> C["CHT temperatures<br/>on either side of each contact"]:::open
+    C --> D["3D contact with plasticity/relaxation<br/>pressure and valve impact"]:::open
+    D --> E["Retention and thermal tests<br/>on coupons"]:::open
+    E --> F["No print or engine<br/>authorization from this screen"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+From the repository root, without OCP, GPU, Kali or any paid service:
 
 ```sh
 python3 twins/m64-cylinder-head/seat-guide-thermal-screen/screen.py
 python3 -m unittest discover -s tests -p test_m64_seat_guide_thermal_screen.py -v
 ```
 
-**11 tests exécutés et réussis** : définition des diamètres libres, température
-séparée, seuil de contact, bornes, Hooke/Lamé, limites analytiques, contact
-unilatéral, rejets d'entrées et liens SHA-256. Ce sont des vérifications du
-calcul analytique et de ses sources, pas une validation physique du produit.
+**11 tests run and passed**: free-diameter definition, separate temperature,
+contact threshold, bounds, Hooke/Lamé, analytical limits, unilateral contact,
+input rejections and SHA-256 links. These are checks of the analytical
+calculation and its sources, not a physical validation of the product.

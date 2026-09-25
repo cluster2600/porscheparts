@@ -12,6 +12,24 @@ converge into an open `56 mm` collector, with a nominal wall of `1.2 mm` and an
 axial length of `215 mm`. All these dimensions are synthetic. The STEP omits the
 flanges, the turbine, the brackets and the heating exchanger.
 
+```mermaid
+flowchart LR
+  S["Published: Kline IN625<br/>2.9 kg per side, exchanger included<br/>no dimension"] --> H["Synthetic F0 core<br/>three 34 mm runners,<br/>56 mm collector, 1.2 mm wall"]
+  H --> G["OCCT BREP valid<br/>509.97 g"]
+  G --> F["Flow and thermal screens<br/>not CFD; fully blocked bound<br/>inadmissible as a model"]
+  G --> P["LPBF print screen<br/>5,375 layers sliced"]
+  F --> V["Not authorized for manufacture,<br/>an engine or interior heating"]
+  P --> V
+  class S ok
+  class F,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why additive makes sense here
 
 LPBF can produce the internal three-into-one junction in one piece, with no weld

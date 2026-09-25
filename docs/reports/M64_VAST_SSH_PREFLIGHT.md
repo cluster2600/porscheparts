@@ -1,44 +1,43 @@
-# Prévol SSH Vast — 7 septembre 2026
+# Vast SSH preflight — September 7, 2026
 
-Le wrapper `deploy/openbao/openbao-vastai` sépare désormais trois preuves :
+The `deploy/openbao/openbao-vastai` wrapper now separates three proofs:
 
-1. **Paire locale utilisable**, avant enregistrement et création payante :
-   validation des métadonnées du fichier privé approuvé, puis OpenSSH
-   `ssh-keygen -y` dérive sa seule identité publique. La comparaison ignore
-   les commentaires. L'opération est bornée à 10 secondes, sans saisie,
-   agent ou variable d'authentification héritée. Ni clé privée, ni sortie
-   publique, ni erreur brute de cette commande ne sont affichées.
-2. **Clé listée pour l'instance exacte** : lecture de son endpoint SSH,
-   attachement de la seule clé approuvée si absente, accusé strict `true`,
-   puis relecture (trois tentatives au maximum). Un attachement POST n'est
-   jamais rejoué automatiquement. Un reçu JSON fixe conserve l'ID, le label
-   unique et les booléens de preuve, sans clés ni commentaires.
-3. **Authentification et service effectifs** : la vérification SSH BatchMode
-   et du marqueur READY demeure obligatoire. La preuve des étapes 1 et 2
-   **ne prouve pas** l'injection de `authorized_keys` dans le conteneur.
+1. **Usable local key pair**, before registration and paid creation: the
+   metadata of the approved private file is validated, then OpenSSH
+   `ssh-keygen -y` derives its only public identity. The comparison ignores
+   comments. The operation is bounded to 10 seconds, with no input, agent or
+   inherited authentication variable. Neither the private key, nor the public
+   output, nor the raw error of this command is displayed.
+2. **Key listed for the exact instance**: its SSH endpoint is read, the only
+   approved key is attached if absent, a strict `true` acknowledgement is
+   required, then it is read back (three attempts at most). A POST attachment
+   is never replayed automatically. A fixed JSON receipt keeps the ID, the
+   unique label and the proof booleans, without keys or comments.
+3. **Effective authentication and service**: the SSH BatchMode check and the
+   READY marker remain mandatory. The proof from steps 1 and 2 **does not
+   prove** that `authorized_keys` was injected into the container.
 
-En cas d'échec SSH terminal, le reçu conserve l'hôte/port réellement utilisés,
-le code de retour et des indicateurs dérivés (`permission_denied`,
-`key_load_failed`, `bad_key_permissions`). Aucun stdout/stderr brut n'est
-journalisé. La suppression avec preuve d'absence demeure obligatoire sur
-échec après création ; ces diagnostics ne désactivent aucun contrôle de clé
-d'hôte, d'identité ou de disponibilité.
+On a terminal SSH failure, the receipt keeps the host/port actually used, the
+return code and derived flags (`permission_denied`, `key_load_failed`,
+`bad_key_permissions`). No raw stdout/stderr is logged. Deletion with proof of
+absence remains mandatory on failure after creation; these diagnostics disable
+no host key, identity or availability check.
 
-Les tests utilisent des clés et réponses synthétiques. Ils ne prouvent ni
-une connexion réelle sur Vast, ni un calcul sur la culasse.
+The tests use synthetic keys and responses. They prove neither a real
+connection on Vast nor a computation on the cylinder head.
 
-La commande en lecture seule `ssh-endpoints <id>` expose séparément la paire
-`ssh_host` / `ssh_port` et la paire `public_ipaddr` / `ports[22/tcp][0].HostPort`.
-Elle refuse un ID retourné différent et masque une paire incomplète ou invalide.
-Elle ne change pas le choix courant du wrapper, n'essaie pas de connexion et ne
-présente pas ces métadonnées comme une preuve d'accessibilité.
+The read-only command `ssh-endpoints <id>` exposes separately the
+`ssh_host` / `ssh_port` pair and the `public_ipaddr` / `ports[22/tcp][0].HostPort`
+pair. It refuses a different returned ID and masks an incomplete or invalid
+pair. It does not change the wrapper's current choice, does not attempt a
+connection and does not present this metadata as proof of reachability.
 
-Le sélecteur existant normalise aussi le `HostPort` direct en entier : Vast
-peut le retourner sous forme de chaîne décimale. Les formats non décimaux,
-booléens et valeurs hors de 1 à 65535 sont refusés. La priorité de la paire
-proxy complète reste inchangée ; aucune adresse proxy n'est combinée avec
-le port direct, et aucun contrôle d'authentification n'est assoupli.
+The existing selector also normalizes the direct `HostPort` to an integer: Vast
+may return it as a decimal string. Non-decimal formats, booleans and values
+outside 1 to 65535 are refused. The priority of the complete proxy pair is
+unchanged; no proxy address is combined with the direct port, and no
+authentication check is relaxed.
 
-Références du fournisseur :
+Provider references:
 [SSH](https://docs.vast.ai/guides/instances/connect/ssh),
-[attachement SSH](https://docs.vast.ai/api-reference/instances/attach-ssh-key).
+[SSH attachment](https://docs.vast.ai/api-reference/instances/attach-ssh-key).

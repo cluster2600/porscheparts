@@ -16,6 +16,20 @@ The model is built zone by zone: dashboard, door, seat, engine bay, running gear
 and body. Accuracy is declared per component and per interface, because a single
 zone can combine visual trim at `F0` and measured fasteners at `F2`.
 
+```mermaid
+flowchart LR
+    subgraph acc["Accuracy, per component and per interface"]
+        F0["F0<br/>visual trim"] --> F1["F1_envelope<br/>interface proxies"] --> F2["F2_interface<br/>measured fasteners, mounting face,<br/>centering, tolerances, transforms"]
+    end
+    subgraph tst["What tested in the twin means"]
+        GR["geometry_ready<br/>required geometry and<br/>uncertainties exist"] --> DC["digitally_checked<br/>declared rules executed,<br/>report versioned"] --> PC["physically_correlated<br/>real fit compared with predictions<br/>future level"]:::open
+    end
+    W["Wheels and hubs zone<br/>F1_envelope proxies<br/>twin status concept"]:::open --> F1
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## First geometric slice — dashboard, pending
 
 The MVP assembles:
@@ -52,6 +66,10 @@ width and center bore. They make the components visible and assemblable in
 FreeCAD, but reproduce neither the spokes, nor the actual rim profile, nor the
 bolt seats. The two hubs remain logical reference frames with no geometry. The
 twin is therefore at status `concept`, not `digitally_checked`.
+
+![Register of the sourced 993 twin state: 17- and 18-inch Fuchs wheel sets with masses and known interfaces, Carrera brakes not admitted, 3D positioning still unknown](media/diagrams/digital-twin-993-etat.svg)
+
+*The sourced state as a register: wheel sets, masses and known interfaces, logically assembled; the brakes are not admitted and the global 3D transforms are unknown. It shows what is recorded, not a positioned or validated assembly.*
 
 Moving to `F2_interface` requires measuring or sourcing the mounting face, the
 hub centering, the fastener seat type, the brake envelope, the tolerances and

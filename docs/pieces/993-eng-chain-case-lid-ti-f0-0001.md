@@ -6,6 +6,29 @@
 
 Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favorable in the grid.
 
+```mermaid
+flowchart LR
+    L0["concept"]
+    L1["dimensionally_reviewed"]
+    L2["prototype_fitted"]
+    L3["functionally_tested"]
+    L4["engineering_reviewed"]
+    L5["released"]
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5
+    classDef here fill:#fff4d6,stroke:#b7791f,color:#1a1a1a,stroke-width:3px;
+    classDef done fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef todo fill:#f4f4f4,stroke:#9e9e9e,color:#6b6b6b;
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class L0 here
+    class L1 todo
+    class L2 todo
+    class L3 todo
+    class L4 todo
+    class L5 todo
+```
+
+*Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
+
 Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../../catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json)
 
 ## Identity

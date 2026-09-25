@@ -30,6 +30,23 @@ The reproducible calculation is in
 and its evidence in
 [`integration-screen.json`](../../twins/993-engine-cooling-fan-system-f0/evidence/integration-screen.json).
 
+```mermaid
+flowchart LR
+  H["Housing F0<br/>throat 252 mm"] --> I["Integration twin<br/>coaxial, same front plane Z=0"]
+  M["Impeller F0<br/>diameter 280 mm"] --> I
+  I --> C["Radial clearance -14 mm<br/>BRep intersection: collision"]
+  I --> U["OpenUSD: minimal<br/>validation passed"]
+  C --> V["Useful integration failure<br/>no manufacture, rotation<br/>or engine start"]
+  U --> N["Not SimReady,<br/>no Physics property"]
+  class C,V stop
+  class U,N open
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## OpenUSD pass
 
 The native preflight correctly blocked the ARM Mac: the active Python contained

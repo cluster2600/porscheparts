@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "twin_id": "TWIN-993-ENGINE-COOLING-FAN-SYSTEM-F0",
-  "name": "Sous-ensemble carter et turbine de refroidissement moteur 993 F0",
+  "name": "993 engine cooling fan housing and impeller subassembly, F0",
   "vehicle": {
     "generation": "993",
     "variants": ["993_air_cooled_fitment_to_confirm"],
@@ -14,8 +14,8 @@
   "fidelity": "F1_envelope",
   "coordinate_system": {
     "frame": "local",
-    "origin": "hypothese F0 au centre de la face avant commune du carter et de la turbine",
-    "axes": "X et Y dans le plan de rotation, Z suivant l'axe du ventilateur vers l'arriere du moteur",
+    "origin": "F0 assumption at the center of the common front face of the housing and the impeller",
+    "axes": "X and Y in the plane of rotation, Z along the fan axis toward the rear of the engine",
     "units": "mm",
     "vehicle_transform": null
   },
@@ -78,11 +78,11 @@
       "twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json"
     ],
     "known_limits": [
-      "Les deux géométries et leur alignement coaxial au plan avant sont des hypothèses F0 non mesurées.",
-      "Le jeu radial froid vaut -14 mm et le test BRep détecte une collision ; le sous-ensemble échoue donc l'intégration.",
-      "Les cibles de débit, vitesses et nombres de pales proviennent de régressions séparées et sont incohérents entre eux.",
-      "Aucun axe, roulement, alternateur, poulie, courroie, cale, tôlerie, joint ou transform véhicule n'est modélisé.",
-      "Aucune attribution Physics/SimReady, simulation PhysicsNeMo, validation physique ou autorisation de fabrication n'est revendiquée."
+      "Both geometries and their coaxial alignment at the front plane are unmeasured F0 assumptions.",
+      "The cold radial clearance is -14 mm and the BRep test detects a collision; the subassembly therefore fails integration.",
+      "The flow targets, speeds and blade counts come from separate regressions and are inconsistent with one another.",
+      "No shaft, bearing, alternator, pulley, belt, shim, sheet metal, seal or vehicle transform is modeled.",
+      "No Physics/SimReady assignment, PhysicsNeMo simulation, physical validation or manufacturing authorization is claimed."
     ]
   }
 }

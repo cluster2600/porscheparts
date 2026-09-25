@@ -15,6 +15,25 @@ No source publishes dimensions, material, wall, pressure, temperature or flow.
 The F0 therefore represents a single, entirely synthetic side; the commercial
 reference `TUR 993 107 338 53 PMS` is not treated as a Porsche part number.
 
+```mermaid
+flowchart LR
+  S["Published: Patrick Motorsports set<br/>no dimension, material or pressure"] --> G["Synthetic single side<br/>12.7 mm tube, two flanges<br/>101.16 g IN625"]
+  G --> Hy["Hydraulics<br/>ratio 3.734: passes"]
+  G --> Pr["Pressure and bending<br/>ratio 23.35: passes"]
+  G --> T["Blocked thermal<br/>ratio 0.395: fail"]
+  G --> P["LPBF print screen<br/>build_x, 40 µm"]
+  T --> V["Process undecided<br/>all manufacturing, oil, turbo,<br/>engine, vehicle authorizations closed"]
+  P --> V
+  class S open
+  class Hy,Pr,P open
+  class T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## F0 geometry
 
 The build123d master creates a swept tube of `12.7 mm` outer diameter,

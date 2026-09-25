@@ -1,139 +1,135 @@
-# Réparation locale Bernstein sur la référence 935 — 7 septembre 2026
+# Local Bernstein repair on reference 935 — September 7, 2026
 
-![Vraie CAO et coupe avant/après de la réparation locale](../../twins/m64-cylinder-head/evidence/935-reference-bernstein-local-repair-before-after.png)
+![Real CAD and before/after section of the local repair](../../twins/m64-cylinder-head/evidence/935-reference-bernstein-local-repair-before-after.png)
 
-Vue produite depuis les deux STEP contrôlés et leurs sections OCCT, sans
-image générative. Source attribuée à Wolfe Classics selon
+View produced from the two checked STEP files and their OCCT sections, with no
+generative image. Source attributed to Wolfe Classics according to
 `catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json`.
-Le skill `create-viz` a guidé la conservation des vues et échelles et
-l'affichage de la référence en pointillé. Le rendu neutre n'est pas un
-champ de températures ou de contraintes.
+The `create-viz` skill guided keeping the views and scales and showing the
+reference as a dotted line. The neutral render is not a temperature or stress
+field.
 
-## Une nouvelle face et un solide ont été construits
+## A new face and a solid were built
 
-Le candidat de bidegré **10 × 11** conserve les cinq courbes de bord de la
-face source dans les contrôles effectués. La face puis le solide fermé
-passent BRepCheck exact, y compris après export et import STEP. Les
-tolérances de la face et de ses cinq arêtes restent à `1e-7` : aucune
-réévaluation favorable par augmentation des tolérances n'est utilisée.
-Le contrôle BOP d'auto-intersections a ensuite terminé sans défaut signalé.
+The candidate of bidegree **10 × 11** keeps the five boundary curves of the
+source face in the checks performed. The face and then the closed solid pass
+exact BRepCheck, including after STEP export and import. The tolerances of the
+face and of its five edges stay at `1e-7`: no favorable reassessment by
+increasing tolerances is used. The BOP self-intersection check then ended with
+no defect reported.
 
-Le même trajet local mesuré par intersection CAO passe de **0,752667 à
-1,602667 unité du scan**. Parmi les autres rayons appariés, 39 restent
-inchangés à `1e-5` près ; deux rayons demeurent non résolus. Ce résultat
-est local et échantillonné, pas une validation d'épaisseur de toute la pièce.
+The same local path measured by CAD intersection goes from **0.752667 to
+1.602667 scan units**. Among the other paired rays, 39 remain unchanged to
+within `1e-5`; two rays remain unresolved. This result is local and sampled,
+not a thickness validation of the whole part.
 
-La source reste la reconstruction F53 issue d'une référence de recherche
-935. Ce n'est pas une géométrie M64 validée, ni une échelle certifiée, ni
-une pièce autorisée à fabriquer ou à monter sur un moteur. La silhouette
-globale n'est pas remplacée ; **une surface locale vers le passage d'air
-est réellement modifiée**. Une boîte englobante inchangée ne signifie pas
-que toute la peau extérieure est inchangée.
+The source remains the F53 reconstruction from a 935 research reference. It is
+not validated M64 geometry, nor a certified scale, nor a part authorized for
+manufacturing or for mounting on an engine. The global silhouette is not
+replaced; **a local surface toward the air passage is actually modified**. An
+unchanged bounding box does not mean that the whole outer skin is unchanged.
 
-## Pourquoi réduire le degré a été utile
+## Why reducing the degree helped
 
-La [recherche de champ à contraintes implicites](M64_IMPLICIT_BOUNDARY_BUBBLE_20260907.md)
-avait trouvé un premier champ 12 × 23. Sa surface directe respecte les
-courbes, mais le contrôle contextuel OCCT de deux arêtes échoue près des
-extrémités : l'évaluation par adaptateur donne environ `1,668e-7` d'écart,
-alors que l'évaluation directe de la surface aux mêmes paramètres donne
-`1,06e-13` et `7,29e-12`.
+The [implicit-constraint field search](M64_IMPLICIT_BOUNDARY_BUBBLE_20260907.md)
+had found a first 12 × 23 field. Its direct surface respects the curves, but
+the OCCT contextual check of two edges fails near the ends: evaluation through
+the adaptor gives a gap of about `1.668e-7`, while direct evaluation of the
+surface at the same parameters gives `1.06e-13` and `7.29e-12`.
 
-Le témoin utilisant la surface source inchangée et le même assemblage de
-fil passe. Ce n'est donc pas une simple inversion de fil. Le STEP 12 × 23
-réimporté devient valide seulement après hausse automatique de deux
-tolérances d'arêtes à environ `1,668e-7` : **ce candidat reste rejeté**.
-Le diagnostic constate une divergence entre voies d'évaluation ; il ne
-prétend pas identifier à lui seul la ligne fautive interne d'OCCT.
+The control case using the unchanged source surface and the same wire assembly
+passes. This is therefore not a simple wire reversal. The reimported 12 × 23
+STEP becomes valid only after an automatic increase of two edge tolerances to
+about `1.668e-7`: **this candidate remains rejected**. The diagnostic records
+a divergence between evaluation paths; it does not claim to identify by
+itself the faulty internal line of OCCT.
 
-La nouvelle sélection minimise d'abord le degré maximal, puis le degré
-total, et seulement ensuite l'amplitude sur la grille initiale. Les scores
-numériques des 14 641 champs ont été recalculés à partir des coefficients
-privés déjà enregistrés : le premier rapport ne conservait que le meilleur
-champ, pas tous les scores. Aucun nouvel ajustement de géométrie n'est
-effectué pour cette sélection. 360 champs satisfont la limite d'amplitude
-sur la grille 81 × 81.
+The new selection first minimizes the maximum degree, then the total degree,
+and only then the amplitude on the initial grid. The numerical scores of the
+14,641 fields were recomputed from the private coefficients already recorded:
+the first report kept only the best field, not all the scores. No new
+geometry fit is performed for this selection. 360 fields satisfy the amplitude
+limit on the 81 × 81 grid.
 
-| Exposants `(p,q,r,s)` | Bidegré | Maximum sur 24 732 points | Rapport d'orientation minimal |
+| Exponents `(p,q,r,s)` | Bidegree | Maximum over 24,732 points | Minimum orientation ratio |
 |---|---|---:|---:|
-| **(4,2,2,5)** | **10 × 11** | **0,934757** | **0,968771** |
-| (5,2,2,5) | 11 × 11 | 0,886633 | 0,966479 |
-| (3,2,2,6) | 9 × 12 | 0,998871 | 0,979431 |
+| **(4,2,2,5)** | **10 × 11** | **0.934757** | **0.968771** |
+| (5,2,2,5) | 11 × 11 | 0.886633 | 0.966479 |
+| (3,2,2,6) | 9 × 12 | 0.998871 | 0.979431 |
 
-Seul le premier est construit. La dernière combinaison a très peu de
-marge sous la limite 1. Ces maxima restent échantillonnés, pas des bornes
-globales certifiées.
+Only the first one is built. The last combination has very little margin under
+the limit of 1. These maxima remain sampled, not certified global bounds.
 
-## Construction et contrôles du 10 × 11
+## Construction and checks of the 10 × 11
 
-`trial_transition_bernstein.py` multiplie les coefficients en **base de
-Bernstein**, sans développement monomial de haut degré ni BRepFill.
-Le facteur de bord possède un unique coefficient non nul avant produit
-avec `F²`, où `F` est l'équation du cylindre analytique portant la cinquième
-découpe. Le déplacement vaut 0,85 au point cible. Les pôles de la surface
-bilinéaire source sont élevés en degré puis additionnés aux coefficients
-de déplacement dans la direction retenue.
+`trial_transition_bernstein.py` multiplies the coefficients in a **Bernstein
+basis**, with no high-degree monomial expansion and no BRepFill. The boundary
+factor has a single nonzero coefficient before the product with `F²`, where
+`F` is the equation of the analytic cylinder carrying the fifth trim. The
+displacement is 0.85 at the target point. The poles of the bilinear source
+surface are degree-elevated and then added to the displacement coefficients in
+the chosen direction.
 
-Les nœuds reprennent exactement le domaine UV original ; les mêmes courbes
-paramétriques et intervalles sont attachés aux arêtes. Les opérations
-s'effectuent sur une copie du maître. Les conditions de construction
-B-Spline et les fonctions de rattachement des courbes sont décrites dans
-les références officielles [Geom_BSplineSurface](https://occt3d.com/dev/doc/refman/html/class_geom___b_spline_surface.html)
-et [BRep_Builder](https://occt3d.com/dev/doc/refman/html/class_b_rep___builder.html).
+The knots take exactly the original UV domain; the same parametric curves and
+intervals are attached to the edges. The operations are performed on a copy
+of the master. The B-Spline construction conditions and the curve attachment
+functions are described in the official references
+[Geom_BSplineSurface](https://occt3d.com/dev/doc/refman/html/class_geom___b_spline_surface.html)
+and [BRep_Builder](https://occt3d.com/dev/doc/refman/html/class_b_rep___builder.html).
 
-| Contrôle natif | Résultat |
+| Native check | Result |
 |---|---:|
-| Erreur du point déplacé de 0,85 | `3,89e-14` unité |
-| Erreur maximale courbes/surface à mêmes paramètres, 121 points/arête | `6,25e-9` unité |
-| Même contrôle sur surface source | `6,25e-9` unité |
-| Écart maximal des premières dérivées aux bords échantillonnés | `9,61e-12` |
-| Écart formule factorisée / surface OCCT, 6 250 points | `7,14e-14` unité |
-| Déplacement natif maximal sur ces points | `0,934182` unité |
-| Rapport d'orientation natif minimal | `0,968804` |
-| Face avant et après export/import | BRepCheck exact valide |
-| Tolérance face et cinq arêtes, avant et après import | `1e-7`, inchangée |
-| Couture | Une coque ; zéro arête libre ou multiple |
-| Solide avant et après export/import | BRepCheck exact valide, 20 431 sous-formes contrôlées |
-| Topologie | Un solide, une coque, 4 929 faces ; zéro arête non-manifold |
-| BOP auto-intersections du solide complet | Terminé, aucun défaut signalé |
-| Variation des six bornes englobantes, avant export | 0 |
-| Variation de volume | `+10,6963` unités³, soit `+0,0008584 %` |
-| Variation de surface | `+7,49387` unités² |
-| Variation de volume due au seul aller/retour STEP | `4,66e-10` unité³ |
+| Error of the point displaced by 0.85 | `3.89e-14` unit |
+| Maximum curve/surface error at the same parameters, 121 points/edge | `6.25e-9` unit |
+| Same check on the source surface | `6.25e-9` unit |
+| Maximum gap of first derivatives at the sampled boundaries | `9.61e-12` |
+| Gap between factored formula and OCCT surface, 6,250 points | `7.14e-14` unit |
+| Maximum native displacement on these points | `0.934182` unit |
+| Minimum native orientation ratio | `0.968804` |
+| Face before and after export/import | exact BRepCheck valid |
+| Tolerance of face and five edges, before and after import | `1e-7`, unchanged |
+| Sewing | One shell; zero free or multiple edges |
+| Solid before and after export/import | exact BRepCheck valid, 20,431 subshapes checked |
+| Topology | One solid, one shell, 4,929 faces; zero non-manifold edges |
+| BOP self-intersections of the full solid | Completed, no defect reported |
+| Change of the six bounding limits, before export | 0 |
+| Volume change | `+10.6963` units³, i.e. `+0.0008584%` |
+| Surface area change | `+7.49387` units² |
+| Volume change due to the STEP round trip alone | `4.66e-10` unit³ |
 
-Le coefficient de normalisation vaut `89,8421`, contre environ 497 655
-pour le 12 × 23. La meilleure stabilité n'est pas déduite de ce rapport
-seul : elle est observée dans les évaluations et contrôles natifs. Le
-maximum absolu des coefficients Bernstein de déplacement vaut `3,18756` ;
-ce n'est pas le maximum de la surface.
+The normalization coefficient is `89.8421`, versus about 497,655 for the
+12 × 23. The better stability is not inferred from this ratio alone: it is
+observed in the native evaluations and checks. The absolute maximum of the
+Bernstein displacement coefficients is `3.18756`; this is not the maximum of
+the surface.
 
-Un contrôle indépendant supplémentaire a comparé **toutes** les tolérances
-des deux STEP complets : 4 929 faces, 10 222 arêtes et 5 278 sommets. Les
-distributions sont strictement identiques, avec minimum et maximum `1e-7`
-dans chaque catégorie. La seule face 10 × 11 et ses cinq arêtes conservent
-aussi cette valeur après la couture et l'import du solide complet.
+An additional independent check compared **all** the tolerances of the two
+full STEP files: 4,929 faces, 10,222 edges and 5,278 vertices. The
+distributions are strictly identical, with minimum and maximum `1e-7` in each
+category. The single 10 × 11 face and its five edges also keep this value
+after sewing and importing the full solid.
 
-La [borne globale Bernstein indépendante](M64_BERNSTEIN_GLOBAL_BOUND_20260907.md)
-établit pour le polynôme scalaire stocké `|D| ≤ 0,9512202009568349` sur
-**tout le carré UV**, et pas seulement aux points de la grille. Elle emploie
-une subdivision rationnelle exacte des coefficients flottants enregistrés.
-Sa portée n'inclut pas une borne globale des arrondis d'évaluation OCCT,
-ni une validation mécanique ou de fabrication.
+The [independent global Bernstein bound](M64_BERNSTEIN_GLOBAL_BOUND_20260907.md)
+establishes for the stored scalar polynomial `|D| ≤ 0.9512202009568349` over
+**the whole UV square**, and not only at the grid points. It uses an exact
+rational subdivision of the recorded floating-point coefficients. Its scope
+does not include a global bound on OCCT evaluation rounding, nor a mechanical
+or manufacturing validation.
 
-## Artefacts privés et limites
+## Private artifacts and limits
 
-Sur Kali, sous :
+On Kali, under:
 
 ```text
 /tmp/917-f50/out/m64-local-transition-bernstein-20260907-low-degree/
 ```
 
-- `private-bernstein-coefficients.npz` : coefficients, paramètres et pôles privés réutilisables.
-- `private-replacement-face.step` : face 10 × 11, SHA `168327ff82585039ccd4c62e4004a73b0176fca42f6ea09d49e8582f37ed33c5`.
-- `diagnostic-candidate.step` : solide complet, SHA `42057011e25ecc48b215a58e979a0d9bcf4769f2f96f9690b751a81a7bde2cd8`.
-- `surface-report.json`, `solid-report.json`, `audit-report.json` : étapes natives séparées.
+- `private-bernstein-coefficients.npz`: reusable private coefficients, parameters and poles.
+- `private-replacement-face.step`: 10 × 11 face, SHA `168327ff82585039ccd4c62e4004a73b0176fca42f6ea09d49e8582f37ed33c5`.
+- `diagnostic-candidate.step`: full solid, SHA `42057011e25ecc48b215a58e979a0d9bcf4769f2f96f9690b751a81a7bde2cd8`.
+- `surface-report.json`, `solid-report.json`, `audit-report.json`: separate native steps.
 
-SHA des rapports surface/solide/audit :
+SHA of the surface/solid/audit reports:
 
 ```text
 33f99d631f77a6a6bc14a4a9a3dea531f2e40c2a44a31a97606e76a94209636f
@@ -141,67 +137,65 @@ SHA des rapports surface/solide/audit :
 d2bb2b1195b1ef320ca8dc9fac7a57a910aa9477a28c3022f771f4e70eb508af
 ```
 
-Image publiée : SHA `18057ee6e124420960d5f1d8e742d8f000898f688e78ba68141107c973eaa08a`.
-Le [résumé public expurgé](../../twins/m64-cylinder-head/bernstein-local-repair-summary-20260907.json)
-ne contient ni coordonnées, ni indices de faces/probes privés, ni STEP/NPZ.
+Published image: SHA `18057ee6e124420960d5f1d8e742d8f000898f688e78ba68141107c973eaa08a`.
+The [redacted public summary](../../twins/m64-cylinder-head/bernstein-local-repair-summary-20260907.json)
+contains no coordinates, no private face/probe indices, and no STEP/NPZ.
 
-Rapports annexes, sous `/tmp/917-f50/out/` :
+Supporting reports, under `/tmp/917-f50/out/`:
 
-- `m64-bernstein-adaptor-boundary-audit-20260907.json`, SHA `af85432b9e495205b5672e6eca49f2426e8c2a9a2e31c0e39e00fd9b2e685cec` : rejet du 12 × 23 et hausse automatique des tolérances à l'import.
-- `m64-low-degree-localized-fields-20260907.json`, SHA `645bfb542e396528e6372f449b71a27554976d45929ba98ff9c32807dc7526c8` : classement des trois candidats de moindre degré.
-- `m64-bernstein-complete-tolerance-audit-20260907.json`, SHA `c68b62f1386ff8879e3d6c90e52937cd2949252a73c1b7179a93e08e79cb85fe` : inventaire privé complet de chaque tolérance, avec histogrammes exacts et contrôle spécifique de la face modifiée.
+- `m64-bernstein-adaptor-boundary-audit-20260907.json`, SHA `af85432b9e495205b5672e6eca49f2426e8c2a9a2e31c0e39e00fd9b2e685cec`: rejection of the 12 × 23 and automatic tolerance increase on import.
+- `m64-low-degree-localized-fields-20260907.json`, SHA `645bfb542e396528e6372f449b71a27554976d45929ba98ff9c32807dc7526c8`: ranking of the three lowest-degree candidates.
+- `m64-bernstein-complete-tolerance-audit-20260907.json`, SHA `c68b62f1386ff8879e3d6c90e52937cd2949252a73c1b7179a93e08e79cb85fe`: full private inventory of each tolerance, with exact histograms and a specific check of the modified face.
 
-Le contrôle d'auto-intersections BOP a terminé dans son plafond
-de 300 secondes, avec `exit 0`. Il n'est pas remplacé par la seule réussite de BRepCheck.
-Les scripts d'audit et de construction sont limités à deux CPU et 4 Gio ;
-la sélection numérique est limitée à 60 secondes. Un premier lancement
-de l'audit s'est arrêté avant calcul sur un helper distant ancien ; après
-mise en cohérence du helper testé, l'audit reprend sans reconstruire la CAO.
-Le rapport initial est conservé sous `audit-report-import-error.json`.
+The BOP self-intersection check completed within its 300-second cap, with
+`exit 0`. It is not replaced by the success of BRepCheck alone. The audit and
+construction scripts are limited to two CPUs and 4 GiB; the numerical
+selection is limited to 60 seconds. A first launch of the audit stopped before
+computing on an old remote helper; after bringing the tested helper in line,
+the audit resumes without rebuilding the CAD. The initial report is kept as
+`audit-report-import-error.json`.
 
-Deux tests unitaires vérifient les produits Bernstein et la construction
-du facteur localisé ; quatre autres couvrent l'audit et la recherche de
-champ. Quatre tests lient le résumé expurgé à ses preuves, vérifient les
-comptes de rayons et empêchent sa promotion en pièce M64 libérée.
-Les preuves CAO ci-dessus proviennent des exécutions natives,
-pas de ces tests seuls.
+Two unit tests verify the Bernstein products and the construction of the
+localized factor; four others cover the audit and the field search. Four tests
+bind the redacted summary to its evidence, verify the ray counts and prevent
+its promotion to a released M64 part. The CAD evidence above comes from the
+native runs, not from these tests alone.
 
-## Piste suivante et résultat de l'essai séparé
+## Next avenue and result of the separate trial
 
-**Mise à jour :** le [renfort local C2 sur le trajet isolé le plus mince](M64_ISOLATED_C2_REJECTION_20260907.md)
-a depuis été construit comme surface séparée, puis rejeté au filtre de
-pente avant toute face ou couture. Il n'est pas combiné avec le
-solide 10 × 11. La proposition et l'audit préalables restent ci-dessous.
+**Update:** the [local C2 reinforcement on the thinnest isolated path](M64_ISOLATED_C2_REJECTION_20260907.md)
+has since been built as a separate surface, then rejected at the slope filter
+before any face or sewing. It is not combined with the 10 × 11 solid. The
+earlier proposal and audit remain below.
 
-`audit_remaining_transition_faces.py` a inspecté les quatre rayons non
-adjacents faibles restants dans la géométrie source réelle. Les quatre
-surfaces d'entrée sont bilinéaires non rationnelles, à quatre limites
-isoparamétriques et un seul fil. Elles ne nécessitent donc pas le facteur
-cylindrique utilisé dans la réparation précédente.
+`audit_remaining_transition_faces.py` inspected the four remaining weak
+non-adjacent rays in the real source geometry. The four entry surfaces are
+non-rational bilinear, with four isoparametric boundaries and a single wire.
+They therefore do not need the cylindrical factor used in the previous repair.
 
-- Deux rayons, `1,144959` et `1,304774` unités, traversent le même couple
-  de faces en sens opposés. Une correction doit contrôler ces deux trajets
-  ensemble, pas les considérer comme deux défauts indépendants.
-- Un autre trajet vaut `1,427734` unité.
-- Le plus faible restant vaut `1,052418` unité ; son point d'entrée est
-  très proche d'une limite paramétrique. Normaliser une bulle globale à ce
-  point pourrait surdéplacer d'autres zones de la face.
+- Two rays, `1.144959` and `1.304774` units, cross the same pair of faces in
+  opposite directions. A correction must check these two paths together, not
+  treat them as two independent defects.
+- Another path is `1.427734` units.
+- The weakest remaining one is `1.052418` units; its entry point is very close
+  to a parametric boundary. Normalizing a global bubble at this point could
+  over-displace other areas of the face.
 
-La piste proposée est une bulle sur un **support UV local**, avec facteurs
-cubiques donnant déplacement, dérivées premières et secondes nuls au bord
-du support. Une représentation B-Spline par nœuds locaux, de degré 6 × 6,
-pourrait conserver les courbes initiales et un raccord C2 sans grand degré
-global. Ce sont des propriétés de la construction proposée, **pas une
-surface déjà construite**. Son amplitude, sa direction vers le passage
-d'air, les collisions, les rayons couplés et la borne continue devront être
-contrôlés avant puis après toute construction.
+The proposed avenue is a bubble on a **local UV support**, with cubic factors
+giving zero displacement, first and second derivatives at the edge of the
+support. A B-Spline representation with local knots, of degree 6 × 6, could
+keep the initial curves and a C2 blend without a high global degree. These are
+properties of the proposed construction, **not an already built surface**. Its
+amplitude, its direction toward the air passage, the collisions, the coupled
+rays and the continuous bound will have to be checked before and after any
+construction.
 
-Rapport de lecture seul, privé :
+Read-only report, private:
 `/tmp/917-f50/out/m64-remaining-transition-feasibility-20260907.json`,
 SHA `463eaa85b14c10c2e1284049fd57642fce8e93ad1b73e5b4a37da4e7c9768a75`.
-Aucune nouvelle CAO n'avait été lancée lors de cet audit préalable.
+No new CAD had been launched during this preliminary audit.
 
-Thermique, fatigue, charge turbo, interfaces M64, fabrication LPBF et
-contrôles physiques ne sont pas validés par cette réparation. Les autres
-zones minces doivent encore être traitées. Le maître F53 conserve son SHA
+Thermal behavior, fatigue, turbo load, M64 interfaces, LPBF manufacturing and
+physical checks are not validated by this repair. The other thin areas still
+have to be treated. The F53 master keeps its SHA
 `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`.

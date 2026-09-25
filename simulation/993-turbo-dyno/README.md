@@ -1,43 +1,54 @@
-# Références de banc et modèle 0D
+# Dyno references and 0D model
 
-[`dyno-reference.json`](dyno-reference.json) rassemble des points publiés dans
-des pages de préparateurs, des articles et des comptes rendus de forums. Les
-feuilles de banc et les images originales ne sont pas copiées dans le dépôt ;
-les valeurs restent attachées à leur source et à leur niveau de preuve.
+[`dyno-reference.json`](dyno-reference.json) gathers points published in tuner
+pages, articles and forum reports. The dyno sheets and original images are not
+copied into the repository; the values stay attached to their source and to
+their level of evidence.
 
-Les données utiles comprennent notamment :
+The useful data include, among others:
 
-- les points de couple du RUF Turbo R rapportés sur banc moteur ;
-- la comparaison annoncée sur le même moteur entre K16 Stage 3 et K24RS ;
-- le point Powerhaus K24 à `5000 tr/min`, `500 whp` et `525 lb-ft`, avec environ
-  `1 bar` de boost rapporté ;
-- un essai châssis d'une 993 à K16 reconstruits, avec `324 whp` à `6000 tr/min`
-  et `329 lb-ft` à `4600 tr/min` ;
-- les cibles Cargraphic K16/24 et la borne K26 d'un projet AP Car Design, qui
-  restent des références déclarées ou contextuelles.
+- the RUF Turbo R torque points reported on an engine dyno;
+- the comparison announced on the same engine between K16 Stage 3 and K24RS;
+- the Powerhaus K24 point at `5000 rpm`, `500 whp` and `525 lb-ft`, with about
+  `1 bar` of reported boost;
+- a chassis-dyno run of a 993 with rebuilt K16s, with `324 whp` at `6000 rpm`
+  and `329 lb-ft` at `4600 rpm`;
+- the Cargraphic K16/24 targets and the K26 bound from an AP Car Design project,
+  which remain declared or contextual references.
 
-Le script [`model_turbo_dyno_0d.py`](../../scripts/model_turbo_dyno_0d.py) :
+The script [`model_turbo_dyno_0d.py`](../../scripts/model_turbo_dyno_0d.py):
 
-1. conserve les unités de publication et les convertit en Nm/kW ;
-2. calcule la puissance issue du couple et le BMEP du moteur 3,6 l ;
-3. compare les lignes puissance/couple lorsqu'elles partagent un régime ;
-4. ajoute une enveloppe de débit par turbo issue des hypothèses de pression,
-   température, VE et partage des bancs ;
-5. signale les incohérences sans corriger silencieusement la source.
+1. keeps the publication units and converts them to Nm/kW;
+2. computes the power derived from torque and the BMEP of the 3.6 l engine;
+3. compares the power/torque lines when they share an engine speed;
+4. adds a per-turbo flow envelope derived from the pressure, temperature, VE and
+   dyno-split assumptions;
+5. flags inconsistencies without silently correcting the source.
 
-Cette sortie est un normalisateur 0D et un jeu d'ancres de comparaison. Elle ne
-constitue pas une carte compresseur/turbine, n'identifie pas la vitesse d'arbre
-et ne calibre pas encore le CFD. Les conditions de banc manquantes doivent être
-obtenues avant toute régression physique.
+```mermaid
+flowchart LR
+  S["published points<br/>tuners, articles, forums"] --> J["dyno-reference.json<br/>source + level of evidence"]
+  J --> M["model_turbo_dyno_0d.py<br/>units, power, BMEP,<br/>line comparison, flow envelope"]
+  M --> D["derived-dyno-curves.json"]
+  M --> F["inconsistencies flagged,<br/>source not corrected"]:::open
+  D --> N["no compressor/turbine map,<br/>no CFD calibration yet,<br/>no part release"]:::stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-## Utilisation
+This output is a 0D normalizer and a set of comparison anchors. It is not a
+compressor/turbine map, does not identify shaft speed and does not yet calibrate
+the CFD. The missing dyno conditions must be obtained before any physical
+regression.
+
+## Usage
 
 ```bash
 make turbo-dyno
 make turbo-dyno-check
 ```
 
-Le résultat généré est
-[`derived-dyno-curves.json`](derived-dyno-curves.json). Un point interpolé ne
-doit pas être extrapolé hors de la plage publiée et aucune cible de puissance ne
-doit être utilisée pour libérer une pièce moteur.
+The generated result is
+[`derived-dyno-curves.json`](derived-dyno-curves.json). An interpolated point
+must not be extrapolated outside the published range, and no power target may be
+used to release an engine part.

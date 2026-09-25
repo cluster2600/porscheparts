@@ -13,6 +13,24 @@ the two open flanges `10 × 14 mm`, the visual cap split of `0.4 mm` and two
 shells, small-end bushing, oil channel, qualified fillets, clearances and mass
 distribution are absent.
 
+```mermaid
+flowchart LR
+  S["Published: TZR/PAUTER<br/>127.00 mm centers, 23.01 mm pin,<br/>58.01 mm big end, 535 g steel"] --> H["Project hypotheses<br/>78/40 mm outer, 10 × 14 mm flanges,<br/>cap split, two passages"]
+  H --> G["F0 OCCT BREP<br/>two solids, 341.02 g"]
+  G --> M["Mathematical screenings<br/>checks, not FEA<br/>nor a life prediction"]
+  G --> P["LPBF print screen<br/>failed closed:<br/>not a single body"]
+  M --> V["Not authorized for manufacture,<br/>fitting or engine start-up"]
+  P --> V
+  class S ok
+  class H,M open
+  class P,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why study additive
 
 An open LPBF topology can be reshaped from load fields, with material

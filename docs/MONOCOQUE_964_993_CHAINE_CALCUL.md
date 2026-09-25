@@ -3,6 +3,27 @@
 Question asked: do we need other software to calculate our alternative?
 Short answer: **no for stiffness and layup, yes for crash.**
 
+The chain at a glance (section 5 has the full sequencing):
+
+```mermaid
+flowchart LR
+    CX["CalculiX 2.21<br/>stiffness, layup, architecture,<br/>modes, thermal — available now"]:::ok
+    DOE["Corpus: CalculiX design of<br/>experiments, CPU, no GPU<br/>done on 2026-09-07"]:::ok
+    PN["PhysicsNeMo surrogate<br/>GPU on Vast.ai<br/>blocked: corpus + container GPU smoke test"]:::open
+    HV["Validation against CalculiX<br/>cases held out of training"]:::open
+    CX --> DOE --> PN --> HV
+    LF["Laminate failure, delamination<br/>per-ply post-processing, to be written"]:::open
+    OR["OpenRadioss<br/>crash design and comparison<br/>blocked by geometry, hence M1"]:::open
+    PT["Physical tests<br/>crash correlation:<br/>nothing replaces them"]:::open
+    CW["Crashworthiness claimed<br/>without physical tests"]:::stop
+    OR --> PT
+    OR -. "allows no one" .-> CW
+    OV["Omniverse / USD<br/>visualization, assembly"] --> NP["Demonstrates no<br/>physical behavior"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## 1. What CalculiX does, and it is now proven
 
 CalculiX 2.21 is the dossier's reference solver. Its composite capability was

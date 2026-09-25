@@ -2,6 +2,25 @@
 
 Selected by [decision 0007](../decisions/0007-premier-titane-embout-echappement.md).
 
+```mermaid
+flowchart LR
+  A["Titanium screening<br/>32 records"] --> B["5 eligible,<br/>27 fall"]
+  B --> C["Tip selected, +6<br/>manifold +7 ruled out at 900 °C"]
+  C --> D["Step 02 mesh: passed<br/>Step 03 slicing: 4,936 layers"]
+  D --> E{"Alloy"}
+  E -->|"Ti-6Al-4V"| F["212.3 g, available<br/>margin at 427 °C: -27 °C"]
+  E -->|"Ti-6242"| G["+123 °C margin<br/>no service bureau"]
+  F --> H["Open: tip temperature<br/>never measured on a vehicle"]
+  class C,D ok
+  class F,H open
+  class G stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## The selection, not the choice
 
 The grid in [`TITANIUM.md`](../TITANIUM.md) and the three families where
@@ -43,6 +62,10 @@ The 0.460 mm minimum wall passes the EOS process minimum of 0.3 to 0.4 mm, but
 without comfort. And **depowdering is not demonstrated**: a 2.7 mm annular
 channel over 120 mm of length cannot be judged by a 1 mm voxel screening.
 Endoscopy or tomography required.
+
+![LPBF geometric slicing screen of the titanium F1 exhaust tip: section per layer, newly unsupported region and conservative support envelope against build height](../../twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-screen.png)
+
+*Step 03 slicing screen of the titanium tip (labels in French). It shows the geometry layer by layer and a proxy support envelope; it does not demonstrate depowdering of the annular channel, and it proves nothing about a printed part.*
 
 ## The two alloys, and the figure that separates them
 

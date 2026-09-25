@@ -5,6 +5,24 @@ references, as a serious additive candidate. This document examines it. The
 conclusion is **no** — twice, for two independent reasons, and it is the second
 one that is instructive.
 
+```mermaid
+flowchart TD
+  P["Plate 202-16<br/>eleven fluid or retention parts<br/>identified, not dimensioned"] --> C["Very good additive candidate<br/>consolidation, internal passages"]
+  C --> R1["Reason 1: failure mode is fire<br/>oil on a hot K16 housing"]
+  C --> R2["Reason 2: fittings taken apart<br/>at service, titanium galls"]
+  R1 --> V["prohibited_pending_engineering"]
+  R2 --> N["If ever: nickel or steel,<br/>not titanium"]
+  V -.-> U["What would unblock it:<br/>feed/return attribution, specimen,<br/>hot material card, tests,<br/>signed review"]
+  class C ok
+  class R1,R2,V stop
+  class N,U open
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the two independent reasons for refusal, restated from the text below. It adds no result and proves nothing about the physical part.*
+
 ## What the plate establishes
 
 Plate `202-16 Turbocharger` of the 993 Turbo identifies the oil circuit of the

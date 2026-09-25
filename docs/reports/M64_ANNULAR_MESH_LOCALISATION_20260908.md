@@ -1,97 +1,99 @@
-# M64 — localisation du maillage refusé, avant reconstruction multi-zone
+# M64 — locating the rejected mesh, before a multi-zone rebuild
 
-Le dernier maillage reste refusé : **cinq familles de défauts**, sans CFD ni
-autorisation de fabrication. Le diagnostic local trouve **4 655 des 5 733
-cellules à faible déterminant au contact direct des bandes tige–guide** (81,2 %).
-Mais l'unique cellule à rapport d'aspect excessif et les onze faces très gauches
-se trouvent ailleurs : corriger uniquement les anneaux ne suffira pas.
+The latest mesh remains rejected: **five families of defects**, with no CFD and
+no manufacturing authorization. The local diagnostic finds **4,655 of the 5,733
+low-determinant cells in direct contact with the stem–guide bands** (81.2%).
+But the single cell with an excessive aspect ratio and the eleven highly skewed
+faces sit elsewhere: fixing the rings alone will not be enough.
 
-Ce domaine est le **pilote gaz d'admission**, issu du candidat quatre soupapes,
-pas le métal de la culasse complète ni un cycle moteur. Le scan 935 reste une
-référence ; les interfaces M64 ne sont pas mesurées et l'échelle supposée
-« une unité de scan = un millimètre » n'est pas certifiée.
+This domain is the **intake gas pilot**, derived from the four-valve candidate,
+not the metal of the full cylinder head nor an engine cycle. The 935 scan remains a
+reference; the M64 interfaces are not measured and the assumed scale
+"one scan unit = one millimeter" is not certified.
 
-## Ce qui a réellement été exécuté
+## What was actually executed
 
-Une analyse locale en lecture seule, en **7,982 s**, a recalculé les indicateurs
-sur les cellules du [dernier essai short-edge](M64_SHORT_EDGE_REMESH_20260908.md).
-Les cinq comptes reproduisent exactement son journal OpenFOAM 14 :
+A read-only local analysis, in **7.982 s**, recomputed the indicators
+on the cells of the [latest short-edge run](M64_SHORT_EDGE_REMESH_20260908.md).
+The five counts exactly reproduce its OpenFOAM 14 log:
 
-| Indicateur | Compte | Localisation par incidence de frontière |
+| Indicator | Count | Location by boundary incidence |
 |---|---:|---|
-| Rapport d'aspect > 1 000 | 1 cellule | Paroi de conduit, face native 37 |
-| Skewness > 4 | 11 faces | Siège 36 : 5 ; conduits 28 : 4 et 29 : 2 |
-| Déterminant < 0,001 | 5 733 cellules | 4 655 touchent les huit bandes tige–guide |
-| Poids d'interpolation < 0,05 | 535 faces | 834 cellules adjacentes, dont 30 touchent ces bandes |
-| Rapport de volumes < 0,01 | 141 faces | 254 cellules adjacentes, dont 4 touchent ces bandes |
+| Aspect ratio > 1,000 | 1 cell | Port wall, native face 37 |
+| Skewness > 4 | 11 faces | Seat 36: 5; ports 28: 4 and 29: 2 |
+| Determinant < 0.001 | 5,733 cells | 4,655 touch the eight stem–guide bands |
+| Interpolation weight < 0.05 | 535 faces | 834 adjacent cells, of which 30 touch these bands |
+| Volume ratio < 0.01 | 141 faces | 254 adjacent cells, of which 4 touch these bands |
 
-Les nombres de cellules adjacentes et de faces sélectionnées ne sont pas
-interchangeables. Les comptes par rôle peuvent se recouvrir. Parmi les cellules
-à faible déterminant, le nombre de faces internes vaut respectivement 1, 2, 3
-et 4 pour **1, 730, 4 868 et 134 cellules**. Dans la formule OF14, les faces de
-paroi non couplées n'entrent pas dans le tenseur du déterminant ; ce n'est donc
-pas le jacobien du tétraèdre.
-[Code primaire OF14](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C#L424-L514).
+The numbers of adjacent cells and of selected faces are not
+interchangeable. Counts by role may overlap. Among the low-determinant
+cells, the number of internal faces is 1, 2, 3
+and 4 for **1, 730, 4,868 and 134 cells** respectively. In the OF14 formula,
+uncoupled wall faces do not enter the determinant tensor; it is therefore
+not the tetrahedron Jacobian.
+[OF14 primary code](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C#L424-L514).
 
-## Traçabilité et portée de la preuve
+## Traceability and scope of the evidence
 
-Le domaine natif `fab1338…` comporte 86 faces. Le maillage contrôlé est
-`3b59b622…`, soit 401 854 tétraèdres. Une correspondance unique des 112 632
-points tient compte des deux écritures FOAM à douze chiffres significatifs ;
-elle ne prétend pas à l'identité binaire des coordonnées MSH et FOAM.
-Les **186 364 triangles de frontière**, leur orientation et leurs rôles natifs
-sont vérifiés par correspondance bijective, sans recherche de paroi la plus proche.
-Toutes les entrées lues sont inchangées après l'analyse.
+The native domain `fab1338…` has 86 faces. The checked mesh is
+`3b59b622…`, i.e. 401,854 tetrahedra. A one-to-one matching of the 112,632
+points accounts for the two FOAM writes at twelve significant digits;
+it does not claim binary identity of the MSH and FOAM coordinates.
+The **186,364 boundary triangles**, their orientation and their native roles
+are verified by bijective matching, without nearest-wall search.
+All inputs read are unchanged after the analysis.
 
-Les faces 28 et 29 proviennent de `raw_intake_face_7`, la face 37 de
-`raw_intake_face_8` ; ce sont des parois de conduit B-splines. La face 36 est la
-paroi cylindrique de `intake_2_seat_face_4`. Les SHA des quatre exports de face
-ont été relus directement. Cette provenance est héritée du manifeste revu,
-sans nouvelle opération booléenne de recouvrement.
+Faces 28 and 29 come from `raw_intake_face_7`, face 37 from
+`raw_intake_face_8`; these are B-spline port walls. Face 36 is the
+cylindrical wall of `intake_2_seat_face_4`. The SHAs of the four face exports
+were re-read directly. This provenance is inherited from the reviewed manifest,
+with no new overlap Boolean operation.
 
-**Les ensembles de labels natifs n'avaient pas été exportés dans ce dernier
-essai.** Ce reçu prouve la reproduction des comptes par les formules et la
-correspondance aux frontières, pas l'identité label par label avec de nouveaux
-ensembles OpenFOAM. Huit tests ciblés passent ; ce ne sont pas des tests physiques.
+**The native label sets had not been exported in this latest
+run.** This receipt proves that the formulas reproduce the counts and the
+matching to the boundaries, not label-by-label identity with new
+OpenFOAM sets. Eight targeted tests pass; they are not physical tests.
 
-## Hypothèse physique conservée : banc sec à guides bouchés
+## Physical assumption kept: dry bench with plugged guides
 
-Les anneaux représentent deux poches d'air reliées au conduit, fermées en haut
-par des bouchons idéalisés : faces **57 et 58**, rôle `fixture_stem_seals`, du
-manifeste `58b8be…` lié dans le [reçu de localisation](../../twins/m64-cylinder-head/evidence/annular-mesh-localisation-20260908.json).
-Le [constructeur du domaine](../../twins/m64-cylinder-head/source/flowbench-intake/build_gas_domain.py)
-ajoute l'espace intérieur des guides puis soustrait les douze composants
-soupapes/sièges/guides ; ces bouchons ne sont pas des joints mécaniques conçus.
-Le [classement des frontières](../../twins/m64-cylinder-head/source/flowbench-intake/mesh_gas_domain.py)
-les affecte à `walls`, avec la [condition de vitesse immobile `noSlip`](../../twins/m64-cylinder-head/source/flowbench-intake/prepare_openfoam_case.py).
+The rings represent two air pockets connected to the port, closed at the top
+by idealized plugs: faces **57 and 58**, role `fixture_stem_seals`, of the
+manifest `58b8be…` linked in the [localisation receipt](../../twins/m64-cylinder-head/evidence/annular-mesh-localisation-20260908.json).
+The [domain builder](../../twins/m64-cylinder-head/source/flowbench-intake/build_gas_domain.py)
+adds the inner space of the guides then subtracts the twelve
+valve/seat/guide components; these plugs are not designed mechanical seals.
+The [boundary classification](../../twins/m64-cylinder-head/source/flowbench-intake/mesh_gas_domain.py)
+assigns them to `walls`, with the [stationary `noSlip` velocity condition](../../twins/m64-cylinder-head/source/flowbench-intake/prepare_openfoam_case.py).
 
-Cette hypothèse de **banc sec, soupapes immobiles et guides bouchés** est conservée
-pour le diagnostic. Aucun joint de queue réel, film d'huile, pression côté
-porte-arbres ou loi de fuite n'est modélisé. Elle ne qualifie donc ni l'interface
-tige–guide lubrifiée ni les fuites d'un moteur turbo. Elle n'autorise pas à
-combler les jeux, déplacer les bouchons ou modifier silencieusement le domaine.
+This assumption of a **dry bench, stationary valves and plugged guides** is kept
+for the diagnostic. No real stem seal, oil film, camshaft-carrier-side
+pressure or leakage law is modeled. It therefore qualifies neither the lubricated
+stem–guide interface nor the leaks of a turbo engine. It does not authorize
+filling the clearances, moving the plugs or silently modifying the domain.
 
-## Décision pour le prochain essai — non exécuté
+## Decision for the next run — not executed
 
-Le générateur actuel impose une taille isotrope aux bandes, sans construire
-de couches radiales. La suite à soumettre à revue est **un candidat multi-zone** :
-bandes guide–tige structurées radialement et traitement local des transitions
-siège–conduit portant les douze défauts extrêmes. Les partitions ne doivent pas
-déplacer les parois physiques, élargir les jeux ou fermer les passages.
-La conformité entre blocs et cœur, les rôles, les frontières complètes et les
-huit courbes d'interface devront être prouvés ; aucun raccord non conforme
-implicite ni relâchement des seuils n'est autorisé.
+The current generator imposes an isotropic size on the bands, without building
+radial layers. The next step to submit for review is **a multi-zone candidate**:
+radially structured guide–stem bands and local treatment of the
+seat–port transitions carrying the twelve extreme defects. The partitions must not
+move the physical walls, widen the clearances or close the passages.
+Conformity between blocks and core, the roles, the complete boundaries and the
+eight interface curves will have to be proven; no implicit non-conforming
+joint nor relaxation of the thresholds is authorized.
 
 ```mermaid
 flowchart LR
-    A[Maillage short-edge refusé] --> B[Comptes et frontières relocalisés]
-    B --> C[Préparation multi-zone : anneaux et transitions]
-    C --> D[Revue géométrie et raccords conformes]
-    D --> E[Nouveau checkMesh obligatoire]
-    E --> F[CFD interdite tant que refus]
+    A[Short-edge mesh rejected] --> B[Counts and boundaries relocated]
+    B --> C[Multi-zone preparation: rings and transitions]
+    C --> D[Geometry review and conforming joints]
+    D --> E[New checkMesh mandatory]
+    E --> F[CFD prohibited while rejected]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class A,F stop
 ```
 
-Le reçu [JSON de localisation](../../twins/m64-cylinder-head/evidence/annular-mesh-localisation-20260908.json)
-contient les empreintes. Aucun nouveau maillage, solveur, conteneur ni achat Vast
-n'a été lancé pour cette localisation. Aucune simulation thermique, mécanique,
-LPBF, convergence ou qualification d'impression n'en découle.
+The [localisation JSON](../../twins/m64-cylinder-head/evidence/annular-mesh-localisation-20260908.json)
+receipt contains the digests. No new mesh, solver, container or Vast purchase
+was launched for this localisation. No thermal, mechanical,
+LPBF, convergence or print qualification simulation follows from it.

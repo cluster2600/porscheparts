@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from render_parts_table import PROCEDES, STATUTS  # noqa: E402
+from render_parts_table import ECHELLE, PROCEDES, STATUTS  # noqa: E402
 
 FICHES = ROOT / "catalog" / "parts"
 PAGES = ROOT / "docs" / "pieces"
@@ -90,6 +90,30 @@ def dossiers_lies(part_id: str, page: Path) -> list[str]:
         [f"- [{p.stem}]({lien(p, page)})" for p in lies] + [""]
 
 
+def echelle(niveau: str, classe: str | None) -> list[str]:
+    """The part's position on the validation ladder, as a Mermaid flowchart."""
+    rang = ECHELLE.index(niveau) if niveau in ECHELLE else -1
+    out = ["```mermaid", "flowchart LR"]
+    for i, etape in enumerate(ECHELLE):
+        out.append(f'    L{i}["{etape}"]')
+    out.append("    " + " --> ".join(f"L{i}" for i in range(len(ECHELLE))))
+    if classe == "prohibited_pending_engineering" and rang >= 0 and rang + 1 < len(ECHELLE):
+        out += ['    X["⛔ prohibited pending engineering"]',
+                f"    L{rang} -. blocked .-> X"]
+    out += ["    classDef here fill:#fff4d6,stroke:#b7791f,color:#1a1a1a,stroke-width:3px;",
+            "    classDef done fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;",
+            "    classDef todo fill:#f4f4f4,stroke:#9e9e9e,color:#6b6b6b;",
+            "    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;"]
+    for i in range(len(ECHELLE)):
+        etat = "here" if i == rang else ("done" if i < rang else "todo")
+        out.append(f"    class L{i} {etat}")
+    if any(l.startswith("    X[") for l in out):
+        out.append("    class X stop")
+    return out + ["```", "",
+                  f"*Validation ladder of `catalog/schemas/part.schema.json`; this record is at "
+                  f"`{niveau}`.*", ""]
+
+
 def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
     part_id = fiche["part_id"]
     page = PAGES / f"{part_id.lower()}.md"
@@ -105,8 +129,9 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
 
     out = [ENTETE, "", f"# {fiche['name']}", "",
            f"**Status: {statut}. No part is released; see [SAFETY.md]({lien(ROOT / 'SAFETY.md', page)}).**", "",
-           fiche.get("description", "").strip(), "",
-           f"Catalogue record: [`{chemin_fiche.relative_to(ROOT).as_posix()}`]({lien(chemin_fiche, page)})", ""]
+           fiche.get("description", "").strip(), ""]
+    out += echelle(validation.get("status", "concept"), classification.get("safety_class"))
+    out += [f"Catalogue record: [`{chemin_fiche.relative_to(ROOT).as_posix()}`]({lien(chemin_fiche, page)})", ""]
 
     out += ["## Identity", ""]
     vehicule = fiche.get("vehicle", {})

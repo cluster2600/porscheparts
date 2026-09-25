@@ -1,7 +1,6 @@
 # Documentation index
 
-Every document in `docs/`, grouped by what you are trying to do. Pages marked
-🇫🇷 are not translated yet ([translation status](TRANSLATION.md)).
+Every document in `docs/`, grouped by what you are trying to do. Progress of the translation: [TRANSLATION.md](TRANSLATION.md).
 
 ```mermaid
 flowchart LR
@@ -23,6 +22,8 @@ flowchart LR
 | [WORKFLOW.md](WORKFLOW.md) | how a part goes from idea to record |
 | [../CONTRIBUTING.md](../CONTRIBUTING.md) | how to contribute a part, a source or a fix |
 | [TRANSLATION.md](TRANSLATION.md) | the French-to-English translation: scope, glossary, progress |
+| [GALLERY.md](GALLERY.md) | every figure, render and print screen on one page |
+| [../twins/README.md](../twins/README.md) | the digital twins, zone by zone |
 
 ## Sources and measurement
 
@@ -76,5 +77,5 @@ flowchart LR
 | document | what it answers |
 |---|---|
 | [decisions/](decisions/) | numbered architecture decisions (ADR 0001–0008) |
-| [reports/](reports/) 🇫🇷 | dated execution and audit reports |
+| [reports/](reports/README.md) | dated execution and audit reports, indexed by day |
 | [media/](media/) | diagrams and video projects |

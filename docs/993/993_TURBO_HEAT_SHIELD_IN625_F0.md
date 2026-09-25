@@ -9,6 +9,23 @@ The model keeps only this envelope. Its open trapezoidal vault, its nominal
 `0.8 mm` wall, its three bosses and their bores are an independent topology.
 The volume stays fully open, hence no trapped powder.
 
+```mermaid
+flowchart LR
+  S["Published: 993 123 113 51<br/>FVD 160 × 110 × 105 mm, 0.23 kg"] --> G["Independent open vault<br/>0.8 mm wall, three bosses<br/>325.58 g, +41.6 %"]
+  G --> A["Bending, expansion, radiation<br/>fully constrained bound<br/>above 640 MPa"]
+  G --> P["LPBF print screen<br/>build_x, 40 µm"]
+  A --> V["Not a manufacturable part<br/>for installation"]
+  P --> V
+  class S ok
+  class A,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## AM benefit and sheet-metal competition
 
 LPBF IN625 would allow a conformal shell with integrated bosses and local

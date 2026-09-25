@@ -9,6 +9,21 @@
 | `engineering_reviewed` | Calculations and signed review | Validated series production |
 | `released` | Complete dossier for the risk class | Porsche warranty or approval |
 
+```mermaid
+stateDiagram-v2
+    [*] --> concept: need and initial sources
+    concept --> dimensionally_reviewed: critical measurements and CAD review
+    dimensionally_reviewed --> prototype_fitted: prototype fitted, with evidence
+    prototype_fitted --> functionally_tested: test protocol and results
+    functionally_tested --> engineering_reviewed: calculations and signed review
+    engineering_reviewed --> released: complete dossier for the risk class
+    note right of released
+        Additive part: all eleven AM steps passed.
+        completed_screening never counts as passed.
+        Not a Porsche warranty or approval.
+    end note
+```
+
 ## Automated rules
 
 Among other things, the validator blocks:

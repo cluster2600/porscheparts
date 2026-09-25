@@ -4,6 +4,26 @@ An answer to a fair objection: "a single titanium part on the whole car?" No.
 That figure counted the records in the repository, not the automobile. Here is
 the wide sweep, and its result.
 
+```mermaid
+flowchart TD
+  A["Factory catalogue<br/>1,026 designations<br/>6,259 references"] --> B["Fasteners, sealing,<br/>soft material: 394"]
+  A --> C["Examined, with a verdict: 373"]
+  A --> D["Domain presumed critical: 139"]
+  A --> E["Neither metal nor a part<br/>to remanufacture: 70"]
+  A --> F["Generic designation: 50<br/>751 references, not judged"]
+  A --> G["Still to examine: 0"]
+  C --> H["9 deserve a record"]
+  I["Written records in the<br/>repository: 34"] --> J["1 eligible today"]
+  class B,D,E stop
+  class F open
+  class H,J ok
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the three counts of this page. The left chain sweeps the car's catalogue; the right one measures the state of the repository, and the two must not be quoted one for the other. It adds no number to the tables below.*
+
 ## The whole catalogue is disposed of — not one silent loss left
 
 The screenings published what they kept, and **956 of 1,026 designations fell

@@ -10,6 +10,23 @@ plate, an open elliptical `60 × 38 mm` shell of `1.2 mm` and four segments of a
 cruciform core tapering from `1.4` to `0.8 mm`. The four channels open at the
 front face and do not trap powder. No mounting hole is invented.
 
+```mermaid
+flowchart LR
+  S["Published: FVD 139 × 100 × 53 mm<br/>145 g, aluminum only"] --> G["Independent F0 topology<br/>shell and cruciform core<br/>144.65 g"]
+  G --> A["Analytical screens<br/>no real crush predicted"]
+  G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
+  A --> V["Manufacture, fitting and<br/>driving prohibited"]
+  P --> V
+  class S ok
+  class A,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why AM is tested
 
 LPBF could combine plate, shell and graded core in a single BREP, with a crush

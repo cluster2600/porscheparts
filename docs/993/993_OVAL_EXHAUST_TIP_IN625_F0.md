@@ -13,6 +13,27 @@ both ends, hence no captive powder volume. The published outlet is the only
 commercial dimension kept; the inlet and the whole internal construction are
 revisable assumptions.
 
+```mermaid
+flowchart LR
+  S["Published: FVD outlet<br/>120 × 85 mm only"] --> G["Independent F0<br/>double wall, eight ties<br/>406.38 g IN625"]
+  G --> A["Analytical screening"]
+  G --> C["OpenFOAM RANS<br/>11.17 % between meshes:<br/>diagnostic only"]
+  G --> P["LPBF slicing<br/>3,702 layers, roll_y_25"]
+  G --> U["SimReady asset<br/>isolated inspection only"]
+  A --> V["Eleven steps: 02 and 08 pass,<br/>the rest screening or blocked<br/>not authorized for manufacturing<br/>or installation"]
+  C --> V
+  P --> V
+  U --> V
+  class S ok
+  class A,C,P,U open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why AM is being tested
 
 LPBF would allow the gas path, the outer screen, the ties and an open air gap
@@ -91,6 +112,10 @@ by the agents have been removed.
 The grasp annotation was reviewed visually; it is not a gripper validation.
 No exhaust–clamp–rear valance interface is present and no functional assembly
 test has been run.
+
+![Grasp annotation preview of the F0 oval tip: top, front, side and isometric point views with the grasp axis drawn in red](../../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/grasp-preview-overlay.png)
+
+*The grasp annotation overlaid on the asset's points in four views. It is what was reviewed visually; it is not a gripper validation and says nothing about the part itself.*
 
 ![SimReady asset of the tip](../../twins/993-oval-exhaust-tip-in625-f0/evidence/simready-f0/oval-tip-in625-f0-ovrtx.png)
 

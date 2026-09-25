@@ -1,109 +1,122 @@
-# M64 — essai Vast du 7 septembre 2026
+# M64 — Vast attempt of September 7, 2026
 
-## Autorité et budget
+```mermaid
+flowchart LR
+  P["Preparation<br/>87 tests, digest, CI success"] --> A1["Attempt 1<br/>instance 50126532"]
+  A1 --> F1["ssh_authentication_failed"]
+  F1 --> D1["Deleted<br/>5 absence snapshots"]
+  D1 --> A2["Attempt 2<br/>instance 50128235<br/>key proof obtained"]
+  A2 --> F2["instance_not_running_yet<br/>after 30 min loading"]
+  F2 --> D2["Deleted<br/>5 absence snapshots"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  class F1,F2 stop;
+```
 
-L'utilisateur annonce **20 USD restants** et autorise la suite. Ce montant
-est le plafond de travail, pas un solde vérifié via API. Aucune recharge.
-Une seule instance payante créée pendant cet essai.
+*Sequence of the two paid attempts as recorded below; neither reached a computation.*
 
-## Préparation
+## Authority and budget
 
-- Correctif GET HTTP 429 et cadence SimReady : 87 tests unitaires réussis.
-- Wrapper installé identique au wrapper testé ; accès par OpenBao existant.
-- Clé privée approuvée vérifiée et clé publique enregistrée par le wrapper.
-- Image GHCR immuable vérifiée :
+The user reports **20 USD remaining** and authorizes continuing. This amount
+is the working ceiling, not a balance verified through the API. No top-up.
+A single paid instance created during this attempt.
+
+## Preparation
+
+- GET HTTP 429 fix and SimReady cadence: 87 unit tests passed.
+- Installed wrapper identical to the tested wrapper; access through the
+  existing OpenBao.
+- Approved private key verified and public key registered by the wrapper.
+- Immutable GHCR image verified:
   `ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699`.
-- CI de cette image : exécution `33730827271`, conclusion `success`.
-- Deux demandes visant l'offre Washington `48366367` ont été refusées avant
-  création : offre absente de la recherche admissible au moment du lancement.
+- CI of this image: run `33730827271`, conclusion `success`.
+- Two requests targeting the Washington offer `48366367` were refused before
+  creation: the offer was absent from the eligible search at launch time.
 
-## Instance réellement créée
+## Instance actually created
 
-| Champ | Observation fournisseur |
+| Field | Provider observation |
 |---|---|
-| Offre / instance | `47185008` / `50126532` |
-| Région | Thaïlande |
-| GPU | RTX PRO 6000 WS, 97 887 Mo annoncés |
-| CPU / RAM | 64 CPU effectifs / 128 726 Mo |
-| Disque alloué | 500 Go |
-| Tarif horaire annoncé, stockage inclus | 1,470888889 USD/h |
-| Transfert entrant / sortant | 0,002604167 / 0,00390625 USD/Go |
+| Offer / instance | `47185008` / `50126532` |
+| Region | Thailand |
+| GPU | RTX PRO 6000 WS, 97,887 MB advertised |
+| CPU / RAM | 64 effective CPUs / 128,726 MB |
+| Allocated disk | 500 GB |
+| Advertised hourly rate, storage included | 1.470888889 USD/h |
+| Inbound / outbound transfer | 0.002604167 / 0.00390625 USD/GB |
 | Label | `3dprinting993-simready-local-ai-cd13434ab2b657259f64` |
 
-Un garde-fou local de suppression ciblée à 45 minutes a été lancé. Il a été
-arrêté après confirmation de suppression anticipée. Ce garde-fou dépend de
-l'accès au fournisseur ; il ne constitue pas une garantie de facturation.
+A local targeted-deletion safeguard at 45 minutes was launched. It was stopped
+after confirmation of early deletion. This safeguard depends on access to the
+provider; it is not a billing guarantee.
 
-## Résultat : échec avant les calculs
+## Result: failure before the computations
 
-L'instance est passée de `loading` à `running`, mais le contrôle SSH a échoué
-avec `ssh_authentication_failed`. Le fichier `/workspace/READY` n'a pas été
-vérifié. Aucun transfert de culasse, rendu Omniverse, entraînement PhysicsNeMo
-ou calcul thermique/mécanique de culasse n'est démontré par cet essai.
+The instance went from `loading` to `running`, but the SSH check failed with
+`ssh_authentication_failed`. The `/workspace/READY` file was not verified. No
+cylinder head transfer, Omniverse render, PhysicsNeMo training or cylinder head
+thermal/mechanical computation is demonstrated by this attempt.
 
-Le contrôleur a supprimé l'instance automatiquement : acquittement fournisseur
-reçu, puis **cinq instantanés d'absence consécutifs**. Une lecture indépendante
-finale `openbao-vastai instances` retourne `[]`.
+The controller deleted the instance automatically: provider acknowledgement
+received, then **five consecutive absence snapshots**. A final independent
+`openbao-vastai instances` read returns `[]`.
 
-Le montant réellement débité n'est pas disponible dans les résultats de ce
-wrapper : il n'est ni inventé ni assimilé à zéro. Pas de nouvelle location
-payante à l'aveugle après cet échec. Le diagnostic SSH est poursuivi hors ligne.
+The amount actually charged is not available in this wrapper's results: it is
+neither invented nor treated as zero. No new blind paid rental after this
+failure. The SSH diagnosis continues offline.
 
-Le diagnostic a reproduit un défaut d'appariement hôte/port : proxy et connexion
-directe pouvaient être mélangés lorsque le port proxy était absent. Correction
-dans le dépôt et dans le wrapper installé, identiques par `cmp` ; **90 tests
-wrapper réussis**. Faute de métadonnées brutes de l'endpoint, ce défaut n'est
-pas établi comme cause de l'échec `50126532`. Aucun nouvel essai payé après
-ce correctif.
+The diagnosis reproduced a host/port pairing defect: proxy and direct
+connection could be mixed when the proxy port was absent. Fixed in the
+repository and in the installed wrapper, identical by `cmp`; **90 wrapper
+tests passed**. Lacking raw endpoint metadata, this defect is not established
+as the cause of the `50126532` failure. No new paid attempt after this fix.
 
-## Vérification du dépôt
+## Repository check
 
-`make check` a été exécuté : les contrôles ont passé jusqu'au manifeste de
-préparation F46, devenu périmé à cause du changement de hash du wrapper.
-Ce manifeste a été régénéré avec son générateur : seuls taille et SHA-256 du
-wrapper ont changé, sans nouvelle autorité physique. La cible interrompue et
-toutes les cibles restantes de `check` ont ensuite été rejouées avec succès.
-La suite wrapper finale a été relancée séparément : 90 tests réussis.
+`make check` was run: the checks passed up to the F46 preparation manifest,
+which became stale because of the wrapper's hash change. This manifest was
+regenerated with its generator: only the wrapper's size and SHA-256 changed,
+with no new physical authority. The interrupted target and all remaining
+`check` targets were then replayed successfully. The final wrapper suite was
+rerun separately: 90 tests passed.
 
-## Deuxième essai : preuve de clé obtenue, chargement trop long
+## Second attempt: key proof obtained, loading too long
 
-Après ajout et test de la vérification réelle de paire locale et de la clé
-listée pour l'instance, une deuxième création payante a été exécutée par
-`openbao-vastai launch-simready-heavy 49836870`. Les paragraphes précédents
-décrivent uniquement le premier essai ; ils ne sont pas un décompte de la
-journée entière.
+After adding and testing the real verification of the local key pair and of the
+key listed for the instance, a second paid creation was run with
+`openbao-vastai launch-simready-heavy 49836870`. The previous paragraphs
+describe only the first attempt; they are not a count for the whole day.
 
 - Instance `50128235`, label
   `3dprinting993-simready-local-ai-58a4ab46c6b7f8badea7`.
-- Même digest, GPU/CPU/RAM, disque et tarif annoncés que ci-dessus.
-- Paire publique/privée locale vérifiée ; clé approuvée déjà listée pour
-  cette instance par le fournisseur. Aucun nouvel attachement nécessaire.
-- Endpoint proxy annoncé : `ssh9.vast.ai:18234` ; aucune paire directe
-  complète annoncée pendant le chargement. Ceci ne prouve pas une connexion.
-- L'image a continué à télécharger puis extraire ses couches, mais l'instance
-  était encore `loading` à l'expiration du contrôle borné à 30 minutes.
-- Erreur terminale : `instance_not_running_yet`, **pas**
-  `ssh_authentication_failed`. Aucun test SSH réussi, marqueur READY,
-  service Omniverse ni calcul GPU de culasse n'est démontré.
-- Suppression acquittée, cinq instantanés d'absence consécutifs dans le
-  reçu du contrôleur ; une lecture indépendante retourne `[]`. Le garde-fou
-  local propre à cette instance a ensuite été arrêté.
+- Same digest, GPU/CPU/RAM, disk and advertised rate as above.
+- Local public/private pair verified; approved key already listed for this
+  instance by the provider. No new attachment needed.
+- Advertised proxy endpoint: `ssh9.vast.ai:18234`; no complete direct pair
+  advertised during loading. This does not prove a connection.
+- The image kept downloading and then extracting its layers, but the instance
+  was still `loading` when the check bounded to 30 minutes expired.
+- Terminal error: `instance_not_running_yet`, **not**
+  `ssh_authentication_failed`. No successful SSH test, READY marker, Omniverse
+  service or GPU cylinder head computation is demonstrated.
+- Deletion acknowledged, five consecutive absence snapshots in the
+  controller's receipt; an independent read returns `[]`. The local safeguard
+  specific to this instance was then stopped.
 
-Le wrapper installé pour cet essai avait le SHA-256
+The wrapper installed for this attempt had SHA-256
 `0dd2916aed0de577396d8b53da3cf2a2eb66a29abafdf1b5704643140370c804`.
-La correction ultérieure du port direct fourni sous forme de chaîne n'était
-pas dans ce processus déjà lancé ; elle ne peut pas expliquer ni résoudre ce
-chargement trop long. Elle est testée hors ligne, séparément.
+The later fix for a direct port supplied as a string was not in this
+already-launched process; it can neither explain nor resolve this overly long
+loading. It is tested offline, separately.
 
-Le débit réel du téléchargement et la facture finale ne sont pas disponibles
-dans ces reçus. Aucun solde exact ni coût nul n'est revendiqué. Le prochain
-choix d'hôte doit tenir compte du chargement de l'image, pas seulement du GPU.
-La [documentation Vast consultée ce jour](https://docs.vast.ai/guides/instances/manage-instances)
-précise que `Loading` peut durer plusieurs heures pour une grosse image et
-n'est pas facturé. Il serait donc erroné de multiplier les 30 minutes de cet
-état par le tarif GPU pour annoncer une facture. Cela ne constitue pas une
-vérification du relevé de compte ni des éventuels transferts.
+The real download bandwidth and the final invoice are not available in these
+receipts. No exact balance or zero cost is claimed. The next host choice must
+take the image loading into account, not only the GPU. The
+[Vast documentation consulted today](https://docs.vast.ai/guides/instances/manage-instances)
+states that `Loading` can last several hours for a large image and is not
+billed. It would therefore be wrong to multiply the 30 minutes in this state by
+the GPU rate to announce an invoice. This is not a verification of the account
+statement or of any transfers.
 
-La cible reste le **M64 turbo 964/993**. Les anciens résultats 917 et les
-géométries de recherche issues du scan 935 ne valident pas ses interfaces.
+The target remains the **M64 turbo 964/993**. The old 917 results and the
+research geometries from the 935 scan do not validate its interfaces.
 `simulation_validated=false`, `manufacturing_authorized=false`.

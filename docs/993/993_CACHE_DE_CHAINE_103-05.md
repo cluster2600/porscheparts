@@ -4,6 +4,25 @@ The third part examined after the tip and the turbo oil circuit. The verdict
 follows the same pattern, and that is what makes it interesting: the process
 question and the material question do not get answered together.
 
+```mermaid
+flowchart TD
+  P["Plate 103-05<br/>case, lids, tensioner,<br/>bearing, oil galleries"] --> Q1{"Process question:<br/>additive?"}
+  P --> Q2{"Material question:<br/>titanium?"}
+  Q1 -->|"consolidation and<br/>internal passages, +4"| AM["Real additive candidate"]
+  Q2 -->|"galling, galvanic couple"| M["Conditions to lift<br/>by known mitigations"]
+  Q2 -->|"differential expansion;<br/>no gain over aluminum"| TI["Titanium refused"]
+  AM --> V["prohibited_pending_engineering<br/>timing drive, pressurized oil,<br/>hot neighborhood"]
+  V -.->|"if one day remanufactured"| AL["In aluminum, not titanium"]
+  class AM ok
+  class M,AL open
+  class TI,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the two independent judgments of this page, process and material, and the verdict. It restates the text below and proves nothing about the physical part.*
+
 ## What the plate establishes
 
 | position | references | designation |

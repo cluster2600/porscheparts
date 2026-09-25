@@ -1,11 +1,11 @@
-# Poste PicoGK M64 pour Vast — géométrie headless
+# PicoGK M64 workstation for Vast — headless geometry
 
-Le Dockerfile canonique est `containers/picogk-m64.Dockerfile`, avec le dépôt
-comme contexte de build. Il compile le runtime C++ officiel et le code C#
-épinglés, conserve leurs sources/licences, puis ajoute SSH, un témoin de
-géométrie et l'application `HeadVoxels`. Il ne contient aucun scan ni CAO privée.
+The canonical Dockerfile is `containers/picogk-m64.Dockerfile`, with the
+repository as the build context. It compiles the pinned official C++ runtime and
+C# code, keeps their sources/licenses, then adds SSH, a geometry witness and the
+`HeadVoxels` application. It contains no scan and no private CAD.
 
-## Construction et test
+## Build and test
 
 ```sh
 docker build --platform linux/amd64 -f containers/picogk-m64.Dockerfile \
@@ -14,72 +14,87 @@ docker run --rm --network none --cpus 2 --memory 4g \
   3dprinting993-picogk-m64:preflight smoke-test.sh picogk-m64
 ```
 
-Pour réutiliser le runtime natif déjà contrôlé sur Kali : vérifier d'abord
-que l'image `3dprinting993-m64-leap71:native-preflight` porte l'identifiant
+To reuse the native runtime already checked on Kali: first verify that the
+image `3dprinting993-m64-leap71:native-preflight` carries the identifier
 `sha256:f38695f9ecc99ceef65c5e1fe02adf5dbfa95ee1ae925f95fd47bdba9ebb6178`,
-puis ajouter à la construction :
+then add to the build:
 
 ```text
 --build-arg NATIVE_IMAGE=3dprinting993-m64-leap71:native-preflight
 ```
 
-Cette substitution est un cache local vérifié, pas une référence de registre
-immuable. La publication CI reconstruit le stage natif depuis les sources.
-Une location doit employer le **digest GHCR publié et revérifié**, pas le tag
-local ni l'identifiant Docker local.
+This substitution is a verified local cache, not an immutable registry
+reference. CI publication rebuilds the native stage from source. A rental must
+use the **published and re-verified GHCR digest**, not the local tag nor the
+local Docker identifier.
 
-Le manifeste de base est fixé par SHA-256, le SDK vérifié est **9.0.317**,
-le runtime .NET **9.0.19**, les sources et sous-modules sont fixés par commits.
-Les paquets Debian résolus sont inventoriés sous `/opt/provenance/`, ainsi que
-le hash de la bibliothèque et le rapport du témoin. Les miroirs Debian et
-les dépendances NuGet transitives ne sont pas figés dans un snapshot/lock :
-ce build est reproductible procéduralement, **pas garanti identique bit à bit**.
+The base manifest is fixed by SHA-256, the verified SDK is **9.0.317**, the .NET
+runtime **9.0.19**, and the sources and submodules are fixed by commits. The
+resolved Debian packages are inventoried under `/opt/provenance/`, along with
+the library hash and the witness report. The Debian mirrors and the transitive
+NuGet dependencies are not frozen in a snapshot/lock: this build is
+procedurally reproducible, **not guaranteed bit-for-bit identical**.
 
-## Fonctionnement et interfaces
+## Operation and interfaces
 
-- `smoke-test.sh picogk-m64` : crée une sphère témoin de rayon 5 mm à voxels
-  de 0,5 mm, exporte/recharge son STL, compare son volume à la solution
-  analytique avec un seuil de smoke de 10 %, vérifie l'effet d'un offset
-  positif, puis exécute `HeadVoxels` sur ce témoin. Aucun serveur X ni GPU.
-- `dotnet /opt/m64/HeadVoxels.dll INPUT_STL NEW_OUTPUT_DIR VOXEL_MM` : traite
-  une copie du maillage fourni, sans transformation du repère ni écrasement
-  du master. Ce programme est géométrique, pas un solveur physique.
-- `LD_LIBRARY_PATH=/app` résout le runtime ABI `picogk.26.2.so`.
-- Les sources officielles restent dans `/upstream`; les API avancées non
-  couvertes par le témoin ne sont pas déclarées testées.
+- `smoke-test.sh picogk-m64`: creates a witness sphere of radius 5 mm with
+  0.5 mm voxels, exports/reloads its STL, compares its volume with the
+  analytical solution against a 10 % smoke threshold, checks the effect of a
+  positive offset, then runs `HeadVoxels` on this witness. No X server and no
+  GPU.
+- `dotnet /opt/m64/HeadVoxels.dll INPUT_STL NEW_OUTPUT_DIR VOXEL_MM`: processes
+  a copy of the supplied mesh, without transforming the reference frame or
+  overwriting the master. This program is geometric, not a physics solver.
+- `LD_LIBRARY_PATH=/app` resolves the ABI runtime `picogk.26.2.so`.
+- The official sources stay in `/upstream`; advanced APIs not covered by the
+  witness are not declared tested.
 
-## Démarrage Vast et arrêt
+## Vast startup and shutdown
 
-Commande de prévol pour `ssh_direct` :
+Preflight command for `ssh_direct`:
 
 ```text
 picogk-vast-onstart --deadline-epoch UNIX_SECONDS
 ```
 
-Elle refuse un délai passé ou supérieur à trois heures. Le témoin natif
-réussit avant l'écriture de `/workspace/PICOGK_READY`, dont le contenu est
-`PICOGK_M64_READY`; son rapport est `/workspace/picogk-smoke/report.json`.
-La commande se termine après le prévol. Vast démarre SSH avant `onstart` et
-peut remplacer `ENTRYPOINT` : le shim SSH éprouvé du dépôt crée donc les
-clés hôte avant le vrai démon. Le prévol n'ouvre pas un second serveur.
-Le fichier `/root/.no_auto_tmux` assure les commandes SSH non interactives.
-Le lanceur doit vérifier réellement la connexion SSH et le marqueur.
+It refuses a deadline in the past or more than three hours away. The native
+witness succeeds before `/workspace/PICOGK_READY` is written, with the content
+`PICOGK_M64_READY`; its report is `/workspace/picogk-smoke/report.json`. The
+command exits after the preflight. Vast starts SSH before `onstart` and may
+replace `ENTRYPOINT`: the repository's proven SSH shim therefore creates the
+host keys before the real daemon. The preflight does not open a second server.
+The file `/root/.no_auto_tmux` ensures non-interactive SSH commands. The
+launcher must actually verify the SSH connection and the marker.
 
-L'authentification accepte uniquement une clé publique fournie à l'exécution
-par `PUBLIC_KEY` ou un fichier `authorized_keys` monté. Aucun secret ni clé
-privée n'est embarqué. Les clés hôte générées par l'installation du paquet
-sont supprimées dans la même couche; de nouvelles clés sont créées à chaque
-démarrage de conteneur. Mots de passe et clavier interactif sont désactivés.
+```mermaid
+flowchart TD
+  A["picogk-vast-onstart<br/>--deadline-epoch"] --> B{"deadline in the future<br/>and at most 3 hours away?"}
+  B -- no --> X["refused"]:::stop
+  B -- yes --> C{"native witness<br/>succeeds?"}
+  C -- no --> Y["no READY marker"]:::stop
+  C -- yes --> D["/workspace/PICOGK_READY<br/>= PICOGK_M64_READY"]
+  D --> E["launcher verifies SSH<br/>and the marker"]:::ok
+  E --> F["external guard destroys the instance<br/>at the deadline and confirms it is gone"]:::open
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-**Le délai est enregistré dans `/workspace/PICOGK_DEADLINE_EPOCH`, mais ne
-constitue pas un arrêt de facturation.** Chaque calcul nécessite son propre
-`timeout`; un garde-fou externe doit détruire l'instance à cette échéance et
-confirmer sa disparition. Le prévol ne prétend pas assurer cette destruction.
+Authentication accepts only a public key supplied at run time through
+`PUBLIC_KEY` or a mounted `authorized_keys` file. No secret or private key is
+embedded. Host keys generated by the package installation are deleted in the
+same layer; new keys are created at every container start. Passwords and
+keyboard-interactive login are disabled.
 
-## Limite de la preuve
+**The deadline is recorded in `/workspace/PICOGK_DEADLINE_EPOCH`, but it is not
+a billing stop.** Every computation needs its own `timeout`; an external guard
+must destroy the instance at that deadline and confirm it is gone. The
+preflight does not claim to perform this destruction.
 
-Le témoin vérifie une installation logicielle et certaines opérations de
-géométrie. Sa sphère n'est jamais une forme de culasse, une proposition de
-refroidissement, un calcul de résistance ou une validation d'impression.
-Le moteur PicoGK est volumique : un export STL n'est pas une reconstruction
-B-Rep exacte et n'établit aucune aptitude mécanique ni compatibilité M64.
+## Limit of the evidence
+
+The witness checks a software installation and some geometry operations. Its
+sphere is never a cylinder head shape, a cooling proposal, a strength
+calculation or a print validation. The PicoGK engine is volumetric: an STL
+export is not an exact B-Rep reconstruction and establishes no mechanical
+fitness and no M64 compatibility.

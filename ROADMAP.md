@@ -1,5 +1,22 @@
 # Roadmap
 
+The phases at a glance, with the state each section below records:
+
+```mermaid
+flowchart LR
+    P0["Phase 0 — Foundation<br/>completed on August 28, 2026<br/>(v0.1.0)"]:::ok
+    P1["Phase 1 — Source inventory<br/>5 of 5 items checked;<br/>294 valid source records;<br/>direct measurements remain"]:::open
+    P2["Phase 2 — Physical inventory<br/>and twin assembly<br/>no printing; 10 items done, 4 open;<br/>physical prototypes suspended"]:::open
+    P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
+    P4["Phase 4 — Public catalog<br/>all items open"]:::open
+    P0 --> P1 --> P2 --> P3 --> P4
+    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>30.5% reached; target 100%"]:::open
+    OUT["Initially out of scope<br/>selling parts, road homologation,<br/>replacing the load-bearing structure"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
 ## Phase 0 — Foundation
 
 Status: **completed on August 28, 2026** (`v0.1.0`).

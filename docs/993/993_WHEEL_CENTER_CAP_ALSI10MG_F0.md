@@ -10,6 +10,23 @@ The F0 keeps only these three dimensions. Its face is deliberately neutral: no
 Porsche crest, logo or design is reproduced. The skirt, the centering ring and
 the four tabs with beads are the project's own assumptions.
 
+```mermaid
+flowchart LR
+  S["Published: Partworks, plastic<br/>76 / 60 mm, height 46 mm"] --> G["F0 neutral face, own tabs<br/>75.29 g AlSi10Mg"]
+  G --> A["Snap-fit and retention screen<br/>ratio 1.35, not a safety factor"]
+  G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
+  A --> V["Process undecided<br/>gates before a road prototype"]
+  P --> V
+  class S ok
+  class A,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why test metal AM
 
 LPBF consolidates into a single solid a face, two rings and four tabs with

@@ -17,6 +17,26 @@ their place in the forced-induction circuit. FVD declares a
 These sources provide neither the hole spacings, nor the bores, nor the contact
 surfaces. All these details therefore remain project hypotheses.
 
+```mermaid
+flowchart LR
+  S["Published: 99311011050/052<br/>FVD 255 × 80 × 23 mm, 200 g"] --> G["F0 single solid<br/>Ti-6Al-4V, 185.063 g"]
+  G --> A["Beam model<br/>order of magnitude only"]
+  G --> C["CalculiX, three meshes<br/>p95 stable, local max<br/>not converged"]
+  G --> U["OpenUSD conversion<br/>not full SimReady"]
+  G --> P["LPBF print screen<br/>build_x, 30 µm"]
+  A --> V["Conditional LPBF candidate<br/>provisional route: CNC<br/>printing prohibited"]
+  C --> V
+  P --> V
+  class S ok
+  class A,C,U,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Geometry and material
 
 - editable master: `build123d`;

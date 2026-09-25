@@ -13,6 +13,27 @@ console `...01`, without a protocol. The OC 229 data sheet gives
 `Ø76 × 101 mm`, `M20×1.5`; distributor data add `Ø72/62 mm`, `20 Nm` and
 `333 g`. These values define the mating component, not the console.
 
+```mermaid
+flowchart LR
+  S["Published: consoles 993 107 057 00/01<br/>0.78 kg; filter OC 229 data"] --> G["Independent F0 master<br/>two galleries, 840.34 g"]
+  G --> Hh["Hot hydraulics<br/>ratio 1.128: passes"]
+  G --> Hc["Cold hydraulics<br/>ratio 0.728: fails"]
+  G --> Pr["Pressure and thread screens<br/>pass"]
+  G --> T["Restrained thermal<br/>ratio 1.282: fail"]
+  G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
+  Hc --> V["Process undecided<br/>prohibited from manufacturing,<br/>oil, installation, engine"]
+  T --> V
+  P --> V
+  class S ok
+  class Hh,Pr,P open
+  class Hc,T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## F0 geometry
 
 The build123d master is entirely independent: `130 × 90 × 20 mm` body, `Ø82 mm`

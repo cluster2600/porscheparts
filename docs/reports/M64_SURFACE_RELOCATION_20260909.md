@@ -1,126 +1,130 @@
-# M64 — déplacement de surface isolé, candidat refusé
+# M64 — isolated surface relocation, candidate rejected
 
-**L'essai natif réduit les obstructions de 22 à 16, mais dégrade le pire
-triangle et ne conserve pas l'orientation locale de 14 triangles selon le
-contrôle retenu. Il est refusé.** Aucune modification du contour CAO, aucun
-maillage volumique remplacé, aucune admission CFD ou fabrication.
+**The native run reduces obstructions from 22 to 16, but degrades the worst
+triangle and does not preserve the local orientation of 14 triangles according to the
+check adopted. It is rejected.** No change to the CAD contour, no
+volume mesh replaced, no CFD admission or manufacturing.
 
-Ce lot prolonge la [comparaison Delaunay / MeshAdapt](M64_SURFACE_METHOD_COMPARISON_20260909.md).
-Il concerne uniquement la face gazeuse native 37. Les positions sont en
-unités du scan, sans échelle absolue ni interfaces M64 certifiées.
-Les empreintes des scripts, entrées et reçus figurent dans le
-[registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_surface_isolated_relocation`.
+This batch extends the [Delaunay / MeshAdapt comparison](M64_SURFACE_METHOD_COMPARISON_20260909.md).
+It concerns only native gas face 37. Positions are in
+scan units, with no absolute scale nor certified M64 interfaces.
+The digests of the scripts, inputs and receipts are in the
+[evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_surface_isolated_relocation`.
 
-## Isolation réellement exécutée
+## Isolation actually executed
 
-Le fichier MeshAdapt `7af7f207…` est réinjecté sur la même CAO épinglée,
-avec paramètres reconstruits et contrôlés sans déplacer les coordonnées.
-Tous les nœuds sont conservés. Seuls les 100 749 éléments 2D de 155 autres
-faces sont temporairement retirés, par listes explicites d'identifiants dont
-l'appartenance est relue avant chaque appel. La face 37 est alors la seule
-portant des triangles ou quadrilatères. Les éléments 0D/1D restent présents.
+The MeshAdapt file `7af7f207…` is reinjected onto the same pinned CAD,
+with parameters rebuilt and checked without moving the coordinates.
+All nodes are kept. Only the 100,749 2D elements of 155 other
+faces are temporarily removed, through explicit lists of identifiers whose
+membership is re-read before each call. Face 37 is then the only one
+carrying triangles or quadrilaterals. The 0D/1D elements remain present.
 
-Une seule passe `Relocate2D`, `niter=1`, est exécutée. Aucun appel de
-génération, effacement global du maillage, reclassement ou renumérotation.
-Le précontrôle vérifie l'absence de correspondances périodiques sur 291
-arêtes et 156 faces ; les effets du post-traitement automatique restent
-contrôlés immédiatement après l'optimisation.
+A single `Relocate2D` pass, `niter=1`, is executed. No generation call,
+global mesh clear, reclassification or renumbering.
+The pre-check verifies the absence of periodic correspondences on 291
+edges and 156 faces; the effects of automatic post-processing are
+checked immediately after the optimization.
 
-Les données sont capturées **avant** la restauration des éléments retirés.
-Seuls les sommets intérieurs de 37 peuvent bouger. Les éléments extérieurs
-sont ensuite réinjectés avec leurs identifiants et connexions ordonnées
-d'origine, sans réinjecter les nœuds ni les groupes physiques.
+The data are captured **before** the removed elements are restored.
+Only the interior vertices of 37 may move. The outer elements
+are then reinjected with their original identifiers and ordered
+connections, without reinjecting the nodes or the physical groups.
 
-Les 994 déplacements observés concernent uniquement la cible. Les paramètres
-des nœuds protégés restent exacts. Les 1 049 nœuds intérieurs de 37 sont
-contrôlés par évaluation de leur surface native : résidu maximal
-`1,3241e-13`, inférieur à la tolérance source `1e-7`, en unités du scan.
-Cela ne prouve pas la couverture continue de la face par les triangles.
+The 994 observed displacements concern only the target. The parameters
+of the protected nodes remain exact. The 1,049 interior nodes of 37 are
+checked by evaluating their native surface: maximum residual
+`1.3241e-13`, below the source tolerance `1e-7`, in scan units.
+This does not prove continuous coverage of the face by the triangles.
 
-## Résultat et motif du refus
+## Result and reason for rejection
 
-| Indicateur sur les mêmes 2 299 triangles | MeshAdapt source | Après une passe |
+| Indicator on the same 2,299 triangles | MeshAdapt source | After one pass |
 |---|---:|---:|
-| Borne maximale SICN sous 0,1 | 22 | 16 |
-| Minimum de cette borne | 0,0032268884 | 0,0021005109 |
-| Plus petit angle, degrés | 0,085767353 | 0,046355451 |
-| Plus grand rapport côté / hauteur | 1 064,805 | 1 237,641 |
+| SICN upper bound below 0.1 | 22 | 16 |
+| Minimum of this bound | 0.0032268884 | 0.0021005109 |
+| Smallest angle, degrees | 0.085767353 | 0.046355451 |
+| Largest side / height ratio | 1,064.805 | 1,237.641 |
 
-Le repère 0,1 suit une obstruction à la qualité d'un tétraèdre partageant
-un triangle fixé. Ce n'est ni la qualité mesurée d'un nouveau tétraèdre ni
-un seuil universel d'acceptation CFD. Aucun volume n'est généré.
+The 0.1 marker tracks an obstruction to the quality of a tetrahedron sharing
+a fixed triangle. It is neither the measured quality of a new tetrahedron nor
+a universal CFD acceptance threshold. No volume is generated.
 
-Les neuf gardes natives de conservation passent. La contrelecture pure,
-indépendante du travailleur, passe **19 contrôles sur 20** : tous les
-identifiants, classes, connexions, groupes, frontières et coordonnées hors
-cible sont conservés. Le vingtième contrôle constate 14 produits scalaires
-de normales avant/après non positifs, calculés exactement sur les coordonnées
-binary64. Cela signifie un écart local d'au moins 90 degrés ; ce n'est pas
-une preuve formelle de 14 inversions par rapport à la CAO ou d'intersections
-globales. Ce contrôle conservateur suffit néanmoins à refuser le candidat.
+The nine native preservation guards pass. The pure cross-reading,
+independent of the worker, passes **19 checks out of 20**: all
+identifiers, classes, connections, groups, boundaries and off-target
+coordinates are preserved. The twentieth check finds 14 non-positive dot products
+of before/after normals, computed exactly on the binary64
+coordinates. This means a local deviation of at least 90 degrees; it is not
+formal proof of 14 inversions relative to the CAD or of global
+intersections. This conservative check is nevertheless enough to reject the candidate.
 
-Les trois critères de non-régression étaient fixés avant l'essai : compteur
-non croissant, minimum de borne non décroissant, minimum d'angle non
-décroissant. Seul le premier passe. Le contre-lecteur compare les minima
-par invariants rationnels, sans marge introduite après observation :
-`D²/S²` pour la borne, maximum de `cot²(angle)` aux coins aigus pour l'angle.
-Les valeurs décimales du tableau ne servent qu'à l'affichage.
+The three non-regression criteria were fixed before the run: counter
+non-increasing, bound minimum non-decreasing, angle minimum non-decreasing.
+Only the first passes. The cross-reader compares the minima
+through rational invariants, with no margin introduced after observation:
+`D²/S²` for the bound, maximum of `cot²(angle)` at acute corners for the angle.
+The decimal values in the table are for display only.
 
-## Exécution, contrôles et suite
+## Execution, checks and next steps
 
-Kali x86, Gmsh 4.15.2 épinglé, quatre CPU et 4 Gio, réseau coupé et
-entrées en lecture seule. Travailleur : 12,845 s ; nettoyage inclus :
-13,511 s ; contrelecture : 2,649 s. La sortie normale 2 signifie le refus
-qualité, pas un timeout ou un manque de mémoire. Le conteneur exact est
-supprimé et son absence est vérifiée séparément. Aucune nouvelle dépense Vast.
+Kali x86, pinned Gmsh 4.15.2, four CPUs and 4 GiB, network off and
+inputs read-only. Worker: 12.845 s; including cleanup:
+13.511 s; cross-reading: 2.649 s. The normal exit 2 means quality
+rejection, not a timeout or lack of memory. The exact container is
+deleted and its absence is verified separately. No new Vast spending.
 
-Les 42 tests ciblés du travailleur, du contre-lecteur et du superviseur
-passent, ainsi que 44 tests des bibliothèques réutilisées. Ce sont des tests
-logiciels et synthétiques, pas des essais de résistance ou d'impression.
-La vérification complète `make check` termine avec le code 0. Les tests
-natifs ignorés par cette suite faute de dépendances locales restent ignorés ;
-ce succès ne remplace pas les reçus natifs décrits ci-dessus.
-Le fichier candidat est sauvegardé avant décision ; sa relecture dans le
-travailleur utilise le parseur pur, pas une nouvelle importation native.
+The 42 targeted tests of the worker, the cross-reader and the supervisor
+pass, as well as 44 tests of the reused libraries. These are software
+and synthetic tests, not strength or print tests.
+The full `make check` verification ends with code 0. The native tests
+skipped by this suite for lack of local dependencies remain skipped;
+this success does not replace the native receipts described above.
+The candidate file is saved before decision; its re-reading in the
+worker uses the pure parser, not a new native import.
 
-## Sélection monotone calculée, sans export
+## Computed monotone selection, without export
 
-Un second calcul, **pur et non natif**, a essayé chacune des 994 propositions
-une fois, par identifiant croissant, à sa position exacte proposée. Aucune
-interpolation. Après chaque proposition, les normales sont comparées à la
-référence et les trois indicateurs à l'état déjà accepté, pas seulement à
-l'état initial. Les triangles incidents sont recalculés ; le bilan global
-est également contrôlé après chaque acceptation et en fin de passe.
+A second computation, **pure and non-native**, tried each of the 994 proposals
+once, by increasing identifier, at its exact proposed position. No
+interpolation. After each proposal, the normals are compared with the
+reference and the three indicators with the already accepted state, not only with
+the initial state. The incident triangles are recomputed; the global balance
+is also checked after each acceptance and at the end of the pass.
 
-Le calcul accepte 990 propositions et en refuse quatre sur le critère des
-normales. Mais il retrouve **exactement les trois indicateurs initiaux** :
-22 obstructions, borne minimale `0,0032268884`, angle minimal `0,085767353°`.
-Les extrema rationnels sont égaux, pas seulement leurs arrondis. Les vingt
-contrôles de l'état final en mémoire passent. Huit tests synthétiques du
-sélecteur passent ; le calcul sur les deux fichiers réels dure 8,369 s.
+The computation accepts 990 proposals and rejects four on the normals
+criterion. But it lands on **exactly the three initial indicators**:
+22 obstructions, minimum bound `0.0032268884`, minimum angle `0.085767353°`.
+The rational extrema are equal, not only their roundings. The twenty
+checks of the final in-memory state pass. Eight synthetic tests of the
+selector pass; the computation on the two real files takes 8.369 s.
 
-Le plan reste privé et **non appliqué** : aucun nouveau MSH ou B-Rep n'est
-écrit. Il n'y a pas de gain sur les objectifs ciblés justifiant un effecteur
-natif pour ce plan. Ce résultat n'exclut pas toutes les autres optimisations ;
-il ferme cette sélection déterministe des propositions de cette unique passe.
+The plan remains private and **not applied**: no new MSH or B-Rep is
+written. There is no gain on the targeted objectives justifying a native
+effector for this plan. This result does not exclude all other optimizations;
+it closes this deterministic selection of the proposals from this single pass.
 
-La suite doit examiner les connectivités et la discrétisation des arêtes
-avec les faces voisines concernées. Ni baisse du repère, ni répétition
-aveugle du même optimiseur, ni modification des courbes CAO ne sont
-autorisées par le résultat présent.
+The next step must examine the connectivities and the discretization of the edges
+with the neighboring faces concerned. Neither lowering the marker, nor blind
+repetition of the same optimizer, nor modifying the CAD curves are
+authorized by the present result.
 
 ```mermaid
 flowchart LR
-    A[MeshAdapt : 22 obstructions] --> B[Seule la face 37 conserve des éléments 2D]
-    B --> C[Une passe Relocate2D]
-    C --> D[Raccordements et données hors cible conservés]
-    C --> E[16 obstructions mais minima dégradés]
-    C --> F[14 normales hors critère local]
-    D --> G[Candidat sauvegardé puis refusé]
+    A[MeshAdapt: 22 obstructions] --> B[Only face 37 keeps 2D elements]
+    B --> C[One Relocate2D pass]
+    C --> D[Joints and off-target data preserved]
+    C --> E[16 obstructions but minima degraded]
+    C --> F[14 normals outside local criterion]
+    D --> G[Candidate saved then rejected]
     E --> G
     F --> G
-    G --> H[Sélection monotone pure : 990 déplacements retenus]
-    H --> I[22 obstructions et extrema inchangés : aucun export]
-    I --> J[Examiner connectivités et discrétisation 1D avec les voisins]
+    G --> H[Pure monotone selection: 990 moves kept]
+    H --> I[22 obstructions and extrema unchanged: no export]
+    I --> J[Examine connectivities and 1D discretization with neighbors]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class G,I stop
+    class J open
 ```

@@ -1,81 +1,97 @@
-# Contrat de cible de puissance 917/30 F9
+# 917/30 F9 power target contract
 
-## Portée
+> **Archived line.** This contract belongs to the retired 917 work, kept as a
+> numerical regression and not pursued as a product. See
+> [ARCHIVE.md](../../ARCHIVE.md).
 
-F9 traduit des déclarations documentaires de puissance en besoins algébriques
-reproductibles. Il calcule, pour plusieurs régimes indépendants, le couple, le
-BMEP et la vitesse moyenne du piston nécessaires pour atteindre une puissance
-donnée. Ce modèle 0D n'est ni un solveur thermodynamique, ni une courbe moteur,
-ni un résultat de banc.
+## Scope
 
-Le contrat reste volontairement bloqué pour toute revendication de puissance.
-Il ne calcule aucun débit d'air ou de carburant, aucune pression de
-suralimentation, aucune température, aucune vitesse de turbo et aucune tenue
-thermomécanique.
+F9 translates documentary power statements into reproducible algebraic
+requirements. It computes, for several independent engine speeds, the torque,
+the BMEP and the mean piston speed needed to reach a given power. This 0D model
+is neither a thermodynamic solver, nor an engine curve, nor a bench result.
 
-## Séparation des preuves et des scénarios
+The contract remains deliberately blocked for any power claim. It computes no
+air or fuel flow, no boost pressure, no temperature, no turbo speed and no
+thermomechanical strength.
 
-Les faits sourcés sont conservés dans `source_evidence` :
+## Separating evidence from scenarios
 
-- la fiche Porsche Museum déclare 5 374 cm³ et 882 kW / 1 200 PS ;
-- l'article Porsche Newsroom USA décrit une puissance **rapportée** de
-  1 600 HP en configuration de qualification ;
-- la géométrie 90 × 70,4 mm provient de la source secondaire auto motor und
-  sport. Son calcul donne 5 374,385 cm³, cohérent par arrondi avec les
-  5 374 cm³ officiels.
+The sourced facts are kept in `source_evidence`:
 
-Ces déclarations ne fournissent ni courbe couple-régime, ni durée de
-qualification, ni base de puissance, ni correction atmosphérique, ni
-incertitude. Elles ont donc le rôle `documentary_only` et ne sont jamais
-utilisées comme calibration.
+- the Porsche Museum record declares 5,374 cm³ and 882 kW / 1,200 PS;
+- the Porsche Newsroom USA article describes a **reported** power of
+  1,600 HP in qualifying configuration;
+- the 90 × 70.4 mm geometry comes from the secondary source auto motor und
+  sport. Its computation gives 5,374.385 cm³, consistent by rounding with the
+  official 5,374 cm³.
 
-Deux scénarios de calcul restent séparés :
+These statements provide neither a torque–speed curve, nor a qualifying
+duration, nor a power basis, nor an atmospheric correction, nor an uncertainty.
+They therefore have the role `documentary_only` and are never used as
+calibration.
 
-1. scénario primaire Porsche USA : 1 600 horsepower mécaniques, avec
-   `1 hp = 745,6998715822702 W`, soit 1 193,119795 kW ;
-2. sensibilité d'unité : 1 600 PS métriques, avec `1 PS = 735,49875 W`, soit
-   1 176,798 kW.
+Two computation scenarios remain separate:
 
-Les deux scénarios possèdent leurs propres lignes de couple et de BMEP. Le
-second ne corrige ni ne remplace la déclaration Porsche en horsepower.
+1. primary Porsche USA scenario: 1,600 mechanical horsepower, with
+   `1 hp = 745.6998715822702 W`, i.e. 1,193.119795 kW;
+2. unit sensitivity: 1,600 metric PS, with `1 PS = 735.49875 W`, i.e.
+   1,176.798 kW.
 
-## Calcul reproductible
+Both scenarios have their own torque and BMEP rows. The second neither corrects
+nor replaces the Porsche statement in horsepower.
+
+```mermaid
+flowchart LR
+  E["source_evidence<br/>documentary_only"] -.->|never calibration| G
+  S1["1,600 hp<br/>1,193.119795 kW"] --> G["0D algebra<br/>torque, BMEP,<br/>mean piston speed"]
+  S2["1,600 PS sensitivity<br/>1,176.798 kW"] --> G
+  G --> R["requirement at a<br/>computation point"]
+  R --> X["performance_claim_authorized<br/>= false"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class G,R ok;
+  class E,S1,S2 open;
+  class X stop;
+```
+
+## Reproducible computation
 
 ```bash
 make 917-performance-envelope-f9
 ```
 
-La sortie locale est écrite dans
-`work/917-performance-f9/power-requirement-envelopes.json`. Le dossier `work/`
-reste hors Git.
+The local output is written to
+`work/917-performance-f9/power-requirement-envelopes.json`. The `work/`
+directory stays outside Git.
 
-Les équations sont :
+The equations are:
 
-- cylindrée : `π / 4 × alésage² × course × nombre de cylindres` ;
-- couple requis : `puissance × 60 / (2 × π × régime)` ;
-- BMEP quatre temps : `4 × π × couple / cylindrée` ;
-- vitesse moyenne du piston : `2 × course × régime / 60`.
+- displacement: `π / 4 × bore² × stroke × number of cylinders`;
+- required torque: `power × 60 / (2 × π × speed)`;
+- four-stroke BMEP: `4 × π × torque / displacement`;
+- mean piston speed: `2 × stroke × speed / 60`.
 
-À 7 000 tr/min, le scénario primaire de 1 600 hp exige algébriquement
-1 627,636 Nm et 38,057 bar de BMEP. La sensibilité 1 600 PS exige séparément
-1 605,370 Nm et 37,537 bar. Ces valeurs décrivent une exigence à un point de
-calcul ; elles ne montrent pas que le moteur peut l'atteindre. La grille de
-6 000 à 8 000 tr/min n'est pas déclarée comme plage de fonctionnement.
+At 7,000 rpm, the primary 1,600 hp scenario algebraically requires
+1,627.636 Nm and 38.057 bar of BMEP. The 1,600 PS sensitivity separately
+requires 1,605.370 Nm and 37.537 bar. These values describe a requirement at a
+computation point; they do not show that the engine can reach it. The grid from
+6,000 to 8,000 rpm is not declared as an operating range.
 
-## Gate fail-closed
+## Fail-closed gate
 
-Le rapport conserve `performance_claim_authorized = false` tant que manquent
-notamment :
+The report keeps `performance_claim_authorized = false` as long as, in
+particular, the following are missing:
 
-- un solveur thermodynamique identifié, sa version et son jeu d'entrées ;
-- les bilans de masse et d'énergie ;
-- les jeux de calibration et de validation indépendante ;
-- une trace dynamométrique régime-couple et la calibration du banc ;
-- la base de puissance et la norme de correction ;
-- la durée de qualification, les conditions ambiantes et le budget
-  d'incertitude.
+- an identified thermodynamic solver, its version and its input set;
+- the mass and energy balances;
+- the calibration and independent validation sets;
+- a speed–torque dynamometer trace and the bench calibration;
+- the power basis and the correction standard;
+- the qualifying duration, the ambient conditions and the uncertainty budget.
 
-PhysicsNeMo reste réservé à un surrogate construit après validation d'un
-solveur de référence et corrélation sur des essais physiques tenus à l'écart de
-la calibration. F9 ne prouve donc jamais une puissance de 1 600 hp ou
-1 600 PS et n'autorise aucune fabrication ou mise en charge d'un moteur.
+PhysicsNeMo remains reserved for a surrogate model built after validation of a
+reference solver and correlation on physical tests held out from calibration.
+F9 therefore never proves a power of 1,600 hp or 1,600 PS and authorizes no
+manufacturing or loading of an engine.

@@ -1,85 +1,102 @@
-# Vast : accès rétabli et runtime prêt — 7 septembre 2026
+# Vast: access restored and runtime ready — September 7, 2026
 
-Constat à 06:55 UTC, concernant uniquement l'instance **50130746**.
-Lancement effectué par le wrapper approuvé
-`/Users/maxime/.local/bin/openbao-vastai`, commande
-`launch-simready-heavy 49094462`, avec un identifiant de tentative unique.
-Aucune nouvelle recharge autorisée ; plafond utilisateur conservé : 20 USD.
+Observation at 06:55 UTC, concerning only instance **50130746**.
+Launch performed by the approved wrapper
+`/Users/maxime/.local/bin/openbao-vastai`, command
+`launch-simready-heavy 49094462`, with a unique attempt identifier.
+No new top-up authorized; user cap kept: 20 USD.
 
-## Résultat réel du lanceur
+```mermaid
+flowchart LR
+    A["launch-simready-heavy<br/>49094462"] --> B["startup code 80<br/>host-key marker rejected"]
+    B --> C["original initializer<br/>called explicitly"]
+    C --> D["services ready<br/>PhysicsNeMo GPU test passed"]
+    D --> E["direct SSH refused<br/>by access control"]
+    E --> F["stop 50130746<br/>state exited, stopped not confirmed"]
+    F --> G["destroy --confirm<br/>verified_absent=true"]
+    D -.-> H["no cylinder-head computation<br/>simulation_validated=false"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class B,E,H stop;
+    class D,G ok;
+    class F open;
+```
 
-Le processus supervisé a terminé avec le code **0**. Son reçu confirme :
+## Actual launcher result
 
-- image et contrat d'offre vérifiés ;
-- paire SSH locale cohérente et clé approuvée listée par le fournisseur ;
-- connexion SSH BatchMode réussie, contrôle strict de la clé d'hôte ;
-- instance `running`, marqueur de disponibilité et services Content Agents prêts ;
-- test d'exécution GPU PhysicsNeMo réussi.
+The supervised process ended with code **0**. Its receipt confirms:
 
-Matériel : 64 CPU effectifs, 257 582 MB RAM et RTX PRO 6000 WS.
-`nvidia-smi` a identifié une RTX PRO 6000 Blackwell Workstation Edition,
-97 887 MiB et le pilote 595.84. Tarif annoncé de l'offre avec 500 GB de
-stockage : **1,85185185185 USD/h**, hors transfert. Ce n'est pas une facture.
-Un garde-fou séparé vise la suppression de cette tentative exacte à
-**08:28:46 UTC** ; les délais d'API peuvent dépasser cette échéance.
+- image and offer contract verified;
+- local SSH key pair consistent and approved key listed by the provider;
+- SSH BatchMode connection succeeded, with strict host-key checking;
+- instance `running`, availability marker and Content Agents services ready;
+- PhysicsNeMo GPU execution test passed.
 
-## Cause du dernier blocage : initialisation, pas authentification
+Hardware: 64 effective CPUs, 257,582 MB RAM and RTX PRO 6000 WS.
+`nvidia-smi` identified an RTX PRO 6000 Blackwell Workstation Edition,
+97,887 MiB and driver 595.84. Advertised offer rate with 500 GB of
+storage: **1.85185185185 USD/h**, excluding transfer. This is not an invoice.
+A separate guard targets deletion of this exact attempt at
+**08:28:46 UTC**; API delays may overrun that deadline.
 
-L'authentification SSH fonctionnait déjà. Le démarrage applicatif échouait
-avec le code **80** et `simready runtime host-key marker rejected`.
-Dans ce conteneur, `/usr/sbin/sshd` était un binaire ordinaire, pas le lien
-attendu vers notre initialiseur. L'appel `sshd -T` ne créait donc pas le
-marqueur applicatif requis. L'auteur de ce remplacement n'est pas établi.
+## Cause of the last blockage: initialization, not authentication
 
-L'initialiseur original `/usr/local/bin/simready-sshd-runtime-wrapper -T`
-a été appelé explicitement, puis le script onstart original relancé.
-Les empreintes des clés d'hôte publiques existantes sont restées identiques ;
-aucune nouvelle clé publique et aucun redémarrage du listener n'ont été
-nécessaires. Les services ont ensuite atteint l'état prêt.
+SSH authentication was already working. Application startup failed
+with code **80** and `simready runtime host-key marker rejected`.
+In this container, `/usr/sbin/sshd` was an ordinary binary, not the expected
+link to our initializer. The `sshd -T` call therefore did not create the
+required application marker. Who made this replacement is not established.
 
-La correction source remplace l'appel indirect par celui de l'initialiseur.
-Un test fonctionnel reproduit le code 80 avec le chemin ancien, puis vérifie
-le succès du nouveau chemin et l'absence de réinitialisation si le marqueur
-existe. **7 tests `test_simready_local_ai.py` passent.**
+The original initializer `/usr/local/bin/simready-sshd-runtime-wrapper -T`
+was called explicitly, then the original onstart script was rerun.
+The fingerprints of the existing public host keys stayed identical;
+no new public key and no listener restart were needed. The services then
+reached the ready state.
 
-## Traçabilité et limites
+The source fix replaces the indirect call with a call to the initializer.
+A functional test reproduces code 80 with the old path, then checks that the
+new path succeeds and that no reinitialization happens if the marker
+exists. **7 `test_simready_local_ai.py` tests pass.**
 
-Image réellement exécutée, antérieure à cette correction source :
+## Traceability and limits
+
+Image actually executed, predating this source fix:
 
 ```text
 ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699
 ```
 
-Le correctif n'est pas inclus dans ce digest : le runtime a été débloqué par
-l'initialiseur déjà embarqué. Le test PhysicsNeMo prouve les imports et un
-calcul tensoriel GPU, pas l'entraînement d'un modèle physique ni un calcul
-de culasse. Le reçu conserve `simulation_validated=false` et
-`manufacturing_authorized=false`. Aucune validation thermique, résistance,
-fatigue, impression ou compatibilité M64 n'est déduite de ce succès.
+The fix is not included in this digest: the runtime was unblocked by the
+initializer already shipped in the image. The PhysicsNeMo test proves the
+imports and a GPU tensor computation, not the training of a physics model nor
+a cylinder-head computation. The receipt keeps `simulation_validated=false` and
+`manufacturing_authorized=false`. No thermal, strength, fatigue, printing or
+M64 compatibility validation is inferred from this success.
 
-Ne pas confondre cet incident avec la précédente instance **50128235**,
-supprimée alors qu'elle chargeait encore son image : son expiration ne
-constituait pas un échec d'authentification SSH.
+Do not confuse this incident with the earlier instance **50128235**,
+deleted while it was still loading its image: its expiry was not an SSH
+authentication failure.
 
-## Suite de l'exécution : limite d'accès et arrêt demandé
+## Rest of the run: access limit and requested stop
 
-Le contrôle d'accès d'un agent a refusé une commande SSH directe et demandé
-une voie OpenBao approuvée. Aucun contournement n'a été tenté après ce refus.
-L'inspection des wrappers existants confirme qu'ils exposent le lancement et
-les contrôles de disponibilité, mais pas le transfert ou le traitement d'un
-asset M64. `property_assignment_intent=run` dans le reçu est une intention,
-pas la preuve d'une affectation de propriétés à la culasse.
+An agent's access control refused a direct SSH command and asked for an
+approved OpenBao path. No workaround was attempted after this refusal.
+Inspection of the existing wrappers confirms that they expose launch and
+availability checks, but not the transfer or processing of an M64 asset.
+`property_assignment_intent=run` in the receipt is an intent, not evidence
+that properties were assigned to the cylinder head.
 
-Une demande d'arrêt a donc été envoyée par `openbao-vastai stop 50130746`
-afin de ne pas laisser du calcul sans travail exploitable. Le relevé suivant
-du fournisseur indique **`exited`**, pas encore `stopped` ; ce relevé seul ne
-permet pas d'attester la suspension de la facturation GPU. Le garde-fou de
-suppression de la tentative exacte reste actif. La CAO indépendante sur Kali
-peut continuer ; aucune autre location n'a été lancée.
+A stop request was therefore sent with `openbao-vastai stop 50130746`
+so as not to leave compute running without usable work. The provider's next
+reading shows **`exited`**, not yet `stopped`; that reading alone does not
+attest that GPU billing was suspended. The deletion guard for the exact
+attempt stays active. The independent CAD work on Kali can continue; no other
+rental was launched.
 
-Le contrôle borné d'arrêt s'est ensuite terminé en erreur : l'état `stopped`
-n'a pas été confirmé. L'instance exacte a donc été supprimée par
-`openbao-vastai destroy 50130746 --confirm`. Le wrapper a confirmé
-`destroyed=true` et `verified_absent=true`. Le conteneur et son disque de
-travail sont supprimés ; aucun résultat de calcul de culasse n'y avait été
-produit. Le source et les preuves enregistrées localement sont conservés.
+The bounded stop check then ended in error: the `stopped` state was not
+confirmed. The exact instance was therefore deleted with
+`openbao-vastai destroy 50130746 --confirm`. The wrapper confirmed
+`destroyed=true` and `verified_absent=true`. The container and its working
+disk are deleted; no cylinder-head computation result had been produced on it.
+The source and the locally recorded evidence are kept.

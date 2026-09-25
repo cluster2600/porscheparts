@@ -1,80 +1,80 @@
-# M64 — essai de taille locale incomplet
+# M64 — incomplete local size trial
 
-Essai suivant : [champs natifs et journal détaillé](M64_NATIVE_SIZE_TRIAL_20260909.md).
-Le présent document conserve le résultat historique du callback Python.
+Next trial: [native fields and detailed log](M64_NATIVE_SIZE_TRIAL_20260909.md).
+This document keeps the historical result of the Python callback.
 
-**Le calcul natif s'arrête sans nouveau maillage candidat ni rapport final.
-Aucun gain de qualité n'est établi et aucune géométrie n'est promue.**
-Le contour Porsche et le maître restent inchangés.
+**The native computation stops with no new candidate mesh and no final report.
+No quality gain is established and no geometry is promoted.**
+The Porsche contour and the master remain unchanged.
 
-Ce lot teste la piste annoncée après le
-[remaillage conjoint précédent](M64_EDGE82_JOINT_REMESH_20260909.md) :
-même recette d'arête 82, puis champ de taille 2D limité aux faces 30/37,
-autour du sommet 51 et des deux petits segments de l'arête 99.
+This batch tests the avenue announced after the
+[previous joint remesh](M64_EDGE82_JOINT_REMESH_20260909.md): same edge 82
+recipe, then a 2D size field limited to faces 30/37, around vertex 51 and the
+two small segments of edge 99.
 
-## Ce qui est établi
+## What is established
 
-- Un seul lancement natif sur Kali, quatre CPU, 4 Gio ; aucune location Vast.
-- Checkpoint de génération 1D temporaire atteint à 1,098 s depuis le début
-  du worker. Même profil à 64 nœuds,
-  dernier segment 82 / segment voisin 93 = 0,96736.
-- Réinjection vérifiée à 7,587 s depuis le début du worker. Le fichier réinjecté est identique octet
-  par octet à la référence `7af7f207…`.
-- Processus terminé avec le code **152**, après **239,935 s nettoyage compris**.
-  Ce code est compatible avec `SIGXCPU` (`128 + 24`) sous la limite CPU
-  configurée à 240 s souple / 250 s dure de temps CPU cumulé du processus,
-  distinct du délai mural. C'est une attribution cohérente,
-  pas un reçu indépendant du signal. Aucun dépassement du délai mural
-  ni OOM n'est signalé.
-- Conteneur exact supprimé ; absence revérifiée. Entrées et lanceur inchangés.
+- A single native launch on Kali, four CPUs, 4 GiB; no Vast rental.
+- Temporary 1D generation checkpoint reached at 1.098 s from the start of the
+  worker. Same 64-node profile, last segment 82 / neighboring segment 93 =
+  0.96736.
+- Reinjection verified at 7.587 s from the start of the worker. The reinjected
+  file is byte-for-byte identical to the reference `7af7f207…`.
+- Process ended with code **152**, after **239.935 s including cleanup**.
+  This code is consistent with `SIGXCPU` (`128 + 24`) under the CPU limit
+  configured at 240 s soft / 250 s hard of cumulative process CPU time,
+  distinct from the wall-clock timeout. This is a consistent attribution, not
+  an independent receipt of the signal. No wall-clock timeout overrun and no
+  OOM is reported.
+- Exact container deleted; absence rechecked. Inputs and launcher unchanged.
 
-## Ce qui manque
+## What is missing
 
-Le dernier checkpoint précède l'installation du callback et l'appel 2D.
-Il porte encore `generate2_calls = 0` : c'est son état à cet instant, pas
-une preuve que l'appel n'a jamais commencé ensuite.
-Il n'existe ni MSH brut/candidat, ni rapport final, ni compteur d'appels au
-callback sauvegardé. Le retrait final du callback n'est donc pas attesté,
-même si son chemin `finally` est testé en logiciel ; le processus est arrêté.
+The last checkpoint precedes the installation of the callback and the 2D call.
+It still reads `generate2_calls = 0`: this is its state at that moment, not
+evidence that the call never started afterward. There is no raw/candidate
+MSH, no final report, and no saved callback call counter. The final removal of
+the callback is therefore not attested, even though its `finally` path is
+tested in software; the process was stopped.
 
-Les qualités finales, la conservation finale et les contacts sont **inconnus**,
-pas nuls. Le contrelecteur indépendant est prêt, mais n'est pas exécuté sans
-candidat. Aucune comparaison chiffrée à trois états n'est possible pour ce lot.
+The final qualities, final preservation and contacts are **unknown**, not
+zero. The independent cross-reader is ready, but is not run without a
+candidate. No three-state numerical comparison is possible for this batch.
 
-Le champ préparé utilise une croissance de taille de 0,25 par unité de
-distance et abaisse le plancher au plus petit segment source de 99.
-Ces nombres sont des réglages du maillage, **pas des cotes de fabrication**.
-Le code restitue les 63 IDs de lignes 82 du candidat précédent par bijection
-d'enregistrements ; cette restitution est contrôlée en lecture pure avant
-l'essai, mais aucune sortie finale ne permet ici de la constater après calcul.
+The prepared field uses a size growth of 0.25 per unit of distance and lowers
+the floor to the smallest source segment of 99. These numbers are mesh
+settings, **not manufacturing dimensions**. The code restores the 63 line IDs
+of 82 from the previous candidate through a bijection of records; this
+restoration is checked by pure reading before the trial, but no final output
+allows confirming it here after the computation.
 
-## Suite et limites
+## Next steps and limits
 
-Avant une relance, instrumenter explicitement l'entrée dans la génération 2D
-et sauvegarder une progression bornée des appels de taille. Il faut localiser
-le coût avant de choisir entre champ natif, réglage différent et budget CPU
-supérieur. L'absence de résultat ne prouve ni une insuffisance mémoire ni
-qu'un GPU résoudrait le problème. Ne pas relancer les mêmes entrées inchangées
-en prétendant qu'un gain de qualité est déjà obtenu.
+Before a rerun, explicitly instrument the entry into 2D generation and save a
+bounded progress record of the size calls. The cost must be located before
+choosing between a native field, a different setting and a higher CPU budget.
+The absence of a result proves neither a memory shortfall nor that a GPU would
+solve the problem. Do not rerun the same unchanged inputs while claiming that
+a quality gain has already been obtained.
 
-Les **52 tests logiciels distincts** passent : 22 worker, 10 lanceur,
-7 extension de contrelecture et 13 parent figé. Ils contrôlent le logiciel,
-pas la résistance de la culasse. Les empreintes et inconnues explicites sont
-dans le [registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_local_2D_size_trial`. `make check` termine avec le code 0 ; des
-tests optionnels sont ignorés selon les dépendances disponibles.
+The **52 distinct software tests** pass: 22 worker, 10 launcher, 7 cross-reader
+extension and 13 frozen parent. They check the software, not the strength of
+the cylinder head. The digests and explicit unknowns are in the
+[evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_local_2D_size_trial`. `make check` ends with code 0; optional tests
+are skipped depending on the available dependencies.
 
-La [stack moteur de la photo](M64_MULTIPHYSICS_EXECUTION.md) reste pertinente,
-mais n'est pas une chaîne couplée déjà validée : Elmer est un candidat au
-contre-calcul, PhysicsNeMo un modèle à entraîner/évaluer et Ditto/MQTT une
-future liaison aux mesures. Aucun résultat CFD, thermique, mécanique,
-LPBF, de puissance moteur ou de fabrication n'est crédité par ce lot.
+The [engine stack in the photo](M64_MULTIPHYSICS_EXECUTION.md) remains
+relevant, but is not an already validated coupled chain: Elmer is a candidate
+for cross-computation, PhysicsNeMo a model to train/evaluate and Ditto/MQTT a
+future link to measurements. No CFD, thermal, mechanical, LPBF, engine power
+or manufacturing result is credited by this batch.
 
 ```mermaid
 flowchart LR
-    A["Référence inchangée"] --> B["1D terminée puis réinjection identique"]
-    B --> C["Phase suivante sans trace intermédiaire"]
-    C --> D["Arrêt code 152 ; aucun candidat"]
-    D --> E["Nettoyage vérifié ; résultat incomplet"]
-    E --> F["Instrumenter et profiler avant relance"]
+    A["Unchanged reference"] --> B["1D completed, then identical reinjection"]
+    B --> C["Next phase with no intermediate trace"]
+    C --> D["Stop with code 152; no candidate"]
+    D --> E["Cleanup verified; incomplete result"]
+    E --> F["Instrument and profile before rerun"]
 ```

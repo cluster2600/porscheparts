@@ -9,6 +9,25 @@ wheel `53241232006`: inducer `40.6 mm`, exducer `60.5 mm`, six main blades and
 six splitters. The change concerns the candidate material and the thickness
 distribution, not a supposed OEM reconstruction.
 
+```mermaid
+flowchart LR
+  F0["AlSi10Mg F0<br/>ratio 0.627: rejected"] --> C["F1 change<br/>tapered blades 3.0 → 0.8 mm<br/>Al2139 AM candidate"]
+  S["Published: inducer 40.6 mm,<br/>exducer 60.5 mm, 6 + 6 blades"] --> C
+  C --> G["F1 BREP valid<br/>38.49 g"]
+  G --> M["Three room-temperature equations<br/>pass: 1.986, 2.516, 1.905"]
+  G --> P["LPBF print screen<br/>roll_y_45, 60 µm"]
+  M --> V["No hot HCF, no K16 map<br/>not authorized for manufacturing,<br/>rotation, turbo or engine"]
+  P --> V
+  class F0,V stop
+  class S ok
+  class M,P open
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Engineering change
 
 The main blade goes from a uniform `1.2 mm` to a linear law `3.0 → 0.8 mm`.

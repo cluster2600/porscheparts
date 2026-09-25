@@ -1,165 +1,169 @@
-# M64 — défauts localisés, essai HXT et correction native
+# M64 — defects localized, HXT trial and native correction
 
-Suite de ce jalon : [paquet à 86 faces, nouveau volume et contrôles OpenFOAM/C0](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md).
-Le nouveau volume est obtenu ; il reste rejeté pour la CFD. Les résultats HXT
-et de localisation ci-dessous restent ceux de leur exécution historique.
+Follow-up to this milestone: [86-face package, new volume and OpenFOAM/C0 checks](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md).
+The new volume is obtained; it remains rejected for CFD. The HXT and
+localization results below remain those of their historical execution.
 
-## Résultat
+## Result
 
-Les défauts du [remaillage natif précédent](M64_REMAILLAGE_NATIF_20260908.md)
-sont maintenant reliés aux faces CAO : la micro-bande de conduit (face 38)
-et les passages annulaires guide–tige constituent deux zones distinctes
-à traiter. **L'essai HXT n'a pas produit de volume exploitable.** Une
-correction native a ensuite créé un candidat, encore sans revue indépendante
-achevée ni maillage. Le volume de référence conserve ses six familles rejetées.
-Aucun calcul CFD, thermique, mécanique ou LPBF n'est validé par cette étape ;
-elle n'autorise ni impression ni fonctionnement moteur.
+The defects of the [previous native remeshing](M64_REMAILLAGE_NATIF_20260908.md)
+are now tied to the CAD faces: the port micro-strip (face 38)
+and the annular guide–stem passages form two distinct zones
+to be addressed. **The HXT trial did not produce a usable volume.** A
+native correction then created a candidate, still without a completed independent
+review and without a mesh. The reference volume keeps its six rejected families.
+No CFD, thermal, mechanical or LPBF computation is validated by this step;
+it authorizes neither printing nor engine operation.
 
-Le [reçu de diagnostic](../../twins/m64-cylinder-head/evidence/hxt-native-diagnostic-20260908.json)
-regroupe les empreintes et les limites. Les géométries, coordonnées,
-ensembles d'entités et rapports détaillés restent privés.
+The [diagnostic receipt](../../twins/m64-cylinder-head/evidence/hxt-native-diagnostic-20260908.json)
+gathers the digests and the limits. The geometries, coordinates,
+entity sets and detailed reports remain private.
 
-## Localisation sur le volume de référence
+## Localization on the reference volume
 
-Le contrôle concerne exclusivement le domaine natif `7fc114c1…` et le MSH
-`7774e94e…` de **469 985 tétraèdres**. Les 125 027 points OpenFOAM sont
-appariés de façon unique aux nœuds MSH, puis la topologie retrouve les
-191 956 triangles de frontière, leurs 88 faces natives et leurs rôles,
-sans désaccord d'orientation. Aucun VTK n'est utilisé comme géométrie.
+The check concerns only the native domain `7fc114c1…` and the MSH
+`7774e94e…` of **469,985 tetrahedra**. The 125,027 OpenFOAM points are
+uniquely matched to MSH nodes, then the topology recovers the
+191,956 boundary triangles, their 88 native faces and their roles,
+with no orientation disagreement. No VTK is used as geometry.
 
-Les coordonnées OpenFOAM sont écrites avec **12 chiffres significatifs** :
-l'appariement tient compte de l'arrondi de sérialisation, pas d'une identité
-binaire ni d'un simple plus proche voisin. L'écart maximal observé vaut
-4,996×10⁻¹³ m dans le cas mis à l'échelle. Le facteur 0,001 reste lié à
-l'hypothèse non certifiée « une unité de scan = un millimètre ».
+The OpenFOAM coordinates are written with **12 significant digits**:
+the matching accounts for serialization rounding, not a binary identity
+nor a simple nearest neighbor. The maximum observed gap is
+4.996×10⁻¹³ m in the scaled case. The factor 0.001 remains tied to
+the uncertified assumption "one scan unit = one millimeter".
 
-| Famille rejetée | Entités sélectionnées | Cellules touchant la face 38 | Cellules touchant les anneaux guide–tige | Cellules sans face de frontière |
+| Rejected family | Selected entities | Cells touching face 38 | Cells touching the guide–stem rings | Cells without a boundary face |
 | --- | ---: | ---: | ---: | ---: |
-| Rapport d'aspect | 130 cellules | 70 | 0 | 56 |
+| Aspect ratio | 130 cells | 70 | 0 | 56 |
 | Skewness | 73 faces | 55 | 0 | 0 |
-| Déterminant faible | 4 579 cellules | 492 | 2 589 | 399 |
-| Concavité | 23 cellules | 19 | 0 | 4 |
-| Poids d'interpolation faible | 1 146 faces | 253 | 48 | 748 |
-| Rapport de volumes faible | 540 faces | 146 | 0 | 331 |
+| Low determinant | 4,579 cells | 492 | 2,589 | 399 |
+| Concavity | 23 cells | 19 | 0 | 4 |
+| Low interpolation weight | 1,146 faces | 253 | 48 | 748 |
+| Low volume ratio | 540 faces | 146 | 0 | 331 |
 
-Pour les ensembles de faces, les cellules affectées sont l'union de leurs
-propriétaires et voisines : leur nombre n'est pas celui des faces.
-Les colonnes ne constituent pas une partition exhaustive. Les histogrammes
-par face peuvent se recouvrir ; aucune distance aux cellules intérieures
-n'est calculée. **Une adjacence observée n'établit pas une causalité.**
+For face sets, the affected cells are the union of their
+owners and neighbors: their count is not that of the faces.
+The columns do not form an exhaustive partition. The per-face
+histograms may overlap; no distance to interior cells
+is computed. **An observed adjacency does not establish causality.**
 
-L'audit intrinsèque de la face 38 sonde une bande dont la largeur locale
-minimale échantillonnée est d'environ 1,52×10⁻⁶ unité de scan. Ce n'est
-ni une cote physique certifiée ni le minimum global démontré. La formule
-approchée de flèche `δ ≈ κ h² / 8` fournit une hypothèse de raffinement,
-pas une garantie de conformité ou de qualité volumique. La CAO est inchangée.
+The intrinsic audit of face 38 probes a strip whose minimum sampled
+local width is about 1.52×10⁻⁶ scan units. This is
+neither a certified physical dimension nor the demonstrated global minimum. The
+approximate sag formula `δ ≈ κ h² / 8` provides a refinement hypothesis,
+not a guarantee of conformity or of volume quality. The CAD is unchanged.
 
-## Essai comparatif réellement exécuté
+## Comparative trial actually executed
 
-Le mailleur accepte désormais `--volume-algorithm 10` : seule l'option
-`Mesh.Algorithm3D` bascule après sauvegarde de la surface et avant la 3D.
-Les tailles de surface, la géométrie, les passages annulaires et les seuils
-de contrôle ne sont pas assouplis. HXT est une réimplémentation parallèle
-de Delaunay, identifiée par la valeur 10 dans le
-[manuel officiel Gmsh 4.15.2](https://gmsh.info/doc/texinfo/gmsh.html).
-Ce n'est donc pas un second modèle physique indépendant.
+The mesher now accepts `--volume-algorithm 10`: only the
+`Mesh.Algorithm3D` option switches, after the surface is saved and before the 3D step.
+Surface sizes, geometry, annular passages and check thresholds
+are not relaxed. HXT is a parallel reimplementation
+of Delaunay, identified by the value 10 in the
+[official Gmsh 4.15.2 manual](https://gmsh.info/doc/texinfo/gmsh.html).
+It is therefore not a second independent physical model.
 
-L'exécution native x86 sur Kali était bornée à quatre CPU, 4 Gio et 180 s,
-sans réseau. Elle s'est arrêtée avec **le code 137 après 93 s** ; Docker
-indique `OOMKilled: false`. Ces traces ne suffisent pas à attribuer
-l'arrêt à un manque de mémoire ou à une cause certaine.
+The native x86 run on Kali was bounded to four CPUs, 4 GiB and 180 s,
+with no network. It stopped with **code 137 after 93 s**; Docker
+reports `OOMKilled: false`. These traces are not enough to attribute
+the stop to a lack of memory or to any certain cause.
 
-Le dernier point de reprise date de **25,076 s**, au début de la 3D :
-191 958 triangles de surface sauvegardés, zéro tétraèdre dans ce fichier,
-statut `incomplete`. Cette surface `9825add5…` diffère de celle du volume
-de référence : ses anciens reçus de conformité ne lui sont pas transférés.
-Le conteneur de l'essai est retiré. Aucun solveur CFD n'a été lancé.
+The last checkpoint dates from **25.076 s**, at the start of the 3D step:
+191,958 surface triangles saved, zero tetrahedra in that file,
+status `incomplete`. This surface `9825add5…` differs from that of the reference
+volume: its old conformity receipts are not transferred to it.
+The trial container is removed. No CFD solver was launched.
 
-## Correction native réellement tentée
+## Native correction actually attempted
 
-Trois essais `ShapeUpgrade_UnifySameDomain` ont été exécutés avec OCP
-7.9.3.1, chacun à partir du même domaine natif `7fc114c1…` :
+Three `ShapeUpgrade_UnifySameDomain` trials were run with OCP
+7.9.3.1, each from the same native domain `7fc114c1…`:
 
-| Essai | Résultat effectivement observé | Faces / arêtes / sommets |
+| Trial | Result actually observed | Faces / edges / vertices |
 | --- | --- | ---: |
-| 1 — `cf81801a…` | Sans effet sur les partitions ; faces et arêtes conservées par identité en mémoire | 88 / 195 / 120 |
-| 2 — `e08029b6…` | Anciennes faces 37 et 38 → nouvelle face 37 ; ancienne face 40 distincte | 87 / 194 / 120 |
-| 3 — `fab1338a…` | Anciennes faces 37, 38 et 40 → nouvelle face 37, en 7,133 s | 86 / 191 / 118 |
+| 1 — `cf81801a…` | No effect on the partitions; faces and edges preserved by in-memory identity | 88 / 195 / 120 |
+| 2 — `e08029b6…` | Old faces 37 and 38 → new face 37; old face 40 separate | 87 / 194 / 120 |
+| 3 — `fab1338a…` | Old faces 37, 38 and 40 → new face 37, in 7.133 s | 86 / 191 / 118 |
 
-Le troisième essai libère uniquement une protection supplémentaire : celle
-de la couture 105, reconnue nativement fermée sur la face 40 et incidente
-à cette seule face, sans interface entre rôles physiques. La protection
-`KeepShape` peut empêcher une fusion de faces ; son comportement est décrit
-dans la [référence OCCT](https://dev.opencascade.org/doc/refman/html/class_shape_upgrade___unify_same_domain.html).
-La comparaison des essais identifie ici la protection de cette couture
-comme le verrou de l'unification complète du groupe.
+The third trial releases only one additional protection: that
+of seam 105, natively recognized as closed on face 40 and incident
+to that face alone, with no interface between physical roles. The
+`KeepShape` protection can prevent a face merge; its behavior is described
+in the [OCCT reference](https://dev.opencascade.org/doc/refman/html/class_shape_upgrade___unify_same_domain.html).
+The comparison of the trials identifies here the protection of this seam
+as the lock on the full unification of the group.
 
-Le candidat final est un solide. **Seules les quatre arêtes de partition
-101–104 disparaissent ; les 191 autres arêtes originales restent identiques
-en mémoire, y compris la couture 105.** Déprotéger une couture n'a donc
-pas signifié la supprimer. Cette observation n'établit aucun gain CFD.
+The final candidate is a solid. **Only the four partition edges
+101–104 disappear; the 191 other original edges remain identical
+in memory, including seam 105.** Unprotecting a seam therefore did
+not mean removing it. This observation establishes no CFD gain.
 
-L'opération n'active ni fusion d'arêtes ni concaténation de B-splines et
-n'appelle aucun changement de tolérance. Au troisième essai, les 190 arêtes
-hors des quatre partitions et de la couture sont protégées, notamment les
-interfaces de siège et les tronçons C0, toujours identiques en mémoire.
-Après réexport et relecture, BRepCheck et les cinq modes BOP employés
-ne détectent aucun défaut. Les entrées et leur sérialisation en mémoire
-restent inchangées. Une réexécution avec une garde imposant l'immutabilité
-en mémoire et la conservation des arêtes protégées reproduit **exactement
-le même fichier `fab1338a…`**, en 7,306 s.
+The operation enables neither edge merging nor B-spline concatenation and
+calls no tolerance change. In the third trial, the 190 edges
+outside the four partitions and the seam are protected, notably the
+seat interfaces and the C0 segments, still identical in memory.
+After re-export and re-read, BRepCheck and the five BOP modes used
+detect no defect. The inputs and their in-memory serialization
+remain unchanged. A rerun with a guard enforcing in-memory
+immutability and preservation of the protected edges reproduces **exactly
+the same file `fab1338a…`**, in 7.306 s.
 
-### Contre-contrôle indépendant terminé
+### Independent cross-check completed
 
-L'audit compare le candidat à un **témoin de sérialisation OCCT** : source
-lue, écrite puis relue une fois, sans opération de reconstruction. Ce témoin
-mémoire correspond exactement au témoin disque sans effet `cf81801a…`.
-La comparaison brute à la source n'est pas identique : normalisations de
-supports, courbes et de deux p-curves préexistantes sont consignées, et non
-effacées par une tolérance de comparaison élargie.
+The audit compares the candidate with an **OCCT serialization witness**: source
+read, written, then re-read once, with no reconstruction operation. This in-memory
+witness corresponds exactly to the no-effect disk witness `cf81801a…`.
+The raw comparison with the source is not identical: normalizations of
+supports, curves and of two preexisting p-curves are recorded, not
+erased by a widened comparison tolerance.
 
-Contre ce témoin, les 85 autres faces, les 191 arêtes restantes, le support
-de la face fusionnée, les 16 bords extérieurs et les deux occurrences de
-la couture correspondent exactement, p-curves et orientations comprises.
-Seuls les sommets 68/69, devenus sans arête conservée, disparaissent ;
-les autres incidences et tolérances sont conservées. Les contrôles natifs
-et cette comparaison passent en 11,372 s. Les variations d'intégrales
-restent une corroboration numérique, pas une borne d'erreur continue.
-**Les rôles et le profil de maillage ne sont pas encore transférés.**
+Against this witness, the 85 other faces, the 191 remaining edges, the support
+of the merged face, the 16 outer edges and the two occurrences of
+the seam match exactly, p-curves and orientations included.
+Only vertices 68/69, left without any kept edge, disappear;
+the other incidences and tolerances are kept. The native checks
+and this comparison pass in 11.372 s. The variations in integrals
+remain a numerical corroboration, not a continuous error bound.
+**The roles and the mesh profile have not yet been transferred.**
 
 ```mermaid
 flowchart TD
-    A["Volume natif de référence : six familles rejetées"] --> B["Labels OpenFOAM → frontière MSH → faces CAO"]
-    B --> C["Micro-bande du conduit"]
-    B --> D["Passages annulaires guide–tige"]
-    A --> E["Essai HXT : arrêt 137, aucun nouveau volume"]
-    C --> F["Essai natif 1 sans effet, essai 2 : union partielle 37/38"]
+    A["Native reference volume: six rejected families"] --> B["OpenFOAM labels → MSH boundary → CAD faces"]
+    B --> C["Port micro-strip"]
+    B --> D["Annular guide–stem passages"]
+    A --> E["HXT trial: stop 137, no new volume"]
+    C --> F["Native trial 1 no effect, trial 2: partial union 37/38"]
     E --> F
-    F --> L["Essai 3 : couture déprotégée mais conservée ; union 37/38/40"]
-    L --> G["Candidat fab1338 : B-Rep et BOP contrôlés"]
-    G --> H["Contre-contrôle au témoin OCCT obtenu ; rôles à transférer"]
-    D --> I["Conserver et contrôler séparément les passages annulaires"]
-    H --> J["Ensuite seulement : nouveau paquet et nouveau maillage"]
+    F --> L["Trial 3: seam unprotected but kept; union 37/38/40"]
+    L --> G["Candidate fab1338: B-Rep and BOP checked"]
+    G --> H["Cross-check against the OCCT witness obtained; roles to transfer"]
+    D --> I["Keep and check the annular passages separately"]
+    H --> J["Only then: new package and new mesh"]
     I --> J
-    J --> K["Audits propres puis mêmes critères checkMesh"]
+    J --> K["Own audits then same checkMesh criteria"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class A,E stop
+    class J,K open
 ```
 
-Le prochain verrou est le transfert vérifié des rôles dans un nouveau
-paquet, puis le remaillage et ses contre-audits propres.
-**Aucun maillage ni calcul physique du candidat `fab1338a…` n'a
-encore été exécuté.** Les reçus du domaine précédent ne lui sont pas transférés.
+The next lock is the verified transfer of the roles into a new
+package, then remeshing and its own cross-audits.
+**No mesh and no physical computation of candidate `fab1338a…` has
+been run yet.** The receipts of the previous domain are not transferred to it.
 
-## Traçabilité et coût
+## Traceability and cost
 
-Les SHA-256 complets sont conservés dans le reçu lié ci-dessus : localisation
-`c8a5de6b…`, audit intrinsèque `f147ca56…`, processus HXT `d7a13e82…`,
-point de reprise HXT `bf30d87b…`, essais natifs `27550019…`, `90319cb9…`
-et `291f4258…`, réexécution protégée `efd98c21…`, contre-audit `7bd9c92d…`.
-Les tests ciblés passent : mailleur **20/20**, localisation **5/5**,
-protection de la fusion **5/5**. `make check` termine avec succès :
-**2 326 tests dans la suite principale, dont 108 ignorés**, puis les cibles
-complémentaires ; journal `c2832b91…`. Ce sont des témoins logiciels,
-pas des essais physiques. La revue de fabrication demeure non acquise.
+The full SHA-256 digests are kept in the receipt linked above: localization
+`c8a5de6b…`, intrinsic audit `f147ca56…`, HXT process `d7a13e82…`,
+HXT checkpoint `bf30d87b…`, native trials `27550019…`, `90319cb9…`
+and `291f4258…`, protected rerun `efd98c21…`, cross-audit `7bd9c92d…`.
+The targeted tests pass: mesher **20/20**, localization **5/5**,
+merge protection **5/5**. `make check` completes successfully:
+**2,326 tests in the main suite, of which 108 skipped**, then the complementary
+targets; log `c2832b91…`. These are software witnesses,
+not physical tests. The manufacturing review remains not achieved.
 
-À la vérification de ce tour : solde Vast **43,9166429608502 USD**,
-aucune instance et aucune nouvelle dépense ; plafond utilisateur **44 USD**.
+At the time of this round's verification: Vast balance **43.9166429608502 USD**,
+no instance and no new spending; user cap **44 USD**.

@@ -13,6 +13,24 @@ charge coolers, but provides no dimension. The F0 therefore interprets
 connection. The central `68 mm` connection, the second core, the fasteners
 and the left/right geometry are not modeled.
 
+```mermaid
+flowchart LR
+  S["Published: TA Technix cores<br/>260 × 260 × 100 mm, 66/68 mm<br/>connections; no end-tank drawing"] --> H["F0 interpretation<br/>260 × 100 mm core face,<br/>66 mm connection"]
+  H --> G["F0 BREP valid<br/>605.92 g, three open guides"]
+  G --> F["Flow and pressure screens<br/>not CFD, real core absent"]
+  G --> P["LPBF print screen<br/>build_y, 30 µm"]
+  F --> V["Not authorized for manufacturing,<br/>installation or engine start-up"]
+  P --> V
+  class S ok
+  class H,F,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
+
 ## Why additive makes sense here
 
 LPBF allows a continuous round-to-rectangle transition, three integrated flow

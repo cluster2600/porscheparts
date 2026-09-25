@@ -1,46 +1,46 @@
-# M64 — campagnes scriptées, budget Vast 38 USD
+# M64 — scripted campaigns, 38 USD Vast budget
 
-Suite effectivement exécutée :
-[pilote PhysicsNeMo-Mesh sur A100, contre-calcul et nettoyage](M64_PHYSICSNEMO_MESH_PILOT_20260912.md).
-Le lot ci-dessous reste le compte rendu de l'étape précédente sans location.
+Follow-up actually run:
+[PhysicsNeMo-Mesh pilot on A100, cross-calculation and cleanup](M64_PHYSICSNEMO_MESH_PILOT_20260912.md).
+The batch below remains the account of the previous step, without rental.
 
-## Décision et exécution
+## Decision and execution
 
-Option retenue : scripts déterministes, journaux privés sur disque, petits
-bilans JSON et revues humaines/IA aux jalons. **Aucun LLM ne pilote chaque pas
-du solveur.** Trois tâches d'agents bornées ont traité en parallèle le
-contre-calcul, l'exécution batch et la recherche maillage/procédé. Les agents
-consomment aussi des tokens : leurs comptes rendus sont limités aux résultats
-et références utiles, sans reprise systématique de tout l'historique.
+Option chosen: deterministic scripts, private logs on disk, small JSON
+summaries and human/AI reviews at milestones. **No LLM drives each solver
+step.** Three bounded agent tasks handled the cross-calculation, the batch
+execution and the mesh/process research in parallel. Agents also consume
+tokens: their reports are limited to useful results and references, without
+systematically replaying the whole history.
 
-Le [lot 533](M64_MIXED_CELL_CORRECTION_20260909.md#extension--533-groupes-contre-vérifiés-le-12-septembre)
-est contre-vérifié, mais reste refusé en qualité. Son natif a duré 31,842 s
-sur Kali sous quatre CPU/4 Gio : aucune justification mesurée d'une location
-pour répéter le même travail. Le contour maître reste inchangé.
+The [533 batch](M64_MIXED_CELL_CORRECTION_20260909.md#extension-533-groups-cross-checked-on-september-12)
+is cross-checked, but remains refused on quality. Its native run took 31.842 s
+on Kali under four CPUs/4 GiB: no measured justification for a rental to repeat
+the same work. The master contour remains unchanged.
 
-## Batch local disponible
+## Local batch available
 
 [`run_local_batch.py`](../../twins/m64-cylinder-head/source/run_local_batch.py)
-enchaîne une à huit commandes locales de confiance, sans shell ni retry.
-Le manifeste épingle les scripts et entrées par SHA-256 ; les imports et
-dépendances doivent être déclarés aussi. Chaque commande possède un délai,
-la campagne un plafond de 3 600 s maximum et une seconde réservée au nettoyage.
-Chaque sortie doit être neuve. Sur échec, entrée modifiée, timeout ou gate
-qui n'est pas strictement `true`, aucune étape suivante n'est lancée.
-Les journaux restent sur disque ; le bilan stdout est limité à 4 Kio.
+chains one to eight trusted local commands, without shell or retry.
+The manifest pins scripts and inputs by SHA-256; imports and dependencies must
+be declared too. Each command has a timeout, the campaign a ceiling of 3,600 s
+maximum and one second reserved for cleanup.
+Each output must be new. On failure, modified input, timeout or a gate that is
+not strictly `true`, no following step is launched.
+Logs stay on disk; the stdout summary is limited to 4 KiB.
 
-Ce runner **n'est pas une sandbox**, ne provisionne pas de machine, ne lance
-pas directement SSH/Docker et n'appelle aucune API LLM. Les phases natives
-restent dans les superviseurs de conteneurs existants avec leurs plafonds
-CPU/mémoire, entrées en lecture seule et suppression contrôlée. Le batch
-local ne doit pas être utilisé pour abandonner un calcul distant au timeout.
+This runner **is not a sandbox**, does not provision a machine, does not launch
+SSH/Docker directly and calls no LLM API. The native phases stay in the
+existing container supervisors with their CPU/memory ceilings, read-only
+inputs and controlled deletion. The local batch must not be used to abandon a
+remote computation on timeout.
 
 ```sh
 python3 twins/m64-cylinder-head/source/run_local_batch.py \
   --manifest /chemin/prive/plan.json --output /chemin/prive/sortie-neuve
 ```
 
-Format minimal du plan (les valeurs illustratives doivent être remplacées) :
+Minimal plan format (the illustrative values must be replaced):
 
 ```json
 {
@@ -57,103 +57,103 @@ Format minimal du plan (les valeurs illustratives doivent être remplacées) :
 ```
 
 [`summarize_native_mesh_gate.py`](../../twins/m64-cylinder-head/source/summarize_native_mesh_gate.py)
-relie deux reçus épinglés (natif et comparaison indépendante), vérifie les
-statuts et les neuf ensembles, puis produit seulement les comptes et le refus
-qualité. Il **ne réexécute pas l'audit** et n'exporte pas de coordonnées.
-Même un maillage accepté ne suffit pas à autoriser CFD ou fabrication.
+links two pinned receipts (native and independent comparison), checks the
+statuses and the nine sets, then produces only the counts and the quality
+refusal. It **does not rerun the audit** and does not export coordinates.
+Even an accepted mesh is not enough to authorize CFD or manufacturing.
 
-Pilote réellement exécuté le 12 septembre : huit tests du lecteur passent,
-puis les deux reçus privés sont résumés. Les deux commandes terminent avec
-code zéro ; la campagne s'arrête en **0,162 s**, code deux, motif
-`gate_not_true`, car cinq contrôles qualité restent refusés. Ce code deux
-est l'arrêt attendu de la chaîne, pas une panne de solveur. Le
-[bilan compact public](../../twins/m64-cylinder-head/evidence/low-token-mesh-gate-20260912.json)
-ne contient aucun identifiant de cellule ni coordonnée.
-Empreinte : `e7a340371015a32af418c2c78f401e20b85aa2b979d4d8403db58deb5603e2c0`.
-Supervision privée : `d55fd855d64b7c44a5b84942b339d7e457ac48618e944c9478649af46ec1e7a3`.
+Pilot actually run on September 12: eight reader tests pass, then the two
+private receipts are summarized. Both commands finish with exit code zero; the
+campaign stops in **0.162 s**, code two, reason `gate_not_true`, because five
+quality checks remain refused. This code two is the expected stop of the
+chain, not a solver failure. The
+[compact public summary](../../twins/m64-cylinder-head/evidence/low-token-mesh-gate-20260912.json)
+contains no cell identifier or coordinate.
+Digest: `e7a340371015a32af418c2c78f401e20b85aa2b979d4d8403db58deb5603e2c0`.
+Private supervision: `d55fd855d64b7c44a5b84942b339d7e457ac48618e944c9478649af46ec1e7a3`.
 
-Le premier pilote avait refusé une incohérence de type dans le lecteur
-(`unidentified_failed_families_after` est un nombre, pas une liste). Son
-échec reste conservé ; après correction et test de régression, un nouveau
-manifeste épinglé et une nouvelle sortie ont été utilisés. Aucun retry
-automatique ni nouveau calcul natif. Le runner passe 25 tests distincts :
-succès, refus de gates, mutation des entrées, délais et nettoyage.
-La relecture indépendante des deux scripts ne relève aucun bloqueur dans
-cette portée locale de confiance. `make check` complet termine avec code
-zéro ; les contrôles natifs optionnels absents restent signalés comme ignorés.
-Ces tests concernent le logiciel et le dossier, pas la qualification moteur.
+The first pilot had refused a type inconsistency in the reader
+(`unidentified_failed_families_after` is a number, not a list). Its failure is
+kept on record; after a fix and a regression test, a new pinned manifest and a
+new output were used. No automatic retry or new native computation. The runner
+passes 25 distinct tests: success, gate refusals, input mutation, timeouts and
+cleanup. The independent review of the two scripts finds no blocker within
+this trusted local scope. A full `make check` finishes with exit code zero;
+absent optional native checks remain reported as skipped.
+These tests concern the software and the dossier, not engine qualification.
 
 ```mermaid
 flowchart LR
-    A["Entrées et scripts épinglés"] --> B["Campagne locale bornée"]
-    B --> C["Journaux privés et petit bilan"]
-    C --> D{"Critère satisfait ?"}
-    D -->|non| E["Arrêt ; diagnostic ciblé"]
-    D -->|oui| F["Jalon suivant sous superviseur adapté"]
-    F --> G["Revue groupée des preuves"]
+    A["Pinned inputs and scripts"] --> B["Bounded local campaign"]
+    B --> C["Private logs and small summary"]
+    C --> D{"Criterion met?"}
+    D -->|no| E["Stop; targeted diagnosis"]
+    D -->|yes| F["Next milestone under suitable supervisor"]
+    F --> G["Grouped review of the evidence"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class E stop;
 ```
 
-## Tokens et argent : plafonds, pas promesse de produit fini
+## Tokens and money: ceilings, not a promise of a finished product
 
-- Objectif de planification : **quatre revues de 15 000 tokens maximum chacune**,
-  soit 60 000 tokens envisagés, agents inclus : géométrie, physique,
-  fabrication, dossier final. Ce n'est **pas un limiteur Codex/API installé** ;
-  le runner n'appelle pas OpenAI. Les calculs/scripts ne consomment pas de
-  tokens LLM par itération. Une réduction totale en pourcentage n'est pas mesurée.
-- Plafond utilisateur : **38 USD au total**, avec allocation de travail
-  proposée de 32 USD et réserve de 6 USD pour transferts/stockage/nettoyage.
-  Pas 38 USD par agent. Cette allocation n'est pas un nouveau portefeuille
-  fournisseur ni une protection contre des dépenses d'autres utilisateurs.
-- Avant chaque location : bilan courant via le wrapper OpenBao, absence de
-  doublon, image `linux/amd64` par digest, paire SSH vérifiée, association de
-  clé attendue, charge prête et watchdog externe armé. Ne pas contourner les
-  limites plus strictes du wrapper existant (pilote PicoGK ≤4 USD).
-- Les offres observées le 12 septembre proposaient notamment 32 CPU effectifs,
-  environ 128 Go et une RTX 5070 à 0,678 USD/h, ou 40 CPU effectifs,
-  environ 127 Go et une A100 à 0,709 USD/h. Ce sont des instantanés
-  `dph_total`, **pas des réservations ni des devis complets** ; vérifier
-  stockage alloué et tarifs de transfert sur l'offre exacte avant création.
-- Exemple de cadrage, pas de réservation : 12 h à 0,709 USD/h ≈8,51 USD
-  hors transferts/ajustements. Aucun matériel n'est loué dans ce lot.
-  [Vast facture le stockage même à l'arrêt](https://docs.vast.ai/guides/reference/billing) :
-  collecter les résultats puis supprimer l'instance, pas simplement l'arrêter.
+- Planning objective: **four reviews of 15,000 tokens maximum each**, i.e.
+  60,000 tokens envisaged, agents included: geometry, physics, manufacturing,
+  final dossier. This is **not an installed Codex/API limiter**; the runner
+  does not call OpenAI. The computations/scripts consume no LLM tokens per
+  iteration. A total percentage reduction is not measured.
+- User ceiling: **38 USD in total**, with a proposed working allocation of
+  32 USD and a reserve of 6 USD for transfers/storage/cleanup.
+  Not 38 USD per agent. This allocation is neither a new provider wallet nor a
+  protection against spending by other users.
+- Before each rental: current balance via the OpenBao wrapper, absence of
+  duplicates, `linux/amd64` image by digest, verified SSH pair, expected key
+  association, ready workload and armed external watchdog. Do not bypass the
+  stricter limits of the existing wrapper (PicoGK pilot ≤4 USD).
+- The offers observed on September 12 included 32 effective CPUs, about
+  128 GB and an RTX 5070 at 0.678 USD/h, or 40 effective CPUs, about 127 GB and
+  an A100 at 0.709 USD/h. These are `dph_total` snapshots, **not reservations
+  or complete quotes**; check allocated storage and transfer rates on the exact
+  offer before creation.
+- Framing example, not a reservation: 12 h at 0.709 USD/h ≈ 8.51 USD excluding
+  transfers/adjustments. No hardware is rented in this batch.
+  [Vast bills storage even when stopped](https://docs.vast.ai/guides/reference/billing):
+  collect the results then delete the instance, do not merely stop it.
 
-## Recherche ciblée : décision technique
+## Targeted research: technical decision
 
-Sources primaires consultées le 12 septembre ; la nouveauté seule n'est pas
-un critère de remplacement d'une méthode vérifiée.
+Primary sources consulted on September 12; novelty alone is not a criterion
+for replacing a verified method.
 
-| Piste | Ce qu'elle apporte et décision pour le M64 |
+| Avenue | What it brings and decision for the M64 |
 |---|---|
-| [PhysicsNeMo-Mesh, publication NVIDIA du 7 avril 2026](https://nvidia.github.io/physicsnemo/blog/2026/04/07/physicsnemo-mesh/) | Opérations de géométrie, voisinage et calcul discret sur GPU, maillages simpliciaux. Candidat au traitement de surfaces/tétras en lots ; ne pas y convertir aveuglément le polyMesh hybride ni appeler ses sorties une preuve OpenFOAM. Benchmark CPU/GPU seulement après adaptateur testé ; non installé dans ce lot. |
-| [Gmsh/HXT](https://gmsh.info/doc/texinfo/gmsh.html#Choosing-the-right-unstructured-algorithm) | Parallélisation CPU/OpenMP. HXT a déjà été essayé sur le cœur ; répéter le même maillage avec plus de RAM ne corrige pas ses petites facettes de frontière. Aucun nouveau HXT lancé. |
-| [fTetWild](https://github.com/wildmeshing/fTetWild) | Tétraédralisation robuste dans une enveloppe d'approximation, licence MPL-2.0, article de 2020. Pas un correcteur hybride conservant exactement nos interfaces. Écart géométrique admissible à définir avant tout essai ; le défaut ε=diagonale/1000 n'est pas une tolérance moteur. Non retenu pour remplacer le maître. |
-| [TMOP/MFEM, Camier et al., 2022](https://arxiv.org/pdf/2205.12721) | Optimisation par déplacement de nœuds et assemblage partiel GPU ; fonctions de qualité et limitation des déplacements. Papier méthodologique ancien, pas avancée nouvelle de septembre 2026. Un changement de représentation/adaptateur serait nécessaire pour nos polyèdres ; les gains publiés ne sont pas des performances mesurées sur cette culasse. |
+| [PhysicsNeMo-Mesh, NVIDIA post of April 7, 2026](https://nvidia.github.io/physicsnemo/blog/2026/04/07/physicsnemo-mesh/) | Geometry, neighborhood and discrete computation operations on GPU, simplicial meshes. Candidate for batch processing of surfaces/tets; do not blindly convert the hybrid polyMesh into it nor call its outputs OpenFOAM evidence. CPU/GPU benchmark only after a tested adapter; not installed in this batch. |
+| [Gmsh/HXT](https://gmsh.info/doc/texinfo/gmsh.html#Choosing-the-right-unstructured-algorithm) | CPU/OpenMP parallelization. HXT has already been tried on the core; repeating the same mesh with more RAM does not fix its small boundary facets. No new HXT run launched. |
+| [fTetWild](https://github.com/wildmeshing/fTetWild) | Robust tetrahedralization within an approximation envelope, MPL-2.0 license, 2020 paper. Not a hybrid fixer that exactly preserves our interfaces. Admissible geometric deviation to be defined before any trial; the default ε=diagonal/1000 is not an engine tolerance. Not retained to replace the master. |
+| [TMOP/MFEM, Camier et al., 2022](https://arxiv.org/pdf/2205.12721) | Optimization by node displacement and partial GPU assembly; quality functions and displacement limiting. Older methodological paper, not a new September 2026 advance. A representation change/adapter would be needed for our polyhedra; the published gains are not performance measured on this cylinder head. |
 
-PhysicsNeMo comme modèle réduit et Qwen/vLLM comme assistant restent facultatifs.
-Un modèle réduit devra être évalué sur des cas de référence séparés ; aucun
-entraînement sur le limiteur de température ne transforme celui-ci en physique.
-Un LLM ne sera loué qu'après définition d'une tâche test et comparaison avec
-le script seul, temps de chargement et coût inclus. Aucun nouveau serveur LLM
-n'est installé par ce lot.
+PhysicsNeMo as a reduced model and Qwen/vLLM as an assistant remain optional.
+A reduced model will have to be evaluated on separate reference cases; no
+training on the temperature limiter turns it into physics.
+An LLM will be rented only after defining a test task and comparing with the
+script alone, loading time and cost included. No new LLM server is installed
+by this batch.
 
-## Prochains lots bornés
+## Next bounded batches
 
-1. **Géométrie** : traiter les petites facettes/arêtes de frontière à l'origine
-   des défauts persistants, sur les mêmes surfaces CAO et avec contrôle des
-   raccords. Ne pas réexécuter les variantes HXT/Relocate déjà refusées sur
-   entrées identiques. Les résultats 533 restent une base diagnostic, pas un
-   maillage approuvé.
-2. **Procédé indépendant** : isoler la quadrature de source sur le coupon F58
-   existant, thermique seul, fenêtre commune 0–40 µs à 25 ns. Comparer
-   `nPoints=(10,10,10)` et `(20,20,20)` sans changer laser, matériau ou limiteur.
-   Le code épinglé de `movingHeatSource.C` normalise l'énergie uniquement si
-   `abs(1-sumWeights/V0)<0.05` : cette sensibilité numérique mérite un test,
-   sans présumer qu'elle explique les 3 300 K. Pilote proposé : deux CPU,
-   4 Gio, 600 s nettoyage inclus, arrêt unique, pas de GPU justifié.
-   Vérifier la recette dérivée et les références avant lancement ; ce pilote
-   n'est **pas exécuté** dans le présent dossier.
-3. **Après admission des domaines** : lancer thermique puis résistance et
-   contrôles de fabrication avec transferts traçables. Les interfaces moteur,
-   propriétés à chaud, fatigue, fabrication réelle et corrélation au banc
-   restent distinctes. Aucun budget de 38 USD ne garantit leur clôture.
+1. **Geometry**: treat the small boundary facets/edges behind the persistent
+   defects, on the same CAD surfaces and with a check of the junctions. Do not
+   rerun the HXT/Relocate variants already refused on identical inputs. The
+   533 results remain a diagnostic base, not an approved mesh.
+2. **Independent process**: isolate the source quadrature on the existing F58
+   coupon, thermal only, common window 0–40 µs at 25 ns. Compare
+   `nPoints=(10,10,10)` and `(20,20,20)` without changing laser, material or
+   limiter. The pinned code of `movingHeatSource.C` normalizes the energy only
+   if `abs(1-sumWeights/V0)<0.05`: this numerical sensitivity deserves a test,
+   without presuming it explains the 3,300 K. Proposed pilot: two CPUs,
+   4 GiB, 600 s including cleanup, single stop, no GPU justified.
+   Check the derived recipe and the references before launch; this pilot is
+   **not run** in the present dossier.
+3. **After admission of the domains**: run thermal then strength and
+   manufacturing checks with traceable transfers. Engine interfaces, hot
+   properties, fatigue, real manufacturing and bench correlation remain
+   separate. No 38 USD budget guarantees closing them.

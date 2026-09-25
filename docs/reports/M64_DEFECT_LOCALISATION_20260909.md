@@ -1,141 +1,144 @@
-# M64 — défauts OpenFOAM localisés, sans modification du contour
+# M64 — OpenFOAM defects localized, without modifying the outline
 
-**L'export natif des défauts et leur attribution aux cellules sources sont
-terminés. Les cinq familles de qualité restent refusées. Ce lot corrige le
-lecteur de correspondance, pas la culasse ni son maillage.**
+**The native export of the defects and their attribution to the source cells are
+complete. The five quality families remain rejected. This batch corrects the
+correspondence reader, not the cylinder head or its mesh.**
 
-Le domaine gazeux de [785 883 cellules](M64_HYBRID_OPENFOAM_20260909.md)
-est repris exactement tel que sauvegardé. Aucun `gmshToFoam`, changement
-d'échelle, solveur CFD, calcul thermique ou calcul d'impression n'est relancé.
-Le maître CAO et la silhouette Porsche ne changent pas.
+The gas domain of [785,883 cells](M64_HYBRID_OPENFOAM_20260909.md)
+is taken over exactly as saved. No `gmshToFoam`, rescaling,
+CFD solver, thermal computation or print computation is rerun.
+The CAD master and the Porsche silhouette do not change.
 
-## Résultat utile pour choisir la correction
+## Result useful for choosing the correction
 
-| Ensemble natif | Attribution effectivement vérifiée |
+| Native set | Attribution actually verified |
 |---|---|
-| 2 305 cellules à faible déterminant | Toutes tétraédriques ; 2 ont une face interne, 465 en ont deux, 867 trois et 971 quatre. |
-| 10 cellules très allongées | Toutes tétraédriques ; toutes appartiennent aussi aux 2 305 précédentes. |
-| 18 faces à skewness excessive | Toutes sur `walls`, adjacentes à des tétraèdres. |
-| 1 491 faces à faible poids d'interpolation | 1 301 entre tétraèdres ; **190 entre hexaèdre et pyramide**. |
-| 137 faces à faible rapport de volumes | Toutes entre tétraèdres ; toutes également à faible poids. |
-| 3 545 faces au-delà de 70° de non-orthogonalité | 3 126 entre tétraèdres ; **419 parmi les 1 536 raccords tétraèdre/pyramide**. |
-| Ensemble `shortEdges` | **5 identifiants de points**, incidents à 15 tétraèdres. Ce fichier n'est pas une liste de cinq identifiants d'arêtes. |
+| 2,305 low-determinant cells | All tetrahedral; 2 have one internal face, 465 have two, 867 three and 971 four. |
+| 10 highly elongated cells | All tetrahedral; all also belong to the preceding 2,305. |
+| 18 faces with excessive skewness | All on `walls`, adjacent to tetrahedra. |
+| 1,491 faces with low interpolation weight | 1,301 between tetrahedra; **190 between hexahedron and pyramid**. |
+| 137 faces with low volume ratio | All between tetrahedra; all also low-weight. |
+| 3,545 faces beyond 70° non-orthogonality | 3,126 between tetrahedra; **419 among the 1,536 tetrahedron/pyramid junctions**. |
+| `shortEdges` set | **5 point identifiers**, incident to 15 tetrahedra. This file is not a list of five edge identifiers. |
 
-Les ensembles peuvent se chevaucher et ne s'additionnent pas en un nombre
-total de cellules défectueuses. Aucune des faces à faible poids n'est sur
-un raccord tétraèdre/pyramide ; il ne faut pas confondre ce raccord avec
-la base hexaèdre/pyramide. Parmi les cellules à faible déterminant,
-416 touchent 446 faces de raccord tétraèdre/pyramide.
+The sets can overlap and do not add up to a total number
+of defective cells. None of the low-weight faces lies on
+a tetrahedron/pyramid junction; this junction must not be confused with
+the hexahedron/pyramid base. Among the low-determinant cells,
+416 touch 446 tetrahedron/pyramid junction faces.
 
-Le [déterminant OpenFOAM](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C)
-est construit à partir des normales des faces internes ou couplées, pas du
-Jacobien volumique du tétraèdre. Ici, les patches sont non couplés : les
-**467 cellules n'ayant qu'une ou deux faces internes** ne peuvent fournir
-trois directions indépendantes. Cela explique une incapacité de rang pour
-ce sous-ensemble, mais **pas les 1 838 autres cellules**, ni les quatre autres
-familles refusées. Le tenseur natif n'est pas recalculé par cette attribution.
-Les volumes positifs constatés précédemment ne suffisent pas à accepter la CFD.
+The [OpenFOAM determinant](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C)
+is built from the normals of the internal or coupled faces, not from the
+volumetric Jacobian of the tetrahedron. Here the patches are uncoupled: the
+**467 cells with only one or two internal faces** cannot provide
+three independent directions. This explains a rank deficiency for
+this subset, but **not the 1,838 other cells**, nor the four other
+rejected families. The native tensor is not recomputed by this attribution.
+The positive volumes observed earlier are not enough to accept the CFD.
 
-## Export natif exécuté sur une copie, en 12,148 secondes
+## Native export executed on a copy, in 12.148 seconds
 
-La seule commande native est :
+The only native command is:
 
 ```sh
 checkMesh -allTopology -allGeometry -writeSurfaces -writeSets -surfaceFormat vtk
 ```
 
-La version est **OpenFOAM Foundation 14-7b05503f98a8**, image x86 locale
-épinglée. Le conteneur sur Kali est limité à quatre CPU et 4 Gio, sans réseau,
-avec le cas source en lecture seule. L'outil reste sériel (`nProcs: 1`).
-Les sept ensembles attendus sont retrouvés avec leurs classes et comptes.
-Les identifiants proviennent des `cellSet`, `faceSet` et `pointSet` ASCII,
-**pas des enveloppes VTK**, qui ne prouvent pas à elles seules les IDs source.
+The version is **OpenFOAM Foundation 14-7b05503f98a8**, pinned local x86
+image. The container on Kali is limited to four CPUs and 4 GiB, without network,
+with the source case read-only. The tool remains serial (`nProcs: 1`).
+The seven expected sets are found with their classes and counts.
+The identifiers come from the ASCII `cellSet`, `faceSet` and `pointSet`,
+**not from the VTK envelopes**, which do not by themselves prove the source IDs.
 
-`checkMesh` prend 10,896 s ; le processus complet, nettoyage compris, 12,148 s.
-Il termine sans timeout ni OOM. L'export est réussi, mais le journal conserve
-`Failed 5 mesh checks`. Le code 0 du superviseur signifie ici
-**export terminé et conteneur nettoyé**, pas maillage accepté. Les 29 fichiers
-d'origine, dont les six fichiers `polyMesh`, sont inchangés. Les 19 fichiers
-ajoutés sont des exports et un nouveau journal. Le conteneur exact est supprimé
-et son absence revérifiée. **Aucune nouvelle dépense Vast.**
+`checkMesh` takes 10.896 s; the complete process, cleanup included, 12.148 s.
+It finishes without timeout or OOM. The export succeeded, but the log keeps
+`Failed 5 mesh checks`. The supervisor's exit code 0 means here
+**export complete and container cleaned up**, not mesh accepted. The 29 original
+files, including the six `polyMesh` files, are unchanged. The 19 files
+added are exports and a new log. The exact container is removed
+and its absence rechecked. **No new Vast spending.**
 
-## Correspondance MSH → OpenFOAM : première hypothèse corrigée
+## MSH → OpenFOAM correspondence: first assumption corrected
 
-Le premier lecteur refuse au point OpenFOAM 1029 / MSH 1030, axe 2, en
-2,693 s. Il supposait une écriture à 12 chiffres avant et après mise à l'échelle.
-Son script et son reçu de refus sont conservés ; le maillage n'est pas modifié.
+The first reader rejects at OpenFOAM point 1029 / MSH 1030, axis 2, in
+2.693 s. It assumed a 12-digit write before and after scaling.
+Its script and its rejection receipt are kept; the mesh is not modified.
 
-Le code officiel force une précision supérieure lors de l'écriture des points
-par [polyMesh](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/polyMesh/polyMeshIO.C#L553-L561).
-Les fonctions [fullPrecision/highPrecision](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/db/IOstreams/IOstreams/IOstream.C#L82-L95)
-et l'écriture directe de [transformPoints](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/applications/utilities/mesh/manipulation/transformPoints/transformPoints.C)
-justifient, pour ce cas double précision, la séquence **15 → multiplication
-binary64 par 0,001 → 12 → réécriture 15**.
+The official code forces a higher precision when writing points
+through [polyMesh](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/polyMesh/polyMeshIO.C#L553-L561).
+The [fullPrecision/highPrecision](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/db/IOstreams/IOstreams/IOstream.C#L82-L95)
+functions and the direct write of [transformPoints](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/applications/utilities/mesh/manipulation/transformPoints/transformPoints.C)
+justify, for this double-precision case, the sequence **15 → binary64
+multiplication by 0.001 → 12 → rewrite at 15**.
 
-La correction se limite à ce modèle numérique. **Aucune tolérance de
-rapprochement ni recherche géométrique approximative n'est ajoutée.** Le second
-lecteur retrouve les 223 155 points dans l'ordre source, les faces complètes
-des 785 883 cellules par bijection et les orientations owner/neighbour.
-Les 99 470 faces externes et leurs rôles concordent ; les 1 536 interfaces
-tétraèdre/pyramide sont internes. Le contrôle prend 28,895 s.
+The correction is limited to this numerical model. **No matching
+tolerance or approximate geometric search is added.** The second
+reader finds the 223,155 points in source order, the complete faces
+of the 785,883 cells by bijection, and the owner/neighbour orientations.
+The 99,470 external faces and their roles agree; the 1,536
+tetrahedron/pyramid interfaces are internal. The check takes 28.895 s.
 
-L'écart maximal avec une multiplication directe sans sérialisation est
-5,003 × 10⁻¹³ dans le repère numérique mis à l'échelle. Ce nombre caractérise
-la chaîne d'écriture, **pas la précision du scan**. Les `cellZones` OpenFOAM,
-les paramètres UV/classes de nœuds, l'identité CAO et l'absence globale de
-recouvrement ne sont pas certifiés par ce lecteur.
+The maximum deviation from a direct multiplication without serialization is
+5.003 × 10⁻¹³ in the scaled numerical frame. This number characterizes
+the write chain, **not the accuracy of the scan**. The OpenFOAM `cellZones`,
+the UV parameters/node classes, the CAD identity and the global absence of
+overlap are not certified by this reader.
 
-## Carte diagnostique et suite ciblée
+## Diagnostic map and targeted next step
 
-L'attribution indépendante prend 8,449 s. Elle relit tous les IDs natifs,
-recompte les faces internes et recoupe les 1 536 interfaces. Les sorties
-privées fournissent tous les marqueurs et la frontière réelle, sans
-sous-échantillonnage des défauts. La visualisation utilise deux projections
-orthographiques à échelles identiques entre lignes ; elle montre **le domaine
-d'air**, pas la culasse métallique. Les marqueurs de faces/cellules sont
-les moyennes des sommets uniques, pas les centroïdes natifs pondérés.
-Les axes restent en unités du scan, non certifiées. Ni couleurs thermiques
-ni performances moteur ne sont inventées. Les maillages, coordonnées et
-dérivés géométriques restent privés conformément aux règles du dépôt.
+The independent attribution takes 8.449 s. It rereads all native IDs,
+recounts the internal faces and cross-checks the 1,536 interfaces. The private
+outputs provide all markers and the real boundary, without
+subsampling the defects. The visualization uses two orthographic
+projections with identical scales across rows; it shows **the air
+domain**, not the metal cylinder head. The face/cell markers are
+the means of the unique vertices, not the weighted native centroids.
+The axes remain in scan units, not certified. Neither thermal colors
+nor engine performance are invented. The meshes, coordinates and
+geometric derivatives remain private in accordance with the repository rules.
 
-La correction doit distinguer les tétraèdres du cœur, les faces de paroi et
-les transitions hexaèdre/pyramide. Une simple fusion de tétraèdres ne change
-pas les deux cellules adjacentes aux 190 transitions hexaèdre/pyramide.
-Le prochain calcul doit mesurer leurs distances projetées face-centres,
-leurs volumes et la géométrie des couches avant de choisir une redistribution.
-Pour les tétras à rang insuffisant, une agglomération locale reste une option
-à éprouver, avec contrôle des voisins et du
-[prédicat de concavité natif](M64_AGGLOMERATION_LOCALE_20260908.md).
-Aucune sélection nouvelle ni transformation correctrice n'est exécutée ici.
+The correction must distinguish the core tetrahedra, the wall faces and
+the hexahedron/pyramid transitions. A simple merge of tetrahedra does not change
+the two cells adjacent to the 190 hexahedron/pyramid transitions.
+The next computation must measure their projected face-center distances,
+their volumes and the layer geometry before choosing a redistribution.
+For the rank-deficient tets, a local agglomeration remains an option
+to be tried, with a check of the neighbors and of the
+[native concavity predicate](M64_AGGLOMERATION_LOCALE_20260908.md).
+No new selection or corrective transformation is executed here.
 
 ```mermaid
 flowchart TD
-    A["polyMesh sauvegardé : 785 883 cellules"] --> B["Copie vérifiée et export natif des défauts"]
-    A --> C["MSH ↔ OpenFOAM : correspondance complète vérifiée"]
-    B --> D["Attribution des IDs et carte diagnostique réelles"]
+    A["Saved polyMesh: 785,883 cells"] --> B["Verified copy and native defect export"]
+    A --> C["MSH ↔ OpenFOAM: full correspondence verified"]
+    B --> D["Real ID attribution and diagnostic map"]
     C --> D
-    D --> E["Cœur tétra : rang, allongement et volumes"]
-    D --> F["190 transitions hexa/pyramide : poids faible"]
-    D --> G["18 faces de paroi : skewness"]
-    E --> H["Correction locale à tester ; contour préservé"]
+    D --> E["Tet core: rank, elongation and volumes"]
+    D --> F["190 hex/pyramid transitions: low weight"]
+    D --> G["18 wall faces: skewness"]
+    E --> H["Local correction to be tested; outline preserved"]
     F --> H
     G --> H
-    H --> I["Contre-audit puis nouveau checkMesh, sans réduire les seuils"]
-    D --> J["CFD, thermique, résistance, LPBF et 700 ch non validés"]
+    H --> I["Counter-audit then new checkMesh, without lowering thresholds"]
+    D --> J["CFD, thermal, strength, LPBF and 700 hp not validated"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class J stop;
 ```
 
-La pile de la photo reste pertinente avec les
-[rôles séparés documentés](M64_HYBRID_OPENFOAM_20260909.md#rôle-des-logiciels-de-la-photo).
-Ditto/MQTT ne corrigent pas un maillage ; PhysicsNeMo ne constitue pas un
-contre-calcul indépendant lorsqu'il apprend les mêmes résultats non qualifiés.
+The software stack in the photo remains relevant with the
+separate roles documented in the [hybrid OpenFOAM report](M64_HYBRID_OPENFOAM_20260909.md)
+(section on the role of the software in the photo).
+Ditto/MQTT do not correct a mesh; PhysicsNeMo does not constitute an
+independent cross-check when it learns the same unqualified results.
 
-Les tests ciblés passent : 20 pour l'export/supervision, 18 pour le lecteur
-corrigé et 13 pour l'attribution, soit **51 tests**. Les 17 tests de la première
-version du lecteur étaient également passés : le vrai cas a donc été essentiel
-pour découvrir son hypothèse fausse. `make check` termine avec le code 0 ;
-certains tests natifs optionnels sont ignorés selon les dépendances présentes.
-Ces contrôles logiciels ne sont pas des essais de résistance ou d'impression.
-Les empreintes sont dans le
-[registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_hybrid_defect_localization`. Aucun résultat de ce lot ne libère
-une culasse à imprimer ou à monter sur moteur.
+The targeted tests pass: 20 for export/supervision, 18 for the corrected
+reader and 13 for the attribution, i.e. **51 tests**. The 17 tests of the first
+version of the reader had also passed: the real case was therefore essential
+to uncover its false assumption. `make check` finishes with exit code 0;
+some optional native tests are skipped depending on the dependencies present.
+These software checks are not strength or print tests.
+The digests are in the
+[evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_hybrid_defect_localization`. No result of this batch releases
+a cylinder head for printing or for fitting to an engine.
