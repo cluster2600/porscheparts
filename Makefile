@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-screen-sections-check parts-table-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -1090,7 +1090,7 @@ engine-components:
 	python3 twins/reference-917-engine/source/validate_engine_solver_authority_f46.py --project-root .
 	python3 tests/test_917_engine_solver_authority_f46.py -v
 	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . check
-	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller/preparation-report.json
+	python3 deploy/vast/f46/_f46_controller.py --contract twins/reference-917-engine/f46-vast-cfd-cae-controller.json --jobs twins/reference-917-engine/f46-vast-job-manifest.json --root . preparation-report --check-report twins/reference-917-engine/evidence/f46-vast-controller-20260925/preparation-report.json
 	python3 tests/test_917_f46_vast_controller.py -v
 
 917-f47-cfd-cae-image-check:

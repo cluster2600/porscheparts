@@ -1,5 +1,9 @@
 # M64 G3 — portées concordantes et détection des fuites latérales
 
+Suite : [G4 — fonds de ressorts et débouchés corrigés](M64_G4_SPRING_LAYOUT_20260925.md).
+Le contrôle G4 du disque de fond complet invalide le seul contrôle de centre utilisé ici ;
+les résultats G3 restent des observations historiques, pas un verdict actuel de fabricabilité.
+
 La [PR #72](https://github.com/cluster2600/porscheparts/pull/72) a été fusionnée le 25 septembre,
 commit `7fe668b`. Cette suite remplace, en option, les contacts siège/soupape par des faces coniques
 concordantes. **Gabarit et corps de culasse G2 inchangés ; aucune autorisation de fabrication.**
