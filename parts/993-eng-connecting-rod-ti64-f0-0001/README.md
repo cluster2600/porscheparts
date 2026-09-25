@@ -6,13 +6,16 @@
 
 **`993-ENG-CONNECTING-ROD-TI64-F0-0001`** · Porsche 993 · 1993–1998
 
-![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
+![status: concept, display mock-up printable](https://img.shields.io/badge/status-concept,%20display%20mock--up%20printable-orange) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: LPBF](https://img.shields.io/badge/candidate%20process-LPBF-lightgrey)
 
 </div>
 
+> [!WARNING]
+> **A 1:1 display mock-up is printable — never for use.** [`print/`](print/README.md): the design, unchanged except for MOCK-UP / NOT FOR USE engraved in it, sliced in 4h 57m 5s (51.22 cm³). The part itself stays prohibited ([decision 0011](../../docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
+
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** The model shown here is a
-> concept block for studying the part in software:
+> **Prohibited, not validated, and not a copy of the original.** The mock-up is a display piece; the model shown here is a
+> design whose fit has not been checked against the car:
 > - validation status `concept`: nothing has been checked against a real part;
 > - geometry `mixed`: its dimensions are partly sourced, partly assumed, not measured on the original part;
 > - safety class `prohibited_pending_engineering`;
@@ -27,9 +30,9 @@ The original part is documented — pictures, catalogue entries or published dat
 ↗ <a href="https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php">elferclassic - 993 Turbo technical data</a><br>
 </td>
 <td width="50%" valign="top" align="center">
-<b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for 993/993 Turbo connecting rod, Ti64 F0 topology concept" width="340"><br>
-<sub>Concept CAD block, 186.0 × 84.0 × 19.6 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<b>What you can print: a display mock-up</b><br><br>
+<a href="print/README.md"><img src="print/mockup.png" alt="Engraved display mock-up of 993/993 Turbo connecting rod, Ti64 F0 topology concept" width="360"></a><br>
+<sub>1:1 display mock-up with MOCK-UP / NOT FOR USE engraved in it. <b>Never</b> for an engine; not the original part.</sub>
 </td>
 </tr></table>
 
@@ -90,6 +93,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Screens and evidence images
+
+![mockup](print/mockup.png)
+
+*`print/mockup.png` — a screening output, not a validation.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
@@ -97,7 +106,8 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/connecting_rod_ti64_f0.step`](derived/connecting_rod_ti64_f0.step), [`derived/connecting_rod_ti64_f0.stl`](derived/connecting_rod_ti64_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/connecting_rod.py`](source/connecting_rod.py) |
+| `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/connecting_rod_f0_mockup.3mf`](print/connecting_rod_f0_mockup.3mf), [`print/connecting_rod_f0_mockup.step`](print/connecting_rod_f0_mockup.step), [`print/connecting_rod_f0_mockup.stl`](print/connecting_rod_f0_mockup.stl), [`print/mockup.png`](print/mockup.png), [`print/print.json`](print/print.json) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/connecting_rod.py`](source/connecting_rod.py), [`source/export_mockup.py`](source/export_mockup.py), [`source/render_mockup.py`](source/render_mockup.py) |
 
 ## Read more
 

@@ -299,8 +299,10 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     out = [ENTETE, "", '<div align="center">', "", f"# {nom(fiche)}", "",
            f"**`{part_id}`** · Porsche {vehicule.get('generation', '?')}"
            + (f" · {annees.get('from')}–{annees.get('to')}" if annees else ""), "",
-           " ".join([badge("status", f"{niveau}, printable" if impression else
+           " ".join([badge("status", f"{niveau}, display mock-up printable" if (impression or {}).get("kind") == "mockup" else
+                           f"{niveau}, printable" if impression else
                            (f"{niveau}, fit-test kit ready" if kit else f"{niveau}, not a print file"),
+                           "orange" if (impression or {}).get("kind") == "mockup" else
                            "success" if (kit or impression) else "critical"),
                      badge("safety", STATUTS.get(classe, classe).strip("*"), couleur),
                      badge("candidate process", PROCEDES.get(procede, procede), "lightgrey")]), "",
@@ -317,7 +319,16 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                           else "partly sourced, partly assumed")
                        + ", not measured on the original part")
     raisons.append(f"safety class `{classe}`")
-    if impression:
+    maquette = impression if impression and impression.get("kind") == "mockup" else None
+    if maquette:
+        s = maquette.get("sliced", {})
+        out += ["> [!WARNING]",
+                "> **A 1:1 display mock-up is printable — never for use.** [`print/`](print/README.md): "
+                f"the design, unchanged except for MOCK-UP / NOT FOR USE engraved in it, sliced in {s.get('time', '?')} "
+                f"({s.get('filament_cm3', '?')} cm³). The part itself stays prohibited "
+                f"([decision 0011]({lien(ROOT / 'docs' / 'decisions' / '0011-printable-display-mockups-of-prohibited-parts.md', page)})).",
+                ""]
+    elif impression:
         s = impression.get("sliced", {})
         out += ["> [!TIP]",
                 "> **This part is ready to print** — [`print/`](print/README.md): the repository's own "
@@ -334,7 +345,9 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                 f"([decision 0009]({lien(ROOT / 'docs' / 'decisions' / '0009-first-fit-test-print-switch-blank.md', page)})).",
                 ""]
     out += ["> [!CAUTION]",
-            ("> **Printable, but not validated, and not a copy of the original.** The model shown "
+            ("> **Prohibited, not validated, and not a copy of the original.** The mock-up is a display "
+             "piece; the model shown here is a" if (impression or {}).get("kind") == "mockup" else
+             "> **Printable, but not validated, and not a copy of the original.** The model shown "
              "here is a" if impression else
              "> **The part itself is not validated, and not a copy of the original.** The model shown "
              "here is a" if kit else
@@ -361,6 +374,11 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                   f'<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit, three sizes" width="360"></a><br>',
                   "<sub>The fit-test kit: three sizes that bracket the declared opening. A measurement "
                   "instrument — <b>not</b> the finished part, not a copy of the original.</sub>"]
+    elif maquette and (dossier / "print" / "mockup.png").exists():
+        droite = ["<b>What you can print: a display mock-up</b><br><br>",
+                  f'<a href="print/README.md"><img src="print/mockup.png" alt="Engraved display mock-up of {nom(fiche)}" width="360"></a><br>',
+                  "<sub>1:1 display mock-up with MOCK-UP / NOT FOR USE engraved in it. <b>Never</b> for an "
+                  "engine; not the original part.</sub>"]
     elif impression and apercu.exists():
         droite = ["<b>This repository's design — what prints</b><br><br>",
                   f'<a href="print/README.md"><img src="media/preview.png" alt="Printable design of {nom(fiche)}" width="340"></a><br>',
@@ -368,7 +386,8 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                   "original part; fit on the car not checked.</sub>"]
     else:
         droite = ["<b>This repository's concept model</b><br><br>"]
-    if (kit and plaque.exists()) or (impression and apercu.exists()):
+    if (kit and plaque.exists()) or (impression and apercu.exists()) or \
+            (maquette and (dossier / "print" / "mockup.png").exists()):
         pass
     elif apercu.exists():
         taille = f"{boite[0]} × {boite[1]} × {boite[2]} mm" if boite else ""
