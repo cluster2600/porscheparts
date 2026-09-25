@@ -98,6 +98,10 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 
 *`parts/993-eng-connecting-rod-ti64-f0-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
 
+![mockup](../../parts/993-eng-connecting-rod-ti64-f0-0001/print/mockup.png)
+
+*`parts/993-eng-connecting-rod-ti64-f0-0001/print/mockup.png` — a screening output, not a validation.*
+
 ## Provenance and sources
 
 | field | value |

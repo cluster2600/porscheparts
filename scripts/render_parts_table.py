@@ -77,8 +77,10 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
         dossier = f"parts/{d['part_id'].lower()}"
         if (ROOT / dossier / "media" / "preview.png").exists():
             libelle = court(nom(d).split(",")[0], 34)
-            if (ROOT / dossier / "print" / "print.json").exists():
-                libelle = "🖨️ " + libelle
+            pj = ROOT / dossier / "print" / "print.json"
+            if pj.exists():
+                libelle = ("🧩 " if json.loads(pj.read_text(encoding="utf-8")).get("kind") == "mockup"
+                           else "🖨️ ") + libelle
             tuiles.append(f'<td align="center" width="16%"><a href="{dossier}/">'
                           f'<img src="{dossier}/media/preview.png" alt="{libelle}" width="130"><br>'
                           f"<sub>{libelle}</sub></a></td>")
@@ -89,13 +91,18 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
     etat = (f"{len(fiches)} of {len(fiches)} records are at `concept`" if niveaux == {"concept"}
             else "see each record's validation status")
     etat += f", and {mesurees} of {len(fiches)} have measured geometry"
-    prets = [nom(d).split(",")[0] for _, d in fiches
-             if (ROOT / "parts" / d["part_id"].lower() / "print" / "print.json").exists()]
-    imprimables = (f"Printable as designed, fit unchecked: {', '.join(prets)} "
-                   "(see its `print/` folder)." if prets else "None is a print file.")
+    def genre(d):
+        f = ROOT / "parts" / d["part_id"].lower() / "print" / "print.json"
+        return json.loads(f.read_text(encoding="utf-8")).get("kind") if f.exists() else None
+    prets = [nom(d).split(",")[0] for _, d in fiches if genre(d) == "part_print"]
+    maquettes = [nom(d).split(",")[0] for _, d in fiches if genre(d) == "mockup"]
+    imprimables = " ".join(filter(None, [
+        f"🖨️ Printable as designed, fit unchecked: {', '.join(prets)}." if prets else "",
+        f"🧩 Printable as an engraved display mock-up, never for use: {', '.join(maquettes)}." if maquettes else "",
+    ])) or "None is a print file."
     out = ["> [!CAUTION]",
            "> These are concept models for studying parts in software, not validated parts."
-           + (" One of them, marked 🖨️, is published as a printable file." if any(
+           + (" 🖨️ marks a printable design, 🧩 an engraved display mock-up (never for use)." if any(
                (ROOT / "parts" / d["part_id"].lower() / "print" / "print.json").exists() for _, d in fiches)
               else " None is ready to print."),
            "", "<table>"]
