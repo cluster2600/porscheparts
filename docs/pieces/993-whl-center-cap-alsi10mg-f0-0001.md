@@ -91,7 +91,7 @@ Catalogue record: [`catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json`](../
 
 | field | value |
 |---|---|
-| record license | MIT for the neutral concept, the script and the calculations; no crest, logo, photograph or commercial model redistributed |
+| record license | All rights reserved (see LICENSE) for the neutral concept, the script and the calculations; no crest, logo, photograph or commercial model redistributed |
 
 **Sources**
 

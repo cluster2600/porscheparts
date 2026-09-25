@@ -91,7 +91,7 @@ Catalogue record: [`catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json`](.
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photo and no commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photo and no commercial geometry redistributed |
 
 **Sources**
 

@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.js
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, Porsche/Patrick Motorsports/EOS surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, Porsche/Patrick Motorsports/EOS surface or commercial geometry redistributed |
 
 **Sources**
 

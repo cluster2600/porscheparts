@@ -90,7 +90,7 @@ Catalogue record: [`catalog/parts/993-turbocharger-k16-pair-0001.json`](../../ca
 
 | field | value |
 |---|---|
-| record license | MIT for the record, no third-party geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the record, no third-party geometry redistributed |
 
 **Sources**
 

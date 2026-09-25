@@ -90,7 +90,7 @@ Catalogue record: [`catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json`](../.
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, Porsche/MAHLE/Swindon surface or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, Porsche/MAHLE/Swindon surface or commercial geometry redistributed |
 
 **Sources**
 

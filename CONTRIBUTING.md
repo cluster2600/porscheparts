@@ -50,3 +50,12 @@ The PR must state:
 - the result of `make check`.
 
 Keeping a conservative status is better than an unverified claim.
+
+## Rights in contributions
+
+The repository is not open source: it is under the custom
+[porscheparts Proprietary License](LICENSE), all rights reserved by Maxime
+Grenu. Contributions can be accepted only if their author agrees in writing that
+the copyright holder may use, modify and publish them under that license. Open
+an issue before starting work, so that this is settled first.
+

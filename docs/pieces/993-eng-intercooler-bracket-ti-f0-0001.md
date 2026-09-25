@@ -103,7 +103,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, PET illustration or commercial geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, PET illustration or commercial geometry redistributed |
 
 **Sources**
 

@@ -87,7 +87,7 @@ Catalogue record: [`catalog/parts/993-eng-carrier-0001.json`](../../catalog/part
 
 | field | value |
 |---|---|
-| record license | MIT for the record, geometry not yet produced |
+| record license | All rights reserved (see LICENSE) for the record, geometry not yet produced |
 
 **Sources**
 

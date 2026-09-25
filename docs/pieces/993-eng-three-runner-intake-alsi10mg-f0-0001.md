@@ -87,7 +87,7 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 
 | field | value |
 |---|---|
-| record license | MIT for the concept, the script and the calculations; no photograph, trademark, illustration or PMO/Porsche geometry redistributed |
+| record license | All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, trademark, illustration or PMO/Porsche geometry redistributed |
 
 **Sources**
 

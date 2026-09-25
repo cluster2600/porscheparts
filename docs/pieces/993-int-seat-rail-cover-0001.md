@@ -87,7 +87,7 @@ Catalogue record: [`catalog/parts/993-int-seat-rail-cover-0001.json`](../../cata
 
 | field | value |
 |---|---|
-| record license | MIT for the record, geometry not yet produced |
+| record license | All rights reserved (see LICENSE) for the record, geometry not yet produced |
 
 **Sources**
 
